@@ -1,0 +1,614 @@
+{
+  "appRoot": "/private/tmp/cric-resident-integrator/officina-di-fisica",
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+  "cases": [
+    {
+      "id": "LAB3D-06",
+      "noWebGL": false,
+      "display": "3D interattivo",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua le due facce\n\nDue termostati tengono le facce alle temperature impostate. Le pareti laterali sono isolate. La barra è omogenea, senza sorgenti interne, e si trova in regime stazionario.\n\nL = 0,1 m · A = 0,0016 m²\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Gradiente\n-600 K/m\nFlusso areico\n1.200 W/m²\nPotenza verso destra\n1,92 W"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nLeggi la pendenza\n\nProcedi da sinistra verso destra. La temperatura cambia linearmente. Dividi la differenza tra arrivo e partenza per la lunghezza. Una differenza di 1 °C vale 1 K.\n\ndT/dx = (T₂ − T₁)/L = -600 K/m\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Gradiente\n-600 K/m\nFlusso areico\n1.200 W/m²\nPotenza verso destra\n1,92 W"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nSegui il calore\n\nLa legge di Fourier introduce un segno meno. Il calore passa dalla faccia più calda a quella più fredda. Moltiplica il flusso per l’area per ottenere la potenza totale.\n\nj = −k dT/dx = 1.200 W/m² · P = jA = 1,92 W\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Gradiente\n-600 K/m\nFlusso areico\n1.200 W/m²\nPotenza verso destra\n1,92 W"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRicava lo spessore\n\nMoltiplica per L, poi dividi per la potenza con il suo segno. Scambia le temperature e controlla che P inverta verso.\n\nL = kA(T₁ − T₂)/P = 0,1 m\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Gradiente\n-600 K/m\nFlusso areico\n1.200 W/m²\nPotenza verso destra\n1,92 W"
+        }
+      ],
+      "answerCount": 2,
+      "screenshot": "/tmp/cric-review-bench036-proof-BBBn03/LAB3D-06-3d.png",
+      "screenshotSha256": "7157959ef5048e9364e2e299647dce286ffc910724803bd5f009e8179712c378"
+    },
+    {
+      "id": "LAB3D-06",
+      "boundary": 0,
+      "changes": {
+        "left": 20,
+        "right": 80
+      },
+      "want": "-1,92",
+      "inputs": {
+        "left": "20",
+        "right": "80",
+        "L": "10",
+        "A": "16",
+        "k": "2"
+      },
+      "readings": "Gradiente\n600 K/m\nFlusso areico\n-1.200 W/m²\nPotenza verso destra\n-1,92 W",
+      "warning": "",
+      "screenshot": "/tmp/cric-review-bench036-proof-BBBn03/LAB3D-06-boundary0.png",
+      "screenshotSha256": "c4eb7f085d6e8c7053ab2621dfa99da2ac8318e2699b3e2defe997429b847e64"
+    },
+    {
+      "id": "LAB3D-06",
+      "boundary": 1,
+      "changes": {
+        "left": 20,
+        "right": 20
+      },
+      "want": "0 W",
+      "inputs": {
+        "left": "20",
+        "right": "20",
+        "L": "10",
+        "A": "16",
+        "k": "2"
+      },
+      "readings": "Gradiente\n0 K/m\nFlusso areico\n-0 W/m²\nPotenza verso destra\n-0 W",
+      "warning": "",
+      "screenshot": "/tmp/cric-review-bench036-proof-BBBn03/LAB3D-06-boundary1.png",
+      "screenshotSha256": "8d4170839b63a51f777933a30f1de4a358e3643ebf073940bf35604391b017c5"
+    },
+    {
+      "id": "LAB3D-07",
+      "noWebGL": false,
+      "display": "3D interattivo",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nPosiziona le sorgenti\n\nLe coordinate sono in metri. Secondo la legge di Coulomb, nel vuoto una carica positiva genera campo uscente, una negativa entrante. Con q = 0 togli la sorgente. Il campo è la forza per coulomb su una piccola carica positiva.\n\nEᵢ = k qᵢ (r − rᵢ)/|r − rᵢ|³ · k ≈ 9 × 10⁹ N·m²/C²\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Intensità |E|\n0 N/C\nPotenziale V\n36 V\nComponente Ex\n0 N/C"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nSomma le frecce\n\nAlla sonda sovrapponi i due contributi componente per componente. I segni sono già nei vettori. La freccia verde mostra la risultante con una scala comune ai contributi.\n\nE₁ = (18 / 0 / 0) · E₂ = (-18 / 0 / 0) · E = (0 / 0 / 0) N/C\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Intensità |E|\n0 N/C\nPotenziale V\n36 V\nComponente Ex\n0 N/C"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nDistingui linee e superfici\n\nLe piccole frecce sulle curve indicano la direzione locale del campo. La loro lunghezza è convenzionale. La superficie traslucida campiona il potenziale della sonda con riferimento zero all’infinito. Muovendoti su di essa V resta costante. La griglia spaziale rende approssimato il suo contorno.\n\nV = kq₁/r₁ + kq₂/r₂ = 36 V · E = −grad V\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Intensità |E|\n0 N/C\nPotenziale V\n36 V\nComponente Ex\n0 N/C"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nVerifica con una carica\n\nSpegni la seconda sorgente e raddoppia la distanza dalla prima. Il campo scende a un quarto, il potenziale a metà. Puoi ricavare la distanza dal modulo del campo di una sola carica.\n\n|E| = k|q|/r² ⇒ r = √(k|q|/|E|)\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Intensità |E|\n0 N/C\nPotenziale V\n36 V\nComponente Ex\n0 N/C"
+        }
+      ],
+      "answerCount": 2,
+      "screenshot": "/tmp/cric-review-bench036-proof-BBBn03/LAB3D-07-3d.png",
+      "screenshotSha256": "02df5e7001351d05573c31da5d6865cbbc9a0bed195435e6e5e1fea63be80ee8"
+    },
+    {
+      "id": "LAB3D-07",
+      "boundary": 0,
+      "changes": {
+        "q1": 1,
+        "q2": -1
+      },
+      "want": "18 N/C",
+      "inputs": {
+        "q1": "1",
+        "q2": "-1",
+        "sx": "0",
+        "sy": "0",
+        "sz": "0",
+        "ax": "-1",
+        "ay": "0",
+        "az": "0",
+        "bx": "1",
+        "by": "0",
+        "bz": "0"
+      },
+      "readings": "Intensità |E|\n18 N/C\nPotenziale V\n0 V\nComponente Ex\n18 N/C",
+      "warning": "",
+      "screenshot": "/tmp/cric-review-bench036-proof-BBBn03/LAB3D-07-boundary0.png",
+      "screenshotSha256": "65993a96007b0f5cc7e1c05f77ddb1d3a12eec29acf983d14d1cf025acdc27fe"
+    },
+    {
+      "id": "LAB3D-07",
+      "boundary": 1,
+      "changes": {
+        "sx": -1
+      },
+      "want": "SINGULAR",
+      "inputs": {
+        "q1": "1",
+        "q2": "-1",
+        "sx": "-1",
+        "sy": "0",
+        "sz": "0",
+        "ax": "-1",
+        "ay": "0",
+        "az": "0",
+        "bx": "1",
+        "by": "0",
+        "bz": "0"
+      },
+      "readings": "Intensità |E|\nN/C\nPotenziale V\nV\nComponente Ex\nN/C",
+      "warning": "La sonda coincide con una carica puntiforme. Campo e potenziale sono indefiniti in quel punto. Sposta la sonda.",
+      "screenshot": "/tmp/cric-review-bench036-proof-BBBn03/LAB3D-07-boundary1.png",
+      "screenshotSha256": "15872c7805dc94e132d016b5222f65f5306897c4923b4bb101c03ca3abfb31b3"
+    },
+    {
+      "id": "LAB3D-07",
+      "boundary": 2,
+      "changes": {
+        "q1": 0,
+        "q2": 0
+      },
+      "want": "0 N/C",
+      "inputs": {
+        "q1": "0",
+        "q2": "0",
+        "sx": "-1",
+        "sy": "0",
+        "sz": "0",
+        "ax": "-1",
+        "ay": "0",
+        "az": "0",
+        "bx": "1",
+        "by": "0",
+        "bz": "0"
+      },
+      "readings": "Intensità |E|\n0 N/C\nPotenziale V\n0 V\nComponente Ex\n0 N/C",
+      "warning": "",
+      "screenshot": "/tmp/cric-review-bench036-proof-BBBn03/LAB3D-07-boundary2.png",
+      "screenshotSha256": "c87c9a6ffd44f17ba8b5e794762c9d5ffc7219325ddb1f6537745ceee760cc42"
+    },
+    {
+      "id": "LAB3D-08",
+      "noWebGL": false,
+      "display": "3D interattivo",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nRicostruisci la connessione\n\nSegui i conduttori collegati al polo positivo. Le estremità sinistre di entrambi i resistori condividono il nodo A. Le destre condividono il nodo B.\n\nR₁ = 6 Ω · R₂ = 3 Ω\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Corrente totale\n3 A\nR₁ · 6 V · 6 W\n1 A\nR₂ · 6 V · 12 W\n2 A"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nApplica la legge di Ohm\n\nLa pila fissa la stessa tensione ai capi di ogni ramo. La corrente totale è la somma delle correnti dei rami.\n\nReq = R₁R₂/(R₁ + R₂) = 2 Ω · I = U/Req = 3 A\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Corrente totale\n3 A\nR₁ · 6 V · 6 W\n1 A\nR₂ · 6 V · 12 W\n2 A"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nBilancia potenza e corrente\n\nLe frecce seguono la corrente convenzionale nel circuito esterno, dal + al −. Nei fili metallici la deriva degli elettroni ha verso opposto. La geometria rappresenta collegamenti ideali.\n\nP₁ = U₁I₁ = 6 W · P₂ = U₂I₂ = 12 W · UI = 18 W\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Corrente totale\n3 A\nR₁ · 6 V · 6 W\n1 A\nR₂ · 6 V · 12 W\n2 A"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRicava una resistenza\n\nAlimenta il ramo e dividi la sua caduta di tensione per la sua corrente. A generatore spento entrambe si annullano e il loro rapporto non è misurabile.\n\nR₁ = U₁/I₁ = 6/1 = 6 Ω\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Corrente totale\n3 A\nR₁ · 6 V · 6 W\n1 A\nR₂ · 6 V · 12 W\n2 A"
+        }
+      ],
+      "answerCount": 2,
+      "screenshot": "/tmp/cric-review-bench036-proof-BBBn03/LAB3D-08-3d.png",
+      "screenshotSha256": "5189520fcf178f92dfc9604e66a15c53b181173425441368a9c23862da3fc67e"
+    },
+    {
+      "id": "LAB3D-08",
+      "boundary": 0,
+      "changes": {
+        "U": 0
+      },
+      "want": "0 A",
+      "inputs": {
+        "mode": "Parallelo",
+        "U": "0",
+        "R1": "6",
+        "R2": "3"
+      },
+      "readings": "Corrente totale\n0 A\nR₁ · 0 V · 0 W\n0 A\nR₂ · 0 V · 0 W\n0 A",
+      "warning": "",
+      "screenshot": "/tmp/cric-review-bench036-proof-BBBn03/LAB3D-08-boundary0.png",
+      "screenshotSha256": "dcfeb5e99412fb582225af51ac6bf70336d7a87828344514401aae9bba4c8c51"
+    },
+    {
+      "id": "LAB3D-08",
+      "boundary": 1,
+      "changes": {
+        "mode": "Serie",
+        "R1": 2,
+        "R2": 4,
+        "U": 12
+      },
+      "want": "2 A",
+      "inputs": {
+        "mode": "Serie",
+        "U": "12",
+        "R1": "2",
+        "R2": "4"
+      },
+      "readings": "Corrente totale\n2 A\nR₁ · 4 V · 8 W\n2 A\nR₂ · 8 V · 16 W\n2 A",
+      "warning": "",
+      "screenshot": "/tmp/cric-review-bench036-proof-BBBn03/LAB3D-08-boundary1.png",
+      "screenshotSha256": "e58ef2c22460c914d5ce779307de45a1b3ae00016dac44f1c98016c71e3ac445"
+    },
+    {
+      "id": "LAB3D-09",
+      "noWebGL": false,
+      "display": "3D interattivo",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nAllinea il banco\n\nL’oggetto è la piccola freccia a sinistra. La luce viaggia verso destra. Il centro ottico fissa lo zero, i due fuochi distano f. La vista laterale è ortografica. La freccia è alta 1 cm. L’asse verticale del disegno è ampliato di 7,7 volte rispetto a quello orizzontale. Le ascisse degli incroci si leggono sulla stessa scala della guida.\n\np = 30 cm · f = 12 cm\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Distanza immagine q\n20 cm\nIngrandimento\n-0,6667 ×\nSchermo\na fuoco"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nTraccia due raggi\n\nDalla punta parte un raggio parallelo all’asse: dopo la lente passa per il fuoco destro. Un secondo raggio attraversa il centro ottico e prosegue in linea retta.\n\nRaggio centrale: y(x) = −hx/p · raggio rifratto: y(x) = h(1 − x/f)\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Distanza immagine q\n20 cm\nIngrandimento\n-0,6667 ×\nSchermo\na fuoco"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nCerca l’intersezione\n\nI raggi convergono sul lato di uscita. Porta lo schermo alla quota q per raccogliere la punta capovolta.\n\n1/q = 1/f − 1/p · q = fp/(p − f) = 20 cm\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Distanza immagine q\n20 cm\nIngrandimento\n-0,6667 ×\nSchermo\na fuoco"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nVerifica il segno\n\nLa lente è sottile e i raggi sono parassiali. L’ingrandimento è il rapporto delle altezze con segno. Sul banco le distanze sono in centimetri. Le intersezioni oltre il campo visivo si leggono numericamente.\n\nm = −q/p = -0,6667 · f = pq/(p + q) = 12 cm\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Distanza immagine q\n20 cm\nIngrandimento\n-0,6667 ×\nSchermo\na fuoco"
+        }
+      ],
+      "answerCount": 2,
+      "screenshot": "/tmp/cric-review-bench036-proof-BBBn03/LAB3D-09-3d.png",
+      "screenshotSha256": "4a17142497edcc68b2704c190bde5c6a2336dec598e61788a7e0626b9f7a80d9"
+    },
+    {
+      "id": "LAB3D-09",
+      "boundary": 0,
+      "changes": {
+        "p": 10,
+        "f": 10
+      },
+      "want": "∞",
+      "inputs": {
+        "p": "10",
+        "f": "10",
+        "screen": "20"
+      },
+      "readings": "Distanza immagine q\n∞ cm\nIngrandimento\n×\nSchermo\nfuori fuoco",
+      "warning": "",
+      "screenshot": "/tmp/cric-review-bench036-proof-BBBn03/LAB3D-09-boundary0.png",
+      "screenshotSha256": "ae8d2ff7d86c6602d76183d454b17e1c8bbebceba5973a19761d9c39e299ef05"
+    },
+    {
+      "id": "LAB3D-09",
+      "boundary": 1,
+      "changes": {
+        "p": 5,
+        "f": 10,
+        "screen": 10
+      },
+      "want": "-10 cm",
+      "inputs": {
+        "p": "5",
+        "f": "10",
+        "screen": "10"
+      },
+      "readings": "Distanza immagine q\n-10 cm\nIngrandimento\n2 ×\nSchermo\nfuori fuoco",
+      "warning": "",
+      "screenshot": "/tmp/cric-review-bench036-proof-BBBn03/LAB3D-09-boundary1.png",
+      "screenshotSha256": "3aefe6f01c36b68ff2b2656d45fc20037ab79bc01908dce3dd49b8d2a2bcb7ef"
+    },
+    {
+      "id": "LAB3D-09",
+      "boundary": 2,
+      "changes": {
+        "p": 30,
+        "f": 10,
+        "screen": 15
+      },
+      "want": "a fuoco",
+      "inputs": {
+        "p": "30",
+        "f": "10",
+        "screen": "15"
+      },
+      "readings": "Distanza immagine q\n15 cm\nIngrandimento\n-0,5 ×\nSchermo\na fuoco",
+      "warning": "",
+      "screenshot": "/tmp/cric-review-bench036-proof-BBBn03/LAB3D-09-boundary2.png",
+      "screenshotSha256": "dfd632a3439eeb1c521647e05d069b7175087ba29c15d1fa3681c201b64d096f"
+    },
+    {
+      "id": "LAB3D-10",
+      "noWebGL": false,
+      "display": "3D interattivo",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nSegui i due fronti fino a P\n\nOsserva la superficie e il grafico della sonda. La vista dall’alto rende visibili i fronti di entrambe le sorgenti. Quando una cresta e una valle raggiungono P, i loro spostamenti verticali si sommano con segno.\n\ny(P,t) = y₁(P,t) + y₂(P,t)\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Differenza r₂ − r₁\n-0,298 m\nAmpiezza alla sonda\n0,04093 mm\nSpostamento istantaneo\n0,03012 mm\nFase relativa\n-3,121 rad"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nSposta la sonda\n\nMetti la sonda sulla linea mediana con x = 0. Confronta le fasi 0° e 180°. In sezione vedi l’altezza lungo la linea passante per P. La scala verticale è ingrandita.\n\nΔφ = 2π(r₂ − r₁)/λ + φ₂\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Differenza r₂ − r₁\n-0,298 m\nAmpiezza alla sonda\n0,04093 mm\nSpostamento istantaneo\n0,03012 mm\nFase relativa\n-3,121 rad"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nSegui una cresta\n\nOgni sorgente oscilla con la stessa frequenza. Una cresta impiega un periodo per avanzare di una lunghezza d’onda. Nel modello l’ampiezza di ciascun contributo resta 2 mm nella zona osservata.\n\nT = 1/f = 1 s · λ = cT = 0,6 m\n\nλ = 0,6 m\nT = 1 s\nDisegno 1 di 4\n←\nDisegno successivo →\n← Indietro\nVerifica →\nLa tua previsione iniziale\nPassaggi e misure di riferimento",
+          "readings": "Differenza r₂ − r₁\n-0,298 m\nAmpiezza alla sonda\n0,04093 mm\nSpostamento istantaneo\n0,03012 mm\nFase relativa\n-3,121 rad"
+        },
+        {
+          "phase": "math0",
+          "text": "COMPRENDI · 4/5\nConfronta i cammini\n\nLe distanze fra ciascuna sorgente e la sonda P possono essere diverse. Ogni lunghezza d’onda in più corrisponde a un giro di fase. Aggiungi la fase iniziale della seconda sorgente secondo la convenzione kr − ωt + φ.\n\nΔr = r₂ − r₁ = -0,298 m · Δφ = 2πΔr/λ + φ₂ = -3,121 rad\n\nP\nS₁\nS₂\nr₁ = 0,8201 m\nr₂ = 0,522 m\nDisegno 2 di 4\n←\nDisegno successivo →\n← Indietro\nVerifica →\nLa tua previsione iniziale\nPassaggi e misure di riferimento"
+        },
+        {
+          "phase": "math1",
+          "text": "COMPRENDI · 4/5\nSomma allo stesso istante\n\nPrendi le due ordinate sul grafico, entrambe alla tacca di tempo. Una cresta positiva può incontrare una valle negativa. La sonda segue la loro somma algebrica.\n\ny₁ + y₂ = (-1,339) + (1,369) = 0,03012 mm\n\ny₁\ny₂\nΣy\ny (mm)\nDisegno 3 di 4\n←\nDisegno successivo →\n← Indietro\nVerifica →\nLa tua previsione iniziale\nPassaggi e misure di riferimento"
+        },
+        {
+          "phase": "math2",
+          "text": "COMPRENDI · 4/5\nTrova un nodo\n\nNel punto medio i cammini sono uguali. Con sorgenti in fase le creste si rinforzano fino a 4 mm. Imposta 180° e le onde continuano a propagarsi ma P resta fermo per l’intero ciclo.\n\nAᵣ = 2A |cos(Δφ/2)| = 0,04093 mm · f = c/λ\n\ny (mm)\n1 periodo\nAmpiezza\n0,04093 mm\nDisegno 4 di 4\n←\nDisegno successivo →\n← Indietro\nVerifica →\nLa tua previsione iniziale\nPassaggi e misure di riferimento"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nPrevedi cosa misura P\n\nPer un istante somma le due ordinate. Per l’ampiezza considera l’intero periodo e la differenza di fase. Il valore massimo raggiungibile è 4 mm.\n\nA = 2 mm per sorgente · 0 ≤ A risultante ≤ 4 mm\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale\nPassaggi e misure di riferimento",
+          "readings": "Differenza r₂ − r₁\n-0,298 m\nAmpiezza alla sonda\n0,04093 mm\nSpostamento istantaneo\n0,03012 mm\nFase relativa\n-3,121 rad"
+        }
+      ],
+      "answerCount": 4,
+      "screenshot": "/tmp/cric-review-bench036-proof-BBBn03/LAB3D-10-3d.png",
+      "screenshotSha256": "e2c47005670ff907d352e97944bbdb433053d64d9e1dd6f5073e274fc07e0119"
+    },
+    {
+      "id": "LAB3D-10",
+      "boundary": 0,
+      "changes": {
+        "x": 0,
+        "phase": 0
+      },
+      "want": "AMPLITUDE4",
+      "inputs": {
+        "f": "1",
+        "d": "0.8",
+        "phase": "0",
+        "x": "0",
+        "z": "0.5"
+      },
+      "readings": "Differenza r₂ - r₁\n0 m\nAmpiezza alla sonda\n4 mm\nSpostamento istantaneo\n3,649 mm\nFase relativa\n0 rad",
+      "warning": "",
+      "screenshot": "/tmp/cric-review-bench036-proof-BBBn03/LAB3D-10-boundary0.png",
+      "screenshotSha256": "0dfe9ae68796a4b8140922d78d62e522fef0a0138f1cad55e624a271917fa9ed"
+    },
+    {
+      "id": "LAB3D-10",
+      "boundary": 1,
+      "changes": {
+        "phase": 180
+      },
+      "want": "AMPLITUDE0",
+      "inputs": {
+        "f": "1",
+        "d": "0.8",
+        "phase": "180",
+        "x": "0",
+        "z": "0.5"
+      },
+      "readings": "Differenza r₂ - r₁\n0 m\nAmpiezza alla sonda\n0 mm\nSpostamento istantaneo\n0 mm\nFase relativa\n3,142 rad",
+      "warning": "",
+      "screenshot": "/tmp/cric-review-bench036-proof-BBBn03/LAB3D-10-boundary1.png",
+      "screenshotSha256": "dad60d00ad52e0001800e9898558af6024172e79e9adae236c8a5e2efa949a3f"
+    },
+    {
+      "id": "LAB3D-06",
+      "noWebGL": true,
+      "display": "Tavola di misura",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua le due facce\n\nDue termostati tengono le facce alle temperature impostate. Le pareti laterali sono isolate. La barra è omogenea, senza sorgenti interne, e si trova in regime stazionario.\n\nL = 0,1 m · A = 0,0016 m²\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Gradiente\n-600 K/m\nFlusso areico\n1.200 W/m²\nPotenza verso destra\n1,92 W"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nLeggi la pendenza\n\nProcedi da sinistra verso destra. La temperatura cambia linearmente. Dividi la differenza tra arrivo e partenza per la lunghezza. Una differenza di 1 °C vale 1 K.\n\ndT/dx = (T₂ − T₁)/L = -600 K/m\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Gradiente\n-600 K/m\nFlusso areico\n1.200 W/m²\nPotenza verso destra\n1,92 W"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nSegui il calore\n\nLa legge di Fourier introduce un segno meno. Il calore passa dalla faccia più calda a quella più fredda. Moltiplica il flusso per l’area per ottenere la potenza totale.\n\nj = −k dT/dx = 1.200 W/m² · P = jA = 1,92 W\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Gradiente\n-600 K/m\nFlusso areico\n1.200 W/m²\nPotenza verso destra\n1,92 W"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRicava lo spessore\n\nMoltiplica per L, poi dividi per la potenza con il suo segno. Scambia le temperature e controlla che P inverta verso.\n\nL = kA(T₁ − T₂)/P = 0,1 m\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Gradiente\n-600 K/m\nFlusso areico\n1.200 W/m²\nPotenza verso destra\n1,92 W"
+        }
+      ],
+      "answerCount": 2,
+      "screenshot": "/tmp/cric-review-bench036-proof-BBBn03/LAB3D-06-2d.png",
+      "screenshotSha256": "81843ba11792c1cfefacbfd27017fa3b369bf523c3b8f67bd58d15292ed3952e"
+    },
+    {
+      "id": "LAB3D-07",
+      "noWebGL": true,
+      "display": "Tavola di misura",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nPosiziona le sorgenti\n\nLe coordinate sono in metri. Secondo la legge di Coulomb, nel vuoto una carica positiva genera campo uscente, una negativa entrante. Con q = 0 togli la sorgente. Il campo è la forza per coulomb su una piccola carica positiva.\n\nEᵢ = k qᵢ (r − rᵢ)/|r − rᵢ|³ · k ≈ 9 × 10⁹ N·m²/C²\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Intensità |E|\n0 N/C\nPotenziale V\n36 V\nComponente Ex\n0 N/C"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nSomma le frecce\n\nAlla sonda sovrapponi i due contributi componente per componente. I segni sono già nei vettori. La freccia verde mostra la risultante con una scala comune ai contributi.\n\nE₁ = (18 / 0 / 0) · E₂ = (-18 / 0 / 0) · E = (0 / 0 / 0) N/C\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Intensità |E|\n0 N/C\nPotenziale V\n36 V\nComponente Ex\n0 N/C"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nDistingui linee e superfici\n\nLe piccole frecce sulle curve indicano la direzione locale del campo. La loro lunghezza è convenzionale. La superficie traslucida campiona il potenziale della sonda con riferimento zero all’infinito. Muovendoti su di essa V resta costante. La griglia spaziale rende approssimato il suo contorno.\n\nV = kq₁/r₁ + kq₂/r₂ = 36 V · E = −grad V\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Intensità |E|\n0 N/C\nPotenziale V\n36 V\nComponente Ex\n0 N/C"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nVerifica con una carica\n\nSpegni la seconda sorgente e raddoppia la distanza dalla prima. Il campo scende a un quarto, il potenziale a metà. Puoi ricavare la distanza dal modulo del campo di una sola carica.\n\n|E| = k|q|/r² ⇒ r = √(k|q|/|E|)\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Intensità |E|\n0 N/C\nPotenziale V\n36 V\nComponente Ex\n0 N/C"
+        }
+      ],
+      "answerCount": 2,
+      "screenshot": "/tmp/cric-review-bench036-proof-BBBn03/LAB3D-07-2d.png",
+      "screenshotSha256": "49a6816b73ceac69f8b6680161e771804f3dfc91c2d2b6b833e4eb4f1325e18d"
+    },
+    {
+      "id": "LAB3D-08",
+      "noWebGL": true,
+      "display": "Tavola di misura",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nRicostruisci la connessione\n\nSegui i conduttori collegati al polo positivo. Le estremità sinistre di entrambi i resistori condividono il nodo A. Le destre condividono il nodo B.\n\nR₁ = 6 Ω · R₂ = 3 Ω\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Corrente totale\n3 A\nR₁ · 6 V · 6 W\n1 A\nR₂ · 6 V · 12 W\n2 A"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nApplica la legge di Ohm\n\nLa pila fissa la stessa tensione ai capi di ogni ramo. La corrente totale è la somma delle correnti dei rami.\n\nReq = R₁R₂/(R₁ + R₂) = 2 Ω · I = U/Req = 3 A\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Corrente totale\n3 A\nR₁ · 6 V · 6 W\n1 A\nR₂ · 6 V · 12 W\n2 A"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nBilancia potenza e corrente\n\nLe frecce seguono la corrente convenzionale nel circuito esterno, dal + al −. Nei fili metallici la deriva degli elettroni ha verso opposto. La geometria rappresenta collegamenti ideali.\n\nP₁ = U₁I₁ = 6 W · P₂ = U₂I₂ = 12 W · UI = 18 W\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Corrente totale\n3 A\nR₁ · 6 V · 6 W\n1 A\nR₂ · 6 V · 12 W\n2 A"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRicava una resistenza\n\nAlimenta il ramo e dividi la sua caduta di tensione per la sua corrente. A generatore spento entrambe si annullano e il loro rapporto non è misurabile.\n\nR₁ = U₁/I₁ = 6/1 = 6 Ω\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Corrente totale\n3 A\nR₁ · 6 V · 6 W\n1 A\nR₂ · 6 V · 12 W\n2 A"
+        }
+      ],
+      "answerCount": 2,
+      "screenshot": "/tmp/cric-review-bench036-proof-BBBn03/LAB3D-08-2d.png",
+      "screenshotSha256": "0cd8c25907e85eb4e19676bbb92fee995389475f2bd8b3b6942796c7d4099f34"
+    },
+    {
+      "id": "LAB3D-09",
+      "noWebGL": true,
+      "display": "Tavola di misura",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nAllinea il banco\n\nL’oggetto è la piccola freccia a sinistra. La luce viaggia verso destra. Il centro ottico fissa lo zero, i due fuochi distano f. La vista laterale è ortografica. La freccia è alta 1 cm. L’asse verticale del disegno è ampliato di 7,7 volte rispetto a quello orizzontale. Le ascisse degli incroci si leggono sulla stessa scala della guida.\n\np = 30 cm · f = 12 cm\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Distanza immagine q\n20 cm\nIngrandimento\n-0,6667 ×\nSchermo\na fuoco"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nTraccia due raggi\n\nDalla punta parte un raggio parallelo all’asse: dopo la lente passa per il fuoco destro. Un secondo raggio attraversa il centro ottico e prosegue in linea retta.\n\nRaggio centrale: y(x) = −hx/p · raggio rifratto: y(x) = h(1 − x/f)\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Distanza immagine q\n20 cm\nIngrandimento\n-0,6667 ×\nSchermo\na fuoco"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nCerca l’intersezione\n\nI raggi convergono sul lato di uscita. Porta lo schermo alla quota q per raccogliere la punta capovolta.\n\n1/q = 1/f − 1/p · q = fp/(p − f) = 20 cm\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Distanza immagine q\n20 cm\nIngrandimento\n-0,6667 ×\nSchermo\na fuoco"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nVerifica il segno\n\nLa lente è sottile e i raggi sono parassiali. L’ingrandimento è il rapporto delle altezze con segno. Sul banco le distanze sono in centimetri. Le intersezioni oltre il campo visivo si leggono numericamente.\n\nm = −q/p = -0,6667 · f = pq/(p + q) = 12 cm\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Distanza immagine q\n20 cm\nIngrandimento\n-0,6667 ×\nSchermo\na fuoco"
+        }
+      ],
+      "answerCount": 2,
+      "screenshot": "/tmp/cric-review-bench036-proof-BBBn03/LAB3D-09-2d.png",
+      "screenshotSha256": "e254ee5234e81948b90d3591aa7055543285cfbfb1ce32ea3783f0a862454fcb"
+    },
+    {
+      "id": "LAB3D-10",
+      "noWebGL": true,
+      "display": "Tavola di misura",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nSegui i due fronti fino a P\n\nOsserva la superficie e il grafico della sonda. La vista dall’alto rende visibili i fronti di entrambe le sorgenti. Quando una cresta e una valle raggiungono P, i loro spostamenti verticali si sommano con segno.\n\ny(P,t) = y₁(P,t) + y₂(P,t)\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Differenza r₂ − r₁\n-0,298 m\nAmpiezza alla sonda\n0,04093 mm\nSpostamento istantaneo\n0,03012 mm\nFase relativa\n-3,121 rad"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nSposta la sonda\n\nMetti la sonda sulla linea mediana con x = 0. Confronta le fasi 0° e 180°. In sezione vedi l’altezza lungo la linea passante per P. La scala verticale è ingrandita.\n\nΔφ = 2π(r₂ − r₁)/λ + φ₂\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Differenza r₂ − r₁\n-0,298 m\nAmpiezza alla sonda\n0,04093 mm\nSpostamento istantaneo\n0,03012 mm\nFase relativa\n-3,121 rad"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nSegui una cresta\n\nOgni sorgente oscilla con la stessa frequenza. Una cresta impiega un periodo per avanzare di una lunghezza d’onda. Nel modello l’ampiezza di ciascun contributo resta 2 mm nella zona osservata.\n\nT = 1/f = 1 s · λ = cT = 0,6 m\n\nλ = 0,6 m\nT = 1 s\nDisegno 1 di 4\n←\nDisegno successivo →\n← Indietro\nVerifica →\nLa tua previsione iniziale\nPassaggi e misure di riferimento",
+          "readings": "Differenza r₂ − r₁\n-0,298 m\nAmpiezza alla sonda\n0,04093 mm\nSpostamento istantaneo\n0,03012 mm\nFase relativa\n-3,121 rad"
+        },
+        {
+          "phase": "math0",
+          "text": "COMPRENDI · 4/5\nConfronta i cammini\n\nLe distanze fra ciascuna sorgente e la sonda P possono essere diverse. Ogni lunghezza d’onda in più corrisponde a un giro di fase. Aggiungi la fase iniziale della seconda sorgente secondo la convenzione kr − ωt + φ.\n\nΔr = r₂ − r₁ = -0,298 m · Δφ = 2πΔr/λ + φ₂ = -3,121 rad\n\nP\nS₁\nS₂\nr₁ = 0,8201 m\nr₂ = 0,522 m\nDisegno 2 di 4\n←\nDisegno successivo →\n← Indietro\nVerifica →\nLa tua previsione iniziale\nPassaggi e misure di riferimento"
+        },
+        {
+          "phase": "math1",
+          "text": "COMPRENDI · 4/5\nSomma allo stesso istante\n\nPrendi le due ordinate sul grafico, entrambe alla tacca di tempo. Una cresta positiva può incontrare una valle negativa. La sonda segue la loro somma algebrica.\n\ny₁ + y₂ = (-1,339) + (1,369) = 0,03012 mm\n\ny₁\ny₂\nΣy\ny (mm)\nDisegno 3 di 4\n←\nDisegno successivo →\n← Indietro\nVerifica →\nLa tua previsione iniziale\nPassaggi e misure di riferimento"
+        },
+        {
+          "phase": "math2",
+          "text": "COMPRENDI · 4/5\nTrova un nodo\n\nNel punto medio i cammini sono uguali. Con sorgenti in fase le creste si rinforzano fino a 4 mm. Imposta 180° e le onde continuano a propagarsi ma P resta fermo per l’intero ciclo.\n\nAᵣ = 2A |cos(Δφ/2)| = 0,04093 mm · f = c/λ\n\ny (mm)\n1 periodo\nAmpiezza\n0,04093 mm\nDisegno 4 di 4\n←\nDisegno successivo →\n← Indietro\nVerifica →\nLa tua previsione iniziale\nPassaggi e misure di riferimento"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nPrevedi cosa misura P\n\nPer un istante somma le due ordinate. Per l’ampiezza considera l’intero periodo e la differenza di fase. Il valore massimo raggiungibile è 4 mm.\n\nA = 2 mm per sorgente · 0 ≤ A risultante ≤ 4 mm\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale\nPassaggi e misure di riferimento",
+          "readings": "Differenza r₂ − r₁\n-0,298 m\nAmpiezza alla sonda\n0,04093 mm\nSpostamento istantaneo\n0,03012 mm\nFase relativa\n-3,121 rad"
+        }
+      ],
+      "answerCount": 4,
+      "screenshot": "/tmp/cric-review-bench036-proof-BBBn03/LAB3D-10-2d.png",
+      "screenshotSha256": "395c97a9e8f657355c50416cb1903b9e4324a04a05af80b69f22de3d264dc16c"
+    }
+  ],
+  "errors": [],
+  "publicationAction": "NONE",
+  "humanApproval": "NOT_RUN",
+  "runtimeProfileSha256": "f897223d7afb4a9e09eb4fd06768e42e5b52bc131455fa678fbef74b4f39caa5",
+  "base": "http://127.0.0.1:61118/",
+  "runtimeSha256": {
+    "static/js/banchi/modelli/calore.js": "83c89a3140ba5a3386eff0cff54a1aa2575c26ea1e973779b19303026c13bc23",
+    "static/js/banchi/modelli/campo.js": "3750efefa281d28712a973bea921544fb83dc5ad9eb2da7e0c09fe6fac6d50c3",
+    "static/js/banchi/modelli/circuito.js": "107b9e8defed3aaa6d04883442951ed20b7b2cdfdefb658f3ef746c24185a757",
+    "static/js/banchi/modelli/lente.js": "5488291f98987538c4fc8483a61e2c058e45605c66391a7ccbdd2b9fb8787566",
+    "static/js/banchi/modelli/onde.js": "3fb789376d62279c115c5facf666c10c39160068210585a5755ee86daa2dbb7c",
+    "static/js/banchi/scene/calore.js": "80272a42fbf7edd5a130df801c3819482aaca55471ed992e5fb411085f897f4e",
+    "static/js/banchi/scene/campo.js": "cd1728f04b9bb954c15bd555eec5c0958d96bf166f498d68d2fcb1ee051f18c4",
+    "static/js/banchi/scene/circuito.js": "049ed16c1cc2bd6d2c2662c4de38399d3b1bb00a5adabeb17bed06780df49701",
+    "static/js/banchi/scene/lente.js": "8a238ff78b82cdd796b796691e147128c00a5a0f9d089d2398896c92a4c104b5",
+    "static/js/banchi/scene/onde.js": "082076476beef18b03506417958bbec7f5d1e75c9278f8824cfde68cdf0ed139",
+    "static/js/banchi/misure.js": "8d631c65b0266ece6447da07aff7a43ee61b66d0767ddc24ace3f59b31fac186",
+    "static/js/banchi/banco.js": "682ba25fcf97b67821b8c9bb6c73a571c87559f94bbda3f64cfad65fab63cdb8",
+    "static/js/banchi/quaderno.js": "ecc32226e0fa1781b36cac952fa926a2ac17be6b4eae491ef6ef5744fcd8885a",
+    "static/js/banchi/tavola.js": "4b629188e9a449e642c9acefb408b367ec2562b23a26d2c7723f674b5fdd4c3d",
+    "static/js/banchi/grafici.js": "e5567e88ee6df5c604f8e62228da5e70841556ad0b55fb212fd4d091fdeee3fd",
+    "static/js/banchi/scena.js": "4d94c92a834573062a2af541df113bad06bd11ca538b31bddddc5ec8621a5095",
+    "static/js/banchi/etichette.js": "455ae33c790be4e207e5b5667918c44ea16c95f49e1fea0b13cc92f08aa003f3",
+    "static/js/banchi/aula.js": "44c74446d0d60b20e9dad05b32321f1000f026acdec386ca5aa2f74c20421967",
+    "static/js/models.js": "525733758bad90ae00913d497d0916ff683168370fc9a1e320dd16e0c7a9faa6",
+    "static/lab-models.json": "2e4397ef2dc7e63ad2a75eae804228221ca74506d43f1cc73ef2de78ed1b6b27",
+    "content/banchi.json": "c0494a9091cca33b7631b68df1cb7b472c63d0e5481e7dbd391ae1b46e326bdf"
+  },
+  "protocolSha256": "deefcba8404fd93197f91d1efedce5906d0d9c6bf4fc093cd16669c8e739746c",
+  "terminalStatus": "PASS",
+  "browserVersion": "158.0.8127.37",
+  "screenshotsRetainedInRepository": false,
+  "screenshotAvailability": "Temporary local images individually hashed; portable runner regenerates them. Review note names visually inspected states; no image publication."
+}
