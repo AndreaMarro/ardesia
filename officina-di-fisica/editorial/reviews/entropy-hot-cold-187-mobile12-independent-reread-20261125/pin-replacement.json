@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "1.0.0",
+  "scope": "Selective independent reread of final18712 after remote mobile overflow; not new full-batch approval",
+  "candidateCommit": "1a451db18348236f976b811568a1cbd34092efdb",
+  "reviewedVerifierBeforeUpdateSha256": "1d95f2b8be3cae2a98b558629b1f71f43a8c3f4a90400d81f7d0915e8564dff7",
+  "primarySourceFirstSha256": "004be03cceb688102d1fd50cfb07cf059633b87b608ffc149f19a1a8a4831c95",
+  "id": "AR-u5-entropy-hot-cold-12",
+  "before": {
+    "candidateCommit": "457624152f91b17ccdf8b53be8e37de5b3715baa",
+    "packageSha256": "8e1bffab6a800f93d808a072aeb13368386991ac9a8b6f02641ffa1486abb33c",
+    "bindingsSha256": "e20c12643694f382a4e2e24af1910c97c099ea73f9b1562fafe800b15eeb8c58",
+    "reviewedSignature": "e028fdf176df47014f04b43a8a777f114dd493b8c0bfd612b21411d568feb536"
+  },
+  "replacementPins": {
+    "CANDIDATE_REF": "1a451db18348236f976b811568a1cbd34092efdb",
+    "REVIEWED_PACKAGE_SHA256": "39e706ec374d69ffd76865da07e9fc11ac5d747519680fb8e630c18e80d80f81",
+    "REVIEWED_BINDINGS_SHA256": "5b04f72784917f66eca5b0c040fe0208ae92498434785e75f5a40e6af8670f02",
+    "REVIEWED_CANDIDATES": {
+      "AR-u5-entropy-hot-cold-12": "5ed2455d40f6203115cabb276cdf72cce1edaa8326cec16f86e0905a702af472"
+    }
+  },
+  "candidateSha256": "dae912ed0d4623571100ad5a4abcbad5a7561d7a6b38e2b3d4e409bce0e95b70",
+  "sourceSha256": "247086858791c59955e7395ed676d4125b5cad6264432e9fd54c73ae6e209f7e",
+  "assetChecksums": {},
+  "allOther15RecordsUnchanged": true,
+  "allOther15BindingsUnchanged": true,
+  "changedRecordFields": [
+    "blocks"
+  ],
+  "allAnswerPromptHintsErrorMetadataAndAssetsUnchanged": true,
+  "exactManualProof": {
+    "deltaS_A": "3/2",
+    "deltaS_B": "1",
+    "mean": "5/4",
+    "coldEntropyAtMeanInputs": "12/5",
+    "hotEntropyLossMagnitudeAtMeanInputs": "6/5",
+    "modelAtMeanInputs": "6/5",
+    "meanMinusModelAtMeanInputs": "1/20",
+    "unit": "J/K"
+  },
+  "scientificReread": "The entire final record, every formula, prompt, five alternatives, hints, feedback and physical domain were read; same exact law and result, definitions a_m/b_m/d_m valid and signs positive as magnitudes. No remaining scientific finding. New UI width is not claimed without real remote replay.",
+  "localAutomation": "STDLIB_FRACTION_AND_BYTE_ASSERTIONS_EXIT_0_ONLY",
+  "newOracleExecution": "NOT_RUN_LOCAL",
+  "productUI": "NOT_RUN",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "publicationAction": "NONE",
+  "rootAction": "Integrator applies only replacement AST pins and record12 signature, preserving updated shared parser/dependency guards and running the real unchanged oracle remotely."
+}

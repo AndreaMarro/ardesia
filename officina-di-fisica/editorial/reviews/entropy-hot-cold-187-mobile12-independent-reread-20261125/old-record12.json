@@ -1,0 +1,77 @@
+{
+  "id": "AR-u5-entropy-hot-cold-12",
+  "kind": "question",
+  "course": "C3",
+  "section": "Entropia totale e trasferimento spontaneo",
+  "order": 18712,
+  "title": "Media delle variazioni totali, non dei serbatoi",
+  "version": 1,
+  "baseVersion": 0,
+  "skill": "C3-L10",
+  "prerequisites": [
+    "C1-L001",
+    "C3-L01",
+    "C3-L03",
+    "C3-L06",
+    "C3-L09",
+    "C3-L10"
+  ],
+  "reuse": [
+    "C6"
+  ],
+  "family": "entropy-hot-cold",
+  "difficulty": 2,
+  "prompt": "Q=600 J passa spontaneamente da una sorgente ideale calda a T_h a una sorgente ideale fredda a T_c, con T_h>T_c>0 in kelvin. Le temperature restano costanti entro la prova, non ci sono altri scambi con l’esterno né lavoro o accumulo nel collegamento. Il sistema complessivo comprende le due sorgenti e il collegamento. Il trasferimento reale con differenza finita di temperatura è irreversibile. Le variazioni di entropia delle sorgenti si calcolano dai loro stati usando percorsi reversibili equivalenti: ΔS_h=−Q/T_h e ΔS_c=+Q/T_c. Si chiede ΔS_tot=ΔS_h+ΔS_c, non il calore netto, che è nullo per il complesso. A usa T_c=200 K, T_h=400 K; B usa T_c=300 K, T_h=600 K. Qual è la media aritmetica delle due ΔS_tot con uguale peso?",
+  "answer": {
+    "type": "choice",
+    "options": [
+      "5/4 J/K",
+      "6/5 J/K",
+      "5/2 J/K",
+      "1/4 J/K",
+      "3/2 J/K"
+    ],
+    "value": "5/4 J/K"
+  },
+  "blocks": [
+    {
+      "type": "text",
+      "text": "Le variazioni totali sono 3/2 e 1 J/K. Sommiamo 3/2+2/2=5/2 e dividiamo per due: la media è 5/4 J/K. Usando invece le temperature medie 250 e 500 K si otterrebbe 600(1/250−1/500)=6/5 J/K, diverso. Non si stanno mettendo in contatto fisico quattro sorgenti."
+    },
+    {
+      "type": "formula",
+      "text": "\\overline{\\Delta S_{\\rm tot}}=\\frac{3/2+1}{2}\\,\\mathrm{J/K}"
+    },
+    {
+      "type": "formula",
+      "text": " \\overline{\\Delta S_{\\rm tot}}=5/4\\,\\mathrm{J/K}"
+    },
+    {
+      "type": "formula",
+      "text": " \\Delta S_{\\rm temperature\\ medie}=600\\left(\\frac1{250}-\\frac1{500}\\right)\\,\\mathrm{J/K}"
+    },
+    {
+      "type": "formula",
+      "text": " \\Delta S_{\\rm temperature\\ medie}=6/5\\,\\mathrm{J/K}"
+    },
+    {
+      "type": "text",
+      "text": "6/5 J/K applica il modello alle temperature medie. 5/2 J/K non dimezza la somma; 1/4 J/K è metà della differenza e 3/2 J/K copia A."
+    }
+  ],
+  "hints": [
+    "Media le variazioni già ricostruite da ogni coppia di temperature.",
+    "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+  ],
+  "error": {
+    "category": "algebra",
+    "message": "6/5 J/K applica il modello alle temperature medie. 5/2 J/K non dimezza la somma; 1/4 J/K è metà della differenza e 3/2 J/K copia A.",
+    "target": "C3-L10"
+  },
+  "coverage": [
+    "Energia conservata ed entropia prodotta fra sorgenti",
+    "Segni, temperature assolute e inverse ammissibili",
+    "Rapporti, medie, display e scala termica dal vincolo"
+  ],
+  "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+}
