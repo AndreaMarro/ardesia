@@ -1,0 +1,407 @@
+{
+  "UI": "NOT_RUN",
+  "activityCredit": 0,
+  "consumerCodeFailIds": [
+    "SIM-C3-L01-04"
+  ],
+  "disclosure": "Prior thermal lesson/example andsharedclockreading; notfullyblinded.36sourceonlyprimaryfrozenbeforeC3model/newsolutionfields.",
+  "group": "state",
+  "humanApproval": "NOT_RUN",
+  "localOnly": true,
+  "ok": false,
+  "overallComplete": false,
+  "phase": "ORIGINAL_SOURCE_MATH_INSTALLED_CODE_PARTIAL_NOT_REGISTRABLE",
+  "primaryPath": "editorial/reviews/C3-36-source-only-primary-20261125.json",
+  "primarySha256": "c87e8e0db9b84ae2fe58cd1bf0bb81185806521b3e8953aff63d7dd6dc7cbcf2",
+  "proofPath": "editorial/reviews/C3-state-installed-code-1a35-20261125.json",
+  "proofSha256": "48c4e0f503742352f404c9d57fabaa63889dd9213432e40ebd675bda588c30f5",
+  "publicationAction": "NONE",
+  "records": [
+    {
+      "CodeGeometryFailure": [],
+      "ManualityFailure": false,
+      "SourceScientificFailure": null,
+      "UI": "NOT_RUN",
+      "UI_Observed": false,
+      "activityCredit": 0,
+      "actualTasks": [
+        {
+          "actualValue": 80,
+          "independentExact": "80",
+          "input": "6",
+          "literalAcceptedByNumericRule": true,
+          "manualNumericLiteral": "80",
+          "ok": true,
+          "prompt": "Imposta «Corsa del pistone» su 6 cm. Quale valore ottieni per «Volume del sistema»?",
+          "unit": "cm³"
+        },
+        {
+          "actualValue": 60,
+          "independentExact": "60",
+          "input": "4",
+          "literalAcceptedByNumericRule": true,
+          "manualNumericLiteral": "60",
+          "ok": true,
+          "prompt": "La camera contiene inizialmente 20 cm³. Il pistone di area 10 cm² avanza verso l’esterno di 4 cm. Qual è il nuovo volume del gas?",
+          "unit": "cm³"
+        }
+      ],
+      "assumptionsAndDomain": "Closed fixed-mass gas; equilibrium state variables, absolute pressure and absoluteT. Celsius offset273.15 explicitly provided. Constant area; temperatures positive on full grid.",
+      "checkedGeometryScope": "AllcollectedarrowtipXYZvsopaqueboxes;thermometerupperendcapvsbulb. Notfullglyphs/meshtriangles/camera/raster/labels/fallback. No3DUIobserved.",
+      "clockSampleCount": 0,
+      "consumerCodeGeometryOk": true,
+      "consumerJudgment": "PARTIAL_NO_FAILURE_FOUND_IN_CHECKED_CODE",
+      "errors": [],
+      "geometryObservations": [],
+      "gridCount": 17,
+      "humanApproval": "NOT_RUN",
+      "id": "SIM-C3-L01-01",
+      "manualProcedure": "20+10·6=80; 20+10·4=60 cm³. A·s has cm³.",
+      "manualityScope": "Independentreviewerderivedhandprocedureforbothactualtasks;notastudentperformancecalibrationorclaimthesourcealreadyteachesallbounds.",
+      "ok": false,
+      "publicationAction": "NONE",
+      "reviewDependencySha256": {
+        "editorial/reviews/C3-36-code-partial-20261125/mesh-halfspace-negatives.json": "4c079bd5a19b5a69ed0e0416fd1b95a81d99d80def88177ba5bc68355bad789d",
+        "tests/corpus/check-C3-contained-geometry.mjs": "98c74ed0f857f0d883abd7f4dbdd1838750daa48850251667577f9f56516479b",
+        "tests/corpus/collect-C3-bounded-code-only.mjs": "3b6151bd07e427801e1b48e07a129ef71a1d46571e9781088ac229ca6ac2d9d4",
+        "tools/corpus_engineering/collect_C3_code_partial.py": "2ccd470c9a7af497280453e860370517088dbad931776c8a1cc815df726c56e6",
+        "tools/corpus_engineering/experiments_C3_code_partial_verifier.py": "9a0002b990b8bc181f90dd233a1122e2d8b48c77ecdcee240d9c8e72e16f1843"
+      },
+      "sourceJudgment": "PASS_MATH_ONLY",
+      "sourceMathAndActualTasksOk": true,
+      "sourceSha256": "0ef151665d37771fe59b67bff1fb0c3ea449d36a8a2a2970905d6fd60c50859a",
+      "sourceVersion": 1,
+      "studentTaskScope": "Two actual generated numeric questions; predictiondistractors independently checked; bounds/extraoracles are reviewerprobes not assignedstudenttasks.",
+      "visualReview": "NOT_RUN"
+    },
+    {
+      "CodeGeometryFailure": [],
+      "ManualityFailure": false,
+      "SourceScientificFailure": null,
+      "UI": "NOT_RUN",
+      "UI_Observed": false,
+      "activityCredit": 0,
+      "actualTasks": [
+        {
+          "actualValue": 160,
+          "independentExact": "160",
+          "input": "400",
+          "literalAcceptedByNumericRule": true,
+          "manualNumericLiteral": "160",
+          "ok": true,
+          "prompt": "Imposta «Temperatura assoluta» su 400 K. Quale valore ottieni per «Pressione»?",
+          "unit": "kPa"
+        },
+        {
+          "actualValue": 140,
+          "independentExact": "140",
+          "input": "350",
+          "literalAcceptedByNumericRule": true,
+          "manualNumericLiteral": "140",
+          "ok": true,
+          "prompt": "In un recipiente rigido il sensore misura 0,4 kPa per ogni kelvin. Portando il gas a 350 K, quale pressione assoluta prevedi?",
+          "unit": "kPa"
+        }
+      ],
+      "assumptionsAndDomain": "Closed fixed-mass gas; equilibrium state variables, absolute pressure and absoluteT. Celsius offset273.15 explicitly provided. Constant area; temperatures positive on full grid.",
+      "checkedGeometryScope": "AllcollectedarrowtipXYZvsopaqueboxes;thermometerupperendcapvsbulb. Notfullglyphs/meshtriangles/camera/raster/labels/fallback. No3DUIobserved.",
+      "clockSampleCount": 0,
+      "consumerCodeGeometryOk": true,
+      "consumerJudgment": "PARTIAL_NO_FAILURE_FOUND_IN_CHECKED_CODE",
+      "errors": [],
+      "geometryObservations": [],
+      "gridCount": 31,
+      "humanApproval": "NOT_RUN",
+      "id": "SIM-C3-L01-02",
+      "manualProcedure": "(4/10)·400=160; (4/10)·350=140 kPa.",
+      "manualityScope": "Independentreviewerderivedhandprocedureforbothactualtasks;notastudentperformancecalibrationorclaimthesourcealreadyteachesallbounds.",
+      "ok": false,
+      "publicationAction": "NONE",
+      "reviewDependencySha256": {
+        "editorial/reviews/C3-36-code-partial-20261125/mesh-halfspace-negatives.json": "4c079bd5a19b5a69ed0e0416fd1b95a81d99d80def88177ba5bc68355bad789d",
+        "tests/corpus/check-C3-contained-geometry.mjs": "98c74ed0f857f0d883abd7f4dbdd1838750daa48850251667577f9f56516479b",
+        "tests/corpus/collect-C3-bounded-code-only.mjs": "3b6151bd07e427801e1b48e07a129ef71a1d46571e9781088ac229ca6ac2d9d4",
+        "tools/corpus_engineering/collect_C3_code_partial.py": "2ccd470c9a7af497280453e860370517088dbad931776c8a1cc815df726c56e6",
+        "tools/corpus_engineering/experiments_C3_code_partial_verifier.py": "9a0002b990b8bc181f90dd233a1122e2d8b48c77ecdcee240d9c8e72e16f1843"
+      },
+      "sourceJudgment": "PASS_MATH_ONLY",
+      "sourceMathAndActualTasksOk": true,
+      "sourceSha256": "c2850d6bdafa7ea9440c20aa3ff79c0843f1164fe393a7f7174554361f80a536",
+      "sourceVersion": 1,
+      "studentTaskScope": "Two actual generated numeric questions; predictiondistractors independently checked; bounds/extraoracles are reviewerprobes not assignedstudenttasks.",
+      "visualReview": "NOT_RUN"
+    },
+    {
+      "CodeGeometryFailure": [],
+      "ManualityFailure": false,
+      "SourceScientificFailure": null,
+      "UI": "NOT_RUN",
+      "UI_Observed": false,
+      "activityCredit": 0,
+      "actualTasks": [
+        {
+          "actualValue": 30,
+          "independentExact": "30",
+          "input": "4",
+          "literalAcceptedByNumericRule": true,
+          "manualNumericLiteral": "30",
+          "ok": true,
+          "prompt": "Imposta «Volume finale» su 4 L. Quale valore ottieni per «Pressione finale»?",
+          "unit": "kPa"
+        },
+        {
+          "actualValue": 40,
+          "independentExact": "40",
+          "input": "3",
+          "literalAcceptedByNumericRule": true,
+          "manualNumericLiteral": "40",
+          "ok": true,
+          "prompt": "Lo stesso gas ideale raggiunge il volume 3 L alla temperatura fissata, con nRT = 120 kPa·L. Quale pressione finale misuri?",
+          "unit": "kPa"
+        }
+      ],
+      "assumptionsAndDomain": "Closed fixed-mass gas; equilibrium state variables, absolute pressure and absoluteT. Celsius offset273.15 explicitly provided. Constant area; temperatures positive on full grid.",
+      "checkedGeometryScope": "AllcollectedarrowtipXYZvsopaqueboxes;thermometerupperendcapvsbulb. Notfullglyphs/meshtriangles/camera/raster/labels/fallback. No3DUIobserved.",
+      "clockSampleCount": 0,
+      "consumerCodeGeometryOk": true,
+      "consumerJudgment": "PARTIAL_NO_FAILURE_FOUND_IN_CHECKED_CODE",
+      "errors": [],
+      "geometryObservations": [],
+      "gridCount": 17,
+      "humanApproval": "NOT_RUN",
+      "id": "SIM-C3-L01-03",
+      "manualProcedure": "120/4=30; 120/3=40 kPa.",
+      "manualityScope": "Independentreviewerderivedhandprocedureforbothactualtasks;notastudentperformancecalibrationorclaimthesourcealreadyteachesallbounds.",
+      "ok": false,
+      "publicationAction": "NONE",
+      "reviewDependencySha256": {
+        "editorial/reviews/C3-36-code-partial-20261125/mesh-halfspace-negatives.json": "4c079bd5a19b5a69ed0e0416fd1b95a81d99d80def88177ba5bc68355bad789d",
+        "tests/corpus/check-C3-contained-geometry.mjs": "98c74ed0f857f0d883abd7f4dbdd1838750daa48850251667577f9f56516479b",
+        "tests/corpus/collect-C3-bounded-code-only.mjs": "3b6151bd07e427801e1b48e07a129ef71a1d46571e9781088ac229ca6ac2d9d4",
+        "tools/corpus_engineering/collect_C3_code_partial.py": "2ccd470c9a7af497280453e860370517088dbad931776c8a1cc815df726c56e6",
+        "tools/corpus_engineering/experiments_C3_code_partial_verifier.py": "9a0002b990b8bc181f90dd233a1122e2d8b48c77ecdcee240d9c8e72e16f1843"
+      },
+      "sourceJudgment": "PASS_MATH_ONLY",
+      "sourceMathAndActualTasksOk": true,
+      "sourceSha256": "683b7f8c7f666aaa5f611f9690c55275a4d68e692478a3fe818de6c830940cba",
+      "sourceVersion": 1,
+      "studentTaskScope": "Two actual generated numeric questions; predictiondistractors independently checked; bounds/extraoracles are reviewerprobes not assignedstudenttasks.",
+      "visualReview": "NOT_RUN"
+    },
+    {
+      "CodeGeometryFailure": [
+        "THERMOMETER_TOP_CAP_CONTAINED",
+        "THERMOMETER_TOP_CAP_CONTAINED"
+      ],
+      "ManualityFailure": false,
+      "SourceScientificFailure": null,
+      "UI": "NOT_RUN",
+      "UI_Observed": false,
+      "activityCredit": 0,
+      "actualTasks": [
+        {
+          "actualValue": 323.15,
+          "independentExact": "6463/20",
+          "input": "50",
+          "literalAcceptedByNumericRule": true,
+          "manualNumericLiteral": "323.15",
+          "ok": true,
+          "prompt": "Imposta «Temperatura Celsius» su 50 °C. Quale valore ottieni per «Temperatura assoluta»?",
+          "unit": "K"
+        },
+        {
+          "actualValue": 298.15,
+          "independentExact": "5963/20",
+          "input": "25",
+          "literalAcceptedByNumericRule": true,
+          "manualNumericLiteral": "298.15",
+          "ok": true,
+          "prompt": "Il termometro in laboratorio indica 25 °C. Quale valore scriveresti in una legge che richiede la temperatura assoluta?",
+          "unit": "K"
+        }
+      ],
+      "assumptionsAndDomain": "Closed fixed-mass gas; equilibrium state variables, absolute pressure and absoluteT. Celsius offset273.15 explicitly provided. Constant area; temperatures positive on full grid.",
+      "checkedGeometryScope": "AllcollectedarrowtipXYZvsopaqueboxes;thermometerupperendcapvsbulb. Notfullglyphs/meshtriangles/camera/raster/labels/fallback. No3DUIobserved.",
+      "clockSampleCount": 0,
+      "consumerCodeGeometryOk": false,
+      "consumerJudgment": "FAIL_CODE_GEOMETRY",
+      "errors": [],
+      "geometryObservations": [
+        {
+          "bulbCenter": [
+            0,
+            0.39,
+            0
+          ],
+          "bulbRadius": 0.27,
+          "code": "THERMOMETER_TOP_CAP_CONTAINED",
+          "input": -50.0,
+          "limit": "Opaque3Dgeometriccontainment; noactualUI/fallbackpixelsobserved.",
+          "rodRadius": 0.085,
+          "tip": [
+            0,
+            0.55,
+            0
+          ]
+        },
+        {
+          "bulbCenter": [
+            0,
+            0.39,
+            0
+          ],
+          "bulbRadius": 0.27,
+          "code": "THERMOMETER_TOP_CAP_CONTAINED",
+          "input": -45.0,
+          "limit": "Opaque3Dgeometriccontainment; noactualUI/fallbackpixelsobserved.",
+          "rodRadius": 0.085,
+          "tip": [
+            0,
+            0.6073333333333334,
+            0
+          ]
+        }
+      ],
+      "gridCount": 31,
+      "humanApproval": "NOT_RUN",
+      "id": "SIM-C3-L01-04",
+      "manualProcedure": "50+273.15=323.15; 25+273.15=298.15 K. Temperature differences use equal K/°C sizes.",
+      "manualityScope": "Independentreviewerderivedhandprocedureforbothactualtasks;notastudentperformancecalibrationorclaimthesourcealreadyteachesallbounds.",
+      "ok": false,
+      "publicationAction": "NONE",
+      "reviewDependencySha256": {
+        "editorial/reviews/C3-36-code-partial-20261125/mesh-halfspace-negatives.json": "4c079bd5a19b5a69ed0e0416fd1b95a81d99d80def88177ba5bc68355bad789d",
+        "tests/corpus/check-C3-contained-geometry.mjs": "98c74ed0f857f0d883abd7f4dbdd1838750daa48850251667577f9f56516479b",
+        "tests/corpus/collect-C3-bounded-code-only.mjs": "3b6151bd07e427801e1b48e07a129ef71a1d46571e9781088ac229ca6ac2d9d4",
+        "tools/corpus_engineering/collect_C3_code_partial.py": "2ccd470c9a7af497280453e860370517088dbad931776c8a1cc815df726c56e6",
+        "tools/corpus_engineering/experiments_C3_code_partial_verifier.py": "9a0002b990b8bc181f90dd233a1122e2d8b48c77ecdcee240d9c8e72e16f1843"
+      },
+      "sourceJudgment": "PASS_MATH_ONLY",
+      "sourceMathAndActualTasksOk": true,
+      "sourceSha256": "cc9401c0ce4d31fa48a00c808f720213753ffae05584dc76107aae82adfa963e",
+      "sourceVersion": 1,
+      "studentTaskScope": "Two actual generated numeric questions; predictiondistractors independently checked; bounds/extraoracles are reviewerprobes not assignedstudenttasks.",
+      "visualReview": "NOT_RUN"
+    },
+    {
+      "CodeGeometryFailure": [],
+      "ManualityFailure": false,
+      "SourceScientificFailure": null,
+      "UI": "NOT_RUN",
+      "UI_Observed": false,
+      "activityCredit": 0,
+      "actualTasks": [
+        {
+          "actualValue": 40,
+          "independentExact": "40",
+          "input": "6",
+          "literalAcceptedByNumericRule": true,
+          "manualNumericLiteral": "40",
+          "ok": true,
+          "prompt": "Imposta «Volume del gas» su 6 L. Quale valore ottieni per «Pressione isoterma»?",
+          "unit": "kPa"
+        },
+        {
+          "actualValue": 53.333333333333336,
+          "independentExact": "160/3",
+          "input": "9/2",
+          "literalAcceptedByNumericRule": true,
+          "manualNumericLiteral": "53.33",
+          "ok": true,
+          "prompt": "Un gas si espande isotermicamente fino a 4,5 L, con pV costante di 240 kPa·L. A quale pressione si ferma il pistone?",
+          "unit": "kPa"
+        }
+      ],
+      "assumptionsAndDomain": "Fixed amount ideal gas; Tfixed forinversepV, Vfixed forabsoluteT/p; parameters assigned not inferred from scene scaling.",
+      "checkedGeometryScope": "AllcollectedarrowtipXYZvsopaqueboxes;thermometerupperendcapvsbulb. Notfullglyphs/meshtriangles/camera/raster/labels/fallback. No3DUIobserved.",
+      "clockSampleCount": 0,
+      "consumerCodeGeometryOk": true,
+      "consumerJudgment": "PARTIAL_NO_FAILURE_FOUND_IN_CHECKED_CODE",
+      "errors": [],
+      "geometryObservations": [],
+      "gridCount": 15,
+      "humanApproval": "NOT_RUN",
+      "id": "SIM-C3-L02-01",
+      "manualProcedure": "240/6=40; 240/(9/2)=160/3=53+1/3. Long division: 53.33 kPa has relative error1/16000.",
+      "manualityScope": "Independentreviewerderivedhandprocedureforbothactualtasks;notastudentperformancecalibrationorclaimthesourcealreadyteachesallbounds.",
+      "ok": false,
+      "publicationAction": "NONE",
+      "reviewDependencySha256": {
+        "editorial/reviews/C3-36-code-partial-20261125/mesh-halfspace-negatives.json": "4c079bd5a19b5a69ed0e0416fd1b95a81d99d80def88177ba5bc68355bad789d",
+        "tests/corpus/check-C3-contained-geometry.mjs": "98c74ed0f857f0d883abd7f4dbdd1838750daa48850251667577f9f56516479b",
+        "tests/corpus/collect-C3-bounded-code-only.mjs": "3b6151bd07e427801e1b48e07a129ef71a1d46571e9781088ac229ca6ac2d9d4",
+        "tools/corpus_engineering/collect_C3_code_partial.py": "2ccd470c9a7af497280453e860370517088dbad931776c8a1cc815df726c56e6",
+        "tools/corpus_engineering/experiments_C3_code_partial_verifier.py": "9a0002b990b8bc181f90dd233a1122e2d8b48c77ecdcee240d9c8e72e16f1843"
+      },
+      "sourceJudgment": "PASS_MATH_ONLY",
+      "sourceMathAndActualTasksOk": true,
+      "sourceSha256": "85e6a775d0b631effd9d54b09927b081a0406a74faad02bb97b2d61135f310b2",
+      "sourceVersion": 1,
+      "studentTaskScope": "Two actual generated numeric questions; predictiondistractors independently checked; bounds/extraoracles are reviewerprobes not assignedstudenttasks.",
+      "visualReview": "NOT_RUN"
+    },
+    {
+      "CodeGeometryFailure": [],
+      "ManualityFailure": false,
+      "SourceScientificFailure": null,
+      "UI": "NOT_RUN",
+      "UI_Observed": false,
+      "activityCredit": 0,
+      "actualTasks": [
+        {
+          "actualValue": 400,
+          "independentExact": "400",
+          "input": "160",
+          "literalAcceptedByNumericRule": true,
+          "manualNumericLiteral": "400",
+          "ok": true,
+          "prompt": "Imposta «Pressione assoluta» su 160 kPa. Quale valore ottieni per «Temperatura»?",
+          "unit": "K"
+        },
+        {
+          "actualValue": 325,
+          "independentExact": "325",
+          "input": "130",
+          "literalAcceptedByNumericRule": true,
+          "manualNumericLiteral": "325",
+          "ok": true,
+          "prompt": "In un recipiente chiuso e rigido la pressione assoluta è 130 kPa. Se V/(nR) = 2,5 K/kPa, quale temperatura deduci?",
+          "unit": "K"
+        }
+      ],
+      "assumptionsAndDomain": "Fixed amount ideal gas; Tfixed forinversepV, Vfixed forabsoluteT/p; parameters assigned not inferred from scene scaling.",
+      "checkedGeometryScope": "AllcollectedarrowtipXYZvsopaqueboxes;thermometerupperendcapvsbulb. Notfullglyphs/meshtriangles/camera/raster/labels/fallback. No3DUIobserved.",
+      "clockSampleCount": 0,
+      "consumerCodeGeometryOk": true,
+      "consumerJudgment": "PARTIAL_NO_FAILURE_FOUND_IN_CHECKED_CODE",
+      "errors": [],
+      "geometryObservations": [],
+      "gridCount": 16,
+      "humanApproval": "NOT_RUN",
+      "id": "SIM-C3-L02-02",
+      "manualProcedure": "(5/2)·160=400; (5/2)·130=325 K.",
+      "manualityScope": "Independentreviewerderivedhandprocedureforbothactualtasks;notastudentperformancecalibrationorclaimthesourcealreadyteachesallbounds.",
+      "ok": false,
+      "publicationAction": "NONE",
+      "reviewDependencySha256": {
+        "editorial/reviews/C3-36-code-partial-20261125/mesh-halfspace-negatives.json": "4c079bd5a19b5a69ed0e0416fd1b95a81d99d80def88177ba5bc68355bad789d",
+        "tests/corpus/check-C3-contained-geometry.mjs": "98c74ed0f857f0d883abd7f4dbdd1838750daa48850251667577f9f56516479b",
+        "tests/corpus/collect-C3-bounded-code-only.mjs": "3b6151bd07e427801e1b48e07a129ef71a1d46571e9781088ac229ca6ac2d9d4",
+        "tools/corpus_engineering/collect_C3_code_partial.py": "2ccd470c9a7af497280453e860370517088dbad931776c8a1cc815df726c56e6",
+        "tools/corpus_engineering/experiments_C3_code_partial_verifier.py": "9a0002b990b8bc181f90dd233a1122e2d8b48c77ecdcee240d9c8e72e16f1843"
+      },
+      "sourceJudgment": "PASS_MATH_ONLY",
+      "sourceMathAndActualTasksOk": true,
+      "sourceSha256": "23d59fbe257bb268a6507ca99351aa7db129ff2e1fd51e889fe79cc54132ce1c",
+      "sourceVersion": 1,
+      "studentTaskScope": "Two actual generated numeric questions; predictiondistractors independently checked; bounds/extraoracles are reviewerprobes not assignedstudenttasks.",
+      "visualReview": "NOT_RUN"
+    }
+  ],
+  "remoteDispatch": false,
+  "runtimeSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+  "sourceFileSha256": "2738799d5195ca5eda77c4dce1cdc79f708237e5660bb9cabcc7fac4f80ea3ff",
+  "sourceMathPassCount": 6,
+  "sourcePath": "officina-di-fisica/content/esperienze-C3.json",
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d"
+}

@@ -1,0 +1,1162 @@
+{
+  "phase": "SOURCE_MATH_INSTALLED_CODE_PARTIAL_NOT_REGISTRABLE",
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+  "sourcePath": "officina-di-fisica/content/esperienze-C2.json",
+  "sourceFileSha256": "33a38d74b953889eccce3281c4413060aa6af14f6a7c022d5049b927137656c1",
+  "runtimeSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+  "proofSha256": "6853835e01eaba1c69179d3c8f3210ef9f77239302d4d60612c36f840f033892",
+  "exactCheckCount": 63,
+  "promptPrimaryPath": "editorial/reviews/experiments-C2-flow-capillarity-prompt-primary-20261125.json",
+  "promptPrimarySha256": "d501eeb1dfc34ce8d75a4abf0d0ab2d629616d6c01893e06e0e5243232710a42",
+  "installedStates": 116,
+  "clockFrames": 190,
+  "records": [
+    {
+      "id": "SIM-C2-L007-01",
+      "sourceVersion": 1,
+      "sourceSha256": "43d8002c952171c642ddc397022fbffcaab52eff5561847636c907afd88c1c54",
+      "mathOk": true,
+      "exactChecks": [
+        {
+          "claim": "reference",
+          "independentExact": "1000",
+          "expected": "1000",
+          "residual": "0",
+          "unit": "1",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "physical inverse includes actual input0.1",
+          "independentExact": "1",
+          "expected": "1",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "comparison_actual",
+          "independentExact": "4000",
+          "expected": "4000",
+          "residual": "0",
+          "unit": "1",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "physical inverse includes actual input0.4",
+          "independentExact": "1",
+          "expected": "1",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "transfer_actual",
+          "independentExact": "3000",
+          "expected": "3000",
+          "residual": "0",
+          "unit": "1",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "physical inverse includes actual input0.3",
+          "independentExact": "1",
+          "expected": "1",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "Reynolds exact SI",
+          "independentExact": "3000",
+          "expected": "3000",
+          "residual": "0",
+          "unit": "1",
+          "dimension": {},
+          "ok": true
+        }
+      ],
+      "installedConsumerCode": {
+        "installedScalarTasksAndClocksOk": true,
+        "errors": [],
+        "geometryCodeOk": true,
+        "geometryErrors": [],
+        "caseCount": 13,
+        "clockFrameCount": 0,
+        "actualAssignedTasks": [
+          {
+            "actualPrompt": "Imposta «Velocità media» su 0,4 m/s. Quale valore ottieni per «Numero di Reynolds»?",
+            "input": 0.4,
+            "independentExact": "4000",
+            "actualAnswer": 4000,
+            "actualWorked": "Re = ρvD/η; acqua, D = 0,01 m, η = 0,001 Pa·s. 10000 × 0,4 = 4000.",
+            "unit": "1",
+            "ok": true
+          },
+          {
+            "actualPrompt": "Acqua con viscosità 0,001 Pa·s percorre un tubo di diametro 1 cm a 0,3 m/s. Quale numero di Reynolds useresti per valutare il regime?",
+            "input": 0.3,
+            "independentExact": "3000",
+            "actualAnswer": 3000.0000000000005,
+            "actualWorked": "Re = ρvD/η; acqua, D = 0,01 m, η = 0,001 Pa·s. 10000 × 0,3 ≈ 3000.",
+            "unit": "1",
+            "ok": true
+          }
+        ]
+      },
+      "manualArithmetic": "Re=rho*v*D/eta; D=1/100m eta=1/1000Pa*s => Re=10*rho*v; rho1000 gives10000v. Newtonian liquid and diameter-based Reynolds definition. Density absent in prompt-only projection:1000kg/m³ conditional. Convert1cm to.01m; dimensions cancel.",
+      "physicalAssumptionsAndDomain": "Newtonian liquid and diameter-based Reynolds definition. Density absent in prompt-only projection:1000kg/m³ conditional. Convert1cm to.01m; dimensions cancel. Full-source model likewise uses conventional water density1000kg/m³.2300 is a conservative instructional regime cutoff, not a universal transition theorem.",
+      "pedagogicalReview": "Re is a regime indicator; transition threshold is not an exact universal classifier or guaranteed parabola. Actual assigned inputs are checked literally against generated questions; reviewer symbolic/numerical grid calculations are not extra learner tasks. Native/fallback UI not run.",
+      "sourceFirstPrimaryDisclosure": "Prompt-only primary persisted; shared C2.js had previously been incidentally visible; not claimed blinded.",
+      "reviewDependencySha256": {
+        "experiments_C2_code_partial_review.py": "f2af77d4abe3e994a8c66e37b077ee434c57c812bfbd90d2a86b047f0e50e1d3",
+        "experiments_C2_flows_interfaces_code_verifier.py": "3cf1525e7f7e6fb218a6a13f597d3be88e13c94ae9b06c5636fa7a457109e070",
+        "tests/corpus/collect-C2-bounded-code-only.mjs": "97bfa582144f3bb8608fa290211bd16a23620b449336543250ece590cd7ee89b",
+        "tools/corpus_engineering/collect_C2_code_partial.py": "3bb0a2982c643bb7265b570bc163d47c2317f66d93d26e213acb22f010de1c37"
+      },
+      "UI": "NOT_RUN",
+      "visualReview": "NOT_RUN",
+      "ok": false,
+      "overallComplete": false,
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "SIM-C2-L007-02",
+      "sourceVersion": 1,
+      "sourceSha256": "8048f775f330690d327f059138ae21efcebca800a42e31dbc4e448dfe4f4c638",
+      "mathOk": true,
+      "exactChecks": [
+        {
+          "claim": "reference",
+          "independentExact": "6",
+          "expected": "6",
+          "residual": "0",
+          "unit": "cm/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "ok": true
+        },
+        {
+          "claim": "comparison_actual",
+          "independentExact": "6",
+          "expected": "6",
+          "residual": "0",
+          "unit": "cm/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "ok": true
+        },
+        {
+          "claim": "transfer_actual",
+          "independentExact": "6",
+          "expected": "6",
+          "residual": "0",
+          "unit": "cm/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "ok": true
+        },
+        {
+          "claim": "stationary does not mean uniform",
+          "independentExact": "6",
+          "expected": "6",
+          "residual": "0",
+          "unit": "cm/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "ok": true
+        }
+      ],
+      "installedConsumerCode": {
+        "installedScalarTasksAndClocksOk": true,
+        "errors": [],
+        "geometryCodeOk": true,
+        "geometryErrors": [],
+        "caseCount": 17,
+        "clockFrameCount": 85,
+        "actualAssignedTasks": [
+          {
+            "actualPrompt": "Imposta «Istante di osservazione» su 3 s. Quale valore ottieni per «Velocità a metà raggio»?",
+            "input": 3,
+            "independentExact": "6",
+            "actualAnswer": 6,
+            "actualWorked": "v(R/2) = 8[1−(1/2)²] = 6 cm/s. 8 × (1 − 0,5²) = 6 cm/s.",
+            "unit": "cm/s",
+            "ok": true
+          },
+          {
+            "actualPrompt": "Lasci la sonda a metà raggio in un moto stazionario con velocità sull’asse di 8 cm/s. Al tempo 2 s, quale velocità locale dovrebbe ancora segnalare?",
+            "input": 2,
+            "independentExact": "6",
+            "actualAnswer": 6,
+            "actualWorked": "v(R/2) = 8[1−(1/2)²] = 6 cm/s. 8 × (1 − 0,5²) = 6 cm/s.",
+            "unit": "cm/s",
+            "ok": true
+          }
+        ]
+      },
+      "manualArithmetic": "Stationary only says partial_t(v)=0; if parabolic profile with vmax8, v(R/2)=8(1-1/4)=6cm/s. Need supplied parabolic fully-developed circular profile for6; stationary alone does not determine6. Once profile given,8*3/4 by manual multiplication.",
+      "physicalAssumptionsAndDomain": "Need supplied parabolic fully-developed circular profile for6; stationary alone does not determine6. Once profile given,8*3/4 by manual multiplication. The full source formula supplies the parabolic half-radius profile; stationarity alone would not identify6cm/s. Its time inverse is deliberately unidentifiable.",
+      "pedagogicalReview": "A stationary plug profile with axis8 has velocity8 at half-radius: distinguish steady from spatially uniform. Actual assigned inputs are checked literally against generated questions; reviewer symbolic/numerical grid calculations are not extra learner tasks. Native/fallback UI not run.",
+      "sourceFirstPrimaryDisclosure": "Prompt-only primary persisted; shared C2.js had previously been incidentally visible; not claimed blinded.",
+      "reviewDependencySha256": {
+        "experiments_C2_code_partial_review.py": "f2af77d4abe3e994a8c66e37b077ee434c57c812bfbd90d2a86b047f0e50e1d3",
+        "experiments_C2_flows_interfaces_code_verifier.py": "3cf1525e7f7e6fb218a6a13f597d3be88e13c94ae9b06c5636fa7a457109e070",
+        "tests/corpus/collect-C2-bounded-code-only.mjs": "97bfa582144f3bb8608fa290211bd16a23620b449336543250ece590cd7ee89b",
+        "tools/corpus_engineering/collect_C2_code_partial.py": "3bb0a2982c643bb7265b570bc163d47c2317f66d93d26e213acb22f010de1c37"
+      },
+      "UI": "NOT_RUN",
+      "visualReview": "NOT_RUN",
+      "ok": false,
+      "overallComplete": false,
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "SIM-C2-L007-03",
+      "sourceVersion": 1,
+      "sourceSha256": "da3e9f332d1ea839522145e74419e3c8fb77073f950bb8c698915556357797de",
+      "mathOk": true,
+      "exactChecks": [
+        {
+          "claim": "reference",
+          "independentExact": "2",
+          "expected": "2",
+          "residual": "0",
+          "unit": "Pa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "ok": true
+        },
+        {
+          "claim": "physical inverse includes actual input0.5",
+          "independentExact": "1",
+          "expected": "1",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "comparison_actual",
+          "independentExact": "6",
+          "expected": "6",
+          "residual": "0",
+          "unit": "Pa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "ok": true
+        },
+        {
+          "claim": "physical inverse includes actual input1.5",
+          "independentExact": "1",
+          "expected": "1",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "transfer_actual",
+          "independentExact": "22/5",
+          "expected": "22/5",
+          "residual": "0",
+          "unit": "Pa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "ok": true
+        },
+        {
+          "claim": "physical inverse includes actual input1.1",
+          "independentExact": "1",
+          "expected": "1",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "Newtonian shear units",
+          "independentExact": "22/5",
+          "expected": "22/5",
+          "residual": "0",
+          "unit": "Pa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "ok": true
+        }
+      ],
+      "installedConsumerCode": {
+        "installedScalarTasksAndClocksOk": true,
+        "errors": [],
+        "geometryCodeOk": false,
+        "geometryErrors": [
+          "grid@1/10: COUETTE_AXIS_TIP_INSIDE_OPAQUE_PLATE: full cone containment not asserted",
+          "grid@1/5: COUETTE_AXIS_TIP_INSIDE_OPAQUE_PLATE: full cone containment not asserted",
+          "grid@3/10: COUETTE_AXIS_TIP_INSIDE_OPAQUE_PLATE: full cone containment not asserted",
+          "grid@2/5: COUETTE_AXIS_TIP_INSIDE_OPAQUE_PLATE: full cone containment not asserted",
+          "grid@1/2: COUETTE_AXIS_TIP_INSIDE_OPAQUE_PLATE: full cone containment not asserted",
+          "grid@3/5: COUETTE_AXIS_TIP_INSIDE_OPAQUE_PLATE: full cone containment not asserted",
+          "grid@7/10: COUETTE_AXIS_TIP_INSIDE_OPAQUE_PLATE: full cone containment not asserted",
+          "grid@4/5: COUETTE_AXIS_TIP_INSIDE_OPAQUE_PLATE: full cone containment not asserted",
+          "grid@9/10: COUETTE_AXIS_TIP_INSIDE_OPAQUE_PLATE: full cone containment not asserted",
+          "grid@1: COUETTE_AXIS_TIP_INSIDE_OPAQUE_PLATE: full cone containment not asserted",
+          "grid@11/10: COUETTE_AXIS_TIP_INSIDE_OPAQUE_PLATE: full cone containment not asserted",
+          "grid@6/5: COUETTE_AXIS_TIP_INSIDE_OPAQUE_PLATE: full cone containment not asserted",
+          "grid@13/10: COUETTE_AXIS_TIP_INSIDE_OPAQUE_PLATE: full cone containment not asserted",
+          "grid@7/5: COUETTE_AXIS_TIP_INSIDE_OPAQUE_PLATE: full cone containment not asserted",
+          "grid@3/2: COUETTE_AXIS_TIP_INSIDE_OPAQUE_PLATE: full cone containment not asserted",
+          "grid@8/5: COUETTE_AXIS_TIP_INSIDE_OPAQUE_PLATE: full cone containment not asserted",
+          "grid@17/10: COUETTE_AXIS_TIP_INSIDE_OPAQUE_PLATE: full cone containment not asserted",
+          "grid@9/5: COUETTE_AXIS_TIP_INSIDE_OPAQUE_PLATE: full cone containment not asserted",
+          "grid@19/10: COUETTE_AXIS_TIP_INSIDE_OPAQUE_PLATE: full cone containment not asserted",
+          "grid@2: COUETTE_AXIS_TIP_INSIDE_OPAQUE_PLATE: full cone containment not asserted"
+        ],
+        "caseCount": 20,
+        "clockFrameCount": 0,
+        "actualAssignedTasks": [
+          {
+            "actualPrompt": "Imposta «Viscosità dinamica» su 1,5 Pa·s. Quale valore ottieni per «Sforzo di taglio»?",
+            "input": 1.5,
+            "independentExact": "6",
+            "actualAnswer": 6,
+            "actualWorked": "τ = η dv/dy = 4η. 4 × 1,5 = 6 Pa.",
+            "unit": "Pa",
+            "ok": true
+          },
+          {
+            "actualPrompt": "Mantieni un gradiente di velocità di 4 s⁻¹ e usi un liquido con viscosità 1,1 Pa·s. Quale sforzo tangenziale si esercita?",
+            "input": 1.1,
+            "independentExact": "22/5",
+            "actualAnswer": 4.4,
+            "actualWorked": "τ = η dv/dy = 4η. 4 × 1,1 = 4,4 Pa.",
+            "unit": "Pa",
+            "ok": true
+          }
+        ]
+      },
+      "manualArithmetic": "Newtonian shear magnitude tau=eta*gradient=4eta. Assigned Newtonian constitutive relation and gradient4s^-1. Multiply viscosity by4; Pa*s times s^-1 is Pa.",
+      "physicalAssumptionsAndDomain": "Assigned Newtonian constitutive relation and gradient4s^-1. Multiply viscosity by4; Pa*s times s^-1 is Pa.",
+      "pedagogicalReview": "Reported positive magnitude differs from vector sign of force on each opposite plate. Actual assigned inputs are checked literally against generated questions; reviewer symbolic/numerical grid calculations are not extra learner tasks. Native/fallback UI not run.",
+      "sourceFirstPrimaryDisclosure": "Prompt-only primary persisted; shared C2.js had previously been incidentally visible; not claimed blinded.",
+      "reviewDependencySha256": {
+        "experiments_C2_code_partial_review.py": "f2af77d4abe3e994a8c66e37b077ee434c57c812bfbd90d2a86b047f0e50e1d3",
+        "experiments_C2_flows_interfaces_code_verifier.py": "3cf1525e7f7e6fb218a6a13f597d3be88e13c94ae9b06c5636fa7a457109e070",
+        "tests/corpus/collect-C2-bounded-code-only.mjs": "97bfa582144f3bb8608fa290211bd16a23620b449336543250ece590cd7ee89b",
+        "tools/corpus_engineering/collect_C2_code_partial.py": "3bb0a2982c643bb7265b570bc163d47c2317f66d93d26e213acb22f010de1c37"
+      },
+      "UI": "NOT_RUN",
+      "visualReview": "NOT_RUN",
+      "ok": false,
+      "overallComplete": false,
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "SIM-C2-L007-04",
+      "sourceVersion": 1,
+      "sourceSha256": "f2a470e8114936cd1d6938f01d0b0b187c4da9d70d4f1aee1ec57ec667b8d9ea",
+      "mathOk": true,
+      "exactChecks": [
+        {
+          "claim": "reference",
+          "independentExact": "20",
+          "expected": "20",
+          "residual": "0",
+          "unit": "1/s",
+          "dimension": {
+            "[time]": "-1"
+          },
+          "ok": true
+        },
+        {
+          "claim": "physical inverse includes actual input2",
+          "independentExact": "1",
+          "expected": "1",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "comparison_actual",
+          "independentExact": "10",
+          "expected": "10",
+          "residual": "0",
+          "unit": "1/s",
+          "dimension": {
+            "[time]": "-1"
+          },
+          "ok": true
+        },
+        {
+          "claim": "physical inverse includes actual input4",
+          "independentExact": "1",
+          "expected": "1",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "transfer_actual",
+          "independentExact": "20/3",
+          "expected": "20/3",
+          "residual": "0",
+          "unit": "1/s",
+          "dimension": {
+            "[time]": "-1"
+          },
+          "ok": true
+        },
+        {
+          "claim": "physical inverse includes actual input6",
+          "independentExact": "1",
+          "expected": "1",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "same millimetres cancel",
+          "independentExact": "20/3",
+          "expected": "20/3",
+          "residual": "0",
+          "unit": "1/s",
+          "dimension": {
+            "[time]": "-1"
+          },
+          "ok": true
+        },
+        {
+          "claim": "manual decimal relative-error bound (not a submitted UI answer)",
+          "independentExact": "1/2000",
+          "expected": "1/2000",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        }
+      ],
+      "installedConsumerCode": {
+        "installedScalarTasksAndClocksOk": true,
+        "errors": [],
+        "geometryCodeOk": false,
+        "geometryErrors": [
+          "grid@1: COUETTE_AXIS_TIP_INSIDE_OPAQUE_PLATE: full cone containment not asserted",
+          "grid@2: COUETTE_AXIS_TIP_INSIDE_OPAQUE_PLATE: full cone containment not asserted",
+          "grid@3: COUETTE_AXIS_TIP_INSIDE_OPAQUE_PLATE: full cone containment not asserted",
+          "grid@4: COUETTE_AXIS_TIP_INSIDE_OPAQUE_PLATE: full cone containment not asserted",
+          "grid@5: COUETTE_AXIS_TIP_INSIDE_OPAQUE_PLATE: full cone containment not asserted",
+          "grid@6: COUETTE_AXIS_TIP_INSIDE_OPAQUE_PLATE: full cone containment not asserted",
+          "grid@7: COUETTE_AXIS_TIP_INSIDE_OPAQUE_PLATE: full cone containment not asserted",
+          "grid@8: COUETTE_AXIS_TIP_INSIDE_OPAQUE_PLATE: full cone containment not asserted"
+        ],
+        "caseCount": 8,
+        "clockFrameCount": 0,
+        "actualAssignedTasks": [
+          {
+            "actualPrompt": "Imposta «Distanza fra le lastre» su 4 mm. Quale valore ottieni per «Gradiente di velocità»?",
+            "input": 4,
+            "independentExact": "10",
+            "actualAnswer": 10,
+            "actualWorked": "dv/dy = Δv/h, con Δv = 40 mm/s. 40 / 4 = 10 s⁻¹.",
+            "unit": "s⁻¹",
+            "ok": true
+          },
+          {
+            "actualPrompt": "Due piastre distano 6 mm e differiscono in velocità di 40 mm/s. Quale gradiente misura lo strumento fra le due?",
+            "input": 6,
+            "independentExact": "20/3",
+            "actualAnswer": 6.666666666666667,
+            "actualWorked": "dv/dy = Δv/h, con Δv = 40 mm/s. 40 / 6 ≈ 6,667 s⁻¹.",
+            "unit": "s⁻¹",
+            "ok": true
+          }
+        ]
+      },
+      "manualArithmetic": "Linear Couette gradient=delta_u/h=40mm/s divided by h[mm]. Parallel plates with linear velocity profile; positive gap1..8mm. Common mm factors cancel. Actual transfer gap6mm gives20/3s^-1; manual6.67 has relative error1/2000, within actual0.5% numeric rule; no form submitted.",
+      "physicalAssumptionsAndDomain": "Parallel plates with linear velocity profile; positive gap1..8mm. Common mm factors cancel. Full source explicitly states the plate profile is linear, resolving the conditional prompt-only gradient.",
+      "pedagogicalReview": "Endpoint difference/gap is mean gradient; without a linear profile not every local gradient is this value. Actual assigned inputs are checked literally against generated questions; reviewer symbolic/numerical grid calculations are not extra learner tasks. Native/fallback UI not run.",
+      "sourceFirstPrimaryDisclosure": "Prompt-only primary persisted; shared C2.js had previously been incidentally visible; not claimed blinded.",
+      "reviewDependencySha256": {
+        "experiments_C2_code_partial_review.py": "f2af77d4abe3e994a8c66e37b077ee434c57c812bfbd90d2a86b047f0e50e1d3",
+        "experiments_C2_flows_interfaces_code_verifier.py": "3cf1525e7f7e6fb218a6a13f597d3be88e13c94ae9b06c5636fa7a457109e070",
+        "tests/corpus/collect-C2-bounded-code-only.mjs": "97bfa582144f3bb8608fa290211bd16a23620b449336543250ece590cd7ee89b",
+        "tools/corpus_engineering/collect_C2_code_partial.py": "3bb0a2982c643bb7265b570bc163d47c2317f66d93d26e213acb22f010de1c37"
+      },
+      "UI": "NOT_RUN",
+      "visualReview": "NOT_RUN",
+      "ok": false,
+      "overallComplete": false,
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "SIM-C2-L007-05",
+      "sourceVersion": 1,
+      "sourceSha256": "220dca3fc2752aaa2f1bd57b5d3fd72847ef153406794cb44e8190f2d7b179ac",
+      "mathOk": true,
+      "exactChecks": [
+        {
+          "claim": "reference",
+          "independentExact": "12",
+          "expected": "12",
+          "residual": "0",
+          "unit": "cm/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "ok": true
+        },
+        {
+          "claim": "physical inverse includes actual input0",
+          "independentExact": "1",
+          "expected": "1",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "comparison_actual",
+          "independentExact": "9",
+          "expected": "9",
+          "residual": "0",
+          "unit": "cm/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "ok": true
+        },
+        {
+          "claim": "physical inverse includes actual input0.5",
+          "independentExact": "1",
+          "expected": "1",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "transfer_actual",
+          "independentExact": "837/100",
+          "expected": "837/100",
+          "residual": "0",
+          "unit": "cm/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "ok": true
+        },
+        {
+          "claim": "physical inverse includes actual input0.55",
+          "independentExact": "1",
+          "expected": "1",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "annular area average",
+          "independentExact": "peak/2",
+          "expected": "peak/2",
+          "residual": "0",
+          "unit": "cm/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "ok": true
+        },
+        {
+          "claim": "actual local clock distance",
+          "independentExact": "837/20",
+          "expected": "837/20",
+          "residual": "0",
+          "unit": "cm",
+          "dimension": {
+            "[length]": "1"
+          },
+          "ok": true
+        }
+      ],
+      "installedConsumerCode": {
+        "installedScalarTasksAndClocksOk": true,
+        "errors": [],
+        "geometryCodeOk": true,
+        "geometryErrors": [],
+        "caseCount": 21,
+        "clockFrameCount": 105,
+        "actualAssignedTasks": [
+          {
+            "actualPrompt": "Imposta «Raggio della sonda diviso R» su 0,5. Quale valore ottieni per «Velocità locale»?",
+            "input": 0.5,
+            "independentExact": "9",
+            "actualAnswer": 9,
+            "actualWorked": "v(r) = 12[1−(r/R)²]. 12 × (1 − (0,5 × 0,5)) = 9 cm/s.",
+            "unit": "cm/s",
+            "ok": true
+          },
+          {
+            "actualPrompt": "In un tubo laminare la velocità sull’asse è 12 cm/s. Se r/R vale 0,55, quale velocità locale ti aspetti?",
+            "input": 0.55,
+            "independentExact": "837/100",
+            "actualAnswer": 8.370000000000001,
+            "actualWorked": "v(r) = 12[1−(r/R)²]. 12 × (1 − (0,55 × 0,55)) ≈ 8,37 cm/s.",
+            "unit": "cm/s",
+            "ok": true
+          }
+        ]
+      },
+      "manualArithmetic": "Parabolic v(r)=vmax(1-(r/R)²)=12(1-x²)cm/s. Topic explicitly parabolic; positive axial speed, no slip circular fully-developed Newtonian flow. Square ratio, subtract from1, multiply12.",
+      "physicalAssumptionsAndDomain": "Topic explicitly parabolic; positive axial speed, no slip circular fully-developed Newtonian flow. Square ratio, subtract from1, multiply12.",
+      "pedagogicalReview": "Zero at wall; negative speed outside r/R>1 would be outside control domain. Actual assigned inputs are checked literally against generated questions; reviewer symbolic/numerical grid calculations are not extra learner tasks. Native/fallback UI not run.",
+      "sourceFirstPrimaryDisclosure": "Prompt-only primary persisted; shared C2.js had previously been incidentally visible; not claimed blinded.",
+      "reviewDependencySha256": {
+        "experiments_C2_code_partial_review.py": "f2af77d4abe3e994a8c66e37b077ee434c57c812bfbd90d2a86b047f0e50e1d3",
+        "experiments_C2_flows_interfaces_code_verifier.py": "3cf1525e7f7e6fb218a6a13f597d3be88e13c94ae9b06c5636fa7a457109e070",
+        "tests/corpus/collect-C2-bounded-code-only.mjs": "97bfa582144f3bb8608fa290211bd16a23620b449336543250ece590cd7ee89b",
+        "tools/corpus_engineering/collect_C2_code_partial.py": "3bb0a2982c643bb7265b570bc163d47c2317f66d93d26e213acb22f010de1c37"
+      },
+      "UI": "NOT_RUN",
+      "visualReview": "NOT_RUN",
+      "ok": false,
+      "overallComplete": false,
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "SIM-C2-L008-01",
+      "sourceVersion": 1,
+      "sourceSha256": "06d3d66e54a7105e373de949a4826416dd6dd7d4516c61be6dec6ffd2f45ed3f",
+      "mathOk": true,
+      "exactChecks": [
+        {
+          "claim": "reference",
+          "independentExact": "1",
+          "expected": "1",
+          "residual": "0",
+          "unit": "1",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "physical inverse includes actual input1",
+          "independentExact": "1",
+          "expected": "1",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "comparison_actual",
+          "independentExact": "16",
+          "expected": "16",
+          "residual": "0",
+          "unit": "1",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "physical inverse includes actual input2",
+          "independentExact": "1",
+          "expected": "1",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "transfer_actual",
+          "independentExact": "625/256",
+          "expected": "625/256",
+          "residual": "0",
+          "unit": "1",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "physical inverse includes actual input1.25",
+          "independentExact": "1",
+          "expected": "1",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "Poiseuille transfer fourth power",
+          "independentExact": "625/256",
+          "expected": "625/256",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "manual decimal relative-error bound (not a submitted UI answer)",
+          "independentExact": "9/15625",
+          "expected": "9/15625",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        }
+      ],
+      "installedConsumerCode": {
+        "installedScalarTasksAndClocksOk": true,
+        "errors": [],
+        "geometryCodeOk": true,
+        "geometryErrors": [],
+        "caseCount": 7,
+        "clockFrameCount": 0,
+        "actualAssignedTasks": [
+          {
+            "actualPrompt": "Imposta «Raggio rispetto a r₀» su 2. Quale valore ottieni per «Portata relativa a Q₀»?",
+            "input": 2,
+            "independentExact": "16",
+            "actualAnswer": 16,
+            "actualWorked": "Q/Q₀ = (r/r₀)⁴. 2⁴ = 16.",
+            "unit": "1",
+            "ok": true
+          },
+          {
+            "actualPrompt": "Nel medesimo capillare porti il raggio a 1,25 volte il riferimento. Con lo stesso salto di pressione, quale rapporto Q/Q₀ ottieni?",
+            "input": 1.25,
+            "independentExact": "625/256",
+            "actualAnswer": 2.44140625,
+            "actualWorked": "Q/Q₀ = (r/r₀)⁴. 1,25⁴ ≈ 2,441.",
+            "unit": "1",
+            "ok": true
+          }
+        ]
+      },
+      "manualArithmetic": "Hagen-Poiseuille Q=pi*delta_p*r⁴/(8etaL) => Q/Q0=(r/r0)⁴. Same delta_p, viscosity, length, rigid circular tube, Newtonian steady fully-developed laminar regime. Square ratio twice. Actual5/4 fourth gives625/256. Manual2.44 has error9/15625, within0.5%; decimal approximation is qualified by consumer.",
+      "physicalAssumptionsAndDomain": "Same delta_p, viscosity, length, rigid circular tube, Newtonian steady fully-developed laminar regime. Square ratio twice.",
+      "pedagogicalReview": "A diameter/radius confusion has same ratio only if changed consistently; laminar regime must remain applicable after radius change. Actual assigned inputs are checked literally against generated questions; reviewer symbolic/numerical grid calculations are not extra learner tasks. Native/fallback UI not run.",
+      "sourceFirstPrimaryDisclosure": "Prompt-only primary persisted; shared C2.js had previously been incidentally visible; not claimed blinded.",
+      "reviewDependencySha256": {
+        "experiments_C2_code_partial_review.py": "f2af77d4abe3e994a8c66e37b077ee434c57c812bfbd90d2a86b047f0e50e1d3",
+        "experiments_C2_flows_interfaces_code_verifier.py": "3cf1525e7f7e6fb218a6a13f597d3be88e13c94ae9b06c5636fa7a457109e070",
+        "tests/corpus/collect-C2-bounded-code-only.mjs": "97bfa582144f3bb8608fa290211bd16a23620b449336543250ece590cd7ee89b",
+        "tools/corpus_engineering/collect_C2_code_partial.py": "3bb0a2982c643bb7265b570bc163d47c2317f66d93d26e213acb22f010de1c37"
+      },
+      "UI": "NOT_RUN",
+      "visualReview": "NOT_RUN",
+      "ok": false,
+      "overallComplete": false,
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "SIM-C2-L008-02",
+      "sourceVersion": 1,
+      "sourceSha256": "632f7aaa84c87be8af43ed32d77600d597e36c259853fab0b168526098754273",
+      "mathOk": true,
+      "exactChecks": [
+        {
+          "claim": "reference",
+          "independentExact": "16",
+          "expected": "16",
+          "residual": "0",
+          "unit": "1",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "physical inverse includes actual input1",
+          "independentExact": "1",
+          "expected": "1",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "comparison_actual",
+          "independentExact": "2",
+          "expected": "2",
+          "residual": "0",
+          "unit": "1",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "physical inverse includes actual input4",
+          "independentExact": "1",
+          "expected": "1",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "transfer_actual",
+          "independentExact": "1/2",
+          "expected": "1/2",
+          "residual": "0",
+          "unit": "1",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "physical inverse includes actual input3",
+          "independentExact": "1",
+          "expected": "1",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "radius-double vs viscosity-double mean speed ratio",
+          "independentExact": "8",
+          "expected": "8",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        }
+      ],
+      "installedConsumerCode": {
+        "installedScalarTasksAndClocksOk": true,
+        "errors": [],
+        "geometryCodeOk": false,
+        "geometryErrors": [
+          "POISEUILLE_COMPARISON_SCALE_FAIL: radius-double/viscosity-double speed ratio is6 instead of8; area-times-speed ratio24 instead of32"
+        ],
+        "caseCount": 4,
+        "clockFrameCount": 0,
+        "actualAssignedTasks": [
+          {
+            "actualPrompt": "Imposta «Modifica rispetto al riferimento» su Pressione doppia. Quale valore ottieni per «Portata rispetto a Q₀»?",
+            "input": 4,
+            "independentExact": "2",
+            "actualAnswer": 2,
+            "actualWorked": "Q ∝ Δp r⁴/(η L). 2 × 1 = 2.",
+            "unit": "1",
+            "ok": true
+          },
+          {
+            "actualPrompt": "Il tecnico sceglie la modifica «Viscosità doppia» alla prova di Poiseuille. A parità delle altre condizioni, per quale fattore cambia la portata?",
+            "input": 3,
+            "independentExact": "1/2",
+            "actualAnswer": 0.5,
+            "actualWorked": "Q ∝ Δp r⁴/(η L). 1 / 2 = 0,5.",
+            "unit": "1",
+            "ok": true
+          }
+        ]
+      },
+      "manualArithmetic": "Poiseuille factors: doubled radius16; doubled length1/2; doubled viscosity1/2; doubled pressure2. Only the selected parameter changes; same rigid circular laminar assumptions. Integer choice index maps to displayed category, not physical multiplier x.",
+      "physicalAssumptionsAndDomain": "Only the selected parameter changes; same rigid circular laminar assumptions. Integer choice index maps to displayed category, not physical multiplier x.",
+      "pedagogicalReview": "Index2 and3 give same output legitimately; assessment asks numeric factor for chosen modification, not uniquely identify cause. Actual assigned inputs are checked literally against generated questions; reviewer symbolic/numerical grid calculations are not extra learner tasks. Native/fallback UI not run.",
+      "sourceFirstPrimaryDisclosure": "Prompt-only primary persisted; shared C2.js had previously been incidentally visible; not claimed blinded.",
+      "reviewDependencySha256": {
+        "experiments_C2_code_partial_review.py": "f2af77d4abe3e994a8c66e37b077ee434c57c812bfbd90d2a86b047f0e50e1d3",
+        "experiments_C2_flows_interfaces_code_verifier.py": "3cf1525e7f7e6fb218a6a13f597d3be88e13c94ae9b06c5636fa7a457109e070",
+        "tests/corpus/collect-C2-bounded-code-only.mjs": "97bfa582144f3bb8608fa290211bd16a23620b449336543250ece590cd7ee89b",
+        "tools/corpus_engineering/collect_C2_code_partial.py": "3bb0a2982c643bb7265b570bc163d47c2317f66d93d26e213acb22f010de1c37"
+      },
+      "UI": "NOT_RUN",
+      "visualReview": "NOT_RUN",
+      "ok": false,
+      "overallComplete": false,
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "SIM-C2-L008-03",
+      "sourceVersion": 1,
+      "sourceSha256": "01d6c2b8a9c87b8133e7054c2f88ba5928fb947ed2403e0f570c85d1dd861c09",
+      "mathOk": true,
+      "exactChecks": [
+        {
+          "claim": "reference",
+          "independentExact": "6",
+          "expected": "6",
+          "residual": "0",
+          "unit": "kPa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "ok": true
+        },
+        {
+          "claim": "physical inverse includes actual input2",
+          "independentExact": "1",
+          "expected": "1",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "comparison_actual",
+          "independentExact": "15",
+          "expected": "15",
+          "residual": "0",
+          "unit": "kPa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "ok": true
+        },
+        {
+          "claim": "physical inverse includes actual input5",
+          "independentExact": "1",
+          "expected": "1",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "transfer_actual",
+          "independentExact": "12",
+          "expected": "12",
+          "residual": "0",
+          "unit": "kPa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "ok": true
+        },
+        {
+          "claim": "physical inverse includes actual input4",
+          "independentExact": "1",
+          "expected": "1",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "linear hydraulic resistance units",
+          "independentExact": "12",
+          "expected": "12",
+          "residual": "0",
+          "unit": "kPa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "ok": true
+        }
+      ],
+      "installedConsumerCode": {
+        "installedScalarTasksAndClocksOk": true,
+        "errors": [],
+        "geometryCodeOk": true,
+        "geometryErrors": [],
+        "caseCount": 17,
+        "clockFrameCount": 0,
+        "actualAssignedTasks": [
+          {
+            "actualPrompt": "Imposta «Portata richiesta» su 5 mL/s. Quale valore ottieni per «Differenza di pressione»?",
+            "input": 5,
+            "independentExact": "15",
+            "actualAnswer": 15,
+            "actualWorked": "Δp = RQ, con R = 3 kPa·s/mL. 3 × 5 = 15 kPa.",
+            "unit": "kPa",
+            "ok": true
+          },
+          {
+            "actualPrompt": "Per ottenere una portata di 4 mL/s in un capillare con resistenza 3 kPa·s/mL, quale salto di pressione deve fornire la pompa?",
+            "input": 4,
+            "independentExact": "12",
+            "actualAnswer": 12,
+            "actualWorked": "Δp = RQ, con R = 3 kPa·s/mL. 3 × 4 = 12 kPa.",
+            "unit": "kPa",
+            "ok": true
+          }
+        ]
+      },
+      "manualArithmetic": "delta_p=R_h*Q=(3kPa*s/mL)*Q. Linear capillary resistance fixed3kPa*s/mL. Multiply flow by3; s and mL cancel.",
+      "physicalAssumptionsAndDomain": "Linear capillary resistance fixed3kPa*s/mL. Multiply flow by3; s and mL cancel.",
+      "pedagogicalReview": "This is pressure difference, not absolute pressure or power; zero flow needs zero modeled drop. Actual assigned inputs are checked literally against generated questions; reviewer symbolic/numerical grid calculations are not extra learner tasks. Native/fallback UI not run.",
+      "sourceFirstPrimaryDisclosure": "Prompt-only primary persisted; shared C2.js had previously been incidentally visible; not claimed blinded.",
+      "reviewDependencySha256": {
+        "experiments_C2_code_partial_review.py": "f2af77d4abe3e994a8c66e37b077ee434c57c812bfbd90d2a86b047f0e50e1d3",
+        "experiments_C2_flows_interfaces_code_verifier.py": "3cf1525e7f7e6fb218a6a13f597d3be88e13c94ae9b06c5636fa7a457109e070",
+        "tests/corpus/collect-C2-bounded-code-only.mjs": "97bfa582144f3bb8608fa290211bd16a23620b449336543250ece590cd7ee89b",
+        "tools/corpus_engineering/collect_C2_code_partial.py": "3bb0a2982c643bb7265b570bc163d47c2317f66d93d26e213acb22f010de1c37"
+      },
+      "UI": "NOT_RUN",
+      "visualReview": "NOT_RUN",
+      "ok": false,
+      "overallComplete": false,
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "SIM-C2-L008-04",
+      "sourceVersion": 1,
+      "sourceSha256": "b4535a6be84e66bf373dbd1830d121f97a971ac21152e96839401fd447809842",
+      "mathOk": true,
+      "exactChecks": [
+        {
+          "claim": "reference",
+          "independentExact": "256/625",
+          "expected": "256/625",
+          "residual": "0",
+          "unit": "1",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "physical inverse includes actual input-20",
+          "independentExact": "1",
+          "expected": "1",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "comparison_actual",
+          "independentExact": "1296/625",
+          "expected": "1296/625",
+          "residual": "0",
+          "unit": "1",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "physical inverse includes actual input20",
+          "independentExact": "1",
+          "expected": "1",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "transfer_actual",
+          "independentExact": "1",
+          "expected": "1",
+          "residual": "0",
+          "unit": "1",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "physical inverse includes actual input0",
+          "independentExact": "1",
+          "expected": "1",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "asymmetric sensitivities exact",
+          "independentExact": "208/125",
+          "expected": "208/125",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        }
+      ],
+      "installedConsumerCode": {
+        "installedScalarTasksAndClocksOk": true,
+        "errors": [],
+        "geometryCodeOk": true,
+        "geometryErrors": [],
+        "caseCount": 9,
+        "clockFrameCount": 0,
+        "actualAssignedTasks": [
+          {
+            "actualPrompt": "Imposta «Variazione del raggio rispetto al riferimento» su 20 %. Quale valore ottieni per «Portata del modello rigido rispetto a Q₀»?",
+            "input": 20,
+            "independentExact": "1296/625",
+            "actualAnswer": 2.0736,
+            "actualWorked": "Q/Q₀ = (1 + Δr/100)⁴. (1 + 20 / 100)⁴ ≈ 2,074.",
+            "unit": "1",
+            "ok": true
+          },
+          {
+            "actualPrompt": "Il modello rigido prevede una variazione del raggio del 0 %. Quale rapporto fra nuova portata e portata iniziale corrisponde, a pari caduta di pressione?",
+            "input": 0,
+            "independentExact": "1",
+            "actualAnswer": 1,
+            "actualWorked": "Q/Q₀ = (1 + Δr/100)⁴. (1 + 0 / 100)⁴ = 1.",
+            "unit": "1",
+            "ok": true
+          }
+        ]
+      },
+      "manualArithmetic": "Relative radius=1+percent/100; Q/Q0=(1+percent/100)⁴. Rigid Poiseuille model, unchanged pressure difference/length/viscosity. Convert percent, then square twice.",
+      "physicalAssumptionsAndDomain": "Rigid Poiseuille model, unchanged pressure difference/length/viscosity. Convert percent, then square twice.",
+      "pedagogicalReview": "+20% radius gives1296/625, not+80%; -20% gives256/625. This ideal sensitivity is not a patient-specific prediction. Actual assigned inputs are checked literally against generated questions; reviewer symbolic/numerical grid calculations are not extra learner tasks. Native/fallback UI not run.",
+      "sourceFirstPrimaryDisclosure": "Prompt-only primary persisted; shared C2.js had previously been incidentally visible; not claimed blinded.",
+      "reviewDependencySha256": {
+        "experiments_C2_code_partial_review.py": "f2af77d4abe3e994a8c66e37b077ee434c57c812bfbd90d2a86b047f0e50e1d3",
+        "experiments_C2_flows_interfaces_code_verifier.py": "3cf1525e7f7e6fb218a6a13f597d3be88e13c94ae9b06c5636fa7a457109e070",
+        "tests/corpus/collect-C2-bounded-code-only.mjs": "97bfa582144f3bb8608fa290211bd16a23620b449336543250ece590cd7ee89b",
+        "tools/corpus_engineering/collect_C2_code_partial.py": "3bb0a2982c643bb7265b570bc163d47c2317f66d93d26e213acb22f010de1c37"
+      },
+      "UI": "NOT_RUN",
+      "visualReview": "NOT_RUN",
+      "ok": false,
+      "overallComplete": false,
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    }
+  ],
+  "overallComplete": false,
+  "acceptedCount": 0,
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}

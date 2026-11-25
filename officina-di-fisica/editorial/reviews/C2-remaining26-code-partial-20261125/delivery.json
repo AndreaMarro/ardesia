@@ -1,0 +1,204 @@
+{
+  "phase": "LOCAL_ONLY_26_ORIGINALS_CODE_MATH_PARTIAL_NOT_REGISTRABLE",
+  "runtimeSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+  "recordCount": 26,
+  "ids": [
+    "SIM-C2-L005-01",
+    "SIM-C2-L005-02",
+    "SIM-C2-L005-03",
+    "SIM-C2-L005-04",
+    "SIM-C2-L005-05",
+    "SIM-C2-L006-01",
+    "SIM-C2-L006-02",
+    "SIM-C2-L006-03",
+    "SIM-C2-L006-04",
+    "SIM-C2-L007-01",
+    "SIM-C2-L007-02",
+    "SIM-C2-L007-03",
+    "SIM-C2-L007-04",
+    "SIM-C2-L007-05",
+    "SIM-C2-L008-01",
+    "SIM-C2-L008-02",
+    "SIM-C2-L008-03",
+    "SIM-C2-L008-04",
+    "SIM-C2-L009-01",
+    "SIM-C2-L009-02",
+    "SIM-C2-L009-03",
+    "SIM-C2-L010-01",
+    "SIM-C2-L010-02",
+    "SIM-C2-L010-03",
+    "SIM-C2-L010-04",
+    "SIM-C2-L010-05"
+  ],
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+  "sourcePath": "officina-di-fisica/content/esperienze-C2.json",
+  "sourceFileSha256": "33a38d74b953889eccce3281c4413060aa6af14f6a7c022d5049b927137656c1",
+  "exactChecks": 192,
+  "installedNodeControlStates": 338,
+  "clockObservationRecordsIncludingRepeatedElapsedStates": 320,
+  "exactAssignedNumericTasks": 52,
+  "finalTargetedTests": {
+    "count": 10,
+    "failures": 0,
+    "flowSeconds": 7.665,
+    "otherGroupsSeconds": 4.386
+  },
+  "knownConsumerCodeFailureIds": [
+    "SIM-C2-L005-05",
+    "SIM-C2-L006-02",
+    "SIM-C2-L007-03",
+    "SIM-C2-L007-04",
+    "SIM-C2-L008-02"
+  ],
+  "allAssignedScalarTasksUnitsAndClockChecksConformant": true,
+  "twoFreshReportsPerGroupIdentical": true,
+  "originalSourceRuntimeRegistryLegacyC1And047Edited": false,
+  "firstHydraulicsBuoyancyFiveFrozenFilesEdited": false,
+  "browser": "NOT_RUN",
+  "fullsuite": "NOT_RUN",
+  "overallComplete": false,
+  "acceptedCount": 0,
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "pushOrUploadPerformed": false,
+  "remoteDispatchAuthorized": false,
+  "privacyStatus": "PUBLIC_REPOSITORY_SCOPE_AWAITING_USER_CLARIFICATION",
+  "files": [
+    {
+      "path": "tests/corpus/collect-C2-bounded-code-only.mjs",
+      "bytes": 3180,
+      "sha256": "97bfa582144f3bb8608fa290211bd16a23620b449336543250ece590cd7ee89b"
+    },
+    {
+      "path": "tools/corpus_engineering/collect_C2_code_partial.py",
+      "bytes": 2736,
+      "sha256": "3bb0a2982c643bb7265b570bc163d47c2317f66d93d26e213acb22f010de1c37"
+    },
+    {
+      "path": "tools/corpus_engineering/experiments_C2_code_partial_review.py",
+      "bytes": 11567,
+      "sha256": "f2af77d4abe3e994a8c66e37b077ee434c57c812bfbd90d2a86b047f0e50e1d3"
+    },
+    {
+      "path": "tools/corpus_engineering/experiments_flow_continuity_code_verifier.py",
+      "bytes": 9128,
+      "sha256": "ca9a0e57de8aa986621e90c40b249ea248209d4478c1907879c3f1f890ff792b"
+    },
+    {
+      "path": "tools/corpus_engineering/experiments_C2_flows_interfaces_code_verifier.py",
+      "bytes": 21677,
+      "sha256": "3cf1525e7f7e6fb218a6a13f597d3be88e13c94ae9b06c5636fa7a457109e070"
+    },
+    {
+      "path": "tests/corpus/test_C2_flow_continuity_code_partial.py",
+      "bytes": 4545,
+      "sha256": "1b5e645e5cc2f1e6f6da86a3f9e0fa6c2e83f563ab99b91929dfcaee72ebb8aa"
+    },
+    {
+      "path": "tests/corpus/test_C2_flows_interfaces_code_partial.py",
+      "bytes": 6113,
+      "sha256": "9c84bb1dc0783fd592217472ab341425d59e211c0aae3b034f6ffd6b42e87507"
+    },
+    {
+      "path": "editorial/reviews/C2-flow-continuity-installed-code-1a35-20261125.json",
+      "bytes": 2790815,
+      "sha256": "a8713980edaf67d64ab06b6182ad569c2b719bc9c50d5946a4d5014067b751f0"
+    },
+    {
+      "path": "editorial/reviews/C2-bernoulli-installed-code-1a35-20261125.json",
+      "bytes": 1244026,
+      "sha256": "fdb28b39fa32e029e1df5a80be29bc933f258ec390eeb6ec5dff07d59642679f"
+    },
+    {
+      "path": "editorial/reviews/C2-viscosity-poiseuille-installed-code-1a35-20261125.json",
+      "bytes": 3021812,
+      "sha256": "6853835e01eaba1c69179d3c8f3210ef9f77239302d4d60612c36f840f033892"
+    },
+    {
+      "path": "editorial/reviews/C2-networks-installed-code-1a35-20261125.json",
+      "bytes": 240736,
+      "sha256": "a52f569301bebf6001be0b26889d023834388683e25fe95e59955c25e2603874"
+    },
+    {
+      "path": "editorial/reviews/C2-capillarity-installed-code-1a35-20261125.json",
+      "bytes": 457481,
+      "sha256": "cf5899fcbe7843d547458b5d16e580587dd144d9e8876c2995021950f0dcd6ad"
+    },
+    {
+      "path": "editorial/reviews/C2-flow-continuity-code-partial-20261125/report.json",
+      "bytes": 29758,
+      "sha256": "140736638575b4ebdf110a38184beb093a393177575847208a9e5ec6f9da4ea1"
+    },
+    {
+      "path": "editorial/reviews/C2-bernoulli-code-partial-20261125/report.json",
+      "bytes": 20856,
+      "sha256": "b807ac9a7c9881f174f44b4fefc6c2242f87d346baaa5c164bdc79d888efd89a"
+    },
+    {
+      "path": "editorial/reviews/C2-viscosity-poiseuille-code-partial-20261125/report.json",
+      "bytes": 46634,
+      "sha256": "b8e142c14cc863f74b5663c849a8062e096383fb7f0601ea432197533b56f395"
+    },
+    {
+      "path": "editorial/reviews/C2-networks-code-partial-20261125/report.json",
+      "bytes": 16197,
+      "sha256": "69b2d1f14202e4a759b4367b0221698bd8686154219a71ec269c1f9f86e3cde0"
+    },
+    {
+      "path": "editorial/reviews/C2-capillarity-code-partial-20261125/report.json",
+      "bytes": 25595,
+      "sha256": "0ba9e9380582515c9b61985083bcc5f7f5eb0c4b000fd3c2bbcf777807ba90c6"
+    },
+    {
+      "path": "editorial/reviews/C2-flow-continuity-code-partial-20261125/targeted-tests.log",
+      "bytes": 1122,
+      "sha256": "4c7cd7afb831c9003f92b07b5add60123aa87b363968743cc2df8a80ac4c2022"
+    },
+    {
+      "path": "editorial/reviews/C2-flow-continuity-code-partial-20261125/targeted-tests-final.log",
+      "bytes": 1122,
+      "sha256": "4ed237ef808b89f549eafeea5f5298b500f704afc0ddc42a615027a7aede9f06"
+    },
+    {
+      "path": "editorial/reviews/C2-flow-continuity-code-partial-20261125/report-before-shared-adapter-completion.json",
+      "bytes": 29555,
+      "sha256": "c646e43fc3def854562e8c92d8b185a70b80842d6ab4834133ce3b959a977733"
+    },
+    {
+      "path": "editorial/reviews/C2-flows-interfaces-code-partial-20261125/targeted-tests-initial.log",
+      "bytes": 1146,
+      "sha256": "9cd4db005469fd8c6f04f2e886dbd034edad02381d47c5afb355e7a68ad46f71"
+    },
+    {
+      "path": "editorial/reviews/C2-remaining26-code-partial-20261125/findings.json",
+      "bytes": 14182,
+      "sha256": "63729cdd66ba4a5cd35333315f117e4dc71ce973bab3271b96228b5ea26870c8"
+    },
+    {
+      "path": "editorial/reviews/C2-remaining26-code-partial-20261125/future-ui-input-plan-NOT-RUN.json",
+      "bytes": 37330,
+      "sha256": "113deaea760f0c907aad63740b936e7839be560c0e1b98348d9db0c8c94dd43c"
+    },
+    {
+      "path": "editorial/reviews/C2-remaining26-code-partial-20261125/independent-review.md",
+      "bytes": 18202,
+      "sha256": "600c8af1de627891d1db22a94be755fb6804155356caa3f60d8b5c1e8a1d5a98"
+    },
+    {
+      "path": "editorial/reviews/C2-remaining26-code-partial-20261125/supplemental-geometry-and-open-observations.json",
+      "bytes": 11425,
+      "sha256": "2fd96c523a2d0e5abbd05f3f903db531f59fe222f30f7b5b8b8887510c041f95"
+    }
+  ],
+  "referencedFrozenPrimaries": [
+    {
+      "path": "editorial/reviews/experiments-C2-hydraulics-continuity-prompt-primary-20261125.json",
+      "sha256": "426d81e72ab795564c34f71a906cb863ada6f59e25a57cc3f8878e4335743068"
+    },
+    {
+      "path": "editorial/reviews/experiments-C2-flow-capillarity-prompt-primary-20261125.json",
+      "sha256": "d501eeb1dfc34ce8d75a4abf0d0ab2d629616d6c01893e06e0e5243232710a42"
+    }
+  ]
+}

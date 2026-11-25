@@ -1,0 +1,537 @@
+{
+  "UI": "NOT_RUN",
+  "activityCredit": 0,
+  "consumerCodeFailIds": [
+    "SIM-C3-L09-01"
+  ],
+  "disclosure": "Prior thermal lesson/example andsharedclockreading; notfullyblinded.36sourceonlyprimaryfrozenbeforeC3model/newsolutionfields.",
+  "group": "entropy",
+  "humanApproval": "NOT_RUN",
+  "localOnly": true,
+  "ok": false,
+  "overallComplete": false,
+  "phase": "ORIGINAL_SOURCE_MATH_INSTALLED_CODE_PARTIAL_NOT_REGISTRABLE",
+  "primaryPath": "editorial/reviews/C3-36-source-only-primary-20261125.json",
+  "primarySha256": "c87e8e0db9b84ae2fe58cd1bf0bb81185806521b3e8953aff63d7dd6dc7cbcf2",
+  "proofPath": "editorial/reviews/C3-entropy-installed-code-1a35-20261125.json",
+  "proofSha256": "6390ac3eddae423cf30315ce4e414d1518d5c666e74b539942a67993d1b15f3a",
+  "publicationAction": "NONE",
+  "records": [
+    {
+      "CodeGeometryFailure": [
+        "ARROW_TIP_INSIDE_OPAQUE_BOX",
+        "ARROW_TIP_INSIDE_OPAQUE_BOX"
+      ],
+      "ManualityFailure": false,
+      "SourceScientificFailure": null,
+      "UI": "NOT_RUN",
+      "UI_Observed": false,
+      "activityCredit": 0,
+      "actualTasks": [
+        {
+          "actualValue": 90,
+          "independentExact": "90",
+          "input": "60",
+          "literalAcceptedByNumericRule": true,
+          "manualNumericLiteral": "90",
+          "ok": true,
+          "prompt": "Imposta «Calore prelevato dal freddo» su 60 J. Quale valore ottieni per «Calore minimo ceduto al caldo»?",
+          "unit": "J"
+        },
+        {
+          "actualValue": 60,
+          "independentExact": "60",
+          "input": "40",
+          "literalAcceptedByNumericRule": true,
+          "manualNumericLiteral": "60",
+          "ok": true,
+          "prompt": "Un frigorifero reversibile preleva 40 J dalla sorgente fredda. Se T calda/T fredda = 1,5, quale calore minimo deve cedere all’ambiente caldo?",
+          "unit": "J"
+        }
+      ],
+      "assumptionsAndDomain": "Reversiblefridge300/450K; engines600/300K withη≤.5; CarnotTh500K,Tc250..500K, equality meansnowork. Zeroheat isdegenerate control, nevercompute0/0measuredηorCOP.",
+      "checkedGeometryScope": "AllcollectedarrowtipXYZvsopaqueboxes;thermometerupperendcapvsbulb. Notfullglyphs/meshtriangles/camera/raster/labels/fallback. No3DUIobserved.",
+      "clockSampleCount": 0,
+      "consumerCodeGeometryOk": false,
+      "consumerJudgment": "FAIL_CODE_GEOMETRY",
+      "errors": [],
+      "geometryObservations": [
+        {
+          "a": [
+            -0.37750000000000006,
+            1,
+            0
+          ],
+          "boxCenter": [
+            -2,
+            1.05,
+            0
+          ],
+          "boxSize": [
+            0.68,
+            1.45,
+            0.92
+          ],
+          "code": "ARROW_TIP_INSIDE_OPAQUE_BOX",
+          "input": 75.0,
+          "limit": "Tipinsideonly; NOT wholeconecontainment orfallback/nativeUIclaim.",
+          "tip": [
+            -1.6825,
+            1,
+            0
+          ]
+        },
+        {
+          "a": [
+            -0.3340000000000001,
+            1,
+            0
+          ],
+          "boxCenter": [
+            -2,
+            1.05,
+            0
+          ],
+          "boxSize": [
+            0.68,
+            1.45,
+            0.92
+          ],
+          "code": "ARROW_TIP_INSIDE_OPAQUE_BOX",
+          "input": 80.0,
+          "limit": "Tipinsideonly; NOT wholeconecontainment orfallback/nativeUIclaim.",
+          "tip": [
+            -1.726,
+            1,
+            0
+          ]
+        }
+      ],
+      "gridCount": 17,
+      "humanApproval": "NOT_RUN",
+      "id": "SIM-C3-L09-01",
+      "manualProcedure": "(3/2)·60=90;(3/2)·40=60J. Min work.5Qc; reversible reservoirratio450/300.",
+      "manualityScope": "Independentreviewerderivedhandprocedureforbothactualtasks;notastudentperformancecalibrationorclaimthesourcealreadyteachesallbounds.",
+      "ok": false,
+      "publicationAction": "NONE",
+      "reviewDependencySha256": {
+        "editorial/reviews/C3-36-code-partial-20261125/mesh-halfspace-negatives.json": "4c079bd5a19b5a69ed0e0416fd1b95a81d99d80def88177ba5bc68355bad789d",
+        "tests/corpus/check-C3-contained-geometry.mjs": "98c74ed0f857f0d883abd7f4dbdd1838750daa48850251667577f9f56516479b",
+        "tests/corpus/collect-C3-bounded-code-only.mjs": "3b6151bd07e427801e1b48e07a129ef71a1d46571e9781088ac229ca6ac2d9d4",
+        "tools/corpus_engineering/collect_C3_code_partial.py": "2ccd470c9a7af497280453e860370517088dbad931776c8a1cc815df726c56e6",
+        "tools/corpus_engineering/experiments_C3_code_partial_verifier.py": "9a0002b990b8bc181f90dd233a1122e2d8b48c77ecdcee240d9c8e72e16f1843"
+      },
+      "sourceJudgment": "PASS_MATH_ONLY",
+      "sourceMathAndActualTasksOk": true,
+      "sourceSha256": "265cd7694ea6d28e08ec88e09887f74d6d9f44b79bcdbb15062b751aef9f5920",
+      "sourceVersion": 1,
+      "studentTaskScope": "Two actual generated numeric questions; predictiondistractors independently checked; bounds/extraoracles are reviewerprobes not assignedstudenttasks.",
+      "visualReview": "NOT_RUN"
+    },
+    {
+      "CodeGeometryFailure": [],
+      "ManualityFailure": false,
+      "SourceScientificFailure": null,
+      "UI": "NOT_RUN",
+      "UI_Observed": false,
+      "activityCredit": 0,
+      "actualTasks": [
+        {
+          "actualValue": 45,
+          "independentExact": "45",
+          "input": "150",
+          "literalAcceptedByNumericRule": true,
+          "manualNumericLiteral": "45",
+          "ok": true,
+          "prompt": "Imposta «Calore assorbito per ciclo» su 150 J. Quale valore ottieni per «Lavoro utile»?",
+          "unit": "J"
+        },
+        {
+          "actualValue": 30,
+          "independentExact": "30",
+          "input": "100",
+          "literalAcceptedByNumericRule": true,
+          "manualNumericLiteral": "30",
+          "ok": true,
+          "prompt": "Una macchina con rendimento del 30% assorbe 100 J per ciclo. Quale parte arriva all’albero sotto forma di lavoro?",
+          "unit": "J"
+        }
+      ],
+      "assumptionsAndDomain": "Reversiblefridge300/450K; engines600/300K withη≤.5; CarnotTh500K,Tc250..500K, equality meansnowork. Zeroheat isdegenerate control, nevercompute0/0measuredηorCOP.",
+      "checkedGeometryScope": "AllcollectedarrowtipXYZvsopaqueboxes;thermometerupperendcapvsbulb. Notfullglyphs/meshtriangles/camera/raster/labels/fallback. No3DUIobserved.",
+      "clockSampleCount": 0,
+      "consumerCodeGeometryOk": true,
+      "consumerJudgment": "PARTIAL_NO_FAILURE_FOUND_IN_CHECKED_CODE",
+      "errors": [],
+      "geometryObservations": [],
+      "gridCount": 21,
+      "humanApproval": "NOT_RUN",
+      "id": "SIM-C3-L09-02",
+      "manualProcedure": "3·150/10=45;3·100/10=30J. η.3≤Carnot.5, rejected heat.7Qh.",
+      "manualityScope": "Independentreviewerderivedhandprocedureforbothactualtasks;notastudentperformancecalibrationorclaimthesourcealreadyteachesallbounds.",
+      "ok": false,
+      "publicationAction": "NONE",
+      "reviewDependencySha256": {
+        "editorial/reviews/C3-36-code-partial-20261125/mesh-halfspace-negatives.json": "4c079bd5a19b5a69ed0e0416fd1b95a81d99d80def88177ba5bc68355bad789d",
+        "tests/corpus/check-C3-contained-geometry.mjs": "98c74ed0f857f0d883abd7f4dbdd1838750daa48850251667577f9f56516479b",
+        "tests/corpus/collect-C3-bounded-code-only.mjs": "3b6151bd07e427801e1b48e07a129ef71a1d46571e9781088ac229ca6ac2d9d4",
+        "tools/corpus_engineering/collect_C3_code_partial.py": "2ccd470c9a7af497280453e860370517088dbad931776c8a1cc815df726c56e6",
+        "tools/corpus_engineering/experiments_C3_code_partial_verifier.py": "9a0002b990b8bc181f90dd233a1122e2d8b48c77ecdcee240d9c8e72e16f1843"
+      },
+      "sourceJudgment": "PASS_MATH_ONLY",
+      "sourceMathAndActualTasksOk": true,
+      "sourceSha256": "fa3a31e2031bca2bb3411224ffbcc0d53dc7c1fdf8ba4b7eb0ead7d4341885bd",
+      "sourceVersion": 1,
+      "studentTaskScope": "Two actual generated numeric questions; predictiondistractors independently checked; bounds/extraoracles are reviewerprobes not assignedstudenttasks.",
+      "visualReview": "NOT_RUN"
+    },
+    {
+      "CodeGeometryFailure": [],
+      "ManualityFailure": false,
+      "SourceScientificFailure": null,
+      "UI": "NOT_RUN",
+      "UI_Observed": false,
+      "activityCredit": 0,
+      "actualTasks": [
+        {
+          "actualValue": 40,
+          "independentExact": "40",
+          "input": "40",
+          "literalAcceptedByNumericRule": true,
+          "manualNumericLiteral": "40",
+          "ok": true,
+          "prompt": "Imposta «Lavoro per ciclo» su 40 J. Quale valore ottieni per «Rendimento»?",
+          "unit": "%"
+        },
+        {
+          "actualValue": 25,
+          "independentExact": "25",
+          "input": "25",
+          "literalAcceptedByNumericRule": true,
+          "manualNumericLiteral": "25",
+          "ok": true,
+          "prompt": "Con 100 J di calore assorbito, un motore consegna 25 J all’albero. Quale rendimento percentuale scrivi sul rapporto?",
+          "unit": "%"
+        }
+      ],
+      "assumptionsAndDomain": "Reversiblefridge300/450K; engines600/300K withη≤.5; CarnotTh500K,Tc250..500K, equality meansnowork. Zeroheat isdegenerate control, nevercompute0/0measuredηorCOP.",
+      "checkedGeometryScope": "AllcollectedarrowtipXYZvsopaqueboxes;thermometerupperendcapvsbulb. Notfullglyphs/meshtriangles/camera/raster/labels/fallback. No3DUIobserved.",
+      "clockSampleCount": 0,
+      "consumerCodeGeometryOk": true,
+      "consumerJudgment": "PARTIAL_NO_FAILURE_FOUND_IN_CHECKED_CODE",
+      "errors": [],
+      "geometryObservations": [],
+      "gridCount": 11,
+      "humanApproval": "NOT_RUN",
+      "id": "SIM-C3-L09-03",
+      "manualProcedure": "40/100·100=40;25/100·100=25%. Qh fixed100J.",
+      "manualityScope": "Independentreviewerderivedhandprocedureforbothactualtasks;notastudentperformancecalibrationorclaimthesourcealreadyteachesallbounds.",
+      "ok": false,
+      "publicationAction": "NONE",
+      "reviewDependencySha256": {
+        "editorial/reviews/C3-36-code-partial-20261125/mesh-halfspace-negatives.json": "4c079bd5a19b5a69ed0e0416fd1b95a81d99d80def88177ba5bc68355bad789d",
+        "tests/corpus/check-C3-contained-geometry.mjs": "98c74ed0f857f0d883abd7f4dbdd1838750daa48850251667577f9f56516479b",
+        "tests/corpus/collect-C3-bounded-code-only.mjs": "3b6151bd07e427801e1b48e07a129ef71a1d46571e9781088ac229ca6ac2d9d4",
+        "tools/corpus_engineering/collect_C3_code_partial.py": "2ccd470c9a7af497280453e860370517088dbad931776c8a1cc815df726c56e6",
+        "tools/corpus_engineering/experiments_C3_code_partial_verifier.py": "9a0002b990b8bc181f90dd233a1122e2d8b48c77ecdcee240d9c8e72e16f1843"
+      },
+      "sourceJudgment": "PASS_MATH_ONLY",
+      "sourceMathAndActualTasksOk": true,
+      "sourceSha256": "47682d6ef90ded8a4838923d0fad2b38c9d6f654c902a3b7b2b82026947bb269",
+      "sourceVersion": 1,
+      "studentTaskScope": "Two actual generated numeric questions; predictiondistractors independently checked; bounds/extraoracles are reviewerprobes not assignedstudenttasks.",
+      "visualReview": "NOT_RUN"
+    },
+    {
+      "CodeGeometryFailure": [],
+      "ManualityFailure": false,
+      "SourceScientificFailure": null,
+      "UI": "NOT_RUN",
+      "UI_Observed": false,
+      "activityCredit": 0,
+      "actualTasks": [
+        {
+          "actualValue": 19.999999999999996,
+          "independentExact": "20",
+          "input": "400",
+          "literalAcceptedByNumericRule": true,
+          "manualNumericLiteral": "20",
+          "ok": true,
+          "prompt": "Imposta «Temperatura della sorgente fredda» su 400 K. Quale valore ottieni per «Rendimento reversibile»?",
+          "unit": "%"
+        },
+        {
+          "actualValue": 25,
+          "independentExact": "25",
+          "input": "375",
+          "literalAcceptedByNumericRule": true,
+          "manualNumericLiteral": "25",
+          "ok": true,
+          "prompt": "La sorgente calda rimane a 500 K e quella fredda passa a 375 K. Qual è il massimo rendimento percentuale ammesso per un ciclo fra queste sorgenti?",
+          "unit": "%"
+        }
+      ],
+      "assumptionsAndDomain": "Reversiblefridge300/450K; engines600/300K withη≤.5; CarnotTh500K,Tc250..500K, equality meansnowork. Zeroheat isdegenerate control, nevercompute0/0measuredηorCOP.",
+      "checkedGeometryScope": "AllcollectedarrowtipXYZvsopaqueboxes;thermometerupperendcapvsbulb. Notfullglyphs/meshtriangles/camera/raster/labels/fallback. No3DUIobserved.",
+      "clockSampleCount": 0,
+      "consumerCodeGeometryOk": true,
+      "consumerJudgment": "PARTIAL_NO_FAILURE_FOUND_IN_CHECKED_CODE",
+      "errors": [],
+      "geometryObservations": [],
+      "gridCount": 11,
+      "humanApproval": "NOT_RUN",
+      "id": "SIM-C3-L09-04",
+      "manualProcedure": "100(1−400/500)=20;100(1−375/500)=25%. At500K bound0 degenerates.",
+      "manualityScope": "Independentreviewerderivedhandprocedureforbothactualtasks;notastudentperformancecalibrationorclaimthesourcealreadyteachesallbounds.",
+      "ok": false,
+      "publicationAction": "NONE",
+      "reviewDependencySha256": {
+        "editorial/reviews/C3-36-code-partial-20261125/mesh-halfspace-negatives.json": "4c079bd5a19b5a69ed0e0416fd1b95a81d99d80def88177ba5bc68355bad789d",
+        "tests/corpus/check-C3-contained-geometry.mjs": "98c74ed0f857f0d883abd7f4dbdd1838750daa48850251667577f9f56516479b",
+        "tests/corpus/collect-C3-bounded-code-only.mjs": "3b6151bd07e427801e1b48e07a129ef71a1d46571e9781088ac229ca6ac2d9d4",
+        "tools/corpus_engineering/collect_C3_code_partial.py": "2ccd470c9a7af497280453e860370517088dbad931776c8a1cc815df726c56e6",
+        "tools/corpus_engineering/experiments_C3_code_partial_verifier.py": "9a0002b990b8bc181f90dd233a1122e2d8b48c77ecdcee240d9c8e72e16f1843"
+      },
+      "sourceJudgment": "PASS_MATH_ONLY",
+      "sourceMathAndActualTasksOk": true,
+      "sourceSha256": "4e055d14002f6e2cbef962bda9eed13cf84917bc8522ef56aebc0ab1b7b344d8",
+      "sourceVersion": 1,
+      "studentTaskScope": "Two actual generated numeric questions; predictiondistractors independently checked; bounds/extraoracles are reviewerprobes not assignedstudenttasks.",
+      "visualReview": "NOT_RUN"
+    },
+    {
+      "CodeGeometryFailure": [],
+      "ManualityFailure": false,
+      "SourceScientificFailure": null,
+      "UI": "NOT_RUN",
+      "UI_Observed": false,
+      "activityCredit": 0,
+      "actualTasks": [
+        {
+          "actualValue": 0.2,
+          "independentExact": "1/5",
+          "input": "60",
+          "literalAcceptedByNumericRule": true,
+          "manualNumericLiteral": ".2",
+          "ok": true,
+          "prompt": "Imposta «Calore reversibile scambiato» su 60 J. Quale valore ottieni per «Variazione di entropia del sistema»?",
+          "unit": "J/K"
+        },
+        {
+          "actualValue": 0,
+          "independentExact": "0",
+          "input": "0",
+          "literalAcceptedByNumericRule": true,
+          "manualNumericLiteral": "0",
+          "ok": true,
+          "prompt": "Un corpo a 300 K scambia reversibilmente il calore con segno 0 J. Quale variazione di entropia attribuisci al corpo?",
+          "unit": "J/K"
+        }
+      ],
+      "assumptionsAndDomain": "ΔSstate computed alongreversible300Kpath; reservoirs600/300K; fourdistinguishableindependentparticles twoequiprobablehalves; negative signedheatL10-04 explicitly hypothesis requiringexternalinteraction, notspontaneousisolatedtransfer.",
+      "checkedGeometryScope": "AllcollectedarrowtipXYZvsopaqueboxes;thermometerupperendcapvsbulb. Notfullglyphs/meshtriangles/camera/raster/labels/fallback. No3DUIobserved.",
+      "clockSampleCount": 0,
+      "consumerCodeGeometryOk": true,
+      "consumerJudgment": "PARTIAL_NO_FAILURE_FOUND_IN_CHECKED_CODE",
+      "errors": [],
+      "geometryObservations": [],
+      "gridCount": 25,
+      "humanApproval": "NOT_RUN",
+      "id": "SIM-C3-L10-01",
+      "manualProcedure": "60/300=1/5=.2;0/300=0J/K. Subsystem may lose entropy.",
+      "manualityScope": "Independentreviewerderivedhandprocedureforbothactualtasks;notastudentperformancecalibrationorclaimthesourcealreadyteachesallbounds.",
+      "ok": false,
+      "publicationAction": "NONE",
+      "reviewDependencySha256": {
+        "editorial/reviews/C3-36-code-partial-20261125/mesh-halfspace-negatives.json": "4c079bd5a19b5a69ed0e0416fd1b95a81d99d80def88177ba5bc68355bad789d",
+        "tests/corpus/check-C3-contained-geometry.mjs": "98c74ed0f857f0d883abd7f4dbdd1838750daa48850251667577f9f56516479b",
+        "tests/corpus/collect-C3-bounded-code-only.mjs": "3b6151bd07e427801e1b48e07a129ef71a1d46571e9781088ac229ca6ac2d9d4",
+        "tools/corpus_engineering/collect_C3_code_partial.py": "2ccd470c9a7af497280453e860370517088dbad931776c8a1cc815df726c56e6",
+        "tools/corpus_engineering/experiments_C3_code_partial_verifier.py": "9a0002b990b8bc181f90dd233a1122e2d8b48c77ecdcee240d9c8e72e16f1843"
+      },
+      "sourceJudgment": "PASS_MATH_ONLY",
+      "sourceMathAndActualTasksOk": true,
+      "sourceSha256": "c6f74f269148d18c77879e5d538d3bdd2255a6ba76eb907451a02e4bafe42aa8",
+      "sourceVersion": 1,
+      "studentTaskScope": "Two actual generated numeric questions; predictiondistractors independently checked; bounds/extraoracles are reviewerprobes not assignedstudenttasks.",
+      "visualReview": "NOT_RUN"
+    },
+    {
+      "CodeGeometryFailure": [],
+      "ManualityFailure": false,
+      "SourceScientificFailure": null,
+      "UI": "NOT_RUN",
+      "UI_Observed": false,
+      "activityCredit": 0,
+      "actualTasks": [
+        {
+          "actualValue": 0.15,
+          "independentExact": "3/20",
+          "input": "90",
+          "literalAcceptedByNumericRule": true,
+          "manualNumericLiteral": ".15",
+          "ok": true,
+          "prompt": "Imposta «Calore dal caldo al freddo» su 90 J. Quale valore ottieni per «Aumento di entropia totale»?",
+          "unit": "J/K"
+        },
+        {
+          "actualValue": 0.1,
+          "independentExact": "1/10",
+          "input": "60",
+          "literalAcceptedByNumericRule": true,
+          "manualNumericLiteral": ".1",
+          "ok": true,
+          "prompt": "Passano 60 J da un serbatoio a 600 K a uno a 300 K. Quanto aumenta l’entropia dei due serbatoi considerati insieme?",
+          "unit": "J/K"
+        }
+      ],
+      "assumptionsAndDomain": "ΔSstate computed alongreversible300Kpath; reservoirs600/300K; fourdistinguishableindependentparticles twoequiprobablehalves; negative signedheatL10-04 explicitly hypothesis requiringexternalinteraction, notspontaneousisolatedtransfer.",
+      "checkedGeometryScope": "AllcollectedarrowtipXYZvsopaqueboxes;thermometerupperendcapvsbulb. Notfullglyphs/meshtriangles/camera/raster/labels/fallback. No3DUIobserved.",
+      "clockSampleCount": 0,
+      "consumerCodeGeometryOk": true,
+      "consumerJudgment": "PARTIAL_NO_FAILURE_FOUND_IN_CHECKED_CODE",
+      "errors": [],
+      "geometryObservations": [],
+      "gridCount": 13,
+      "humanApproval": "NOT_RUN",
+      "id": "SIM-C3-L10-02",
+      "manualProcedure": "90(1/300−1/600)=90/600=.15;60/600=.1J/K.",
+      "manualityScope": "Independentreviewerderivedhandprocedureforbothactualtasks;notastudentperformancecalibrationorclaimthesourcealreadyteachesallbounds.",
+      "ok": false,
+      "publicationAction": "NONE",
+      "reviewDependencySha256": {
+        "editorial/reviews/C3-36-code-partial-20261125/mesh-halfspace-negatives.json": "4c079bd5a19b5a69ed0e0416fd1b95a81d99d80def88177ba5bc68355bad789d",
+        "tests/corpus/check-C3-contained-geometry.mjs": "98c74ed0f857f0d883abd7f4dbdd1838750daa48850251667577f9f56516479b",
+        "tests/corpus/collect-C3-bounded-code-only.mjs": "3b6151bd07e427801e1b48e07a129ef71a1d46571e9781088ac229ca6ac2d9d4",
+        "tools/corpus_engineering/collect_C3_code_partial.py": "2ccd470c9a7af497280453e860370517088dbad931776c8a1cc815df726c56e6",
+        "tools/corpus_engineering/experiments_C3_code_partial_verifier.py": "9a0002b990b8bc181f90dd233a1122e2d8b48c77ecdcee240d9c8e72e16f1843"
+      },
+      "sourceJudgment": "PASS_MATH_ONLY",
+      "sourceMathAndActualTasksOk": true,
+      "sourceSha256": "02edeccbb07b4b23e5d9550a7c2c65d97ca15aa242b75ae617a3c23f707bef5a",
+      "sourceVersion": 1,
+      "studentTaskScope": "Two actual generated numeric questions; predictiondistractors independently checked; bounds/extraoracles are reviewerprobes not assignedstudenttasks.",
+      "visualReview": "NOT_RUN"
+    },
+    {
+      "CodeGeometryFailure": [],
+      "ManualityFailure": false,
+      "SourceScientificFailure": null,
+      "UI": "NOT_RUN",
+      "UI_Observed": false,
+      "activityCredit": 0,
+      "actualTasks": [
+        {
+          "actualValue": 6,
+          "independentExact": "6",
+          "input": "2",
+          "literalAcceptedByNumericRule": true,
+          "manualNumericLiteral": "6",
+          "ok": true,
+          "prompt": "Imposta «Particelle nella metà sinistra» su 2. Quale valore ottieni per «Numero di configurazioni»?",
+          "unit": "1"
+        },
+        {
+          "actualValue": 4,
+          "independentExact": "4",
+          "input": "3",
+          "literalAcceptedByNumericRule": true,
+          "manualNumericLiteral": "4",
+          "ok": true,
+          "prompt": "Quattro particelle distinguibili possono trovarsi a destra o a sinistra. Se ne osservi 3 a sinistra, quante configurazioni sono compatibili con il conteggio?",
+          "unit": "1"
+        }
+      ],
+      "assumptionsAndDomain": "ΔSstate computed alongreversible300Kpath; reservoirs600/300K; fourdistinguishableindependentparticles twoequiprobablehalves; negative signedheatL10-04 explicitly hypothesis requiringexternalinteraction, notspontaneousisolatedtransfer.",
+      "checkedGeometryScope": "AllcollectedarrowtipXYZvsopaqueboxes;thermometerupperendcapvsbulb. Notfullglyphs/meshtriangles/camera/raster/labels/fallback. No3DUIobserved.",
+      "clockSampleCount": 0,
+      "consumerCodeGeometryOk": true,
+      "consumerJudgment": "PARTIAL_NO_FAILURE_FOUND_IN_CHECKED_CODE",
+      "errors": [],
+      "geometryObservations": [],
+      "gridCount": 5,
+      "humanApproval": "NOT_RUN",
+      "id": "SIM-C3-L10-03",
+      "manualProcedure": "Choose2of4:4·3/2=6; choose3of4=4. No log value is asked.",
+      "manualityScope": "Independentreviewerderivedhandprocedureforbothactualtasks;notastudentperformancecalibrationorclaimthesourcealreadyteachesallbounds.",
+      "ok": false,
+      "publicationAction": "NONE",
+      "reviewDependencySha256": {
+        "editorial/reviews/C3-36-code-partial-20261125/mesh-halfspace-negatives.json": "4c079bd5a19b5a69ed0e0416fd1b95a81d99d80def88177ba5bc68355bad789d",
+        "tests/corpus/check-C3-contained-geometry.mjs": "98c74ed0f857f0d883abd7f4dbdd1838750daa48850251667577f9f56516479b",
+        "tests/corpus/collect-C3-bounded-code-only.mjs": "3b6151bd07e427801e1b48e07a129ef71a1d46571e9781088ac229ca6ac2d9d4",
+        "tools/corpus_engineering/collect_C3_code_partial.py": "2ccd470c9a7af497280453e860370517088dbad931776c8a1cc815df726c56e6",
+        "tools/corpus_engineering/experiments_C3_code_partial_verifier.py": "9a0002b990b8bc181f90dd233a1122e2d8b48c77ecdcee240d9c8e72e16f1843"
+      },
+      "sourceJudgment": "PASS_MATH_ONLY",
+      "sourceMathAndActualTasksOk": true,
+      "sourceSha256": "a17fb608d8c1ce7a772c36d9db07250c3b70b26b41c2261a2c7d9a47dc145d59",
+      "sourceVersion": 1,
+      "studentTaskScope": "Two actual generated numeric questions; predictiondistractors independently checked; bounds/extraoracles are reviewerprobes not assignedstudenttasks.",
+      "visualReview": "NOT_RUN"
+    },
+    {
+      "CodeGeometryFailure": [],
+      "ManualityFailure": false,
+      "SourceScientificFailure": null,
+      "UI": "NOT_RUN",
+      "UI_Observed": false,
+      "activityCredit": 0,
+      "actualTasks": [
+        {
+          "actualValue": 0.05,
+          "independentExact": "1/20",
+          "input": "30",
+          "literalAcceptedByNumericRule": true,
+          "manualNumericLiteral": ".05",
+          "ok": true,
+          "prompt": "Imposta «Calore con segno dal caldo al freddo» su 30 J. Quale valore ottieni per «Variazione di entropia dei due serbatoi»?",
+          "unit": "J/K"
+        },
+        {
+          "actualValue": 0,
+          "independentExact": "0",
+          "input": "0",
+          "literalAcceptedByNumericRule": true,
+          "manualNumericLiteral": "0",
+          "ok": true,
+          "prompt": "Nel verso convenzionale dal caldo al freddo il calore è 0 J. Fra 600 K e 300 K, quale variazione totale di entropia ottieni con quel segno?",
+          "unit": "J/K"
+        }
+      ],
+      "assumptionsAndDomain": "ΔSstate computed alongreversible300Kpath; reservoirs600/300K; fourdistinguishableindependentparticles twoequiprobablehalves; negative signedheatL10-04 explicitly hypothesis requiringexternalinteraction, notspontaneousisolatedtransfer.",
+      "checkedGeometryScope": "AllcollectedarrowtipXYZvsopaqueboxes;thermometerupperendcapvsbulb. Notfullglyphs/meshtriangles/camera/raster/labels/fallback. No3DUIobserved.",
+      "clockSampleCount": 0,
+      "consumerCodeGeometryOk": true,
+      "consumerJudgment": "PARTIAL_NO_FAILURE_FOUND_IN_CHECKED_CODE",
+      "errors": [],
+      "geometryObservations": [],
+      "gridCount": 13,
+      "humanApproval": "NOT_RUN",
+      "id": "SIM-C3-L10-04",
+      "manualProcedure": "30/600=.05;0/600=0J/K. Negative control is explicitly hypothetical, not a spontaneous isolated process.",
+      "manualityScope": "Independentreviewerderivedhandprocedureforbothactualtasks;notastudentperformancecalibrationorclaimthesourcealreadyteachesallbounds.",
+      "ok": false,
+      "publicationAction": "NONE",
+      "reviewDependencySha256": {
+        "editorial/reviews/C3-36-code-partial-20261125/mesh-halfspace-negatives.json": "4c079bd5a19b5a69ed0e0416fd1b95a81d99d80def88177ba5bc68355bad789d",
+        "tests/corpus/check-C3-contained-geometry.mjs": "98c74ed0f857f0d883abd7f4dbdd1838750daa48850251667577f9f56516479b",
+        "tests/corpus/collect-C3-bounded-code-only.mjs": "3b6151bd07e427801e1b48e07a129ef71a1d46571e9781088ac229ca6ac2d9d4",
+        "tools/corpus_engineering/collect_C3_code_partial.py": "2ccd470c9a7af497280453e860370517088dbad931776c8a1cc815df726c56e6",
+        "tools/corpus_engineering/experiments_C3_code_partial_verifier.py": "9a0002b990b8bc181f90dd233a1122e2d8b48c77ecdcee240d9c8e72e16f1843"
+      },
+      "sourceJudgment": "PASS_MATH_ONLY",
+      "sourceMathAndActualTasksOk": true,
+      "sourceSha256": "7ef7cb7d6be35275c49a34f6ef745a98f2d9e93a71d1555931b82abc5b94fd1d",
+      "sourceVersion": 1,
+      "studentTaskScope": "Two actual generated numeric questions; predictiondistractors independently checked; bounds/extraoracles are reviewerprobes not assignedstudenttasks.",
+      "visualReview": "NOT_RUN"
+    }
+  ],
+  "remoteDispatch": false,
+  "runtimeSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+  "sourceFileSha256": "2738799d5195ca5eda77c4dce1cdc79f708237e5660bb9cabcc7fac4f80ea3ff",
+  "sourceMathPassCount": 8,
+  "sourcePath": "officina-di-fisica/content/esperienze-C3.json",
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d"
+}

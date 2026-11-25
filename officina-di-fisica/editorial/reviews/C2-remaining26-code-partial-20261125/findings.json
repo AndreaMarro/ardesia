@@ -1,0 +1,446 @@
+{
+  "phase": "LOCAL_CODE_FINDINGS_ONLY",
+  "runtimeSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+  "findings": [
+    {
+      "id": "SIM-C2-L005-05",
+      "sourceVersion": 1,
+      "sourceSha256": "32c452afc5a7c3b8570e77d9ac0bafb12d51f6d61d2f80226a4ff823926d5b95",
+      "status": "CONSUMER_CODE_FAIL_NOT_NEW_UI_EVIDENCE",
+      "mathAndAssignedTasks": "CONFORMANT_WITH_INDEPENDENT_ORACLE",
+      "errors": [
+        "grid@0: SOURCE_ASSIGNED_COMPARISON_FAIL: incoming arrow requested by source is absent",
+        "grid@1: SOURCE_ASSIGNED_COMPARISON_FAIL: incoming arrow requested by source is absent",
+        "grid@2: SOURCE_ASSIGNED_COMPARISON_FAIL: incoming arrow requested by source is absent",
+        "grid@3: SOURCE_ASSIGNED_COMPARISON_FAIL: incoming arrow requested by source is absent",
+        "grid@4: SOURCE_ASSIGNED_COMPARISON_FAIL: incoming arrow requested by source is absent",
+        "grid@5: SOURCE_ASSIGNED_COMPARISON_FAIL: incoming arrow requested by source is absent",
+        "grid@6: SOURCE_ASSIGNED_COMPARISON_FAIL: incoming arrow requested by source is absent",
+        "grid@7: SOURCE_ASSIGNED_COMPARISON_FAIL: incoming arrow requested by source is absent",
+        "grid@8: SOURCE_ASSIGNED_COMPARISON_FAIL: incoming arrow requested by source is absent",
+        "grid@9: SOURCE_ASSIGNED_COMPARISON_FAIL: incoming arrow requested by source is absent",
+        "grid@10: SOURCE_ASSIGNED_COMPARISON_FAIL: incoming arrow requested by source is absent",
+        "grid@11: SOURCE_ASSIGNED_COMPARISON_FAIL: incoming arrow requested by source is absent",
+        "grid@12: SOURCE_ASSIGNED_COMPARISON_FAIL: incoming arrow requested by source is absent"
+      ],
+      "UI": "NOT_RUN",
+      "assignedInputWitnesses": [
+        {
+          "x": 6,
+          "arrows": [
+            {
+              "a": [
+                -0.72,
+                1.25,
+                -0.9
+              ],
+              "b": [
+                -0.16999999999999993,
+                1.25,
+                -0.9
+              ],
+              "c": 7557296,
+              "kind": "arrow"
+            },
+            {
+              "a": [
+                -0.72,
+                1.25,
+                0.9
+              ],
+              "b": [
+                -0.16999999999999993,
+                1.25,
+                0.9
+              ],
+              "c": 1341817,
+              "kind": "arrow"
+            }
+          ]
+        },
+        {
+          "x": 8,
+          "arrows": [
+            {
+              "a": [
+                -0.72,
+                1.25,
+                -0.9
+              ],
+              "b": [
+                0.01333333333333342,
+                1.25,
+                -0.9
+              ],
+              "c": 7557296,
+              "kind": "arrow"
+            },
+            {
+              "a": [
+                -0.72,
+                1.25,
+                0.9
+              ],
+              "b": [
+                -0.3533333333333333,
+                1.25,
+                0.9
+              ],
+              "c": 1341817,
+              "kind": "arrow"
+            }
+          ]
+        }
+      ],
+      "claim": "Source explicitly asks comparison with incoming arrow; all13legal states contain branch arrows only, no incoming arrow. Scalar12−x and input-flow readout12 are correct."
+    },
+    {
+      "id": "SIM-C2-L006-02",
+      "sourceVersion": 1,
+      "sourceSha256": "3eb95d73c097bd1e2f86fe4bf933ed1e2e983a91b5657e6be4e007aacc5585b8",
+      "status": "CONSUMER_CODE_FAIL_NOT_NEW_UI_EVIDENCE",
+      "mathAndAssignedTasks": "CONFORMANT_WITH_INDEPENDENT_ORACLE",
+      "errors": [
+        "grid@9/2: PITOT_COLUMN_CONTAINMENT_FAIL: liquid column extends above containing tube",
+        "grid@19/4: PITOT_COLUMN_CONTAINMENT_FAIL: liquid column extends above containing tube",
+        "grid@5: PITOT_COLUMN_CONTAINMENT_FAIL: liquid column extends above containing tube"
+      ],
+      "UI": "NOT_RUN",
+      "legalOverflowInputs": [
+        4.5,
+        4.75,
+        5
+      ],
+      "maxInputWitness": {
+        "x": 5,
+        "rods": [
+          {
+            "a": [
+              1.4,
+              1.05,
+              0
+            ],
+            "alpha": 0.25,
+            "b": [
+              1.4,
+              2.75,
+              0
+            ],
+            "c": 6864335,
+            "kind": "rod",
+            "openEnded": false,
+            "r": 0.09,
+            "r2": 0.09
+          },
+          {
+            "a": [
+              1.4,
+              1.05,
+              0
+            ],
+            "alpha": 1,
+            "b": [
+              1.4,
+              2.893125,
+              0
+            ],
+            "c": 1341817,
+            "kind": "rod",
+            "openEnded": false,
+            "r": 0.062,
+            "r2": 0.062
+          },
+          {
+            "a": [
+              1.4,
+              1.05,
+              0
+            ],
+            "alpha": 1,
+            "b": [
+              1.02,
+              1.05,
+              0
+            ],
+            "c": 7499137,
+            "kind": "rod",
+            "openEnded": false,
+            "r": 0.088,
+            "r2": 0.088
+          }
+        ],
+        "containingTubeTopY": 2.75,
+        "liquidColumnTopY": 2.893125,
+        "excessFromExactLiteralParameters": "229/1600 scene units"
+      },
+      "claim": "The indicated liquid column exceeds its containing standpipe at4.5,4.75,5m/s. No claim of camera clipping; scalarPitot rho*v²/2 remains correct."
+    },
+    {
+      "id": "SIM-C2-L007-03",
+      "sourceVersion": 1,
+      "sourceSha256": "da3e9f332d1ea839522145e74419e3c8fb77073f950bb8c698915556357797de",
+      "status": "CONSUMER_CODE_FAIL_NOT_NEW_UI_EVIDENCE",
+      "mathAndAssignedTasks": "CONFORMANT_WITH_INDEPENDENT_ORACLE",
+      "errors": [
+        "grid@1/10: COUETTE_AXIS_TIP_INSIDE_OPAQUE_PLATE: full cone containment not asserted",
+        "grid@1/5: COUETTE_AXIS_TIP_INSIDE_OPAQUE_PLATE: full cone containment not asserted",
+        "grid@3/10: COUETTE_AXIS_TIP_INSIDE_OPAQUE_PLATE: full cone containment not asserted",
+        "grid@2/5: COUETTE_AXIS_TIP_INSIDE_OPAQUE_PLATE: full cone containment not asserted",
+        "grid@1/2: COUETTE_AXIS_TIP_INSIDE_OPAQUE_PLATE: full cone containment not asserted",
+        "grid@3/5: COUETTE_AXIS_TIP_INSIDE_OPAQUE_PLATE: full cone containment not asserted",
+        "grid@7/10: COUETTE_AXIS_TIP_INSIDE_OPAQUE_PLATE: full cone containment not asserted",
+        "grid@4/5: COUETTE_AXIS_TIP_INSIDE_OPAQUE_PLATE: full cone containment not asserted",
+        "grid@9/10: COUETTE_AXIS_TIP_INSIDE_OPAQUE_PLATE: full cone containment not asserted",
+        "grid@1: COUETTE_AXIS_TIP_INSIDE_OPAQUE_PLATE: full cone containment not asserted",
+        "grid@11/10: COUETTE_AXIS_TIP_INSIDE_OPAQUE_PLATE: full cone containment not asserted",
+        "grid@6/5: COUETTE_AXIS_TIP_INSIDE_OPAQUE_PLATE: full cone containment not asserted",
+        "grid@13/10: COUETTE_AXIS_TIP_INSIDE_OPAQUE_PLATE: full cone containment not asserted",
+        "grid@7/5: COUETTE_AXIS_TIP_INSIDE_OPAQUE_PLATE: full cone containment not asserted",
+        "grid@3/2: COUETTE_AXIS_TIP_INSIDE_OPAQUE_PLATE: full cone containment not asserted",
+        "grid@8/5: COUETTE_AXIS_TIP_INSIDE_OPAQUE_PLATE: full cone containment not asserted",
+        "grid@17/10: COUETTE_AXIS_TIP_INSIDE_OPAQUE_PLATE: full cone containment not asserted",
+        "grid@9/5: COUETTE_AXIS_TIP_INSIDE_OPAQUE_PLATE: full cone containment not asserted",
+        "grid@19/10: COUETTE_AXIS_TIP_INSIDE_OPAQUE_PLATE: full cone containment not asserted",
+        "grid@2: COUETTE_AXIS_TIP_INSIDE_OPAQUE_PLATE: full cone containment not asserted"
+      ],
+      "UI": "NOT_RUN",
+      "assignedInputWitnesses": [
+        {
+          "x": 1.1,
+          "opaquePlate": {
+            "alpha": 1,
+            "c": 13931314,
+            "kind": "box",
+            "p": [
+              0,
+              1.4575,
+              0
+            ],
+            "size": [
+              3.4,
+              0.14,
+              1.8
+            ]
+          },
+          "topLayerArrow": {
+            "a": [
+              -1,
+              1.4575,
+              0.78
+            ],
+            "b": [
+              0.44000000000000017,
+              1.4575,
+              0.78
+            ],
+            "c": 1341817,
+            "kind": "arrow"
+          }
+        },
+        {
+          "x": 1.5000000000000002,
+          "opaquePlate": {
+            "alpha": 1,
+            "c": 13931314,
+            "kind": "box",
+            "p": [
+              0,
+              1.4575,
+              0
+            ],
+            "size": [
+              3.4,
+              0.14,
+              1.8
+            ]
+          },
+          "topLayerArrow": {
+            "a": [
+              -1,
+              1.4575,
+              0.78
+            ],
+            "b": [
+              0.44000000000000017,
+              1.4575,
+              0.78
+            ],
+            "c": 1341817,
+            "kind": "arrow"
+          }
+        }
+      ],
+      "claim": "Upper layer velocity shaft/axis and tip centre lie inside opaque plate on all legal states; full cone containment is NOT asserted. New source-specific scene data, no inherited screenshot retag."
+    },
+    {
+      "id": "SIM-C2-L007-04",
+      "sourceVersion": 1,
+      "sourceSha256": "f2a470e8114936cd1d6938f01d0b0b187c4da9d70d4f1aee1ec57ec667b8d9ea",
+      "status": "CONSUMER_CODE_FAIL_NOT_NEW_UI_EVIDENCE",
+      "mathAndAssignedTasks": "CONFORMANT_WITH_INDEPENDENT_ORACLE",
+      "errors": [
+        "grid@1: COUETTE_AXIS_TIP_INSIDE_OPAQUE_PLATE: full cone containment not asserted",
+        "grid@2: COUETTE_AXIS_TIP_INSIDE_OPAQUE_PLATE: full cone containment not asserted",
+        "grid@3: COUETTE_AXIS_TIP_INSIDE_OPAQUE_PLATE: full cone containment not asserted",
+        "grid@4: COUETTE_AXIS_TIP_INSIDE_OPAQUE_PLATE: full cone containment not asserted",
+        "grid@5: COUETTE_AXIS_TIP_INSIDE_OPAQUE_PLATE: full cone containment not asserted",
+        "grid@6: COUETTE_AXIS_TIP_INSIDE_OPAQUE_PLATE: full cone containment not asserted",
+        "grid@7: COUETTE_AXIS_TIP_INSIDE_OPAQUE_PLATE: full cone containment not asserted",
+        "grid@8: COUETTE_AXIS_TIP_INSIDE_OPAQUE_PLATE: full cone containment not asserted"
+      ],
+      "UI": "NOT_RUN",
+      "assignedInputWitnesses": [
+        {
+          "x": 4,
+          "opaquePlate": {
+            "alpha": 1,
+            "c": 13931314,
+            "kind": "box",
+            "p": [
+              0,
+              1.395,
+              0
+            ],
+            "size": [
+              3.4,
+              0.14,
+              1.8
+            ]
+          },
+          "topLayerArrow": {
+            "a": [
+              -1,
+              1.395,
+              0.78
+            ],
+            "b": [
+              0.8,
+              1.395,
+              0.78
+            ],
+            "c": 1341817,
+            "kind": "arrow"
+          }
+        },
+        {
+          "x": 6,
+          "opaquePlate": {
+            "alpha": 1,
+            "c": 13931314,
+            "kind": "box",
+            "p": [
+              0,
+              1.7075,
+              0
+            ],
+            "size": [
+              3.4,
+              0.14,
+              1.8
+            ]
+          },
+          "topLayerArrow": {
+            "a": [
+              -1,
+              1.7075,
+              0.78
+            ],
+            "b": [
+              0.8,
+              1.7075,
+              0.78
+            ],
+            "c": 1341817,
+            "kind": "arrow"
+          }
+        }
+      ],
+      "claim": "Upper layer velocity shaft/axis and tip centre lie inside opaque plate on all legal states; full cone containment is NOT asserted. New source-specific scene data, no inherited screenshot retag."
+    },
+    {
+      "id": "SIM-C2-L008-02",
+      "sourceVersion": 1,
+      "sourceSha256": "632f7aaa84c87be8af43ed32d77600d597e36c259853fab0b168526098754273",
+      "status": "CONSUMER_CODE_FAIL_NOT_NEW_UI_EVIDENCE",
+      "mathAndAssignedTasks": "CONFORMANT_WITH_INDEPENDENT_ORACLE",
+      "errors": [
+        "POISEUILLE_COMPARISON_SCALE_FAIL: radius-double/viscosity-double speed ratio is6 instead of8; area-times-speed ratio24 instead of32"
+      ],
+      "UI": "NOT_RUN",
+      "comparisonWitness": {
+        "radiusDoubleArrows": [
+          {
+            "a": [
+              -2.17,
+              1.05,
+              0
+            ],
+            "b": [
+              -0.9699999999999998,
+              1.05,
+              0
+            ],
+            "c": 1341817,
+            "kind": "arrow"
+          },
+          {
+            "a": [
+              0.44,
+              1.05,
+              0
+            ],
+            "b": [
+              1.6400000000000001,
+              1.05,
+              0
+            ],
+            "c": 7557296,
+            "kind": "arrow"
+          }
+        ],
+        "viscosityDoubleArrows": [
+          {
+            "a": [
+              -2.17,
+              1.05,
+              0
+            ],
+            "b": [
+              -1.97,
+              1.05,
+              0
+            ],
+            "c": 1341817,
+            "kind": "arrow"
+          },
+          {
+            "a": [
+              0.44,
+              1.05,
+              0
+            ],
+            "b": [
+              0.64,
+              1.05,
+              0
+            ],
+            "c": 7557296,
+            "kind": "arrow"
+          }
+        ],
+        "expectedMeanSpeedRatio": 8,
+        "observedSceneMeanSpeedRatio": "6 (floating endpoint representation retained in raw proof)",
+        "expectedAreaRatio": 4,
+        "expectedFlowRatio": 32,
+        "sceneAreaTimesSpeedRatio": 24
+      },
+      "claim": "Same-reference single-parameter Poiseuille comparisons require mean-speed ratio4/(1/2)=8; installed scene gives6 and implied flow ratio24rather than32. Scalar readings16and1/2 are correct."
+    }
+  ],
+  "sourceMathFailuresIdentified": [],
+  "noSourceOrRuntimeCorrectionAuthored": true,
+  "nativeOrFallbackBrowserRun": false,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "newActivityCredit": 0
+}
