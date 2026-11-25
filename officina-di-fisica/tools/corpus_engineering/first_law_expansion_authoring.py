@@ -1,0 +1,78 @@
+"""Author-only first-law balances with incoming heat and outgoing work."""
+from .vector_geometry_authoring import assemble_family,write_family
+P=('Il sistema è chiuso e non cambia energia cinetica o potenziale macroscopica. '
+   'Q>0 è energia ricevuta come calore e W>0 è lavoro compiuto dal sistema sull’ambiente. '
+   'Con questa convenzione ΔU=U_f−U_i=Q−W. Q e W descrivono trasferimenti durante il processo, non proprietà dello stato. '
+   'La variazione ΔU può essere positiva, nulla o negativa, secondo il bilancio. ')
+TASKS=[
+('Quanto resta nel sistema',P+'Con Q=100 J e W=40 J, quanto vale ΔU in J?',60,
+ 'Entrano cento joule come calore e quaranta escono come lavoro. L’energia interna aumenta della differenza: sessanta joule. Non si calcola U_f in valore assoluto, perché non è assegnata U_i; si trova soltanto la sua variazione.',
+ r'\Delta U=Q-W\qquad \Delta U=(100-40)\,\mathrm J\qquad \Delta U=60\,\mathrm J',
+ 'Centoquaranta J sommerebbero un’uscita a un’entrata; quaranta J sono il lavoro e cento J il calore, ciascuno solo una parte del bilancio. Il sistema chiuso può scambiare energia pur conservando la materia.','Disegna un’entrata per Q e un’uscita per W prima di sottrarre.'),
+('L’unità della variazione di energia interna','Quale unità misura ΔU=U_f−U_i nel primo principio?',['J','J/K','K','W','Pa'],
+ 'U e la sua variazione hanno entrambe dimensione di energia, quindi si misurano in joule. Essere una differenza può cambiare il segno del valore, non l’unità. Calore e lavoro si esprimono anch’essi in joule perché trasferiscono energia.',
+ r'[\Delta U]=[Q]=[W]=\mathrm J',
+ 'J/K è capacità termica, K temperatura, Pa pressione. Il watt è joule al secondo e misura una velocità di trasferimento, non un’energia.','La sottrazione fra due energie mantiene la loro unità.'),
+('Calore è un trasferimento','Quale frase usa correttamente il concetto di calore in termodinamica?',['È energia trasferita a causa di una differenza di temperatura','È una sostanza contenuta nel corpo','È sempre uguale alla temperatura','È una funzione di stato indipendente dal percorso','È lavoro immagazzinato nel sistema'],
+ 'Il calore identifica un modo in cui l’energia attraversa il confine quando vi è una differenza di temperatura. Dopo il trasferimento si descrive l’energia del sistema mediante U, non mediante una quantità di calore contenuta. Due percorsi fra gli stessi stati possono avere lo stesso ΔU ma differenti Q e W.',
+ r'\Delta U=Q-W\qquad \text{U: funzione di stato}\qquad \text{Q,W: trasferimenti}',
+ 'Una sostanza non è la descrizione energetica del calore. Temperatura ed energia hanno unità diverse; Q non è funzione di stato. Anche il lavoro è una modalità di trasferimento, non una riserva chiamata lavoro immagazzinato.','Separa ciò che attraversa il confine da ciò che descrive lo stato.'),
+('Più calore con la stessa uscita di lavoro',P+'A riceve Q=100 J, B riceve Q=200 J. Entrambe le prove compiono W=40 J. Quale confronto è corretto?',['ΔU passa da 60 a 160 J','ΔU passa da 60 a 120 J','ΔU resta 60 J','ΔU passa da 60 a 240 J','ΔU passa da 60 a −160 J'],
+ 'In A restano sessanta joule; in B duecento meno quaranta sono centosessanta. L’aumento di Q di cento joule aumenta ΔU degli stessi cento, poiché W è fermo. Raddoppiare Q non raddoppia in questo caso ΔU: il termine sottratto non viene raddoppiato.',
+ r'\Delta U_A=60\,\mathrm J\qquad \Delta U_B=(200-40)\,\mathrm J\qquad \Delta U_B=160\,\mathrm J',
+ 'Centoventi raddoppia direttamente la prima uscita, ignorando il lavoro fisso. Duecentoquaranta aggiunge W; sessanta ignora Q nuova e meno centosessanta rovescia il bilancio.','Confronta le differenze, non il solo fattore del calore.'),
+('Ricavare il calore dal bilancio',P+'Si misura ΔU=60 J e si conosce W=40 J. Quanto vale Q in J?',100,
+ 'Il calore deve alimentare sia l’aumento di energia interna sia il lavoro che esce. Aggiungiamo quaranta a sessanta e otteniamo cento joule. Il risultato è positivo, coerente con un trasferimento termico entrante.',
+ r'\Delta U=Q-W\qquad Q=\Delta U+W\qquad Q=(60+40)\,\mathrm J\qquad Q=100\,\mathrm J',
+ 'Sottrarre di nuovo il lavoro darebbe venti joule e non ricostruirebbe ΔU=60 J. Il segno meno del primo principio cambia quando W viene portato al membro con ΔU.','Per ricostruire l’entrata, somma ciò che rimane e ciò che esce.'),
+('Il lavoro dalla quota che non rimane',P+'Q=100 J e ΔU=60 J. Quanto vale W in J?',40,
+ 'Dall’energia ricevuta togliamo l’aumento che rimane nel sistema. La differenza è quaranta joule di lavoro uscente. Il valore positivo conferma il verso dichiarato: il sistema compie lavoro sull’ambiente.',
+ r'W=Q-\Delta U\qquad W=(100-60)\,\mathrm J\qquad W=40\,\mathrm J',
+ 'Centosessanta sommerebbe ingresso e accumulo. Meno quaranta scambierebbe il verso del trasferimento meccanico; sessanta copia ΔU anziché ricavare il lavoro.','Sottrai l’accumulo dall’energia entrata come calore.'),
+('Più lavoro lascia un aumento minore',P+'A ha Q=100 J, W=40 J. B mantiene Q=100 J ma compie W=60 J. Quanto vale ΔU_B/ΔU_A?',['2/3','3/2','1','2','−2/3'],
+ 'A aumenta U di sessanta joule; B di quaranta. Il rapporto quaranta su sessanta è due terzi. Più energia esce come lavoro mentre l’entrata termica è uguale, quindi rimane un aumento minore.',
+ r'\Delta U_A=60\,\mathrm J\qquad \Delta U_B=40\,\mathrm J\qquad \Delta U_B/\Delta U_A=\frac23',
+ 'Tre mezzi è il reciproco e anche il rapporto dei lavori, che non è quello chiesto. Uno ignora W nuova; due non segue dal bilancio. Il rapporto qui resta positivo perché entrambi gli aumenti sono positivi.','Valuta Q−W in entrambe le prove prima di fare un rapporto.'),
+('Lo scarto della proposta di 120 J',P+'Q=100 J e W=40 J. Una soluzione propone ΔU=120 J. Quanto vale proposta meno valore corretto?',['60 J','−60 J','120 J','0 J','30 J'],
+ 'La variazione corretta è sessanta joule. La proposta centoventi la supera di sessanta: lo scarto richiesto è positivo. Il numero centoventi non è il risultato della somma Q+W, che in questi dati varrebbe centoquaranta; basta confutarlo nel bilancio senza attribuirgli quell’errore diverso.',
+ r'\Delta U=60\,\mathrm J\qquad e=(120-60)\,\mathrm J\qquad e=60\,\mathrm J',
+ 'Meno sessanta inverte l’ordine della sottrazione; centoventi copia la proposta e zero la accetta. Trenta dimezza nuovamente lo scarto.','Ricalcola ΔU e rispetta l’ordine proposta meno corretta.'),
+('L’inversa simbolica del calore',P+'Dati ΔU e W compatibili con Q>0, quale formula ricostruisce Q?',['Q = ΔU + W','Q = ΔU − W','Q = W − ΔU','Q = 2(ΔU + W)','Q = (ΔU + W)/2'],
+ 'Aggiungiamo W a entrambi i membri di ΔU=Q−W. Il calore è quindi ΔU+W. ΔU può anche essere negativo: allora una parte del lavoro uscente proviene dalla diminuzione di U. Per restare nel dominio di calore entrante occorre comunque ΔU+W>0.',
+ r'\Delta U+W=Q\qquad Q=\Delta U+W\qquad Q>0\ \Longrightarrow\ \Delta U+W>0',
+ 'Sottrarre W una seconda volta non annulla il termine meno del primo principio. W−ΔU cambia il segno dell’accumulo; il doppio e la metà non conservano il bilancio.','Sposta il lavoro mantenendo il significato del suo segno.'),
+('Due fattori in una differenza di energie',P+'B ha Q_B=κ₁Q e W_B=κ₂W, con κ₁,κ₂>0; Q e W senza pedice sono della prova A. Si assume Q≠W per definire il rapporto. Quale formula dà ΔU_B/ΔU_A?',['(κ₁ Q − κ₂ W) / (Q − W)','(κ₁ Q + κ₂ W) / (Q − W)','κ₁ κ₂','(κ₁ Q − κ₂ W) / (Q + W)','(κ₂ Q − κ₁ W) / (Q − W)'],
+ 'Il primo principio va applicato alla differenza in ciascuna prova. La variazione di A è Q−W e quella di B è κ₁Q−κ₂W. Non esiste in generale un solo fattore prodotto per una differenza con due ingressi modificati indipendentemente. Il denominatore deve essere diverso da zero; il numeratore può essere nullo o negativo senza rendere negativi Q_B o W_B.',
+ r'\Delta U_A=Q-W\qquad \Delta U_B=\kappa_1Q-\kappa_2W\qquad \frac{\Delta U_B}{\Delta U_A}=\frac{\kappa_1Q-\kappa_2W}{Q-W}\qquad Q-W\ne0',
+ 'Il più al numeratore conta il lavoro uscente come entrante; Q+W al denominatore cambia la variazione di A. Il prodotto κ₁κ₂ sarebbe adatto a un prodotto di ingressi, non a questo bilancio. Scambiare i fattori li assegna alle grandezze sbagliate.','Forma prima due differenze complete e controlla il denominatore.'),
+('Confrontare due bilanci completi',P+'A: Q=100 J, W=40 J. B: Q=200 J, W=60 J. Quanto vale ΔU_B/ΔU_A?',['7/3','3/7','2','3/2','140'],
+ 'A aumenta U di sessanta joule, B di centoquaranta. La frazione centoquaranta su sessanta si riduce dividendo per venti: sette terzi. Il rapporto non coincide né con quello dei calori né con quello dei lavori.',
+ r'\Delta U_A=60\,\mathrm J\qquad \Delta U_B=140\,\mathrm J\qquad \Delta U_B/\Delta U_A=\frac{140}{60}=\frac73',
+ 'Tre settimi è il reciproco, due è Q_B/Q_A e tre mezzi è W_B/W_A. Centoquaranta è il numero di joule della variazione B, non il rapporto.','Riduci il rapporto solo dopo le due sottrazioni.'),
+('Una media che qui conserva il bilancio',P+'A: Q=100 J, W=40 J. B: Q=200 J, W=60 J. Qual è la media aritmetica dei due ΔU con uguale peso?',['100 J','200 J','50 J','80 J','150 J'],
+ 'Le variazioni sono sessanta e centoquaranta joule. La semisomma è cento joule. Qui si può anche fare la differenza fra il calore medio centocinquanta e il lavoro medio cinquanta: il bilancio è lineare e dà lo stesso risultato. Questa proprietà non si estende automaticamente a modelli con prodotti o quadrati.',
+ r'\overline{\Delta U}=\frac{60+140}{2}\,\mathrm J\qquad \overline{\Delta U}=100\,\mathrm J\qquad \overline Q-\overline W=(150-50)\,\mathrm J',
+ 'Duecento è la somma, cinquanta dimezza ancora e ottanta è la differenza delle uscite. Centocinquanta è il solo calore medio, prima di togliere il lavoro medio.','Calcola le due variazioni; verifica poi la linearità della differenza.'),
+('Il lavoro compatibile con il bersaglio',P+'A ha Q=100 J, W_A=40 J. B riceve Q_B=200 J e deve avere ΔU_B=(7/3)ΔU_A. Quanto vale W_B/W_A?',['3/2','2/3','7/3','2','60'],
+ 'Il bersaglio per ΔU è sette terzi di sessanta joule, cioè centoquaranta. Da duecento joule entranti togliamo questo aumento e rimangono sessanta joule di lavoro. Il rapporto sessanta su quaranta è tre mezzi e soddisfa W_B>0.',
+ r'\Delta U_B=140\,\mathrm J\qquad W_B=Q_B-\Delta U_B\qquad W_B=60\,\mathrm J\qquad W_B/W_A=\frac32',
+ 'Due terzi è il reciproco; sette terzi copia il bersaglio della variazione interna. Due darebbe W_B=80 J e quindi ΔU_B=120 J. Sessanta è un lavoro in joule, non il rapporto adimensionale.','Prima ricostruisci la variazione bersaglio, poi usa il bilancio inverso.'),
+('Tarare una misura della variazione interna',P+'S=qΔU è continuo e adimensionale, con q>0. A con Q=100 J, W=40 J dà S=180. B dà S=420 e compie W=60 J. Quanto vale Q_B in J?',200,
+ 'Il riferimento ha ΔU=60 J e fissa q=3 J⁻¹. La nuova lettura corrisponde a centoquaranta joule di aumento interno. Il calore deve fornire anche i sessanta joule di lavoro: il totale entrante è duecento joule.',
+ r'\Delta U_A=60\,\mathrm J\qquad q=3\,\mathrm{J^{-1}}\qquad \Delta U_B=140\,\mathrm J\qquad Q_B=\Delta U_B+W_B\qquad Q_B=200\,\mathrm J',
+ 'Centoquaranta omette l’energia uscita come lavoro. Usare S=420 come joule e sommare sessanta darebbe 480 J, ignorando il guadagno. La calibrazione si riferisce a ΔU e non direttamente a Q.','Decodifica ΔU dal display prima di ricostruire il calore.'),
+('Un offset nella misura del bilancio',P+'S=qΔU+b è continuo e adimensionale. A: Q=100 J, W=40 J, S=121. B: Q=200 J, W=60 J, S=281. C: W=40 J, S=321. Quanto vale Q_C?',['200 J','160 J','100 J','400 J','401/2 J'],
+ 'Le variazioni dei riferimenti sono sessanta e centoquaranta joule. La differenza centosessanta delle letture su ottanta joule dà q=2 J⁻¹; poi b=1. C equivale a centosessanta joule di aumento di U. Aggiungendo i quaranta joule di lavoro si ricavano duecento joule entranti come calore.',
+ r'q=\frac{281-121}{(140-60)\,\mathrm J}\qquad q=2\,\mathrm{J^{-1}}\qquad b=1\qquad \Delta U_C=160\,\mathrm J\qquad Q_C=160\,\mathrm J+40\,\mathrm J\qquad Q_C=200\,\mathrm J',
+ 'Centosessanta è l’aumento interno prima di aggiungere W. Cento J darebbero S=121 e quattrocento J S=721. 401/2 J omette l’offset e ricostruisce S=322 invece di 321.','Ricava prima q e b, poi l’accumulo e infine l’entrata totale.'),
+('Un vincolo fra calore e lavoro',P+'Si sceglie Q=(5/2)W e si misura ΔU=60 J. Quanto vale W>0?',['40 J','−40 J','60 J','100 J','24 J'],
+ 'Sostituendo Q nel bilancio resta ΔU=(5/2)W−W=(3/2)W. Per isolare il lavoro moltiplichiamo sessanta per due terzi e otteniamo quaranta joule. Il calore corrispondente è cento joule: entrambi i trasferimenti rispettano i versi assegnati.',
+ r'\Delta U=\frac52W-W\qquad \Delta U=\frac32W\qquad W=\frac23\Delta U\qquad W=40\,\mathrm J\qquad Q=100\,\mathrm J',
+ 'Meno quaranta viola W>0. Sessanta copia ΔU e cento copia Q. Ventiquattro divide per cinque mezzi anziché per il coefficiente tre mezzi che rimane dopo la sottrazione.','Combina i due termini in W prima di applicare l’inversa.'),
+]
+CHOICES={n:0 for n in [2,3,4,7,8,9,10,11,12,13,15,16]}
+UNITS={1:'J',5:'J',6:'J',14:'J'}
+FIGURES={1:'Prima il confine: Q entra e W esce, mentre ΔU è la variazione dell’energia interna. Le frecce sono schematiche e indicano i versi. Il secondo pannello usa una scala comune 5 px/J per i 100 J entranti e la ripartizione 60 J più 40 J. Il terzo usa 3 px/J per le due variazioni 60 J e 140 J e per la loro media 100 J.',3:'U è una funzione di stato; Q e W descrivono trasferimenti durante un processo. Le barre non rappresentano calore contenuto nel sistema. Nella media del terzo pannello la differenza lineare conserva la media: 150 J−50 J=100 J; ciò non viene esteso a modelli non lineari.'}
+def assemble(repo,source_ref):
+ return assemble_family(repo,source_ref,'first-law-expansion',TASKS,CHOICES,UNITS,'first-law-expansion-progressive.svg',FIGURES,15600,unit='u5',course='C3',source_path='packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U5-01.json',skill='C3-L06',prerequisites=['C1-L001','C3-L01','C3-L02','C3-L03','C3-L06'],section='Calore entrante e lavoro uscente nel primo principio',coverage=['Trasferimenti distinti da energia di stato','Bilancio e convenzioni di segno','Inverse, rapporti e calibrazioni'])
+if __name__=='__main__':write_family(assemble,'first-law-expansion-156')
