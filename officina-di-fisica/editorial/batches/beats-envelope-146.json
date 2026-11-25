@@ -1,0 +1,1160 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u4-beats-envelope-01",
+      "kind": "question",
+      "course": "C5",
+      "section": "Inviluppo temporale e due casi Doppler distinti",
+      "order": 14601,
+      "title": "Due portanti vicine, una variazione lenta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L03",
+        "C5-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "beats-envelope",
+      "difficulty": 1,
+      "prompt": "In un punto fisso di un mezzo lineare si sommano due spostamenti longitudinali armonici stabili di uguale ampiezza, stessa polarizzazione e frequenze costanti f₁>f₂>0. Nel modello del grafico i massimi coincidono a t=0. Le loro fasi relative evolvono nel tempo; non si assume una differenza di fase costante fra frequenze diverse. Per frequenze vicine l’inviluppo varia lentamente rispetto alle oscillazioni rapide. Si assegna f_b=|f₁−f₂|=f₁−f₂: conta i massimi consecutivi del modulo dell’inviluppo, non i cicli del fattore con segno. I valori qui assegnati sono una nuova parametrizzazione con portanti vicine in centinaia di Hz; nessuna stima percettiva è richiesta. Con f₁=302 Hz e f₂=300 Hz, quanto vale f_b in Hz?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "Hz",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sottraiamo le frequenze, non le ampiezze: 302−300=2 Hz. Il segnale totale compie oscillazioni rapide attorno alla frequenza media 301 Hz, ma il suo modulo si rinforza due volte ogni secondo. La formula di somma di due coseni separa un fattore rapido e uno lento. Poniamo u=t/(1 s), tempo espresso come numero puro: con le fasi iniziali assegnate s=2A cos(2πu)cos(602πu). Il modulo dell’inviluppo lento è 2A|cos(2πu)|, con massimi separati da mezzo secondo. Non bisogna confondere questa cadenza con la frequenza media o con la metà della differenza che appare nel coseno con segno."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/185bc66d6c7de4e3f78df455bf907067ab14dec555280dc93b8b7bbd3fd8221b",
+          "text": "Due portanti stabili 302 e 300 Hz producono un inviluppo di modulo 2A|cos[2πt/(1 s)]|. Il grafico mostra solo l’inviluppo lento, non le oscillazioni rapide a 301 Hz: 400 px/s e 60 px per ampiezza A. I massimi a t=0,1/2,1 s distano mezzo secondo, quindi f_b=2 Hz."
+        },
+        {
+          "type": "formula",
+          "text": "f_b=f_1-f_2"
+        },
+        {
+          "type": "formula",
+          "text": " u=\\frac{t}{1\\,\\mathrm s}"
+        },
+        {
+          "type": "formula",
+          "text": " E=2A|\\cos(2\\pi u)|"
+        },
+        {
+          "type": "formula",
+          "text": " f_b=2\\,\\mathrm{Hz}"
+        },
+        {
+          "type": "formula",
+          "text": " f_{\\rm media}=301\\,\\mathrm{Hz}"
+        },
+        {
+          "type": "formula",
+          "text": " T_b=\\frac12\\,\\mathrm s"
+        },
+        {
+          "type": "text",
+          "text": "602 Hz è la somma e 301 Hz la portante media. Uno Hz è la frequenza del fattore lento con segno: il suo modulo ha due massimi per ciclo. Il valore due nasce dalla differenza, non dall’intensità sommata."
+        }
+      ],
+      "hints": [
+        "Conta i massimi del modulo, non il cambio di segno dell’inviluppo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "602 Hz è la somma e 301 Hz la portante media. Uno Hz è la frequenza del fattore lento con segno: il suo modulo ha due massimi per ciclo. Il valore due nasce dalla differenza, non dall’intensità sommata.",
+        "target": "C5-L03"
+      },
+      "coverage": [
+        "Battimenti e modulo dell’inviluppo",
+        "Differenza di frequenze e ramo positivo",
+        "Doppler qualitativo e inversa nei due versi"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-beats-envelope-02",
+      "kind": "question",
+      "course": "C5",
+      "section": "Inviluppo temporale e due casi Doppler distinti",
+      "order": 14602,
+      "title": "L’unità di una cadenza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L03",
+        "C5-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "beats-envelope",
+      "difficulty": 1,
+      "prompt": "f_b indica quanti massimi consecutivi del modulo dell’inviluppo si osservano per secondo. Quale unità è adatta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Hz",
+          "s",
+          "m",
+          "W/m²",
+          "rad"
+        ],
+        "value": "Hz"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Una frequenza di battimento ha dimensione di tempo inverso, come ciascuna frequenza sottratta. Un hertz significa una ripetizione al secondo; il periodo fra massimi è invece il suo reciproco in secondi."
+        },
+        {
+          "type": "formula",
+          "text": "[f_b]=\\mathrm{s^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " [T_b]=\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " T_b=1/f_b"
+        },
+        {
+          "type": "text",
+          "text": "Secondi misurano il periodo, metri uno spostamento, W/m² un’intensità e radianti una fase. Nessuna di queste unità esprime una frequenza."
+        }
+      ],
+      "hints": [
+        "Distingui il numero di ripetizioni dal tempo fra due ripetizioni.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "Secondi misurano il periodo, metri uno spostamento, W/m² un’intensità e radianti una fase. Nessuna di queste unità esprime una frequenza.",
+        "target": "C5-L03"
+      },
+      "coverage": [
+        "Battimenti e modulo dell’inviluppo",
+        "Differenza di frequenze e ramo positivo",
+        "Doppler qualitativo e inversa nei due versi"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-beats-envelope-03",
+      "kind": "question",
+      "course": "C5",
+      "section": "Inviluppo temporale e due casi Doppler distinti",
+      "order": 14603,
+      "title": "Un caso Doppler distinto dai battimenti",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "beats-envelope",
+      "difficulty": 1,
+      "prompt": "Una sorgente sonora e un ascoltatore si avvicinano lungo la retta che li unisce, in aria ferma. I moti sono subsonici, la velocità del suono nel mezzo è c>0 e la frequenza emessa è costante. Quale affermazione descrive l’effetto Doppler?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "La frequenza ricevuta è maggiore di quella emessa",
+          "La frequenza ricevuta è minore di quella emessa",
+          "La frequenza ricevuta non cambia mai",
+          "La velocità del suono raddoppia",
+          "Il suono deve annullarsi per interferenza"
+        ],
+        "value": "La frequenza ricevuta è maggiore di quella emessa"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Indichiamo con f₀ la frequenza emessa, con v_s il modulo della velocità della sorgente verso il ricevitore e con v_o quello del ricevitore verso la sorgente, entrambi rispetto all’aria; sono non negativi e almeno uno è positivo. La sorgente che avanza accorcia la distanza fra i fronti emessi davanti a sé. L’ascoltatore che le va incontro incontra anche più fronti per secondo. I due effetti aumentano la frequenza ricevuta rispetto a quella emessa. Questo quesito riguarda un singolo segnale e moti relativi al mezzo: non si applica la differenza fra due portanti ferme."
+        },
+        {
+          "type": "formula",
+          "text": "f_{\\rm ric}=f_0\\frac{c+v_o}{c-v_s}"
+        },
+        {
+          "type": "formula",
+          "text": " 0\\le v_o<c"
+        },
+        {
+          "type": "formula",
+          "text": " 0\\le v_s<c"
+        },
+        {
+          "type": "formula",
+          "text": " f_{\\rm ric}>f_0"
+        },
+        {
+          "type": "text",
+          "text": "Una diminuzione corrisponderebbe all’allontanamento. La velocità nel mezzo non raddoppia per il moto della sorgente; non serve una seconda onda per l’effetto Doppler e non segue una cancellazione. Almeno uno dei due moduli è non nullo perché la distanza diminuisce."
+        }
+      ],
+      "hints": [
+        "Considera quanti fronti raggiungono l’ascoltatore in un secondo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Una diminuzione corrisponderebbe all’allontanamento. La velocità nel mezzo non raddoppia per il moto della sorgente; non serve una seconda onda per l’effetto Doppler e non segue una cancellazione. Almeno uno dei due moduli è non nullo perché la distanza diminuisce.",
+        "target": "C5-L05"
+      },
+      "coverage": [
+        "Battimenti e modulo dell’inviluppo",
+        "Differenza di frequenze e ramo positivo",
+        "Doppler qualitativo e inversa nei due versi"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-beats-envelope-04",
+      "kind": "question",
+      "course": "C5",
+      "section": "Inviluppo temporale e due casi Doppler distinti",
+      "order": 14604,
+      "title": "Avvicinare ulteriormente le frequenze",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L03",
+        "C5-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "beats-envelope",
+      "difficulty": 1,
+      "prompt": "In un punto fisso di un mezzo lineare si sommano due spostamenti longitudinali armonici stabili di uguale ampiezza, stessa polarizzazione e frequenze costanti f₁>f₂>0. Nel modello del grafico i massimi coincidono a t=0. Le loro fasi relative evolvono nel tempo; non si assume una differenza di fase costante fra frequenze diverse. Per frequenze vicine l’inviluppo varia lentamente rispetto alle oscillazioni rapide. Si assegna f_b=|f₁−f₂|=f₁−f₂: conta i massimi consecutivi del modulo dell’inviluppo, non i cicli del fattore con segno. I valori qui assegnati sono una nuova parametrizzazione con portanti vicine in centinaia di Hz; nessuna stima percettiva è richiesta. f₁ passa da 302 a 301 Hz, mentre f₂ resta 300 Hz. Come cambia f_b?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 2 a 1 Hz",
+          "Da 2 a 4 Hz",
+          "Resta 2 Hz",
+          "Da 2 a 1/2 Hz",
+          "Da 2 a 301 Hz"
+        ],
+        "value": "Da 2 a 1 Hz"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La separazione scende da due a uno Hz. La cadenza dei massimi si dimezza e il tempo fra due massimi raddoppia da mezzo secondo a un secondo. Il rapporto fra le grandi frequenze delle portanti non è il fattore da applicare al piccolo scarto."
+        },
+        {
+          "type": "formula",
+          "text": "f_{b,A}=2\\,\\mathrm{Hz}"
+        },
+        {
+          "type": "formula",
+          "text": " f_{b,B}=1\\,\\mathrm{Hz}"
+        },
+        {
+          "type": "formula",
+          "text": " T_{b,B}=1\\,\\mathrm s"
+        },
+        {
+          "type": "text",
+          "text": "Quattro inverte l’effetto della minore separazione, mezzo dimezza ancora il risultato, 301 copia la portante e due ignora la nuova frequenza."
+        }
+      ],
+      "hints": [
+        "Confronta le differenze, non i rapporti fra portanti.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Quattro inverte l’effetto della minore separazione, mezzo dimezza ancora il risultato, 301 copia la portante e due ignora la nuova frequenza.",
+        "target": "C5-L03"
+      },
+      "coverage": [
+        "Battimenti e modulo dell’inviluppo",
+        "Differenza di frequenze e ramo positivo",
+        "Doppler qualitativo e inversa nei due versi"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-beats-envelope-05",
+      "kind": "question",
+      "course": "C5",
+      "section": "Inviluppo temporale e due casi Doppler distinti",
+      "order": 14605,
+      "title": "Ricostruire la portante superiore",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L03",
+        "C5-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "beats-envelope",
+      "difficulty": 2,
+      "prompt": "In un punto fisso di un mezzo lineare si sommano due spostamenti longitudinali armonici stabili di uguale ampiezza, stessa polarizzazione e frequenze costanti f₁>f₂>0. Nel modello del grafico i massimi coincidono a t=0. Le loro fasi relative evolvono nel tempo; non si assume una differenza di fase costante fra frequenze diverse. Per frequenze vicine l’inviluppo varia lentamente rispetto alle oscillazioni rapide. Si assegna f_b=|f₁−f₂|=f₁−f₂: conta i massimi consecutivi del modulo dell’inviluppo, non i cicli del fattore con segno. I valori qui assegnati sono una nuova parametrizzazione con portanti vicine in centinaia di Hz; nessuna stima percettiva è richiesta. Si misura f_b=2 Hz e si conosce f₂=300 Hz. Quanto vale f₁ in Hz?",
+      "answer": {
+        "type": "numeric",
+        "value": 302,
+        "unit": "Hz",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il ramo f₁>f₂ stabilisce da quale lato aggiungere lo scarto. La portante superiore è 300+2=302 Hz. La soluzione 298 Hz sarebbe inferiore a f₂ e richiederebbe scambiare le etichette del ramo."
+        },
+        {
+          "type": "formula",
+          "text": "f_1=f_2+f_b"
+        },
+        {
+          "type": "formula",
+          "text": " f_1=302\\,\\mathrm{Hz}"
+        },
+        {
+          "type": "text",
+          "text": "Due è solo la differenza, 300 l’altra portante e 298 appartiene al ramo inverso. Non si sommano né sottraggono quadrati per ricostruire una frequenza da una differenza."
+        }
+      ],
+      "hints": [
+        "Il segno del ramo è già fissato dall’ordine f₁>f₂.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due è solo la differenza, 300 l’altra portante e 298 appartiene al ramo inverso. Non si sommano né sottraggono quadrati per ricostruire una frequenza da una differenza.",
+        "target": "C5-L03"
+      },
+      "coverage": [
+        "Battimenti e modulo dell’inviluppo",
+        "Differenza di frequenze e ramo positivo",
+        "Doppler qualitativo e inversa nei due versi"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-beats-envelope-06",
+      "kind": "question",
+      "course": "C5",
+      "section": "Inviluppo temporale e due casi Doppler distinti",
+      "order": 14606,
+      "title": "Ricostruire la portante inferiore",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L03",
+        "C5-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "beats-envelope",
+      "difficulty": 2,
+      "prompt": "In un punto fisso di un mezzo lineare si sommano due spostamenti longitudinali armonici stabili di uguale ampiezza, stessa polarizzazione e frequenze costanti f₁>f₂>0. Nel modello del grafico i massimi coincidono a t=0. Le loro fasi relative evolvono nel tempo; non si assume una differenza di fase costante fra frequenze diverse. Per frequenze vicine l’inviluppo varia lentamente rispetto alle oscillazioni rapide. Si assegna f_b=|f₁−f₂|=f₁−f₂: conta i massimi consecutivi del modulo dell’inviluppo, non i cicli del fattore con segno. I valori qui assegnati sono una nuova parametrizzazione con portanti vicine in centinaia di Hz; nessuna stima percettiva è richiesta. Si misura f_b=2 Hz con f₁=302 Hz. Quanto vale f₂ in Hz?",
+      "answer": {
+        "type": "numeric",
+        "value": 300,
+        "unit": "Hz",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La frequenza minore si ricava sottraendo il battimento dalla maggiore: 302−2=300 Hz. È positiva e resta vicina alla maggiore, come richiede il modello dell’inviluppo lento."
+        },
+        {
+          "type": "formula",
+          "text": "f_2=f_1-f_b"
+        },
+        {
+          "type": "formula",
+          "text": " f_2=300\\,\\mathrm{Hz}"
+        },
+        {
+          "type": "formula",
+          "text": " 0<f_b<f_1"
+        },
+        {
+          "type": "text",
+          "text": "304 aggiunge lo scarto e produrrebbe una seconda frequenza maggiore della prima. Se il battimento fosse almeno f₁, questa inversa darebbe zero o un numero negativo e il ramo non sarebbe ammissibile."
+        }
+      ],
+      "hints": [
+        "Controlla anche la positività della portante ricostruita.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "304 aggiunge lo scarto e produrrebbe una seconda frequenza maggiore della prima. Se il battimento fosse almeno f₁, questa inversa darebbe zero o un numero negativo e il ramo non sarebbe ammissibile.",
+        "target": "C5-L03"
+      },
+      "coverage": [
+        "Battimenti e modulo dell’inviluppo",
+        "Differenza di frequenze e ramo positivo",
+        "Doppler qualitativo e inversa nei due versi"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-beats-envelope-07",
+      "kind": "question",
+      "course": "C5",
+      "section": "Inviluppo temporale e due casi Doppler distinti",
+      "order": 14607,
+      "title": "Una seconda frequenza più vicina",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L03",
+        "C5-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "beats-envelope",
+      "difficulty": 2,
+      "prompt": "In un punto fisso di un mezzo lineare si sommano due spostamenti longitudinali armonici stabili di uguale ampiezza, stessa polarizzazione e frequenze costanti f₁>f₂>0. Nel modello del grafico i massimi coincidono a t=0. Le loro fasi relative evolvono nel tempo; non si assume una differenza di fase costante fra frequenze diverse. Per frequenze vicine l’inviluppo varia lentamente rispetto alle oscillazioni rapide. Si assegna f_b=|f₁−f₂|=f₁−f₂: conta i massimi consecutivi del modulo dell’inviluppo, non i cicli del fattore con segno. I valori qui assegnati sono una nuova parametrizzazione con portanti vicine in centinaia di Hz; nessuna stima percettiva è richiesta. A: f₁=302 Hz,f₂=300 Hz. B mantiene f₁ e usa f₂=301 Hz. Quanto vale f_b,B/f_b,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "2",
+          "1",
+          "301/300",
+          "1/4"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le differenze sono due e uno Hz, quindi il rapporto è un mezzo. L’incremento di un solo Hz sulla frequenza inferiore riduce molto il piccolo scarto, pur cambiando poco il rapporto fra le portanti."
+        },
+        {
+          "type": "formula",
+          "text": "f_{b,A}=2\\,\\mathrm{Hz}"
+        },
+        {
+          "type": "formula",
+          "text": " f_{b,B}=1\\,\\mathrm{Hz}"
+        },
+        {
+          "type": "formula",
+          "text": " f_{b,B}/f_{b,A}=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Due è il reciproco, uno ignora il cambiamento, 301/300 segue il solo ingresso e un quarto quadra il rapporto. La frequenza di battimento dipende dalla differenza."
+        }
+      ],
+      "hints": [
+        "Calcola i due piccoli scarti prima di dividerli.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due è il reciproco, uno ignora il cambiamento, 301/300 segue il solo ingresso e un quarto quadra il rapporto. La frequenza di battimento dipende dalla differenza.",
+        "target": "C5-L03"
+      },
+      "coverage": [
+        "Battimenti e modulo dell’inviluppo",
+        "Differenza di frequenze e ramo positivo",
+        "Doppler qualitativo e inversa nei due versi"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-beats-envelope-08",
+      "kind": "question",
+      "course": "C5",
+      "section": "Inviluppo temporale e due casi Doppler distinti",
+      "order": 14608,
+      "title": "Lo scarto di una frequenza proposta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L03",
+        "C5-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "beats-envelope",
+      "difficulty": 2,
+      "prompt": "In un punto fisso di un mezzo lineare si sommano due spostamenti longitudinali armonici stabili di uguale ampiezza, stessa polarizzazione e frequenze costanti f₁>f₂>0. Nel modello del grafico i massimi coincidono a t=0. Le loro fasi relative evolvono nel tempo; non si assume una differenza di fase costante fra frequenze diverse. Per frequenze vicine l’inviluppo varia lentamente rispetto alle oscillazioni rapide. Si assegna f_b=|f₁−f₂|=f₁−f₂: conta i massimi consecutivi del modulo dell’inviluppo, non i cicli del fattore con segno. I valori qui assegnati sono una nuova parametrizzazione con portanti vicine in centinaia di Hz; nessuna stima percettiva è richiesta. Con f₁=302 Hz,f₂=300 Hz si propone f_b=4 Hz. Quanto vale proposta meno corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2 Hz",
+          "−2 Hz",
+          "4 Hz",
+          "0 Hz",
+          "6 Hz"
+        ],
+        "value": "2 Hz"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La frequenza di battimento corretta è due Hz. La proposta quattro la supera di due Hz. Il segno dello scarto dipende dall’ordine della sottrazione, anche se tutte le frequenze fisiche sono positive."
+        },
+        {
+          "type": "formula",
+          "text": "f_b=2\\,\\mathrm{Hz}"
+        },
+        {
+          "type": "formula",
+          "text": " e=(4-2)\\,\\mathrm{Hz}"
+        },
+        {
+          "type": "formula",
+          "text": " e=2\\,\\mathrm{Hz}"
+        },
+        {
+          "type": "text",
+          "text": "Meno due scambia l’ordine, quattro copia la proposta, sei somma e zero la accetta. Non si sottrae la portante media alla proposta di battimento."
+        }
+      ],
+      "hints": [
+        "Confronta due valori della stessa grandezza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Meno due scambia l’ordine, quattro copia la proposta, sei somma e zero la accetta. Non si sottrae la portante media alla proposta di battimento.",
+        "target": "C5-L03"
+      },
+      "coverage": [
+        "Battimenti e modulo dell’inviluppo",
+        "Differenza di frequenze e ramo positivo",
+        "Doppler qualitativo e inversa nei due versi"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-beats-envelope-09",
+      "kind": "question",
+      "course": "C5",
+      "section": "Inviluppo temporale e due casi Doppler distinti",
+      "order": 14609,
+      "title": "L’inversa nel ramo assegnato",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L03",
+        "C5-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "beats-envelope",
+      "difficulty": 2,
+      "prompt": "In un punto fisso di un mezzo lineare si sommano due spostamenti longitudinali armonici stabili di uguale ampiezza, stessa polarizzazione e frequenze costanti f₁>f₂>0. Nel modello del grafico i massimi coincidono a t=0. Le loro fasi relative evolvono nel tempo; non si assume una differenza di fase costante fra frequenze diverse. Per frequenze vicine l’inviluppo varia lentamente rispetto alle oscillazioni rapide. Si assegna f_b=|f₁−f₂|=f₁−f₂: conta i massimi consecutivi del modulo dell’inviluppo, non i cicli del fattore con segno. I valori qui assegnati sono una nuova parametrizzazione con portanti vicine in centinaia di Hz; nessuna stima percettiva è richiesta. Quale relazione isola f₁?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "f₁ = f_b + f₂",
+          "f₁ = f₂ − f_b",
+          "f₁ = f_b f₂",
+          "f₁ = f_b / f₂",
+          "f₁ = f_b² + f₂²"
+        ],
+        "value": "f₁ = f_b + f₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nel ramo f₁>f₂ il modulo diventa f_b=f₁−f₂. Aggiungendo f₂ si ricava f₁=f_b+f₂, automaticamente superiore a f₂ per f_b>0. Senza l’ordine delle etichette il solo modulo ammetterebbe anche un altro ramo."
+        },
+        {
+          "type": "formula",
+          "text": "f_b=f_1-f_2"
+        },
+        {
+          "type": "formula",
+          "text": " f_1=f_b+f_2"
+        },
+        {
+          "type": "text",
+          "text": "f₂−f_b scende sotto f₂. Il prodotto e la somma dei quadrati hanno dimensione Hz², il quoziente è puro. L’inversa richiesta deve conservare sia le unità sia il ramo."
+        }
+      ],
+      "hints": [
+        "Rimuovi il modulo soltanto dopo aver usato l’ordine delle frequenze.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "f₂−f_b scende sotto f₂. Il prodotto e la somma dei quadrati hanno dimensione Hz², il quoziente è puro. L’inversa richiesta deve conservare sia le unità sia il ramo.",
+        "target": "C5-L03"
+      },
+      "coverage": [
+        "Battimenti e modulo dell’inviluppo",
+        "Differenza di frequenze e ramo positivo",
+        "Doppler qualitativo e inversa nei due versi"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-beats-envelope-10",
+      "kind": "question",
+      "course": "C5",
+      "section": "Inviluppo temporale e due casi Doppler distinti",
+      "order": 14610,
+      "title": "Fattori diversi sulle portanti",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L03",
+        "C5-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "beats-envelope",
+      "difficulty": 2,
+      "prompt": "In un punto fisso di un mezzo lineare si sommano due spostamenti longitudinali armonici stabili di uguale ampiezza, stessa polarizzazione e frequenze costanti f₁>f₂>0. Nel modello del grafico i massimi coincidono a t=0. Le loro fasi relative evolvono nel tempo; non si assume una differenza di fase costante fra frequenze diverse. Per frequenze vicine l’inviluppo varia lentamente rispetto alle oscillazioni rapide. Si assegna f_b=|f₁−f₂|=f₁−f₂: conta i massimi consecutivi del modulo dell’inviluppo, non i cicli del fattore con segno. I valori qui assegnati sono una nuova parametrizzazione con portanti vicine in centinaia di Hz; nessuna stima percettiva è richiesta. B usa f₁,B=κ₁f₁ e f₂,B=κ₂f₂, con fattori positivi. Entrambe le prove restano nel regime di frequenze vicine e κ₁f₁>κ₂f₂. Quale rapporto dà f_b,B/f_b,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "(κ₁ f₁ − κ₂ f₂) / (f₁ − f₂)",
+          "κ₁ − κ₂",
+          "κ₁ / κ₂",
+          "κ₁ κ₂",
+          "(κ₁ f₁ + κ₂ f₂) / (f₁ + f₂)"
+        ],
+        "value": "(κ₁ f₁ − κ₂ f₂) / (f₁ − f₂)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I fattori agiscono sui due ingressi prima della sottrazione. Il rapporto dei battimenti è la nuova differenza divisa per quella iniziale. Con un fattore comune κ le differenze scalano di κ; con fattori diversi occorre invece conservare le frequenze nel risultato."
+        },
+        {
+          "type": "formula",
+          "text": "f_{b,B}=\\kappa_1f_1-\\kappa_2f_2"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{f_{b,B}}{f_{b,A}}=\\frac{\\kappa_1f_1-\\kappa_2f_2}{f_1-f_2}"
+        },
+        {
+          "type": "text",
+          "text": "La differenza dei fattori darebbe zero per prove identiche. Prodotto e quoziente perdono gli scarti; l’ultima espressione confronta somme, non battimenti. Le condizioni aggiunte impediscono il cambio di ramo e preservano il regime lento."
+        }
+      ],
+      "hints": [
+        "Sostituisci nelle due differenze complete.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La differenza dei fattori darebbe zero per prove identiche. Prodotto e quoziente perdono gli scarti; l’ultima espressione confronta somme, non battimenti. Le condizioni aggiunte impediscono il cambio di ramo e preservano il regime lento.",
+        "target": "C5-L03"
+      },
+      "coverage": [
+        "Battimenti e modulo dell’inviluppo",
+        "Differenza di frequenze e ramo positivo",
+        "Doppler qualitativo e inversa nei due versi"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-beats-envelope-11",
+      "kind": "question",
+      "course": "C5",
+      "section": "Inviluppo temporale e due casi Doppler distinti",
+      "order": 14611,
+      "title": "Cambiare portanti conservando uno scarto piccolo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L03",
+        "C5-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "beats-envelope",
+      "difficulty": 2,
+      "prompt": "In un punto fisso di un mezzo lineare si sommano due spostamenti longitudinali armonici stabili di uguale ampiezza, stessa polarizzazione e frequenze costanti f₁>f₂>0. Nel modello del grafico i massimi coincidono a t=0. Le loro fasi relative evolvono nel tempo; non si assume una differenza di fase costante fra frequenze diverse. Per frequenze vicine l’inviluppo varia lentamente rispetto alle oscillazioni rapide. Si assegna f_b=|f₁−f₂|=f₁−f₂: conta i massimi consecutivi del modulo dell’inviluppo, non i cicli del fattore con segno. I valori qui assegnati sono una nuova parametrizzazione con portanti vicine in centinaia di Hz; nessuna stima percettiva è richiesta. A: f₁=302 Hz,f₂=300 Hz. B: f₁=401 Hz,f₂=400 Hz. Quanto vale f_b,B/f_b,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "2",
+          "401/302",
+          "4/3",
+          "1"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La prova A ha differenza due Hz; B ha differenza uno Hz. Il rapporto dei battimenti è un mezzo, benché entrambe le portanti siano aumentate. Conta la loro separazione, non la loro quota assoluta."
+        },
+        {
+          "type": "formula",
+          "text": "f_{b,A}=2\\,\\mathrm{Hz}"
+        },
+        {
+          "type": "formula",
+          "text": " f_{b,B}=1\\,\\mathrm{Hz}"
+        },
+        {
+          "type": "formula",
+          "text": " f_{b,B}/f_{b,A}=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Due inverte il rapporto. 401/302 segue solo f₁ e quattro terzi solo f₂; uno ignora il nuovo scarto. Entrambe le coppie hanno differenza molto minore della loro frequenza media."
+        }
+      ],
+      "hints": [
+        "Sottrai all’interno di ogni prova.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due inverte il rapporto. 401/302 segue solo f₁ e quattro terzi solo f₂; uno ignora il nuovo scarto. Entrambe le coppie hanno differenza molto minore della loro frequenza media.",
+        "target": "C5-L03"
+      },
+      "coverage": [
+        "Battimenti e modulo dell’inviluppo",
+        "Differenza di frequenze e ramo positivo",
+        "Doppler qualitativo e inversa nei due versi"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-beats-envelope-12",
+      "kind": "question",
+      "course": "C5",
+      "section": "Inviluppo temporale e due casi Doppler distinti",
+      "order": 14612,
+      "title": "Una media fra cadenze",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L03",
+        "C5-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "beats-envelope",
+      "difficulty": 2,
+      "prompt": "In un punto fisso di un mezzo lineare si sommano due spostamenti longitudinali armonici stabili di uguale ampiezza, stessa polarizzazione e frequenze costanti f₁>f₂>0. Nel modello del grafico i massimi coincidono a t=0. Le loro fasi relative evolvono nel tempo; non si assume una differenza di fase costante fra frequenze diverse. Per frequenze vicine l’inviluppo varia lentamente rispetto alle oscillazioni rapide. Si assegna f_b=|f₁−f₂|=f₁−f₂: conta i massimi consecutivi del modulo dell’inviluppo, non i cicli del fattore con segno. I valori qui assegnati sono una nuova parametrizzazione con portanti vicine in centinaia di Hz; nessuna stima percettiva è richiesta. A usa 302 e 300 Hz; B usa 401 e 400 Hz. Qual è la media aritmetica dei due f_b, con uguale peso statistico?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/2 Hz",
+          "3 Hz",
+          "1/2 Hz",
+          "2 Hz",
+          "1 Hz"
+        ],
+        "value": "3/2 Hz"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Prima ricaviamo due e uno Hz, poi la semisomma tre mezzi Hz. In questo ramo lineare la stessa risposta si ottiene dalle portanti medie 703/2 e 350 Hz: la loro differenza è tre mezzi. La coincidenza dipende dal mantenimento dell’ordine delle frequenze, non autorizza una regola universale per tutti i moduli."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline f_b=\\frac{2+1}{2}\\,\\mathrm{Hz}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline f_b=\\frac32\\,\\mathrm{Hz}"
+        },
+        {
+          "type": "text",
+          "text": "Tre è la somma, mezzo la semidifferenza e due o uno conservano una sola prova. Il periodo medio non è il reciproco di questa media: si stanno mediando frequenze, non tempi fra massimi."
+        }
+      ],
+      "hints": [
+        "Distingui la media statistica dalla cadenza di un singolo segnale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre è la somma, mezzo la semidifferenza e due o uno conservano una sola prova. Il periodo medio non è il reciproco di questa media: si stanno mediando frequenze, non tempi fra massimi.",
+        "target": "C5-L03"
+      },
+      "coverage": [
+        "Battimenti e modulo dell’inviluppo",
+        "Differenza di frequenze e ramo positivo",
+        "Doppler qualitativo e inversa nei due versi"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-beats-envelope-13",
+      "kind": "question",
+      "course": "C5",
+      "section": "Inviluppo temporale e due casi Doppler distinti",
+      "order": 14613,
+      "title": "Un target vicino alla nuova portante",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L03",
+        "C5-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "beats-envelope",
+      "difficulty": 3,
+      "prompt": "In un punto fisso di un mezzo lineare si sommano due spostamenti longitudinali armonici stabili di uguale ampiezza, stessa polarizzazione e frequenze costanti f₁>f₂>0. Nel modello del grafico i massimi coincidono a t=0. Le loro fasi relative evolvono nel tempo; non si assume una differenza di fase costante fra frequenze diverse. Per frequenze vicine l’inviluppo varia lentamente rispetto alle oscillazioni rapide. Si assegna f_b=|f₁−f₂|=f₁−f₂: conta i massimi consecutivi del modulo dell’inviluppo, non i cicli del fattore con segno. I valori qui assegnati sono una nuova parametrizzazione con portanti vicine in centinaia di Hz; nessuna stima percettiva è richiesta. A ha f₁=302 Hz,f₂=300 Hz. B impone f₁=401 Hz e f_b,B=f_b,A/2. Quanto vale f₂,B/f₂,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4/3",
+          "3/4",
+          "1/2",
+          "401/302",
+          "400"
+        ],
+        "value": "4/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il battimento target è uno Hz. La frequenza inferiore deve essere 401−1=400 Hz. Il rapporto con i 300 Hz iniziali è quattro terzi. La coppia risultante mantiene f₁>f₂ e uno scarto piccolo rispetto alle portanti."
+        },
+        {
+          "type": "formula",
+          "text": "f_{b,B}=1\\,\\mathrm{Hz}"
+        },
+        {
+          "type": "formula",
+          "text": " f_{2,B}=400\\,\\mathrm{Hz}"
+        },
+        {
+          "type": "formula",
+          "text": " f_{2,B}/f_{2,A}=\\frac43"
+        },
+        {
+          "type": "text",
+          "text": "Tre quarti capovolge gli stati, mezzo copia il target, 401/302 considera solo la frequenza maggiore e 400 è il numero di Hz finale, non il rapporto puro."
+        }
+      ],
+      "hints": [
+        "Trova prima lo scarto target, poi la nuova frequenza inferiore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre quarti capovolge gli stati, mezzo copia il target, 401/302 considera solo la frequenza maggiore e 400 è il numero di Hz finale, non il rapporto puro.",
+        "target": "C5-L03"
+      },
+      "coverage": [
+        "Battimenti e modulo dell’inviluppo",
+        "Differenza di frequenze e ramo positivo",
+        "Doppler qualitativo e inversa nei due versi"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-beats-envelope-14",
+      "kind": "question",
+      "course": "C5",
+      "section": "Inviluppo temporale e due casi Doppler distinti",
+      "order": 14614,
+      "title": "Una taratura sulla differenza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L03",
+        "C5-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "beats-envelope",
+      "difficulty": 3,
+      "prompt": "In un punto fisso di un mezzo lineare si sommano due spostamenti longitudinali armonici stabili di uguale ampiezza, stessa polarizzazione e frequenze costanti f₁>f₂>0. Nel modello del grafico i massimi coincidono a t=0. Le loro fasi relative evolvono nel tempo; non si assume una differenza di fase costante fra frequenze diverse. Per frequenze vicine l’inviluppo varia lentamente rispetto alle oscillazioni rapide. Si assegna f_b=|f₁−f₂|=f₁−f₂: conta i massimi consecutivi del modulo dell’inviluppo, non i cicli del fattore con segno. I valori qui assegnati sono una nuova parametrizzazione con portanti vicine in centinaia di Hz; nessuna stima percettiva è richiesta. Il display continuo adimensionale segue S=qf_b, con q>0 e nessun offset. A: f₁=302 Hz,f₂=300 Hz,S=6. B: f₂=400 Hz,S=3. Quanto vale f₁,B in Hz?",
+      "answer": {
+        "type": "numeric",
+        "value": 401,
+        "unit": "Hz",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La differenza di riferimento due Hz dà q=3 s. La lettura tre rappresenta f_b=1 Hz. Aggiungendo questo scarto ai 400 Hz inferiori si ricava la frequenza maggiore 401 Hz, senza trattare la lettura del display come una portante."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " f_{b,B}=1\\,\\mathrm{Hz}"
+        },
+        {
+          "type": "formula",
+          "text": " f_{1,B}=401\\,\\mathrm{Hz}"
+        },
+        {
+          "type": "text",
+          "text": "Tre è la lettura grezza e uno lo scarto, non la portante. Usare tre Hz al posto dello scarto decodificato darebbe 403 Hz e ricostruirebbe una lettura nove."
+        }
+      ],
+      "hints": [
+        "Decodifica f_b prima di aggiungere f₂.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre è la lettura grezza e uno lo scarto, non la portante. Usare tre Hz al posto dello scarto decodificato darebbe 403 Hz e ricostruirebbe una lettura nove.",
+        "target": "C5-L03"
+      },
+      "coverage": [
+        "Battimenti e modulo dell’inviluppo",
+        "Differenza di frequenze e ramo positivo",
+        "Doppler qualitativo e inversa nei due versi"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-beats-envelope-15",
+      "kind": "question",
+      "course": "C5",
+      "section": "Inviluppo temporale e due casi Doppler distinti",
+      "order": 14615,
+      "title": "Un offset sul segnale lento",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L03",
+        "C5-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "beats-envelope",
+      "difficulty": 3,
+      "prompt": "In un punto fisso di un mezzo lineare si sommano due spostamenti longitudinali armonici stabili di uguale ampiezza, stessa polarizzazione e frequenze costanti f₁>f₂>0. Nel modello del grafico i massimi coincidono a t=0. Le loro fasi relative evolvono nel tempo; non si assume una differenza di fase costante fra frequenze diverse. Per frequenze vicine l’inviluppo varia lentamente rispetto alle oscillazioni rapide. Si assegna f_b=|f₁−f₂|=f₁−f₂: conta i massimi consecutivi del modulo dell’inviluppo, non i cicli del fattore con segno. I valori qui assegnati sono una nuova parametrizzazione con portanti vicine in centinaia di Hz; nessuna stima percettiva è richiesta. S=qf_b+b è continuo e adimensionale. A: f₁=302 Hz,f₂=300 Hz,S=5. B: f₁=401 Hz,f₂=400 Hz,S=3. C: f₂=500 Hz,S=7. Quanto vale f₁,C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "503 Hz",
+          "507 Hz",
+          "500 Hz",
+          "501 Hz",
+          "505 Hz"
+        ],
+        "value": "503 Hz"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I battimenti due e uno Hz fissano q=2 s e b=1. La lettura sette rappresenta (7−1)/2=3 Hz. Per mantenere il ramo superiore sommiamo tre ai 500 Hz assegnati: la risposta è 503 Hz."
+        },
+        {
+          "type": "formula",
+          "text": "q=2\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " f_{b,C}=3\\,\\mathrm{Hz}"
+        },
+        {
+          "type": "formula",
+          "text": " f_{1,C}=503\\,\\mathrm{Hz}"
+        },
+        {
+          "type": "text",
+          "text": "507 usa il display come scarto; 500 annulla il battimento. 501 e 505 darebbero letture tre e undici, non sette. La nuova separazione tre Hz resta piccola rispetto alle portanti intorno a 500 Hz."
+        }
+      ],
+      "hints": [
+        "Togli l’offset e il guadagno prima di ricostruire la portante.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "507 usa il display come scarto; 500 annulla il battimento. 501 e 505 darebbero letture tre e undici, non sette. La nuova separazione tre Hz resta piccola rispetto alle portanti intorno a 500 Hz.",
+        "target": "C5-L03"
+      },
+      "coverage": [
+        "Battimenti e modulo dell’inviluppo",
+        "Differenza di frequenze e ramo positivo",
+        "Doppler qualitativo e inversa nei due versi"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-beats-envelope-16",
+      "kind": "question",
+      "course": "C5",
+      "section": "Inviluppo temporale e due casi Doppler distinti",
+      "order": 14616,
+      "title": "Il Doppler in due versi, un’altra legge",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "beats-envelope",
+      "difficulty": 3,
+      "prompt": "Un osservatore è fermo in un mezzo omogeneo fermo con velocità del suono c>0. La stessa sorgente emette frequenza propria costante f₀; in due prove rettilinee si avvicina e si allontana con uguale modulo v, con 0<v<c. I modelli assegnati sono f_avv=f₀c/(c−v) e f_all=f₀c/(c+v). Si misurano f_avv=600 Hz e f_all=400 Hz. Quanto vale f₀ in Hz?",
+      "answer": {
+        "type": "numeric",
+        "value": 480,
+        "unit": "Hz",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Consideriamo i reciproci delle due frequenze per separare l’incognita di moto. Sommandoli si cancellano i termini opposti v/c: 1/f_avv+1/f_all=2/f₀. La frequenza emessa è quindi la media armonica delle due ricevute, non la loro semisomma. Due per 600 per 400 diviso mille dà 480 Hz. Il rapporto dei dati implica v/c=1/5, quindi il ramo subsonico è ammissibile."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/185bc66d6c7de4e3f78df455bf907067ab14dec555280dc93b8b7bbd3fd8221b",
+          "text": "Schema dei fronti nel solo caso Doppler: a pari periodo emesso, le distanze davanti e dietro la sorgente sono (c−v)/f₀ e (c+v)/f₀. Le linee sono schematiche, non una scala di lunghezze o tempi; il mezzo è fermo e 0<v<c. Il confronto dei reciproci serve alla frequenza emessa."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac1{f_{\\rm avv}}+\\frac1{f_{\\rm all}}=\\frac2{f_0}"
+        },
+        {
+          "type": "formula",
+          "text": " f_0=\\frac{2f_{\\rm avv}f_{\\rm all}}{f_{\\rm avv}+f_{\\rm all}}"
+        },
+        {
+          "type": "formula",
+          "text": " f_0=480\\,\\mathrm{Hz}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac vc=\\frac{600-400}{600+400}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{600-400}{600+400}=\\frac15"
+        },
+        {
+          "type": "text",
+          "text": "500 Hz è la media aritmetica e non risolve entrambe le equazioni. 200 Hz è la differenza dei dati, non la frequenza emessa; la legge dei battimenti non sostituisce il Doppler. La frequenza emessa deve stare fra 400 e 600 Hz, ma questo controllo da solo non determina il valore."
+        }
+      ],
+      "hints": [
+        "Somma i reciproci per eliminare v senza conoscere c numericamente.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "500 Hz è la media aritmetica e non risolve entrambe le equazioni. 200 Hz è la differenza dei dati, non la frequenza emessa; la legge dei battimenti non sostituisce il Doppler. La frequenza emessa deve stare fra 400 e 600 Hz, ma questo controllo da solo non determina il valore.",
+        "target": "C5-L05"
+      },
+      "coverage": [
+        "Battimenti e modulo dell’inviluppo",
+        "Differenza di frequenze e ramo positivo",
+        "Doppler qualitativo e inversa nei due versi"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "185bc66d6c7de4e3f78df455bf907067ab14dec555280dc93b8b7bbd3fd8221b",
+      "name": "beats-envelope-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTY3MCIgdmlld0JveD0iMCAwIDY0MCAxNjcwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+TWFzc2ltaSBsZW50aSBlIERvcHBsZXIgZGlzdGludG88L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5MYSBmYXNlIHJlbGF0aXZhIHRvcm5hIGNvbmNvcmRlIG9nbmkgbWV6em8gc2Vjb25kbyBwZXIgZnJlcXVlbnplIDMwMiBlMzAwIGhlcnR6LiBJbnZpbHVwcG8gZGkgbW9kdWxvIGR1ZSB2b2x0ZSBBIGNvbiB0cmUgbWFzc2ltaSBkYSB6ZXJvIGEgdW4gc2Vjb25kby4gU2NoZW1hIHNlcGFyYXRvIGRlaSBmcm9udGkgZGF2YW50aSBlIGRpZXRybyB1bmEgc29yZ2VudGUgaW4gbW90byBzdWJzb25pY28uPC9kZXNjPjxkZWZzPjxtYXJrZXIgaWQ9ImEiIHZpZXdCb3g9IjAgMCAxMCAxMCIgcmVmWD0iOSIgcmVmWT0iNSIgbWFya2VyV2lkdGg9IjYiIG1hcmtlckhlaWdodD0iNiIgb3JpZW50PSJhdXRvIj48cGF0aCBkPSJNMCAwTDEwIDVMMCAxMFoiIGZpbGw9IiMxNDVkODEiLz48L21hcmtlcj48L2RlZnM+PHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxNjcwIiByeD0iMjAiIGZpbGw9IiNmN2ZiZmYiLz48ZyBmb250LWZhbWlseT0ic3lzdGVtLXVpLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiMxNDJkNDAiPgo8dGV4dCB4PSIzNSIgeT0iNDgiIGZvbnQtc2l6ZT0iMjUiIGZvbnQtd2VpZ2h0PSI3MDAiPjEgwrcgRHVlIGZhc2kgc3RhYmlsaSwgbm9uIHVndWFsaSBzZW1wcmU8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjkwIj5m4oKBID0gMzAyIEh6IMK3IGbigoIgPSAzMDAgSHogwrcgZGlmZmVyZW56YSAyIEh6PC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSIxMzUiPs6Uz4YodCkgPSA0z4AgdC8oMSBzKTwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjE5NSI+dCA9IDAgczwvdGV4dD48dGV4dCB4PSIyNTAiIHk9IjE5NSI+zpTPhiA9IDAgwrcgY29uY29yZGk8L3RleHQ+CjxwYXRoIGQ9Ik0xMDAgMjQwSDE2MCIgc3Ryb2tlPSIjMTQ1ZDgxIiBzdHJva2Utd2lkdGg9IjQiIG1hcmtlci1lbmQ9InVybCgjYSkiLz48cGF0aCBkPSJNMTAwIDI4MEgxNjAiIHN0cm9rZT0iI2M2NTkxOSIgc3Ryb2tlLXdpZHRoPSI0IiBtYXJrZXItZW5kPSJ1cmwoI2EpIi8+Cjx0ZXh0IHg9IjM1IiB5PSIzNDAiPnQgPSAxLzQgczwvdGV4dD48dGV4dCB4PSIyNTAiIHk9IjM0MCI+zpTPhiA9IM+AIMK3IG9wcG9zdGk8L3RleHQ+CjxwYXRoIGQ9Ik0xNjAgMzg1SDEwMCIgc3Ryb2tlPSIjMTQ1ZDgxIiBzdHJva2Utd2lkdGg9IjQiIG1hcmtlci1lbmQ9InVybCgjYSkiLz48cGF0aCBkPSJNMTAwIDQyNUgxNjAiIHN0cm9rZT0iI2M2NTkxOSIgc3Ryb2tlLXdpZHRoPSI0IiBtYXJrZXItZW5kPSJ1cmwoI2EpIi8+Cjx0ZXh0IHg9IjM1IiB5PSI0ODUiPnQgPSAxLzIgczwvdGV4dD48dGV4dCB4PSIyNTAiIHk9IjQ4NSI+zpTPhiA9IDLPgCDCtyBjb25jb3JkaTwvdGV4dD4KPHBhdGggZD0iTTEwMCA1MzBIMTYwIiBzdHJva2U9IiMxNDVkODEiIHN0cm9rZS13aWR0aD0iNCIgbWFya2VyLWVuZD0idXJsKCNhKSIvPjxwYXRoIGQ9Ik0xMDAgNTcwSDE2MCIgc3Ryb2tlPSIjYzY1OTE5IiBzdHJva2Utd2lkdGg9IjQiIG1hcmtlci1lbmQ9InVybCgjYSkiLz4KPHRleHQgeD0iMzUiIHk9IjYyNSI+RnJlY2NlIHNjaGVtYXRpY2hlOiBzZWduaSBkZWkgY29udHJpYnV0aSw8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjY2MCI+cmlnaGUgc2VwYXJhdGUgbmVsbG8gc3Rlc3NvIHB1bnRvLjwvdGV4dD48cGF0aCBkPSJNMzUgNjkwSDYwNSIgc3Ryb2tlPSIjYjNjYmQ5Ii8+Cjx0ZXh0IHg9IjM1IiB5PSI3MzUiIGZvbnQtc2l6ZT0iMjUiIGZvbnQtd2VpZ2h0PSI3MDAiPjIgwrcgU29sbyBpbCBtb2R1bG8gZGVsbOKAmWludmlsdXBwbzwvdGV4dD48dGV4dCB4PSIzNSIgeT0iNzc1Ij5FL0EgPSAyfGNvc1syz4B0LygxIHMpXXwsIG5vbiBsYSBwb3J0YW50ZSByYXBpZGE8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjgxNSI+NDAwIHB4L3MgwrcgNjAgcHggcGVyIHVuaXTDoCBkaSBFL0E8L3RleHQ+CjxwYXRoIGQ9Ik04MCA5NTBINTU1IiBzdHJva2U9IiMxNDJkNDAiIG1hcmtlci1lbmQ9InVybCgjYSkiLz48cGF0aCBkPSJNMTAwIDk4MFY4MjAiIHN0cm9rZT0iIzE0MmQ0MCIgbWFya2VyLWVuZD0idXJsKCNhKSIvPjx0ZXh0IHg9IjU2NSIgeT0iOTU3Ij50PC90ZXh0Pjx0ZXh0IHg9IjQ1IiB5PSI4NDIiPjI8L3RleHQ+PHRleHQgeD0iNTAiIHk9Ijk2MCI+MDwvdGV4dD4KPHBhdGggZD0iTTEwMC4wMDAgODMwLjAwMCBMMTAxLjY2NyA4MzAuMDQxIEwxMDMuMzMzIDgzMC4xNjQgTDEwNS4wMDAgODMwLjM3MCBMMTA2LjY2NyA4MzAuNjU3IEwxMDguMzMzIDgzMS4wMjcgTDExMC4wMDAgODMxLjQ3NyBMMTExLjY2NyA4MzIuMDA5IEwxMTMuMzMzIDgzMi42MjIgTDExNS4wMDAgODMzLjMxNiBMMTE2LjY2NyA4MzQuMDg5IEwxMTguMzMzIDgzNC45NDIgTDEyMC4wMDAgODM1Ljg3MyBMMTIxLjY2NyA4MzYuODgzIEwxMjMuMzMzIDgzNy45NzAgTDEyNS4wMDAgODM5LjEzNCBMMTI2LjY2NyA4NDAuMzc1IEwxMjguMzMzIDg0MS42OTAgTDEzMC4wMDAgODQzLjA3OSBMMTMxLjY2NyA4NDQuNTQyIEwxMzMuMzMzIDg0Ni4wNzcgTDEzNS4wMDAgODQ3LjY4MyBMMTM2LjY2NyA4NDkuMzYwIEwxMzguMzMzIDg1MS4xMDUgTDE0MC4wMDAgODUyLjkxOCBMMTQxLjY2NyA4NTQuNzk4IEwxNDMuMzMzIDg1Ni43NDIgTDE0NS4wMDAgODU4Ljc1MSBMMTQ2LjY2NyA4NjAuODIzIEwxNDguMzMzIDg2Mi45NTUgTDE1MC4wMDAgODY1LjE0NyBMMTUxLjY2NyA4NjcuMzk3IEwxNTMuMzMzIDg2OS43MDQgTDE1NS4wMDAgODcyLjA2NiBMMTU2LjY2NyA4NzQuNDgyIEwxNTguMzMzIDg3Ni45NDkgTDE2MC4wMDAgODc5LjQ2NiBMMTYxLjY2NyA4ODIuMDMxIEwxNjMuMzMzIDg4NC42NDMgTDE2NS4wMDAgODg3LjMwMCBMMTY2LjY2NyA4OTAuMDAwIEwxNjguMzMzIDg5Mi43NDEgTDE3MC4wMDAgODk1LjUyMSBMMTcxLjY2NyA4OTguMzM5IEwxNzMuMzMzIDkwMS4xOTIgTDE3NS4wMDAgOTA0LjA3OCBMMTc2LjY2NyA5MDYuOTk2IEwxNzguMzMzIDkwOS45NDMgTDE4MC4wMDAgOTEyLjkxOCBMMTgxLjY2NyA5MTUuOTE4IEwxODMuMzMzIDkxOC45NDIgTDE4NS4wMDAgOTIxLjk4NyBMMTg2LjY2NyA5MjUuMDUxIEwxODguMzMzIDkyOC4xMzIgTDE5MC4wMDAgOTMxLjIyOCBMMTkxLjY2NyA5MzQuMzM3IEwxOTMuMzMzIDkzNy40NTcgTDE5NS4wMDAgOTQwLjU4NSBMMTk2LjY2NyA5NDMuNzIwIEwxOTguMzMzIDk0Ni44NTkgTDIwMC4wMDAgOTUwLjAwMCBMMjAxLjY2NyA5NDYuODU5IEwyMDMuMzMzIDk0My43MjAgTDIwNS4wMDAgOTQwLjU4NSBMMjA2LjY2NyA5MzcuNDU3IEwyMDguMzMzIDkzNC4zMzcgTDIxMC4wMDAgOTMxLjIyOCBMMjExLjY2NyA5MjguMTMyIEwyMTMuMzMzIDkyNS4wNTEgTDIxNS4wMDAgOTIxLjk4NyBMMjE2LjY2NyA5MTguOTQyIEwyMTguMzMzIDkxNS45MTggTDIyMC4wMDAgOTEyLjkxOCBMMjIxLjY2NyA5MDkuOTQzIEwyMjMuMzMzIDkwNi45OTYgTDIyNS4wMDAgOTA0LjA3OCBMMjI2LjY2NyA5MDEuMTkyIEwyMjguMzMzIDg5OC4zMzkgTDIzMC4wMDAgODk1LjUyMSBMMjMxLjY2NyA4OTIuNzQxIEwyMzMuMzMzIDg5MC4wMDAgTDIzNS4wMDAgODg3LjMwMCBMMjM2LjY2NyA4ODQuNjQzIEwyMzguMzMzIDg4Mi4wMzEgTDI0MC4wMDAgODc5LjQ2NiBMMjQxLjY2NyA4NzYuOTQ5IEwyNDMuMzMzIDg3NC40ODIgTDI0NS4wMDAgODcyLjA2NiBMMjQ2LjY2NyA4NjkuNzA0IEwyNDguMzMzIDg2Ny4zOTcgTDI1MC4wMDAgODY1LjE0NyBMMjUxLjY2NyA4NjIuOTU1IEwyNTMuMzMzIDg2MC44MjMgTDI1NS4wMDAgODU4Ljc1MSBMMjU2LjY2NyA4NTYuNzQyIEwyNTguMzMzIDg1NC43OTggTDI2MC4wMDAgODUyLjkxOCBMMjYxLjY2NyA4NTEuMTA1IEwyNjMuMzMzIDg0OS4zNjAgTDI2NS4wMDAgODQ3LjY4MyBMMjY2LjY2NyA4NDYuMDc3IEwyNjguMzMzIDg0NC41NDIgTDI3MC4wMDAgODQzLjA3OSBMMjcxLjY2NyA4NDEuNjkwIEwyNzMuMzMzIDg0MC4zNzUgTDI3NS4wMDAgODM5LjEzNCBMMjc2LjY2NyA4MzcuOTcwIEwyNzguMzMzIDgzNi44ODMgTDI4MC4wMDAgODM1Ljg3MyBMMjgxLjY2NyA4MzQuOTQyIEwyODMuMzMzIDgzNC4wODkgTDI4NS4wMDAgODMzLjMxNiBMMjg2LjY2NyA4MzIuNjIyIEwyODguMzMzIDgzMi4wMDkgTDI5MC4wMDAgODMxLjQ3NyBMMjkxLjY2NyA4MzEuMDI3IEwyOTMuMzMzIDgzMC42NTcgTDI5NS4wMDAgODMwLjM3MCBMMjk2LjY2NyA4MzAuMTY0IEwyOTguMzMzIDgzMC4wNDEgTDMwMC4wMDAgODMwLjAwMCBMMzAxLjY2NyA4MzAuMDQxIEwzMDMuMzMzIDgzMC4xNjQgTDMwNS4wMDAgODMwLjM3MCBMMzA2LjY2NyA4MzAuNjU3IEwzMDguMzMzIDgzMS4wMjcgTDMxMC4wMDAgODMxLjQ3NyBMMzExLjY2NyA4MzIuMDA5IEwzMTMuMzMzIDgzMi42MjIgTDMxNS4wMDAgODMzLjMxNiBMMzE2LjY2NyA4MzQuMDg5IEwzMTguMzMzIDgzNC45NDIgTDMyMC4wMDAgODM1Ljg3MyBMMzIxLjY2NyA4MzYuODgzIEwzMjMuMzMzIDgzNy45NzAgTDMyNS4wMDAgODM5LjEzNCBMMzI2LjY2NyA4NDAuMzc1IEwzMjguMzMzIDg0MS42OTAgTDMzMC4wMDAgODQzLjA3OSBMMzMxLjY2NyA4NDQuNTQyIEwzMzMuMzMzIDg0Ni4wNzcgTDMzNS4wMDAgODQ3LjY4MyBMMzM2LjY2NyA4NDkuMzYwIEwzMzguMzMzIDg1MS4xMDUgTDM0MC4wMDAgODUyLjkxOCBMMzQxLjY2NyA4NTQuNzk4IEwzNDMuMzMzIDg1Ni43NDIgTDM0NS4wMDAgODU4Ljc1MSBMMzQ2LjY2NyA4NjAuODIzIEwzNDguMzMzIDg2Mi45NTUgTDM1MC4wMDAgODY1LjE0NyBMMzUxLjY2NyA4NjcuMzk3IEwzNTMuMzMzIDg2OS43MDQgTDM1NS4wMDAgODcyLjA2NiBMMzU2LjY2NyA4NzQuNDgyIEwzNTguMzMzIDg3Ni45NDkgTDM2MC4wMDAgODc5LjQ2NiBMMzYxLjY2NyA4ODIuMDMxIEwzNjMuMzMzIDg4NC42NDMgTDM2NS4wMDAgODg3LjMwMCBMMzY2LjY2NyA4OTAuMDAwIEwzNjguMzMzIDg5Mi43NDEgTDM3MC4wMDAgODk1LjUyMSBMMzcxLjY2NyA4OTguMzM5IEwzNzMuMzMzIDkwMS4xOTIgTDM3NS4wMDAgOTA0LjA3OCBMMzc2LjY2NyA5MDYuOTk2IEwzNzguMzMzIDkwOS45NDMgTDM4MC4wMDAgOTEyLjkxOCBMMzgxLjY2NyA5MTUuOTE4IEwzODMuMzMzIDkxOC45NDIgTDM4NS4wMDAgOTIxLjk4NyBMMzg2LjY2NyA5MjUuMDUxIEwzODguMzMzIDkyOC4xMzIgTDM5MC4wMDAgOTMxLjIyOCBMMzkxLjY2NyA5MzQuMzM3IEwzOTMuMzMzIDkzNy40NTcgTDM5NS4wMDAgOTQwLjU4NSBMMzk2LjY2NyA5NDMuNzIwIEwzOTguMzMzIDk0Ni44NTkgTDQwMC4wMDAgOTUwLjAwMCBMNDAxLjY2NyA5NDYuODU5IEw0MDMuMzMzIDk0My43MjAgTDQwNS4wMDAgOTQwLjU4NSBMNDA2LjY2NyA5MzcuNDU3IEw0MDguMzMzIDkzNC4zMzcgTDQxMC4wMDAgOTMxLjIyOCBMNDExLjY2NyA5MjguMTMyIEw0MTMuMzMzIDkyNS4wNTEgTDQxNS4wMDAgOTIxLjk4NyBMNDE2LjY2NyA5MTguOTQyIEw0MTguMzMzIDkxNS45MTggTDQyMC4wMDAgOTEyLjkxOCBMNDIxLjY2NyA5MDkuOTQzIEw0MjMuMzMzIDkwNi45OTYgTDQyNS4wMDAgOTA0LjA3OCBMNDI2LjY2NyA5MDEuMTkyIEw0MjguMzMzIDg5OC4zMzkgTDQzMC4wMDAgODk1LjUyMSBMNDMxLjY2NyA4OTIuNzQxIEw0MzMuMzMzIDg5MC4wMDAgTDQzNS4wMDAgODg3LjMwMCBMNDM2LjY2NyA4ODQuNjQzIEw0MzguMzMzIDg4Mi4wMzEgTDQ0MC4wMDAgODc5LjQ2NiBMNDQxLjY2NyA4NzYuOTQ5IEw0NDMuMzMzIDg3NC40ODIgTDQ0NS4wMDAgODcyLjA2NiBMNDQ2LjY2NyA4NjkuNzA0IEw0NDguMzMzIDg2Ny4zOTcgTDQ1MC4wMDAgODY1LjE0NyBMNDUxLjY2NyA4NjIuOTU1IEw0NTMuMzMzIDg2MC44MjMgTDQ1NS4wMDAgODU4Ljc1MSBMNDU2LjY2NyA4NTYuNzQyIEw0NTguMzMzIDg1NC43OTggTDQ2MC4wMDAgODUyLjkxOCBMNDYxLjY2NyA4NTEuMTA1IEw0NjMuMzMzIDg0OS4zNjAgTDQ2NS4wMDAgODQ3LjY4MyBMNDY2LjY2NyA4NDYuMDc3IEw0NjguMzMzIDg0NC41NDIgTDQ3MC4wMDAgODQzLjA3OSBMNDcxLjY2NyA4NDEuNjkwIEw0NzMuMzMzIDg0MC4zNzUgTDQ3NS4wMDAgODM5LjEzNCBMNDc2LjY2NyA4MzcuOTcwIEw0NzguMzMzIDgzNi44ODMgTDQ4MC4wMDAgODM1Ljg3MyBMNDgxLjY2NyA4MzQuOTQyIEw0ODMuMzMzIDgzNC4wODkgTDQ4NS4wMDAgODMzLjMxNiBMNDg2LjY2NyA4MzIuNjIyIEw0ODguMzMzIDgzMi4wMDkgTDQ5MC4wMDAgODMxLjQ3NyBMNDkxLjY2NyA4MzEuMDI3IEw0OTMuMzMzIDgzMC42NTcgTDQ5NS4wMDAgODMwLjM3MCBMNDk2LjY2NyA4MzAuMTY0IEw0OTguMzMzIDgzMC4wNDEgTDUwMC4wMDAgODMwLjAwMCIgc3Ryb2tlPSIjMjI2YTRiIiBmaWxsPSJub25lIiBzdHJva2Utd2lkdGg9IjMiLz48cGF0aCBkPSJNMTAwIDgzMEg1MDBNMzAwIDgzMFY5NTBNNTAwIDgzMFY5NTAiIHN0cm9rZT0iIzZlOGI5YyIgc3Ryb2tlLWRhc2hhcnJheT0iNSA1Ii8+Cjx0ZXh0IHg9Ijg1IiB5PSIxMDI1Ij4wPC90ZXh0Pjx0ZXh0IHg9IjI3MCIgeT0iMTAyNSI+MS8yIHM8L3RleHQ+PHRleHQgeD0iNDgwIiB5PSIxMDI1Ij4xIHM8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjEwODAiPk1hc3NpbWkgb2duaSAxLzIgczogZl9iID0gMiBIei48L3RleHQ+PHBhdGggZD0iTTM1IDExMTBINjA1IiBzdHJva2U9IiNiM2NiZDkiLz4KPHRleHQgeD0iMzUiIHk9IjExNTUiIGZvbnQtc2l6ZT0iMjUiIGZvbnQtd2VpZ2h0PSI3MDAiPjMgwrcgSWwgRG9wcGxlciDDqCB1biBjYXNvIHNlcGFyYXRvPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSIxMTk1Ij5Tb3JnZW50ZSB2ZXJzbyBkZXN0cmEgwrcgb3NzZXJ2YXRvcmUgZmVybW88L3RleHQ+CjxwYXRoIGQ9Ik0xMTUgMTI2MFYxNDIwTTIzNSAxMjYwVjE0MjBNNDM1IDEyNjBWMTQyME01MTUgMTI2MFYxNDIwTTU5NSAxMjYwVjE0MjAiIHN0cm9rZT0iIzZlOGI5YyIgc3Ryb2tlLXdpZHRoPSIzIi8+CjxjaXJjbGUgY3g9IjM1NSIgY3k9IjEzNDAiIHI9IjE3IiBmaWxsPSIjYzY1OTE5Ii8+PHBhdGggZD0iTTM1NSAxMjI1SDQyNSIgc3Ryb2tlPSIjMTQ1ZDgxIiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjYSkiLz4KPHRleHQgeD0iMzUiIHk9IjE0NzUiPkRpZXRybzogKGMgKyB2KS9m4oKAIMK3IGRhdmFudGk6IChjIOKIkiB2KS9m4oKAPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSIxNTIwIj5TY2hlbWEgZGVpIGZyb250aSwgc2VuemEgc2NhbGEgbWV0cmljYS48L3RleHQ+PHRleHQgeD0iMzUiIHk9IjE1NjUiPmMgw6ggbGEgdmVsb2NpdMOgIG5lbCBtZXp6byDCtyAwICZsdDsgdiAmbHQ7IGM8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjE2MjUiPk5vbiBzaSB1c2EgZl9iIHBlciBpbnZlcnRpcmUgaWwgRG9wcGxlci48L3RleHQ+PC9nPjwvc3ZnPgo="
+    }
+  ]
+}
