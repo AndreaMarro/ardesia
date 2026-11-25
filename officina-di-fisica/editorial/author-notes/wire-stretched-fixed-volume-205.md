@@ -141,3 +141,7 @@ Sostituendo il vincolo si ottiene R=βs³. Il rapporto R/β=8 impone s³=8, quin
 Passaggi: `R=\beta s^3\qquad s^3=\frac{4\,\Omega}{(1/2)\,\Omega}\qquad s^3=8\qquad s=2`
 
 Distrattori: Otto copia s³; quattro non prende la radice cubica corretta. −2 non è un allungamento e darebbe R negativo con questo vincolo; non sono infinite soluzioni perché la misura fissa la scala cubica.
+
+## Rilettura richiesta dal revisore distinto
+
+Didascalia03 corretta da materiali a fili dello stesso materiale; desc accessibile dello SVG espresso con L₀,A₀ e prodotto invariato anziché coordinate. Geometria/stili invariati. Nuovo render nativo finale realmente exit0 e letto completo. Tutte le chiavi, i dati e i domini restano invariati; gli altri record sono stati confrontati con l’archivio byte-identico. Nessuna firma scientifica dell’autore. Due assembly finali identici e import temporaneo16→0/16 reali;991 pubblicati invariati. UI prodotto e approvazione umana NOT_RUN.
