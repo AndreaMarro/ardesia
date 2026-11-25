@@ -1,0 +1,497 @@
+{
+  "bindingsSha256": "aa47799aa855d2081c9cb6cf7c70864f15cfedaa97432681bf32c0d243d0653f",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "dependencyVersions": {
+    "pint": "0.25.2",
+    "sympy": "1.14.0"
+  },
+  "humanApproval": "NOT_RUN",
+  "packageSha256": "28ff37487c5194b02e01e77bf0a480da198b00af574b76d59f773bb3ac356310",
+  "publication": "DRAFT",
+  "publicationAction": "NONE",
+  "records": [
+    {
+      "assetChecksums": {
+        "parallel-flow-divider-progressive.svg": "63661c60bf748f6ef9826e28d60129f8bb654c5b75132c0b1a56df40e8c8b063"
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "candidateSha256": "4f41cd1defc130bbc93085b24984468d3f319b7c383a3c772072996bc830ec02",
+      "dimension": {
+        "[length]": "3",
+        "[time]": "-1"
+      },
+      "distractors": "10 nel solo ramo viola uguaglianza delle cadute e lascia Q₂=0 con resistenza finita; 1 copia la resistenza.",
+      "errors": [],
+      "expectedExact": "5",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-parallel-flow-divider-01",
+      "manualArithmetic": "Continuità Q₁+Q₂=10 e cadute R₁Q₁=R₂Q₂. Con R₁=R₂=1, Q₁=Q₂=5 L/s e Δp=5 kPa.",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Continuità Q₁+Q₂=10 e cadute R₁Q₁=R₂Q₂. Con R₁=R₂=1, Q₁=Q₂=5 L/s e Δp=5 kPa.",
+      "physicalAssumptions": "Pompa a portata totale imposta 10 L/s, pressione adattabile fra prove. Due rami lineari positivi fra gli stessi nodi, stessa quota, regime stazionario incomprimibile senza accumulo o percorsi aggiuntivi. Valori costanti entro ciascuna prova; 0<Q₁<Q_T.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "9435b19052dfbbee69a40607fba96a0f2e487c50244198640ca865c4823d9b12",
+      "scientificAssetReview": "XML e rendering completo letti. Tre reti schematiche con rami a stesso salto nella prova, non stessa pressione a monte e valle. Frecce singole separate: scala 20 px/(L/s), ingresso 200 px per 10, iniziali 100+100 px per 5+5. Con R₁=3, R₂=1 frecce 50/150 px per 5/2 e 15/2; Δp=15/2 kPa. Barre finali 100+100 e 120+80=200 px per le prove A e B, pressioni 5/12 kPa. Nessuna lettura della resistenza come lunghezza.",
+      "sourceSha256": "d4c5d4942366f095fce0b1acd74a40e64b8651cdcd7806ed291cafc777bee420",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetChecksums": {},
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "candidateSha256": "699446ba7607e977b2ee74ce1b27f98041dd90fae0148a2b019a44f0d5a42885",
+      "dimension": {
+        "[length]": "3",
+        "[time]": "-1"
+      },
+      "distractors": "kPa pressione; kPa·s/L resistenza; s/L portata inversa; L volume senza tempo.",
+      "errors": [],
+      "expectedExact": "L/s",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-parallel-flow-divider-02",
+      "manualArithmetic": "Portata volumetrica: [Q]=L³/T. kPa/(kPa·s/L)=L/s, con 1 L/s=10⁻³ m³/s. Nessun calcolo numerico autonomo richiesto.",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Portata volumetrica: [Q]=L³/T. kPa/(kPa·s/L)=L/s, con 1 L/s=10⁻³ m³/s. Nessun calcolo numerico autonomo richiesto.",
+      "physicalAssumptions": "Pompa a portata totale imposta 10 L/s, pressione adattabile fra prove. Due rami lineari positivi fra gli stessi nodi, stessa quota, regime stazionario incomprimibile senza accumulo o percorsi aggiuntivi. Valori costanti entro ciascuna prova; 0<Q₁<Q_T.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "c0051fe19abe5581bc354260ab38296bddc2a66e064c89f4ef008c7ec5d41284",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "sourceSha256": "e08a4a2c9ab286beab7afbd1da03da8cf20ef9fe391c95454e535bd9e37edf4a",
+      "verificationMode": "AI_CONCEPTUAL"
+    },
+    {
+      "assetChecksums": {
+        "parallel-flow-divider-progressive.svg": "63661c60bf748f6ef9826e28d60129f8bb654c5b75132c0b1a56df40e8c8b063"
+      },
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "candidateSha256": "e06117a98c21683fe1f49985b42acd43b288cf1bd15453467a9a1a960d73aebb",
+      "dimension": {
+        "[length]": "3",
+        "[time]": "-1"
+      },
+      "distractors": "R₁ al numeratore calcola Q₂; somma sopra manca normalizzazione; Q_T/R ha dimensione errata.",
+      "errors": [],
+      "expectedExact": "Q₁ = Q_T R₂ / (R₁ + R₂)",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-parallel-flow-divider-03",
+      "manualArithmetic": "Eliminare Q₂=Q_T −Q₁: R₁Q₁=R₂(Q_T −Q₁), dunque (R₁+R₂)Q₁=R₂Q_T e Q₁=Q_T R₂/(R₁+R₂).",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Eliminare Q₂=Q_T −Q₁: R₁Q₁=R₂(Q_T −Q₁), dunque (R₁+R₂)Q₁=R₂Q_T e Q₁=Q_T R₂/(R₁+R₂).",
+      "physicalAssumptions": "Pompa a portata totale imposta 10 L/s, pressione adattabile fra prove. Due rami lineari positivi fra gli stessi nodi, stessa quota, regime stazionario incomprimibile senza accumulo o percorsi aggiuntivi. Valori costanti entro ciascuna prova; 0<Q₁<Q_T.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "728d8745d810ab8f6968691a40e9eedb5179d7687939ee9d595557260ed0780b",
+      "scientificAssetReview": "XML e rendering completo letti. Tre reti schematiche con rami a stesso salto nella prova, non stessa pressione a monte e valle. Frecce singole separate: scala 20 px/(L/s), ingresso 200 px per 10, iniziali 100+100 px per 5+5. Con R₁=3, R₂=1 frecce 50/150 px per 5/2 e 15/2; Δp=15/2 kPa. Barre finali 100+100 e 120+80=200 px per le prove A e B, pressioni 5/12 kPa. Nessuna lettura della resistenza come lunghezza.",
+      "sourceSha256": "a7332ac75f1da479c5cb0a52d77936fcf10bd4795924076e4291b2aaa45aecc9",
+      "verificationMode": "AI_CONCEPTUAL"
+    },
+    {
+      "assetChecksums": {},
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "candidateSha256": "642992e8ac5cbe29d024a7f5c2a8bccadbf2e9f08c6e1b092ef82e7b6da22f35",
+      "dimension": {
+        "[length]": "3",
+        "[time]": "-1"
+      },
+      "distractors": "15 supera il totale; 5/3 manterrebbe Δp iniziale fisso; 5 ignora la modifica; zero richiede chiusura limite.",
+      "errors": [],
+      "expectedExact": "Da 5 a 5/2 L/s",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-parallel-flow-divider-04",
+      "manualArithmetic": "R₁ da 1 a 3, R₂=1: Q₁ da 10/2=5 a 10/4=5/2 L/s. Q₂=15/2 e Δp=15/2 kPa; la pompa varia la pressione.",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. R₁ da 1 a 3, R₂=1: Q₁ da 10/2=5 a 10/4=5/2 L/s. Q₂=15/2 e Δp=15/2 kPa; la pompa varia la pressione.",
+      "physicalAssumptions": "Pompa a portata totale imposta 10 L/s, pressione adattabile fra prove. Due rami lineari positivi fra gli stessi nodi, stessa quota, regime stazionario incomprimibile senza accumulo o percorsi aggiuntivi. Valori costanti entro ciascuna prova; 0<Q₁<Q_T.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "33fe232ceaa903b45e5b28c716fa0e4283e5c8b4e6234c2460f23445780d2569",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "sourceSha256": "648c9e252f0f5d86e09bcdd0db4c53d8261290875eca6a4be8c71fb570bf27e6",
+      "verificationMode": "AI_CONCEPTUAL"
+    },
+    {
+      "assetChecksums": {},
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "candidateSha256": "c6f5d425edc5391e04355daa7c268775239d4d3b4341a605d2b09a6a1a71d23e",
+      "dimension": {
+        "[length]": "-4",
+        "[mass]": "1",
+        "[time]": "-1"
+      },
+      "distractors": "5 copia Q₁ come resistenza; non si divide Δp per la portata totale per ricostruire un singolo ramo.",
+      "errors": [],
+      "expectedExact": "1",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-parallel-flow-divider-05",
+      "manualArithmetic": "Q₂=10−5=5 L/s. R₂Q₂=5 kPa, diviso Q₁=5 L/s restituisce R₁=1 kPa·s/L. Inversa R₁=R₂(Q_T −Q₁)/Q₁.",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Q₂=10−5=5 L/s. R₂Q₂=5 kPa, diviso Q₁=5 L/s restituisce R₁=1 kPa·s/L. Inversa R₁=R₂(Q_T −Q₁)/Q₁.",
+      "physicalAssumptions": "Pompa a portata totale imposta 10 L/s, pressione adattabile fra prove. Due rami lineari positivi fra gli stessi nodi, stessa quota, regime stazionario incomprimibile senza accumulo o percorsi aggiuntivi. Valori costanti entro ciascuna prova; 0<Q₁<Q_T.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "7bfcccc86a5d1a26bc6d64fee7ca93dd7292e84907e79e4b157af17d48ba290f",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "sourceSha256": "539dc7baffaa3bd05b59f2b22cb529869684ccd033b80dff9eebc2e6eddc9968",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetChecksums": {},
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "candidateSha256": "dfa34d75e2d8234e5ffb299994546e15a3afb0b1ed636942174a61b10e28854c",
+      "dimension": {
+        "[length]": "-4",
+        "[mass]": "1",
+        "[time]": "-1"
+      },
+      "distractors": "Usare Q_T al denominatore darebbe 1/2 kPa·s/L, equivalente esterna e non R₂.",
+      "errors": [],
+      "expectedExact": "1",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-parallel-flow-divider-06",
+      "manualArithmetic": "Da Q₁=5 e R₁=1 segue Δp=5 kPa. Q₂=5 L/s, quindi R₂=Δp/Q₂=1 kPa·s/L.",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Da Q₁=5 e R₁=1 segue Δp=5 kPa. Q₂=5 L/s, quindi R₂=Δp/Q₂=1 kPa·s/L.",
+      "physicalAssumptions": "Pompa a portata totale imposta 10 L/s, pressione adattabile fra prove. Due rami lineari positivi fra gli stessi nodi, stessa quota, regime stazionario incomprimibile senza accumulo o percorsi aggiuntivi. Valori costanti entro ciascuna prova; 0<Q₁<Q_T.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "7d7154379b8399f05232feec12a655bac8032c14a7cf63a46ce866983b49fd0e",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "sourceSha256": "f9224992139970765e5f75b93c3fbd727ef9ee1d646f35ca5925cfcb103cb309",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetChecksums": {},
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "candidateSha256": "ee340cc8c5532675b229326cd3df402a605f290e3adbb98ee09753acd379690b",
+      "dimension": {},
+      "distractors": "2/3 reciproco; 3 ignora nuova somma; 1/2 scambia l’effetto dei rami; 1 ignora la modifica.",
+      "errors": [],
+      "expectedExact": "3/2",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-parallel-flow-divider-07",
+      "manualArithmetic": "R₁=1, R₂=3: Q₁=30/4=15/2 L/s. Rapporto con 5: (15/2)/5=3/2.",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. R₁=1, R₂=3: Q₁=30/4=15/2 L/s. Rapporto con 5: (15/2)/5=3/2.",
+      "physicalAssumptions": "Pompa a portata totale imposta 10 L/s, pressione adattabile fra prove. Due rami lineari positivi fra gli stessi nodi, stessa quota, regime stazionario incomprimibile senza accumulo o percorsi aggiuntivi. Valori costanti entro ciascuna prova; 0<Q₁<Q_T.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "8b040df79bf4dfef8c590d66c3e629c02487182916df893be0f266b69ecc9d47",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "sourceSha256": "41c87a4cc378ef188c034a4177940a756a9c043d881963186d49f139c4ffd269",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetChecksums": {},
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "candidateSha256": "0f42f4563f5be1354daceb78a39d63d037c276828f7ad8cd0bf57f5acbaaacfb",
+      "dimension": {
+        "[length]": "3",
+        "[time]": "-1"
+      },
+      "distractors": "−5 ordine inverso; 10 proposta; 0 accetta proposta; 5/2 dimezza lo scarto.",
+      "errors": [],
+      "expectedExact": "5",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-parallel-flow-divider-08",
+      "manualArithmetic": "Riferimento Q₁=5 L/s. Scarto proposto meno corretto 10−5=+5 L/s. Proposta imporrebbe Q₂=0 e cadute discordanti 10 e 0 kPa.",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Riferimento Q₁=5 L/s. Scarto proposto meno corretto 10−5=+5 L/s. Proposta imporrebbe Q₂=0 e cadute discordanti 10 e 0 kPa.",
+      "physicalAssumptions": "Pompa a portata totale imposta 10 L/s, pressione adattabile fra prove. Due rami lineari positivi fra gli stessi nodi, stessa quota, regime stazionario incomprimibile senza accumulo o percorsi aggiuntivi. Valori costanti entro ciascuna prova; 0<Q₁<Q_T.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "e299796505aee6e3d242740b20668d390901839e0de35d5943370bb637615218",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "sourceSha256": "597a33aed15edfc76acfa661574a94ff3dd3943d9a86e96670e951450fed163f",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetChecksums": {},
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "candidateSha256": "6515405a12629769b88ffdcbcaacbdc7df9589f93363ff0321cd82af1f064f04",
+      "dimension": {
+        "[length]": "-4",
+        "[mass]": "1",
+        "[time]": "-1"
+      },
+      "distractors": "Rapporto inverso scambia i rami; Q₁/R₂ dimensione errata; omettere −Q₁ perde il secondo ramo; senza Q₁ resta pressione.",
+      "errors": [],
+      "expectedExact": "R₁ = R₂ (Q_T − Q₁) / Q₁",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-parallel-flow-divider-09",
+      "manualArithmetic": "Da R₁Q₁=R₂(Q_T −Q₁), dividere per Q₁>0: R₁=R₂(Q_T −Q₁)/Q₁. La differenza deve essere positiva per il secondo ramo.",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Da R₁Q₁=R₂(Q_T −Q₁), dividere per Q₁>0: R₁=R₂(Q_T −Q₁)/Q₁. La differenza deve essere positiva per il secondo ramo.",
+      "physicalAssumptions": "Pompa a portata totale imposta 10 L/s, pressione adattabile fra prove. Due rami lineari positivi fra gli stessi nodi, stessa quota, regime stazionario incomprimibile senza accumulo o percorsi aggiuntivi. Valori costanti entro ciascuna prova; 0<Q₁<Q_T.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "482265dad37fa4770cb0a81f8d8989a06de2210d4f17f07aa695e15f4044c0e0",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "sourceSha256": "4c490dd2b1beeefd0ab8af68d6b0697df878513b2889932c2ea070d197f43c77",
+      "verificationMode": "AI_CONCEPTUAL"
+    },
+    {
+      "assetChecksums": {},
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "candidateSha256": "4f45240b5e2b2929d6e5f104b2358d1d9f801cfe0a4e901eec41b581ed229a47",
+      "dimension": {},
+      "distractors": "κ₁ al numeratore segue il ramo sbagliato; D/U rovescia la somma; κ₁/κ₂ omette pesi; ultima reciproca.",
+      "errors": [],
+      "expectedExact": "κ₂ U / D",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-parallel-flow-divider-10",
+      "manualArithmetic": "B ha numeratore κ₂R₂ e denominatore D=κ₁R₁+κ₂R₂; A ha U=R₁+R₂. Rapporto κ₂U/D, uguale a uno se κ₁=κ₂.",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. B ha numeratore κ₂R₂ e denominatore D=κ₁R₁+κ₂R₂; A ha U=R₁+R₂. Rapporto κ₂U/D, uguale a uno se κ₁=κ₂.",
+      "physicalAssumptions": "Pompa a portata totale imposta 10 L/s, pressione adattabile fra prove. Due rami lineari positivi fra gli stessi nodi, stessa quota, regime stazionario incomprimibile senza accumulo o percorsi aggiuntivi. Valori costanti entro ciascuna prova; 0<Q₁<Q_T.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "99d86057d8f19e28e602bbd91c545f152a93a4d14836337707497cc9b34bff73",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "sourceSha256": "33f5513e8c46c934c2a89aed35b066234c3d72cac3f293d87c3bfaa451d191a7",
+      "verificationMode": "AI_CONCEPTUAL"
+    },
+    {
+      "assetChecksums": {},
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "candidateSha256": "afd4006c1984a0c31689998bfb1370c297d2cbd79cc8b145c6f917ffbfd6452b",
+      "dimension": {},
+      "distractors": "5/6 reciproco; 3/2 e 2/3 seguono singoli fattori; 6 è portata numerica e non rapporto.",
+      "errors": [],
+      "expectedExact": "6/5",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-parallel-flow-divider-11",
+      "manualArithmetic": "B: Q₁=10·3/(2+3)=6 L/s, Q₂=4. Cadute 2·6=3·4=12 kPa. Rapporto 6/5.",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. B: Q₁=10·3/(2+3)=6 L/s, Q₂=4. Cadute 2·6=3·4=12 kPa. Rapporto 6/5.",
+      "physicalAssumptions": "Pompa a portata totale imposta 10 L/s, pressione adattabile fra prove. Due rami lineari positivi fra gli stessi nodi, stessa quota, regime stazionario incomprimibile senza accumulo o percorsi aggiuntivi. Valori costanti entro ciascuna prova; 0<Q₁<Q_T.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "c8a185f3f868fc273511a11860339240037d662b3bd124831c0fd594af47eff7",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "sourceSha256": "e1734659ca65537a58e4d1adb0eab3900495ca0685967893290f7eaf0d7b2e06",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetChecksums": {},
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "candidateSha256": "4b0225984cfc6fda93253de6bf49e1c40ad87ab5ff065604bba24597bc471bb8",
+      "dimension": {
+        "[length]": "3",
+        "[time]": "-1"
+      },
+      "distractors": "11 somma; 11/4 doppia metà; 40/7 modello agli ingressi medi; 1 differenza.",
+      "errors": [],
+      "expectedExact": "11/2",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-parallel-flow-divider-12",
+      "manualArithmetic": "Media (5+6)/2=11/2 L/s. Ingressi medi R₁=3/2, R₂=2 danno 40/7 L/s; 40/7−11/2=(80−77)/14=3/14 L/s.",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Media (5+6)/2=11/2 L/s. Ingressi medi R₁=3/2, R₂=2 danno 40/7 L/s; 40/7−11/2=(80−77)/14=3/14 L/s.",
+      "physicalAssumptions": "Pompa a portata totale imposta 10 L/s, pressione adattabile fra prove. Due rami lineari positivi fra gli stessi nodi, stessa quota, regime stazionario incomprimibile senza accumulo o percorsi aggiuntivi. Valori costanti entro ciascuna prova; 0<Q₁<Q_T.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "2c585c12a4449acf2b2ee0eb3d934f4ca515f1e45ef8ca7f2c6b6f7d0c477244",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "sourceSha256": "57c76c5efbe570a536229afd4659410daa2c98cd08a436643689ad212d835639",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetChecksums": {},
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "candidateSha256": "3122271690c34ce8e6146af7dd55d230bf1df990e038144230f5b32c88902320",
+      "dimension": {},
+      "distractors": "1/3 reciproco; 6/5 copia target; R₂=2 dà Q₁=5; R₂=3/2 dà Q₁=30/7.",
+      "errors": [],
+      "expectedExact": "3",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-parallel-flow-divider-13",
+      "manualArithmetic": "Target Q₁=6, Q₂=4 L/s. A R₁, B=2, Δp=12 kPa; R₂, B=12/4=3 kPa·s/L, rapporto rispetto a 1 uguale a 3.",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Target Q₁=6, Q₂=4 L/s. A R₁, B=2, Δp=12 kPa; R₂, B=12/4=3 kPa·s/L, rapporto rispetto a 1 uguale a 3.",
+      "physicalAssumptions": "Pompa a portata totale imposta 10 L/s, pressione adattabile fra prove. Due rami lineari positivi fra gli stessi nodi, stessa quota, regime stazionario incomprimibile senza accumulo o percorsi aggiuntivi. Valori costanti entro ciascuna prova; 0<Q₁<Q_T.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "6f2c054477331ab77676db34da9bc3751811bb9006f1c5398c04fadb1c0f4658",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "sourceSha256": "ddbf4be6254cc550aff2b3d963a7a8ebc831a7227f2a7814f58ed4f0e15271d5",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetChecksums": {},
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "candidateSha256": "407817f4ae4ce8292f3a2725e925c1ed488d67d1263d4fbc5afafbf071e53c10",
+      "dimension": {
+        "[length]": "-4",
+        "[mass]": "1",
+        "[time]": "-1"
+      },
+      "distractors": "18 grezzo supera Q_T e non è portata fisica; prima togliere q, poi imporre positività di entrambe le portate.",
+      "errors": [],
+      "expectedExact": "2",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-parallel-flow-divider-14",
+      "manualArithmetic": "Riferimento Q₁=5 e S=15: q=3 s/L. S_B=18 dà Q₁=6, Q₂=4. R₂=3 produce Δp=12 e R₁=12/6=2 kPa·s/L.",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Riferimento Q₁=5 e S=15: q=3 s/L. S_B=18 dà Q₁=6, Q₂=4. R₂=3 produce Δp=12 e R₁=12/6=2 kPa·s/L.",
+      "physicalAssumptions": "Pompa a portata totale imposta 10 L/s, pressione adattabile fra prove. Due rami lineari positivi fra gli stessi nodi, stessa quota, regime stazionario incomprimibile senza accumulo o percorsi aggiuntivi. Valori costanti entro ciascuna prova; 0<Q₁<Q_T.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "fd976795dabbd66b7f9d21641dad58193599df9ce08edb98b06030f63034c502",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "sourceSha256": "08e8786a4587e62ff5a82cb711595ee339b8dad5fcca715d6c3b586b5ad239f2",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetChecksums": {},
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "candidateSha256": "00f56d35bbe91268768fc7af5be105c98bbf2896551e9744208c9b17d31e62a3",
+      "dimension": {
+        "[length]": "-4",
+        "[mass]": "1",
+        "[time]": "-1"
+      },
+      "distractors": "A R₂=1, R₁=1,2,4,6 generano S=11,23/3,5,27/7; solo 3 dà 6.",
+      "errors": [],
+      "expectedExact": "3",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-parallel-flow-divider-15",
+      "manualArithmetic": "Riferimenti Q₁=5,6 e S=11,13: q=2 s/L, z=1. S_C=6 dà Q₁=5/2, Q₂=15/2; R₂=1 implica R₁=3 kPa·s/L.",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Riferimenti Q₁=5,6 e S=11,13: q=2 s/L, z=1. S_C=6 dà Q₁=5/2, Q₂=15/2; R₂=1 implica R₁=3 kPa·s/L.",
+      "physicalAssumptions": "Pompa a portata totale imposta 10 L/s, pressione adattabile fra prove. Due rami lineari positivi fra gli stessi nodi, stessa quota, regime stazionario incomprimibile senza accumulo o percorsi aggiuntivi. Valori costanti entro ciascuna prova; 0<Q₁<Q_T.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "539d10cbc2257a4e86b39ea468b46b072e143ded2b1fcedd90329f4300e86098",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "sourceSha256": "ffb90902b88c83887ba29e3d90d80ecbe2ac3ed32a0c08ff14604822f3e25ac4",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetChecksums": {},
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "candidateSha256": "081decc204d481ccaeda1428ca99720b958230db2729277246e30b9c02c20a86",
+      "dimension": {},
+      "distractors": "Una e due confondono esempi con cardinalità; nessuna è falsa per R=1; coppia nulla fuori dominio. Una pressione aggiuntiva fisserebbe R.",
+      "errors": [],
+      "expectedExact": "Infinite",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-parallel-flow-divider-16",
+      "manualArithmetic": "Con R₁=R₂=R>0, Q₁=10 R/(2 R)=5 L/s per ogni R. (1,1) e (2,2) sono esempi di infinite coppie, con Δp=5 e 10 kPa; scala non identificata.",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Con R₁=R₂=R>0, Q₁=10 R/(2 R)=5 L/s per ogni R. (1,1) e (2,2) sono esempi di infinite coppie, con Δp=5 e 10 kPa; scala non identificata.",
+      "physicalAssumptions": "Pompa a portata totale imposta 10 L/s, pressione adattabile fra prove. Due rami lineari positivi fra gli stessi nodi, stessa quota, regime stazionario incomprimibile senza accumulo o percorsi aggiuntivi. Valori costanti entro ciascuna prova; 0<Q₁<Q_T.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "55a3900d2b0cb754177cf3fec1e32bda2c2753f1449d804258e9528abf0e1316",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "sourceSha256": "b35640d4dfa95e0c3e6fb8070c6b73ae8da22f475cc5407acc34c2fd67f078bf",
+      "verificationMode": "AI_CONCEPTUAL"
+    }
+  ],
+  "reviewedCandidateCommit": "b27a2ca4dfb6bbf951e5b35cd99a3ab9dd6899f2",
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "schemaVersion": "1.0.0",
+  "source": {
+    "commit": "5cfbdcb055ba3ba136f97fb56e997f06e6cf3605",
+    "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U3-04.json",
+    "reference": "All80 original U3-04 prompts in B112–116 individually read from pinned Git source and derivations persisted before candidate packages were opened. Disclosure: initial author handoff exposed total10 L/s,112-12 means11/2 and40/7,112-16 free common resistance scale and SVG20 px/(L/s) with200=100+100 and200=50+150. Those scales imply112-01 flows5+5 and112-04 flows5/2+15/2. All rederived independently from original conservation equations before opening candidate packages; no wholly blind claim for112-01/04/12/16. All16 final candidates, every option, formula, hint, feedback and figure caption read in full; scientific SVG XML and full native rendering read. Never imports candidate authoring. Real C2-L005/L006/L007/L008/L009 lessons reread during this U3-04 work."
+  },
+  "verifierSha256": "3531e1a8fb4ce664cc2ab217414eec095a46b36a497418f56bdfc38adeca4d23"
+}
