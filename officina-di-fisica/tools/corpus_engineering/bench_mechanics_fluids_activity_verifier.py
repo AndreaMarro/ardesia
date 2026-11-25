@@ -20,7 +20,7 @@ SOURCE_REF='5d1dc8dc7b601aef959d10d564c75462be74708d'
 SOURCE_PATH='officina-di-fisica/content/banchi.json'
 SOURCE_FILE_SHA256='c0494a9091cca33b7631b68df1cb7b472c63d0e5481e7dbd391ae1b46e326bdf'
 READ_SOURCE_SHA256={'LAB3D-01': '02561ad5fb3eb45a6a7eb10577cca8313cad8e5628726071dacb1d1f01a330cc', 'LAB3D-02': '649e40da9db08811c5eca8802457d1baf078f6020b76abaae09a414b6a16c6ea', 'LAB3D-03': 'b43f6b283b507f060eae8fabada2beddb3ab48ba2f3b52a70deb2b9094833b74', 'LAB3D-04': '4a5fac945bd40cc7c651b1059fc9e21193941e2e46898eecbd9c3b1554619f51', 'LAB3D-05': 'c08f92d0f42c22a5704e434842bfbad73c085d2890eec7ca0075dcd4c245be5c'}
-READ_CONSUMERS={'static/js/banchi/misure.js': '8d631c65b0266ece6447da07aff7a43ee61b66d0767ddc24ace3f59b31fac186', 'static/js/banchi/banco.js': '682ba25fcf97b67821b8c9bb6c73a571c87559f94bbda3f64cfad65fab63cdb8', 'static/js/banchi/quaderno.js': 'ecc32226e0fa1781b36cac952fa926a2ac17be6b4eae491ef6ef5744fcd8885a', 'static/js/banchi/tavola.js': '4b629188e9a449e642c9acefb408b367ec2562b23a26d2c7723f674b5fdd4c3d', 'static/js/banchi/modelli/piano.js': '0575020da70a7759527f307b6ba291777f79ff0a710e313b1a4cb7ee012de6e2', 'static/js/banchi/modelli/volo.js': 'bb6280ec67bca5f07e80aa382b6a45c72717189887561090f9807493e1912713', 'static/js/banchi/modelli/stevino.js': '620d9363d38867ce854c0f9c567bc8c63d5519a44f1ce1dfd0dddf1f315da0af', 'static/js/banchi/modelli/tubo.js': 'ebe96bda5301f124182d7bd6ee3042b9ecad61b46689ea26a093deac784c3cd6', 'static/js/banchi/modelli/gas.js': '7981d292be241bb3c7921f755072bda44ab52e5be92f9ae203958a19b7ec1a6d', 'static/js/banchi/scene/piano.js': 'a0a2eb65280c953bd0084e6daafcfaf20e369832f59cf0df68350af7cbd8eab2', 'static/js/banchi/scene/volo.js': '11f7d3a7935596f7064fa91067ff837e3ca2469d178040c22e6531e86d28cc37', 'static/js/banchi/scene/stevino.js': '75836bd9014a1b8b23278efd3be3482dcecea533abf9c9a9d6ff3c71b9581c0c', 'static/js/banchi/scene/tubo.js': 'a401bc41dbd89e106e01adefcec9298dabae15ad552992eef8f55e8364225667', 'static/js/banchi/scene/gas.js': 'c39a13bb813bd6f2602a767cbf6e1e42f954092291ca320d3a61352491953223'}
+READ_CONSUMERS={'static/js/banchi/misure.js': '46c769f22651529e439b1396e59a017d2c429310b7ae59e2a9717b2ced93c66d', 'static/js/banchi/banco.js': '8200aa5adf026372699790c21f60e0cf3f5fffcb705ef5ee36f609ac3c1e3ed9', 'static/js/banchi/quaderno.js': 'ecc32226e0fa1781b36cac952fa926a2ac17be6b4eae491ef6ef5744fcd8885a', 'static/js/banchi/tavola.js': '9082781b0fbf88f421742cf8f10f3f098f51e9aac131118a5691e1b6e11cc4a8', 'static/js/banchi/modelli/piano.js': '0575020da70a7759527f307b6ba291777f79ff0a710e313b1a4cb7ee012de6e2', 'static/js/banchi/modelli/volo.js': 'bb6280ec67bca5f07e80aa382b6a45c72717189887561090f9807493e1912713', 'static/js/banchi/modelli/stevino.js': '620d9363d38867ce854c0f9c567bc8c63d5519a44f1ce1dfd0dddf1f315da0af', 'static/js/banchi/modelli/tubo.js': 'ebe96bda5301f124182d7bd6ee3042b9ecad61b46689ea26a093deac784c3cd6', 'static/js/banchi/modelli/gas.js': '7981d292be241bb3c7921f755072bda44ab52e5be92f9ae203958a19b7ec1a6d', 'static/js/banchi/scene/piano.js': 'a0a2eb65280c953bd0084e6daafcfaf20e369832f59cf0df68350af7cbd8eab2', 'static/js/banchi/scene/volo.js': '11f7d3a7935596f7064fa91067ff837e3ca2469d178040c22e6531e86d28cc37', 'static/js/banchi/scene/stevino.js': '75836bd9014a1b8b23278efd3be3482dcecea533abf9c9a9d6ff3c71b9581c0c', 'static/js/banchi/scene/tubo.js': 'a401bc41dbd89e106e01adefcec9298dabae15ad552992eef8f55e8364225667', 'static/js/banchi/scene/gas.js': 'c39a13bb813bd6f2602a767cbf6e1e42f954092291ca320d3a61352491953223'}
 SI=pint.UnitRegistry(non_int_type=Fraction)
 EXPECTED_PREDICTIONS={'LAB3D-01':0,'LAB3D-02':1,'LAB3D-03':2,'LAB3D-04':2,'LAB3D-05':0}
 ASSESSMENT_UNITS={'LAB3D-01':['N','m/s²'],'LAB3D-02':['s','m'],'LAB3D-03':['kPa','m'],'LAB3D-04':['mL/s','Pa'],'LAB3D-05':['kPa','kPa']}
@@ -158,6 +158,21 @@ def browser_evidence():
     return dict(browserReportSha256=sha(file.read_bytes()),browserInstrumentSha256=r['instrumentSha256'],browserRuntimeFingerprint=r['runtimeFingerprint']['sha256'] if 'sha256' in r['runtimeFingerprint'] else digest(r['runtimeFingerprint']),actualBrowserCases=10)
 
 
+
+READ_PLANE_VISUAL_REPORT_SHA256='32b465c6f1627501e33be7a9b7448941c4368824c1c537922c51a88dc1908a01'
+
+def independent_plane_visual_evidence():
+    path=APP/'editorial/reviews/bench-piano2d-independent-b-final-20261125.json'
+    try:
+        raw=path.read_bytes();r=json.loads(raw)
+        return (sha(raw)==READ_PLANE_VISUAL_REPORT_SHA256
+          and r['decision']=='AI_REVIEWED_NO_RESIDUAL_FINDING_FOR_SCOPED_FIX'
+          and r['humanApproval']=='NOT_RUN' and r['inputsStable'] is True
+          and r['numericGrid']['cases']==28560 and r['browser']['cases']==168
+          and r['tavolaSha256']==sha((APP/'static/js/banchi/tavola.js').read_bytes())
+          and all(sha((APP/p).read_bytes())==value for p,value in r['sourceSha256'].items()))
+    except (OSError,ValueError,KeyError,TypeError):return False
+
 def verify(sources):
     if not set(READ_SOURCE_SHA256).issubset(sources):raise ValueError('Missing independently read bench IDs')
     before={p:sha((APP/p).read_bytes()) for p in READ_CONSUMERS};current=runtime_checks();models=exact_checks();records=[]
@@ -166,12 +181,13 @@ def verify(sources):
         row=sources[key];errors=[]
         if row.get('kind')!='bench' or digest(row)!=READ_SOURCE_SHA256[key]:errors.append('Original bench differs from read source')
         if before!=READ_CONSUMERS:errors.append('Consumer changed since scientific reading')
+        if key=='LAB3D-01' and not independent_plane_visual_evidence():errors.append('Independent corrected plane diagram review missing or stale')
         if row['prediction']['correct']!=EXPECTED_PREDICTIONS[key]:errors.append('Prediction contradicts independent physics')
         checks=models[key]
         for i,a in enumerate(row['assessment']):
             if a['unit']!=ASSESSMENT_UNITS[key][i] or sp.Rational(str(a['value']))!=sp.sympify(checks[i]['independentExact']):errors.append('Assigned assessment unit/value contradicts independent solution')
         if len(row['assessment'])!=2 or not checks or not all(c['ok'] for c in checks) or not current[key] or not all(c['ok'] for c in current[key]):errors.append('Independent physics/consumer checks failed')
-        records.append(dict(id=key,sourceSha256=digest(row),sourceVersion=row.get('version',1),sourceRef=SOURCE_REF,sourcePath=SOURCE_PATH,sourceFileSha256=SOURCE_FILE_SHA256,ok=not errors,errors=errors,checks=checks,consumerChecks=current[key],consumerSha256=before,calculationScope='EXACT_MANUAL_CALCULATION',manualArithmetic=MANUAL[key],manualFeasibility='PASS_AI_EXACT',physicalAssumptions=ASSUMPTIONS[key],pedagogicalReview='Prediction, progressive explanation, parameter exploration, interpretation and transfer read as separate stages. Mandatory source and pilot exercises solved with exact small fractions; observation readouts are distinguished from assigned arithmetic. Original IDs, prerequisites and historical editions retained; no protected exam material exposed.',figureReview='Full actual default WebGL and2D fallback renders inspected by reviewer, together with scene/drawing source. Separate geometric/vector scales respected; plane2D arrows encode direction, not calibrated force magnitudes. No inference of force equality from schematic arrow lengths.',verificationMode='INDEPENDENT_EXISTING_EDITION',failedPublishedEdition=False,originalEditionRetained=True,humanApproval='NOT_RUN',publicationAction='NONE'))
+        records.append(dict(id=key,sourceSha256=digest(row),sourceVersion=row.get('version',1),sourceRef=SOURCE_REF,sourcePath=SOURCE_PATH,sourceFileSha256=SOURCE_FILE_SHA256,ok=not errors,errors=errors,checks=checks,consumerChecks=current[key],consumerSha256=before,calculationScope='EXACT_MANUAL_CALCULATION',manualArithmetic=MANUAL[key],manualFeasibility='PASS_AI_EXACT',physicalAssumptions=ASSUMPTIONS[key],pedagogicalReview='Prediction, progressive explanation, parameter exploration, interpretation and transfer read as separate stages. Mandatory source and pilot exercises solved with exact small fractions; observation readouts are distinguished from assigned arithmetic. Original IDs, prerequisites and historical editions retained; no protected exam material exposed.',figureReview='Full actual default WebGL and2D fallback renders inspected together with scene/drawing source. Plane2D now uses one geometric basis and an explicitly normalized common force scale, independently reviewed on28560 configurations and168 real browser layouts; the earlier direction-only acceptance is withdrawn in the retained audit. Tube profile and wall condition, hydrostatic surface offset, projectile vectors and gas piston/volume read against their actual models.',verificationMode='INDEPENDENT_EXISTING_EDITION',failedPublishedEdition=False,originalEditionRetained=True,humanApproval='NOT_RUN',publicationAction='NONE'))
     if before!={p:sha((APP/p).read_bytes()) for p in READ_CONSUMERS}:raise ValueError('Consumer changed during verification')
     return records
 
