@@ -157,6 +157,22 @@ def compare_runtime(actual):
     return summaries
 
 
+def plane_support_clearance_observation(name, clearance, support_radius):
+    """Canonicalize only a diagnostic scene-coordinate witness after deciding.
+
+    The raw predicate is unchanged: no rounding enters visibility acceptance,
+    any physical law, answer key, or dimensional/numerical scientific oracle.
+    Full native geometry and prechange reports remain separately archived.
+    Twelve decimal places suppress the observed platform drift below4e-16;
+    unknown changes elsewhere continue to fail strict report identity.
+    """
+    clear=clearance>support_radius
+    return {'claim':name+' entire glyph clear plane supports','ok':clear,
+            'minimumPlaneClearance':round(clearance,12),'supportRadius':support_radius,
+            'observationSerialization':'scene-coordinate-decimal12/v1',
+            'decisionUsesUnroundedClearance':True,'dimension':{}}
+
+
 def incline_force_visibility_checks(angle,elements):
     """Independent geometric bounds for the complete canonical incline glyphs.
     Force magnitudes alone do not prove visibility. The implicit native base has
@@ -206,7 +222,7 @@ def incline_force_visibility_checks(angle,elements):
             {'claim':name+' unchanged physical line of action','ok':same_line,'dimension':{}},
             {'claim':name+' entire shaft and head clear opaque body','ok':sphere_clear,'axialDistancesFromBody':[start,end],'sphereRadius':radius,'dimension':{}},
             {'claim':name+' entire glyph above native opaque tabletop','ok':low>0,'minimumMeshY':low,'dimension':{}},
-            {'claim':name+' entire glyph clear plane supports','ok':plane_low>support_radius,'minimumPlaneClearance':plane_low,'supportRadius':support_radius,'dimension':{}}]
+            plane_support_clearance_observation(name,plane_low,support_radius)]
     if set(bounds)!={0xb94f48,0x147979}:return fail('Two distinct force colors missing')
     checks.append({'claim':'opposed force glyphs remain separate for same-unit comparison','ok':bounds[0xb94f48][0]>bounds[0x147979][1],'weightMinimumY':bounds[0xb94f48][0],'normalMaximumY':bounds[0x147979][1],'dimension':{}})
     return checks
