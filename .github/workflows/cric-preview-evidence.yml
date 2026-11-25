@@ -1,0 +1,96 @@
+name: Cric preview evidence (manual)
+
+on:
+  push:
+    branches: ['feat/cric-*']
+    paths:
+      - '.github/workflows/cric-preview-evidence.yml'
+      - '.github/cric-preview-request.json'
+      - '.github/schemas/cric-preview-request-v1.schema.json'
+  workflow_dispatch:
+    inputs:
+      expected_runtime_sha:
+        description: Optional runtime pin; the checked-in request is always verified
+        required: false
+        default: ''
+        type: string
+      workers:
+        description: Bounded isolated browser processes
+        required: true
+        default: '4'
+        type: choice
+        options: ['1', '2', '4']
+
+permissions:
+  contents: read
+
+concurrency:
+  group: cric-preview-evidence-${{ github.ref }}
+  cancel-in-progress: false
+
+# Evidence collection only, using the existing canonical runner. No scientific
+# approval or publication. All existing required PR/post-merge CI is unchanged.
+jobs:
+  preview_evidence:
+    name: Private preview evidence only
+    runs-on: ubuntu-24.04
+    timeout-minutes: 180
+    env:
+      ASTRA_CHROME: /usr/bin/google-chrome
+      ASTRA_RESULTS: var/corpus-preview-evidence
+      ASTRA_BROWSER_WORKERS: ${{ inputs.workers || '4' }}
+      EXPECTED_RUNTIME_SHA: ${{ inputs.expected_runtime_sha }}
+    defaults:
+      run:
+        working-directory: officina-di-fisica
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+          sparse-checkout: |
+            officina-di-fisica
+            .github
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          node-version: '22'
+      - name: Install the existing editorial test dependencies
+        run: |
+          python3 -m venv var/corpus-venv
+          var/corpus-venv/bin/pip install -r tools/corpus_engineering/requirements.txt
+          npm ci --no-audit --no-fund
+          printf '%s\n' "$PWD/var/corpus-venv/bin" >> "$GITHUB_PATH"
+      - name: Require exact runtime, registry and canonical protocols
+        run: |
+          var/corpus-venv/bin/python - <<'PYCODE'
+          import hashlib, json, os, re
+          from pathlib import Path
+          from jsonschema import Draft202012Validator
+          from tools.corpus_engineering.runtime_fingerprint import runtime_fingerprint
+          request = json.loads(Path('../.github/cric-preview-request.json').read_text())
+          schema = json.loads(Path('../.github/schemas/cric-preview-request-v1.schema.json').read_text())
+          Draft202012Validator(schema).validate(request)
+          expected = request['runtimeSha256']
+          additional = os.environ.get('EXPECTED_RUNTIME_SHA', '')
+          if additional and (not re.fullmatch(r'[a-f0-9]{64}', additional) or additional != expected):
+              raise ValueError('Manual runtime pin differs from the checked-in request')
+          digest = lambda path: hashlib.sha256(Path(path).read_bytes()).hexdigest()
+          if digest('editorial/batches/registry.json') != request['registrySha256']:
+              raise ValueError('Registry differs from the checked-in preview request')
+          for path, pin in request['protocolFiles'].items():
+              if digest(path) != pin:
+                  raise ValueError('Canonical preview protocol changed: ' + path)
+          actual = runtime_fingerprint(Path('.'))
+          if actual['sha256'] != expected:
+              raise ValueError('Reviewed runtime differs from the checked-out runtime')
+          print('Exact reviewed runtime:', actual['sha256'])
+          PYCODE
+      - name: Run the unchanged canonical preview protocol on all registered packages
+        run: node tests/corpus/browser-batches.mjs
+      - name: Retain authentic raw reports and terminal markers
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: cric-preview-evidence-${{ github.sha }}
+          path: officina-di-fisica/var/corpus-preview-evidence/
+          if-no-files-found: warn
+          retention-days: 14

@@ -1,0 +1,29 @@
+{
+  "schemaVersion": "1.0.0",
+  "purpose": "TECHNICAL_REVIEW_OF_REMOTE_CANONICAL_PREVIEW_RUNNER_NOT_SCIENTIFIC_ACCEPTANCE",
+  "author": "root",
+  "independentReviewer": "author_vectors_b",
+  "reviewedWorkflowSha256": "031864906b3922022c44b91c70a41f1b571f7564d17e1501efe6d79aeba250dd",
+  "currentWorkflowSha256": "417fb67d1d99d6def7eab98fd63db812639414e054f18569ec383df2b4969515",
+  "requestSha256": "1c38994ea10353f426449f70c7e3304306c82d2261c5d2110a5a021b0f4fe0a8",
+  "schemaSha256": "93c48a9ede1fff07589778534c433305963f9ac30e848a9fa72fa5cf7c5b269d",
+  "finding": {
+    "priority": 2,
+    "issue": "schema-only changes did not trigger this evidence collector",
+    "fix": "Added exact schema path to push.paths",
+    "status": "CLOSED_INDEPENDENT_DELTA_REREAD"
+  },
+  "rootRequestBoundaryNegativeChecksRejected": 5,
+  "applicationRuntimeSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+  "expectedPackages": 177,
+  "expectedPreviewCases": 7971,
+  "requiredWorkflows": {
+    ".github/workflows/cric-corpus.yml": "fae8c02b205b7e7f872f535240de6b261bdab8637c7345bd8df0f84225e6164e",
+    ".github/workflows/officina-di-fisica.yml": "fd9df1acf060f250a4a636a4ce49029bdd7762141dbc3b132e1f18b208dca0d0"
+  },
+  "browserAndPreviewProtocolsModified": false,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "completionCredit": 0,
+  "finalIndependentWorkflowSha256": "417fb67d1d99d6def7eab98fd63db812639414e054f18569ec383df2b4969515"
+}

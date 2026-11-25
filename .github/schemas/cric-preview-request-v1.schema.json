@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "runtimeSha256",
+    "registrySha256",
+    "protocolFiles"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "runtimeSha256": {
+      "$ref": "#/$defs/sha"
+    },
+    "registrySha256": {
+      "$ref": "#/$defs/sha"
+    },
+    "protocolFiles": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "tests/corpus/browser-batches.mjs",
+        "tests/corpus/browser-batches-resume.mjs",
+        "tests/corpus/browser-drafts.mjs"
+      ],
+      "properties": {
+        "tests/corpus/browser-batches.mjs": {
+          "$ref": "#/$defs/sha"
+        },
+        "tests/corpus/browser-batches-resume.mjs": {
+          "$ref": "#/$defs/sha"
+        },
+        "tests/corpus/browser-drafts.mjs": {
+          "$ref": "#/$defs/sha"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "sha": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    }
+  }
+}
