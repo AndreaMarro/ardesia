@@ -1,0 +1,1235 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u5-emitted-blackbody-power-01",
+      "kind": "question",
+      "course": "C3",
+      "section": "Potenza emessa e temperatura assoluta",
+      "order": 18301,
+      "title": "Prima converto l’area, poi elevo la temperatura",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L01",
+        "C3-L03",
+        "C3-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "emitted-blackbody-power",
+      "difficulty": 1,
+      "prompt": "Una superficie nera ideale, di area A>0, emette alla temperatura assoluta T>0. Nel modello si assegna σ*=6×10⁻⁸ W/(m²·K⁴), approssimazione prescritta del coefficiente di Stefan–Boltzmann. Si usa P_em=σ*AT⁴ per la sola potenza emessa: non si sottrae la radiazione assorbita dall’ambiente e non si chiede il flusso netto. Poniamo θ=T/(100 K), a=A/(1 cm²) e p=P_em/(1 mW), tutti adimensionali. Il risultato è esatto rispetto al coefficiente assegnato, non un valore sperimentale esatto della costante. Con θ=2 e A=5 cm², quanto vale P_em in mW?",
+      "answer": {
+        "type": "numeric",
+        "value": 48,
+        "unit": "mW",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "θ=2 significa 200 K assoluti. Cinque centimetri quadrati sono 5·10⁻⁴ m²: il fattore cento della lunghezza viene elevato al quadrato. Inseriamo i dati nella legge. Le potenze di dieci danno 10⁻⁸·10⁻⁴·10⁸=10⁻⁴ e i numeri 6·5·16=480. La potenza è 480·10⁻⁴ W=48·10⁻³ W, cioè 48 mW."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/942fa584079654234cb94fc797350cab54b303f04ab786137f99f4b8d12c3dd6",
+          "text": "Tre pannelli distinguono la superficie nera schematica, le emissioni a diverse temperature assolute e il confronto fra due prove. La superficie iniziale ha A=5 cm² e T=200 K: emette 48 mW. Le frecce sono schematiche e non indicano uno scambio netto con l’ambiente. Nel secondo, ad area fissa 5 cm², θ=1,2,3 produce 3,48,243 mW; le barre partono dalla stessa origine. L’ultimo confronta 48 e 486 mW e la media 267 mW, con una comune origine dell’asse delle potenze."
+        },
+        {
+          "type": "formula",
+          "text": "A=5\\cdot10^{-4}\\,\\mathrm{m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " T=2\\cdot100\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " P_{\\rm em}=\\sigma_*AT^4"
+        },
+        {
+          "type": "formula",
+          "text": " P_{\\rm em}=\\frac{48}{1000}\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_{\\rm em}=48\\,\\mathrm{mW}"
+        },
+        {
+          "type": "text",
+          "text": "Tre mW omette θ⁴. Novantasei raddoppia senza motivo il risultato. Usare 5 m² al posto di 5 cm² sovrastima l’area di diecimila volte. La temperatura va espressa in kelvin: una quarta potenza di una lettura Celsius non descrive questa legge."
+        }
+      ],
+      "hints": [
+        "Scrivi cm² in m² e θ come temperatura assoluta prima della sostituzione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre mW omette θ⁴. Novantasei raddoppia senza motivo il risultato. Usare 5 m² al posto di 5 cm² sovrastima l’area di diecimila volte. La temperatura va espressa in kelvin: una quarta potenza di una lettura Celsius non descrive questa legge.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Emissione di una superficie nera e conversioni di area",
+        "Quarta potenza, inverse e ramo termico positivo",
+        "Confronti, medie e taratura della potenza emessa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-emitted-blackbody-power-02",
+      "kind": "question",
+      "course": "C3",
+      "section": "Potenza emessa e temperatura assoluta",
+      "order": 18302,
+      "title": "Una potenza, anche quando è piccola",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L01",
+        "C3-L03",
+        "C3-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "emitted-blackbody-power",
+      "difficulty": 1,
+      "prompt": "Una superficie nera ideale, di area A>0, emette alla temperatura assoluta T>0. Nel modello si assegna σ*=6×10⁻⁸ W/(m²·K⁴), approssimazione prescritta del coefficiente di Stefan–Boltzmann. Si usa P_em=σ*AT⁴ per la sola potenza emessa: non si sottrae la radiazione assorbita dall’ambiente e non si chiede il flusso netto. Poniamo θ=T/(100 K), a=A/(1 cm²) e p=P_em/(1 mW), tutti adimensionali. Il risultato è esatto rispetto al coefficiente assegnato, non un valore sperimentale esatto della costante. Quale unità esprime la potenza emessa fra queste alternative?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "mW",
+          "mJ",
+          "K",
+          "W/m²",
+          "J/K"
+        ],
+        "value": "mW"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il prefisso milli significa un millesimo: un milliwatt è 10⁻³ W e ha dimensione di energia per tempo. La grandezza chiesta è una potenza totale, già moltiplicata per l’area, non una potenza per unità di superficie."
+        },
+        {
+          "type": "formula",
+          "text": "[P_{\\rm em}]=\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " 1\\,\\mathrm{mW}=10^{-3}\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " \\mathrm W=\\mathrm{J/s}"
+        },
+        {
+          "type": "text",
+          "text": "mJ misura energia, K temperatura, W/m² potenza per area e J/K capacità termica o unità di entropia. Un prefisso non converte un’energia in una potenza."
+        }
+      ],
+      "hints": [
+        "Distingui la potenza totale dalla sua densità superficiale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "mJ misura energia, K temperatura, W/m² potenza per area e J/K capacità termica o unità di entropia. Un prefisso non converte un’energia in una potenza.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Emissione di una superficie nera e conversioni di area",
+        "Quarta potenza, inverse e ramo termico positivo",
+        "Confronti, medie e taratura della potenza emessa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-emitted-blackbody-power-03",
+      "kind": "question",
+      "course": "C3",
+      "section": "Potenza emessa e temperatura assoluta",
+      "order": 18303,
+      "title": "La legge nelle unità normalizzate dichiarate",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L01",
+        "C3-L03",
+        "C3-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "emitted-blackbody-power",
+      "difficulty": 1,
+      "prompt": "Una superficie nera ideale, di area A>0, emette alla temperatura assoluta T>0. Nel modello si assegna σ*=6×10⁻⁸ W/(m²·K⁴), approssimazione prescritta del coefficiente di Stefan–Boltzmann. Si usa P_em=σ*AT⁴ per la sola potenza emessa: non si sottrae la radiazione assorbita dall’ambiente e non si chiede il flusso netto. Poniamo θ=T/(100 K), a=A/(1 cm²) e p=P_em/(1 mW), tutti adimensionali. Il risultato è esatto rispetto al coefficiente assegnato, non un valore sperimentale esatto della costante. Quale relazione fra p, a e θ è corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "p = (3/5) a θ⁴",
+          "p = (3/5) a θ²",
+          "p = (3/5) θ⁴ / a",
+          "p = (3/5) a⁴ θ",
+          "p = a θ⁴"
+        ],
+        "value": "p = (3/5) a θ⁴"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Un centimetro quadrato vale 10⁻⁴ m² e (100 K)⁴ porta un fattore 10⁸ K⁴. Con σ* resta 6·10⁻⁴ W per ogni aθ⁴, cioè 3/5 mW. Dividendo per 1 mW otteniamo la relazione adimensionale. La dipendenza è lineare nell’area e di quarto grado nella temperatura assoluta."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/942fa584079654234cb94fc797350cab54b303f04ab786137f99f4b8d12c3dd6",
+          "text": "Le barre del pannello centrale confrontano potenze emesse totali in mW alla stessa area, non intensità per area né temperature. L’esponente quattro agisce sulla temperatura assoluta. Il pannello finale usa anche un’area diversa nella prova B; non rappresenta il solo aumento di temperatura del pannello precedente."
+        },
+        {
+          "type": "formula",
+          "text": "A=a\\cdot10^{-4}\\,\\mathrm{m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " T=100\\theta\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " P_{\\rm em}=\\frac35a\\theta^4\\,\\mathrm{mW}"
+        },
+        {
+          "type": "formula",
+          "text": " p=\\frac35a\\theta^4"
+        },
+        {
+          "type": "text",
+          "text": "θ² sostituisce un’altra legge alla quarta potenza. Dividere per a renderebbe minore l’emissione di una superficie maggiore alla stessa T. a⁴ scambia i ruoli degli ingressi; l’ultima alternativa perde il coefficiente delle conversioni."
+        }
+      ],
+      "hints": [
+        "Separa le conversioni dalle variabili adimensionali.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "θ² sostituisce un’altra legge alla quarta potenza. Dividere per a renderebbe minore l’emissione di una superficie maggiore alla stessa T. a⁴ scambia i ruoli degli ingressi; l’ultima alternativa perde il coefficiente delle conversioni.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Emissione di una superficie nera e conversioni di area",
+        "Quarta potenza, inverse e ramo termico positivo",
+        "Confronti, medie e taratura della potenza emessa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-emitted-blackbody-power-04",
+      "kind": "question",
+      "course": "C3",
+      "section": "Potenza emessa e temperatura assoluta",
+      "order": 18304,
+      "title": "Una temperatura assoluta moltiplicata per tre mezzi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L01",
+        "C3-L03",
+        "C3-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "emitted-blackbody-power",
+      "difficulty": 1,
+      "prompt": "Una superficie nera ideale, di area A>0, emette alla temperatura assoluta T>0. Nel modello si assegna σ*=6×10⁻⁸ W/(m²·K⁴), approssimazione prescritta del coefficiente di Stefan–Boltzmann. Si usa P_em=σ*AT⁴ per la sola potenza emessa: non si sottrae la radiazione assorbita dall’ambiente e non si chiede il flusso netto. Poniamo θ=T/(100 K), a=A/(1 cm²) e p=P_em/(1 mW), tutti adimensionali. Il risultato è esatto rispetto al coefficiente assegnato, non un valore sperimentale esatto della costante. L’area resta 5 cm². θ passa da 2 a 3. Come cambia P_em?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 48 a 243 mW",
+          "Da 48 a 72 mW",
+          "Da 48 a 108 mW",
+          "Da 48 a 96 mW",
+          "Resta 48 mW"
+        ],
+        "value": "Da 48 a 243 mW"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Per a=5 il coefficiente (3/5)a è tre. Prima θ⁴=2⁴=16, poi 3⁴=81. Le potenze sono quindi 3·16=48 e 3·81=243 mW. Il rapporto è 81/16: il fattore sulla temperatura assoluta va elevato alla quarta, non applicato direttamente alla potenza."
+        },
+        {
+          "type": "formula",
+          "text": "p_A=3\\cdot2^4"
+        },
+        {
+          "type": "formula",
+          "text": "3\\cdot2^4=48"
+        },
+        {
+          "type": "formula",
+          "text": " p_B=3\\cdot3^4"
+        },
+        {
+          "type": "formula",
+          "text": "3\\cdot3^4=243"
+        },
+        {
+          "type": "formula",
+          "text": " P_{{\\rm em},B}=243\\,\\mathrm{mW}"
+        },
+        {
+          "type": "formula",
+          "text": " p_B/p_A=81/16"
+        },
+        {
+          "type": "text",
+          "text": "72 mW usa soltanto il fattore 3/2. 108 mW ne usa il quadrato; 96 raddoppia pur avendo temperature nel rapporto 3/2. Il valore invariato ignora il riscaldamento assoluto."
+        }
+      ],
+      "hints": [
+        "Calcola 2⁴ e 3⁴ come quadrati di quadrati.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "72 mW usa soltanto il fattore 3/2. 108 mW ne usa il quadrato; 96 raddoppia pur avendo temperature nel rapporto 3/2. Il valore invariato ignora il riscaldamento assoluto.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Emissione di una superficie nera e conversioni di area",
+        "Quarta potenza, inverse e ramo termico positivo",
+        "Confronti, medie e taratura della potenza emessa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-emitted-blackbody-power-05",
+      "kind": "question",
+      "course": "C3",
+      "section": "Potenza emessa e temperatura assoluta",
+      "order": 18305,
+      "title": "La radice quarta ha un solo ramo termico",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L01",
+        "C3-L03",
+        "C3-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "emitted-blackbody-power",
+      "difficulty": 2,
+      "prompt": "Una superficie nera ideale, di area A>0, emette alla temperatura assoluta T>0. Nel modello si assegna σ*=6×10⁻⁸ W/(m²·K⁴), approssimazione prescritta del coefficiente di Stefan–Boltzmann. Si usa P_em=σ*AT⁴ per la sola potenza emessa: non si sottrae la radiazione assorbita dall’ambiente e non si chiede il flusso netto. Poniamo θ=T/(100 K), a=A/(1 cm²) e p=P_em/(1 mW), tutti adimensionali. Il risultato è esatto rispetto al coefficiente assegnato, non un valore sperimentale esatto della costante. Si misura P_em=48 mW con A=5 cm². Quanto vale θ?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La relazione normalizzata è 48=3θ⁴, perché a=5. Dividendo per tre otteniamo θ⁴=16. Poiché 2²=4 e 4²=16, il ramo positivo è θ=2. La temperatura corrispondente è 200 K. La radice reale negativa risolverebbe la potenza algebrica ma violerebbe T>0."
+        },
+        {
+          "type": "formula",
+          "text": "\\theta^4=48/3"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta^4=16"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta=\\sqrt[4]{16}"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta=2"
+        },
+        {
+          "type": "formula",
+          "text": " T=200\\,\\mathrm K"
+        },
+        {
+          "type": "text",
+          "text": "Quattro è la radice quadrata di 16, non quella quarta. Sedici copia θ⁴ e meno due viola il dominio delle temperature assolute. Non si cerca una lettura di 2 °C."
+        }
+      ],
+      "hints": [
+        "Prendi la radice due volte e conserva il ramo T positivo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro è la radice quadrata di 16, non quella quarta. Sedici copia θ⁴ e meno due viola il dominio delle temperature assolute. Non si cerca una lettura di 2 °C.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Emissione di una superficie nera e conversioni di area",
+        "Quarta potenza, inverse e ramo termico positivo",
+        "Confronti, medie e taratura della potenza emessa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-emitted-blackbody-power-06",
+      "kind": "question",
+      "course": "C3",
+      "section": "Potenza emessa e temperatura assoluta",
+      "order": 18306,
+      "title": "Ricostruire l’area dalla potenza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L01",
+        "C3-L03",
+        "C3-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "emitted-blackbody-power",
+      "difficulty": 2,
+      "prompt": "Una superficie nera ideale, di area A>0, emette alla temperatura assoluta T>0. Nel modello si assegna σ*=6×10⁻⁸ W/(m²·K⁴), approssimazione prescritta del coefficiente di Stefan–Boltzmann. Si usa P_em=σ*AT⁴ per la sola potenza emessa: non si sottrae la radiazione assorbita dall’ambiente e non si chiede il flusso netto. Poniamo θ=T/(100 K), a=A/(1 cm²) e p=P_em/(1 mW), tutti adimensionali. Il risultato è esatto rispetto al coefficiente assegnato, non un valore sperimentale esatto della costante. Si misura P_em=48 mW e si conosce θ=2. Quanto vale A in cm²?",
+      "answer": {
+        "type": "numeric",
+        "value": 5,
+        "unit": "cm²",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Isoliamo a=5p/(3θ⁴). Con p=48 e θ⁴=16, il denominatore è 48: a=5·48/48=5. Moltiplicando per 1 cm² torniamo all’area fisica. La positività dei dati rende lecita la divisione."
+        },
+        {
+          "type": "formula",
+          "text": "a=\\frac{5p}{3\\theta^4}"
+        },
+        {
+          "type": "formula",
+          "text": " a=\\frac{5\\cdot48}{3\\cdot16}"
+        },
+        {
+          "type": "formula",
+          "text": " a=5"
+        },
+        {
+          "type": "formula",
+          "text": " A=5\\,\\mathrm{cm^2}"
+        },
+        {
+          "type": "text",
+          "text": "48 cm² copia il numero della potenza. Usare θ invece di θ⁴ porterebbe a 40 cm²: l’errore modifica la legge, non la conversione del prefisso. Un’area negativa non può emettere la potenza positiva del modello."
+        }
+      ],
+      "hints": [
+        "Isola il numero di centimetri quadrati dopo aver calcolato θ⁴.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "48 cm² copia il numero della potenza. Usare θ invece di θ⁴ porterebbe a 40 cm²: l’errore modifica la legge, non la conversione del prefisso. Un’area negativa non può emettere la potenza positiva del modello.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Emissione di una superficie nera e conversioni di area",
+        "Quarta potenza, inverse e ramo termico positivo",
+        "Confronti, medie e taratura della potenza emessa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-emitted-blackbody-power-07",
+      "kind": "question",
+      "course": "C3",
+      "section": "Potenza emessa e temperatura assoluta",
+      "order": 18307,
+      "title": "Due superfici alla stessa temperatura",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L01",
+        "C3-L03",
+        "C3-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "emitted-blackbody-power",
+      "difficulty": 2,
+      "prompt": "Una superficie nera ideale, di area A>0, emette alla temperatura assoluta T>0. Nel modello si assegna σ*=6×10⁻⁸ W/(m²·K⁴), approssimazione prescritta del coefficiente di Stefan–Boltzmann. Si usa P_em=σ*AT⁴ per la sola potenza emessa: non si sottrae la radiazione assorbita dall’ambiente e non si chiede il flusso netto. Poniamo θ=T/(100 K), a=A/(1 cm²) e p=P_em/(1 mW), tutti adimensionali. Il risultato è esatto rispetto al coefficiente assegnato, non un valore sperimentale esatto della costante. A e B hanno θ=2. L’area passa da 5 a 10 cm². Quanto vale P_em,B/P_em,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/2",
+          "4",
+          "16",
+          "1"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Ogni unità di superficie alla stessa temperatura emette la stessa potenza. A emette 48 mW; B, con a=10, emette (3/5)·10·16=96 mW. Il rapporto 96/48 è due: la quarta potenza riguarda T, non A."
+        },
+        {
+          "type": "formula",
+          "text": "P_{{\\rm em},A}=48\\,\\mathrm{mW}"
+        },
+        {
+          "type": "formula",
+          "text": " P_{{\\rm em},B}=96\\,\\mathrm{mW}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{P_{{\\rm em},B}}{P_{{\\rm em},A}}=2"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo è il reciproco; quattro e sedici assegnano all’area un quadrato o una quarta potenza assenti. Uno ignora la superficie aggiunta."
+        }
+      ],
+      "hints": [
+        "La temperatura si cancella nel rapporto e resta il confronto delle aree.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo è il reciproco; quattro e sedici assegnano all’area un quadrato o una quarta potenza assenti. Uno ignora la superficie aggiunta.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Emissione di una superficie nera e conversioni di area",
+        "Quarta potenza, inverse e ramo termico positivo",
+        "Confronti, medie e taratura della potenza emessa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-emitted-blackbody-power-08",
+      "kind": "question",
+      "course": "C3",
+      "section": "Potenza emessa e temperatura assoluta",
+      "order": 18308,
+      "title": "Una sovrastima da misurare con segno",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L01",
+        "C3-L03",
+        "C3-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "emitted-blackbody-power",
+      "difficulty": 2,
+      "prompt": "Una superficie nera ideale, di area A>0, emette alla temperatura assoluta T>0. Nel modello si assegna σ*=6×10⁻⁸ W/(m²·K⁴), approssimazione prescritta del coefficiente di Stefan–Boltzmann. Si usa P_em=σ*AT⁴ per la sola potenza emessa: non si sottrae la radiazione assorbita dall’ambiente e non si chiede il flusso netto. Poniamo θ=T/(100 K), a=A/(1 cm²) e p=P_em/(1 mW), tutti adimensionali. Il risultato è esatto rispetto al coefficiente assegnato, non un valore sperimentale esatto della costante. Con θ=2 e A=5 cm² si propone P_em=96 mW. Quanto vale proposta meno valore corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "48 mW",
+          "−48 mW",
+          "96 mW",
+          "0 mW",
+          "2"
+        ],
+        "value": "48 mW"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il valore corretto è 48 mW. La proposta di 96 mW lo supera di 48 mW. L’errore richiesto è una differenza fra potenze; il rapporto due descrive invece quante volte è grande la proposta e non ha l’unità richiesta."
+        },
+        {
+          "type": "formula",
+          "text": "P_{\\rm em}=48\\,\\mathrm{mW}"
+        },
+        {
+          "type": "formula",
+          "text": " e=P_{\\rm proposto}-P_{\\rm em}"
+        },
+        {
+          "type": "formula",
+          "text": " e=(96-48)\\,\\mathrm{mW}"
+        },
+        {
+          "type": "formula",
+          "text": " e=48\\,\\mathrm{mW}"
+        },
+        {
+          "type": "text",
+          "text": "−48 mW cambia l’ordine della sottrazione. 96 mW copia la proposta, zero la accetta e due risponde con un rapporto invece che con uno scarto."
+        }
+      ],
+      "hints": [
+        "Risolvi prima la legge, poi sottrai nel verso indicato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−48 mW cambia l’ordine della sottrazione. 96 mW copia la proposta, zero la accetta e due risponde con un rapporto invece che con uno scarto.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Emissione di una superficie nera e conversioni di area",
+        "Quarta potenza, inverse e ramo termico positivo",
+        "Confronti, medie e taratura della potenza emessa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-emitted-blackbody-power-09",
+      "kind": "question",
+      "course": "C3",
+      "section": "Potenza emessa e temperatura assoluta",
+      "order": 18309,
+      "title": "Isolare θ mantenendo la quarta potenza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L01",
+        "C3-L03",
+        "C3-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "emitted-blackbody-power",
+      "difficulty": 2,
+      "prompt": "Una superficie nera ideale, di area A>0, emette alla temperatura assoluta T>0. Nel modello si assegna σ*=6×10⁻⁸ W/(m²·K⁴), approssimazione prescritta del coefficiente di Stefan–Boltzmann. Si usa P_em=σ*AT⁴ per la sola potenza emessa: non si sottrae la radiazione assorbita dall’ambiente e non si chiede il flusso netto. Poniamo θ=T/(100 K), a=A/(1 cm²) e p=P_em/(1 mW), tutti adimensionali. Il risultato è esatto rispetto al coefficiente assegnato, non un valore sperimentale esatto della costante. Sono noti p>0 e a>0. Quale formula ricava θ nel ramo fisico?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "θ = [5p/(3a)]^(1/4)",
+          "θ = [5p/(3a)]^(1/2)",
+          "θ = 5p/(3a)",
+          "θ = [3a/(5p)]^(1/4)",
+          "θ = −[5p/(3a)]^(1/4)"
+        ],
+        "value": "θ = [5p/(3a)]^(1/4)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dividiamo p=(3/5)aθ⁴ per il coefficiente positivo (3/5)a. Il quoziente dà θ⁴, non θ. Si prende quindi la radice quarta positiva. θ è adimensionale e restituisce poi T=100 K·θ; la stessa procedura si può scrivere direttamente come T=[P_em/(σ*A)]^(1/4) in unità SI."
+        },
+        {
+          "type": "formula",
+          "text": "\\theta^4=\\frac{5p}{3a}"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta=\\sqrt[4]{\\frac{5p}{3a}}"
+        },
+        {
+          "type": "formula",
+          "text": " T=(100\\,\\mathrm K)\\theta"
+        },
+        {
+          "type": "text",
+          "text": "La radice quadrata lascia ancora θ². Non estrarre alcuna radice copia θ⁴; invertire il quoziente dà il reciproco della temperatura normalizzata. Il segno meno è incompatibile con T>0."
+        }
+      ],
+      "hints": [
+        "Prima isola θ⁴ e solo dopo seleziona la radice fisica.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La radice quadrata lascia ancora θ². Non estrarre alcuna radice copia θ⁴; invertire il quoziente dà il reciproco della temperatura normalizzata. Il segno meno è incompatibile con T>0.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Emissione di una superficie nera e conversioni di area",
+        "Quarta potenza, inverse e ramo termico positivo",
+        "Confronti, medie e taratura della potenza emessa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-emitted-blackbody-power-10",
+      "kind": "question",
+      "course": "C3",
+      "section": "Potenza emessa e temperatura assoluta",
+      "order": 18310,
+      "title": "Il fattore di area si moltiplica per quello termico",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L01",
+        "C3-L03",
+        "C3-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "emitted-blackbody-power",
+      "difficulty": 2,
+      "prompt": "Una superficie nera ideale, di area A>0, emette alla temperatura assoluta T>0. Nel modello si assegna σ*=6×10⁻⁸ W/(m²·K⁴), approssimazione prescritta del coefficiente di Stefan–Boltzmann. Si usa P_em=σ*AT⁴ per la sola potenza emessa: non si sottrae la radiazione assorbita dall’ambiente e non si chiede il flusso netto. Poniamo θ=T/(100 K), a=A/(1 cm²) e p=P_em/(1 mW), tutti adimensionali. Il risultato è esatto rispetto al coefficiente assegnato, non un valore sperimentale esatto della costante. B ha θ_B=κ₁θ_A e A_B=κ₂A_A, con κ₁,κ₂>0. Quanto vale P_em,B/P_em,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁⁴ κ₂",
+          "κ₁ κ₂",
+          "κ₁² κ₂",
+          "κ₁⁴/κ₂",
+          "κ₂⁴ κ₁"
+        ],
+        "value": "κ₁⁴ κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituendo entrambi i nuovi ingressi, la temperatura porta κ₁⁴ mentre l’area porta κ₂ una sola volta. Il coefficiente assegnato e le unità normalizzate sono gli stessi in entrambe le prove e si cancellano nel rapporto."
+        },
+        {
+          "type": "formula",
+          "text": "p_B=\\frac35(\\kappa_2a_A)(\\kappa_1\\theta_A)^4"
+        },
+        {
+          "type": "formula",
+          "text": " p_B=\\kappa_1^4\\kappa_2p_A"
+        },
+        {
+          "type": "formula",
+          "text": " p_B/p_A=\\kappa_1^4\\kappa_2"
+        },
+        {
+          "type": "text",
+          "text": "κ₁κ₂ e κ₁²κ₂ perdono due o tre fattori di temperatura. Dividere per κ₂ rende inversa la dipendenza dall’area; κ₂⁴κ₁ scambia area e temperatura."
+        }
+      ],
+      "hints": [
+        "Mantieni l’esponente attaccato alla variabile che viene riscalata.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "κ₁κ₂ e κ₁²κ₂ perdono due o tre fattori di temperatura. Dividere per κ₂ rende inversa la dipendenza dall’area; κ₂⁴κ₁ scambia area e temperatura.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Emissione di una superficie nera e conversioni di area",
+        "Quarta potenza, inverse e ramo termico positivo",
+        "Confronti, medie e taratura della potenza emessa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-emitted-blackbody-power-11",
+      "kind": "question",
+      "course": "C3",
+      "section": "Potenza emessa e temperatura assoluta",
+      "order": 18311,
+      "title": "Temperatura e area cambiano insieme",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L01",
+        "C3-L03",
+        "C3-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "emitted-blackbody-power",
+      "difficulty": 2,
+      "prompt": "Una superficie nera ideale, di area A>0, emette alla temperatura assoluta T>0. Nel modello si assegna σ*=6×10⁻⁸ W/(m²·K⁴), approssimazione prescritta del coefficiente di Stefan–Boltzmann. Si usa P_em=σ*AT⁴ per la sola potenza emessa: non si sottrae la radiazione assorbita dall’ambiente e non si chiede il flusso netto. Poniamo θ=T/(100 K), a=A/(1 cm²) e p=P_em/(1 mW), tutti adimensionali. Il risultato è esatto rispetto al coefficiente assegnato, non un valore sperimentale esatto della costante. A: θ=2, A=5 cm². B: θ=3, A=10 cm². Quanto vale P_em,B/P_em,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "81/8",
+          "81/16",
+          "2",
+          "3",
+          "8/81"
+        ],
+        "value": "81/8"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A emette 48 mW. Per B, (3/5)·10=6 e θ⁴=81, quindi la potenza è 486 mW. Dividiamo per 48: 486/48 si riduce a 81/8. Il risultato combina il fattore due dell’area con 81/16 della temperatura."
+        },
+        {
+          "type": "formula",
+          "text": "P_{{\\rm em},A}=48\\,\\mathrm{mW}"
+        },
+        {
+          "type": "formula",
+          "text": " P_{{\\rm em},B}=486\\,\\mathrm{mW}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{P_{{\\rm em},B}}{P_{{\\rm em},A}}=\\frac{486}{48}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{P_{{\\rm em},B}}{P_{{\\rm em},A}}=81/8"
+        },
+        {
+          "type": "text",
+          "text": "81/16 considera soltanto la temperatura; due soltanto l’area. Tre usa linearmente il fattore 3/2 insieme al due. 8/81 è il reciproco del confronto richiesto."
+        }
+      ],
+      "hints": [
+        "Valuta entrambi i prodotti o combina separatamente i fattori esatti.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "81/16 considera soltanto la temperatura; due soltanto l’area. Tre usa linearmente il fattore 3/2 insieme al due. 8/81 è il reciproco del confronto richiesto.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Emissione di una superficie nera e conversioni di area",
+        "Quarta potenza, inverse e ramo termico positivo",
+        "Confronti, medie e taratura della potenza emessa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-emitted-blackbody-power-12",
+      "kind": "question",
+      "course": "C3",
+      "section": "Potenza emessa e temperatura assoluta",
+      "order": 18312,
+      "title": "La media delle potenze è un’altra operazione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L01",
+        "C3-L03",
+        "C3-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "emitted-blackbody-power",
+      "difficulty": 2,
+      "prompt": "Una superficie nera ideale, di area A>0, emette alla temperatura assoluta T>0. Nel modello si assegna σ*=6×10⁻⁸ W/(m²·K⁴), approssimazione prescritta del coefficiente di Stefan–Boltzmann. Si usa P_em=σ*AT⁴ per la sola potenza emessa: non si sottrae la radiazione assorbita dall’ambiente e non si chiede il flusso netto. Poniamo θ=T/(100 K), a=A/(1 cm²) e p=P_em/(1 mW), tutti adimensionali. Il risultato è esatto rispetto al coefficiente assegnato, non un valore sperimentale esatto della costante. A usa θ=2 e A=5 cm²; B usa θ=3 e A=10 cm². Qual è la media aritmetica delle due potenze, con uguale peso?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "267 mW",
+          "5625/32 mW",
+          "534 mW",
+          "219 mW",
+          "243 mW"
+        ],
+        "value": "267 mW"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le potenze sono 48 e 486 mW. La somma è 534 mW e la metà 267 mW. Gli ingressi medi θ=5/2 e a=15/2 darebbero invece (3/5)(15/2)(5/2)⁴=5625/32 mW. Una quarta potenza e il prodotto con un’area variabile non conservano in generale la media degli ingressi."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline P_{\\rm em}=\\frac{48+486}{2}\\,\\mathrm{mW}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline P_{\\rm em}=267\\,\\mathrm{mW}"
+        },
+        {
+          "type": "formula",
+          "text": " p_{\\rm ingressi\\ medi}=\\frac35\\frac{15}{2}\\left(\\frac52\\right)^4"
+        },
+        {
+          "type": "formula",
+          "text": " p_{\\rm ingressi\\ medi}=5625/32"
+        },
+        {
+          "type": "text",
+          "text": "5625/32 mW applica il modello ai parametri medi. 534 mW omette la metà; 219 mW è metà della differenza. 243 mW usa la temperatura B ma mantiene l’area A: è una terza prova."
+        }
+      ],
+      "hints": [
+        "Calcola ciascuna emissione prima di sommare e dividere per due.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "5625/32 mW applica il modello ai parametri medi. 534 mW omette la metà; 219 mW è metà della differenza. 243 mW usa la temperatura B ma mantiene l’area A: è una terza prova.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Emissione di una superficie nera e conversioni di area",
+        "Quarta potenza, inverse e ramo termico positivo",
+        "Confronti, medie e taratura della potenza emessa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-emitted-blackbody-power-13",
+      "kind": "question",
+      "course": "C3",
+      "section": "Potenza emessa e temperatura assoluta",
+      "order": 18313,
+      "title": "Scegliere l’area per il bersaglio di emissione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L01",
+        "C3-L03",
+        "C3-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "emitted-blackbody-power",
+      "difficulty": 3,
+      "prompt": "Una superficie nera ideale, di area A>0, emette alla temperatura assoluta T>0. Nel modello si assegna σ*=6×10⁻⁸ W/(m²·K⁴), approssimazione prescritta del coefficiente di Stefan–Boltzmann. Si usa P_em=σ*AT⁴ per la sola potenza emessa: non si sottrae la radiazione assorbita dall’ambiente e non si chiede il flusso netto. Poniamo θ=T/(100 K), a=A/(1 cm²) e p=P_em/(1 mW), tutti adimensionali. Il risultato è esatto rispetto al coefficiente assegnato, non un valore sperimentale esatto della costante. A ha θ=2 e A_A=5 cm². B usa θ=3 e deve emettere 81/8 volte la potenza di A. Quanto vale A_B/A_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/2",
+          "81/8",
+          "81/16",
+          "3/2"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è (81/8)·48=486 mW. A θ=3 si ha p=(243/5)a: per ottenere p=486 servono a=486·5/243=10. L’area B è 10 cm² e il rapporto con 5 cm² iniziali è due."
+        },
+        {
+          "type": "formula",
+          "text": "P_{{\\rm em},B}=486\\,\\mathrm{mW}"
+        },
+        {
+          "type": "formula",
+          "text": " a_B=\\frac{5\\cdot486}{3\\cdot81}"
+        },
+        {
+          "type": "formula",
+          "text": " a_B=10"
+        },
+        {
+          "type": "formula",
+          "text": " A_B/A_A=2"
+        },
+        {
+          "type": "text",
+          "text": "81/8 è il rapporto delle potenze, 81/16 quello dovuto alla sola temperatura e 3/2 il rapporto delle temperature assolute. Un mezzo inverte il rapporto delle aree."
+        }
+      ],
+      "hints": [
+        "Non sottrarre contributi ambientali: qui si impone la sola emissione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "81/8 è il rapporto delle potenze, 81/16 quello dovuto alla sola temperatura e 3/2 il rapporto delle temperature assolute. Un mezzo inverte il rapporto delle aree.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Emissione di una superficie nera e conversioni di area",
+        "Quarta potenza, inverse e ramo termico positivo",
+        "Confronti, medie e taratura della potenza emessa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-emitted-blackbody-power-14",
+      "kind": "question",
+      "course": "C3",
+      "section": "Potenza emessa e temperatura assoluta",
+      "order": 18314,
+      "title": "Decodificare il display prima della radice",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L01",
+        "C3-L03",
+        "C3-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "emitted-blackbody-power",
+      "difficulty": 3,
+      "prompt": "Una superficie nera ideale, di area A>0, emette alla temperatura assoluta T>0. Nel modello si assegna σ*=6×10⁻⁸ W/(m²·K⁴), approssimazione prescritta del coefficiente di Stefan–Boltzmann. Si usa P_em=σ*AT⁴ per la sola potenza emessa: non si sottrae la radiazione assorbita dall’ambiente e non si chiede il flusso netto. Poniamo θ=T/(100 K), a=A/(1 cm²) e p=P_em/(1 mW), tutti adimensionali. Il risultato è esatto rispetto al coefficiente assegnato, non un valore sperimentale esatto della costante. S=qP_em è continuo e adimensionale, q>0. A con θ=2, A=5 cm² dà S=144. B ha A=10 cm² e dà S=1458. Quanto vale θ_B?",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento emette 48 mW, quindi q=144/(48 mW)=3 mW⁻¹. La nuova lettura significa 1458/3=486 mW. Con a=10, p=6θ⁴: θ⁴=486/6=81 e la radice quarta positiva è tre. T_B è dunque 300 K."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{mW^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " P_{{\\rm em},B}=486\\,\\mathrm{mW}"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_B^4=486/6"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_B^4=81"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_B=3"
+        },
+        {
+          "type": "text",
+          "text": "Nove è la radice quadrata di 81, non quella quarta. 81 copia la potenza quarta e 1458 è il display, non una temperatura. La taratura va tolta prima di invertire la legge fisica."
+        }
+      ],
+      "hints": [
+        "Usa il riferimento per trovare prima i milliwatt fisici della nuova prova.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Nove è la radice quadrata di 81, non quella quarta. 81 copia la potenza quarta e 1458 è il display, non una temperatura. La taratura va tolta prima di invertire la legge fisica.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Emissione di una superficie nera e conversioni di area",
+        "Quarta potenza, inverse e ramo termico positivo",
+        "Confronti, medie e taratura della potenza emessa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-emitted-blackbody-power-15",
+      "kind": "question",
+      "course": "C3",
+      "section": "Potenza emessa e temperatura assoluta",
+      "order": 18315,
+      "title": "Guadagno e offset prima dell’inversa termica",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L01",
+        "C3-L03",
+        "C3-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "emitted-blackbody-power",
+      "difficulty": 3,
+      "prompt": "Una superficie nera ideale, di area A>0, emette alla temperatura assoluta T>0. Nel modello si assegna σ*=6×10⁻⁸ W/(m²·K⁴), approssimazione prescritta del coefficiente di Stefan–Boltzmann. Si usa P_em=σ*AT⁴ per la sola potenza emessa: non si sottrae la radiazione assorbita dall’ambiente e non si chiede il flusso netto. Poniamo θ=T/(100 K), a=A/(1 cm²) e p=P_em/(1 mW), tutti adimensionali. Il risultato è esatto rispetto al coefficiente assegnato, non un valore sperimentale esatto della costante. Il display continuo è S=qP_em+b, adimensionale, q>0. A: θ=2, A=5 cm², S=97. B: θ=3, A=10 cm², S=973. C: A=5 cm², S=487. Quanto vale θ_C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3",
+          "2",
+          "4",
+          "81",
+          "1"
+        ],
+        "value": "3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le emissioni dei riferimenti sono 48 e 486 mW. La differenza di letture 876 divisa per la differenza di potenze 438 mW dà q=2 mW⁻¹; dal primo riferimento segue b=1. C emette (487−1)/2=243 mW. Con a=5 abbiamo p=3θ⁴: θ⁴=81 e θ=3 nel ramo positivo."
+        },
+        {
+          "type": "formula",
+          "text": "q=\\frac{973-97}{(486-48)\\,\\mathrm{mW}}"
+        },
+        {
+          "type": "formula",
+          "text": " q=2\\,\\mathrm{mW^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " P_{{\\rm em},C}=243\\,\\mathrm{mW}"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_C^4=81"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_C=3"
+        },
+        {
+          "type": "text",
+          "text": "θ=2 tornerebbe a S=97. θ=1 emetterebbe 3 mW e darebbe S=7; θ=4 emetterebbe 768 mW e darebbe S=1537. 81 è il valore della quarta potenza, non della temperatura normalizzata."
+        }
+      ],
+      "hints": [
+        "Dopo aver sottratto b e diviso per q resta ancora una radice quarta.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "θ=2 tornerebbe a S=97. θ=1 emetterebbe 3 mW e darebbe S=7; θ=4 emetterebbe 768 mW e darebbe S=1537. 81 è il valore della quarta potenza, non della temperatura normalizzata.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Emissione di una superficie nera e conversioni di area",
+        "Quarta potenza, inverse e ramo termico positivo",
+        "Confronti, medie e taratura della potenza emessa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-emitted-blackbody-power-16",
+      "kind": "question",
+      "course": "C3",
+      "section": "Potenza emessa e temperatura assoluta",
+      "order": 18316,
+      "title": "Il vincolo porta a una quinta potenza dell’area",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L01",
+        "C3-L03",
+        "C3-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "emitted-blackbody-power",
+      "difficulty": 3,
+      "prompt": "Una superficie nera ideale, di area A>0, emette alla temperatura assoluta T>0. Nel modello si assegna σ*=6×10⁻⁸ W/(m²·K⁴), approssimazione prescritta del coefficiente di Stefan–Boltzmann. Si usa P_em=σ*AT⁴ per la sola potenza emessa: non si sottrae la radiazione assorbita dall’ambiente e non si chiede il flusso netto. Poniamo θ=T/(100 K), a=A/(1 cm²) e p=P_em/(1 mW), tutti adimensionali. Il risultato è esatto rispetto al coefficiente assegnato, non un valore sperimentale esatto della costante. Fra preparazioni si impone θ=(2/5)a. Si misura P_em=48 mW. Quanto vale A nel dominio positivo?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "5 cm²",
+          "−5 cm²",
+          "25 cm²",
+          "2 cm²",
+          "Infinite aree positive"
+        ],
+        "value": "5 cm²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il legame è fra le variabili normalizzate dichiarate. Sostituendo θ=(2/5)a, p=(3/5)a(2a/5)⁴=(48/3125)a⁵. Il dato p=48 implica a⁵=3125. Poiché 5⁵=3125, a=5 e A=5 cm². Per a>0 la quinta potenza cresce strettamente, quindi la soluzione positiva è unica; il vincolo restituisce θ=2."
+        },
+        {
+          "type": "formula",
+          "text": "p=\\frac35a\\left(\\frac25a\\right)^4"
+        },
+        {
+          "type": "formula",
+          "text": " p=\\frac{48}{3125}a^5"
+        },
+        {
+          "type": "formula",
+          "text": " a^5=3125"
+        },
+        {
+          "type": "formula",
+          "text": " a=5"
+        },
+        {
+          "type": "formula",
+          "text": " A=5\\,\\mathrm{cm^2}"
+        },
+        {
+          "type": "text",
+          "text": "−5 cm² viola il dominio e renderebbe anche θ negativa. 25 cm² copia a² senza risolvere la quinta potenza; 2 cm² copia il numero della θ finale. Il vincolo non lascia libera la scala, perché la potenza fissata cresce come a⁵."
+        }
+      ],
+      "hints": [
+        "Sostituisci il vincolo prima di cercare l’area: compaiono cinque fattori di a.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "−5 cm² viola il dominio e renderebbe anche θ negativa. 25 cm² copia a² senza risolvere la quinta potenza; 2 cm² copia il numero della θ finale. Il vincolo non lascia libera la scala, perché la potenza fissata cresce come a⁵.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Emissione di una superficie nera e conversioni di area",
+        "Quarta potenza, inverse e ramo termico positivo",
+        "Confronti, medie e taratura della potenza emessa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "942fa584079654234cb94fc797350cab54b303f04ab786137f99f4b8d12c3dd6",
+      "name": "emitted-blackbody-power-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTMxMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgo8dGl0bGUgaWQ9InRpdGxlIj5MYSBxdWFydGEgcG90ZW56YSByaWd1YXJkYSBsYSB0ZW1wZXJhdHVyYSBhc3NvbHV0YTwvdGl0bGU+CjxkZXNjIGlkPSJkZXNjIj5VbmEgc3VwZXJmaWNpZSBuZXJhIHNjaGVtYXRpY2EgZGkgY2lucXVlIGNlbnRpbWV0cmkgcXVhZHJhdGkgYSBkdWVjZW50byBrZWx2aW4gZW1ldHRlIHF1YXJhbnRvdHRvIG1pbGxpd2F0dCBuZWwgbW9kZWxsbyBhc3NlZ25hdG8uIEFkIGFyZWEgZmlzc2EgbGUgdGVtcGVyYXR1cmUgbm9ybWFsaXp6YXRlIHVubywgZHVlIGUgdHJlIHByb2R1Y29ubyB0cmUsIHF1YXJhbnRvdHRvIGUgZHVlY2VudG9xdWFyYW50YXRyw6kgbWlsbGl3YXR0LiBVbiBhbHRybyBjb25mcm9udG8gZnJhIHByb3ZlIGNvbiBhcmVlIGRpdmVyc2UgZMOgIHF1YXJhbnRvdHRvIGUgcXVhdHRyb2NlbnRvdHRhbnRhc2VpIG1pbGxpd2F0dCBlIG1lZGlhIGR1ZWNlbnRvc2Vzc2FudGFzZXR0ZS48L2Rlc2M+CjxkZWZzPjxtYXJrZXIgaWQ9ImVtaXNzaW9uIiB2aWV3Qm94PSIwIDAgMTAgMTAiIHJlZlg9IjkiIHJlZlk9IjUiIG1hcmtlcldpZHRoPSI3IiBtYXJrZXJIZWlnaHQ9IjciIG9yaWVudD0iYXV0byI+PHBhdGggZD0iTTAgMEwxMCA1TDAgMTBaIiBmaWxsPSIjYjQ1MzI4Ii8+PC9tYXJrZXI+PC9kZWZzPgo8cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjEzMTAiIHJ4PSIxMiIgZmlsbD0iI2Y4ZmFmYyIvPgo8ZyBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZmlsbD0iIzE0MjQzYSIgZm9udC1zaXplPSIyMCI+Cjx0ZXh0IHg9IjMyIiB5PSI0MiIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9ImJvbGQiPjEgwrcgRW1pc3Npb25lIGFsbGEgdGVtcGVyYXR1cmEgYXNzb2x1dGE8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI4MyIgZm9udC1zaXplPSIxOCI+z4MqIGFzc2VnbmF0YTogNiDDlyAxMOKBu+KBuCBXLyhtwrLCt0vigbQpPC90ZXh0Pgo8cmVjdCB4PSI4MCIgeT0iMTI1IiB3aWR0aD0iMTYwIiBoZWlnaHQ9IjE0MCIgcng9IjgiIGZpbGw9IiMxNDI0M2EiLz4KPHRleHQgeD0iOTgiIHk9IjE2MyIgZmlsbD0id2hpdGUiPlN1cGVyZmljaWUgbmVyYTwvdGV4dD48dGV4dCB4PSI5OCIgeT0iMjA1IiBmaWxsPSJ3aGl0ZSI+QSA9IDUgY23CsjwvdGV4dD48dGV4dCB4PSI5OCIgeT0iMjQyIiBmaWxsPSJ3aGl0ZSI+VCA9IDIwMCBLPC90ZXh0Pgo8cGF0aCBkPSJNMjU4IDE2MEg0NTgiIHN0cm9rZT0iI2I0NTMyOCIgc3Ryb2tlLXdpZHRoPSI0IiBtYXJrZXItZW5kPSJ1cmwoI2VtaXNzaW9uKSIvPgo8cGF0aCBkPSJNMjU4IDIyNkg0NTgiIHN0cm9rZT0iI2I0NTMyOCIgc3Ryb2tlLXdpZHRoPSI0IiBtYXJrZXItZW5kPSJ1cmwoI2VtaXNzaW9uKSIvPgo8dGV4dCB4PSIzMTUiIHk9IjE5OCI+UF9lbSA9IDQ4IG1XPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iMzA2IiBmb250LXNpemU9IjE4Ij5TdXBlcmZpY2llIGUgZnJlY2NlIHNjaGVtYXRpY2hlLCBzZW56YSBzY2FsYSBtZXRyaWNhLjwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjMzOCIgZm9udC1zaXplPSIxOCI+w4ggbGEgcG90ZW56YSBlbWVzc2EsIHByaW1hIGRpIHNvdHRyYXJyZSBhc3NvcmJpbWVudGkuPC90ZXh0Pgo8cGF0aCBkPSJNMzIgMzcxSDYwOCIgc3Ryb2tlPSIjOWJhYmJjIi8+Cjx0ZXh0IHg9IjMyIiB5PSI0MTYiIGZvbnQtc2l6ZT0iMjUiIGZvbnQtd2VpZ2h0PSJib2xkIj4yIMK3IFN0ZXNzYSBhcmVhLCB0cmUgdGVtcGVyYXR1cmU8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI0NTUiIGZvbnQtc2l6ZT0iMTgiPkEgPSA1IGNtwrI7IM64ID0gVC8oMTAwIEspLiBQb3RlbnplIGluIG1XLjwvdGV4dD4KPHBhdGggZD0iTTEzMCA0ODVWNzQyIiBzdHJva2U9IiMxNDI0M2EiIHN0cm9rZS13aWR0aD0iMiIvPgo8cmVjdCB4PSIxMzAiIHk9IjUxMSIgd2lkdGg9IjQuNSIgaGVpZ2h0PSIzNCIgZmlsbD0iIzE2NWE4NyIvPgo8cmVjdCB4PSIxMzAiIHk9IjU4NCIgd2lkdGg9IjcyIiBoZWlnaHQ9IjM0IiBmaWxsPSIjMTY1YTg3Ii8+CjxyZWN0IHg9IjEzMCIgeT0iNjU3IiB3aWR0aD0iMzY0LjUiIGhlaWdodD0iMzQiIGZpbGw9IiMxNjVhODciLz4KPHRleHQgeD0iNDMiIHk9IjUzNyI+zrggPSAxPC90ZXh0Pjx0ZXh0IHg9IjE1NCIgeT0iNTM3Ij4zIG1XPC90ZXh0Pgo8dGV4dCB4PSI0MyIgeT0iNjEwIj7OuCA9IDI8L3RleHQ+PHRleHQgeD0iMjIxIiB5PSI2MTAiPjQ4IG1XPC90ZXh0Pgo8dGV4dCB4PSI0MyIgeT0iNjgzIj7OuCA9IDM8L3RleHQ+PHRleHQgeD0iNTExIiB5PSI2ODMiPjI0MyBtVzwvdGV4dD4KPHRleHQgeD0iMTA1IiB5PSI3MzciPjA8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI3ODIiIGZvbnQtc2l6ZT0iMTgiPlJhcHBvcnRvIGRlbGxlIHBvdGVuemU6IDEgOiAxNiA6IDgxLjwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjgxNCIgZm9udC1zaXplPSIxOCI+TGUgYmFycmUgcmFwcHJlc2VudGFubyBlbWlzc2lvbmksIG5vbiB0ZW1wZXJhdHVyZS48L3RleHQ+CjxwYXRoIGQ9Ik0zMiA4NDdINjA4IiBzdHJva2U9IiM5YmFiYmMiLz4KPHRleHQgeD0iMzIiIHk9Ijg5MSIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9ImJvbGQiPjMgwrcgVW4gYWx0cm8gY29uZnJvbnRvOiBjYW1iaWEgYW5jaGUgQTwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjkzMCIgZm9udC1zaXplPSIxOCI+QTogzrggPSAyLCBhcmVhIDUgY23CsjsgQjogzrggPSAzLCBhcmVhIDEwIGNtwrIuPC90ZXh0Pgo8cGF0aCBkPSJNMTMwIDk1NlYxMjA3IiBzdHJva2U9IiMxNDI0M2EiIHN0cm9rZS13aWR0aD0iMiIvPgo8cmVjdCB4PSIxMzAiIHk9Ijk3OCIgd2lkdGg9IjM2IiBoZWlnaHQ9IjM0IiBmaWxsPSIjMTY1YTg3Ii8+CjxyZWN0IHg9IjEzMCIgeT0iMTA1MSIgd2lkdGg9IjM2NC41IiBoZWlnaHQ9IjM0IiBmaWxsPSIjYjQ1MzI4Ii8+CjxyZWN0IHg9IjEzMCIgeT0iMTEyNCIgd2lkdGg9IjIwMC4yNSIgaGVpZ2h0PSIzNCIgZmlsbD0iIzI4NjY0ZCIvPgo8dGV4dCB4PSI1MCIgeT0iMTAwNCI+QTwvdGV4dD48dGV4dCB4PSIxODQiIHk9IjEwMDQiPjQ4IG1XPC90ZXh0Pgo8dGV4dCB4PSI1MCIgeT0iMTA3NyI+QjwvdGV4dD48dGV4dCB4PSI1MTEiIHk9IjEwNzciPjQ4NiBtVzwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjExNTAiPk1lZGlhPC90ZXh0Pjx0ZXh0IHg9IjM0OSIgeT0iMTE1MCI+MjY3IG1XPC90ZXh0Pgo8dGV4dCB4PSIxMDUiIHk9IjEyMDEiPjA8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIxMjQ4IiBmb250LXNpemU9IjE4Ij5NZWRpYSBkZWxsZSB1c2NpdGU6ICg0OCArIDQ4NikvMiA9IDI2NyBtVy48L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIxMjgwIiBmb250LXNpemU9IjE4Ij5Qb3RlbnplIHRvdGFsaSBkYWxsYSBzdGVzc2Egb3JpZ2luZSwgaW4gY2lhc2N1biBwYW5uZWxsby48L3RleHQ+CjwvZz48L3N2Zz4K"
+    }
+  ]
+}
