@@ -7,6 +7,9 @@ from fractions import Fraction
 from pathlib import Path
 import pint
 import sympy as sp
+import re
+import xml.etree.ElementTree as ET
+from .review_contract import reviewed_rows
 from .pipeline import digest,sha
 APP=Path(__file__).resolve().parents[2]
 SOURCE_REF='5d1dc8dc7b601aef959d10d564c75462be74708d'
@@ -27,6 +30,10 @@ READ_ASSETS={'C5-campi.svg':'76eecac175a09dc3230ea84a31ba22df7f6e9376f053542355c
 FIGURES_BY_ID={'C5-E009':[],'C5-E010':[],'C5-E011':[],'C5-E012':['C5-campi.svg'],
 'C5-E013':[],'C5-E014':['C5-attenuazione.svg'],'C5-E015':[],'C5-E016':[]}
 SOURCE_ISSUES={'C5-E009':'P3 prompt geometry ambiguity: two perpendicular surfaces can mean perpendicular to each other. The intended monostatic same-axis direct echoes require explicitly normal-to-beam interfaces and direct single paths; the worked solution adds the direct-path condition only at the end. Intended 2.1cm arithmetic is correct.'}
+REVISION_IDS={'C5-E009'}
+# Frozen only after complete independent prompt/28-block reading and native SVG render.
+REVIEWED_REVISIONS={'C5-E009':'cdc1d85a489ca1b2ee882016edc46ce10106df19a2134b753a09009a5fadc8ec'}
+REVISION_ASSETS={'echo-direct-paths.svg':'49f042a321a4e1feea636f9e3ca2328a1a1c431cfba74fa81aa2f1c24e4b8901'}
 SI=pint.UnitRegistry(non_int_type=Fraction)
 
 
@@ -174,7 +181,7 @@ FIGURE_REVIEW={
 'C5-E016':'No figureinallfiveblocks;sourceasksintegernuclearcompositionsonly.'}
 
 
-def verify(sources, asset_root=None):
+def verify_originals(sources, asset_root=None):
     missing = set(READ_SOURCE_SHA256)-set(sources)
     if missing:
         raise ValueError('Missing independently read examples: '+','.join(sorted(missing)))
@@ -213,14 +220,102 @@ def verify(sources, asset_root=None):
     return records
 
 
-def report(sources):
-    records = verify(sources)
-    return {'schemaVersion': '1.0.0', 'batch': BATCH, 'records': records,
-        'verifierSha256': sha(Path(__file__).read_bytes()), 'sourceRef': SOURCE_REF,
-        'sourcePath': SOURCE_PATH, 'sourceFileSha256': SOURCE_FILE_SHA256,
-        'contractSha256': sha(Path(__file__).with_name('review_contract.py').read_bytes()),
-        'acceptedCount': sum(row['ok'] for row in records), 'failedCount': sum(not row['ok'] for row in records),
-        'draftReviewedCount': 0, 'failedPublishedEditionIds': [row['id'] for row in records if row['failedPublishedEdition']],
-        'dependencyVersions': {'sympy': sp.__version__, 'pint': pint.__version__},
-        'reviewer': 'separate_AI_reviewer_not_original_or_revision_author',
-        'originalEditionRetained': True, 'humanApproval': 'NOT_RUN', 'publicationAction': 'NONE'}
+
+def revised_checks(row,asset_root):
+    checks=[dict(claim,scope='new_draft_actual_worked_calculation') for claim in independent_checks()['C5-E009']]
+    F=sp.Rational;Q=SI.Quantity
+    prompt=' '.join(row.get('prompt','').split()).casefold()
+    clauses=('velocità del suono lungo il percorso considerato è uniforme',
+             'paralleli fra loro e perpendicolari all’asse del fascio rettilineo',
+             'parzialmente trasmittenti','stesso trasduttore emette e riceve dallo stesso punto',
+             'tempo è contato dall’emissione','ritardi strumentali e nei riflettori trascurati',
+             'due echi diretti','senza percorsi multipli o rifrazioni')
+    inputs=('v=1500 m/s','t₁=40 µs','t₂=68 µs')
+    checks.extend([
+        check('new prompt states same-axis direct-return geometry and timing',sp.Integer(int(all(c in prompt for c in clauses))),1),
+        check('new prompt retains independently solved inputs',sp.Integer(int(all(c.casefold() in prompt for c in inputs))),1),
+        check('new velocity conversion gives3over2 millimetres per microsecond',Q(1500,'m/s'),F(3,2),'mm/us'),
+        check('new doubled path42mm isnotonewayseparation',F(3,2)*28,42,'mm'),
+        check('new exact inverse recovers28microseconds',2*21/F(3,2),28,'us'),
+        check('new lengthdividedbyvelocity has timeunits',Q(42,'mm')/Q(F(3,2),'mm/us'),28,'us'),
+        check('new exact terminatingdecimal in centimetres',F('2.1'),F(21,10),'cm'),
+    ])
+    patterns=((r'\\Delta d=(\d{1,3})\\,\\mathrm\{mm\}',21,'printed exact separation millimetres','mm'),
+              (r'd_1=(\d{1,3})\\,\\mathrm\{mm\}',30,'printed first depth millimetres','mm'),
+              (r'd_2=(\d{1,3})\\,\\mathrm\{mm\}',51,'printed second depth millimetres','mm'),
+              (r'\\Delta t=(\d{1,3})\\,\\mu\\mathrm s',28,'printed forward and inverse microseconds','us'))
+    for pattern,expected,claim,unit in patterns:
+        values=[F(m[1]) for block in row.get('blocks',[]) if block.get('type')=='formula'
+                and (m:=re.fullmatch(pattern,block.get('text','')))]
+        checks.append(check(claim+' count',sp.Integer(len(values)),2 if unit=='us' else 1))
+        for index,value in enumerate(values):checks.append(check(claim+str(index),value,expected,unit))
+    try:
+        svg=ET.fromstring((Path(asset_root)/'echo-direct-paths.svg').read_bytes())
+        paths={el.attrib.get('d') for el in svg.iter() if el.tag.endswith('path')}
+        checks.extend([
+            check('spatial positions use6pixels per millimetre',(356-230)/F(21),6,'1/mm'),
+            check('near depth uses same spatialscale',(230-50)/F(30),6,'1/mm'),
+            check('far depth uses same spatialscale',(356-50)/F(51),6,'1/mm'),
+            check('temporal positions use4pixels per microsecond',(322-210)/F(28),4,'1/us'),
+            check('first echo uses same temporalorigin',(210-50)/F(40),4,'1/us'),
+            check('second echo uses same temporalorigin',(322-50)/F(68),4,'1/us'),
+            check('nativeSVG retains the independently read reflector and pulse geometry',sp.Integer(int(
+                {'M230 145V232','M356 145V232','M210 580V530','M322 580V530'}.issubset(paths))),1),
+        ])
+    except (OSError,ET.ParseError,ValueError):
+        checks.append(check('new spatial and temporal diagram must be readable',sp.Integer(0),1))
+    return checks
+
+
+def verify(sources,package=None,bindings=None,asset_root=None,original_asset_root=None):
+    historical_root=original_asset_root if original_asset_root is not None else asset_root if package is None else None
+    originals=verify_originals(sources,historical_root)
+    if package is None:
+        if bindings is not None:raise ValueError('Bindings require a revision package')
+        return originals
+    if bindings is None:raise ValueError('Revision package requires complete source bindings')
+    root=Path(asset_root) if asset_root is not None else APP/'editorial/assets'
+    byid={record['id']:record for record in originals}
+    for row,binding,signature,assets,errors in reviewed_rows(package,bindings,REVIEWED_REVISIONS,REVISION_IDS,root):
+        key=row['id'];original=byid[key]
+        if (binding['sourceRef']!=SOURCE_REF or binding['sourceId']!=key
+                or binding['sourceSha256']!=original['sourceSha256']
+                or original['sourceSha256']!=READ_SOURCE_SHA256[key]):
+            errors.append('Revision not bound to independently read original source')
+        if (row.get('kind')!='example' or 'answer' in row
+                or type(row.get('version')) is not int or type(row.get('baseVersion')) is not int
+                or row['version']!=original['sourceVersion']+1 or row['baseVersion']!=original['sourceVersion']):
+            errors.append('Expected additive next example edition with correct base and no answer key')
+        if binding.get('assetChecksums')!=REVISION_ASSETS:
+            errors.append('Revision figure differs from independently read protected asset')
+        checks=revised_checks(row,root)
+        if not checks or not all(claim['ok'] for claim in checks):
+            errors.append('Independent new draft mathematics or physical domain failed')
+        revised=dict(original)
+        revised.update(ok=not errors,errors=errors,checks=checks,
+            dimension={claim['claim']:claim['dimension'] for claim in checks},
+            manualFeasibility='PASS_AI_EXACT' if not errors else 'FAIL_NEW_DRAFT',
+            manualArithmetic='NEW DRAFT: v1500m/s=(3/2)mm/us, Delta t68-40=28us. Each direct echo travels2d; subtractingvt2=2d2 andvt1=2d1 gives Delta d=vDelta t/2. (3/2)*28/2=3*(28/4)=21mm=21/10cm=2.1cm exact relative to assigned inputs. Separate depths(3/2)*40/2=30mm and(3/2)*68/2=51mm agree. Inverse2*21/(3/2)=28us; mm/(mm/us)=us. Omitting roundtrip factor gives42mm; using68us gives51mm depth, not separation. No calculator, decimalinverse or approximation needed.',
+            physicalAssumptions='NEW DRAFT actually read: constant uniform given sound speed; stationary parallel thin reflectors both normal to same straight beam and partially transmitting; coincident fixed transmitter/receiver; timezero at emission; negligible instrument/interface delays; selected single direct echo from each interface, no multiple paths or refraction. Nonzero common beam now geometrically possible. Original mutually-perpendicular-plane ambiguity remains nested FAIL, not retrospectively reinterpreted.',
+            pedagogicalReview='All28new blocks and standalone prompt read independently. Geometry and timing given before solution; factor2 derived from two actual roundtrips, then subtraction/cancelled common path. Explicit prefix conversions, finite exact fraction arithmetic, separate-depth verification, inverse, two error routes and multipath boundary. No clinical diagnosis, empirical student calibration or human approval is inferred.',
+            figureReview='echo-direct-paths.svg entire XML and complete native480x860 Chromium render independently read. Spatial originx50, reflectorsx230/356 correspond30/51mm at6px/mm; separate timeoriginx50, pulsesx210/322 correspond40/68us at4px/us. Separations126px and112px give21mm/28us. Reflectors parallel vertical, axis horizontal; pulseheights explicitly schematic without intensityscale. Distinct spatial/time scales declared in caption. All labels visible; no historical source SVG overwritten.',
+            assetChecksums=assets,candidateSha256=digest(row),reviewedSignature=signature,
+            candidateVersion=row.get('version'),baseVersion=row.get('baseVersion'),
+            failedPublishedEdition=True,publishedEditionReview=original,reviewedEdition='NEW_DRAFT',
+            verificationMode='EXACT_ORACLE',publicationAction='DRAFT')
+        byid[key]=revised
+    return [byid[key] for key in sorted(byid)]
+
+
+def report(sources,package=None,bindings=None):
+    records=verify(sources,package,bindings)
+    return {'schemaVersion':'1.0.0','batch':BATCH,'records':records,
+        'verifierSha256':sha(Path(__file__).read_bytes()),'sourceRef':SOURCE_REF,
+        'sourcePath':SOURCE_PATH,'sourceFileSha256':SOURCE_FILE_SHA256,
+        'contractSha256':sha(Path(__file__).with_name('review_contract.py').read_bytes()),
+        'acceptedCount':sum(row['ok'] for row in records),'failedCount':sum(not row['ok'] for row in records),
+        'draftReviewedCount':sum(row['publicationAction']=='DRAFT' for row in records),
+        'failedPublishedEditionIds':sorted(SOURCE_ISSUES),
+        'dependencyVersions':{'sympy':sp.__version__,'pint':pint.__version__},
+        'reviewer':'separate_AI_reviewer_not_original_or_revision_author',
+        'originalEditionRetained':True,'humanApproval':'NOT_RUN','publicationAction':'NONE'}

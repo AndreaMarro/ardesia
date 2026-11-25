@@ -2,7 +2,7 @@
 
 Read **C5-E009..E016: eight full prompts,40 blocks and two full SVG XML/rendered diagrams**. Source Cric `5d1dc8dc7b601aef959d10d564c75462be74708d:officina-di-fisica/content/C5.json`, file SHA-256 `dac4490e6a900f5da191bf7a1f5b8463ddc57c8bbaa36cb7a4a375c70fa77422`. All local source/figure bytes match actual Git and individual source pins. Previously read C5-campi/C5-attenuazione were re-viewed and byte-revalidated for these specific examples. No exam keys emitted.
 
-**Original outcome:7 PASS,1 FAIL(C5-E009),56 exact mathematical checks,0 drafts.** The failure is a P3 ambiguity in standalone echo geometry, not the intended arithmetic. All56 mathematics checks pass. Current original/effective reports both preserve the source failure because no new candidate is reviewed. Separate AI reviewer; human NOT_RUN, publication NONE, originals retained. No source/candidate, registry/checkpoint, app or Git mutation. Tests require that this unresolved unchanged batch cannot be accepted as eight PASS records.
+**Original outcome:7 PASS,1 FAIL(C5-E009),56 exact mathematical checks,0 drafts.** The failure is a P3 ambiguity in standalone echo geometry, not the intended arithmetic. All56 mathematics checks pass. The default/original report preserves this source failure; the later optional105 review below separately verifies one additive draft. Separate AI reviewer; human NOT_RUN, publication NONE, originals retained. No source/candidate, registry/checkpoint, app or Git mutation. Tests require that this unresolved unchanged batch cannot be accepted as eight PASS records.
 
 - **E009 (five blocks), FAIL: echo interface geometry.** Intended direct same-axis calculation is sound: time difference68-40=28microseconds;1500*28e-6/2=0.021m=2.1cm. Separate depths3.0cm and5.1cm agree. The prompt at `content/C5.json:903` says “da due superfici perpendicolari” without specifying “al fascio”; the ordinary geometric reading can mean mutually perpendicular surfaces. Two mutually perpendicular reflecting planes cannot both have normals parallel to one nonzero beam, unlike the intended normal-incidence monostatic direct-return diagram. No diagram resolves the wording. Only at worked line925 does it add that both echoes use “il percorso diretto descritto”, which was not unambiguously described in the prompt. Recommend a separately authored new edition explicitly specifying surfaces normal to the same beam and direct single paths/no multipath. This is a precision/selection-of-model failure, not a claim that2.1cm is wrong under the intended conditions. No clinical inference or medical recommendation is made.
 - **E010 (five blocks), independent acoustic sources.** Given reference1e-12W/m²,60dB implies1e-6W/m² and70dB implies1e-5W/m²; incoherent time-average sum is11e-6. Exact level70+10log10(11/10)dB is visible in the source, with optional≈70.4. Independent zero cross-term integration and exact log algebra check the combination. A manual bound verifies rounding without a mandatory decimal log:0.095<ln1.1<0.1 from the alternating series, and finite exponential-series/geometric-tail bounds establish9/4<ln10<5/2. The added level lies0.38..4/9dB, within0.35..0.45, so it rounds0.4. The dB values themselves are not added.
@@ -17,7 +17,36 @@ All eight are real numerical worked tasks and remain EXACT_MANUAL_CALCULATION, i
 
 Recovery Python: `python -m unittest discover -s tests/corpus -p test_examples_sound_photons_decay_review.py -v`: **6/6 PASS,exit0,1.466s**. Tests enforce the source FAIL even with all mathematics passing, reject unchanged all-eight acceptance, verify Git source/two assets, all altered/omitted source records, each missing/changed figure, empty/failed models, exact log/nominal-count/half-life/nuclear results and the incompatible mutual-plane versus same-beam-normal interpretation. Initial reviewer implementation fixed an extra parenthesis and allowed exact symbolic Pint magnitudes through sympify rather than coercing logs into Rational. A preliminary assertion wrongly demanded one textual normal form for3ln2/ln4; it was corrected to check exact algebraic equality, and the final target passed. None was a source arithmetic failure.
 
+Historical original-only review hashes (superseded by the current wrapper/report hashes below):
+
 - Verifier SHA-256: `db2cfa3a27e4f86733f2dc458076609704e798657157b47d64e7ca40cde504b8`
 - Test SHA-256: `7fac090e62e61f066b35d12d7d894efc4cdaebe5e7546b93e0f9f653737eadeb`
 - Both current report files SHA-256: `f79fe3ca14ff2731026cf9b0d6439d7aebccc2d7ce10c7fd3e796d0299b24d47`
 - Canonical report digest: `9f2a0faf138af93ff42c971f980dc50d6d76d49f46fcc8ed50cfbcdd468c6262`
+
+
+## Separate review of echo revision105 (author commit7df1e41)
+
+As a separate AI reviewer, I read the entire standalone prompt, all28blocks and the full SVG XML, then inspected the **complete native480×860 Chromium render** at `/private/tmp/cric-review-echo-105.png`. No candidate, binding, asset, registry, checkpoint, app or Git files were edited. This is scientific/technical AI review, **not human approval**, and does not publish or retrospectively approve the original.
+
+The prompt now explicitly gives stationary parallel partially transmitting planes normal to one straight beam, coincident transmitter/receiver, uniform1500m/s, timezero at emission, negligible instrument/interface delays and the two selected direct echoes without refraction/multipath. These words repair the original standalone geometric ambiguity before any solution is visible. Two distinct normal direct returns are physically possible with these assigned ideal reflectors; no diagnostic/clinical claim is involved.
+
+Each roundtrip gives vt_i=2d_i. Subtraction gives2Δd=vΔt, withΔt=68−40=28µs. Exact conversion1500m/s=(3/2)mm/µs yieldsΔd=(3·28)/4=21mm=21/10cm=2.1cm. The finite decimal is exact relative to given model data. Independent depths30mm and51mm differ21mm; inverse2·21/(3/2)=28µs and mm/(mm/µs)=µs verify units. Omitting factor2 gives42mm, while using68µs alone yields51mm depth. All arithmetic is manual; no numerical inverse or calculator requirement.
+
+The figure uses originx50 and reflector positions230/356:180/30=306/51=126/21=6px/mm. In the distinct timepanel, pulses210/322 give160/40=272/68=112/28=4px/µs. Vertical reflector lines are parallel and normal to the horizontal beam axis. Pulseheights are explicitly schematic; no power scale is inferred. Caption declares both scales; full bottomlabels visible. Uploaded asset bytes and Base64 payload hash identically; no original source figure was overwritten.
+
+Original report remains **7PASS/1FAIL/56checks**. Optional effective report is **8PASS/0FAIL/1DRAFT/79checks**. The revised record contains the complete original FAIL in `publishedEditionReview`, `failedPublishedEdition=True`, baseVersion1/version2, originalEditionRetainedTrue; seven others retain publicationActionNONE. HumanNOT_RUN throughout. `assert_activity_identity` accepts this mixed evidence only with its exact source/candidate/bindings.
+
+Expanded target **11/11testsPASS,exit0,3.337s**. Tests reject altered/missing sources/figures, empty/failed models, source rebindings, coherent source-version drift, candidate/base/kind/answer changes, duplicate/omitted IDs, unpaired package/binding, Base64 tampering, orphan/missing/changed assets. Wrong21→42mm, inverse28→14µs, missingnormal geometry, changed68→78µs or unknown timeorigin fail frozen reading; TEST-ONLY token overrides also fail independent arithmetic/domain checks. Initial reviewer implementation fixed micro-sign casefold normalization in the input guard and replaced accidentally copied bar-geometry test assertions with this diagram’s actual spatial/time geometry. These were verifier/test errors, not candidate defects; final target passes.
+
+Current exact hashes:
+
+- Package file `d500aea99cb9361b35892709d98c84a342419e435b409d72efc8aa72c705f670`; canonical `ad8f748d5b4f082843ff9ac357553bd558cc48a3d7f809ed218f605629203935`.
+- Binding file `c5e7aac3d7493e3ebeac8fe23c6399e75807f838a131cd797656cb92b994a606`; canonical `4798d3251840f2f63ab90fd338b6205fb172aee9ddd3656900e8763175cf686a`.
+- Candidate `491226be9977475a476241ace26b7ede49d973f6a8c1ba0218019bdfbe19cdd7`.
+- Independently frozen signature `cdc1d85a489ca1b2ee882016edc46ce10106df19a2134b753a09009a5fadc8ec`.
+- SVG `echo-direct-paths.svg`: `49f042a321a4e1feea636f9e3ca2328a1a1c431cfba74fa81aa2f1c24e4b8901`.
+- Verifier `a2bb95142e50e86fe36476abf3c2bd892ee688fc6c1a5d220a7dd165573b604f`.
+- Test `0bfdcc8e3b5aa4c875104d0fd03ce065433f74ffbbb7262b8b492d6ff18dc0c1`.
+- Original report file `9bd85a43cf940d4df9db14c9b0426bb084f3c5dcc163c2168b04a43d988601fb`; canonical `32d739f01bf0d4c268dd8419a052730ee00f3ab64ab05fc086abbf0fa044939e`.
+- Effective report file `ddcdb89dd8d3d56cbb73413a990fbe0df83c3b31c2574d8f6b0a34dbc38bb937`; canonical `b80de53f9ac2cd74e2f5b6016ae5316ddd832cafac23c02b09802135ff16325f`.

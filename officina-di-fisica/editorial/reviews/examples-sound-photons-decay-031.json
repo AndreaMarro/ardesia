@@ -9,10 +9,8 @@
       "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
       "sourcePath": "officina-di-fisica/content/C5.json",
       "sourceFileSha256": "dac4490e6a900f5da191bf7a1f5b8463ddc57c8bbaa36cb7a4a375c70fa77422",
-      "ok": false,
-      "errors": [
-        "P3 prompt geometry ambiguity: two perpendicular surfaces can mean perpendicular to each other. The intended monostatic same-axis direct echoes require explicitly normal-to-beam interfaces and direct single paths; the worked solution adds the direct-path condition only at the end. Intended 2.1cm arithmetic is correct."
-      ],
+      "ok": true,
+      "errors": [],
       "checks": [
         {
           "claim": "intended echo timedifference28microseconds",
@@ -25,7 +23,7 @@
           "relation": "exact",
           "residual": "0",
           "ok": true,
-          "scope": "actual_source_example_manual_calculation"
+          "scope": "new_draft_actual_worked_calculation"
         },
         {
           "claim": "intended doubledpath reduction21millimetres",
@@ -38,7 +36,7 @@
           "relation": "exact",
           "residual": "0",
           "ok": true,
-          "scope": "actual_source_example_manual_calculation"
+          "scope": "new_draft_actual_worked_calculation"
         },
         {
           "claim": "intended nearestreflectordepth30millimetres",
@@ -51,7 +49,7 @@
           "relation": "exact",
           "residual": "0",
           "ok": true,
-          "scope": "actual_source_example_manual_calculation"
+          "scope": "new_draft_actual_worked_calculation"
         },
         {
           "claim": "intended fartherreflectordepth51millimetres",
@@ -64,7 +62,7 @@
           "relation": "exact",
           "residual": "0",
           "ok": true,
-          "scope": "actual_source_example_manual_calculation"
+          "scope": "new_draft_actual_worked_calculation"
         },
         {
           "claim": "separatedepth differenceagrees",
@@ -77,7 +75,7 @@
           "relation": "exact",
           "residual": "0",
           "ok": true,
-          "scope": "symbolic_source_claim"
+          "scope": "new_draft_actual_worked_calculation"
         },
         {
           "claim": "intended distancecentimetres2point1",
@@ -90,7 +88,293 @@
           "relation": "exact",
           "residual": "0",
           "ok": true,
-          "scope": "actual_source_example_manual_calculation"
+          "scope": "new_draft_actual_worked_calculation"
+        },
+        {
+          "claim": "new prompt states same-axis direct-return geometry and timing",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "new prompt retains independently solved inputs",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "new velocity conversion gives3over2 millimetres per microsecond",
+          "independentExact": "3/2",
+          "expectedValue": "3/2",
+          "unit": "mm/us",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "new doubled path42mm isnotonewayseparation",
+          "independentExact": "42",
+          "expectedValue": "42",
+          "unit": "mm",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "new exact inverse recovers28microseconds",
+          "independentExact": "28",
+          "expectedValue": "28",
+          "unit": "us",
+          "dimension": {
+            "[time]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "new lengthdividedbyvelocity has timeunits",
+          "independentExact": "28",
+          "expectedValue": "28",
+          "unit": "us",
+          "dimension": {
+            "[time]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "new exact terminatingdecimal in centimetres",
+          "independentExact": "21/10",
+          "expectedValue": "21/10",
+          "unit": "cm",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "printed exact separation millimetres count",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "printed exact separation millimetres0",
+          "independentExact": "21",
+          "expectedValue": "21",
+          "unit": "mm",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "printed first depth millimetres count",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "printed first depth millimetres0",
+          "independentExact": "30",
+          "expectedValue": "30",
+          "unit": "mm",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "printed second depth millimetres count",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "printed second depth millimetres0",
+          "independentExact": "51",
+          "expectedValue": "51",
+          "unit": "mm",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "printed forward and inverse microseconds count",
+          "independentExact": "2",
+          "expectedValue": "2",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "printed forward and inverse microseconds0",
+          "independentExact": "28",
+          "expectedValue": "28",
+          "unit": "us",
+          "dimension": {
+            "[time]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "printed forward and inverse microseconds1",
+          "independentExact": "28",
+          "expectedValue": "28",
+          "unit": "us",
+          "dimension": {
+            "[time]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "spatial positions use6pixels per millimetre",
+          "independentExact": "6",
+          "expectedValue": "6",
+          "unit": "1/mm",
+          "dimension": {
+            "[length]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "near depth uses same spatialscale",
+          "independentExact": "6",
+          "expectedValue": "6",
+          "unit": "1/mm",
+          "dimension": {
+            "[length]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "far depth uses same spatialscale",
+          "independentExact": "6",
+          "expectedValue": "6",
+          "unit": "1/mm",
+          "dimension": {
+            "[length]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "temporal positions use4pixels per microsecond",
+          "independentExact": "4",
+          "expectedValue": "4",
+          "unit": "1/us",
+          "dimension": {
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "first echo uses same temporalorigin",
+          "independentExact": "4",
+          "expectedValue": "4",
+          "unit": "1/us",
+          "dimension": {
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "second echo uses same temporalorigin",
+          "independentExact": "4",
+          "expectedValue": "4",
+          "unit": "1/us",
+          "dimension": {
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "nativeSVG retains the independently read reflector and pulse geometry",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
         }
       ],
       "dimension": {
@@ -111,20 +395,207 @@
         },
         "intended distancecentimetres2point1": {
           "[length]": "1"
-        }
+        },
+        "new prompt states same-axis direct-return geometry and timing": {},
+        "new prompt retains independently solved inputs": {},
+        "new velocity conversion gives3over2 millimetres per microsecond": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "new doubled path42mm isnotonewayseparation": {
+          "[length]": "1"
+        },
+        "new exact inverse recovers28microseconds": {
+          "[time]": "1"
+        },
+        "new lengthdividedbyvelocity has timeunits": {
+          "[time]": "1"
+        },
+        "new exact terminatingdecimal in centimetres": {
+          "[length]": "1"
+        },
+        "printed exact separation millimetres count": {},
+        "printed exact separation millimetres0": {
+          "[length]": "1"
+        },
+        "printed first depth millimetres count": {},
+        "printed first depth millimetres0": {
+          "[length]": "1"
+        },
+        "printed second depth millimetres count": {},
+        "printed second depth millimetres0": {
+          "[length]": "1"
+        },
+        "printed forward and inverse microseconds count": {},
+        "printed forward and inverse microseconds0": {
+          "[time]": "1"
+        },
+        "printed forward and inverse microseconds1": {
+          "[time]": "1"
+        },
+        "spatial positions use6pixels per millimetre": {
+          "[length]": "-1"
+        },
+        "near depth uses same spatialscale": {
+          "[length]": "-1"
+        },
+        "far depth uses same spatialscale": {
+          "[length]": "-1"
+        },
+        "temporal positions use4pixels per microsecond": {
+          "[time]": "-1"
+        },
+        "first echo uses same temporalorigin": {
+          "[time]": "-1"
+        },
+        "second echo uses same temporalorigin": {
+          "[time]": "-1"
+        },
+        "nativeSVG retains the independently read reflector and pulse geometry": {}
       },
       "calculationScope": "EXACT_MANUAL_CALCULATION",
-      "manualArithmetic": "Intendeddirectsame-axis model:Deltaeco68-40=28microseconds. d1500*28e-6/2=21e-3m=2.1cm;separate depths1500*40e-6/2=3cm and1500*68e-6/2=5.1cm agree. Howeverpromptnames twoperpendicularsurfaces withoutsayingperpendiculartobeam;thesurfacescaninsteadbereadmutuallyperpendicular. Theworkedsolutionadds directpaths onlyattheend. OriginalFAILisgeometric/pedagogical,nottheintended arithmetic. No clinicaldiagnosisorinferencefromtheseassignedtoyvalues.",
-      "manualFeasibility": "FAIL_ORIGINAL_EDITION",
-      "physicalAssumptions": "Intendedhomogeneousconstantv1500m/s,coincidentfixedtransducer,twodirectsingleechoesalongthesameaxis,interfacesnormaltobeam/no multipath. Thesegeometricalwordsaremissing/ambiguousinthepromptandonlydirectpathassumptionappearsatworkedend;sourceFAILretained.",
-      "pedagogicalReview": "FAIL: intendedecho subtraction iscorrectbutstandalonepromptdoesnotunambiguouslysayinterfacesnormaltothesamebeam/directsinglepaths. Readingthesolutionisnotamethodtodiscoveramissinggeometrycondition.",
-      "assetChecksums": {},
-      "figureReview": "No figureinallfiveblocks;no geometrydiagramresolvesthepromptambiguity.",
-      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "manualArithmetic": "NEW DRAFT: v1500m/s=(3/2)mm/us, Delta t68-40=28us. Each direct echo travels2d; subtractingvt2=2d2 andvt1=2d1 gives Delta d=vDelta t/2. (3/2)*28/2=3*(28/4)=21mm=21/10cm=2.1cm exact relative to assigned inputs. Separate depths(3/2)*40/2=30mm and(3/2)*68/2=51mm agree. Inverse2*21/(3/2)=28us; mm/(mm/us)=us. Omitting roundtrip factor gives42mm; using68us gives51mm depth, not separation. No calculator, decimalinverse or approximation needed.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "NEW DRAFT actually read: constant uniform given sound speed; stationary parallel thin reflectors both normal to same straight beam and partially transmitting; coincident fixed transmitter/receiver; timezero at emission; negligible instrument/interface delays; selected single direct echo from each interface, no multiple paths or refraction. Nonzero common beam now geometrically possible. Original mutually-perpendicular-plane ambiguity remains nested FAIL, not retrospectively reinterpreted.",
+      "pedagogicalReview": "All28new blocks and standalone prompt read independently. Geometry and timing given before solution; factor2 derived from two actual roundtrips, then subtraction/cancelled common path. Explicit prefix conversions, finite exact fraction arithmetic, separate-depth verification, inverse, two error routes and multipath boundary. No clinical diagnosis, empirical student calibration or human approval is inferred.",
+      "assetChecksums": {
+        "echo-direct-paths.svg": "49f042a321a4e1feea636f9e3ca2328a1a1c431cfba74fa81aa2f1c24e4b8901"
+      },
+      "figureReview": "echo-direct-paths.svg entire XML and complete native480x860 Chromium render independently read. Spatial originx50, reflectorsx230/356 correspond30/51mm at6px/mm; separate timeoriginx50, pulsesx210/322 correspond40/68us at4px/us. Separations126px and112px give21mm/28us. Reflectors parallel vertical, axis horizontal; pulseheights explicitly schematic without intensityscale. Distinct spatial/time scales declared in caption. All labels visible; no historical source SVG overwritten.",
+      "verificationMode": "EXACT_ORACLE",
       "failedPublishedEdition": true,
       "originalEditionRetained": true,
       "humanApproval": "NOT_RUN",
-      "publicationAction": "NONE"
+      "publicationAction": "DRAFT",
+      "candidateSha256": "491226be9977475a476241ace26b7ede49d973f6a8c1ba0218019bdfbe19cdd7",
+      "reviewedSignature": "cdc1d85a489ca1b2ee882016edc46ce10106df19a2134b753a09009a5fadc8ec",
+      "candidateVersion": 2,
+      "baseVersion": 1,
+      "publishedEditionReview": {
+        "id": "C5-E009",
+        "sourceSha256": "facb9df9b6c67e39a867084c73694196d5bf70376bdfaeff0a87707c68f1f4a4",
+        "sourceVersion": 1,
+        "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+        "sourcePath": "officina-di-fisica/content/C5.json",
+        "sourceFileSha256": "dac4490e6a900f5da191bf7a1f5b8463ddc57c8bbaa36cb7a4a375c70fa77422",
+        "ok": false,
+        "errors": [
+          "P3 prompt geometry ambiguity: two perpendicular surfaces can mean perpendicular to each other. The intended monostatic same-axis direct echoes require explicitly normal-to-beam interfaces and direct single paths; the worked solution adds the direct-path condition only at the end. Intended 2.1cm arithmetic is correct."
+        ],
+        "checks": [
+          {
+            "claim": "intended echo timedifference28microseconds",
+            "independentExact": "7/250000",
+            "expectedValue": "7/250000",
+            "unit": "s",
+            "dimension": {
+              "[time]": "1"
+            },
+            "relation": "exact",
+            "residual": "0",
+            "ok": true,
+            "scope": "actual_source_example_manual_calculation"
+          },
+          {
+            "claim": "intended doubledpath reduction21millimetres",
+            "independentExact": "21/1000",
+            "expectedValue": "21/1000",
+            "unit": "m",
+            "dimension": {
+              "[length]": "1"
+            },
+            "relation": "exact",
+            "residual": "0",
+            "ok": true,
+            "scope": "actual_source_example_manual_calculation"
+          },
+          {
+            "claim": "intended nearestreflectordepth30millimetres",
+            "independentExact": "3/100",
+            "expectedValue": "3/100",
+            "unit": "m",
+            "dimension": {
+              "[length]": "1"
+            },
+            "relation": "exact",
+            "residual": "0",
+            "ok": true,
+            "scope": "actual_source_example_manual_calculation"
+          },
+          {
+            "claim": "intended fartherreflectordepth51millimetres",
+            "independentExact": "51/1000",
+            "expectedValue": "51/1000",
+            "unit": "m",
+            "dimension": {
+              "[length]": "1"
+            },
+            "relation": "exact",
+            "residual": "0",
+            "ok": true,
+            "scope": "actual_source_example_manual_calculation"
+          },
+          {
+            "claim": "separatedepth differenceagrees",
+            "independentExact": "21/1000",
+            "expectedValue": "21/1000",
+            "unit": "m",
+            "dimension": {
+              "[length]": "1"
+            },
+            "relation": "exact",
+            "residual": "0",
+            "ok": true,
+            "scope": "symbolic_source_claim"
+          },
+          {
+            "claim": "intended distancecentimetres2point1",
+            "independentExact": "21/10",
+            "expectedValue": "21/10",
+            "unit": "cm",
+            "dimension": {
+              "[length]": "1"
+            },
+            "relation": "exact",
+            "residual": "0",
+            "ok": true,
+            "scope": "actual_source_example_manual_calculation"
+          }
+        ],
+        "dimension": {
+          "intended echo timedifference28microseconds": {
+            "[time]": "1"
+          },
+          "intended doubledpath reduction21millimetres": {
+            "[length]": "1"
+          },
+          "intended nearestreflectordepth30millimetres": {
+            "[length]": "1"
+          },
+          "intended fartherreflectordepth51millimetres": {
+            "[length]": "1"
+          },
+          "separatedepth differenceagrees": {
+            "[length]": "1"
+          },
+          "intended distancecentimetres2point1": {
+            "[length]": "1"
+          }
+        },
+        "calculationScope": "EXACT_MANUAL_CALCULATION",
+        "manualArithmetic": "Intendeddirectsame-axis model:Deltaeco68-40=28microseconds. d1500*28e-6/2=21e-3m=2.1cm;separate depths1500*40e-6/2=3cm and1500*68e-6/2=5.1cm agree. Howeverpromptnames twoperpendicularsurfaces withoutsayingperpendiculartobeam;thesurfacescaninsteadbereadmutuallyperpendicular. Theworkedsolutionadds directpaths onlyattheend. OriginalFAILisgeometric/pedagogical,nottheintended arithmetic. No clinicaldiagnosisorinferencefromtheseassignedtoyvalues.",
+        "manualFeasibility": "FAIL_ORIGINAL_EDITION",
+        "physicalAssumptions": "Intendedhomogeneousconstantv1500m/s,coincidentfixedtransducer,twodirectsingleechoesalongthesameaxis,interfacesnormaltobeam/no multipath. Thesegeometricalwordsaremissing/ambiguousinthepromptandonlydirectpathassumptionappearsatworkedend;sourceFAILretained.",
+        "pedagogicalReview": "FAIL: intendedecho subtraction iscorrectbutstandalonepromptdoesnotunambiguouslysayinterfacesnormaltothesamebeam/directsinglepaths. Readingthesolutionisnotamethodtodiscoveramissinggeometrycondition.",
+        "assetChecksums": {},
+        "figureReview": "No figureinallfiveblocks;no geometrydiagramresolvesthepromptambiguity.",
+        "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+        "failedPublishedEdition": true,
+        "originalEditionRetained": true,
+        "humanApproval": "NOT_RUN",
+        "publicationAction": "NONE"
+      },
+      "reviewedEdition": "NEW_DRAFT"
     },
     {
       "id": "C5-E010",
@@ -1025,14 +1496,14 @@
       "publicationAction": "NONE"
     }
   ],
-  "verifierSha256": "db2cfa3a27e4f86733f2dc458076609704e798657157b47d64e7ca40cde504b8",
+  "verifierSha256": "a2bb95142e50e86fe36476abf3c2bd892ee688fc6c1a5d220a7dd165573b604f",
   "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
   "sourcePath": "officina-di-fisica/content/C5.json",
   "sourceFileSha256": "dac4490e6a900f5da191bf7a1f5b8463ddc57c8bbaa36cb7a4a375c70fa77422",
   "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
-  "acceptedCount": 7,
-  "failedCount": 1,
-  "draftReviewedCount": 0,
+  "acceptedCount": 8,
+  "failedCount": 0,
+  "draftReviewedCount": 1,
   "failedPublishedEditionIds": [
     "C5-E009"
   ],
