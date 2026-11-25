@@ -1,0 +1,31 @@
+{
+  "scope": "cleanup_of_only_orphan_helpers_inheriting_own_test_socket",
+  "nodePid": 11423,
+  "batch": "compression-heating-157",
+  "nodeEndpoint": "0x5647afd48318eaa2",
+  "peerEndpoint": "0xf8ff8d3ab4dce38a",
+  "helpers": [
+    {
+      "pid": 11443,
+      "ppid": 1,
+      "socketEvidence": "chrome_cr 11443 <USER>    2u  unix 0xf8ff8d3ab4dce38a      0t0                     ->0x5647afd48318eaa2",
+      "action": "SIGTERM"
+    },
+    {
+      "pid": 11689,
+      "ppid": 1,
+      "socketEvidence": "GoogleUpd 11689 <USER>    2u  unix 0xf8ff8d3ab4dce38a      0t0                     ->0x5647afd48318eaa2",
+      "action": "SIGTERM"
+    },
+    {
+      "pid": 11692,
+      "ppid": 1,
+      "socketEvidence": "GoogleUpd 11692 <USER>    2u  unix 0xf8ff8d3ab4dce38a      0t0                     ->0x5647afd48318eaa2",
+      "action": "SIGTERM"
+    }
+  ],
+  "at": "2026-11-25T05:22:34.722781+00:00",
+  "rendererModified": false,
+  "reportModified": false,
+  "approval": "technical_process_cleanup_not_scientific_approval"
+}

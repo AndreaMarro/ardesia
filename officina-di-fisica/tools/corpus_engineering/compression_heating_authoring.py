@@ -1,0 +1,78 @@
+"""Author-only incoming compression work and heat, with explicit sign convention."""
+from .vector_geometry_authoring import assemble_family,write_family
+P=('Il sistema è un campione chiuso di gas che riceve Q>0 joule come calore e L_on>0 joule come lavoro di compressione compiuto dall’ambiente. '
+   'Non cambiano energia cinetica o potenziale macroscopica e non vi sono altri lavori. '
+   'Nel primo principio ΔU=Q−W_by, W_by è positivo quando il gas compie lavoro: per la compressione assegnata W_by=−L_on. '
+   'Q e L_on sono trasferimenti nel processo, mentre ΔU=U_f−U_i è una variazione di stato. ')
+TASKS=[
+('Due modi di fornire energia al gas',P+'Con Q=20 J e L_on=30 J, quanto vale ΔU in J?',50,
+ 'Entrambi gli scambi portano energia nel sistema. Il lavoro compiuto dal gas è meno trenta joule; sottraendolo nel primo principio aggiungiamo trenta al calore venti. L’aumento interno è cinquanta joule. La parola compressione non autorizza a sottrarre L_on, perché quel simbolo indica già il lavoro positivo ricevuto.',
+ r'W_{\rm by}=-30\,\mathrm J\qquad \Delta U=Q-W_{\rm by}\qquad \Delta U=20\,\mathrm J-(-30\,\mathrm J)\qquad \Delta U=50\,\mathrm J',
+ 'Meno dieci J deriva da Q−L_on e tratta il lavoro entrante come uscente. Dieci J rovescia quella differenza; venti e trenta J omettono rispettivamente lavoro o calore.','Prima traduci il verso del lavoro nella convenzione del primo principio.'),
+('L’unità dell’aumento interno','Quale unità è corretta per l’aumento di energia interna dovuto a calore e lavoro ricevuti?',['J','K','N','W','J/K'],
+ 'Il primo principio somma o sottrae quantità di energia, quindi ΔU si misura in joule. La convenzione del lavoro cambia il segno con cui lo si inserisce, non la dimensione fisica.',
+ r'[\Delta U]=[Q]=[L_{\rm on}]=\mathrm J',
+ 'K è temperatura, N forza e J/K capacità termica. Il watt è una potenza, non il lavoro ricevuto durante l’intero processo.','Tutti i termini del bilancio devono poter essere sommati come energie.'),
+('Riconoscere la legge con lavoro entrante',P+'Quale espressione fornisce ΔU?',['ΔU = Q + L_on','ΔU = Q − L_on','ΔU = L_on − Q','ΔU = 2(Q + L_on)','ΔU = (Q + L_on)/2'],
+ 'Il lavoro del gas W_by è l’opposto del lavoro ricevuto L_on. Sostituire questa relazione in ΔU=Q−W_by produce un doppio meno, quindi una somma. Nel dominio assegnato entrambi i contributi sono positivi e ΔU è maggiore di ciascuno preso separatamente.',
+ r'W_{\rm by}=-L_{\rm on}\qquad \Delta U=Q-(-L_{\rm on})\qquad \Delta U=Q+L_{\rm on}',
+ 'Q−L_on usa la convenzione giusta per lavoro uscente con il simbolo sbagliato. L_on−Q trasforma il calore entrante in un’uscita. Raddoppiare o dimezzare la somma non conserva l’energia trasferita.','Sostituisci W_by=−L_on prima di semplificare i segni.'),
+('Più calore con la stessa compressione',P+'A riceve Q=20 J e B riceve Q=40 J. Entrambe ricevono L_on=30 J. Che cosa accade a ΔU?',['Passa da 50 a 70 J','Passa da 50 a 100 J','Resta 50 J','Passa da 50 a 10 J','Passa da 50 a −10 J'],
+ 'A guadagna venti più trenta, cioè cinquanta joule. B guadagna quaranta più trenta, cioè settanta. L’incremento aggiuntivo di venti joule di calore aumenta ΔU di venti, senza raddoppiare il contributo meccanico che è rimasto uguale.',
+ r'\Delta U_A=50\,\mathrm J\qquad \Delta U_B=(40+30)\,\mathrm J\qquad \Delta U_B=70\,\mathrm J',
+ 'Cento raddoppia anche il lavoro ricevuto, che non cambia. Cinquanta ignora il calore nuovo; dieci e meno dieci sottraggono contributi che nel modello entrano entrambi.','Confronta le due somme tenendo fermo L_on.'),
+('Il calore come parte dell’aumento',P+'ΔU=50 J e L_on=30 J. Quanto vale Q in J?',20,
+ 'La compressione ha già fornito trenta dei cinquanta joule di aumento. Il resto proviene dal calore: cinquanta meno trenta sono venti. Il valore positivo è coerente con l’energia termica entrante assegnata.',
+ r'Q=\Delta U-L_{\rm on}\qquad Q=(50-30)\,\mathrm J\qquad Q=20\,\mathrm J',
+ 'Ottanta J aggiungerebbero ancora il lavoro che è già incluso nell’aumento totale. Trenta J copiano L_on e cinquanta J attribuiscono al solo calore tutto l’aumento.','Togli dall’accumulo la quota già fornita dal lavoro ricevuto.'),
+('La compressione dal bilancio',P+'ΔU=50 J e Q=20 J. Quanto vale L_on in J?',30,
+ 'L’aumento totale contiene venti joule ricevuti come calore. La parte restante, trenta joule, è lavoro ricevuto dall’ambiente. Se si volesse il lavoro compiuto dal gas, il suo valore orientato sarebbe invece meno trenta joule.',
+ r'L_{\rm on}=\Delta U-Q\qquad L_{\rm on}=30\,\mathrm J\qquad W_{\rm by}=-30\,\mathrm J',
+ 'Meno trenta J risponderebbero alla domanda su W_by, non a quella su L_on>0. Settanta aggiungerebbero il calore all’aumento anziché separarne i contributi.','Controlla quale convenzione è incorporata nel simbolo del lavoro richiesto.'),
+('Più lavoro di compressione',P+'A ha Q=20 J e L_on=30 J. B mantiene Q=20 J e riceve L_on=50 J. Quanto vale ΔU_B/ΔU_A?',['7/5','5/7','5/3','2','1'],
+ 'Le somme sono cinquanta e settanta joule. Settanta su cinquanta si riduce a sette quinti. Il rapporto cinque terzi dei soli lavori non basta perché il calore resta presente in entrambe le somme.',
+ r'\Delta U_A=50\,\mathrm J\qquad \Delta U_B=70\,\mathrm J\qquad \Delta U_B/\Delta U_A=\frac75',
+ 'Cinque settimi inverte le prove; cinque terzi ignora Q. Due assume un raddoppio della somma e uno ignora il lavoro aggiuntivo.','Confronta gli aumenti totali e non i soli contributi meccanici.'),
+('Lo scarto di una proposta di 100 J',P+'Con Q=20 J e L_on=30 J, una soluzione propone ΔU=100 J. Quanto vale proposta meno valore corretto?',['50 J','−50 J','100 J','0 J','25 J'],
+ 'Il bilancio dà cinquanta joule di aumento. La proposta cento supera il risultato di cinquanta joule. Il lavoro entrante è già contato una volta: non si aggiunge una seconda volta l’intera somma dei trasferimenti.',
+ r'\Delta U=(20+30)\,\mathrm J\qquad \Delta U=50\,\mathrm J\qquad e=(100-50)\,\mathrm J\qquad e=50\,\mathrm J',
+ 'Meno cinquanta scambia l’ordine, cento copia la proposta e zero la accetta. Venticinque dimezza ancora uno scarto già ricavato correttamente.','Calcola l’aumento totale, poi sottrailo alla proposta.'),
+('L’inversa del calore con compressione',P+'Dati ΔU e L_on compatibili con Q>0, quale formula isola Q?',['Q = ΔU − L_on','Q = ΔU + L_on','Q = L_on − ΔU','Q = 2(ΔU − L_on)','Q = (ΔU − L_on)/2'],
+ 'Partiamo dalla somma ΔU=Q+L_on. Per trovare il solo calore sottraiamo il lavoro ricevuto dall’aumento totale. La compatibilità con Q>0 impone ΔU>L_on. Se una lettura non rispettasse tale disuguaglianza, non descriverebbe il riscaldamento con calore entrante dichiarato.',
+ r'Q=\Delta U-L_{\rm on}\qquad Q>0\ \Longrightarrow\ \Delta U>L_{\rm on}',
+ 'Sommare L_on conterebbe due volte quel trasferimento. Invertire la differenza renderebbe negativo Q nel dominio dichiarato. I fattori due alterano il bilancio anche se conservano l’unità di energia.','La parte ignota si ottiene togliendo dal totale la parte nota.'),
+('Scalare due trasferimenti entranti',P+'Fra prove B ha Q_B=κ₁Q e L_on,B=κ₂L_on, con fattori positivi; i simboli senza pedice sono della prova A. Quale formula dà ΔU_B/ΔU_A?',['(κ₁ Q + κ₂ L_on) / (Q + L_on)','(κ₁ Q − κ₂ L_on) / (Q + L_on)','κ₁ κ₂','(κ₁ Q + κ₂ L_on) / (Q − L_on)','(κ₂ Q + κ₁ L_on) / (Q + L_on)'],
+ 'Aumentiamo separatamente ciascun contributo positivo e poi formiamo il rapporto delle somme. Il denominatore Q+L_on è sempre positivo nel modello. Il rapporto è una media dei due fattori pesata dalle quote energetiche iniziali, non il loro prodotto: se entrambi valgono κ, l’intera somma viene moltiplicata soltanto per κ.',
+ r'\Delta U_A=Q+L_{\rm on}\qquad \Delta U_B=\kappa_1Q+\kappa_2L_{\rm on}\qquad \frac{\Delta U_B}{\Delta U_A}=\frac{\kappa_1Q+\kappa_2L_{\rm on}}{Q+L_{\rm on}}',
+ 'Il meno al numeratore inverte il verso del lavoro. Q−L_on al denominatore non è l’aumento di A e può perfino annullarsi per ingressi leciti. Il prodotto quadra erroneamente un fattore comune; scambiare κ₁ e κ₂ li applica agli ingressi sbagliati.','Applica ogni fattore al proprio contributo prima di sommare.'),
+('Due entrate cambiano insieme',P+'A: Q=20 J, L_on=30 J. B: Q=40 J, L_on=50 J. Quanto vale ΔU_B/ΔU_A?',['9/5','5/9','2','5/3','90'],
+ 'A aumenta U di cinquanta joule e B di novanta. Il rapporto novanta su cinquanta si riduce a nove quinti. Nessuno dei due fattori dei singoli ingressi rappresenta da solo il rapporto delle somme.',
+ r'\Delta U_A=50\,\mathrm J\qquad \Delta U_B=90\,\mathrm J\qquad \Delta U_B/\Delta U_A=\frac95',
+ 'Cinque noni è il reciproco; due è il rapporto dei calori e cinque terzi quello dei lavori ricevuti. Novanta è il numero di joule del secondo aumento, non un rapporto adimensionale.','Somma per ciascuna prova, poi riduci la frazione.'),
+('Media di due aumenti interni',P+'A ha Q=20 J, L_on=30 J; B ha Q=40 J, L_on=50 J. Qual è la media aritmetica dei due ΔU con uguale peso?',['70 J','140 J','35 J','40 J','30 J'],
+ 'Gli aumenti sono cinquanta e novanta joule. La semisomma vale settanta joule. La stessa risposta si ottiene sommando il calore medio trenta e il lavoro medio quaranta: la somma lineare conserva questa media.',
+ r'\overline{\Delta U}=\frac{50+90}{2}\,\mathrm J\qquad \overline{\Delta U}=70\,\mathrm J\qquad \overline Q+\overline{L_{\rm on}}=(30+40)\,\mathrm J',
+ 'Centoquaranta è la somma e trentacinque dimezza nuovamente. Quaranta è il solo lavoro medio e trenta il solo calore medio: ciascuno omette un’entrata.','Trova prima entrambe le somme, poi confronta con la somma delle medie.'),
+('Il lavoro per un aumento fissato',P+'A ha Q=20 J, L_on,A=30 J. B riceve Q_B=40 J e deve avere ΔU_B=(9/5)ΔU_A. Quanto vale L_on,B/L_on,A?',['5/3','3/5','9/5','2','50'],
+ 'Il bersaglio è novanta joule. Quaranta arrivano già come calore, quindi servono cinquanta joule di lavoro entrante. Cinquanta diviso trenta dà cinque terzi, con entrambi i lavori positivi.',
+ r'\Delta U_B=90\,\mathrm J\qquad L_{{\rm on},B}=90\,\mathrm J-40\,\mathrm J\qquad L_{{\rm on},B}=50\,\mathrm J\qquad L_{{\rm on},B}/L_{{\rm on},A}=\frac53',
+ 'Tre quinti è il reciproco e nove quinti il bersaglio dell’aumento totale. Due richiederebbe sessanta joule di lavoro e produrrebbe cento joule di aumento. Cinquanta copia il lavoro numerico invece del rapporto.','Sottrai prima il calore dal bersaglio, poi confronta i lavori.'),
+('Dal display all’apporto termico',P+'S=qΔU è continuo e adimensionale, con q>0. A con Q=20 J, L_on=30 J dà S=150. B dà S=270 e riceve L_on=50 J. Quanto vale Q_B in J?',40,
+ 'La prima prova aumenta U di cinquanta joule e fissa q=3 J⁻¹. La lettura duecentosettanta corrisponde a novanta joule. Cinquanta sono già forniti dal lavoro di compressione, perciò il calore è la differenza, quaranta joule.',
+ r'\Delta U_A=50\,\mathrm J\qquad q=3\,\mathrm{J^{-1}}\qquad \Delta U_B=90\,\mathrm J\qquad Q_B=\Delta U_B-L_{{\rm on},B}\qquad Q_B=40\,\mathrm J',
+ 'Novanta J copierebbero l’aumento totale. Sommare ancora il lavoro darebbe centoquaranta J; usare il display grezzo come energia darebbe duecentoventi J dopo la sottrazione.','Decodifica l’aumento interno, poi togli il lavoro ricevuto.'),
+('Guadagno e offset prima del calore',P+'S=qΔU+b è continuo e adimensionale. A: Q=20 J, L_on=30 J, S=101. B: Q=40 J, L_on=50 J, S=181. C: L_on=30 J, S=141. Quanto vale Q_C?',['40 J','70 J','20 J','80 J','81/2 J'],
+ 'Gli aumenti dei riferimenti sono cinquanta e novanta joule. Ottanta unità di display su quaranta joule danno q=2 J⁻¹; poi b=1. La lettura di C, tolto uno e divisa per due, significa settanta joule. Sottraiamo i trenta forniti dal lavoro e troviamo quaranta joule di calore.',
+ r'q=\frac{181-101}{(90-50)\,\mathrm J}\qquad q=2\,\mathrm{J^{-1}}\qquad b=1\qquad \Delta U_C=70\,\mathrm J\qquad Q_C=70\,\mathrm J-30\,\mathrm J\qquad Q_C=40\,\mathrm J',
+ 'Settanta J sono l’aumento totale, prima di togliere L_on. Venti J produrrebbero S=101 e ottanta J S=221. 81/2 J omette l’offset e ricostruisce S=142 anziché 141.','Usa i riferimenti per separare taratura e offset, poi separa i due ingressi energetici.'),
+('Un vincolo fra i due ingressi',P+'Si sceglie Q=(2/3)L_on e si misura ΔU=50 J. Quanto vale L_on>0?',['30 J','−30 J','50 J','75 J','20 J'],
+ 'Il primo principio diventa ΔU=(2/3)L_on+L_on=(5/3)L_on. Cinquanta joule per tre quinti danno trenta joule di lavoro ricevuto. Il calore è due terzi di trenta, cioè venti joule; la loro somma ricostruisce cinquanta.',
+ r'\Delta U=\frac23L_{\rm on}+L_{\rm on}\qquad \Delta U=\frac53L_{\rm on}\qquad L_{\rm on}=\frac35\Delta U\qquad L_{\rm on}=30\,\mathrm J\qquad Q=20\,\mathrm J',
+ 'Meno trenta viola il verso assegnato. Cinquanta copia ΔU e venti copia Q. Settantacinque divide per due terzi come se l’aumento fosse il solo calore, omettendo il lavoro nella somma.','Combina i coefficienti del lavoro ricevuto e solo dopo inverti il fattore.'),
+]
+CHOICES={n:0 for n in [2,3,4,7,8,9,10,11,12,13,15,16]}
+UNITS={1:'J',5:'J',6:'J',14:'J'}
+FIGURES={1:'Calore e lavoro di compressione attraversano entrambi il confine verso il gas. Le frecce del primo pannello sono schematiche e indicano i versi; W_by è invece negativo. Il secondo pannello usa 6 px/J per Q=20 J, L_on=30 J e ΔU=50 J. Il terzo confronta 50 J, 90 J e la media 70 J con barre a 5 px/J.',3:'Il primo principio mantiene ΔU=Q−W_by; il passaggio a ΔU=Q+L_on dipende dalla definizione L_on=−W_by, non da una nuova legge. Le barre delle prove A/B si riferiscono a processi separati. La somma lineare conserva la media degli ingressi: 30 J più 40 J danno 70 J.'}
+def assemble(repo,source_ref):
+ return assemble_family(repo,source_ref,'compression-heating',TASKS,CHOICES,UNITS,'compression-heating-progressive.svg',FIGURES,15700,unit='u5',course='C3',source_path='packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U5-01.json',skill='C3-L06',prerequisites=['C1-L001','C3-L01','C3-L02','C3-L03','C3-L06'],section='Compressione e calore entrante nel primo principio',coverage=['Lavoro sul sistema e lavoro del sistema','Bilancio energetico e segni','Inverse, confronti e calibrazioni'])
+if __name__=='__main__':write_family(assemble,'compression-heating-157')
