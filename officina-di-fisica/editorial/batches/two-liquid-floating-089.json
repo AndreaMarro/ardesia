@@ -1,0 +1,1163 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u3-two-liquid-floating-01",
+      "kind": "question",
+      "course": "C2",
+      "section": "Spinta e galleggiamento",
+      "order": 8901,
+      "title": "Un quarto del volume nello strato denso",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-liquid-floating",
+      "difficulty": 1,
+      "prompt": "Un solido omogeneo di volume V>0 è libero e fermo, completamente immerso a cavallo dell’interfaccia orizzontale fra due liquidi immiscibili. Le densità, uniformi allo stato termodinamico mantenuto, sono ρ_t=1/2 kg/L sopra e ρ_b sotto; il corpo ha densità ρ_c, con ρ_t<ρ_c<ρ_b. Sono trascurati tensione interfacciale e altri vincoli; agiscono soltanto peso e spinte idrostatiche. Poniamo f=V_b/V, frazione del volume nel liquido inferiore, quindi 0<f<1. Con ρ_c=3/4 kg/L e ρ_b=3/2 kg/L, quanto vale f?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/4",
+          "1/2",
+          "3/4",
+          "1/3",
+          "4"
+        ],
+        "value": "1/4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La parte superiore sposta già liquido e contribuisce al sostegno. Il peso ρ_cgV è equilibrato dalla somma delle spinte ρ_tg(1−f)V e ρ_bgfV. Dividendo per gV>0, il problema dipende soltanto dalle densità e non dalla dimensione del corpo."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/0b5385922c2905d80e7af2c450b5ee2b4928af1842a82b65698207c5bcf053c3",
+          "text": "Un corpo di volume1L attraversa l’interfaccia fra liquidi immiscibili stabili: 3/4L sopra,1/4L sotto. La sezione del corpo è costante, quindi i segmenti120px e40px rappresentano le due porzioni a160px/L. Il volume totale resta1L. Un esempio separato con g10m/s² mostra due spinte da15/4N e peso15/2N, in equilibrio."
+        },
+        {
+          "type": "formula",
+          "text": "\\rho_c=\\rho_t(1-f)+\\rho_bf"
+        },
+        {
+          "type": "formula",
+          "text": " f=\\frac{\\rho_c-\\rho_t}{\\rho_b-\\rho_t}"
+        },
+        {
+          "type": "formula",
+          "text": " f=\\frac{3/4-1/2}{3/2-1/2}"
+        },
+        {
+          "type": "formula",
+          "text": " f=\\frac14"
+        },
+        {
+          "type": "text",
+          "text": "Il rapporto ρ_c/ρ_b=1/2 dimentica la spinta sul volume nello strato superiore. Tre quarti è invece la frazione superiore 1−f, non quella richiesta; quattro è il reciproco e supera il volume totale. Un terzo non soddisfa il bilancio delle densità."
+        }
+      ],
+      "hints": [
+        "Somma le due spinte prima di isolare f.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il rapporto ρ_c/ρ_b=1/2 dimentica la spinta sul volume nello strato superiore. Tre quarti è invece la frazione superiore 1−f, non quella richiesta; quattro è il reciproco e supera il volume totale. Un terzo non soddisfa il bilancio delle densità.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Due liquidi immiscibili e bilancio delle spinte",
+        "Frazioni complementari e contrasto di densità",
+        "Inverse, taratura e domini fisici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-two-liquid-floating-02",
+      "kind": "question",
+      "course": "C2",
+      "section": "Spinta e galleggiamento",
+      "order": 8902,
+      "title": "Una frazione priva di unità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-liquid-floating",
+      "difficulty": 1,
+      "prompt": "Un solido omogeneo di volume V>0 è libero e fermo, completamente immerso a cavallo dell’interfaccia orizzontale fra due liquidi immiscibili. Le densità, uniformi allo stato termodinamico mantenuto, sono ρ_t=1/2 kg/L sopra e ρ_b sotto; il corpo ha densità ρ_c, con ρ_t<ρ_c<ρ_b. Sono trascurati tensione interfacciale e altri vincoli; agiscono soltanto peso e spinte idrostatiche. Poniamo f=V_b/V, frazione del volume nel liquido inferiore, quindi 0<f<1. Quale unità proposta può esprimere f?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1",
+          "L",
+          "kg/L",
+          "N",
+          "m²"
+        ],
+        "value": "1"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "f confronta due volumi misurati con la stessa unità. Litri su litri si cancellano: il risultato è un numero puro. Il vincolo geometrico lo restringe fra zero e uno, ma non gli assegna dimensioni di volume."
+        },
+        {
+          "type": "formula",
+          "text": "f=V_b/V"
+        },
+        {
+          "type": "formula",
+          "text": " [f]=L^3/L^3"
+        },
+        {
+          "type": "formula",
+          "text": "L^3/L^3=1"
+        },
+        {
+          "type": "text",
+          "text": "L è un volume, kg/L una densità, N una forza e m² un’area. La percentuale sarebbe un’altra scala per la stessa grandezza pura: 1/4 equivale esattamente a 25%."
+        }
+      ],
+      "hints": [
+        "Cancella le dimensioni dei due volumi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "L è un volume, kg/L una densità, N una forza e m² un’area. La percentuale sarebbe un’altra scala per la stessa grandezza pura: 1/4 equivale esattamente a 25%.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Due liquidi immiscibili e bilancio delle spinte",
+        "Frazioni complementari e contrasto di densità",
+        "Inverse, taratura e domini fisici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-two-liquid-floating-03",
+      "kind": "question",
+      "course": "C2",
+      "section": "Spinta e galleggiamento",
+      "order": 8903,
+      "title": "Conservare entrambe le spinte",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-liquid-floating",
+      "difficulty": 1,
+      "prompt": "Un solido omogeneo di volume V>0 è libero e fermo, completamente immerso a cavallo dell’interfaccia orizzontale fra due liquidi immiscibili. Le densità, uniformi allo stato termodinamico mantenuto, sono ρ_t=1/2 kg/L sopra e ρ_b sotto; il corpo ha densità ρ_c, con ρ_t<ρ_c<ρ_b. Sono trascurati tensione interfacciale e altri vincoli; agiscono soltanto peso e spinte idrostatiche. Poniamo f=V_b/V, frazione del volume nel liquido inferiore, quindi 0<f<1. Quale relazione fornisce f?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "f = (ρ_c − ρ_t) / (ρ_b − ρ_t)",
+          "f = ρ_c / ρ_b",
+          "f = ρ_b / ρ_c",
+          "f = (ρ_b − ρ_t) / (ρ_c − ρ_t)",
+          "f = ρ_c − ρ_t"
+        ],
+        "value": "f = (ρ_c − ρ_t) / (ρ_b − ρ_t)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le porzioni di volume sono fV e (1−f)V, perciò non possono essere trattate come due corpi di volume V ciascuno. L’equilibrio verticale porta a una combinazione delle densità pesata con le rispettive frazioni; sottrarre ρ_t a entrambi i membri permette di isolare f."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/0b5385922c2905d80e7af2c450b5ee2b4928af1842a82b65698207c5bcf053c3",
+          "text": "Prima somma le spinte delle due porzioni, poi dividi per gV. La frazione inferiore1/4 e quella superiore3/4 sono complementari; il fluido superiore non è vuoto. Le barre e le frecce hanno scale dichiarate, distinte fra volumi e forze."
+        },
+        {
+          "type": "formula",
+          "text": "\\rho_c=\\rho_t+(\\rho_b-\\rho_t)f"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_c-\\rho_t=(\\rho_b-\\rho_t)f"
+        },
+        {
+          "type": "formula",
+          "text": " f=\\frac{\\rho_c-\\rho_t}{\\rho_b-\\rho_t}"
+        },
+        {
+          "type": "text",
+          "text": "Il solo rapporto ρ_c/ρ_b sarebbe adatto a un fluido superiore di spinta trascurabile, non a ρ_t=1/2 kg/L. I reciproci possono superare uno; la differenza di densità da sola non è adimensionale."
+        }
+      ],
+      "hints": [
+        "Raccogli il coefficiente di f dopo aver sommato i contributi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Il solo rapporto ρ_c/ρ_b sarebbe adatto a un fluido superiore di spinta trascurabile, non a ρ_t=1/2 kg/L. I reciproci possono superare uno; la differenza di densità da sola non è adimensionale.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Due liquidi immiscibili e bilancio delle spinte",
+        "Frazioni complementari e contrasto di densità",
+        "Inverse, taratura e domini fisici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-two-liquid-floating-04",
+      "kind": "question",
+      "course": "C2",
+      "section": "Spinta e galleggiamento",
+      "order": 8904,
+      "title": "Un corpo più denso scende nell’interfaccia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-liquid-floating",
+      "difficulty": 1,
+      "prompt": "Un solido omogeneo di volume V>0 è libero e fermo, completamente immerso a cavallo dell’interfaccia orizzontale fra due liquidi immiscibili. Le densità, uniformi allo stato termodinamico mantenuto, sono ρ_t=1/2 kg/L sopra e ρ_b sotto; il corpo ha densità ρ_c, con ρ_t<ρ_c<ρ_b. Sono trascurati tensione interfacciale e altri vincoli; agiscono soltanto peso e spinte idrostatiche. Poniamo f=V_b/V, frazione del volume nel liquido inferiore, quindi 0<f<1. Fra corpi diversi ρ_c passa da 3/4 a 1 kg/L; ρ_b resta 3/2 kg/L. Come cambia f?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 1/4 a 1/2",
+          "Da 1/4 a 1/3",
+          "Resta 1/4",
+          "Da 1/4 a 1",
+          "Da 1/4 a 1/8"
+        ],
+        "value": "Da 1/4 a 1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A parità di liquidi, il denominatore ρ_b−ρ_t rimane 1 kg/L. Raddoppia invece l’eccesso di densità del corpo rispetto al fluido superiore: da 1/4 a 1/2 kg/L. Deve quindi raddoppiare la frazione sostenuta dal liquido denso, restando inferiore a uno."
+        },
+        {
+          "type": "formula",
+          "text": "f_A=\\frac{1/4}{1}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{1/4}{1}=\\frac14"
+        },
+        {
+          "type": "formula",
+          "text": " f_B=\\frac{1-1/2}{1}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{1-1/2}{1}=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Un terzo seguirebbe il rapporto delle densità del corpo, trascurando il termine ρ_t. Uno porrebbe tutto il corpo sotto l’interfaccia benché ρ_c<ρ_b; un ottavo assegna un effetto inverso alla densità del corpo."
+        }
+      ],
+      "hints": [
+        "Confronta ρ_c−ρ_t nelle due prove.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Un terzo seguirebbe il rapporto delle densità del corpo, trascurando il termine ρ_t. Uno porrebbe tutto il corpo sotto l’interfaccia benché ρ_c<ρ_b; un ottavo assegna un effetto inverso alla densità del corpo.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Due liquidi immiscibili e bilancio delle spinte",
+        "Frazioni complementari e contrasto di densità",
+        "Inverse, taratura e domini fisici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-two-liquid-floating-05",
+      "kind": "question",
+      "course": "C2",
+      "section": "Spinta e galleggiamento",
+      "order": 8905,
+      "title": "Ricostruire la densità del corpo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-liquid-floating",
+      "difficulty": 2,
+      "prompt": "Un solido omogeneo di volume V>0 è libero e fermo, completamente immerso a cavallo dell’interfaccia orizzontale fra due liquidi immiscibili. Le densità, uniformi allo stato termodinamico mantenuto, sono ρ_t=1/2 kg/L sopra e ρ_b sotto; il corpo ha densità ρ_c, con ρ_t<ρ_c<ρ_b. Sono trascurati tensione interfacciale e altri vincoli; agiscono soltanto peso e spinte idrostatiche. Poniamo f=V_b/V, frazione del volume nel liquido inferiore, quindi 0<f<1. Si misura f=1/4 e si conosce ρ_b=3/2 kg/L. Quanto vale ρ_c in kg/L?",
+      "answer": {
+        "type": "numeric",
+        "value": 0.75,
+        "unit": "kg/L",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La densità del corpo è la media delle densità dei liquidi pesata con le frazioni di volume spostato. Tre quarti del volume sono nello strato da 1/2 kg/L e un quarto in quello da 3/2 kg/L: i contributi sono 3/8 e 3/8 kg/L."
+        },
+        {
+          "type": "formula",
+          "text": "\\rho_c=\\rho_t(1-f)+\\rho_bf"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_c=\\left(\\frac38+\\frac38\\right)\\,\\mathrm{kg/L}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_c=\\frac34\\,\\mathrm{kg/L}"
+        },
+        {
+          "type": "text",
+          "text": "Il risultato è strettamente compreso fra 1/2 e 3/2 kg/L, come richiede l’equilibrio all’interfaccia. Usare soltanto ρ_bf darebbe 3/8 kg/L, meno della densità superiore e incompatibile con il modello."
+        }
+      ],
+      "hints": [
+        "Pesa ciascuna densità con il suo volume relativo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il risultato è strettamente compreso fra 1/2 e 3/2 kg/L, come richiede l’equilibrio all’interfaccia. Usare soltanto ρ_bf darebbe 3/8 kg/L, meno della densità superiore e incompatibile con il modello.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Due liquidi immiscibili e bilancio delle spinte",
+        "Frazioni complementari e contrasto di densità",
+        "Inverse, taratura e domini fisici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-two-liquid-floating-06",
+      "kind": "question",
+      "course": "C2",
+      "section": "Spinta e galleggiamento",
+      "order": 8906,
+      "title": "La densità dello strato inferiore",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-liquid-floating",
+      "difficulty": 2,
+      "prompt": "Un solido omogeneo di volume V>0 è libero e fermo, completamente immerso a cavallo dell’interfaccia orizzontale fra due liquidi immiscibili. Le densità, uniformi allo stato termodinamico mantenuto, sono ρ_t=1/2 kg/L sopra e ρ_b sotto; il corpo ha densità ρ_c, con ρ_t<ρ_c<ρ_b. Sono trascurati tensione interfacciale e altri vincoli; agiscono soltanto peso e spinte idrostatiche. Poniamo f=V_b/V, frazione del volume nel liquido inferiore, quindi 0<f<1. Si misura f=1/4 per un corpo con ρ_c=3/4 kg/L. Quanto vale ρ_b in kg/L?",
+      "answer": {
+        "type": "numeric",
+        "value": 1.5,
+        "unit": "kg/L",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La parte di sostegno che eccede quella del solo liquido superiore vale ρ_c−ρ_t=1/4 kg/L. Dividendo per f otteniamo l’eccesso della densità inferiore, pari a 1 kg/L; occorre poi riaggiungere ρ_t."
+        },
+        {
+          "type": "formula",
+          "text": "\\rho_b=\\rho_t+\\frac{\\rho_c-\\rho_t}{f}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_b=\\left(\\frac12+\\frac{1/4}{1/4}\\right)\\,\\mathrm{kg/L}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_b=\\frac32\\,\\mathrm{kg/L}"
+        },
+        {
+          "type": "text",
+          "text": "Dimenticare il termine ρ_t darebbe 1 kg/L: sostituendolo nel bilancio si otterrebbe ρ_c=5/8 kg/L, non 3/4. Il valore ricostruito supera la densità del corpo e mantiene stabile la stratificazione."
+        }
+      ],
+      "hints": [
+        "Isola prima l’eccesso ρ_b−ρ_t.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dimenticare il termine ρ_t darebbe 1 kg/L: sostituendolo nel bilancio si otterrebbe ρ_c=5/8 kg/L, non 3/4. Il valore ricostruito supera la densità del corpo e mantiene stabile la stratificazione.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Due liquidi immiscibili e bilancio delle spinte",
+        "Frazioni complementari e contrasto di densità",
+        "Inverse, taratura e domini fisici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-two-liquid-floating-07",
+      "kind": "question",
+      "course": "C2",
+      "section": "Spinta e galleggiamento",
+      "order": 8907,
+      "title": "Ridurre il contrasto fra i liquidi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-liquid-floating",
+      "difficulty": 2,
+      "prompt": "Un solido omogeneo di volume V>0 è libero e fermo, completamente immerso a cavallo dell’interfaccia orizzontale fra due liquidi immiscibili. Le densità, uniformi allo stato termodinamico mantenuto, sono ρ_t=1/2 kg/L sopra e ρ_b sotto; il corpo ha densità ρ_c, con ρ_t<ρ_c<ρ_b. Sono trascurati tensione interfacciale e altri vincoli; agiscono soltanto peso e spinte idrostatiche. Poniamo f=V_b/V, frazione del volume nel liquido inferiore, quindi 0<f<1. A ha ρ_c=3/4 kg/L e ρ_b=3/2 kg/L. B mantiene ρ_c ma ha ρ_b=1 kg/L. Quanto vale f_B/f_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/2",
+          "3/2",
+          "1",
+          "4"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’eccesso di densità del corpo resta 1/4 kg/L. Il contrasto fra i due liquidi si dimezza da 1 a 1/2 kg/L, così occorre il doppio volume nello strato inferiore. Entrambi gli equilibri restano interni perché ρ_c<1 kg/L."
+        },
+        {
+          "type": "formula",
+          "text": "f_A=\\frac14"
+        },
+        {
+          "type": "formula",
+          "text": " f_B=\\frac{1/4}{1/2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{1/4}{1/2}=\\frac12"
+        },
+        {
+          "type": "formula",
+          "text": " f_B/f_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo inverte il confronto; 3/2 confronta le densità inferiori senza sottrarre ρ_t; uno ignora il cambio e quattro introduce una seconda duplicazione."
+        }
+      ],
+      "hints": [
+        "Confronta i due contrasti ρ_b−ρ_t.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo inverte il confronto; 3/2 confronta le densità inferiori senza sottrarre ρ_t; uno ignora il cambio e quattro introduce una seconda duplicazione.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Due liquidi immiscibili e bilancio delle spinte",
+        "Frazioni complementari e contrasto di densità",
+        "Inverse, taratura e domini fisici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-two-liquid-floating-08",
+      "kind": "question",
+      "course": "C2",
+      "section": "Spinta e galleggiamento",
+      "order": 8908,
+      "title": "Uno scarto positivo della frazione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-liquid-floating",
+      "difficulty": 2,
+      "prompt": "Un solido omogeneo di volume V>0 è libero e fermo, completamente immerso a cavallo dell’interfaccia orizzontale fra due liquidi immiscibili. Le densità, uniformi allo stato termodinamico mantenuto, sono ρ_t=1/2 kg/L sopra e ρ_b sotto; il corpo ha densità ρ_c, con ρ_t<ρ_c<ρ_b. Sono trascurati tensione interfacciale e altri vincoli; agiscono soltanto peso e spinte idrostatiche. Poniamo f=V_b/V, frazione del volume nel liquido inferiore, quindi 0<f<1. Per ρ_c=3/4 kg/L e ρ_b=3/2 kg/L si propone f=1/2. Quanto vale proposta meno corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/4",
+          "−1/4",
+          "1/2",
+          "0",
+          "1/8"
+        ],
+        "value": "1/4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’equilibrio dà f=1/4. La proposta 1/2 sovrastima il volume inferiore di un quarto del volume totale. Per controllarla basta ricostruire la densità che essa sosterrebbe: ρ_t/2+ρ_b/2=1 kg/L, più del corpo assegnato."
+        },
+        {
+          "type": "formula",
+          "text": "f_{corretta}=\\frac14"
+        },
+        {
+          "type": "formula",
+          "text": " e=\\frac12-\\frac14"
+        },
+        {
+          "type": "formula",
+          "text": " e=\\frac14"
+        },
+        {
+          "type": "text",
+          "text": "Il segno negativo invertirebbe l’ordine dello scarto. Un mezzo ripete la proposta, zero la accetta e un ottavo divide due volte la differenza. Lo scarto resta puro, come f."
+        }
+      ],
+      "hints": [
+        "Calcola f e sottraila alla proposta.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il segno negativo invertirebbe l’ordine dello scarto. Un mezzo ripete la proposta, zero la accetta e un ottavo divide due volte la differenza. Lo scarto resta puro, come f.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Due liquidi immiscibili e bilancio delle spinte",
+        "Frazioni complementari e contrasto di densità",
+        "Inverse, taratura e domini fisici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-two-liquid-floating-09",
+      "kind": "question",
+      "course": "C2",
+      "section": "Spinta e galleggiamento",
+      "order": 8909,
+      "title": "L’inversa come media pesata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-liquid-floating",
+      "difficulty": 2,
+      "prompt": "Un solido omogeneo di volume V>0 è libero e fermo, completamente immerso a cavallo dell’interfaccia orizzontale fra due liquidi immiscibili. Le densità, uniformi allo stato termodinamico mantenuto, sono ρ_t=1/2 kg/L sopra e ρ_b sotto; il corpo ha densità ρ_c, con ρ_t<ρ_c<ρ_b. Sono trascurati tensione interfacciale e altri vincoli; agiscono soltanto peso e spinte idrostatiche. Poniamo f=V_b/V, frazione del volume nel liquido inferiore, quindi 0<f<1. Quale formula isola ρ_c?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "ρ_c = ρ_t + f(ρ_b − ρ_t)",
+          "ρ_c = f ρ_b",
+          "ρ_c = ρ_t + (ρ_b − ρ_t)/f",
+          "ρ_c = ρ_b − f ρ_t",
+          "ρ_c = f/(ρ_b − ρ_t)"
+        ],
+        "value": "ρ_c = ρ_t + f(ρ_b − ρ_t)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplichiamo f per il contrasto di densità e aggiungiamo la densità dello strato superiore. Il risultato è equivalente alla somma ρ_t(1−f)+ρ_bf e restituisce automaticamente una densità interna all’intervallo quando 0<f<1."
+        },
+        {
+          "type": "formula",
+          "text": "f(\\rho_b-\\rho_t)=\\rho_c-\\rho_t"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_c=\\rho_t+f(\\rho_b-\\rho_t)"
+        },
+        {
+          "type": "text",
+          "text": "fρ_b perde il sostegno superiore; dividere per f anziché moltiplicare può superare ρ_b. L’ultima espressione ha dimensioni inverse di una densità, perciò non può rappresentare ρ_c."
+        }
+      ],
+      "hints": [
+        "Moltiplica per ρ_b−ρ_t e poi aggiungi ρ_t.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "fρ_b perde il sostegno superiore; dividere per f anziché moltiplicare può superare ρ_b. L’ultima espressione ha dimensioni inverse di una densità, perciò non può rappresentare ρ_c.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Due liquidi immiscibili e bilancio delle spinte",
+        "Frazioni complementari e contrasto di densità",
+        "Inverse, taratura e domini fisici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-two-liquid-floating-10",
+      "kind": "question",
+      "course": "C2",
+      "section": "Spinta e galleggiamento",
+      "order": 8910,
+      "title": "Scalature con uno sfondo non nullo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-liquid-floating",
+      "difficulty": 2,
+      "prompt": "Un solido omogeneo di volume V>0 è libero e fermo, completamente immerso a cavallo dell’interfaccia orizzontale fra due liquidi immiscibili. Le densità, uniformi allo stato termodinamico mantenuto, sono ρ_t=1/2 kg/L sopra e ρ_b sotto; il corpo ha densità ρ_c, con ρ_t<ρ_c<ρ_b. Sono trascurati tensione interfacciale e altri vincoli; agiscono soltanto peso e spinte idrostatiche. Poniamo f=V_b/V, frazione del volume nel liquido inferiore, quindi 0<f<1. B ha ρ_c,B=κ₁ρ_c e ρ_b,B=κ₂ρ_b; i fattori positivi mantengono ρ_t<ρ_c,B<ρ_b,B. Definiamo X=ρ_c−ρ_t e Y=ρ_b−ρ_t. Inoltre X_B=κ₁ρ_c−ρ_t e Y_B=κ₂ρ_b−ρ_t. Quale rapporto è f_B/f_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "(X_B Y) / (Y_B X)",
+          "κ₁ / κ₂",
+          "κ₁ κ₂",
+          "(Y_B X) / (X_B Y)",
+          "X_B / X"
+        ],
+        "value": "(X_B Y) / (Y_B X)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La densità superiore resta fissata e non viene moltiplicata dai fattori. Pertanto le differenze X e Y non scalano semplicemente come ρ_c e ρ_b. Scriviamo separatamente f_A=X/Y e f_B=X_B/Y_B, poi dividiamo i due risultati."
+        },
+        {
+          "type": "formula",
+          "text": "f_A=X/Y"
+        },
+        {
+          "type": "formula",
+          "text": " f_B=X_B/Y_B"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{f_B}{f_A}=\\frac{X_BY}{Y_BX}"
+        },
+        {
+          "type": "text",
+          "text": "κ₁/κ₂ sarebbe corretto per un semplice rapporto senza lo sfondo ρ_t. Il prodotto non segue dall’equilibrio; il rapporto scambiato è il reciproco e X_B/X segue soltanto il numeratore. Tutte le differenze utilizzate sono positive nel dominio assegnato."
+        }
+      ],
+      "hints": [
+        "Forma prima le differenze rispetto a ρ_t in ciascuna prova.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "κ₁/κ₂ sarebbe corretto per un semplice rapporto senza lo sfondo ρ_t. Il prodotto non segue dall’equilibrio; il rapporto scambiato è il reciproco e X_B/X segue soltanto il numeratore. Tutte le differenze utilizzate sono positive nel dominio assegnato.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Due liquidi immiscibili e bilancio delle spinte",
+        "Frazioni complementari e contrasto di densità",
+        "Inverse, taratura e domini fisici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-two-liquid-floating-11",
+      "kind": "question",
+      "course": "C2",
+      "section": "Spinta e galleggiamento",
+      "order": 8911,
+      "title": "Cambiare corpo e liquido inferiore",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-liquid-floating",
+      "difficulty": 2,
+      "prompt": "Un solido omogeneo di volume V>0 è libero e fermo, completamente immerso a cavallo dell’interfaccia orizzontale fra due liquidi immiscibili. Le densità, uniformi allo stato termodinamico mantenuto, sono ρ_t=1/2 kg/L sopra e ρ_b sotto; il corpo ha densità ρ_c, con ρ_t<ρ_c<ρ_b. Sono trascurati tensione interfacciale e altri vincoli; agiscono soltanto peso e spinte idrostatiche. Poniamo f=V_b/V, frazione del volume nel liquido inferiore, quindi 0<f<1. A: ρ_c=3/4 kg/L,ρ_b=3/2 kg/L. B: ρ_c=1 kg/L,ρ_b=2 kg/L. Quanto vale f_B/f_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4/3",
+          "3/4",
+          "2",
+          "1/3",
+          "1"
+        ],
+        "value": "4/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "In A la frazione è 1/4; in B l’eccesso del corpo è 1/2 kg/L e quello del liquido inferiore 3/2 kg/L, quindi f_B=1/3. Pur aumentando entrambe le densità, il contributo superiore fisso impedisce di cancellare semplicemente le loro scalature."
+        },
+        {
+          "type": "formula",
+          "text": "f_A=\\frac14"
+        },
+        {
+          "type": "formula",
+          "text": " f_B=\\frac{1/2}{3/2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{1/2}{3/2}=\\frac13"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{f_B}{f_A}=\\frac43"
+        },
+        {
+          "type": "text",
+          "text": "Tre quarti è il reciproco; due segue soltanto l’eccesso del corpo; un terzo è f_B, non il rapporto. Uno tratterebbe erroneamente ρ_t come se scalasse con gli altri dati."
+        }
+      ],
+      "hints": [
+        "Calcola 1/4 e 1/3 prima di confrontarli.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre quarti è il reciproco; due segue soltanto l’eccesso del corpo; un terzo è f_B, non il rapporto. Uno tratterebbe erroneamente ρ_t come se scalasse con gli altri dati.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Due liquidi immiscibili e bilancio delle spinte",
+        "Frazioni complementari e contrasto di densità",
+        "Inverse, taratura e domini fisici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-two-liquid-floating-12",
+      "kind": "question",
+      "course": "C2",
+      "section": "Spinta e galleggiamento",
+      "order": 8912,
+      "title": "Media di due frazioni di volume",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-liquid-floating",
+      "difficulty": 2,
+      "prompt": "Un solido omogeneo di volume V>0 è libero e fermo, completamente immerso a cavallo dell’interfaccia orizzontale fra due liquidi immiscibili. Le densità, uniformi allo stato termodinamico mantenuto, sono ρ_t=1/2 kg/L sopra e ρ_b sotto; il corpo ha densità ρ_c, con ρ_t<ρ_c<ρ_b. Sono trascurati tensione interfacciale e altri vincoli; agiscono soltanto peso e spinte idrostatiche. Poniamo f=V_b/V, frazione del volume nel liquido inferiore, quindi 0<f<1. Due prove di uguale peso statistico sono A con ρ_c=3/4 kg/L,ρ_b=3/2 kg/L e B con ρ_c=1 kg/L,ρ_b=2 kg/L. Qual è la media aritmetica delle due f?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "7/24",
+          "7/12",
+          "7/48",
+          "3/10",
+          "1/12"
+        ],
+        "value": "7/24"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I due equilibri danno 1/4 e 1/3. Portiamo le frazioni al denominatore comune 12, sommiamo 3/12 e 4/12 e dividiamo per due. La media richiesta è 7/24, senza fondere fisicamente i due liquidi o i due corpi."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline f=\\frac{1/4+1/3}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline f=\\frac{7}{24}"
+        },
+        {
+          "type": "text",
+          "text": "7/12 è la somma, 7/48 divide due volte e 1/12 è la differenza. Le densità medie 7/8 e 7/4 kg/L darebbero invece (3/8)/(5/4)=3/10: differisce da 7/24 di 1/120, quindi il quoziente non commuta con la media."
+        }
+      ],
+      "hints": [
+        "Somma i risultati già calcolati, non le densità prima del modello.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "7/12 è la somma, 7/48 divide due volte e 1/12 è la differenza. Le densità medie 7/8 e 7/4 kg/L darebbero invece (3/8)/(5/4)=3/10: differisce da 7/24 di 1/120, quindi il quoziente non commuta con la media.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Due liquidi immiscibili e bilancio delle spinte",
+        "Frazioni complementari e contrasto di densità",
+        "Inverse, taratura e domini fisici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-two-liquid-floating-13",
+      "kind": "question",
+      "course": "C2",
+      "section": "Spinta e galleggiamento",
+      "order": 8913,
+      "title": "Il liquido necessario per una frazione bersaglio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-liquid-floating",
+      "difficulty": 3,
+      "prompt": "Un solido omogeneo di volume V>0 è libero e fermo, completamente immerso a cavallo dell’interfaccia orizzontale fra due liquidi immiscibili. Le densità, uniformi allo stato termodinamico mantenuto, sono ρ_t=1/2 kg/L sopra e ρ_b sotto; il corpo ha densità ρ_c, con ρ_t<ρ_c<ρ_b. Sono trascurati tensione interfacciale e altri vincoli; agiscono soltanto peso e spinte idrostatiche. Poniamo f=V_b/V, frazione del volume nel liquido inferiore, quindi 0<f<1. A ha ρ_c=3/4 kg/L e ρ_b=3/2 kg/L. B usa ρ_c=1 kg/L e deve avere f_B=(4/3)f_A. Quanto vale ρ_b,B/ρ_b,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4/3",
+          "3/4",
+          "2",
+          "1/3",
+          "1"
+        ],
+        "value": "4/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è f_B=1/3. Isoliamo ρ_b,B dalla media pesata: 1/2+(1−1/2)/(1/3)=2 kg/L. Il confronto con 3/2 kg/L produce 4/3; la nuova densità supera quella del corpo."
+        },
+        {
+          "type": "formula",
+          "text": "f_B=\\frac13"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_{b,B}=\\left(\\frac12+\\frac{1/2}{1/3}\\right)\\,\\mathrm{kg/L}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_{b,B}=2\\,\\mathrm{kg/L}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_{b,B}/\\rho_{b,A}=\\frac43"
+        },
+        {
+          "type": "text",
+          "text": "Due è il valore di ρ_b,B in kg/L, non il rapporto puro. Tre quarti lo inverte; uno conserverebbe f_B=1/2 e non 1/3. L’equilibrio interno impone ρ_b,B>1 kg/L, qui verificato."
+        }
+      ],
+      "hints": [
+        "Decodifica la frazione bersaglio e usa l’inversa per ρ_b.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due è il valore di ρ_b,B in kg/L, non il rapporto puro. Tre quarti lo inverte; uno conserverebbe f_B=1/2 e non 1/3. L’equilibrio interno impone ρ_b,B>1 kg/L, qui verificato.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Due liquidi immiscibili e bilancio delle spinte",
+        "Frazioni complementari e contrasto di densità",
+        "Inverse, taratura e domini fisici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-two-liquid-floating-14",
+      "kind": "question",
+      "course": "C2",
+      "section": "Spinta e galleggiamento",
+      "order": 8914,
+      "title": "Tarare una frazione per misurare densità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-liquid-floating",
+      "difficulty": 3,
+      "prompt": "Un solido omogeneo di volume V>0 è libero e fermo, completamente immerso a cavallo dell’interfaccia orizzontale fra due liquidi immiscibili. Le densità, uniformi allo stato termodinamico mantenuto, sono ρ_t=1/2 kg/L sopra e ρ_b sotto; il corpo ha densità ρ_c, con ρ_t<ρ_c<ρ_b. Sono trascurati tensione interfacciale e altri vincoli; agiscono soltanto peso e spinte idrostatiche. Poniamo f=V_b/V, frazione del volume nel liquido inferiore, quindi 0<f<1. Un display continuo adimensionale segue S=qf,q>0, senza offset. A con ρ_c=3/4 kg/L,ρ_b=3/2 kg/L dà S=3/4. B con ρ_b=2 kg/L dà S=1. Quanto vale ρ_c,B in kg/L?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "kg/L",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La frazione di riferimento 1/4 determina q=3. La lettura uno significa perciò f_B=1/3, non immersione totale. Con densità inferiore 2 kg/L, la media pesata restituisce ρ_c,B=1/2+(1/3)(3/2)=1 kg/L."
+        },
+        {
+          "type": "formula",
+          "text": "q=\\frac{3/4}{1/4}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{3/4}{1/4}=3"
+        },
+        {
+          "type": "formula",
+          "text": " f_B=1/3"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_{c,B}=\\left(\\frac12+\\frac13\\cdot\\frac32\\right)\\,\\mathrm{kg/L}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_{c,B}=1\\,\\mathrm{kg/L}"
+        },
+        {
+          "type": "text",
+          "text": "Interpretare S=1 come f=1 confonderebbe lo strumento con il volume relativo e porterebbe alla densità del liquido inferiore. La densità corretta resta fra 1/2 e 2 kg/L."
+        }
+      ],
+      "hints": [
+        "Ricava q dal riferimento prima di leggere la nuova frazione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Interpretare S=1 come f=1 confonderebbe lo strumento con il volume relativo e porterebbe alla densità del liquido inferiore. La densità corretta resta fra 1/2 e 2 kg/L.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Due liquidi immiscibili e bilancio delle spinte",
+        "Frazioni complementari e contrasto di densità",
+        "Inverse, taratura e domini fisici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-two-liquid-floating-15",
+      "kind": "question",
+      "course": "C2",
+      "section": "Spinta e galleggiamento",
+      "order": 8915,
+      "title": "Togliere l’offset prima dell’equilibrio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-liquid-floating",
+      "difficulty": 3,
+      "prompt": "Un solido omogeneo di volume V>0 è libero e fermo, completamente immerso a cavallo dell’interfaccia orizzontale fra due liquidi immiscibili. Le densità, uniformi allo stato termodinamico mantenuto, sono ρ_t=1/2 kg/L sopra e ρ_b sotto; il corpo ha densità ρ_c, con ρ_t<ρ_c<ρ_b. Sono trascurati tensione interfacciale e altri vincoli; agiscono soltanto peso e spinte idrostatiche. Poniamo f=V_b/V, frazione del volume nel liquido inferiore, quindi 0<f<1. Un display continuo adimensionale segue S=qf+z. A: ρ_c=3/4 kg/L,ρ_b=3/2 kg/L,S=3/2. B: ρ_c=1 kg/L,ρ_b=2 kg/L,S=5/3. C: ρ_b=3/2 kg/L,S=2. Quanto vale ρ_c,C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1 kg/L",
+          "3/4 kg/L",
+          "5/4 kg/L",
+          "3/2 kg/L",
+          "2 kg/L"
+        ],
+        "value": "1 kg/L"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti f_A=1/4 e f_B=1/3 differiscono di 1/12, mentre le letture differiscono di 1/6: q=2 e z=1. La prova C ha f_C=(2−1)/2=1/2 e quindi densità 1 kg/L."
+        },
+        {
+          "type": "formula",
+          "text": "q=\\frac{1/6}{1/12}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{1/6}{1/12}=2"
+        },
+        {
+          "type": "formula",
+          "text": " z=\\frac32-2\\cdot\\frac14"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac32-2\\cdot\\frac14=1"
+        },
+        {
+          "type": "formula",
+          "text": " f_C=\\frac{2-1}{2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2-1}{2}=\\frac12"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_{c,C}=1\\,\\mathrm{kg/L}"
+        },
+        {
+          "type": "text",
+          "text": "Con ρ_b=3/2 kg/L, le densità 3/4 e 5/4 darebbero S=3/2 e 5/2. 3/2 porrebbe f=1, al bordo escluso, e 2 supererebbe il liquido inferiore. Sottrarre z è necessario anche se il display è puro."
+        }
+      ],
+      "hints": [
+        "Usa le differenze di lettura per eliminare z.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Con ρ_b=3/2 kg/L, le densità 3/4 e 5/4 darebbero S=3/2 e 5/2. 3/2 porrebbe f=1, al bordo escluso, e 2 supererebbe il liquido inferiore. Sottrarre z è necessario anche se il display è puro.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Due liquidi immiscibili e bilancio delle spinte",
+        "Frazioni complementari e contrasto di densità",
+        "Inverse, taratura e domini fisici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-two-liquid-floating-16",
+      "kind": "question",
+      "course": "C2",
+      "section": "Spinta e galleggiamento",
+      "order": 8916,
+      "title": "Un vincolo che fissa il contrasto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-liquid-floating",
+      "difficulty": 3,
+      "prompt": "Un solido omogeneo di volume V>0 è libero e fermo, completamente immerso a cavallo dell’interfaccia orizzontale fra due liquidi immiscibili. Le densità, uniformi allo stato termodinamico mantenuto, sono ρ_t=1/2 kg/L sopra e ρ_b sotto; il corpo ha densità ρ_c, con ρ_t<ρ_c<ρ_b. Sono trascurati tensione interfacciale e altri vincoli; agiscono soltanto peso e spinte idrostatiche. Poniamo f=V_b/V, frazione del volume nel liquido inferiore, quindi 0<f<1. Fra prove si impone ρ_c=ρ_b/2. Si misura f=1/4. Quanto vale ρ_b in kg/L?",
+      "answer": {
+        "type": "numeric",
+        "value": 1.5,
+        "unit": "kg/L",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il vincolo non rende la misura ridondante perché ρ_t resta un valore fisso non nullo. Sostituendo ρ_c=ρ_b/2, moltiplichiamo per il denominatore positivo e raccogliamo i termini in ρ_b. L’unica soluzione è 3/2 kg/L, con ρ_c=3/4 kg/L."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac14=\\frac{\\rho_b/2-\\rho_t}{\\rho_b-\\rho_t}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_b-\\rho_t=2\\rho_b-4\\rho_t"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_b=3\\rho_t"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_b=\\frac32\\,\\mathrm{kg/L}"
+        },
+        {
+          "type": "text",
+          "text": "Non si può cancellare ρ_b fra differenze con un termine costante. Il dominio del vincolo richiede ρ_b>1 kg/L; 3/2 lo soddisfa e ricostruisce f=1/4. Non compare una seconda radice né una coppia nulla ammissibile."
+        }
+      ],
+      "hints": [
+        "Sostituisci il vincolo prima di raccogliere ρ_b.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Non si può cancellare ρ_b fra differenze con un termine costante. Il dominio del vincolo richiede ρ_b>1 kg/L; 3/2 lo soddisfa e ricostruisce f=1/4. Non compare una seconda radice né una coppia nulla ammissibile.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Due liquidi immiscibili e bilancio delle spinte",
+        "Frazioni complementari e contrasto di densità",
+        "Inverse, taratura e domini fisici"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "0b5385922c2905d80e7af2c450b5ee2b4928af1842a82b65698207c5bcf053c3",
+      "name": "two-liquid-floating-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTUyMCIgdmlld0JveD0iMCAwIDY0MCAxNTIwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+RHVlIHBvcnppb25pIGRpIHZvbHVtZSwgdW5hIHJpc3VsdGFudGUgdmVyc28gbOKAmWFsdG88L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5Db3JwbyBwcmlzbWF0aWNvIGRpIHVuIGxpdHJvOiBjZW50b3ZlbnRpIHBpeGVsIGVxdWl2YWxnb25vIGEgdHJlIHF1YXJ0aSBkaSBsaXRybyBuZWwgbGlxdWlkbyBzdXBlcmlvcmUsIHF1YXJhbnRhIHBpeGVsIGEgdW4gcXVhcnRvIG5lbCBsaXF1aWRvIGluZmVyaW9yZS4gTGUgZGVuc2l0w6Agc29ubyB1biBtZXp6bywgdHJlIHF1YXJ0aSBlIHRyZSBtZXp6aSBjaGlsb2dyYW1taSBwZXIgbGl0cm8uIEVzZW1waW8gY29uIGcgZGllY2k6IGR1ZSBzcGludGUgZGEgcXVpbmRpY2kgcXVhcnRpIG5ld3RvbiwgcGVzbyBxdWluZGljaSBtZXp6aSBuZXd0b24uIEZyZWNjZSB2ZW50aSBwaXhlbCBwZXIgbmV3dG9uLiBCYXJyZSBkaSB2b2x1bWUgZHVlY2VudG8gcGl4ZWwgcGVyIGxpdHJvLjwvZGVzYz48ZGVmcz48bWFya2VyIGlkPSJhIiB2aWV3Qm94PSIwIDAgMTAgMTAiIHJlZlg9IjkiIHJlZlk9IjUiIG1hcmtlcldpZHRoPSIxMCIgbWFya2VySGVpZ2h0PSIxMCIgbWFya2VyVW5pdHM9InVzZXJTcGFjZU9uVXNlIiBvcmllbnQ9ImF1dG8iPjxwYXRoIGQ9Ik0wIDBMMTAgNUwwIDEwWiIgZmlsbD0iY29udGV4dC1zdHJva2UiLz48L21hcmtlcj48L2RlZnM+PHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxNTIwIiBmaWxsPSIjZmFmOGYxIiByeD0iMjAiLz48ZyBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE5M2E0OSI+PHRleHQgeD0iMjgiIHk9IjQyIiBmb250LXNpemU9IjI1Ij4xIMK3IFVuIGNvcnBvIGludGVybyBhdHRyYXZlcnNhIGzigJlpbnRlcmZhY2NpYTwvdGV4dD48dGV4dCB4PSIyOCIgeT0iOTAiPkxpcXVpZGkgaW1taXNjaWJpbGksIGZlcm1pOyBuZXNzdW5hIHRlbnNpb25lIGludGVyZmFjY2lhbGUuPC90ZXh0PjxyZWN0IHg9IjEwMCIgeT0iMTQwIiB3aWR0aD0iMjIwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2U3Yzk5NCIvPjxyZWN0IHg9IjEwMCIgeT0iMzQwIiB3aWR0aD0iMjIwIiBoZWlnaHQ9IjE4MCIgZmlsbD0iI2JhZDllNSIvPjxyZWN0IHg9IjE3MCIgeT0iMjIwIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjE2MCIgZmlsbD0iI2E4YjhhYSIgc3Ryb2tlPSIjMTkzYTQ5IiBzdHJva2Utd2lkdGg9IjIiLz48cGF0aCBkPSJNODUgMzQwSDMzNSIgc3Ryb2tlPSIjNTk3ZjgzIiBzdHJva2UtZGFzaGFycmF5PSI2IDUiLz48cGF0aCBkPSJNMTAwIDEyNVY1MjBIMzIwVjEyNSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNTk3ZjgzIi8+PHRleHQgeD0iMzUwIiB5PSIyMDAiPs+BX3QgPSAxLzIga2cvTDwvdGV4dD48dGV4dCB4PSIzNTAiIHk9IjI2MCI+Q29ycG86IM+BX2MgPSAzLzQga2cvTDwvdGV4dD48dGV4dCB4PSIzNTAiIHk9IjMxNSI+U29wcmE6IDMvNCBMPC90ZXh0Pjx0ZXh0IHg9IjM1MCIgeT0iMzk1Ij5Tb3R0bzogMS80IEw8L3RleHQ+PHRleHQgeD0iMzUwIiB5PSI0NjUiPs+BX2IgPSAzLzIga2cvTDwvdGV4dD48dGV4dCB4PSIyOCIgeT0iNTcwIj5Db3JwbyBhIHNlemlvbmUgY29zdGFudGU6IGFsdGV6emEg4oidIHZvbHVtZS48L3RleHQ+PHRleHQgeD0iMjgiIHk9IjYxMCI+MTYwIHB4L0w6IDEyMCBweCBzb3ByYSArIDQwIHB4IHNvdHRvID0gMSBMLjwvdGV4dD48dGV4dCB4PSIyOCIgeT0iNjkwIiBmb250LXNpemU9IjI1Ij4yIMK3IEVzZW1waW8gZGkgZm9yemUsIGcgPSAxMCBtL3PCsjwvdGV4dD48cGF0aCBkPSJNMTYwIDg3MFY3OTUiIHN0cm9rZT0iI2I0NjE0NSIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI2EpIi8+PHBhdGggZD0iTTM1MCA4NzBWNzk1IiBzdHJva2U9IiMwODg2OWIiIHN0cm9rZS13aWR0aD0iMyIgbWFya2VyLWVuZD0idXJsKCNhKSIvPjxwYXRoIGQ9Ik01MjAgNzk1Vjk0NSIgc3Ryb2tlPSIjMTkzYTQ5IiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjYSkiLz48dGV4dCB4PSI2NSIgeT0iNzU1Ij5TX3QgPSAxNS80IE48L3RleHQ+PHRleHQgeD0iMjgwIiB5PSI3NTUiPlNfYiA9IDE1LzQgTjwvdGV4dD48dGV4dCB4PSI0MDUiIHk9Ijk5MCI+UCA9IDE1LzIgTjwvdGV4dD48dGV4dCB4PSIyOCIgeT0iMTA0MCI+MjAgcHgvTjogNzUgcHggKyA3NSBweCBjb250cm8gMTUwIHB4LjwvdGV4dD48dGV4dCB4PSIyOCIgeT0iMTA4MCI+TGUgZHVlIHNwaW50ZSBpbnNpZW1lIGVxdWlsaWJyYW5vIGlsIHBlc28uPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSIxMTYwIiBmb250LXNpemU9IjI1Ij4zIMK3IExlIGZyYXppb25pIHNvbm8gY29tcGxlbWVudGFyaTwvdGV4dD48cmVjdCB4PSIxODAiIHk9IjEyMjAiIHdpZHRoPSIxNTAiIGhlaWdodD0iNDAiIGZpbGw9IiNlN2M5OTQiLz48cmVjdCB4PSIzMzAiIHk9IjEyMjAiIHdpZHRoPSI1MCIgaGVpZ2h0PSI0MCIgZmlsbD0iI2JhZDllNSIvPjx0ZXh0IHg9IjE3NSIgeT0iMTMxMCI+My80IEw8L3RleHQ+PHRleHQgeD0iMzM1IiB5PSIxMzEwIj4xLzQgTDwvdGV4dD48dGV4dCB4PSIyOCIgeT0iMTM3MCI+Vm9sdW1lOiAyMDAgcHgvTC4gVG90YWxlIDIwMCBweCA9IDEgTC48L3RleHQ+PHRleHQgeD0iMjgiIHk9IjE0MTAiPmYgPSAxLzQ7IGxhIHBhcnRlIHN1cGVyaW9yZSB2YWxlIDEg4oiSIGYgPSAzLzQuPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSIxNDYwIj7PgV9jID0gz4FfdCgxIOKIkiBmKSArIM+BX2IgZi48L3RleHQ+PC9nPjwvc3ZnPgo="
+    }
+  ]
+}

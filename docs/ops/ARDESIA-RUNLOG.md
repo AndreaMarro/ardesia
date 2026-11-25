@@ -1500,3 +1500,130 @@ Priorità: integrare 960 con tutti i gate; consolidare 1.088 con i 128 finali U2
 attività già pronte; completare i 160 U3-01 con verifica incrociata; proseguire
 sistematicamente tutti i restanti ID, senza attendere firme umane per l'authoring.
 Pubblicazione e approvazione umana rimangono gate separati.
+
+### 25 novembre 2026 — U2 completo in bozza e 119 attività riesaminate
+
+## Checkpoint corrente — 1.088 quesiti e 119 altre attività, 25 novembre 2026
+
+Generazione `c0201cafe7ce3b2d7f9fcea13eff3e257419b5b6d4b9daa6bc19d1711877d1f3`, manifest `f6d246073d29b3aa3ebda873df32dc9821f1e32ecd934a110c1d86f91249279d`.
+Tutti i 4.606 quesiti e le 385 altre attività sono contabilizzati. Le revisioni complete
+in bozza sono 1.088; le altre attività riesaminate sono 119. Restano **3.518 quesiti
+e 266 attività**. U1 e tutti gli shard U2-01..06 sono revisionati in DRAFT.
+Prossimo ID da consolidare: `u3-pressure-area-01`, lotto `pressure-area-074` in U3-01.
+
+Le otto nuove famiglie 065–072 coprono coppie di forze, gravità, orbite, discesa con
+perdite, lancio elastico, urti e frenata. Autori e verificatori distinti hanno
+congelato i singoli candidati dopo le correzioni; 196 controprove verificano anche
+chiavi e binding falsificati in memoria. Conservate ipotesi, inversi, unità, passaggi
+manuali e lettura fisica dei risultati per ogni ID. Le 14 lezioni aggiunte dai lotti
+016–019 completano C3 e le prime quattro C4: 180 controlli esatti, originali invariati.
+La controreview di elettrostatica conferma la distinzione tra carica libera e tensione
+fissate per i dielettrici e tra conduttore in equilibrio e filo resistivo in corrente.
+Le costanti tabulate arrotondate restano distinte dai valori SI esatti, senza inventare
+una richiesta di calcolo decimale non presente nella lezione.
+
+La suite tracciata passa **215 test** in 141,629 s. I 384 nuovi casi browser hanno
+uscita regolare 0; con i report precedenti ancora validi sul medesimo runtime sono
+3.288 anteprime: 3.264 dei quesiti e 24 delle otto nuove edizioni di attività.
+Le ricostruzioni fresh e incrementale hanno gli stessi byte del checkpoint.
+Nel medesimo SQLite temporaneo convivono 1.096 edizioni: secondo import senza
+scritture, tutti i 991 pubblicati e la storia invariati, nessuna pubblicazione o
+scrittura su database degli utenti. Le prove adattive sono fixture private sintetiche,
+non evidenze di apprendimento reale. Le 93 domande d'esame restano protette.
+
+Restano otto problemi nelle edizioni originali, affiancati da otto bozze corrette:
+C1-E003, C1-E008, C1-L002, C1-L003, C2-E005, C2-L007, C3-E003 e C3-E020.
+Approvazione umana NOT_RUN; nuove pubblicazioni zero. Le 100 revisioni Pro non sono
+identificate; i 199 controlli recuperati rimangono parziali. Il backlog completo ha
+3.518 ID, quello della sola risoluzione indipendente 3.319: sono code diverse.
+
+Il canone remoto verificato resta 800/89 su `884c06422a570fc021401285550ad43ab0ecb132`,
+con CI post-merge 14/14 SUCCESS. PR #360 contiene 960/105 sulla head
+`4490b7025bee534d1e2ed96b14c1e5c3bdce63cd`, ma non è ancora MERGED: il job web ha
+riprodotto una corsa nella fixture di revoca della sessione. La sola attesa del test
+è stata corretta in una worktree dedicata; target 3/3, typecheck e suite web 893/893
+PASS. La review indipendente conferma il fix; è stato pushato e la nuova CI sulla head corretta precede il merge.
+Questo incremento 1.088/119 è sul ramo successivo `feat/cric-u2-closure` e richiede
+la propria integrazione dopo #360. Nessuna prova locale è chiamata CI post-merge.
+
+I 160 candidati U3-01 sono già salvati: review incrociate in chiusura e 480 nuove
+anteprime in esecuzione; non sono conteggiati in 1.088. L'authoring U3-02 è iniziato
+con ownership disgiunta su altri 160 ID reali, lotti 084–093. Il terzo revisore prosegue
+le lezioni C4. L'ownership assegna lavoro, non completa record: l'autorità resta
+`editorial/corpus/checkpoint.json`.
+
+Proseguire senza attendere firme umane: concludere PR #360 con tutti i gate sulla SHA
+finale e post-merge; integrare 1.088/119; consolidare 1.248 dopo la verifica completa
+di U3-01; continuare U3-02 e tutte le famiglie residue. Le sezioni seguenti conservano
+snapshot storici. La pubblicazione resta un gate separato.
+
+### 25 novembre 2026 — U3-01 completo in bozza, 129 attività e PR360 integrata
+
+## Checkpoint corrente — 1.248 quesiti e 129 altre attività, 25 novembre 2026
+
+Generazione `08f8b3c9bafed7a706577825ffb37b99b3410438ac7fe03e1d2bb64a68276a24`, manifest `c074bca3b71bca45a5944eef208519246f55f43568d52352f92f1d2ea1bfd3bc`.
+Tutti i 4.606 quesiti e le 385 altre attività sono contabilizzati. Sono complete
+1.248 revisioni individuali DRAFT e 129 revisioni di attività; restano **3.358 quesiti
+e 256 attività**. U1, tutti gli shard U2 e U3-01 sono revisionati in bozza.
+Prossimo ID da consolidare: `u3-archimedes-force-01`, lotto `archimedes-force-084`.
+
+I 160 nuovi quesiti U3-01 sono collegati alle competenze e lezioni C2 reali. Le dieci
+famiglie 074–083 hanno autori e verificatori distinti, ipotesi fisiche, passaggi
+manuali, formule inverse e motivazioni dei distrattori per ID. Le 245 controprove
+comprendono chiavi errate con binding e token rinnovati: gli oracoli le respingono
+indipendentemente dalla sola firma. Corrette e rilette una negazione non universale
+sul segno di un distrattore nel manometro e una frase che impediva erroneamente alla
+profondità di variare lungo la colonna. Nessun PASS è basato sulla sola chiave fonte.
+L'esposizione accidentale iniziale della chiave fonte di 079-01 è dichiarata nella
+nota per ID; il risultato è stato derivato separatamente dal bilancio delle pressioni.
+
+Il compilatore ha rifiutato 27 record concettuali con una nuova etichetta fuori
+contratto. Il verificatore ha usato il valore previsto AI_CONCEPTUAL, conservando
+le prove fisiche e tutti gli altri campi. Nessuno schema è stato ampliato o giudizio
+promosso a EXACT_ORACLE. Nuovo test sul contratto: RED sui cinque report iniziali,
+poi GREEN su tutti gli 80 record fresh/saved e sugli stessi pacchetti/binding.
+La ripresa non ha contato il lotto rifiutato e ha mantenuto il checkpoint precedente.
+
+La suite tracciata passa **248 test** in 187,420 s. Le 480 nuove anteprime sono
+terminate con uscita 0; con i report precedenti validi sul medesimo runtime si
+raggiungono 3.768 casi: 3.744 quesiti e 24 delle otto nuove edizioni di attività.
+Ogni pacchetto ha isolamento ospite, formule, figure, reflow e controllo axe alle tre
+larghezze; questo non certifica da solo WCAG/UDL o l'esperienza reale DSA/ADHD.
+Fresh e incrementale producono lo stesso puntatore. Il collaudo comune importa
+1.256 edizioni nello stesso SQLite temporaneo, ripete senza scritture e conserva
+991 pubblicati, live head e storia. Nessun database o tentativo degli utenti modificato.
+Le prove adattive sono fixture sintetiche private, non apprendimento osservato.
+
+Le nuove attività 020–022 completano le lezioni C4 e le prime quattro C5; originali
+e figure restano invariati. Otto problemi nelle edizioni originali sono tracciati
+separatamente dalle otto bozze corrette: C1-E003, C1-E008, C1-L002, C1-L003, C2-E005,
+C2-L007, C3-E003 e C3-E020. Approvazione umana NOT_RUN; pubblicazioni aggiunte zero;
+93 domande d'esame protette. Nessuna delle 100 revisioni Pro è stata identificata.
+Dei 199 ID con vecchi controlli tecnici, 22 hanno ora una vera revisione completa
+attraverso i nuovi lotti; i restanti 177 sono ancora parziali. Il backlog completo
+contiene 3.358 ID e quello della sola risoluzione indipendente 3.181: sono code diverse.
+
+PR #360, lotto 960/105, è **MERGED** su `0d9f79696153838f3cc23b1fe6f3aece7dc5fcc8`.
+La head verificata era `4490b7025bee534d1e2ed96b14c1e5c3bdce63cd`: 26 check SUCCESS
+e uno SKIPPED prima del merge, senza bypass. La fixture web di revoca è stata
+corretta dopo il RED reale: target 3/3, typecheck e suite web 893/893 PASS, review
+indipendente. Un timeout successivo nel diario WebKit è stato seguito da un replay
+locale completo sulle cinque configurazioni, 15 scansioni axe PASS; una sola
+riesecuzione del job sulla stessa head è terminata SUCCESS, senza cambiare o saltare
+asserzioni. Il timeout iniziale non è dichiarato PASS né si pretende di aver risolto
+una causa non riprodotta. CI post-merge ancora in corso: corpus45515730354 e
+Officina45515730416. Il canone contiene quindi 960/105, con verifica post-merge da chiudere.
+La release 960 ricostruita conserva SHA256
+`6c80f034b60ff03c59645e076218156ae973479ae72c65a95d93e7b4f56e6446`;
+zero sorgenti o figure DRAFT nel pacchetto.
+
+Questo incremento 1.248/129 e il checkpoint storico 1.088/119 sono sul ramo
+`feat/cric-u2-closure`, ancora da integrare con una PR e i propri gate. I 160 candidati
+U3-02 (084–093) sono tutti salvati; review incrociate in corso, non conteggiati.
+Le lezioni successive 023–025 hanno prove salvate fuori registro e non aumentano129.
+L'ownership assegna lavoro, non completa record; l'autorità resta il checkpoint.
+
+Proseguire: chiudere la CI post-merge #360; integrare 1.248/129 sulla SHA esatta;
+consolidare 1.408 dopo review completa di U3-02; continuare tutte le famiglie e le
+attività residue, senza attendere firme umane per l'authoring. La pubblicazione
+resta un gate separato. Le sezioni seguenti sono snapshot storici.

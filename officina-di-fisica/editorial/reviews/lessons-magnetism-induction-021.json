@@ -1,0 +1,785 @@
+{
+  "schemaVersion": "1.0.0",
+  "batch": "lessons-magnetism-induction-021",
+  "records": [
+    {
+      "id": "C4-L09",
+      "sourceSha256": "8af1d9413a5af7c22200cc7f4b68ecb036ee98ce80bb3357c33dfa61f4eb0cea",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C4.json",
+      "sourceFileSha256": "19d52336dd1024113f45f33a03e4d71e262ee6357477948124c7fecec855c67c",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "outgoing wire current gives upward field at right",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "reversed wire current reverses field",
+          "independentExact": "-1",
+          "expectedValue": "-1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "Lorentz force perpendicular to velocity",
+          "independentExact": "q*vx*(-By*vz + Bz*vy) + q*vy*(Bx*vz - Bz*vx) + q*vz*(-Bx*vy + By*vx)",
+          "expectedValue": "0",
+          "unit": "W",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "Lorentz force perpendicular to field",
+          "independentExact": "Bx*q*(-By*vz + Bz*vy) + By*q*(Bx*vz - Bz*vx) + Bz*q*(-Bx*vy + By*vx)",
+          "expectedValue": "0",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "positive charge rightvelocity incomingfield givesupforce",
+          "independentExact": "B*q*v",
+          "expectedValue": "B*q*v",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "negative charge reverses same initialforce",
+          "independentExact": "-B*qabs*v",
+          "expectedValue": "-B*qabs*v",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "parallel velocity giveszero force",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "coulomb velocity tesla has newton units",
+          "independentExact": "24",
+          "expectedValue": "24",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "radius follows positive centripetal balance",
+          "independentExact": "m*v/(B*qabs)",
+          "expectedValue": "m*v/(B*qabs)",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "radius units",
+          "independentExact": "3",
+          "expectedValue": "3",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "helical exact path satisfies x Lorentz equation",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "helical exact path satisfies y Lorentz equation",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "helical axial acceleration vanishes",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "m/s^2",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "helical total speed constant",
+          "independentExact": "v**2 + vparallel**2",
+          "expectedValue": "v**2 + vparallel**2",
+          "unit": "m^2/s^2",
+          "dimension": {
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "helical radius uses transverse not total speed",
+          "independentExact": "m*v/(B*qabs)",
+          "expectedValue": "m*v/(B*qabs)",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "wire particle sum equals I length B",
+          "independentExact": "Across*B*length*n*qabs*vd",
+          "expectedValue": "Across*B*length*n*qabs*vd",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "wire ampere length tesla has force units",
+          "independentExact": "24",
+          "expectedValue": "24",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "toy magnetic force maximum at rightangle",
+          "independentExact": "6",
+          "expectedValue": "6",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        }
+      ],
+      "dimension": {
+        "outgoing wire current gives upward field at right": {},
+        "reversed wire current reverses field": {},
+        "Lorentz force perpendicular to velocity": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3"
+        },
+        "Lorentz force perpendicular to field": {},
+        "positive charge rightvelocity incomingfield givesupforce": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "negative charge reverses same initialforce": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "parallel velocity giveszero force": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "coulomb velocity tesla has newton units": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "radius follows positive centripetal balance": {
+          "[length]": "1"
+        },
+        "radius units": {
+          "[length]": "1"
+        },
+        "helical exact path satisfies x Lorentz equation": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "helical exact path satisfies y Lorentz equation": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "helical axial acceleration vanishes": {
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "helical total speed constant": {
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "helical radius uses transverse not total speed": {
+          "[length]": "1"
+        },
+        "wire particle sum equals I length B": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "wire ampere length tesla has force units": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "toy magnetic force maximum at rightangle": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "All source tasks are symbolic relations and direction reasoning. In right-handed xright,yup,zout coordinates, k cross i=j gives outgoing-wire field upward at its right; i cross(-k)=j gives the positive-particle upward force, reversed for negative charge. Dotting q(v cross B) withv giveszero power. Classical qabs*vperp*B=m*vperp²/r yields r=m*vperp/(qabs*B). Exact sine/cosine parametrization differentiates to the Lorentz equation and constant vperp²+vparallel², with unchanged axialvelocity; helical radius usesvperp, notfullspeed. The wire derivation sums n*Across*length carriers each withqabs*vd*B and usesI=n*qabs*vd*Across. Constructed manual unit probes2C*3m/s*4T=24N;2kg*3m/s/(1C*2T)=3m;2A*3m*4T=24N. No assigned numerical charge/mass or numerical trigonometry appears.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Right-handed coordinates; conventionalcurrent andsignedq. Longstraightwireawayfromends forcirculartangent fielddescription. Magneticforceonly whenstatingzero magneticwork; absenceofotherforces andspatiallyuniformB fororbitalmodel. Classicalnonrelativisticconstantmass mechanics,nonzerocharge/B,positive transverse speed fornondegeneratefinitecircle. Forinclinedvelocity radius usestransversecomponent, parallelcomponentadvancesunchanged. Straightwiresegment,uniformB andconventionalcurrentvectorlength; sin angle taken0..pi.",
+      "pedagogicalReview": "Introducescurrent/compassdirection,charge signandcrossproduct beforecircularmodel. Explicitvparallel zero-force andperpendicularcondition avoidusingfullspeed forhelicalradius; no claim magneticforceadds kineticenergy. Wirelength followsconventionalcurrent, ratherthanelectrondrift.",
+      "assetChecksums": {
+        "/figures/C4-filo-b.svg": "35676e416c40db8b8bcb2e852d6f021550458dff9fc7f1565b694c055d4ab61a",
+        "/figures/C4-orbita.svg": "3c95346817907b8731c5b62f7880236e4b97c2411770f9bc617dcc576d89b3c5"
+      },
+      "figureReview": "FullXML/renderread ofboth640x250SVGs: wirehasoutgoingdot andPright withupwardtangent,correctCCWfield. Orbitcirclecenter279,110 andpositivechargeat279,176: rightwardvarrow andupwardFpointtowardcenter withcrossesBinto page. Separatearrows arequalitativevectors, no numericforce/speedscale; circulargeometrynotdistorted.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C4-L10",
+      "sourceSha256": "f8265db8f5051d6fbbc61c112f25540379e4d5dcabfa5409217202faec7d6cc2",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C4.json",
+      "sourceFileSha256": "19d52336dd1024113f45f33a03e4d71e262ee6357477948124c7fecec855c67c",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "plane flux is dotproduct with oriented normal",
+          "independentExact": "A*B*cos(theta)",
+          "expectedValue": "A*B*cos(theta)",
+          "unit": "Wb",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2",
+            "[current]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "field in plane haszero flux",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "Wb",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2",
+            "[current]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "normal reversal reverses signedflux",
+          "independentExact": "-A*B*cos(theta)",
+          "expectedValue": "-A*B*cos(theta)",
+          "unit": "Wb",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2",
+            "[current]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "tesla squaremetre is weber",
+          "independentExact": "6",
+          "expectedValue": "6",
+          "unit": "Wb",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2",
+            "[current]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "weber per second is volt",
+          "independentExact": "2",
+          "expectedValue": "2",
+          "unit": "V",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3",
+            "[current]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "constant nonzero flux haszero emf",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "V",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3",
+            "[current]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "coil fluxlinkage scales withN not Nsquared",
+          "independentExact": "-N*rate",
+          "expectedValue": "-N*rate",
+          "unit": "V",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3",
+            "[current]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "average emf toy3turns flux2to8 in2s",
+          "independentExact": "-9",
+          "expectedValue": "-9",
+          "unit": "V",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3",
+            "[current]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "nonlinear flux average differs from terminalinstantaneous",
+          "independentExact": "-2",
+          "expectedValue": "-2",
+          "unit": "V",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3",
+            "[current]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "same nonlinear flux endpoint emf isminus4",
+          "independentExact": "-4",
+          "expectedValue": "-4",
+          "unit": "V",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3",
+            "[current]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "rotation withconstantB induces sinusoidalemf",
+          "independentExact": "A*B*N*rate*sin(rate*t)",
+          "expectedValue": "A*B*N*rate*sin(rate*t)",
+          "unit": "V",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3",
+            "[current]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "zero instantaneous flux need not meanzero emf",
+          "independentExact": "A*B*N*rate",
+          "expectedValue": "A*B*N*rate",
+          "unit": "V",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3",
+            "[current]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "increasing incomingfield givesCCW positive emf",
+          "independentExact": "A*rate",
+          "expectedValue": "A*rate",
+          "unit": "V",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3",
+            "[current]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "decreasing incomingfield givesCW negative emf",
+          "independentExact": "-A*rate",
+          "expectedValue": "-A*rate",
+          "unit": "V",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3",
+            "[current]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "increasing outgoingfield givesCW negative emf",
+          "independentExact": "-A*rate",
+          "expectedValue": "-A*rate",
+          "unit": "V",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3",
+            "[current]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "resistive2ohm loop with6Vemf carries3A",
+          "independentExact": "3",
+          "expectedValue": "3",
+          "unit": "A",
+          "dimension": {
+            "[current]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "finite emf can persist asopen loop current tendszero",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "A",
+          "dimension": {
+            "[current]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "RL transient obeys voltage balance not instantaneous IequalsEoverR",
+          "independentExact": "emf*(1 - exp(-R*t/L)) + emf*exp(-R*t/L)",
+          "expectedValue": "emf",
+          "unit": "V",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3",
+            "[current]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_boundary_probe_excluded_by_source_conditions"
+        }
+      ],
+      "dimension": {
+        "plane flux is dotproduct with oriented normal": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2",
+          "[current]": "-1"
+        },
+        "field in plane haszero flux": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2",
+          "[current]": "-1"
+        },
+        "normal reversal reverses signedflux": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2",
+          "[current]": "-1"
+        },
+        "tesla squaremetre is weber": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2",
+          "[current]": "-1"
+        },
+        "weber per second is volt": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3",
+          "[current]": "-1"
+        },
+        "constant nonzero flux haszero emf": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3",
+          "[current]": "-1"
+        },
+        "coil fluxlinkage scales withN not Nsquared": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3",
+          "[current]": "-1"
+        },
+        "average emf toy3turns flux2to8 in2s": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3",
+          "[current]": "-1"
+        },
+        "nonlinear flux average differs from terminalinstantaneous": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3",
+          "[current]": "-1"
+        },
+        "same nonlinear flux endpoint emf isminus4": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3",
+          "[current]": "-1"
+        },
+        "rotation withconstantB induces sinusoidalemf": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3",
+          "[current]": "-1"
+        },
+        "zero instantaneous flux need not meanzero emf": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3",
+          "[current]": "-1"
+        },
+        "increasing incomingfield givesCCW positive emf": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3",
+          "[current]": "-1"
+        },
+        "decreasing incomingfield givesCW negative emf": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3",
+          "[current]": "-1"
+        },
+        "increasing outgoingfield givesCW negative emf": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3",
+          "[current]": "-1"
+        },
+        "resistive2ohm loop with6Vemf carries3A": {
+          "[current]": "1"
+        },
+        "finite emf can persist asopen loop current tendszero": {
+          "[current]": "1"
+        },
+        "RL transient obeys voltage balance not instantaneous IequalsEoverR": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3",
+          "[current]": "-1"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "The source assigns symbolic flux and Lenz reasoning, no compulsory numerical evaluation. Dotproduct givesPhi=BAcos(theta), T*m²=Wb, Wb/s=V. Withpairednormal/path, positiveemf isCCW seenfrom+normal. IncomingincreasingB givesPhi=-A*rate*t andpositiveemf, whileincomingdecreasing givesnegativeemf. Forconstructed3turns andflux2to8Wb over2s the mean is-9V. ForPhi=t² over0..2s meanemf=-2V whileterminalinstantaneous is-4V. RotatingcoilPhi=NBAcos(omega*t) hasemf=NBAomega*sin(omega*t), nonzero atzero instantaneousflux. Toy6V/2ohm=3A applies only to negligibleinductance; anRLstep instead givesI=(emf/R)(1-exp(-Rt/L)) andI(0)=0. Exactexponent andtrig are reviewer derivations, not required student decimal calculations.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "FixedNturns withsameorientedflux perturn; puresignednormal andpositivepathpairedbyright-hand rule. BAcos appliesuniformB andplanarloop; fluxderivativeincludesB,area/orientationchanges. Averageemf overnonzerointerval distinguished frominstantaneous. Lenz directionofinducedemf/response opposes fluxchange, notalways externalB. Simple I=emf/R is explicitlyresistive,closedloop withselfinductionnegligible; openloop mayhaveemfwithoutlastingconductioncurrent. Storedinitialinductorenergy isnot a sourcefree Ohm response.",
+      "pedagogicalReview": "Definesanglewithnormal,fluxunits andmean emf beforeLenz. Distinguishes changingflux frommerepresenceofB, normalorientationfromunorientedarea, decreasingfromincreasingexternalB, andemffromcurrent. Ohmshortcut hasexplicitselfinductancequalification. No fabricated student-calculator task.",
+      "assetChecksums": {
+        "/figures/C4-flusso.svg": "a0c10ef39955c42e2cbc9066e37e89d0befec67fb18b5e8f4f9eca1bb4745cd9",
+        "/figures/C4-lenz.svg": "9e5bb14e0620e1ac15ff6193dddcf1c9b463cad0339d7de1ed5920d386db6f5a"
+      },
+      "figureReview": "FullXML/renderread: edge-onloopplanehorizontal,normalvertical,obliqueB atanglefromnormal;thetaarc connectsnormaltoB, notplanetovector. Lenzfrontviewcrossesmarkincomingexternalfield,reddotoutgoinginducedfield, currentarc onrightgoesupward/CCW. No numericB/area/time scale,arclengthnotcurrent magnitude.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "837535255c12d92ed18b290a875a7afb090800339dda62285984edea06349988",
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+  "sourcePath": "officina-di-fisica/content/C4.json",
+  "sourceFileSha256": "19d52336dd1024113f45f33a03e4d71e262ee6357477948124c7fecec855c67c",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "acceptedCount": 2,
+  "failedCount": 0,
+  "draftReviewedCount": 0,
+  "failedPublishedEditionIds": [],
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_original_or_revision_author",
+  "originalEditionRetained": true,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}

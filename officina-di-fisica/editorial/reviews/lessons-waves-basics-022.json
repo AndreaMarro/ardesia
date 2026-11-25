@@ -1,0 +1,1094 @@
+{
+  "schemaVersion": "1.0.0",
+  "batch": "lessons-waves-basics-022",
+  "records": [
+    {
+      "id": "C5-L01",
+      "sourceSha256": "f13741b37b439c6bc7b90dd7e57d49858f5dd81cf91a4db57a67c7e2e759a96f",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C5.json",
+      "sourceFileSha256": "dac4490e6a900f5da191bf7a1f5b8463ddc57c8bbaa36cb7a4a375c70fa77422",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "peaktopeak4cm means amplitude2cm",
+          "independentExact": "2",
+          "expectedValue": "2",
+          "unit": "cm",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_or_figure_manual_calculation"
+        },
+        {
+          "claim": "sourcegraph periodonehalfsecond gives2Hz",
+          "independentExact": "2",
+          "expectedValue": "2",
+          "unit": "Hz",
+          "dimension": {
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_or_figure_manual_calculation"
+        },
+        {
+          "claim": "sourcegraph frequency2 givesomega4pi",
+          "independentExact": "4*pi",
+          "expectedValue": "4*pi",
+          "unit": "rad/s",
+          "dimension": {
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_or_figure_manual_calculation"
+        },
+        {
+          "claim": "harmonic secondderivative equals negativeomegaSquared position",
+          "independentExact": "-A*omega**2*cos(omega*t + phi)",
+          "expectedValue": "-A*omega**2*cos(omega*t + phi)",
+          "unit": "m/s^2",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "successive samephase afterfullperiod",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "halfperiod changes sign rather thanrepeating generalstate",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "at equilibrium toyphasepiOver2 speedmagnitudeAomega",
+          "independentExact": "-A*omega",
+          "expectedValue": "-A*omega",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "at maximum toyphasezero velocityzero",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "at maximum acceleration directedinward",
+          "independentExact": "-A*omega**2",
+          "expectedValue": "-A*omega**2",
+          "unit": "m/s^2",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "spring Newton equation givesomegaSquaredKoverm",
+          "independentExact": "-A*omega**2*cos(omega*t + phi)",
+          "expectedValue": "-A*omega**2*cos(omega*t + phi)",
+          "unit": "m/s^2",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "harmonic kineticpluspotential energy constant",
+          "independentExact": "A**2*m*omega**2/2",
+          "expectedValue": "A**2*m*omega**2/2",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "frequency units reciprocal seconds",
+          "independentExact": "2",
+          "expectedValue": "2",
+          "unit": "Hz",
+          "dimension": {
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "toyfourcyclesintwoseconds periodonehalf",
+          "independentExact": "1/2",
+          "expectedValue": "1/2",
+          "unit": "s",
+          "dimension": {
+            "[time]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "negativeinitialvelocityatcenter differs frompositive despiteequalposition",
+          "independentExact": "-A*omega",
+          "expectedValue": "-A*omega",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        }
+      ],
+      "dimension": {
+        "peaktopeak4cm means amplitude2cm": {
+          "[length]": "1"
+        },
+        "sourcegraph periodonehalfsecond gives2Hz": {
+          "[time]": "-1"
+        },
+        "sourcegraph frequency2 givesomega4pi": {
+          "[time]": "-1"
+        },
+        "harmonic secondderivative equals negativeomegaSquared position": {
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "successive samephase afterfullperiod": {
+          "[length]": "1"
+        },
+        "halfperiod changes sign rather thanrepeating generalstate": {
+          "[length]": "1"
+        },
+        "at equilibrium toyphasepiOver2 speedmagnitudeAomega": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "at maximum toyphasezero velocityzero": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "at maximum acceleration directedinward": {
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "spring Newton equation givesomegaSquaredKoverm": {
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "harmonic kineticpluspotential energy constant": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "frequency units reciprocal seconds": {
+          "[time]": "-1"
+        },
+        "toyfourcyclesintwoseconds periodonehalf": {
+          "[time]": "1"
+        },
+        "negativeinitialvelocityatcenter differs frompositive despiteequalposition": {
+          "[length]": "1",
+          "[time]": "-1"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "Actualsource:4cm peaktopeak means2cm amplitude. TemporalSVG hasperiod0.50s, sof2Hz andomega4pi rad/s; successivecenter crossingsare0.25sapart withoppositeslopes. Theplottedphase startsatzerowithpositiveslope, consistentwithcos initialphase-minuspi/2; usingmax-to-max doesnotrequirea maximumattimezero. Derivea=-omega²x bytwoderivatives, v=0atpeaks andspeedAomegaatcenter. SpringF=-Kx givesomega²=K/m underlinearspring,nodamping. Exactenergysumconstant. Additionalfourcyclesin2s isreviewerprobe,notnewassigneddata; symbolicpi neednotbeapproximated.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Periodiccompletecycles withsamepositionanddirection; A>0,T>0,omega>0. Coordinatesrelativetoequilibrium. Harmonicsinusoid correspondslinearrestoringforce,noappreciabledamping/forcingchange; idealspringhorizontalwithinHookeregime. Momentarilystationaryatendpointsdoesnotmeanzeroacceleration.",
+      "pedagogicalReview": "Explicitlydistinguishessameheightfromsamestate,halffromfullcycle,andpeaktopeakfromamplitude. Actualmanual4/2ischecked,notwaivedduetolessonkind. Sinusoidalphaseallowsinitialpositionandvelocitysign.",
+      "assetChecksums": {
+        "/figures/C5-orologio.svg": "88d0ae6a4be838086f101e1e53c8648e8d6ac258e7e2610ecc3ada42726e6e6b"
+      },
+      "figureReview": "CompleteXML/render:verticalx(cm),horizontal t(s);zeroy134,cresty81means2cm,temporal0.25sper95px;peakspacing190pxgives0.50s. Max-to-maxbracketmatchescrestsat131.5/321.5,notzero-crossings. Plottedamplitudeandinitialpositiveslopeagreewithtitleandprose.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C5-L02",
+      "sourceSha256": "4d99b0757c171d2bdc1afffa5f961b415b0e8966ba32e4924c3ca5e35b088e57",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C5.json",
+      "sourceFileSha256": "dac4490e6a900f5da191bf7a1f5b8463ddc57c8bbaa36cb7a4a375c70fa77422",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "travellingwave phaseconstant givespositivevelocity",
+          "independentExact": "omega/k",
+          "expectedValue": "omega/k",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "wavelengthandfrequency yieldomegakratio",
+          "independentExact": "omega/k",
+          "expectedValue": "omega/k",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "field repeats inposition bywavelength",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "fixedsensor repeats intime byperiod",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "waveequation transverse spacetime derivatives",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "m/s^2",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "particle transversespeed differs fromwave phasespeed",
+          "independentExact": "A*omega*sin(k*x - omega*t + phi)",
+          "expectedValue": "A*omega*sin(k*x - omega*t + phi)",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "spacegraphic wavelengthfourfifthsmeter giveskfivepiOver2",
+          "independentExact": "5*pi/2",
+          "expectedValue": "5*pi/2",
+          "unit": "rad/m",
+          "dimension": {
+            "[length]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_or_figure_manual_calculation"
+        },
+        {
+          "claim": "spatial graphic scale176px forfourfifthsm",
+          "independentExact": "220",
+          "expectedValue": "220",
+          "unit": "1/m",
+          "dimension": {
+            "[length]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_or_figure_manual_calculation"
+        },
+        {
+          "claim": "wavelength timesfrequency has speedunits",
+          "independentExact": "8/5",
+          "expectedValue": "8/5",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "hypotheticalpoint speedneednotphasevelocity",
+          "independentExact": "2*pi/25",
+          "expectedValue": "2*pi/25",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "linear longitudinal compression is negative strain",
+          "independentExact": "A*k*sin(k*x - omega*t)",
+          "expectedValue": "A*k*sin(k*x - omega*t)",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "pressureperturbation isbulkmodulustimescompression",
+          "independentExact": "A*Kbulk*k*sin(k*x - omega*t)",
+          "expectedValue": "A*Kbulk*k*sin(k*x - omega*t)",
+          "unit": "Pa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "standingwave isnot single progressiveprofile",
+          "independentExact": "2*cos(k*x)*cos(omega*t)",
+          "expectedValue": "2*cos(k*x)*cos(omega*t)",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_boundary_probe_excluded_by_source_conditions"
+        },
+        {
+          "claim": "changing phase sign changespropagationdirection",
+          "independentExact": "-omega/k",
+          "expectedValue": "-omega/k",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        }
+      ],
+      "dimension": {
+        "travellingwave phaseconstant givespositivevelocity": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "wavelengthandfrequency yieldomegakratio": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "field repeats inposition bywavelength": {
+          "[length]": "1"
+        },
+        "fixedsensor repeats intime byperiod": {
+          "[length]": "1"
+        },
+        "waveequation transverse spacetime derivatives": {
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "particle transversespeed differs fromwave phasespeed": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "spacegraphic wavelengthfourfifthsmeter giveskfivepiOver2": {
+          "[length]": "-1"
+        },
+        "spatial graphic scale176px forfourfifthsm": {
+          "[length]": "-1"
+        },
+        "wavelength timesfrequency has speedunits": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "hypotheticalpoint speedneednotphasevelocity": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "linear longitudinal compression is negative strain": {},
+        "pressureperturbation isbulkmodulustimescompression": {
+          "[mass]": "1",
+          "[length]": "-1",
+          "[time]": "-2"
+        },
+        "standingwave isnot single progressiveprofile": {},
+        "changing phase sign changespropagationdirection": {
+          "[length]": "1",
+          "[time]": "-1"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "Source spatialSVG measureslambda0.80m, its176px wavelengthand176pxbetween0and0.80areconsistent; k=2pi/lambda=5pi/2 rad/m stayssymbolic. Holdingphasekx-omegat+phi fixedgivesdx/dt=omega/k, andsubstitutinglambda=2pi/k,T=2pi/omega giveslambda/T. Positionortime translationsbyfullcycle returnfield; spacetime derivatives satisfywaveequation. Materialtransversevelocity isAomega*sin(phase), notomega/k. Forlongitudinalfluid displacementxi, compression=-dxi/dx andpressureperturbation=bulkmodulus*compression; sinusoidalpressuredoesnotdrawmoleculepath. Hypotheticallycombininglambda4/5m withfrequency2Hz gives8/5m/s,butthetwodifferentlessonfiguresareNOTassertedtorepresentonesamewave. Thosepairsandstandingwavecounterexamplesarelabelledreviewerprobes.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Singleharmonicprogressiveprofile,positivek/omega,withoutshapechangeinassignedhomogeneousmedium; phasespeednotmaterialparticlevelocity,norgenerallyapulsegroupvelocityindispersivemedia. Stringtransverse/fluidlongitudinaldisplacementsremainnearindividualequilibria. Linearfluidstrainrelationissmall-amplitudereviewerprobe. Noassertionthatseparatetemporal/spatialfiguresareonesharedexperiment.",
+      "pedagogicalReview": "Contrastsafixedsensor temporalrecordwithsimultaneousspatialprofile,thenlinksphaseandwavespeed. Distinguishesmaterialoscillationfromenergypropagationandpressuregraphfrommoleculetrajectory. Doesnotinvitearbitrarycombinationofunrelatedgraphnumbers.",
+      "assetChecksums": {
+        "/figures/C5-istantanea.svg": "d43a90344af8b498b583d626992faf25ef227ba03a0e23b3c6fff7e9d87ff0ff",
+        "/figures/C5-suono.svg": "ca709649408be8fa8f52ce9afbecde2b3eddaac7490c95d514291e022e9f12d8"
+      },
+      "figureReview": "BothSVGsfullyread/rendered:spatialaxisx(m),verticaly(cm),lambda0.80mover176px;0/0.80/1.60ticksat75/251/427,crests119/295/471;rightarrowpropagationandfixedtimesnapshotarelabelled. Fluidlayersclusterat70/322.45/574.90,withrarefactionsbetweenthem;arrow70to322.45spansonecompressionperiod. No transverse moleculepathisdrawn.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C5-L03",
+      "sourceSha256": "417c1eb3e759a1ff037934d738ed59ea9549ba4fe370d0f193d08afdb93aeea6",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C5.json",
+      "sourceFileSha256": "dac4490e6a900f5da191bf7a1f5b8463ddc57c8bbaa36cb7a4a375c70fa77422",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "sourcepulse2cm plusnegative1cm equals1cm",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "cm",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_or_figure_manual_calculation"
+        },
+        {
+          "claim": "equal inphase oscillations double displacement",
+          "independentExact": "2*A*cos(phi)",
+          "expectedValue": "2*A*cos(phi)",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "equal oppositephase waves cancel displacement",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "unequal oppositephase leaves difference",
+          "independentExact": "A*cos(phi)",
+          "expectedValue": "A*cos(phi)",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "two equal coherent sinusoids combinehalfphaseamplitude",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "full wavelength pathdifference is2pi phase",
+          "independentExact": "2*pi",
+          "expectedValue": "2*pi",
+          "unit": "rad",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "halfwavelength pathdifference ispi phase",
+          "independentExact": "pi",
+          "expectedValue": "pi",
+          "unit": "rad",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "initialphase offset must beadded to pathphase",
+          "independentExact": "pi",
+          "expectedValue": "pi",
+          "unit": "rad",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "equal intensitiesalone do not specifyinterference",
+          "independentExact": "4*cos(delta/2)**2",
+          "expectedValue": "2*cos(delta) + 2",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "samecoherentphase producesintensityfactor4",
+          "independentExact": "4",
+          "expectedValue": "4",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "quadrature givesintensityfactor2 notcancel",
+          "independentExact": "2",
+          "expectedValue": "2",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "standingwave momentaryzero displacementneednotzero velocity",
+          "independentExact": "-2*A*omega*cos(k*x)",
+          "expectedValue": "-2*A*omega*cos(k*x)",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "linearwave operator preserves sum",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "m/s^2",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "sourcepulseverticalscale18pxpercm",
+          "independentExact": "18",
+          "expectedValue": "18",
+          "unit": "1/cm",
+          "dimension": {
+            "[length]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_or_figure_manual_calculation"
+        }
+      ],
+      "dimension": {
+        "sourcepulse2cm plusnegative1cm equals1cm": {
+          "[length]": "1"
+        },
+        "equal inphase oscillations double displacement": {
+          "[length]": "1"
+        },
+        "equal oppositephase waves cancel displacement": {
+          "[length]": "1"
+        },
+        "unequal oppositephase leaves difference": {
+          "[length]": "1"
+        },
+        "two equal coherent sinusoids combinehalfphaseamplitude": {
+          "[length]": "1"
+        },
+        "full wavelength pathdifference is2pi phase": {},
+        "halfwavelength pathdifference ispi phase": {},
+        "initialphase offset must beadded to pathphase": {},
+        "equal intensitiesalone do not specifyinterference": {},
+        "samecoherentphase producesintensityfactor4": {},
+        "quadrature givesintensityfactor2 notcancel": {},
+        "standingwave momentaryzero displacementneednotzero velocity": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "linearwave operator preserves sum": {
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "sourcepulseverticalscale18pxpercm": {
+          "[length]": "-1"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "ActualsourceSVG:2cm+(-1cm)=1cm withthreeindependentzeros andcommon18px/cm scale. Generaladditionispointwise,signed andsimultaneous inalinearmedium. Equalfrequency sumidentitiesgive2Acos(delta/2)*cos(phase+delta/2); oppositephaseequalA cancels,unequalA leavesdifference. Camminolambda adds2pi andlambda/2 addspi onlyforin-phasesourcesinsamemedium; initialphaseoffsetmustalsobeincluded. Intensitiesproportionaltosquaredamplitudehavecross-terms;equallystrongdoesnotimplycancelled. Constructedstandingwave hasinstantaneouslyzerodisplacementbutnonzerovelocity,soenergyisnotinferredfromdisplacementalone. Noextra numericaltrigcalculationsareassigned.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Linearregimeand smallperturbations; addsamephysicalfieldcomponentatsamepoint/time,notenergies/intensitiesdirectly. Phaseformulaforpathdifferenceusesinitiallyin-phasesources,samemedium/wavelengthandconsistentorientation. Stableinterferencerequiresstablephasedifference. Equalstrengthwithoutphaseinformationisinsufficient.",
+      "pedagogicalReview": "Threegraphzeroesareexplicit,signedadditionandcoherencequalifiersprecedephaseformula. Separatessuperposedfieldfromenergy/intensityandwarnsthatloudnessalonecannotfixcancellation.",
+      "assetChecksums": {
+        "/figures/C5-somma.svg": "a8f1e00e24ed8ad239163fcf84ff0eb5848c920d2748b29393769dbe0f55c069"
+      },
+      "figureReview": "CompleteXML/render:zeros52/119/199;peaks16/137/181so36pxup,18pxdown,18pxup,consistent18px/cmfor+2,-1,+1. Sharedpulseabscissae236/302/368andlinearsegmentsmakepointwiseadditioncorrectthroughout,notjustatthepeak.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C5-L04",
+      "sourceSha256": "b9e9282f1cf77070efbb56d249067db327c7dbdd2edaec955d0482daac40cc20",
+      "sourceVersion": 2,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C5.json",
+      "sourceFileSha256": "dac4490e6a900f5da191bf7a1f5b8463ddc57c8bbaa36cb7a4a375c70fa77422",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "source6Jin3s gives2W",
+          "independentExact": "2",
+          "expectedValue": "2",
+          "unit": "W",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_or_figure_manual_calculation"
+        },
+        {
+          "claim": "intensity units wattpersquaremetre",
+          "independentExact": "2",
+          "expectedValue": "2",
+          "unit": "W/m^2",
+          "dimension": {
+            "[mass]": "1",
+            "[time]": "-3"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "sphereintegratedoutgoingpowerconserved",
+          "independentExact": "P",
+          "expectedValue": "P",
+          "unit": "W",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "doubledradius givesquarterintensity",
+          "independentExact": "1/4",
+          "expectedValue": "1/4",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "sphere areas growbyfour nottwo",
+          "independentExact": "4",
+          "expectedValue": "4",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "string average kineticdensity",
+          "independentExact": "A**2*mu*omega**2/4",
+          "expectedValue": "A**2*mu*omega**2/4",
+          "unit": "J/m",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "string average elasticdensity tensionmucSquared",
+          "independentExact": "A**2*mu*omega**2/4",
+          "expectedValue": "A**2*mu*omega**2/4",
+          "unit": "J/m",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "string meanpower fromnegative tension slope timesvelocity",
+          "independentExact": "A**2*c*mu*omega**2/2",
+          "expectedValue": "A**2*c*mu*omega**2/2",
+          "unit": "W",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "string powerformula units",
+          "independentExact": "48",
+          "expectedValue": "48",
+          "unit": "W",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "doubling amplitude atfixedfrequency quadruplespower",
+          "independentExact": "4",
+          "expectedValue": "4",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "faceon sensor capturesfullprojectedarea",
+          "independentExact": "S",
+          "expectedValue": "S",
+          "unit": "m^2",
+          "dimension": {
+            "[length]": "2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "edgeon sensor captureszeroarea",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "m^2",
+          "dimension": {
+            "[length]": "2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "toy60degree sensorgiveshalfarea",
+          "independentExact": "S/2",
+          "expectedValue": "S/2",
+          "unit": "m^2",
+          "dimension": {
+            "[length]": "2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "intensity area duration has energyunits",
+          "independentExact": "24",
+          "expectedValue": "24",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "collimated constantcrosssection needsnotinverseSquare",
+          "independentExact": "P/S",
+          "expectedValue": "P/S",
+          "unit": "W/m^2",
+          "dimension": {
+            "[mass]": "1",
+            "[time]": "-3"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "varying intensity needsactualtimeintegral",
+          "independentExact": "9*S",
+          "expectedValue": "9*S",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_boundary_probe_excluded_by_source_conditions"
+        }
+      ],
+      "dimension": {
+        "source6Jin3s gives2W": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3"
+        },
+        "intensity units wattpersquaremetre": {
+          "[mass]": "1",
+          "[time]": "-3"
+        },
+        "sphereintegratedoutgoingpowerconserved": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3"
+        },
+        "doubledradius givesquarterintensity": {},
+        "sphere areas growbyfour nottwo": {},
+        "string average kineticdensity": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "string average elasticdensity tensionmucSquared": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "string meanpower fromnegative tension slope timesvelocity": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3"
+        },
+        "string powerformula units": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3"
+        },
+        "doubling amplitude atfixedfrequency quadruplespower": {},
+        "faceon sensor capturesfullprojectedarea": {
+          "[length]": "2"
+        },
+        "edgeon sensor captureszeroarea": {
+          "[length]": "2"
+        },
+        "toy60degree sensorgiveshalfarea": {
+          "[length]": "2"
+        },
+        "intensity area duration has energyunits": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "collimated constantcrosssection needsnotinverseSquare": {
+          "[mass]": "1",
+          "[time]": "-3"
+        },
+        "varying intensity needsactualtimeintegral": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "Actualsource6J/3s=2W. Sphereareais4pi*r², so doubledradiusgivesfourtimesareaandonequarterintensity,notonehalf. Deriveidealstringpowerfromflux-tension*yx*yt; periodaveragegiveshalf*mu*c*omega²*A², withmean kineticandelasticdensitieseachquarter*mu*omega²*A². Allpi termsstaysymbolic/cancel. Projected collectingareaS*cos(theta) usesnormalfacingincidentrayandacuteincidence0..pi/2; itisnotanunsignedcollectedenergyformulaforanarbitrarilyreversednormal. Sensorintensityuniformandconstanttimeisexplicit;thenE=I*S_eff*duration. Reviewertoy2W/m²*3m²*4s=24J andcos60=1/2 requireonlyinteger/fractionwork;varying2t intensityover3s insteadintegrates9S. Collimatedconstantsectionpowerisnotdividedbyanexpandingsphere.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Pointlikeisotropicsource,homogeneouslosslessmediumandoutwardpropagationforinverse-square; r>0outsidepointsourceidealization. Meanintensityfromnormalpowerflux; smallplanarsensorwithnearuniformincidentintensity,collectingnormalchosentowardrayso0<=theta<=pi/2. Constantintensityduringexposureforproductenergy. Stringmodelideal,linear/smallslopes,uniformmu/tensionandprogressiveharmonicmotion; amplitudecomparisonskeepmedium,wavespeedandfrequencyfixed. Collimatedbeamhasconstantsectionandnegligiblelosses.",
+      "pedagogicalReview": "Beginswithactualintegerdivision,distinguishessourcepowerfromwindowpower,intensityandcapturedenergy. Spherecrosssectionisexplicitlynotdiskarea; inverse-squareconditions, stringfixed-frequencyquadraticscalingandnormalangleconventionaredistinct. Uniformity/timeconstancyqualifycollectionproducts; finalcollimatedcasepreventsapplyinginverse-squareuniversally.",
+      "assetChecksums": {
+        "/figures/C5-sfere.svg": "acdc645c86411fc4b259a623a655074d88e843c4a2bd19cd2af9d2f3922f4f9b"
+      },
+      "figureReview": "CompleteXML/render:concentriccirclesr49/98pxsamecenter169,126,labelledsectionthroughsource. AccompanyingS1=4pi*r²,S2=4pi*(2r)²=4S1preventconfusingdrawn2Dcircleareawithspherearea. NoabsoluteP/rnumbersareassigned;offsetradiusannotationisschematic.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "143ce216eba321db378cbf123dbfe094baaa5a89529f5d44398ed6924002d3dd",
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+  "sourcePath": "officina-di-fisica/content/C5.json",
+  "sourceFileSha256": "dac4490e6a900f5da191bf7a1f5b8463ddc57c8bbaa36cb7a4a375c70fa77422",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "acceptedCount": 4,
+  "failedCount": 0,
+  "draftReviewedCount": 0,
+  "failedPublishedEditionIds": [],
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_original_or_revision_author",
+  "originalEditionRetained": true,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}

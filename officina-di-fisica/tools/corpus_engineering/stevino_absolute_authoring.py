@@ -1,7 +1,7 @@
 """Author absolute hydrostatic-pressure drafts; no reviewer assertions."""
 from .vector_geometry_authoring import assemble_family,write_family
 SOURCE_PATH='packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U3-01.json'
-SCENE='Acqua omogenea incomprimibile di densità ρ=1000 kg/m³ è in quiete, con g=10 m/s² uniforme. Un gas esercita sulla superficie la pressione assoluta p_s>0. La profondità verticale h>0 è diretta verso il basso. La pressione assoluta cercata p ha come riferimento il vuoto; p=p_s+γh, dove γ=ρg=10 kPa/m. Capillarità trascurata; p_s e h possono cambiare fra prove, non lungo la stessa colonna in quiete. '
+SCENE='Acqua omogenea incomprimibile di densità ρ=1000 kg/m³ è in quiete, con g=10 m/s² uniforme. Un gas esercita sulla superficie la pressione assoluta p_s>0. La profondità verticale h>0 è diretta verso il basso. La pressione assoluta cercata p ha come riferimento il vuoto; p=p_s+γh, dove γ=ρg=10 kPa/m. Capillarità trascurata; p_s è uniforme sulla superficie in ogni prova. h individua il punto d’osservazione e può variare lungo la colonna. '
 TASKS=[
 ('La pressione del gas più quella della colonna',SCENE+'Con p_s=100 kPa e h=2 m, quanto vale p?',['120 kPa','20 kPa','100 kPa','200 kPa','240 kPa'],
  'Stevino fornisce l’incremento rispetto alla superficie, non l’assoluta completa. Due metri d’acqua aggiungono10·2=20 kPa alla pressione del gas. La somma100+20 dà120 kPa. La pressione atmosferica non va aggiunta ancora: il dato p_s è già assoluto.',

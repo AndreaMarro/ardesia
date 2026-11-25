@@ -1,0 +1,495 @@
+{
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "AR-u3-vertical-wall-force-01",
+      "sourceSha256": "54f45e05b6265677a97de56c1b873a261bef1928c9f96aa0fa038c20e02e84db",
+      "candidateSha256": "161c8d17ce809b2d951d6ece4c7f4a329d53ad29ea1debb59943aaef48a35d6f",
+      "reviewedSignature": "882b591437689036e5bcb692b9ad51a27870931ab177b5666e339c1e8fde7b0c",
+      "assetChecksums": {
+        "vertical-wall-force-progressive.svg": "91c617c31f27c2b9ac63f6bda083ab1e28a59316a85547cdb092fc3ad409f5a1"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "40",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "z verso il basso,p_rel=ρgz. Integrale0→h p_rel b dz=ρgbh²/2. b2,h2→media10kPa,area4m²,F40kN. Pressione fondo20kPa non uniforme.",
+      "physicalAssumptions": "Parete rettangolare verticalelarghezzacostante,b,h>0,bordobagnatosuperiorealpelo libero,acqua1000kg/m³ inquiete,g10uniforme. Stessaatmosfera sulla superficie elatoesternoasciutto,cancellata per forzanetta. Pressionerelativalocaleρgz,zversoilbasso;normaliorizzontali. ",
+      "distractors": "80kNmassimosuarea,nonmedia;atmosferacomunesi cancella,forzeorizzontali.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. z verso il basso,p_rel=ρgz. Integrale0→h p_rel b dz=ρgbh²/2. b2,h2→media10kPa,area4m²,F40kN. Pressione fondo20kPa non uniforme.",
+      "scientificAssetReview": "XML e rendering completo letti: fronte200×200px a100px/m,area4m². Profiloprofondità200px per2m,segmenti20/40/60/80px per5/10/15/20kPaa4px/kPa,ogni freccia inpathseparato. Forzatotale40kNproiettata separatamentelunga200pxa5px/kN,nessunpuntoapplicazioneassegnatoallamezzaprofondità.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_hydrostatic_equilibrium_or_pressure_integral_or_volume_conservation",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u3-vertical-wall-force-02",
+      "sourceSha256": "88c97f32edf23254ce20e6130e6260c741d8b8f80746b5dc85f9f5d86ada8076",
+      "candidateSha256": "a3142b80d2cd1d1f58ab2d92bac4971cacf1feb22400dbe3fc850575ec326a8f",
+      "reviewedSignature": "1bed533acca7434e0d3bcdeb0f6d5cc9b19763ad01244656b27702a79a03f07b",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "kN",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Pa·m²=N;1kN1000N. Non è un calcolo numerico autonomo: riconoscimento della forza,distinta da pressione e lavoro.",
+      "physicalAssumptions": "Parete rettangolare verticalelarghezzacostante,b,h>0,bordobagnatosuperiorealpelo libero,acqua1000kg/m³ inquiete,g10uniforme. Stessaatmosfera sulla superficie elatoesternoasciutto,cancellata per forzanetta. Pressionerelativalocaleρgz,zversoilbasso;normaliorizzontali. ",
+      "distractors": "Pa pressione,kgmassa,mlunghezza,Jlavoro;solo kNforza.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Pa·m²=N;1kN1000N. Non è un calcolo numerico autonomo: riconoscimento della forza,distinta da pressione e lavoro.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_hydrostatic_equilibrium_or_pressure_integral_or_volume_conservation",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u3-vertical-wall-force-03",
+      "sourceSha256": "0798189a4ea865cf260891306cbec4778d007b891be0446002e4c328241c7c43",
+      "candidateSha256": "f64f81eb1f3ce53c1beba73846ab4d388a3275a086ca3c9dcd3272f3f6671cd0",
+      "reviewedSignature": "e767112e73fab9a3bc0ce06871e475e17738d21da114466b692f3f876bc59b3e",
+      "assetChecksums": {
+        "vertical-wall-force-progressive.svg": "91c617c31f27c2b9ac63f6bda083ab1e28a59316a85547cdb092fc3ad409f5a1"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "La pressione varia con la profondità e quella sul fondo è il massimo.",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Ogni striscia senteρgz,profilo triangolare. Media(0+ρgh)/2,integrale metà delrettangolomassimo. Normali orizzontali. Puntoapplicazione dalla prima area2h/3nonprofonditàdellapressionemediah/2;figura nonloassegna.",
+      "physicalAssumptions": "Parete rettangolare verticalelarghezzacostante,b,h>0,bordobagnatosuperiorealpelo libero,acqua1000kg/m³ inquiete,g10uniforme. Stessaatmosfera sulla superficie elatoesternoasciutto,cancellata per forzanetta. Pressionerelativalocaleρgz,zversoilbasso;normaliorizzontali. ",
+      "distractors": "Forzeverticali,noforza,pressionenettanulla,atmosferaraddoppiata:tuttifalsi nelbilanciointegrato. Pressionefondomassimo,nonmedia.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Ogni striscia senteρgz,profilo triangolare. Media(0+ρgh)/2,integrale metà delrettangolomassimo. Normali orizzontali. Puntoapplicazione dalla prima area2h/3nonprofonditàdellapressionemediah/2;figura nonloassegna.",
+      "scientificAssetReview": "XML e rendering completo letti: fronte200×200px a100px/m,area4m². Profiloprofondità200px per2m,segmenti20/40/60/80px per5/10/15/20kPaa4px/kPa,ogni freccia inpathseparato. Forzatotale40kNproiettata separatamentelunga200pxa5px/kN,nessunpuntoapplicazioneassegnatoallamezzaprofondità.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_hydrostatic_equilibrium_or_pressure_integral_or_volume_conservation",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u3-vertical-wall-force-04",
+      "sourceSha256": "ebd04587acafd34c126a2335b3bdebf563fd55895d24d4093f952a9ecbae723e",
+      "candidateSha256": "0bfe89e29bd870a493baa982ca1f89f331f41e2a49e13c45d4fa6a7cb2100808",
+      "reviewedSignature": "b74e33cd435779daa65f8c2001ce3414453d80d54beee92a14f0b1ba6f5ce561",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Da 40 a 20 kN",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "h2m invariata→media10kPa. Larghezza2→1m,area4→2m²,F40→20kN.",
+      "physicalAssumptions": "Parete rettangolare verticalelarghezzacostante,b,h>0,bordobagnatosuperiorealpelo libero,acqua1000kg/m³ inquiete,g10uniforme. Stessaatmosfera sulla superficie elatoesternoasciutto,cancellata per forzanetta. Pressionerelativalocaleρgz,zversoilbasso;normaliorizzontali. ",
+      "distractors": "10doppio dimezzamento,80inverteeffetto,40ignoralarghezza,0violaareapositiva.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. h2m invariata→media10kPa. Larghezza2→1m,area4→2m²,F40→20kN.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_hydrostatic_equilibrium_or_pressure_integral_or_volume_conservation",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u3-vertical-wall-force-05",
+      "sourceSha256": "5b6f6b65128764903ee47af334991fe743e5c3da59d5f50b0d8e8ce575842059",
+      "candidateSha256": "4cd2308a4a95c4569765c0738e17daf8ac9ad19c0a67cd588a5e2561500cc94e",
+      "reviewedSignature": "abf2984cbd1a2558521aff03ea2b4d6c8924d1841434c35906ad0b5d137efcf2",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "b=2F/(ρgh²)=80000/(1000·10·4)=2m;coefficiente20kN/m.",
+      "physicalAssumptions": "Parete rettangolare verticalelarghezzacostante,b,h>0,bordobagnatosuperiorealpelo libero,acqua1000kg/m³ inquiete,g10uniforme. Stessaatmosfera sulla superficie elatoesternoasciutto,cancellata per forzanetta. Pressionerelativalocaleρgz,zversoilbasso;normaliorizzontali. ",
+      "distractors": "F/pressione darebbearea,nonlarghezza;senza1/2b1mnonriproduce40kN.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. b=2F/(ρgh²)=80000/(1000·10·4)=2m;coefficiente20kN/m.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_hydrostatic_equilibrium_or_pressure_integral_or_volume_conservation",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u3-vertical-wall-force-06",
+      "sourceSha256": "8662c0a9eae8b5c0baebeed18298e5791b51483fe34fb77b493fcaa78fde5ba0",
+      "candidateSha256": "f168ff5e92ee654789317e367f281fa74ab93aba9d56cf867b042cf345a70a6b",
+      "reviewedSignature": "20b51eb7a47fa7fab69b5ba3cfce5d369580c20d9a0cff493e370f4ee0124413",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "h²=2F/(ρgb)=80000/20000=4m²,radici±2m;solo+2profonditàpositiva.",
+      "physicalAssumptions": "Parete rettangolare verticalelarghezzacostante,b,h>0,bordobagnatosuperiorealpelo libero,acqua1000kg/m³ inquiete,g10uniforme. Stessaatmosfera sulla superficie elatoesternoasciutto,cancellata per forzanetta. Pressionerelativalocaleρgz,zversoilbasso;normaliorizzontali. ",
+      "distractors": "4m²èquadrato,−2mfuoridominio;conversione40kN40000Nnecessaria.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. h²=2F/(ρgb)=80000/20000=4m²,radici±2m;solo+2profonditàpositiva.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_hydrostatic_equilibrium_or_pressure_integral_or_volume_conservation",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u3-vertical-wall-force-07",
+      "sourceSha256": "290426d8aacc1f44ca5a20f3cd0d46fbe18bf3e100fe552ee6a617c7412985f2",
+      "candidateSha256": "8b2ce2a17ddb05daa7996822849187c8b8ecee9fc8eb55e1a7619e93db07ee90",
+      "reviewedSignature": "8a65b100314e222ca79946fddeb503245681bba7c9299ab634ece380e33dd388",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4",
+      "dimension": {},
+      "manualArithmetic": "h2→4:media10→20kPa earea4→8m²,F40→160kN,rapporto4.",
+      "physicalAssumptions": "Parete rettangolare verticalelarghezzacostante,b,h>0,bordobagnatosuperiorealpelo libero,acqua1000kg/m³ inquiete,g10uniforme. Stessaatmosfera sulla superficie elatoesternoasciutto,cancellata per forzanetta. Pressionerelativalocaleρgz,zversoilbasso;normaliorizzontali. ",
+      "distractors": "2contaunosolo deidueeffetti,1/4reciproco,8fattoreextra,1ignora.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. h2→4:media10→20kPa earea4→8m²,F40→160kN,rapporto4.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_hydrostatic_equilibrium_or_pressure_integral_or_volume_conservation",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u3-vertical-wall-force-08",
+      "sourceSha256": "cc6f37666b1c0773447bd8c612966cfc62bc36909d8a4de2f938b0c0deeb9f18",
+      "candidateSha256": "62854a4e5109d0dc56a37e8a5bc255380b6512fc250c1fa4c171d2f5da871e7f",
+      "reviewedSignature": "9a2310448a1187cc8f7f53d4aafc284afff284cbdf050323ccb0a545cafe12db",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "40",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "80−40=+40kN. Origineproposta:profilorettangolare massimoinvece triangolare.",
+      "physicalAssumptions": "Parete rettangolare verticalelarghezzacostante,b,h>0,bordobagnatosuperiorealpelo libero,acqua1000kg/m³ inquiete,g10uniforme. Stessaatmosfera sulla superficie elatoesternoasciutto,cancellata per forzanetta. Pressionerelativalocaleρgz,zversoilbasso;normaliorizzontali. ",
+      "distractors": "−40ordineinvertito,80proposta,0accetta,20dimezzaerrore.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. 80−40=+40kN. Origineproposta:profilorettangolare massimoinvece triangolare.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_hydrostatic_equilibrium_or_pressure_integral_or_volume_conservation",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u3-vertical-wall-force-09",
+      "sourceSha256": "bc7f62275107cf9c734817c37b5ac22478418c602b75b150522aec7a912598b9",
+      "candidateSha256": "4802f5e426757eb8f8ab8ab90816675bf6d98373ececeb163ce9ff44ce23b50f",
+      "reviewedSignature": "36675eeb3e84d41a60392415bfcc474dcf3de9d8c7f3cf7b481f9f4a0c946213",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "b=2F/(ρgh²)",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "2F=ρgbh²,divisione perρgh²positivo→b2F/(ρgh²),unitàlunghezza.",
+      "physicalAssumptions": "Parete rettangolare verticalelarghezzacostante,b,h>0,bordobagnatosuperiorealpelo libero,acqua1000kg/m³ inquiete,g10uniforme. Stessaatmosfera sulla superficie elatoesternoasciutto,cancellata per forzanetta. Pressionerelativalocaleρgz,zversoilbasso;normaliorizzontali. ",
+      "distractors": "Metà/doppiodelcoefnonisolano b;h1produrrebbearea,reciprocoinversalunghezza.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. 2F=ρgbh²,divisione perρgh²positivo→b2F/(ρgh²),unitàlunghezza.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_hydrostatic_equilibrium_or_pressure_integral_or_volume_conservation",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u3-vertical-wall-force-10",
+      "sourceSha256": "c92f212163baf77e025161414b6e202ca53e11d95cb807a529f2eb57a1c8822b",
+      "candidateSha256": "44d7fdb3f6aa7c6a82fe07563396ccc3aa90495f6f802d6a08f87cfd76bd5e16",
+      "reviewedSignature": "3e5f2c6a98ec8c3be881d65f4c51060b532365113b0f480a9bb198aab0904bf2",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "κ₁ κ₂²",
+      "dimension": {},
+      "manualArithmetic": "bscalaκ1,hscalaκ2→Fscalaκ1κ2²;altezza agisce suarea epressmedia.",
+      "physicalAssumptions": "Parete rettangolare verticalelarghezzacostante,b,h>0,bordobagnatosuperiorealpelo libero,acqua1000kg/m³ inquiete,g10uniforme. Stessaatmosfera sulla superficie elatoesternoasciutto,cancellata per forzanetta. Pressionerelativalocaleρgz,zversoilbasso;normaliorizzontali. ",
+      "distractors": "κ1κ2ignoraunh,κ1²κ2quadratovariabilesbagliata;quozientieffettoinverso.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. bscalaκ1,hscalaκ2→Fscalaκ1κ2²;altezza agisce suarea epressmedia.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_hydrostatic_equilibrium_or_pressure_integral_or_volume_conservation",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u3-vertical-wall-force-11",
+      "sourceSha256": "bb5dbb43630fcda6fd62a490e7bb52d57c6458e230720fca4cc5982ea3bf9a78",
+      "candidateSha256": "715315903fe8c6e2ce624a572ee7ce99699f0c3b471a6d5965c293f390ace92d",
+      "reviewedSignature": "1f22caf80672cbbfc051e7bf8406f94e80e476b43bad5991d9abe2f444a0a1a5",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {},
+      "manualArithmetic": "A40kN,B5·1·16=80kN. Rapporto2=(1/2)·2²;areeentrambe4m² ma pressionimediadifferenti.",
+      "physicalAssumptions": "Parete rettangolare verticalelarghezzacostante,b,h>0,bordobagnatosuperiorealpelo libero,acqua1000kg/m³ inquiete,g10uniforme. Stessaatmosfera sulla superficie elatoesternoasciutto,cancellata per forzanetta. Pressionerelativalocaleρgz,zversoilbasso;normaliorizzontali. ",
+      "distractors": "1soloareeuguali;4soloaltezza,1/2sololarghezza;2ricostruisceentrambe.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. A40kN,B5·1·16=80kN. Rapporto2=(1/2)·2²;areeentrambe4m² ma pressionimediadifferenti.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_hydrostatic_equilibrium_or_pressure_integral_or_volume_conservation",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u3-vertical-wall-force-12",
+      "sourceSha256": "31f15dfaaba3057ff917dbc5e636aededfb4b61d4ba0502b6a9478f72b2319a7",
+      "candidateSha256": "07b799681d1bb18098fa7e75084d0c45adda3a33f7b06adf422658a707f0feb8",
+      "reviewedSignature": "61d4c2c261dbea85166c10be3347e91510df1f2dc4dd68dbdaeab8c7a4cc328a",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "60",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "(40+80)/2=60kN. Ingressimedi b3/2m,h3m→135/2kN;diff15/2kN,non60.",
+      "physicalAssumptions": "Parete rettangolare verticalelarghezzacostante,b,h>0,bordobagnatosuperiorealpelo libero,acqua1000kg/m³ inquiete,g10uniforme. Stessaatmosfera sulla superficie elatoesternoasciutto,cancellata per forzanetta. Pressionerelativalocaleρgz,zversoilbasso;normaliorizzontali. ",
+      "distractors": "120somma,30doppia metà,135/2ingressimedi,40singolaA.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. (40+80)/2=60kN. Ingressimedi b3/2m,h3m→135/2kN;diff15/2kN,non60.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_hydrostatic_equilibrium_or_pressure_integral_or_volume_conservation",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u3-vertical-wall-force-13",
+      "sourceSha256": "4e999413f64dcd83fddf1966cfeda076ed9105e7412aaf0618504d987506ed40",
+      "candidateSha256": "9becd448a3ac2b785b3569c6bec3f6d070c8aa6a8f8a1997eff2ae2d00deaae5",
+      "reviewedSignature": "12097df6eda317e99bb06c2d88ae4d7a9723c7eee6689d83845172f03f677107",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {},
+      "manualArithmetic": "Target80kN,b1m→h²16m²,h4mpositivo;rapportoa2m=2.",
+      "physicalAssumptions": "Parete rettangolare verticalelarghezzacostante,b,h>0,bordobagnatosuperiorealpelo libero,acqua1000kg/m³ inquiete,g10uniforme. Stessaatmosfera sulla superficie elatoesternoasciutto,cancellata per forzanetta. Pressionerelativalocaleρgz,zversoilbasso;normaliorizzontali. ",
+      "distractors": "4numeroaltezzaametri,nonrapporto;h2su b1darebbe20non80.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Target80kN,b1m→h²16m²,h4mpositivo;rapportoa2m=2.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_hydrostatic_equilibrium_or_pressure_integral_or_volume_conservation",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u3-vertical-wall-force-14",
+      "sourceSha256": "fb63bfe39ca897febfa7792f8139e922a5520e7fa52166f8862ba6f27ee3e2f6",
+      "candidateSha256": "64d94dcd6854673dc7f90edd2a4ce71cad66b2fad1ba69969b179b156be7b67d",
+      "reviewedSignature": "82cb5561d8dc8d12e95567ada3fdabddb5da85d0df2710b640d16bc28b1b6f8a",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "c120/(40kN)=3kN⁻¹,S240→80kN;h4m,coeff80kN/m→b1m.",
+      "physicalAssumptions": "Parete rettangolare verticalelarghezzacostante,b,h>0,bordobagnatosuperiorealpelo libero,acqua1000kg/m³ inquiete,g10uniforme. Stessaatmosfera sulla superficie elatoesternoasciutto,cancellata per forzanetta. Pressionerelativalocaleρgz,zversoilbasso;normaliorizzontali. ",
+      "distractors": "S240comeforzadarebbeb3m; b1media20kPasuarea4m²produce80kN.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. c120/(40kN)=3kN⁻¹,S240→80kN;h4m,coeff80kN/m→b1m.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_hydrostatic_equilibrium_or_pressure_integral_or_volume_conservation",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u3-vertical-wall-force-15",
+      "sourceSha256": "344019511e9e2ba290bff1e9040a5b596331533548c261c873ae44cd35245835",
+      "candidateSha256": "5571a829ee5c5562339cdf35a951d315600f16c02e6febe6acbc6aed0d628635",
+      "reviewedSignature": "811ae09400fb685afbecec0572b7d0a144aa116c89a6c9ab57d08ee638505411",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "ΔS80/ΔF40kN→c2kN⁻¹,d1. SC41→FC20kN;h2m→b1m.",
+      "physicalAssumptions": "Parete rettangolare verticalelarghezzacostante,b,h>0,bordobagnatosuperiorealpelo libero,acqua1000kg/m³ inquiete,g10uniforme. Stessaatmosfera sulla superficie elatoesternoasciutto,cancellata per forzanetta. Pressionerelativalocaleρgz,zversoilbasso;normaliorizzontali. ",
+      "distractors": "b2dàS81,b1/2dà21,zeronegativifuoridominio;solo1dà41.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. ΔS80/ΔF40kN→c2kN⁻¹,d1. SC41→FC20kN;h2m→b1m.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_hydrostatic_equilibrium_or_pressure_integral_or_volume_conservation",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u3-vertical-wall-force-16",
+      "sourceSha256": "58dd4b5002395ea5e197a35e167d283a0b75be8ac131ca284a3b4ab967727dde",
+      "candidateSha256": "2ecc3ee23fcb226188e05043ef4ee47021ecfec86e3dc3d0d396a67e60eb4341",
+      "reviewedSignature": "a3bfcbfb7472b62d1a1d3aa1edde3c358c3f5d3f60c5ec1b0b90808a2b457c91",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "b=h tra configurazioni→F=ρgh³/2;h³2·40000/10000=8m³→h2m,b2m. Cubica strettamentecrescente,unaradicereale ammessa.",
+      "physicalAssumptions": "Parete rettangolare verticalelarghezzacostante,b,h>0,bordobagnatosuperiorealpelo libero,acqua1000kg/m³ inquiete,g10uniforme. Stessaatmosfera sulla superficie elatoesternoasciutto,cancellata per forzanetta. Pressionerelativalocaleρgz,zversoilbasso;normaliorizzontali. Vincolob=hfraassetti,larghezzaealtezzacostanti inciascunostato.",
+      "distractors": "−2geometrianegativanonradicecubicapositiva;h1/h4danno5/320kN. 8m³nonm².",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. b=h tra configurazioni→F=ρgh³/2;h³2·40000/10000=8m³→h2m,b2m. Cubica strettamentecrescente,unaradicereale ammessa.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_hydrostatic_equilibrium_or_pressure_integral_or_volume_conservation",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "685d5566d30518a34f07e2b334da58e9fcc2d6e61d225e0f085392d997fd73f9",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "publicationAction": "NONE",
+  "reviewedCandidateCommit": "995d230",
+  "packageSha256": "00724e5f7e5d4b1642b07cfff207472f0bec27d2d78b94634428c24c3b61d95f",
+  "bindingsSha256": "12f2bafcf738e139775d0c6adc0fef7e47b516ce65373de99b01217182629d41",
+  "source": {
+    "commit": "5cfbdcb055ba3ba136f97fb56e997f06e6cf3605",
+    "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U3-01.json",
+    "reference": "All80original prompts individually read before candidate solutions, except accidental first07901 full-row display including key disclosed; that direct result independently rederived from equal-level hydrostatics. All16final candidate records, alternatives, feedback and SVG read before freezing; never imports authoring."
+  }
+}

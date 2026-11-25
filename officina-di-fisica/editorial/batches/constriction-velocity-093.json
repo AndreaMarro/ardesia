@@ -1,0 +1,1127 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u3-constriction-velocity-01",
+      "kind": "question",
+      "course": "C2",
+      "section": "Portate e continuità",
+      "order": 9301,
+      "title": "La velocità media nel tratto stretto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "constriction-velocity",
+      "difficulty": 1,
+      "prompt": "Un liquido omogeneo incomprimibile scorre in regime stazionario in un tubo rigido senza ramificazioni, perdite o accumulo. Le sezioni hanno aree positive A₁ e A₂, in cm². In ogni prova la velocità normale media all’ingresso è mantenuta a v₁=2 cm/s; v₂ è la media normale alla seconda sezione, nel medesimo verso positivo. Il profilo locale non deve essere uniforme. Prove diverse possono usare tubi e portate diverse, mantenendo v₁. Con A₁=4 cm² e A₂=2 cm², quanto vale v₂ in cm/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "cm/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La massa che entra deve uscire e, poiché la densità è la stessa, anche i volumi per secondo coincidono. L’ingresso fornisce Q=4·2=8 cm³/s; attraverso una sezione di2 cm² quella portata richiede v₂=4 cm/s. Il volume non scompare nel restringimento."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/d014a2e37b3e2dcb2f38e02efa3a01377e3a1a0a29571862c877168426428f3f",
+          "text": "Profilo piano di un canale rettangolare con profondità fuori dal foglio1cm. Le altezze4e2cm danno aree4e2cm². Geometria50px/cm, frecce velocità40px/(cm/s):80px per2cm/s e160px per4cm/s. In entrambe le sezioniQ8cm³/s, con medie normali."
+        },
+        {
+          "type": "formula",
+          "text": "A_1v_1=A_2v_2"
+        },
+        {
+          "type": "formula",
+          "text": " Q=8\\,\\mathrm{cm^3/s}"
+        },
+        {
+          "type": "formula",
+          "text": " v_2=Q/A_2"
+        },
+        {
+          "type": "formula",
+          "text": " v_2=4\\,\\mathrm{cm/s}"
+        },
+        {
+          "type": "text",
+          "text": "Mantenere v₂=2 cm/s farebbe uscire soltanto4 cm³/s, incompatibile con l’assenza di accumulo. Il bilancio deriva dalla conservazione della massa; per ricavare pressioni occorrerebbero anche dati e ipotesi energetiche."
+        }
+      ],
+      "hints": [
+        "Calcola Q all’ingresso e dividila per A₂.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Mantenere v₂=2 cm/s farebbe uscire soltanto4 cm³/s, incompatibile con l’assenza di accumulo. Il bilancio deriva dalla conservazione della massa; per ricavare pressioni occorrerebbero anche dati e ipotesi energetiche.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Continuità in un liquido incomprimibile",
+        "Aree e velocità normali medie",
+        "Confronti fra sezioni e fra apparati distinti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-constriction-velocity-02",
+      "kind": "question",
+      "course": "C2",
+      "section": "Portate e continuità",
+      "order": 9302,
+      "title": "Un rapporto di aree per una velocità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "constriction-velocity",
+      "difficulty": 1,
+      "prompt": "Un liquido omogeneo incomprimibile scorre in regime stazionario in un tubo rigido senza ramificazioni, perdite o accumulo. Le sezioni hanno aree positive A₁ e A₂, in cm². In ogni prova la velocità normale media all’ingresso è mantenuta a v₁=2 cm/s; v₂ è la media normale alla seconda sezione, nel medesimo verso positivo. Il profilo locale non deve essere uniforme. Prove diverse possono usare tubi e portate diverse, mantenendo v₁. Quale unità proposta esprime v₂?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "cm/s",
+          "cm³/s",
+          "cm²",
+          "s/cm",
+          "kg/s"
+        ],
+        "value": "cm/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nella relazione v₂=v₁A₁/A₂ il rapporto delle aree è adimensionale, così l’unità resta quella di v₁. Usare cm² per entrambe le aree permette di cancellarle senza fattori di conversione."
+        },
+        {
+          "type": "formula",
+          "text": "v_2=v_1\\frac{A_1}{A_2}"
+        },
+        {
+          "type": "formula",
+          "text": " [v_2]=L/T"
+        },
+        {
+          "type": "formula",
+          "text": " \\mathrm{cm/s}\\cdot\\frac{\\mathrm{cm^2}}{\\mathrm{cm^2}}=\\mathrm{cm/s}"
+        },
+        {
+          "type": "text",
+          "text": "cm³/s è portata volumetrica, cm² area, s/cm velocità inversa e kg/s portata massica. Un’area moltiplicata per una velocità sarebbe Q, non v₂."
+        }
+      ],
+      "hints": [
+        "Cancella le aree nel rapporto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "cm³/s è portata volumetrica, cm² area, s/cm velocità inversa e kg/s portata massica. Un’area moltiplicata per una velocità sarebbe Q, non v₂.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Continuità in un liquido incomprimibile",
+        "Aree e velocità normali medie",
+        "Confronti fra sezioni e fra apparati distinti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-constriction-velocity-03",
+      "kind": "question",
+      "course": "C2",
+      "section": "Portate e continuità",
+      "order": 9303,
+      "title": "La continuità prima dell’energia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "constriction-velocity",
+      "difficulty": 1,
+      "prompt": "Un liquido omogeneo incomprimibile scorre in regime stazionario in un tubo rigido senza ramificazioni, perdite o accumulo. Le sezioni hanno aree positive A₁ e A₂, in cm². In ogni prova la velocità normale media all’ingresso è mantenuta a v₁=2 cm/s; v₂ è la media normale alla seconda sezione, nel medesimo verso positivo. Il profilo locale non deve essere uniforme. Prove diverse possono usare tubi e portate diverse, mantenendo v₁. Quale formula dà v₂?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "v₂ = v₁ A₁ / A₂",
+          "v₂ = v₁ A₂ / A₁",
+          "v₂ = v₁ A₁ A₂",
+          "v₂ = 2v₁ A₁ / A₂",
+          "v₂ = v₁"
+        ],
+        "value": "v₂ = v₁ A₁ / A₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Un volume di controllo fra le sezioni non accumula massa nel tempo. L’equazione è ρA₁v₁=ρA₂v₂; la densità comune positiva si cancella. Dividendo per A₂ ricaviamo la velocità media richiesta. La viscosità non invalida la conservazione della massa."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/d014a2e37b3e2dcb2f38e02efa3a01377e3a1a0a29571862c877168426428f3f",
+          "text": "Grafici separati area per avanzamento in1s:4cm² per2cm e2cm² per4cm danno entrambi8cm³. L’asse area usa20px/cm², l’avanzamento40px/cm: rettangoli80×80px e40×160px di area grafica uguale. Non sono due istanti del profilo del tubo. Il terzo pannello confronta apparati diversi conQ8e6cm³/s."
+        },
+        {
+          "type": "formula",
+          "text": "\\rho A_1v_1=\\rho A_2v_2"
+        },
+        {
+          "type": "formula",
+          "text": " A_1v_1=A_2v_2"
+        },
+        {
+          "type": "formula",
+          "text": " v_2=\\frac{v_1A_1}{A_2}"
+        },
+        {
+          "type": "text",
+          "text": "Invertire le aree renderebbe più lento il flusso stretto aQ uguale. Il prodotto delle aree altera le dimensioni; il doppio conta due volte v₁ e l’uguaglianza delle velocità vale soltanto se le aree sono uguali. Nulla qui determina il salto di pressione."
+        }
+      ],
+      "hints": [
+        "Uguaglia le portate volumetriche delle due sezioni nella stessa prova.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Invertire le aree renderebbe più lento il flusso stretto aQ uguale. Il prodotto delle aree altera le dimensioni; il doppio conta due volte v₁ e l’uguaglianza delle velocità vale soltanto se le aree sono uguali. Nulla qui determina il salto di pressione.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Continuità in un liquido incomprimibile",
+        "Aree e velocità normali medie",
+        "Confronti fra sezioni e fra apparati distinti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-constriction-velocity-04",
+      "kind": "question",
+      "course": "C2",
+      "section": "Portate e continuità",
+      "order": 9304,
+      "title": "Ridurre l’area di ingresso a velocità fissata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "constriction-velocity",
+      "difficulty": 1,
+      "prompt": "Un liquido omogeneo incomprimibile scorre in regime stazionario in un tubo rigido senza ramificazioni, perdite o accumulo. Le sezioni hanno aree positive A₁ e A₂, in cm². In ogni prova la velocità normale media all’ingresso è mantenuta a v₁=2 cm/s; v₂ è la media normale alla seconda sezione, nel medesimo verso positivo. Il profilo locale non deve essere uniforme. Prove diverse possono usare tubi e portate diverse, mantenendo v₁. Fra apparati A₁ passa da4 a3 cm²; A₂ resta2 cm² e v₁ resta2 cm/s. Come cambia v₂?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da4 a3 cm/s",
+          "Da4 a16/3 cm/s",
+          "Resta4 cm/s",
+          "Da4 a6 cm/s",
+          "Diventa zero"
+        ],
+        "value": "Da4 a3 cm/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Con v₁ mantenuta, una sezione d’ingresso minore fornisce meno volume al secondo: Q passa da8 a6 cm³/s. Nella seconda sezione fissa da2 cm², la media scende da4 a3 cm/s. La continuità impone ugualeQ entro ciascuna prova, non fra apparati con ingressi diversi."
+        },
+        {
+          "type": "formula",
+          "text": "Q_A=8\\,\\mathrm{cm^3/s}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B=6\\,\\mathrm{cm^3/s}"
+        },
+        {
+          "type": "formula",
+          "text": " v_{2,B}=6/2\\,\\mathrm{cm/s}"
+        },
+        {
+          "type": "formula",
+          "text": " v_{2,B}=3\\,\\mathrm{cm/s}"
+        },
+        {
+          "type": "text",
+          "text": "16/3 usa l’inverso del fattore3/4;quattro manterrebbe unaQ fra prove non assegnata. Sei è il numero della portata B, non della velocità; zero è escluso dagli ingressi positivi."
+        }
+      ],
+      "hints": [
+        "Ricalcola Q perché v₁ è fissata mentre A₁ cambia.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "16/3 usa l’inverso del fattore3/4;quattro manterrebbe unaQ fra prove non assegnata. Sei è il numero della portata B, non della velocità; zero è escluso dagli ingressi positivi.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Continuità in un liquido incomprimibile",
+        "Aree e velocità normali medie",
+        "Confronti fra sezioni e fra apparati distinti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-constriction-velocity-05",
+      "kind": "question",
+      "course": "C2",
+      "section": "Portate e continuità",
+      "order": 9305,
+      "title": "L’area di ingresso da una velocità a valle",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "constriction-velocity",
+      "difficulty": 2,
+      "prompt": "Un liquido omogeneo incomprimibile scorre in regime stazionario in un tubo rigido senza ramificazioni, perdite o accumulo. Le sezioni hanno aree positive A₁ e A₂, in cm². In ogni prova la velocità normale media all’ingresso è mantenuta a v₁=2 cm/s; v₂ è la media normale alla seconda sezione, nel medesimo verso positivo. Il profilo locale non deve essere uniforme. Prove diverse possono usare tubi e portate diverse, mantenendo v₁. Si misura v₂=4 cm/s e si conosce A₂=2 cm². Quanto vale A₁ in cm²?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "cm²",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La seconda sezione trasporta4·2=8 cm³/s. Il suo stesso volume deve entrare con v₁=2 cm/s, quindi l’area iniziale vale8/2=4 cm². L’inversa conserva l’unità del dato di area."
+        },
+        {
+          "type": "formula",
+          "text": "A_1=\\frac{A_2v_2}{v_1}"
+        },
+        {
+          "type": "formula",
+          "text": " A_1=\\frac{(2\\,\\mathrm{cm^2})(4\\,\\mathrm{cm/s})}{2\\,\\mathrm{cm/s}}"
+        },
+        {
+          "type": "formula",
+          "text": " A_1=4\\,\\mathrm{cm^2}"
+        },
+        {
+          "type": "text",
+          "text": "A₂v₁/v₂ invertirebbe il rapporto e darebbe1 cm², insufficiente per gli8 cm³/s richiesti. Le aree non sono raggi: non occorre elevarle al quadrato."
+        }
+      ],
+      "hints": [
+        "Trova Q dalla seconda sezione e dividila per v₁.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "A₂v₁/v₂ invertirebbe il rapporto e darebbe1 cm², insufficiente per gli8 cm³/s richiesti. Le aree non sono raggi: non occorre elevarle al quadrato.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Continuità in un liquido incomprimibile",
+        "Aree e velocità normali medie",
+        "Confronti fra sezioni e fra apparati distinti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-constriction-velocity-06",
+      "kind": "question",
+      "course": "C2",
+      "section": "Portate e continuità",
+      "order": 9306,
+      "title": "La seconda area dal bilancio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "constriction-velocity",
+      "difficulty": 2,
+      "prompt": "Un liquido omogeneo incomprimibile scorre in regime stazionario in un tubo rigido senza ramificazioni, perdite o accumulo. Le sezioni hanno aree positive A₁ e A₂, in cm². In ogni prova la velocità normale media all’ingresso è mantenuta a v₁=2 cm/s; v₂ è la media normale alla seconda sezione, nel medesimo verso positivo. Il profilo locale non deve essere uniforme. Prove diverse possono usare tubi e portate diverse, mantenendo v₁. Si misura v₂=4 cm/s e si conosce A₁=4 cm². Quanto vale A₂ in cm²?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "cm²",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’ingresso fornisce sempre8 cm³/s. Una velocità media di4 cm/s richiede una sezione da2 cm²: A₂=Q/v₂. Poiché v₂ è doppia di v₁, l’area risulta metà di A₁."
+        },
+        {
+          "type": "formula",
+          "text": "A_2=\\frac{A_1v_1}{v_2}"
+        },
+        {
+          "type": "formula",
+          "text": " A_2=\\frac{8\\,\\mathrm{cm^3/s}}{4\\,\\mathrm{cm/s}}"
+        },
+        {
+          "type": "formula",
+          "text": " A_2=2\\,\\mathrm{cm^2}"
+        },
+        {
+          "type": "text",
+          "text": "Otto sarebbe il numero della portata, non dell’area. Un’area da8 cm² insieme a4 cm/s richiederebbe32 cm³/s e violerebbe il bilancio del tubo senza rami."
+        }
+      ],
+      "hints": [
+        "Dividi la portata d’ingresso per la velocità osservata.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Otto sarebbe il numero della portata, non dell’area. Un’area da8 cm² insieme a4 cm/s richiederebbe32 cm³/s e violerebbe il bilancio del tubo senza rami.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Continuità in un liquido incomprimibile",
+        "Aree e velocità normali medie",
+        "Confronti fra sezioni e fra apparati distinti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-constriction-velocity-07",
+      "kind": "question",
+      "course": "C2",
+      "section": "Portate e continuità",
+      "order": 9307,
+      "title": "Dimezzare soltanto l’area di uscita",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "constriction-velocity",
+      "difficulty": 2,
+      "prompt": "Un liquido omogeneo incomprimibile scorre in regime stazionario in un tubo rigido senza ramificazioni, perdite o accumulo. Le sezioni hanno aree positive A₁ e A₂, in cm². In ogni prova la velocità normale media all’ingresso è mantenuta a v₁=2 cm/s; v₂ è la media normale alla seconda sezione, nel medesimo verso positivo. Il profilo locale non deve essere uniforme. Prove diverse possono usare tubi e portate diverse, mantenendo v₁. A ha A₁=4 cm²,A₂=2 cm². B mantiene A₁ ma ha A₂=1 cm². Quanto vale v₂,B/v₂,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/2",
+          "4",
+          "1",
+          "8"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’ingresso è uguale nelle due prove, perciòQ rimane8 cm³/s. La sezione finale dimezzata richiede una media doppia: da4 a8 cm/s. La relazione inversa riguarda l’area, non il raggio."
+        },
+        {
+          "type": "formula",
+          "text": "v_{2,A}=4\\,\\mathrm{cm/s}"
+        },
+        {
+          "type": "formula",
+          "text": " v_{2,B}=8\\,\\mathrm{cm/s}"
+        },
+        {
+          "type": "formula",
+          "text": " v_{2,B}/v_{2,A}=2"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo ha il verso opposto;quattro tratterebbe la scalatura dell’area come se fosse quella del raggio. Otto è la velocità numerica di B, non il rapporto. Uno non trasferirebbe il volume imposto dall’ingresso."
+        }
+      ],
+      "hints": [
+        "A ingresso uguale, v₂ è inversamente proporzionale adA₂.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo ha il verso opposto;quattro tratterebbe la scalatura dell’area come se fosse quella del raggio. Otto è la velocità numerica di B, non il rapporto. Uno non trasferirebbe il volume imposto dall’ingresso.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Continuità in un liquido incomprimibile",
+        "Aree e velocità normali medie",
+        "Confronti fra sezioni e fra apparati distinti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-constriction-velocity-08",
+      "kind": "question",
+      "course": "C2",
+      "section": "Portate e continuità",
+      "order": 9308,
+      "title": "Una velocità a valle sovrastimata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "constriction-velocity",
+      "difficulty": 2,
+      "prompt": "Un liquido omogeneo incomprimibile scorre in regime stazionario in un tubo rigido senza ramificazioni, perdite o accumulo. Le sezioni hanno aree positive A₁ e A₂, in cm². In ogni prova la velocità normale media all’ingresso è mantenuta a v₁=2 cm/s; v₂ è la media normale alla seconda sezione, nel medesimo verso positivo. Il profilo locale non deve essere uniforme. Prove diverse possono usare tubi e portate diverse, mantenendo v₁. Per A₁=4 cm²,A₂=2 cm² si propone v₂=8 cm/s. Quanto vale proposta meno corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4 cm/s",
+          "−4 cm/s",
+          "8 cm/s",
+          "0 cm/s",
+          "2 cm/s"
+        ],
+        "value": "4 cm/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La velocità corretta è4 cm/s. La proposta otto richiederebbe unaQ di16 cm³/s a valle contro gli8 cm³/s in ingresso. Lo scarto è+4 cm/s; il valore errato non può essere giustificato dalla sola presenza di un restringimento."
+        },
+        {
+          "type": "formula",
+          "text": "v_2=4\\,\\mathrm{cm/s}"
+        },
+        {
+          "type": "formula",
+          "text": " e=(8-4)\\,\\mathrm{cm/s}"
+        },
+        {
+          "type": "formula",
+          "text": " e=4\\,\\mathrm{cm/s}"
+        },
+        {
+          "type": "text",
+          "text": "−4 scambia l’ordine,otto ripete la proposta,zero la accetta e due dimezza lo scarto. La verifica Q₁=Q₂ individua l’errore anche prima di svolgere la sottrazione."
+        }
+      ],
+      "hints": [
+        "Controlla il volume al secondo implicato dalla proposta.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−4 scambia l’ordine,otto ripete la proposta,zero la accetta e due dimezza lo scarto. La verifica Q₁=Q₂ individua l’errore anche prima di svolgere la sottrazione.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Continuità in un liquido incomprimibile",
+        "Aree e velocità normali medie",
+        "Confronti fra sezioni e fra apparati distinti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-constriction-velocity-09",
+      "kind": "question",
+      "course": "C2",
+      "section": "Portate e continuità",
+      "order": 9309,
+      "title": "L’inversa mantiene v₁ come grandezza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "constriction-velocity",
+      "difficulty": 2,
+      "prompt": "Un liquido omogeneo incomprimibile scorre in regime stazionario in un tubo rigido senza ramificazioni, perdite o accumulo. Le sezioni hanno aree positive A₁ e A₂, in cm². In ogni prova la velocità normale media all’ingresso è mantenuta a v₁=2 cm/s; v₂ è la media normale alla seconda sezione, nel medesimo verso positivo. Il profilo locale non deve essere uniforme. Prove diverse possono usare tubi e portate diverse, mantenendo v₁. Quale formula isola A₁?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "A₁ = A₂ v₂ / v₁",
+          "A₁ = A₂ v₁ / v₂",
+          "A₁ = v₂ / v₁",
+          "A₁ = A₂ v₂",
+          "A₁ = 2A₂ v₂ / v₁"
+        ],
+        "value": "A₁ = A₂ v₂ / v₁"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplichiamo v₂=v₁A₁/A₂ perA₂ e dividiamo perv₁>0. Mantenere esplicitamente v₁ evita di scrivere il numero2 senza la sua unità di velocità. Il rapporto v₂/v₁ è puro e moltiplica A₂."
+        },
+        {
+          "type": "formula",
+          "text": "A_2v_2=A_1v_1"
+        },
+        {
+          "type": "formula",
+          "text": " A_1=\\frac{A_2v_2}{v_1}"
+        },
+        {
+          "type": "formula",
+          "text": " v_1=2\\,\\mathrm{cm/s}"
+        },
+        {
+          "type": "text",
+          "text": "Il rapporto invertito scambia l’effetto della velocità; v₂/v₁ da solo non è un’area. A₂v₂ è una portata e il doppio introduce un fattore non richiesto."
+        }
+      ],
+      "hints": [
+        "Dividi A₂v₂ per la velocità d’ingresso dimensionata.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il rapporto invertito scambia l’effetto della velocità; v₂/v₁ da solo non è un’area. A₂v₂ è una portata e il doppio introduce un fattore non richiesto.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Continuità in un liquido incomprimibile",
+        "Aree e velocità normali medie",
+        "Confronti fra sezioni e fra apparati distinti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-constriction-velocity-10",
+      "kind": "question",
+      "course": "C2",
+      "section": "Portate e continuità",
+      "order": 9310,
+      "title": "Scalare le due aree con v₁ fissata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "constriction-velocity",
+      "difficulty": 2,
+      "prompt": "Un liquido omogeneo incomprimibile scorre in regime stazionario in un tubo rigido senza ramificazioni, perdite o accumulo. Le sezioni hanno aree positive A₁ e A₂, in cm². In ogni prova la velocità normale media all’ingresso è mantenuta a v₁=2 cm/s; v₂ è la media normale alla seconda sezione, nel medesimo verso positivo. Il profilo locale non deve essere uniforme. Prove diverse possono usare tubi e portate diverse, mantenendo v₁. B ha A₁,B=κ₁A₁,A e A₂,B=κ₂A₂,A, con fattori positivi. Quanto vale v₂,B/v₂,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ / κ₂",
+          "κ₁ κ₂",
+          "κ₂ / κ₁",
+          "κ₁² / κ₂",
+          "κ₁ + κ₂"
+        ],
+        "value": "κ₁ / κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La prima area moltiplica la portata fornita dall’ingresso, mentre la seconda divide la velocità necessaria a trasportarla. Nel confronto fra apparati il dato v₁ comune si cancella: rimaneκ₁/κ₂. Si scalano aree già calcolate, non raggi."
+        },
+        {
+          "type": "formula",
+          "text": "v_{2,B}=v_1\\frac{\\kappa_1A_{1,A}}{\\kappa_2A_{2,A}}"
+        },
+        {
+          "type": "formula",
+          "text": " v_{2,B}/v_{2,A}=\\kappa_1/\\kappa_2"
+        },
+        {
+          "type": "text",
+          "text": "Il prodotto attribuisce un effetto diretto all’area a valle;il rapporto inverso scambia gli apparati. Il quadrato diκ₁ conterebbe due volte una scalatura di area;la somma non vale uno per apparati identici."
+        }
+      ],
+      "hints": [
+        "Tieni A₂ scalata al denominatore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il prodotto attribuisce un effetto diretto all’area a valle;il rapporto inverso scambia gli apparati. Il quadrato diκ₁ conterebbe due volte una scalatura di area;la somma non vale uno per apparati identici.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Continuità in un liquido incomprimibile",
+        "Aree e velocità normali medie",
+        "Confronti fra sezioni e fra apparati distinti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-constriction-velocity-11",
+      "kind": "question",
+      "course": "C2",
+      "section": "Portate e continuità",
+      "order": 9311,
+      "title": "Ingresso minore e uscita ancora più piccola",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "constriction-velocity",
+      "difficulty": 2,
+      "prompt": "Un liquido omogeneo incomprimibile scorre in regime stazionario in un tubo rigido senza ramificazioni, perdite o accumulo. Le sezioni hanno aree positive A₁ e A₂, in cm². In ogni prova la velocità normale media all’ingresso è mantenuta a v₁=2 cm/s; v₂ è la media normale alla seconda sezione, nel medesimo verso positivo. Il profilo locale non deve essere uniforme. Prove diverse possono usare tubi e portate diverse, mantenendo v₁. A: A₁=4 cm²,A₂=2 cm². B: A₁=3 cm²,A₂=1 cm². Quanto vale v₂,B/v₂,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/2",
+          "2/3",
+          "3/4",
+          "2",
+          "6"
+        ],
+        "value": "3/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La portata B diminuisce da8 a6 cm³/s, ma la seconda area si dimezza e prevale nel rapporto. La velocità B vale6 cm/s contro4 cm/s di A: il fattore è3/2. Una portata minore può quindi accompagnarsi a velocità locale media maggiore in una sezione più stretta."
+        },
+        {
+          "type": "formula",
+          "text": "v_{2,A}=4\\,\\mathrm{cm/s}"
+        },
+        {
+          "type": "formula",
+          "text": " v_{2,B}=6\\,\\mathrm{cm/s}"
+        },
+        {
+          "type": "formula",
+          "text": " v_{2,B}/v_{2,A}=\\frac32"
+        },
+        {
+          "type": "text",
+          "text": "Due terzi è il reciproco;3/4 segue soltanto l’ingresso e due soltanto l’uscita. Sei è il numero della velocità di B, non il rapporto puro."
+        }
+      ],
+      "hints": [
+        "Calcola primaQ di ciascun apparato e poi la sua v₂.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due terzi è il reciproco;3/4 segue soltanto l’ingresso e due soltanto l’uscita. Sei è il numero della velocità di B, non il rapporto puro.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Continuità in un liquido incomprimibile",
+        "Aree e velocità normali medie",
+        "Confronti fra sezioni e fra apparati distinti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-constriction-velocity-12",
+      "kind": "question",
+      "course": "C2",
+      "section": "Portate e continuità",
+      "order": 9312,
+      "title": "La media di due velocità a valle",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "constriction-velocity",
+      "difficulty": 2,
+      "prompt": "Un liquido omogeneo incomprimibile scorre in regime stazionario in un tubo rigido senza ramificazioni, perdite o accumulo. Le sezioni hanno aree positive A₁ e A₂, in cm². In ogni prova la velocità normale media all’ingresso è mantenuta a v₁=2 cm/s; v₂ è la media normale alla seconda sezione, nel medesimo verso positivo. Il profilo locale non deve essere uniforme. Prove diverse possono usare tubi e portate diverse, mantenendo v₁. Le prove A con A₁=4 cm²,A₂=2 cm² e B con A₁=3 cm²,A₂=1 cm² hanno uguale peso statistico. Qual è la media aritmetica delle due v₂?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "5 cm/s",
+          "10 cm/s",
+          "5/2 cm/s",
+          "14/3 cm/s",
+          "2 cm/s"
+        ],
+        "value": "5 cm/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le due velocità sono4 e6 cm/s. La loro media vale5 cm/s. Non si stanno sommando due rami di una rete e non si deve sostituire automaticamente al tubo una sezione media prima di risolvere ciascuna prova."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline v_2=\\frac{4+6}{2}\\,\\mathrm{cm/s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline v_2=5\\,\\mathrm{cm/s}"
+        },
+        {
+          "type": "text",
+          "text": "Dieci è la somma,5/2 divide ancora e due è la differenza. Le aree medie A₁7/2 cm²,A₂3/2 cm² darebbero2·(7/2)/(3/2)=14/3 cm/s, diverso da5 di1/3: il quoziente non commuta con la media."
+        }
+      ],
+      "hints": [
+        "Media i due risultati4e6 dopo il bilancio separato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dieci è la somma,5/2 divide ancora e due è la differenza. Le aree medie A₁7/2 cm²,A₂3/2 cm² darebbero2·(7/2)/(3/2)=14/3 cm/s, diverso da5 di1/3: il quoziente non commuta con la media.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Continuità in un liquido incomprimibile",
+        "Aree e velocità normali medie",
+        "Confronti fra sezioni e fra apparati distinti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-constriction-velocity-13",
+      "kind": "question",
+      "course": "C2",
+      "section": "Portate e continuità",
+      "order": 9313,
+      "title": "L’uscita per una velocità bersaglio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "constriction-velocity",
+      "difficulty": 3,
+      "prompt": "Un liquido omogeneo incomprimibile scorre in regime stazionario in un tubo rigido senza ramificazioni, perdite o accumulo. Le sezioni hanno aree positive A₁ e A₂, in cm². In ogni prova la velocità normale media all’ingresso è mantenuta a v₁=2 cm/s; v₂ è la media normale alla seconda sezione, nel medesimo verso positivo. Il profilo locale non deve essere uniforme. Prove diverse possono usare tubi e portate diverse, mantenendo v₁. A ha A₁=4 cm²,A₂=2 cm². B ha A₁=3 cm² e deve ottenere v₂,B=(3/2)v₂,A. Quanto vale A₂,B/A₂,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "2",
+          "3/2",
+          "3/4",
+          "1"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La velocità bersaglio è6 cm/s. In B l’ingresso fornisceQ=3·2=6 cm³/s, perciò la seconda area deve essere1 cm². Il rapporto con2 cm² è1/2. Questa scelta realizza simultaneamente il nuovo ingresso e il bersaglio."
+        },
+        {
+          "type": "formula",
+          "text": "v_{2,B}=6\\,\\mathrm{cm/s}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B=6\\,\\mathrm{cm^3/s}"
+        },
+        {
+          "type": "formula",
+          "text": " A_{2,B}=1\\,\\mathrm{cm^2}"
+        },
+        {
+          "type": "formula",
+          "text": " A_{2,B}/A_{2,A}=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Due inverte il rapporto.3/2 segue la velocità invece dell’area inversa;3/4 seguirebbe solo la riduzione d’ingresso e darebbe ancora4 cm/s. Uno manterrebbev₂3 cm/s, sotto il bersaglio."
+        }
+      ],
+      "hints": [
+        "TrovaQ_B e dividila per la velocità bersaglio.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due inverte il rapporto.3/2 segue la velocità invece dell’area inversa;3/4 seguirebbe solo la riduzione d’ingresso e darebbe ancora4 cm/s. Uno manterrebbev₂3 cm/s, sotto il bersaglio.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Continuità in un liquido incomprimibile",
+        "Aree e velocità normali medie",
+        "Confronti fra sezioni e fra apparati distinti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-constriction-velocity-14",
+      "kind": "question",
+      "course": "C2",
+      "section": "Portate e continuità",
+      "order": 9314,
+      "title": "Un display di velocità per ricavare l’ingresso",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "constriction-velocity",
+      "difficulty": 3,
+      "prompt": "Un liquido omogeneo incomprimibile scorre in regime stazionario in un tubo rigido senza ramificazioni, perdite o accumulo. Le sezioni hanno aree positive A₁ e A₂, in cm². In ogni prova la velocità normale media all’ingresso è mantenuta a v₁=2 cm/s; v₂ è la media normale alla seconda sezione, nel medesimo verso positivo. Il profilo locale non deve essere uniforme. Prove diverse possono usare tubi e portate diverse, mantenendo v₁. Un display continuo adimensionale segue S=qv₂,q>0,senza offset. A con A₁=4 cm²,A₂=2 cm² dà S=12. B con A₂=1 cm² dà S=18. Quanto vale A₁,B in cm²?",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "cm²",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La velocità del riferimento è4 cm/s, quindiq=3 s/cm. La nuova lettura significa6 cm/s. A valle transitano6 cm³/s e, con ingresso a2 cm/s, l’area iniziale deve essere3 cm²."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{s/cm}"
+        },
+        {
+          "type": "formula",
+          "text": " v_{2,B}=6\\,\\mathrm{cm/s}"
+        },
+        {
+          "type": "formula",
+          "text": " A_{1,B}=\\frac{A_{2,B}v_{2,B}}{v_1}"
+        },
+        {
+          "type": "formula",
+          "text": " A_{1,B}=3\\,\\mathrm{cm^2}"
+        },
+        {
+          "type": "text",
+          "text": "UsareS18 come velocità darebbe9 cm² e triplicherebbe indebitamenteQ. Il rapporto delle letture vale il rapporto delle velocità soltanto dopo aver accertato offset nullo e stesso guadagno."
+        }
+      ],
+      "hints": [
+        "Decodifica v₂ prima dell’inversa perA₁.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "UsareS18 come velocità darebbe9 cm² e triplicherebbe indebitamenteQ. Il rapporto delle letture vale il rapporto delle velocità soltanto dopo aver accertato offset nullo e stesso guadagno.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Continuità in un liquido incomprimibile",
+        "Aree e velocità normali medie",
+        "Confronti fra sezioni e fra apparati distinti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-constriction-velocity-15",
+      "kind": "question",
+      "course": "C2",
+      "section": "Portate e continuità",
+      "order": 9315,
+      "title": "L’offset nella velocità inferita",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "constriction-velocity",
+      "difficulty": 3,
+      "prompt": "Un liquido omogeneo incomprimibile scorre in regime stazionario in un tubo rigido senza ramificazioni, perdite o accumulo. Le sezioni hanno aree positive A₁ e A₂, in cm². In ogni prova la velocità normale media all’ingresso è mantenuta a v₁=2 cm/s; v₂ è la media normale alla seconda sezione, nel medesimo verso positivo. Il profilo locale non deve essere uniforme. Prove diverse possono usare tubi e portate diverse, mantenendo v₁. Un display continuo adimensionale segue S=qv₂+z. A: A₁=4 cm²,A₂=2 cm²,S=9. B: A₁=3 cm²,A₂=1 cm²,S=13. C: A₂=2 cm²,S=7. Quanto vale A₁,C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3 cm²",
+          "2 cm²",
+          "4 cm²",
+          "1 cm²",
+          "6 cm²"
+        ],
+        "value": "3 cm²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le velocità di riferimento sono4 e6 cm/s. Dalla differenza delle letture troviamoq=2 s/cm e poi z=1. C ha velocità(7−1)/2=3 cm/s; il suoQ è2·3=6 cm³/s, da dividere perv₁=2 cm/s."
+        },
+        {
+          "type": "formula",
+          "text": "q=2\\,\\mathrm{s/cm}"
+        },
+        {
+          "type": "formula",
+          "text": " z=1"
+        },
+        {
+          "type": "formula",
+          "text": " v_{2,C}=3\\,\\mathrm{cm/s}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_C=6\\,\\mathrm{cm^3/s}"
+        },
+        {
+          "type": "formula",
+          "text": " A_{1,C}=3\\,\\mathrm{cm^2}"
+        },
+        {
+          "type": "text",
+          "text": "ConA₂2 cm², le aree d’ingresso2,4,1,6 cm² produrrebberoS5,9,3,13. Solo3 dà7. Il rapporto delle letture grezze non cancella un offset diverso dazero."
+        }
+      ],
+      "hints": [
+        "Togli z, dividi perq e ricostruisciQ_C.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "ConA₂2 cm², le aree d’ingresso2,4,1,6 cm² produrrebberoS5,9,3,13. Solo3 dà7. Il rapporto delle letture grezze non cancella un offset diverso dazero.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Continuità in un liquido incomprimibile",
+        "Aree e velocità normali medie",
+        "Confronti fra sezioni e fra apparati distinti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-constriction-velocity-16",
+      "kind": "question",
+      "course": "C2",
+      "section": "Portate e continuità",
+      "order": 9316,
+      "title": "Una misura che non fissa la scala del tubo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "constriction-velocity",
+      "difficulty": 3,
+      "prompt": "Un liquido omogeneo incomprimibile scorre in regime stazionario in un tubo rigido senza ramificazioni, perdite o accumulo. Le sezioni hanno aree positive A₁ e A₂, in cm². In ogni prova la velocità normale media all’ingresso è mantenuta a v₁=2 cm/s; v₂ è la media normale alla seconda sezione, nel medesimo verso positivo. Il profilo locale non deve essere uniforme. Prove diverse possono usare tubi e portate diverse, mantenendo v₁. Fra apparati si impone A₁=2A₂ e si misura v₂=4 cm/s. Quante coppie positive(A₁,A₂) sono compatibili?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Infinite",
+          "Una",
+          "Due",
+          "Nessuna",
+          "Solo la coppia nulla"
+        ],
+        "value": "Infinite"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituendo nella continuità, v₂=v₁·2A₂/A₂=2v₁=4 cm/s per ogniA₂>0. La misura non aggiunge un’informazione indipendente al rapporto delle aree. Un tubo con aree4e2 cm² e uno con8e4 cm² hanno la stessa velocità, ma portate diverse."
+        },
+        {
+          "type": "formula",
+          "text": "A_1=2A_2"
+        },
+        {
+          "type": "formula",
+          "text": " v_2=v_1\\frac{2A_2}{A_2}"
+        },
+        {
+          "type": "formula",
+          "text": " v_2=2v_1"
+        },
+        {
+          "type": "formula",
+          "text": " v_2=4\\,\\mathrm{cm/s}"
+        },
+        {
+          "type": "text",
+          "text": "Due esempi non significano soltanto due coppie: qualunque scala positiva funziona. Zero è escluso dalle aree e dalla divisione. Per fissare la scala servirebbe conoscere una delle aree o la portataQ."
+        }
+      ],
+      "hints": [
+        "Controlla se A₂ si cancella dopo il vincolo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Due esempi non significano soltanto due coppie: qualunque scala positiva funziona. Zero è escluso dalle aree e dalla divisione. Per fissare la scala servirebbe conoscere una delle aree o la portataQ.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Continuità in un liquido incomprimibile",
+        "Aree e velocità normali medie",
+        "Confronti fra sezioni e fra apparati distinti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "d014a2e37b3e2dcb2f38e02efa3a01377e3a1a0a29571862c877168426428f3f",
+      "name": "constriction-velocity-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTUzMCIgdmlld0JveD0iMCAwIDY0MCAxNTMwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+U2V6aW9uaSBkaXZlcnNlIHRyYXNwb3J0YW5vIGxvIHN0ZXNzbyB2b2x1bWUgcGVyIHNlY29uZG88L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5DYW5hbGUgcmV0dGFuZ29sYXJlLCBwcm9mb25kaXTDoCBmdW9yaSBmb2dsaW8gdW4gY2VudGltZXRybywgYWx0ZXp6ZSBxdWF0dHJvIGUgZHVlIGNlbnRpbWV0cmkgYSBjaW5xdWFudGEgcGl4ZWwgcGVyIGNlbnRpbWV0cm8uIEZyZWNjZSBzZXBhcmF0ZSBkaSBvdHRhbnRhIGUgY2VudG9zZXNzYW50YSBwaXhlbCBhIHF1YXJhbnRhIHBpeGVsIHBlciBjZW50aW1ldHJvIGFsIHNlY29uZG8uIEdyYWZpY2kgYXJlYSBwZXIgYXZhbnphbWVudG8gaW4gdW4gc2Vjb25kbywgYXNzaSB2ZW50aSBwaXhlbCBwZXIgY2VudGltZXRybyBxdWFkcmF0byBlIHF1YXJhbnRhIHBpeGVsIHBlciBjZW50aW1ldHJvLCByZXR0YW5nb2xpIG90dGFudGEgcGVyIG90dGFudGEgZSBxdWFyYW50YSBwZXIgY2VudG9zZXNzYW50YS4gQXBwYXJhdGkgZGlzdGludGkgaGFubm8gcG9ydGF0ZSBvdHRvIGUgc2VpIGNlbnRpbWV0cmkgY3ViaSBhbCBzZWNvbmRvLjwvZGVzYz48ZGVmcz48bWFya2VyIGlkPSJhIiB2aWV3Qm94PSIwIDAgMTAgMTAiIHJlZlg9IjkiIHJlZlk9IjUiIG1hcmtlcldpZHRoPSIxMCIgbWFya2VySGVpZ2h0PSIxMCIgbWFya2VyVW5pdHM9InVzZXJTcGFjZU9uVXNlIiBvcmllbnQ9ImF1dG8iPjxwYXRoIGQ9Ik0wIDBMMTAgNUwwIDEwWiIgZmlsbD0iY29udGV4dC1zdHJva2UiLz48L21hcmtlcj48L2RlZnM+PHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxNTMwIiByeD0iMjAiIGZpbGw9IiNmYWY4ZjEiLz48ZyBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE5M2E0OSI+PHRleHQgeD0iMjgiIHk9IjQyIiBmb250LXNpemU9IjI1Ij4xIMK3IFVuIHNvbG8gdHVibywgc3Rlc3NhIFEgbmVsbGUgZHVlIHNlemlvbmk8L3RleHQ+PHRleHQgeD0iMjgiIHk9IjkwIj5DYW5hbGUgcmV0dGFuZ29sYXJlLCBwcm9mb25kaXTDoCBmdW9yaSBmb2dsaW8xY20uPC90ZXh0PjxwYXRoIGQ9Ik02MCAyMDBIMjIwTDM0MCAyNTBINTYwVjM1MEgzNDBMMjIwIDQwMEg2MFoiIGZpbGw9IiNiYWQ5ZTUiLz48cGF0aCBkPSJNNjAgMjAwSDIyMEwzNDAgMjUwSDU2ME02MCA0MDBIMjIwTDM0MCAzNTBINTYwIiBmaWxsPSJub25lIiBzdHJva2U9IiM1OTdmODMiIHN0cm9rZS13aWR0aD0iMyIvPjxwYXRoIGQ9Ik0xMDAgMzAwSDE4MCIgc3Ryb2tlPSIjMDg4NjliIiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjYSkiLz48cGF0aCBkPSJNMzcwIDMwMEg1MzAiIHN0cm9rZT0iI2I0NjE0NSIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI2EpIi8+PHRleHQgeD0iNjUiIHk9IjE2MCI+QWx0ZXp6YTRjbTwvdGV4dD48dGV4dCB4PSIzNzUiIHk9IjIwNSI+QWx0ZXp6YTJjbTwvdGV4dD48dGV4dCB4PSI2MCIgeT0iNDUwIj5B4oKBID0gNGNtwrI7IHbigoEgPSAyY20vczwvdGV4dD48dGV4dCB4PSIzNTAiIHk9IjQ1MCI+QeKCgiA9IDJjbcKyOyB24oKCID0gNGNtL3M8L3RleHQ+PHRleHQgeD0iMjgiIHk9IjUwNSI+R2VvbWV0cmlhOjUwcHgvY20uIFZlbG9jaXTDoDo0MHB4LyhjbS9zKS48L3RleHQ+PHRleHQgeD0iMjgiIHk9IjU1MCI+USA9IDhjbcKzL3MgaW4gZW50cmFtYmUgbGUgc2V6aW9uaS48L3RleHQ+PHRleHQgeD0iMjgiIHk9IjYzNSIgZm9udC1zaXplPSIyNSI+MiDCtyBHcmFmaWNpIGFyZWEgw5cgYXZhbnphbWVudG8sIM6UdCA9IDFzPC90ZXh0PjxyZWN0IHg9IjEyMCIgeT0iNzQwIiB3aWR0aD0iODAiIGhlaWdodD0iODAiIGZpbGw9IiNlN2M5OTQiLz48cmVjdCB4PSIzODAiIHk9IjY2MCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjE2MCIgZmlsbD0iI2JhZDllNSIvPjxwYXRoIGQ9Ik0xMjAgNjUwVjgyMEgyODBNMzgwIDY1MFY4MjBINTQwIiBmaWxsPSJub25lIiBzdHJva2U9IiM1OTdmODMiLz48dGV4dCB4PSI1MCIgeT0iNzgwIj4yY208L3RleHQ+PHRleHQgeD0iNDQ1IiB5PSI3MzAiPjRjbTwvdGV4dD48dGV4dCB4PSIxMTUiIHk9Ijg2NSI+NGNtwrI8L3RleHQ+PHRleHQgeD0iMzc1IiB5PSI4NjUiPjJjbcKyPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSI5MjUiPkFyZWE6MjBweC9jbcKyLiBBdmFuemFtZW50bzo0MHB4L2NtLjwvdGV4dD48dGV4dCB4PSIyOCIgeT0iOTcwIj5FbnRyYW1iaTo2NDAwcHjCsiByYXBwcmVzZW50YW5vOGNtwrMuPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSIxMDU1IiBmb250LXNpemU9IjI1Ij4zIMK3IEFwcGFyYXRpIGRpdmVyc2k6IFEgbm9uIMOoIGZpc3NhdGEgZnJhIHByb3ZlPC90ZXh0PjxyZWN0IHg9IjIwMCIgeT0iMTEyMCIgd2lkdGg9IjE2MCIgaGVpZ2h0PSIzOCIgZmlsbD0iI2E4YjhhYSIvPjxyZWN0IHg9IjIwMCIgeT0iMTIxMCIgd2lkdGg9IjEyMCIgaGVpZ2h0PSIzOCIgZmlsbD0iI2U3Yzk5NCIvPjx0ZXh0IHg9IjI4IiB5PSIxMTQ3Ij5BOlEgPSA4Y23Csy9zPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSIxMjM3Ij5COlEgPSA2Y23Csy9zPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSIxMzEwIj5CYXJyZToyMHB4LyhjbcKzL3MpLCBsdW5naGV6emUxNjBlMTIwcHguPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSIxMzYwIj5COiBB4oKBID0gM2NtwrIsQeKCgiA9IDFjbcKyLHbigoEgPSAyY20vcy48L3RleHQ+PHRleHQgeD0iMjgiIHk9IjE0MTAiPnbigoIsQiA9IDZjbS9zLCBwdXIgY29uIFEgbWlub3JlIGRpIEEuPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSIxNDYwIj5Db250aW51aXTDoCBlbnRybyBvZ25pIGFwcGFyYXRvLCBub24gZnJhIGFwcGFyYXRpLjwvdGV4dD48L2c+PC9zdmc+Cg=="
+    }
+  ]
+}
