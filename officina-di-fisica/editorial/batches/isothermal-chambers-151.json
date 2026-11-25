@@ -1,0 +1,1127 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u5-isothermal-chambers-01",
+      "kind": "question",
+      "course": "C3",
+      "section": "Recipienti rigidi e conservazione del gas",
+      "order": 15101,
+      "title": "La pressione dopo il collegamento",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L02",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L02",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isothermal-chambers",
+      "difficulty": 1,
+      "prompt": "Due recipienti rigidi di uguale volume V>0 contengono lo stesso gas ideale alla stessa temperatura assoluta T>0, con pressioni iniziali assolute p₁,p₂>0. Si apre il collegamento, di volume trascurabile, senza perdita di materia; si attende l’equilibrio mantenendo la temperatura iniziale comune. Il sistema totale ha volume 2V e quantità di gas conservata. La pressione finale comune è p_f=(p₁+p₂)/2. Le pareti esterne restano ferme: il collegamento non è un’espansione reversibile di un pistone e non richiede un lavoro nRT ln2. p₁=100 kPa e p₂=200 kPa. Quanto vale p_f in kPa?",
+      "answer": {
+        "type": "numeric",
+        "value": 150,
+        "unit": "kPa",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il primo recipiente contiene n₁=p₁V/(RT), il secondo n₂=p₂V/(RT). Alla fine la stessa quantità totale occupa 2V alla medesima T. La pressione comune è la semisomma: trecento kPa diviso due dà centocinquanta kPa, compresa fra le due iniziali."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/0f73a8a3807c940fffb3a85bdb85e4bf2a61a7654f0ee2235c965632c38105ff",
+          "text": "Due recipienti di uguale volume sono mostrati prima e dopo il collegamento. I punti rappresentano quantità normalizzate di gas con la stessa unità grafica nei due pannelli, non molecole in scala: inizialmente 4 e 8 unità, alla fine 6 e 6. Totale 12 conservato, uguali volumi e T comune; pressioni iniziali 100/200 kPa e finale 150 kPa. Il confine esterno è rigido e non si ricava un lavoro reversibile dal disegno."
+        },
+        {
+          "type": "formula",
+          "text": "(n_1+n_2)RT=(p_1+p_2)V"
+        },
+        {
+          "type": "formula",
+          "text": " p_f(2V)=(p_1+p_2)V"
+        },
+        {
+          "type": "formula",
+          "text": " p_f=150\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "text",
+          "text": "Trecento somma le pressioni dimenticando il volume totale doppio. Cento e duecento conservano una sola condizione iniziale. Non si media una temperatura, perché essa è già comune e mantenuta."
+        }
+      ],
+      "hints": [
+        "Conserva le moli e usa il volume totale dopo l’apertura.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Trecento somma le pressioni dimenticando il volume totale doppio. Cento e duecento conservano una sola condizione iniziale. Non si media una temperatura, perché essa è già comune e mantenuta.",
+        "target": "C3-L02"
+      },
+      "coverage": [
+        "Moli totali ed equilibrio isotermo",
+        "Volumi uguali e frazione finale",
+        "Inverse, medie, display e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-isothermal-chambers-02",
+      "kind": "question",
+      "course": "C3",
+      "section": "Recipienti rigidi e conservazione del gas",
+      "order": 15102,
+      "title": "L’unità della pressione comune",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L02",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L02",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isothermal-chambers",
+      "difficulty": 1,
+      "prompt": "p_f è la pressione assoluta all’equilibrio di due recipienti collegati. Quale unità è dimensionalmente adatta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "kPa",
+          "L",
+          "K",
+          "mol",
+          "J/K"
+        ],
+        "value": "kPa"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La semisomma di due pressioni è ancora una pressione, esprimibile in kPa. La conservazione della materia serve a determinarla, ma non trasforma la grandezza richiesta in un numero di moli."
+        },
+        {
+          "type": "formula",
+          "text": "[p_f]=[p_1]"
+        },
+        {
+          "type": "formula",
+          "text": "[p_1]=[p_2]"
+        },
+        {
+          "type": "formula",
+          "text": " [p_f]=\\mathrm{Pa}"
+        },
+        {
+          "type": "text",
+          "text": "L esprime volume, K temperatura, mol quantità di sostanza e J/K una capacità termica o il prodotto nR. Il fattore uno su due è puro e lascia inalterate le dimensioni."
+        }
+      ],
+      "hints": [
+        "Le unità non cambiano facendo una media.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "L esprime volume, K temperatura, mol quantità di sostanza e J/K una capacità termica o il prodotto nR. Il fattore uno su due è puro e lascia inalterate le dimensioni.",
+        "target": "C3-L02"
+      },
+      "coverage": [
+        "Moli totali ed equilibrio isotermo",
+        "Volumi uguali e frazione finale",
+        "Inverse, medie, display e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-isothermal-chambers-03",
+      "kind": "question",
+      "course": "C3",
+      "section": "Recipienti rigidi e conservazione del gas",
+      "order": 15103,
+      "title": "La formula dalla conservazione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L02",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L02",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isothermal-chambers",
+      "difficulty": 1,
+      "prompt": "Due recipienti rigidi di uguale volume V>0 contengono lo stesso gas ideale alla stessa temperatura assoluta T>0, con pressioni iniziali assolute p₁,p₂>0. Si apre il collegamento, di volume trascurabile, senza perdita di materia; si attende l’equilibrio mantenendo la temperatura iniziale comune. Il sistema totale ha volume 2V e quantità di gas conservata. La pressione finale comune è p_f=(p₁+p₂)/2. Le pareti esterne restano ferme: il collegamento non è un’espansione reversibile di un pistone e non richiede un lavoro nRT ln2. Quale relazione dà p_f?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "p_f = (p₁ + p₂) / 2",
+          "p_f = p₁ + p₂",
+          "p_f = (p₁ − p₂) / 2",
+          "p_f = 2 p₁ p₂ / (p₁ + p₂)",
+          "p_f = p₁ p₂"
+        ],
+        "value": "p_f = (p₁ + p₂) / 2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le moli iniziali si sommano e i volumi uguali permettono di raccogliere V. Il volume finale totale è 2V. Cancellando V e RT si ottiene la media aritmetica delle pressioni. Non è una legge universale per volumi o temperature iniziali diversi: con volumi diversi a stessa T occorrerebbe una media pesata."
+        },
+        {
+          "type": "formula",
+          "text": "n_1+n_2=\\frac{(p_1+p_2)V}{RT}"
+        },
+        {
+          "type": "formula",
+          "text": " p_f=\\frac{(n_1+n_2)RT}{2V}"
+        },
+        {
+          "type": "formula",
+          "text": " p_f=\\frac{p_1+p_2}{2}"
+        },
+        {
+          "type": "text",
+          "text": "La somma perde il doppio volume; la differenza potrebbe essere negativa e non conserva le moli. La media armonica non nasce da questo bilancio, mentre p₁p₂ ha dimensioni di pressione al quadrato. Il lavoro del confine esterno rigido resta zero, indipendentemente dalla formula di stato finale."
+        }
+      ],
+      "hints": [
+        "Conta il gas totale prima e dopo, non soltanto il numero dei recipienti.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La somma perde il doppio volume; la differenza potrebbe essere negativa e non conserva le moli. La media armonica non nasce da questo bilancio, mentre p₁p₂ ha dimensioni di pressione al quadrato. Il lavoro del confine esterno rigido resta zero, indipendentemente dalla formula di stato finale.",
+        "target": "C3-L02"
+      },
+      "coverage": [
+        "Moli totali ed equilibrio isotermo",
+        "Volumi uguali e frazione finale",
+        "Inverse, medie, display e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-isothermal-chambers-04",
+      "kind": "question",
+      "course": "C3",
+      "section": "Recipienti rigidi e conservazione del gas",
+      "order": 15104,
+      "title": "Portare le pressioni iniziali all’uguaglianza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L02",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L02",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isothermal-chambers",
+      "difficulty": 1,
+      "prompt": "Due recipienti rigidi di uguale volume V>0 contengono lo stesso gas ideale alla stessa temperatura assoluta T>0, con pressioni iniziali assolute p₁,p₂>0. Si apre il collegamento, di volume trascurabile, senza perdita di materia; si attende l’equilibrio mantenendo la temperatura iniziale comune. Il sistema totale ha volume 2V e quantità di gas conservata. La pressione finale comune è p_f=(p₁+p₂)/2. Le pareti esterne restano ferme: il collegamento non è un’espansione reversibile di un pistone e non richiede un lavoro nRT ln2. p₁ passa da 100 a 200 kPa, mentre p₂ resta 200 kPa. Come cambia p_f?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 150 a 200 kPa",
+          "Da 150 a 300 kPa",
+          "Da 150 a 100 kPa",
+          "Resta 150 kPa",
+          "Da 150 a 400 kPa"
+        ],
+        "value": "Da 150 a 200 kPa"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La prima prova ha media centocinquanta kPa. La seconda inizia già con entrambe le pressioni a duecento kPa, quindi aprire il collegamento non crea una differenza di pressione da riequilibrare e la pressione comune è duecento. Il dominio ammette anche pressioni iniziali uguali."
+        },
+        {
+          "type": "formula",
+          "text": "p_{f,A}=150\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " p_{f,B}=\\frac{200+200}{2}\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " p_{f,B}=200\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "text",
+          "text": "Trecento raddoppia tutto il vecchio risultato; quattrocento somma senza dividere. Cento inverte l’effetto e centocinquanta ignora il nuovo gas iniziale corrispondente a p₁ aumentata a V,T fissi."
+        }
+      ],
+      "hints": [
+        "La media di due valori uguali deve essere quel valore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Trecento raddoppia tutto il vecchio risultato; quattrocento somma senza dividere. Cento inverte l’effetto e centocinquanta ignora il nuovo gas iniziale corrispondente a p₁ aumentata a V,T fissi.",
+        "target": "C3-L02"
+      },
+      "coverage": [
+        "Moli totali ed equilibrio isotermo",
+        "Volumi uguali e frazione finale",
+        "Inverse, medie, display e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-isothermal-chambers-05",
+      "kind": "question",
+      "course": "C3",
+      "section": "Recipienti rigidi e conservazione del gas",
+      "order": 15105,
+      "title": "Ricavare una pressione iniziale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L02",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L02",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isothermal-chambers",
+      "difficulty": 2,
+      "prompt": "Due recipienti rigidi di uguale volume V>0 contengono lo stesso gas ideale alla stessa temperatura assoluta T>0, con pressioni iniziali assolute p₁,p₂>0. Si apre il collegamento, di volume trascurabile, senza perdita di materia; si attende l’equilibrio mantenendo la temperatura iniziale comune. Il sistema totale ha volume 2V e quantità di gas conservata. La pressione finale comune è p_f=(p₁+p₂)/2. Le pareti esterne restano ferme: il collegamento non è un’espansione reversibile di un pistone e non richiede un lavoro nRT ln2. p_f=150 kPa e p₂=200 kPa. Quanto vale p₁ in kPa?",
+      "answer": {
+        "type": "numeric",
+        "value": 100,
+        "unit": "kPa",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplichiamo la media per due e sottraiamo il contributo noto: trecento meno duecento dà cento kPa. È positivo e minore della pressione finale, che a sua volta è minore di p₂. L’inversa richiede 2p_f>p₂, condizione soddisfatta."
+        },
+        {
+          "type": "formula",
+          "text": "p_1=2p_f-p_2"
+        },
+        {
+          "type": "formula",
+          "text": " p_1=(300-200)\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " p_1=100\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "text",
+          "text": "Meno cinquanta sottrae p₂ direttamente dalla media senza raddoppiarla. Trecento copia la somma e cinquecento aggiunge anziché togliere. Non occorre imporre p_f>p₂: la media può essere sotto p₂."
+        }
+      ],
+      "hints": [
+        "Rimuovi prima il fattore un mezzo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Meno cinquanta sottrae p₂ direttamente dalla media senza raddoppiarla. Trecento copia la somma e cinquecento aggiunge anziché togliere. Non occorre imporre p_f>p₂: la media può essere sotto p₂.",
+        "target": "C3-L02"
+      },
+      "coverage": [
+        "Moli totali ed equilibrio isotermo",
+        "Volumi uguali e frazione finale",
+        "Inverse, medie, display e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-isothermal-chambers-06",
+      "kind": "question",
+      "course": "C3",
+      "section": "Recipienti rigidi e conservazione del gas",
+      "order": 15106,
+      "title": "Come si distribuisce il numero totale di molecole",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L02",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L02",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isothermal-chambers",
+      "difficulty": 2,
+      "prompt": "Due recipienti rigidi di uguale volume contengono lo stesso gas ideale, inizialmente a uguale temperatura e pressioni positive diverse. Collegandoli senza perdite e mantenendo la temperatura si raggiunge equilibrio con p_f e T comuni; il volume del collegamento è trascurabile. Quale frazione del numero totale di molecole si trova alla fine in ciascun recipiente?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "La stessa frazione che occupava inizialmente",
+          "p₁ / (p₁ + p₂) in entrambi",
+          "1/4",
+          "Tutte nel recipiente inizialmente più freddo"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "All’equilibrio ogni recipiente ha lo stesso p_f, lo stesso V e la stessa T. La legge ideale n=p_fV/(RT) assegna quindi le stesse moli e lo stesso numero medio di molecole ai due volumi. Ciascuno contiene metà del totale, anche se all’inizio le quantità erano diverse."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/0f73a8a3807c940fffb3a85bdb85e4bf2a61a7654f0ee2235c965632c38105ff",
+          "text": "Nel secondo pannello sei unità normalizzate in ogni volume su dodici totali rendono esplicita la frazione finale metà. I punti sono una rappresentazione proporzionale della quantità, non un conteggio sperimentale di molecole. Pressione e temperatura finali sono comuni, il volume del collegamento è trascurabile."
+        },
+        {
+          "type": "formula",
+          "text": "n_{1,f}=\\frac{p_fV}{RT}"
+        },
+        {
+          "type": "formula",
+          "text": " n_{2,f}=\\frac{p_fV}{RT}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{n_{1,f}}{n_{1,f}+n_{2,f}}=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Le frazioni iniziali non restano fissate perché la materia può attraversare il collegamento. Un quarto non riempirebbe il totale dei due recipienti; nessuno era più freddo, poiché T era uguale. La pressione iniziale diversa non stabilisce una differenza finale di densità a p,T uguali."
+        }
+      ],
+      "hints": [
+        "Confronta n/V nei due recipienti dopo l’equilibrio.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Le frazioni iniziali non restano fissate perché la materia può attraversare il collegamento. Un quarto non riempirebbe il totale dei due recipienti; nessuno era più freddo, poiché T era uguale. La pressione iniziale diversa non stabilisce una differenza finale di densità a p,T uguali.",
+        "target": "C3-L02"
+      },
+      "coverage": [
+        "Moli totali ed equilibrio isotermo",
+        "Volumi uguali e frazione finale",
+        "Inverse, medie, display e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-isothermal-chambers-07",
+      "kind": "question",
+      "course": "C3",
+      "section": "Recipienti rigidi e conservazione del gas",
+      "order": 15107,
+      "title": "Aumentare la pressione del secondo recipiente",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L02",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L02",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isothermal-chambers",
+      "difficulty": 2,
+      "prompt": "Due recipienti rigidi di uguale volume V>0 contengono lo stesso gas ideale alla stessa temperatura assoluta T>0, con pressioni iniziali assolute p₁,p₂>0. Si apre il collegamento, di volume trascurabile, senza perdita di materia; si attende l’equilibrio mantenendo la temperatura iniziale comune. Il sistema totale ha volume 2V e quantità di gas conservata. La pressione finale comune è p_f=(p₁+p₂)/2. Le pareti esterne restano ferme: il collegamento non è un’espansione reversibile di un pistone e non richiede un lavoro nRT ln2. A ha p₁=100 kPa, p₂=200 kPa. B mantiene p₁ e usa p₂=300 kPa. Quanto vale p_f,B/p_f,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4/3",
+          "3/2",
+          "3/4",
+          "2",
+          "1"
+        ],
+        "value": "4/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le pressioni comuni sono centocinquanta e duecento kPa. Il rapporto duecento su centocinquanta si semplifica a quattro terzi. Il fattore tre mezzi della sola p₂ non coincide con il fattore della media, perché p₁ resta presente."
+        },
+        {
+          "type": "formula",
+          "text": "p_{f,A}=150\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " p_{f,B}=200\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " p_{f,B}/p_{f,A}=\\frac43"
+        },
+        {
+          "type": "text",
+          "text": "Tre mezzi segue solo p₂, tre quarti inverte le prove. Due attribuisce il cambiamento della somma al raddoppio di tutto il sistema e uno ignora la nuova pressione iniziale."
+        }
+      ],
+      "hints": [
+        "Calcola ogni media prima del quoziente.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre mezzi segue solo p₂, tre quarti inverte le prove. Due attribuisce il cambiamento della somma al raddoppio di tutto il sistema e uno ignora la nuova pressione iniziale.",
+        "target": "C3-L02"
+      },
+      "coverage": [
+        "Moli totali ed equilibrio isotermo",
+        "Volumi uguali e frazione finale",
+        "Inverse, medie, display e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-isothermal-chambers-08",
+      "kind": "question",
+      "course": "C3",
+      "section": "Recipienti rigidi e conservazione del gas",
+      "order": 15108,
+      "title": "La somma delle pressioni non è la pressione finale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L02",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L02",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isothermal-chambers",
+      "difficulty": 2,
+      "prompt": "Due recipienti rigidi di uguale volume V>0 contengono lo stesso gas ideale alla stessa temperatura assoluta T>0, con pressioni iniziali assolute p₁,p₂>0. Si apre il collegamento, di volume trascurabile, senza perdita di materia; si attende l’equilibrio mantenendo la temperatura iniziale comune. Il sistema totale ha volume 2V e quantità di gas conservata. La pressione finale comune è p_f=(p₁+p₂)/2. Le pareti esterne restano ferme: il collegamento non è un’espansione reversibile di un pistone e non richiede un lavoro nRT ln2. Per p₁=100 kPa, p₂=200 kPa si propone p_f=300 kPa. Quanto vale proposta meno corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "150 kPa",
+          "−150 kPa",
+          "300 kPa",
+          "0 kPa",
+          "450 kPa"
+        ],
+        "value": "150 kPa"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La conservazione dà centocinquanta kPa. La proposta trecento la supera di centocinquanta kPa. Senza riscaldare o aggiungere gas, una pressione finale sopra entrambe le iniziali violerebbe già il controllo della media nel modello dato."
+        },
+        {
+          "type": "formula",
+          "text": "p_f=150\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " e=(300-150)\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " e=150\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "text",
+          "text": "Meno centocinquanta cambia l’ordine, trecento mantiene la proposta e quattrocentocinquanta somma. Zero accetterebbe l’omissione del doppio volume. Il confronto è fra pressioni assolute nelle stesse unità."
+        }
+      ],
+      "hints": [
+        "Controlla anche che il risultato cada fra le pressioni iniziali.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Meno centocinquanta cambia l’ordine, trecento mantiene la proposta e quattrocentocinquanta somma. Zero accetterebbe l’omissione del doppio volume. Il confronto è fra pressioni assolute nelle stesse unità.",
+        "target": "C3-L02"
+      },
+      "coverage": [
+        "Moli totali ed equilibrio isotermo",
+        "Volumi uguali e frazione finale",
+        "Inverse, medie, display e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-isothermal-chambers-09",
+      "kind": "question",
+      "course": "C3",
+      "section": "Recipienti rigidi e conservazione del gas",
+      "order": 15109,
+      "title": "L’inversa con il dominio fisico",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L02",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L02",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isothermal-chambers",
+      "difficulty": 2,
+      "prompt": "Due recipienti rigidi di uguale volume V>0 contengono lo stesso gas ideale alla stessa temperatura assoluta T>0, con pressioni iniziali assolute p₁,p₂>0. Si apre il collegamento, di volume trascurabile, senza perdita di materia; si attende l’equilibrio mantenendo la temperatura iniziale comune. Il sistema totale ha volume 2V e quantità di gas conservata. La pressione finale comune è p_f=(p₁+p₂)/2. Le pareti esterne restano ferme: il collegamento non è un’espansione reversibile di un pistone e non richiede un lavoro nRT ln2. p_f e p₂ sono noti e soddisfano 2p_f>p₂. Quale formula isola p₁?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "p₁ = 2 p_f − p₂",
+          "p₁ = p_f − p₂",
+          "p₁ = p_f + p₂",
+          "p₁ = 2 p_f + p₂",
+          "p₁ = p₂ − 2 p_f"
+        ],
+        "value": "p₁ = 2 p_f − p₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La media contiene il fattore un mezzo, che va tolto prima di isolare il primo addendo. Si ottiene p₁=2p_f−p₂. La disuguaglianza fornita rende positiva la pressione iniziale ricostruita; un valore nullo o negativo uscirebbe dal dominio del problema."
+        },
+        {
+          "type": "formula",
+          "text": "2p_f=p_1+p_2"
+        },
+        {
+          "type": "formula",
+          "text": " p_1=2p_f-p_2"
+        },
+        {
+          "type": "formula",
+          "text": " p_1>0"
+        },
+        {
+          "type": "text",
+          "text": "La prima differenza senza due non inverte una semisomma. Aggiungere p₂ ne conta un’altra copia; p₂−2p_f cambia il segno e risulta negativo nel dominio assegnato. Ogni termine è una pressione."
+        }
+      ],
+      "hints": [
+        "Moltiplica per due prima di sottrarre il valore noto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La prima differenza senza due non inverte una semisomma. Aggiungere p₂ ne conta un’altra copia; p₂−2p_f cambia il segno e risulta negativo nel dominio assegnato. Ogni termine è una pressione.",
+        "target": "C3-L02"
+      },
+      "coverage": [
+        "Moli totali ed equilibrio isotermo",
+        "Volumi uguali e frazione finale",
+        "Inverse, medie, display e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-isothermal-chambers-10",
+      "kind": "question",
+      "course": "C3",
+      "section": "Recipienti rigidi e conservazione del gas",
+      "order": 15110,
+      "title": "Due fattori e una somma pesata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L02",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L02",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isothermal-chambers",
+      "difficulty": 2,
+      "prompt": "Due recipienti rigidi di uguale volume V>0 contengono lo stesso gas ideale alla stessa temperatura assoluta T>0, con pressioni iniziali assolute p₁,p₂>0. Si apre il collegamento, di volume trascurabile, senza perdita di materia; si attende l’equilibrio mantenendo la temperatura iniziale comune. Il sistema totale ha volume 2V e quantità di gas conservata. La pressione finale comune è p_f=(p₁+p₂)/2. Le pareti esterne restano ferme: il collegamento non è un’espansione reversibile di un pistone e non richiede un lavoro nRT ln2. B ha p₁,B=κ₁p₁ e p₂,B=κ₂p₂, con κ₁,κ₂>0; i simboli senza pedice B sono dello stato A. Quanto vale p_f,B/p_f,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "(κ₁ p₁ + κ₂ p₂) / (p₁ + p₂)",
+          "κ₁ + κ₂",
+          "κ₁ κ₂",
+          "κ₁ / κ₂",
+          "(κ₁ p₁ − κ₂ p₂) / (p₁ − p₂)"
+        ],
+        "value": "(κ₁ p₁ + κ₂ p₂) / (p₁ + p₂)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le due pressioni scalate vanno sommate prima di formare la nuova media. Il fattore un mezzo è comune e si cancella nel rapporto. Restano le somme pesate, che conservano il contributo di entrambi i recipienti."
+        },
+        {
+          "type": "formula",
+          "text": "p_{f,B}=\\frac{\\kappa_1p_1+\\kappa_2p_2}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{p_{f,B}}{p_{f,A}}=\\frac{\\kappa_1p_1+\\kappa_2p_2}{p_1+p_2}"
+        },
+        {
+          "type": "text",
+          "text": "Somma e prodotto dei soli fattori perdono i pesi delle pressioni. Il quoziente inverte il ruolo di p₂. Le differenze descrivono un’altra algebra e diventano persino indefinite se p₁=p₂, un caso invece ammesso dalla legge reale del problema."
+        }
+      ],
+      "hints": [
+        "Cancella il fattore due, non i due addendi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Somma e prodotto dei soli fattori perdono i pesi delle pressioni. Il quoziente inverte il ruolo di p₂. Le differenze descrivono un’altra algebra e diventano persino indefinite se p₁=p₂, un caso invece ammesso dalla legge reale del problema.",
+        "target": "C3-L02"
+      },
+      "coverage": [
+        "Moli totali ed equilibrio isotermo",
+        "Volumi uguali e frazione finale",
+        "Inverse, medie, display e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-isothermal-chambers-11",
+      "kind": "question",
+      "course": "C3",
+      "section": "Recipienti rigidi e conservazione del gas",
+      "order": 15111,
+      "title": "Pressioni iniziali entrambe maggiori",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L02",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L02",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isothermal-chambers",
+      "difficulty": 2,
+      "prompt": "Due recipienti rigidi di uguale volume V>0 contengono lo stesso gas ideale alla stessa temperatura assoluta T>0, con pressioni iniziali assolute p₁,p₂>0. Si apre il collegamento, di volume trascurabile, senza perdita di materia; si attende l’equilibrio mantenendo la temperatura iniziale comune. Il sistema totale ha volume 2V e quantità di gas conservata. La pressione finale comune è p_f=(p₁+p₂)/2. Le pareti esterne restano ferme: il collegamento non è un’espansione reversibile di un pistone e non richiede un lavoro nRT ln2. A usa p₁=100 kPa, p₂=200 kPa. B usa p₁=200 kPa, p₂=300 kPa. Quanto vale p_f,B/p_f,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "5/3",
+          "3/5",
+          "2",
+          "3/2",
+          "5/2"
+        ],
+        "value": "5/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A dà centocinquanta kPa e B duecentocinquanta kPa. Il rapporto è cinque terzi. I singoli fattori due e tre mezzi non sono uguali, quindi nessuno dei due rappresenta da solo il cambiamento della pressione comune."
+        },
+        {
+          "type": "formula",
+          "text": "p_{f,A}=150\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " p_{f,B}=250\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " p_{f,B}/p_{f,A}=\\frac53"
+        },
+        {
+          "type": "text",
+          "text": "Tre quinti capovolge gli stati, due segue soltanto p₁ e tre mezzi soltanto p₂. Cinque mezzi userebbe p_f,B sul valore iniziale di p₁ anziché sulla media A."
+        }
+      ],
+      "hints": [
+        "Fai la semisomma dentro ciascuna prova.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre quinti capovolge gli stati, due segue soltanto p₁ e tre mezzi soltanto p₂. Cinque mezzi userebbe p_f,B sul valore iniziale di p₁ anziché sulla media A.",
+        "target": "C3-L02"
+      },
+      "coverage": [
+        "Moli totali ed equilibrio isotermo",
+        "Volumi uguali e frazione finale",
+        "Inverse, medie, display e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-isothermal-chambers-12",
+      "kind": "question",
+      "course": "C3",
+      "section": "Recipienti rigidi e conservazione del gas",
+      "order": 15112,
+      "title": "Media statistica di pressioni comuni",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L02",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L02",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isothermal-chambers",
+      "difficulty": 2,
+      "prompt": "Due recipienti rigidi di uguale volume V>0 contengono lo stesso gas ideale alla stessa temperatura assoluta T>0, con pressioni iniziali assolute p₁,p₂>0. Si apre il collegamento, di volume trascurabile, senza perdita di materia; si attende l’equilibrio mantenendo la temperatura iniziale comune. Il sistema totale ha volume 2V e quantità di gas conservata. La pressione finale comune è p_f=(p₁+p₂)/2. Le pareti esterne restano ferme: il collegamento non è un’espansione reversibile di un pistone e non richiede un lavoro nRT ln2. A ha p₁=100 kPa, p₂=200 kPa. B ha p₁=200 kPa, p₂=300 kPa. Qual è la media aritmetica con uguale peso dei due p_f?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "200 kPa",
+          "400 kPa",
+          "50 kPa",
+          "150 kPa",
+          "250 kPa"
+        ],
+        "value": "200 kPa"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La media delle due pressioni finali centocinquanta e duecentocinquanta kPa è duecento kPa. Qui le pressioni iniziali medie centocinquanta e duecentocinquanta kPa darebbero lo stesso valore, perché la legge è lineare e i pesi statistici coincidono. Non si tratta di collegare fisicamente quattro recipienti."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline p_f=\\frac{150+250}{2}\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline p_f=200\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "text",
+          "text": "Quattrocento è la somma, cinquanta la semidifferenza e centocinquanta o duecentocinquanta copiano una prova. Non si inventa una discrepanza fra media delle medie e media degli ingressi per questa relazione lineare."
+        }
+      ],
+      "hints": [
+        "Calcola le due pressioni comuni e poi la semisomma.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattrocento è la somma, cinquanta la semidifferenza e centocinquanta o duecentocinquanta copiano una prova. Non si inventa una discrepanza fra media delle medie e media degli ingressi per questa relazione lineare.",
+        "target": "C3-L02"
+      },
+      "coverage": [
+        "Moli totali ed equilibrio isotermo",
+        "Volumi uguali e frazione finale",
+        "Inverse, medie, display e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-isothermal-chambers-13",
+      "kind": "question",
+      "course": "C3",
+      "section": "Recipienti rigidi e conservazione del gas",
+      "order": 15113,
+      "title": "Un bersaglio per il secondo recipiente",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L02",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L02",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isothermal-chambers",
+      "difficulty": 3,
+      "prompt": "Due recipienti rigidi di uguale volume V>0 contengono lo stesso gas ideale alla stessa temperatura assoluta T>0, con pressioni iniziali assolute p₁,p₂>0. Si apre il collegamento, di volume trascurabile, senza perdita di materia; si attende l’equilibrio mantenendo la temperatura iniziale comune. Il sistema totale ha volume 2V e quantità di gas conservata. La pressione finale comune è p_f=(p₁+p₂)/2. Le pareti esterne restano ferme: il collegamento non è un’espansione reversibile di un pistone e non richiede un lavoro nRT ln2. A usa p₁=100 kPa, p₂=200 kPa. B impone p₁,B=200 kPa e p_f,B=(5/3)p_f,A. Quanto vale p₂,B/p₂,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/2",
+          "2/3",
+          "5/3",
+          "2",
+          "5/2"
+        ],
+        "value": "3/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il target è cinque terzi di centocinquanta, duecentocinquanta kPa. La somma delle pressioni iniziali B deve quindi essere cinquecento kPa. Togliendo p₁,B=200 kPa otteniamo p₂,B=300 kPa, rapporto tre mezzi rispetto ai duecento iniziali."
+        },
+        {
+          "type": "formula",
+          "text": "p_{f,B}=250\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " p_{2,B}=2p_{f,B}-p_{1,B}"
+        },
+        {
+          "type": "formula",
+          "text": " p_{2,B}=300\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " p_{2,B}/p_{2,A}=\\frac32"
+        },
+        {
+          "type": "text",
+          "text": "Cinque terzi copia il target sulle medie, due segue solo p₁ e cinque mezzi usa la somma cinquecento prima di sottrarre p₁. Due terzi inverte il rapporto richiesto."
+        }
+      ],
+      "hints": [
+        "Raddoppia la pressione finale desiderata prima di isolare p₂.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Cinque terzi copia il target sulle medie, due segue solo p₁ e cinque mezzi usa la somma cinquecento prima di sottrarre p₁. Due terzi inverte il rapporto richiesto.",
+        "target": "C3-L02"
+      },
+      "coverage": [
+        "Moli totali ed equilibrio isotermo",
+        "Volumi uguali e frazione finale",
+        "Inverse, medie, display e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-isothermal-chambers-14",
+      "kind": "question",
+      "course": "C3",
+      "section": "Recipienti rigidi e conservazione del gas",
+      "order": 15114,
+      "title": "Display proporzionale alla pressione finale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L02",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L02",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isothermal-chambers",
+      "difficulty": 3,
+      "prompt": "Due recipienti rigidi di uguale volume V>0 contengono lo stesso gas ideale alla stessa temperatura assoluta T>0, con pressioni iniziali assolute p₁,p₂>0. Si apre il collegamento, di volume trascurabile, senza perdita di materia; si attende l’equilibrio mantenendo la temperatura iniziale comune. Il sistema totale ha volume 2V e quantità di gas conservata. La pressione finale comune è p_f=(p₁+p₂)/2. Le pareti esterne restano ferme: il collegamento non è un’espansione reversibile di un pistone e non richiede un lavoro nRT ln2. S=qp_f è un display continuo adimensionale, q>0. A: p₁=100 kPa, p₂=200 kPa,S=450. B: p₂=300 kPa,S=750. Quanto vale p₁,B in kPa?",
+      "answer": {
+        "type": "numeric",
+        "value": 200,
+        "unit": "kPa",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha pressione finale centocinquanta kPa, quindi q=3 per kPa. La nuova lettura settecentocinquanta rappresenta duecentocinquanta kPa. L’inversa dà p₁,B=2·250−300=200 kPa, positiva."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{kPa^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " p_{f,B}=250\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " p_{1,B}=200\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "text",
+          "text": "Milleduecento usa S=750 come pressione nella formula 2S−300. Duecentocinquanta copia la pressione finale. Il guadagno strumentale va rimosso prima di usare il bilancio delle moli."
+        }
+      ],
+      "hints": [
+        "Decodifica p_f e applica p₁=2p_f−p₂.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Milleduecento usa S=750 come pressione nella formula 2S−300. Duecentocinquanta copia la pressione finale. Il guadagno strumentale va rimosso prima di usare il bilancio delle moli.",
+        "target": "C3-L02"
+      },
+      "coverage": [
+        "Moli totali ed equilibrio isotermo",
+        "Volumi uguali e frazione finale",
+        "Inverse, medie, display e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-isothermal-chambers-15",
+      "kind": "question",
+      "course": "C3",
+      "section": "Recipienti rigidi e conservazione del gas",
+      "order": 15115,
+      "title": "Offset e recipienti inizialmente equilibrati",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L02",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L02",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isothermal-chambers",
+      "difficulty": 3,
+      "prompt": "Due recipienti rigidi di uguale volume V>0 contengono lo stesso gas ideale alla stessa temperatura assoluta T>0, con pressioni iniziali assolute p₁,p₂>0. Si apre il collegamento, di volume trascurabile, senza perdita di materia; si attende l’equilibrio mantenendo la temperatura iniziale comune. Il sistema totale ha volume 2V e quantità di gas conservata. La pressione finale comune è p_f=(p₁+p₂)/2. Le pareti esterne restano ferme: il collegamento non è un’espansione reversibile di un pistone e non richiede un lavoro nRT ln2. Il display continuo segue S=qp_f+b con q>0 e q,b costanti. A: p₁=100 kPa, p₂=200 kPa,S=301. B: p₁=200 kPa, p₂=300 kPa,S=501. C: p₂=200 kPa,S=401. Quanto vale p₁,C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "200 kPa",
+          "400 kPa",
+          "100 kPa",
+          "201 kPa",
+          "600 kPa"
+        ],
+        "value": "200 kPa"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le pressioni finali A e B sono centocinquanta e duecentocinquanta kPa. Il guadagno è due per kPa e b=1. C ha p_f=(401−1)/2=200 kPa. Quindi p₁,C=2·200−200=200 kPa: C iniziava già con pressioni uguali e non necessita di un flusso netto di riequilibrio."
+        },
+        {
+          "type": "formula",
+          "text": "q=2\\,\\mathrm{kPa^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " p_{f,C}=200\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " p_{1,C}=200\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "text",
+          "text": "Quattrocento copia la somma richiesta, cento la p₁ della prova A. Duecentouno trascura l’offset: p_f=401/2 porterebbe p₁=201. Seicento darebbe media quattrocento e S=801, non 401."
+        }
+      ],
+      "hints": [
+        "Rimuovi offset e guadagno prima dell’inversa della media.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattrocento copia la somma richiesta, cento la p₁ della prova A. Duecentouno trascura l’offset: p_f=401/2 porterebbe p₁=201. Seicento darebbe media quattrocento e S=801, non 401.",
+        "target": "C3-L02"
+      },
+      "coverage": [
+        "Moli totali ed equilibrio isotermo",
+        "Volumi uguali e frazione finale",
+        "Inverse, medie, display e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-isothermal-chambers-16",
+      "kind": "question",
+      "course": "C3",
+      "section": "Recipienti rigidi e conservazione del gas",
+      "order": 15116,
+      "title": "Un vincolo che identifica le pressioni",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L02",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L02",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isothermal-chambers",
+      "difficulty": 3,
+      "prompt": "Due recipienti rigidi di uguale volume V>0 contengono lo stesso gas ideale alla stessa temperatura assoluta T>0, con pressioni iniziali assolute p₁,p₂>0. Si apre il collegamento, di volume trascurabile, senza perdita di materia; si attende l’equilibrio mantenendo la temperatura iniziale comune. Il sistema totale ha volume 2V e quantità di gas conservata. La pressione finale comune è p_f=(p₁+p₂)/2. Le pareti esterne restano ferme: il collegamento non è un’espansione reversibile di un pistone e non richiede un lavoro nRT ln2. Fra prove si impone p₁=p₂/2. Si misura p_f=150 kPa. Quanto vale p₂ in kPa?",
+      "answer": {
+        "type": "numeric",
+        "value": 200,
+        "unit": "kPa",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituendo nella media troviamo p_f=(p₂/2+p₂)/2=3p₂/4. Il secondo recipiente deve quindi partire da quattro terzi di centocinquanta, duecento kPa; il primo da cento kPa. La coppia è unica e positiva."
+        },
+        {
+          "type": "formula",
+          "text": "p_f=\\frac34p_2"
+        },
+        {
+          "type": "formula",
+          "text": " p_2=\\frac43p_f"
+        },
+        {
+          "type": "formula",
+          "text": " p_2=200\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " p_1=100\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "text",
+          "text": "Cento scambia i due recipienti; centocinquanta copia la pressione finale. Trecento perde il contributo del primo recipiente dopo aver tolto il due esterno. Il vincolo collega stati iniziali di prove diverse e non una legge temporale della pressione."
+        }
+      ],
+      "hints": [
+        "Sostituisci il vincolo prima di isolare p₂.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Cento scambia i due recipienti; centocinquanta copia la pressione finale. Trecento perde il contributo del primo recipiente dopo aver tolto il due esterno. Il vincolo collega stati iniziali di prove diverse e non una legge temporale della pressione.",
+        "target": "C3-L02"
+      },
+      "coverage": [
+        "Moli totali ed equilibrio isotermo",
+        "Volumi uguali e frazione finale",
+        "Inverse, medie, display e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "0f73a8a3807c940fffb3a85bdb85e4bf2a61a7654f0ee2235c965632c38105ff",
+      "name": "isothermal-chambers-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTUxMCIgdmlld0JveD0iMCAwIDY0MCAxNTEwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+UmVjaXBpZW50aSByaWdpZGkgcHJpbWEgZSBkb3BvIGlsIGNvbGxlZ2FtZW50bzwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPkR1ZSB2b2x1bWkgdWd1YWxpIGEgdGVtcGVyYXR1cmEgY29tdW5lIGNvbnRlbmdvbm8gaW5pemlhbG1lbnRlIHF1YXR0cm8gZSBvdHRvIHVuaXTDoCBub3JtYWxpenphdGUgZGkgZ2FzLiBEb3BvIGlsIGNvbGxlZ2FtZW50byBjaWFzY3VubyBuZSBjb250aWVuZSBzZWkuIElsIHRvdGFsZSBkb2RpY2kgw6ggY29uc2VydmF0byBlIGlsIGNvbmZpbmUgZXN0ZXJubyByZXN0YSByaWdpZG8uPC9kZXNjPjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMTUxMCIgcng9IjI0IiBmaWxsPSIjZjVmYWZmIi8+PGcgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiMxNjMwNDciPjx0ZXh0IHg9IjM1IiB5PSI1MCIgZm9udC1zaXplPSIyNiIgZm9udC13ZWlnaHQ9ImJvbGQiPjEgwrcgUHJpbWE6IHN0ZXNzbyBWLCBzdGVzc2EgVDwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMTA1IiBmb250LXNpemU9IjIwIj5PZ25pIHB1bnRvIHZhbGUgbGEgc3Rlc3NhIHF1YW50aXTDoCBu4oKALjwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMTQ1IiBmb250LXNpemU9IjIwIj5SYXBwcmVzZW50YXppb25lIHByb3Bvcnppb25hbGUsIG5vbiBpbiBzY2FsYS48L3RleHQ+PHJlY3QgeD0iNTUiIHk9IjIwNSIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIxNzAiIGZpbGw9IndoaXRlIiBzdHJva2U9IiMxNjMwNDciIHN0cm9rZS13aWR0aD0iMyIvPjxjaXJjbGUgY3g9IjkwIiBjeT0iMjU1IiByPSIxMSIgZmlsbD0iIzE5NjA4MiIvPjxjaXJjbGUgY3g9IjEzMyIgY3k9IjI1NSIgcj0iMTEiIGZpbGw9IiMxOTYwODIiLz48Y2lyY2xlIGN4PSIxNzYiIGN5PSIyNTUiIHI9IjExIiBmaWxsPSIjMTk2MDgyIi8+PGNpcmNsZSBjeD0iMjE5IiBjeT0iMjU1IiByPSIxMSIgZmlsbD0iIzE5NjA4MiIvPjxyZWN0IHg9IjM4NSIgeT0iMjA1IiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjE3MCIgZmlsbD0id2hpdGUiIHN0cm9rZT0iIzE2MzA0NyIgc3Ryb2tlLXdpZHRoPSIzIi8+PGNpcmNsZSBjeD0iNDIwIiBjeT0iMjU1IiByPSIxMSIgZmlsbD0iI2JjNTMxNSIvPjxjaXJjbGUgY3g9IjQ2MyIgY3k9IjI1NSIgcj0iMTEiIGZpbGw9IiNiYzUzMTUiLz48Y2lyY2xlIGN4PSI1MDYiIGN5PSIyNTUiIHI9IjExIiBmaWxsPSIjYmM1MzE1Ii8+PGNpcmNsZSBjeD0iNTQ5IiBjeT0iMjU1IiByPSIxMSIgZmlsbD0iI2JjNTMxNSIvPjxjaXJjbGUgY3g9IjQyMCIgY3k9IjMyMCIgcj0iMTEiIGZpbGw9IiNiYzUzMTUiLz48Y2lyY2xlIGN4PSI0NjMiIGN5PSIzMjAiIHI9IjExIiBmaWxsPSIjYmM1MzE1Ii8+PGNpcmNsZSBjeD0iNTA2IiBjeT0iMzIwIiByPSIxMSIgZmlsbD0iI2JjNTMxNSIvPjxjaXJjbGUgY3g9IjU0OSIgY3k9IjMyMCIgcj0iMTEiIGZpbGw9IiNiYzUzMTUiLz48cGF0aCBkPSJNMjU1IDI5MEgzODUiIHN0cm9rZT0iIzE2MzA0NyIgc3Ryb2tlLXdpZHRoPSI4Ii8+PHBhdGggZD0iTTMxMCAyNjVWMzE1TTMzMCAyNjVWMzE1IiBzdHJva2U9IiNhNTMzMzgiIHN0cm9rZS13aWR0aD0iNiIvPjx0ZXh0IHg9IjYwIiB5PSI0MjAiIGZvbnQtc2l6ZT0iMjAiPm7igoEgPSA0IG7igoAgwrcgcOKCgSA9IDEwMCBrUGE8L3RleHQ+PHRleHQgeD0iMzcwIiB5PSI0NjAiIGZvbnQtc2l6ZT0iMjAiPm7igoIgPSA4IG7igoAgwrcgcOKCgiA9IDIwMCBrUGE8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjUxNSIgZm9udC1zaXplPSIyMCI+VG90YWxlOiBuID0gMTIgbuKCgCDCtyB2b2x1bWUgZXN0ZXJubyAyVjwvdGV4dD48cGF0aCBkPSJNMzUgNTUwSDYwNSIgc3Ryb2tlPSIjYjVjYmQ5Ii8+PHRleHQgeD0iMzUiIHk9IjYxMCIgZm9udC1zaXplPSIyNiIgZm9udC13ZWlnaHQ9ImJvbGQiPjIgwrcgRG9wbzogcHJlc3Npb25lIGUgVCBjb211bmk8L3RleHQ+PHJlY3QgeD0iNTUiIHk9IjY4MCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIxNzAiIGZpbGw9IndoaXRlIiBzdHJva2U9IiMxNjMwNDciIHN0cm9rZS13aWR0aD0iMyIvPjxjaXJjbGUgY3g9IjkwIiBjeT0iNzMwIiByPSIxMSIgZmlsbD0iIzE5NjA4MiIvPjxjaXJjbGUgY3g9IjEzMyIgY3k9IjczMCIgcj0iMTEiIGZpbGw9IiMxOTYwODIiLz48Y2lyY2xlIGN4PSIxNzYiIGN5PSI3MzAiIHI9IjExIiBmaWxsPSIjMTk2MDgyIi8+PGNpcmNsZSBjeD0iMjE5IiBjeT0iNzMwIiByPSIxMSIgZmlsbD0iIzE5NjA4MiIvPjxjaXJjbGUgY3g9IjkwIiBjeT0iNzk1IiByPSIxMSIgZmlsbD0iIzE5NjA4MiIvPjxjaXJjbGUgY3g9IjEzMyIgY3k9Ijc5NSIgcj0iMTEiIGZpbGw9IiMxOTYwODIiLz48cmVjdCB4PSIzODUiIHk9IjY4MCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIxNzAiIGZpbGw9IndoaXRlIiBzdHJva2U9IiMxNjMwNDciIHN0cm9rZS13aWR0aD0iMyIvPjxjaXJjbGUgY3g9IjQyMCIgY3k9IjczMCIgcj0iMTEiIGZpbGw9IiMxOTYwODIiLz48Y2lyY2xlIGN4PSI0NjMiIGN5PSI3MzAiIHI9IjExIiBmaWxsPSIjMTk2MDgyIi8+PGNpcmNsZSBjeD0iNTA2IiBjeT0iNzMwIiByPSIxMSIgZmlsbD0iIzE5NjA4MiIvPjxjaXJjbGUgY3g9IjU0OSIgY3k9IjczMCIgcj0iMTEiIGZpbGw9IiMxOTYwODIiLz48Y2lyY2xlIGN4PSI0MjAiIGN5PSI3OTUiIHI9IjExIiBmaWxsPSIjMTk2MDgyIi8+PGNpcmNsZSBjeD0iNDYzIiBjeT0iNzk1IiByPSIxMSIgZmlsbD0iIzE5NjA4MiIvPjxwYXRoIGQ9Ik0yNTUgNzY1SDM4NSIgc3Ryb2tlPSIjMTYzMDQ3IiBzdHJva2Utd2lkdGg9IjgiLz48dGV4dCB4PSI2MCIgeT0iODk1IiBmb250LXNpemU9IjIwIj5u4oKBLGYgPSA2IG7igoA8L3RleHQ+PHRleHQgeD0iMzkwIiB5PSI4OTUiIGZvbnQtc2l6ZT0iMjAiPm7igoIsZiA9IDYgbuKCgDwvdGV4dD48dGV4dCB4PSIzNSIgeT0iOTUwIiBmb250LXNpemU9IjIwIj5wX2YgPSAoMTAwICsgMjAwKS8yIGtQYSA9IDE1MCBrUGE8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjEwMDAiIGZvbnQtc2l6ZT0iMjAiPkluIG9nbmkgcmVjaXBpZW50ZTogNi8xMiA9IDEvMiBkZWwgdG90YWxlPC90ZXh0PjxwYXRoIGQ9Ik0zNSAxMDQwSDYwNSIgc3Ryb2tlPSIjYjVjYmQ5Ii8+PHRleHQgeD0iMzUiIHk9IjExMDAiIGZvbnQtc2l6ZT0iMjYiIGZvbnQtd2VpZ2h0PSJib2xkIj4zIMK3IFVuIGJpbGFuY2lvLCBub24gdW4gcGlzdG9uZTwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMTE2MCIgZm9udC1zaXplPSIyMCI+biB0b3RhbGUgY29uc2VydmF0byDCtyBUIG1hbnRlbnV0YTwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMTIyMCIgZm9udC1zaXplPSIyMCI+cF9mICgyVikgPSAocOKCgSArIHDigoIpIFY8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjEyODAiIGZvbnQtc2l6ZT0iMjAiPkNvbmZpbmUgZXN0ZXJubyBmaXNzbyDihpIgVyBlc3Rlcm5vID0gMDwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMTM0MCIgZm9udC1zaXplPSIyMCI+TmVzc3VuIGxhdm9ybyByZXZlcnNpYmlsZSBuUlQgbG4gMiBkZWRvdHRvPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSIxNDAwIiBmb250LXNpemU9IjIwIj5MZSBwcmVzc2lvbmkgaW5pemlhbGkgcG9zc29ubyBhbmNoZSBjb2luY2lkZXJlLjwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMTQ2MCIgZm9udC1zaXplPSIyMCI+TOKAmWludmVyc2EgcG9zaXRpdmEgcmljaGllZGUgMnBfZiAmZ3Q7IHDigoIuPC90ZXh0PjwvZz48L3N2Zz4K"
+    }
+  ]
+}
