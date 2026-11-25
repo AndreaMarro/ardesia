@@ -141,3 +141,5 @@ Passaggi: `Q=d\theta(c_i\theta+L_f)\qquad x=\theta/(1\,\mathrm K)\qquad x^2+150x
 Errori e controllo: 160 K cambia soltanto il segno della radice esclusa e non soddisfa l’equazione. 20 K darebbe Q=680 J sotto il vincolo. 320 K supera inoltre l’intervallo fisico iniziale consentito e scambia il numero dell’energia con quello dell’intervallo.
 
 Geometria conservata (solo nota autore, coordinate intrinseche dello SVG, non pixel CSS): Q axis 1 intrinsic unit/J; vertical 10 intrinsic units/K; component bars 1.2 intrinsic units/J; comparison bars .6 intrinsic units/J.
+
+Finding della review distinta, ID09: corretto soltanto il nome della grandezza nell’hint. c_iθ+L_f è energia richiesta per unità di massa (J/g); il calore specifico c_i ha invece J/(g·K). Nessuna chiave, formula o geometria cambia. UI corrente resta NOT_RUN.
