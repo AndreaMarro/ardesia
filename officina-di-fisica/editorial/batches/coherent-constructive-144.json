@@ -1,0 +1,1155 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u4-coherent-constructive-01",
+      "kind": "question",
+      "course": "C5",
+      "section": "Sovrapposizione coerente costruttiva",
+      "order": 14401,
+      "title": "Due oscillazioni locali in fase",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L03",
+      "prerequisites": [
+        "C5-L01",
+        "C5-L02",
+        "C5-L03",
+        "C5-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "coherent-constructive",
+      "difficulty": 1,
+      "prompt": "Nel medesimo punto di un mezzo lineare si sovrappongono due onde armoniche coerenti, della stessa frequenza e polarizzazione. Le coordinate locali sono x₁=A₁ cosφ e x₂=A₂ cosφ, con A₁,A₂>0: la fase relativa è zero modulo 2π e resta tale durante l’osservazione. L’ampiezza risultante è Aₜ=A₁+A₂; i millimetri indicano spostamenti del mezzo, non il cammino dell’onda. Questa legge vale per le ampiezze, non per la somma delle intensità. A₁=1 mm e A₂=2 mm. Quanto vale Aₜ in mm?",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "mm",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Raccogliamo il coseno comune nella somma delle coordinate: x₁+x₂=(A₁+A₂) cosφ. Il coefficiente positivo del coseno è l’ampiezza risultante, uno più due cioè tre millimetri. Nei massimi positivi entrambi i contributi sono positivi, e nei minimi entrambi sono negativi: l’ampiezza resta un modulo positivo."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/fc57eb5b2179b5965fabb14d7faf4609fe5219cd13a625735787235ae24fdeef",
+          "text": "Nel primo pannello i coefficienti di spostamento positivi al massimo comune sono A₁=1 mm,A₂=2 mm,Aₜ=3 mm, in segmenti da zero alla stessa scala 100 px/mm. Il secondo collega la somma dei coefficienti alla coordinata locale x=(A₁+A₂) cosφ. Il terzo riguarda soltanto il caso 06: prima 3+4=7 mm e dopo la fase invertita |3−4|=1 mm; segmenti separati a 60 px/mm. Le lunghezze non sono intensità e i pannelli con scale diverse non si confrontano direttamente in pixel."
+        },
+        {
+          "type": "formula",
+          "text": "x=(A_1+A_2)\\cos\\varphi"
+        },
+        {
+          "type": "formula",
+          "text": " A_t=A_1+A_2"
+        },
+        {
+          "type": "formula",
+          "text": " A_t=3\\,\\mathrm{mm}"
+        },
+        {
+          "type": "text",
+          "text": "Uno sottrae ampiezze che qui sono in fase; due copia solo la seconda e sei conta due volte la somma. √5 deriverebbe da una somma di quadrati e non dalle due coordinate in fase."
+        }
+      ],
+      "hints": [
+        "Raccogli il fattore temporale comune.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Uno sottrae ampiezze che qui sono in fase; due copia solo la seconda e sei conta due volte la somma. √5 deriverebbe da una somma di quadrati e non dalle due coordinate in fase.",
+        "target": "C5-L03"
+      },
+      "coverage": [
+        "Coordinate locali e fase relativa",
+        "Inversione di fase e intensità",
+        "Linearità, inverse e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-coherent-constructive-02",
+      "kind": "question",
+      "course": "C5",
+      "section": "Sovrapposizione coerente costruttiva",
+      "order": 14402,
+      "title": "L’unità di un’ampiezza risultante",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L03",
+      "prerequisites": [
+        "C5-L01",
+        "C5-L02",
+        "C5-L03",
+        "C5-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "coherent-constructive",
+      "difficulty": 1,
+      "prompt": "Due ampiezze di spostamento A₁,A₂ sono espresse in mm. Quale unità ha Aₜ=A₁+A₂?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "mm",
+          "mm²",
+          "W/m²",
+          "dB",
+          "Hz"
+        ],
+        "value": "mm"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’ampiezza risultante è una lunghezza, come i due addendi. Se entrambi sono in millimetri la somma è in millimetri; si può poi convertire in metri. Non si è calcolata un’area, un’intensità, un livello o una frequenza."
+        },
+        {
+          "type": "formula",
+          "text": "[A_t]=[A_1]"
+        },
+        {
+          "type": "formula",
+          "text": "[A_1]=[A_2]"
+        },
+        {
+          "type": "formula",
+          "text": " 1\\,\\mathrm{mm}=10^{-3}\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "mm² appartiene a un prodotto di lunghezze; W/m² a un flusso energetico medio. La frequenza in Hz non cambia dimensione quando si sommano oscillazioni, e i dB richiedono un rapporto logaritmico."
+        }
+      ],
+      "hints": [
+        "Le unità di una somma restano quelle degli addendi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "mm² appartiene a un prodotto di lunghezze; W/m² a un flusso energetico medio. La frequenza in Hz non cambia dimensione quando si sommano oscillazioni, e i dB richiedono un rapporto logaritmico.",
+        "target": "C5-L03"
+      },
+      "coverage": [
+        "Coordinate locali e fase relativa",
+        "Inversione di fase e intensità",
+        "Linearità, inverse e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-coherent-constructive-03",
+      "kind": "question",
+      "course": "C5",
+      "section": "Sovrapposizione coerente costruttiva",
+      "order": 14403,
+      "title": "La condizione della somma costruttiva",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L03",
+      "prerequisites": [
+        "C5-L01",
+        "C5-L02",
+        "C5-L03",
+        "C5-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "coherent-constructive",
+      "difficulty": 1,
+      "prompt": "Nel medesimo punto di un mezzo lineare si sovrappongono due onde armoniche coerenti, della stessa frequenza e polarizzazione. Le coordinate locali sono x₁=A₁ cosφ e x₂=A₂ cosφ, con A₁,A₂>0: la fase relativa è zero modulo 2π e resta tale durante l’osservazione. L’ampiezza risultante è Aₜ=A₁+A₂; i millimetri indicano spostamenti del mezzo, non il cammino dell’onda. Questa legge vale per le ampiezze, non per la somma delle intensità. Quale passaggio conduce ad Aₜ=A₁+A₂?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Raccogliere lo stesso cosφ dalle due coordinate locali",
+          "Sommare sempre le intensità e poi estrarre una radice",
+          "Assumere fase relativa π",
+          "Prendere la media delle ampiezze",
+          "Sommare due frequenze diverse"
+        ],
+        "value": "Raccogliere lo stesso cosφ dalle due coordinate locali"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La fase comune permette di fattorizzare la somma istantanea. L’oscillazione risultante ha la stessa frequenza e il coefficiente A₁+A₂. La sola uguaglianza delle frequenze non sarebbe sufficiente: serve anche la fase relativa costruttiva stabile nel punto considerato."
+        },
+        {
+          "type": "formula",
+          "text": "x_1=A_1\\cos\\varphi"
+        },
+        {
+          "type": "formula",
+          "text": " x_2=A_2\\cos\\varphi"
+        },
+        {
+          "type": "formula",
+          "text": " x=(A_1+A_2)\\cos\\varphi"
+        },
+        {
+          "type": "text",
+          "text": "Fase π dà differenza orientata dei contributi, non somma delle ampiezze. La media dividerebbe senza motivo per due. La somma delle intensità è adatta a contributi non coerenti con termine incrociato medio nullo, condizione diversa da questa."
+        }
+      ],
+      "hints": [
+        "Verifica prima fase e polarizzazione, poi fattorizza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Fase π dà differenza orientata dei contributi, non somma delle ampiezze. La media dividerebbe senza motivo per due. La somma delle intensità è adatta a contributi non coerenti con termine incrociato medio nullo, condizione diversa da questa.",
+        "target": "C5-L03"
+      },
+      "coverage": [
+        "Coordinate locali e fase relativa",
+        "Inversione di fase e intensità",
+        "Linearità, inverse e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-coherent-constructive-04",
+      "kind": "question",
+      "course": "C5",
+      "section": "Sovrapposizione coerente costruttiva",
+      "order": 14404,
+      "title": "Un’ampiezza sola raddoppia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L03",
+      "prerequisites": [
+        "C5-L01",
+        "C5-L02",
+        "C5-L03",
+        "C5-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "coherent-constructive",
+      "difficulty": 1,
+      "prompt": "Nel medesimo punto di un mezzo lineare si sovrappongono due onde armoniche coerenti, della stessa frequenza e polarizzazione. Le coordinate locali sono x₁=A₁ cosφ e x₂=A₂ cosφ, con A₁,A₂>0: la fase relativa è zero modulo 2π e resta tale durante l’osservazione. L’ampiezza risultante è Aₜ=A₁+A₂; i millimetri indicano spostamenti del mezzo, non il cammino dell’onda. Questa legge vale per le ampiezze, non per la somma delle intensità. A₂ resta 2 mm, mentre A₁ passa da 1 a 2 mm. Come cambia Aₜ?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 3 a 4 mm",
+          "Da 3 a 6 mm",
+          "Da 3 a 5 mm",
+          "Resta 3 mm",
+          "Da 3 a 2 mm"
+        ],
+        "value": "Da 3 a 4 mm"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il primo totale è tre millimetri; il secondo è due più due, quattro millimetri. La prima ampiezza cresce di un millimetro, e per la legge additiva anche l’ampiezza totale cresce di un millimetro. Il secondo contributo non è raddoppiato."
+        },
+        {
+          "type": "formula",
+          "text": "A_{t,A}=3\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " A_{t,B}=(2+2)\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " A_{t,B}=4\\,\\mathrm{mm}"
+        },
+        {
+          "type": "text",
+          "text": "Sei raddoppia anche A₂. Cinque aggiunge la nuova A₁ alla vecchia somma, contando ancora la vecchia A₁. Due perde un contributo e tre ignora la variazione."
+        }
+      ],
+      "hints": [
+        "Sostituisci solo l’ampiezza che cambia.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Sei raddoppia anche A₂. Cinque aggiunge la nuova A₁ alla vecchia somma, contando ancora la vecchia A₁. Due perde un contributo e tre ignora la variazione.",
+        "target": "C5-L03"
+      },
+      "coverage": [
+        "Coordinate locali e fase relativa",
+        "Inversione di fase e intensità",
+        "Linearità, inverse e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-coherent-constructive-05",
+      "kind": "question",
+      "course": "C5",
+      "section": "Sovrapposizione coerente costruttiva",
+      "order": 14405,
+      "title": "Isolare la prima ampiezza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L03",
+      "prerequisites": [
+        "C5-L01",
+        "C5-L02",
+        "C5-L03",
+        "C5-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "coherent-constructive",
+      "difficulty": 2,
+      "prompt": "Nel medesimo punto di un mezzo lineare si sovrappongono due onde armoniche coerenti, della stessa frequenza e polarizzazione. Le coordinate locali sono x₁=A₁ cosφ e x₂=A₂ cosφ, con A₁,A₂>0: la fase relativa è zero modulo 2π e resta tale durante l’osservazione. L’ampiezza risultante è Aₜ=A₁+A₂; i millimetri indicano spostamenti del mezzo, non il cammino dell’onda. Questa legge vale per le ampiezze, non per la somma delle intensità. Aₜ=3 mm e A₂=2 mm. Quanto vale A₁ in mm?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "mm",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sottraiamo il secondo coefficiente positivo dal totale: tre meno due dà un millimetro. Il dominio Aₜ>A₂ garantisce A₁>0. Un controllo sulla coordinata locale dà x=(1+2) mm cosφ, con il totale assegnato."
+        },
+        {
+          "type": "formula",
+          "text": "A_1=A_t-A_2"
+        },
+        {
+          "type": "formula",
+          "text": " A_1=(3-2)\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " A_1=1\\,\\mathrm{mm}"
+        },
+        {
+          "type": "text",
+          "text": "Cinque aggiunge al totale una copia di A₂, mentre meno uno cambia l’ordine. Tre copia il totale anziché isolare la prima ampiezza. Non si estrae una radice perché la legge è lineare in A₁."
+        }
+      ],
+      "hints": [
+        "Sottrai A₂ dal coefficiente risultante.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Cinque aggiunge al totale una copia di A₂, mentre meno uno cambia l’ordine. Tre copia il totale anziché isolare la prima ampiezza. Non si estrae una radice perché la legge è lineare in A₁.",
+        "target": "C5-L03"
+      },
+      "coverage": [
+        "Coordinate locali e fase relativa",
+        "Inversione di fase e intensità",
+        "Linearità, inverse e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-coherent-constructive-06",
+      "kind": "question",
+      "course": "C5",
+      "section": "Sovrapposizione coerente costruttiva",
+      "order": 14406,
+      "title": "Invertire la fase di una componente",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L03",
+      "prerequisites": [
+        "C5-L01",
+        "C5-L02",
+        "C5-L03",
+        "C5-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "coherent-constructive",
+      "difficulty": 2,
+      "prompt": "Due contributi armonici coerenti e codirezionali nello stesso mezzo lineare hanno uguale frequenza e polarizzazione, con ampiezze di spostamento A₁=3 mm e A₂=4 mm. Inizialmente sono in fase; poi si inverte la fase del secondo di π, lasciando invariati i moduli. L’intensità media locale delle onde progressive è I=C Aₜ² con lo stesso C>0 nei due stati. Quanto vale I_finale/I_iniziale?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/49",
+          "1/7",
+          "49",
+          "7",
+          "1"
+        ],
+        "value": "1/49"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "All’inizio il coefficiente del coseno è tre più quattro, sette millimetri. Dopo l’inversione è tre meno quattro, meno un millimetro: l’ampiezza, che è un modulo, vale un millimetro. Il rapporto delle intensità è il quadrato del rapporto delle ampiezze, dunque uno su quarantanove. La fase non trasforma il modulo A₂ in un’ampiezza negativa."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/fc57eb5b2179b5965fabb14d7faf4609fe5219cd13a625735787235ae24fdeef",
+          "text": "Solo il pannello finale usa A₁=3 mm e A₂=4 mm. I segmenti di modulo 7 e 1 mm misurano 420 e 60 px alla scala 60 px/mm. La seconda onda cambia fase di π, non modulo. L’intensità è proporzionale al quadrato della risultante: il rapporto finale/iniziale è (1/7)², senza cancellazione completa."
+        },
+        {
+          "type": "formula",
+          "text": "A_{t,i}=7\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " A_{t,f}=|3-4|\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " A_{t,f}=1\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " I_f/I_i=\\left(\\frac17\\right)^2"
+        },
+        {
+          "type": "formula",
+          "text": " I_f/I_i=\\frac1{49}"
+        },
+        {
+          "type": "text",
+          "text": "Un settimo è il rapporto delle ampiezze prima del quadrato. Quarantanove inverte gli stati, sette inverte il rapporto lineare e uno ignora l’interferenza. Non vi è cancellazione completa perché le due ampiezze sono diverse; la somma costruttiva degli altri casi non vale nello stato finale."
+        }
+      ],
+      "hints": [
+        "Trova prima il modulo della differenza, poi confronta i quadrati.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un settimo è il rapporto delle ampiezze prima del quadrato. Quarantanove inverte gli stati, sette inverte il rapporto lineare e uno ignora l’interferenza. Non vi è cancellazione completa perché le due ampiezze sono diverse; la somma costruttiva degli altri casi non vale nello stato finale.",
+        "target": "C5-L03"
+      },
+      "coverage": [
+        "Coordinate locali e fase relativa",
+        "Inversione di fase e intensità",
+        "Linearità, inverse e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-coherent-constructive-07",
+      "kind": "question",
+      "course": "C5",
+      "section": "Sovrapposizione coerente costruttiva",
+      "order": 14407,
+      "title": "Ridurre la seconda ampiezza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L03",
+      "prerequisites": [
+        "C5-L01",
+        "C5-L02",
+        "C5-L03",
+        "C5-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "coherent-constructive",
+      "difficulty": 2,
+      "prompt": "Nel medesimo punto di un mezzo lineare si sovrappongono due onde armoniche coerenti, della stessa frequenza e polarizzazione. Le coordinate locali sono x₁=A₁ cosφ e x₂=A₂ cosφ, con A₁,A₂>0: la fase relativa è zero modulo 2π e resta tale durante l’osservazione. L’ampiezza risultante è Aₜ=A₁+A₂; i millimetri indicano spostamenti del mezzo, non il cammino dell’onda. Questa legge vale per le ampiezze, non per la somma delle intensità. A usa A₁=1 mm,A₂=2 mm. B mantiene A₁ e porta A₂ a 1 mm. Quanto vale Aₜ,B/Aₜ,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2/3",
+          "1/2",
+          "3/2",
+          "1",
+          "1/3"
+        ],
+        "value": "2/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha ampiezza risultante tre millimetri; B due millimetri. Il rapporto è due terzi. Un mezzo è invece il rapporto fra i soli contributi A₂ nei due stati: non considera il millimetro della prima onda che rimane presente."
+        },
+        {
+          "type": "formula",
+          "text": "A_{t,A}=3\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " A_{t,B}=2\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " A_{t,B}/A_{t,A}=\\frac23"
+        },
+        {
+          "type": "text",
+          "text": "Tre mezzi scambia gli stati, uno ignora la riduzione e un terzo usa solo il contributo costante al numeratore. Il quesito chiede ampiezze, quindi non si eleva al quadrato due terzi come per le intensità."
+        }
+      ],
+      "hints": [
+        "Tieni distinto il rapporto di ampiezza da quello energetico.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre mezzi scambia gli stati, uno ignora la riduzione e un terzo usa solo il contributo costante al numeratore. Il quesito chiede ampiezze, quindi non si eleva al quadrato due terzi come per le intensità.",
+        "target": "C5-L03"
+      },
+      "coverage": [
+        "Coordinate locali e fase relativa",
+        "Inversione di fase e intensità",
+        "Linearità, inverse e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-coherent-constructive-08",
+      "kind": "question",
+      "course": "C5",
+      "section": "Sovrapposizione coerente costruttiva",
+      "order": 14408,
+      "title": "Lo scarto di un raddoppio superfluo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L03",
+      "prerequisites": [
+        "C5-L01",
+        "C5-L02",
+        "C5-L03",
+        "C5-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "coherent-constructive",
+      "difficulty": 2,
+      "prompt": "Nel medesimo punto di un mezzo lineare si sovrappongono due onde armoniche coerenti, della stessa frequenza e polarizzazione. Le coordinate locali sono x₁=A₁ cosφ e x₂=A₂ cosφ, con A₁,A₂>0: la fase relativa è zero modulo 2π e resta tale durante l’osservazione. L’ampiezza risultante è Aₜ=A₁+A₂; i millimetri indicano spostamenti del mezzo, non il cammino dell’onda. Questa legge vale per le ampiezze, non per la somma delle intensità. Con A₁=1 mm,A₂=2 mm si propone Aₜ=6 mm. Quanto vale proposta meno corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3 mm",
+          "−3 mm",
+          "6 mm",
+          "0 mm",
+          "9 mm"
+        ],
+        "value": "3 mm"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il valore fisico è tre millimetri. Sei meno tre dà uno scarto positivo di tre millimetri. Il fatto che siano presenti due onde non aggiunge un fattore due alla somma: entrambi i contributi sono già inclusi."
+        },
+        {
+          "type": "formula",
+          "text": "A_t=3\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " e=(6-3)\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " e=3\\,\\mathrm{mm}"
+        },
+        {
+          "type": "text",
+          "text": "Meno tre inverte la sottrazione; sei copia la proposta e nove somma. Zero accetta il raddoppio ingiustificato. Lo scarto è una lunghezza, non un rapporto di intensità."
+        }
+      ],
+      "hints": [
+        "Sottrai il risultato della sovrapposizione alla proposta.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Meno tre inverte la sottrazione; sei copia la proposta e nove somma. Zero accetta il raddoppio ingiustificato. Lo scarto è una lunghezza, non un rapporto di intensità.",
+        "target": "C5-L03"
+      },
+      "coverage": [
+        "Coordinate locali e fase relativa",
+        "Inversione di fase e intensità",
+        "Linearità, inverse e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-coherent-constructive-09",
+      "kind": "question",
+      "course": "C5",
+      "section": "Sovrapposizione coerente costruttiva",
+      "order": 14409,
+      "title": "L’inversa della somma in fase",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L03",
+      "prerequisites": [
+        "C5-L01",
+        "C5-L02",
+        "C5-L03",
+        "C5-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "coherent-constructive",
+      "difficulty": 2,
+      "prompt": "Nel medesimo punto di un mezzo lineare si sovrappongono due onde armoniche coerenti, della stessa frequenza e polarizzazione. Le coordinate locali sono x₁=A₁ cosφ e x₂=A₂ cosφ, con A₁,A₂>0: la fase relativa è zero modulo 2π e resta tale durante l’osservazione. L’ampiezza risultante è Aₜ=A₁+A₂; i millimetri indicano spostamenti del mezzo, non il cammino dell’onda. Questa legge vale per le ampiezze, non per la somma delle intensità. Aₜ>A₂ sono noti. Quale formula isola A₁?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "A₁ = Aₜ − A₂",
+          "A₁ = Aₜ + A₂",
+          "A₁ = A₂ − Aₜ",
+          "A₁ = Aₜ / A₂",
+          "A₁ = √(Aₜ − A₂)"
+        ],
+        "value": "A₁ = Aₜ − A₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sottraendo A₂ da entrambi i membri si isola A₁. La disuguaglianza assegnata mantiene positivo il modulo della prima oscillazione. L’inversa presuppone ancora la fase costruttiva: senza tale condizione il solo totale non darebbe questa relazione."
+        },
+        {
+          "type": "formula",
+          "text": "A_t=A_1+A_2"
+        },
+        {
+          "type": "formula",
+          "text": " A_1=A_t-A_2"
+        },
+        {
+          "type": "formula",
+          "text": " A_1>0"
+        },
+        {
+          "type": "text",
+          "text": "Aggiungere conta ancora A₂; sottrarre al contrario produce un numero negativo. Aₜ/A₂ è puro, mentre la radice di una lunghezza non è una lunghezza. Le dimensioni aiutano a eliminare queste due forme."
+        }
+      ],
+      "hints": [
+        "La fase fissata rende il bilancio additivo delle ampiezze.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Aggiungere conta ancora A₂; sottrarre al contrario produce un numero negativo. Aₜ/A₂ è puro, mentre la radice di una lunghezza non è una lunghezza. Le dimensioni aiutano a eliminare queste due forme.",
+        "target": "C5-L03"
+      },
+      "coverage": [
+        "Coordinate locali e fase relativa",
+        "Inversione di fase e intensità",
+        "Linearità, inverse e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-coherent-constructive-10",
+      "kind": "question",
+      "course": "C5",
+      "section": "Sovrapposizione coerente costruttiva",
+      "order": 14410,
+      "title": "Due fattori di amplificazione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L03",
+      "prerequisites": [
+        "C5-L01",
+        "C5-L02",
+        "C5-L03",
+        "C5-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "coherent-constructive",
+      "difficulty": 2,
+      "prompt": "Nel medesimo punto di un mezzo lineare si sovrappongono due onde armoniche coerenti, della stessa frequenza e polarizzazione. Le coordinate locali sono x₁=A₁ cosφ e x₂=A₂ cosφ, con A₁,A₂>0: la fase relativa è zero modulo 2π e resta tale durante l’osservazione. L’ampiezza risultante è Aₜ=A₁+A₂; i millimetri indicano spostamenti del mezzo, non il cammino dell’onda. Questa legge vale per le ampiezze, non per la somma delle intensità. B usa A₁,B=κ₁A₁,A e A₂,B=κ₂A₂,A, con fattori positivi e fase ancora costruttiva. Definiamo U=A₁,A+A₂,A e V=κ₁A₁,A+κ₂A₂,A. Quanto vale Aₜ,B/Aₜ,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "V / U",
+          "U / V",
+          "κ₁ + κ₂",
+          "κ₁ κ₂",
+          "(V / U)²"
+        ],
+        "value": "V / U"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I coefficienti risultanti delle due prove sono U e V. Il quoziente delle ampiezze è V/U, con contributi iniziali che pesano i due fattori. Il quadrato del rapporto comparirebbe nel confronto delle intensità a parità degli altri parametri, che qui non è chiesto."
+        },
+        {
+          "type": "formula",
+          "text": "A_{t,A}=U"
+        },
+        {
+          "type": "formula",
+          "text": " A_{t,B}=V"
+        },
+        {
+          "type": "formula",
+          "text": " A_{t,B}/A_{t,A}=V/U"
+        },
+        {
+          "type": "text",
+          "text": "U/V inverte le prove; sommare o moltiplicare i soli fattori perde i pesi. (V/U)² cambia la grandezza richiesta in un rapporto energetico. Una maggiore ampiezza non autorizza a cambiare la fase mantenendo questa formula."
+        }
+      ],
+      "hints": [
+        "Confronta i coefficienti del coseno, non i loro quadrati.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "U/V inverte le prove; sommare o moltiplicare i soli fattori perde i pesi. (V/U)² cambia la grandezza richiesta in un rapporto energetico. Una maggiore ampiezza non autorizza a cambiare la fase mantenendo questa formula.",
+        "target": "C5-L03"
+      },
+      "coverage": [
+        "Coordinate locali e fase relativa",
+        "Inversione di fase e intensità",
+        "Linearità, inverse e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-coherent-constructive-11",
+      "kind": "question",
+      "course": "C5",
+      "section": "Sovrapposizione coerente costruttiva",
+      "order": 14411,
+      "title": "Confronto fra due risultanti",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L03",
+      "prerequisites": [
+        "C5-L01",
+        "C5-L02",
+        "C5-L03",
+        "C5-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "coherent-constructive",
+      "difficulty": 2,
+      "prompt": "Nel medesimo punto di un mezzo lineare si sovrappongono due onde armoniche coerenti, della stessa frequenza e polarizzazione. Le coordinate locali sono x₁=A₁ cosφ e x₂=A₂ cosφ, con A₁,A₂>0: la fase relativa è zero modulo 2π e resta tale durante l’osservazione. L’ampiezza risultante è Aₜ=A₁+A₂; i millimetri indicano spostamenti del mezzo, non il cammino dell’onda. Questa legge vale per le ampiezze, non per la somma delle intensità. A ha A₁=1 mm,A₂=2 mm. B ha A₁=2 mm,A₂=3 mm. Quanto vale Aₜ,B/Aₜ,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "5/3",
+          "3/5",
+          "2",
+          "3/2",
+          "25/9"
+        ],
+        "value": "5/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le ampiezze totali sono tre e cinque millimetri. Il rapporto è cinque terzi, un numero puro. Venticinque noni sarebbe il suo quadrato, pertinente a un rapporto di intensità nelle medesime condizioni del mezzo e della frequenza."
+        },
+        {
+          "type": "formula",
+          "text": "A_{t,A}=3\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " A_{t,B}=5\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " A_{t,B}/A_{t,A}=\\frac53"
+        },
+        {
+          "type": "text",
+          "text": "Due e tre mezzi seguono soltanto la prima o la seconda componente; tre quinti inverte il confronto. La sovrapposizione delle coordinate deve essere effettuata prima del rapporto."
+        }
+      ],
+      "hints": [
+        "Trova l’ampiezza risultante in ciascuna prova.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due e tre mezzi seguono soltanto la prima o la seconda componente; tre quinti inverte il confronto. La sovrapposizione delle coordinate deve essere effettuata prima del rapporto.",
+        "target": "C5-L03"
+      },
+      "coverage": [
+        "Coordinate locali e fase relativa",
+        "Inversione di fase e intensità",
+        "Linearità, inverse e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-coherent-constructive-12",
+      "kind": "question",
+      "course": "C5",
+      "section": "Sovrapposizione coerente costruttiva",
+      "order": 14412,
+      "title": "Media dei coefficienti risultanti",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L03",
+      "prerequisites": [
+        "C5-L01",
+        "C5-L02",
+        "C5-L03",
+        "C5-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "coherent-constructive",
+      "difficulty": 2,
+      "prompt": "Nel medesimo punto di un mezzo lineare si sovrappongono due onde armoniche coerenti, della stessa frequenza e polarizzazione. Le coordinate locali sono x₁=A₁ cosφ e x₂=A₂ cosφ, con A₁,A₂>0: la fase relativa è zero modulo 2π e resta tale durante l’osservazione. L’ampiezza risultante è Aₜ=A₁+A₂; i millimetri indicano spostamenti del mezzo, non il cammino dell’onda. Questa legge vale per le ampiezze, non per la somma delle intensità. A: A₁=1 mm,A₂=2 mm. B: A₁=2 mm,A₂=3 mm. Qual è la media aritmetica delle due ampiezze totali con uguale peso statistico?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4 mm",
+          "8 mm",
+          "2 mm",
+          "5 mm",
+          "3 mm"
+        ],
+        "value": "4 mm"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le ampiezze totali tre e cinque millimetri hanno semisomma quattro millimetri. È una media fra due prove, non una terza sovrapposizione fisica delle loro onde. La somma delle ampiezze componenti medie, tre mezzi più cinque mezzi, dà lo stesso quattro perché la relazione è lineare."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline A_t=\\frac{3+5}{2}\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline A_t=4\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline A_1+\\overline A_2=4\\,\\mathrm{mm}"
+        },
+        {
+          "type": "text",
+          "text": "Otto è la somma senza semisomma, due dimezza ancora. Tre e cinque copiano una singola prova. Non vi è una disuguaglianza obbligatoria fra media delle somme e somma delle medie con uguali pesi."
+        }
+      ],
+      "hints": [
+        "Media i risultati delle due prove, con gli stessi pesi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Otto è la somma senza semisomma, due dimezza ancora. Tre e cinque copiano una singola prova. Non vi è una disuguaglianza obbligatoria fra media delle somme e somma delle medie con uguali pesi.",
+        "target": "C5-L03"
+      },
+      "coverage": [
+        "Coordinate locali e fase relativa",
+        "Inversione di fase e intensità",
+        "Linearità, inverse e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-coherent-constructive-13",
+      "kind": "question",
+      "course": "C5",
+      "section": "Sovrapposizione coerente costruttiva",
+      "order": 14413,
+      "title": "Raggiungere un’ampiezza bersaglio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L03",
+      "prerequisites": [
+        "C5-L01",
+        "C5-L02",
+        "C5-L03",
+        "C5-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "coherent-constructive",
+      "difficulty": 3,
+      "prompt": "Nel medesimo punto di un mezzo lineare si sovrappongono due onde armoniche coerenti, della stessa frequenza e polarizzazione. Le coordinate locali sono x₁=A₁ cosφ e x₂=A₂ cosφ, con A₁,A₂>0: la fase relativa è zero modulo 2π e resta tale durante l’osservazione. L’ampiezza risultante è Aₜ=A₁+A₂; i millimetri indicano spostamenti del mezzo, non il cammino dell’onda. Questa legge vale per le ampiezze, non per la somma delle intensità. A ha A₁=1 mm,A₂=2 mm. B usa A₁,B=2 mm e vuole Aₜ,B=(5/3)Aₜ,A. Quanto vale A₂,B/A₂,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/2",
+          "2/3",
+          "5/3",
+          "5/2",
+          "1"
+        ],
+        "value": "3/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è cinque terzi di tre millimetri, cioè cinque millimetri. La seconda componente B deve fornire cinque meno due, tre millimetri. Confrontata con i due millimetri iniziali dà un rapporto tre mezzi."
+        },
+        {
+          "type": "formula",
+          "text": "A_{t,B}=5\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " A_{2,B}=3\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " A_{2,B}/A_{2,A}=\\frac32"
+        },
+        {
+          "type": "text",
+          "text": "Cinque terzi riguarda le risultanti, cinque mezzi non sottrae la componente nota. Due terzi inverte il rapporto. Lasciando invariata A₂ si otterrebbe una risultante di quattro millimetri e non cinque."
+        }
+      ],
+      "hints": [
+        "Togli dal bersaglio il contributo noto della prima onda.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Cinque terzi riguarda le risultanti, cinque mezzi non sottrae la componente nota. Due terzi inverte il rapporto. Lasciando invariata A₂ si otterrebbe una risultante di quattro millimetri e non cinque.",
+        "target": "C5-L03"
+      },
+      "coverage": [
+        "Coordinate locali e fase relativa",
+        "Inversione di fase e intensità",
+        "Linearità, inverse e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-coherent-constructive-14",
+      "kind": "question",
+      "course": "C5",
+      "section": "Sovrapposizione coerente costruttiva",
+      "order": 14414,
+      "title": "Display proporzionale alla risultante",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L03",
+      "prerequisites": [
+        "C5-L01",
+        "C5-L02",
+        "C5-L03",
+        "C5-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "coherent-constructive",
+      "difficulty": 3,
+      "prompt": "Nel medesimo punto di un mezzo lineare si sovrappongono due onde armoniche coerenti, della stessa frequenza e polarizzazione. Le coordinate locali sono x₁=A₁ cosφ e x₂=A₂ cosφ, con A₁,A₂>0: la fase relativa è zero modulo 2π e resta tale durante l’osservazione. L’ampiezza risultante è Aₜ=A₁+A₂; i millimetri indicano spostamenti del mezzo, non il cammino dell’onda. Questa legge vale per le ampiezze, non per la somma delle intensità. Un display continuo adimensionale segue S=qAₜ con q>0. A ha A₁=1 mm,A₂=2 mm e legge S=9. B ha A₂=3 mm e legge S=15. Quanto vale A₁,B in mm?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "mm",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La taratura usa l’ampiezza totale A di tre millimetri: q=3 per mm. La lettura B quindici corrisponde a cinque millimetri. Sottraendo i tre millimetri della seconda componente si ottiene A₁,B=2 mm."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{mm^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " A_{t,B}=5\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " A_{1,B}=2\\,\\mathrm{mm}"
+        },
+        {
+          "type": "text",
+          "text": "Dodici sottrae A₂ alla lettura senza convertire il display; cinque copia la risultante. Il guadagno ha dimensioni inverse di lunghezza e non è un’ampiezza. La lettura non misura direttamente una componente."
+        }
+      ],
+      "hints": [
+        "Converti la lettura in ampiezza totale prima della sottrazione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dodici sottrae A₂ alla lettura senza convertire il display; cinque copia la risultante. Il guadagno ha dimensioni inverse di lunghezza e non è un’ampiezza. La lettura non misura direttamente una componente.",
+        "target": "C5-L03"
+      },
+      "coverage": [
+        "Coordinate locali e fase relativa",
+        "Inversione di fase e intensità",
+        "Linearità, inverse e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-coherent-constructive-15",
+      "kind": "question",
+      "course": "C5",
+      "section": "Sovrapposizione coerente costruttiva",
+      "order": 14415,
+      "title": "Display con offset e due riferimenti",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L03",
+      "prerequisites": [
+        "C5-L01",
+        "C5-L02",
+        "C5-L03",
+        "C5-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "coherent-constructive",
+      "difficulty": 3,
+      "prompt": "Nel medesimo punto di un mezzo lineare si sovrappongono due onde armoniche coerenti, della stessa frequenza e polarizzazione. Le coordinate locali sono x₁=A₁ cosφ e x₂=A₂ cosφ, con A₁,A₂>0: la fase relativa è zero modulo 2π e resta tale durante l’osservazione. L’ampiezza risultante è Aₜ=A₁+A₂; i millimetri indicano spostamenti del mezzo, non il cammino dell’onda. Questa legge vale per le ampiezze, non per la somma delle intensità. Il display continuo segue S=qAₜ+b, con q>0 e q,b costanti. A: A₁=1 mm,A₂=2 mm,S=7. B: A₁=2 mm,A₂=3 mm,S=11. C: A₂=5 mm,S=17. Quanto vale A₁,C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3 mm",
+          "8 mm",
+          "6 mm",
+          "7/2 mm",
+          "2 mm"
+        ],
+        "value": "3 mm"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le ampiezze totali note sono tre e cinque millimetri. La differenza delle letture quattro divisa per due millimetri dà q=2 per mm; b=1. La terza lettura equivale a (17−1)/2=8 mm, da cui A₁,C=8−5=3 mm."
+        },
+        {
+          "type": "formula",
+          "text": "q=2\\,\\mathrm{mm^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " A_{t,C}=8\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " A_{1,C}=3\\,\\mathrm{mm}"
+        },
+        {
+          "type": "text",
+          "text": "Otto è la risultante; sei sottrae la componente prima di invertire il guadagno. Sette mezzi dimentica l’offset perché 17/2−5=7/2. Due copia la prova B. Il risultato tre ricostruisce S=2(3+5)+1=17."
+        }
+      ],
+      "hints": [
+        "Le differenze eliminano b, poi il display si inverte nell’ordine corretto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Otto è la risultante; sei sottrae la componente prima di invertire il guadagno. Sette mezzi dimentica l’offset perché 17/2−5=7/2. Due copia la prova B. Il risultato tre ricostruisce S=2(3+5)+1=17.",
+        "target": "C5-L03"
+      },
+      "coverage": [
+        "Coordinate locali e fase relativa",
+        "Inversione di fase e intensità",
+        "Linearità, inverse e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-coherent-constructive-16",
+      "kind": "question",
+      "course": "C5",
+      "section": "Sovrapposizione coerente costruttiva",
+      "order": 14416,
+      "title": "Un vincolo tra le due componenti",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L03",
+      "prerequisites": [
+        "C5-L01",
+        "C5-L02",
+        "C5-L03",
+        "C5-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "coherent-constructive",
+      "difficulty": 3,
+      "prompt": "Nel medesimo punto di un mezzo lineare si sovrappongono due onde armoniche coerenti, della stessa frequenza e polarizzazione. Le coordinate locali sono x₁=A₁ cosφ e x₂=A₂ cosφ, con A₁,A₂>0: la fase relativa è zero modulo 2π e resta tale durante l’osservazione. L’ampiezza risultante è Aₜ=A₁+A₂; i millimetri indicano spostamenti del mezzo, non il cammino dell’onda. Questa legge vale per le ampiezze, non per la somma delle intensità. A₁=A₂/2 e Aₜ=3 mm. Quanto vale A₂ in mm?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "mm",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il vincolo trasforma la somma in Aₜ=A₂/2+A₂=3A₂/2. Moltiplicando il totale per due terzi troviamo A₂=2 mm e A₁=1 mm. La soluzione è unica e positiva, con la fase costruttiva mantenuta."
+        },
+        {
+          "type": "formula",
+          "text": "A_t=\\frac32 A_2"
+        },
+        {
+          "type": "formula",
+          "text": " A_2=\\frac23 A_t"
+        },
+        {
+          "type": "formula",
+          "text": " A_2=2\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " A_1=1\\,\\mathrm{mm}"
+        },
+        {
+          "type": "text",
+          "text": "Uno identifica la prima anziché la seconda componente; tre copia il totale e sei dimentica la seconda copia di A₂ nel bilancio. Una radice non serve: le ampiezze compaiono soltanto alla prima potenza. Il vincolo riguarda stati armonici, non una legge di accelerazione."
+        }
+      ],
+      "hints": [
+        "Sostituisci il vincolo nella somma e raccogli A₂.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Uno identifica la prima anziché la seconda componente; tre copia il totale e sei dimentica la seconda copia di A₂ nel bilancio. Una radice non serve: le ampiezze compaiono soltanto alla prima potenza. Il vincolo riguarda stati armonici, non una legge di accelerazione.",
+        "target": "C5-L03"
+      },
+      "coverage": [
+        "Coordinate locali e fase relativa",
+        "Inversione di fase e intensità",
+        "Linearità, inverse e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "fc57eb5b2179b5965fabb14d7faf4609fe5219cd13a625735787235ae24fdeef",
+      "name": "coherent-constructive-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTYyMCIgdmlld0JveD0iMCAwIDY0MCAxNjIwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idCBkIj48dGl0bGUgaWQ9InQiPkFtcGllenplIGNvZXJlbnRpIGUgaW52ZXJzaW9uZSBkaSBmYXNlPC90aXRsZT48ZGVzYyBpZD0iZCI+Q29lZmZpY2llbnRpIGRpIHNwb3N0YW1lbnRvIGluIGZhc2UgdW5vIHBpw7kgZHVlIHVndWFsZSB0cmUgbWlsbGltZXRyaS4gQ2FzbyBkaXN0aW50bzogYW1waWV6emUgdHJlIGUgcXVhdHRybyBtaWxsaW1ldHJpIGluIGZhc2UgZGFubm8gc2V0dGUsIGluIG9wcG9zaXppb25lIGRhbm5vIG1vZHVsbyB1bm8gZSByYXBwb3J0byBkaSBpbnRlbnNpdMOgIHVuIHF1YXJhbnRhbm92ZXNpbW8uPC9kZXNjPjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMTYyMCIgcng9IjI0IiBmaWxsPSIjZjVmYWZmIi8+PGcgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiMxNjMwNDciPjx0ZXh0IHg9IjM1IiB5PSI1MCIgZm9udC1zaXplPSIyNiIgZm9udC13ZWlnaHQ9ImJvbGQiPjEgwrcgTWFzc2ltbyBwb3NpdGl2byBjb211bmU8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjEwMCI+U3Rlc3NvIHB1bnRvLCBmcmVxdWVuemEgZSBwb2xhcml6emF6aW9uZTwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMTQ1Ij5GYXNlIHJlbGF0aXZhIHplcm8gwrcgc2VnbWVudGk6IDEwMCBweC9tbTwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMjEwIj5B4oKBID0gMSBtbTwvdGV4dD48cGF0aCBkPSJNMTAwIDI1MEgyMDAiIHN0cm9rZT0iIzE5NjA4MiIgc3Ryb2tlLXdpZHRoPSIxMiIvPjx0ZXh0IHg9IjM1IiB5PSIzMTUiPkHigoIgPSAyIG1tPC90ZXh0PjxwYXRoIGQ9Ik0xMDAgMzU1SDMwMCIgc3Ryb2tlPSIjYmM1MzE1IiBzdHJva2Utd2lkdGg9IjEyIi8+PHRleHQgeD0iMzUiIHk9IjQyMCI+QeKCnCA9IDMgbW08L3RleHQ+PHBhdGggZD0iTTEwMCA0NjBINDAwIiBzdHJva2U9IiM0NDdkNWUiIHN0cm9rZS13aWR0aD0iMTIiLz48dGV4dCB4PSIzNSIgeT0iNTI1Ij5TZWdtZW50aSBkaSBzcG9zdGFtZW50bywgbm9uIGZvcnplPC90ZXh0PjxwYXRoIGQ9Ik0zNSA1NzBINjA1IiBzdHJva2U9IiNiNWNiZDkiLz48dGV4dCB4PSIzNSIgeT0iNjI1IiBmb250LXNpemU9IjI2IiBmb250LXdlaWdodD0iYm9sZCI+MiDCtyBMbyBzdGVzc28gZmF0dG9yZSBhcm1vbmljbzwvdGV4dD48dGV4dCB4PSIzNSIgeT0iNjg1Ij544oKBID0gQeKCgSBjb3PPhjwvdGV4dD48dGV4dCB4PSIzNSIgeT0iNzQwIj544oKCID0gQeKCgiBjb3PPhjwvdGV4dD48dGV4dCB4PSIzNSIgeT0iODA1Ij54ID0gKEHigoEgKyBB4oKCKSBjb3PPhjwvdGV4dD48dGV4dCB4PSIzNSIgeT0iODY1Ij5B4oKcID0gQeKCgSArIEHigoIgPSAzIG1tPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSI5MjUiPkxhIGZhc2Ugw6ggY29tdW5lIGFuY2hlIG5laSBtaW5pbWkuPC90ZXh0PjxwYXRoIGQ9Ik0zNSA5NzBINjA1IiBzdHJva2U9IiNiNWNiZDkiLz48dGV4dCB4PSIzNSIgeT0iMTAyNSIgZm9udC1zaXplPSIyNiIgZm9udC13ZWlnaHQ9ImJvbGQiPjMgwrcgQ2FzbyAwNjogaW52ZXJzaW9uZSBkaSBmYXNlPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSIxMDgwIj5BbHRyaSBkYXRpOiBB4oKBID0gMyBtbSwgQeKCgiA9IDQgbW08L3RleHQ+PHRleHQgeD0iMzUiIHk9IjExMzAiPlF1aSBzY2FsYSA2MCBweC9tbSDCtyBub24gMTAwIHB4L21tPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSIxMTkwIj5QcmltYSwgaW4gZmFzZTogQeKCnCA9IDcgbW08L3RleHQ+PHBhdGggZD0iTTkwIDEyMzBINTEwIiBzdHJva2U9IiMxOTYwODIiIHN0cm9rZS13aWR0aD0iMTIiLz48dGV4dCB4PSIzNSIgeT0iMTMwMCI+RG9wbywgZmFzZSDPgDogQeKCnCA9IHwzIOKIkiA0fCA9IDEgbW08L3RleHQ+PHBhdGggZD0iTTkwIDEzNDBIMTUwIiBzdHJva2U9IiNiYzUzMTUiIHN0cm9rZS13aWR0aD0iMTIiLz48dGV4dCB4PSIzNSIgeT0iMTQyMCI+UmFwcG9ydG8gZGkgYW1waWV6emU6IDEvNzwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMTQ4MCI+UmFwcG9ydG8gZGkgaW50ZW5zaXTDoDogKDEvNynCsiA9IDEvNDk8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjE1NTAiPkFtcGllenphIHBvc2l0aXZhOyBsYSBmYXNlIHBvcnRhIGlsIHNlZ25vLjwvdGV4dD48L2c+PC9zdmc+Cg=="
+    }
+  ]
+}
