@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="1720" viewBox="0 0 640 1720" role="img" aria-labelledby="title desc">
+<title id="title">Dalla velocità fra piastre alla forza applicata</title><desc id="desc">Il fluido aderisce alle due piastre: velocità da zero in basso a due metri al secondo in alto con profilo lineare. La distanza fra le piastre è un millimetro, disegnato come centottanta pixel; le velocità hanno una scala distinta di cinquanta pixel per metro al secondo. Il diagramma della piastra superiore mostra forza esterna più venti e forza del liquido meno venti newton, stessa scala cinque pixel per newton. Il grafico finale mantiene viscosità uno pascal secondo e geometria costante.</desc>
+<defs><marker id="v" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#155fa0"/></marker><marker id="applied" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#a33430"/></marker><marker id="fluid" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#217548"/></marker></defs>
+<rect width="640" height="1720" fill="#fffdf7"/>
+<g font-family="Arial, sans-serif" font-size="22" fill="#172c3b">
+<text x="35" y="48" font-size="27">1. Aderenza e profilo lineare</text>
+<text x="35" y="95">η = 1 Pa·s; A = 0,01 m²; d = 1 mm</text>
+<text x="35" y="140">Velocità: scala 50 px/(m/s)</text>
+<rect x="100" y="240" width="400" height="180" fill="#e6eff5"/><rect x="100" y="225" width="400" height="15" fill="#83939d"/><rect x="100" y="420" width="400" height="15" fill="#83939d"/>
+<path d="M200 420L300 240" fill="none" stroke="#6e7f88" stroke-width="2" stroke-dasharray="5 5"/>
+<path d="M200 240H300" fill="none" stroke="#155fa0" stroke-width="3" marker-end="url(#v)"/>
+<path d="M200 285H275" fill="none" stroke="#155fa0" stroke-width="3" marker-end="url(#v)"/>
+<path d="M200 330H250" fill="none" stroke="#155fa0" stroke-width="3" marker-end="url(#v)"/>
+<path d="M200 375H225" fill="none" stroke="#155fa0" stroke-width="3" marker-end="url(#v)"/>
+<circle cx="200" cy="420" r="4" fill="#155fa0"/>
+<text x="335" y="205">2 m/s</text><text x="335" y="293">3/2 m/s</text><text x="335" y="338">1 m/s</text><text x="335" y="383">1/2 m/s</text><text x="190" y="470">0: piastra inferiore ferma</text>
+<path d="M535 240H550M550 240V420M535 420H550" fill="none" stroke="#172c3b"/>
+<text x="560" y="345">1 mm</text>
+<text x="35" y="520">La distanza ha scala propria: 180 px/mm.</text>
+<text x="35" y="565">Non è la scala delle frecce di velocità.</text>
+<line x1="35" y1="600" x2="605" y2="600" stroke="#bcc6ca"/>
+<text x="35" y="650" font-size="27">2. Isolare la piastra superiore</text>
+<text x="35" y="695">Due forze sulla stessa piastra, non una</text>
+<text x="35" y="735">coppia di azione e reazione. +x a destra.</text>
+<rect x="180" y="805" width="280" height="35" fill="#ccd3d6" stroke="#6e7f88"/>
+<path d="M320 825H420" fill="none" stroke="#a33430" stroke-width="4" marker-end="url(#applied)"/>
+<path d="M320 825H220" fill="none" stroke="#217548" stroke-width="4" marker-end="url(#fluid)"/>
+<text x="335" y="785">F_app = +20 N</text><text x="100" y="900">F_liquido = −20 N</text>
+<text x="35" y="950">Risultante tangenziale sulla piastra: zero.</text>
+<text x="35" y="995">Scala forze: 5 px/N; 100 px ciascuna.</text>
+<line x1="35" y1="1030" x2="605" y2="1030" stroke="#bcc6ca"/>
+<text x="35" y="1080" font-size="27">3. Stessa viscosità: F cresce con v</text>
+<text x="35" y="1125">η = 1 Pa·s e geometria fissa: F = 10v</text>
+<path d="M100 1510V1200M100 1510H450" stroke="#172c3b" stroke-width="2" fill="none"/>
+<text x="110" y="1240">F (N)</text><text x="455" y="1520">v (m/s)</text>
+<path d="M100 1510L300 1310" stroke="#a33430" stroke-width="4" fill="none"/>
+<path d="M200 1505V1515M300 1505V1515M95 1410H105M95 1310H105" stroke="#172c3b" fill="none"/>
+<circle cx="200" cy="1410" r="6" fill="#155fa0"/><circle cx="300" cy="1310" r="6" fill="#155fa0"/>
+<text x="80" y="1540">0</text><text x="193" y="1550">2</text><text x="293" y="1550">4</text><text x="48" y="1418">20</text><text x="48" y="1318">40</text>
+<text x="230" y="1445">(2, 20)</text><text x="330" y="1320">(4, 40)</text>
+<text x="35" y="1610">v: 50 px/(m/s); F: 5 px/N</text>
+<text x="35" y="1660">Gli assi partono da zero; η resta fissata.</text>
+</g></svg>

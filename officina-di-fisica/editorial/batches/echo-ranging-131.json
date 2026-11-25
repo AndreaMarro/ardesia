@@ -1,0 +1,1134 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u4-echo-ranging-01",
+      "kind": "question",
+      "course": "C5",
+      "section": "Eco e cammino di andata e ritorno",
+      "order": 13101,
+      "title": "L’eco copre due volte la distanza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L05",
+      "prerequisites": [
+        "C5-L01",
+        "C5-L02",
+        "C5-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "echo-ranging",
+      "difficulty": 1,
+      "prompt": "Un breve impulso sonoro parte da un trasduttore fermo, si riflette su una parete ferma e torna allo stesso trasduttore lungo il medesimo segmento rettilineo. Il mezzo è fermo e omogeneo; c>0, costante in ciascuna prova, è uguale all’andata e al ritorno. Δt>0 misura il tempo totale fra emissione e ricezione dell’eco; ritardi elettronici e della riflessione sono trascurati. d>0 è la distanza fra trasduttore e parete. I valori di c sono assegnazioni di un modello numerico ideale, non valori dell’aria o di tessuti umani. Si confrontano apparati o condizioni diverse se cambiano c o d. Con c=10 m/s e Δt=6 s, quanto vale d in m?",
+      "answer": {
+        "type": "numeric",
+        "value": 30,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "In sei secondi l’impulso percorre sessanta metri complessivi. Trenta sono l’andata e trenta il ritorno, perché i due percorsi hanno stessa lunghezza e stessa velocità. La distanza della parete è metà del cammino totale, non tutto il cammino."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/5a16d85df48007a44cc6ed019e32a40861a351c6a80ef05b783fed0f7d458331",
+          "text": "Trasduttore e parete sono fermi a distanza d=30 m. I due tratti disegnati separati in altezza sono lo stesso segmento reale percorso in versi opposti, alla scala orizzontale 12 px/m. c=10 m/s dà 3 s per tratta e 6 s totali. Il pannello centrale segue la posizione del breve impulso, non di una particella del mezzo: tempo a 70 px/s e posizione a 8 px/m, scale diverse."
+        },
+        {
+          "type": "formula",
+          "text": "L_{\\rm totale}=c\\Delta t"
+        },
+        {
+          "type": "formula",
+          "text": " L_{\\rm totale}=60\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " 2d=c\\Delta t"
+        },
+        {
+          "type": "formula",
+          "text": " d=\\frac{c\\Delta t}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " d=30\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Sessanta metri è il cammino andata più ritorno. Quindici dividerebbe per due una seconda volta; cinque copierebbe c/2 senza moltiplicare per un tempo. La posizione della parete è fissa durante ogni misura."
+        }
+      ],
+      "hints": [
+        "Dividi il tempo totale in due tragitti uguali oppure dimezza il cammino totale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sessanta metri è il cammino andata più ritorno. Quindici dividerebbe per due una seconda volta; cinque copierebbe c/2 senza moltiplicare per un tempo. La posizione della parete è fissa durante ogni misura.",
+        "target": "C5-L05"
+      },
+      "coverage": [
+        "Tempo totale, cammino e distanza",
+        "Trasporto di energia e moto locale del mezzo",
+        "Inverse, tarature e vincoli tra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-echo-ranging-02",
+      "kind": "question",
+      "course": "C5",
+      "section": "Eco e cammino di andata e ritorno",
+      "order": 13102,
+      "title": "Distanza, durata e cammino",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L05",
+      "prerequisites": [
+        "C5-L01",
+        "C5-L02",
+        "C5-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "echo-ranging",
+      "difficulty": 1,
+      "prompt": "d è la distanza geometrica fra un trasduttore e una parete fermi. Quale unità può esprimere d?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "m",
+          "s",
+          "m/s",
+          "Hz",
+          "m²"
+        ],
+        "value": "m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Una distanza ha dimensione di lunghezza. Nel modello d=cΔt/2, metri al secondo per secondi danno metri; il divisore due è puro. Centimetri o millimetri sarebbero altre scale della stessa dimensione."
+        },
+        {
+          "type": "formula",
+          "text": "[d]=\\mathrm{m/s}\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " [d]=\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Secondi misurano durata, m/s velocità, hertz frequenza e m² area. Il tempo totale dell’eco non diventa una lunghezza senza conoscere c."
+        }
+      ],
+      "hints": [
+        "Controlla l’unità del prodotto velocità per tempo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "Secondi misurano durata, m/s velocità, hertz frequenza e m² area. Il tempo totale dell’eco non diventa una lunghezza senza conoscere c.",
+        "target": "C5-L05"
+      },
+      "coverage": [
+        "Tempo totale, cammino e distanza",
+        "Trasporto di energia e moto locale del mezzo",
+        "Inverse, tarature e vincoli tra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-echo-ranging-03",
+      "kind": "question",
+      "course": "C5",
+      "section": "Eco e cammino di andata e ritorno",
+      "order": 13103,
+      "title": "Che cosa raggiunge il ricevitore",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L05",
+      "prerequisites": [
+        "C5-L01",
+        "C5-L02",
+        "C5-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "echo-ranging",
+      "difficulty": 1,
+      "prompt": "Un’onda sonora di piccola ampiezza attraversa aria inizialmente ferma. Si adotta il modello acustico lineare senza corrente media. Quale descrizione distingue il trasporto dell’onda dal moto delle particelle?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "L’onda può trasportare energia senza un flusso netto di massa nel modello",
+          "Tutta l’aria emessa dalla sorgente deve raggiungere il ricevitore",
+          "Le particelle restano immobili e non scambiano energia",
+          "Ogni particella avanza sempre alla velocità del suono",
+          "Si trasporta soltanto massa, senza energia"
+        ],
+        "value": "L’onda può trasportare energia senza un flusso netto di massa nel modello"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Compressioni e rarefazioni comunicano una perturbazione fra porzioni vicine dell’aria. Le particelle oscillano vicino alle posizioni di equilibrio, mentre energia associata all’onda può raggiungere il ricevitore. Nel modello assegnato non c’è un vento che trasporti quelle stesse porzioni dalla sorgente al ricevitore."
+        },
+        {
+          "type": "formula",
+          "text": "\\text{energia in propagazione}"
+        },
+        {
+          "type": "text",
+          "text": "Immobilità delle particelle impedirebbe la perturbazione materiale. Identificare la loro velocità con quella del suono confonde oscillazione locale e propagazione. Il modello lineare senza corrente media non pretende di descrivere correnti acustiche o trasporti di massa di ordine superiore."
+        }
+      ],
+      "hints": [
+        "L’energia può passare da una porzione del mezzo alla successiva.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Immobilità delle particelle impedirebbe la perturbazione materiale. Identificare la loro velocità con quella del suono confonde oscillazione locale e propagazione. Il modello lineare senza corrente media non pretende di descrivere correnti acustiche o trasporti di massa di ordine superiore.",
+        "target": "C5-L05"
+      },
+      "coverage": [
+        "Tempo totale, cammino e distanza",
+        "Trasporto di energia e moto locale del mezzo",
+        "Inverse, tarature e vincoli tra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-echo-ranging-04",
+      "kind": "question",
+      "course": "C5",
+      "section": "Eco e cammino di andata e ritorno",
+      "order": 13104,
+      "title": "Stesso tempo, una velocità diversa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L05",
+      "prerequisites": [
+        "C5-L01",
+        "C5-L02",
+        "C5-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "echo-ranging",
+      "difficulty": 1,
+      "prompt": "Un breve impulso sonoro parte da un trasduttore fermo, si riflette su una parete ferma e torna allo stesso trasduttore lungo il medesimo segmento rettilineo. Il mezzo è fermo e omogeneo; c>0, costante in ciascuna prova, è uguale all’andata e al ritorno. Δt>0 misura il tempo totale fra emissione e ricezione dell’eco; ritardi elettronici e della riflessione sono trascurati. d>0 è la distanza fra trasduttore e parete. I valori di c sono assegnazioni di un modello numerico ideale, non valori dell’aria o di tessuti umani. Si confrontano apparati o condizioni diverse se cambiano c o d. A usa c=10 m/s e B usa c=1 m/s. In entrambe Δt=6 s. Come cambia d?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 30 a 3 m",
+          "Da 30 a 300 m",
+          "Da 30 a 6 m",
+          "Resta 30 m",
+          "Da 30 a 1/10 m"
+        ],
+        "value": "Da 30 a 3 m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La velocità della seconda prova è un decimo della prima, e il tempo totale è lo stesso. Anche il cammino e la distanza della parete si riducono a un decimo: un metro al secondo per sei secondi dà sei metri complessivi, tre per ciascuna tratta."
+        },
+        {
+          "type": "formula",
+          "text": "d_A=30\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " d_B=\\frac{1\\cdot6}{2}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " d_B=3\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Trecento usa il fattore inverso, sei dimentica il ritorno. Un decimo è il rapporto fra le distanze, non una distanza in metri; trenta ignora la nuova velocità. Non è lo stesso apparato che cambia distanza durante il viaggio."
+        }
+      ],
+      "hints": [
+        "A Δt fissato la distanza inferita è proporzionale a c.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Trecento usa il fattore inverso, sei dimentica il ritorno. Un decimo è il rapporto fra le distanze, non una distanza in metri; trenta ignora la nuova velocità. Non è lo stesso apparato che cambia distanza durante il viaggio.",
+        "target": "C5-L05"
+      },
+      "coverage": [
+        "Tempo totale, cammino e distanza",
+        "Trasporto di energia e moto locale del mezzo",
+        "Inverse, tarature e vincoli tra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-echo-ranging-05",
+      "kind": "question",
+      "course": "C5",
+      "section": "Eco e cammino di andata e ritorno",
+      "order": 13105,
+      "title": "Inferire c da una parete nota",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L05",
+      "prerequisites": [
+        "C5-L01",
+        "C5-L02",
+        "C5-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "echo-ranging",
+      "difficulty": 2,
+      "prompt": "Un breve impulso sonoro parte da un trasduttore fermo, si riflette su una parete ferma e torna allo stesso trasduttore lungo il medesimo segmento rettilineo. Il mezzo è fermo e omogeneo; c>0, costante in ciascuna prova, è uguale all’andata e al ritorno. Δt>0 misura il tempo totale fra emissione e ricezione dell’eco; ritardi elettronici e della riflessione sono trascurati. d>0 è la distanza fra trasduttore e parete. I valori di c sono assegnazioni di un modello numerico ideale, non valori dell’aria o di tessuti umani. Si confrontano apparati o condizioni diverse se cambiano c o d. La parete dista d=30 m e l’eco ritorna dopo Δt=6 s. Quanto vale c in m/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 10,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il cammino totale è due volte trenta, sessanta metri. Dividendo per sei secondi ricaviamo dieci metri al secondo. Usare solo la distanza di andata produrrebbe una velocità dimezzata."
+        },
+        {
+          "type": "formula",
+          "text": "c=\\frac{2d}{\\Delta t}"
+        },
+        {
+          "type": "formula",
+          "text": " c=\\frac{60\\,\\mathrm m}{6\\,\\mathrm s}"
+        },
+        {
+          "type": "formula",
+          "text": " c=10\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Cinque m/s divide d per il tempo dell’intero viaggio. Venti introdurrebbe un raddoppio ulteriore. Il c positivo così ricavato riproduce sei secondi per sessanta metri, non per trenta."
+        }
+      ],
+      "hints": [
+        "Il numeratore è la lunghezza dell’intero cammino dell’eco.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Cinque m/s divide d per il tempo dell’intero viaggio. Venti introdurrebbe un raddoppio ulteriore. Il c positivo così ricavato riproduce sei secondi per sessanta metri, non per trenta.",
+        "target": "C5-L05"
+      },
+      "coverage": [
+        "Tempo totale, cammino e distanza",
+        "Trasporto di energia e moto locale del mezzo",
+        "Inverse, tarature e vincoli tra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-echo-ranging-06",
+      "kind": "question",
+      "course": "C5",
+      "section": "Eco e cammino di andata e ritorno",
+      "order": 13106,
+      "title": "Quanto dura tutto il viaggio?",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L05",
+      "prerequisites": [
+        "C5-L01",
+        "C5-L02",
+        "C5-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "echo-ranging",
+      "difficulty": 2,
+      "prompt": "Un breve impulso sonoro parte da un trasduttore fermo, si riflette su una parete ferma e torna allo stesso trasduttore lungo il medesimo segmento rettilineo. Il mezzo è fermo e omogeneo; c>0, costante in ciascuna prova, è uguale all’andata e al ritorno. Δt>0 misura il tempo totale fra emissione e ricezione dell’eco; ritardi elettronici e della riflessione sono trascurati. d>0 è la distanza fra trasduttore e parete. I valori di c sono assegnazioni di un modello numerico ideale, non valori dell’aria o di tessuti umani. Si confrontano apparati o condizioni diverse se cambiano c o d. Si conoscono d=30 m e c=10 m/s. Quanto vale Δt in s?",
+      "answer": {
+        "type": "numeric",
+        "value": 6,
+        "unit": "s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Per arrivare alla parete occorrono trenta diviso dieci, tre secondi. Il ritorno richiede altri tre secondi nelle stesse condizioni. Il tempo totale è sei secondi; non è il solo ritardo di andata."
+        },
+        {
+          "type": "formula",
+          "text": "t_{\\rm andata}=\\frac dc"
+        },
+        {
+          "type": "formula",
+          "text": " t_{\\rm andata}=3\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta t=\\frac{2d}{c}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta t=6\\,\\mathrm s"
+        },
+        {
+          "type": "text",
+          "text": "Tre secondi conta una sola tratta, dodici raddoppia il totale già corretto. Moltiplicare d per c non dà una durata. La riflessione è trattata come istantanea nel modello."
+        }
+      ],
+      "hints": [
+        "Somma le due durate identiche.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre secondi conta una sola tratta, dodici raddoppia il totale già corretto. Moltiplicare d per c non dà una durata. La riflessione è trattata come istantanea nel modello.",
+        "target": "C5-L05"
+      },
+      "coverage": [
+        "Tempo totale, cammino e distanza",
+        "Trasporto di energia e moto locale del mezzo",
+        "Inverse, tarature e vincoli tra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-echo-ranging-07",
+      "kind": "question",
+      "course": "C5",
+      "section": "Eco e cammino di andata e ritorno",
+      "order": 13107,
+      "title": "Un tempo di ritorno più breve",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L05",
+      "prerequisites": [
+        "C5-L01",
+        "C5-L02",
+        "C5-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "echo-ranging",
+      "difficulty": 2,
+      "prompt": "Un breve impulso sonoro parte da un trasduttore fermo, si riflette su una parete ferma e torna allo stesso trasduttore lungo il medesimo segmento rettilineo. Il mezzo è fermo e omogeneo; c>0, costante in ciascuna prova, è uguale all’andata e al ritorno. Δt>0 misura il tempo totale fra emissione e ricezione dell’eco; ritardi elettronici e della riflessione sono trascurati. d>0 è la distanza fra trasduttore e parete. I valori di c sono assegnazioni di un modello numerico ideale, non valori dell’aria o di tessuti umani. Si confrontano apparati o condizioni diverse se cambiano c o d. A usa c=10 m/s,Δt=6 s. B usa lo stesso c ma Δt=1 s. Quanto vale d_B/d_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/6",
+          "6",
+          "1/36",
+          "1",
+          "5"
+        ],
+        "value": "1/6"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La velocità comune e il divisore due si cancellano. Un secondo rispetto a sei riduce la distanza dello stesso fattore: A dà trenta metri e B cinque metri, rapporto cinque trentesimi uguale a un sesto."
+        },
+        {
+          "type": "formula",
+          "text": "d_A=30\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " d_B=5\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " d_B/d_A=\\frac16"
+        },
+        {
+          "type": "text",
+          "text": "Sei inverte il confronto, un trentaseiesimo quadra indebitamente il rapporto. Uno ignora il nuovo apparato e cinque è il numero finale in metri, non il rapporto senza unità."
+        }
+      ],
+      "hints": [
+        "A c comune confronta direttamente i due tempi totali.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sei inverte il confronto, un trentaseiesimo quadra indebitamente il rapporto. Uno ignora il nuovo apparato e cinque è il numero finale in metri, non il rapporto senza unità.",
+        "target": "C5-L05"
+      },
+      "coverage": [
+        "Tempo totale, cammino e distanza",
+        "Trasporto di energia e moto locale del mezzo",
+        "Inverse, tarature e vincoli tra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-echo-ranging-08",
+      "kind": "question",
+      "course": "C5",
+      "section": "Eco e cammino di andata e ritorno",
+      "order": 13108,
+      "title": "Scarto di un calcolo che dimentica il ritorno",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L05",
+      "prerequisites": [
+        "C5-L01",
+        "C5-L02",
+        "C5-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "echo-ranging",
+      "difficulty": 2,
+      "prompt": "Un breve impulso sonoro parte da un trasduttore fermo, si riflette su una parete ferma e torna allo stesso trasduttore lungo il medesimo segmento rettilineo. Il mezzo è fermo e omogeneo; c>0, costante in ciascuna prova, è uguale all’andata e al ritorno. Δt>0 misura il tempo totale fra emissione e ricezione dell’eco; ritardi elettronici e della riflessione sono trascurati. d>0 è la distanza fra trasduttore e parete. I valori di c sono assegnazioni di un modello numerico ideale, non valori dell’aria o di tessuti umani. Si confrontano apparati o condizioni diverse se cambiano c o d. Con c=10 m/s e Δt=6 s si propone d=60 m. Quanto vale proposta meno corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "30 m",
+          "−30 m",
+          "60 m",
+          "0 m",
+          "90 m"
+        ],
+        "value": "30 m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sessanta metri è il cammino totale. La distanza della parete è trenta metri, quindi la proposta la sovrastima di trenta. Inserire d=60 nel modello richiederebbe dodici secondi, non sei."
+        },
+        {
+          "type": "formula",
+          "text": "d=30\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " e=(60-30)\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " e=30\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Meno trenta scambia l’ordine dello scarto. Sessanta è la proposta, novanta somma i valori e zero accetta il raddoppio errato. Il segno dello scarto non è il verso del moto dell’impulso."
+        }
+      ],
+      "hints": [
+        "Prima distingui d dal cammino 2d, poi sottrai.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Meno trenta scambia l’ordine dello scarto. Sessanta è la proposta, novanta somma i valori e zero accetta il raddoppio errato. Il segno dello scarto non è il verso del moto dell’impulso.",
+        "target": "C5-L05"
+      },
+      "coverage": [
+        "Tempo totale, cammino e distanza",
+        "Trasporto di energia e moto locale del mezzo",
+        "Inverse, tarature e vincoli tra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-echo-ranging-09",
+      "kind": "question",
+      "course": "C5",
+      "section": "Eco e cammino di andata e ritorno",
+      "order": 13109,
+      "title": "La velocità isolata dal tempo di volo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L05",
+      "prerequisites": [
+        "C5-L01",
+        "C5-L02",
+        "C5-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "echo-ranging",
+      "difficulty": 2,
+      "prompt": "Un breve impulso sonoro parte da un trasduttore fermo, si riflette su una parete ferma e torna allo stesso trasduttore lungo il medesimo segmento rettilineo. Il mezzo è fermo e omogeneo; c>0, costante in ciascuna prova, è uguale all’andata e al ritorno. Δt>0 misura il tempo totale fra emissione e ricezione dell’eco; ritardi elettronici e della riflessione sono trascurati. d>0 è la distanza fra trasduttore e parete. I valori di c sono assegnazioni di un modello numerico ideale, non valori dell’aria o di tessuti umani. Si confrontano apparati o condizioni diverse se cambiano c o d. Si misura d e si conosce Δt. Quale formula isola c in unità coerenti?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "c = 2 d / Δt",
+          "c = d / (2 Δt)",
+          "c = d Δt / 2",
+          "c = Δt / (2 d)",
+          "c = 2 d Δt"
+        ],
+        "value": "c = 2 d / Δt"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dal cammino totale 2d=cΔt dividiamo per il tempo positivo. La velocità è quindi 2d/Δt. Il fattore due resta al numeratore: serve a contare entrambe le tratte percorse durante il tempo misurato."
+        },
+        {
+          "type": "formula",
+          "text": "2d=c\\Delta t"
+        },
+        {
+          "type": "formula",
+          "text": " c=\\frac{2d}{\\Delta t}"
+        },
+        {
+          "type": "formula",
+          "text": " [c]=\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "d/(2Δt) è quattro volte più piccolo della formula corretta. I prodotti con Δt hanno dimensione m·s e il reciproco Δt/(2d) ha dimensione s/m. Nessuna radice è richiesta."
+        }
+      ],
+      "hints": [
+        "Dividi l’intero cammino per l’intera durata.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "d/(2Δt) è quattro volte più piccolo della formula corretta. I prodotti con Δt hanno dimensione m·s e il reciproco Δt/(2d) ha dimensione s/m. Nessuna radice è richiesta.",
+        "target": "C5-L05"
+      },
+      "coverage": [
+        "Tempo totale, cammino e distanza",
+        "Trasporto di energia e moto locale del mezzo",
+        "Inverse, tarature e vincoli tra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-echo-ranging-10",
+      "kind": "question",
+      "course": "C5",
+      "section": "Eco e cammino di andata e ritorno",
+      "order": 13110,
+      "title": "Due fattori nel cammino totale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L05",
+      "prerequisites": [
+        "C5-L01",
+        "C5-L02",
+        "C5-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "echo-ranging",
+      "difficulty": 2,
+      "prompt": "Un breve impulso sonoro parte da un trasduttore fermo, si riflette su una parete ferma e torna allo stesso trasduttore lungo il medesimo segmento rettilineo. Il mezzo è fermo e omogeneo; c>0, costante in ciascuna prova, è uguale all’andata e al ritorno. Δt>0 misura il tempo totale fra emissione e ricezione dell’eco; ritardi elettronici e della riflessione sono trascurati. d>0 è la distanza fra trasduttore e parete. I valori di c sono assegnazioni di un modello numerico ideale, non valori dell’aria o di tessuti umani. Si confrontano apparati o condizioni diverse se cambiano c o d. B ha c_B=κ₁c_A e Δt_B=κ₂Δt_A, con fattori positivi. Quanto vale d_B/d_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ κ₂",
+          "κ₁ / κ₂",
+          "κ₂ / κ₁",
+          "κ₁² κ₂",
+          "κ₁ + κ₂"
+        ],
+        "value": "κ₁ κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La distanza è metà del prodotto cΔt. Il mezzo più veloce contribuisce con κ₁ e la maggiore durata con κ₂; il divisore comune due si cancella nel rapporto. Rimane il prodotto dei due fattori."
+        },
+        {
+          "type": "formula",
+          "text": "d_B=\\frac{\\kappa_1c_A\\kappa_2\\Delta t_A}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " d_B/d_A=\\kappa_1\\kappa_2"
+        },
+        {
+          "type": "text",
+          "text": "I quozienti rendono inversa una dipendenza diretta; il quadrato di κ₁ aggiunge una potenza assente. La somma vale due quando entrambe le prove coincidono, mentre il rapporto deve essere uno."
+        }
+      ],
+      "hints": [
+        "Cancella il fattore geometrico comune senza cambiare il prodotto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "I quozienti rendono inversa una dipendenza diretta; il quadrato di κ₁ aggiunge una potenza assente. La somma vale due quando entrambe le prove coincidono, mentre il rapporto deve essere uno.",
+        "target": "C5-L05"
+      },
+      "coverage": [
+        "Tempo totale, cammino e distanza",
+        "Trasporto di energia e moto locale del mezzo",
+        "Inverse, tarature e vincoli tra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-echo-ranging-11",
+      "kind": "question",
+      "course": "C5",
+      "section": "Eco e cammino di andata e ritorno",
+      "order": 13111,
+      "title": "Più veloce, ma con meno tempo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L05",
+      "prerequisites": [
+        "C5-L01",
+        "C5-L02",
+        "C5-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "echo-ranging",
+      "difficulty": 2,
+      "prompt": "Un breve impulso sonoro parte da un trasduttore fermo, si riflette su una parete ferma e torna allo stesso trasduttore lungo il medesimo segmento rettilineo. Il mezzo è fermo e omogeneo; c>0, costante in ciascuna prova, è uguale all’andata e al ritorno. Δt>0 misura il tempo totale fra emissione e ricezione dell’eco; ritardi elettronici e della riflessione sono trascurati. d>0 è la distanza fra trasduttore e parete. I valori di c sono assegnazioni di un modello numerico ideale, non valori dell’aria o di tessuti umani. Si confrontano apparati o condizioni diverse se cambiano c o d. A ha c=10 m/s,Δt=6 s. B ha c=20 m/s,Δt=2 s. Quanto vale d_B/d_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2/3",
+          "3/2",
+          "2",
+          "1/3",
+          "20"
+        ],
+        "value": "2/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A dà trenta metri. B percorre quaranta metri in totale e ha parete a venti metri. Il rapporto è venti trentesimi, due terzi: il fattore due della velocità non compensa il tempo ridotto a un terzo."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/5a16d85df48007a44cc6ed019e32a40861a351c6a80ef05b783fed0f7d458331",
+          "text": "Il percorso spazio-temporale dell’impulso distingue riflessione e ricezione: la parete è raggiunta a 3 s, il trasduttore a 6 s. Le barre finali confrontano d_A=30 m e d_B=20 m a 8 px/m, per A con c=10 m/s,Δt=6 s e B con c=20 m/s,Δt=2 s. È la distanza di una sola tratta, non il cammino totale."
+        },
+        {
+          "type": "formula",
+          "text": "d_A=30\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " d_B=20\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " d_B/d_A=\\frac23"
+        },
+        {
+          "type": "text",
+          "text": "Tre mezzi inverte gli stati; due segue solo c e un terzo solo Δt. Venti è il numero di metri della distanza B e non il rapporto. I due apparati restano fermi durante ciascun viaggio."
+        }
+      ],
+      "hints": [
+        "Moltiplica due per un terzo e controlla con le distanze.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre mezzi inverte gli stati; due segue solo c e un terzo solo Δt. Venti è il numero di metri della distanza B e non il rapporto. I due apparati restano fermi durante ciascun viaggio.",
+        "target": "C5-L05"
+      },
+      "coverage": [
+        "Tempo totale, cammino e distanza",
+        "Trasporto di energia e moto locale del mezzo",
+        "Inverse, tarature e vincoli tra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-echo-ranging-12",
+      "kind": "question",
+      "course": "C5",
+      "section": "Eco e cammino di andata e ritorno",
+      "order": 13112,
+      "title": "Media di due distanze inferite",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L05",
+      "prerequisites": [
+        "C5-L01",
+        "C5-L02",
+        "C5-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "echo-ranging",
+      "difficulty": 2,
+      "prompt": "Un breve impulso sonoro parte da un trasduttore fermo, si riflette su una parete ferma e torna allo stesso trasduttore lungo il medesimo segmento rettilineo. Il mezzo è fermo e omogeneo; c>0, costante in ciascuna prova, è uguale all’andata e al ritorno. Δt>0 misura il tempo totale fra emissione e ricezione dell’eco; ritardi elettronici e della riflessione sono trascurati. d>0 è la distanza fra trasduttore e parete. I valori di c sono assegnazioni di un modello numerico ideale, non valori dell’aria o di tessuti umani. Si confrontano apparati o condizioni diverse se cambiano c o d. A usa c=10 m/s,Δt=6 s e B c=20 m/s,Δt=2 s. Qual è la media aritmetica delle due d, con uguale peso statistico?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "25 m",
+          "50 m",
+          "5 m",
+          "30 m",
+          "20 m"
+        ],
+        "value": "25 m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le distanze sono trenta e venti metri; la semisomma è venticinque metri. Si tratta della media di due apparati o condizioni, non di una parete che si sposta mentre l’impulso è in volo."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline d=\\frac{30+20}{2}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline d=25\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Cinquanta è la somma, cinque la semidifferenza e venti copia B. Gli ingressi medi c=15 m/s e Δt=4 s darebbero trenta metri, cinque in più della media richiesta. Mediare un prodotto non equivale in generale a moltiplicare le medie."
+        }
+      ],
+      "hints": [
+        "Calcola prima le due distanze usando ciascuna coppia di dati.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Cinquanta è la somma, cinque la semidifferenza e venti copia B. Gli ingressi medi c=15 m/s e Δt=4 s darebbero trenta metri, cinque in più della media richiesta. Mediare un prodotto non equivale in generale a moltiplicare le medie.",
+        "target": "C5-L05"
+      },
+      "coverage": [
+        "Tempo totale, cammino e distanza",
+        "Trasporto di energia e moto locale del mezzo",
+        "Inverse, tarature e vincoli tra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-echo-ranging-13",
+      "kind": "question",
+      "course": "C5",
+      "section": "Eco e cammino di andata e ritorno",
+      "order": 13113,
+      "title": "Il ritardo per una distanza obiettivo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L05",
+      "prerequisites": [
+        "C5-L01",
+        "C5-L02",
+        "C5-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "echo-ranging",
+      "difficulty": 3,
+      "prompt": "Un breve impulso sonoro parte da un trasduttore fermo, si riflette su una parete ferma e torna allo stesso trasduttore lungo il medesimo segmento rettilineo. Il mezzo è fermo e omogeneo; c>0, costante in ciascuna prova, è uguale all’andata e al ritorno. Δt>0 misura il tempo totale fra emissione e ricezione dell’eco; ritardi elettronici e della riflessione sono trascurati. d>0 è la distanza fra trasduttore e parete. I valori di c sono assegnazioni di un modello numerico ideale, non valori dell’aria o di tessuti umani. Si confrontano apparati o condizioni diverse se cambiano c o d. A ha c=10 m/s,Δt=6 s. B impone c=20 m/s e d_B=(2/3)d_A. Quanto vale Δt_B/Δt_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/3",
+          "3",
+          "2/3",
+          "2",
+          "1/6"
+        ],
+        "value": "1/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La distanza richiesta è venti metri. Il cammino totale quaranta metri a venti metri al secondo dura due secondi. Rispetto ai sei secondi iniziali, il rapporto è un terzo."
+        },
+        {
+          "type": "formula",
+          "text": "d_B=20\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta t_B=\\frac{2d_B}{c_B}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta t_B=2\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta t_B/\\Delta t_A=\\frac13"
+        },
+        {
+          "type": "text",
+          "text": "Tre inverte il rapporto, due terzi copia il target di distanza e due copia il fattore di c. Un sesto dimezza ancora il rapporto. Due secondi è una durata corretta ma non è il rapporto adimensionale richiesto: va divisa per sei secondi."
+        }
+      ],
+      "hints": [
+        "Togli dal fattore obiettivo il contributo già dato dalla velocità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre inverte il rapporto, due terzi copia il target di distanza e due copia il fattore di c. Un sesto dimezza ancora il rapporto. Due secondi è una durata corretta ma non è il rapporto adimensionale richiesto: va divisa per sei secondi.",
+        "target": "C5-L05"
+      },
+      "coverage": [
+        "Tempo totale, cammino e distanza",
+        "Trasporto di energia e moto locale del mezzo",
+        "Inverse, tarature e vincoli tra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-echo-ranging-14",
+      "kind": "question",
+      "course": "C5",
+      "section": "Eco e cammino di andata e ritorno",
+      "order": 13114,
+      "title": "Calibrare la distanza prima della velocità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L05",
+      "prerequisites": [
+        "C5-L01",
+        "C5-L02",
+        "C5-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "echo-ranging",
+      "difficulty": 3,
+      "prompt": "Un breve impulso sonoro parte da un trasduttore fermo, si riflette su una parete ferma e torna allo stesso trasduttore lungo il medesimo segmento rettilineo. Il mezzo è fermo e omogeneo; c>0, costante in ciascuna prova, è uguale all’andata e al ritorno. Δt>0 misura il tempo totale fra emissione e ricezione dell’eco; ritardi elettronici e della riflessione sono trascurati. d>0 è la distanza fra trasduttore e parete. I valori di c sono assegnazioni di un modello numerico ideale, non valori dell’aria o di tessuti umani. Si confrontano apparati o condizioni diverse se cambiano c o d. Un display continuo adimensionale segue S=qd, con q>0 e senza offset. A con c=10 m/s,Δt=6 s legge S=90. B legge S=60 con Δt=2 s. Quanto vale c_B in m/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 20,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha distanza trenta metri: q=90/(30 m)=3 m⁻¹. La lettura sessanta rappresenta venti metri. Il viaggio totale è quaranta metri e dura due secondi, quindi c_B=20 m/s."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{m^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " d_B=20\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " c_B=\\frac{2d_B}{\\Delta t_B}"
+        },
+        {
+          "type": "formula",
+          "text": " c_B=20\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Sessanta non è una distanza fisica; trattarla come metri darebbe sessanta m/s, triplo del corretto. Anche dopo la taratura va mantenuto il fattore due del viaggio totale."
+        }
+      ],
+      "hints": [
+        "Decodifica d e poi ricostruisci c da due tratte.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sessanta non è una distanza fisica; trattarla come metri darebbe sessanta m/s, triplo del corretto. Anche dopo la taratura va mantenuto il fattore due del viaggio totale.",
+        "target": "C5-L05"
+      },
+      "coverage": [
+        "Tempo totale, cammino e distanza",
+        "Trasporto di energia e moto locale del mezzo",
+        "Inverse, tarature e vincoli tra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-echo-ranging-15",
+      "kind": "question",
+      "course": "C5",
+      "section": "Eco e cammino di andata e ritorno",
+      "order": 13115,
+      "title": "Un offset non è una distanza aggiuntiva",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L05",
+      "prerequisites": [
+        "C5-L01",
+        "C5-L02",
+        "C5-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "echo-ranging",
+      "difficulty": 3,
+      "prompt": "Un breve impulso sonoro parte da un trasduttore fermo, si riflette su una parete ferma e torna allo stesso trasduttore lungo il medesimo segmento rettilineo. Il mezzo è fermo e omogeneo; c>0, costante in ciascuna prova, è uguale all’andata e al ritorno. Δt>0 misura il tempo totale fra emissione e ricezione dell’eco; ritardi elettronici e della riflessione sono trascurati. d>0 è la distanza fra trasduttore e parete. I valori di c sono assegnazioni di un modello numerico ideale, non valori dell’aria o di tessuti umani. Si confrontano apparati o condizioni diverse se cambiano c o d. Il display continuo adimensionale segue S=qd+b, con q>0 e q,b costanti. A: c=10 m/s,Δt=6 s,S=61. B: c=20 m/s,Δt=2 s,S=41. C: Δt=3 s,S=121. Quanto vale c_C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "40 m/s",
+          "20 m/s",
+          "60 m/s",
+          "80 m/s",
+          "121 m/s"
+        ],
+        "value": "40 m/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le distanze note trenta e venti metri, insieme alle letture sessantuno e quarantuno, danno q=20/(10 m)=2 m⁻¹ e b=1. C ha d=(121−1)/2=60 m. Due volte sessanta metri diviso tre secondi dà quaranta m/s."
+        },
+        {
+          "type": "formula",
+          "text": "q=2\\,\\mathrm{m^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " d_C=60\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " c_C=\\frac{120\\,\\mathrm m}{3\\,\\mathrm s}"
+        },
+        {
+          "type": "formula",
+          "text": " c_C=40\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Venti omette una tratta dopo la taratura, sessanta copia il numero di metri e ottanta raddoppia ancora. Centoventuno è la lettura grezza: non ha unità di velocità. L’offset va tolto prima della divisione per q."
+        }
+      ],
+      "hints": [
+        "Determina prima q e b con le distanze di riferimento.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Venti omette una tratta dopo la taratura, sessanta copia il numero di metri e ottanta raddoppia ancora. Centoventuno è la lettura grezza: non ha unità di velocità. L’offset va tolto prima della divisione per q.",
+        "target": "C5-L05"
+      },
+      "coverage": [
+        "Tempo totale, cammino e distanza",
+        "Trasporto di energia e moto locale del mezzo",
+        "Inverse, tarature e vincoli tra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-echo-ranging-16",
+      "kind": "question",
+      "course": "C5",
+      "section": "Eco e cammino di andata e ritorno",
+      "order": 13116,
+      "title": "Un vincolo fra prove rende quadratica l’inversa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L05",
+      "prerequisites": [
+        "C5-L01",
+        "C5-L02",
+        "C5-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "echo-ranging",
+      "difficulty": 3,
+      "prompt": "Un breve impulso sonoro parte da un trasduttore fermo, si riflette su una parete ferma e torna allo stesso trasduttore lungo il medesimo segmento rettilineo. Il mezzo è fermo e omogeneo; c>0, costante in ciascuna prova, è uguale all’andata e al ritorno. Δt>0 misura il tempo totale fra emissione e ricezione dell’eco; ritardi elettronici e della riflessione sono trascurati. d>0 è la distanza fra trasduttore e parete. I valori di c sono assegnazioni di un modello numerico ideale, non valori dell’aria o di tessuti umani. Si confrontano apparati o condizioni diverse se cambiano c o d. Fra prove si impone c=aΔt, con a=5/3 m/s²; il coefficiente collega prove diverse e non descrive un’accelerazione durante il viaggio. Si misura d=30 m. Quanto vale Δt>0 in s?",
+      "answer": {
+        "type": "numeric",
+        "value": 6,
+        "unit": "s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituiamo c=aΔt in d=cΔt/2: d=a(Δt)²/2. Perciò (Δt)²=2d/a=60/(5/3) s²=36 s². La radice positiva dà sei secondi; il vincolo restituisce c=10 m/s e il viaggio totale sessanta metri."
+        },
+        {
+          "type": "formula",
+          "text": "d=\\frac{a(\\Delta t)^2}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " (\\Delta t)^2=\\frac{2d}{a}"
+        },
+        {
+          "type": "formula",
+          "text": " (\\Delta t)^2=36\\,\\mathrm{s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta t=6\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " c=10\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Trentasei è il numero del tempo al quadrato, non una durata. La radice negativa viola Δt>0 e darebbe anche c<0. Pur avendo dimensione di accelerazione, a non è una variazione temporale di c: ogni impulso viaggia a c costante nella propria prova."
+        }
+      ],
+      "hints": [
+        "Sostituisci il vincolo prima di estrarre la radice fisica.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Trentasei è il numero del tempo al quadrato, non una durata. La radice negativa viola Δt>0 e darebbe anche c<0. Pur avendo dimensione di accelerazione, a non è una variazione temporale di c: ogni impulso viaggia a c costante nella propria prova.",
+        "target": "C5-L05"
+      },
+      "coverage": [
+        "Tempo totale, cammino e distanza",
+        "Trasporto di energia e moto locale del mezzo",
+        "Inverse, tarature e vincoli tra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "5a16d85df48007a44cc6ed019e32a40861a351c6a80ef05b783fed0f7d458331",
+      "name": "echo-ranging-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTUwMCIgdmlld0JveD0iMCAwIDY0MCAxNTAwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+Cjx0aXRsZSBpZD0idGl0bGUiPkzigJllY28gcGVyY29ycmUgZHVlIHZvbHRlIGlsIHNlZ21lbnRvPC90aXRsZT48ZGVzYyBpZD0iZGVzYyI+VHJhc2R1dHRvcmUgZSBwYXJldGUgc2VwYXJhdGkgZGEgdHJlbnRhIG1ldHJpLiBUcmUgc2Vjb25kaSBhbGzigJlhbmRhdGEgZSB0cmUgYWwgcml0b3JubyBhIGRpZWNpIG1ldHJpIGFsIHNlY29uZG8uIEdyYWZpY28gZGVsbGEgcG9zaXppb25lIGRlbCBicmV2ZSBpbXB1bHNvIGUgY29uZnJvbnRvIGZyYSBkaXN0YW56ZSB0cmVudGEgZSB2ZW50aSBtZXRyaS48L2Rlc2M+CjxkZWZzPjxtYXJrZXIgaWQ9ImFyciIgdmlld0JveD0iMCAwIDEwIDEwIiByZWZYPSI5IiByZWZZPSI1IiBtYXJrZXJXaWR0aD0iNiIgbWFya2VySGVpZ2h0PSI2IiBvcmllbnQ9ImF1dG8iPjxwYXRoIGQ9Ik0wIDBMMTAgNUwwIDEwWiIgZmlsbD0iIzE0NWQ4MSIvPjwvbWFya2VyPjwvZGVmcz4KPHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxNTAwIiByeD0iMjAiIGZpbGw9IiNmN2ZiZmYiLz4KPGcgZm9udC1mYW1pbHk9InN5c3RlbS11aSxzYW5zLXNlcmlmIiBmaWxsPSIjMTQyZDQwIiBmb250LXNpemU9IjIwIj4KPHRleHQgeD0iMzUiIHk9IjQ4IiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iNzAwIj4xIMK3IExvIHN0ZXNzbyBzZWdtZW50bywgZHVlIHZlcnNpPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iOTAiPmMgPSAxMCBtL3MgwrcgZGlzdGFuemEgZCA9IDMwIG08L3RleHQ+CjxyZWN0IHg9IjEwOCIgeT0iMTg1IiB3aWR0aD0iMzIiIGhlaWdodD0iMTQwIiBmaWxsPSIjNmU4YjljIi8+PHBhdGggZD0iTTUwMCAxNjBWMzUwIiBzdHJva2U9IiM2ZThiOWMiIHN0cm9rZS13aWR0aD0iOSIvPgo8cGF0aCBkPSJNMTQwIDIxMEg1MDAiIHN0cm9rZT0iIzE0NWQ4MSIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI2FycikiLz4KPHBhdGggZD0iTTUwMCAzMDBIMTQwIiBzdHJva2U9IiMxNDVkODEiIHN0cm9rZS13aWR0aD0iMyIgbWFya2VyLWVuZD0idXJsKCNhcnIpIi8+Cjx0ZXh0IHg9IjY1IiB5PSIzODUiPlRyYXNkdXR0b3JlPC90ZXh0Pjx0ZXh0IHg9IjQ2NSIgeT0iMzg1Ij5QYXJldGU8L3RleHQ+Cjx0ZXh0IHg9IjIxMCIgeT0iMTg1Ij5BbmRhdGEgwrcgMyBzPC90ZXh0Pjx0ZXh0IHg9IjIxMCIgeT0iMzQwIj5SaXRvcm5vIMK3IDMgczwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjQ0MCI+T3JpenpvbnRhbGU6IDEyIHB4L20gwrcgZHVlIHZvbHRlIGQ8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI0ODAiPlRyYXR0aSBzZXBhcmF0aSBzb2xvIHBlciByZW5kZXJsaSB2aXNpYmlsaS48L3RleHQ+CjxwYXRoIGQ9Ik0zNSA1MTVINjA1IiBzdHJva2U9IiNiM2NiZDkiLz4KPHRleHQgeD0iMzUiIHk9IjU2MCIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9IjcwMCI+MiDCtyBQb3NpemlvbmUgZGVsIGJyZXZlIGltcHVsc288L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI2MDAiPk5vbiDDqCBsYSB0cmFpZXR0b3JpYSBkaSB1bmEgcGFydGljZWxsYSBk4oCZYXJpYS48L3RleHQ+CjxwYXRoIGQ9Ik04MCA5MzBINTY1IiBzdHJva2U9IiMxNDJkNDAiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnIpIi8+CjxwYXRoIGQ9Ik0xMDAgOTUwVjY1MCIgc3Ryb2tlPSIjMTQyZDQwIiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjYXJyKSIvPgo8dGV4dCB4PSI1NzUiIHk9IjkzNSI+dDwvdGV4dD48dGV4dCB4PSI3MCIgeT0iNjQ1Ij54PC90ZXh0Pgo8cGF0aCBkPSJNMTAwIDkzMEwzMTAgNjkwTDUyMCA5MzAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2M2NTkxOSIgc3Ryb2tlLXdpZHRoPSI0Ii8+CjxwYXRoIGQ9Ik0xMDAgNjkwSDMxMFY5MzAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzZlOGI5YyIgc3Ryb2tlLWRhc2hhcnJheT0iNiA1Ii8+CjxjaXJjbGUgY3g9IjMxMCIgY3k9IjY5MCIgcj0iNSIgZmlsbD0iI2M2NTkxOSIvPgo8dGV4dCB4PSI0MCIgeT0iNjk3Ij4zMCBtPC90ZXh0Pjx0ZXh0IHg9Ijc4IiB5PSI5ODAiPjA8L3RleHQ+PHRleHQgeD0iMjk4IiB5PSI5ODAiPjM8L3RleHQ+PHRleHQgeD0iNTA4IiB5PSI5ODAiPjYgczwvdGV4dD4KPHRleHQgeD0iMzUwIiB5PSI3MDAiPlJpZmxlc3Npb25lPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTAyMCI+VGVtcG86IDcwIHB4L3MgwrcgcG9zaXppb25lOiA4IHB4L208L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxMDYwIj7OlHQgPSA2IHMgw6ggaWwgdGVtcG8gdG90YWxlIGRlbGzigJllY28uPC90ZXh0Pgo8cGF0aCBkPSJNMzUgMTA5MEg2MDUiIHN0cm9rZT0iI2IzY2JkOSIvPgo8dGV4dCB4PSIzNSIgeT0iMTEzNSIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9IjcwMCI+MyDCtyBDb25mcm9udGFyZSBsZSBkaXN0YW56ZSBkPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTE3NSI+QmFycmUgZGEgemVybzogOCBweC9tLCBub24gY2FtbWlubyAyZDwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjEyMjAiPkEgwrcgYyA9IDEwIG0vcyDCtyDOlHQgPSA2IHM8L3RleHQ+CjxyZWN0IHg9IjEwMCIgeT0iMTI1MCIgd2lkdGg9IjI0MCIgaGVpZ2h0PSIzNSIgZmlsbD0iIzE0NWQ4MSIvPjx0ZXh0IHg9IjM2MCIgeT0iMTI3NyI+MzAgbTwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjEzNDAiPkIgwrcgYyA9IDIwIG0vcyDCtyDOlHQgPSAyIHM8L3RleHQ+CjxyZWN0IHg9IjEwMCIgeT0iMTM3MCIgd2lkdGg9IjE2MCIgaGVpZ2h0PSIzNSIgZmlsbD0iI2M2NTkxOSIvPjx0ZXh0IHg9IjI4MCIgeT0iMTM5NyI+MjAgbTwvdGV4dD4KPHBhdGggZD0iTTEwMCAxMjM1VjEzMDBNMTAwIDEzNTVWMTQyMCIgc3Ryb2tlPSIjNmU4YjljIiBzdHJva2UtZGFzaGFycmF5PSI2IDUiLz4KPHRleHQgeD0iMzUiIHk9IjE0NzAiPmThtK4vZOG0rCA9IDIwLzMwID0gMi8zPC90ZXh0Pgo8L2c+PC9zdmc+Cg=="
+    }
+  ]
+}

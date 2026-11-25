@@ -1,0 +1,1094 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u4-oscillator-max-speed-01",
+      "kind": "question",
+      "course": "C5",
+      "section": "Velocità locale di un oscillatore",
+      "order": 13301,
+      "title": "Il punto attraversa più rapidamente l’equilibrio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L01",
+      "prerequisites": [
+        "C1-L003",
+        "C5-L01"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "oscillator-max-speed",
+      "difficulty": 1,
+      "prompt": "Un punto materiale oscilla lungo un asse x in un riferimento inerziale, secondo x(t)=A cos(ωt+φ). L’origine è l’equilibrio, A>0 è l’ampiezza in m, ω>0 la pulsazione in rad/s e φ una fase iniziale costante. Il moto è armonico ideale, senza smorzamento, con parametri costanti in ciascuna prova. v(t) è la velocità orientata; v_max indica il massimo del modulo |v(t)| durante un ciclo, positivo. Non si tratta della velocità di propagazione di un’onda. Con A=2 m e ω=3 rad/s, quanto vale v_max in m/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 6,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La velocità è la derivata temporale della posizione: v=−ωA sin(ωt+φ). Il seno raggiunge valori di modulo uno, perciò il massimo modulo è ωA. Due metri per tre al secondo dà sei m/s; il radiante è adimensionale. Il massimo si verifica nei passaggi per l’equilibrio."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/b8f2ba3ea97ce6f44548a537085d8694f6bab0c0fcc2f8a15f2232773689a9f2",
+          "text": "Tre posizioni dello stesso oscillatore ideale con A=2 m: estremi x=−2 e +2 m e centro x=0, scala di posizione 60 px/m. All’estremo la velocità è zero; al centro i due passaggi hanno v=+6 e −6 m/s, frecce lunghe 120 px a 20 px/(m/s). I passaggi opposti sono mostrati in righe diverse, non simultanei. Nel grafico v in funzione della fase θ=ωt, i massimi moduli sono 6 m/s; la scala verticale è 20 px/(m/s)."
+        },
+        {
+          "type": "formula",
+          "text": "v(t)=-\\omega A\\sin(\\omega t+\\varphi)"
+        },
+        {
+          "type": "formula",
+          "text": " v_{\\max}=\\omega A"
+        },
+        {
+          "type": "formula",
+          "text": " v_{\\max}=6\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Dodici userebbe la distanza fra i due estremi, 2A, al posto dell’ampiezza A. Tre copia il numero della pulsazione. Ai punti estremi il modulo della velocità è zero, non massimo; le velocità orientate estreme sono +6 e −6 m/s."
+        }
+      ],
+      "hints": [
+        "Distingui ampiezza A dalla distanza 2A fra gli estremi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dodici userebbe la distanza fra i due estremi, 2A, al posto dell’ampiezza A. Tre copia il numero della pulsazione. Ai punti estremi il modulo della velocità è zero, non massimo; le velocità orientate estreme sono +6 e −6 m/s.",
+        "target": "C5-L01"
+      },
+      "coverage": [
+        "Massimo modulo e velocità orientata",
+        "Fase, ampiezza e pulsazione",
+        "Inverse, medie e tarature di v_max"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-oscillator-max-speed-02",
+      "kind": "question",
+      "course": "C5",
+      "section": "Velocità locale di un oscillatore",
+      "order": 13302,
+      "title": "L’unità del modulo massimo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L01",
+      "prerequisites": [
+        "C1-L003",
+        "C5-L01"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "oscillator-max-speed",
+      "difficulty": 1,
+      "prompt": "v_max è il massimo modulo della velocità di un oscillatore armonico. Quale unità è dimensionalmente adatta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "m/s",
+          "m",
+          "m/s²",
+          "rad/s",
+          "s"
+        ],
+        "value": "m/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La velocità rapporta variazione di posizione e tempo. Nella formula v_max=ωA, ω ha dimensione tempo inverso e A lunghezza: il prodotto è m/s. Scrivere rad/s per ω ricorda la fase, senza aggiungere una dimensione meccanica al radiante."
+        },
+        {
+          "type": "formula",
+          "text": "[\\omega]=\\mathrm{s^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " [v_{\\max}]=\\mathrm{s^{-1}}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " [v_{\\max}]=\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Metri misurano ampiezza, m/s² accelerazione, rad/s pulsazione e s durata. Né il massimo né il modulo cambiano le dimensioni della velocità."
+        }
+      ],
+      "hints": [
+        "Moltiplica una lunghezza per un tempo inverso.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "Metri misurano ampiezza, m/s² accelerazione, rad/s pulsazione e s durata. Né il massimo né il modulo cambiano le dimensioni della velocità.",
+        "target": "C5-L01"
+      },
+      "coverage": [
+        "Massimo modulo e velocità orientata",
+        "Fase, ampiezza e pulsazione",
+        "Inverse, medie e tarature di v_max"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-oscillator-max-speed-03",
+      "kind": "question",
+      "course": "C5",
+      "section": "Velocità locale di un oscillatore",
+      "order": 13303,
+      "title": "Dalla sinusoide al massimo modulo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L01",
+      "prerequisites": [
+        "C1-L003",
+        "C5-L01"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "oscillator-max-speed",
+      "difficulty": 1,
+      "prompt": "Un punto materiale oscilla lungo un asse x in un riferimento inerziale, secondo x(t)=A cos(ωt+φ). L’origine è l’equilibrio, A>0 è l’ampiezza in m, ω>0 la pulsazione in rad/s e φ una fase iniziale costante. Il moto è armonico ideale, senza smorzamento, con parametri costanti in ciascuna prova. v(t) è la velocità orientata; v_max indica il massimo del modulo |v(t)| durante un ciclo, positivo. Non si tratta della velocità di propagazione di un’onda. Quale relazione dà v_max?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "v_max = ω A",
+          "v_max = ω² A",
+          "v_max = A / ω",
+          "v_max = ω / A",
+          "v_max = 2π ω A"
+        ],
+        "value": "v_max = ω A"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Derivare il coseno introduce un fattore ω e un seno con segno meno. La fase iniziale sposta gli istanti ma non il massimo modulo: in un ciclo |sin| raggiunge uno. Quindi v_max=ωA, pur esistendo velocità orientate sia positive sia negative."
+        },
+        {
+          "type": "formula",
+          "text": "v=-\\omega A\\sin(\\omega t+\\varphi)"
+        },
+        {
+          "type": "formula",
+          "text": " |v|\\le\\omega A"
+        },
+        {
+          "type": "formula",
+          "text": " v_{\\max}=\\omega A"
+        },
+        {
+          "type": "text",
+          "text": "ω²A è il massimo modulo dell’accelerazione; A/ω ha unità m·s e ω/A unità 1/(m·s). Un altro 2π conta due volte la conversione fra frequenza f e pulsazione ω=2πf."
+        }
+      ],
+      "hints": [
+        "Una derivata temporale della posizione introduce una sola ω.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "ω²A è il massimo modulo dell’accelerazione; A/ω ha unità m·s e ω/A unità 1/(m·s). Un altro 2π conta due volte la conversione fra frequenza f e pulsazione ω=2πf.",
+        "target": "C5-L01"
+      },
+      "coverage": [
+        "Massimo modulo e velocità orientata",
+        "Fase, ampiezza e pulsazione",
+        "Inverse, medie e tarature di v_max"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-oscillator-max-speed-04",
+      "kind": "question",
+      "course": "C5",
+      "section": "Velocità locale di un oscillatore",
+      "order": 13304,
+      "title": "Ampiezza dimezzata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L01",
+      "prerequisites": [
+        "C1-L003",
+        "C5-L01"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "oscillator-max-speed",
+      "difficulty": 1,
+      "prompt": "Un punto materiale oscilla lungo un asse x in un riferimento inerziale, secondo x(t)=A cos(ωt+φ). L’origine è l’equilibrio, A>0 è l’ampiezza in m, ω>0 la pulsazione in rad/s e φ una fase iniziale costante. Il moto è armonico ideale, senza smorzamento, con parametri costanti in ciascuna prova. v(t) è la velocità orientata; v_max indica il massimo del modulo |v(t)| durante un ciclo, positivo. Non si tratta della velocità di propagazione di un’onda. A passa da 2 a 1 m, mentre ω resta 3 rad/s. Come cambia v_max?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 6 a 3 m/s",
+          "Da 6 a 12 m/s",
+          "Da 6 a 3/2 m/s",
+          "Resta 6 m/s",
+          "Da 6 a 1 m/s"
+        ],
+        "value": "Da 6 a 3 m/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A pulsazione fissata il massimo modulo è direttamente proporzionale all’ampiezza. L’oscillatore nuovo compie la stessa fase nello stesso tempo, ma copre spostamenti dimezzati; v_max passa da sei a tre m/s."
+        },
+        {
+          "type": "formula",
+          "text": "v_{\\max,A}=6\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " v_{\\max,B}=3\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{v_{\\max,B}}{v_{\\max,A}}=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Dodici inverte l’effetto, tre mezzi quadra il dimezzamento e uno copia l’ampiezza in unità diverse. Sei ignora il nuovo moto. Il periodo resta uguale perché dipende da ω, non dall’ampiezza nel modello armonico."
+        }
+      ],
+      "hints": [
+        "Il fattore di A entra una sola volta.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Dodici inverte l’effetto, tre mezzi quadra il dimezzamento e uno copia l’ampiezza in unità diverse. Sei ignora il nuovo moto. Il periodo resta uguale perché dipende da ω, non dall’ampiezza nel modello armonico.",
+        "target": "C5-L01"
+      },
+      "coverage": [
+        "Massimo modulo e velocità orientata",
+        "Fase, ampiezza e pulsazione",
+        "Inverse, medie e tarature di v_max"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-oscillator-max-speed-05",
+      "kind": "question",
+      "course": "C5",
+      "section": "Velocità locale di un oscillatore",
+      "order": 13305,
+      "title": "Ricostruire l’ampiezza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L01",
+      "prerequisites": [
+        "C1-L003",
+        "C5-L01"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "oscillator-max-speed",
+      "difficulty": 2,
+      "prompt": "Un punto materiale oscilla lungo un asse x in un riferimento inerziale, secondo x(t)=A cos(ωt+φ). L’origine è l’equilibrio, A>0 è l’ampiezza in m, ω>0 la pulsazione in rad/s e φ una fase iniziale costante. Il moto è armonico ideale, senza smorzamento, con parametri costanti in ciascuna prova. v(t) è la velocità orientata; v_max indica il massimo del modulo |v(t)| durante un ciclo, positivo. Non si tratta della velocità di propagazione di un’onda. Si misura v_max=6 m/s e si conosce ω=3 rad/s. Quanto vale A in m?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dividiamo la velocità massima per la pulsazione positiva. Sei metri al secondo diviso tre al secondo lascia due metri. Questa è la distanza dall’equilibrio a un estremo; la distanza fra i due estremi sarebbe quattro metri."
+        },
+        {
+          "type": "formula",
+          "text": "A=\\frac{v_{\\max}}\\omega"
+        },
+        {
+          "type": "formula",
+          "text": " A=2\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Quattro è la distanza fra gli estremi, non l’ampiezza richiesta. Moltiplicare per ω restituirebbe un’accelerazione, mentre dividere ancora per ω introdurrebbe un tempo in più."
+        }
+      ],
+      "hints": [
+        "Elimina il fattore ω dal prodotto v_max=ωA.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro è la distanza fra gli estremi, non l’ampiezza richiesta. Moltiplicare per ω restituirebbe un’accelerazione, mentre dividere ancora per ω introdurrebbe un tempo in più.",
+        "target": "C5-L01"
+      },
+      "coverage": [
+        "Massimo modulo e velocità orientata",
+        "Fase, ampiezza e pulsazione",
+        "Inverse, medie e tarature di v_max"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-oscillator-max-speed-06",
+      "kind": "question",
+      "course": "C5",
+      "section": "Velocità locale di un oscillatore",
+      "order": 13306,
+      "title": "Ricavare la pulsazione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L01",
+      "prerequisites": [
+        "C1-L003",
+        "C5-L01"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "oscillator-max-speed",
+      "difficulty": 2,
+      "prompt": "Un punto materiale oscilla lungo un asse x in un riferimento inerziale, secondo x(t)=A cos(ωt+φ). L’origine è l’equilibrio, A>0 è l’ampiezza in m, ω>0 la pulsazione in rad/s e φ una fase iniziale costante. Il moto è armonico ideale, senza smorzamento, con parametri costanti in ciascuna prova. v(t) è la velocità orientata; v_max indica il massimo del modulo |v(t)| durante un ciclo, positivo. Non si tratta della velocità di propagazione di un’onda. Si misura v_max=6 m/s con A=2 m. Quanto vale ω in rad/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "rad/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dal prodotto v_max=ωA ricaviamo ω=v_max/A. Sei metri al secondo diviso due metri dà tre al secondo, scritti tre rad/s per indicare il ritmo della fase. La frequenza in hertz sarebbe invece 3/(2π) Hz."
+        },
+        {
+          "type": "formula",
+          "text": "\\omega=\\frac{v_{\\max}}A"
+        },
+        {
+          "type": "formula",
+          "text": " \\omega=3\\,\\mathrm{rad/s}"
+        },
+        {
+          "type": "formula",
+          "text": " f=\\frac3{2\\pi}\\,\\mathrm{Hz}"
+        },
+        {
+          "type": "text",
+          "text": "Tre Hz non è la stessa grandezza di tre rad/s. Dodici moltiplicherebbe anziché dividere, e un terzo sarebbe un tempo caratteristico inverso alla pulsazione. Si usa il massimo modulo, non una velocità orientata negativa."
+        }
+      ],
+      "hints": [
+        "Dividi il massimo modulo per l’ampiezza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre Hz non è la stessa grandezza di tre rad/s. Dodici moltiplicherebbe anziché dividere, e un terzo sarebbe un tempo caratteristico inverso alla pulsazione. Si usa il massimo modulo, non una velocità orientata negativa.",
+        "target": "C5-L01"
+      },
+      "coverage": [
+        "Massimo modulo e velocità orientata",
+        "Fase, ampiezza e pulsazione",
+        "Inverse, medie e tarature di v_max"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-oscillator-max-speed-07",
+      "kind": "question",
+      "course": "C5",
+      "section": "Velocità locale di un oscillatore",
+      "order": 13307,
+      "title": "Una pulsazione tre volte minore",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L01",
+      "prerequisites": [
+        "C1-L003",
+        "C5-L01"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "oscillator-max-speed",
+      "difficulty": 2,
+      "prompt": "Un punto materiale oscilla lungo un asse x in un riferimento inerziale, secondo x(t)=A cos(ωt+φ). L’origine è l’equilibrio, A>0 è l’ampiezza in m, ω>0 la pulsazione in rad/s e φ una fase iniziale costante. Il moto è armonico ideale, senza smorzamento, con parametri costanti in ciascuna prova. v(t) è la velocità orientata; v_max indica il massimo del modulo |v(t)| durante un ciclo, positivo. Non si tratta della velocità di propagazione di un’onda. La prova I usa A=2 m,ω=3 rad/s; la prova II mantiene A e usa ω=1 rad/s. Quanto vale v_max,II/v_max,I?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/3",
+          "3",
+          "1/9",
+          "1",
+          "2"
+        ],
+        "value": "1/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I due massimi moduli sono sei e due m/s. Il rapporto è due sesti, un terzo. A fissa, ridurre la pulsazione allunga il periodo e riduce la velocità massima dello stesso fattore, non del suo quadrato."
+        },
+        {
+          "type": "formula",
+          "text": "v_{\\max,\\mathrm I}=6\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " v_{\\max,\\mathrm {II}}=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{v_{\\max,\\mathrm {II}}}{v_{\\max,\\mathrm I}}=\\frac13"
+        },
+        {
+          "type": "text",
+          "text": "Tre inverte il confronto, un nono usa la legge quadratica dell’accelerazione, uno ignora la modifica e due copia il numero del risultato finale in m/s."
+        }
+      ],
+      "hints": [
+        "Qui ω compare alla prima potenza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre inverte il confronto, un nono usa la legge quadratica dell’accelerazione, uno ignora la modifica e due copia il numero del risultato finale in m/s.",
+        "target": "C5-L01"
+      },
+      "coverage": [
+        "Massimo modulo e velocità orientata",
+        "Fase, ampiezza e pulsazione",
+        "Inverse, medie e tarature di v_max"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-oscillator-max-speed-08",
+      "kind": "question",
+      "course": "C5",
+      "section": "Velocità locale di un oscillatore",
+      "order": 13308,
+      "title": "Scarto di un massimo sovrastimato",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L01",
+      "prerequisites": [
+        "C1-L003",
+        "C5-L01"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "oscillator-max-speed",
+      "difficulty": 2,
+      "prompt": "Un punto materiale oscilla lungo un asse x in un riferimento inerziale, secondo x(t)=A cos(ωt+φ). L’origine è l’equilibrio, A>0 è l’ampiezza in m, ω>0 la pulsazione in rad/s e φ una fase iniziale costante. Il moto è armonico ideale, senza smorzamento, con parametri costanti in ciascuna prova. v(t) è la velocità orientata; v_max indica il massimo del modulo |v(t)| durante un ciclo, positivo. Non si tratta della velocità di propagazione di un’onda. Con A=2 m,ω=3 rad/s si propone v_max=12 m/s. Quanto vale proposta meno corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "6 m/s",
+          "−6 m/s",
+          "12 m/s",
+          "0 m/s",
+          "18 m/s"
+        ],
+        "value": "6 m/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il massimo modulo corretto è sei m/s. Dodici meno sei dà più sei m/s. La proposta usa il doppio della velocità massima e può nascere dall’aver scambiato A con l’intera distanza 2A fra gli estremi."
+        },
+        {
+          "type": "formula",
+          "text": "v_{\\max}=6\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " e=(12-6)\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " e=6\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Meno sei cambia l’ordine, dodici mantiene la proposta e diciotto somma. Zero accetta il valore errato. Lo scarto ha segno anche se il massimo modulo fisico è sempre positivo."
+        }
+      ],
+      "hints": [
+        "Sottrai il corretto dalla proposta, senza togliere il segno allo scarto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Meno sei cambia l’ordine, dodici mantiene la proposta e diciotto somma. Zero accetta il valore errato. Lo scarto ha segno anche se il massimo modulo fisico è sempre positivo.",
+        "target": "C5-L01"
+      },
+      "coverage": [
+        "Massimo modulo e velocità orientata",
+        "Fase, ampiezza e pulsazione",
+        "Inverse, medie e tarature di v_max"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-oscillator-max-speed-09",
+      "kind": "question",
+      "course": "C5",
+      "section": "Velocità locale di un oscillatore",
+      "order": 13309,
+      "title": "L’inversa per A",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L01",
+      "prerequisites": [
+        "C1-L003",
+        "C5-L01"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "oscillator-max-speed",
+      "difficulty": 2,
+      "prompt": "Un punto materiale oscilla lungo un asse x in un riferimento inerziale, secondo x(t)=A cos(ωt+φ). L’origine è l’equilibrio, A>0 è l’ampiezza in m, ω>0 la pulsazione in rad/s e φ una fase iniziale costante. Il moto è armonico ideale, senza smorzamento, con parametri costanti in ciascuna prova. v(t) è la velocità orientata; v_max indica il massimo del modulo |v(t)| durante un ciclo, positivo. Non si tratta della velocità di propagazione di un’onda. Si conoscono v_max e ω. Quale relazione isola A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "A = v_max / ω",
+          "A = v_max ω",
+          "A = ω / v_max",
+          "A = v_max / ω²",
+          "A = 2 v_max / ω"
+        ],
+        "value": "A = v_max / ω"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dividendo v_max=ωA per ω>0 si ottiene A=v_max/ω. Il rapporto (m/s)/(s⁻¹) dà metri. Il massimo modulo non introduce un fattore due, perché A è già l’ampiezza da un estremo all’equilibrio."
+        },
+        {
+          "type": "formula",
+          "text": "A=\\frac{v_{\\max}}\\omega"
+        },
+        {
+          "type": "formula",
+          "text": " [A]=\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Il prodotto v_maxω è un’accelerazione, ω/v_max una lunghezza inversa e v_max/ω² una grandezza con unità m·s. Il due aggiunto restituirebbe 2A, distanza fra gli estremi, non A."
+        }
+      ],
+      "hints": [
+        "Rimuovi un solo fattore ω.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il prodotto v_maxω è un’accelerazione, ω/v_max una lunghezza inversa e v_max/ω² una grandezza con unità m·s. Il due aggiunto restituirebbe 2A, distanza fra gli estremi, non A.",
+        "target": "C5-L01"
+      },
+      "coverage": [
+        "Massimo modulo e velocità orientata",
+        "Fase, ampiezza e pulsazione",
+        "Inverse, medie e tarature di v_max"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-oscillator-max-speed-10",
+      "kind": "question",
+      "course": "C5",
+      "section": "Velocità locale di un oscillatore",
+      "order": 13310,
+      "title": "Due fattori diretti",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L01",
+      "prerequisites": [
+        "C1-L003",
+        "C5-L01"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "oscillator-max-speed",
+      "difficulty": 2,
+      "prompt": "Un punto materiale oscilla lungo un asse x in un riferimento inerziale, secondo x(t)=A cos(ωt+φ). L’origine è l’equilibrio, A>0 è l’ampiezza in m, ω>0 la pulsazione in rad/s e φ una fase iniziale costante. Il moto è armonico ideale, senza smorzamento, con parametri costanti in ciascuna prova. v(t) è la velocità orientata; v_max indica il massimo del modulo |v(t)| durante un ciclo, positivo. Non si tratta della velocità di propagazione di un’onda. Fra prove I e II, A_II=κ₁A_I e ω_II=κ₂ω_I, con fattori positivi. Quanto vale v_max,II/v_max,I?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ κ₂",
+          "κ₁ / κ₂",
+          "κ₂ / κ₁",
+          "κ₁ κ₂²",
+          "κ₁ + κ₂"
+        ],
+        "value": "κ₁ κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il massimo modulo è un prodotto. Sostituendo le due grandezze della prova II otteniamo κ₁κ₂ volte il valore della prova I. Il cambiamento di fase iniziale non influirebbe sul massimo."
+        },
+        {
+          "type": "formula",
+          "text": "v_{\\max,\\mathrm {II}}=\\kappa_2\\omega_{\\mathrm I}\\kappa_1A_{\\mathrm I}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{v_{\\max,\\mathrm {II}}}{v_{\\max,\\mathrm I}}=\\kappa_1\\kappa_2"
+        },
+        {
+          "type": "text",
+          "text": "I quozienti invertono dipendenze dirette, il quadrato di κ₂ appartiene all’accelerazione massima, non alla velocità. La somma darebbe due per prove identiche."
+        }
+      ],
+      "hints": [
+        "Mantieni un fattore per A e uno per ω.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "I quozienti invertono dipendenze dirette, il quadrato di κ₂ appartiene all’accelerazione massima, non alla velocità. La somma darebbe due per prove identiche.",
+        "target": "C5-L01"
+      },
+      "coverage": [
+        "Massimo modulo e velocità orientata",
+        "Fase, ampiezza e pulsazione",
+        "Inverse, medie e tarature di v_max"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-oscillator-max-speed-11",
+      "kind": "question",
+      "course": "C5",
+      "section": "Velocità locale di un oscillatore",
+      "order": 13311,
+      "title": "Meno ampiezza ma fase più rapida",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L01",
+      "prerequisites": [
+        "C1-L003",
+        "C5-L01"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "oscillator-max-speed",
+      "difficulty": 2,
+      "prompt": "Un punto materiale oscilla lungo un asse x in un riferimento inerziale, secondo x(t)=A cos(ωt+φ). L’origine è l’equilibrio, A>0 è l’ampiezza in m, ω>0 la pulsazione in rad/s e φ una fase iniziale costante. Il moto è armonico ideale, senza smorzamento, con parametri costanti in ciascuna prova. v(t) è la velocità orientata; v_max indica il massimo del modulo |v(t)| durante un ciclo, positivo. Non si tratta della velocità di propagazione di un’onda. La prova I ha A=2 m,ω=3 rad/s. La prova II ha A=1 m,ω=4 rad/s. Quanto vale v_max,II/v_max,I?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2/3",
+          "3/2",
+          "1/2",
+          "4/3",
+          "4"
+        ],
+        "value": "2/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La prova I ha massimo modulo sei m/s e la prova II quattro m/s. Il rapporto quattro sesti è due terzi. Il dimezzamento dell’ampiezza prevale sull’aumento della pulsazione di quattro terzi."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/b8f2ba3ea97ce6f44548a537085d8694f6bab0c0fcc2f8a15f2232773689a9f2",
+          "text": "Le barre finali sono massimi moduli positivi, non velocità orientate né velocità di propagazione: 6 e 4 m/s a 40 px/(m/s). I usa A=2 m,ω=3 rad/s; II usa A=1 m,ω=4 rad/s. Un massimo modulo può diminuire anche se la pulsazione aumenta, quando l’ampiezza diminuisce abbastanza."
+        },
+        {
+          "type": "formula",
+          "text": "v_{\\max,\\mathrm I}=6\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " v_{\\max,\\mathrm {II}}=4\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{v_{\\max,\\mathrm {II}}}{v_{\\max,\\mathrm I}}=\\frac23"
+        },
+        {
+          "type": "text",
+          "text": "Tre mezzi è il reciproco, un mezzo segue solo A e quattro terzi solo ω. Quattro è il numero della velocità massima finale, non il rapporto adimensionale."
+        }
+      ],
+      "hints": [
+        "Combina un mezzo con quattro terzi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre mezzi è il reciproco, un mezzo segue solo A e quattro terzi solo ω. Quattro è il numero della velocità massima finale, non il rapporto adimensionale.",
+        "target": "C5-L01"
+      },
+      "coverage": [
+        "Massimo modulo e velocità orientata",
+        "Fase, ampiezza e pulsazione",
+        "Inverse, medie e tarature di v_max"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-oscillator-max-speed-12",
+      "kind": "question",
+      "course": "C5",
+      "section": "Velocità locale di un oscillatore",
+      "order": 13312,
+      "title": "Media di due massimi moduli",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L01",
+      "prerequisites": [
+        "C1-L003",
+        "C5-L01"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "oscillator-max-speed",
+      "difficulty": 2,
+      "prompt": "Un punto materiale oscilla lungo un asse x in un riferimento inerziale, secondo x(t)=A cos(ωt+φ). L’origine è l’equilibrio, A>0 è l’ampiezza in m, ω>0 la pulsazione in rad/s e φ una fase iniziale costante. Il moto è armonico ideale, senza smorzamento, con parametri costanti in ciascuna prova. v(t) è la velocità orientata; v_max indica il massimo del modulo |v(t)| durante un ciclo, positivo. Non si tratta della velocità di propagazione di un’onda. I usa A=2 m,ω=3 rad/s; II usa A=1 m,ω=4 rad/s. Qual è la media aritmetica dei due v_max con uguale peso statistico?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "5 m/s",
+          "10 m/s",
+          "1 m/s",
+          "21/4 m/s",
+          "4 m/s"
+        ],
+        "value": "5 m/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I massimi moduli sono sei e quattro m/s: la semisomma è cinque m/s. Questa è una media fra prove, non la velocità media orientata di un oscillatore durante un ciclo, che sarebbe zero."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline{v_{\\max}}=\\frac{6+4}{2}\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline{v_{\\max}}=5\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Dieci è la somma, uno la semidifferenza e quattro la sola prova II. Con A medio 3/2 m e ω media 7/2 rad/s si avrebbe invece 21/4 m/s, maggiore di 1/4 m/s della media richiesta."
+        }
+      ],
+      "hints": [
+        "Media i due massimi già calcolati, non il moto nel tempo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dieci è la somma, uno la semidifferenza e quattro la sola prova II. Con A medio 3/2 m e ω media 7/2 rad/s si avrebbe invece 21/4 m/s, maggiore di 1/4 m/s della media richiesta.",
+        "target": "C5-L01"
+      },
+      "coverage": [
+        "Massimo modulo e velocità orientata",
+        "Fase, ampiezza e pulsazione",
+        "Inverse, medie e tarature di v_max"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-oscillator-max-speed-13",
+      "kind": "question",
+      "course": "C5",
+      "section": "Velocità locale di un oscillatore",
+      "order": 13313,
+      "title": "La pulsazione per un massimo desiderato",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L01",
+      "prerequisites": [
+        "C1-L003",
+        "C5-L01"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "oscillator-max-speed",
+      "difficulty": 3,
+      "prompt": "Un punto materiale oscilla lungo un asse x in un riferimento inerziale, secondo x(t)=A cos(ωt+φ). L’origine è l’equilibrio, A>0 è l’ampiezza in m, ω>0 la pulsazione in rad/s e φ una fase iniziale costante. Il moto è armonico ideale, senza smorzamento, con parametri costanti in ciascuna prova. v(t) è la velocità orientata; v_max indica il massimo del modulo |v(t)| durante un ciclo, positivo. Non si tratta della velocità di propagazione di un’onda. I ha A=2 m,ω=3 rad/s. II impone A=1 m e v_max,II=(2/3)v_max,I. Quanto vale ω_II/ω_I?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4/3",
+          "3/4",
+          "2/3",
+          "2",
+          "4"
+        ],
+        "value": "4/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il target è quattro m/s. A un metro di ampiezza serve ω_II=4 rad/s. Il rapporto con tre rad/s è quattro terzi; equivale a dividere il target due terzi per il fattore di ampiezza un mezzo."
+        },
+        {
+          "type": "formula",
+          "text": "v_{\\max,\\mathrm {II}}=4\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\omega_{\\mathrm {II}}=4\\,\\mathrm{rad/s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{\\omega_{\\mathrm {II}}}{\\omega_{\\mathrm I}}=\\frac43"
+        },
+        {
+          "type": "text",
+          "text": "Tre quarti inverte il rapporto; due terzi copia il target, due considera solo l’ampiezza e quattro è il numero di ω_II, non il rapporto richiesto."
+        }
+      ],
+      "hints": [
+        "Compensa l’ampiezza dimezzata prima di leggere il rapporto delle pulsazioni.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre quarti inverte il rapporto; due terzi copia il target, due considera solo l’ampiezza e quattro è il numero di ω_II, non il rapporto richiesto.",
+        "target": "C5-L01"
+      },
+      "coverage": [
+        "Massimo modulo e velocità orientata",
+        "Fase, ampiezza e pulsazione",
+        "Inverse, medie e tarature di v_max"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-oscillator-max-speed-14",
+      "kind": "question",
+      "course": "C5",
+      "section": "Velocità locale di un oscillatore",
+      "order": 13314,
+      "title": "Tarare il massimo modulo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L01",
+      "prerequisites": [
+        "C1-L003",
+        "C5-L01"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "oscillator-max-speed",
+      "difficulty": 3,
+      "prompt": "Un punto materiale oscilla lungo un asse x in un riferimento inerziale, secondo x(t)=A cos(ωt+φ). L’origine è l’equilibrio, A>0 è l’ampiezza in m, ω>0 la pulsazione in rad/s e φ una fase iniziale costante. Il moto è armonico ideale, senza smorzamento, con parametri costanti in ciascuna prova. v(t) è la velocità orientata; v_max indica il massimo del modulo |v(t)| durante un ciclo, positivo. Non si tratta della velocità di propagazione di un’onda. Un display continuo adimensionale segue S=q v_max, q>0, senza offset. I con A=2 m,ω=3 rad/s legge S=18. II legge S=12 e ha ω=4 rad/s. Quanto vale A_II in m?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La prova I dà sei m/s e fissa q=3 s/m. La lettura dodici rappresenta quattro m/s. Dividendo per la pulsazione quattro rad/s ricaviamo un metro di ampiezza, non la distanza fra gli estremi."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{s/m}"
+        },
+        {
+          "type": "formula",
+          "text": " v_{\\max,\\mathrm {II}}=4\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " A_{\\mathrm {II}}=1\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Dodici è adimensionale, quattro è il numero di una velocità e non una lunghezza. Usare S direttamente come v_max triplicherebbe l’ampiezza a tre metri."
+        }
+      ],
+      "hints": [
+        "Decodifica il massimo modulo prima di dividerlo per ω.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dodici è adimensionale, quattro è il numero di una velocità e non una lunghezza. Usare S direttamente come v_max triplicherebbe l’ampiezza a tre metri.",
+        "target": "C5-L01"
+      },
+      "coverage": [
+        "Massimo modulo e velocità orientata",
+        "Fase, ampiezza e pulsazione",
+        "Inverse, medie e tarature di v_max"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-oscillator-max-speed-15",
+      "kind": "question",
+      "course": "C5",
+      "section": "Velocità locale di un oscillatore",
+      "order": 13315,
+      "title": "Offset prima dell’ampiezza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L01",
+      "prerequisites": [
+        "C1-L003",
+        "C5-L01"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "oscillator-max-speed",
+      "difficulty": 3,
+      "prompt": "Un punto materiale oscilla lungo un asse x in un riferimento inerziale, secondo x(t)=A cos(ωt+φ). L’origine è l’equilibrio, A>0 è l’ampiezza in m, ω>0 la pulsazione in rad/s e φ una fase iniziale costante. Il moto è armonico ideale, senza smorzamento, con parametri costanti in ciascuna prova. v(t) è la velocità orientata; v_max indica il massimo del modulo |v(t)| durante un ciclo, positivo. Non si tratta della velocità di propagazione di un’onda. Un display continuo adimensionale segue S=q v_max+b con q>0 e q,b costanti. I: A=2 m,ω=3 rad/s,S=13. II: A=1 m,ω=4 rad/s,S=9. III: ω=5 rad/s,S=41. Quanto vale A_III?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4 m",
+          "20 m",
+          "5 m",
+          "10 m",
+          "41 m"
+        ],
+        "value": "4 m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti sei e quattro m/s danno q=(13−9)/(6−4)=2 s/m e b=1. La lettura quarantuno rappresenta venti m/s. A pulsazione cinque rad/s l’ampiezza è venti diviso cinque, quattro metri."
+        },
+        {
+          "type": "formula",
+          "text": "q=2\\,\\mathrm{s/m}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " v_{\\max,\\mathrm {III}}=20\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " A_{\\mathrm {III}}=4\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Con ω=5 rad/s, ampiezze 20,5,10,41 m produrrebbero S=201,51,101,411, non quarantuno. Venti copia il massimo modulo e quarantuno il display. Solo quattro metri ricostruisce i dati dopo taratura."
+        }
+      ],
+      "hints": [
+        "Sottrai b e dividi per q prima dell’inversa fisica.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Con ω=5 rad/s, ampiezze 20,5,10,41 m produrrebbero S=201,51,101,411, non quarantuno. Venti copia il massimo modulo e quarantuno il display. Solo quattro metri ricostruisce i dati dopo taratura.",
+        "target": "C5-L01"
+      },
+      "coverage": [
+        "Massimo modulo e velocità orientata",
+        "Fase, ampiezza e pulsazione",
+        "Inverse, medie e tarature di v_max"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-oscillator-max-speed-16",
+      "kind": "question",
+      "course": "C5",
+      "section": "Velocità locale di un oscillatore",
+      "order": 13316,
+      "title": "Un vincolo rende quadratica la velocità massima",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L01",
+      "prerequisites": [
+        "C1-L003",
+        "C5-L01"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "oscillator-max-speed",
+      "difficulty": 3,
+      "prompt": "Un punto materiale oscilla lungo un asse x in un riferimento inerziale, secondo x(t)=A cos(ωt+φ). L’origine è l’equilibrio, A>0 è l’ampiezza in m, ω>0 la pulsazione in rad/s e φ una fase iniziale costante. Il moto è armonico ideale, senza smorzamento, con parametri costanti in ciascuna prova. v(t) è la velocità orientata; v_max indica il massimo del modulo |v(t)| durante un ciclo, positivo. Non si tratta della velocità di propagazione di un’onda. Fra prove vale A=cω con c=2/3 m·s, assumendo il radiante puro. Non è un cambiamento di A durante il ciclo. Si misura v_max=6 m/s. Quanto vale ω>0 in rad/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "rad/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituendo A=cω nel prodotto otteniamo v_max=cω². Dividere sei m/s per due terzi m·s dà ω²=9 s⁻². La radice positiva è tre rad/s, e il vincolo restituisce A=2 m."
+        },
+        {
+          "type": "formula",
+          "text": "v_{\\max}=c\\omega^2"
+        },
+        {
+          "type": "formula",
+          "text": " \\omega^2=9\\,\\mathrm{s^{-2}}"
+        },
+        {
+          "type": "formula",
+          "text": " \\omega=3\\,\\mathrm{rad/s}"
+        },
+        {
+          "type": "formula",
+          "text": " A=2\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Nove è il numero di ω², non la pulsazione. La radice negativa viola il dominio ω>0 e darebbe A<0. Il coefficiente c ha unità m·s: non è una costante pura, né una legge temporale dell’oscillatore."
+        }
+      ],
+      "hints": [
+        "Sostituisci il vincolo fra prove prima di scegliere la radice positiva.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Nove è il numero di ω², non la pulsazione. La radice negativa viola il dominio ω>0 e darebbe A<0. Il coefficiente c ha unità m·s: non è una costante pura, né una legge temporale dell’oscillatore.",
+        "target": "C5-L01"
+      },
+      "coverage": [
+        "Massimo modulo e velocità orientata",
+        "Fase, ampiezza e pulsazione",
+        "Inverse, medie e tarature di v_max"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "b8f2ba3ea97ce6f44548a537085d8694f6bab0c0fcc2f8a15f2232773689a9f2",
+      "name": "oscillator-max-speed-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTcwMCIgdmlld0JveD0iMCAwIDY0MCAxNzAwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+Cjx0aXRsZSBpZD0idGl0bGUiPk1hc3NpbW8gbW9kdWxvIGRlbGxhIHZlbG9jaXTDoCBhbCBjZW50cm88L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5UcmUgaXN0YW50aSBkaXN0aW50aTogZmVybWF0YSBhbGzigJllc3RyZW1vIGRlc3RybywgcGFzc2FnZ2lvIGFsIGNlbnRybyB2ZXJzbyBkZXN0cmEgZSB2ZXJzbyBzaW5pc3RyYSBjb24gdmVsb2NpdMOgIG9wcG9zdGUgZGkgbW9kdWxvIHNlaSBtZXRyaSBhbCBzZWNvbmRvLiBHcmFmaWNvIGRlbGxhIHZlbG9jaXTDoCBvcmllbnRhdGEgZSBjb25mcm9udG8gZGVpIG1hc3NpbWkgc2VpIGUgcXVhdHRyby48L2Rlc2M+CjxkZWZzPjxtYXJrZXIgaWQ9ImFyciIgdmlld0JveD0iMCAwIDEwIDEwIiByZWZYPSI5IiByZWZZPSI1IiBtYXJrZXJXaWR0aD0iNiIgbWFya2VySGVpZ2h0PSI2IiBvcmllbnQ9ImF1dG8iPjxwYXRoIGQ9Ik0wIDBMMTAgNUwwIDEwWiIgZmlsbD0iIzE0NWQ4MSIvPjwvbWFya2VyPjwvZGVmcz4KPHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxNzAwIiByeD0iMjAiIGZpbGw9IiNmN2ZiZmYiLz4KPGcgZm9udC1mYW1pbHk9InN5c3RlbS11aSxzYW5zLXNlcmlmIiBmaWxsPSIjMTQyZDQwIiBmb250LXNpemU9IjIwIj4KPHRleHQgeD0iMzUiIHk9IjQ4IiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iNzAwIj4xIMK3IFRyZSBpc3RhbnRpLCBsbyBzdGVzc28gb3NjaWxsYXRvcmU8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI5MCI+QSA9IDIgbSDCtyDPiSA9IDMgcmFkL3MgwrcgcG9zaXppb25lOiA2MCBweC9tPC90ZXh0Pgo8dGV4dCB4PSIxNzUiIHk9IjE1MCI+4oiSMiBtPC90ZXh0Pjx0ZXh0IHg9IjMxMCIgeT0iMTUwIj4wPC90ZXh0Pjx0ZXh0IHg9IjQyMCIgeT0iMTUwIj4rMiBtPC90ZXh0Pgo8cGF0aCBkPSJNMTcwIDIyMEg0NzBNMTcwIDMzMEg0NzBNMTcwIDQ0MEg0NzAiIHN0cm9rZT0iIzZlOGI5YyIgc3Ryb2tlLXdpZHRoPSIyIi8+CjxwYXRoIGQ9Ik0yMDAgMTc1VjQ3ME0zMjAgMTc1VjQ3ME00NDAgMTc1VjQ3MCIgc3Ryb2tlPSIjYjNjYmQ5IiBzdHJva2UtZGFzaGFycmF5PSI1IDUiLz4KPGNpcmNsZSBjeD0iNDQwIiBjeT0iMjIwIiByPSIxMiIgZmlsbD0iI2M2NTkxOSIvPjx0ZXh0IHg9IjQ5MCIgeT0iMjI3Ij52ID0gMDwvdGV4dD4KPGNpcmNsZSBjeD0iMzIwIiBjeT0iMzMwIiByPSIxMiIgZmlsbD0iI2M2NTkxOSIvPgo8cGF0aCBkPSJNMzIwIDMzMEg0NDAiIHN0cm9rZT0iIzE0NWQ4MSIgc3Ryb2tlLXdpZHRoPSI0IiBtYXJrZXItZW5kPSJ1cmwoI2FycikiLz48dGV4dCB4PSI0ODAiIHk9IjMzNyI+KzYgbS9zPC90ZXh0Pgo8Y2lyY2xlIGN4PSIzMjAiIGN5PSI0NDAiIHI9IjEyIiBmaWxsPSIjYzY1OTE5Ii8+CjxwYXRoIGQ9Ik0zMjAgNDQwSDIwMCIgc3Ryb2tlPSIjMTQ1ZDgxIiBzdHJva2Utd2lkdGg9IjQiIG1hcmtlci1lbmQ9InVybCgjYXJyKSIvPjx0ZXh0IHg9IjY1IiB5PSI0NDciPuKIkjYgbS9zPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iNTIwIj5GcmVjY2UgZGkgdjogMjAgcHgvKG0vcyksIHNjYWxhIGRpc3RpbnRhLjwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjU2MCI+SSBkdWUgcGFzc2FnZ2kgYWwgY2VudHJvIG5vbiBzb25vIHNpbXVsdGFuZWkuPC90ZXh0Pgo8cGF0aCBkPSJNMzUgNjAwSDYwNSIgc3Ryb2tlPSIjYjNjYmQ5Ii8+Cjx0ZXh0IHg9IjM1IiB5PSI2NDUiIGZvbnQtc2l6ZT0iMjUiIGZvbnQtd2VpZ2h0PSI3MDAiPjIgwrcgdiBjYW1iaWEgc2Vnbm8sIGlsIG1hc3NpbW8gbm88L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI2ODUiPnYgPSDiiJI2IHNpbs64IG0vcyDCtyDOuCA9IM+JdDwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjcyNSI+RmFzZTogMjAwL8+AIHB4L3JhZCDCtyB2OiAyMCBweC8obS9zKTwvdGV4dD4KPHBhdGggZD0iTTgwIDkwMEg1NTUiIHN0cm9rZT0iIzE0MmQ0MCIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2FycikiLz4KPHBhdGggZD0iTTEwMCAxMDUwVjc1MCIgc3Ryb2tlPSIjMTQyZDQwIiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjYXJyKSIvPgo8dGV4dCB4PSI1NjUiIHk9IjkwNyI+zrg8L3RleHQ+PHRleHQgeD0iNzMiIHk9Ijc0NSI+djwvdGV4dD4KPHBhdGggZD0iTTEwMC4wMDAgOTAwLjAwMCBMMTAxLjY2NyA5MDMuMTQxIEwxMDMuMzMzIDkwNi4yODAgTDEwNS4wMDAgOTA5LjQxNSBMMTA2LjY2NyA5MTIuNTQzIEwxMDguMzMzIDkxNS42NjMgTDExMC4wMDAgOTE4Ljc3MiBMMTExLjY2NyA5MjEuODY4IEwxMTMuMzMzIDkyNC45NDkgTDExNS4wMDAgOTI4LjAxMyBMMTE2LjY2NyA5MzEuMDU4IEwxMTguMzMzIDkzNC4wODIgTDEyMC4wMDAgOTM3LjA4MiBMMTIxLjY2NyA5NDAuMDU3IEwxMjMuMzMzIDk0My4wMDQgTDEyNS4wMDAgOTQ1LjkyMiBMMTI2LjY2NyA5NDguODA4IEwxMjguMzMzIDk1MS42NjEgTDEzMC4wMDAgOTU0LjQ3OSBMMTMxLjY2NyA5NTcuMjU5IEwxMzMuMzMzIDk2MC4wMDAgTDEzNS4wMDAgOTYyLjcwMCBMMTM2LjY2NyA5NjUuMzU3IEwxMzguMzMzIDk2Ny45NjkgTDE0MC4wMDAgOTcwLjUzNCBMMTQxLjY2NyA5NzMuMDUxIEwxNDMuMzMzIDk3NS41MTggTDE0NS4wMDAgOTc3LjkzNCBMMTQ2LjY2NyA5ODAuMjk2IEwxNDguMzMzIDk4Mi42MDMgTDE1MC4wMDAgOTg0Ljg1MyBMMTUxLjY2NyA5ODcuMDQ1IEwxNTMuMzMzIDk4OS4xNzcgTDE1NS4wMDAgOTkxLjI0OSBMMTU2LjY2NyA5OTMuMjU4IEwxNTguMzMzIDk5NS4yMDIgTDE2MC4wMDAgOTk3LjA4MiBMMTYxLjY2NyA5OTguODk1IEwxNjMuMzMzIDEwMDAuNjQwIEwxNjUuMDAwIDEwMDIuMzE3IEwxNjYuNjY3IDEwMDMuOTIzIEwxNjguMzMzIDEwMDUuNDU4IEwxNzAuMDAwIDEwMDYuOTIxIEwxNzEuNjY3IDEwMDguMzEwIEwxNzMuMzMzIDEwMDkuNjI1IEwxNzUuMDAwIDEwMTAuODY2IEwxNzYuNjY3IDEwMTIuMDMwIEwxNzguMzMzIDEwMTMuMTE3IEwxODAuMDAwIDEwMTQuMTI3IEwxODEuNjY3IDEwMTUuMDU4IEwxODMuMzMzIDEwMTUuOTExIEwxODUuMDAwIDEwMTYuNjg0IEwxODYuNjY3IDEwMTcuMzc4IEwxODguMzMzIDEwMTcuOTkxIEwxOTAuMDAwIDEwMTguNTIzIEwxOTEuNjY3IDEwMTguOTczIEwxOTMuMzMzIDEwMTkuMzQzIEwxOTUuMDAwIDEwMTkuNjMwIEwxOTYuNjY3IDEwMTkuODM2IEwxOTguMzMzIDEwMTkuOTU5IEwyMDAuMDAwIDEwMjAuMDAwIEwyMDEuNjY3IDEwMTkuOTU5IEwyMDMuMzMzIDEwMTkuODM2IEwyMDUuMDAwIDEwMTkuNjMwIEwyMDYuNjY3IDEwMTkuMzQzIEwyMDguMzMzIDEwMTguOTczIEwyMTAuMDAwIDEwMTguNTIzIEwyMTEuNjY3IDEwMTcuOTkxIEwyMTMuMzMzIDEwMTcuMzc4IEwyMTUuMDAwIDEwMTYuNjg0IEwyMTYuNjY3IDEwMTUuOTExIEwyMTguMzMzIDEwMTUuMDU4IEwyMjAuMDAwIDEwMTQuMTI3IEwyMjEuNjY3IDEwMTMuMTE3IEwyMjMuMzMzIDEwMTIuMDMwIEwyMjUuMDAwIDEwMTAuODY2IEwyMjYuNjY3IDEwMDkuNjI1IEwyMjguMzMzIDEwMDguMzEwIEwyMzAuMDAwIDEwMDYuOTIxIEwyMzEuNjY3IDEwMDUuNDU4IEwyMzMuMzMzIDEwMDMuOTIzIEwyMzUuMDAwIDEwMDIuMzE3IEwyMzYuNjY3IDEwMDAuNjQwIEwyMzguMzMzIDk5OC44OTUgTDI0MC4wMDAgOTk3LjA4MiBMMjQxLjY2NyA5OTUuMjAyIEwyNDMuMzMzIDk5My4yNTggTDI0NS4wMDAgOTkxLjI0OSBMMjQ2LjY2NyA5ODkuMTc3IEwyNDguMzMzIDk4Ny4wNDUgTDI1MC4wMDAgOTg0Ljg1MyBMMjUxLjY2NyA5ODIuNjAzIEwyNTMuMzMzIDk4MC4yOTYgTDI1NS4wMDAgOTc3LjkzNCBMMjU2LjY2NyA5NzUuNTE4IEwyNTguMzMzIDk3My4wNTEgTDI2MC4wMDAgOTcwLjUzNCBMMjYxLjY2NyA5NjcuOTY5IEwyNjMuMzMzIDk2NS4zNTcgTDI2NS4wMDAgOTYyLjcwMCBMMjY2LjY2NyA5NjAuMDAwIEwyNjguMzMzIDk1Ny4yNTkgTDI3MC4wMDAgOTU0LjQ3OSBMMjcxLjY2NyA5NTEuNjYxIEwyNzMuMzMzIDk0OC44MDggTDI3NS4wMDAgOTQ1LjkyMiBMMjc2LjY2NyA5NDMuMDA0IEwyNzguMzMzIDk0MC4wNTcgTDI4MC4wMDAgOTM3LjA4MiBMMjgxLjY2NyA5MzQuMDgyIEwyODMuMzMzIDkzMS4wNTggTDI4NS4wMDAgOTI4LjAxMyBMMjg2LjY2NyA5MjQuOTQ5IEwyODguMzMzIDkyMS44NjggTDI5MC4wMDAgOTE4Ljc3MiBMMjkxLjY2NyA5MTUuNjYzIEwyOTMuMzMzIDkxMi41NDMgTDI5NS4wMDAgOTA5LjQxNSBMMjk2LjY2NyA5MDYuMjgwIEwyOTguMzMzIDkwMy4xNDEgTDMwMC4wMDAgOTAwLjAwMCBMMzAxLjY2NyA4OTYuODU5IEwzMDMuMzMzIDg5My43MjAgTDMwNS4wMDAgODkwLjU4NSBMMzA2LjY2NyA4ODcuNDU3IEwzMDguMzMzIDg4NC4zMzcgTDMxMC4wMDAgODgxLjIyOCBMMzExLjY2NyA4NzguMTMyIEwzMTMuMzMzIDg3NS4wNTEgTDMxNS4wMDAgODcxLjk4NyBMMzE2LjY2NyA4NjguOTQyIEwzMTguMzMzIDg2NS45MTggTDMyMC4wMDAgODYyLjkxOCBMMzIxLjY2NyA4NTkuOTQzIEwzMjMuMzMzIDg1Ni45OTYgTDMyNS4wMDAgODU0LjA3OCBMMzI2LjY2NyA4NTEuMTkyIEwzMjguMzMzIDg0OC4zMzkgTDMzMC4wMDAgODQ1LjUyMSBMMzMxLjY2NyA4NDIuNzQxIEwzMzMuMzMzIDg0MC4wMDAgTDMzNS4wMDAgODM3LjMwMCBMMzM2LjY2NyA4MzQuNjQzIEwzMzguMzMzIDgzMi4wMzEgTDM0MC4wMDAgODI5LjQ2NiBMMzQxLjY2NyA4MjYuOTQ5IEwzNDMuMzMzIDgyNC40ODIgTDM0NS4wMDAgODIyLjA2NiBMMzQ2LjY2NyA4MTkuNzA0IEwzNDguMzMzIDgxNy4zOTcgTDM1MC4wMDAgODE1LjE0NyBMMzUxLjY2NyA4MTIuOTU1IEwzNTMuMzMzIDgxMC44MjMgTDM1NS4wMDAgODA4Ljc1MSBMMzU2LjY2NyA4MDYuNzQyIEwzNTguMzMzIDgwNC43OTggTDM2MC4wMDAgODAyLjkxOCBMMzYxLjY2NyA4MDEuMTA1IEwzNjMuMzMzIDc5OS4zNjAgTDM2NS4wMDAgNzk3LjY4MyBMMzY2LjY2NyA3OTYuMDc3IEwzNjguMzMzIDc5NC41NDIgTDM3MC4wMDAgNzkzLjA3OSBMMzcxLjY2NyA3OTEuNjkwIEwzNzMuMzMzIDc5MC4zNzUgTDM3NS4wMDAgNzg5LjEzNCBMMzc2LjY2NyA3ODcuOTcwIEwzNzguMzMzIDc4Ni44ODMgTDM4MC4wMDAgNzg1Ljg3MyBMMzgxLjY2NyA3ODQuOTQyIEwzODMuMzMzIDc4NC4wODkgTDM4NS4wMDAgNzgzLjMxNiBMMzg2LjY2NyA3ODIuNjIyIEwzODguMzMzIDc4Mi4wMDkgTDM5MC4wMDAgNzgxLjQ3NyBMMzkxLjY2NyA3ODEuMDI3IEwzOTMuMzMzIDc4MC42NTcgTDM5NS4wMDAgNzgwLjM3MCBMMzk2LjY2NyA3ODAuMTY0IEwzOTguMzMzIDc4MC4wNDEgTDQwMC4wMDAgNzgwLjAwMCBMNDAxLjY2NyA3ODAuMDQxIEw0MDMuMzMzIDc4MC4xNjQgTDQwNS4wMDAgNzgwLjM3MCBMNDA2LjY2NyA3ODAuNjU3IEw0MDguMzMzIDc4MS4wMjcgTDQxMC4wMDAgNzgxLjQ3NyBMNDExLjY2NyA3ODIuMDA5IEw0MTMuMzMzIDc4Mi42MjIgTDQxNS4wMDAgNzgzLjMxNiBMNDE2LjY2NyA3ODQuMDg5IEw0MTguMzMzIDc4NC45NDIgTDQyMC4wMDAgNzg1Ljg3MyBMNDIxLjY2NyA3ODYuODgzIEw0MjMuMzMzIDc4Ny45NzAgTDQyNS4wMDAgNzg5LjEzNCBMNDI2LjY2NyA3OTAuMzc1IEw0MjguMzMzIDc5MS42OTAgTDQzMC4wMDAgNzkzLjA3OSBMNDMxLjY2NyA3OTQuNTQyIEw0MzMuMzMzIDc5Ni4wNzcgTDQzNS4wMDAgNzk3LjY4MyBMNDM2LjY2NyA3OTkuMzYwIEw0MzguMzMzIDgwMS4xMDUgTDQ0MC4wMDAgODAyLjkxOCBMNDQxLjY2NyA4MDQuNzk4IEw0NDMuMzMzIDgwNi43NDIgTDQ0NS4wMDAgODA4Ljc1MSBMNDQ2LjY2NyA4MTAuODIzIEw0NDguMzMzIDgxMi45NTUgTDQ1MC4wMDAgODE1LjE0NyBMNDUxLjY2NyA4MTcuMzk3IEw0NTMuMzMzIDgxOS43MDQgTDQ1NS4wMDAgODIyLjA2NiBMNDU2LjY2NyA4MjQuNDgyIEw0NTguMzMzIDgyNi45NDkgTDQ2MC4wMDAgODI5LjQ2NiBMNDYxLjY2NyA4MzIuMDMxIEw0NjMuMzMzIDgzNC42NDMgTDQ2NS4wMDAgODM3LjMwMCBMNDY2LjY2NyA4NDAuMDAwIEw0NjguMzMzIDg0Mi43NDEgTDQ3MC4wMDAgODQ1LjUyMSBMNDcxLjY2NyA4NDguMzM5IEw0NzMuMzMzIDg1MS4xOTIgTDQ3NS4wMDAgODU0LjA3OCBMNDc2LjY2NyA4NTYuOTk2IEw0NzguMzMzIDg1OS45NDMgTDQ4MC4wMDAgODYyLjkxOCBMNDgxLjY2NyA4NjUuOTE4IEw0ODMuMzMzIDg2OC45NDIgTDQ4NS4wMDAgODcxLjk4NyBMNDg2LjY2NyA4NzUuMDUxIEw0ODguMzMzIDg3OC4xMzIgTDQ5MC4wMDAgODgxLjIyOCBMNDkxLjY2NyA4ODQuMzM3IEw0OTMuMzMzIDg4Ny40NTcgTDQ5NS4wMDAgODkwLjU4NSBMNDk2LjY2NyA4OTMuNzIwIEw0OTguMzMzIDg5Ni44NTkgTDUwMC4wMDAgOTAwLjAwMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYzY1OTE5IiBzdHJva2Utd2lkdGg9IjMiLz4KPHBhdGggZD0iTTEwMCA3ODBINDAwTTEwMCAxMDIwSDIwMCIgc3Ryb2tlPSIjNmU4YjljIiBzdHJva2UtZGFzaGFycmF5PSI2IDUiLz4KPHRleHQgeD0iNDAiIHk9Ijc4NyI+KzY8L3RleHQ+PHRleHQgeD0iNDAiIHk9IjEwMjciPuKIkjY8L3RleHQ+Cjx0ZXh0IHg9IjkwIiB5PSIxMDkwIj4wPC90ZXh0Pjx0ZXh0IHg9IjI5MCIgeT0iMTA5MCI+z4A8L3RleHQ+PHRleHQgeD0iNDg1IiB5PSIxMDkwIj4yz4A8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxMTQwIj52X21heCA9IG1heCB8dnwgPSA2IG0vcyAmZ3Q7IDA8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxMTgwIj5DZSBu4oCZw6ggdW5vIGluIGNpYXNjdW4gdmVyc28sIG5vbiBkdWUgZGEgc29tbWFyZS48L3RleHQ+CjxwYXRoIGQ9Ik0zNSAxMjEwSDYwNSIgc3Ryb2tlPSIjYjNjYmQ5Ii8+Cjx0ZXh0IHg9IjM1IiB5PSIxMjU1IiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iNzAwIj4zIMK3IER1ZSBwcm92ZSwgbWFzc2ltaSBkaXZlcnNpPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTI5NSI+QmFycmUgcG9zaXRpdmUgZGEgemVybzogNDAgcHgvKG0vcyk8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxMzQwIj5JIMK3IEEgPSAyIG0gwrcgz4kgPSAzIHJhZC9zPC90ZXh0Pgo8cmVjdCB4PSIxMDAiIHk9IjEzNzAiIHdpZHRoPSIyNDAiIGhlaWdodD0iMzUiIGZpbGw9IiMxNDVkODEiLz48dGV4dCB4PSIzNjAiIHk9IjEzOTciPjYgbS9zPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTQ3MCI+SUkgwrcgQSA9IDEgbSDCtyDPiSA9IDQgcmFkL3M8L3RleHQ+CjxyZWN0IHg9IjEwMCIgeT0iMTUwMCIgd2lkdGg9IjE2MCIgaGVpZ2h0PSIzNSIgZmlsbD0iI2M2NTkxOSIvPjx0ZXh0IHg9IjI4MCIgeT0iMTUyNyI+NCBtL3M8L3RleHQ+CjxwYXRoIGQ9Ik0xMDAgMTM1NVYxNDIwTTEwMCAxNDg1VjE1NTAiIHN0cm9rZT0iIzZlOGI5YyIgc3Ryb2tlLWRhc2hhcnJheT0iNiA1Ii8+Cjx0ZXh0IHg9IjM1IiB5PSIxNjEwIj5SYXBwb3J0byBJSS9JID0gMi8zLCBzZW56YSB1bml0w6AuPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTY1NSI+w4ggbW90byBkZWwgcHVudG8sIG5vbiBwcm9wYWdhemlvbmUgZGkgdW7igJlvbmRhLjwvdGV4dD4KPC9nPjwvc3ZnPgo="
+    }
+  ]
+}

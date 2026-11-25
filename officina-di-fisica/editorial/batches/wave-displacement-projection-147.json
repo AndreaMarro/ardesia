@@ -1,0 +1,1139 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u4-wave-displacement-projection-01",
+      "kind": "question",
+      "course": "C5",
+      "section": "Una coordinata locale dalla fase assegnata",
+      "order": 14701,
+      "title": "Uno spostamento minore dell’ampiezza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-displacement-projection",
+      "difficulty": 1,
+      "prompt": "In un punto e istante fissati di un’onda armonica lineare lo spostamento orientato locale è s=A cosφ=A c_φ. L’ampiezza costante A>0 è la massima distanza dall’equilibrio, mentre c_φ è il valore esatto assegnato del coseno della fase, con 0<c_φ≤1. La selezione di fase rende qui s positivo e non maggiore di A; non si pretende che lo spostamento sia positivo durante tutto il moto. Non sono richieste approssimazioni trigonometriche né la ricostruzione univoca di φ da un coseno. Con A=4 mm e c_φ=1/2, quanto vale s in mm?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "mm",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il coseno assegnato dimezza l’ampiezza: quattro millimetri per un mezzo danno due millimetri. Il punto non è al massimo allontanamento, perché c_φ non è uno. La proiezione geometrica in figura rappresenta la fase; non è una traiettoria circolare del punto materiale."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/e3f351b73f0543aca244b346c272edf7a3dd12f136338f9dd2e01c63f998f8c9",
+          "text": "Costruzione della proiezione di fase, non traiettoria fisica. Il raggio A=4 mm è 160 px a 40 px/mm; il suo segmento orizzontale s=2 mm è 80 px perché cosφ=1/2. La posizione del punto nel disegno usa coordinate arrotondate al millesimo di pixel soltanto per il tracciato; i dati e i risultati restano esatti."
+        },
+        {
+          "type": "formula",
+          "text": "s=A c_\\varphi"
+        },
+        {
+          "type": "formula",
+          "text": " s=4\\,\\mathrm{mm}\\cdot\\frac12"
+        },
+        {
+          "type": "formula",
+          "text": " s=2\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " 0<s\\le A"
+        },
+        {
+          "type": "text",
+          "text": "Quattro confonde ampiezza e spostamento in ogni fase; otto divide per il coseno anziché moltiplicare. Un mezzo è puro, non una lunghezza. Il dato assegnato evita di stimare una funzione trigonometrica con la calcolatrice."
+        }
+      ],
+      "hints": [
+        "Applica direttamente il coseno esatto fornito.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro confonde ampiezza e spostamento in ogni fase; otto divide per il coseno anziché moltiplicare. Un mezzo è puro, non una lunghezza. Il dato assegnato evita di stimare una funzione trigonometrica con la calcolatrice.",
+        "target": "C5-L02"
+      },
+      "coverage": [
+        "Ampiezza e spostamento locale",
+        "Coseno esatto e dominio 0<c_φ≤1",
+        "Inverse, tarature e radice fisica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-wave-displacement-projection-02",
+      "kind": "question",
+      "course": "C5",
+      "section": "Una coordinata locale dalla fase assegnata",
+      "order": 14702,
+      "title": "L’unità di una coordinata locale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-displacement-projection",
+      "difficulty": 1,
+      "prompt": "s è lo spostamento locale rispetto all’equilibrio, non la distanza lungo cui si propaga la forma. Quale unità proposta è adatta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "mm",
+          "Hz",
+          "mm/s",
+          "rad",
+          "mm²"
+        ],
+        "value": "mm"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Uno spostamento ha dimensione di lunghezza, e il coseno è puro. Moltiplicare A per c_φ mantiene millimetri. Il carattere orientato della coordinata ne cambia eventualmente il segno, non l’unità."
+        },
+        {
+          "type": "formula",
+          "text": "[s]=[A][c_\\varphi]"
+        },
+        {
+          "type": "formula",
+          "text": " [s]=L\\cdot1"
+        },
+        {
+          "type": "formula",
+          "text": "L\\cdot1=L"
+        },
+        {
+          "type": "text",
+          "text": "Hz esprime frequenza, mm/s velocità, rad una fase e mm² area. Non si usa la fase come unità della coordinata soltanto perché il coseno la collega allo spostamento."
+        }
+      ],
+      "hints": [
+        "Il coseno non porta unità di lunghezza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "Hz esprime frequenza, mm/s velocità, rad una fase e mm² area. Non si usa la fase come unità della coordinata soltanto perché il coseno la collega allo spostamento.",
+        "target": "C5-L02"
+      },
+      "coverage": [
+        "Ampiezza e spostamento locale",
+        "Coseno esatto e dominio 0<c_φ≤1",
+        "Inverse, tarature e radice fisica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-wave-displacement-projection-03",
+      "kind": "question",
+      "course": "C5",
+      "section": "Una coordinata locale dalla fase assegnata",
+      "order": 14703,
+      "title": "La legge con il coseno già assegnato",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-displacement-projection",
+      "difficulty": 1,
+      "prompt": "In un punto e istante fissati di un’onda armonica lineare lo spostamento orientato locale è s=A cosφ=A c_φ. L’ampiezza costante A>0 è la massima distanza dall’equilibrio, mentre c_φ è il valore esatto assegnato del coseno della fase, con 0<c_φ≤1. La selezione di fase rende qui s positivo e non maggiore di A; non si pretende che lo spostamento sia positivo durante tutto il moto. Non sono richieste approssimazioni trigonometriche né la ricostruzione univoca di φ da un coseno. Quale relazione dà s?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "s = A c_φ",
+          "s = A / c_φ",
+          "s = c_φ / A",
+          "s = A + c_φ",
+          "s = A c_φ²"
+        ],
+        "value": "s = A c_φ"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nella legge armonica la fase entra come argomento del coseno e l’ampiezza ne moltiplica il valore. Il simbolo c_φ contiene già il risultato del coseno: non bisogna applicare un secondo coseno né elevare il valore al quadrato."
+        },
+        {
+          "type": "formula",
+          "text": "s=A\\cos\\varphi"
+        },
+        {
+          "type": "formula",
+          "text": " c_\\varphi=\\cos\\varphi"
+        },
+        {
+          "type": "formula",
+          "text": " s=A c_\\varphi"
+        },
+        {
+          "type": "text",
+          "text": "A/c_φ supera A quando c_φ<1, contro il limite armonico. c_φ/A ha unità di lunghezza inversa; A+c_φ somma dimensioni diverse. Il quadrato altera la legge e perderebbe anche informazioni di segno fuori dal ramo positivo."
+        }
+      ],
+      "hints": [
+        "Sostituisci il valore del coseno senza cambiare la legge.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "A/c_φ supera A quando c_φ<1, contro il limite armonico. c_φ/A ha unità di lunghezza inversa; A+c_φ somma dimensioni diverse. Il quadrato altera la legge e perderebbe anche informazioni di segno fuori dal ramo positivo.",
+        "target": "C5-L02"
+      },
+      "coverage": [
+        "Ampiezza e spostamento locale",
+        "Coseno esatto e dominio 0<c_φ≤1",
+        "Inverse, tarature e radice fisica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-wave-displacement-projection-04",
+      "kind": "question",
+      "course": "C5",
+      "section": "Una coordinata locale dalla fase assegnata",
+      "order": 14704,
+      "title": "Cambiare ampiezza alla stessa fase",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-displacement-projection",
+      "difficulty": 1,
+      "prompt": "In un punto e istante fissati di un’onda armonica lineare lo spostamento orientato locale è s=A cosφ=A c_φ. L’ampiezza costante A>0 è la massima distanza dall’equilibrio, mentre c_φ è il valore esatto assegnato del coseno della fase, con 0<c_φ≤1. La selezione di fase rende qui s positivo e non maggiore di A; non si pretende che lo spostamento sia positivo durante tutto il moto. Non sono richieste approssimazioni trigonometriche né la ricostruzione univoca di φ da un coseno. A passa da 4 a 6 mm, mentre c_φ resta 1/2. Come cambia s?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 2 a 3 mm",
+          "Da 2 a 6 mm",
+          "Da 2 a 4/3 mm",
+          "Resta 2 mm",
+          "Da 2 a 9/2 mm"
+        ],
+        "value": "Da 2 a 3 mm"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Alla stessa fase il fattore di proiezione resta un mezzo. Il nuovo spostamento è metà di sei, tre millimetri. Ampiezza e spostamento crescono entrambi del fattore tre mezzi; non stiamo descrivendo l’evoluzione temporale della stessa prova, ma confrontando due ampiezze."
+        },
+        {
+          "type": "formula",
+          "text": "s_A=2\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " s_B=3\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " s_B/s_A=\\frac32"
+        },
+        {
+          "type": "text",
+          "text": "Sei copia l’ampiezza, quattro terzi inverte il fattore, due ignora la modifica e nove mezzi quadra il fattore di ampiezza. La fase fissata impedisce un secondo cambiamento indipendente del coseno."
+        }
+      ],
+      "hints": [
+        "Mantieni il medesimo moltiplicatore c_φ.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Sei copia l’ampiezza, quattro terzi inverte il fattore, due ignora la modifica e nove mezzi quadra il fattore di ampiezza. La fase fissata impedisce un secondo cambiamento indipendente del coseno.",
+        "target": "C5-L02"
+      },
+      "coverage": [
+        "Ampiezza e spostamento locale",
+        "Coseno esatto e dominio 0<c_φ≤1",
+        "Inverse, tarature e radice fisica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-wave-displacement-projection-05",
+      "kind": "question",
+      "course": "C5",
+      "section": "Una coordinata locale dalla fase assegnata",
+      "order": 14705,
+      "title": "Ricostruire l’ampiezza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-displacement-projection",
+      "difficulty": 2,
+      "prompt": "In un punto e istante fissati di un’onda armonica lineare lo spostamento orientato locale è s=A cosφ=A c_φ. L’ampiezza costante A>0 è la massima distanza dall’equilibrio, mentre c_φ è il valore esatto assegnato del coseno della fase, con 0<c_φ≤1. La selezione di fase rende qui s positivo e non maggiore di A; non si pretende che lo spostamento sia positivo durante tutto il moto. Non sono richieste approssimazioni trigonometriche né la ricostruzione univoca di φ da un coseno. Si misura s=2 mm e si conosce c_φ=1/2. Quanto vale A in mm?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "mm",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Per rimuovere il fattore un mezzo dividiamo lo spostamento per esso: A=s/c_φ=4 mm. Dividere per un numero minore di uno aumenta il valore e ricostruisce un’ampiezza non inferiore al modulo dello spostamento."
+        },
+        {
+          "type": "formula",
+          "text": "A=\\frac{s}{c_\\varphi}"
+        },
+        {
+          "type": "formula",
+          "text": " A=\\frac2{1/2}\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " A=4\\,\\mathrm{mm}"
+        },
+        {
+          "type": "text",
+          "text": "Uno moltiplica nuovamente per un mezzo. Due confonde s con A come se il coseno fosse uno. La positività del coseno evita una divisione per zero e seleziona il ramo dello spostamento qui dichiarato."
+        }
+      ],
+      "hints": [
+        "Controlla che la nuova A sia almeno s.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Uno moltiplica nuovamente per un mezzo. Due confonde s con A come se il coseno fosse uno. La positività del coseno evita una divisione per zero e seleziona il ramo dello spostamento qui dichiarato.",
+        "target": "C5-L02"
+      },
+      "coverage": [
+        "Ampiezza e spostamento locale",
+        "Coseno esatto e dominio 0<c_φ≤1",
+        "Inverse, tarature e radice fisica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-wave-displacement-projection-06",
+      "kind": "question",
+      "course": "C5",
+      "section": "Una coordinata locale dalla fase assegnata",
+      "order": 14706,
+      "title": "Verificare un coseno fisicamente ammesso",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-displacement-projection",
+      "difficulty": 2,
+      "prompt": "In un punto e istante fissati di un’onda armonica lineare lo spostamento orientato locale è s=A cosφ=A c_φ. L’ampiezza costante A>0 è la massima distanza dall’equilibrio, mentre c_φ è il valore esatto assegnato del coseno della fase, con 0<c_φ≤1. La selezione di fase rende qui s positivo e non maggiore di A; non si pretende che lo spostamento sia positivo durante tutto il moto. Non sono richieste approssimazioni trigonometriche né la ricostruzione univoca di φ da un coseno. Si misura s=2 mm e si conosce A=4 mm. Quanto vale c_φ?",
+      "answer": {
+        "type": "numeric",
+        "value": 0.5,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il rapporto c_φ=s/A elimina le unità: due diviso quattro dà un mezzo. È compreso fra zero escluso e uno incluso, quindi è ammissibile. Questo valore del coseno non fissa da solo una sola fase assoluta: fasi opposte e giri completi possono dare lo stesso coseno."
+        },
+        {
+          "type": "formula",
+          "text": "c_\\varphi=\\frac sA"
+        },
+        {
+          "type": "formula",
+          "text": " c_\\varphi=\\frac12"
+        },
+        {
+          "type": "formula",
+          "text": " 0<c_\\varphi\\le1"
+        },
+        {
+          "type": "text",
+          "text": "Due è il reciproco e non è il coseno di una fase reale; otto conserva unità di area invece di un rapporto puro. Non occorre riportare un angolo in gradi quando si chiede soltanto il coseno."
+        }
+      ],
+      "hints": [
+        "Cancella le unità e controlla l’intervallo del risultato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due è il reciproco e non è il coseno di una fase reale; otto conserva unità di area invece di un rapporto puro. Non occorre riportare un angolo in gradi quando si chiede soltanto il coseno.",
+        "target": "C5-L02"
+      },
+      "coverage": [
+        "Ampiezza e spostamento locale",
+        "Coseno esatto e dominio 0<c_φ≤1",
+        "Inverse, tarature e radice fisica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-wave-displacement-projection-07",
+      "kind": "question",
+      "course": "C5",
+      "section": "Una coordinata locale dalla fase assegnata",
+      "order": 14707,
+      "title": "Raggiungere il massimo positivo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-displacement-projection",
+      "difficulty": 2,
+      "prompt": "In un punto e istante fissati di un’onda armonica lineare lo spostamento orientato locale è s=A cosφ=A c_φ. L’ampiezza costante A>0 è la massima distanza dall’equilibrio, mentre c_φ è il valore esatto assegnato del coseno della fase, con 0<c_φ≤1. La selezione di fase rende qui s positivo e non maggiore di A; non si pretende che lo spostamento sia positivo durante tutto il moto. Non sono richieste approssimazioni trigonometriche né la ricostruzione univoca di φ da un coseno. A: A=4 mm,c_φ=1/2. B mantiene A e ha c_φ=1. Quanto vale s_B/s_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/2",
+          "1",
+          "4",
+          "1/4"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il coseno passa da un mezzo al massimo ammesso uno. Gli spostamenti sono due e quattro millimetri, rapporto due. In B lo spostamento coincide con l’ampiezza; un coseno maggiore di uno non sarebbe una possibile ulteriore fase."
+        },
+        {
+          "type": "formula",
+          "text": "s_A=2\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " s_B=4\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " s_B/s_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo inverte gli stati, uno ignora la nuova fase, quattro è il numero di mm finale e un quarto quadra il reciproco. Non si sta raddoppiando l’ampiezza del moto."
+        }
+      ],
+      "hints": [
+        "Il nuovo coseno è al bordo superiore del dominio.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo inverte gli stati, uno ignora la nuova fase, quattro è il numero di mm finale e un quarto quadra il reciproco. Non si sta raddoppiando l’ampiezza del moto.",
+        "target": "C5-L02"
+      },
+      "coverage": [
+        "Ampiezza e spostamento locale",
+        "Coseno esatto e dominio 0<c_φ≤1",
+        "Inverse, tarature e radice fisica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-wave-displacement-projection-08",
+      "kind": "question",
+      "course": "C5",
+      "section": "Una coordinata locale dalla fase assegnata",
+      "order": 14708,
+      "title": "Uno scarto nella coordinata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-displacement-projection",
+      "difficulty": 2,
+      "prompt": "In un punto e istante fissati di un’onda armonica lineare lo spostamento orientato locale è s=A cosφ=A c_φ. L’ampiezza costante A>0 è la massima distanza dall’equilibrio, mentre c_φ è il valore esatto assegnato del coseno della fase, con 0<c_φ≤1. La selezione di fase rende qui s positivo e non maggiore di A; non si pretende che lo spostamento sia positivo durante tutto il moto. Non sono richieste approssimazioni trigonometriche né la ricostruzione univoca di φ da un coseno. Con A=4 mm,c_φ=1/2 si propone s=4 mm. Quanto vale proposta meno corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2 mm",
+          "−2 mm",
+          "4 mm",
+          "0 mm",
+          "6 mm"
+        ],
+        "value": "2 mm"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il corretto spostamento è due millimetri. Quattro meno due dà uno scarto positivo di due millimetri. La proposta è un’ampiezza possibile, ma non lo spostamento nella fase assegnata: il controllo s≤A da solo non basta."
+        },
+        {
+          "type": "formula",
+          "text": "s=2\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " e=(4-2)\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " e=2\\,\\mathrm{mm}"
+        },
+        {
+          "type": "text",
+          "text": "Meno due scambia l’ordine, quattro conserva la proposta, sei somma e zero la accetta. Non bisogna cambiare il coseno per far combaciare la proposta con i dati fissati."
+        }
+      ],
+      "hints": [
+        "Usa la fase assegnata prima di calcolare lo scarto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Meno due scambia l’ordine, quattro conserva la proposta, sei somma e zero la accetta. Non bisogna cambiare il coseno per far combaciare la proposta con i dati fissati.",
+        "target": "C5-L02"
+      },
+      "coverage": [
+        "Ampiezza e spostamento locale",
+        "Coseno esatto e dominio 0<c_φ≤1",
+        "Inverse, tarature e radice fisica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-wave-displacement-projection-09",
+      "kind": "question",
+      "course": "C5",
+      "section": "Una coordinata locale dalla fase assegnata",
+      "order": 14709,
+      "title": "L’inversa e il suo dominio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-displacement-projection",
+      "difficulty": 2,
+      "prompt": "In un punto e istante fissati di un’onda armonica lineare lo spostamento orientato locale è s=A cosφ=A c_φ. L’ampiezza costante A>0 è la massima distanza dall’equilibrio, mentre c_φ è il valore esatto assegnato del coseno della fase, con 0<c_φ≤1. La selezione di fase rende qui s positivo e non maggiore di A; non si pretende che lo spostamento sia positivo durante tutto il moto. Non sono richieste approssimazioni trigonometriche né la ricostruzione univoca di φ da un coseno. Quale relazione isola A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "A = s / c_φ",
+          "A = s c_φ",
+          "A = c_φ / s",
+          "A = s / c_φ²",
+          "A = s + c_φ"
+        ],
+        "value": "A = s / c_φ"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dividiamo entrambi i membri per c_φ>0. Si ottiene A=s/c_φ; il divisore puro lascia le unità di s. Con c_φ≤1 segue anche A≥s, un controllo fisico dell’inversa. Se c_φ fosse zero, lo spostamento nullo non permetterebbe questa divisione e non determinerebbe A."
+        },
+        {
+          "type": "formula",
+          "text": "A=\\frac{s}{c_\\varphi}"
+        },
+        {
+          "type": "formula",
+          "text": " [A]=L"
+        },
+        {
+          "type": "formula",
+          "text": " A\\ge s>0"
+        },
+        {
+          "type": "text",
+          "text": "s c_φ applica la proiezione una seconda volta. c_φ/s è una lunghezza inversa; il coseno al quadrato inventa una legge diversa e la somma mescola lunghezza e numero puro."
+        }
+      ],
+      "hints": [
+        "La divisione è lecita perché il ramo esclude c_φ=0.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "s c_φ applica la proiezione una seconda volta. c_φ/s è una lunghezza inversa; il coseno al quadrato inventa una legge diversa e la somma mescola lunghezza e numero puro.",
+        "target": "C5-L02"
+      },
+      "coverage": [
+        "Ampiezza e spostamento locale",
+        "Coseno esatto e dominio 0<c_φ≤1",
+        "Inverse, tarature e radice fisica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-wave-displacement-projection-10",
+      "kind": "question",
+      "course": "C5",
+      "section": "Una coordinata locale dalla fase assegnata",
+      "order": 14710,
+      "title": "Due fattori entro il limite del coseno",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-displacement-projection",
+      "difficulty": 2,
+      "prompt": "In un punto e istante fissati di un’onda armonica lineare lo spostamento orientato locale è s=A cosφ=A c_φ. L’ampiezza costante A>0 è la massima distanza dall’equilibrio, mentre c_φ è il valore esatto assegnato del coseno della fase, con 0<c_φ≤1. La selezione di fase rende qui s positivo e non maggiore di A; non si pretende che lo spostamento sia positivo durante tutto il moto. Non sono richieste approssimazioni trigonometriche né la ricostruzione univoca di φ da un coseno. B ha A_B=κ₁A_A e c_φ,B=κ₂c_φ,A, con κ₁,κ₂>0 e κ₂c_φ,A≤1. Quanto vale s_B/s_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ κ₂",
+          "κ₁ / κ₂",
+          "κ₂ / κ₁",
+          "κ₁ κ₂²",
+          "κ₁ + κ₂"
+        ],
+        "value": "κ₁ κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La nuova ampiezza e il nuovo coseno entrano entrambi nel prodotto. Il rapporto degli spostamenti è κ₁κ₂. I fattori non sono però arbitrari: il nuovo coseno deve restare al massimo uno, altrimenti l’algebra descriverebbe un punto fuori dal modello armonico reale."
+        },
+        {
+          "type": "formula",
+          "text": "s_B=\\kappa_1\\kappa_2 A_Ac_{\\varphi,A}"
+        },
+        {
+          "type": "formula",
+          "text": " s_B/s_A=\\kappa_1\\kappa_2"
+        },
+        {
+          "type": "formula",
+          "text": " 0<\\kappa_2c_{\\varphi,A}\\le1"
+        },
+        {
+          "type": "text",
+          "text": "I quozienti invertono dipendenze dirette; il quadrato di κ₂ non è nella legge. La somma darebbe due per prove identiche. La sola positività dei fattori non garantisce il limite del coseno."
+        }
+      ],
+      "hints": [
+        "Scala il prodotto e poi ricontrolla il dominio di c_φ,B.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "I quozienti invertono dipendenze dirette; il quadrato di κ₂ non è nella legge. La somma darebbe due per prove identiche. La sola positività dei fattori non garantisce il limite del coseno.",
+        "target": "C5-L02"
+      },
+      "coverage": [
+        "Ampiezza e spostamento locale",
+        "Coseno esatto e dominio 0<c_φ≤1",
+        "Inverse, tarature e radice fisica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-wave-displacement-projection-11",
+      "kind": "question",
+      "course": "C5",
+      "section": "Una coordinata locale dalla fase assegnata",
+      "order": 14711,
+      "title": "Ampiezza minore, proiezione maggiore",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-displacement-projection",
+      "difficulty": 2,
+      "prompt": "In un punto e istante fissati di un’onda armonica lineare lo spostamento orientato locale è s=A cosφ=A c_φ. L’ampiezza costante A>0 è la massima distanza dall’equilibrio, mentre c_φ è il valore esatto assegnato del coseno della fase, con 0<c_φ≤1. La selezione di fase rende qui s positivo e non maggiore di A; non si pretende che lo spostamento sia positivo durante tutto il moto. Non sono richieste approssimazioni trigonometriche né la ricostruzione univoca di φ da un coseno. A: A=4 mm,c_φ=1/2. B: A=3 mm,c_φ=1. Quanto vale s_B/s_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/2",
+          "2/3",
+          "3/4",
+          "2",
+          "3"
+        ],
+        "value": "3/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A produce due millimetri, B tre. Il rapporto è tre mezzi: l’ampiezza più piccola non obbliga uno spostamento locale più piccolo, perché B è al suo massimo positivo mentre A non lo è."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/e3f351b73f0543aca244b346c272edf7a3dd12f136338f9dd2e01c63f998f8c9",
+          "text": "Le barre finali confrontano spostamenti positivi s_A=2 mm e s_B=3 mm, entrambe da zero alla scala 60 px/mm. Il grafico centrale normalizza s/A=c_φ: il limite c_φ=0 è escluso dal ramo di questi quesiti, c_φ=1 è incluso. Non rappresenta un’ampiezza che cambia nel tempo."
+        },
+        {
+          "type": "formula",
+          "text": "s_A=2\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " s_B=3\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " s_B/s_A=\\frac32"
+        },
+        {
+          "type": "text",
+          "text": "Due terzi capovolge gli stati, tre quarti segue solo A e due soltanto il coseno. Tre è il numero di millimetri finale, non il rapporto puro."
+        }
+      ],
+      "hints": [
+        "Tieni distinti il parametro del moto e il valore nella fase scelta.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due terzi capovolge gli stati, tre quarti segue solo A e due soltanto il coseno. Tre è il numero di millimetri finale, non il rapporto puro.",
+        "target": "C5-L02"
+      },
+      "coverage": [
+        "Ampiezza e spostamento locale",
+        "Coseno esatto e dominio 0<c_φ≤1",
+        "Inverse, tarature e radice fisica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-wave-displacement-projection-12",
+      "kind": "question",
+      "course": "C5",
+      "section": "Una coordinata locale dalla fase assegnata",
+      "order": 14712,
+      "title": "Una media di coordinate locali",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-displacement-projection",
+      "difficulty": 2,
+      "prompt": "In un punto e istante fissati di un’onda armonica lineare lo spostamento orientato locale è s=A cosφ=A c_φ. L’ampiezza costante A>0 è la massima distanza dall’equilibrio, mentre c_φ è il valore esatto assegnato del coseno della fase, con 0<c_φ≤1. La selezione di fase rende qui s positivo e non maggiore di A; non si pretende che lo spostamento sia positivo durante tutto il moto. Non sono richieste approssimazioni trigonometriche né la ricostruzione univoca di φ da un coseno. A usa A=4 mm,c_φ=1/2; B usa A=3 mm,c_φ=1. Qual è la media aritmetica delle due s con uguale peso statistico?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "5/2 mm",
+          "5 mm",
+          "1/2 mm",
+          "21/8 mm",
+          "3 mm"
+        ],
+        "value": "5/2 mm"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I due spostamenti sono due e tre millimetri; la semisomma vale cinque mezzi millimetri. Usare invece A medio 7/2 mm e coseno medio 3/4 darebbe 21/8 mm, maggiore di un ottavo. Entrambe le procedure hanno unità di lunghezza, ma sono operazioni diverse."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline s=\\frac{2+3}{2}\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline s=\\frac52\\,\\mathrm{mm}"
+        },
+        {
+          "type": "text",
+          "text": "Cinque è la somma, un mezzo la semidifferenza e tre la sola B. Ventuno ottavi usa gli ingressi medi del prodotto: non è la media delle due letture richiesta. Il coseno medio non viene qui interpretato come una fase media univoca."
+        }
+      ],
+      "hints": [
+        "Calcola i due prodotti prima della media.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Cinque è la somma, un mezzo la semidifferenza e tre la sola B. Ventuno ottavi usa gli ingressi medi del prodotto: non è la media delle due letture richiesta. Il coseno medio non viene qui interpretato come una fase media univoca.",
+        "target": "C5-L02"
+      },
+      "coverage": [
+        "Ampiezza e spostamento locale",
+        "Coseno esatto e dominio 0<c_φ≤1",
+        "Inverse, tarature e radice fisica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-wave-displacement-projection-13",
+      "kind": "question",
+      "course": "C5",
+      "section": "Una coordinata locale dalla fase assegnata",
+      "order": 14713,
+      "title": "Un target al massimo coseno",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-displacement-projection",
+      "difficulty": 3,
+      "prompt": "In un punto e istante fissati di un’onda armonica lineare lo spostamento orientato locale è s=A cosφ=A c_φ. L’ampiezza costante A>0 è la massima distanza dall’equilibrio, mentre c_φ è il valore esatto assegnato del coseno della fase, con 0<c_φ≤1. La selezione di fase rende qui s positivo e non maggiore di A; non si pretende che lo spostamento sia positivo durante tutto il moto. Non sono richieste approssimazioni trigonometriche né la ricostruzione univoca di φ da un coseno. A ha A=4 mm,c_φ=1/2. B impone A=3 mm e s_B=(3/2)s_A. Quanto vale c_φ,B/c_φ,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/2",
+          "3/2",
+          "3/4",
+          "4"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il target è tre millimetri. Con ampiezza tre millimetri, deve essere c_φ,B=1. Il rapporto con il mezzo iniziale è due: la nuova fase raggiunge il bordo del dominio. Un target ancora maggiore di tre millimetri, con questa ampiezza, non sarebbe ottenibile cambiando soltanto la fase."
+        },
+        {
+          "type": "formula",
+          "text": "s_B=3\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " c_{\\varphi,B}=\\frac{s_B}{A_B}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{s_B}{A_B}=1"
+        },
+        {
+          "type": "formula",
+          "text": " c_{\\varphi,B}/c_{\\varphi,A}=2"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo inverte il rapporto, tre mezzi copia il target e tre quarti segue l’ampiezza. Quattro porterebbe c_φ,B a due e violerebbe il limite di un coseno."
+        }
+      ],
+      "hints": [
+        "Ricava c_φ,B e verificane il limite prima del rapporto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo inverte il rapporto, tre mezzi copia il target e tre quarti segue l’ampiezza. Quattro porterebbe c_φ,B a due e violerebbe il limite di un coseno.",
+        "target": "C5-L02"
+      },
+      "coverage": [
+        "Ampiezza e spostamento locale",
+        "Coseno esatto e dominio 0<c_φ≤1",
+        "Inverse, tarature e radice fisica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-wave-displacement-projection-14",
+      "kind": "question",
+      "course": "C5",
+      "section": "Una coordinata locale dalla fase assegnata",
+      "order": 14714,
+      "title": "Taratura e ampiezza al massimo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-displacement-projection",
+      "difficulty": 3,
+      "prompt": "In un punto e istante fissati di un’onda armonica lineare lo spostamento orientato locale è s=A cosφ=A c_φ. L’ampiezza costante A>0 è la massima distanza dall’equilibrio, mentre c_φ è il valore esatto assegnato del coseno della fase, con 0<c_φ≤1. La selezione di fase rende qui s positivo e non maggiore di A; non si pretende che lo spostamento sia positivo durante tutto il moto. Non sono richieste approssimazioni trigonometriche né la ricostruzione univoca di φ da un coseno. S=qs è un display continuo adimensionale, q>0, senza offset. A: A=4 mm,c_φ=1/2,S=6. B: c_φ=1,S=9. Quanto vale A_B in mm?",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "mm",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento ha s=2 mm e q=3 mm⁻¹. La lettura nove rappresenta s=3 mm. Nella nuova prova il coseno è uno, dunque s coincide con l’ampiezza: A_B=3 mm. Questa coincidenza dipende dalla fase B e non valeva nel riferimento."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{mm^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " s_B=3\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " A_B=s_B/c_{\\varphi,B}"
+        },
+        {
+          "type": "formula",
+          "text": " A_B=3\\,\\mathrm{mm}"
+        },
+        {
+          "type": "text",
+          "text": "Nove copia la lettura adimensionale e quattro l’ampiezza di riferimento. La taratura deve essere applicata anche quando il nuovo coseno è uno."
+        }
+      ],
+      "hints": [
+        "Decodifica la coordinata prima di usare il valore di fase.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Nove copia la lettura adimensionale e quattro l’ampiezza di riferimento. La taratura deve essere applicata anche quando il nuovo coseno è uno.",
+        "target": "C5-L02"
+      },
+      "coverage": [
+        "Ampiezza e spostamento locale",
+        "Coseno esatto e dominio 0<c_φ≤1",
+        "Inverse, tarature e radice fisica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-wave-displacement-projection-15",
+      "kind": "question",
+      "course": "C5",
+      "section": "Una coordinata locale dalla fase assegnata",
+      "order": 14715,
+      "title": "Un offset prima della fase",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-displacement-projection",
+      "difficulty": 3,
+      "prompt": "In un punto e istante fissati di un’onda armonica lineare lo spostamento orientato locale è s=A cosφ=A c_φ. L’ampiezza costante A>0 è la massima distanza dall’equilibrio, mentre c_φ è il valore esatto assegnato del coseno della fase, con 0<c_φ≤1. La selezione di fase rende qui s positivo e non maggiore di A; non si pretende che lo spostamento sia positivo durante tutto il moto. Non sono richieste approssimazioni trigonometriche né la ricostruzione univoca di φ da un coseno. S=qs+b è continuo e adimensionale. A: A=4 mm,c_φ=1/2,S=5. B: A=3 mm,c_φ=1,S=7. C: c_φ=1,S=3. Quanto vale A_C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1 mm",
+          "3 mm",
+          "2 mm",
+          "4 mm",
+          "1/2 mm"
+        ],
+        "value": "1 mm"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti s_A=2 mm e s_B=3 mm fissano q=2 mm⁻¹ e b=1. La lettura tre dà s_C=(3−1)/2=1 mm. Poiché il nuovo coseno vale uno, l’ampiezza è anch’essa un millimetro."
+        },
+        {
+          "type": "formula",
+          "text": "q=2\\,\\mathrm{mm^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " s_C=1\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " A_C=1\\,\\mathrm{mm}"
+        },
+        {
+          "type": "text",
+          "text": "Tre copia la lettura; due copia lo spostamento del riferimento A e quattro la sua ampiezza. Mezzo darebbe S=2 con c_φ=1; soltanto uno ricostruisce S=3. Non si sottrae l’offset dopo aver già diviso e dimenticato la sua unità strumentale."
+        }
+      ],
+      "hints": [
+        "Rimuovi b e q, poi inverti la relazione fisica.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre copia la lettura; due copia lo spostamento del riferimento A e quattro la sua ampiezza. Mezzo darebbe S=2 con c_φ=1; soltanto uno ricostruisce S=3. Non si sottrae l’offset dopo aver già diviso e dimenticato la sua unità strumentale.",
+        "target": "C5-L02"
+      },
+      "coverage": [
+        "Ampiezza e spostamento locale",
+        "Coseno esatto e dominio 0<c_φ≤1",
+        "Inverse, tarature e radice fisica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-wave-displacement-projection-16",
+      "kind": "question",
+      "course": "C5",
+      "section": "Una coordinata locale dalla fase assegnata",
+      "order": 14716,
+      "title": "Un vincolo sul coseno e sull’ampiezza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-displacement-projection",
+      "difficulty": 3,
+      "prompt": "In un punto e istante fissati di un’onda armonica lineare lo spostamento orientato locale è s=A cosφ=A c_φ. L’ampiezza costante A>0 è la massima distanza dall’equilibrio, mentre c_φ è il valore esatto assegnato del coseno della fase, con 0<c_φ≤1. La selezione di fase rende qui s positivo e non maggiore di A; non si pretende che lo spostamento sia positivo durante tutto il moto. Non sono richieste approssimazioni trigonometriche né la ricostruzione univoca di φ da un coseno. Fra prove si impone A=b c_φ con b=8 mm. Si misura s=2 mm. Quanto vale c_φ nel ramo dichiarato?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "−1/2",
+          "1/4",
+          "2",
+          "1"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituendo il vincolo si ottiene s=b c_φ². Il rapporto due mm su otto mm dà c_φ²=1/4. Il ramo positivo seleziona un mezzo, che non supera uno. L’ampiezza ricostruita è quattro millimetri; sostituendo si ritrova s=2 mm."
+        },
+        {
+          "type": "formula",
+          "text": "s=b c_\\varphi^2"
+        },
+        {
+          "type": "formula",
+          "text": " c_\\varphi^2=\\frac14"
+        },
+        {
+          "type": "formula",
+          "text": " c_\\varphi=\\frac12"
+        },
+        {
+          "type": "formula",
+          "text": " A=4\\,\\mathrm{mm}"
+        },
+        {
+          "type": "text",
+          "text": "Meno un mezzo viola il ramo, un quarto è il quadrato e due supera il massimo di un coseno reale. Uno produrrebbe s=8 mm. Il coefficiente b è una lunghezza, non un numero puro; la radice è presa su un rapporto adimensionale."
+        }
+      ],
+      "hints": [
+        "Sostituisci il vincolo prima di scegliere la radice fisica.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Meno un mezzo viola il ramo, un quarto è il quadrato e due supera il massimo di un coseno reale. Uno produrrebbe s=8 mm. Il coefficiente b è una lunghezza, non un numero puro; la radice è presa su un rapporto adimensionale.",
+        "target": "C5-L02"
+      },
+      "coverage": [
+        "Ampiezza e spostamento locale",
+        "Coseno esatto e dominio 0<c_φ≤1",
+        "Inverse, tarature e radice fisica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "e3f351b73f0543aca244b346c272edf7a3dd12f136338f9dd2e01c63f998f8c9",
+      "name": "wave-displacement-projection-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTYxMCIgdmlld0JveD0iMCAwIDY0MCAxNjEwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+VW5hIHByb2llemlvbmUgbm9uIMOoIGzigJlpbnRlcmEgYW1waWV6emE8L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5SYWdnaW8gcXVhdHRybyBtaWxsaW1ldHJpIGUgcHJvaWV6aW9uZSBvcml6em9udGFsZSBkdWUgbWlsbGltZXRyaSBhbCBjb3Nlbm8gdW4gbWV6em8uIEdyYWZpY28gbm9ybWFsaXp6YXRvIGxpbmVhcmUgZnJhIGNvc2VubyBhc3NlZ25hdG8gZSBzcG9zdGFtZW50byBzdSBhbXBpZXp6YSwgY29uIHplcm8gZXNjbHVzbyBlIHVubyBpbmNsdXNvLiBCYXJyZSBkZWkgZHVlIHNwb3N0YW1lbnRpIGR1ZSBlIHRyZSBtaWxsaW1ldHJpLjwvZGVzYz4KPGRlZnM+PG1hcmtlciBpZD0iYSIgdmlld0JveD0iMCAwIDEwIDEwIiByZWZYPSI5IiByZWZZPSI1IiBtYXJrZXJXaWR0aD0iNiIgbWFya2VySGVpZ2h0PSI2IiBvcmllbnQ9ImF1dG8iPjxwYXRoIGQ9Ik0wIDBMMTAgNUwwIDEwWiIgZmlsbD0iIzE0NWQ4MSIvPjwvbWFya2VyPjwvZGVmcz48cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjE2MTAiIHJ4PSIyMCIgZmlsbD0iI2Y3ZmJmZiIvPjxnIGZvbnQtZmFtaWx5PSJzeXN0ZW0tdWksc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzE0MmQ0MCI+Cjx0ZXh0IHg9IjM1IiB5PSI0OCIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9IjcwMCI+MSDCtyBQcm9pZXR0YXJlIHVuYSBmYXNlIGFzc2VnbmF0YTwvdGV4dD48dGV4dCB4PSIzNSIgeT0iOTAiPkEgPSA0IG1tIMK3IGNvc8+GID0gMS8yIMK3IDQwIHB4L21tPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSIxMzAiPkNvc3RydXppb25lIGdlb21ldHJpY2EsIG5vbiB0cmFpZXR0b3JpYS48L3RleHQ+CjxjaXJjbGUgY3g9IjI2MCIgY3k9IjM1MCIgcj0iMTYwIiBmaWxsPSJub25lIiBzdHJva2U9IiNiM2NiZDkiIHN0cm9rZS13aWR0aD0iMiIvPjxwYXRoIGQ9Ik03MCAzNTBINDgwIiBzdHJva2U9IiMxNDJkNDAiIG1hcmtlci1lbmQ9InVybCgjYSkiLz48dGV4dCB4PSI0OTAiIHk9IjM1NyI+czwvdGV4dD4KPHBhdGggZD0iTTI2MCAzNTBMMzQwIDIxMS40MzYiIHN0cm9rZT0iIzE0NWQ4MSIgc3Ryb2tlLXdpZHRoPSI0IiBtYXJrZXItZW5kPSJ1cmwoI2EpIi8+PHRleHQgeD0iMzY1IiB5PSIyMzAiPkEgPSA0IG1tPC90ZXh0PjxwYXRoIGQ9Ik0zNDAgMjExLjQzNlYzNTAiIHN0cm9rZT0iIzZlOGI5YyIgc3Ryb2tlLWRhc2hhcnJheT0iNSA1Ii8+PHBhdGggZD0iTTI2MCAzNTBIMzQwIiBzdHJva2U9IiMyMjZhNGIiIHN0cm9rZS13aWR0aD0iNSIvPgo8cGF0aCBkPSJNMzAwIDM1MEE0MCA0MCAwIDAgMCAyODAgMzE1LjM1OSIgc3Ryb2tlPSIjYzY1OTE5IiBmaWxsPSJub25lIiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSIzMDYiIHk9IjMyMyI+z4Y8L3RleHQ+PGNpcmNsZSBjeD0iMjYwIiBjeT0iMzUwIiByPSI0IiBmaWxsPSIjMTQyZDQwIi8+PGNpcmNsZSBjeD0iMzQwIiBjeT0iMjExLjQzNiIgcj0iNSIgZmlsbD0iIzE0NWQ4MSIvPgo8dGV4dCB4PSIyNDUiIHk9IjM5MCI+MDwvdGV4dD48dGV4dCB4PSIyODUiIHk9IjQxNSI+cyA9IDIgbW08L3RleHQ+PHRleHQgeD0iMzUiIHk9IjU1NSI+UmFnZ2lvIDE2MCBweCDCtyBwcm9pZXppb25lIDgwIHB4LjwvdGV4dD48dGV4dCB4PSIzNSIgeT0iNTk1Ij5JbCByYXBwb3J0byBzL0Egw6ggaWwgY29zZW5vLCBzZW56YSB1bml0w6AuPC90ZXh0PjxwYXRoIGQ9Ik0zNSA2MjVINjA1IiBzdHJva2U9IiNiM2NiZDkiLz4KPHRleHQgeD0iMzUiIHk9IjY3MCIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9IjcwMCI+MiDCtyBJbCBkb21pbmlvIGRlbCBjb3Nlbm8gcG9zaXRpdm88L3RleHQ+PHRleHQgeD0iMzUiIHk9IjcxMCI+R3JhZmljbyBzL0EgPSBjX8+GLCBub24gbGVnZ2Ugb3JhcmlhPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSI3NTAiPk9yaXp6b250YWxlOiAzMjAgcHgvdW5pdMOgIMK3IHZlcnRpY2FsZTogMjAwPC90ZXh0Pgo8cGF0aCBkPSJNODAgMTAwMEg0ODUiIHN0cm9rZT0iIzE0MmQ0MCIgbWFya2VyLWVuZD0idXJsKCNhKSIvPjxwYXRoIGQ9Ik0xMDAgMTAyMFY3ODAiIHN0cm9rZT0iIzE0MmQ0MCIgbWFya2VyLWVuZD0idXJsKCNhKSIvPjx0ZXh0IHg9IjUwNSIgeT0iMTAwNyI+Y1/PhjwvdGV4dD48dGV4dCB4PSI1NSIgeT0iNzg1Ij5zL0E8L3RleHQ+CjxwYXRoIGQ9Ik0xMDAgMTAwMEw0MjAgODAwIiBzdHJva2U9IiMyMjZhNGIiIHN0cm9rZS13aWR0aD0iNCIvPjxwYXRoIGQ9Ik0xMDAgODAwSDQyMFYxMDAwTTI2MCA5MDBWMTAwMCIgc3Ryb2tlPSIjNmU4YjljIiBzdHJva2UtZGFzaGFycmF5PSI1IDUiIGZpbGw9Im5vbmUiLz4KPGNpcmNsZSBjeD0iMTAwIiBjeT0iMTAwMCIgcj0iNiIgZmlsbD0iI2Y3ZmJmZiIgc3Ryb2tlPSIjMjI2YTRiIiBzdHJva2Utd2lkdGg9IjMiLz48Y2lyY2xlIGN4PSI0MjAiIGN5PSI4MDAiIHI9IjYiIGZpbGw9IiMyMjZhNGIiLz48Y2lyY2xlIGN4PSIyNjAiIGN5PSI5MDAiIHI9IjUiIGZpbGw9IiNjNjU5MTkiLz4KPHRleHQgeD0iNDUiIHk9IjgwNyI+MTwvdGV4dD48dGV4dCB4PSI5MCIgeT0iMTA2MCI+MDwvdGV4dD48dGV4dCB4PSIyNDUiIHk9IjEwNjAiPjEvMjwvdGV4dD48dGV4dCB4PSI0MTAiIHk9IjEwNjAiPjE8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjExMTAiPkNlcmNoaW8gdnVvdG86IDAgZXNjbHVzbyDCtyAxIGluY2x1c28uPC90ZXh0PjxwYXRoIGQ9Ik0zNSAxMTQwSDYwNSIgc3Ryb2tlPSIjYjNjYmQ5Ii8+Cjx0ZXh0IHg9IjM1IiB5PSIxMTg1IiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iNzAwIj4zIMK3IER1ZSBzcG9zdGFtZW50aSwgYW1waWV6emUgZGl2ZXJzZTwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMTIyNSI+QmFycmUgZGEgemVybzogNjAgcHgvbW08L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxMjcwIj5BIMK3IGFtcGllenphIDQgbW0gwrcgY29zZW5vIDEvMjwvdGV4dD48cmVjdCB4PSIxMDAiIHk9IjEzMDAiIHdpZHRoPSIxMjAiIGhlaWdodD0iMzUiIGZpbGw9IiMxNDVkODEiLz48dGV4dCB4PSIyNDAiIHk9IjEzMjciPnMgPSAyIG1tPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTQxMCI+QiDCtyBhbXBpZXp6YSAzIG1tIMK3IGNvc2VubyAxPC90ZXh0PjxyZWN0IHg9IjEwMCIgeT0iMTQ0MCIgd2lkdGg9IjE4MCIgaGVpZ2h0PSIzNSIgZmlsbD0iI2M2NTkxOSIvPjx0ZXh0IHg9IjMwMCIgeT0iMTQ2NyI+cyA9IDMgbW08L3RleHQ+PHBhdGggZD0iTTEwMCAxMjg1VjEzNTBNMTAwIDE0MjVWMTQ5MCIgc3Ryb2tlPSIjNmU4YjljIiBzdHJva2UtZGFzaGFycmF5PSI1IDUiLz4KPHRleHQgeD0iMzUiIHk9IjE1NDUiPklsIHJhcHBvcnRvIEIvQSBmcmEgc3Bvc3RhbWVudGkgw6ggMy8yLjwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMTU4NSI+SW4gb2duaSBwcm92YSByZXN0YSAwICZsdDsgcyDiiaQgQS48L3RleHQ+PC9nPjwvc3ZnPgo="
+    }
+  ]
+}

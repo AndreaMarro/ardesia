@@ -1,0 +1,458 @@
+{
+  "bindingsSha256": "40b45db165b1d698866b4a26ceada61dc0bd5d2862a12911143bd58fb0709094",
+  "candidateTaskClarification": "Original 107-03 identifies the provided model; the authored diagnostic instead contrasts initial-rate timing with integrated emptying. The primary source-only law and independent ODE already determine this comparison. Its exact half-time derivation was checked after reading the new diagnostic wording, without treating the candidate key as evidence.",
+  "closedFindings": [],
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "findings": [],
+  "humanApproval": "NOT_RUN",
+  "lessonMappingReview": "Real catalog lessons reread: C2-L005 volume flow and continuity, C2-L006 ideal streamline energy, C2-L007 Newtonian stress and developed profiles, C2-L008 Poiseuille with its domain, C2-L009 series and parallel networks. Candidate course, skill, prerequisites and C6 reuse were checked.",
+  "limitations": [
+    "Only the explicitly assigned ideal physical models are verified. Positive parameters alone do not establish real-fluid laminar regime, no-slip behavior or small-hole asymptotics.",
+    "Literal signatures bind exactly the prose read; arbitrary future prose is not semantically parsed.",
+    "Exact choice grammar is bounded to rational or decimal literals and one pi or integer-radical monomial, plus the exact reviewed unit suffix. Arbitrary expressions and functions are rejected.",
+    "Wrong keys, units, sources, equivalent choices and figure scales are rejected after rebinding and test-only token or edition-hash replacement. The plausible false prose case with a correct key is rejected by frozen reading, not claimed as a general language proof checker.",
+    "Conceptual judgments remain AI_CONCEPTUAL separately from EXACT_ORACLE. Human approval is NOT_RUN and all material remains DRAFT."
+  ],
+  "mutationAudit": {
+    "allRejected": true,
+    "caseCount": 25,
+    "cases": [
+      {
+        "case": "wrong_key_rebound_and_all_edition_tokens_replaced",
+        "id": "AR-u3-reservoir-emptying-01",
+        "rejectedBy": [
+          "Independent primary physical exact result mismatch"
+        ]
+      },
+      {
+        "case": "wrong_key_rebound_and_all_edition_tokens_replaced",
+        "id": "AR-u3-reservoir-emptying-02",
+        "rejectedBy": [
+          "Independent fluid-flow conceptual key mismatch"
+        ]
+      },
+      {
+        "case": "wrong_key_rebound_and_all_edition_tokens_replaced",
+        "id": "AR-u3-reservoir-emptying-03",
+        "rejectedBy": [
+          "Independent fluid-flow conceptual key mismatch"
+        ]
+      },
+      {
+        "case": "wrong_key_rebound_and_all_edition_tokens_replaced",
+        "id": "AR-u3-reservoir-emptying-04",
+        "rejectedBy": [
+          "Independent fluid-flow conceptual key mismatch"
+        ]
+      },
+      {
+        "case": "wrong_key_rebound_and_all_edition_tokens_replaced",
+        "id": "AR-u3-reservoir-emptying-05",
+        "rejectedBy": [
+          "Independent primary physical exact result mismatch"
+        ]
+      },
+      {
+        "case": "wrong_key_rebound_and_all_edition_tokens_replaced",
+        "id": "AR-u3-reservoir-emptying-06",
+        "rejectedBy": [
+          "Independent primary physical exact result mismatch"
+        ]
+      },
+      {
+        "case": "wrong_key_rebound_and_all_edition_tokens_replaced",
+        "id": "AR-u3-reservoir-emptying-07",
+        "rejectedBy": [
+          "Independent primary physical exact result mismatch"
+        ]
+      },
+      {
+        "case": "wrong_key_rebound_and_all_edition_tokens_replaced",
+        "id": "AR-u3-reservoir-emptying-08",
+        "rejectedBy": [
+          "Independent primary physical exact result mismatch"
+        ]
+      },
+      {
+        "case": "wrong_key_rebound_and_all_edition_tokens_replaced",
+        "id": "AR-u3-reservoir-emptying-09",
+        "rejectedBy": [
+          "Independent fluid-flow conceptual key mismatch"
+        ]
+      },
+      {
+        "case": "wrong_key_rebound_and_all_edition_tokens_replaced",
+        "id": "AR-u3-reservoir-emptying-10",
+        "rejectedBy": [
+          "Independent fluid-flow conceptual key mismatch"
+        ]
+      },
+      {
+        "case": "wrong_key_rebound_and_all_edition_tokens_replaced",
+        "id": "AR-u3-reservoir-emptying-11",
+        "rejectedBy": [
+          "Independent primary physical exact result mismatch"
+        ]
+      },
+      {
+        "case": "wrong_key_rebound_and_all_edition_tokens_replaced",
+        "id": "AR-u3-reservoir-emptying-12",
+        "rejectedBy": [
+          "Independent primary physical exact result mismatch"
+        ]
+      },
+      {
+        "case": "wrong_key_rebound_and_all_edition_tokens_replaced",
+        "id": "AR-u3-reservoir-emptying-13",
+        "rejectedBy": [
+          "Independent primary physical exact result mismatch"
+        ]
+      },
+      {
+        "case": "wrong_key_rebound_and_all_edition_tokens_replaced",
+        "id": "AR-u3-reservoir-emptying-14",
+        "rejectedBy": [
+          "Independent primary physical exact result mismatch"
+        ]
+      },
+      {
+        "case": "wrong_key_rebound_and_all_edition_tokens_replaced",
+        "id": "AR-u3-reservoir-emptying-15",
+        "rejectedBy": [
+          "Independent primary physical exact result mismatch"
+        ]
+      },
+      {
+        "case": "wrong_key_rebound_and_all_edition_tokens_replaced",
+        "id": "AR-u3-reservoir-emptying-16",
+        "rejectedBy": [
+          "Independent primary physical exact result mismatch"
+        ]
+      },
+      {
+        "case": "wrong_unit_rebound_and_retokenized",
+        "id": "AR-u3-reservoir-emptying-01",
+        "rejectedBy": [
+          "Independent numeric physical unit mismatch"
+        ]
+      },
+      {
+        "case": "false_source_hash_rebound_and_retokenized",
+        "id": "AR-u3-reservoir-emptying-01",
+        "rejectedBy": [
+          "Independent pinned Git source binding mismatch"
+        ]
+      },
+      {
+        "case": "false_source_shard_provenance_rehashed_and_retokenized",
+        "id": "AR-u3-reservoir-emptying-01",
+        "rejectedBy": [
+          "Independent pinned source provenance mismatch"
+        ]
+      },
+      {
+        "case": "equivalent_literal_distractor_rebound_and_retokenized",
+        "id": "AR-u3-reservoir-emptying-07",
+        "rejectedBy": [
+          "Equivalent exact numeric choices require editorial review",
+          "Equivalent exact numeric choices require editorial review"
+        ]
+      },
+      {
+        "case": "correct_key_but_false_physical_proof_rebound",
+        "id": "AR-u3-reservoir-emptying-01",
+        "rejectedBy": [
+          "Independent reviewed signature mismatch",
+          "Independent reviewed package edition mismatch",
+          "Independent reviewed binding edition mismatch"
+        ]
+      },
+      {
+        "case": "empty_batch",
+        "rejectedBy": "complete unique reviewed batch boundary"
+      },
+      {
+        "case": "partial_batch",
+        "rejectedBy": "complete unique reviewed batch boundary"
+      },
+      {
+        "case": "duplicate_batch",
+        "rejectedBy": "complete unique reviewed batch boundary"
+      },
+      {
+        "case": "wrong_SVG_physical_scale_or_continuity_all_hashes_bindings_and_tokens_replaced",
+        "rejectedBy": "Independently reviewed physical scale or graph curve changed"
+      }
+    ],
+    "frozenSignaturesRestored": true,
+    "humanApproval": "NOT_RUN",
+    "publication": "DRAFT",
+    "scope": "independent_oracle_integrity_and_manual_review_boundary_mutation_tests"
+  },
+  "packageSha256": "23967257a87eea1476ab7cff2383923ac34e324ebc1dc0c2ba8ae9a8e5a4f46a",
+  "primaryBeforeKeys": "Quasi-steady volume balance gives dt = r dh/√(2gh); integration ends at the first zero level and yields r√(2H/g). Initial-volume over initial-rate is only half this duration. The large-reservoir approximation and its finite-surface-speed limitation are kept explicit.",
+  "propertyAudit": {
+    "coverage": "Declining-head ODE and finite emptying domain; constant-rate volume additivity; annular profile and Poiseuille scalings in generated low-Re states; telescoping series pressure; parallel flow balance and fixed-pressure closure. Separate tests cover strict inverses, nonlinear means, pi cancellation, coupled roots and reading identity.",
+    "examplesPerProperty": 40,
+    "framework": "Hypothesis 6.148.7",
+    "generatedConfigurationCount": 200,
+    "propertyCount": 5,
+    "savedIdentityCounterexampleCount": 25,
+    "seedPolicy": "derandomize=True",
+    "strictDomainCounterexampleCount": 23,
+    "testRun": {
+      "durationSeconds": "4.935",
+      "exitCode": 0,
+      "result": "PASS",
+      "testCount": 11
+    },
+    "tests": "tests/corpus/test_u3_viscous_network_independent.py"
+  },
+  "publication": "DRAFT",
+  "records": [
+    {
+      "assetReview": "First tank uses vertical scale 40 px/m: initial 5 m is 200 px and half-time 5/4 m is 50 px. Widths and hole symbols are explicitly schematic. Separate speed arrows 100 and 50 px at 10 px/(m/s) give 10 and 5 m/s. Flow graph origin (110,1060), 3 px/s and 2000 px/(m³/s): triangle to (110,860),(410,1060) represents 1/10 m³/s initially, 100 s duration and 5 m³ area. Head graph uses 3 px/s and 50 px/m, origin (110,1770); quadratic Bezier (110,1520), control (260,1770), endpoint (410,1770) is 5(1−τ/100)². The midpoint (260,1707.5) gives 50 s and 5/4 m; the curve stops at 100 s. Complete XML, markers and native rendering read.",
+      "candidateSha256": "683ecd2067a8883356b056e5dd13200557d18e17b0138bfee3671d34b29d9c16",
+      "decision": "AI_REVIEWED_NO_FINDING",
+      "distractors": "50 s keeps the initial maximum outflow constant; 200 s adds a second factor two to a law already integrated. Area ratio is not an area or a count of seconds.",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-reservoir-emptying-01",
+      "manualArithmetic": "At H = 5 m and g = 10 m/s², 2H/g = 1 s². Its positive root is 1 s and ratio r = 100 gives t = 100 s.",
+      "physicalAssumptions": "Rigid cylindrical reservoir, fixed positive A/a > 10 and a much smaller than A, homogeneous incompressible liquid, common boundary pressure, g = 10 m/s², ideal unit efflux coefficient and no machine or losses. Quasi-steady outflow neglects surface speed while head declines. The given integrated approximation ends at the first emptying time; no continuation beyond it is allowed. The area ratio may vary between apparatuses, not during a single emptying.",
+      "publication": "DRAFT",
+      "reviewedSignature": "88406ee9d615eba1d323a571c1506a2e1920f5453992e03ec825e1525963083c",
+      "sourceSha256": "bed4e507182bfa8f06b352577ad6aa7a618609a603701f73b2824904ed3b87a8",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetReview": "not attached to this record",
+      "candidateSha256": "b6cce240fe15340a0298bcfb402b9a9ed373769c9d0650aead4930285a537707",
+      "decision": "AI_REVIEWED_NO_FINDING",
+      "distractors": "m/s is speed, m length, s² the radicand unit and 1 the ratio unit. None describes total time.",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-reservoir-emptying-02",
+      "manualArithmetic": "r = A/a is pure; H/g has dimension T², so its root has dimension time. The requested unit is s.",
+      "physicalAssumptions": "Rigid cylindrical reservoir, fixed positive A/a > 10 and a much smaller than A, homogeneous incompressible liquid, common boundary pressure, g = 10 m/s², ideal unit efflux coefficient and no machine or losses. Quasi-steady outflow neglects surface speed while head declines. The given integrated approximation ends at the first emptying time; no continuation beyond it is allowed. The area ratio may vary between apparatuses, not during a single emptying.",
+      "publication": "DRAFT",
+      "reviewedSignature": "10c550f24ecff0d22f01801f263451c85558e7310cfd2229567608853ef17a13",
+      "sourceSha256": "5e6eec7297ae6e83fd53db8a143a869ec677aa64068fec38e2afbfbc80ccf5c1",
+      "verificationMode": "AI_CONCEPTUAL"
+    },
+    {
+      "assetReview": "First tank uses vertical scale 40 px/m: initial 5 m is 200 px and half-time 5/4 m is 50 px. Widths and hole symbols are explicitly schematic. Separate speed arrows 100 and 50 px at 10 px/(m/s) give 10 and 5 m/s. Flow graph origin (110,1060), 3 px/s and 2000 px/(m³/s): triangle to (110,860),(410,1060) represents 1/10 m³/s initially, 100 s duration and 5 m³ area. Head graph uses 3 px/s and 50 px/m, origin (110,1770); quadratic Bezier (110,1520), control (260,1770), endpoint (410,1770) is 5(1−τ/100)². The midpoint (260,1707.5) gives 50 s and 5/4 m; the curve stops at 100 s. Complete XML, markers and native rendering read.",
+      "candidateSha256": "a238e4658c3d52f2dbaa62d88214e3db52b8aec41a15204dc10318298ec0c545",
+      "decision": "AI_REVIEWED_NO_FINDING",
+      "distractors": "Constant flow would require another control such as maintained head. Emptying does not raise the head or double density, and positive factors cannot yield a negative total time.",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-reservoir-emptying-03",
+      "manualArithmetic": "Independent volume balance gives t = r√(2H/g). Initial-volume over initial-rate is rH/√(2gH) = t/2. Declining head makes the initial-rate estimate too short; this candidate diagnostic is derived after reading its new wording, not assumed from its key.",
+      "physicalAssumptions": "Rigid cylindrical reservoir, fixed positive A/a > 10 and a much smaller than A, homogeneous incompressible liquid, common boundary pressure, g = 10 m/s², ideal unit efflux coefficient and no machine or losses. Quasi-steady outflow neglects surface speed while head declines. The given integrated approximation ends at the first emptying time; no continuation beyond it is allowed. The area ratio may vary between apparatuses, not during a single emptying.",
+      "publication": "DRAFT",
+      "reviewedSignature": "2c4f5e830b4ef2fcea2f453597ac64264a72e987adf0d68e74115501a802e0e4",
+      "sourceSha256": "24471b0ff6d3c91195916d600918734a3e21484e7ac9867919d2c9e9340cf776",
+      "verificationMode": "AI_CONCEPTUAL"
+    },
+    {
+      "assetReview": "not attached to this record",
+      "candidateSha256": "42b2a301d637c33bfccf0ed34615dccc27f5101805f4a44b04af8329057ff614",
+      "decision": "AI_REVIEWED_NO_FINDING",
+      "distractors": "50 reverses the area-ratio effect; 400 squares it; unchanged 100 ignores it and zero contradicts positive initial head.",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-reservoir-emptying-04",
+      "manualArithmetic": "Keeping H = 5 m fixes the root at 1 s. Doubling r from 100 to 200 doubles t from 100 to 200 s.",
+      "physicalAssumptions": "Rigid cylindrical reservoir, fixed positive A/a > 10 and a much smaller than A, homogeneous incompressible liquid, common boundary pressure, g = 10 m/s², ideal unit efflux coefficient and no machine or losses. Quasi-steady outflow neglects surface speed while head declines. The given integrated approximation ends at the first emptying time; no continuation beyond it is allowed. The area ratio may vary between apparatuses, not during a single emptying.",
+      "publication": "DRAFT",
+      "reviewedSignature": "549e68652604c0dd763a4c04175bfa7c86cd4f053687b4b578db42ffbc5a8072",
+      "sourceSha256": "2a67612b724a2acfad856ba37752808e8dfa61b043c7ab6a88ef5b6f7590daac",
+      "verificationMode": "AI_CONCEPTUAL"
+    },
+    {
+      "assetReview": "not attached to this record",
+      "candidateSha256": "da06e087246f03b713d8ea3dd7076d3b508de3cd283f5a7b2f0a178a6c4f61eb",
+      "decision": "AI_REVIEWED_NO_FINDING",
+      "distractors": "Units cancel in the inverse. Doubling the answer counts a factor two again, and a positive ratio outside the approximation domain would not validate this model.",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-reservoir-emptying-05",
+      "manualArithmetic": "r = t/√(2H/g) = 100 s/(1 s) = 100, dimensionless and above 10.",
+      "physicalAssumptions": "Rigid cylindrical reservoir, fixed positive A/a > 10 and a much smaller than A, homogeneous incompressible liquid, common boundary pressure, g = 10 m/s², ideal unit efflux coefficient and no machine or losses. Quasi-steady outflow neglects surface speed while head declines. The given integrated approximation ends at the first emptying time; no continuation beyond it is allowed. The area ratio may vary between apparatuses, not during a single emptying.",
+      "publication": "DRAFT",
+      "reviewedSignature": "4529e6da48aee7c4c99cecebe8d94a81ce56a3438a121ba42c8101d29c166784",
+      "sourceSha256": "d884f06d5f934b007eee6220c2a0d1a747db1d9e678a3bee4130f6027e0281b2",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetReview": "not attached to this record",
+      "candidateSha256": "336f0430032a46c59f221b0bfadf95a986e5d052a78f19f4cb02c7334e358b39",
+      "decision": "AI_REVIEWED_NO_FINDING",
+      "distractors": "10 m omits the half. Leaving t/r un-squared has the wrong length dimension after multiplication by g.",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-reservoir-emptying-06",
+      "manualArithmetic": "H = (g/2)(t/r)² = (5 m/s²)(1 s²) = 5 m, the initial head rather than a mean level.",
+      "physicalAssumptions": "Rigid cylindrical reservoir, fixed positive A/a > 10 and a much smaller than A, homogeneous incompressible liquid, common boundary pressure, g = 10 m/s², ideal unit efflux coefficient and no machine or losses. Quasi-steady outflow neglects surface speed while head declines. The given integrated approximation ends at the first emptying time; no continuation beyond it is allowed. The area ratio may vary between apparatuses, not during a single emptying.",
+      "publication": "DRAFT",
+      "reviewedSignature": "3e984aba81578aca8928c7b6d2e354ee62aab44cfe1e364738ca97603e3a3a70",
+      "sourceSha256": "9edaf7fa77296681e0ae2ec6c07d3a7f7edb2592dfed3a1af45c1899585a2d2e",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetReview": "not attached to this record",
+      "candidateSha256": "18dd8bf2b92b0a00901ffa173d81c12635f6e1175f708fd0634307cf2f5b4cb7",
+      "decision": "AI_REVIEWED_NO_FINDING",
+      "distractors": "4 follows volume alone without increased initial outflow; 1/2 and 1/4 reverse the states; 1 ignores the larger head.",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-reservoir-emptying-07",
+      "manualArithmetic": "At fixed r, H grows by factor 4. Its square root grows by factor 2, giving t_B/t_A = 2.",
+      "physicalAssumptions": "Rigid cylindrical reservoir, fixed positive A/a > 10 and a much smaller than A, homogeneous incompressible liquid, common boundary pressure, g = 10 m/s², ideal unit efflux coefficient and no machine or losses. Quasi-steady outflow neglects surface speed while head declines. The given integrated approximation ends at the first emptying time; no continuation beyond it is allowed. The area ratio may vary between apparatuses, not during a single emptying.",
+      "publication": "DRAFT",
+      "reviewedSignature": "ac7f4c1819a7d37d0b649463354a6c5461e481c979fdee44883e983edb3c3f7a",
+      "sourceSha256": "283fb79a86e54e81760f9e7b916b15fb6e1670c706279bfd10a4461eb3b70974",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetReview": "not attached to this record",
+      "candidateSha256": "bde0166e3338839ceed7a15480ab63594bde902c596bbf802b72da6a0d00dcf3",
+      "decision": "AI_REVIEWED_NO_FINDING",
+      "distractors": "−100 reverses the error, 200 repeats proposal, zero endorses it and 50 halves it.",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-reservoir-emptying-08",
+      "manualArithmetic": "Proposal minus correct is 200 s − 100 s = +100 s.",
+      "physicalAssumptions": "Rigid cylindrical reservoir, fixed positive A/a > 10 and a much smaller than A, homogeneous incompressible liquid, common boundary pressure, g = 10 m/s², ideal unit efflux coefficient and no machine or losses. Quasi-steady outflow neglects surface speed while head declines. The given integrated approximation ends at the first emptying time; no continuation beyond it is allowed. The area ratio may vary between apparatuses, not during a single emptying.",
+      "publication": "DRAFT",
+      "reviewedSignature": "08d72e3a65245558ff156def52f80f2efed95715a49772f0c5abe2f8f250ccfb",
+      "sourceSha256": "74496bd56698ac2cbed822512f8de52fd7e653eac0f5e455c27019233f90e5c7",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetReview": "not attached to this record",
+      "candidateSha256": "1c53011e3afb44089efb069021b33c46fb89eb9108e799b61fc515d9cff00761",
+      "decision": "AI_REVIEWED_NO_FINDING",
+      "distractors": "Multiplying by the original root gives time squared; dividing the inverse root by t gives inverse time squared. Extra double or half does not preserve the equation.",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-reservoir-emptying-09",
+      "manualArithmetic": "Isolate r by multiplying t by √[g/(2H)], of dimension inverse time. The ratio must still obey the small-hole domain.",
+      "physicalAssumptions": "Rigid cylindrical reservoir, fixed positive A/a > 10 and a much smaller than A, homogeneous incompressible liquid, common boundary pressure, g = 10 m/s², ideal unit efflux coefficient and no machine or losses. Quasi-steady outflow neglects surface speed while head declines. The given integrated approximation ends at the first emptying time; no continuation beyond it is allowed. The area ratio may vary between apparatuses, not during a single emptying.",
+      "publication": "DRAFT",
+      "reviewedSignature": "b85527a88f3464915fc0ab4fd20daf53b35bec78d4068b6c00cba8363d184a1f",
+      "sourceSha256": "97d51ba2b4edc33a629b04aa983b1d3d5811fc3124b2ed8b57ec62de8ce46a81",
+      "verificationMode": "AI_CONCEPTUAL"
+    },
+    {
+      "assetReview": "not attached to this record",
+      "candidateSha256": "85920a157812502a48cd223ff8a0dc98b160a1f8ec7ec6db8f932fd7130b01c4",
+      "decision": "AI_REVIEWED_NO_FINDING",
+      "distractors": "a b omits the head root; √(a b) roots the area ratio incorrectly; a/√b reverses head dependence and a²√b doubles its area-ratio degree.",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-reservoir-emptying-10",
+      "manualArithmetic": "Substitution gives t_B/t_A = a√b. The ratio of areas stays outside the root.",
+      "physicalAssumptions": "Rigid cylindrical reservoir, fixed positive A/a > 10 and a much smaller than A, homogeneous incompressible liquid, common boundary pressure, g = 10 m/s², ideal unit efflux coefficient and no machine or losses. Quasi-steady outflow neglects surface speed while head declines. The given integrated approximation ends at the first emptying time; no continuation beyond it is allowed. The area ratio may vary between apparatuses, not during a single emptying.",
+      "publication": "DRAFT",
+      "reviewedSignature": "e5b138d1dc83acc88b59b4472185f1d0b107be38b9b5602cf2020157753e4cf0",
+      "sourceSha256": "c077eee9d7ca4cde65b67306a70c3be31751748fe1dc474ac7f81b5a97c5d4f4",
+      "verificationMode": "AI_CONCEPTUAL"
+    },
+    {
+      "assetReview": "not attached to this record",
+      "candidateSha256": "155dbce096fd5744294999f0fe85b130024e8150939ce96884a30f4957c9a920",
+      "decision": "AI_REVIEWED_NO_FINDING",
+      "distractors": "2 follows one change, 8 treats head linearly, 1/4 reverses trials and 400 is the final time number rather than a pure ratio.",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-reservoir-emptying-11",
+      "manualArithmetic": "B has r = 200 and √(2H/g) = 2 s, hence t_B = 400 s and ratio 4 to 100 s.",
+      "physicalAssumptions": "Rigid cylindrical reservoir, fixed positive A/a > 10 and a much smaller than A, homogeneous incompressible liquid, common boundary pressure, g = 10 m/s², ideal unit efflux coefficient and no machine or losses. Quasi-steady outflow neglects surface speed while head declines. The given integrated approximation ends at the first emptying time; no continuation beyond it is allowed. The area ratio may vary between apparatuses, not during a single emptying.",
+      "publication": "DRAFT",
+      "reviewedSignature": "9657b19b3a6da049017b8c2a00e018f736ace69936b0cd635aa1c4ef02f0fd4f",
+      "sourceSha256": "24ebe45c9840e27edb540c5e12a3065171e41a909cf8cacb77f159cbb7416861",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetReview": "not attached to this record",
+      "candidateSha256": "7d4a35cc589b8287729ae4e35b7fb76421b33937f6a8c39d29fb2f31afeb402a",
+      "decision": "AI_REVIEWED_NO_FINDING",
+      "distractors": "500 is sum, 125 halves twice, 300 is the difference and 75√10 is the response at mean inputs, not the mean of outputs.",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-reservoir-emptying-12",
+      "manualArithmetic": "Statistical mean is (100 + 400)/2 = 250 s. Mean inputs give 75√10 s; squares 62500 and 56250 distinguish them without decimal evaluation.",
+      "physicalAssumptions": "Rigid cylindrical reservoir, fixed positive A/a > 10 and a much smaller than A, homogeneous incompressible liquid, common boundary pressure, g = 10 m/s², ideal unit efflux coefficient and no machine or losses. Quasi-steady outflow neglects surface speed while head declines. The given integrated approximation ends at the first emptying time; no continuation beyond it is allowed. The area ratio may vary between apparatuses, not during a single emptying.",
+      "publication": "DRAFT",
+      "reviewedSignature": "bef1c09bb8ead0ce7b4bb951ba917772d3c8426b391169c2639534cf16fd56b2",
+      "sourceSha256": "f8eddcfc4ee87587c76192bcd15caabfb47808b51d3efe255597d7f769a4eb1b",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetReview": "not attached to this record",
+      "candidateSha256": "67e04196d666f8b5d9dfb1db968fe6350965597b11dcf7df7a1b1ec1c97ab35c",
+      "decision": "AI_REVIEWED_NO_FINDING",
+      "distractors": "2 is a ratio of roots rather than heads; 1/4 reverses states, 20 copies the new head number and 8 repeats the area-ratio change.",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-reservoir-emptying-13",
+      "manualArithmetic": "Target t_B = 400 s with r_B = 200 requires root 2 s, so H_B = 20 m and H_B/H_A = 4.",
+      "physicalAssumptions": "Rigid cylindrical reservoir, fixed positive A/a > 10 and a much smaller than A, homogeneous incompressible liquid, common boundary pressure, g = 10 m/s², ideal unit efflux coefficient and no machine or losses. Quasi-steady outflow neglects surface speed while head declines. The given integrated approximation ends at the first emptying time; no continuation beyond it is allowed. The area ratio may vary between apparatuses, not during a single emptying.",
+      "publication": "DRAFT",
+      "reviewedSignature": "975f5d7abba5c6d4aebd21d5192c97b800a6dc1a9c1d9028064e6815e9d47ce3",
+      "sourceSha256": "f06cf91efa3687f828efd1895a409bb8b500846eef10d67625c3c0c1bb7eba10",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetReview": "not attached to this record",
+      "candidateSha256": "da0c6d7609dae9b09cd9df0a5ac26673dd0813ecd278c4303a7bfa241b26a11e",
+      "decision": "AI_REVIEWED_NO_FINDING",
+      "distractors": "Using raw reading 1200 as seconds gives r = 600 and a reconstructed display three times too large.",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-reservoir-emptying-14",
+      "manualArithmetic": "Gain 300/(100 s) = 3 s⁻¹. Reading 1200 gives t_B = 400 s; H_B = 20 m gives r_B = 200.",
+      "physicalAssumptions": "Rigid cylindrical reservoir, fixed positive A/a > 10 and a much smaller than A, homogeneous incompressible liquid, common boundary pressure, g = 10 m/s², ideal unit efflux coefficient and no machine or losses. Quasi-steady outflow neglects surface speed while head declines. The given integrated approximation ends at the first emptying time; no continuation beyond it is allowed. The area ratio may vary between apparatuses, not during a single emptying.",
+      "publication": "DRAFT",
+      "reviewedSignature": "b6cdb8dbd013dc81c118f1913b238b371164b8af37c6ea95b6187521c89ade88",
+      "sourceSha256": "7b1ebb89c5b40cd8babe1184d28267a5347acb2b3f7f81bfd237db46fceec34b",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetReview": "not attached to this record",
+      "candidateSha256": "d4670c2fce58e2250078e1ea136417dfc87d3d0518bab73a804baf98a0dde91d",
+      "decision": "AI_REVIEWED_NO_FINDING",
+      "distractors": "At H = 5 m, r = 100,400,199,201 give readings 201,801,399,403 respectively. Only 200 gives 401.",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-reservoir-emptying-15",
+      "manualArithmetic": "Gain (801 − 201)/(400 − 100) = 2 s⁻¹ and offset 1. Reading 401 means t_C = 200 s; H_C = 5 m gives r_C = 200.",
+      "physicalAssumptions": "Rigid cylindrical reservoir, fixed positive A/a > 10 and a much smaller than A, homogeneous incompressible liquid, common boundary pressure, g = 10 m/s², ideal unit efflux coefficient and no machine or losses. Quasi-steady outflow neglects surface speed while head declines. The given integrated approximation ends at the first emptying time; no continuation beyond it is allowed. The area ratio may vary between apparatuses, not during a single emptying.",
+      "publication": "DRAFT",
+      "reviewedSignature": "006c2b1a8f3f0e0077b80c506101116cbe5cc04ba6679389e4b22c53b07071e2",
+      "sourceSha256": "60fd871d32a9feef110a839d3034f6a44f18247a283795d38110370d29c69854",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetReview": "not attached to this record",
+      "candidateSha256": "5a81777b3da1001148890327454e8d405b73ed355cf722e1c6cafb1023002702",
+      "decision": "AI_REVIEWED_NO_FINDING",
+      "distractors": "The coefficient has inverse-length units. A positive cube has one positive root, not a pair of roots from a square equation; alternate heads 10 or 5/2 do not reconstruct t = 100 s.",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-reservoir-emptying-16",
+      "manualArithmetic": "With r = cH, c = 20 m⁻¹, t² = (2c²/g)H³. Thus H³ = 125 m³ and the unique positive root is H = 5 m, giving r = 100. The added domain H > 1/2 m is satisfied.",
+      "physicalAssumptions": "Rigid cylindrical reservoir, fixed positive A/a > 10 and a much smaller than A, homogeneous incompressible liquid, common boundary pressure, g = 10 m/s², ideal unit efflux coefficient and no machine or losses. Quasi-steady outflow neglects surface speed while head declines. The given integrated approximation ends at the first emptying time; no continuation beyond it is allowed. The area ratio may vary between apparatuses, not during a single emptying.",
+      "publication": "DRAFT",
+      "reviewedSignature": "3bc7f2864ca1f33e61671e47a84359196c63097f18f2ed17b2fbda33d7cc94b3",
+      "sourceSha256": "ae73e001cd4cf37345a08f214c38b5166fab4e06148f326f05f61b6557a27e95",
+      "verificationMode": "EXACT_ORACLE"
+    }
+  ],
+  "reviewSequence": "All 80 original U3-04 prompts 107–111 were read individually from pinned Git before candidate keys, alternatives or solutions. Primary balances and per-ID exact results were saved first. Then every final candidate prompt, option, full solution and formula, hint, feedback, metadata and provenance was read. Five SVG files were read completely in XML and full native images. Exact root package and binding bytes were compared with the final read author commits before literal signatures were frozen.",
+  "reviewedCandidateCommit": "78a16d09cab16082f966be1dfdb8fafec3a43080",
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "schemaVersion": "1.0.0",
+  "scope": "Independent AI scientific and pedagogical reading of exact drafts, not human approval or publication.",
+  "source": {
+    "commit": "5cfbdcb055ba3ba136f97fb56e997f06e6cf3605",
+    "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U3-04.json",
+    "reference": "Independently integrate the assigned quasi-steady volume balance until the first zero level. Distinguish the supplied large-reservoir approximation from finite-surface-speed corrections and constant initial outflow.",
+    "title": "Ideal reservoir emptying with explicitly varying head"
+  },
+  "sourceFileReadSha256": "d781e78ea810d8cf95430f3b544af44eabf02088f90300bacb8399fc21894693",
+  "sourceOnlyArithmeticRecordSha256": "aca48266b44c57f1aebbc0a0c4483009664ce56bd54fe18095bff2c77795b3de",
+  "svgReview": {
+    "canonicalBrowser": "NOT_RUN_BY_THIS_REVIEWER",
+    "geometry": "First tank uses vertical scale 40 px/m: initial 5 m is 200 px and half-time 5/4 m is 50 px. Widths and hole symbols are explicitly schematic. Separate speed arrows 100 and 50 px at 10 px/(m/s) give 10 and 5 m/s. Flow graph origin (110,1060), 3 px/s and 2000 px/(m³/s): triangle to (110,860),(410,1060) represents 1/10 m³/s initially, 100 s duration and 5 m³ area. Head graph uses 3 px/s and 50 px/m, origin (110,1770); quadratic Bezier (110,1520), control (260,1770), endpoint (410,1770) is 5(1−τ/100)². The midpoint (260,1707.5) gives 50 s and 5/4 m; the curve stops at 100 s. Complete XML, markers and native rendering read.",
+    "nativePreview": "All five complete native images were read separately. Native conversion omits marker tips, so the marker definitions and separate arrow paths were additionally checked in XML.",
+    "xml": "Every graphical element, marker definition and effective arrow marker, bar, circle, graph point, curve and label was read against its declared quantity and scale."
+  },
+  "verifierSha256": "2bb0b658614174f7dc26f07cd4423cd914393b771298fa1bdc048d067f9dfc6d"
+}

@@ -1,0 +1,67 @@
+{
+  "schemaVersion": "1.0.0",
+  "scope": "RUNTIME_REVALIDATION_SAME_PREVIOUSLY_REVIEWED_IDS_NO_NEW_CREDIT",
+  "ids": [
+    "SIM-C1-L004-01",
+    "SIM-C1-L004-02",
+    "SIM-C1-L004-03",
+    "SIM-C1-L004-04"
+  ],
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+  "sourceFileSha256": "84d13bd2658be3b0ce2a55bf7dc698d64ceae151b09deafeabd71507a41d70e3",
+  "sourceSha256": {
+    "SIM-C1-L004-01": "c2c99b924db08b43187c7eb88d9b81e504fa6995799cad7f98e756061d131f80",
+    "SIM-C1-L004-02": "3bb5899e3fa9bc10a78bad83060a8e03f1477134499276f7e4629f11e369735b",
+    "SIM-C1-L004-03": "f97b094eef0ba9eca0051d8d2b4f0114cd1f6d545028782dcd51dee131775d28",
+    "SIM-C1-L004-04": "3d6bac09cc4251efa1ec64b24cb51fff6be12c593b28e8dc1011a09f45b9204b"
+  },
+  "previousRuntimeProfileSha256": "f897223d7afb4a9e09eb4fd06768e42e5b52bc131455fa678fbef74b4f39caa5",
+  "runtimeProfileSha256": "0e2083691b9233b26bc3a9e294813288d5c3eed97b29d4728431123684d8e3bd",
+  "historicalSnapshot": "editorial/reviews/experiments-accelerated-040-f897-snapshot",
+  "historicalManifestSha256": "619c583e6424a01e20562dbbaf3ca7738070aaa70914f7e176252cd1cbeeaf60",
+  "reusedPhysicsOracleFunctionsByteIdentical": [
+    "exact_value",
+    "check",
+    "independent_checks",
+    "runtime_values",
+    "compare_runtime"
+  ],
+  "actualBrowserRun": {
+    "outputDirectory": "/private/tmp/cric-refresh-accelerated-0e208",
+    "log": "/private/tmp/cric-refresh-accelerated-0e208.log",
+    "terminalExitCode": 0,
+    "observedCases": 52,
+    "pageErrors": [],
+    "protocolSha256": "a1dfda7ac7af471a7a63e39d9b6fd5e5bc8a53d19f8ff6f4ac670636398c7bf6",
+    "proofSha256": "dc7a716c9ccfbb740314a42b3069aeca31b9eb421b0233965fac4efc68282e1d",
+    "proof": "editorial/reviews/experiments-accelerated-040-browser.json",
+    "screenshotsInspected": "all default 3D and fallback frames; selected secant, corner, projectile/circle plots and quarter-turn/landing/cusp frames; other states executable assertions, not every PNG manually inspected"
+  },
+  "staleTests": {
+    "tests": 9,
+    "failures": 3,
+    "seconds": 16.608,
+    "reason": "Old frozen consumer dependencies correctly reject final runtime; not a new physics defect",
+    "transcript": "editorial/reviews/experiments-accelerated-040-refresh-stale-20261125.txt"
+  },
+  "finalTests": {
+    "tests": 9,
+    "failures": 0,
+    "seconds": 22.795,
+    "terminalExitCode": 0,
+    "command": "PYTHONPYCACHEPREFIX=/private/tmp/cric-recovery-pycache /private/tmp/cric-recovery-venv/bin/python -m unittest discover -s tests/corpus -p test_experiments_accelerated_review.py -v",
+    "transcript": "editorial/reviews/experiments-accelerated-040-refresh-green-20261125.txt"
+  },
+  "verifierSha256": "87249cd455f3f326d31fed5f4a31d620e3991d14886c54aee1408257c987c909",
+  "testSha256": "032fb6b09ef630eceb46ffd418df38b7a62bd7966d8a3e310b34452524308f0f",
+  "reportSha256": "b8b1e37eae36d5a89cb636d13196fa48a71504d7aae1c0f7ead43336ea73566c",
+  "canonicalReportSha256": "fac2404afccd38a16e6ec2e80df7ee81a3bc6df90705e93f56d5d54f7b885674",
+  "freshEqualsSaved": true,
+  "pinnedRuntimeDependencyCount": 22,
+  "controlConfigurations": 60,
+  "clockObservations": 240,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "originalEditionRetained": true,
+  "newIdCredit": 0
+}

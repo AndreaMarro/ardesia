@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="1680" viewBox="0 0 640 1680" role="img" aria-labelledby="title desc">
+<title id="title">Serie: portata comune e cadute di pressione sommate</title><desc id="desc">Elementi di resistenza due e tre kilopascal secondo per litro sono attraversati da due litri al secondo. Le pressioni di esempio cento dieci, cento sei e cento kilopascal danno cadute quattro e sei. Un secondo esempio con resistenze due e quattro distribuisce dodici kilopascal in quattro più otto.</desc>
+<defs><marker id="q" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#155fa0"/></marker></defs>
+<rect width="640" height="1680" fill="#fffdf7"/>
+<g font-family="Arial, sans-serif" font-size="22" fill="#172c3b">
+<text x="35" y="48" font-size="27" font-weight="bold">1. Un solo percorso per il fluido</text>
+<text x="35" y="90">Esempio: Q = 2 L/s in entrambi i tratti</text>
+<text x="45" y="155">110 kPa</text><text x="285" y="155">106 kPa</text><text x="495" y="155">100 kPa</text>
+<path d="M40 250H600" stroke="#748892" stroke-width="3"/>
+<rect x="180" y="225" width="100" height="50" fill="#dcecf6" stroke="#155fa0" stroke-width="3"/><rect x="390" y="225" width="100" height="50" fill="#f0ddba" stroke="#8b6022" stroke-width="3"/>
+<text x="195" y="207">R₁ = 2</text><text x="405" y="207">R₂ = 3</text>
+<path d="M65 250H145" stroke="#155fa0" stroke-width="4" marker-end="url(#q)"/><path d="M295 250H375" stroke="#155fa0" stroke-width="4" marker-end="url(#q)"/><path d="M505 250H585" stroke="#155fa0" stroke-width="4" marker-end="url(#q)"/>
+<text x="35" y="325">Resistenze in kPa·s/L; pressioni assolute</text>
+<text x="35" y="370">Frecce: 40 px/(L/s), tutte lunghe 80 px</text>
+<text x="35" y="410">Blocchi simbolici, geometria non in scala</text>
+<line x1="35" x2="605" y1="445" y2="445" stroke="#b9c4c9"/>
+<text x="35" y="495" font-size="27" font-weight="bold">2. Sommare i contributi successivi</text>
+<text x="35" y="540">Resistenze: 2 + 3 = 5 kPa·s/L</text>
+<rect x="100" y="575" width="60" height="30" fill="#155fa0"/><rect x="160" y="575" width="90" height="30" fill="#a33430"/>
+<text x="35" y="655">Scala R: 30 px/(kPa·s/L), totale 150 px</text>
+<text x="35" y="715">Cadute a Q = 2 L/s: 4 + 6 = 10 kPa</text>
+<rect x="100" y="750" width="120" height="30" fill="#155fa0"/><rect x="220" y="750" width="180" height="30" fill="#a33430"/>
+<text x="35" y="830">Scala Δp: 30 px/kPa, totale 300 px</text>
+<text x="35" y="885">La pressione intermedia si cancella:</text>
+<text x="35" y="925">(110 − 106) + (106 − 100) = 10 kPa.</text>
+<text x="35" y="970">Le due scale usano unità diverse.</text>
+<line x1="35" x2="605" y1="1010" y2="1010" stroke="#b9c4c9"/>
+<text x="35" y="1060" font-size="27" font-weight="bold">3. Un’altra coppia: R₁ = 2, R₂ = 4</text>
+<text x="35" y="1105">Resistenze in kPa·s/L; totale 6 kPa·s/L</text>
+<text x="35" y="1155">Salto assegnato 12 kPa → Q = 2 L/s</text>
+<text x="35" y="1215">Primo: 2 × 2 = 4 kPa</text><text x="35" y="1260">Secondo: 4 × 2 = 8 kPa</text>
+<rect x="100" y="1300" width="120" height="32" fill="#155fa0"/><rect x="220" y="1300" width="240" height="32" fill="#a33430"/>
+<text x="35" y="1390">Stessa scala: 30 px/kPa</text>
+<text x="35" y="1435">120 + 240 = 360 px, cioè 4 + 8 = 12 kPa</text>
+<text x="35" y="1500">Il primo tratto riceve 1/3 del salto totale.</text>
+<text x="35" y="1545">La portata è comune, le cadute no.</text>
+<text x="35" y="1610">Serie: R equivalente = R₁ + R₂</text>
+</g></svg>

@@ -1,0 +1,489 @@
+{
+  "bindingsSha256": "b9b01bf5c51245149a7a57be592a4a845414317ef3f87c980d3a360c92996626",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "dependencyVersions": {
+    "pint": "0.25.2",
+    "sympy": "1.14.0"
+  },
+  "humanApproval": "NOT_RUN",
+  "packageSha256": "9786abf87ab2e62952c501aa4a59b49b732c26c7aa8c3301301461cc81d445a4",
+  "publication": "DRAFT",
+  "publicationAction": "NONE",
+  "records": [
+    {
+      "assetChecksums": {
+        "parabolic-profile-progressive.svg": "4e35e38202efb35be2e82955495bc5837f186e53220257e453f1375ef3446959"
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "candidateSha256": "9b032dee4574ae0cf86a7bfbd82915059239c5179df7b75e1519e27659bc200a",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-1"
+      },
+      "distractors": "2 cm/s usa la riduzione lineare 1−u; 4 ignora la posizione; zero colloca il punto alla parete.",
+      "errors": [],
+      "expectedExact": "3",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-parabolic-profile-01",
+      "manualArithmetic": "u=1/2 dà u²=1/4 e 1−u²=3/4. V=4 cm/s produce v=3 cm/s, fra zero e V.",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. u=1/2 dà u²=1/4 e 1−u²=3/4. V=4 cm/s produce v=3 cm/s, fra zero e V.",
+      "physicalAssumptions": "Tubo diritto rigido circolare, liquido newtoniano incomprimibile, laminare stazionario pienamente sviluppato, parete ferma e no-slip. Profilo assegnato v=V(1−u²), V>0, u=s/R distanza radiale pura. Numeri interni 0<u<1, asse/parete come limiti espliciti; vincoli fra prove e non nel tempo.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "14e58634aaf849aba495bf436fe3024149c8d63e956128cecb0bc4e7489a89ca",
+      "scientificAssetReview": "XML e rendering completo letti. Profilo origine(100,530), scale u 300 px/unità e v 60 px/(cm/s). Bezier P 0(100,290), P 1(250,290), P 2(400,530): u=t, v=4−4 t², quindi passa esattamente per(1/2,3), non interpolazione arbitraria. Quattro celle uguali mostrano 3/4, dichiarate non aree del tubo. Pannello distinto vincolo V=8 u e v=3, fattorizzazione e due radici interne con bound 3<√13<4, massimi diversi fra prove.",
+      "sourceSha256": "da563baf963bd74c5576de0bb15c4ce81355c879f3c794fb80957aebed56ba56",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetChecksums": {},
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "candidateSha256": "0918f86225362019f7f67dd06fa8f26e9c9c98c6f2ba719530ed78bc1bb26b4b",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-1"
+      },
+      "distractors": "cm è lunghezza; 1 unità di u; s/cm velocità inversa; cm²/s ha una lunghezza di troppo.",
+      "errors": [],
+      "expectedExact": "cm/s",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-parabolic-profile-02",
+      "manualArithmetic": "u=s/R è puro; v mantiene unità cm/s e dimensione L/T. 1 cm/s=10⁻² m/s. Nessun calcolo numerico autonomo richiesto.",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. u=s/R è puro; v mantiene unità cm/s e dimensione L/T. 1 cm/s=10⁻² m/s. Nessun calcolo numerico autonomo richiesto.",
+      "physicalAssumptions": "Tubo diritto rigido circolare, liquido newtoniano incomprimibile, laminare stazionario pienamente sviluppato, parete ferma e no-slip. Profilo assegnato v=V(1−u²), V>0, u=s/R distanza radiale pura. Numeri interni 0<u<1, asse/parete come limiti espliciti; vincoli fra prove e non nel tempo.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "dfc7094cbed97628011285f9f76d783c73f632fd13827d6a86c9ace2d1943642",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "sourceSha256": "366f6239e7568ff923ec70034e3cca14fa1b02ecdbe8676df4f5d0da2e798139",
+      "verificationMode": "AI_CONCEPTUAL"
+    },
+    {
+      "assetChecksums": {
+        "parabolic-profile-progressive.svg": "4e35e38202efb35be2e82955495bc5837f186e53220257e453f1375ef3446959"
+      },
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "candidateSha256": "857446b22833d1d9872ee3109cbfb1f9e6c6d1aae44f8cbee206f78756cb3ee2",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-1"
+      },
+      "distractors": "Invertire i limiti contraddice l’aderenza. Valori uguali indicano un profilo piatto; V/2 è media d’area, non massimo.",
+      "errors": [],
+      "expectedExact": "Sull’asse v=v_max; alla parete v=0",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-parabolic-profile-03",
+      "manualArithmetic": "Profilo esteso ai bordi: u=0 dà v=V sull’asse; u=1 dà v=0 per aderenza alla parete. La media d’area è V/2 da integrale 2∫₀¹ V(1−u²)u du.",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Profilo esteso ai bordi: u=0 dà v=V sull’asse; u=1 dà v=0 per aderenza alla parete. La media d’area è V/2 da integrale 2∫₀¹ V(1−u²)u du.",
+      "physicalAssumptions": "Tubo diritto rigido circolare, liquido newtoniano incomprimibile, laminare stazionario pienamente sviluppato, parete ferma e no-slip. Profilo assegnato v=V(1−u²), V>0, u=s/R distanza radiale pura. Numeri interni 0<u<1, asse/parete come limiti espliciti; vincoli fra prove e non nel tempo.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "f4b02ac0270157697abfd653d4d537b4ac750f59d207ac0cbb6f6ec898255eb3",
+      "scientificAssetReview": "XML e rendering completo letti. Profilo origine(100,530), scale u 300 px/unità e v 60 px/(cm/s). Bezier P 0(100,290), P 1(250,290), P 2(400,530): u=t, v=4−4 t², quindi passa esattamente per(1/2,3), non interpolazione arbitraria. Quattro celle uguali mostrano 3/4, dichiarate non aree del tubo. Pannello distinto vincolo V=8 u e v=3, fattorizzazione e due radici interne con bound 3<√13<4, massimi diversi fra prove.",
+      "sourceSha256": "3caf3d8af61c15e4789fdf815c7890ccec8aefa07942eb404876a47fbf561af6",
+      "verificationMode": "AI_CONCEPTUAL"
+    },
+    {
+      "assetChecksums": {},
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "candidateSha256": "33803ef0d30eede4ac7aca32c78fe1c7791a28581706c6e7cc8c119ef2388347",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-1"
+      },
+      "distractors": "4/3 applica il rapporto inverso 4/9 alla velocità iniziale 3. 9 copia il massimo; invariata e zero ignorano le condizioni.",
+      "errors": [],
+      "expectedExact": "Da 3 a 27/4 cm/s",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-parabolic-profile-04",
+      "manualArithmetic": "Fattore locale 3/4 invariato: V=4→9 dà v=3→27/4 cm/s; confronti fra regimi stazionari.",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Fattore locale 3/4 invariato: V=4→9 dà v=3→27/4 cm/s; confronti fra regimi stazionari.",
+      "physicalAssumptions": "Tubo diritto rigido circolare, liquido newtoniano incomprimibile, laminare stazionario pienamente sviluppato, parete ferma e no-slip. Profilo assegnato v=V(1−u²), V>0, u=s/R distanza radiale pura. Numeri interni 0<u<1, asse/parete come limiti espliciti; vincoli fra prove e non nel tempo.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "4a419a528586b5b1731744106b16a580afed6df4409fc32ecac11f3e436b22f3",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "sourceSha256": "322242d7e161412fbb810323cc9f3f7c0168556aa1cd769c3139a4ee746a09a8",
+      "verificationMode": "AI_CONCEPTUAL"
+    },
+    {
+      "assetChecksums": {},
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "candidateSha256": "8c98323ba753cee38a2cb24cfcd6b67a0f7668be4bf7f42a29c3a13124329051",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-1"
+      },
+      "distractors": "Moltiplicare ancora per 3/4 produce 9/4 cm/s, inferiore al locale e quindi impossibile come massimo.",
+      "errors": [],
+      "expectedExact": "4",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-parabolic-profile-05",
+      "manualArithmetic": "V=v/(1−u²)=3/(3/4)=4 cm/s. Denominatore positivo per u<1; V supera la misura locale.",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. V=v/(1−u²)=3/(3/4)=4 cm/s. Denominatore positivo per u<1; V supera la misura locale.",
+      "physicalAssumptions": "Tubo diritto rigido circolare, liquido newtoniano incomprimibile, laminare stazionario pienamente sviluppato, parete ferma e no-slip. Profilo assegnato v=V(1−u²), V>0, u=s/R distanza radiale pura. Numeri interni 0<u<1, asse/parete come limiti espliciti; vincoli fra prove e non nel tempo.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "4de54769fb7bba0a090c85701c021428ebcd74fddb2226b103b41cb376226724",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "sourceSha256": "c358c9cce9c48778566a9c30e155d7d9f0bb3f23f4962345241327599d0bd767",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetChecksums": {},
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "candidateSha256": "63af434e8b909bcf64a2b7c509476f84a2206b6e539a2ad521ace6254de6dcb7",
+      "dimension": {},
+      "distractors": "1/4 è u²; la distanza dimensionale s non è identificata senza R. Il ramo negativo non è una distanza radiale.",
+      "errors": [],
+      "expectedExact": "1/2",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-parabolic-profile-06",
+      "manualArithmetic": "u²=1−v/V=1−3/4=1/4. Radice positiva u=1/2 perché s è distanza; negativo non è coordinata radiale ammessa.",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. u²=1−v/V=1−3/4=1/4. Radice positiva u=1/2 perché s è distanza; negativo non è coordinata radiale ammessa.",
+      "physicalAssumptions": "Tubo diritto rigido circolare, liquido newtoniano incomprimibile, laminare stazionario pienamente sviluppato, parete ferma e no-slip. Profilo assegnato v=V(1−u²), V>0, u=s/R distanza radiale pura. Numeri interni 0<u<1, asse/parete come limiti espliciti; vincoli fra prove e non nel tempo.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "1e032a3d918ba9cf3e8222087894770fc3cbf57eb37dfe58b080dcf1ac7b5a4b",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "sourceSha256": "997789d82766fd067cea00204744715c0f226a0b8cf38cfbaeab9ae6e3807570",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetChecksums": {},
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "candidateSha256": "615cf456097154e805f37d68abc5311d5d533d3ab0592903099a28bcd11fc33a",
+      "dimension": {},
+      "distractors": "27/32 è il reciproco; 8/9 il fattore locale di B; 2/3 il rapporto delle distanze; 1 ignora lo spostamento.",
+      "errors": [],
+      "expectedExact": "32/27",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-parabolic-profile-07",
+      "manualArithmetic": "B a u=1/3: v=4(1−1/9)=32/9 cm/s. Rapporto con 3: 32/27.",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. B a u=1/3: v=4(1−1/9)=32/9 cm/s. Rapporto con 3: 32/27.",
+      "physicalAssumptions": "Tubo diritto rigido circolare, liquido newtoniano incomprimibile, laminare stazionario pienamente sviluppato, parete ferma e no-slip. Profilo assegnato v=V(1−u²), V>0, u=s/R distanza radiale pura. Numeri interni 0<u<1, asse/parete come limiti espliciti; vincoli fra prove e non nel tempo.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "f2f296fa1cc4e21e5a8d097892969b2485353e0bc2a9cd228436a53b61bb0042",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "sourceSha256": "dba1fc19d578a859f48a454d9a06f143076602ef13a85e48c877ee6eca3b95aa",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetChecksums": {},
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "candidateSha256": "10f46b4ddb453a83a7d405ded5c7b89b63fd2042f120cc5c618cdd1d184b894c",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-1"
+      },
+      "distractors": "−3 inverte l’ordine; 6 copia la proposta; 0 la accetta; 3/2 dimezza lo scarto.",
+      "errors": [],
+      "expectedExact": "3",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-parabolic-profile-08",
+      "manualArithmetic": "Proposta 6 supera già V=4; corretto 3 e scarto con segno 6−3=+3 cm/s.",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Proposta 6 supera già V=4; corretto 3 e scarto con segno 6−3=+3 cm/s.",
+      "physicalAssumptions": "Tubo diritto rigido circolare, liquido newtoniano incomprimibile, laminare stazionario pienamente sviluppato, parete ferma e no-slip. Profilo assegnato v=V(1−u²), V>0, u=s/R distanza radiale pura. Numeri interni 0<u<1, asse/parete come limiti espliciti; vincoli fra prove e non nel tempo.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "68bb1c3d137fd79ceb6d9806b58456246703cb39bb804062060ba8f5c59b1fe2",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "sourceSha256": "1762b495d584df190aa73ac7975136e52971120214d2c8a678e3d5a00ae9e25a",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetChecksums": {},
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "candidateSha256": "a4bf6defad1a6847b26e5ec16f9ff5ad5b604cb25bf6a77a7342a42f61fd8775",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-1"
+      },
+      "distractors": "Moltiplicare riduce ancora. 1−u e u² omettono parti del profilo; la radice finale ha dimensione errata.",
+      "errors": [],
+      "expectedExact": "v_max = v / (1 − u²)",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-parabolic-profile-09",
+      "manualArithmetic": "Dividere v=V(1−u²) per la parentesi positiva: V=v/(1−u²). Non si estrae la radice di V, che compare alla prima potenza.",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Dividere v=V(1−u²) per la parentesi positiva: V=v/(1−u²). Non si estrae la radice di V, che compare alla prima potenza.",
+      "physicalAssumptions": "Tubo diritto rigido circolare, liquido newtoniano incomprimibile, laminare stazionario pienamente sviluppato, parete ferma e no-slip. Profilo assegnato v=V(1−u²), V>0, u=s/R distanza radiale pura. Numeri interni 0<u<1, asse/parete come limiti espliciti; vincoli fra prove e non nel tempo.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "ab5010b4103f197282f232ce1e1a91f5812c99014065d0d774fd72c94be99f50",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "sourceSha256": "5f435d52ba6330efd461cc8443067b5ac90554f660f4c23c5731d390b1f1a761",
+      "verificationMode": "AI_CONCEPTUAL"
+    },
+    {
+      "assetChecksums": {},
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "candidateSha256": "ccf36831ee232c27d0637339ff6ea4c4c6201f5147d12986fa24b0da0cf17244",
+      "dimension": {},
+      "distractors": "U/D inverte la geometria; i semplici fattori di κ₂ ignorano il termine uno. D/U omette il cambiamento del massimo.",
+      "errors": [],
+      "expectedExact": "κ₁ D / U",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-parabolic-profile-10",
+      "manualArithmetic": "U=1−u_A², D=1−κ₂²u_A². v_B=κ₁V_A D e v_A=V_A U danno κ₁D/U; dominio κ₂u_A<1.",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. U=1−u_A², D=1−κ₂²u_A². v_B=κ₁V_A D e v_A=V_A U danno κ₁D/U; dominio κ₂u_A<1.",
+      "physicalAssumptions": "Tubo diritto rigido circolare, liquido newtoniano incomprimibile, laminare stazionario pienamente sviluppato, parete ferma e no-slip. Profilo assegnato v=V(1−u²), V>0, u=s/R distanza radiale pura. Numeri interni 0<u<1, asse/parete come limiti espliciti; vincoli fra prove e non nel tempo.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "1cfb7aac2d752de0d5f1ef2d1c9918cfe1e7de3f5302fbd7fea11e7787461aa4",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "sourceSha256": "dfce39cf5f0731c05f96f8905a82b0793cae29d7a8b0291d18043c9e3670a930",
+      "verificationMode": "AI_CONCEPTUAL"
+    },
+    {
+      "assetChecksums": {},
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "candidateSha256": "95ba58d9d45f2de445e7164b4c2ea1c9a702bc864f438b3e1e111149825078f6",
+      "dimension": {},
+      "distractors": "3/8 è il reciproco; 9/4 segue solo i massimi; 32/27 segue solo i fattori locali; 8 è la velocità numerica.",
+      "errors": [],
+      "expectedExact": "8/3",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-parabolic-profile-11",
+      "manualArithmetic": "B: V=9, u=1/3, v=9·8/9=8 cm/s. A=3; rapporto 8/3.",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. B: V=9, u=1/3, v=9·8/9=8 cm/s. A=3; rapporto 8/3.",
+      "physicalAssumptions": "Tubo diritto rigido circolare, liquido newtoniano incomprimibile, laminare stazionario pienamente sviluppato, parete ferma e no-slip. Profilo assegnato v=V(1−u²), V>0, u=s/R distanza radiale pura. Numeri interni 0<u<1, asse/parete come limiti espliciti; vincoli fra prove e non nel tempo.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "2bfb051b04c680a457fadcac82f7a376f9f4659b2ecf14175fc12e5972706aa2",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "sourceSha256": "20b4a5af50b3d89066e6b0f02e92af55c94b60f51a9578a5a344e387620aceed",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetChecksums": {},
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "candidateSha256": "a7452280b6c978955e9f2deaf121e5244e96f6f9011cfe7dd1209f6feaa78e3c",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-1"
+      },
+      "distractors": "11 è somma; 11/4 dimezza ancora; 1547/288 usa ingressi medi; 5 è differenza.",
+      "errors": [],
+      "expectedExact": "11/2",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-parabolic-profile-12",
+      "manualArithmetic": "Media (3+8)/2=11/2 cm/s. Ingressi medi V=13/2, u=5/12 danno (13/2)(119/144)=1547/288; 11/2 meno questo valore è 37/288 cm/s.",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Media (3+8)/2=11/2 cm/s. Ingressi medi V=13/2, u=5/12 danno (13/2)(119/144)=1547/288; 11/2 meno questo valore è 37/288 cm/s.",
+      "physicalAssumptions": "Tubo diritto rigido circolare, liquido newtoniano incomprimibile, laminare stazionario pienamente sviluppato, parete ferma e no-slip. Profilo assegnato v=V(1−u²), V>0, u=s/R distanza radiale pura. Numeri interni 0<u<1, asse/parete come limiti espliciti; vincoli fra prove e non nel tempo.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "f16d41b90123e5863edaabc32f39db14af0a201edd1ef36d2f1bfecba293e56f",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "sourceSha256": "897cadcd28dc70136beefe23f25354ac1a6bc3b8457453f2427bd61cc19f40a0",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetChecksums": {},
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "candidateSha256": "d5727f40880ed693d269332e240610a2f55f335c33aad0f6b52489ebe02422da",
+      "dimension": {},
+      "distractors": "3/2 è il reciproco; 1/3 è la coordinata B; 8/3 il target di velocità; 4/9 il quadrato del rapporto delle coordinate.",
+      "errors": [],
+      "expectedExact": "2/3",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-parabolic-profile-13",
+      "manualArithmetic": "Target v_B=(8/3)3=8 e V_B=9: u_B²=1/9, u_B=1/3. Rapporto (1/3)/(1/2)=2/3.",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Target v_B=(8/3)3=8 e V_B=9: u_B²=1/9, u_B=1/3. Rapporto (1/3)/(1/2)=2/3.",
+      "physicalAssumptions": "Tubo diritto rigido circolare, liquido newtoniano incomprimibile, laminare stazionario pienamente sviluppato, parete ferma e no-slip. Profilo assegnato v=V(1−u²), V>0, u=s/R distanza radiale pura. Numeri interni 0<u<1, asse/parete come limiti espliciti; vincoli fra prove e non nel tempo.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "2264f9c2ce5d2d1df455ea9b4642b4bac17f0b736e7c6fc873568c5f11b81392",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "sourceSha256": "558cd575e01d0935318edfff49a053909342291f9be1656a7861016a1dc9ea10",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetChecksums": {},
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "candidateSha256": "6ef3ff492b1656c342544ffa13cf1463b066345f93df9e0d7d4fd7b241c47f60",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-1"
+      },
+      "distractors": "24 è il display e 8 la velocità locale. Occorre ancora dividere per 8/9 per ricostruire il massimo.",
+      "errors": [],
+      "expectedExact": "9",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-parabolic-profile-14",
+      "manualArithmetic": "Gain 9/(3 cm/s)=3 s/cm. S_B=24 dà v_B=8; V_B=8/(8/9)=9 cm/s.",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Gain 9/(3 cm/s)=3 s/cm. S_B=24 dà v_B=8; V_B=8/(8/9)=9 cm/s.",
+      "physicalAssumptions": "Tubo diritto rigido circolare, liquido newtoniano incomprimibile, laminare stazionario pienamente sviluppato, parete ferma e no-slip. Profilo assegnato v=V(1−u²), V>0, u=s/R distanza radiale pura. Numeri interni 0<u<1, asse/parete come limiti espliciti; vincoli fra prove e non nel tempo.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "ab1eba608c0cda3a1d722ca1993b31bc5aa3e96ff2542f1f70723b7c6bff2ec8",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "sourceSha256": "1c613c48093b4e5310b7f8fcc340fb5273ccf08b113ff84634ec8e32b4631768",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetChecksums": {},
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "candidateSha256": "2c2513c5585a9e14093936f74737eaee25820dc6340f499dc0224c8b228bb0a4",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-1"
+      },
+      "distractors": "Massimi 4,8,27/4,18 cm/s danno letture 7,13,89/8,28 a u=1/2; solo 9 cm/s dà 29/2.",
+      "errors": [],
+      "expectedExact": "9",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-parabolic-profile-15",
+      "manualArithmetic": "Gain (17−7)/(8−3)=2 s/cm, z=1. S_C=29/2 dà v_C=(27/2)/2=27/4; V_C=(27/4)/(3/4)=9 cm/s.",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Gain (17−7)/(8−3)=2 s/cm, z=1. S_C=29/2 dà v_C=(27/2)/2=27/4; V_C=(27/4)/(3/4)=9 cm/s.",
+      "physicalAssumptions": "Tubo diritto rigido circolare, liquido newtoniano incomprimibile, laminare stazionario pienamente sviluppato, parete ferma e no-slip. Profilo assegnato v=V(1−u²), V>0, u=s/R distanza radiale pura. Numeri interni 0<u<1, asse/parete come limiti espliciti; vincoli fra prove e non nel tempo.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "9f1bf047480a5666c97a100c7fe600156e8332eb3646dd163b578f59600563dd",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "sourceSha256": "3d0b4380d23b83c8769c2625f534e314c63f8c830e6e236fb41fa9af99476b86",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetChecksums": {},
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "candidateSha256": "430fc9a539e767cd173dbafa0fdbf09c347fc639a0eaa10bad1b2ff651ad3f1e",
+      "dimension": {},
+      "distractors": "Una soluzione tronca dopo il primo fattore; tre conta la radice negativa. Nessuna e infinite contraddicono la fattorizzazione e la cubica non nulla.",
+      "errors": [],
+      "expectedExact": "Due",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-parabolic-profile-16",
+      "manualArithmetic": "V=(8 cm/s)u: 8 u³−8 u +3=0=(2 u −1)(4 u²+2 u −3). Radici 1/2,(√13−1)/4,−(1+√13)/4. 3<√13<4 prova 1/2<u_b<3/4; due distinte interne e una negativa. Conteggio due, senza decimalizzare radicali.",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. V=(8 cm/s)u: 8 u³−8 u +3=0=(2 u −1)(4 u²+2 u −3). Radici 1/2,(√13−1)/4,−(1+√13)/4. 3<√13<4 prova 1/2<u_b<3/4; due distinte interne e una negativa. Conteggio due, senza decimalizzare radicali.",
+      "physicalAssumptions": "Tubo diritto rigido circolare, liquido newtoniano incomprimibile, laminare stazionario pienamente sviluppato, parete ferma e no-slip. Profilo assegnato v=V(1−u²), V>0, u=s/R distanza radiale pura. Numeri interni 0<u<1, asse/parete come limiti espliciti; vincoli fra prove e non nel tempo.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "764f3de39dd893c92d5156f3d348d85d0085671b8c6481aa3c4801ec578ba1b1",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "sourceSha256": "0c94c84895539e3ca9c6eb7f47f9b361d089756801b0b51ac91038bf2de15c82",
+      "verificationMode": "AI_CONCEPTUAL"
+    }
+  ],
+  "reviewedCandidateCommit": "f5c8b2b9cca71bee24d17eed6078d9c86c250080",
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "schemaVersion": "1.0.0",
+  "source": {
+    "commit": "5cfbdcb055ba3ba136f97fb56e997f06e6cf3605",
+    "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U3-04.json",
+    "reference": "All80 original U3-04 prompts in B112–116 individually read from pinned Git source and derivations persisted before candidate packages were opened. No numeric result or key was handed off before source-first derivation for this family. All16 final candidates, every option, formula, hint, feedback and figure caption read in full; scientific SVG XML and full native rendering read. Never imports candidate authoring. Real C2-L005/L006/L007/L008/L009 lessons reread during this U3-04 work."
+  },
+  "verifierSha256": "aecfda6beebe1e10068818caf20b2ae3546fb44d4861b7e572469a57e5e69cc6"
+}

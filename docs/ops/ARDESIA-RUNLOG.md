@@ -1,3 +1,22 @@
+## Checkpoint corrente — 1.728 quesiti e 204 attività, 25 novembre 2026
+
+Generazione `98e03e39c8eef3963bb2c4e71da88a486601332574c0f9a908ac89cc5b9677fb`, manifest `2445ee1f9604a6b6a13ecd62305e83b42f1af4a0143a6e110cca857479b7f454`.
+Contabilizzati tutti i 4.606 quesiti e le 385 attività. Revisioni complete: **1.728 quesiti DRAFT e 204 attività**; restano **2.878 quesiti e 181 attività**, tutte esperienze. U1, U2 e U3-01..04 revisionati in bozza. Prossimo ID del checkpoint: `u3-network-stages-01`, batch `network-stages-120`.
+
+I 160 nuovi quesiti U3-04 coprono svuotamento, trasporto, Poiseuille, reti, dissipazione, profili, Couette e gradiente pressorio. Autori e verificatori distinti hanno risolto ogni ID: 245 controprove, 375 configurazioni Hypothesis, identità fresh/saved, domini, unità, inversi, conti manuali e distrattori. Due motivazioni testuali corrette dagli autori e rilette: una radice attribuita impropriamente a9 e la definizione dimensionale del pascal. Chiavi e formule invariate. I 480 casi browser finali sono terminati con0; due pacchetti rifatti dopo i feedback, con hash nuovi verificati. Totale5.226 anteprime valide:5.184 quesiti e42 delle14 nuove edizioni di attività. Profilo effettivo ancora f897, senza modifiche al runtime in questo incremento.
+
+Sette esempi di copertura034 e tutti i dieci banchi035/036 aggiungono17 attività. Banchi verificati nei consumer reali:32 casi3D/fallback/stati limite,1.423 configurazioni contro oracoli indipendenti,28 esercizi distinti con conti manuali, unità e risposte errate/corrette. Le letture numeriche osservative sono distinte dai calcoli assegnati; radicali semplici possono essere delimitati con quadrati razionali. Il controesempio preliminare del piano è ritirato: la guardia UI già presente mantiene μd≤μs. Claim e correzione conservati, nessun fix runtime o credito prima della review completa. Axe e le fixture non certificano da sole tutti i criteri WCAG/UDL o apprendimento reale.
+
+Suite tracciata: **415 test PASS in197,642s**; inventario dello startingHead `3af76dbd9000898f22708c62fe5cef45eb692fab` in `editorial/reviews/local-regressions-1728-20261125.json`. Fresh e incrementale identici. Coesistenza:1.742 edizioni nello stesso SQLite temporaneo, secondo import senza scritture, tutti i991 pubblicati, live head e storia invariati. Adattività su fixture private sintetiche, non su tentativi reali. Human NOT_RUN; nuove pubblicazioni zero;93 domande d’esame protette.
+
+Prove storiche037/038 aggiunte fuori registro dopo la suite:16 test mirati PASS, senza accreditarne le attività.037 ha3PASS/3FAIL: due roundtrip dei numeri raggruppati rifiutati dall’input, un trasferimento95° non manuale.038 ha2PASS/2FAIL: altro95° e residui trigonometrici mostrati come componenti non nulle agli angoli esattamente ortogonali/antiparalleli. Il primo giudizio0383/1 è archiviato byte-identico e corretto esplicitamente. Questi difetti dei consumer sono distinti dalla correttezza delle leggi e dei valori della fonte. Non sono stati nascosti cambiando etichette o tolleranze.
+
+Il canone remoto contiene1.568/187: PR#362 MERGED su `0970417edf5114b5cede22b12e94e1b5be306919`, head `b469b3b8f7ac0879236b98716b51d1e1a9b8e259`,24SUCCESS/1SKIPPED prima del merge e **14/14 post-merge SUCCESS** nei run45530466030/45530466044, report versionato. Release1568 SHA256 `3240d5e5568270c7993ad521068b95375b9af52452a4785994315bbd105c7a8c`, zero sorgenti/figure DRAFT distribuiti. Questo1728/204 è su `feat/cric-u3-viscosity`, ancora da integrare con i propri gate.
+
+La patch per esperienze è separata in `/private/tmp/cric-experiment-contract-fix`, branch `feat/cric-experiment-parameterization`: nuova selezione didattica opzionale di due input sulla griglia, y sempre dalla legge installata e fisica/references immutabili; formatter copiabile senza punti delle migliaia; zeri geometrici esatti senza soglia globale sulle piccole quantità. Nuove edizioni118/119 ancora da produrre e verificare. La patch non è ancora integrata e cambierà il fingerprint: dopo il suo merge occorre rifare davvero le anteprime, non ritoccare f897 nei report. Il lavoro su039 e le esperienze successive continua.
+
+Dei199 ID con vecchi controlli tecnici,88 sono ora completamente revisionati e111 restano parziali. Code distinte:2.878 revisioni complete mancanti,2.767 sole risoluzioni indipendenti. Le100 revisioni Pro restano NOT_IDENTIFIED. I160 candidati U3-05 fuori registro proseguono con review incrociata; U4-01 ha ownership130–139 e corrisponde a onde, courseC5, nonC3. Ownership non completa ID. Mandato aperto; pubblicazione e vera approvazione umana restano gate separati. Le sezioni seguenti sono snapshot storici.
+
 ## Checkpoint corrente — 1.568 quesiti e 187 attività, 25 novembre 2026
 
 Generazione `dbd3d5d8473091ae0faf2d32ba1f76d001b35fb2540a380df0bd77e62d584ae8`, manifest `e297f6940fed78c6e46634870dbe1459e55c871bf68558075ab01a42c87818bc`.
@@ -1661,3 +1680,83 @@ Proseguire: chiudere la CI post-merge #360; integrare 1.248/129 sulla SHA esatta
 consolidare 1.408 dopo review completa di U3-02; continuare tutte le famiglie e le
 attività residue, senza attendere firme umane per l'authoring. La pubblicazione
 resta un gate separato. Le sezioni seguenti sono snapshot storici.
+
+## Checkpoint corrente — 1.888 quesiti e 214 attività, 25 novembre 2026
+
+Generazione `447461e5791774c155dcf8058f41b14f2e90a49e92b089a31aeffbdc00bb262e`, manifest `25f072fab56c8510b6a9d190d1ec890415138dc74b1976abe9bb0331dc3f567f`. Tutti i 4.606 quesiti e 385 attività contabilizzati. **1.888 revisioni individuali DRAFT e 214 attività complete**; restano 2.718 quesiti e 171 attività. U1, U2 e tutti gli shard U3 revisionati in bozza. Prossimo ID operativo `u4-wave-wavelength-01`, lotto130; l’ordine operativo per famiglie è distinto dall’ordinamento lessicografico del backlog.
+
+Le 160 nuove revisioni U3-05 hanno autori e verificatori distinti: reti multistadio, colonna accelerata, forza su film, lavoro superficiale, Laplace per gocce e alveoli, surfattante, due gocce, capillarità, distacco e frammentazione.245 controprove, 400 configurazioni Hypothesis e 480 nuove anteprime ROOT con uscita 0. Corrette tre motivazioni: due confronti dimensionali e il prodotto newton per metro nel joule, senza cambiare chiavi. Riletti SVG e ipotesi per ID. Totale 5.706 anteprime registrate sul runtime f897:5.664 quesiti e 42 delle14 nuove edizioni di attività.
+
+Dieci esperienze039/040 aggiunte: moti, secanti, caduta, parabola e accelerazione centripeta, con 118 casi nei consumer effettivi3D/fallback,160 configurazioni di controllo e 489 osservazioni temporali. Radicali semplici documentati mediante limiti razionali, istante di inversione distinto dalla derivata definita. Sono prove indipendenti delle attività originali, non nuove pubblicazioni. Nessun cambiamento di formule, parser o tolleranze in questo checkpoint.
+
+Suite locale tracciata: **481 test PASS in 419,121 s**,75 moduli dello startingHead `ce4eaa150922a747e04b48d2b0d1eedb496384f3`, hash degli input invariati. Inventario, esito e trascritto riproducibile in `editorial/reviews/local-regressions-1888-20261125.json`. Fresh e incrementale coincidono. Coesistenza di 1.902 edizioni nello stesso SQLite temporaneo, secondo import senza scritture,991 pubblicati/live head/storia/tentativi invariati; adattività e diario solo su fixture sintetiche private. La prova130–134 aggiunta dopo lo snapshot ha 11 test mirati PASS in 8,065 s ed è fuori dai 481.
+
+Il canone remoto contiene 1.728/204: PR #363 MERGED su `831b73fa71076b2e9b363006ffd94a350f22fe90`, head `493df796527bdb31b71f223343384656258e8e3a`,24 SUCCESS/1 SKIPPED pre-merge. Post-merge ancora in corso sui run 45540501792/45540501766: non dichiarare già14 PASS. Il canone precedente0970417 ha 14/14 post-merge SUCCESS. Release1728 SHA256 `a3b377d8f8fc07416d760c440be0ced950aa94f5c8ead1a851e316c3a52f9c4e`, zero sorgenti/figure DRAFT distribuiti. Questo1888/214 è sul successore `feat/cric-u3-surface`, da consolidare con i gate della SHA finale.
+
+Le prove storiche037/038/041 restano fuori registro:95°/40° non manuali, separatori delle migliaia non copiabili e frecce con scale incompatibili. Core e nuove edizioni118/119/140 sono isolate sul ramo `feat/cric-experiment-parameterization`. Il revisore ha inoltre trovato che il banco ignorava i blocchi editoriali: corretto riusando il lettore esistente in un pannello disponibile da Comprendi, con 12 casi tecnici effettivi riusciti; revisione scientifica distinta ancora in corso. Il nuovo runtime non è integrato: dopo il merge richiede vera riesecuzione delle prove dipendenti, mai ritag di f897.
+
+Tutti160 candidati U4-01 sono salvati con ownership disgiunta e review incrociata in chiusura. Correzioni dei feedback13215 e 13801 rilette dal revisore; gli altri contenuti e le chiavi non sono stati modificati. U4-02 continua sui112 ID reali nei lotti 141–147;140 è riservato all’attività. Questi lavori fuori registro non aumentano i conteggi del checkpoint.
+
+Dei 199 vecchi controlli tecnici,97 ID hanno ora una revisione completa e 102 restano parziali. Mancano 2.718 revisioni complete e 2.616 sole risoluzioni indipendenti: code distinte. Le 100 revisioni Pro restano NOT_IDENTIFIED. Human NOT_RUN, pubblicazioni nuove 0,93 esami protetti. Axe e fixture non certificano tutti i criteri WCAG/UDL o apprendimento reale. Mandato aperto; proseguire senza attendere il gate umano di pubblicazione. Le sezioni seguenti sono snapshot storici.
+
+## Checkpoint corrente — 2.048 quesiti e 214 attività, 25 novembre 2026
+
+Generazione `90d05fb5bd0d0ffda8f110475c4b8af7d923e08987254f670e49ee4ec0476cc0`, manifest `a5aa43a38ec626635c91e45f81de4282b9b9bd2ab8d02be98601a112a3bf2a01`. Tutti i 4.606 quesiti e le 385 attività sono contabilizzati. **2.048 revisioni individuali DRAFT e 214 attività complete**; restano **2.558 quesiti e 171 attività**. U1, U2, U3 e U4-01 revisionati in bozza. Prossimo ID operativo `u4-wave-amplitude-energy-01`, lotto 141, distinto dall’ordinamento lessicografico della coda completa.
+
+I nuovi 160 quesiti U4-01 trattano lunghezza d’onda, eco, periodo ridotto, massimi di velocità/accelerazione, energia, fase spaziale/temporale, intensità sferica ed energia incidente. Autori e verificatori distinti, 245 controprove, 400 configurazioni Hypothesis, ipotesi, unità, conti manuali, inverse e distrattori per ID. Corrette e rilette due motivazioni: il distrattore 36 di 132-15 omette q², e 1/4 in 138-01 omette il fattore p anziché invertire un rapporto uguale a 1. Chiavi/formule/figure e altri record invariati. Le 480 anteprime ROOT finali sono terminate con 0; le 48 di 138 rifatte sul nuovo hash e il vecchio report conservato come superato. Totale 6.186 anteprime valide: 6.144 quesiti e 42 per le 14 nuove edizioni di attività, tutte sul runtime f897.
+
+Fresh e incrementale coincidono. Coesistenza di 2.062 edizioni nello stesso SQLite temporaneo, secondo import senza scritture e tutti i 991 pubblicati/live head/storia/tentativi invariati. Competency graph, diario, ripetizione distinta da trasferimento, autonomia distinta da aiuto e richiamo differito verificati solo su fixture private sintetiche. Nessuna misura di apprendimento reale.
+
+Validazione locale: suite 481 test PASS sul precedente checkpoint 1888, più 11+11 test indipendenti dei nuovi 160 e 3 test della fixture storica (8,065s/2,626s/17,214s). La somma non è dichiarata una singola suite completa sulla 2048: la CI deve eseguire l’intera suite sulla SHA finale. Tutti i lotti scientifici e le integrazioni sono stati rivalidati dalla ricostruzione completa. Il nuovo supporto storico riproduce davvero i difetti f897 dal commit493df79 in un ambiente temporaneo vincolato per hash; nessuna asserzione dei vecchi test rimossa, nessuna firma storica applicata al runtime nuovo.
+
+Il canone remoto contiene 1.728/204: PR #363 MERGED su `831b73fa71076b2e9b363006ffd94a350f22fe90`, head `493df796527bdb31b71f223343384656258e8e3a`, 24 SUCCESS/1 SKIPPED pre-merge e **14/14 post-merge SUCCESS** sui run 45540501792/45540501766, report versionato. Release 1728 SHA256 `a3b377d8f8fc07416d760c440be0ced950aa94f5c8ead1a851e316c3a52f9c4e`, zero sorgenti/figure DRAFT distribuiti. Questo 2048/214 è sul ramo `feat/cric-u3-surface`, ancora da integrare con release e gate della SHA finale.
+
+Core e nuove edizioni sperimentali 118/119/140 restano isolate in `feat/cric-experiment-parameterization`, runtime finale 97cd2aba. Dopo il rilievo del revisore, il banco mostra ora i blocchi nel lettore esistente da Comprendi. 12 casi tecnici reali e 9 anteprime rinnovate sono riusciti; la revisione scientifica distinta delle 16 attività 037/038/041 è ancora in corso. I finding originali restano negativi e immutati. Quando il core sarà integrato, tutte le prove dipendenti dal runtime devono essere realmente rieseguite, senza ritag. U4-02 continua con ownership 141–147 e riformulazioni manuali dei logaritmi, fuori conteggio finché non supera i gate.
+
+Dei 199 vecchi controlli tecnici, 97 hanno ora revisione completa e 102 restano parziali. Mancano 2.558 revisioni complete e 2.456 sole risoluzioni indipendenti: code distinte. Le 100 revisioni Pro restano NOT_IDENTIFIED. Human NOT_RUN, nuove pubblicazioni 0, 93 domande d’esame protette. Axe e fixture non certificano tutti i criteri WCAG/UDL o apprendimento reale. Mandato aperto: proseguire i contenuti senza attendere l’approvazione umana dei lotti precedenti. Le sezioni seguenti sono snapshot storici.
+
+## Stato operativo — PR #364 in CI, runtime nuovo in rivalidazione
+
+Ultimo checkpoint integralmente validato: 2.048 quesiti DRAFT e 214 attività, generazione 90d05fb5, sulla SHA `5a9a0b8fe700034dc2494fe1fce2223ded89bb50`, runtime f897. [PR #364](https://github.com/AndreaMarro/ardesia/pull/364) aperta e congelata su quella SHA; CI in corso, nessun merge dichiarato. Release 2048 riproducibile/smoke e boundary verificati, SHA256 `a62a386c649b4b90bf40f6e4c233cb3ad21af3135bdcc1dc49eeb144f4130eb5`, zero sorgenti e figure DRAFT distribuiti.
+
+Canone remoto: `831b73fa71076b2e9b363006ffd94a350f22fe90`, PR #363 MERGED, 1.728/204, post-merge 14/14 SUCCESS sui run 45540501792/45540501766. Report versionato. Non confondere il checkpoint della feature con il conteggio già canonico.
+
+ROOT `/private/tmp/cric-resident-integrator`, nuovo ramo `feat/cric-experiment-manual-revisions`. Core 32c6763 integrato localmente nel merge `1db37d69ca3d8006fb53b1d713a32a40f1082212`; attuale runtime `97cd2aba7360c632b8d7421f8ccaaa58c00d8e600c14b67d6b74de13a35bea72`. Il checkpoint 2048 resta storico del runtime precedente finché i gate dipendenti non sono realmente rinnovati. Nessun FP ritoccato. `editorial/reviews/runtime-transition-20261125.json` marca CURRENT_RUNTIME_REVALIDATION_PENDING.
+
+Replay esaustivo in corso con il runner esistente `tests/corpus/browser-batches.mjs`, quattro worker, output `/private/tmp/cric-runtime97-all-ui`, log `/private/tmp/cric-runtime97-all-ui.log`. Il processo verifica tutti i lotti registrati e le 14 edizioni correttive già registrate. Le 9 anteprime118/119/140 sono state davvero rifatte sul 97cd nella worktree core, oltre a12 casi tecnici nel banco reale. La revisione scientifica distinta dei 16 ID di037/038/041 continua in `/private/tmp/cric-experiment-contract-fix`; nuovi verifier non sono ancora nel registro. Originali negativi e test riprodotti su vero Git snapshot f897, non sul runtime nuovo mascherato.
+
+035/036/039/040 richiedono nuova lettura delle dipendenze cambiate, veri replay e report attuali prima del prossimo ETL. I test storici037/038/041 usano ora un fixture autentico isolato; nessuna vecchia asserzione rimossa. Il helper ha 3 test e review tecnica distinta, che segnala correttamente che il test di conservazione confronta banco.js e APP, mentre la costruzione scrive solo nel TemporaryDirectory.
+
+I 112 candidati U4-02 sono tutti salvati sui rami autore. ROOT include 141–147; review incrociata in corso. Piccolo finding 144-11 sulle ipotesi per confrontare intensità: autore deve precisare onde progressive codirezionali e stesso coefficiente, poi rilettura distinta e nuovi hash. Non congelare 144 prima di quel fix. Prossimo ID operativo del checkpoint: `u4-wave-amplitude-energy-01`, 141. Ancora 2.558 quesiti e 171 attività sul checkpoint; nessun nuovo credito dai lavori in corso. Human NOT_RUN, nuove pubblicazioni 0, 93 esami protetti. Mandato aperto.
+
+Le sezioni seguenti sono snapshot storici.
+
+
+## Cric — checkpoint 2160/230 e prova completa sul runtime 5405, 25 novembre 2026
+
+Salvata generazione `23f95645`, manifest `bda3dc42`: 2.160 quesiti DRAFT, 230 attività e 17 edizioni correttive. Restano 2.446 quesiti e 155 attività. Fresh e incrementale coincidono su tutti i 55 file. Coesistenza di 2.177 bozze, ripetizione senza scritture, 991 pubblicati e 181 entry point preservati. Tutti i 147 pacchetti e i 6.531 casi di anteprima hanno veri marker terminali. Recuperati soltanto 54 casi autentici; verificati riuso 147/0 e invalidazione selettiva 145/2. Nessun ritag. La pulizia degli helper crash-handler orfani del lotto 144 è documentata per PID e socket; il renderer non è stato segnalato e ha concluso con zero.
+
+La coesistenza ha trovato quattro anchor persi in due lezioni DRAFT, invisibili nell'import per singolo lotto. Tre paragrafi corretti da ROOT, rilettura distinta A, snapshot e RED conservati; aggiunto il controllo generale sui 181 esperimenti. Nessun validatore indebolito. Suite completa: 554 test PASS in 475,907 s, su 84 moduli della fotografia `8fc95a0`, con input e checkpoint invariati. Altri 12 test U5-01 PASS in 2,468 s, dichiarati separatamente; CI finale ancora necessaria.
+
+Diagnostici 045/046 persistiti: undici PASS e cinque FAIL consumer su sedici attività, calcoli manuali corretti. Nessun credito di registrazione. Patch isolata CORE: il primo 47c3 ha prodotto due ulteriori finding visivi; la seconda 805e passa le viste ampie ma ha ancora un callout che nasconde il marker a 320 px. I negativi restano conservati. ROOT resta sul runtime verificato 5405. Tutti i 160 candidati U5-01 sono salvati; le 80 revisioni 153–157 sono complete e gli altri 80 sono in chiusura dopo quattro fix testuali, con chiavi invariate. Le primarie dei revisori sono recuperate dai file reali con le SHA registrate. A prosegue U5-02 nella propria worktree.
+
+Priorità di prosecuzione:
+
+1. Consolidare la release 2160 e aggiornare la stessa PR #364; verificare CI della nuova SHA, merge senza bypass e 14 job post-merge reali. Canone attuale `831b73f`, conteggio storico 1.728/204; accettazione LAB3D-01 ritirata sul canone, correzione solo nella feature.
+2. Chiudere la rilettura B dei fix 148/150/152 e integrare U5-01 tramite il registro esistente, marker autentici e nuovo checkpoint; primo ID `AR-u5-temperature-difference-01`. Proseguire U5-02 con ownership 158–167.
+3. Completare la review distinta 048/049 sul CORE dopo la correzione responsive, preservando i negativi. Prima di cambiare runtime, creare fixture storiche autentiche 5405 e rieseguire i dipendenti.
+4. Riprendere 047 dopo la lettura integrale, senza contare la primaria parametrica come revisione completa. Continuare fino a 4.606/385; le 100 revisioni Pro restano NOT_IDENTIFIED, human NOT_RUN, nuove pubblicazioni zero, 93 esami protetti.
+
+
+## Cric — checkpoint 2320/230, 25 novembre 2026
+
+Registrati tutti i 160 quesiti U5-01 dopo review incrociata completa: 255 controprove e 480 configurazioni Hypothesis; quattro testi corretti e riletti. Recuperati 384 casi soltanto da otto marker terminali autentici con input identici; i due pacchetti mancanti sono stati rieseguiti. Macro di 157 pacchetti e 7.011 casi con uscita zero, riuso finale 157/0. Coesistenza di 2.337 bozze, zero scritture ripetute, 991 pubblicati e 181 entry point invariati. Fresh e incrementale coincidono: generazione `67fe90ae`, manifest `03ee6336`. Restano 2.286 quesiti e 155 attività. Fonte main riconfermata su `5cfbdcb0`.
+
+Le suite mirate nuove hanno 12+13 test ROOT PASS; la precedente completa da 554 test rimane legata alla fotografia 2160. Registrare la nuova completa 2320 prima della CI finale. Il CORE c177 ha ora review indipendente su tutti i sedici consumer: 196 casi browser e nove test. Non è ancora integrato nel ROOT né nel canone. Negativi storici e due candidati respinti conservati, nessun ritag. Tutti i candidati U5-02 sono salvati sui rami autore e la review incrociata prosegue.
+
+Prossimi passi:
+
+1. Congelare la PR #364 sulla 2320 con release e CI della SHA effettiva; merge senza bypass e 14 job post-merge reali.
+2. Preparare fixture 5405 e rivalidazione del CORE c177, preservando il ROOT congelato.
+3. Integrare dopo review i lotti 158–167, primo `AR-u5-cyclic-work-01`.
+4. Riprendere 047 completa e continuare tutto il corpus, mantenendo human NOT_RUN e nuove pubblicazioni zero.

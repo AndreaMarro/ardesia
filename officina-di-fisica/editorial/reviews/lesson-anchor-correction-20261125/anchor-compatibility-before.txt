@@ -1,0 +1,26 @@
+test_all_registered_lesson_drafts_preserve_existing_experiment_entry_points (tests.corpus.test_lesson_experiment_anchor_compatibility.LessonExperimentAnchorCompatibility.test_all_registered_lesson_drafts_preserve_existing_experiment_entry_points) ... FAIL
+test_historical_experiments_have_their_original_paragraphs (tests.corpus.test_lesson_experiment_anchor_compatibility.LessonExperimentAnchorCompatibility.test_historical_experiments_have_their_original_paragraphs) ... ok
+
+======================================================================
+FAIL: test_all_registered_lesson_drafts_preserve_existing_experiment_entry_points (tests.corpus.test_lesson_experiment_anchor_compatibility.LessonExperimentAnchorCompatibility.test_all_registered_lesson_drafts_preserve_existing_experiment_entry_points)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-resident-integrator/officina-di-fisica/tests/corpus/test_lesson_experiment_anchor_compatibility.py", line 56, in test_all_registered_lesson_drafts_preserve_existing_experiment_entry_points
+    self.assertEqual(missing_anchors(effective, self.experiments), [])
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [('SIM-C1-L002-01', 'C1-L002', 'Nel triang[246 chars]un')] != []
+
+First list contains 4 additional elements.
+First extra element 0:
+('SIM-C1-L002-01', 'C1-L002', 'Nel triangolo rettangolo il coseno è cateto')
+
++ []
+- [('SIM-C1-L002-01', 'C1-L002', 'Nel triangolo rettangolo il coseno è cateto'),
+-  ('SIM-C1-L002-04', 'C1-L002', 'Il prodotto scalare misura quanto un vettore'),
+-  ('SIM-C2-L007-02', 'C2-L007', 'In un tubo diritto e circolare un'),
+-  ('SIM-C2-L007-05', 'C2-L007', 'In un tubo diritto e circolare un')]
+
+----------------------------------------------------------------------
+Ran 2 tests in 1.691s
+
+FAILED (failures=1)

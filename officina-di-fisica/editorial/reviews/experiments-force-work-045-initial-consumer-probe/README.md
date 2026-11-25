@@ -1,0 +1,1 @@
+Initial33-case consumer instrument preserved before final review. It captured the mean-power boundary failure but did not yet examine Hooke assigned x=1cm. Independent later reading found its nonzero force arrow fully enclosed in the opaque mass; no complete scientific report or approval was delivered from this preliminary probe. Runtime54054f remains unchanged.

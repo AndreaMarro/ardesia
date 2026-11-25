@@ -1,0 +1,446 @@
+{
+  "appRoot": "/private/tmp/cric-resident-integrator/officina-di-fisica",
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+  "purpose": "DIAGNOSTIC_ORIGINAL_DEFECTS_NOT_SCIENTIFIC_APPROVAL",
+  "expectedSourceIssueIds": [
+    "SIM-C1-L001-06"
+  ],
+  "expectedConsumerIssueIds": [
+    "SIM-C1-L001-01",
+    "SIM-C1-L001-04"
+  ],
+  "cases": [
+    {
+      "id": "SIM-C1-L001-01",
+      "kind": "observed_grouping_failure",
+      "reading": "2.000 µm",
+      "literal": "2.000",
+      "feedback": "Ricontrolla le unità e le potenze di dieci. d = 2 × 10ⁿ m = 2 × 10ⁿ⁺⁶ µm. 2 × 10^((-3) + 6) = 2.000 µm."
+    },
+    {
+      "id": "SIM-C1-L001-01",
+      "noWebGL": false,
+      "display": "3D interattivo",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nIl calibro ingrandisce la sezione di un foglio ideale. Ogni scatto dell’esponente moltiplica lo spessore per dieci. Un micrometro è un milionesimo di metro.\n\nd = 2 × 10ⁿ m = 2 × 10ⁿ⁺⁶ µm\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Esponente di dieci\n-6\nSpessore\n2 µm\nVariazione dal riferimento\n0 µm"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Esponente di dieci» e confronta la scena con il punto segnato sul grafico. Parti da -6, poi prova -3.\n\nEsponente di dieci = -6 · Spessore = 2 µm\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Esponente di dieci\n-6\nSpessore\n2 µm\nVariazione dal riferimento\n0 µm"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\nd = 2 × 10ⁿ m = 2 × 10ⁿ⁺⁶ µm. Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\n2 × 10^((-6) + 6) = 2 µm\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Esponente di dieci\n-6\nSpessore\n2 µm\nVariazione dal riferimento\n0 µm"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Esponente di dieci» a -4. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nd = 2 × 10ⁿ m = 2 × 10ⁿ⁺⁶ µm\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Esponente di dieci\n-6\nSpessore\n2 µm\nVariazione dal riferimento\n0 µm"
+        }
+      ],
+      "answerCount": 2,
+      "screenshot": "/tmp/cric-review-experiments037-proof-tmInKs/SIM-C1-L001-01-3d.png",
+      "screenshotSha256": "2d58f4bc602159739dfa7ed94e58624cd3c01fd0b6745cf52d7d8e454bc18791"
+    },
+    {
+      "id": "SIM-C1-L001-02",
+      "noWebGL": false,
+      "display": "3D interattivo",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nConta in tre direzioni. Raddoppiare il lato raddoppia ciascuno dei tre conteggi. L’unità di volume è il cubo dell’unità di lunghezza.\n\nV = ℓ × ℓ × ℓ\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Lato del cubo\n2 cm\nVolume\n8 cm³\nArea di una faccia\n4 cm²"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Lato del cubo» e confronta la scena con il punto segnato sul grafico. Parti da 2 cm, poi prova 3 cm.\n\nLato del cubo = 2 cm · Volume = 8 cm³\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Lato del cubo\n2 cm\nVolume\n8 cm³\nArea di una faccia\n4 cm²"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\nV = ℓ × ℓ × ℓ. Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\n2³ = 8 cm³\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Lato del cubo\n2 cm\nVolume\n8 cm³\nArea di una faccia\n4 cm²"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Lato del cubo» a 4 cm. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nV = ℓ × ℓ × ℓ\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Lato del cubo\n2 cm\nVolume\n8 cm³\nArea di una faccia\n4 cm²"
+        }
+      ],
+      "answerCount": 2,
+      "screenshot": "/tmp/cric-review-experiments037-proof-tmInKs/SIM-C1-L001-02-3d.png",
+      "screenshotSha256": "64aee6e0cdbd2bde0d36840b1ed1cc4d75f0f1c46929ac7a2d6ef02b1394c86f"
+    },
+    {
+      "id": "SIM-C1-L001-03",
+      "noWebGL": false,
+      "display": "3D interattivo",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nLe ganasce delimitano la stessa distanza su due scale. Dieci intervalli da un millimetro occupano un intervallo da un centimetro.\n\nd(cm) = d(mm) / 10\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Apertura del calibro\n10 mm\nLettura in centimetri\n1 cm\nVariazione dal riferimento\n0 cm"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Apertura del calibro» e confronta la scena con il punto segnato sul grafico. Parti da 10 mm, poi prova 25 mm.\n\nApertura del calibro = 10 mm · Lettura in centimetri = 1 cm\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Apertura del calibro\n10 mm\nLettura in centimetri\n1 cm\nVariazione dal riferimento\n0 cm"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\nd(cm) = d(mm) / 10. Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\n10 / 10 = 1 cm\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Apertura del calibro\n10 mm\nLettura in centimetri\n1 cm\nVariazione dal riferimento\n0 cm"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Apertura del calibro» a 26 mm. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nd(cm) = d(mm) / 10\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Apertura del calibro\n10 mm\nLettura in centimetri\n1 cm\nVariazione dal riferimento\n0 cm"
+        }
+      ],
+      "answerCount": 2,
+      "screenshot": "/tmp/cric-review-experiments037-proof-tmInKs/SIM-C1-L001-03-3d.png",
+      "screenshotSha256": "d4d27b99445c43426486ad4510151880e63407a3e847ab012333b174d76f1d96"
+    },
+    {
+      "id": "SIM-C1-L001-04",
+      "kind": "observed_grouping_failure",
+      "reading": "8.000 kg",
+      "literal": "8.000",
+      "feedback": "Ricontrolla le unità e le potenze di dieci. m = ρℓ³, con ρ = 1000 kg/m³. 1000 × 2³ = 8.000 kg."
+    },
+    {
+      "id": "SIM-C1-L001-04",
+      "noWebGL": false,
+      "display": "3D interattivo",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nLa massa si ottiene moltiplicando la densità dell’acqua per il volume interno della cassa. Con un lato di 1 m il volume è 1 m³ e l’acqua ha massa circa 1000 kg, cioè 1 t. Raddoppia il lato e confronta quanti cubi da un metro entrano nella nuova cassa.\n\nm = ρℓ³, con ρ = 1000 kg/m³\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Lato della cassa\n1 m\nMassa d’acqua\n1.000 kg\nVariazione dal riferimento\n0 kg"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Lato della cassa» e confronta la scena con il punto segnato sul grafico. Parti da 1 m, poi prova 2 m.\n\nLato della cassa = 1 m · Massa d’acqua = 1.000 kg\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Lato della cassa\n1 m\nMassa d’acqua\n1.000 kg\nVariazione dal riferimento\n0 kg"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\nm = ρℓ³, con ρ = 1000 kg/m³. Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\n1000 × 1³ = 1.000 kg\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Lato della cassa\n1 m\nMassa d’acqua\n1.000 kg\nVariazione dal riferimento\n0 kg"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Lato della cassa» a 4 m. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nm = ρℓ³, con ρ = 1000 kg/m³\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Lato della cassa\n1 m\nMassa d’acqua\n1.000 kg\nVariazione dal riferimento\n0 kg"
+        }
+      ],
+      "answerCount": 2,
+      "screenshot": "/tmp/cric-review-experiments037-proof-tmInKs/SIM-C1-L001-04-3d.png",
+      "screenshotSha256": "9a4f19b4091728e22875a7c3eb8acebedeae18c060da73617d384ccbbe5b2d35"
+    },
+    {
+      "id": "SIM-C1-L001-05",
+      "noWebGL": false,
+      "display": "3D interattivo",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nOgni pezzo ha volume 30 cm³ e massa 60 g. Conta i pezzi e somma le masse. Anche il volume cresce dello stesso fattore, perciò il loro rapporto resta 2 g/cm³.\n\nm = N × 60 g; ρ = 60 g / 30 cm³ = 2 g/cm³\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Numero di campioni uguali\n2\nMassa complessiva\n120 g\nDensità di ogni campione\n2 g/cm³"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Numero di campioni uguali» e confronta la scena con il punto segnato sul grafico. Parti da 2, poi prova 4.\n\nNumero di campioni uguali = 2 · Massa complessiva = 120 g\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Numero di campioni uguali\n2\nMassa complessiva\n120 g\nDensità di ogni campione\n2 g/cm³"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\nm = N × 60 g; ρ = 60 g / 30 cm³ = 2 g/cm³. Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\n60 × 2 = 120 g\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Numero di campioni uguali\n2\nMassa complessiva\n120 g\nDensità di ogni campione\n2 g/cm³"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Numero di campioni uguali» a 3. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nm = N × 60 g; ρ = 60 g / 30 cm³ = 2 g/cm³\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Numero di campioni uguali\n2\nMassa complessiva\n120 g\nDensità di ogni campione\n2 g/cm³"
+        }
+      ],
+      "answerCount": 2,
+      "screenshot": "/tmp/cric-review-experiments037-proof-tmInKs/SIM-C1-L001-05-3d.png",
+      "screenshotSha256": "6c88a7140ae06a35f6394391bac3ea40b8d7cf1ab7087a09121d94107dae9152"
+    },
+    {
+      "id": "SIM-C1-L001-06",
+      "kind": "observed_nonmanual_numeric_transfer",
+      "prompt": "Un carrello viaggia a 4 m/s formando un angolo di 95 ° con l’asse della guida. Quale velocità misura un sensore orientato lungo quell’asse?",
+      "symbolicRejected": true,
+      "feedback": "Rivedi il calcolo. vₓ = 4 cos θ, con modulo v = 4 m/s. 4 × cos(95°) ≈ -0,3486 m/s."
+    },
+    {
+      "id": "SIM-C1-L001-06",
+      "noWebGL": false,
+      "display": "3D interattivo",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nLa punta resta sulla circonferenza di raggio fisso. L’ombra sull’asse orizzontale cambia segno oltre 90°. Il modulo è uno scalare.\n\nvₓ = 4 cos θ, con modulo v = 4 m/s\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Direzione della velocità\n0 °\nComponente orizzontale\n4 m/s\nModulo della velocità\n4 m/s"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Direzione della velocità» e confronta la scena con il punto segnato sul grafico. Parti da 0 °, poi prova 90 °.\n\nDirezione della velocità = 0 ° · Componente orizzontale = 4 m/s\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Direzione della velocità\n0 °\nComponente orizzontale\n4 m/s\nModulo della velocità\n4 m/s"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\nvₓ = 4 cos θ, con modulo v = 4 m/s. Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\n4 × cos(0°) = 4 m/s\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Direzione della velocità\n0 °\nComponente orizzontale\n4 m/s\nModulo della velocità\n4 m/s"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Direzione della velocità» a 95 °. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nvₓ = 4 cos θ, con modulo v = 4 m/s\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Direzione della velocità\n0 °\nComponente orizzontale\n4 m/s\nModulo della velocità\n4 m/s"
+        }
+      ],
+      "answerCount": 2,
+      "screenshot": "/tmp/cric-review-experiments037-proof-tmInKs/SIM-C1-L001-06-3d.png",
+      "screenshotSha256": "13793475af5d4f6f2f2ff08585b66d5f992df6cd909fdb9877a9b3eab5fd77c9"
+    },
+    {
+      "id": "SIM-C1-L001-01",
+      "kind": "observed_grouping_failure",
+      "reading": "2.000 µm",
+      "literal": "2.000",
+      "feedback": "Ricontrolla le unità e le potenze di dieci. d = 2 × 10ⁿ m = 2 × 10ⁿ⁺⁶ µm. 2 × 10^((-3) + 6) = 2.000 µm."
+    },
+    {
+      "id": "SIM-C1-L001-01",
+      "noWebGL": true,
+      "display": "Tavola di misura",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nIl calibro ingrandisce la sezione di un foglio ideale. Ogni scatto dell’esponente moltiplica lo spessore per dieci. Un micrometro è un milionesimo di metro.\n\nd = 2 × 10ⁿ m = 2 × 10ⁿ⁺⁶ µm\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Esponente di dieci\n-6\nSpessore\n2 µm\nVariazione dal riferimento\n0 µm"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Esponente di dieci» e confronta la scena con il punto segnato sul grafico. Parti da -6, poi prova -3.\n\nEsponente di dieci = -6 · Spessore = 2 µm\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Esponente di dieci\n-6\nSpessore\n2 µm\nVariazione dal riferimento\n0 µm"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\nd = 2 × 10ⁿ m = 2 × 10ⁿ⁺⁶ µm. Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\n2 × 10^((-6) + 6) = 2 µm\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Esponente di dieci\n-6\nSpessore\n2 µm\nVariazione dal riferimento\n0 µm"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Esponente di dieci» a -4. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nd = 2 × 10ⁿ m = 2 × 10ⁿ⁺⁶ µm\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Esponente di dieci\n-6\nSpessore\n2 µm\nVariazione dal riferimento\n0 µm"
+        }
+      ],
+      "answerCount": 2,
+      "screenshot": "/tmp/cric-review-experiments037-proof-tmInKs/SIM-C1-L001-01-2d.png",
+      "screenshotSha256": "be8b37a04a07e2de186b72671ce74f745b25da60ebd126f301111c91f9cd93f2"
+    },
+    {
+      "id": "SIM-C1-L001-02",
+      "noWebGL": true,
+      "display": "Tavola di misura",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nConta in tre direzioni. Raddoppiare il lato raddoppia ciascuno dei tre conteggi. L’unità di volume è il cubo dell’unità di lunghezza.\n\nV = ℓ × ℓ × ℓ\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Lato del cubo\n2 cm\nVolume\n8 cm³\nArea di una faccia\n4 cm²"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Lato del cubo» e confronta la scena con il punto segnato sul grafico. Parti da 2 cm, poi prova 3 cm.\n\nLato del cubo = 2 cm · Volume = 8 cm³\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Lato del cubo\n2 cm\nVolume\n8 cm³\nArea di una faccia\n4 cm²"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\nV = ℓ × ℓ × ℓ. Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\n2³ = 8 cm³\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Lato del cubo\n2 cm\nVolume\n8 cm³\nArea di una faccia\n4 cm²"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Lato del cubo» a 4 cm. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nV = ℓ × ℓ × ℓ\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Lato del cubo\n2 cm\nVolume\n8 cm³\nArea di una faccia\n4 cm²"
+        }
+      ],
+      "answerCount": 2,
+      "screenshot": "/tmp/cric-review-experiments037-proof-tmInKs/SIM-C1-L001-02-2d.png",
+      "screenshotSha256": "426ccc03c5712ec1258622c5124a5733db8a5fe26407d35b885938f89a9330db"
+    },
+    {
+      "id": "SIM-C1-L001-03",
+      "noWebGL": true,
+      "display": "Tavola di misura",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nLe ganasce delimitano la stessa distanza su due scale. Dieci intervalli da un millimetro occupano un intervallo da un centimetro.\n\nd(cm) = d(mm) / 10\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Apertura del calibro\n10 mm\nLettura in centimetri\n1 cm\nVariazione dal riferimento\n0 cm"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Apertura del calibro» e confronta la scena con il punto segnato sul grafico. Parti da 10 mm, poi prova 25 mm.\n\nApertura del calibro = 10 mm · Lettura in centimetri = 1 cm\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Apertura del calibro\n10 mm\nLettura in centimetri\n1 cm\nVariazione dal riferimento\n0 cm"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\nd(cm) = d(mm) / 10. Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\n10 / 10 = 1 cm\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Apertura del calibro\n10 mm\nLettura in centimetri\n1 cm\nVariazione dal riferimento\n0 cm"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Apertura del calibro» a 26 mm. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nd(cm) = d(mm) / 10\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Apertura del calibro\n10 mm\nLettura in centimetri\n1 cm\nVariazione dal riferimento\n0 cm"
+        }
+      ],
+      "answerCount": 2,
+      "screenshot": "/tmp/cric-review-experiments037-proof-tmInKs/SIM-C1-L001-03-2d.png",
+      "screenshotSha256": "901a1d7392d031eea52c747d1b9aedfed45d898082ae89129573104f8d760cd5"
+    },
+    {
+      "id": "SIM-C1-L001-04",
+      "kind": "observed_grouping_failure",
+      "reading": "8.000 kg",
+      "literal": "8.000",
+      "feedback": "Ricontrolla le unità e le potenze di dieci. m = ρℓ³, con ρ = 1000 kg/m³. 1000 × 2³ = 8.000 kg."
+    },
+    {
+      "id": "SIM-C1-L001-04",
+      "noWebGL": true,
+      "display": "Tavola di misura",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nLa massa si ottiene moltiplicando la densità dell’acqua per il volume interno della cassa. Con un lato di 1 m il volume è 1 m³ e l’acqua ha massa circa 1000 kg, cioè 1 t. Raddoppia il lato e confronta quanti cubi da un metro entrano nella nuova cassa.\n\nm = ρℓ³, con ρ = 1000 kg/m³\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Lato della cassa\n1 m\nMassa d’acqua\n1.000 kg\nVariazione dal riferimento\n0 kg"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Lato della cassa» e confronta la scena con il punto segnato sul grafico. Parti da 1 m, poi prova 2 m.\n\nLato della cassa = 1 m · Massa d’acqua = 1.000 kg\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Lato della cassa\n1 m\nMassa d’acqua\n1.000 kg\nVariazione dal riferimento\n0 kg"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\nm = ρℓ³, con ρ = 1000 kg/m³. Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\n1000 × 1³ = 1.000 kg\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Lato della cassa\n1 m\nMassa d’acqua\n1.000 kg\nVariazione dal riferimento\n0 kg"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Lato della cassa» a 4 m. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nm = ρℓ³, con ρ = 1000 kg/m³\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Lato della cassa\n1 m\nMassa d’acqua\n1.000 kg\nVariazione dal riferimento\n0 kg"
+        }
+      ],
+      "answerCount": 2,
+      "screenshot": "/tmp/cric-review-experiments037-proof-tmInKs/SIM-C1-L001-04-2d.png",
+      "screenshotSha256": "db943b5e4f1ca4751df88767ca3d04db9c11b21d73f912e55cc76141b4273f58"
+    },
+    {
+      "id": "SIM-C1-L001-05",
+      "noWebGL": true,
+      "display": "Tavola di misura",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nOgni pezzo ha volume 30 cm³ e massa 60 g. Conta i pezzi e somma le masse. Anche il volume cresce dello stesso fattore, perciò il loro rapporto resta 2 g/cm³.\n\nm = N × 60 g; ρ = 60 g / 30 cm³ = 2 g/cm³\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Numero di campioni uguali\n2\nMassa complessiva\n120 g\nDensità di ogni campione\n2 g/cm³"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Numero di campioni uguali» e confronta la scena con il punto segnato sul grafico. Parti da 2, poi prova 4.\n\nNumero di campioni uguali = 2 · Massa complessiva = 120 g\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Numero di campioni uguali\n2\nMassa complessiva\n120 g\nDensità di ogni campione\n2 g/cm³"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\nm = N × 60 g; ρ = 60 g / 30 cm³ = 2 g/cm³. Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\n60 × 2 = 120 g\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Numero di campioni uguali\n2\nMassa complessiva\n120 g\nDensità di ogni campione\n2 g/cm³"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Numero di campioni uguali» a 3. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nm = N × 60 g; ρ = 60 g / 30 cm³ = 2 g/cm³\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Numero di campioni uguali\n2\nMassa complessiva\n120 g\nDensità di ogni campione\n2 g/cm³"
+        }
+      ],
+      "answerCount": 2,
+      "screenshot": "/tmp/cric-review-experiments037-proof-tmInKs/SIM-C1-L001-05-2d.png",
+      "screenshotSha256": "2d84e55b576fb8fec8a3b1a245a9a046d6c1aa8a1cd058bfe6936ff8d5ae2ee0"
+    },
+    {
+      "id": "SIM-C1-L001-06",
+      "kind": "observed_nonmanual_numeric_transfer",
+      "prompt": "Un carrello viaggia a 4 m/s formando un angolo di 95 ° con l’asse della guida. Quale velocità misura un sensore orientato lungo quell’asse?",
+      "symbolicRejected": true,
+      "feedback": "Rivedi il calcolo. vₓ = 4 cos θ, con modulo v = 4 m/s. 4 × cos(95°) ≈ -0,3486 m/s."
+    },
+    {
+      "id": "SIM-C1-L001-06",
+      "noWebGL": true,
+      "display": "Tavola di misura",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nLa punta resta sulla circonferenza di raggio fisso. L’ombra sull’asse orizzontale cambia segno oltre 90°. Il modulo è uno scalare.\n\nvₓ = 4 cos θ, con modulo v = 4 m/s\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Direzione della velocità\n0 °\nComponente orizzontale\n4 m/s\nModulo della velocità\n4 m/s"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Direzione della velocità» e confronta la scena con il punto segnato sul grafico. Parti da 0 °, poi prova 90 °.\n\nDirezione della velocità = 0 ° · Componente orizzontale = 4 m/s\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Direzione della velocità\n0 °\nComponente orizzontale\n4 m/s\nModulo della velocità\n4 m/s"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\nvₓ = 4 cos θ, con modulo v = 4 m/s. Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\n4 × cos(0°) = 4 m/s\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Direzione della velocità\n0 °\nComponente orizzontale\n4 m/s\nModulo della velocità\n4 m/s"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Direzione della velocità» a 95 °. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nvₓ = 4 cos θ, con modulo v = 4 m/s\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Direzione della velocità\n0 °\nComponente orizzontale\n4 m/s\nModulo della velocità\n4 m/s"
+        }
+      ],
+      "answerCount": 2,
+      "screenshot": "/tmp/cric-review-experiments037-proof-tmInKs/SIM-C1-L001-06-2d.png",
+      "screenshotSha256": "1517ecdc941c6b5d10a74b832c1579cd87e864f223f391f5b6d2e9048eae0baf"
+    }
+  ],
+  "errors": [],
+  "publicationAction": "NONE",
+  "humanApproval": "NOT_RUN",
+  "runtimeProfileSha256": "f897223d7afb4a9e09eb4fd06768e42e5b52bc131455fa678fbef74b4f39caa5",
+  "base": "http://127.0.0.1:62902/",
+  "runtimeSha256": {
+    "static/js/banchi/voci/esperimento.js": "fce66f301918483fe79d0f8dbf84c280268e48e615e9c016f2bbd32f699f5075",
+    "static/js/banchi/voci/engines.js": "09a6447a971d0e90c49cfea0307e82ea75f4441a7174c017768d6d62ad514dab",
+    "static/js/banchi/voci/geometria.js": "986bdbfad0cf6e6e057002ee2efdeff0a08df31bfb45f9c046063fcba5840f08",
+    "static/js/banchi/voci/tavola.js": "cc3f7fa8da541109fdda9f8bacca23eea43d1031b2145688b2d80513f47d5283",
+    "static/js/banchi/voci/confronti.js": "4ee391c0841fed7e1888d2c57cfb2494f8e0be0581a6211d50d410bd172602b9",
+    "static/js/banchi/voci/legende.js": "2de769cc9358c907eb30ac6b18c6bc3e06e18a1ece514a7d368ecd40bec33d1b",
+    "static/js/banchi/voci/orologi.js": "30dd8ab535a31b514c0db13d97d2b046a1add160a7ca7d374deea0d991be73a6",
+    "static/js/banchi/voci/modelli/C1.js": "e5818f20fd19d00fc73434fcacef752d06331efc41d198ffe8c185063e97fa34",
+    "static/js/banchi/voci/apparati/meccanica.js": "dc005819f8f12ec48722d32b1d236328ecab75e0734c9ecd0a147751c6bb8fd7",
+    "static/js/banchi/banco.js": "682ba25fcf97b67821b8c9bb6c73a571c87559f94bbda3f64cfad65fab63cdb8",
+    "static/js/banchi/misure.js": "8d631c65b0266ece6447da07aff7a43ee61b66d0767ddc24ace3f59b31fac186",
+    "static/js/banchi/grafici.js": "e5567e88ee6df5c604f8e62228da5e70841556ad0b55fb212fd4d091fdeee3fd",
+    "static/js/banchi/scena.js": "4d94c92a834573062a2af541df113bad06bd11ca538b31bddddc5ec8621a5095",
+    "static/js/banchi/etichette.js": "455ae33c790be4e207e5b5667918c44ea16c95f49e1fea0b13cc92f08aa003f3",
+    "static/js/banchi/aula.js": "44c74446d0d60b20e9dad05b32321f1000f026acdec386ca5aa2f74c20421967",
+    "static/js/ui.js": "77e5f000f5e1a1fe028fff32dad97be29ad72b46d753787a19ad36164cb98f27",
+    "content/esperienze-C1.json": "84d13bd2658be3b0ce2a55bf7dc698d64ceae151b09deafeabd71507a41d70e3"
+  },
+  "protocolSha256": "e11b73cff2eece775a5504fb3fe8bb4c5dbe7d5540ba914217be61173b1e6f20",
+  "terminalStatus": "PASS",
+  "browserVersion": "158.0.8127.37",
+  "screenshotsRetainedInRepository": false,
+  "scientificApproval": false,
+  "diagnosticDisposition": "The tests reproduce expected original defects; terminal PASS is technical, not scientific approval of six activities."
+}

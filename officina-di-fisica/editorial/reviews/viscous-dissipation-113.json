@@ -1,0 +1,505 @@
+{
+  "bindingsSha256": "b4ad452f1bc4c5f3d1229da2e5ef089f5868c1db37e9748e53f4fc01948b32b7",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "dependencyVersions": {
+    "pint": "0.25.2",
+    "sympy": "1.14.0"
+  },
+  "humanApproval": "NOT_RUN",
+  "packageSha256": "cf11d0679d6fecf271cce52b6638dd6c36964bd0d67e64b4a708af6f39c6ec6c",
+  "publication": "DRAFT",
+  "publicationAction": "NONE",
+  "records": [
+    {
+      "assetChecksums": {
+        "viscous-dissipation-progressive.svg": "c8a0152fa5ca871959035ddfce7ccbb59eb14f2acb26e5f9c0e2b5fdea361a19"
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "candidateSha256": "ab065def106b64cc20393536bdd54e1ed88db8ebb950702f6ae42af6fd270288",
+      "dimension": {
+        "[length]": "2",
+        "[mass]": "1",
+        "[time]": "-3"
+      },
+      "distractors": "6 è Δp, 9 è solo Q² numerico. Potenza dissipata positiva distinta dal contributo resistente negativo.",
+      "errors": [],
+      "expectedExact": "18",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-viscous-dissipation-01",
+      "manualArithmetic": "R=2, Q=3: Δp=6 kPa e P_d=Δp Q=18 kPa·L/s=18 W. Esatto 1 kPa·L=1000·10⁻³ Pa·m³=1 J.",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. R=2, Q=3: Δp=6 kPa e P_d=Δp Q=18 kPa·L/s=18 W. Esatto 1 kPa·L=1000·10⁻³ Pa·m³=1 J.",
+      "physicalAssumptions": "Elemento lineare R>0 e Q>0, liquido omogeneo incomprimibile stazionario. Sezioni di misura a uguale quota e uguale velocità media, nessuna macchina interna o accumulo meccanico. P_d positiva come conversione meccanica in energia interna, contributo resistente negativo al bilancio meccanico. Vincoli fra prove.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "a79c3207dd514b2ca86c08d983a621b9aaa2db40129aa5a72ee89a1a8c10fb30",
+      "scientificAssetReview": "XML e rendering completo letti. Due frecce da 120 px a 40 px/(L/s) per Q=3, pressioni assolute 106/100 kPa. Diciotto caselle da 1 J in tre gruppi di sei per tre litri in 1 s: conteggi energetici, non geometria. Grafico a R=2: Q 50 px/(L/s), P 10 px/W, origine(100,1500); Bezier(100,1500),(200,1500),(300,1180) dà esattamente P=2 Q² con Q=4 t, P=32 t², punti(2,8),(3,18),(4,32).",
+      "sourceSha256": "d620bb0860462ee89177a2f2b1a6792cda7b5a6f7d2e07c314f2ecf260d1cf3e",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetChecksums": {},
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "candidateSha256": "2ed94ed84d0640c09552138eddb84c09e0f4fdd786c9f1fdf346c4f82bb2fb29",
+      "dimension": {
+        "[length]": "2",
+        "[mass]": "1",
+        "[time]": "-3"
+      },
+      "distractors": "J energia, kPa pressione, L/s portata, kPa·s/L resistenza; per energia occorre anche durata.",
+      "errors": [],
+      "expectedExact": "W",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-viscous-dissipation-02",
+      "manualArithmetic": "Pressione per volume al secondo dà energia per tempo, ML²/T³. I prefissi kPa e L si cancellano: 1 kPa·L/s=1 W. Nessun calcolo numerico autonomo richiesto.",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Pressione per volume al secondo dà energia per tempo, ML²/T³. I prefissi kPa e L si cancellano: 1 kPa·L/s=1 W. Nessun calcolo numerico autonomo richiesto.",
+      "physicalAssumptions": "Elemento lineare R>0 e Q>0, liquido omogeneo incomprimibile stazionario. Sezioni di misura a uguale quota e uguale velocità media, nessuna macchina interna o accumulo meccanico. P_d positiva come conversione meccanica in energia interna, contributo resistente negativo al bilancio meccanico. Vincoli fra prove.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "bf16f16f26c74dab6be553271a9b79eb36b6fcfb024bb54d58276e1ecbcb054e",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "sourceSha256": "50d77dee057b7cc24a17e60316056555b90c0d2b81c622e879f2d3376b9097d4",
+      "verificationMode": "AI_CONCEPTUAL"
+    },
+    {
+      "assetChecksums": {
+        "viscous-dissipation-progressive.svg": "c8a0152fa5ca871959035ddfce7ccbb59eb14f2acb26e5f9c0e2b5fdea361a19"
+      },
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "candidateSha256": "41f541affd48edf7dc4fea5fae2d72032022c3c0d4d33e144883dc49557d11a6",
+      "dimension": {
+        "[length]": "2",
+        "[mass]": "1",
+        "[time]": "-3"
+      },
+      "distractors": "RQ è pressione; R/Q² e Q²/R hanno dipendenza e dimensioni errate; fattore 2 non richiesto.",
+      "errors": [],
+      "expectedExact": "P_d = R Q²",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-viscous-dissipation-03",
+      "manualArithmetic": "Lavoro pressorio netto d W=Δp d V. Dividendo per dt: P_d=Δp Q. Sostituire Δp=RQ produce RQ²; le due Q hanno ruoli fisici distinti.",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Lavoro pressorio netto d W=Δp d V. Dividendo per dt: P_d=Δp Q. Sostituire Δp=RQ produce RQ²; le due Q hanno ruoli fisici distinti.",
+      "physicalAssumptions": "Elemento lineare R>0 e Q>0, liquido omogeneo incomprimibile stazionario. Sezioni di misura a uguale quota e uguale velocità media, nessuna macchina interna o accumulo meccanico. P_d positiva come conversione meccanica in energia interna, contributo resistente negativo al bilancio meccanico. Vincoli fra prove.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "d5ca7bc11adfab071f7df262d1eed41ccc164c3057d78d9eece616a748a2d806",
+      "scientificAssetReview": "XML e rendering completo letti. Due frecce da 120 px a 40 px/(L/s) per Q=3, pressioni assolute 106/100 kPa. Diciotto caselle da 1 J in tre gruppi di sei per tre litri in 1 s: conteggi energetici, non geometria. Grafico a R=2: Q 50 px/(L/s), P 10 px/W, origine(100,1500); Bezier(100,1500),(200,1500),(300,1180) dà esattamente P=2 Q² con Q=4 t, P=32 t², punti(2,8),(3,18),(4,32).",
+      "sourceSha256": "56cc8135b0b33268bbca566059fe1c6d5f2eb7135f58f15295e9d611e972b366",
+      "verificationMode": "AI_CONCEPTUAL"
+    },
+    {
+      "assetChecksums": {},
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "candidateSha256": "7bac4a4b077f677cf8aff0df19348e3614c4cce2338102184d98d5685525e616",
+      "dimension": {
+        "[length]": "2",
+        "[mass]": "1",
+        "[time]": "-3"
+      },
+      "distractors": "12 inverte fattore R; 81/2 quadra erroneamente 3/2; invariata e nulla non rispettano RQ² positivo.",
+      "errors": [],
+      "expectedExact": "Da 18 a 27 W",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-viscous-dissipation-04",
+      "manualArithmetic": "Q=3 costante, R da 2 a 3: P_d=2·9=18 e 3·9=27 W. Δp da 6 a 9 kPa.",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Q=3 costante, R da 2 a 3: P_d=2·9=18 e 3·9=27 W. Δp da 6 a 9 kPa.",
+      "physicalAssumptions": "Elemento lineare R>0 e Q>0, liquido omogeneo incomprimibile stazionario. Sezioni di misura a uguale quota e uguale velocità media, nessuna macchina interna o accumulo meccanico. P_d positiva come conversione meccanica in energia interna, contributo resistente negativo al bilancio meccanico. Vincoli fra prove.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "5c718733605710b2f57a0d7c7ffe587e4a16f8d4a42d876fa58ab42fdada8a4c",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "sourceSha256": "c556b6685fe75011f2b2a0ad569352e8758f1d75eb3f6ca6efece1f093758f6d",
+      "verificationMode": "AI_CONCEPTUAL"
+    },
+    {
+      "assetChecksums": {},
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "candidateSha256": "d1dd26a6173f956689833d8a90b48aff1c99ea7c05b95bac0b7f824f9e90da8e",
+      "dimension": {
+        "[length]": "-4",
+        "[mass]": "1",
+        "[time]": "-1"
+      },
+      "distractors": "Dividere solo per Q dà 6 kPa, non resistenza.",
+      "errors": [],
+      "expectedExact": "2",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-viscous-dissipation-05",
+      "manualArithmetic": "R=P_d/Q²=18/9=2 kPa·s/L, perché W/(L²/s²)=kPa·s/L.",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. R=P_d/Q²=18/9=2 kPa·s/L, perché W/(L²/s²)=kPa·s/L.",
+      "physicalAssumptions": "Elemento lineare R>0 e Q>0, liquido omogeneo incomprimibile stazionario. Sezioni di misura a uguale quota e uguale velocità media, nessuna macchina interna o accumulo meccanico. P_d positiva come conversione meccanica in energia interna, contributo resistente negativo al bilancio meccanico. Vincoli fra prove.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "d0f6b418bd2ac9a39fd17ec0ab12fabe743f61f437815e564b515c51ac62a15a",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "sourceSha256": "8ab1f2faffe8966480574b7d8f7a4356731c45b93a78f70a5b7458a8cffa4691",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetChecksums": {},
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "candidateSha256": "7cf0031b89681f3e027602916060b38969e26b8083cd13e09adc2fc09d91f7ef",
+      "dimension": {
+        "[length]": "3",
+        "[time]": "-1"
+      },
+      "distractors": "9 è Q²; −3 viola Q>0, anche se RQ² resta positivo.",
+      "errors": [],
+      "expectedExact": "3",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-viscous-dissipation-06",
+      "manualArithmetic": "Q²=P_d/R=18/2=9 L²/s². Q=3 L/s, selezionata positiva dal verso dichiarato e non dalla sola dissipazione.",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Q²=P_d/R=18/2=9 L²/s². Q=3 L/s, selezionata positiva dal verso dichiarato e non dalla sola dissipazione.",
+      "physicalAssumptions": "Elemento lineare R>0 e Q>0, liquido omogeneo incomprimibile stazionario. Sezioni di misura a uguale quota e uguale velocità media, nessuna macchina interna o accumulo meccanico. P_d positiva come conversione meccanica in energia interna, contributo resistente negativo al bilancio meccanico. Vincoli fra prove.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "89c2a39e12c546ae8c088297fea1decdf0e923c474a6b32c94b181239eb423f7",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "sourceSha256": "d46e1b2a25f071d64c583db1a06778f6300844805f77973c561353b071d3e156",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetChecksums": {},
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "candidateSha256": "247af5aa0949eb0dac3e723ab03374a0c0cdd2fa8765cef1d7c55ff17de8728b",
+      "dimension": {},
+      "distractors": "9/4 reciproco; 2/3 solo rapporto Q; 3/2 inverso di Q; 1 ignora variazione.",
+      "errors": [],
+      "expectedExact": "4/9",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-viscous-dissipation-07",
+      "manualArithmetic": "R=2, Q_B=2: P_B=8 contro P_A=18 W. Rapporto 8/18=4/9.",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. R=2, Q_B=2: P_B=8 contro P_A=18 W. Rapporto 8/18=4/9.",
+      "physicalAssumptions": "Elemento lineare R>0 e Q>0, liquido omogeneo incomprimibile stazionario. Sezioni di misura a uguale quota e uguale velocità media, nessuna macchina interna o accumulo meccanico. P_d positiva come conversione meccanica in energia interna, contributo resistente negativo al bilancio meccanico. Vincoli fra prove.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "e047054b9a6bde588cd412a4941adc053b3709c25590ab06695f4747773522c5",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "sourceSha256": "a3e9544b727374016bc17e405309e13951c85b01f8b64c592f8d66664186ca2d",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetChecksums": {},
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "candidateSha256": "e800482bc4648b5013d98a8a3180f30b8f1a62ad81c7974a76365f34b18a8ab5",
+      "dimension": {
+        "[length]": "2",
+        "[mass]": "1",
+        "[time]": "-3"
+      },
+      "distractors": "−18 ordine invertito; 36 proposta; 0 accetta; 9 dimezza errore.",
+      "errors": [],
+      "expectedExact": "18",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-viscous-dissipation-08",
+      "manualArithmetic": "Scarto 36−18=+18 W. Non confondere segno dell’errore con potenza resistente −18 W nel bilancio meccanico.",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Scarto 36−18=+18 W. Non confondere segno dell’errore con potenza resistente −18 W nel bilancio meccanico.",
+      "physicalAssumptions": "Elemento lineare R>0 e Q>0, liquido omogeneo incomprimibile stazionario. Sezioni di misura a uguale quota e uguale velocità media, nessuna macchina interna o accumulo meccanico. P_d positiva come conversione meccanica in energia interna, contributo resistente negativo al bilancio meccanico. Vincoli fra prove.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "a169039523b5062eb20bebf4aeebc07467b9df42c0b2fc6c00a78ac189dcfbe8",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "sourceSha256": "d11cfd1a5b46ba046c9d25c28a522c2714d86583363705a711ec9652ef8502fe",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetChecksums": {},
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "candidateSha256": "db7f0c9c467b5f743ed855faaf2bb8efac5ae036dc5b94b7f565d8a1c6f06163",
+      "dimension": {
+        "[length]": "-4",
+        "[mass]": "1",
+        "[time]": "-1"
+      },
+      "distractors": "P/Q pressione; P Q² operazione inversa; Q²/P conduttanza; radice altera dimensione.",
+      "errors": [],
+      "expectedExact": "R = P_d / Q²",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-viscous-dissipation-09",
+      "manualArithmetic": "R compare linearmente: dividere P_d=RQ² per Q²>0 dà R=P_d/Q², senza radici.",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. R compare linearmente: dividere P_d=RQ² per Q²>0 dà R=P_d/Q², senza radici.",
+      "physicalAssumptions": "Elemento lineare R>0 e Q>0, liquido omogeneo incomprimibile stazionario. Sezioni di misura a uguale quota e uguale velocità media, nessuna macchina interna o accumulo meccanico. P_d positiva come conversione meccanica in energia interna, contributo resistente negativo al bilancio meccanico. Vincoli fra prove.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "2db3a9fa120b9d3f2183fbbfaca7ed9a911e5887adeeabafd17fd63df0b54b5e",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "sourceSha256": "2f0f8ab82c2f2582b0a72332d788096276f5a33c1b886905d6c9152a48d410b6",
+      "verificationMode": "AI_CONCEPTUAL"
+    },
+    {
+      "assetChecksums": {},
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "candidateSha256": "6ae8b2e73af1a2471697fbbfc16ccd377c2ad07e09a7d06809854841ff409531",
+      "dimension": {},
+      "distractors": "κ₁κ₂ perde Q; κ₁²κ₂ quadra variabile errata; quozienti invertono dipendenze.",
+      "errors": [],
+      "expectedExact": "κ₁ κ₂²",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-viscous-dissipation-10",
+      "manualArithmetic": "Scalare R→κ₁R e Q→κ₂Q dà P_B=κ₁κ₂² P_A. Il quadrato riguarda Q e non R.",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Scalare R→κ₁R e Q→κ₂Q dà P_B=κ₁κ₂² P_A. Il quadrato riguarda Q e non R.",
+      "physicalAssumptions": "Elemento lineare R>0 e Q>0, liquido omogeneo incomprimibile stazionario. Sezioni di misura a uguale quota e uguale velocità media, nessuna macchina interna o accumulo meccanico. P_d positiva come conversione meccanica in energia interna, contributo resistente negativo al bilancio meccanico. Vincoli fra prove.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "1923ee1aa845e62ed3a80148349703f41e3360326b39bc61809884b8709223d9",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "sourceSha256": "a93233489d1d7299d891a28259cf3cab9e0ade1447b94eb0596cebcea9eb8fe2",
+      "verificationMode": "AI_CONCEPTUAL"
+    },
+    {
+      "assetChecksums": {},
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "candidateSha256": "52f31eba7f23335ae40f36139a0c4cf4c491824a4042f63b4ecbb7cc479e0283",
+      "dimension": {},
+      "distractors": "3/2 solo R; 4/9 solo Q²; 1 compensazione falsa; 12 è potenza numerica.",
+      "errors": [],
+      "expectedExact": "2/3",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-viscous-dissipation-11",
+      "manualArithmetic": "B: R=3, Q=2, potenza 12 W; rapporto 12/18=2/3=(3/2)(4/9).",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. B: R=3, Q=2, potenza 12 W; rapporto 12/18=2/3=(3/2)(4/9).",
+      "physicalAssumptions": "Elemento lineare R>0 e Q>0, liquido omogeneo incomprimibile stazionario. Sezioni di misura a uguale quota e uguale velocità media, nessuna macchina interna o accumulo meccanico. P_d positiva come conversione meccanica in energia interna, contributo resistente negativo al bilancio meccanico. Vincoli fra prove.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "14e7dbcc68a9965118923d0ad1877d75f8673b3fde71ba388b9686708d32c469",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "sourceSha256": "1a2d255271f8c6fe2e8e9fa1711f6ed36449824c70aa2ef0c49d5697d261d228",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetChecksums": {},
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "candidateSha256": "c5321ebe1812f46a6d646ef9996a2adf26f110638b8469a0cf6b9cc68b2e70cf",
+      "dimension": {
+        "[length]": "2",
+        "[mass]": "1",
+        "[time]": "-3"
+      },
+      "distractors": "30 somma; 15/2 doppia metà; 125/8 ingressi medi; 6 differenza.",
+      "errors": [],
+      "expectedExact": "15",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-viscous-dissipation-12",
+      "manualArithmetic": "Media (18+12)/2=15 W. R_media=5/2, Q_media=5/2 dà 125/8 W, maggiore di 15 per 5/8 W.",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Media (18+12)/2=15 W. R_media=5/2, Q_media=5/2 dà 125/8 W, maggiore di 15 per 5/8 W.",
+      "physicalAssumptions": "Elemento lineare R>0 e Q>0, liquido omogeneo incomprimibile stazionario. Sezioni di misura a uguale quota e uguale velocità media, nessuna macchina interna o accumulo meccanico. P_d positiva come conversione meccanica in energia interna, contributo resistente negativo al bilancio meccanico. Vincoli fra prove.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "016c67fd3831cc024a59097c68c4d5fa4cfdf071464f1adba76b91232424c287",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "sourceSha256": "d04879d8ae0739c57b1470ee126c1eb5e3f5a77322769ba9b31639fdcb818b3e",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetChecksums": {},
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "candidateSha256": "16e855391651a9a5a699fa8c4c915fd9f03e81faf39b2a4000484fa290d86178",
+      "dimension": {},
+      "distractors": "3/2 reciproco; 4/9 quadrato del rapporto; 2 copia Q_B; 1 produrrebbe 27 W.",
+      "errors": [],
+      "expectedExact": "2/3",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-viscous-dissipation-13",
+      "manualArithmetic": "Target (2/3)18=12 W, R_B=3: Q_B²=4, Q_B=2 L/s e rapporto 2/3.",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Target (2/3)18=12 W, R_B=3: Q_B²=4, Q_B=2 L/s e rapporto 2/3.",
+      "physicalAssumptions": "Elemento lineare R>0 e Q>0, liquido omogeneo incomprimibile stazionario. Sezioni di misura a uguale quota e uguale velocità media, nessuna macchina interna o accumulo meccanico. P_d positiva come conversione meccanica in energia interna, contributo resistente negativo al bilancio meccanico. Vincoli fra prove.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "ba54808c805d8c0482e475817dab65d5aa6e6d1d4dc583fae6f4f17ecec17a47",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "sourceSha256": "7400db3fcf15d182ec07f808c47100d666f7b27f44c20c049cedf6f8f8ee289f",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetChecksums": {},
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "candidateSha256": "f0842f17b515d06a6e5ecbdca26cb6bcee015d0ee3d2330c7caa405bcc956541",
+      "dimension": {
+        "[length]": "-4",
+        "[mass]": "1",
+        "[time]": "-1"
+      },
+      "distractors": "S grezzo 36 W darebbe R=9, triplo; quadrato di Q resta necessario dopo decodifica.",
+      "errors": [],
+      "expectedExact": "3",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-viscous-dissipation-14",
+      "manualArithmetic": "Gain 54/(18 W)=3 W⁻¹. S_B=36 dà P_B=12 W; Q_B²=4 lascia R_B=3 kPa·s/L.",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Gain 54/(18 W)=3 W⁻¹. S_B=36 dà P_B=12 W; Q_B²=4 lascia R_B=3 kPa·s/L.",
+      "physicalAssumptions": "Elemento lineare R>0 e Q>0, liquido omogeneo incomprimibile stazionario. Sezioni di misura a uguale quota e uguale velocità media, nessuna macchina interna o accumulo meccanico. P_d positiva come conversione meccanica in energia interna, contributo resistente negativo al bilancio meccanico. Vincoli fra prove.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "7bfe14db2988aee04761dbe51595bbb7a4115a2dbc6458e68982ce8319bb296b",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "sourceSha256": "e8eb0d450311057b6ed208b11d9986361ca8dc044b5638f6ef3f203806822c47",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetChecksums": {},
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "candidateSha256": "94e5fd1724622a521c26f0f1a62ed2d7bfa74f92d8f74d9329b10053284e08ab",
+      "dimension": {
+        "[length]": "-4",
+        "[mass]": "1",
+        "[time]": "-1"
+      },
+      "distractors": "R=2,4,1,6 con Q=3 danno S=37,73,19,109; solo R=3 restituisce 55.",
+      "errors": [],
+      "expectedExact": "3",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-viscous-dissipation-15",
+      "manualArithmetic": "Gain (37−25)/(18−12)=2 W⁻¹, offset 1. S_C=55 dà P_C=27 W; Q_C=3 porta R_C=27/9=3 kPa·s/L.",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Gain (37−25)/(18−12)=2 W⁻¹, offset 1. S_C=55 dà P_C=27 W; Q_C=3 porta R_C=27/9=3 kPa·s/L.",
+      "physicalAssumptions": "Elemento lineare R>0 e Q>0, liquido omogeneo incomprimibile stazionario. Sezioni di misura a uguale quota e uguale velocità media, nessuna macchina interna o accumulo meccanico. P_d positiva come conversione meccanica in energia interna, contributo resistente negativo al bilancio meccanico. Vincoli fra prove.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "0661555e2ee626b22d11984a2a20a47f3a52f5d170e3d50bc873dee351ff132a",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "sourceSha256": "c9196eea7497f247acc381818b2060510fcb4a3d70b26f1785959546f868fea6",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetChecksums": {},
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "candidateSha256": "ada015fceb48c470611c14bcffa83f48c32119dad3d0194583bb91d2c7dd8fd9",
+      "dimension": {
+        "[length]": "3",
+        "[time]": "-1"
+      },
+      "distractors": "27 è il cubo numerico, −3 non risolve il cubo positivo. Q=9 L/s produce 486 W, escluso dal bilancio; non attribuire 9 a √27.",
+      "errors": [],
+      "expectedExact": "3",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u3-viscous-dissipation-16",
+      "manualArithmetic": "R=c Q con c=2/3 kPa·s²/L². P_d=c Q³; 18/(2/3)=27 L³/s³ e Q=3 L/s, R=2. Cubo positivo crescente: unica soluzione. Controprova Q=9 dà c Q³=486 W, non 18.",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. R=c Q con c=2/3 kPa·s²/L². P_d=c Q³; 18/(2/3)=27 L³/s³ e Q=3 L/s, R=2. Cubo positivo crescente: unica soluzione. Controprova Q=9 dà c Q³=486 W, non 18.",
+      "physicalAssumptions": "Elemento lineare R>0 e Q>0, liquido omogeneo incomprimibile stazionario. Sezioni di misura a uguale quota e uguale velocità media, nessuna macchina interna o accumulo meccanico. P_d positiva come conversione meccanica in energia interna, contributo resistente negativo al bilancio meccanico. Vincoli fra prove.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "0a4b8240e12bd82656ff544a34282f84cea4d5a28064e8115b1c2e1a6fa54421",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "sourceSha256": "7447a485d0618578cdc66a2af734ec77f07a3f735316952f91e828d836d0b9f3",
+      "verificationMode": "EXACT_ORACLE"
+    }
+  ],
+  "reviewedCandidateCommit": "bd85f8e9e1d2429d751c817b9e6df6fcbbffdcd5",
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "schemaVersion": "1.0.0",
+  "source": {
+    "commit": "5cfbdcb055ba3ba136f97fb56e997f06e6cf3605",
+    "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U3-04.json",
+    "reference": "All80 original U3-04 prompts in B112–116 individually read from pinned Git source and derivations persisted before candidate packages were opened. No numeric result or key was handed off before source-first derivation for this family. All16 final candidates, every option, formula, hint, feedback and figure caption read in full; scientific SVG XML and full native rendering read. Never imports candidate authoring. Real C2-L005/L006/L007/L008/L009 lessons reread during this U3-04 work. Author correction bd85f8e9 independently reread: only113-16 invalid-root attribution or115-02 stress-unit wording and derived feedback/binding changed; other30 records, all keys/formulas/assets byte-identical."
+  },
+  "verifierSha256": "05e87f9d5de5edf61e78486b3bc50b3350355eb436655aac1352b374a56db49a"
+}

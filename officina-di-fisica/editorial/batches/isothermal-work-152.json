@@ -1,0 +1,1156 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u5-isothermal-work-01",
+      "kind": "question",
+      "course": "C3",
+      "section": "Lavoro reversibile misurato per raddoppi",
+      "order": 15201,
+      "title": "Un raddoppio calibrato",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L07",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L02",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isothermal-work",
+      "difficulty": 1,
+      "prompt": "Un campione chiuso di gas ideale percorre un’isoterma reversibile fra volumi positivi. n è la quantità di sostanza, R la costante dei gas e T>0 la temperatura assoluta costante lungo quella trasformazione. Il lavoro W è positivo se compiuto dal gas; r=V_f/V_i>0. Sono fornite W=nRT ln r e W₂=nRT ln 2>0, dove W₂ è il lavoro di un raddoppio di volume alla stessa T. Quindi W=W₂ ln r/ln 2. Nei confronti n è uguale: se W₂ cambia fra prove cambia T, che resta costante entro ogni isoterma. W₂=10 J e r=2. Quanto vale W in J?",
+      "answer": {
+        "type": "numeric",
+        "value": 10,
+        "unit": "J",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il rapporto dei logaritmi è ln2/ln2=1: il lavoro è proprio il valore di taratura dieci joule. Non occorre conoscere il valore decimale di ln2 né separare n,R,T. Il volume aumenta e il lavoro del gas è positivo."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/884c2aabdd5aab9a0dd9bde29c492abc2cd263c4bda7bf178eefaf0cd95d100e",
+          "text": "I primi due pannelli mostrano un’isoterma ideale con coordinate normalizzate v=V/V₀ e q=p/p₀, p₀V₀=nRT. I due intervalli da V₀ a 2V₀ e da 2V₀ a 4V₀ hanno aree fisiche uguali W₂, benché larghezze diverse: le curve sono campionate dalla legge esatta q=1/v, non una procedura di integrazione numerica richiesta. Assi e scale geometriche sono dichiarati. L’ultimo pannello riguarda il caso 16 separato."
+        },
+        {
+          "type": "formula",
+          "text": "W=W_2\\frac{\\ln r}{\\ln2}"
+        },
+        {
+          "type": "formula",
+          "text": " W=10\\frac{\\ln2}{\\ln2}\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " W=10\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Venti usa il rapporto dei volumi al posto del numero di raddoppi. Cinque divide per due ancora una volta e zero confonde isoterma con assenza di lavoro: per il gas ideale è ΔU a essere nulla, non necessariamente W."
+        }
+      ],
+      "hints": [
+        "Un raddoppio vale una volta W₂.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Venti usa il rapporto dei volumi al posto del numero di raddoppi. Cinque divide per due ancora una volta e zero confonde isoterma con assenza di lavoro: per il gas ideale è ΔU a essere nulla, non necessariamente W.",
+        "target": "C3-L07"
+      },
+      "coverage": [
+        "Logaritmi esatti e lavoro con segno",
+        "Inverse, rapporti e taratura",
+        "Primo principio nel ciclo con isocore"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-isothermal-work-02",
+      "kind": "question",
+      "course": "C3",
+      "section": "Lavoro reversibile misurato per raddoppi",
+      "order": 15202,
+      "title": "L’unità del lavoro",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L07",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L02",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isothermal-work",
+      "difficulty": 1,
+      "prompt": "W indica lavoro meccanico compiuto da un gas. Quale unità fra le seguenti è adatta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "J",
+          "Pa",
+          "W",
+          "K",
+          "J/K"
+        ],
+        "value": "J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il lavoro è un’energia e si esprime in joule. Nel prodotto nRT le moli e i kelvin si cancellano con le unità di R, lasciando joule; il logaritmo del rapporto di volumi è puro."
+        },
+        {
+          "type": "formula",
+          "text": "[nRT]=\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " [\\ln(V_f/V_i)]=1"
+        },
+        {
+          "type": "formula",
+          "text": " [W]=\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Pa è pressione, il simbolo W nell’elenco delle unità è watt e indica potenza. K è temperatura e J/K energia per temperatura. Il simbolo di una grandezza non coincide necessariamente con l’unità dal nome simile."
+        }
+      ],
+      "hints": [
+        "Distingui il lavoro W dalla potenza misurata in watt.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "Pa è pressione, il simbolo W nell’elenco delle unità è watt e indica potenza. K è temperatura e J/K energia per temperatura. Il simbolo di una grandezza non coincide necessariamente con l’unità dal nome simile.",
+        "target": "C3-L07"
+      },
+      "coverage": [
+        "Logaritmi esatti e lavoro con segno",
+        "Inverse, rapporti e taratura",
+        "Primo principio nel ciclo con isocore"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-isothermal-work-03",
+      "kind": "question",
+      "course": "C3",
+      "section": "Lavoro reversibile misurato per raddoppi",
+      "order": 15203,
+      "title": "Usare il riferimento senza valutare logaritmi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L07",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L02",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isothermal-work",
+      "difficulty": 1,
+      "prompt": "Un campione chiuso di gas ideale percorre un’isoterma reversibile fra volumi positivi. n è la quantità di sostanza, R la costante dei gas e T>0 la temperatura assoluta costante lungo quella trasformazione. Il lavoro W è positivo se compiuto dal gas; r=V_f/V_i>0. Sono fornite W=nRT ln r e W₂=nRT ln 2>0, dove W₂ è il lavoro di un raddoppio di volume alla stessa T. Quindi W=W₂ ln r/ln 2. Nei confronti n è uguale: se W₂ cambia fra prove cambia T, che resta costante entro ogni isoterma. Quale formula ricostruisce W da W₂ e r?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "W = W₂ ln r / ln 2",
+          "W = W₂ r",
+          "W = W₂ ln 2 / ln r",
+          "W = W₂ ln (2 r)",
+          "W = W₂ / r"
+        ],
+        "value": "W = W₂ ln r / ln 2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Da W₂=nRT ln2 si ricava nRT=W₂/ln2. Sostituendo in W=nRT ln r si ottiene W₂ ln r/ln2. Il logaritmo descrive quanti raddoppi, anche non interi, separano i volumi. Per r=1 il lavoro è zero; per compressione 0<r<1 è negativo."
+        },
+        {
+          "type": "formula",
+          "text": "nRT=\\frac{W_2}{\\ln2}"
+        },
+        {
+          "type": "formula",
+          "text": " W=W_2\\frac{\\ln r}{\\ln2}"
+        },
+        {
+          "type": "text",
+          "text": "W₂r e W₂/r non si annullano a r=1. Invertire i logaritmi rende il risultato indefinito proprio a volume invariato; ln(2r) aggiunge un contributo non richiesto. Non basta che un candidato abbia unità di energia: deve rispettare taratura e segno."
+        }
+      ],
+      "hints": [
+        "Isola il coefficiente nRT dalla misura di un raddoppio.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "W₂r e W₂/r non si annullano a r=1. Invertire i logaritmi rende il risultato indefinito proprio a volume invariato; ln(2r) aggiunge un contributo non richiesto. Non basta che un candidato abbia unità di energia: deve rispettare taratura e segno.",
+        "target": "C3-L07"
+      },
+      "coverage": [
+        "Logaritmi esatti e lavoro con segno",
+        "Inverse, rapporti e taratura",
+        "Primo principio nel ciclo con isocore"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-isothermal-work-04",
+      "kind": "question",
+      "course": "C3",
+      "section": "Lavoro reversibile misurato per raddoppi",
+      "order": 15204,
+      "title": "Una diversa temperatura fra due prove",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L07",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L02",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isothermal-work",
+      "difficulty": 1,
+      "prompt": "Un campione chiuso di gas ideale percorre un’isoterma reversibile fra volumi positivi. n è la quantità di sostanza, R la costante dei gas e T>0 la temperatura assoluta costante lungo quella trasformazione. Il lavoro W è positivo se compiuto dal gas; r=V_f/V_i>0. Sono fornite W=nRT ln r e W₂=nRT ln 2>0, dove W₂ è il lavoro di un raddoppio di volume alla stessa T. Quindi W=W₂ ln r/ln 2. Nei confronti n è uguale: se W₂ cambia fra prove cambia T, che resta costante entro ogni isoterma. A ha W₂=10 J, r=2. B ha W₂=20 J, r=2. Come cambia W?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 10 a 20 J",
+          "Da 10 a 40 J",
+          "Da 10 a 5 J",
+          "Resta 10 J",
+          "Da 10 a 0 J"
+        ],
+        "value": "Da 10 a 20 J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Ogni trasformazione è un raddoppio, perciò ciascun lavoro coincide con il proprio W₂. Il raddoppio della taratura dà un raddoppio del lavoro. A parità di n questo confronto usa T_B=2T_A; non è una singola isoterma a temperatura variabile."
+        },
+        {
+          "type": "formula",
+          "text": "W_A=10\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " W_B=20\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " T_B/T_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Quaranta conta due volte il fattore due, cinque lo inverte e dieci lo ignora. Zero identifica erroneamente temperatura costante entro la prova con lavoro nullo. Il cambiamento di T riguarda due prove distinte."
+        }
+      ],
+      "hints": [
+        "Mantieni distinti il confronto fra prove e la trasformazione entro la prova.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Quaranta conta due volte il fattore due, cinque lo inverte e dieci lo ignora. Zero identifica erroneamente temperatura costante entro la prova con lavoro nullo. Il cambiamento di T riguarda due prove distinte.",
+        "target": "C3-L07"
+      },
+      "coverage": [
+        "Logaritmi esatti e lavoro con segno",
+        "Inverse, rapporti e taratura",
+        "Primo principio nel ciclo con isocore"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-isothermal-work-05",
+      "kind": "question",
+      "course": "C3",
+      "section": "Lavoro reversibile misurato per raddoppi",
+      "order": 15205,
+      "title": "Ricostruire il lavoro di taratura",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L07",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L02",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isothermal-work",
+      "difficulty": 2,
+      "prompt": "Un campione chiuso di gas ideale percorre un’isoterma reversibile fra volumi positivi. n è la quantità di sostanza, R la costante dei gas e T>0 la temperatura assoluta costante lungo quella trasformazione. Il lavoro W è positivo se compiuto dal gas; r=V_f/V_i>0. Sono fornite W=nRT ln r e W₂=nRT ln 2>0, dove W₂ è il lavoro di un raddoppio di volume alla stessa T. Quindi W=W₂ ln r/ln 2. Nei confronti n è uguale: se W₂ cambia fra prove cambia T, che resta costante entro ogni isoterma. Si misura W=10 J per r=2. Quanto vale W₂ in J?",
+      "answer": {
+        "type": "numeric",
+        "value": 10,
+        "unit": "J",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Per un raddoppio il quoziente dei logaritmi vale uno. L’inversa W₂=W ln2/lnr restituisce dieci joule. Il dato è compatibile con W₂ positivo perché si tratta di un’espansione e W è positivo."
+        },
+        {
+          "type": "formula",
+          "text": "W_2=W\\frac{\\ln2}{\\ln r}"
+        },
+        {
+          "type": "formula",
+          "text": " W_2=10\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Venti moltiplica per r anziché per il rapporto dei logaritmi; cinque divide per r. Un decimo prende il reciproco di un’energia. Il caso r=1 non permetterebbe questa inversa e qui non si presenta."
+        }
+      ],
+      "hints": [
+        "Il processo misurato coincide con quello che definisce W₂.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Venti moltiplica per r anziché per il rapporto dei logaritmi; cinque divide per r. Un decimo prende il reciproco di un’energia. Il caso r=1 non permetterebbe questa inversa e qui non si presenta.",
+        "target": "C3-L07"
+      },
+      "coverage": [
+        "Logaritmi esatti e lavoro con segno",
+        "Inverse, rapporti e taratura",
+        "Primo principio nel ciclo con isocore"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-isothermal-work-06",
+      "kind": "question",
+      "course": "C3",
+      "section": "Lavoro reversibile misurato per raddoppi",
+      "order": 15206,
+      "title": "Dal lavoro al rapporto dei volumi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L07",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L02",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isothermal-work",
+      "difficulty": 2,
+      "prompt": "Un campione chiuso di gas ideale percorre un’isoterma reversibile fra volumi positivi. n è la quantità di sostanza, R la costante dei gas e T>0 la temperatura assoluta costante lungo quella trasformazione. Il lavoro W è positivo se compiuto dal gas; r=V_f/V_i>0. Sono fornite W=nRT ln r e W₂=nRT ln 2>0, dove W₂ è il lavoro di un raddoppio di volume alla stessa T. Quindi W=W₂ ln r/ln 2. Nei confronti n è uguale: se W₂ cambia fra prove cambia T, che resta costante entro ogni isoterma. W₂=10 J e W=10 J. Quanto vale r?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1",
+          "4",
+          "1/2",
+          "10"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il quoziente W/W₂ vale uno, dunque ln r=ln2 e r=2. Questa conclusione usa l’iniettività del logaritmo per r positivo, senza logaritmi decimali. Il segno positivo di W conferma r>1."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{\\ln r}{\\ln2}=1"
+        },
+        {
+          "type": "formula",
+          "text": " \\ln r=\\ln2"
+        },
+        {
+          "type": "formula",
+          "text": " r=2"
+        },
+        {
+          "type": "text",
+          "text": "Uno darebbe lavoro zero, quattro due raddoppi e un mezzo una compressione con lavoro negativo. Dieci copia il numero del lavoro come se fosse un rapporto puro, senza l’inversione della legge."
+        }
+      ],
+      "hints": [
+        "Confronta il lavoro misurato con quello di un raddoppio.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Uno darebbe lavoro zero, quattro due raddoppi e un mezzo una compressione con lavoro negativo. Dieci copia il numero del lavoro come se fosse un rapporto puro, senza l’inversione della legge.",
+        "target": "C3-L07"
+      },
+      "coverage": [
+        "Logaritmi esatti e lavoro con segno",
+        "Inverse, rapporti e taratura",
+        "Primo principio nel ciclo con isocore"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-isothermal-work-07",
+      "kind": "question",
+      "course": "C3",
+      "section": "Lavoro reversibile misurato per raddoppi",
+      "order": 15207,
+      "title": "Due raddoppi successivi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L07",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L02",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isothermal-work",
+      "difficulty": 2,
+      "prompt": "Un campione chiuso di gas ideale percorre un’isoterma reversibile fra volumi positivi. n è la quantità di sostanza, R la costante dei gas e T>0 la temperatura assoluta costante lungo quella trasformazione. Il lavoro W è positivo se compiuto dal gas; r=V_f/V_i>0. Sono fornite W=nRT ln r e W₂=nRT ln 2>0, dove W₂ è il lavoro di un raddoppio di volume alla stessa T. Quindi W=W₂ ln r/ln 2. Nei confronti n è uguale: se W₂ cambia fra prove cambia T, che resta costante entro ogni isoterma. W₂ resta 10 J. A ha r=2, B ha r=4. Quanto vale W_B/W_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "4",
+          "1/2",
+          "1",
+          "1/4"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Quattro è due al quadrato, quindi ln4=2ln2. Il primo lavoro è dieci joule e il secondo venti joule. Due raddoppi successivi allo stesso n,T hanno uguale lavoro e si sommano: il rapporto è due, non quattro."
+        },
+        {
+          "type": "formula",
+          "text": "\\ln4=2\\ln2"
+        },
+        {
+          "type": "formula",
+          "text": " W_A=10\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " W_B=20\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " W_B/W_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Quattro segue il valore finale di r senza confrontare logaritmi; un mezzo inverte A e B. Uno ignora il secondo raddoppio e un quarto usa 1/r_B=1/4 al posto del rapporto dei lavori W_B/W_A. Non serve approssimare ln2."
+        }
+      ],
+      "hints": [
+        "Scrivi quattro come potenza di due.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro segue il valore finale di r senza confrontare logaritmi; un mezzo inverte A e B. Uno ignora il secondo raddoppio e un quarto usa 1/r_B=1/4 al posto del rapporto dei lavori W_B/W_A. Non serve approssimare ln2.",
+        "target": "C3-L07"
+      },
+      "coverage": [
+        "Logaritmi esatti e lavoro con segno",
+        "Inverse, rapporti e taratura",
+        "Primo principio nel ciclo con isocore"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-isothermal-work-08",
+      "kind": "question",
+      "course": "C3",
+      "section": "Lavoro reversibile misurato per raddoppi",
+      "order": 15208,
+      "title": "Una proposta che confonde r con il fattore di lavoro",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L07",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L02",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isothermal-work",
+      "difficulty": 2,
+      "prompt": "Un campione chiuso di gas ideale percorre un’isoterma reversibile fra volumi positivi. n è la quantità di sostanza, R la costante dei gas e T>0 la temperatura assoluta costante lungo quella trasformazione. Il lavoro W è positivo se compiuto dal gas; r=V_f/V_i>0. Sono fornite W=nRT ln r e W₂=nRT ln 2>0, dove W₂ è il lavoro di un raddoppio di volume alla stessa T. Quindi W=W₂ ln r/ln 2. Nei confronti n è uguale: se W₂ cambia fra prove cambia T, che resta costante entro ogni isoterma. Con W₂=10 J, r=2 si propone W=20 J. Quanto vale proposta meno valore corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "10 J",
+          "−10 J",
+          "20 J",
+          "0 J",
+          "30 J"
+        ],
+        "value": "10 J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Un raddoppio produce dieci joule, mentre la proposta ne attribuisce venti. La differenza ordinata è venti meno dieci, dieci joule. La quantità r non moltiplica direttamente W₂: entra nel logaritmo."
+        },
+        {
+          "type": "formula",
+          "text": "W=10\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " e=(20-10)\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " e=10\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Meno dieci cambia l’ordine, venti ripete la proposta e trenta somma. Zero accetterebbe una legge W=W₂r che non si annulla nemmeno quando r=1."
+        }
+      ],
+      "hints": [
+        "Applica prima la taratura esatta per r=2.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Meno dieci cambia l’ordine, venti ripete la proposta e trenta somma. Zero accetterebbe una legge W=W₂r che non si annulla nemmeno quando r=1.",
+        "target": "C3-L07"
+      },
+      "coverage": [
+        "Logaritmi esatti e lavoro con segno",
+        "Inverse, rapporti e taratura",
+        "Primo principio nel ciclo con isocore"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-isothermal-work-09",
+      "kind": "question",
+      "course": "C3",
+      "section": "Lavoro reversibile misurato per raddoppi",
+      "order": 15209,
+      "title": "L’inversa generale e il suo dominio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L07",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L02",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isothermal-work",
+      "difficulty": 2,
+      "prompt": "Un campione chiuso di gas ideale percorre un’isoterma reversibile fra volumi positivi. n è la quantità di sostanza, R la costante dei gas e T>0 la temperatura assoluta costante lungo quella trasformazione. Il lavoro W è positivo se compiuto dal gas; r=V_f/V_i>0. Sono fornite W=nRT ln r e W₂=nRT ln 2>0, dove W₂ è il lavoro di un raddoppio di volume alla stessa T. Quindi W=W₂ ln r/ln 2. Nei confronti n è uguale: se W₂ cambia fra prove cambia T, che resta costante entro ogni isoterma. Sono dati r≠1 e W compatibili con W/ln r>0. Quale formula isola W₂?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "W₂ = W ln 2 / ln r",
+          "W₂ = W ln r / ln 2",
+          "W₂ = ln r / (W ln 2)",
+          "W₂ = W / r",
+          "W₂ = W ln (2 r)"
+        ],
+        "value": "W₂ = W ln 2 / ln r"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplichiamo per ln2 e dividiamo per ln r, che non è zero nel dominio dichiarato. Si ricava W₂=W ln2/lnr. La compatibilità assicura W₂>0 anche per una compressione, perché W e ln r hanno allora entrambi segno negativo."
+        },
+        {
+          "type": "formula",
+          "text": "W\\ln2=W_2\\ln r"
+        },
+        {
+          "type": "formula",
+          "text": " W_2=W\\frac{\\ln2}{\\ln r}"
+        },
+        {
+          "type": "text",
+          "text": "Riapplicare la legge diretta scambia i fattori dell’inversa. Il reciproco ha unità inverse di energia, W/r sostituisce impropriamente il logaritmo e ln(2r) non rimuove la taratura. A r=1 il dato W=0 sarebbe compatibile con ogni W₂ positivo e non lo identificherebbe."
+        }
+      ],
+      "hints": [
+        "Dividi soltanto dopo aver controllato che ln r non sia zero.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Riapplicare la legge diretta scambia i fattori dell’inversa. Il reciproco ha unità inverse di energia, W/r sostituisce impropriamente il logaritmo e ln(2r) non rimuove la taratura. A r=1 il dato W=0 sarebbe compatibile con ogni W₂ positivo e non lo identificherebbe.",
+        "target": "C3-L07"
+      },
+      "coverage": [
+        "Logaritmi esatti e lavoro con segno",
+        "Inverse, rapporti e taratura",
+        "Primo principio nel ciclo con isocore"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-isothermal-work-10",
+      "kind": "question",
+      "course": "C3",
+      "section": "Lavoro reversibile misurato per raddoppi",
+      "order": 15210,
+      "title": "Fattori su taratura e volume",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L07",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L02",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isothermal-work",
+      "difficulty": 2,
+      "prompt": "Un campione chiuso di gas ideale percorre un’isoterma reversibile fra volumi positivi. n è la quantità di sostanza, R la costante dei gas e T>0 la temperatura assoluta costante lungo quella trasformazione. Il lavoro W è positivo se compiuto dal gas; r=V_f/V_i>0. Sono fornite W=nRT ln r e W₂=nRT ln 2>0, dove W₂ è il lavoro di un raddoppio di volume alla stessa T. Quindi W=W₂ ln r/ln 2. Nei confronti n è uguale: se W₂ cambia fra prove cambia T, che resta costante entro ogni isoterma. In A si ha r≠1. B usa W₂,B=κ₁W₂ e r_B=κ₂r, con κ₁,κ₂>0. I simboli senza pedice sono di A. Quanto vale W_B/W_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ ln (κ₂ r) / ln r",
+          "κ₁ κ₂",
+          "κ₁ / κ₂",
+          "κ₂ ln r / ln (κ₁ r)",
+          "κ₁ + ln κ₂"
+        ],
+        "value": "κ₁ ln (κ₂ r) / ln r"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il nuovo lavoro contiene κ₁ nella taratura e ln(κ₂r) nel logaritmo. Dividendo per il lavoro A si cancellano W₂ e ln2; rimane κ₁ ln(κ₂r)/lnr. Il denominatore non è nullo grazie a r≠1; B può avere lavoro nullo se κ₂r=1."
+        },
+        {
+          "type": "formula",
+          "text": "W_B=\\kappa_1W_2\\frac{\\ln(\\kappa_2r)}{\\ln2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{W_B}{W_A}=\\kappa_1\\frac{\\ln(\\kappa_2r)}{\\ln r}"
+        },
+        {
+          "type": "text",
+          "text": "Prodotto e quoziente dei fattori trattano r come argomento lineare. L’altro rapporto di logaritmi sposta κ₁ dentro un argomento sbagliato. La somma omette la divisione di lnκ₂ per lnr. Se κ₂=1 la risposta corretta deve ridursi a κ₁."
+        }
+      ],
+      "hints": [
+        "Sostituisci dentro il logaritmo prima di formare il rapporto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Prodotto e quoziente dei fattori trattano r come argomento lineare. L’altro rapporto di logaritmi sposta κ₁ dentro un argomento sbagliato. La somma omette la divisione di lnκ₂ per lnr. Se κ₂=1 la risposta corretta deve ridursi a κ₁.",
+        "target": "C3-L07"
+      },
+      "coverage": [
+        "Logaritmi esatti e lavoro con segno",
+        "Inverse, rapporti e taratura",
+        "Primo principio nel ciclo con isocore"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-isothermal-work-11",
+      "kind": "question",
+      "course": "C3",
+      "section": "Lavoro reversibile misurato per raddoppi",
+      "order": 15211,
+      "title": "Taratura doppia e due raddoppi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L07",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L02",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isothermal-work",
+      "difficulty": 2,
+      "prompt": "Un campione chiuso di gas ideale percorre un’isoterma reversibile fra volumi positivi. n è la quantità di sostanza, R la costante dei gas e T>0 la temperatura assoluta costante lungo quella trasformazione. Il lavoro W è positivo se compiuto dal gas; r=V_f/V_i>0. Sono fornite W=nRT ln r e W₂=nRT ln 2>0, dove W₂ è il lavoro di un raddoppio di volume alla stessa T. Quindi W=W₂ ln r/ln 2. Nei confronti n è uguale: se W₂ cambia fra prove cambia T, che resta costante entro ogni isoterma. A ha W₂=10 J, r=2. B ha W₂=20 J, r=4. Quanto vale W_B/W_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4",
+          "2",
+          "1/4",
+          "1/2",
+          "8"
+        ],
+        "value": "4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A compie un raddoppio con lavoro dieci joule. B ne compie due, ciascuno da venti joule: W_B=40 J. Il rapporto è quattro, prodotto dei due fattori due di taratura e numero di raddoppi. La temperatura di B è doppia a parità di n."
+        },
+        {
+          "type": "formula",
+          "text": "W_A=10\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " W_B=20\\cdot2\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " W_B=40\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " W_B/W_A=4"
+        },
+        {
+          "type": "text",
+          "text": "Due considera un solo cambiamento; un quarto inverte il rapporto completo e un mezzo un fattore soltanto. Otto usa r_B=4 come numero di raddoppi e moltiplica anche per il due della taratura."
+        }
+      ],
+      "hints": [
+        "Quattro nei volumi significa due raddoppi, non quattro.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due considera un solo cambiamento; un quarto inverte il rapporto completo e un mezzo un fattore soltanto. Otto usa r_B=4 come numero di raddoppi e moltiplica anche per il due della taratura.",
+        "target": "C3-L07"
+      },
+      "coverage": [
+        "Logaritmi esatti e lavoro con segno",
+        "Inverse, rapporti e taratura",
+        "Primo principio nel ciclo con isocore"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-isothermal-work-12",
+      "kind": "question",
+      "course": "C3",
+      "section": "Lavoro reversibile misurato per raddoppi",
+      "order": 15212,
+      "title": "Media statistica di due lavori",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L07",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L02",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isothermal-work",
+      "difficulty": 2,
+      "prompt": "Un campione chiuso di gas ideale percorre un’isoterma reversibile fra volumi positivi. n è la quantità di sostanza, R la costante dei gas e T>0 la temperatura assoluta costante lungo quella trasformazione. Il lavoro W è positivo se compiuto dal gas; r=V_f/V_i>0. Sono fornite W=nRT ln r e W₂=nRT ln 2>0, dove W₂ è il lavoro di un raddoppio di volume alla stessa T. Quindi W=W₂ ln r/ln 2. Nei confronti n è uguale: se W₂ cambia fra prove cambia T, che resta costante entro ogni isoterma. A ha W₂=10 J, r=2. B ha W₂=20 J, r=4. Qual è la media aritmetica dei due W con uguale peso?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "25 J",
+          "50 J",
+          "15 J",
+          "40 J",
+          "(15 ln 3 / ln 2) J"
+        ],
+        "value": "25 J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I lavori sono dieci e quaranta joule, quindi la media è venticinque joule. Le medie degli ingressi sarebbero W₂=15 J e r=3 e darebbero 15ln3/ln2 J, un valore diverso: l’uguaglianza a 25 richiederebbe 3³=2⁵, mentre 27≠32. Non occorre calcolare alcun logaritmo decimale."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline W=\\frac{10+40}{2}\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline W=25\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Cinquanta è la somma, quindici la semidifferenza e quaranta la sola prova B. L’espressione con ln3 risponde al modello sugli ingressi medi, non alla media delle uscite. Il peso statistico non è una durata di processo."
+        }
+      ],
+      "hints": [
+        "Valuta i logaritmi notevoli tramite potenze di due, poi fai la media.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Cinquanta è la somma, quindici la semidifferenza e quaranta la sola prova B. L’espressione con ln3 risponde al modello sugli ingressi medi, non alla media delle uscite. Il peso statistico non è una durata di processo.",
+        "target": "C3-L07"
+      },
+      "coverage": [
+        "Logaritmi esatti e lavoro con segno",
+        "Inverse, rapporti e taratura",
+        "Primo principio nel ciclo con isocore"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-isothermal-work-13",
+      "kind": "question",
+      "course": "C3",
+      "section": "Lavoro reversibile misurato per raddoppi",
+      "order": 15213,
+      "title": "Il rapporto di volumi necessario",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L07",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L02",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isothermal-work",
+      "difficulty": 3,
+      "prompt": "Un campione chiuso di gas ideale percorre un’isoterma reversibile fra volumi positivi. n è la quantità di sostanza, R la costante dei gas e T>0 la temperatura assoluta costante lungo quella trasformazione. Il lavoro W è positivo se compiuto dal gas; r=V_f/V_i>0. Sono fornite W=nRT ln r e W₂=nRT ln 2>0, dove W₂ è il lavoro di un raddoppio di volume alla stessa T. Quindi W=W₂ ln r/ln 2. Nei confronti n è uguale: se W₂ cambia fra prove cambia T, che resta costante entro ogni isoterma. A ha W₂=10 J, r_A=2. B impone W₂,B=20 J e W_B=4W_A. Quanto vale r_B/r_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "4",
+          "1/2",
+          "1",
+          "8"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il target è quaranta joule. Ogni raddoppio in B vale venti joule, quindi ne occorrono due: lnr_B/ln2=2 e r_B=4. Dividendo per r_A=2 otteniamo due. Il rapporto dei volumi r_B non coincide con il rapporto fra i due r."
+        },
+        {
+          "type": "formula",
+          "text": "W_B=40\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " \\ln r_B=2\\ln2"
+        },
+        {
+          "type": "formula",
+          "text": " r_B=4"
+        },
+        {
+          "type": "formula",
+          "text": " r_B/r_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Quattro copia r_B anziché dividerlo per r_A; un mezzo inverte il rapporto richiesto. Uno consentirebbe soltanto il raddoppio del lavoro dovuto a W₂, non il fattore quattro. Otto moltiplica anziché dividere i due rapporti di volume."
+        }
+      ],
+      "hints": [
+        "Ricava r_B e soltanto dopo confrontalo con r_A.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro copia r_B anziché dividerlo per r_A; un mezzo inverte il rapporto richiesto. Uno consentirebbe soltanto il raddoppio del lavoro dovuto a W₂, non il fattore quattro. Otto moltiplica anziché dividere i due rapporti di volume.",
+        "target": "C3-L07"
+      },
+      "coverage": [
+        "Logaritmi esatti e lavoro con segno",
+        "Inverse, rapporti e taratura",
+        "Primo principio nel ciclo con isocore"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-isothermal-work-14",
+      "kind": "question",
+      "course": "C3",
+      "section": "Lavoro reversibile misurato per raddoppi",
+      "order": 15214,
+      "title": "Display del lavoro e taratura termica",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L07",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L02",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isothermal-work",
+      "difficulty": 3,
+      "prompt": "Un campione chiuso di gas ideale percorre un’isoterma reversibile fra volumi positivi. n è la quantità di sostanza, R la costante dei gas e T>0 la temperatura assoluta costante lungo quella trasformazione. Il lavoro W è positivo se compiuto dal gas; r=V_f/V_i>0. Sono fornite W=nRT ln r e W₂=nRT ln 2>0, dove W₂ è il lavoro di un raddoppio di volume alla stessa T. Quindi W=W₂ ln r/ln 2. Nei confronti n è uguale: se W₂ cambia fra prove cambia T, che resta costante entro ogni isoterma. S=qW è un display continuo adimensionale, q>0 costante. A: W₂=10 J, r=2, S=30. B: r=4, S=120. Quanto vale W₂,B in J?",
+      "answer": {
+        "type": "numeric",
+        "value": 20,
+        "unit": "J",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La prova A ha lavoro dieci joule: q=3 per joule. S=120 rappresenta quaranta joule. Poiché r=4 contiene due raddoppi, la nuova taratura è W₂,B=40/2=20 J. Fra A e B cambia la temperatura, non il guadagno del display."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{J^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " W_B=40\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " W_{2,B}=\\frac{W_B\\ln2}{\\ln4}"
+        },
+        {
+          "type": "formula",
+          "text": " W_{2,B}=20\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Sessanta usa la lettura 120 come lavoro prima di dividere per due; quaranta copia il lavoro totale di B. Dieci conserva la vecchia taratura senza rispettare il nuovo display. La lettura continua non è un conteggio discreto di joule."
+        }
+      ],
+      "hints": [
+        "Rimuovi q, poi conta i raddoppi del volume.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sessanta usa la lettura 120 come lavoro prima di dividere per due; quaranta copia il lavoro totale di B. Dieci conserva la vecchia taratura senza rispettare il nuovo display. La lettura continua non è un conteggio discreto di joule.",
+        "target": "C3-L07"
+      },
+      "coverage": [
+        "Logaritmi esatti e lavoro con segno",
+        "Inverse, rapporti e taratura",
+        "Primo principio nel ciclo con isocore"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-isothermal-work-15",
+      "kind": "question",
+      "course": "C3",
+      "section": "Lavoro reversibile misurato per raddoppi",
+      "order": 15215,
+      "title": "Offset prima del numero di raddoppi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L07",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L02",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isothermal-work",
+      "difficulty": 3,
+      "prompt": "Un campione chiuso di gas ideale percorre un’isoterma reversibile fra volumi positivi. n è la quantità di sostanza, R la costante dei gas e T>0 la temperatura assoluta costante lungo quella trasformazione. Il lavoro W è positivo se compiuto dal gas; r=V_f/V_i>0. Sono fornite W=nRT ln r e W₂=nRT ln 2>0, dove W₂ è il lavoro di un raddoppio di volume alla stessa T. Quindi W=W₂ ln r/ln 2. Nei confronti n è uguale: se W₂ cambia fra prove cambia T, che resta costante entro ogni isoterma. Il display continuo è S=qW+b con q>0 e q,b costanti. A: W₂=10 J, r=2, S=21. B: W₂=20 J, r=4, S=81. C: r=2, S=41. Quanto vale W₂,C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "20 J",
+          "10 J",
+          "40 J",
+          "41/2 J",
+          "41 J"
+        ],
+        "value": "20 J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A e B hanno lavori dieci e quaranta joule. La differenza sessanta dei display su trenta joule dà q=2 per joule; b=1. C ha W_C=(41−1)/2=20 J. Siccome r=2, questo è anche il lavoro di un raddoppio W₂,C."
+        },
+        {
+          "type": "formula",
+          "text": "q=2\\,\\mathrm{J^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " W_C=20\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " W_{2,C}=20\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Dieci copia A, quaranta copia B e 41/2 dimentica l’offset. Quarantuno usa direttamente il display come energia. La risposta deve ricostruire S=2·20+1=41, nelle stesse unità strumentali."
+        }
+      ],
+      "hints": [
+        "Calibra sulle due energie fisiche, poi decodifica C.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dieci copia A, quaranta copia B e 41/2 dimentica l’offset. Quarantuno usa direttamente il display come energia. La risposta deve ricostruire S=2·20+1=41, nelle stesse unità strumentali.",
+        "target": "C3-L07"
+      },
+      "coverage": [
+        "Logaritmi esatti e lavoro con segno",
+        "Inverse, rapporti e taratura",
+        "Primo principio nel ciclo con isocore"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-isothermal-work-16",
+      "kind": "question",
+      "course": "C3",
+      "section": "Lavoro reversibile misurato per raddoppi",
+      "order": 15216,
+      "title": "Il calore della sola isoterma calda",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L07",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L02",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "isothermal-work",
+      "difficulty": 3,
+      "prompt": "Un campione chiuso di gas ideale percorre un ciclo con solo lavoro di frontiera. Si espande reversibilmente da V a 4V a T_h>0, si raffredda isocoricamente fino a T_h/2, si comprime reversibilmente da 4V a V a T_h/2 e si riscalda isocoricamente fino a T_h. È fornita W=nRT ln(V_f/V_i), positivo se compiuto dal gas. Le isocore compiono lavoro nullo; il lavoro netto del ciclo è 12 J. Quanto calore assorbe il gas durante la sola isoterma calda, escludendo i calori delle isocore?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "24 J",
+          "12 J",
+          "48 J",
+          "−24 J",
+          "18 J"
+        ],
+        "value": "24 J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Chiamiamo A=nRT_h ln4 il lavoro dell’espansione calda. La compressione fredda percorre il rapporto inverso 1/4 a temperatura dimezzata e compie −A/2. Le isocore non aggiungono lavoro, quindi W_net=A/2=12 J e A=24 J. Sulla sola isoterma calda ΔU=0 per il gas ideale: il primo principio dà Q_h=W_h=24 J."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/884c2aabdd5aab9a0dd9bde29c492abc2cd263c4bda7bf178eefaf0cd95d100e",
+          "text": "Il diagramma inferiore descrive il solo ciclo 16: isoterma calda q=1/v, fredda q=1/(2v), due isocore ai volumi V₀ e 4V₀; frecce seguono espansione, raffreddamento, compressione, riscaldamento. Le coordinate normalizzate e le due scale sono comuni alle curve del ciclo; le aree con segno sono A e −A/2. Il calore chiesto è soltanto quello dell’isoterma calda, non quello totale assorbito dal ciclo."
+        },
+        {
+          "type": "formula",
+          "text": "W_h=A"
+        },
+        {
+          "type": "formula",
+          "text": " W_c=-\\frac A2"
+        },
+        {
+          "type": "formula",
+          "text": " W_{\\rm net}=\\frac A2"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac A2=12\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " Q_h=W_h"
+        },
+        {
+          "type": "formula",
+          "text": "W_h=24\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Dodici copia il lavoro netto, quarantotto applica un fattore due ancora una volta e meno ventiquattro confonde espansione con compressione. Diciotto non soddisfa W_net=A/2. Il calore totale assorbito nel ciclo comprenderebbe anche il riscaldamento isocoro e non è la quantità domandata."
+        }
+      ],
+      "hints": [
+        "Esprimi il lavoro freddo in funzione di quello caldo prima del primo principio.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Dodici copia il lavoro netto, quarantotto applica un fattore due ancora una volta e meno ventiquattro confonde espansione con compressione. Diciotto non soddisfa W_net=A/2. Il calore totale assorbito nel ciclo comprenderebbe anche il riscaldamento isocoro e non è la quantità domandata.",
+        "target": "C3-L07"
+      },
+      "coverage": [
+        "Logaritmi esatti e lavoro con segno",
+        "Inverse, rapporti e taratura",
+        "Primo principio nel ciclo con isocore"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "884c2aabdd5aab9a0dd9bde29c492abc2cd263c4bda7bf178eefaf0cd95d100e",
+      "name": "isothermal-work-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTgyMCIgdmlld0JveD0iMCAwIDY0MCAxODIwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+RHVlIHJhZGRvcHBpIGUgdW4gY2ljbG8gY29uIGlzb2NvcmU8L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5Jc290ZXJtYSBpZGVhbGUgaW4gY29vcmRpbmF0ZSBub3JtYWxpenphdGU6IGdsaSBpbnRlcnZhbGxpIGRpIHZvbHVtZSBkYSB1bm8gYSBkdWUgZSBkYSBkdWUgYSBxdWF0dHJvIGhhbm5vIHVndWFsZSBsYXZvcm8uIFVuIHNlY29uZG8gZ3JhZmljbyBkaXN0aW50byBtb3N0cmEgaWwgY2ljbG8gY29uIGR1ZSBpc290ZXJtZSBhIHRlbXBlcmF0dXJlIGluIHJhcHBvcnRvIGR1ZSBlIGR1ZSBpc29jb3JlOyBlc3BhbnNpb25lIGNhbGRhIGUgY29tcHJlc3Npb25lIGZyZWRkYSBoYW5ubyBsYXZvcmkgZGkgc2Vnbm8gb3Bwb3N0by48L2Rlc2M+PGRlZnM+PG1hcmtlciBpZD0iYXJyb3ciIHZpZXdCb3g9IjAgMCAxMCAxMCIgcmVmWD0iOCIgcmVmWT0iNSIgbWFya2VyV2lkdGg9IjciIG1hcmtlckhlaWdodD0iNyIgb3JpZW50PSJhdXRvLXN0YXJ0LXJldmVyc2UiPjxwYXRoIGQ9Ik0wIDBMMTAgNUwwIDEwWiIgZmlsbD0iY29udGV4dC1zdHJva2UiLz48L21hcmtlcj48L2RlZnM+PHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxODIwIiByeD0iMjQiIGZpbGw9IiNmNWZhZmYiLz48ZyBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzE2MzA0NyI+PHRleHQgeD0iMzUiIHk9IjUwIiBmb250LXNpemU9IjI2IiBmb250LXdlaWdodD0iYm9sZCI+MSDCtyBMZSBhcmVlIGRpIGR1ZSByYWRkb3BwaTwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMTA1IiBmb250LXNpemU9IjIwIj52ID0gVi9W4oKAIMK3IHEgPSBwL3DigoAgwrcgcOKCgFbigoAgPSBuUlQ8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjE0NSIgZm9udC1zaXplPSIyMCI+U2NhbGU6IDEwMCBweCBwZXIgdiDCtyAyMjAgcHggcGVyIHE8L3RleHQ+PHBhdGggZD0iTTE3MC4wMDAwIDIxMC4wMDAwTDE3MC44MzMzIDIxMS44MTgyTDE3MS42NjY3IDIxMy42MDY2TDE3Mi41MDAwIDIxNS4zNjU5TDE3My4zMzMzIDIxNy4wOTY4TDE3NC4xNjY3IDIxOC44MDAwTDE3NS4wMDAwIDIyMC40NzYyTDE3NS44MzMzIDIyMi4xMjYwTDE3Ni42NjY3IDIyMy43NTAwTDE3Ny41MDAwIDIyNS4zNDg4TDE3OC4zMzMzIDIyNi45MjMxTDE3OS4xNjY3IDIyOC40NzMzTDE4MC4wMDAwIDIzMC4wMDAwTDE4MC44MzMzIDIzMS41MDM4TDE4MS42NjY3IDIzMi45ODUxTDE4Mi41MDAwIDIzNC40NDQ0TDE4My4zMzMzIDIzNS44ODI0TDE4NC4xNjY3IDIzNy4yOTkzTDE4NS4wMDAwIDIzOC42OTU3TDE4NS44MzMzIDI0MC4wNzE5TDE4Ni42NjY3IDI0MS40Mjg2TDE4Ny41MDAwIDI0Mi43NjYwTDE4OC4zMzMzIDI0NC4wODQ1TDE4OS4xNjY3IDI0NS4zODQ2TDE5MC4wMDAwIDI0Ni42NjY3TDE5MC44MzMzIDI0Ny45MzEwTDE5MS42NjY3IDI0OS4xNzgxTDE5Mi41MDAwIDI1MC40MDgyTDE5My4zMzMzIDI1MS42MjE2TDE5NC4xNjY3IDI1Mi44MTg4TDE5NS4wMDAwIDI1NC4wMDAwTDE5NS44MzMzIDI1NS4xNjU2TDE5Ni42NjY3IDI1Ni4zMTU4TDE5Ny41MDAwIDI1Ny40NTEwTDE5OC4zMzMzIDI1OC41NzE0TDE5OS4xNjY3IDI1OS42Nzc0TDIwMC4wMDAwIDI2MC43NjkyTDIwMC44MzMzIDI2MS44NDcxTDIwMS42NjY3IDI2Mi45MTE0TDIwMi41MDAwIDI2My45NjIzTDIwMy4zMzMzIDI2NS4wMDAwTDIwNC4xNjY3IDI2Ni4wMjQ4TDIwNS4wMDAwIDI2Ny4wMzcwTDIwNS44MzMzIDI2OC4wMzY4TDIwNi42NjY3IDI2OS4wMjQ0TDIwNy41MDAwIDI3MC4wMDAwTDIwOC4zMzMzIDI3MC45NjM5TDIwOS4xNjY3IDI3MS45MTYyTDIxMC4wMDAwIDI3Mi44NTcxTDIxMC44MzMzIDI3My43ODcwTDIxMS42NjY3IDI3NC43MDU5TDIxMi41MDAwIDI3NS42MTQwTDIxMy4zMzMzIDI3Ni41MTE2TDIxNC4xNjY3IDI3Ny4zOTg4TDIxNS4wMDAwIDI3OC4yNzU5TDIxNS44MzMzIDI3OS4xNDI5TDIxNi42NjY3IDI4MC4wMDAwTDIxNy41MDAwIDI4MC44NDc1TDIxOC4zMzMzIDI4MS42ODU0TDIxOS4xNjY3IDI4Mi41MTQwTDIyMC4wMDAwIDI4My4zMzMzTDIyMC44MzMzIDI4NC4xNDM2TDIyMS42NjY3IDI4NC45NDUxTDIyMi41MDAwIDI4NS43Mzc3TDIyMy4zMzMzIDI4Ni41MjE3TDIyNC4xNjY3IDI4Ny4yOTczTDIyNS4wMDAwIDI4OC4wNjQ1TDIyNS44MzMzIDI4OC44MjM1TDIyNi42NjY3IDI4OS41NzQ1TDIyNy41MDAwIDI5MC4zMTc1TDIyOC4zMzMzIDI5MS4wNTI2TDIyOS4xNjY3IDI5MS43ODAxTDIzMC4wMDAwIDI5Mi41MDAwTDIzMC44MzMzIDI5My4yMTI0TDIzMS42NjY3IDI5My45MTc1TDIzMi41MDAwIDI5NC42MTU0TDIzMy4zMzMzIDI5NS4zMDYxTDIzNC4xNjY3IDI5NS45ODk4TDIzNS4wMDAwIDI5Ni42NjY3TDIzNS44MzMzIDI5Ny4zMzY3TDIzNi42NjY3IDI5OC4wMDAwTDIzNy41MDAwIDI5OC42NTY3TDIzOC4zMzMzIDI5OS4zMDY5TDIzOS4xNjY3IDI5OS45NTA3TDI0MC4wMDAwIDMwMC41ODgyTDI0MC44MzMzIDMwMS4yMTk1TDI0MS42NjY3IDMwMS44NDQ3TDI0Mi41MDAwIDMwMi40NjM4TDI0My4zMzMzIDMwMy4wNzY5TDI0NC4xNjY3IDMwMy42ODQyTDI0NS4wMDAwIDMwNC4yODU3TDI0NS44MzMzIDMwNC44ODE1TDI0Ni42NjY3IDMwNS40NzE3TDI0Ny41MDAwIDMwNi4wNTYzTDI0OC4zMzMzIDMwNi42MzU1TDI0OS4xNjY3IDMwNy4yMDkzTDI1MC4wMDAwIDMwNy43Nzc4TDI1MC44MzMzIDMwOC4zNDEwTDI1MS42NjY3IDMwOC44OTkxTDI1Mi41MDAwIDMwOS40NTIxTDI1My4zMzMzIDMxMC4wMDAwTDI1NC4xNjY3IDMxMC41NDMwTDI1NS4wMDAwIDMxMS4wODExTDI1NS44MzMzIDMxMS42MTQzTDI1Ni42NjY3IDMxMi4xNDI5TDI1Ny41MDAwIDMxMi42NjY3TDI1OC4zMzMzIDMxMy4xODU4TDI1OS4xNjY3IDMxMy43MDA0TDI2MC4wMDAwIDMxNC4yMTA1TDI2MC44MzMzIDMxNC43MTYyTDI2MS42NjY3IDMxNS4yMTc0TDI2Mi41MDAwIDMxNS43MTQzTDI2My4zMzMzIDMxNi4yMDY5TDI2NC4xNjY3IDMxNi42OTUzTDI2NS4wMDAwIDMxNy4xNzk1TDI2NS44MzMzIDMxNy42NTk2TDI2Ni42NjY3IDMxOC4xMzU2TDI2Ny41MDAwIDMxOC42MDc2TDI2OC4zMzMzIDMxOS4wNzU2TDI2OS4xNjY3IDMxOS41Mzk3TDI3MC4wMDAwIDMyMC4wMDAwTDI3MCA0MzBMMTcwIDQzMFoiIGZpbGw9IiNiN2RhZTkiLz48cGF0aCBkPSJNMjcwLjAwMDAgMzIwLjAwMDBMMjcxLjY2NjcgMzIwLjkwOTFMMjczLjMzMzMgMzIxLjgwMzNMMjc1LjAwMDAgMzIyLjY4MjlMMjc2LjY2NjcgMzIzLjU0ODRMMjc4LjMzMzMgMzI0LjQwMDBMMjgwLjAwMDAgMzI1LjIzODFMMjgxLjY2NjcgMzI2LjA2MzBMMjgzLjMzMzMgMzI2Ljg3NTBMMjg1LjAwMDAgMzI3LjY3NDRMMjg2LjY2NjcgMzI4LjQ2MTVMMjg4LjMzMzMgMzI5LjIzNjZMMjkwLjAwMDAgMzMwLjAwMDBMMjkxLjY2NjcgMzMwLjc1MTlMMjkzLjMzMzMgMzMxLjQ5MjVMMjk1LjAwMDAgMzMyLjIyMjJMMjk2LjY2NjcgMzMyLjk0MTJMMjk4LjMzMzMgMzMzLjY0OTZMMzAwLjAwMDAgMzM0LjM0NzhMMzAxLjY2NjcgMzM1LjAzNjBMMzAzLjMzMzMgMzM1LjcxNDNMMzA1LjAwMDAgMzM2LjM4MzBMMzA2LjY2NjcgMzM3LjA0MjNMMzA4LjMzMzMgMzM3LjY5MjNMMzEwLjAwMDAgMzM4LjMzMzNMMzExLjY2NjcgMzM4Ljk2NTVMMzEzLjMzMzMgMzM5LjU4OTBMMzE1LjAwMDAgMzQwLjIwNDFMMzE2LjY2NjcgMzQwLjgxMDhMMzE4LjMzMzMgMzQxLjQwOTRMMzIwLjAwMDAgMzQyLjAwMDBMMzIxLjY2NjcgMzQyLjU4MjhMMzIzLjMzMzMgMzQzLjE1NzlMMzI1LjAwMDAgMzQzLjcyNTVMMzI2LjY2NjcgMzQ0LjI4NTdMMzI4LjMzMzMgMzQ0LjgzODdMMzMwLjAwMDAgMzQ1LjM4NDZMMzMxLjY2NjcgMzQ1LjkyMzZMMzMzLjMzMzMgMzQ2LjQ1NTdMMzM1LjAwMDAgMzQ2Ljk4MTFMMzM2LjY2NjcgMzQ3LjUwMDBMMzM4LjMzMzMgMzQ4LjAxMjRMMzQwLjAwMDAgMzQ4LjUxODVMMzQxLjY2NjcgMzQ5LjAxODRMMzQzLjMzMzMgMzQ5LjUxMjJMMzQ1LjAwMDAgMzUwLjAwMDBMMzQ2LjY2NjcgMzUwLjQ4MTlMMzQ4LjMzMzMgMzUwLjk1ODFMMzUwLjAwMDAgMzUxLjQyODZMMzUxLjY2NjcgMzUxLjg5MzVMMzUzLjMzMzMgMzUyLjM1MjlMMzU1LjAwMDAgMzUyLjgwNzBMMzU2LjY2NjcgMzUzLjI1NThMMzU4LjMzMzMgMzUzLjY5OTRMMzYwLjAwMDAgMzU0LjEzNzlMMzYxLjY2NjcgMzU0LjU3MTRMMzYzLjMzMzMgMzU1LjAwMDBMMzY1LjAwMDAgMzU1LjQyMzdMMzY2LjY2NjcgMzU1Ljg0MjdMMzY4LjMzMzMgMzU2LjI1NzBMMzcwLjAwMDAgMzU2LjY2NjdMMzcxLjY2NjcgMzU3LjA3MThMMzczLjMzMzMgMzU3LjQ3MjVMMzc1LjAwMDAgMzU3Ljg2ODlMMzc2LjY2NjcgMzU4LjI2MDlMMzc4LjMzMzMgMzU4LjY0ODZMMzgwLjAwMDAgMzU5LjAzMjNMMzgxLjY2NjcgMzU5LjQxMThMMzgzLjMzMzMgMzU5Ljc4NzJMMzg1LjAwMDAgMzYwLjE1ODdMMzg2LjY2NjcgMzYwLjUyNjNMMzg4LjMzMzMgMzYwLjg5MDFMMzkwLjAwMDAgMzYxLjI1MDBMMzkxLjY2NjcgMzYxLjYwNjJMMzkzLjMzMzMgMzYxLjk1ODhMMzk1LjAwMDAgMzYyLjMwNzdMMzk2LjY2NjcgMzYyLjY1MzFMMzk4LjMzMzMgMzYyLjk5NDlMNDAwLjAwMDAgMzYzLjMzMzNMNDAxLjY2NjcgMzYzLjY2ODNMNDAzLjMzMzMgMzY0LjAwMDBMNDA1LjAwMDAgMzY0LjMyODRMNDA2LjY2NjcgMzY0LjY1MzVMNDA4LjMzMzMgMzY0Ljk3NTRMNDEwLjAwMDAgMzY1LjI5NDFMNDExLjY2NjcgMzY1LjYwOThMNDEzLjMzMzMgMzY1LjkyMjNMNDE1LjAwMDAgMzY2LjIzMTlMNDE2LjY2NjcgMzY2LjUzODVMNDE4LjMzMzMgMzY2Ljg0MjFMNDIwLjAwMDAgMzY3LjE0MjlMNDIxLjY2NjcgMzY3LjQ0MDhMNDIzLjMzMzMgMzY3LjczNThMNDI1LjAwMDAgMzY4LjAyODJMNDI2LjY2NjcgMzY4LjMxNzhMNDI4LjMzMzMgMzY4LjYwNDdMNDMwLjAwMDAgMzY4Ljg4ODlMNDMxLjY2NjcgMzY5LjE3MDVMNDMzLjMzMzMgMzY5LjQ0OTVMNDM1LjAwMDAgMzY5LjcyNjBMNDM2LjY2NjcgMzcwLjAwMDBMNDM4LjMzMzMgMzcwLjI3MTVMNDQwLjAwMDAgMzcwLjU0MDVMNDQxLjY2NjcgMzcwLjgwNzJMNDQzLjMzMzMgMzcxLjA3MTRMNDQ1LjAwMDAgMzcxLjMzMzNMNDQ2LjY2NjcgMzcxLjU5MjlMNDQ4LjMzMzMgMzcxLjg1MDJMNDUwLjAwMDAgMzcyLjEwNTNMNDUxLjY2NjcgMzcyLjM1ODFMNDUzLjMzMzMgMzcyLjYwODdMNDU1LjAwMDAgMzcyLjg1NzFMNDU2LjY2NjcgMzczLjEwMzRMNDU4LjMzMzMgMzczLjM0NzZMNDYwLjAwMDAgMzczLjU4OTdMNDYxLjY2NjcgMzczLjgyOThMNDYzLjMzMzMgMzc0LjA2NzhMNDY1LjAwMDAgMzc0LjMwMzhMNDY2LjY2NjcgMzc0LjUzNzhMNDY4LjMzMzMgMzc0Ljc2OTlMNDcwLjAwMDAgMzc1LjAwMDBMNDcwIDQzMEwyNzAgNDMwWiIgZmlsbD0iI2YwZDBiNyIvPjxwYXRoIGQ9Ik03MCAxNzIuNjAwMDAwMDAwMDAwMDJWNDMwSDU1MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMTYzMDQ3IiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSI2MiIgeT0iMTU3LjYwMDAwMDAwMDAwMDAyIiBmb250LXNpemU9IjIwIj5xPC90ZXh0Pjx0ZXh0IHg9IjU2MyIgeT0iNDM3IiBmb250LXNpemU9IjIwIj52PC90ZXh0PjxwYXRoIGQ9Ik0xNzAgNDMwdjgiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE2MzA0NyIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iMTY1IiB5PSI0NjUiIGZvbnQtc2l6ZT0iMjAiPjE8L3RleHQ+PHBhdGggZD0iTTI3MCA0MzB2OCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMTYzMDQ3IiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSIyNjUiIHk9IjQ2NSIgZm9udC1zaXplPSIyMCI+MjwvdGV4dD48cGF0aCBkPSJNNDcwIDQzMHY4IiBmaWxsPSJub25lIiBzdHJva2U9IiMxNjMwNDciIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjQ2NSIgeT0iNDY1IiBmb250LXNpemU9IjIwIj40PC90ZXh0PjxwYXRoIGQ9Ik02MiAyMTBINzAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE2MzA0NyIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iMjIiIHk9IjIxNiIgZm9udC1zaXplPSIxOCI+MTwvdGV4dD48cGF0aCBkPSJNNjIgMzIwLjBINzAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE2MzA0NyIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iMjIiIHk9IjMyNi4wIiBmb250LXNpemU9IjE4Ij4xLzI8L3RleHQ+PHBhdGggZD0iTTE3MC4wMDAwIDIxMC4wMDAwTDE3Mi41MDAwIDIxNS4zNjU5TDE3NS4wMDAwIDIyMC40NzYyTDE3Ny41MDAwIDIyNS4zNDg4TDE4MC4wMDAwIDIzMC4wMDAwTDE4Mi41MDAwIDIzNC40NDQ0TDE4NS4wMDAwIDIzOC42OTU3TDE4Ny41MDAwIDI0Mi43NjYwTDE5MC4wMDAwIDI0Ni42NjY3TDE5Mi41MDAwIDI1MC40MDgyTDE5NS4wMDAwIDI1NC4wMDAwTDE5Ny41MDAwIDI1Ny40NTEwTDIwMC4wMDAwIDI2MC43NjkyTDIwMi41MDAwIDI2My45NjIzTDIwNS4wMDAwIDI2Ny4wMzcwTDIwNy41MDAwIDI3MC4wMDAwTDIxMC4wMDAwIDI3Mi44NTcxTDIxMi41MDAwIDI3NS42MTQwTDIxNS4wMDAwIDI3OC4yNzU5TDIxNy41MDAwIDI4MC44NDc1TDIyMC4wMDAwIDI4My4zMzMzTDIyMi41MDAwIDI4NS43Mzc3TDIyNS4wMDAwIDI4OC4wNjQ1TDIyNy41MDAwIDI5MC4zMTc1TDIzMC4wMDAwIDI5Mi41MDAwTDIzMi41MDAwIDI5NC42MTU0TDIzNS4wMDAwIDI5Ni42NjY3TDIzNy41MDAwIDI5OC42NTY3TDI0MC4wMDAwIDMwMC41ODgyTDI0Mi41MDAwIDMwMi40NjM4TDI0NS4wMDAwIDMwNC4yODU3TDI0Ny41MDAwIDMwNi4wNTYzTDI1MC4wMDAwIDMwNy43Nzc4TDI1Mi41MDAwIDMwOS40NTIxTDI1NS4wMDAwIDMxMS4wODExTDI1Ny41MDAwIDMxMi42NjY3TDI2MC4wMDAwIDMxNC4yMTA1TDI2Mi41MDAwIDMxNS43MTQzTDI2NS4wMDAwIDMxNy4xNzk1TDI2Ny41MDAwIDMxOC42MDc2TDI3MC4wMDAwIDMyMC4wMDAwTDI3Mi41MDAwIDMyMS4zNTgwTDI3NS4wMDAwIDMyMi42ODI5TDI3Ny41MDAwIDMyMy45NzU5TDI4MC4wMDAwIDMyNS4yMzgxTDI4Mi41MDAwIDMyNi40NzA2TDI4NS4wMDAwIDMyNy42NzQ0TDI4Ny41MDAwIDMyOC44NTA2TDI5MC4wMDAwIDMzMC4wMDAwTDI5Mi41MDAwIDMzMS4xMjM2TDI5NS4wMDAwIDMzMi4yMjIyTDI5Ny41MDAwIDMzMy4yOTY3TDMwMC4wMDAwIDMzNC4zNDc4TDMwMi41MDAwIDMzNS4zNzYzTDMwNS4wMDAwIDMzNi4zODMwTDMwNy41MDAwIDMzNy4zNjg0TDMxMC4wMDAwIDMzOC4zMzMzTDMxMi41MDAwIDMzOS4yNzg0TDMxNS4wMDAwIDM0MC4yMDQxTDMxNy41MDAwIDM0MS4xMTExTDMyMC4wMDAwIDM0Mi4wMDAwTDMyMi41MDAwIDM0Mi44NzEzTDMyNS4wMDAwIDM0My43MjU1TDMyNy41MDAwIDM0NC41NjMxTDMzMC4wMDAwIDM0NS4zODQ2TDMzMi41MDAwIDM0Ni4xOTA1TDMzNS4wMDAwIDM0Ni45ODExTDMzNy41MDAwIDM0Ny43NTcwTDM0MC4wMDAwIDM0OC41MTg1TDM0Mi41MDAwIDM0OS4yNjYxTDM0NS4wMDAwIDM1MC4wMDAwTDM0Ny41MDAwIDM1MC43MjA3TDM1MC4wMDAwIDM1MS40Mjg2TDM1Mi41MDAwIDM1Mi4xMjM5TDM1NS4wMDAwIDM1Mi44MDcwTDM1Ny41MDAwIDM1My40NzgzTDM2MC4wMDAwIDM1NC4xMzc5TDM2Mi41MDAwIDM1NC43ODYzTDM2NS4wMDAwIDM1NS40MjM3TDM2Ny41MDAwIDM1Ni4wNTA0TDM3MC4wMDAwIDM1Ni42NjY3TDM3Mi41MDAwIDM1Ny4yNzI3TDM3NS4wMDAwIDM1Ny44Njg5TDM3Ny41MDAwIDM1OC40NTUzTDM4MC4wMDAwIDM1OS4wMzIzTDM4Mi41MDAwIDM1OS42MDAwTDM4NS4wMDAwIDM2MC4xNTg3TDM4Ny41MDAwIDM2MC43MDg3TDM5MC4wMDAwIDM2MS4yNTAwTDM5Mi41MDAwIDM2MS43ODI5TDM5NS4wMDAwIDM2Mi4zMDc3TDM5Ny41MDAwIDM2Mi44MjQ0TDQwMC4wMDAwIDM2My4zMzMzTDQwMi41MDAwIDM2My44MzQ2TDQwNS4wMDAwIDM2NC4zMjg0TDQwNy41MDAwIDM2NC44MTQ4TDQxMC4wMDAwIDM2NS4yOTQxTDQxMi41MDAwIDM2NS43NjY0TDQxNS4wMDAwIDM2Ni4yMzE5TDQxNy41MDAwIDM2Ni42OTA2TDQyMC4wMDAwIDM2Ny4xNDI5TDQyMi41MDAwIDM2Ny41ODg3TDQyNS4wMDAwIDM2OC4wMjgyTDQyNy41MDAwIDM2OC40NjE1TDQzMC4wMDAwIDM2OC44ODg5TDQzMi41MDAwIDM2OS4zMTAzTDQzNS4wMDAwIDM2OS43MjYwTDQzNy41MDAwIDM3MC4xMzYxTDQ0MC4wMDAwIDM3MC41NDA1TDQ0Mi41MDAwIDM3MC45Mzk2TDQ0NS4wMDAwIDM3MS4zMzMzTDQ0Ny41MDAwIDM3MS43MjE5TDQ1MC4wMDAwIDM3Mi4xMDUzTDQ1Mi41MDAwIDM3Mi40ODM3TDQ1NS4wMDAwIDM3Mi44NTcxTDQ1Ny41MDAwIDM3My4yMjU4TDQ2MC4wMDAwIDM3My41ODk3TDQ2Mi41MDAwIDM3My45NDkwTDQ2NS4wMDAwIDM3NC4zMDM4TDQ2Ny41MDAwIDM3NC42NTQxTDQ3MC4wMDAwIDM3NS4wMDAwIiBmaWxsPSJub25lIiBzdHJva2U9IiMxOTYwODIiIHN0cm9rZS13aWR0aD0iMyIvPjxwYXRoIGQ9Ik0yMTUuMDAwMCAyNzguMjc1OUwyMTUuMjUwMCAyNzguNTM3MEwyMTUuNTAwMCAyNzguNzk3M0wyMTUuNzUwMCAyNzkuMDU2NkwyMTYuMDAwMCAyNzkuMzE1MUwyMTYuMjUwMCAyNzkuNTcyNkwyMTYuNTAwMCAyNzkuODI5NEwyMTYuNzUwMCAyODAuMDg1MkwyMTcuMDAwMCAyODAuMzQwMUwyMTcuMjUwMCAyODAuNTk0MkwyMTcuNTAwMCAyODAuODQ3NUwyMTcuNzUwMCAyODEuMDk5OEwyMTguMDAwMCAyODEuMzUxNEwyMTguMjUwMCAyODEuNjAyMEwyMTguNTAwMCAyODEuODUxOUwyMTguNzUwMCAyODIuMTAwOEwyMTkuMDAwMCAyODIuMzQ5MEwyMTkuMjUwMCAyODIuNTk2M0wyMTkuNTAwMCAyODIuODQyOEwyMTkuNzUwMCAyODMuMDg4NUwyMjAuMDAwMCAyODMuMzMzM0wyMjAuMjUwMCAyODMuNTc3NEwyMjAuNTAwMCAyODMuODIwNkwyMjAuNzUwMCAyODQuMDYzMEwyMjEuMDAwMCAyODQuMzA0NkwyMjEuMjUwMCAyODQuNTQ1NUwyMjEuNTAwMCAyODQuNzg1NUwyMjEuNzUwMCAyODUuMDI0N0wyMjIuMDAwMCAyODUuMjYzMkwyMjIuMjUwMCAyODUuNTAwOEwyMjIuNTAwMCAyODUuNzM3N0wyMjIuNzUwMCAyODUuOTczOEwyMjMuMDAwMCAyODYuMjA5MkwyMjMuMjUwMCAyODYuNDQzN0wyMjMuNTAwMCAyODYuNjc3NUwyMjMuNzUwMCAyODYuOTEwNkwyMjQuMDAwMCAyODcuMTQyOUwyMjQuMjUwMCAyODcuMzc0NEwyMjQuNTAwMCAyODcuNjA1MkwyMjQuNzUwMCAyODcuODM1MkwyMjUuMDAwMCAyODguMDY0NUwyMjUuMjUwMCAyODguMjkzMUwyMjUuNTAwMCAyODguNTIwOUwyMjUuNzUwMCAyODguNzQ4MEwyMjYuMDAwMCAyODguOTc0NEwyMjYuMjUwMCAyODkuMjAwMEwyMjYuNTAwMCAyODkuNDI0OUwyMjYuNzUwMCAyODkuNjQ5MUwyMjcuMDAwMCAyODkuODcyNkwyMjcuMjUwMCAyOTAuMDk1NEwyMjcuNTAwMCAyOTAuMzE3NUwyMjcuNzUwMCAyOTAuNTM4OEwyMjguMDAwMCAyOTAuNzU5NUwyMjguMjUwMCAyOTAuOTc5NUwyMjguNTAwMCAyOTEuMTk4N0wyMjguNzUwMCAyOTEuNDE3M0wyMjkuMDAwMCAyOTEuNjM1MkwyMjkuMjUwMCAyOTEuODUyNEwyMjkuNTAwMCAyOTIuMDY5MEwyMjkuNzUwMCAyOTIuMjg0OEwyMzAuMDAwMCAyOTIuNTAwMEwyMzAuMjUwMCAyOTIuNzE0NUwyMzAuNTAwMCAyOTIuOTI4M0wyMzAuNzUwMCAyOTMuMTQxNUwyMzEuMDAwMCAyOTMuMzU0MEwyMzEuMjUwMCAyOTMuNTY1OUwyMzEuNTAwMCAyOTMuNzc3MUwyMzEuNzUwMCAyOTMuOTg3NkwyMzIuMDAwMCAyOTQuMTk3NUwyMzIuMjUwMCAyOTQuNDA2OEwyMzIuNTAwMCAyOTQuNjE1NEwyMzIuNzUwMCAyOTQuODIzM0wyMzMuMDAwMCAyOTUuMDMwN0wyMzMuMjUwMCAyOTUuMjM3NEwyMzMuNTAwMCAyOTUuNDQzNEwyMzMuNzUwMCAyOTUuNjQ4OUwyMzQuMDAwMCAyOTUuODUzN0wyMzQuMjUwMCAyOTYuMDU3OEwyMzQuNTAwMCAyOTYuMjYxNEwyMzQuNzUwMCAyOTYuNDY0M0wyMzUuMDAwMCAyOTYuNjY2N0wyMzUuMjUwMCAyOTYuODY4NEwyMzUuNTAwMCAyOTcuMDY5NUwyMzUuNzUwMCAyOTcuMjcwMEwyMzYuMDAwMCAyOTcuNDY5OUwyMzYuMjUwMCAyOTcuNjY5MkwyMzYuNTAwMCAyOTcuODY3OUwyMzYuNzUwMCAyOTguMDY2MEwyMzcuMDAwMCAyOTguMjYzNUwyMzcuMjUwMCAyOTguNDYwNEwyMzcuNTAwMCAyOTguNjU2N0wyMzcuNzUwMCAyOTguODUyNUwyMzguMDAwMCAyOTkuMDQ3NkwyMzguMjUwMCAyOTkuMjQyMkwyMzguNTAwMCAyOTkuNDM2MkwyMzguNzUwMCAyOTkuNjI5NkwyMzkuMDAwMCAyOTkuODIyNUwyMzkuMjUwMCAzMDAuMDE0OEwyMzkuNTAwMCAzMDAuMjA2NUwyMzkuNzUwMCAzMDAuMzk3NkwyNDAuMDAwMCAzMDAuNTg4MkwyNDAuMjUwMCAzMDAuNzc4M0wyNDAuNTAwMCAzMDAuOTY3N0wyNDAuNzUwMCAzMDEuMTU2N0wyNDEuMDAwMCAzMDEuMzQ1MEwyNDEuMjUwMCAzMDEuNTMyOEwyNDEuNTAwMCAzMDEuNzIwMUwyNDEuNzUwMCAzMDEuOTA2OEwyNDIuMDAwMCAzMDIuMDkzMEwyNDIuMjUwMCAzMDIuMjc4N0wyNDIuNTAwMCAzMDIuNDYzOEwyNDIuNzUwMCAzMDIuNjQ4M0wyNDMuMDAwMCAzMDIuODMyNEwyNDMuMjUwMCAzMDMuMDE1OUwyNDMuNTAwMCAzMDMuMTk4OEwyNDMuNzUwMCAzMDMuMzgxM0wyNDQuMDAwMCAzMDMuNTYzMkwyNDQuMjUwMCAzMDMuNzQ0NkwyNDQuNTAwMCAzMDMuOTI1NUwyNDQuNzUwMCAzMDQuMTA1OUwyNDUuMDAwMCAzMDQuMjg1NyIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMTk2MDgyIiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PHBhdGggZD0iTTM1MC4wMDAwIDM1MS40Mjg2TDM1MC4zMzMzIDM1MS41MjIwTDM1MC42NjY3IDM1MS42MTUyTDM1MS4wMDAwIDM1MS43MDgyTDM1MS4zMzMzIDM1MS44MDA5TDM1MS42NjY3IDM1MS44OTM1TDM1Mi4wMDAwIDM1MS45ODU4TDM1Mi4zMzMzIDM1Mi4wNzc5TDM1Mi42NjY3IDM1Mi4xNjk4TDM1My4wMDAwIDM1Mi4yNjE1TDM1My4zMzMzIDM1Mi4zNTI5TDM1My42NjY3IDM1Mi40NDQyTDM1NC4wMDAwIDM1Mi41MzUyTDM1NC4zMzMzIDM1Mi42MjYwTDM1NC42NjY3IDM1Mi43MTY2TDM1NS4wMDAwIDM1Mi44MDcwTDM1NS4zMzMzIDM1Mi44OTcyTDM1NS42NjY3IDM1Mi45ODcyTDM1Ni4wMDAwIDM1My4wNzY5TDM1Ni4zMzMzIDM1My4xNjY1TDM1Ni42NjY3IDM1My4yNTU4TDM1Ny4wMDAwIDM1My4zNDQ5TDM1Ny4zMzMzIDM1My40MzM5TDM1Ny42NjY3IDM1My41MjI2TDM1OC4wMDAwIDM1My42MTExTDM1OC4zMzMzIDM1My42OTk0TDM1OC42NjY3IDM1My43ODc1TDM1OS4wMDAwIDM1My44NzU0TDM1OS4zMzMzIDM1My45NjMxTDM1OS42NjY3IDM1NC4wNTA2TDM2MC4wMDAwIDM1NC4xMzc5TDM2MC4zMzMzIDM1NC4yMjUwTDM2MC42NjY3IDM1NC4zMTE5TDM2MS4wMDAwIDM1NC4zOTg2TDM2MS4zMzMzIDM1NC40ODUxTDM2MS42NjY3IDM1NC41NzE0TDM2Mi4wMDAwIDM1NC42NTc1TDM2Mi4zMzMzIDM1NC43NDM0TDM2Mi42NjY3IDM1NC44MjkyTDM2My4wMDAwIDM1NC45MTQ3TDM2My4zMzMzIDM1NS4wMDAwTDM2My42NjY3IDM1NS4wODUxTDM2NC4wMDAwIDM1NS4xNzAxTDM2NC4zMzMzIDM1NS4yNTQ4TDM2NC42NjY3IDM1NS4zMzk0TDM2NS4wMDAwIDM1NS40MjM3TDM2NS4zMzMzIDM1NS41MDc5TDM2NS42NjY3IDM1NS41OTE5TDM2Ni4wMDAwIDM1NS42NzU3TDM2Ni4zMzMzIDM1NS43NTkzTDM2Ni42NjY3IDM1NS44NDI3TDM2Ny4wMDAwIDM1NS45MjU5TDM2Ny4zMzMzIDM1Ni4wMDkwTDM2Ny42NjY3IDM1Ni4wOTE4TDM2OC4wMDAwIDM1Ni4xNzQ1TDM2OC4zMzMzIDM1Ni4yNTcwTDM2OC42NjY3IDM1Ni4zMzkzTDM2OS4wMDAwIDM1Ni40MjE0TDM2OS4zMzMzIDM1Ni41MDMzTDM2OS42NjY3IDM1Ni41ODUxTDM3MC4wMDAwIDM1Ni42NjY3TDM3MC4zMzMzIDM1Ni43NDgxTDM3MC42NjY3IDM1Ni44MjkzTDM3MS4wMDAwIDM1Ni45MTAzTDM3MS4zMzMzIDM1Ni45OTEyTDM3MS42NjY3IDM1Ny4wNzE4TDM3Mi4wMDAwIDM1Ny4xNTIzTDM3Mi4zMzMzIDM1Ny4yMzI2TDM3Mi42NjY3IDM1Ny4zMTI4TDM3My4wMDAwIDM1Ny4zOTI3TDM3My4zMzMzIDM1Ny40NzI1TDM3My42NjY3IDM1Ny41NTIxTDM3NC4wMDAwIDM1Ny42MzE2TDM3NC4zMzMzIDM1Ny43MTA4TDM3NC42NjY3IDM1Ny43ODk5TDM3NS4wMDAwIDM1Ny44Njg5TDM3NS4zMzMzIDM1Ny45NDc2TDM3NS42NjY3IDM1OC4wMjYyTDM3Ni4wMDAwIDM1OC4xMDQ2TDM3Ni4zMzMzIDM1OC4xODI4TDM3Ni42NjY3IDM1OC4yNjA5TDM3Ny4wMDAwIDM1OC4zMzg4TDM3Ny4zMzMzIDM1OC40MTY1TDM3Ny42NjY3IDM1OC40OTQwTDM3OC4wMDAwIDM1OC41NzE0TDM3OC4zMzMzIDM1OC42NDg2TDM3OC42NjY3IDM1OC43MjU3TDM3OS4wMDAwIDM1OC44MDI2TDM3OS4zMzMzIDM1OC44NzkzTDM3OS42NjY3IDM1OC45NTU5TDM4MC4wMDAwIDM1OS4wMzIzTDM4MC4zMzMzIDM1OS4xMDg1TDM4MC42NjY3IDM1OS4xODQ1TDM4MS4wMDAwIDM1OS4yNjA1TDM4MS4zMzMzIDM1OS4zMzYyTDM4MS42NjY3IDM1OS40MTE4TDM4Mi4wMDAwIDM1OS40ODcyTDM4Mi4zMzMzIDM1OS41NjI0TDM4Mi42NjY3IDM1OS42Mzc1TDM4My4wMDAwIDM1OS43MTI1TDM4My4zMzMzIDM1OS43ODcyTDM4My42NjY3IDM1OS44NjE4TDM4NC4wMDAwIDM1OS45MzYzTDM4NC4zMzMzIDM2MC4wMTA2TDM4NC42NjY3IDM2MC4wODQ3TDM4NS4wMDAwIDM2MC4xNTg3TDM4NS4zMzMzIDM2MC4yMzI2TDM4NS42NjY3IDM2MC4zMDYyTDM4Ni4wMDAwIDM2MC4zNzk3TDM4Ni4zMzMzIDM2MC40NTMxTDM4Ni42NjY3IDM2MC41MjYzTDM4Ny4wMDAwIDM2MC41OTk0TDM4Ny4zMzMzIDM2MC42NzIzTDM4Ny42NjY3IDM2MC43NDUwTDM4OC4wMDAwIDM2MC44MTc2TDM4OC4zMzMzIDM2MC44OTAxTDM4OC42NjY3IDM2MC45NjIzTDM4OS4wMDAwIDM2MS4wMzQ1TDM4OS4zMzMzIDM2MS4xMDY1TDM4OS42NjY3IDM2MS4xNzgzTDM5MC4wMDAwIDM2MS4yNTAwIiBmaWxsPSJub25lIiBzdHJva2U9IiMxOTYwODIiIHN0cm9rZS13aWR0aD0iMyIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48dGV4dCB4PSIxODQiIHk9IjM5MCIgZm9udC1zaXplPSIyMCI+V+KCgjwvdGV4dD48dGV4dCB4PSIzNTAiIHk9IjQxNCIgZm9udC1zaXplPSIyMCI+V+KCgjwvdGV4dD48dGV4dCB4PSIzNjAiIHk9IjIyMCIgZm9udC1zaXplPSIyMCI+cSA9IDEvdjwvdGV4dD48cGF0aCBkPSJNMzUgNDkwSDYwNSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYjVjYmQ5IiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSIzNSIgeT0iNTQ1IiBmb250LXNpemU9IjI2IiBmb250LXdlaWdodD0iYm9sZCI+MiDCtyBBZ2dpdW5nZXJlIGxhdm9yaSB1Z3VhbGk8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjU5NSIgZm9udC1zaXplPSIyMCI+V+KCgiA9IDEwIEogwrcgYmFycmE6IDIwIHB4L0ogZGEgemVybzwvdGV4dD48cmVjdCB4PSIxMDAiIHk9IjYzMCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSI0NSIgZmlsbD0iIzE5NjA4MiIvPjxyZWN0IHg9IjMwMCIgeT0iNjMwIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjQ1IiBmaWxsPSIjYmM1MzE1Ii8+PHRleHQgeD0iMTc0IiB5PSI2NjAiIGZpbGw9IndoaXRlIj4xMCBKPC90ZXh0Pjx0ZXh0IHg9IjM3NCIgeT0iNjYwIiBmaWxsPSJ3aGl0ZSI+MTAgSjwvdGV4dD48dGV4dCB4PSIzNSIgeT0iNzI1IiBmb250LXNpemU9IjIwIj5sbiA0ID0gMiBsbiAyIOKGkiBXKDQpID0gMlfigoIgPSAyMCBKPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSI3NzUiIGZvbnQtc2l6ZT0iMjAiPkNvbXByZXNzaW9uZTogciAmbHQ7IDEg4oaSIGxuIHIgJmx0OyAwIOKGkiBXICZsdDsgMDwvdGV4dD48cGF0aCBkPSJNMzUgODE1SDYwNSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYjVjYmQ5IiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSIzNSIgeT0iODcwIiBmb250LXNpemU9IjI2IiBmb250LXdlaWdodD0iYm9sZCI+MyDCtyBDYXNvIDE2OiB1biBjaWNsbyBkaXN0aW50bzwvdGV4dD48dGV4dCB4PSIzNSIgeT0iOTEwIiBmb250LXNpemU9IjIwIj5OdW92byBw4oKAVuKCgCA9IG5SVF9oIMK3IHYgPSBWL1bigoAsIHEgPSBwL3DigoA8L3RleHQ+PHRleHQgeD0iMzUiIHk9Ijk1NSIgZm9udC1zaXplPSIyMCI+U2NhbGU6IDEwMCBweCBwZXIgdiDCtyAzMjAgcHggcGVyIHE8L3RleHQ+PHBhdGggZD0iTTcwIDEwMTUuNlYxMzkwSDU1MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMTYzMDQ3IiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSI2MiIgeT0iMTAwMC42IiBmb250LXNpemU9IjIwIj5xPC90ZXh0Pjx0ZXh0IHg9IjU2MyIgeT0iMTM5NyIgZm9udC1zaXplPSIyMCI+djwvdGV4dD48cGF0aCBkPSJNMTcwIDEzOTB2OCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMTYzMDQ3IiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSIxNjUiIHk9IjE0MjUiIGZvbnQtc2l6ZT0iMjAiPjE8L3RleHQ+PHBhdGggZD0iTTI3MCAxMzkwdjgiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE2MzA0NyIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iMjY1IiB5PSIxNDI1IiBmb250LXNpemU9IjIwIj4yPC90ZXh0PjxwYXRoIGQ9Ik00NzAgMTM5MHY4IiBmaWxsPSJub25lIiBzdHJva2U9IiMxNjMwNDciIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjQ2NSIgeT0iMTQyNSIgZm9udC1zaXplPSIyMCI+NDwvdGV4dD48cGF0aCBkPSJNNjIgMTA3MEg3MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMTYzMDQ3IiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSIyMiIgeT0iMTA3NiIgZm9udC1zaXplPSIxOCI+MTwvdGV4dD48cGF0aCBkPSJNNjIgMTIzMC4wSDcwIiBmaWxsPSJub25lIiBzdHJva2U9IiMxNjMwNDciIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjIyIiB5PSIxMjM2LjAiIGZvbnQtc2l6ZT0iMTgiPjEvMjwvdGV4dD48cGF0aCBkPSJNMTcwLjAwMDAgMTA3MC4wMDAwTDE3Mi41MDAwIDEwNzcuODA0OUwxNzUuMDAwMCAxMDg1LjIzODFMMTc3LjUwMDAgMTA5Mi4zMjU2TDE4MC4wMDAwIDEwOTkuMDkwOUwxODIuNTAwMCAxMTA1LjU1NTZMMTg1LjAwMDAgMTExMS43MzkxTDE4Ny41MDAwIDExMTcuNjU5NkwxOTAuMDAwMCAxMTIzLjMzMzNMMTkyLjUwMDAgMTEyOC43NzU1TDE5NS4wMDAwIDExMzQuMDAwMEwxOTcuNTAwMCAxMTM5LjAxOTZMMjAwLjAwMDAgMTE0My44NDYyTDIwMi41MDAwIDExNDguNDkwNkwyMDUuMDAwMCAxMTUyLjk2MzBMMjA3LjUwMDAgMTE1Ny4yNzI3TDIxMC4wMDAwIDExNjEuNDI4NkwyMTIuNTAwMCAxMTY1LjQzODZMMjE1LjAwMDAgMTE2OS4zMTAzTDIxNy41MDAwIDExNzMuMDUwOEwyMjAuMDAwMCAxMTc2LjY2NjdMMjIyLjUwMDAgMTE4MC4xNjM5TDIyNS4wMDAwIDExODMuNTQ4NEwyMjcuNTAwMCAxMTg2LjgyNTRMMjMwLjAwMDAgMTE5MC4wMDAwTDIzMi41MDAwIDExOTMuMDc2OUwyMzUuMDAwMCAxMTk2LjA2MDZMMjM3LjUwMDAgMTE5OC45NTUyTDI0MC4wMDAwIDEyMDEuNzY0N0wyNDIuNTAwMCAxMjA0LjQ5MjhMMjQ1LjAwMDAgMTIwNy4xNDI5TDI0Ny41MDAwIDEyMDkuNzE4M0wyNTAuMDAwMCAxMjEyLjIyMjJMMjUyLjUwMDAgMTIxNC42NTc1TDI1NS4wMDAwIDEyMTcuMDI3MEwyNTcuNTAwMCAxMjE5LjMzMzNMMjYwLjAwMDAgMTIyMS41Nzg5TDI2Mi41MDAwIDEyMjMuNzY2MkwyNjUuMDAwMCAxMjI1Ljg5NzRMMjY3LjUwMDAgMTIyNy45NzQ3TDI3MC4wMDAwIDEyMzAuMDAwMEwyNzIuNTAwMCAxMjMxLjk3NTNMMjc1LjAwMDAgMTIzMy45MDI0TDI3Ny41MDAwIDEyMzUuNzgzMUwyODAuMDAwMCAxMjM3LjYxOTBMMjgyLjUwMDAgMTIzOS40MTE4TDI4NS4wMDAwIDEyNDEuMTYyOEwyODcuNTAwMCAxMjQyLjg3MzZMMjkwLjAwMDAgMTI0NC41NDU1TDI5Mi41MDAwIDEyNDYuMTc5OEwyOTUuMDAwMCAxMjQ3Ljc3NzhMMjk3LjUwMDAgMTI0OS4zNDA3TDMwMC4wMDAwIDEyNTAuODY5NkwzMDIuNTAwMCAxMjUyLjM2NTZMMzA1LjAwMDAgMTI1My44Mjk4TDMwNy41MDAwIDEyNTUuMjYzMkwzMTAuMDAwMCAxMjU2LjY2NjdMMzEyLjUwMDAgMTI1OC4wNDEyTDMxNS4wMDAwIDEyNTkuMzg3OEwzMTcuNTAwMCAxMjYwLjcwNzFMMzIwLjAwMDAgMTI2Mi4wMDAwTDMyMi41MDAwIDEyNjMuMjY3M0wzMjUuMDAwMCAxMjY0LjUwOThMMzI3LjUwMDAgMTI2NS43MjgyTDMzMC4wMDAwIDEyNjYuOTIzMUwzMzIuNTAwMCAxMjY4LjA5NTJMMzM1LjAwMDAgMTI2OS4yNDUzTDMzNy41MDAwIDEyNzAuMzczOEwzNDAuMDAwMCAxMjcxLjQ4MTVMMzQyLjUwMDAgMTI3Mi41Njg4TDM0NS4wMDAwIDEyNzMuNjM2NEwzNDcuNTAwMCAxMjc0LjY4NDdMMzUwLjAwMDAgMTI3NS43MTQzTDM1Mi41MDAwIDEyNzYuNzI1N0wzNTUuMDAwMCAxMjc3LjcxOTNMMzU3LjUwMDAgMTI3OC42OTU3TDM2MC4wMDAwIDEyNzkuNjU1MkwzNjIuNTAwMCAxMjgwLjU5ODNMMzY1LjAwMDAgMTI4MS41MjU0TDM2Ny41MDAwIDEyODIuNDM3MEwzNzAuMDAwMCAxMjgzLjMzMzNMMzcyLjUwMDAgMTI4NC4yMTQ5TDM3NS4wMDAwIDEyODUuMDgyMEwzNzcuNTAwMCAxMjg1LjkzNTBMMzgwLjAwMDAgMTI4Ni43NzQyTDM4Mi41MDAwIDEyODcuNjAwMEwzODUuMDAwMCAxMjg4LjQxMjdMMzg3LjUwMDAgMTI4OS4yMTI2TDM5MC4wMDAwIDEyOTAuMDAwMEwzOTIuNTAwMCAxMjkwLjc3NTJMMzk1LjAwMDAgMTI5MS41Mzg1TDM5Ny41MDAwIDEyOTIuMjkwMUw0MDAuMDAwMCAxMjkzLjAzMDNMNDAyLjUwMDAgMTI5My43NTk0TDQwNS4wMDAwIDEyOTQuNDc3Nkw0MDcuNTAwMCAxMjk1LjE4NTJMNDEwLjAwMDAgMTI5NS44ODI0TDQxMi41MDAwIDEyOTYuNTY5M0w0MTUuMDAwMCAxMjk3LjI0NjRMNDE3LjUwMDAgMTI5Ny45MTM3TDQyMC4wMDAwIDEyOTguNTcxNEw0MjIuNTAwMCAxMjk5LjIxOTlMNDI1LjAwMDAgMTI5OS44NTkyTDQyNy41MDAwIDEzMDAuNDg5NUw0MzAuMDAwMCAxMzAxLjExMTFMNDMyLjUwMDAgMTMwMS43MjQxTDQzNS4wMDAwIDEzMDIuMzI4OEw0MzcuNTAwMCAxMzAyLjkyNTJMNDQwLjAwMDAgMTMwMy41MTM1TDQ0Mi41MDAwIDEzMDQuMDk0MEw0NDUuMDAwMCAxMzA0LjY2NjdMNDQ3LjUwMDAgMTMwNS4yMzE4TDQ1MC4wMDAwIDEzMDUuNzg5NUw0NTIuNTAwMCAxMzA2LjMzOTlMNDU1LjAwMDAgMTMwNi44ODMxTDQ1Ny41MDAwIDEzMDcuNDE5NEw0NjAuMDAwMCAxMzA3Ljk0ODdMNDYyLjUwMDAgMTMwOC40NzEzTDQ2NS4wMDAwIDEzMDguOTg3M0w0NjcuNTAwMCAxMzA5LjQ5NjlMNDcwLjAwMDAgMTMxMC4wMDAwIiBmaWxsPSJub25lIiBzdHJva2U9IiNiYzUzMTUiIHN0cm9rZS13aWR0aD0iMyIvPjxwYXRoIGQ9Ik00NzAuMDAwMCAxMzUwLjAwMDBMNDY3LjUwMDAgMTM0OS43NDg0TDQ2NS4wMDAwIDEzNDkuNDkzN0w0NjIuNTAwMCAxMzQ5LjIzNTdMNDYwLjAwMDAgMTM0OC45NzQ0TDQ1Ny41MDAwIDEzNDguNzA5N0w0NTUuMDAwMCAxMzQ4LjQ0MTZMNDUyLjUwMDAgMTM0OC4xNjk5TDQ1MC4wMDAwIDEzNDcuODk0N0w0NDcuNTAwMCAxMzQ3LjYxNTlMNDQ1LjAwMDAgMTM0Ny4zMzMzTDQ0Mi41MDAwIDEzNDcuMDQ3MEw0NDAuMDAwMCAxMzQ2Ljc1NjhMNDM3LjUwMDAgMTM0Ni40NjI2TDQzNS4wMDAwIDEzNDYuMTY0NEw0MzIuNTAwMCAxMzQ1Ljg2MjFMNDMwLjAwMDAgMTM0NS41NTU2TDQyNy41MDAwIDEzNDUuMjQ0OEw0MjUuMDAwMCAxMzQ0LjkyOTZMNDIyLjUwMDAgMTM0NC42MDk5TDQyMC4wMDAwIDEzNDQuMjg1N0w0MTcuNTAwMCAxMzQzLjk1NjhMNDE1LjAwMDAgMTM0My42MjMyTDQxMi41MDAwIDEzNDMuMjg0N0w0MTAuMDAwMCAxMzQyLjk0MTJMNDA3LjUwMDAgMTM0Mi41OTI2TDQwNS4wMDAwIDEzNDIuMjM4OEw0MDIuNTAwMCAxMzQxLjg3OTdMNDAwLjAwMDAgMTM0MS41MTUyTDM5Ny41MDAwIDEzNDEuMTQ1MEwzOTUuMDAwMCAxMzQwLjc2OTJMMzkyLjUwMDAgMTM0MC4zODc2TDM5MC4wMDAwIDEzNDAuMDAwMEwzODcuNTAwMCAxMzM5LjYwNjNMMzg1LjAwMDAgMTMzOS4yMDYzTDM4Mi41MDAwIDEzMzguODAwMEwzODAuMDAwMCAxMzM4LjM4NzFMMzc3LjUwMDAgMTMzNy45Njc1TDM3NS4wMDAwIDEzMzcuNTQxMEwzNzIuNTAwMCAxMzM3LjEwNzRMMzcwLjAwMDAgMTMzNi42NjY3TDM2Ny41MDAwIDEzMzYuMjE4NUwzNjUuMDAwMCAxMzM1Ljc2MjdMMzYyLjUwMDAgMTMzNS4yOTkxTDM2MC4wMDAwIDEzMzQuODI3NkwzNTcuNTAwMCAxMzM0LjM0NzhMMzU1LjAwMDAgMTMzMy44NTk2TDM1Mi41MDAwIDEzMzMuMzYyOEwzNTAuMDAwMCAxMzMyLjg1NzFMMzQ3LjUwMDAgMTMzMi4zNDIzTDM0NS4wMDAwIDEzMzEuODE4MkwzNDIuNTAwMCAxMzMxLjI4NDRMMzQwLjAwMDAgMTMzMC43NDA3TDMzNy41MDAwIDEzMzAuMTg2OUwzMzUuMDAwMCAxMzI5LjYyMjZMMzMyLjUwMDAgMTMyOS4wNDc2TDMzMC4wMDAwIDEzMjguNDYxNUwzMjcuNTAwMCAxMzI3Ljg2NDFMMzI1LjAwMDAgMTMyNy4yNTQ5TDMyMi41MDAwIDEzMjYuNjMzN0wzMjAuMDAwMCAxMzI2LjAwMDBMMzE3LjUwMDAgMTMyNS4zNTM1TDMxNS4wMDAwIDEzMjQuNjkzOUwzMTIuNTAwMCAxMzI0LjAyMDZMMzEwLjAwMDAgMTMyMy4zMzMzTDMwNy41MDAwIDEzMjIuNjMxNkwzMDUuMDAwMCAxMzIxLjkxNDlMMzAyLjUwMDAgMTMyMS4xODI4TDMwMC4wMDAwIDEzMjAuNDM0OEwyOTcuNTAwMCAxMzE5LjY3MDNMMjk1LjAwMDAgMTMxOC44ODg5TDI5Mi41MDAwIDEzMTguMDg5OUwyOTAuMDAwMCAxMzE3LjI3MjdMMjg3LjUwMDAgMTMxNi40MzY4TDI4NS4wMDAwIDEzMTUuNTgxNEwyODIuNTAwMCAxMzE0LjcwNTlMMjgwLjAwMDAgMTMxMy44MDk1TDI3Ny41MDAwIDEzMTIuODkxNkwyNzUuMDAwMCAxMzExLjk1MTJMMjcyLjUwMDAgMTMxMC45ODc3TDI3MC4wMDAwIDEzMTAuMDAwMEwyNjcuNTAwMCAxMzA4Ljk4NzNMMjY1LjAwMDAgMTMwNy45NDg3TDI2Mi41MDAwIDEzMDYuODgzMUwyNjAuMDAwMCAxMzA1Ljc4OTVMMjU3LjUwMDAgMTMwNC42NjY3TDI1NS4wMDAwIDEzMDMuNTEzNUwyNTIuNTAwMCAxMzAyLjMyODhMMjUwLjAwMDAgMTMwMS4xMTExTDI0Ny41MDAwIDEyOTkuODU5MkwyNDUuMDAwMCAxMjk4LjU3MTRMMjQyLjUwMDAgMTI5Ny4yNDY0TDI0MC4wMDAwIDEyOTUuODgyNEwyMzcuNTAwMCAxMjk0LjQ3NzZMMjM1LjAwMDAgMTI5My4wMzAzTDIzMi41MDAwIDEyOTEuNTM4NUwyMzAuMDAwMCAxMjkwLjAwMDBMMjI3LjUwMDAgMTI4OC40MTI3TDIyNS4wMDAwIDEyODYuNzc0MkwyMjIuNTAwMCAxMjg1LjA4MjBMMjIwLjAwMDAgMTI4My4zMzMzTDIxNy41MDAwIDEyODEuNTI1NEwyMTUuMDAwMCAxMjc5LjY1NTJMMjEyLjUwMDAgMTI3Ny43MTkzTDIxMC4wMDAwIDEyNzUuNzE0M0wyMDcuNTAwMCAxMjczLjYzNjRMMjA1LjAwMDAgMTI3MS40ODE1TDIwMi41MDAwIDEyNjkuMjQ1M0wyMDAuMDAwMCAxMjY2LjkyMzFMMTk3LjUwMDAgMTI2NC41MDk4TDE5NS4wMDAwIDEyNjIuMDAwMEwxOTIuNTAwMCAxMjU5LjM4NzhMMTkwLjAwMDAgMTI1Ni42NjY3TDE4Ny41MDAwIDEyNTMuODI5OEwxODUuMDAwMCAxMjUwLjg2OTZMMTgyLjUwMDAgMTI0Ny43Nzc4TDE4MC4wMDAwIDEyNDQuNTQ1NUwxNzcuNTAwMCAxMjQxLjE2MjhMMTc1LjAwMDAgMTIzNy42MTkwTDE3Mi41MDAwIDEyMzMuOTAyNEwxNzAuMDAwMCAxMjMwLjAwMDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE5NjA4MiIgc3Ryb2tlLXdpZHRoPSIzIi8+PHBhdGggZD0iTTQ3MCAxMzEwLjBWMTM1MC4wIiBmaWxsPSJub25lIiBzdHJva2U9IiMxNjMwNDciIHN0cm9rZS13aWR0aD0iMiIvPjxwYXRoIGQ9Ik0xNzAgMTIzMC4wVjEwNzAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE2MzA0NyIgc3Ryb2tlLXdpZHRoPSIyIi8+PHBhdGggZD0iTTI1MC4wMDAwIDEyMTIuMjIyMkwyNTAuMjkxNyAxMjEyLjUwOThMMjUwLjU4MzMgMTIxMi43OTY1TDI1MC44NzUwIDEyMTMuMDgyMkwyNTEuMTY2NyAxMjEzLjM2NzFMMjUxLjQ1ODMgMTIxMy42NTEwTDI1MS43NTAwIDEyMTMuOTM0MEwyNTIuMDQxNyAxMjE0LjIxNjFMMjUyLjMzMzMgMTIxNC40OTczTDI1Mi42MjUwIDEyMTQuNzc3NUwyNTIuOTE2NyAxMjE1LjA1NjlMMjUzLjIwODMgMTIxNS4zMzU1TDI1My41MDAwIDEyMTUuNjEzMUwyNTMuNzkxNyAxMjE1Ljg4OThMMjU0LjA4MzMgMTIxNi4xNjU3TDI1NC4zNzUwIDEyMTYuNDQwN0wyNTQuNjY2NyAxMjE2LjcxNDhMMjU0Ljk1ODMgMTIxNi45ODgxTDI1NS4yNTAwIDEyMTcuMjYwNUwyNTUuNTQxNyAxMjE3LjUzMjBMMjU1LjgzMzMgMTIxNy44MDI3TDI1Ni4xMjUwIDEyMTguMDcyNUwyNTYuNDE2NyAxMjE4LjM0MTVMMjU2LjcwODMgMTIxOC42MDk3TDI1Ny4wMDAwIDEyMTguODc3MEwyNTcuMjkxNyAxMjE5LjE0MzVMMjU3LjU4MzMgMTIxOS40MDkyTDI1Ny44NzUwIDEyMTkuNjc0MEwyNTguMTY2NyAxMjE5LjkzODBMMjU4LjQ1ODMgMTIyMC4yMDEyTDI1OC43NTAwIDEyMjAuNDYzNkwyNTkuMDQxNyAxMjIwLjcyNTFMMjU5LjMzMzMgMTIyMC45ODU5TDI1OS42MjUwIDEyMjEuMjQ1OUwyNTkuOTE2NyAxMjIxLjUwNTBMMjYwLjIwODMgMTIyMS43NjM0TDI2MC41MDAwIDEyMjIuMDIxMEwyNjAuNzkxNyAxMjIyLjI3NzhMMjYxLjA4MzMgMTIyMi41MzM4TDI2MS4zNzUwIDEyMjIuNzg5MEwyNjEuNjY2NyAxMjIzLjA0MzVMMjYxLjk1ODMgMTIyMy4yOTcyTDI2Mi4yNTAwIDEyMjMuNTUwMUwyNjIuNTQxNyAxMjIzLjgwMjJMMjYyLjgzMzMgMTIyNC4wNTM2TDI2My4xMjUwIDEyMjQuMzA0MkwyNjMuNDE2NyAxMjI0LjU1NDFMMjYzLjcwODMgMTIyNC44MDMyTDI2NC4wMDAwIDEyMjUuMDUxNUwyNjQuMjkxNyAxMjI1LjI5OTJMMjY0LjU4MzMgMTIyNS41NDYwTDI2NC44NzUwIDEyMjUuNzkyMkwyNjUuMTY2NyAxMjI2LjAzNzZMMjY1LjQ1ODMgMTIyNi4yODIyTDI2NS43NTAwIDEyMjYuNTI2MkwyNjYuMDQxNyAxMjI2Ljc2OTRMMjY2LjMzMzMgMTIyNy4wMTE5TDI2Ni42MjUwIDEyMjcuMjUzN0wyNjYuOTE2NyAxMjI3LjQ5NDdMMjY3LjIwODMgMTIyNy43MzUxTDI2Ny41MDAwIDEyMjcuOTc0N0wyNjcuNzkxNyAxMjI4LjIxMzZMMjY4LjA4MzMgMTIyOC40NTE4TDI2OC4zNzUwIDEyMjguNjg5NEwyNjguNjY2NyAxMjI4LjkyNjJMMjY4Ljk1ODMgMTIyOS4xNjIzTDI2OS4yNTAwIDEyMjkuMzk3N0wyNjkuNTQxNyAxMjI5LjYzMjVMMjY5LjgzMzMgMTIyOS44NjY2TDI3MC4xMjUwIDEyMzAuMDk5OUwyNzAuNDE2NyAxMjMwLjMzMjZMMjcwLjcwODMgMTIzMC41NjQ3TDI3MS4wMDAwIDEyMzAuNzk2MEwyNzEuMjkxNyAxMjMxLjAyNjdMMjcxLjU4MzMgMTIzMS4yNTY3TDI3MS44NzUwIDEyMzEuNDg2MUwyNzIuMTY2NyAxMjMxLjcxNDhMMjcyLjQ1ODMgMTIzMS45NDI4TDI3Mi43NTAwIDEyMzIuMTcwMkwyNzMuMDQxNyAxMjMyLjM5NjlMMjczLjMzMzMgMTIzMi42MjMwTDI3My42MjUwIDEyMzIuODQ4NEwyNzMuOTE2NyAxMjMzLjA3MzJMMjc0LjIwODMgMTIzMy4yOTczTDI3NC41MDAwIDEyMzMuNTIwOEwyNzQuNzkxNyAxMjMzLjc0MzZMMjc1LjA4MzMgMTIzMy45NjU5TDI3NS4zNzUwIDEyMzQuMTg3NUwyNzUuNjY2NyAxMjM0LjQwODRMMjc1Ljk1ODMgMTIzNC42Mjg4TDI3Ni4yNTAwIDEyMzQuODQ4NUwyNzYuNTQxNyAxMjM1LjA2NzZMMjc2LjgzMzMgMTIzNS4yODYxTDI3Ny4xMjUwIDEyMzUuNTAzOUwyNzcuNDE2NyAxMjM1LjcyMTJMMjc3LjcwODMgMTIzNS45Mzc4TDI3OC4wMDAwIDEyMzYuMTUzOEwyNzguMjkxNyAxMjM2LjM2OTNMMjc4LjU4MzMgMTIzNi41ODQxTDI3OC44NzUwIDEyMzYuNzk4M0wyNzkuMTY2NyAxMjM3LjAxMjBMMjc5LjQ1ODMgMTIzNy4yMjUwTDI3OS43NTAwIDEyMzcuNDM3NEwyODAuMDQxNyAxMjM3LjY0OTNMMjgwLjMzMzMgMTIzNy44NjA1TDI4MC42MjUwIDEyMzguMDcxMkwyODAuOTE2NyAxMjM4LjI4MTNMMjgxLjIwODMgMTIzOC40OTA4TDI4MS41MDAwIDEyMzguNjk5OEwyODEuNzkxNyAxMjM4LjkwODFMMjgyLjA4MzMgMTIzOS4xMTU5TDI4Mi4zNzUwIDEyMzkuMzIzMUwyODIuNjY2NyAxMjM5LjUyOThMMjgyLjk1ODMgMTIzOS43MzU5TDI4My4yNTAwIDEyMzkuOTQxNEwyODMuNTQxNyAxMjQwLjE0NjNMMjgzLjgzMzMgMTI0MC4zNTA3TDI4NC4xMjUwIDEyNDAuNTU0NkwyODQuNDE2NyAxMjQwLjc1NzlMMjg0LjcwODMgMTI0MC45NjA2TDI4NS4wMDAwIDEyNDEuMTYyOCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYmM1MzE1IiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PHBhdGggZD0iTTM5NS4wMDAwIDEzNDAuNzY5MkwzOTQuNjI1MCAxMzQwLjcxMjRMMzk0LjI1MDAgMTM0MC42NTU0TDM5My44NzUwIDEzNDAuNTk4MkwzOTMuNTAwMCAxMzQwLjU0MTBMMzkzLjEyNTAgMTM0MC40ODM2TDM5Mi43NTAwIDEzNDAuNDI2MEwzOTIuMzc1MCAxMzQwLjM2ODRMMzkyLjAwMDAgMTM0MC4zMTA2TDM5MS42MjUwIDEzNDAuMjUyNkwzOTEuMjUwMCAxMzQwLjE5NDZMMzkwLjg3NTAgMTM0MC4xMzYzTDM5MC41MDAwIDEzNDAuMDc4MEwzOTAuMTI1MCAxMzQwLjAxOTVMMzg5Ljc1MDAgMTMzOS45NjA5TDM4OS4zNzUwIDEzMzkuOTAyMkwzODkuMDAwMCAxMzM5Ljg0MzNMMzg4LjYyNTAgMTMzOS43ODQyTDM4OC4yNTAwIDEzMzkuNzI1MUwzODcuODc1MCAxMzM5LjY2NTdMMzg3LjUwMDAgMTMzOS42MDYzTDM4Ny4xMjUwIDEzMzkuNTQ2N0wzODYuNzUwMCAxMzM5LjQ4NzBMMzg2LjM3NTAgMTMzOS40MjcxTDM4Ni4wMDAwIDEzMzkuMzY3MUwzODUuNjI1MCAxMzM5LjMwNjlMMzg1LjI1MDAgMTMzOS4yNDY2TDM4NC44NzUwIDEzMzkuMTg2MkwzODQuNTAwMCAxMzM5LjEyNTZMMzg0LjEyNTAgMTMzOS4wNjQ5TDM4My43NTAwIDEzMzkuMDA0MEwzODMuMzc1MCAxMzM4Ljk0MzBMMzgzLjAwMDAgMTMzOC44ODE4TDM4Mi42MjUwIDEzMzguODIwNUwzODIuMjUwMCAxMzM4Ljc1OTBMMzgxLjg3NTAgMTMzOC42OTc0TDM4MS41MDAwIDEzMzguNjM1NkwzODEuMTI1MCAxMzM4LjU3MzdMMzgwLjc1MDAgMTMzOC41MTE3TDM4MC4zNzUwIDEzMzguNDQ5NUwzODAuMDAwMCAxMzM4LjM4NzFMMzc5LjYyNTAgMTMzOC4zMjQ2TDM3OS4yNTAwIDEzMzguMjYxOUwzNzguODc1MCAxMzM4LjE5OTFMMzc4LjUwMDAgMTMzOC4xMzYxTDM3OC4xMjUwIDEzMzguMDczMEwzNzcuNzUwMCAxMzM4LjAwOTdMMzc3LjM3NTAgMTMzNy45NDYzTDM3Ny4wMDAwIDEzMzcuODgyN0wzNzYuNjI1MCAxMzM3LjgxOTBMMzc2LjI1MDAgMTMzNy43NTUxTDM3NS44NzUwIDEzMzcuNjkxMUwzNzUuNTAwMCAxMzM3LjYyNjhMMzc1LjEyNTAgMTMzNy41NjI1TDM3NC43NTAwIDEzMzcuNDk3OUwzNzQuMzc1MCAxMzM3LjQzMzNMMzc0LjAwMDAgMTMzNy4zNjg0TDM3My42MjUwIDEzMzcuMzAzNEwzNzMuMjUwMCAxMzM3LjIzODNMMzcyLjg3NTAgMTMzNy4xNzI5TDM3Mi41MDAwIDEzMzcuMTA3NEwzNzIuMTI1MCAxMzM3LjA0MThMMzcxLjc1MDAgMTMzNi45NzYwTDM3MS4zNzUwIDEzMzYuOTEwMEwzNzEuMDAwMCAxMzM2Ljg0MzlMMzcwLjYyNTAgMTMzNi43Nzc1TDM3MC4yNTAwIDEzMzYuNzExMUwzNjkuODc1MCAxMzM2LjY0NDRMMzY5LjUwMDAgMTMzNi41Nzc2TDM2OS4xMjUwIDEzMzYuNTEwN0wzNjguNzUwMCAxMzM2LjQ0MzVMMzY4LjM3NTAgMTMzNi4zNzYyTDM2OC4wMDAwIDEzMzYuMzA4N0wzNjcuNjI1MCAxMzM2LjI0MTFMMzY3LjI1MDAgMTMzNi4xNzMzTDM2Ni44NzUwIDEzMzYuMTA1M0wzNjYuNTAwMCAxMzM2LjAzNzFMMzY2LjEyNTAgMTMzNS45Njg4TDM2NS43NTAwIDEzMzUuOTAwM0wzNjUuMzc1MCAxMzM1LjgzMTZMMzY1LjAwMDAgMTMzNS43NjI3TDM2NC42MjUwIDEzMzUuNjkzN0wzNjQuMjUwMCAxMzM1LjYyNDVMMzYzLjg3NTAgMTMzNS41NTUxTDM2My41MDAwIDEzMzUuNDg1NUwzNjMuMTI1MCAxMzM1LjQxNThMMzYyLjc1MDAgMTMzNS4zNDU5TDM2Mi4zNzUwIDEzMzUuMjc1OEwzNjIuMDAwMCAxMzM1LjIwNTVMMzYxLjYyNTAgMTMzNS4xMzUwTDM2MS4yNTAwIDEzMzUuMDY0NEwzNjAuODc1MCAxMzM0Ljk5MzZMMzYwLjUwMDAgMTMzNC45MjI1TDM2MC4xMjUwIDEzMzQuODUxNEwzNTkuNzUwMCAxMzM0Ljc4MDBMMzU5LjM3NTAgMTMzNC43MDg0TDM1OS4wMDAwIDEzMzQuNjM2N0wzNTguNjI1MCAxMzM0LjU2NDdMMzU4LjI1MDAgMTMzNC40OTI2TDM1Ny44NzUwIDEzMzQuNDIwM0wzNTcuNTAwMCAxMzM0LjM0NzhMMzU3LjEyNTAgMTMzNC4yNzUxTDM1Ni43NTAwIDEzMzQuMjAyM0wzNTYuMzc1MCAxMzM0LjEyOTJMMzU2LjAwMDAgMTMzNC4wNTU5TDM1NS42MjUwIDEzMzMuOTgyNUwzNTUuMjUwMCAxMzMzLjkwODlMMzU0Ljg3NTAgMTMzMy44MzUwTDM1NC41MDAwIDEzMzMuNzYxMEwzNTQuMTI1MCAxMzMzLjY4NjhMMzUzLjc1MDAgMTMzMy42MTIzTDM1My4zNzUwIDEzMzMuNTM3N0wzNTMuMDAwMCAxMzMzLjQ2MjlMMzUyLjYyNTAgMTMzMy4zODc5TDM1Mi4yNTAwIDEzMzMuMzEyN0wzNTEuODc1MCAxMzMzLjIzNzNMMzUxLjUwMDAgMTMzMy4xNjE2TDM1MS4xMjUwIDEzMzMuMDg1OEwzNTAuNzUwMCAxMzMzLjAwOThMMzUwLjM3NTAgMTMzMi45MzM2TDM1MC4wMDAwIDEzMzIuODU3MSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMTk2MDgyIiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PHBhdGggZD0iTTQ3MCAxMzE1LjBWMTM0NS4wIiBmaWxsPSJub25lIiBzdHJva2U9IiMxNjMwNDciIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48cGF0aCBkPSJNMTcwIDEyMDUuMFYxMDk1IiBmaWxsPSJub25lIiBzdHJva2U9IiMxNjMwNDciIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48Y2lyY2xlIGN4PSIxNzAiIGN5PSIxMDcwIiByPSI0IiBmaWxsPSIjMTYzMDQ3Ii8+PHRleHQgeD0iMTQ1IiB5PSIxMDU4IiBmb250LXNpemU9IjIwIj4xPC90ZXh0PjxjaXJjbGUgY3g9IjQ3MCIgY3k9IjEzMTAuMCIgcj0iNCIgZmlsbD0iIzE2MzA0NyIvPjx0ZXh0IHg9IjQ4OCIgeT0iMTMwNC4wIiBmb250LXNpemU9IjIwIj4yPC90ZXh0PjxjaXJjbGUgY3g9IjQ3MCIgY3k9IjEzNTAuMCIgcj0iNCIgZmlsbD0iIzE2MzA0NyIvPjx0ZXh0IHg9IjQ4OCIgeT0iMTM2NC4wIiBmb250LXNpemU9IjIwIj4zPC90ZXh0PjxjaXJjbGUgY3g9IjE3MCIgY3k9IjEyMzAuMCIgcj0iNCIgZmlsbD0iIzE2MzA0NyIvPjx0ZXh0IHg9IjE0MiIgeT0iMTIzNy4wIiBmb250LXNpemU9IjIwIj40PC90ZXh0Pjx0ZXh0IHg9IjMzMCIgeT0iMTExMCIgZm9udC1zaXplPSIyMCI+Q2FsZGE6IHEgPSAxL3Y8L3RleHQ+PHRleHQgeD0iMzEwIiB5PSIxNDYwIiBmb250LXNpemU9IjIwIj5GcmVkZGE6IHEgPSAxLygydik8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjE1MjAiIGZvbnQtc2l6ZT0iMjAiPjEg4oaSIDI6IFdfaCA9IEEgwrcgMiDihpIgMzogVyA9IDA8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjE1NzAiIGZvbnQtc2l6ZT0iMjAiPjMg4oaSIDQ6IFdfYyA9IOKIkkEvMiDCtyA0IOKGkiAxOiBXID0gMDwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMTYzMCIgZm9udC1zaXplPSIyMCI+VyBuZXR0byA9IEEvMiA9IDEyIEog4oaSIEEgPSAyNCBKPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSIxNjkwIiBmb250LXNpemU9IjIwIj5Tb2xvIGlzb3Rlcm1hIGNhbGRhOiDOlFUgPSAwIOKGkiBRX2ggPSAyNCBKPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSIxNzUwIiBmb250LXNpemU9IjIwIj5MZSBpc29jb3JlIHBvc3Nvbm8gc2NhbWJpYXJlIGNhbG9yZS48L3RleHQ+PHRleHQgeD0iMzUiIHk9IjE3OTUiIGZvbnQtc2l6ZT0iMjAiPkkgbG9ybyBjYWxvcmkgbm9uIHNvbm8gcmljaGllc3RpLjwvdGV4dD48L2c+PC9zdmc+Cg=="
+    }
+  ]
+}

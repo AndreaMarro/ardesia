@@ -1,0 +1,1172 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u4-wave-phase-space-01",
+      "kind": "question",
+      "course": "C5",
+      "section": "Fase spaziale simultanea non ridotta",
+      "order": 13601,
+      "title": "Un tratto di lunghezza d’onda",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-phase-space",
+      "difficulty": 1,
+      "prompt": "Una singola onda armonica progressiva si propaga lungo una coordinata s in un mezzo omogeneo, con lunghezza d’onda λ>0. Confrontiamo nello stesso istante due punti separati di Δs>0 lungo la propagazione. La differenza di fase non ridotta è Δφ; si chiede ν=|Δφ|/(2π), misura positiva in giri. ν può essere frazionario o maggiore di uno: non si cerca solo la fase equivalente modulo un giro né un conteggio intero di creste. Non si aggiungono differenze iniziali fra sorgenti distinte. Con Δs=1 m e λ=4 m, quanto vale ν?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/4 giri",
+          "1/2 giri",
+          "4 giri",
+          "1 giro",
+          "2π giri"
+        ],
+        "value": "1/4 giri"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Una lunghezza d’onda corrisponde a un giro completo di fase. Un metro è un quarto dei quattro metri necessari al giro: ν=Δs/λ=1/4. In radianti il modulo della differenza sarebbe π/2; dividendo per 2π si ritorna a un quarto di giro."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/b00064c2bc998be93c942779d5a550607e37e46c0f1735248f6ff635d9007280",
+          "text": "Fotografia simultanea di una sinusoide con λ=4 m. L’asse s ha scala 80 px/m, la deviazione verticale è schematica. I punti s=0 e s=1 m distano un quarto di lunghezza d’onda: la fase non ridotta differisce di 1/4 di giro."
+        },
+        {
+          "type": "formula",
+          "text": "\\nu=\\frac{\\Delta s}{\\lambda}"
+        },
+        {
+          "type": "formula",
+          "text": " \\nu=\\frac14"
+        },
+        {
+          "type": "formula",
+          "text": " |\\Delta\\varphi|=2\\pi\\nu"
+        },
+        {
+          "type": "formula",
+          "text": " |\\Delta\\varphi|=\\frac\\pi2"
+        },
+        {
+          "type": "text",
+          "text": "Quattro inverte distanza e lunghezza d’onda; un mezzo corrisponderebbe a due metri. Uno richiederebbe quattro metri e 2π confonde il coefficiente di conversione in radianti con il valore in giri."
+        }
+      ],
+      "hints": [
+        "Quanta parte di λ è la separazione assegnata?",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro inverte distanza e lunghezza d’onda; un mezzo corrisponderebbe a due metri. Uno richiederebbe quattro metri e 2π confonde il coefficiente di conversione in radianti con il valore in giri.",
+        "target": "C5-L02"
+      },
+      "coverage": [
+        "Fase in giri e in radianti",
+        "Separazione e lunghezza d’onda",
+        "Inverse, medie e scala continua"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-wave-phase-space-02",
+      "kind": "question",
+      "course": "C5",
+      "section": "Fase spaziale simultanea non ridotta",
+      "order": 13602,
+      "title": "Una misura di fase adimensionale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-phase-space",
+      "difficulty": 1,
+      "prompt": "La grandezza ν=|Δφ|/(2π) esprime la fase in giri, ossia Δs/λ. Quale unità proposta è adatta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "numero puro (giri)",
+          "m",
+          "s",
+          "Hz",
+          "m/s"
+        ],
+        "value": "numero puro (giri)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il rapporto di due lunghezze omogenee non ha dimensioni fisiche. La parola giri specifica la convenzione di misura della fase: un giro vale 2π radianti. Un valore frazionario è ammesso perché si misura un avanzamento, non un numero di oggetti."
+        },
+        {
+          "type": "formula",
+          "text": "[\\nu]=\\frac L L"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac L L=1"
+        },
+        {
+          "type": "formula",
+          "text": " 1\\,\\text{giro}=2\\pi\\,\\mathrm{rad}"
+        },
+        {
+          "type": "text",
+          "text": "m è lunghezza, s tempo, Hz frequenza e m/s velocità. La fase non è una distanza né il tempo necessario a coprirla: qui il confronto è simultaneo."
+        }
+      ],
+      "hints": [
+        "Le unità delle due lunghezze si cancellano.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "m è lunghezza, s tempo, Hz frequenza e m/s velocità. La fase non è una distanza né il tempo necessario a coprirla: qui il confronto è simultaneo.",
+        "target": "C5-L02"
+      },
+      "coverage": [
+        "Fase in giri e in radianti",
+        "Separazione e lunghezza d’onda",
+        "Inverse, medie e scala continua"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-wave-phase-space-03",
+      "kind": "question",
+      "course": "C5",
+      "section": "Fase spaziale simultanea non ridotta",
+      "order": 13603,
+      "title": "La fase lungo una fotografia dell’onda",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-phase-space",
+      "difficulty": 1,
+      "prompt": "Una singola onda armonica progressiva si propaga lungo una coordinata s in un mezzo omogeneo, con lunghezza d’onda λ>0. Confrontiamo nello stesso istante due punti separati di Δs>0 lungo la propagazione. La differenza di fase non ridotta è Δφ; si chiede ν=|Δφ|/(2π), misura positiva in giri. ν può essere frazionario o maggiore di uno: non si cerca solo la fase equivalente modulo un giro né un conteggio intero di creste. Non si aggiungono differenze iniziali fra sorgenti distinte. Quale relazione dà ν?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "ν = Δs / λ",
+          "ν = 2 π Δs / λ",
+          "ν = λ / Δs",
+          "ν = Δs λ",
+          "ν = Δs − λ"
+        ],
+        "value": "ν = Δs / λ"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Per una forma y=a cos(ks−ωt+φ₀), a è l’ampiezza e k=2π/λ il numero d’onda. Allo stesso t il termine temporale e φ₀ si cancellano: |Δφ|=kΔs. Dividendo per 2π rimane ν=Δs/λ. Non stiamo contando una variazione nel tempo in un singolo punto."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/b00064c2bc998be93c942779d5a550607e37e46c0f1735248f6ff635d9007280",
+          "text": "Tre letture progressive: confronto simultaneo sulla sinusoide; segmenti di distanza rispetto a una lunghezza d’onda, tutti a 80 px/m; poi fase accumulata ν contro Δs a λ=4 m, con scale 80 px/m e 160 px/giro. Il grafico prosegue oltre ν=1 e mostra Δs=6 m con ν=3/2, senza riduzione modulo un giro."
+        },
+        {
+          "type": "formula",
+          "text": "k=\\frac{2\\pi}{\\lambda}"
+        },
+        {
+          "type": "formula",
+          "text": " |\\Delta\\varphi|=k\\Delta s"
+        },
+        {
+          "type": "formula",
+          "text": " \\nu=\\frac{|\\Delta\\varphi|}{2\\pi}"
+        },
+        {
+          "type": "formula",
+          "text": " \\nu=\\frac{\\Delta s}{\\lambda}"
+        },
+        {
+          "type": "text",
+          "text": "2πΔs/λ è la misura in radianti, non quella in giri. Il reciproco inverte la scala; il prodotto ha unità m² e la differenza unità m, entrambe incompatibili con ν."
+        }
+      ],
+      "hints": [
+        "Elimina il fattore di conversione 2π soltanto dopo aver espresso Δφ.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "2πΔs/λ è la misura in radianti, non quella in giri. Il reciproco inverte la scala; il prodotto ha unità m² e la differenza unità m, entrambe incompatibili con ν.",
+        "target": "C5-L02"
+      },
+      "coverage": [
+        "Fase in giri e in radianti",
+        "Separazione e lunghezza d’onda",
+        "Inverse, medie e scala continua"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-wave-phase-space-04",
+      "kind": "question",
+      "course": "C5",
+      "section": "Fase spaziale simultanea non ridotta",
+      "order": 13604,
+      "title": "Superare un giro senza ridurlo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-phase-space",
+      "difficulty": 1,
+      "prompt": "Una singola onda armonica progressiva si propaga lungo una coordinata s in un mezzo omogeneo, con lunghezza d’onda λ>0. Confrontiamo nello stesso istante due punti separati di Δs>0 lungo la propagazione. La differenza di fase non ridotta è Δφ; si chiede ν=|Δφ|/(2π), misura positiva in giri. ν può essere frazionario o maggiore di uno: non si cerca solo la fase equivalente modulo un giro né un conteggio intero di creste. Non si aggiungono differenze iniziali fra sorgenti distinte. Δs passa da 1 a 6 m, mentre λ resta 4 m. Come cambia ν?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 1/4 a 3/2 giri",
+          "Da 1/4 a 1/2 giri",
+          "Da 1/4 a 1/24 giri",
+          "Resta 1/4 giri",
+          "Da 1/4 a 6 giri"
+        ],
+        "value": "Da 1/4 a 3/2 giri"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La misura accumulata cresce linearmente con la separazione. Sei metri diviso quattro danno tre mezzi giri: un giro intero e un mezzo. Ridurre modulo un giro lascerebbe un mezzo, ma cancellerebbe il giro intero che la domanda chiede di conservare."
+        },
+        {
+          "type": "formula",
+          "text": "\\nu_A=\\frac14"
+        },
+        {
+          "type": "formula",
+          "text": " \\nu_B=\\frac64"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac64=\\frac32"
+        },
+        {
+          "type": "formula",
+          "text": " |\\Delta\\varphi_B|=3\\pi"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo è la sola fase equivalente dopo la riduzione modulo un giro. 1/24 rende inversa la dipendenza dalla distanza, sei copia il numero di metri e il valore invariato ignora il tratto aggiunto."
+        }
+      ],
+      "hints": [
+        "Conserva tutti i giri, compresa la parte intera.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Un mezzo è la sola fase equivalente dopo la riduzione modulo un giro. 1/24 rende inversa la dipendenza dalla distanza, sei copia il numero di metri e il valore invariato ignora il tratto aggiunto.",
+        "target": "C5-L02"
+      },
+      "coverage": [
+        "Fase in giri e in radianti",
+        "Separazione e lunghezza d’onda",
+        "Inverse, medie e scala continua"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-wave-phase-space-05",
+      "kind": "question",
+      "course": "C5",
+      "section": "Fase spaziale simultanea non ridotta",
+      "order": 13605,
+      "title": "Risalire alla distanza dalla fase non ridotta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-phase-space",
+      "difficulty": 2,
+      "prompt": "Una singola onda armonica progressiva si propaga lungo una coordinata s in un mezzo omogeneo, con lunghezza d’onda λ>0. Confrontiamo nello stesso istante due punti separati di Δs>0 lungo la propagazione. La differenza di fase non ridotta è Δφ; si chiede ν=|Δφ|/(2π), misura positiva in giri. ν può essere frazionario o maggiore di uno: non si cerca solo la fase equivalente modulo un giro né un conteggio intero di creste. Non si aggiungono differenze iniziali fra sorgenti distinte. Si misura ν=1/4 giri e si conosce λ=4 m. Quanto vale Δs in m?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Ogni giro corrisponde a quattro metri. Moltiplicare un quarto di giro per quella lunghezza dà un metro. L’inversa è unica perché il dato ν conserva tutti i giri; una sola fase ridotta modulo 2π lascerebbe invece possibili multipli di λ."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta s=\\nu\\lambda"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta s=\\frac14\\cdot4\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta s=1\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Sedici divide λ per ν invece di moltiplicare. Non si aggiunge un multiplo di quattro metri quando ν è già la misura non ridotta assegnata."
+        }
+      ],
+      "hints": [
+        "Moltiplica il numero di giri per i metri per giro.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sedici divide λ per ν invece di moltiplicare. Non si aggiunge un multiplo di quattro metri quando ν è già la misura non ridotta assegnata.",
+        "target": "C5-L02"
+      },
+      "coverage": [
+        "Fase in giri e in radianti",
+        "Separazione e lunghezza d’onda",
+        "Inverse, medie e scala continua"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-wave-phase-space-06",
+      "kind": "question",
+      "course": "C5",
+      "section": "Fase spaziale simultanea non ridotta",
+      "order": 13606,
+      "title": "Ricostruire la lunghezza d’onda",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-phase-space",
+      "difficulty": 2,
+      "prompt": "Una singola onda armonica progressiva si propaga lungo una coordinata s in un mezzo omogeneo, con lunghezza d’onda λ>0. Confrontiamo nello stesso istante due punti separati di Δs>0 lungo la propagazione. La differenza di fase non ridotta è Δφ; si chiede ν=|Δφ|/(2π), misura positiva in giri. ν può essere frazionario o maggiore di uno: non si cerca solo la fase equivalente modulo un giro né un conteggio intero di creste. Non si aggiungono differenze iniziali fra sorgenti distinte. Si misura ν=1/4 giri e si conosce Δs=1 m. Quanto vale λ in m?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Un metro produce un quarto di giro, quindi un giro completo richiede quattro metri. Algebricamente λ=Δs/ν e dividere per un quarto equivale a moltiplicare per quattro. Il risultato è positivo e non richiede alcuna frequenza."
+        },
+        {
+          "type": "formula",
+          "text": "\\lambda=\\frac{\\Delta s}{\\nu}"
+        },
+        {
+          "type": "formula",
+          "text": " \\lambda=\\frac1{1/4}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " \\lambda=4\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Un quarto di metro nasce da una moltiplicazione nel verso sbagliato. La lunghezza d’onda è una distanza fra punti in fase successivi, non l’ampiezza trasversale della sinusoide."
+        }
+      ],
+      "hints": [
+        "Se un metro è un quarto di λ, ricostruisci l’intero.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un quarto di metro nasce da una moltiplicazione nel verso sbagliato. La lunghezza d’onda è una distanza fra punti in fase successivi, non l’ampiezza trasversale della sinusoide.",
+        "target": "C5-L02"
+      },
+      "coverage": [
+        "Fase in giri e in radianti",
+        "Separazione e lunghezza d’onda",
+        "Inverse, medie e scala continua"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-wave-phase-space-07",
+      "kind": "question",
+      "course": "C5",
+      "section": "Fase spaziale simultanea non ridotta",
+      "order": 13607,
+      "title": "Lunghezza d’onda più breve",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-phase-space",
+      "difficulty": 2,
+      "prompt": "Una singola onda armonica progressiva si propaga lungo una coordinata s in un mezzo omogeneo, con lunghezza d’onda λ>0. Confrontiamo nello stesso istante due punti separati di Δs>0 lungo la propagazione. La differenza di fase non ridotta è Δφ; si chiede ν=|Δφ|/(2π), misura positiva in giri. ν può essere frazionario o maggiore di uno: non si cerca solo la fase equivalente modulo un giro né un conteggio intero di creste. Non si aggiungono differenze iniziali fra sorgenti distinte. A ha Δs=1 m,λ=4 m. B mantiene Δs e ha λ=1 m. Quanto vale ν_B/ν_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4",
+          "1/4",
+          "1",
+          "2",
+          "16"
+        ],
+        "value": "4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A accumula un quarto di giro e B un giro completo. Il rapporto è uno diviso un quarto, quattro. A distanza uguale, una lunghezza d’onda quattro volte più piccola contiene quattro volte più fase spaziale."
+        },
+        {
+          "type": "formula",
+          "text": "\\nu_A=\\frac14"
+        },
+        {
+          "type": "formula",
+          "text": " \\nu_B=1"
+        },
+        {
+          "type": "formula",
+          "text": " \\nu_B/\\nu_A=4"
+        },
+        {
+          "type": "text",
+          "text": "Un quarto segue λ nel verso opposto; uno ignora la nuova lunghezza d’onda. Due usa una radice e sedici quadra una dipendenza che è solo inversa di prima potenza."
+        }
+      ],
+      "hints": [
+        "Confronta le due misure non ridotte prima di dividere.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un quarto segue λ nel verso opposto; uno ignora la nuova lunghezza d’onda. Due usa una radice e sedici quadra una dipendenza che è solo inversa di prima potenza.",
+        "target": "C5-L02"
+      },
+      "coverage": [
+        "Fase in giri e in radianti",
+        "Separazione e lunghezza d’onda",
+        "Inverse, medie e scala continua"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-wave-phase-space-08",
+      "kind": "question",
+      "course": "C5",
+      "section": "Fase spaziale simultanea non ridotta",
+      "order": 13608,
+      "title": "Lo scarto tra due misure in giri",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-phase-space",
+      "difficulty": 2,
+      "prompt": "Una singola onda armonica progressiva si propaga lungo una coordinata s in un mezzo omogeneo, con lunghezza d’onda λ>0. Confrontiamo nello stesso istante due punti separati di Δs>0 lungo la propagazione. La differenza di fase non ridotta è Δφ; si chiede ν=|Δφ|/(2π), misura positiva in giri. ν può essere frazionario o maggiore di uno: non si cerca solo la fase equivalente modulo un giro né un conteggio intero di creste. Non si aggiungono differenze iniziali fra sorgenti distinte. Con Δs=1 m,λ=4 m si propone ν=1/2 giri. Quanto vale proposta meno corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/4 giri",
+          "−1/4 giri",
+          "1/2 giri",
+          "0 giri",
+          "3/4 giri"
+        ],
+        "value": "1/4 giri"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La fase corretta è un quarto di giro. Un mezzo meno un quarto lascia un quarto, positivo. Qui lo scarto non viene ridotto modulo un giro e non va convertito in radianti se l’unità richiesta è il giro."
+        },
+        {
+          "type": "formula",
+          "text": "\\nu=\\frac14"
+        },
+        {
+          "type": "formula",
+          "text": " e=\\frac12-\\frac14"
+        },
+        {
+          "type": "formula",
+          "text": " e=\\frac14\\,\\text{giri}"
+        },
+        {
+          "type": "text",
+          "text": "Meno un quarto scambia l’ordine; un mezzo copia la proposta, zero la accetta e tre quarti somma anziché sottrarre."
+        }
+      ],
+      "hints": [
+        "Scrivi le frazioni con lo stesso denominatore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Meno un quarto scambia l’ordine; un mezzo copia la proposta, zero la accetta e tre quarti somma anziché sottrarre.",
+        "target": "C5-L02"
+      },
+      "coverage": [
+        "Fase in giri e in radianti",
+        "Separazione e lunghezza d’onda",
+        "Inverse, medie e scala continua"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-wave-phase-space-09",
+      "kind": "question",
+      "course": "C5",
+      "section": "Fase spaziale simultanea non ridotta",
+      "order": 13609,
+      "title": "La formula inversa della separazione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-phase-space",
+      "difficulty": 2,
+      "prompt": "Una singola onda armonica progressiva si propaga lungo una coordinata s in un mezzo omogeneo, con lunghezza d’onda λ>0. Confrontiamo nello stesso istante due punti separati di Δs>0 lungo la propagazione. La differenza di fase non ridotta è Δφ; si chiede ν=|Δφ|/(2π), misura positiva in giri. ν può essere frazionario o maggiore di uno: non si cerca solo la fase equivalente modulo un giro né un conteggio intero di creste. Non si aggiungono differenze iniziali fra sorgenti distinte. Quale formula isola Δs?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Δs = ν λ",
+          "Δs = λ / ν",
+          "Δs = ν / λ",
+          "Δs = 2 π ν λ",
+          "Δs = ν λ²"
+        ],
+        "value": "Δs = ν λ"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplichiamo ν=Δs/λ per λ>0. La misura ν è già espressa in giri; non occorre un altro fattore 2π. Il prodotto numero puro per lunghezza ha dimensione di distanza."
+        },
+        {
+          "type": "formula",
+          "text": "\\nu\\lambda=\\Delta s"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta s=\\nu\\lambda"
+        },
+        {
+          "type": "formula",
+          "text": " [\\Delta s]=L"
+        },
+        {
+          "type": "text",
+          "text": "λ/ν inverte il passaggio. ν/λ ha dimensione di lunghezza inversa e νλ² di area. 2πνλ conterebbe la conversione angolare una seconda volta."
+        }
+      ],
+      "hints": [
+        "Tratta ν come rapporto adimensionale, non come angolo in radianti.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "λ/ν inverte il passaggio. ν/λ ha dimensione di lunghezza inversa e νλ² di area. 2πνλ conterebbe la conversione angolare una seconda volta.",
+        "target": "C5-L02"
+      },
+      "coverage": [
+        "Fase in giri e in radianti",
+        "Separazione e lunghezza d’onda",
+        "Inverse, medie e scala continua"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-wave-phase-space-10",
+      "kind": "question",
+      "course": "C5",
+      "section": "Fase spaziale simultanea non ridotta",
+      "order": 13610,
+      "title": "Variazioni di distanza e lunghezza d’onda",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-phase-space",
+      "difficulty": 2,
+      "prompt": "Una singola onda armonica progressiva si propaga lungo una coordinata s in un mezzo omogeneo, con lunghezza d’onda λ>0. Confrontiamo nello stesso istante due punti separati di Δs>0 lungo la propagazione. La differenza di fase non ridotta è Δφ; si chiede ν=|Δφ|/(2π), misura positiva in giri. ν può essere frazionario o maggiore di uno: non si cerca solo la fase equivalente modulo un giro né un conteggio intero di creste. Non si aggiungono differenze iniziali fra sorgenti distinte. B ha Δs_B=κ₁Δs_A e λ_B=κ₂λ_A, con fattori positivi. Quanto vale ν_B/ν_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ / κ₂",
+          "κ₁ κ₂",
+          "κ₂ / κ₁",
+          "κ₁ / κ₂²",
+          "κ₁ + κ₂"
+        ],
+        "value": "κ₁ / κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La separazione moltiplica la fase e la lunghezza d’onda la divide. Sostituendo i dati B nel rapporto e cancellando gli ingressi A rimane κ₁/κ₂. Non si deve estrarre la sola parte frazionaria prima del confronto."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{\\nu_B}{\\nu_A}=\\frac{\\kappa_1\\Delta s_A}{\\kappa_2\\lambda_A}\\frac{\\lambda_A}{\\Delta s_A}"
+        },
+        {
+          "type": "formula",
+          "text": " \\nu_B/\\nu_A=\\frac{\\kappa_1}{\\kappa_2}"
+        },
+        {
+          "type": "text",
+          "text": "Il prodotto rende diretta la dipendenza da λ; il rapporto inverso scambia gli stati. Il quadrato non appartiene alla fase spaziale e la somma darebbe due per prove identiche."
+        }
+      ],
+      "hints": [
+        "Cancella i due ingressi dopo aver scritto ν_B/ν_A.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il prodotto rende diretta la dipendenza da λ; il rapporto inverso scambia gli stati. Il quadrato non appartiene alla fase spaziale e la somma darebbe due per prove identiche.",
+        "target": "C5-L02"
+      },
+      "coverage": [
+        "Fase in giri e in radianti",
+        "Separazione e lunghezza d’onda",
+        "Inverse, medie e scala continua"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-wave-phase-space-11",
+      "kind": "question",
+      "course": "C5",
+      "section": "Fase spaziale simultanea non ridotta",
+      "order": 13611,
+      "title": "Due lunghezze cambiate insieme",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-phase-space",
+      "difficulty": 2,
+      "prompt": "Una singola onda armonica progressiva si propaga lungo una coordinata s in un mezzo omogeneo, con lunghezza d’onda λ>0. Confrontiamo nello stesso istante due punti separati di Δs>0 lungo la propagazione. La differenza di fase non ridotta è Δφ; si chiede ν=|Δφ|/(2π), misura positiva in giri. ν può essere frazionario o maggiore di uno: non si cerca solo la fase equivalente modulo un giro né un conteggio intero di creste. Non si aggiungono differenze iniziali fra sorgenti distinte. A: Δs=1 m,λ=4 m. B: Δs=3 m,λ=6 m. Quanto vale ν_B/ν_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/2",
+          "3",
+          "3/2",
+          "6"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le due misure sono un quarto e un mezzo di giro. Un mezzo diviso un quarto è due. La separazione triplica, ma la lunghezza d’onda cresce di tre mezzi: il loro quoziente dà il fattore due."
+        },
+        {
+          "type": "formula",
+          "text": "\\nu_A=\\frac14"
+        },
+        {
+          "type": "formula",
+          "text": " \\nu_B=\\frac36"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac36=\\frac12"
+        },
+        {
+          "type": "formula",
+          "text": " \\nu_B/\\nu_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Tre segue solo Δs e tre mezzi solo λ; un mezzo è il valore finale, ma anche il reciproco del rapporto richiesto. Sei copia il numero di metri della lunghezza d’onda B, non il rapporto fra fasi."
+        }
+      ],
+      "hints": [
+        "Calcola i due rapporti di lunghezze prima del loro confronto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre segue solo Δs e tre mezzi solo λ; un mezzo è il valore finale, ma anche il reciproco del rapporto richiesto. Sei copia il numero di metri della lunghezza d’onda B, non il rapporto fra fasi.",
+        "target": "C5-L02"
+      },
+      "coverage": [
+        "Fase in giri e in radianti",
+        "Separazione e lunghezza d’onda",
+        "Inverse, medie e scala continua"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-wave-phase-space-12",
+      "kind": "question",
+      "course": "C5",
+      "section": "Fase spaziale simultanea non ridotta",
+      "order": 13612,
+      "title": "Media di due differenze di fase",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-phase-space",
+      "difficulty": 2,
+      "prompt": "Una singola onda armonica progressiva si propaga lungo una coordinata s in un mezzo omogeneo, con lunghezza d’onda λ>0. Confrontiamo nello stesso istante due punti separati di Δs>0 lungo la propagazione. La differenza di fase non ridotta è Δφ; si chiede ν=|Δφ|/(2π), misura positiva in giri. ν può essere frazionario o maggiore di uno: non si cerca solo la fase equivalente modulo un giro né un conteggio intero di creste. Non si aggiungono differenze iniziali fra sorgenti distinte. A ha Δs=1 m,λ=4 m e B ha Δs=3 m,λ=6 m. Qual è la media aritmetica delle due ν con uguale peso statistico?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/8 giri",
+          "3/4 giri",
+          "3/16 giri",
+          "2/5 giri",
+          "1/4 giri"
+        ],
+        "value": "3/8 giri"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La semisomma di un quarto e un mezzo è tre ottavi di giro. Il risultato è ancora una misura reale di fase. Usare invece la separazione media due metri e λ media cinque metri darebbe due quinti di giro, maggiore di un quarantesimo rispetto alla media richiesta."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline\\nu=\\frac{1/4+1/2}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline\\nu=\\frac38\\,\\text{giri}"
+        },
+        {
+          "type": "text",
+          "text": "Tre quarti è la somma, tre sedicesimi dimezza ancora e un quarto copia A. Due quinti appartiene agli ingressi medi, non alla media delle due misure."
+        }
+      ],
+      "hints": [
+        "Media i due valori di fase già calcolati.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre quarti è la somma, tre sedicesimi dimezza ancora e un quarto copia A. Due quinti appartiene agli ingressi medi, non alla media delle due misure.",
+        "target": "C5-L02"
+      },
+      "coverage": [
+        "Fase in giri e in radianti",
+        "Separazione e lunghezza d’onda",
+        "Inverse, medie e scala continua"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-wave-phase-space-13",
+      "kind": "question",
+      "course": "C5",
+      "section": "Fase spaziale simultanea non ridotta",
+      "order": 13613,
+      "title": "La lunghezza d’onda per raddoppiare ν",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-phase-space",
+      "difficulty": 3,
+      "prompt": "Una singola onda armonica progressiva si propaga lungo una coordinata s in un mezzo omogeneo, con lunghezza d’onda λ>0. Confrontiamo nello stesso istante due punti separati di Δs>0 lungo la propagazione. La differenza di fase non ridotta è Δφ; si chiede ν=|Δφ|/(2π), misura positiva in giri. ν può essere frazionario o maggiore di uno: non si cerca solo la fase equivalente modulo un giro né un conteggio intero di creste. Non si aggiungono differenze iniziali fra sorgenti distinte. A usa Δs=1 m,λ=4 m. B impone Δs=3 m e ν_B=2ν_A. Quanto vale λ_B/λ_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/2",
+          "2/3",
+          "2",
+          "3",
+          "1/2"
+        ],
+        "value": "3/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è un mezzo di giro. Con separazione tre metri, λ_B=3/(1/2)=6 m. Il rapporto rispetto a quattro metri vale tre mezzi. Equivalentemente la separazione dà un fattore tre che deve essere diviso per un fattore tre mezzi."
+        },
+        {
+          "type": "formula",
+          "text": "\\nu_B=\\frac12"
+        },
+        {
+          "type": "formula",
+          "text": " \\lambda_B=6\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " \\lambda_B/\\lambda_A=\\frac64"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac64=\\frac32"
+        },
+        {
+          "type": "text",
+          "text": "Due terzi capovolge il rapporto. Due copia il bersaglio, tre segue solo la separazione e un mezzo ignora il cambiamento di Δs."
+        }
+      ],
+      "hints": [
+        "Ricava λ_B dal bersaglio in giri e dalla distanza B.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due terzi capovolge il rapporto. Due copia il bersaglio, tre segue solo la separazione e un mezzo ignora il cambiamento di Δs.",
+        "target": "C5-L02"
+      },
+      "coverage": [
+        "Fase in giri e in radianti",
+        "Separazione e lunghezza d’onda",
+        "Inverse, medie e scala continua"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-wave-phase-space-14",
+      "kind": "question",
+      "course": "C5",
+      "section": "Fase spaziale simultanea non ridotta",
+      "order": 13614,
+      "title": "Calibrare un display di fase",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-phase-space",
+      "difficulty": 3,
+      "prompt": "Una singola onda armonica progressiva si propaga lungo una coordinata s in un mezzo omogeneo, con lunghezza d’onda λ>0. Confrontiamo nello stesso istante due punti separati di Δs>0 lungo la propagazione. La differenza di fase non ridotta è Δφ; si chiede ν=|Δφ|/(2π), misura positiva in giri. ν può essere frazionario o maggiore di uno: non si cerca solo la fase equivalente modulo un giro né un conteggio intero di creste. Non si aggiungono differenze iniziali fra sorgenti distinte. Un display continuo adimensionale segue S=qν. A con Δs=1 m,λ=4 m dà S=3/4. B dà S=3/2 e ha λ=6 m. Quanto vale Δs_B in m?",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento ha ν=1/4 e fissa q=3. La nuova lettura corrisponde a ν_B=1/2 giro. Moltiplicando per la lunghezza d’onda sei metri si ricava una separazione di tre metri. Il display non conta necessariamente giri interi."
+        },
+        {
+          "type": "formula",
+          "text": "q=3"
+        },
+        {
+          "type": "formula",
+          "text": " \\nu_B=\\frac12"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta s_B=\\nu_B\\lambda_B"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta s_B=3\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Usare la lettura 3/2 direttamente come ν darebbe nove metri. La taratura va tolta prima della ricostruzione spaziale."
+        }
+      ],
+      "hints": [
+        "Decodifica ν e poi moltiplicala per λ_B.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Usare la lettura 3/2 direttamente come ν darebbe nove metri. La taratura va tolta prima della ricostruzione spaziale.",
+        "target": "C5-L02"
+      },
+      "coverage": [
+        "Fase in giri e in radianti",
+        "Separazione e lunghezza d’onda",
+        "Inverse, medie e scala continua"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-wave-phase-space-15",
+      "kind": "question",
+      "course": "C5",
+      "section": "Fase spaziale simultanea non ridotta",
+      "order": 13615,
+      "title": "Un offset nel display spaziale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-phase-space",
+      "difficulty": 3,
+      "prompt": "Una singola onda armonica progressiva si propaga lungo una coordinata s in un mezzo omogeneo, con lunghezza d’onda λ>0. Confrontiamo nello stesso istante due punti separati di Δs>0 lungo la propagazione. La differenza di fase non ridotta è Δφ; si chiede ν=|Δφ|/(2π), misura positiva in giri. ν può essere frazionario o maggiore di uno: non si cerca solo la fase equivalente modulo un giro né un conteggio intero di creste. Non si aggiungono differenze iniziali fra sorgenti distinte. S=qν+z è continuo e adimensionale. A: Δs=1 m,λ=4 m,S=3/2. B: Δs=3 m,λ=6 m,S=2. C: λ=2 m,S=3. Quanto vale Δs_C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2 m",
+          "1 m",
+          "3 m",
+          "4 m",
+          "6 m"
+        ],
+        "value": "2 m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le fasi di riferimento sono un quarto e un mezzo. La differenza un mezzo delle letture divisa per un quarto dà q=2; poi z=1. La lettura C tre equivale a ν_C=1 giro. Con λ_C=2 m la separazione vale due metri, non zero anche se la fase equivalente modulo un giro sarebbe nulla."
+        },
+        {
+          "type": "formula",
+          "text": "q=2"
+        },
+        {
+          "type": "formula",
+          "text": " z=1"
+        },
+        {
+          "type": "formula",
+          "text": " \\nu_C=1"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta s_C=\\nu_C\\lambda_C"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta s_C=2\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Con λ=2 m le separazioni 1,3,4,6 m darebbero letture 2,4,5,7. Solo due metri restituisce tre. Ridurre ν_C modulo un giro perderebbe l’informazione necessaria all’inversa."
+        }
+      ],
+      "hints": [
+        "Sottrai l’offset prima di ricostruire la misura non ridotta.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Con λ=2 m le separazioni 1,3,4,6 m darebbero letture 2,4,5,7. Solo due metri restituisce tre. Ridurre ν_C modulo un giro perderebbe l’informazione necessaria all’inversa.",
+        "target": "C5-L02"
+      },
+      "coverage": [
+        "Fase in giri e in radianti",
+        "Separazione e lunghezza d’onda",
+        "Inverse, medie e scala continua"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-wave-phase-space-16",
+      "kind": "question",
+      "course": "C5",
+      "section": "Fase spaziale simultanea non ridotta",
+      "order": 13616,
+      "title": "Un vincolo che lascia libera la scala spaziale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-phase-space",
+      "difficulty": 3,
+      "prompt": "Una singola onda armonica progressiva si propaga lungo una coordinata s in un mezzo omogeneo, con lunghezza d’onda λ>0. Confrontiamo nello stesso istante due punti separati di Δs>0 lungo la propagazione. La differenza di fase non ridotta è Δφ; si chiede ν=|Δφ|/(2π), misura positiva in giri. ν può essere frazionario o maggiore di uno: non si cerca solo la fase equivalente modulo un giro né un conteggio intero di creste. Non si aggiungono differenze iniziali fra sorgenti distinte. Fra prove vale Δs=λ/4 e si misura ν=1/4 giri. Quante coppie positive (Δs,λ) sono compatibili?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Infinite coppie",
+          "Una coppia",
+          "Due coppie",
+          "Nessuna coppia",
+          "Solo la coppia nulla"
+        ],
+        "value": "Infinite coppie"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituendo Δs=λ/4, la lunghezza d’onda positiva si cancella e si ottiene ν=1/4 per ogni λ>0. La lettura ripete il rapporto fissato senza determinare una lunghezza assoluta. Per esempio λ=4 m,Δs=1 m e λ=8 m,Δs=2 m sono due membri della stessa famiglia continua."
+        },
+        {
+          "type": "formula",
+          "text": "\\nu=\\frac{\\lambda/4}{\\lambda}"
+        },
+        {
+          "type": "formula",
+          "text": " \\nu=\\frac14"
+        },
+        {
+          "type": "formula",
+          "text": " \\lambda>0"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta s=\\lambda/4"
+        },
+        {
+          "type": "text",
+          "text": "Una o due coppie si fermano a pochi esempi. Nessuna è smentita dai dati costruiti; la coppia nulla viola λ>0 e renderebbe il rapporto indefinito. Serve un’altra misura di lunghezza per fissare la scala."
+        }
+      ],
+      "hints": [
+        "Controlla se la misura resta indipendente dopo la sostituzione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Una o due coppie si fermano a pochi esempi. Nessuna è smentita dai dati costruiti; la coppia nulla viola λ>0 e renderebbe il rapporto indefinito. Serve un’altra misura di lunghezza per fissare la scala.",
+        "target": "C5-L02"
+      },
+      "coverage": [
+        "Fase in giri e in radianti",
+        "Separazione e lunghezza d’onda",
+        "Inverse, medie e scala continua"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "b00064c2bc998be93c942779d5a550607e37e46c0f1735248f6ff635d9007280",
+      "name": "wave-phase-space-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTQ5MCIgdmlld0JveD0iMCAwIDY0MCAxNDkwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+Cjx0aXRsZSBpZD0idGl0bGUiPkZhc2Ugc3BhemlhbGUgbm9uIHJpZG90dGE8L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5VbmEgZm90b2dyYWZpYSBpbGx1c3RyYXRpdmEgZGVsbOKAmW9uZGEgY29uZnJvbnRhIGR1ZSBwdW50aSBzaW11bHRhbmVpIGRpc3RhbnRpIHVuIG1ldHJvIHJpc3BldHRvIGFsbGEgbHVuZ2hlenphIGTigJlvbmRhIHF1YXR0cm8gbWV0cmkuIFNlZ21lbnRpIGFsbGEgc3Rlc3NhIHNjYWxhLCBwb2kgZ3JhZmljbyBkZWxsYSBmYXNlIGFjY3VtdWxhdGEgY2hlIHByb3NlZ3VlIG9sdHJlIHVuIGdpcm8uPC9kZXNjPgo8cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjE0OTAiIHJ4PSIyMCIgZmlsbD0iI2Y3ZmJmZiIvPgo8ZyBmb250LWZhbWlseT0ic3lzdGVtLXVpLHNhbnMtc2VyaWYiIGZpbGw9IiMxNDJkNDAiIGZvbnQtc2l6ZT0iMjAiPgo8dGV4dCB4PSIzNSIgeT0iNDgiIGZvbnQtc2l6ZT0iMjUiIGZvbnQtd2VpZ2h0PSI3MDAiPjEgwrcgU3Rlc3NvIGlzdGFudGUsIGR1ZSBwdW50aSBkaXN0aW50aTwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjkwIj7OuyA9IDQgbSDCtyBhc3NlIHM6IDgwIHB4L208L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxMzUiPkRldmlhemlvbmUgdmVydGljYWxlIGlsbHVzdHJhdGl2YSwgc2VuemEgc2NhbGE8L3RleHQ+CjxwYXRoIGQ9Ik02NSAyNDBINTg1IiBzdHJva2U9IiM2ZThiOWMiLz4KPHBhdGggZD0iTTgwIDE3MC4wMDBMODEgMTcwLjAxM0w4MiAxNzAuMDU0TDgzIDE3MC4xMjFMODQgMTcwLjIxNkw4NSAxNzAuMzM3TDg2IDE3MC40ODVMODcgMTcwLjY2MEw4OCAxNzAuODYyTDg5IDE3MS4wOTBMOTAgMTcxLjM0NUw5MSAxNzEuNjI2TDkyIDE3MS45MzRMOTMgMTcyLjI2OEw5NCAxNzIuNjI4TDk1IDE3My4wMTRMOTYgMTczLjQyNkw5NyAxNzMuODY0TDk4IDE3NC4zMjdMOTkgMTc0LjgxNUwxMDAgMTc1LjMyOEwxMDEgMTc1Ljg2N0wxMDIgMTc2LjQzMEwxMDMgMTc3LjAxOEwxMDQgMTc3LjYzMEwxMDUgMTc4LjI2NkwxMDYgMTc4LjkyNUwxMDcgMTc5LjYwOUwxMDggMTgwLjMxNUwxMDkgMTgxLjA0NUwxMTAgMTgxLjc5N0wxMTEgMTgyLjU3MkwxMTIgMTgzLjM2OUwxMTMgMTg0LjE4OEwxMTQgMTg1LjAyOEwxMTUgMTg1Ljg4OUwxMTYgMTg2Ljc3MkwxMTcgMTg3LjY3NEwxMTggMTg4LjU5N0wxMTkgMTg5LjU0MEwxMjAgMTkwLjUwM0wxMjEgMTkxLjQ4NEwxMjIgMTkyLjQ4NEwxMjMgMTkzLjUwMkwxMjQgMTk0LjUzOUwxMjUgMTk1LjU5MkwxMjYgMTk2LjY2M0wxMjcgMTk3Ljc1MUwxMjggMTk4Ljg1NUwxMjkgMTk5Ljk3NUwxMzAgMjAxLjExMEwxMzEgMjAyLjI2MEwxMzIgMjAzLjQyNUwxMzMgMjA0LjYwNEwxMzQgMjA1Ljc5N0wxMzUgMjA3LjAwMkwxMzYgMjA4LjIyMUwxMzcgMjA5LjQ1MUwxMzggMjEwLjY5NEwxMzkgMjExLjk0OEwxNDAgMjEzLjIxMkwxNDEgMjE0LjQ4N0wxNDIgMjE1Ljc3MkwxNDMgMjE3LjA2NkwxNDQgMjE4LjM2OUwxNDUgMjE5LjY4MEwxNDYgMjIwLjk5OUwxNDcgMjIyLjMyNkwxNDggMjIzLjY1OUwxNDkgMjI0Ljk5OEwxNTAgMjI2LjM0NEwxNTEgMjI3LjY5NEwxNTIgMjI5LjA1MEwxNTMgMjMwLjQwOUwxNTQgMjMxLjc3MkwxNTUgMjMzLjEzOUwxNTYgMjM0LjUwOEwxNTcgMjM1Ljg3OUwxNTggMjM3LjI1MkwxNTkgMjM4LjYyNkwxNjAgMjQwLjAwMEwxNjEgMjQxLjM3NEwxNjIgMjQyLjc0OEwxNjMgMjQ0LjEyMUwxNjQgMjQ1LjQ5MkwxNjUgMjQ2Ljg2MUwxNjYgMjQ4LjIyOEwxNjcgMjQ5LjU5MUwxNjggMjUwLjk1MEwxNjkgMjUyLjMwNkwxNzAgMjUzLjY1NkwxNzEgMjU1LjAwMkwxNzIgMjU2LjM0MUwxNzMgMjU3LjY3NEwxNzQgMjU5LjAwMUwxNzUgMjYwLjMyMEwxNzYgMjYxLjYzMUwxNzcgMjYyLjkzNEwxNzggMjY0LjIyOEwxNzkgMjY1LjUxM0wxODAgMjY2Ljc4OEwxODEgMjY4LjA1MkwxODIgMjY5LjMwNkwxODMgMjcwLjU0OUwxODQgMjcxLjc3OUwxODUgMjcyLjk5OEwxODYgMjc0LjIwM0wxODcgMjc1LjM5NkwxODggMjc2LjU3NUwxODkgMjc3Ljc0MEwxOTAgMjc4Ljg5MEwxOTEgMjgwLjAyNUwxOTIgMjgxLjE0NUwxOTMgMjgyLjI0OUwxOTQgMjgzLjMzN0wxOTUgMjg0LjQwOEwxOTYgMjg1LjQ2MUwxOTcgMjg2LjQ5OEwxOTggMjg3LjUxNkwxOTkgMjg4LjUxNkwyMDAgMjg5LjQ5N0wyMDEgMjkwLjQ2MEwyMDIgMjkxLjQwM0wyMDMgMjkyLjMyNkwyMDQgMjkzLjIyOEwyMDUgMjk0LjExMUwyMDYgMjk0Ljk3MkwyMDcgMjk1LjgxMkwyMDggMjk2LjYzMUwyMDkgMjk3LjQyOEwyMTAgMjk4LjIwM0wyMTEgMjk4Ljk1NUwyMTIgMjk5LjY4NUwyMTMgMzAwLjM5MUwyMTQgMzAxLjA3NUwyMTUgMzAxLjczNEwyMTYgMzAyLjM3MEwyMTcgMzAyLjk4MkwyMTggMzAzLjU3MEwyMTkgMzA0LjEzM0wyMjAgMzA0LjY3MkwyMjEgMzA1LjE4NUwyMjIgMzA1LjY3M0wyMjMgMzA2LjEzNkwyMjQgMzA2LjU3NEwyMjUgMzA2Ljk4NkwyMjYgMzA3LjM3MkwyMjcgMzA3LjczMkwyMjggMzA4LjA2NkwyMjkgMzA4LjM3NEwyMzAgMzA4LjY1NUwyMzEgMzA4LjkxMEwyMzIgMzA5LjEzOEwyMzMgMzA5LjM0MEwyMzQgMzA5LjUxNUwyMzUgMzA5LjY2M0wyMzYgMzA5Ljc4NEwyMzcgMzA5Ljg3OUwyMzggMzA5Ljk0NkwyMzkgMzA5Ljk4N0wyNDAgMzEwLjAwMEwyNDEgMzA5Ljk4N0wyNDIgMzA5Ljk0NkwyNDMgMzA5Ljg3OUwyNDQgMzA5Ljc4NEwyNDUgMzA5LjY2M0wyNDYgMzA5LjUxNUwyNDcgMzA5LjM0MEwyNDggMzA5LjEzOEwyNDkgMzA4LjkxMEwyNTAgMzA4LjY1NUwyNTEgMzA4LjM3NEwyNTIgMzA4LjA2NkwyNTMgMzA3LjczMkwyNTQgMzA3LjM3MkwyNTUgMzA2Ljk4NkwyNTYgMzA2LjU3NEwyNTcgMzA2LjEzNkwyNTggMzA1LjY3M0wyNTkgMzA1LjE4NUwyNjAgMzA0LjY3MkwyNjEgMzA0LjEzM0wyNjIgMzAzLjU3MEwyNjMgMzAyLjk4MkwyNjQgMzAyLjM3MEwyNjUgMzAxLjczNEwyNjYgMzAxLjA3NUwyNjcgMzAwLjM5MUwyNjggMjk5LjY4NUwyNjkgMjk4Ljk1NUwyNzAgMjk4LjIwM0wyNzEgMjk3LjQyOEwyNzIgMjk2LjYzMUwyNzMgMjk1LjgxMkwyNzQgMjk0Ljk3MkwyNzUgMjk0LjExMUwyNzYgMjkzLjIyOEwyNzcgMjkyLjMyNkwyNzggMjkxLjQwM0wyNzkgMjkwLjQ2MEwyODAgMjg5LjQ5N0wyODEgMjg4LjUxNkwyODIgMjg3LjUxNkwyODMgMjg2LjQ5OEwyODQgMjg1LjQ2MUwyODUgMjg0LjQwOEwyODYgMjgzLjMzN0wyODcgMjgyLjI0OUwyODggMjgxLjE0NUwyODkgMjgwLjAyNUwyOTAgMjc4Ljg5MEwyOTEgMjc3Ljc0MEwyOTIgMjc2LjU3NUwyOTMgMjc1LjM5NkwyOTQgMjc0LjIwM0wyOTUgMjcyLjk5OEwyOTYgMjcxLjc3OUwyOTcgMjcwLjU0OUwyOTggMjY5LjMwNkwyOTkgMjY4LjA1MkwzMDAgMjY2Ljc4OEwzMDEgMjY1LjUxM0wzMDIgMjY0LjIyOEwzMDMgMjYyLjkzNEwzMDQgMjYxLjYzMUwzMDUgMjYwLjMyMEwzMDYgMjU5LjAwMUwzMDcgMjU3LjY3NEwzMDggMjU2LjM0MUwzMDkgMjU1LjAwMkwzMTAgMjUzLjY1NkwzMTEgMjUyLjMwNkwzMTIgMjUwLjk1MEwzMTMgMjQ5LjU5MUwzMTQgMjQ4LjIyOEwzMTUgMjQ2Ljg2MUwzMTYgMjQ1LjQ5MkwzMTcgMjQ0LjEyMUwzMTggMjQyLjc0OEwzMTkgMjQxLjM3NEwzMjAgMjQwLjAwMEwzMjEgMjM4LjYyNkwzMjIgMjM3LjI1MkwzMjMgMjM1Ljg3OUwzMjQgMjM0LjUwOEwzMjUgMjMzLjEzOUwzMjYgMjMxLjc3MkwzMjcgMjMwLjQwOUwzMjggMjI5LjA1MEwzMjkgMjI3LjY5NEwzMzAgMjI2LjM0NEwzMzEgMjI0Ljk5OEwzMzIgMjIzLjY1OUwzMzMgMjIyLjMyNkwzMzQgMjIwLjk5OUwzMzUgMjE5LjY4MEwzMzYgMjE4LjM2OUwzMzcgMjE3LjA2NkwzMzggMjE1Ljc3MkwzMzkgMjE0LjQ4N0wzNDAgMjEzLjIxMkwzNDEgMjExLjk0OEwzNDIgMjEwLjY5NEwzNDMgMjA5LjQ1MUwzNDQgMjA4LjIyMUwzNDUgMjA3LjAwMkwzNDYgMjA1Ljc5N0wzNDcgMjA0LjYwNEwzNDggMjAzLjQyNUwzNDkgMjAyLjI2MEwzNTAgMjAxLjExMEwzNTEgMTk5Ljk3NUwzNTIgMTk4Ljg1NUwzNTMgMTk3Ljc1MUwzNTQgMTk2LjY2M0wzNTUgMTk1LjU5MkwzNTYgMTk0LjUzOUwzNTcgMTkzLjUwMkwzNTggMTkyLjQ4NEwzNTkgMTkxLjQ4NEwzNjAgMTkwLjUwM0wzNjEgMTg5LjU0MEwzNjIgMTg4LjU5N0wzNjMgMTg3LjY3NEwzNjQgMTg2Ljc3MkwzNjUgMTg1Ljg4OUwzNjYgMTg1LjAyOEwzNjcgMTg0LjE4OEwzNjggMTgzLjM2OUwzNjkgMTgyLjU3MkwzNzAgMTgxLjc5N0wzNzEgMTgxLjA0NUwzNzIgMTgwLjMxNUwzNzMgMTc5LjYwOUwzNzQgMTc4LjkyNUwzNzUgMTc4LjI2NkwzNzYgMTc3LjYzMEwzNzcgMTc3LjAxOEwzNzggMTc2LjQzMEwzNzkgMTc1Ljg2N0wzODAgMTc1LjMyOEwzODEgMTc0LjgxNUwzODIgMTc0LjMyN0wzODMgMTczLjg2NEwzODQgMTczLjQyNkwzODUgMTczLjAxNEwzODYgMTcyLjYyOEwzODcgMTcyLjI2OEwzODggMTcxLjkzNEwzODkgMTcxLjYyNkwzOTAgMTcxLjM0NUwzOTEgMTcxLjA5MEwzOTIgMTcwLjg2MkwzOTMgMTcwLjY2MEwzOTQgMTcwLjQ4NUwzOTUgMTcwLjMzN0wzOTYgMTcwLjIxNkwzOTcgMTcwLjEyMUwzOTggMTcwLjA1NEwzOTkgMTcwLjAxM0w0MDAgMTcwLjAwMEw0MDEgMTcwLjAxM0w0MDIgMTcwLjA1NEw0MDMgMTcwLjEyMUw0MDQgMTcwLjIxNkw0MDUgMTcwLjMzN0w0MDYgMTcwLjQ4NUw0MDcgMTcwLjY2MEw0MDggMTcwLjg2Mkw0MDkgMTcxLjA5MEw0MTAgMTcxLjM0NUw0MTEgMTcxLjYyNkw0MTIgMTcxLjkzNEw0MTMgMTcyLjI2OEw0MTQgMTcyLjYyOEw0MTUgMTczLjAxNEw0MTYgMTczLjQyNkw0MTcgMTczLjg2NEw0MTggMTc0LjMyN0w0MTkgMTc0LjgxNUw0MjAgMTc1LjMyOEw0MjEgMTc1Ljg2N0w0MjIgMTc2LjQzMEw0MjMgMTc3LjAxOEw0MjQgMTc3LjYzMEw0MjUgMTc4LjI2Nkw0MjYgMTc4LjkyNUw0MjcgMTc5LjYwOUw0MjggMTgwLjMxNUw0MjkgMTgxLjA0NUw0MzAgMTgxLjc5N0w0MzEgMTgyLjU3Mkw0MzIgMTgzLjM2OUw0MzMgMTg0LjE4OEw0MzQgMTg1LjAyOEw0MzUgMTg1Ljg4OUw0MzYgMTg2Ljc3Mkw0MzcgMTg3LjY3NEw0MzggMTg4LjU5N0w0MzkgMTg5LjU0MEw0NDAgMTkwLjUwM0w0NDEgMTkxLjQ4NEw0NDIgMTkyLjQ4NEw0NDMgMTkzLjUwMkw0NDQgMTk0LjUzOUw0NDUgMTk1LjU5Mkw0NDYgMTk2LjY2M0w0NDcgMTk3Ljc1MUw0NDggMTk4Ljg1NUw0NDkgMTk5Ljk3NUw0NTAgMjAxLjExMEw0NTEgMjAyLjI2MEw0NTIgMjAzLjQyNUw0NTMgMjA0LjYwNEw0NTQgMjA1Ljc5N0w0NTUgMjA3LjAwMkw0NTYgMjA4LjIyMUw0NTcgMjA5LjQ1MUw0NTggMjEwLjY5NEw0NTkgMjExLjk0OEw0NjAgMjEzLjIxMkw0NjEgMjE0LjQ4N0w0NjIgMjE1Ljc3Mkw0NjMgMjE3LjA2Nkw0NjQgMjE4LjM2OUw0NjUgMjE5LjY4MEw0NjYgMjIwLjk5OUw0NjcgMjIyLjMyNkw0NjggMjIzLjY1OUw0NjkgMjI0Ljk5OEw0NzAgMjI2LjM0NEw0NzEgMjI3LjY5NEw0NzIgMjI5LjA1MEw0NzMgMjMwLjQwOUw0NzQgMjMxLjc3Mkw0NzUgMjMzLjEzOUw0NzYgMjM0LjUwOEw0NzcgMjM1Ljg3OUw0NzggMjM3LjI1Mkw0NzkgMjM4LjYyNkw0ODAgMjQwLjAwMEw0ODEgMjQxLjM3NEw0ODIgMjQyLjc0OEw0ODMgMjQ0LjEyMUw0ODQgMjQ1LjQ5Mkw0ODUgMjQ2Ljg2MUw0ODYgMjQ4LjIyOEw0ODcgMjQ5LjU5MUw0ODggMjUwLjk1MEw0ODkgMjUyLjMwNkw0OTAgMjUzLjY1Nkw0OTEgMjU1LjAwMkw0OTIgMjU2LjM0MUw0OTMgMjU3LjY3NEw0OTQgMjU5LjAwMUw0OTUgMjYwLjMyMEw0OTYgMjYxLjYzMUw0OTcgMjYyLjkzNEw0OTggMjY0LjIyOEw0OTkgMjY1LjUxM0w1MDAgMjY2Ljc4OEw1MDEgMjY4LjA1Mkw1MDIgMjY5LjMwNkw1MDMgMjcwLjU0OUw1MDQgMjcxLjc3OUw1MDUgMjcyLjk5OEw1MDYgMjc0LjIwM0w1MDcgMjc1LjM5Nkw1MDggMjc2LjU3NUw1MDkgMjc3Ljc0MEw1MTAgMjc4Ljg5MEw1MTEgMjgwLjAyNUw1MTIgMjgxLjE0NUw1MTMgMjgyLjI0OUw1MTQgMjgzLjMzN0w1MTUgMjg0LjQwOEw1MTYgMjg1LjQ2MUw1MTcgMjg2LjQ5OEw1MTggMjg3LjUxNkw1MTkgMjg4LjUxNkw1MjAgMjg5LjQ5N0w1MjEgMjkwLjQ2MEw1MjIgMjkxLjQwM0w1MjMgMjkyLjMyNkw1MjQgMjkzLjIyOEw1MjUgMjk0LjExMUw1MjYgMjk0Ljk3Mkw1MjcgMjk1LjgxMkw1MjggMjk2LjYzMUw1MjkgMjk3LjQyOEw1MzAgMjk4LjIwM0w1MzEgMjk4Ljk1NUw1MzIgMjk5LjY4NUw1MzMgMzAwLjM5MUw1MzQgMzAxLjA3NUw1MzUgMzAxLjczNEw1MzYgMzAyLjM3MEw1MzcgMzAyLjk4Mkw1MzggMzAzLjU3MEw1MzkgMzA0LjEzM0w1NDAgMzA0LjY3Mkw1NDEgMzA1LjE4NUw1NDIgMzA1LjY3M0w1NDMgMzA2LjEzNkw1NDQgMzA2LjU3NEw1NDUgMzA2Ljk4Nkw1NDYgMzA3LjM3Mkw1NDcgMzA3LjczMkw1NDggMzA4LjA2Nkw1NDkgMzA4LjM3NEw1NTAgMzA4LjY1NUw1NTEgMzA4LjkxMEw1NTIgMzA5LjEzOEw1NTMgMzA5LjM0MEw1NTQgMzA5LjUxNUw1NTUgMzA5LjY2M0w1NTYgMzA5Ljc4NEw1NTcgMzA5Ljg3OUw1NTggMzA5Ljk0Nkw1NTkgMzA5Ljk4N0w1NjAgMzEwLjAwMCIgc3Ryb2tlPSIjMTQ1ZDgxIiBzdHJva2Utd2lkdGg9IjMiIGZpbGw9Im5vbmUiLz4KPHBhdGggZD0iTTgwIDE2MFYzMzBNMTYwIDE2MFYzMzAiIHN0cm9rZT0iIzZlOGI5YyIgc3Ryb2tlLWRhc2hhcnJheT0iNSA1IiBmaWxsPSJub25lIi8+CjxjaXJjbGUgY3g9IjgwIiBjeT0iMTcwIiByPSI1IiBmaWxsPSIjYzY1OTE5Ii8+PGNpcmNsZSBjeD0iMTYwIiBjeT0iMjQwIiByPSI1IiBmaWxsPSIjYzY1OTE5Ii8+Cjx0ZXh0IHg9IjcwIiB5PSIzNTUiPjA8L3RleHQ+PHRleHQgeD0iMTUxIiB5PSIzNTUiPjE8L3RleHQ+PHRleHQgeD0iMjMxIiB5PSIzNTUiPjI8L3RleHQ+PHRleHQgeD0iMzExIiB5PSIzNTUiPjM8L3RleHQ+PHRleHQgeD0iMzkxIiB5PSIzNTUiPjQ8L3RleHQ+PHRleHQgeD0iNDcxIiB5PSIzNTUiPjU8L3RleHQ+PHRleHQgeD0iNTUxIiB5PSIzNTUiPjY8L3RleHQ+CjxwYXRoIGQ9Ik04MCAzODVIMTYwTTgwIDM3NVYzOTVNMTYwIDM3NVYzOTUiIHN0cm9rZT0iI2M2NTkxOSIgc3Ryb2tlLXdpZHRoPSIyIiBmaWxsPSJub25lIi8+Cjx0ZXh0IHg9IjE4NSIgeT0iMzkyIj7OlHMgPSAxIG0g4oeSIM69ID0gMS80IGdpcm88L3RleHQ+CjxwYXRoIGQ9Ik04MCA0NDVINDAwTTgwIDQzNVY0NTVNNDAwIDQzNVY0NTUiIHN0cm9rZT0iIzE0NWQ4MSIgc3Ryb2tlLXdpZHRoPSIyIiBmaWxsPSJub25lIi8+Cjx0ZXh0IHg9IjQzMCIgeT0iNDUyIj7OuyA9IDQgbTwvdGV4dD4KPHBhdGggZD0iTTM1IDQ5NUg2MDUiIHN0cm9rZT0iI2IzY2JkOSIvPgo8dGV4dCB4PSIzNSIgeT0iNTQ1IiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iNzAwIj4yIMK3IElsIHJhcHBvcnRvIGRpIGR1ZSBsdW5naGV6emU8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI1OTAiPlN0ZXNzYSBzY2FsYTogODAgcHgvbTwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjY1MCI+zpRzPC90ZXh0PjxyZWN0IHg9IjEwMCIgeT0iNjI1IiB3aWR0aD0iODAiIGhlaWdodD0iMzAiIGZpbGw9IiNjNjU5MTkiLz48dGV4dCB4PSIyMDAiIHk9IjY1MCI+MSBtPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iNzUwIj7OuzwvdGV4dD48cmVjdCB4PSIxMDAiIHk9IjcyNSIgd2lkdGg9IjMyMCIgaGVpZ2h0PSIzMCIgZmlsbD0iIzE0NWQ4MSIvPjx0ZXh0IHg9IjQ0MCIgeT0iNzUwIj40IG08L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI4MjUiPs69ID0gzpRzL867ID0gMS80IMK3IG51bWVybyBwdXJvPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iODcwIj58zpTPhnwgPSAyz4DOvSA9IM+ALzIgcmFkaWFudGk8L3RleHQ+CjxwYXRoIGQ9Ik0zNSA5MTVINjA1IiBzdHJva2U9IiNiM2NiZDkiLz4KPHRleHQgeD0iMzUiIHk9Ijk2NSIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9IjcwMCI+MyDCtyBDb25zZXJ2YXJlIGFuY2hlIGkgZ2lyaSBpbnRlcmk8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxMDEwIj7OuyA9IDQgbSDCtyDOvSBpbiBnaXJpPC90ZXh0Pgo8cGF0aCBkPSJNODAgMTMzMEg1OTBNODAgMTMzMFYxMDYwIiBzdHJva2U9IiMxNDJkNDAiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIvPgo8cGF0aCBkPSJNODAgMTMzMEw1NjAgMTA5MCIgc3Ryb2tlPSIjYzY1OTE5IiBzdHJva2Utd2lkdGg9IjQiLz4KPHBhdGggZD0iTTgwIDExNzBINDAwVjEzMzAiIHN0cm9rZT0iIzZlOGI5YyIgc3Ryb2tlLWRhc2hhcnJheT0iNiA1IiBmaWxsPSJub25lIi8+CjxjaXJjbGUgY3g9IjE2MCIgY3k9IjEyOTAiIHI9IjUiIGZpbGw9IiNjNjU5MTkiLz48Y2lyY2xlIGN4PSI0MDAiIGN5PSIxMTcwIiByPSI1IiBmaWxsPSIjYzY1OTE5Ii8+PGNpcmNsZSBjeD0iNTYwIiBjeT0iMTA5MCIgcj0iNSIgZmlsbD0iI2M2NTkxOSIvPgo8dGV4dCB4PSI0NiIgeT0iMTM1NSI+MDwvdGV4dD48dGV4dCB4PSI0OCIgeT0iMTE3NyI+MTwvdGV4dD48dGV4dCB4PSIzMiIgeT0iMTA5NyI+My8yPC90ZXh0Pjx0ZXh0IHg9IjE1MCIgeT0iMTM2MCI+MTwvdGV4dD48dGV4dCB4PSIzOTAiIHk9IjEzNjAiPjQ8L3RleHQ+PHRleHQgeD0iNTUwIiB5PSIxMzYwIj42PC90ZXh0Pgo8dGV4dCB4PSI0NDAiIHk9IjE0MTAiPs6UcyBpbiBtPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTQ1NSI+ODAgcHgvbSDCtyAxNjAgcHgvZ2lybyDCtyBuZXNzdW5hIHJpZHV6aW9uZTwvdGV4dD4KPC9nPjwvc3ZnPgo="
+    }
+  ]
+}

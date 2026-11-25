@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="1500" viewBox="0 0 640 1500" role="img" aria-labelledby="title desc">
+<title id="title">L’eco percorre due volte il segmento</title><desc id="desc">Trasduttore e parete separati da trenta metri. Tre secondi all’andata e tre al ritorno a dieci metri al secondo. Grafico della posizione del breve impulso e confronto fra distanze trenta e venti metri.</desc>
+<defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#145d81"/></marker></defs>
+<rect width="640" height="1500" rx="20" fill="#f7fbff"/>
+<g font-family="system-ui,sans-serif" fill="#142d40" font-size="20">
+<text x="35" y="48" font-size="25" font-weight="700">1 · Lo stesso segmento, due versi</text>
+<text x="35" y="90">c = 10 m/s · distanza d = 30 m</text>
+<rect x="108" y="185" width="32" height="140" fill="#6e8b9c"/><path d="M500 160V350" stroke="#6e8b9c" stroke-width="9"/>
+<path d="M140 210H500" stroke="#145d81" stroke-width="3" marker-end="url(#arr)"/>
+<path d="M500 300H140" stroke="#145d81" stroke-width="3" marker-end="url(#arr)"/>
+<text x="65" y="385">Trasduttore</text><text x="465" y="385">Parete</text>
+<text x="210" y="185">Andata · 3 s</text><text x="210" y="340">Ritorno · 3 s</text>
+<text x="35" y="440">Orizzontale: 12 px/m · due volte d</text>
+<text x="35" y="480">Tratti separati solo per renderli visibili.</text>
+<path d="M35 515H605" stroke="#b3cbd9"/>
+<text x="35" y="560" font-size="25" font-weight="700">2 · Posizione del breve impulso</text>
+<text x="35" y="600">Non è la traiettoria di una particella d’aria.</text>
+<path d="M80 930H565" stroke="#142d40" stroke-width="2" marker-end="url(#arr)"/>
+<path d="M100 950V650" stroke="#142d40" stroke-width="2" marker-end="url(#arr)"/>
+<text x="575" y="935">t</text><text x="70" y="645">x</text>
+<path d="M100 930L310 690L520 930" fill="none" stroke="#c65919" stroke-width="4"/>
+<path d="M100 690H310V930" fill="none" stroke="#6e8b9c" stroke-dasharray="6 5"/>
+<circle cx="310" cy="690" r="5" fill="#c65919"/>
+<text x="40" y="697">30 m</text><text x="78" y="980">0</text><text x="298" y="980">3</text><text x="508" y="980">6 s</text>
+<text x="350" y="700">Riflessione</text>
+<text x="35" y="1020">Tempo: 70 px/s · posizione: 8 px/m</text>
+<text x="35" y="1060">Δt = 6 s è il tempo totale dell’eco.</text>
+<path d="M35 1090H605" stroke="#b3cbd9"/>
+<text x="35" y="1135" font-size="25" font-weight="700">3 · Confrontare le distanze d</text>
+<text x="35" y="1175">Barre da zero: 8 px/m, non cammino 2d</text>
+<text x="35" y="1220">A · c = 10 m/s · Δt = 6 s</text>
+<rect x="100" y="1250" width="240" height="35" fill="#145d81"/><text x="360" y="1277">30 m</text>
+<text x="35" y="1340">B · c = 20 m/s · Δt = 2 s</text>
+<rect x="100" y="1370" width="160" height="35" fill="#c65919"/><text x="280" y="1397">20 m</text>
+<path d="M100 1235V1300M100 1355V1420" stroke="#6e8b9c" stroke-dasharray="6 5"/>
+<text x="35" y="1470">dᴮ/dᴬ = 20/30 = 2/3</text>
+</g></svg>

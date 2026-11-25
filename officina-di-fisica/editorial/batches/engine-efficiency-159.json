@@ -1,0 +1,1160 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u5-engine-efficiency-01",
+      "kind": "question",
+      "course": "C3",
+      "section": "Rendimento e secondo principio",
+      "order": 15901,
+      "title": "Quale parte del calore diventa lavoro",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C3-L06",
+        "C3-L07",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "engine-efficiency",
+      "difficulty": 1,
+      "prompt": "Una macchina ciclica chiusa assorbe il modulo Q_h>0 dalla sorgente calda e cede Q_c>0 alla fredda; 0<Q_c<Q_h. Non vi sono altri apporti energetici, e le energie macroscopiche ritornano ai valori iniziali. W=Q_h−Q_c è il lavoro netto uscente e η=W/Q_h il rendimento. I calori sono in J. Le temperature delle sorgenti non sono assegnate: ciascuna prova è fisicamente compatibile col secondo principio, senza imporre sorgenti identiche fra prove. Q_h=100 J e Q_c=20 J. Quanto vale η, come numero puro?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4/5",
+          "1/5",
+          "5",
+          "6/5",
+          "80"
+        ],
+        "value": "4/5"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nel ciclo l’energia interna non cambia. Dei cento joule ricevuti, venti sono ceduti e ottanta diventano lavoro. Ottanta su cento si riduce a quattro quinti: il rendimento confronta l’uscita utile con l’ingresso, non con lo scarico."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/e450afc77c91b310b41006c0293611f665526e6a2660e0708e1221efd4c70b06",
+          "text": "Schema energetico di un ciclo: 100 J ricevuti, 20 J ceduti e 80 J di lavoro. Le barre dal medesimo zero usano 4 px/J e rispettano 100=20+80; le frecce iniziali indicano soltanto i versi. L’ultimo pannello confronta rendimenti 4/5 e 1/2 con scala 400 px per unità di rendimento: barre 320 e 200 px e media a pesi uguali 260 px per 13/20. Le larghezze dei due pannelli hanno unità diverse e non sono confrontabili direttamente."
+        },
+        {
+          "type": "formula",
+          "text": "W=(100-20)\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " W=80\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " \\eta=\\frac{W}{Q_h}"
+        },
+        {
+          "type": "formula",
+          "text": " \\eta=\\frac45"
+        },
+        {
+          "type": "text",
+          "text": "Un quinto è la frazione ceduta. Cinque è Q_h/Q_c e sei quinti somma lo scarico all’ingresso. Ottanta è il lavoro espresso in joule, non il rendimento puro. Qui quattro quinti equivale all’80%, ma non a 80 come numero puro."
+        }
+      ],
+      "hints": [
+        "Trova il lavoro e poi dividilo per il calore ricevuto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un quinto è la frazione ceduta. Cinque è Q_h/Q_c e sei quinti somma lo scarico all’ingresso. Ottanta è il lavoro espresso in joule, non il rendimento puro. Qui quattro quinti equivale all’80%, ma non a 80 come numero puro.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Bilancio ciclico e quota utile",
+        "Kelvin–Planck e limiti",
+        "Inverse, medie, display e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-engine-efficiency-02",
+      "kind": "question",
+      "course": "C3",
+      "section": "Rendimento e secondo principio",
+      "order": 15902,
+      "title": "Il rendimento non è un’energia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C3-L06",
+        "C3-L07",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "engine-efficiency",
+      "difficulty": 1,
+      "prompt": "Il rendimento termico è η=W/Q_h, rapporto fra lavoro e calore ricevuto, entrambi in J. Quale unità lo esprime?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1 (adimensionale)",
+          "J",
+          "W",
+          "J/K",
+          "K"
+        ],
+        "value": "1 (adimensionale)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il rapporto di due energie ha unità J/J=1. Si può esprimerlo come frazione o percentuale, mantenendo il fattore cento della notazione percentuale. L’assenza di dimensione non lo rende uguale a qualsiasi altro rapporto energetico."
+        },
+        {
+          "type": "formula",
+          "text": "[\\eta]=\\mathrm J/\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " [\\eta]=1"
+        },
+        {
+          "type": "text",
+          "text": "J misura energia e W potenza; J/K una capacità termica e K una temperatura. Nessuna durata è presente nel rendimento, quindi non compare il watt."
+        }
+      ],
+      "hints": [
+        "Cancella le unità di numeratore e denominatore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "J misura energia e W potenza; J/K una capacità termica e K una temperatura. Nessuna durata è presente nel rendimento, quindi non compare il watt.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Bilancio ciclico e quota utile",
+        "Kelvin–Planck e limiti",
+        "Inverse, medie, display e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-engine-efficiency-03",
+      "kind": "question",
+      "course": "C3",
+      "section": "Rendimento e secondo principio",
+      "order": 15903,
+      "title": "Il limite del secondo principio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C3-L06",
+        "C3-L07",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "engine-efficiency",
+      "difficulty": 1,
+      "prompt": "Si propone una macchina ciclica il cui unico effetto sia assorbire calore da una sola sorgente e convertirlo integralmente in lavoro. Non vi sono altri cambiamenti o trasferimenti. Quale giudizio è corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "È vietata dal secondo principio, pur potendo rispettare il bilancio energetico",
+          "È vietata perché energia e lavoro hanno unità diverse",
+          "È permessa se si aumenta abbastanza il calore assorbito",
+          "È permessa perché tornare allo stato iniziale annulla ogni vincolo",
+          "È vietata soltanto ai gas ideali"
+        ],
+        "value": "È vietata dal secondo principio, pur potendo rispettare il bilancio energetico"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il primo principio, da solo, ammetterebbe Q=W e ΔU_ciclo=0. L’enunciato di Kelvin–Planck del secondo principio vieta che questo sia l’unico effetto di una macchina ciclica in contatto con una sola sorgente. La restrizione riguarda la trasformazione proposta, non il solo materiale del fluido. Non si assume in partenza Q_c>0 per dimostrare il divieto."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta U_{\\rm ciclo}=0"
+        },
+        {
+          "type": "formula",
+          "text": " Q=W"
+        },
+        {
+          "type": "text",
+          "text": "Calore e lavoro hanno la stessa dimensione. Aumentare Q non elimina il divieto, e chiudere il ciclo è proprio una delle condizioni dell’enunciato. Non si sta affermando che una singola espansione non ciclica non possa trasformare tutto il calore ricevuto in lavoro."
+        }
+      ],
+      "hints": [
+        "Distingui conservazione dell’energia e possibilità della trasformazione ciclica.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Calore e lavoro hanno la stessa dimensione. Aumentare Q non elimina il divieto, e chiudere il ciclo è proprio una delle condizioni dell’enunciato. Non si sta affermando che una singola espansione non ciclica non possa trasformare tutto il calore ricevuto in lavoro.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Bilancio ciclico e quota utile",
+        "Kelvin–Planck e limiti",
+        "Inverse, medie, display e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-engine-efficiency-04",
+      "kind": "question",
+      "course": "C3",
+      "section": "Rendimento e secondo principio",
+      "order": 15904,
+      "title": "Stesso scarico e calore ricevuto doppio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C3-L06",
+        "C3-L07",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "engine-efficiency",
+      "difficulty": 1,
+      "prompt": "Una macchina ciclica chiusa assorbe il modulo Q_h>0 dalla sorgente calda e cede Q_c>0 alla fredda; 0<Q_c<Q_h. Non vi sono altri apporti energetici, e le energie macroscopiche ritornano ai valori iniziali. W=Q_h−Q_c è il lavoro netto uscente e η=W/Q_h il rendimento. I calori sono in J. Le temperature delle sorgenti non sono assegnate: ciascuna prova è fisicamente compatibile col secondo principio, senza imporre sorgenti identiche fra prove. A ha Q_h=100 J,Q_c=20 J. B ha Q_h=200 J e lo stesso Q_c=20 J. Come cambia η?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 4/5 a 9/10",
+          "Da 4/5 a 8/5",
+          "Resta 4/5",
+          "Da 4/5 a 2/5",
+          "Da 4/5 a 1/10"
+        ],
+        "value": "Da 4/5 a 9/10"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La frazione persa è inizialmente 20/100=1/5, poi 20/200=1/10. Sottraendola da uno il rendimento passa da quattro quinti a nove decimi. Il lavoro aumenta da ottanta a centottanta joule, ma anche il denominatore Q_h cambia."
+        },
+        {
+          "type": "formula",
+          "text": "\\eta_A=1-\\frac{20}{100}"
+        },
+        {
+          "type": "formula",
+          "text": " \\eta_A=\\frac45"
+        },
+        {
+          "type": "formula",
+          "text": " \\eta_B=1-\\frac{20}{200}"
+        },
+        {
+          "type": "formula",
+          "text": " \\eta_B=\\frac9{10}"
+        },
+        {
+          "type": "text",
+          "text": "Otto quinti raddoppia direttamente il rendimento e supera uno. Due quinti lo dimezza come se fosse inverso a Q_h; un decimo è la sola quota ceduta. Quattro quinti richiederebbe il raddoppio anche di Q_c."
+        }
+      ],
+      "hints": [
+        "Confronta la quota ceduta rispetto al diverso ingresso.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Otto quinti raddoppia direttamente il rendimento e supera uno. Due quinti lo dimezza come se fosse inverso a Q_h; un decimo è la sola quota ceduta. Quattro quinti richiederebbe il raddoppio anche di Q_c.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Bilancio ciclico e quota utile",
+        "Kelvin–Planck e limiti",
+        "Inverse, medie, display e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-engine-efficiency-05",
+      "kind": "question",
+      "course": "C3",
+      "section": "Rendimento e secondo principio",
+      "order": 15905,
+      "title": "Il calore necessario per un dato rendimento",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C3-L06",
+        "C3-L07",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "engine-efficiency",
+      "difficulty": 2,
+      "prompt": "Una macchina ciclica chiusa assorbe il modulo Q_h>0 dalla sorgente calda e cede Q_c>0 alla fredda; 0<Q_c<Q_h. Non vi sono altri apporti energetici, e le energie macroscopiche ritornano ai valori iniziali. W=Q_h−Q_c è il lavoro netto uscente e η=W/Q_h il rendimento. I calori sono in J. Le temperature delle sorgenti non sono assegnate: ciascuna prova è fisicamente compatibile col secondo principio, senza imporre sorgenti identiche fra prove. η=4/5 e Q_c=20 J. Quanto vale Q_h in J?",
+      "answer": {
+        "type": "numeric",
+        "value": 100,
+        "unit": "J",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Da η=1−Q_c/Q_h resta 1−η=1/5. Questa è la quota di ingresso ceduta al freddo. Venti joule sono quindi un quinto di Q_h: moltiplichiamo per cinque e otteniamo cento joule. Il denominatore è positivo perché η<1."
+        },
+        {
+          "type": "formula",
+          "text": "1-\\eta=\\frac{Q_c}{Q_h}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_h=\\frac{Q_c}{1-\\eta}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_h=100\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Venticinque J divide Q_c per η, usando la frazione utile al posto di quella ceduta. Quattro J moltiplica per un quinto anziché dividere; ottanta J sarebbe il lavoro del ciclo trovato, non il calore assorbito."
+        }
+      ],
+      "hints": [
+        "Isola prima la frazione ceduta 1−η.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Venticinque J divide Q_c per η, usando la frazione utile al posto di quella ceduta. Quattro J moltiplica per un quinto anziché dividere; ottanta J sarebbe il lavoro del ciclo trovato, non il calore assorbito.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Bilancio ciclico e quota utile",
+        "Kelvin–Planck e limiti",
+        "Inverse, medie, display e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-engine-efficiency-06",
+      "kind": "question",
+      "course": "C3",
+      "section": "Rendimento e secondo principio",
+      "order": 15906,
+      "title": "La parte non trasformata in lavoro",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C3-L06",
+        "C3-L07",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "engine-efficiency",
+      "difficulty": 2,
+      "prompt": "Una macchina ciclica chiusa assorbe il modulo Q_h>0 dalla sorgente calda e cede Q_c>0 alla fredda; 0<Q_c<Q_h. Non vi sono altri apporti energetici, e le energie macroscopiche ritornano ai valori iniziali. W=Q_h−Q_c è il lavoro netto uscente e η=W/Q_h il rendimento. I calori sono in J. Le temperature delle sorgenti non sono assegnate: ciascuna prova è fisicamente compatibile col secondo principio, senza imporre sorgenti identiche fra prove. η=4/5 e Q_h=100 J. Quanto vale Q_c in J?",
+      "answer": {
+        "type": "numeric",
+        "value": 20,
+        "unit": "J",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il rendimento indica che quattro quinti del calore diventano lavoro. Il restante quinto è ceduto alla sorgente fredda: cento diviso cinque è venti. Il lavoro sarebbe ottanta joule e la somma delle due uscite restituisce l’ingresso."
+        },
+        {
+          "type": "formula",
+          "text": "Q_c=(1-\\eta)Q_h"
+        },
+        {
+          "type": "formula",
+          "text": " Q_c=\\frac15\\,100\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " Q_c=20\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Ottanta J usa ηQ_h, che è W. Centoventicinque divide per η e meno venti assegna al modulo Q_c il segno del calore ricevuto dal fluido. L’inversa richiesta è una moltiplicazione per la quota persa."
+        }
+      ],
+      "hints": [
+        "Complementa η a uno prima di moltiplicare.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Ottanta J usa ηQ_h, che è W. Centoventicinque divide per η e meno venti assegna al modulo Q_c il segno del calore ricevuto dal fluido. L’inversa richiesta è una moltiplicazione per la quota persa.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Bilancio ciclico e quota utile",
+        "Kelvin–Planck e limiti",
+        "Inverse, medie, display e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-engine-efficiency-07",
+      "kind": "question",
+      "course": "C3",
+      "section": "Rendimento e secondo principio",
+      "order": 15907,
+      "title": "Confrontare due quote di scarico",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C3-L06",
+        "C3-L07",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "engine-efficiency",
+      "difficulty": 2,
+      "prompt": "Una macchina ciclica chiusa assorbe il modulo Q_h>0 dalla sorgente calda e cede Q_c>0 alla fredda; 0<Q_c<Q_h. Non vi sono altri apporti energetici, e le energie macroscopiche ritornano ai valori iniziali. W=Q_h−Q_c è il lavoro netto uscente e η=W/Q_h il rendimento. I calori sono in J. Le temperature delle sorgenti non sono assegnate: ciascuna prova è fisicamente compatibile col secondo principio, senza imporre sorgenti identiche fra prove. A ha Q_h=100 J,Q_c=20 J. B mantiene Q_h e ha Q_c=40 J. Quanto vale η_B/η_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/4",
+          "4/3",
+          "2",
+          "1/2",
+          "1"
+        ],
+        "value": "3/4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il rendimento A è ottanta su cento, quattro quinti. B compie sessanta joule e ha rendimento tre quinti. Il quoziente (3/5)/(4/5) è tre quarti: la stessa entrata e uno scarico maggiore riducono la quota utile."
+        },
+        {
+          "type": "formula",
+          "text": "\\eta_A=\\frac45"
+        },
+        {
+          "type": "formula",
+          "text": " \\eta_B=\\frac35"
+        },
+        {
+          "type": "formula",
+          "text": " \\eta_B/\\eta_A=\\frac34"
+        },
+        {
+          "type": "text",
+          "text": "Quattro terzi capovolge il rapporto. Due segue lo scarico, non il rendimento; un mezzo dimezza erroneamente la quota utile e uno ignora la perdita aggiuntiva."
+        }
+      ],
+      "hints": [
+        "Ricava separatamente i due complementi a uno.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro terzi capovolge il rapporto. Due segue lo scarico, non il rendimento; un mezzo dimezza erroneamente la quota utile e uno ignora la perdita aggiuntiva.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Bilancio ciclico e quota utile",
+        "Kelvin–Planck e limiti",
+        "Inverse, medie, display e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-engine-efficiency-08",
+      "kind": "question",
+      "course": "C3",
+      "section": "Rendimento e secondo principio",
+      "order": 15908,
+      "title": "Un rendimento proposto oltre il limite energetico",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C3-L06",
+        "C3-L07",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "engine-efficiency",
+      "difficulty": 2,
+      "prompt": "Una macchina ciclica chiusa assorbe il modulo Q_h>0 dalla sorgente calda e cede Q_c>0 alla fredda; 0<Q_c<Q_h. Non vi sono altri apporti energetici, e le energie macroscopiche ritornano ai valori iniziali. W=Q_h−Q_c è il lavoro netto uscente e η=W/Q_h il rendimento. I calori sono in J. Le temperature delle sorgenti non sono assegnate: ciascuna prova è fisicamente compatibile col secondo principio, senza imporre sorgenti identiche fra prove. Per Q_h=100 J e Q_c=20 J si propone η=8/5. Quanto vale proposta meno valore corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4/5",
+          "−4/5",
+          "8/5",
+          "0",
+          "1/5"
+        ],
+        "value": "4/5"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il rendimento corretto è quattro quinti. Otto quinti meno quattro quinti dà quattro quinti, senza unità. La proposta supererebbe uno e richiederebbe lavoro maggiore del solo calore ricevuto: non rispetta il bilancio di questa macchina."
+        },
+        {
+          "type": "formula",
+          "text": "\\eta=\\frac45"
+        },
+        {
+          "type": "formula",
+          "text": " e=\\frac85-\\frac45"
+        },
+        {
+          "type": "formula",
+          "text": " e=\\frac45"
+        },
+        {
+          "type": "text",
+          "text": "Meno quattro quinti cambia l’ordine dello scarto. Otto quinti ripete la proposta, zero non la corregge e un quinto è la frazione di calore ceduto, non lo scarto."
+        }
+      ],
+      "hints": [
+        "Prima verifica 0<η<1 e poi sottrai nell’ordine richiesto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Meno quattro quinti cambia l’ordine dello scarto. Otto quinti ripete la proposta, zero non la corregge e un quinto è la frazione di calore ceduto, non lo scarto.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Bilancio ciclico e quota utile",
+        "Kelvin–Planck e limiti",
+        "Inverse, medie, display e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-engine-efficiency-09",
+      "kind": "question",
+      "course": "C3",
+      "section": "Rendimento e secondo principio",
+      "order": 15909,
+      "title": "L’inversa e il denominatore fisico",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C3-L06",
+        "C3-L07",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "engine-efficiency",
+      "difficulty": 2,
+      "prompt": "Una macchina ciclica chiusa assorbe il modulo Q_h>0 dalla sorgente calda e cede Q_c>0 alla fredda; 0<Q_c<Q_h. Non vi sono altri apporti energetici, e le energie macroscopiche ritornano ai valori iniziali. W=Q_h−Q_c è il lavoro netto uscente e η=W/Q_h il rendimento. I calori sono in J. Le temperature delle sorgenti non sono assegnate: ciascuna prova è fisicamente compatibile col secondo principio, senza imporre sorgenti identiche fra prove. Q_c e η sono noti, con 0<η<1. Quale formula determina Q_h?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Q_h = Q_c / (1 − η)",
+          "Q_h = Q_c / η",
+          "Q_h = (1 − η) Q_c",
+          "Q_h = Q_c / (η − 1)",
+          "Q_h = η / Q_c"
+        ],
+        "value": "Q_h = Q_c / (1 − η)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplicando 1−η=Q_c/Q_h per Q_h e dividendo per 1−η si ricava Q_h=Q_c/(1−η). Il divisore è positivo e minore di uno: l’ingresso risulta maggiore dello scarico. Il caso η=1 è escluso e non va inserito in questa inversa."
+        },
+        {
+          "type": "formula",
+          "text": "(1-\\eta)Q_h=Q_c"
+        },
+        {
+          "type": "formula",
+          "text": " Q_h=\\frac{Q_c}{1-\\eta}"
+        },
+        {
+          "type": "formula",
+          "text": " 1-\\eta>0"
+        },
+        {
+          "type": "text",
+          "text": "Dividere per η usa la frazione di lavoro. Moltiplicare per 1−η inverte l’operazione necessaria; η−1 renderebbe negativo Q_h. L’ultimo rapporto ha unità J⁻¹ invece di J."
+        }
+      ],
+      "hints": [
+        "Controlla sia il segno sia l’unità dell’ingresso ricostruito.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dividere per η usa la frazione di lavoro. Moltiplicare per 1−η inverte l’operazione necessaria; η−1 renderebbe negativo Q_h. L’ultimo rapporto ha unità J⁻¹ invece di J.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Bilancio ciclico e quota utile",
+        "Kelvin–Planck e limiti",
+        "Inverse, medie, display e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-engine-efficiency-10",
+      "kind": "question",
+      "course": "C3",
+      "section": "Rendimento e secondo principio",
+      "order": 15910,
+      "title": "Scalare entrambi gli scambi prima del rendimento",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C3-L06",
+        "C3-L07",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "engine-efficiency",
+      "difficulty": 2,
+      "prompt": "Una macchina ciclica chiusa assorbe il modulo Q_h>0 dalla sorgente calda e cede Q_c>0 alla fredda; 0<Q_c<Q_h. Non vi sono altri apporti energetici, e le energie macroscopiche ritornano ai valori iniziali. W=Q_h−Q_c è il lavoro netto uscente e η=W/Q_h il rendimento. I calori sono in J. Le temperature delle sorgenti non sono assegnate: ciascuna prova è fisicamente compatibile col secondo principio, senza imporre sorgenti identiche fra prove. B ha Q_h,B=κ₁Q_h e Q_c,B=κ₂Q_c, con κ₁,κ₂>0 e κ₁Q_h>κ₂Q_c; i simboli senza pedice sono di A. Quanto vale η_B/η_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "(κ₁ Q_h − κ₂ Q_c) / [κ₁ (Q_h − Q_c)]",
+          "κ₁ / κ₂",
+          "κ₁ κ₂",
+          "(κ₁ Q_h − κ₂ Q_c) / (Q_h − Q_c)",
+          "κ₁ − κ₂"
+        ],
+        "value": "(κ₁ Q_h − κ₂ Q_c) / [κ₁ (Q_h − Q_c)]"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "In B il lavoro è κ₁Q_h−κ₂Q_c, ma il suo ingresso è κ₁Q_h. Dividendo il rendimento B per (Q_h−Q_c)/Q_h si cancella Q_h e rimane il rapporto indicato. Un fattore comune κ₁=κ₂ non cambia il rendimento, benché cambi tutte le energie."
+        },
+        {
+          "type": "formula",
+          "text": "\\eta_B=1-\\frac{\\kappa_2Q_c}{\\kappa_1Q_h}"
+        },
+        {
+          "type": "formula",
+          "text": " \\eta_A=1-\\frac{Q_c}{Q_h}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{\\eta_B}{\\eta_A}=\\frac{\\kappa_1Q_h-\\kappa_2Q_c}{\\kappa_1(Q_h-Q_c)}"
+        },
+        {
+          "type": "text",
+          "text": "Il solo quoziente dei fattori ignora la sottrazione e il prodotto darebbe κ² per un fattore comune. Omettere κ₁ dal denominatore produce il rapporto dei lavori, non dei rendimenti. La differenza dei fattori darebbe zero per la stessa macchina."
+        }
+      ],
+      "hints": [
+        "Il calore ricevuto cambia anche al denominatore del rendimento B.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il solo quoziente dei fattori ignora la sottrazione e il prodotto darebbe κ² per un fattore comune. Omettere κ₁ dal denominatore produce il rapporto dei lavori, non dei rendimenti. La differenza dei fattori darebbe zero per la stessa macchina.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Bilancio ciclico e quota utile",
+        "Kelvin–Planck e limiti",
+        "Inverse, medie, display e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-engine-efficiency-11",
+      "kind": "question",
+      "course": "C3",
+      "section": "Rendimento e secondo principio",
+      "order": 15911,
+      "title": "Un ciclo piccolo può avere rendimento diverso",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C3-L06",
+        "C3-L07",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "engine-efficiency",
+      "difficulty": 2,
+      "prompt": "Una macchina ciclica chiusa assorbe il modulo Q_h>0 dalla sorgente calda e cede Q_c>0 alla fredda; 0<Q_c<Q_h. Non vi sono altri apporti energetici, e le energie macroscopiche ritornano ai valori iniziali. W=Q_h−Q_c è il lavoro netto uscente e η=W/Q_h il rendimento. I calori sono in J. Le temperature delle sorgenti non sono assegnate: ciascuna prova è fisicamente compatibile col secondo principio, senza imporre sorgenti identiche fra prove. A ha Q_h=100 J,Q_c=20 J. B ha Q_h=2 J,Q_c=1 J. Quanto vale η_B/η_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "5/8",
+          "8/5",
+          "1/80",
+          "1/50",
+          "1/20"
+        ],
+        "value": "5/8"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A trasforma ottanta joule su cento, rendimento quattro quinti. B trasforma un joule su due, rendimento un mezzo. Dividere un mezzo per quattro quinti equivale a moltiplicarlo per cinque quarti: cinque ottavi. La piccola energia per ciclo non rende da sola piccolo il rendimento."
+        },
+        {
+          "type": "formula",
+          "text": "\\eta_A=\\frac45"
+        },
+        {
+          "type": "formula",
+          "text": " \\eta_B=\\frac12"
+        },
+        {
+          "type": "formula",
+          "text": " \\eta_B/\\eta_A=\\frac12\\frac54"
+        },
+        {
+          "type": "formula",
+          "text": " \\eta_B/\\eta_A=\\frac58"
+        },
+        {
+          "type": "text",
+          "text": "Otto quinti è il reciproco. Un ottantesimo confronta i lavori e un cinquantesimo gli ingressi termici; un ventesimo segue gli scarichi. Sono rapporti diversi da quello delle quote utili."
+        }
+      ],
+      "hints": [
+        "Confronta le frazioni di ciascun ingresso, non le energie assolute.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Otto quinti è il reciproco. Un ottantesimo confronta i lavori e un cinquantesimo gli ingressi termici; un ventesimo segue gli scarichi. Sono rapporti diversi da quello delle quote utili.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Bilancio ciclico e quota utile",
+        "Kelvin–Planck e limiti",
+        "Inverse, medie, display e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-engine-efficiency-12",
+      "kind": "question",
+      "course": "C3",
+      "section": "Rendimento e secondo principio",
+      "order": 15912,
+      "title": "Media di rendimenti e rendimento degli ingressi medi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C3-L06",
+        "C3-L07",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "engine-efficiency",
+      "difficulty": 2,
+      "prompt": "Una macchina ciclica chiusa assorbe il modulo Q_h>0 dalla sorgente calda e cede Q_c>0 alla fredda; 0<Q_c<Q_h. Non vi sono altri apporti energetici, e le energie macroscopiche ritornano ai valori iniziali. W=Q_h−Q_c è il lavoro netto uscente e η=W/Q_h il rendimento. I calori sono in J. Le temperature delle sorgenti non sono assegnate: ciascuna prova è fisicamente compatibile col secondo principio, senza imporre sorgenti identiche fra prove. A ha Q_h=100 J,Q_c=20 J. B ha Q_h=2 J,Q_c=1 J. Qual è la media aritmetica dei due η con uguale peso?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "13/20",
+          "27/34",
+          "13/10",
+          "3/10",
+          "1/2"
+        ],
+        "value": "13/20"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I rendimenti quattro quinti e un mezzo diventano otto decimi e cinque decimi. La metà di tredici decimi è tredici ventesimi. Usando invece i calori medi si ottengono Q_h=51 J,Q_c=21/2 J e rendimento 27/34: è una diversa operazione, che pesa implicitamente di più il ciclo con ingresso maggiore."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/e450afc77c91b310b41006c0293611f665526e6a2660e0708e1221efd4c70b06",
+          "text": "Le barre finali rappresentano i rendimenti delle due prove, non i lavori: A=4/5, B=1/2, media aritmetica=13/20, con scala 400 px per unità. L’ingresso B è 2 J e lo scarico 1 J; non si assume uguale energia ricevuta fra prove. Le barre energetiche precedenti si riferiscono solo ad A e usano invece 4 px/J."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline\\eta=\\frac{\\frac45+\\frac12}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline\\eta=\\frac{13}{20}"
+        },
+        {
+          "type": "formula",
+          "text": " \\eta_{\\rm ingressi\\ medi}=\\frac{27}{34}"
+        },
+        {
+          "type": "text",
+          "text": "Ventisette trentaquattresimi risponde al modello sugli ingressi medi. Tredici decimi è la somma senza dimezzare e tre decimi la differenza. Un mezzo copia B. Le due medie non coincidono: 13·34=442 e 27·20=540."
+        }
+      ],
+      "hints": [
+        "Forma prima ciascun rendimento, poi assegna uguale peso alle due prove.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Ventisette trentaquattresimi risponde al modello sugli ingressi medi. Tredici decimi è la somma senza dimezzare e tre decimi la differenza. Un mezzo copia B. Le due medie non coincidono: 13·34=442 e 27·20=540.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Bilancio ciclico e quota utile",
+        "Kelvin–Planck e limiti",
+        "Inverse, medie, display e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-engine-efficiency-13",
+      "kind": "question",
+      "course": "C3",
+      "section": "Rendimento e secondo principio",
+      "order": 15913,
+      "title": "Lo scarico che realizza un rapporto bersaglio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C3-L06",
+        "C3-L07",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "engine-efficiency",
+      "difficulty": 3,
+      "prompt": "Una macchina ciclica chiusa assorbe il modulo Q_h>0 dalla sorgente calda e cede Q_c>0 alla fredda; 0<Q_c<Q_h. Non vi sono altri apporti energetici, e le energie macroscopiche ritornano ai valori iniziali. W=Q_h−Q_c è il lavoro netto uscente e η=W/Q_h il rendimento. I calori sono in J. Le temperature delle sorgenti non sono assegnate: ciascuna prova è fisicamente compatibile col secondo principio, senza imporre sorgenti identiche fra prove. A ha Q_h=100 J,Q_c,A=20 J. B riceve Q_h,B=2 J e deve avere η_B=(5/8)η_A. Quanto vale Q_c,B/Q_c,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/20",
+          "20",
+          "5/8",
+          "1/50",
+          "1"
+        ],
+        "value": "1/20"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è cinque ottavi di quattro quinti, un mezzo. La macchina B deve cedere la metà dei suoi due joule: un joule. Il rapporto fra lo scarico B e i venti joule di A è un ventesimo. Il ciclo B compie l’altro joule come lavoro positivo."
+        },
+        {
+          "type": "formula",
+          "text": "\\eta_B=\\frac58\\frac45"
+        },
+        {
+          "type": "formula",
+          "text": " \\eta_B=\\frac12"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{c,B}=1\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{c,B}/Q_{c,A}=\\frac1{20}"
+        },
+        {
+          "type": "text",
+          "text": "Venti è il reciproco; cinque ottavi copia il rapporto imposto ai rendimenti. Un cinquantesimo è il rapporto fra i calori ricevuti. Uno confonde il valore numerico di Q_c,B in J con il rapporto richiesto."
+        }
+      ],
+      "hints": [
+        "Trova la frazione ceduta di B prima di confrontare gli scarichi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Venti è il reciproco; cinque ottavi copia il rapporto imposto ai rendimenti. Un cinquantesimo è il rapporto fra i calori ricevuti. Uno confonde il valore numerico di Q_c,B in J con il rapporto richiesto.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Bilancio ciclico e quota utile",
+        "Kelvin–Planck e limiti",
+        "Inverse, medie, display e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-engine-efficiency-14",
+      "kind": "question",
+      "course": "C3",
+      "section": "Rendimento e secondo principio",
+      "order": 15914,
+      "title": "Un display continuo della quota utile",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C3-L06",
+        "C3-L07",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "engine-efficiency",
+      "difficulty": 3,
+      "prompt": "Una macchina ciclica chiusa assorbe il modulo Q_h>0 dalla sorgente calda e cede Q_c>0 alla fredda; 0<Q_c<Q_h. Non vi sono altri apporti energetici, e le energie macroscopiche ritornano ai valori iniziali. W=Q_h−Q_c è il lavoro netto uscente e η=W/Q_h il rendimento. I calori sono in J. Le temperature delle sorgenti non sono assegnate: ciascuna prova è fisicamente compatibile col secondo principio, senza imporre sorgenti identiche fra prove. Il display continuo adimensionale è S=qη con q>0 costante. A: Q_h=100 J,Q_c=20 J,S=12/5. B: Q_c=1 J,S=3/2. Quanto vale Q_h,B in J?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "J",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha η=4/5, quindi q=(12/5)/(4/5)=3. In B la lettura tre mezzi divisa per tre dà rendimento un mezzo. Il calore ceduto è allora metà dell’ingresso: un joule diviso un mezzo dà due joule ricevuti."
+        },
+        {
+          "type": "formula",
+          "text": "q=3"
+        },
+        {
+          "type": "formula",
+          "text": " \\eta_B=\\frac{3/2}{3}"
+        },
+        {
+          "type": "formula",
+          "text": " \\eta_B=\\frac12"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{h,B}=2\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Tre mezzi è una lettura, non un calore. Usarla direttamente come rendimento darebbe η>1 e ingresso negativo nell’inversa. Un joule copia Q_c. Le letture frazionarie sono ammesse perché il display è continuo, non un conteggio di eventi."
+        }
+      ],
+      "hints": [
+        "Determina q e verifica che il rendimento ricavato resti fra zero e uno.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre mezzi è una lettura, non un calore. Usarla direttamente come rendimento darebbe η>1 e ingresso negativo nell’inversa. Un joule copia Q_c. Le letture frazionarie sono ammesse perché il display è continuo, non un conteggio di eventi.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Bilancio ciclico e quota utile",
+        "Kelvin–Planck e limiti",
+        "Inverse, medie, display e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-engine-efficiency-15",
+      "kind": "question",
+      "course": "C3",
+      "section": "Rendimento e secondo principio",
+      "order": 15915,
+      "title": "Offset e guadagno prima dell’inversa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C3-L06",
+        "C3-L07",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "engine-efficiency",
+      "difficulty": 3,
+      "prompt": "Una macchina ciclica chiusa assorbe il modulo Q_h>0 dalla sorgente calda e cede Q_c>0 alla fredda; 0<Q_c<Q_h. Non vi sono altri apporti energetici, e le energie macroscopiche ritornano ai valori iniziali. W=Q_h−Q_c è il lavoro netto uscente e η=W/Q_h il rendimento. I calori sono in J. Le temperature delle sorgenti non sono assegnate: ciascuna prova è fisicamente compatibile col secondo principio, senza imporre sorgenti identiche fra prove. Il display continuo è S=qη+b, con q>0 e q,b costanti. A: Q_h=100 J,Q_c=20 J,S=13/5. B: Q_h=2 J,Q_c=1 J,S=2. C: Q_c=20 J,S=14/5. Quanto vale Q_h,C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "200 J",
+          "100 J",
+          "20 J",
+          "−50 J",
+          "200/9 J"
+        ],
+        "value": "200 J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Fra A e B il rendimento cambia di tre decimi e S di tre quinti: q=2. Da B resta b=1. Per C, (14/5−1)/2=9/10, dunque 1−η_C=1/10. Venti joule ceduti sono un decimo dell’ingresso: Q_h,C=200 J."
+        },
+        {
+          "type": "formula",
+          "text": "q=2"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " \\eta_C=\\frac9{10}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{h,C}=\\frac{20}{1/10}\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{h,C}=200\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Cento J tornerebbe al rendimento A e alla lettura 13/5. Venti J darebbe η=0. Meno cinquanta J nasce ignorando b, ottenendo η=7/5 fuori dominio. 200/9 J divide per η anziché per la quota ceduta."
+        }
+      ],
+      "hints": [
+        "Calibra sulla differenza delle letture, poi togli b prima di dividere.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Cento J tornerebbe al rendimento A e alla lettura 13/5. Venti J darebbe η=0. Meno cinquanta J nasce ignorando b, ottenendo η=7/5 fuori dominio. 200/9 J divide per η anziché per la quota ceduta.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Bilancio ciclico e quota utile",
+        "Kelvin–Planck e limiti",
+        "Inverse, medie, display e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-engine-efficiency-16",
+      "kind": "question",
+      "course": "C3",
+      "section": "Rendimento e secondo principio",
+      "order": 15916,
+      "title": "Un rendimento che non fissa la scala energetica",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C3-L06",
+        "C3-L07",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "engine-efficiency",
+      "difficulty": 3,
+      "prompt": "Una macchina ciclica chiusa assorbe il modulo Q_h>0 dalla sorgente calda e cede Q_c>0 alla fredda; 0<Q_c<Q_h. Non vi sono altri apporti energetici, e le energie macroscopiche ritornano ai valori iniziali. W=Q_h−Q_c è il lavoro netto uscente e η=W/Q_h il rendimento. I calori sono in J. Le temperature delle sorgenti non sono assegnate: ciascuna prova è fisicamente compatibile col secondo principio, senza imporre sorgenti identiche fra prove. Fra prove vale Q_h=5Q_c. Una misura dà η=4/5. Quali valori di Q_c>0 sono compatibili?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Infiniti: ogni Q_c>0, con Q_h=5Q_c",
+          "Solo Q_c=20 J",
+          "Solo Q_c=4/5 J",
+          "Nessuno",
+          "Solo Q_c=0"
+        ],
+        "value": "Infiniti: ogni Q_c>0, con Q_h=5Q_c"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il vincolo sostituito nella legge dà η=1−Q_c/(5Q_c)=4/5 per ogni Q_c positivo. La misura ripete la stessa informazione e non seleziona un’energia. Per esempio Q_c=1 J,Q_h=5 J e Q_c=20 J,Q_h=100 J sono due cicli distinti con uguale rendimento."
+        },
+        {
+          "type": "formula",
+          "text": "\\eta=1-\\frac{Q_c}{5Q_c}"
+        },
+        {
+          "type": "formula",
+          "text": " \\eta=\\frac45\\quad(Q_c>0)"
+        },
+        {
+          "type": "text",
+          "text": "Venti J riprende un esempio senza essere imposto. Quattro quinti J attribuisce al rendimento puro un’unità di energia. Nessuno nega due esempi validi; zero viola i moduli strettamente positivi e renderebbe il rapporto indeterminato."
+        }
+      ],
+      "hints": [
+        "Verifica se il nuovo dato aggiunge un’equazione indipendente.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Venti J riprende un esempio senza essere imposto. Quattro quinti J attribuisce al rendimento puro un’unità di energia. Nessuno nega due esempi validi; zero viola i moduli strettamente positivi e renderebbe il rapporto indeterminato.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Bilancio ciclico e quota utile",
+        "Kelvin–Planck e limiti",
+        "Inverse, medie, display e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "e450afc77c91b310b41006c0293611f665526e6a2660e0708e1221efd4c70b06",
+      "name": "engine-efficiency-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTM4MCIgdmlld0JveD0iMCAwIDY0MCAxMzgwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+UmVuZGltZW50byBkaSB1bmEgbWFjY2hpbmEgZSBtZWRpYSBkaSBkdWUgcHJvdmU8L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5UcmUgcGFubmVsbGk6IHNjaGVtYSBkaSB1bmEgbWFjY2hpbmEgY2ljbGljYSBjb24gY2VudG8gam91bGUgZW50cmFudGksIHZlbnRpIGNlZHV0aSBlIG90dGFudGEgdXRpbGk7IHJpcGFydGl6aW9uZSBhbGxhIHNjYWxhNCBweC9KOyByZW5kaW1lbnRpIHF1YXR0cm8gcXVpbnRpIGUgdW4gbWV6em8gY29uIG1lZGlhIHRyZWRpY2kgdmVudGVzaW1pLiBMZSBmcmVjY2UgZGkgdHJhc2ZlcmltZW50byBzb25vIHNjaGVtYXRpY2hlLjwvZGVzYz48ZGVmcz48bWFya2VyIGlkPSJhcnJvdyIgbWFya2VyV2lkdGg9IjgiIG1hcmtlckhlaWdodD0iOCIgcmVmWD0iNyIgcmVmWT0iNCIgb3JpZW50PSJhdXRvIj48cGF0aCBkPSJNMCAwTDggNEwwIDhaIiBmaWxsPSIjMTk2MDgyIi8+PC9tYXJrZXI+PC9kZWZzPjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMTM4MCIgcng9IjIwIiBmaWxsPSIjZjVmYWZmIi8+PGcgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiMxNjMwNDciPjx0ZXh0IHg9IjM1IiB5PSI1MCIgZm9udC1zaXplPSIyNiIgZm9udC13ZWlnaHQ9ImJvbGQiPjEgwrcgSWwgZmx1aWRvIHRvcm5hIGFsbG8gc3Rlc3NvIHN0YXRvPC90ZXh0PjxyZWN0IHg9IjQwIiB5PSIxMDUiIHdpZHRoPSIxODAiIGhlaWdodD0iNzAiIHJ4PSI4IiBmaWxsPSIjZjRkZGNlIi8+PHRleHQgeD0iNzgiIHk9IjE0NyI+U29yZ2VudGUgY2FsZGE8L3RleHQ+PHJlY3QgeD0iMjcwIiB5PSIxNzAiIHdpZHRoPSIxODAiIGhlaWdodD0iMTMwIiByeD0iOCIgZmlsbD0iI2UwZWRmMyIgc3Ryb2tlPSIjMTYzMDQ3IiBzdHJva2Utd2lkdGg9IjMiLz48dGV4dCB4PSIzMjkiIHk9IjIxMCI+Q2ljbG88L3RleHQ+PHRleHQgeD0iMjkyIiB5PSIyNjIiPs6UVV9jaWNsbyA9IDA8L3RleHQ+PHJlY3QgeD0iNDAiIHk9IjM0MCIgd2lkdGg9IjE4MCIgaGVpZ2h0PSI3MCIgcng9IjgiIGZpbGw9IiNkOWViZTQiLz48dGV4dCB4PSI3MCIgeT0iMzgyIj5Tb3JnZW50ZSBmcmVkZGE8L3RleHQ+PHBhdGggZD0iTTIyMCAxNDBIMjQ1VjIwNUgyNjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE5NjA4MiIgc3Ryb2tlLXdpZHRoPSI0IiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjxwYXRoIGQ9Ik0yNjAgMjY1SDI0NVYzNzVIMjMwIiBmaWxsPSJub25lIiBzdHJva2U9IiMxOTYwODIiIHN0cm9rZS13aWR0aD0iNCIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48cGF0aCBkPSJNNDYwIDIzNUg1OTAiIHN0cm9rZT0iIzE5NjA4MiIgc3Ryb2tlLXdpZHRoPSI0IiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjx0ZXh0IHg9IjQyIiB5PSIyMzAiPlFfaCA9IDEwMCBKPC90ZXh0Pjx0ZXh0IHg9IjQyIiB5PSIzMDUiPlFfYyA9IDIwIEo8L3RleHQ+PHRleHQgeD0iNDcwIiB5PSIyMTAiPlcgPSA4MCBKPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSI0NjAiIGZvbnQtc2l6ZT0iMTgiPkZyZWNjZSBzY2hlbWF0aWNoZSwgc2VuemEgc2NhbGEgbWV0cmljYS48L3RleHQ+PHRleHQgeD0iMzUiIHk9IjQ5NSIgZm9udC1zaXplPSIxOCI+TGEgdmFyaWF6aW9uZSB0b3RhbGUgzpRVX2NpY2xvIMOoIHplcm8uPC90ZXh0PjxwYXRoIGQ9Ik0zNSA1MzBINjA1IiBzdHJva2U9IiNiNWNiZDkiLz48dGV4dCB4PSIzNSIgeT0iNTg1IiBmb250LXNpemU9IjI2IiBmb250LXdlaWdodD0iYm9sZCI+MiDCtyBTZXBhcmFyZSBsZSBkdWUgdXNjaXRlPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSI2MzUiPlNjYWxhIGNvbXVuZTogNCBweC9KLCBiYXJyZSBkYSB6ZXJvPC90ZXh0PjxyZWN0IHg9IjEwMCIgeT0iNjcwIiB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQ1IiBmaWxsPSIjMTYzMDQ3Ii8+PHRleHQgeD0iMjMwIiB5PSI3MDAiIGZpbGw9IndoaXRlIj5RX2ggPSAxMDAgSjwvdGV4dD48cmVjdCB4PSIxMDAiIHk9Ijc1MCIgd2lkdGg9IjgwIiBoZWlnaHQ9IjUwIiBmaWxsPSIjMzk3NDViIi8+PHJlY3QgeD0iMTgwIiB5PSI3NTAiIHdpZHRoPSIzMjAiIGhlaWdodD0iNTAiIGZpbGw9IiMxOTYwODIiLz48dGV4dCB4PSIxMTQiIHk9Ijc4MyIgZmlsbD0id2hpdGUiPjIwIEo8L3RleHQ+PHRleHQgeD0iMzI1IiB5PSI3ODMiIGZpbGw9IndoaXRlIj5XID0gODAgSjwvdGV4dD48dGV4dCB4PSIzNSIgeT0iODYwIj4xMDAgSiA9IDIwIEogKyA4MCBKPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSI5MDUiPklsIGxhdm9ybyDDqCBRX2gg4oiSIFFfYywgbm9uIGxhIGxvcm8gc29tbWEuPC90ZXh0PjxwYXRoIGQ9Ik0zNSA5NDVINjA1IiBzdHJva2U9IiNiNWNiZDkiLz48dGV4dCB4PSIzNSIgeT0iMTAwMCIgZm9udC1zaXplPSIyNiIgZm9udC13ZWlnaHQ9ImJvbGQiPjMgwrcgTWVkaWEgZGkgZHVlIHJlbmRpbWVudGk8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxMDUwIj5BOiA4MC8xMDAgPSA0LzUgwrcgQjogMS8yPC90ZXh0Pgo8dGV4dCB4PSI1MCIgeT0iMTExMCI+QTwvdGV4dD48cmVjdCB4PSIxMTAiIHk9IjEwODUiIHdpZHRoPSIzMjAiIGhlaWdodD0iMzUiIGZpbGw9IiMxYzY2ODQiLz48dGV4dCB4PSI0NDUiIHk9IjExMTAiPjQvNTwvdGV4dD4KPHRleHQgeD0iNTAiIHk9IjExODAiPkI8L3RleHQ+PHJlY3QgeD0iMTEwIiB5PSIxMTU1IiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjM1IiBmaWxsPSIjMWM2Njg0Ii8+PHRleHQgeD0iMzI1IiB5PSIxMTgwIj4xLzI8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxMjUwIj5NZWRpYTwvdGV4dD48cmVjdCB4PSIxMTAiIHk9IjEyMjUiIHdpZHRoPSIyNjAiIGhlaWdodD0iMzUiIGZpbGw9IiMzYzc5NjMiLz48dGV4dCB4PSIzODUiIHk9IjEyNTAiPjEzLzIwPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTMxMCI+U2NhbGE6IDQwMCBweCBwZXIgdW5pdMOgIGRpIHJlbmRpbWVudG8uPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTM1MCI+TWVkaWEgYSBwZXNpIHVndWFsaSwgbm9uIGVuZXJnaWEgdG90YWxlLjwvdGV4dD4KPC9nPjwvc3ZnPg=="
+    }
+  ]
+}

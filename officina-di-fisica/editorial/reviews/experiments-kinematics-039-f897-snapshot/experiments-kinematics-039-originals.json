@@ -1,0 +1,1793 @@
+{
+  "schemaVersion": "1.0.0",
+  "batch": "experiments-kinematics-039",
+  "records": [
+    {
+      "id": "SIM-C1-L003-01",
+      "sourceSha256": "5e2e0856674e2faeab10fb23ec0770bd42268aa694d6e4e8fb43b08c8c9b6b10",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/esperienze-C1.json",
+      "sourceFileSha256": "84d13bd2658be3b0ce2a55bf7dc698d64ceae151b09deafeabd71507a41d70e3",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "first reference",
+          "independentExact": "-2",
+          "expectedValue": "-2",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "comparison assignment",
+          "independentExact": "3",
+          "expectedValue": "3",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "generated transfer",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "negative finalposition minus positive start",
+          "independentExact": "-4",
+          "expectedValue": "-4",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "positiveposition belowstart givesnegative displacement",
+          "independentExact": "-1",
+          "expectedValue": "-1",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "sameposition zero displacement",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "fullrail signedendpointdifference",
+          "independentExact": "8",
+          "expectedValue": "8",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "fresh actual adapter/law/apparatus/graph/generated-assessment comparison",
+          "ok": true,
+          "mode": "INDEPENDENT_ORACLE_VS_CONSUMER",
+          "dimension": {},
+          "caseCount": 17,
+          "errors": []
+        },
+        {
+          "claim": "displayed numeric literal roundtrip0",
+          "ok": true,
+          "actual": {
+            "display": "3",
+            "parsed": 3
+          },
+          "independentExact": "3",
+          "dimension": {},
+          "mode": "OBSERVED_INPUT_FORMAT_CONFORMANCE"
+        },
+        {
+          "claim": "displayed numeric literal roundtrip1",
+          "ok": true,
+          "actual": {
+            "display": "0",
+            "parsed": 0
+          },
+          "independentExact": "0",
+          "dimension": {},
+          "mode": "OBSERVED_INPUT_FORMAT_CONFORMANCE"
+        }
+      ],
+      "dimension": {
+        "first reference": {
+          "[length]": "1"
+        },
+        "comparison assignment": {
+          "[length]": "1"
+        },
+        "generated transfer": {
+          "[length]": "1"
+        },
+        "negative finalposition minus positive start": {
+          "[length]": "1"
+        },
+        "positiveposition belowstart givesnegative displacement": {
+          "[length]": "1"
+        },
+        "sameposition zero displacement": {
+          "[length]": "1"
+        },
+        "fullrail signedendpointdifference": {
+          "[length]": "1"
+        },
+        "fresh actual adapter/law/apparatus/graph/generated-assessment comparison": {},
+        "displayed numeric literal roundtrip0": {},
+        "displayed numeric literal roundtrip1": {}
+      },
+      "sourceScientificReview": {
+        "ok": true,
+        "errors": []
+      },
+      "consumerReview": {
+        "ok": true,
+        "errors": []
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "Fixedstart2m: final0 gives displacement-2, comparison5 gives+3, actualtransfer2 gives0. Final-2 gives-4 despiteposition-2; final1gives-1 despitepositiveposition. Signed halfintegergridonly, finite subtraction.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Ideal prescribed kinematics on the stated coordinate/time domain; source units and working coefficients explicit. No force reconstruction, real measured timing uncertainty or empirical student calibration inferred. Actual clock state and endpoint results are distinguished.",
+      "pedagogicalReview": "Read full original and actual generated tasks/prediction/worked strings, phases, apparatus and clock/graphs. Exact manual arithmetic derived independently; reviewer differential/integral consistency checks are not extra student assignments. No source approval flag or human approval.",
+      "assetChecksums": {},
+      "figureReview": "Rail mapping -2..6m to -2.38..2.38sceneunits, fixedVia at2m. Bodycoordinate usesfinalposition, not displacement; displacementreadingcomputedagainstfixed2. Genericrailillustrative tickmarks are not falselyassignedone metre intervals.",
+      "runtimeSha256": {
+        "static/js/banchi/voci/esperimento.js": "fce66f301918483fe79d0f8dbf84c280268e48e615e9c016f2bbd32f699f5075",
+        "static/js/banchi/voci/engines.js": "09a6447a971d0e90c49cfea0307e82ea75f4441a7174c017768d6d62ad514dab",
+        "static/js/banchi/voci/geometria.js": "986bdbfad0cf6e6e057002ee2efdeff0a08df31bfb45f9c046063fcba5840f08",
+        "static/js/banchi/voci/tavola.js": "cc3f7fa8da541109fdda9f8bacca23eea43d1031b2145688b2d80513f47d5283",
+        "static/js/banchi/voci/confronti.js": "4ee391c0841fed7e1888d2c57cfb2494f8e0be0581a6211d50d410bd172602b9",
+        "static/js/banchi/voci/legende.js": "2de769cc9358c907eb30ac6b18c6bc3e06e18a1ece514a7d368ecd40bec33d1b",
+        "static/js/banchi/voci/orologi.js": "30dd8ab535a31b514c0db13d97d2b046a1add160a7ca7d374deea0d991be73a6",
+        "static/js/banchi/voci/modelli/C1.js": "e5818f20fd19d00fc73434fcacef752d06331efc41d198ffe8c185063e97fa34",
+        "static/js/banchi/voci/apparati/meccanica.js": "dc005819f8f12ec48722d32b1d236328ecab75e0734c9ecd0a147751c6bb8fd7",
+        "static/js/banchi/banco.js": "682ba25fcf97b67821b8c9bb6c73a571c87559f94bbda3f64cfad65fab63cdb8",
+        "static/js/banchi/misure.js": "8d631c65b0266ece6447da07aff7a43ee61b66d0767ddc24ace3f59b31fac186",
+        "static/js/banchi/grafici.js": "e5567e88ee6df5c604f8e62228da5e70841556ad0b55fb212fd4d091fdeee3fd",
+        "static/js/banchi/scena.js": "4d94c92a834573062a2af541df113bad06bd11ca538b31bddddc5ec8621a5095",
+        "static/js/banchi/etichette.js": "455ae33c790be4e207e5b5667918c44ea16c95f49e1fea0b13cc92f08aa003f3",
+        "static/js/banchi/aula.js": "44c74446d0d60b20e9dad05b32321f1000f026acdec386ca5aa2f74c20421967",
+        "static/js/ui.js": "77e5f000f5e1a1fe028fff32dad97be29ad72b46d753787a19ad36164cb98f27"
+      },
+      "reviewedRuntimeSha256": {
+        "static/js/banchi/voci/esperimento.js": "fce66f301918483fe79d0f8dbf84c280268e48e615e9c016f2bbd32f699f5075",
+        "static/js/banchi/voci/engines.js": "09a6447a971d0e90c49cfea0307e82ea75f4441a7174c017768d6d62ad514dab",
+        "static/js/banchi/voci/geometria.js": "986bdbfad0cf6e6e057002ee2efdeff0a08df31bfb45f9c046063fcba5840f08",
+        "static/js/banchi/voci/tavola.js": "cc3f7fa8da541109fdda9f8bacca23eea43d1031b2145688b2d80513f47d5283",
+        "static/js/banchi/voci/confronti.js": "4ee391c0841fed7e1888d2c57cfb2494f8e0be0581a6211d50d410bd172602b9",
+        "static/js/banchi/voci/legende.js": "2de769cc9358c907eb30ac6b18c6bc3e06e18a1ece514a7d368ecd40bec33d1b",
+        "static/js/banchi/voci/orologi.js": "30dd8ab535a31b514c0db13d97d2b046a1add160a7ca7d374deea0d991be73a6",
+        "static/js/banchi/voci/modelli/C1.js": "e5818f20fd19d00fc73434fcacef752d06331efc41d198ffe8c185063e97fa34",
+        "static/js/banchi/voci/apparati/meccanica.js": "dc005819f8f12ec48722d32b1d236328ecab75e0734c9ecd0a147751c6bb8fd7",
+        "static/js/banchi/banco.js": "682ba25fcf97b67821b8c9bb6c73a571c87559f94bbda3f64cfad65fab63cdb8",
+        "static/js/banchi/misure.js": "8d631c65b0266ece6447da07aff7a43ee61b66d0767ddc24ace3f59b31fac186",
+        "static/js/banchi/grafici.js": "e5567e88ee6df5c604f8e62228da5e70841556ad0b55fb212fd4d091fdeee3fd",
+        "static/js/banchi/scena.js": "4d94c92a834573062a2af541df113bad06bd11ca538b31bddddc5ec8621a5095",
+        "static/js/banchi/etichette.js": "455ae33c790be4e207e5b5667918c44ea16c95f49e1fea0b13cc92f08aa003f3",
+        "static/js/banchi/aula.js": "44c74446d0d60b20e9dad05b32321f1000f026acdec386ca5aa2f74c20421967",
+        "static/js/ui.js": "77e5f000f5e1a1fe028fff32dad97be29ad72b46d753787a19ad36164cb98f27"
+      },
+      "runtimeProfileSha256": "f897223d7afb4a9e09eb4fd06768e42e5b52bc131455fa678fbef74b4f39caa5",
+      "reviewedRuntimeProfileSha256": "f897223d7afb4a9e09eb4fd06768e42e5b52bc131455fa678fbef74b4f39caa5",
+      "runtimeComparison": {
+        "ok": true,
+        "numericPhysicsMatches": true,
+        "caseCount": 17,
+        "plannedCaseCount": 17,
+        "clockSampleCount": 0,
+        "errors": [],
+        "firstAssessmentInput": 5,
+        "transferInput": 2,
+        "manualityIssue": false,
+        "formatRoundtrip": [
+          {
+            "display": "3",
+            "parsed": 3
+          },
+          {
+            "display": "0",
+            "parsed": 0
+          }
+        ]
+      },
+      "consumerEvidence": {
+        "ok": true,
+        "proofSha256": "9178d2e7b16f3517b4f331d786ebffb60922ed819c22235e2cdec139125e5752",
+        "protocolSha256": "125d86bf4d24de42ab9f72e24706cc873009780728b312420f304f2bd633a0ec",
+        "runtimeProfileSha256": "f897223d7afb4a9e09eb4fd06768e42e5b52bc131455fa678fbef74b4f39caa5",
+        "observedCaseCount": 66,
+        "scientificApproval": false,
+        "meaning": "Observed original defects and working states, not automatic scientific approval; exact runtime identity required, fresh engine oracle replay per report."
+      },
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "SIM-C1-L003-02",
+      "sourceSha256": "573673a59d997610dad354b2ea255409cbb57936fc7f9bb1ee887f04962dcc2d",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/esperienze-C1.json",
+      "sourceFileSha256": "84d13bd2658be3b0ce2a55bf7dc698d64ceae151b09deafeabd71507a41d70e3",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "first reference",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "comparison assignment",
+          "independentExact": "5",
+          "expectedValue": "5",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "generated transfer",
+          "independentExact": "99/20",
+          "expectedValue": "99/20",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "verticalvelocity from derivative",
+          "independentExact": "10 - 10*t",
+          "expectedValue": "10 - 10*t",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_model_derivation"
+        },
+        {
+          "claim": "verticalacceleration derivative",
+          "independentExact": "-10",
+          "expectedValue": "-10",
+          "unit": "m/s^2",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_model_derivation"
+        },
+        {
+          "claim": "apex one secondheight5",
+          "independentExact": "5",
+          "expectedValue": "5",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "returntime positive root2",
+          "independentExact": "2",
+          "expectedValue": "2",
+          "unit": "s",
+          "dimension": {
+            "[time]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "horizontalrange atlanding",
+          "independentExact": "6",
+          "expectedValue": "6",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "1.1second manualheight",
+          "independentExact": "99/20",
+          "expectedValue": "99/20",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "gravitationalterm haslengthunits",
+          "independentExact": "20",
+          "expectedValue": "20",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "fresh actual adapter/law/apparatus/graph/generated-assessment comparison",
+          "ok": true,
+          "mode": "INDEPENDENT_ORACLE_VS_CONSUMER",
+          "dimension": {},
+          "caseCount": 21,
+          "errors": []
+        },
+        {
+          "claim": "displayed numeric literal roundtrip0",
+          "ok": true,
+          "actual": {
+            "display": "5",
+            "parsed": 5
+          },
+          "independentExact": "5",
+          "dimension": {},
+          "mode": "OBSERVED_INPUT_FORMAT_CONFORMANCE"
+        },
+        {
+          "claim": "displayed numeric literal roundtrip1",
+          "ok": true,
+          "actual": {
+            "display": "4,95",
+            "parsed": 4.95
+          },
+          "independentExact": "99/20",
+          "dimension": {},
+          "mode": "OBSERVED_INPUT_FORMAT_CONFORMANCE"
+        }
+      ],
+      "dimension": {
+        "first reference": {
+          "[length]": "1"
+        },
+        "comparison assignment": {
+          "[length]": "1"
+        },
+        "generated transfer": {
+          "[length]": "1"
+        },
+        "verticalvelocity from derivative": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "verticalacceleration derivative": {
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "apex one secondheight5": {
+          "[length]": "1"
+        },
+        "returntime positive root2": {
+          "[time]": "1"
+        },
+        "horizontalrange atlanding": {
+          "[length]": "1"
+        },
+        "1.1second manualheight": {
+          "[length]": "1"
+        },
+        "gravitationalterm haslengthunits": {
+          "[length]": "1"
+        },
+        "fresh actual adapter/law/apparatus/graph/generated-assessment comparison": {},
+        "displayed numeric literal roundtrip0": {},
+        "displayed numeric literal roundtrip1": {}
+      },
+      "sourceScientificReview": {
+        "ok": true,
+        "errors": []
+      },
+      "consumerReview": {
+        "ok": true,
+        "errors": []
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "From y0=0,vy0=10m/s,g10m/s², y=10t-5t² and x=3t. References0=>0/1=>5; actual transfer1.1s gives11-5*121/100=99/20=4.95m. Apex1sheight5, flight2srange6, no air resistance. Finite tenths and squared integers, no numericroot or inverse trig required.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Ideal prescribed kinematics on the stated coordinate/time domain; source units and working coefficients explicit. No force reconstruction, real measured timing uncertainty or empirical student calibration inferred. Actual clock state and endpoint results are distinguished.",
+      "pedagogicalReview": "Read full original and actual generated tasks/prediction/worked strings, phases, apparatus and clock/graphs. Exact manual arithmetic derived independently; reviewer differential/integral consistency checks are not extra student assignments. No source approval flag or human approval.",
+      "assetChecksums": {},
+      "figureReview": "True parabolic trajectory xscene=-2.2+.32*3t, yscene=.17+.32*(10t-5t²), flight0..2s. Clockinput, body and mainreading use samecurrenttime. Commonhorizontal/vertical lengthgain.32, projection andlandingrange consistent.",
+      "runtimeSha256": {
+        "static/js/banchi/voci/esperimento.js": "fce66f301918483fe79d0f8dbf84c280268e48e615e9c016f2bbd32f699f5075",
+        "static/js/banchi/voci/engines.js": "09a6447a971d0e90c49cfea0307e82ea75f4441a7174c017768d6d62ad514dab",
+        "static/js/banchi/voci/geometria.js": "986bdbfad0cf6e6e057002ee2efdeff0a08df31bfb45f9c046063fcba5840f08",
+        "static/js/banchi/voci/tavola.js": "cc3f7fa8da541109fdda9f8bacca23eea43d1031b2145688b2d80513f47d5283",
+        "static/js/banchi/voci/confronti.js": "4ee391c0841fed7e1888d2c57cfb2494f8e0be0581a6211d50d410bd172602b9",
+        "static/js/banchi/voci/legende.js": "2de769cc9358c907eb30ac6b18c6bc3e06e18a1ece514a7d368ecd40bec33d1b",
+        "static/js/banchi/voci/orologi.js": "30dd8ab535a31b514c0db13d97d2b046a1add160a7ca7d374deea0d991be73a6",
+        "static/js/banchi/voci/modelli/C1.js": "e5818f20fd19d00fc73434fcacef752d06331efc41d198ffe8c185063e97fa34",
+        "static/js/banchi/voci/apparati/meccanica.js": "dc005819f8f12ec48722d32b1d236328ecab75e0734c9ecd0a147751c6bb8fd7",
+        "static/js/banchi/banco.js": "682ba25fcf97b67821b8c9bb6c73a571c87559f94bbda3f64cfad65fab63cdb8",
+        "static/js/banchi/misure.js": "8d631c65b0266ece6447da07aff7a43ee61b66d0767ddc24ace3f59b31fac186",
+        "static/js/banchi/grafici.js": "e5567e88ee6df5c604f8e62228da5e70841556ad0b55fb212fd4d091fdeee3fd",
+        "static/js/banchi/scena.js": "4d94c92a834573062a2af541df113bad06bd11ca538b31bddddc5ec8621a5095",
+        "static/js/banchi/etichette.js": "455ae33c790be4e207e5b5667918c44ea16c95f49e1fea0b13cc92f08aa003f3",
+        "static/js/banchi/aula.js": "44c74446d0d60b20e9dad05b32321f1000f026acdec386ca5aa2f74c20421967",
+        "static/js/ui.js": "77e5f000f5e1a1fe028fff32dad97be29ad72b46d753787a19ad36164cb98f27"
+      },
+      "reviewedRuntimeSha256": {
+        "static/js/banchi/voci/esperimento.js": "fce66f301918483fe79d0f8dbf84c280268e48e615e9c016f2bbd32f699f5075",
+        "static/js/banchi/voci/engines.js": "09a6447a971d0e90c49cfea0307e82ea75f4441a7174c017768d6d62ad514dab",
+        "static/js/banchi/voci/geometria.js": "986bdbfad0cf6e6e057002ee2efdeff0a08df31bfb45f9c046063fcba5840f08",
+        "static/js/banchi/voci/tavola.js": "cc3f7fa8da541109fdda9f8bacca23eea43d1031b2145688b2d80513f47d5283",
+        "static/js/banchi/voci/confronti.js": "4ee391c0841fed7e1888d2c57cfb2494f8e0be0581a6211d50d410bd172602b9",
+        "static/js/banchi/voci/legende.js": "2de769cc9358c907eb30ac6b18c6bc3e06e18a1ece514a7d368ecd40bec33d1b",
+        "static/js/banchi/voci/orologi.js": "30dd8ab535a31b514c0db13d97d2b046a1add160a7ca7d374deea0d991be73a6",
+        "static/js/banchi/voci/modelli/C1.js": "e5818f20fd19d00fc73434fcacef752d06331efc41d198ffe8c185063e97fa34",
+        "static/js/banchi/voci/apparati/meccanica.js": "dc005819f8f12ec48722d32b1d236328ecab75e0734c9ecd0a147751c6bb8fd7",
+        "static/js/banchi/banco.js": "682ba25fcf97b67821b8c9bb6c73a571c87559f94bbda3f64cfad65fab63cdb8",
+        "static/js/banchi/misure.js": "8d631c65b0266ece6447da07aff7a43ee61b66d0767ddc24ace3f59b31fac186",
+        "static/js/banchi/grafici.js": "e5567e88ee6df5c604f8e62228da5e70841556ad0b55fb212fd4d091fdeee3fd",
+        "static/js/banchi/scena.js": "4d94c92a834573062a2af541df113bad06bd11ca538b31bddddc5ec8621a5095",
+        "static/js/banchi/etichette.js": "455ae33c790be4e207e5b5667918c44ea16c95f49e1fea0b13cc92f08aa003f3",
+        "static/js/banchi/aula.js": "44c74446d0d60b20e9dad05b32321f1000f026acdec386ca5aa2f74c20421967",
+        "static/js/ui.js": "77e5f000f5e1a1fe028fff32dad97be29ad72b46d753787a19ad36164cb98f27"
+      },
+      "runtimeProfileSha256": "f897223d7afb4a9e09eb4fd06768e42e5b52bc131455fa678fbef74b4f39caa5",
+      "reviewedRuntimeProfileSha256": "f897223d7afb4a9e09eb4fd06768e42e5b52bc131455fa678fbef74b4f39caa5",
+      "runtimeComparison": {
+        "ok": true,
+        "numericPhysicsMatches": true,
+        "caseCount": 21,
+        "plannedCaseCount": 21,
+        "clockSampleCount": 63,
+        "errors": [],
+        "firstAssessmentInput": 1,
+        "transferInput": 1.1,
+        "manualityIssue": false,
+        "formatRoundtrip": [
+          {
+            "display": "5",
+            "parsed": 5
+          },
+          {
+            "display": "4,95",
+            "parsed": 4.95
+          }
+        ]
+      },
+      "consumerEvidence": {
+        "ok": true,
+        "proofSha256": "9178d2e7b16f3517b4f331d786ebffb60922ed819c22235e2cdec139125e5752",
+        "protocolSha256": "125d86bf4d24de42ab9f72e24706cc873009780728b312420f304f2bd633a0ec",
+        "runtimeProfileSha256": "f897223d7afb4a9e09eb4fd06768e42e5b52bc131455fa678fbef74b4f39caa5",
+        "observedCaseCount": 66,
+        "scientificApproval": false,
+        "meaning": "Observed original defects and working states, not automatic scientific approval; exact runtime identity required, fresh engine oracle replay per report."
+      },
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "SIM-C1-L003-03",
+      "sourceSha256": "3cff2c0ef18a1f98cd66167f3e25abd99c6aae7b67b244deb1070b9e6d6fb4a7",
+      "sourceVersion": 2,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/esperienze-C1.json",
+      "sourceFileSha256": "84d13bd2658be3b0ce2a55bf7dc698d64ceae151b09deafeabd71507a41d70e3",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "first reference",
+          "independentExact": "3",
+          "expectedValue": "3",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "comparison assignment",
+          "independentExact": "4",
+          "expectedValue": "4",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "generated transfer",
+          "independentExact": "15/4",
+          "expectedValue": "15/4",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "secant quotient reduced exactly",
+          "independentExact": "d + 2",
+          "expectedValue": "d + 2",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_symbolic_secant"
+        },
+        {
+          "claim": "positiveinterval limit atzero",
+          "independentExact": "2",
+          "expectedValue": "2",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "instantaneous slope atabsolute1",
+          "independentExact": "2",
+          "expectedValue": "2",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "1.75interval exact mean",
+          "independentExact": "15/4",
+          "expectedValue": "15/4",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "largestinterval endpointsquaredsignal16",
+          "independentExact": "16",
+          "expectedValue": "16",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_model_consistency_not_extra_student_assignment"
+        },
+        {
+          "claim": "position coefficient units",
+          "independentExact": "4",
+          "expectedValue": "4",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "fresh actual adapter/law/apparatus/graph/generated-assessment comparison",
+          "ok": true,
+          "mode": "INDEPENDENT_ORACLE_VS_CONSUMER",
+          "dimension": {},
+          "caseCount": 12,
+          "errors": []
+        },
+        {
+          "claim": "displayed numeric literal roundtrip0",
+          "ok": true,
+          "actual": {
+            "display": "4",
+            "parsed": 4
+          },
+          "independentExact": "4",
+          "dimension": {},
+          "mode": "OBSERVED_INPUT_FORMAT_CONFORMANCE"
+        },
+        {
+          "claim": "displayed numeric literal roundtrip1",
+          "ok": true,
+          "actual": {
+            "display": "3,75",
+            "parsed": 3.75
+          },
+          "independentExact": "15/4",
+          "dimension": {},
+          "mode": "OBSERVED_INPUT_FORMAT_CONFORMANCE"
+        }
+      ],
+      "dimension": {
+        "first reference": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "comparison assignment": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "generated transfer": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "secant quotient reduced exactly": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "positiveinterval limit atzero": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "instantaneous slope atabsolute1": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "1.75interval exact mean": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "largestinterval endpointsquaredsignal16": {
+          "[length]": "1"
+        },
+        "position coefficient units": {
+          "[length]": "1"
+        },
+        "fresh actual adapter/law/apparatus/graph/generated-assessment comparison": {},
+        "displayed numeric literal roundtrip0": {},
+        "displayed numeric literal roundtrip1": {}
+      },
+      "sourceScientificReview": {
+        "ok": true,
+        "errors": []
+      },
+      "consumerReview": {
+        "ok": true,
+        "errors": []
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "s=k t²,k1m/s², absolute t0=1s. WindowD>0: ((1+D)²-1)/D=2+D m/s. References D1=>3/D2=>4; actualtransferD7/4=>15/4=3.75. LimitD→0+ gives2m/s; minimumUI D1/4 gives2.25, not an assertion of numerically reaching2. Clocktime is elapsed fromfirstreading, signalposition(1+t)²; secant endpoints1 and(1+D)².",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Ideal prescribed kinematics on the stated coordinate/time domain; source units and working coefficients explicit. No force reconstruction, real measured timing uncertainty or empirical student calibration inferred. Actual clock state and endpoint results are distinguished.",
+      "pedagogicalReview": "Read full original and actual generated tasks/prediction/worked strings, phases, apparatus and clock/graphs. Exact manual arithmetic derived independently; reviewer differential/integral consistency checks are not extra student assignments. No source approval flag or human approval.",
+      "assetChecksums": {},
+      "figureReview": "Rail0..16m withfixedstartposition1m; endpoint(1+D)², movingclockbody(1+t)². Secantgraphelapsedt0..D showspositions1..(1+D)² withcorrectunits andorigin. Meanvelocityreadingfixedforselectedwindow, movingfourthreadingisposition.",
+      "runtimeSha256": {
+        "static/js/banchi/voci/esperimento.js": "fce66f301918483fe79d0f8dbf84c280268e48e615e9c016f2bbd32f699f5075",
+        "static/js/banchi/voci/engines.js": "09a6447a971d0e90c49cfea0307e82ea75f4441a7174c017768d6d62ad514dab",
+        "static/js/banchi/voci/geometria.js": "986bdbfad0cf6e6e057002ee2efdeff0a08df31bfb45f9c046063fcba5840f08",
+        "static/js/banchi/voci/tavola.js": "cc3f7fa8da541109fdda9f8bacca23eea43d1031b2145688b2d80513f47d5283",
+        "static/js/banchi/voci/confronti.js": "4ee391c0841fed7e1888d2c57cfb2494f8e0be0581a6211d50d410bd172602b9",
+        "static/js/banchi/voci/legende.js": "2de769cc9358c907eb30ac6b18c6bc3e06e18a1ece514a7d368ecd40bec33d1b",
+        "static/js/banchi/voci/orologi.js": "30dd8ab535a31b514c0db13d97d2b046a1add160a7ca7d374deea0d991be73a6",
+        "static/js/banchi/voci/modelli/C1.js": "e5818f20fd19d00fc73434fcacef752d06331efc41d198ffe8c185063e97fa34",
+        "static/js/banchi/voci/apparati/meccanica.js": "dc005819f8f12ec48722d32b1d236328ecab75e0734c9ecd0a147751c6bb8fd7",
+        "static/js/banchi/banco.js": "682ba25fcf97b67821b8c9bb6c73a571c87559f94bbda3f64cfad65fab63cdb8",
+        "static/js/banchi/misure.js": "8d631c65b0266ece6447da07aff7a43ee61b66d0767ddc24ace3f59b31fac186",
+        "static/js/banchi/grafici.js": "e5567e88ee6df5c604f8e62228da5e70841556ad0b55fb212fd4d091fdeee3fd",
+        "static/js/banchi/scena.js": "4d94c92a834573062a2af541df113bad06bd11ca538b31bddddc5ec8621a5095",
+        "static/js/banchi/etichette.js": "455ae33c790be4e207e5b5667918c44ea16c95f49e1fea0b13cc92f08aa003f3",
+        "static/js/banchi/aula.js": "44c74446d0d60b20e9dad05b32321f1000f026acdec386ca5aa2f74c20421967",
+        "static/js/ui.js": "77e5f000f5e1a1fe028fff32dad97be29ad72b46d753787a19ad36164cb98f27"
+      },
+      "reviewedRuntimeSha256": {
+        "static/js/banchi/voci/esperimento.js": "fce66f301918483fe79d0f8dbf84c280268e48e615e9c016f2bbd32f699f5075",
+        "static/js/banchi/voci/engines.js": "09a6447a971d0e90c49cfea0307e82ea75f4441a7174c017768d6d62ad514dab",
+        "static/js/banchi/voci/geometria.js": "986bdbfad0cf6e6e057002ee2efdeff0a08df31bfb45f9c046063fcba5840f08",
+        "static/js/banchi/voci/tavola.js": "cc3f7fa8da541109fdda9f8bacca23eea43d1031b2145688b2d80513f47d5283",
+        "static/js/banchi/voci/confronti.js": "4ee391c0841fed7e1888d2c57cfb2494f8e0be0581a6211d50d410bd172602b9",
+        "static/js/banchi/voci/legende.js": "2de769cc9358c907eb30ac6b18c6bc3e06e18a1ece514a7d368ecd40bec33d1b",
+        "static/js/banchi/voci/orologi.js": "30dd8ab535a31b514c0db13d97d2b046a1add160a7ca7d374deea0d991be73a6",
+        "static/js/banchi/voci/modelli/C1.js": "e5818f20fd19d00fc73434fcacef752d06331efc41d198ffe8c185063e97fa34",
+        "static/js/banchi/voci/apparati/meccanica.js": "dc005819f8f12ec48722d32b1d236328ecab75e0734c9ecd0a147751c6bb8fd7",
+        "static/js/banchi/banco.js": "682ba25fcf97b67821b8c9bb6c73a571c87559f94bbda3f64cfad65fab63cdb8",
+        "static/js/banchi/misure.js": "8d631c65b0266ece6447da07aff7a43ee61b66d0767ddc24ace3f59b31fac186",
+        "static/js/banchi/grafici.js": "e5567e88ee6df5c604f8e62228da5e70841556ad0b55fb212fd4d091fdeee3fd",
+        "static/js/banchi/scena.js": "4d94c92a834573062a2af541df113bad06bd11ca538b31bddddc5ec8621a5095",
+        "static/js/banchi/etichette.js": "455ae33c790be4e207e5b5667918c44ea16c95f49e1fea0b13cc92f08aa003f3",
+        "static/js/banchi/aula.js": "44c74446d0d60b20e9dad05b32321f1000f026acdec386ca5aa2f74c20421967",
+        "static/js/ui.js": "77e5f000f5e1a1fe028fff32dad97be29ad72b46d753787a19ad36164cb98f27"
+      },
+      "runtimeProfileSha256": "f897223d7afb4a9e09eb4fd06768e42e5b52bc131455fa678fbef74b4f39caa5",
+      "reviewedRuntimeProfileSha256": "f897223d7afb4a9e09eb4fd06768e42e5b52bc131455fa678fbef74b4f39caa5",
+      "runtimeComparison": {
+        "ok": true,
+        "numericPhysicsMatches": true,
+        "caseCount": 12,
+        "plannedCaseCount": 12,
+        "clockSampleCount": 36,
+        "errors": [],
+        "firstAssessmentInput": 2,
+        "transferInput": 1.75,
+        "manualityIssue": false,
+        "formatRoundtrip": [
+          {
+            "display": "4",
+            "parsed": 4
+          },
+          {
+            "display": "3,75",
+            "parsed": 3.75
+          }
+        ]
+      },
+      "consumerEvidence": {
+        "ok": true,
+        "proofSha256": "9178d2e7b16f3517b4f331d786ebffb60922ed819c22235e2cdec139125e5752",
+        "protocolSha256": "125d86bf4d24de42ab9f72e24706cc873009780728b312420f304f2bd633a0ec",
+        "runtimeProfileSha256": "f897223d7afb4a9e09eb4fd06768e42e5b52bc131455fa678fbef74b4f39caa5",
+        "observedCaseCount": 66,
+        "scientificApproval": false,
+        "meaning": "Observed original defects and working states, not automatic scientific approval; exact runtime identity required, fresh engine oracle replay per report."
+      },
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "SIM-C1-L003-04",
+      "sourceSha256": "f475c471a8cf4bb33890a1642ae16f49988d8180d5ade06b1753017e4d1ea4a6",
+      "sourceVersion": 2,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/esperienze-C1.json",
+      "sourceFileSha256": "84d13bd2658be3b0ce2a55bf7dc698d64ceae151b09deafeabd71507a41d70e3",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "first reference",
+          "independentExact": "3",
+          "expectedValue": "3",
+          "unit": "m/s²",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "comparison assignment",
+          "independentExact": "4",
+          "expectedValue": "4",
+          "unit": "m/s²",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "generated transfer",
+          "independentExact": "15/4",
+          "expectedValue": "15/4",
+          "unit": "m/s²",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "secant quotient reduced exactly",
+          "independentExact": "d + 2",
+          "expectedValue": "d + 2",
+          "unit": "m/s^2",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_symbolic_secant"
+        },
+        {
+          "claim": "positiveinterval limit atzero",
+          "independentExact": "2",
+          "expectedValue": "2",
+          "unit": "m/s^2",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "instantaneous slope atabsolute1",
+          "independentExact": "2",
+          "expectedValue": "2",
+          "unit": "m/s^2",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "1.75interval exact mean",
+          "independentExact": "15/4",
+          "expectedValue": "15/4",
+          "unit": "m/s^2",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "largestinterval endpointsquaredsignal16",
+          "independentExact": "16",
+          "expectedValue": "16",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_model_consistency_not_extra_student_assignment"
+        },
+        {
+          "claim": "velocity coefficient units",
+          "independentExact": "4",
+          "expectedValue": "4",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "animatedposition derivative isvelocity",
+          "independentExact": "t**2",
+          "expectedValue": "t**2",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_model_consistency_not_extra_student_assignment"
+        },
+        {
+          "claim": "animatedposition integrated units",
+          "independentExact": "9",
+          "expectedValue": "9",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_model_consistency_not_extra_student_assignment"
+        },
+        {
+          "claim": "fresh actual adapter/law/apparatus/graph/generated-assessment comparison",
+          "ok": true,
+          "mode": "INDEPENDENT_ORACLE_VS_CONSUMER",
+          "dimension": {},
+          "caseCount": 12,
+          "errors": []
+        },
+        {
+          "claim": "displayed numeric literal roundtrip0",
+          "ok": true,
+          "actual": {
+            "display": "4",
+            "parsed": 4
+          },
+          "independentExact": "4",
+          "dimension": {},
+          "mode": "OBSERVED_INPUT_FORMAT_CONFORMANCE"
+        },
+        {
+          "claim": "displayed numeric literal roundtrip1",
+          "ok": true,
+          "actual": {
+            "display": "3,75",
+            "parsed": 3.75
+          },
+          "independentExact": "15/4",
+          "dimension": {},
+          "mode": "OBSERVED_INPUT_FORMAT_CONFORMANCE"
+        }
+      ],
+      "dimension": {
+        "first reference": {
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "comparison assignment": {
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "generated transfer": {
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "secant quotient reduced exactly": {
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "positiveinterval limit atzero": {
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "instantaneous slope atabsolute1": {
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "1.75interval exact mean": {
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "largestinterval endpointsquaredsignal16": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "velocity coefficient units": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "animatedposition derivative isvelocity": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "animatedposition integrated units": {
+          "[length]": "1"
+        },
+        "fresh actual adapter/law/apparatus/graph/generated-assessment comparison": {},
+        "displayed numeric literal roundtrip0": {},
+        "displayed numeric literal roundtrip1": {}
+      },
+      "sourceScientificReview": {
+        "ok": true,
+        "errors": []
+      },
+      "consumerReview": {
+        "ok": true,
+        "errors": []
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "v=k t²,k1m/s³, absolute t0=1s. Meanacceleration ((1+D)²-1)/D=2+D m/s²; references3/4 and actualD7/4=>15/4=3.75. Instantaneousa at1 is2m/s². Positionforanimation integratesv to t³/3 with arbitraryfixedorigin; this model consistency check is not an extra assigned student integration question. Clockreadout(1+elapsed)² isvelocity, not acceleration.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Ideal prescribed kinematics on the stated coordinate/time domain; source units and working coefficients explicit. No force reconstruction, real measured timing uncertainty or empirical student calibration inferred. Actual clock state and endpoint results are distinguished.",
+      "pedagogicalReview": "Read full original and actual generated tasks/prediction/worked strings, phases, apparatus and clock/graphs. Exact manual arithmetic derived independently; reviewer differential/integral consistency checks are not extra student assignments. No source approval flag or human approval.",
+      "assetChecksums": {},
+      "figureReview": "Rail0..22m; chosenendpoint(1+D)³/3, dynamicposition(1+t)³/3 withvelocityarrowproportionalto(1+t)². Secantgraphisvelocityversuselapsedtime, notposition. Constantmeanaccelerationresultforselectedwindowdistinctfromchangingvelocityreadout.",
+      "runtimeSha256": {
+        "static/js/banchi/voci/esperimento.js": "fce66f301918483fe79d0f8dbf84c280268e48e615e9c016f2bbd32f699f5075",
+        "static/js/banchi/voci/engines.js": "09a6447a971d0e90c49cfea0307e82ea75f4441a7174c017768d6d62ad514dab",
+        "static/js/banchi/voci/geometria.js": "986bdbfad0cf6e6e057002ee2efdeff0a08df31bfb45f9c046063fcba5840f08",
+        "static/js/banchi/voci/tavola.js": "cc3f7fa8da541109fdda9f8bacca23eea43d1031b2145688b2d80513f47d5283",
+        "static/js/banchi/voci/confronti.js": "4ee391c0841fed7e1888d2c57cfb2494f8e0be0581a6211d50d410bd172602b9",
+        "static/js/banchi/voci/legende.js": "2de769cc9358c907eb30ac6b18c6bc3e06e18a1ece514a7d368ecd40bec33d1b",
+        "static/js/banchi/voci/orologi.js": "30dd8ab535a31b514c0db13d97d2b046a1add160a7ca7d374deea0d991be73a6",
+        "static/js/banchi/voci/modelli/C1.js": "e5818f20fd19d00fc73434fcacef752d06331efc41d198ffe8c185063e97fa34",
+        "static/js/banchi/voci/apparati/meccanica.js": "dc005819f8f12ec48722d32b1d236328ecab75e0734c9ecd0a147751c6bb8fd7",
+        "static/js/banchi/banco.js": "682ba25fcf97b67821b8c9bb6c73a571c87559f94bbda3f64cfad65fab63cdb8",
+        "static/js/banchi/misure.js": "8d631c65b0266ece6447da07aff7a43ee61b66d0767ddc24ace3f59b31fac186",
+        "static/js/banchi/grafici.js": "e5567e88ee6df5c604f8e62228da5e70841556ad0b55fb212fd4d091fdeee3fd",
+        "static/js/banchi/scena.js": "4d94c92a834573062a2af541df113bad06bd11ca538b31bddddc5ec8621a5095",
+        "static/js/banchi/etichette.js": "455ae33c790be4e207e5b5667918c44ea16c95f49e1fea0b13cc92f08aa003f3",
+        "static/js/banchi/aula.js": "44c74446d0d60b20e9dad05b32321f1000f026acdec386ca5aa2f74c20421967",
+        "static/js/ui.js": "77e5f000f5e1a1fe028fff32dad97be29ad72b46d753787a19ad36164cb98f27"
+      },
+      "reviewedRuntimeSha256": {
+        "static/js/banchi/voci/esperimento.js": "fce66f301918483fe79d0f8dbf84c280268e48e615e9c016f2bbd32f699f5075",
+        "static/js/banchi/voci/engines.js": "09a6447a971d0e90c49cfea0307e82ea75f4441a7174c017768d6d62ad514dab",
+        "static/js/banchi/voci/geometria.js": "986bdbfad0cf6e6e057002ee2efdeff0a08df31bfb45f9c046063fcba5840f08",
+        "static/js/banchi/voci/tavola.js": "cc3f7fa8da541109fdda9f8bacca23eea43d1031b2145688b2d80513f47d5283",
+        "static/js/banchi/voci/confronti.js": "4ee391c0841fed7e1888d2c57cfb2494f8e0be0581a6211d50d410bd172602b9",
+        "static/js/banchi/voci/legende.js": "2de769cc9358c907eb30ac6b18c6bc3e06e18a1ece514a7d368ecd40bec33d1b",
+        "static/js/banchi/voci/orologi.js": "30dd8ab535a31b514c0db13d97d2b046a1add160a7ca7d374deea0d991be73a6",
+        "static/js/banchi/voci/modelli/C1.js": "e5818f20fd19d00fc73434fcacef752d06331efc41d198ffe8c185063e97fa34",
+        "static/js/banchi/voci/apparati/meccanica.js": "dc005819f8f12ec48722d32b1d236328ecab75e0734c9ecd0a147751c6bb8fd7",
+        "static/js/banchi/banco.js": "682ba25fcf97b67821b8c9bb6c73a571c87559f94bbda3f64cfad65fab63cdb8",
+        "static/js/banchi/misure.js": "8d631c65b0266ece6447da07aff7a43ee61b66d0767ddc24ace3f59b31fac186",
+        "static/js/banchi/grafici.js": "e5567e88ee6df5c604f8e62228da5e70841556ad0b55fb212fd4d091fdeee3fd",
+        "static/js/banchi/scena.js": "4d94c92a834573062a2af541df113bad06bd11ca538b31bddddc5ec8621a5095",
+        "static/js/banchi/etichette.js": "455ae33c790be4e207e5b5667918c44ea16c95f49e1fea0b13cc92f08aa003f3",
+        "static/js/banchi/aula.js": "44c74446d0d60b20e9dad05b32321f1000f026acdec386ca5aa2f74c20421967",
+        "static/js/ui.js": "77e5f000f5e1a1fe028fff32dad97be29ad72b46d753787a19ad36164cb98f27"
+      },
+      "runtimeProfileSha256": "f897223d7afb4a9e09eb4fd06768e42e5b52bc131455fa678fbef74b4f39caa5",
+      "reviewedRuntimeProfileSha256": "f897223d7afb4a9e09eb4fd06768e42e5b52bc131455fa678fbef74b4f39caa5",
+      "runtimeComparison": {
+        "ok": true,
+        "numericPhysicsMatches": true,
+        "caseCount": 12,
+        "plannedCaseCount": 12,
+        "clockSampleCount": 36,
+        "errors": [],
+        "firstAssessmentInput": 2,
+        "transferInput": 1.75,
+        "manualityIssue": false,
+        "formatRoundtrip": [
+          {
+            "display": "4",
+            "parsed": 4
+          },
+          {
+            "display": "3,75",
+            "parsed": 3.75
+          }
+        ]
+      },
+      "consumerEvidence": {
+        "ok": true,
+        "proofSha256": "9178d2e7b16f3517b4f331d786ebffb60922ed819c22235e2cdec139125e5752",
+        "protocolSha256": "125d86bf4d24de42ab9f72e24706cc873009780728b312420f304f2bd633a0ec",
+        "runtimeProfileSha256": "f897223d7afb4a9e09eb4fd06768e42e5b52bc131455fa678fbef74b4f39caa5",
+        "observedCaseCount": 66,
+        "scientificApproval": false,
+        "meaning": "Observed original defects and working states, not automatic scientific approval; exact runtime identity required, fresh engine oracle replay per report."
+      },
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "SIM-C1-L003-05",
+      "sourceSha256": "7ace68920b58c5ec04db0caea277cda7b95574de483c5a072b6976242f9655b6",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/esperienze-C1.json",
+      "sourceFileSha256": "84d13bd2658be3b0ce2a55bf7dc698d64ceae151b09deafeabd71507a41d70e3",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "first reference",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "comparison assignment",
+          "independentExact": "5",
+          "expectedValue": "5",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "generated transfer",
+          "independentExact": "4",
+          "expectedValue": "4",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "constantvelocity byderivative",
+          "independentExact": "2",
+          "expectedValue": "2",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "zeroacceleration bysecondderivative",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "m/s^2",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "equalone secondincrements",
+          "independentExact": "2",
+          "expectedValue": "2",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "initialnegativeposition",
+          "independentExact": "-1",
+          "expectedValue": "-1",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "2.5seconds givesposition4",
+          "independentExact": "4",
+          "expectedValue": "4",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "fresh actual adapter/law/apparatus/graph/generated-assessment comparison",
+          "ok": true,
+          "mode": "INDEPENDENT_ORACLE_VS_CONSUMER",
+          "dimension": {},
+          "caseCount": 21,
+          "errors": []
+        },
+        {
+          "claim": "displayed numeric literal roundtrip0",
+          "ok": true,
+          "actual": {
+            "display": "5",
+            "parsed": 5
+          },
+          "independentExact": "5",
+          "dimension": {},
+          "mode": "OBSERVED_INPUT_FORMAT_CONFORMANCE"
+        },
+        {
+          "claim": "displayed numeric literal roundtrip1",
+          "ok": true,
+          "actual": {
+            "display": "4",
+            "parsed": 4
+          },
+          "independentExact": "4",
+          "dimension": {},
+          "mode": "OBSERVED_INPUT_FORMAT_CONFORMANCE"
+        }
+      ],
+      "dimension": {
+        "first reference": {
+          "[length]": "1"
+        },
+        "comparison assignment": {
+          "[length]": "1"
+        },
+        "generated transfer": {
+          "[length]": "1"
+        },
+        "constantvelocity byderivative": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "zeroacceleration bysecondderivative": {
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "equalone secondincrements": {
+          "[length]": "1"
+        },
+        "initialnegativeposition": {
+          "[length]": "1"
+        },
+        "2.5seconds givesposition4": {
+          "[length]": "1"
+        },
+        "fresh actual adapter/law/apparatus/graph/generated-assessment comparison": {},
+        "displayed numeric literal roundtrip0": {},
+        "displayed numeric literal roundtrip1": {}
+      },
+      "sourceScientificReview": {
+        "ok": true,
+        "errors": []
+      },
+      "consumerReview": {
+        "ok": true,
+        "errors": []
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "x=-1+2t metres, vconstant+2m/s,a0. Source1=>1/3=>5, actualtransfer2.5=>4. Everyone secondadds2m, positioncanbenegativewithoutnegativevelocity. Full0..5s belongssameuniformmotion.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Ideal prescribed kinematics on the stated coordinate/time domain; source units and working coefficients explicit. No force reconstruction, real measured timing uncertainty or empirical student calibration inferred. Actual clock state and endpoint results are distinguished.",
+      "pedagogicalReview": "Read full original and actual generated tasks/prediction/worked strings, phases, apparatus and clock/graphs. Exact manual arithmetic derived independently; reviewer differential/integral consistency checks are not extra student assignments. No source approval flag or human approval.",
+      "assetChecksums": {},
+      "figureReview": "Rail-1..9m, sameuniformcoordinate law throughoutactualclock0..5s; arrowfixedpositivevelocity. Initialpositionis-1m, notinitialdisplacement-1m.",
+      "runtimeSha256": {
+        "static/js/banchi/voci/esperimento.js": "fce66f301918483fe79d0f8dbf84c280268e48e615e9c016f2bbd32f699f5075",
+        "static/js/banchi/voci/engines.js": "09a6447a971d0e90c49cfea0307e82ea75f4441a7174c017768d6d62ad514dab",
+        "static/js/banchi/voci/geometria.js": "986bdbfad0cf6e6e057002ee2efdeff0a08df31bfb45f9c046063fcba5840f08",
+        "static/js/banchi/voci/tavola.js": "cc3f7fa8da541109fdda9f8bacca23eea43d1031b2145688b2d80513f47d5283",
+        "static/js/banchi/voci/confronti.js": "4ee391c0841fed7e1888d2c57cfb2494f8e0be0581a6211d50d410bd172602b9",
+        "static/js/banchi/voci/legende.js": "2de769cc9358c907eb30ac6b18c6bc3e06e18a1ece514a7d368ecd40bec33d1b",
+        "static/js/banchi/voci/orologi.js": "30dd8ab535a31b514c0db13d97d2b046a1add160a7ca7d374deea0d991be73a6",
+        "static/js/banchi/voci/modelli/C1.js": "e5818f20fd19d00fc73434fcacef752d06331efc41d198ffe8c185063e97fa34",
+        "static/js/banchi/voci/apparati/meccanica.js": "dc005819f8f12ec48722d32b1d236328ecab75e0734c9ecd0a147751c6bb8fd7",
+        "static/js/banchi/banco.js": "682ba25fcf97b67821b8c9bb6c73a571c87559f94bbda3f64cfad65fab63cdb8",
+        "static/js/banchi/misure.js": "8d631c65b0266ece6447da07aff7a43ee61b66d0767ddc24ace3f59b31fac186",
+        "static/js/banchi/grafici.js": "e5567e88ee6df5c604f8e62228da5e70841556ad0b55fb212fd4d091fdeee3fd",
+        "static/js/banchi/scena.js": "4d94c92a834573062a2af541df113bad06bd11ca538b31bddddc5ec8621a5095",
+        "static/js/banchi/etichette.js": "455ae33c790be4e207e5b5667918c44ea16c95f49e1fea0b13cc92f08aa003f3",
+        "static/js/banchi/aula.js": "44c74446d0d60b20e9dad05b32321f1000f026acdec386ca5aa2f74c20421967",
+        "static/js/ui.js": "77e5f000f5e1a1fe028fff32dad97be29ad72b46d753787a19ad36164cb98f27"
+      },
+      "reviewedRuntimeSha256": {
+        "static/js/banchi/voci/esperimento.js": "fce66f301918483fe79d0f8dbf84c280268e48e615e9c016f2bbd32f699f5075",
+        "static/js/banchi/voci/engines.js": "09a6447a971d0e90c49cfea0307e82ea75f4441a7174c017768d6d62ad514dab",
+        "static/js/banchi/voci/geometria.js": "986bdbfad0cf6e6e057002ee2efdeff0a08df31bfb45f9c046063fcba5840f08",
+        "static/js/banchi/voci/tavola.js": "cc3f7fa8da541109fdda9f8bacca23eea43d1031b2145688b2d80513f47d5283",
+        "static/js/banchi/voci/confronti.js": "4ee391c0841fed7e1888d2c57cfb2494f8e0be0581a6211d50d410bd172602b9",
+        "static/js/banchi/voci/legende.js": "2de769cc9358c907eb30ac6b18c6bc3e06e18a1ece514a7d368ecd40bec33d1b",
+        "static/js/banchi/voci/orologi.js": "30dd8ab535a31b514c0db13d97d2b046a1add160a7ca7d374deea0d991be73a6",
+        "static/js/banchi/voci/modelli/C1.js": "e5818f20fd19d00fc73434fcacef752d06331efc41d198ffe8c185063e97fa34",
+        "static/js/banchi/voci/apparati/meccanica.js": "dc005819f8f12ec48722d32b1d236328ecab75e0734c9ecd0a147751c6bb8fd7",
+        "static/js/banchi/banco.js": "682ba25fcf97b67821b8c9bb6c73a571c87559f94bbda3f64cfad65fab63cdb8",
+        "static/js/banchi/misure.js": "8d631c65b0266ece6447da07aff7a43ee61b66d0767ddc24ace3f59b31fac186",
+        "static/js/banchi/grafici.js": "e5567e88ee6df5c604f8e62228da5e70841556ad0b55fb212fd4d091fdeee3fd",
+        "static/js/banchi/scena.js": "4d94c92a834573062a2af541df113bad06bd11ca538b31bddddc5ec8621a5095",
+        "static/js/banchi/etichette.js": "455ae33c790be4e207e5b5667918c44ea16c95f49e1fea0b13cc92f08aa003f3",
+        "static/js/banchi/aula.js": "44c74446d0d60b20e9dad05b32321f1000f026acdec386ca5aa2f74c20421967",
+        "static/js/ui.js": "77e5f000f5e1a1fe028fff32dad97be29ad72b46d753787a19ad36164cb98f27"
+      },
+      "runtimeProfileSha256": "f897223d7afb4a9e09eb4fd06768e42e5b52bc131455fa678fbef74b4f39caa5",
+      "reviewedRuntimeProfileSha256": "f897223d7afb4a9e09eb4fd06768e42e5b52bc131455fa678fbef74b4f39caa5",
+      "runtimeComparison": {
+        "ok": true,
+        "numericPhysicsMatches": true,
+        "caseCount": 21,
+        "plannedCaseCount": 21,
+        "clockSampleCount": 63,
+        "errors": [],
+        "firstAssessmentInput": 3,
+        "transferInput": 2.5,
+        "manualityIssue": false,
+        "formatRoundtrip": [
+          {
+            "display": "5",
+            "parsed": 5
+          },
+          {
+            "display": "4",
+            "parsed": 4
+          }
+        ]
+      },
+      "consumerEvidence": {
+        "ok": true,
+        "proofSha256": "9178d2e7b16f3517b4f331d786ebffb60922ed819c22235e2cdec139125e5752",
+        "protocolSha256": "125d86bf4d24de42ab9f72e24706cc873009780728b312420f304f2bd633a0ec",
+        "runtimeProfileSha256": "f897223d7afb4a9e09eb4fd06768e42e5b52bc131455fa678fbef74b4f39caa5",
+        "observedCaseCount": 66,
+        "scientificApproval": false,
+        "meaning": "Observed original defects and working states, not automatic scientific approval; exact runtime identity required, fresh engine oracle replay per report."
+      },
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "SIM-C1-L003-06",
+      "sourceSha256": "6787e3a853e7d23107c36e07be2de2a2b948e4b4abb6701cca121e4a644cfa93",
+      "sourceVersion": 2,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/esperienze-C1.json",
+      "sourceFileSha256": "84d13bd2658be3b0ce2a55bf7dc698d64ceae151b09deafeabd71507a41d70e3",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "first reference",
+          "independentExact": "2",
+          "expectedValue": "2",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "comparison assignment",
+          "independentExact": "2",
+          "expectedValue": "2",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "generated transfer",
+          "independentExact": "4",
+          "expectedValue": "4",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "piececontinuity attwo",
+          "independentExact": "4",
+          "expectedValue": "4",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "returnafter4",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "sameposition at1and3",
+          "independentExact": "2",
+          "expectedValue": "2",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "wholetrip meanvelocity0",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "pathlength8",
+          "independentExact": "8",
+          "expectedValue": "8",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "meanspeed2",
+          "independentExact": "2",
+          "expectedValue": "2",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "leftvelocityatinversion",
+          "independentExact": "2",
+          "expectedValue": "2",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "rightvelocityatinversion",
+          "independentExact": "-2",
+          "expectedValue": "-2",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_exact_or_manual_relation"
+        },
+        {
+          "claim": "no unique instantaneousvelocityatcorner",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_model_limit"
+        },
+        {
+          "claim": "fresh actual adapter/law/apparatus/graph/generated-assessment comparison",
+          "ok": true,
+          "mode": "INDEPENDENT_ORACLE_VS_CONSUMER",
+          "dimension": {},
+          "caseCount": 17,
+          "errors": []
+        },
+        {
+          "claim": "displayed numeric literal roundtrip0",
+          "ok": true,
+          "actual": {
+            "display": "2",
+            "parsed": 2
+          },
+          "independentExact": "2",
+          "dimension": {},
+          "mode": "OBSERVED_INPUT_FORMAT_CONFORMANCE"
+        },
+        {
+          "claim": "displayed numeric literal roundtrip1",
+          "ok": true,
+          "actual": {
+            "display": "4",
+            "parsed": 4
+          },
+          "independentExact": "4",
+          "dimension": {},
+          "mode": "OBSERVED_INPUT_FORMAT_CONFORMANCE"
+        }
+      ],
+      "dimension": {
+        "first reference": {
+          "[length]": "1"
+        },
+        "comparison assignment": {
+          "[length]": "1"
+        },
+        "generated transfer": {
+          "[length]": "1"
+        },
+        "piececontinuity attwo": {
+          "[length]": "1"
+        },
+        "returnafter4": {
+          "[length]": "1"
+        },
+        "sameposition at1and3": {
+          "[length]": "1"
+        },
+        "wholetrip meanvelocity0": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "pathlength8": {
+          "[length]": "1"
+        },
+        "meanspeed2": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "leftvelocityatinversion": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "rightvelocityatinversion": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "no unique instantaneousvelocityatcorner": {},
+        "fresh actual adapter/law/apparatus/graph/generated-assessment comparison": {},
+        "displayed numeric literal roundtrip0": {},
+        "displayed numeric literal roundtrip1": {}
+      },
+      "sourceScientificReview": {
+        "ok": true,
+        "errors": []
+      },
+      "consumerReview": {
+        "ok": true,
+        "errors": []
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "x=2t for0..2; then8-2t for2..4. References1/3 both2m, actualtransfer2gives4m; return4gives0. Totalpath8m/4smeanspeed2m/s, averagevelocity0. Leftvelocityat2 is+2,right-2: derivativeundefinedatcorner, not0; actualcomparison saysInversione and omitsvelocityarrowatinstant, explicitlyidealizedturnaround. Finite quarters andinteger products.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Ideal prescribed kinematics on the stated coordinate/time domain; source units and working coefficients explicit. No force reconstruction, real measured timing uncertainty or empirical student calibration inferred. Actual clock state and endpoint results are distinguished.",
+      "pedagogicalReview": "Read full original and actual generated tasks/prediction/worked strings, phases, apparatus and clock/graphs. Exact manual arithmetic derived independently; reviewer differential/integral consistency checks are not extra student assignments. No source approval flag or human approval.",
+      "assetChecksums": {},
+      "figureReview": "Rail0..4m, outward/returnbodytrackscontinuouspiecewiseposition. At2s omittedzero-sizedvelocityarrowisnotclaimofphysicalzero derivative: visiblecomparisonexplicitlyInversione. Positiongraphcontinuouscorner, notsmoothturnwithfalseaccelerationclaim.",
+      "runtimeSha256": {
+        "static/js/banchi/voci/esperimento.js": "fce66f301918483fe79d0f8dbf84c280268e48e615e9c016f2bbd32f699f5075",
+        "static/js/banchi/voci/engines.js": "09a6447a971d0e90c49cfea0307e82ea75f4441a7174c017768d6d62ad514dab",
+        "static/js/banchi/voci/geometria.js": "986bdbfad0cf6e6e057002ee2efdeff0a08df31bfb45f9c046063fcba5840f08",
+        "static/js/banchi/voci/tavola.js": "cc3f7fa8da541109fdda9f8bacca23eea43d1031b2145688b2d80513f47d5283",
+        "static/js/banchi/voci/confronti.js": "4ee391c0841fed7e1888d2c57cfb2494f8e0be0581a6211d50d410bd172602b9",
+        "static/js/banchi/voci/legende.js": "2de769cc9358c907eb30ac6b18c6bc3e06e18a1ece514a7d368ecd40bec33d1b",
+        "static/js/banchi/voci/orologi.js": "30dd8ab535a31b514c0db13d97d2b046a1add160a7ca7d374deea0d991be73a6",
+        "static/js/banchi/voci/modelli/C1.js": "e5818f20fd19d00fc73434fcacef752d06331efc41d198ffe8c185063e97fa34",
+        "static/js/banchi/voci/apparati/meccanica.js": "dc005819f8f12ec48722d32b1d236328ecab75e0734c9ecd0a147751c6bb8fd7",
+        "static/js/banchi/banco.js": "682ba25fcf97b67821b8c9bb6c73a571c87559f94bbda3f64cfad65fab63cdb8",
+        "static/js/banchi/misure.js": "8d631c65b0266ece6447da07aff7a43ee61b66d0767ddc24ace3f59b31fac186",
+        "static/js/banchi/grafici.js": "e5567e88ee6df5c604f8e62228da5e70841556ad0b55fb212fd4d091fdeee3fd",
+        "static/js/banchi/scena.js": "4d94c92a834573062a2af541df113bad06bd11ca538b31bddddc5ec8621a5095",
+        "static/js/banchi/etichette.js": "455ae33c790be4e207e5b5667918c44ea16c95f49e1fea0b13cc92f08aa003f3",
+        "static/js/banchi/aula.js": "44c74446d0d60b20e9dad05b32321f1000f026acdec386ca5aa2f74c20421967",
+        "static/js/ui.js": "77e5f000f5e1a1fe028fff32dad97be29ad72b46d753787a19ad36164cb98f27"
+      },
+      "reviewedRuntimeSha256": {
+        "static/js/banchi/voci/esperimento.js": "fce66f301918483fe79d0f8dbf84c280268e48e615e9c016f2bbd32f699f5075",
+        "static/js/banchi/voci/engines.js": "09a6447a971d0e90c49cfea0307e82ea75f4441a7174c017768d6d62ad514dab",
+        "static/js/banchi/voci/geometria.js": "986bdbfad0cf6e6e057002ee2efdeff0a08df31bfb45f9c046063fcba5840f08",
+        "static/js/banchi/voci/tavola.js": "cc3f7fa8da541109fdda9f8bacca23eea43d1031b2145688b2d80513f47d5283",
+        "static/js/banchi/voci/confronti.js": "4ee391c0841fed7e1888d2c57cfb2494f8e0be0581a6211d50d410bd172602b9",
+        "static/js/banchi/voci/legende.js": "2de769cc9358c907eb30ac6b18c6bc3e06e18a1ece514a7d368ecd40bec33d1b",
+        "static/js/banchi/voci/orologi.js": "30dd8ab535a31b514c0db13d97d2b046a1add160a7ca7d374deea0d991be73a6",
+        "static/js/banchi/voci/modelli/C1.js": "e5818f20fd19d00fc73434fcacef752d06331efc41d198ffe8c185063e97fa34",
+        "static/js/banchi/voci/apparati/meccanica.js": "dc005819f8f12ec48722d32b1d236328ecab75e0734c9ecd0a147751c6bb8fd7",
+        "static/js/banchi/banco.js": "682ba25fcf97b67821b8c9bb6c73a571c87559f94bbda3f64cfad65fab63cdb8",
+        "static/js/banchi/misure.js": "8d631c65b0266ece6447da07aff7a43ee61b66d0767ddc24ace3f59b31fac186",
+        "static/js/banchi/grafici.js": "e5567e88ee6df5c604f8e62228da5e70841556ad0b55fb212fd4d091fdeee3fd",
+        "static/js/banchi/scena.js": "4d94c92a834573062a2af541df113bad06bd11ca538b31bddddc5ec8621a5095",
+        "static/js/banchi/etichette.js": "455ae33c790be4e207e5b5667918c44ea16c95f49e1fea0b13cc92f08aa003f3",
+        "static/js/banchi/aula.js": "44c74446d0d60b20e9dad05b32321f1000f026acdec386ca5aa2f74c20421967",
+        "static/js/ui.js": "77e5f000f5e1a1fe028fff32dad97be29ad72b46d753787a19ad36164cb98f27"
+      },
+      "runtimeProfileSha256": "f897223d7afb4a9e09eb4fd06768e42e5b52bc131455fa678fbef74b4f39caa5",
+      "reviewedRuntimeProfileSha256": "f897223d7afb4a9e09eb4fd06768e42e5b52bc131455fa678fbef74b4f39caa5",
+      "runtimeComparison": {
+        "ok": true,
+        "numericPhysicsMatches": true,
+        "caseCount": 17,
+        "plannedCaseCount": 17,
+        "clockSampleCount": 51,
+        "errors": [],
+        "firstAssessmentInput": 3,
+        "transferInput": 2,
+        "manualityIssue": false,
+        "formatRoundtrip": [
+          {
+            "display": "2",
+            "parsed": 2
+          },
+          {
+            "display": "4",
+            "parsed": 4
+          }
+        ]
+      },
+      "consumerEvidence": {
+        "ok": true,
+        "proofSha256": "9178d2e7b16f3517b4f331d786ebffb60922ed819c22235e2cdec139125e5752",
+        "protocolSha256": "125d86bf4d24de42ab9f72e24706cc873009780728b312420f304f2bd633a0ec",
+        "runtimeProfileSha256": "f897223d7afb4a9e09eb4fd06768e42e5b52bc131455fa678fbef74b4f39caa5",
+        "observedCaseCount": 66,
+        "scientificApproval": false,
+        "meaning": "Observed original defects and working states, not automatic scientific approval; exact runtime identity required, fresh engine oracle replay per report."
+      },
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "182140c0b0dd87ab1e3306f7191831c19918dd9f2df21f800aa59a8e0d1f4fff",
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+  "sourcePath": "officina-di-fisica/content/esperienze-C1.json",
+  "sourceFileSha256": "84d13bd2658be3b0ce2a55bf7dc698d64ceae151b09deafeabd71507a41d70e3",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "acceptedCount": 6,
+  "failedCount": 0,
+  "draftReviewedCount": 0,
+  "failedPublishedEditionIds": [],
+  "sourceManualityIssueIds": [],
+  "consumerInterfaceIssueIds": [],
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_original_or_revision_author",
+  "originalEditionRetained": true,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}

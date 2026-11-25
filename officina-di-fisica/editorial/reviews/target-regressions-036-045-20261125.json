@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "1.0.0",
+  "status": "PASS",
+  "testCount": 15,
+  "elapsedSeconds": 123.909,
+  "modules": [
+    "tests.corpus.test_bench_fields_optics_review",
+    "tests.corpus.test_experiments_force_work_045_review"
+  ],
+  "inputs": {
+    "tools/corpus_engineering/bench_fields_optics_activity_verifier.py": "978daf097e3ba43cd8479aa7039e94d4a667a82fd9f65f3b3019228c572e6f86",
+    "tools/corpus_engineering/experiments_force_work_045_verifier.py": "b8c1cd2ac3f02229fdf19993f9ba0a02b01a5b83ebfdb409d4b9c097ab841068",
+    "tests/corpus/test_bench_fields_optics_review.py": "9f02c43ee830b653589165fa054e58dccad3bb81672fbf22f3e1a530910fc075",
+    "tests/corpus/test_experiments_force_work_045_review.py": "0883c10e83546af63265cf35cc303d31e5aaea707ed0e2e41c094053ca131a02"
+  },
+  "terminalExitCode": 0,
+  "transcript": "test_domain_branches_physics_units_and_graphs (tests.corpus.test_bench_fields_optics_review.BenchFieldsOpticsReview.test_domain_branches_physics_units_and_graphs) ... ok\ntest_five_actual_benches_all_assigned_tasks_and_fresh_runtime_each_report (tests.corpus.test_bench_fields_optics_review.BenchFieldsOpticsReview.test_five_actual_benches_all_assigned_tasks_and_fresh_runtime_each_report) ... ok\ntest_mutated_or_missing_sources_empty_or_failed_models_are_not_approved (tests.corpus.test_bench_fields_optics_review.BenchFieldsOpticsReview.test_mutated_or_missing_sources_empty_or_failed_models_are_not_approved) ... ok\ntest_observed_browser_evidence_is_content_bound_and_not_automatic_approval (tests.corpus.test_bench_fields_optics_review.BenchFieldsOpticsReview.test_observed_browser_evidence_is_content_bound_and_not_automatic_approval) ... ok\ntest_original_source_and_full_actual_runtime_identity (tests.corpus.test_bench_fields_optics_review.BenchFieldsOpticsReview.test_original_source_and_full_actual_runtime_identity) ... ok\ntest_runtime_staleness_blocks_before_execution_and_runtime_errors_fail (tests.corpus.test_bench_fields_optics_review.BenchFieldsOpticsReview.test_runtime_staleness_blocks_before_execution_and_runtime_errors_fail) ... ok\ntest_wrong_runtime_math_null_states_and_added_tasks_are_detected (tests.corpus.test_bench_fields_optics_review.BenchFieldsOpticsReview.test_wrong_runtime_math_null_states_and_added_tasks_are_detected) ... ok\ntest_complete_six_originals_four_pass_two_consumer_failures_never_registered (tests.corpus.test_experiments_force_work_045_review.ForceWork045Review.test_complete_six_originals_four_pass_two_consumer_failures_never_registered) ... ok\ntest_every_wrong_scalar_and_rebound_assessment_rejected (tests.corpus.test_experiments_force_work_045_review.ForceWork045Review.test_every_wrong_scalar_and_rebound_assessment_rejected) ... ok\ntest_independent_domain_manual_fraction_and_radical_bounds (tests.corpus.test_experiments_force_work_045_review.ForceWork045Review.test_independent_domain_manual_fraction_and_radical_bounds) ... ok\ntest_pinned_source_and_all_fresh_scalar_graph_clock_models (tests.corpus.test_experiments_force_work_045_review.ForceWork045Review.test_pinned_source_and_all_fresh_scalar_graph_clock_models) ... ok\ntest_real_apparatus_direction_distance_and_velocity_mutations (tests.corpus.test_experiments_force_work_045_review.ForceWork045Review.test_real_apparatus_direction_distance_and_velocity_mutations) ... ok\ntest_stale_runtime_missing_comparison_and_execution_error_do_not_pass (tests.corpus.test_experiments_force_work_045_review.ForceWork045Review.test_stale_runtime_missing_comparison_and_execution_error_do_not_pass) ... ok\ntest_terminal_observation_of_known_failure_is_not_scientific_approval (tests.corpus.test_experiments_force_work_045_review.ForceWork045Review.test_terminal_observation_of_known_failure_is_not_scientific_approval) ... ok\ntest_unreviewed_source_blocks_before_any_engine_execution (tests.corpus.test_experiments_force_work_045_review.ForceWork045Review.test_unreviewed_source_blocks_before_any_engine_execution) ... ok\n\n----------------------------------------------------------------------\nRan 15 tests in 123.909s\n\nOK\n",
+  "limits": "The 045 tests correctly preserve four original PASS and two reproduced consumer FAIL; a passing negative regression test does not complete those activities.",
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}

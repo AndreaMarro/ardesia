@@ -134,4 +134,6 @@ Il vincolo introduce un terzo fattore di portata: P_d=cQ³. Dividendo diciotto p
 
 Passaggi: `P_d=cQ^3\qquad Q^3=\frac{P_d}{c}\qquad Q^3=27\,\mathrm{L^3/s^3}\qquad Q=3\,\mathrm{L/s}\qquad R=2\,\mathrm{kPa\,s/L}`
 
-Errori e controllo: Ventisette è il valore del cubo, nove deriverebbe da una radice non pertinente e −3 darebbe un cubo negativo, quindi non risolve neppure questa equazione positiva. Il cubo è strettamente crescente su Q>0, perciò la soluzione fisica è unica. c ha unità R/Q: il vincolo vale fra prove e non è una legge temporale.
+Errori e controllo: Ventisette è il valore del cubo, nove L/s darebbe 486 W nel vincolo, non 18 W e −3 darebbe un cubo negativo, quindi non risolve neppure questa equazione positiva. Il cubo è strettamente crescente su Q>0, perciò la soluzione fisica è unica. c ha unità R/Q: il vincolo vale fra prove e non è una legge temporale.
+
+Correzione puntuale dopo rilievo del revisore distinto: soltanto feedback ed error.message del record 16, con binding rigenerato; chiavi, formule, SVG e le altre 15 schede rimangono identici.

@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="1530" viewBox="0 0 640 1530" role="img" aria-labelledby="title desc">
+<title id="title">Soglia ideale di una goccia appesa</title><desc id="desc">Raggio del bordo distinto dalla forma schematica della goccia. Al limite peso e forza massima verticale sono uguali e opposti. Barre dei volumi quattro pi greco e dieci pi greco microlitri.</desc>
+<defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#145d81"/></marker></defs>
+<rect width="640" height="1530" rx="20" fill="#f7fbff"/>
+<g font-family="system-ui,sans-serif" fill="#142d40" font-size="20">
+<text x="35" y="48" font-size="25" font-weight="700">1 · r è il raggio del bordo</text>
+<text x="35" y="90">r = 1 mm · γ = 20 mN/m</text>
+<path d="M100 205H280M360 205H540" stroke="#6e8b9c" stroke-width="8"/>
+<path d="M280 205C280 265 230 295 230 350C230 445 410 445 410 350C410 295 360 265 360 205Z" fill="#d7f1fa" stroke="#145d81" stroke-width="3"/>
+<path d="M320 205H360" stroke="#c65919" stroke-width="3"/>
+<path d="M320 175V225" stroke="#6e8b9c" stroke-dasharray="5 4"/>
+<text x="345" y="160">r</text>
+<text x="35" y="475">Bordo: 40 px/mm · goccia senza scala</text>
+<text x="35" y="515">Nessun raggio sferico ricavato dal disegno.</text>
+<path d="M35 550H605" stroke="#b3cbd9"/>
+<text x="35" y="600" font-size="25" font-weight="700">2 · Il limite del modello assegnato</text>
+<path d="M280 700C280 745 250 760 250 800C250 860 390 860 390 800C390 760 360 745 360 700Z" fill="#d7f1fa" stroke="#145d81" stroke-width="2"/>
+<path d="M220 795V695" stroke="#145d81" stroke-width="3" marker-end="url(#arr)"/>
+<path d="M420 735V835" stroke="#145d81" stroke-width="3" marker-end="url(#arr)"/>
+<text x="45" y="745">F_max = F₀</text><text x="445" y="785">ρgV = F₀</text>
+<text x="35" y="900">F₀ = π/25 mN · frecce: 100 px per F₀</text>
+<text x="35" y="945">ρgV_lim = 2πrγ ⇒ V_lim = 4π µL</text>
+<text x="35" y="990">La forza verticale è prescritta dal modello.</text>
+<path d="M35 1020H605" stroke="#b3cbd9"/>
+<text x="35" y="1070" font-size="25" font-weight="700">3 · Confrontare due soglie</text>
+<text x="35" y="1110">Barre da zero: 40 px per π µL</text>
+<text x="35" y="1170">A · r = 1 mm · γ = 20 mN/m</text>
+<rect x="100" y="1200" width="160" height="35" fill="#145d81"/><text x="280" y="1227">4π µL</text>
+<text x="35" y="1300">B · r = 2 mm · γ = 25 mN/m</text>
+<rect x="100" y="1330" width="400" height="35" fill="#c65919"/><text x="510" y="1357">10π µL</text>
+<path d="M100 1185V1250M100 1315V1385" stroke="#6e8b9c" stroke-dasharray="6 5"/>
+<text x="35" y="1430">Il volume cresce come rγ, non come r³.</text>
+<text x="35" y="1475">Il distacco reale richiede altre informazioni.</text>
+</g></svg>

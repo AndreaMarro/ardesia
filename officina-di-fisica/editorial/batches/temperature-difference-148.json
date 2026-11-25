@@ -1,0 +1,1114 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u5-temperature-difference-01",
+      "kind": "question",
+      "course": "C3",
+      "section": "Temperature assolute e intervalli",
+      "order": 14801,
+      "title": "L’intervallo fra due letture Celsius",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L01",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "temperature-difference",
+      "difficulty": 1,
+      "prompt": "Due corpi in stati termici definiti hanno letture Celsius t_c e t_f, con t_c>t_f>0: qui t_c,t_f indicano i numeri letti in °C. Le temperature assolute corrispondenti sono T_c=(t_c+273,15) K e T_f=(t_f+273,15) K. L’intervallo positivo è ΔT=T_c−T_f=d K, con numero d=t_c−t_f, perché gli offset si cancellano. Non si aggiunge 273,15 a una differenza. Questo intervallo non è un rapporto fra temperature assolute. Il corpo caldo è a 40 °C e quello freddo a 20 °C. Quanto vale ΔT in K?",
+      "answer": {
+        "type": "numeric",
+        "value": 20,
+        "unit": "K",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sottraiamo i numeri delle due letture: quaranta meno venti dà venti. Il passo di un grado Celsius ha la stessa ampiezza di un kelvin, quindi l’intervallo è venti K. Convertendo prima entrambe le temperature otterremmo 313,15 e 293,15 K; la loro differenza è ancora venti K."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/218413e8d4967182b92870f8a06785e7ff75cddb6f4d00d8bf0188f7d5842997",
+          "text": "Due scale affiancate con lo stesso passo: 5 px per intervallo di 1 K o di 1 °C. Le letture 20 e 40 °C corrispondono a 293,15 e 313,15 K, con intervallo 20 K lungo 100 px in entrambe. L’asse kelvin mostra soltanto la porzione 273,15..333,15 K: lo zero assoluto non è nel disegno. Il terzo pannello riguarda altri dati del solo caso 13 e confronta temperature assolute da zero a 1 px/K, non le lunghezze dei primi assi."
+        },
+        {
+          "type": "formula",
+          "text": "d=40-20"
+        },
+        {
+          "type": "formula",
+          "text": " d=20"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta T=20\\,\\mathrm K"
+        },
+        {
+          "type": "text",
+          "text": "293,15 K sarebbe la temperatura assoluta del corpo freddo, non l’intervallo. Sessanta somma le letture e meno venti inverte l’ordine. L’offset riguarda l’origine della scala, non la dimensione del suo passo."
+        }
+      ],
+      "hints": [
+        "Nella differenza i due offset uguali si cancellano.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "293,15 K sarebbe la temperatura assoluta del corpo freddo, non l’intervallo. Sessanta somma le letture e meno venti inverte l’ordine. L’offset riguarda l’origine della scala, non la dimensione del suo passo.",
+        "target": "C3-L01"
+      },
+      "coverage": [
+        "Offset Celsius e kelvin",
+        "Rapporti assoluti e letture numeriche",
+        "Inverse, tarature e vincoli dichiarati"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-temperature-difference-02",
+      "kind": "question",
+      "course": "C3",
+      "section": "Temperature assolute e intervalli",
+      "order": 14802,
+      "title": "L’unità di un intervallo termico",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L01",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "temperature-difference",
+      "difficulty": 1,
+      "prompt": "Si chiede una differenza di temperatura espressa nell’unità SI. Quale unità è adatta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "K",
+          "J",
+          "W",
+          "Pa",
+          "K⁻¹"
+        ],
+        "value": "K"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La grandezza è una variazione di temperatura, la cui unità SI è il kelvin. Non è il calore scambiato: la stessa differenza può corrispondere a energie diverse in corpi con capacità termiche diverse. Un intervallo di un grado Celsius corrisponde a un kelvin."
+        },
+        {
+          "type": "formula",
+          "text": "[\\Delta T]=\\Theta"
+        },
+        {
+          "type": "formula",
+          "text": " [\\Delta T]=\\mathrm K"
+        },
+        {
+          "type": "text",
+          "text": "J misura energia, W potenza e Pa pressione. K⁻¹ compare in coefficienti inversi di temperatura, non in una differenza. Il simbolo del kelvin si scrive senza il segno di grado."
+        }
+      ],
+      "hints": [
+        "Distingui la lettura del termometro dall’energia trasferita.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "J misura energia, W potenza e Pa pressione. K⁻¹ compare in coefficienti inversi di temperatura, non in una differenza. Il simbolo del kelvin si scrive senza il segno di grado.",
+        "target": "C3-L01"
+      },
+      "coverage": [
+        "Offset Celsius e kelvin",
+        "Rapporti assoluti e letture numeriche",
+        "Inverse, tarature e vincoli dichiarati"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-temperature-difference-03",
+      "kind": "question",
+      "course": "C3",
+      "section": "Temperature assolute e intervalli",
+      "order": 14803,
+      "title": "Raddoppiare Celsius non raddoppia la temperatura",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L01",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "temperature-difference",
+      "difficulty": 1,
+      "prompt": "Un corpo passa da 20 °C a 40 °C. Si fornisce T=(t+273,15) K, con t numero della lettura Celsius. Quale affermazione è corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "L’aumento è 20 K; la temperatura assoluta non raddoppia",
+          "La temperatura assoluta raddoppia",
+          "L’aumento è 293,15 K",
+          "La temperatura assoluta passa da 20 a 40 K",
+          "L’aumento è 273,15 K"
+        ],
+        "value": "L’aumento è 20 K; la temperatura assoluta non raddoppia"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le temperature assolute sono 293,15 K e 313,15 K. La differenza è venti K, ma la seconda non è il doppio della prima: il doppio sarebbe 586,30 K. Il rapporto quaranta su venti confronta soltanto i numeri Celsius, che hanno un’origine spostata rispetto allo zero assoluto."
+        },
+        {
+          "type": "formula",
+          "text": "T_i=293{,}15\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " T_f=313{,}15\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " T_f-T_i=20\\,\\mathrm K"
+        },
+        {
+          "type": "text",
+          "text": "293,15 K è la prima temperatura, non il suo aumento. 273,15 K è l’offset delle scale. Per rapporti termodinamici servono temperature assolute; per differenze l’offset si cancella."
+        }
+      ],
+      "hints": [
+        "Converti prima entrambe le letture se vuoi parlare di un rapporto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "293,15 K è la prima temperatura, non il suo aumento. 273,15 K è l’offset delle scale. Per rapporti termodinamici servono temperature assolute; per differenze l’offset si cancella.",
+        "target": "C3-L01"
+      },
+      "coverage": [
+        "Offset Celsius e kelvin",
+        "Rapporti assoluti e letture numeriche",
+        "Inverse, tarature e vincoli dichiarati"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-temperature-difference-04",
+      "kind": "question",
+      "course": "C3",
+      "section": "Temperature assolute e intervalli",
+      "order": 14804,
+      "title": "Scaldare soltanto il corpo caldo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L01",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "temperature-difference",
+      "difficulty": 1,
+      "prompt": "Due corpi in stati termici definiti hanno letture Celsius t_c e t_f, con t_c>t_f>0: qui t_c,t_f indicano i numeri letti in °C. Le temperature assolute corrispondenti sono T_c=(t_c+273,15) K e T_f=(t_f+273,15) K. L’intervallo positivo è ΔT=T_c−T_f=d K, con numero d=t_c−t_f, perché gli offset si cancellano. Non si aggiunge 273,15 a una differenza. Questo intervallo non è un rapporto fra temperature assolute. Il corpo caldo passa da 40 a 60 °C; il freddo resta a 20 °C. Come cambia ΔT?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 20 a 40 K",
+          "Da 20 a 30 K",
+          "Da 20 a 60 K",
+          "Resta 20 K",
+          "Da 20 a 10 K"
+        ],
+        "value": "Da 20 a 40 K"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’intervallo iniziale è quaranta meno venti, venti K. Quello finale è sessanta meno venti, quaranta K. In questo confronto l’intervallo raddoppia, benché il numero Celsius del corpo caldo cresca soltanto di tre mezzi. Il corpo freddo rimane alla stessa temperatura."
+        },
+        {
+          "type": "formula",
+          "text": "d_A=40-20"
+        },
+        {
+          "type": "formula",
+          "text": " d_A=20"
+        },
+        {
+          "type": "formula",
+          "text": " d_B=60-20"
+        },
+        {
+          "type": "formula",
+          "text": " d_B=40"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta T_B=40\\,\\mathrm K"
+        },
+        {
+          "type": "text",
+          "text": "Trenta applica tre mezzi all’intervallo invece di rifare la sottrazione; sessanta copia la lettura calda. Dieci inverte l’effetto e venti ignora il cambiamento."
+        }
+      ],
+      "hints": [
+        "Sottrai la stessa lettura fredda in entrambe le prove.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Trenta applica tre mezzi all’intervallo invece di rifare la sottrazione; sessanta copia la lettura calda. Dieci inverte l’effetto e venti ignora il cambiamento.",
+        "target": "C3-L01"
+      },
+      "coverage": [
+        "Offset Celsius e kelvin",
+        "Rapporti assoluti e letture numeriche",
+        "Inverse, tarature e vincoli dichiarati"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-temperature-difference-05",
+      "kind": "question",
+      "course": "C3",
+      "section": "Temperature assolute e intervalli",
+      "order": 14805,
+      "title": "Ricostruire la lettura più calda",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L01",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "temperature-difference",
+      "difficulty": 2,
+      "prompt": "Due corpi in stati termici definiti hanno letture Celsius t_c e t_f, con t_c>t_f>0: qui t_c,t_f indicano i numeri letti in °C. Le temperature assolute corrispondenti sono T_c=(t_c+273,15) K e T_f=(t_f+273,15) K. L’intervallo positivo è ΔT=T_c−T_f=d K, con numero d=t_c−t_f, perché gli offset si cancellano. Non si aggiunge 273,15 a una differenza. Questo intervallo non è un rapporto fra temperature assolute. ΔT=20 K e il corpo freddo è a 20 °C. Quanto segna il termometro del corpo caldo in °C?",
+      "answer": {
+        "type": "numeric",
+        "value": 40,
+        "unit": "°C",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il numero d dell’intervallo è venti. Alla lettura fredda venti si aggiunge un intervallo di venti gradi Celsius, ottenendo quaranta °C. La conversione assoluta serve solo come controllo: 293,15 K più venti K dà 313,15 K, cioè quaranta °C."
+        },
+        {
+          "type": "formula",
+          "text": "t_c=t_f+d"
+        },
+        {
+          "type": "formula",
+          "text": " t_c=20+20"
+        },
+        {
+          "type": "formula",
+          "text": " t_c=40"
+        },
+        {
+          "type": "text",
+          "text": "Zero sottrae l’intervallo nel verso sbagliato, venti copia la sola lettura fredda. 313,15 è il valore in kelvin e non può essere etichettato °C. Nel calcolo t_c è il numero della lettura Celsius."
+        }
+      ],
+      "hints": [
+        "Rimetti l’intervallo tolto nella differenza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Zero sottrae l’intervallo nel verso sbagliato, venti copia la sola lettura fredda. 313,15 è il valore in kelvin e non può essere etichettato °C. Nel calcolo t_c è il numero della lettura Celsius.",
+        "target": "C3-L01"
+      },
+      "coverage": [
+        "Offset Celsius e kelvin",
+        "Rapporti assoluti e letture numeriche",
+        "Inverse, tarature e vincoli dichiarati"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-temperature-difference-06",
+      "kind": "question",
+      "course": "C3",
+      "section": "Temperature assolute e intervalli",
+      "order": 14806,
+      "title": "Trovare la lettura del corpo freddo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L01",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "temperature-difference",
+      "difficulty": 2,
+      "prompt": "Due corpi in stati termici definiti hanno letture Celsius t_c e t_f, con t_c>t_f>0: qui t_c,t_f indicano i numeri letti in °C. Le temperature assolute corrispondenti sono T_c=(t_c+273,15) K e T_f=(t_f+273,15) K. L’intervallo positivo è ΔT=T_c−T_f=d K, con numero d=t_c−t_f, perché gli offset si cancellano. Non si aggiunge 273,15 a una differenza. Questo intervallo non è un rapporto fra temperature assolute. ΔT=20 K e il corpo caldo è a 40 °C. Quanto segna il termometro del corpo freddo in °C?",
+      "answer": {
+        "type": "numeric",
+        "value": 20,
+        "unit": "°C",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Isoliamo la lettura fredda sottraendo l’intervallo al numero caldo: quaranta meno venti dà venti °C. Il risultato conserva l’ordine delle temperature e rientra nel dominio di questa prova. L’offset non va sottratto una seconda volta."
+        },
+        {
+          "type": "formula",
+          "text": "t_f=t_c-d"
+        },
+        {
+          "type": "formula",
+          "text": " t_f=40-20"
+        },
+        {
+          "type": "formula",
+          "text": " t_f=20"
+        },
+        {
+          "type": "text",
+          "text": "Sessanta aggiunge invece di sottrarre e supererebbe il corpo detto caldo. Quaranta ignora l’intervallo. La positività Celsius è un dominio scelto per questi dati, non un divieto fisico delle letture Celsius negative."
+        }
+      ],
+      "hints": [
+        "Il corpo freddo è sotto quello caldo di un intervallo noto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sessanta aggiunge invece di sottrarre e supererebbe il corpo detto caldo. Quaranta ignora l’intervallo. La positività Celsius è un dominio scelto per questi dati, non un divieto fisico delle letture Celsius negative.",
+        "target": "C3-L01"
+      },
+      "coverage": [
+        "Offset Celsius e kelvin",
+        "Rapporti assoluti e letture numeriche",
+        "Inverse, tarature e vincoli dichiarati"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-temperature-difference-07",
+      "kind": "question",
+      "course": "C3",
+      "section": "Temperature assolute e intervalli",
+      "order": 14807,
+      "title": "Il corpo freddo si raffredda",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L01",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "temperature-difference",
+      "difficulty": 2,
+      "prompt": "Due corpi in stati termici definiti hanno letture Celsius t_c e t_f, con t_c>t_f>0: qui t_c,t_f indicano i numeri letti in °C. Le temperature assolute corrispondenti sono T_c=(t_c+273,15) K e T_f=(t_f+273,15) K. L’intervallo positivo è ΔT=T_c−T_f=d K, con numero d=t_c−t_f, perché gli offset si cancellano. Non si aggiunge 273,15 a una differenza. Questo intervallo non è un rapporto fra temperature assolute. A usa 40 e 20 °C. B mantiene 40 °C e porta il corpo freddo a 10 °C. Quanto vale ΔT_B/ΔT_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/2",
+          "1/2",
+          "2/3",
+          "2",
+          "1"
+        ],
+        "value": "3/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Gli intervalli sono venti K e trenta K. Il rapporto è trenta su venti, tre mezzi. È un rapporto fra differenze, per le quali l’offset è già cancellato; non è il rapporto fra le temperature assolute dei corpi freddi."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta T_A=20\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta T_B=30\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta T_B/\\Delta T_A=\\frac32"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo segue solo il numero Celsius freddo; due terzi capovolge gli intervalli. Due ignora la lettura fredda finale e uno ignora la variazione. La differenza cresce quando la temperatura fredda diminuisce."
+        }
+      ],
+      "hints": [
+        "Ricava prima i due intervalli in kelvin.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo segue solo il numero Celsius freddo; due terzi capovolge gli intervalli. Due ignora la lettura fredda finale e uno ignora la variazione. La differenza cresce quando la temperatura fredda diminuisce.",
+        "target": "C3-L01"
+      },
+      "coverage": [
+        "Offset Celsius e kelvin",
+        "Rapporti assoluti e letture numeriche",
+        "Inverse, tarature e vincoli dichiarati"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-temperature-difference-08",
+      "kind": "question",
+      "course": "C3",
+      "section": "Temperature assolute e intervalli",
+      "order": 14808,
+      "title": "Scarto di un intervallo sovrastimato",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L01",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "temperature-difference",
+      "difficulty": 2,
+      "prompt": "Due corpi in stati termici definiti hanno letture Celsius t_c e t_f, con t_c>t_f>0: qui t_c,t_f indicano i numeri letti in °C. Le temperature assolute corrispondenti sono T_c=(t_c+273,15) K e T_f=(t_f+273,15) K. L’intervallo positivo è ΔT=T_c−T_f=d K, con numero d=t_c−t_f, perché gli offset si cancellano. Non si aggiunge 273,15 a una differenza. Questo intervallo non è un rapporto fra temperature assolute. Per 40 e 20 °C si propone ΔT=40 K. Quanto vale proposta meno corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "20 K",
+          "−20 K",
+          "40 K",
+          "0 K",
+          "60 K"
+        ],
+        "value": "20 K"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’intervallo corretto vale venti K. La proposta quaranta meno il corretto venti dà uno scarto positivo di venti K. L’errore è fra due intervalli della stessa grandezza; non deve subire conversioni di origine della scala."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta T=20\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " e=(40-20)\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " e=20\\,\\mathrm K"
+        },
+        {
+          "type": "text",
+          "text": "Meno venti cambia l’ordine, quaranta conserva la proposta e sessanta somma. Zero accetta una differenza raddoppiata. Aggiungere 273,15 allo scarto non ha giustificazione."
+        }
+      ],
+      "hints": [
+        "Confronta gli intervalli, rispettando il segno richiesto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Meno venti cambia l’ordine, quaranta conserva la proposta e sessanta somma. Zero accetta una differenza raddoppiata. Aggiungere 273,15 allo scarto non ha giustificazione.",
+        "target": "C3-L01"
+      },
+      "coverage": [
+        "Offset Celsius e kelvin",
+        "Rapporti assoluti e letture numeriche",
+        "Inverse, tarature e vincoli dichiarati"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-temperature-difference-09",
+      "kind": "question",
+      "course": "C3",
+      "section": "Temperature assolute e intervalli",
+      "order": 14809,
+      "title": "L’inversa espressa con letture numeriche",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L01",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "temperature-difference",
+      "difficulty": 2,
+      "prompt": "Due corpi in stati termici definiti hanno letture Celsius t_c e t_f, con t_c>t_f>0: qui t_c,t_f indicano i numeri letti in °C. Le temperature assolute corrispondenti sono T_c=(t_c+273,15) K e T_f=(t_f+273,15) K. L’intervallo positivo è ΔT=T_c−T_f=d K, con numero d=t_c−t_f, perché gli offset si cancellano. Non si aggiunge 273,15 a una differenza. Questo intervallo non è un rapporto fra temperature assolute. Con d=ΔT/(1 K), quale relazione isola il numero della lettura Celsius t_c?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "t_c = t_f + d",
+          "t_c = d − t_f",
+          "t_c = t_f − d",
+          "t_c = d t_f",
+          "t_c = d / t_f"
+        ],
+        "value": "t_c = t_f + d"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dalla sottrazione d=t_c−t_f aggiungiamo t_f a entrambi i membri. Risulta t_c=t_f+d. I simboli qui sono numeri di letture nelle scale dichiarate, perciò la formula non mescola una temperatura Celsius assoluta con un offset Kelvin non convertito."
+        },
+        {
+          "type": "formula",
+          "text": "d=t_c-t_f"
+        },
+        {
+          "type": "formula",
+          "text": " t_c=t_f+d"
+        },
+        {
+          "type": "text",
+          "text": "t_f−d sottrae invece di aggiungere l’intervallo alla lettura fredda e renderebbe il corpo detto caldo più freddo di quello noto. d−t_f cambia l’algebra e può essere negativo. Prodotto e quoziente non invertono un bilancio additivo."
+        }
+      ],
+      "hints": [
+        "Annulla la sottrazione di t_f con un’addizione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "t_f−d sottrae invece di aggiungere l’intervallo alla lettura fredda e renderebbe il corpo detto caldo più freddo di quello noto. d−t_f cambia l’algebra e può essere negativo. Prodotto e quoziente non invertono un bilancio additivo.",
+        "target": "C3-L01"
+      },
+      "coverage": [
+        "Offset Celsius e kelvin",
+        "Rapporti assoluti e letture numeriche",
+        "Inverse, tarature e vincoli dichiarati"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-temperature-difference-10",
+      "kind": "question",
+      "course": "C3",
+      "section": "Temperature assolute e intervalli",
+      "order": 14810,
+      "title": "Fattori sulle temperature assolute",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L01",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "temperature-difference",
+      "difficulty": 2,
+      "prompt": "In questo confronto si usano direttamente temperature assolute T_c>T_f>0 in K. A ha intervallo ΔT_A=T_c−T_f. B impone T_c,B=κ₁T_c e T_f,B=κ₂T_f, con fattori positivi e κ₁T_c>κ₂T_f. Quale espressione dà ΔT_B/ΔT_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "(κ₁ T_c − κ₂ T_f) / (T_c − T_f)",
+          "κ₁ − κ₂",
+          "κ₁ / κ₂",
+          "κ₁ κ₂",
+          "(κ₁ T_c + κ₂ T_f) / (T_c + T_f)"
+        ],
+        "value": "(κ₁ T_c − κ₂ T_f) / (T_c − T_f)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I fattori scalano qui temperature assolute in kelvin. Applichiamoli prima di calcolare la nuova differenza e dividiamo per la differenza iniziale. Non si attribuiscono gli stessi fattori ai numeri Celsius, perché la conversione di scala contiene un offset."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta T_B=\\kappa_1T_c-\\kappa_2T_f"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{\\Delta T_B}{\\Delta T_A}=\\frac{\\kappa_1T_c-\\kappa_2T_f}{T_c-T_f}"
+        },
+        {
+          "type": "text",
+          "text": "La differenza dei fattori darebbe zero per prove identiche; prodotto e quoziente perdono i pesi delle temperature. Il rapporto delle somme è un’altra grandezza. Il dominio impedisce un intervallo finale negativo."
+        }
+      ],
+      "hints": [
+        "Sostituisci nelle due differenze usando la stessa scala assoluta.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La differenza dei fattori darebbe zero per prove identiche; prodotto e quoziente perdono i pesi delle temperature. Il rapporto delle somme è un’altra grandezza. Il dominio impedisce un intervallo finale negativo.",
+        "target": "C3-L01"
+      },
+      "coverage": [
+        "Offset Celsius e kelvin",
+        "Rapporti assoluti e letture numeriche",
+        "Inverse, tarature e vincoli dichiarati"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-temperature-difference-11",
+      "kind": "question",
+      "course": "C3",
+      "section": "Temperature assolute e intervalli",
+      "order": 14811,
+      "title": "Cambiano entrambe le letture",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L01",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "temperature-difference",
+      "difficulty": 2,
+      "prompt": "Due corpi in stati termici definiti hanno letture Celsius t_c e t_f, con t_c>t_f>0: qui t_c,t_f indicano i numeri letti in °C. Le temperature assolute corrispondenti sono T_c=(t_c+273,15) K e T_f=(t_f+273,15) K. L’intervallo positivo è ΔT=T_c−T_f=d K, con numero d=t_c−t_f, perché gli offset si cancellano. Non si aggiunge 273,15 a una differenza. Questo intervallo non è un rapporto fra temperature assolute. A ha 40 e 20 °C, B ha 60 e 10 °C. Quanto vale ΔT_B/ΔT_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "5/2",
+          "2/5",
+          "3/2",
+          "1/2",
+          "5"
+        ],
+        "value": "5/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A dà venti K e B sessanta meno dieci, cinquanta K. Cinquanta diviso venti si semplifica a cinque mezzi. Il rapporto riguarda gli intervalli: i fattori delle singole letture Celsius non si trasferiscono direttamente alla loro differenza."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta T_A=20\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta T_B=50\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta T_B/\\Delta T_A=\\frac52"
+        },
+        {
+          "type": "text",
+          "text": "Due quinti capovolge il rapporto, tre mezzi segue soltanto la lettura calda e un mezzo quella fredda. Cinque omette il fattore due del denominatore venti."
+        }
+      ],
+      "hints": [
+        "Sottrai in ciascuna prova prima di dividere.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due quinti capovolge il rapporto, tre mezzi segue soltanto la lettura calda e un mezzo quella fredda. Cinque omette il fattore due del denominatore venti.",
+        "target": "C3-L01"
+      },
+      "coverage": [
+        "Offset Celsius e kelvin",
+        "Rapporti assoluti e letture numeriche",
+        "Inverse, tarature e vincoli dichiarati"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-temperature-difference-12",
+      "kind": "question",
+      "course": "C3",
+      "section": "Temperature assolute e intervalli",
+      "order": 14812,
+      "title": "Media di intervalli termici",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L01",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "temperature-difference",
+      "difficulty": 2,
+      "prompt": "Due corpi in stati termici definiti hanno letture Celsius t_c e t_f, con t_c>t_f>0: qui t_c,t_f indicano i numeri letti in °C. Le temperature assolute corrispondenti sono T_c=(t_c+273,15) K e T_f=(t_f+273,15) K. L’intervallo positivo è ΔT=T_c−T_f=d K, con numero d=t_c−t_f, perché gli offset si cancellano. Non si aggiunge 273,15 a una differenza. Questo intervallo non è un rapporto fra temperature assolute. A ha 40 e 20 °C, B ha 60 e 10 °C. Qual è la media aritmetica delle due ΔT con uguale peso statistico?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "35 K",
+          "70 K",
+          "15 K",
+          "20 K",
+          "50 K"
+        ],
+        "value": "35 K"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Gli intervalli venti e cinquanta K hanno semisomma trentacinque K. Qui le letture medie cinquanta e quindici °C restituiscono lo stesso intervallo: la differenza è lineare nei numeri della scala e i pesi sono uguali. Non si sta prevedendo la temperatura di equilibrio di due corpi messi a contatto."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline{\\Delta T}=\\frac{20+50}{2}\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline{\\Delta T}=35\\,\\mathrm K"
+        },
+        {
+          "type": "text",
+          "text": "Settanta è la somma, quindici la semidifferenza e venti o cinquanta copiano una prova. La coincidenza con l’intervallo delle letture medie non dipende dalle capacità termiche dei corpi: si tratta di una media statistica di dati."
+        }
+      ],
+      "hints": [
+        "Media i due intervalli senza introdurre un processo di scambio di calore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Settanta è la somma, quindici la semidifferenza e venti o cinquanta copiano una prova. La coincidenza con l’intervallo delle letture medie non dipende dalle capacità termiche dei corpi: si tratta di una media statistica di dati.",
+        "target": "C3-L01"
+      },
+      "coverage": [
+        "Offset Celsius e kelvin",
+        "Rapporti assoluti e letture numeriche",
+        "Inverse, tarature e vincoli dichiarati"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-temperature-difference-13",
+      "kind": "question",
+      "course": "C3",
+      "section": "Temperature assolute e intervalli",
+      "order": 14813,
+      "title": "Un bersaglio e un rapporto assoluto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L01",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "temperature-difference",
+      "difficulty": 3,
+      "prompt": "A ha corpo caldo a 46,85 °C e freddo a 26,85 °C. B impone il corpo caldo a 66,85 °C e vuole un intervallo ΔT_B=(5/2)ΔT_A. Si fornisce T=(t+273,15) K. Quanto vale T_f,B/T_f,A fra le temperature assolute dei corpi freddi?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "29/30",
+          "16,85/26,85",
+          "30/29",
+          "5/2",
+          "3/2"
+        ],
+        "value": "29/30"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’intervallo A vale venti K, quindi il target B è cinquanta K. La lettura fredda B è 66,85−50=16,85 °C. Convertendo i due corpi freddi otteniamo T_f,A=300 K e T_f,B=290 K: il rapporto è ventinove trentesimi. La scelta di questi dati rende esatta e breve la conversione, senza approssimazioni."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/218413e8d4967182b92870f8a06785e7ff75cddb6f4d00d8bf0188f7d5842997",
+          "text": "Solo il terzo pannello è relativo a questi dati: dopo il target gli stati freddi valgono 300 e 290 K, barre da zero di 300 e 290 px alla stessa scala 1 px/K. Il rapporto delle temperature assolute è 29/30. Non si divide la coppia delle letture Celsius; i primi pannelli illustrano invece un intervallo, con altra scala."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta T_B=50\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " t_{f,B}=16{,}85"
+        },
+        {
+          "type": "formula",
+          "text": " T_{f,A}=300\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " T_{f,B}=290\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " T_{f,B}/T_{f,A}=\\frac{29}{30}"
+        },
+        {
+          "type": "text",
+          "text": "16,85/26,85 confronta numeri Celsius e non temperature assolute. Trenta ventinovesimi inverte le prove; cinque mezzi copia il target sugli intervalli. Tre mezzi non considera né la differenza richiesta né la conversione."
+        }
+      ],
+      "hints": [
+        "Raggiungi prima l’intervallo target, poi converti entrambe le letture fredde.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "16,85/26,85 confronta numeri Celsius e non temperature assolute. Trenta ventinovesimi inverte le prove; cinque mezzi copia il target sugli intervalli. Tre mezzi non considera né la differenza richiesta né la conversione.",
+        "target": "C3-L01"
+      },
+      "coverage": [
+        "Offset Celsius e kelvin",
+        "Rapporti assoluti e letture numeriche",
+        "Inverse, tarature e vincoli dichiarati"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-temperature-difference-14",
+      "kind": "question",
+      "course": "C3",
+      "section": "Temperature assolute e intervalli",
+      "order": 14814,
+      "title": "Tarare un display dell’intervallo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L01",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "temperature-difference",
+      "difficulty": 3,
+      "prompt": "Due corpi in stati termici definiti hanno letture Celsius t_c e t_f, con t_c>t_f>0: qui t_c,t_f indicano i numeri letti in °C. Le temperature assolute corrispondenti sono T_c=(t_c+273,15) K e T_f=(t_f+273,15) K. L’intervallo positivo è ΔT=T_c−T_f=d K, con numero d=t_c−t_f, perché gli offset si cancellano. Non si aggiunge 273,15 a una differenza. Questo intervallo non è un rapporto fra temperature assolute. Un display continuo adimensionale segue S=qΔT, q>0. A con 40 e 20 °C legge S=60. B legge S=150 e ha corpo freddo a 10 °C. Qual è la lettura calda B in °C?",
+      "answer": {
+        "type": "numeric",
+        "value": 60,
+        "unit": "°C",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’intervallo di riferimento venti K dà q=3 K⁻¹. La nuova lettura rappresenta centocinquanta diviso tre, cinquanta K. La lettura calda è quindi dieci più cinquanta, sessanta °C. Il display non indica direttamente una temperatura assoluta del corpo caldo."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{K^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta T_B=50\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " t_{c,B}=10+50"
+        },
+        {
+          "type": "formula",
+          "text": " t_{c,B}=60"
+        },
+        {
+          "type": "text",
+          "text": "Centosessanta aggiunge la lettura grezza a quella fredda senza rimuovere il guadagno. Cinquanta copia l’intervallo e dieci il corpo freddo. L’offset Celsius non entra nella taratura di un intervallo."
+        }
+      ],
+      "hints": [
+        "Decodifica ΔT prima di ricostruire il termometro caldo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Centosessanta aggiunge la lettura grezza a quella fredda senza rimuovere il guadagno. Cinquanta copia l’intervallo e dieci il corpo freddo. L’offset Celsius non entra nella taratura di un intervallo.",
+        "target": "C3-L01"
+      },
+      "coverage": [
+        "Offset Celsius e kelvin",
+        "Rapporti assoluti e letture numeriche",
+        "Inverse, tarature e vincoli dichiarati"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-temperature-difference-15",
+      "kind": "question",
+      "course": "C3",
+      "section": "Temperature assolute e intervalli",
+      "order": 14815,
+      "title": "Offset strumentale e differenza di temperatura",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L01",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "temperature-difference",
+      "difficulty": 3,
+      "prompt": "Due corpi in stati termici definiti hanno letture Celsius t_c e t_f, con t_c>t_f>0: qui t_c,t_f indicano i numeri letti in °C. Le temperature assolute corrispondenti sono T_c=(t_c+273,15) K e T_f=(t_f+273,15) K. L’intervallo positivo è ΔT=T_c−T_f=d K, con numero d=t_c−t_f, perché gli offset si cancellano. Non si aggiunge 273,15 a una differenza. Questo intervallo non è un rapporto fra temperature assolute. Il display continuo segue S=qΔT+b, con q>0 e q,b costanti. A: 40 e 20 °C,S=41. B: 60 e 10 °C,S=101. C: corpo freddo a 20 °C,S=81. Qual è la lettura calda C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "60 °C",
+          "40 °C",
+          "80 °C",
+          "61 °C",
+          "20 °C"
+        ],
+        "value": "60 °C"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le due tarature hanno intervalli venti e cinquanta K. La differenza sessanta delle letture divisa per trenta K dà q=2 K⁻¹; poi b=1. C ha intervallo (81−1)/2=40 K, quindi la lettura calda è venti più quaranta, sessanta °C."
+        },
+        {
+          "type": "formula",
+          "text": "q=2\\,\\mathrm{K^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta T_C=40\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " t_{c,C}=60"
+        },
+        {
+          "type": "text",
+          "text": "Quaranta è l’intervallo, ottanta copia S−b senza invertire il guadagno né ricostruire la lettura calda, e sessantuno aggiunge indebitamente b alla temperatura finale. Venti ignora l’intervallo. Il risultato sessanta ricostruisce S=2(60−20)+1=81."
+        }
+      ],
+      "hints": [
+        "Usa le differenze per q, poi rimuovi b prima di dividere.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quaranta è l’intervallo, ottanta copia S−b senza invertire il guadagno né ricostruire la lettura calda, e sessantuno aggiunge indebitamente b alla temperatura finale. Venti ignora l’intervallo. Il risultato sessanta ricostruisce S=2(60−20)+1=81.",
+        "target": "C3-L01"
+      },
+      "coverage": [
+        "Offset Celsius e kelvin",
+        "Rapporti assoluti e letture numeriche",
+        "Inverse, tarature e vincoli dichiarati"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-temperature-difference-16",
+      "kind": "question",
+      "course": "C3",
+      "section": "Temperature assolute e intervalli",
+      "order": 14816,
+      "title": "Un vincolo sui numeri Celsius",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L01",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "temperature-difference",
+      "difficulty": 3,
+      "prompt": "Due corpi in stati termici definiti hanno letture Celsius t_c e t_f, con t_c>t_f>0: qui t_c,t_f indicano i numeri letti in °C. Le temperature assolute corrispondenti sono T_c=(t_c+273,15) K e T_f=(t_f+273,15) K. L’intervallo positivo è ΔT=T_c−T_f=d K, con numero d=t_c−t_f, perché gli offset si cancellano. Non si aggiunge 273,15 a una differenza. Questo intervallo non è un rapporto fra temperature assolute. Il vincolo fra prove è t_c=2t_f e riguarda esplicitamente i numeri delle letture Celsius, non il rapporto delle temperature assolute. Si misura ΔT=20 K. Quanto vale la lettura fredda in °C?",
+      "answer": {
+        "type": "numeric",
+        "value": 20,
+        "unit": "°C",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituiamo il vincolo nella differenza numerica: d=2t_f−t_f=t_f. Poiché d=20, la lettura fredda è venti °C e quella calda quaranta °C. In kelvin sono 293,15 e 313,15: il vincolo non afferma che una temperatura assoluta sia doppia dell’altra."
+        },
+        {
+          "type": "formula",
+          "text": "d=2t_f-t_f"
+        },
+        {
+          "type": "formula",
+          "text": " d=t_f"
+        },
+        {
+          "type": "formula",
+          "text": " t_f=20"
+        },
+        {
+          "type": "formula",
+          "text": " t_c=40"
+        },
+        {
+          "type": "text",
+          "text": "Dieci dimezza l’intervallo ignorando il termine sottratto; quaranta copia la lettura calda e zero viola la misura. La soluzione è unica nel dominio assegnato; il coefficiente due è puro perché collega due numeri della medesima scala dichiarata."
+        }
+      ],
+      "hints": [
+        "Sostituisci il vincolo nella differenza, senza trasformarlo in una legge universale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Dieci dimezza l’intervallo ignorando il termine sottratto; quaranta copia la lettura calda e zero viola la misura. La soluzione è unica nel dominio assegnato; il coefficiente due è puro perché collega due numeri della medesima scala dichiarata.",
+        "target": "C3-L01"
+      },
+      "coverage": [
+        "Offset Celsius e kelvin",
+        "Rapporti assoluti e letture numeriche",
+        "Inverse, tarature e vincoli dichiarati"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "218413e8d4967182b92870f8a06785e7ff75cddb6f4d00d8bf0188f7d5842997",
+      "name": "temperature-difference-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTUzMCIgdmlld0JveD0iMCAwIDY0MCAxNTMwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+SW50ZXJ2YWxsaSB1Z3VhbGksIG9yaWdpbmkgZGl2ZXJzZTwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPlNjYWxlIENlbHNpdXMgZSBrZWx2aW4gYWxsaW5lYXRlOiB2ZW50aSBlIHF1YXJhbnRhIGdyYWRpIENlbHNpdXMgY29ycmlzcG9uZG9ubyBhIDI5MywxNSBlIDMxMywxNSBrZWx2aW4uIEzigJlpbnRlcnZhbGxvIMOoIDIwIGtlbHZpbi4gQ2FzbyBkaXN0aW50byBjb24gYmFycmUgZGkgdGVtcGVyYXR1cmUgYXNzb2x1dGUgMzAwIGUgMjkwIGtlbHZpbi48L2Rlc2M+PHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxNTMwIiByeD0iMjQiIGZpbGw9IiNmNWZhZmYiLz48ZyBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzE2MzA0NyI+PHRleHQgeD0iMzUiIHk9IjUwIiBmb250LXNpemU9IjI2IiBmb250LXdlaWdodD0iYm9sZCI+MSDCtyBMbyBzdGVzc28gcGFzc28sIGR1ZSBvcmlnaW5pPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSIxMDAiPjUgcHggcGVyIGludGVydmFsbG8gZGkgMSBLIG8gMSDCsEM8L3RleHQ+PHRleHQgeD0iODAiIHk9IjE2MCI+dCAowrBDKTwvdGV4dD48dGV4dCB4PSIzNDAiIHk9IjE2MCI+VCAoSyk8L3RleHQ+PHBhdGggZD0iTTEzMCA1MDBWMjAwTTM5MCA1MDBWMjAwIiBzdHJva2U9IiMxNjMwNDciIHN0cm9rZS13aWR0aD0iMyIvPjxnIHN0cm9rZT0iIzhhYTViNSI+PHBhdGggZD0iTTEyMCA1MDBIMTQwTTEyMCA0MDBIMTQwTTEyMCAzMDBIMTQwTTEyMCAyMDBIMTQwIi8+PHBhdGggZD0iTTM4MCA1MDBINDAwTTM4MCA0MDBINDAwTTM4MCAzMDBINDAwTTM4MCAyMDBINDAwIi8+PC9nPjx0ZXh0IHg9Ijc3IiB5PSI1MDciPjA8L3RleHQ+PHRleHQgeD0iNjciIHk9IjQwNyI+MjA8L3RleHQ+PHRleHQgeD0iNjciIHk9IjMwNyI+NDA8L3RleHQ+PHRleHQgeD0iNjciIHk9IjIwNyI+NjA8L3RleHQ+PHRleHQgeD0iNDE1IiB5PSI1MDciPjI3MywxNTwvdGV4dD48dGV4dCB4PSI0MTUiIHk9IjQwNyI+MjkzLDE1PC90ZXh0Pjx0ZXh0IHg9IjQxNSIgeT0iMzA3Ij4zMTMsMTU8L3RleHQ+PHRleHQgeD0iNDE1IiB5PSIyMDciPjMzMywxNTwvdGV4dD48cGF0aCBkPSJNMTQwIDQwMEgzODBNMTQwIDMwMEgzODAiIHN0cm9rZT0iI2JjNTMxNSIgc3Ryb2tlLWRhc2hhcnJheT0iNSA1Ii8+PHBhdGggZD0iTTI1MCA0MDBWMzAwTTI0MCA0MDBIMjYwTTI0MCAzMDBIMjYwIiBzdHJva2U9IiMxOTYwODIiIHN0cm9rZS13aWR0aD0iNCIvPjx0ZXh0IHg9IjI2OSIgeT0iMzU4Ij4yMCBLPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSI1NjUiPkxvIHplcm8gYXNzb2x1dG8gw6ggZnVvcmkgZGEgcXVlc3RvIHJpcXVhZHJvLjwvdGV4dD48cGF0aCBkPSJNMzUgNjEwSDYwNSIgc3Ryb2tlPSIjYjVjYmQ5Ii8+PHRleHQgeD0iMzUiIHk9IjY2NSIgZm9udC1zaXplPSIyNiIgZm9udC13ZWlnaHQ9ImJvbGQiPjIgwrcgTOKAmW9mZnNldCBzaSBjYW5jZWxsYTwvdGV4dD48dGV4dCB4PSIzNSIgeT0iNzI1Ij5UX2MgPSAoNDAgKyAyNzMsMTUpIEsgPSAzMTMsMTUgSzwvdGV4dD48dGV4dCB4PSIzNSIgeT0iNzgwIj5UX2YgPSAoMjAgKyAyNzMsMTUpIEsgPSAyOTMsMTUgSzwvdGV4dD48dGV4dCB4PSIzNSIgeT0iODQ1Ij7OlFQgPSAoMzEzLDE1IOKIkiAyOTMsMTUpIEsgPSAyMCBLPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSI5MDUiPkxhIGRpZmZlcmVuemEgbm9uIGRpdmVudGEgMjkzLDE1IEsuPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSI5NjAiPk5vbiBjb25mb25kZXJlIGludGVydmFsbG8gZSByYXBwb3J0by48L3RleHQ+PHBhdGggZD0iTTM1IDEwMTBINjA1IiBzdHJva2U9IiNiNWNiZDkiLz48dGV4dCB4PSIzNSIgeT0iMTA2NSIgZm9udC1zaXplPSIyNiIgZm9udC13ZWlnaHQ9ImJvbGQiPjMgwrcgQWx0cm8gY2FzbzogcmFwcG9ydG8gYXNzb2x1dG88L3RleHQ+PHRleHQgeD0iMzUiIHk9IjExMTUiPlNvbG8gMTMgwrcgYmFycmUgZGEgemVybywgc2NhbGEgMSBweC9LPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSIxMTc1Ij5BOiBUX2YgPSAzMDAgSzwvdGV4dD48cmVjdCB4PSIxMDAiIHk9IjEyMDUiIHdpZHRoPSIzMDAiIGhlaWdodD0iMzgiIGZpbGw9IiMxOTYwODIiLz48dGV4dCB4PSIzNSIgeT0iMTMxMCI+QjogVF9mID0gMjkwIEs8L3RleHQ+PHJlY3QgeD0iMTAwIiB5PSIxMzQwIiB3aWR0aD0iMjkwIiBoZWlnaHQ9IjM4IiBmaWxsPSIjYmM1MzE1Ii8+PHRleHQgeD0iMzUiIHk9IjE0NDAiPlRfZixCL1RfZixBID0gMjkwLzMwMCA9IDI5LzMwPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSIxNDkwIj5RdWkgc2kgZGl2aWRvbm8ga2VsdmluLCBub24gbnVtZXJpIENlbHNpdXMuPC90ZXh0PjwvZz48L3N2Zz4K"
+    }
+  ]
+}

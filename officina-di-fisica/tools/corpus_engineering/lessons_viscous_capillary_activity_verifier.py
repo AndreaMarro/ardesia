@@ -38,7 +38,7 @@ REVISION_IDS = {'C2-L007'}
 # Frozen only after complete independent reading of the final 28-block edition,
 # exact worked example/area integral, and byte-identical uploaded historical SVG.
 REVIEWED_REVISIONS = {
-    'C2-L007': '9c1c72d008f9c87d70e4bdcd7646ee24398e6bc6089bdab210d5c83ce7e0f05e',
+    'C2-L007': 'c776004d1b58a14fd4561307805ff2ae332449133cbddd36c619d89dc1af7aa2',
 }
 
 

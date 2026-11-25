@@ -65,7 +65,7 @@ TASKS=[
 ('Un vincolo che rende cubica la portata',P+'Fra prove si impone R=cQ, con c=2/3 kPa·s²/L². Si misura P_d=18 W. Quanto vale Q>0 in L/s?',3,
  'Il vincolo introduce un terzo fattore di portata: P_d=cQ³. Dividendo diciotto per due terzi si trova ventisette nelle unità del cubo di Q. La radice cubica positiva è tre, riconoscibile perché 3·3·3=27. La resistenza conseguente è due kPa·s/L.',
  r'P_d=cQ^3\qquad Q^3=\frac{P_d}{c}\qquad Q^3=27\,\mathrm{L^3/s^3}\qquad Q=3\,\mathrm{L/s}\qquad R=2\,\mathrm{kPa\,s/L}',
- 'Ventisette è il valore del cubo, nove deriverebbe da una radice non pertinente e −3 darebbe un cubo negativo, quindi non risolve neppure questa equazione positiva. Il cubo è strettamente crescente su Q>0, perciò la soluzione fisica è unica. c ha unità R/Q: il vincolo vale fra prove e non è una legge temporale.','Sostituisci R=cQ prima di contare la potenza di Q.'),
+ 'Ventisette è il valore del cubo, nove L/s darebbe 486 W nel vincolo, non 18 W e −3 darebbe un cubo negativo, quindi non risolve neppure questa equazione positiva. Il cubo è strettamente crescente su Q>0, perciò la soluzione fisica è unica. c ha unità R/Q: il vincolo vale fra prove e non è una legge temporale.','Sostituisci R=cQ prima di contare la potenza di Q.'),
 ]
 CHOICES={n:0 for n in [2,3,4,7,8,9,10,11,12,13,15]}
 UNITS={1:'W',5:'kPa·s/L',6:'L/s',14:'kPa·s/L',16:'L/s'}

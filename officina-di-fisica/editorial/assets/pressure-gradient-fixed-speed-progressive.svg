@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="1770" viewBox="0 0 640 1770" role="img" aria-labelledby="title desc">
+<title id="title">Stessa velocità media e gradiente di pressione diverso</title><desc id="desc">Due sezioni circolari hanno raggi uno e due millimetri, alla scala quaranta pixel per millimetro. Le frecce esterne rappresentano la stessa velocità media, non un profilo uniforme. L’area e la portata aumentano di quattro volte. Il grafico finale mostra la pressione assoluta meno novantanovemilanovecento pascal: la pressione reale diminuisce lungo il flusso di ottanta o venti pascal in un metro.</desc>
+<defs><marker id="v" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#155fa0"/></marker></defs>
+<rect width="640" height="1770" fill="#fffdf7"/>
+<g font-family="Arial, sans-serif" font-size="22" fill="#172c3b">
+<text x="35" y="48" font-size="27">1. La media resta imposta</text>
+<text x="35" y="95">η = 1 mPa·s; v̄ = 0,01 m/s</text>
+<text x="95" y="180">r_A = 1 mm</text><text x="360" y="180">r_B = 2 mm</text>
+<circle cx="160" cy="290" r="40" fill="#e6eff5" stroke="#155fa0" stroke-width="3"/><circle cx="430" cy="290" r="80" fill="#e6eff5" stroke="#155fa0" stroke-width="3"/>
+<path d="M160 290H200M430 290H510" stroke="#172c3b" stroke-width="2" fill="none"/>
+<circle cx="160" cy="290" r="3" fill="#172c3b"/><circle cx="430" cy="290" r="3" fill="#172c3b"/>
+<text x="35" y="400">Geometria delle sezioni: 40 px/mm</text>
+<path d="M110 450H210" stroke="#155fa0" stroke-width="4" fill="none" marker-end="url(#v)"/><path d="M380 450H480" stroke="#155fa0" stroke-width="4" fill="none" marker-end="url(#v)"/>
+<text x="35" y="505">Medie: 100 px ciascuna a 10000 px/(m/s)</text>
+<text x="35" y="550">Non sono frecce di velocità locale.</text>
+<line x1="35" y1="590" x2="605" y2="590" stroke="#bcc6ca"/>
+<text x="35" y="635" font-size="27">2. L’area e la portata aumentano</text>
+<text x="35" y="680">Barre del rapporto A/A_A: 80 px/unità</text>
+<rect x="100" y="725" width="80" height="35" fill="#155fa0"/><text x="450" y="752">A: 1</text>
+<rect x="100" y="820" width="320" height="35" fill="#155fa0"/><text x="450" y="847">B: 4</text>
+<text x="35" y="910">A_B/A_A = 4 → Q_B/Q_A = 4</text>
+<text x="35" y="955">Q = A v̄; qui non si mantiene Q costante.</text>
+<text x="35" y="1000">G_B/G_A = 1/4 a η e v̄ fissate.</text>
+<line x1="35" y1="1035" x2="605" y2="1035" stroke="#bcc6ca"/>
+<text x="35" y="1080" font-size="27">3. Il gradiente orientato è negativo</text>
+<text x="35" y="1125">Ingresso: pressione assoluta 100000 Pa</text>
+<path d="M100 1540V1180M100 1540H450" stroke="#172c3b" stroke-width="2" fill="none"/>
+<text x="110" y="1205">p − 99900 Pa</text><text x="460" y="1550">x (m)</text>
+<path d="M100 1240L400 1480" stroke="#a33430" stroke-width="4" fill="none"/><path d="M100 1240L400 1300" stroke="#155fa0" stroke-width="4" fill="none"/>
+<path d="M95 1240H105M95 1300H105M95 1480H105M400 1535V1545" stroke="#172c3b" fill="none"/>
+<circle cx="100" cy="1240" r="5" fill="#172c3b"/><circle cx="400" cy="1480" r="5" fill="#a33430"/><circle cx="400" cy="1300" r="5" fill="#155fa0"/>
+<text x="40" y="1248">100</text><text x="55" y="1308">80</text><text x="55" y="1488">20</text><text x="80" y="1570">0</text><text x="393" y="1570">1</text>
+<text x="420" y="1475">A: 20</text><text x="420" y="1295">B: 80</text>
+<text x="35" y="1635">x: 300 px/m; scarto: 3 px/Pa</text>
+<text x="35" y="1680">Asse verticale: scarto da 99900 Pa.</text>
+<text x="35" y="1725">G = 80 o 20 Pa/m; dp/dx = −G.</text>
+</g></svg>

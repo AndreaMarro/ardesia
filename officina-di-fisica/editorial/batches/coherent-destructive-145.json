@@ -1,0 +1,1121 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u4-coherent-destructive-01",
+      "kind": "question",
+      "course": "C5",
+      "section": "Spostamenti opposti e residuo positivo",
+      "order": 14501,
+      "title": "La cancellazione lascia un’ampiezza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "coherent-destructive",
+      "difficulty": 1,
+      "prompt": "In un punto fissato di un mezzo lineare si sovrappongono due contributi armonici della stessa frequenza e polarizzazione, con differenza di fase stabile π. Le ampiezze positive sono A₁>A₂>0, costanti in ciascuna prova. Gli spostamenti orientati si sommano: y₁=A₁ cosθ e y₂=−A₂ cosθ, dunque y=(A₁−A₂)cosθ. A_res è il massimo modulo del risultante, non uno spostamento istantaneo. Nel ramo assegnato A_res=A₁−A₂>0. Con A₁=4 mm e A₂=1 mm, quanto vale A_res in mm?",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "mm",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I contributi sono opposti nello stesso istante: quando il primo vale quattro millimetri, il secondo vale meno un millimetro. La loro somma è tre millimetri. Quando il primo cambia segno, cambia anche il secondo; l’ampiezza del risultante resta tre millimetri, benché lo spostamento possa essere positivo, negativo o nullo."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/eb558383da1113a72edead4acad208e17c3580900b0d3263d7441756aa6b506e",
+          "text": "Somma nello stesso punto e istante: y₁=4 cosθ mm, y₂=−cosθ mm e y=3 cosθ mm. Ogni grafico ha il proprio zero; verticale 25 px/mm, orizzontale 200/π px/rad. L’ampiezza residua è positiva, mentre gli spostamenti cambiano segno."
+        },
+        {
+          "type": "formula",
+          "text": "y=(A_1-A_2)\\cos\\theta"
+        },
+        {
+          "type": "formula",
+          "text": " A_{\\rm res}=4\\,\\mathrm{mm}-1\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " A_{\\rm res}=3\\,\\mathrm{mm}"
+        },
+        {
+          "type": "text",
+          "text": "Cinque somma le ampiezze come se le onde fossero in fase; zero richiederebbe ampiezze uguali. Il rapporto quattro non è una lunghezza e non rappresenta la somma degli spostamenti."
+        }
+      ],
+      "hints": [
+        "Somma prima gli spostamenti con il loro segno.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Cinque somma le ampiezze come se le onde fossero in fase; zero richiederebbe ampiezze uguali. Il rapporto quattro non è una lunghezza e non rappresenta la somma degli spostamenti.",
+        "target": "C5-L03"
+      },
+      "coverage": [
+        "Sovrapposizione lineare con fase π",
+        "Ampiezza positiva distinta dallo spostamento",
+        "Inverse e dominio A₁>A₂>0"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-coherent-destructive-02",
+      "kind": "question",
+      "course": "C5",
+      "section": "Spostamenti opposti e residuo positivo",
+      "order": 14502,
+      "title": "L’unità di un’ampiezza residua",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "coherent-destructive",
+      "difficulty": 1,
+      "prompt": "A_res è l’ampiezza di uno spostamento risultante. Quale unità è dimensionalmente adatta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "mm",
+          "mm²",
+          "Hz",
+          "s",
+          "mm/s"
+        ],
+        "value": "mm"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La differenza di due ampiezze è ancora una lunghezza. Il prefisso milli cambia la scala, non la dimensione: tre mm equivalgono a tre millesimi di metro. Non stiamo chiedendo un’intensità, che dipenderebbe dal quadrato dell’ampiezza."
+        },
+        {
+          "type": "formula",
+          "text": "[A_{\\rm res}]=L"
+        },
+        {
+          "type": "formula",
+          "text": " 1\\,\\mathrm{mm}=10^{-3}\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "mm² è area, Hz frequenza, s tempo e mm/s velocità. Il modulo o la cancellazione non trasformano una lunghezza nel suo quadrato."
+        }
+      ],
+      "hints": [
+        "Le due ampiezze hanno unità omogenee.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "mm² è area, Hz frequenza, s tempo e mm/s velocità. Il modulo o la cancellazione non trasformano una lunghezza nel suo quadrato.",
+        "target": "C5-L03"
+      },
+      "coverage": [
+        "Sovrapposizione lineare con fase π",
+        "Ampiezza positiva distinta dallo spostamento",
+        "Inverse e dominio A₁>A₂>0"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-coherent-destructive-03",
+      "kind": "question",
+      "course": "C5",
+      "section": "Spostamenti opposti e residuo positivo",
+      "order": 14503,
+      "title": "Il ramo positivo della differenza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "coherent-destructive",
+      "difficulty": 1,
+      "prompt": "In un punto fissato di un mezzo lineare si sovrappongono due contributi armonici della stessa frequenza e polarizzazione, con differenza di fase stabile π. Le ampiezze positive sono A₁>A₂>0, costanti in ciascuna prova. Gli spostamenti orientati si sommano: y₁=A₁ cosθ e y₂=−A₂ cosθ, dunque y=(A₁−A₂)cosθ. A_res è il massimo modulo del risultante, non uno spostamento istantaneo. Nel ramo assegnato A_res=A₁−A₂>0. Quale relazione dà A_res?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "A_res = A₁ − A₂",
+          "A_res = A₁ + A₂",
+          "A_res = A₂ − A₁",
+          "A_res = A₁ A₂",
+          "A_res = √(A₁² + A₂²)"
+        ],
+        "value": "A_res = A₁ − A₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il secondo coseno è in ritardo di π, quindi è l’opposto del primo. Raccogliendo cosθ si ottiene il coefficiente A₁−A₂. In generale l’ampiezza sarebbe il modulo della differenza; l’ordine A₁>A₂ permette qui di toglierlo senza introdurre un valore negativo."
+        },
+        {
+          "type": "formula",
+          "text": "\\cos(\\theta+\\pi)=-\\cos\\theta"
+        },
+        {
+          "type": "formula",
+          "text": " y=(A_1-A_2)\\cos\\theta"
+        },
+        {
+          "type": "formula",
+          "text": " A_{\\rm res}=|A_1-A_2|"
+        },
+        {
+          "type": "formula",
+          "text": " A_{\\rm res}=A_1-A_2"
+        },
+        {
+          "type": "text",
+          "text": "La somma vale per fase uguale, il prodotto ha unità di area e la somma in quadratura corrisponde a uno sfasamento diverso. A₂−A₁ è negativo nel dominio assegnato e non è l’ampiezza positiva."
+        }
+      ],
+      "hints": [
+        "Usa lo sfasamento π prima di prendere il modulo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La somma vale per fase uguale, il prodotto ha unità di area e la somma in quadratura corrisponde a uno sfasamento diverso. A₂−A₁ è negativo nel dominio assegnato e non è l’ampiezza positiva.",
+        "target": "C5-L03"
+      },
+      "coverage": [
+        "Sovrapposizione lineare con fase π",
+        "Ampiezza positiva distinta dallo spostamento",
+        "Inverse e dominio A₁>A₂>0"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-coherent-destructive-04",
+      "kind": "question",
+      "course": "C5",
+      "section": "Spostamenti opposti e residuo positivo",
+      "order": 14504,
+      "title": "Ridurre il contributo maggiore",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "coherent-destructive",
+      "difficulty": 1,
+      "prompt": "In un punto fissato di un mezzo lineare si sovrappongono due contributi armonici della stessa frequenza e polarizzazione, con differenza di fase stabile π. Le ampiezze positive sono A₁>A₂>0, costanti in ciascuna prova. Gli spostamenti orientati si sommano: y₁=A₁ cosθ e y₂=−A₂ cosθ, dunque y=(A₁−A₂)cosθ. A_res è il massimo modulo del risultante, non uno spostamento istantaneo. Nel ramo assegnato A_res=A₁−A₂>0. A₁ passa da 4 a 2 mm, mentre A₂ resta 1 mm. Come cambia A_res?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 3 a 1 mm",
+          "Da 3 a 3/2 mm",
+          "Da 3 a 5 mm",
+          "Resta 3 mm",
+          "Da 3 a 0 mm"
+        ],
+        "value": "Da 3 a 1 mm"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La seconda ampiezza resta da sottrarre. Prima rimangono tre millimetri, dopo due meno uno lascia un millimetro. L’ampiezza maggiore si dimezza, ma la differenza non si dimezza perché il contributo sottratto è fissato. In entrambe le prove A₁>A₂."
+        },
+        {
+          "type": "formula",
+          "text": "A_{{\\rm res},A}=3\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " A_{{\\rm res},B}=1\\,\\mathrm{mm}"
+        },
+        {
+          "type": "text",
+          "text": "Tre mezzi scala anche il residuo come se tutti gli ingressi fossero dimezzati; cinque somma, zero impone erroneamente ampiezze uguali e tre ignora il cambiamento."
+        }
+      ],
+      "hints": [
+        "Ricalcola la differenza mantenendo fisso A₂.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Tre mezzi scala anche il residuo come se tutti gli ingressi fossero dimezzati; cinque somma, zero impone erroneamente ampiezze uguali e tre ignora il cambiamento.",
+        "target": "C5-L03"
+      },
+      "coverage": [
+        "Sovrapposizione lineare con fase π",
+        "Ampiezza positiva distinta dallo spostamento",
+        "Inverse e dominio A₁>A₂>0"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-coherent-destructive-05",
+      "kind": "question",
+      "course": "C5",
+      "section": "Spostamenti opposti e residuo positivo",
+      "order": 14505,
+      "title": "Trovare l’ampiezza maggiore",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "coherent-destructive",
+      "difficulty": 2,
+      "prompt": "In un punto fissato di un mezzo lineare si sovrappongono due contributi armonici della stessa frequenza e polarizzazione, con differenza di fase stabile π. Le ampiezze positive sono A₁>A₂>0, costanti in ciascuna prova. Gli spostamenti orientati si sommano: y₁=A₁ cosθ e y₂=−A₂ cosθ, dunque y=(A₁−A₂)cosθ. A_res è il massimo modulo del risultante, non uno spostamento istantaneo. Nel ramo assegnato A_res=A₁−A₂>0. Si misura A_res=3 mm e si conosce A₂=1 mm. Quanto vale A₁ in mm?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "mm",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Per ricostruire il contributo maggiore dobbiamo rimettere ciò che la cancellazione ha sottratto: A₁=A_res+A₂. Tre più uno dà quattro millimetri, che è maggiore di A₂ e ricostruisce il residuo misurato."
+        },
+        {
+          "type": "formula",
+          "text": "A_1=A_{\\rm res}+A_2"
+        },
+        {
+          "type": "formula",
+          "text": " A_1=4\\,\\mathrm{mm}"
+        },
+        {
+          "type": "text",
+          "text": "Due sottrae di nuovo A₂, anziché annullare la sottrazione originaria. Il residuo tre non è già l’ampiezza maggiore. Non serve elevare al quadrato alcuna lunghezza."
+        }
+      ],
+      "hints": [
+        "Inverti la sottrazione con un’addizione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due sottrae di nuovo A₂, anziché annullare la sottrazione originaria. Il residuo tre non è già l’ampiezza maggiore. Non serve elevare al quadrato alcuna lunghezza.",
+        "target": "C5-L03"
+      },
+      "coverage": [
+        "Sovrapposizione lineare con fase π",
+        "Ampiezza positiva distinta dallo spostamento",
+        "Inverse e dominio A₁>A₂>0"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-coherent-destructive-06",
+      "kind": "question",
+      "course": "C5",
+      "section": "Spostamenti opposti e residuo positivo",
+      "order": 14506,
+      "title": "Trovare il contributo sottratto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "coherent-destructive",
+      "difficulty": 2,
+      "prompt": "In un punto fissato di un mezzo lineare si sovrappongono due contributi armonici della stessa frequenza e polarizzazione, con differenza di fase stabile π. Le ampiezze positive sono A₁>A₂>0, costanti in ciascuna prova. Gli spostamenti orientati si sommano: y₁=A₁ cosθ e y₂=−A₂ cosθ, dunque y=(A₁−A₂)cosθ. A_res è il massimo modulo del risultante, non uno spostamento istantaneo. Nel ramo assegnato A_res=A₁−A₂>0. Si misura A_res=3 mm e si conosce A₁=4 mm. Quanto vale A₂ in mm?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "mm",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dal contributo maggiore togliamo ciò che è rimasto: A₂=A₁−A_res. Quattro meno tre dà un millimetro. È positivo e minore di quattro: entrambe le disuguaglianze del modello sono rispettate."
+        },
+        {
+          "type": "formula",
+          "text": "A_2=A_1-A_{\\rm res}"
+        },
+        {
+          "type": "formula",
+          "text": " A_2=1\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " 0<A_2<A_1"
+        },
+        {
+          "type": "text",
+          "text": "Sette somma quantità che nell’inversa vanno sottratte. Un residuo maggiore di A₁ darebbe A₂ negativa e non sarebbe ammissibile in questo ramo; i dati presenti non hanno tale problema."
+        }
+      ],
+      "hints": [
+        "Il contributo cancellato è ciò che manca da A₁ al residuo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sette somma quantità che nell’inversa vanno sottratte. Un residuo maggiore di A₁ darebbe A₂ negativa e non sarebbe ammissibile in questo ramo; i dati presenti non hanno tale problema.",
+        "target": "C5-L03"
+      },
+      "coverage": [
+        "Sovrapposizione lineare con fase π",
+        "Ampiezza positiva distinta dallo spostamento",
+        "Inverse e dominio A₁>A₂>0"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-coherent-destructive-07",
+      "kind": "question",
+      "course": "C5",
+      "section": "Spostamenti opposti e residuo positivo",
+      "order": 14507,
+      "title": "Aumentare l’ampiezza opposta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "coherent-destructive",
+      "difficulty": 2,
+      "prompt": "In un punto fissato di un mezzo lineare si sovrappongono due contributi armonici della stessa frequenza e polarizzazione, con differenza di fase stabile π. Le ampiezze positive sono A₁>A₂>0, costanti in ciascuna prova. Gli spostamenti orientati si sommano: y₁=A₁ cosθ e y₂=−A₂ cosθ, dunque y=(A₁−A₂)cosθ. A_res è il massimo modulo del risultante, non uno spostamento istantaneo. Nel ramo assegnato A_res=A₁−A₂>0. A: A₁=4 mm,A₂=1 mm. B mantiene A₁ e usa A₂=2 mm. Quanto vale A_res,B/A_res,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2/3",
+          "3/2",
+          "2",
+          "1/2",
+          "1"
+        ],
+        "value": "2/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I residui sono tre e due millimetri. Il loro rapporto B su A è due terzi. Aumentare l’onda opposta riduce il residuo finché resta A₂<A₁; non si può prolungare senza controllo questo ramo oltre l’uguaglianza."
+        },
+        {
+          "type": "formula",
+          "text": "A_{{\\rm res},A}=3\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " A_{{\\rm res},B}=2\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{A_{{\\rm res},B}}{A_{{\\rm res},A}}=\\frac23"
+        },
+        {
+          "type": "text",
+          "text": "Tre mezzi capovolge le prove, due copia il fattore di A₂, un mezzo è il suo reciproco e uno ignora la maggiore cancellazione. Il rapporto dei residui non è quello delle singole ampiezze."
+        }
+      ],
+      "hints": [
+        "Calcola entrambe le differenze prima del rapporto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre mezzi capovolge le prove, due copia il fattore di A₂, un mezzo è il suo reciproco e uno ignora la maggiore cancellazione. Il rapporto dei residui non è quello delle singole ampiezze.",
+        "target": "C5-L03"
+      },
+      "coverage": [
+        "Sovrapposizione lineare con fase π",
+        "Ampiezza positiva distinta dallo spostamento",
+        "Inverse e dominio A₁>A₂>0"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-coherent-destructive-08",
+      "kind": "question",
+      "course": "C5",
+      "section": "Spostamenti opposti e residuo positivo",
+      "order": 14508,
+      "title": "Uno scarto fra ampiezze positive",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "coherent-destructive",
+      "difficulty": 2,
+      "prompt": "In un punto fissato di un mezzo lineare si sovrappongono due contributi armonici della stessa frequenza e polarizzazione, con differenza di fase stabile π. Le ampiezze positive sono A₁>A₂>0, costanti in ciascuna prova. Gli spostamenti orientati si sommano: y₁=A₁ cosθ e y₂=−A₂ cosθ, dunque y=(A₁−A₂)cosθ. A_res è il massimo modulo del risultante, non uno spostamento istantaneo. Nel ramo assegnato A_res=A₁−A₂>0. Con A₁=4 mm,A₂=1 mm si propone A_res=6 mm. Quanto vale proposta meno corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3 mm",
+          "−3 mm",
+          "6 mm",
+          "0 mm",
+          "9 mm"
+        ],
+        "value": "3 mm"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’ampiezza corretta è tre millimetri. La proposta sei la supera di tre: lo scarto richiesto è positivo, pur essendo calcolato fra due moduli. La cancellazione di contributi opposti non può produrre un’ampiezza sei, maggiore persino della somma cinque."
+        },
+        {
+          "type": "formula",
+          "text": "A_{\\rm res}=3\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " e=(6-3)\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " e=3\\,\\mathrm{mm}"
+        },
+        {
+          "type": "text",
+          "text": "Meno tre scambia l’ordine, sei mantiene la proposta, nove somma e zero la accetta. Il limite geometrico della somma delle ampiezze offre anche un controllo preliminare della proposta."
+        }
+      ],
+      "hints": [
+        "Controlla il dominio, poi sottrai nel verso richiesto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Meno tre scambia l’ordine, sei mantiene la proposta, nove somma e zero la accetta. Il limite geometrico della somma delle ampiezze offre anche un controllo preliminare della proposta.",
+        "target": "C5-L03"
+      },
+      "coverage": [
+        "Sovrapposizione lineare con fase π",
+        "Ampiezza positiva distinta dallo spostamento",
+        "Inverse e dominio A₁>A₂>0"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-coherent-destructive-09",
+      "kind": "question",
+      "course": "C5",
+      "section": "Spostamenti opposti e residuo positivo",
+      "order": 14509,
+      "title": "L’inversa per A₁",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "coherent-destructive",
+      "difficulty": 2,
+      "prompt": "In un punto fissato di un mezzo lineare si sovrappongono due contributi armonici della stessa frequenza e polarizzazione, con differenza di fase stabile π. Le ampiezze positive sono A₁>A₂>0, costanti in ciascuna prova. Gli spostamenti orientati si sommano: y₁=A₁ cosθ e y₂=−A₂ cosθ, dunque y=(A₁−A₂)cosθ. A_res è il massimo modulo del risultante, non uno spostamento istantaneo. Nel ramo assegnato A_res=A₁−A₂>0. Quale relazione isola A₁?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "A₁ = A_res + A₂",
+          "A₁ = A_res − A₂",
+          "A₁ = A₂ − A_res",
+          "A₁ = A_res A₂",
+          "A₁ = A_res / A₂"
+        ],
+        "value": "A₁ = A_res + A₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Partiamo da A_res=A₁−A₂ e aggiungiamo A₂ ai due membri. Si ottiene A₁=A_res+A₂. Con entrambe positive l’inversa assicura automaticamente A₁>A₂: è coerente con lo stesso ramo, non soltanto con le unità."
+        },
+        {
+          "type": "formula",
+          "text": "A_{\\rm res}+A_2=A_1"
+        },
+        {
+          "type": "formula",
+          "text": " A_1=A_{\\rm res}+A_2"
+        },
+        {
+          "type": "text",
+          "text": "Sottrarre ancora non inverte la cancellazione. Il prodotto ha unità di area e il quoziente è puro, mentre A₁ è una lunghezza. A₂−A_res può anche diventare negativo."
+        }
+      ],
+      "hints": [
+        "Porta A₂ al membro opposto senza cambiare ramo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sottrarre ancora non inverte la cancellazione. Il prodotto ha unità di area e il quoziente è puro, mentre A₁ è una lunghezza. A₂−A_res può anche diventare negativo.",
+        "target": "C5-L03"
+      },
+      "coverage": [
+        "Sovrapposizione lineare con fase π",
+        "Ampiezza positiva distinta dallo spostamento",
+        "Inverse e dominio A₁>A₂>0"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-coherent-destructive-10",
+      "kind": "question",
+      "course": "C5",
+      "section": "Spostamenti opposti e residuo positivo",
+      "order": 14510,
+      "title": "Fattori diversi sui due contributi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "coherent-destructive",
+      "difficulty": 2,
+      "prompt": "In un punto fissato di un mezzo lineare si sovrappongono due contributi armonici della stessa frequenza e polarizzazione, con differenza di fase stabile π. Le ampiezze positive sono A₁>A₂>0, costanti in ciascuna prova. Gli spostamenti orientati si sommano: y₁=A₁ cosθ e y₂=−A₂ cosθ, dunque y=(A₁−A₂)cosθ. A_res è il massimo modulo del risultante, non uno spostamento istantaneo. Nel ramo assegnato A_res=A₁−A₂>0. B ha A₁,B=κ₁A₁ e A₂,B=κ₂A₂, con κ₁,κ₂>0 e κ₁A₁>κ₂A₂. Quale rapporto dà A_res,B/A_res,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "(κ₁ A₁ − κ₂ A₂) / (A₁ − A₂)",
+          "κ₁ − κ₂",
+          "κ₁ / κ₂",
+          "κ₁ κ₂",
+          "(κ₁ A₁ + κ₂ A₂) / (A₁ + A₂)"
+        ],
+        "value": "(κ₁ A₁ − κ₂ A₂) / (A₁ − A₂)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Si applicano i fattori prima di sottrarre. Il nuovo residuo è κ₁A₁−κ₂A₂; per confrontarlo con l’originale dividiamo per A₁−A₂. I due numeratori non si possono separare in un solo fattore indipendente dalle ampiezze, salvo casi particolari come κ₁=κ₂."
+        },
+        {
+          "type": "formula",
+          "text": "A_{{\\rm res},B}=\\kappa_1A_1-\\kappa_2A_2"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{A_{{\\rm res},B}}{A_{{\\rm res},A}}=\\frac{\\kappa_1A_1-\\kappa_2A_2}{A_1-A_2}"
+        },
+        {
+          "type": "text",
+          "text": "κ₁−κ₂ darebbe zero anche per prove identiche; prodotto e quoziente ignorano che la legge è una differenza. L’ultima espressione confronta somme in fase. La disuguaglianza aggiunta protegge il ramo positivo anche in B."
+        }
+      ],
+      "hints": [
+        "Sostituisci nelle differenze e verifica l’ordine delle ampiezze.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "κ₁−κ₂ darebbe zero anche per prove identiche; prodotto e quoziente ignorano che la legge è una differenza. L’ultima espressione confronta somme in fase. La disuguaglianza aggiunta protegge il ramo positivo anche in B.",
+        "target": "C5-L03"
+      },
+      "coverage": [
+        "Sovrapposizione lineare con fase π",
+        "Ampiezza positiva distinta dallo spostamento",
+        "Inverse e dominio A₁>A₂>0"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-coherent-destructive-11",
+      "kind": "question",
+      "course": "C5",
+      "section": "Spostamenti opposti e residuo positivo",
+      "order": 14511,
+      "title": "Due ampiezze cambiano insieme",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "coherent-destructive",
+      "difficulty": 2,
+      "prompt": "In un punto fissato di un mezzo lineare si sovrappongono due contributi armonici della stessa frequenza e polarizzazione, con differenza di fase stabile π. Le ampiezze positive sono A₁>A₂>0, costanti in ciascuna prova. Gli spostamenti orientati si sommano: y₁=A₁ cosθ e y₂=−A₂ cosθ, dunque y=(A₁−A₂)cosθ. A_res è il massimo modulo del risultante, non uno spostamento istantaneo. Nel ramo assegnato A_res=A₁−A₂>0. A usa A₁=4 mm,A₂=1 mm. B usa A₁=6 mm,A₂=4 mm. Quanto vale A_res,B/A_res,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2/3",
+          "3/2",
+          "3/8",
+          "4",
+          "2"
+        ],
+        "value": "2/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La prima prova lascia tre millimetri; la seconda sei meno quattro, due millimetri. Il rapporto è due terzi. Il contributo maggiore cresce, ma quello opposto cresce abbastanza da ridurre il residuo."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/eb558383da1113a72edead4acad208e17c3580900b0d3263d7441756aa6b506e",
+          "text": "Le barre rappresentano ampiezze positive su una scala comune di 40 px/mm. A confronta 4−1=3 mm; B confronta 6−4=2 mm. I residui sono differenze, non somme o intensità, e in entrambe le prove A₁>A₂>0."
+        },
+        {
+          "type": "formula",
+          "text": "A_{{\\rm res},A}=3\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " A_{{\\rm res},B}=2\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " A_{{\\rm res},B}/A_{{\\rm res},A}=\\frac23"
+        },
+        {
+          "type": "text",
+          "text": "Tre mezzi capovolge gli stati. Seguire soltanto sei su quattro o quattro su uno tralascia l’altro contributo. Entrambe le prove conservano la prima ampiezza maggiore della seconda."
+        }
+      ],
+      "hints": [
+        "Confronta i risultati, non un singolo ingresso.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre mezzi capovolge gli stati. Seguire soltanto sei su quattro o quattro su uno tralascia l’altro contributo. Entrambe le prove conservano la prima ampiezza maggiore della seconda.",
+        "target": "C5-L03"
+      },
+      "coverage": [
+        "Sovrapposizione lineare con fase π",
+        "Ampiezza positiva distinta dallo spostamento",
+        "Inverse e dominio A₁>A₂>0"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-coherent-destructive-12",
+      "kind": "question",
+      "course": "C5",
+      "section": "Spostamenti opposti e residuo positivo",
+      "order": 14512,
+      "title": "La media e il ramo lineare",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "coherent-destructive",
+      "difficulty": 2,
+      "prompt": "In un punto fissato di un mezzo lineare si sovrappongono due contributi armonici della stessa frequenza e polarizzazione, con differenza di fase stabile π. Le ampiezze positive sono A₁>A₂>0, costanti in ciascuna prova. Gli spostamenti orientati si sommano: y₁=A₁ cosθ e y₂=−A₂ cosθ, dunque y=(A₁−A₂)cosθ. A_res è il massimo modulo del risultante, non uno spostamento istantaneo. Nel ramo assegnato A_res=A₁−A₂>0. A: A₁=4 mm,A₂=1 mm. B: A₁=6 mm,A₂=4 mm. Qual è la media aritmetica dei due A_res?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "5/2 mm",
+          "5 mm",
+          "1/2 mm",
+          "3 mm",
+          "2 mm"
+        ],
+        "value": "5/2 mm"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le ampiezze residue sono tre e due millimetri: la loro semisomma è cinque mezzi millimetri. Qui gli ingressi medi cinque e cinque mezzi millimetri danno lo stesso residuo cinque mezzi, perché entrambe le prove e la loro media restano nel ramo lineare A₁>A₂. Non è una proprietà di ogni operazione con un modulo."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline A_{\\rm res}=\\frac{3+2}{2}\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline A_{\\rm res}=\\frac52\\,\\mathrm{mm}"
+        },
+        {
+          "type": "text",
+          "text": "Cinque è la somma, un mezzo la semidifferenza, tre e due conservano una sola prova. Se si confrontassero prove su lati opposti di A₁=A₂, il modulo potrebbe impedire la stessa commutazione con la media."
+        }
+      ],
+      "hints": [
+        "Media prima i due residui e poi spiega l’eventuale coincidenza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Cinque è la somma, un mezzo la semidifferenza, tre e due conservano una sola prova. Se si confrontassero prove su lati opposti di A₁=A₂, il modulo potrebbe impedire la stessa commutazione con la media.",
+        "target": "C5-L03"
+      },
+      "coverage": [
+        "Sovrapposizione lineare con fase π",
+        "Ampiezza positiva distinta dallo spostamento",
+        "Inverse e dominio A₁>A₂>0"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-coherent-destructive-13",
+      "kind": "question",
+      "course": "C5",
+      "section": "Spostamenti opposti e residuo positivo",
+      "order": 14513,
+      "title": "Un target con più cancellazione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "coherent-destructive",
+      "difficulty": 3,
+      "prompt": "In un punto fissato di un mezzo lineare si sovrappongono due contributi armonici della stessa frequenza e polarizzazione, con differenza di fase stabile π. Le ampiezze positive sono A₁>A₂>0, costanti in ciascuna prova. Gli spostamenti orientati si sommano: y₁=A₁ cosθ e y₂=−A₂ cosθ, dunque y=(A₁−A₂)cosθ. A_res è il massimo modulo del risultante, non uno spostamento istantaneo. Nel ramo assegnato A_res=A₁−A₂>0. A ha A₁=4 mm,A₂=1 mm. B impone A₁=6 mm e A_res,B=(2/3)A_res,A. Quanto vale A₂,B/A₂,A?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il target è due terzi di tre, cioè due millimetri. Per lasciare due partendo da sei occorre un’ampiezza opposta quattro millimetri. Rispetto all’un millimetro iniziale il fattore richiesto è quattro, e quattro resta minore di sei."
+        },
+        {
+          "type": "formula",
+          "text": "A_{{\\rm res},B}=2\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " A_{2,B}=6\\,\\mathrm{mm}-2\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " A_{2,B}/A_{2,A}=4"
+        },
+        {
+          "type": "text",
+          "text": "Due terzi copia il target, tre mezzi segue solo A₁ e un quarto inverte il rapporto richiesto. Occorre controllare la nuova differenza, non assegnare a ogni ingresso il fattore dell’uscita."
+        }
+      ],
+      "hints": [
+        "Ricava il residuo target e sottrailo dalla nuova A₁.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due terzi copia il target, tre mezzi segue solo A₁ e un quarto inverte il rapporto richiesto. Occorre controllare la nuova differenza, non assegnare a ogni ingresso il fattore dell’uscita.",
+        "target": "C5-L03"
+      },
+      "coverage": [
+        "Sovrapposizione lineare con fase π",
+        "Ampiezza positiva distinta dallo spostamento",
+        "Inverse e dominio A₁>A₂>0"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-coherent-destructive-14",
+      "kind": "question",
+      "course": "C5",
+      "section": "Spostamenti opposti e residuo positivo",
+      "order": 14514,
+      "title": "Tarare il residuo per trovare A₁",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "coherent-destructive",
+      "difficulty": 3,
+      "prompt": "In un punto fissato di un mezzo lineare si sovrappongono due contributi armonici della stessa frequenza e polarizzazione, con differenza di fase stabile π. Le ampiezze positive sono A₁>A₂>0, costanti in ciascuna prova. Gli spostamenti orientati si sommano: y₁=A₁ cosθ e y₂=−A₂ cosθ, dunque y=(A₁−A₂)cosθ. A_res è il massimo modulo del risultante, non uno spostamento istantaneo. Nel ramo assegnato A_res=A₁−A₂>0. Un display continuo adimensionale segue S=qA_res, con q>0 e nessun offset. A: A₁=4 mm,A₂=1 mm,S=9. B: A₂=4 mm,S=6. Quanto vale A₁,B in mm?",
+      "answer": {
+        "type": "numeric",
+        "value": 6,
+        "unit": "mm",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento ha residuo tre millimetri, quindi q=3 mm⁻¹. La lettura sei corrisponde a un residuo due millimetri. Per ricostruire l’ampiezza maggiore aggiungiamo i quattro millimetri del contributo opposto e otteniamo sei millimetri."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{mm^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " A_{{\\rm res},B}=2\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " A_{1,B}=2\\,\\mathrm{mm}+4\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " A_{1,B}=6\\,\\mathrm{mm}"
+        },
+        {
+          "type": "text",
+          "text": "Sei è anche casualmente il numero della lettura, ma questo non autorizza a saltare la taratura: usarla come residuo darebbe A₁=10 mm. Il residuo due non è l’ampiezza maggiore."
+        }
+      ],
+      "hints": [
+        "Decodifica il residuo prima dell’inversa fisica.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sei è anche casualmente il numero della lettura, ma questo non autorizza a saltare la taratura: usarla come residuo darebbe A₁=10 mm. Il residuo due non è l’ampiezza maggiore.",
+        "target": "C5-L03"
+      },
+      "coverage": [
+        "Sovrapposizione lineare con fase π",
+        "Ampiezza positiva distinta dallo spostamento",
+        "Inverse e dominio A₁>A₂>0"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-coherent-destructive-15",
+      "kind": "question",
+      "course": "C5",
+      "section": "Spostamenti opposti e residuo positivo",
+      "order": 14515,
+      "title": "Un offset prima dell’addizione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "coherent-destructive",
+      "difficulty": 3,
+      "prompt": "In un punto fissato di un mezzo lineare si sovrappongono due contributi armonici della stessa frequenza e polarizzazione, con differenza di fase stabile π. Le ampiezze positive sono A₁>A₂>0, costanti in ciascuna prova. Gli spostamenti orientati si sommano: y₁=A₁ cosθ e y₂=−A₂ cosθ, dunque y=(A₁−A₂)cosθ. A_res è il massimo modulo del risultante, non uno spostamento istantaneo. Nel ramo assegnato A_res=A₁−A₂>0. Il display continuo adimensionale segue S=qA_res+b. A: A₁=4 mm,A₂=1 mm,S=7. B: A₁=6 mm,A₂=4 mm,S=5. C: A₂=3 mm,S=11. Quanto vale A₁,C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "8 mm",
+          "5 mm",
+          "11 mm",
+          "6 mm",
+          "4 mm"
+        ],
+        "value": "8 mm"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le differenze tre e due millimetri fissano q=(7−5)/(3−2)=2 mm⁻¹ e b=1. La lettura undici dà residuo (11−1)/2=5 mm. Sommando il contributo opposto di tre millimetri ricaviamo A₁,C=8 mm, maggiore di tre."
+        },
+        {
+          "type": "formula",
+          "text": "q=2\\,\\mathrm{mm^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " A_{{\\rm res},C}=5\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " A_{1,C}=8\\,\\mathrm{mm}"
+        },
+        {
+          "type": "text",
+          "text": "Cinque copia il residuo, undici il display. Con A₂=3 mm, ampiezze sei e quattro darebbero letture sette e tre, non undici. Solo otto ricostruisce entrambi i passaggi."
+        }
+      ],
+      "hints": [
+        "Togli l’offset e il guadagno, poi restituisci il contributo cancellato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Cinque copia il residuo, undici il display. Con A₂=3 mm, ampiezze sei e quattro darebbero letture sette e tre, non undici. Solo otto ricostruisce entrambi i passaggi.",
+        "target": "C5-L03"
+      },
+      "coverage": [
+        "Sovrapposizione lineare con fase π",
+        "Ampiezza positiva distinta dallo spostamento",
+        "Inverse e dominio A₁>A₂>0"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-coherent-destructive-16",
+      "kind": "question",
+      "course": "C5",
+      "section": "Spostamenti opposti e residuo positivo",
+      "order": 14516,
+      "title": "Un vincolo che fissa entrambe le ampiezze",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "coherent-destructive",
+      "difficulty": 3,
+      "prompt": "In un punto fissato di un mezzo lineare si sovrappongono due contributi armonici della stessa frequenza e polarizzazione, con differenza di fase stabile π. Le ampiezze positive sono A₁>A₂>0, costanti in ciascuna prova. Gli spostamenti orientati si sommano: y₁=A₁ cosθ e y₂=−A₂ cosθ, dunque y=(A₁−A₂)cosθ. A_res è il massimo modulo del risultante, non uno spostamento istantaneo. Nel ramo assegnato A_res=A₁−A₂>0. Fra prove si impone A₁=4A₂. Si misura A_res=3 mm. Quanto vale A₂ in mm?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "mm",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituendo il vincolo otteniamo A_res=4A₂−A₂=3A₂. Un residuo tre millimetri dà quindi A₂=1 mm e A₁=4 mm. Qui la misura aggiunge una scala e seleziona una coppia, invece di ripetere soltanto il vincolo."
+        },
+        {
+          "type": "formula",
+          "text": "A_{\\rm res}=3A_2"
+        },
+        {
+          "type": "formula",
+          "text": " A_2=\\frac{A_{\\rm res}}3"
+        },
+        {
+          "type": "formula",
+          "text": " A_2=1\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " A_1=4\\,\\mathrm{mm}"
+        },
+        {
+          "type": "text",
+          "text": "Tre copia il residuo e quattro l’ampiezza maggiore risultante. Non si prende una radice: dopo la sostituzione resta un’equazione lineare. La coppia nulla viola la misura e le ampiezze positive."
+        }
+      ],
+      "hints": [
+        "Sostituisci il rapporto prima di isolare A₂.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Tre copia il residuo e quattro l’ampiezza maggiore risultante. Non si prende una radice: dopo la sostituzione resta un’equazione lineare. La coppia nulla viola la misura e le ampiezze positive.",
+        "target": "C5-L03"
+      },
+      "coverage": [
+        "Sovrapposizione lineare con fase π",
+        "Ampiezza positiva distinta dallo spostamento",
+        "Inverse e dominio A₁>A₂>0"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "eb558383da1113a72edead4acad208e17c3580900b0d3263d7441756aa6b506e",
+      "name": "coherent-destructive-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMjA0MCIgdmlld0JveD0iMCAwIDY0MCAyMDQwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+Cjx0aXRsZSBpZD0idGl0bGUiPlNvdHRyYXJyZSBhbXBpZXp6ZSwgc29tbWFyZSBzcG9zdGFtZW50aTwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPlRyZSBjb3NlbmkgY29uIHplcmkgZGlzdGludGkgbW9zdHJhbm8gY29udHJpYnV0aSBxdWF0dHJvIGUgbWVubyB1bm8gZSByaXN1bHRhbnRlIHRyZSBtaWxsaW1ldHJpLiBCYXJyZSBwb3NpdGl2ZSBjb25mcm9udGFubyBsZSBhbXBpZXp6ZSBlIGkgcmVzaWR1aSBkaSBkdWUgcHJvdmUuPC9kZXNjPgo8ZGVmcz48bWFya2VyIGlkPSJhIiB2aWV3Qm94PSIwIDAgMTAgMTAiIHJlZlg9IjkiIHJlZlk9IjUiIG1hcmtlcldpZHRoPSI2IiBtYXJrZXJIZWlnaHQ9IjYiIG9yaWVudD0iYXV0byI+PHBhdGggZD0iTTAgMEwxMCA1TDAgMTBaIiBmaWxsPSIjMTQ1ZDgxIi8+PC9tYXJrZXI+PC9kZWZzPgo8cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjIwNDAiIHJ4PSIyMCIgZmlsbD0iI2Y3ZmJmZiIvPjxnIGZvbnQtZmFtaWx5PSJzeXN0ZW0tdWksc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzE0MmQ0MCI+Cjx0ZXh0IHg9IjM1IiB5PSI0OCIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9IjcwMCI+MSDCtyBUcmUgemVyaSwgdW5hIHNvbW1hIGNvbiBzZWdubzwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjkwIj5TdGVzc28gcHVudG8gwrcgc3Rlc3NhIGZhc2UgzrggwrcgzpTPhiA9IM+APC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTE1Ij5WZXJ0aWNhbGU6IDI1IHB4L21tIMK3IGZhc2U6IDIwMC/PgCBweC9yYWQ8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxNDUiPnnigoEgPSA0IGNvc864IG1tPC90ZXh0Pgo8cGF0aCBkPSJNODAgMjcwSDU1NSIgc3Ryb2tlPSIjMTQyZDQwIiBtYXJrZXItZW5kPSJ1cmwoI2EpIi8+PHBhdGggZD0iTTEwMCAzODBWMTYwIiBzdHJva2U9IiMxNDJkNDAiIG1hcmtlci1lbmQ9InVybCgjYSkiLz4KPHBhdGggZD0iTTEwMC4wMDAgMTcwLjAwMCBMMTAxLjY2NyAxNzAuMDM0IEwxMDMuMzMzIDE3MC4xMzcgTDEwNS4wMDAgMTcwLjMwOCBMMTA2LjY2NyAxNzAuNTQ4IEwxMDguMzMzIDE3MC44NTYgTDExMC4wMDAgMTcxLjIzMSBMMTExLjY2NyAxNzEuNjc1IEwxMTMuMzMzIDE3Mi4xODUgTDExNS4wMDAgMTcyLjc2MyBMMTE2LjY2NyAxNzMuNDA3IEwxMTguMzMzIDE3NC4xMTggTDEyMC4wMDAgMTc0Ljg5NCBMMTIxLjY2NyAxNzUuNzM2IEwxMjMuMzMzIDE3Ni42NDIgTDEyNS4wMDAgMTc3LjYxMiBMMTI2LjY2NyAxNzguNjQ1IEwxMjguMzMzIDE3OS43NDEgTDEzMC4wMDAgMTgwLjg5OSBMMTMxLjY2NyAxODIuMTE4IEwxMzMuMzMzIDE4My4zOTcgTDEzNS4wMDAgMTg0LjczNiBMMTM2LjY2NyAxODYuMTMzIEwxMzguMzMzIDE4Ny41ODcgTDE0MC4wMDAgMTg5LjA5OCBMMTQxLjY2NyAxOTAuNjY1IEwxNDMuMzMzIDE5Mi4yODUgTDE0NS4wMDAgMTkzLjk1OSBMMTQ2LjY2NyAxOTUuNjg2IEwxNDguMzMzIDE5Ny40NjMgTDE1MC4wMDAgMTk5LjI4OSBMMTUxLjY2NyAyMDEuMTY1IEwxNTMuMzMzIDIwMy4wODcgTDE1NS4wMDAgMjA1LjA1NSBMMTU2LjY2NyAyMDcuMDY4IEwxNTguMzMzIDIwOS4xMjQgTDE2MC4wMDAgMjExLjIyMSBMMTYxLjY2NyAyMTMuMzU5IEwxNjMuMzMzIDIxNS41MzYgTDE2NS4wMDAgMjE3Ljc1MCBMMTY2LjY2NyAyMjAuMDAwIEwxNjguMzMzIDIyMi4yODQgTDE3MC4wMDAgMjI0LjYwMSBMMTcxLjY2NyAyMjYuOTQ5IEwxNzMuMzMzIDIyOS4zMjYgTDE3NS4wMDAgMjMxLjczMiBMMTc2LjY2NyAyMzQuMTYzIEwxNzguMzMzIDIzNi42MTkgTDE4MC4wMDAgMjM5LjA5OCBMMTgxLjY2NyAyNDEuNTk4IEwxODMuMzMzIDI0NC4xMTggTDE4NS4wMDAgMjQ2LjY1NSBMMTg2LjY2NyAyNDkuMjA5IEwxODguMzMzIDI1MS43NzYgTDE5MC4wMDAgMjU0LjM1NyBMMTkxLjY2NyAyNTYuOTQ3IEwxOTMuMzMzIDI1OS41NDcgTDE5NS4wMDAgMjYyLjE1NCBMMTk2LjY2NyAyNjQuNzY2IEwxOTguMzMzIDI2Ny4zODIgTDIwMC4wMDAgMjcwLjAwMCBMMjAxLjY2NyAyNzIuNjE4IEwyMDMuMzMzIDI3NS4yMzQgTDIwNS4wMDAgMjc3Ljg0NiBMMjA2LjY2NyAyODAuNDUzIEwyMDguMzMzIDI4My4wNTMgTDIxMC4wMDAgMjg1LjY0MyBMMjExLjY2NyAyODguMjI0IEwyMTMuMzMzIDI5MC43OTEgTDIxNS4wMDAgMjkzLjM0NSBMMjE2LjY2NyAyOTUuODgyIEwyMTguMzMzIDI5OC40MDIgTDIyMC4wMDAgMzAwLjkwMiBMMjIxLjY2NyAzMDMuMzgxIEwyMjMuMzMzIDMwNS44MzcgTDIyNS4wMDAgMzA4LjI2OCBMMjI2LjY2NyAzMTAuNjc0IEwyMjguMzMzIDMxMy4wNTEgTDIzMC4wMDAgMzE1LjM5OSBMMjMxLjY2NyAzMTcuNzE2IEwyMzMuMzMzIDMyMC4wMDAgTDIzNS4wMDAgMzIyLjI1MCBMMjM2LjY2NyAzMjQuNDY0IEwyMzguMzMzIDMyNi42NDEgTDI0MC4wMDAgMzI4Ljc3OSBMMjQxLjY2NyAzMzAuODc2IEwyNDMuMzMzIDMzMi45MzIgTDI0NS4wMDAgMzM0Ljk0NSBMMjQ2LjY2NyAzMzYuOTEzIEwyNDguMzMzIDMzOC44MzUgTDI1MC4wMDAgMzQwLjcxMSBMMjUxLjY2NyAzNDIuNTM3IEwyNTMuMzMzIDM0NC4zMTQgTDI1NS4wMDAgMzQ2LjA0MSBMMjU2LjY2NyAzNDcuNzE1IEwyNTguMzMzIDM0OS4zMzUgTDI2MC4wMDAgMzUwLjkwMiBMMjYxLjY2NyAzNTIuNDEzIEwyNjMuMzMzIDM1My44NjcgTDI2NS4wMDAgMzU1LjI2NCBMMjY2LjY2NyAzNTYuNjAzIEwyNjguMzMzIDM1Ny44ODIgTDI3MC4wMDAgMzU5LjEwMSBMMjcxLjY2NyAzNjAuMjU5IEwyNzMuMzMzIDM2MS4zNTUgTDI3NS4wMDAgMzYyLjM4OCBMMjc2LjY2NyAzNjMuMzU4IEwyNzguMzMzIDM2NC4yNjQgTDI4MC4wMDAgMzY1LjEwNiBMMjgxLjY2NyAzNjUuODgyIEwyODMuMzMzIDM2Ni41OTMgTDI4NS4wMDAgMzY3LjIzNyBMMjg2LjY2NyAzNjcuODE1IEwyODguMzMzIDM2OC4zMjUgTDI5MC4wMDAgMzY4Ljc2OSBMMjkxLjY2NyAzNjkuMTQ0IEwyOTMuMzMzIDM2OS40NTIgTDI5NS4wMDAgMzY5LjY5MiBMMjk2LjY2NyAzNjkuODYzIEwyOTguMzMzIDM2OS45NjYgTDMwMC4wMDAgMzcwLjAwMCBMMzAxLjY2NyAzNjkuOTY2IEwzMDMuMzMzIDM2OS44NjMgTDMwNS4wMDAgMzY5LjY5MiBMMzA2LjY2NyAzNjkuNDUyIEwzMDguMzMzIDM2OS4xNDQgTDMxMC4wMDAgMzY4Ljc2OSBMMzExLjY2NyAzNjguMzI1IEwzMTMuMzMzIDM2Ny44MTUgTDMxNS4wMDAgMzY3LjIzNyBMMzE2LjY2NyAzNjYuNTkzIEwzMTguMzMzIDM2NS44ODIgTDMyMC4wMDAgMzY1LjEwNiBMMzIxLjY2NyAzNjQuMjY0IEwzMjMuMzMzIDM2My4zNTggTDMyNS4wMDAgMzYyLjM4OCBMMzI2LjY2NyAzNjEuMzU1IEwzMjguMzMzIDM2MC4yNTkgTDMzMC4wMDAgMzU5LjEwMSBMMzMxLjY2NyAzNTcuODgyIEwzMzMuMzMzIDM1Ni42MDMgTDMzNS4wMDAgMzU1LjI2NCBMMzM2LjY2NyAzNTMuODY3IEwzMzguMzMzIDM1Mi40MTMgTDM0MC4wMDAgMzUwLjkwMiBMMzQxLjY2NyAzNDkuMzM1IEwzNDMuMzMzIDM0Ny43MTUgTDM0NS4wMDAgMzQ2LjA0MSBMMzQ2LjY2NyAzNDQuMzE0IEwzNDguMzMzIDM0Mi41MzcgTDM1MC4wMDAgMzQwLjcxMSBMMzUxLjY2NyAzMzguODM1IEwzNTMuMzMzIDMzNi45MTMgTDM1NS4wMDAgMzM0Ljk0NSBMMzU2LjY2NyAzMzIuOTMyIEwzNTguMzMzIDMzMC44NzYgTDM2MC4wMDAgMzI4Ljc3OSBMMzYxLjY2NyAzMjYuNjQxIEwzNjMuMzMzIDMyNC40NjQgTDM2NS4wMDAgMzIyLjI1MCBMMzY2LjY2NyAzMjAuMDAwIEwzNjguMzMzIDMxNy43MTYgTDM3MC4wMDAgMzE1LjM5OSBMMzcxLjY2NyAzMTMuMDUxIEwzNzMuMzMzIDMxMC42NzQgTDM3NS4wMDAgMzA4LjI2OCBMMzc2LjY2NyAzMDUuODM3IEwzNzguMzMzIDMwMy4zODEgTDM4MC4wMDAgMzAwLjkwMiBMMzgxLjY2NyAyOTguNDAyIEwzODMuMzMzIDI5NS44ODIgTDM4NS4wMDAgMjkzLjM0NSBMMzg2LjY2NyAyOTAuNzkxIEwzODguMzMzIDI4OC4yMjQgTDM5MC4wMDAgMjg1LjY0MyBMMzkxLjY2NyAyODMuMDUzIEwzOTMuMzMzIDI4MC40NTMgTDM5NS4wMDAgMjc3Ljg0NiBMMzk2LjY2NyAyNzUuMjM0IEwzOTguMzMzIDI3Mi42MTggTDQwMC4wMDAgMjcwLjAwMCBMNDAxLjY2NyAyNjcuMzgyIEw0MDMuMzMzIDI2NC43NjYgTDQwNS4wMDAgMjYyLjE1NCBMNDA2LjY2NyAyNTkuNTQ3IEw0MDguMzMzIDI1Ni45NDcgTDQxMC4wMDAgMjU0LjM1NyBMNDExLjY2NyAyNTEuNzc2IEw0MTMuMzMzIDI0OS4yMDkgTDQxNS4wMDAgMjQ2LjY1NSBMNDE2LjY2NyAyNDQuMTE4IEw0MTguMzMzIDI0MS41OTggTDQyMC4wMDAgMjM5LjA5OCBMNDIxLjY2NyAyMzYuNjE5IEw0MjMuMzMzIDIzNC4xNjMgTDQyNS4wMDAgMjMxLjczMiBMNDI2LjY2NyAyMjkuMzI2IEw0MjguMzMzIDIyNi45NDkgTDQzMC4wMDAgMjI0LjYwMSBMNDMxLjY2NyAyMjIuMjg0IEw0MzMuMzMzIDIyMC4wMDAgTDQzNS4wMDAgMjE3Ljc1MCBMNDM2LjY2NyAyMTUuNTM2IEw0MzguMzMzIDIxMy4zNTkgTDQ0MC4wMDAgMjExLjIyMSBMNDQxLjY2NyAyMDkuMTI0IEw0NDMuMzMzIDIwNy4wNjggTDQ0NS4wMDAgMjA1LjA1NSBMNDQ2LjY2NyAyMDMuMDg3IEw0NDguMzMzIDIwMS4xNjUgTDQ1MC4wMDAgMTk5LjI4OSBMNDUxLjY2NyAxOTcuNDYzIEw0NTMuMzMzIDE5NS42ODYgTDQ1NS4wMDAgMTkzLjk1OSBMNDU2LjY2NyAxOTIuMjg1IEw0NTguMzMzIDE5MC42NjUgTDQ2MC4wMDAgMTg5LjA5OCBMNDYxLjY2NyAxODcuNTg3IEw0NjMuMzMzIDE4Ni4xMzMgTDQ2NS4wMDAgMTg0LjczNiBMNDY2LjY2NyAxODMuMzk3IEw0NjguMzMzIDE4Mi4xMTggTDQ3MC4wMDAgMTgwLjg5OSBMNDcxLjY2NyAxNzkuNzQxIEw0NzMuMzMzIDE3OC42NDUgTDQ3NS4wMDAgMTc3LjYxMiBMNDc2LjY2NyAxNzYuNjQyIEw0NzguMzMzIDE3NS43MzYgTDQ4MC4wMDAgMTc0Ljg5NCBMNDgxLjY2NyAxNzQuMTE4IEw0ODMuMzMzIDE3My40MDcgTDQ4NS4wMDAgMTcyLjc2MyBMNDg2LjY2NyAxNzIuMTg1IEw0ODguMzMzIDE3MS42NzUgTDQ5MC4wMDAgMTcxLjIzMSBMNDkxLjY2NyAxNzAuODU2IEw0OTMuMzMzIDE3MC41NDggTDQ5NS4wMDAgMTcwLjMwOCBMNDk2LjY2NyAxNzAuMTM3IEw0OTguMzMzIDE3MC4wMzQgTDUwMC4wMDAgMTcwLjAwMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMTQ1ZDgxIiBzdHJva2Utd2lkdGg9IjMiLz4KPHRleHQgeD0iNTY1IiB5PSIyNzciPs64PC90ZXh0Pjx0ZXh0IHg9Ijg1IiB5PSI0MTUiPjA8L3RleHQ+PHRleHQgeD0iMjkwIiB5PSI0MTUiPs+APC90ZXh0Pjx0ZXh0IHg9IjQ4NSIgeT0iNDE1Ij4yz4A8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI0NTUiPnnigoIgPSDiiJJjb3POuCBtbTwvdGV4dD4KPHBhdGggZD0iTTgwIDU4MEg1NTUiIHN0cm9rZT0iIzE0MmQ0MCIgbWFya2VyLWVuZD0idXJsKCNhKSIvPjxwYXRoIGQ9Ik0xMDAgNjkwVjQ3MCIgc3Ryb2tlPSIjMTQyZDQwIiBtYXJrZXItZW5kPSJ1cmwoI2EpIi8+CjxwYXRoIGQ9Ik0xMDAuMDAwIDYwNS4wMDAgTDEwMS42NjcgNjA0Ljk5MSBMMTAzLjMzMyA2MDQuOTY2IEwxMDUuMDAwIDYwNC45MjMgTDEwNi42NjcgNjA0Ljg2MyBMMTA4LjMzMyA2MDQuNzg2IEwxMTAuMDAwIDYwNC42OTIgTDExMS42NjcgNjA0LjU4MSBMMTEzLjMzMyA2MDQuNDU0IEwxMTUuMDAwIDYwNC4zMDkgTDExNi42NjcgNjA0LjE0OCBMMTE4LjMzMyA2MDMuOTcwIEwxMjAuMDAwIDYwMy43NzYgTDEyMS42NjcgNjAzLjU2NiBMMTIzLjMzMyA2MDMuMzQwIEwxMjUuMDAwIDYwMy4wOTcgTDEyNi42NjcgNjAyLjgzOSBMMTI4LjMzMyA2MDIuNTY1IEwxMzAuMDAwIDYwMi4yNzUgTDEzMS42NjcgNjAxLjk3MCBMMTMzLjMzMyA2MDEuNjUxIEwxMzUuMDAwIDYwMS4zMTYgTDEzNi42NjcgNjAwLjk2NyBMMTM4LjMzMyA2MDAuNjAzIEwxNDAuMDAwIDYwMC4yMjUgTDE0MS42NjcgNTk5LjgzNCBMMTQzLjMzMyA1OTkuNDI5IEwxNDUuMDAwIDU5OS4wMTAgTDE0Ni42NjcgNTk4LjU3OSBMMTQ4LjMzMyA1OTguMTM0IEwxNTAuMDAwIDU5Ny42NzggTDE1MS42NjcgNTk3LjIwOSBMMTUzLjMzMyA1OTYuNzI4IEwxNTUuMDAwIDU5Ni4yMzYgTDE1Ni42NjcgNTk1LjczMyBMMTU4LjMzMyA1OTUuMjE5IEwxNjAuMDAwIDU5NC42OTUgTDE2MS42NjcgNTk0LjE2MCBMMTYzLjMzMyA1OTMuNjE2IEwxNjUuMDAwIDU5My4wNjIgTDE2Ni42NjcgNTkyLjUwMCBMMTY4LjMzMyA1OTEuOTI5IEwxNzAuMDAwIDU5MS4zNTAgTDE3MS42NjcgNTkwLjc2MyBMMTczLjMzMyA1OTAuMTY4IEwxNzUuMDAwIDU4OS41NjcgTDE3Ni42NjcgNTg4Ljk1OSBMMTc4LjMzMyA1ODguMzQ1IEwxODAuMDAwIDU4Ny43MjUgTDE4MS42NjcgNTg3LjEwMCBMMTgzLjMzMyA1ODYuNDcwIEwxODUuMDAwIDU4NS44MzYgTDE4Ni42NjcgNTg1LjE5OCBMMTg4LjMzMyA1ODQuNTU2IEwxOTAuMDAwIDU4My45MTEgTDE5MS42NjcgNTgzLjI2MyBMMTkzLjMzMyA1ODIuNjEzIEwxOTUuMDAwIDU4MS45NjEgTDE5Ni42NjcgNTgxLjMwOCBMMTk4LjMzMyA1ODAuNjU0IEwyMDAuMDAwIDU4MC4wMDAgTDIwMS42NjcgNTc5LjM0NiBMMjAzLjMzMyA1NzguNjkyIEwyMDUuMDAwIDU3OC4wMzkgTDIwNi42NjcgNTc3LjM4NyBMMjA4LjMzMyA1NzYuNzM3IEwyMTAuMDAwIDU3Ni4wODkgTDIxMS42NjcgNTc1LjQ0NCBMMjEzLjMzMyA1NzQuODAyIEwyMTUuMDAwIDU3NC4xNjQgTDIxNi42NjcgNTczLjUzMCBMMjE4LjMzMyA1NzIuOTAwIEwyMjAuMDAwIDU3Mi4yNzUgTDIyMS42NjcgNTcxLjY1NSBMMjIzLjMzMyA1NzEuMDQxIEwyMjUuMDAwIDU3MC40MzMgTDIyNi42NjcgNTY5LjgzMiBMMjI4LjMzMyA1NjkuMjM3IEwyMzAuMDAwIDU2OC42NTAgTDIzMS42NjcgNTY4LjA3MSBMMjMzLjMzMyA1NjcuNTAwIEwyMzUuMDAwIDU2Ni45MzggTDIzNi42NjcgNTY2LjM4NCBMMjM4LjMzMyA1NjUuODQwIEwyNDAuMDAwIDU2NS4zMDUgTDI0MS42NjcgNTY0Ljc4MSBMMjQzLjMzMyA1NjQuMjY3IEwyNDUuMDAwIDU2My43NjQgTDI0Ni42NjcgNTYzLjI3MiBMMjQ4LjMzMyA1NjIuNzkxIEwyNTAuMDAwIDU2Mi4zMjIgTDI1MS42NjcgNTYxLjg2NiBMMjUzLjMzMyA1NjEuNDIxIEwyNTUuMDAwIDU2MC45OTAgTDI1Ni42NjcgNTYwLjU3MSBMMjU4LjMzMyA1NjAuMTY2IEwyNjAuMDAwIDU1OS43NzUgTDI2MS42NjcgNTU5LjM5NyBMMjYzLjMzMyA1NTkuMDMzIEwyNjUuMDAwIDU1OC42ODQgTDI2Ni42NjcgNTU4LjM0OSBMMjY4LjMzMyA1NTguMDMwIEwyNzAuMDAwIDU1Ny43MjUgTDI3MS42NjcgNTU3LjQzNSBMMjczLjMzMyA1NTcuMTYxIEwyNzUuMDAwIDU1Ni45MDMgTDI3Ni42NjcgNTU2LjY2MCBMMjc4LjMzMyA1NTYuNDM0IEwyODAuMDAwIDU1Ni4yMjQgTDI4MS42NjcgNTU2LjAzMCBMMjgzLjMzMyA1NTUuODUyIEwyODUuMDAwIDU1NS42OTEgTDI4Ni42NjcgNTU1LjU0NiBMMjg4LjMzMyA1NTUuNDE5IEwyOTAuMDAwIDU1NS4zMDggTDI5MS42NjcgNTU1LjIxNCBMMjkzLjMzMyA1NTUuMTM3IEwyOTUuMDAwIDU1NS4wNzcgTDI5Ni42NjcgNTU1LjAzNCBMMjk4LjMzMyA1NTUuMDA5IEwzMDAuMDAwIDU1NS4wMDAgTDMwMS42NjcgNTU1LjAwOSBMMzAzLjMzMyA1NTUuMDM0IEwzMDUuMDAwIDU1NS4wNzcgTDMwNi42NjcgNTU1LjEzNyBMMzA4LjMzMyA1NTUuMjE0IEwzMTAuMDAwIDU1NS4zMDggTDMxMS42NjcgNTU1LjQxOSBMMzEzLjMzMyA1NTUuNTQ2IEwzMTUuMDAwIDU1NS42OTEgTDMxNi42NjcgNTU1Ljg1MiBMMzE4LjMzMyA1NTYuMDMwIEwzMjAuMDAwIDU1Ni4yMjQgTDMyMS42NjcgNTU2LjQzNCBMMzIzLjMzMyA1NTYuNjYwIEwzMjUuMDAwIDU1Ni45MDMgTDMyNi42NjcgNTU3LjE2MSBMMzI4LjMzMyA1NTcuNDM1IEwzMzAuMDAwIDU1Ny43MjUgTDMzMS42NjcgNTU4LjAzMCBMMzMzLjMzMyA1NTguMzQ5IEwzMzUuMDAwIDU1OC42ODQgTDMzNi42NjcgNTU5LjAzMyBMMzM4LjMzMyA1NTkuMzk3IEwzNDAuMDAwIDU1OS43NzUgTDM0MS42NjcgNTYwLjE2NiBMMzQzLjMzMyA1NjAuNTcxIEwzNDUuMDAwIDU2MC45OTAgTDM0Ni42NjcgNTYxLjQyMSBMMzQ4LjMzMyA1NjEuODY2IEwzNTAuMDAwIDU2Mi4zMjIgTDM1MS42NjcgNTYyLjc5MSBMMzUzLjMzMyA1NjMuMjcyIEwzNTUuMDAwIDU2My43NjQgTDM1Ni42NjcgNTY0LjI2NyBMMzU4LjMzMyA1NjQuNzgxIEwzNjAuMDAwIDU2NS4zMDUgTDM2MS42NjcgNTY1Ljg0MCBMMzYzLjMzMyA1NjYuMzg0IEwzNjUuMDAwIDU2Ni45MzggTDM2Ni42NjcgNTY3LjUwMCBMMzY4LjMzMyA1NjguMDcxIEwzNzAuMDAwIDU2OC42NTAgTDM3MS42NjcgNTY5LjIzNyBMMzczLjMzMyA1NjkuODMyIEwzNzUuMDAwIDU3MC40MzMgTDM3Ni42NjcgNTcxLjA0MSBMMzc4LjMzMyA1NzEuNjU1IEwzODAuMDAwIDU3Mi4yNzUgTDM4MS42NjcgNTcyLjkwMCBMMzgzLjMzMyA1NzMuNTMwIEwzODUuMDAwIDU3NC4xNjQgTDM4Ni42NjcgNTc0LjgwMiBMMzg4LjMzMyA1NzUuNDQ0IEwzOTAuMDAwIDU3Ni4wODkgTDM5MS42NjcgNTc2LjczNyBMMzkzLjMzMyA1NzcuMzg3IEwzOTUuMDAwIDU3OC4wMzkgTDM5Ni42NjcgNTc4LjY5MiBMMzk4LjMzMyA1NzkuMzQ2IEw0MDAuMDAwIDU4MC4wMDAgTDQwMS42NjcgNTgwLjY1NCBMNDAzLjMzMyA1ODEuMzA4IEw0MDUuMDAwIDU4MS45NjEgTDQwNi42NjcgNTgyLjYxMyBMNDA4LjMzMyA1ODMuMjYzIEw0MTAuMDAwIDU4My45MTEgTDQxMS42NjcgNTg0LjU1NiBMNDEzLjMzMyA1ODUuMTk4IEw0MTUuMDAwIDU4NS44MzYgTDQxNi42NjcgNTg2LjQ3MCBMNDE4LjMzMyA1ODcuMTAwIEw0MjAuMDAwIDU4Ny43MjUgTDQyMS42NjcgNTg4LjM0NSBMNDIzLjMzMyA1ODguOTU5IEw0MjUuMDAwIDU4OS41NjcgTDQyNi42NjcgNTkwLjE2OCBMNDI4LjMzMyA1OTAuNzYzIEw0MzAuMDAwIDU5MS4zNTAgTDQzMS42NjcgNTkxLjkyOSBMNDMzLjMzMyA1OTIuNTAwIEw0MzUuMDAwIDU5My4wNjIgTDQzNi42NjcgNTkzLjYxNiBMNDM4LjMzMyA1OTQuMTYwIEw0NDAuMDAwIDU5NC42OTUgTDQ0MS42NjcgNTk1LjIxOSBMNDQzLjMzMyA1OTUuNzMzIEw0NDUuMDAwIDU5Ni4yMzYgTDQ0Ni42NjcgNTk2LjcyOCBMNDQ4LjMzMyA1OTcuMjA5IEw0NTAuMDAwIDU5Ny42NzggTDQ1MS42NjcgNTk4LjEzNCBMNDUzLjMzMyA1OTguNTc5IEw0NTUuMDAwIDU5OS4wMTAgTDQ1Ni42NjcgNTk5LjQyOSBMNDU4LjMzMyA1OTkuODM0IEw0NjAuMDAwIDYwMC4yMjUgTDQ2MS42NjcgNjAwLjYwMyBMNDYzLjMzMyA2MDAuOTY3IEw0NjUuMDAwIDYwMS4zMTYgTDQ2Ni42NjcgNjAxLjY1MSBMNDY4LjMzMyA2MDEuOTcwIEw0NzAuMDAwIDYwMi4yNzUgTDQ3MS42NjcgNjAyLjU2NSBMNDczLjMzMyA2MDIuODM5IEw0NzUuMDAwIDYwMy4wOTcgTDQ3Ni42NjcgNjAzLjM0MCBMNDc4LjMzMyA2MDMuNTY2IEw0ODAuMDAwIDYwMy43NzYgTDQ4MS42NjcgNjAzLjk3MCBMNDgzLjMzMyA2MDQuMTQ4IEw0ODUuMDAwIDYwNC4zMDkgTDQ4Ni42NjcgNjA0LjQ1NCBMNDg4LjMzMyA2MDQuNTgxIEw0OTAuMDAwIDYwNC42OTIgTDQ5MS42NjcgNjA0Ljc4NiBMNDkzLjMzMyA2MDQuODYzIEw0OTUuMDAwIDYwNC45MjMgTDQ5Ni42NjcgNjA0Ljk2NiBMNDk4LjMzMyA2MDQuOTkxIEw1MDAuMDAwIDYwNS4wMDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2M2NTkxOSIgc3Ryb2tlLXdpZHRoPSIzIi8+Cjx0ZXh0IHg9IjU2NSIgeT0iNTg3Ij7OuDwvdGV4dD48dGV4dCB4PSI4NSIgeT0iNzI1Ij4wPC90ZXh0Pjx0ZXh0IHg9IjI5MCIgeT0iNzI1Ij7PgDwvdGV4dD48dGV4dCB4PSI0ODUiIHk9IjcyNSI+Ms+APC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iNzUwIj55ID0gMyBjb3POuCBtbTwvdGV4dD4KPHBhdGggZD0iTTgwIDg3MEg1NTUiIHN0cm9rZT0iIzE0MmQ0MCIgbWFya2VyLWVuZD0idXJsKCNhKSIvPjxwYXRoIGQ9Ik0xMDAgOTgwVjc2MCIgc3Ryb2tlPSIjMTQyZDQwIiBtYXJrZXItZW5kPSJ1cmwoI2EpIi8+CjxwYXRoIGQ9Ik0xMDAuMDAwIDc5NS4wMDAgTDEwMS42NjcgNzk1LjAyNiBMMTAzLjMzMyA3OTUuMTAzIEwxMDUuMDAwIDc5NS4yMzEgTDEwNi42NjcgNzk1LjQxMSBMMTA4LjMzMyA3OTUuNjQyIEwxMTAuMDAwIDc5NS45MjMgTDExMS42NjcgNzk2LjI1NiBMMTEzLjMzMyA3OTYuNjM5IEwxMTUuMDAwIDc5Ny4wNzIgTDExNi42NjcgNzk3LjU1NiBMMTE4LjMzMyA3OTguMDg5IEwxMjAuMDAwIDc5OC42NzEgTDEyMS42NjcgNzk5LjMwMiBMMTIzLjMzMyA3OTkuOTgxIEwxMjUuMDAwIDgwMC43MDkgTDEyNi42NjcgODAxLjQ4NCBMMTI4LjMzMyA4MDIuMzA2IEwxMzAuMDAwIDgwMy4xNzUgTDEzMS42NjcgODA0LjA4OSBMMTMzLjMzMyA4MDUuMDQ4IEwxMzUuMDAwIDgwNi4wNTIgTDEzNi42NjcgODA3LjEwMCBMMTM4LjMzMyA4MDguMTkxIEwxNDAuMDAwIDgwOS4zMjQgTDE0MS42NjcgODEwLjQ5OCBMMTQzLjMzMyA4MTEuNzE0IEwxNDUuMDAwIDgxMi45NzAgTDE0Ni42NjcgODE0LjI2NCBMMTQ4LjMzMyA4MTUuNTk3IEwxNTAuMDAwIDgxNi45NjcgTDE1MS42NjcgODE4LjM3MyBMMTUzLjMzMyA4MTkuODE1IEwxNTUuMDAwIDgyMS4yOTEgTDE1Ni42NjcgODIyLjgwMSBMMTU4LjMzMyA4MjQuMzQzIEwxNjAuMDAwIDgyNS45MTYgTDE2MS42NjcgODI3LjUyMCBMMTYzLjMzMyA4MjkuMTUyIEwxNjUuMDAwIDgzMC44MTMgTDE2Ni42NjcgODMyLjUwMCBMMTY4LjMzMyA4MzQuMjEzIEwxNzAuMDAwIDgzNS45NTEgTDE3MS42NjcgODM3LjcxMiBMMTczLjMzMyA4MzkuNDk1IEwxNzUuMDAwIDg0MS4yOTkgTDE3Ni42NjcgODQzLjEyMiBMMTc4LjMzMyA4NDQuOTY0IEwxODAuMDAwIDg0Ni44MjQgTDE4MS42NjcgODQ4LjY5OSBMMTgzLjMzMyA4NTAuNTg5IEwxODUuMDAwIDg1Mi40OTIgTDE4Ni42NjcgODU0LjQwNyBMMTg4LjMzMyA4NTYuMzMyIEwxOTAuMDAwIDg1OC4yNjcgTDE5MS42NjcgODYwLjIxMSBMMTkzLjMzMyA4NjIuMTYwIEwxOTUuMDAwIDg2NC4xMTYgTDE5Ni42NjcgODY2LjA3NSBMMTk4LjMzMyA4NjguMDM3IEwyMDAuMDAwIDg3MC4wMDAgTDIwMS42NjcgODcxLjk2MyBMMjAzLjMzMyA4NzMuOTI1IEwyMDUuMDAwIDg3NS44ODQgTDIwNi42NjcgODc3Ljg0MCBMMjA4LjMzMyA4NzkuNzg5IEwyMTAuMDAwIDg4MS43MzMgTDIxMS42NjcgODgzLjY2OCBMMjEzLjMzMyA4ODUuNTkzIEwyMTUuMDAwIDg4Ny41MDggTDIxNi42NjcgODg5LjQxMSBMMjE4LjMzMyA4OTEuMzAxIEwyMjAuMDAwIDg5My4xNzYgTDIyMS42NjcgODk1LjAzNiBMMjIzLjMzMyA4OTYuODc4IEwyMjUuMDAwIDg5OC43MDEgTDIyNi42NjcgOTAwLjUwNSBMMjI4LjMzMyA5MDIuMjg4IEwyMzAuMDAwIDkwNC4wNDkgTDIzMS42NjcgOTA1Ljc4NyBMMjMzLjMzMyA5MDcuNTAwIEwyMzUuMDAwIDkwOS4xODcgTDIzNi42NjcgOTEwLjg0OCBMMjM4LjMzMyA5MTIuNDgwIEwyNDAuMDAwIDkxNC4wODQgTDI0MS42NjcgOTE1LjY1NyBMMjQzLjMzMyA5MTcuMTk5IEwyNDUuMDAwIDkxOC43MDkgTDI0Ni42NjcgOTIwLjE4NSBMMjQ4LjMzMyA5MjEuNjI3IEwyNTAuMDAwIDkyMy4wMzMgTDI1MS42NjcgOTI0LjQwMyBMMjUzLjMzMyA5MjUuNzM2IEwyNTUuMDAwIDkyNy4wMzAgTDI1Ni42NjcgOTI4LjI4NiBMMjU4LjMzMyA5MjkuNTAyIEwyNjAuMDAwIDkzMC42NzYgTDI2MS42NjcgOTMxLjgwOSBMMjYzLjMzMyA5MzIuOTAwIEwyNjUuMDAwIDkzMy45NDggTDI2Ni42NjcgOTM0Ljk1MiBMMjY4LjMzMyA5MzUuOTExIEwyNzAuMDAwIDkzNi44MjUgTDI3MS42NjcgOTM3LjY5NCBMMjczLjMzMyA5MzguNTE2IEwyNzUuMDAwIDkzOS4yOTEgTDI3Ni42NjcgOTQwLjAxOSBMMjc4LjMzMyA5NDAuNjk4IEwyODAuMDAwIDk0MS4zMjkgTDI4MS42NjcgOTQxLjkxMSBMMjgzLjMzMyA5NDIuNDQ0IEwyODUuMDAwIDk0Mi45MjggTDI4Ni42NjcgOTQzLjM2MSBMMjg4LjMzMyA5NDMuNzQ0IEwyOTAuMDAwIDk0NC4wNzcgTDI5MS42NjcgOTQ0LjM1OCBMMjkzLjMzMyA5NDQuNTg5IEwyOTUuMDAwIDk0NC43NjkgTDI5Ni42NjcgOTQ0Ljg5NyBMMjk4LjMzMyA5NDQuOTc0IEwzMDAuMDAwIDk0NS4wMDAgTDMwMS42NjcgOTQ0Ljk3NCBMMzAzLjMzMyA5NDQuODk3IEwzMDUuMDAwIDk0NC43NjkgTDMwNi42NjcgOTQ0LjU4OSBMMzA4LjMzMyA5NDQuMzU4IEwzMTAuMDAwIDk0NC4wNzcgTDMxMS42NjcgOTQzLjc0NCBMMzEzLjMzMyA5NDMuMzYxIEwzMTUuMDAwIDk0Mi45MjggTDMxNi42NjcgOTQyLjQ0NCBMMzE4LjMzMyA5NDEuOTExIEwzMjAuMDAwIDk0MS4zMjkgTDMyMS42NjcgOTQwLjY5OCBMMzIzLjMzMyA5NDAuMDE5IEwzMjUuMDAwIDkzOS4yOTEgTDMyNi42NjcgOTM4LjUxNiBMMzI4LjMzMyA5MzcuNjk0IEwzMzAuMDAwIDkzNi44MjUgTDMzMS42NjcgOTM1LjkxMSBMMzMzLjMzMyA5MzQuOTUyIEwzMzUuMDAwIDkzMy45NDggTDMzNi42NjcgOTMyLjkwMCBMMzM4LjMzMyA5MzEuODA5IEwzNDAuMDAwIDkzMC42NzYgTDM0MS42NjcgOTI5LjUwMiBMMzQzLjMzMyA5MjguMjg2IEwzNDUuMDAwIDkyNy4wMzAgTDM0Ni42NjcgOTI1LjczNiBMMzQ4LjMzMyA5MjQuNDAzIEwzNTAuMDAwIDkyMy4wMzMgTDM1MS42NjcgOTIxLjYyNyBMMzUzLjMzMyA5MjAuMTg1IEwzNTUuMDAwIDkxOC43MDkgTDM1Ni42NjcgOTE3LjE5OSBMMzU4LjMzMyA5MTUuNjU3IEwzNjAuMDAwIDkxNC4wODQgTDM2MS42NjcgOTEyLjQ4MCBMMzYzLjMzMyA5MTAuODQ4IEwzNjUuMDAwIDkwOS4xODcgTDM2Ni42NjcgOTA3LjUwMCBMMzY4LjMzMyA5MDUuNzg3IEwzNzAuMDAwIDkwNC4wNDkgTDM3MS42NjcgOTAyLjI4OCBMMzczLjMzMyA5MDAuNTA1IEwzNzUuMDAwIDg5OC43MDEgTDM3Ni42NjcgODk2Ljg3OCBMMzc4LjMzMyA4OTUuMDM2IEwzODAuMDAwIDg5My4xNzYgTDM4MS42NjcgODkxLjMwMSBMMzgzLjMzMyA4ODkuNDExIEwzODUuMDAwIDg4Ny41MDggTDM4Ni42NjcgODg1LjU5MyBMMzg4LjMzMyA4ODMuNjY4IEwzOTAuMDAwIDg4MS43MzMgTDM5MS42NjcgODc5Ljc4OSBMMzkzLjMzMyA4NzcuODQwIEwzOTUuMDAwIDg3NS44ODQgTDM5Ni42NjcgODczLjkyNSBMMzk4LjMzMyA4NzEuOTYzIEw0MDAuMDAwIDg3MC4wMDAgTDQwMS42NjcgODY4LjAzNyBMNDAzLjMzMyA4NjYuMDc1IEw0MDUuMDAwIDg2NC4xMTYgTDQwNi42NjcgODYyLjE2MCBMNDA4LjMzMyA4NjAuMjExIEw0MTAuMDAwIDg1OC4yNjcgTDQxMS42NjcgODU2LjMzMiBMNDEzLjMzMyA4NTQuNDA3IEw0MTUuMDAwIDg1Mi40OTIgTDQxNi42NjcgODUwLjU4OSBMNDE4LjMzMyA4NDguNjk5IEw0MjAuMDAwIDg0Ni44MjQgTDQyMS42NjcgODQ0Ljk2NCBMNDIzLjMzMyA4NDMuMTIyIEw0MjUuMDAwIDg0MS4yOTkgTDQyNi42NjcgODM5LjQ5NSBMNDI4LjMzMyA4MzcuNzEyIEw0MzAuMDAwIDgzNS45NTEgTDQzMS42NjcgODM0LjIxMyBMNDMzLjMzMyA4MzIuNTAwIEw0MzUuMDAwIDgzMC44MTMgTDQzNi42NjcgODI5LjE1MiBMNDM4LjMzMyA4MjcuNTIwIEw0NDAuMDAwIDgyNS45MTYgTDQ0MS42NjcgODI0LjM0MyBMNDQzLjMzMyA4MjIuODAxIEw0NDUuMDAwIDgyMS4yOTEgTDQ0Ni42NjcgODE5LjgxNSBMNDQ4LjMzMyA4MTguMzczIEw0NTAuMDAwIDgxNi45NjcgTDQ1MS42NjcgODE1LjU5NyBMNDUzLjMzMyA4MTQuMjY0IEw0NTUuMDAwIDgxMi45NzAgTDQ1Ni42NjcgODExLjcxNCBMNDU4LjMzMyA4MTAuNDk4IEw0NjAuMDAwIDgwOS4zMjQgTDQ2MS42NjcgODA4LjE5MSBMNDYzLjMzMyA4MDcuMTAwIEw0NjUuMDAwIDgwNi4wNTIgTDQ2Ni42NjcgODA1LjA0OCBMNDY4LjMzMyA4MDQuMDg5IEw0NzAuMDAwIDgwMy4xNzUgTDQ3MS42NjcgODAyLjMwNiBMNDczLjMzMyA4MDEuNDg0IEw0NzUuMDAwIDgwMC43MDkgTDQ3Ni42NjcgNzk5Ljk4MSBMNDc4LjMzMyA3OTkuMzAyIEw0ODAuMDAwIDc5OC42NzEgTDQ4MS42NjcgNzk4LjA4OSBMNDgzLjMzMyA3OTcuNTU2IEw0ODUuMDAwIDc5Ny4wNzIgTDQ4Ni42NjcgNzk2LjYzOSBMNDg4LjMzMyA3OTYuMjU2IEw0OTAuMDAwIDc5NS45MjMgTDQ5MS42NjcgNzk1LjY0MiBMNDkzLjMzMyA3OTUuNDExIEw0OTUuMDAwIDc5NS4yMzEgTDQ5Ni42NjcgNzk1LjEwMyBMNDk4LjMzMyA3OTUuMDI2IEw1MDAuMDAwIDc5NS4wMDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzIyNmE0YiIgc3Ryb2tlLXdpZHRoPSIzIi8+Cjx0ZXh0IHg9IjU2NSIgeT0iODc3Ij7OuDwvdGV4dD48dGV4dCB4PSI4NSIgeT0iMTAxNSI+MDwvdGV4dD48dGV4dCB4PSIyOTAiIHk9IjEwMTUiPs+APC90ZXh0Pjx0ZXh0IHg9IjQ4NSIgeT0iMTAxNSI+Ms+APC90ZXh0Pgo8cGF0aCBkPSJNMzUgMTA0NUg2MDUiIHN0cm9rZT0iI2IzY2JkOSIvPgo8dGV4dCB4PSIzNSIgeT0iMTA5MCIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9IjcwMCI+MiDCtyBBbXBpZXp6ZSwgbm9uIHZhbG9yaSBpc3RhbnRhbmVpPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTEzMCI+QmFycmUgZGEgemVybzogNDAgcHgvbW0gcGVyIHR1dHRpIGkgbW9kdWxpPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTE4MCI+QSDCtyA0IG1tIOKIkiAxIG1tID0gMyBtbTwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjEyNTAiPkHigoE8L3RleHQ+PHJlY3QgeD0iMTE1IiB5PSIxMjI1IiB3aWR0aD0iMTYwIiBoZWlnaHQ9IjM1IiBmaWxsPSIjMTQ1ZDgxIi8+PHRleHQgeD0iMjk1IiB5PSIxMjUxIj40IG1tPC90ZXh0Pgo8cGF0aCBkPSJNMTE1IDEyMTdWMTI3MCIgc3Ryb2tlPSIjNmU4YjljIiBzdHJva2UtZGFzaGFycmF5PSI1IDUiLz4KPHRleHQgeD0iMzUiIHk9IjEzNDUiPkHigoI8L3RleHQ+PHJlY3QgeD0iMTE1IiB5PSIxMzIwIiB3aWR0aD0iNDAiIGhlaWdodD0iMzUiIGZpbGw9IiNjNjU5MTkiLz48dGV4dCB4PSIxNzUiIHk9IjEzNDYiPjEgbW08L3RleHQ+CjxwYXRoIGQ9Ik0xMTUgMTMxMlYxMzY1IiBzdHJva2U9IiM2ZThiOWMiIHN0cm9rZS1kYXNoYXJyYXk9IjUgNSIvPgo8dGV4dCB4PSIzNSIgeT0iMTQ0MCI+QV9yZXM8L3RleHQ+PHJlY3QgeD0iMTE1IiB5PSIxNDE1IiB3aWR0aD0iMTIwIiBoZWlnaHQ9IjM1IiBmaWxsPSIjMjI2YTRiIi8+PHRleHQgeD0iMjU1IiB5PSIxNDQxIj4zIG1tPC90ZXh0Pgo8cGF0aCBkPSJNMTE1IDE0MDdWMTQ2MCIgc3Ryb2tlPSIjNmU4YjljIiBzdHJva2UtZGFzaGFycmF5PSI1IDUiLz4KPHRleHQgeD0iMzUiIHk9IjE2MDAiPkIgwrcgNiBtbSDiiJIgNCBtbSA9IDIgbW08L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxNjcwIj5B4oKBPC90ZXh0PjxyZWN0IHg9IjExNSIgeT0iMTY0NSIgd2lkdGg9IjI0MCIgaGVpZ2h0PSIzNSIgZmlsbD0iIzE0NWQ4MSIvPjx0ZXh0IHg9IjM3NSIgeT0iMTY3MSI+NiBtbTwvdGV4dD4KPHBhdGggZD0iTTExNSAxNjM3VjE2OTAiIHN0cm9rZT0iIzZlOGI5YyIgc3Ryb2tlLWRhc2hhcnJheT0iNSA1Ii8+Cjx0ZXh0IHg9IjM1IiB5PSIxNzY1Ij5B4oKCPC90ZXh0PjxyZWN0IHg9IjExNSIgeT0iMTc0MCIgd2lkdGg9IjE2MCIgaGVpZ2h0PSIzNSIgZmlsbD0iI2M2NTkxOSIvPjx0ZXh0IHg9IjI5NSIgeT0iMTc2NiI+NCBtbTwvdGV4dD4KPHBhdGggZD0iTTExNSAxNzMyVjE3ODUiIHN0cm9rZT0iIzZlOGI5YyIgc3Ryb2tlLWRhc2hhcnJheT0iNSA1Ii8+Cjx0ZXh0IHg9IjM1IiB5PSIxODYwIj5BX3JlczwvdGV4dD48cmVjdCB4PSIxMTUiIHk9IjE4MzUiIHdpZHRoPSI4MCIgaGVpZ2h0PSIzNSIgZmlsbD0iIzIyNmE0YiIvPjx0ZXh0IHg9IjIxNSIgeT0iMTg2MSI+MiBtbTwvdGV4dD4KPHBhdGggZD0iTTExNSAxODI3VjE4ODAiIHN0cm9rZT0iIzZlOGI5YyIgc3Ryb2tlLWRhc2hhcnJheT0iNSA1Ii8+Cjx0ZXh0IHg9IjM1IiB5PSIxOTgwIj5SZXNpZHVpOiAyLzMgbmVsIGNvbmZyb250byBCL0EuPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMjAyMCI+SWwgc2Vnbm8gYXBwYXJ0aWVuZSBhIHk7IEFfcmVzIMOoIHBvc2l0aXZvLjwvdGV4dD4KPC9nPjwvc3ZnPgo="
+    }
+  ]
+}

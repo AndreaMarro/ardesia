@@ -1,0 +1,1146 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u3-network-stages-01",
+      "kind": "question",
+      "course": "C2",
+      "section": "Stadi in serie e canali in parallelo",
+      "order": 12021,
+      "title": "Prima il parallelo, poi la serie",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L009",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L008",
+        "C2-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "network-stages",
+      "difficulty": 1,
+      "prompt": "Una rete orizzontale contiene N_s stadi identici collegati in serie, senza percorsi alternativi fra stadi non consecutivi. Ogni stadio contiene N_p canali identici in parallelo fra gli stessi due nodi; ciascun canale segue Δp=R₀Q con R₀=2 kPa·s/L. Il liquido è incomprimibile, il regime stazionario e le resistenze lineari; giunzioni ideali senza ulteriori perdite o accumuli. N_s e N_p sono conteggi interi positivi; N_p è uguale per tutti gli stadi della stessa rete. R_eq è la caduta totale divisa per la portata totale positiva. Si confrontano reti diverse, non conteggi che cambiano nel tempo durante una misura. Con N_s=2 e N_p=4, quanto vale R_eq in kPa·s/L?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "kPa·s/L",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "In ogni stadio quattro canali uguali vedono lo stesso salto: le loro portate si sommano e la resistenza dello stadio è un quarto di R₀, cioè un mezzo kPa·s/L. Il flusso totale attraversa poi due stadi in successione. Sommare due metà dà un kPa·s/L. Ci sono otto canali fisici, ma non sono tutti in serie né tutti in parallelo."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/b7e95f43cbde715589f29d8b77e78813e9c0c58c7dc4eb8299576bf54029fc38",
+          "text": "Rete schematica senza scala geometrica: due stadi in serie, ognuno con quattro canali da R₀=2 kPa·s/L. A Q_T=4 L/s i canali portano 1 L/s ciascuno e ogni stadio perde 2 kPa, totale 4. Frecce alla scala comune 20 px/(L/s), totali 80 px e singoli canali 20 px. Pressioni assolute 104,102,100 kPa."
+        },
+        {
+          "type": "formula",
+          "text": "R_{\\rm stadio}=\\frac{R_0}{N_p}"
+        },
+        {
+          "type": "formula",
+          "text": " R_{\\rm stadio}=\\frac12\\,\\mathrm{kPa\\cdot s/L}"
+        },
+        {
+          "type": "formula",
+          "text": " R_{\\rm eq}=N_sR_{\\rm stadio}"
+        },
+        {
+          "type": "formula",
+          "text": " R_{\\rm eq}=1\\,\\mathrm{kPa\\cdot s/L}"
+        },
+        {
+          "type": "text",
+          "text": "Sedici kPa·s/L metterebbe tutti gli otto canali in serie; un quarto li metterebbe tutti in parallelo. Due è R₀ del solo canale. La topologia decide quali portate e quali cadute si sommano."
+        }
+      ],
+      "hints": [
+        "Riduci ogni stadio a una resistenza, poi collega le equivalenti in serie.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sedici kPa·s/L metterebbe tutti gli otto canali in serie; un quarto li metterebbe tutti in parallelo. Due è R₀ del solo canale. La topologia decide quali portate e quali cadute si sommano.",
+        "target": "C2-L009"
+      },
+      "coverage": [
+        "Riduzione di una rete a due livelli",
+        "Conteggi interi, inverse e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-network-stages-02",
+      "kind": "question",
+      "course": "C2",
+      "section": "Stadi in serie e canali in parallelo",
+      "order": 12022,
+      "title": "L’unità resta quella di una resistenza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L009",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L008",
+        "C2-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "network-stages",
+      "difficulty": 1,
+      "prompt": "Una rete orizzontale contiene N_s stadi identici collegati in serie, senza percorsi alternativi fra stadi non consecutivi. Ogni stadio contiene N_p canali identici in parallelo fra gli stessi due nodi; ciascun canale segue Δp=R₀Q con R₀=2 kPa·s/L. Il liquido è incomprimibile, il regime stazionario e le resistenze lineari; giunzioni ideali senza ulteriori perdite o accumuli. N_s e N_p sono conteggi interi positivi; N_p è uguale per tutti gli stadi della stessa rete. R_eq è la caduta totale divisa per la portata totale positiva. Si confrontano reti diverse, non conteggi che cambiano nel tempo durante una misura. Quale unità proposta esprime R_eq?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "kPa·s/L",
+          "kPa",
+          "L/s",
+          "1",
+          "L/(kPa·s)"
+        ],
+        "value": "kPa·s/L"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I conteggi sono numeri puri. Moltiplicare R₀ per un rapporto di conteggi non ne cambia l’unità: rimane pressione divisa per portata volumetrica, kPa·s/L. Il numero totale di canali non è una grandezza da esprimere in kPa."
+        },
+        {
+          "type": "formula",
+          "text": "[N_s]=[N_p]"
+        },
+        {
+          "type": "formula",
+          "text": "[N_p]=1"
+        },
+        {
+          "type": "formula",
+          "text": " [R_{\\rm eq}]=[R_0]"
+        },
+        {
+          "type": "formula",
+          "text": " [R_{\\rm eq}]=\\mathrm{kPa\\cdot s/L}"
+        },
+        {
+          "type": "text",
+          "text": "kPa è pressione, L/s portata e 1 un’unità adatta ai conteggi, non alla resistenza. L/(kPa·s) esprime conduttanza, il reciproco. Per il confronto si usa la stessa unità di R₀."
+        }
+      ],
+      "hints": [
+        "I conteggi non aggiungono dimensioni fisiche alla resistenza del canale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "kPa è pressione, L/s portata e 1 un’unità adatta ai conteggi, non alla resistenza. L/(kPa·s) esprime conduttanza, il reciproco. Per il confronto si usa la stessa unità di R₀.",
+        "target": "C2-L009"
+      },
+      "coverage": [
+        "Riduzione di una rete a due livelli",
+        "Conteggi interi, inverse e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-network-stages-03",
+      "kind": "question",
+      "course": "C2",
+      "section": "Stadi in serie e canali in parallelo",
+      "order": 12023,
+      "title": "Una legge per due livelli di collegamento",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L009",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L008",
+        "C2-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "network-stages",
+      "difficulty": 1,
+      "prompt": "Una rete orizzontale contiene N_s stadi identici collegati in serie, senza percorsi alternativi fra stadi non consecutivi. Ogni stadio contiene N_p canali identici in parallelo fra gli stessi due nodi; ciascun canale segue Δp=R₀Q con R₀=2 kPa·s/L. Il liquido è incomprimibile, il regime stazionario e le resistenze lineari; giunzioni ideali senza ulteriori perdite o accumuli. N_s e N_p sono conteggi interi positivi; N_p è uguale per tutti gli stadi della stessa rete. R_eq è la caduta totale divisa per la portata totale positiva. Si confrontano reti diverse, non conteggi che cambiano nel tempo durante una misura. Quale relazione esprime R_eq?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "R_eq = R₀ N_s / N_p",
+          "R_eq = R₀ N_s N_p",
+          "R_eq = R₀ N_p / N_s",
+          "R_eq = R₀ / (N_s N_p)",
+          "R_eq = R₀ (N_s + N_p)"
+        ],
+        "value": "R_eq = R₀ N_s / N_p"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La conduttanza di uno stadio è N_p volte quella di un canale: la sua resistenza è R₀/N_p. In serie ogni stadio aggiunge la stessa caduta alla portata comune, perciò moltiplichiamo per N_s. Aggiungere stadi aumenta R_eq; aggiungere canali paralleli per stadio la riduce."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/b7e95f43cbde715589f29d8b77e78813e9c0c58c7dc4eb8299576bf54029fc38",
+          "text": "I primi due pannelli mantengono due stadi e Q_T=4 L/s. Con quattro canali per stadio ogni canale porta 1 L/s; con due ne porta 2. Frecce da 20 e 40 px a 20 px/(L/s). R_eq passa da 1 a 2 kPa·s/L, mentre il totale delle portate resta comune ai due stadi. Barre finali della resistenza dichiarano una scala distinta, non geometrica."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac1{R_{\\rm stadio}}=\\frac{N_p}{R_0}"
+        },
+        {
+          "type": "formula",
+          "text": " R_{\\rm stadio}=\\frac{R_0}{N_p}"
+        },
+        {
+          "type": "formula",
+          "text": " R_{\\rm eq}=\\frac{N_sR_0}{N_p}"
+        },
+        {
+          "type": "text",
+          "text": "Il prodotto mette anche i canali paralleli in serie. Scambiare i conteggi inverte entrambi gli effetti; dividere per il prodotto tratta anche gli stadi come paralleli. La somma dei conteggi non rappresenta questa rete."
+        }
+      ],
+      "hints": [
+        "Somma le conduttanze dentro uno stadio e le resistenze fra stadi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Il prodotto mette anche i canali paralleli in serie. Scambiare i conteggi inverte entrambi gli effetti; dividere per il prodotto tratta anche gli stadi come paralleli. La somma dei conteggi non rappresenta questa rete.",
+        "target": "C2-L009"
+      },
+      "coverage": [
+        "Riduzione di una rete a due livelli",
+        "Conteggi interi, inverse e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-network-stages-04",
+      "kind": "question",
+      "course": "C2",
+      "section": "Stadi in serie e canali in parallelo",
+      "order": 12024,
+      "title": "Uno stadio aggiunto alla catena",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L009",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L008",
+        "C2-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "network-stages",
+      "difficulty": 1,
+      "prompt": "Una rete orizzontale contiene N_s stadi identici collegati in serie, senza percorsi alternativi fra stadi non consecutivi. Ogni stadio contiene N_p canali identici in parallelo fra gli stessi due nodi; ciascun canale segue Δp=R₀Q con R₀=2 kPa·s/L. Il liquido è incomprimibile, il regime stazionario e le resistenze lineari; giunzioni ideali senza ulteriori perdite o accumuli. N_s e N_p sono conteggi interi positivi; N_p è uguale per tutti gli stadi della stessa rete. R_eq è la caduta totale divisa per la portata totale positiva. Si confrontano reti diverse, non conteggi che cambiano nel tempo durante una misura. N_s passa da 2 a 3, mentre N_p resta 4. Come cambia R_eq?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 1 a 3/2 kPa·s/L",
+          "Da 1 a 2/3 kPa·s/L",
+          "Resta 1 kPa·s/L",
+          "Da 1 a 3 kPa·s/L",
+          "Diventa zero"
+        ],
+        "value": "Da 1 a 3/2 kPa·s/L"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Ogni stadio conserva la resistenza un mezzo kPa·s/L. Due stadi danno uno; tre danno tre metà. L’incremento è esattamente la resistenza dello stadio aggiunto, non quella di un singolo canale."
+        },
+        {
+          "type": "formula",
+          "text": "R_{{\\rm eq},A}=2\\frac24\\,\\mathrm{kPa\\cdot s/L}"
+        },
+        {
+          "type": "formula",
+          "text": " R_{{\\rm eq},A}=1\\,\\mathrm{kPa\\cdot s/L}"
+        },
+        {
+          "type": "formula",
+          "text": " R_{{\\rm eq},B}=\\frac32\\,\\mathrm{kPa\\cdot s/L}"
+        },
+        {
+          "type": "text",
+          "text": "Due terzi inverte la dipendenza da N_s. Tre sostituisce il conteggio alla resistenza totale, ignorando R₀/N_p. Invariata o nulla è incompatibile con l’aggiunta di uno stadio passivo positivo lungo l’unico percorso fra stadi."
+        }
+      ],
+      "hints": [
+        "Ogni stadio continua a valere un mezzo kPa·s/L.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Due terzi inverte la dipendenza da N_s. Tre sostituisce il conteggio alla resistenza totale, ignorando R₀/N_p. Invariata o nulla è incompatibile con l’aggiunta di uno stadio passivo positivo lungo l’unico percorso fra stadi.",
+        "target": "C2-L009"
+      },
+      "coverage": [
+        "Riduzione di una rete a due livelli",
+        "Conteggi interi, inverse e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-network-stages-05",
+      "kind": "question",
+      "course": "C2",
+      "section": "Stadi in serie e canali in parallelo",
+      "order": 12025,
+      "title": "Contare gli stadi da una misura",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L009",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L008",
+        "C2-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "network-stages",
+      "difficulty": 2,
+      "prompt": "Una rete orizzontale contiene N_s stadi identici collegati in serie, senza percorsi alternativi fra stadi non consecutivi. Ogni stadio contiene N_p canali identici in parallelo fra gli stessi due nodi; ciascun canale segue Δp=R₀Q con R₀=2 kPa·s/L. Il liquido è incomprimibile, il regime stazionario e le resistenze lineari; giunzioni ideali senza ulteriori perdite o accumuli. N_s e N_p sono conteggi interi positivi; N_p è uguale per tutti gli stadi della stessa rete. R_eq è la caduta totale divisa per la portata totale positiva. Si confrontano reti diverse, non conteggi che cambiano nel tempo durante una misura. Si misura R_eq=1 kPa·s/L e si conosce N_p=4. Quanto vale N_s?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplicare la resistenza totale per quattro e dividere per R₀=2 restituisce due stadi. Il rapporto delle resistenze cancella le unità. Oltre alla positività occorre verificare che il risultato sia intero: due lo è; un risultato non intero renderebbe incompatibili misura esatta e modello assegnato."
+        },
+        {
+          "type": "formula",
+          "text": "N_s=\\frac{R_{\\rm eq}N_p}{R_0}"
+        },
+        {
+          "type": "formula",
+          "text": " N_s=\\frac{1\\cdot4}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " N_s=2"
+        },
+        {
+          "type": "text",
+          "text": "Quattro copierebbe N_p e un mezzo invertirebbe il passaggio. Non si arrotonda un conteggio non intero per farlo entrare nel modello: qui i dati ideali esatti forniscono già l’intero ammesso."
+        }
+      ],
+      "hints": [
+        "Dividi il totale per la resistenza di uno stadio.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro copierebbe N_p e un mezzo invertirebbe il passaggio. Non si arrotonda un conteggio non intero per farlo entrare nel modello: qui i dati ideali esatti forniscono già l’intero ammesso.",
+        "target": "C2-L009"
+      },
+      "coverage": [
+        "Riduzione di una rete a due livelli",
+        "Conteggi interi, inverse e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-network-stages-06",
+      "kind": "question",
+      "course": "C2",
+      "section": "Stadi in serie e canali in parallelo",
+      "order": 12026,
+      "title": "Contare i canali per stadio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L009",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L008",
+        "C2-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "network-stages",
+      "difficulty": 2,
+      "prompt": "Una rete orizzontale contiene N_s stadi identici collegati in serie, senza percorsi alternativi fra stadi non consecutivi. Ogni stadio contiene N_p canali identici in parallelo fra gli stessi due nodi; ciascun canale segue Δp=R₀Q con R₀=2 kPa·s/L. Il liquido è incomprimibile, il regime stazionario e le resistenze lineari; giunzioni ideali senza ulteriori perdite o accumuli. N_s e N_p sono conteggi interi positivi; N_p è uguale per tutti gli stadi della stessa rete. R_eq è la caduta totale divisa per la portata totale positiva. Si confrontano reti diverse, non conteggi che cambiano nel tempo durante una misura. Si misura R_eq=1 kPa·s/L e si conosce N_s=2. Quanto vale N_p?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Due stadi di un solo canale ciascuno darebbero quattro kPa·s/L. Per avere resistenza totale uno, ogni stadio deve dividere la propria resistenza per quattro: occorrono quattro canali paralleli per stadio. Nell’inversa il totale sta al denominatore."
+        },
+        {
+          "type": "formula",
+          "text": "R_{\\rm eq}N_p=N_sR_0"
+        },
+        {
+          "type": "formula",
+          "text": " N_p=\\frac{N_sR_0}{R_{\\rm eq}}"
+        },
+        {
+          "type": "formula",
+          "text": " N_p=\\frac{2\\cdot2}{1}"
+        },
+        {
+          "type": "formula",
+          "text": " N_p=4"
+        },
+        {
+          "type": "text",
+          "text": "Due è il numero di stadi, non di canali per stadio. Un quarto è il reciproco del conteggio; otto conterebbe tutti i canali dell’intera rete, mentre N_p descrive ciascuno stadio. Il risultato è intero positivo."
+        }
+      ],
+      "hints": [
+        "Isola il conteggio che divide la legge diretta.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due è il numero di stadi, non di canali per stadio. Un quarto è il reciproco del conteggio; otto conterebbe tutti i canali dell’intera rete, mentre N_p descrive ciascuno stadio. Il risultato è intero positivo.",
+        "target": "C2-L009"
+      },
+      "coverage": [
+        "Riduzione di una rete a due livelli",
+        "Conteggi interi, inverse e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-network-stages-07",
+      "kind": "question",
+      "course": "C2",
+      "section": "Stadi in serie e canali in parallelo",
+      "order": 12027,
+      "title": "Meno canali, più resistenza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L009",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L008",
+        "C2-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "network-stages",
+      "difficulty": 2,
+      "prompt": "Una rete orizzontale contiene N_s stadi identici collegati in serie, senza percorsi alternativi fra stadi non consecutivi. Ogni stadio contiene N_p canali identici in parallelo fra gli stessi due nodi; ciascun canale segue Δp=R₀Q con R₀=2 kPa·s/L. Il liquido è incomprimibile, il regime stazionario e le resistenze lineari; giunzioni ideali senza ulteriori perdite o accumuli. N_s e N_p sono conteggi interi positivi; N_p è uguale per tutti gli stadi della stessa rete. R_eq è la caduta totale divisa per la portata totale positiva. Si confrontano reti diverse, non conteggi che cambiano nel tempo durante una misura. A ha N_s=2,N_p=4; B mantiene N_s e ha N_p=2. Quanto vale R_eq,B/R_eq,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/2",
+          "4",
+          "1",
+          "2/3"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dimezzare il numero di vie parallele raddoppia la resistenza di ogni stadio. Il totale passa da uno a due kPa·s/L. Il numero di stadi resta uguale e non introduce un altro fattore."
+        },
+        {
+          "type": "formula",
+          "text": "R_{{\\rm eq},A}=1\\,\\mathrm{kPa\\cdot s/L}"
+        },
+        {
+          "type": "formula",
+          "text": " R_{{\\rm eq},B}=2\\,\\mathrm{kPa\\cdot s/L}"
+        },
+        {
+          "type": "formula",
+          "text": " R_{{\\rm eq},B}/R_{{\\rm eq},A}=2"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo segue N_p nel verso sbagliato, quattro conta due volte il dimezzamento e uno lo ignora. Due terzi non è il rapporto dei conteggi assegnati. A portata totale imposta, anche la caduta totale raddoppierebbe."
+        }
+      ],
+      "hints": [
+        "Il conteggio parallelo è al denominatore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo segue N_p nel verso sbagliato, quattro conta due volte il dimezzamento e uno lo ignora. Due terzi non è il rapporto dei conteggi assegnati. A portata totale imposta, anche la caduta totale raddoppierebbe.",
+        "target": "C2-L009"
+      },
+      "coverage": [
+        "Riduzione di una rete a due livelli",
+        "Conteggi interi, inverse e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-network-stages-08",
+      "kind": "question",
+      "course": "C2",
+      "section": "Stadi in serie e canali in parallelo",
+      "order": 12028,
+      "title": "Uno scarto dovuto al doppio del totale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L009",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L008",
+        "C2-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "network-stages",
+      "difficulty": 2,
+      "prompt": "Una rete orizzontale contiene N_s stadi identici collegati in serie, senza percorsi alternativi fra stadi non consecutivi. Ogni stadio contiene N_p canali identici in parallelo fra gli stessi due nodi; ciascun canale segue Δp=R₀Q con R₀=2 kPa·s/L. Il liquido è incomprimibile, il regime stazionario e le resistenze lineari; giunzioni ideali senza ulteriori perdite o accumuli. N_s e N_p sono conteggi interi positivi; N_p è uguale per tutti gli stadi della stessa rete. R_eq è la caduta totale divisa per la portata totale positiva. Si confrontano reti diverse, non conteggi che cambiano nel tempo durante una misura. Con N_s=2,N_p=4 si propone R_eq=2 kPa·s/L. Quanto vale proposta meno corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1 kPa·s/L",
+          "−1 kPa·s/L",
+          "2 kPa·s/L",
+          "0 kPa·s/L",
+          "1/2 kPa·s/L"
+        ],
+        "value": "1 kPa·s/L"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La rete corretta ha due stadi da un mezzo, quindi un kPa·s/L. La proposta due supera il totale di uno. Il segno positivo indica una sovrastima della resistenza esterna, non una portata negativa."
+        },
+        {
+          "type": "formula",
+          "text": "R_{\\rm eq}=1\\,\\mathrm{kPa\\cdot s/L}"
+        },
+        {
+          "type": "formula",
+          "text": " e=(2-1)\\,\\mathrm{kPa\\cdot s/L}"
+        },
+        {
+          "type": "formula",
+          "text": " e=1\\,\\mathrm{kPa\\cdot s/L}"
+        },
+        {
+          "type": "text",
+          "text": "Meno uno scambia l’ordine, due copia la proposta, zero la accetta e un mezzo dimezza lo scarto. Due sarebbe coerente con gli stessi due stadi ma soltanto due canali per stadio, cioè un’altra rete."
+        }
+      ],
+      "hints": [
+        "Riduci la rete data prima di confrontarla con la proposta.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Meno uno scambia l’ordine, due copia la proposta, zero la accetta e un mezzo dimezza lo scarto. Due sarebbe coerente con gli stessi due stadi ma soltanto due canali per stadio, cioè un’altra rete.",
+        "target": "C2-L009"
+      },
+      "coverage": [
+        "Riduzione di una rete a due livelli",
+        "Conteggi interi, inverse e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-network-stages-09",
+      "kind": "question",
+      "course": "C2",
+      "section": "Stadi in serie e canali in parallelo",
+      "order": 12029,
+      "title": "L’inversa richiede anche un conteggio intero",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L009",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L008",
+        "C2-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "network-stages",
+      "difficulty": 2,
+      "prompt": "Una rete orizzontale contiene N_s stadi identici collegati in serie, senza percorsi alternativi fra stadi non consecutivi. Ogni stadio contiene N_p canali identici in parallelo fra gli stessi due nodi; ciascun canale segue Δp=R₀Q con R₀=2 kPa·s/L. Il liquido è incomprimibile, il regime stazionario e le resistenze lineari; giunzioni ideali senza ulteriori perdite o accumuli. N_s e N_p sono conteggi interi positivi; N_p è uguale per tutti gli stadi della stessa rete. R_eq è la caduta totale divisa per la portata totale positiva. Si confrontano reti diverse, non conteggi che cambiano nel tempo durante una misura. Quale relazione isola N_s, con dati compatibili con un conteggio intero positivo?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "N_s = R_eq N_p / R₀",
+          "N_s = R₀ N_p / R_eq",
+          "N_s = R_eq R₀ / N_p",
+          "N_s = R_eq / (R₀ N_p)",
+          "N_s = R_eq + N_p"
+        ],
+        "value": "N_s = R_eq N_p / R₀"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Da R_eq=N_sR₀/N_p moltiplichiamo per N_p e dividiamo per R₀>0. Il risultato è puro e deve appartenere agli interi positivi. L’algebra fornisce una condizione necessaria, mentre l’integralità seleziona i dati realizzabili come rete di stadi interi."
+        },
+        {
+          "type": "formula",
+          "text": "R_{\\rm eq}N_p=N_sR_0"
+        },
+        {
+          "type": "formula",
+          "text": " N_s=\\frac{R_{\\rm eq}N_p}{R_0}"
+        },
+        {
+          "type": "formula",
+          "text": " N_s\\in\\mathbb N_{>0}"
+        },
+        {
+          "type": "text",
+          "text": "R₀ al numeratore invece che al denominatore inverte la relazione. Il prodotto delle due resistenze ha dimensioni sbagliate; dividere anche per N_p tratta due volte il parallelo. Nell’ultima scelta si sommano una resistenza e un conteggio."
+        }
+      ],
+      "hints": [
+        "Porta N_p dall’altro lato e poi dividi per la resistenza del canale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "R₀ al numeratore invece che al denominatore inverte la relazione. Il prodotto delle due resistenze ha dimensioni sbagliate; dividere anche per N_p tratta due volte il parallelo. Nell’ultima scelta si sommano una resistenza e un conteggio.",
+        "target": "C2-L009"
+      },
+      "coverage": [
+        "Riduzione di una rete a due livelli",
+        "Conteggi interi, inverse e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-network-stages-10",
+      "kind": "question",
+      "course": "C2",
+      "section": "Stadi in serie e canali in parallelo",
+      "order": 12030,
+      "title": "Due fattori con reti ammissibili",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L009",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L008",
+        "C2-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "network-stages",
+      "difficulty": 2,
+      "prompt": "Una rete orizzontale contiene N_s stadi identici collegati in serie, senza percorsi alternativi fra stadi non consecutivi. Ogni stadio contiene N_p canali identici in parallelo fra gli stessi due nodi; ciascun canale segue Δp=R₀Q con R₀=2 kPa·s/L. Il liquido è incomprimibile, il regime stazionario e le resistenze lineari; giunzioni ideali senza ulteriori perdite o accumuli. N_s e N_p sono conteggi interi positivi; N_p è uguale per tutti gli stadi della stessa rete. R_eq è la caduta totale divisa per la portata totale positiva. Si confrontano reti diverse, non conteggi che cambiano nel tempo durante una misura. Fra A e B, N_s,B=κ₁N_s,A e N_p,B=κ₂N_p,A. I fattori sono positivi e i conteggi di entrambe le reti restano interi positivi. Quanto vale R_eq,B/R_eq,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ / κ₂",
+          "κ₁ κ₂",
+          "κ₂ / κ₁",
+          "κ₁² / κ₂",
+          "κ₁ / κ₂²"
+        ],
+        "value": "κ₁ / κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "N_s moltiplica la legge e fornisce κ₁; N_p divide e fornisce il reciproco di κ₂. R₀ e i conteggi iniziali si cancellano nel confronto. Non si richiede che ciascun fattore sia intero: si richiede che i nuovi conteggi lo siano."
+        },
+        {
+          "type": "formula",
+          "text": "R_{{\\rm eq},B}=\\frac{\\kappa_1N_{s,A}R_0}{\\kappa_2N_{p,A}}"
+        },
+        {
+          "type": "formula",
+          "text": " R_{{\\rm eq},B}/R_{{\\rm eq},A}=\\frac{\\kappa_1}{\\kappa_2}"
+        },
+        {
+          "type": "text",
+          "text": "Il prodotto assegna ai canali paralleli l’effetto contrario; il rapporto inverso scambia gli stati. I quadrati non compaiono perché la rete combina somme di elementi lineari, senza potenze dei conteggi. Con fattori uguali la resistenza equivalente resta uguale."
+        }
+      ],
+      "hints": [
+        "Conta i fattori del numeratore e del denominatore separatamente.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il prodotto assegna ai canali paralleli l’effetto contrario; il rapporto inverso scambia gli stati. I quadrati non compaiono perché la rete combina somme di elementi lineari, senza potenze dei conteggi. Con fattori uguali la resistenza equivalente resta uguale.",
+        "target": "C2-L009"
+      },
+      "coverage": [
+        "Riduzione di una rete a due livelli",
+        "Conteggi interi, inverse e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-network-stages-11",
+      "kind": "question",
+      "course": "C2",
+      "section": "Stadi in serie e canali in parallelo",
+      "order": 12031,
+      "title": "Più stadi e meno vie parallele",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L009",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L008",
+        "C2-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "network-stages",
+      "difficulty": 2,
+      "prompt": "Una rete orizzontale contiene N_s stadi identici collegati in serie, senza percorsi alternativi fra stadi non consecutivi. Ogni stadio contiene N_p canali identici in parallelo fra gli stessi due nodi; ciascun canale segue Δp=R₀Q con R₀=2 kPa·s/L. Il liquido è incomprimibile, il regime stazionario e le resistenze lineari; giunzioni ideali senza ulteriori perdite o accumuli. N_s e N_p sono conteggi interi positivi; N_p è uguale per tutti gli stadi della stessa rete. R_eq è la caduta totale divisa per la portata totale positiva. Si confrontano reti diverse, non conteggi che cambiano nel tempo durante una misura. A ha N_s=2,N_p=4; B ha N_s=3,N_p=2. Quanto vale R_eq,B/R_eq,A?",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha equivalente uno kPa·s/L. In B ogni stadio contiene due canali e vale un kPa·s/L; tre stadi danno tre. Il rapporto è tre, prodotto del fattore tre mezzi degli stadi e del fattore due dovuto ai canali dimezzati."
+        },
+        {
+          "type": "formula",
+          "text": "R_{{\\rm eq},A}=1\\,\\mathrm{kPa\\cdot s/L}"
+        },
+        {
+          "type": "formula",
+          "text": " R_{{\\rm eq},B}=3\\,\\mathrm{kPa\\cdot s/L}"
+        },
+        {
+          "type": "formula",
+          "text": " R_{{\\rm eq},B}/R_{{\\rm eq},A}=3"
+        },
+        {
+          "type": "text",
+          "text": "Tre mezzi considera soltanto gli stadi, due soltanto i canali e un terzo è il reciproco. Sei conterebbe i canali della rete B, non il rapporto fra le resistenze esterne."
+        }
+      ],
+      "hints": [
+        "Riduci ciascuna rete oppure moltiplica i due fattori della scalatura.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre mezzi considera soltanto gli stadi, due soltanto i canali e un terzo è il reciproco. Sei conterebbe i canali della rete B, non il rapporto fra le resistenze esterne.",
+        "target": "C2-L009"
+      },
+      "coverage": [
+        "Riduzione di una rete a due livelli",
+        "Conteggi interi, inverse e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-network-stages-12",
+      "kind": "question",
+      "course": "C2",
+      "section": "Stadi in serie e canali in parallelo",
+      "order": 12032,
+      "title": "Media di due reti con conteggi interi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L009",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L008",
+        "C2-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "network-stages",
+      "difficulty": 2,
+      "prompt": "Una rete orizzontale contiene N_s stadi identici collegati in serie, senza percorsi alternativi fra stadi non consecutivi. Ogni stadio contiene N_p canali identici in parallelo fra gli stessi due nodi; ciascun canale segue Δp=R₀Q con R₀=2 kPa·s/L. Il liquido è incomprimibile, il regime stazionario e le resistenze lineari; giunzioni ideali senza ulteriori perdite o accumuli. N_s e N_p sono conteggi interi positivi; N_p è uguale per tutti gli stadi della stessa rete. R_eq è la caduta totale divisa per la portata totale positiva. Si confrontano reti diverse, non conteggi che cambiano nel tempo durante una misura. A ha N_s=2,N_p=4 e B ha N_s=3,N_p=2. Qual è la media aritmetica delle due R_eq, con uguale peso statistico?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2 kPa·s/L",
+          "4 kPa·s/L",
+          "1 kPa·s/L",
+          "5/3 kPa·s/L",
+          "3 kPa·s/L"
+        ],
+        "value": "2 kPa·s/L"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le equivalenti sono uno e tre kPa·s/L. La semisomma è due. Si sta facendo la media di due misure di reti realizzabili, non costruendo una rete col numero medio di stadi, che qui sarebbe cinque mezzi e non è un conteggio intero."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline R_{\\rm eq}=\\frac{1+3}{2}\\,\\mathrm{kPa\\cdot s/L}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline R_{\\rm eq}=2\\,\\mathrm{kPa\\cdot s/L}"
+        },
+        {
+          "type": "text",
+          "text": "Quattro è la somma, uno dimezza ancora e tre conserva soltanto B. Cinque terzi si ottiene estendendo formalmente la formula agli ingressi medi N_s=5/2,N_p=3; non è la media richiesta e quel N_s non descrive una rete ammessa. Nessun arrotondamento dei conteggi è richiesto."
+        }
+      ],
+      "hints": [
+        "Media le due uscite già calcolate, senza mediare prima i conteggi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro è la somma, uno dimezza ancora e tre conserva soltanto B. Cinque terzi si ottiene estendendo formalmente la formula agli ingressi medi N_s=5/2,N_p=3; non è la media richiesta e quel N_s non descrive una rete ammessa. Nessun arrotondamento dei conteggi è richiesto.",
+        "target": "C2-L009"
+      },
+      "coverage": [
+        "Riduzione di una rete a due livelli",
+        "Conteggi interi, inverse e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-network-stages-13",
+      "kind": "question",
+      "course": "C2",
+      "section": "Stadi in serie e canali in parallelo",
+      "order": 12033,
+      "title": "Il numero di canali per triplicare il totale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L009",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L008",
+        "C2-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "network-stages",
+      "difficulty": 3,
+      "prompt": "Una rete orizzontale contiene N_s stadi identici collegati in serie, senza percorsi alternativi fra stadi non consecutivi. Ogni stadio contiene N_p canali identici in parallelo fra gli stessi due nodi; ciascun canale segue Δp=R₀Q con R₀=2 kPa·s/L. Il liquido è incomprimibile, il regime stazionario e le resistenze lineari; giunzioni ideali senza ulteriori perdite o accumuli. N_s e N_p sono conteggi interi positivi; N_p è uguale per tutti gli stadi della stessa rete. R_eq è la caduta totale divisa per la portata totale positiva. Si confrontano reti diverse, non conteggi che cambiano nel tempo durante una misura. A ha N_s=2,N_p=4. B impone N_s=3 e deve avere R_eq,B=3R_eq,A. Quanto vale N_p,B/N_p,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "2",
+          "3/2",
+          "3",
+          "1/3"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è tre kPa·s/L. Con tre stadi e R₀=2, l’inversa dà N_p,B=(3·2)/3=2 canali per stadio. Rispetto ai quattro di A, il rapporto è un mezzo; entrambi i conteggi sono interi positivi."
+        },
+        {
+          "type": "formula",
+          "text": "R_{{\\rm eq},B}=3\\,\\mathrm{kPa\\cdot s/L}"
+        },
+        {
+          "type": "formula",
+          "text": " N_{p,B}=\\frac{3\\cdot2}{3}"
+        },
+        {
+          "type": "formula",
+          "text": " N_{p,B}=2"
+        },
+        {
+          "type": "formula",
+          "text": " N_{p,B}/N_{p,A}=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Due copia il conteggio finale e inverte anche il rapporto richiesto. Tre mezzi segue solo N_s; tre copia il fattore bersaglio e un terzo ignora che il numero di stadi cambia. Il controllo 3·2/2=3 ricostruisce il totale."
+        }
+      ],
+      "hints": [
+        "Ricava il conteggio B prima del rapporto con quello A.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due copia il conteggio finale e inverte anche il rapporto richiesto. Tre mezzi segue solo N_s; tre copia il fattore bersaglio e un terzo ignora che il numero di stadi cambia. Il controllo 3·2/2=3 ricostruisce il totale.",
+        "target": "C2-L009"
+      },
+      "coverage": [
+        "Riduzione di una rete a due livelli",
+        "Conteggi interi, inverse e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-network-stages-14",
+      "kind": "question",
+      "course": "C2",
+      "section": "Stadi in serie e canali in parallelo",
+      "order": 12034,
+      "title": "Dal display al numero di stadi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L009",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L008",
+        "C2-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "network-stages",
+      "difficulty": 3,
+      "prompt": "Una rete orizzontale contiene N_s stadi identici collegati in serie, senza percorsi alternativi fra stadi non consecutivi. Ogni stadio contiene N_p canali identici in parallelo fra gli stessi due nodi; ciascun canale segue Δp=R₀Q con R₀=2 kPa·s/L. Il liquido è incomprimibile, il regime stazionario e le resistenze lineari; giunzioni ideali senza ulteriori perdite o accumuli. N_s e N_p sono conteggi interi positivi; N_p è uguale per tutti gli stadi della stessa rete. R_eq è la caduta totale divisa per la portata totale positiva. Si confrontano reti diverse, non conteggi che cambiano nel tempo durante una misura. Un display continuo adimensionale segue S=qR_eq, con q>0 e nessun offset. A ha N_s=2,N_p=4 e S=3. B ha N_p=2 e S=9. Quanto vale N_s,B?",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento ha equivalente uno kPa·s/L, perciò q=3 L/(kPa·s). La lettura nove rappresenta resistenza tre kPa·s/L. Con due canali per stadio ogni stadio vale un kPa·s/L: servono tre stadi, un conteggio intero positivo."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{L/(kPa\\cdot s)}"
+        },
+        {
+          "type": "formula",
+          "text": " R_{{\\rm eq},B}=3\\,\\mathrm{kPa\\cdot s/L}"
+        },
+        {
+          "type": "formula",
+          "text": " N_{s,B}=\\frac{3\\cdot2}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " N_{s,B}=3"
+        },
+        {
+          "type": "text",
+          "text": "Nove non è direttamente né una resistenza né un conteggio di stadi. Usare la lettura grezza nell’inversa darebbe nove stadi anziché tre. Prima si rimuove la taratura, poi si verifica l’integralità."
+        }
+      ],
+      "hints": [
+        "Decodifica la resistenza totale e dividila per la resistenza di uno stadio B.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Nove non è direttamente né una resistenza né un conteggio di stadi. Usare la lettura grezza nell’inversa darebbe nove stadi anziché tre. Prima si rimuove la taratura, poi si verifica l’integralità.",
+        "target": "C2-L009"
+      },
+      "coverage": [
+        "Riduzione di una rete a due livelli",
+        "Conteggi interi, inverse e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-network-stages-15",
+      "kind": "question",
+      "course": "C2",
+      "section": "Stadi in serie e canali in parallelo",
+      "order": 12035,
+      "title": "Taratura affine e una terza rete",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L009",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L008",
+        "C2-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "network-stages",
+      "difficulty": 3,
+      "prompt": "Una rete orizzontale contiene N_s stadi identici collegati in serie, senza percorsi alternativi fra stadi non consecutivi. Ogni stadio contiene N_p canali identici in parallelo fra gli stessi due nodi; ciascun canale segue Δp=R₀Q con R₀=2 kPa·s/L. Il liquido è incomprimibile, il regime stazionario e le resistenze lineari; giunzioni ideali senza ulteriori perdite o accumuli. N_s e N_p sono conteggi interi positivi; N_p è uguale per tutti gli stadi della stessa rete. R_eq è la caduta totale divisa per la portata totale positiva. Si confrontano reti diverse, non conteggi che cambiano nel tempo durante una misura. Un display continuo adimensionale segue S=qR_eq+b, con q>0. A: N_s=2,N_p=4,S=3. B: N_s=3,N_p=2,S=7. C: N_p=4,S=4. Quanto vale N_s,C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3",
+          "1",
+          "2",
+          "4",
+          "6"
+        ],
+        "value": "3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le equivalenti di riferimento uno e tre danno q=(7−3)/(3−1)=2 L/(kPa·s), poi b=1. La lettura quattro rappresenta R_eq,C=(4−1)/2=3/2 kPa·s/L. Con quattro canali lo stadio vale un mezzo: tre mezzi diviso un mezzo dà tre stadi."
+        },
+        {
+          "type": "formula",
+          "text": "q=2\\,\\mathrm{L/(kPa\\cdot s)}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " R_{{\\rm eq},C}=\\frac32\\,\\mathrm{kPa\\cdot s/L}"
+        },
+        {
+          "type": "formula",
+          "text": " N_{s,C}=\\frac{3/2}{1/2}"
+        },
+        {
+          "type": "formula",
+          "text": " N_{s,C}=3"
+        },
+        {
+          "type": "text",
+          "text": "Con N_p=4, conteggi N_s=1,2,4,6 produrrebbero letture 2,3,5,7; nessuna è quattro. Solo tre ricostruisce la lettura. L’offset è un numero del display, non uno stadio da togliere al conteggio."
+        }
+      ],
+      "hints": [
+        "Prima togli b e dividi per q; soltanto dopo conta gli stadi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Con N_p=4, conteggi N_s=1,2,4,6 produrrebbero letture 2,3,5,7; nessuna è quattro. Solo tre ricostruisce la lettura. L’offset è un numero del display, non uno stadio da togliere al conteggio.",
+        "target": "C2-L009"
+      },
+      "coverage": [
+        "Riduzione di una rete a due livelli",
+        "Conteggi interi, inverse e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-network-stages-16",
+      "kind": "question",
+      "course": "C2",
+      "section": "Stadi in serie e canali in parallelo",
+      "order": 12036,
+      "title": "Un rapporto che lascia infinite reti intere",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L009",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L008",
+        "C2-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "network-stages",
+      "difficulty": 3,
+      "prompt": "Una rete orizzontale contiene N_s stadi identici collegati in serie, senza percorsi alternativi fra stadi non consecutivi. Ogni stadio contiene N_p canali identici in parallelo fra gli stessi due nodi; ciascun canale segue Δp=R₀Q con R₀=2 kPa·s/L. Il liquido è incomprimibile, il regime stazionario e le resistenze lineari; giunzioni ideali senza ulteriori perdite o accumuli. N_s e N_p sono conteggi interi positivi; N_p è uguale per tutti gli stadi della stessa rete. R_eq è la caduta totale divisa per la portata totale positiva. Si confrontano reti diverse, non conteggi che cambiano nel tempo durante una misura. Fra reti si impone N_s=N_p/2 e si misura R_eq=1 kPa·s/L. Quante coppie positive intere (N_s,N_p) sono compatibili?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Infinite",
+          "Una",
+          "Due",
+          "Nessuna",
+          "Solo la coppia nulla"
+        ],
+        "value": "Infinite"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Per avere conteggi interi, scriviamo N_s=k e N_p=2k con k intero positivo. La legge diventa R_eq=R₀/2=1 kPa·s/L per qualunque k ammesso. Le reti (1,2),(2,4),(3,6) sono i primi esempi: la misura ripete il rapporto già fissato e non determina il numero totale di canali."
+        },
+        {
+          "type": "formula",
+          "text": "N_s=k"
+        },
+        {
+          "type": "formula",
+          "text": " N_p=2k"
+        },
+        {
+          "type": "formula",
+          "text": " k\\in\\mathbb N_{>0}"
+        },
+        {
+          "type": "formula",
+          "text": " R_{\\rm eq}=\\frac{R_0k}{2k}"
+        },
+        {
+          "type": "formula",
+          "text": " R_{\\rm eq}=1\\,\\mathrm{kPa\\cdot s/L}"
+        },
+        {
+          "type": "text",
+          "text": "Una e due si fermano a pochi esempi senza riconoscere la famiglia. Nessuna è smentita già da (1,2). La coppia nulla viola l’ipotesi e renderebbe indefinita la formula. Occorrerebbe un dato ulteriore sul numero di canali o di stadi per identificare la rete."
+        }
+      ],
+      "hints": [
+        "Parametrizza tutte le coppie intere con un k positivo e guarda che cosa si cancella.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Una e due si fermano a pochi esempi senza riconoscere la famiglia. Nessuna è smentita già da (1,2). La coppia nulla viola l’ipotesi e renderebbe indefinita la formula. Occorrerebbe un dato ulteriore sul numero di canali o di stadi per identificare la rete.",
+        "target": "C2-L009"
+      },
+      "coverage": [
+        "Riduzione di una rete a due livelli",
+        "Conteggi interi, inverse e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "b7e95f43cbde715589f29d8b77e78813e9c0c58c7dc4eb8299576bf54029fc38",
+      "name": "network-stages-steps.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTc1MCIgdmlld0JveD0iMCAwIDY0MCAxNzUwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+UmV0ZSBkaSBzdGFkaSBlIGNhbmFsaTwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPkR1ZSBzdGFkaSBjb24gcXVhdHRybyBjYW5hbGkgY2lhc2N1bm8sIHBvaSBkdWUgc3RhZGkgY29uIGR1ZSBjYW5hbGkgY2lhc2N1bm8uIFBvcnRhdGEgdG90YWxlIHF1YXR0cm8gbGl0cmkgYWwgc2Vjb25kby4gSW5maW5lIGJhcnJlIGRpIHJlc2lzdGVuemEgcGVyIGR1ZSByZXRpIGRpc3RpbnRlLjwvZGVzYz48ZGVmcz48bWFya2VyIGlkPSJhIiBtYXJrZXJXaWR0aD0iNiIgbWFya2VySGVpZ2h0PSI2IiByZWZYPSI2IiByZWZZPSIzIiBvcmllbnQ9ImF1dG8iPjxwYXRoIGQ9Ik0wIDBMNiAzTDAgNloiIGZpbGw9IiMxNjY0YTciLz48L21hcmtlcj48L2RlZnM+PHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxNzUwIiBmaWxsPSIjZmZmZGY2Ii8+PGcgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZpbGw9IiMxOTJmM2QiIGZvbnQtc2l6ZT0iMjIiPgo8dGV4dCB4PSIzNSIgeT0iNDgiIGZvbnQtc2l6ZT0iMjYiIGZvbnQtd2VpZ2h0PSJib2xkIj4xLiBEdWUgc3RhZGksIHF1YXR0cm8gY2FuYWxpIHBlciBzdGFkaW88L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI5NSI+Tl9zID0gMjsgTl9wID0gNDsgUuKCgCA9IDIga1BhwrdzL0w8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxNDAiPlFfVCA9IDQgTC9zOyBvZ25pIGNhbmFsZSBwb3J0YSAxIEwvczwvdGV4dD4KPHRleHQgeD0iODUiIHk9IjE5MCI+MTA0IGtQYTwvdGV4dD4KPHRleHQgeD0iMjg1IiB5PSIxOTAiPjEwMiBrUGE8L3RleHQ+Cjx0ZXh0IHg9IjQ5MCIgeT0iMTkwIj4xMDAga1BhPC90ZXh0Pgo8cGF0aCBkPSJNMTQwIDI0MFYzNzUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzgzOTQ5YyIgc3Ryb2tlLXdpZHRoPSIyIi8+CjxwYXRoIGQ9Ik0yODAgMjQwVjM3NSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjODM5NDljIiBzdHJva2Utd2lkdGg9IjIiLz4KPHBhdGggZD0iTTE0MCAyNDBIMjgwIiBmaWxsPSJub25lIiBzdHJva2U9IiM4Mzk0OWMiIHN0cm9rZS13aWR0aD0iMiIvPgo8cmVjdCB4PSIyMDAiIHk9IjIyNiIgd2lkdGg9IjQwIiBoZWlnaHQ9IjI4IiBmaWxsPSIjZjFkZmI2IiBzdHJva2U9IiM5MjYxMWMiLz4KPHBhdGggZD0iTTE0NSAyNDBoMjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE2NjRhNyIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI2EpIi8+CjxwYXRoIGQ9Ik0xNDAgMjg1SDI4MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjODM5NDljIiBzdHJva2Utd2lkdGg9IjIiLz4KPHJlY3QgeD0iMjAwIiB5PSIyNzEiIHdpZHRoPSI0MCIgaGVpZ2h0PSIyOCIgZmlsbD0iI2YxZGZiNiIgc3Ryb2tlPSIjOTI2MTFjIi8+CjxwYXRoIGQ9Ik0xNDUgMjg1aDIwIiBmaWxsPSJub25lIiBzdHJva2U9IiMxNjY0YTciIHN0cm9rZS13aWR0aD0iMyIgbWFya2VyLWVuZD0idXJsKCNhKSIvPgo8cGF0aCBkPSJNMTQwIDMzMEgyODAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzgzOTQ5YyIgc3Ryb2tlLXdpZHRoPSIyIi8+CjxyZWN0IHg9IjIwMCIgeT0iMzE2IiB3aWR0aD0iNDAiIGhlaWdodD0iMjgiIGZpbGw9IiNmMWRmYjYiIHN0cm9rZT0iIzkyNjExYyIvPgo8cGF0aCBkPSJNMTQ1IDMzMGgyMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMTY2NGE3IiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjYSkiLz4KPHBhdGggZD0iTTE0MCAzNzVIMjgwIiBmaWxsPSJub25lIiBzdHJva2U9IiM4Mzk0OWMiIHN0cm9rZS13aWR0aD0iMiIvPgo8cmVjdCB4PSIyMDAiIHk9IjM2MSIgd2lkdGg9IjQwIiBoZWlnaHQ9IjI4IiBmaWxsPSIjZjFkZmI2IiBzdHJva2U9IiM5MjYxMWMiLz4KPHBhdGggZD0iTTE0NSAzNzVoMjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE2NjRhNyIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI2EpIi8+CjxwYXRoIGQ9Ik0zNjAgMjQwVjM3NSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjODM5NDljIiBzdHJva2Utd2lkdGg9IjIiLz4KPHBhdGggZD0iTTUwMCAyNDBWMzc1IiBmaWxsPSJub25lIiBzdHJva2U9IiM4Mzk0OWMiIHN0cm9rZS13aWR0aD0iMiIvPgo8cGF0aCBkPSJNMzYwIDI0MEg1MDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzgzOTQ5YyIgc3Ryb2tlLXdpZHRoPSIyIi8+CjxyZWN0IHg9IjQyMCIgeT0iMjI2IiB3aWR0aD0iNDAiIGhlaWdodD0iMjgiIGZpbGw9IiNmMWRmYjYiIHN0cm9rZT0iIzkyNjExYyIvPgo8cGF0aCBkPSJNMzY1IDI0MGgyMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMTY2NGE3IiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjYSkiLz4KPHBhdGggZD0iTTM2MCAyODVINTAwIiBmaWxsPSJub25lIiBzdHJva2U9IiM4Mzk0OWMiIHN0cm9rZS13aWR0aD0iMiIvPgo8cmVjdCB4PSI0MjAiIHk9IjI3MSIgd2lkdGg9IjQwIiBoZWlnaHQ9IjI4IiBmaWxsPSIjZjFkZmI2IiBzdHJva2U9IiM5MjYxMWMiLz4KPHBhdGggZD0iTTM2NSAyODVoMjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE2NjRhNyIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI2EpIi8+CjxwYXRoIGQ9Ik0zNjAgMzMwSDUwMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjODM5NDljIiBzdHJva2Utd2lkdGg9IjIiLz4KPHJlY3QgeD0iNDIwIiB5PSIzMTYiIHdpZHRoPSI0MCIgaGVpZ2h0PSIyOCIgZmlsbD0iI2YxZGZiNiIgc3Ryb2tlPSIjOTI2MTFjIi8+CjxwYXRoIGQ9Ik0zNjUgMzMwaDIwIiBmaWxsPSJub25lIiBzdHJva2U9IiMxNjY0YTciIHN0cm9rZS13aWR0aD0iMyIgbWFya2VyLWVuZD0idXJsKCNhKSIvPgo8cGF0aCBkPSJNMzYwIDM3NUg1MDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzgzOTQ5YyIgc3Ryb2tlLXdpZHRoPSIyIi8+CjxyZWN0IHg9IjQyMCIgeT0iMzYxIiB3aWR0aD0iNDAiIGhlaWdodD0iMjgiIGZpbGw9IiNmMWRmYjYiIHN0cm9rZT0iIzkyNjExYyIvPgo8cGF0aCBkPSJNMzY1IDM3NWgyMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMTY2NGE3IiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjYSkiLz4KPHBhdGggZD0iTTYwIDMwNy41aDgwIiBmaWxsPSJub25lIiBzdHJva2U9IiMxNjY0YTciIHN0cm9rZS13aWR0aD0iMyIgbWFya2VyLWVuZD0idXJsKCNhKSIvPgo8cGF0aCBkPSJNMjgwIDMwNy41aDgwIiBmaWxsPSJub25lIiBzdHJva2U9IiMxNjY0YTciIHN0cm9rZS13aWR0aD0iMyIgbWFya2VyLWVuZD0idXJsKCNhKSIvPgo8cGF0aCBkPSJNNTAwIDMwNy41aDgwIiBmaWxsPSJub25lIiBzdHJva2U9IiMxNjY0YTciIHN0cm9rZS13aWR0aD0iMyIgbWFya2VyLWVuZD0idXJsKCNhKSIvPgo8dGV4dCB4PSIzNSIgeT0iNDQ1Ij5GcmVjY2U6IDIwIHB4LyhML3MpLCBjYW5hbGkgZGEgMjAgcHg8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI0OTAiPlRvdGFsZTogODAgcHggcHJpbWEsIGZyYSBlIGRvcG8gZ2xpIHN0YWRpPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iNTM1Ij5PZ25pIHN0YWRpbzogMi80ID0gMS8yIGtQYcK3cy9MPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iNTgwIj5TZXJpZTogMS8yICsgMS8yID0gMSBrUGHCt3MvTDwvdGV4dD4KPHBhdGggZD0iTTM1IDYyMEg2MDUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzgzOTQ5YyIgc3Ryb2tlLXdpZHRoPSIyIi8+Cjx0ZXh0IHg9IjM1IiB5PSI2NzAiIGZvbnQtc2l6ZT0iMjYiIGZvbnQtd2VpZ2h0PSJib2xkIj4yLiBSZXN0YW5vIGR1ZSBjYW5hbGkgcGVyIHN0YWRpbzwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjcxNSI+Tl9zID0gMjsgTl9wID0gMjsgc3Rlc3NvIFLigoAgZSBRX1Q8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI3NjAiPk9nbmkgY2FuYWxlIG9yYSBwb3J0YSAyIEwvczwvdGV4dD4KPHRleHQgeD0iODUiIHk9IjgxMCI+MTA4IGtQYTwvdGV4dD4KPHRleHQgeD0iMjg1IiB5PSI4MTAiPjEwNCBrUGE8L3RleHQ+Cjx0ZXh0IHg9IjQ5MCIgeT0iODEwIj4xMDAga1BhPC90ZXh0Pgo8cGF0aCBkPSJNMTQwIDg2NVY5NTUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzgzOTQ5YyIgc3Ryb2tlLXdpZHRoPSIyIi8+CjxwYXRoIGQ9Ik0yODAgODY1Vjk1NSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjODM5NDljIiBzdHJva2Utd2lkdGg9IjIiLz4KPHBhdGggZD0iTTE0MCA4NjVIMjgwIiBmaWxsPSJub25lIiBzdHJva2U9IiM4Mzk0OWMiIHN0cm9rZS13aWR0aD0iMiIvPgo8cmVjdCB4PSIyMDAiIHk9Ijg1MSIgd2lkdGg9IjQwIiBoZWlnaHQ9IjI4IiBmaWxsPSIjZjFkZmI2IiBzdHJva2U9IiM5MjYxMWMiLz4KPHBhdGggZD0iTTE0NSA4NjVoNDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE2NjRhNyIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI2EpIi8+CjxwYXRoIGQ9Ik0xNDAgOTU1SDI4MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjODM5NDljIiBzdHJva2Utd2lkdGg9IjIiLz4KPHJlY3QgeD0iMjAwIiB5PSI5NDEiIHdpZHRoPSI0MCIgaGVpZ2h0PSIyOCIgZmlsbD0iI2YxZGZiNiIgc3Ryb2tlPSIjOTI2MTFjIi8+CjxwYXRoIGQ9Ik0xNDUgOTU1aDQwIiBmaWxsPSJub25lIiBzdHJva2U9IiMxNjY0YTciIHN0cm9rZS13aWR0aD0iMyIgbWFya2VyLWVuZD0idXJsKCNhKSIvPgo8cGF0aCBkPSJNMzYwIDg2NVY5NTUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzgzOTQ5YyIgc3Ryb2tlLXdpZHRoPSIyIi8+CjxwYXRoIGQ9Ik01MDAgODY1Vjk1NSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjODM5NDljIiBzdHJva2Utd2lkdGg9IjIiLz4KPHBhdGggZD0iTTM2MCA4NjVINTAwIiBmaWxsPSJub25lIiBzdHJva2U9IiM4Mzk0OWMiIHN0cm9rZS13aWR0aD0iMiIvPgo8cmVjdCB4PSI0MjAiIHk9Ijg1MSIgd2lkdGg9IjQwIiBoZWlnaHQ9IjI4IiBmaWxsPSIjZjFkZmI2IiBzdHJva2U9IiM5MjYxMWMiLz4KPHBhdGggZD0iTTM2NSA4NjVoNDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE2NjRhNyIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI2EpIi8+CjxwYXRoIGQ9Ik0zNjAgOTU1SDUwMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjODM5NDljIiBzdHJva2Utd2lkdGg9IjIiLz4KPHJlY3QgeD0iNDIwIiB5PSI5NDEiIHdpZHRoPSI0MCIgaGVpZ2h0PSIyOCIgZmlsbD0iI2YxZGZiNiIgc3Ryb2tlPSIjOTI2MTFjIi8+CjxwYXRoIGQ9Ik0zNjUgOTU1aDQwIiBmaWxsPSJub25lIiBzdHJva2U9IiMxNjY0YTciIHN0cm9rZS13aWR0aD0iMyIgbWFya2VyLWVuZD0idXJsKCNhKSIvPgo8cGF0aCBkPSJNNjAgOTEwaDgwIiBmaWxsPSJub25lIiBzdHJva2U9IiMxNjY0YTciIHN0cm9rZS13aWR0aD0iMyIgbWFya2VyLWVuZD0idXJsKCNhKSIvPgo8cGF0aCBkPSJNMjgwIDkxMGg4MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMTY2NGE3IiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjYSkiLz4KPHBhdGggZD0iTTUwMCA5MTBoODAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE2NjRhNyIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI2EpIi8+Cjx0ZXh0IHg9IjM1IiB5PSIxMDIwIj5DYW5hbGkgZGEgNDAgcHgsIHN0ZXNzYSBzY2FsYSBkaSBwb3J0YXRhPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTA2NSI+U3RhZGlvOiAyLzIgPSAxIGtQYcK3cy9MPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTExMCI+U2VyaWU6IDEgKyAxID0gMiBrUGHCt3MvTDwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjExNTUiPkxhIHBvcnRhdGEgY29tdW5lIG5vbiDDqCBpbCBzYWx0byBjb211bmU6PC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTE5NSI+b2duaSBzdGFkaW8gYWdnaXVuZ2UgdW5hIGNhZHV0YS48L3RleHQ+CjxwYXRoIGQ9Ik0zNSAxMjM1SDYwNSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjODM5NDljIiBzdHJva2Utd2lkdGg9IjIiLz4KPHRleHQgeD0iMzUiIHk9IjEyODUiIGZvbnQtc2l6ZT0iMjYiIGZvbnQtd2VpZ2h0PSJib2xkIj4zLiBCYXJyZSBkZWxsZSByZXNpc3RlbnplIGVxdWl2YWxlbnRpPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTMzMCI+U2NhbGEgUjogNjAgcHgvKGtQYcK3cy9MKTwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjEzNzUiPkE6IE5fcyA9IDIsIE5fcCA9IDQg4oaSIFJfZXEgPSAxPC90ZXh0Pgo8cmVjdCB4PSIxMDAiIHk9IjE0MDAiIHdpZHRoPSIzMCIgaGVpZ2h0PSIzMCIgZmlsbD0iIzE2NjRhNyIvPjxyZWN0IHg9IjEzMCIgeT0iMTQwMCIgd2lkdGg9IjMwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjYTgzODMyIi8+Cjx0ZXh0IHg9IjM1IiB5PSIxNDg1Ij5COiBOX3MgPSAzLCBOX3AgPSAyIOKGkiBSX2VxID0gMzwvdGV4dD4KPHJlY3QgeD0iMTAwIiB5PSIxNTEwIiB3aWR0aD0iNjAiIGhlaWdodD0iMzAiIGZpbGw9IiMxNjY0YTciLz48cmVjdCB4PSIxNjAiIHk9IjE1MTAiIHdpZHRoPSI2MCIgaGVpZ2h0PSIzMCIgZmlsbD0iI2E4MzgzMiIvPjxyZWN0IHg9IjIyMCIgeT0iMTUxMCIgd2lkdGg9IjYwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjMTY2NGE3Ii8+Cjx0ZXh0IHg9IjM1IiB5PSIxNTkwIj5VbiBzZWdtZW50byBwZXIgc3RhZGlvLCBzb21tZSA2MCBlIDE4MCBweDwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjE2MzUiPkxlIGJhcnJlIG5vbiBzb25vIHBvcnRhdGUgbsOpIGx1bmdoZXp6ZSBkaSB0dWJpLjwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjE2ODAiPkxlIHJldGkgc29wcmEgc29ubyBzY2hlbWkgc2VuemEgc2NhbGEgbWV0cmljYS48L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxNzI1Ij5S4oKAIMOoIHVndWFsZSBwZXIgdHV0dGkgaSBjYW5hbGkgZGlzZWduYXRpLjwvdGV4dD4KPC9nPjwvc3ZnPgo="
+    }
+  ]
+}

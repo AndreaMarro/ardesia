@@ -1,0 +1,483 @@
+{
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "AR-u4-coherent-destructive-01",
+      "sourceSha256": "8d6de831c05a6d74ec8ee123f98f48ed619408d32a2a1a0b8e043b6bc91d5ca1",
+      "candidateSha256": "706182514c102044911b2bdad14198d9c11c5c7b0d3eb35c1c7f45befe4bd5dc",
+      "reviewedSignature": "a4de6d2ffb806fd5b26303c00f9a270ccc8840333ba6123f64018f06b0e31fdc",
+      "assetChecksums": {
+        "coherent-destructive-progressive.svg": "eb558383da1113a72edead4acad208e17c3580900b0d3263d7441756aa6b506e"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "3",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "4−1=3 mm. La coordinata è 3 cosθ mm, quindi ampiezza 3 mm anche quando la coordinata è negativa o nulla.",
+      "physicalAssumptions": "Mezzo lineare, somma orientata nello stesso punto; frequenza e polarizzazione uguali, fase relativa π stabile. A₁>A₂>0 e ordine preservato fra prove. A_res è massimo modulo, non coordinata istantanea.",
+      "distractors": "5 mm sarebbe somma in fase; zero richiede ampiezze uguali, e il rapporto 4 è puro. Non si sommano due moduli ignorando la fase.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. 4−1=3 mm. La coordinata è 3 cosθ mm, quindi ampiezza 3 mm anche quando la coordinata è negativa o nulla.",
+      "scientificAssetReview": "XML e rendering intero letti. Tre zeri alle ordinate270/580/870 px; coseni con ampiezze100/25/75 px a25 px/mm e periodo400 px=2π rad. La seconda curva ha segno opposto e la terza somma ordinata per ordinata. Barre da zero115 px, larghezze160/40/120 e240/160/80 px a40 px/mm per le coppie4,1 e6,4; residui3 e2 mm.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u4-coherent-destructive-02",
+      "sourceSha256": "e56cedf3ad32e206c2f7eef1cbd9822fba9bc76d6cfb222249efaa1fe4f0b5b1",
+      "candidateSha256": "d9842320ddbd83bbb664c011565ad91f8c6f3999bdb9d0a7af7176f993592549",
+      "reviewedSignature": "dc4955d8e9472281b255d7f40113cc429b4cbc0e4c82a90c147a4b34a15cb051",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "mm",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "Una differenza di lunghezze ha dimensione L. 1 mm=1/1000 m; soltanto mm fra le scelte ha dimensione di lunghezza.",
+      "physicalAssumptions": "Mezzo lineare, somma orientata nello stesso punto; frequenza e polarizzazione uguali, fase relativa π stabile. A₁>A₂>0 e ordine preservato fra prove. A_res è massimo modulo, non coordinata istantanea.",
+      "distractors": "mm² area, Hz tempo inverso, s tempo e mm/s velocità sono dimensioni diverse da L.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Una differenza di lunghezze ha dimensione L. 1 mm=1/1000 m; soltanto mm fra le scelte ha dimensione di lunghezza.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u4-coherent-destructive-03",
+      "sourceSha256": "462271e61f54002a571e4bc489798cdace9dd22d20cae98d434f9340dc87cf49",
+      "candidateSha256": "f205d836aa3182bacf8106bc9a711a15f4cfe7510daff5268640737bfb00f1f2",
+      "reviewedSignature": "3339674c1291f54cf8d0291a5777d354e85a0e2046870786fec93170cc9f3f7d",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "A_res = A₁ − A₂",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "cos(θ+π)=−cosθ; y=A₁cosθ−A₂cosθ=(A₁−A₂)cosθ. Poiché A₁>A₂>0, il modulo del coefficiente è A₁−A₂.",
+      "physicalAssumptions": "Mezzo lineare, somma orientata nello stesso punto; frequenza e polarizzazione uguali, fase relativa π stabile. A₁>A₂>0 e ordine preservato fra prove. A_res è massimo modulo, non coordinata istantanea.",
+      "distractors": "A₁+A₂ corrisponde a fase zero; A₂−A₁ negativo; prodotto area. La radice della somma dei quadrati è una fase relativa in quadratura, non π.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. cos(θ+π)=−cosθ; y=A₁cosθ−A₂cosθ=(A₁−A₂)cosθ. Poiché A₁>A₂>0, il modulo del coefficiente è A₁−A₂.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u4-coherent-destructive-04",
+      "sourceSha256": "c1b4b27612a0db5d4acff822e5949a363cb845d99e57665ede655939951124c9",
+      "candidateSha256": "0d1c060692488258afd4bc369eb5147ae515f5675d5419d2f150784754402440",
+      "reviewedSignature": "01c8d03dfbe948e6d23b77fdb0c78e065f3b2ed7212357e55e48f3633bc86ebc",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Da 3 a 1 mm",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "A iniziale 4−1=3 mm; nuova 2−1=1 mm, rapporto 1/3. Dimezzare il primo addendo non dimezza una differenza con il secondo fisso.",
+      "physicalAssumptions": "Mezzo lineare, somma orientata nello stesso punto; frequenza e polarizzazione uguali, fase relativa π stabile. A₁>A₂>0 e ordine preservato fra prove. A_res è massimo modulo, non coordinata istantanea.",
+      "distractors": "3/2 dimezza tutta la differenza; 5 usa la somma vecchia, 3 ignora il cambiamento e zero richiede uguaglianza non presente.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. A iniziale 4−1=3 mm; nuova 2−1=1 mm, rapporto 1/3. Dimezzare il primo addendo non dimezza una differenza con il secondo fisso.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u4-coherent-destructive-05",
+      "sourceSha256": "541b5467dd03bf41956894d8dbd8122391890a03552f992b023e75628ab0296d",
+      "candidateSha256": "35fcaabc9b99be037782374a0f8b378712472289419785042fbf397b747ad614",
+      "reviewedSignature": "4f7f9e9cdbdf26b456905eaf6b0f3088c96d3ad892ad5bc7585d12533871642f",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "A₁=A_res+A₂=3+1=4 mm; sostituzione 4−1=3 e ordine 4>1>0.",
+      "physicalAssumptions": "Mezzo lineare, somma orientata nello stesso punto; frequenza e polarizzazione uguali, fase relativa π stabile. A₁>A₂>0 e ordine preservato fra prove. A_res è massimo modulo, non coordinata istantanea.",
+      "distractors": "2 mm sottrae A₂ una seconda volta; 3 mm copia il residuo. Le lunghezze non sono elevate al quadrato.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. A₁=A_res+A₂=3+1=4 mm; sostituzione 4−1=3 e ordine 4>1>0.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u4-coherent-destructive-06",
+      "sourceSha256": "9694cff9f499fdebc37ca83b1420fd600dee07b9b1ce602064816c33bb1b2497",
+      "candidateSha256": "28e24a0bd54755ea642d2b447eab4fe9f82d75b0a5a570b37edbf58ad27031f1",
+      "reviewedSignature": "f883f0e27922e0e1faa39206b140bcfd3fa75cb2d9228926554ec5cc1af30cf5",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "A₂=A₁−A_res=4−3=1 mm. Dato ammissibile perché 0<A_res<A₁; ricostruisce 4>1>0.",
+      "physicalAssumptions": "Mezzo lineare, somma orientata nello stesso punto; frequenza e polarizzazione uguali, fase relativa π stabile. A₁>A₂>0 e ordine preservato fra prove. A_res è massimo modulo, non coordinata istantanea.",
+      "distractors": "7 mm somma invece di sottrarre, mentre un residuo superiore a 4 mm violerebbe il ramo positivo ricostruito.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. A₂=A₁−A_res=4−3=1 mm. Dato ammissibile perché 0<A_res<A₁; ricostruisce 4>1>0.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u4-coherent-destructive-07",
+      "sourceSha256": "0f711e58b6e0c99f4bb7f1c55d88dde202596a6ae876d12f16b8702e57505dea",
+      "candidateSha256": "791ff197007133653572d4e045271f55777972ff8de95c381a2b4837d3e76a56",
+      "reviewedSignature": "8cef3bee259838c01f247b233a1302f0d154190c620d7d657d3c527d43afe21b",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2/3",
+      "dimension": {},
+      "manualArithmetic": "Nuovo residuo 4−2=2 mm; iniziale 4−1=3 mm. Rapporto B/A=2/3.",
+      "physicalAssumptions": "Mezzo lineare, somma orientata nello stesso punto; frequenza e polarizzazione uguali, fase relativa π stabile. A₁>A₂>0 e ordine preservato fra prove. A_res è massimo modulo, non coordinata istantanea.",
+      "distractors": "3/2 reciproco, 2 fattore della sola A₂, 1/2 reciproco di quel fattore, 1 ignora la cancellazione maggiore.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Nuovo residuo 4−2=2 mm; iniziale 4−1=3 mm. Rapporto B/A=2/3.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u4-coherent-destructive-08",
+      "sourceSha256": "8352bcdb01d1c19b67731afdebea90f92229a2ff908a54c6ade1caf2d7937512",
+      "candidateSha256": "1d7c6bcd71c0a46c87f2cc2abfa150ae72e712ea6b414ca6297e8466ca034712",
+      "reviewedSignature": "5e021070c39deaa19308dc23c2411694cdadf15cd60e1e155156a6abc7f152aa",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "3",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "Corretto residuo 3 mm, proposta 6 mm, errore 6−3=+3 mm. La proposta supera anche la somma geometrica massima 5 mm.",
+      "physicalAssumptions": "Mezzo lineare, somma orientata nello stesso punto; frequenza e polarizzazione uguali, fase relativa π stabile. A₁>A₂>0 e ordine preservato fra prove. A_res è massimo modulo, non coordinata istantanea.",
+      "distractors": "−3 ordine inverso, 6 proposta, 0 accetta e 9 somma. Il residuo fisico positivo non obbliga uno scarto sempre positivo per proposte arbitrarie.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Corretto residuo 3 mm, proposta 6 mm, errore 6−3=+3 mm. La proposta supera anche la somma geometrica massima 5 mm.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u4-coherent-destructive-09",
+      "sourceSha256": "65a07c3999c117fa52f2d115fcffc42060f91f77101e36aa5a82f0bdb18ce166",
+      "candidateSha256": "74c920209bc64eefc707e3ed39f885f11f70f45eac7ace3e9e1a1a3db1c74539",
+      "reviewedSignature": "8f27f8f6ada231f1d9b1983e901b6a5e2388f77525404dd439834c5eae3a0fc5",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "A₁ = A_res + A₂",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "A_res=A₁−A₂ implica A₁=A_res+A₂. Con A_res,A₂ positivi l’inversa garantisce lo stesso ramo A₁>A₂.",
+      "physicalAssumptions": "Mezzo lineare, somma orientata nello stesso punto; frequenza e polarizzazione uguali, fase relativa π stabile. A₁>A₂>0 e ordine preservato fra prove. A_res è massimo modulo, non coordinata istantanea.",
+      "distractors": "Le sottrazioni non invertono questa cancellazione; prodotto area e quoziente puro non sono A₁. A₂−A_res può anche diventare negativo.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. A_res=A₁−A₂ implica A₁=A_res+A₂. Con A_res,A₂ positivi l’inversa garantisce lo stesso ramo A₁>A₂.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u4-coherent-destructive-10",
+      "sourceSha256": "c72dd209d0588cdcb598bf145b205bf25446d4c2aaf6b87fcdb5ae732509efe1",
+      "candidateSha256": "0d8f2b6feb147f66e6c173db2ae04a77d2f2a237bb2f9ab2ccb3eb0bd24458aa",
+      "reviewedSignature": "5d7a63ba663f4702839643917ebed0bcfd28c7772e1276da106e8e905386f870",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "(κ₁ A₁ − κ₂ A₂) / (A₁ − A₂)",
+      "dimension": {},
+      "manualArithmetic": "Nuovo residuo κ₁A₁−κ₂A₂, vecchio A₁−A₂; rapporto fra le differenze. Entrambi i residui sono positivi per le disuguaglianze dichiarate.",
+      "physicalAssumptions": "Mezzo lineare, somma orientata nello stesso punto; frequenza e polarizzazione uguali, fase relativa π stabile. A₁>A₂>0 e ordine preservato fra prove. A_res è massimo modulo, non coordinata istantanea.",
+      "distractors": "κ₁−κ₂ vale zero a fattori unitari; prodotto e quoziente ignorano i pesi; rapporto delle somme è legge costruttiva. Nessuna alternativa è identità della differenza.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Nuovo residuo κ₁A₁−κ₂A₂, vecchio A₁−A₂; rapporto fra le differenze. Entrambi i residui sono positivi per le disuguaglianze dichiarate.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u4-coherent-destructive-11",
+      "sourceSha256": "370480d972a1b91dd7ad8b7da0346ea1c799058fd6942a0f294480e41d2208c4",
+      "candidateSha256": "cf00aa80782d2420f43d0304cb76cbbb2c41b3c38c9bcfb784fed780a3fdc66a",
+      "reviewedSignature": "166e9df5ec9f32d52c6eb4ba74e4f04695c9c87cc30baf548a9cf71eb62b8b12",
+      "assetChecksums": {
+        "coherent-destructive-progressive.svg": "eb558383da1113a72edead4acad208e17c3580900b0d3263d7441756aa6b506e"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2/3",
+      "dimension": {},
+      "manualArithmetic": "A:4−1=3 mm. B:6−4=2 mm. B/A=2/3, non 6/4 né 4/1.",
+      "physicalAssumptions": "Mezzo lineare, somma orientata nello stesso punto; frequenza e polarizzazione uguali, fase relativa π stabile. A₁>A₂>0 e ordine preservato fra prove. A_res è massimo modulo, non coordinata istantanea.",
+      "distractors": "3/2 reciproco e fattore della sola A₁; 3/8 divide i fattori delle singole ampiezze,4 segue solo A₂,2 copia il residuo B.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. A:4−1=3 mm. B:6−4=2 mm. B/A=2/3, non 6/4 né 4/1.",
+      "scientificAssetReview": "XML e rendering intero letti. Tre zeri alle ordinate270/580/870 px; coseni con ampiezze100/25/75 px a25 px/mm e periodo400 px=2π rad. La seconda curva ha segno opposto e la terza somma ordinata per ordinata. Barre da zero115 px, larghezze160/40/120 e240/160/80 px a40 px/mm per le coppie4,1 e6,4; residui3 e2 mm.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u4-coherent-destructive-12",
+      "sourceSha256": "504cf88fd871bb74a8b9b84c43e6b31db2183d23bcad06ec201d338c43e2fad9",
+      "candidateSha256": "e181eae2bf7a6c7d688f05fe566af6fd5fb5978af9597fbf564f83cffdfe0258",
+      "reviewedSignature": "861e53227315f74bba8d3f75e2da8da779c4a83152875f6ef07773e70f18d830",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "5/2",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "Media (3+2)/2=5/2 mm. Ingressi medi 5 e 5/2 mm danno ancora 5/2; la differenza è lineare nel ramo comune. Fuori da quel ramo la media dei moduli può non coincidere.",
+      "physicalAssumptions": "Mezzo lineare, somma orientata nello stesso punto; frequenza e polarizzazione uguali, fase relativa π stabile. A₁>A₂>0 e ordine preservato fra prove. A_res è massimo modulo, non coordinata istantanea.",
+      "distractors": "5 è somma,1/2 semidifferenza,3 e2 conservano una sola prova. Non si inventa una non commutazione nel ramo lineare.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Media (3+2)/2=5/2 mm. Ingressi medi 5 e 5/2 mm danno ancora 5/2; la differenza è lineare nel ramo comune. Fuori da quel ramo la media dei moduli può non coincidere.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u4-coherent-destructive-13",
+      "sourceSha256": "c389261794476d3f685e1565bfc222782e42258d6bc98f16854020460b448200",
+      "candidateSha256": "a382752d6dffb39232b0804ddf41a46105693588b0aef23bc72b1142b59610a9",
+      "reviewedSignature": "6ff23c5469808c8e37f79e054b714972241602318d8d9e97bc0c3c3298d5cd9e",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4",
+      "dimension": {},
+      "manualArithmetic": "Target (2/3)·3=2 mm; A₂,B=6−2=4 mm. Rapporto rispetto a 1 mm iniziale:4; nuovo ordine 6>4>0.",
+      "physicalAssumptions": "Mezzo lineare, somma orientata nello stesso punto; frequenza e polarizzazione uguali, fase relativa π stabile. A₁>A₂>0 e ordine preservato fra prove. A_res è massimo modulo, non coordinata istantanea.",
+      "distractors": "2/3 copia il target,3/2 segue solo A₁,1/4 inverte il rapporto. Sostituzione necessaria nella differenza finale.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Target (2/3)·3=2 mm; A₂,B=6−2=4 mm. Rapporto rispetto a 1 mm iniziale:4; nuovo ordine 6>4>0.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u4-coherent-destructive-14",
+      "sourceSha256": "8e251e5aaee5703cda9da3312bd1b5782f361bc737de6b0c1ab93bd4d107248e",
+      "candidateSha256": "92402995e33b4ded12f4e568a20ea5ae2c947c4e6681bfc0a6ad56981e0b6048",
+      "reviewedSignature": "4ed3d52ef95790555cfafc6fe53f7b53d566b2294d306f5a676288c50753d09e",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "6",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "Gain q=9/(3 mm)=3/mm. S_B=6 dà residuo 2 mm; A₁,B=2+4=6 mm. Il numero coincide con S solo per questi dati.",
+      "physicalAssumptions": "Mezzo lineare, somma orientata nello stesso punto; frequenza e polarizzazione uguali, fase relativa π stabile. A₁>A₂>0 e ordine preservato fra prove. A_res è massimo modulo, non coordinata istantanea.",
+      "distractors": "S_B=6 puro non è residuo6 mm: darebbe A₁10 mm e S18. Residuo2 mm non è A₁; il valore A₁6 è solo una coincidenza numerica.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Gain q=9/(3 mm)=3/mm. S_B=6 dà residuo 2 mm; A₁,B=2+4=6 mm. Il numero coincide con S solo per questi dati.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u4-coherent-destructive-15",
+      "sourceSha256": "fce4eccde2c1181ad7dded982bf612458194ce61d8c0beff4e75f67850e1d0bf",
+      "candidateSha256": "d6cef54ac44e30ccdea335c14f7ec2e088cc439288a928f872828849ef1d24f7",
+      "reviewedSignature": "b440dc9a51c1320005c2bf2ed6ab5591c858f81c96116fd31e0bf0ec670165e4",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "8",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "Gain (7−5)/(3−2) mm=2/mm, offset b=1. S_C=11 dà residuo (11−1)/2=5 mm; A₁,C=5+3=8 mm. Ricostruzione S=2(8−3)+1=11.",
+      "physicalAssumptions": "Mezzo lineare, somma orientata nello stesso punto; frequenza e polarizzazione uguali, fase relativa π stabile. A₁>A₂>0 e ordine preservato fra prove. A_res è massimo modulo, non coordinata istantanea.",
+      "distractors": "5 mm copia residuo,11 mm display. A₁6 mm darebbe S7; A₁4 mm darebbe S3. Solo8 mm restituisce11.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Gain (7−5)/(3−2) mm=2/mm, offset b=1. S_C=11 dà residuo (11−1)/2=5 mm; A₁,C=5+3=8 mm. Ricostruzione S=2(8−3)+1=11.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u4-coherent-destructive-16",
+      "sourceSha256": "ae2b80e468daa1c5056dc67def64d42b1ccecc23c080f1c284dfbff71f1bb61c",
+      "candidateSha256": "df990be738be6384773033c44b87dbfed7bbb6452ca2e498350077b51ae04514",
+      "reviewedSignature": "2360e734b2371fee61aeb995f473c28400fe850cde291320a43e9ef2d9b39288",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "A₁=4A₂ porta A_res=3A₂. Residuo 3 mm impone A₂=1 mm, A₁=4 mm. Unica coppia positiva, legge lineare e scala determinata.",
+      "physicalAssumptions": "Mezzo lineare, somma orientata nello stesso punto; frequenza e polarizzazione uguali, fase relativa π stabile. A₁>A₂>0 e ordine preservato fra prove. A_res è massimo modulo, non coordinata istantanea.",
+      "distractors": "3 mm copia il residuo,4 mm A₁. Radice indebita di una relazione lineare; coppia nulla viola sia misura sia positività.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. A₁=4A₂ porta A_res=3A₂. Residuo 3 mm impone A₂=1 mm, A₁=4 mm. Unica coppia positiva, legge lineare e scala determinata.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "f1994730bcffc16c07e165284774508e7747c0ec09b90f2ab541c8e88f91aee6",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "publicationAction": "NONE",
+  "reviewedCandidateCommit": "3ff39ad559409bd5690138c16b97ac1f7ce12542",
+  "packageSha256": "abb7d63143956e564313e3d607932af2b7cf385e90f6f50476e0c94784727d88",
+  "bindingsSha256": "47b15756ccdb7540dff886b2cc8c49561f03fe22e873e5315e7e6849c39d14ac",
+  "source": {
+    "commit": "5cfbdcb055ba3ba136f97fb56e997f06e6cf3605",
+    "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U4-02.json",
+    "reference": "All 48 B145–147 U4-02 original prompts individually read and independent per-ID derivations persisted before opening any B candidate. Handoffs exposed only commits, files and general assumptions, no numeric result or key. Reviewer authored distinct A141–144 and already knows superposition laws; no claim of ignorance of the physics. All 16 final candidate records, every option, block, hint, feedback, metadata and caption read completely, with complete SVG XML structure and native rendering. Never imports authoring. Actual C5-L01/L02/L03/L05 and C1-L001 lessons reread. Edition 146 frequencies independently recalculated from its declared close-carrier parametrization; separate Doppler03/16 preserved. Edition147 frozen only after rereading final feedback15 at72861a39."
+  }
+}

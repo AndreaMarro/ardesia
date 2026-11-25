@@ -1,0 +1,1170 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u3-pressure-gradient-fixed-speed-01",
+      "kind": "question",
+      "course": "C2",
+      "section": "Gradiente richiesto a velocità media imposta",
+      "order": 11601,
+      "title": "Un gradiente da viscosità e raggio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L008",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L007",
+        "C2-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "pressure-gradient-fixed-speed",
+      "difficulty": 1,
+      "prompt": "Un liquido omogeneo newtoniano incomprimibile scorre in un tubo diritto, orizzontale, rigido e circolare di raggio r>0. Si assumono moto laminare stazionario pienamente sviluppato, aderenza alla parete e viscosità uniforme η>0. La velocità media d’area è mantenuta a v̄=0,01 m/s, non la portata totale. L’asse x cresce verso il flusso; per una lunghezza L>0 definiamo Δp=p_ingresso−p_uscita>0 e G=Δp/L, modulo del gradiente in Pa/m, mentre dp/dx=−G. η è assegnata in mPa·s e r in mm; tutte le prove restano nel regime dichiarato. Con η=1 mPa·s e r=1 mm, quanto vale G in Pa/m?",
+      "answer": {
+        "type": "numeric",
+        "value": 80,
+        "unit": "Pa/m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Poiseuille fornisce Q=πr⁴G/(8η), ma qui si mantiene la velocità media: Q=πr²v̄. Uguagliando le portate si cancellano π e due potenze del raggio, lasciando G=8ηv̄/r². Prima dei numeri convertiamo sia il prefisso della viscosità sia quello del raggio, che viene elevato al quadrato."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/3c092a2de58f936a58fce7359d8b4ae0d135f61664b76593a3b47258cc52d92e",
+          "text": "Sezioni circolari con raggi 1 e 2 mm alla scala comune 40 px/mm: la velocità media resta 0,01 m/s, non è il massimo del profilo. Nella prima prova r=1 mm, η=1 mPa·s e G=80 Pa/m; nella seconda r=2 mm, stessa η e G=20 Pa/m. Frecce di velocità media entrambe di 100 px alla scala 10000 px/(m/s); le frecce sono esterne alle sezioni e non rappresentano un campo di velocità uniforme. Il pannello delle aree usa il rapporto puro A/A_A, con barre 80 e 320 px alla scala 80 px/unità; a velocità media imposta anche Q cresce di quattro volte."
+        },
+        {
+          "type": "formula",
+          "text": "G=\\frac{8\\eta\\bar v}{r^2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\eta=10^{-3}\\,\\mathrm{Pa\\,s}"
+        },
+        {
+          "type": "formula",
+          "text": " r=10^{-3}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " r^2=10^{-6}\\,\\mathrm{m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " G=8\\times10^{-5+6}\\,\\mathrm{Pa/m}"
+        },
+        {
+          "type": "formula",
+          "text": " G=80\\,\\mathrm{Pa/m}"
+        },
+        {
+          "type": "text",
+          "text": "Il conto a mano usa −3−2−(−6)=1 nell’esponente, poi 8·10=80. Un gradiente di −80 Pa/m è dp/dx, non il modulo G chiesto. Ottomila o otto centesimi segnalerebbero prefissi o quadrati convertiti in modo incoerente."
+        }
+      ],
+      "hints": [
+        "Elimina Q usando la velocità media imposta e converti r prima di quadrarlo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il conto a mano usa −3−2−(−6)=1 nell’esponente, poi 8·10=80. Un gradiente di −80 Pa/m è dp/dx, non il modulo G chiesto. Ottomila o otto centesimi segnalerebbero prefissi o quadrati convertiti in modo incoerente.",
+        "target": "C2-L008"
+      },
+      "coverage": [
+        "Poiseuille con velocità media controllata",
+        "Modulo e segno del gradiente",
+        "Prefissi, Reynolds e inverse fisiche"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-pressure-gradient-fixed-speed-02",
+      "kind": "question",
+      "course": "C2",
+      "section": "Gradiente richiesto a velocità media imposta",
+      "order": 11602,
+      "title": "Pressione per distanza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L008",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L007",
+        "C2-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "pressure-gradient-fixed-speed",
+      "difficulty": 1,
+      "prompt": "Un liquido omogeneo newtoniano incomprimibile scorre in un tubo diritto, orizzontale, rigido e circolare di raggio r>0. Si assumono moto laminare stazionario pienamente sviluppato, aderenza alla parete e viscosità uniforme η>0. La velocità media d’area è mantenuta a v̄=0,01 m/s, non la portata totale. L’asse x cresce verso il flusso; per una lunghezza L>0 definiamo Δp=p_ingresso−p_uscita>0 e G=Δp/L, modulo del gradiente in Pa/m, mentre dp/dx=−G. η è assegnata in mPa·s e r in mm; tutte le prove restano nel regime dichiarato. Quale unità proposta esprime G?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Pa/m",
+          "Pa",
+          "N",
+          "m/s",
+          "Pa·s"
+        ],
+        "value": "Pa/m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "G è una differenza di pressione divisa per una lunghezza lungo il tubo. Anche 8ηv̄/r² restituisce questa unità: Pa·s per m/s, diviso m², dà Pa/m. Non è la caduta di pressione di un tratto finché non viene moltiplicato per la sua lunghezza."
+        },
+        {
+          "type": "formula",
+          "text": "G=\\Delta p/L"
+        },
+        {
+          "type": "formula",
+          "text": " [G]=\\mathrm{Pa/m}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p=GL"
+        },
+        {
+          "type": "text",
+          "text": "Pa esprime Δp, N una forza, m/s la velocità media e Pa·s la viscosità. Per due tratti identici di lunghezza doppia G può restare uguale mentre Δp raddoppia."
+        }
+      ],
+      "hints": [
+        "Separa p da p divisa per una distanza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "Pa esprime Δp, N una forza, m/s la velocità media e Pa·s la viscosità. Per due tratti identici di lunghezza doppia G può restare uguale mentre Δp raddoppia.",
+        "target": "C2-L008"
+      },
+      "coverage": [
+        "Poiseuille con velocità media controllata",
+        "Modulo e segno del gradiente",
+        "Prefissi, Reynolds e inverse fisiche"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-pressure-gradient-fixed-speed-03",
+      "kind": "question",
+      "course": "C2",
+      "section": "Gradiente richiesto a velocità media imposta",
+      "order": 11603,
+      "title": "Incomprimibile non significa senza attrito",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L008",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L007",
+        "C2-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "pressure-gradient-fixed-speed",
+      "difficulty": 1,
+      "prompt": "Un liquido è trattato come incomprimibile. Quale affermazione esprime questa ipotesi senza confonderla con la viscosità?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "La densità di ciascun elemento materiale resta costante; la viscosità può essere non nulla",
+          "La viscosità deve essere zero",
+          "La pressione è necessariamente la stessa in ogni punto",
+          "La velocità deve essere uniforme nella sezione",
+          "Il liquido non può scorrere"
+        ],
+        "value": "La densità di ciascun elemento materiale resta costante; la viscosità può essere non nulla"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’incomprimibilità riguarda la risposta del volume e della densità di un elemento materiale, non la resistenza agli sforzi tangenziali. Nel modello omogeneo la stessa densità collega conservazione della massa e portata volumetrica; il fluido può comunque avere η>0, aderire alla parete e richiedere una caduta di pressione per scorrere."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/3c092a2de58f936a58fce7359d8b4ae0d135f61664b76593a3b47258cc52d92e",
+          "text": "Grafico delle pressioni in un tratto da 1 m alla stessa quota: p_ingresso=100 kPa assoluti. A con G=80 Pa/m arriva a 99920 Pa e B con G=20 Pa/m a 99980 Pa. Si rappresenta p−99900 Pa, non la pressione assoluta da zero: asse x 300 px/m, asse verticale 3 px/Pa. Le pendenze sono negative e i moduli 80 e 20 Pa/m; l’offset dichiarato non cambia le pendenze."
+        },
+        {
+          "type": "formula",
+          "text": "m=\\rho V"
+        },
+        {
+          "type": "formula",
+          "text": " m\\ \\mathrm{costante}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho\\ \\mathrm{costante}"
+        },
+        {
+          "type": "formula",
+          "text": " V\\ \\mathrm{costante}"
+        },
+        {
+          "type": "text",
+          "text": "Viscosità nulla è l’ipotesi inviscida, distinta. Pressione e velocità possono variare spazialmente in un fluido incomprimibile, e il profilo laminare non è uniforme. Il vincolo sul volume di un elemento materiale non impedisce il suo spostamento."
+        }
+      ],
+      "hints": [
+        "Distingui cambiamento di volume e sforzo viscoso.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Viscosità nulla è l’ipotesi inviscida, distinta. Pressione e velocità possono variare spazialmente in un fluido incomprimibile, e il profilo laminare non è uniforme. Il vincolo sul volume di un elemento materiale non impedisce il suo spostamento.",
+        "target": "C2-L008"
+      },
+      "coverage": [
+        "Poiseuille con velocità media controllata",
+        "Modulo e segno del gradiente",
+        "Prefissi, Reynolds e inverse fisiche"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-pressure-gradient-fixed-speed-04",
+      "kind": "question",
+      "course": "C2",
+      "section": "Gradiente richiesto a velocità media imposta",
+      "order": 11604,
+      "title": "Più viscosità, stessa velocità media",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L008",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L007",
+        "C2-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "pressure-gradient-fixed-speed",
+      "difficulty": 1,
+      "prompt": "Un liquido omogeneo newtoniano incomprimibile scorre in un tubo diritto, orizzontale, rigido e circolare di raggio r>0. Si assumono moto laminare stazionario pienamente sviluppato, aderenza alla parete e viscosità uniforme η>0. La velocità media d’area è mantenuta a v̄=0,01 m/s, non la portata totale. L’asse x cresce verso il flusso; per una lunghezza L>0 definiamo Δp=p_ingresso−p_uscita>0 e G=Δp/L, modulo del gradiente in Pa/m, mentre dp/dx=−G. η è assegnata in mPa·s e r in mm; tutte le prove restano nel regime dichiarato. η passa da 1 a 2 mPa·s, mantenendo r=1 mm. Come cambia G?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 80 a 160 Pa/m",
+          "Da 80 a 40 Pa/m",
+          "Resta 80 Pa/m",
+          "Da 80 a 320 Pa/m",
+          "Diventa zero"
+        ],
+        "value": "Da 80 a 160 Pa/m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A raggio e velocità media invariati, G è direttamente proporzionale alla viscosità. Il suo raddoppio richiede un gradiente doppio, da ottanta a centosessanta Pa/m. Poiché anche l’area resta uguale, in questo confronto particolare la portata non cambia."
+        },
+        {
+          "type": "formula",
+          "text": "G_A=80\\,\\mathrm{Pa/m}"
+        },
+        {
+          "type": "formula",
+          "text": " G_B=2G_A"
+        },
+        {
+          "type": "formula",
+          "text": " G_B=160\\,\\mathrm{Pa/m}"
+        },
+        {
+          "type": "text",
+          "text": "Quaranta inverte il fattore di viscosità; trecentoventi lo eleva al quadrato benché η compaia alla prima potenza. Ottanta o zero non manterrebbero la stessa velocità media nel nuovo stato resistivo."
+        }
+      ],
+      "hints": [
+        "Individua la dipendenza da η a r fisso.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Quaranta inverte il fattore di viscosità; trecentoventi lo eleva al quadrato benché η compaia alla prima potenza. Ottanta o zero non manterrebbero la stessa velocità media nel nuovo stato resistivo.",
+        "target": "C2-L008"
+      },
+      "coverage": [
+        "Poiseuille con velocità media controllata",
+        "Modulo e segno del gradiente",
+        "Prefissi, Reynolds e inverse fisiche"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-pressure-gradient-fixed-speed-05",
+      "kind": "question",
+      "course": "C2",
+      "section": "Gradiente richiesto a velocità media imposta",
+      "order": 11605,
+      "title": "La viscosità dal modulo del gradiente",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L008",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L007",
+        "C2-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "pressure-gradient-fixed-speed",
+      "difficulty": 2,
+      "prompt": "Un liquido omogeneo newtoniano incomprimibile scorre in un tubo diritto, orizzontale, rigido e circolare di raggio r>0. Si assumono moto laminare stazionario pienamente sviluppato, aderenza alla parete e viscosità uniforme η>0. La velocità media d’area è mantenuta a v̄=0,01 m/s, non la portata totale. L’asse x cresce verso il flusso; per una lunghezza L>0 definiamo Δp=p_ingresso−p_uscita>0 e G=Δp/L, modulo del gradiente in Pa/m, mentre dp/dx=−G. η è assegnata in mPa·s e r in mm; tutte le prove restano nel regime dichiarato. Si misura G=80 Pa/m e si conosce r=1 mm. Quanto vale η in mPa·s?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "mPa·s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Isoliamo η=Gr²/(8v̄) in unità SI. Il raggio al quadrato è 10⁻⁶ m² e 8v̄ vale 8/100 m/s. Il rapporto dà un millesimo di Pa·s, cioè un mPa·s: il risultato va espresso nell’unità richiesta, non soltanto in quella usata nel passaggio intermedio."
+        },
+        {
+          "type": "formula",
+          "text": "\\eta=\\frac{Gr^2}{8\\bar v}"
+        },
+        {
+          "type": "formula",
+          "text": " r^2=10^{-6}\\,\\mathrm{m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\eta=10^{-3}\\,\\mathrm{Pa\\,s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\eta=1\\,\\mathrm{mPa\\,s}"
+        },
+        {
+          "type": "text",
+          "text": "Il valore 10⁻³ sarebbe corretto se l’unità fosse Pa·s, ma non come numero di mPa·s. Dimenticare il quadrato del millimetro altera il fattore di conversione di mille."
+        }
+      ],
+      "hints": [
+        "Calcola la viscosità SI e poi riconverti in mPa·s.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il valore 10⁻³ sarebbe corretto se l’unità fosse Pa·s, ma non come numero di mPa·s. Dimenticare il quadrato del millimetro altera il fattore di conversione di mille.",
+        "target": "C2-L008"
+      },
+      "coverage": [
+        "Poiseuille con velocità media controllata",
+        "Modulo e segno del gradiente",
+        "Prefissi, Reynolds e inverse fisiche"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-pressure-gradient-fixed-speed-06",
+      "kind": "question",
+      "course": "C2",
+      "section": "Gradiente richiesto a velocità media imposta",
+      "order": 11606,
+      "title": "Il raggio da una radice positiva",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L008",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L007",
+        "C2-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "pressure-gradient-fixed-speed",
+      "difficulty": 2,
+      "prompt": "Un liquido omogeneo newtoniano incomprimibile scorre in un tubo diritto, orizzontale, rigido e circolare di raggio r>0. Si assumono moto laminare stazionario pienamente sviluppato, aderenza alla parete e viscosità uniforme η>0. La velocità media d’area è mantenuta a v̄=0,01 m/s, non la portata totale. L’asse x cresce verso il flusso; per una lunghezza L>0 definiamo Δp=p_ingresso−p_uscita>0 e G=Δp/L, modulo del gradiente in Pa/m, mentre dp/dx=−G. η è assegnata in mPa·s e r in mm; tutte le prove restano nel regime dichiarato. Si misura G=80 Pa/m e si conosce η=1 mPa·s. Quanto vale r in mm?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "mm",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dalla formula del gradiente si ricava r²=8ηv̄/G. Con la viscosità convertita in Pa·s risulta 10⁻⁶ m². La radice positiva è 10⁻³ m, un millimetro. Un raggio è una lunghezza positiva e non una coordinata orientata."
+        },
+        {
+          "type": "formula",
+          "text": "r^2=\\frac{8\\eta\\bar v}{G}"
+        },
+        {
+          "type": "formula",
+          "text": " r^2=10^{-6}\\,\\mathrm{m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " r=10^{-3}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " r=1\\,\\mathrm{mm}"
+        },
+        {
+          "type": "text",
+          "text": "Un millimetro quadrato sarebbe il valore di r², non il raggio. Il ramo negativo risolverebbe l’equazione del quadrato ma non la geometria del tubo."
+        }
+      ],
+      "hints": [
+        "Isola r² e mantieni le unità fino alla radice.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un millimetro quadrato sarebbe il valore di r², non il raggio. Il ramo negativo risolverebbe l’equazione del quadrato ma non la geometria del tubo.",
+        "target": "C2-L008"
+      },
+      "coverage": [
+        "Poiseuille con velocità media controllata",
+        "Modulo e segno del gradiente",
+        "Prefissi, Reynolds e inverse fisiche"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-pressure-gradient-fixed-speed-07",
+      "kind": "question",
+      "course": "C2",
+      "section": "Gradiente richiesto a velocità media imposta",
+      "order": 11607,
+      "title": "Raggio doppio a velocità media imposta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L008",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L007",
+        "C2-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "pressure-gradient-fixed-speed",
+      "difficulty": 2,
+      "prompt": "Un liquido omogeneo newtoniano incomprimibile scorre in un tubo diritto, orizzontale, rigido e circolare di raggio r>0. Si assumono moto laminare stazionario pienamente sviluppato, aderenza alla parete e viscosità uniforme η>0. La velocità media d’area è mantenuta a v̄=0,01 m/s, non la portata totale. L’asse x cresce verso il flusso; per una lunghezza L>0 definiamo Δp=p_ingresso−p_uscita>0 e G=Δp/L, modulo del gradiente in Pa/m, mentre dp/dx=−G. η è assegnata in mPa·s e r in mm; tutte le prove restano nel regime dichiarato. A ha η=1 mPa·s,r=1 mm; B mantiene η e usa r=2 mm. Quanto vale G_B/G_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/4",
+          "4",
+          "1/16",
+          "1/2",
+          "1"
+        ],
+        "value": "1/4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Con v̄ mantenuta, il gradiente è inversamente proporzionale a r². Raddoppiare il raggio riduce G a un quarto: da ottanta a venti Pa/m. Intanto Q=πr²v̄ diventa quadrupla; non si sta mantenendo fissa Q come in un altro confronto possibile."
+        },
+        {
+          "type": "formula",
+          "text": "G_B/G_A=\\left(\\frac{r_A}{r_B}\\right)^2"
+        },
+        {
+          "type": "formula",
+          "text": " G_B/G_A=\\frac14"
+        },
+        {
+          "type": "formula",
+          "text": " G_B=20\\,\\mathrm{Pa/m}"
+        },
+        {
+          "type": "text",
+          "text": "Quattro ha il verso opposto; un sedicesimo applicherebbe la quarta potenza valida a portata imposta, non a velocità media imposta. Un mezzo dimentica il quadrato e uno ignora la geometria nuova."
+        }
+      ],
+      "hints": [
+        "Controlla se la quantità fissata è Q oppure la sua velocità media.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro ha il verso opposto; un sedicesimo applicherebbe la quarta potenza valida a portata imposta, non a velocità media imposta. Un mezzo dimentica il quadrato e uno ignora la geometria nuova.",
+        "target": "C2-L008"
+      },
+      "coverage": [
+        "Poiseuille con velocità media controllata",
+        "Modulo e segno del gradiente",
+        "Prefissi, Reynolds e inverse fisiche"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-pressure-gradient-fixed-speed-08",
+      "kind": "question",
+      "course": "C2",
+      "section": "Gradiente richiesto a velocità media imposta",
+      "order": 11608,
+      "title": "Reynolds: controllare le dimensioni",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L008",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L007",
+        "C2-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "pressure-gradient-fixed-speed",
+      "difficulty": 2,
+      "prompt": "Si fornisce Re=ρv̄D/η, con densità ρ in kg/m³, velocità media v̄ in m/s, diametro D in m e viscosità dinamica η in Pa·s. Quale unità ha Re?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1",
+          "Pa",
+          "m/s",
+          "kg/m³",
+          "Pa·s"
+        ],
+        "value": "1"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il numeratore ha dimensioni kg/(m·s): la densità perde due potenze di lunghezza nel prodotto con velocità e diametro. La viscosità dinamica ha esattamente la stessa dimensione, perché Pa·s=kg/(m·s). Il loro rapporto è quindi un numero puro."
+        },
+        {
+          "type": "formula",
+          "text": "[\\rho\\bar vD]=\\frac{\\mathrm{kg}}{\\mathrm{m\\,s}}"
+        },
+        {
+          "type": "formula",
+          "text": " [\\eta]=\\frac{\\mathrm{kg}}{\\mathrm{m\\,s}}"
+        },
+        {
+          "type": "formula",
+          "text": " [Re]=1"
+        },
+        {
+          "type": "text",
+          "text": "Pressione, velocità, densità e viscosità sono grandezze dimensionali, non l’unità di Re. Una stima di Re può aiutare a discutere il regime; la sola cancellazione delle unità non stabilisce che un flusso sia laminare, né introduce una soglia universale."
+        }
+      ],
+      "hints": [
+        "Scrivi Pa come kg/(m·s²) prima di moltiplicare per s.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Pressione, velocità, densità e viscosità sono grandezze dimensionali, non l’unità di Re. Una stima di Re può aiutare a discutere il regime; la sola cancellazione delle unità non stabilisce che un flusso sia laminare, né introduce una soglia universale.",
+        "target": "C2-L008"
+      },
+      "coverage": [
+        "Poiseuille con velocità media controllata",
+        "Modulo e segno del gradiente",
+        "Prefissi, Reynolds e inverse fisiche"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-pressure-gradient-fixed-speed-09",
+      "kind": "question",
+      "course": "C2",
+      "section": "Gradiente richiesto a velocità media imposta",
+      "order": 11609,
+      "title": "La viscosità nell’inversa generale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L008",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L007",
+        "C2-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "pressure-gradient-fixed-speed",
+      "difficulty": 2,
+      "prompt": "Un liquido omogeneo newtoniano incomprimibile scorre in un tubo diritto, orizzontale, rigido e circolare di raggio r>0. Si assumono moto laminare stazionario pienamente sviluppato, aderenza alla parete e viscosità uniforme η>0. La velocità media d’area è mantenuta a v̄=0,01 m/s, non la portata totale. L’asse x cresce verso il flusso; per una lunghezza L>0 definiamo Δp=p_ingresso−p_uscita>0 e G=Δp/L, modulo del gradiente in Pa/m, mentre dp/dx=−G. η è assegnata in mPa·s e r in mm; tutte le prove restano nel regime dichiarato. Quale formula isola η usando grandezze in unità coerenti?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "η = G r² / (8 v̄)",
+          "η = 8 G v̄ / r²",
+          "η = G r / (8 v̄)",
+          "η = 8 v̄ / (G r²)",
+          "η = G r² / v̄"
+        ],
+        "value": "η = G r² / (8 v̄)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplichiamo G=8ηv̄/r² per r² e dividiamo per 8v̄>0. Restano le due potenze del raggio e il fattore otto. Pa/m per m², diviso m/s, restituisce Pa·s: l’inversa è una viscosità, non una resistenza idraulica."
+        },
+        {
+          "type": "formula",
+          "text": "Gr^2=8\\eta\\bar v"
+        },
+        {
+          "type": "formula",
+          "text": " \\eta=\\frac{Gr^2}{8\\bar v}"
+        },
+        {
+          "type": "formula",
+          "text": " [\\eta]=\\mathrm{Pa\\,s}"
+        },
+        {
+          "type": "text",
+          "text": "Rimettere r² al denominatore rovescia l’isolamento; un solo r perde una lunghezza. La frazione reciproca ha unità di viscosità inversa e omettere l’otto sovrastima η di otto volte."
+        }
+      ],
+      "hints": [
+        "Porta r² al numeratore e conserva 8v̄ come denominatore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Rimettere r² al denominatore rovescia l’isolamento; un solo r perde una lunghezza. La frazione reciproca ha unità di viscosità inversa e omettere l’otto sovrastima η di otto volte.",
+        "target": "C2-L008"
+      },
+      "coverage": [
+        "Poiseuille con velocità media controllata",
+        "Modulo e segno del gradiente",
+        "Prefissi, Reynolds e inverse fisiche"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-pressure-gradient-fixed-speed-10",
+      "kind": "question",
+      "course": "C2",
+      "section": "Gradiente richiesto a velocità media imposta",
+      "order": 11610,
+      "title": "Scalare viscosità e raggio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L008",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L007",
+        "C2-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "pressure-gradient-fixed-speed",
+      "difficulty": 2,
+      "prompt": "Un liquido omogeneo newtoniano incomprimibile scorre in un tubo diritto, orizzontale, rigido e circolare di raggio r>0. Si assumono moto laminare stazionario pienamente sviluppato, aderenza alla parete e viscosità uniforme η>0. La velocità media d’area è mantenuta a v̄=0,01 m/s, non la portata totale. L’asse x cresce verso il flusso; per una lunghezza L>0 definiamo Δp=p_ingresso−p_uscita>0 e G=Δp/L, modulo del gradiente in Pa/m, mentre dp/dx=−G. η è assegnata in mPa·s e r in mm; tutte le prove restano nel regime dichiarato. B ha η_B=κ₁η_A e r_B=κ₂r_A, con fattori positivi; v̄ resta imposta e i due stati rispettano il modello. Quanto vale G_B/G_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ / κ₂²",
+          "κ₁ κ₂²",
+          "κ₁ / κ₂⁴",
+          "κ₁² / κ₂",
+          "κ₂² / κ₁"
+        ],
+        "value": "κ₁ / κ₂²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La viscosità fornisce un fattore diretto κ₁ e il raggio al denominatore un fattore κ₂². Il rapporto di velocità media è uno perché quel dato è mantenuto. Il risultato non è la legge di scalatura della portata a pressione fissata."
+        },
+        {
+          "type": "formula",
+          "text": "G_B=\\frac{8\\kappa_1\\eta_A\\bar v}{\\kappa_2^2r_A^2}"
+        },
+        {
+          "type": "formula",
+          "text": " G_B/G_A=\\frac{\\kappa_1}{\\kappa_2^2}"
+        },
+        {
+          "type": "text",
+          "text": "Il prodotto inverte l’effetto del raggio, la quarta potenza appartiene a un altro controllo sperimentale. Il quadrato di κ₁ attribuisce l’esponente alla viscosità e l’ultima opzione inverte i due stati."
+        }
+      ],
+      "hints": [
+        "Mantieni v̄ fissa prima di applicare la scalatura di Poiseuille.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il prodotto inverte l’effetto del raggio, la quarta potenza appartiene a un altro controllo sperimentale. Il quadrato di κ₁ attribuisce l’esponente alla viscosità e l’ultima opzione inverte i due stati.",
+        "target": "C2-L008"
+      },
+      "coverage": [
+        "Poiseuille con velocità media controllata",
+        "Modulo e segno del gradiente",
+        "Prefissi, Reynolds e inverse fisiche"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-pressure-gradient-fixed-speed-11",
+      "kind": "question",
+      "course": "C2",
+      "section": "Gradiente richiesto a velocità media imposta",
+      "order": 11611,
+      "title": "Due raddoppi con effetti diversi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L008",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L007",
+        "C2-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "pressure-gradient-fixed-speed",
+      "difficulty": 2,
+      "prompt": "Un liquido omogeneo newtoniano incomprimibile scorre in un tubo diritto, orizzontale, rigido e circolare di raggio r>0. Si assumono moto laminare stazionario pienamente sviluppato, aderenza alla parete e viscosità uniforme η>0. La velocità media d’area è mantenuta a v̄=0,01 m/s, non la portata totale. L’asse x cresce verso il flusso; per una lunghezza L>0 definiamo Δp=p_ingresso−p_uscita>0 e G=Δp/L, modulo del gradiente in Pa/m, mentre dp/dx=−G. η è assegnata in mPa·s e r in mm; tutte le prove restano nel regime dichiarato. A ha η=1 mPa·s,r=1 mm; B ha η=2 mPa·s,r=2 mm. Quanto vale G_B/G_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "2",
+          "1/4",
+          "1/8",
+          "40"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La viscosità doppia richiede un fattore due, mentre il raggio doppio divide per quattro. Il prodotto lascia un mezzo: G passa da ottanta a quaranta Pa/m. Il bilancio dei fattori mostra perché non basta osservare una sola grandezza."
+        },
+        {
+          "type": "formula",
+          "text": "G_A=80\\,\\mathrm{Pa/m}"
+        },
+        {
+          "type": "formula",
+          "text": " G_B=40\\,\\mathrm{Pa/m}"
+        },
+        {
+          "type": "formula",
+          "text": " G_B/G_A=\\frac24"
+        },
+        {
+          "type": "formula",
+          "text": " G_B/G_A=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Due segue soltanto η, un quarto soltanto r² e un ottavo usa erroneamente r⁴. Quaranta è il valore numerico del gradiente B, non il rapporto adimensionale."
+        }
+      ],
+      "hints": [
+        "Moltiplica il fattore di viscosità per l’inverso del fattore di raggio al quadrato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due segue soltanto η, un quarto soltanto r² e un ottavo usa erroneamente r⁴. Quaranta è il valore numerico del gradiente B, non il rapporto adimensionale.",
+        "target": "C2-L008"
+      },
+      "coverage": [
+        "Poiseuille con velocità media controllata",
+        "Modulo e segno del gradiente",
+        "Prefissi, Reynolds e inverse fisiche"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-pressure-gradient-fixed-speed-12",
+      "kind": "question",
+      "course": "C2",
+      "section": "Gradiente richiesto a velocità media imposta",
+      "order": 11612,
+      "title": "La media dei gradienti richiesti",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L008",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L007",
+        "C2-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "pressure-gradient-fixed-speed",
+      "difficulty": 2,
+      "prompt": "Un liquido omogeneo newtoniano incomprimibile scorre in un tubo diritto, orizzontale, rigido e circolare di raggio r>0. Si assumono moto laminare stazionario pienamente sviluppato, aderenza alla parete e viscosità uniforme η>0. La velocità media d’area è mantenuta a v̄=0,01 m/s, non la portata totale. L’asse x cresce verso il flusso; per una lunghezza L>0 definiamo Δp=p_ingresso−p_uscita>0 e G=Δp/L, modulo del gradiente in Pa/m, mentre dp/dx=−G. η è assegnata in mPa·s e r in mm; tutte le prove restano nel regime dichiarato. A ha η=1 mPa·s,r=1 mm e B ha η=2 mPa·s,r=2 mm. Qual è la media aritmetica delle due G, con uguale peso statistico?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "60 Pa/m",
+          "120 Pa/m",
+          "30 Pa/m",
+          "160/3 Pa/m",
+          "40 Pa/m"
+        ],
+        "value": "60 Pa/m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I due moduli del gradiente sono ottanta e quaranta Pa/m. La loro semisomma è sessanta Pa/m. Non si mediano prima i raggi, perché il raggio compare al quadrato al denominatore del modello."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline G=\\frac{80+40}{2}\\,\\mathrm{Pa/m}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline G=60\\,\\mathrm{Pa/m}"
+        },
+        {
+          "type": "text",
+          "text": "Centoventi è la somma e trenta dimezza ancora. Quaranta è solo il secondo risultato e anche la differenza. Con η_media=3/2 mPa·s e r_medio=3/2 mm il modello darebbe 160/3 Pa/m, minore della media richiesta di 20/3 Pa/m."
+        }
+      ],
+      "hints": [
+        "Calcola ogni gradiente con il suo raggio prima della media.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Centoventi è la somma e trenta dimezza ancora. Quaranta è solo il secondo risultato e anche la differenza. Con η_media=3/2 mPa·s e r_medio=3/2 mm il modello darebbe 160/3 Pa/m, minore della media richiesta di 20/3 Pa/m.",
+        "target": "C2-L008"
+      },
+      "coverage": [
+        "Poiseuille con velocità media controllata",
+        "Modulo e segno del gradiente",
+        "Prefissi, Reynolds e inverse fisiche"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-pressure-gradient-fixed-speed-13",
+      "kind": "question",
+      "course": "C2",
+      "section": "Gradiente richiesto a velocità media imposta",
+      "order": 11613,
+      "title": "Il raggio per dimezzare il gradiente",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L008",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L007",
+        "C2-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "pressure-gradient-fixed-speed",
+      "difficulty": 3,
+      "prompt": "Un liquido omogeneo newtoniano incomprimibile scorre in un tubo diritto, orizzontale, rigido e circolare di raggio r>0. Si assumono moto laminare stazionario pienamente sviluppato, aderenza alla parete e viscosità uniforme η>0. La velocità media d’area è mantenuta a v̄=0,01 m/s, non la portata totale. L’asse x cresce verso il flusso; per una lunghezza L>0 definiamo Δp=p_ingresso−p_uscita>0 e G=Δp/L, modulo del gradiente in Pa/m, mentre dp/dx=−G. η è assegnata in mPa·s e r in mm; tutte le prove restano nel regime dichiarato. A ha η=1 mPa·s,r=1 mm. B impone η=2 mPa·s e deve avere G_B=G_A/2. Quanto vale r_B/r_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/2",
+          "4",
+          "3/2",
+          "1"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è quaranta Pa/m. La viscosità fornisce un fattore due, quindi il quadrato del rapporto dei raggi deve fornire un divisore quattro. La radice positiva dà r_B/r_A=2, realizzata da r_B=2 mm."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac12=\\frac{2}{(r_B/r_A)^2}"
+        },
+        {
+          "type": "formula",
+          "text": " (r_B/r_A)^2=4"
+        },
+        {
+          "type": "formula",
+          "text": " r_B/r_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo rovescia il rapporto, quattro copia il rapporto dei quadrati e Tre mezzi darebbe un fattore 2/(9/4)=8/9 per G, non un mezzo. Uno non sfrutta alcuna variazione geometrica."
+        }
+      ],
+      "hints": [
+        "Separa il quadrato del rapporto prima di scegliere la radice positiva.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo rovescia il rapporto, quattro copia il rapporto dei quadrati e Tre mezzi darebbe un fattore 2/(9/4)=8/9 per G, non un mezzo. Uno non sfrutta alcuna variazione geometrica.",
+        "target": "C2-L008"
+      },
+      "coverage": [
+        "Poiseuille con velocità media controllata",
+        "Modulo e segno del gradiente",
+        "Prefissi, Reynolds e inverse fisiche"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-pressure-gradient-fixed-speed-14",
+      "kind": "question",
+      "course": "C2",
+      "section": "Gradiente richiesto a velocità media imposta",
+      "order": 11614,
+      "title": "Una lettura proporzionale del gradiente",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L008",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L007",
+        "C2-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "pressure-gradient-fixed-speed",
+      "difficulty": 3,
+      "prompt": "Un liquido omogeneo newtoniano incomprimibile scorre in un tubo diritto, orizzontale, rigido e circolare di raggio r>0. Si assumono moto laminare stazionario pienamente sviluppato, aderenza alla parete e viscosità uniforme η>0. La velocità media d’area è mantenuta a v̄=0,01 m/s, non la portata totale. L’asse x cresce verso il flusso; per una lunghezza L>0 definiamo Δp=p_ingresso−p_uscita>0 e G=Δp/L, modulo del gradiente in Pa/m, mentre dp/dx=−G. η è assegnata in mPa·s e r in mm; tutte le prove restano nel regime dichiarato. Un display continuo adimensionale segue S=qG, q>0. A con η=1 mPa·s,r=1 mm dà S=240. B dà S=120 e ha r=2 mm. Quanto vale η_B in mPa·s?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "mPa·s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento vale ottanta Pa/m e fissa q=3 m/Pa. La nuova lettura corrisponde a quaranta Pa/m. Con raggio doppio occorre viscosità doppia per ottenere quel dimezzamento del gradiente, quindi η_B=2 mPa·s; l’inversa SI restituisce lo stesso risultato."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{m/Pa}"
+        },
+        {
+          "type": "formula",
+          "text": " G_B=40\\,\\mathrm{Pa/m}"
+        },
+        {
+          "type": "formula",
+          "text": " \\eta_B=\\frac{G_Br_B^2}{8\\bar v}"
+        },
+        {
+          "type": "formula",
+          "text": " \\eta_B=2\\,\\mathrm{mPa\\,s}"
+        },
+        {
+          "type": "text",
+          "text": "La lettura 120 non è un gradiente in Pa/m: usarla direttamente triplicherebbe la viscosità inferita. Il raggio noto va prima convertito e poi elevato al quadrato nella formula SI."
+        }
+      ],
+      "hints": [
+        "Togli il guadagno e applica l’inversa del gradiente.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La lettura 120 non è un gradiente in Pa/m: usarla direttamente triplicherebbe la viscosità inferita. Il raggio noto va prima convertito e poi elevato al quadrato nella formula SI.",
+        "target": "C2-L008"
+      },
+      "coverage": [
+        "Poiseuille con velocità media controllata",
+        "Modulo e segno del gradiente",
+        "Prefissi, Reynolds e inverse fisiche"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-pressure-gradient-fixed-speed-15",
+      "kind": "question",
+      "course": "C2",
+      "section": "Gradiente richiesto a velocità media imposta",
+      "order": 11615,
+      "title": "Due riferimenti prima dell’inversa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L008",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L007",
+        "C2-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "pressure-gradient-fixed-speed",
+      "difficulty": 3,
+      "prompt": "Un liquido omogeneo newtoniano incomprimibile scorre in un tubo diritto, orizzontale, rigido e circolare di raggio r>0. Si assumono moto laminare stazionario pienamente sviluppato, aderenza alla parete e viscosità uniforme η>0. La velocità media d’area è mantenuta a v̄=0,01 m/s, non la portata totale. L’asse x cresce verso il flusso; per una lunghezza L>0 definiamo Δp=p_ingresso−p_uscita>0 e G=Δp/L, modulo del gradiente in Pa/m, mentre dp/dx=−G. η è assegnata in mPa·s e r in mm; tutte le prove restano nel regime dichiarato. Un display continuo adimensionale segue S=qG+z. A: η=1 mPa·s,r=1 mm,S=161. B: η=2 mPa·s,r=2 mm,S=81. C: r=1 mm,S=321. Quanto vale η_C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2 mPa·s",
+          "1 mPa·s",
+          "4 mPa·s",
+          "1/2 mPa·s",
+          "3 mPa·s"
+        ],
+        "value": "2 mPa·s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A e B richiedono rispettivamente ottanta e quaranta Pa/m. La differenza delle letture ottanta su quaranta Pa/m fissa q=2 m/Pa; segue z=1. C ha G=(321−1)/2=160 Pa/m. Al raggio iniziale questo è il doppio del riferimento, perciò la viscosità è due mPa·s."
+        },
+        {
+          "type": "formula",
+          "text": "q=2\\,\\mathrm{m/Pa}"
+        },
+        {
+          "type": "formula",
+          "text": " z=1"
+        },
+        {
+          "type": "formula",
+          "text": " G_C=160\\,\\mathrm{Pa/m}"
+        },
+        {
+          "type": "formula",
+          "text": " \\eta_C=2\\,\\mathrm{mPa\\,s}"
+        },
+        {
+          "type": "text",
+          "text": "Al raggio di un mm, le viscosità 1,4,1/2,3 mPa·s darebbero letture 161,641,81,481. Soltanto due produce 321. Saltare l’offset cambia il gradiente prima dell’inversa fisica."
+        }
+      ],
+      "hints": [
+        "Ricava q e z con due gradienti noti e poi decodifica C.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Al raggio di un mm, le viscosità 1,4,1/2,3 mPa·s darebbero letture 161,641,81,481. Soltanto due produce 321. Saltare l’offset cambia il gradiente prima dell’inversa fisica.",
+        "target": "C2-L008"
+      },
+      "coverage": [
+        "Poiseuille con velocità media controllata",
+        "Modulo e segno del gradiente",
+        "Prefissi, Reynolds e inverse fisiche"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-pressure-gradient-fixed-speed-16",
+      "kind": "question",
+      "course": "C2",
+      "section": "Gradiente richiesto a velocità media imposta",
+      "order": 11616,
+      "title": "Viscosità proporzionale al raggio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L008",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L007",
+        "C2-L008"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "pressure-gradient-fixed-speed",
+      "difficulty": 3,
+      "prompt": "Un liquido omogeneo newtoniano incomprimibile scorre in un tubo diritto, orizzontale, rigido e circolare di raggio r>0. Si assumono moto laminare stazionario pienamente sviluppato, aderenza alla parete e viscosità uniforme η>0. La velocità media d’area è mantenuta a v̄=0,01 m/s, non la portata totale. L’asse x cresce verso il flusso; per una lunghezza L>0 definiamo Δp=p_ingresso−p_uscita>0 e G=Δp/L, modulo del gradiente in Pa/m, mentre dp/dx=−G. η è assegnata in mPa·s e r in mm; tutte le prove restano nel regime dichiarato. Fra prove si impone η=cr, con c=1 mPa·s/mm. Si misura G=80 Pa/m. Quanto vale r>0 in mm?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "mm",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituendo il vincolo si cancella una delle due potenze del raggio: G=8cv̄/r. Il coefficiente c vale esattamente 1 Pa·s/m nelle unità SI. Il prodotto 8cv̄ è 8/100 Pa; dividendolo per ottanta Pa/m si trova 1/1000 m, cioè un mm. La viscosità associata è un mPa·s."
+        },
+        {
+          "type": "formula",
+          "text": "c=1\\,\\mathrm{Pa\\,s/m}"
+        },
+        {
+          "type": "formula",
+          "text": " G=\\frac{8c\\bar v}{r}"
+        },
+        {
+          "type": "formula",
+          "text": " r=\\frac{8c\\bar v}{G}"
+        },
+        {
+          "type": "formula",
+          "text": " r=10^{-3}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " r=1\\,\\mathrm{mm}"
+        },
+        {
+          "type": "text",
+          "text": "Non resta una radice quadrata: il vincolo ha già cancellato un fattore r. Zero o r negativo violerebbero la geometria e la viscosità positiva. Il coefficiente porta unità viscosità/lunghezza e collega prove diverse, senza imporre una variazione della viscosità lungo lo stesso tubo."
+        }
+      ],
+      "hints": [
+        "Sostituisci η=cr prima di isolare il raggio.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Non resta una radice quadrata: il vincolo ha già cancellato un fattore r. Zero o r negativo violerebbero la geometria e la viscosità positiva. Il coefficiente porta unità viscosità/lunghezza e collega prove diverse, senza imporre una variazione della viscosità lungo lo stesso tubo.",
+        "target": "C2-L008"
+      },
+      "coverage": [
+        "Poiseuille con velocità media controllata",
+        "Modulo e segno del gradiente",
+        "Prefissi, Reynolds e inverse fisiche"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "3c092a2de58f936a58fce7359d8b4ae0d135f61664b76593a3b47258cc52d92e",
+      "name": "pressure-gradient-fixed-speed-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTc3MCIgdmlld0JveD0iMCAwIDY0MCAxNzcwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+Cjx0aXRsZSBpZD0idGl0bGUiPlN0ZXNzYSB2ZWxvY2l0w6AgbWVkaWEgZSBncmFkaWVudGUgZGkgcHJlc3Npb25lIGRpdmVyc288L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5EdWUgc2V6aW9uaSBjaXJjb2xhcmkgaGFubm8gcmFnZ2kgdW5vIGUgZHVlIG1pbGxpbWV0cmksIGFsbGEgc2NhbGEgcXVhcmFudGEgcGl4ZWwgcGVyIG1pbGxpbWV0cm8uIExlIGZyZWNjZSBlc3Rlcm5lIHJhcHByZXNlbnRhbm8gbGEgc3Rlc3NhIHZlbG9jaXTDoCBtZWRpYSwgbm9uIHVuIHByb2ZpbG8gdW5pZm9ybWUuIEzigJlhcmVhIGUgbGEgcG9ydGF0YSBhdW1lbnRhbm8gZGkgcXVhdHRybyB2b2x0ZS4gSWwgZ3JhZmljbyBmaW5hbGUgbW9zdHJhIGxhIHByZXNzaW9uZSBhc3NvbHV0YSBtZW5vIG5vdmFudGFub3ZlbWlsYW5vdmVjZW50byBwYXNjYWw6IGxhIHByZXNzaW9uZSByZWFsZSBkaW1pbnVpc2NlIGx1bmdvIGlsIGZsdXNzbyBkaSBvdHRhbnRhIG8gdmVudGkgcGFzY2FsIGluIHVuIG1ldHJvLjwvZGVzYz4KPGRlZnM+PG1hcmtlciBpZD0idiIgdmlld0JveD0iMCAwIDEwIDEwIiByZWZYPSIxMCIgcmVmWT0iNSIgbWFya2VyV2lkdGg9IjUiIG1hcmtlckhlaWdodD0iNSIgb3JpZW50PSJhdXRvIj48cGF0aCBkPSJNMCAwTDEwIDVMMCAxMFoiIGZpbGw9IiMxNTVmYTAiLz48L21hcmtlcj48L2RlZnM+CjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMTc3MCIgZmlsbD0iI2ZmZmRmNyIvPgo8ZyBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiMxNzJjM2IiPgo8dGV4dCB4PSIzNSIgeT0iNDgiIGZvbnQtc2l6ZT0iMjciPjEuIExhIG1lZGlhIHJlc3RhIGltcG9zdGE8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI5NSI+zrcgPSAxIG1QYcK3czsgdsyEID0gMCwwMSBtL3M8L3RleHQ+Cjx0ZXh0IHg9Ijk1IiB5PSIxODAiPnJfQSA9IDEgbW08L3RleHQ+PHRleHQgeD0iMzYwIiB5PSIxODAiPnJfQiA9IDIgbW08L3RleHQ+CjxjaXJjbGUgY3g9IjE2MCIgY3k9IjI5MCIgcj0iNDAiIGZpbGw9IiNlNmVmZjUiIHN0cm9rZT0iIzE1NWZhMCIgc3Ryb2tlLXdpZHRoPSIzIi8+PGNpcmNsZSBjeD0iNDMwIiBjeT0iMjkwIiByPSI4MCIgZmlsbD0iI2U2ZWZmNSIgc3Ryb2tlPSIjMTU1ZmEwIiBzdHJva2Utd2lkdGg9IjMiLz4KPHBhdGggZD0iTTE2MCAyOTBIMjAwTTQzMCAyOTBINTEwIiBzdHJva2U9IiMxNzJjM2IiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIvPgo8Y2lyY2xlIGN4PSIxNjAiIGN5PSIyOTAiIHI9IjMiIGZpbGw9IiMxNzJjM2IiLz48Y2lyY2xlIGN4PSI0MzAiIGN5PSIyOTAiIHI9IjMiIGZpbGw9IiMxNzJjM2IiLz4KPHRleHQgeD0iMzUiIHk9IjQwMCI+R2VvbWV0cmlhIGRlbGxlIHNlemlvbmk6IDQwIHB4L21tPC90ZXh0Pgo8cGF0aCBkPSJNMTEwIDQ1MEgyMTAiIHN0cm9rZT0iIzE1NWZhMCIgc3Ryb2tlLXdpZHRoPSI0IiBmaWxsPSJub25lIiBtYXJrZXItZW5kPSJ1cmwoI3YpIi8+PHBhdGggZD0iTTM4MCA0NTBINDgwIiBzdHJva2U9IiMxNTVmYTAiIHN0cm9rZS13aWR0aD0iNCIgZmlsbD0ibm9uZSIgbWFya2VyLWVuZD0idXJsKCN2KSIvPgo8dGV4dCB4PSIzNSIgeT0iNTA1Ij5NZWRpZTogMTAwIHB4IGNpYXNjdW5hIGEgMTAwMDAgcHgvKG0vcyk8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI1NTAiPk5vbiBzb25vIGZyZWNjZSBkaSB2ZWxvY2l0w6AgbG9jYWxlLjwvdGV4dD4KPGxpbmUgeDE9IjM1IiB5MT0iNTkwIiB4Mj0iNjA1IiB5Mj0iNTkwIiBzdHJva2U9IiNiY2M2Y2EiLz4KPHRleHQgeD0iMzUiIHk9IjYzNSIgZm9udC1zaXplPSIyNyI+Mi4gTOKAmWFyZWEgZSBsYSBwb3J0YXRhIGF1bWVudGFubzwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjY4MCI+QmFycmUgZGVsIHJhcHBvcnRvIEEvQV9BOiA4MCBweC91bml0w6A8L3RleHQ+CjxyZWN0IHg9IjEwMCIgeT0iNzI1IiB3aWR0aD0iODAiIGhlaWdodD0iMzUiIGZpbGw9IiMxNTVmYTAiLz48dGV4dCB4PSI0NTAiIHk9Ijc1MiI+QTogMTwvdGV4dD4KPHJlY3QgeD0iMTAwIiB5PSI4MjAiIHdpZHRoPSIzMjAiIGhlaWdodD0iMzUiIGZpbGw9IiMxNTVmYTAiLz48dGV4dCB4PSI0NTAiIHk9Ijg0NyI+QjogNDwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjkxMCI+QV9CL0FfQSA9IDQg4oaSIFFfQi9RX0EgPSA0PC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iOTU1Ij5RID0gQSB2zIQ7IHF1aSBub24gc2kgbWFudGllbmUgUSBjb3N0YW50ZS48L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxMDAwIj5HX0IvR19BID0gMS80IGEgzrcgZSB2zIQgZmlzc2F0ZS48L3RleHQ+CjxsaW5lIHgxPSIzNSIgeTE9IjEwMzUiIHgyPSI2MDUiIHkyPSIxMDM1IiBzdHJva2U9IiNiY2M2Y2EiLz4KPHRleHQgeD0iMzUiIHk9IjEwODAiIGZvbnQtc2l6ZT0iMjciPjMuIElsIGdyYWRpZW50ZSBvcmllbnRhdG8gw6ggbmVnYXRpdm88L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxMTI1Ij5JbmdyZXNzbzogcHJlc3Npb25lIGFzc29sdXRhIDEwMDAwMCBQYTwvdGV4dD4KPHBhdGggZD0iTTEwMCAxNTQwVjExODBNMTAwIDE1NDBINDUwIiBzdHJva2U9IiMxNzJjM2IiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIvPgo8dGV4dCB4PSIxMTAiIHk9IjEyMDUiPnAg4oiSIDk5OTAwIFBhPC90ZXh0Pjx0ZXh0IHg9IjQ2MCIgeT0iMTU1MCI+eCAobSk8L3RleHQ+CjxwYXRoIGQ9Ik0xMDAgMTI0MEw0MDAgMTQ4MCIgc3Ryb2tlPSIjYTMzNDMwIiBzdHJva2Utd2lkdGg9IjQiIGZpbGw9Im5vbmUiLz48cGF0aCBkPSJNMTAwIDEyNDBMNDAwIDEzMDAiIHN0cm9rZT0iIzE1NWZhMCIgc3Ryb2tlLXdpZHRoPSI0IiBmaWxsPSJub25lIi8+CjxwYXRoIGQ9Ik05NSAxMjQwSDEwNU05NSAxMzAwSDEwNU05NSAxNDgwSDEwNU00MDAgMTUzNVYxNTQ1IiBzdHJva2U9IiMxNzJjM2IiIGZpbGw9Im5vbmUiLz4KPGNpcmNsZSBjeD0iMTAwIiBjeT0iMTI0MCIgcj0iNSIgZmlsbD0iIzE3MmMzYiIvPjxjaXJjbGUgY3g9IjQwMCIgY3k9IjE0ODAiIHI9IjUiIGZpbGw9IiNhMzM0MzAiLz48Y2lyY2xlIGN4PSI0MDAiIGN5PSIxMzAwIiByPSI1IiBmaWxsPSIjMTU1ZmEwIi8+Cjx0ZXh0IHg9IjQwIiB5PSIxMjQ4Ij4xMDA8L3RleHQ+PHRleHQgeD0iNTUiIHk9IjEzMDgiPjgwPC90ZXh0Pjx0ZXh0IHg9IjU1IiB5PSIxNDg4Ij4yMDwvdGV4dD48dGV4dCB4PSI4MCIgeT0iMTU3MCI+MDwvdGV4dD48dGV4dCB4PSIzOTMiIHk9IjE1NzAiPjE8L3RleHQ+Cjx0ZXh0IHg9IjQyMCIgeT0iMTQ3NSI+QTogMjA8L3RleHQ+PHRleHQgeD0iNDIwIiB5PSIxMjk1Ij5COiA4MDwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjE2MzUiPng6IDMwMCBweC9tOyBzY2FydG86IDMgcHgvUGE8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxNjgwIj5Bc3NlIHZlcnRpY2FsZTogc2NhcnRvIGRhIDk5OTAwIFBhLjwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjE3MjUiPkcgPSA4MCBvIDIwIFBhL207IGRwL2R4ID0g4oiSRy48L3RleHQ+CjwvZz48L3N2Zz4K"
+    }
+  ]
+}
