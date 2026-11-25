@@ -141,3 +141,7 @@ Poniamo x=δ/(1 V) e y=q/(1 μC). Il vincolo y=(2/3)x trasforma la legge numeric
 Passaggi: `x=\frac\delta{1\,\mathrm V}\qquad y=\frac q{1\,\mathrm{\mu C}}\qquad 6=\frac23x^2\qquad x^2=9\qquad x=3\qquad \delta=3\,\mathrm V`
 
 Distrattori: −3 darebbe anche q negativo nel vincolo ed è fuori dalle ipotesi. Nove copia il quadrato; una caduta di 2 V darebbe 8/3 μJ e sei volt darebbero 24 μJ. Il coefficiente β ha unità di carica per volt.
+
+## Precisazione dei prerequisiti
+
+Rilette le lezioni reali C1-L006 «Contatto, elasticità e gravitazione» e C1-L007 «Trasferire energia con una forza». C1-L007 copre lavoro e teorema dell’energia cinetica richiesti qui; C1-L006 è estranea al cammino necessario ed è stata rimossa dai prerequisiti di tutte le16 schede. Testi, formule, risposte e asset restano identici. La precedente edizione tecnica rimane conservata nel commit d5d75603; nessuna revisione scientifica indipendente o UI del prodotto era stata assegnata.
