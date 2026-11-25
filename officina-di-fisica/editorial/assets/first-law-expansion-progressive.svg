@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 1120" role="img" aria-labelledby="title desc">
+<title id="title">Primo principio, entrata uscita e accumulo</title>
+<desc id="desc">Il sistema riceve cento joule come calore e cede quaranta joule come lavoro, con aumento di energia interna di sessanta joule. La ripartizione energetica è mostrata in una barra. Nel confronto fra prove le variazioni sessanta e centoquaranta joule hanno media cento joule.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#165a87"/></marker></defs>
+<rect width="640" height="1120" rx="12" fill="#f8fafc"/>
+<g font-family="Arial,sans-serif" font-size="20" fill="#14243a">
+<text x="32" y="42" font-size="25" font-weight="bold">1 · Scegliere il confine e i segni</text>
+<rect x="260" y="100" width="160" height="160" rx="8" fill="#e6f1e9" stroke="#14243a" stroke-width="3"/>
+<text x="286" y="139">Sistema</text><text x="282" y="193">ΔU = 60 J</text>
+<path d="M50 165H250" stroke="#165a87" stroke-width="4" marker-end="url(#arrow)"/>
+<path d="M430 215H510" stroke="#165a87" stroke-width="4" marker-end="url(#arrow)"/>
+<text x="62" y="139">Q = 100 J</text><text x="443" y="188">W = 40 J</text>
+<text x="32" y="306" font-size="18">Q entrante positivo; W uscente positivo.</text>
+<text x="32" y="340" font-size="18">Frecce schematiche. ΔU = Q − W.</text>
+<path d="M32 371H608" stroke="#9babbc"/>
+<text x="32" y="417" font-size="25" font-weight="bold">2 · Una sola contabilità energetica</text>
+<rect x="90" y="456" width="500" height="44" fill="#14243a"/><text x="276" y="486" fill="#fff">Q = 100 J</text>
+<rect x="90" y="536" width="300" height="52" fill="#28664d"/>
+<rect x="390" y="536" width="200" height="52" fill="#165a87"/>
+<text x="161" y="570" fill="#fff">ΔU = 60 J</text><text x="426" y="570" fill="#fff">W = 40 J</text>
+<text x="32" y="635">100 J − 40 J = 60 J</text>
+<text x="32" y="670" font-size="18">Barre a 5 px/J: entrata = accumulo + uscita.</text>
+<path d="M32 703H608" stroke="#9babbc"/>
+<text x="32" y="749" font-size="25" font-weight="bold">3 · Due prove e la loro media</text>
+<text x="50" y="815">A</text><rect x="130" y="792" width="180" height="32" fill="#165a87"/><text x="327" y="815">60 J</text>
+<text x="50" y="875">B</text><rect x="130" y="852" width="420" height="32" fill="#165a87"/><text x="566" y="875">140 J</text>
+<text x="32" y="935">Media</text><rect x="130" y="912" width="300" height="32" fill="#28664d"/><text x="447" y="935">100 J</text>
+<text x="32" y="988">Media ΔU = (60 + 140) J / 2 = 100 J</text>
+<text x="32" y="1030" font-size="18">Barre a 3 px/J. Media Q = 150 J; media W = 50 J.</text>
+<text x="32" y="1065" font-size="18">La differenza lineare conserva questa media.</text>
+<text x="32" y="1099" font-size="18">U descrive lo stato; Q e W descrivono il processo.</text>
+</g></svg>
