@@ -1,0 +1,1162 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u3-couette-force-01",
+      "kind": "question",
+      "course": "C2",
+      "section": "Forza applicata e viscosità tra piastre",
+      "order": 11501,
+      "title": "La forza che mantiene il moto della piastra",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L007",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006",
+        "C2-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "couette-force",
+      "difficulty": 1,
+      "prompt": "Un liquido newtoniano incomprimibile di viscosità dinamica η>0, in Pa·s, occupa lo spazio d=1 mm fra due piastre piane parallele di area A=0,01 m². La piastra inferiore è ferma; la superiore si muove a velocità costante v>0 in m/s lungo +x. Si assumono moto laminare stazionario sviluppato, aderenza alle due piastre, assenza di gradiente di pressione lungo x ed effetti di bordo trascurabili. F>0 indica il modulo della forza tangenziale esterna necessaria a mantenere la piastra superiore in moto; il liquido esercita su quella piastra una forza opposta. Con η=1 Pa·s e v=2 m/s, quanto vale F in N?",
+      "answer": {
+        "type": "numeric",
+        "value": 20,
+        "unit": "N",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’aderenza impone velocità nulla in basso e due m/s in alto. Il profilo lineare ha gradiente v/d. Lo sforzo viscoso vale ηv/d; moltiplicandolo per l’area si ottiene la forza. Il rapporto A/d è dieci metri, perché 0,01 diviso 0,001 vale dieci: F=20 N."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/a504a50933b0b89e8ecb9052f1986f4fc9cfcd76d79866b30e8e103dbca3d434",
+          "text": "Due piastre parallele con A=0,01 m² e distanza d=1 mm. Il profilo lineare ha velocità da zero a 2 m/s; le frecce di velocità nel fluido usano 50 px/(m/s). La distanza verticale è disegnata con una scala propria di 180 px/mm. Lo schema non confronta quella scala con lunghezze di velocità."
+        },
+        {
+          "type": "formula",
+          "text": "d=10^{-3}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " A=10^{-2}\\,\\mathrm{m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{A}{d}=10\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " F=\\eta\\frac{Av}{d}"
+        },
+        {
+          "type": "formula",
+          "text": " F=20\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "La forza applicata è +20 N lungo x e il liquido esercita −20 N sulla piastra, così la risultante tangenziale sulla piastra è nulla. Venti newton non sono una risultante accelerante: mantengono il moto contro il liquido."
+        }
+      ],
+      "hints": [
+        "Ricava prima A/d nelle unità SI.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La forza applicata è +20 N lungo x e il liquido esercita −20 N sulla piastra, così la risultante tangenziale sulla piastra è nulla. Venti newton non sono una risultante accelerante: mantengono il moto contro il liquido.",
+        "target": "C2-L007"
+      },
+      "coverage": [
+        "Sforzo viscoso newtoniano e profilo lineare",
+        "Forza applicata opposta alla forza del fluido",
+        "Dimensioni, inverse e vincolo fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-couette-force-02",
+      "kind": "question",
+      "course": "C2",
+      "section": "Forza applicata e viscosità tra piastre",
+      "order": 11502,
+      "title": "Dallo sforzo viscoso ai newton",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L007",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006",
+        "C2-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "couette-force",
+      "difficulty": 1,
+      "prompt": "Un liquido newtoniano incomprimibile di viscosità dinamica η>0, in Pa·s, occupa lo spazio d=1 mm fra due piastre piane parallele di area A=0,01 m². La piastra inferiore è ferma; la superiore si muove a velocità costante v>0 in m/s lungo +x. Si assumono moto laminare stazionario sviluppato, aderenza alle due piastre, assenza di gradiente di pressione lungo x ed effetti di bordo trascurabili. F>0 indica il modulo della forza tangenziale esterna necessaria a mantenere la piastra superiore in moto; il liquido esercita su quella piastra una forza opposta. Quale unità proposta esprime F?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "N",
+          "Pa",
+          "Pa·s",
+          "m/s",
+          "N/m"
+        ],
+        "value": "N"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "η moltiplicata per il gradiente di velocità dà uno sforzo in pascal. La forza si ricava moltiplicandolo per l’area. Il tempo della viscosità si cancella con quello della velocità e la distanza fra le piastre elimina il metro del gradiente."
+        },
+        {
+          "type": "formula",
+          "text": "\\left[\\frac{v}{d}\\right]=T^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " [\\eta v/d]=\\mathrm{Pa}"
+        },
+        {
+          "type": "formula",
+          "text": " [F]=\\mathrm{Pa}\\,\\mathrm{m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " [F]=\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "Pa è lo sforzo per area, Pa·s la viscosità, m/s una velocità e N/m una forza per lunghezza. Non si deve omettere l’area per passare da sforzo a forza."
+        }
+      ],
+      "hints": [
+        "Calcola lo sforzo e poi moltiplicalo per A.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "Pa è lo sforzo per area, Pa·s la viscosità, m/s una velocità e N/m una forza per lunghezza. Non si deve omettere l’area per passare da sforzo a forza.",
+        "target": "C2-L007"
+      },
+      "coverage": [
+        "Sforzo viscoso newtoniano e profilo lineare",
+        "Forza applicata opposta alla forza del fluido",
+        "Dimensioni, inverse e vincolo fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-couette-force-03",
+      "kind": "question",
+      "course": "C2",
+      "section": "Forza applicata e viscosità tra piastre",
+      "order": 11503,
+      "title": "Una forza tangenziale mantenuta nel tempo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L007",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006",
+        "C2-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "couette-force",
+      "difficulty": 1,
+      "prompt": "Confronta un fluido newtoniano di viscosità finita con un solido elastico ideale nel suo campo lineare. A entrambi è applicato uno sforzo tangenziale costante e non nullo. Quale proprietà li distingue?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Il fluido continua a deformarsi; il solido può equilibrare lo sforzo con una deformazione finita",
+          "Il fluido conserva sempre una forma fissa; il solido scorre indefinitamente",
+          "Il fluido non può esercitare pressione normale",
+          "La viscosità nulla è necessaria per il moto di un fluido",
+          "Nel fluido lo sforzo determina solo una deformazione statica finita"
+        ],
+        "value": "Il fluido continua a deformarsi; il solido può equilibrare lo sforzo con una deformazione finita"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nel fluido newtoniano lo sforzo è proporzionale alla velocità di deformazione, non alla sola deformazione. Uno sforzo costante non nullo con η finita impone quindi un tasso non nullo: la deformazione continua a crescere. In un solido elastico ideale è invece la deformazione a essere proporzionale allo sforzo, e può restare finita in equilibrio. G>0 è il modulo elastico di taglio, in Pa."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/a504a50933b0b89e8ecb9052f1986f4fc9cfcd76d79866b30e8e103dbca3d434",
+          "text": "Pannelli distinti: il profilo lineare nel fluido, poi la piastra superiore isolata con forza applicata +20 N e forza del liquido −20 N, frecce opposte entrambe di 100 px alla scala 5 px/N. Il grafico finale, a η=1 Pa·s e geometria fissata, è F=10v con assi da zero, scale 50 px/(m/s) e 5 px/N; forze applicate e viscose agiscono sulla stessa piastra e si equilibrano."
+        },
+        {
+          "type": "formula",
+          "text": "\\tau=\\eta\\dot\\gamma"
+        },
+        {
+          "type": "formula",
+          "text": " \\dot\\gamma=\\tau/\\eta"
+        },
+        {
+          "type": "formula",
+          "text": " \\tau=G\\gamma"
+        },
+        {
+          "type": "formula",
+          "text": " \\gamma=\\tau/G"
+        },
+        {
+          "type": "text",
+          "text": "γ è la deformazione di taglio pura; nel fluido γ̇ ha unità s⁻¹. Un fluido può sostenere pressioni normali e può muoversi con viscosità non nulla. Qui si confrontano sforzo tangenziale e risposta nel tempo, senza attribuire scorrimento permanente al solido elastico ideale."
+        }
+      ],
+      "hints": [
+        "Distingui deformazione e velocità di deformazione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "γ è la deformazione di taglio pura; nel fluido γ̇ ha unità s⁻¹. Un fluido può sostenere pressioni normali e può muoversi con viscosità non nulla. Qui si confrontano sforzo tangenziale e risposta nel tempo, senza attribuire scorrimento permanente al solido elastico ideale.",
+        "target": "C2-L007"
+      },
+      "coverage": [
+        "Sforzo viscoso newtoniano e profilo lineare",
+        "Forza applicata opposta alla forza del fluido",
+        "Dimensioni, inverse e vincolo fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-couette-force-04",
+      "kind": "question",
+      "course": "C2",
+      "section": "Forza applicata e viscosità tra piastre",
+      "order": 11504,
+      "title": "Viscosità doppia allo stesso gradiente",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L007",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006",
+        "C2-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "couette-force",
+      "difficulty": 1,
+      "prompt": "Un liquido newtoniano incomprimibile di viscosità dinamica η>0, in Pa·s, occupa lo spazio d=1 mm fra due piastre piane parallele di area A=0,01 m². La piastra inferiore è ferma; la superiore si muove a velocità costante v>0 in m/s lungo +x. Si assumono moto laminare stazionario sviluppato, aderenza alle due piastre, assenza di gradiente di pressione lungo x ed effetti di bordo trascurabili. F>0 indica il modulo della forza tangenziale esterna necessaria a mantenere la piastra superiore in moto; il liquido esercita su quella piastra una forza opposta. η passa da 1 a 2 Pa·s, mentre v resta 2 m/s. Come cambia F?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 20 a 40 N",
+          "Da 20 a 10 N",
+          "Resta 20 N",
+          "Da 20 a 80 N",
+          "Diventa zero"
+        ],
+        "value": "Da 20 a 40 N"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Geometria e velocità delle piastre fissano lo stesso gradiente in entrambe le prove. Uno sforzo proporzionale a η raddoppia insieme a essa; moltiplicando per l’area invariata anche la forza esterna passa da venti a quaranta newton. La forza viscosa sulla piastra cambia di uguale modulo e verso opposto."
+        },
+        {
+          "type": "formula",
+          "text": "F_A=20\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " F_B=\\frac{\\eta_B}{\\eta_A}F_A"
+        },
+        {
+          "type": "formula",
+          "text": " F_B=40\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "Dieci usa una dipendenza inversa, ottanta eleva al quadrato il raddoppio e venti ignora la viscosità nuova. Zero non può mantenere il moto assegnato contro una viscosità positiva."
+        }
+      ],
+      "hints": [
+        "A geometria e v fissate F è lineare in η.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Dieci usa una dipendenza inversa, ottanta eleva al quadrato il raddoppio e venti ignora la viscosità nuova. Zero non può mantenere il moto assegnato contro una viscosità positiva.",
+        "target": "C2-L007"
+      },
+      "coverage": [
+        "Sforzo viscoso newtoniano e profilo lineare",
+        "Forza applicata opposta alla forza del fluido",
+        "Dimensioni, inverse e vincolo fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-couette-force-05",
+      "kind": "question",
+      "course": "C2",
+      "section": "Forza applicata e viscosità tra piastre",
+      "order": 11505,
+      "title": "Ricavare la viscosità dal dinamometro",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L007",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006",
+        "C2-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "couette-force",
+      "difficulty": 2,
+      "prompt": "Un liquido newtoniano incomprimibile di viscosità dinamica η>0, in Pa·s, occupa lo spazio d=1 mm fra due piastre piane parallele di area A=0,01 m². La piastra inferiore è ferma; la superiore si muove a velocità costante v>0 in m/s lungo +x. Si assumono moto laminare stazionario sviluppato, aderenza alle due piastre, assenza di gradiente di pressione lungo x ed effetti di bordo trascurabili. F>0 indica il modulo della forza tangenziale esterna necessaria a mantenere la piastra superiore in moto; il liquido esercita su quella piastra una forza opposta. Si misura F=20 N e si conosce v=2 m/s. Quanto vale η in Pa·s?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "Pa·s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Invertiamo la relazione mantenendo area e distanza come grandezze. Il rapporto F/v vale dieci N·s/m; moltiplicarlo per d/A=1/(10 m) dà un Pa·s. In forma numerica nelle unità SI è venti diviso il prodotto dieci per due, cioè uno."
+        },
+        {
+          "type": "formula",
+          "text": "\\eta=\\frac{Fd}{Av}"
+        },
+        {
+          "type": "formula",
+          "text": " \\eta=\\frac{F}{(A/d)v}"
+        },
+        {
+          "type": "formula",
+          "text": " \\eta=1\\,\\mathrm{Pa\\,s}"
+        },
+        {
+          "type": "text",
+          "text": "F/v da solo non è una viscosità: manca il rapporto d/A. Moltiplicare ancora per A/d produrrebbe dimensioni differenti e farebbe dipendere l’inversa dalla geometria nel verso sbagliato."
+        }
+      ],
+      "hints": [
+        "Isola η usando Fd=ηAv.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "F/v da solo non è una viscosità: manca il rapporto d/A. Moltiplicare ancora per A/d produrrebbe dimensioni differenti e farebbe dipendere l’inversa dalla geometria nel verso sbagliato.",
+        "target": "C2-L007"
+      },
+      "coverage": [
+        "Sforzo viscoso newtoniano e profilo lineare",
+        "Forza applicata opposta alla forza del fluido",
+        "Dimensioni, inverse e vincolo fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-couette-force-06",
+      "kind": "question",
+      "course": "C2",
+      "section": "Forza applicata e viscosità tra piastre",
+      "order": 11506,
+      "title": "La velocità mantenuta dalla forza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L007",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006",
+        "C2-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "couette-force",
+      "difficulty": 2,
+      "prompt": "Un liquido newtoniano incomprimibile di viscosità dinamica η>0, in Pa·s, occupa lo spazio d=1 mm fra due piastre piane parallele di area A=0,01 m². La piastra inferiore è ferma; la superiore si muove a velocità costante v>0 in m/s lungo +x. Si assumono moto laminare stazionario sviluppato, aderenza alle due piastre, assenza di gradiente di pressione lungo x ed effetti di bordo trascurabili. F>0 indica il modulo della forza tangenziale esterna necessaria a mantenere la piastra superiore in moto; il liquido esercita su quella piastra una forza opposta. Si misura F=20 N e si conosce η=1 Pa·s. Quanto vale v in m/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La resistenza alla velocità vale ηA/d=10 N·s/m. La forza di venti N, divisa per quel coefficiente, mantiene due m/s. L’inversa riguarda una velocità costante delle piastre, non un’accelerazione calcolata dividendo la forza per una massa."
+        },
+        {
+          "type": "formula",
+          "text": "v=\\frac{Fd}{\\eta A}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{\\eta A}{d}=10\\,\\mathrm{N\\,s/m}"
+        },
+        {
+          "type": "formula",
+          "text": " v=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Venti è il numero della forza, non quello della velocità. Non si usa F=ma con F intesa come risultante: la forza esterna è bilanciata dal liquido nel regime stazionario."
+        }
+      ],
+      "hints": [
+        "Dividi F per il coefficiente viscoso ηA/d.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Venti è il numero della forza, non quello della velocità. Non si usa F=ma con F intesa come risultante: la forza esterna è bilanciata dal liquido nel regime stazionario.",
+        "target": "C2-L007"
+      },
+      "coverage": [
+        "Sforzo viscoso newtoniano e profilo lineare",
+        "Forza applicata opposta alla forza del fluido",
+        "Dimensioni, inverse e vincolo fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-couette-force-07",
+      "kind": "question",
+      "course": "C2",
+      "section": "Forza applicata e viscosità tra piastre",
+      "order": 11507,
+      "title": "Dimezzare la velocità della piastra",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L007",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006",
+        "C2-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "couette-force",
+      "difficulty": 2,
+      "prompt": "Un liquido newtoniano incomprimibile di viscosità dinamica η>0, in Pa·s, occupa lo spazio d=1 mm fra due piastre piane parallele di area A=0,01 m². La piastra inferiore è ferma; la superiore si muove a velocità costante v>0 in m/s lungo +x. Si assumono moto laminare stazionario sviluppato, aderenza alle due piastre, assenza di gradiente di pressione lungo x ed effetti di bordo trascurabili. F>0 indica il modulo della forza tangenziale esterna necessaria a mantenere la piastra superiore in moto; il liquido esercita su quella piastra una forza opposta. A ha η=1 Pa·s,v=2 m/s. B mantiene η e usa v=1 m/s. Quanto vale F_B/F_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "2",
+          "1/4",
+          "4",
+          "1"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dimezzando v a distanza invariata si dimezza il gradiente e quindi lo sforzo viscoso. La forza richiesta passa da venti a dieci newton: il rapporto è un mezzo. Il quadrato della velocità comparirebbe nella potenza Fv, non nella forza chiesta qui."
+        },
+        {
+          "type": "formula",
+          "text": "F_A=20\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " F_B=10\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " F_B/F_A=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Due è il reciproco, un quarto descrive la scalatura della potenza in questo modello e quattro la sua inversa. Uno ignora la nuova velocità."
+        }
+      ],
+      "hints": [
+        "La legge di Newton per la viscosità è lineare nel gradiente.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due è il reciproco, un quarto descrive la scalatura della potenza in questo modello e quattro la sua inversa. Uno ignora la nuova velocità.",
+        "target": "C2-L007"
+      },
+      "coverage": [
+        "Sforzo viscoso newtoniano e profilo lineare",
+        "Forza applicata opposta alla forza del fluido",
+        "Dimensioni, inverse e vincolo fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-couette-force-08",
+      "kind": "question",
+      "course": "C2",
+      "section": "Forza applicata e viscosità tra piastre",
+      "order": 11508,
+      "title": "Una forza applicata sovrastimata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L007",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006",
+        "C2-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "couette-force",
+      "difficulty": 2,
+      "prompt": "Un liquido newtoniano incomprimibile di viscosità dinamica η>0, in Pa·s, occupa lo spazio d=1 mm fra due piastre piane parallele di area A=0,01 m². La piastra inferiore è ferma; la superiore si muove a velocità costante v>0 in m/s lungo +x. Si assumono moto laminare stazionario sviluppato, aderenza alle due piastre, assenza di gradiente di pressione lungo x ed effetti di bordo trascurabili. F>0 indica il modulo della forza tangenziale esterna necessaria a mantenere la piastra superiore in moto; il liquido esercita su quella piastra una forza opposta. Con η=1 Pa·s e v=2 m/s si propone F=40 N. Quanto vale proposta meno corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "20 N",
+          "−20 N",
+          "40 N",
+          "0 N",
+          "10 N"
+        ],
+        "value": "20 N"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’area su distanza vale dieci metri e il prodotto ηv vale due nelle unità SI: la forza corretta è venti N. Quaranta meno venti dà più venti N. Se a quel moto si applicassero quaranta N senza altre forze, il bilancio tangenziale della piastra non sarebbe stazionario."
+        },
+        {
+          "type": "formula",
+          "text": "F=20\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " e=(40-20)\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " e=20\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "Meno venti cambia l’ordine, quaranta copia la proposta, zero la accetta e dieci dimezza lo scarto. Il segno positivo dell’errore non è il verso della forza del liquido sulla piastra."
+        }
+      ],
+      "hints": [
+        "Calcola il modulo richiesto prima dello scarto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Meno venti cambia l’ordine, quaranta copia la proposta, zero la accetta e dieci dimezza lo scarto. Il segno positivo dell’errore non è il verso della forza del liquido sulla piastra.",
+        "target": "C2-L007"
+      },
+      "coverage": [
+        "Sforzo viscoso newtoniano e profilo lineare",
+        "Forza applicata opposta alla forza del fluido",
+        "Dimensioni, inverse e vincolo fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-couette-force-09",
+      "kind": "question",
+      "course": "C2",
+      "section": "Forza applicata e viscosità tra piastre",
+      "order": 11509,
+      "title": "La viscosità nell’inversa simbolica",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L007",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006",
+        "C2-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "couette-force",
+      "difficulty": 2,
+      "prompt": "Un liquido newtoniano incomprimibile di viscosità dinamica η>0, in Pa·s, occupa lo spazio d=1 mm fra due piastre piane parallele di area A=0,01 m². La piastra inferiore è ferma; la superiore si muove a velocità costante v>0 in m/s lungo +x. Si assumono moto laminare stazionario sviluppato, aderenza alle due piastre, assenza di gradiente di pressione lungo x ed effetti di bordo trascurabili. F>0 indica il modulo della forza tangenziale esterna necessaria a mantenere la piastra superiore in moto; il liquido esercita su quella piastra una forza opposta. Quale formula isola η?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "η = F d / (A v)",
+          "η = F A / (d v)",
+          "η = F v / (A d)",
+          "η = A v / (F d)",
+          "η = F d / A"
+        ],
+        "value": "η = F d / (A v)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplichiamo la legge per d e dividiamo per Av, positivo. Il risultato ha unità N·m/[m²·(m/s)] = N·s/m², cioè Pa·s. Il dato d=1 mm resta una lunghezza: ometterne la conversione quando si usano metri altrove introduce un fattore mille."
+        },
+        {
+          "type": "formula",
+          "text": "Fd=\\eta Av"
+        },
+        {
+          "type": "formula",
+          "text": " \\eta=\\frac{Fd}{Av}"
+        },
+        {
+          "type": "formula",
+          "text": " [\\eta]=\\mathrm{N\\,s/m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " [\\eta]=\\mathrm{Pa\\,s}"
+        },
+        {
+          "type": "text",
+          "text": "Scambiare A e d capovolge l’effetto della geometria. v al numeratore inverte il passaggio, Av/(Fd) è viscosità inversa e Fd/A omette la velocità, con unità diverse da Pa·s."
+        }
+      ],
+      "hints": [
+        "Dividi Fd per l’intero prodotto Av.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Scambiare A e d capovolge l’effetto della geometria. v al numeratore inverte il passaggio, Av/(Fd) è viscosità inversa e Fd/A omette la velocità, con unità diverse da Pa·s.",
+        "target": "C2-L007"
+      },
+      "coverage": [
+        "Sforzo viscoso newtoniano e profilo lineare",
+        "Forza applicata opposta alla forza del fluido",
+        "Dimensioni, inverse e vincolo fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-couette-force-10",
+      "kind": "question",
+      "course": "C2",
+      "section": "Forza applicata e viscosità tra piastre",
+      "order": 11510,
+      "title": "Due fattori nella forza esterna",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L007",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006",
+        "C2-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "couette-force",
+      "difficulty": 2,
+      "prompt": "Un liquido newtoniano incomprimibile di viscosità dinamica η>0, in Pa·s, occupa lo spazio d=1 mm fra due piastre piane parallele di area A=0,01 m². La piastra inferiore è ferma; la superiore si muove a velocità costante v>0 in m/s lungo +x. Si assumono moto laminare stazionario sviluppato, aderenza alle due piastre, assenza di gradiente di pressione lungo x ed effetti di bordo trascurabili. F>0 indica il modulo della forza tangenziale esterna necessaria a mantenere la piastra superiore in moto; il liquido esercita su quella piastra una forza opposta. B ha η_B=κ₁η_A e v_B=κ₂v_A, con fattori positivi. A e d restano uguali. Quanto vale F_B/F_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ κ₂",
+          "κ₁ / κ₂",
+          "κ₂ / κ₁",
+          "κ₁ κ₂²",
+          "κ₁ + κ₂"
+        ],
+        "value": "κ₁ κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La viscosità e la velocità entrano una volta ciascuna. Nel rapporto fra prove il fattore geometrico A/d si cancella, così rimane il prodotto κ₁κ₂. Entrambi i cambiamenti incidono sul modulo della forza applicata, e la forza del liquido si adegua in verso opposto."
+        },
+        {
+          "type": "formula",
+          "text": "F_B=\\kappa_1\\eta_A\\frac{A\\kappa_2v_A}{d}"
+        },
+        {
+          "type": "formula",
+          "text": " F_B/F_A=\\kappa_1\\kappa_2"
+        },
+        {
+          "type": "text",
+          "text": "Le frazioni rendono inversa una dipendenza diretta; κ₂² appartiene alla potenza, non alla forza. La somma darebbe due per prove identiche, mentre il rapporto deve valere uno."
+        }
+      ],
+      "hints": [
+        "Cancella soltanto la geometria comune, conservando i due fattori diretti.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Le frazioni rendono inversa una dipendenza diretta; κ₂² appartiene alla potenza, non alla forza. La somma darebbe due per prove identiche, mentre il rapporto deve valere uno.",
+        "target": "C2-L007"
+      },
+      "coverage": [
+        "Sforzo viscoso newtoniano e profilo lineare",
+        "Forza applicata opposta alla forza del fluido",
+        "Dimensioni, inverse e vincolo fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-couette-force-11",
+      "kind": "question",
+      "course": "C2",
+      "section": "Forza applicata e viscosità tra piastre",
+      "order": 11511,
+      "title": "Viscosità e velocità entrambe maggiori",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L007",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006",
+        "C2-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "couette-force",
+      "difficulty": 2,
+      "prompt": "Un liquido newtoniano incomprimibile di viscosità dinamica η>0, in Pa·s, occupa lo spazio d=1 mm fra due piastre piane parallele di area A=0,01 m². La piastra inferiore è ferma; la superiore si muove a velocità costante v>0 in m/s lungo +x. Si assumono moto laminare stazionario sviluppato, aderenza alle due piastre, assenza di gradiente di pressione lungo x ed effetti di bordo trascurabili. F>0 indica il modulo della forza tangenziale esterna necessaria a mantenere la piastra superiore in moto; il liquido esercita su quella piastra una forza opposta. A ha η=1 Pa·s,v=2 m/s; B ha η=2 Pa·s,v=4 m/s. Quanto vale F_B/F_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4",
+          "1/4",
+          "2",
+          "8",
+          "80"
+        ],
+        "value": "4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La viscosità raddoppia e anche il gradiente raddoppia. Il loro prodotto cresce di quattro: la forza passa da venti a ottanta newton. L’aumento della forza non implica accelerazione della piastra perché il liquido oppone nel nuovo regime lo stesso modulo."
+        },
+        {
+          "type": "formula",
+          "text": "F_A=20\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " F_B=80\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " F_B/F_A=4"
+        },
+        {
+          "type": "text",
+          "text": "Un quarto è il reciproco, due segue un solo dato e otto introduce un quadrato della velocità. Ottanta è la forza numerica finale, non il rapporto senza unità."
+        }
+      ],
+      "hints": [
+        "Moltiplica i due raddoppi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un quarto è il reciproco, due segue un solo dato e otto introduce un quadrato della velocità. Ottanta è la forza numerica finale, non il rapporto senza unità.",
+        "target": "C2-L007"
+      },
+      "coverage": [
+        "Sforzo viscoso newtoniano e profilo lineare",
+        "Forza applicata opposta alla forza del fluido",
+        "Dimensioni, inverse e vincolo fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-couette-force-12",
+      "kind": "question",
+      "course": "C2",
+      "section": "Forza applicata e viscosità tra piastre",
+      "order": 11512,
+      "title": "La media di due forze mantenute",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L007",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006",
+        "C2-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "couette-force",
+      "difficulty": 2,
+      "prompt": "Un liquido newtoniano incomprimibile di viscosità dinamica η>0, in Pa·s, occupa lo spazio d=1 mm fra due piastre piane parallele di area A=0,01 m². La piastra inferiore è ferma; la superiore si muove a velocità costante v>0 in m/s lungo +x. Si assumono moto laminare stazionario sviluppato, aderenza alle due piastre, assenza di gradiente di pressione lungo x ed effetti di bordo trascurabili. F>0 indica il modulo della forza tangenziale esterna necessaria a mantenere la piastra superiore in moto; il liquido esercita su quella piastra una forza opposta. A ha η=1 Pa·s,v=2 m/s e B ha η=2 Pa·s,v=4 m/s. Qual è la media aritmetica delle F, con uguale peso statistico?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "50 N",
+          "100 N",
+          "25 N",
+          "45 N",
+          "60 N"
+        ],
+        "value": "50 N"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le due forze sono venti e ottanta N. La somma cento, divisa per due, dà cinquanta N. Si tratta della media delle due uscite del modello, non della forza calcolata su viscosità e velocità già mediate."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline F=\\frac{20+80}{2}\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline F=50\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "Cento è la somma, venticinque dimezza ancora e sessanta è la differenza. Gli ingressi medi η=3/2 Pa·s e v=3 m/s darebbero F=45 N, cinque N meno della media richiesta: il prodotto non commuta in generale con la media."
+        }
+      ],
+      "hints": [
+        "Risolvi le due prove prima di fare la semisomma.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Cento è la somma, venticinque dimezza ancora e sessanta è la differenza. Gli ingressi medi η=3/2 Pa·s e v=3 m/s darebbero F=45 N, cinque N meno della media richiesta: il prodotto non commuta in generale con la media.",
+        "target": "C2-L007"
+      },
+      "coverage": [
+        "Sforzo viscoso newtoniano e profilo lineare",
+        "Forza applicata opposta alla forza del fluido",
+        "Dimensioni, inverse e vincolo fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-couette-force-13",
+      "kind": "question",
+      "course": "C2",
+      "section": "Forza applicata e viscosità tra piastre",
+      "order": 11513,
+      "title": "La velocità per quadruplicare F",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L007",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006",
+        "C2-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "couette-force",
+      "difficulty": 3,
+      "prompt": "Un liquido newtoniano incomprimibile di viscosità dinamica η>0, in Pa·s, occupa lo spazio d=1 mm fra due piastre piane parallele di area A=0,01 m². La piastra inferiore è ferma; la superiore si muove a velocità costante v>0 in m/s lungo +x. Si assumono moto laminare stazionario sviluppato, aderenza alle due piastre, assenza di gradiente di pressione lungo x ed effetti di bordo trascurabili. F>0 indica il modulo della forza tangenziale esterna necessaria a mantenere la piastra superiore in moto; il liquido esercita su quella piastra una forza opposta. A ha η=1 Pa·s,v=2 m/s. B impone η=2 Pa·s e deve avere F_B=4F_A. Quanto vale v_B/v_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/2",
+          "4",
+          "1",
+          "8"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio di ottanta N è quattro volte il valore iniziale. La viscosità doppia fornisce un fattore due; ne serve un altro due dalla velocità. Quindi v_B=4 m/s e il rapporto rispetto a due è due."
+        },
+        {
+          "type": "formula",
+          "text": "4=2\\frac{v_B}{v_A}"
+        },
+        {
+          "type": "formula",
+          "text": " v_B/v_A=2"
+        },
+        {
+          "type": "formula",
+          "text": " v_B=4\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo rovescia il rapporto, quattro ignora il contributo della viscosità e uno produrrebbe soltanto quaranta N. Otto farebbe crescere F di sedici volte, non quattro."
+        }
+      ],
+      "hints": [
+        "Dividi il fattore obiettivo per il fattore già fornito da η.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo rovescia il rapporto, quattro ignora il contributo della viscosità e uno produrrebbe soltanto quaranta N. Otto farebbe crescere F di sedici volte, non quattro.",
+        "target": "C2-L007"
+      },
+      "coverage": [
+        "Sforzo viscoso newtoniano e profilo lineare",
+        "Forza applicata opposta alla forza del fluido",
+        "Dimensioni, inverse e vincolo fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-couette-force-14",
+      "kind": "question",
+      "course": "C2",
+      "section": "Forza applicata e viscosità tra piastre",
+      "order": 11514,
+      "title": "Un display di forza senza offset",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L007",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006",
+        "C2-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "couette-force",
+      "difficulty": 3,
+      "prompt": "Un liquido newtoniano incomprimibile di viscosità dinamica η>0, in Pa·s, occupa lo spazio d=1 mm fra due piastre piane parallele di area A=0,01 m². La piastra inferiore è ferma; la superiore si muove a velocità costante v>0 in m/s lungo +x. Si assumono moto laminare stazionario sviluppato, aderenza alle due piastre, assenza di gradiente di pressione lungo x ed effetti di bordo trascurabili. F>0 indica il modulo della forza tangenziale esterna necessaria a mantenere la piastra superiore in moto; il liquido esercita su quella piastra una forza opposta. Un display continuo adimensionale segue S=qF, q>0. A con η=1 Pa·s,v=2 m/s dà S=60. B dà S=240 e ha v=4 m/s. Quanto vale η_B in Pa·s?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "Pa·s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A richiede venti N, quindi il display ha guadagno tre per newton. La lettura duecentoquaranta corrisponde a ottanta N. Con A/d=10 m e v=4 m/s, la viscosità è ottanta diviso quaranta, due Pa·s."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{N^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " F_B=80\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " \\eta_B=\\frac{F_B}{(A/d)v_B}"
+        },
+        {
+          "type": "formula",
+          "text": " \\eta_B=2\\,\\mathrm{Pa\\,s}"
+        },
+        {
+          "type": "text",
+          "text": "Usare la lettura come forza darebbe η=6 Pa·s. Una lettura quadrupla non implica viscosità quadrupla se anche la velocità è cambiata."
+        }
+      ],
+      "hints": [
+        "Decodifica F e poi elimina il contributo della velocità nuova.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Usare la lettura come forza darebbe η=6 Pa·s. Una lettura quadrupla non implica viscosità quadrupla se anche la velocità è cambiata.",
+        "target": "C2-L007"
+      },
+      "coverage": [
+        "Sforzo viscoso newtoniano e profilo lineare",
+        "Forza applicata opposta alla forza del fluido",
+        "Dimensioni, inverse e vincolo fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-couette-force-15",
+      "kind": "question",
+      "course": "C2",
+      "section": "Forza applicata e viscosità tra piastre",
+      "order": 11515,
+      "title": "Togliere l’offset prima della viscosità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L007",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006",
+        "C2-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "couette-force",
+      "difficulty": 3,
+      "prompt": "Un liquido newtoniano incomprimibile di viscosità dinamica η>0, in Pa·s, occupa lo spazio d=1 mm fra due piastre piane parallele di area A=0,01 m². La piastra inferiore è ferma; la superiore si muove a velocità costante v>0 in m/s lungo +x. Si assumono moto laminare stazionario sviluppato, aderenza alle due piastre, assenza di gradiente di pressione lungo x ed effetti di bordo trascurabili. F>0 indica il modulo della forza tangenziale esterna necessaria a mantenere la piastra superiore in moto; il liquido esercita su quella piastra una forza opposta. Un display continuo adimensionale segue S=qF+z. A: η=1 Pa·s,v=2 m/s,S=41. B: η=2 Pa·s,v=4 m/s,S=161. C: v=2 m/s,S=81. Quanto vale η_C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2 Pa·s",
+          "1 Pa·s",
+          "4 Pa·s",
+          "1/2 Pa·s",
+          "3 Pa·s"
+        ],
+        "value": "2 Pa·s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le forze di riferimento sono venti e ottanta N. Il rapporto fra differenza delle letture e differenza delle forze dà q=2 N⁻¹ e poi z=1. La misura C equivale a quaranta N. A velocità due m/s il coefficiente geometrico dà F=20η nelle unità SI, dunque η=2 Pa·s."
+        },
+        {
+          "type": "formula",
+          "text": "q=2\\,\\mathrm{N^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " z=1"
+        },
+        {
+          "type": "formula",
+          "text": " F_C=40\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " \\eta_C=2\\,\\mathrm{Pa\\,s}"
+        },
+        {
+          "type": "text",
+          "text": "Con v=2 m/s, le viscosità 1,4,1/2,3 Pa·s produrrebbero letture 41,161,21,121. Solo due restituisce 81. Il rapporto fra letture grezze non rimuove l’offset."
+        }
+      ],
+      "hints": [
+        "Calibra con due forze note, poi separa forza e viscosità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Con v=2 m/s, le viscosità 1,4,1/2,3 Pa·s produrrebbero letture 41,161,21,121. Solo due restituisce 81. Il rapporto fra letture grezze non rimuove l’offset.",
+        "target": "C2-L007"
+      },
+      "coverage": [
+        "Sforzo viscoso newtoniano e profilo lineare",
+        "Forza applicata opposta alla forza del fluido",
+        "Dimensioni, inverse e vincolo fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-couette-force-16",
+      "kind": "question",
+      "course": "C2",
+      "section": "Forza applicata e viscosità tra piastre",
+      "order": 11516,
+      "title": "Un vincolo fra viscosità e velocità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L007",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006",
+        "C2-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "couette-force",
+      "difficulty": 3,
+      "prompt": "Un liquido newtoniano incomprimibile di viscosità dinamica η>0, in Pa·s, occupa lo spazio d=1 mm fra due piastre piane parallele di area A=0,01 m². La piastra inferiore è ferma; la superiore si muove a velocità costante v>0 in m/s lungo +x. Si assumono moto laminare stazionario sviluppato, aderenza alle due piastre, assenza di gradiente di pressione lungo x ed effetti di bordo trascurabili. F>0 indica il modulo della forza tangenziale esterna necessaria a mantenere la piastra superiore in moto; il liquido esercita su quella piastra una forza opposta. Fra prove si impone η=cv, con c=1/2 Pa·s²/m. Si misura F=20 N. Quanto vale v>0 in m/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il vincolo trasforma la forza in una legge quadratica di v: F=c(A/d)v². Qui il prodotto c(A/d) vale cinque N·s²/m². Venti N diviso quel coefficiente dà quattro m²/s², con radice positiva due m/s. La viscosità risultante è un Pa·s."
+        },
+        {
+          "type": "formula",
+          "text": "F=c\\frac Ad v^2"
+        },
+        {
+          "type": "formula",
+          "text": " c\\frac Ad=5\\,\\mathrm{N\\,s^2/m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " v^2=4\\,\\mathrm{m^2/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " v=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\eta=1\\,\\mathrm{Pa\\,s}"
+        },
+        {
+          "type": "text",
+          "text": "Quattro è il numero del quadrato della velocità. Il ramo negativo contraddice v>0 e darebbe anche viscosità negativa nel vincolo assegnato. c ha unità viscosità/velocità; il collegamento è fra prove, non una viscosità che varia nel tempo durante la singola misura stazionaria."
+        }
+      ],
+      "hints": [
+        "Sostituisci η=cv prima di estrarre la radice fisica.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Quattro è il numero del quadrato della velocità. Il ramo negativo contraddice v>0 e darebbe anche viscosità negativa nel vincolo assegnato. c ha unità viscosità/velocità; il collegamento è fra prove, non una viscosità che varia nel tempo durante la singola misura stazionaria.",
+        "target": "C2-L007"
+      },
+      "coverage": [
+        "Sforzo viscoso newtoniano e profilo lineare",
+        "Forza applicata opposta alla forza del fluido",
+        "Dimensioni, inverse e vincolo fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "a504a50933b0b89e8ecb9052f1986f4fc9cfcd76d79866b30e8e103dbca3d434",
+      "name": "couette-force-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTcyMCIgdmlld0JveD0iMCAwIDY0MCAxNzIwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+Cjx0aXRsZSBpZD0idGl0bGUiPkRhbGxhIHZlbG9jaXTDoCBmcmEgcGlhc3RyZSBhbGxhIGZvcnphIGFwcGxpY2F0YTwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPklsIGZsdWlkbyBhZGVyaXNjZSBhbGxlIGR1ZSBwaWFzdHJlOiB2ZWxvY2l0w6AgZGEgemVybyBpbiBiYXNzbyBhIGR1ZSBtZXRyaSBhbCBzZWNvbmRvIGluIGFsdG8gY29uIHByb2ZpbG8gbGluZWFyZS4gTGEgZGlzdGFuemEgZnJhIGxlIHBpYXN0cmUgw6ggdW4gbWlsbGltZXRybywgZGlzZWduYXRvIGNvbWUgY2VudG90dGFudGEgcGl4ZWw7IGxlIHZlbG9jaXTDoCBoYW5ubyB1bmEgc2NhbGEgZGlzdGludGEgZGkgY2lucXVhbnRhIHBpeGVsIHBlciBtZXRybyBhbCBzZWNvbmRvLiBJbCBkaWFncmFtbWEgZGVsbGEgcGlhc3RyYSBzdXBlcmlvcmUgbW9zdHJhIGZvcnphIGVzdGVybmEgcGnDuSB2ZW50aSBlIGZvcnphIGRlbCBsaXF1aWRvIG1lbm8gdmVudGkgbmV3dG9uLCBzdGVzc2Egc2NhbGEgY2lucXVlIHBpeGVsIHBlciBuZXd0b24uIElsIGdyYWZpY28gZmluYWxlIG1hbnRpZW5lIHZpc2Nvc2l0w6AgdW5vIHBhc2NhbCBzZWNvbmRvIGUgZ2VvbWV0cmlhIGNvc3RhbnRlLjwvZGVzYz4KPGRlZnM+PG1hcmtlciBpZD0idiIgdmlld0JveD0iMCAwIDEwIDEwIiByZWZYPSIxMCIgcmVmWT0iNSIgbWFya2VyV2lkdGg9IjUiIG1hcmtlckhlaWdodD0iNSIgb3JpZW50PSJhdXRvIj48cGF0aCBkPSJNMCAwTDEwIDVMMCAxMFoiIGZpbGw9IiMxNTVmYTAiLz48L21hcmtlcj48bWFya2VyIGlkPSJhcHBsaWVkIiB2aWV3Qm94PSIwIDAgMTAgMTAiIHJlZlg9IjEwIiByZWZZPSI1IiBtYXJrZXJXaWR0aD0iNSIgbWFya2VySGVpZ2h0PSI1IiBvcmllbnQ9ImF1dG8iPjxwYXRoIGQ9Ik0wIDBMMTAgNUwwIDEwWiIgZmlsbD0iI2EzMzQzMCIvPjwvbWFya2VyPjxtYXJrZXIgaWQ9ImZsdWlkIiB2aWV3Qm94PSIwIDAgMTAgMTAiIHJlZlg9IjEwIiByZWZZPSI1IiBtYXJrZXJXaWR0aD0iNSIgbWFya2VySGVpZ2h0PSI1IiBvcmllbnQ9ImF1dG8iPjxwYXRoIGQ9Ik0wIDBMMTAgNUwwIDEwWiIgZmlsbD0iIzIxNzU0OCIvPjwvbWFya2VyPjwvZGVmcz4KPHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxNzIwIiBmaWxsPSIjZmZmZGY3Ii8+CjxnIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMiIgZmlsbD0iIzE3MmMzYiI+Cjx0ZXh0IHg9IjM1IiB5PSI0OCIgZm9udC1zaXplPSIyNyI+MS4gQWRlcmVuemEgZSBwcm9maWxvIGxpbmVhcmU8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI5NSI+zrcgPSAxIFBhwrdzOyBBID0gMCwwMSBtwrI7IGQgPSAxIG1tPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTQwIj5WZWxvY2l0w6A6IHNjYWxhIDUwIHB4LyhtL3MpPC90ZXh0Pgo8cmVjdCB4PSIxMDAiIHk9IjI0MCIgd2lkdGg9IjQwMCIgaGVpZ2h0PSIxODAiIGZpbGw9IiNlNmVmZjUiLz48cmVjdCB4PSIxMDAiIHk9IjIyNSIgd2lkdGg9IjQwMCIgaGVpZ2h0PSIxNSIgZmlsbD0iIzgzOTM5ZCIvPjxyZWN0IHg9IjEwMCIgeT0iNDIwIiB3aWR0aD0iNDAwIiBoZWlnaHQ9IjE1IiBmaWxsPSIjODM5MzlkIi8+CjxwYXRoIGQ9Ik0yMDAgNDIwTDMwMCAyNDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzZlN2Y4OCIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtZGFzaGFycmF5PSI1IDUiLz4KPHBhdGggZD0iTTIwMCAyNDBIMzAwIiBmaWxsPSJub25lIiBzdHJva2U9IiMxNTVmYTAiIHN0cm9rZS13aWR0aD0iMyIgbWFya2VyLWVuZD0idXJsKCN2KSIvPgo8cGF0aCBkPSJNMjAwIDI4NUgyNzUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE1NWZhMCIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI3YpIi8+CjxwYXRoIGQ9Ik0yMDAgMzMwSDI1MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMTU1ZmEwIiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjdikiLz4KPHBhdGggZD0iTTIwMCAzNzVIMjI1IiBmaWxsPSJub25lIiBzdHJva2U9IiMxNTVmYTAiIHN0cm9rZS13aWR0aD0iMyIgbWFya2VyLWVuZD0idXJsKCN2KSIvPgo8Y2lyY2xlIGN4PSIyMDAiIGN5PSI0MjAiIHI9IjQiIGZpbGw9IiMxNTVmYTAiLz4KPHRleHQgeD0iMzM1IiB5PSIyMDUiPjIgbS9zPC90ZXh0Pjx0ZXh0IHg9IjMzNSIgeT0iMjkzIj4zLzIgbS9zPC90ZXh0Pjx0ZXh0IHg9IjMzNSIgeT0iMzM4Ij4xIG0vczwvdGV4dD48dGV4dCB4PSIzMzUiIHk9IjM4MyI+MS8yIG0vczwvdGV4dD48dGV4dCB4PSIxOTAiIHk9IjQ3MCI+MDogcGlhc3RyYSBpbmZlcmlvcmUgZmVybWE8L3RleHQ+CjxwYXRoIGQ9Ik01MzUgMjQwSDU1ME01NTAgMjQwVjQyME01MzUgNDIwSDU1MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMTcyYzNiIi8+Cjx0ZXh0IHg9IjU2MCIgeT0iMzQ1Ij4xIG1tPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iNTIwIj5MYSBkaXN0YW56YSBoYSBzY2FsYSBwcm9wcmlhOiAxODAgcHgvbW0uPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iNTY1Ij5Ob24gw6ggbGEgc2NhbGEgZGVsbGUgZnJlY2NlIGRpIHZlbG9jaXTDoC48L3RleHQ+CjxsaW5lIHgxPSIzNSIgeTE9IjYwMCIgeDI9IjYwNSIgeTI9IjYwMCIgc3Ryb2tlPSIjYmNjNmNhIi8+Cjx0ZXh0IHg9IjM1IiB5PSI2NTAiIGZvbnQtc2l6ZT0iMjciPjIuIElzb2xhcmUgbGEgcGlhc3RyYSBzdXBlcmlvcmU8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI2OTUiPkR1ZSBmb3J6ZSBzdWxsYSBzdGVzc2EgcGlhc3RyYSwgbm9uIHVuYTwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjczNSI+Y29wcGlhIGRpIGF6aW9uZSBlIHJlYXppb25lLiAreCBhIGRlc3RyYS48L3RleHQ+CjxyZWN0IHg9IjE4MCIgeT0iODA1IiB3aWR0aD0iMjgwIiBoZWlnaHQ9IjM1IiBmaWxsPSIjY2NkM2Q2IiBzdHJva2U9IiM2ZTdmODgiLz4KPHBhdGggZD0iTTMyMCA4MjVINDIwIiBmaWxsPSJub25lIiBzdHJva2U9IiNhMzM0MzAiIHN0cm9rZS13aWR0aD0iNCIgbWFya2VyLWVuZD0idXJsKCNhcHBsaWVkKSIvPgo8cGF0aCBkPSJNMzIwIDgyNUgyMjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzIxNzU0OCIgc3Ryb2tlLXdpZHRoPSI0IiBtYXJrZXItZW5kPSJ1cmwoI2ZsdWlkKSIvPgo8dGV4dCB4PSIzMzUiIHk9Ijc4NSI+Rl9hcHAgPSArMjAgTjwvdGV4dD48dGV4dCB4PSIxMDAiIHk9IjkwMCI+Rl9saXF1aWRvID0g4oiSMjAgTjwvdGV4dD4KPHRleHQgeD0iMzUiIHk9Ijk1MCI+UmlzdWx0YW50ZSB0YW5nZW56aWFsZSBzdWxsYSBwaWFzdHJhOiB6ZXJvLjwvdGV4dD4KPHRleHQgeD0iMzUiIHk9Ijk5NSI+U2NhbGEgZm9yemU6IDUgcHgvTjsgMTAwIHB4IGNpYXNjdW5hLjwvdGV4dD4KPGxpbmUgeDE9IjM1IiB5MT0iMTAzMCIgeDI9IjYwNSIgeTI9IjEwMzAiIHN0cm9rZT0iI2JjYzZjYSIvPgo8dGV4dCB4PSIzNSIgeT0iMTA4MCIgZm9udC1zaXplPSIyNyI+My4gU3Rlc3NhIHZpc2Nvc2l0w6A6IEYgY3Jlc2NlIGNvbiB2PC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTEyNSI+zrcgPSAxIFBhwrdzIGUgZ2VvbWV0cmlhIGZpc3NhOiBGID0gMTB2PC90ZXh0Pgo8cGF0aCBkPSJNMTAwIDE1MTBWMTIwME0xMDAgMTUxMEg0NTAiIHN0cm9rZT0iIzE3MmMzYiIgc3Ryb2tlLXdpZHRoPSIyIiBmaWxsPSJub25lIi8+Cjx0ZXh0IHg9IjExMCIgeT0iMTI0MCI+RiAoTik8L3RleHQ+PHRleHQgeD0iNDU1IiB5PSIxNTIwIj52IChtL3MpPC90ZXh0Pgo8cGF0aCBkPSJNMTAwIDE1MTBMMzAwIDEzMTAiIHN0cm9rZT0iI2EzMzQzMCIgc3Ryb2tlLXdpZHRoPSI0IiBmaWxsPSJub25lIi8+CjxwYXRoIGQ9Ik0yMDAgMTUwNVYxNTE1TTMwMCAxNTA1VjE1MTVNOTUgMTQxMEgxMDVNOTUgMTMxMEgxMDUiIHN0cm9rZT0iIzE3MmMzYiIgZmlsbD0ibm9uZSIvPgo8Y2lyY2xlIGN4PSIyMDAiIGN5PSIxNDEwIiByPSI2IiBmaWxsPSIjMTU1ZmEwIi8+PGNpcmNsZSBjeD0iMzAwIiBjeT0iMTMxMCIgcj0iNiIgZmlsbD0iIzE1NWZhMCIvPgo8dGV4dCB4PSI4MCIgeT0iMTU0MCI+MDwvdGV4dD48dGV4dCB4PSIxOTMiIHk9IjE1NTAiPjI8L3RleHQ+PHRleHQgeD0iMjkzIiB5PSIxNTUwIj40PC90ZXh0Pjx0ZXh0IHg9IjQ4IiB5PSIxNDE4Ij4yMDwvdGV4dD48dGV4dCB4PSI0OCIgeT0iMTMxOCI+NDA8L3RleHQ+Cjx0ZXh0IHg9IjIzMCIgeT0iMTQ0NSI+KDIsIDIwKTwvdGV4dD48dGV4dCB4PSIzMzAiIHk9IjEzMjAiPig0LCA0MCk8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxNjEwIj52OiA1MCBweC8obS9zKTsgRjogNSBweC9OPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTY2MCI+R2xpIGFzc2kgcGFydG9ubyBkYSB6ZXJvOyDOtyByZXN0YSBmaXNzYXRhLjwvdGV4dD4KPC9nPjwvc3ZnPgo="
+    }
+  ]
+}
