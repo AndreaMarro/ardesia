@@ -1,0 +1,1095 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u3-transport-time-01",
+      "kind": "question",
+      "course": "C2",
+      "section": "Tempo di trasporto a portata imposta",
+      "order": 10821,
+      "title": "Quattro intervalli da un secondo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "transport-time",
+      "difficulty": 1,
+      "prompt": "Una pompa trasferisce un liquido incomprimibile fra due recipienti attraverso un condotto già pieno. La portata volumetrica Q>0, misurata all’ingresso del recipiente destinatario, resta costante per tutto il trasferimento del volume netto V>0. Non ci sono fughe o evaporazione; disponibilità del liquido e capacità del destinatario sono sufficienti. Si conta il tempo dal regime stabilito e si trascurano avviamento e arresto. t è il tempo necessario; V e Q possono cambiare fra prove indipendenti, non durante la singola prova. Con V=12 L e Q=3 L/s, quanto vale t in s?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Ogni secondo arrivano tre litri. Quattro intervalli uguali consegnano dodici litri, quindi occorrono quattro secondi. La definizione della portata costante è Q=V/t: isolare t significa dividere il volume per il numero di litri consegnati al secondo."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/bbe88b29144e6527ed54cbcc52fa79d7d47ec3877e2c39dd12da4a58fcc49388",
+          "text": "Con Q=3 L/s costante, quattro intervalli da 1 s consegnano 12 L. Ogni cella è un volume simbolico di 1 L; i gruppi di tre celle non descrivono un flusso intermittente. Il destinatario riceve volume continuo e la portata resta costante."
+        },
+        {
+          "type": "formula",
+          "text": "V=Qt"
+        },
+        {
+          "type": "formula",
+          "text": " t=V/Q"
+        },
+        {
+          "type": "formula",
+          "text": " t=\\frac{12\\,\\mathrm L}{3\\,\\mathrm{L/s}}"
+        },
+        {
+          "type": "formula",
+          "text": " t=4\\,\\mathrm s"
+        },
+        {
+          "type": "text",
+          "text": "Trentasei moltiplicherebbe volume e portata e non avrebbe unità di tempo; tre copia la portata e dodici il volume. Il controllo 3 L/s per 4 s ricostruisce 12 L. La portata è misurata al destinatario, quindi il volume richiesto è quello effettivamente consegnato."
+        }
+      ],
+      "hints": [
+        "Quanti gruppi da tre litri servono per arrivare a dodici?",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Trentasei moltiplicherebbe volume e portata e non avrebbe unità di tempo; tre copia la portata e dodici il volume. Il controllo 3 L/s per 4 s ricostruisce 12 L. La portata è misurata al destinatario, quindi il volume richiesto è quello effettivamente consegnato.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Volume consegnato e portata costante",
+        "Inverse, medie e scala libera"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-transport-time-02",
+      "kind": "question",
+      "course": "C2",
+      "section": "Tempo di trasporto a portata imposta",
+      "order": 10822,
+      "title": "Il tempo da volume su portata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "transport-time",
+      "difficulty": 1,
+      "prompt": "Una pompa trasferisce un liquido incomprimibile fra due recipienti attraverso un condotto già pieno. La portata volumetrica Q>0, misurata all’ingresso del recipiente destinatario, resta costante per tutto il trasferimento del volume netto V>0. Non ci sono fughe o evaporazione; disponibilità del liquido e capacità del destinatario sono sufficienti. Si conta il tempo dal regime stabilito e si trascurano avviamento e arresto. t è il tempo necessario; V e Q possono cambiare fra prove indipendenti, non durante la singola prova. Quale unità proposta esprime t?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "s",
+          "L",
+          "L/s",
+          "s/L",
+          "L²/s"
+        ],
+        "value": "s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La portata ha unità volume diviso tempo. Dividendo V per Q, i litri si cancellano e il tempo torna al numeratore: il risultato si misura in secondi."
+        },
+        {
+          "type": "formula",
+          "text": "[t]=\\frac{L^3}{L^3/T}"
+        },
+        {
+          "type": "formula",
+          "text": " [t]=T"
+        },
+        {
+          "type": "formula",
+          "text": " \\mathrm{L}/(\\mathrm{L/s})=\\mathrm s"
+        },
+        {
+          "type": "text",
+          "text": "L è volume, L/s portata, s/L inverso di una portata e L²/s il prodotto fra un volume e una portata. In questa scrittura l’unità L è il litro; nella formula dimensionale L indica invece una lunghezza."
+        }
+      ],
+      "hints": [
+        "Scrivi la divisione per L/s come una moltiplicazione per s/L.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "L è volume, L/s portata, s/L inverso di una portata e L²/s il prodotto fra un volume e una portata. In questa scrittura l’unità L è il litro; nella formula dimensionale L indica invece una lunghezza.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Volume consegnato e portata costante",
+        "Inverse, medie e scala libera"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-transport-time-03",
+      "kind": "question",
+      "course": "C2",
+      "section": "Tempo di trasporto a portata imposta",
+      "order": 10823,
+      "title": "La legge richiede portata costante",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "transport-time",
+      "difficulty": 1,
+      "prompt": "Una pompa trasferisce un liquido incomprimibile fra due recipienti attraverso un condotto già pieno. La portata volumetrica Q>0, misurata all’ingresso del recipiente destinatario, resta costante per tutto il trasferimento del volume netto V>0. Non ci sono fughe o evaporazione; disponibilità del liquido e capacità del destinatario sono sufficienti. Si conta il tempo dal regime stabilito e si trascurano avviamento e arresto. t è il tempo necessario; V e Q possono cambiare fra prove indipendenti, non durante la singola prova. Quale formula dà t?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "t = V / Q",
+          "t = V Q",
+          "t = Q / V",
+          "t = 2 V / Q",
+          "t = V / (2 Q)"
+        ],
+        "value": "t = V / Q"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A portata costante il volume consegnato cresce linearmente nel tempo: V=Qt. Dividendo per Q positivo si ottiene t=V/Q. Non si usa una portata iniziale come se valesse per tutto un processo che rallenta: qui la costanza è una condizione esplicita della pompa."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/bbe88b29144e6527ed54cbcc52fa79d7d47ec3877e2c39dd12da4a58fcc49388",
+          "text": "A volume obiettivo 12 L, portate 3 e 4 L/s danno tempi 4 e 3 s. Le barre di portata lunghe 90 e 120 px usano 30 px/(L/s). Nel grafico del volume cumulato, tempo a 60 px/s e volume a 15 px/L: le rette terminano a 12 L, rispettivamente dopo 4 e 3 s, senza proseguire oltre il trasferimento richiesto."
+        },
+        {
+          "type": "formula",
+          "text": "V=Qt"
+        },
+        {
+          "type": "formula",
+          "text": " t=V/Q"
+        },
+        {
+          "type": "text",
+          "text": "Il prodotto VQ non è un tempo e Q/V ha dimensione inversa di tempo. Doppio e metà introdurrebbero una seconda consegna o una divisione già effettuata, senza alcuna richiesta nel problema. Se Q variasse, occorrerebbe il volume cumulato della portata nel tempo e non questa sostituzione semplice."
+        }
+      ],
+      "hints": [
+        "Isola t nel prodotto fra portata costante e tempo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Il prodotto VQ non è un tempo e Q/V ha dimensione inversa di tempo. Doppio e metà introdurrebbero una seconda consegna o una divisione già effettuata, senza alcuna richiesta nel problema. Se Q variasse, occorrerebbe il volume cumulato della portata nel tempo e non questa sostituzione semplice.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Volume consegnato e portata costante",
+        "Inverse, medie e scala libera"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-transport-time-04",
+      "kind": "question",
+      "course": "C2",
+      "section": "Tempo di trasporto a portata imposta",
+      "order": 10824,
+      "title": "Più volume con gli stessi litri al secondo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "transport-time",
+      "difficulty": 1,
+      "prompt": "Una pompa trasferisce un liquido incomprimibile fra due recipienti attraverso un condotto già pieno. La portata volumetrica Q>0, misurata all’ingresso del recipiente destinatario, resta costante per tutto il trasferimento del volume netto V>0. Non ci sono fughe o evaporazione; disponibilità del liquido e capacità del destinatario sono sufficienti. Si conta il tempo dal regime stabilito e si trascurano avviamento e arresto. t è il tempo necessario; V e Q possono cambiare fra prove indipendenti, non durante la singola prova. A richiede V=12 L e B V=20 L; Q resta 3 L/s. Come cambia t?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 4 a 20/3 s",
+          "Da 4 a 12/5 s",
+          "Resta 4 s",
+          "Da 4 a 20 s",
+          "Da 4 a 8 s"
+        ],
+        "value": "Da 4 a 20/3 s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A richiede dodici diviso tre, quattro secondi. B richiede venti diviso tre, venti terzi di secondo. Il tempo cresce come il volume: il fattore 20/12=5/3 moltiplica i quattro secondi iniziali. La frazione è un risultato esatto e non va arrotondata."
+        },
+        {
+          "type": "formula",
+          "text": "t_A=4\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " t_B=\\frac{20}3\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " t_B/t_A=5/3"
+        },
+        {
+          "type": "text",
+          "text": "Dodici quinti applica il rapporto inverso dei volumi; quattro ignora il nuovo obiettivo e venti confonde litri con secondi. Otto raddoppierebbe il volume fino a 24 L, diverso dai 20 assegnati."
+        }
+      ],
+      "hints": [
+        "Dividi ciascun volume per gli stessi tre litri al secondo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Dodici quinti applica il rapporto inverso dei volumi; quattro ignora il nuovo obiettivo e venti confonde litri con secondi. Otto raddoppierebbe il volume fino a 24 L, diverso dai 20 assegnati.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Volume consegnato e portata costante",
+        "Inverse, medie e scala libera"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-transport-time-05",
+      "kind": "question",
+      "course": "C2",
+      "section": "Tempo di trasporto a portata imposta",
+      "order": 10825,
+      "title": "Il volume da portata e durata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "transport-time",
+      "difficulty": 2,
+      "prompt": "Una pompa trasferisce un liquido incomprimibile fra due recipienti attraverso un condotto già pieno. La portata volumetrica Q>0, misurata all’ingresso del recipiente destinatario, resta costante per tutto il trasferimento del volume netto V>0. Non ci sono fughe o evaporazione; disponibilità del liquido e capacità del destinatario sono sufficienti. Si conta il tempo dal regime stabilito e si trascurano avviamento e arresto. t è il tempo necessario; V e Q possono cambiare fra prove indipendenti, non durante la singola prova. Sono noti t=4 s e Q=3 L/s. Quanto vale V in L?",
+      "answer": {
+        "type": "numeric",
+        "value": 12,
+        "unit": "L",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La portata indica tre litri in ogni secondo, mantenuti per quattro secondi. Il prodotto dà dodici litri. Questa inversa riguarda il volume consegnato e non richiede la densità del liquido."
+        },
+        {
+          "type": "formula",
+          "text": "V=Qt"
+        },
+        {
+          "type": "formula",
+          "text": " V=(3\\cdot4)\\,\\mathrm L"
+        },
+        {
+          "type": "formula",
+          "text": " V=12\\,\\mathrm L"
+        },
+        {
+          "type": "text",
+          "text": "Un quoziente t/Q avrebbe dimensioni tempo al quadrato su volume. Il prodotto non è una massa: trasformare i dodici litri in kg richiederebbe una densità, non fornita né necessaria. L’unità di tempo si cancella correttamente."
+        }
+      ],
+      "hints": [
+        "Moltiplica i litri al secondo per i secondi effettivi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un quoziente t/Q avrebbe dimensioni tempo al quadrato su volume. Il prodotto non è una massa: trasformare i dodici litri in kg richiederebbe una densità, non fornita né necessaria. L’unità di tempo si cancella correttamente.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Volume consegnato e portata costante",
+        "Inverse, medie e scala libera"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-transport-time-06",
+      "kind": "question",
+      "course": "C2",
+      "section": "Tempo di trasporto a portata imposta",
+      "order": 10826,
+      "title": "La portata necessaria a una consegna",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "transport-time",
+      "difficulty": 2,
+      "prompt": "Una pompa trasferisce un liquido incomprimibile fra due recipienti attraverso un condotto già pieno. La portata volumetrica Q>0, misurata all’ingresso del recipiente destinatario, resta costante per tutto il trasferimento del volume netto V>0. Non ci sono fughe o evaporazione; disponibilità del liquido e capacità del destinatario sono sufficienti. Si conta il tempo dal regime stabilito e si trascurano avviamento e arresto. t è il tempo necessario; V e Q possono cambiare fra prove indipendenti, non durante la singola prova. Si trasferiscono V=12 L in t=4 s. Quanto vale Q in L/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "L/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Si suddivide il volume dodici litri nei quattro secondi del trasferimento. Tre litri devono arrivare in ciascun secondo. Il dato descrive qui una portata costante, mentre in un moto variabile lo stesso quoziente sarebbe soltanto una media."
+        },
+        {
+          "type": "formula",
+          "text": "Q=V/t"
+        },
+        {
+          "type": "formula",
+          "text": " Q=\\frac{12\\,\\mathrm L}{4\\,\\mathrm s}"
+        },
+        {
+          "type": "formula",
+          "text": " Q=3\\,\\mathrm{L/s}"
+        },
+        {
+          "type": "text",
+          "text": "Quarantotto moltiplicherebbe volume e durata invece di ricavare un tasso. Dodici non divide per il tempo; un terzo è la portata inversa come numero, con unità diverse. Il valore positivo concorda con il verso di consegna dichiarato."
+        }
+      ],
+      "hints": [
+        "Dividi il volume totale per la durata.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quarantotto moltiplicherebbe volume e durata invece di ricavare un tasso. Dodici non divide per il tempo; un terzo è la portata inversa come numero, con unità diverse. Il valore positivo concorda con il verso di consegna dichiarato.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Volume consegnato e portata costante",
+        "Inverse, medie e scala libera"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-transport-time-07",
+      "kind": "question",
+      "course": "C2",
+      "section": "Tempo di trasporto a portata imposta",
+      "order": 10827,
+      "title": "Portata maggiore per lo stesso volume",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "transport-time",
+      "difficulty": 2,
+      "prompt": "Una pompa trasferisce un liquido incomprimibile fra due recipienti attraverso un condotto già pieno. La portata volumetrica Q>0, misurata all’ingresso del recipiente destinatario, resta costante per tutto il trasferimento del volume netto V>0. Non ci sono fughe o evaporazione; disponibilità del liquido e capacità del destinatario sono sufficienti. Si conta il tempo dal regime stabilito e si trascurano avviamento e arresto. t è il tempo necessario; V e Q possono cambiare fra prove indipendenti, non durante la singola prova. A ha V=12 L,Q_A=3 L/s. B mantiene V e usa Q_B=4 L/s. Quanto vale t_B/t_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/4",
+          "4/3",
+          "1/4",
+          "1",
+          "3"
+        ],
+        "value": "3/4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A impiega quattro secondi e B tre. Il rapporto richiesto è tre quarti: più volume al secondo riduce la durata quando il volume obiettivo è fisso. La riduzione relativa è invece un quarto."
+        },
+        {
+          "type": "formula",
+          "text": "t_A=4\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " t_B=3\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " t_B/t_A=3/4"
+        },
+        {
+          "type": "text",
+          "text": "Quattro terzi è il reciproco; un quarto confonde riduzione relativa e rapporto finale. Uno ignora la portata nuova e tre è il tempo B come numero, non il rapporto adimensionale. La pompa impone Q, non una pressione costante con portata ignota."
+        }
+      ],
+      "hints": [
+        "Calcola le due durate o usa il rapporto inverso delle portate.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro terzi è il reciproco; un quarto confonde riduzione relativa e rapporto finale. Uno ignora la portata nuova e tre è il tempo B come numero, non il rapporto adimensionale. La pompa impone Q, non una pressione costante con portata ignota.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Volume consegnato e portata costante",
+        "Inverse, medie e scala libera"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-transport-time-08",
+      "kind": "question",
+      "course": "C2",
+      "section": "Tempo di trasporto a portata imposta",
+      "order": 10828,
+      "title": "Lo scarto di una durata proposta doppia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "transport-time",
+      "difficulty": 2,
+      "prompt": "Una pompa trasferisce un liquido incomprimibile fra due recipienti attraverso un condotto già pieno. La portata volumetrica Q>0, misurata all’ingresso del recipiente destinatario, resta costante per tutto il trasferimento del volume netto V>0. Non ci sono fughe o evaporazione; disponibilità del liquido e capacità del destinatario sono sufficienti. Si conta il tempo dal regime stabilito e si trascurano avviamento e arresto. t è il tempo necessario; V e Q possono cambiare fra prove indipendenti, non durante la singola prova. Con V=12 L e Q=3 L/s si propone t=8 s. Quanto vale proposta meno corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4 s",
+          "−4 s",
+          "8 s",
+          "0 s",
+          "2 s"
+        ],
+        "value": "4 s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La durata corretta è dodici diviso tre, quattro secondi. La proposta otto eccede di quattro secondi. Alla stessa portata consegnerebbe ventiquattro litri, il doppio del volume richiesto."
+        },
+        {
+          "type": "formula",
+          "text": "t=4\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " e=(8-4)\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " e=4\\,\\mathrm s"
+        },
+        {
+          "type": "text",
+          "text": "Il segno meno inverte l’ordine, otto ripete la proposta, zero la accetta e due dimezza lo scarto. Non è richiesto il tempo di una seconda consegna identica o di avviamento della pompa."
+        }
+      ],
+      "hints": [
+        "Ricostruisci il volume che otto secondi farebbero arrivare.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il segno meno inverte l’ordine, otto ripete la proposta, zero la accetta e due dimezza lo scarto. Non è richiesto il tempo di una seconda consegna identica o di avviamento della pompa.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Volume consegnato e portata costante",
+        "Inverse, medie e scala libera"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-transport-time-09",
+      "kind": "question",
+      "course": "C2",
+      "section": "Tempo di trasporto a portata imposta",
+      "order": 10829,
+      "title": "L’inversa simbolica del volume",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "transport-time",
+      "difficulty": 2,
+      "prompt": "Una pompa trasferisce un liquido incomprimibile fra due recipienti attraverso un condotto già pieno. La portata volumetrica Q>0, misurata all’ingresso del recipiente destinatario, resta costante per tutto il trasferimento del volume netto V>0. Non ci sono fughe o evaporazione; disponibilità del liquido e capacità del destinatario sono sufficienti. Si conta il tempo dal regime stabilito e si trascurano avviamento e arresto. t è il tempo necessario; V e Q possono cambiare fra prove indipendenti, non durante la singola prova. Quale formula isola V?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "V = Q t",
+          "V = Q / t",
+          "V = t / Q",
+          "V = Q t / 2",
+          "V = 2 Q t"
+        ],
+        "value": "V = Q t"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplicando t=V/Q per Q si elimina il denominatore e rimane V=Qt. La portata per la durata dà volume. La relazione non aggiunge un fattore mezzo, perché il flusso non cresce da zero nel periodo osservato: l’avviamento è escluso."
+        },
+        {
+          "type": "formula",
+          "text": "tQ=V"
+        },
+        {
+          "type": "formula",
+          "text": " V=Qt"
+        },
+        {
+          "type": "text",
+          "text": "Q/t ha dimensione volume su tempo al quadrato e t/Q non è un volume. Metà e doppio corrisponderebbero a durate o portate diverse, non a un’operazione algebrica che conserva l’equazione assegnata."
+        }
+      ],
+      "hints": [
+        "Moltiplica entrambi i membri per Q.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Q/t ha dimensione volume su tempo al quadrato e t/Q non è un volume. Metà e doppio corrisponderebbero a durate o portate diverse, non a un’operazione algebrica che conserva l’equazione assegnata.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Volume consegnato e portata costante",
+        "Inverse, medie e scala libera"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-transport-time-10",
+      "kind": "question",
+      "course": "C2",
+      "section": "Tempo di trasporto a portata imposta",
+      "order": 10830,
+      "title": "Un fattore al numeratore e uno al denominatore",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "transport-time",
+      "difficulty": 2,
+      "prompt": "Una pompa trasferisce un liquido incomprimibile fra due recipienti attraverso un condotto già pieno. La portata volumetrica Q>0, misurata all’ingresso del recipiente destinatario, resta costante per tutto il trasferimento del volume netto V>0. Non ci sono fughe o evaporazione; disponibilità del liquido e capacità del destinatario sono sufficienti. Si conta il tempo dal regime stabilito e si trascurano avviamento e arresto. t è il tempo necessario; V e Q possono cambiare fra prove indipendenti, non durante la singola prova. B usa V_B=κ₁V_A e Q_B=κ₂Q_A, con fattori positivi. Quanto vale t_B/t_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ / κ₂",
+          "κ₁ κ₂",
+          "κ₂ / κ₁",
+          "κ₁² / κ₂",
+          "κ₁ + κ₂"
+        ],
+        "value": "κ₁ / κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il volume obiettivo cresce di κ₁, mentre ogni secondo consegna κ₂ volte il volume precedente. Il rapporto fra le durate è κ₁/κ₂: effetto diretto del volume e inverso della portata."
+        },
+        {
+          "type": "formula",
+          "text": "t_B=\\frac{\\kappa_1V_A}{\\kappa_2Q_A}"
+        },
+        {
+          "type": "formula",
+          "text": " t_B/t_A=\\kappa_1/\\kappa_2"
+        },
+        {
+          "type": "text",
+          "text": "Il prodotto farebbe aumentare la durata quando cresce Q; κ₂/κ₁ inverte entrambi gli effetti. Il quadrato duplica la dipendenza da V e la somma darebbe due per prove identiche. Con fattori uguali il tempo resta invariato."
+        }
+      ],
+      "hints": [
+        "Forma il rapporto dei due quozienti V/Q.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il prodotto farebbe aumentare la durata quando cresce Q; κ₂/κ₁ inverte entrambi gli effetti. Il quadrato duplica la dipendenza da V e la somma darebbe due per prove identiche. Con fattori uguali il tempo resta invariato.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Volume consegnato e portata costante",
+        "Inverse, medie e scala libera"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-transport-time-11",
+      "kind": "question",
+      "course": "C2",
+      "section": "Tempo di trasporto a portata imposta",
+      "order": 10831,
+      "title": "Volume e portata aumentano insieme",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "transport-time",
+      "difficulty": 2,
+      "prompt": "Una pompa trasferisce un liquido incomprimibile fra due recipienti attraverso un condotto già pieno. La portata volumetrica Q>0, misurata all’ingresso del recipiente destinatario, resta costante per tutto il trasferimento del volume netto V>0. Non ci sono fughe o evaporazione; disponibilità del liquido e capacità del destinatario sono sufficienti. Si conta il tempo dal regime stabilito e si trascurano avviamento e arresto. t è il tempo necessario; V e Q possono cambiare fra prove indipendenti, non durante la singola prova. A ha V=12 L,Q=3 L/s; B ha V=20 L,Q=4 L/s. Quanto vale t_B/t_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "5/4",
+          "4/5",
+          "5/3",
+          "3/4",
+          "5"
+        ],
+        "value": "5/4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A richiede quattro secondi, B cinque. L’aumento di portata compensa solo in parte il volume maggiore, quindi la durata cresce di un fattore cinque quarti. Si conserva il quoziente in ogni prova prima del confronto."
+        },
+        {
+          "type": "formula",
+          "text": "t_A=4\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " t_B=5\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " t_B/t_A=5/4"
+        },
+        {
+          "type": "text",
+          "text": "Quattro quinti è il reciproco; cinque terzi segue solo il volume e tre quarti solo la portata. Cinque è la durata B in secondi come numero, non il rapporto puro."
+        }
+      ],
+      "hints": [
+        "Ricava dodici su tre e venti su quattro prima di dividere i risultati.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro quinti è il reciproco; cinque terzi segue solo il volume e tre quarti solo la portata. Cinque è la durata B in secondi come numero, non il rapporto puro.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Volume consegnato e portata costante",
+        "Inverse, medie e scala libera"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-transport-time-12",
+      "kind": "question",
+      "course": "C2",
+      "section": "Tempo di trasporto a portata imposta",
+      "order": 10832,
+      "title": "Media statistica delle durate",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "transport-time",
+      "difficulty": 2,
+      "prompt": "Una pompa trasferisce un liquido incomprimibile fra due recipienti attraverso un condotto già pieno. La portata volumetrica Q>0, misurata all’ingresso del recipiente destinatario, resta costante per tutto il trasferimento del volume netto V>0. Non ci sono fughe o evaporazione; disponibilità del liquido e capacità del destinatario sono sufficienti. Si conta il tempo dal regime stabilito e si trascurano avviamento e arresto. t è il tempo necessario; V e Q possono cambiare fra prove indipendenti, non durante la singola prova. A ha V=12 L,Q=3 L/s; B ha V=20 L,Q=4 L/s. Qual è la media aritmetica delle due t con uguale peso statistico?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "9/2 s",
+          "9 s",
+          "9/4 s",
+          "32/7 s",
+          "1 s"
+        ],
+        "value": "9/2 s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le durate quattro e cinque secondi hanno semisomma nove mezzi secondi. I pesi sono uguali per consegna: non si pesano le prove in base al volume o alla portata."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline t=\\frac{4+5}{2}\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline t=\\frac92\\,\\mathrm s"
+        },
+        {
+          "type": "text",
+          "text": "Nove è la somma, nove quarti dimezza ancora e uno è la differenza. Gli ingressi medi V=16 L,Q=7/2 L/s darebbero 32/7 s, maggiore della media corretta di 1/14 s. Il rapporto fra grandezze medie non è automaticamente la media dei rapporti."
+        }
+      ],
+      "hints": [
+        "Media le due durate già ottenute.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Nove è la somma, nove quarti dimezza ancora e uno è la differenza. Gli ingressi medi V=16 L,Q=7/2 L/s darebbero 32/7 s, maggiore della media corretta di 1/14 s. Il rapporto fra grandezze medie non è automaticamente la media dei rapporti.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Volume consegnato e portata costante",
+        "Inverse, medie e scala libera"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-transport-time-13",
+      "kind": "question",
+      "course": "C2",
+      "section": "Tempo di trasporto a portata imposta",
+      "order": 10833,
+      "title": "La portata per una durata bersaglio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "transport-time",
+      "difficulty": 3,
+      "prompt": "Una pompa trasferisce un liquido incomprimibile fra due recipienti attraverso un condotto già pieno. La portata volumetrica Q>0, misurata all’ingresso del recipiente destinatario, resta costante per tutto il trasferimento del volume netto V>0. Non ci sono fughe o evaporazione; disponibilità del liquido e capacità del destinatario sono sufficienti. Si conta il tempo dal regime stabilito e si trascurano avviamento e arresto. t è il tempo necessario; V e Q possono cambiare fra prove indipendenti, non durante la singola prova. A ha V_A=12 L,Q_A=3 L/s. B deve avere V_B=20 L e t_B=(5/4)t_A. Quanto vale Q_B/Q_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4/3",
+          "3/4",
+          "5/4",
+          "5/3",
+          "4"
+        ],
+        "value": "4/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La durata bersaglio è cinque secondi. Per consegnare venti litri in quel tempo serve Q_B=4 L/s. Il rapporto con i tre L/s iniziali è quattro terzi, non il fattore cinque quarti imposto al tempo."
+        },
+        {
+          "type": "formula",
+          "text": "t_B=5\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B=V_B/t_B"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B=4\\,\\mathrm{L/s}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B/Q_A=4/3"
+        },
+        {
+          "type": "text",
+          "text": "Tre quarti è il reciproco; cinque quarti ripete il target temporale e cinque terzi il fattore del volume. Quattro è la portata B come numero, non il rapporto. Il tempo e il volume vanno entrambi inseriti per fissare Q_B."
+        }
+      ],
+      "hints": [
+        "Dividi il volume B per la durata obiettivo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre quarti è il reciproco; cinque quarti ripete il target temporale e cinque terzi il fattore del volume. Quattro è la portata B come numero, non il rapporto. Il tempo e il volume vanno entrambi inseriti per fissare Q_B.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Volume consegnato e portata costante",
+        "Inverse, medie e scala libera"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-transport-time-14",
+      "kind": "question",
+      "course": "C2",
+      "section": "Tempo di trasporto a portata imposta",
+      "order": 10834,
+      "title": "Tarare un display della durata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "transport-time",
+      "difficulty": 3,
+      "prompt": "Una pompa trasferisce un liquido incomprimibile fra due recipienti attraverso un condotto già pieno. La portata volumetrica Q>0, misurata all’ingresso del recipiente destinatario, resta costante per tutto il trasferimento del volume netto V>0. Non ci sono fughe o evaporazione; disponibilità del liquido e capacità del destinatario sono sufficienti. Si conta il tempo dal regime stabilito e si trascurano avviamento e arresto. t è il tempo necessario; V e Q possono cambiare fra prove indipendenti, non durante la singola prova. Un display continuo adimensionale segue S=qt,q>0,senza offset. A con V=12 L,Q=3 L/s dà S=12. B con Q=4 L/s dà S=15. Quanto vale V_B in L?",
+      "answer": {
+        "type": "numeric",
+        "value": 20,
+        "unit": "L",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A dura quattro secondi e determina q=3 s⁻¹. La lettura quindici equivale a cinque secondi; a quattro L/s si consegnano venti litri. Il guadagno del display non cambia la portata fisica."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{s^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " t_B=5\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " V_B=Q_Bt_B"
+        },
+        {
+          "type": "formula",
+          "text": " V_B=20\\,\\mathrm L"
+        },
+        {
+          "type": "text",
+          "text": "Usare quindici come secondi darebbe sessanta litri e non ricostruirebbe la lettura. Cinque è la durata, quattro la portata e nessuno dei due è il volume richiesto. Il prodotto corretto conserva unità di volume."
+        }
+      ],
+      "hints": [
+        "Rimuovi la taratura prima di moltiplicare per la portata B.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Usare quindici come secondi darebbe sessanta litri e non ricostruirebbe la lettura. Cinque è la durata, quattro la portata e nessuno dei due è il volume richiesto. Il prodotto corretto conserva unità di volume.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Volume consegnato e portata costante",
+        "Inverse, medie e scala libera"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-transport-time-15",
+      "kind": "question",
+      "course": "C2",
+      "section": "Tempo di trasporto a portata imposta",
+      "order": 10835,
+      "title": "Un offset e una lettura frazionaria",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "transport-time",
+      "difficulty": 3,
+      "prompt": "Una pompa trasferisce un liquido incomprimibile fra due recipienti attraverso un condotto già pieno. La portata volumetrica Q>0, misurata all’ingresso del recipiente destinatario, resta costante per tutto il trasferimento del volume netto V>0. Non ci sono fughe o evaporazione; disponibilità del liquido e capacità del destinatario sono sufficienti. Si conta il tempo dal regime stabilito e si trascurano avviamento e arresto. t è il tempo necessario; V e Q possono cambiare fra prove indipendenti, non durante la singola prova. Il display continuo adimensionale segue S=qt+b,q>0. A:V=12 L,Q=3 L/s,S=9. B:V=20 L,Q=4 L/s,S=11. C:Q=3 L/s,S=43/3. Quanto vale V_C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "20 L",
+          "21 L",
+          "19 L",
+          "40 L",
+          "10 L"
+        ],
+        "value": "20 L"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le durate di riferimento quattro e cinque secondi danno q=2 s⁻¹ e b=1. La lettura C meno uno è quaranta terzi; dividendo per due si ricava t_C=20/3 s. La portata tre L/s moltiplicata per tale durata dà esattamente venti litri."
+        },
+        {
+          "type": "formula",
+          "text": "q=2\\,\\mathrm{s^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " t_C=\\frac{20}3\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " V_C=20\\,\\mathrm L"
+        },
+        {
+          "type": "text",
+          "text": "Con Q_C=3 L/s, volumi 21,19,40,10 L darebbero letture 15,41/3,83/3,23/3, diverse da 43/3. Le letture sono continue: la frazione non va arrotondata a un conteggio intero. L’offset va sottratto prima di dividere per q."
+        }
+      ],
+      "hints": [
+        "Mantieni esatte le frazioni fino al prodotto finale con Q_C.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Con Q_C=3 L/s, volumi 21,19,40,10 L darebbero letture 15,41/3,83/3,23/3, diverse da 43/3. Le letture sono continue: la frazione non va arrotondata a un conteggio intero. L’offset va sottratto prima di dividere per q.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Volume consegnato e portata costante",
+        "Inverse, medie e scala libera"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-transport-time-16",
+      "kind": "question",
+      "course": "C2",
+      "section": "Tempo di trasporto a portata imposta",
+      "order": 10836,
+      "title": "Un vincolo che non determina la scala",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "transport-time",
+      "difficulty": 3,
+      "prompt": "Una pompa trasferisce un liquido incomprimibile fra due recipienti attraverso un condotto già pieno. La portata volumetrica Q>0, misurata all’ingresso del recipiente destinatario, resta costante per tutto il trasferimento del volume netto V>0. Non ci sono fughe o evaporazione; disponibilità del liquido e capacità del destinatario sono sufficienti. Si conta il tempo dal regime stabilito e si trascurano avviamento e arresto. t è il tempo necessario; V e Q possono cambiare fra prove indipendenti, non durante la singola prova. Fra prove si impone V=cQ, con c=4 s. Si misura t=4 s. Quante coppie positive (V,Q) soddisfano questi dati?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Infinite",
+          "Una",
+          "Due",
+          "Nessuna",
+          "Solo V=Q=0"
+        ],
+        "value": "Infinite"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituendo V=cQ nella legge t=V/Q si cancella Q>0 e rimane t=c=4 s. La misura conferma il vincolo ma non fissa una portata particolare. Le coppie (12 L,3 L/s) e (20 L,5 L/s) sono entrambe compatibili e appartengono a una famiglia continua."
+        },
+        {
+          "type": "formula",
+          "text": "V=cQ"
+        },
+        {
+          "type": "formula",
+          "text": " t=\\frac{cQ}{Q}"
+        },
+        {
+          "type": "formula",
+          "text": " t=c"
+        },
+        {
+          "type": "formula",
+          "text": " t=4\\,\\mathrm s"
+        },
+        {
+          "type": "text",
+          "text": "Due esempi non significano solo due soluzioni; una coppia unica richiederebbe un ulteriore dato, V oppure Q. Zero è escluso e renderebbe il rapporto V/Q indeterminato. Il coefficiente c ha dimensione di tempo, non è una costante numerica senza unità."
+        }
+      ],
+      "hints": [
+        "Sostituisci il vincolo e verifica se una grandezza resta libera.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Due esempi non significano solo due soluzioni; una coppia unica richiederebbe un ulteriore dato, V oppure Q. Zero è escluso e renderebbe il rapporto V/Q indeterminato. Il coefficiente c ha dimensione di tempo, non è una costante numerica senza unità.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Volume consegnato e portata costante",
+        "Inverse, medie e scala libera"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "bbe88b29144e6527ed54cbcc52fa79d7d47ec3877e2c39dd12da4a58fcc49388",
+      "name": "transport-time-steps.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTQ1MCIgdmlld0JveD0iMCAwIDY0MCAxNDUwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+Cjx0aXRsZSBpZD0idGl0bGUiPlBvcnRhdGEgY29zdGFudGUgZSB2b2x1bWUgY29uc2VnbmF0bzwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPkEgdHJlIGxpdHJpIGFsIHNlY29uZG8gc2kgY29uc2VnbmFubyBkb2RpY2kgbGl0cmkgaW4gcXVhdHRybyBzZWNvbmRpLiBEb2RpY2kgY2VsbGUgc2ltYm9saWNoZSBkYSB1biBsaXRybyBzb25vIHJpdW5pdGUgaW4gcXVhdHRybyBncnVwcGkgZGEgdHJlLiBVbmEgcG9ydGF0YSBxdWF0dHJvIGxpdHJpIGFsIHNlY29uZG8gcmFnZ2l1bmdlIGxvIHN0ZXNzbyB2b2x1bWUgaW4gdHJlIHNlY29uZGkuIElsIGdyYWZpY28gY3VtdWxhdG8gdGVybWluYSBhbCB2b2x1bWUgcmljaGllc3RvLjwvZGVzYz4KPHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxNDUwIiBmaWxsPSIjZmZmZGY3Ii8+CjxnIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMiIgZmlsbD0iIzE3MmMzYiI+Cjx0ZXh0IHg9IjM1IiB5PSI0OCIgZm9udC1zaXplPSIyNyIgZm9udC13ZWlnaHQ9ImJvbGQiPjEuIFRyZSBsaXRyaSBpbiBvZ25pIHNlY29uZG88L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI5MCI+USA9IDMgTC9zOyB2b2x1bWUgb2JpZXR0aXZvIFYgPSAxMiBMPC90ZXh0Pgo8ZyBmaWxsPSIjZGNlY2Y2IiBzdHJva2U9IiMxNTVmYTAiIHN0cm9rZS13aWR0aD0iMiI+PHJlY3QgeD0iNzAiIHk9IjE1MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjQwIi8+PHJlY3QgeD0iOTAiIHk9IjE1MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjQwIi8+PHJlY3QgeD0iMTEwIiB5PSIxNTAiIHdpZHRoPSIyMCIgaGVpZ2h0PSI0MCIvPjxyZWN0IHg9IjE4MCIgeT0iMTUwIiB3aWR0aD0iMjAiIGhlaWdodD0iNDAiLz48cmVjdCB4PSIyMDAiIHk9IjE1MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjQwIi8+PHJlY3QgeD0iMjIwIiB5PSIxNTAiIHdpZHRoPSIyMCIgaGVpZ2h0PSI0MCIvPjxyZWN0IHg9IjI5MCIgeT0iMTUwIiB3aWR0aD0iMjAiIGhlaWdodD0iNDAiLz48cmVjdCB4PSIzMTAiIHk9IjE1MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjQwIi8+PHJlY3QgeD0iMzMwIiB5PSIxNTAiIHdpZHRoPSIyMCIgaGVpZ2h0PSI0MCIvPjxyZWN0IHg9IjQwMCIgeT0iMTUwIiB3aWR0aD0iMjAiIGhlaWdodD0iNDAiLz48cmVjdCB4PSI0MjAiIHk9IjE1MCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjQwIi8+PHJlY3QgeD0iNDQwIiB5PSIxNTAiIHdpZHRoPSIyMCIgaGVpZ2h0PSI0MCIvPjwvZz4KPHRleHQgeD0iNjAiIHk9IjIzNSI+MOKAkzEgczwvdGV4dD48dGV4dCB4PSIxNzAiIHk9IjIzNSI+MeKAkzIgczwvdGV4dD48dGV4dCB4PSIyODAiIHk9IjIzNSI+MuKAkzMgczwvdGV4dD48dGV4dCB4PSIzOTAiIHk9IjIzNSI+M+KAkzQgczwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjI5NSI+T2duaSBjZWxsYSDDqCAxIEw6IDQgZ3J1cHBpIMOXIDMgTCA9IDEyIEwuPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMzQwIj5DZWxsZSBzaW1ib2xpY2hlOyBpbCBmbHVzc28gw6ggY29udGludW8uPC90ZXh0Pgo8bGluZSB4MT0iMzUiIHgyPSI2MDUiIHkxPSIzNzUiIHkyPSIzNzUiIHN0cm9rZT0iI2I5YzRjOSIvPgo8dGV4dCB4PSIzNSIgeT0iNDI1IiBmb250LXNpemU9IjI3IiBmb250LXdlaWdodD0iYm9sZCI+Mi4gUGnDuSBwb3J0YXRhLCBzdGVzc2EgY29uc2VnbmE8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI0NzAiPlBvcnRhdGU6IHNjYWxhIDMwIHB4IC8gKEwvcyk8L3RleHQ+CjxyZWN0IHg9IjEyMCIgeT0iNTEwIiB3aWR0aD0iOTAiIGhlaWdodD0iMjgiIGZpbGw9IiMxNTVmYTAiLz48dGV4dCB4PSIyODAiIHk9IjUzMyI+MyBML3Mg4oaSIHQgPSA0IHM8L3RleHQ+CjxyZWN0IHg9IjEyMCIgeT0iNTgwIiB3aWR0aD0iMTIwIiBoZWlnaHQ9IjI4IiBmaWxsPSIjYTMzNDMwIi8+PHRleHQgeD0iMjgwIiB5PSI2MDMiPjQgTC9zIOKGkiB0ID0gMyBzPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iNjcwIj5MZSBiYXJyZSBtaXN1cmFubyBRLCBub24gdW5hIHZlbG9jaXTDoC48L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI3MTUiPklsIHRlbXBvIHNpIHJpY2F2YSBkYSB0ID0gVi9RLjwvdGV4dD4KPGxpbmUgeDE9IjM1IiB4Mj0iNjA1IiB5MT0iNzUwIiB5Mj0iNzUwIiBzdHJva2U9IiNiOWM0YzkiLz4KPHRleHQgeD0iMzUiIHk9IjgwMCIgZm9udC1zaXplPSIyNyIgZm9udC13ZWlnaHQ9ImJvbGQiPjMuIExlZ2dlcmUgcXVhbmRvIHNpIHJhZ2dpdW5nb25vIDEyIEw8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI4NDUiPlYgY3VtdWxhdG8gPSBRIM+EOyDPhCDDqCBpbCB0ZW1wbyB0cmFzY29yc28uPC90ZXh0Pgo8ZyBzdHJva2U9IiMxNzJjM2IiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSI+PHBhdGggZD0iTTEwMCAxMjgwVjk2NSIvPjxwYXRoIGQ9Ik0xMDAgMTI4MEg0MjUiLz48cGF0aCBkPSJNMjgwIDEyNzVWMTI4NSIvPjxwYXRoIGQ9Ik0zNDAgMTI3NVYxMjg1Ii8+PHBhdGggZD0iTTk1IDExMDBIMTA1Ii8+PC9nPgo8cGF0aCBkPSJNMTAwIDExMDBIMzQwIiBzdHJva2U9IiM3NDg4OTIiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWRhc2hhcnJheT0iNSA1Ii8+CjxwYXRoIGQ9Ik0xMDAgMTI4MEwzNDAgMTEwMCIgc3Ryb2tlPSIjMTU1ZmEwIiBzdHJva2Utd2lkdGg9IjQiLz48cGF0aCBkPSJNMTAwIDEyODBMMjgwIDExMDAiIHN0cm9rZT0iI2EzMzQzMCIgc3Ryb2tlLXdpZHRoPSI0Ii8+CjxjaXJjbGUgY3g9IjM0MCIgY3k9IjExMDAiIHI9IjYiIGZpbGw9IiMxNTVmYTAiLz48Y2lyY2xlIGN4PSIyODAiIGN5PSIxMTAwIiByPSI2IiBmaWxsPSIjYTMzNDMwIi8+Cjx0ZXh0IHg9IjM1IiB5PSI5NDAiPlYgY3VtdWxhdG8gKEwpPC90ZXh0Pjx0ZXh0IHg9IjU1IiB5PSIxMTA4Ij4xMjwvdGV4dD48dGV4dCB4PSIxNjAiIHk9IjEwNTUiPlEgPSA0IEwvczwvdGV4dD48dGV4dCB4PSIzNzAiIHk9IjExMTAiPlEgPSAzIEwvczwvdGV4dD4KPHRleHQgeD0iNzciIHk9IjEzMjAiPjA8L3RleHQ+PHRleHQgeD0iMjczIiB5PSIxMzIwIj4zPC90ZXh0Pjx0ZXh0IHg9IjMzMyIgeT0iMTMyMCI+NDwvdGV4dD48dGV4dCB4PSI0NDUiIHk9IjEyODgiPs+EIChzKTwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjEzNzAiPs+EOiA2MCBweC9zOyB2b2x1bWU6IDE1IHB4L0w8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxNDEwIj5FbnRyYW1iZSBsZSByZXR0ZSB0ZXJtaW5hbm8gYWxsYSBjb25zZWduYS48L3RleHQ+CjwvZz48L3N2Zz4K"
+    }
+  ]
+}

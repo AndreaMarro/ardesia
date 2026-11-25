@@ -1,0 +1,1195 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u3-parabolic-profile-01",
+      "kind": "question",
+      "course": "C2",
+      "section": "Velocità locale nei profili laminari",
+      "order": 11401,
+      "title": "A metà raggio non si dimezza la velocità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L007",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006",
+        "C2-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parabolic-profile",
+      "difficulty": 1,
+      "prompt": "In un tubo cilindrico diritto e rigido, con parete ferma, un liquido newtoniano incomprimibile scorre in regime laminare stazionario pienamente sviluppato e aderisce alla parete. Sia R>0 il raggio interno, s≥0 la distanza dall’asse e u=s/R. Si assegna v=v_max(1−u²), componente della velocità parallela all’asse nel verso positivo del flusso, con v_max>0 in cm/s. Le domande numeriche riguardano punti interni 0<u<1; per asse e parete si usano esplicitamente i valori limite u=0 e u=1. Con v_max=4 cm/s e u=1/2, quanto vale v in cm/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "cm/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A metà raggio il quadrato della distanza relativa vale un quarto. Rimangono tre quarti della velocità sull’asse, non un mezzo. Moltiplicare quattro per tre quarti cancella il denominatore e dà tre cm/s: un valore inferiore al massimo e positivo nel punto interno."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/4e35e38202efb35be2e82955495bc5837f186e53220257e453f1375ef3446959",
+          "text": "Grafico del profilo assegnato con v_max=4 cm/s. Asse u=s/R da zero a uno, scala 300 px/unità; asse v da zero, scala 60 px/(cm/s). La parabola collega asse (0,4), punto interno (1/2,3) e parete (1,0), con aderenza alla parete. Le quote nel grafico rappresentano velocità, non la forma geometrica del tubo."
+        },
+        {
+          "type": "formula",
+          "text": "u^2=\\frac14"
+        },
+        {
+          "type": "formula",
+          "text": " 1-u^2=\\frac34"
+        },
+        {
+          "type": "formula",
+          "text": " v=(4\\,\\mathrm{cm/s})\\frac34"
+        },
+        {
+          "type": "formula",
+          "text": " v=3\\,\\mathrm{cm/s}"
+        },
+        {
+          "type": "text",
+          "text": "Due cm/s seguirebbe una riduzione lineare 1−u, non il profilo assegnato. Quattro ignorerebbe la distanza dall’asse e zero collocherebbe il punto alla parete."
+        }
+      ],
+      "hints": [
+        "Eleva al quadrato u prima di sottrarlo da uno.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due cm/s seguirebbe una riduzione lineare 1−u, non il profilo assegnato. Quattro ignorerebbe la distanza dall’asse e zero collocherebbe il punto alla parete.",
+        "target": "C2-L007"
+      },
+      "coverage": [
+        "Profilo parabolico e aderenza alla parete",
+        "Punti interni, asse e parete",
+        "Inverse, medie e rami fisici di un vincolo cubico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-parabolic-profile-02",
+      "kind": "question",
+      "course": "C2",
+      "section": "Velocità locale nei profili laminari",
+      "order": 11402,
+      "title": "La coordinata relativa non cambia unità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L007",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006",
+        "C2-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parabolic-profile",
+      "difficulty": 1,
+      "prompt": "In un tubo cilindrico diritto e rigido, con parete ferma, un liquido newtoniano incomprimibile scorre in regime laminare stazionario pienamente sviluppato e aderisce alla parete. Sia R>0 il raggio interno, s≥0 la distanza dall’asse e u=s/R. Si assegna v=v_max(1−u²), componente della velocità parallela all’asse nel verso positivo del flusso, con v_max>0 in cm/s. Le domande numeriche riguardano punti interni 0<u<1; per asse e parete si usano esplicitamente i valori limite u=0 e u=1. Quale unità proposta esprime v?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "cm/s",
+          "cm",
+          "1",
+          "s/cm",
+          "cm²/s"
+        ],
+        "value": "cm/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "s e R sono lunghezze nella stessa unità: il loro rapporto u è puro. Anche 1−u² è adimensionale, quindi la velocità locale conserva l’unità di v_max. Il centimetro al secondo può essere convertito in m/s senza cambiare la natura della grandezza."
+        },
+        {
+          "type": "formula",
+          "text": "u=\\frac{s}{R}"
+        },
+        {
+          "type": "formula",
+          "text": " [u]=1"
+        },
+        {
+          "type": "formula",
+          "text": " [v]=[v_{max}]"
+        },
+        {
+          "type": "formula",
+          "text": " [v]=L/T"
+        },
+        {
+          "type": "formula",
+          "text": " 1\\,\\mathrm{cm/s}=10^{-2}\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "cm è lunghezza, 1 sarebbe adatto a u, s/cm è velocità inversa e cm²/s ha una lunghezza di troppo. La parola “locale” non cambia l’unità fisica."
+        }
+      ],
+      "hints": [
+        "Controlla che il fattore del profilo sia un numero puro.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "cm è lunghezza, 1 sarebbe adatto a u, s/cm è velocità inversa e cm²/s ha una lunghezza di troppo. La parola “locale” non cambia l’unità fisica.",
+        "target": "C2-L007"
+      },
+      "coverage": [
+        "Profilo parabolico e aderenza alla parete",
+        "Punti interni, asse e parete",
+        "Inverse, medie e rami fisici di un vincolo cubico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-parabolic-profile-03",
+      "kind": "question",
+      "course": "C2",
+      "section": "Velocità locale nei profili laminari",
+      "order": 11403,
+      "title": "Asse e parete come valori limite",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L007",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006",
+        "C2-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parabolic-profile",
+      "difficulty": 1,
+      "prompt": "In un tubo cilindrico diritto e rigido, con parete ferma, un liquido newtoniano incomprimibile scorre in regime laminare stazionario pienamente sviluppato e aderisce alla parete. Sia R>0 il raggio interno, s≥0 la distanza dall’asse e u=s/R. Si assegna v=v_max(1−u²), componente della velocità parallela all’asse nel verso positivo del flusso, con v_max>0 in cm/s. Le domande numeriche riguardano punti interni 0<u<1; per asse e parete si usano esplicitamente i valori limite u=0 e u=1. Quale coppia descrive il valore sull’asse e quello alla parete?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Sull’asse v=v_max; alla parete v=0",
+          "Sull’asse v=0; alla parete v=v_max",
+          "Sull’asse e alla parete v=v_max",
+          "Sull’asse e alla parete v=0",
+          "Sull’asse v=v_max/2; alla parete v=v_max"
+        ],
+        "value": "Sull’asse v=v_max; alla parete v=0"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sull’asse s=0 e dunque u=0: il fattore del profilo è uno. Alla parete s=R e u=1: il fattore è zero, coerente con l’aderenza a una parete ferma. Questi sono i due valori limite del modello; le altre domande lavorano invece con punti strettamente interni."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/4e35e38202efb35be2e82955495bc5837f186e53220257e453f1375ef3446959",
+          "text": "Il secondo pannello conta il fattore 1−u² a u=1/2 con quattro celle: una esclusa e tre rimaste, cioè 3/4. Non sono zone della sezione. Il terzo pannello riguarda un altro compito: nel vincolo v_max=8u cm/s e v=3 cm/s restano due coordinate interne, 1/2 e (√13−1)/4; i massimi possono cambiare fra prove."
+        },
+        {
+          "type": "formula",
+          "text": "v(0)=v_{max}(1-0^2)"
+        },
+        {
+          "type": "formula",
+          "text": " v(0)=v_{max}"
+        },
+        {
+          "type": "formula",
+          "text": " v(1)=v_{max}(1-1^2)"
+        },
+        {
+          "type": "formula",
+          "text": " v(1)=0"
+        },
+        {
+          "type": "text",
+          "text": "Invertire asse e parete contraddice il profilo e l’aderenza. Valori uguali ai due estremi descriverebbero un profilo piatto, non parabolico. v_max/2 è la media d’area di questo profilo, non la velocità sull’asse; non si scambia una media con il valore in un punto."
+        }
+      ],
+      "hints": [
+        "Sostituisci separatamente u=0 e u=1.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Invertire asse e parete contraddice il profilo e l’aderenza. Valori uguali ai due estremi descriverebbero un profilo piatto, non parabolico. v_max/2 è la media d’area di questo profilo, non la velocità sull’asse; non si scambia una media con il valore in un punto.",
+        "target": "C2-L007"
+      },
+      "coverage": [
+        "Profilo parabolico e aderenza alla parete",
+        "Punti interni, asse e parete",
+        "Inverse, medie e rami fisici di un vincolo cubico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-parabolic-profile-04",
+      "kind": "question",
+      "course": "C2",
+      "section": "Velocità locale nei profili laminari",
+      "order": 11404,
+      "title": "Cambiare la velocità sull’asse",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L007",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006",
+        "C2-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parabolic-profile",
+      "difficulty": 1,
+      "prompt": "In un tubo cilindrico diritto e rigido, con parete ferma, un liquido newtoniano incomprimibile scorre in regime laminare stazionario pienamente sviluppato e aderisce alla parete. Sia R>0 il raggio interno, s≥0 la distanza dall’asse e u=s/R. Si assegna v=v_max(1−u²), componente della velocità parallela all’asse nel verso positivo del flusso, con v_max>0 in cm/s. Le domande numeriche riguardano punti interni 0<u<1; per asse e parete si usano esplicitamente i valori limite u=0 e u=1. v_max passa da 4 a 9 cm/s, mantenendo u=1/2. Come cambia v?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 3 a 27/4 cm/s",
+          "Da 3 a 4/3 cm/s",
+          "Resta 3 cm/s",
+          "Da 3 a 9 cm/s",
+          "Diventa zero"
+        ],
+        "value": "Da 3 a 27/4 cm/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La posizione relativa non cambia e il fattore del profilo rimane tre quarti. La prima velocità è tre cm/s; la seconda è nove per tre quarti, ventisette quarti cm/s. Si tratta di due prove stazionarie diverse, non dell’accelerazione temporale di una particella."
+        },
+        {
+          "type": "formula",
+          "text": "1-u^2=\\frac34"
+        },
+        {
+          "type": "formula",
+          "text": " v_A=3\\,\\mathrm{cm/s}"
+        },
+        {
+          "type": "formula",
+          "text": " v_B=\\frac{27}{4}\\,\\mathrm{cm/s}"
+        },
+        {
+          "type": "text",
+          "text": "Quattro terzi applica il rapporto inverso 4/9 a tre. Nove copia il nuovo massimo senza il fattore locale; invariata o nulla ignora le condizioni assegnate."
+        }
+      ],
+      "hints": [
+        "Tieni fisso il fattore 1−u² e moltiplicalo per il nuovo massimo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Quattro terzi applica il rapporto inverso 4/9 a tre. Nove copia il nuovo massimo senza il fattore locale; invariata o nulla ignora le condizioni assegnate.",
+        "target": "C2-L007"
+      },
+      "coverage": [
+        "Profilo parabolico e aderenza alla parete",
+        "Punti interni, asse e parete",
+        "Inverse, medie e rami fisici di un vincolo cubico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-parabolic-profile-05",
+      "kind": "question",
+      "course": "C2",
+      "section": "Velocità locale nei profili laminari",
+      "order": 11405,
+      "title": "Risalire dalla velocità locale al massimo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L007",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006",
+        "C2-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parabolic-profile",
+      "difficulty": 2,
+      "prompt": "In un tubo cilindrico diritto e rigido, con parete ferma, un liquido newtoniano incomprimibile scorre in regime laminare stazionario pienamente sviluppato e aderisce alla parete. Sia R>0 il raggio interno, s≥0 la distanza dall’asse e u=s/R. Si assegna v=v_max(1−u²), componente della velocità parallela all’asse nel verso positivo del flusso, con v_max>0 in cm/s. Le domande numeriche riguardano punti interni 0<u<1; per asse e parete si usano esplicitamente i valori limite u=0 e u=1. Si misura v=3 cm/s e si conosce u=1/2. Quanto vale v_max in cm/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "cm/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La misura locale rappresenta tre quarti del massimo. Per ricostruirlo dividiamo tre per tre quarti, cioè moltiplichiamo per quattro terzi. I fattori tre si cancellano e resta quattro cm/s, maggiore della velocità locale come richiesto per un punto interno."
+        },
+        {
+          "type": "formula",
+          "text": "v_{max}=\\frac{v}{1-u^2}"
+        },
+        {
+          "type": "formula",
+          "text": " v_{max}=\\frac{3}{3/4}\\,\\mathrm{cm/s}"
+        },
+        {
+          "type": "formula",
+          "text": " v_{max}=4\\,\\mathrm{cm/s}"
+        },
+        {
+          "type": "text",
+          "text": "Moltiplicare ancora per tre quarti darebbe 9/4 cm/s, minore della misura locale: non potrebbe essere il massimo del profilo. Il denominatore è positivo perché u<1."
+        }
+      ],
+      "hints": [
+        "Dividi la misura per il fattore locale, senza modificarne l’unità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Moltiplicare ancora per tre quarti darebbe 9/4 cm/s, minore della misura locale: non potrebbe essere il massimo del profilo. Il denominatore è positivo perché u<1.",
+        "target": "C2-L007"
+      },
+      "coverage": [
+        "Profilo parabolico e aderenza alla parete",
+        "Punti interni, asse e parete",
+        "Inverse, medie e rami fisici di un vincolo cubico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-parabolic-profile-06",
+      "kind": "question",
+      "course": "C2",
+      "section": "Velocità locale nei profili laminari",
+      "order": 11406,
+      "title": "La distanza relativa dalla misura",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L007",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006",
+        "C2-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parabolic-profile",
+      "difficulty": 2,
+      "prompt": "In un tubo cilindrico diritto e rigido, con parete ferma, un liquido newtoniano incomprimibile scorre in regime laminare stazionario pienamente sviluppato e aderisce alla parete. Sia R>0 il raggio interno, s≥0 la distanza dall’asse e u=s/R. Si assegna v=v_max(1−u²), componente della velocità parallela all’asse nel verso positivo del flusso, con v_max>0 in cm/s. Le domande numeriche riguardano punti interni 0<u<1; per asse e parete si usano esplicitamente i valori limite u=0 e u=1. Si misura v=3 cm/s e si conosce v_max=4 cm/s. Quanto vale u?",
+      "answer": {
+        "type": "numeric",
+        "value": 0.5,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il rapporto v/v_max è tre quarti. Sottraendolo da uno rimane u²=1/4; la radice positiva dà u=1/2. Questa è una distanza relativa dall’asse, non una coordinata cartesiana con segno: il ramo negativo non rappresenta s/R."
+        },
+        {
+          "type": "formula",
+          "text": "u^2=1-\\frac{v}{v_{max}}"
+        },
+        {
+          "type": "formula",
+          "text": " u^2=\\frac14"
+        },
+        {
+          "type": "formula",
+          "text": " u=\\frac12"
+        },
+        {
+          "type": "formula",
+          "text": " 0<u<1"
+        },
+        {
+          "type": "text",
+          "text": "Un quarto è il quadrato della distanza relativa. Per ottenere s in centimetri o metri servirebbe anche R; qui si chiede soltanto il rapporto puro u."
+        }
+      ],
+      "hints": [
+        "Trova prima u² e usa il significato di distanza per scegliere il ramo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un quarto è il quadrato della distanza relativa. Per ottenere s in centimetri o metri servirebbe anche R; qui si chiede soltanto il rapporto puro u.",
+        "target": "C2-L007"
+      },
+      "coverage": [
+        "Profilo parabolico e aderenza alla parete",
+        "Punti interni, asse e parete",
+        "Inverse, medie e rami fisici di un vincolo cubico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-parabolic-profile-07",
+      "kind": "question",
+      "course": "C2",
+      "section": "Velocità locale nei profili laminari",
+      "order": 11407,
+      "title": "Avvicinare il punto all’asse",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L007",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006",
+        "C2-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parabolic-profile",
+      "difficulty": 2,
+      "prompt": "In un tubo cilindrico diritto e rigido, con parete ferma, un liquido newtoniano incomprimibile scorre in regime laminare stazionario pienamente sviluppato e aderisce alla parete. Sia R>0 il raggio interno, s≥0 la distanza dall’asse e u=s/R. Si assegna v=v_max(1−u²), componente della velocità parallela all’asse nel verso positivo del flusso, con v_max>0 in cm/s. Le domande numeriche riguardano punti interni 0<u<1; per asse e parete si usano esplicitamente i valori limite u=0 e u=1. A ha v_max=4 cm/s,u=1/2; B mantiene v_max e ha u=1/3. Quanto vale v_B/v_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "32/27",
+          "27/32",
+          "8/9",
+          "2/3",
+          "1"
+        ],
+        "value": "32/27"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il punto B è più vicino all’asse e conserva otto noni del massimo. La velocità è trentadue noni cm/s, da dividere per i tre cm/s di A. Il risultato trentadue ventisettesimi è maggiore di uno, coerente con la crescita della velocità verso l’asse."
+        },
+        {
+          "type": "formula",
+          "text": "v_A=3\\,\\mathrm{cm/s}"
+        },
+        {
+          "type": "formula",
+          "text": " v_B=4\\frac89\\,\\mathrm{cm/s}"
+        },
+        {
+          "type": "formula",
+          "text": " v_B=\\frac{32}{9}\\,\\mathrm{cm/s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{v_B}{v_A}=\\frac{32}{27}"
+        },
+        {
+          "type": "text",
+          "text": "Ventisette trentaduesimi è il reciproco. Otto noni è il fattore locale di B, non il confronto con A; due terzi segue la distanza invece del profilo e uno ignora lo spostamento radiale."
+        }
+      ],
+      "hints": [
+        "Confronta i due fattori 1−u².",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Ventisette trentaduesimi è il reciproco. Otto noni è il fattore locale di B, non il confronto con A; due terzi segue la distanza invece del profilo e uno ignora lo spostamento radiale.",
+        "target": "C2-L007"
+      },
+      "coverage": [
+        "Profilo parabolico e aderenza alla parete",
+        "Punti interni, asse e parete",
+        "Inverse, medie e rami fisici di un vincolo cubico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-parabolic-profile-08",
+      "kind": "question",
+      "course": "C2",
+      "section": "Velocità locale nei profili laminari",
+      "order": 11408,
+      "title": "Una velocità oltre il massimo assegnato",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L007",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006",
+        "C2-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parabolic-profile",
+      "difficulty": 2,
+      "prompt": "In un tubo cilindrico diritto e rigido, con parete ferma, un liquido newtoniano incomprimibile scorre in regime laminare stazionario pienamente sviluppato e aderisce alla parete. Sia R>0 il raggio interno, s≥0 la distanza dall’asse e u=s/R. Si assegna v=v_max(1−u²), componente della velocità parallela all’asse nel verso positivo del flusso, con v_max>0 in cm/s. Le domande numeriche riguardano punti interni 0<u<1; per asse e parete si usano esplicitamente i valori limite u=0 e u=1. Per v_max=4 cm/s,u=1/2 si propone v=6 cm/s. Quanto vale proposta meno corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3 cm/s",
+          "−3 cm/s",
+          "6 cm/s",
+          "0 cm/s",
+          "3/2 cm/s"
+        ],
+        "value": "3 cm/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il valore corretto è tre cm/s e lo scarto sei meno tre è più tre cm/s. La proposta fallisce già un controllo fisico: in un punto interno il fattore 1−u² è fra zero e uno, quindi v deve essere minore di quattro cm/s, non sei."
+        },
+        {
+          "type": "formula",
+          "text": "v=3\\,\\mathrm{cm/s}"
+        },
+        {
+          "type": "formula",
+          "text": " e=(6-3)\\,\\mathrm{cm/s}"
+        },
+        {
+          "type": "formula",
+          "text": " e=3\\,\\mathrm{cm/s}"
+        },
+        {
+          "type": "text",
+          "text": "Meno tre inverte la differenza, sei copia la proposta, zero la accetta e tre mezzi dimezza lo scarto. Un’unità di velocità corretta non garantisce che il valore rispetti il profilo."
+        }
+      ],
+      "hints": [
+        "Controlla il limite v<v_max prima della sottrazione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Meno tre inverte la differenza, sei copia la proposta, zero la accetta e tre mezzi dimezza lo scarto. Un’unità di velocità corretta non garantisce che il valore rispetti il profilo.",
+        "target": "C2-L007"
+      },
+      "coverage": [
+        "Profilo parabolico e aderenza alla parete",
+        "Punti interni, asse e parete",
+        "Inverse, medie e rami fisici di un vincolo cubico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-parabolic-profile-09",
+      "kind": "question",
+      "course": "C2",
+      "section": "Velocità locale nei profili laminari",
+      "order": 11409,
+      "title": "L’inversa non perde la parentesi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L007",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006",
+        "C2-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parabolic-profile",
+      "difficulty": 2,
+      "prompt": "In un tubo cilindrico diritto e rigido, con parete ferma, un liquido newtoniano incomprimibile scorre in regime laminare stazionario pienamente sviluppato e aderisce alla parete. Sia R>0 il raggio interno, s≥0 la distanza dall’asse e u=s/R. Si assegna v=v_max(1−u²), componente della velocità parallela all’asse nel verso positivo del flusso, con v_max>0 in cm/s. Le domande numeriche riguardano punti interni 0<u<1; per asse e parete si usano esplicitamente i valori limite u=0 e u=1. Quale relazione isola v_max?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "v_max = v / (1 − u²)",
+          "v_max = v (1 − u²)",
+          "v_max = v / (1 − u)",
+          "v_max = v / u²",
+          "v_max = √[v / (1 − u²)]"
+        ],
+        "value": "v_max = v / (1 − u²)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il massimo è moltiplicato per l’intera parentesi 1−u². Dividiamo per questa quantità, positiva nei punti interni. Non serve estrarre una radice: il massimo compare alla prima potenza, mentre il quadrato riguarda soltanto la coordinata relativa."
+        },
+        {
+          "type": "formula",
+          "text": "v=v_{max}(1-u^2)"
+        },
+        {
+          "type": "formula",
+          "text": " v_{max}=\\frac{v}{1-u^2}"
+        },
+        {
+          "type": "formula",
+          "text": " 1-u^2>0"
+        },
+        {
+          "type": "text",
+          "text": "Moltiplicare ripeterebbe la riduzione locale. Omettere il quadrato o il termine uno cambia il profilo. La radice finale avrebbe dimensione di radice di velocità, estranea alla richiesta."
+        }
+      ],
+      "hints": [
+        "Considera tutta la parentesi come il coefficiente del massimo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Moltiplicare ripeterebbe la riduzione locale. Omettere il quadrato o il termine uno cambia il profilo. La radice finale avrebbe dimensione di radice di velocità, estranea alla richiesta.",
+        "target": "C2-L007"
+      },
+      "coverage": [
+        "Profilo parabolico e aderenza alla parete",
+        "Punti interni, asse e parete",
+        "Inverse, medie e rami fisici di un vincolo cubico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-parabolic-profile-10",
+      "kind": "question",
+      "course": "C2",
+      "section": "Velocità locale nei profili laminari",
+      "order": 11410,
+      "title": "Due scalature con punti ancora interni",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L007",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006",
+        "C2-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parabolic-profile",
+      "difficulty": 2,
+      "prompt": "In un tubo cilindrico diritto e rigido, con parete ferma, un liquido newtoniano incomprimibile scorre in regime laminare stazionario pienamente sviluppato e aderisce alla parete. Sia R>0 il raggio interno, s≥0 la distanza dall’asse e u=s/R. Si assegna v=v_max(1−u²), componente della velocità parallela all’asse nel verso positivo del flusso, con v_max>0 in cm/s. Le domande numeriche riguardano punti interni 0<u<1; per asse e parete si usano esplicitamente i valori limite u=0 e u=1. B ha v_max,B=κ₁v_max,A e u_B=κ₂u_A, con κ₁,κ₂>0 e κ₂u_A<1. Poniamo U=1−u_A² e D=1−κ₂²u_A². Quanto vale v_B/v_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ D / U",
+          "κ₁ U / D",
+          "κ₁ κ₂²",
+          "κ₁ / κ₂²",
+          "D / U"
+        ],
+        "value": "κ₁ D / U"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La nuova posizione entra al quadrato: (κ₂u_A)²=κ₂²u_A². Il nuovo fattore locale è D e il vecchio è U. Il massimo fornisce inoltre il fattore κ₁, così il rapporto completo è κ₁D/U. Entrambe le parentesi restano positive nel dominio dichiarato."
+        },
+        {
+          "type": "formula",
+          "text": "v_A=v_{max,A}U"
+        },
+        {
+          "type": "formula",
+          "text": " v_B=\\kappa_1v_{max,A}D"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{v_B}{v_A}=\\frac{\\kappa_1D}{U}"
+        },
+        {
+          "type": "text",
+          "text": "U/D rovescia il fattore geometrico; i semplici prodotti o quozienti di κ₂ ignorano il termine uno del profilo. D/U da solo omette il cambiamento del massimo. Una scalatura che portasse u_B≥1 uscirebbe dal dominio dei punti interni."
+        }
+      ],
+      "hints": [
+        "Scala prima u nella parentesi e soltanto dopo forma il rapporto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "U/D rovescia il fattore geometrico; i semplici prodotti o quozienti di κ₂ ignorano il termine uno del profilo. D/U da solo omette il cambiamento del massimo. Una scalatura che portasse u_B≥1 uscirebbe dal dominio dei punti interni.",
+        "target": "C2-L007"
+      },
+      "coverage": [
+        "Profilo parabolico e aderenza alla parete",
+        "Punti interni, asse e parete",
+        "Inverse, medie e rami fisici di un vincolo cubico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-parabolic-profile-11",
+      "kind": "question",
+      "course": "C2",
+      "section": "Velocità locale nei profili laminari",
+      "order": 11411,
+      "title": "Un massimo maggiore e un punto più centrale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L007",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006",
+        "C2-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parabolic-profile",
+      "difficulty": 2,
+      "prompt": "In un tubo cilindrico diritto e rigido, con parete ferma, un liquido newtoniano incomprimibile scorre in regime laminare stazionario pienamente sviluppato e aderisce alla parete. Sia R>0 il raggio interno, s≥0 la distanza dall’asse e u=s/R. Si assegna v=v_max(1−u²), componente della velocità parallela all’asse nel verso positivo del flusso, con v_max>0 in cm/s. Le domande numeriche riguardano punti interni 0<u<1; per asse e parete si usano esplicitamente i valori limite u=0 e u=1. A ha v_max=4 cm/s,u=1/2; B ha v_max=9 cm/s,u=1/3. Quanto vale v_B/v_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "8/3",
+          "3/8",
+          "9/4",
+          "32/27",
+          "8"
+        ],
+        "value": "8/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il massimo B è nove e il fattore locale otto noni: il nove si cancella, lasciando otto cm/s. In A erano tre cm/s, perciò il rapporto è otto terzi. Entrambi i cambiamenti aumentano la velocità locale."
+        },
+        {
+          "type": "formula",
+          "text": "v_A=3\\,\\mathrm{cm/s}"
+        },
+        {
+          "type": "formula",
+          "text": " v_B=(9\\,\\mathrm{cm/s})\\frac89"
+        },
+        {
+          "type": "formula",
+          "text": " v_B=8\\,\\mathrm{cm/s}"
+        },
+        {
+          "type": "formula",
+          "text": " v_B/v_A=\\frac83"
+        },
+        {
+          "type": "text",
+          "text": "Tre ottavi inverte gli stati, nove quarti segue soltanto i massimi e trentadue ventisettesimi soltanto i fattori locali. Otto è la velocità numerica di B, non il rapporto richiesto."
+        }
+      ],
+      "hints": [
+        "Semplifica il nove con il denominatore del nuovo fattore locale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre ottavi inverte gli stati, nove quarti segue soltanto i massimi e trentadue ventisettesimi soltanto i fattori locali. Otto è la velocità numerica di B, non il rapporto richiesto.",
+        "target": "C2-L007"
+      },
+      "coverage": [
+        "Profilo parabolico e aderenza alla parete",
+        "Punti interni, asse e parete",
+        "Inverse, medie e rami fisici di un vincolo cubico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-parabolic-profile-12",
+      "kind": "question",
+      "course": "C2",
+      "section": "Velocità locale nei profili laminari",
+      "order": 11412,
+      "title": "La media di due misure locali",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L007",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006",
+        "C2-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parabolic-profile",
+      "difficulty": 2,
+      "prompt": "In un tubo cilindrico diritto e rigido, con parete ferma, un liquido newtoniano incomprimibile scorre in regime laminare stazionario pienamente sviluppato e aderisce alla parete. Sia R>0 il raggio interno, s≥0 la distanza dall’asse e u=s/R. Si assegna v=v_max(1−u²), componente della velocità parallela all’asse nel verso positivo del flusso, con v_max>0 in cm/s. Le domande numeriche riguardano punti interni 0<u<1; per asse e parete si usano esplicitamente i valori limite u=0 e u=1. A ha v_max=4 cm/s,u=1/2 e B ha v_max=9 cm/s,u=1/3. Qual è la media aritmetica delle due v, con uguale peso statistico?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "11/2 cm/s",
+          "11 cm/s",
+          "11/4 cm/s",
+          "1547/288 cm/s",
+          "5 cm/s"
+        ],
+        "value": "11/2 cm/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le velocità locali sono tre e otto cm/s. La loro somma undici, divisa per due, dà undici mezzi cm/s. Non si tratta della media su una sezione del tubo, ma della media statistica di due misure in prove e punti differenti."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline v=\\frac{3+8}{2}\\,\\mathrm{cm/s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline v=\\frac{11}{2}\\,\\mathrm{cm/s}"
+        },
+        {
+          "type": "text",
+          "text": "Undici è la somma, undici quarti dimezza ancora e cinque è la differenza. Le medie degli ingressi sono v_max=13/2 cm/s e u=5/12: il modello darebbe (13/2)(119/144)=1547/288 cm/s, inferiore alla media delle uscite di 37/288 cm/s. Sono due operazioni diverse."
+        }
+      ],
+      "hints": [
+        "Valuta il profilo prima in A e in B, poi media i due risultati.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Undici è la somma, undici quarti dimezza ancora e cinque è la differenza. Le medie degli ingressi sono v_max=13/2 cm/s e u=5/12: il modello darebbe (13/2)(119/144)=1547/288 cm/s, inferiore alla media delle uscite di 37/288 cm/s. Sono due operazioni diverse.",
+        "target": "C2-L007"
+      },
+      "coverage": [
+        "Profilo parabolico e aderenza alla parete",
+        "Punti interni, asse e parete",
+        "Inverse, medie e rami fisici di un vincolo cubico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-parabolic-profile-13",
+      "kind": "question",
+      "course": "C2",
+      "section": "Velocità locale nei profili laminari",
+      "order": 11413,
+      "title": "Scegliere la distanza per il bersaglio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L007",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006",
+        "C2-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parabolic-profile",
+      "difficulty": 3,
+      "prompt": "In un tubo cilindrico diritto e rigido, con parete ferma, un liquido newtoniano incomprimibile scorre in regime laminare stazionario pienamente sviluppato e aderisce alla parete. Sia R>0 il raggio interno, s≥0 la distanza dall’asse e u=s/R. Si assegna v=v_max(1−u²), componente della velocità parallela all’asse nel verso positivo del flusso, con v_max>0 in cm/s. Le domande numeriche riguardano punti interni 0<u<1; per asse e parete si usano esplicitamente i valori limite u=0 e u=1. A ha v_max=4 cm/s,u=1/2. B impone v_max=9 cm/s e deve avere v_B=(8/3)v_A. Quanto vale u_B/u_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2/3",
+          "3/2",
+          "1/3",
+          "8/3",
+          "4/9"
+        ],
+        "value": "2/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è otto cm/s. Su un massimo di nove significa 1−u_B²=8/9, dunque u_B²=1/9 e u_B=1/3 nel ramo della distanza positiva. Il rapporto con un mezzo è due terzi. Il punto resta interno e più vicino all’asse."
+        },
+        {
+          "type": "formula",
+          "text": "v_B=8\\,\\mathrm{cm/s}"
+        },
+        {
+          "type": "formula",
+          "text": " u_B^2=\\frac19"
+        },
+        {
+          "type": "formula",
+          "text": " u_B=\\frac13"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{u_B}{u_A}=\\frac{1/3}{1/2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{u_B}{u_A}=\\frac23"
+        },
+        {
+          "type": "text",
+          "text": "Tre mezzi è reciproco, un terzo è la nuova coordinata e non il rapporto, otto terzi copia il bersaglio della velocità. Quattro noni sarebbe il quadrato del rapporto delle coordinate."
+        }
+      ],
+      "hints": [
+        "Ricava la coordinata positiva prima di confrontarla con quella iniziale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre mezzi è reciproco, un terzo è la nuova coordinata e non il rapporto, otto terzi copia il bersaglio della velocità. Quattro noni sarebbe il quadrato del rapporto delle coordinate.",
+        "target": "C2-L007"
+      },
+      "coverage": [
+        "Profilo parabolico e aderenza alla parete",
+        "Punti interni, asse e parete",
+        "Inverse, medie e rami fisici di un vincolo cubico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-parabolic-profile-14",
+      "kind": "question",
+      "course": "C2",
+      "section": "Velocità locale nei profili laminari",
+      "order": 11414,
+      "title": "Il display ricostruisce il massimo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L007",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006",
+        "C2-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parabolic-profile",
+      "difficulty": 3,
+      "prompt": "In un tubo cilindrico diritto e rigido, con parete ferma, un liquido newtoniano incomprimibile scorre in regime laminare stazionario pienamente sviluppato e aderisce alla parete. Sia R>0 il raggio interno, s≥0 la distanza dall’asse e u=s/R. Si assegna v=v_max(1−u²), componente della velocità parallela all’asse nel verso positivo del flusso, con v_max>0 in cm/s. Le domande numeriche riguardano punti interni 0<u<1; per asse e parete si usano esplicitamente i valori limite u=0 e u=1. Un display continuo adimensionale segue S=qv, q>0. A con v_max=4 cm/s,u=1/2 dà S=9. B dà S=24 e ha u=1/3. Quanto vale v_max,B in cm/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 9,
+        "unit": "cm/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento ha velocità locale tre cm/s, quindi q=3 s/cm. La nuova lettura ventiquattro equivale a otto cm/s. A un terzo di raggio il fattore locale è otto noni: otto diviso otto noni restituisce un massimo di nove cm/s."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{s/cm}"
+        },
+        {
+          "type": "formula",
+          "text": " v_B=8\\,\\mathrm{cm/s}"
+        },
+        {
+          "type": "formula",
+          "text": " v_{max,B}=\\frac{8}{8/9}\\,\\mathrm{cm/s}"
+        },
+        {
+          "type": "formula",
+          "text": " v_{max,B}=9\\,\\mathrm{cm/s}"
+        },
+        {
+          "type": "text",
+          "text": "La lettura non è direttamente una velocità. Dopo la taratura si ottiene il valore locale, ancora da dividere per il fattore del profilo; otto non è il massimo."
+        }
+      ],
+      "hints": [
+        "Rimuovi prima il guadagno e poi l’effetto della posizione radiale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La lettura non è direttamente una velocità. Dopo la taratura si ottiene il valore locale, ancora da dividere per il fattore del profilo; otto non è il massimo.",
+        "target": "C2-L007"
+      },
+      "coverage": [
+        "Profilo parabolico e aderenza alla parete",
+        "Punti interni, asse e parete",
+        "Inverse, medie e rami fisici di un vincolo cubico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-parabolic-profile-15",
+      "kind": "question",
+      "course": "C2",
+      "section": "Velocità locale nei profili laminari",
+      "order": 11415,
+      "title": "Due riferimenti e una misura decentrata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L007",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006",
+        "C2-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parabolic-profile",
+      "difficulty": 3,
+      "prompt": "In un tubo cilindrico diritto e rigido, con parete ferma, un liquido newtoniano incomprimibile scorre in regime laminare stazionario pienamente sviluppato e aderisce alla parete. Sia R>0 il raggio interno, s≥0 la distanza dall’asse e u=s/R. Si assegna v=v_max(1−u²), componente della velocità parallela all’asse nel verso positivo del flusso, con v_max>0 in cm/s. Le domande numeriche riguardano punti interni 0<u<1; per asse e parete si usano esplicitamente i valori limite u=0 e u=1. Un display continuo adimensionale segue S=qv+z. A: v_max=4 cm/s,u=1/2,S=7. B: v_max=9 cm/s,u=1/3,S=17. C: u=1/2,S=29/2. Quanto vale v_max,C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "9 cm/s",
+          "4 cm/s",
+          "8 cm/s",
+          "27/4 cm/s",
+          "18 cm/s"
+        ],
+        "value": "9 cm/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le velocità di riferimento sono tre e otto cm/s. La pendenza del display è (17−7)/(8−3)=2 s/cm e l’offset è uno. La lettura C dà v_C=(29/2−1)/2=27/4 cm/s. Dividendo per tre quarti si trova v_max,C=9 cm/s."
+        },
+        {
+          "type": "formula",
+          "text": "q=2\\,\\mathrm{s/cm}"
+        },
+        {
+          "type": "formula",
+          "text": " z=1"
+        },
+        {
+          "type": "formula",
+          "text": " v_C=\\frac{27}{4}\\,\\mathrm{cm/s}"
+        },
+        {
+          "type": "formula",
+          "text": " v_{max,C}=\\frac{27/4}{3/4}\\,\\mathrm{cm/s}"
+        },
+        {
+          "type": "formula",
+          "text": " v_{max,C}=9\\,\\mathrm{cm/s}"
+        },
+        {
+          "type": "text",
+          "text": "Ai massimi 4,8,27/4,18 cm/s corrispondono, con u=1/2, letture 7,13,89/8,28. Nessuna vale 29/2; soltanto nove restituisce 29/2. La frazione 27/4 è la velocità locale, non il massimo."
+        }
+      ],
+      "hints": [
+        "Distingui lettura, velocità locale e massimo nei tre passaggi inversi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Ai massimi 4,8,27/4,18 cm/s corrispondono, con u=1/2, letture 7,13,89/8,28. Nessuna vale 29/2; soltanto nove restituisce 29/2. La frazione 27/4 è la velocità locale, non il massimo.",
+        "target": "C2-L007"
+      },
+      "coverage": [
+        "Profilo parabolico e aderenza alla parete",
+        "Punti interni, asse e parete",
+        "Inverse, medie e rami fisici di un vincolo cubico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-parabolic-profile-16",
+      "kind": "question",
+      "course": "C2",
+      "section": "Velocità locale nei profili laminari",
+      "order": 11416,
+      "title": "Due punti interni soddisfano il vincolo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L007",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006",
+        "C2-L007"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parabolic-profile",
+      "difficulty": 3,
+      "prompt": "In un tubo cilindrico diritto e rigido, con parete ferma, un liquido newtoniano incomprimibile scorre in regime laminare stazionario pienamente sviluppato e aderisce alla parete. Sia R>0 il raggio interno, s≥0 la distanza dall’asse e u=s/R. Si assegna v=v_max(1−u²), componente della velocità parallela all’asse nel verso positivo del flusso, con v_max>0 in cm/s. Le domande numeriche riguardano punti interni 0<u<1; per asse e parete si usano esplicitamente i valori limite u=0 e u=1. Fra prove si impone v_max=cu, con c=8 cm/s. Si misura v=3 cm/s. Quante soluzioni reali positive distinte per u, con 0<u<1, soddisfano entrambe le condizioni?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Due",
+          "Una",
+          "Tre",
+          "Nessuna",
+          "Infinite"
+        ],
+        "value": "Due"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituendo il vincolo, la velocità numerica in cm/s è 8u(1−u²). Eguagliarla a tre produce una cubica. Si riconosce u=1/2 e si fattorizza: l’altro fattore è un’equazione quadratica. Non basta trovare il primo valore plausibile: bisogna leggere e filtrare tutti i rami."
+        },
+        {
+          "type": "formula",
+          "text": "8u(1-u^2)=3"
+        },
+        {
+          "type": "formula",
+          "text": " 8u^3-8u+3=0"
+        },
+        {
+          "type": "formula",
+          "text": " (2u-1)(4u^2+2u-3)=0"
+        },
+        {
+          "type": "formula",
+          "text": " u_a=\\frac12"
+        },
+        {
+          "type": "formula",
+          "text": " u_b=\\frac{\\sqrt{13}-1}{4}"
+        },
+        {
+          "type": "formula",
+          "text": " u_c=\\frac{-1-\\sqrt{13}}4"
+        },
+        {
+          "type": "text",
+          "text": "Il ramo u_c è negativo. Poiché 9<13<16, si ha 3<√13<4: quindi 1/2<u_b<3/4. u_a e u_b sono distinti e interni, e producono entrambi un massimo positivo e v=3 cm/s. Restano due soluzioni fisiche, non tre algebriche né una soltanto. Il vincolo collega prove, non il valore temporale della velocità di una particella."
+        }
+      ],
+      "hints": [
+        "Fattorizza dopo aver riconosciuto u=1/2 e verifica 0<u<1 per ogni radice.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Il ramo u_c è negativo. Poiché 9<13<16, si ha 3<√13<4: quindi 1/2<u_b<3/4. u_a e u_b sono distinti e interni, e producono entrambi un massimo positivo e v=3 cm/s. Restano due soluzioni fisiche, non tre algebriche né una soltanto. Il vincolo collega prove, non il valore temporale della velocità di una particella.",
+        "target": "C2-L007"
+      },
+      "coverage": [
+        "Profilo parabolico e aderenza alla parete",
+        "Punti interni, asse e parete",
+        "Inverse, medie e rami fisici di un vincolo cubico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "4e35e38202efb35be2e82955495bc5837f186e53220257e453f1375ef3446959",
+      "name": "parabolic-profile-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTYwMCIgdmlld0JveD0iMCAwIDY0MCAxNjAwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+Cjx0aXRsZSBpZD0idGl0bGUiPlVuIHByb2ZpbG8gbG9jYWxlIGUgZHVlIHNvbHV6aW9uaSBkaSB1biB2aW5jb2xvPC90aXRsZT48ZGVzYyBpZD0iZGVzYyI+UHJpbWEgaWwgZ3JhZmljbyBkZWwgcHJvZmlsbyBhIG1hc3NpbW8gcXVhdHRybyBjZW50aW1ldHJpIGFsIHNlY29uZG86IGFzc2UgcXVhdHRybywgbWV0w6AgcmFnZ2lvIHRyZSBlIHBhcmV0ZSB6ZXJvLiBMYSBzY2FsYSBvcml6em9udGFsZSDDqCB0cmVjZW50byBwaXhlbCBwZXIgdW5pdMOgIGRpIHU7IHF1ZWxsYSB2ZXJ0aWNhbGUgc2Vzc2FudGEgcGl4ZWwgcGVyIGNlbnRpbWV0cm8gYWwgc2Vjb25kby4gUG9pIHF1YXR0cm8gY2VsbGUgZGkgcHVybyBjb250ZWdnaW8gbW9zdHJhbm8gdHJlIHF1YXJ0aS4gSW5maW5lIHVuIGRpdmVyc28gdmluY29sbyBmcmEgcHJvdmUgaGEgZHVlIGNvb3JkaW5hdGUgcG9zaXRpdmUgaW50ZXJuZSwgdW4gbWV6em8gZSByYWRpY2UgZGkgdHJlZGljaSBtZW5vIHVubyBkaXZpc28gcXVhdHRyby48L2Rlc2M+CjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMTYwMCIgZmlsbD0iI2ZmZmRmNyIvPgo8ZyBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiMxNzJjM2IiPgo8dGV4dCB4PSIzNSIgeT0iNDgiIGZvbnQtc2l6ZT0iMjciPjEuIERhbCBtYXNzaW1vIGFsbGEgcGFyZXRlIGZlcm1hPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iOTUiPnZfbWF4ID0gNCBjbS9zOyB1ID0gcy9SPC90ZXh0Pgo8cGF0aCBkPSJNMTAwIDUzMFYyMzBNMTAwIDUzMEg0NzAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE3MmMzYiIgc3Ryb2tlLXdpZHRoPSIyIi8+Cjx0ZXh0IHg9IjExMCIgeT0iMjQ1Ij52IChjbS9zKTwvdGV4dD48dGV4dCB4PSI0ODAiIHk9IjU0MCI+dTwvdGV4dD4KPHBhdGggZD0iTTEwMCAyOTBRMjUwIDI5MCA0MDAgNTMwIiBmaWxsPSJub25lIiBzdHJva2U9IiMxNTVmYTAiIHN0cm9rZS13aWR0aD0iNCIvPgo8cGF0aCBkPSJNOTUgMjkwSDEwNU05NSAzNTBIMTA1TTI1MCA1MjVWNTM1TTQwMCA1MjVWNTM1IiBzdHJva2U9IiMxNzJjM2IiIGZpbGw9Im5vbmUiLz4KPGNpcmNsZSBjeD0iMTAwIiBjeT0iMjkwIiByPSI2IiBmaWxsPSIjYTMzNDMwIi8+PGNpcmNsZSBjeD0iMjUwIiBjeT0iMzUwIiByPSI2IiBmaWxsPSIjYTMzNDMwIi8+PGNpcmNsZSBjeD0iNDAwIiBjeT0iNTMwIiByPSI2IiBmaWxsPSIjYTMzNDMwIi8+Cjx0ZXh0IHg9IjY1IiB5PSIyOTgiPjQ8L3RleHQ+PHRleHQgeD0iNjUiIHk9IjM1OCI+MzwvdGV4dD48dGV4dCB4PSI4NSIgeT0iNTY1Ij4wPC90ZXh0Pjx0ZXh0IHg9IjIzMCIgeT0iNTY1Ij4xLzI8L3RleHQ+PHRleHQgeD0iMzkzIiB5PSI1NjUiPjE8L3RleHQ+Cjx0ZXh0IHg9IjEzMCIgeT0iMjcwIj5hc3NlICgwLCA0KTwvdGV4dD48dGV4dCB4PSIyNzUiIHk9IjM1MCI+aW50ZXJubyAoMS8yLCAzKTwvdGV4dD48dGV4dCB4PSIzOTUiIHk9IjYwNSI+cGFyZXRlICgxLCAwKTwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjY1MCI+dTogMzAwIHB4L3VuaXTDoDsgdjogNjAgcHgvKGNtL3MpPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iNjkwIj7DiCB1biBncmFmaWNvLCBub24gbGEgZm9ybWEgZGVsIHR1Ym8uPC90ZXh0Pgo8bGluZSB4MT0iMzUiIHkxPSI3MjAiIHgyPSI2MDUiIHkyPSI3MjAiIHN0cm9rZT0iI2JjYzZjYSIvPgo8dGV4dCB4PSIzNSIgeT0iNzY1IiBmb250LXNpemU9IjI3Ij4yLiBBIG1ldMOgIHJhZ2dpbyByZXN0YSB0cmUgcXVhcnRpPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iODEwIj51ID0gMS8yIOKGkiB1wrIgPSAxLzQg4oaSIDEg4oiSIHXCsiA9IDMvNDwvdGV4dD4KPHJlY3QgeD0iMTMwIiB5PSI4NTAiIHdpZHRoPSI4MCIgaGVpZ2h0PSI3MCIgZmlsbD0iI2NjZDNkNiIgc3Ryb2tlPSIjZmZmZGY3IiBzdHJva2Utd2lkdGg9IjIiLz48cmVjdCB4PSIyMTAiIHk9Ijg1MCIgd2lkdGg9IjgwIiBoZWlnaHQ9IjcwIiBmaWxsPSIjMTU1ZmEwIiBzdHJva2U9IiNmZmZkZjciIHN0cm9rZS13aWR0aD0iMiIvPjxyZWN0IHg9IjI5MCIgeT0iODUwIiB3aWR0aD0iODAiIGhlaWdodD0iNzAiIGZpbGw9IiMxNTVmYTAiIHN0cm9rZT0iI2ZmZmRmNyIgc3Ryb2tlLXdpZHRoPSIyIi8+PHJlY3QgeD0iMzcwIiB5PSI4NTAiIHdpZHRoPSI4MCIgaGVpZ2h0PSI3MCIgZmlsbD0iIzE1NWZhMCIgc3Ryb2tlPSIjZmZmZGY3IiBzdHJva2Utd2lkdGg9IjIiLz4KPHRleHQgeD0iMTQ1IiB5PSI5NjUiPjEvNDwvdGV4dD48dGV4dCB4PSIyOTAiIHk9Ijk2NSI+My80PC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTAxNSI+UXVhdHRybyBjZWxsZSBkaSBwdXJvIGNvbnRlZ2dpbzo8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxMDU1Ij5ub24gc29ubyBwb3J6aW9uaSBkZWxs4oCZYXJlYSBkZWwgdHViby48L3RleHQ+CjxsaW5lIHgxPSIzNSIgeTE9IjEwOTAiIHgyPSI2MDUiIHkyPSIxMDkwIiBzdHJva2U9IiNiY2M2Y2EiLz4KPHRleHQgeD0iMzUiIHk9IjExMzUiIGZvbnQtc2l6ZT0iMjciPjMuIElsIHZpbmNvbG8gYW1tZXR0ZSBkdWUgcHVudGkgaW50ZXJuaTwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjExODAiPkFsdHJvIGNvbXBpdG86IHZfbWF4ID0gOHUgY20vcywgdiA9IDMgY20vczwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjEyMjUiPigydSDiiJIgMSkoNHXCsiArIDJ1IOKIkiAzKSA9IDA8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxMjkwIj51X2EgPSAxLzIg4oaSIHZfbWF4ID0gNCBjbS9zPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTM0NSI+dV9iID0gKOKImjEzIOKIkiAxKS80PC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTM5MCI+MyAmbHQ7IOKImjEzICZsdDsgNCDihpIgMS8yICZsdDsgdV9iICZsdDsgMy80PC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTQ0NSI+SWwgdGVyem8gcmFtbyDDqCBuZWdhdGl2bywgcXVpbmRpIGVzY2x1c28uPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTUwMCI+RHVlIGNvb3JkaW5hdGUgZGlzdGludGUgY29uIDAgJmx0OyB1ICZsdDsgMS48L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxNTUwIj5JIG1hc3NpbWkgcG9zc29ubyBjYW1iaWFyZSBmcmEgcHJvdmUuPC90ZXh0Pgo8L2c+PC9zdmc+Cg=="
+    }
+  ]
+}

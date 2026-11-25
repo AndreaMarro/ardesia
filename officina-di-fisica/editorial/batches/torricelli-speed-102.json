@@ -1,0 +1,1154 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u3-torricelli-speed-01",
+      "kind": "question",
+      "course": "C2",
+      "section": "Efflusso ideale istantaneo",
+      "order": 10201,
+      "title": "Un battente di cinque metri",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "torricelli-speed",
+      "difficulty": 1,
+      "prompt": "Un grande serbatoio rigido contiene un liquido omogeneo incomprimibile e alimenta un piccolo foro a battente verticale H>0 sotto la superficie. Si considera una fotografia istantanea quasi stazionaria: il livello varia lentamente e la velocità della superficie è trascurata nel modello rispetto a quella di efflusso v>0. Lungo la linea di corrente fino al getto non ci sono macchine né perdite. Superficie e getto hanno la stessa pressione assoluta esterna, compatibile con il liquido nello stato considerato. La gravità g>0 è uniforme. v è il modulo della velocità all’uscita, non una componente negativa. Con g=10 m/s² e H=5 m, quanto vale v in m/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 10,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Bernoulli fra la superficie quasi ferma e il getto elimina la pressione comune: l’energia di quota per massa gH diventa v²/2. Il prodotto2gH vale100 m²/s² e la radice positiva è10 m/s. Non occorre la densità perché compare in entrambi i contributi e si cancella."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/7c1cd324ef0215bf8bbda7ecdb4cf55b262a1660b575c499383f481d4c1d8138",
+          "text": "Fotografia del serbatoio:superficie5m sopra il foro,200px a40px/m. Il foro è piccolo e la velocità superficiale è trascurata nel modello. La freccia del getto10m/s misura100px a10px/(m/s),distinta dalla scala delle quote. Pressione uguale alla superficie e nel getto."
+        },
+        {
+          "type": "formula",
+          "text": "gH=v^2/2"
+        },
+        {
+          "type": "formula",
+          "text": " v^2=2gH"
+        },
+        {
+          "type": "formula",
+          "text": " v^2=100\\,\\mathrm{m^2/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " v=10\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Cento è il quadrato della velocità,non la velocità. Venti aggiungerebbe un fattore due dopo la radice. La formula è istantanea: se il serbatoio si svuota e H diminuisce,non si mantiene automaticamente10 m/s per tutto il processo."
+        }
+      ],
+      "hints": [
+        "Calcola2gH e riconosci il quadrato perfetto100.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Cento è il quadrato della velocità,non la velocità. Venti aggiungerebbe un fattore due dopo la radice. La formula è istantanea: se il serbatoio si svuota e H diminuisce,non si mantiene automaticamente10 m/s per tutto il processo.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Battente e velocità nel limite di grande serbatoio",
+        "Radicali esatti e inverse di Torricelli",
+        "Quasi stazionarietà e pressioni coerenti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-torricelli-speed-02",
+      "kind": "question",
+      "course": "C2",
+      "section": "Efflusso ideale istantaneo",
+      "order": 10202,
+      "title": "La radice di un’energia per massa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "torricelli-speed",
+      "difficulty": 1,
+      "prompt": "Un grande serbatoio rigido contiene un liquido omogeneo incomprimibile e alimenta un piccolo foro a battente verticale H>0 sotto la superficie. Si considera una fotografia istantanea quasi stazionaria: il livello varia lentamente e la velocità della superficie è trascurata nel modello rispetto a quella di efflusso v>0. Lungo la linea di corrente fino al getto non ci sono macchine né perdite. Superficie e getto hanno la stessa pressione assoluta esterna, compatibile con il liquido nello stato considerato. La gravità g>0 è uniforme. v è il modulo della velocità all’uscita, non una componente negativa. Quale unità proposta esprime v?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "m/s",
+          "m²/s²",
+          "m",
+          "s",
+          "Pa"
+        ],
+        "value": "m/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "gH ha dimensioni L²/T²; la radice quadrata restituisce L/T. Il fattore due è puro e non cambia la dimensione. Il risultato è una velocità di efflusso e si può esprimere in metri al secondo."
+        },
+        {
+          "type": "formula",
+          "text": "[gH]=L^2/T^2"
+        },
+        {
+          "type": "formula",
+          "text": " [\\sqrt{2gH}]=L/T"
+        },
+        {
+          "type": "formula",
+          "text": " [v]=\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "m²/s² è l’unità di v², m una lunghezza, s un tempo e Pa una pressione. La presenza di g non impone un risultato in m/s²,dato che viene moltiplicata per H prima della radice."
+        }
+      ],
+      "hints": [
+        "Semplifica la radice delle dimensioni di gH.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "m²/s² è l’unità di v², m una lunghezza, s un tempo e Pa una pressione. La presenza di g non impone un risultato in m/s²,dato che viene moltiplicata per H prima della radice.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Battente e velocità nel limite di grande serbatoio",
+        "Radicali esatti e inverse di Torricelli",
+        "Quasi stazionarietà e pressioni coerenti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-torricelli-speed-03",
+      "kind": "question",
+      "course": "C2",
+      "section": "Efflusso ideale istantaneo",
+      "order": 10203,
+      "title": "Torricelli nel modello di grande serbatoio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "torricelli-speed",
+      "difficulty": 1,
+      "prompt": "Un grande serbatoio rigido contiene un liquido omogeneo incomprimibile e alimenta un piccolo foro a battente verticale H>0 sotto la superficie. Si considera una fotografia istantanea quasi stazionaria: il livello varia lentamente e la velocità della superficie è trascurata nel modello rispetto a quella di efflusso v>0. Lungo la linea di corrente fino al getto non ci sono macchine né perdite. Superficie e getto hanno la stessa pressione assoluta esterna, compatibile con il liquido nello stato considerato. La gravità g>0 è uniforme. v è il modulo della velocità all’uscita, non una componente negativa. Quale formula dà v?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "v = √(2gH)",
+          "v = 2gH",
+          "v = √(gH)",
+          "v = √(2g/H)",
+          "v = −√(2gH)"
+        ],
+        "value": "v = √(2gH)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Scegliamo il foro come quota zero e la superficie a quota H. Bernoulli con pressioni uguali e velocità superficiale trascurata dà gH=v²/2. Isolando il quadrato e scegliendo il modulo positivo si ottiene v=√(2gH). La piccola area del foro è la ragione per cui il moto della superficie è trascurabile."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/7c1cd324ef0215bf8bbda7ecdb4cf55b262a1660b575c499383f481d4c1d8138",
+          "text": "Energia specifica:gH50m²/s² e v²/2 uguale50m²/s² sono barre200px a4px/(m²/s²). Nel confronto separato a g10m/s²,battenti5e20m danno velocità10e20m/s:le frecce100e200px condividono10px/(m/s). Il battente quadruplica,la velocità raddoppia."
+        },
+        {
+          "type": "formula",
+          "text": "gH=v^2/2"
+        },
+        {
+          "type": "formula",
+          "text": " v^2=2gH"
+        },
+        {
+          "type": "formula",
+          "text": " v=\\sqrt{2gH}"
+        },
+        {
+          "type": "text",
+          "text": "2gH è v²;√(gH) perde il fattore due,√(2g/H) ha dimensione inversa di tempo e il segno negativo non è un modulo. Con un rapporto di aree non piccolo occorrerebbe mantenere anche l’energia cinetica alla superficie."
+        }
+      ],
+      "hints": [
+        "Isola v² prima di applicare la radice positiva.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "2gH è v²;√(gH) perde il fattore due,√(2g/H) ha dimensione inversa di tempo e il segno negativo non è un modulo. Con un rapporto di aree non piccolo occorrerebbe mantenere anche l’energia cinetica alla superficie.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Battente e velocità nel limite di grande serbatoio",
+        "Radicali esatti e inverse di Torricelli",
+        "Quasi stazionarietà e pressioni coerenti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-torricelli-speed-04",
+      "kind": "question",
+      "course": "C2",
+      "section": "Efflusso ideale istantaneo",
+      "order": 10204,
+      "title": "Gravità diversa allo stesso battente",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "torricelli-speed",
+      "difficulty": 1,
+      "prompt": "Un grande serbatoio rigido contiene un liquido omogeneo incomprimibile e alimenta un piccolo foro a battente verticale H>0 sotto la superficie. Si considera una fotografia istantanea quasi stazionaria: il livello varia lentamente e la velocità della superficie è trascurata nel modello rispetto a quella di efflusso v>0. Lungo la linea di corrente fino al getto non ci sono macchine né perdite. Superficie e getto hanno la stessa pressione assoluta esterna, compatibile con il liquido nello stato considerato. La gravità g>0 è uniforme. v è il modulo della velocità all’uscita, non una componente negativa. Fra prove g passa da10 a2 m/s²,mantenendo H=5 m. Come cambia v?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da10 a2√5 m/s",
+          "Da10 a2 m/s",
+          "Da10 a50 m/s",
+          "Resta10 m/s",
+          "Da10 a20 m/s"
+        ],
+        "value": "Da10 a2√5 m/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La velocità al quadrato passa da100 a20 m²/s². Scriviamo20=4·5 ed estraiamo soltanto il quadrato perfetto4: v_B=2√5 m/s. La radice resta esatta e non richiede una valutazione decimale."
+        },
+        {
+          "type": "formula",
+          "text": "v_A=10\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " v_B^2=20\\,\\mathrm{m^2/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " v_B=\\sqrt{4\\cdot5}\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " v_B=2\\sqrt5\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Due m/s applicherebbe a v il fattore1/5 di g,invece della sua radice. Cinquanta inverte quell’effetto;dieci ignora la gravità nuova e venti rende maggiore una velocità che deve diminuire."
+        }
+      ],
+      "hints": [
+        "Scomponi20 in4·5 senza approssimare √5.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Due m/s applicherebbe a v il fattore1/5 di g,invece della sua radice. Cinquanta inverte quell’effetto;dieci ignora la gravità nuova e venti rende maggiore una velocità che deve diminuire.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Battente e velocità nel limite di grande serbatoio",
+        "Radicali esatti e inverse di Torricelli",
+        "Quasi stazionarietà e pressioni coerenti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-torricelli-speed-05",
+      "kind": "question",
+      "course": "C2",
+      "section": "Efflusso ideale istantaneo",
+      "order": 10205,
+      "title": "Ricavare g dalla velocità e dal battente",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "torricelli-speed",
+      "difficulty": 2,
+      "prompt": "Un grande serbatoio rigido contiene un liquido omogeneo incomprimibile e alimenta un piccolo foro a battente verticale H>0 sotto la superficie. Si considera una fotografia istantanea quasi stazionaria: il livello varia lentamente e la velocità della superficie è trascurata nel modello rispetto a quella di efflusso v>0. Lungo la linea di corrente fino al getto non ci sono macchine né perdite. Superficie e getto hanno la stessa pressione assoluta esterna, compatibile con il liquido nello stato considerato. La gravità g>0 è uniforme. v è il modulo della velocità all’uscita, non una componente negativa. Si misurano v=10 m/s e H=5 m. Quanto vale g in m/s²?",
+      "answer": {
+        "type": "numeric",
+        "value": 10,
+        "unit": "m/s²",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Eleviamo al quadrato la velocità misurata e dividiamo per2H. Il numeratore100 m²/s²,diviso per10 m,dà10 m/s². La radice della legge diretta non introduce due valori di g: l’inversa è lineare in g."
+        },
+        {
+          "type": "formula",
+          "text": "g=\\frac{v^2}{2H}"
+        },
+        {
+          "type": "formula",
+          "text": " g=\\frac{100\\,\\mathrm{m^2/s^2}}{10\\,\\mathrm m}"
+        },
+        {
+          "type": "formula",
+          "text": " g=10\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "text",
+          "text": "v/(2H) avrebbe unità s⁻¹ e non accelerazione. Dimenticare il due darebbe20 m/s². Il controllo2·10·5=100 ricostruisce il quadrato osservato."
+        }
+      ],
+      "hints": [
+        "Quadra v,poi dividi per2H.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "v/(2H) avrebbe unità s⁻¹ e non accelerazione. Dimenticare il due darebbe20 m/s². Il controllo2·10·5=100 ricostruisce il quadrato osservato.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Battente e velocità nel limite di grande serbatoio",
+        "Radicali esatti e inverse di Torricelli",
+        "Quasi stazionarietà e pressioni coerenti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-torricelli-speed-06",
+      "kind": "question",
+      "course": "C2",
+      "section": "Efflusso ideale istantaneo",
+      "order": 10206,
+      "title": "Il battente necessario per la velocità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "torricelli-speed",
+      "difficulty": 2,
+      "prompt": "Un grande serbatoio rigido contiene un liquido omogeneo incomprimibile e alimenta un piccolo foro a battente verticale H>0 sotto la superficie. Si considera una fotografia istantanea quasi stazionaria: il livello varia lentamente e la velocità della superficie è trascurata nel modello rispetto a quella di efflusso v>0. Lungo la linea di corrente fino al getto non ci sono macchine né perdite. Superficie e getto hanno la stessa pressione assoluta esterna, compatibile con il liquido nello stato considerato. La gravità g>0 è uniforme. v è il modulo della velocità all’uscita, non una componente negativa. v=10 m/s e g=10 m/s². Quanto vale H in m?",
+      "answer": {
+        "type": "numeric",
+        "value": 5,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La velocità assegnata corrisponde a un’energia cinetica per massa v²/2=50 m²/s². Dividendo per g si ricava H=5 m. Il battente è la distanza verticale fra superficie e foro,non la quota assoluta del foro rispetto al suolo."
+        },
+        {
+          "type": "formula",
+          "text": "H=\\frac{v^2}{2g}"
+        },
+        {
+          "type": "formula",
+          "text": " H=\\frac{100\\,\\mathrm{m^2/s^2}}{20\\,\\mathrm{m/s^2}}"
+        },
+        {
+          "type": "formula",
+          "text": " H=5\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Dieci metri ometterebbero il fattore due. La quota del suolo non serve per il modulo iniziale di efflusso,ma servirebbe per descrivere la successiva caduta del getto."
+        }
+      ],
+      "hints": [
+        "Dividi v² per2g mantenendo le unità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dieci metri ometterebbero il fattore due. La quota del suolo non serve per il modulo iniziale di efflusso,ma servirebbe per descrivere la successiva caduta del getto.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Battente e velocità nel limite di grande serbatoio",
+        "Radicali esatti e inverse di Torricelli",
+        "Quasi stazionarietà e pressioni coerenti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-torricelli-speed-07",
+      "kind": "question",
+      "course": "C2",
+      "section": "Efflusso ideale istantaneo",
+      "order": 10207,
+      "title": "Quattro volte il battente",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "torricelli-speed",
+      "difficulty": 2,
+      "prompt": "Un grande serbatoio rigido contiene un liquido omogeneo incomprimibile e alimenta un piccolo foro a battente verticale H>0 sotto la superficie. Si considera una fotografia istantanea quasi stazionaria: il livello varia lentamente e la velocità della superficie è trascurata nel modello rispetto a quella di efflusso v>0. Lungo la linea di corrente fino al getto non ci sono macchine né perdite. Superficie e getto hanno la stessa pressione assoluta esterna, compatibile con il liquido nello stato considerato. La gravità g>0 è uniforme. v è il modulo della velocità all’uscita, non una componente negativa. A ha g=10 m/s²,H_A=5 m. B mantiene g e ha H_B=20 m. Quanto vale v_B/v_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "4",
+          "1/2",
+          "1/4",
+          "20"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il battente quadruplica e con esso v². Le velocità sono10 e20 m/s,quindi il rapporto è due. L’efflusso dipende dalla radice del battente,non dal battente al primo grado."
+        },
+        {
+          "type": "formula",
+          "text": "v_A=10\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " v_B^2=400\\,\\mathrm{m^2/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " v_B=20\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " v_B/v_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Quattro è il fattore dei quadrati;un mezzo e un quarto invertono il confronto. Venti è il numero della velocità B in m/s,non il rapporto adimensionale."
+        }
+      ],
+      "hints": [
+        "Prendi la radice del fattore4 del battente.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro è il fattore dei quadrati;un mezzo e un quarto invertono il confronto. Venti è il numero della velocità B in m/s,non il rapporto adimensionale.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Battente e velocità nel limite di grande serbatoio",
+        "Radicali esatti e inverse di Torricelli",
+        "Quasi stazionarietà e pressioni coerenti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-torricelli-speed-08",
+      "kind": "question",
+      "course": "C2",
+      "section": "Efflusso ideale istantaneo",
+      "order": 10208,
+      "title": "Una velocità proposta doppia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "torricelli-speed",
+      "difficulty": 2,
+      "prompt": "Un grande serbatoio rigido contiene un liquido omogeneo incomprimibile e alimenta un piccolo foro a battente verticale H>0 sotto la superficie. Si considera una fotografia istantanea quasi stazionaria: il livello varia lentamente e la velocità della superficie è trascurata nel modello rispetto a quella di efflusso v>0. Lungo la linea di corrente fino al getto non ci sono macchine né perdite. Superficie e getto hanno la stessa pressione assoluta esterna, compatibile con il liquido nello stato considerato. La gravità g>0 è uniforme. v è il modulo della velocità all’uscita, non una componente negativa. Per g=10 m/s²,H=5 m si propone v=20 m/s. Quanto vale proposta meno corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "10 m/s",
+          "−10 m/s",
+          "20 m/s",
+          "0 m/s",
+          "5 m/s"
+        ],
+        "value": "10 m/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La velocità corretta è10 m/s e lo scarto è20−10=+10 m/s. La proposta avrebbe energia cinetica per massa200 m²/s²,quattro volte i50 m²/s² forniti dal battente. Il controllo energetico individua l’eccesso prima della sottrazione."
+        },
+        {
+          "type": "formula",
+          "text": "v=10\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " e=(20-10)\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " e=10\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "−10 scambia l’ordine;venti copia la proposta,zero la conferma e cinque dimezza la differenza. La pressione comune non fornisce un lavoro differenziale extra da usare per giustificare la proposta."
+        }
+      ],
+      "hints": [
+        "Riconosci la radice corretta100→10 e forma lo scarto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−10 scambia l’ordine;venti copia la proposta,zero la conferma e cinque dimezza la differenza. La pressione comune non fornisce un lavoro differenziale extra da usare per giustificare la proposta.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Battente e velocità nel limite di grande serbatoio",
+        "Radicali esatti e inverse di Torricelli",
+        "Quasi stazionarietà e pressioni coerenti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-torricelli-speed-09",
+      "kind": "question",
+      "course": "C2",
+      "section": "Efflusso ideale istantaneo",
+      "order": 10209,
+      "title": "L’inversa simbolica per la gravità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "torricelli-speed",
+      "difficulty": 2,
+      "prompt": "Un grande serbatoio rigido contiene un liquido omogeneo incomprimibile e alimenta un piccolo foro a battente verticale H>0 sotto la superficie. Si considera una fotografia istantanea quasi stazionaria: il livello varia lentamente e la velocità della superficie è trascurata nel modello rispetto a quella di efflusso v>0. Lungo la linea di corrente fino al getto non ci sono macchine né perdite. Superficie e getto hanno la stessa pressione assoluta esterna, compatibile con il liquido nello stato considerato. La gravità g>0 è uniforme. v è il modulo della velocità all’uscita, non una componente negativa. Quale formula isola g?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "g = v²/(2H)",
+          "g = v/(2H)",
+          "g = 2v²/H",
+          "g = H/(2v²)",
+          "g = v²H/2"
+        ],
+        "value": "g = v²/(2H)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dato v>0,possiamo quadrare la legge senza perdere la sua soluzione fisica. Dividere v²=2gH per2H>0 isola g. L’unità L²/T² divisa per L è quella di un’accelerazione."
+        },
+        {
+          "type": "formula",
+          "text": "v^2=2gH"
+        },
+        {
+          "type": "formula",
+          "text": " g=\\frac{v^2}{2H}"
+        },
+        {
+          "type": "text",
+          "text": "v/(2H) non è un’accelerazione;2v²/H introduce un fattore quattro rispetto all’inversa corretta. H/(2v²) ha dimensione inversa di accelerazione e v²H/2 contiene una lunghezza in più al quadrato rispetto a g."
+        }
+      ],
+      "hints": [
+        "Quadra la legge e dividi per tutto2H.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "v/(2H) non è un’accelerazione;2v²/H introduce un fattore quattro rispetto all’inversa corretta. H/(2v²) ha dimensione inversa di accelerazione e v²H/2 contiene una lunghezza in più al quadrato rispetto a g.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Battente e velocità nel limite di grande serbatoio",
+        "Radicali esatti e inverse di Torricelli",
+        "Quasi stazionarietà e pressioni coerenti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-torricelli-speed-10",
+      "kind": "question",
+      "course": "C2",
+      "section": "Efflusso ideale istantaneo",
+      "order": 10210,
+      "title": "Scalare gravità e battente",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "torricelli-speed",
+      "difficulty": 2,
+      "prompt": "Un grande serbatoio rigido contiene un liquido omogeneo incomprimibile e alimenta un piccolo foro a battente verticale H>0 sotto la superficie. Si considera una fotografia istantanea quasi stazionaria: il livello varia lentamente e la velocità della superficie è trascurata nel modello rispetto a quella di efflusso v>0. Lungo la linea di corrente fino al getto non ci sono macchine né perdite. Superficie e getto hanno la stessa pressione assoluta esterna, compatibile con il liquido nello stato considerato. La gravità g>0 è uniforme. v è il modulo della velocità all’uscita, non una componente negativa. B ha g_B=κ₁g_A e H_B=κ₂H_A,con fattori positivi. Quanto vale v_B/v_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "√(κ₁ κ₂)",
+          "κ₁ κ₂",
+          "κ₁ / κ₂",
+          "√(κ₁ / κ₂)",
+          "κ₁ + κ₂"
+        ],
+        "value": "√(κ₁ κ₂)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I due fattori moltiplicano v²,perciò il rapporto dei quadrati èκ₁κ₂. Poiché entrambe le velocità sono moduli positivi,il rapporto richiesto è la radice positiva del prodotto. La densità e la pressione comune non entrano nella scalatura."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{v_B^2}{v_A^2}=\\kappa_1\\kappa_2"
+        },
+        {
+          "type": "formula",
+          "text": " v_B/v_A=\\sqrt{\\kappa_1\\kappa_2}"
+        },
+        {
+          "type": "text",
+          "text": "Il prodotto senza radice riguarda v²,non v. I quozienti rendono inversa la dipendenza dal battente;la somma fallisce per prove identiche. Se i fattori sono entrambi4,la velocità cresce di4 e non di16."
+        }
+      ],
+      "hints": [
+        "Forma il rapporto di v² prima della radice.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il prodotto senza radice riguarda v²,non v. I quozienti rendono inversa la dipendenza dal battente;la somma fallisce per prove identiche. Se i fattori sono entrambi4,la velocità cresce di4 e non di16.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Battente e velocità nel limite di grande serbatoio",
+        "Radicali esatti e inverse di Torricelli",
+        "Quasi stazionarietà e pressioni coerenti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-torricelli-speed-11",
+      "kind": "question",
+      "course": "C2",
+      "section": "Efflusso ideale istantaneo",
+      "order": 10211,
+      "title": "Gravità minore e battente maggiore",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "torricelli-speed",
+      "difficulty": 2,
+      "prompt": "Un grande serbatoio rigido contiene un liquido omogeneo incomprimibile e alimenta un piccolo foro a battente verticale H>0 sotto la superficie. Si considera una fotografia istantanea quasi stazionaria: il livello varia lentamente e la velocità della superficie è trascurata nel modello rispetto a quella di efflusso v>0. Lungo la linea di corrente fino al getto non ci sono macchine né perdite. Superficie e getto hanno la stessa pressione assoluta esterna, compatibile con il liquido nello stato considerato. La gravità g>0 è uniforme. v è il modulo della velocità all’uscita, non una componente negativa. A: g=10 m/s²,H=5 m. B: g=2 m/s²,H=20 m. Quanto vale v_B/v_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2√5/5",
+          "4/5",
+          "√5/5",
+          "5/(2√5)",
+          "2"
+        ],
+        "value": "2√5/5"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "B ha v_B²=80 m²/s²,quindi v_B=4√5 m/s. Il confronto con10 m/s dà2√5/5. La gravità ridotta a un quinto e il battente quadruplicato moltiplicano v² per4/5,la cui radice resta esatta."
+        },
+        {
+          "type": "formula",
+          "text": "v_B=4\\sqrt5\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " v_A=10\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " v_B/v_A=\\frac{2\\sqrt5}{5}"
+        },
+        {
+          "type": "text",
+          "text": "Quattro quinti è il rapporto dei quadrati;√5/5 segue soltanto g;due segue soltanto H. Il reciproco5/(2√5) scambia B e A. La risposta corretta è minore di uno perché il suo quadrato è4/5."
+        }
+      ],
+      "hints": [
+        "Semplifica√80 come4√5 e poi dividi per10.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro quinti è il rapporto dei quadrati;√5/5 segue soltanto g;due segue soltanto H. Il reciproco5/(2√5) scambia B e A. La risposta corretta è minore di uno perché il suo quadrato è4/5.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Battente e velocità nel limite di grande serbatoio",
+        "Radicali esatti e inverse di Torricelli",
+        "Quasi stazionarietà e pressioni coerenti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-torricelli-speed-12",
+      "kind": "question",
+      "course": "C2",
+      "section": "Efflusso ideale istantaneo",
+      "order": 10212,
+      "title": "Media esatta di due velocità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "torricelli-speed",
+      "difficulty": 2,
+      "prompt": "Un grande serbatoio rigido contiene un liquido omogeneo incomprimibile e alimenta un piccolo foro a battente verticale H>0 sotto la superficie. Si considera una fotografia istantanea quasi stazionaria: il livello varia lentamente e la velocità della superficie è trascurata nel modello rispetto a quella di efflusso v>0. Lungo la linea di corrente fino al getto non ci sono macchine né perdite. Superficie e getto hanno la stessa pressione assoluta esterna, compatibile con il liquido nello stato considerato. La gravità g>0 è uniforme. v è il modulo della velocità all’uscita, non una componente negativa. Le prove g=10 m/s²,H=5 m e g=2 m/s²,H=20 m hanno uguale peso statistico. Qual è la media aritmetica delle due v?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "5+2√5 m/s",
+          "10+4√5 m/s",
+          "(5+2√5)/2 m/s",
+          "5√6 m/s",
+          "2√5/5 m/s"
+        ],
+        "value": "5+2√5 m/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le velocità sono10 e4√5 m/s. La semisomma si semplifica a5+2√5 m/s. Manteniamo il radicale esatto: non occorre calcolare√5 per sommare i due termini con coefficienti interi."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline v=\\frac{10+4\\sqrt5}{2}\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline v=(5+2\\sqrt5)\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "10+4√5 è la somma e la divisione aggiuntiva per due dimezza ancora. Gli ingressi medi g6 m/s²,H25/2 m darebbero√150=5√6 m/s,non la media richiesta. Quest’ultima è minore di10 poiché√5<5/2,mentre5√6>10: la distinzione si prova senza decimali."
+        }
+      ],
+      "hints": [
+        "Somma10e4√5 e dividi ciascun termine per due.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "10+4√5 è la somma e la divisione aggiuntiva per due dimezza ancora. Gli ingressi medi g6 m/s²,H25/2 m darebbero√150=5√6 m/s,non la media richiesta. Quest’ultima è minore di10 poiché√5<5/2,mentre5√6>10: la distinzione si prova senza decimali.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Battente e velocità nel limite di grande serbatoio",
+        "Radicali esatti e inverse di Torricelli",
+        "Quasi stazionarietà e pressioni coerenti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-torricelli-speed-13",
+      "kind": "question",
+      "course": "C2",
+      "section": "Efflusso ideale istantaneo",
+      "order": 10213,
+      "title": "Il battente per una velocità bersaglio radicale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "torricelli-speed",
+      "difficulty": 3,
+      "prompt": "Un grande serbatoio rigido contiene un liquido omogeneo incomprimibile e alimenta un piccolo foro a battente verticale H>0 sotto la superficie. Si considera una fotografia istantanea quasi stazionaria: il livello varia lentamente e la velocità della superficie è trascurata nel modello rispetto a quella di efflusso v>0. Lungo la linea di corrente fino al getto non ci sono macchine né perdite. Superficie e getto hanno la stessa pressione assoluta esterna, compatibile con il liquido nello stato considerato. La gravità g>0 è uniforme. v è il modulo della velocità all’uscita, non una componente negativa. A ha g_A=10 m/s²,H_A=5 m. B usa g_B=2 m/s² e deve ottenere v_B=(2√5/5)v_A. Quanto vale H_B/H_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4",
+          "2",
+          "1/4",
+          "4/5",
+          "20"
+        ],
+        "value": "4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è4√5 m/s e il suo quadrato è80 m²/s². Dividendo per2g_B=4 m/s² si ricava H_B=20 m. Il rapporto con5 m è quattro,anche se la velocità bersaglio è leggermente minore di quella iniziale."
+        },
+        {
+          "type": "formula",
+          "text": "v_B=4\\sqrt5\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " v_B^2=80\\,\\mathrm{m^2/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " H_B=20\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " H_B/H_A=4"
+        },
+        {
+          "type": "text",
+          "text": "Due segue la radice del battente anziché il rapporto di battenti;un quarto inverte gli stati.4/5 è il rapporto di v² e venti il battente B come numero in metri. Il minor g richiede un battente maggiore per il bersaglio assegnato."
+        }
+      ],
+      "hints": [
+        "Quadra il bersaglio prima di usareH=v²/(2g_B).",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due segue la radice del battente anziché il rapporto di battenti;un quarto inverte gli stati.4/5 è il rapporto di v² e venti il battente B come numero in metri. Il minor g richiede un battente maggiore per il bersaglio assegnato.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Battente e velocità nel limite di grande serbatoio",
+        "Radicali esatti e inverse di Torricelli",
+        "Quasi stazionarietà e pressioni coerenti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-torricelli-speed-14",
+      "kind": "question",
+      "course": "C2",
+      "section": "Efflusso ideale istantaneo",
+      "order": 10214,
+      "title": "Tarare una velocità senza approssimare",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "torricelli-speed",
+      "difficulty": 3,
+      "prompt": "Un grande serbatoio rigido contiene un liquido omogeneo incomprimibile e alimenta un piccolo foro a battente verticale H>0 sotto la superficie. Si considera una fotografia istantanea quasi stazionaria: il livello varia lentamente e la velocità della superficie è trascurata nel modello rispetto a quella di efflusso v>0. Lungo la linea di corrente fino al getto non ci sono macchine né perdite. Superficie e getto hanno la stessa pressione assoluta esterna, compatibile con il liquido nello stato considerato. La gravità g>0 è uniforme. v è il modulo della velocità all’uscita, non una componente negativa. Un display continuo adimensionale segue S=qv,q>0,senza offset. A con g=10 m/s²,H=5 m dà S=30. B con H=20 m dà S=12√5. Quanto vale g_B in m/s²?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m/s²",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha velocità10 m/s e fissa q=3 s/m. La lettura12√5 rappresenta4√5 m/s. Il suo quadrato80 m²/s²,diviso per2H=40 m,restituisce g_B=2 m/s²: il radicale scompare esattamente."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{s/m}"
+        },
+        {
+          "type": "formula",
+          "text": " v_B=4\\sqrt5\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " v_B^2=80\\,\\mathrm{m^2/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " g_B=2\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "text",
+          "text": "Trattare12√5 come velocità fisica moltiplicherebbe v² per9 e darebbe g18 m/s². Il guadagno va eliminato prima del quadrato,non dopo averlo perso nel dato."
+        }
+      ],
+      "hints": [
+        "Decodifica v e poi quadra il radicale esatto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Trattare12√5 come velocità fisica moltiplicherebbe v² per9 e darebbe g18 m/s². Il guadagno va eliminato prima del quadrato,non dopo averlo perso nel dato.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Battente e velocità nel limite di grande serbatoio",
+        "Radicali esatti e inverse di Torricelli",
+        "Quasi stazionarietà e pressioni coerenti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-torricelli-speed-15",
+      "kind": "question",
+      "course": "C2",
+      "section": "Efflusso ideale istantaneo",
+      "order": 10215,
+      "title": "Due riferimenti radicali e un offset",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "torricelli-speed",
+      "difficulty": 3,
+      "prompt": "Un grande serbatoio rigido contiene un liquido omogeneo incomprimibile e alimenta un piccolo foro a battente verticale H>0 sotto la superficie. Si considera una fotografia istantanea quasi stazionaria: il livello varia lentamente e la velocità della superficie è trascurata nel modello rispetto a quella di efflusso v>0. Lungo la linea di corrente fino al getto non ci sono macchine né perdite. Superficie e getto hanno la stessa pressione assoluta esterna, compatibile con il liquido nello stato considerato. La gravità g>0 è uniforme. v è il modulo della velocità all’uscita, non una componente negativa. Un display continuo adimensionale segue S=qv+z. A:g=10 m/s²,H=5 m,S=21. B:g=2 m/s²,H=20 m,S=1+8√5. C:H=5 m,S=1+4√5. Quanto vale g_C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2 m/s²",
+          "10 m/s²",
+          "4 m/s²",
+          "1 m/s²",
+          "8 m/s²"
+        ],
+        "value": "2 m/s²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le velocità di riferimento sono10 e4√5 m/s. La differenza delle letture è2(4√5−10),quindi q=2 s/m e z=1. C dàv_C=2√5 m/s e v_C²=20 m²/s². Con H5 m segue g_C=2 m/s²."
+        },
+        {
+          "type": "formula",
+          "text": "q=\\frac{2(4\\sqrt5-10)}{4\\sqrt5-10}\\,\\mathrm{s/m}"
+        },
+        {
+          "type": "formula",
+          "text": " q=2\\,\\mathrm{s/m}"
+        },
+        {
+          "type": "formula",
+          "text": " z=1"
+        },
+        {
+          "type": "formula",
+          "text": " v_C=2\\sqrt5\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " g_C=2\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "text",
+          "text": "Il fattore comune non è nullo:4√5=10 richiederebbe80=100 dopo il quadrato. Le alternative g10,4,1,8 m/s² darebbero letture21,1+4√10,1+2√10,1+8√5,non quella di C. Sottrarre l’offset prima del rapporto conserva il significato della taratura."
+        }
+      ],
+      "hints": [
+        "Raccogli2 nella differenza delle letture e cancella solo un fattore non nullo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il fattore comune non è nullo:4√5=10 richiederebbe80=100 dopo il quadrato. Le alternative g10,4,1,8 m/s² darebbero letture21,1+4√10,1+2√10,1+8√5,non quella di C. Sottrarre l’offset prima del rapporto conserva il significato della taratura.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Battente e velocità nel limite di grande serbatoio",
+        "Radicali esatti e inverse di Torricelli",
+        "Quasi stazionarietà e pressioni coerenti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-torricelli-speed-16",
+      "kind": "question",
+      "course": "C2",
+      "section": "Efflusso ideale istantaneo",
+      "order": 10216,
+      "title": "Una gravità proporzionale al battente fra prove",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "torricelli-speed",
+      "difficulty": 3,
+      "prompt": "Un grande serbatoio rigido contiene un liquido omogeneo incomprimibile e alimenta un piccolo foro a battente verticale H>0 sotto la superficie. Si considera una fotografia istantanea quasi stazionaria: il livello varia lentamente e la velocità della superficie è trascurata nel modello rispetto a quella di efflusso v>0. Lungo la linea di corrente fino al getto non ci sono macchine né perdite. Superficie e getto hanno la stessa pressione assoluta esterna, compatibile con il liquido nello stato considerato. La gravità g>0 è uniforme. v è il modulo della velocità all’uscita, non una componente negativa. Fra apparati si impone g=cH,con c=2 s⁻². Si misura v=10 m/s. Quanto vale H>0 in m?",
+      "answer": {
+        "type": "numeric",
+        "value": 5,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituiamo il vincolo prima di estrarre la radice: v²=2cH². Dividendo100 m²/s² per4 s⁻² troviamo H²=25 m². I due segni algebrici danno±5 m,ma solo quello positivo conserva anche g=cH>0."
+        },
+        {
+          "type": "formula",
+          "text": "v^2=2cH^2"
+        },
+        {
+          "type": "formula",
+          "text": " H^2=25\\,\\mathrm{m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " H_+=5\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " H_-=-5\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Venticinque è H²,non H. La scelta negativa implica anche gravità orientata fuori dal modello g>0. H5 m dàg10 m/s² e ricostruisce v10 m/s. Il vincolo collega configurazioni,non una gravità che varia durante lo svuotamento."
+        }
+      ],
+      "hints": [
+        "Trova H² usando le unità di c,poi seleziona il ramo fisico.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Venticinque è H²,non H. La scelta negativa implica anche gravità orientata fuori dal modello g>0. H5 m dàg10 m/s² e ricostruisce v10 m/s. Il vincolo collega configurazioni,non una gravità che varia durante lo svuotamento.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Battente e velocità nel limite di grande serbatoio",
+        "Radicali esatti e inverse di Torricelli",
+        "Quasi stazionarietà e pressioni coerenti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "7c1cd324ef0215bf8bbda7ecdb4cf55b262a1660b575c499383f481d4c1d8138",
+      "name": "torricelli-speed-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTU1MCIgdmlld0JveD0iMCAwIDY0MCAxNTUwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+SWwgYmF0dGVudGUgZm9ybmlzY2UgbGEgdmVsb2NpdMOgIGlzdGFudGFuZWEgZGVsIGdldHRvPC90aXRsZT48ZGVzYyBpZD0iZGVzYyI+U2VyYmF0b2lvIGdyYW5kZSBjb24gc3VwZXJmaWNpZSBjaW5xdWUgbWV0cmkgc29wcmEgaWwgZm9ybywgcXVhcmFudGEgcGl4ZWwgcGVyIG1ldHJvLiBGcmVjY2lhIGRlbCBnZXR0byBjZW50byBwaXhlbCBhIGRpZWNpIHBpeGVsIHBlciBtZXRybyBhbCBzZWNvbmRvLiBQcmVzc2lvbmUgdWd1YWxlIG5laSBkdWUgcHVudGkuIEJhcnJlIGRpIGVuZXJnaWEgc3BlY2lmaWNhIHVndWFsaSwgY2lucXVhbnRhIG1ldHJpIHF1YWRyaSBhbCBzZWNvbmRvIHF1YWRybywgZHVlY2VudG8gcGl4ZWwgYSBxdWF0dHJvIHBpeGVsIHBlciB1bml0w6AuIENvbmZyb250byBzZXBhcmF0byB0cmEgYmF0dGVudGkgY2lucXVlIGUgdmVudGkgbWV0cmkgYSBncmF2aXTDoCBkaWVjaTogdmVsb2NpdMOgIGRpZWNpIGUgdmVudGkgbWV0cmkgYWwgc2Vjb25kby48L2Rlc2M+PGRlZnM+PG1hcmtlciBpZD0iYSIgdmlld0JveD0iMCAwIDEwIDEwIiByZWZYPSI5IiByZWZZPSI1IiBtYXJrZXJXaWR0aD0iMTAiIG1hcmtlckhlaWdodD0iMTAiIG1hcmtlclVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgb3JpZW50PSJhdXRvIj48cGF0aCBkPSJNMCAwTDEwIDVMMCAxMFoiIGZpbGw9ImNvbnRleHQtc3Ryb2tlIi8+PC9tYXJrZXI+PC9kZWZzPjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMTU1MCIgcng9IjIwIiBmaWxsPSIjZmFmOGYxIi8+PGcgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxOTNhNDkiPjx0ZXh0IHg9IjI4IiB5PSI0MiIgZm9udC1zaXplPSIyNSI+MSDCtyBVbmEgZm90b2dyYWZpYSBxdWFzaSBzdGF6aW9uYXJpYTwvdGV4dD48dGV4dCB4PSIyOCIgeT0iOTAiPmcgPSAxMCBtL3PCsi4gUHJlc3Npb25pIHVndWFsaSBzdXBlcmZpY2llL2dldHRvLjwvdGV4dD48cmVjdCB4PSIxMDAiIHk9IjE4MCIgd2lkdGg9IjIyMCIgaGVpZ2h0PSIyNDAiIGZpbGw9IiNiYWQ5ZTUiLz48cGF0aCBkPSJNMTAwIDE0MFY0MjBIMzIwVjM5ME0zMjAgMTQwVjM3MCIgc3Ryb2tlPSIjNTk3ZjgzIiBzdHJva2Utd2lkdGg9IjMiIGZpbGw9Im5vbmUiLz48cGF0aCBkPSJNODUgMTgwSDMzNSIgc3Ryb2tlPSIjNTk3ZjgzIiBzdHJva2UtZGFzaGFycmF5PSI1IDUiLz48cGF0aCBkPSJNMzIwIDM4MEg0MjAiIHN0cm9rZT0iIzA4ODY5YiIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI2EpIi8+PHBhdGggZD0iTTQ3MCAxODBWMzgwIiBzdHJva2U9IiNiNDYxNDUiLz48dGV4dCB4PSI0OTUiIHk9IjI4NSI+SCA9IDVtPC90ZXh0Pjx0ZXh0IHg9IjM1MCIgeT0iNDQ1Ij52ID0gMTBtL3M8L3RleHQ+PHRleHQgeD0iMjgiIHk9IjUwNSI+UXVvdGU0MHB4L207IGZyZWNjaWExMHB4LyhtL3MpLjwvdGV4dD48dGV4dCB4PSIyOCIgeT0iNTUwIj5TZXJiYXRvaW8gZ3JhbmRlOiB2ZWxvY2l0w6Agc3VwZXJmaWNpYWxlIHRyYXNjdXJhdGEuPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSI2MzAiIGZvbnQtc2l6ZT0iMjUiPjIgwrcgUXVvdGEgZSBjb250cmlidXRvIGNpbmV0aWNvIHNpIGVxdWl2YWxnb25vPC90ZXh0PjxyZWN0IHg9IjIzMCIgeT0iNzAwIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjM4IiBmaWxsPSIjZTdjOTk0Ii8+PHJlY3QgeD0iMjMwIiB5PSI3OTUiIHdpZHRoPSIyMDAiIGhlaWdodD0iMzgiIGZpbGw9IiNiYWQ5ZTUiLz48dGV4dCB4PSIyOCIgeT0iNzI4Ij5nSCA9IDUwbcKyL3PCsjwvdGV4dD48dGV4dCB4PSIyOCIgeT0iODIzIj52wrIvMiA9IDUwbcKyL3PCsjwvdGV4dD48dGV4dCB4PSIyOCIgeT0iODk1Ij5FbmVyZ2lhIHBlciBtYXNzYTo0cHgvKG3Csi9zwrIpLCBiYXJyZTIwMHB4LjwvdGV4dD48dGV4dCB4PSIyOCIgeT0iOTQwIj52wrIgPSAxMDBtwrIvc8KyLCBxdWluZGkgdiA9IDEwbS9zLjwvdGV4dD48dGV4dCB4PSIyOCIgeT0iMTAyMCIgZm9udC1zaXplPSIyNSI+MyDCtyBBIGcgdWd1YWxlLCBxdWF0dHJvIHZvbHRlIGlsIGJhdHRlbnRlPC90ZXh0PjxwYXRoIGQ9Ik0xNTAgMTE0MEgyNTAiIHN0cm9rZT0iIzA4ODY5YiIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI2EpIi8+PHBhdGggZD0iTTE1MCAxMjUwSDM1MCIgc3Ryb2tlPSIjYjQ2MTQ1IiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjYSkiLz48dGV4dCB4PSIyOCIgeT0iMTEwMCI+SCA9IDVtPC90ZXh0Pjx0ZXh0IHg9IjMxMCIgeT0iMTE0OCI+diA9IDEwbS9zPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSIxMjEwIj5IID0gMjBtPC90ZXh0Pjx0ZXh0IHg9IjM5MCIgeT0iMTI1OCI+diA9IDIwbS9zPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSIxMzQwIj5WZWxvY2l0w6AxMHB4LyhtL3MpOjEwMGUyMDBweC48L3RleHQ+PHRleHQgeD0iMjgiIHk9IjEzOTAiPklsIHJhcHBvcnRvIGRlaSBiYXR0ZW50aSDDqDQsIHF1ZWxsbyBkaSB2IMOoMi48L3RleHQ+PHRleHQgeD0iMjgiIHk9IjE0NDAiPkNvbmZyb250byBmcmEgaXN0YW50aSBvIHNlcmJhdG9pIGRpc3RpbnRpLjwvdGV4dD48dGV4dCB4PSIyOCIgeT0iMTQ5MCI+TGEgdmVsb2NpdMOgIHNlZ3VlIGlsIGJhdHRlbnRlIGlzdGFudGFuZW8uPC90ZXh0PjwvZz48L3N2Zz4K"
+    }
+  ]
+}

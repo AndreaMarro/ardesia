@@ -1,0 +1,1158 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u3-bernoulli-height-speed-01",
+      "kind": "question",
+      "course": "C2",
+      "section": "Energia di una corrente ideale",
+      "order": 10001,
+      "title": "Pressione per salire e per accelerare",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "bernoulli-height-speed",
+      "difficulty": 1,
+      "prompt": "Acqua omogenea incomprimibile di densità ρ=1000 kg/m³ scorre nel modello ideale stazionario da un grande serbatoio a un getto posto a quota h>0 sopra la superficie. Lungo la linea di corrente considerata non ci sono macchine né perdite; si trascura la velocità alla superficie rispetto alla velocità v>0 del getto. La gravità è uniforme, g=10 m/s². Il getto ha pressione assoluta p_j=100 kPa; il serbatoio è pressurizzato e l’acqua resta liquida lungo il percorso. Cerchiamo Δp=p_s−p_j, usando lo stesso riferimento del vuoto per entrambe le pressioni. Con h=1 m e v=2 m/s, quanto vale Δp in kPa?",
+      "answer": {
+        "type": "numeric",
+        "value": 12,
+        "unit": "kPa",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La pressione nel serbatoio fornisce sia l’aumento di energia potenziale sia l’energia cinetica del getto. Bernoulli fra superficie e uscita dà Δp=ρgh+ρv²/2. Il primo contributo vale 10 kPa, il secondo 2 kPa: la differenza necessaria è 12 kPa e la pressione assoluta del serbatoio è 112 kPa."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/3ec02067ea57fccdbabaf664c4dd946e5c87649c5fced6a872eff62786e2a855",
+          "text": "Uscita1m sopra la superficie del serbatoio:100px alla scala100px/m. La freccia del getto è di60px alla scala30px/(m/s), per v=2 m/s. p_s112kPa e p_j100kPa sono assolute, la differenza12kPa paga10kPa di quota e2kPa cinetici. Le barre200e40px condividono20px/kPa e sommano240px. Il modello trascura la velocità superficiale e le perdite."
+        },
+        {
+          "type": "formula",
+          "text": "p_s=p_j+\\rho gh+\\rho v^2/2"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho gh=10\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho v^2/2=2\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p=12\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "text",
+          "text": "Due kPa basterebbero solo per la velocità alla stessa quota; dieci per la sola quota senza velocità di uscita. Ventiquattro raddoppia entrambi senza motivo. La differenza positiva non è la pressione assoluta p_s: il riferimento del getto resta 100 kPa."
+        }
+      ],
+      "hints": [
+        "Calcola separatamente il termine di quota e quello cinetico.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due kPa basterebbero solo per la velocità alla stessa quota; dieci per la sola quota senza velocità di uscita. Ventiquattro raddoppia entrambi senza motivo. La differenza positiva non è la pressione assoluta p_s: il riferimento del getto resta 100 kPa.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Bernoulli fra quote e pressioni coerenti",
+        "Energia cinetica e quota distinte",
+        "Inverse e radici nel dominio fisico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-bernoulli-height-speed-02",
+      "kind": "question",
+      "course": "C2",
+      "section": "Energia di una corrente ideale",
+      "order": 10002,
+      "title": "Due energie per volume, una pressione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "bernoulli-height-speed",
+      "difficulty": 1,
+      "prompt": "Acqua omogenea incomprimibile di densità ρ=1000 kg/m³ scorre nel modello ideale stazionario da un grande serbatoio a un getto posto a quota h>0 sopra la superficie. Lungo la linea di corrente considerata non ci sono macchine né perdite; si trascura la velocità alla superficie rispetto alla velocità v>0 del getto. La gravità è uniforme, g=10 m/s². Il getto ha pressione assoluta p_j=100 kPa; il serbatoio è pressurizzato e l’acqua resta liquida lungo il percorso. Cerchiamo Δp=p_s−p_j, usando lo stesso riferimento del vuoto per entrambe le pressioni. Quale unità proposta esprime Δp?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "kPa",
+          "m/s",
+          "m²/s²",
+          "N",
+          "kg/m³"
+        ],
+        "value": "kPa"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "In Bernoulli ogni termine è un’energia per unità di volume. ρgh e ρv² hanno unità kg/(m·s²), uguali a N/m² e dunque a Pa. Il prefisso kilo cambia soltanto la scala, con 1 kPa=1000 Pa."
+        },
+        {
+          "type": "formula",
+          "text": "[\\rho gh]=M/(LT^2)"
+        },
+        {
+          "type": "formula",
+          "text": " [\\rho v^2]=M/(LT^2)"
+        },
+        {
+          "type": "formula",
+          "text": " 1\\,\\mathrm{Pa}=1\\,\\mathrm{N/m^2}"
+        },
+        {
+          "type": "text",
+          "text": "m/s è velocità, m²/s² energia per massa, N forza e kg/m³ densità. Un termine gh da solo non è una pressione: va moltiplicato per la densità."
+        }
+      ],
+      "hints": [
+        "Controlla la densità che trasforma energia per massa in energia per volume.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "m/s è velocità, m²/s² energia per massa, N forza e kg/m³ densità. Un termine gh da solo non è una pressione: va moltiplicato per la densità.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Bernoulli fra quote e pressioni coerenti",
+        "Energia cinetica e quota distinte",
+        "Inverse e radici nel dominio fisico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-bernoulli-height-speed-03",
+      "kind": "question",
+      "course": "C2",
+      "section": "Energia di una corrente ideale",
+      "order": 10003,
+      "title": "Il segno dell’energia di quota",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "bernoulli-height-speed",
+      "difficulty": 1,
+      "prompt": "Acqua omogenea incomprimibile di densità ρ=1000 kg/m³ scorre nel modello ideale stazionario da un grande serbatoio a un getto posto a quota h>0 sopra la superficie. Lungo la linea di corrente considerata non ci sono macchine né perdite; si trascura la velocità alla superficie rispetto alla velocità v>0 del getto. La gravità è uniforme, g=10 m/s². Il getto ha pressione assoluta p_j=100 kPa; il serbatoio è pressurizzato e l’acqua resta liquida lungo il percorso. Cerchiamo Δp=p_s−p_j, usando lo stesso riferimento del vuoto per entrambe le pressioni. Quale relazione dà Δp?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Δp = ρgh + ρv²/2",
+          "Δp = ρgh − ρv²/2",
+          "Δp = ρv²/2 − ρgh",
+          "Δp = ρgh",
+          "Δp = ρv²/2"
+        ],
+        "value": "Δp = ρgh + ρv²/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Poniamo z_s=0 e z_j=h, con l’asse verticale verso l’alto. Il fluido deve acquistare entrambi i contributi positivi: quota e velocità. Poiché alla superficie il termine cinetico è trascurato, la diminuzione della pressione statica fornisce la loro somma."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/3ec02067ea57fccdbabaf664c4dd946e5c87649c5fced6a872eff62786e2a855",
+          "text": "Bernoulli conserva energia per volume lungo la stessa linea di corrente. Il grafico finale a quota h1m è tracciato contro v², non contro v: Δp=10kPa+ρv²/2. Intercetta10kPa e punti(v²4,Δp12) e(v²16,Δp18), con scale dichiarate."
+        },
+        {
+          "type": "formula",
+          "text": "p_s+\\rho g\\,0=p_j+\\rho gh+\\rho v^2/2"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p=\\rho gh+\\rho v^2/2"
+        },
+        {
+          "type": "text",
+          "text": "Sottrarre il termine cinetico tratterebbe l’accelerazione come una fonte di energia; sottrarre la quota descriverebbe un’uscita più bassa, diversa da quella assegnata. Omettere un termine trascura una richiesta energetica esplicita."
+        }
+      ],
+      "hints": [
+        "Scrivi Bernoulli nei due punti con z_j−z_s=h>0.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Sottrarre il termine cinetico tratterebbe l’accelerazione come una fonte di energia; sottrarre la quota descriverebbe un’uscita più bassa, diversa da quella assegnata. Omettere un termine trascura una richiesta energetica esplicita.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Bernoulli fra quote e pressioni coerenti",
+        "Energia cinetica e quota distinte",
+        "Inverse e radici nel dominio fisico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-bernoulli-height-speed-04",
+      "kind": "question",
+      "course": "C2",
+      "section": "Energia di una corrente ideale",
+      "order": 10004,
+      "title": "Un metro in più alla stessa velocità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "bernoulli-height-speed",
+      "difficulty": 1,
+      "prompt": "Acqua omogenea incomprimibile di densità ρ=1000 kg/m³ scorre nel modello ideale stazionario da un grande serbatoio a un getto posto a quota h>0 sopra la superficie. Lungo la linea di corrente considerata non ci sono macchine né perdite; si trascura la velocità alla superficie rispetto alla velocità v>0 del getto. La gravità è uniforme, g=10 m/s². Il getto ha pressione assoluta p_j=100 kPa; il serbatoio è pressurizzato e l’acqua resta liquida lungo il percorso. Cerchiamo Δp=p_s−p_j, usando lo stesso riferimento del vuoto per entrambe le pressioni. Fra prove h passa da 1 a 2 m e v resta 2 m/s. Come cambia Δp?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 12 a 22 kPa",
+          "Da 12 a 24 kPa",
+          "Da 12 a 6 kPa",
+          "Resta 12 kPa",
+          "Da 12 a 14 kPa"
+        ],
+        "value": "Da 12 a 22 kPa"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il contributo cinetico resta 2 kPa; quello di quota raddoppia da 10 a 20 kPa. La somma sale quindi da 12 a 22 kPa. Non raddoppia tutta la differenza perché soltanto una delle sue due parti è cambiata."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta p_A=(10+2)\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p_B=(20+2)\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p_B=22\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "text",
+          "text": "Ventiquattro scalerebbe anche la velocità, sei invertirebbe la dipendenza dalla quota e dodici ignorerebbe il dislivello nuovo. Quattordici aggiunge il solo valore cinetico invece dei 10 kPa richiesti dal metro in più."
+        }
+      ],
+      "hints": [
+        "Mantieni il termine cinetico e ricalcola quello di quota.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Ventiquattro scalerebbe anche la velocità, sei invertirebbe la dipendenza dalla quota e dodici ignorerebbe il dislivello nuovo. Quattordici aggiunge il solo valore cinetico invece dei 10 kPa richiesti dal metro in più.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Bernoulli fra quote e pressioni coerenti",
+        "Energia cinetica e quota distinte",
+        "Inverse e radici nel dominio fisico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-bernoulli-height-speed-05",
+      "kind": "question",
+      "course": "C2",
+      "section": "Energia di una corrente ideale",
+      "order": 10005,
+      "title": "La quota dal bilancio residuo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "bernoulli-height-speed",
+      "difficulty": 2,
+      "prompt": "Acqua omogenea incomprimibile di densità ρ=1000 kg/m³ scorre nel modello ideale stazionario da un grande serbatoio a un getto posto a quota h>0 sopra la superficie. Lungo la linea di corrente considerata non ci sono macchine né perdite; si trascura la velocità alla superficie rispetto alla velocità v>0 del getto. La gravità è uniforme, g=10 m/s². Il getto ha pressione assoluta p_j=100 kPa; il serbatoio è pressurizzato e l’acqua resta liquida lungo il percorso. Cerchiamo Δp=p_s−p_j, usando lo stesso riferimento del vuoto per entrambe le pressioni. Si misurano Δp=12 kPa e v=2 m/s. Quanto vale h in m?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Della differenza totale 12 kPa, due sono già necessari per accelerare il getto. Restano 10 kPa per la quota; dividendo per ρg=10 kPa/m si ottiene 1 m. L’inversa richiede Δp>ρv²/2, affinché il getto sia davvero più alto della superficie."
+        },
+        {
+          "type": "formula",
+          "text": "h=\\frac{\\Delta p-\\rho v^2/2}{\\rho g}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p-\\rho v^2/2=10\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " h=\\frac{10\\,\\mathrm{kPa}}{10\\,\\mathrm{kPa/m}}"
+        },
+        {
+          "type": "formula",
+          "text": " h=1\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Usare Δp/(ρg) senza sottrarre il contributo cinetico darebbe 6/5 m. Aggiungerlo invece di sottrarlo darebbe 7/5 m. Il controllo 10+2=12 kPa ricostruisce il dato assegnato."
+        }
+      ],
+      "hints": [
+        "Sottrai prima la pressione dinamica disponibile alla velocità nota.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Usare Δp/(ρg) senza sottrarre il contributo cinetico darebbe 6/5 m. Aggiungerlo invece di sottrarlo darebbe 7/5 m. Il controllo 10+2=12 kPa ricostruisce il dato assegnato.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Bernoulli fra quote e pressioni coerenti",
+        "Energia cinetica e quota distinte",
+        "Inverse e radici nel dominio fisico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-bernoulli-height-speed-06",
+      "kind": "question",
+      "course": "C2",
+      "section": "Energia di una corrente ideale",
+      "order": 10006,
+      "title": "La velocità dalla parte cinetica",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "bernoulli-height-speed",
+      "difficulty": 2,
+      "prompt": "Acqua omogenea incomprimibile di densità ρ=1000 kg/m³ scorre nel modello ideale stazionario da un grande serbatoio a un getto posto a quota h>0 sopra la superficie. Lungo la linea di corrente considerata non ci sono macchine né perdite; si trascura la velocità alla superficie rispetto alla velocità v>0 del getto. La gravità è uniforme, g=10 m/s². Il getto ha pressione assoluta p_j=100 kPa; il serbatoio è pressurizzato e l’acqua resta liquida lungo il percorso. Cerchiamo Δp=p_s−p_j, usando lo stesso riferimento del vuoto per entrambe le pressioni. Si conoscono Δp=12 kPa e h=1 m. Quanto vale v in m/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La quota usa 10 kPa e lascia 2 kPa al termine ρv²/2. Moltiplichiamo per due e dividiamo per la densità: v²=4 m²/s². I segni algebrici sono ±2 m/s; la grandezza richiesta è la velocità positiva di efflusso nel verso assegnato."
+        },
+        {
+          "type": "formula",
+          "text": "\\rho v^2/2=2\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " v^2=4\\,\\mathrm{m^2/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " v_+=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " v_-=-2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Quattro è il numero del quadrato, non della velocità. La radice negativa non rappresenta il verso del getto dichiarato; per v>0 è necessario Δp>ρgh. Il getto a 100 kPa ha pressione assegnata, non una pressione negativa ricavata dall’inversa."
+        }
+      ],
+      "hints": [
+        "Isola v², poi scegli il ramo positivo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro è il numero del quadrato, non della velocità. La radice negativa non rappresenta il verso del getto dichiarato; per v>0 è necessario Δp>ρgh. Il getto a 100 kPa ha pressione assegnata, non una pressione negativa ricavata dall’inversa.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Bernoulli fra quote e pressioni coerenti",
+        "Energia cinetica e quota distinte",
+        "Inverse e radici nel dominio fisico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-bernoulli-height-speed-07",
+      "kind": "question",
+      "course": "C2",
+      "section": "Energia di una corrente ideale",
+      "order": 10007,
+      "title": "Raddoppiare la velocità, non la quota",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "bernoulli-height-speed",
+      "difficulty": 2,
+      "prompt": "Acqua omogenea incomprimibile di densità ρ=1000 kg/m³ scorre nel modello ideale stazionario da un grande serbatoio a un getto posto a quota h>0 sopra la superficie. Lungo la linea di corrente considerata non ci sono macchine né perdite; si trascura la velocità alla superficie rispetto alla velocità v>0 del getto. La gravità è uniforme, g=10 m/s². Il getto ha pressione assoluta p_j=100 kPa; il serbatoio è pressurizzato e l’acqua resta liquida lungo il percorso. Cerchiamo Δp=p_s−p_j, usando lo stesso riferimento del vuoto per entrambe le pressioni. A ha h=1 m,v_A=2 m/s. B mantiene h ma ha v_B=4 m/s. Quanto vale Δp_B/Δp_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/2",
+          "2",
+          "4",
+          "2/3",
+          "1"
+        ],
+        "value": "3/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il contributo di quota resta 10 kPa. Quello cinetico quadruplica da 2 a 8 kPa perché dipende da v². Le differenze totali sono 12 e 18 kPa, e il rapporto è 18/12=3/2."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta p_A=12\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p_B=(10+8)\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p_B=18\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p_B/\\Delta p_A=\\frac32"
+        },
+        {
+          "type": "text",
+          "text": "Due segue la velocità come se la pressione fosse lineare in v; quattro scala tutta la differenza col termine cinetico; due terzi inverte il rapporto e uno ignora il cambiamento."
+        }
+      ],
+      "hints": [
+        "Ricalcola v² lasciando invariati i 10 kPa di quota.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due segue la velocità come se la pressione fosse lineare in v; quattro scala tutta la differenza col termine cinetico; due terzi inverte il rapporto e uno ignora il cambiamento.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Bernoulli fra quote e pressioni coerenti",
+        "Energia cinetica e quota distinte",
+        "Inverse e radici nel dominio fisico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-bernoulli-height-speed-08",
+      "kind": "question",
+      "course": "C2",
+      "section": "Energia di una corrente ideale",
+      "order": 10008,
+      "title": "Una pressione differenziale doppia per errore",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "bernoulli-height-speed",
+      "difficulty": 2,
+      "prompt": "Acqua omogenea incomprimibile di densità ρ=1000 kg/m³ scorre nel modello ideale stazionario da un grande serbatoio a un getto posto a quota h>0 sopra la superficie. Lungo la linea di corrente considerata non ci sono macchine né perdite; si trascura la velocità alla superficie rispetto alla velocità v>0 del getto. La gravità è uniforme, g=10 m/s². Il getto ha pressione assoluta p_j=100 kPa; il serbatoio è pressurizzato e l’acqua resta liquida lungo il percorso. Cerchiamo Δp=p_s−p_j, usando lo stesso riferimento del vuoto per entrambe le pressioni. Per h=1 m,v=2 m/s si propone Δp=24 kPa. Quanto vale proposta meno corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "12 kPa",
+          "−12 kPa",
+          "24 kPa",
+          "0 kPa",
+          "6 kPa"
+        ],
+        "value": "12 kPa"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La differenza corretta è 10+2=12 kPa. La proposta 24 kPa supera il necessario di 12 kPa. A quota e velocità assegnate una pressione differenziale doppia non soddisfa la stessa equazione di Bernoulli senza introdurre altri termini, qui esclusi."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta p=12\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " e=(24-12)\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " e=12\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "text",
+          "text": "−12 scambia l’ordine dello scarto, ventiquattro ripete la proposta, zero la accetta e sei divide due volte. Non si confronta qui Δp con la pressione atmosferica: si confrontano due valori della stessa differenza p_s−p_j."
+        }
+      ],
+      "hints": [
+        "Somma i due contributi e sottrai il totale dalla proposta.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−12 scambia l’ordine dello scarto, ventiquattro ripete la proposta, zero la accetta e sei divide due volte. Non si confronta qui Δp con la pressione atmosferica: si confrontano due valori della stessa differenza p_s−p_j.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Bernoulli fra quote e pressioni coerenti",
+        "Energia cinetica e quota distinte",
+        "Inverse e radici nel dominio fisico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-bernoulli-height-speed-09",
+      "kind": "question",
+      "course": "C2",
+      "section": "Energia di una corrente ideale",
+      "order": 10009,
+      "title": "L’inversa simbolica della quota",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "bernoulli-height-speed",
+      "difficulty": 2,
+      "prompt": "Acqua omogenea incomprimibile di densità ρ=1000 kg/m³ scorre nel modello ideale stazionario da un grande serbatoio a un getto posto a quota h>0 sopra la superficie. Lungo la linea di corrente considerata non ci sono macchine né perdite; si trascura la velocità alla superficie rispetto alla velocità v>0 del getto. La gravità è uniforme, g=10 m/s². Il getto ha pressione assoluta p_j=100 kPa; il serbatoio è pressurizzato e l’acqua resta liquida lungo il percorso. Cerchiamo Δp=p_s−p_j, usando lo stesso riferimento del vuoto per entrambe le pressioni. Quale formula isola h, con Δp>ρv²/2?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "h = (Δp − ρv²/2) / (ρg)",
+          "h = (Δp + ρv²/2) / (ρg)",
+          "h = Δp / (ρg)",
+          "h = (ρv²/2 − Δp) / (ρg)",
+          "h = (Δp − ρv²/2) ρg"
+        ],
+        "value": "h = (Δp − ρv²/2) / (ρg)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Togliamo dal bilancio la parte cinetica, poi dividiamo per il coefficiente positivo ρg. Il numeratore è una pressione; il denominatore una pressione per lunghezza, quindi il risultato è una quota. La disuguaglianza del prompt garantisce h>0."
+        },
+        {
+          "type": "formula",
+          "text": "\\rho gh=\\Delta p-\\rho v^2/2"
+        },
+        {
+          "type": "formula",
+          "text": " h=\\frac{\\Delta p-\\rho v^2/2}{\\rho g}"
+        },
+        {
+          "type": "text",
+          "text": "Il più conterebbe l’energia cinetica due volte; ometterla darebbe una quota eccessiva. La differenza invertita diventa negativa nel dominio; moltiplicare per ρg non produce una lunghezza."
+        }
+      ],
+      "hints": [
+        "Sottrai prima il termine cinetico, poi dividi per ρg.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il più conterebbe l’energia cinetica due volte; ometterla darebbe una quota eccessiva. La differenza invertita diventa negativa nel dominio; moltiplicare per ρg non produce una lunghezza.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Bernoulli fra quote e pressioni coerenti",
+        "Energia cinetica e quota distinte",
+        "Inverse e radici nel dominio fisico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-bernoulli-height-speed-10",
+      "kind": "question",
+      "course": "C2",
+      "section": "Energia di una corrente ideale",
+      "order": 10010,
+      "title": "Scalare un contributo lineare e uno quadratico",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "bernoulli-height-speed",
+      "difficulty": 2,
+      "prompt": "Acqua omogenea incomprimibile di densità ρ=1000 kg/m³ scorre nel modello ideale stazionario da un grande serbatoio a un getto posto a quota h>0 sopra la superficie. Lungo la linea di corrente considerata non ci sono macchine né perdite; si trascura la velocità alla superficie rispetto alla velocità v>0 del getto. La gravità è uniforme, g=10 m/s². Il getto ha pressione assoluta p_j=100 kPa; il serbatoio è pressurizzato e l’acqua resta liquida lungo il percorso. Cerchiamo Δp=p_s−p_j, usando lo stesso riferimento del vuoto per entrambe le pressioni. B ha h_B=κ₁h_A e v_B=κ₂v_A, con fattori positivi. Definiamo U=ρgh_A e W=ρv_A²/2, entrambi pressioni. Quanto vale Δp_B/Δp_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "(κ₁ U + κ₂² W) / (U + W)",
+          "κ₁ κ₂",
+          "(κ₁ U + κ₂ W) / (U + W)",
+          "(U + W) / (κ₁ U + κ₂² W)",
+          "κ₁ + κ₂²"
+        ],
+        "value": "(κ₁ U + κ₂² W) / (U + W)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La quota entra al primo grado e la velocità al secondo. Il nuovo contributo di quota è κ₁U, quello cinetico κ₂²W. Dividiamo la loro somma per U+W, mantenendo il peso relativo dei due termini iniziali."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta p_A=U+W"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p_B=\\kappa_1U+\\kappa_2^2W"
+        },
+        {
+          "type": "formula",
+          "text": " R=\\frac{\\kappa_1U+\\kappa_2^2W}{U+W}"
+        },
+        {
+          "type": "text",
+          "text": "Il prodotto dei fattori non descrive una somma. Usare κ₂ anziché κ₂² perde il quadrato della velocità; il reciproco scambia gli stati e la somma dei fattori omette le pressioni che li pesano. Il rapporto vale uno per κ₁=κ₂=1."
+        }
+      ],
+      "hints": [
+        "Scala separatamente U e W prima di formare il rapporto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il prodotto dei fattori non descrive una somma. Usare κ₂ anziché κ₂² perde il quadrato della velocità; il reciproco scambia gli stati e la somma dei fattori omette le pressioni che li pesano. Il rapporto vale uno per κ₁=κ₂=1.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Bernoulli fra quote e pressioni coerenti",
+        "Energia cinetica e quota distinte",
+        "Inverse e radici nel dominio fisico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-bernoulli-height-speed-11",
+      "kind": "question",
+      "course": "C2",
+      "section": "Energia di una corrente ideale",
+      "order": 10011,
+      "title": "Quota doppia e velocità doppia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "bernoulli-height-speed",
+      "difficulty": 2,
+      "prompt": "Acqua omogenea incomprimibile di densità ρ=1000 kg/m³ scorre nel modello ideale stazionario da un grande serbatoio a un getto posto a quota h>0 sopra la superficie. Lungo la linea di corrente considerata non ci sono macchine né perdite; si trascura la velocità alla superficie rispetto alla velocità v>0 del getto. La gravità è uniforme, g=10 m/s². Il getto ha pressione assoluta p_j=100 kPa; il serbatoio è pressurizzato e l’acqua resta liquida lungo il percorso. Cerchiamo Δp=p_s−p_j, usando lo stesso riferimento del vuoto per entrambe le pressioni. A: h=1 m,v=2 m/s. B: h=2 m,v=4 m/s. Quanto vale Δp_B/Δp_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "7/3",
+          "3/7",
+          "2",
+          "4",
+          "28"
+        ],
+        "value": "7/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A richiede 12 kPa. B richiede 20 kPa per la quota e 8 kPa per la velocità, in totale 28 kPa. Il rapporto 28/12 si semplifica a 7/3: i due termini non hanno lo stesso fattore di crescita."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta p_A=12\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p_B=28\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p_B/\\Delta p_A=\\frac73"
+        },
+        {
+          "type": "text",
+          "text": "Due segue soltanto la quota, quattro soltanto la parte cinetica e tre settimi inverte il confronto. Ventotto è il valore numerico della differenza B in kPa, non il rapporto puro."
+        }
+      ],
+      "hints": [
+        "Calcola 20+8 kPa prima di dividere per 12 kPa.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due segue soltanto la quota, quattro soltanto la parte cinetica e tre settimi inverte il confronto. Ventotto è il valore numerico della differenza B in kPa, non il rapporto puro.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Bernoulli fra quote e pressioni coerenti",
+        "Energia cinetica e quota distinte",
+        "Inverse e radici nel dominio fisico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-bernoulli-height-speed-12",
+      "kind": "question",
+      "course": "C2",
+      "section": "Energia di una corrente ideale",
+      "order": 10012,
+      "title": "Media di due differenze di pressione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "bernoulli-height-speed",
+      "difficulty": 2,
+      "prompt": "Acqua omogenea incomprimibile di densità ρ=1000 kg/m³ scorre nel modello ideale stazionario da un grande serbatoio a un getto posto a quota h>0 sopra la superficie. Lungo la linea di corrente considerata non ci sono macchine né perdite; si trascura la velocità alla superficie rispetto alla velocità v>0 del getto. La gravità è uniforme, g=10 m/s². Il getto ha pressione assoluta p_j=100 kPa; il serbatoio è pressurizzato e l’acqua resta liquida lungo il percorso. Cerchiamo Δp=p_s−p_j, usando lo stesso riferimento del vuoto per entrambe le pressioni. Le prove h=1 m,v=2 m/s e h=2 m,v=4 m/s hanno uguale peso statistico. Qual è la media aritmetica delle due Δp?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "20 kPa",
+          "40 kPa",
+          "10 kPa",
+          "39/2 kPa",
+          "16 kPa"
+        ],
+        "value": "20 kPa"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le differenze sono 12 e 28 kPa. La loro semisomma è 20 kPa. Il termine di quota si conserva mediando h, ma quello cinetico richiede la media di v², non il quadrato della media di v."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline{\\Delta p}=\\frac{12+28}{2}\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline{\\Delta p}=20\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "text",
+          "text": "Quaranta è la somma, dieci divide ancora e sedici è la differenza. h medio3/2 m e v media3 m/s darebbero15+9/2=39/2 kPa, inferiore di1/2 kPa alla media delle uscite."
+        }
+      ],
+      "hints": [
+        "Media i due risultati già ricavati.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quaranta è la somma, dieci divide ancora e sedici è la differenza. h medio3/2 m e v media3 m/s darebbero15+9/2=39/2 kPa, inferiore di1/2 kPa alla media delle uscite.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Bernoulli fra quote e pressioni coerenti",
+        "Energia cinetica e quota distinte",
+        "Inverse e radici nel dominio fisico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-bernoulli-height-speed-13",
+      "kind": "question",
+      "course": "C2",
+      "section": "Energia di una corrente ideale",
+      "order": 10013,
+      "title": "La velocità per un bersaglio di pressione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "bernoulli-height-speed",
+      "difficulty": 3,
+      "prompt": "Acqua omogenea incomprimibile di densità ρ=1000 kg/m³ scorre nel modello ideale stazionario da un grande serbatoio a un getto posto a quota h>0 sopra la superficie. Lungo la linea di corrente considerata non ci sono macchine né perdite; si trascura la velocità alla superficie rispetto alla velocità v>0 del getto. La gravità è uniforme, g=10 m/s². Il getto ha pressione assoluta p_j=100 kPa; il serbatoio è pressurizzato e l’acqua resta liquida lungo il percorso. Cerchiamo Δp=p_s−p_j, usando lo stesso riferimento del vuoto per entrambe le pressioni. A ha h_A=1 m,v_A=2 m/s. B ha h_B=2 m e deve ottenere Δp_B=(7/3)Δp_A. Quanto vale v_B/v_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/2",
+          "7/3",
+          "4",
+          "4/3"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è 28 kPa. La quota B ne richiede 20 e lascia 8 kPa per l’energia cinetica. Ne segue v_B²=16 m²/s² e quindi v_B=4 m/s nel ramo positivo; il rapporto a2 m/s è due."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta p_B=28\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho v_B^2/2=8\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " v_B=4\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " v_B/v_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Quattro confonde il fattore dei quadrati con quello delle velocità;7/3 ripete il bersaglio della pressione. Un mezzo inverte il rapporto, mentre4/3 non restituisce la pressione richiesta. La parte cinetica residua è positiva."
+        }
+      ],
+      "hints": [
+        "Sottrai dal bersaglio il costo della nuova quota e poi estrai la radice positiva.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro confonde il fattore dei quadrati con quello delle velocità;7/3 ripete il bersaglio della pressione. Un mezzo inverte il rapporto, mentre4/3 non restituisce la pressione richiesta. La parte cinetica residua è positiva.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Bernoulli fra quote e pressioni coerenti",
+        "Energia cinetica e quota distinte",
+        "Inverse e radici nel dominio fisico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-bernoulli-height-speed-14",
+      "kind": "question",
+      "course": "C2",
+      "section": "Energia di una corrente ideale",
+      "order": 10014,
+      "title": "Tarare una differenza per trovare la quota",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "bernoulli-height-speed",
+      "difficulty": 3,
+      "prompt": "Acqua omogenea incomprimibile di densità ρ=1000 kg/m³ scorre nel modello ideale stazionario da un grande serbatoio a un getto posto a quota h>0 sopra la superficie. Lungo la linea di corrente considerata non ci sono macchine né perdite; si trascura la velocità alla superficie rispetto alla velocità v>0 del getto. La gravità è uniforme, g=10 m/s². Il getto ha pressione assoluta p_j=100 kPa; il serbatoio è pressurizzato e l’acqua resta liquida lungo il percorso. Cerchiamo Δp=p_s−p_j, usando lo stesso riferimento del vuoto per entrambe le pressioni. Un display continuo adimensionale segue S=qΔp,q>0,senza offset. A con h=1 m,v=2 m/s dà S=36. B con v=4 m/s dà S=84. Quanto vale h_B in m?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La pressione differenziale di riferimento è12 kPa e determina q=3 kPa⁻¹. La lettura84 equivale a28 kPa. Detratti gli8 kPa cinetici della velocità4 m/s, restano20 kPa per la quota: h_B=2 m."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{kPa^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p_B=28\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho gh_B=20\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " h_B=2\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Usare84 come kPa darebbe38/5 m, incorporando il guadagno nella legge fisica. La ricostruzione corretta fornisce p_s=128 kPa assoluti e p_j=100 kPa, coerenti con la differenza e col verso del bilancio."
+        }
+      ],
+      "hints": [
+        "Decodifica Δp, poi togli il termine cinetico noto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Usare84 come kPa darebbe38/5 m, incorporando il guadagno nella legge fisica. La ricostruzione corretta fornisce p_s=128 kPa assoluti e p_j=100 kPa, coerenti con la differenza e col verso del bilancio.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Bernoulli fra quote e pressioni coerenti",
+        "Energia cinetica e quota distinte",
+        "Inverse e radici nel dominio fisico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-bernoulli-height-speed-15",
+      "kind": "question",
+      "course": "C2",
+      "section": "Energia di una corrente ideale",
+      "order": 10015,
+      "title": "L’offset nella pressione ricostruita",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "bernoulli-height-speed",
+      "difficulty": 3,
+      "prompt": "Acqua omogenea incomprimibile di densità ρ=1000 kg/m³ scorre nel modello ideale stazionario da un grande serbatoio a un getto posto a quota h>0 sopra la superficie. Lungo la linea di corrente considerata non ci sono macchine né perdite; si trascura la velocità alla superficie rispetto alla velocità v>0 del getto. La gravità è uniforme, g=10 m/s². Il getto ha pressione assoluta p_j=100 kPa; il serbatoio è pressurizzato e l’acqua resta liquida lungo il percorso. Cerchiamo Δp=p_s−p_j, usando lo stesso riferimento del vuoto per entrambe le pressioni. Un display continuo adimensionale segue S=qΔp+z. A:h=1 m,v=2 m/s,S=25. B:h=2 m,v=4 m/s,S=57. C:v=2 m/s,S=45. Quanto vale h_C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2 m",
+          "1 m",
+          "3/2 m",
+          "5/2 m",
+          "3 m"
+        ],
+        "value": "2 m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le pressioni di riferimento12 e28 kPa danno q=(57−25)/(28−12)=2 kPa⁻¹ e z=1. La lettura45 significa Δp_C=(45−1)/2=22 kPa. A v=2 m/s la parte cinetica vale2 kPa, quindi h_C=(22−2)/10=2 m."
+        },
+        {
+          "type": "formula",
+          "text": "q=2\\,\\mathrm{kPa^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " z=1"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p_C=22\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " h_C=2\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Con v=2 m/s, quote1,3/2,5/2,3 m produrrebbero letture25,35,55,65. Solo2 m dà45. L’offset è un numero del display, mentre il termine cinetico è una pressione: si rimuovono in passaggi distinti."
+        }
+      ],
+      "hints": [
+        "Trova q e z dai due riferimenti, poi isola la quota di C.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Con v=2 m/s, quote1,3/2,5/2,3 m produrrebbero letture25,35,55,65. Solo2 m dà45. L’offset è un numero del display, mentre il termine cinetico è una pressione: si rimuovono in passaggi distinti.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Bernoulli fra quote e pressioni coerenti",
+        "Energia cinetica e quota distinte",
+        "Inverse e radici nel dominio fisico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-bernoulli-height-speed-16",
+      "kind": "question",
+      "course": "C2",
+      "section": "Energia di una corrente ideale",
+      "order": 10016,
+      "title": "Quota vincolata alla velocità fra apparati",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "bernoulli-height-speed",
+      "difficulty": 3,
+      "prompt": "Acqua omogenea incomprimibile di densità ρ=1000 kg/m³ scorre nel modello ideale stazionario da un grande serbatoio a un getto posto a quota h>0 sopra la superficie. Lungo la linea di corrente considerata non ci sono macchine né perdite; si trascura la velocità alla superficie rispetto alla velocità v>0 del getto. La gravità è uniforme, g=10 m/s². Il getto ha pressione assoluta p_j=100 kPa; il serbatoio è pressurizzato e l’acqua resta liquida lungo il percorso. Cerchiamo Δp=p_s−p_j, usando lo stesso riferimento del vuoto per entrambe le pressioni. Fra prove si impone h=cv, con c=1/2 s. Si misura Δp=12 kPa. Quanto vale v>0 in m/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il coefficiente c ha dimensione di tempo e rende cv una quota. Poniamo x=v/(1 m/s), puro: il vincolo dà h=(x/2)m. La pressione in kPa vale5x+x²/2. Eguagliandola a12 otteniamo x²+10x−24=0, che si fattorizza senza formule approssimate."
+        },
+        {
+          "type": "formula",
+          "text": "x=\\frac{v}{1\\,\\mathrm{m/s}}"
+        },
+        {
+          "type": "formula",
+          "text": " x^2+10x-24=0"
+        },
+        {
+          "type": "formula",
+          "text": " (x-2)(x+12)=0"
+        },
+        {
+          "type": "formula",
+          "text": " x_+=2"
+        },
+        {
+          "type": "formula",
+          "text": " x_-=-12"
+        },
+        {
+          "type": "text",
+          "text": "Solo x=2 dà v=2 m/s e h=1 m, entrambi positivi. x=−12 darebbe anche quota negativa e viola il modello. La seconda radice non si elimina perché piccola o grande: si elimina per il dominio fisico. Il vincolo collega apparati, non una traiettoria h(t)."
+        }
+      ],
+      "hints": [
+        "Sostituisci h=cv prima di fattorizzare il polinomio puro.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Solo x=2 dà v=2 m/s e h=1 m, entrambi positivi. x=−12 darebbe anche quota negativa e viola il modello. La seconda radice non si elimina perché piccola o grande: si elimina per il dominio fisico. Il vincolo collega apparati, non una traiettoria h(t).",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Bernoulli fra quote e pressioni coerenti",
+        "Energia cinetica e quota distinte",
+        "Inverse e radici nel dominio fisico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "3ec02067ea57fccdbabaf664c4dd946e5c87649c5fced6a872eff62786e2a855",
+      "name": "bernoulli-height-speed-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTU4MCIgdmlld0JveD0iMCAwIDY0MCAxNTgwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+TGEgcHJlc3Npb25lIGZvcm5pc2NlIHF1b3RhIGUgdmVsb2NpdMOgIGFsIGdldHRvPC90aXRsZT48ZGVzYyBpZD0iZGVzYyI+R2V0dG8gdW4gbWV0cm8gc29wcmEgbGEgc3VwZXJmaWNpZSwgY2VudG8gcGl4ZWwgcGVyIG1ldHJvLiBQcmVzc2lvbmkgYXNzb2x1dGUgY2VudG9kb2RpY2kgZSBjZW50byBraWxvcGFzY2FsLiBEaWZmZXJlbnphIGRvZGljaSwgc29tbWEgZGkgZGllY2kga2lsb3Bhc2NhbCBwZXIgcXVvdGEgZSBkdWUgcGVyIGVuZXJnaWEgY2luZXRpY2EuIEJhcnJlIHZlbnRpIHBpeGVsIHBlciBraWxvcGFzY2FsLiBHcmFmaWNvIGZpbmFsZSBkZWxsYSBkaWZmZXJlbnphIGNvbnRybyBpbCBxdWFkcmF0byBkZWxsYSB2ZWxvY2l0w6AsIGEgcXVvdGEgdW4gbWV0cm87IGludGVyY2V0dGEgZGllY2kga2lsb3Bhc2NhbCBlIHB1bnRpIHF1YXR0cm8tZG9kaWNpLCBzZWRpY2ktZGljaW90dG8uPC9kZXNjPjxkZWZzPjxtYXJrZXIgaWQ9ImEiIHZpZXdCb3g9IjAgMCAxMCAxMCIgcmVmWD0iOSIgcmVmWT0iNSIgbWFya2VyV2lkdGg9IjEwIiBtYXJrZXJIZWlnaHQ9IjEwIiBtYXJrZXJVbml0cz0idXNlclNwYWNlT25Vc2UiIG9yaWVudD0iYXV0byI+PHBhdGggZD0iTTAgMEwxMCA1TDAgMTBaIiBmaWxsPSJjb250ZXh0LXN0cm9rZSIvPjwvbWFya2VyPjwvZGVmcz48cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjE1ODAiIHJ4PSIyMCIgZmlsbD0iI2ZhZjhmMSIvPjxnIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTkzYTQ5Ij48dGV4dCB4PSIyOCIgeT0iNDIiIGZvbnQtc2l6ZT0iMjUiPjEgwrcgSWwgZ2V0dG8gw6ggc29wcmEgbGEgc3VwZXJmaWNpZTwvdGV4dD48dGV4dCB4PSIyOCIgeT0iOTAiPkFjcXVhOiDPgSA9IDEwMDAga2cvbcKzLCBnID0gMTAgbS9zwrIuPC90ZXh0PjxyZWN0IHg9IjgwIiB5PSIzMDAiIHdpZHRoPSIxNzAiIGhlaWdodD0iMTYwIiBmaWxsPSIjYmFkOWU1Ii8+PHBhdGggZD0iTTgwIDI2MFY0NjBIMjUwVjI2MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNTk3ZjgzIiBzdHJva2Utd2lkdGg9IjMiLz48cGF0aCBkPSJNNjUgMzAwSDI4NSIgc3Ryb2tlPSIjNTk3ZjgzIiBzdHJva2UtZGFzaGFycmF5PSI1IDUiLz48cGF0aCBkPSJNMjUwIDQyMEgzNjBWMjAwSDQ3MCIgc3Ryb2tlPSIjMDg4NjliIiBzdHJva2Utd2lkdGg9IjEwIiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTQ3MCAyMDBINTMwIiBzdHJva2U9IiMwODg2OWIiIHN0cm9rZS13aWR0aD0iMyIgbWFya2VyLWVuZD0idXJsKCNhKSIvPjxwYXRoIGQ9Ik0zMDAgMzAwVjIwMCIgc3Ryb2tlPSIjYjQ2MTQ1IiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSI4MCIgeT0iMjQwIj5wX3MgPSAxMTIga1BhPC90ZXh0Pjx0ZXh0IHg9IjM4MCIgeT0iMTUwIj5wX2ogPSAxMDAga1BhPC90ZXh0Pjx0ZXh0IHg9IjM5NSIgeT0iMjcwIj5oID0gMSBtPC90ZXh0Pjx0ZXh0IHg9IjM5NSIgeT0iMzQ1Ij52ID0gMiBtL3M8L3RleHQ+PHRleHQgeD0iMjgiIHk9IjUxNSI+UXVvdGE6MTAwcHgvbTsgaCDDqCBpbCBkaXNsaXZlbGxvIHZlcnNvIGzigJlhbHRvLjwvdGV4dD48dGV4dCB4PSIyOCIgeT0iNTYwIj5MZSBwcmVzc2lvbmkgaW5kaWNhdGUgc29ubyBhc3NvbHV0ZS48L3RleHQ+PHRleHQgeD0iMjgiIHk9IjYwMCI+RnJlY2NpYTozMHB4LyhtL3MpLCBsdW5naGV6emE2MHB4LjwvdGV4dD48dGV4dCB4PSIyOCIgeT0iNjQwIiBmb250LXNpemU9IjI1Ij4yIMK3IER1ZSBjb250cmlidXRpLCB1bmEgZGlmZmVyZW56YTwvdGV4dD48cmVjdCB4PSIxMDAiIHk9IjcwMCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSI0MiIgZmlsbD0iI2U3Yzk5NCIvPjxyZWN0IHg9IjMwMCIgeT0iNzAwIiB3aWR0aD0iNDAiIGhlaWdodD0iNDIiIGZpbGw9IiNiYWQ5ZTUiLz48dGV4dCB4PSI5NSIgeT0iNzk1Ij5RdW90YToxMGtQYTwvdGV4dD48dGV4dCB4PSIzNDUiIHk9Ijc5NSI+Q2luZXRpY286MmtQYTwvdGV4dD48dGV4dCB4PSIyOCIgeT0iODU1Ij4yMHB4L2tQYToyMDAgKyA0MCA9IDI0MHB4LCB0b3RhbGUxMmtQYS48L3RleHQ+PHRleHQgeD0iMjgiIHk9IjkwNSI+zpRwID0gz4FnaCArIM+BdsKyLzIsIGNvbiBwZXJkaXRlIHRyYXNjdXJhdGUuPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSI5ODUiIGZvbnQtc2l6ZT0iMjUiPjMgwrcgQSBxdW90YSBmaXNzYSwgZ3JhZmljbyBjb250cm8gdsKyPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSIxMDMwIj54OjEwcHgvKG3Csi9zwrIpLiB5OjEwcHgva1BhLiBoID0gMW0uPC90ZXh0PjxwYXRoIGQ9Ik0xMDAgMTQ1MEg0MDAiIHN0cm9rZT0iIzE5M2E0OSIgbWFya2VyLWVuZD0idXJsKCNhKSIvPjxwYXRoIGQ9Ik0xMDAgMTQ1MFYxMTkwIiBzdHJva2U9IiMxOTNhNDkiIG1hcmtlci1lbmQ9InVybCgjYSkiLz48cGF0aCBkPSJNMTAwIDEzNTBMMjYwIDEyNzAiIHN0cm9rZT0iI2I0NjE0NSIgc3Ryb2tlLXdpZHRoPSIzIiBmaWxsPSJub25lIi8+PGNpcmNsZSBjeD0iMTAwIiBjeT0iMTM1MCIgcj0iNSIgZmlsbD0iI2I0NjE0NSIvPjxjaXJjbGUgY3g9IjE0MCIgY3k9IjEzMzAiIHI9IjUiIGZpbGw9IiNiNDYxNDUiLz48Y2lyY2xlIGN4PSIyNjAiIGN5PSIxMjcwIiByPSI1IiBmaWxsPSIjYjQ2MTQ1Ii8+PHRleHQgeD0iMzI1IiB5PSIxMjY1Ij4oMTYsMTgpPC90ZXh0Pjx0ZXh0IHg9IjMyNSIgeT0iMTMyMCI+KDQsMTIpPC90ZXh0Pjx0ZXh0IHg9IjQ1IiB5PSIxMzU4Ij4xMDwvdGV4dD48dGV4dCB4PSI3NSIgeT0iMTQ4NSI+MDwvdGV4dD48dGV4dCB4PSI0MjAiIHk9IjE0ODUiPnbCsiAobcKyL3PCsik8L3RleHQ+PHRleHQgeD0iMzIiIHk9IjExNjAiPs6UcCAoa1BhKTwvdGV4dD48dGV4dCB4PSIyOCIgeT0iMTU0MCI+TOKAmWludGVyY2V0dGEgw6ggaWwgY29zdG8gZGVsbGEgcXVvdGEsIG5vbiB6ZXJvLjwvdGV4dD48L2c+PC9zdmc+Cg=="
+    }
+  ]
+}

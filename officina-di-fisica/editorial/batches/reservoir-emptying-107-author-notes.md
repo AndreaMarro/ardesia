@@ -1,0 +1,21 @@
+# Note d’autore — reservoir-emptying-107
+
+Letti individualmente tutti i 16 originali U3-04 alla fonte 5cfbdcb055ba3ba136f97fb56e997f06e6cf3605. Ownership confermata in u3-04-v1. Rilette le lezioni reali C2-L005 e C2-L006: portata come volume per tempo e bilancio energetico. Primaria C2-L006, prerequisiti C2-L001/L005/L006, riuso C6; assembler unico course C2, unit u3, source_path U3-04.
+
+Serbatoio cilindrico a sezione A costante e foro piccolo a≪A; r=A/a > 10 costante entro la prova. Liquido omogeneo incomprimibile, stessa pressione alla superficie e fuori dal foro, g=10 m/s², nessuna macchina, perdita dissipativa o contrazione. Velocità superficiale trascurata nel modello istantaneo mentre il livello scende lentamente. Legge integrata t=r√(2H/g) fornita esplicitamente: nessuna integrazione richiesta allo studente. H è battente iniziale; t è il tempo del modello fino al livello del foro, trascurando residui e capillarità finali. Tutti i dati numerici corretti danno r=100 o 200, coerenti con l’ipotesi di foro piccolo. r è un rapporto continuo, non un conteggio intero.
+
+01: 2H/g = 1 s², radice 1 s, tempo 100 s. 02: r puro e √(H/g) con dimensione T. 03: concetto della portata variabile. Q₀=a√(2gH), V₀=AH; V₀/Q₀=(r/2)√(2H/g)=t/2. La portata iniziale massima non può essere mantenuta mentre il serbatoio si svuota; la stima costante è 50 s, metà dei 100 s integrati. Conservato l’obiettivo modello/concetto con una richiesta fisica esplicita invece della copia della legge già fornita.
+
+04: r=100→200 a H=5 m dà tempi 100→200 s. 05: r=t/√(2H/g)=100, rapporto puro e >10. 06: H=(g/2)(t/r)²=5 m, distinto dal livello medio. 07: H5→20 m a r=100 dà tempi 100→200 s e rapporto 2, non 4. 08: proposta 200 meno corretto 100 = +100 s; non si aggiunge un altro fattore due a una legge già integrata.
+
+09: r=t√[g/(2H)], unità T/T=1 e successivo controllo r>10, a≪A. 10: fattori κ₁√κ₂, mantenendo la geometria nel dominio. 11: (r=100,H5) e (r=200,H20) danno 100 e 400 s, rapporto 4. 12: media statistica (100+400)/2=250 s. Ingressi medi r150,H25/2 m darebbero 75√10 s, diverso: quadrati 56250 e 62500, senza approssimazione decimale.
+
+13: t_B=4t_A=400 s con r_B=200 richiede √(2H_B/g)=2 s, dunque H_B20 m e rapporto 4. 14: display continuo q=3 s⁻¹, S=1200 dà t=400 s; H=20 m→radice2 s, r_B=200. 15: riferimenti t=100/400 s con S=201/801 danno q=2 s⁻¹ e b=1; S=401→t=200 s, H=5 m→r=200. Alternative r=100,400,199,201 darebbero S201,801,399,403. Offset strumentale e tempo fisico sono distinti.
+
+16: r=cH, c=20 m⁻¹. Per mantenere r>10 occorre H>1/2 m. Elevando al quadrato dopo la sostituzione: t²=(2c²/g)H³. Da t100 s segue H³=125 m³, H=5 m, r=100. Cubo crescente nel dominio positivo, una sola soluzione fisica; nessun falso ramo ±. Il vincolo vale fra apparati e non cambia r durante lo svuotamento.
+
+SVG collegato a 01/03: A=1 m² e a=1/100 m², r=100. Quote verticali a 40 px/m: battente iniziale 5 m con altezza 200 px; a 50 s h=5/4 m con altezza 50 px. Larghezze e simboli del foro schematici, dichiarati tali. Frecce di efflusso 100 e 50 px a 10 px/(m/s) per 10 e 5 m/s. Portata Q(τ) da 1/10 m³/s a zero in 100 s, triangolo alla scala 3 px/s e 2000 px/(m³/s); area fisica 5 m³, uguale al volume iniziale. τ è il tempo trascorso, t il tempo totale.
+
+Curva del battente h(τ)=5 m·[1−τ/(100 s)]² per 0≤τ≤100 s. Asse temporale 3 px/s, verticale 50 px/m; Bezier P₀=(110,1520), P₁=(260,1770), P₂=(410,1770), con punto medio (260,1707.5) per h=5/4 m. La curva è esattamente quadratica e termina a zero, senza prosecuzione a battente negativo. Il denominatore 100 s mantiene le dimensioni esplicite. XML e rendering completo letti; etichetta dell’asse Q spostata sopra la linea per leggibilità.
+
+Due assembly finali confrontati e binding riprodotti identici. Import canonico ROOT in SQLite temporaneo: 16 DRAFT, poi 0 nuove e 16 invariate; 991 pubblicati e storico conservati, SHA256 pubblicati 99c8d805004c82ba63a19f7ad8c0825666ca813d4f15471b8df4db5657b7c9ee. Pacchetto SHA256 23967257a87eea1476ab7cff2383923ac34e324ebc1dc0c2ba8ae9a8e5a4f46a. Anteprima tecnica finale del worktree autore: 48 casi a 1440/768/320 px senza failure. Il collaudo con protocollo finale dell’integratore resta una prova tecnica separata. Nessun verdetto scientifico proprio: independentReview NOT_RUN, human NOT_RUN, publication NONE.

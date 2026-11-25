@@ -1,0 +1,1126 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u3-bernoulli-horizontal-01",
+      "kind": "question",
+      "course": "C2",
+      "section": "Bernoulli su una linea orizzontale",
+      "order": 9921,
+      "title": "Dall’accelerazione al calo di pressione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "bernoulli-horizontal",
+      "difficulty": 1,
+      "prompt": "Un liquido ideale incomprimibile, di densità ρ=1000 kg/m³, scorre in regime stazionario fra due sezioni orizzontali della stessa linea di corrente. Non ci sono dissipazioni o macchine fra le sezioni; i profili di velocità sono uniformi nel modello monodimensionale e il liquido resta monofase. La pressione assoluta iniziale è p₁=100 kPa; v₁,v₂>0 sono i moduli delle velocità e p₂>0 la pressione assoluta finale. Le aree rispettano A₁v₁=A₂v₂; fra prove si possono cambiare le aree per rendere compatibili le velocità assegnate. Con v₁=2 m/s e v₂=4 m/s, quanto vale p₂ in kPa?",
+      "answer": {
+        "type": "numeric",
+        "value": 94,
+        "unit": "kPa",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La pressione dinamica iniziale ρv₁²/2 vale duemila Pa, cioè due kPa; quella finale ottomila Pa, cioè otto kPa. Alla stessa quota la somma di pressione statica e dinamica resta costante: la pressione finale è cento più due meno otto, novantaquattro kPa. Il calo sei kPa alimenta l’aumento cinetico, senza una perdita dissipativa."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/77c37c3a17224341408dd9c188b618739a56d80f407e438d0231d275511c6295",
+          "text": "Esempio compatibile con la continuità: profondità fuori foglio 1 cm, altezze 2 e 1 cm, aree 2 e 1 cm². Scala geometrica 50 px/cm: altezze 100 e 50 px. Frecce di velocità lunghe 80 e 160 px a 40 px/(m/s) per 2 e 4 m/s; ciascuna in path separato. La portata comune è 0,4 L/s. Pressioni assolute 100 e 94 kPa."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{\\rho v_1^2}{2}=2\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{\\rho v_2^2}{2}=8\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " p_2=(100+2-8)\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " p_2=94\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "text",
+          "text": "Centosei invertirebbe la differenza cinetica; centodieci sommerebbe entrambi i contributi. Sei è il calo di pressione, non la pressione assoluta finale. La continuità richiede in questa prova A₁=2A₂, compatibile con il raddoppio della velocità."
+        }
+      ],
+      "hints": [
+        "Confronta le due pressioni dinamiche dopo aver convertito Pa in kPa.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Centosei invertirebbe la differenza cinetica; centodieci sommerebbe entrambi i contributi. Sei è il calo di pressione, non la pressione assoluta finale. La continuità richiede in questa prova A₁=2A₂, compatibile con il raddoppio della velocità.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Pressione assoluta e contributo cinetico",
+        "Ipotesi energetiche, inverse e radici fisiche"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-bernoulli-horizontal-02",
+      "kind": "question",
+      "course": "C2",
+      "section": "Bernoulli su una linea orizzontale",
+      "order": 9922,
+      "title": "L’unità di ogni termine di Bernoulli",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "bernoulli-horizontal",
+      "difficulty": 1,
+      "prompt": "Un liquido ideale incomprimibile, di densità ρ=1000 kg/m³, scorre in regime stazionario fra due sezioni orizzontali della stessa linea di corrente. Non ci sono dissipazioni o macchine fra le sezioni; i profili di velocità sono uniformi nel modello monodimensionale e il liquido resta monofase. La pressione assoluta iniziale è p₁=100 kPa; v₁,v₂>0 sono i moduli delle velocità e p₂>0 la pressione assoluta finale. Le aree rispettano A₁v₁=A₂v₂; fra prove si possono cambiare le aree per rendere compatibili le velocità assegnate. Quale unità esprime p₂?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "kPa",
+          "J",
+          "m/s",
+          "kg/m³",
+          "N"
+        ],
+        "value": "kPa"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Ogni termine di Bernoulli è un’energia per volume, quindi ha dimensione di pressione. La densità per il quadrato della velocità si riduce a kg/(m·s²), ossia pascal. Il prefisso kilo divide il valore in Pa per mille."
+        },
+        {
+          "type": "formula",
+          "text": "[\\rho v^2]=\\frac{M}{L^3}\\frac{L^2}{T^2}"
+        },
+        {
+          "type": "formula",
+          "text": " [\\rho v^2]=\\frac{M}{LT^2}"
+        },
+        {
+          "type": "formula",
+          "text": " 1\\,\\mathrm{kPa}=1000\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "text",
+          "text": "J è energia totale, m/s velocità, kg/m³ densità e N forza. Confondere Pa e kPa introdurrebbe un fattore mille nella pressione, anche se la relazione fisica scelta fosse giusta."
+        }
+      ],
+      "hints": [
+        "Controlla che ρv² abbia le stesse dimensioni di p.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "J è energia totale, m/s velocità, kg/m³ densità e N forza. Confondere Pa e kPa introdurrebbe un fattore mille nella pressione, anche se la relazione fisica scelta fosse giusta.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Pressione assoluta e contributo cinetico",
+        "Ipotesi energetiche, inverse e radici fisiche"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-bernoulli-horizontal-03",
+      "kind": "question",
+      "course": "C2",
+      "section": "Bernoulli su una linea orizzontale",
+      "order": 9923,
+      "title": "Spostare il contributo cinetico finale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "bernoulli-horizontal",
+      "difficulty": 1,
+      "prompt": "Un liquido ideale incomprimibile, di densità ρ=1000 kg/m³, scorre in regime stazionario fra due sezioni orizzontali della stessa linea di corrente. Non ci sono dissipazioni o macchine fra le sezioni; i profili di velocità sono uniformi nel modello monodimensionale e il liquido resta monofase. La pressione assoluta iniziale è p₁=100 kPa; v₁,v₂>0 sono i moduli delle velocità e p₂>0 la pressione assoluta finale. Le aree rispettano A₁v₁=A₂v₂; fra prove si possono cambiare le aree per rendere compatibili le velocità assegnate. Quale formula dà p₂ con unità coerenti?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "p₂ = p₁ + ρ(v₁² − v₂²)/2",
+          "p₂ = p₁ + ρ(v₂² − v₁²)/2",
+          "p₂ = p₁ + ρ(v₁² + v₂²)/2",
+          "p₂ = ρ(v₁² − v₂²)/2",
+          "p₂ = p₁ + ρ(v₁ − v₂)/2"
+        ],
+        "value": "p₂ = p₁ + ρ(v₁² − v₂²)/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il termine di quota è uguale nei due punti e si cancella. Da p₁+ρv₁²/2=p₂+ρv₂²/2 sottraiamo il contributo cinetico finale e lasciamo p₂ da sola. Le velocità entrano al quadrato; la formula non è una relazione fra due pressioni entrambe dinamiche."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/77c37c3a17224341408dd9c188b618739a56d80f407e438d0231d275511c6295",
+          "text": "Barre di pressione statica e dinamica alla scala 3 px/kPa: nella prova A, 100+2=94+8=102 kPa, lunghezza totale 306 px. La prova B scambia le velocità e ha 100+8=106+2=108 kPa, totale 324 px. La costante di Bernoulli è uguale fra due sezioni della stessa prova, non necessariamente fra due apparati diversi."
+        },
+        {
+          "type": "formula",
+          "text": "p_1+\\frac{\\rho v_1^2}{2}=p_2+\\frac{\\rho v_2^2}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " p_2=p_1+\\frac\\rho2(v_1^2-v_2^2)"
+        },
+        {
+          "type": "text",
+          "text": "Invertire la differenza aumenterebbe la pressione durante un’accelerazione orizzontale ideale. Sommare i quadrati non deriva dallo spostamento del termine finale. Omettere p₁ restituirebbe soltanto una variazione; usare velocità non quadrate rende il termine dimensionalmente diverso da una pressione."
+        }
+      ],
+      "hints": [
+        "Mantieni la stessa somma di pressione statica e contributo cinetico ai due punti.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Invertire la differenza aumenterebbe la pressione durante un’accelerazione orizzontale ideale. Sommare i quadrati non deriva dallo spostamento del termine finale. Omettere p₁ restituirebbe soltanto una variazione; usare velocità non quadrate rende il termine dimensionalmente diverso da una pressione.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Pressione assoluta e contributo cinetico",
+        "Ipotesi energetiche, inverse e radici fisiche"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-bernoulli-horizontal-04",
+      "kind": "question",
+      "course": "C2",
+      "section": "Bernoulli su una linea orizzontale",
+      "order": 9924,
+      "title": "Cambia la velocità di ingresso",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "bernoulli-horizontal",
+      "difficulty": 1,
+      "prompt": "Un liquido ideale incomprimibile, di densità ρ=1000 kg/m³, scorre in regime stazionario fra due sezioni orizzontali della stessa linea di corrente. Non ci sono dissipazioni o macchine fra le sezioni; i profili di velocità sono uniformi nel modello monodimensionale e il liquido resta monofase. La pressione assoluta iniziale è p₁=100 kPa; v₁,v₂>0 sono i moduli delle velocità e p₂>0 la pressione assoluta finale. Le aree rispettano A₁v₁=A₂v₂; fra prove si possono cambiare le aree per rendere compatibili le velocità assegnate. A ha v₁=2 m/s e B v₁=4 m/s; v₂ resta 4 m/s e p₁ resta 100 kPa. Come cambia p₂?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 94 a 100 kPa",
+          "Da 94 a 88 kPa",
+          "Resta 94 kPa",
+          "Da 94 a 106 kPa",
+          "Diventa zero"
+        ],
+        "value": "Da 94 a 100 kPa"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nel primo apparato il contributo cinetico cresce da due a otto kPa e la pressione scende a novantaquattro. Nel secondo entrambi i contributi cinetici sono otto kPa: nessun cambiamento cinetico fra ingresso e uscita, quindi p₂=p₁=100 kPa. Le aree compatibili passano da rapporto due a rapporto uno."
+        },
+        {
+          "type": "formula",
+          "text": "p_{2,A}=94\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " p_{2,B}=(100+8-8)\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " p_{2,B}=100\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "text",
+          "text": "Ottantotto sottrarrebbe ancora l’aumento iniziale invece di aggiungerlo. Centosei corrisponde allo scambio completo v₁=4,v₂=2, non a v₂ fissata quattro. Il confronto cambia l’energia fornita all’ingresso, non estende una singola costante di Bernoulli a prove diverse."
+        }
+      ],
+      "hints": [
+        "Nel secondo apparato confronta due velocità uguali.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Ottantotto sottrarrebbe ancora l’aumento iniziale invece di aggiungerlo. Centosei corrisponde allo scambio completo v₁=4,v₂=2, non a v₂ fissata quattro. Il confronto cambia l’energia fornita all’ingresso, non estende una singola costante di Bernoulli a prove diverse.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Pressione assoluta e contributo cinetico",
+        "Ipotesi energetiche, inverse e radici fisiche"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-bernoulli-horizontal-05",
+      "kind": "question",
+      "course": "C2",
+      "section": "Bernoulli su una linea orizzontale",
+      "order": 9925,
+      "title": "Ricavare la velocità iniziale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "bernoulli-horizontal",
+      "difficulty": 2,
+      "prompt": "Un liquido ideale incomprimibile, di densità ρ=1000 kg/m³, scorre in regime stazionario fra due sezioni orizzontali della stessa linea di corrente. Non ci sono dissipazioni o macchine fra le sezioni; i profili di velocità sono uniformi nel modello monodimensionale e il liquido resta monofase. La pressione assoluta iniziale è p₁=100 kPa; v₁,v₂>0 sono i moduli delle velocità e p₂>0 la pressione assoluta finale. Le aree rispettano A₁v₁=A₂v₂; fra prove si possono cambiare le aree per rendere compatibili le velocità assegnate. Si misura p₂=94 kPa e si conosce v₂=4 m/s. Quanto vale v₁ in m/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il calo di sei kPa corrisponde a un aumento del quadrato della velocità di dodici m²/s². Il quadrato finale sedici meno dodici dà quello iniziale quattro. La radice positiva restituisce due m/s, coerente con l’accelerazione verso valle."
+        },
+        {
+          "type": "formula",
+          "text": "v_1^2=v_2^2+\\frac{2(p_2-p_1)}\\rho"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{2(p_2-p_1)}\\rho=-12\\,\\mathrm{m^2/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " v_1^2=4\\,\\mathrm{m^2/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " v_1=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Quattro confonderebbe il quadrato iniziale con la velocità. Il ramo negativo è escluso perché si chiedono moduli positivi. La differenza −6 kPa va convertita in −6000 Pa prima di dividerla per la densità SI; il radicando risulta positivo."
+        }
+      ],
+      "hints": [
+        "Ricava prima v₁², tenendo il segno di p₂−p₁.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro confonderebbe il quadrato iniziale con la velocità. Il ramo negativo è escluso perché si chiedono moduli positivi. La differenza −6 kPa va convertita in −6000 Pa prima di dividerla per la densità SI; il radicando risulta positivo.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Pressione assoluta e contributo cinetico",
+        "Ipotesi energetiche, inverse e radici fisiche"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-bernoulli-horizontal-06",
+      "kind": "question",
+      "course": "C2",
+      "section": "Bernoulli su una linea orizzontale",
+      "order": 9926,
+      "title": "Ricavare la velocità finale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "bernoulli-horizontal",
+      "difficulty": 2,
+      "prompt": "Un liquido ideale incomprimibile, di densità ρ=1000 kg/m³, scorre in regime stazionario fra due sezioni orizzontali della stessa linea di corrente. Non ci sono dissipazioni o macchine fra le sezioni; i profili di velocità sono uniformi nel modello monodimensionale e il liquido resta monofase. La pressione assoluta iniziale è p₁=100 kPa; v₁,v₂>0 sono i moduli delle velocità e p₂>0 la pressione assoluta finale. Le aree rispettano A₁v₁=A₂v₂; fra prove si possono cambiare le aree per rendere compatibili le velocità assegnate. Si misura p₂=94 kPa e si conosce v₁=2 m/s. Quanto vale v₂ in m/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’energia cinetica per volume aumenta di sei kPa. Nella formula inversa questo produce dodici m²/s² in più nel quadrato della velocità. Sommando ai quattro iniziali si ottiene sedici e scegliendo il ramo positivo si trova quattro m/s."
+        },
+        {
+          "type": "formula",
+          "text": "v_2^2=v_1^2+\\frac{2(p_1-p_2)}\\rho"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{2(p_1-p_2)}\\rho=12\\,\\mathrm{m^2/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " v_2^2=16\\,\\mathrm{m^2/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " v_2=4\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Sedici è il quadrato della velocità, due manterrebbe invariato il moto e una differenza con segno opposto darebbe un radicando negativo per questi dati. Il controllo 100+2=94+8 kPa verifica entrambi i contributi."
+        }
+      ],
+      "hints": [
+        "Il calo di pressione aumenta il contributo cinetico.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sedici è il quadrato della velocità, due manterrebbe invariato il moto e una differenza con segno opposto darebbe un radicando negativo per questi dati. Il controllo 100+2=94+8 kPa verifica entrambi i contributi.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Pressione assoluta e contributo cinetico",
+        "Ipotesi energetiche, inverse e radici fisiche"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-bernoulli-horizontal-07",
+      "kind": "question",
+      "course": "C2",
+      "section": "Bernoulli su una linea orizzontale",
+      "order": 9927,
+      "title": "Rapporto fra pressioni assolute",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "bernoulli-horizontal",
+      "difficulty": 2,
+      "prompt": "Un liquido ideale incomprimibile, di densità ρ=1000 kg/m³, scorre in regime stazionario fra due sezioni orizzontali della stessa linea di corrente. Non ci sono dissipazioni o macchine fra le sezioni; i profili di velocità sono uniformi nel modello monodimensionale e il liquido resta monofase. La pressione assoluta iniziale è p₁=100 kPa; v₁,v₂>0 sono i moduli delle velocità e p₂>0 la pressione assoluta finale. Le aree rispettano A₁v₁=A₂v₂; fra prove si possono cambiare le aree per rendere compatibili le velocità assegnate. A ha v₁=2 m/s, v₂=4 m/s; B mantiene v₁ e usa v₂=2 m/s. Quanto vale p₂,B/p₂,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "50/47",
+          "47/50",
+          "3/47",
+          "1",
+          "2"
+        ],
+        "value": "50/47"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A dà novantaquattro kPa, B cento perché le sue due velocità sono uguali. Il rapporto cento su novantaquattro si riduce dividendo per due: cinquanta quarantasettesimi. Il riferimento assoluto è essenziale per il rapporto, mentre una differenza di pressioni sarebbe indipendente da un offset comune."
+        },
+        {
+          "type": "formula",
+          "text": "p_{2,A}=94\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " p_{2,B}=100\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " p_{2,B}/p_{2,A}=50/47"
+        },
+        {
+          "type": "text",
+          "text": "Quarantasette cinquantesimi è il reciproco; tre quarantasettesimi è l’incremento relativo sei su novantaquattro. Uno ignora la variazione e due segue una velocità senza il quadrato e senza il termine p₁. Non si sostituiscono pressioni relative nel rapporto assoluto richiesto."
+        }
+      ],
+      "hints": [
+        "Ricava entrambe le pressioni assolute, poi semplifica il rapporto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quarantasette cinquantesimi è il reciproco; tre quarantasettesimi è l’incremento relativo sei su novantaquattro. Uno ignora la variazione e due segue una velocità senza il quadrato e senza il termine p₁. Non si sostituiscono pressioni relative nel rapporto assoluto richiesto.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Pressione assoluta e contributo cinetico",
+        "Ipotesi energetiche, inverse e radici fisiche"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-bernoulli-horizontal-08",
+      "kind": "question",
+      "course": "C2",
+      "section": "Bernoulli su una linea orizzontale",
+      "order": 9928,
+      "title": "Una proposta incompatibile con l’accelerazione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "bernoulli-horizontal",
+      "difficulty": 2,
+      "prompt": "Un liquido ideale incomprimibile, di densità ρ=1000 kg/m³, scorre in regime stazionario fra due sezioni orizzontali della stessa linea di corrente. Non ci sono dissipazioni o macchine fra le sezioni; i profili di velocità sono uniformi nel modello monodimensionale e il liquido resta monofase. La pressione assoluta iniziale è p₁=100 kPa; v₁,v₂>0 sono i moduli delle velocità e p₂>0 la pressione assoluta finale. Le aree rispettano A₁v₁=A₂v₂; fra prove si possono cambiare le aree per rendere compatibili le velocità assegnate. Con v₁=2 m/s e v₂=4 m/s si propone p₂=188 kPa. Quanto vale proposta meno corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "94 kPa",
+          "−94 kPa",
+          "188 kPa",
+          "0 kPa",
+          "47 kPa"
+        ],
+        "value": "94 kPa"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il valore corretto è novantaquattro kPa; lo scarto centottantotto meno novantaquattro è più novantaquattro kPa. Inoltre la proposta supererebbe p₁ mentre la velocità aumenta: senza macchina o dislivello non potrebbe aumentare anche la pressione statica."
+        },
+        {
+          "type": "formula",
+          "text": "p_2=94\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " e=(188-94)\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " e=94\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "text",
+          "text": "Meno novantaquattro inverte lo scarto, centottantotto ripete la proposta, zero la accetta e quarantasette dimezza di nuovo. La pressione positiva da sola non basta: deve soddisfare il bilancio energetico e le condizioni geometriche."
+        }
+      ],
+      "hints": [
+        "Prima ricava p₂, poi controlla il verso dello scambio fra pressione e velocità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Meno novantaquattro inverte lo scarto, centottantotto ripete la proposta, zero la accetta e quarantasette dimezza di nuovo. La pressione positiva da sola non basta: deve soddisfare il bilancio energetico e le condizioni geometriche.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Pressione assoluta e contributo cinetico",
+        "Ipotesi energetiche, inverse e radici fisiche"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-bernoulli-horizontal-09",
+      "kind": "question",
+      "course": "C2",
+      "section": "Bernoulli su una linea orizzontale",
+      "order": 9929,
+      "title": "L’inversa simbolica e il suo radicando",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "bernoulli-horizontal",
+      "difficulty": 2,
+      "prompt": "Un liquido ideale incomprimibile, di densità ρ=1000 kg/m³, scorre in regime stazionario fra due sezioni orizzontali della stessa linea di corrente. Non ci sono dissipazioni o macchine fra le sezioni; i profili di velocità sono uniformi nel modello monodimensionale e il liquido resta monofase. La pressione assoluta iniziale è p₁=100 kPa; v₁,v₂>0 sono i moduli delle velocità e p₂>0 la pressione assoluta finale. Le aree rispettano A₁v₁=A₂v₂; fra prove si possono cambiare le aree per rendere compatibili le velocità assegnate. Quale formula isola v₁ nel ramo positivo, con radicando strettamente positivo?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "v₁ = √[v₂² + 2(p₂ − p₁)/ρ]",
+          "v₁ = √[v₂² + 2(p₁ − p₂)/ρ]",
+          "v₁ = v₂ + 2(p₂ − p₁)/ρ",
+          "v₁ = √[2(p₂ − p₁)/ρ]",
+          "v₁ = 2 √[v₂² + 2(p₂ − p₁)/ρ]"
+        ],
+        "value": "v₁ = √[v₂² + 2(p₂ − p₁)/ρ]"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Portiamo p₁ e il termine cinetico finale sul lato adatto e moltiplichiamo per due su densità. Otteniamo un quadrato di velocità: soltanto dopo si prende la radice. Il radicando ha unità m²/s², e la positività stretta conserva v₁>0."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac\\rho2v_1^2=p_2-p_1+\\frac\\rho2v_2^2"
+        },
+        {
+          "type": "formula",
+          "text": " v_1^2=v_2^2+\\frac{2(p_2-p_1)}\\rho"
+        },
+        {
+          "type": "formula",
+          "text": " v_1=\\sqrt{v_2^2+\\frac{2(p_2-p_1)}\\rho}"
+        },
+        {
+          "type": "text",
+          "text": "Il cambio di segno del salto scambia ingresso e uscita. Senza radice si sommano velocità e velocità al quadrato; omettere v₂² perde un dato e può rendere negativo il radicando. Il fattore due fuori radice non deriva dall’isolamento. La radice negativa sarebbe un altro ramo algebrico, escluso dai moduli assegnati."
+        }
+      ],
+      "hints": [
+        "Isola il quadrato, verifica le dimensioni, poi prendi la radice positiva.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il cambio di segno del salto scambia ingresso e uscita. Senza radice si sommano velocità e velocità al quadrato; omettere v₂² perde un dato e può rendere negativo il radicando. Il fattore due fuori radice non deriva dall’isolamento. La radice negativa sarebbe un altro ramo algebrico, escluso dai moduli assegnati.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Pressione assoluta e contributo cinetico",
+        "Ipotesi energetiche, inverse e radici fisiche"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-bernoulli-horizontal-10",
+      "kind": "question",
+      "course": "C2",
+      "section": "Bernoulli su una linea orizzontale",
+      "order": 9930,
+      "title": "Le scalature agiscono sui quadrati",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "bernoulli-horizontal",
+      "difficulty": 2,
+      "prompt": "Un liquido ideale incomprimibile, di densità ρ=1000 kg/m³, scorre in regime stazionario fra due sezioni orizzontali della stessa linea di corrente. Non ci sono dissipazioni o macchine fra le sezioni; i profili di velocità sono uniformi nel modello monodimensionale e il liquido resta monofase. La pressione assoluta iniziale è p₁=100 kPa; v₁,v₂>0 sono i moduli delle velocità e p₂>0 la pressione assoluta finale. Le aree rispettano A₁v₁=A₂v₂; fra prove si possono cambiare le aree per rendere compatibili le velocità assegnate. A ha velocità v₁,v₂; B ha κ₁v₁,κ₂v₂, con fattori positivi e p₂,B>0. Definiamo X=ρv₁²/2 e Y=ρv₂²/2, contributi dinamici iniziali; U=p₁+X−Y è p₂,A>0. Quanto vale p₂,B/p₂,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "(p₁ + κ₁² X − κ₂² Y) / U",
+          "(p₁ + κ₁ X − κ₂ Y) / U",
+          "κ₁² / κ₂²",
+          "(p₁ + κ₁² X + κ₂² Y) / U",
+          "U / (p₁ + κ₁² X − κ₂² Y)"
+        ],
+        "value": "(p₁ + κ₁² X − κ₂² Y) / U"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La densità e p₁ restano fisse. I contributi dinamici in B diventano κ₁²X e κ₂²Y, mentre il termine statico di ingresso non scala. La pressione B divisa per U dà il rapporto richiesto: non si tratta di una pura proporzionalità fra velocità."
+        },
+        {
+          "type": "formula",
+          "text": "p_{2,B}=p_1+\\kappa_1^2X-\\kappa_2^2Y"
+        },
+        {
+          "type": "formula",
+          "text": " R=p_{2,B}/U"
+        },
+        {
+          "type": "formula",
+          "text": " R=\\frac{p_1+\\kappa_1^2X-\\kappa_2^2Y}{U}"
+        },
+        {
+          "type": "text",
+          "text": "I fattori non quadrati dimenticano l’energia cinetica. Il quoziente dei soli κ ignora p₁ e i due diversi contributi; il più davanti a Y aggiunge energia anziché compensarla. L’ultima opzione inverte gli stati. U e il numeratore devono restare pressioni assolute positive."
+        }
+      ],
+      "hints": [
+        "Scala ogni contributo cinetico con il quadrato del suo fattore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "I fattori non quadrati dimenticano l’energia cinetica. Il quoziente dei soli κ ignora p₁ e i due diversi contributi; il più davanti a Y aggiunge energia anziché compensarla. L’ultima opzione inverte gli stati. U e il numeratore devono restare pressioni assolute positive.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Pressione assoluta e contributo cinetico",
+        "Ipotesi energetiche, inverse e radici fisiche"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-bernoulli-horizontal-11",
+      "kind": "question",
+      "course": "C2",
+      "section": "Bernoulli su una linea orizzontale",
+      "order": 9931,
+      "title": "Scambiare le due velocità in una nuova prova",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "bernoulli-horizontal",
+      "difficulty": 2,
+      "prompt": "Un liquido ideale incomprimibile, di densità ρ=1000 kg/m³, scorre in regime stazionario fra due sezioni orizzontali della stessa linea di corrente. Non ci sono dissipazioni o macchine fra le sezioni; i profili di velocità sono uniformi nel modello monodimensionale e il liquido resta monofase. La pressione assoluta iniziale è p₁=100 kPa; v₁,v₂>0 sono i moduli delle velocità e p₂>0 la pressione assoluta finale. Le aree rispettano A₁v₁=A₂v₂; fra prove si possono cambiare le aree per rendere compatibili le velocità assegnate. A ha v₁=2 m/s, v₂=4 m/s; B ha v₁=4 m/s, v₂=2 m/s. Quanto vale p₂,B/p₂,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "53/47",
+          "47/53",
+          "106",
+          "1",
+          "2"
+        ],
+        "value": "53/47"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha variazione di pressione meno sei kPa, B più sei. Le pressioni finali sono novantaquattro e centosei kPa. Il rapporto centosei su novantaquattro si semplifica a cinquantatré quarantasettesimi. Le somme di Bernoulli di A e B non sono la stessa costante, perché cambia l’energia cinetica all’ingresso."
+        },
+        {
+          "type": "formula",
+          "text": "p_{2,A}=94\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " p_{2,B}=106\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " p_{2,B}/p_{2,A}=53/47"
+        },
+        {
+          "type": "text",
+          "text": "Quarantasette cinquantatreesimi inverte gli stati; centosei è la pressione B come numero, non il rapporto. Uno cancellerebbe erroneamente l’effetto dello scambio e due seguirebbe un fattore di velocità isolato. Le aree compatibili possono essere diverse nelle due prove."
+        }
+      ],
+      "hints": [
+        "Cambia il segno della differenza cinetica e conserva p₁.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quarantasette cinquantatreesimi inverte gli stati; centosei è la pressione B come numero, non il rapporto. Uno cancellerebbe erroneamente l’effetto dello scambio e due seguirebbe un fattore di velocità isolato. Le aree compatibili possono essere diverse nelle due prove.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Pressione assoluta e contributo cinetico",
+        "Ipotesi energetiche, inverse e radici fisiche"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-bernoulli-horizontal-12",
+      "kind": "question",
+      "course": "C2",
+      "section": "Bernoulli su una linea orizzontale",
+      "order": 9932,
+      "title": "Una media che coincide per simmetria",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "bernoulli-horizontal",
+      "difficulty": 2,
+      "prompt": "Un liquido ideale incomprimibile, di densità ρ=1000 kg/m³, scorre in regime stazionario fra due sezioni orizzontali della stessa linea di corrente. Non ci sono dissipazioni o macchine fra le sezioni; i profili di velocità sono uniformi nel modello monodimensionale e il liquido resta monofase. La pressione assoluta iniziale è p₁=100 kPa; v₁,v₂>0 sono i moduli delle velocità e p₂>0 la pressione assoluta finale. Le aree rispettano A₁v₁=A₂v₂; fra prove si possono cambiare le aree per rendere compatibili le velocità assegnate. A ha v₁=2 m/s, v₂=4 m/s; B ha v₁=4 m/s, v₂=2 m/s. Qual è la media aritmetica delle due p₂ con uguale peso statistico?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "100 kPa",
+          "200 kPa",
+          "50 kPa",
+          "6 kPa",
+          "106 kPa"
+        ],
+        "value": "100 kPa"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le uscite novantaquattro e centosei kPa hanno semisomma cento kPa: i cambiamenti meno sei e più sei si cancellano. Anche le velocità medie tre e tre m/s darebbero cento kPa, ma qui la coincidenza deriva dalla simmetria dello scambio."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline p_2=\\frac{94+106}{2}\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline p_2=100\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "text",
+          "text": "Duecento è la somma, cinquanta dimezza ancora, sei è il modulo della singola variazione e centosei la sola prova B. Non è una regola universale per termini quadratici: le prove (2,4) e (4,4) m/s darebbero media 97 kPa, mentre gli ingressi medi (3,4) darebbero 193/2 kPa."
+        }
+      ],
+      "hints": [
+        "Media le pressioni finali e riconosci i due cambiamenti opposti.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Duecento è la somma, cinquanta dimezza ancora, sei è il modulo della singola variazione e centosei la sola prova B. Non è una regola universale per termini quadratici: le prove (2,4) e (4,4) m/s darebbero media 97 kPa, mentre gli ingressi medi (3,4) darebbero 193/2 kPa.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Pressione assoluta e contributo cinetico",
+        "Ipotesi energetiche, inverse e radici fisiche"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-bernoulli-horizontal-13",
+      "kind": "question",
+      "course": "C2",
+      "section": "Bernoulli su una linea orizzontale",
+      "order": 9933,
+      "title": "La velocità finale per un bersaglio di pressione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "bernoulli-horizontal",
+      "difficulty": 3,
+      "prompt": "Un liquido ideale incomprimibile, di densità ρ=1000 kg/m³, scorre in regime stazionario fra due sezioni orizzontali della stessa linea di corrente. Non ci sono dissipazioni o macchine fra le sezioni; i profili di velocità sono uniformi nel modello monodimensionale e il liquido resta monofase. La pressione assoluta iniziale è p₁=100 kPa; v₁,v₂>0 sono i moduli delle velocità e p₂>0 la pressione assoluta finale. Le aree rispettano A₁v₁=A₂v₂; fra prove si possono cambiare le aree per rendere compatibili le velocità assegnate. A ha v₁,A=2 m/s, v₂,A=4 m/s. B deve avere v₁,B=4 m/s e p₂,B=(53/47)p₂,A. Quanto vale v₂,B/v₂,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "2",
+          "53/47",
+          "1",
+          "1/4"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il target è centosei kPa, perché novantaquattro per cinquantatré quarantasettesimi vale centosei. L’ingresso B ha contributo cinetico otto kPa: alla pressione finale maggiore di sei resta un contributo finale due kPa, quindi v₂,B=2 m/s. Il rapporto con quattro è un mezzo."
+        },
+        {
+          "type": "formula",
+          "text": "p_{2,B}=106\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{\\rho v_{2,B}^2}{2}=2\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " v_{2,B}=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " v_{2,B}/v_{2,A}=1/2"
+        },
+        {
+          "type": "text",
+          "text": "Due inverte gli stati, cinquantatré quarantasettesimi copia il target della pressione e uno mantiene la vecchia velocità. Un quarto è il rapporto dei quadrati, non dei moduli. Il radicando è positivo e la pressione finale resta assoluta."
+        }
+      ],
+      "hints": [
+        "Ricava prima il target di pressione e poi il contributo cinetico restante.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due inverte gli stati, cinquantatré quarantasettesimi copia il target della pressione e uno mantiene la vecchia velocità. Un quarto è il rapporto dei quadrati, non dei moduli. Il radicando è positivo e la pressione finale resta assoluta.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Pressione assoluta e contributo cinetico",
+        "Ipotesi energetiche, inverse e radici fisiche"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-bernoulli-horizontal-14",
+      "kind": "question",
+      "course": "C2",
+      "section": "Bernoulli su una linea orizzontale",
+      "order": 9934,
+      "title": "Una taratura senza offset e una radice esatta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "bernoulli-horizontal",
+      "difficulty": 3,
+      "prompt": "Un liquido ideale incomprimibile, di densità ρ=1000 kg/m³, scorre in regime stazionario fra due sezioni orizzontali della stessa linea di corrente. Non ci sono dissipazioni o macchine fra le sezioni; i profili di velocità sono uniformi nel modello monodimensionale e il liquido resta monofase. La pressione assoluta iniziale è p₁=100 kPa; v₁,v₂>0 sono i moduli delle velocità e p₂>0 la pressione assoluta finale. Le aree rispettano A₁v₁=A₂v₂; fra prove si possono cambiare le aree per rendere compatibili le velocità assegnate. Un display continuo adimensionale segue S=qp₂, q>0. A con v₁=2 m/s,v₂=4 m/s dà S=282. B dà S=318 e ha v₂,B=2 m/s. Quanto vale v₁,B in m/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La pressione A è novantaquattro kPa e 282/94=3, quindi q=3 kPa⁻¹. La lettura 318 dà p₂,B=106 kPa. Per compensare il guadagno statico di sei kPa, v₁,B² deve superare i quattro m²/s² finali di dodici: sedici, con radice positiva quattro m/s."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{kPa^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " p_{2,B}=106\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " v_{1,B}^2=16\\,\\mathrm{m^2/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " v_{1,B}=4\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "318 non è direttamente una pressione in kPa. Prima si rimuove il guadagno, poi si converte il salto fisico in unità SI per ricavare il quadrato. Sedici è il radicando nelle unità assegnate, non la velocità. Il risultato ricostruisce la lettura 3·106=318."
+        }
+      ],
+      "hints": [
+        "Decodifica la pressione prima di applicare l’inversa di Bernoulli.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "318 non è direttamente una pressione in kPa. Prima si rimuove il guadagno, poi si converte il salto fisico in unità SI per ricavare il quadrato. Sedici è il radicando nelle unità assegnate, non la velocità. Il risultato ricostruisce la lettura 3·106=318.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Pressione assoluta e contributo cinetico",
+        "Ipotesi energetiche, inverse e radici fisiche"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-bernoulli-horizontal-15",
+      "kind": "question",
+      "course": "C2",
+      "section": "Bernoulli su una linea orizzontale",
+      "order": 9935,
+      "title": "Due riferimenti del misuratore di pressione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "bernoulli-horizontal",
+      "difficulty": 3,
+      "prompt": "Un liquido ideale incomprimibile, di densità ρ=1000 kg/m³, scorre in regime stazionario fra due sezioni orizzontali della stessa linea di corrente. Non ci sono dissipazioni o macchine fra le sezioni; i profili di velocità sono uniformi nel modello monodimensionale e il liquido resta monofase. La pressione assoluta iniziale è p₁=100 kPa; v₁,v₂>0 sono i moduli delle velocità e p₂>0 la pressione assoluta finale. Le aree rispettano A₁v₁=A₂v₂; fra prove si possono cambiare le aree per rendere compatibili le velocità assegnate. Il display continuo adimensionale segue S=qp₂+b, q>0. A: v₁=2 m/s,v₂=4 m/s,S=189. B: v₁=4 m/s,v₂=2 m/s,S=213. C: v₂=4 m/s,S=201. Quanto vale v₁,C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4 m/s",
+          "2 m/s",
+          "8 m/s",
+          "5 m/s",
+          "3 m/s"
+        ],
+        "value": "4 m/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le pressioni di riferimento sono novantaquattro e centosei kPa. La differenza ventiquattro della lettura divisa per dodici kPa dà q=2 kPa⁻¹; segue b=1. C ha p₂=100 kPa, uguale a p₁: i contributi cinetici devono essere uguali e nel ramo positivo v₁,C=v₂=4 m/s."
+        },
+        {
+          "type": "formula",
+          "text": "q=2\\,\\mathrm{kPa^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " p_{2,C}=100\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " v_{1,C}^2=v_{2,C}^2"
+        },
+        {
+          "type": "formula",
+          "text": " v_{1,C}=4\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Con v₂=4 m/s, velocità iniziali 2,8,5,3 m/s darebbero pressioni 94,124,209/2,193/2 kPa e letture 189,249,210,194. Nessuna è 201. L’uguaglianza dei quadrati ammetterebbe due segni algebrici, ma i dati chiedono moduli positivi."
+        }
+      ],
+      "hints": [
+        "Trova q e b, poi riconosci il caso di pressioni uguali.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Con v₂=4 m/s, velocità iniziali 2,8,5,3 m/s darebbero pressioni 94,124,209/2,193/2 kPa e letture 189,249,210,194. Nessuna è 201. L’uguaglianza dei quadrati ammetterebbe due segni algebrici, ma i dati chiedono moduli positivi.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Pressione assoluta e contributo cinetico",
+        "Ipotesi energetiche, inverse e radici fisiche"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-bernoulli-horizontal-16",
+      "kind": "question",
+      "course": "C2",
+      "section": "Bernoulli su una linea orizzontale",
+      "order": 9936,
+      "title": "Un rapporto fra velocità che fissa il quadrato",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "bernoulli-horizontal",
+      "difficulty": 3,
+      "prompt": "Un liquido ideale incomprimibile, di densità ρ=1000 kg/m³, scorre in regime stazionario fra due sezioni orizzontali della stessa linea di corrente. Non ci sono dissipazioni o macchine fra le sezioni; i profili di velocità sono uniformi nel modello monodimensionale e il liquido resta monofase. La pressione assoluta iniziale è p₁=100 kPa; v₁,v₂>0 sono i moduli delle velocità e p₂>0 la pressione assoluta finale. Le aree rispettano A₁v₁=A₂v₂; fra prove si possono cambiare le aree per rendere compatibili le velocità assegnate. Fra prove si impone v₁=v₂/2. Si misura p₂=94 kPa. Quanto vale v₂ in m/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituire il vincolo riduce la differenza cinetica a meno tre quarti di v₂². Il calo statico di sei kPa vale quindi tre ottavi di ρv₂². Convertendo seimila Pa e dividendo per la densità si ottiene v₂²=16 m²/s². Il ramo positivo dà quattro m/s e v₁=2 m/s."
+        },
+        {
+          "type": "formula",
+          "text": "p_1-p_2=\\frac{3\\rho}{8}v_2^2"
+        },
+        {
+          "type": "formula",
+          "text": " v_2^2=\\frac{8(p_1-p_2)}{3\\rho}"
+        },
+        {
+          "type": "formula",
+          "text": " v_2^2=16\\,\\mathrm{m^2/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " v_2=4\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Sedici è il quadrato finale, due è la velocità iniziale e otto raddoppia la radice. Il ramo negativo non rappresenta i moduli assegnati. Il coefficiente un mezzo è puro: il vincolo collega due velocità e vale fra stati, senza imporre una dipendenza temporale."
+        }
+      ],
+      "hints": [
+        "Sostituisci anche il quadrato del rapporto un mezzo, cioè un quarto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Sedici è il quadrato finale, due è la velocità iniziale e otto raddoppia la radice. Il ramo negativo non rappresenta i moduli assegnati. Il coefficiente un mezzo è puro: il vincolo collega due velocità e vale fra stati, senza imporre una dipendenza temporale.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Pressione assoluta e contributo cinetico",
+        "Ipotesi energetiche, inverse e radici fisiche"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "77c37c3a17224341408dd9c188b618739a56d80f407e438d0231d275511c6295",
+      "name": "bernoulli-horizontal-steps.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTc1MCIgdmlld0JveD0iMCAwIDY0MCAxNzUwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+Cjx0aXRsZSBpZD0idGl0bGUiPlNjYW1iaWFyZSBwcmVzc2lvbmUgc3RhdGljYSBlIGNvbnRyaWJ1dG8gY2luZXRpY288L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5OZWxsYSBwcm92YSBBIHVuIGxpcXVpZG8gaWRlYWxlIGFjY2VsZXJhIGRhIGR1ZSBhIHF1YXR0cm8gbWV0cmkgYWwgc2Vjb25kby4gTGEgcHJlc3Npb25lIGFzc29sdXRhIHNjZW5kZSBkYSBjZW50byBhIG5vdmFudGFxdWF0dHJvIGtpbG9wYXNjYWwgZSBsYSBzb21tYSBzdGF0aWNhIHBpw7kgZGluYW1pY2EgcmVzdGEgY2VudG9kdWUuIEluIHVuYSBwcm92YSBkaXZlcnNhIHNpIHNjYW1iaWFubyBsZSB2ZWxvY2l0w6A6IGxhIHByZXNzaW9uZSBmaW5hbGUgw6ggY2VudG9zZWkgZSBsYSBzb21tYSBjb3N0YW50ZSBuZWxsYSBwcm92YSBCIHZhbGUgY2VudG9vdHRvLjwvZGVzYz4KPGRlZnM+PG1hcmtlciBpZD0idiIgdmlld0JveD0iMCAwIDEwIDEwIiByZWZYPSI5IiByZWZZPSI1IiBtYXJrZXJXaWR0aD0iNyIgbWFya2VySGVpZ2h0PSI3IiBvcmllbnQ9ImF1dG8tc3RhcnQtcmV2ZXJzZSI+PHBhdGggZD0iTTAgMEwxMCA1TDAgMTBaIiBmaWxsPSIjMTU1ZmEwIi8+PC9tYXJrZXI+PC9kZWZzPgo8cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjE3NTAiIGZpbGw9IiNmZmZkZjciLz4KPGcgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjIyIiBmaWxsPSIjMTcyYzNiIj4KPHRleHQgeD0iMzUiIHk9IjQ4IiBmb250LXNpemU9IjI3IiBmb250LXdlaWdodD0iYm9sZCI+MS4gQWNjZWxlcmFyZSBhbGxhIHN0ZXNzYSBxdW90YTwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjkwIj5Qcm92YSBBOiDPgSA9IDEwMDAga2cvbcKzPC90ZXh0Pgo8cGF0aCBkPSJNNTUgMjIwSDI2MEwzODAgMjQ1SDU4NVYyOTVIMzgwTDI2MCAzMjBINTVaIiBmaWxsPSIjZTRlZmY3IiBzdHJva2U9IiMxNTVmYTAiIHN0cm9rZS13aWR0aD0iMyIvPgo8cGF0aCBkPSJNMTAwIDI3MEgxODAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE1NWZhMCIgc3Ryb2tlLXdpZHRoPSI1IiBtYXJrZXItZW5kPSJ1cmwoI3YpIi8+PHBhdGggZD0iTTQwNSAyNzBINTY1IiBmaWxsPSJub25lIiBzdHJva2U9IiMxNTVmYTAiIHN0cm9rZS13aWR0aD0iNSIgbWFya2VyLWVuZD0idXJsKCN2KSIvPgo8dGV4dCB4PSI3NSIgeT0iMTc1Ij524oKBID0gMiBtL3M8L3RleHQ+PHRleHQgeD0iMzk1IiB5PSIxNzUiPnbigoIgPSA0IG0vczwvdGV4dD4KPHRleHQgeD0iNzUiIHk9IjM2NSI+cOKCgSA9IDEwMCBrUGE8L3RleHQ+PHRleHQgeD0iMzk1IiB5PSIzNjUiPnDigoIgPSA5NCBrUGE8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI0MTAiPlByb2ZvbmRpdMOgIGZ1b3JpIGZvZ2xpbzogMSBjbTwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjQ1MCI+QWx0ZXp6ZSAyIGUgMSBjbSwgc2NhbGEgNTAgcHgvY208L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI0OTAiPkFyZWUgMiBlIDEgY23Csjogc3Rlc3NhIFEgPSAwLDQgTC9zPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iNTMwIj5GcmVjY2U6IDgwIGUgMTYwIHB4IGEgNDAgcHgvKG0vcyk8L3RleHQ+CjxsaW5lIHgxPSIzNSIgeDI9IjYwNSIgeTE9IjU2NSIgeTI9IjU2NSIgc3Ryb2tlPSIjYjljNGM5Ii8+Cjx0ZXh0IHg9IjM1IiB5PSI2MTUiIGZvbnQtc2l6ZT0iMjciIGZvbnQtd2VpZ2h0PSJib2xkIj4yLiBDb25zZXJ2YXJlIGxhIHNvbW1hIG5lbGxhIHByb3ZhIEE8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI2NjAiPlByZXNzaW9uZSBzdGF0aWNhIGJsdSwgZGluYW1pY2Egcm9zc2E8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI3MDUiPkluZ3Jlc3NvOiAxMDAgKyAyID0gMTAyIGtQYTwvdGV4dD4KPHJlY3QgeD0iMTAwIiB5PSI3MzUiIHdpZHRoPSIzMDAiIGhlaWdodD0iMjgiIGZpbGw9IiMxNTVmYTAiLz48cmVjdCB4PSI0MDAiIHk9IjczNSIgd2lkdGg9IjYiIGhlaWdodD0iMjgiIGZpbGw9IiNhMzM0MzAiLz4KPHRleHQgeD0iMzUiIHk9IjgxMCI+VXNjaXRhOiA5NCArIDggPSAxMDIga1BhPC90ZXh0Pgo8cmVjdCB4PSIxMDAiIHk9Ijg0MCIgd2lkdGg9IjI4MiIgaGVpZ2h0PSIyOCIgZmlsbD0iIzE1NWZhMCIvPjxyZWN0IHg9IjM4MiIgeT0iODQwIiB3aWR0aD0iMjQiIGhlaWdodD0iMjgiIGZpbGw9IiNhMzM0MzAiLz4KPHRleHQgeD0iMzUiIHk9IjkyMCI+U2NhbGEgY29tdW5lOiAzIHB4L2tQYTwvdGV4dD4KPHRleHQgeD0iMzUiIHk9Ijk2MCI+VG90YWxpIHVndWFsaTogMzA2IHB4PC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTAwMCI+UGnDuSA2IGtQYSBjaW5ldGljaSwgbWVubyA2IGtQYSBzdGF0aWNpPC90ZXh0Pgo8bGluZSB4MT0iMzUiIHgyPSI2MDUiIHkxPSIxMDM1IiB5Mj0iMTAzNSIgc3Ryb2tlPSIjYjljNGM5Ii8+Cjx0ZXh0IHg9IjM1IiB5PSIxMDg1IiBmb250LXNpemU9IjI3IiBmb250LXdlaWdodD0iYm9sZCI+My4gVW5hIG51b3ZhIHByb3ZhLCB2ZWxvY2l0w6Agc2NhbWJpYXRlPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTEzMCI+UHJvdmEgQjogduKCgSA9IDQgbS9zLCB24oKCID0gMiBtL3M8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxMTc1Ij5w4oKBIHJlc3RhIDEwMCBrUGE7IGNhbWJpYSBsYSBnZW9tZXRyaWEuPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTIzNSI+SW5ncmVzc286IDEwMCArIDggPSAxMDgga1BhPC90ZXh0Pgo8cmVjdCB4PSIxMDAiIHk9IjEyNjUiIHdpZHRoPSIzMDAiIGhlaWdodD0iMjgiIGZpbGw9IiMxNTVmYTAiLz48cmVjdCB4PSI0MDAiIHk9IjEyNjUiIHdpZHRoPSIyNCIgaGVpZ2h0PSIyOCIgZmlsbD0iI2EzMzQzMCIvPgo8dGV4dCB4PSIzNSIgeT0iMTM0MCI+VXNjaXRhOiAxMDYgKyAyID0gMTA4IGtQYTwvdGV4dD4KPHJlY3QgeD0iMTAwIiB5PSIxMzcwIiB3aWR0aD0iMzE4IiBoZWlnaHQ9IjI4IiBmaWxsPSIjMTU1ZmEwIi8+PHJlY3QgeD0iNDE4IiB5PSIxMzcwIiB3aWR0aD0iNiIgaGVpZ2h0PSIyOCIgZmlsbD0iI2EzMzQzMCIvPgo8dGV4dCB4PSIzNSIgeT0iMTQ1MCI+U3Rlc3NhIHNjYWxhOiAzIHB4L2tQYTsgdG90YWxpIDMyNCBweDwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjE1MDAiPkJlcm5vdWxsaSDDqCBjb3N0YW50ZSBuZWxsYSBzaW5nb2xhIHByb3ZhLjwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjE1NDAiPkEgZSBCIGhhbm5vIGVuZXJnaWUgZGkgaW5ncmVzc28gZGl2ZXJzZS48L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxNjA1Ij5UdXR0ZSBsZSBwcmVzc2lvbmkgc3RhdGljaGUgc29ubyBhc3NvbHV0ZS48L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxNjUwIj5Ob24gc2kgaW1wb25lIHVuYSBjb3N0YW50ZSBjb211bmU8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxNjkwIj5hIGR1ZSBhcHBhcmF0aSBkaWZmZXJlbnRpLjwvdGV4dD4KPC9nPjwvc3ZnPgo="
+    }
+  ]
+}

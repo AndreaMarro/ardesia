@@ -1,0 +1,659 @@
+{
+  "schemaVersion": "1.0.0",
+  "batch": "examples-magnetic-induction-029",
+  "records": [
+    {
+      "id": "C4-E017",
+      "sourceSha256": "2e551e3b43a9ae5fc7cf9cd8b5badf9f3aa5d66aafb9c8015f6c4114da24b96f",
+      "sourceVersion": 2,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C4.json",
+      "sourceFileSha256": "19d52336dd1024113f45f33a03e4d71e262ee6357477948124c7fecec855c67c",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "actual momentum334eMinus24",
+          "independentExact": "167/500000000000000000000000",
+          "expectedValue": "167/500000000000000000000000",
+          "unit": "kg*m/s",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual chargefieldproduct160eMinus22",
+          "independentExact": "1/62500000000000000000",
+          "expectedValue": "1/62500000000000000000",
+          "unit": "kg/s",
+          "dimension": {
+            "[mass]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual charge times tesla units kgpersecond",
+          "independentExact": "1/62500000000000000000",
+          "expectedValue": "1/62500000000000000000",
+          "unit": "kg/s",
+          "dimension": {
+            "[mass]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual exact radius167Over8000m",
+          "independentExact": "167/8000",
+          "expectedValue": "167/8000",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual exact centimetres167Over80",
+          "independentExact": "167/80",
+          "expectedValue": "167/80",
+          "unit": "cm",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "source2point1cm roundingwithinhalfunitlastdecimal",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "independent centripetal equation agrees",
+          "independentExact": "1/312500000000000",
+          "expectedValue": "1/312500000000000",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "charge signflip doesnot changeradius",
+          "independentExact": "167/8000",
+          "expectedValue": "167/8000",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        }
+      ],
+      "dimension": {
+        "actual momentum334eMinus24": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "actual chargefieldproduct160eMinus22": {
+          "[mass]": "1",
+          "[time]": "-1"
+        },
+        "actual charge times tesla units kgpersecond": {
+          "[mass]": "1",
+          "[time]": "-1"
+        },
+        "actual exact radius167Over8000m": {
+          "[length]": "1"
+        },
+        "actual exact centimetres167Over80": {
+          "[length]": "1"
+        },
+        "source2point1cm roundingwithinhalfunitlastdecimal": {},
+        "independent centripetal equation agrees": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "charge signflip doesnot changeradius": {
+          "[length]": "1"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "Actual mv=(1.67e-27)*(2e5)=3.34e-22kg*m/s;absq*B=(1.60e-19)*0.10=1.60e-20kg/s. Divide334/160 times10^-2m=167/8000m=0.020875m=167/80cm=2.0875cm. A transparent manualdivision is167/80=2+7/80=2+0.0875. SpeedandB have2significantfigures;the source explicitlyrequestsfinal2.1cm,notanexactidentityequatingthatroundingwith2.0875.2.0875liesbetween2.05and2.15. Independently qvB=mv²/r. Charge signchangescurvature,notradius. Classicalspeednonrelativisticandassignedworkingmass/charge;actualnumericdataaresufficientwithoutcalculator.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Protonwithgivenroundedworkingmass/charge,uniformBperpendiculartovelocity,magneticforcealone,classicalnonrelativisticconstantmassmotion. Positiveq,nonzerov/B. Exactintermediatevaluesrelativetoprovideddata,roundedfinal2significantfiguresexplicit. Diagramonlyonepossibleentryorientation,numericradiusnotfrompixels.",
+      "pedagogicalReview": "Historicalversion2separatesmomentumandchargefieldproduct,convertscentimetresandexplicitlyqualifiessignificantfigures. Finitedecimaldivisionismanuallyreproducible. Signaffectscurvatureside,notradiusmodulus.",
+      "assetChecksums": {
+        "/figures/C4-orbita.svg": "3c95346817907b8731c5b62f7880236e4b97c2411770f9bc617dcc576d89b3c5"
+      },
+      "figureReview": "C4-orbitaXML/fullrenderreadpreviouslyandbyte-revalidated/re-viewedhere:positivechargeatbottom,circularcenterabove,velocityrightandcentripetalforceupinBcrosses. Sourcecaptionexplicitlypossibleentryorientation;nopromptBpageorientationornumericrscaleisinferred.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C4-E018",
+      "sourceSha256": "ea514e4d4670843fb70e9d70ebee7277657f6b685ed6ce5bfbb665700c23a623",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C4.json",
+      "sourceFileSha256": "19d52336dd1024113f45f33a03e4d71e262ee6357477948124c7fecec855c67c",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "actual8cm convertedto0point080m",
+          "independentExact": "2/25",
+          "expectedValue": "2/25",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual wireforcemagnitude0point040N",
+          "independentExact": "1/25",
+          "expectedValue": "1/25",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "rightcurrent cross upwardfield pointsout",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "reversedcurrent alone pointsin",
+          "independentExact": "-1",
+          "expectedValue": "-1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "perpendicular angle sine isone",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "parallelfield wireforcezero",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        }
+      ],
+      "dimension": {
+        "actual8cm convertedto0point080m": {
+          "[length]": "1"
+        },
+        "actual wireforcemagnitude0point040N": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "rightcurrent cross upwardfield pointsout": {},
+        "reversedcurrent alone pointsin": {},
+        "perpendicular angle sine isone": {},
+        "parallelfield wireforcezero": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "Actuallength8cm=8/100m.2*(8/100)*(1/4)=4/100N=0.040N becauseperpendicularsinangleone. Right-handed xright,yup,zout givesx crossy=z,outofthepage. Reversingonlycurrentgivesminusz; parallelfieldwouldgivezeroforce. Exactintegerfractionsandcrossproductdirections, no decimaltrigneeded.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Straight8cmsegmentuniformlyimmersedinassigneduniformB,conventionalcurrentright,fieldliteralupinthepage;right-handedcoordinateframe. Wire/fieldperpendicularandmagneticforceisolatedfromothermechanicalforces.",
+      "pedagogicalReview": "Convertscentimetresandstatesvectorlengthconventionalcurrentdirection,thengiveshandedness. Doesnotconfuseelectronvelocitywithconventionalcurrent.",
+      "assetChecksums": {},
+      "figureReview": "No figureinallthreeblocks;right/up/outframeexplicittext.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C4-E019",
+      "sourceSha256": "495cf48ec2b2d9e9e8f77740d527f77a70dd51c4a372dd69d1b1f05233ee1585",
+      "sourceVersion": 2,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C4.json",
+      "sourceFileSha256": "19d52336dd1024113f45f33a03e4d71e262ee6357477948124c7fecec855c67c",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "actual5squarecm means5eMinus4squaremetres",
+          "independentExact": "1/2000",
+          "expectedValue": "1/2000",
+          "unit": "m^2",
+          "dimension": {
+            "[length]": "2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual20ms isonefiftiethsecond",
+          "independentExact": "1/50",
+          "expectedValue": "1/50",
+          "unit": "s",
+          "dimension": {
+            "[time]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual fieldchangeonefifthtesla",
+          "independentExact": "1/5",
+          "expectedValue": "1/5",
+          "unit": "T",
+          "dimension": {
+            "[mass]": "1",
+            "[time]": "-2",
+            "[current]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual singleturn fluxchange1eMinus4weber",
+          "independentExact": "1/10000",
+          "expectedValue": "1/10000",
+          "unit": "Wb",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2",
+            "[current]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual40turn fluxlinkchange0point004weber",
+          "independentExact": "1/250",
+          "expectedValue": "1/250",
+          "unit": "Wb",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2",
+            "[current]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual meanemfmagnitudeonefifthvolt",
+          "independentExact": "1/5",
+          "expectedValue": "1/5",
+          "unit": "V",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3",
+            "[current]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "fluxchange persecond voltageunits",
+          "independentExact": "1/5",
+          "expectedValue": "1/5",
+          "unit": "V",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3",
+            "[current]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "doublingduration halvesmeanemf",
+          "independentExact": "1/10",
+          "expectedValue": "1/10",
+          "unit": "V",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3",
+            "[current]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "signedemf negativeforincreasingpositiveflux",
+          "independentExact": "-1/5",
+          "expectedValue": "-1/5",
+          "unit": "V",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3",
+            "[current]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        }
+      ],
+      "dimension": {
+        "actual5squarecm means5eMinus4squaremetres": {
+          "[length]": "2"
+        },
+        "actual20ms isonefiftiethsecond": {
+          "[time]": "1"
+        },
+        "actual fieldchangeonefifthtesla": {
+          "[mass]": "1",
+          "[time]": "-2",
+          "[current]": "-1"
+        },
+        "actual singleturn fluxchange1eMinus4weber": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2",
+          "[current]": "-1"
+        },
+        "actual40turn fluxlinkchange0point004weber": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2",
+          "[current]": "-1"
+        },
+        "actual meanemfmagnitudeonefifthvolt": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3",
+          "[current]": "-1"
+        },
+        "fluxchange persecond voltageunits": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3",
+          "[current]": "-1"
+        },
+        "doublingduration halvesmeanemf": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3",
+          "[current]": "-1"
+        },
+        "signedemf negativeforincreasingpositiveflux": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3",
+          "[current]": "-1"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "Actualarea5cm²=5e-4m²,20ms=1/50s. Fieldchange0.30-0.10=1/5T;one-turnfluxchange(5e-4)/5=1e-4Wb.40turnsgive4e-3Wbfluxlinkage;divideby0.02s gives0.20Vmodulus. Fieldparalleltonormalso cosineone. Signedemfnegativeforchosenpositivenormalalongincreasingfield,butonlymodulusisasked. Doublingdurationgivestenthvolt. Uniformrampmakesinstantaneousforcingconstantoverinterval;noinductanceorloadcurrentissolved.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "40fixedturnseachsame5cm²area,planesperpendiculartoBso normalsparallel;uniformfieldchangeineachturnandspecifiedtimeinterval. f.e.m.meanmodulusfromgivenflux,ratherthanloadcurrentortwopointconservativepotentialdrop. Area/temporalprefixesconvertedbeforenumericwork.",
+      "pedagogicalReview": "Historicalversion2separatesone-turnfluxfromN-turnlinkageandduration;asksmeanemfnotcurrentorimpulse. Squarecentimetre/msconversionandunitWb/s=Varedocumented.",
+      "assetChecksums": {},
+      "figureReview": "No figureinall eightblocks;area,turncount,field/timeandnormalrelationshipareexplicitprompt/text.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C4-E020",
+      "sourceSha256": "6ae64210d1fa577c152f00e883ca7bc1966ccb29c1eaec306401a03ac5e800ba",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C4.json",
+      "sourceFileSha256": "19d52336dd1024113f45f33a03e4d71e262ee6357477948124c7fecec855c67c",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "outwardnormal incomingdecreasingflux givesnegativeemf",
+          "independentExact": "-A*rate",
+          "expectedValue": "-A*rate",
+          "unit": "V",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3",
+            "[current]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_physical_derivation_no_assigned_numeric_calculation"
+        },
+        {
+          "claim": "negativepositiveCCW orientation means clockwise",
+          "independentExact": "-1",
+          "expectedValue": "-1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_physical_derivation_no_assigned_numeric_calculation"
+        },
+        {
+          "claim": "passiveresistive inducedresponse hasnegativecurrent",
+          "independentExact": "-A*rate/R",
+          "expectedValue": "-A*rate/R",
+          "unit": "A",
+          "dimension": {
+            "[current]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_physical_derivation_no_assigned_numeric_calculation"
+        },
+        {
+          "claim": "zero initial RLresponse followsnegativeemf",
+          "independentExact": "-Eabs*(1 - exp(-R*t/L)) - Eabs*exp(-R*t/L)",
+          "expectedValue": "-Eabs",
+          "unit": "V",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3",
+            "[current]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_physical_derivation_no_assigned_numeric_calculation"
+        },
+        {
+          "claim": "stoppedexternalfieldchange haszeroforcingemf",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "V",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3",
+            "[current]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_physical_derivation_no_assigned_numeric_calculation"
+        },
+        {
+          "claim": "storedinductive current neednotvanishwhen forcingends",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "V",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3",
+            "[current]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_physical_derivation_no_assigned_numeric_calculation"
+        }
+      ],
+      "dimension": {
+        "outwardnormal incomingdecreasingflux givesnegativeemf": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3",
+          "[current]": "-1"
+        },
+        "negativepositiveCCW orientation means clockwise": {},
+        "passiveresistive inducedresponse hasnegativecurrent": {
+          "[current]": "1"
+        },
+        "zero initial RLresponse followsnegativeemf": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3",
+          "[current]": "-1"
+        },
+        "stoppedexternalfieldchange haszeroforcingemf": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3",
+          "[current]": "-1"
+        },
+        "storedinductive current neednotvanishwhen forcingends": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3",
+          "[current]": "-1"
+        }
+      },
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "manualArithmetic": "No numericalstudentcalculationassigned;directionismagneticinduction/Lenzresponse. ChooseoutwardnormalandpositiveCCWpath. IncomingdecreasingfieldhasPhi=-A*(Binitial-rate*t),derivative+Arate,so inducedemf=-Arate andresponseclockwise,producingincomingfield. A passivezeroinitialRLresponsehasI=-Eabs/R*(1-exp(-Rt/L)),sameinduceddirection. Thisdoesnotinferanypossiblepreexistingtotalcurrentfroma fluxderivativealone. Onstoppingthefieldvariationitsforcingemfvanishes;aninductorcurrentcanpersistanddecay,whichthesourcecorrectlydoesnotdeny. Figureisphysicallychecked,notwaivedforlackofnumbers.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Directionoftheinducedresponseofthepassivelooptothegivenfieldchange;nottotalcurrentunderanunprovidedindependentinitialcurrent/energysource. Positiveorientationpairedwithoutwardnormal. No assertioninstantaneousinductorcurrentequalsforcingemf/R forallhistories;sourceonlystatesforcingemfvanisheswhenexternalvariationstops.",
+      "pedagogicalReview": "Explicitlydecreasingincomingfieldrequiresinducedincomingfield;notalwaysoppositeexternalB. Endswithvanishingforcingemf,ratherthanfalselyclaiminginstantaneouszeroinductivecurrent.",
+      "assetChecksums": {
+        "/figures/C4-lenz-decrescente.svg": "c48efc27347a24e10ace757e58d61ed6942e987512d7e6b8623bbc4141914071"
+      },
+      "figureReview": "CompleteXML/newfullrenderofC4-lenz-decrescente.svg:externalcrossesincoming;redinducedcrosscenterincoming;redright-sidearcfrom367,83to369,150withSVGsweep1goesdown/rightside,clockwisefrontview. Notmistakenwiththeearlierincreasing-fieldCCWfigure. Qualitativedirections,numericfieldsnotassigned.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "0461b23d1503ac3030ef66b3f869ee881a68f40e1ff1aafc63043f1ce3609664",
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+  "sourcePath": "officina-di-fisica/content/C4.json",
+  "sourceFileSha256": "19d52336dd1024113f45f33a03e4d71e262ee6357477948124c7fecec855c67c",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "acceptedCount": 4,
+  "failedCount": 0,
+  "draftReviewedCount": 0,
+  "failedPublishedEditionIds": [],
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_original_or_revision_author",
+  "originalEditionRetained": true,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}

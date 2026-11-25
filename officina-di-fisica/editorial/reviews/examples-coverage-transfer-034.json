@@ -1,0 +1,1369 @@
+{
+  "schemaVersion": "1.0.0",
+  "batch": "examples-coverage-transfer-034",
+  "records": [
+    {
+      "id": "C3-E021",
+      "sourceSha256": "23e3bcb7c72d510d8d1306699b574b7f936cb8008016e8936be5c55df9562e8c",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/esempi-di-copertura.json",
+      "sourceFileSha256": "a2db79961bac47ce346d482990d1fb47105151d0650de9c4e05c5b7a5e311d82",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "actual fixedvolume heatcapacity2point5joulesperkelvin",
+          "independentExact": "5/2",
+          "expectedValue": "5/2",
+          "unit": "J/K",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2",
+            "[temperature]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_worked_manual_calculation"
+        },
+        {
+          "claim": "actual fixedvolume gain40kelvin",
+          "independentExact": "40",
+          "expectedValue": "40",
+          "unit": "K",
+          "dimension": {
+            "[temperature]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_worked_manual_calculation"
+        },
+        {
+          "claim": "actual fixedpressure nominalgain625over26kelvin",
+          "independentExact": "625/26",
+          "expectedValue": "625/26",
+          "unit": "K",
+          "dimension": {
+            "[temperature]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_worked_manual_calculation"
+        },
+        {
+          "claim": "explicit approx24point0 has nearesttenth bound",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_explicit_estimate_or_optional_approximation"
+        },
+        {
+          "claim": "actual nominal internalgain3125over52joules",
+          "independentExact": "3125/52",
+          "expectedValue": "3125/52",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_worked_manual_calculation"
+        },
+        {
+          "claim": "actual nominal work2075over52joules",
+          "independentExact": "2075/52",
+          "expectedValue": "2075/52",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_worked_manual_calculation"
+        },
+        {
+          "claim": "explicit approx60point1 valid",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_explicit_estimate_or_optional_approximation"
+        },
+        {
+          "claim": "explicit approximateintermediate work39point9 valid",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_explicit_estimate_or_optional_approximation"
+        },
+        {
+          "claim": "nominal firstlaw100joules closes",
+          "independentExact": "100",
+          "expectedValue": "100",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "roundedworking heatcapacitydifference8point3 notexactSIclaim",
+          "independentExact": "83/10",
+          "expectedValue": "83/10",
+          "unit": "J/(mol*K)",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2",
+            "[substance]": "-1",
+            "[temperature]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "nominal pVwork usingassignedcapacitydifference",
+          "independentExact": "2075/52",
+          "expectedValue": "2075/52",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        }
+      ],
+      "dimension": {
+        "actual fixedvolume heatcapacity2point5joulesperkelvin": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2",
+          "[temperature]": "-1"
+        },
+        "actual fixedvolume gain40kelvin": {
+          "[temperature]": "1"
+        },
+        "actual fixedpressure nominalgain625over26kelvin": {
+          "[temperature]": "1"
+        },
+        "explicit approx24point0 has nearesttenth bound": {},
+        "actual nominal internalgain3125over52joules": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "actual nominal work2075over52joules": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "explicit approx60point1 valid": {},
+        "explicit approximateintermediate work39point9 valid": {},
+        "nominal firstlaw100joules closes": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "roundedworking heatcapacitydifference8point3 notexactSIclaim": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2",
+          "[substance]": "-1",
+          "[temperature]": "-1"
+        },
+        "nominal pVwork usingassignedcapacitydifference": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "Actualgivenworkingcapacities: nCv=.20*12.5=2.5J/K, so100J gives40K. nCp=.20*20.8=4.16J/K, so100/4.16=625/26=24+1/26K, explicitlyapprox24.0. DeltaUB=nCvDeltaTB=3125/52=60+5/52J, W=2075/52=39+47/52J. Manualintegerboundsjustify60.1and39.9. Source100-60.1=39.9isexactarithmeticofalreadyqualifiedroundedintermediate, notclaimexactUB60.1. NominalCp-Cv8.3istheroundedworkingR ofthesuppliedcapacities, notexactSIuniversalconstant. Q=U+W=100. GasAwarmsmore; worktransferredtopiston/externalmechanicalreservoir, notpartofgasinternalenergy.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Twosametypeideal-gassamples,n.20mol,sameinitialT,closedgasandonlypVwork,onefixedVoneconstantpressure, quasistaticthermalcapacitymodel. SuppliedCv12.5/Cp20.8constantworkingroundeddata;donotasserttheirone-decimaldifferenceexactSI R8.314... . InitialTnotneededforincrements.",
+      "pedagogicalReview": "Originalfullprompt/allblocksread; actualassignednumericalworkindependentlyderived, exactnominalforms andexplicitestimatesdistinguished. Revieweraddedcounterexamples/roundingboundsnotclaimedasstudentperformanceorrequiredTaylorprocedure. Reviewmetadataignoredasapproval; no sourcekey used.",
+      "assetChecksums": {
+        "/figures/C3-due-cilindri.svg": "cce5a1ed943fd9f48d84ff72c5610163e4ef685563a9fe1c3d833d34bc1ecdcd"
+      },
+      "figureReview": "C3-due-cilindriXML/full580x226renderread. Alockedpiston/Braisedpistonwitholdpositiondashed;equal100Jheatlabels. Cylinderheightsnotassignedcalibratedtemperature/energyaxes;externalworkarrowupmatchesexpansion.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C3-E022",
+      "sourceSha256": "eef0ad98ad42465e43618a0fc090e1994dfdfa17350fb1a47aee8a5631ffdcf1",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/esempi-di-copertura.json",
+      "sourceFileSha256": "a2db79961bac47ce346d482990d1fb47105151d0650de9c4e05c5b7a5e311d82",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "actual20cubiccentimetres conversion",
+          "independentExact": "1/50000",
+          "expectedValue": "1/50000",
+          "unit": "m^3",
+          "dimension": {
+            "[length]": "3"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_worked_manual_calculation"
+        },
+        {
+          "claim": "actual hydrostaticbuoyancy nominal979038over5million",
+          "independentExact": "489519/2500000",
+          "expectedValue": "489519/2500000",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_worked_manual_calculation"
+        },
+        {
+          "claim": "actual hotportionweight195219over1million",
+          "independentExact": "195219/1000000",
+          "expectedValue": "195219/1000000",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_worked_manual_calculation"
+        },
+        {
+          "claim": "actual netupwardforce2943over5million",
+          "independentExact": "2943/5000000",
+          "expectedValue": "2943/5000000",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_worked_manual_calculation"
+        },
+        {
+          "claim": "explicit estimate5point89eMinus4 nearest3significantfigures",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_explicit_estimate_or_optional_approximation"
+        },
+        {
+          "claim": "explicit estimate0point59millinewton nearesthundredth",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_explicit_estimate_or_optional_approximation"
+        },
+        {
+          "claim": "same densities givezeroinitialhydrostaticresultant",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "positive externallydriven hydraulicflow possiblewithoutdensitydifference",
+          "independentExact": "1/2",
+          "expectedValue": "1/2",
+          "unit": "m^3/s",
+          "dimension": {
+            "[length]": "3",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        }
+      ],
+      "dimension": {
+        "actual20cubiccentimetres conversion": {
+          "[length]": "3"
+        },
+        "actual hydrostaticbuoyancy nominal979038over5million": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "actual hotportionweight195219over1million": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "actual netupwardforce2943over5million": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "explicit estimate5point89eMinus4 nearest3significantfigures": {},
+        "explicit estimate0point59millinewton nearesthundredth": {},
+        "same densities givezeroinitialhydrostaticresultant": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "positive externallydriven hydraulicflow possiblewithoutdensitydifference": {
+          "[length]": "3",
+          "[time]": "-1"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "PromptasksSTIMA explicitly.20cm³=20e-6m³=1/50000m³. Initialhydrostaticbuoyancy998*9.81/50000=.1958076N; hotportionweight995*9.81/50000=.195219N. Difference3*9.81/50000=.0005886N=.5886mN upward. Assignedestimate5.89e-4N andapprox.59mN havecorrectroundingbounds. Contextstimaqualifiesdisplayedroundedforce, unlike anunqualifiedexact-answer equality. Naturalconvectionfromdensitydifference; pumpcanprovidepressuregradientwithoutdensitydifference. Revieweradditional4Pa/8Pa*s/m³positivehydraulicresistancetoy gives.5m³/s atzerobuoyantdifference, notapredictionoftheactualbathvelocity.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Smallhotparcel,quiescentinitialhydrostaticapproximatelyconstantdensitysurroundingwaterabove20C;rhohot995/rhooutside998,volume20cm³,g9.81. Initialverticalpressureplusweightonly,notcompleteacceleratingflowpressure/dragmodel. Subsequentvelocityexplicitlydependsviscosity/mixing;forcedconvectioncanexistindependentlyofdensitydifference.",
+      "pedagogicalReview": "Originalfullprompt/allblocksread; actualassignednumericalworkindependentlyderived, exactnominalforms andexplicitestimatesdistinguished. Revieweraddedcounterexamples/roundingboundsnotclaimedasstudentperformanceorrequiredTaylorprocedure. Reviewmetadataignoredasapproval; no sourcekey used.",
+      "assetChecksums": {
+        "/figures/C3-convezione.svg": "8452b3e37127429e12ea1133f3930953d26de939ecfb578860a3baef9a2b2610"
+      },
+      "figureReview": "C3-convezioneXML/full580x226renderread. Upwardspintaarrow36.11pxvsdownweight36px andcaptionnearlyequal. Assigneddensityratio998/995differs36.11/36byunder5e-5,reasonablepixelrounding;warmparcel/pressureforceandweightclearlydistinguished. No velocity/pumpflowvalue encoded.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C3-E023",
+      "sourceSha256": "73ac06cb7de1a1a99345e66ffd42d3117292d7b695b461348c8fe6fbefd0a465",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/esempi-di-copertura.json",
+      "sourceFileSha256": "a2db79961bac47ce346d482990d1fb47105151d0650de9c4e05c5b7a5e311d82",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "actual310fourthpower9235210000",
+          "independentExact": "9235210000",
+          "expectedValue": "9235210000",
+          "unit": "K^4",
+          "dimension": {
+            "[temperature]": "4"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_worked_manual_calculation"
+        },
+        {
+          "claim": "actual300fourthpower8100000000",
+          "independentExact": "8100000000",
+          "expectedValue": "8100000000",
+          "unit": "K^4",
+          "dimension": {
+            "[temperature]": "4"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_worked_manual_calculation"
+        },
+        {
+          "claim": "nominal emittedpower exact523636407over125million",
+          "independentExact": "523636407/125000000",
+          "expectedValue": "523636407/125000000",
+          "unit": "W",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_worked_manual_calculation"
+        },
+        {
+          "claim": "nominal absorbedpower exact45927over12500",
+          "independentExact": "45927/12500",
+          "expectedValue": "45927/12500",
+          "unit": "W",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_worked_manual_calculation"
+        },
+        {
+          "claim": "nominal netpower exact64366407over125million",
+          "independentExact": "64366407/125000000",
+          "expectedValue": "64366407/125000000",
+          "unit": "W",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_worked_manual_calculation"
+        },
+        {
+          "claim": "explicit4point189 emission nearestthousandth",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_explicit_estimate_or_optional_approximation"
+        },
+        {
+          "claim": "explicit3point674 absorption nearestthousandth",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_explicit_estimate_or_optional_approximation"
+        },
+        {
+          "claim": "explicit0point515 netnearestthousandth",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_explicit_estimate_or_optional_approximation"
+        },
+        {
+          "claim": "radiative coefficient dimensionalpower",
+          "independentExact": "523636407/125000000",
+          "expectedValue": "523636407/125000000",
+          "unit": "W",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "equaltemperatures stilltwoequalnonzerofluxes",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "W",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        }
+      ],
+      "dimension": {
+        "actual310fourthpower9235210000": {
+          "[temperature]": "4"
+        },
+        "actual300fourthpower8100000000": {
+          "[temperature]": "4"
+        },
+        "nominal emittedpower exact523636407over125million": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3"
+        },
+        "nominal absorbedpower exact45927over12500": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3"
+        },
+        "nominal netpower exact64366407over125million": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3"
+        },
+        "explicit4point189 emission nearestthousandth": {},
+        "explicit3point674 absorption nearestthousandth": {},
+        "explicit0point515 netnearestthousandth": {},
+        "radiative coefficient dimensionalpower": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3"
+        },
+        "equaltemperatures stilltwoequalnonzerofluxes": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "Actualcoefficient.8*.010*5.67e-8=4.536e-10W/K⁴.310⁴=(31²)²*10000=9235210000;300⁴=8100000000. Longmultiplication givesPem523636407/125000000=4.189091256W,Pass45927/12500=3.67416W,net64366407/125000000=.514931256W. Allshownapproximations4.189,3.674,.515correctnearest.001W, explicitlymarkedapprox. Repeatedinteger squaring/powers and multiplication are manualalgorithms, no transcendental/calculatorneed. Givenworking sigma roundsphysicalconstant, not exactSIclaim. Atboth300Knet0whileeachflux3.67416Wnonzero. Oneface,blackisothermalcavitycompleteexposure, absoluteK, netoutpositive.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Onlyonegrayface,.010m²,emissivity/absorptivity.80at310K fullyviewslargeblack300Kisothermalcavitythroughvacuum,viewfactor1inassignedcompleteexposuremodel,noothersupportexchange. AbsoluteK,workingroundedStefanconstant. Netlossdoesnotimplyzeroabsorbedflux;equalTnetzeroallowstwooppositefluxes.",
+      "pedagogicalReview": "Originalfullprompt/allblocksread; actualassignednumericalworkindependentlyderived, exactnominalforms andexplicitestimatesdistinguished. Revieweraddedcounterexamples/roundingboundsnotclaimedasstudentperformanceorrequiredTaylorprocedure. Reviewmetadataignoredasapproval; no sourcekey used.",
+      "assetChecksums": {
+        "/figures/C3-scambio-radiante.svg": "a349e16243c82c568314d88b0d4bfa7fdff3ac244ddf983b0e448af6276c74a9"
+      },
+      "figureReview": "C3-scambio-radianteXML/full580x226renderread. Arrowsemissionfrom310Kfaceandabsorptionfrom300Kcavityoppositeacrossvacuum. Diagramisaschematicexchange,notfiniteparallelplateviewfactorcalibration;arrowlengthsnotpowerscale. EqualTstatementdoesnotturnoffradiation.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C4-E021",
+      "sourceSha256": "a4329128b8ce6181bb71aa3211731e8313687c155af82d7c92b4b81ef3d536e8",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/esempi-di-copertura.json",
+      "sourceFileSha256": "a2db79961bac47ce346d482990d1fb47105151d0650de9c4e05c5b7a5e311d82",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "upwardcurrent atnorth giveswestvector",
+          "independentExact": "-1",
+          "expectedValue": "-1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "actual resultantcomponentsminus15east20north",
+          "independentExact": "625",
+          "expectedValue": "625",
+          "unit": "uT^2",
+          "dimension": {
+            "[mass]": "2",
+            "[time]": "-4",
+            "[current]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_worked_manual_calculation"
+        },
+        {
+          "claim": "actual magnitude25microtesla",
+          "independentExact": "25",
+          "expectedValue": "25",
+          "unit": "uT",
+          "dimension": {
+            "[mass]": "1",
+            "[time]": "-2",
+            "[current]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_worked_manual_calculation"
+        },
+        {
+          "claim": "actual exactnorthwestdirection tangentthreequarters",
+          "independentExact": "3/4",
+          "expectedValue": "3/4",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_worked_manual_calculation"
+        },
+        {
+          "claim": "optional36point9 lowerangle bound via rationalTaylor",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "optional36point9 upperangle bound via rationalTaylor",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "reversingcurrent reflectssame25magnitude",
+          "independentExact": "25",
+          "expectedValue": "25",
+          "unit": "uT",
+          "dimension": {
+            "[mass]": "1",
+            "[time]": "-2",
+            "[current]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_worked_manual_calculation"
+        },
+        {
+          "claim": "switchingoff returns20north",
+          "independentExact": "20",
+          "expectedValue": "20",
+          "unit": "uT",
+          "dimension": {
+            "[mass]": "1",
+            "[time]": "-2",
+            "[current]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_worked_manual_calculation"
+        }
+      ],
+      "dimension": {
+        "upwardcurrent atnorth giveswestvector": {},
+        "actual resultantcomponentsminus15east20north": {
+          "[mass]": "2",
+          "[time]": "-4",
+          "[current]": "-2"
+        },
+        "actual magnitude25microtesla": {
+          "[mass]": "1",
+          "[time]": "-2",
+          "[current]": "-1"
+        },
+        "actual exactnorthwestdirection tangentthreequarters": {},
+        "optional36point9 lowerangle bound via rationalTaylor": {},
+        "optional36point9 upperangle bound via rationalTaylor": {},
+        "reversingcurrent reflectssame25magnitude": {
+          "[mass]": "1",
+          "[time]": "-2",
+          "[current]": "-1"
+        },
+        "switchingoff returns20north": {
+          "[mass]": "1",
+          "[time]": "-2",
+          "[current]": "-1"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "Actualcurrentup(outoftopview) givesBwirewestatnorth by right-handcrossproductz×y=-x. Components(-15,20)microtesla form3-4-5scaled5, magnitude25microtesla. Directionisnorthwestwith exacttan(alpha)=15/20=3/4=.75, alreadyidentifyinganglewithoutmandatoryinversefunction. Optionalapprox36.9degandabout37degarevalid: reviewer rational sine/cosineTaylorboundsprove36.85<alpha<36.95. Theseoptionalroundingboundsarenotclaimedstudent-assignedTaylorwork. Reversingcurrent gives(+15,20),samemagnitude/mirroredeast;switchoff20north. No fieldmagnitudeaddition35.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Horizontalcompassandhorizontalbackground20microteslanorth,straightverticalwirecurrentupgives15microteslawestatthegivenpointnorth. Linearfieldsuperposition,needlenorthpolealignsequilibriumresultanthorizontalB;staticfriction/othermagneticfieldsneglected. Optionalnumericdegreeangleissupplementtoexacttan3/4direction.",
+      "pedagogicalReview": "Originalfullprompt/allblocksread; actualassignednumericalworkindependentlyderived, exactnominalforms andexplicitestimatesdistinguished. Revieweraddedcounterexamples/roundingboundsnotclaimedasstudentperformanceorrequiredTaylorprocedure. Reviewmetadataignoredasapproval; no sourcekey used.",
+      "assetChecksums": {
+        "/figures/C4-bussola-nord.svg": "0df5c1a38e4a58f25dd5608367a1bba41d61ce7382b7e995c1449b6663b30794"
+      },
+      "figureReview": "C4-bussola-nordXML/full580x226renderread. Leftcurrentdotoutofpage,Pnorthofwire;right20microteslanorth/15westandNWresultantcorrect. Commonoriginswithin1pxstrokeoffset,noexplicitmetricmicrotesla-per-pixelclaim;vectorschematicnotdecimalanglemeasurement.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C5-E021",
+      "sourceSha256": "e877c25cf09fbf473addd7d19d0a8475b810b0d7a57d3069eea59d13f5f07902",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/esempi-di-copertura.json",
+      "sourceFileSha256": "a2db79961bac47ce346d482990d1fb47105151d0650de9c4e05c5b7a5e311d82",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "actual interemissionperiod onefiftiethsecond",
+          "independentExact": "1/50",
+          "expectedValue": "1/50",
+          "unit": "s",
+          "dimension": {
+            "[time]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_worked_manual_calculation"
+        },
+        {
+          "claim": "actualfirstfronttravel34over5metres",
+          "independentExact": "34/5",
+          "expectedValue": "34/5",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_worked_manual_calculation"
+        },
+        {
+          "claim": "actualsourceadvance17over50metres",
+          "independentExact": "17/50",
+          "expectedValue": "17/50",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_worked_manual_calculation"
+        },
+        {
+          "claim": "actualforwardfrontseparation323over50metres",
+          "independentExact": "323/50",
+          "expectedValue": "323/50",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_worked_manual_calculation"
+        },
+        {
+          "claim": "actualbackwardfrontseparation357over50metres",
+          "independentExact": "357/50",
+          "expectedValue": "357/50",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_worked_manual_calculation"
+        },
+        {
+          "claim": "actualforwardreceiverinterval19milliseconds",
+          "independentExact": "19/1000",
+          "expectedValue": "19/1000",
+          "unit": "s",
+          "dimension": {
+            "[time]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_worked_manual_calculation"
+        },
+        {
+          "claim": "actualbackwardreceiverinterval21milliseconds",
+          "independentExact": "21/1000",
+          "expectedValue": "21/1000",
+          "unit": "s",
+          "dimension": {
+            "[time]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_worked_manual_calculation"
+        },
+        {
+          "claim": "arrivalposition cancellation forforwardreceiver",
+          "independentExact": "19/1000",
+          "expectedValue": "19/1000",
+          "unit": "s",
+          "dimension": {
+            "[time]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "arrivalposition cancellation forbackwardreceiver",
+          "independentExact": "21/1000",
+          "expectedValue": "21/1000",
+          "unit": "s",
+          "dimension": {
+            "[time]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "sourcefrequency50betweenreceivedfrequencies",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        }
+      ],
+      "dimension": {
+        "actual interemissionperiod onefiftiethsecond": {
+          "[time]": "1"
+        },
+        "actualfirstfronttravel34over5metres": {
+          "[length]": "1"
+        },
+        "actualsourceadvance17over50metres": {
+          "[length]": "1"
+        },
+        "actualforwardfrontseparation323over50metres": {
+          "[length]": "1"
+        },
+        "actualbackwardfrontseparation357over50metres": {
+          "[length]": "1"
+        },
+        "actualforwardreceiverinterval19milliseconds": {
+          "[time]": "1"
+        },
+        "actualbackwardreceiverinterval21milliseconds": {
+          "[time]": "1"
+        },
+        "arrivalposition cancellation forforwardreceiver": {
+          "[time]": "1"
+        },
+        "arrivalposition cancellation forbackwardreceiver": {
+          "[time]": "1"
+        },
+        "sourcefrequency50betweenreceivedfrequencies": {}
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "ActualT=.020=1/50s. Firstfrontmoves340/50=6.8m,source17/50=.34m. Spacingsforward6.46=323/50m,back7.14=357/50m. Bothfrontsspeed340throughstillair, sointerarrival19/1000sforward and21/1000sbackexact. Independentarrivaltime t_emit+distance/c cancelsreceiverdistance while receiverremainsonthelabelledforward/backwardsideofthetwoemissions; crossingbetweenemissions isnotthisforward/backwardcomparison. Frequencies1000/19>50>1000/21areadditionalreviewerchecks. Source’sfixedcollinearahead/behinddescriptionisreadforthecomparedfronts,nottouniversallyextendconstantDopplertimingthroughapassage.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Stationarycollinearahead/behindreceiversfortherelevanttwoemissions,source17m/srightsubsonic,stillairc340,emissionperiod.020. Sourceclassificationforward/backwardappliesduringcomparison;notuniversalacrossreceiverpassage/transverseDoppler/acceleratingorwindcases.",
+      "pedagogicalReview": "Originalfullprompt/allblocksread; actualassignednumericalworkindependentlyderived, exactnominalforms andexplicitestimatesdistinguished. Revieweraddedcounterexamples/roundingboundsnotclaimedasstudentperformanceorrequiredTaylorprocedure. Reviewmetadataignoredasapproval; no sourcekey used.",
+      "assetChecksums": {
+        "/figures/C5-due-fronti.svg": "40341e7154851bd86d00d0ff8d5aab16cee1da6d82e8f945ebe6de592cbdbf3c"
+      },
+      "figureReview": "C5-due-frontiXML/full580x226renderread. Initialsourcex285,new293.5,frontsx115/455.25px/m commonaxis:8.5/.34=170/6.8=178.5/7.14=161.5/6.46=25. Correctsourcebirthpositionversusfirstfrontdirections,captiondeclaresactualspacingscale. Receivernotpictured;regionclassificationfromprompt,notextraunseenpositiondata.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C5-E022",
+      "sourceSha256": "c1ea7d3fa44b5224af064de726b900dbd7f2f9430772f602a87357e0eae01b52",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/esempi-di-copertura.json",
+      "sourceFileSha256": "a2db79961bac47ce346d482990d1fb47105151d0650de9c4e05c5b7a5e311d82",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "actual spectrumfrequency0",
+          "independentExact": "100000000",
+          "expectedValue": "100000000",
+          "unit": "Hz",
+          "dimension": {
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_worked_manual_calculation"
+        },
+        {
+          "claim": "actual spectrumfrequency1",
+          "independentExact": "2400000000",
+          "expectedValue": "2400000000",
+          "unit": "Hz",
+          "dimension": {
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_worked_manual_calculation"
+        },
+        {
+          "claim": "actual spectrumfrequency2",
+          "independentExact": "30000000000000",
+          "expectedValue": "30000000000000",
+          "unit": "Hz",
+          "dimension": {
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_worked_manual_calculation"
+        },
+        {
+          "claim": "actual spectrumfrequency3",
+          "independentExact": "600000000000000",
+          "expectedValue": "600000000000000",
+          "unit": "Hz",
+          "dimension": {
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_worked_manual_calculation"
+        },
+        {
+          "claim": "actual spectrumfrequency4",
+          "independentExact": "1000000000000000",
+          "expectedValue": "1000000000000000",
+          "unit": "Hz",
+          "dimension": {
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_worked_manual_calculation"
+        },
+        {
+          "claim": "actual spectrumfrequency5",
+          "independentExact": "3000000000000000000",
+          "expectedValue": "3000000000000000000",
+          "unit": "Hz",
+          "dimension": {
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_worked_manual_calculation"
+        },
+        {
+          "claim": "actual spectrumfrequency6",
+          "independentExact": "300000000000000000000",
+          "expectedValue": "300000000000000000000",
+          "unit": "Hz",
+          "dimension": {
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_worked_manual_calculation"
+        },
+        {
+          "claim": "actual sevenfrequencies strictlyincreasing",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_worked_manual_calculation"
+        },
+        {
+          "claim": "vacuumwavelength decreaseswithpositivefrequency",
+          "independentExact": "-c/f**2",
+          "expectedValue": "-c/f**2",
+          "unit": "m/Hz",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "radio100MHz vacuumwavelength3metres",
+          "independentExact": "3",
+          "expectedValue": "3",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        }
+      ],
+      "dimension": {
+        "actual spectrumfrequency0": {
+          "[time]": "-1"
+        },
+        "actual spectrumfrequency1": {
+          "[time]": "-1"
+        },
+        "actual spectrumfrequency2": {
+          "[time]": "-1"
+        },
+        "actual spectrumfrequency3": {
+          "[time]": "-1"
+        },
+        "actual spectrumfrequency4": {
+          "[time]": "-1"
+        },
+        "actual spectrumfrequency5": {
+          "[time]": "-1"
+        },
+        "actual spectrumfrequency6": {
+          "[time]": "-1"
+        },
+        "actual sevenfrequencies strictlyincreasing": {},
+        "vacuumwavelength decreaseswithpositivefrequency": {
+          "[length]": "1",
+          "[time]": "1"
+        },
+        "radio100MHz vacuumwavelength3metres": {
+          "[length]": "1"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "ActualMHz1e6/GHz1e9 gives1e8and2.4e9Hz. Workingvacuumc3e8 dividedby10um1e-5m=>3e13;500nm5e-7=>6e14;300nm3e-7=>1e15;.10nm1e-10=>3e18;1pm1e-12=>3e20Hz. Integers/powersprovideascendingorder radio,microwaves,IR,visible,UV,X,gamma. Sourceexplicitlynotesmicrowavesarebroadlyradio andX/gammabandoverlap; electronic/nuclearoriginsgivenforthespecificlasttwo, no universalsharpphotonenergyboundaryinvented. WorkingcroundednotexactSI. Spectrumfigureordinal, notlinearorlogarithmicquantitativebandscale.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Allgivenlambdaarevacuumlambda,workingc3e8,frequenciesHz. Ordinalnamedregionsatwell-interiorsamples,notuniversalsharpboundaries;Xelectronic/gammanuclearoriginsstated. No materialindexorfrequencychangedbyobserver.",
+      "pedagogicalReview": "Originalfullprompt/allblocksread; actualassignednumericalworkindependentlyderived, exactnominalforms andexplicitestimatesdistinguished. Revieweraddedcounterexamples/roundingboundsnotclaimedasstudentperformanceorrequiredTaylorprocedure. Reviewmetadataignoredasapproval; no sourcekey used.",
+      "assetChecksums": {
+        "/figures/C5-spettro.svg": "bfff537db5e0ad8070bd0e10742483e7d3ae4daa72e4ab52da1aba442a95012d"
+      },
+      "figureReview": "C5-spettroXML/full640x230renderread. Ordinalfrequencylefttoright radio/microwave/IR/visible/UV/X/gamma,lambdaopposite;titleexplicitlyordinal,even79pxspacingnotlinearorlog-frequencyorbandwidthmeasurement.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C6-AE01",
+      "sourceSha256": "c53762c1585fc1cacc266a44f5185a4ec0ef4abd19fca876570a7937473529c8",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/lotto-001.json",
+      "sourceFileSha256": "71c563d3ea98f92602f04d1956df968bf125b85fad72521bd6742d8070e53e2a",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "actual20squarecentimetres conversion",
+          "independentExact": "1/500",
+          "expectedValue": "1/500",
+          "unit": "m^2",
+          "dimension": {
+            "[length]": "2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_worked_manual_calculation"
+        },
+        {
+          "claim": "actual equilibriumimmersion16centimetres",
+          "independentExact": "16",
+          "expectedValue": "16",
+          "unit": "cm",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_worked_manual_calculation"
+        },
+        {
+          "claim": "actual releasedextreme17centimetres",
+          "independentExact": "17",
+          "expectedValue": "17",
+          "unit": "cm",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_worked_manual_calculation"
+        },
+        {
+          "claim": "oppositeextreme15centimetres retainspartialimmersion",
+          "independentExact": "15",
+          "expectedValue": "15",
+          "unit": "cm",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "actual stiffness981over50newtonpermetre",
+          "independentExact": "981/50",
+          "expectedValue": "981/50",
+          "unit": "N/m",
+          "dimension": {
+            "[mass]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_worked_manual_calculation"
+        },
+        {
+          "claim": "independent buoyancy balance giveslinearrestoringforce",
+          "independentExact": "-981*x/50",
+          "expectedValue": "-981*x/50",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "actual nominalforce minus981over5000newton",
+          "independentExact": "-981/5000",
+          "expectedValue": "-981/5000",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_worked_manual_calculation"
+        },
+        {
+          "claim": "prose force0point196 isvalid3significantfigureestimate",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_explicit_estimate_or_optional_approximation"
+        },
+        {
+          "claim": "actual periodexact8pioverroot981",
+          "independentExact": "8*sqrt(109)*pi/327",
+          "expectedValue": "8*sqrt(109)*pi/327",
+          "unit": "s",
+          "dimension": {
+            "[time]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_worked_manual_calculation"
+        },
+        {
+          "claim": "periodsquareunitissecondssquared",
+          "independentExact": "16/981",
+          "expectedValue": "16/981",
+          "unit": "s^2",
+          "dimension": {
+            "[time]": "2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "explicit0point80period rounding frommanualsquaredbounds",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_explicit_estimate_or_optional_approximation"
+        },
+        {
+          "claim": "bothmotionextremes strictlyinside30cmheight",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "addedmass changesperiod andisexcludedbyprompt",
+          "independentExact": "sqrt(2)",
+          "expectedValue": "sqrt(2)",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        }
+      ],
+      "dimension": {
+        "actual20squarecentimetres conversion": {
+          "[length]": "2"
+        },
+        "actual equilibriumimmersion16centimetres": {
+          "[length]": "1"
+        },
+        "actual releasedextreme17centimetres": {
+          "[length]": "1"
+        },
+        "oppositeextreme15centimetres retainspartialimmersion": {
+          "[length]": "1"
+        },
+        "actual stiffness981over50newtonpermetre": {
+          "[mass]": "1",
+          "[time]": "-2"
+        },
+        "independent buoyancy balance giveslinearrestoringforce": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "actual nominalforce minus981over5000newton": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "prose force0point196 isvalid3significantfigureestimate": {},
+        "actual periodexact8pioverroot981": {
+          "[time]": "1"
+        },
+        "periodsquareunitissecondssquared": {
+          "[time]": "2"
+        },
+        "explicit0point80period rounding frommanualsquaredbounds": {},
+        "bothmotionextremes strictlyinside30cmheight": {},
+        "addedmass changesperiod andisexcludedbyprompt": {}
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "Actual20cm²=20*(1e-2)²=.002m². h0=.32/(1000*.002)=.16m, displacement±.01keeps15..17cm submergedbelow30cmheight. Courseworkingg9.81givesk=rhogA=19.62N/m. DownpositiveF=mg-rhogA(h0+x)=-kx, nominalatx.010gives-.1962N;sourceprose-.196Nisvalid3significantfigurepresentation, not a printed exactequalitychain. T=2pi*sqrt(.32/19.62)=8pi/sqrt981seconds. Withoutcalculatingaradicaldecimal, squaredboundsusing3.14159<pi<355/113establish.795²<T²<.805² andoptionalTapprox.80s. Sourceexplicitlyexcludeswateraddedinertiaandfriction; constantsection/partialimmersion makesmodelisochronous. Revieweraddedmadd=mwouldmultiplyperiodsqrt2andisoutsidedomain. No needtoroundedforcefortheperiod.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Uniformcylindricalverticaltranslation20cm²/height30cm/mass.32kg,rho1000,terrestrialcourseg9.81working. Bothmotionextremespartiallyimmersed;freewatersurface,hydrostaticArchimedes,constantsection,nohysteresis/surfacetension/frictionoraddedwaterinertiaasexplicitlyexcluded. No taperedbody/fullsubmersionextrapolation.",
+      "pedagogicalReview": "Originalfullprompt/allblocksread; actualassignednumericalworkindependentlyderived, exactnominalforms andexplicitestimatesdistinguished. Revieweraddedcounterexamples/roundingboundsnotclaimedasstudentperformanceorrequiredTaylorprocedure. Reviewmetadataignoredasapproval; no sourcekey used.",
+      "assetChecksums": {
+        "/figures/C6-galleggiante.svg": "75e4ab92441954d2100ccfacf1bc402a8222ffc8c00b69f042b1e54289990a61"
+      },
+      "figureReview": "C6-galleggianteXML/full700x270renderread. Waterlinehorizontalfixed,constantwidthbodylowered,rightbottomhatchedbandheightxshowsaddedAxvolume. Diagramqualitative,nonumericcentimetre-per-pixelscaledeclared;visible19pxshiftisillustrative,notmetric1cm. Noliteralscaleclaimedfrombodyheight. Downpositiverestoringforceexplainedintext,notamissingarrow.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "ef03efae695a33e4533bd1bfb70850cda4aeb57c7ecfa663862833dd74e56fcf",
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+  "sourcePaths": [
+    "officina-di-fisica/content/esempi-di-copertura.json",
+    "officina-di-fisica/content/lotto-001.json"
+  ],
+  "sourceFileSha256ByPath": {
+    "officina-di-fisica/content/esempi-di-copertura.json": "a2db79961bac47ce346d482990d1fb47105151d0650de9c4e05c5b7a5e311d82",
+    "officina-di-fisica/content/lotto-001.json": "71c563d3ea98f92602f04d1956df968bf125b85fad72521bd6742d8070e53e2a"
+  },
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "acceptedCount": 7,
+  "failedCount": 0,
+  "draftReviewedCount": 0,
+  "failedPublishedEditionIds": [],
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_original_author",
+  "originalEditionRetained": true,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}

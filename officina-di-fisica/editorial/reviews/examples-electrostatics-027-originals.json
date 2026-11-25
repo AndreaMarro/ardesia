@@ -1,0 +1,1152 @@
+{
+  "schemaVersion": "1.0.0",
+  "batch": "examples-electrostatics-027",
+  "records": [
+    {
+      "id": "C4-E001",
+      "sourceSha256": "82da182f9e9d1e168bd78c7e701131c547bd1500087fdc18816b8a42b3701d76",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C4.json",
+      "sourceFileSha256": "19d52336dd1024113f45f33a03e4d71e262ee6357477948124c7fecec855c67c",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "actual3cm converted to3over100m",
+          "independentExact": "3/100",
+          "expectedValue": "3/100",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual chargeproduct magnitude",
+          "independentExact": "3/500000000000000000",
+          "expectedValue": "3/500000000000000000",
+          "unit": "C^2",
+          "dimension": {
+            "[current]": "2",
+            "[time]": "2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "left positivecharge attractedright",
+          "independentExact": "3/50000",
+          "expectedValue": "3/50000",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "right negativecharge attractedleft",
+          "independentExact": "-3/50000",
+          "expectedValue": "-3/50000",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "forces equalandopposite ondistinctbodies",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "Coulomb force units and centimetre conversion",
+          "independentExact": "3/50000",
+          "expectedValue": "3/50000",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        }
+      ],
+      "dimension": {
+        "actual3cm converted to3over100m": {
+          "[length]": "1"
+        },
+        "actual chargeproduct magnitude": {
+          "[current]": "2",
+          "[time]": "2"
+        },
+        "left positivecharge attractedright": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "right negativecharge attractedleft": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "forces equalandopposite ondistinctbodies": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "Coulomb force units and centimetre conversion": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "Actual k9e9 is explicitly assigned working data, not a claim exactSI Coulombconstant. Convert3cm=3/100m, square gives9/10000m²;2nC*3nC=6e-18C². Numerator54e-9 divided9e-4 gives6e-5N. Positiveleftsource isattractedright,negative rightsourceleft; same magnitudeon differentbodies. Powers often manuallycancel9 and10exponents; no calculator.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Small spheresrelative tocenterseparation, electrostaticvacuum pair, specifiedworkingk9e9 andpointchargeapproximation. Forcesactondistinctbodies;netpairforcezero doesnotmakeindividualforceszero.",
+      "pedagogicalReview": "Usescenter-distanceSIconversion,chargeproductandattractiondirection;distinguishesequaloppositeforcesfrombothactingononesphere. Assignedroundedkisworkingdata.",
+      "assetChecksums": {
+        "/figures/C4-coulomb.svg": "e3478c630a080624cafaa8361d262ab0ce201ff83a2e86ea9922b9e900d95611"
+      },
+      "figureReview": "CompleteXML/render:separatepositiveleft/negativerightcircles, equal106pxforcearrowsinward,labelledforceoneachcharge;distancequotebetweencenters. No numericdistanceorforceratioderivedfrompixels.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C4-E002",
+      "sourceSha256": "ee49cd09c215b4b26056f00dadde9604a3f3e7469337a2c88bf640a954acd9d8",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C4.json",
+      "sourceFileSha256": "19d52336dd1024113f45f33a03e4d71e262ee6357477948124c7fecec855c67c",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "actual algebraic totalcharge6nC",
+          "independentExact": "6",
+          "expectedValue": "6",
+          "unit": "nC",
+          "dimension": {
+            "[current]": "1",
+            "[time]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "equalcharge symmetry solves conservedtotal",
+          "independentExact": "3",
+          "expectedValue": "3",
+          "unit": "nC",
+          "dimension": {
+            "[current]": "1",
+            "[time]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "first sphere receivesnegativecharge5nC",
+          "independentExact": "-5",
+          "expectedValue": "-5",
+          "unit": "nC",
+          "dimension": {
+            "[current]": "1",
+            "[time]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "second sphere losesnegativecharge5nC",
+          "independentExact": "5",
+          "expectedValue": "5",
+          "unit": "nC",
+          "dimension": {
+            "[current]": "1",
+            "[time]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "transfer conservestotalcharge",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "nC",
+          "dimension": {
+            "[current]": "1",
+            "[time]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "different capacitances wouldnot permit equalcharge",
+          "independentExact": "2",
+          "expectedValue": "2",
+          "unit": "nC",
+          "dimension": {
+            "[current]": "1",
+            "[time]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        }
+      ],
+      "dimension": {
+        "actual algebraic totalcharge6nC": {
+          "[current]": "1",
+          "[time]": "1"
+        },
+        "equalcharge symmetry solves conservedtotal": {
+          "[current]": "1",
+          "[time]": "1"
+        },
+        "first sphere receivesnegativecharge5nC": {
+          "[current]": "1",
+          "[time]": "1"
+        },
+        "second sphere losesnegativecharge5nC": {
+          "[current]": "1",
+          "[time]": "1"
+        },
+        "transfer conservestotalcharge": {
+          "[current]": "1",
+          "[time]": "1"
+        },
+        "different capacitances wouldnot permit equalcharge": {
+          "[current]": "1",
+          "[time]": "1"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "Actual total8+(-2)=6nC. Identicalspheres andexplicitlysymmetric arrangement plusnegligiblewire giveequalfinalcharge, soeach3nC. Firstchange3-8=-5nC meansreceivingelectrons; second3-(-2)=+5nC meanslosingelectrons. Changescancel. The source doesnotrequestelectroncounts orrequirecontinuous nC data to beexact integer electronmultiples. Unequalcapacitance reviewerprobe wouldgive2nC/4nC, explainingwhytheidentical/symmetryconditionmatters.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Identicalconductingspheres,symmetricenvironmentandconfiguration, isolatedtwo-spheresystem, negligiblewire/otherconductors, electrostaticequilibriumthen separationwithoutchargeexchange. Equalpotentialsalone wouldnotgiveequalchargesforunequal/asymmetriccapacitances.",
+      "pedagogicalReview": "Algebraicchargeconservationprecedessymmetryandfinaldivision;electrontransferdirectionfollowschangeinsignedcharge ratherthansayingpositivechargesmovedthroughwire.",
+      "assetChecksums": {},
+      "figureReview": "No figureinallfiveblocks;explicitgeometricalsymmetryisintheprompt.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C4-E003",
+      "sourceSha256": "028c493f17ba8a02b755b3f5136874e09324c13203dc5fa37789de8ba1156197",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C4.json",
+      "sourceFileSha256": "19d52336dd1024113f45f33a03e4d71e262ee6357477948124c7fecec855c67c",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "actual halfway20cm separation gives10cm",
+          "independentExact": "1/10",
+          "expectedValue": "1/10",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "positiveleftsource midpointfieldright",
+          "independentExact": "900",
+          "expectedValue": "900",
+          "unit": "N/C",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-3",
+            "[current]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "negativerightsource midpointfieldright",
+          "independentExact": "900",
+          "expectedValue": "900",
+          "unit": "N/C",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-3",
+            "[current]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual sourcefieldsum is1800right",
+          "independentExact": "1800",
+          "expectedValue": "1800",
+          "unit": "N/C",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-3",
+            "[current]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "oppositecharge totalzero doesnot implyfieldzero",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "C",
+          "dimension": {
+            "[current]": "1",
+            "[time]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "midpointpotential zero iscompatiblewithnonzerofield",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "V",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3",
+            "[current]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        }
+      ],
+      "dimension": {
+        "actual halfway20cm separation gives10cm": {
+          "[length]": "1"
+        },
+        "positiveleftsource midpointfieldright": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-3",
+          "[current]": "-1"
+        },
+        "negativerightsource midpointfieldright": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-3",
+          "[current]": "-1"
+        },
+        "actual sourcefieldsum is1800right": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-3",
+          "[current]": "-1"
+        },
+        "oppositecharge totalzero doesnot implyfieldzero": {
+          "[current]": "1",
+          "[time]": "1"
+        },
+        "midpointpotential zero iscompatiblewithnonzerofield": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3",
+          "[current]": "-1"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "Actual separation20cm meansmidpointr10cm=1/10m. Eachfield9e9*1e-9/(1/10)²=9*100=900N/C. Signedvector contributionsbothpointfromleftpositive torightnegative, giving1800N/Cright. Net sourcechargezero doesnotcancel spatiallydistinctfields. Midpointpotentialzero is anadditionalindependentcrosscheck, nottheanswerforfield.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Pointlikefixedsources+/-1nC atdistinctpositions;midpointhasfiniteequalr10cm, vacuumworkingk9e9. Electricfieldindependentofsignofhypotheticaltestcharge;scalarpotentialandvectorfieldnotinterchanged.",
+      "pedagogicalReview": "Addsfieldcomponentsatthesamepointwithcorrectsignbeforemagnitude;zero-totalchargeismadeexplicitlyinsufficientforzerofield.",
+      "assetChecksums": {
+        "/figures/C4-dipolo.svg": "6a73d914ea2c4c15badb8b44f48dc1ba440da27283d610b2d7db212921a4fe49"
+      },
+      "figureReview": "CompleteXML/render:sourcecenters112/528andP320giveexactequal208pxdistances;twoequal77pxfieldarrowsbothright, verticallyoffsetexplicitlyforlegibilityratherthanseparateapplicationpoints.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C4-E004",
+      "sourceSha256": "51824140960d423cda985a3d2849e6e2e331db68d3c7141b986dbe2f8fb8ffec",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C4.json",
+      "sourceFileSha256": "19d52336dd1024113f45f33a03e4d71e262ee6357477948124c7fecec855c67c",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "actual electricforce qE",
+          "independentExact": "1/50000",
+          "expectedValue": "1/50000",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual upwardacceleration10",
+          "independentExact": "10",
+          "expectedValue": "10",
+          "unit": "m/s^2",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual verticaldisplacementonefifth",
+          "independentExact": "1/5",
+          "expectedValue": "1/5",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual horizontaldisplacementthreefifths",
+          "independentExact": "3/5",
+          "expectedValue": "3/5",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual finalverticalvelocity2",
+          "independentExact": "2",
+          "expectedValue": "2",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "independent integratedacceleration givesdisplacement",
+          "independentExact": "1/5",
+          "expectedValue": "1/5",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "fieldwork equalskineticincrease",
+          "independentExact": "1/250000",
+          "expectedValue": "1/250000",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "forceunit fromchargeandfield",
+          "independentExact": "10",
+          "expectedValue": "10",
+          "unit": "m/s^2",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        }
+      ],
+      "dimension": {
+        "actual electricforce qE": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "actual upwardacceleration10": {
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "actual verticaldisplacementonefifth": {
+          "[length]": "1"
+        },
+        "actual horizontaldisplacementthreefifths": {
+          "[length]": "1"
+        },
+        "actual finalverticalvelocity2": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "independent integratedacceleration givesdisplacement": {
+          "[length]": "1"
+        },
+        "fieldwork equalskineticincrease": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "forceunit fromchargeandfield": {
+          "[length]": "1",
+          "[time]": "-2"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "ActualqE=4e-8*500=2e-5N. Divideby2e-6kg toobtainupward10m/s². Withvyinitial0,t1/5s,dy=(1/2)*10*(1/5)²=1/5m;dx=3*(1/5)=3/5m,vy=2m/s. Integratingconstantaccelerationagrees. FieldworkqEdy=4e-6J equalskineticincreasefromvx3,vy0 tovx3,vy2. No square-rootdecimal forfinalspeed isrequested. Uniformfieldmustcovertrajectoryduration;otherforcesexplicitlyneglected.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "UniformEupwardoverentire0.20s region,positiveassignedcharge,constantclassicalmass,initialhorizontalvelocity3m/sandvy0. Otherforcesincludinggravityexplicitlyneglected;notanunspecifiedexit-lengthproblem.",
+      "pedagogicalReview": "Setsverticalsignandinitialcondition,thenconstantaccelerationandseparatedhorizontalmotion. Curvedtrajectorydoesnotrequirechangingfielddirection.",
+      "assetChecksums": {},
+      "figureReview": "No figureinallfourblocks;sourcegivesallnumericinitialconditionsandfielddirection.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C4-E005",
+      "sourceSha256": "49e95aa57281fb136a308b7e8aa6cc1f5201b139af8554b7c3a0dce1be89aa0d",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C4.json",
+      "sourceFileSha256": "19d52336dd1024113f45f33a03e4d71e262ee6357477948124c7fecec855c67c",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "actual finalminusinitialpotential30V",
+          "independentExact": "30",
+          "expectedValue": "30",
+          "unit": "V",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3",
+            "[current]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual negativecharge potentialenergychange",
+          "independentExact": "-60",
+          "expectedValue": "-60",
+          "unit": "uJ",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual fieldwork oppositepotentialenergychange",
+          "independentExact": "3/50000",
+          "expectedValue": "3/50000",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "common potentialzero doesnot changeDeltaU",
+          "independentExact": "-3/50000",
+          "expectedValue": "-3/50000",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "fieldonly kineticgain ispositive60uJ",
+          "independentExact": "3/50000",
+          "expectedValue": "3/50000",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        }
+      ],
+      "dimension": {
+        "actual finalminusinitialpotential30V": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3",
+          "[current]": "-1"
+        },
+        "actual negativecharge potentialenergychange": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "actual fieldwork oppositepotentialenergychange": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "common potentialzero doesnot changeDeltaU": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "fieldonly kineticgain ispositive60uJ": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "ActualDeltaV40-10=+30V. q=-2microC givesDeltaU=-60microJ andfieldwork+60microJ. Ifonlyfieldacts,kineticenergygains60microJ. BothpotentialsshiftedbyacommonconstantleaveDeltaUunchanged. Negativechargereversespotential-versus-energytrend; no differentzero convention orabsolutepotentialenergy isinferred.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Electrostaticconservativefield, signedDeltaV=Vfinal-Vinitial, fixednegativecharge. Fieldwork=-DeltaU;kineticgainonlyifnootherforcework,explicitinsolution.",
+      "pedagogicalReview": "Distinguishespotentialincreasefromenergyincreasefornegativecharge;fieldworkandconditionalkineticgainareconsistent.",
+      "assetChecksums": {},
+      "figureReview": "No figureinallfourblocks;signconventionandnumericpotentialsareexplicit.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C4-E006",
+      "sourceSha256": "4c6a566f21a959961a11f3476c5494fe184244ac73a3715c207e591962972e7e",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C4.json",
+      "sourceFileSha256": "19d52336dd1024113f45f33a03e4d71e262ee6357477948124c7fecec855c67c",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "actual oneunorderedpair energy",
+          "independentExact": "9/100000000",
+          "expectedValue": "9/100000000",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual threeunorderedpairs energy",
+          "independentExact": "27/100000000",
+          "expectedValue": "27/100000000",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "halfqiVi sum excludes doublecounting",
+          "independentExact": "27/100000000",
+          "expectedValue": "27/100000000",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "sequentialassembly addsonepair then twopairs",
+          "independentExact": "27/100000000",
+          "expectedValue": "27/100000000",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "orderedpair doublecount hasfactor2",
+          "independentExact": "2",
+          "expectedValue": "2",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "potentialenergy units",
+          "independentExact": "9/100000000",
+          "expectedValue": "9/100000000",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        }
+      ],
+      "dimension": {
+        "actual oneunorderedpair energy": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "actual threeunorderedpairs energy": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "halfqiVi sum excludes doublecounting": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "sequentialassembly addsonepair then twopairs": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "orderedpair doublecount hasfactor2": {},
+        "potentialenergy units": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "Actualequilateraltrianglehasthreeunorderedpairs. Each9e9*(1e-9)²/(1/10)=9e-8J;threegive27e-8=2.7e-7J. Independentlyhalf-sumqi*potentialfromothercharges givessamevalue;sequentialassemblycontributeszero,onepair,twopairs. CountingBAafterABwoulddoublecount. Zeroenergyatreferenceseparationinfiniteisexplicit; no trig ordecimalradicalcalculationisrequired.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Threeequalpositivepointcharges,allpairdistances0.10m,electrostaticvacuumworkingk9e9. Excludeinfinitepoint-selfenergies;relativeinteractionenergyzerowhenchargesmutuallyinfinitelyseparated. Positiveexternalassemblyworkcomparisonisquasistatic.",
+      "pedagogicalReview": "Explicitunorderedpairlistpreventsdoublecountingandstatesenergyreference. Allarithmeticissimplepowers/fractions.",
+      "assetChecksums": {},
+      "figureReview": "No figureinallfourblocks;equilateralgeometrygiveninprompt,onlythreeequaldistancesneeded.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C4-E007",
+      "sourceSha256": "380b5c4186346136772352482b3e3c4dd5d98e5ae18d22dcf9f4c66aed2afac4",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C4.json",
+      "sourceFileSha256": "19d52336dd1024113f45f33a03e4d71e262ee6357477948124c7fecec855c67c",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "groundingpositiveexternalpotential makes spherechargenegative",
+          "independentExact": "-C*Vexternal",
+          "expectedValue": "-C*Vexternal",
+          "unit": "C",
+          "dimension": {
+            "[current]": "1",
+            "[time]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_physical_derivation_no_assigned_numeric_calculation"
+        },
+        {
+          "claim": "groundplussphere chargebalance remainszero",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "C",
+          "dimension": {
+            "[current]": "1",
+            "[time]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_physical_derivation_no_assigned_numeric_calculation"
+        },
+        {
+          "claim": "isolating freezesnegativecharge afterrodremoval",
+          "independentExact": "-Vexternal",
+          "expectedValue": "-Vexternal",
+          "unit": "V",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3",
+            "[current]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_physical_derivation_no_assigned_numeric_calculation"
+        },
+        {
+          "claim": "removerodwhilegrounded returnsneutral instead",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "C",
+          "dimension": {
+            "[current]": "1",
+            "[time]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_physical_derivation_no_assigned_numeric_calculation"
+        },
+        {
+          "claim": "isolatedinitialpolarization retainszeronetcharge",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "C",
+          "dimension": {
+            "[current]": "1",
+            "[time]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_physical_derivation_no_assigned_numeric_calculation"
+        }
+      ],
+      "dimension": {
+        "groundingpositiveexternalpotential makes spherechargenegative": {
+          "[current]": "1",
+          "[time]": "1"
+        },
+        "groundplussphere chargebalance remainszero": {
+          "[current]": "1",
+          "[time]": "1"
+        },
+        "isolating freezesnegativecharge afterrodremoval": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3",
+          "[current]": "-1"
+        },
+        "removerodwhilegrounded returnsneutral instead": {
+          "[current]": "1",
+          "[time]": "1"
+        },
+        "isolatedinitialpolarization retainszeronetcharge": {
+          "[current]": "1",
+          "[time]": "1"
+        }
+      },
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "manualArithmetic": "No studentnumericcalculation isassigned. Physicalreviewisnotwaived: capacitanceboundarymodelVsphere=Qsphere/C+Vexternal,withpositiveeffectiveexternalpotentialandgroundVsphere0, givesQsphere=-C*Vexternal<0. Earthsupplieselectrons. Removinggroundfirstfreezesthisnegativecharge;removingrodthenchangespotential/distributionbutnotnetcharge. ReversedorderwhilegroundedgivesQ0beforeisolation. Initialisolatedpolarizationhasoppositesurfacechargeswithsumzero. Theseareindependentconceptual/symbolicchecks,notquantitativecapacitancedatafromthefigure.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Neutralisolatedconductingsphereinitially,positiveexternalrodwithoutcontact, ordinarygroundreservoir, disconnectgroundwhilepositive rodremains,thenremoverod. Electrostaticequilibrium;chargeglyphsqualitative,notnumber-calibratedelectrons.",
+      "pedagogicalReview": "Explainsinitialpolarization,earthchargebalanceandoperationorder,withoutclaimingneutralisolatedconductorimmediatelygainsnetchargefromrod.",
+      "assetChecksums": {
+        "/figures/C4-materiali.svg": "9a2737ac65cad7f65f6570bac50e031c3ec7008f301286036fc58d55631e65ba",
+        "/figures/C4-induzione-terra.svg": "20696a28c54e925e57b31c167bcecb1efdf28330cff10870d2d29a368917dc9d"
+      },
+      "figureReview": "BothXML/fullrendersread: genericmaterialdiagramhasnegativeleft/positiverightinrightwardexternalfield,conductorinteriorE0andbounddielectricdipoles;notanassignedsphericalcapacitancescale. Groundingdiagrampositive rodleft,electronarrowupfromearthtowardsphere,finalisolatednegativechargesredistributedafterrodremoval. Chargeglyphcountsarequalitative;leftstageallowsongoingsupply,notanassertionthatdisconnectioncreatescharge.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C4-E008",
+      "sourceSha256": "1b89beaca4764c62c5cd057b9c83db2474d9f3d26c583033d43449248c9d5453",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C4.json",
+      "sourceFileSha256": "19d52336dd1024113f45f33a03e4d71e262ee6357477948124c7fecec855c67c",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "neutraldipole haszeronetcharge",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "C",
+          "dimension": {
+            "[current]": "1",
+            "[time]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_physical_derivation_no_assigned_numeric_calculation"
+        },
+        {
+          "claim": "nearnegativecharge attraction outweighsfarrepulsion",
+          "independentExact": "-4*K*a*d*q/((a - d)**2*(a + d)**2)",
+          "expectedValue": "-4*K*a*d*q/(-a**2 + d**2)**2",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_physical_derivation_no_assigned_numeric_calculation"
+        },
+        {
+          "claim": "uniformfield oppositecharges sumzero force",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_physical_derivation_no_assigned_numeric_calculation"
+        },
+        {
+          "claim": "uniformfield canretain torque",
+          "independentExact": "500*d*q",
+          "expectedValue": "500*d*q",
+          "unit": "N*m",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_physical_derivation_no_assigned_numeric_calculation"
+        },
+        {
+          "claim": "linearinduced energy hashalfpolarizabilityfactor",
+          "independentExact": "-K**2*alpha/(2*d**4)",
+          "expectedValue": "-K**2*alpha/(2*d**4)",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_physical_derivation_no_assigned_numeric_calculation"
+        },
+        {
+          "claim": "induced force followsstrongerfield gradient",
+          "independentExact": "-2*K**2*alpha/d**5",
+          "expectedValue": "-2*K**2*alpha/d**5",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_physical_derivation_no_assigned_numeric_calculation"
+        }
+      ],
+      "dimension": {
+        "neutraldipole haszeronetcharge": {
+          "[current]": "1",
+          "[time]": "1"
+        },
+        "nearnegativecharge attraction outweighsfarrepulsion": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "uniformfield oppositecharges sumzero force": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "uniformfield canretain torque": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "linearinduced energy hashalfpolarizabilityfactor": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "induced force followsstrongerfield gradient": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        }
+      },
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "manualArithmetic": "No studentnumericcalculation isassigned. Independentlymodelnearnegativeandfarpositivechargesatd-a,d+a frompositivesource, withd>a>0. Force sum=-4*K*q*d*a/(d²-a²)²<0points towardsourcealthoughnetchargezero. UniformEforcescancel,whiletorquepcrossEmayremain. Forordinarypositivepolarizabilityp=alphaE,inducedU=-alphaE²/2 andF=alpha*grad(E²)/2 pointtowardstrongerfield. Factoronehalfcomesfromintegratinginducedresponse,notassumingpermanentp. The sourcequalitativequestiondoesnotasktheseunprovidedconstants orderivatives;theyverifythemechanism.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Smallordinarydielectricwithpositiveeffectivepolarizabilityinassignednonuniformexternalfield;givenattractioncase,notuniversalallmaterials/media. Chargeboundandnetzero;near/farforceillustrationd>a,small-dipoleinducedmodelwherefieldgradientvarieslittleoversize. Uniformfieldtranslationzero cancoexistwithtorque.",
+      "pedagogicalReview": "Explainsneutralityversusnetforceinaninhomogeneousfieldandseparatestranslationfromtorqueintheuniformlimit. Numericalmanualityscopezero doesnotmeanphysicsunchecked.",
+      "assetChecksums": {
+        "/figures/C4-dipolo-indotto.svg": "fdd00e7ed9fe6b2155948bca6bdc0a8a322c0f5f169a20511d804c3541778c4c"
+      },
+      "figureReview": "CompleteXML/render:positive rodleft,nearnegative/farpositivepolarizationwithinneutralbody;96pxleftattractionarrowlargerthan53pxrightrepulsion. Comparisonisqualitative,notpoint-sourceinverse-squarescaleormetricbodydimension;netleftdirectioncorrect.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "c08edb086aba3582ada42324dc5679dc713d1001fad94e54a1c8a11e08c8aeff",
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+  "sourcePath": "officina-di-fisica/content/C4.json",
+  "sourceFileSha256": "19d52336dd1024113f45f33a03e4d71e262ee6357477948124c7fecec855c67c",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "acceptedCount": 8,
+  "failedCount": 0,
+  "draftReviewedCount": 0,
+  "failedPublishedEditionIds": [],
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_original_or_revision_author",
+  "originalEditionRetained": true,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}

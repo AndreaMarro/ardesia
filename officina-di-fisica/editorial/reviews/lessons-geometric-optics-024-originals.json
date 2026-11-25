@@ -1,0 +1,520 @@
+{
+  "schemaVersion": "1.0.0",
+  "batch": "lessons-geometric-optics-024",
+  "records": [
+    {
+      "id": "C5-L09",
+      "sourceSha256": "3f0ba3e5f6a738af6412b2c1f0d5aa084c3911ef009b4c4a56f523bb619d04b2",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C5.json",
+      "sourceFileSha256": "dac4490e6a900f5da191bf7a1f5b8463ddc57c8bbaa36cb7a4a375c70fa77422",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "index c over v isdimensionless",
+          "independentExact": "3/2",
+          "expectedValue": "3/2",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "tangential phasecontinuity is Snell",
+          "independentExact": "n1*sin(theta1) - n2*sin(theta2)",
+          "expectedValue": "n1*sin(theta1) - n2*sin(theta2)",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "source n1one n2threehalves incidence45 exact transmittedsine",
+          "independentExact": "sqrt(2)/3",
+          "expectedValue": "sqrt(2)/3",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_or_figure_manual_calculation"
+        },
+        {
+          "claim": "normal incidence staysnormal",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "rad",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "criticalangle sine is indexratio",
+          "independentExact": "n2",
+          "expectedValue": "n2",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "higherindex atobliquity reducesthe sine",
+          "independentExact": "2/3",
+          "expectedValue": "2/3",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_or_figure_manual_calculation"
+        },
+        {
+          "claim": "toy higherindex3over2 toone incidence45 exceedscritical",
+          "independentExact": "3*sqrt(2)/4",
+          "expectedValue": "3*sqrt(2)/4",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "toy totalinternalreflectionsquaredsine exceedsone",
+          "independentExact": "1/8",
+          "expectedValue": "1/8",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "surface angle30 meansnormalangle60",
+          "independentExact": "pi/3",
+          "expectedValue": "pi/3",
+          "unit": "rad",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "reversing exact refractedpath recoversincident45",
+          "independentExact": "sqrt(2)/2",
+          "expectedValue": "sqrt(2)/2",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "normal incidence speedchangeswhileanglezero",
+          "independentExact": "2/3",
+          "expectedValue": "2/3",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "wholedegree28 annotation upperbound at27point5 is belowexactsine",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_or_figure_manual_calculation"
+        },
+        {
+          "claim": "wholedegree28 annotation lowerbound at28point5 is aboveexactsine",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_or_figure_manual_calculation"
+        },
+        {
+          "claim": "refraction pixelrounding squaredsine residual",
+          "independentExact": "10/118053",
+          "expectedValue": "10/118053",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_or_figure_manual_calculation"
+        },
+        {
+          "claim": "incident reflectedray equal45 slope magnitudes",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_or_figure_manual_calculation"
+        },
+        {
+          "claim": "no finite refracted geometricalray ifsine greaterthanone",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_boundary_probe_excluded_by_source_conditions"
+        }
+      ],
+      "dimension": {
+        "index c over v isdimensionless": {},
+        "tangential phasecontinuity is Snell": {},
+        "source n1one n2threehalves incidence45 exact transmittedsine": {},
+        "normal incidence staysnormal": {},
+        "criticalangle sine is indexratio": {},
+        "higherindex atobliquity reducesthe sine": {},
+        "toy higherindex3over2 toone incidence45 exceedscritical": {},
+        "toy totalinternalreflectionsquaredsine exceedsone": {},
+        "surface angle30 meansnormalangle60": {},
+        "reversing exact refractedpath recoversincident45": {},
+        "normal incidence speedchangeswhileanglezero": {},
+        "wholedegree28 annotation upperbound at27point5 is belowexactsine": {},
+        "wholedegree28 annotation lowerbound at28point5 is aboveexactsine": {},
+        "refraction pixelrounding squaredsine residual": {},
+        "incident reflectedray equal45 slope magnitudes": {},
+        "no finite refracted geometricalray ifsine greaterthanone": {}
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "Actual diagram n1=1,n2=3/2,incidence45deg gives sin(theta2)=sqrt(2)/3, so exacttheta2=asin(sqrt(2)/3). The isolated28degree graphicalannotation is nearestwholedegree, notanequationstating exacttheta2=28 andnot a studentrequestfor decimalinverse-trig. Itsrounding is independently bounded manually:3.14<pi<22/7 andalternating sinseries bound sin27.5 below sqrt(2)/3 andsin28.5 above it. Source raypixelvector54,101 gives squaredsine2916/13117, differingfromexact2/9 by10/118053, consistentroundedcoordinates. Snell comesfromtangentialphasecontinuity atfixedfrequency. Normalincidence stayszeroanglebutchanges speed. Reversepath givesback45degrees. Reviewer3/2to1at45 gives sin²theta2=9/8>1, so no geometric transmittedray;theta_c=asin(2/3) stayssymbolic. Surface30degreeexample converts to60degree normalangle; notassignedsource numbers.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Ordinarypositive real refractiveindices atgivenfrequency, planarstationary interface andgeometricaloptics, samefrequency acrossinterface. Incidence/reflection/refraction anglesmeasuredfromnormalwithin0..pi/2 forstandardraymagnitudes. Totalinternalreflection fromhigherindex toloweronlyabovecritical, twoidealtransparentmedia; doesnotdeny anevanescentfield orclaimfrustratedTIRwithanotherinterface. Diagramintegerdegreeannotationrounded, notstrictcalculatedidentity.",
+      "pedagogicalReview": "Definesnormalbeforeangles, distinguishesnormalincidencefromspeedchange,andqualifiesTIRgeometricdomain. Warnsagainstusinganglesfromsurfaceorignoring sin>1. Exactinverse-triganswercanremainsymbolic; roundedangleinadiagramisnot falselyrewritten asanexactequality.",
+      "assetChecksums": {
+        "/figures/C5-rifrazione.svg": "12fbefd55feb65146632a6cf1295e143c2014048c7ad44b5cb09b71df277a26e"
+      },
+      "figureReview": "CompleteXML/render:surfacehorizontal,normalvertical,incident(220,32)to(317,129),reflectedto(414,32) both45deg;glassrayto(371,230) closer tonormal. Labels n_air1.00,n_glass1.50,28deg whole-degree roundedannotation. ExactSnellsine andmanualnearestdegreeboundchecked; no exacttheta=28formula orcompulsory decimal arctrigappears.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C5-L10",
+      "sourceSha256": "8e567bbf648e9e46dd73cf8f47fbe5ee82b40cdd2356599caa4fbbdaea7c51db",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C5.json",
+      "sourceFileSha256": "dac4490e6a900f5da191bf7a1f5b8463ddc57c8bbaa36cb7a4a375c70fa77422",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "independent principalrayintersection derives image distance",
+          "independentExact": "f*p/(-f + p)",
+          "expectedValue": "f*p/(-f + p)",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "image distance satisfies thinlens equation",
+          "independentExact": "1/f",
+          "expectedValue": "1/f",
+          "unit": "1/m",
+          "dimension": {
+            "[length]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "magnification fromcentralray similartriangles",
+          "independentExact": "-f/(-f + p)",
+          "expectedValue": "-f/(-f + p)",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "actual p3f givesimage3fOver2",
+          "independentExact": "3*f/2",
+          "expectedValue": "3*f/2",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_or_figure_manual_calculation"
+        },
+        {
+          "claim": "actual p3f givesmagnificationminusonehalf",
+          "independentExact": "-1/2",
+          "expectedValue": "-1/2",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_or_figure_manual_calculation"
+        },
+        {
+          "claim": "actual pfOver2 givesvirtualimageMinusf",
+          "independentExact": "-f",
+          "expectedValue": "-f",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_or_figure_manual_calculation"
+        },
+        {
+          "claim": "actual pfOver2 givesuprightdoubleimage",
+          "independentExact": "2",
+          "expectedValue": "2",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_or_figure_manual_calculation"
+        },
+        {
+          "claim": "atp2f image2f andunitinvertedmagnification",
+          "independentExact": "2*f",
+          "expectedValue": "2*f",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "objectatfocus divergesimageposition fromright",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "objectinsidefocus divergesimageposition fromleft",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "distantobject imagetendsfocus",
+          "independentExact": "f",
+          "expectedValue": "f",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "virtual magnification exceedsonesince0plessthanf",
+          "independentExact": "-f/(-f + p) - 1",
+          "expectedValue": "p/(f - p)",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "commonlength units p30cm f10cm givesq15cm",
+          "independentExact": "15",
+          "expectedValue": "15",
+          "unit": "cm",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "same q inmetres isthreeover20",
+          "independentExact": "3/20",
+          "expectedValue": "3/20",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "real image diagram axialratio109point5Over73",
+          "independentExact": "3/2",
+          "expectedValue": "3/2",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_or_figure_manual_calculation"
+        },
+        {
+          "claim": "real image diagram height ratio19Over38",
+          "independentExact": "-1/2",
+          "expectedValue": "-1/2",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_or_figure_manual_calculation"
+        },
+        {
+          "claim": "virtual image diagram axialratioMinus73Over36point5",
+          "independentExact": "-2",
+          "expectedValue": "-2",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_or_figure_manual_calculation"
+        },
+        {
+          "claim": "virtual image diagram height60Over30",
+          "independentExact": "2",
+          "expectedValue": "2",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_or_figure_manual_calculation"
+        }
+      ],
+      "dimension": {
+        "independent principalrayintersection derives image distance": {
+          "[length]": "1"
+        },
+        "image distance satisfies thinlens equation": {
+          "[length]": "-1"
+        },
+        "magnification fromcentralray similartriangles": {},
+        "actual p3f givesimage3fOver2": {
+          "[length]": "1"
+        },
+        "actual p3f givesmagnificationminusonehalf": {},
+        "actual pfOver2 givesvirtualimageMinusf": {
+          "[length]": "1"
+        },
+        "actual pfOver2 givesuprightdoubleimage": {},
+        "atp2f image2f andunitinvertedmagnification": {
+          "[length]": "1"
+        },
+        "objectatfocus divergesimageposition fromright": {},
+        "objectinsidefocus divergesimageposition fromleft": {},
+        "distantobject imagetendsfocus": {
+          "[length]": "1"
+        },
+        "virtual magnification exceedsonesince0plessthanf": {},
+        "commonlength units p30cm f10cm givesq15cm": {
+          "[length]": "1"
+        },
+        "same q inmetres isthreeover20": {
+          "[length]": "1"
+        },
+        "real image diagram axialratio109point5Over73": {},
+        "real image diagram height ratio19Over38": {},
+        "virtual image diagram axialratioMinus73Over36point5": {},
+        "virtual image diagram height60Over30": {}
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "Independent rays forobjectheight h at-p: afterlens parallelray y=h-h*x/f;centralray y=-h*x/p. Intersection givesq=fp/(p-f), imageheight=-hq/p. Actualp3f yieldsq3f/2 andm-1/2, betweenthefarfocus and2f, invertedhalfheight. Actualpf/2 yieldsq=-f andm2, same-objectside uprightvirtualimage, no directscreenposition. Atp=f outgoingraysparallel, nofiniteimage; limits frombothsides anddistantobject giveexpected sign/infinity/focus. Constructedf10cm,p30cm givesq15cm=3/20m; all sourcefractions aremanual. SVGaxial/height ratios matchtheseexactexamples; exaggerated transverseheight is schematicandnot anassignedphysicalangle or calibratedisotropicx/y metric.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Thinconverginglens,paraxialrays,samemediumbothsides,f>0,realobjectp>0. qpositiveonexitrealintersection, qnegativeforbackwardextensions; signedheightmagnification. Formulaq excludesp=f finitecasehandledseparately asparallelrays/infinity. Diagrams schematic withrelative axialandtransverse ratios, notnumericphysicalraysangles; physicalheightmaybesmallcomparedwithf. Directscreenonlyrealimage,additionalopticsnotassumed.",
+      "pedagogicalReview": "Statesparaxial/samemediumandsignconventionsbeforeequations. Actualrealandvirtualfractionexamples matchbothprincipalraysandmagnification; p=f degeneracyisexplicit. Laboratoryasks topredictsignanddecidescreenlocation,includingno directscreenforvirtualimage ratherthanassumingallimagesprojectable.",
+      "assetChecksums": {
+        "/figures/C5-lente-reale.svg": "fc2ef2fc62d53691378c1258e2eb72017bbe6cbb7e66ab664720cce13c45f7f4",
+        "/figures/C5-lente-virtuale.svg": "774c01eee8661d1802b9f7cccca4a8f893c99673ded0e538ffc7ee3a2eff05f5"
+      },
+      "figureReview": "BothcompleteXML/render: lensx320,axisy139,focalpositions247/393 give73pxf. Realobjectx101=>p219=3f,height38;image429.5=>q109.5=1.5f,height-19=-half. GreenraypassesFprime,redcentralrayundevlected;bothcrossatimage. Virtualobject283.5=>p36.5=f/2,height30;backwardextensionsmeet247,79=>q=-f,height60=double. Actualraysdiverge, dashedextensionsareclearlydistinguished. Minorrounding ofredterminalcoordinate45.62 causes3/730pxverticalresidual,under0.01px. No physicalheightunit orisotropicanglemetricassigned.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "46d3b16e6b4411927a74adc1d23f70a09f5dc53403799a0ea2bbd1363b9b6e63",
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+  "sourcePath": "officina-di-fisica/content/C5.json",
+  "sourceFileSha256": "dac4490e6a900f5da191bf7a1f5b8463ddc57c8bbaa36cb7a4a375c70fa77422",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "acceptedCount": 2,
+  "failedCount": 0,
+  "draftReviewedCount": 0,
+  "failedPublishedEditionIds": [],
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_original_or_revision_author",
+  "originalEditionRetained": true,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}

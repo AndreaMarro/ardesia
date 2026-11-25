@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="1700" viewBox="0 0 640 1700" role="img" aria-labelledby="title desc">
+<title id="title">Una portata totale, più rami con ripartizione uniforme</title>
+<desc id="desc">Tre passi distinguono il flusso di un ramo dalla velocità media. Con ventiquattro centimetri cubi al secondo, due rami ricevono dodici ciascuno. A sezione due centimetri quadrati, le velocità per due o tre rami sono sei o quattro centimetri al secondo. L’ultimo confronto usa scale diverse per area complessiva e velocità.</desc>
+<defs><marker id="blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#155fa0"/></marker><marker id="red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10Z" fill="#a33430"/></marker></defs>
+<rect width="640" height="1700" fill="#fffdf7"/>
+<g font-family="Arial, sans-serif" fill="#172c3b" font-size="22">
+<text x="35" y="48" font-size="27" font-weight="bold">1. Dividere il volume al secondo</text>
+<text x="35" y="88">Q totale = 24 cm³/s; N = 2</text>
+<text x="35" y="123">Ripartizione uniforme assegnata</text>
+<g fill="none" stroke="#778b99" stroke-width="3"><path d="M75 255H250L360 205H525"/><path d="M250 255L360 325H525"/></g>
+<g fill="none" stroke="#155fa0" stroke-width="5" marker-end="url(#blue)"><path d="M90 235H210"/><path d="M405 185H465"/><path d="M405 305H465"/></g>
+<text x="90" y="205">24 cm³/s</text><text x="385" y="153">12 cm³/s</text><text x="385" y="365">12 cm³/s</text>
+<text x="35" y="410">Scala frecce: 5 px / (cm³/s)</text>
+<text x="35" y="448">Lunghezze: 120 px in, 60 px per ramo</text>
+<text x="35" y="486">Schema dei raccordi, geometria non in scala</text>
+<line x1="35" x2="605" y1="520" y2="520" stroke="#b9c4c9"/>
+<text x="35" y="565" font-size="27" font-weight="bold">2. Dividere per l’area del ramo</text>
+<text x="35" y="605">Ogni ramo ha area A = 2 cm²</text>
+<text x="35" y="650">N = 2: 12 / 2 = 6 cm/s</text>
+<text x="35" y="693">N = 3: 8 / 2 = 4 cm/s</text>
+<g fill="none" stroke="#a33430" stroke-width="5" marker-end="url(#red)"><path d="M130 755H250"/><path d="M130 835H210"/></g>
+<text x="285" y="763">v = 6 cm/s</text><text x="285" y="843">v = 4 cm/s</text>
+<text x="35" y="900">Scala velocità: 20 px / (cm/s)</text>
+<text x="35" y="938">120 px e 80 px; non la scala di portata</text>
+<line x1="35" x2="605" y1="975" y2="975" stroke="#b9c4c9"/>
+<text x="35" y="1025" font-size="27" font-weight="bold">3. Confrontare l’area complessiva</text>
+<text x="35" y="1065">Numero × area di un ramo = N A</text>
+<text x="35" y="1110">N = 2, A = 2 cm²</text><rect x="90" y="1135" width="120" height="22" fill="#155fa0"/><text x="385" y="1154">4 cm²</text>
+<text x="35" y="1200">N = 3, A = 2 cm²</text><rect x="90" y="1225" width="180" height="22" fill="#155fa0"/><text x="385" y="1244">6 cm²</text>
+<text x="35" y="1290">N = 3, A = 3 cm²</text><rect x="90" y="1315" width="270" height="22" fill="#155fa0"/><text x="385" y="1334">9 cm²</text>
+<text x="35" y="1385">Scala area complessiva: 30 px / cm²</text>
+<rect x="90" y="1420" width="180" height="20" fill="#a33430"/><text x="385" y="1438">6 cm/s</text>
+<rect x="90" y="1470" width="120" height="20" fill="#a33430"/><text x="385" y="1488">4 cm/s</text>
+<rect x="90" y="1520" width="80" height="20" fill="#a33430"/><text x="385" y="1538">8/3 cm/s</text>
+<text x="35" y="1590">Scala velocità: 30 px / (cm/s)</text>
+<text x="35" y="1632">In ogni caso: N A v = 24 cm³/s</text>
+<text x="35" y="1670">Le barre blu e rosse usano unità diverse.</text>
+</g></svg>

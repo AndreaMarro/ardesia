@@ -1,0 +1,1104 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u3-reservoir-emptying-01",
+      "kind": "question",
+      "course": "C2",
+      "section": "Svuotamento ideale con battente variabile",
+      "order": 10721,
+      "title": "Il tempo dalla legge integrata assegnata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "reservoir-emptying",
+      "difficulty": 1,
+      "prompt": "Un serbatoio cilindrico rigido ha area orizzontale costante A e si svuota da un piccolo foro sul fondo, di area a≪A. Il rapporto r=A/a è costante nella singola prova, maggiore di 10. Il liquido è omogeneo incomprimibile e il modello è ideale: stessa pressione sopra il liquido e fuori dal foro, g=10 m/s² uniforme, nessuna macchina, contrazione o perdita dissipativa. Si trascura la velocità della superficie nel calcolo istantaneo di efflusso, mentre il battente diminuisce lentamente. H>0 è il battente iniziale. Si fornisce la legge integrata t=r√(2H/g), senza richiederne l’integrazione. t è il tempo del modello fino al livello del foro; residui e capillarità finali sono trascurati. Con r=100 e H=5 m, quanto vale t in s?",
+      "answer": {
+        "type": "numeric",
+        "value": 100,
+        "unit": "s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nella radice, due per cinque metri diviso dieci m/s² dà un secondo quadrato. La radice positiva è un secondo, e il rapporto di aree cento lo moltiplica: t=100 s. r è un rapporto geometrico puro, non un’area da convertire o un conteggio di secondi."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/02409da06a9bc8c13081f89cc8b44c1fdd59882e13630221c8921e5326ff3a35",
+          "text": "Esempio del modello: A=1 m², a=1/100 m², rapporto r=100 e battente iniziale 5 m. Le sole quote verticali usano 40 px/m: altezza iniziale 200 px. Le larghezze dei recipienti e il simbolo del foro sono schematici. A metà del tempo, 50 s, il battente è 5/4 m, cioè 50 px. Frecce di velocità 100 e 50 px a 10 px/(m/s) rappresentano 10 e 5 m/s."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{2H}{g}=1\\,\\mathrm{s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\sqrt{2H/g}=1\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " t=100\\cdot1\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " t=100\\,\\mathrm s"
+        },
+        {
+          "type": "text",
+          "text": "Cinquanta secondi sarebbe la stima volume iniziale diviso portata iniziale, che mantiene erroneamente costante la portata massima. Duecento raddoppierebbe una formula già integrata. I cento secondi sono il risultato esatto del modello fornito, senza supporre velocità costante durante lo svuotamento."
+        }
+      ],
+      "hints": [
+        "Semplifica prima la quantità con unità s² sotto la radice.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Cinquanta secondi sarebbe la stima volume iniziale diviso portata iniziale, che mantiene erroneamente costante la portata massima. Duecento raddoppierebbe una formula già integrata. I cento secondi sono il risultato esatto del modello fornito, senza supporre velocità costante durante lo svuotamento.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Legge integrata fornita e portata variabile",
+        "Unità, inverse e vincoli del piccolo foro"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-reservoir-emptying-02",
+      "kind": "question",
+      "course": "C2",
+      "section": "Svuotamento ideale con battente variabile",
+      "order": 10722,
+      "title": "L’unità del tempo totale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "reservoir-emptying",
+      "difficulty": 1,
+      "prompt": "Un serbatoio cilindrico rigido ha area orizzontale costante A e si svuota da un piccolo foro sul fondo, di area a≪A. Il rapporto r=A/a è costante nella singola prova, maggiore di 10. Il liquido è omogeneo incomprimibile e il modello è ideale: stessa pressione sopra il liquido e fuori dal foro, g=10 m/s² uniforme, nessuna macchina, contrazione o perdita dissipativa. Si trascura la velocità della superficie nel calcolo istantaneo di efflusso, mentre il battente diminuisce lentamente. H>0 è il battente iniziale. Si fornisce la legge integrata t=r√(2H/g), senza richiederne l’integrazione. t è il tempo del modello fino al livello del foro; residui e capillarità finali sono trascurati. Quale unità proposta esprime t?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "s",
+          "m/s",
+          "m",
+          "s²",
+          "1"
+        ],
+        "value": "s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il rapporto A/a è puro. Il quoziente H/g ha dimensione T², perciò la sua radice è un tempo. Moltiplicare per r non cambia la dimensione e restituisce secondi."
+        },
+        {
+          "type": "formula",
+          "text": "[r]=1"
+        },
+        {
+          "type": "formula",
+          "text": " [H/g]=T^2"
+        },
+        {
+          "type": "formula",
+          "text": " [t]=T"
+        },
+        {
+          "type": "text",
+          "text": "m/s è una velocità, m una lunghezza e s² appartiene al radicando prima dell’estrazione. Uno descrive soltanto il rapporto r, non il tempo di svuotamento. L’area del serbatoio e quella del foro devono usare la stessa unità prima di formare r."
+        }
+      ],
+      "hints": [
+        "Nel rapporto delle aree si cancellano le unità; nella radice di H/g rimane il tempo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "m/s è una velocità, m una lunghezza e s² appartiene al radicando prima dell’estrazione. Uno descrive soltanto il rapporto r, non il tempo di svuotamento. L’area del serbatoio e quella del foro devono usare la stessa unità prima di formare r.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Legge integrata fornita e portata variabile",
+        "Unità, inverse e vincoli del piccolo foro"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-reservoir-emptying-03",
+      "kind": "question",
+      "course": "C2",
+      "section": "Svuotamento ideale con battente variabile",
+      "order": 10723,
+      "title": "Perché la portata iniziale non basta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "reservoir-emptying",
+      "difficulty": 1,
+      "prompt": "Un serbatoio cilindrico rigido ha area orizzontale costante A e si svuota da un piccolo foro sul fondo, di area a≪A. Il rapporto r=A/a è costante nella singola prova, maggiore di 10. Il liquido è omogeneo incomprimibile e il modello è ideale: stessa pressione sopra il liquido e fuori dal foro, g=10 m/s² uniforme, nessuna macchina, contrazione o perdita dissipativa. Si trascura la velocità della superficie nel calcolo istantaneo di efflusso, mentre il battente diminuisce lentamente. H>0 è il battente iniziale. Si fornisce la legge integrata t=r√(2H/g), senza richiederne l’integrazione. t è il tempo del modello fino al livello del foro; residui e capillarità finali sono trascurati. Il volume iniziale è V₀=AH e la portata iniziale è Q₀=a√(2gH). Che cosa si può dire della stima t_const=V₀/Q₀?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "La portata diminuisce, quindi t_const sottostima il tempo totale",
+          "La portata resta costante, quindi t_const è esatto",
+          "Il battente aumenta mentre il serbatoio si svuota",
+          "La densità deve raddoppiare durante l’uscita",
+          "Il tempo totale del modello è negativo"
+        ],
+        "value": "La portata diminuisce, quindi t_const sottostima il tempo totale"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La portata iniziale è la maggiore perché il battente è inizialmente massimo. Durante lo svuotamento la velocità di Torricelli diminuisce e ogni volume successivo richiede più tempo rispetto alla stima a Q₀ fissa. Il rapporto V₀/Q₀ si riduce a metà della legge integrata fornita: sottostima precisamente di un fattore due in questo modello."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/02409da06a9bc8c13081f89cc8b44c1fdd59882e13630221c8921e5326ff3a35",
+          "text": "La portata del modello scende linearmente da 1/10 m³/s a zero in 100 s; l’area del triangolo portata-tempo è 5 m³, volume iniziale. Il grafico del battente h(τ)=5 m · [1−τ/(100 s)]², con τ tempo trascorso, è invece quadratico: punti a 0,50,100 s con h=5,5/4,0 m. Scale temporali e verticali esplicite; non si prolunga oltre il tempo di svuotamento."
+        },
+        {
+          "type": "formula",
+          "text": "t_{\\rm const}=\\frac{AH}{a\\sqrt{2gH}}"
+        },
+        {
+          "type": "formula",
+          "text": " t_{\\rm const}=\\frac r2\\sqrt{\\frac{2H}g}"
+        },
+        {
+          "type": "formula",
+          "text": " t=2t_{\\rm const}"
+        },
+        {
+          "type": "text",
+          "text": "Portata costante richiederebbe una condizione esterna diversa, come un battente mantenuto fisso, mentre qui il livello cala. La densità resta costante e il battente non aumenta. Tutti i fattori della legge integrata sono positivi: il tempo non può essere negativo."
+        }
+      ],
+      "hints": [
+        "Confronta la velocità all’inizio e quando il livello si avvicina al foro.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Portata costante richiederebbe una condizione esterna diversa, come un battente mantenuto fisso, mentre qui il livello cala. La densità resta costante e il battente non aumenta. Tutti i fattori della legge integrata sono positivi: il tempo non può essere negativo.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Legge integrata fornita e portata variabile",
+        "Unità, inverse e vincoli del piccolo foro"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-reservoir-emptying-04",
+      "kind": "question",
+      "course": "C2",
+      "section": "Svuotamento ideale con battente variabile",
+      "order": 10724,
+      "title": "Raddoppiare il rapporto delle aree",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "reservoir-emptying",
+      "difficulty": 1,
+      "prompt": "Un serbatoio cilindrico rigido ha area orizzontale costante A e si svuota da un piccolo foro sul fondo, di area a≪A. Il rapporto r=A/a è costante nella singola prova, maggiore di 10. Il liquido è omogeneo incomprimibile e il modello è ideale: stessa pressione sopra il liquido e fuori dal foro, g=10 m/s² uniforme, nessuna macchina, contrazione o perdita dissipativa. Si trascura la velocità della superficie nel calcolo istantaneo di efflusso, mentre il battente diminuisce lentamente. H>0 è il battente iniziale. Si fornisce la legge integrata t=r√(2H/g), senza richiederne l’integrazione. t è il tempo del modello fino al livello del foro; residui e capillarità finali sono trascurati. A ha r=100, B r=200; H resta 5 m. Come cambia t?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 100 a 200 s",
+          "Da 100 a 50 s",
+          "Resta 100 s",
+          "Da 100 a 400 s",
+          "Diventa zero"
+        ],
+        "value": "Da 100 a 200 s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il fattore √(2H/g) resta un secondo. Il rapporto geometrico r raddoppia e così il tempo totale: cento e duecento secondi. Per esempio r può crescere raddoppiando A a foro invariato, oppure dimezzando a a serbatoio invariato."
+        },
+        {
+          "type": "formula",
+          "text": "t_A=100\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " t_B=200\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " t_B/t_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Cinquanta inverte l’effetto del rapporto A/a. Quattrocento lo eleva erroneamente al quadrato; cento lo ignora e zero non corrisponde a H positivo. In entrambe le prove il foro resta piccolo rispetto alla sezione del serbatoio."
+        }
+      ],
+      "hints": [
+        "Mantieni la stessa radice e cambia soltanto il fattore r.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Cinquanta inverte l’effetto del rapporto A/a. Quattrocento lo eleva erroneamente al quadrato; cento lo ignora e zero non corrisponde a H positivo. In entrambe le prove il foro resta piccolo rispetto alla sezione del serbatoio.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Legge integrata fornita e portata variabile",
+        "Unità, inverse e vincoli del piccolo foro"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-reservoir-emptying-05",
+      "kind": "question",
+      "course": "C2",
+      "section": "Svuotamento ideale con battente variabile",
+      "order": 10725,
+      "title": "Ricostruire il rapporto geometrico",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "reservoir-emptying",
+      "difficulty": 2,
+      "prompt": "Un serbatoio cilindrico rigido ha area orizzontale costante A e si svuota da un piccolo foro sul fondo, di area a≪A. Il rapporto r=A/a è costante nella singola prova, maggiore di 10. Il liquido è omogeneo incomprimibile e il modello è ideale: stessa pressione sopra il liquido e fuori dal foro, g=10 m/s² uniforme, nessuna macchina, contrazione o perdita dissipativa. Si trascura la velocità della superficie nel calcolo istantaneo di efflusso, mentre il battente diminuisce lentamente. H>0 è il battente iniziale. Si fornisce la legge integrata t=r√(2H/g), senza richiederne l’integrazione. t è il tempo del modello fino al livello del foro; residui e capillarità finali sono trascurati. Si misura t=100 s e si conosce H=5 m. Quanto vale r?",
+      "answer": {
+        "type": "numeric",
+        "value": 100,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il fattore di tempo √(2H/g) è un secondo. Dividendo il tempo misurato cento secondi per quel fattore si ottiene r=100. L’inversa deve rispettare r>10 e l’ipotesi di piccolo foro: qui a/A=1/100 è coerente con il modello usato."
+        },
+        {
+          "type": "formula",
+          "text": "r=\\frac{t}{\\sqrt{2H/g}}"
+        },
+        {
+          "type": "formula",
+          "text": " r=\\frac{100\\,\\mathrm s}{1\\,\\mathrm s}"
+        },
+        {
+          "type": "formula",
+          "text": " r=100"
+        },
+        {
+          "type": "text",
+          "text": "Il risultato è un rapporto di aree e non porta unità m² o s. Duecento introdurrebbe un fattore due già presente sotto la radice. Un r positivo ma incompatibile con il foro piccolo non sarebbe un dato ammissibile per questo stesso modello."
+        }
+      ],
+      "hints": [
+        "Dividi il tempo osservato per il fattore di tempo determinato dal battente.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il risultato è un rapporto di aree e non porta unità m² o s. Duecento introdurrebbe un fattore due già presente sotto la radice. Un r positivo ma incompatibile con il foro piccolo non sarebbe un dato ammissibile per questo stesso modello.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Legge integrata fornita e portata variabile",
+        "Unità, inverse e vincoli del piccolo foro"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-reservoir-emptying-06",
+      "kind": "question",
+      "course": "C2",
+      "section": "Svuotamento ideale con battente variabile",
+      "order": 10726,
+      "title": "Il battente iniziale dal tempo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "reservoir-emptying",
+      "difficulty": 2,
+      "prompt": "Un serbatoio cilindrico rigido ha area orizzontale costante A e si svuota da un piccolo foro sul fondo, di area a≪A. Il rapporto r=A/a è costante nella singola prova, maggiore di 10. Il liquido è omogeneo incomprimibile e il modello è ideale: stessa pressione sopra il liquido e fuori dal foro, g=10 m/s² uniforme, nessuna macchina, contrazione o perdita dissipativa. Si trascura la velocità della superficie nel calcolo istantaneo di efflusso, mentre il battente diminuisce lentamente. H>0 è il battente iniziale. Si fornisce la legge integrata t=r√(2H/g), senza richiederne l’integrazione. t è il tempo del modello fino al livello del foro; residui e capillarità finali sono trascurati. Sono noti t=100 s e r=100. Quanto vale H in m?",
+      "answer": {
+        "type": "numeric",
+        "value": 5,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dividiamo prima il tempo per il rapporto delle aree: t/r=1 s. Quadrando si ricava 2H/g=1 s², quindi H=(g/2)(t/r)²=5 m. La relazione restituisce il battente iniziale, non il livello medio durante lo svuotamento."
+        },
+        {
+          "type": "formula",
+          "text": "t/r=1\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " H=\\frac g2\\left(\\frac tr\\right)^2"
+        },
+        {
+          "type": "formula",
+          "text": " H=5\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Dieci metri dimenticherebbero il fattore due. Un rapporto t/r non quadrato avrebbe unità sbagliate dopo la moltiplicazione per g. Il valore iniziale cinque metri va inserito nella legge integrata e ricostruisce cento secondi."
+        }
+      ],
+      "hints": [
+        "Isola la radice, poi quadra il rapporto t/r.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dieci metri dimenticherebbero il fattore due. Un rapporto t/r non quadrato avrebbe unità sbagliate dopo la moltiplicazione per g. Il valore iniziale cinque metri va inserito nella legge integrata e ricostruisce cento secondi.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Legge integrata fornita e portata variabile",
+        "Unità, inverse e vincoli del piccolo foro"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-reservoir-emptying-07",
+      "kind": "question",
+      "course": "C2",
+      "section": "Svuotamento ideale con battente variabile",
+      "order": 10727,
+      "title": "Quattro volte il battente iniziale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "reservoir-emptying",
+      "difficulty": 2,
+      "prompt": "Un serbatoio cilindrico rigido ha area orizzontale costante A e si svuota da un piccolo foro sul fondo, di area a≪A. Il rapporto r=A/a è costante nella singola prova, maggiore di 10. Il liquido è omogeneo incomprimibile e il modello è ideale: stessa pressione sopra il liquido e fuori dal foro, g=10 m/s² uniforme, nessuna macchina, contrazione o perdita dissipativa. Si trascura la velocità della superficie nel calcolo istantaneo di efflusso, mentre il battente diminuisce lentamente. H>0 è il battente iniziale. Si fornisce la legge integrata t=r√(2H/g), senza richiederne l’integrazione. t è il tempo del modello fino al livello del foro; residui e capillarità finali sono trascurati. A ha r=100 e H_A=5 m. B mantiene r e usa H_B=20 m. Quanto vale t_B/t_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "4",
+          "1/2",
+          "1/4",
+          "1"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il rapporto dei battenti è quattro e quello delle loro radici è due. I tempi sono cento e duecento secondi: il rapporto vale due. A battente maggiore anche la portata iniziale è maggiore, quindi il tempo non cresce linearmente col volume iniziale."
+        },
+        {
+          "type": "formula",
+          "text": "t_A=100\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " t_B=200\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " t_B/t_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Quattro usa il rapporto dei volumi senza considerare il maggiore efflusso iniziale; un mezzo e un quarto invertono gli stati. Uno ignora la maggiore colonna da svuotare. Ogni tempo comprende l’intera variazione della portata della sua prova."
+        }
+      ],
+      "hints": [
+        "Prendi la radice del fattore quattro di H.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro usa il rapporto dei volumi senza considerare il maggiore efflusso iniziale; un mezzo e un quarto invertono gli stati. Uno ignora la maggiore colonna da svuotare. Ogni tempo comprende l’intera variazione della portata della sua prova.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Legge integrata fornita e portata variabile",
+        "Unità, inverse e vincoli del piccolo foro"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-reservoir-emptying-08",
+      "kind": "question",
+      "course": "C2",
+      "section": "Svuotamento ideale con battente variabile",
+      "order": 10728,
+      "title": "Lo scarto di un tempo proposto doppio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "reservoir-emptying",
+      "difficulty": 2,
+      "prompt": "Un serbatoio cilindrico rigido ha area orizzontale costante A e si svuota da un piccolo foro sul fondo, di area a≪A. Il rapporto r=A/a è costante nella singola prova, maggiore di 10. Il liquido è omogeneo incomprimibile e il modello è ideale: stessa pressione sopra il liquido e fuori dal foro, g=10 m/s² uniforme, nessuna macchina, contrazione o perdita dissipativa. Si trascura la velocità della superficie nel calcolo istantaneo di efflusso, mentre il battente diminuisce lentamente. H>0 è il battente iniziale. Si fornisce la legge integrata t=r√(2H/g), senza richiederne l’integrazione. t è il tempo del modello fino al livello del foro; residui e capillarità finali sono trascurati. Per r=100 e H=5 m si propone t=200 s. Quanto vale proposta meno corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "100 s",
+          "−100 s",
+          "200 s",
+          "0 s",
+          "50 s"
+        ],
+        "value": "100 s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La radice della legge fornita vale un secondo e il tempo corretto è cento secondi. Lo scarto è duecento meno cento, cioè più cento secondi. La proposta descriverebbe per esempio r=200 allo stesso battente, non la geometria assegnata."
+        },
+        {
+          "type": "formula",
+          "text": "t=100\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " e=(200-100)\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " e=100\\,\\mathrm s"
+        },
+        {
+          "type": "text",
+          "text": "Il meno invertirebbe l’ordine, duecento ripete la proposta, zero la accetta e cinquanta dimezza ancora. Non si aggiunge un ulteriore fattore due alla formula integrata per compensare il rallentamento: tale effetto è già incluso."
+        }
+      ],
+      "hints": [
+        "Usa la legge integrata una volta sola prima dello scarto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il meno invertirebbe l’ordine, duecento ripete la proposta, zero la accetta e cinquanta dimezza ancora. Non si aggiunge un ulteriore fattore due alla formula integrata per compensare il rallentamento: tale effetto è già incluso.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Legge integrata fornita e portata variabile",
+        "Unità, inverse e vincoli del piccolo foro"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-reservoir-emptying-09",
+      "kind": "question",
+      "course": "C2",
+      "section": "Svuotamento ideale con battente variabile",
+      "order": 10729,
+      "title": "L’inversa simbolica per r",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "reservoir-emptying",
+      "difficulty": 2,
+      "prompt": "Un serbatoio cilindrico rigido ha area orizzontale costante A e si svuota da un piccolo foro sul fondo, di area a≪A. Il rapporto r=A/a è costante nella singola prova, maggiore di 10. Il liquido è omogeneo incomprimibile e il modello è ideale: stessa pressione sopra il liquido e fuori dal foro, g=10 m/s² uniforme, nessuna macchina, contrazione o perdita dissipativa. Si trascura la velocità della superficie nel calcolo istantaneo di efflusso, mentre il battente diminuisce lentamente. H>0 è il battente iniziale. Si fornisce la legge integrata t=r√(2H/g), senza richiederne l’integrazione. t è il tempo del modello fino al livello del foro; residui e capillarità finali sono trascurati. Quale formula isola r, per dati che mantengono r>10 e il foro piccolo?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "r = t √[g / (2H)]",
+          "r = t √[2H / g]",
+          "r = √[g / (2H)] / t",
+          "r = 2 t √[g / (2H)]",
+          "r = (t/2) √[g / (2H)]"
+        ],
+        "value": "r = t √[g / (2H)]"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dividiamo t=r√(2H/g) per la radice positiva. Il reciproco di quella radice è √(g/(2H)), di dimensione inversa di tempo. Il suo prodotto per t è quindi il rapporto puro r."
+        },
+        {
+          "type": "formula",
+          "text": "r=\\frac t{\\sqrt{2H/g}}"
+        },
+        {
+          "type": "formula",
+          "text": " r=t\\sqrt{\\frac g{2H}}"
+        },
+        {
+          "type": "text",
+          "text": "Moltiplicare per la radice originale darebbe un tempo al quadrato, dividerne il reciproco per t darebbe un tempo inverso al quadrato. Il doppio e la metà alterano l’equazione senza applicare la stessa operazione ai due membri. Il valore ricavato deve ancora soddisfare il dominio geometrico."
+        }
+      ],
+      "hints": [
+        "Dividi per il fattore che moltiplica r nella legge assegnata.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Moltiplicare per la radice originale darebbe un tempo al quadrato, dividerne il reciproco per t darebbe un tempo inverso al quadrato. Il doppio e la metà alterano l’equazione senza applicare la stessa operazione ai due membri. Il valore ricavato deve ancora soddisfare il dominio geometrico.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Legge integrata fornita e portata variabile",
+        "Unità, inverse e vincoli del piccolo foro"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-reservoir-emptying-10",
+      "kind": "question",
+      "course": "C2",
+      "section": "Svuotamento ideale con battente variabile",
+      "order": 10730,
+      "title": "Un fattore lineare e uno sotto radice",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "reservoir-emptying",
+      "difficulty": 2,
+      "prompt": "Un serbatoio cilindrico rigido ha area orizzontale costante A e si svuota da un piccolo foro sul fondo, di area a≪A. Il rapporto r=A/a è costante nella singola prova, maggiore di 10. Il liquido è omogeneo incomprimibile e il modello è ideale: stessa pressione sopra il liquido e fuori dal foro, g=10 m/s² uniforme, nessuna macchina, contrazione o perdita dissipativa. Si trascura la velocità della superficie nel calcolo istantaneo di efflusso, mentre il battente diminuisce lentamente. H>0 è il battente iniziale. Si fornisce la legge integrata t=r√(2H/g), senza richiederne l’integrazione. t è il tempo del modello fino al livello del foro; residui e capillarità finali sono trascurati. B usa r_B=κ₁r_A e H_B=κ₂H_A, con fattori positivi e dominio del piccolo foro valido in entrambe le prove. Quanto vale t_B/t_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ √κ₂",
+          "κ₁ κ₂",
+          "√(κ₁ κ₂)",
+          "κ₁ / √κ₂",
+          "κ₁² √κ₂"
+        ],
+        "value": "κ₁ √κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il rapporto delle aree moltiplica il tempo direttamente, mentre il battente sta sotto radice. Formando il quoziente dei due tempi, g e i parametri iniziali si cancellano: il fattore è κ₁√κ₂."
+        },
+        {
+          "type": "formula",
+          "text": "t_B=\\kappa_1r_A\\sqrt{\\frac{2\\kappa_2H_A}g}"
+        },
+        {
+          "type": "formula",
+          "text": " t_B/t_A=\\kappa_1\\sqrt{\\kappa_2}"
+        },
+        {
+          "type": "text",
+          "text": "κ₁κ₂ perde la radice del battente, √(κ₁κ₂) applica una radice anche a r, il quoziente inverte l’effetto di H e κ₁² raddoppia il grado del rapporto geometrico. La nuova geometria deve restare compatibile con a≪A."
+        }
+      ],
+      "hints": [
+        "Tieni r fuori dalla radice come nella formula originale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "κ₁κ₂ perde la radice del battente, √(κ₁κ₂) applica una radice anche a r, il quoziente inverte l’effetto di H e κ₁² raddoppia il grado del rapporto geometrico. La nuova geometria deve restare compatibile con a≪A.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Legge integrata fornita e portata variabile",
+        "Unità, inverse e vincoli del piccolo foro"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-reservoir-emptying-11",
+      "kind": "question",
+      "course": "C2",
+      "section": "Svuotamento ideale con battente variabile",
+      "order": 10731,
+      "title": "Geometria e battente cambiano insieme",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "reservoir-emptying",
+      "difficulty": 2,
+      "prompt": "Un serbatoio cilindrico rigido ha area orizzontale costante A e si svuota da un piccolo foro sul fondo, di area a≪A. Il rapporto r=A/a è costante nella singola prova, maggiore di 10. Il liquido è omogeneo incomprimibile e il modello è ideale: stessa pressione sopra il liquido e fuori dal foro, g=10 m/s² uniforme, nessuna macchina, contrazione o perdita dissipativa. Si trascura la velocità della superficie nel calcolo istantaneo di efflusso, mentre il battente diminuisce lentamente. H>0 è il battente iniziale. Si fornisce la legge integrata t=r√(2H/g), senza richiederne l’integrazione. t è il tempo del modello fino al livello del foro; residui e capillarità finali sono trascurati. A ha r=100,H=5 m; B ha r=200,H=20 m. Quanto vale t_B/t_A?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il fattore geometrico r raddoppia e la radice del battente quadruplicato raddoppia. Il tempo B è duecento per due secondi, quattrocento secondi, e il rapporto rispetto ai cento iniziali è quattro."
+        },
+        {
+          "type": "formula",
+          "text": "t_A=100\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " t_B=400\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " t_B/t_A=4"
+        },
+        {
+          "type": "text",
+          "text": "Due seguirebbe un solo cambiamento. Otto tratterebbe H linearmente; un quarto sarebbe il reciproco. Quattrocento è il tempo B come numero nelle unità secondi, non il rapporto puro richiesto."
+        }
+      ],
+      "hints": [
+        "Combina il fattore due di r con il fattore due della radice.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due seguirebbe un solo cambiamento. Otto tratterebbe H linearmente; un quarto sarebbe il reciproco. Quattrocento è il tempo B come numero nelle unità secondi, non il rapporto puro richiesto.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Legge integrata fornita e portata variabile",
+        "Unità, inverse e vincoli del piccolo foro"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-reservoir-emptying-12",
+      "kind": "question",
+      "course": "C2",
+      "section": "Svuotamento ideale con battente variabile",
+      "order": 10732,
+      "title": "Mediare due tempi di svuotamento",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "reservoir-emptying",
+      "difficulty": 2,
+      "prompt": "Un serbatoio cilindrico rigido ha area orizzontale costante A e si svuota da un piccolo foro sul fondo, di area a≪A. Il rapporto r=A/a è costante nella singola prova, maggiore di 10. Il liquido è omogeneo incomprimibile e il modello è ideale: stessa pressione sopra il liquido e fuori dal foro, g=10 m/s² uniforme, nessuna macchina, contrazione o perdita dissipativa. Si trascura la velocità della superficie nel calcolo istantaneo di efflusso, mentre il battente diminuisce lentamente. H>0 è il battente iniziale. Si fornisce la legge integrata t=r√(2H/g), senza richiederne l’integrazione. t è il tempo del modello fino al livello del foro; residui e capillarità finali sono trascurati. A ha r=100,H=5 m; B ha r=200,H=20 m. Qual è la media aritmetica dei due tempi con uguale peso statistico?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "250 s",
+          "500 s",
+          "125 s",
+          "75√10 s",
+          "300 s"
+        ],
+        "value": "250 s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I tempi delle due prove sono cento e quattrocento secondi. La loro semisomma è duecentocinquanta secondi. La media statistica non descrive un serbatoio che passa da una geometria all’altra durante lo svuotamento."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline t=\\frac{100+400}{2}\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline t=250\\,\\mathrm s"
+        },
+        {
+          "type": "text",
+          "text": "Cinquecento è la somma, centoventicinque divide ancora e trecento è la differenza. Gli ingressi medi r=150,H=25/2 m darebbero 75√10 s. Il suo quadrato 56250 è diverso da 62500=250²: i due risultati si distinguono esattamente senza valutare √10."
+        }
+      ],
+      "hints": [
+        "Calcola ogni tempo dalla sua legge, poi media le uscite.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Cinquecento è la somma, centoventicinque divide ancora e trecento è la differenza. Gli ingressi medi r=150,H=25/2 m darebbero 75√10 s. Il suo quadrato 56250 è diverso da 62500=250²: i due risultati si distinguono esattamente senza valutare √10.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Legge integrata fornita e portata variabile",
+        "Unità, inverse e vincoli del piccolo foro"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-reservoir-emptying-13",
+      "kind": "question",
+      "course": "C2",
+      "section": "Svuotamento ideale con battente variabile",
+      "order": 10733,
+      "title": "Il battente per un tempo bersaglio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "reservoir-emptying",
+      "difficulty": 3,
+      "prompt": "Un serbatoio cilindrico rigido ha area orizzontale costante A e si svuota da un piccolo foro sul fondo, di area a≪A. Il rapporto r=A/a è costante nella singola prova, maggiore di 10. Il liquido è omogeneo incomprimibile e il modello è ideale: stessa pressione sopra il liquido e fuori dal foro, g=10 m/s² uniforme, nessuna macchina, contrazione o perdita dissipativa. Si trascura la velocità della superficie nel calcolo istantaneo di efflusso, mentre il battente diminuisce lentamente. H>0 è il battente iniziale. Si fornisce la legge integrata t=r√(2H/g), senza richiederne l’integrazione. t è il tempo del modello fino al livello del foro; residui e capillarità finali sono trascurati. A ha r_A=100,H_A=5 m. B deve avere r_B=200 e t_B=4t_A. Quanto vale H_B/H_A?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il tempo iniziale è cento secondi e il bersaglio quattrocento. Con r_B=200, il fattore sotto radice deve dare due secondi, il doppio del riferimento. Il suo quadrato richiede H_B=20 m, quattro volte i cinque iniziali."
+        },
+        {
+          "type": "formula",
+          "text": "t_B=400\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " \\sqrt{2H_B/g}=2\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " H_B=20\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " H_B/H_A=4"
+        },
+        {
+          "type": "text",
+          "text": "Due confonde il rapporto delle radici con quello dei battenti. Un quarto inverte gli stati; venti sarebbe il battente B come numero e otto conterebbe ancora il raddoppio di r. Il nuovo r resta molto maggiore di dieci."
+        }
+      ],
+      "hints": [
+        "Isola il fattore di tempo rimasto dopo aver diviso per r_B.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due confonde il rapporto delle radici con quello dei battenti. Un quarto inverte gli stati; venti sarebbe il battente B come numero e otto conterebbe ancora il raddoppio di r. Il nuovo r resta molto maggiore di dieci.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Legge integrata fornita e portata variabile",
+        "Unità, inverse e vincoli del piccolo foro"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-reservoir-emptying-14",
+      "kind": "question",
+      "course": "C2",
+      "section": "Svuotamento ideale con battente variabile",
+      "order": 10734,
+      "title": "Un display senza offset per il rapporto di aree",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "reservoir-emptying",
+      "difficulty": 3,
+      "prompt": "Un serbatoio cilindrico rigido ha area orizzontale costante A e si svuota da un piccolo foro sul fondo, di area a≪A. Il rapporto r=A/a è costante nella singola prova, maggiore di 10. Il liquido è omogeneo incomprimibile e il modello è ideale: stessa pressione sopra il liquido e fuori dal foro, g=10 m/s² uniforme, nessuna macchina, contrazione o perdita dissipativa. Si trascura la velocità della superficie nel calcolo istantaneo di efflusso, mentre il battente diminuisce lentamente. H>0 è il battente iniziale. Si fornisce la legge integrata t=r√(2H/g), senza richiederne l’integrazione. t è il tempo del modello fino al livello del foro; residui e capillarità finali sono trascurati. Un display continuo adimensionale segue S=qt,q>0. A con r=100,H=5 m dà S=300. B con H=20 m dà S=1200. Quanto vale r_B?",
+      "answer": {
+        "type": "numeric",
+        "value": 200,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il tempo A cento secondi fissa q=3 s⁻¹. La lettura B mille duecento corrisponde a quattrocento secondi. A H=20 m la radice √(2H/g) vale due secondi; il rapporto r_B è quattrocento diviso due, duecento."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{s^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " t_B=400\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " \\sqrt{2H_B/g}=2\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " r_B=200"
+        },
+        {
+          "type": "text",
+          "text": "La lettura non è direttamente un tempo: usarla come secondi darebbe r=600 e ricostruirebbe un display tre volte maggiore. Il rapporto duecento è puro e soddisfa il vincolo di piccolo foro."
+        }
+      ],
+      "hints": [
+        "Rimuovi il guadagno dal tempo prima dell’inversa geometrica.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La lettura non è direttamente un tempo: usarla come secondi darebbe r=600 e ricostruirebbe un display tre volte maggiore. Il rapporto duecento è puro e soddisfa il vincolo di piccolo foro.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Legge integrata fornita e portata variabile",
+        "Unità, inverse e vincoli del piccolo foro"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-reservoir-emptying-15",
+      "kind": "question",
+      "course": "C2",
+      "section": "Svuotamento ideale con battente variabile",
+      "order": 10735,
+      "title": "Guadagno e offset del display",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "reservoir-emptying",
+      "difficulty": 3,
+      "prompt": "Un serbatoio cilindrico rigido ha area orizzontale costante A e si svuota da un piccolo foro sul fondo, di area a≪A. Il rapporto r=A/a è costante nella singola prova, maggiore di 10. Il liquido è omogeneo incomprimibile e il modello è ideale: stessa pressione sopra il liquido e fuori dal foro, g=10 m/s² uniforme, nessuna macchina, contrazione o perdita dissipativa. Si trascura la velocità della superficie nel calcolo istantaneo di efflusso, mentre il battente diminuisce lentamente. H>0 è il battente iniziale. Si fornisce la legge integrata t=r√(2H/g), senza richiederne l’integrazione. t è il tempo del modello fino al livello del foro; residui e capillarità finali sono trascurati. Il display continuo adimensionale segue S=qt+b,q>0. A:r=100,H=5 m,S=201. B:r=200,H=20 m,S=801. C:H=5 m,S=401. Quanto vale r_C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "200",
+          "100",
+          "400",
+          "199",
+          "201"
+        ],
+        "value": "200"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I tempi di riferimento sono cento e quattrocento secondi. La differenza seicento della lettura divisa per trecento secondi dà q=2 s⁻¹, poi b=1. C ha tempo duecento secondi e radice fisica un secondo, quindi r_C=200."
+        },
+        {
+          "type": "formula",
+          "text": "q=2\\,\\mathrm{s^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " t_C=200\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " r_C=200"
+        },
+        {
+          "type": "text",
+          "text": "A H=5 m, r=100,400,199,201 produrrebbero letture 201,801,399,403, diverse da 401. L’offset è un numero strumentale e non un tempo supplementare di svuotamento: si sottrae prima della divisione per q."
+        }
+      ],
+      "hints": [
+        "Usa le differenze dei riferimenti per q, poi rimuovi b.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "A H=5 m, r=100,400,199,201 produrrebbero letture 201,801,399,403, diverse da 401. L’offset è un numero strumentale e non un tempo supplementare di svuotamento: si sottrae prima della divisione per q.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Legge integrata fornita e portata variabile",
+        "Unità, inverse e vincoli del piccolo foro"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-reservoir-emptying-16",
+      "kind": "question",
+      "course": "C2",
+      "section": "Svuotamento ideale con battente variabile",
+      "order": 10736,
+      "title": "Un vincolo che produce un cubo perfetto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L006",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "reservoir-emptying",
+      "difficulty": 3,
+      "prompt": "Un serbatoio cilindrico rigido ha area orizzontale costante A e si svuota da un piccolo foro sul fondo, di area a≪A. Il rapporto r=A/a è costante nella singola prova, maggiore di 10. Il liquido è omogeneo incomprimibile e il modello è ideale: stessa pressione sopra il liquido e fuori dal foro, g=10 m/s² uniforme, nessuna macchina, contrazione o perdita dissipativa. Si trascura la velocità della superficie nel calcolo istantaneo di efflusso, mentre il battente diminuisce lentamente. H>0 è il battente iniziale. Si fornisce la legge integrata t=r√(2H/g), senza richiederne l’integrazione. t è il tempo del modello fino al livello del foro; residui e capillarità finali sono trascurati. Fra apparati si impone r=cH, con c=20 m⁻¹ e quindi H>1/2 m per r>10. Si misura t=100 s. Quanto vale H in m?",
+      "answer": {
+        "type": "numeric",
+        "value": 5,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituiamo r=cH nella legge e quadriamo grandezze positive: t²=(2c²/g)H³. Isolando H³ troviamo 125 m³ e riconosciamo il cubo perfetto cinque al cubo. Si ricavano H=5 m e r=100, coerenti con il dominio del foro piccolo."
+        },
+        {
+          "type": "formula",
+          "text": "t^2=\\frac{2c^2}gH^3"
+        },
+        {
+          "type": "formula",
+          "text": " H^3=\\frac{gt^2}{2c^2}"
+        },
+        {
+          "type": "formula",
+          "text": " H^3=125\\,\\mathrm{m^3}"
+        },
+        {
+          "type": "formula",
+          "text": " H=5\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " r=100"
+        },
+        {
+          "type": "text",
+          "text": "Il coefficiente c ha dimensione di lunghezza inversa: r rimane puro. Il cubo è strettamente crescente per H>0, quindi non compaiono due battenti positivi. Dieci metri o cinque mezzi non ricostruirebbero cento secondi. Il vincolo collega apparati, non una variazione di r mentre si abbassa il livello."
+        }
+      ],
+      "hints": [
+        "Sostituisci r=cH, quadra i membri positivi e riconosci il cubo perfetto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Il coefficiente c ha dimensione di lunghezza inversa: r rimane puro. Il cubo è strettamente crescente per H>0, quindi non compaiono due battenti positivi. Dieci metri o cinque mezzi non ricostruirebbero cento secondi. Il vincolo collega apparati, non una variazione di r mentre si abbassa il livello.",
+        "target": "C2-L006"
+      },
+      "coverage": [
+        "Legge integrata fornita e portata variabile",
+        "Unità, inverse e vincoli del piccolo foro"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "02409da06a9bc8c13081f89cc8b44c1fdd59882e13630221c8921e5326ff3a35",
+      "name": "reservoir-emptying-steps.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTkwMCIgdmlld0JveD0iMCAwIDY0MCAxOTAwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+Cjx0aXRsZSBpZD0idGl0bGUiPklsIGJhdHRlbnRlIHNjZW5kZSBlIGxhIHBvcnRhdGEgcmFsbGVudGE8L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5TZXJiYXRvaW8gZGkgYXJlYSB1biBtZXRybyBxdWFkcmF0byBlIGZvcm8gdW4gY2VudGVzaW1vIGRpIG1ldHJvIHF1YWRyYXRvLCByYXBwb3J0byBjZW50by4gQmF0dGVudGUgaW5pemlhbGUgY2lucXVlIG1ldHJpLCBncmF2aXTDoCBkaWVjaSBlIHRlbXBvIGlkZWFsZSBjZW50byBzZWNvbmRpLiBBIGNpbnF1YW50YSBzZWNvbmRpIGlsIGJhdHRlbnRlIMOoIGNpbnF1ZSBxdWFydGkgZGkgbWV0cm8uIExhIHBvcnRhdGEgZGltaW51aXNjZSBsaW5lYXJtZW50ZSBlIGlsIHN1byBpbnRlZ3JhbGUgdHJpYW5nb2xhcmUgdmFsZSBjaW5xdWUgbWV0cmkgY3ViaS4gSWwgZ3JhZmljbyBkZWwgYmF0dGVudGUgw6ggdW5hIHBhcmFib2xhIGNoZSBzaSBmZXJtYSBhIHplcm8gYSBjZW50byBzZWNvbmRpLjwvZGVzYz4KPGRlZnM+PG1hcmtlciBpZD0idiIgdmlld0JveD0iMCAwIDEwIDEwIiByZWZYPSI5IiByZWZZPSI1IiBtYXJrZXJXaWR0aD0iNyIgbWFya2VySGVpZ2h0PSI3IiBvcmllbnQ9ImF1dG8tc3RhcnQtcmV2ZXJzZSI+PHBhdGggZD0iTTAgMEwxMCA1TDAgMTBaIiBmaWxsPSIjMTU1ZmEwIi8+PC9tYXJrZXI+PC9kZWZzPgo8cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjE5MDAiIGZpbGw9IiNmZmZkZjciLz4KPGcgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjIyIiBmaWxsPSIjMTcyYzNiIj4KPHRleHQgeD0iMzUiIHk9IjQ4IiBmb250LXNpemU9IjI3IiBmb250LXdlaWdodD0iYm9sZCI+MS4gRHVlIGlzdGFudGkgZGVsbG8gc3Rlc3NvIG1vZGVsbG88L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI4OCI+QSA9IDEgbcKyOyBhID0gMS8xMDAgbcKyOyByID0gMTAwPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTI4Ij5nID0gMTAgbS9zwrI7IEggaW5pemlhbGUgPSA1IG08L3RleHQ+CjxyZWN0IHg9IjcwIiB5PSIyMDAiIHdpZHRoPSIxNjAiIGhlaWdodD0iMjAwIiBmaWxsPSIjZGZlZGY2Ii8+PHJlY3QgeD0iMzY1IiB5PSIzNTAiIHdpZHRoPSIxNjAiIGhlaWdodD0iNTAiIGZpbGw9IiNkZmVkZjYiLz4KPGcgc3Ryb2tlPSIjNzQ4ODkyIiBzdHJva2Utd2lkdGg9IjMiIGZpbGw9Im5vbmUiPjxwYXRoIGQ9Ik03MCAxNjVWNDAwSDE0ME0xNjAgNDAwSDIzMFYxNjUiLz48cGF0aCBkPSJNMzY1IDE2NVY0MDBINDM1TTQ1NSA0MDBINTI1VjE2NSIvPjwvZz4KPHRleHQgeD0iNzUiIHk9IjE3NSI+SW5pemlvOiAwIHM8L3RleHQ+PHRleHQgeD0iMzcwIiB5PSIxNzUiPkRvcG8gNTAgczwvdGV4dD4KPHRleHQgeD0iOTAiIHk9IjI4MCI+NSBtPC90ZXh0Pjx0ZXh0IHg9IjM3NSIgeT0iMzI1Ij41LzQgbTwvdGV4dD4KPHBhdGggZD0iTTE1MCA0MDBWNTAwIiBmaWxsPSJub25lIiBzdHJva2U9IiMxNTVmYTAiIHN0cm9rZS13aWR0aD0iNCIgbWFya2VyLWVuZD0idXJsKCN2KSIvPjxwYXRoIGQ9Ik00NDUgNDAwVjQ1MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMTU1ZmEwIiBzdHJva2Utd2lkdGg9IjQiIG1hcmtlci1lbmQ9InVybCgjdikiLz4KPHRleHQgeD0iNzAiIHk9IjU0NSI+diA9IDEwIG0vczwvdGV4dD48dGV4dCB4PSIzNjUiIHk9IjQ5NSI+diA9IDUgbS9zPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iNTkwIj5RdW90ZTogNDAgcHgvbTsgdmVsb2NpdMOgOiAxMCBweC8obS9zKTwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjYzMCI+TGFyZ2hlenplIGUgc2ltYm9saSBkZWkgZm9yaSBzY2hlbWF0aWNpPC90ZXh0Pgo8bGluZSB4MT0iMzUiIHgyPSI2MDUiIHkxPSI2NjUiIHkyPSI2NjUiIHN0cm9rZT0iI2I5YzRjOSIvPgo8dGV4dCB4PSIzNSIgeT0iNzE1IiBmb250LXNpemU9IjI3IiBmb250LXdlaWdodD0iYm9sZCI+Mi4gQ29udGFyZSB0dXR0byBpbCB2b2x1bWUgdXNjaXRvPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iNzU4Ij5Qb3J0YXRhIFEoz4QpLCB0ZW1wbyB0cmFzY29yc28gz4Q8L3RleHQ+CjxwYXRoIGQ9Ik0xMTAgMTA2MFY4NjBMNDEwIDEwNjBaIiBmaWxsPSIjZjBkZGJhIiBzdHJva2U9IiNhMzM0MzAiIHN0cm9rZS13aWR0aD0iMyIvPgo8ZyBzdHJva2U9IiMxNzJjM2IiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSI+PHBhdGggZD0iTTExMCAxMDYwSDQ3NSIvPjxwYXRoIGQ9Ik0xMTAgMTA2MFY4MjAiLz48cGF0aCBkPSJNMjYwIDEwNTVWMTA2NSIvPjxwYXRoIGQ9Ik00MTAgMTA1NVYxMDY1Ii8+PC9nPgo8dGV4dCB4PSIzNSIgeT0iODAwIj5RIChtwrMvcyk8L3RleHQ+PHRleHQgeD0iNDAiIHk9Ijg2OCI+MS8xMDwvdGV4dD48dGV4dCB4PSI4OCIgeT0iMTEwMCI+MDwvdGV4dD48dGV4dCB4PSIyNDUiIHk9IjExMDAiPjUwPC90ZXh0Pjx0ZXh0IHg9IjM5MiIgeT0iMTEwMCI+MTAwPC90ZXh0Pjx0ZXh0IHg9IjQ5MCIgeT0iMTA2OCI+z4QgKHMpPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTE1MCI+z4Q6IDMgcHgvczsgUTogMjAwMCBweC8obcKzL3MpPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTE5MCI+QXJlYTogKDEvMikgwrcgMTAwIHMgwrcgKDEvMTAgbcKzL3MpID0gNSBtwrM8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxMjMwIj5JbCB2b2x1bWUgaW5pemlhbGUgw6ggQSBIID0gNSBtwrMuPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTI3MCI+QSBRIGluaXppYWxlIGNvc3RhbnRlIGJhc3RlcmViYmVybyA1MCBzOzwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjEzMTAiPmlsIG1vZGVsbG8gYSBwb3J0YXRhIHZhcmlhYmlsZSByaWNoaWVkZSAxMDAgcy48L3RleHQ+CjxsaW5lIHgxPSIzNSIgeDI9IjYwNSIgeTE9IjEzNDUiIHkyPSIxMzQ1IiBzdHJva2U9IiNiOWM0YzkiLz4KPHRleHQgeD0iMzUiIHk9IjEzOTUiIGZvbnQtc2l6ZT0iMjciIGZvbnQtd2VpZ2h0PSJib2xkIj4zLiBJbCBiYXR0ZW50ZSBub24gY2FsYSBsaW5lYXJtZW50ZTwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjE0MzUiPmgoz4QpID0gNSBtIMK3IFsxIOKIkiDPhC8oMTAwIHMpXcKyPC90ZXh0Pgo8ZyBmaWxsPSJub25lIiBzdHJva2U9IiMxNzJjM2IiIHN0cm9rZS13aWR0aD0iMiI+PHBhdGggZD0iTTExMCAxNzcwVjE0ODAiLz48cGF0aCBkPSJNMTEwIDE3NzBINDYwIi8+PHBhdGggZD0iTTI2MCAxNzY1VjE3NzUiLz48cGF0aCBkPSJNNDEwIDE3NjVWMTc3NSIvPjxwYXRoIGQ9Ik0xMDUgMTUyMEgxMTUiLz48L2c+CjxwYXRoIGQ9Ik0xMTAgMTUyMFEyNjAgMTc3MCA0MTAgMTc3MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMTU1ZmEwIiBzdHJva2Utd2lkdGg9IjQiLz4KPGcgZmlsbD0iIzE1NWZhMCI+PGNpcmNsZSBjeD0iMTEwIiBjeT0iMTUyMCIgcj0iNSIvPjxjaXJjbGUgY3g9IjI2MCIgY3k9IjE3MDcuNSIgcj0iNSIvPjxjaXJjbGUgY3g9IjQxMCIgY3k9IjE3NzAiIHI9IjUiLz48L2c+Cjx0ZXh0IHg9IjM1IiB5PSIxNDgwIj5oIChtKTwvdGV4dD48dGV4dCB4PSIzMDUiIHk9IjE0ODAiPjAg4omkIM+EIOKJpCAxMDAgczwvdGV4dD48dGV4dCB4PSI3NSIgeT0iMTUyOCI+NTwvdGV4dD48dGV4dCB4PSIyOTAiIHk9IjE2OTUiPjUvNCBtPC90ZXh0Pjx0ZXh0IHg9Ijg3IiB5PSIxODEwIj4wPC90ZXh0Pjx0ZXh0IHg9IjI0NSIgeT0iMTgxMCI+NTA8L3RleHQ+PHRleHQgeD0iMzkyIiB5PSIxODEwIj4xMDA8L3RleHQ+PHRleHQgeD0iNDc1IiB5PSIxNzc4Ij7PhCAocyk8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxODU4Ij7PhDogMyBweC9zOyBoOiA1MCBweC9tLiBGaW5lIGEgaCA9IDAuPC90ZXh0Pgo8L2c+PC9zdmc+Cg=="
+    }
+  ]
+}

@@ -1,0 +1,1090 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u3-junction-balance-01",
+      "kind": "question",
+      "course": "C2",
+      "section": "Bilancio di portata a un nodo",
+      "order": 9621,
+      "title": "Il volume rimasto per la seconda uscita",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "junction-balance",
+      "difficulty": 1,
+      "prompt": "Un nodo rigido riceve una portata Q_e>0 e alimenta due uscite con portate Q₁>0 e Q₂>0. Il fluido è lo stesso liquido omogeneo incomprimibile in tutti i rami; il regime è stazionario, senza accumulo o fuga di liquido. Le portate sono moduli nei versi indicati: Q_e entra, Q₁ e Q₂ escono. Si impone Q_e>Q₁. I valori possono cambiare fra prove stazionarie distinte. Con Q_e=10 L/s e Q₁=4 L/s, quanto vale Q₂ in L/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 6,
+        "unit": "L/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "In un secondo arrivano dieci litri e quattro imboccano la prima uscita. Il nodo non ne trattiene: gli altri sei devono attraversare la seconda uscita. La densità comune consente di esprimere il bilancio di massa direttamente con i volumi."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/9ac47cf8fae61b96630279033ff2f33442243dca5126ec304f6638ac72f888c4",
+          "text": "I versi sono assegnati: ingresso Q_e=10 L/s e uscite Q₁=4 L/s, Q₂=6 L/s. Frecce di 200, 80, 120 px alla stessa scala 20 px/(L/s); ogni freccia ha un proprio path. I raccordi sono uno schema topologico, non una geometria in scala."
+        },
+        {
+          "type": "formula",
+          "text": "Q_e=Q_1+Q_2"
+        },
+        {
+          "type": "formula",
+          "text": " Q_2=Q_e-Q_1"
+        },
+        {
+          "type": "formula",
+          "text": " Q_2=(10-4)\\,\\mathrm{L/s}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_2=6\\,\\mathrm{L/s}"
+        },
+        {
+          "type": "text",
+          "text": "Quattordici conterebbe come ingresso anche la prima uscita; dieci ignorerebbe la diramazione e quattro copierebbe Q₁. Non serve imporre che le due uscite siano uguali. Il controllo 4+6=10 chiude il bilancio senza accumulo."
+        }
+      ],
+      "hints": [
+        "Togli dal flusso entrante quello già assegnato alla prima uscita.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattordici conterebbe come ingresso anche la prima uscita; dieci ignorerebbe la diramazione e quattro copierebbe Q₁. Non serve imporre che le due uscite siano uguali. Il controllo 4+6=10 chiude il bilancio senza accumulo.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Conservazione della massa e versi dei flussi",
+        "Inverse, linearità e letture strumentali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-junction-balance-02",
+      "kind": "question",
+      "course": "C2",
+      "section": "Bilancio di portata a un nodo",
+      "order": 9622,
+      "title": "L’unità del flusso sconosciuto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "junction-balance",
+      "difficulty": 1,
+      "prompt": "Un nodo rigido riceve una portata Q_e>0 e alimenta due uscite con portate Q₁>0 e Q₂>0. Il fluido è lo stesso liquido omogeneo incomprimibile in tutti i rami; il regime è stazionario, senza accumulo o fuga di liquido. Le portate sono moduli nei versi indicati: Q_e entra, Q₁ e Q₂ escono. Si impone Q_e>Q₁. I valori possono cambiare fra prove stazionarie distinte. Quale unità esprime Q₂?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "L/s",
+          "L",
+          "kg/s",
+          "L²/s",
+          "s/L"
+        ],
+        "value": "L/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La differenza fra due portate volumetriche resta una portata volumetrica, cioè volume per tempo. Con ingressi espressi in litri al secondo, anche la seconda uscita si esprime in L/s."
+        },
+        {
+          "type": "formula",
+          "text": "[Q_2]=L^3/T"
+        },
+        {
+          "type": "formula",
+          "text": " \\mathrm{L/s}=\\mathrm{dm^3/s}"
+        },
+        {
+          "type": "text",
+          "text": "L è volume accumulato, kg/s portata massica, L²/s avrebbe una potenza di volume in più e s/L è il reciproco. La lettera L dell’unità litro non va confusa con il simbolo dimensionale della lunghezza."
+        }
+      ],
+      "hints": [
+        "Le tre portate nel bilancio devono usare unità compatibili.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "L è volume accumulato, kg/s portata massica, L²/s avrebbe una potenza di volume in più e s/L è il reciproco. La lettera L dell’unità litro non va confusa con il simbolo dimensionale della lunghezza.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Conservazione della massa e versi dei flussi",
+        "Inverse, linearità e letture strumentali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-junction-balance-03",
+      "kind": "question",
+      "course": "C2",
+      "section": "Bilancio di portata a un nodo",
+      "order": 9623,
+      "title": "I versi decidono i segni",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "junction-balance",
+      "difficulty": 1,
+      "prompt": "Un nodo rigido riceve una portata Q_e>0 e alimenta due uscite con portate Q₁>0 e Q₂>0. Il fluido è lo stesso liquido omogeneo incomprimibile in tutti i rami; il regime è stazionario, senza accumulo o fuga di liquido. Le portate sono moduli nei versi indicati: Q_e entra, Q₁ e Q₂ escono. Si impone Q_e>Q₁. I valori possono cambiare fra prove stazionarie distinte. Quale relazione fornisce Q₂?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Q₂ = Q_e − Q₁",
+          "Q₂ = Q_e + Q₁",
+          "Q₂ = Q₁ − Q_e",
+          "Q₂ = Q_e / Q₁",
+          "Q₂ = (Q_e − Q₁) / 2"
+        ],
+        "value": "Q₂ = Q_e − Q₁"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Con segno positivo all’ingresso e negativo alle uscite, la somma orientata dei flussi è zero. Spostando la prima uscita si ricava il residuo Q₂. Il bilancio deriva dalla massa conservata e non richiede di conoscere pressioni o resistenze dei rami."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/9ac47cf8fae61b96630279033ff2f33442243dca5126ec304f6638ac72f888c4",
+          "text": "Le barre blu rappresentano l’ingresso, quelle verdi e rosse le due uscite alla scala comune 20 px/(L/s). Stato A: 200=80+120 px, cioè 10=4+6 L/s. Stato B: 240=100+140 px, cioè 12=5+7 L/s. Le unità di un litro al secondo sono celle larghe 20 px. Nessuna portata è una forza o una pressione."
+        },
+        {
+          "type": "formula",
+          "text": "Q_e-Q_1-Q_2=0"
+        },
+        {
+          "type": "formula",
+          "text": " Q_2=Q_e-Q_1"
+        },
+        {
+          "type": "text",
+          "text": "Il più tratta una portata uscente come entrante; invertire la sottrazione darebbe Q₂ negativo nel dominio assegnato, cioè un verso diverso da quello dichiarato. Il quoziente è puro e non una portata. Dimezzare conterebbe due volte la ripartizione già specificata attraverso Q₁."
+        }
+      ],
+      "hints": [
+        "Scrivi una sola convenzione per i flussi prima di isolare Q₂.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Il più tratta una portata uscente come entrante; invertire la sottrazione darebbe Q₂ negativo nel dominio assegnato, cioè un verso diverso da quello dichiarato. Il quoziente è puro e non una portata. Dimezzare conterebbe due volte la ripartizione già specificata attraverso Q₁.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Conservazione della massa e versi dei flussi",
+        "Inverse, linearità e letture strumentali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-junction-balance-04",
+      "kind": "question",
+      "course": "C2",
+      "section": "Bilancio di portata a un nodo",
+      "order": 9624,
+      "title": "Aumenta l’ingresso, prima uscita fissata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "junction-balance",
+      "difficulty": 1,
+      "prompt": "Un nodo rigido riceve una portata Q_e>0 e alimenta due uscite con portate Q₁>0 e Q₂>0. Il fluido è lo stesso liquido omogeneo incomprimibile in tutti i rami; il regime è stazionario, senza accumulo o fuga di liquido. Le portate sono moduli nei versi indicati: Q_e entra, Q₁ e Q₂ escono. Si impone Q_e>Q₁. I valori possono cambiare fra prove stazionarie distinte. A ha Q_e=10 L/s, B Q_e=12 L/s; Q₁ resta 4 L/s. Come cambia Q₂?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 6 a 8 L/s",
+          "Da 6 a 36/5 L/s",
+          "Resta 6 L/s",
+          "Da 6 a 4 L/s",
+          "Diventa zero"
+        ],
+        "value": "Da 6 a 8 L/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il primo ramo continua a prelevare quattro litri al secondo. Alla seconda uscita resta quindi dieci meno quattro nello stato A e dodici meno quattro in B: sei e otto L/s. Tutto l’incremento di ingresso, due L/s, passa nel secondo ramo."
+        },
+        {
+          "type": "formula",
+          "text": "Q_{2,A}=6\\,\\mathrm{L/s}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{2,B}=8\\,\\mathrm{L/s}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{2,B}-Q_{2,A}=2\\,\\mathrm{L/s}"
+        },
+        {
+          "type": "text",
+          "text": "Trentasei quinti applica al residuo il fattore 12/10 come se anche Q₁ crescesse nella stessa proporzione. Sei ignora l’ingresso aggiunto, quattro ne inverte l’effetto e zero non chiude il bilancio. Qui resta fissata la portata Q₁, non la frazione di ingresso che essa rappresenta."
+        }
+      ],
+      "hints": [
+        "Sottrai gli stessi quattro L/s dai due ingressi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Trentasei quinti applica al residuo il fattore 12/10 come se anche Q₁ crescesse nella stessa proporzione. Sei ignora l’ingresso aggiunto, quattro ne inverte l’effetto e zero non chiude il bilancio. Qui resta fissata la portata Q₁, non la frazione di ingresso che essa rappresenta.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Conservazione della massa e versi dei flussi",
+        "Inverse, linearità e letture strumentali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-junction-balance-05",
+      "kind": "question",
+      "course": "C2",
+      "section": "Bilancio di portata a un nodo",
+      "order": 9625,
+      "title": "Ricostruire l’ingresso",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "junction-balance",
+      "difficulty": 2,
+      "prompt": "Un nodo rigido riceve una portata Q_e>0 e alimenta due uscite con portate Q₁>0 e Q₂>0. Il fluido è lo stesso liquido omogeneo incomprimibile in tutti i rami; il regime è stazionario, senza accumulo o fuga di liquido. Le portate sono moduli nei versi indicati: Q_e entra, Q₁ e Q₂ escono. Si impone Q_e>Q₁. I valori possono cambiare fra prove stazionarie distinte. Si misura Q₂=6 L/s e si conosce Q₁=4 L/s. Quanto vale Q_e in L/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 10,
+        "unit": "L/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il nodo deve ricevere tutto il volume che lascia le due uscite. Si sommano sei e quattro L/s: ingresso dieci L/s. L’inversa è una somma perché entrambi i dati sono moduli di portate uscenti."
+        },
+        {
+          "type": "formula",
+          "text": "Q_e=Q_1+Q_2"
+        },
+        {
+          "type": "formula",
+          "text": " Q_e=(4+6)\\,\\mathrm{L/s}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_e=10\\,\\mathrm{L/s}"
+        },
+        {
+          "type": "text",
+          "text": "Due L/s sarebbe una differenza fra uscite e non le alimenterebbe entrambe. Sei è soltanto la seconda portata, venti le conterebbe due volte. L’ingresso ricostruito supera Q₁ e quindi rispetta il dominio."
+        }
+      ],
+      "hints": [
+        "Riunisci le due uscite per ritrovare l’unico ingresso.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due L/s sarebbe una differenza fra uscite e non le alimenterebbe entrambe. Sei è soltanto la seconda portata, venti le conterebbe due volte. L’ingresso ricostruito supera Q₁ e quindi rispetta il dominio.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Conservazione della massa e versi dei flussi",
+        "Inverse, linearità e letture strumentali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-junction-balance-06",
+      "kind": "question",
+      "course": "C2",
+      "section": "Bilancio di portata a un nodo",
+      "order": 9626,
+      "title": "La prima uscita come residuo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "junction-balance",
+      "difficulty": 2,
+      "prompt": "Un nodo rigido riceve una portata Q_e>0 e alimenta due uscite con portate Q₁>0 e Q₂>0. Il fluido è lo stesso liquido omogeneo incomprimibile in tutti i rami; il regime è stazionario, senza accumulo o fuga di liquido. Le portate sono moduli nei versi indicati: Q_e entra, Q₁ e Q₂ escono. Si impone Q_e>Q₁. I valori possono cambiare fra prove stazionarie distinte. Sono noti Q_e=10 L/s e Q₂=6 L/s. Quanto vale Q₁ in L/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "L/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dopo aver destinato sei L/s alla seconda uscita, dell’ingresso dieci ne restano quattro per la prima. In questa inversa si sottrae Q₂; il fenomeno resta il medesimo bilancio senza accumulo."
+        },
+        {
+          "type": "formula",
+          "text": "Q_1=Q_e-Q_2"
+        },
+        {
+          "type": "formula",
+          "text": " Q_1=(10-6)\\,\\mathrm{L/s}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_1=4\\,\\mathrm{L/s}"
+        },
+        {
+          "type": "text",
+          "text": "Sedici sarebbe una somma incompatibile con l’ingresso; sei scambia le uscite e meno quattro invertirebbe il verso fisico dichiarato. Non si usa una radice: le portate entrano linearmente."
+        }
+      ],
+      "hints": [
+        "Togli dall’ingresso l’uscita già nota.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sedici sarebbe una somma incompatibile con l’ingresso; sei scambia le uscite e meno quattro invertirebbe il verso fisico dichiarato. Non si usa una radice: le portate entrano linearmente.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Conservazione della massa e versi dei flussi",
+        "Inverse, linearità e letture strumentali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-junction-balance-07",
+      "kind": "question",
+      "course": "C2",
+      "section": "Bilancio di portata a un nodo",
+      "order": 9627,
+      "title": "Più volume deviato nel primo ramo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "junction-balance",
+      "difficulty": 2,
+      "prompt": "Un nodo rigido riceve una portata Q_e>0 e alimenta due uscite con portate Q₁>0 e Q₂>0. Il fluido è lo stesso liquido omogeneo incomprimibile in tutti i rami; il regime è stazionario, senza accumulo o fuga di liquido. Le portate sono moduli nei versi indicati: Q_e entra, Q₁ e Q₂ escono. Si impone Q_e>Q₁. I valori possono cambiare fra prove stazionarie distinte. A ha Q_e=10 L/s, Q₁=4 L/s; B mantiene Q_e e porta Q₁ a 5 L/s. Quanto vale Q₂,B/Q₂,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "5/6",
+          "6/5",
+          "1/6",
+          "5/4",
+          "1"
+        ],
+        "value": "5/6"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La seconda uscita scende da sei a cinque L/s. Il rapporto finale è cinque sesti. La variazione relativa è invece meno un sesto: separare rapporto e incremento evita di attribuire il segno meno alla portata stessa."
+        },
+        {
+          "type": "formula",
+          "text": "Q_{2,A}=6\\,\\mathrm{L/s}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{2,B}=5\\,\\mathrm{L/s}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{2,B}/Q_{2,A}=5/6"
+        },
+        {
+          "type": "text",
+          "text": "Sei quinti è il reciproco, un sesto è il modulo della diminuzione relativa e cinque quarti segue il primo ramo anziché il secondo. Uno ignorerebbe la deviazione aggiuntiva. Entrambe le seconde portate restano positive."
+        }
+      ],
+      "hints": [
+        "Calcola i due residui prima di formarne il rapporto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sei quinti è il reciproco, un sesto è il modulo della diminuzione relativa e cinque quarti segue il primo ramo anziché il secondo. Uno ignorerebbe la deviazione aggiuntiva. Entrambe le seconde portate restano positive.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Conservazione della massa e versi dei flussi",
+        "Inverse, linearità e letture strumentali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-junction-balance-08",
+      "kind": "question",
+      "course": "C2",
+      "section": "Bilancio di portata a un nodo",
+      "order": 9628,
+      "title": "Una proposta oltre l’intero ingresso",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "junction-balance",
+      "difficulty": 2,
+      "prompt": "Un nodo rigido riceve una portata Q_e>0 e alimenta due uscite con portate Q₁>0 e Q₂>0. Il fluido è lo stesso liquido omogeneo incomprimibile in tutti i rami; il regime è stazionario, senza accumulo o fuga di liquido. Le portate sono moduli nei versi indicati: Q_e entra, Q₁ e Q₂ escono. Si impone Q_e>Q₁. I valori possono cambiare fra prove stazionarie distinte. Con Q_e=10 L/s e Q₁=4 L/s si propone Q₂=12 L/s. Quanto vale proposta meno corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "6 L/s",
+          "−6 L/s",
+          "12 L/s",
+          "0 L/s",
+          "3 L/s"
+        ],
+        "value": "6 L/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il valore corretto è sei L/s. La proposta dodici eccede il corretto di sei L/s e supera persino l’ingresso disponibile; con la prima uscita richiederebbe sedici L/s entranti."
+        },
+        {
+          "type": "formula",
+          "text": "Q_2=6\\,\\mathrm{L/s}"
+        },
+        {
+          "type": "formula",
+          "text": " e=(12-6)\\,\\mathrm{L/s}"
+        },
+        {
+          "type": "formula",
+          "text": " e=6\\,\\mathrm{L/s}"
+        },
+        {
+          "type": "text",
+          "text": "Meno sei inverte l’ordine dello scarto, dodici ripete la proposta, zero la accetta e tre dimezza di nuovo. La somma proposta delle uscite non può essere giustificata da energia o pressione: manca proprio massa nel bilancio stazionario."
+        }
+      ],
+      "hints": [
+        "Controlla la somma delle due uscite e poi lo scarto richiesto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Meno sei inverte l’ordine dello scarto, dodici ripete la proposta, zero la accetta e tre dimezza di nuovo. La somma proposta delle uscite non può essere giustificata da energia o pressione: manca proprio massa nel bilancio stazionario.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Conservazione della massa e versi dei flussi",
+        "Inverse, linearità e letture strumentali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-junction-balance-09",
+      "kind": "question",
+      "course": "C2",
+      "section": "Bilancio di portata a un nodo",
+      "order": 9629,
+      "title": "Isolare l’ingresso in simboli",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "junction-balance",
+      "difficulty": 2,
+      "prompt": "Un nodo rigido riceve una portata Q_e>0 e alimenta due uscite con portate Q₁>0 e Q₂>0. Il fluido è lo stesso liquido omogeneo incomprimibile in tutti i rami; il regime è stazionario, senza accumulo o fuga di liquido. Le portate sono moduli nei versi indicati: Q_e entra, Q₁ e Q₂ escono. Si impone Q_e>Q₁. I valori possono cambiare fra prove stazionarie distinte. Quale formula isola Q_e?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Q_e = Q₁ + Q₂",
+          "Q_e = Q₂ − Q₁",
+          "Q_e = Q₁ − Q₂",
+          "Q_e = Q₁ Q₂",
+          "Q_e = (Q₁ + Q₂) / 2"
+        ],
+        "value": "Q_e = Q₁ + Q₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Partendo da Q₂=Q_e−Q₁, aggiungiamo Q₁ a entrambi i membri. L’ingresso diventa la somma delle due uscite. Ogni termine è una portata e la relazione resta valida anche se le sezioni geometriche dei rami sono diverse."
+        },
+        {
+          "type": "formula",
+          "text": "Q_2+Q_1=Q_e"
+        },
+        {
+          "type": "formula",
+          "text": " Q_e=Q_1+Q_2"
+        },
+        {
+          "type": "text",
+          "text": "Le differenze cambiano un’uscita in ingresso e non conservano il volume dato. Il prodotto ha dimensioni di portata al quadrato. La semisomma darebbe una portata media fra i rami, non il flusso che li alimenta insieme."
+        }
+      ],
+      "hints": [
+        "Elimina la sottrazione con la stessa addizione sui due membri.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Le differenze cambiano un’uscita in ingresso e non conservano il volume dato. Il prodotto ha dimensioni di portata al quadrato. La semisomma darebbe una portata media fra i rami, non il flusso che li alimenta insieme.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Conservazione della massa e versi dei flussi",
+        "Inverse, linearità e letture strumentali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-junction-balance-10",
+      "kind": "question",
+      "course": "C2",
+      "section": "Bilancio di portata a un nodo",
+      "order": 9630,
+      "title": "Scalare due portate che si sottraggono",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "junction-balance",
+      "difficulty": 2,
+      "prompt": "Un nodo rigido riceve una portata Q_e>0 e alimenta due uscite con portate Q₁>0 e Q₂>0. Il fluido è lo stesso liquido omogeneo incomprimibile in tutti i rami; il regime è stazionario, senza accumulo o fuga di liquido. Le portate sono moduli nei versi indicati: Q_e entra, Q₁ e Q₂ escono. Si impone Q_e>Q₁. I valori possono cambiare fra prove stazionarie distinte. A ha portate Q_e e Q₁. B ha κ₁Q_e e κ₂Q₁, con κ₁Q_e>κ₂Q₁. Definiamo U=Q_e−Q₁ e D=κ₁Q_e−κ₂Q₁. Quanto vale Q₂,B/Q₂,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "D / U",
+          "κ₁ / κ₂",
+          "κ₁ κ₂",
+          "U / D",
+          "D / Q_e"
+        ],
+        "value": "D / U"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il residuo A è U e quello B è D. Il rapporto richiesto è quindi D/U. I due fattori non si possono separare in un quoziente di κ, perché agiscono su addendi differenti dentro una sottrazione."
+        },
+        {
+          "type": "formula",
+          "text": "U=Q_e-Q_1"
+        },
+        {
+          "type": "formula",
+          "text": " D=\\kappa_1Q_e-\\kappa_2Q_1"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{2,B}/Q_{2,A}=D/U"
+        },
+        {
+          "type": "text",
+          "text": "κ₁/κ₂ e κ₁κ₂ ignorano la struttura della differenza. U/D inverte gli stati e D/Q_e confronta il nuovo residuo con l’ingresso iniziale, non con la vecchia uscita. Il dominio D>0 mantiene il verso della seconda uscita in B."
+        }
+      ],
+      "hints": [
+        "Forma separatamente i due residui, poi dividili.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "κ₁/κ₂ e κ₁κ₂ ignorano la struttura della differenza. U/D inverte gli stati e D/Q_e confronta il nuovo residuo con l’ingresso iniziale, non con la vecchia uscita. Il dominio D>0 mantiene il verso della seconda uscita in B.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Conservazione della massa e versi dei flussi",
+        "Inverse, linearità e letture strumentali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-junction-balance-11",
+      "kind": "question",
+      "course": "C2",
+      "section": "Bilancio di portata a un nodo",
+      "order": 9631,
+      "title": "Due cambiamenti, un residuo nuovo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "junction-balance",
+      "difficulty": 2,
+      "prompt": "Un nodo rigido riceve una portata Q_e>0 e alimenta due uscite con portate Q₁>0 e Q₂>0. Il fluido è lo stesso liquido omogeneo incomprimibile in tutti i rami; il regime è stazionario, senza accumulo o fuga di liquido. Le portate sono moduli nei versi indicati: Q_e entra, Q₁ e Q₂ escono. Si impone Q_e>Q₁. I valori possono cambiare fra prove stazionarie distinte. A ha Q_e=10 L/s, Q₁=4 L/s; B ha Q_e=12 L/s, Q₁=5 L/s. Quanto vale Q₂,B/Q₂,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "7/6",
+          "6/7",
+          "6/5",
+          "5/4",
+          "1"
+        ],
+        "value": "7/6"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le seconde portate sono dieci meno quattro, cioè sei, e dodici meno cinque, cioè sette L/s. L’ingresso cresce di due e la prima uscita di uno: il residuo cresce di uno. Il rapporto è sette sesti."
+        },
+        {
+          "type": "formula",
+          "text": "Q_{2,A}=6\\,\\mathrm{L/s}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{2,B}=7\\,\\mathrm{L/s}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{2,B}/Q_{2,A}=7/6"
+        },
+        {
+          "type": "text",
+          "text": "Sei settimi inverte gli stati; sei quinti segue solo l’ingresso e cinque quarti solo la prima uscita. Uno richiederebbe uguali incrementi di ingresso e prima uscita, qui rispettivamente due e uno L/s."
+        }
+      ],
+      "hints": [
+        "Conserva la sottrazione anche quando cambiano entrambi i dati.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sei settimi inverte gli stati; sei quinti segue solo l’ingresso e cinque quarti solo la prima uscita. Uno richiederebbe uguali incrementi di ingresso e prima uscita, qui rispettivamente due e uno L/s.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Conservazione della massa e versi dei flussi",
+        "Inverse, linearità e letture strumentali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-junction-balance-12",
+      "kind": "question",
+      "course": "C2",
+      "section": "Bilancio di portata a un nodo",
+      "order": 9632,
+      "title": "La media commuta con questo bilancio lineare",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "junction-balance",
+      "difficulty": 2,
+      "prompt": "Un nodo rigido riceve una portata Q_e>0 e alimenta due uscite con portate Q₁>0 e Q₂>0. Il fluido è lo stesso liquido omogeneo incomprimibile in tutti i rami; il regime è stazionario, senza accumulo o fuga di liquido. Le portate sono moduli nei versi indicati: Q_e entra, Q₁ e Q₂ escono. Si impone Q_e>Q₁. I valori possono cambiare fra prove stazionarie distinte. A ha Q_e=10 L/s, Q₁=4 L/s; B ha Q_e=12 L/s, Q₁=5 L/s. Qual è la media aritmetica delle due Q₂ con uguale peso statistico?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "13/2 L/s",
+          "13 L/s",
+          "13/4 L/s",
+          "11/2 L/s",
+          "15/2 L/s"
+        ],
+        "value": "13/2 L/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le uscite sei e sette L/s hanno media tredici mezzi L/s. Qui anche la differenza degli ingressi medi, undici meno nove mezzi L/s, produce lo stesso valore: il bilancio è lineare. La coincidenza è motivata, non imposta come regola per ogni legge fisica."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline Q_2=\\frac{6+7}{2}\\,\\mathrm{L/s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline Q_2=\\frac{13}2\\,\\mathrm{L/s}"
+        },
+        {
+          "type": "text",
+          "text": "Tredici è la somma, tredici quarti divide una volta in più. Undici mezzi e quindici mezzi aggiungono o sottraggono un litro al secondo alla media corretta. I pesi sono statistici uguali; non si presume una durata diversa per le due prove."
+        }
+      ],
+      "hints": [
+        "Media i due residui e confronta con la differenza delle medie.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tredici è la somma, tredici quarti divide una volta in più. Undici mezzi e quindici mezzi aggiungono o sottraggono un litro al secondo alla media corretta. I pesi sono statistici uguali; non si presume una durata diversa per le due prove.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Conservazione della massa e versi dei flussi",
+        "Inverse, linearità e letture strumentali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-junction-balance-13",
+      "kind": "question",
+      "course": "C2",
+      "section": "Bilancio di portata a un nodo",
+      "order": 9633,
+      "title": "Il primo ramo necessario al bersaglio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "junction-balance",
+      "difficulty": 3,
+      "prompt": "Un nodo rigido riceve una portata Q_e>0 e alimenta due uscite con portate Q₁>0 e Q₂>0. Il fluido è lo stesso liquido omogeneo incomprimibile in tutti i rami; il regime è stazionario, senza accumulo o fuga di liquido. Le portate sono moduli nei versi indicati: Q_e entra, Q₁ e Q₂ escono. Si impone Q_e>Q₁. I valori possono cambiare fra prove stazionarie distinte. A ha Q_e=10 L/s e Q₁=4 L/s. B deve avere Q_e,B=12 L/s e Q₂,B=(7/6)Q₂,A. Quanto vale Q₁,B/Q₁,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "5/4",
+          "4/5",
+          "7/6",
+          "6/5",
+          "5"
+        ],
+        "value": "5/4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La seconda portata A vale sei L/s, quindi il bersaglio B è sette. L’ingresso B di dodici lascia cinque L/s al primo ramo. Confrontando cinque con i quattro L/s iniziali si ottiene cinque quarti."
+        },
+        {
+          "type": "formula",
+          "text": "Q_{2,B}=7\\,\\mathrm{L/s}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{1,B}=(12-7)\\,\\mathrm{L/s}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{1,B}=5\\,\\mathrm{L/s}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{1,B}/Q_{1,A}=5/4"
+        },
+        {
+          "type": "text",
+          "text": "Quattro quinti è il reciproco; sette sesti è il bersaglio per l’altro ramo e sei quinti il rapporto degli ingressi. Cinque è la portata B come numero, non il rapporto. Il nuovo ingresso supera entrambe le uscite e il bilancio si chiude."
+        }
+      ],
+      "hints": [
+        "Ricava prima il target Q₂,B, poi la prima uscita residua.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro quinti è il reciproco; sette sesti è il bersaglio per l’altro ramo e sei quinti il rapporto degli ingressi. Cinque è la portata B come numero, non il rapporto. Il nuovo ingresso supera entrambe le uscite e il bilancio si chiude.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Conservazione della massa e versi dei flussi",
+        "Inverse, linearità e letture strumentali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-junction-balance-14",
+      "kind": "question",
+      "course": "C2",
+      "section": "Bilancio di portata a un nodo",
+      "order": 9634,
+      "title": "Tarare il misuratore del secondo ramo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "junction-balance",
+      "difficulty": 3,
+      "prompt": "Un nodo rigido riceve una portata Q_e>0 e alimenta due uscite con portate Q₁>0 e Q₂>0. Il fluido è lo stesso liquido omogeneo incomprimibile in tutti i rami; il regime è stazionario, senza accumulo o fuga di liquido. Le portate sono moduli nei versi indicati: Q_e entra, Q₁ e Q₂ escono. Si impone Q_e>Q₁. I valori possono cambiare fra prove stazionarie distinte. Un display continuo adimensionale segue S=qQ₂, con q>0, senza offset. A con Q_e=10 L/s, Q₁=4 L/s dà S=18. B dà S=21 e ha Q₁,B=5 L/s. Quanto vale Q_e,B in L/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 12,
+        "unit": "L/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento ha seconda portata sei L/s e guadagno q=3 s/L. La nuova lettura ventuno indica sette L/s nella seconda uscita. Sommando i cinque L/s della prima si ritrova un ingresso di dodici L/s."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{s/L}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{2,B}=7\\,\\mathrm{L/s}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{e,B}=Q_{1,B}+Q_{2,B}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{e,B}=12\\,\\mathrm{L/s}"
+        },
+        {
+          "type": "text",
+          "text": "Ventuno è una lettura pura, non una portata. Usarla come L/s darebbe ingresso ventisei e non ricostruirebbe lo strumento. Sette è soltanto la seconda uscita; il compito chiede il flusso totale entrante."
+        }
+      ],
+      "hints": [
+        "Decodifica l’uscita misurata e riunisci le due portate.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Ventuno è una lettura pura, non una portata. Usarla come L/s darebbe ingresso ventisei e non ricostruirebbe lo strumento. Sette è soltanto la seconda uscita; il compito chiede il flusso totale entrante.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Conservazione della massa e versi dei flussi",
+        "Inverse, linearità e letture strumentali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-junction-balance-15",
+      "kind": "question",
+      "course": "C2",
+      "section": "Bilancio di portata a un nodo",
+      "order": 9635,
+      "title": "Due riferimenti e una lettura nuova",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "junction-balance",
+      "difficulty": 3,
+      "prompt": "Un nodo rigido riceve una portata Q_e>0 e alimenta due uscite con portate Q₁>0 e Q₂>0. Il fluido è lo stesso liquido omogeneo incomprimibile in tutti i rami; il regime è stazionario, senza accumulo o fuga di liquido. Le portate sono moduli nei versi indicati: Q_e entra, Q₁ e Q₂ escono. Si impone Q_e>Q₁. I valori possono cambiare fra prove stazionarie distinte. Il display continuo adimensionale segue S=qQ₂+b, con q>0. A: Q_e=10 L/s, Q₁=4 L/s, S=13. B: Q_e=12 L/s, Q₁=5 L/s, S=15. C: Q₁=4 L/s, S=17. Quanto vale Q_e,C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "12 L/s",
+          "10 L/s",
+          "11 L/s",
+          "13 L/s",
+          "24 L/s"
+        ],
+        "value": "12 L/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le seconde portate dei riferimenti sono sei e sette L/s. Due unità di lettura per un L/s danno q=2 s/L; da tredici meno dodici segue b=1. La lettura diciassette dà Q₂,C=8 L/s e l’ingresso totale è otto più quattro, dodici L/s."
+        },
+        {
+          "type": "formula",
+          "text": "q=2\\,\\mathrm{s/L}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{2,C}=8\\,\\mathrm{L/s}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{e,C}=12\\,\\mathrm{L/s}"
+        },
+        {
+          "type": "text",
+          "text": "Ingressi dieci, undici e tredici L/s con prima uscita quattro darebbero letture tredici, quindici e diciannove. Ventiquattro raddoppia una portata già totale. Il parametro b è un offset del display, non un flusso che entra o esce dal nodo."
+        }
+      ],
+      "hints": [
+        "Usa differenze per q, rimuovi b, poi applica la continuità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Ingressi dieci, undici e tredici L/s con prima uscita quattro darebbero letture tredici, quindici e diciannove. Ventiquattro raddoppia una portata già totale. Il parametro b è un offset del display, non un flusso che entra o esce dal nodo.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Conservazione della massa e versi dei flussi",
+        "Inverse, linearità e letture strumentali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-junction-balance-16",
+      "kind": "question",
+      "course": "C2",
+      "section": "Bilancio di portata a un nodo",
+      "order": 9636,
+      "title": "Un rapporto assegnato tra ingresso e prima uscita",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "junction-balance",
+      "difficulty": 3,
+      "prompt": "Un nodo rigido riceve una portata Q_e>0 e alimenta due uscite con portate Q₁>0 e Q₂>0. Il fluido è lo stesso liquido omogeneo incomprimibile in tutti i rami; il regime è stazionario, senza accumulo o fuga di liquido. Le portate sono moduli nei versi indicati: Q_e entra, Q₁ e Q₂ escono. Si impone Q_e>Q₁. I valori possono cambiare fra prove stazionarie distinte. Fra prove si impone Q_e=(5/2)Q₁. Si misura Q₂=6 L/s. Quanto vale Q₁ in L/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "L/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituiamo il vincolo nella differenza: Q₂=(5/2−1)Q₁=(3/2)Q₁. Dividendo sei per tre mezzi si ricava Q₁=4 L/s e quindi Q_e=10 L/s. Il fattore del vincolo è puro perché collega due portate."
+        },
+        {
+          "type": "formula",
+          "text": "Q_2=\\frac32Q_1"
+        },
+        {
+          "type": "formula",
+          "text": " Q_1=\\frac23Q_2"
+        },
+        {
+          "type": "formula",
+          "text": " Q_1=4\\,\\mathrm{L/s}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_e=10\\,\\mathrm{L/s}"
+        },
+        {
+          "type": "text",
+          "text": "Due L/s userebbe un coefficiente tre, otto non soddisferebbe il dato: (3/2)·8 L/s darebbe dodici L/s anziché sei e sei scambierebbe le uscite. Il rapporto ingresso/prima uscita deve superare uno per lasciare una seconda uscita positiva; cinque mezzi lo soddisfa. Non si tratta di un vincolo ridondante."
+        }
+      ],
+      "hints": [
+        "Sostituisci il rapporto nella somma prima di isolare Q₁.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Due L/s userebbe un coefficiente tre, otto non soddisferebbe il dato: (3/2)·8 L/s darebbe dodici L/s anziché sei e sei scambierebbe le uscite. Il rapporto ingresso/prima uscita deve superare uno per lasciare una seconda uscita positiva; cinque mezzi lo soddisfa. Non si tratta di un vincolo ridondante.",
+        "target": "C2-L005"
+      },
+      "coverage": [
+        "Conservazione della massa e versi dei flussi",
+        "Inverse, linearità e letture strumentali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "9ac47cf8fae61b96630279033ff2f33442243dca5126ec304f6638ac72f888c4",
+      "name": "junction-balance-steps.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTU4MCIgdmlld0JveD0iMCAwIDY0MCAxNTgwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+Cjx0aXRsZSBpZD0idGl0bGUiPkZsdXNzaSBvcmllbnRhdGkgZSBiaWxhbmNpbyBhIHVuIG5vZG88L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5VbiBpbmdyZXNzbyBkaSBkaWVjaSBsaXRyaSBhbCBzZWNvbmRvIGFsaW1lbnRhIHVzY2l0ZSBkYSBxdWF0dHJvIGUgc2VpLiBMZSBmcmVjY2Ugc29ubyBwcm9wb3J6aW9uYXRlIGFsbGUgcG9ydGF0ZS4gRHVlIGJhcnJlIGNvbmZyb250YW5vIHBvaSBnbGkgc3RhdGkgZGllY2kgdWd1YWxlIHF1YXR0cm8gcGnDuSBzZWkgZSBkb2RpY2kgdWd1YWxlIGNpbnF1ZSBwacO5IHNldHRlIGFsbGEgc3Rlc3NhIHNjYWxhLjwvZGVzYz4KPGRlZnM+PG1hcmtlciBpZD0iYXJyb3ciIHZpZXdCb3g9IjAgMCAxMCAxMCIgcmVmWD0iOSIgcmVmWT0iNSIgbWFya2VyV2lkdGg9IjciIG1hcmtlckhlaWdodD0iNyIgb3JpZW50PSJhdXRvLXN0YXJ0LXJldmVyc2UiPjxwYXRoIGQ9Ik0wIDBMMTAgNUwwIDEwWiIgZmlsbD0iY29udGV4dC1zdHJva2UiLz48L21hcmtlcj48L2RlZnM+CjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMTU4MCIgZmlsbD0iI2ZmZmRmNyIvPgo8ZyBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiMxNzJjM2IiPgo8dGV4dCB4PSIzNSIgeT0iNDgiIGZvbnQtc2l6ZT0iMjciIGZvbnQtd2VpZ2h0PSJib2xkIj4xLiBEaWNoaWFyYXJlIGkgdmVyc2kgZGVpIGZsdXNzaTwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjkwIj5TdGF6aW9uYXJpbywgc2VuemEgYWNjdW11bG8gbyBmdWdoZTwvdGV4dD4KPGcgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjODc5N2EwIiBzdHJva2Utd2lkdGg9IjMiPjxwYXRoIGQ9Ik00NSAyNzBIMzAwTDM5NSAxODBINTgwIi8+PHBhdGggZD0iTTMwMCAyNzBMMzkwIDM4MEg1ODAiLz48L2c+CjxwYXRoIGQ9Ik02NSAyNDVIMjY1IiBmaWxsPSJub25lIiBzdHJva2U9IiMxNTVmYTAiIHN0cm9rZS13aWR0aD0iNSIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz4KPHBhdGggZD0iTTQyMCAxNjBINTAwIiBmaWxsPSJub25lIiBzdHJva2U9IiMyNDcxNDMiIHN0cm9rZS13aWR0aD0iNSIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz4KPHBhdGggZD0iTTQyMCAzNjBINTQwIiBmaWxsPSJub25lIiBzdHJva2U9IiNhMzM0MzAiIHN0cm9rZS13aWR0aD0iNSIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz4KPHRleHQgeD0iNjUiIHk9IjIwNSI+RW50cmE6IDEwIEwvczwvdGV4dD48dGV4dCB4PSI0MDAiIHk9IjEyNSI+RXNjZTogNCBML3M8L3RleHQ+PHRleHQgeD0iNDAwIiB5PSI0MjUiPkVzY2U6IDYgTC9zPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iNDc1Ij5TY2FsYSBmcmVjY2U6IDIwIHB4IC8gKEwvcyk8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI1MTUiPjIwMCBweCA9IDgwIHB4ICsgMTIwIHB4PC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iNTU1Ij5TY2hlbWEgZGVpIHJhY2NvcmRpOiBnZW9tZXRyaWEgbm9uIGluIHNjYWxhPC90ZXh0Pgo8bGluZSB4MT0iMzUiIHgyPSI2MDUiIHkxPSI1OTAiIHkyPSI1OTAiIHN0cm9rZT0iI2I5YzRjOSIvPgo8dGV4dCB4PSIzNSIgeT0iNjQwIiBmb250LXNpemU9IjI3IiBmb250LXdlaWdodD0iYm9sZCI+Mi4gUmljb21wb3JyZSBjacOyIGNoZSBlc2NlPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iNjgwIj5TdGF0byBBOiBRIGluZ3Jlc3NvID0gMTAgTC9zPC90ZXh0Pgo8cmVjdCB4PSI5MCIgeT0iNzEwIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjMTU1ZmEwIi8+PHRleHQgeD0iMzY1IiB5PSI3MzMiPjEwIEwvczwvdGV4dD4KPHJlY3QgeD0iOTAiIHk9Ijc2NSIgd2lkdGg9IjgwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjMjQ3MTQzIi8+PHJlY3QgeD0iMTcwIiB5PSI3NjUiIHdpZHRoPSIxMjAiIGhlaWdodD0iMzAiIGZpbGw9IiNhMzM0MzAiLz48dGV4dCB4PSIzNjUiIHk9Ijc4OCI+NCArIDYgTC9zPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iODQ1Ij5MZSBkdWUgdXNjaXRlIHJpZW1waW9ubyBsYSBzdGVzc2EgYmFycmEuPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iODg1Ij5RIGluZ3Jlc3NvIOKIkiBRIHByaW1hIOKIkiBRIHNlY29uZGEgPSAwPC90ZXh0Pgo8bGluZSB4MT0iMzUiIHgyPSI2MDUiIHkxPSI5MjAiIHkyPSI5MjAiIHN0cm9rZT0iI2I5YzRjOSIvPgo8dGV4dCB4PSIzNSIgeT0iOTcwIiBmb250LXNpemU9IjI3IiBmb250LXdlaWdodD0iYm9sZCI+My4gQ29uZnJvbnRhcmUgdW7igJlhbHRyYSBwcm92YTwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjEwMTAiPlN0YXRvIEI6IFEgaW5ncmVzc28gPSAxMiBML3M8L3RleHQ+CjxyZWN0IHg9IjkwIiB5PSIxMDQwIiB3aWR0aD0iMjQwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjMTU1ZmEwIi8+PHRleHQgeD0iMzY1IiB5PSIxMDYzIj4xMiBML3M8L3RleHQ+CjxyZWN0IHg9IjkwIiB5PSIxMDk1IiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjMjQ3MTQzIi8+PHJlY3QgeD0iMTkwIiB5PSIxMDk1IiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjYTMzNDMwIi8+PHRleHQgeD0iMzY1IiB5PSIxMTE4Ij41ICsgNyBML3M8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxMTc1Ij5TY2FsYSBjb211bmU6IDIwIHB4IC8gKEwvcyk8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxMjE1Ij4yNDAgcHggPSAxMDAgcHggKyAxNDAgcHg8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxMjcwIj5VbmEgY2VsbGEgZXF1aXZhbGUgYSAxIEwvczo8L3RleHQ+CjxnIHN0cm9rZT0iIzE3MmMzYiIgc3Ryb2tlLXdpZHRoPSIxIj48cmVjdCB4PSI5MCIgeT0iMTMwMCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjI1IiBmaWxsPSIjMjQ3MTQzIi8+PHJlY3QgeD0iMTEwIiB5PSIxMzAwIiB3aWR0aD0iMjAiIGhlaWdodD0iMjUiIGZpbGw9IiMyNDcxNDMiLz48cmVjdCB4PSIxMzAiIHk9IjEzMDAiIHdpZHRoPSIyMCIgaGVpZ2h0PSIyNSIgZmlsbD0iIzI0NzE0MyIvPjxyZWN0IHg9IjE1MCIgeT0iMTMwMCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjI1IiBmaWxsPSIjMjQ3MTQzIi8+PHJlY3QgeD0iMTcwIiB5PSIxMzAwIiB3aWR0aD0iMjAiIGhlaWdodD0iMjUiIGZpbGw9IiMyNDcxNDMiLz48cmVjdCB4PSIxOTAiIHk9IjEzMDAiIHdpZHRoPSIyMCIgaGVpZ2h0PSIyNSIgZmlsbD0iI2EzMzQzMCIvPjxyZWN0IHg9IjIxMCIgeT0iMTMwMCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjI1IiBmaWxsPSIjYTMzNDMwIi8+PHJlY3QgeD0iMjMwIiB5PSIxMzAwIiB3aWR0aD0iMjAiIGhlaWdodD0iMjUiIGZpbGw9IiNhMzM0MzAiLz48cmVjdCB4PSIyNTAiIHk9IjEzMDAiIHdpZHRoPSIyMCIgaGVpZ2h0PSIyNSIgZmlsbD0iI2EzMzQzMCIvPjxyZWN0IHg9IjI3MCIgeT0iMTMwMCIgd2lkdGg9IjIwIiBoZWlnaHQ9IjI1IiBmaWxsPSIjYTMzNDMwIi8+PHJlY3QgeD0iMjkwIiB5PSIxMzAwIiB3aWR0aD0iMjAiIGhlaWdodD0iMjUiIGZpbGw9IiNhMzM0MzAiLz48cmVjdCB4PSIzMTAiIHk9IjEzMDAiIHdpZHRoPSIyMCIgaGVpZ2h0PSIyNSIgZmlsbD0iI2EzMzQzMCIvPjwvZz4KPHRleHQgeD0iMzUiIHk9IjEzOTAiPjUgY2VsbGUgKyA3IGNlbGxlID0gMTIgY2VsbGU8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxNDQwIj5QacO5IDIgTC9zIGFsbOKAmWluZ3Jlc3NvLCBwacO5IDEgYWxsYSBwcmltYTo8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxNDgwIj5yZXN0YSBwacO5IDEgTC9zIHBlciBsYSBzZWNvbmRhIHVzY2l0YS48L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxNTM1Ij5MZSBwb3J0YXRlIG5vbiBpbmRpY2FubyBmb3J6ZSBvIHByZXNzaW9uaS48L3RleHQ+CjwvZz48L3N2Zz4K"
+    }
+  ]
+}

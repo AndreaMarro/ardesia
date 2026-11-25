@@ -1,0 +1,45 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "LAB3D-01",
+  "result": "WITHDRAWN_NOT_REACHABLE_FROM_BENCH_UI",
+  "scope": "current_bench_consumer_domain_not_static_assessment_keys",
+  "reviewer": "root",
+  "consumerBaselineCommit": "8a2d7c5abf64753c69cdd8066a9dcc8302e03448",
+  "inputs": {
+    "m": 2,
+    "angle": 0,
+    "ms": 0,
+    "mk": 1,
+    "F": 1
+  },
+  "acceptedByCurrentParameterRange": "inRange checks component bounds only, not the complete consumer domain",
+  "outputs": {
+    "theta": 0,
+    "weight": 19.62,
+    "normal": 19.62,
+    "parallel": 0,
+    "drive": 1,
+    "limit": 0,
+    "rest": false,
+    "friction": -19.62,
+    "a": -9.31,
+    "duration": 0.41455785720572097
+  },
+  "sourceHashes": {
+    "static/js/banchi/modelli/piano.js": "0575020da70a7759527f307b6ba291777f79ff0a710e313b1a4cb7ee012de6e2",
+    "static/js/banchi/misure.js": "8d631c65b0266ece6447da07aff7a43ee61b66d0767ddc24ace3f59b31fac186",
+    "static/js/banchi/banco.js": "682ba25fcf97b67821b8c9bb6c73a571c87559f94bbda3f64cfad65fab63cdb8"
+  },
+  "independentPhysics": "For departure from rest driven uphill, modeled kinetic friction must oppose resulting incipient motion. The current admissible mu_d>mu_s case makes the returned acceleration downhill while friction is also downhill, so the stated constant-friction departure does not solve its own directional assumption.",
+  "exactArithmetic": "g=981/100; N=981/50 N; f=-981/50 N; a=(1-981/50)/2=-931/100 m/s^2; f*a>0.",
+  "manualFeasibility": "All counterexample steps are exact rational arithmetic; angle zero removes trigonometric evaluation.",
+  "potentialResolution": "No product fix justified by this withdrawn counterexample. Finish independent review of all reachable bench states.",
+  "humanApproval": "NOT_RUN",
+  "completionCredit": 0,
+  "newPublications": 0,
+  "priorClaimSha256": "10c676afb2cb42f393bd239c15a8d4bf8dbcade81e62613b7c3ce809b135ade4",
+  "withdrawalReason": "Complete caller inspection found pre-existing clamp in banco.js oninput before solve; defaults and reset already satisfy mu_d<=mu_s. The raw solver input is outside reachable LAB3D-01 UI states.",
+  "consumerGuard": "static/js/banchi/banco.js:669",
+  "independentCounterReview": "review_corpus_increment",
+  "proof": "Invariant by induction: valid defaults/reset; if new mk>ms then mk edit raises ms=mk, other edits lower mk=ms; otherwise inequality preserved. Every solve called by this bench has mu_d<=mu_s, so if sliding |drive|>mu_s*N>=mu_d*N and acceleration shares drive sign."
+}

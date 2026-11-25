@@ -1,0 +1,19 @@
+# Note d’autore — identical-branches-095
+
+Letti individualmente tutti i 16 originali della famiglia in U3-03, fonte 5cfbdcb055ba3ba136f97fb56e997f06e6cf3605. Riletta la lezione reale C2-L005: portata come volume per tempo, componente normale media, bilancio a un nodo. Primaria C2-L005, prerequisiti C2-L001/L005, riuso C6. Corso C2, unità u3 e source_path U3-03 nell’assembler unico.
+
+Q_T = 24 cm³/s è imposto uguale fra prove. La ripartizione uniforme è una condizione esplicita: ogni ramo trasporta Q_T/N. L’identità geometrica da sola, in un modello ideale privo di legge di ripartizione, non viene presentata come dimostrazione sufficiente dei flussi uguali. Fluido omogeneo incomprimibile, stazionario, nessun accumulo o perdita di liquido nei raccordi. N è intero positivo; A è l’area positiva di ogni ramo, uguale entro una prova. v è la velocità normale media, non il massimo del profilo. Variazioni fra apparati, non un transitorio implicito.
+
+01: due rami ricevono 12 cm³/s ciascuno; area 2 cm² dà v = 6 cm/s. 02: unità L/T; N non ha dimensioni. 03: somma delle portate Q_T = NAv; divisione per NA. 04: N da 2 a 3, area 2 cm², porta la quota da 12 a 8 cm³/s e v da 6 a 4 cm/s.
+
+05: Av = 12 cm³/s e N = 24/12 = 2. L’inversa esige interezza oltre alla positività; non si arrotonda un conteggio incompatibile. 06: A = 24/(2·6) = 2 cm², distinto dall’area totale 4 cm². 07: con N = 2, area da 2 a 3 cm², velocità da 6 a 4 cm/s; rapporto 2/3. 08: proposta 12 meno corretto 6 = +6 cm/s; la proposta richiederebbe ingresso 48 cm³/s.
+
+09: N = Q_T/(Av), rapporto puro che deve essere intero positivo. 10: rapporto di velocità 1/(κ₁κ₂), con κ₁N_A ancora intero. 11: aree totali 4 e 9 cm², velocità 6 e 8/3 cm/s, rapporto 4/9. 12: semisomma (6 + 8/3)/2 = 13/3 cm/s. La sostituzione formale degli ingressi medi darebbe 96/25 cm/s, non la media; inoltre N medio = 5/2 non descrive un apparato ammesso. Non si attribuisce realtà fisica a un numero frazionario di condotti.
+
+13: bersaglio 8/3 cm/s con N_B = 3 richiede A_B = 3 cm²; rapporto aree 3/2. 14: display continuo senza offset, q = 3 s/cm. Lettura 8 dà v = 8/3 cm/s; ramo di area 3 cm² porta 8 cm³/s e N_B = 3. 15: differenze dei riferimenti 20/3 e 10/3 cm/s danno q = 2 s/cm, b = 1. Lettura C = 9 dà v_C = 4 cm/s e N_C = 3. Con area 2 cm² i conteggi 2, 4, 6 darebbero letture 13, 7, 5; N = 3/2 è anche fuori dominio.
+
+16: N = cA con c = 1 cm⁻² fra apparati. Dal dato v = 6 cm/s segue NA = 4 cm²; dunque cA² = 4 cm² e A² = 4 cm⁴. Ramo positivo A = 2 cm², conteggio N = 2 intero. Il ramo negativo viola area positiva e conteggio; il vincolo è dimensionato, non uguaglia unità diverse senza un coefficiente.
+
+SVG collegato ai record 01/03: raccordo topologico esplicitamente non geometrico. Frecce di portata 120/60 px per 24/12 cm³/s alla scala 5 px/(cm³/s), ogni freccia in path separato. Con N = 3 la quota è 8 cm³/s; frecce di velocità 120/80 px per 6/4 cm/s alla scala 20 px/(cm/s). Barre finali: aree complessive 4/6/9 cm², lunghezze 120/180/270 px a 30 px/cm²; velocità 6/4/(8/3) cm/s, lunghezze 180/120/80 px a 30 px/(cm/s). Scale dimensionalmente diverse dichiarate, nessun confronto diretto fra altezza di area e velocità. XML e rendering completo letti.
+
+Assembly e binding deterministici; schema e metadati C2 controllati dall’importatore canonico ROOT con SQLite temporaneo: 16 DRAFT, poi 0 nuove e 16 invariate; 991 pubblicati e versioni storiche conservati, SHA256 pubblicati 99c8d805004c82ba63a19f7ad8c0825666ca813d4f15471b8df4db5657b7c9ee. Pacchetto SHA256 8660384a9558065017822c4456417d9085957e2c16e2e45a24504e3a4e9640c6. Anteprima tecnica del worktree autore: 48 casi a 1440/768/320 px, zero violazioni osservate; il protocollo e runtime finali dell’integratore verranno eseguiti separatamente. Questi sono controlli tecnici d’autore, non un verdetto scientifico indipendente. IndependentReview NOT_RUN; human NOT_RUN; publication NONE.

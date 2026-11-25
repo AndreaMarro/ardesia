@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="1600" viewBox="0 0 640 1600" role="img" aria-labelledby="title desc">
+<title id="title">Due rami e una portata totale imposta</title>
+<desc id="desc">Tre passi distinguono pressione comune e portate diverse. La portata totale resta dieci litri al secondo. Resistenze uguali dividono cinque e cinque; aumentando soltanto la prima resistenza a tre si ottengono cinque mezzi e quindici mezzi. Le frecce condividono venti pixel per litro al secondo; la rete è topologica, non una geometria metrica.</desc>
+<defs><marker id="blue" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#155fa0"/></marker><marker id="red" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#a33430"/></marker><marker id="green" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#217548"/></marker></defs>
+<rect width="640" height="1600" fill="#fffdf7"/>
+<g font-family="Arial, sans-serif" font-size="22" fill="#172c3b">
+<text x="35" y="48" font-size="27">1. Stessi nodi, stessa pressione</text>
+<text x="35" y="90">A: R₁ = R₂ = 1 kPa·s/L</text>
+<text x="35" y="135">Scala portata: 20 px/(L/s)</text>
+<path d="M250 250V390M590 250V390M250 250H460M530 250H590M250 390H460M530 390H590M590 320H620" stroke="#8797a0" stroke-width="3" fill="none"/>
+<rect x="460" y="225" width="70" height="50" fill="#f5e9d2" stroke="#79663b"/><rect x="460" y="365" width="70" height="50" fill="#f5e9d2" stroke="#79663b"/>
+<text x="475" y="258">R₁</text><text x="475" y="398">R₂</text>
+<path d="M50 320H250" stroke="#155fa0" stroke-width="4" fill="none" marker-end="url(#blue)"/>
+<path d="M300 250H400" stroke="#a33430" stroke-width="4" fill="none" marker-end="url(#red)"/>
+<path d="M300 390H400" stroke="#217548" stroke-width="4" fill="none" marker-end="url(#green)"/>
+<text x="50" y="290">10 L/s</text><text x="285" y="210">Q₁ = 5 L/s</text><text x="285" y="350">Q₂ = 5 L/s</text>
+<text x="35" y="470">Δp = 1 · 5 = 5 kPa in ogni ramo</text>
+<text x="35" y="515">200 px entrano; 100 + 100 px nei rami.</text>
+<text x="35" y="555">Rete schematica: R non è una lunghezza.</text>
+<line x1="35" y1="580" x2="605" y2="580" stroke="#bcc6ca"/>
+<text x="35" y="625" font-size="27">2. Cresce soltanto la resistenza R₁</text>
+<text x="35" y="665">R₁ = 3; R₂ = 1 kPa·s/L</text>
+<path d="M250 790V930M590 790V930M250 790H475M535 790H590M250 930H475M535 930H590M590 860H620" stroke="#8797a0" stroke-width="3" fill="none"/>
+<rect x="475" y="765" width="60" height="50" fill="#f5e9d2" stroke="#79663b"/><rect x="475" y="905" width="60" height="50" fill="#f5e9d2" stroke="#79663b"/>
+<text x="485" y="798">R₁</text><text x="485" y="938">R₂</text>
+<path d="M50 860H250" stroke="#155fa0" stroke-width="4" fill="none" marker-end="url(#blue)"/>
+<path d="M300 790H350" stroke="#a33430" stroke-width="4" fill="none" marker-end="url(#red)"/>
+<path d="M300 930H450" stroke="#217548" stroke-width="4" fill="none" marker-end="url(#green)"/>
+<text x="50" y="830">10 L/s</text><text x="285" y="750">Q₁ = 5/2 L/s</text><text x="285" y="890">Q₂ = 15/2 L/s</text>
+<text x="35" y="1010">Δp = 3 · (5/2) = 1 · (15/2) kPa</text>
+<text x="35" y="1055">50 + 150 = 200 px: il totale non cambia.</text>
+<line x1="35" y1="1090" x2="605" y2="1090" stroke="#bcc6ca"/>
+<text x="35" y="1140" font-size="27">3. Confrontare due prove intere</text>
+<text x="35" y="1185">Scala barre: 20 px/(L/s)</text>
+<text x="35" y="1230">A: R₁ = 1, R₂ = 1 → 5 + 5 L/s</text>
+<rect x="100" y="1250" width="100" height="30" fill="#a33430"/><rect x="200" y="1250" width="100" height="30" fill="#217548"/>
+<text x="350" y="1275">Δp = 5 kPa</text>
+<text x="35" y="1330">B: R₁ = 2, R₂ = 3 → 6 + 4 L/s</text>
+<rect x="100" y="1350" width="120" height="30" fill="#a33430"/><rect x="220" y="1350" width="80" height="30" fill="#217548"/>
+<text x="350" y="1375">Δp = 12 kPa</text>
+<text x="35" y="1440">Le portate si sommano a ogni nodo.</text>
+<text x="35" y="1485">La pressione è comune ai due rami</text>
+<text x="35" y="1525">della stessa prova, ma può cambiare fra prove.</text>
+<text x="35" y="1570">La pompa mantiene Q totale, non Δp.</text>
+</g></svg>

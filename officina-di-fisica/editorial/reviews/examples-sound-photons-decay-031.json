@@ -1,0 +1,1518 @@
+{
+  "schemaVersion": "1.0.0",
+  "batch": "examples-sound-photons-decay-031",
+  "records": [
+    {
+      "id": "C5-E009",
+      "sourceSha256": "facb9df9b6c67e39a867084c73694196d5bf70376bdfaeff0a87707c68f1f4a4",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C5.json",
+      "sourceFileSha256": "dac4490e6a900f5da191bf7a1f5b8463ddc57c8bbaa36cb7a4a375c70fa77422",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "intended echo timedifference28microseconds",
+          "independentExact": "7/250000",
+          "expectedValue": "7/250000",
+          "unit": "s",
+          "dimension": {
+            "[time]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "new_draft_actual_worked_calculation"
+        },
+        {
+          "claim": "intended doubledpath reduction21millimetres",
+          "independentExact": "21/1000",
+          "expectedValue": "21/1000",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "new_draft_actual_worked_calculation"
+        },
+        {
+          "claim": "intended nearestreflectordepth30millimetres",
+          "independentExact": "3/100",
+          "expectedValue": "3/100",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "new_draft_actual_worked_calculation"
+        },
+        {
+          "claim": "intended fartherreflectordepth51millimetres",
+          "independentExact": "51/1000",
+          "expectedValue": "51/1000",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "new_draft_actual_worked_calculation"
+        },
+        {
+          "claim": "separatedepth differenceagrees",
+          "independentExact": "21/1000",
+          "expectedValue": "21/1000",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "new_draft_actual_worked_calculation"
+        },
+        {
+          "claim": "intended distancecentimetres2point1",
+          "independentExact": "21/10",
+          "expectedValue": "21/10",
+          "unit": "cm",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "new_draft_actual_worked_calculation"
+        },
+        {
+          "claim": "new prompt states same-axis direct-return geometry and timing",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "new prompt retains independently solved inputs",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "new velocity conversion gives3over2 millimetres per microsecond",
+          "independentExact": "3/2",
+          "expectedValue": "3/2",
+          "unit": "mm/us",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "new doubled path42mm isnotonewayseparation",
+          "independentExact": "42",
+          "expectedValue": "42",
+          "unit": "mm",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "new exact inverse recovers28microseconds",
+          "independentExact": "28",
+          "expectedValue": "28",
+          "unit": "us",
+          "dimension": {
+            "[time]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "new lengthdividedbyvelocity has timeunits",
+          "independentExact": "28",
+          "expectedValue": "28",
+          "unit": "us",
+          "dimension": {
+            "[time]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "new exact terminatingdecimal in centimetres",
+          "independentExact": "21/10",
+          "expectedValue": "21/10",
+          "unit": "cm",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "printed exact separation millimetres count",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "printed exact separation millimetres0",
+          "independentExact": "21",
+          "expectedValue": "21",
+          "unit": "mm",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "printed first depth millimetres count",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "printed first depth millimetres0",
+          "independentExact": "30",
+          "expectedValue": "30",
+          "unit": "mm",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "printed second depth millimetres count",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "printed second depth millimetres0",
+          "independentExact": "51",
+          "expectedValue": "51",
+          "unit": "mm",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "printed forward and inverse microseconds count",
+          "independentExact": "2",
+          "expectedValue": "2",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "printed forward and inverse microseconds0",
+          "independentExact": "28",
+          "expectedValue": "28",
+          "unit": "us",
+          "dimension": {
+            "[time]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "printed forward and inverse microseconds1",
+          "independentExact": "28",
+          "expectedValue": "28",
+          "unit": "us",
+          "dimension": {
+            "[time]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "spatial positions use6pixels per millimetre",
+          "independentExact": "6",
+          "expectedValue": "6",
+          "unit": "1/mm",
+          "dimension": {
+            "[length]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "near depth uses same spatialscale",
+          "independentExact": "6",
+          "expectedValue": "6",
+          "unit": "1/mm",
+          "dimension": {
+            "[length]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "far depth uses same spatialscale",
+          "independentExact": "6",
+          "expectedValue": "6",
+          "unit": "1/mm",
+          "dimension": {
+            "[length]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "temporal positions use4pixels per microsecond",
+          "independentExact": "4",
+          "expectedValue": "4",
+          "unit": "1/us",
+          "dimension": {
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "first echo uses same temporalorigin",
+          "independentExact": "4",
+          "expectedValue": "4",
+          "unit": "1/us",
+          "dimension": {
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "second echo uses same temporalorigin",
+          "independentExact": "4",
+          "expectedValue": "4",
+          "unit": "1/us",
+          "dimension": {
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "nativeSVG retains the independently read reflector and pulse geometry",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        }
+      ],
+      "dimension": {
+        "intended echo timedifference28microseconds": {
+          "[time]": "1"
+        },
+        "intended doubledpath reduction21millimetres": {
+          "[length]": "1"
+        },
+        "intended nearestreflectordepth30millimetres": {
+          "[length]": "1"
+        },
+        "intended fartherreflectordepth51millimetres": {
+          "[length]": "1"
+        },
+        "separatedepth differenceagrees": {
+          "[length]": "1"
+        },
+        "intended distancecentimetres2point1": {
+          "[length]": "1"
+        },
+        "new prompt states same-axis direct-return geometry and timing": {},
+        "new prompt retains independently solved inputs": {},
+        "new velocity conversion gives3over2 millimetres per microsecond": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "new doubled path42mm isnotonewayseparation": {
+          "[length]": "1"
+        },
+        "new exact inverse recovers28microseconds": {
+          "[time]": "1"
+        },
+        "new lengthdividedbyvelocity has timeunits": {
+          "[time]": "1"
+        },
+        "new exact terminatingdecimal in centimetres": {
+          "[length]": "1"
+        },
+        "printed exact separation millimetres count": {},
+        "printed exact separation millimetres0": {
+          "[length]": "1"
+        },
+        "printed first depth millimetres count": {},
+        "printed first depth millimetres0": {
+          "[length]": "1"
+        },
+        "printed second depth millimetres count": {},
+        "printed second depth millimetres0": {
+          "[length]": "1"
+        },
+        "printed forward and inverse microseconds count": {},
+        "printed forward and inverse microseconds0": {
+          "[time]": "1"
+        },
+        "printed forward and inverse microseconds1": {
+          "[time]": "1"
+        },
+        "spatial positions use6pixels per millimetre": {
+          "[length]": "-1"
+        },
+        "near depth uses same spatialscale": {
+          "[length]": "-1"
+        },
+        "far depth uses same spatialscale": {
+          "[length]": "-1"
+        },
+        "temporal positions use4pixels per microsecond": {
+          "[time]": "-1"
+        },
+        "first echo uses same temporalorigin": {
+          "[time]": "-1"
+        },
+        "second echo uses same temporalorigin": {
+          "[time]": "-1"
+        },
+        "nativeSVG retains the independently read reflector and pulse geometry": {}
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "NEW DRAFT: v1500m/s=(3/2)mm/us, Delta t68-40=28us. Each direct echo travels2d; subtractingvt2=2d2 andvt1=2d1 gives Delta d=vDelta t/2. (3/2)*28/2=3*(28/4)=21mm=21/10cm=2.1cm exact relative to assigned inputs. Separate depths(3/2)*40/2=30mm and(3/2)*68/2=51mm agree. Inverse2*21/(3/2)=28us; mm/(mm/us)=us. Omitting roundtrip factor gives42mm; using68us gives51mm depth, not separation. No calculator, decimalinverse or approximation needed.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "NEW DRAFT actually read: constant uniform given sound speed; stationary parallel thin reflectors both normal to same straight beam and partially transmitting; coincident fixed transmitter/receiver; timezero at emission; negligible instrument/interface delays; selected single direct echo from each interface, no multiple paths or refraction. Nonzero common beam now geometrically possible. Original mutually-perpendicular-plane ambiguity remains nested FAIL, not retrospectively reinterpreted.",
+      "pedagogicalReview": "All28new blocks and standalone prompt read independently. Geometry and timing given before solution; factor2 derived from two actual roundtrips, then subtraction/cancelled common path. Explicit prefix conversions, finite exact fraction arithmetic, separate-depth verification, inverse, two error routes and multipath boundary. No clinical diagnosis, empirical student calibration or human approval is inferred.",
+      "assetChecksums": {
+        "echo-direct-paths.svg": "49f042a321a4e1feea636f9e3ca2328a1a1c431cfba74fa81aa2f1c24e4b8901"
+      },
+      "figureReview": "echo-direct-paths.svg entire XML and complete native480x860 Chromium render independently read. Spatial originx50, reflectorsx230/356 correspond30/51mm at6px/mm; separate timeoriginx50, pulsesx210/322 correspond40/68us at4px/us. Separations126px and112px give21mm/28us. Reflectors parallel vertical, axis horizontal; pulseheights explicitly schematic without intensityscale. Distinct spatial/time scales declared in caption. All labels visible; no historical source SVG overwritten.",
+      "verificationMode": "EXACT_ORACLE",
+      "failedPublishedEdition": true,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "DRAFT",
+      "candidateSha256": "491226be9977475a476241ace26b7ede49d973f6a8c1ba0218019bdfbe19cdd7",
+      "reviewedSignature": "cdc1d85a489ca1b2ee882016edc46ce10106df19a2134b753a09009a5fadc8ec",
+      "candidateVersion": 2,
+      "baseVersion": 1,
+      "publishedEditionReview": {
+        "id": "C5-E009",
+        "sourceSha256": "facb9df9b6c67e39a867084c73694196d5bf70376bdfaeff0a87707c68f1f4a4",
+        "sourceVersion": 1,
+        "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+        "sourcePath": "officina-di-fisica/content/C5.json",
+        "sourceFileSha256": "dac4490e6a900f5da191bf7a1f5b8463ddc57c8bbaa36cb7a4a375c70fa77422",
+        "ok": false,
+        "errors": [
+          "P3 prompt geometry ambiguity: two perpendicular surfaces can mean perpendicular to each other. The intended monostatic same-axis direct echoes require explicitly normal-to-beam interfaces and direct single paths; the worked solution adds the direct-path condition only at the end. Intended 2.1cm arithmetic is correct."
+        ],
+        "checks": [
+          {
+            "claim": "intended echo timedifference28microseconds",
+            "independentExact": "7/250000",
+            "expectedValue": "7/250000",
+            "unit": "s",
+            "dimension": {
+              "[time]": "1"
+            },
+            "relation": "exact",
+            "residual": "0",
+            "ok": true,
+            "scope": "actual_source_example_manual_calculation"
+          },
+          {
+            "claim": "intended doubledpath reduction21millimetres",
+            "independentExact": "21/1000",
+            "expectedValue": "21/1000",
+            "unit": "m",
+            "dimension": {
+              "[length]": "1"
+            },
+            "relation": "exact",
+            "residual": "0",
+            "ok": true,
+            "scope": "actual_source_example_manual_calculation"
+          },
+          {
+            "claim": "intended nearestreflectordepth30millimetres",
+            "independentExact": "3/100",
+            "expectedValue": "3/100",
+            "unit": "m",
+            "dimension": {
+              "[length]": "1"
+            },
+            "relation": "exact",
+            "residual": "0",
+            "ok": true,
+            "scope": "actual_source_example_manual_calculation"
+          },
+          {
+            "claim": "intended fartherreflectordepth51millimetres",
+            "independentExact": "51/1000",
+            "expectedValue": "51/1000",
+            "unit": "m",
+            "dimension": {
+              "[length]": "1"
+            },
+            "relation": "exact",
+            "residual": "0",
+            "ok": true,
+            "scope": "actual_source_example_manual_calculation"
+          },
+          {
+            "claim": "separatedepth differenceagrees",
+            "independentExact": "21/1000",
+            "expectedValue": "21/1000",
+            "unit": "m",
+            "dimension": {
+              "[length]": "1"
+            },
+            "relation": "exact",
+            "residual": "0",
+            "ok": true,
+            "scope": "symbolic_source_claim"
+          },
+          {
+            "claim": "intended distancecentimetres2point1",
+            "independentExact": "21/10",
+            "expectedValue": "21/10",
+            "unit": "cm",
+            "dimension": {
+              "[length]": "1"
+            },
+            "relation": "exact",
+            "residual": "0",
+            "ok": true,
+            "scope": "actual_source_example_manual_calculation"
+          }
+        ],
+        "dimension": {
+          "intended echo timedifference28microseconds": {
+            "[time]": "1"
+          },
+          "intended doubledpath reduction21millimetres": {
+            "[length]": "1"
+          },
+          "intended nearestreflectordepth30millimetres": {
+            "[length]": "1"
+          },
+          "intended fartherreflectordepth51millimetres": {
+            "[length]": "1"
+          },
+          "separatedepth differenceagrees": {
+            "[length]": "1"
+          },
+          "intended distancecentimetres2point1": {
+            "[length]": "1"
+          }
+        },
+        "calculationScope": "EXACT_MANUAL_CALCULATION",
+        "manualArithmetic": "Intendeddirectsame-axis model:Deltaeco68-40=28microseconds. d1500*28e-6/2=21e-3m=2.1cm;separate depths1500*40e-6/2=3cm and1500*68e-6/2=5.1cm agree. Howeverpromptnames twoperpendicularsurfaces withoutsayingperpendiculartobeam;thesurfacescaninsteadbereadmutuallyperpendicular. Theworkedsolutionadds directpaths onlyattheend. OriginalFAILisgeometric/pedagogical,nottheintended arithmetic. No clinicaldiagnosisorinferencefromtheseassignedtoyvalues.",
+        "manualFeasibility": "FAIL_ORIGINAL_EDITION",
+        "physicalAssumptions": "Intendedhomogeneousconstantv1500m/s,coincidentfixedtransducer,twodirectsingleechoesalongthesameaxis,interfacesnormaltobeam/no multipath. Thesegeometricalwordsaremissing/ambiguousinthepromptandonlydirectpathassumptionappearsatworkedend;sourceFAILretained.",
+        "pedagogicalReview": "FAIL: intendedecho subtraction iscorrectbutstandalonepromptdoesnotunambiguouslysayinterfacesnormaltothesamebeam/directsinglepaths. Readingthesolutionisnotamethodtodiscoveramissinggeometrycondition.",
+        "assetChecksums": {},
+        "figureReview": "No figureinallfiveblocks;no geometrydiagramresolvesthepromptambiguity.",
+        "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+        "failedPublishedEdition": true,
+        "originalEditionRetained": true,
+        "humanApproval": "NOT_RUN",
+        "publicationAction": "NONE"
+      },
+      "reviewedEdition": "NEW_DRAFT"
+    },
+    {
+      "id": "C5-E010",
+      "sourceSha256": "2448c57d90608c744a49197a3a2c11f34f27cf5cf1716c37e0c63ff0e14c29ea",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C5.json",
+      "sourceFileSha256": "dac4490e6a900f5da191bf7a1f5b8463ddc57c8bbaa36cb7a4a375c70fa77422",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "actual60dB intensity1eMinus6",
+          "independentExact": "1/1000000",
+          "expectedValue": "1/1000000",
+          "unit": "W/m^2",
+          "dimension": {
+            "[mass]": "1",
+            "[time]": "-3"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual70dB intensity1eMinus5",
+          "independentExact": "1/100000",
+          "expectedValue": "1/100000",
+          "unit": "W/m^2",
+          "dimension": {
+            "[mass]": "1",
+            "[time]": "-3"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual incoherentsum11eMinus6",
+          "independentExact": "11/1000000",
+          "expectedValue": "11/1000000",
+          "unit": "W/m^2",
+          "dimension": {
+            "[mass]": "1",
+            "[time]": "-3"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual exactlevel70plus10log1point1",
+          "independentExact": "10*log(11)/log(10) + 60",
+          "expectedValue": "10*log(11/10)/log(10) + 70",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "uncorrelatedfrequencies crossaveragezero",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "exponentialupperbound9quarterpower below10",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_explicit_optional_approximation_checked_manually"
+        },
+        {
+          "claim": "exponentiallowerbound5halfpower above10",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_explicit_optional_approximation_checked_manually"
+        },
+        {
+          "claim": "optional70point4 roundedbound withloginequalities",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_explicit_optional_approximation_checked_manually"
+        }
+      ],
+      "dimension": {
+        "actual60dB intensity1eMinus6": {
+          "[mass]": "1",
+          "[time]": "-3"
+        },
+        "actual70dB intensity1eMinus5": {
+          "[mass]": "1",
+          "[time]": "-3"
+        },
+        "actual incoherentsum11eMinus6": {
+          "[mass]": "1",
+          "[time]": "-3"
+        },
+        "actual exactlevel70plus10log1point1": {},
+        "uncorrelatedfrequencies crossaveragezero": {},
+        "exponentialupperbound9quarterpower below10": {},
+        "exponentiallowerbound5halfpower above10": {},
+        "optional70point4 roundedbound withloginequalities": {}
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "Actualreference1e-12W/m² givesI1=1e-6for60dB,I2=1e-5for70dB,total11e-6. Exactanswer70+10*log10(11/10)dB isshowninthesource,sooptional70.4doesnotforceunsupportednumericlogwork. Foranindependentmanualroundingproof,alternatingln(1+x)gives0.095<ln1.1<0.1;positiveexponentialseriesboundsexp(9/4)<10<exp(5/2),hence9/4<ln10<5/2. AdditionaldBshiftisbetween0.38and4/9,containedinnearesttenth0.4interval0.35..0.45. Incoherenttimeaveragezeroscross-term;dBvaluesarenotadded.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Independentincoherentacousticsources,linearunchangedmedium/geometry,responsewithsufficienttimeaveraging,cross-correlationzero. Intensitylevelreferencepositive1e-12W/m²,notperceivedloudnessorunqualifiedpressurelevel.",
+      "pedagogicalReview": "Linearintensitiesareaddedbeforelogarithm;weakersourceadds10percentnot60dB. Exactloganswerisshown,andoptionaldecimalcanbeboundedmanually.",
+      "assetChecksums": {},
+      "figureReview": "No figureinallfiveblocks.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C5-E011",
+      "sourceSha256": "55086ac08dfa0e3780a1841596549cfc9f599b622d224ba551009cf809a38b13",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C5.json",
+      "sourceFileSha256": "dac4490e6a900f5da191bf7a1f5b8463ddc57c8bbaa36cb7a4a375c70fa77422",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "actual600nm vacuumwavelength6eMinus7m",
+          "independentExact": "3/5000000",
+          "expectedValue": "3/5000000",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "working vacuumfrequency5e14Hz",
+          "independentExact": "500000000000000",
+          "expectedValue": "500000000000000",
+          "unit": "Hz",
+          "dimension": {
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "working phasevelocity2e8mpersec",
+          "independentExact": "200000000",
+          "expectedValue": "200000000",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual mediumwavelength400nm",
+          "independentExact": "400",
+          "expectedValue": "400",
+          "unit": "nm",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "frequencyunchanged crossingstationaryboundary",
+          "independentExact": "500000000000000",
+          "expectedValue": "500000000000000",
+          "unit": "Hz",
+          "dimension": {
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "vacuumtomaterialwavelengthratio equalsindex",
+          "independentExact": "3/2",
+          "expectedValue": "3/2",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "usingexactSIc givesrounded5point00e14too",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_explicit_optional_approximation_checked_manually"
+        }
+      ],
+      "dimension": {
+        "actual600nm vacuumwavelength6eMinus7m": {
+          "[length]": "1"
+        },
+        "working vacuumfrequency5e14Hz": {
+          "[time]": "-1"
+        },
+        "working phasevelocity2e8mpersec": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "actual mediumwavelength400nm": {
+          "[length]": "1"
+        },
+        "frequencyunchanged crossingstationaryboundary": {
+          "[time]": "-1"
+        },
+        "vacuumtomaterialwavelengthratio equalsindex": {},
+        "usingexactSIc givesrounded5point00e14too": {}
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "Actual600nm=6e-7m. Courseworkingcapproximately3e8m/s givesf5e14Hz,v=c/(3/2)=2e8m/s,lambda=(6e-7)/(3/2)=4e-7m=400nm.600/400=1.5. Stationaryinterfacekeepsf,phasevelocity/wavelengthchange. ExactSIc299792458wouldstillroundf to5.00e14;sourceworkingc isnotassertedexactSIconstant. Manualpowersandfractions,notcalculatorwork.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Monochromaticlight,stationarytransparentinterface,n1.50phaseindexatgivenfrequency,courseworkingc3.00e8rounded;vacuumlambda600nmexplicit. Nogroupvelocitysubstitution.",
+      "pedagogicalReview": "Vacuumwavelengthandfixedfrequencyareidentifiedbeforechangingmedium;600nm/400nmratioisamodelcheck.",
+      "assetChecksums": {},
+      "figureReview": "No figureinallfiveblocks;vacuum/materialwavelengthsaretextdata.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C5-E012",
+      "sourceSha256": "fcf0c9d7cf56bfeb36f92ff152649d13be948cac7f562df1f4b92ae1c06ded9d",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C5.json",
+      "sourceFileSha256": "dac4490e6a900f5da191bf7a1f5b8463ddc57c8bbaa36cb7a4a375c70fa77422",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "actual companionmagneticamplitude1eMinus7T",
+          "independentExact": "1/10000000",
+          "expectedValue": "1/10000000",
+          "unit": "T",
+          "dimension": {
+            "[mass]": "1",
+            "[time]": "-2",
+            "[current]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "upwardE outgoingB yieldsrightPoynting",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "bothfieldsignsflip retainsenergytransportdirection",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "vacuumFaraday derivative signsagree",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "Bamplitude units fromEoverc",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "T",
+          "dimension": {
+            "[mass]": "1",
+            "[time]": "-2",
+            "[current]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        }
+      ],
+      "dimension": {
+        "actual companionmagneticamplitude1eMinus7T": {
+          "[mass]": "1",
+          "[time]": "-2",
+          "[current]": "-1"
+        },
+        "upwardE outgoingB yieldsrightPoynting": {},
+        "bothfieldsignsflip retainsenergytransportdirection": {},
+        "vacuumFaraday derivative signsagree": {},
+        "Bamplitude units fromEoverc": {
+          "[mass]": "1",
+          "[time]": "-2",
+          "[current]": "-1"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "ActualB0=30/(3e8)=1e-7T. E upcrossB outgivesenergyright;bothfieldvectorsflipafterhalfperiodbuttheircrossproductstayright. MaxwellFaradayderivativesofthecorrespondingplanewaveverifythephase/directionchoiceindependently. GivenE0isamplitude;instantaneoussigninformationdoesnotassertarbitraryinstantEequalsE0. No numerictrigneeded.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Planeprogressivevacuumwave,in-phaseorthogonalE/B,amplitudeE030V/m. Right-handedright/up/outaxesandEcrossBtransport;noindependentstaticfieldsorcircularpolarizationmixing.",
+      "pedagogicalReview": "Separatesamplitudecalculationfrominstantaneousdirection,definesoutgoingdotsymbolandcheckscommonfieldinversion.",
+      "assetChecksums": {
+        "/figures/C5-campi.svg": "76eecac175a09dc3230ea84a31ba22df7f6e9376f053542355c0a67aaa6db120"
+      },
+      "figureReview": "C5-campiXML/fullrenderreadin023andGit-bytechecked/re-viewedhere:Eup,Boutgoingdot,propagationright. Onepoint/instantlabeldoesnotimplyin-planeB.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C5-E013",
+      "sourceSha256": "0a8856362fc099d720e8fb4f29da275724ba259ad1417c6280e7fce0972c734f",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C5.json",
+      "sourceFileSha256": "dac4490e6a900f5da191bf7a1f5b8463ddc57c8bbaa36cb7a4a375c70fa77422",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "actual2mW times3ms equals6microJ",
+          "independentExact": "6",
+          "expectedValue": "6",
+          "unit": "uJ",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual onephotonenergy3point315eMinus19J",
+          "independentExact": "663/2000000000000000000000",
+          "expectedValue": "663/2000000000000000000000",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual exactnominal photoncount400over221 times1e13",
+          "independentExact": "4000000000000000/221",
+          "expectedValue": "4000000000000000/221",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual estimate1point8e13 hasvalidroundingbound",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "photonnumber dimension energyoverenergy",
+          "independentExact": "4000000000000000/221",
+          "expectedValue": "4000000000000000/221",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "increasingpower changescountnotperphotonenergy",
+          "independentExact": "8000000000000000/221",
+          "expectedValue": "8000000000000000/221",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        }
+      ],
+      "dimension": {
+        "actual2mW times3ms equals6microJ": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "actual onephotonenergy3point315eMinus19J": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "actual exactnominal photoncount400over221 times1e13": {},
+        "actual estimate1point8e13 hasvalidroundingbound": {},
+        "photonnumber dimension energyoverenergy": {},
+        "increasingpower changescountnotperphotonenergy": {}
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "Actualpower2mW=2e-3W,time3ms=3e-3s,total6microJ. Givenworkingh6.63e-34times5e14 gives3.315e-19J/photon. NominalN=(400/221)*1e13;manualcrossproducts bound7/4<400/221<37/20,soestimate1.8e13isvalidtotwosignificantfigures. Itisastimacount/meanfromnominalpower,notanassertionnonintegerexactphotons. J/Jdimensionless;photonenergysetbyfrequency,notpower.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Monochromaticfrequency5e14Hz,constant2mWover3ms,givenworkingh6.63e-34J*s. Numberestimatedfromnominalenergyandphotonenergy;notadetailedphotoncountstatisticsclaim.",
+      "pedagogicalReview": "Separatesfrequency,photonenergy,powerandduration;prefixesconvertedandfinalresultisexplicitestimate,nothiddenfull-precisiondivisionrequirement.",
+      "assetChecksums": {},
+      "figureReview": "No figureinallfiveblocks.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C5-E014",
+      "sourceSha256": "62e72f74785e509db44f8b50888bcdce1de5720f31ce31bfaff8526a5982ca0a",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C5.json",
+      "sourceFileSha256": "dac4490e6a900f5da191bf7a1f5b8463ddc57c8bbaa36cb7a4a375c70fa77422",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "actual attenuationcoefficient exactln4over3",
+          "independentExact": "log(4)/3",
+          "expectedValue": "log(4)/3",
+          "unit": "1/cm",
+          "dimension": {
+            "[length]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "halfthickness exactlogcancellation",
+          "independentExact": "3*log(2)/log(4)",
+          "expectedValue": "3/2",
+          "unit": "cm",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "quartertransmission equals twohalftransmissions",
+          "independentExact": "1/4",
+          "expectedValue": "1/4",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "muinversecentimetre convertedtoinversemetre",
+          "independentExact": "100*log(4)/3",
+          "expectedValue": "100*log(4)/3",
+          "unit": "1/m",
+          "dimension": {
+            "[length]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "ln2 optional0point693 hasmanualseriesbound",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_explicit_optional_approximation_checked_manually"
+        },
+        {
+          "claim": "muoptional0point462 hasmanualseriesbound",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_explicit_optional_approximation_checked_manually"
+        },
+        {
+          "claim": "printedapproxdecimalquotient coincideswithexactratio",
+          "independentExact": "3/2",
+          "expectedValue": "3/2",
+          "unit": "cm",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "halfthickness metres",
+          "independentExact": "3/200",
+          "expectedValue": "3/200",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        }
+      ],
+      "dimension": {
+        "actual attenuationcoefficient exactln4over3": {
+          "[length]": "-1"
+        },
+        "halfthickness exactlogcancellation": {
+          "[length]": "1"
+        },
+        "quartertransmission equals twohalftransmissions": {},
+        "muinversecentimetre convertedtoinversemetre": {
+          "[length]": "-1"
+        },
+        "ln2 optional0point693 hasmanualseriesbound": {},
+        "muoptional0point462 hasmanualseriesbound": {},
+        "printedapproxdecimalquotient coincideswithexactratio": {
+          "[length]": "1"
+        },
+        "halfthickness metres": {
+          "[length]": "1"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "Actual25percenttransmissionover3cm givesmu=ln4/(3cm)exact,half-thicknessln2/mu=3ln2/ln4=3/2cm. Two1/2layerscompose1/4withoutnumericlogs. Optionalmu0.462/cm isqualifiedapproximate. Fourterms ofln2=2*(z+z³/3+z⁵/5+z⁷/7+...),z1/3,withpositivegeometricremainderbound,justifyln2round0.693andmu0.462. Printedquotient0.693/0.462=3/2coincidesexactlywiththelogcancelledratio;itdoesnotseparatelystatefalseidentityln2=0.693. cm^-1 convertsby100tom^-1. No requiredgeneralnumericlogevaluation.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Homogeneousconstant-muLambertBeerforselectedmonochromaticdirectbeam,positivecoefficient,transmission1/4over3cm. Identicalhalflayers,consistentcm versusinversecm;optionaldecimalcoefficientsnotexactfundamentalconstants.",
+      "pedagogicalReview": "Exactcoefficientandsymboliclogratioavailable;lastblockgivesindependenthalflayercompositionwithoutlogs. Roundedintermediatesarecheckablewithoutforcingcalculatoruse.",
+      "assetChecksums": {
+        "/figures/C5-attenuazione.svg": "be137de5807896ee23ffe8b0ee181c48a4faea98ab6831eb294bfd734f2cc233"
+      },
+      "figureReview": "C5-attenuazioneXML/fullrender/Gitbyteschecked;1,1/2,1/4,1/8at0,d,2d,3d withuniform113pxstepsand148pxverticalunit. Quarterpointat2d supports3cm=2d,so1.5cmdirectly.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C5-E015",
+      "sourceSha256": "59b30f37817e36c207dcdccfc87794140adfcc0c3398dd9b3632b696a3c75c7b",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C5.json",
+      "sourceFileSha256": "dac4490e6a900f5da191bf7a1f5b8463ddc57c8bbaa36cb7a4a375c70fa77422",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "actual initialbackgroundsubtraction800perminute",
+          "independentExact": "800",
+          "expectedValue": "800",
+          "unit": "1/min",
+          "dimension": {
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual finalbackgroundsubtraction100perminute",
+          "independentExact": "100",
+          "expectedValue": "100",
+          "unit": "1/min",
+          "dimension": {
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual netrate ratiooneeighth",
+          "independentExact": "1/8",
+          "expectedValue": "1/8",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "oneeighth isthreehalvesofsurvival",
+          "independentExact": "1/8",
+          "expectedValue": "1/8",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "actual9hoursdivided3 gives3hourhalflife",
+          "independentExact": "3",
+          "expectedValue": "3",
+          "unit": "hour",
+          "dimension": {
+            "[time]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "reconstructnetrate100plusbackground20 returns120",
+          "independentExact": "120",
+          "expectedValue": "120",
+          "unit": "1/min",
+          "dimension": {
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "rawratio6over41 isnotoneeighth",
+          "independentExact": "6/41",
+          "expectedValue": "6/41",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "halflife3hours inseconds10800",
+          "independentExact": "10800",
+          "expectedValue": "10800",
+          "unit": "s",
+          "dimension": {
+            "[time]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        }
+      ],
+      "dimension": {
+        "actual initialbackgroundsubtraction800perminute": {
+          "[time]": "-1"
+        },
+        "actual finalbackgroundsubtraction100perminute": {
+          "[time]": "-1"
+        },
+        "actual netrate ratiooneeighth": {},
+        "oneeighth isthreehalvesofsurvival": {},
+        "actual9hoursdivided3 gives3hourhalflife": {
+          "[time]": "1"
+        },
+        "reconstructnetrate100plusbackground20 returns120": {
+          "[time]": "-1"
+        },
+        "rawratio6over41 isnotoneeighth": {},
+        "halflife3hours inseconds10800": {
+          "[time]": "1"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "Actualsubtractbackground20fromboth820and120toobtain800and100/min. Ratio1/8=(1/2)³ implies3halflivesin9h,soT_half3h=10800s. Reconstruct800,400,200,100netandrestorebackground120final. Raw120/820=6/41wouldbewrongratio;efficiency/geometryfixed,singlespeciesandstatedmeasurementprecisionmakethenominalestimatevalid. No logarithmsrequired.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Singleisolatedparentpopulationwithconstantdecayrate,noaddedproduction/otherdecaycounts,constantdetectorgeometry/efficiency/background20/min,andnominalratespreciseenoughasexplicitlystated. No automaticidentificationcounts/minwithBq.",
+      "pedagogicalReview": "Backgroundremovedfrombothmeasurementsbeforepower-of-twohalving;detectorconditionsandrateprecisionareexplicit.",
+      "assetChecksums": {},
+      "figureReview": "No figureinallfiveblocks;actualnetcountsequenceisexplicittext,notborrowedfromstatisticaldotillustration.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C5-E016",
+      "sourceSha256": "a2d1c9e60a7aa9a5121bceb25ac647a23fb1b7786e7c5c462bc9fb7b6d626db4",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C5.json",
+      "sourceFileSha256": "dac4490e6a900f5da191bf7a1f5b8463ddc57c8bbaa36cb7a4a375c70fa77422",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "actual initialneutrons24minus11 equals13",
+          "independentExact": "13",
+          "expectedValue": "13",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual betaminus daughterZ12",
+          "independentExact": "12",
+          "expectedValue": "12",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual daughterneutrons12",
+          "independentExact": "12",
+          "expectedValue": "12",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "nucleons conserved24",
+          "independentExact": "24",
+          "expectedValue": "24",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "total electriccharge daughterpluselectron equalsinitial11",
+          "independentExact": "11",
+          "expectedValue": "11",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "electron plusantineutrino leptonnumberzero",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "gamma zerocharge keepsdaughterZ12",
+          "independentExact": "12",
+          "expectedValue": "12",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "gamma zerobaryonnumber keepsmassnumber24",
+          "independentExact": "24",
+          "expectedValue": "24",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        }
+      ],
+      "dimension": {
+        "actual initialneutrons24minus11 equals13": {},
+        "actual betaminus daughterZ12": {},
+        "actual daughterneutrons12": {},
+        "nucleons conserved24": {},
+        "total electriccharge daughterpluselectron equalsinitial11": {},
+        "electron plusantineutrino leptonnumberzero": {},
+        "gamma zerocharge keepsdaughterZ12": {},
+        "gamma zerobaryonnumber keepsmassnumber24": {}
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "ActualinitialA24,Z11has13neutrons. Beta-minuschangesone n to p+electron+antineutrino,soZ12,N12,A24. Nuclear+onechargeisbalancedbyemittedelectron-minusone;leptonpairnumberscancel. GammaemissionlowersnuclearexcitationwithoutchangingA,Z,N,sofinal24/12/12. Massnumberisnucleoncount,nottheunchangedrestenergy;no nuclearlevel/half-life dataisassumed.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Givenenergeticallyallowedbetaminusnucleartransitionthenphotonemission,notclaimingallnuclidesdecaythisway. Acountsprotons/neutrons,Znuclearprotons;electron/antineutrinocarrycharge/leptonnumberbutno nucleonnumber. Gamma lowersenergybutneednotbeclaimedtolanddirectlyingroundstate.",
+      "pedagogicalReview": "Explicitproton/neutronandchargecountingdistinguishesnuclearidentityfromexcitationenergy,andemittedelectronconservesoverallcharge.",
+      "assetChecksums": {},
+      "figureReview": "No figureinallfiveblocks;sourceasksintegernuclearcompositionsonly.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "a2bb95142e50e86fe36476abf3c2bd892ee688fc6c1a5d220a7dd165573b604f",
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+  "sourcePath": "officina-di-fisica/content/C5.json",
+  "sourceFileSha256": "dac4490e6a900f5da191bf7a1f5b8463ddc57c8bbaa36cb7a4a375c70fa77422",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "acceptedCount": 8,
+  "failedCount": 0,
+  "draftReviewedCount": 1,
+  "failedPublishedEditionIds": [
+    "C5-E009"
+  ],
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_original_or_revision_author",
+  "originalEditionRetained": true,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}

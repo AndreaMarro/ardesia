@@ -1,0 +1,1011 @@
+{
+  "schemaVersion": "1.0.0",
+  "batch": "examples-mechanical-waves-030",
+  "records": [
+    {
+      "id": "C5-E001",
+      "sourceSha256": "7e5730359aa29055e3299704538fc8fef8af2021971296292aa8cf6536f19194",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C5.json",
+      "sourceFileSha256": "dac4490e6a900f5da191bf7a1f5b8463ddc57c8bbaa36cb7a4a375c70fa77422",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "actual graph amplitude2cm",
+          "independentExact": "1/50",
+          "expectedValue": "1/50",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual graph halfsecond period gives2Hz",
+          "independentExact": "2",
+          "expectedValue": "2",
+          "unit": "Hz",
+          "dimension": {
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual omega exact4pi",
+          "independentExact": "4*pi",
+          "expectedValue": "4*pi",
+          "unit": "rad/s",
+          "dimension": {
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "optional12point6 isvalidroundedillustration frompibounds",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_explicit_optional_or_working_approximation"
+        },
+        {
+          "claim": "consecutivecenter crossings onlyhalfperiod",
+          "independentExact": "1/4",
+          "expectedValue": "1/4",
+          "unit": "s",
+          "dimension": {
+            "[time]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        }
+      ],
+      "dimension": {
+        "actual graph amplitude2cm": {
+          "[length]": "1"
+        },
+        "actual graph halfsecond period gives2Hz": {
+          "[time]": "-1"
+        },
+        "actual omega exact4pi": {
+          "[time]": "-1"
+        },
+        "optional12point6 isvalidroundedillustration frompibounds": {},
+        "consecutivecenter crossings onlyhalfperiod": {
+          "[time]": "1"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "ActualSVG A2cm,T1/2s givef2Hz andomega4pi rad/s exactly. The optional12.6 is explicitlyapproximate besideexact4pi;notamandatoryunprovideddecimaltrigstep. Manual3.14<pi<22/7 gives12.56<4pi<12.57143,withinthenearesttenth12.6interval12.55..12.65. Crest-to-crestfullcycleisnotcenter-to-centerhalfcycle;figuretimeanddisplacementunitsagree.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Sinusoidalfixedsensordisplacementrelativetoequilibrium;positiveamplitude,crestsmeasurefullperiod. Exact4piaccepted;secondarydecimalexplicitlyapproximate.",
+      "pedagogicalReview": "Distinguishespeak-to-peakfromamplitudeandsamephasesuccessivemaxima;exactomegaandoptionalapproximationarebothvisible.",
+      "assetChecksums": {
+        "/figures/C5-orologio.svg": "88d0ae6a4be838086f101e1e53c8648e8d6ac258e7e2610ecc3ada42726e6e6b"
+      },
+      "figureReview": "C5-orologiofullXML/renderreadin022andbytechecked/re-viewedhere:2cmcrestdistancefrombaseline,T0.50sbetweenmaxima,0.25sbetweenoppositeslopecentercrossings.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C5-E002",
+      "sourceSha256": "5c3e35ef7130687876f0d478a63c1024fbc51aca8d33da76b760b5d3394625bf",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C5.json",
+      "sourceFileSha256": "dac4490e6a900f5da191bf7a1f5b8463ddc57c8bbaa36cb7a4a375c70fa77422",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "actual12mm convertedto0point012m",
+          "independentExact": "3/250",
+          "expectedValue": "3/250",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual harmonic accelerationminus0point30",
+          "independentExact": "-3/10",
+          "expectedValue": "-3/10",
+          "unit": "m/s^2",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "initialpositivevelocity andnegativeacceleration lower speedSquared",
+          "independentExact": "-3*v/5",
+          "expectedValue": "-3*v/5",
+          "unit": "m^2/s^3",
+          "dimension": {
+            "[length]": "2",
+            "[time]": "-3"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "negativevelocity withsameacceleration increases speedSquared",
+          "independentExact": "3*v/5",
+          "expectedValue": "3*v/5",
+          "unit": "m^2/s^3",
+          "dimension": {
+            "[length]": "2",
+            "[time]": "-3"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "pulsationSquared position hasaccelerationunits",
+          "independentExact": "3/10",
+          "expectedValue": "3/10",
+          "unit": "m/s^2",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        }
+      ],
+      "dimension": {
+        "actual12mm convertedto0point012m": {
+          "[length]": "1"
+        },
+        "actual harmonic accelerationminus0point30": {
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "initialpositivevelocity andnegativeacceleration lower speedSquared": {
+          "[length]": "2",
+          "[time]": "-3"
+        },
+        "negativevelocity withsameacceleration increases speedSquared": {
+          "[length]": "2",
+          "[time]": "-3"
+        },
+        "pulsationSquared position hasaccelerationunits": {
+          "[length]": "1",
+          "[time]": "-2"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "Actual12mm=3/250m. Negativeomega²*x=-25*(3/250)=-3/10m/s². Givenrightwardv>0,2v*a<0mean speeddecreases;afterturnv<0withsamea<0makes2v*a>0andspeedincreases. Pulsationrad/s hasdimension1/s, soomega²*xism/s². No unspecifiedvelocitymagnitudeisneededtofindaorqualitativespeedchange.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Harmonicoscillatoromega5rad/s,positionpositive12mm,instantvelocitypositivebutnonzero. Linearrestoringmodel;accelerationdepends onposition,notmotiondirection.",
+      "pedagogicalReview": "Statespositionsignandvelocitysignbeforeacceleration;separatesnegativeaccelerationfromautomaticdecelerationforallvelocities.",
+      "assetChecksums": {},
+      "figureReview": "No figureinallthreeblocks.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C5-E003",
+      "sourceSha256": "ebab125ffe37c985fb40dbe2c13021f12ce757d832db2e9200896ec7626c7b21",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C5.json",
+      "sourceFileSha256": "dac4490e6a900f5da191bf7a1f5b8463ddc57c8bbaa36cb7a4a375c70fa77422",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "actual fourcycles infourTenthssecond gives10Hz",
+          "independentExact": "10",
+          "expectedValue": "10",
+          "unit": "Hz",
+          "dimension": {
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual wavelengthfourfifths timesfrequency10 gives8mpersec",
+          "independentExact": "8",
+          "expectedValue": "8",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual crestadvance inquartersecond is2metres",
+          "independentExact": "2",
+          "expectedValue": "2",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual quartersecond isfivehalvesperiods",
+          "independentExact": "5/2",
+          "expectedValue": "5/2",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "fivehalveswavelengths independentlygives2metres",
+          "independentExact": "2",
+          "expectedValue": "2",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "wavelengthfrequencyduration dimensionalproduct",
+          "independentExact": "2",
+          "expectedValue": "2",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        }
+      ],
+      "dimension": {
+        "actual fourcycles infourTenthssecond gives10Hz": {
+          "[time]": "-1"
+        },
+        "actual wavelengthfourfifths timesfrequency10 gives8mpersec": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "actual crestadvance inquartersecond is2metres": {
+          "[length]": "1"
+        },
+        "actual quartersecond isfivehalvesperiods": {},
+        "fivehalveswavelengths independentlygives2metres": {
+          "[length]": "1"
+        },
+        "wavelengthfrequencyduration dimensionalproduct": {
+          "[length]": "1"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "Actualfourcyclesin0.40s gives10Hz;pairedspatialfigurelambda0.80mexplicitlybelongstothiswave. Speed(4/5)*10=8m/s,quartersecondadvance2m. IndependentT1/10s givesquartersecond5/2periods and(5/2)*(4/5)=2m. Crestpropagationisnotmaterialpointmotion. Thispromptbindsitsownfrequency10Hz,not2Hzfromtheotheroscillatorfigure.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Sameassignedwaveconnectssnapshotlambdaandlocal10Hzmeasurement,progressiveprofilewithoutdeformation,constantphasevelocityoveraskedinterval. Cresttravelnotmaterialtransport.",
+      "pedagogicalReview": "Explicitlycombinesspatialandtemporalmeasurementsforthissamewave,andcrosschecksthroughperiodcountwithoutconfusingmaterialmotion.",
+      "assetChecksums": {
+        "/figures/C5-istantanea.svg": "d43a90344af8b498b583d626992faf25ef227ba03a0e23b3c6fff7e9d87ff0ff"
+      },
+      "figureReview": "C5-istantaneafullXML/renderandGitbyteschecked;crestspacing176pxmatch0.80mgrid. Newpromptfrequency10Hzistheassignedtimeinput,notthefrequencyfromanotherfigure.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C5-E004",
+      "sourceSha256": "88bd992b66e617e756773f635a06c38b8592a4e51ca435a1c701b102779521ca",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C5.json",
+      "sourceFileSha256": "dac4490e6a900f5da191bf7a1f5b8463ddc57c8bbaa36cb7a4a375c70fa77422",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "actual lambdaonehalf metre",
+          "independentExact": "1/2",
+          "expectedValue": "1/2",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual frequency10hertz",
+          "independentExact": "10",
+          "expectedValue": "10",
+          "unit": "Hz",
+          "dimension": {
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "constant phase givesnegative5mpersec",
+          "independentExact": "-5",
+          "expectedValue": "-5",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual speedmodulus lambdaftimes is5",
+          "independentExact": "5",
+          "expectedValue": "5",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "material transversevelocity differsfromcrestspeed",
+          "independentExact": "-3*pi*sin(20*pi*t + 4*pi*x)/50",
+          "expectedValue": "-3*pi*sin(20*pi*t + 4*pi*x)/50",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "wavephase translatesleft withoutchangingprofile",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        }
+      ],
+      "dimension": {
+        "actual lambdaonehalf metre": {
+          "[length]": "1"
+        },
+        "actual frequency10hertz": {
+          "[time]": "-1"
+        },
+        "constant phase givesnegative5mpersec": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "actual speedmodulus lambdaftimes is5": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "material transversevelocity differsfromcrestspeed": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "wavephase translatesleft withoutchangingprofile": {
+          "[length]": "1"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "Actualk4pi rad/m,omega20pi rad/s give lambda2pi/(4pi)=1/2m,f20pi/(2pi)=10Hz. Constantphase4piDeltaX+20piDeltaT=0 yieldsvelocity-5m/s,leftward. Moduluslambda*f=5m/s. Amplitude0.003m istransverse,withparticlevelocitya derivative ratherthanphasevelocity; no decimaltrigcalculationrequired.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "x,yinmetres,tinseconds;positivek/omega coefficientswithplussign giveleftmovingprogressiveharmonicprofile. Ratioomega/kisphasevelocitymagnitude,nottransverseparticlespeed.",
+      "pedagogicalReview": "Phaseconstancyderivespropagationdirectionratherthanreadingpositiveomegacoefficientasrightwardmotion. Amplitudeisnotwavespeed.",
+      "assetChecksums": {},
+      "figureReview": "No figureinallfiveblocks;wholefunctionandSIvariablesareexplicit.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C5-E005",
+      "sourceSha256": "12fee297a127a4e159d31f17471d3f2dab3090a1c92b53de4d23727a8368152a",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C5.json",
+      "sourceFileSha256": "dac4490e6a900f5da191bf7a1f5b8463ddc57c8bbaa36cb7a4a375c70fa77422",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "actual peak2minus1 gives1cm",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "cm",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual commonhalfside1minusonehalf givesonehalfcm",
+          "independentExact": "1/2",
+          "expectedValue": "1/2",
+          "unit": "cm",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "lineartriangles pointwisesum preserveshalfheight",
+          "independentExact": "x",
+          "expectedValue": "x",
+          "unit": "cm",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "commonverticalscale18pxpercm matchesallthreepeaks",
+          "independentExact": "18",
+          "expectedValue": "18",
+          "unit": "1/cm",
+          "dimension": {
+            "[length]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        }
+      ],
+      "dimension": {
+        "actual peak2minus1 gives1cm": {
+          "[length]": "1"
+        },
+        "actual commonhalfside1minusonehalf givesonehalfcm": {
+          "[length]": "1"
+        },
+        "lineartriangles pointwisesum preserveshalfheight": {
+          "[length]": "1"
+        },
+        "commonverticalscale18pxpercm matchesallthreepeaks": {
+          "[length]": "-1"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "Actualpeak2cm+(-1cm)=1cm. Atsharedhalfside1cm+(-1/2cm)=1/2cm. Trianglecoordinatesalignandthethreebaselinesareindependent;18px/cmcommonverticalscaleverifiesallsegments. Smallamplitudelinearityandnondispersiveidealpulsesallowthemtopassafteroverlap.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Alignedtriangularsmall-amplitudepulsesatsamepoints/sametimeinlinearidealmedium;superposephysicaldisplacements,notenergies/intensities. Sameverticalscaleperprompt/figure.",
+      "pedagogicalReview": "Figurezerosandcommonverticalscaleexplicit;bothpeakandflankcalculationverifypointwiseaddition.",
+      "assetChecksums": {
+        "/figures/C5-somma.svg": "a8f1e00e24ed8ad239163fcf84ff0eb5848c920d2748b29393769dbe0f55c069"
+      },
+      "figureReview": "C5-sommafullXML/render/Gitbyteschecked;zeros52/119/199withpeakdisplacements36/-18/18px,andhalfsidegeometrypreservespointwisesum.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C5-E006",
+      "sourceSha256": "7d5b7e57a6bcc3e0978e65acbc625f8027ba8a2616e72a667a21296ac426d5e7",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C5.json",
+      "sourceFileSha256": "dac4490e6a900f5da191bf7a1f5b8463ddc57c8bbaa36cb7a4a375c70fa77422",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "actual pathdifference threefifthsm",
+          "independentExact": "3/5",
+          "expectedValue": "3/5",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual pathdifference overlambda isthreehalves",
+          "independentExact": "3/2",
+          "expectedValue": "3/2",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual phase3pi ispi modulo2pi",
+          "independentExact": "pi",
+          "expectedValue": "pi",
+          "unit": "rad",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "equal scalaramplitudes cancel for3pi phase",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "unequal amplitudes leave residual",
+          "independentExact": "A*cos(phase)",
+          "expectedValue": "A*cos(phase)",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        }
+      ],
+      "dimension": {
+        "actual pathdifference threefifthsm": {
+          "[length]": "1"
+        },
+        "actual pathdifference overlambda isthreehalves": {},
+        "actual phase3pi ispi modulo2pi": {},
+        "equal scalaramplitudes cancel for3pi phase": {
+          "[length]": "1"
+        },
+        "unequal amplitudes leave residual": {
+          "[length]": "1"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "Actualpathdifference2.70-2.10=3/5m. Dividebylambda2/5m gives3/2cycles,phase3pi equals pi modulo2pi. Coherentinitiallyin-phaseequalarrivingamplitudesofthesamescalarfieldcomponentthereforecancelinP inalinearmedium. Unequalamplitudesleavearesidual. ThisisnotanassertionthatorthogonallypolarizedEMwavescancelmerelyfromequalloudness/intensity.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Coherentinitiallyin-phasesources,samewavelengthincommonmedium,equalarrivingscalaramplitudes/samefieldcomponent,linearresponse. CommonpolarizationwouldberequiredforvectorEMgeneralization;notderivedfromequalintensitiesalone.",
+      "pedagogicalReview": "Pathsubtractionandmodulo2pi precedecancellation;coherenceandarrivingamplitudeequalityareexplicit,andunequalamplitudecaseisqualified.",
+      "assetChecksums": {},
+      "figureReview": "No figureinallfiveblocks;pathsandwavelengthprovidedtextually.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C5-E007",
+      "sourceSha256": "13e321997c9e68b3a7d2e2378f7ed5d15cb8a7aca67c4c9a74b7483c9e489c01",
+      "sourceVersion": 2,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C5.json",
+      "sourceFileSha256": "dac4490e6a900f5da191bf7a1f5b8463ddc57c8bbaa36cb7a4a375c70fa77422",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "actual spherearea16pi squaremetre",
+          "independentExact": "16*pi",
+          "expectedValue": "16*pi",
+          "unit": "m^2",
+          "dimension": {
+            "[length]": "2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual exactintensity1over40pi",
+          "independentExact": "1/(40*pi)",
+          "expectedValue": "1/(40*pi)",
+          "unit": "W/m^2",
+          "dimension": {
+            "[mass]": "1",
+            "[time]": "-3"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "given pi3point14 workingintensity5over628",
+          "independentExact": "5/628",
+          "expectedValue": "5/628",
+          "unit": "W/m^2",
+          "dimension": {
+            "[mass]": "1",
+            "[time]": "-3"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_explicit_optional_or_working_approximation"
+        },
+        {
+          "claim": "workingintensity rounds7point96eMinus3",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_explicit_optional_or_working_approximation"
+        },
+        {
+          "claim": "actual sensorarea3eMinus4squaremetres",
+          "independentExact": "3/10000",
+          "expectedValue": "3/10000",
+          "unit": "m^2",
+          "dimension": {
+            "[length]": "2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "working sensorpower3over1256000 watts",
+          "independentExact": "3/1256000",
+          "expectedValue": "3/1256000",
+          "unit": "W",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_explicit_optional_or_working_approximation"
+        },
+        {
+          "claim": "working sensorpower rounds2point39microW",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_explicit_optional_or_working_approximation"
+        },
+        {
+          "claim": "exact collectedenergy3over80000pi",
+          "independentExact": "3/(80000*pi)",
+          "expectedValue": "3/(80000*pi)",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "workingenergy rounds1point2eMinus5",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_explicit_optional_or_working_approximation"
+        },
+        {
+          "claim": "actual total emittedenergy2J",
+          "independentExact": "2",
+          "expectedValue": "2",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "working sensorfraction aboutsixmillionths",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_explicit_optional_or_working_approximation"
+        },
+        {
+          "claim": "detectedenergy never exceeds totalemission",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        }
+      ],
+      "dimension": {
+        "actual spherearea16pi squaremetre": {
+          "[length]": "2"
+        },
+        "actual exactintensity1over40pi": {
+          "[mass]": "1",
+          "[time]": "-3"
+        },
+        "given pi3point14 workingintensity5over628": {
+          "[mass]": "1",
+          "[time]": "-3"
+        },
+        "workingintensity rounds7point96eMinus3": {},
+        "actual sensorarea3eMinus4squaremetres": {
+          "[length]": "2"
+        },
+        "working sensorpower3over1256000 watts": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3"
+        },
+        "working sensorpower rounds2point39microW": {},
+        "exact collectedenergy3over80000pi": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "workingenergy rounds1point2eMinus5": {},
+        "actual total emittedenergy2J": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "working sensorfraction aboutsixmillionths": {},
+        "detectedenergy never exceeds totalemission": {}
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "Actualisotropic0.40W at2m spreadsacross16pi m², intensityexact1/(40pi)W/m². Sourceexplicitlyassignsworkingpiapproximately3.14=157/50, soIwork5/628. Manualcrossmultiplicationbounds0.007955<Iwork<0.007965 justify7.96e-3. Area3cm²=3e-4m²;workingpower3/1256000W lies2.385e-6..2.395e-6 androunds2.39e-6. Exactenergy3/(80000pi)J;workingenergy3/251200J lies1.15e-5..1.25e-5 androunds1.2e-5. Totalemission0.4*5=2J;area fractionabout6millionths. Allapproximationsarelabelledinthesource,andrationalcrossproductsprovideamanualprocedurewithoutunsupporteddivisionprecision.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Idealhomogeneouslosslessisotropicpointsource,positive2mdistance,smallnormalreceivingareauniformlyilluminated,fixedsourcepowerover5s;noextraangularfactor. Sourceworkingpi3.14approximationexplicit. Intermediateandfinalroundingsnotexactidentities.",
+      "pedagogicalReview": "Historicalversion2separatesspherearea,intensity,effectivearea,powerandenergy;explicitpiworkingapproxandapproxsymbolsplusoverallenergyboundallowmanualverification.",
+      "assetChecksums": {
+        "/figures/C5-sfere.svg": "acdc645c86411fc4b259a623a655074d88e843c4a2bd19cd2af9d2f3922f4f9b"
+      },
+      "figureReview": "C5-sferefullXML/render/Gitbyteschecked;circleradii49/98,spherearea4pi*r²labelsexplicitly3Dsurfacesdespite2Dsection. Sourcenumericdataarepromptvalues,notpixelreadings.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C5-E008",
+      "sourceSha256": "0dd6349bc0ad11d8b998d2350d5d168b53d2befb497f963fb03a5e7bc47fa76f",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C5.json",
+      "sourceFileSha256": "dac4490e6a900f5da191bf7a1f5b8463ddc57c8bbaa36cb7a4a375c70fa77422",
+      "ok": false,
+      "errors": [
+        "P2 pedagogical prompt ambiguity: fixed tension/wavespeed is added only in worked solution. Same cord can remain taut with T2=4T1 and same mu, then v2/v1=2 and power ratio9/8 rather than9/16. Explicit fixed tension is needed in the prompt."
+      ],
+      "checks": [
+        {
+          "claim": "actual fixedwavespeed amplituderatioSquared9over4",
+          "independentExact": "9/4",
+          "expectedValue": "9/4",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual frequencyratioSquaredonequarter",
+          "independentExact": "1/4",
+          "expectedValue": "1/4",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "worked fixedtensionpowerratio9over16",
+          "independentExact": "9/16",
+          "expectedValue": "9/16",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "worked ratiofinite decimal0point5625",
+          "independentExact": "9/16",
+          "expectedValue": "9/16",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "general samecord ratio retainswavespeedfactor",
+          "independentExact": "9/8",
+          "expectedValue": "9/8",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "samecord quadrupletension doubleswavespeed",
+          "independentExact": "2",
+          "expectedValue": "2",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        },
+        {
+          "claim": "halvedfrequency withdoubledspeed quadrupleswavelength",
+          "independentExact": "4",
+          "expectedValue": "4",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        }
+      ],
+      "dimension": {
+        "actual fixedwavespeed amplituderatioSquared9over4": {},
+        "actual frequencyratioSquaredonequarter": {},
+        "worked fixedtensionpowerratio9over16": {},
+        "worked ratiofinite decimal0point5625": {},
+        "general samecord ratio retainswavespeedfactor": {},
+        "samecord quadrupletension doubleswavespeed": {},
+        "halvedfrequency withdoubledspeed quadrupleswavelength": {}
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "Originalworked9/16=0.5625iscorrectifmuandwavespeedarefixed. However,thepromptonlysaysthesamecordtaut;fixedtensionisintroducedintheworkedsolution. SamecordmuwithT2=4T1remains taut, givesv2/v1=2andP2/P1=2*(3/2)²*(40/80)²=9/8. Thusoriginalpromptdoesnotuniquelydeterminetheworkedratio. Thisisapedagogical/model-assignmentFAIL,notarithmeticerrorornumericalcalculatorrequirement. No correctededitionisauthoredorapprovedhere.",
+      "manualFeasibility": "FAIL_ORIGINAL_EDITION",
+      "physicalAssumptions": "Arithmeticmodelneedssamemuandwavespeed/tension,smallslopesandprogressiveharmonicwaves. Sametauthysicalcordalonefixesmunottension;solutionaddsfixedtensionabsentfromprompt. OriginalFAILretaineduntilseparatelyauthored/reviewednewdraft.",
+      "pedagogicalReview": "FAIL: beforeopeningthesolution,thestudentcannotknowfrompromptalonewhethertensionisheldfixed;theworkedsolutionaddsaconditionthatsetswavespeed. Newdraftmustmakeheldparameterexplicit;reviewermustnotrepairoriginalinplace.",
+      "assetChecksums": {},
+      "figureReview": "No figureinallfiveblocks;thereisnopromptdiagramthatcouldindependentlyspecifyunchangedtension.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": true,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "72de8ffbce439d2e920de7efc67de4f5b0ac1ab225263e052474100d1b6bfa7c",
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+  "sourcePath": "officina-di-fisica/content/C5.json",
+  "sourceFileSha256": "dac4490e6a900f5da191bf7a1f5b8463ddc57c8bbaa36cb7a4a375c70fa77422",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "acceptedCount": 7,
+  "failedCount": 1,
+  "draftReviewedCount": 0,
+  "failedPublishedEditionIds": [
+    "C5-E008"
+  ],
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_original_or_revision_author",
+  "originalEditionRetained": true,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}

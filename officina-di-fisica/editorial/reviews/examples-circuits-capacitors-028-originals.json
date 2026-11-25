@@ -1,0 +1,1321 @@
+{
+  "schemaVersion": "1.0.0",
+  "batch": "examples-circuits-capacitors-028",
+  "records": [
+    {
+      "id": "C4-E009",
+      "sourceSha256": "38048d0731bd875013d0ca4b57357e965ca302ee93d2661053d2d5918c62f459",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C4.json",
+      "sourceFileSha256": "19d52336dd1024113f45f33a03e4d71e262ee6357477948124c7fecec855c67c",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "actual20mA isonefiftiethA",
+          "independentExact": "1/50",
+          "expectedValue": "1/50",
+          "unit": "A",
+          "dimension": {
+            "[current]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "VversusI slope is200ohm",
+          "independentExact": "200",
+          "expectedValue": "200",
+          "unit": "ohm",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3",
+            "[current]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual6V prediction30mA",
+          "independentExact": "30",
+          "expectedValue": "30",
+          "unit": "mA",
+          "dimension": {
+            "[current]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual currentratio threehalves",
+          "independentExact": "3/2",
+          "expectedValue": "3/2",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual voltageratio threehalves",
+          "independentExact": "3/2",
+          "expectedValue": "3/2",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "swappedaxes slope isconductance notresistance",
+          "independentExact": "1/200",
+          "expectedValue": "1/200",
+          "unit": "S",
+          "dimension": {
+            "[current]": "2",
+            "[mass]": "-1",
+            "[length]": "-2",
+            "[time]": "3"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        }
+      ],
+      "dimension": {
+        "actual20mA isonefiftiethA": {
+          "[current]": "1"
+        },
+        "VversusI slope is200ohm": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3",
+          "[current]": "-2"
+        },
+        "actual6V prediction30mA": {
+          "[current]": "1"
+        },
+        "actual currentratio threehalves": {},
+        "actual voltageratio threehalves": {},
+        "swappedaxes slope isconductance notresistance": {
+          "[current]": "2",
+          "[mass]": "-1",
+          "[length]": "-2",
+          "[time]": "3"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "Actual20mA=20/1000=1/50A. V(I)originline R=4/(1/50)=200ohm; at6V current6/200=3/100A=30mA. Ratios30/20=6/4=3/2. Swappingaxes yields1/200S,not200ohm. Sameohmicregimemustpersist; the sourcecaptionexplicitly saysdrawinghasnonumericscale, so its pixels do not determineR.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Linearohmicresistoratthesameconditions, Vvertical/Ihorizontal,sameoriginline.20mAand4Varepromptdata,notinferredfromschematicpixels.",
+      "pedagogicalReview": "ConvertsmAbeforeV/Islopeandretainsaxismeaning;explicitcaptionremovesnumericpixelscaleandpredictionconditionalonohmicregime.",
+      "assetChecksums": {
+        "/figures/C4-ohm.svg": "e9aba90c0cdb89af126e62d397fb00952c59d5b527d5108c64ae34af5180874b"
+      },
+      "figureReview": "C4-ohmcompleteXML/renderalreadyreadin020,re-viewedandGit-bytecheckedhere. Vvertical,Ihorizontal,positiveoriginline,slopeconstruction;sourceexplicitlynumericallyuncalibrated. Doesnotdepictprompt20mA/4Vtoapixelscale.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C4-E010",
+      "sourceSha256": "fe7197c37ec760826a8f63c622833459b35ec271be81443cfb4366b278e991f0",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C4.json",
+      "sourceFileSha256": "19d52336dd1024113f45f33a03e4d71e262ee6357477948124c7fecec855c67c",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "actual inversearea formula yields5eMinus7squaremetres",
+          "independentExact": "1/2000000",
+          "expectedValue": "1/2000000",
+          "unit": "m^2",
+          "dimension": {
+            "[length]": "2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actualarea halfsquaremillimetre",
+          "independentExact": "1/2",
+          "expectedValue": "1/2",
+          "unit": "mm^2",
+          "dimension": {
+            "[length]": "2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "squaredlength conversion millionfactor",
+          "independentExact": "1/1000000",
+          "expectedValue": "1/1000000",
+          "unit": "m^2",
+          "dimension": {
+            "[length]": "2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "area reinsertion recovers0point068ohm",
+          "independentExact": "17/250",
+          "expectedValue": "17/250",
+          "unit": "ohm",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3",
+            "[current]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "resistivitylengthoverresistance units squaremetre",
+          "independentExact": "1/2000000",
+          "expectedValue": "1/2000000",
+          "unit": "m^2",
+          "dimension": {
+            "[length]": "2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "doubling area halvesresistance",
+          "independentExact": "17/500",
+          "expectedValue": "17/500",
+          "unit": "ohm",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3",
+            "[current]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        }
+      ],
+      "dimension": {
+        "actual inversearea formula yields5eMinus7squaremetres": {
+          "[length]": "2"
+        },
+        "actualarea halfsquaremillimetre": {
+          "[length]": "2"
+        },
+        "squaredlength conversion millionfactor": {
+          "[length]": "2"
+        },
+        "area reinsertion recovers0point068ohm": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3",
+          "[current]": "-2"
+        },
+        "resistivitylengthoverresistance units squaremetre": {
+          "[length]": "2"
+        },
+        "doubling area halvesresistance": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3",
+          "[current]": "-2"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "Actual A=rho*length/R=(17/10^9)*2/(68/1000)=34/68*10^-6=5e-7m². Since1mm²=1e-6m²,thearea is1/2mm². Substitutionrho*2/Areturns68/1000ohm. Thisisarea,notradius;nosquarerootisrequested. Givenresistivityappliesatfixedtemperature;no unspecifiedtemperaturevalueisneededtoinverttherelation.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Uniformhomogeneouswire,length2m,crosssectionnormaltocurrent,assignedresistivityandtargetRatthecorrespondingfixedtemperature. Squaredlengthunitconversion;thinwirelumpedmodel.",
+      "pedagogicalReview": "Invertsresistivitylawbeforeinsertingnumbers,checksmm²conversionandinverseR;doesnotconfuseareaanddiameter.",
+      "assetChecksums": {},
+      "figureReview": "No figureinallfourblocks.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C4-E011",
+      "sourceSha256": "f54ab1d09657f4396dd583ce8d693c85605a316d9c6df55cfbb3ccf1a9396322",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C4.json",
+      "sourceFileSha256": "19d52336dd1024113f45f33a03e4d71e262ee6357477948124c7fecec855c67c",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "actual seriesresistance300ohm",
+          "independentExact": "300",
+          "expectedValue": "300",
+          "unit": "ohm",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3",
+            "[current]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual seriescurrentthreehundredths",
+          "independentExact": "3/100",
+          "expectedValue": "3/100",
+          "unit": "A",
+          "dimension": {
+            "[current]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual firstdrop3V",
+          "independentExact": "3",
+          "expectedValue": "3",
+          "unit": "V",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3",
+            "[current]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual seconddrop6V",
+          "independentExact": "6",
+          "expectedValue": "6",
+          "unit": "V",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3",
+            "[current]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "dropssumsource9V",
+          "independentExact": "9",
+          "expectedValue": "9",
+          "unit": "V",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3",
+            "[current]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual totalpower0point270W",
+          "independentExact": "27/100",
+          "expectedValue": "27/100",
+          "unit": "W",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual individualpowerfirst0point090W",
+          "independentExact": "9/100",
+          "expectedValue": "9/100",
+          "unit": "W",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual individualpowersecond0point180W",
+          "independentExact": "9/50",
+          "expectedValue": "9/50",
+          "unit": "W",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "powerbalance sumbranchespower",
+          "independentExact": "27/100",
+          "expectedValue": "27/100",
+          "unit": "W",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        }
+      ],
+      "dimension": {
+        "actual seriesresistance300ohm": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3",
+          "[current]": "-2"
+        },
+        "actual seriescurrentthreehundredths": {
+          "[current]": "1"
+        },
+        "actual firstdrop3V": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3",
+          "[current]": "-1"
+        },
+        "actual seconddrop6V": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3",
+          "[current]": "-1"
+        },
+        "dropssumsource9V": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3",
+          "[current]": "-1"
+        },
+        "actual totalpower0point270W": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3"
+        },
+        "actual individualpowerfirst0point090W": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3"
+        },
+        "actual individualpowersecond0point180W": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3"
+        },
+        "powerbalance sumbranchespower": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "Actual100+200=300ohm, I9/300=3/100A. DropsI*100=3V,I*200=6V sum9V. Sourcepower9*(3/100)=27/100W;resistorpowersI²*100=9/100W andI²*200=18/100W sum27/100W. Exactfractionmultiplicationchecksallworkednumbers. Seriesleftpathisexplicit,notparallelrightpath.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Ideal9Vsource,linearpositive100/200ohmseriesresistors,idealwires,steadystate,passivevoltagedrops. Samecurrentthroughboth,bothpotentialdropsnotindividually9V.",
+      "pedagogicalReview": "Identifiesseriespath,checksdropandpowerbalances;allprovidedworkednumbersarechecked.",
+      "assetChecksums": {
+        "/figures/C4-reti.svg": "07ebbd01de644aef59e43dd7fd9bda2389f55fd148901332d65e108644272333"
+      },
+      "figureReview": "C4-reticompleteXML/renderandGitbyteschecked;leftR1/R2onlyunbranchedA-Bpathmatchesstatedseriescase. No numericalresistanceencodedincomponentlengths.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C4-E012",
+      "sourceSha256": "846a915fab11243e2627a5029013f13b70d13183ad386aef784ef3391ffd4e6f",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C4.json",
+      "sourceFileSha256": "19d52336dd1024113f45f33a03e4d71e262ee6357477948124c7fecec855c67c",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "actual60ohmbranchcurrentonefifth",
+          "independentExact": "1/5",
+          "expectedValue": "1/5",
+          "unit": "A",
+          "dimension": {
+            "[current]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual120ohmbranchcurrentonetenth",
+          "independentExact": "1/10",
+          "expectedValue": "1/10",
+          "unit": "A",
+          "dimension": {
+            "[current]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual totalcurrentthreetenths",
+          "independentExact": "3/10",
+          "expectedValue": "3/10",
+          "unit": "A",
+          "dimension": {
+            "[current]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual equivalentresistance40ohm",
+          "independentExact": "40",
+          "expectedValue": "40",
+          "unit": "ohm",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3",
+            "[current]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "reciprocaladdition independentlygives40ohm",
+          "independentExact": "40",
+          "expectedValue": "40",
+          "unit": "ohm",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3",
+            "[current]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "halved resistance atcommonvoltage doublescurrent",
+          "independentExact": "2",
+          "expectedValue": "2",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "parallelpowerbalance sourceandbranchpowers",
+          "independentExact": "18/5",
+          "expectedValue": "18/5",
+          "unit": "W",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        }
+      ],
+      "dimension": {
+        "actual60ohmbranchcurrentonefifth": {
+          "[current]": "1"
+        },
+        "actual120ohmbranchcurrentonetenth": {
+          "[current]": "1"
+        },
+        "actual totalcurrentthreetenths": {
+          "[current]": "1"
+        },
+        "actual equivalentresistance40ohm": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3",
+          "[current]": "-2"
+        },
+        "reciprocaladdition independentlygives40ohm": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3",
+          "[current]": "-2"
+        },
+        "halved resistance atcommonvoltage doublescurrent": {},
+        "parallelpowerbalance sourceandbranchpowers": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "Actualcommon12V gives12/60=1/5A,12/120=1/10A,total3/10A. Equivalent12/(3/10)=40ohm;reciprocal1/(1/60+1/120)=40independently.40<60andcurrentratio2matchtext. Branchpowers12²/60+12²/120=18/5W equal12*3/10;thisisareviewercrosscheck,notanextraassignedquantity. RightdiagramusesbothsameA/Bnodes.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Ideal12Vsourceandpositive60/120ohmresistorssharingthesametwonodes,linearsteadystate/idealwires. Branchcurrentsaddundernochargestorage.",
+      "pedagogicalReview": "Sharednodesprecedebranchcurrents,thenpositiveequivalentboundandfactor2comparison.",
+      "assetChecksums": {
+        "/figures/C4-reti.svg": "07ebbd01de644aef59e43dd7fd9bda2389f55fd148901332d65e108644272333"
+      },
+      "figureReview": "SameimmutableC4-retifigure;righttwobranchesconnectsameA/Bbuseswithnoshortingwire,asworkedcaseuses.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C4-E013",
+      "sourceSha256": "954eb02a3eb99f61ea3245a8df55ad70fc1ae3f2159ad225307bc06c8c615cf9",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C4.json",
+      "sourceFileSha256": "19d52336dd1024113f45f33a03e4d71e262ee6357477948124c7fecec855c67c",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "actual platecharge20microcoulomb",
+          "independentExact": "20",
+          "expectedValue": "20",
+          "unit": "uC",
+          "dimension": {
+            "[current]": "1",
+            "[time]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual fieldenergy50microjoule",
+          "independentExact": "50",
+          "expectedValue": "50",
+          "unit": "uJ",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "oppositeplate charges totalzero",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "uC",
+          "dimension": {
+            "[current]": "1",
+            "[time]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "independent Qsquaredover2C gives50microJ",
+          "independentExact": "50",
+          "expectedValue": "50",
+          "unit": "uJ",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "independent halfQV gives50microJ",
+          "independentExact": "50",
+          "expectedValue": "50",
+          "unit": "uJ",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "charging integral voltagegrows fromzerogivesonehalf",
+          "independentExact": "50",
+          "expectedValue": "50",
+          "unit": "uJ",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        }
+      ],
+      "dimension": {
+        "actual platecharge20microcoulomb": {
+          "[current]": "1",
+          "[time]": "1"
+        },
+        "actual fieldenergy50microjoule": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "oppositeplate charges totalzero": {
+          "[current]": "1",
+          "[time]": "1"
+        },
+        "independent Qsquaredover2C gives50microJ": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "independent halfQV gives50microJ": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "charging integral voltagegrows fromzerogivesonehalf": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "Actual4microF*5V=20microC ononeplate and-20ontheother,totalzero. Energyhalf*4microF*25V²=50microJ. IndependentlyQ²/(2C)=400/8=50microJ andQV/2=20*5/2=50microJ;chargingintegral q/C from0toQexplainsonehalf. Netchargezero isnotzerofieldenergy. Noadditionalarea/gapnumbersaredemandedfromthequalitativediagram.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Linearideal4microFcapacitor,5Vpotentialmagnitude,oppositefreeplatecharges. Uformulaexcludessource/mechanicallossesnotasked;netglobalchargemayzeroatpositiveenergy.",
+      "pedagogicalReview": "Qisoneplatemagnitude,notbothabsolutechargessummed;fieldenergycanbepositivewithnetzerocharge.",
+      "assetChecksums": {
+        "/figures/C4-condensatore.svg": "20cde9e81acdea30d4f7134a03b4634ecaa613c4dd13d2f55278e7027f8f6ce9"
+      },
+      "figureReview": "C4-condensatorecompleteXML/render/Gitbyteschecked;+Qupper/-Qlowerandfivefieldarrowsdown. Area/gapqualitative,notextraassignednumericdata.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C4-E014",
+      "sourceSha256": "ae74281221bcdff584079f47785cfdcd3c564a7e3e4733ab6c9c9c6a9c91bb94",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C4.json",
+      "sourceFileSha256": "19d52336dd1024113f45f33a03e4d71e262ee6357477948124c7fecec855c67c",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "actual initialfreecharge24microC",
+          "independentExact": "24",
+          "expectedValue": "24",
+          "unit": "uC",
+          "dimension": {
+            "[current]": "1",
+            "[time]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual filledcapacitance6microF",
+          "independentExact": "6",
+          "expectedValue": "6",
+          "unit": "uF",
+          "dimension": {
+            "[current]": "2",
+            "[time]": "4",
+            "[mass]": "-1",
+            "[length]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual finalvoltage4V",
+          "independentExact": "4",
+          "expectedValue": "4",
+          "unit": "V",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3",
+            "[current]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual initialenergy144microJ",
+          "independentExact": "144",
+          "expectedValue": "144",
+          "unit": "uJ",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual finalenergy48microJ",
+          "independentExact": "48",
+          "expectedValue": "48",
+          "unit": "uJ",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "fixedQ energy fallsbyfactor3",
+          "independentExact": "1/3",
+          "expectedValue": "1/3",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "releasedfieldenergy96microJ",
+          "independentExact": "96",
+          "expectedValue": "96",
+          "unit": "uJ",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "connectedfixedV wouldinsteadgive432microJ",
+          "independentExact": "432",
+          "expectedValue": "432",
+          "unit": "uJ",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_constructed_exact_probe_not_assigned_numeric_exercise"
+        }
+      ],
+      "dimension": {
+        "actual initialfreecharge24microC": {
+          "[current]": "1",
+          "[time]": "1"
+        },
+        "actual filledcapacitance6microF": {
+          "[current]": "2",
+          "[time]": "4",
+          "[mass]": "-1",
+          "[length]": "-2"
+        },
+        "actual finalvoltage4V": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3",
+          "[current]": "-1"
+        },
+        "actual initialenergy144microJ": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "actual finalenergy48microJ": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "fixedQ energy fallsbyfactor3": {},
+        "releasedfieldenergy96microJ": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "connectedfixedV wouldinsteadgive432microJ": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "ActualinitialQ2microF*12V=24microC. DisconnectbothleadsbeforefillingsoQfixed;capacitancetriples6microF,finalV24/6=4V. Ui=(1/2)*2*144=144microJ;Uf=(1/2)*6*16=48microJ,one-third.96microJleavefieldandmayexchangeasmechanicalenergy/dissipation. Aconnected12Vsourcewouldinsteadgive432microJ;thisexcludedboundaryconfirmsthedisconnectionconditionmatters.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Lineardielectricfullyfillsgapandtriplescapacitance;bothleadsdisconnectedbeforeinsertion,noleakage,freeplateQfixed. Mechanicalenergymaychange;fixedV/batteryconnectionisadifferentproblem.",
+      "pedagogicalReview": "DisconnectconditionprecedeschoiceoffixedQ;energychangeallowsmechanicalexchangeinsteadfalselydeclaringenergyconservationonlyincapacitor.",
+      "assetChecksums": {},
+      "figureReview": "No figureinallfourblocks;fullfill/tripleC/disconnectareexplicitpromptconditions.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C4-E015",
+      "sourceSha256": "f04149a0f972073a3c9559d9f0aff0fc673e8ba43e45659530d2032b7b82cd14",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C4.json",
+      "sourceFileSha256": "19d52336dd1024113f45f33a03e4d71e262ee6357477948124c7fecec855c67c",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "actual seriescapacitance2microF",
+          "independentExact": "2",
+          "expectedValue": "2",
+          "unit": "uF",
+          "dimension": {
+            "[current]": "2",
+            "[time]": "4",
+            "[mass]": "-1",
+            "[length]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual equalchargemagnitudes24microC",
+          "independentExact": "24",
+          "expectedValue": "24",
+          "unit": "uC",
+          "dimension": {
+            "[current]": "1",
+            "[time]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual firstvoltage8V",
+          "independentExact": "8",
+          "expectedValue": "8",
+          "unit": "V",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3",
+            "[current]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual secondvoltage4V",
+          "independentExact": "4",
+          "expectedValue": "4",
+          "unit": "V",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3",
+            "[current]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "voltagedropssum12V",
+          "independentExact": "12",
+          "expectedValue": "12",
+          "unit": "V",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3",
+            "[current]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "smaller capacitance biggerdrop ratio2",
+          "independentExact": "2",
+          "expectedValue": "2",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "individualenergy sum agreeswithequivalent",
+          "independentExact": "144",
+          "expectedValue": "144",
+          "unit": "uJ",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        }
+      ],
+      "dimension": {
+        "actual seriescapacitance2microF": {
+          "[current]": "2",
+          "[time]": "4",
+          "[mass]": "-1",
+          "[length]": "-2"
+        },
+        "actual equalchargemagnitudes24microC": {
+          "[current]": "1",
+          "[time]": "1"
+        },
+        "actual firstvoltage8V": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3",
+          "[current]": "-1"
+        },
+        "actual secondvoltage4V": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3",
+          "[current]": "-1"
+        },
+        "voltagedropssum12V": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3",
+          "[current]": "-1"
+        },
+        "smaller capacitance biggerdrop ratio2": {},
+        "individualenergy sum agreeswithequivalent": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "ActualCseries=(3*6)/(3+6)=2microF,Q2*12=24microC. Initiallyneutralfloatingmiddleenforcesequalchargemagnitudes. V1=24/3=8V,V2=24/6=4V sum12;equivalent2<3microF. Independentenergieshalf*3*64=96microJ andhalf*6*16=48microJ sum144microJ equalhalf*2*144. No calculator.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Linear3/6microFcapacitorsinserieswithfloatinginitiallyneutralmiddlenode,12Vtotal. Chargeequalitywouldnotfollowforaninitiallychargedmiddlenode.",
+      "pedagogicalReview": "Neutralmiddlenodeconditionisexplicitintheprompt,notanunstatedserieschargeassumption. Dropsandboundprovideindependentchecks.",
+      "assetChecksums": {
+        "/figures/C4-reti-c.svg": "25ad5b7d73608cd8da31f1eaf583372363a27b0cd411ae5d0dffe7408821afbb"
+      },
+      "figureReview": "C4-reti-ccompleteXML/render/Gitbyteschecked;lefttwocapacitorsinserieswithfloatingmiddlewireandunshortedplate gaps. Sourcepromptstatesinitialneutrality.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C4-E016",
+      "sourceSha256": "2b4bff3d20ea82cf239b779385020327ef557f34483d748c8d4cf733438e8b4b",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C4.json",
+      "sourceFileSha256": "19d52336dd1024113f45f33a03e4d71e262ee6357477948124c7fecec855c67c",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "actual isolatedpositivenode18microC",
+          "independentExact": "18",
+          "expectedValue": "18",
+          "unit": "uC",
+          "dimension": {
+            "[current]": "1",
+            "[time]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual settledcommonvoltage3V",
+          "independentExact": "3",
+          "expectedValue": "3",
+          "unit": "V",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-3",
+            "[current]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual finalnodechargeconserved",
+          "independentExact": "18",
+          "expectedValue": "18",
+          "unit": "uC",
+          "dimension": {
+            "[current]": "1",
+            "[time]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "actual initialenergy81microJ",
+          "independentExact": "81",
+          "expectedValue": "81",
+          "unit": "uJ",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual finalenergy27microJ",
+          "independentExact": "27",
+          "expectedValue": "27",
+          "unit": "uJ",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "actual removedfieldenergy54microJ",
+          "independentExact": "54",
+          "expectedValue": "54",
+          "unit": "uJ",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_source_example_manual_calculation"
+        },
+        {
+          "claim": "independent joiningloss formula recovers54",
+          "independentExact": "54",
+          "expectedValue": "54",
+          "unit": "uJ",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        },
+        {
+          "claim": "final individualplatecharges6and12 microCsum18",
+          "independentExact": "18",
+          "expectedValue": "18",
+          "unit": "uC",
+          "dimension": {
+            "[current]": "1",
+            "[time]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true,
+          "scope": "symbolic_source_claim"
+        }
+      ],
+      "dimension": {
+        "actual isolatedpositivenode18microC": {
+          "[current]": "1",
+          "[time]": "1"
+        },
+        "actual settledcommonvoltage3V": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-3",
+          "[current]": "-1"
+        },
+        "actual finalnodechargeconserved": {
+          "[current]": "1",
+          "[time]": "1"
+        },
+        "actual initialenergy81microJ": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "actual finalenergy27microJ": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "actual removedfieldenergy54microJ": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "independent joiningloss formula recovers54": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "final individualplatecharges6and12 microCsum18": {
+          "[current]": "1",
+          "[time]": "1"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "Actualisolatedpositiveplategroupcharge2*9+4*0=18microC;finalCsum6microF givesV18/6=3V. Finalcharges6and12microC sum18. Ui=half*2*81=81microJ,Uf=half*6*9=27microJ,loss54microJ. Independentloss C1*C2*(V1-V2)²/[2(C1+C2)]=8*81/12=54microJ. Textusesrealsettlingcircuitandnamesheatpossibility;itdoesnotassumeanundampedidealLCloopinstantlysettlesorconserveelectricfieldenergyalone.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "First2microFcapacitor9Vanddisconnected,second4microFinitiallyuncharged,correspondingplatesconnectedwithoutsource. Eachisolatedconductor-groupalgebraicchargeconserved. RealtransientsettlesatcommonV;energycanleaveelectricfieldasheat/radiation,notclaimedconservedtherealone.",
+      "pedagogicalReview": "Conserveschargeoftheconnectedplategroup,notfieldenergy;distinguishesinitial/settledstatesandrealtransient.",
+      "assetChecksums": {},
+      "figureReview": "No figureinallfourblocks;polaritycorrespondenceandinitialunchargedsecondcapacitorexplicit.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "4dcbe0a5c12b874dba433a9d02b08c158025329f2c9fd5f282ba29c0a8307577",
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+  "sourcePath": "officina-di-fisica/content/C4.json",
+  "sourceFileSha256": "19d52336dd1024113f45f33a03e4d71e262ee6357477948124c7fecec855c67c",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "acceptedCount": 8,
+  "failedCount": 0,
+  "draftReviewedCount": 0,
+  "failedPublishedEditionIds": [],
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_original_or_revision_author",
+  "originalEditionRetained": true,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}
