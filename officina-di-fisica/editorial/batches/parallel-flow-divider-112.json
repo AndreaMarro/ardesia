@@ -1,0 +1,1211 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u3-parallel-flow-divider-01",
+      "kind": "question",
+      "course": "C2",
+      "section": "Reti resistive a portata imposta",
+      "order": 11201,
+      "title": "La stessa pressione divide il flusso",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L009",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L008",
+        "C2-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parallel-flow-divider",
+      "difficulty": 1,
+      "prompt": "Una pompa mantiene la portata totale Q_T=10 L/s fra due nodi alla stessa quota. Due rami resistivi lineari, con R₁,R₂>0 in kPa·s/L, collegano gli stessi nodi; non ci sono altri percorsi, perdite di massa o accumulo. Il liquido omogeneo incomprimibile scorre in regime stazionario. Nel modello di ciascun ramo Δp=RᵢQᵢ, con Δp pressione a monte meno pressione a valle e Qᵢ>0 verso valle. La pressione comune ai rami si adatta alla portata imposta; non è mantenuta fissa fra prove. Con R₁=R₂=1 kPa·s/L, quanto vale Q₁ in L/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 5,
+        "unit": "L/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le due resistenze uguali vedono lo stesso salto di pressione, quindi trasportano la stessa portata. La continuità divide i dieci litri al secondo in due parti da cinque. Il controllo pressorio dà lo stesso valore in entrambi i rami: un kPa·s/L per cinque L/s vale cinque kPa."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/63661c60bf748f6ef9826e28d60129f8bb654c5b75132c0b1a56df40e8c8b063",
+          "text": "Rete schematica, non geometria in scala: Q_T=10 L/s, R₁=R₂=1 kPa·s/L. Frecce di portata alla scala comune 20 px/(L/s): 200 px per il totale e 100 px per ciascun ramo da 5 L/s. Le cadute comuni valgono 5 kPa. Le resistenze non sono lunghezze dei rami."
+        },
+        {
+          "type": "formula",
+          "text": "Q_1+Q_2=Q_T"
+        },
+        {
+          "type": "formula",
+          "text": " R_1Q_1=R_2Q_2"
+        },
+        {
+          "type": "formula",
+          "text": " Q_1=Q_2"
+        },
+        {
+          "type": "formula",
+          "text": " Q_1=\\frac{10}{2}\\,\\mathrm{L/s}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_1=5\\,\\mathrm{L/s}"
+        },
+        {
+          "type": "text",
+          "text": "Dieci nel solo primo ramo lascerebbe zero nel secondo, incompatibile con due resistenze finite positive allo stesso salto di pressione. Uno copia il numero della resistenza, non una portata."
+        }
+      ],
+      "hints": [
+        "Usa la simmetria dei due rami e la somma delle portate.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dieci nel solo primo ramo lascerebbe zero nel secondo, incompatibile con due resistenze finite positive allo stesso salto di pressione. Uno copia il numero della resistenza, non una portata.",
+        "target": "C2-L009"
+      },
+      "coverage": [
+        "Continuità e pressione comune ai rami",
+        "Ripartizione fra resistenze positive",
+        "Inverse, tarature e scala non identificabile"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-parallel-flow-divider-02",
+      "kind": "question",
+      "course": "C2",
+      "section": "Reti resistive a portata imposta",
+      "order": 11202,
+      "title": "Che cosa si misura nel ramo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L009",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L008",
+        "C2-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parallel-flow-divider",
+      "difficulty": 1,
+      "prompt": "Una pompa mantiene la portata totale Q_T=10 L/s fra due nodi alla stessa quota. Due rami resistivi lineari, con R₁,R₂>0 in kPa·s/L, collegano gli stessi nodi; non ci sono altri percorsi, perdite di massa o accumulo. Il liquido omogeneo incomprimibile scorre in regime stazionario. Nel modello di ciascun ramo Δp=RᵢQᵢ, con Δp pressione a monte meno pressione a valle e Qᵢ>0 verso valle. La pressione comune ai rami si adatta alla portata imposta; non è mantenuta fissa fra prove. Quale unità proposta esprime Q₁?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "L/s",
+          "kPa",
+          "kPa·s/L",
+          "s/L",
+          "L"
+        ],
+        "value": "L/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Q₁ conta volume per unità di tempo. Si può ricavare da Δp/R₁: le unità di pressione si cancellano e resta litro al secondo. Il litro vale esattamente un millesimo di metro cubo, senza cambiare la dimensione di portata."
+        },
+        {
+          "type": "formula",
+          "text": "Q_1=\\frac{\\Delta p}{R_1}"
+        },
+        {
+          "type": "formula",
+          "text": " [Q_1]=L^3/T"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{\\mathrm{kPa}}{\\mathrm{kPa\\,s/L}}=\\mathrm{L/s}"
+        },
+        {
+          "type": "formula",
+          "text": " 1\\,\\mathrm{L/s}=10^{-3}\\,\\mathrm{m^3/s}"
+        },
+        {
+          "type": "text",
+          "text": "kPa è pressione, kPa·s/L resistenza, s/L portata inversa e L volume. La resistenza non è un volume che si possa sommare alla portata."
+        }
+      ],
+      "hints": [
+        "Dividi le unità del salto di pressione per quelle della resistenza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "kPa è pressione, kPa·s/L resistenza, s/L portata inversa e L volume. La resistenza non è un volume che si possa sommare alla portata.",
+        "target": "C2-L009"
+      },
+      "coverage": [
+        "Continuità e pressione comune ai rami",
+        "Ripartizione fra resistenze positive",
+        "Inverse, tarature e scala non identificabile"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-parallel-flow-divider-03",
+      "kind": "question",
+      "course": "C2",
+      "section": "Reti resistive a portata imposta",
+      "order": 11203,
+      "title": "Continuità e legge resistiva insieme",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L009",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L008",
+        "C2-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parallel-flow-divider",
+      "difficulty": 1,
+      "prompt": "Una pompa mantiene la portata totale Q_T=10 L/s fra due nodi alla stessa quota. Due rami resistivi lineari, con R₁,R₂>0 in kPa·s/L, collegano gli stessi nodi; non ci sono altri percorsi, perdite di massa o accumulo. Il liquido omogeneo incomprimibile scorre in regime stazionario. Nel modello di ciascun ramo Δp=RᵢQᵢ, con Δp pressione a monte meno pressione a valle e Qᵢ>0 verso valle. La pressione comune ai rami si adatta alla portata imposta; non è mantenuta fissa fra prove. Quale relazione dà Q₁?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Q₁ = Q_T R₂ / (R₁ + R₂)",
+          "Q₁ = Q_T R₁ / (R₁ + R₂)",
+          "Q₁ = Q_T (R₁ + R₂) / R₂",
+          "Q₁ = Q_T R₂ / R₁",
+          "Q₁ = Q_T / (R₁ + R₂)"
+        ],
+        "value": "Q₁ = Q_T R₂ / (R₁ + R₂)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituiamo Q₂=Q_T−Q₁ nell’uguaglianza delle cadute. Il termine R₂Q₁ passa sul lato del primo ramo e si raccoglie Q₁. La resistenza dell’altro ramo compare al numeratore: se diventa più difficile attraversare il secondo, una frazione maggiore del flusso imposto entra nel primo."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/63661c60bf748f6ef9826e28d60129f8bb654c5b75132c0b1a56df40e8c8b063",
+          "text": "I pannelli successivi mantengono Q_T=10 L/s: con R₁=3, R₂=1 kPa·s/L, Q₁=5/2 e Q₂=15/2 L/s; frecce 50 e 150 px alla scala 20 px/(L/s). Le barre finali conservano la somma delle portate: 5+5 e 6+4 L/s, con pressioni comuni rispettivamente 5 e 12 kPa in prove diverse."
+        },
+        {
+          "type": "formula",
+          "text": "R_1Q_1=R_2(Q_T-Q_1)"
+        },
+        {
+          "type": "formula",
+          "text": " (R_1+R_2)Q_1=R_2Q_T"
+        },
+        {
+          "type": "formula",
+          "text": " Q_1=\\frac{Q_TR_2}{R_1+R_2}"
+        },
+        {
+          "type": "text",
+          "text": "Mettere R₁ al numeratore calcola Q₂. La somma delle resistenze deve dividere, non moltiplicare; il rapporto R₂/R₁ da solo manca della normalizzazione sul totale. Dividere Q_T per una resistenza altera le dimensioni."
+        }
+      ],
+      "hints": [
+        "Elimina Q₂ usando la portata totale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Mettere R₁ al numeratore calcola Q₂. La somma delle resistenze deve dividere, non moltiplicare; il rapporto R₂/R₁ da solo manca della normalizzazione sul totale. Dividere Q_T per una resistenza altera le dimensioni.",
+        "target": "C2-L009"
+      },
+      "coverage": [
+        "Continuità e pressione comune ai rami",
+        "Ripartizione fra resistenze positive",
+        "Inverse, tarature e scala non identificabile"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-parallel-flow-divider-04",
+      "kind": "question",
+      "course": "C2",
+      "section": "Reti resistive a portata imposta",
+      "order": 11204,
+      "title": "Il primo ramo diventa più resistente",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L009",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L008",
+        "C2-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parallel-flow-divider",
+      "difficulty": 1,
+      "prompt": "Una pompa mantiene la portata totale Q_T=10 L/s fra due nodi alla stessa quota. Due rami resistivi lineari, con R₁,R₂>0 in kPa·s/L, collegano gli stessi nodi; non ci sono altri percorsi, perdite di massa o accumulo. Il liquido omogeneo incomprimibile scorre in regime stazionario. Nel modello di ciascun ramo Δp=RᵢQᵢ, con Δp pressione a monte meno pressione a valle e Qᵢ>0 verso valle. La pressione comune ai rami si adatta alla portata imposta; non è mantenuta fissa fra prove. R₁ passa da 1 a 3 kPa·s/L; R₂ resta 1 kPa·s/L. Come cambia Q₁?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 5 a 5/2 L/s",
+          "Da 5 a 15 L/s",
+          "Resta 5 L/s",
+          "Da 5 a 5/3 L/s",
+          "Diventa zero"
+        ],
+        "value": "Da 5 a 5/2 L/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nel nuovo stato il denominatore è tre più uno e il numeratore resta dieci. Il primo ramo scende da cinque a cinque mezzi L/s, mentre il secondo sale a quindici mezzi. La pompa deve ora sostenere una caduta comune di quindici mezzi kPa, maggiore dei cinque iniziali."
+        },
+        {
+          "type": "formula",
+          "text": "Q_{1,A}=5\\,\\mathrm{L/s}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{1,B}=\\frac{10}{3+1}\\,\\mathrm{L/s}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{1,B}=\\frac52\\,\\mathrm{L/s}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{2,B}=\\frac{15}{2}\\,\\mathrm{L/s}"
+        },
+        {
+          "type": "text",
+          "text": "Quindici tratterebbe la resistenza come fattore diretto e supererebbe Q_T. Cinque terzi suppone erroneamente pressione fissa; la pompa qui mantiene la portata totale, non Δp. Cinque ignora la modifica, zero richiederebbe un ramo chiuso come limite, non R₁=3."
+        }
+      ],
+      "hints": [
+        "Ricalcola il denominatore R₁+R₂ con Q_T fissata.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Quindici tratterebbe la resistenza come fattore diretto e supererebbe Q_T. Cinque terzi suppone erroneamente pressione fissa; la pompa qui mantiene la portata totale, non Δp. Cinque ignora la modifica, zero richiederebbe un ramo chiuso come limite, non R₁=3.",
+        "target": "C2-L009"
+      },
+      "coverage": [
+        "Continuità e pressione comune ai rami",
+        "Ripartizione fra resistenze positive",
+        "Inverse, tarature e scala non identificabile"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-parallel-flow-divider-05",
+      "kind": "question",
+      "course": "C2",
+      "section": "Reti resistive a portata imposta",
+      "order": 11205,
+      "title": "La resistenza del primo ramo da Q₁",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L009",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L008",
+        "C2-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parallel-flow-divider",
+      "difficulty": 2,
+      "prompt": "Una pompa mantiene la portata totale Q_T=10 L/s fra due nodi alla stessa quota. Due rami resistivi lineari, con R₁,R₂>0 in kPa·s/L, collegano gli stessi nodi; non ci sono altri percorsi, perdite di massa o accumulo. Il liquido omogeneo incomprimibile scorre in regime stazionario. Nel modello di ciascun ramo Δp=RᵢQᵢ, con Δp pressione a monte meno pressione a valle e Qᵢ>0 verso valle. La pressione comune ai rami si adatta alla portata imposta; non è mantenuta fissa fra prove. Si misura Q₁=5 L/s e si conosce R₂=1 kPa·s/L. Quanto vale R₁ in kPa·s/L?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "kPa·s/L",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’altra portata è dieci meno cinque, ancora cinque L/s. Il secondo ramo fissa Δp=5 kPa; dividendo quel salto per Q₁ si ritrova R₁=1 kPa·s/L. La misura determina un rapporto fra le resistenze, e il valore noto del secondo ramo ne fissa la scala."
+        },
+        {
+          "type": "formula",
+          "text": "Q_2=Q_T-Q_1"
+        },
+        {
+          "type": "formula",
+          "text": "Q_T-Q_1=5\\,\\mathrm{L/s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p=R_2Q_2"
+        },
+        {
+          "type": "formula",
+          "text": "R_2Q_2=5\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " R_1=\\frac{\\Delta p}{Q_1}"
+        },
+        {
+          "type": "formula",
+          "text": " R_1=1\\,\\mathrm{kPa\\,s/L}"
+        },
+        {
+          "type": "text",
+          "text": "Attribuire direttamente il numero cinque alla resistenza confonderebbe due grandezze diverse. Un’inversa fisica deve rispettare 0<Q₁<Q_T: altrimenti non lascerebbe una seconda portata positiva."
+        }
+      ],
+      "hints": [
+        "Trova Q₂, poi il salto comune di pressione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Attribuire direttamente il numero cinque alla resistenza confonderebbe due grandezze diverse. Un’inversa fisica deve rispettare 0<Q₁<Q_T: altrimenti non lascerebbe una seconda portata positiva.",
+        "target": "C2-L009"
+      },
+      "coverage": [
+        "Continuità e pressione comune ai rami",
+        "Ripartizione fra resistenze positive",
+        "Inverse, tarature e scala non identificabile"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-parallel-flow-divider-06",
+      "kind": "question",
+      "course": "C2",
+      "section": "Reti resistive a portata imposta",
+      "order": 11206,
+      "title": "La resistenza del secondo ramo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L009",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L008",
+        "C2-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parallel-flow-divider",
+      "difficulty": 2,
+      "prompt": "Una pompa mantiene la portata totale Q_T=10 L/s fra due nodi alla stessa quota. Due rami resistivi lineari, con R₁,R₂>0 in kPa·s/L, collegano gli stessi nodi; non ci sono altri percorsi, perdite di massa o accumulo. Il liquido omogeneo incomprimibile scorre in regime stazionario. Nel modello di ciascun ramo Δp=RᵢQᵢ, con Δp pressione a monte meno pressione a valle e Qᵢ>0 verso valle. La pressione comune ai rami si adatta alla portata imposta; non è mantenuta fissa fra prove. Si misura Q₁=5 L/s e si conosce R₁=1 kPa·s/L. Quanto vale R₂ in kPa·s/L?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "kPa·s/L",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La prima legge resistiva dà Δp=1·5=5 kPa. Anche il secondo ramo porta cinque L/s, quindi R₂=5/5=1 kPa·s/L. Non si divide la pressione per la portata totale, che comprende entrambi i percorsi."
+        },
+        {
+          "type": "formula",
+          "text": "Q_2=Q_T-Q_1"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p=R_1Q_1"
+        },
+        {
+          "type": "formula",
+          "text": " R_2=\\frac{R_1Q_1}{Q_T-Q_1}"
+        },
+        {
+          "type": "formula",
+          "text": " R_2=1\\,\\mathrm{kPa\\,s/L}"
+        },
+        {
+          "type": "text",
+          "text": "Usare Q_T al denominatore darebbe 1/2 kPa·s/L, la resistenza equivalente della coppia iniziale, non quella del solo secondo ramo."
+        }
+      ],
+      "hints": [
+        "Ricostruisci la portata del secondo ramo prima della sua resistenza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Usare Q_T al denominatore darebbe 1/2 kPa·s/L, la resistenza equivalente della coppia iniziale, non quella del solo secondo ramo.",
+        "target": "C2-L009"
+      },
+      "coverage": [
+        "Continuità e pressione comune ai rami",
+        "Ripartizione fra resistenze positive",
+        "Inverse, tarature e scala non identificabile"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-parallel-flow-divider-07",
+      "kind": "question",
+      "course": "C2",
+      "section": "Reti resistive a portata imposta",
+      "order": 11207,
+      "title": "Ostacolare l’altro percorso",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L009",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L008",
+        "C2-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parallel-flow-divider",
+      "difficulty": 2,
+      "prompt": "Una pompa mantiene la portata totale Q_T=10 L/s fra due nodi alla stessa quota. Due rami resistivi lineari, con R₁,R₂>0 in kPa·s/L, collegano gli stessi nodi; non ci sono altri percorsi, perdite di massa o accumulo. Il liquido omogeneo incomprimibile scorre in regime stazionario. Nel modello di ciascun ramo Δp=RᵢQᵢ, con Δp pressione a monte meno pressione a valle e Qᵢ>0 verso valle. La pressione comune ai rami si adatta alla portata imposta; non è mantenuta fissa fra prove. A ha R₁=R₂=1 kPa·s/L. B mantiene R₁ e usa R₂=3 kPa·s/L. Quanto vale Q₁,B/Q₁,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/2",
+          "2/3",
+          "3",
+          "1/2",
+          "1"
+        ],
+        "value": "3/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A divide il totale in cinque e cinque. In B il secondo ramo è più resistente: il primo riceve dieci per tre quarti, cioè quindici mezzi L/s. Il rapporto con cinque è tre mezzi. La crescita di R₂ non ostacola il primo ramo: redistribuisce verso di esso il flusso imposto."
+        },
+        {
+          "type": "formula",
+          "text": "Q_{1,A}=5\\,\\mathrm{L/s}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{1,B}=\\frac{30}{4}\\,\\mathrm{L/s}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{1,B}=\\frac{15}{2}\\,\\mathrm{L/s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{Q_{1,B}}{Q_{1,A}}=\\frac32"
+        },
+        {
+          "type": "text",
+          "text": "Due terzi inverte gli stati, tre segue soltanto il numeratore senza aggiornare la somma, un mezzo scambia l’effetto dei rami e uno ignora la nuova ripartizione."
+        }
+      ],
+      "hints": [
+        "Aumentando R₂, controlla dove deve andare il volume al secondo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due terzi inverte gli stati, tre segue soltanto il numeratore senza aggiornare la somma, un mezzo scambia l’effetto dei rami e uno ignora la nuova ripartizione.",
+        "target": "C2-L009"
+      },
+      "coverage": [
+        "Continuità e pressione comune ai rami",
+        "Ripartizione fra resistenze positive",
+        "Inverse, tarature e scala non identificabile"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-parallel-flow-divider-08",
+      "kind": "question",
+      "course": "C2",
+      "section": "Reti resistive a portata imposta",
+      "order": 11208,
+      "title": "Una proposta che svuota un ramo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L009",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L008",
+        "C2-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parallel-flow-divider",
+      "difficulty": 2,
+      "prompt": "Una pompa mantiene la portata totale Q_T=10 L/s fra due nodi alla stessa quota. Due rami resistivi lineari, con R₁,R₂>0 in kPa·s/L, collegano gli stessi nodi; non ci sono altri percorsi, perdite di massa o accumulo. Il liquido omogeneo incomprimibile scorre in regime stazionario. Nel modello di ciascun ramo Δp=RᵢQᵢ, con Δp pressione a monte meno pressione a valle e Qᵢ>0 verso valle. La pressione comune ai rami si adatta alla portata imposta; non è mantenuta fissa fra prove. Con R₁=R₂=1 kPa·s/L si propone Q₁=10 L/s. Quanto vale proposta meno corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "5 L/s",
+          "−5 L/s",
+          "10 L/s",
+          "0 L/s",
+          "5/2 L/s"
+        ],
+        "value": "5 L/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il valore corretto è cinque L/s e lo scarto è più cinque. La proposta porterebbe Q₂ a zero; il secondo ramo darebbe allora Δp=0, mentre il primo richiederebbe dieci kPa. Uno stesso paio di nodi non può avere entrambi quei salti di pressione."
+        },
+        {
+          "type": "formula",
+          "text": "Q_1=5\\,\\mathrm{L/s}"
+        },
+        {
+          "type": "formula",
+          "text": " e=(10-5)\\,\\mathrm{L/s}"
+        },
+        {
+          "type": "formula",
+          "text": " e=5\\,\\mathrm{L/s}"
+        },
+        {
+          "type": "text",
+          "text": "Meno cinque rovescia la sottrazione, dieci copia la proposta, zero la accetta e cinque mezzi dimezza lo scarto. La contraddizione riguarda insieme continuità e pressione comune."
+        }
+      ],
+      "hints": [
+        "Controlla anche quale pressione implicherebbe il secondo ramo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Meno cinque rovescia la sottrazione, dieci copia la proposta, zero la accetta e cinque mezzi dimezza lo scarto. La contraddizione riguarda insieme continuità e pressione comune.",
+        "target": "C2-L009"
+      },
+      "coverage": [
+        "Continuità e pressione comune ai rami",
+        "Ripartizione fra resistenze positive",
+        "Inverse, tarature e scala non identificabile"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-parallel-flow-divider-09",
+      "kind": "question",
+      "course": "C2",
+      "section": "Reti resistive a portata imposta",
+      "order": 11209,
+      "title": "L’inversa e il dominio della portata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L009",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L008",
+        "C2-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parallel-flow-divider",
+      "difficulty": 2,
+      "prompt": "Una pompa mantiene la portata totale Q_T=10 L/s fra due nodi alla stessa quota. Due rami resistivi lineari, con R₁,R₂>0 in kPa·s/L, collegano gli stessi nodi; non ci sono altri percorsi, perdite di massa o accumulo. Il liquido omogeneo incomprimibile scorre in regime stazionario. Nel modello di ciascun ramo Δp=RᵢQᵢ, con Δp pressione a monte meno pressione a valle e Qᵢ>0 verso valle. La pressione comune ai rami si adatta alla portata imposta; non è mantenuta fissa fra prove. Quale formula isola R₁?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "R₁ = R₂ (Q_T − Q₁) / Q₁",
+          "R₁ = R₂ Q₁ / (Q_T − Q₁)",
+          "R₁ = Q₁ / R₂",
+          "R₁ = R₂ Q_T / Q₁",
+          "R₁ = R₂ (Q_T − Q₁)"
+        ],
+        "value": "R₁ = R₂ (Q_T − Q₁) / Q₁"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dall’uguaglianza R₁Q₁=R₂(Q_T−Q₁) dividiamo per Q₁>0. La differenza al numeratore è Q₂ e deve restare positiva. Il rapporto delle portate è puro, perciò moltiplicando R₂ si ottiene ancora una resistenza."
+        },
+        {
+          "type": "formula",
+          "text": "R_1Q_1=R_2(Q_T-Q_1)"
+        },
+        {
+          "type": "formula",
+          "text": " R_1=R_2\\frac{Q_T-Q_1}{Q_1}"
+        },
+        {
+          "type": "formula",
+          "text": " 0<Q_1<Q_T"
+        },
+        {
+          "type": "text",
+          "text": "Il rapporto inverso scambia i due rami; Q₁/R₂ non ha dimensione di resistenza. Omettere −Q₁ sostituisce la portata totale a Q₂ e manca un termine. Senza dividere per Q₁ resta una pressione, non R₁."
+        }
+      ],
+      "hints": [
+        "Isola R₁ dalla stessa caduta di pressione nei due rami.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il rapporto inverso scambia i due rami; Q₁/R₂ non ha dimensione di resistenza. Omettere −Q₁ sostituisce la portata totale a Q₂ e manca un termine. Senza dividere per Q₁ resta una pressione, non R₁.",
+        "target": "C2-L009"
+      },
+      "coverage": [
+        "Continuità e pressione comune ai rami",
+        "Ripartizione fra resistenze positive",
+        "Inverse, tarature e scala non identificabile"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-parallel-flow-divider-10",
+      "kind": "question",
+      "course": "C2",
+      "section": "Reti resistive a portata imposta",
+      "order": 11210,
+      "title": "Scalare due resistenze",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L009",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L008",
+        "C2-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parallel-flow-divider",
+      "difficulty": 2,
+      "prompt": "Una pompa mantiene la portata totale Q_T=10 L/s fra due nodi alla stessa quota. Due rami resistivi lineari, con R₁,R₂>0 in kPa·s/L, collegano gli stessi nodi; non ci sono altri percorsi, perdite di massa o accumulo. Il liquido omogeneo incomprimibile scorre in regime stazionario. Nel modello di ciascun ramo Δp=RᵢQᵢ, con Δp pressione a monte meno pressione a valle e Qᵢ>0 verso valle. La pressione comune ai rami si adatta alla portata imposta; non è mantenuta fissa fra prove. B ha resistenze κ₁R₁ e κ₂R₂, con fattori positivi. Definiamo U=R₁+R₂ e D=κ₁R₁+κ₂R₂. Quanto vale Q₁,B/Q₁,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₂ U / D",
+          "κ₁ U / D",
+          "κ₂ D / U",
+          "κ₁ / κ₂",
+          "D / (κ₂ U)"
+        ],
+        "value": "κ₂ U / D"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il numeratore della portata nel primo ramo contiene R₂, quindi acquista κ₂. Il denominatore è la nuova somma D. Dividendo per lo stato A si cancella Q_T e compare U al numeratore. Se entrambi i fattori coincidono, le resistenze cambiano scala ma la ripartizione resta uguale."
+        },
+        {
+          "type": "formula",
+          "text": "Q_{1,A}=\\frac{Q_TR_2}{U}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{1,B}=\\frac{Q_T\\kappa_2R_2}{D}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{Q_{1,B}}{Q_{1,A}}=\\frac{\\kappa_2U}{D}"
+        },
+        {
+          "type": "text",
+          "text": "κ₁ al numeratore segue il ramo sbagliato; D/U al posto di U/D inverte la normalizzazione. κ₁/κ₂ omette le resistenze iniziali e l’ultima opzione è il reciproco del rapporto richiesto."
+        }
+      ],
+      "hints": [
+        "Mantieni la nuova somma delle resistenze al denominatore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "κ₁ al numeratore segue il ramo sbagliato; D/U al posto di U/D inverte la normalizzazione. κ₁/κ₂ omette le resistenze iniziali e l’ultima opzione è il reciproco del rapporto richiesto.",
+        "target": "C2-L009"
+      },
+      "coverage": [
+        "Continuità e pressione comune ai rami",
+        "Ripartizione fra resistenze positive",
+        "Inverse, tarature e scala non identificabile"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-parallel-flow-divider-11",
+      "kind": "question",
+      "course": "C2",
+      "section": "Reti resistive a portata imposta",
+      "order": 11211,
+      "title": "Due resistenze cambiano insieme",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L009",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L008",
+        "C2-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parallel-flow-divider",
+      "difficulty": 2,
+      "prompt": "Una pompa mantiene la portata totale Q_T=10 L/s fra due nodi alla stessa quota. Due rami resistivi lineari, con R₁,R₂>0 in kPa·s/L, collegano gli stessi nodi; non ci sono altri percorsi, perdite di massa o accumulo. Il liquido omogeneo incomprimibile scorre in regime stazionario. Nel modello di ciascun ramo Δp=RᵢQᵢ, con Δp pressione a monte meno pressione a valle e Qᵢ>0 verso valle. La pressione comune ai rami si adatta alla portata imposta; non è mantenuta fissa fra prove. A ha R₁=R₂=1 kPa·s/L; B ha R₁=2 e R₂=3 kPa·s/L. Quanto vale Q₁,B/Q₁,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "6/5",
+          "5/6",
+          "3/2",
+          "2/3",
+          "6"
+        ],
+        "value": "6/5"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "In B tre quinti del totale passano nel primo ramo: sei L/s. Il secondo ne porta quattro e le due cadute sono entrambe dodici kPa, due per sei e tre per quattro. Rispetto ai cinque L/s iniziali il rapporto è sei quinti."
+        },
+        {
+          "type": "formula",
+          "text": "Q_{1,B}=10\\frac35\\,\\mathrm{L/s}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{1,B}=6\\,\\mathrm{L/s}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{2,B}=4\\,\\mathrm{L/s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{Q_{1,B}}{Q_{1,A}}=\\frac65"
+        },
+        {
+          "type": "text",
+          "text": "Cinque sesti inverte gli stati, tre mezzi o due terzi usano soltanto i fattori delle resistenze, sei è il valore della portata B e non un rapporto puro."
+        }
+      ],
+      "hints": [
+        "Verifica anche R₁Q₁=R₂Q₂ nel nuovo stato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Cinque sesti inverte gli stati, tre mezzi o due terzi usano soltanto i fattori delle resistenze, sei è il valore della portata B e non un rapporto puro.",
+        "target": "C2-L009"
+      },
+      "coverage": [
+        "Continuità e pressione comune ai rami",
+        "Ripartizione fra resistenze positive",
+        "Inverse, tarature e scala non identificabile"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-parallel-flow-divider-12",
+      "kind": "question",
+      "course": "C2",
+      "section": "Reti resistive a portata imposta",
+      "order": 11212,
+      "title": "La media di due prove della pompa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L009",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L008",
+        "C2-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parallel-flow-divider",
+      "difficulty": 2,
+      "prompt": "Una pompa mantiene la portata totale Q_T=10 L/s fra due nodi alla stessa quota. Due rami resistivi lineari, con R₁,R₂>0 in kPa·s/L, collegano gli stessi nodi; non ci sono altri percorsi, perdite di massa o accumulo. Il liquido omogeneo incomprimibile scorre in regime stazionario. Nel modello di ciascun ramo Δp=RᵢQᵢ, con Δp pressione a monte meno pressione a valle e Qᵢ>0 verso valle. La pressione comune ai rami si adatta alla portata imposta; non è mantenuta fissa fra prove. A usa R₁=R₂=1 kPa·s/L e B usa R₁=2, R₂=3 kPa·s/L. Qual è la media aritmetica delle due Q₁ con uguale peso statistico?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "11/2 L/s",
+          "11 L/s",
+          "11/4 L/s",
+          "40/7 L/s",
+          "1 L/s"
+        ],
+        "value": "11/2 L/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le due portate sono cinque e sei L/s. La semisomma è undici mezzi L/s. Si mediano due risultati di apparati distinti, non si sostituiscono prima le resistenze medie nella rete: il quoziente delle resistenze non è una legge lineare dei due ingressi."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline Q_1=\\frac{5+6}{2}\\,\\mathrm{L/s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline Q_1=\\frac{11}{2}\\,\\mathrm{L/s}"
+        },
+        {
+          "type": "text",
+          "text": "Undici è la somma, undici quarti dimezza due volte e uno è la differenza. Le resistenze medie 3/2 e 2 kPa·s/L darebbero 10·2/(7/2)=40/7 L/s, maggiore della media richiesta di 3/14 L/s."
+        }
+      ],
+      "hints": [
+        "Risolvi ciascuna ripartizione e solo dopo fai la media.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Undici è la somma, undici quarti dimezza due volte e uno è la differenza. Le resistenze medie 3/2 e 2 kPa·s/L darebbero 10·2/(7/2)=40/7 L/s, maggiore della media richiesta di 3/14 L/s.",
+        "target": "C2-L009"
+      },
+      "coverage": [
+        "Continuità e pressione comune ai rami",
+        "Ripartizione fra resistenze positive",
+        "Inverse, tarature e scala non identificabile"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-parallel-flow-divider-13",
+      "kind": "question",
+      "course": "C2",
+      "section": "Reti resistive a portata imposta",
+      "order": 11213,
+      "title": "La seconda resistenza per un bersaglio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L009",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L008",
+        "C2-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parallel-flow-divider",
+      "difficulty": 3,
+      "prompt": "Una pompa mantiene la portata totale Q_T=10 L/s fra due nodi alla stessa quota. Due rami resistivi lineari, con R₁,R₂>0 in kPa·s/L, collegano gli stessi nodi; non ci sono altri percorsi, perdite di massa o accumulo. Il liquido omogeneo incomprimibile scorre in regime stazionario. Nel modello di ciascun ramo Δp=RᵢQᵢ, con Δp pressione a monte meno pressione a valle e Qᵢ>0 verso valle. La pressione comune ai rami si adatta alla portata imposta; non è mantenuta fissa fra prove. A ha R₁=R₂=1 kPa·s/L. B impone R₁=2 kPa·s/L e deve avere Q₁,B=(6/5)Q₁,A. Quanto vale R₂,B/R₂,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3",
+          "1/3",
+          "6/5",
+          "2",
+          "3/2"
+        ],
+        "value": "3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è sei L/s, quindi al secondo ramo restano quattro. Dal primo ramo il salto comune è due per sei, dodici kPa; il secondo deve quindi avere resistenza dodici diviso quattro, tre kPa·s/L. Il rapporto rispetto all’uno iniziale è tre."
+        },
+        {
+          "type": "formula",
+          "text": "Q_{1,B}=6\\,\\mathrm{L/s}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{2,B}=4\\,\\mathrm{L/s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p_B=12\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " R_{2,B}=3\\,\\mathrm{kPa\\,s/L}"
+        },
+        {
+          "type": "formula",
+          "text": " R_{2,B}/R_{2,A}=3"
+        },
+        {
+          "type": "text",
+          "text": "Un terzo inverte le resistenze; sei quinti copia il bersaglio della portata. R₂=2 lascerebbe portate uguali da cinque, mentre R₂=3/2 darebbe 30/7 L/s, non sei."
+        }
+      ],
+      "hints": [
+        "Ricava la pressione dal primo ramo dopo aver fissato il bersaglio.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un terzo inverte le resistenze; sei quinti copia il bersaglio della portata. R₂=2 lascerebbe portate uguali da cinque, mentre R₂=3/2 darebbe 30/7 L/s, non sei.",
+        "target": "C2-L009"
+      },
+      "coverage": [
+        "Continuità e pressione comune ai rami",
+        "Ripartizione fra resistenze positive",
+        "Inverse, tarature e scala non identificabile"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-parallel-flow-divider-14",
+      "kind": "question",
+      "course": "C2",
+      "section": "Reti resistive a portata imposta",
+      "order": 11214,
+      "title": "Un display senza offset",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L009",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L008",
+        "C2-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parallel-flow-divider",
+      "difficulty": 3,
+      "prompt": "Una pompa mantiene la portata totale Q_T=10 L/s fra due nodi alla stessa quota. Due rami resistivi lineari, con R₁,R₂>0 in kPa·s/L, collegano gli stessi nodi; non ci sono altri percorsi, perdite di massa o accumulo. Il liquido omogeneo incomprimibile scorre in regime stazionario. Nel modello di ciascun ramo Δp=RᵢQᵢ, con Δp pressione a monte meno pressione a valle e Qᵢ>0 verso valle. La pressione comune ai rami si adatta alla portata imposta; non è mantenuta fissa fra prove. Un display continuo adimensionale segue S=qQ₁, q>0. A con R₁=R₂=1 kPa·s/L dà S=15. B dà S=18 e ha R₂=3 kPa·s/L. Quanto vale R₁,B in kPa·s/L?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "kPa·s/L",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nel riferimento Q₁ vale cinque L/s e il guadagno è tre s/L. La lettura diciotto significa sei L/s; la seconda portata è quattro L/s. R₂=3 produce dodici kPa, che divisi per i sei L/s del primo ramo danno R₁=2 kPa·s/L."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{s/L}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{1,B}=6\\,\\mathrm{L/s}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{2,B}=4\\,\\mathrm{L/s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p_B=12\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " R_{1,B}=\\frac{\\Delta p_B}{Q_{1,B}}"
+        },
+        {
+          "type": "formula",
+          "text": " R_{1,B}=2\\,\\mathrm{kPa\\,s/L}"
+        },
+        {
+          "type": "text",
+          "text": "La lettura grezza diciotto non è una portata: supererebbe i dieci L/s totali. La taratura va rimossa prima di applicare il vincolo fisico 0<Q₁<Q_T."
+        }
+      ],
+      "hints": [
+        "Decodifica il display e trova la portata che resta al secondo ramo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La lettura grezza diciotto non è una portata: supererebbe i dieci L/s totali. La taratura va rimossa prima di applicare il vincolo fisico 0<Q₁<Q_T.",
+        "target": "C2-L009"
+      },
+      "coverage": [
+        "Continuità e pressione comune ai rami",
+        "Ripartizione fra resistenze positive",
+        "Inverse, tarature e scala non identificabile"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-parallel-flow-divider-15",
+      "kind": "question",
+      "course": "C2",
+      "section": "Reti resistive a portata imposta",
+      "order": 11215,
+      "title": "Due riferimenti per togliere l’offset",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L009",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L008",
+        "C2-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parallel-flow-divider",
+      "difficulty": 3,
+      "prompt": "Una pompa mantiene la portata totale Q_T=10 L/s fra due nodi alla stessa quota. Due rami resistivi lineari, con R₁,R₂>0 in kPa·s/L, collegano gli stessi nodi; non ci sono altri percorsi, perdite di massa o accumulo. Il liquido omogeneo incomprimibile scorre in regime stazionario. Nel modello di ciascun ramo Δp=RᵢQᵢ, con Δp pressione a monte meno pressione a valle e Qᵢ>0 verso valle. La pressione comune ai rami si adatta alla portata imposta; non è mantenuta fissa fra prove. Un display continuo adimensionale segue S=qQ₁+z. A: R₁=R₂=1 kPa·s/L, S=11. B: R₁=2, R₂=3 kPa·s/L, S=13. C: R₂=1 kPa·s/L, S=6. Quanto vale R₁,C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3 kPa·s/L",
+          "1 kPa·s/L",
+          "2 kPa·s/L",
+          "4 kPa·s/L",
+          "6 kPa·s/L"
+        ],
+        "value": "3 kPa·s/L"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti danno cinque e sei L/s. Due unità di lettura per un L/s fissano q=2 s/L e poi z=1. La prova C ha Q₁=(6−1)/2=5/2 L/s e Q₂=15/2 L/s. Il rapporto delle portate è tre, quindi R₁ è tre volte R₂."
+        },
+        {
+          "type": "formula",
+          "text": "q=2\\,\\mathrm{s/L}"
+        },
+        {
+          "type": "formula",
+          "text": " z=1"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{1,C}=\\frac52\\,\\mathrm{L/s}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{2,C}=\\frac{15}{2}\\,\\mathrm{L/s}"
+        },
+        {
+          "type": "formula",
+          "text": " R_{1,C}=3\\,\\mathrm{kPa\\,s/L}"
+        },
+        {
+          "type": "text",
+          "text": "Con R₂=1, le resistenze R₁=1,2,4,6 kPa·s/L produrrebbero letture 11,23/3,5,27/7: nessuna è sei. La nuova resistenza tre restituisce Q₁=5/2 e S=6."
+        }
+      ],
+      "hints": [
+        "Trova q e z con due portate note, poi ricostruisci entrambe le portate C.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Con R₂=1, le resistenze R₁=1,2,4,6 kPa·s/L produrrebbero letture 11,23/3,5,27/7: nessuna è sei. La nuova resistenza tre restituisce Q₁=5/2 e S=6.",
+        "target": "C2-L009"
+      },
+      "coverage": [
+        "Continuità e pressione comune ai rami",
+        "Ripartizione fra resistenze positive",
+        "Inverse, tarature e scala non identificabile"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-parallel-flow-divider-16",
+      "kind": "question",
+      "course": "C2",
+      "section": "Reti resistive a portata imposta",
+      "order": 11216,
+      "title": "Una ripartizione che non fissa la scala",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L009",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L005",
+        "C2-L008",
+        "C2-L009"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "parallel-flow-divider",
+      "difficulty": 3,
+      "prompt": "Una pompa mantiene la portata totale Q_T=10 L/s fra due nodi alla stessa quota. Due rami resistivi lineari, con R₁,R₂>0 in kPa·s/L, collegano gli stessi nodi; non ci sono altri percorsi, perdite di massa o accumulo. Il liquido omogeneo incomprimibile scorre in regime stazionario. Nel modello di ciascun ramo Δp=RᵢQᵢ, con Δp pressione a monte meno pressione a valle e Qᵢ>0 verso valle. La pressione comune ai rami si adatta alla portata imposta; non è mantenuta fissa fra prove. Fra reti si impone R₁=R₂ e si misura Q₁=5 L/s. Quante coppie positive (R₁,R₂) sono compatibili?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Infinite",
+          "Una",
+          "Due",
+          "Nessuna",
+          "Solo la coppia nulla"
+        ],
+        "value": "Infinite"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Con resistenze uguali la formula diventa Q₁=Q_T/2=5 L/s qualunque sia il loro valore positivo. La misura ripete un’informazione già contenuta nel vincolo. Le coppie (1,1) e (2,2) kPa·s/L danno entrambe cinque L/s nel primo ramo; la pressione richiesta passa però da cinque a dieci kPa."
+        },
+        {
+          "type": "formula",
+          "text": "R_1=R_2"
+        },
+        {
+          "type": "formula",
+          "text": "R_2=R>0"
+        },
+        {
+          "type": "formula",
+          "text": " Q_1=\\frac{Q_TR}{2R}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_1=\\frac{Q_T}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_1=5\\,\\mathrm{L/s}"
+        },
+        {
+          "type": "text",
+          "text": "Due esempi non esauriscono le possibilità: ogni R>0 fornisce una coppia. La coppia nulla è esclusa e renderebbe indefinita la formula. Una misura di pressione aggiuntiva fisserebbe invece la scala delle resistenze."
+        }
+      ],
+      "hints": [
+        "Sostituisci il vincolo e controlla quale parametro si cancella.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Due esempi non esauriscono le possibilità: ogni R>0 fornisce una coppia. La coppia nulla è esclusa e renderebbe indefinita la formula. Una misura di pressione aggiuntiva fisserebbe invece la scala delle resistenze.",
+        "target": "C2-L009"
+      },
+      "coverage": [
+        "Continuità e pressione comune ai rami",
+        "Ripartizione fra resistenze positive",
+        "Inverse, tarature e scala non identificabile"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "63661c60bf748f6ef9826e28d60129f8bb654c5b75132c0b1a56df40e8c8b063",
+      "name": "parallel-flow-divider-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTYwMCIgdmlld0JveD0iMCAwIDY0MCAxNjAwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+Cjx0aXRsZSBpZD0idGl0bGUiPkR1ZSByYW1pIGUgdW5hIHBvcnRhdGEgdG90YWxlIGltcG9zdGE8L3RpdGxlPgo8ZGVzYyBpZD0iZGVzYyI+VHJlIHBhc3NpIGRpc3Rpbmd1b25vIHByZXNzaW9uZSBjb211bmUgZSBwb3J0YXRlIGRpdmVyc2UuIExhIHBvcnRhdGEgdG90YWxlIHJlc3RhIGRpZWNpIGxpdHJpIGFsIHNlY29uZG8uIFJlc2lzdGVuemUgdWd1YWxpIGRpdmlkb25vIGNpbnF1ZSBlIGNpbnF1ZTsgYXVtZW50YW5kbyBzb2x0YW50byBsYSBwcmltYSByZXNpc3RlbnphIGEgdHJlIHNpIG90dGVuZ29ubyBjaW5xdWUgbWV6emkgZSBxdWluZGljaSBtZXp6aS4gTGUgZnJlY2NlIGNvbmRpdmlkb25vIHZlbnRpIHBpeGVsIHBlciBsaXRybyBhbCBzZWNvbmRvOyBsYSByZXRlIMOoIHRvcG9sb2dpY2EsIG5vbiB1bmEgZ2VvbWV0cmlhIG1ldHJpY2EuPC9kZXNjPgo8ZGVmcz48bWFya2VyIGlkPSJibHVlIiB2aWV3Qm94PSIwIDAgMTAgMTAiIHJlZlg9IjkiIHJlZlk9IjUiIG1hcmtlcldpZHRoPSI1IiBtYXJrZXJIZWlnaHQ9IjUiIG9yaWVudD0iYXV0byI+PHBhdGggZD0iTTAgMEwxMCA1TDAgMTBaIiBmaWxsPSIjMTU1ZmEwIi8+PC9tYXJrZXI+PG1hcmtlciBpZD0icmVkIiB2aWV3Qm94PSIwIDAgMTAgMTAiIHJlZlg9IjkiIHJlZlk9IjUiIG1hcmtlcldpZHRoPSI1IiBtYXJrZXJIZWlnaHQ9IjUiIG9yaWVudD0iYXV0byI+PHBhdGggZD0iTTAgMEwxMCA1TDAgMTBaIiBmaWxsPSIjYTMzNDMwIi8+PC9tYXJrZXI+PG1hcmtlciBpZD0iZ3JlZW4iIHZpZXdCb3g9IjAgMCAxMCAxMCIgcmVmWD0iOSIgcmVmWT0iNSIgbWFya2VyV2lkdGg9IjUiIG1hcmtlckhlaWdodD0iNSIgb3JpZW50PSJhdXRvIj48cGF0aCBkPSJNMCAwTDEwIDVMMCAxMFoiIGZpbGw9IiMyMTc1NDgiLz48L21hcmtlcj48L2RlZnM+CjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMTYwMCIgZmlsbD0iI2ZmZmRmNyIvPgo8ZyBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiMxNzJjM2IiPgo8dGV4dCB4PSIzNSIgeT0iNDgiIGZvbnQtc2l6ZT0iMjciPjEuIFN0ZXNzaSBub2RpLCBzdGVzc2EgcHJlc3Npb25lPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iOTAiPkE6IFLigoEgPSBS4oKCID0gMSBrUGHCt3MvTDwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjEzNSI+U2NhbGEgcG9ydGF0YTogMjAgcHgvKEwvcyk8L3RleHQ+CjxwYXRoIGQ9Ik0yNTAgMjUwVjM5ME01OTAgMjUwVjM5ME0yNTAgMjUwSDQ2ME01MzAgMjUwSDU5ME0yNTAgMzkwSDQ2ME01MzAgMzkwSDU5ME01OTAgMzIwSDYyMCIgc3Ryb2tlPSIjODc5N2EwIiBzdHJva2Utd2lkdGg9IjMiIGZpbGw9Im5vbmUiLz4KPHJlY3QgeD0iNDYwIiB5PSIyMjUiIHdpZHRoPSI3MCIgaGVpZ2h0PSI1MCIgZmlsbD0iI2Y1ZTlkMiIgc3Ryb2tlPSIjNzk2NjNiIi8+PHJlY3QgeD0iNDYwIiB5PSIzNjUiIHdpZHRoPSI3MCIgaGVpZ2h0PSI1MCIgZmlsbD0iI2Y1ZTlkMiIgc3Ryb2tlPSIjNzk2NjNiIi8+Cjx0ZXh0IHg9IjQ3NSIgeT0iMjU4Ij5S4oKBPC90ZXh0Pjx0ZXh0IHg9IjQ3NSIgeT0iMzk4Ij5S4oKCPC90ZXh0Pgo8cGF0aCBkPSJNNTAgMzIwSDI1MCIgc3Ryb2tlPSIjMTU1ZmEwIiBzdHJva2Utd2lkdGg9IjQiIGZpbGw9Im5vbmUiIG1hcmtlci1lbmQ9InVybCgjYmx1ZSkiLz4KPHBhdGggZD0iTTMwMCAyNTBINDAwIiBzdHJva2U9IiNhMzM0MzAiIHN0cm9rZS13aWR0aD0iNCIgZmlsbD0ibm9uZSIgbWFya2VyLWVuZD0idXJsKCNyZWQpIi8+CjxwYXRoIGQ9Ik0zMDAgMzkwSDQwMCIgc3Ryb2tlPSIjMjE3NTQ4IiBzdHJva2Utd2lkdGg9IjQiIGZpbGw9Im5vbmUiIG1hcmtlci1lbmQ9InVybCgjZ3JlZW4pIi8+Cjx0ZXh0IHg9IjUwIiB5PSIyOTAiPjEwIEwvczwvdGV4dD48dGV4dCB4PSIyODUiIHk9IjIxMCI+UeKCgSA9IDUgTC9zPC90ZXh0Pjx0ZXh0IHg9IjI4NSIgeT0iMzUwIj5R4oKCID0gNSBML3M8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI0NzAiPs6UcCA9IDEgwrcgNSA9IDUga1BhIGluIG9nbmkgcmFtbzwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjUxNSI+MjAwIHB4IGVudHJhbm87IDEwMCArIDEwMCBweCBuZWkgcmFtaS48L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI1NTUiPlJldGUgc2NoZW1hdGljYTogUiBub24gw6ggdW5hIGx1bmdoZXp6YS48L3RleHQ+CjxsaW5lIHgxPSIzNSIgeTE9IjU4MCIgeDI9IjYwNSIgeTI9IjU4MCIgc3Ryb2tlPSIjYmNjNmNhIi8+Cjx0ZXh0IHg9IjM1IiB5PSI2MjUiIGZvbnQtc2l6ZT0iMjciPjIuIENyZXNjZSBzb2x0YW50byBsYSByZXNpc3RlbnphIFLigoE8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI2NjUiPlLigoEgPSAzOyBS4oKCID0gMSBrUGHCt3MvTDwvdGV4dD4KPHBhdGggZD0iTTI1MCA3OTBWOTMwTTU5MCA3OTBWOTMwTTI1MCA3OTBINDc1TTUzNSA3OTBINTkwTTI1MCA5MzBINDc1TTUzNSA5MzBINTkwTTU5MCA4NjBINjIwIiBzdHJva2U9IiM4Nzk3YTAiIHN0cm9rZS13aWR0aD0iMyIgZmlsbD0ibm9uZSIvPgo8cmVjdCB4PSI0NzUiIHk9Ijc2NSIgd2lkdGg9IjYwIiBoZWlnaHQ9IjUwIiBmaWxsPSIjZjVlOWQyIiBzdHJva2U9IiM3OTY2M2IiLz48cmVjdCB4PSI0NzUiIHk9IjkwNSIgd2lkdGg9IjYwIiBoZWlnaHQ9IjUwIiBmaWxsPSIjZjVlOWQyIiBzdHJva2U9IiM3OTY2M2IiLz4KPHRleHQgeD0iNDg1IiB5PSI3OTgiPlLigoE8L3RleHQ+PHRleHQgeD0iNDg1IiB5PSI5MzgiPlLigoI8L3RleHQ+CjxwYXRoIGQ9Ik01MCA4NjBIMjUwIiBzdHJva2U9IiMxNTVmYTAiIHN0cm9rZS13aWR0aD0iNCIgZmlsbD0ibm9uZSIgbWFya2VyLWVuZD0idXJsKCNibHVlKSIvPgo8cGF0aCBkPSJNMzAwIDc5MEgzNTAiIHN0cm9rZT0iI2EzMzQzMCIgc3Ryb2tlLXdpZHRoPSI0IiBmaWxsPSJub25lIiBtYXJrZXItZW5kPSJ1cmwoI3JlZCkiLz4KPHBhdGggZD0iTTMwMCA5MzBINDUwIiBzdHJva2U9IiMyMTc1NDgiIHN0cm9rZS13aWR0aD0iNCIgZmlsbD0ibm9uZSIgbWFya2VyLWVuZD0idXJsKCNncmVlbikiLz4KPHRleHQgeD0iNTAiIHk9IjgzMCI+MTAgTC9zPC90ZXh0Pjx0ZXh0IHg9IjI4NSIgeT0iNzUwIj5R4oKBID0gNS8yIEwvczwvdGV4dD48dGV4dCB4PSIyODUiIHk9Ijg5MCI+UeKCgiA9IDE1LzIgTC9zPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTAxMCI+zpRwID0gMyDCtyAoNS8yKSA9IDEgwrcgKDE1LzIpIGtQYTwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjEwNTUiPjUwICsgMTUwID0gMjAwIHB4OiBpbCB0b3RhbGUgbm9uIGNhbWJpYS48L3RleHQ+CjxsaW5lIHgxPSIzNSIgeTE9IjEwOTAiIHgyPSI2MDUiIHkyPSIxMDkwIiBzdHJva2U9IiNiY2M2Y2EiLz4KPHRleHQgeD0iMzUiIHk9IjExNDAiIGZvbnQtc2l6ZT0iMjciPjMuIENvbmZyb250YXJlIGR1ZSBwcm92ZSBpbnRlcmU8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxMTg1Ij5TY2FsYSBiYXJyZTogMjAgcHgvKEwvcyk8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxMjMwIj5BOiBS4oKBID0gMSwgUuKCgiA9IDEg4oaSIDUgKyA1IEwvczwvdGV4dD4KPHJlY3QgeD0iMTAwIiB5PSIxMjUwIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjYTMzNDMwIi8+PHJlY3QgeD0iMjAwIiB5PSIxMjUwIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjMjE3NTQ4Ii8+Cjx0ZXh0IHg9IjM1MCIgeT0iMTI3NSI+zpRwID0gNSBrUGE8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxMzMwIj5COiBS4oKBID0gMiwgUuKCgiA9IDMg4oaSIDYgKyA0IEwvczwvdGV4dD4KPHJlY3QgeD0iMTAwIiB5PSIxMzUwIiB3aWR0aD0iMTIwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjYTMzNDMwIi8+PHJlY3QgeD0iMjIwIiB5PSIxMzUwIiB3aWR0aD0iODAiIGhlaWdodD0iMzAiIGZpbGw9IiMyMTc1NDgiLz4KPHRleHQgeD0iMzUwIiB5PSIxMzc1Ij7OlHAgPSAxMiBrUGE8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxNDQwIj5MZSBwb3J0YXRlIHNpIHNvbW1hbm8gYSBvZ25pIG5vZG8uPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTQ4NSI+TGEgcHJlc3Npb25lIMOoIGNvbXVuZSBhaSBkdWUgcmFtaTwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjE1MjUiPmRlbGxhIHN0ZXNzYSBwcm92YSwgbWEgcHXDsiBjYW1iaWFyZSBmcmEgcHJvdmUuPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTU3MCI+TGEgcG9tcGEgbWFudGllbmUgUSB0b3RhbGUsIG5vbiDOlHAuPC90ZXh0Pgo8L2c+PC9zdmc+Cg=="
+    }
+  ]
+}
