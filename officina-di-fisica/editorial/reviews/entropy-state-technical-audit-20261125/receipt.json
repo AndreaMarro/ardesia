@@ -1,0 +1,69 @@
+{
+  "phase": "TECHNICAL_CODE_AUDIT_ONLY",
+  "reviewer": "AI distinct from module author/root and candidate authors A/B",
+  "files": {
+    "ideal_expansion_entropy_verifier.py": "5b70840793f29949183f67361dad3e01c43ba23a6b0cd0d8dd19dc7cbd93066e",
+    "statistical_entropy_verifier.py": "992b79d3d8a3aded75dc46ba1e791ed4c372ec353f9de76bfdd070e4ef3780c3",
+    "entropy_state_review.py": "f75450bbf820fd030b618625bbecba044092df7bef895d31ea2d8cd9f8bc82cf"
+  },
+  "independentDomainAndInverseAssertions": 169,
+  "nonintegerCoefficientExamples": 3,
+  "decoderValidExactCases": 7,
+  "decoderInvalidCasesRejected": 11,
+  "idealOracle16Compared": [
+    "2",
+    "J/K",
+    "È uguale e positiva nei due percorsi",
+    "Da 2 a 4 J/K",
+    "2",
+    "2",
+    "2",
+    "2",
+    "B = ΔS ln 2 / ln r",
+    "κ₁ ln(κ₂ r_A) / ln r_A",
+    "4",
+    "5",
+    "2",
+    "4",
+    "4",
+    "8"
+  ],
+  "statisticalOracle16Compared": [
+    "2",
+    "1",
+    "ΔS = k_B ln2",
+    "Da 2 a 3",
+    "8",
+    "2",
+    "1/2",
+    "2",
+    "Ω_f = Ω_i 2^z",
+    "[ln R + ln(κ₁/κ₂)] / ln R",
+    "1/2",
+    "3/2",
+    "1/2",
+    "2",
+    "16",
+    "Infinite coppie intere positive"
+  ],
+  "signedCompressionAndZeroChangeChecked": true,
+  "newDecoderPreservesExactDecimal": true,
+  "legacyParserRiskReproduced": true,
+  "finiteRealFixVerified": true,
+  "resourceGuard": {
+    "lock": "/private/tmp/cric-bounded-local-work.lock",
+    "minimumFreeGiB": 2,
+    "observedFreeGiB": 4.924
+  },
+  "probeSha256": "0aa032a970da7d60d5f3c557d26ec9f6941c6ec19bbd5527695c25f28a4d748b",
+  "outcome": "NO_REMAINING_CODE_BLOCKER_IDENTIFIED_WITHIN_SCOPE",
+  "limits": [
+    "Not a full independent scientific rereading of all32 candidate blocks/feedback/assets or source-first chronology.",
+    "No nativeSVG/productUI/browser/DB/import/fullsuite performed in this audit.",
+    "Root own8tests/import receipts are separate evidence, not recounted as reviewer executions.",
+    "Legacy decoder copies remain a bounded arithmetic implementation risk; no frozen candidate defect demonstrated and no withdrawal/publication action."
+  ],
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "activityCredit": 0
+}

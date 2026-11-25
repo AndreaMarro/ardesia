@@ -1,0 +1,53 @@
+{
+  "schemaVersion": "1.0.0",
+  "scope": "Complete source-first independent AI scientific review by Root of A188 and B189; human approval separate",
+  "questionsReviewed": 32,
+  "totalScientificallyReviewedQuestions": 2832,
+  "scientificallyUnreviewedQuestions": 1774,
+  "sourceFirstPrimarySha256": "582e30b76edaa9d53138240934256a3ff1224966737fcdb7b74defa578b21023",
+  "rootTests": {
+    "count": 8,
+    "seconds": "1.832",
+    "observedExitCode": 0,
+    "hypothesisConfigurations": 120
+  },
+  "additionalMutationCollection": {
+    "count": 1,
+    "seconds": "0.707",
+    "wrongKeysRetokenizedAndRejected": 32,
+    "observedExitCode": 0
+  },
+  "thirdTechnicalAudit": {
+    "path": "editorial/reviews/entropy-state-technical-audit-20261125/receipt.json",
+    "sha256": "857207000ceb79b11de991f7e653bba176137b8aa1bdd053a2d7b60a61366af5",
+    "assertions": 169,
+    "scope": "technical model/domain/decoder audit, not substitute for Root complete individual reading"
+  },
+  "canonicalImports": {
+    "firstSavedPerBatch": 16,
+    "repeatSavedPerBatch": 0,
+    "repeatUnchangedPerBatch": 16,
+    "published991BytesUnchanged": true
+  },
+  "files": {
+    "editorial/reviews/entropy-state-technical-audit-20261125/probe.py": "0aa032a970da7d60d5f3c557d26ec9f6941c6ec19bbd5527695c25f28a4d748b",
+    "editorial/reviews/entropy-state-technical-audit-20261125/receipt.json": "857207000ceb79b11de991f7e653bba176137b8aa1bdd053a2d7b60a61366af5",
+    "tools/corpus_engineering/entropy_state_review.py": "f75450bbf820fd030b618625bbecba044092df7bef895d31ea2d8cd9f8bc82cf",
+    "tools/corpus_engineering/ideal_expansion_entropy_verifier.py": "5b70840793f29949183f67361dad3e01c43ba23a6b0cd0d8dd19dc7cbd93066e",
+    "tools/corpus_engineering/statistical_entropy_verifier.py": "992b79d3d8a3aded75dc46ba1e791ed4c372ec353f9de76bfdd070e4ef3780c3",
+    "tests/corpus/test_u5_state_entropy_independent.py": "a25f2135c954cbee39aceca1453e67b243592fcbaa52d8978abbe2698cf99f97",
+    "editorial/reviews/ideal-expansion-entropy-188.json": "98eeb7c4ebc46880bb4aff514821ec0cfd5bb0d9de71ae8f0d26c9f0c13877e8",
+    "editorial/reviews/ideal-expansion-entropy-188-integration.json": "ff27a3c275dc97c12a21531299f9d39c2fc95089e119a95ba662c148d4dd717e",
+    "editorial/reviews/ideal-expansion-entropy-188-mutations.json": "08c051bffbfe465d34429e210a20ac55d71c44ec2fd711fbafe1b37a8f6fa272",
+    "editorial/reviews/independent-ideal-expansion-entropy-188-20261125.md": "0fdbd7b4cc421d9136a7a7c8995c4d5749cac769531530e4ce3ea67c2118938e",
+    "editorial/reviews/statistical-entropy-189.json": "0f20283c60ba22b1f67500156d42c8ec896fe536c21e9f2858c66b44f8b3ff73",
+    "editorial/reviews/statistical-entropy-189-integration.json": "c70ff7f9e39f0f0fefc83482e5e9cfc5e0b9ca652ccb302834317a0c288ff3bb",
+    "editorial/reviews/statistical-entropy-189-mutations.json": "a7bd526c1aef8f6d73c13638207b34606017fd207b65dec4045449b19ba0ad9f",
+    "editorial/reviews/independent-statistical-entropy-189-20261125.md": "9f9e5755c6469712d28319a3acc7aa6888acbf235e5b39674f3a1cc7ba1bb4cb",
+    "editorial/reviews/u5-state-entropy-root-tests-20261125.txt": "0188166b249e3ee48aabacbefd98e7698664cfc45bae091bc04d5971523ef3ba"
+  },
+  "productUI": "NOT_RUN_FOR_THESE_32",
+  "checkpointCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}
