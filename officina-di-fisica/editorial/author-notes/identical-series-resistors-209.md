@@ -32,9 +32,9 @@ Distrattori: A corrente,V tensione e S conduttanza sono altre grandezze. Uno è 
 
 ## 03 — La legge della catena senza derivazioni
 
-Le cadute di tensione di N elementi identici, attraversati dalla stessa corrente, si sommano: V=NIr. Confrontando con V=IR si ottiene R=Nr. Non si richiede che N sia grande, ma che sia un conteggio intero positivo.
+Le cadute di tensione di N elementi identici, attraversati dalla stessa corrente, si sommano. Nella somma indicata ci sono esattamente N termini Ir, quindi V=NIr. Confrontando con V=IR si ottiene R=Nr. Non si richiede che N sia grande, ma che sia un conteggio intero positivo.
 
-Passaggi: `V=\sum_{j=1}^{N}Ir\qquad V=NIr\qquad R=Nr`
+Passaggi: `V=Ir+\cdots+Ir\qquad V=NIr\qquad R=Nr`
 
 Distrattori: r/N è il parallelo di N elementi uguali. N/r è una conduttanza; r+N somma grandezze non omogenee. N²r aggiunge un secondo fattoreN che non nasce dalla somma delle cadute.
 
@@ -141,3 +141,7 @@ Sostituendo il vincolo nel totale si ottiene R=βN². Con6 Ω eβ=2/3 Ω si trov
 Passaggi: `R=\beta N^2\qquad N^2=\frac{6\,\Omega}{(2/3)\,\Omega}\qquad N^2=9\qquad N=3`
 
 Distrattori: Nove copia N²,−3 viola il conteggio e due darebbe R=8/3 Ω. Non sono infinite soluzioni perché la misura fissa N² e il dominio intero positivo seleziona un solo conteggio.
+
+## Rilettura richiesta dal revisore distinto
+
+Legge03 riscritta nel contenuto autore come somma esplicita di N termini, poi V=NIr e R=Nr; eliminato l’indice di somma spezzato da law_steps, senza cambiare helper. Payload effettivo03 riletto: tre formule ben formate, N intero positivo motivato. SVG byte-identico. Tutte le chiavi, i dati e i domini restano invariati; gli altri record sono stati confrontati con l’archivio byte-identico. Nessuna firma scientifica dell’autore. Due assembly finali identici e import temporaneo16→0/16 reali;991 pubblicati invariati. UI prodotto e approvazione umana NOT_RUN.

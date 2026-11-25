@@ -188,7 +188,7 @@
       "blocks": [
         {
           "type": "text",
-          "text": "Le cadute di tensione di N elementi identici, attraversati dalla stessa corrente, si sommano: V=NIr. Confrontando con V=IR si ottiene R=Nr. Non si richiede che N sia grande, ma che sia un conteggio intero positivo."
+          "text": "Le cadute di tensione di N elementi identici, attraversati dalla stessa corrente, si sommano. Nella somma indicata ci sono esattamente N termini Ir, quindi V=NIr. Confrontando con V=IR si ottiene R=Nr. Non si richiede che N sia grande, ma che sia un conteggio intero positivo."
         },
         {
           "type": "figure",
@@ -197,11 +197,7 @@
         },
         {
           "type": "formula",
-          "text": "V=\\sum_{j"
-        },
-        {
-          "type": "formula",
-          "text": "\\sum_{j=1}^{N}Ir"
+          "text": "V=Ir+\\cdots+Ir"
         },
         {
           "type": "formula",
