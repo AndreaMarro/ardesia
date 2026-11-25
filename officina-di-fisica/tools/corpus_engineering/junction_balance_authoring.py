@@ -66,7 +66,7 @@ TASKS=[
 ('Un rapporto assegnato tra ingresso e prima uscita',SCENE+'Fra prove si impone Q_e=(5/2)Q₁. Si misura Q₂=6 L/s. Quanto vale Q₁ in L/s?',4,
  'Sostituiamo il vincolo nella differenza: Q₂=(5/2−1)Q₁=(3/2)Q₁. Dividendo sei per tre mezzi si ricava Q₁=4 L/s e quindi Q_e=10 L/s. Il fattore del vincolo è puro perché collega due portate.',
  r'Q_2=\frac32Q_1\qquad Q_1=\frac23Q_2\qquad Q_1=4\,\mathrm{L/s}\qquad Q_e=10\,\mathrm{L/s}',
- 'Due L/s userebbe un coefficiente tre, otto invertirebbe la divisione e sei scambierebbe le uscite. Il rapporto ingresso/prima uscita deve superare uno per lasciare una seconda uscita positiva; cinque mezzi lo soddisfa. Non si tratta di un vincolo ridondante.', 'Sostituisci il rapporto nella somma prima di isolare Q₁.')]
+ 'Due L/s userebbe un coefficiente tre, otto non soddisferebbe il dato: (3/2)·8 L/s darebbe dodici L/s anziché sei e sei scambierebbe le uscite. Il rapporto ingresso/prima uscita deve superare uno per lasciare una seconda uscita positiva; cinque mezzi lo soddisfa. Non si tratta di un vincolo ridondante.', 'Sostituisci il rapporto nella somma prima di isolare Q₁.')]
 CHOICES={2:0,3:0,4:0,7:0,8:0,9:0,10:0,11:0,12:0,13:0,15:0}
 UNITS={1:'L/s',5:'L/s',6:'L/s',14:'L/s',16:'L/s'}
 FIGURES={1:'I versi sono assegnati: ingresso Q_e=10 L/s e uscite Q₁=4 L/s, Q₂=6 L/s. Frecce di 200, 80, 120 px alla stessa scala 20 px/(L/s); ogni freccia ha un proprio path. I raccordi sono uno schema topologico, non una geometria in scala.',3:'Le barre blu rappresentano l’ingresso, quelle verdi e rosse le due uscite alla scala comune 20 px/(L/s). Stato A: 200=80+120 px, cioè 10=4+6 L/s. Stato B: 240=100+140 px, cioè 12=5+7 L/s. Le unità di un litro al secondo sono celle larghe 20 px. Nessuna portata è una forza o una pressione.'}
