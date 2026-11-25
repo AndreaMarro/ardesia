@@ -54,7 +54,7 @@ Fonte canonica SHA256 47399c810fe1d388d0398eec706bafa26d2ff049ab333389c524b8c3e3
 
 Un resistore ohmico ha R=2 Ω, mantenuta costante. In ogni prova si applica una caduta positiva V costante per una durata T>0 finita; il tempo interno τ va da 0 a T. L’energia E assorbita elettricamente e convertita termicamente nell’intervallo è E=(V²/R)T. La corrente V/R e la potenza V²/R restano costanti durante la prova. Fra prove V e T possono cambiare; non si assume che l’energia resti accumulata nel resistore o che ne determini da sola l’aumento di temperatura. V passa da 2 a 1 V, mentre T resta 3 s. Come cambia E?
 
-Procedimento d’autore: L’energia iniziale è 6 J. Con metà tensione la potenza si riduce a un quarto: P_B=1²/(2 Ω)=1/2 W. Per tre secondi l’energia finale è (1/2)·3=3/2 J. La resistenza non è cambiata.
+Procedimento d’autore: L’energia iniziale è 6 J. Con metà tensione la potenza si riduce a un quarto: P_B=(1 V)²/(2 Ω)=1/2 W. Per tre secondi l’energia finale è (1/2)·3=3/2 J. La resistenza non è cambiata.
 
 Passaggi: P_B=\frac12\,\mathrm W;  E_B=\frac12\cdot3\,\mathrm J;  E_B=\frac32\,\mathrm J.
 
@@ -62,7 +62,7 @@ Distrattori: Tre J usa una legge lineare in V. Sei ignora la modifica; dodici o 
 
 Hint: Prima considera il quadrato del rapporto delle tensioni.
 
-Fonte canonica SHA256 ce10458b38b47000d0ed90b4d8cae5e6b00bd4ff2ee7ba99118f5352875ccf99. Candidato SHA256 fd05ceb337bc2bf93baf80b4f3e6f72a854a79a07ad38346db963bf9ebb59528. Revisione indipendente e human NOT_RUN.
+Fonte canonica SHA256 ce10458b38b47000d0ed90b4d8cae5e6b00bd4ff2ee7ba99118f5352875ccf99. Candidato SHA256 74573cfabd4284fef52435abb0d54aad4c758dd3a3f9c9966759623d6f097382. Revisione indipendente e human NOT_RUN.
 
 ## AR-u6-joule-energy-voltage-time-05 — Tensione dall’energia
 
@@ -234,8 +234,12 @@ Fonte canonica SHA256 500869edf938e1d343be703f53e894e3df0a9d978539d967942954a4b0
 
 ## Provenienza tecnica
 
-Asset SHA256 37e533b95cced8a2fed91ff364d281288cc6ac300291fcc4638f97f145978318. Package file SHA256 77fa034a70f36507957f3a6940210f5ed5f6b9c8eddde66a38e389add9b4ce8b. Binding file SHA256 6ed238cee70a0b419256d145ff9d6efbd31090642a6af3d049032b6f9ebd4565. Prova strutturale SHA256 d55720754875d94e18e40be429b28d1a52b575f07c4c3c17f4c1154a1bc0c9ec. Asset-only manifest SHA256 92e5df4d185fd3d2bcdffbea6556162ea1de2c140ef8c10f0e641ba5803127da.
+Asset SHA256 37e533b95cced8a2fed91ff364d281288cc6ac300291fcc4638f97f145978318. Package file SHA256 df04d131f2296c07a627002a830635f6ab03ed80fa55af9370c365dfe15bea45. Binding file SHA256 f35ae4892aec5783d5cda3d3cce9b396efbd6895423199dc0e882d88b7f30f91. Prova strutturale SHA256 eddb64a0bce874bfdd409690063d2fa0584715fd0dfbb1751da38483d27aaf2d. Asset-only manifest SHA256 92e5df4d185fd3d2bcdffbea6556162ea1de2c140ef8c10f0e641ba5803127da.
 
 Le coordinate intrinseche dell’SVG documentano proporzioni geometriche nella sorgente, non una misura in pixel fisici dopo ridimensionamento. I testi visibili usano soltanto grandezze fisiche e valori pertinenti. Le origini e le etichette sono separate dagli assi; la direzione di ciascuna freccia è letta insieme alla sua didascalia.
 
 Il tempo sorgente t è rinominato durata T per distinguerlo dal tempo interno τ; nessun compito o dato cambia. Nel primo pannello le scale intrinseche sono 100 coordinate/s e 60 coordinate/W: il rettangolo 300×120 rappresenta 3 s per 2 W. Nel secondo E(τ)=2 W·τ usa x=100+100τ e y=880−40E, da (100,880) a (400,640). Le barre finali 6,16,11 J hanno larghezze 120,320,220 (20 coordinate/J), origine comune 150. Le coordinate documentano la costruzione, non sono pixel fisici richiesti al lettore.
+
+## Rilettura richiesta al revisore distinto
+
+Correzione testuale del solo record 04 dopo rilievo B. Le altre 15 schede e tutti i campi non testuali del record sono identici; nessuna risposta, formula nei blocchi o SVG cambia. Due nuovi assembly e import canonici sono realmente terminati con 16 nuovi, poi 0 nuovi e 16 invariati; 991 pubblicati preservati. Il precedente rendering nativo resta prova degli identici byte SVG: nessun nuovo render o replay UI è stato eseguito. La firma indipendente sui testi nuovi è ancora NOT_RUN dall’autore. Vecchie edizioni e prove d’autore sono archiviate con hash prima delle modifiche.

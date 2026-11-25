@@ -19,7 +19,7 @@ TASKS=[
  'VT/R non ha unità di energia e perde un fattore V. Dividere per T rende inverso il tempo; moltiplicare per R inverte la legge della potenza a tensione fissata. T² descriverebbe un’altra dipendenza temporale, non una potenza costante.',
  'Il rettangolo sotto P(τ) ha altezza P e larghezza T.'),
 ('Metà tensione per la stessa durata',SCENE+'V passa da 2 a 1 V, mentre T resta 3 s. Come cambia E?',['Da 6 a 3/2 J','Da 6 a 3 J','Resta 6 J','Da 6 a 12 J','Da 6 a 24 J'],
- 'L’energia iniziale è 6 J. Con metà tensione la potenza si riduce a un quarto: P_B=1²/(2 Ω)=1/2 W. Per tre secondi l’energia finale è (1/2)·3=3/2 J. La resistenza non è cambiata.',
+ 'L’energia iniziale è 6 J. Con metà tensione la potenza si riduce a un quarto: P_B=(1 V)²/(2 Ω)=1/2 W. Per tre secondi l’energia finale è (1/2)·3=3/2 J. La resistenza non è cambiata.',
  r'P_B=\frac12\,\mathrm W\qquad E_B=\frac12\cdot3\,\mathrm J\qquad E_B=\frac32\,\mathrm J',
  'Tre J usa una legge lineare in V. Sei ignora la modifica; dodici o ventiquattro rendono inverso il cambiamento della tensione, mentre a R fissata la potenza dipende direttamente da V².',
  'Prima considera il quadrato del rapporto delle tensioni.'),

@@ -184,11 +184,11 @@ Procedimento d’autore: Il bersaglio è 12/3=4 W. Con I_B=1 A, R_B=P_B/I_B²=4 
 
 Passaggi: P_B=4\,\mathrm W;  R_B=4\,\Omega;  \frac{R_B}{R_A}=\frac43.
 
-Distrattori: 3/4 inverte il confronto. Un terzo copia il rapporto delle potenze ignorando I; due segue il fattore inverso della corrente senza quadrato. Quattro è R_B in Ω, non il rapporto richiesto.
+Distrattori: 3/4 inverte il confronto. Un terzo copia il rapporto delle potenze ignorando I; due segue il fattore inverso della corrente senza quadrato. Quattro copia il valore numerico di R_B in ohm senza dividerlo per R_A=3 Ω.
 
 Hint: Ricava la nuova resistenza con la corrente B, poi confronta le R.
 
-Fonte canonica SHA256 ab2cea8fe740bd9989c09ae6ca4e50e992843e3dd543ca043f77ba8f5db7a8b5. Candidato SHA256 f78efb144c0b2e09ad193beaef23dcb281b0bd41d974fbb66cb57b44cf558264. Revisione indipendente e human NOT_RUN.
+Fonte canonica SHA256 ab2cea8fe740bd9989c09ae6ca4e50e992843e3dd543ca043f77ba8f5db7a8b5. Candidato SHA256 887e7d59026b0f3b5b23a8de0796b98b9ebba3393ad71f0a9e1705072c6a28b0. Revisione indipendente e human NOT_RUN.
 
 ## AR-u6-joule-power-14 — Potenza dal display, poi corrente
 
@@ -234,10 +234,14 @@ Fonte canonica SHA256 5da5b44585588a572f09c5f96de2958d847bba20fdf7ede4d308b38a47
 
 ## Provenienza tecnica
 
-Asset SHA256 97d8a6e762e2a3f217526d7136348c24de83ccd6fa7f6f6ee56e051ec1922944. Package file SHA256 6c275e92ffa437a5037517472e6960cd5aefc324ef6667d13050fc7b322e2346. Binding file SHA256 5ba1a3febef04d2b052f209fbe2abf01392deebc22538cc7f14b5c4fb8808337. Prova strutturale SHA256 0de46577c3ec02326a2d9c5c589680b6d84a672d4f7167925f1389b2fc3df1d9. Asset-only manifest SHA256 cf09134e838fcb87e7a16a02e8b3237a3dac948115545f5de588f1855e344286.
+Asset SHA256 97d8a6e762e2a3f217526d7136348c24de83ccd6fa7f6f6ee56e051ec1922944. Package file SHA256 6a096a6059702e784a7c4e882f6eae13aa316c3766f38b48136aeee31aeb26ae. Binding file SHA256 82be654ae155750888e0dcf0091755237ce52a0bae3832fc01d01e180e258365. Prova strutturale SHA256 b8dde05d745470f0a2abf7a79a31e5c2122821eb852c8953e72dbda09ac36750. Asset-only manifest SHA256 cf09134e838fcb87e7a16a02e8b3237a3dac948115545f5de588f1855e344286.
 
 Le coordinate intrinseche dell’SVG documentano proporzioni geometriche nella sorgente, non una misura in pixel fisici dopo ridimensionamento. I testi visibili usano soltanto grandezze fisiche e valori pertinenti. Le origini e le etichette sono separate dagli assi; la direzione di ciascuna freccia è letta insieme alla sua didascalia.
 
 La prima anteprima nativa completa mostrava la curva attraversare l’etichetta 3 W. Asset, package, binding, PNG e log originali sono archiviati con manifest in joule-power-213-first-native-label-overlap-20261125. Ho spostato soltanto quel testo da (255,730) a (170,760), conservando ogni punto, la curva e le scale; poi ho realmente ripetuto due assembly, import e rendering e letto l’immagine finale per intero. Non è un replay dell’app.
 
 La Bézier centrale è M240 740 Q310 680 380 560: x=240+140u, y=740−120u−60u². Con I=(x−100)/140 A e P=(800−y)/20 W segue esattamente P=3 I² nei valori numerici delle unità dichiarate. Il tratto rappresenta 1≤I/(1 A)≤2. Le barre 12,4,8 W hanno larghezze 240,80,160 (20 coordinate/W) con origine comune 150. Le coordinate sono soltanto documentazione tecnica, non pixel fisici visibili allo studente.
+
+## Rilettura richiesta al revisore distinto
+
+Correzione testuale del solo record 13 dopo rilievo B. Le altre 15 schede e tutti i campi non testuali del record sono identici; nessuna risposta, formula nei blocchi o SVG cambia. Due nuovi assembly e import canonici sono realmente terminati con 16 nuovi, poi 0 nuovi e 16 invariati; 991 pubblicati preservati. Il precedente rendering nativo resta prova degli identici byte SVG: nessun nuovo render o replay UI è stato eseguito. La firma indipendente sui testi nuovi è ancora NOT_RUN dall’autore. Vecchie edizioni e prove d’autore sono archiviate con hash prima delle modifiche.

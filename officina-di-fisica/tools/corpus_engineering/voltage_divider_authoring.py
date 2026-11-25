@@ -46,7 +46,7 @@ TASKS=[
 ('La formula inversa superiore',SCENE+'Sono noti U, E e R₂. Quale formula isola R₁?',['R₁ = R₂ (E − U) / U','R₁ = R₂ (E + U) / U','R₁ = R₂ U / (E − U)','R₁ = U / R₂','R₁ = R₂ − U'],
  'Moltiplichiamo per il totale: U(R₁+R₂)=ER₂. Sottraendo UR₂ e dividendo per U>0 si ottiene R₁=R₂(E−U)/U. Il rapporto delle tensioni è puro, quindi l’unità rimane Ω; E−U è positivo nel dominio.',
  r'U(R_1+R_2)=ER_2\qquad UR_1=(E-U)R_2\qquad R_1=R_2\frac{E-U}{U}',
- 'Il più al posto del meno non isola il termine. UR₂/(E−U) è l’inversa per R₂ quando il noto è R₁: non risolve questa incognita. U/R₂ misura corrente e R₂−U sottrae Ω e V.',
+ 'Il più al posto del meno non isola il termine. UR₂/(E−U) inverte il rapporto delle tensioni dell’inversa corretta: con E=12 V, U=3 V e R₂=1 Ω darebbe 1/3 Ω, mentre R₁=3 Ω. U/R₂ misura corrente e R₂−U sottrae Ω e V.',
  'Controlla insieme l’algebra e il dominio 0<U<E.'),
 ('Un rapporto con somme definite',SCENE+'B usa R₁,B=κ₁R₁ e R₂,B=κ₂R₂, con fattori positivi. Definiamo S=R₁+R₂ e S_B=κ₁R₁+κ₂R₂, entrambe resistenze totali. Quanto vale U_B/U_A?',['κ₂ S / S_B','κ₁ S / S_B','κ₁ κ₂','S_B / (κ₂ S)','κ₂ / κ₁'],
  'Il generatore E resta lo stesso e si cancella nel rapporto. Il numeratore inferiore porta κ₂, mentre il totale passa da S a S_B. Pertanto U_B/U_A=κ₂S/S_B. Con κ₁=κ₂ le due resistenze sono scalate insieme e l’uscita non cambia.',

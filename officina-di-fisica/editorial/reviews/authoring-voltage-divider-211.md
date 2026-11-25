@@ -128,11 +128,11 @@ Procedimento d’autore: Moltiplichiamo per il totale: U(R₁+R₂)=ER₂. Sottr
 
 Passaggi: U(R_1+R_2)=ER_2;  UR_1=(E-U)R_2;  R_1=R_2\frac{E-U}{U}.
 
-Distrattori: Il più al posto del meno non isola il termine. UR₂/(E−U) è l’inversa per R₂ quando il noto è R₁: non risolve questa incognita. U/R₂ misura corrente e R₂−U sottrae Ω e V.
+Distrattori: Il più al posto del meno non isola il termine. UR₂/(E−U) inverte il rapporto delle tensioni dell’inversa corretta: con E=12 V, U=3 V e R₂=1 Ω darebbe 1/3 Ω, mentre R₁=3 Ω. U/R₂ misura corrente e R₂−U sottrae Ω e V.
 
 Hint: Controlla insieme l’algebra e il dominio 0<U<E.
 
-Fonte canonica SHA256 01abbac9a128a217e0002ad1c43a0f0aa113402d5f46b61141216ab1080c03da. Candidato SHA256 651e31c65d2d83d7623bd6cc30acbffef86fc9d72f0e8871cbf53a17ea876194. Revisione indipendente e human NOT_RUN.
+Fonte canonica SHA256 01abbac9a128a217e0002ad1c43a0f0aa113402d5f46b61141216ab1080c03da. Candidato SHA256 38a0d3d84258e8afb9c261033525a48eb15006d7ed315492327e720719ea5590. Revisione indipendente e human NOT_RUN.
 
 ## AR-u6-voltage-divider-10 — Un rapporto con somme definite
 
@@ -234,8 +234,12 @@ Fonte canonica SHA256 292852ec181a7a16b426a5a454261d327d238e99ca07bea8c1902c9502
 
 ## Provenienza tecnica
 
-Asset SHA256 d217764d45745831f6e2d2b1af3a4f27a59bc04cb2950461eb27392cc628e6b4. Package file SHA256 289d684c2f85b40230942cddcae194763ce64ec7b8cc0939996cf0e3a317f767. Binding file SHA256 ffdd2cbaf0e1a0236f8df7b31da3f10202159d534b9e3ffdbfa48ce6f03e42b6. Prova strutturale SHA256 8469e92635ee6eb734da8395c484f1bb7ae5a165179af405aa23d0ed1bcc35de. Asset-only manifest SHA256 eb557825154eb39dd23ac36975f07445a04360bee284e395edc681354b8f3f4e.
+Asset SHA256 d217764d45745831f6e2d2b1af3a4f27a59bc04cb2950461eb27392cc628e6b4. Package file SHA256 e59d859178342bca1463460c1e1ef0877042f4fd501d8adf6081f79c03188786. Binding file SHA256 0e5d0af630efa448a85ccc2bdf154b00e1f4141b0c6be82631ebd2a17d862419. Prova strutturale SHA256 5903a81cbb076d2a69bb34410cd223ce7020251ff96778b1b188ee82bf291b13. Asset-only manifest SHA256 eb557825154eb39dd23ac36975f07445a04360bee284e395edc681354b8f3f4e.
 
 Le coordinate intrinseche dell’SVG documentano proporzioni geometriche nella sorgente, non una misura in pixel fisici dopo ridimensionamento. I testi visibili usano soltanto grandezze fisiche e valori pertinenti. Le origini e le etichette sono separate dagli assi; la direzione di ciascuna freccia è letta insieme alla sua didascalia.
 
 Proporzioni tecniche della figura: nel pannello centrale le due somme di cadute hanno ampiezza comune 360 coordinate per 12 V (30 coordinate/V), con segmenti 180+180 e 120+240. Nel pannello finale 6, 3, 9/2 V hanno barre 240, 120, 180 (40 coordinate/V). Il circuito superiore ha un’uscita aperta e nessun carico aggiunto; i simboli resistivi sono schematici. Queste coordinate non sono pixel fisici richiesti allo studente.
+
+## Rilettura richiesta al revisore distinto
+
+Correzione testuale del solo record 09 dopo rilievo B. Le altre 15 schede e tutti i campi non testuali del record sono identici; nessuna risposta, formula nei blocchi o SVG cambia. Due nuovi assembly e import canonici sono realmente terminati con 16 nuovi, poi 0 nuovi e 16 invariati; 991 pubblicati preservati. Il precedente rendering nativo resta prova degli identici byte SVG: nessun nuovo render o replay UI è stato eseguito. La firma indipendente sui testi nuovi è ancora NOT_RUN dall’autore. Vecchie edizioni e prove d’autore sono archiviate con hash prima delle modifiche.

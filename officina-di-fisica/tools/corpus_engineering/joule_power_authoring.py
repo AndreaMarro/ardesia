@@ -66,7 +66,7 @@ TASKS=[
 ('R per il bersaglio a corrente minore',SCENE+'A ha I=2 A e R=3 Ω. B usa I=1 A e deve dare P_B=P_A/3. Quanto vale R_B/R_A?',['4/3','3/4','1/3','2','4'],
  'Il bersaglio è 12/3=4 W. Con I_B=1 A, R_B=P_B/I_B²=4 Ω. Il rapporto con 3 Ω iniziali è 4/3. La riduzione di corrente non consente di copiare direttamente il fattore bersaglio nella resistenza.',
  r'P_B=4\,\mathrm W\qquad R_B=4\,\Omega\qquad \frac{R_B}{R_A}=\frac43',
- '3/4 inverte il confronto. Un terzo copia il rapporto delle potenze ignorando I; due segue il fattore inverso della corrente senza quadrato. Quattro è R_B in Ω, non il rapporto richiesto.',
+ '3/4 inverte il confronto. Un terzo copia il rapporto delle potenze ignorando I; due segue il fattore inverso della corrente senza quadrato. Quattro copia il valore numerico di R_B in ohm senza dividerlo per R_A=3 Ω.',
  'Ricava la nuova resistenza con la corrente B, poi confronta le R.'),
 ('Potenza dal display, poi corrente',SCENE+'D=a_cal P è continuo e adimensionale, a_cal>0, senza offset. A con I=2 A e R=3 Ω dà D=36. C dà D=12 e ha R=4 Ω. Quanto vale I_C in A?',1,
  'La potenza di riferimento è 12 W, dunque a_cal=36/(12 W)=3 W⁻¹. C ha P_C=12/(3 W⁻¹)=4 W. Dividendo per R_C=4 Ω si trova I_C²=1 A² e quindi I_C=1 A nel ramo positivo.',
