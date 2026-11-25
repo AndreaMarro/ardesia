@@ -1,0 +1,1146 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u3-accelerating-liquid-column-01",
+      "kind": "question",
+      "course": "C2",
+      "section": "Risultante su una colonna materiale in moto",
+      "order": 12121,
+      "title": "La massa precede la risultante",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L001",
+      "prerequisites": [
+        "C2-L001",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "accelerating-liquid-column",
+      "difficulty": 1,
+      "prompt": "In un riferimento inerziale una colonna materiale di acqua omogenea incomprimibile, ρ=1000 kg/m³, occupa un tratto rettilineo orizzontale di sezione A=1 cm² e lunghezza L>0 in m. Nell’istante studiato tutti i suoi elementi hanno accelerazione assiale comune a>0 in m/s² verso +x; la massa della colonna è costante, senza deformazioni. Si trascurano attrito e componenti assiali delle forze delle pareti. Le pressioni medie p₁,p₂ sulle due sezioni estreme producono (p₁−p₂)A verso +x. g indica il modulo dell’accelerazione gravitazionale. Il peso verticale è equilibrato dalle azioni delle pareti, perché l’accelerazione verticale è nulla. F indica il modulo positivo della risultante sul liquido, non una singola spinta di pressione. Si confrontano colonne o istanti distinti senza imporre un moto stazionario. Con L=2 m e a=5 m/s², quanto vale F in N?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "N",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Un centimetro quadrato è un decimillesimo di metro quadrato. La massa per unità di lunghezza è perciò 1000·10⁻⁴=1/10 kg/m; una colonna lunga due metri ha massa un quinto di kg. La seconda legge di Newton dà F=(1/5)·5=1 N verso +x. Le forze verticali si compensano e non si aggiungono al modulo assiale."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/2da07d6328ef2079323875d23a2bc7bf02397095a8c420973786c43ce54ab68e",
+          "text": "Colonna orizzontale di esempio lunga 2 m, sezione 1 cm² e massa 1/5 kg. Lunghezza a 100 px/m, sezione del disegno simbolica. Pressioni medie assolute 110 e 100 kPa danno spinte 11 N verso +x e 10 N verso −x; frecce rispettivamente 110 e 100 px alla scala 10 px/N. Risultante assiale 1 N, accelerazione 5 m/s². A g=10 m/s² il peso 2 N è equilibrato da una risultante verticale delle pareti di 2 N: frecce da 20 px alla stessa scala delle forze."
+        },
+        {
+          "type": "formula",
+          "text": "A=10^{-4}\\,\\mathrm{m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho A=\\frac1{10}\\,\\mathrm{kg/m}"
+        },
+        {
+          "type": "formula",
+          "text": " m=\\frac15\\,\\mathrm{kg}"
+        },
+        {
+          "type": "formula",
+          "text": " F=ma"
+        },
+        {
+          "type": "formula",
+          "text": " F=1\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "Cinque copia l’accelerazione e due la lunghezza, senza includere la massa. Usare A=10⁻² m² confonderebbe centimetro con centimetro quadrato e aumenterebbe la massa di cento volte. F non è il peso, che ha direzione verticale."
+        }
+      ],
+      "hints": [
+        "Converti l’area, ricava m=ρAL e poi applica la seconda legge.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Cinque copia l’accelerazione e due la lunghezza, senza includere la massa. Usare A=10⁻² m² confonderebbe centimetro con centimetro quadrato e aumenterebbe la massa di cento volte. F non è il peso, che ha direzione verticale.",
+        "target": "C2-L001"
+      },
+      "coverage": [
+        "Massa da densità e geometria",
+        "Trasferimento esplicito della seconda legge C1-L005 ai fluidi"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-accelerating-liquid-column-02",
+      "kind": "question",
+      "course": "C2",
+      "section": "Risultante su una colonna materiale in moto",
+      "order": 12122,
+      "title": "Quale unità per la risultante?",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L001",
+      "prerequisites": [
+        "C2-L001",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "accelerating-liquid-column",
+      "difficulty": 1,
+      "prompt": "In un riferimento inerziale una colonna materiale di acqua omogenea incomprimibile, ρ=1000 kg/m³, occupa un tratto rettilineo orizzontale di sezione A=1 cm² e lunghezza L>0 in m. Nell’istante studiato tutti i suoi elementi hanno accelerazione assiale comune a>0 in m/s² verso +x; la massa della colonna è costante, senza deformazioni. Si trascurano attrito e componenti assiali delle forze delle pareti. Le pressioni medie p₁,p₂ sulle due sezioni estreme producono (p₁−p₂)A verso +x. g indica il modulo dell’accelerazione gravitazionale. Il peso verticale è equilibrato dalle azioni delle pareti, perché l’accelerazione verticale è nulla. F indica il modulo positivo della risultante sul liquido, non una singola spinta di pressione. Si confrontano colonne o istanti distinti senza imporre un moto stazionario. Quale unità proposta esprime F?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "N",
+          "Pa",
+          "kg",
+          "m/s²",
+          "N/m"
+        ],
+        "value": "N"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La densità per area per lunghezza restituisce una massa. Moltiplicare questa massa per l’accelerazione produce kg·m/s², cioè newton. Anche il salto di pressione per l’area ha la stessa unità, ma la sola pressione non è una forza."
+        },
+        {
+          "type": "formula",
+          "text": "[\\rho AL]=\\mathrm{kg}"
+        },
+        {
+          "type": "formula",
+          "text": " [F]=\\mathrm{kg\\,m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " [F]=\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " [(p_1-p_2)A]=\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "Pa è pressione, kg massa, m/s² accelerazione e N/m forza per lunghezza. Non si sottraggono pressioni da forze: prima si moltiplica il salto per la sezione."
+        }
+      ],
+      "hints": [
+        "Controlla entrambe le forme della risultante: m·a e Δp·A.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "Pa è pressione, kg massa, m/s² accelerazione e N/m forza per lunghezza. Non si sottraggono pressioni da forze: prima si moltiplica il salto per la sezione.",
+        "target": "C2-L001"
+      },
+      "coverage": [
+        "Massa da densità e geometria",
+        "Trasferimento esplicito della seconda legge C1-L005 ai fluidi"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-accelerating-liquid-column-03",
+      "kind": "question",
+      "course": "C2",
+      "section": "Risultante su una colonna materiale in moto",
+      "order": 12123,
+      "title": "Isolare il liquido e sommare le forze",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L001",
+      "prerequisites": [
+        "C2-L001",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "accelerating-liquid-column",
+      "difficulty": 1,
+      "prompt": "In un riferimento inerziale una colonna materiale di acqua omogenea incomprimibile, ρ=1000 kg/m³, occupa un tratto rettilineo orizzontale di sezione A=1 cm² e lunghezza L>0 in m. Nell’istante studiato tutti i suoi elementi hanno accelerazione assiale comune a>0 in m/s² verso +x; la massa della colonna è costante, senza deformazioni. Si trascurano attrito e componenti assiali delle forze delle pareti. Le pressioni medie p₁,p₂ sulle due sezioni estreme producono (p₁−p₂)A verso +x. g indica il modulo dell’accelerazione gravitazionale. Il peso verticale è equilibrato dalle azioni delle pareti, perché l’accelerazione verticale è nulla. F indica il modulo positivo della risultante sul liquido, non una singola spinta di pressione. Si confrontano colonne o istanti distinti senza imporre un moto stazionario. Quale legge esprime F con grandezze in unità coerenti?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "F = ρ A L a",
+          "F = ρ A L / a",
+          "F = ρ A a / L",
+          "F = ρ L a",
+          "F = ρ A L g"
+        ],
+        "value": "F = ρ A L a"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La massa è ρAL. Lungo x le pressioni sulle due sezioni hanno versi opposti, quindi la loro risultante è ΔpA. Per il liquido materiale la seconda legge dà ΔpA=ρALa; il peso non ha componente lungo il tubo orizzontale. L’accelerazione non può essere sostituita da g."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/2da07d6328ef2079323875d23a2bc7bf02397095a8c420973786c43ce54ab68e",
+          "text": "Pannelli distinti: prima le due spinte delle pressioni, poi la sola risultante che entra in F=m·a, con una freccia da 100 px a 100 px/N. La freccia dell’accelerazione è 100 px a 20 px/(m/s²), una scala distinta; il primo pannello usa invece 10 px/N per le singole forze. Ultime barre confrontano F_A=1 N e F_B=4/5 N a 100 px/N; non confondono velocità con accelerazione né peso con risultante assiale."
+        },
+        {
+          "type": "formula",
+          "text": "m=\\rho AL"
+        },
+        {
+          "type": "formula",
+          "text": " F_x=(p_1-p_2)A"
+        },
+        {
+          "type": "formula",
+          "text": " F_x=ma"
+        },
+        {
+          "type": "formula",
+          "text": " F=\\rho ALa"
+        },
+        {
+          "type": "text",
+          "text": "Dividere per a inverte la dinamica; dividere per L fa diminuire la massa quando la colonna cresce. Omettere A cambia le dimensioni. ρALg è il peso, non la risultante orizzontale che accelera il liquido. La relazione di Stevino per liquido in quiete non descrive questa accelerazione assiale."
+        }
+      ],
+      "hints": [
+        "Scrivi la massa e il bilancio lungo l’asse del tubo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Dividere per a inverte la dinamica; dividere per L fa diminuire la massa quando la colonna cresce. Omettere A cambia le dimensioni. ρALg è il peso, non la risultante orizzontale che accelera il liquido. La relazione di Stevino per liquido in quiete non descrive questa accelerazione assiale.",
+        "target": "C2-L001"
+      },
+      "coverage": [
+        "Massa da densità e geometria",
+        "Trasferimento esplicito della seconda legge C1-L005 ai fluidi"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-accelerating-liquid-column-04",
+      "kind": "question",
+      "course": "C2",
+      "section": "Risultante su una colonna materiale in moto",
+      "order": 12124,
+      "title": "Una colonna due volte più lunga",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L001",
+      "prerequisites": [
+        "C2-L001",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "accelerating-liquid-column",
+      "difficulty": 1,
+      "prompt": "In un riferimento inerziale una colonna materiale di acqua omogenea incomprimibile, ρ=1000 kg/m³, occupa un tratto rettilineo orizzontale di sezione A=1 cm² e lunghezza L>0 in m. Nell’istante studiato tutti i suoi elementi hanno accelerazione assiale comune a>0 in m/s² verso +x; la massa della colonna è costante, senza deformazioni. Si trascurano attrito e componenti assiali delle forze delle pareti. Le pressioni medie p₁,p₂ sulle due sezioni estreme producono (p₁−p₂)A verso +x. g indica il modulo dell’accelerazione gravitazionale. Il peso verticale è equilibrato dalle azioni delle pareti, perché l’accelerazione verticale è nulla. F indica il modulo positivo della risultante sul liquido, non una singola spinta di pressione. Si confrontano colonne o istanti distinti senza imporre un moto stazionario. L passa da 2 a 4 m e a resta 5 m/s². Come cambia F?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 1 a 2 N",
+          "Da 1 a 1/2 N",
+          "Resta 1 N",
+          "Da 1 a 4 N",
+          "Diventa zero"
+        ],
+        "value": "Da 1 a 2 N"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Densità e sezione costanti fanno raddoppiare la massa quando raddoppia L: da un quinto a due quinti di kg. Per assegnare la stessa accelerazione a tutta quella massa serve una risultante doppia, da uno a due newton."
+        },
+        {
+          "type": "formula",
+          "text": "m_A=\\frac15\\,\\mathrm{kg}"
+        },
+        {
+          "type": "formula",
+          "text": " m_B=\\frac25\\,\\mathrm{kg}"
+        },
+        {
+          "type": "formula",
+          "text": " F_A=1\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " F_B=2\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo tratta la lunghezza come divisore, quattro introduce un quadrato e uno ignora la massa aggiunta. Zero non può produrre l’accelerazione assegnata a una massa positiva. La spinta netta richiesta è doppia anche se il tubo ha la stessa sezione."
+        }
+      ],
+      "hints": [
+        "A densità e sezione fisse, raddoppia la massa prima della forza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Un mezzo tratta la lunghezza come divisore, quattro introduce un quadrato e uno ignora la massa aggiunta. Zero non può produrre l’accelerazione assegnata a una massa positiva. La spinta netta richiesta è doppia anche se il tubo ha la stessa sezione.",
+        "target": "C2-L001"
+      },
+      "coverage": [
+        "Massa da densità e geometria",
+        "Trasferimento esplicito della seconda legge C1-L005 ai fluidi"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-accelerating-liquid-column-05",
+      "kind": "question",
+      "course": "C2",
+      "section": "Risultante su una colonna materiale in moto",
+      "order": 12125,
+      "title": "Risultante e accelerazione per trovare L",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L001",
+      "prerequisites": [
+        "C2-L001",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "accelerating-liquid-column",
+      "difficulty": 2,
+      "prompt": "In un riferimento inerziale una colonna materiale di acqua omogenea incomprimibile, ρ=1000 kg/m³, occupa un tratto rettilineo orizzontale di sezione A=1 cm² e lunghezza L>0 in m. Nell’istante studiato tutti i suoi elementi hanno accelerazione assiale comune a>0 in m/s² verso +x; la massa della colonna è costante, senza deformazioni. Si trascurano attrito e componenti assiali delle forze delle pareti. Le pressioni medie p₁,p₂ sulle due sezioni estreme producono (p₁−p₂)A verso +x. g indica il modulo dell’accelerazione gravitazionale. Il peso verticale è equilibrato dalle azioni delle pareti, perché l’accelerazione verticale è nulla. F indica il modulo positivo della risultante sul liquido, non una singola spinta di pressione. Si confrontano colonne o istanti distinti senza imporre un moto stazionario. Si misura F=1 N e si conosce a=5 m/s². Quanto vale L in m?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dividendo la risultante per l’accelerazione si ottiene la massa un quinto di kg. Ogni metro della colonna contiene un decimo di kg, quindi il rapporto (1/5)/(1/10) dà due metri. Tutti i divisori sono positivi nel modello."
+        },
+        {
+          "type": "formula",
+          "text": "m=\\frac Fa"
+        },
+        {
+          "type": "formula",
+          "text": " m=\\frac15\\,\\mathrm{kg}"
+        },
+        {
+          "type": "formula",
+          "text": " L=\\frac{m}{\\rho A}"
+        },
+        {
+          "type": "formula",
+          "text": " L=\\frac{1/5}{1/10}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " L=2\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Un quinto è il valore della massa in kg, non la lunghezza. Moltiplicare per ρA anziché dividerlo produrrebbe massa al quadrato per lunghezza, una dimensione incompatibile con L."
+        }
+      ],
+      "hints": [
+        "Ricava prima la massa, poi usa la massa per metro della colonna.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un quinto è il valore della massa in kg, non la lunghezza. Moltiplicare per ρA anziché dividerlo produrrebbe massa al quadrato per lunghezza, una dimensione incompatibile con L.",
+        "target": "C2-L001"
+      },
+      "coverage": [
+        "Massa da densità e geometria",
+        "Trasferimento esplicito della seconda legge C1-L005 ai fluidi"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-accelerating-liquid-column-06",
+      "kind": "question",
+      "course": "C2",
+      "section": "Risultante su una colonna materiale in moto",
+      "order": 12126,
+      "title": "Risultante e massa per trovare a",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L001",
+      "prerequisites": [
+        "C2-L001",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "accelerating-liquid-column",
+      "difficulty": 2,
+      "prompt": "In un riferimento inerziale una colonna materiale di acqua omogenea incomprimibile, ρ=1000 kg/m³, occupa un tratto rettilineo orizzontale di sezione A=1 cm² e lunghezza L>0 in m. Nell’istante studiato tutti i suoi elementi hanno accelerazione assiale comune a>0 in m/s² verso +x; la massa della colonna è costante, senza deformazioni. Si trascurano attrito e componenti assiali delle forze delle pareti. Le pressioni medie p₁,p₂ sulle due sezioni estreme producono (p₁−p₂)A verso +x. g indica il modulo dell’accelerazione gravitazionale. Il peso verticale è equilibrato dalle azioni delle pareti, perché l’accelerazione verticale è nulla. F indica il modulo positivo della risultante sul liquido, non una singola spinta di pressione. Si confrontano colonne o istanti distinti senza imporre un moto stazionario. Si misura F=1 N e si conosce L=2 m. Quanto vale a in m/s²?",
+      "answer": {
+        "type": "numeric",
+        "value": 5,
+        "unit": "m/s²",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La massa è un decimo di kg/m per due metri, un quinto di kg. Dividere un newton per un quinto di kg equivale a moltiplicare per cinque: l’accelerazione comune è cinque m/s² verso +x."
+        },
+        {
+          "type": "formula",
+          "text": "m=\\frac15\\,\\mathrm{kg}"
+        },
+        {
+          "type": "formula",
+          "text": " a=\\frac Fm"
+        },
+        {
+          "type": "formula",
+          "text": " a=\\frac{1}{1/5}\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " a=5\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "text",
+          "text": "Un quinto copia la massa e uno copia il numero della forza. Non si usa g perché la risultante studiata è lungo il tubo, non una caduta libera. Il controllo (1/5)·5=1 ricostruisce la forza."
+        }
+      ],
+      "hints": [
+        "Dividi F per la massa della colonna, non per la sua lunghezza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un quinto copia la massa e uno copia il numero della forza. Non si usa g perché la risultante studiata è lungo il tubo, non una caduta libera. Il controllo (1/5)·5=1 ricostruisce la forza.",
+        "target": "C2-L001"
+      },
+      "coverage": [
+        "Massa da densità e geometria",
+        "Trasferimento esplicito della seconda legge C1-L005 ai fluidi"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-accelerating-liquid-column-07",
+      "kind": "question",
+      "course": "C2",
+      "section": "Risultante su una colonna materiale in moto",
+      "order": 12127,
+      "title": "Stessa massa, accelerazione minore",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L001",
+      "prerequisites": [
+        "C2-L001",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "accelerating-liquid-column",
+      "difficulty": 2,
+      "prompt": "In un riferimento inerziale una colonna materiale di acqua omogenea incomprimibile, ρ=1000 kg/m³, occupa un tratto rettilineo orizzontale di sezione A=1 cm² e lunghezza L>0 in m. Nell’istante studiato tutti i suoi elementi hanno accelerazione assiale comune a>0 in m/s² verso +x; la massa della colonna è costante, senza deformazioni. Si trascurano attrito e componenti assiali delle forze delle pareti. Le pressioni medie p₁,p₂ sulle due sezioni estreme producono (p₁−p₂)A verso +x. g indica il modulo dell’accelerazione gravitazionale. Il peso verticale è equilibrato dalle azioni delle pareti, perché l’accelerazione verticale è nulla. F indica il modulo positivo della risultante sul liquido, non una singola spinta di pressione. Si confrontano colonne o istanti distinti senza imporre un moto stazionario. A ha L=2 m,a=5 m/s². B mantiene L e ha a=2 m/s². Quanto vale F_B/F_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2/5",
+          "5/2",
+          "2",
+          "1",
+          "4/25"
+        ],
+        "value": "2/5"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La massa è uguale nelle due prove e si cancella nel rapporto. La forza segue linearmente a: passa da uno a due quinti di newton. Il rapporto è due quinti, non il quadrato del rapporto delle accelerazioni."
+        },
+        {
+          "type": "formula",
+          "text": "F_A=1\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " F_B=\\frac25\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{F_B}{F_A}=\\frac{a_B}{a_A}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{F_B}{F_A}=\\frac25"
+        },
+        {
+          "type": "text",
+          "text": "Cinque mezzi inverte gli stati, due copia il nuovo valore numerico di a, uno ignora il cambiamento e quattro venticinquesimi eleva al quadrato una dipendenza lineare."
+        }
+      ],
+      "hints": [
+        "Cancella la massa comune nel confronto delle due risultanti.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Cinque mezzi inverte gli stati, due copia il nuovo valore numerico di a, uno ignora il cambiamento e quattro venticinquesimi eleva al quadrato una dipendenza lineare.",
+        "target": "C2-L001"
+      },
+      "coverage": [
+        "Massa da densità e geometria",
+        "Trasferimento esplicito della seconda legge C1-L005 ai fluidi"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-accelerating-liquid-column-08",
+      "kind": "question",
+      "course": "C2",
+      "section": "Risultante su una colonna materiale in moto",
+      "order": 12128,
+      "title": "Uno scarto che non è una direzione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L001",
+      "prerequisites": [
+        "C2-L001",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "accelerating-liquid-column",
+      "difficulty": 2,
+      "prompt": "In un riferimento inerziale una colonna materiale di acqua omogenea incomprimibile, ρ=1000 kg/m³, occupa un tratto rettilineo orizzontale di sezione A=1 cm² e lunghezza L>0 in m. Nell’istante studiato tutti i suoi elementi hanno accelerazione assiale comune a>0 in m/s² verso +x; la massa della colonna è costante, senza deformazioni. Si trascurano attrito e componenti assiali delle forze delle pareti. Le pressioni medie p₁,p₂ sulle due sezioni estreme producono (p₁−p₂)A verso +x. g indica il modulo dell’accelerazione gravitazionale. Il peso verticale è equilibrato dalle azioni delle pareti, perché l’accelerazione verticale è nulla. F indica il modulo positivo della risultante sul liquido, non una singola spinta di pressione. Si confrontano colonne o istanti distinti senza imporre un moto stazionario. Con L=2 m e a=5 m/s² si propone F=2 N. Quanto vale proposta meno corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1 N",
+          "−1 N",
+          "2 N",
+          "0 N",
+          "1/2 N"
+        ],
+        "value": "1 N"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La massa un quinto di kg richiede un newton, non due. Lo scarto con l’ordine richiesto è due meno uno, più uno newton. Alla stessa massa, la proposta produrrebbe accelerazione dieci m/s², doppia di quella assegnata."
+        },
+        {
+          "type": "formula",
+          "text": "F=1\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " e=(2-1)\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " e=1\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "Meno uno inverte la differenza, due copia la proposta, zero la accetta e un mezzo dimezza lo scarto. Il segno dell’errore descrive sovrastima o sottostima, mentre il verso fisico della risultante è già +x."
+        }
+      ],
+      "hints": [
+        "Verifica il prodotto m·a prima della sottrazione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Meno uno inverte la differenza, due copia la proposta, zero la accetta e un mezzo dimezza lo scarto. Il segno dell’errore descrive sovrastima o sottostima, mentre il verso fisico della risultante è già +x.",
+        "target": "C2-L001"
+      },
+      "coverage": [
+        "Massa da densità e geometria",
+        "Trasferimento esplicito della seconda legge C1-L005 ai fluidi"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-accelerating-liquid-column-09",
+      "kind": "question",
+      "course": "C2",
+      "section": "Risultante su una colonna materiale in moto",
+      "order": 12129,
+      "title": "Isolare la lunghezza nella legge dinamica",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L001",
+      "prerequisites": [
+        "C2-L001",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "accelerating-liquid-column",
+      "difficulty": 2,
+      "prompt": "In un riferimento inerziale una colonna materiale di acqua omogenea incomprimibile, ρ=1000 kg/m³, occupa un tratto rettilineo orizzontale di sezione A=1 cm² e lunghezza L>0 in m. Nell’istante studiato tutti i suoi elementi hanno accelerazione assiale comune a>0 in m/s² verso +x; la massa della colonna è costante, senza deformazioni. Si trascurano attrito e componenti assiali delle forze delle pareti. Le pressioni medie p₁,p₂ sulle due sezioni estreme producono (p₁−p₂)A verso +x. g indica il modulo dell’accelerazione gravitazionale. Il peso verticale è equilibrato dalle azioni delle pareti, perché l’accelerazione verticale è nulla. F indica il modulo positivo della risultante sul liquido, non una singola spinta di pressione. Si confrontano colonne o istanti distinti senza imporre un moto stazionario. Quale formula isola L?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "L = F / (ρ A a)",
+          "L = F ρ A / a",
+          "L = ρ A a / F",
+          "L = F a / (ρ A)",
+          "L = F / (ρ A g)"
+        ],
+        "value": "L = F / (ρ A a)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L moltiplica l’intero coefficiente ρAa. Dividiamo la seconda legge per quel prodotto positivo: L=F/(ρAa). In unità SI il denominatore è N/m, quindi il quoziente è una lunghezza. Non si sostituisce la risultante assiale con il peso."
+        },
+        {
+          "type": "formula",
+          "text": "F=\\rho ALa"
+        },
+        {
+          "type": "formula",
+          "text": " L=\\frac{F}{\\rho Aa}"
+        },
+        {
+          "type": "formula",
+          "text": " [\\rho Aa]=\\mathrm{N/m}"
+        },
+        {
+          "type": "formula",
+          "text": " [L]=\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Moltiplicare ancora per ρA ripete una conversione nella direzione sbagliata; il reciproco dà lunghezza inversa. a al numeratore inverte l’isolamento. g al posto di a ricostruirebbe una lunghezza da un peso, che non è la forza assegnata."
+        }
+      ],
+      "hints": [
+        "Considera ρAa come un solo coefficiente di L.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Moltiplicare ancora per ρA ripete una conversione nella direzione sbagliata; il reciproco dà lunghezza inversa. a al numeratore inverte l’isolamento. g al posto di a ricostruirebbe una lunghezza da un peso, che non è la forza assegnata.",
+        "target": "C2-L001"
+      },
+      "coverage": [
+        "Massa da densità e geometria",
+        "Trasferimento esplicito della seconda legge C1-L005 ai fluidi"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-accelerating-liquid-column-10",
+      "kind": "question",
+      "course": "C2",
+      "section": "Risultante su una colonna materiale in moto",
+      "order": 12130,
+      "title": "Lunghezza e accelerazione cambiano insieme",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L001",
+      "prerequisites": [
+        "C2-L001",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "accelerating-liquid-column",
+      "difficulty": 2,
+      "prompt": "In un riferimento inerziale una colonna materiale di acqua omogenea incomprimibile, ρ=1000 kg/m³, occupa un tratto rettilineo orizzontale di sezione A=1 cm² e lunghezza L>0 in m. Nell’istante studiato tutti i suoi elementi hanno accelerazione assiale comune a>0 in m/s² verso +x; la massa della colonna è costante, senza deformazioni. Si trascurano attrito e componenti assiali delle forze delle pareti. Le pressioni medie p₁,p₂ sulle due sezioni estreme producono (p₁−p₂)A verso +x. g indica il modulo dell’accelerazione gravitazionale. Il peso verticale è equilibrato dalle azioni delle pareti, perché l’accelerazione verticale è nulla. F indica il modulo positivo della risultante sul liquido, non una singola spinta di pressione. Si confrontano colonne o istanti distinti senza imporre un moto stazionario. Fra A e B, L_B=κ₁L_A e a_B=κ₂a_A, con fattori positivi. ρ e A restano uguali. Quanto vale F_B/F_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ κ₂",
+          "κ₁ / κ₂",
+          "κ₂ / κ₁",
+          "κ₁ κ₂²",
+          "κ₁ + κ₂"
+        ],
+        "value": "κ₁ κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il fattore di lunghezza scala la massa, quello di accelerazione scala la forza per unità di massa. Nel rapporto ρA si cancella e resta κ₁κ₂. Si confrontano istanti o apparati, senza introdurre una legge temporale L(a)."
+        },
+        {
+          "type": "formula",
+          "text": "F_B=\\rho A(\\kappa_1L_A)(\\kappa_2a_A)"
+        },
+        {
+          "type": "formula",
+          "text": " F_B/F_A=\\kappa_1\\kappa_2"
+        },
+        {
+          "type": "text",
+          "text": "I quozienti rendono inversa una dipendenza diretta, il quadrato di κ₂ non appartiene alla seconda legge e la somma darebbe due per prove identiche, invece di uno."
+        }
+      ],
+      "hints": [
+        "Scala separatamente la massa e l’accelerazione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "I quozienti rendono inversa una dipendenza diretta, il quadrato di κ₂ non appartiene alla seconda legge e la somma darebbe due per prove identiche, invece di uno.",
+        "target": "C2-L001"
+      },
+      "coverage": [
+        "Massa da densità e geometria",
+        "Trasferimento esplicito della seconda legge C1-L005 ai fluidi"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-accelerating-liquid-column-11",
+      "kind": "question",
+      "course": "C2",
+      "section": "Risultante su una colonna materiale in moto",
+      "order": 12131,
+      "title": "Massa doppia ma accelerazione ridotta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L001",
+      "prerequisites": [
+        "C2-L001",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "accelerating-liquid-column",
+      "difficulty": 2,
+      "prompt": "In un riferimento inerziale una colonna materiale di acqua omogenea incomprimibile, ρ=1000 kg/m³, occupa un tratto rettilineo orizzontale di sezione A=1 cm² e lunghezza L>0 in m. Nell’istante studiato tutti i suoi elementi hanno accelerazione assiale comune a>0 in m/s² verso +x; la massa della colonna è costante, senza deformazioni. Si trascurano attrito e componenti assiali delle forze delle pareti. Le pressioni medie p₁,p₂ sulle due sezioni estreme producono (p₁−p₂)A verso +x. g indica il modulo dell’accelerazione gravitazionale. Il peso verticale è equilibrato dalle azioni delle pareti, perché l’accelerazione verticale è nulla. F indica il modulo positivo della risultante sul liquido, non una singola spinta di pressione. Si confrontano colonne o istanti distinti senza imporre un moto stazionario. A ha L=2 m,a=5 m/s²; B ha L=4 m,a=2 m/s². Quanto vale F_B/F_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4/5",
+          "5/4",
+          "2",
+          "2/5",
+          "4/25"
+        ],
+        "value": "4/5"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La colonna B ha massa due quinti di kg e accelerazione due: la sua risultante è quattro quinti di newton. La massa doppia moltiplica il rapporto delle accelerazioni due quinti; il risultato è quattro quinti rispetto al newton di A."
+        },
+        {
+          "type": "formula",
+          "text": "F_A=1\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " F_B=\\frac25\\cdot2\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " F_B=\\frac45\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " F_B/F_A=\\frac45"
+        },
+        {
+          "type": "text",
+          "text": "Cinque quarti inverte gli stati, due considera soltanto la massa e due quinti soltanto l’accelerazione. Quattro venticinquesimi eleva al quadrato il fattore di accelerazione ignorando la massa doppia."
+        }
+      ],
+      "hints": [
+        "Calcola la nuova massa e moltiplicala per la nuova accelerazione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Cinque quarti inverte gli stati, due considera soltanto la massa e due quinti soltanto l’accelerazione. Quattro venticinquesimi eleva al quadrato il fattore di accelerazione ignorando la massa doppia.",
+        "target": "C2-L001"
+      },
+      "coverage": [
+        "Massa da densità e geometria",
+        "Trasferimento esplicito della seconda legge C1-L005 ai fluidi"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-accelerating-liquid-column-12",
+      "kind": "question",
+      "course": "C2",
+      "section": "Risultante su una colonna materiale in moto",
+      "order": 12132,
+      "title": "Media di risultanti, non degli ingressi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L001",
+      "prerequisites": [
+        "C2-L001",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "accelerating-liquid-column",
+      "difficulty": 2,
+      "prompt": "In un riferimento inerziale una colonna materiale di acqua omogenea incomprimibile, ρ=1000 kg/m³, occupa un tratto rettilineo orizzontale di sezione A=1 cm² e lunghezza L>0 in m. Nell’istante studiato tutti i suoi elementi hanno accelerazione assiale comune a>0 in m/s² verso +x; la massa della colonna è costante, senza deformazioni. Si trascurano attrito e componenti assiali delle forze delle pareti. Le pressioni medie p₁,p₂ sulle due sezioni estreme producono (p₁−p₂)A verso +x. g indica il modulo dell’accelerazione gravitazionale. Il peso verticale è equilibrato dalle azioni delle pareti, perché l’accelerazione verticale è nulla. F indica il modulo positivo della risultante sul liquido, non una singola spinta di pressione. Si confrontano colonne o istanti distinti senza imporre un moto stazionario. A ha L=2 m,a=5 m/s² e B ha L=4 m,a=2 m/s². Qual è la media aritmetica delle due F, con uguale peso statistico?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "9/10 N",
+          "9/5 N",
+          "9/20 N",
+          "21/20 N",
+          "1/5 N"
+        ],
+        "value": "9/10 N"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le due risultanti sono uno e quattro quinti di newton. La somma è nove quinti; dividendola per due si trova nove decimi di newton. Non è una media temporale di una sola particella, ma una media statistica di due risultati."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline F=\\frac{1+4/5}{2}\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline F=\\frac9{10}\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "Nove quinti è la somma, nove ventesimi dimezza ancora e un quinto è la differenza. Gli ingressi medi L=3 m,a=7/2 m/s² darebbero (1/10)·3·(7/2)=21/20 N, maggiore della media richiesta di 3/20 N. Il prodotto non commuta in generale con la media."
+        }
+      ],
+      "hints": [
+        "Ricava entrambe le forze prima di fare la semisomma.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Nove quinti è la somma, nove ventesimi dimezza ancora e un quinto è la differenza. Gli ingressi medi L=3 m,a=7/2 m/s² darebbero (1/10)·3·(7/2)=21/20 N, maggiore della media richiesta di 3/20 N. Il prodotto non commuta in generale con la media.",
+        "target": "C2-L001"
+      },
+      "coverage": [
+        "Massa da densità e geometria",
+        "Trasferimento esplicito della seconda legge C1-L005 ai fluidi"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-accelerating-liquid-column-13",
+      "kind": "question",
+      "course": "C2",
+      "section": "Risultante su una colonna materiale in moto",
+      "order": 12133,
+      "title": "Il rapporto di accelerazioni per il bersaglio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L001",
+      "prerequisites": [
+        "C2-L001",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "accelerating-liquid-column",
+      "difficulty": 3,
+      "prompt": "In un riferimento inerziale una colonna materiale di acqua omogenea incomprimibile, ρ=1000 kg/m³, occupa un tratto rettilineo orizzontale di sezione A=1 cm² e lunghezza L>0 in m. Nell’istante studiato tutti i suoi elementi hanno accelerazione assiale comune a>0 in m/s² verso +x; la massa della colonna è costante, senza deformazioni. Si trascurano attrito e componenti assiali delle forze delle pareti. Le pressioni medie p₁,p₂ sulle due sezioni estreme producono (p₁−p₂)A verso +x. g indica il modulo dell’accelerazione gravitazionale. Il peso verticale è equilibrato dalle azioni delle pareti, perché l’accelerazione verticale è nulla. F indica il modulo positivo della risultante sul liquido, non una singola spinta di pressione. Si confrontano colonne o istanti distinti senza imporre un moto stazionario. A ha L=2 m,a=5 m/s². B impone L=4 m e deve avere F_B=(4/5)F_A. Quanto vale a_B/a_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2/5",
+          "5/2",
+          "4/5",
+          "2",
+          "1/5"
+        ],
+        "value": "2/5"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La massa B è doppia. Per avere una risultante pari a quattro quinti occorre un rapporto di accelerazioni (4/5)/2=2/5. L’accelerazione B è quindi due m/s², positiva nel verso assegnato."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac45=2\\frac{a_B}{a_A}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{a_B}{a_A}=\\frac25"
+        },
+        {
+          "type": "formula",
+          "text": " a_B=2\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "text",
+          "text": "Cinque mezzi è il reciproco, quattro quinti ignora la massa doppia e due copia il valore numerico di a_B. Un quinto produrrebbe soltanto due quinti della forza A."
+        }
+      ],
+      "hints": [
+        "Rimuovi dal fattore bersaglio il contributo della lunghezza doppia.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Cinque mezzi è il reciproco, quattro quinti ignora la massa doppia e due copia il valore numerico di a_B. Un quinto produrrebbe soltanto due quinti della forza A.",
+        "target": "C2-L001"
+      },
+      "coverage": [
+        "Massa da densità e geometria",
+        "Trasferimento esplicito della seconda legge C1-L005 ai fluidi"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-accelerating-liquid-column-14",
+      "kind": "question",
+      "course": "C2",
+      "section": "Risultante su una colonna materiale in moto",
+      "order": 12134,
+      "title": "Misurare una risultante per trovare L",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L001",
+      "prerequisites": [
+        "C2-L001",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "accelerating-liquid-column",
+      "difficulty": 3,
+      "prompt": "In un riferimento inerziale una colonna materiale di acqua omogenea incomprimibile, ρ=1000 kg/m³, occupa un tratto rettilineo orizzontale di sezione A=1 cm² e lunghezza L>0 in m. Nell’istante studiato tutti i suoi elementi hanno accelerazione assiale comune a>0 in m/s² verso +x; la massa della colonna è costante, senza deformazioni. Si trascurano attrito e componenti assiali delle forze delle pareti. Le pressioni medie p₁,p₂ sulle due sezioni estreme producono (p₁−p₂)A verso +x. g indica il modulo dell’accelerazione gravitazionale. Il peso verticale è equilibrato dalle azioni delle pareti, perché l’accelerazione verticale è nulla. F indica il modulo positivo della risultante sul liquido, non una singola spinta di pressione. Si confrontano colonne o istanti distinti senza imporre un moto stazionario. Un display continuo adimensionale segue S=qF, con q>0 e nessun offset. A con L=2 m,a=5 m/s² dà S=3. B con a=2 m/s² dà S=12/5. Quanto vale L_B in m?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha F=1 N e fissa q=3 N⁻¹. La lettura dodici quinti, divisa per tre, dà forza quattro quinti di newton. A accelerazione due, la massa è due quinti di kg; dividendola per un decimo di kg/m si ottiene L_B=4 m."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{N^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " F_B=\\frac45\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " m_B=\\frac25\\,\\mathrm{kg}"
+        },
+        {
+          "type": "formula",
+          "text": " L_B=\\frac{2/5}{1/10}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " L_B=4\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "La lettura grezza non è una forza: usarla in newton triplicherebbe massa e lunghezza, dando dodici metri. Il guadagno è inverso di una forza, mentre la lunghezza si ricostruisce solo dopo aver rimosso la taratura."
+        }
+      ],
+      "hints": [
+        "Decodifica F, poi ricava m e infine L.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La lettura grezza non è una forza: usarla in newton triplicherebbe massa e lunghezza, dando dodici metri. Il guadagno è inverso di una forza, mentre la lunghezza si ricostruisce solo dopo aver rimosso la taratura.",
+        "target": "C2-L001"
+      },
+      "coverage": [
+        "Massa da densità e geometria",
+        "Trasferimento esplicito della seconda legge C1-L005 ai fluidi"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-accelerating-liquid-column-15",
+      "kind": "question",
+      "course": "C2",
+      "section": "Risultante su una colonna materiale in moto",
+      "order": 12135,
+      "title": "Taratura affine della risultante",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L001",
+      "prerequisites": [
+        "C2-L001",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "accelerating-liquid-column",
+      "difficulty": 3,
+      "prompt": "In un riferimento inerziale una colonna materiale di acqua omogenea incomprimibile, ρ=1000 kg/m³, occupa un tratto rettilineo orizzontale di sezione A=1 cm² e lunghezza L>0 in m. Nell’istante studiato tutti i suoi elementi hanno accelerazione assiale comune a>0 in m/s² verso +x; la massa della colonna è costante, senza deformazioni. Si trascurano attrito e componenti assiali delle forze delle pareti. Le pressioni medie p₁,p₂ sulle due sezioni estreme producono (p₁−p₂)A verso +x. g indica il modulo dell’accelerazione gravitazionale. Il peso verticale è equilibrato dalle azioni delle pareti, perché l’accelerazione verticale è nulla. F indica il modulo positivo della risultante sul liquido, non una singola spinta di pressione. Si confrontano colonne o istanti distinti senza imporre un moto stazionario. Un display continuo adimensionale segue S=qF+b, con q>0. A: L=2 m,a=5 m/s²,S=3. B: L=4 m,a=2 m/s²,S=13/5. C: a=5 m/s²,S=5. Quanto vale L_C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4 m",
+          "2 m",
+          "5 m",
+          "6 m",
+          "8 m"
+        ],
+        "value": "4 m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti hanno forze uno e quattro quinti di newton. Le differenze delle letture due quinti e delle forze un quinto danno q=2 N⁻¹; poi b=1. S_C=5 significa F_C=2 N. A accelerazione cinque, la massa è due quinti di kg e la lunghezza quattro metri."
+        },
+        {
+          "type": "formula",
+          "text": "q=2\\,\\mathrm{N^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " F_C=2\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " m_C=\\frac25\\,\\mathrm{kg}"
+        },
+        {
+          "type": "formula",
+          "text": " L_C=4\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "A a=5 m/s² le lunghezze 2,5,6,8 m generano letture 3,6,7,9, nessuna uguale a cinque. L’offset del display va sottratto prima della conversione in newton; non è una forza già in N."
+        }
+      ],
+      "hints": [
+        "Usa due risultanti note per calibrare, poi risali alla massa della colonna C.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "A a=5 m/s² le lunghezze 2,5,6,8 m generano letture 3,6,7,9, nessuna uguale a cinque. L’offset del display va sottratto prima della conversione in newton; non è una forza già in N.",
+        "target": "C2-L001"
+      },
+      "coverage": [
+        "Massa da densità e geometria",
+        "Trasferimento esplicito della seconda legge C1-L005 ai fluidi"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-accelerating-liquid-column-16",
+      "kind": "question",
+      "course": "C2",
+      "section": "Risultante su una colonna materiale in moto",
+      "order": 12136,
+      "title": "Un vincolo fra colonne rende quadratica la dinamica",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L001",
+      "prerequisites": [
+        "C2-L001",
+        "C1-L005"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "accelerating-liquid-column",
+      "difficulty": 3,
+      "prompt": "In un riferimento inerziale una colonna materiale di acqua omogenea incomprimibile, ρ=1000 kg/m³, occupa un tratto rettilineo orizzontale di sezione A=1 cm² e lunghezza L>0 in m. Nell’istante studiato tutti i suoi elementi hanno accelerazione assiale comune a>0 in m/s² verso +x; la massa della colonna è costante, senza deformazioni. Si trascurano attrito e componenti assiali delle forze delle pareti. Le pressioni medie p₁,p₂ sulle due sezioni estreme producono (p₁−p₂)A verso +x. g indica il modulo dell’accelerazione gravitazionale. Il peso verticale è equilibrato dalle azioni delle pareti, perché l’accelerazione verticale è nulla. F indica il modulo positivo della risultante sul liquido, non una singola spinta di pressione. Si confrontano colonne o istanti distinti senza imporre un moto stazionario. Fra prove si impone L=ca, con c=2/5 s². Si misura F=1 N. Quanto vale a>0 in m/s²?",
+      "answer": {
+        "type": "numeric",
+        "value": 5,
+        "unit": "m/s²",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il coefficiente c ha unità di tempo al quadrato, così ca è una lunghezza. Sostituire il vincolo in F=ρALa produce F=ρAc a². Il coefficiente vale (1/10 kg/m)(2/5 s²)=1/25 kg·s²/m. Il rapporto con un newton dà a²=25 m²/s⁴, con radice positiva cinque m/s². Segue L=2 m."
+        },
+        {
+          "type": "formula",
+          "text": "F=\\rho Ac\\,a^2"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho Ac=\\frac1{25}\\,\\mathrm{kg\\,s^2/m}"
+        },
+        {
+          "type": "formula",
+          "text": " a^2=25\\,\\mathrm{m^2/s^4}"
+        },
+        {
+          "type": "formula",
+          "text": " a=5\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " L=2\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Venticinque è il quadrato numerico dell’accelerazione. Il ramo negativo contraddice a>0 e darebbe L<0 nel vincolo. Il legame fra L e a descrive prove diverse, non una colonna che si allunga durante l’accelerazione, vietata dall’ipotesi di massa e geometria costanti."
+        }
+      ],
+      "hints": [
+        "Sostituisci L=ca prima di isolare la potenza di a e seleziona il ramo positivo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Venticinque è il quadrato numerico dell’accelerazione. Il ramo negativo contraddice a>0 e darebbe L<0 nel vincolo. Il legame fra L e a descrive prove diverse, non una colonna che si allunga durante l’accelerazione, vietata dall’ipotesi di massa e geometria costanti.",
+        "target": "C2-L001"
+      },
+      "coverage": [
+        "Massa da densità e geometria",
+        "Trasferimento esplicito della seconda legge C1-L005 ai fluidi"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "2da07d6328ef2079323875d23a2bc7bf02397095a8c420973786c43ce54ab68e",
+      "name": "accelerating-liquid-column-steps.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTgwMCIgdmlld0JveD0iMCAwIDY0MCAxODAwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+Rm9yemUgc3UgdW5hIGNvbG9ubmEgb3JpenpvbnRhbGU8L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5Db2xvbm5hIG1hdGVyaWFsZSBsdW5nYSBkdWUgbWV0cmksIG1hc3NhIHVuIHF1aW50byBkaSBjaGlsb2dyYW1tby4gU3BpbnRlIGRpIHByZXNzaW9uZSB1bmRpY2kgZSBkaWVjaSBuZXd0b24gb3Bwb3N0ZSBkYW5ubyB1biBuZXd0b24uIElsIHBlc28gZHVlIG5ld3RvbiDDqCBlcXVpbGlicmF0byBkYWxsZSBwYXJldGkuIEFjY2VsZXJhemlvbmUgY2lucXVlIG1ldHJpIGFsIHNlY29uZG8gcXVhZHJhdG8uIENvbmZyb250byBmaW5hbGUgZnJhIGNvbG9ubmUgZGl2ZXJzZS48L2Rlc2M+CjxkZWZzPjxtYXJrZXIgaWQ9ImIiIG1hcmtlcldpZHRoPSI2IiBtYXJrZXJIZWlnaHQ9IjYiIHJlZlg9IjYiIHJlZlk9IjMiIG9yaWVudD0iYXV0byI+PHBhdGggZD0iTTAgMEw2IDNMMCA2WiIgZmlsbD0iIzE2NjRhNyIvPjwvbWFya2VyPjxtYXJrZXIgaWQ9InIiIG1hcmtlcldpZHRoPSI2IiBtYXJrZXJIZWlnaHQ9IjYiIHJlZlg9IjYiIHJlZlk9IjMiIG9yaWVudD0iYXV0byI+PHBhdGggZD0iTTAgMEw2IDNMMCA2WiIgZmlsbD0iI2E4MzgzMiIvPjwvbWFya2VyPjxtYXJrZXIgaWQ9ImciIG1hcmtlcldpZHRoPSI2IiBtYXJrZXJIZWlnaHQ9IjYiIHJlZlg9IjYiIHJlZlk9IjMiIG9yaWVudD0iYXV0byI+PHBhdGggZD0iTTAgMEw2IDNMMCA2WiIgZmlsbD0iIzM0NzM0OCIvPjwvbWFya2VyPjwvZGVmcz4KPHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxODAwIiBmaWxsPSIjZmZmZGY2Ii8+PGcgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZpbGw9IiMxOTJmM2QiIGZvbnQtc2l6ZT0iMjIiPgo8dGV4dCB4PSIzNSIgeT0iNDgiIGZvbnQtc2l6ZT0iMjciIGZvbnQtd2VpZ2h0PSJib2xkIj4xLiBQcmVzc2lvbmkgb3Bwb3N0ZSwgcmlzdWx0YW50ZSBub24gbnVsbGE8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI5NSI+z4EgPSAxMDAwIGtnL23CszsgQSA9IDEgY23CsjsgTCA9IDIgbTwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjE0MCI+U2V6aW9uZSBpbmdyYW5kaXRhIGluIG1vZG8gc2NoZW1hdGljbzwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjIwNSI+cOKCgSA9IDExMCBrUGE8L3RleHQ+PHRleHQgeD0iNDIwIiB5PSIyMDUiPnDigoIgPSAxMDAga1BhPC90ZXh0Pgo8cmVjdCB4PSIyMjAiIHk9IjI1MCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIxNTAiIGZpbGw9IiNkY2VlZjgiIHN0cm9rZT0iIzE2NjRhNyIgc3Ryb2tlLXdpZHRoPSIyIi8+CjxwYXRoIGQ9Ik0xMDAgMzI1SDIxMCIgc3Ryb2tlPSIjMTY2NGE3IiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjYikiLz4KPHBhdGggZD0iTTU0MCAzMjVINDQwIiBzdHJva2U9IiNhODM4MzIiIHN0cm9rZS13aWR0aD0iMyIgbWFya2VyLWVuZD0idXJsKCNyKSIvPgo8dGV4dCB4PSI4MCIgeT0iMjkwIj4rMTEgTjwvdGV4dD48dGV4dCB4PSI0NjAiIHk9IjI5MCI+4oiSMTAgTjwvdGV4dD4KPHBhdGggZD0iTTMyMCAzMDVWMzI1IiBzdHJva2U9IiNhODM4MzIiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNyKSIvPgo8cGF0aCBkPSJNMzIwIDM4MFYzNjAiIHN0cm9rZT0iIzM0NzM0OCIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2cpIi8+Cjx0ZXh0IHg9IjM1IiB5PSI0MDAiPlBlc286IDIgTiDihpM8L3RleHQ+PHRleHQgeD0iNDQwIiB5PSI0MzAiPlBhcmV0aTogMiBOIOKGkTwvdGV4dD4KPHBhdGggZD0iTTIyMCA0NDBWNDYwTTIyMCA0NTBINDIwTTQyMCA0NDBWNDYwIiBzdHJva2U9IiMxOTJmM2QiIGZpbGw9Im5vbmUiLz4KPHRleHQgeD0iMjYwIiB5PSI0OTAiPkwgPSAyIG08L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI1MzUiPkx1bmdoZXp6YTogMTAwIHB4L20sIGNvcnBvIGx1bmdvIDIwMCBweDwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjU4MCI+Rm9yemU6IDEwIHB4L047IHNwaW50ZSAxMTAgZSAxMDAgcHg8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI2MjUiPkEgZyA9IDEwIG0vc8KyOiB2ZXJ0aWNhbGkgZGEgMjAgcHggb3Bwb3N0ZTwvdGV4dD4KPHBhdGggZD0iTTM1IDY2NUg2MDUiIHN0cm9rZT0iI2M5ZDFkNCIvPgo8dGV4dCB4PSIzNSIgeT0iNzE1IiBmb250LXNpemU9IjI3IiBmb250LXdlaWdodD0iYm9sZCI+Mi4gVW5hIHNvbGEgcmlzdWx0YW50ZSBlbnRyYSBpbiBtwrdhPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iNzYwIj5NYXNzYTogz4EgQSBMID0gMS81IGtnPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iODA1Ij5Bc3NlIHggdmVyc28gZGVzdHJhOyByaXN1bHRhbnRlIHZlcnRpY2FsZSB6ZXJvPC90ZXh0Pgo8Y2lyY2xlIGN4PSIyMjAiIGN5PSI4NzUiIHI9IjciIGZpbGw9IiMxOTJmM2QiLz4KPHBhdGggZD0iTTIyMCA4NzVIMzIwIiBzdHJva2U9IiMxNjY0YTciIHN0cm9rZS13aWR0aD0iMyIgbWFya2VyLWVuZD0idXJsKCNiKSIvPgo8dGV4dCB4PSIzNDUiIHk9Ijg4MyI+RiA9ICsxIE48L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI5NDAiPlF1aSBzY2FsYSBGOiAxMDAgcHgvTiwgZGlzdGludGEgZGFsIHBhbm5lbGxvIDE8L3RleHQ+CjxwYXRoIGQ9Ik0yMjAgMTAxMEgzMjAiIHN0cm9rZT0iIzM0NzM0OCIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI2cpIi8+Cjx0ZXh0IHg9IjM0NSIgeT0iMTAxOCI+YSA9ICs1IG0vc8KyPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTA3MCI+U2NhbGEgYTogMjAgcHgvKG0vc8KyKSwgZnJlY2NpYSAxMDAgcHg8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxMTE1Ij5MdW5naGV6emUgdWd1YWxpLCBncmFuZGV6emUgZSB1bml0w6AgZGl2ZXJzZTwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjExNjAiPjEgTiA9ICgxLzUga2cpIMOXICg1IG0vc8KyKTwvdGV4dD4KPHBhdGggZD0iTTM1IDEyMDBINjA1IiBzdHJva2U9IiNjOWQxZDQiLz4KPHRleHQgeD0iMzUiIHk9IjEyNTAiIGZvbnQtc2l6ZT0iMjciIGZvbnQtd2VpZ2h0PSJib2xkIj4zLiBEdWUgY29sb25uZSwgZHVlIGFjY2VsZXJhemlvbmk8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxMjk1Ij5BOiBMID0gMiBtLCBhID0gNSBtL3PCsiDihpIgRiA9IDEgTjwvdGV4dD4KPHJlY3QgeD0iMTAwIiB5PSIxMzMwIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjMTY2NGE3Ii8+Cjx0ZXh0IHg9IjM1IiB5PSIxNDIwIj5COiBMID0gNCBtLCBhID0gMiBtL3PCsiDihpIgRiA9IDQvNSBOPC90ZXh0Pgo8cmVjdCB4PSIxMDAiIHk9IjE0NTUiIHdpZHRoPSI4MCIgaGVpZ2h0PSIzMCIgZmlsbD0iIzE2NjRhNyIvPgo8dGV4dCB4PSIzNSIgeT0iMTU0NSI+QmFycmUgZGVsbGUgcmlzdWx0YW50aTogMTAwIHB4L048L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxNTkwIj5NYXNzYSBkb3BwaWEgw5cgYWNjZWxlcmF6aW9uZSBwYXJpIGEgMi81PC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTYzNSI+UmFwcG9ydG8gRl9CIC8gRl9BID0gNC81PC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTY5MCI+TmVzc3VuYSBpcG90ZXNpIGRpIHZlbG9jaXTDoCBjb3N0YW50ZS48L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxNzQwIj5JbCBwZXNvIG5vbiDDqCBsYSByaXN1bHRhbnRlIG9yaXp6b250YWxlLjwvdGV4dD4KPC9nPjwvc3ZnPgo="
+    }
+  ]
+}
