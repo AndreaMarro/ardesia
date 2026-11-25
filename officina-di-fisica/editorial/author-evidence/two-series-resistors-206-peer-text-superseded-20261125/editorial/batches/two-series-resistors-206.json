@@ -1,0 +1,1181 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u6-two-series-resistors-01",
+      "kind": "question",
+      "course": "C4",
+      "section": "Nodi e resistenze in serie",
+      "order": 20601,
+      "title": "Segui la corrente nel nodo intermedio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-series-resistors",
+      "difficulty": 1,
+      "prompt": "Due resistori ohmici positivi R₁ e R₂ sono collegati in serie: il nodo intermedio non ha derivazioni. I fili sono ideali, le temperature fissate e si considera il regime stazionario. R_eq è la resistenza equivalente fra i morsetti esterni. La stessa corrente attraversa i due resistori e le cadute di tensione si sommano. Con R₁=2 Ω e R₂=3 Ω, quanto vale R_eq in Ω?",
+      "answer": {
+        "type": "numeric",
+        "value": 5,
+        "unit": "Ω",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Non c’è un ramo in cui parte della corrente possa separarsi. Le cadute sono V₁=IR₁ e V₂=IR₂: la caduta totale è I(R₁+R₂). Perciò R_eq=2+3=5 Ω, maggiore di ciascun resistore."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/d9afe1d9dceb161f0e21dfc77e7e162edba881f2cb36bb646b245bb6a939e7c8",
+          "text": "Nel primo circuito i resistori da2 e3 Ω sono davvero in serie: il nodo intermedio non ha derivazioni. Il secondo schema è il caso autonomo del bypass, con2 e4 Ω: il filo collega soltanto i capi del4 Ω e lascia il2 Ω attivo. Le barre finali confrontano totali5 e8 Ω, media13/2 Ω."
+        },
+        {
+          "type": "formula",
+          "text": "V=V_1+V_2"
+        },
+        {
+          "type": "formula",
+          "text": " V=I(R_1+R_2)"
+        },
+        {
+          "type": "formula",
+          "text": " R_{\\rm eq}=R_1+R_2"
+        },
+        {
+          "type": "formula",
+          "text": " R_{\\rm eq}=5\\,\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "6/5 Ω sarebbe il parallelo, che condivide due nodi invece di uno senza derivazioni. Sei Ω moltiplicherebbe due valori numerici senza ricavare una resistenza dalla legge del circuito. Due o tre Ω ometterebbero un elemento."
+        }
+      ],
+      "hints": [
+        "Usa la stessa corrente nei due contributi di tensione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "6/5 Ω sarebbe il parallelo, che condivide due nodi invece di uno senza derivazioni. Sei Ω moltiplicherebbe due valori numerici senza ricavare una resistenza dalla legge del circuito. Due o tre Ω ometterebbero un elemento.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Corrente comune e somma delle cadute",
+        "Topologia del bypass ideale",
+        "Inverse con residuo positivo, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-two-series-resistors-02",
+      "kind": "question",
+      "course": "C4",
+      "section": "Nodi e resistenze in serie",
+      "order": 20602,
+      "title": "L’equivalente è ancora una resistenza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-series-resistors",
+      "difficulty": 1,
+      "prompt": "Due resistori ohmici positivi R₁ e R₂ sono collegati in serie: il nodo intermedio non ha derivazioni. I fili sono ideali, le temperature fissate e si considera il regime stazionario. R_eq è la resistenza equivalente fra i morsetti esterni. La stessa corrente attraversa i due resistori e le cadute di tensione si sommano. Quale unità misura R_eq?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Ω",
+          "S",
+          "A",
+          "V",
+          "W"
+        ],
+        "value": "Ω"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’equivalente è definito dalla stessa relazione ai morsetti V=IR_eq. Dividere volt per ampere dà ohm. La riduzione del circuito conserva la grandezza resistenza, senza trasformarla in una corrente o potenza."
+        },
+        {
+          "type": "formula",
+          "text": "R_{\\rm eq}=\\frac VI"
+        },
+        {
+          "type": "formula",
+          "text": " [R_{\\rm eq}]=\\mathrm{V/A}"
+        },
+        {
+          "type": "formula",
+          "text": " [R_{\\rm eq}]=\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "S indica conduttanza, A corrente, V tensione e W potenza. La somma di due resistenze non è una somma di conduttanze."
+        }
+      ],
+      "hints": [
+        "Parti dal rapporto tensione/corrente ai morsetti.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "S indica conduttanza, A corrente, V tensione e W potenza. La somma di due resistenze non è una somma di conduttanze.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Corrente comune e somma delle cadute",
+        "Topologia del bypass ideale",
+        "Inverse con residuo positivo, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-two-series-resistors-03",
+      "kind": "question",
+      "course": "C4",
+      "section": "Nodi e resistenze in serie",
+      "order": 20603,
+      "title": "Le cadute si sommano",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-series-resistors",
+      "difficulty": 1,
+      "prompt": "Due resistori ohmici positivi R₁ e R₂ sono collegati in serie: il nodo intermedio non ha derivazioni. I fili sono ideali, le temperature fissate e si considera il regime stazionario. R_eq è la resistenza equivalente fra i morsetti esterni. La stessa corrente attraversa i due resistori e le cadute di tensione si sommano. Quale relazione ricava R_eq?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "R_eq = R₁ + R₂",
+          "R_eq = R₁ R₂ / (R₁ + R₂)",
+          "R_eq = R₁ − R₂",
+          "R_eq = 1/R₁ + 1/R₂",
+          "R_eq = R₁ R₂"
+        ],
+        "value": "R_eq = R₁ + R₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La corrente comune permette di raccogliere I nella legge delle tensioni. Da V=IR₁+IR₂ si ricava V=I(R₁+R₂), quindi R_eq=R₁+R₂. Il criterio è la topologia dichiarata, non la posizione dei simboli sul foglio."
+        },
+        {
+          "type": "formula",
+          "text": "V=IR_1+IR_2"
+        },
+        {
+          "type": "formula",
+          "text": " V=IR_{\\rm eq}"
+        },
+        {
+          "type": "formula",
+          "text": " R_{\\rm eq}=R_1+R_2"
+        },
+        {
+          "type": "text",
+          "text": "Il quoziente prodotto/somma è il parallelo. La differenza può essere nulla o negativa fra resistori passivi. La somma dei reciproci ha unità siemens, il prodotto ha Ω²."
+        }
+      ],
+      "hints": [
+        "Raccogli la corrente comune, non una tensione comune ai due elementi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Il quoziente prodotto/somma è il parallelo. La differenza può essere nulla o negativa fra resistori passivi. La somma dei reciproci ha unità siemens, il prodotto ha Ω².",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Corrente comune e somma delle cadute",
+        "Topologia del bypass ideale",
+        "Inverse con residuo positivo, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-two-series-resistors-04",
+      "kind": "question",
+      "course": "C4",
+      "section": "Nodi e resistenze in serie",
+      "order": 20604,
+      "title": "Diminuisce un solo elemento",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-series-resistors",
+      "difficulty": 1,
+      "prompt": "Due resistori ohmici positivi R₁ e R₂ sono collegati in serie: il nodo intermedio non ha derivazioni. I fili sono ideali, le temperature fissate e si considera il regime stazionario. R_eq è la resistenza equivalente fra i morsetti esterni. La stessa corrente attraversa i due resistori e le cadute di tensione si sommano. A ha R₁=2 Ω, B ha R₁=1 Ω; R₂ resta 3 Ω. Come cambia R_eq?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 5 a 4 Ω",
+          "Da 5 a 5/2 Ω",
+          "Da 5 a 6 Ω",
+          "Resta 5 Ω",
+          "Da 5 a 2 Ω"
+        ],
+        "value": "Da 5 a 4 Ω"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il contributo R₂ resta tre ohm. Il totale passa da 2+3=5 Ω a 1+3=4 Ω: si riduce di un ohm, ma non si dimezza l’intero circuito. Il secondo elemento non è stato modificato."
+        },
+        {
+          "type": "formula",
+          "text": "R_{{\\rm eq},A}=5\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " R_{{\\rm eq},B}=1+3\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " R_{{\\rm eq},B}=4\\,\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "5/2 Ω dimezza anche R₂, che è fisso. Sei Ω aumenta il totale mentre un addendo diminuisce. Cinque ignora il cambio e due non include i tre ohm del secondo elemento."
+        }
+      ],
+      "hints": [
+        "Mantieni il secondo addendo quando confronti i totali.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "5/2 Ω dimezza anche R₂, che è fisso. Sei Ω aumenta il totale mentre un addendo diminuisce. Cinque ignora il cambio e due non include i tre ohm del secondo elemento.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Corrente comune e somma delle cadute",
+        "Topologia del bypass ideale",
+        "Inverse con residuo positivo, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-two-series-resistors-05",
+      "kind": "question",
+      "course": "C4",
+      "section": "Nodi e resistenze in serie",
+      "order": 20605,
+      "title": "Il residuo dopo il resistore noto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-series-resistors",
+      "difficulty": 2,
+      "prompt": "Due resistori ohmici positivi R₁ e R₂ sono collegati in serie: il nodo intermedio non ha derivazioni. I fili sono ideali, le temperature fissate e si considera il regime stazionario. R_eq è la resistenza equivalente fra i morsetti esterni. La stessa corrente attraversa i due resistori e le cadute di tensione si sommano. Si misura R_eq=5 Ω e si conosce R₂=3 Ω. Quanto vale R₁ in Ω?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "Ω",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dall’equivalente si sottrae l’elemento noto: R₁=5−3=2 Ω. La differenza è strettamente positiva. In generale questa inversa richiede R_eq>R₂, altrimenti nessun R₁ positivo soddisferebbe la serie."
+        },
+        {
+          "type": "formula",
+          "text": "R_1=R_{\\rm eq}-R_2"
+        },
+        {
+          "type": "formula",
+          "text": " R_1=(5-3)\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " R_1=2\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " R_{\\rm eq}>R_2"
+        },
+        {
+          "type": "text",
+          "text": "Otto Ω aggiunge invece di sottrarre e predice totale 11 Ω. Cinque Ω copia il totale e predice 8 Ω. Una resistenza negativa non è un ramo alternativo ammesso qui."
+        }
+      ],
+      "hints": [
+        "Togli il contributo noto e controlla che resti positivo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Otto Ω aggiunge invece di sottrarre e predice totale 11 Ω. Cinque Ω copia il totale e predice 8 Ω. Una resistenza negativa non è un ramo alternativo ammesso qui.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Corrente comune e somma delle cadute",
+        "Topologia del bypass ideale",
+        "Inverse con residuo positivo, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-two-series-resistors-06",
+      "kind": "question",
+      "course": "C4",
+      "section": "Nodi e resistenze in serie",
+      "order": 20606,
+      "title": "Un filo cambia davvero la topologia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-series-resistors",
+      "difficulty": 2,
+      "prompt": "Due resistori da 2 Ω e 4 Ω sono inizialmente in serie. Si collega un filo ideale di resistenza nulla soltanto fra i due capi del resistore da 4 Ω. Il resistore da 2 Ω resta senza bypass. Qual è la resistenza equivalente finale fra i morsetti esterni?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2 Ω",
+          "6 Ω",
+          "4 Ω",
+          "4/3 Ω",
+          "0 Ω"
+        ],
+        "value": "2 Ω"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il filo rende equipotenziali i due capi del resistore da quattro ohm. La sua caduta è quindi zero e, essendo la sua resistenza finita, anche la corrente che lo attraversa è zero. Il collegamento in parallelo fra quel resistore e il filo equivale a zero ohm; rimangono i due ohm in serie. I morsetti esterni non sono cortocircuitati fra loro."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/d9afe1d9dceb161f0e21dfc77e7e162edba881f2cb36bb646b245bb6a939e7c8",
+          "text": "Nel secondo pannello il filo ideale unisce soltanto i nodi ai capi del4 Ω. La tensione su quel resistore è zero; il2 Ω resta fra i morsetti esterni. Non si applica più la vecchia somma2+4 dopo il collegamento del filo."
+        },
+        {
+          "type": "formula",
+          "text": "V_{4\\Omega}=0"
+        },
+        {
+          "type": "formula",
+          "text": " I_{4\\Omega}=0"
+        },
+        {
+          "type": "formula",
+          "text": " R_{\\rm ramo\\ bypass}=0"
+        },
+        {
+          "type": "formula",
+          "text": " R_{{\\rm eq},f}=2\\,\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "Sei Ω mantiene la vecchia serie dopo aver aggiunto il filo. Quattro Ω elimina il resistore sbagliato. 4/3 Ω mette in parallelo i due resistori anziché il solo quattro ohm col filo; zero Ω cortocircuiterebbe anche l’altro elemento."
+        }
+      ],
+      "hints": [
+        "Identifica esattamente quali nodi vengono uniti dal filo ideale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sei Ω mantiene la vecchia serie dopo aver aggiunto il filo. Quattro Ω elimina il resistore sbagliato. 4/3 Ω mette in parallelo i due resistori anziché il solo quattro ohm col filo; zero Ω cortocircuiterebbe anche l’altro elemento.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Corrente comune e somma delle cadute",
+        "Topologia del bypass ideale",
+        "Inverse con residuo positivo, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-two-series-resistors-07",
+      "kind": "question",
+      "course": "C4",
+      "section": "Nodi e resistenze in serie",
+      "order": 20607,
+      "title": "Un secondo resistore più piccolo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-series-resistors",
+      "difficulty": 2,
+      "prompt": "Due resistori ohmici positivi R₁ e R₂ sono collegati in serie: il nodo intermedio non ha derivazioni. I fili sono ideali, le temperature fissate e si considera il regime stazionario. R_eq è la resistenza equivalente fra i morsetti esterni. La stessa corrente attraversa i due resistori e le cadute di tensione si sommano. A usa R₁=2 Ω,R₂=3 Ω. B mantiene R₁ e ha R₂=1 Ω. Quanto vale R_eq,B/R_eq,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/5",
+          "5/3",
+          "1/3",
+          "1",
+          "3"
+        ],
+        "value": "3/5"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A vale cinque ohm, B vale tre ohm. Il rapporto richiesto è 3/5. Il cambiamento del solo R₂ non si applica come fattore a tutto il circuito, perché R₁ rimane uguale."
+        },
+        {
+          "type": "formula",
+          "text": "R_{{\\rm eq},A}=5\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " R_{{\\rm eq},B}=3\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " R_{{\\rm eq},B}/R_{{\\rm eq},A}=\\frac35"
+        },
+        {
+          "type": "text",
+          "text": "5/3 è il reciproco; 1/3 segue soltanto R₂. Uno ignora la variazione e tre copia il numero degli ohm finali senza dividerlo per il riferimento."
+        }
+      ],
+      "hints": [
+        "Ricostruisci le due somme prima del rapporto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "5/3 è il reciproco; 1/3 segue soltanto R₂. Uno ignora la variazione e tre copia il numero degli ohm finali senza dividerlo per il riferimento.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Corrente comune e somma delle cadute",
+        "Topologia del bypass ideale",
+        "Inverse con residuo positivo, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-two-series-resistors-08",
+      "kind": "question",
+      "course": "C4",
+      "section": "Nodi e resistenze in serie",
+      "order": 20608,
+      "title": "Una proposta doppia del totale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-series-resistors",
+      "difficulty": 2,
+      "prompt": "Due resistori ohmici positivi R₁ e R₂ sono collegati in serie: il nodo intermedio non ha derivazioni. I fili sono ideali, le temperature fissate e si considera il regime stazionario. R_eq è la resistenza equivalente fra i morsetti esterni. La stessa corrente attraversa i due resistori e le cadute di tensione si sommano. Con R₁=2 Ω,R₂=3 Ω si propone R_eq=10 Ω. Quanto vale proposta meno risultato corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "5 Ω",
+          "−5 Ω",
+          "10 Ω",
+          "0 Ω",
+          "2"
+        ],
+        "value": "5 Ω"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il totale fisico è 5 Ω; la proposta lo supera di 10−5=5 Ω. Il rapporto due non ha unità e non è la differenza chiesta."
+        },
+        {
+          "type": "formula",
+          "text": "R_{\\rm eq}=5\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " e=(10-5)\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " e=5\\,\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "−5 scambia l’ordine, dieci copia la proposta e zero la accetta. Il fattore due descrive una sovrastima relativa, non una resistenza di scarto."
+        }
+      ],
+      "hints": [
+        "Prima riduci la serie, poi sottraila dalla proposta.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−5 scambia l’ordine, dieci copia la proposta e zero la accetta. Il fattore due descrive una sovrastima relativa, non una resistenza di scarto.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Corrente comune e somma delle cadute",
+        "Topologia del bypass ideale",
+        "Inverse con residuo positivo, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-two-series-resistors-09",
+      "kind": "question",
+      "course": "C4",
+      "section": "Nodi e resistenze in serie",
+      "order": 20609,
+      "title": "L’inversa di una somma",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-series-resistors",
+      "difficulty": 2,
+      "prompt": "Due resistori ohmici positivi R₁ e R₂ sono collegati in serie: il nodo intermedio non ha derivazioni. I fili sono ideali, le temperature fissate e si considera il regime stazionario. R_eq è la resistenza equivalente fra i morsetti esterni. La stessa corrente attraversa i due resistori e le cadute di tensione si sommano. Quale formula isola R₁ da R_eq e R₂?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "R₁ = R_eq − R₂",
+          "R₁ = R_eq + R₂",
+          "R₁ = R₂ − R_eq",
+          "R₁ = R_eq / R₂",
+          "R₁ = 1/R_eq − 1/R₂"
+        ],
+        "value": "R₁ = R_eq − R₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sottraendo R₂ a entrambi i membri di R_eq=R₁+R₂ si trova R₁=R_eq−R₂. Occorre R_eq>R₂>0. Tutti i termini hanno unità ohm e la relazione si verifica risommando R₂ al risultato."
+        },
+        {
+          "type": "formula",
+          "text": "R_{\\rm eq}=R_1+R_2"
+        },
+        {
+          "type": "formula",
+          "text": " R_1=R_{\\rm eq}-R_2"
+        },
+        {
+          "type": "formula",
+          "text": " R_{\\rm eq}>R_2>0"
+        },
+        {
+          "type": "text",
+          "text": "Il più non elimina l’addendo noto. L’ordine inverso darebbe negativo nel ramo ammesso. Il rapporto è puro e la differenza dei reciproci è una conduttanza, non R₁."
+        }
+      ],
+      "hints": [
+        "Per annullare un addendo si usa la sottrazione, non un reciproco.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il più non elimina l’addendo noto. L’ordine inverso darebbe negativo nel ramo ammesso. Il rapporto è puro e la differenza dei reciproci è una conduttanza, non R₁.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Corrente comune e somma delle cadute",
+        "Topologia del bypass ideale",
+        "Inverse con residuo positivo, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-two-series-resistors-10",
+      "kind": "question",
+      "course": "C4",
+      "section": "Nodi e resistenze in serie",
+      "order": 20610,
+      "title": "Fattori con pesi diversi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-series-resistors",
+      "difficulty": 2,
+      "prompt": "Due resistori ohmici positivi R₁ e R₂ sono collegati in serie: il nodo intermedio non ha derivazioni. I fili sono ideali, le temperature fissate e si considera il regime stazionario. R_eq è la resistenza equivalente fra i morsetti esterni. La stessa corrente attraversa i due resistori e le cadute di tensione si sommano. B ha R₁,B=κ₁R₁,A e R₂,B=κ₂R₂,A, con fattori positivi. Quale legge generale dà R_eq,B/R_eq,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "(κ₁ R₁ + κ₂ R₂) / (R₁ + R₂)",
+          "κ₁ κ₂",
+          "κ₁/κ₂",
+          "(R₁ + R₂) / (κ₁ R₁ + κ₂ R₂)",
+          "(κ₁ R₁ − κ₂ R₂) / (R₁ − R₂)"
+        ],
+        "value": "(κ₁ R₁ + κ₂ R₂) / (R₁ + R₂)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nel rapporto restano i pesi delle due resistenze originali: (κ₁R₁+κ₂R₂)/(R₁+R₂). Il denominatore è strettamente positivo. Se i fattori coincidono con κ, il rapporto vale κ: la somma è omogenea di primo grado."
+        },
+        {
+          "type": "formula",
+          "text": "R_{{\\rm eq},B}=\\kappa_1R_1+\\kappa_2R_2"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{R_{{\\rm eq},B}}{R_{{\\rm eq},A}}=\\frac{\\kappa_1R_1+\\kappa_2R_2}{R_1+R_2}"
+        },
+        {
+          "type": "text",
+          "text": "Prodotto e quoziente dei soli fattori perdono i pesi. La frazione rovesciata scambia le prove; la differenza non è la legge di una serie passiva e può annullare il denominatore per elementi uguali."
+        }
+      ],
+      "hints": [
+        "Sostituisci ogni fattore nel proprio addendo prima del rapporto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Prodotto e quoziente dei soli fattori perdono i pesi. La frazione rovesciata scambia le prove; la differenza non è la legge di una serie passiva e può annullare il denominatore per elementi uguali.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Corrente comune e somma delle cadute",
+        "Topologia del bypass ideale",
+        "Inverse con residuo positivo, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-two-series-resistors-11",
+      "kind": "question",
+      "course": "C4",
+      "section": "Nodi e resistenze in serie",
+      "order": 20611,
+      "title": "Due resistenze entrambe nuove",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-series-resistors",
+      "difficulty": 2,
+      "prompt": "Due resistori ohmici positivi R₁ e R₂ sono collegati in serie: il nodo intermedio non ha derivazioni. I fili sono ideali, le temperature fissate e si considera il regime stazionario. R_eq è la resistenza equivalente fra i morsetti esterni. La stessa corrente attraversa i due resistori e le cadute di tensione si sommano. A usa R₁=2 Ω,R₂=3 Ω. B usa R₁=3 Ω,R₂=5 Ω. Quanto vale R_eq,B/R_eq,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "8/5",
+          "5/8",
+          "3/2",
+          "5/3",
+          "2"
+        ],
+        "value": "8/5"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le somme sono 5 e 8 Ω. Il rapporto B/A vale 8/5, non il rapporto di una sola delle resistenze. Non basta sapere che entrambi gli elementi aumentano per attribuire un fattore due."
+        },
+        {
+          "type": "formula",
+          "text": "R_{{\\rm eq},A}=5\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " R_{{\\rm eq},B}=8\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " R_{{\\rm eq},B}/R_{{\\rm eq},A}=\\frac85"
+        },
+        {
+          "type": "text",
+          "text": "5/8 capovolge il rapporto; 3/2 segue R₁ e 5/3 segue R₂. Due darebbe un totale 10 Ω, diverso dagli otto effettivi."
+        }
+      ],
+      "hints": [
+        "Somma ogni coppia e conserva l’ordine B/A.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "5/8 capovolge il rapporto; 3/2 segue R₁ e 5/3 segue R₂. Due darebbe un totale 10 Ω, diverso dagli otto effettivi.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Corrente comune e somma delle cadute",
+        "Topologia del bypass ideale",
+        "Inverse con residuo positivo, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-two-series-resistors-12",
+      "kind": "question",
+      "course": "C4",
+      "section": "Nodi e resistenze in serie",
+      "order": 20612,
+      "title": "Qui le due medie coincidono",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-series-resistors",
+      "difficulty": 2,
+      "prompt": "Due resistori ohmici positivi R₁ e R₂ sono collegati in serie: il nodo intermedio non ha derivazioni. I fili sono ideali, le temperature fissate e si considera il regime stazionario. R_eq è la resistenza equivalente fra i morsetti esterni. La stessa corrente attraversa i due resistori e le cadute di tensione si sommano. A usa R₁=2 Ω,R₂=3 Ω; B usa R₁=3 Ω,R₂=5 Ω. Qual è la media aritmetica di R_eq con uguale peso?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "13/2 Ω",
+          "13 Ω",
+          "3/2 Ω",
+          "5 Ω",
+          "8 Ω"
+        ],
+        "value": "13/2 Ω"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I totali sono 5 e 8 Ω: la media è 13/2 Ω. In questa legge lineare anche le resistenze medie R₁=5/2 Ω,R₂=4 Ω danno 13/2 Ω. La coincidenza deriva dalla somma, e non si trasferisce automaticamente alle reti parallele o ad altre relazioni non lineari."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/d9afe1d9dceb161f0e21dfc77e7e162edba881f2cb36bb646b245bb6a939e7c8",
+          "text": "Le barre finali hanno origine e scala comuni:5 e8 Ω, media13/2 Ω. Le due coppie sono prove distinte, non quattro resistori collegati insieme. Le medie dei due addendi5/2 e4 Ω danno qui lo stesso totale per linearità."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline R_{\\rm eq}=\\frac{5+8}{2}\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline R_{\\rm eq}=\\frac{13}{2}\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac52+4=\\frac{13}{2}"
+        },
+        {
+          "type": "text",
+          "text": "Tredici Ω non dimezza la somma; 3/2 Ω è metà della differenza. Cinque e otto Ω ripetono una sola prova. Non si collegano fisicamente i quattro resistori dei due esperimenti."
+        }
+      ],
+      "hints": [
+        "Media le uscite e controlla separatamente perché la somma conserva qui le medie.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tredici Ω non dimezza la somma; 3/2 Ω è metà della differenza. Cinque e otto Ω ripetono una sola prova. Non si collegano fisicamente i quattro resistori dei due esperimenti.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Corrente comune e somma delle cadute",
+        "Topologia del bypass ideale",
+        "Inverse con residuo positivo, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-two-series-resistors-13",
+      "kind": "question",
+      "course": "C4",
+      "section": "Nodi e resistenze in serie",
+      "order": 20613,
+      "title": "Il bersaglio lascia un addendo da trovare",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-series-resistors",
+      "difficulty": 3,
+      "prompt": "Due resistori ohmici positivi R₁ e R₂ sono collegati in serie: il nodo intermedio non ha derivazioni. I fili sono ideali, le temperature fissate e si considera il regime stazionario. R_eq è la resistenza equivalente fra i morsetti esterni. La stessa corrente attraversa i due resistori e le cadute di tensione si sommano. A usa R₁=2 Ω,R₂,A=3 Ω. B ha R₁,B=3 Ω e deve avere R_eq,B=(8/5)R_eq,A. Quanto vale R₂,B/R₂,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "5/3",
+          "3/5",
+          "8/5",
+          "5",
+          "3/2"
+        ],
+        "value": "5/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è otto ohm. Sottraendo i tre ohm noti nella prova B si trova R₂,B=5 Ω. Dividendo per i 3 Ω di A si ottiene 5/3. Cinque è una resistenza, non il rapporto richiesto."
+        },
+        {
+          "type": "formula",
+          "text": "R_{{\\rm eq},B}=8\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " R_{2,B}=5\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " R_{2,B}/R_{2,A}=\\frac53"
+        },
+        {
+          "type": "text",
+          "text": "3/5 inverte il rapporto. 8/5 copia il fattore del totale; cinque copia R₂,B e 3/2 segue soltanto l’altro resistore."
+        }
+      ],
+      "hints": [
+        "Ricava prima il nuovo addendo, poi dividilo per quello iniziale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "3/5 inverte il rapporto. 8/5 copia il fattore del totale; cinque copia R₂,B e 3/2 segue soltanto l’altro resistore.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Corrente comune e somma delle cadute",
+        "Topologia del bypass ideale",
+        "Inverse con residuo positivo, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-two-series-resistors-14",
+      "kind": "question",
+      "course": "C4",
+      "section": "Nodi e resistenze in serie",
+      "order": 20614,
+      "title": "Dalla lettura al totale e al residuo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-series-resistors",
+      "difficulty": 3,
+      "prompt": "Due resistori ohmici positivi R₁ e R₂ sono collegati in serie: il nodo intermedio non ha derivazioni. I fili sono ideali, le temperature fissate e si considera il regime stazionario. R_eq è la resistenza equivalente fra i morsetti esterni. La stessa corrente attraversa i due resistori e le cadute di tensione si sommano. Il display continuo adimensionale D=aR_eq ha a>0. A con R₁=2 Ω,R₂=3 Ω dà D=15. B ha R₂=5 Ω e D=24. Quanto vale R₁,B in Ω?",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "Ω",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento vale 5 Ω, quindi a=3 Ω⁻¹. D=24 significa totale 8 Ω. Sottraendo R₂,B=5 Ω si ricava R₁,B=3 Ω; il residuo positivo verifica il dominio."
+        },
+        {
+          "type": "formula",
+          "text": "a=3\\,\\Omega^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " R_{{\\rm eq},B}=8\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " R_{1,B}=(8-5)\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " R_{1,B}=3\\,\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "Diciannove Ω usa 24 come totale e ignora il guadagno. Otto Ω si ferma al totale; cinque Ω copia il resistore noto. La scala del display non aggiunge una resistenza fisica."
+        }
+      ],
+      "hints": [
+        "Decodifica R_eq prima di sottrarre il ramo noto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Diciannove Ω usa 24 come totale e ignora il guadagno. Otto Ω si ferma al totale; cinque Ω copia il resistore noto. La scala del display non aggiunge una resistenza fisica.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Corrente comune e somma delle cadute",
+        "Topologia del bypass ideale",
+        "Inverse con residuo positivo, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-two-series-resistors-15",
+      "kind": "question",
+      "course": "C4",
+      "section": "Nodi e resistenze in serie",
+      "order": 20615,
+      "title": "Guadagno e offset prima dell’inversa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-series-resistors",
+      "difficulty": 3,
+      "prompt": "Due resistori ohmici positivi R₁ e R₂ sono collegati in serie: il nodo intermedio non ha derivazioni. I fili sono ideali, le temperature fissate e si considera il regime stazionario. R_eq è la resistenza equivalente fra i morsetti esterni. La stessa corrente attraversa i due resistori e le cadute di tensione si sommano. D=aR_eq+b è continuo e adimensionale. A: R₁=2 Ω,R₂=3 Ω,D=11. B: R₁=3 Ω,R₂=5 Ω,D=17. C: R₂=1 Ω,D=5. Quanto vale R₁,C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1 Ω",
+          "3/2 Ω",
+          "2 Ω",
+          "3 Ω",
+          "5 Ω"
+        ],
+        "value": "1 Ω"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti hanno totali 5 e 8 Ω. Si trova a=(17−11)/(8−5)=2 Ω⁻¹ e b=1. Il totale C è (5−1)/2=2 Ω. Sottraendo l’ohm noto si trova R₁,C=1 Ω."
+        },
+        {
+          "type": "formula",
+          "text": "a=2\\,\\Omega^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " R_{{\\rm eq},C}=2\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " R_{1,C}=1\\,\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "3/2 Ω omette b e predice D=6. Due Ω copia il totale e predice D=7; tre Ω predice D=9; cinque Ω copia la lettura e predice D=13."
+        }
+      ],
+      "hints": [
+        "Elimina b, dividi per a e solo dopo sottrai R₂.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "3/2 Ω omette b e predice D=6. Due Ω copia il totale e predice D=7; tre Ω predice D=9; cinque Ω copia la lettura e predice D=13.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Corrente comune e somma delle cadute",
+        "Topologia del bypass ideale",
+        "Inverse con residuo positivo, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-two-series-resistors-16",
+      "kind": "question",
+      "course": "C4",
+      "section": "Nodi e resistenze in serie",
+      "order": 20616,
+      "title": "Un rapporto fissato non annulla la scala",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-series-resistors",
+      "difficulty": 3,
+      "prompt": "Due resistori ohmici positivi R₁ e R₂ sono collegati in serie: il nodo intermedio non ha derivazioni. I fili sono ideali, le temperature fissate e si considera il regime stazionario. R_eq è la resistenza equivalente fra i morsetti esterni. La stessa corrente attraversa i due resistori e le cadute di tensione si sommano. Fra preparazioni si impone R₁=(2/3)R₂. Si misura R_eq=5 Ω. Quanto vale R₂?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3 Ω",
+          "2 Ω",
+          "5 Ω",
+          "−3 Ω",
+          "Infinite resistenze positive"
+        ],
+        "value": "3 Ω"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il vincolo rende il totale R_eq=(2/3+1)R₂=(5/3)R₂. La misura cinque ohm fissa R₂=3 Ω e quindi R₁=2 Ω. Il rapporto da solo lascia la scala libera, ma la misura del totale la determina."
+        },
+        {
+          "type": "formula",
+          "text": "R_{\\rm eq}=\\frac53R_2"
+        },
+        {
+          "type": "formula",
+          "text": " R_2=\\frac35R_{\\rm eq}"
+        },
+        {
+          "type": "formula",
+          "text": " R_2=3\\,\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "Due Ω è R₁, non R₂. Cinque Ω copia il totale. −3 Ω viola la passività; non sono infinite coppie dopo che è stato misurato un totale positivo."
+        }
+      ],
+      "hints": [
+        "Sostituisci il rapporto dei due elementi dentro la somma.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Due Ω è R₁, non R₂. Cinque Ω copia il totale. −3 Ω viola la passività; non sono infinite coppie dopo che è stato misurato un totale positivo.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Corrente comune e somma delle cadute",
+        "Topologia del bypass ideale",
+        "Inverse con residuo positivo, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "d9afe1d9dceb161f0e21dfc77e7e162edba881f2cb36bb646b245bb6a939e7c8",
+      "name": "two-series-resistors-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTQwMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgo8dGl0bGUgaWQ9InRpdGxlIj5EdWUgZWxlbWVudGkgaW4gc2VyaWUgZSB1biBieXBhc3MgZGlzdGludG88L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5JbCBwcmltbyBjaXJjdWl0byBoYTIgZTMgb2htIGluIHNlcmllLCB0b3RhbGU1LiBOZWwgY2FzbyBhdXRvbm9tbyBkZWwgc2Vjb25kbyBwYW5uZWxsbyB1biBmaWxvIGlkZWFsZSBjb3J0b2NpcmN1aXRhIHNvbHRhbnRvIGlsIHJlc2lzdG9yZSBkYTQgb2htLCBsYXNjaWFuZG8yIG9obSBmcmEgaSBtb3JzZXR0aS4gRHVlIHRvdGFsaTUgZTggb2htIGhhbm5vIG1lZGlhMTMvMi48L2Rlc2M+CjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMTQwMCIgcng9IjEyIiBmaWxsPSIjZjhmYWZjIi8+CjxnIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmaWxsPSIjMTQyNDNhIiBmb250LXNpemU9IjIwIj4KPHRleHQgeD0iMzIiIHk9IjQyIiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iYm9sZCI+MSDCtyBVbiBzb2xvIHBlcmNvcnNvIGRlbGxhIGNvcnJlbnRlPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iODIiIGZvbnQtc2l6ZT0iMTgiPklsIG5vZG8gaW50ZXJtZWRpbyBub24gaGEgZGVyaXZhemlvbmkuPC90ZXh0Pgo8ZyBmaWxsPSJub25lIiBzdHJva2U9IiMxNDI0M2EiIHN0cm9rZS13aWR0aD0iMyI+PHBhdGggZD0iTTEwMCAxODBIMTcwTTI3MCAxODBIMzcwTTQ3MCAxODBINTQwIi8+PHJlY3QgeD0iMTcwIiB5PSIxNTUiIHdpZHRoPSIxMDAiIGhlaWdodD0iNTAiLz48cmVjdCB4PSIzNzAiIHk9IjE1NSIgd2lkdGg9IjEwMCIgaGVpZ2h0PSI1MCIvPjwvZz4KPGNpcmNsZSBjeD0iMTAwIiBjeT0iMTgwIiByPSI1IiBmaWxsPSIjMTY1YTg3Ii8+PGNpcmNsZSBjeD0iNTQwIiBjeT0iMTgwIiByPSI1IiBmaWxsPSIjMTY1YTg3Ii8+Cjx0ZXh0IHg9IjgwIiB5PSIyMjUiPkE8L3RleHQ+PHRleHQgeD0iNTMwIiB5PSIyMjUiPkI8L3RleHQ+PHRleHQgeD0iMTkzIiB5PSIxNDAiPjIgzqk8L3RleHQ+PHRleHQgeD0iMzkzIiB5PSIxNDAiPjMgzqk8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIyOTIiPlN0ZXNzYSBJIDsgViA9IEnCtzIgzqkgKyBJwrczIM6pLjwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjMzOCI+Ul9lcSA9IDIgzqkgKyAzIM6pID0gNSDOqS48L3RleHQ+CjxwYXRoIGQ9Ik0zMiAzODBINjA4IiBzdHJva2U9IiM5YmFiYmMiLz4KPHRleHQgeD0iMzIiIHk9IjQyNSIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9ImJvbGQiPjIgwrcgVW4gZmlsbyBtb2RpZmljYSBpbCBjb2xsZWdhbWVudG88L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI0NzAiIGZvbnQtc2l6ZT0iMTgiPkNhc28gZGlzdGludG86IHNvbG8gaWwgNCDOqSB2aWVuZSBieXBhc3NhdG8uPC90ZXh0Pgo8ZyBmaWxsPSJub25lIiBzdHJva2U9IiMxNDI0M2EiIHN0cm9rZS13aWR0aD0iMyI+PHBhdGggZD0iTTEwMCA2MjBIMTcwTTI3MCA2MjBIMzcwTTQ3MCA2MjBINTQwIi8+PHJlY3QgeD0iMTcwIiB5PSI1OTUiIHdpZHRoPSIxMDAiIGhlaWdodD0iNTAiLz48cmVjdCB4PSIzNzAiIHk9IjU5NSIgd2lkdGg9IjEwMCIgaGVpZ2h0PSI1MCIvPjwvZz4KPHBhdGggZD0iTTM0MCA2MjBWNTMwSDUwMFY2MjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzI4NjY0ZCIgc3Ryb2tlLXdpZHRoPSI0Ii8+CjxjaXJjbGUgY3g9IjM0MCIgY3k9IjYyMCIgcj0iNSIgZmlsbD0iIzI4NjY0ZCIvPjxjaXJjbGUgY3g9IjUwMCIgY3k9IjYyMCIgcj0iNSIgZmlsbD0iIzI4NjY0ZCIvPgo8Y2lyY2xlIGN4PSIxMDAiIGN5PSI2MjAiIHI9IjUiIGZpbGw9IiMxNjVhODciLz48Y2lyY2xlIGN4PSI1NDAiIGN5PSI2MjAiIHI9IjUiIGZpbGw9IiMxNjVhODciLz4KPHRleHQgeD0iMTgyIiB5PSI1ODUiPjIgzqk8L3RleHQ+PHRleHQgeD0iMzkwIiB5PSI2ODAiPjQgzqk8L3RleHQ+PHRleHQgeD0iMzUyIiB5PSI1MTAiPkZpbG8gaWRlYWxlPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iNzM4Ij5WIHN1bCA0IM6pID0gMCA7IHJlc3RhIGlsIDIgzqkuPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iNzgyIiBmb250LXNpemU9IjE4Ij5JIG1vcnNldHRpIGVzdGVybmkgbm9uIHNvbm8gdW5pdGkgZGlyZXR0YW1lbnRlLjwvdGV4dD4KPHBhdGggZD0iTTMyIDgyNEg2MDgiIHN0cm9rZT0iIzliYWJiYyIvPgo8dGV4dCB4PSIzMiIgeT0iODY5IiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iYm9sZCI+MyDCtyBNZWRpYSBkZWxsZSByZXNpc3RlbnplIHRvdGFsaTwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjkxMCIgZm9udC1zaXplPSIxOCI+QTogKDIgKyAzKSDOqSA7IEI6ICgzICsgNSkgzqkgOyBwcm92ZSBkaXN0aW50ZS48L3RleHQ+CjxwYXRoIGQ9Ik0xNTAgOTQ1VjEyMjUiIHN0cm9rZT0iIzE0MjQzYSIgc3Ryb2tlLXdpZHRoPSIyIi8+CjxyZWN0IHg9IjE1MCIgeT0iOTcwIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjM0IiBmaWxsPSIjMTY1YTg3Ii8+CjxyZWN0IHg9IjE1MCIgeT0iMTA2MCIgd2lkdGg9IjMyMCIgaGVpZ2h0PSIzNCIgZmlsbD0iI2I0NTMyOCIvPgo8cmVjdCB4PSIxNTAiIHk9IjExNTAiIHdpZHRoPSIyNjAiIGhlaWdodD0iMzQiIGZpbGw9IiMyODY2NGQiLz4KPHRleHQgeD0iNTAiIHk9Ijk5NSI+QTwvdGV4dD48dGV4dCB4PSIzNzAiIHk9Ijk5NSI+NSDOqTwvdGV4dD48dGV4dCB4PSI1MCIgeT0iMTA4NSI+QjwvdGV4dD48dGV4dCB4PSI0OTAiIHk9IjEwODUiPjggzqk8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIxMTc1Ij5NZWRpYTwvdGV4dD48dGV4dCB4PSI0MzAiIHk9IjExNzUiPjEzLzIgzqk8L3RleHQ+PHRleHQgeD0iMTI1IiB5PSIxMjE5Ij4wPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iMTI4MCIgZm9udC1zaXplPSIxOCI+T3JpZ2luZSBlIHNjYWxhIGRlbGxlIGJhcnJlIHNvbm8gY29tdW5pLjwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjEzMjAiIGZvbnQtc2l6ZT0iMTgiPk1lZGllIGRlZ2xpIGFkZGVuZGk6IDUvMiDOqSArIDQgzqkgPSAxMy8yIM6pLjwvdGV4dD4KPC9nPjwvc3ZnPgo="
+    }
+  ]
+}

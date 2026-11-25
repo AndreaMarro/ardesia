@@ -42,7 +42,7 @@ Distrattori: Il quoziente prodotto/somma è il parallelo. La differenza può ess
 
 Il contributo R₂ resta tre ohm. Il totale passa da 2+3=5 Ω a 1+3=4 Ω: si riduce di un ohm, ma non si dimezza l’intero circuito. Il secondo elemento non è stato modificato.
 
-Passaggi: `R_{{\rm eq},A}=5\,\Omega\qquad R_{{\rm eq},B}=1+3\,\Omega\qquad R_{{\rm eq},B}=4\,\Omega`
+Passaggi: `R_{{\rm eq},A}=5\,\Omega\qquad R_{{\rm eq},B}=(1+3)\,\Omega\qquad R_{{\rm eq},B}=4\,\Omega`
 
 Distrattori: 5/2 Ω dimezza anche R₂, che è fisso. Sei Ω aumenta il totale mentre un addendo diminuisce. Cinque ignora il cambio e due non include i tre ohm del secondo elemento.
 
@@ -112,7 +112,7 @@ Distrattori: Tredici Ω non dimezza la somma; 3/2 Ω è metà della differenza. 
 
 ## 13 — Il bersaglio lascia un addendo da trovare
 
-Il bersaglio è otto ohm. Sottraendo i tre ohm noti nella prova B si trova R₂,B=5 Ω. Dividendo per i 3 Ω di A si ottiene 5/3. Cinque è una resistenza, non il rapporto richiesto.
+Il bersaglio è otto ohm. Sottraendo i tre ohm noti nella prova B si trova R₂,B=5 Ω. Dividendo per i 3 Ω di A si ottiene 5/3. Cinque copia il valore numerico di R₂,B in ohm senza dividerlo per i 3 Ω iniziali.
 
 Passaggi: `R_{{\rm eq},B}=8\,\Omega\qquad R_{2,B}=5\,\Omega\qquad R_{2,B}/R_{2,A}=\frac53`
 
@@ -141,3 +141,7 @@ Il vincolo rende il totale R_eq=(2/3+1)R₂=(5/3)R₂. La misura cinque ohm fiss
 Passaggi: `R_{\rm eq}=\frac53R_2\qquad R_2=\frac35R_{\rm eq}\qquad R_2=3\,\Omega`
 
 Distrattori: Due Ω è R₁, non R₂. Cinque Ω copia il totale. −3 Ω viola la passività; non sono infinite coppie dopo che è stato misurato un totale positivo.
+
+## Rilettura richiesta dal revisore distinto
+
+Formula04 con parentesi sull’intera somma in ohm; primo testo13 distingue il numero puro cinque dal valore numerico della resistenza. SVG byte-identico, prova nativa precedente resta riferita agli stessi byte. Tutte le chiavi, i dati e i domini restano invariati; gli altri record sono stati confrontati con l’archivio byte-identico. Nessuna firma scientifica dell’autore. Due assembly finali identici e import temporaneo16→0/16 reali;991 pubblicati invariati. UI prodotto e approvazione umana NOT_RUN.
