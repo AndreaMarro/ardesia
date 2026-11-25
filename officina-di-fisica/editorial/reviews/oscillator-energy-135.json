@@ -1,0 +1,499 @@
+{
+  "bindingsSha256": "c623fbd3e1a01149b9fea9493904841e660193a8127d99f5d99f177a4bf40164",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "dependencyVersions": {
+    "pint": "0.25.2",
+    "sympy": "1.14.0"
+  },
+  "humanApproval": "NOT_RUN",
+  "packageSha256": "6aac0cdbf1f85a4476b52cd6fef2a4676574b1a3bf2e8481d79f162e4bb90f7f",
+  "publication": "DRAFT",
+  "publicationAction": "NONE",
+  "records": [
+    {
+      "assetChecksums": {
+        "oscillator-energy-progressive.svg": "798755b0ba7ddaec6f2c0fda5a92bf1c39eef29cf02158f534c2b047b47fb866"
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "candidateSha256": "741cf565946566daecdc48d7967b33c5c5f7111c11347654634fcd2bb2c7fe6c",
+      "dimension": {
+        "[length]": "2",
+        "[mass]": "1",
+        "[time]": "-2"
+      },
+      "distractors": "Otto omette il mezzo del triangolo sotto kx; due non conserva A². U=0 al centro non significa E=0 perché K=E.",
+      "errors": [],
+      "expectedExact": "4",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u4-oscillator-energy-01",
+      "manualArithmetic": "k=2 N/m, A=2 m: E=2·4/2=4 J.",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. k=2 N/m, A=2 m: E=2·4/2=4 J.",
+      "physicalAssumptions": "Oscillatore orizzontale inerziale con m, k, A positivi, molla lineare senza massa, zero elastico in x=0. Nessun attrito o forzante nei quesiti numerici; k, A costanti entro prova. Nel solo 03 molla reale con attrito debole e nessun apporto esterno: conservare l’energia totale con ambiente, non la sola energia meccanica.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "69bc620e1856c2b85321a5e003752a7ccb2e15e120a4e1dd3f8d91f0917685a3",
+      "scientificAssetReview": "XML e rendering completo letti. Posizioni 200/320/440 px per −2/0/+2 m a 60 px/m; ampiezza 120 px per 2 m distinta da distanza totale 4 m. Barre conservative 100 px a 25 px/J per E 4 J, elastiche all’estremo e cinetiche al centro. Caso smorzato separato: segmenti 120/60 px per A 2/1 m, barre 100/25 px per E 4/1 J. Si confrontano punti di inversione distinti, non un’esatta legge dell’inviluppo continuo.",
+      "sourceSha256": "82410150947a3107d9905e37d1f78e621f357c92e22862748663705cf2dbfd2a",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetChecksums": {},
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "candidateSha256": "401dbbc06c9e15a3365d374e98b0bfac331055674a34c6e99d01935532781c31",
+      "dimension": {
+        "[length]": "2",
+        "[mass]": "1",
+        "[time]": "-2"
+      },
+      "distractors": "N forza, N/m rigidezza, m/s velocità, W potenza. J=N·m, non N/m.",
+      "errors": [],
+      "expectedExact": "J",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u4-oscillator-energy-02",
+      "manualArithmetic": "(N/m)m²=N·m=J; unità energetica.",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. (N/m)m²=N·m=J; unità energetica.",
+      "physicalAssumptions": "Oscillatore orizzontale inerziale con m, k, A positivi, molla lineare senza massa, zero elastico in x=0. Nessun attrito o forzante nei quesiti numerici; k, A costanti entro prova. Nel solo 03 molla reale con attrito debole e nessun apporto esterno: conservare l’energia totale con ambiente, non la sola energia meccanica.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "dc48a6ddcb7a285611a53568007ff29eea8afdd66c918a7bf35c0e93c2c93271",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "sourceSha256": "b4550947fa06090f202a6fe26109f8cfa97aeed8ac0f2eba2ad845b78fe324fd",
+      "verificationMode": "AI_CONCEPTUAL"
+    },
+    {
+      "assetChecksums": {
+        "oscillator-energy-progressive.svg": "798755b0ba7ddaec6f2c0fda5a92bf1c39eef29cf02158f534c2b047b47fb866"
+      },
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "candidateSha256": "122197baaed9917a9df709b06005970270c71c3008a45123bbb4f9281c38f27c",
+      "dimension": {
+        "[length]": "2",
+        "[mass]": "1",
+        "[time]": "-2"
+      },
+      "distractors": "Distruzione dell’energia totale è falsa; costanza della sola E_mecc contraddice ampiezza decrescente. Attrito passivo compie lavoro negativo; il periodo da solo non sostituisce il bilancio.",
+      "errors": [],
+      "expectedExact": "L’energia meccanica si trasforma in energia interna della massa, della molla o dell’ambiente",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u4-oscillator-energy-03",
+      "manualArithmetic": "in assenza di apporto esterno, attrito converte energia meccanica in energia interna del sistema e ambiente; ampiezza diminuisce, energia totale non viene distrutta. Non applicare la conservazione della sola K+U al sistema con attrito.",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. in assenza di apporto esterno, attrito converte energia meccanica in energia interna del sistema e ambiente; ampiezza diminuisce, energia totale non viene distrutta. Non applicare la conservazione della sola K+U al sistema con attrito.",
+      "physicalAssumptions": "Solo 03: massa e molla reali con attrito debole passivo, nessun apporto da forzante. Si confrontano energie ai punti di inversione, senza assumere conservazione della sola E_mecc o una forma esatta continua dell’inviluppo. Energia totale con ambiente conservata.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "efedc9120501d82e8636b9f3a5a60c874496f6f660c142401b43ab002df1f91d",
+      "scientificAssetReview": "XML e rendering completo letti. Posizioni 200/320/440 px per −2/0/+2 m a 60 px/m; ampiezza 120 px per 2 m distinta da distanza totale 4 m. Barre conservative 100 px a 25 px/J per E 4 J, elastiche all’estremo e cinetiche al centro. Caso smorzato separato: segmenti 120/60 px per A 2/1 m, barre 100/25 px per E 4/1 J. Si confrontano punti di inversione distinti, non un’esatta legge dell’inviluppo continuo.",
+      "sourceSha256": "af46c0c9ff57fbc4ac8a8014e1ebd49eb6955ef9b5721e5fc33781c4b8a3f64e",
+      "verificationMode": "AI_CONCEPTUAL"
+    },
+    {
+      "assetChecksums": {},
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "candidateSha256": "46972e2d7101e0399af3c719e49f082d8c6ca8f4018b6e89cd90092932849411",
+      "dimension": {
+        "[length]": "2",
+        "[mass]": "1",
+        "[time]": "-2"
+      },
+      "distractors": "Otto inverte k, uno dimezza due volte, quattro ignora la nuova rigidezza; zero viola k, A>0.",
+      "errors": [],
+      "expectedExact": "Da 4 a 2 J",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u4-oscillator-energy-04",
+      "manualArithmetic": "k=1, A=2 dà E=2 J, metà del valore iniziale.",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. k=1, A=2 dà E=2 J, metà del valore iniziale.",
+      "physicalAssumptions": "Oscillatore orizzontale inerziale con m, k, A positivi, molla lineare senza massa, zero elastico in x=0. Nessun attrito o forzante nei quesiti numerici; k, A costanti entro prova. Nel solo 03 molla reale con attrito debole e nessun apporto esterno: conservare l’energia totale con ambiente, non la sola energia meccanica.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "228e6da077e1feb74cfdf07b2ef8fcfe92376444072bf3ffeef91346ce977fda",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "sourceSha256": "d3e30b9dc7774e3dd984e50e18c3607c9f68d5395d2298477586914096936bad",
+      "verificationMode": "AI_CONCEPTUAL"
+    },
+    {
+      "assetChecksums": {},
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "candidateSha256": "c4e5a302a0fe455146492240a510e0a6fc6fe6cb08e712366df792851f5b8202",
+      "dimension": {
+        "[mass]": "1",
+        "[time]": "-2"
+      },
+      "distractors": "Omettere il due dà 1 N/m; scambiare A con 2 A quadruplica il denominatore e riduce k di quattro.",
+      "errors": [],
+      "expectedExact": "2",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u4-oscillator-energy-05",
+      "manualArithmetic": "k=2 E/A²=8/4=2 N/m.",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. k=2 E/A²=8/4=2 N/m.",
+      "physicalAssumptions": "Oscillatore orizzontale inerziale con m, k, A positivi, molla lineare senza massa, zero elastico in x=0. Nessun attrito o forzante nei quesiti numerici; k, A costanti entro prova. Nel solo 03 molla reale con attrito debole e nessun apporto esterno: conservare l’energia totale con ambiente, non la sola energia meccanica.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "a4f65a27a2ed1cd8de7aabd32bd75ca90d1f92751cace5218f6c9d6ae43fcf83",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "sourceSha256": "656803edd4231aab9a247eda6d9674c5e0ffa573b666fb1df13a63fb2f36f822",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetChecksums": {},
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "candidateSha256": "4333132da3a94db79c29ec3d4d0c370a8502108e121b1793b4ad68a45c7f7ede",
+      "dimension": {
+        "[length]": "1"
+      },
+      "distractors": "Quattro è A² numerico e anche distanza fra estremi, non A; ramo negativo possibile per x ma escluso per ampiezza.",
+      "errors": [],
+      "expectedExact": "2",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u4-oscillator-energy-06",
+      "manualArithmetic": "A²=2 E/k=4 m², ramo A=2 m>0.",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. A²=2 E/k=4 m², ramo A=2 m>0.",
+      "physicalAssumptions": "Oscillatore orizzontale inerziale con m, k, A positivi, molla lineare senza massa, zero elastico in x=0. Nessun attrito o forzante nei quesiti numerici; k, A costanti entro prova. Nel solo 03 molla reale con attrito debole e nessun apporto esterno: conservare l’energia totale con ambiente, non la sola energia meccanica.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "e423bbc8959e92cc558560f6b9e0e648f3de7f4ca7421339df0dd3d3fb31db75",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "sourceSha256": "61c42394d7868cd0b8045c74140b6eb476e374059fcced9eac9e5d410a37dce6",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetChecksums": {},
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "candidateSha256": "66cb6890b00bc91c1271a8eaee806ce90ed6f7fd4b31dc77c641d75d13a0820a",
+      "dimension": {},
+      "distractors": "Due è il rapporto lineare di ampiezze o forze; 1/2 e 1/4 sono inversi; uno ignora la variazione.",
+      "errors": [],
+      "expectedExact": "4",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u4-oscillator-energy-07",
+      "manualArithmetic": "ampiezza doppia 2→4 m, energia 4→16 J, rapporto 4.",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. ampiezza doppia 2→4 m, energia 4→16 J, rapporto 4.",
+      "physicalAssumptions": "Oscillatore orizzontale inerziale con m, k, A positivi, molla lineare senza massa, zero elastico in x=0. Nessun attrito o forzante nei quesiti numerici; k, A costanti entro prova. Nel solo 03 molla reale con attrito debole e nessun apporto esterno: conservare l’energia totale con ambiente, non la sola energia meccanica.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "6290bebbb948c985e6769977b8915b48306a115aa18c45673a4300f0aedd9291",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "sourceSha256": "c2f76af57cf336567d163cff3c32d9f985852bc94d8f35b65d3629198c04c8d0",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetChecksums": {},
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "candidateSha256": "c988945c3ee98aef457a8b4a855f655ed6ea96a80a2caf90352eb470dab4006b",
+      "dimension": {
+        "[length]": "2",
+        "[mass]": "1",
+        "[time]": "-2"
+      },
+      "distractors": "−4 ordine inverso, 8 proposta, 0 accetta, 2 dimezza ancora lo scarto.",
+      "errors": [],
+      "expectedExact": "4",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u4-oscillator-energy-08",
+      "manualArithmetic": "proposta meno corretto 8−4=+4 J.",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. proposta meno corretto 8−4=+4 J.",
+      "physicalAssumptions": "Oscillatore orizzontale inerziale con m, k, A positivi, molla lineare senza massa, zero elastico in x=0. Nessun attrito o forzante nei quesiti numerici; k, A costanti entro prova. Nel solo 03 molla reale con attrito debole e nessun apporto esterno: conservare l’energia totale con ambiente, non la sola energia meccanica.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "f2a56e2a410bca1d6ad96118521f167e2f9ecd17f9888d7d93b22ad3fc4d513e",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "sourceSha256": "51779c287c315b9343990e857458949b4f17e92e555039b67f87c8ff4b2ca192",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetChecksums": {},
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "candidateSha256": "ca70d4cb885964295340b8d78f72909f2f8e1774f7fb6e1875d98d274dd1bd3c",
+      "dimension": {
+        "[mass]": "1",
+        "[time]": "-2"
+      },
+      "distractors": "E/(2 A²) quarto del corretto; 2 EA² ha unità J·m²; A²/(2 E) inversa di k; 2 E/A è forza.",
+      "errors": [],
+      "expectedExact": "k = 2 E / A²",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u4-oscillator-energy-09",
+      "manualArithmetic": "k=2 E/A²; J/m²=N/m.",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. k=2 E/A²; J/m²=N/m.",
+      "physicalAssumptions": "Oscillatore orizzontale inerziale con m, k, A positivi, molla lineare senza massa, zero elastico in x=0. Nessun attrito o forzante nei quesiti numerici; k, A costanti entro prova. Nel solo 03 molla reale con attrito debole e nessun apporto esterno: conservare l’energia totale con ambiente, non la sola energia meccanica.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "d2b8fa21da529c35ca5bd9e82f3ff4d4f160c21ce87eacf9040168a8b0cf2ce8",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "sourceSha256": "c56fb43c77aca69d58418b8f32996448bfe05616e0e0087d4c65a9672fff0136",
+      "verificationMode": "AI_CONCEPTUAL"
+    },
+    {
+      "assetChecksums": {},
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "candidateSha256": "539ee24fdaf8c4fc73af248b67a86174dca6ebfc1cc1f4bad1e4c10852e5e5d0",
+      "dimension": {},
+      "distractors": "Una sola potenza di κ₂ confonde energia e forza; quozienti invertono dipendenze; κ₁² quadra k anziché A.",
+      "errors": [],
+      "expectedExact": "κ₁ κ₂²",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u4-oscillator-energy-10",
+      "manualArithmetic": "E_B/E_A=κ₁κ₂², k e A positivi in entrambe le prove.",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. E_B/E_A=κ₁κ₂², k e A positivi in entrambe le prove.",
+      "physicalAssumptions": "Oscillatore orizzontale inerziale con m, k, A positivi, molla lineare senza massa, zero elastico in x=0. Nessun attrito o forzante nei quesiti numerici; k, A costanti entro prova. Nel solo 03 molla reale con attrito debole e nessun apporto esterno: conservare l’energia totale con ambiente, non la sola energia meccanica.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "a10d54019a85fe7e4496a610a4480addaa83e5274312e8b28ee3ea5ec9593444",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "sourceSha256": "dbeb6cba1e661014781e67aba3607a9e57a20d4227feedcd9e3fad3b066113b4",
+      "verificationMode": "AI_CONCEPTUAL"
+    },
+    {
+      "assetChecksums": {},
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "candidateSha256": "bf3a178f54508a8cf2c59ae87ba011bfb0c5ddbbed41ae6f962ac00fb1961079",
+      "dimension": {},
+      "distractors": "2 segue solo k, 9/4 solo A², 2/9 reciproco, 18 valore finale non rapporto.",
+      "errors": [],
+      "expectedExact": "9/2",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u4-oscillator-energy-11",
+      "manualArithmetic": "B con k=4, A=3 dà E_B=18 J; rapporto 18/4=9/2.",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. B con k=4, A=3 dà E_B=18 J; rapporto 18/4=9/2.",
+      "physicalAssumptions": "Oscillatore orizzontale inerziale con m, k, A positivi, molla lineare senza massa, zero elastico in x=0. Nessun attrito o forzante nei quesiti numerici; k, A costanti entro prova. Nel solo 03 molla reale con attrito debole e nessun apporto esterno: conservare l’energia totale con ambiente, non la sola energia meccanica.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "3b45e6562bed8fbf533e9c3717c3009baa65b39e42b3c1191770d845367c5077",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "sourceSha256": "7457ed61057321f6b849a5e26b1a3ea57f1fe3a28b27e56006295255c7e3552a",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetChecksums": {},
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "candidateSha256": "2c65f6525f9aa744d8658541bc97bc138a61e475ed7ee3b80d299ce2e20cb6de",
+      "dimension": {
+        "[length]": "2",
+        "[mass]": "1",
+        "[time]": "-2"
+      },
+      "distractors": "22 somma, 11/2 doppia metà, 14 differenza; 75/8 è il modello agli ingressi medi.",
+      "errors": [],
+      "expectedExact": "11",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u4-oscillator-energy-12",
+      "manualArithmetic": "media (4+18)/2=11 J. Ingressi medi k=3, A=5/2 danno 75/8 J, inferiore di 13/8 J.",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. media (4+18)/2=11 J. Ingressi medi k=3, A=5/2 danno 75/8 J, inferiore di 13/8 J.",
+      "physicalAssumptions": "Oscillatore orizzontale inerziale con m, k, A positivi, molla lineare senza massa, zero elastico in x=0. Nessun attrito o forzante nei quesiti numerici; k, A costanti entro prova. Nel solo 03 molla reale con attrito debole e nessun apporto esterno: conservare l’energia totale con ambiente, non la sola energia meccanica.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "00f8df32462eb9749a00b79dd46f17c4c6870413b0e5337f415e7cf108e60a6e",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "sourceSha256": "af30cf50c929380bd8f34862c0a46994757234965237fc84e79fa9d0db4d506e",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetChecksums": {},
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "candidateSha256": "8a7cc1543082f4876d749857c4f385b018ec9197c3b9bcce5afd1ae2c778cb77",
+      "dimension": {},
+      "distractors": "9/4 è rapporto al quadrato; 2/3 reciproco; 9/2 target e 3 ampiezza B numerica, non rapporto.",
+      "errors": [],
+      "expectedExact": "3/2",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u4-oscillator-energy-13",
+      "manualArithmetic": "target E_B/E_A=9/2 e k_B/k_A=2 implica (A_B/A_A)²=9/4; ramo positivo 3/2 e A_B=3 m.",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. target E_B/E_A=9/2 e k_B/k_A=2 implica (A_B/A_A)²=9/4; ramo positivo 3/2 e A_B=3 m.",
+      "physicalAssumptions": "Oscillatore orizzontale inerziale con m, k, A positivi, molla lineare senza massa, zero elastico in x=0. Nessun attrito o forzante nei quesiti numerici; k, A costanti entro prova. Nel solo 03 molla reale con attrito debole e nessun apporto esterno: conservare l’energia totale con ambiente, non la sola energia meccanica.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "249e783c760cefd829ecd6f0816c5ffcaa0253320ca7b3eaea2f4b6ecca7656e",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "sourceSha256": "0e347db162874460d3f7977c6ecffb763b4c2a589b8386b101efb9592d56187e",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetChecksums": {},
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "candidateSha256": "25b17afb9403d0fa76bc6a6f3ab11c21585356855713c0443061bd99a30ea3b4",
+      "dimension": {
+        "[mass]": "1",
+        "[time]": "-2"
+      },
+      "distractors": "La lettura 54 usata come J produce k 12 N/m, triplo. Prima rimuovere gain, poi usare A_B².",
+      "errors": [],
+      "expectedExact": "4",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u4-oscillator-energy-14",
+      "manualArithmetic": "gain 12/(4 J)=3 J⁻¹; S_B=54 dà E_B=18 J. A_B=3 m implica k_B=36/9=4 N/m.",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. gain 12/(4 J)=3 J⁻¹; S_B=54 dà E_B=18 J. A_B=3 m implica k_B=36/9=4 N/m.",
+      "physicalAssumptions": "Oscillatore orizzontale inerziale con m, k, A positivi, molla lineare senza massa, zero elastico in x=0. Nessun attrito o forzante nei quesiti numerici; k, A costanti entro prova. Nel solo 03 molla reale con attrito debole e nessun apporto esterno: conservare l’energia totale con ambiente, non la sola energia meccanica.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "c2861655ce0f9a0dbd039d21d83c9ea80d331e30881d15488cdbf9ddc7d21ba5",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "sourceSha256": "04743f7f4f9ecc93b4df9f75415dbc971be3fe7ed587c8b7a61febb14957573f",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetChecksums": {},
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "candidateSha256": "dcfddef00a580f775eadaa034bae492f6f365ea7e6f4778815c740dbe0c43f35",
+      "dimension": {
+        "[mass]": "1",
+        "[time]": "-2"
+      },
+      "distractors": "A 1 m con k 2, 4, 8, 1/2 dà S 3, 5, 9, 3/2; solo k 1 produce S 2.",
+      "errors": [],
+      "expectedExact": "1",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u4-oscillator-energy-15",
+      "manualArithmetic": "gain (37−9)/(18−4)=2 J⁻¹, offset 1. S_C=2 dà E_C=1/2 J; A_C=1 m implica k_C=1 N/m.",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. gain (37−9)/(18−4)=2 J⁻¹, offset 1. S_C=2 dà E_C=1/2 J; A_C=1 m implica k_C=1 N/m.",
+      "physicalAssumptions": "Oscillatore orizzontale inerziale con m, k, A positivi, molla lineare senza massa, zero elastico in x=0. Nessun attrito o forzante nei quesiti numerici; k, A costanti entro prova. Nel solo 03 molla reale con attrito debole e nessun apporto esterno: conservare l’energia totale con ambiente, non la sola energia meccanica.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "5846231531562b2a4870a415f195ae3a6eb7da39e7e654e9baaab564a5f20ef3",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "sourceSha256": "fdb31d98388fc9bec8519fe4470956885cb1e1e442de8c18e23973a479d21b52",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetChecksums": {},
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "candidateSha256": "20de44daaa0533a250d07ecc54c8e9707ba5141e9e29e10ca461c07b488d9870",
+      "dimension": {
+        "[length]": "1"
+      },
+      "distractors": "Otto è il cubo numerico, non A. A³ crescente su A>0 garantisce unica radice fisica; non si varia k dentro una stessa prova.",
+      "errors": [],
+      "expectedExact": "2",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u4-oscillator-energy-16",
+      "manualArithmetic": "k=cA con c=1 N/m² rende E=cA³/2; E=4 J impone A³=8 m³, unica A=2 m positiva, k=2 N/m. Il coefficiente è dimensionato e il vincolo lega prove diverse.",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. k=cA con c=1 N/m² rende E=cA³/2; E=4 J impone A³=8 m³, unica A=2 m positiva, k=2 N/m. Il coefficiente è dimensionato e il vincolo lega prove diverse.",
+      "physicalAssumptions": "Oscillatore orizzontale inerziale con m, k, A positivi, molla lineare senza massa, zero elastico in x=0. Nessun attrito o forzante nei quesiti numerici; k, A costanti entro prova. Nel solo 03 molla reale con attrito debole e nessun apporto esterno: conservare l’energia totale con ambiente, non la sola energia meccanica.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "7b5409dd190f59e000fda8cf84a27565c0a306600b85da05c1ddf9bcdbac3522",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "sourceSha256": "7b18f9a876c4ea4c12fafb94013324e46ba69bde6973fc84d120f7ad9d13d0d8",
+      "verificationMode": "EXACT_ORACLE"
+    }
+  ],
+  "reviewedCandidateCommit": "e49b1ee7d32c2822dd14e7605019cf4c96416373",
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "schemaVersion": "1.0.0",
+  "source": {
+    "commit": "5cfbdcb055ba3ba136f97fb56e997f06e6cf3605",
+    "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U4-01.json",
+    "reference": "All 80 B135–139 U4-01 original prompts individually read and independent per-ID derivations persisted before opening any B candidate. Handoffs exposed only commits, files and general assumptions, no numeric result or key. Reviewer authored distinct A130–134 and knows oscillator laws from that work; no claim of ignorance of the physics. All 16 final candidate records, options, blocks, hints, feedback, metadata and figure captions read completely, with full SVG XML and native rendering. Never imports authoring. Existing C5-L01/L02/L03/L04/L05 and C1-L003/L005/L006/L008 lessons reread during this U4 work."
+  },
+  "verifierSha256": "378218c35aa2a7076e541e60131754d8660e89172fc298a2f2c5c75f733bc24a"
+}
