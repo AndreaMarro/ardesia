@@ -12,10 +12,12 @@ const label = (x, y, t) => `<text x="${x}" y="${y}">${esc(t)}</text>`;
 const box = (x, y, w, h, c) =>
   `<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="${c}" stroke="${dark}"/>`;
 function arrow(x, y, X, Y, c = dark) {
-  if (Math.hypot(X - x, Y - y) < 0.1) return '';
-  const a = Math.atan2(Y - y, X - x);
+  const length = Math.hypot(X - x, Y - y);
+  if (length < 0.1) return '';
+  const a = Math.atan2(Y - y, X - x),
+    head = Math.min(9, 0.3 * length);
   return path(
-    `M${x} ${y} L${X} ${Y} m${-9 * Math.cos(a - 0.45)} ${-9 * Math.sin(a - 0.45)} L${X} ${Y} l${-9 * Math.cos(a + 0.45)} ${-9 * Math.sin(a + 0.45)}`,
+    `M${x} ${y} L${X} ${Y} m${-head * Math.cos(a - 0.45)} ${-head * Math.sin(a - 0.45)} L${X} ${Y} l${-head * Math.cos(a + 0.45)} ${-head * Math.sin(a + 0.45)}`,
     c,
   );
 }
@@ -74,16 +76,19 @@ export function drawing(model, p, s, t, stage, title, projection = 'top', equati
       y = 159 - dy;
     d = path(`M75 160 L${85 + 2 * dx} ${159 - 2 * dy} V164 H75`) + dot(x, y, green, 10);
     if (reveal) {
+      // A common normalized force scale preserves N/P and both weight components.
+      const forceScale = 42 / s.weight;
       d +=
-        arrow(x, y, x, y + 42, red) +
-        arrow(x, y, x - 40 * Math.sin(s.theta), y - 40 * Math.cos(s.theta), green) +
-        label(22, 27, 'Peso ↓ · normale ⟂ al piano');
+        arrow(x, y, x, y + forceScale * s.weight, red) +
+        arrow(x, y, x - forceScale * s.normal * Math.sin(s.theta), y - forceScale * s.normal * Math.cos(s.theta), green) +
+        label(22, 27, 'Peso ↓ · normale ⟂ al piano') +
+        label(22, 187, 'Lunghezze riferite al peso (scala comune)');
       if (stage >= 1)
         d += arrow(
           x,
           y,
-          x - 48 * Math.sin(s.theta) * Math.cos(s.theta),
-          y + 48 * Math.sin(s.theta) ** 2,
+          x + forceScale * s.parallel * Math.cos(s.theta),
+          y - forceScale * s.parallel * Math.sin(s.theta),
           purple,
         );
     }
