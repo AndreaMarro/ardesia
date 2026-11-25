@@ -1,0 +1,1150 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u4-spherical-intensity-01",
+      "kind": "question",
+      "course": "C5",
+      "section": "Potenza conservata e propagazione sferica",
+      "order": 13801,
+      "title": "La stessa potenza distribuita su una sfera",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "spherical-intensity",
+      "difficulty": 1,
+      "prompt": "Una sorgente acustica ideale puntiforme e isotropa emette potenza media costante P>0 in un mezzo omogeneo, senza assorbimento né riflessioni. I punti studiati sono lontani dalle dimensioni della sorgente, nel regime di propagazione sferica. L’intensità media radiale I è la potenza per area normale al flusso. Definiamo p=P/(4π)>0, che ha unità W: questo simbolo indica una potenza normalizzata, non una pressione. r>0 è la distanza dal centro della sorgente in m. Su ogni sfera la stessa potenza P attraversa l’area 4πr². Con p=4 W e r=2 m, quanto vale I in W/m²?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "W/m²",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La conservazione della potenza dà I=P/(4πr²). Sostituendo P=4πp si cancella esattamente 4π e rimane p/r². Quattro watt divisi per quattro metri quadrati danno un W/m². La potenza reale della sorgente è 16π W, non quattro W."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/297a5dd14ce04e01a0c8df748d44272c098986bbbb3e969ecc84737ae3a50278",
+          "text": "Sezioni centrali di due sfere centrate sulla sorgente: raggi 2 e 4 m, disegnati come 80 e 160 px alla scala 40 px/m. I cerchi non sono le aree delle superfici: queste valgono 4πr². A potenza P costante l’area sferica quadruplica quando r raddoppia."
+        },
+        {
+          "type": "formula",
+          "text": "I=\\frac{P}{4\\pi r^2}"
+        },
+        {
+          "type": "formula",
+          "text": " P=4\\pi p"
+        },
+        {
+          "type": "formula",
+          "text": " I=\\frac p{r^2}"
+        },
+        {
+          "type": "formula",
+          "text": " I=1\\,\\mathrm{W/m^2}"
+        },
+        {
+          "type": "text",
+          "text": "Due divide per r invece di r². Quattro copia p e 1/4 inverte il quoziente. La superficie usata è quella della sfera, non il disco πr² della sua sezione disegnata."
+        }
+      ],
+      "hints": [
+        "Cancella il fattore 4π prima di inserire i numeri.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due divide per r invece di r². Quattro copia p e 1/4 inverte il quoziente. La superficie usata è quella della sfera, non il disco πr² della sua sezione disegnata.",
+        "target": "C5-L04"
+      },
+      "coverage": [
+        "Intensità e area sferica",
+        "Potenza normalizzata distinta dalla pressione",
+        "Campo lontano, inverse e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-spherical-intensity-02",
+      "kind": "question",
+      "course": "C5",
+      "section": "Potenza conservata e propagazione sferica",
+      "order": 13802,
+      "title": "L’unità dell’intensità di propagazione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "spherical-intensity",
+      "difficulty": 1,
+      "prompt": "L’intensità media I è la potenza che attraversa un’area normale divisa per quell’area. Quale unità proposta è adatta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "W/m²",
+          "W",
+          "J",
+          "Pa",
+          "W/m"
+        ],
+        "value": "W/m²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Una potenza in watt divisa per un’area in metri quadrati dà W/m². Nel modello sferico p è ancora una potenza e r² è un’area. La pressione acustica è un’altra grandezza: il simbolo p scelto per P/(4π) non ne assume le dimensioni."
+        },
+        {
+          "type": "formula",
+          "text": "[I]=\\frac{[P]}{L^2}"
+        },
+        {
+          "type": "formula",
+          "text": " [I]=\\mathrm{W/m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " [p]=\\mathrm W"
+        },
+        {
+          "type": "text",
+          "text": "W misura la potenza totale, J l’energia, Pa la pressione e W/m una potenza per lunghezza. Le unità aiutano a non interpretare p come pressione."
+        }
+      ],
+      "hints": [
+        "Dividi watt per metri quadrati.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "W misura la potenza totale, J l’energia, Pa la pressione e W/m una potenza per lunghezza. Le unità aiutano a non interpretare p come pressione.",
+        "target": "C5-L04"
+      },
+      "coverage": [
+        "Intensità e area sferica",
+        "Potenza normalizzata distinta dalla pressione",
+        "Campo lontano, inverse e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-spherical-intensity-03",
+      "kind": "question",
+      "course": "C5",
+      "section": "Potenza conservata e propagazione sferica",
+      "order": 13803,
+      "title": "Perché il suono non attraversa il vuoto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "spherical-intensity",
+      "difficulty": 1,
+      "prompt": "Una sorgente continua a vibrare dentro una campana mentre l’aria viene progressivamente rimossa. Consideriamo soltanto la trasmissione sonora attraverso lo spazio interno, escludendo i sostegni solidi. Perché nel vuoto ideale quella trasmissione manca?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Il suono richiede un mezzo materiale che sostenga perturbazioni di pressione e densità",
+          "La frequenza della sorgente diventa necessariamente zero",
+          "Le onde sonore diventano onde elettromagnetiche",
+          "L’intensità aumenta senza limite perché manca l’attrito dell’aria",
+          "Il vuoto assorbe tutta l’energia sonora come un liquido viscoso"
+        ],
+        "value": "Il suono richiede un mezzo materiale che sostenga perturbazioni di pressione e densità"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Un’onda sonora è una perturbazione meccanica sostenuta dall’elasticità e dall’inerzia del mezzo. Togliere l’aria elimina quel mezzo lungo il percorso studiato, anche se la sorgente vibra ancora. Non si sta applicando la legge sferica a un mezzo che non esiste più. Eventuali vibrazioni trasmesse dai sostegni appartengono al percorso escluso."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/297a5dd14ce04e01a0c8df748d44272c098986bbbb3e969ecc84737ae3a50278",
+          "text": "Tre letture: geometria sferica; aree espresse in unità S₀=16π m² con barre a 100 px/S₀; intensità di due prove con p e r entrambi variati, barre a 200 px/(W/m²). Il parametro p=P/(4π) porta unità W, senza essere una pressione. Le due scale di area e intensità sono dichiarate separatamente."
+        },
+        {
+          "type": "formula",
+          "text": "\\text{suono: mezzo materiale}"
+        },
+        {
+          "type": "formula",
+          "text": " \\text{vuoto: niente suono}"
+        },
+        {
+          "type": "text",
+          "text": "L’assenza di trasmissione non implica frequenza nulla del vibratore né conversione spontanea in luce. Il vuoto non è un fluido viscoso assorbente. Ridurre le perdite di un mezzo e rimuovere il mezzo sono situazioni fisiche diverse."
+        }
+      ],
+      "hints": [
+        "Identifica che cosa oscilla e trasmette la perturbazione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "L’assenza di trasmissione non implica frequenza nulla del vibratore né conversione spontanea in luce. Il vuoto non è un fluido viscoso assorbente. Ridurre le perdite di un mezzo e rimuovere il mezzo sono situazioni fisiche diverse.",
+        "target": "C5-L04"
+      },
+      "coverage": [
+        "Intensità e area sferica",
+        "Potenza normalizzata distinta dalla pressione",
+        "Campo lontano, inverse e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-spherical-intensity-04",
+      "kind": "question",
+      "course": "C5",
+      "section": "Potenza conservata e propagazione sferica",
+      "order": 13804,
+      "title": "Più potenza allo stesso raggio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "spherical-intensity",
+      "difficulty": 1,
+      "prompt": "Una sorgente acustica ideale puntiforme e isotropa emette potenza media costante P>0 in un mezzo omogeneo, senza assorbimento né riflessioni. I punti studiati sono lontani dalle dimensioni della sorgente, nel regime di propagazione sferica. L’intensità media radiale I è la potenza per area normale al flusso. Definiamo p=P/(4π)>0, che ha unità W: questo simbolo indica una potenza normalizzata, non una pressione. r>0 è la distanza dal centro della sorgente in m. Su ogni sfera la stessa potenza P attraversa l’area 4πr². p passa da 4 a 16 W, mentre r resta 2 m. Come cambia I?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 1 a 4 W/m²",
+          "Da 1 a 1/4 W/m²",
+          "Resta 1 W/m²",
+          "Da 1 a 16 W/m²",
+          "Diventa zero"
+        ],
+        "value": "Da 1 a 4 W/m²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La superficie sferica è identica nelle due prove. La potenza normalizzata quadruplica e anche P quadruplica, perché 4π è fisso. L’intensità passa da uno a quattro W/m². Non si deve elevare al quadrato un cambiamento di potenza."
+        },
+        {
+          "type": "formula",
+          "text": "I_A=1\\,\\mathrm{W/m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " I_B=\\frac{16}{2^2}\\,\\mathrm{W/m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " I_B=4\\,\\mathrm{W/m^2}"
+        },
+        {
+          "type": "text",
+          "text": "Un quarto usa il fattore inverso, sedici quadra l’aumento e uno ignora la nuova potenza. Zero contraddice p>0 a distanza finita."
+        }
+      ],
+      "hints": [
+        "A r fissato I è lineare nella potenza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Un quarto usa il fattore inverso, sedici quadra l’aumento e uno ignora la nuova potenza. Zero contraddice p>0 a distanza finita.",
+        "target": "C5-L04"
+      },
+      "coverage": [
+        "Intensità e area sferica",
+        "Potenza normalizzata distinta dalla pressione",
+        "Campo lontano, inverse e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-spherical-intensity-05",
+      "kind": "question",
+      "course": "C5",
+      "section": "Potenza conservata e propagazione sferica",
+      "order": 13805,
+      "title": "Ricavare la potenza normalizzata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "spherical-intensity",
+      "difficulty": 2,
+      "prompt": "Una sorgente acustica ideale puntiforme e isotropa emette potenza media costante P>0 in un mezzo omogeneo, senza assorbimento né riflessioni. I punti studiati sono lontani dalle dimensioni della sorgente, nel regime di propagazione sferica. L’intensità media radiale I è la potenza per area normale al flusso. Definiamo p=P/(4π)>0, che ha unità W: questo simbolo indica una potenza normalizzata, non una pressione. r>0 è la distanza dal centro della sorgente in m. Su ogni sfera la stessa potenza P attraversa l’area 4πr². Si misura I=1 W/m² a r=2 m. Quanto vale p in W?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "W",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplichiamo l’intensità per il quadrato del raggio: p=Ir². Un W/m² per quattro m² dà quattro W. Per ottenere la potenza completa P occorrerebbe ancora moltiplicare per 4π; la domanda richiede p."
+        },
+        {
+          "type": "formula",
+          "text": "p=Ir^2"
+        },
+        {
+          "type": "formula",
+          "text": " p=4\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P=4\\pi p"
+        },
+        {
+          "type": "formula",
+          "text": " P=16\\pi\\,\\mathrm W"
+        },
+        {
+          "type": "text",
+          "text": "Sedici π W è la potenza totale P, diversa dal parametro p richiesto. Due usa un solo raggio; dividere per r² inverte l’isolamento e restituisce dimensioni diverse da W."
+        }
+      ],
+      "hints": [
+        "Controlla quale delle due potenze chiede il testo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sedici π W è la potenza totale P, diversa dal parametro p richiesto. Due usa un solo raggio; dividere per r² inverte l’isolamento e restituisce dimensioni diverse da W.",
+        "target": "C5-L04"
+      },
+      "coverage": [
+        "Intensità e area sferica",
+        "Potenza normalizzata distinta dalla pressione",
+        "Campo lontano, inverse e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-spherical-intensity-06",
+      "kind": "question",
+      "course": "C5",
+      "section": "Potenza conservata e propagazione sferica",
+      "order": 13806,
+      "title": "Il raggio dalla radice di un’area",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "spherical-intensity",
+      "difficulty": 2,
+      "prompt": "Una sorgente acustica ideale puntiforme e isotropa emette potenza media costante P>0 in un mezzo omogeneo, senza assorbimento né riflessioni. I punti studiati sono lontani dalle dimensioni della sorgente, nel regime di propagazione sferica. L’intensità media radiale I è la potenza per area normale al flusso. Definiamo p=P/(4π)>0, che ha unità W: questo simbolo indica una potenza normalizzata, non una pressione. r>0 è la distanza dal centro della sorgente in m. Su ogni sfera la stessa potenza P attraversa l’area 4πr². Si misura I=1 W/m² e si conosce p=4 W. Quanto vale r in m?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dal modello r²=p/I. Watt divisi per W/m² danno metri quadrati: il rapporto numerico è quattro m². La distanza dal centro è la radice positiva, due metri. Non è una coordinata con due rami di segno opposto."
+        },
+        {
+          "type": "formula",
+          "text": "r^2=\\frac pI"
+        },
+        {
+          "type": "formula",
+          "text": " r^2=4\\,\\mathrm{m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " r=2\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Quattro è il numero dell’area r², non della distanza. Il segno negativo è escluso da r>0; r non è il diametro di una sfera materiale."
+        }
+      ],
+      "hints": [
+        "Isola r² e scegli la radice positiva compatibile col campo lontano.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro è il numero dell’area r², non della distanza. Il segno negativo è escluso da r>0; r non è il diametro di una sfera materiale.",
+        "target": "C5-L04"
+      },
+      "coverage": [
+        "Intensità e area sferica",
+        "Potenza normalizzata distinta dalla pressione",
+        "Campo lontano, inverse e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-spherical-intensity-07",
+      "kind": "question",
+      "course": "C5",
+      "section": "Potenza conservata e propagazione sferica",
+      "order": 13807,
+      "title": "Avvicinarsi dimezzando la distanza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "spherical-intensity",
+      "difficulty": 2,
+      "prompt": "Una sorgente acustica ideale puntiforme e isotropa emette potenza media costante P>0 in un mezzo omogeneo, senza assorbimento né riflessioni. I punti studiati sono lontani dalle dimensioni della sorgente, nel regime di propagazione sferica. L’intensità media radiale I è la potenza per area normale al flusso. Definiamo p=P/(4π)>0, che ha unità W: questo simbolo indica una potenza normalizzata, non una pressione. r>0 è la distanza dal centro della sorgente in m. Su ogni sfera la stessa potenza P attraversa l’area 4πr². A ha p=4 W,r=2 m. B mantiene p e usa r=1 m. Quanto vale I_B/I_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4",
+          "2",
+          "1/2",
+          "1/4",
+          "1"
+        ],
+        "value": "4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La stessa potenza attraversa una sfera con un quarto dell’area quando il raggio si dimezza. L’intensità quadruplica: da uno a quattro W/m². Questa legge dipende dalla diffusione sferica, non vale per ogni fascio collimato."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{I_B}{I_A}=\\left(\\frac{r_A}{r_B}\\right)^2"
+        },
+        {
+          "type": "formula",
+          "text": " I_B/I_A=\\left(\\frac21\\right)^2"
+        },
+        {
+          "type": "formula",
+          "text": "\\left(\\frac21\\right)^2=4"
+        },
+        {
+          "type": "text",
+          "text": "Due segue soltanto l’inverso del raggio senza quadrato; un mezzo e un quarto seguono la distanza nel verso sbagliato. Uno ignora la diversa superficie attraversata."
+        }
+      ],
+      "hints": [
+        "Confronta le aree delle due sfere centrate sulla sorgente.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due segue soltanto l’inverso del raggio senza quadrato; un mezzo e un quarto seguono la distanza nel verso sbagliato. Uno ignora la diversa superficie attraversata.",
+        "target": "C5-L04"
+      },
+      "coverage": [
+        "Intensità e area sferica",
+        "Potenza normalizzata distinta dalla pressione",
+        "Campo lontano, inverse e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-spherical-intensity-08",
+      "kind": "question",
+      "course": "C5",
+      "section": "Potenza conservata e propagazione sferica",
+      "order": 13808,
+      "title": "Lo scarto di un’intensità troppo grande",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "spherical-intensity",
+      "difficulty": 2,
+      "prompt": "Una sorgente acustica ideale puntiforme e isotropa emette potenza media costante P>0 in un mezzo omogeneo, senza assorbimento né riflessioni. I punti studiati sono lontani dalle dimensioni della sorgente, nel regime di propagazione sferica. L’intensità media radiale I è la potenza per area normale al flusso. Definiamo p=P/(4π)>0, che ha unità W: questo simbolo indica una potenza normalizzata, non una pressione. r>0 è la distanza dal centro della sorgente in m. Su ogni sfera la stessa potenza P attraversa l’area 4πr². Con p=4 W,r=2 m si propone I=2 W/m². Quanto vale proposta meno corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1 W/m²",
+          "−1 W/m²",
+          "2 W/m²",
+          "0 W/m²",
+          "1/2 W/m²"
+        ],
+        "value": "1 W/m²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il valore corretto è quattro diviso quattro, un W/m². La proposta due eccede il risultato di un W/m². Il segno positivo è quello di una sovrastima e non indica il verso radiale dell’onda."
+        },
+        {
+          "type": "formula",
+          "text": "I=1\\,\\mathrm{W/m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " e=(2-1)\\,\\mathrm{W/m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " e=1\\,\\mathrm{W/m^2}"
+        },
+        {
+          "type": "text",
+          "text": "Meno uno cambia l’ordine, due copia la proposta, zero la accetta e un mezzo dimezza ancora lo scarto."
+        }
+      ],
+      "hints": [
+        "Ricalcola p/r² prima della sottrazione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Meno uno cambia l’ordine, due copia la proposta, zero la accetta e un mezzo dimezza ancora lo scarto.",
+        "target": "C5-L04"
+      },
+      "coverage": [
+        "Intensità e area sferica",
+        "Potenza normalizzata distinta dalla pressione",
+        "Campo lontano, inverse e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-spherical-intensity-09",
+      "kind": "question",
+      "course": "C5",
+      "section": "Potenza conservata e propagazione sferica",
+      "order": 13809,
+      "title": "La formula inversa di p",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "spherical-intensity",
+      "difficulty": 2,
+      "prompt": "Una sorgente acustica ideale puntiforme e isotropa emette potenza media costante P>0 in un mezzo omogeneo, senza assorbimento né riflessioni. I punti studiati sono lontani dalle dimensioni della sorgente, nel regime di propagazione sferica. L’intensità media radiale I è la potenza per area normale al flusso. Definiamo p=P/(4π)>0, che ha unità W: questo simbolo indica una potenza normalizzata, non una pressione. r>0 è la distanza dal centro della sorgente in m. Su ogni sfera la stessa potenza P attraversa l’area 4πr². Quale relazione isola p?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "p = I r²",
+          "p = I / r²",
+          "p = r² / I",
+          "p = 4 π I r²",
+          "p = I r"
+        ],
+        "value": "p = I r²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplichiamo I=p/r² per r². L’intensità per un’area restituisce W e dà p=Ir². La potenza totale P sarebbe invece 4πIr², perché la vera area sferica contiene il fattore 4π già rimosso nella definizione di p."
+        },
+        {
+          "type": "formula",
+          "text": "p=Ir^2"
+        },
+        {
+          "type": "formula",
+          "text": " [p]=\\mathrm{W/m^2}\\,\\mathrm{m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " [p]=\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P=4\\pi Ir^2"
+        },
+        {
+          "type": "text",
+          "text": "I/r² ha unità W/m⁴, r²/I ha unità m⁴/W e Ir ha unità W/m. 4πIr² ha la dimensione giusta ma è P, non p."
+        }
+      ],
+      "hints": [
+        "Mantieni distinta la definizione di p dalla legge per P.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "I/r² ha unità W/m⁴, r²/I ha unità m⁴/W e Ir ha unità W/m. 4πIr² ha la dimensione giusta ma è P, non p.",
+        "target": "C5-L04"
+      },
+      "coverage": [
+        "Intensità e area sferica",
+        "Potenza normalizzata distinta dalla pressione",
+        "Campo lontano, inverse e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-spherical-intensity-10",
+      "kind": "question",
+      "course": "C5",
+      "section": "Potenza conservata e propagazione sferica",
+      "order": 13810,
+      "title": "Due fattori nella legge sferica",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "spherical-intensity",
+      "difficulty": 2,
+      "prompt": "Una sorgente acustica ideale puntiforme e isotropa emette potenza media costante P>0 in un mezzo omogeneo, senza assorbimento né riflessioni. I punti studiati sono lontani dalle dimensioni della sorgente, nel regime di propagazione sferica. L’intensità media radiale I è la potenza per area normale al flusso. Definiamo p=P/(4π)>0, che ha unità W: questo simbolo indica una potenza normalizzata, non una pressione. r>0 è la distanza dal centro della sorgente in m. Su ogni sfera la stessa potenza P attraversa l’area 4πr². B ha p_B=κ₁p_A e r_B=κ₂r_A, con fattori positivi e campo lontano in entrambe le prove. Quanto vale I_B/I_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ / κ₂²",
+          "κ₁ κ₂²",
+          "κ₁ / κ₂",
+          "κ₂² / κ₁",
+          "κ₁² / κ₂²"
+        ],
+        "value": "κ₁ / κ₂²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La potenza normalizzata dà il fattore diretto κ₁. La superficie sferica introduce il quadrato del fattore di raggio al denominatore. Il rapporto è κ₁/κ₂²; le unità si cancellano fra le due intensità."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{I_B}{I_A}=\\frac{\\kappa_1p_A}{(\\kappa_2r_A)^2}\\frac{r_A^2}{p_A}"
+        },
+        {
+          "type": "formula",
+          "text": " I_B/I_A=\\frac{\\kappa_1}{\\kappa_2^2}"
+        },
+        {
+          "type": "text",
+          "text": "Il prodotto fa aumentare I con la distanza, una sola potenza di κ₂ dimentica l’area e il rapporto inverso scambia le prove. Il quadrato di κ₁ non appartiene alla dipendenza dalla potenza."
+        }
+      ],
+      "hints": [
+        "Scala l’area, non soltanto il raggio.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il prodotto fa aumentare I con la distanza, una sola potenza di κ₂ dimentica l’area e il rapporto inverso scambia le prove. Il quadrato di κ₁ non appartiene alla dipendenza dalla potenza.",
+        "target": "C5-L04"
+      },
+      "coverage": [
+        "Intensità e area sferica",
+        "Potenza normalizzata distinta dalla pressione",
+        "Campo lontano, inverse e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-spherical-intensity-11",
+      "kind": "question",
+      "course": "C5",
+      "section": "Potenza conservata e propagazione sferica",
+      "order": 13811,
+      "title": "Potenza doppia a distanza doppia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "spherical-intensity",
+      "difficulty": 2,
+      "prompt": "Una sorgente acustica ideale puntiforme e isotropa emette potenza media costante P>0 in un mezzo omogeneo, senza assorbimento né riflessioni. I punti studiati sono lontani dalle dimensioni della sorgente, nel regime di propagazione sferica. L’intensità media radiale I è la potenza per area normale al flusso. Definiamo p=P/(4π)>0, che ha unità W: questo simbolo indica una potenza normalizzata, non una pressione. r>0 è la distanza dal centro della sorgente in m. Su ogni sfera la stessa potenza P attraversa l’area 4πr². A: p=4 W,r=2 m. B: p=8 W,r=4 m. Quanto vale I_B/I_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "2",
+          "1/4",
+          "4",
+          "8"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La potenza raddoppia ma la superficie quadruplica. In B otto W divisi per sedici m² danno un mezzo W/m², metà del valore A. Il vantaggio della potenza maggiore non compensa l’espansione sferica."
+        },
+        {
+          "type": "formula",
+          "text": "I_A=1\\,\\mathrm{W/m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " I_B=\\frac12\\,\\mathrm{W/m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " I_B/I_A=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Due segue solo p, un quarto solo r² e quattro inverte il rapporto delle superfici. Otto moltiplica i due fattori come se la distanza aumentasse l’intensità."
+        }
+      ],
+      "hints": [
+        "Dividi il fattore due della potenza per il fattore quattro dell’area.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due segue solo p, un quarto solo r² e quattro inverte il rapporto delle superfici. Otto moltiplica i due fattori come se la distanza aumentasse l’intensità.",
+        "target": "C5-L04"
+      },
+      "coverage": [
+        "Intensità e area sferica",
+        "Potenza normalizzata distinta dalla pressione",
+        "Campo lontano, inverse e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-spherical-intensity-12",
+      "kind": "question",
+      "course": "C5",
+      "section": "Potenza conservata e propagazione sferica",
+      "order": 13812,
+      "title": "Media delle intensità di due prove",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "spherical-intensity",
+      "difficulty": 2,
+      "prompt": "Una sorgente acustica ideale puntiforme e isotropa emette potenza media costante P>0 in un mezzo omogeneo, senza assorbimento né riflessioni. I punti studiati sono lontani dalle dimensioni della sorgente, nel regime di propagazione sferica. L’intensità media radiale I è la potenza per area normale al flusso. Definiamo p=P/(4π)>0, che ha unità W: questo simbolo indica una potenza normalizzata, non una pressione. r>0 è la distanza dal centro della sorgente in m. Su ogni sfera la stessa potenza P attraversa l’area 4πr². A ha p=4 W,r=2 m e B ha p=8 W,r=4 m. Qual è la media aritmetica delle due I con uguale peso statistico?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/4 W/m²",
+          "3/2 W/m²",
+          "3/8 W/m²",
+          "2/3 W/m²",
+          "1/2 W/m²"
+        ],
+        "value": "3/4 W/m²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le intensità sono uno e un mezzo W/m². La loro semisomma è tre quarti W/m². La potenza normalizzata media sei W e la distanza media tre m darebbero due terzi W/m², inferiore di un dodicesimo alla media richiesta."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline I=\\frac{1+1/2}{2}\\,\\mathrm{W/m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline I=\\frac34\\,\\mathrm{W/m^2}"
+        },
+        {
+          "type": "text",
+          "text": "Tre mezzi è la somma, tre ottavi dimezza ancora e un mezzo copia B. Due terzi è la risposta del modello agli ingressi medi: l’inverso del quadrato non commuta con la media."
+        }
+      ],
+      "hints": [
+        "Trova ogni intensità prima della semisomma.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre mezzi è la somma, tre ottavi dimezza ancora e un mezzo copia B. Due terzi è la risposta del modello agli ingressi medi: l’inverso del quadrato non commuta con la media.",
+        "target": "C5-L04"
+      },
+      "coverage": [
+        "Intensità e area sferica",
+        "Potenza normalizzata distinta dalla pressione",
+        "Campo lontano, inverse e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-spherical-intensity-13",
+      "kind": "question",
+      "course": "C5",
+      "section": "Potenza conservata e propagazione sferica",
+      "order": 13813,
+      "title": "Il raggio per dimezzare I con più potenza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "spherical-intensity",
+      "difficulty": 3,
+      "prompt": "Una sorgente acustica ideale puntiforme e isotropa emette potenza media costante P>0 in un mezzo omogeneo, senza assorbimento né riflessioni. I punti studiati sono lontani dalle dimensioni della sorgente, nel regime di propagazione sferica. L’intensità media radiale I è la potenza per area normale al flusso. Definiamo p=P/(4π)>0, che ha unità W: questo simbolo indica una potenza normalizzata, non una pressione. r>0 è la distanza dal centro della sorgente in m. Su ogni sfera la stessa potenza P attraversa l’area 4πr². A usa p=4 W,r=2 m. B impone p=8 W e I_B=I_A/2. Quanto vale r_B/r_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "4",
+          "1/2",
+          "√2",
+          "1/4"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Per avere metà intensità nonostante potenza doppia, l’area sferica deve quadruplicare. Il rapporto dei raggi è la radice positiva di quattro, due. Si ottiene r_B=4 m, ancora nel regime assegnato."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac12=\\frac2{(r_B/r_A)^2}"
+        },
+        {
+          "type": "formula",
+          "text": " (r_B/r_A)^2=4"
+        },
+        {
+          "type": "formula",
+          "text": " r_B/r_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Quattro è il rapporto delle aree, un mezzo inverte i raggi e √2 compenserebbe solo il raddoppio di potenza mantenendo I uguale. Un quarto darebbe un’intensità molto maggiore del bersaglio."
+        }
+      ],
+      "hints": [
+        "Ricava prima il quadrato del rapporto geometrico.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro è il rapporto delle aree, un mezzo inverte i raggi e √2 compenserebbe solo il raddoppio di potenza mantenendo I uguale. Un quarto darebbe un’intensità molto maggiore del bersaglio.",
+        "target": "C5-L04"
+      },
+      "coverage": [
+        "Intensità e area sferica",
+        "Potenza normalizzata distinta dalla pressione",
+        "Campo lontano, inverse e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-spherical-intensity-14",
+      "kind": "question",
+      "course": "C5",
+      "section": "Potenza conservata e propagazione sferica",
+      "order": 13814,
+      "title": "Calibrare I per trovare p",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "spherical-intensity",
+      "difficulty": 3,
+      "prompt": "Una sorgente acustica ideale puntiforme e isotropa emette potenza media costante P>0 in un mezzo omogeneo, senza assorbimento né riflessioni. I punti studiati sono lontani dalle dimensioni della sorgente, nel regime di propagazione sferica. L’intensità media radiale I è la potenza per area normale al flusso. Definiamo p=P/(4π)>0, che ha unità W: questo simbolo indica una potenza normalizzata, non una pressione. r>0 è la distanza dal centro della sorgente in m. Su ogni sfera la stessa potenza P attraversa l’area 4πr². S=qI è un display continuo adimensionale. A con p=4 W,r=2 m dà S=3. B dà S=3/2 e ha r=4 m. Quanto vale p_B in W?",
+      "answer": {
+        "type": "numeric",
+        "value": 8,
+        "unit": "W",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento ha I=1 W/m² e fissa q=3 m²/W. La nuova lettura equivale a un mezzo W/m². Moltiplicandola per r_B²=16 m² si ricava p_B=8 W. Per P_B occorrerebbe ancora il fattore 4π."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{m^2/W}"
+        },
+        {
+          "type": "formula",
+          "text": " I_B=\\frac12\\,\\mathrm{W/m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " p_B=I_Br_B^2"
+        },
+        {
+          "type": "formula",
+          "text": " p_B=8\\,\\mathrm W"
+        },
+        {
+          "type": "text",
+          "text": "Usare S=3/2 come W/m² darebbe p=24 W. La lettura dimezzata non significa potenza dimezzata se cambia anche il raggio."
+        }
+      ],
+      "hints": [
+        "Decodifica l’intensità prima di moltiplicarla per l’area r².",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Usare S=3/2 come W/m² darebbe p=24 W. La lettura dimezzata non significa potenza dimezzata se cambia anche il raggio.",
+        "target": "C5-L04"
+      },
+      "coverage": [
+        "Intensità e area sferica",
+        "Potenza normalizzata distinta dalla pressione",
+        "Campo lontano, inverse e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-spherical-intensity-15",
+      "kind": "question",
+      "course": "C5",
+      "section": "Potenza conservata e propagazione sferica",
+      "order": 13815,
+      "title": "Un offset nel display dell’intensità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "spherical-intensity",
+      "difficulty": 3,
+      "prompt": "Una sorgente acustica ideale puntiforme e isotropa emette potenza media costante P>0 in un mezzo omogeneo, senza assorbimento né riflessioni. I punti studiati sono lontani dalle dimensioni della sorgente, nel regime di propagazione sferica. L’intensità media radiale I è la potenza per area normale al flusso. Definiamo p=P/(4π)>0, che ha unità W: questo simbolo indica una potenza normalizzata, non una pressione. r>0 è la distanza dal centro della sorgente in m. Su ogni sfera la stessa potenza P attraversa l’area 4πr². S=qI+z è continuo e adimensionale. A: p=4 W,r=2 m,S=3. B: p=8 W,r=4 m,S=2. C: r=2 m,S=9. Quanto vale p_C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "16 W",
+          "8 W",
+          "4 W",
+          "32 W",
+          "64π W"
+        ],
+        "value": "16 W"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti sono uno e un mezzo W/m². La differenza uno delle letture divisa per un mezzo dà q=2 m²/W; segue z=1. La lettura nove rappresenta I_C=4 W/m². A due metri, p_C=4·4=16 W."
+        },
+        {
+          "type": "formula",
+          "text": "q=2\\,\\mathrm{m^2/W}"
+        },
+        {
+          "type": "formula",
+          "text": " z=1"
+        },
+        {
+          "type": "formula",
+          "text": " I_C=4\\,\\mathrm{W/m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " p_C=16\\,\\mathrm W"
+        },
+        {
+          "type": "text",
+          "text": "Otto e quattro W produrrebbero letture cinque e tre, trentadue W produrrebbe diciassette. 64π W è la potenza completa P_C=4πp_C, non il parametro richiesto."
+        }
+      ],
+      "hints": [
+        "Sottrai z, rimuovi q e controlla quale potenza chiede la domanda.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Otto e quattro W produrrebbero letture cinque e tre, trentadue W produrrebbe diciassette. 64π W è la potenza completa P_C=4πp_C, non il parametro richiesto.",
+        "target": "C5-L04"
+      },
+      "coverage": [
+        "Intensità e area sferica",
+        "Potenza normalizzata distinta dalla pressione",
+        "Campo lontano, inverse e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-spherical-intensity-16",
+      "kind": "question",
+      "course": "C5",
+      "section": "Potenza conservata e propagazione sferica",
+      "order": 13816,
+      "title": "Un vincolo fra p e distanza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L01",
+        "C5-L02",
+        "C5-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "spherical-intensity",
+      "difficulty": 3,
+      "prompt": "Una sorgente acustica ideale puntiforme e isotropa emette potenza media costante P>0 in un mezzo omogeneo, senza assorbimento né riflessioni. I punti studiati sono lontani dalle dimensioni della sorgente, nel regime di propagazione sferica. L’intensità media radiale I è la potenza per area normale al flusso. Definiamo p=P/(4π)>0, che ha unità W: questo simbolo indica una potenza normalizzata, non una pressione. r>0 è la distanza dal centro della sorgente in m. Su ogni sfera la stessa potenza P attraversa l’area 4πr². Fra prove si impone p=cr con c=2 W/m. Si misura I=1 W/m². Quanto vale r>0 in m?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituire il vincolo nella legge sferica cancella un fattore di r: I=c/r. La distanza si isola come c/I e vale due metri. Il parametro risultante è p=4 W. Il legame riguarda sorgenti o condizioni differenti, non potenza crescente con il raggio nella stessa prova."
+        },
+        {
+          "type": "formula",
+          "text": "I=\\frac{cr}{r^2}"
+        },
+        {
+          "type": "formula",
+          "text": " I=\\frac cr"
+        },
+        {
+          "type": "formula",
+          "text": " r=\\frac cI"
+        },
+        {
+          "type": "formula",
+          "text": " r=2\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " p=4\\,\\mathrm W"
+        },
+        {
+          "type": "text",
+          "text": "Non serve una radice dopo la sostituzione, perché resta una sola potenza di r al denominatore. c è una potenza per lunghezza, non un’intensità né una pressione."
+        }
+      ],
+      "hints": [
+        "Semplifica il vincolo prima di scegliere l’inversa.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Non serve una radice dopo la sostituzione, perché resta una sola potenza di r al denominatore. c è una potenza per lunghezza, non un’intensità né una pressione.",
+        "target": "C5-L04"
+      },
+      "coverage": [
+        "Intensità e area sferica",
+        "Potenza normalizzata distinta dalla pressione",
+        "Campo lontano, inverse e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "297a5dd14ce04e01a0c8df748d44272c098986bbbb3e969ecc84737ae3a50278",
+      "name": "spherical-intensity-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTUzMCIgdmlld0JveD0iMCAwIDY0MCAxNTMwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+Cjx0aXRsZSBpZD0idGl0bGUiPlBvdGVuemEgZSBzdXBlcmZpY2kgc2ZlcmljaGU8L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5TZXppb25pIGRpIHNmZXJlIGRpIHJhZ2dpIGR1ZSBlIHF1YXR0cm8gbWV0cmkuIEzigJlhcmVhIHNmZXJpY2EgY3Jlc2NlIGRpIHF1YXR0cm8uIFVuIGNvbmZyb250byBkaXN0aW50byBjb21iaW5hIHBvdGVuemEgbm9ybWFsaXp6YXRhIGRvcHBpYSBlIGRpc3RhbnphIGRvcHBpYSwgb3R0ZW5lbmRvIG1ldMOgIGludGVuc2l0w6AuPC9kZXNjPgo8cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjE1MzAiIHJ4PSIyMCIgZmlsbD0iI2Y3ZmJmZiIvPgo8ZyBmb250LWZhbWlseT0ic3lzdGVtLXVpLHNhbnMtc2VyaWYiIGZpbGw9IiMxNDJkNDAiIGZvbnQtc2l6ZT0iMjAiPgo8dGV4dCB4PSIzNSIgeT0iNDgiIGZvbnQtc2l6ZT0iMjUiIGZvbnQtd2VpZ2h0PSI3MDAiPjEgwrcgRHVlIHNmZXJlLCBzdGVzc2Egc29yZ2VudGUgYWwgY2VudHJvPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iOTAiPlNlemlvbmkgY2VudHJhbGk6IHJhZ2dpIGEgNDAgcHgvbTwvdGV4dD4KPGNpcmNsZSBjeD0iMzIwIiBjeT0iMzEwIiByPSIxNjAiIGZpbGw9IiNlZGY3ZmMiIHN0cm9rZT0iIzE0NWQ4MSIgc3Ryb2tlLXdpZHRoPSIzIi8+CjxjaXJjbGUgY3g9IjMyMCIgY3k9IjMxMCIgcj0iODAiIGZpbGw9IiNkN2YxZmEiIHN0cm9rZT0iIzE0NWQ4MSIgc3Ryb2tlLXdpZHRoPSIzIi8+CjxjaXJjbGUgY3g9IjMyMCIgY3k9IjMxMCIgcj0iNSIgZmlsbD0iIzE0MmQ0MCIvPgo8cGF0aCBkPSJNMzIwIDMxMEg0MDBNMzIwIDMxMEw0MTYgNDM4IiBzdHJva2U9IiNjNjU5MTkiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIvPgo8dGV4dCB4PSIzMzciIHk9IjI5MiI+MiBtPC90ZXh0Pjx0ZXh0IHg9IjQzNSIgeT0iNDQ1Ij40IG08L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI1MjUiPlN1cGVyZmljaTogNM+AcsKyLCBub24gaSBkaXNjaGkgZGVsIGRpc2Vnbm88L3RleHQ+CjxwYXRoIGQ9Ik0zNSA1NjBINjA1IiBzdHJva2U9IiNiM2NiZDkiLz4KPHRleHQgeD0iMzUiIHk9IjYxMCIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9IjcwMCI+MiDCtyBSYWdnaW8gZG9wcGlvLCBhcmVhIHF1YWRydXBsYTwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjY1MCI+U+KCgCA9IDE2z4AgbcKyIMK3IGJhcnJlOiAxMDAgcHggcGVyIFPigoA8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI3MTAiPnIgPSAyIG08L3RleHQ+PHJlY3QgeD0iMTAwIiB5PSI3MzUiIHdpZHRoPSIxMDAiIGhlaWdodD0iMzUiIGZpbGw9IiMxNDVkODEiLz48dGV4dCB4PSIyMjUiIHk9Ijc2MiI+U+KCgDwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjgyNSI+ciA9IDQgbTwvdGV4dD48cmVjdCB4PSIxMDAiIHk9Ijg1MCIgd2lkdGg9IjQwMCIgaGVpZ2h0PSIzNSIgZmlsbD0iIzE0NWQ4MSIvPjx0ZXh0IHg9IjUyMCIgeT0iODc3Ij40IFPigoA8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI5NDUiPlNlbnphIHBlcmRpdGUsIGxhIHN0ZXNzYSBQIGF0dHJhdmVyc2Egb2duaSBzZmVyYS48L3RleHQ+CjxwYXRoIGQ9Ik0zNSA5ODBINjA1IiBzdHJva2U9IiNiM2NiZDkiLz4KPHRleHQgeD0iMzUiIHk9IjEwMzAiIGZvbnQtc2l6ZT0iMjUiIGZvbnQtd2VpZ2h0PSI3MDAiPjMgwrcgUXVpIGNhbWJpYSBhbmNoZSBsYSBwb3RlbnphPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTA3MCI+cCA9IFAvKDTPgCksIGluIFcgwrcgbm9uIMOoIHVuYSBwcmVzc2lvbmU8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxMTM1Ij5BIMK3IHAgPSA0IFcsIHIgPSAyIG0g4oeSIEkgPSAxIFcvbcKyPC90ZXh0Pgo8cmVjdCB4PSIxMDAiIHk9IjExNzAiIHdpZHRoPSIyMDAiIGhlaWdodD0iMzUiIGZpbGw9IiMxNDVkODEiLz4KPHRleHQgeD0iMzUiIHk9IjEyODUiPkIgwrcgcCA9IDggVywgciA9IDQgbSDih5IgSSA9IDEvMiBXL23CsjwvdGV4dD4KPHJlY3QgeD0iMTAwIiB5PSIxMzIwIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjM1IiBmaWxsPSIjYzY1OTE5Ii8+Cjx0ZXh0IHg9IjM1IiB5PSIxNDIwIj5JbnRlbnNpdMOgOiAyMDAgcHgvKFcvbcKyKSDCtyByYXBwb3J0byAxLzI8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxNDcwIj5DYW1wbyBsb250YW5vIMK3IGlzb3Ryb3BpYSDCtyBuaWVudGUgYXNzb3JiaW1lbnRvPC90ZXh0Pgo8L2c+PC9zdmc+Cg=="
+    }
+  ]
+}
