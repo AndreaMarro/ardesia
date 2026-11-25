@@ -201,3 +201,11 @@ Passaggi: Q=\alpha L^2;  L^2=10000\,\mathrm{(J/g)^2};  L=100\,\mathrm{J/g};  m=2
 Distrattori: Meno cento è escluso daL>0. Diecimila copia il quadrato senza radice. Due copia il numero della massa; cinquanta darebbe m=1 g eQ=50 J, non 200. La massa non si può mantenere indipendente dopo aver imposto il vincolo.
 
 Fonte canonica SHA256 6ffa0e1f7fef4203a1c2abb16efed7df48ab22fb6c6b4099fe9e72e6941718bf. Candidato SHA256 96bd06643a023bb58b71647a942a40d0259d92917af4de1ce791c4e7829f6c0c. Revisione indipendente NOT_RUN; human NOT_RUN.
+
+## Correzione della figura dopo review responsive
+
+Le scritte visibili dichiarano soltanto grandezze, unità fisiche e valori: nessuna lunghezza in pixel. Il confronto XML prima/dopo conferma gli stessi elementi, ordine e tutti gli attributi geometrici e stilistici; cambiano i soli testi delle legende e le didascalie collegate. Tutte le chiavi e formule sono identiche. Le versioni precedenti sono conservate con manifest in author-evidence/thermal-168-172-before-responsive-figure-fix. Le cinque nuove figure sono state lette integralmente in XML e nei rendering nativi completi allegati. Questo è controllo tecnico dell’autore, non revisione scientifica indipendente. UI del prodotto sui byte correnti NOT_RUN, nessun marker corrente.
+
+Coordinate intrinseche SVG: energie0,5 unità/J,200/800 J danno100/400 unità; media500 J lunga250 e prova agli ingressi medi450 J lunga225. Le aree dei riquadri di fase sono schematiche, non una scala di volume o un conteggio molecolare.
+
+Prima della prima consegna del lotto, la rilettura dell’autore ha corretto nel feedback12 l’attribuzione del distrattore300 J: usa la massa media3 g con il solo L_A=100 J/g, non il valore medio di L. Non è un cambiamento di risposta o formula né una review distinta.

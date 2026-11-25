@@ -6,7 +6,7 @@ TASKS=[
 ('L’energia aumenta una lettura già diversa da zero',SCENE+'P=5 W e t=10 s. Qual è la lettura finale in°C?',25,
  'Il campione riceve cinquanta joule. Dividendo per la capacità complessiva di dieci joule per kelvin troviamo un aumento di cinque kelvin, cioè cinque gradi sulla scala Celsius. Alla lettura iniziale venti si aggiunge cinque: il termometro indica 25 °C.',
  r'Q=Pt\qquad Q=50\,\mathrm J\qquad \Delta T=\frac QC\qquad \Delta T=5\,\mathrm K\qquad \theta_f=25',
- 'Cinque è l’aumento, non la lettura finale. Cinquanta copia l’energia e venti ignora il riscaldamento.Settanta somma il numero50 dell’energia alla lettura20 senza dividere per la capacità: joule e gradi Celsius non si possono sommare.',
+ 'Cinque è l’aumento, non la lettura finale. Cinquanta copia l’energia e venti ignora il riscaldamento.Settanta somma il numero 50 dell’energia alla lettura 20 senza dividere per la capacità: joule e gradi Celsius non si possono sommare.',
  'Distingui l’aumento dalla temperatura di partenza.'),
 ('Lettura di temperatura e unità','Quale unità esprime una temperatura misurata con un termometro Celsius?',['°C','J','W','J/K','K⁻¹'],
  'Il grado Celsius è un’unità di temperatura. Una differenza di un grado Celsius ha la stessa ampiezza di un kelvin, mentre i valori numerici delle due scale hanno zeri differenti. La domanda riguarda la lettura, non l’energia necessaria a modificarla.',
@@ -85,7 +85,7 @@ TASKS=[
  'Sostituisci il vincolo nell’energia complessivaPt e scegli la radice positiva.')]
 CHOICES={n:0 for n in [2,3,4,7,8,9,10,11,12,13,15,16]}
 UNITS={1:'°C',5:'W',6:'s',14:'W'}
-FIGURES={1:'Il campione ha C=10 J/K: nella provaA,50 J producono ΔT=5 K e una lettura 25 °C a partire da 20 °C. Il pannello centrale separa 20 iniziali, aumento 5 e lettura 25 sulla scala numerica Celsius, a 10 px per unità della lettura; il grafico successivo mostra 25 e 40 con media 65/2. Le barre Celsius partono dallo zero della scala scelta: il loro rapporto non è un rapporto di temperature assolute.',7:'Le barre delle lettureCelsius sono riportate con zero esplicito: A 25 e confronto a durata doppia 30, quindi 6/5. Gli aumenti sono 5 e 10 K, rapporto 2. In kelvin le letture sono 298,15 e 303,15: rapporto diverso, non richiesto. Il pannello finale della figura riguarda inveceA 25 eB 40 dei casi 11/12.'}
+FIGURES={1: 'Il campione ha C=10 J/K: nella provaA,50 J producono un aumento 5 K a partire da 20 °C, quindi lettura finale 25 °C. Il pannello centrale separa la lettura iniziale 20 dagli aumenti 5 e 10. Il pannello finale riguarda un altro confronto,25 e 40 °C, con media 65/2 °C. Le barre Celsius partono dallo zero scelto: i rapporti di letture non sono rapporti di temperature assolute.', 7: 'Nel pannello centraleA indica 25 °C e la prova a durata doppia 30 °C: il rapporto delle letture è 6/5, mentre quello degli aumenti 5 e 10 K è 2. Le corrispondenti temperature assolute sono 298,15 e 303,15 K e hanno un altro rapporto. Il pannello finale riguarda inveceA 25 eB 40 dei casi 11/12.'}
 def assemble(repo,source_ref):
  return assemble_family(repo,source_ref,'temperature-after-heating',TASKS,CHOICES,UNITS,'temperature-after-heating-progressive.svg',FIGURES,16900,course='C3',unit='u5',source_path=SOURCE_PATH,skill='C3-L03',prerequisites=['C3-L01','C3-L03','C3-L06'],section='Aumento termico e lettura finale',coverage=['Capacità termica complessiva e potenza netta','Letture Celsius distinte dalle temperature assolute','Inverse, medie e tarature'])
 if __name__=='__main__':write_family(assemble,'temperature-after-heating-169')
