@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="860" viewBox="0 0 480 860" role="img" aria-labelledby="title desc" font-family="Arial, Helvetica, sans-serif">
+<title id="title">Due riflettori sullo stesso asse</title><desc id="desc">Nello schema spaziale la sonda è a zero e i riflettori piani normali al fascio sono a trenta e cinquantuno millimetri. La loro separazione è ventuno millimetri; la scala è sei pixel per millimetro. Nella linea temporale, separata, gli echi diretti arrivano a quaranta e sessantotto microsecondi dall'emissione: la differenza è ventotto microsecondi. La scala temporale è quattro pixel per microsecondo. Ogni tempo include andata e ritorno, quindi due volte la distanza è velocità per tempo.</desc>
+<defs><marker id="axis" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto"><path d="M0 0L7 3.5L0 7Z" fill="#123c39"/></marker></defs>
+<rect width="480" height="860" fill="#faf7ee"/>
+<g fill="#123c39"><text x="24" y="42" font-size="28" font-weight="700">Due echi, lo stesso asse</text><text x="24" y="90" font-size="26">Velocità v = 1500 m/s</text><text x="218" y="132" font-size="26">1</text><text x="346" y="132" font-size="26">2</text><text x="24" y="170" font-size="26">Sonda</text></g>
+<g stroke="#16736b" stroke-width="4"><path d="M230 145V232"/><path d="M356 145V232"/></g>
+<path d="M50 220H422" stroke="#123c39" stroke-width="2" marker-end="url(#axis)"/><circle cx="50" cy="220" r="7" fill="#ac3825"/>
+<g fill="#123c39" font-size="26"><text x="42" y="264">0</text><text x="212" y="264">30</text><text x="339" y="264">51</text><text x="415" y="264">mm</text></g>
+<g stroke="#123c39" stroke-width="2"><path d="M50 286V304M230 286V304M50 296H230"/><path d="M230 352V370M356 352V370M230 362H356"/></g>
+<g fill="#123c39" font-size="26"><text x="90" y="345">d₁ = 30 mm</text><text x="219" y="412">Δd = 21 mm</text><text x="24" y="478" font-weight="700">Tempi di andata e ritorno</text></g>
+<path d="M50 580H422" stroke="#123c39" stroke-width="2" marker-end="url(#axis)"/>
+<g stroke="#16736b" stroke-width="4"><path d="M210 580V530"/><path d="M322 580V530"/></g>
+<g fill="#123c39" font-size="26"><text x="210" y="518" text-anchor="middle">40 µs</text><text x="322" y="518" text-anchor="middle">68 µs</text><text x="42" y="620">0</text><text x="418" y="620">µs</text></g>
+<path d="M210 647V665M322 647V665M210 657H322" stroke="#123c39" stroke-width="2"/>
+<g fill="#123c39"><text x="266" y="705" text-anchor="middle" font-size="26">Δt = 28 µs</text><text x="126" y="765" font-size="28">2 Δd = v Δt</text><text x="24" y="814" font-size="26">Impulsi schematici, ampiezze</text><text x="24" y="848" font-size="26">senza scala quantitativa</text></g>
+</svg>
