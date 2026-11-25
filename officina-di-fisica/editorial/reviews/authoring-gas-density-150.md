@@ -133,3 +133,7 @@ Sostituendo p=kT si ottiene ρ=kM/R: T si cancella. Nelle unità dichiarate il n
 Controllo didattico d’autore: Una sola coppia confonde una relazione ridondante con una misura di scala. Due esempi non esauriscono le soluzioni; la coppia nulla viola i denominatori positivi. Il coefficiente k porta unità kPa/K e non è una costante pura.
 
 Source SHA256 590a0723626cdd51ffc071a180b4abc1134cf2cb706806ce23214cc7386c3a61; candidato SHA256 bde8aad2b8ad6a3ef7b7ba99871fb7cbbe14bee0653f8edf9d941df796362e9d. Nessun giudizio scientifico indipendente attribuito all’autore.
+
+## Scelte specifiche del modello
+
+R=8 J/(mol·K) è l’approssimazione prescritta, non una nuova costante esatta. M=32 g/mol resta invariata: usando p in kPa e V in L si ottiene direttamente ρ in g/L; 1 g/L=1 kg/m³ perché i due fattori mille si cancellano. Le temperature dei rapporti sono assolute. Il caso 08 è separato: la legge dell’energia traslazionale media per molecola è fornita esplicitamente e non richiede di ricavare una capacità termica totale o di ricordare una formula assente dalla lezione. Le ultime barre SVG rappresentano solo quel rapporto energetico, con una scala diversa dalle barre di densità. Nel 12 la media dei risultati è distinta dal modello sugli ingressi medi; nel 16 la misura fissa il rapporto p/T ma non la scala comune degli stati.
