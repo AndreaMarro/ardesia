@@ -135,4 +135,3 @@ Il coefficiente collega una densità a una portata volumetrica e conserva le sue
 Passaggi: `\dot m=cQ^2\qquad Q^2=\dot m/c\qquad Q^2=16\,\mathrm{L^2/s^2}\qquad Q_+=4\,\mathrm{L/s}\qquad Q_-=-4\,\mathrm{L/s}`
 
 Errori e controllo: SoloQ=4 L/s è compatibile con portata e densità positive; alloraρ=1 kg/L. La radice negativa darebbe anche densità negativa nel vincolo, esclusa. Non si è affermato che un fluido cambi densità conQ lungo lo stesso tubo: il vincolo seleziona prove diverse.
-

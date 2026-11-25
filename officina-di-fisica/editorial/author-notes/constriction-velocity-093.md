@@ -135,4 +135,3 @@ Sostituendo nella continuità, v₂=v₁·2A₂/A₂=2v₁=4 cm/s per ogniA₂>0
 Passaggi: `A_1=2A_2\qquad v_2=v_1\frac{2A_2}{A_2}\qquad v_2=2v_1\qquad v_2=4\,\mathrm{cm/s}`
 
 Errori e controllo: Due esempi non significano soltanto due coppie: qualunque scala positiva funziona. Zero è escluso dalle aree e dalla divisione. Per fissare la scala servirebbe conoscere una delle aree o la portataQ.
-
