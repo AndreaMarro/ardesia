@@ -1,0 +1,1183 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u3-hydrostatic-weighing-01",
+      "kind": "question",
+      "course": "C2",
+      "section": "Spinta e galleggiamento",
+      "order": 9001,
+      "title": "La perdita di lettura misura la spinta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydrostatic-weighing",
+      "difficulty": 1,
+      "prompt": "Un solido omogeneo impermeabile è sospeso fermo a un dinamometro, senza contatto con pareti o fondo. In aria la lettura W_a è il peso, trascurando la spinta dell’aria. In acqua omogenea di densità ρ_w=1 kg/L il corpo è completamente immerso e la lettura W_i è la tensione del sostegno, chiamata peso apparente. Sono assenti bolle e tensioni superficiali sul corpo; g è uguale nelle due pesate. Il corpo è più denso dell’acqua: W_a>W_i>0. Prove diverse possono riferirsi a corpi diversi. Con W_a=10 N e W_i=5 N, quanto vale ρ_c in kg/L?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "kg/L",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "In acqua il peso non diminuisce: la spinta verso l’alto condivide il sostegno con la tensione del dinamometro. Perciò S=W_a−W_i=5 N. La stessa g moltiplica sia ρ_cV sia ρ_wV e si cancella nel rapporto W_a/S, dando la densità del solido."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/0bb4b02f49981017c303628aea74705a34e9c45fa23f20de75df0d60b05064fd",
+          "text": "Le letture sono forze di sostegno, non risultanti: in aria T=10N bilancia il peso10N; in acqua T5N e spinta5N bilanciano lo stesso peso. Le tre proiezioni separate usano20px/N. La differenza di lettura misura la spinta. Un esempio con g10m/s² e acqua1kg/L ricostruisce V1/2L e massa1kg."
+        },
+        {
+          "type": "formula",
+          "text": "S=W_a-W_i"
+        },
+        {
+          "type": "formula",
+          "text": "W_a-W_i=5\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " W_a=\\rho_cgV"
+        },
+        {
+          "type": "formula",
+          "text": " S=\\rho_wgV"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_c=\\rho_w\\frac{W_a}{W_a-W_i}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_c=2\\,\\mathrm{kg/L}"
+        },
+        {
+          "type": "text",
+          "text": "W_i non è la risultante delle forze, che è zero in equilibrio, e non è il nuovo peso gravitazionale. Il valore 2 kg/L supera 1 kg/L, coerentemente con tensione positiva e immersione completa."
+        }
+      ],
+      "hints": [
+        "Sottrai le due letture per trovare la spinta, poi confrontala con il peso.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "W_i non è la risultante delle forze, che è zero in equilibrio, e non è il nuovo peso gravitazionale. Il valore 2 kg/L supera 1 kg/L, coerentemente con tensione positiva e immersione completa.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Peso, sostegno e spinta distinti",
+        "Densità da pesate idrostatiche",
+        "Inverse e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-hydrostatic-weighing-02",
+      "kind": "question",
+      "course": "C2",
+      "section": "Spinta e galleggiamento",
+      "order": 9002,
+      "title": "Forze in rapporto, densità in risultato",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydrostatic-weighing",
+      "difficulty": 1,
+      "prompt": "Un solido omogeneo impermeabile è sospeso fermo a un dinamometro, senza contatto con pareti o fondo. In aria la lettura W_a è il peso, trascurando la spinta dell’aria. In acqua omogenea di densità ρ_w=1 kg/L il corpo è completamente immerso e la lettura W_i è la tensione del sostegno, chiamata peso apparente. Sono assenti bolle e tensioni superficiali sul corpo; g è uguale nelle due pesate. Il corpo è più denso dell’acqua: W_a>W_i>0. Prove diverse possono riferirsi a corpi diversi. Quale unità proposta esprime ρ_c?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "kg/L",
+          "N",
+          "L/kg",
+          "kg",
+          "N/L"
+        ],
+        "value": "kg/L"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il rapporto W_a/(W_a−W_i) è puro, ma deve moltiplicare la densità nota dell’acqua. Il risultato mantiene quindi dimensioni di massa per volume. Il numero 1 della densità dell’acqua non autorizza a cancellarne l’unità."
+        },
+        {
+          "type": "formula",
+          "text": "\\rho_c=\\rho_w\\frac{W_a}{S}"
+        },
+        {
+          "type": "formula",
+          "text": " [\\rho_c]=M/L^3"
+        },
+        {
+          "type": "formula",
+          "text": " 1\\,\\mathrm{kg/L}=1000\\,\\mathrm{kg/m^3}"
+        },
+        {
+          "type": "text",
+          "text": "N è forza, L/kg è densità inversa, kg massa e N/L forza per volume. Il rapporto delle forze da solo determina una densità relativa, non una densità dimensionata."
+        }
+      ],
+      "hints": [
+        "Mantieni ρ_w anche quando il suo numero vale uno.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "N è forza, L/kg è densità inversa, kg massa e N/L forza per volume. Il rapporto delle forze da solo determina una densità relativa, non una densità dimensionata.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Peso, sostegno e spinta distinti",
+        "Densità da pesate idrostatiche",
+        "Inverse e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-hydrostatic-weighing-03",
+      "kind": "question",
+      "course": "C2",
+      "section": "Spinta e galleggiamento",
+      "order": 9003,
+      "title": "La densità dalla differenza delle pesate",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydrostatic-weighing",
+      "difficulty": 1,
+      "prompt": "Un solido omogeneo impermeabile è sospeso fermo a un dinamometro, senza contatto con pareti o fondo. In aria la lettura W_a è il peso, trascurando la spinta dell’aria. In acqua omogenea di densità ρ_w=1 kg/L il corpo è completamente immerso e la lettura W_i è la tensione del sostegno, chiamata peso apparente. Sono assenti bolle e tensioni superficiali sul corpo; g è uguale nelle due pesate. Il corpo è più denso dell’acqua: W_a>W_i>0. Prove diverse possono riferirsi a corpi diversi. Quale formula dà ρ_c?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "ρ_c = ρ_w W_a / (W_a − W_i)",
+          "ρ_c = ρ_w W_i / W_a",
+          "ρ_c = ρ_w W_a / W_i",
+          "ρ_c = ρ_w (W_a − W_i) / W_a",
+          "ρ_c = ρ_w W_a / (W_a + W_i)"
+        ],
+        "value": "ρ_c = ρ_w W_a / (W_a − W_i)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nella seconda pesata l’equilibrio è W_i+S=W_a. La differenza è dunque il peso dell’acqua spostata, non il peso rimasto al corpo. Dividere peso del corpo per peso dell’acqua spostata confronta masse che occupano lo stesso volume e restituisce il rapporto di densità."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/0bb4b02f49981017c303628aea74705a34e9c45fa23f20de75df0d60b05064fd",
+          "text": "Il peso in aria confrontato con la spinta dà il rapporto delle densità. Le barre200px e100px, a20px/N, rappresentano10N e5N. Scalare insieme le due pesate non cambia la densità; la massa non si ricava dalla sola densità."
+        },
+        {
+          "type": "formula",
+          "text": "W_i+S=W_a"
+        },
+        {
+          "type": "formula",
+          "text": " S=\\rho_wgV"
+        },
+        {
+          "type": "formula",
+          "text": " W_a=\\rho_cgV"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{\\rho_c}{\\rho_w}=\\frac{W_a}{W_a-W_i}"
+        },
+        {
+          "type": "text",
+          "text": "W_a/W_i può coincidere col numero corretto nel caso particolare 10 e 5 N, ma non è la legge: con 20 e 15 N darebbe 4/3 anziché 4. Le espressioni con rapporto invertito o somma danno densità sotto quella dell’acqua, incompatibile con il dominio."
+        }
+      ],
+      "hints": [
+        "Identifica nella differenza la spinta di Archimede.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "W_a/W_i può coincidere col numero corretto nel caso particolare 10 e 5 N, ma non è la legge: con 20 e 15 N darebbe 4/3 anziché 4. Le espressioni con rapporto invertito o somma danno densità sotto quella dell’acqua, incompatibile con il dominio.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Peso, sostegno e spinta distinti",
+        "Densità da pesate idrostatiche",
+        "Inverse e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-hydrostatic-weighing-04",
+      "kind": "question",
+      "course": "C2",
+      "section": "Spinta e galleggiamento",
+      "order": 9004,
+      "title": "Peso maggiore con la stessa lettura immersa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydrostatic-weighing",
+      "difficulty": 1,
+      "prompt": "Un solido omogeneo impermeabile è sospeso fermo a un dinamometro, senza contatto con pareti o fondo. In aria la lettura W_a è il peso, trascurando la spinta dell’aria. In acqua omogenea di densità ρ_w=1 kg/L il corpo è completamente immerso e la lettura W_i è la tensione del sostegno, chiamata peso apparente. Sono assenti bolle e tensioni superficiali sul corpo; g è uguale nelle due pesate. Il corpo è più denso dell’acqua: W_a>W_i>0. Prove diverse possono riferirsi a corpi diversi. Fra corpi diversi W_a passa da 10 a 20 N; W_i resta 5 N. Come cambia ρ_c?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 2 a 4/3 kg/L",
+          "Da 2 a 4 kg/L",
+          "Resta 2 kg/L",
+          "Da 2 a 1 kg/L",
+          "Da 2 a 1/2 kg/L"
+        ],
+        "value": "Da 2 a 4/3 kg/L"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La spinta non resta fissa: passa da 5 a 15 N perché la differenza delle letture aumenta. Il rapporto peso/spinta cambia quindi da 10/5=2 a 20/15=4/3. Il secondo corpo ha peso maggiore ma densità minore: sposta un volume relativamente più grande."
+        },
+        {
+          "type": "formula",
+          "text": "S_A=5\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " S_B=15\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_{c,A}=2\\,\\mathrm{kg/L}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_{c,B}=\\frac{20}{15}\\,\\mathrm{kg/L}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_{c,B}=\\frac43\\,\\mathrm{kg/L}"
+        },
+        {
+          "type": "text",
+          "text": "Quattro segue soltanto il numeratore; uno imporrebbe tensione immersa nulla e un mezzo richiederebbe un sostegno verso il basso, entrambi esclusi. Una densità non si ordina dal solo peso senza conoscere il volume."
+        }
+      ],
+      "hints": [
+        "Ricalcola anche W_a−W_i dopo il cambiamento.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Quattro segue soltanto il numeratore; uno imporrebbe tensione immersa nulla e un mezzo richiederebbe un sostegno verso il basso, entrambi esclusi. Una densità non si ordina dal solo peso senza conoscere il volume.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Peso, sostegno e spinta distinti",
+        "Densità da pesate idrostatiche",
+        "Inverse e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-hydrostatic-weighing-05",
+      "kind": "question",
+      "course": "C2",
+      "section": "Spinta e galleggiamento",
+      "order": 9005,
+      "title": "Il peso in aria da densità e tensione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydrostatic-weighing",
+      "difficulty": 2,
+      "prompt": "Un solido omogeneo impermeabile è sospeso fermo a un dinamometro, senza contatto con pareti o fondo. In aria la lettura W_a è il peso, trascurando la spinta dell’aria. In acqua omogenea di densità ρ_w=1 kg/L il corpo è completamente immerso e la lettura W_i è la tensione del sostegno, chiamata peso apparente. Sono assenti bolle e tensioni superficiali sul corpo; g è uguale nelle due pesate. Il corpo è più denso dell’acqua: W_a>W_i>0. Prove diverse possono riferirsi a corpi diversi. ρ_c=2 kg/L e W_i=5 N. Quanto vale W_a in N?",
+      "answer": {
+        "type": "numeric",
+        "value": 10,
+        "unit": "N",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Poniamo R=ρ_c/ρ_w=2. La relazione R(W_a−W_i)=W_a porta (R−1)W_a=R W_i. Dividendo per R−1>0 otteniamo 10 N, maggiore della lettura immersa."
+        },
+        {
+          "type": "formula",
+          "text": "R=\\rho_c/\\rho_w"
+        },
+        {
+          "type": "formula",
+          "text": "\\rho_c/\\rho_w=2"
+        },
+        {
+          "type": "formula",
+          "text": " RW_a-RW_i=W_a"
+        },
+        {
+          "type": "formula",
+          "text": " W_a=\\frac{R}{R-1}W_i"
+        },
+        {
+          "type": "formula",
+          "text": " W_a=10\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "Moltiplicare semplicemente la densità per W_i dimentica che il denominatore contiene anche W_a; qui il numero coinciderebbe per R=2, ma l’inversa generale richiede il fattore R/(R−1). Il controllo 10−5=5 N ricostruisce la densità assegnata."
+        }
+      ],
+      "hints": [
+        "Raccogli i termini che contengono W_a prima di dividere.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Moltiplicare semplicemente la densità per W_i dimentica che il denominatore contiene anche W_a; qui il numero coinciderebbe per R=2, ma l’inversa generale richiede il fattore R/(R−1). Il controllo 10−5=5 N ricostruisce la densità assegnata.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Peso, sostegno e spinta distinti",
+        "Densità da pesate idrostatiche",
+        "Inverse e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-hydrostatic-weighing-06",
+      "kind": "question",
+      "course": "C2",
+      "section": "Spinta e galleggiamento",
+      "order": 9006,
+      "title": "La tensione in acqua",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydrostatic-weighing",
+      "difficulty": 2,
+      "prompt": "Un solido omogeneo impermeabile è sospeso fermo a un dinamometro, senza contatto con pareti o fondo. In aria la lettura W_a è il peso, trascurando la spinta dell’aria. In acqua omogenea di densità ρ_w=1 kg/L il corpo è completamente immerso e la lettura W_i è la tensione del sostegno, chiamata peso apparente. Sono assenti bolle e tensioni superficiali sul corpo; g è uguale nelle due pesate. Il corpo è più denso dell’acqua: W_a>W_i>0. Prove diverse possono riferirsi a corpi diversi. ρ_c=2 kg/L e W_a=10 N. Quanto vale W_i in N?",
+      "answer": {
+        "type": "numeric",
+        "value": 5,
+        "unit": "N",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La spinta vale la frazione ρ_w/ρ_c=1/2 del peso, quindi 5 N. La tensione sostiene il peso residuo: W_i=W_a−S=5 N. Non stiamo calcolando la risultante, che resta nulla."
+        },
+        {
+          "type": "formula",
+          "text": "S=\\frac{\\rho_w}{\\rho_c}W_a"
+        },
+        {
+          "type": "formula",
+          "text": " S=5\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " W_i=W_a-S"
+        },
+        {
+          "type": "formula",
+          "text": " W_i=5\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "Un sostegno da 10 N ignora la spinta; zero sarebbe il caso limite ρ_c=ρ_w e non quello assegnato. Tensioni negative non sono ammesse da una fune che tira soltanto verso l’alto."
+        }
+      ],
+      "hints": [
+        "Trova la spinta dal rapporto delle densità e sottraila al peso.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un sostegno da 10 N ignora la spinta; zero sarebbe il caso limite ρ_c=ρ_w e non quello assegnato. Tensioni negative non sono ammesse da una fune che tira soltanto verso l’alto.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Peso, sostegno e spinta distinti",
+        "Densità da pesate idrostatiche",
+        "Inverse e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-hydrostatic-weighing-07",
+      "kind": "question",
+      "course": "C2",
+      "section": "Spinta e galleggiamento",
+      "order": 9007,
+      "title": "Una lettura immersa più piccola",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydrostatic-weighing",
+      "difficulty": 2,
+      "prompt": "Un solido omogeneo impermeabile è sospeso fermo a un dinamometro, senza contatto con pareti o fondo. In aria la lettura W_a è il peso, trascurando la spinta dell’aria. In acqua omogenea di densità ρ_w=1 kg/L il corpo è completamente immerso e la lettura W_i è la tensione del sostegno, chiamata peso apparente. Sono assenti bolle e tensioni superficiali sul corpo; g è uguale nelle due pesate. Il corpo è più denso dell’acqua: W_a>W_i>0. Prove diverse possono riferirsi a corpi diversi. A: W_a=10 N,W_i=5 N. B mantiene W_a=10 N ma ha W_i=1 N. Quanto vale ρ_c,B/ρ_c,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "5/9",
+          "9/5",
+          "1/5",
+          "5",
+          "1"
+        ],
+        "value": "5/9"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il corpo B è sostenuto quasi tutto dall’acqua: S_B=9 N, quindi ρ_c,B=10/9 kg/L. Dividendo per i 2 kg/L di A si ottiene 5/9. Entrambe le densità superano quella dell’acqua, ma B le è più vicino."
+        },
+        {
+          "type": "formula",
+          "text": "\\rho_{c,B}=\\frac{10}{9}\\,\\mathrm{kg/L}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_{c,A}=2\\,\\mathrm{kg/L}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_{c,B}/\\rho_{c,A}=\\frac59"
+        },
+        {
+          "type": "text",
+          "text": "Un quinto segue solo la tensione, che non è proporzionale alla densità. Nove quinti inverte il confronto; cinque confonde il rapporto delle tensioni con quello delle densità."
+        }
+      ],
+      "hints": [
+        "Usa le differenze 5 N e 9 N prima del rapporto finale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un quinto segue solo la tensione, che non è proporzionale alla densità. Nove quinti inverte il confronto; cinque confonde il rapporto delle tensioni con quello delle densità.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Peso, sostegno e spinta distinti",
+        "Densità da pesate idrostatiche",
+        "Inverse e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-hydrostatic-weighing-08",
+      "kind": "question",
+      "course": "C2",
+      "section": "Spinta e galleggiamento",
+      "order": 9008,
+      "title": "Il doppio della densità corretta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydrostatic-weighing",
+      "difficulty": 2,
+      "prompt": "Un solido omogeneo impermeabile è sospeso fermo a un dinamometro, senza contatto con pareti o fondo. In aria la lettura W_a è il peso, trascurando la spinta dell’aria. In acqua omogenea di densità ρ_w=1 kg/L il corpo è completamente immerso e la lettura W_i è la tensione del sostegno, chiamata peso apparente. Sono assenti bolle e tensioni superficiali sul corpo; g è uguale nelle due pesate. Il corpo è più denso dell’acqua: W_a>W_i>0. Prove diverse possono riferirsi a corpi diversi. Con W_a=10 N,W_i=5 N si propone ρ_c=4 kg/L. Quanto vale proposta meno corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2 kg/L",
+          "−2 kg/L",
+          "4 kg/L",
+          "0 kg/L",
+          "1 kg/L"
+        ],
+        "value": "2 kg/L"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La densità corretta è 2 kg/L. La proposta ne aggiunge altrettanti, perciò lo scarto con segno è +2 kg/L. Un corpo da 4 kg/L e peso 10 N avrebbe spinta 5/2 N e lettura immersa 15/2 N, non i 5 N osservati."
+        },
+        {
+          "type": "formula",
+          "text": "\\rho_c=2\\,\\mathrm{kg/L}"
+        },
+        {
+          "type": "formula",
+          "text": " e=(4-2)\\,\\mathrm{kg/L}"
+        },
+        {
+          "type": "formula",
+          "text": " e=2\\,\\mathrm{kg/L}"
+        },
+        {
+          "type": "text",
+          "text": "−2 scambia l’ordine, quattro ripete la proposta, zero la accetta e uno dimezza lo scarto. La controprova con il dinamometro distingue una densità numericamente plausibile da quella compatibile con le misure."
+        }
+      ],
+      "hints": [
+        "Calcola la densità prima di sottrarla alla proposta.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−2 scambia l’ordine, quattro ripete la proposta, zero la accetta e uno dimezza lo scarto. La controprova con il dinamometro distingue una densità numericamente plausibile da quella compatibile con le misure.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Peso, sostegno e spinta distinti",
+        "Densità da pesate idrostatiche",
+        "Inverse e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-hydrostatic-weighing-09",
+      "kind": "question",
+      "course": "C2",
+      "section": "Spinta e galleggiamento",
+      "order": 9009,
+      "title": "L’inversa conserva le densità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydrostatic-weighing",
+      "difficulty": 2,
+      "prompt": "Un solido omogeneo impermeabile è sospeso fermo a un dinamometro, senza contatto con pareti o fondo. In aria la lettura W_a è il peso, trascurando la spinta dell’aria. In acqua omogenea di densità ρ_w=1 kg/L il corpo è completamente immerso e la lettura W_i è la tensione del sostegno, chiamata peso apparente. Sono assenti bolle e tensioni superficiali sul corpo; g è uguale nelle due pesate. Il corpo è più denso dell’acqua: W_a>W_i>0. Prove diverse possono riferirsi a corpi diversi. Quale formula isola W_a?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "W_a = ρ_c W_i / (ρ_c − ρ_w)",
+          "W_a = ρ_c W_i / ρ_w",
+          "W_a = ρ_w W_i / (ρ_c − ρ_w)",
+          "W_a = (ρ_c − ρ_w) W_i / ρ_c",
+          "W_a = ρ_c W_i / (ρ_c + ρ_w)"
+        ],
+        "value": "W_a = ρ_c W_i / (ρ_c − ρ_w)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplicando per la differenza delle letture, ρ_cW_a−ρ_cW_i=ρ_wW_a. Raccogliamo W_a e dividiamo per ρ_c−ρ_w>0. Il rapporto fra densità è puro, quindi l’inversa restituisce una forza."
+        },
+        {
+          "type": "formula",
+          "text": "\\rho_c(W_a-W_i)=\\rho_wW_a"
+        },
+        {
+          "type": "formula",
+          "text": " (\\rho_c-\\rho_w)W_a=\\rho_cW_i"
+        },
+        {
+          "type": "formula",
+          "text": " W_a=\\frac{\\rho_cW_i}{\\rho_c-\\rho_w}"
+        },
+        {
+          "type": "text",
+          "text": "ρ_cW_i/ρ_w omette il termine da raccogliere; sostituire ρ_w al numeratore modifica l’equazione. Le formule che restituiscono W_a<W_i violano l’esistenza di una spinta positiva verso l’alto."
+        }
+      ],
+      "hints": [
+        "Porta i due termini in W_a sullo stesso membro.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "ρ_cW_i/ρ_w omette il termine da raccogliere; sostituire ρ_w al numeratore modifica l’equazione. Le formule che restituiscono W_a<W_i violano l’esistenza di una spinta positiva verso l’alto.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Peso, sostegno e spinta distinti",
+        "Densità da pesate idrostatiche",
+        "Inverse e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-hydrostatic-weighing-10",
+      "kind": "question",
+      "course": "C2",
+      "section": "Spinta e galleggiamento",
+      "order": 9010,
+      "title": "Scalare entrambe le pesate",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydrostatic-weighing",
+      "difficulty": 2,
+      "prompt": "Un solido omogeneo impermeabile è sospeso fermo a un dinamometro, senza contatto con pareti o fondo. In aria la lettura W_a è il peso, trascurando la spinta dell’aria. In acqua omogenea di densità ρ_w=1 kg/L il corpo è completamente immerso e la lettura W_i è la tensione del sostegno, chiamata peso apparente. Sono assenti bolle e tensioni superficiali sul corpo; g è uguale nelle due pesate. Il corpo è più denso dell’acqua: W_a>W_i>0. Prove diverse possono riferirsi a corpi diversi. B usa W_a,B=κ₁W_a e W_i,B=κ₂W_i. Definiamo D=W_a−W_i e D_B=κ₁W_a−κ₂W_i, entrambi positivi. Anche le singole letture restano positive. Quale rapporto dà ρ_c,B/ρ_c,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ D / D_B",
+          "κ₁ / κ₂",
+          "κ₁ κ₂",
+          "D_B / (κ₁ D)",
+          "D / D_B"
+        ],
+        "value": "κ₁ D / D_B"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il numeratore della densità scala con κ₁, ma il denominatore è la nuova differenza D_B: non si può scalarlo con κ₂ da solo. Dividiamo ρ_wκ₁W_a/D_B per ρ_wW_a/D e cancelliamo i fattori comuni."
+        },
+        {
+          "type": "formula",
+          "text": "\\rho_{c,A}=\\rho_wW_a/D"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_{c,B}=\\rho_w\\kappa_1W_a/D_B"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{\\rho_{c,B}}{\\rho_{c,A}}=\\frac{\\kappa_1D}{D_B}"
+        },
+        {
+          "type": "text",
+          "text": "Il quoziente κ₁/κ₂ ignora la sottrazione; il prodotto è privo di giustificazione. Il reciproco scambia gli stati e D/D_B omette la scalatura del peso. Se κ₁=κ₂ la densità resta uguale, perché entrambe le pesate scalano insieme."
+        }
+      ],
+      "hints": [
+        "Mantieni la differenza completa al denominatore di ogni densità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il quoziente κ₁/κ₂ ignora la sottrazione; il prodotto è privo di giustificazione. Il reciproco scambia gli stati e D/D_B omette la scalatura del peso. Se κ₁=κ₂ la densità resta uguale, perché entrambe le pesate scalano insieme.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Peso, sostegno e spinta distinti",
+        "Densità da pesate idrostatiche",
+        "Inverse e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-hydrostatic-weighing-11",
+      "kind": "question",
+      "course": "C2",
+      "section": "Spinta e galleggiamento",
+      "order": 9011,
+      "title": "Peso e sostegno più grandi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydrostatic-weighing",
+      "difficulty": 2,
+      "prompt": "Un solido omogeneo impermeabile è sospeso fermo a un dinamometro, senza contatto con pareti o fondo. In aria la lettura W_a è il peso, trascurando la spinta dell’aria. In acqua omogenea di densità ρ_w=1 kg/L il corpo è completamente immerso e la lettura W_i è la tensione del sostegno, chiamata peso apparente. Sono assenti bolle e tensioni superficiali sul corpo; g è uguale nelle due pesate. Il corpo è più denso dell’acqua: W_a>W_i>0. Prove diverse possono riferirsi a corpi diversi. A: W_a=10 N,W_i=5 N. B: W_a=20 N,W_i=15 N. Quanto vale ρ_c,B/ρ_c,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/2",
+          "3",
+          "4",
+          "1"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La spinta è 5 N in entrambe le prove, dunque il volume spostato è uguale nelle medesime acqua e gravità. Il peso raddoppia e la densità passa da 2 a 4 kg/L: il rapporto è due."
+        },
+        {
+          "type": "formula",
+          "text": "S_A=S_B"
+        },
+        {
+          "type": "formula",
+          "text": "S_B=5\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_{c,A}=2\\,\\mathrm{kg/L}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_{c,B}=4\\,\\mathrm{kg/L}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_{c,B}/\\rho_{c,A}=2"
+        },
+        {
+          "type": "text",
+          "text": "Tre segue soltanto la tensione 5→15 N. Quattro è la nuova densità espressa in kg/L, non il rapporto puro; un mezzo inverte gli stati e uno confonde la spinta uguale con il peso uguale."
+        }
+      ],
+      "hints": [
+        "Confronta prima le due differenze di lettura.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre segue soltanto la tensione 5→15 N. Quattro è la nuova densità espressa in kg/L, non il rapporto puro; un mezzo inverte gli stati e uno confonde la spinta uguale con il peso uguale.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Peso, sostegno e spinta distinti",
+        "Densità da pesate idrostatiche",
+        "Inverse e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-hydrostatic-weighing-12",
+      "kind": "question",
+      "course": "C2",
+      "section": "Spinta e galleggiamento",
+      "order": 9012,
+      "title": "La media delle due densità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydrostatic-weighing",
+      "difficulty": 2,
+      "prompt": "Un solido omogeneo impermeabile è sospeso fermo a un dinamometro, senza contatto con pareti o fondo. In aria la lettura W_a è il peso, trascurando la spinta dell’aria. In acqua omogenea di densità ρ_w=1 kg/L il corpo è completamente immerso e la lettura W_i è la tensione del sostegno, chiamata peso apparente. Sono assenti bolle e tensioni superficiali sul corpo; g è uguale nelle due pesate. Il corpo è più denso dell’acqua: W_a>W_i>0. Prove diverse possono riferirsi a corpi diversi. Le prove A con W_a=10 N,W_i=5 N e B con W_a=20 N,W_i=15 N hanno uguale peso statistico. Qual è la media aritmetica delle due ρ_c?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3 kg/L",
+          "6 kg/L",
+          "3/2 kg/L",
+          "2 kg/L",
+          "4 kg/L"
+        ],
+        "value": "3 kg/L"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le densità ricavate separatamente sono 2 e 4 kg/L; la loro media è 3 kg/L. In questa coppia le due spinte sono uguali, perciò anche le letture medie 15 e 10 N darebbero 3 kg/L. È una proprietà di questi dati, non una regola generale sui quozienti."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline\\rho_c=\\frac{2+4}{2}\\,\\mathrm{kg/L}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline\\rho_c=3\\,\\mathrm{kg/L}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_{medie}=\\frac{15}{15-10}\\,\\mathrm{kg/L}"
+        },
+        {
+          "type": "text",
+          "text": "Sei somma senza dividere, 3/2 divide due volte e due o quattro selezionano una sola prova. La coincidenza con gli ingressi medi dipende qui dal denominatore comune 5 N."
+        }
+      ],
+      "hints": [
+        "Calcola le due densità e poi prendine la semisomma.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sei somma senza dividere, 3/2 divide due volte e due o quattro selezionano una sola prova. La coincidenza con gli ingressi medi dipende qui dal denominatore comune 5 N.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Peso, sostegno e spinta distinti",
+        "Densità da pesate idrostatiche",
+        "Inverse e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-hydrostatic-weighing-13",
+      "kind": "question",
+      "course": "C2",
+      "section": "Spinta e galleggiamento",
+      "order": 9013,
+      "title": "La tensione per raddoppiare la densità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydrostatic-weighing",
+      "difficulty": 3,
+      "prompt": "Un solido omogeneo impermeabile è sospeso fermo a un dinamometro, senza contatto con pareti o fondo. In aria la lettura W_a è il peso, trascurando la spinta dell’aria. In acqua omogenea di densità ρ_w=1 kg/L il corpo è completamente immerso e la lettura W_i è la tensione del sostegno, chiamata peso apparente. Sono assenti bolle e tensioni superficiali sul corpo; g è uguale nelle due pesate. Il corpo è più denso dell’acqua: W_a>W_i>0. Prove diverse possono riferirsi a corpi diversi. A ha W_a=10 N,W_i=5 N. B ha W_a=20 N e deve avere ρ_c,B=2ρ_c,A. Quanto vale W_i,B/W_i,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3",
+          "2",
+          "1/3",
+          "4",
+          "1"
+        ],
+        "value": "3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La densità bersaglio è 4 kg/L, perciò la spinta di B deve essere un quarto del peso 20 N, cioè 5 N. La tensione vale 20−5=15 N e confrontata con i 5 N iniziali dà tre."
+        },
+        {
+          "type": "formula",
+          "text": "\\rho_{c,B}=4\\,\\mathrm{kg/L}"
+        },
+        {
+          "type": "formula",
+          "text": " S_B=5\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " W_{i,B}=15\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " W_{i,B}/W_{i,A}=3"
+        },
+        {
+          "type": "text",
+          "text": "Due segue il peso, ma la tensione è il peso meno una spinta e non una quantità proporzionale al peso in questo cambiamento. Quattro è la densità numerica; uno conserverebbe la densità 4/3 kg/L, non 4."
+        }
+      ],
+      "hints": [
+        "Trova la spinta richiesta dal bersaglio prima della tensione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due segue il peso, ma la tensione è il peso meno una spinta e non una quantità proporzionale al peso in questo cambiamento. Quattro è la densità numerica; uno conserverebbe la densità 4/3 kg/L, non 4.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Peso, sostegno e spinta distinti",
+        "Densità da pesate idrostatiche",
+        "Inverse e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-hydrostatic-weighing-14",
+      "kind": "question",
+      "course": "C2",
+      "section": "Spinta e galleggiamento",
+      "order": 9014,
+      "title": "Una taratura di densità e un peso incognito",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydrostatic-weighing",
+      "difficulty": 3,
+      "prompt": "Un solido omogeneo impermeabile è sospeso fermo a un dinamometro, senza contatto con pareti o fondo. In aria la lettura W_a è il peso, trascurando la spinta dell’aria. In acqua omogenea di densità ρ_w=1 kg/L il corpo è completamente immerso e la lettura W_i è la tensione del sostegno, chiamata peso apparente. Sono assenti bolle e tensioni superficiali sul corpo; g è uguale nelle due pesate. Il corpo è più denso dell’acqua: W_a>W_i>0. Prove diverse possono riferirsi a corpi diversi. Un display continuo adimensionale segue S=qρ_c, senza offset. A con W_a=10 N,W_i=5 N dà S=6. B ha W_i=15 N e S=12. Quanto vale W_a,B in N?",
+      "answer": {
+        "type": "numeric",
+        "value": 20,
+        "unit": "N",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento ha densità 2 kg/L e determina q=3 L/kg. La lettura 12 rappresenta 4 kg/L. Con R=4 e W_i=15 N, l’inversa W_a=R W_i/(R−1) dà 20 N; la spinta positiva è 5 N."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{L/kg}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_{c,B}=4\\,\\mathrm{kg/L}"
+        },
+        {
+          "type": "formula",
+          "text": " W_{a,B}=\\frac{4\\cdot15}{4-1}\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " W_{a,B}=20\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "Usare 12 come densità relativa darebbe 180/11 N, confondendo il guadagno dello strumento con la legge fisica. Il risultato corretto supera W_i e restituisce ρ_c=4 kg/L."
+        }
+      ],
+      "hints": [
+        "Decodifica la densità e usa l’inversa, senza scambiare W_i con la spinta.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Usare 12 come densità relativa darebbe 180/11 N, confondendo il guadagno dello strumento con la legge fisica. Il risultato corretto supera W_i e restituisce ρ_c=4 kg/L.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Peso, sostegno e spinta distinti",
+        "Densità da pesate idrostatiche",
+        "Inverse e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-hydrostatic-weighing-15",
+      "kind": "question",
+      "course": "C2",
+      "section": "Spinta e galleggiamento",
+      "order": 9015,
+      "title": "Un offset e una densità frazionaria",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydrostatic-weighing",
+      "difficulty": 3,
+      "prompt": "Un solido omogeneo impermeabile è sospeso fermo a un dinamometro, senza contatto con pareti o fondo. In aria la lettura W_a è il peso, trascurando la spinta dell’aria. In acqua omogenea di densità ρ_w=1 kg/L il corpo è completamente immerso e la lettura W_i è la tensione del sostegno, chiamata peso apparente. Sono assenti bolle e tensioni superficiali sul corpo; g è uguale nelle due pesate. Il corpo è più denso dell’acqua: W_a>W_i>0. Prove diverse possono riferirsi a corpi diversi. Un display continuo adimensionale segue S=qρ_c+z. A: W_a=10 N,W_i=5 N,S=5. B: W_a=20 N,W_i=15 N,S=9. C: W_i=5 N,S=11/3. Quanto vale W_a,C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "20 N",
+          "10 N",
+          "15 N",
+          "5 N",
+          "25 N"
+        ],
+        "value": "20 N"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le densità di riferimento sono 2 e 4 kg/L: q=(9−5)/(4−2)=2 L/kg e z=1. C ha densità (11/3−1)/2=4/3 kg/L. Raccogliendo W_a nell’inversa si trova W_a=(4/3)5/(1/3)=20 N."
+        },
+        {
+          "type": "formula",
+          "text": "q=2\\,\\mathrm{L/kg}"
+        },
+        {
+          "type": "formula",
+          "text": " z=1"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_{c,C}=\\frac43\\,\\mathrm{kg/L}"
+        },
+        {
+          "type": "formula",
+          "text": " W_{a,C}=\\frac{(4/3)5}{1/3}\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " W_{a,C}=20\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "Con W_i=5 N, W_a10,15,25 N darebbero S5,4,7/2, non 11/3. W_a=5 N annulla la spinta e rende la densità inferita indefinita. La lettura strumentale non è un peso e non va sottratta a W_i."
+        }
+      ],
+      "hints": [
+        "Elimina l’offset prima di risolvere per W_a.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Con W_i=5 N, W_a10,15,25 N darebbero S5,4,7/2, non 11/3. W_a=5 N annulla la spinta e rende la densità inferita indefinita. La lettura strumentale non è un peso e non va sottratta a W_i.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Peso, sostegno e spinta distinti",
+        "Densità da pesate idrostatiche",
+        "Inverse e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u3-hydrostatic-weighing-16",
+      "kind": "question",
+      "course": "C2",
+      "section": "Spinta e galleggiamento",
+      "order": 9016,
+      "title": "Due pesate proporzionali senza scala fissata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L001",
+        "C2-L002",
+        "C2-L004"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "hydrostatic-weighing",
+      "difficulty": 3,
+      "prompt": "Un solido omogeneo impermeabile è sospeso fermo a un dinamometro, senza contatto con pareti o fondo. In aria la lettura W_a è il peso, trascurando la spinta dell’aria. In acqua omogenea di densità ρ_w=1 kg/L il corpo è completamente immerso e la lettura W_i è la tensione del sostegno, chiamata peso apparente. Sono assenti bolle e tensioni superficiali sul corpo; g è uguale nelle due pesate. Il corpo è più denso dell’acqua: W_a>W_i>0. Prove diverse possono riferirsi a corpi diversi. Fra corpi diversi si impone W_a=2W_i e si misura ρ_c=2 kg/L. Quante coppie positive di letture soddisfano entrambi i dati?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Infinite",
+          "Una",
+          "Due",
+          "Nessuna",
+          "Solo la coppia nulla"
+        ],
+        "value": "Infinite"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituendo W_a=2W_i, la differenza è W_i e la densità vale sempre 2ρ_w=2 kg/L. La misura conferma il vincolo ma non identifica la dimensione o il peso del corpo. Le coppie 10 e 5 N, oppure 20 e 10 N, sono entrambe ammesse."
+        },
+        {
+          "type": "formula",
+          "text": "\\rho_c=\\rho_w\\frac{2W_i}{2W_i-W_i}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_c=2\\rho_w"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_c=2\\,\\mathrm{kg/L}"
+        },
+        {
+          "type": "text",
+          "text": "Una sola coppia richiederebbe una misura indipendente di peso o volume. Zero è escluso perché la differenza finirebbe al denominatore; due esempi non limitano a due la famiglia continua con W_i>0."
+        }
+      ],
+      "hints": [
+        "Controlla se W_i si cancella completamente.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Una sola coppia richiederebbe una misura indipendente di peso o volume. Zero è escluso perché la differenza finirebbe al denominatore; due esempi non limitano a due la famiglia continua con W_i>0.",
+        "target": "C2-L004"
+      },
+      "coverage": [
+        "Peso, sostegno e spinta distinti",
+        "Densità da pesate idrostatiche",
+        "Inverse e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "0bb4b02f49981017c303628aea74705a34e9c45fa23f20de75df0d60b05064fd",
+      "name": "hydrostatic-weighing-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTQ1MCIgdmlld0JveD0iMCAwIDY0MCAxNDUwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+SWwgZGluYW1vbWV0cm8gbWlzdXJhIGxhIHRlbnNpb25lLCBub24gaWwgcGVzbyBkaW1pbnVpdG88L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5Qcm9pZXppb25pIGRpIGZvcnplOiBpbiBhcmlhIHRlbnNpb25lIGRpZWNpIG5ld3RvbiB1Z3VhbGUgYWwgcGVzbzsgaW4gYWNxdWEgdGVuc2lvbmUgY2lucXVlIHBpw7kgc3BpbnRhIGNpbnF1ZSBuZXd0b24gY29udHJvIHBlc28gZGllY2kuIFR1dHRlIGxlIGZyZWNjZSBlIGJhcnJlIGEgdmVudGkgcGl4ZWwgcGVyIG5ld3Rvbi4gRXNlbXBpbyBnIGRpZWNpIGUgdm9sdW1lIHVuIG1lenpvIGxpdHJvIHJpY2F2YXRvIGRhbGxhIHNwaW50YS4gRmFtaWdsaWEgZGkgY29ycGkgY29uIHBlc2F0ZSBwcm9wb3J6aW9uYWxpLCBkZW5zaXTDoCBkdWUgY2hpbG9ncmFtbWkgcGVyIGxpdHJvIGludmFyaWF0YS48L2Rlc2M+PGRlZnM+PG1hcmtlciBpZD0iYSIgdmlld0JveD0iMCAwIDEwIDEwIiByZWZYPSI5IiByZWZZPSI1IiBtYXJrZXJXaWR0aD0iMTAiIG1hcmtlckhlaWdodD0iMTAiIG1hcmtlclVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgb3JpZW50PSJhdXRvIj48cGF0aCBkPSJNMCAwTDEwIDVMMCAxMFoiIGZpbGw9ImNvbnRleHQtc3Ryb2tlIi8+PC9tYXJrZXI+PC9kZWZzPjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMTQ1MCIgcng9IjIwIiBmaWxsPSIjZmFmOGYxIi8+PGcgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxOTNhNDkiPjx0ZXh0IHg9IjI4IiB5PSI0MiIgZm9udC1zaXplPSIyNSI+MSDCtyBQcm9pZXppb25pIGRlbGxlIGZvcnplIHN1bGxvIHN0ZXNzbyBjb3JwbzwvdGV4dD48dGV4dCB4PSIyOCIgeT0iOTAiPkFyaWE6IHNwaW50YSB0cmFzY3VyYXRhLiBBY3F1YTogaW1tZXJzaW9uZSBjb21wbGV0YS48L3RleHQ+PHRleHQgeD0iMTA1IiB5PSIxNTUiPkFSSUE8L3RleHQ+PHRleHQgeD0iMzY1IiB5PSIxNTUiPkFDUVVBPC90ZXh0PjxwYXRoIGQ9Ik0xMjAgNDAwVjIwMCIgc3Ryb2tlPSIjYjQ2MTQ1IiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjYSkiLz48cGF0aCBkPSJNMjQwIDIwMFY0MDAiIHN0cm9rZT0iIzE5M2E0OSIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI2EpIi8+PHBhdGggZD0iTTM3MCA0MDBWMzAwIiBzdHJva2U9IiNiNDYxNDUiIHN0cm9rZS13aWR0aD0iMyIgbWFya2VyLWVuZD0idXJsKCNhKSIvPjxwYXRoIGQ9Ik00NjAgNDAwVjMwMCIgc3Ryb2tlPSIjMDg4NjliIiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjYSkiLz48cGF0aCBkPSJNNTUwIDIwMFY0MDAiIHN0cm9rZT0iIzE5M2E0OSIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI2EpIi8+PHRleHQgeD0iNjUiIHk9IjQ1MCI+VCA9IDEwIE48L3RleHQ+PHRleHQgeD0iMjAwIiB5PSI0OTUiPlAgPSAxMCBOPC90ZXh0Pjx0ZXh0IHg9IjMyNSIgeT0iNDUwIj5UID0gNSBOPC90ZXh0Pjx0ZXh0IHg9IjQzMCIgeT0iNDk1Ij5TID0gNSBOPC90ZXh0Pjx0ZXh0IHg9IjUxMCIgeT0iNTQwIj5QID0gMTAgTjwvdGV4dD48dGV4dCB4PSIyOCIgeT0iNTkwIj4yMCBweC9OOiBmcmVjY2UyMDBweCBvMTAwcHguPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSI2MzAiPklsIHBlc28gcmVzdGExME4uIEluIGFjcXVhOiBUICsgUyDiiJIgUCA9IDAuPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSI3MTAiIGZvbnQtc2l6ZT0iMjUiPjIgwrcgTGEgZGlmZmVyZW56YSBkZWxsZSBsZXR0dXJlIMOoIGxhIHNwaW50YTwvdGV4dD48cmVjdCB4PSIyMDAiIHk9Ijc2MCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIzOCIgZmlsbD0iI2E4YjhhYSIvPjxyZWN0IHg9IjIwMCIgeT0iODUwIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjM4IiBmaWxsPSIjYmFkOWU1Ii8+PHRleHQgeD0iMjgiIHk9Ijc4NyI+V19hID0gMTAgTjwvdGV4dD48dGV4dCB4PSIyOCIgeT0iODc3Ij5TID0gNSBOPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSI5NDAiPkJhcnJlOjIwcHgvTi4gV19hL1MgPSAyLCByYXBwb3J0byBwdXJvLjwvdGV4dD48dGV4dCB4PSIyOCIgeT0iOTg1Ij7PgV9jID0gz4FfdyBXX2EvUyA9IDIga2cvTC48L3RleHQ+PHRleHQgeD0iMjgiIHk9IjEwNzAiIGZvbnQtc2l6ZT0iMjUiPjMgwrcgVW5hIGRlbnNpdMOgLCBjb3JwaSBkaSBkaW1lbnNpb25pIGRpdmVyc2U8L3RleHQ+PHRleHQgeD0iMjgiIHk9IjExMjAiPkVzZW1waW8gZyA9IDEwIG0vc8KyLCBhY3F1YTFrZy9MLjwvdGV4dD48dGV4dCB4PSIyOCIgeT0iMTE3MCI+UyA9IDUgTiDihpIgdm9sdW1lMS8yTDsgV19hID0gMTAgTiDihpIgbWFzc2Exa2cuPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSIxMjIwIj5XX2EgPSAyMCBOLCBXX2kgPSAxMCBOOiBzcGludGExME4uPC90ZXh0Pjx0ZXh0IHg9IjI4IiB5PSIxMjcwIj5Wb2x1bWUxTCwgbWFzc2Eya2c6IGFuY29yYc+BX2MgPSAya2cvTC48L3RleHQ+PHRleHQgeD0iMjgiIHk9IjEzMzAiPldfYSA9IDJXX2kgbm9uIGRldGVybWluYSBpbCB2b2x1bWUgdG90YWxlLjwvdGV4dD48dGV4dCB4PSIyOCIgeT0iMTM4MCI+TGEgbGV0dHVyYSBpbW1lcnNhIMOoIHVuYSB0ZW5zaW9uZSBwb3NpdGl2YS48L3RleHQ+PC9nPjwvc3ZnPgo="
+    }
+  ]
+}
