@@ -1,0 +1,1155 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u7-wavelength-in-medium-01",
+      "kind": "question",
+      "course": "C5",
+      "section": "Frequenza conservata e lunghezza d’onda nel mezzo",
+      "order": 24001,
+      "title": "La frequenza resta, la distanza fra le creste cambia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wavelength-in-medium",
+      "difficulty": 1,
+      "prompt": "Una radiazione monocromatica di lunghezza d’onda nel vuoto λ₀>0 entra in un mezzo trasparente fermo, attraverso un’interfaccia stazionaria. L’indice di fase n è finito e n≥1; alla frequenza considerata v_fase=c/n. La frequenza f resta quella della sorgente durante ciascun passaggio: f=c/λ₀ e λ=v_fase/f. Fra preparazioni si possono cambiare sorgente o mezzo, sempre nel dominio dichiarato. Con λ₀=600 nm e n=2, quanto vale λ in nm?",
+      "answer": {
+        "type": "numeric",
+        "value": 300,
+        "unit": "nm",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nel vuoto c=λ₀f; nel mezzo v_fase=λf. La stessa f permette di dividere le due relazioni: λ/λ₀=v_fase/c=1/n. Quindi λ=600 nm/2=300 nm. La lunghezza d’onda più corta non indica che la sorgente abbia cambiato frequenza all’interfaccia."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/cd45ead7fa602df6b5b7ed91978bae8697195ebb1266740d055dd8dcd68b17a3",
+          "text": "I fronti di fase nella prima tappa sono disegnati alla stessa scala spaziale: λ₀=600 nm nel vuoto e λ=300 nm nel mezzo con n=2. La frequenza resta uguale attraverso l’interfaccia ferma; le righe mostrano regioni distinte, non istanti successivi."
+        },
+        {
+          "type": "formula",
+          "text": "\\lambda=\\frac{v_{\\rm fase}}f"
+        },
+        {
+          "type": "formula",
+          "text": " \\lambda=\\frac{\\lambda_0}{n}"
+        },
+        {
+          "type": "formula",
+          "text": " \\lambda=300\\,\\mathrm{nm}"
+        },
+        {
+          "type": "text",
+          "text": "1200 nm moltiplica per n invece di dividere.600 nm conserva la lunghezza anziché la frequenza;150 nm divide due volte. Il valore zero non segue da indice finito e λ₀ positiva."
+        }
+      ],
+      "hints": [
+        "Confronta le due relazioni velocità=lunghezza d’onda per frequenza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "1200 nm moltiplica per n invece di dividere.600 nm conserva la lunghezza anziché la frequenza;150 nm divide due volte. Il valore zero non segue da indice finito e λ₀ positiva.",
+        "target": "C5-L06"
+      },
+      "coverage": [
+        "Interfaccia stazionaria e velocità di fase",
+        "Unità, inverse e dominio n≥1",
+        "Medie e display continui",
+        "Caso autonomo della velocità di fase"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-wavelength-in-medium-02",
+      "kind": "question",
+      "course": "C5",
+      "section": "Frequenza conservata e lunghezza d’onda nel mezzo",
+      "order": 24002,
+      "title": "La lunghezza conserva la propria dimensione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wavelength-in-medium",
+      "difficulty": 1,
+      "prompt": "Una radiazione monocromatica di lunghezza d’onda nel vuoto λ₀>0 entra in un mezzo trasparente fermo, attraverso un’interfaccia stazionaria. L’indice di fase n è finito e n≥1; alla frequenza considerata v_fase=c/n. La frequenza f resta quella della sorgente durante ciascun passaggio: f=c/λ₀ e λ=v_fase/f. Fra preparazioni si possono cambiare sorgente o mezzo, sempre nel dominio dichiarato. Quale unità misura λ?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "nm",
+          "Hz",
+          "m/s",
+          "1",
+          "s"
+        ],
+        "value": "nm"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "λ è una distanza. Il nanometro è un’unità di lunghezza:1 nm=10⁻⁹ m. Dividere λ₀ per n, che è un numero puro, conserva questa dimensione. La frequenza resta una grandezza distinta."
+        },
+        {
+          "type": "formula",
+          "text": "1\\,\\mathrm{nm}=10^{-9}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " [n]=1"
+        },
+        {
+          "type": "formula",
+          "text": " [\\lambda]=\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Hz misura f, m/s la velocità di fase, s il periodo. Il simbolo 1 indica una quantità pura come n, non la lunghezza λ."
+        }
+      ],
+      "hints": [
+        "L’indice non aggiunge un’unità alla lunghezza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "Hz misura f, m/s la velocità di fase, s il periodo. Il simbolo 1 indica una quantità pura come n, non la lunghezza λ.",
+        "target": "C5-L06"
+      },
+      "coverage": [
+        "Interfaccia stazionaria e velocità di fase",
+        "Unità, inverse e dominio n≥1",
+        "Medie e display continui",
+        "Caso autonomo della velocità di fase"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-wavelength-in-medium-03",
+      "kind": "question",
+      "course": "C5",
+      "section": "Frequenza conservata e lunghezza d’onda nel mezzo",
+      "order": 24003,
+      "title": "Che cosa attraversa l’interfaccia senza cambiare",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wavelength-in-medium",
+      "difficulty": 1,
+      "prompt": "Caso autonomo: luce monocromatica passa dall’aria a un vetro trasparente fermo attraverso un’interfaccia stazionaria. Quale grandezza resta invariata nel passaggio?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "La frequenza",
+          "La lunghezza d’onda",
+          "La velocità di fase",
+          "Sempre l’intensità trasmessa",
+          "Sempre l’ampiezza del campo elettrico"
+        ],
+        "value": "La frequenza"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La continuità temporale dell’oscillazione all’interfaccia ferma impone la stessa frequenza sui due lati. Velocità di fase e lunghezza d’onda cambiano con il mezzo. Intensità e ampiezza trasmesse non sono in generale invarianti: possono intervenire riflessione e differente impedenza ottica, anche in assenza di assorbimento."
+        },
+        {
+          "type": "formula",
+          "text": "f_{\\rm aria}=f_{\\rm vetro}"
+        },
+        {
+          "type": "formula",
+          "text": " \\lambda=\\frac{v_{\\rm fase}}f"
+        },
+        {
+          "type": "text",
+          "text": "Conservare λ insieme a f imporrebbe la stessa velocità, contrariamente al cambio di indice. Trasparente non significa trasmissione di tutta l’intensità senza riflessione. L’ampiezza non è la frequenza."
+        }
+      ],
+      "hints": [
+        "Pensa al ritmo imposto dalla sorgente a un confine fermo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Conservare λ insieme a f imporrebbe la stessa velocità, contrariamente al cambio di indice. Trasparente non significa trasmissione di tutta l’intensità senza riflessione. L’ampiezza non è la frequenza.",
+        "target": "C5-L06"
+      },
+      "coverage": [
+        "Interfaccia stazionaria e velocità di fase",
+        "Unità, inverse e dominio n≥1",
+        "Medie e display continui",
+        "Caso autonomo della velocità di fase"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-wavelength-in-medium-04",
+      "kind": "question",
+      "course": "C5",
+      "section": "Frequenza conservata e lunghezza d’onda nel mezzo",
+      "order": 24004,
+      "title": "Velocità di fase da un indice assegnato",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wavelength-in-medium",
+      "difficulty": 1,
+      "prompt": "Caso autonomo: un mezzo trasparente ha n=3/2. Si assume c=3 × 10⁸ m/s. Secondo n=c/v_fase, quanto vale la velocità di fase?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2 × 10⁸ m/s",
+          "(9/2)× 10⁸ m/s",
+          "3 × 10⁸ m/s",
+          "(3/2)× 10⁸ m/s",
+          "0 m/s"
+        ],
+        "value": "2 × 10⁸ m/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplico n=c/v_fase per v_fase e divido per n>0: v_fase=c/n. Dividere per 3/2 equivale a moltiplicare per 2/3. I tre del numeratore e del divisore si cancellano e resta 2 × 10⁸ m/s. Qui non si chiede una velocità di gruppo o una velocità di particelle materiali."
+        },
+        {
+          "type": "formula",
+          "text": "v_{\\rm fase}=\\frac cn"
+        },
+        {
+          "type": "formula",
+          "text": " v_{\\rm fase}=\\frac23c"
+        },
+        {
+          "type": "formula",
+          "text": " v_{\\rm fase}=2\\cdot10^8\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "(9/2)× 10⁸ m/s moltiplica c per n.3 × 10⁸ ignora il mezzo; (3/2)× 10⁸ copia il numero dell’indice nella velocità. Zero non segue da n finito."
+        }
+      ],
+      "hints": [
+        "L’indice maggiore di uno riduce la velocità di fase rispetto a c.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "(9/2)× 10⁸ m/s moltiplica c per n.3 × 10⁸ ignora il mezzo; (3/2)× 10⁸ copia il numero dell’indice nella velocità. Zero non segue da n finito.",
+        "target": "C5-L06"
+      },
+      "coverage": [
+        "Interfaccia stazionaria e velocità di fase",
+        "Unità, inverse e dominio n≥1",
+        "Medie e display continui",
+        "Caso autonomo della velocità di fase"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-wavelength-in-medium-05",
+      "kind": "question",
+      "course": "C5",
+      "section": "Frequenza conservata e lunghezza d’onda nel mezzo",
+      "order": 24005,
+      "title": "La lunghezza nel vuoto da quella nel mezzo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wavelength-in-medium",
+      "difficulty": 2,
+      "prompt": "Una radiazione monocromatica di lunghezza d’onda nel vuoto λ₀>0 entra in un mezzo trasparente fermo, attraverso un’interfaccia stazionaria. L’indice di fase n è finito e n≥1; alla frequenza considerata v_fase=c/n. La frequenza f resta quella della sorgente durante ciascun passaggio: f=c/λ₀ e λ=v_fase/f. Fra preparazioni si possono cambiare sorgente o mezzo, sempre nel dominio dichiarato. Si misurano λ=300 nm e n=2. Quanto vale λ₀ in nm?",
+      "answer": {
+        "type": "numeric",
+        "value": 600,
+        "unit": "nm",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplico λ=λ₀/n per n: λ₀=nλ. Due per 300 nm restituisce 600 nm. È la lunghezza della stessa radiazione nel vuoto, non un’ulteriore lunghezza nel vetro."
+        },
+        {
+          "type": "formula",
+          "text": "\\lambda_0=n\\lambda"
+        },
+        {
+          "type": "formula",
+          "text": " \\lambda_0=600\\,\\mathrm{nm}"
+        },
+        {
+          "type": "text",
+          "text": "150 nm divide ancora per n;300 nm ignora l’indice.1200 nm applica due volte la moltiplicazione. La sostituzione 600/2=300 nm ricostruisce il dato."
+        }
+      ],
+      "hints": [
+        "Nell’inversa devi annullare la divisione per n.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "150 nm divide ancora per n;300 nm ignora l’indice.1200 nm applica due volte la moltiplicazione. La sostituzione 600/2=300 nm ricostruisce il dato.",
+        "target": "C5-L06"
+      },
+      "coverage": [
+        "Interfaccia stazionaria e velocità di fase",
+        "Unità, inverse e dominio n≥1",
+        "Medie e display continui",
+        "Caso autonomo della velocità di fase"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-wavelength-in-medium-06",
+      "kind": "question",
+      "course": "C5",
+      "section": "Frequenza conservata e lunghezza d’onda nel mezzo",
+      "order": 24006,
+      "title": "L’indice da due lunghezze",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wavelength-in-medium",
+      "difficulty": 2,
+      "prompt": "Una radiazione monocromatica di lunghezza d’onda nel vuoto λ₀>0 entra in un mezzo trasparente fermo, attraverso un’interfaccia stazionaria. L’indice di fase n è finito e n≥1; alla frequenza considerata v_fase=c/n. La frequenza f resta quella della sorgente durante ciascun passaggio: f=c/λ₀ e λ=v_fase/f. Fra preparazioni si possono cambiare sorgente o mezzo, sempre nel dominio dichiarato. λ₀=600 nm e λ=300 nm. Quanto vale n?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Isolo n=λ₀/λ. Le unità nm si cancellano e il rapporto 600/300=2 è puro. Il dominio n≥1 richiede λ≤λ₀: una misura λ>λ₀ non sarebbe ammessa nel modello dichiarato."
+        },
+        {
+          "type": "formula",
+          "text": "n=\\frac{\\lambda_0}{\\lambda}"
+        },
+        {
+          "type": "formula",
+          "text": " n=2"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo inverte il rapporto e viola n≥1.300 o 600 copiano una lunghezza invece di formare un rapporto. Non occorre una radice."
+        }
+      ],
+      "hints": [
+        "Controlla prima che il rapporto rispetti il dominio dell’indice.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo inverte il rapporto e viola n≥1.300 o 600 copiano una lunghezza invece di formare un rapporto. Non occorre una radice.",
+        "target": "C5-L06"
+      },
+      "coverage": [
+        "Interfaccia stazionaria e velocità di fase",
+        "Unità, inverse e dominio n≥1",
+        "Medie e display continui",
+        "Caso autonomo della velocità di fase"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-wavelength-in-medium-07",
+      "kind": "question",
+      "course": "C5",
+      "section": "Frequenza conservata e lunghezza d’onda nel mezzo",
+      "order": 24007,
+      "title": "Un indice minore, stessa sorgente",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wavelength-in-medium",
+      "difficulty": 2,
+      "prompt": "Una radiazione monocromatica di lunghezza d’onda nel vuoto λ₀>0 entra in un mezzo trasparente fermo, attraverso un’interfaccia stazionaria. L’indice di fase n è finito e n≥1; alla frequenza considerata v_fase=c/n. La frequenza f resta quella della sorgente durante ciascun passaggio: f=c/λ₀ e λ=v_fase/f. Fra preparazioni si possono cambiare sorgente o mezzo, sempre nel dominio dichiarato. A usa λ₀=600 nm, n=2. B mantiene λ₀ e usa n=3/2. Quanto vale λ_B/λ_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4/3",
+          "3/4",
+          "2",
+          "1/2",
+          "1"
+        ],
+        "value": "4/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A dà 300 nm. In B dividere 600 per 3/2 significa 600·2/3=400 nm. Il rapporto finale/iniziale è 400/300=4/3. Entrambi gli indici rispettano n≥1 e la sorgente è la stessa in queste due prove."
+        },
+        {
+          "type": "formula",
+          "text": "\\lambda_A=300\\,\\mathrm{nm}"
+        },
+        {
+          "type": "formula",
+          "text": " \\lambda_B=400\\,\\mathrm{nm}"
+        },
+        {
+          "type": "formula",
+          "text": " \\lambda_B/\\lambda_A=\\frac43"
+        },
+        {
+          "type": "text",
+          "text": "3/4 segue il rapporto degli indici senza invertirlo. Due o mezzo non usano n_B=3/2; uno ignora il cambio di mezzo."
+        }
+      ],
+      "hints": [
+        "La lunghezza nel mezzo è inversa all’indice a sorgente fissata.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "3/4 segue il rapporto degli indici senza invertirlo. Due o mezzo non usano n_B=3/2; uno ignora il cambio di mezzo.",
+        "target": "C5-L06"
+      },
+      "coverage": [
+        "Interfaccia stazionaria e velocità di fase",
+        "Unità, inverse e dominio n≥1",
+        "Medie e display continui",
+        "Caso autonomo della velocità di fase"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-wavelength-in-medium-08",
+      "kind": "question",
+      "course": "C5",
+      "section": "Frequenza conservata e lunghezza d’onda nel mezzo",
+      "order": 24008,
+      "title": "Uno scarto espresso in nanometri",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wavelength-in-medium",
+      "difficulty": 2,
+      "prompt": "Una radiazione monocromatica di lunghezza d’onda nel vuoto λ₀>0 entra in un mezzo trasparente fermo, attraverso un’interfaccia stazionaria. L’indice di fase n è finito e n≥1; alla frequenza considerata v_fase=c/n. La frequenza f resta quella della sorgente durante ciascun passaggio: f=c/λ₀ e λ=v_fase/f. Fra preparazioni si possono cambiare sorgente o mezzo, sempre nel dominio dichiarato. Con λ₀=600 nm, n=2 si propone λ=600 nm. Quanto vale proposta meno corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "300 nm",
+          "−300 nm",
+          "2",
+          "600 nm",
+          "0 nm"
+        ],
+        "value": "300 nm"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La lunghezza corretta è 300 nm. La proposta supera il risultato di 600−300=300 nm. Il rapporto è invece due, senza unità, e non è la grandezza richiesta."
+        },
+        {
+          "type": "formula",
+          "text": "\\lambda=300\\,\\mathrm{nm}"
+        },
+        {
+          "type": "formula",
+          "text": " e=(600-300)\\,\\mathrm{nm}"
+        },
+        {
+          "type": "formula",
+          "text": " e=300\\,\\mathrm{nm}"
+        },
+        {
+          "type": "text",
+          "text": "−300 cambia l’ordine della sottrazione; due risponde con il rapporto;600 copia la proposta. Zero accetta una lunghezza che non soddisfa λ=λ₀/n."
+        }
+      ],
+      "hints": [
+        "Ricava il valore nel mezzo prima di sottrarre.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−300 cambia l’ordine della sottrazione; due risponde con il rapporto;600 copia la proposta. Zero accetta una lunghezza che non soddisfa λ=λ₀/n.",
+        "target": "C5-L06"
+      },
+      "coverage": [
+        "Interfaccia stazionaria e velocità di fase",
+        "Unità, inverse e dominio n≥1",
+        "Medie e display continui",
+        "Caso autonomo della velocità di fase"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-wavelength-in-medium-09",
+      "kind": "question",
+      "course": "C5",
+      "section": "Frequenza conservata e lunghezza d’onda nel mezzo",
+      "order": 24009,
+      "title": "L’inversa simbolica mantiene n",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wavelength-in-medium",
+      "difficulty": 2,
+      "prompt": "Una radiazione monocromatica di lunghezza d’onda nel vuoto λ₀>0 entra in un mezzo trasparente fermo, attraverso un’interfaccia stazionaria. L’indice di fase n è finito e n≥1; alla frequenza considerata v_fase=c/n. La frequenza f resta quella della sorgente durante ciascun passaggio: f=c/λ₀ e λ=v_fase/f. Fra preparazioni si possono cambiare sorgente o mezzo, sempre nel dominio dichiarato. λ e n sono noti. Quale relazione isola λ₀?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "λ₀ = n λ",
+          "λ₀ = λ / n",
+          "λ₀ = n / λ",
+          "λ₀ = n λ²",
+          "λ₀ = λ − n"
+        ],
+        "value": "λ₀ = n λ"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dalla relazione λn=λ₀ segue direttamente λ₀=nλ. n è puro e la dimensione rimane una lunghezza. L’inversa vale nel dominio λ>0, n≥1 della preparazione."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/cd45ead7fa602df6b5b7ed91978bae8697195ebb1266740d055dd8dcd68b17a3",
+          "text": "L’ultimo grafico mantiene n=2: λ è lineare in λ₀. Il punto 600 nm, 300 nm ricostruisce il riferimento; l’origine è soltanto il limite, escluso dal dominio λ₀>0."
+        },
+        {
+          "type": "formula",
+          "text": "n\\lambda=\\lambda_0"
+        },
+        {
+          "type": "formula",
+          "text": " \\lambda_0=n\\lambda"
+        },
+        {
+          "type": "text",
+          "text": "λ/n ripete la legge diretta. n/λ ha dimensione inversa di lunghezza; nλ² ha dimensione di area. λ−n sottrae una lunghezza a un numero puro."
+        }
+      ],
+      "hints": [
+        "Moltiplica entrambi i membri della legge diretta per n.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "λ/n ripete la legge diretta. n/λ ha dimensione inversa di lunghezza; nλ² ha dimensione di area. λ−n sottrae una lunghezza a un numero puro.",
+        "target": "C5-L06"
+      },
+      "coverage": [
+        "Interfaccia stazionaria e velocità di fase",
+        "Unità, inverse e dominio n≥1",
+        "Medie e display continui",
+        "Caso autonomo della velocità di fase"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-wavelength-in-medium-10",
+      "kind": "question",
+      "course": "C5",
+      "section": "Frequenza conservata e lunghezza d’onda nel mezzo",
+      "order": 24010,
+      "title": "Sorgente e mezzo cambiano fra preparazioni",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wavelength-in-medium",
+      "difficulty": 2,
+      "prompt": "Una radiazione monocromatica di lunghezza d’onda nel vuoto λ₀>0 entra in un mezzo trasparente fermo, attraverso un’interfaccia stazionaria. L’indice di fase n è finito e n≥1; alla frequenza considerata v_fase=c/n. La frequenza f resta quella della sorgente durante ciascun passaggio: f=c/λ₀ e λ=v_fase/f. Fra preparazioni si possono cambiare sorgente o mezzo, sempre nel dominio dichiarato. Fra prove λ₀, B=κ₁λ₀, A e n_B=κ₂n_A, con fattori positivi e n_A, n_B≥1. Quanto vale λ_B/λ_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ / κ₂",
+          "κ₁ κ₂",
+          "κ₂ / κ₁",
+          "κ₁ / κ₂²",
+          "κ₁ + κ₂"
+        ],
+        "value": "κ₁ / κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La nuova lunghezza nel vuoto moltiplica il numeratore e l’indice il denominatore. Nel rapporto restaκ₁/κ₂. Se cambia λ₀ può cambiare la sorgente fra le prove: la frequenza resta invariata solo attraverso ciascuna interfaccia stazionaria, non necessariamente fra sorgenti differenti."
+        },
+        {
+          "type": "formula",
+          "text": "\\lambda_B=\\frac{\\kappa_1\\lambda_{0,A}}{\\kappa_2n_A}"
+        },
+        {
+          "type": "formula",
+          "text": " \\lambda_B/\\lambda_A=\\kappa_1/\\kappa_2"
+        },
+        {
+          "type": "text",
+          "text": "Il prodotto rende diretta la dipendenza da n; il reciproco scambia i ruoli e il quadrato di κ₂ non appartiene alla legge. La somma darebbe due per preparazioni identiche. κ₂ può essere minore di uno, purché κ₂n_A≥1."
+        }
+      ],
+      "hints": [
+        "Mantieni il vincolo sull’indice finale, non imporre arbitrariamente κ₂≥1.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il prodotto rende diretta la dipendenza da n; il reciproco scambia i ruoli e il quadrato di κ₂ non appartiene alla legge. La somma darebbe due per preparazioni identiche. κ₂ può essere minore di uno, purché κ₂n_A≥1.",
+        "target": "C5-L06"
+      },
+      "coverage": [
+        "Interfaccia stazionaria e velocità di fase",
+        "Unità, inverse e dominio n≥1",
+        "Medie e display continui",
+        "Caso autonomo della velocità di fase"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-wavelength-in-medium-11",
+      "kind": "question",
+      "course": "C5",
+      "section": "Frequenza conservata e lunghezza d’onda nel mezzo",
+      "order": 24011,
+      "title": "Due variazioni che allungano λ",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wavelength-in-medium",
+      "difficulty": 2,
+      "prompt": "Una radiazione monocromatica di lunghezza d’onda nel vuoto λ₀>0 entra in un mezzo trasparente fermo, attraverso un’interfaccia stazionaria. L’indice di fase n è finito e n≥1; alla frequenza considerata v_fase=c/n. La frequenza f resta quella della sorgente durante ciascun passaggio: f=c/λ₀ e λ=v_fase/f. Fra preparazioni si possono cambiare sorgente o mezzo, sempre nel dominio dichiarato. A ha λ₀=600 nm, n=2. B ha λ₀=800 nm, n=3/2. Quanto vale λ_B/λ_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "16/9",
+          "9/16",
+          "4/3",
+          "3/4",
+          "1"
+        ],
+        "value": "16/9"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A dà 300 nm. B dà 800·2/3=1600/3 nm. Il rapporto è(1600/3)/300=16/9: il fattore 4/3 della lunghezza nel vuoto si moltiplica per il fattore inverso 4/3 dell’indice."
+        },
+        {
+          "type": "formula",
+          "text": "\\lambda_A=300\\,\\mathrm{nm}"
+        },
+        {
+          "type": "formula",
+          "text": " \\lambda_B=\\frac{1600}{3}\\,\\mathrm{nm}"
+        },
+        {
+          "type": "formula",
+          "text": " \\lambda_B/\\lambda_A=\\frac{16}{9}"
+        },
+        {
+          "type": "text",
+          "text": "9/16 inverte il confronto.4/3 segue solo uno dei due effetti, 3/4 il rapporto diretto degli indici. Uno presume una compensazione invece del rinforzo."
+        }
+      ],
+      "hints": [
+        "Tieni la frazione 1600/3 esatta, senza decimali.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "9/16 inverte il confronto.4/3 segue solo uno dei due effetti, 3/4 il rapporto diretto degli indici. Uno presume una compensazione invece del rinforzo.",
+        "target": "C5-L06"
+      },
+      "coverage": [
+        "Interfaccia stazionaria e velocità di fase",
+        "Unità, inverse e dominio n≥1",
+        "Medie e display continui",
+        "Caso autonomo della velocità di fase"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-wavelength-in-medium-12",
+      "kind": "question",
+      "course": "C5",
+      "section": "Frequenza conservata e lunghezza d’onda nel mezzo",
+      "order": 24012,
+      "title": "Media delle due lunghezze nel mezzo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wavelength-in-medium",
+      "difficulty": 2,
+      "prompt": "Una radiazione monocromatica di lunghezza d’onda nel vuoto λ₀>0 entra in un mezzo trasparente fermo, attraverso un’interfaccia stazionaria. L’indice di fase n è finito e n≥1; alla frequenza considerata v_fase=c/n. La frequenza f resta quella della sorgente durante ciascun passaggio: f=c/λ₀ e λ=v_fase/f. Fra preparazioni si possono cambiare sorgente o mezzo, sempre nel dominio dichiarato. Si mediano con uguale peso A:λ₀=600 nm, n=2 e B:λ₀=800 nm, n=3/2. Quanto vale la media di λ?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1250/3 nm",
+          "400 nm",
+          "2500/3 nm",
+          "350/3 nm",
+          "1600/3 nm"
+        ],
+        "value": "1250/3 nm"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le uscite sono 300 e 1600/3 nm. Scrivo 300=900/3, sommo 2500/3 e dimezzo: media 1250/3 nm. Agli ingressi medi λ₀700 nm, n 7/4 il modello darebbe 400 nm, inferiore alla media delle uscite di 50/3 nm. Nessuna approssimazione è necessaria."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/cd45ead7fa602df6b5b7ed91978bae8697195ebb1266740d055dd8dcd68b17a3",
+          "text": "Le barre alla stessa scala rappresentano 300 nm, 1600/3 nm e la loro media 1250/3 nm. Appartengono alle due preparazioni dichiarate; la frequenza è conservata durante ogni passaggio, ma le sorgenti fra prove possono essere diverse."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline\\lambda=\\frac{300+1600/3}{2}\\,\\mathrm{nm}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline\\lambda=\\frac{1250}{3}\\,\\mathrm{nm}"
+        },
+        {
+          "type": "formula",
+          "text": " \\lambda_{\\rm dati\\ medi}=400\\,\\mathrm{nm}"
+        },
+        {
+          "type": "text",
+          "text": "400 nm usa gli ingressi medi;2500/3 è la somma senza dimezzare;350/3 è la semidifferenza.1600/3 ripete soltanto la seconda lettura. La media statistica non è una nuova interfaccia attraversata in successione."
+        }
+      ],
+      "hints": [
+        "Usa il denominatore comune tre prima di dividere per due.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "400 nm usa gli ingressi medi;2500/3 è la somma senza dimezzare;350/3 è la semidifferenza.1600/3 ripete soltanto la seconda lettura. La media statistica non è una nuova interfaccia attraversata in successione.",
+        "target": "C5-L06"
+      },
+      "coverage": [
+        "Interfaccia stazionaria e velocità di fase",
+        "Unità, inverse e dominio n≥1",
+        "Medie e display continui",
+        "Caso autonomo della velocità di fase"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-wavelength-in-medium-13",
+      "kind": "question",
+      "course": "C5",
+      "section": "Frequenza conservata e lunghezza d’onda nel mezzo",
+      "order": 24013,
+      "title": "Quale indice per il bersaglio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wavelength-in-medium",
+      "difficulty": 3,
+      "prompt": "Una radiazione monocromatica di lunghezza d’onda nel vuoto λ₀>0 entra in un mezzo trasparente fermo, attraverso un’interfaccia stazionaria. L’indice di fase n è finito e n≥1; alla frequenza considerata v_fase=c/n. La frequenza f resta quella della sorgente durante ciascun passaggio: f=c/λ₀ e λ=v_fase/f. Fra preparazioni si possono cambiare sorgente o mezzo, sempre nel dominio dichiarato. A ha λ₀, A=600 nm, n_A=2. B usa λ₀, B=800 nm e deve dare λ_B=(16/9)λ_A. Quanto vale n_B/n_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/4",
+          "4/3",
+          "16/9",
+          "9/16",
+          "1"
+        ],
+        "value": "3/4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è(16/9)·300=1600/3 nm. L’inversa dà n_B=800/(1600/3)=3/2, che rispetta n≥1. Divido per n_A 2 e ottengo 3/4. Il fattore dell’indice non coincide con quello della lunghezza."
+        },
+        {
+          "type": "formula",
+          "text": "\\lambda_B=\\frac{1600}{3}\\,\\mathrm{nm}"
+        },
+        {
+          "type": "formula",
+          "text": " n_B=\\frac32"
+        },
+        {
+          "type": "formula",
+          "text": " n_B/n_A=\\frac34"
+        },
+        {
+          "type": "text",
+          "text": "4/3 inverte il rapporto.16/9 copia il bersaglio di λ e 9/16 il suo reciproco. Un indice invariato darebbe 400 nm nella seconda prova, non 1600/3 nm."
+        }
+      ],
+      "hints": [
+        "Prima ricava la lunghezza bersaglio, poi isola n_B.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "4/3 inverte il rapporto.16/9 copia il bersaglio di λ e 9/16 il suo reciproco. Un indice invariato darebbe 400 nm nella seconda prova, non 1600/3 nm.",
+        "target": "C5-L06"
+      },
+      "coverage": [
+        "Interfaccia stazionaria e velocità di fase",
+        "Unità, inverse e dominio n≥1",
+        "Medie e display continui",
+        "Caso autonomo della velocità di fase"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-wavelength-in-medium-14",
+      "kind": "question",
+      "course": "C5",
+      "section": "Frequenza conservata e lunghezza d’onda nel mezzo",
+      "order": 24014,
+      "title": "Un display continuo prima dell’inversa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wavelength-in-medium",
+      "difficulty": 3,
+      "prompt": "Una radiazione monocromatica di lunghezza d’onda nel vuoto λ₀>0 entra in un mezzo trasparente fermo, attraverso un’interfaccia stazionaria. L’indice di fase n è finito e n≥1; alla frequenza considerata v_fase=c/n. La frequenza f resta quella della sorgente durante ciascun passaggio: f=c/λ₀ e λ=v_fase/f. Fra preparazioni si possono cambiare sorgente o mezzo, sempre nel dominio dichiarato. Il display continuo adimensionale D=a_cal λ, senza offset, legge 900 per λ₀=600 nm, n=2. Nella nuova prova D=1600, n=3/2. Quanto vale λ₀ nuova in nm?",
+      "answer": {
+        "type": "numeric",
+        "value": 800,
+        "unit": "nm",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento ha λ 300 nm: a_cal=900/(300 nm)=3 nm⁻¹. D 1600 decodifica λ 1600/3 nm. Moltiplicando per n 3/2, i tre si cancellano e λ₀=800 nm. Non occorre arrotondare la lettura frazionaria di lunghezza."
+        },
+        {
+          "type": "formula",
+          "text": "a_{\\rm cal}=3\\,\\mathrm{nm^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " \\lambda=\\frac{1600}{3}\\,\\mathrm{nm}"
+        },
+        {
+          "type": "formula",
+          "text": " \\lambda_0=800\\,\\mathrm{nm}"
+        },
+        {
+          "type": "text",
+          "text": "2400 nm usa il display come lunghezza e poi moltiplica per n.1600 nm si ferma alla lettura senza tararla;600 nm ripete il riferimento. La lettura non è un conteggio di lunghezze intere."
+        }
+      ],
+      "hints": [
+        "Decodifica λ prima della moltiplicazione per l’indice.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "2400 nm usa il display come lunghezza e poi moltiplica per n.1600 nm si ferma alla lettura senza tararla;600 nm ripete il riferimento. La lettura non è un conteggio di lunghezze intere.",
+        "target": "C5-L06"
+      },
+      "coverage": [
+        "Interfaccia stazionaria e velocità di fase",
+        "Unità, inverse e dominio n≥1",
+        "Medie e display continui",
+        "Caso autonomo della velocità di fase"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-wavelength-in-medium-15",
+      "kind": "question",
+      "course": "C5",
+      "section": "Frequenza conservata e lunghezza d’onda nel mezzo",
+      "order": 24015,
+      "title": "Due riferimenti separano il guadagno dallo zero",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wavelength-in-medium",
+      "difficulty": 3,
+      "prompt": "Una radiazione monocromatica di lunghezza d’onda nel vuoto λ₀>0 entra in un mezzo trasparente fermo, attraverso un’interfaccia stazionaria. L’indice di fase n è finito e n≥1; alla frequenza considerata v_fase=c/n. La frequenza f resta quella della sorgente durante ciascun passaggio: f=c/λ₀ e λ=v_fase/f. Fra preparazioni si possono cambiare sorgente o mezzo, sempre nel dominio dichiarato. D=a_cal λ+b_cal è un display continuo. A:λ₀=600 nm, n=2, D=601. B:λ₀=800 nm, n=3/2, D=3203/3. C:n=2, D=801. Quanto vale λ₀, C in nm?",
+      "answer": {
+        "type": "numeric",
+        "value": 800,
+        "unit": "nm",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le lunghezze di riferimento sono 300 e 1600/3 nm. La differenza di letture è(3203−1803)/3=1400/3, mentre quella fisica è(1600−900)/3=700/3 nm. Il rapporto dà a_cal 2 nm⁻¹ e b_cal 1. La lettura 801 indica λ_C 400 nm, quindi λ₀, C 800 nm."
+        },
+        {
+          "type": "formula",
+          "text": "a_{\\rm cal}=2\\,\\mathrm{nm^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " b_{\\rm cal}=1"
+        },
+        {
+          "type": "formula",
+          "text": " \\lambda_C=400\\,\\mathrm{nm}"
+        },
+        {
+          "type": "formula",
+          "text": " \\lambda_{0,C}=800\\,\\mathrm{nm}"
+        },
+        {
+          "type": "text",
+          "text": "Il valore 801 nm omette la sottrazione dell’offset: usando λ₀=801 nm si avrebbe D=802, non 801. Il valore 1600 nm sottrae l’offset ma omette la divisione per il guadagno. Il valore 400 nm è la lunghezza nel mezzo; occorre ancora moltiplicarla per n=2 per tornare alla lunghezza nel vuoto."
+        }
+      ],
+      "hints": [
+        "Le differenze eliminano l’offset e mantengono frazioni esatte.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il valore 801 nm omette la sottrazione dell’offset: usando λ₀=801 nm si avrebbe D=802, non 801. Il valore 1600 nm sottrae l’offset ma omette la divisione per il guadagno. Il valore 400 nm è la lunghezza nel mezzo; occorre ancora moltiplicarla per n=2 per tornare alla lunghezza nel vuoto.",
+        "target": "C5-L06"
+      },
+      "coverage": [
+        "Interfaccia stazionaria e velocità di fase",
+        "Unità, inverse e dominio n≥1",
+        "Medie e display continui",
+        "Caso autonomo della velocità di fase"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-wavelength-in-medium-16",
+      "kind": "question",
+      "course": "C5",
+      "section": "Frequenza conservata e lunghezza d’onda nel mezzo",
+      "order": 24016,
+      "title": "Una misura che non fissa l’indice",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wavelength-in-medium",
+      "difficulty": 3,
+      "prompt": "Una radiazione monocromatica di lunghezza d’onda nel vuoto λ₀>0 entra in un mezzo trasparente fermo, attraverso un’interfaccia stazionaria. L’indice di fase n è finito e n≥1; alla frequenza considerata v_fase=c/n. La frequenza f resta quella della sorgente durante ciascun passaggio: f=c/λ₀ e λ=v_fase/f. Fra preparazioni si possono cambiare sorgente o mezzo, sempre nel dominio dichiarato. Fra preparazioni λ₀=(300 nm)n e si misura anche λ=300 nm. Quante coppie (λ₀, n) sono possibili nel dominio n≥1?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Infinite coppie continue",
+          "Una sola coppia",
+          "Due sole coppie",
+          "Nessuna coppia",
+          "Solo coppie con n intero"
+        ],
+        "value": "Infinite coppie continue"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Inserendo il vincolo in λ=λ₀/n si ottiene sempre 300 nm. La misura è ridondante: n 1 con λ₀300 nm e n 2 con λ₀600 nm sono due esempi, ma tutti gli n reali finiti almeno uno danno una coppia. Non è un conteggio di fotoni e n non è imposto intero."
+        },
+        {
+          "type": "formula",
+          "text": "\\lambda_0=(300\\,\\mathrm{nm})n"
+        },
+        {
+          "type": "formula",
+          "text": " \\lambda=300\\,\\mathrm{nm}"
+        },
+        {
+          "type": "formula",
+          "text": " (\\lambda_0,n)=(300\\,\\mathrm{nm},1)"
+        },
+        {
+          "type": "text",
+          "text": "Una o due coppie richiederebbero un altro vincolo indipendente. La risposta “Nessuna coppia” è smentita dagli esempi. Imporre indici interi non è previsto dal modello e perderebbe soluzioni ammesse."
+        }
+      ],
+      "hints": [
+        "Controlla se λ si semplifica dopo la sostituzione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Una o due coppie richiederebbero un altro vincolo indipendente. La risposta “Nessuna coppia” è smentita dagli esempi. Imporre indici interi non è previsto dal modello e perderebbe soluzioni ammesse.",
+        "target": "C5-L06"
+      },
+      "coverage": [
+        "Interfaccia stazionaria e velocità di fase",
+        "Unità, inverse e dominio n≥1",
+        "Medie e display continui",
+        "Caso autonomo della velocità di fase"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "cd45ead7fa602df6b5b7ed91978bae8697195ebb1266740d055dd8dcd68b17a3",
+      "name": "wavelength-in-medium-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTQ4MCIgdmlld0JveD0iMCAwIDY0MCAxNDgwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+THVuZ2hlenphIGTigJlvbmRhIG5lbCBtZXp6bzwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPlRyZSB0YXBwZTogZnJvbnRpIGFsbGEgc3Rlc3NhIGZyZXF1ZW56YSBjb24gZGlzdGFuemEgc2VpY2VudG8gbmFub21ldHJpIG5lbCB2dW90byBlIHRyZWNlbnRvIG5lbCBtZXp6byBkaSBpbmRpY2UgZHVlOyBiYXJyZSBkZWxsZSBkdWUgbGV0dHVyZSBlIGRlbGxhIG1lZGlhOyBncmFmaWNvIGxpbmVhcmUgYSBpbmRpY2UgZHVlIGZpc3NhdG8uPC9kZXNjPjxkZWZzPjxtYXJrZXIgaWQ9ImFycm93IiBtYXJrZXJXaWR0aD0iOCIgbWFya2VySGVpZ2h0PSI4IiByZWZYPSI3IiByZWZZPSI0IiBvcmllbnQ9ImF1dG8iPjxwYXRoIGQ9Ik0wIDBMOCA0TDAgOFoiIGZpbGw9IiM1MjY2N2EiLz48L21hcmtlcj48L2RlZnM+PHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxNDgwIiBmaWxsPSIjZjdmYWZjIi8+PGcgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmaWxsPSIjMjAzNTRkIj48dGV4dCB4PSIzMiIgeT0iNDIiIGZvbnQtc2l6ZT0iMjQiIHRleHQtYW5jaG9yPSJzdGFydCI+THVuZ2hlenphIGTigJlvbmRhIG5lbCBtZXp6bzwvdGV4dD48dGV4dCB4PSIzMiIgeT0iOTIiIGZvbnQtc2l6ZT0iMjIiIHRleHQtYW5jaG9yPSJzdGFydCI+MSDCtyBEdWUgcmVnaW9uaSwgc3Rlc3NhIGZyZXF1ZW56YTwvdGV4dD48dGV4dCB4PSIzMiIgeT0iMTM1IiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPlZ1b3RvOiDOu+KCgCA9IDYwMCBubTwvdGV4dD48dGV4dCB4PSIzMiIgeT0iMzEwIiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPk1lenpvIGNvbiBuID0gMjogzrsgPSAzMDAgbm08L3RleHQ+PGxpbmUgeDE9IjE1MCIgeTE9IjE2NSIgeDI9IjE1MCIgeTI9IjIxNSIgc3Ryb2tlPSIjMzE2YjliIiBzdHJva2Utd2lkdGg9IjIiLz48bGluZSB4MT0iMzMwIiB5MT0iMTY1IiB4Mj0iMzMwIiB5Mj0iMjE1IiBzdHJva2U9IiMzMTZiOWIiIHN0cm9rZS13aWR0aD0iMiIvPjxsaW5lIHgxPSI1MTAiIHkxPSIxNjUiIHgyPSI1MTAiIHkyPSIyMTUiIHN0cm9rZT0iIzMxNmI5YiIgc3Ryb2tlLXdpZHRoPSIyIi8+PGxpbmUgeDE9IjE1MCIgeTE9IjIzNSIgeDI9IjMzMCIgeTI9IjIzNSIgc3Ryb2tlPSIjNTI2NjdhIiBzdHJva2Utd2lkdGg9IjIiLz48bGluZSB4MT0iMTUwIiB5MT0iMjI4IiB4Mj0iMTUwIiB5Mj0iMjQyIiBzdHJva2U9IiM1MjY2N2EiIHN0cm9rZS13aWR0aD0iMiIvPjxsaW5lIHgxPSIzMzAiIHkxPSIyMjgiIHgyPSIzMzAiIHkyPSIyNDIiIHN0cm9rZT0iIzUyNjY3YSIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iMTkwIiB5PSIyNjciIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJzdGFydCI+NjAwIG5tPC90ZXh0PjxsaW5lIHgxPSIxNTAiIHkxPSIzNDAiIHgyPSIxNTAiIHkyPSIzOTAiIHN0cm9rZT0iI2E3NmQyMCIgc3Ryb2tlLXdpZHRoPSIyIi8+PGxpbmUgeDE9IjI0MCIgeTE9IjM0MCIgeDI9IjI0MCIgeTI9IjM5MCIgc3Ryb2tlPSIjYTc2ZDIwIiBzdHJva2Utd2lkdGg9IjIiLz48bGluZSB4MT0iMzMwIiB5MT0iMzQwIiB4Mj0iMzMwIiB5Mj0iMzkwIiBzdHJva2U9IiNhNzZkMjAiIHN0cm9rZS13aWR0aD0iMiIvPjxsaW5lIHgxPSI0MjAiIHkxPSIzNDAiIHgyPSI0MjAiIHkyPSIzOTAiIHN0cm9rZT0iI2E3NmQyMCIgc3Ryb2tlLXdpZHRoPSIyIi8+PGxpbmUgeDE9IjUxMCIgeTE9IjM0MCIgeDI9IjUxMCIgeTI9IjM5MCIgc3Ryb2tlPSIjYTc2ZDIwIiBzdHJva2Utd2lkdGg9IjIiLz48bGluZSB4MT0iMTUwIiB5MT0iNDEwIiB4Mj0iMjQwIiB5Mj0iNDEwIiBzdHJva2U9IiM1MjY2N2EiIHN0cm9rZS13aWR0aD0iMiIvPjxsaW5lIHgxPSIxNTAiIHkxPSI0MDMiIHgyPSIxNTAiIHkyPSI0MTciIHN0cm9rZT0iIzUyNjY3YSIgc3Ryb2tlLXdpZHRoPSIyIi8+PGxpbmUgeDE9IjI0MCIgeTE9IjQwMyIgeDI9IjI0MCIgeTI9IjQxNyIgc3Ryb2tlPSIjNTI2NjdhIiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSIxNjUiIHk9IjQ0MyIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9InN0YXJ0Ij4zMDAgbm08L3RleHQ+PHRleHQgeD0iMzIiIHk9IjQ4NSIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9InN0YXJ0Ij5Gcm9udGkgZGkgZmFzZSBhbGxhIHN0ZXNzYSBzY2FsYSBzcGF6aWFsZS48L3RleHQ+PHRleHQgeD0iMzIiIHk9IjU1MCIgZm9udC1zaXplPSIyMiIgdGV4dC1hbmNob3I9InN0YXJ0Ij4yIMK3IER1ZSBwcmVwYXJhemlvbmkgZSBsYSBtZWRpYTwvdGV4dD48dGV4dCB4PSIzMiIgeT0iNTkyIiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPkE6IDYwMCBubSwgbiA9IDIgwrcgQjogODAwIG5tLCBuID0gMy8yPC90ZXh0Pjx0ZXh0IHg9IjEyOCIgeT0iNjc0IiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0iZW5kIj5BPC90ZXh0PjxyZWN0IHg9IjE1MCIgeT0iNjUwIiB3aWR0aD0iMTM1IiBoZWlnaHQ9IjMyIiBmaWxsPSIjMzE2YjliIi8+PHRleHQgeD0iMjk3IiB5PSI2NzQiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJzdGFydCI+MzAwIG5tPC90ZXh0Pjx0ZXh0IHg9IjEyOCIgeT0iNzY0IiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0iZW5kIj5CPC90ZXh0PjxyZWN0IHg9IjE1MCIgeT0iNzQwIiB3aWR0aD0iMjQwIiBoZWlnaHQ9IjMyIiBmaWxsPSIjMzE2YjliIi8+PHRleHQgeD0iNDAyIiB5PSI3NjQiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJzdGFydCI+MTYwMC8zIG5tPC90ZXh0Pjx0ZXh0IHg9IjEyOCIgeT0iODU0IiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0iZW5kIj5NZWRpYTwvdGV4dD48cmVjdCB4PSIxNTAiIHk9IjgzMCIgd2lkdGg9IjE4Ny41IiBoZWlnaHQ9IjMyIiBmaWxsPSIjMzE2YjliIi8+PHRleHQgeD0iMzQ5LjUiIHk9Ijg1NCIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9InN0YXJ0Ij4xMjUwLzMgbm08L3RleHQ+PHRleHQgeD0iMzIiIHk9IjkxMCIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9InN0YXJ0Ij5CYXJyZSBkaSDOuyBjb24gb3JpZ2luZSBlIHNjYWxhIGNvbXVuaS48L3RleHQ+PHRleHQgeD0iMzIiIHk9Ijk2MCIgZm9udC1zaXplPSIyMiIgdGV4dC1hbmNob3I9InN0YXJ0Ij4zIMK3IFNvbG8gzrvigoAgdmFyaWEsIG4gPSAyPC90ZXh0PjxsaW5lIHgxPSIxNDUiIHkxPSIxMjgwIiB4Mj0iNTYwIiB5Mj0iMTI4MCIgc3Ryb2tlPSIjNTI2NjdhIiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PGxpbmUgeDE9IjE1MCIgeTE9IjEyODUiIHgyPSIxNTAiIHkyPSIxMDMwIiBzdHJva2U9IiM1MjY2N2EiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48bGluZSB4MT0iMTUwIiB5MT0iMTI4MCIgeDI9IjU1MCIgeTI9IjEwODAiIHN0cm9rZT0iIzUyNjY3YSIgc3Ryb2tlLXdpZHRoPSIyIi8+PGNpcmNsZSBjeD0iMTUwIiBjeT0iMTI4MCIgcj0iNCIgZmlsbD0iI2Y3ZmFmYyIgc3Ryb2tlPSIjMzE2YjliIiBzdHJva2Utd2lkdGg9IjIiLz48Y2lyY2xlIGN4PSI0NTAiIGN5PSIxMTMwIiByPSI1IiBmaWxsPSIjMzE2YjliIi8+PHRleHQgeD0iNDcwIiB5PSIxMTM1IiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPkE8L3RleHQ+PHRleHQgeD0iMTI4IiB5PSIxMzA1IiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0iZW5kIj4wPC90ZXh0Pjx0ZXh0IHg9IjQ1MCIgeT0iMTMxMCIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+NjAwPC90ZXh0Pjx0ZXh0IHg9IjEyOCIgeT0iMTEzNiIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9ImVuZCI+MzAwPC90ZXh0Pjx0ZXh0IHg9IjQyMCIgeT0iMTM1MCIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9InN0YXJ0Ij7Ou+KCgCAobm0pPC90ZXh0Pjx0ZXh0IHg9Ijc1IiB5PSIxMDE1IiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPs67IChubSk8L3RleHQ+PHRleHQgeD0iMzIiIHk9IjE0MDAiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJzdGFydCI+TGEgcmVsYXppb25lIMOoIM67ID0gzrvigoAvMiBhIHF1ZXN0byBpbmRpY2UuPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSIxNDQwIiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPkzigJlvcmlnaW5lIMOoIHVuIGxpbWl0ZTogc2kgcmljaGllZGUgzrvigoAgPiAwLjwvdGV4dD48L2c+PC9zdmc+Cg=="
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+from pathlib import Path
+import subprocess,hashlib,json,sys,xml.etree.ElementTree as ET
+A=Path('/private/tmp/cric-author-a-resident/officina-di-fisica');R=Path('/private/tmp/cric-resident-integrator/officina-di-fisica');batch=sys.argv[1];family=batch.rsplit('-',1)[0];module=family.replace('-','_')+'_authoring';sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
+p=A/f'editorial/batches/{batch}.json';b=p.with_name(batch+'-bindings.json')
+cmd=[sys.executable,'-m','tools.corpus_engineering.'+module,'--repo','..','--source-ref','5cfbdcb055ba3ba136f97fb56e997f06e6cf3605','--destination','editorial/batches']
+subprocess.run(cmd,cwd=A,check=True,capture_output=True);first=(p.read_bytes(),b.read_bytes());subprocess.run(cmd,cwd=A,check=True,capture_output=True);assert first==(p.read_bytes(),b.read_bytes())
+ET.parse(A/f'editorial/assets/{family}-progressive.svg')
+sys.path.insert(0,str(R));from tools.corpus_engineering.integration import exercise_package
+from tools.corpus_engineering.runtime_fingerprint import runtime_fingerprint
+fp=runtime_fingerprint(R);result=exercise_package(p);assert fp==runtime_fingerprint(R)
+assert result['firstImport']['saved']==16 and result['repeatedImport']=={'publication':'DRAFT','saved':0,'unchanged':16}
+assert result['beforePublishedCount']==result['afterPublishedCount']==991 and result['beforePublishedSha256']==result['afterPublishedSha256']
+out=A/f'editorial/author-evidence/{batch}-structural.json';out.write_text(json.dumps({'schemaVersion':'1.0.0','scope':'AUTHOR_TECHNICAL_STRUCTURE_ONLY_NOT_SCIENTIFIC_APPROVAL','twoIndependentAssembliesByteIdentical':True,'packageFileSha256':sha(p),'bindingFileSha256':sha(b),'runtimeProfileSha256':fp['sha256'],'applicationUI':'NOT_RUN_LOCAL_PRODUCT_UI_PROHIBITED_BY_INTEGRATOR','humanApproval':'NOT_RUN','publicationAction':'NONE','integration':result},ensure_ascii=False,indent=2)+'\n');print(batch,'16→0/16;991 unchanged;double assembly;UI NOT_RUN',sha(out))

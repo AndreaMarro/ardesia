@@ -24,11 +24,9 @@
     ],
     "registrationPendingQuestions": 218,
     "fullArdesiaIdAudit": "editorial/reviews/u7-03-root-integration-20261126/ardesia4000-id-reconciliation.json",
-    "fullyAccepted": 4009,
-    "pedagogicalReopened": 1,
-    "pedagogicalReopenedIds": [
-      "AR-u7-wavelength-in-medium-15"
-    ]
+    "fullyAccepted": 4010,
+    "pedagogicalReopened": 0,
+    "pedagogicalReopenedIds": []
   },
   "activities": {
     "accounted": 385,
@@ -131,7 +129,7 @@
     "scientificQuestionsPendingRegistryActivation": 218,
     "previewRequestPin": "DEFERRED_UNTIL3792_ADOPTION_BEFORE_PR_AVOIDS_DUPLICATE_PRODUCER",
     "currentRegistrySha256": "22e01f2beac0eb49edb9197d01463a94be526b159dbee7848e601e5cbfc0af23",
-    "adoptionPlan": "Retain3792 as source-specific technical evidence, do not adopt against changed ledger. After Q15 closure register accepted pending lots and run/adopt a fresh complete current snapshot."
+    "adoptionPlan": "3792success retained for original5e source, not adopted as current because corrected Q15 and withdrawal ledger changed. Register all currently accepted pending lots and run a new complete exact snapshot, reusing only matching UI cases."
   },
   "nextScientificAcceptanceId": "C1-Q011",
   "nextNewAuthoringId": "C2-Q001",
@@ -338,5 +336,18 @@
     "status": "BLOCKED_OLD_LABEL_UNCHANGED",
     "latestResumeAttempt": "set_goal connector rejected InvalidArguments: requires trusted source-turn context from CCA",
     "manualMandateExecution": "CONTINUING_AUTHORIZED; do not falsely claim goal reactivated or whole mandate complete"
+  },
+  "pedagogicalRestoration": {
+    "id": "AR-u7-wavelength-in-medium-15",
+    "authorCommit": "00d4ac919f3c9a04a4f619d27d702dc0063b708e",
+    "independentPeerCommit": "455c2f2ca20538cdd348fb476dcfa7f08d06f411",
+    "rootTests": [
+      19,
+      3
+    ],
+    "actualImport": "16→0/16;991andhistoric unchanged",
+    "newSourceCredit": 0,
+    "productUI": "PENDING_NEW_PACKAGE_RENDER",
+    "humanApproval": "NOT_RUN"
   }
 }

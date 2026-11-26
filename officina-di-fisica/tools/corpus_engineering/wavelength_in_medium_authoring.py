@@ -76,7 +76,7 @@ TASKS=[
 ('Due riferimenti separano il guadagno dallo zero',SCENE+'D=a_cal λ+b_cal è un display continuo. A:λ₀=600 nm, n=2, D=601. B:λ₀=800 nm, n=3/2, D=3203/3. C:n=2, D=801. Quanto vale λ₀, C in nm?',800,
  'Le lunghezze di riferimento sono 300 e 1600/3 nm. La differenza di letture è(3203−1803)/3=1400/3, mentre quella fisica è(1600−900)/3=700/3 nm. Il rapporto dà a_cal 2 nm⁻¹ e b_cal 1. La lettura 801 indica λ_C 400 nm, quindi λ₀, C 800 nm.',
  r'a_{\rm cal}=2\,\mathrm{nm^{-1}}\qquad b_{\rm cal}=1\qquad \lambda_C=400\,\mathrm{nm}\qquad \lambda_{0,C}=800\,\mathrm{nm}',
- '801 nm omette la sottrazione dell’offset e predice D 802.1600 nm sottrae b ma omette la divisione per il guadagno.400 nm si ferma alla lunghezza nel mezzo, senza tornare al vuoto.',
+ 'Il valore 801 nm omette la sottrazione dell’offset: usando λ₀=801 nm si avrebbe D=802, non 801. Il valore 1600 nm sottrae l’offset ma omette la divisione per il guadagno. Il valore 400 nm è la lunghezza nel mezzo; occorre ancora moltiplicarla per n=2 per tornare alla lunghezza nel vuoto.',
  'Le differenze eliminano l’offset e mantengono frazioni esatte.'),
 ('Una misura che non fissa l’indice',SCENE+'Fra preparazioni λ₀=(300 nm)n e si misura anche λ=300 nm. Quante coppie (λ₀, n) sono possibili nel dominio n≥1?',['Infinite coppie continue','Una sola coppia','Due sole coppie','Nessuna coppia','Solo coppie con n intero'],
  'Inserendo il vincolo in λ=λ₀/n si ottiene sempre 300 nm. La misura è ridondante: n 1 con λ₀300 nm e n 2 con λ₀600 nm sono due esempi, ma tutti gli n reali finiti almeno uno danno una coppia. Non è un conteggio di fotoni e n non è imposto intero.',
