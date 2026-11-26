@@ -1,0 +1,370 @@
+{
+  "schemaVersion": "1.0.0",
+  "lessonReference": {
+    "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "gitPath": "officina-di-fisica/content/C3.json",
+    "sourceSha256": "44cb7679671a99a5da654133d4f1c12a542acf1a4688987121bcd5a776a262e0",
+    "primarySkill": "C3-L03",
+    "title": "Pesare il riscaldamento",
+    "actualLessonPrerequisites": [
+      "C3-L01",
+      "C3-L02"
+    ]
+  },
+  "records": [
+    {
+      "id": "C3-Q021",
+      "sourceSha256": "d14b2e428456538b46c9c2dc338bb4bed7cbd7f3126485d3a88d7de28ddec19a",
+      "candidateSha256": "54a48fb2bab2f7c44a04970361104af23e1d58391b05d6be24e3aeac63c094fa",
+      "reviewedSignature": "147f26548ee6c864b6da27506663e578ab7eaaca341a5b5ee994c80c556c0db9",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "cric-c3-l03-progressive.svg": "39f4239a83ae3862529270c738e19c4f8d4268db824a6c74187ed65828f68959"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "450",
+      "dimension": {
+        "[length]": "2",
+        "[time]": "-2",
+        "[temperature]": "-1"
+      },
+      "manualArithmetic": "La massa è 200 g=1/5 kg. Da Q=mcΔT, c=540/[(1/5)·6]=450 J/(kg·K), assumendo capacità costante sul tratto e nessun altro trasferimento energetico.",
+      "physicalAssumptions": "m 0,200 kg,Q 540 J,ΔT 6 K,calore specifico costante senza fase.",
+      "distractors": "90 J/K è C totale; 200 kg anziché 0,2 produce 0,45; moltiplicare ΔT non isola c.",
+      "pedagogicalReview": "Capacità specifica e totale con conversione della massa.",
+      "assetReview": "XML e nuovo PNG indipendente 640×1500 letti per intero. Retta Q–ΔT da(140,410) a(500,140): 360 coordinate per 6 K e 270 per 540 J,quindiQ/ΔT=90 J/K. Dividendo per 0,200 kg si ottiene 450 J/(kgK). Freccia di calore 3000 J dal corpo 70°C all’acqua 20°C,calori−3000/+3000 J e finale 30°C. Barre 500/400/100 J: lunghezze 300/240/60 a scala comune 3/5 coordinate/J. Nessuna occlusione o contatto residuo.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C3-Q022",
+      "sourceSha256": "1ea5d1b58060d40efe388c2feb91631fe4b64029d6e2b09def04578f0eea3275",
+      "candidateSha256": "213c44ebed4f3752ce2fb8065c43de9993db274cad391f7c3724df542902ca15",
+      "reviewedSignature": "e700f2dfe5d6e7897c2f13ea80a52967f5d3233782683d5ab76350e36ec11d93",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "La capacità termica totale C",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2",
+        "[temperature]": "-1"
+      },
+      "manualArithmetic": "Con la stessa potenza netta P e senza perdite, dT/dt=P/C. A ha capacità termica totale C minore. Il solo grafico non determina il calore specifico se le masse non sono note uguali.",
+      "physicalAssumptions": "Potenza comune costante,perdite e transizioni assenti,C positive costanti; masse non assegnate uguali.",
+      "distractors": "m o c più piccoli possono ridurre C ma non si inferiscono separatamente; P già uguale.",
+      "pedagogicalReview": "Pendenza P/C prima di isolare m o c.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C3-Q023",
+      "sourceSha256": "db1b61f8b48d2600dd84bbb9082721864057ee3791c8c95b629fad0b8fe28684",
+      "candidateSha256": "bad05fdba37e6ab38315e27e31111d5cf0626c410019597212f368b99944f449",
+      "reviewedSignature": "dea99df708c62915632f8317e413dfbda7df6facf4424d7cb6e8f06fb2b91606",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Il calore specifico",
+      "dimension": {
+        "[length]": "2",
+        "[time]": "-2",
+        "[temperature]": "-1"
+      },
+      "manualArithmetic": "Si ottiene il calore specifico c=C/m, con unità J/(kg·K). Capacità totale del campione e proprietà specifica del materiale vanno distinte.",
+      "physicalAssumptions": "C totale J/K divisa per massa kg; percorso e modello materiale pertinenti.",
+      "distractors": "L haJ/kg,λW/(mK),ρkg/m³,PW: nessuna coincide con C/m.",
+      "pedagogicalReview": "Definizione e dimensioni della proprietà specifica.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C3-Q024",
+      "sourceSha256": "eb982bbefdee36e98ec89e4290d2724e79681dd7120109898a17654800951624",
+      "candidateSha256": "9023bf8333b408fefbc0997cfe6c3c25ee6dcd68ebc7c6d7b3ff7a1218455908",
+      "reviewedSignature": "734a285044e670664323a4cab584768fa1aacfb304486249cc34b8776066a142",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "-1200",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "La variazione di temperatura è 32−48=−16 K. Con Q positivo entrante, Q=75·(−16)=−1200 J: il metallo cede energia come calore.",
+      "physicalAssumptions": "C 75 J/K,raffreddamento 48→32°C,Q positivo entrante.",
+      "distractors": "+1200 perde segno; 16 è coefficiente del calo nonenergia; offset cancella fra letture.",
+      "pedagogicalReview": "Calore con segno distinto dal modulo ceduto.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C3-Q025",
+      "sourceSha256": "de0dc18ecc980426752bf71effdb0b30607041e9c89117b7c2b2ea8aec9c1f78",
+      "candidateSha256": "a771aaa3ec7f922996d356b1ae01e80894af80de44683d941b5b039cad1d9663",
+      "reviewedSignature": "01311d682a5250659ee3fd351e0ee881d8cd88d35fb69594d9dbfec65fb2da36",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "cric-c3-l03-progressive.svg": "39f4239a83ae3862529270c738e19c4f8d4268db824a6c74187ed65828f68959"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "75",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2",
+        "[temperature]": "-1"
+      },
+      "manualArithmetic": "In isolamento, il calore perso dal campione e quello acquistato dall’acqua si compensano. C_s(70−30)=300(30−20), quindi C_s=3000/40=75 J/K. Si suppongono capacità costanti e recipiente trascurabile o già incluso.",
+      "physicalAssumptions": "Sistema isolato,nessun lavoro/fase,recipiente trascurato,Cacqua 300 J/K,70/20→30°C.",
+      "distractors": "300 JK è capacità dell’acqua; letture 30 e intervallo 40 non sono capacità; duecalori non entrano entrambi.",
+      "pedagogicalReview": "Bilancio di due sistemi con capacità positive.",
+      "assetReview": "XML e nuovo PNG indipendente 640×1500 letti per intero. Retta Q–ΔT da(140,410) a(500,140): 360 coordinate per 6 K e 270 per 540 J,quindiQ/ΔT=90 J/K. Dividendo per 0,200 kg si ottiene 450 J/(kgK). Freccia di calore 3000 J dal corpo 70°C all’acqua 20°C,calori−3000/+3000 J e finale 30°C. Barre 500/400/100 J: lunghezze 300/240/60 a scala comune 3/5 coordinate/J. Nessuna occlusione o contatto residuo.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C3-Q026",
+      "sourceSha256": "54b6cc3a4b8d7f941634e7697e9376b1e081f213d4ffb11040520d4857e83bc8",
+      "candidateSha256": "08f3e50150f04199457549298b6bc1849bef1eb52e8cbce567fda82bc5a97d27",
+      "reviewedSignature": "c451e10ef14700d88bea5442a1071267d00ef7679e67398b888748e4da1db35f",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "È più bassa di quella calcolata trascurando il recipiente",
+      "dimension": {
+        "[temperature]": "1"
+      },
+      "manualArithmetic": "Il recipiente inizialmente freddo assorbe parte dell’energia ceduta dal corpo caldo. Con capacità positiva il valore finale reale è minore della previsione che trascura il recipiente, pur restando fra le temperature iniziali nel modello senza altre fonti.",
+      "physicalAssumptions": "Capacità positive costanti,recipiente inizialmente alla T fredda,caldo e freddo diversi.",
+      "distractors": "Recipiente non creaenergia; capacità positiva lo scalda eabbassaTf; restano limiti fra le dueT.",
+      "pedagogicalReview": "Partecipazione del recipiente nel bilancio calorimetrico.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C3-Q027",
+      "sourceSha256": "d108b9169ec1656b99f1ea2bf722cee992bd9044a06bbe345188bcc5682c3412",
+      "candidateSha256": "57939202e2929d24cfae6ee263766587e5640eed854a44adf92ebab63e66cf2a",
+      "reviewedSignature": "42cb889ccc5a9cfea843cfdc542c83e83b1d15c73f515846ecc096e633e04a8e",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "12471/100",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Per gas ideale C_p−C_v=R per mole. La differenza fra i due calori è nRΔT=1·8,314·15=124,71 J=12471/100 J. Si confrontano gli stessi estremi di temperatura e solo lavoro di volume nei processi definiti.",
+      "physicalAssumptions": "Una mole dello stesso gas perfetto,stessi estremiT,ΔT 15 K,solo lavoro pV,R 8,314 assegnata.",
+      "distractors": "Zero ignora lavoro isobaro; 8,314 copia R; 15 copia ΔT; negativo inverte differenza.",
+      "pedagogicalReview": "Differenza fra percorsi con identici estremi di temperatura.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C3-Q028",
+      "sourceSha256": "fd45f73229c9f11c6a2558aff580bfb6ce646ac080c7d5cf6d0f35b1821ec52f",
+      "candidateSha256": "ea908f59b3331387f74997097c504459c41e0c11a9cb087e8f8660d5c92c7149",
+      "reviewedSignature": "c8411838ff5c9c29451fe25ac4ea520c455d15e397031225cea557234068aace",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Il volume",
+      "dimension": {
+        "[length]": "3"
+      },
+      "manualArithmetic": "È il volume. In un riscaldamento isocoro di gas ideale, senza altri lavori o variazioni macroscopiche, Q=nC_vΔT. Non si attribuisce questa espressione al calore di un processo arbitrario.",
+      "physicalAssumptions": "Gas perfetto chiuso,solo lavoro pV,Cv costante nell’intervallo.",
+      "distractors": "Isobara dà nCpΔT; isoterma non definisce capacitàCv e può avere Q nonnullo.",
+      "pedagogicalReview": "Esclusione del lavoro dell’albero e vincolo isocoro.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C3-Q029",
+      "sourceSha256": "502144eab94d82119807a5cd9a5e7606d615e4305ca21e0310d1ca0484d27db1",
+      "candidateSha256": "df0b3ee856742c128f9ad2ec8f2cebbeacf6d1db60f90b09a28de41c7c5f9421",
+      "reviewedSignature": "2d57f05fdfc43b94855a161799dca1a44f8f632228f9de260d0233952c3484af",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Il valore è impossibile: deve trovarsi fra 15 e 45 °C",
+      "dimension": {
+        "[temperature]": "1"
+      },
+      "manualArithmetic": "In isolamento con capacità positive e solo calore sensibile, la temperatura finale è una media pesata fra 15 e 45 °C. 51 °C è fuori dall’intervallo: il bilancio o i segni sono errati.",
+      "physicalAssumptions": "Due corpi 15/45°C,capacità positive,isolamento e solo calore senza fase.",
+      "distractors": "Massa maggiore cambia pesi nonlimiti; Kelvin conserva ordine; somma di letture nonconserva energia.",
+      "pedagogicalReview": "Controllo dei limiti prima di rifare il calcolo.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C3-Q030",
+      "sourceSha256": "adf650c822148f30b5e35e02a974666b74ebda89ff6ec5e51be364c941d9fa90",
+      "candidateSha256": "9d4a1436d6f7dc23818773c2111f149b750c5203b42f77fdd2ca3d23a5e65a94",
+      "reviewedSignature": "1bb8e43a1b1ea75579d649b246236451622e1eb7744ea835907fef51501b86ec",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "cric-c3-l03-progressive.svg": "39f4239a83ae3862529270c738e19c4f8d4268db824a6c74187ed65828f68959"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "100",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Il campione acquista CΔT=80·5=400 J. Dei 500 J erogati, 500−400=100 J sono trasferiti all’esterno, purché non vi siano altre forme di accumulo non conteggiate.",
+      "physicalAssumptions": "Ingresso 500 J,C 80 J/K,ΔT 5 K,nessun lavoro apprezzabile o fase.",
+      "distractors": "400 J accumulo,500 J ingresso,perdita 100 J; Ctot non richiede un fattore massa aggiuntivo.",
+      "pedagogicalReview": "Energia fornita distinta da quella trattenuta.",
+      "assetReview": "XML e nuovo PNG indipendente 640×1500 letti per intero. Retta Q–ΔT da(140,410) a(500,140): 360 coordinate per 6 K e 270 per 540 J,quindiQ/ΔT=90 J/K. Dividendo per 0,200 kg si ottiene 450 J/(kgK). Freccia di calore 3000 J dal corpo 70°C all’acqua 20°C,calori−3000/+3000 J e finale 30°C. Barre 500/400/100 J: lunghezze 300/240/60 a scala comune 3/5 coordinate/J. Nessuna occlusione o contatto residuo.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    }
+  ],
+  "verifierSha256": "958ab8213e25ab533a5d7860b787676d8a08d27b20d0cbfc0ce7c050ede9d79c",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "reviewDependencySha256": {
+    "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+  },
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2",
+    "hypothesis": "6.148.7"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "reviewedCandidateCommit": "0bbc287299c0169fe26093d2b48bc94d6570c666",
+  "packageSha256": "b5b96f135a0fcb1bcbfd7df73a1b53ca91cba0c6d0ce376f0ed72f078935c974",
+  "bindingsSha256": "677b1a86cea9e555006ec2a1125ce6a8eb180d6c57d7c8d51321d987bf44dd10",
+  "source": {
+    "commit": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "path": "officina-di-fisica/content/C3.json",
+    "title": "cric-c3-l03",
+    "reference": "Dieci problemi distinti Cric C3 letti integralmente dopo primaria e modelli propri congelati; interpretazione di letture Celsius e intervalli termici distinta per ID."
+  },
+  "modelsBeforeCandidateKeys": {
+    "path": "editorial/reviews/cric-c3-001-050-independent-models.py",
+    "sha256": "9b870976c03b6578eeac6f6e4c2e89cebc6c53d2a6a0ef0b806e749b36c88e1f",
+    "commit": "030d4658b17ea6f6fd43be03cb59b21e91030eb0"
+  },
+  "modelFunctionBodies": "All functions in the frozen source-only C3 model retain identical AST. Generic finite/exact literal guards are reused unchanged from the earlier independent C2 verifier.",
+  "primaryBeforeCandidateKeys": {
+    "path": "editorial/reviews/primary-cric-c3-001-050-before-candidates-20261126.md",
+    "sha256": "34cdd1eb8b9f296a638c2fa1e3874ffbace49c48e907257c063fe1f0f7ad0b80"
+  }
+}

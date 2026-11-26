@@ -1,0 +1,355 @@
+{
+  "schemaVersion": "1.0.0",
+  "lessonReference": {
+    "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "gitPath": "officina-di-fisica/content/C3.json",
+    "sourceSha256": "44cb7679671a99a5da654133d4f1c12a542acf1a4688987121bcd5a776a262e0",
+    "primarySkill": "C3-L05",
+    "title": "Tre vie per trasferire energia",
+    "actualLessonPrerequisites": [
+      "C3-L03"
+    ]
+  },
+  "records": [
+    {
+      "id": "C3-Q041",
+      "sourceSha256": "fdf468f5477fe2ab26b522ff00969306e3aee0819165e06c094f572a00717875",
+      "candidateSha256": "a2f81fe47c22e187c22ddfa2642695387ba02a2bfb5e84cd4ee026b1d8c84267",
+      "reviewedSignature": "abbe57b28374eca30642a64364e2e6d5e6af40d50f905a0d2f5d1987149513e8",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Convezione forzata",
+      "dimension": {},
+      "manualArithmetic": "Viene potenziata direttamente la convezione forzata: il ventilatore rinnova l’aria a contatto e modifica il coefficiente convettivo. Non crea un requisito di contatto materiale per l’irraggiamento.",
+      "physicalAssumptions": "Piastra più calda dell’aria; ventilatore impone moto del fluido,non una condizione di isolamento.",
+      "distractors": "Convezione forzata riguarda moto dell’aria; vuoto non contiene quel fluido; irraggiamento può coesistere ma non è l’effetto direttamente imposto.",
+      "pedagogicalReview": "Movimento del fluido distinto dalla conduzione nel sottile strato vicino alla parete.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C3-Q042",
+      "sourceSha256": "95265c0588114ff99c06a5262207ce61da63f6fdd86eb7130036a0481437242d",
+      "candidateSha256": "a5f310333e06c971f54b5deff7adf1c5ee67bbd75ec06b845f9aa4a709817c69",
+      "reviewedSignature": "98c4585ff4b53df667704a1b65f393eef06140a21cbfece4e10ae50364162f2d",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "cric-c3-l05-progressive.svg": "e901d6cd526c07857c19742ab22b9a808a113be6819cab076673a35740e4bbf4"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "5",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "In conduzione piana stazionaria P=λAΔT/s. s=(1/25)(3/4)·20/12=1/20 m=5 cm. Si assumono materiale uniforme, temperatura delle facce assegnata e perdite laterali trascurabili.",
+      "physicalAssumptions": "Lastra omogenea,regime stazionario 1 D,λ0,040,A 0,75 m²,ΔT 20 K; spessore minimo per P≤12 W.",
+      "distractors": "0,05 cm omette m→cm; 50 cm è fattore 10; maggiore s riduce il gradiente e P,non aumenta il flusso.",
+      "pedagogicalReview": "Monotonia con s e soglia resa univoca dal minimo richiesto.",
+      "assetReview": "XML e nuovo PNG indipendente 640×1500 letti per intero. Prima lastra schematica con s 5 cm,A 0,75 m²,λ0,040 W/(mK),ΔT 20 K e 12 W; non è assegnata una metrica 3 D al disegno. Secondo pannello: sezioni schematiche 50×100 e 100×200 con etichette A,s e 2 A,2 s,flussi 9 W rappresentati da frecce concordi di pari 125 coordinate. Il raddoppio di A è dato fisico,non l’area 2 D dell’intero rettangolo,che include lo spessore. Barre emesse a 300/450 K: 60 e 303,75 coordinate,rapporto 81/16 eorigine comune 140. Emissione distinta dal saldo netto. Nessun taglio o contatto residuo.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C3-Q043",
+      "sourceSha256": "3a6e23b9d6dc7e8f9f2f05b2b86355bb0286efaf050c2ffea0886dccab09282a",
+      "candidateSha256": "83551a560461855db9817e63168af081766ccece8fa703f0c8b101e7ff94266f",
+      "reviewedSignature": "4de80060ca6b798eb6687ebf96a336d41788e9f111772384f44589ff61136dbd",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Irraggiamento elettromagnetico",
+      "dimension": {},
+      "manualArithmetic": "È l’irraggiamento elettromagnetico. Conduzione materiale e convezione non trasportano calore attraverso un vuoto ideale.",
+      "physicalAssumptions": "Tratto vuoto fra superfici; nessun gas materiale lungo il percorso.",
+      "distractors": "Convezione e conduzione materiali non attraversano un vuoto ideale; fusione è proprietà della materia.",
+      "pedagogicalReview": "Meccanismo radiativo distinto dal trasporto materiale.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C3-Q044",
+      "sourceSha256": "42a7f8cee21328c2d1be97480195f2672c835c95581c8f5aeb03d6ef050a4c67",
+      "candidateSha256": "41e6f523410e52fbbb1679042654d9c5d937e98dcfd8962cbb8bd91ab1c2a10b",
+      "reviewedSignature": "33d9b1c0e726aa65a041a9c07141553e1c1f314a3a6fcbfff8700804aaed0f30",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "cric-c3-l05-progressive.svg": "e901d6cd526c07857c19742ab22b9a808a113be6819cab076673a35740e4bbf4"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "9",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3"
+      },
+      "manualArithmetic": "La potenza è proporzionale ad A/s. Raddoppiare insieme area e spessore lascia invariato il rapporto, quindi resta 9 W nelle medesime condizioni stazionarie.",
+      "physicalAssumptions": "Stessi λ eΔT,A e s entrambi raddoppiati,P iniziale 9 W.",
+      "distractors": "18 W soloA,4,5 W solos,36 W tratta scomeproporzionalitàdiretta invece che inversa.",
+      "pedagogicalReview": "Rapporto A/s prima di contare raddoppi indipendenti.",
+      "assetReview": "XML e nuovo PNG indipendente 640×1500 letti per intero. Prima lastra schematica con s 5 cm,A 0,75 m²,λ0,040 W/(mK),ΔT 20 K e 12 W; non è assegnata una metrica 3 D al disegno. Secondo pannello: sezioni schematiche 50×100 e 100×200 con etichette A,s e 2 A,2 s,flussi 9 W rappresentati da frecce concordi di pari 125 coordinate. Il raddoppio di A è dato fisico,non l’area 2 D dell’intero rettangolo,che include lo spessore. Barre emesse a 300/450 K: 60 e 303,75 coordinate,rapporto 81/16 eorigine comune 140. Emissione distinta dal saldo netto. Nessun taglio o contatto residuo.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C3-Q045",
+      "sourceSha256": "009e5c9f6b424f02c3e5fc3d5d4dcd1b62180efb043c4fef958ad18956258fbb",
+      "candidateSha256": "7849a11205f0c557602e2c9b55380ef091a13799bd65b7efec0c534f3ee3e7b3",
+      "reviewedSignature": "fabcf8aa6595fddb7e843dedd5ed1dcfc660564c855bb99b48d4d8284df2bdd5",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Il manico metallico con conducibilità maggiore",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3"
+      },
+      "manualArithmetic": "Il manico metallico porta più potenza in conduzione perché P=λAΔT/s e la geometria è uguale. Il confronto richiede le medesime condizioni alle facce, come dichiarato, e non dice che i materiali abbiano temperature diverse in equilibrio completo.",
+      "physicalAssumptions": "Sezioni e lunghezze uguali,conducibilità positive,ΔT>0 comune,regime 1 D stazionario senza perdite.",
+      "distractors": "Geometria uguale non cancella λ; λ minore aumenta resistenza; condizione iniziale non fissa il profilo stazionario.",
+      "pedagogicalReview": "Confronto a differenza termica non nulla e condizioni al contorno identiche.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C3-Q046",
+      "sourceSha256": "f5f95e18cf64276f5fa7e95b11d76726ed459cee2afe6dbbfe8e702e283b1266",
+      "candidateSha256": "eb41df79fa24e2d1d17676abf0245faebc277e29bf2e6efca005e36085cc1db8",
+      "reviewedSignature": "083b118c82c628c0c6486b51151817b7f1a1b09f2775373f12d4b08c5b506d28",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "cric-c3-l05-progressive.svg": "e901d6cd526c07857c19742ab22b9a808a113be6819cab076673a35740e4bbf4"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "81/16",
+      "dimension": {},
+      "manualArithmetic": "La potenza emessa è εσAT⁴. Il rapporto è (450/300)⁴=(3/2)⁴=81/16. Si tratta dell’emissione, non del bilancio netto che richiederebbe l’assorbimento dall’ambiente.",
+      "physicalAssumptions": "Area edemissività positive e costanti,T 300→450 K,solo potenza emessa e non assorbimento.",
+      "distractors": "3/2 lineare,9/4 quadrato,16/81 inverso,1 ignora nuovaT; Celsius non va alla quarta nella legge.",
+      "pedagogicalReview": "Emissione distinta dal bilancio con l’ambiente, rapporto Kelvin.",
+      "assetReview": "XML e nuovo PNG indipendente 640×1500 letti per intero. Prima lastra schematica con s 5 cm,A 0,75 m²,λ0,040 W/(mK),ΔT 20 K e 12 W; non è assegnata una metrica 3 D al disegno. Secondo pannello: sezioni schematiche 50×100 e 100×200 con etichette A,s e 2 A,2 s,flussi 9 W rappresentati da frecce concordi di pari 125 coordinate. Il raddoppio di A è dato fisico,non l’area 2 D dell’intero rettangolo,che include lo spessore. Barre emesse a 300/450 K: 60 e 303,75 coordinate,rapporto 81/16 eorigine comune 140. Emissione distinta dal saldo netto. Nessun taglio o contatto residuo.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C3-Q047",
+      "sourceSha256": "42dbc7cdb0f23dcd7384e065f7c251b5582fbd101d04534450fc39a76e876671",
+      "candidateSha256": "b8591a8f2a42fe1a1cf5012a6efe71034f999158330cc5568b475042cb789bd5",
+      "reviewedSignature": "f3f0854de16f7a32d13bcacc7bf5570000a0e856d2d8b450ba870e895298c78c",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Stazionario",
+      "dimension": {},
+      "manualArithmetic": "Il regime è stazionario: il profilo e il flusso sono invarianti nel tempo. La potenza può essere non nulla, dunque stazionario non coincide con equilibrio termico uniforme.",
+      "physicalAssumptions": "Profilo termico invariato nel tempo,flusso entrante e uscente bilanciati; non necessariamente T uniforme.",
+      "distractors": "Stazionario non significa Q 0 néadiabatico,non imponeU 0; periodico può variare dentro il periodo.",
+      "pedagogicalReview": "Invarianza temporale distinta da equilibrio senza flusso.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C3-Q048",
+      "sourceSha256": "c6be336e86c6640f0183770cbab3f579f4a31ccf753d37015d93220757cb7c0a",
+      "candidateSha256": "884fb3d09cc5fa37e3857548640a23dbccc665e11be9cc6ddde9b64136974ea6",
+      "reviewedSignature": "e1fb315ce3dab9ab0b42c1c5de478b69cdcdca8ae162dcf188574d6a6a944db0",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Il fluido inferiore più caldo e meno denso tende a salire per galleggiamento",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "-3"
+      },
+      "manualArithmetic": "Il riscaldamento dal basso può creare instabilità di galleggiamento: il liquido caldo meno denso tende a salire, quello più freddo a scendere, innescando convezione naturale. L’effettivo insorgere dipende dal superamento della soglia e dai vincoli del recipiente; il prompt dice può.",
+      "physicalAssumptions": "Liquido con dilatazione positiva riscaldato dal basso in gravità; si chiede un meccanismo possibile,non universalità.",
+      "distractors": "Dilatazione a massa fissa abbassaρ; conduzione può coesistere con moto; serve una condizione di instabilità oltre al semplice riscaldamento.",
+      "pedagogicalReview": "Tendenza di galleggiamento condizionata a viscosità,diffusione e geometria.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C3-Q049",
+      "sourceSha256": "7ccd89e0712a9f59c15f990fb1e0db48b0d8218e536cafe8f8b7529da07225af",
+      "candidateSha256": "2e7c540e6c6ac0369efaaad3f5cb2f246a752c0f5b533c6eb2af57d15afa30cc",
+      "reviewedSignature": "8fe1c539f11b01dc28fe47915960595633e47ac05ae989b53fd6d094c8a317d9",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "3/50",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-3",
+        "[temperature]": "-1"
+      },
+      "manualArithmetic": "Dalla conduzione piana ricavo λ=Ps/(AΔT). ΔT=15 K e λ=(18·0,020)/(0,40·15)=0,06 W/(m·K)=3/50 W/(m·K), nel modello stazionario senza perdite laterali.",
+      "physicalAssumptions": "Lastra 1 D stazionaria senza perdite,A 0,40 m²,s 0,020 m,P 18 W,T 30/15°C.",
+      "distractors": "30 anziché 15 confonderebbe lettura e intervallo; invertire s/A non ricostruisce P; s è già inmetri.",
+      "pedagogicalReview": "Legge isolata prima delle conversioni e differenza di temperatura.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C3-Q050",
+      "sourceSha256": "1655fda9211276e328d2c70a763d115bc8888b15f73734ee01684515118aefb1",
+      "candidateSha256": "5a09030d473ecfb1b63065674bb484d81ca4d7b54b20488a00c5eafec01784ee",
+      "reviewedSignature": "f9b9b7eff23629464a7b908f798fa8aab9d85efa76a6eed6eeaeb606a973e534",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Emette e assorbe contemporaneamente potenze uguali: il saldo netto è zero",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3"
+      },
+      "manualArithmetic": "All’equilibrio con la cavità alla stessa temperatura, emissione e assorbimento sono entrambi presenti e si compensano. Il bilancio radiativo netto è zero, non l’emissione termica del corpo.",
+      "physicalAssumptions": "Superficie con emissività positiva eT>0 in grande cavitàisoterma alla stessaT,equilibrio radiativo.",
+      "distractors": "Saldo 0 non annulla flussi; soloemissione raffredda,soloassorbimento scalda; potenze emessa/assorbita sono moduli positivi nel ramo dato.",
+      "pedagogicalReview": "Due processi non nulli con saldo nullo.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    }
+  ],
+  "verifierSha256": "f7f226b37fd7607522ad20adc62b31ff97ddf2efcea8fd08762841c79c7cdc9f",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "reviewDependencySha256": {
+    "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+  },
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2",
+    "hypothesis": "6.148.7"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "reviewedCandidateCommit": "9b64b8b29f0aa12a86d0b95ca2ada4ec61db1b9b",
+  "packageSha256": "a94c4a2a5e510f6231aa955699518c150e1ffd855f3c0859bbda71b6650eabb3",
+  "bindingsSha256": "14cb3985ec0c31e9a77bd4809c9b9182568bbe97ef3873effc92bf384ee7b25a",
+  "source": {
+    "commit": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "path": "officina-di-fisica/content/C3.json",
+    "title": "cric-c3-l05",
+    "reference": "Dieci problemi distinti Cric C3 letti integralmente dopo primaria e modelli propri congelati; interpretazione di letture Celsius e intervalli termici distinta per ID."
+  },
+  "modelsBeforeCandidateKeys": {
+    "path": "editorial/reviews/cric-c3-001-050-independent-models.py",
+    "sha256": "9b870976c03b6578eeac6f6e4c2e89cebc6c53d2a6a0ef0b806e749b36c88e1f",
+    "commit": "030d4658b17ea6f6fd43be03cb59b21e91030eb0"
+  },
+  "modelFunctionBodies": "All functions in the frozen source-only C3 model retain identical AST. Generic finite/exact literal guards are reused unchanged from the earlier independent C2 verifier.",
+  "primaryBeforeCandidateKeys": {
+    "path": "editorial/reviews/primary-cric-c3-001-050-before-candidates-20261126.md",
+    "sha256": "34cdd1eb8b9f296a638c2fa1e3874ffbace49c48e907257c063fe1f0f7ad0b80"
+  }
+}

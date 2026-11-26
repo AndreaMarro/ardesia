@@ -1,0 +1,10 @@
+from pathlib import Path
+import subprocess,hashlib,json,sys,xml.etree.ElementTree as ET
+A=Path('/private/tmp/cric-author-a-resident/officina-di-fisica');ROOT=Path('/private/tmp/cric-resident-integrator/officina-di-fisica');module,batch,count=sys.argv[1],sys.argv[2],int(sys.argv[3]);sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest();p=A/f'editorial/batches/{batch}.json';b=p.with_name(batch+'-bindings.json');asset=A/f'editorial/assets/{batch}-progressive.svg'
+cmd=[sys.executable,'-m','tools.corpus_engineering.'+module,'--repo','..','--source-ref','5d1dc8dc7b601aef959d10d564c75462be74708d','--destination','editorial/batches']
+subprocess.run(cmd,cwd=A,check=True,capture_output=True);first=p.read_bytes(),b.read_bytes();subprocess.run(cmd,cwd=A,check=True,capture_output=True);assert first==(p.read_bytes(),b.read_bytes());ET.parse(asset)
+sys.path.insert(0,str(ROOT));from tools.corpus_engineering.integration import exercise_package
+from tools.corpus_engineering.runtime_fingerprint import runtime_fingerprint
+fp=runtime_fingerprint(ROOT);result=exercise_package(p);assert fp==runtime_fingerprint(ROOT)
+assert result['firstImport']['saved']==count and result['repeatedImport']=={'publication':'DRAFT','saved':0,'unchanged':count};assert result['preservedLiveHeads']==count;assert result['beforePublishedCount']==result['afterPublishedCount']==991;assert result['beforePublishedSha256']==result['afterPublishedSha256']
+D=A/'editorial/author-evidence';D.mkdir(exist_ok=True);out=D/(batch+'-structural.json');out.write_text(json.dumps({'schemaVersion':'1.0.0','scope':'AUTHOR_TECHNICAL_STRUCTURE_ONLY_NOT_SCIENTIFIC_APPROVAL','explicitAuthoringModule':module,'explicitBatch':batch,'expectedOriginalIds':count,'twoIndependentAssembliesByteIdentical':True,'packageFileSha256':sha(p),'bindingFileSha256':sha(b),'runtimeProfileSha256':fp['sha256'],'humanApproval':'NOT_RUN','publicationAction':'NONE','applicationUI':'NOT_RUN_LOCAL_PRODUCT_UI_PROHIBITED','integration':result},ensure_ascii=False,indent=2)+'\n');print(batch,str(count)+'→0/'+str(count),'live heads/published991/history preserved;double assembly;no SCI',sha(out),flush=True)
