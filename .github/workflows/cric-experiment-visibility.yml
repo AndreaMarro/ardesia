@@ -32,6 +32,8 @@ jobs:
       CRIC_COURSE: ${{ matrix.course }}
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        env:
+          GIT_NO_LAZY_FETCH: '0'
         with:
           persist-credentials: false
           sparse-checkout: |
@@ -58,10 +60,32 @@ jobs:
                   f.write(key+'='+r[name]+'\n')
           PY
       - name: Fetch only declared immutable commits
+        env:
+          GIT_NO_LAZY_FETCH: '0'
         run: |
           git fetch --no-tags --depth=1 origin "$CRIC_CANDIDATE"
           git fetch --no-tags --depth=1 origin "$CRIC_ORIGINAL"
           git fetch --no-tags --depth=1 origin "$CRIC_BASELINE"
+          # Materialize only declared runtime/source inputs in the promisor
+          # object cache. The verifier keeps lazy fetching disabled afterwards.
+          git archive "$CRIC_CANDIDATE" -- \
+            officina-di-fisica/server officina-di-fisica/static officina-di-fisica/content \
+            officina-di-fisica/contracts officina-di-fisica/migrations \
+            officina-di-fisica/policies officina-di-fisica/extensions \
+            officina-di-fisica/package.json officina-di-fisica/package-lock.json \
+            officina-di-fisica/tools/corpus_engineering/draft_import.py \
+            officina-di-fisica/tools/corpus_engineering/runtime_fingerprint.py \
+            officina-di-fisica/editorial/batches/experiments-manual-support-revision-263.json \
+            officina-di-fisica/editorial/batches/experiments-manual-support-revision-263-bindings.json \
+            officina-di-fisica/editorial/batches/experiment-stevino-revision-047.json \
+            officina-di-fisica/editorial/batches/experiment-stevino-revision-047-bindings.json > /dev/null
+          git archive "$CRIC_ORIGINAL" -- \
+            officina-di-fisica/content/esperienze-C2.json officina-di-fisica/content/esperienze-C3.json \
+            officina-di-fisica/content/esperienze-C4.json officina-di-fisica/content/esperienze-C5.json \
+            officina-di-fisica/content/esperienze-C6.json > /dev/null
+          git archive "$CRIC_BASELINE" -- \
+            officina-di-fisica/static/js/banchi/banco.js \
+            officina-di-fisica/static/js/banchi/voci/orologi.js > /dev/null
       - name: Reconstruct source-pinned temporary runtime and complete cohort plan
         run: |
           python3 officina-di-fisica/tools/corpus_engineering/experiment_visibility_request.py prepare --request .github/cric-experiment-visibility-request.json --course "$CRIC_COURSE" --workspace "$RUNNER_TEMP/experiment-$CRIC_COURSE" > "$RUNNER_TEMP/visibility-prepared-$CRIC_COURSE.json"

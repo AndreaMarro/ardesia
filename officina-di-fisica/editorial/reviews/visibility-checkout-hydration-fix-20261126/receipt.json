@@ -1,0 +1,40 @@
+{
+  "failedRunId": 45885414909,
+  "failedSource": "025b530d0e7a593e5a57789b4fd6aeb38a256362",
+  "observedUICases": 0,
+  "failure": "actions partial checkout could not hydrate blobs with global GIT_NO_LAZY_FETCH=1",
+  "correction": "Allow hydration only checkout and bounded immutable archives; all verifier reads retain disabled lazy fetching",
+  "realPartialCloneProof": {
+    "scope": "Real empty partial Git repo, not shared cache",
+    "immutableRef": "64aef05bef5ca7ebff8491060762dd4cac0cbb34",
+    "path": "officina-di-fisica/static/js/banchi/voci/legende.js",
+    "strictReadBeforeHydrationExit": 128,
+    "explicitBoundedArchiveHydrationExit": 0,
+    "strictReadAfterHydrationExit": 0,
+    "exactBlobSha256": "73be16b9e0e8072a4668674f6c93502ca6310ccf9ea75b945daf25116976b568",
+    "verifierLazyFetchStillDisabled": true,
+    "activityCredit": 0,
+    "humanApproval": "NOT_RUN",
+    "publicationAction": "NONE"
+  },
+  "tests": [
+    {
+      "pattern": "test_experiment_visibility_request.py",
+      "count": 9,
+      "seconds": 0.517,
+      "exitCode": 0
+    },
+    {
+      "pattern": "test_experiment_visibility_integrity.py",
+      "count": 7,
+      "seconds": 1.199,
+      "exitCode": 0
+    }
+  ],
+  "bashSyntaxExit": 0,
+  "requestSha256": "ec6d264e91f8fe64d464598a2bb4f9f7c0bdbba9fe07e689d15be64bd216e5d0",
+  "runtimeSha256": "4c83e0156b74d5a4cdfad90421f4304e6a7a03bde10d5b125f6635aae7eff907",
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}
