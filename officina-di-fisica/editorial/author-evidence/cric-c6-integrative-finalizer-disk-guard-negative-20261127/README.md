@@ -1,0 +1,1 @@
+La guardia condivisa ha rilevato 1202102272 byte liberi e ha terminato con exit 1 prima di avviare il child finalizer. Le assembly/import e il native finali erano già terminati realmente con exit 0 sui byte finali. Nessun risultato di questa chiamata è un PASS e nessuna soglia viene abbassata. Nessun file o processo altrui è stato modificato.

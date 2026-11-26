@@ -1,0 +1,4800 @@
+[
+  {
+    "id": "C6-L01",
+    "kind": "lesson",
+    "course": "C6",
+    "section": "Orientarsi tra le misure",
+    "order": 1,
+    "title": "Dal dato al modello",
+    "skill": "C6-L01",
+    "prerequisites": [
+      "C1-L001",
+      "C1-L003"
+    ],
+    "version": 1,
+    "coverage": [
+      "Collegamento U1, U2, U3, U4, U5, U6 e U7 · sistemi, grandezze, unità e scale"
+    ],
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Un sensore registra una serie di numeri. Per darle un significato fisico servono un’unità, l’oggetto osservato e una procedura di misura. Un tempo di ritardo può essere il tempo di un singolo tragitto, di un’eco o di una risposta del sensore. Per scegliere l’equazione giusta ricostruisci prima che cosa avviene fra l’istante iniziale e quello finale."
+      },
+      {
+        "type": "text",
+        "text": "Prova a disegnare il sistema con una linea per il suo confine. Se l’oggetto è un carrello indica quali forze arrivano dall’esterno. Se è il fluido in un tratto di condotto segna entrate e uscite. Se è luce che si propaga, localizza sorgente, mezzo e rivelatore. Questo disegno suggerisce quali grandezze si riferiscono allo stesso corpo, tratto o evento."
+      },
+      {
+        "type": "text",
+        "text": "Per un’eco su un riflettore fermo, se emettitore e ricevitore coincidono e la velocità è uniforme, si applica il modello di andata e ritorno. Per due sensori su lati opposti usa invece il cammino diretto fra loro."
+      },
+      {
+        "type": "formula",
+        "text": "s=v\\Delta t,\\qquad d_{\\rm eco}=\\frac{s}{2}"
+      },
+      {
+        "type": "text",
+        "text": "Per la diagnosi iniziale affronta quesiti di aree diverse e segna dove è comparsa la prima incertezza nella scelta della grandezza, dell’unità, del segno o del modello. Una risposta errata isolata può dipendere da una lettura frettolosa. Riprova con un caso diverso che richieda la stessa distinzione prima di decidere quale passaggio recuperare."
+      }
+    ]
+  },
+  {
+    "id": "C6-L02",
+    "kind": "lesson",
+    "course": "C6",
+    "section": "Portate, correnti e intensità",
+    "order": 2,
+    "title": "Segui ciò che attraversa la superficie",
+    "skill": "C6-L02",
+    "prerequisites": [
+      "C6-L01",
+      "C2-L001",
+      "C4-L05",
+      "C5-L04"
+    ],
+    "version": 1,
+    "coverage": [
+      "Collegamento U3, U4 e U6 · trasporti, densità di flusso e bilanci in regime stazionario"
+    ],
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Una bilancia misura la massa raccolta all’uscita di un tubo, un amperometro misura cariche in transito, un fotodiodo riceve energia. In tutti questi esempi compare un rapporto con il tempo. Ciò che passa stabilisce quale rapporto devi usare. Annota accanto al contorno scelto «m³», «C» oppure «J» e chiediti quanti ne transitano per secondo."
+      },
+      {
+        "type": "formula",
+        "text": "Q_V=\\frac{\\Delta V}{\\Delta t},\\qquad i=\\frac{\\Delta q}{\\Delta t},\\qquad P=\\frac{\\Delta E}{\\Delta t}"
+      },
+      {
+        "type": "text",
+        "text": "Per un liquido incomprimibile con velocità media v̄, il volume trasportato in un secondo è il prodotto fra sezione S e distanza percorsa in quel secondo. Per un fascio uniforme e perpendicolare al sensore di area S, la potenza ricevuta è l’intensità moltiplicata per la stessa area. Il simbolo dell’area si ripete, mentre le quantità trasportate hanno dimensioni diverse."
+      },
+      {
+        "type": "formula",
+        "text": "Q_V=S\\overline v,\\qquad P_{\\rm ricevuta}=I_{\\rm onda}S"
+      },
+      {
+        "type": "text",
+        "text": "Una rete in regime stazionario rende visibile la conservazione. Se in un nodo non si accumula liquido o carica, la somma delle portate o correnti entranti uguaglia quella delle uscenti. Prima di usare questa relazione controlla che nessun serbatoio si stia riempiendo e nessun condensatore si stia caricando nel nodo considerato. Un disegno con frecce permette di ritrovare il segno di ogni termine."
+      }
+    ]
+  },
+  {
+    "id": "C6-L03",
+    "kind": "lesson",
+    "course": "C6",
+    "section": "Bilanci e trasformazioni",
+    "order": 3,
+    "title": "Dove finisce l’energia?",
+    "skill": "C6-L03",
+    "prerequisites": [
+      "C6-L01",
+      "C6-L02",
+      "C1-L007",
+      "C3-L06",
+      "C4-L05"
+    ],
+    "version": 1,
+    "coverage": [
+      "Collegamento U2, U3, U5, U6 e U7 · potenza meccanica, termica, elettrica e ottica"
+    ],
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Una batteria alimenta una resistenza immersa in un recipiente. Il circuito trasferisce energia elettrica, il resistore la dissipa e il liquido tende a scaldarsi. Sono tre descrizioni di uno stesso bilancio. Scegliere il sistema stabilisce quali frecce energetiche attraversano il confine. Un recipiente aperto che disperde calore richiede un termine in uscita. Un modello isolato consente di trascurarlo."
+      },
+      {
+        "type": "text",
+        "text": "Il prodotto della tensione V per la corrente i dà una potenza. Per una potenza costante nell’intervallo Δt si ottiene l’energia moltiplicando per la durata. In assenza di dispersioni, cambiamenti di stato e variazioni apprezzabili della capacità termica, tale energia diventa mcΔT."
+      },
+      {
+        "type": "formula",
+        "text": "E_{\\rm ingresso}=Vi\\,\\Delta t,\\qquad mc\\Delta T=\\eta E_{\\rm ingresso}"
+      },
+      {
+        "type": "text",
+        "text": "Il fattore η rappresenta la frazione che arriva al sistema considerato. In un dispositivo che solleva liquido compare invece energia potenziale mgh. In un trasduttore la potenza può uscire sotto forma di onde. Riconosci il passaggio scrivendo sotto ogni freccia la grandezza con cui puoi misurarla."
+      },
+      {
+        "type": "figure",
+        "src": "/figures/C6-pendenza.svg",
+        "text": "Una retta crescente in un grafico energia–tempo ha pendenza positiva e costante. Un tratto orizzontale esprime bilancio netto nullo per la grandezza tracciata."
+      },
+      {
+        "type": "text",
+        "text": "Se il risultato suggerisce che il liquido riceve più energia della batteria, verifica anzitutto secondi e minuti. Poi controlla se il rendimento è finito nel numeratore o nel denominatore. Il bilancio fra ingresso e uscita dà un controllo prima ancora di rifare i conti."
+      }
+    ]
+  },
+  {
+    "id": "C6-L04",
+    "kind": "lesson",
+    "course": "C6",
+    "section": "Rapporti e variazioni successive",
+    "order": 4,
+    "title": "Riconoscere il fattore che si ripete",
+    "skill": "C6-L04",
+    "prerequisites": [
+      "C6-L01",
+      "C5-L07",
+      "C5-L08"
+    ],
+    "version": 1,
+    "coverage": [
+      "Collegamento U2, U3, U4 e U7 · proporzioni, leggi di potenza, esponenziali"
+    ],
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Dimezzare una grandezza può dimezzare un risultato, quadruplicarlo o ridurlo a un sedicesimo. Il punto decisivo è identificare quali altre variabili restano fisse. Per il flusso di Poiseuille in un tubo rigido, con moto laminare stazionario e liquido newtoniano, la portata è proporzionale a r⁴ a parità di differenza di pressione, viscosità e lunghezza. Per una sorgente isotropa senza assorbimento l’intensità è inversamente proporzionale al quadrato della distanza a potenza emessa costante."
+      },
+      {
+        "type": "formula",
+        "text": "\\frac{Q_2}{Q_1}=\\left(\\frac{r_2}{r_1}\\right)^4,\\qquad \\frac{I_2}{I_1}=\\left(\\frac{d_1}{d_2}\\right)^2"
+      },
+      {
+        "type": "text",
+        "text": "Se ogni uguale spessore di un assorbitore monocromatico rimuove una frazione costante del fascio, per due strati identici moltiplichi le trasmissioni. Se ogni uguale intervallo temporale dimezza in media una popolazione radioattiva, moltiplichi le frazioni residue. In un caso l’asse è la distanza, nell’altro il tempo."
+      },
+      {
+        "type": "formula",
+        "text": "\\frac{I(x)}{I_0}=e^{-\\mu x},\\qquad \\frac{N(t)}{N_0}=e^{-\\lambda_d t}"
+      },
+      {
+        "type": "text",
+        "text": "Prova a distinguere queste leggi da tre letture equidistanti. Valori 80, 60, 40 hanno differenze uguali. Valori 80, 40, 20 hanno rapporti uguali. I dati suggeriscono modelli diversi e si devono confrontare con il meccanismo fisico prima di estrapolare. Un controllo al valore zero della variabile elimina formule che non riproducono la condizione iniziale."
+      }
+    ]
+  },
+  {
+    "id": "C6-L05",
+    "kind": "lesson",
+    "course": "C6",
+    "section": "Leggere le rappresentazioni",
+    "order": 5,
+    "title": "Pendenza, altezza o area?",
+    "skill": "C6-L05",
+    "prerequisites": [
+      "C6-L01",
+      "C6-L02",
+      "C1-L003",
+      "C3-L07"
+    ],
+    "version": 1,
+    "coverage": [
+      "Collegamento U1, U2, U3, U5 e U6 · lettura di grafici, segni, pendenze e aree"
+    ],
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Tre grafici possono presentare la stessa forma e avere significati diversi. Una retta crescente in posizione–tempo indica velocità costante. In velocità–tempo indica accelerazione costante. In energia–tempo indica potenza netta costante. Ricostruisci l’unità della pendenza dividendo l’unità verticale per quella orizzontale. Una volta trovata, controlla il verso del cambiamento leggendo da sinistra verso destra."
+      },
+      {
+        "type": "formula",
+        "text": "\\frac{\\Delta x}{\\Delta t}\\ [\\mathrm{m/s}],\\qquad \\frac{\\Delta v}{\\Delta t}\\ [\\mathrm{m/s^2}],\\qquad \\frac{\\Delta E}{\\Delta t}\\ [\\mathrm{W}]"
+      },
+      {
+        "type": "text",
+        "text": "L’area usa invece il prodotto delle unità degli assi. Nel diagramma velocità–tempo la sua unità vale (m/s)·s = m, quindi l’area orientata misura lo spostamento. Nel piano pressione–volume, durante una trasformazione quasi statica di espansione, sommare i prodotti pΔV dà il lavoro del gas. Il prodotto di un pascal per un metro cubo equivale a un joule."
+      },
+      {
+        "type": "formula",
+        "text": "W_{\\rm gas}=\\int_{V_i}^{V_f}p\\,dV,\\qquad 1\\ \\mathrm{Pa}\\cdot\\mathrm{m^3}=1\\ \\mathrm J"
+      },
+      {
+        "type": "text",
+        "text": "Se un grafico di pressione contro profondità ha un’intercetta pari alla pressione atmosferica, sottrarre i due valori alla stessa distanza verticale elimina l’intercetta. Il confronto tra due punti permette così di distinguere una differenza di pressione dalla pressione assoluta. Ripeti la stessa domanda per differenze di potenziale e scegli esplicitamente lo zero."
+      }
+    ]
+  },
+  {
+    "id": "C6-L06",
+    "kind": "lesson",
+    "course": "C6",
+    "section": "Ripasso e trasferimento",
+    "order": 6,
+    "title": "Ricostruire un ragionamento a distanza",
+    "skill": "C6-L06",
+    "prerequisites": [
+      "C6-L01",
+      "C6-L02",
+      "C6-L03",
+      "C6-L04",
+      "C6-L05",
+      "C5-L10",
+      "C4-L06"
+    ],
+    "version": 1,
+    "coverage": [
+      "Collegamento cumulativo U1–U7 · scelta del modello, controllo dei limiti, ripresa distribuita"
+    ],
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Dopo una soluzione convincente chiudi lo svolgimento e scrivi su un foglio che cosa prevedi, quale ipotesi ti permette di usare la legge e quale cambiamento farebbe fallire la previsione. Per esempio, una diminuzione della sezione di un condotto chiuso e stazionario fa crescere la velocità media di un liquido incomprimibile a portata fissata. Se una derivazione preleva parte del flusso, serve includerla prima di confrontare le velocità."
+      },
+      {
+        "type": "text",
+        "text": "Nel primo ripasso ricostruisci il disegno e controlla l’unità del risultato. In una seduta successiva affronta un quesito che cambia il contesto. Puoi passare da un liquido a un circuito per verificare un bilancio al nodo, o da un’eco sonora a una luminosa per verificare il doppio cammino. Mantieni esplicita la nuova velocità di propagazione."
+      },
+      {
+        "type": "text",
+        "text": "Un ultimo controllo consiste nel modificare un parametro del modello fino a un caso semplice. In una lente convergente immagina di allontanare l’oggetto fino a una distanza molto grande. Allora 1/p tende a zero e l’immagine si avvicina al fuoco. Nel riscaldamento dello stesso corpo, se la potenza utile tende a zero anche l’aumento di temperatura deve tendere a zero in un tempo fissato."
+      },
+      {
+        "type": "text",
+        "text": "Se la risposta giusta nasce soltanto da una formula ricordata dal titolo, scegli una prova mista e cerca due modelli plausibili prima di fare i conti. Specifica quale dato o condizione consente di scartare uno dei due. Registra separatamente la lettura della soluzione e una risposta autonoma fornita su un quesito diverso."
+      }
+    ]
+  },
+  {
+    "id": "C6-E001",
+    "kind": "example",
+    "course": "C6",
+    "section": "Orientarsi tra le misure",
+    "order": 1,
+    "title": "Due superfici nel medesimo blocco",
+    "skill": "C6-L01",
+    "prerequisites": [
+      "C1-L001",
+      "C1-L003"
+    ],
+    "version": 1,
+    "prompt": "Un segnale luminoso attraversa un blocco trasparente lungo 0,60 m fra emettitore e ricevitore distinti. Il ritardo è 3,0 ns. Trova l’indice del materiale e il tempo di andata e ritorno per lo stesso tratto.",
+    "family": "due-superfici-nel-medesimo-blocco",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Segniamo due strumenti ai lati opposti del blocco. Il primo tempo corrisponde a un unico attraversamento. Convertiamo 3,0 ns in 3,0 × 10⁻⁹ s."
+      },
+      {
+        "type": "formula",
+        "text": "v=\\frac{0{,}60}{3{,}0\\times10^{-9}}=2{,}0\\times10^8\\ \\mathrm{m/s},\\qquad n=\\frac{3{,}0\\times10^8}{2{,}0\\times10^8}=1{,}5"
+      },
+      {
+        "type": "text",
+        "text": "Per tornare allo stesso emettitore dopo la riflessione sul lato opposto serve il doppio del cammino nel medesimo materiale."
+      },
+      {
+        "type": "formula",
+        "text": "\\Delta t_{\\rm eco}=\\frac{2L}{v}=2(3{,}0\\ \\mathrm{ns})=6{,}0\\ \\mathrm{ns}"
+      },
+      {
+        "type": "text",
+        "text": "Il controllo sul percorso distingue le due misure anche se la velocità del mezzo rimane identica."
+      }
+    ]
+  },
+  {
+    "id": "C6-E002",
+    "kind": "example",
+    "course": "C6",
+    "section": "Portate, correnti e intensità",
+    "order": 2,
+    "title": "Tre strumenti intorno a una pompa",
+    "skill": "C6-L02",
+    "prerequisites": [
+      "C6-L01",
+      "C2-L001",
+      "C4-L05",
+      "C5-L04"
+    ],
+    "version": 1,
+    "prompt": "Una piccola pompa solleva 1,2 L d’acqua ogni minuto per un dislivello di 2,0 m. La batteria eroga 6,0 V e 0,20 A. Stima il rendimento relativo alla sola energia potenziale, con ρ = 1000 kg/m³ e g = 10 m/s².",
+    "family": "tre-strumenti-intorno-a-una-pompa",
+    "difficulty": 3,
+    "blocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C6-pompa.svg",
+        "text": "Il confine racchiude la pompa. Segui prima l’energia elettrica in ingresso e poi quella che ricompare nel dislivello."
+      },
+      {
+        "type": "text",
+        "text": "Seguiamo un minuto di funzionamento stazionario. Il volume 1,2 L corrisponde a 1,2 × 10⁻³ m³ e quindi a una massa di 1,2 kg. La pompa deve fornire almeno l’aumento di energia gravitazionale."
+      },
+      {
+        "type": "formula",
+        "text": "E_u=mgh=(1{,}2)(10)(2{,}0)=24\\ \\mathrm J"
+      },
+      {
+        "type": "text",
+        "text": "Dal circuito la pompa assorbe la potenza V i = 6,0 × 0,20 = 1,2 W per 60 s."
+      },
+      {
+        "type": "formula",
+        "text": "E_{\\rm in}=1{,}2\\cdot60=72\\ \\mathrm J,\\qquad \\eta=\\frac{E_u}{E_{\\rm in}}=\\frac{24}{72}=\\frac13\\simeq33\\%"
+      },
+      {
+        "type": "text",
+        "text": "Si confrontano energie dello stesso intervallo. Il resto dell’energia include le perdite ed eventuali altri trasferimenti non contati come sollevamento utile."
+      }
+    ]
+  },
+  {
+    "id": "C6-E003",
+    "kind": "example",
+    "course": "C6",
+    "section": "Bilanci e trasformazioni",
+    "order": 3,
+    "title": "Quello che legge il termometro",
+    "skill": "C6-L03",
+    "prerequisites": [
+      "C6-L01",
+      "C6-L02",
+      "C1-L007",
+      "C3-L06",
+      "C4-L05"
+    ],
+    "version": 1,
+    "prompt": "Una resistenza da 8,0 Ω, percorsa da 0,50 A per 120 s, riscalda 50 g d’acqua. Il 75% dell’energia dissipata arriva all’acqua. Con c = 4200 J/(kg·K), trova l’aumento di temperatura.",
+    "family": "quello-che-legge-il-termometro",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "La resistenza ohmica trasferisce energia elettrica per effetto Joule. La corrente è costante, perciò possiamo calcolare la potenza e moltiplicarla per la durata."
+      },
+      {
+        "type": "formula",
+        "text": "P=i^2R=(0{,}50)^2(8{,}0)=2{,}0\\ \\mathrm W,\\qquad E=P\\Delta t=240\\ \\mathrm J"
+      },
+      {
+        "type": "text",
+        "text": "L’acqua riceve 0,75 × 240 = 180 J. La sua massa è 50 g = 0,050 kg. Nel piccolo intervallo termico assumiamo c costante e nessun cambiamento di stato."
+      },
+      {
+        "type": "formula",
+        "text": "\\Delta T=\\frac{180}{(0{,}050)(4200)}\\ \\mathrm K=0{,}86\\ \\mathrm K"
+      },
+      {
+        "type": "text",
+        "text": "L’aumento è inferiore a un grado perché per scaldare questo campione di un kelvin occorrono 210 J e ne sono arrivati soltanto 180."
+      }
+    ]
+  },
+  {
+    "id": "C6-E004",
+    "kind": "example",
+    "course": "C6",
+    "section": "Rapporti e variazioni successive",
+    "order": 4,
+    "title": "Una lettura diminuisce per due cause",
+    "skill": "C6-L04",
+    "prerequisites": [
+      "C6-L01",
+      "C5-L07",
+      "C5-L08"
+    ],
+    "version": 1,
+    "prompt": "Una sorgente puntiforme isotropa emette a potenza costante. Inizialmente il sensore è a 1,0 m in aria senza perdite. Poi viene portato a 2,0 m e davanti al sensore si mette un filtro con trasmissione 0,60. Quanto vale il nuovo segnale rispetto al primo?",
+    "family": "una-lettura-diminuisce-per-due-cause",
+    "difficulty": 3,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Il sensore mantiene la stessa area e orientazione. La nuova distanza modifica prima l’intensità che raggiunge il piano del filtro. L’espansione sferica fornisce un fattore geometrico."
+      },
+      {
+        "type": "formula",
+        "text": "\\frac{I_{\\rm prima\\ del\\ filtro}}{I_1}=\\left(\\frac{1{,}0}{2{,}0}\\right)^2=\\frac14"
+      },
+      {
+        "type": "text",
+        "text": "Il filtro agisce poi sulla luce che lo raggiunge. La frazione trasmessa si moltiplica per la frazione geometrica. I due meccanismi operano in successione."
+      },
+      {
+        "type": "formula",
+        "text": "\\frac{I_2}{I_1}=0{,}60\\times\\frac14=0{,}15"
+      },
+      {
+        "type": "text",
+        "text": "Il sensore registra il 15% del segnale iniziale. Tanto il filtro quanto la maggiore distanza riducono il segnale, dunque un fattore finale maggiore di uno sarebbe incompatibile con questa previsione."
+      }
+    ]
+  },
+  {
+    "id": "C6-E005",
+    "kind": "example",
+    "course": "C6",
+    "section": "Leggere le rappresentazioni",
+    "order": 5,
+    "title": "Da un grafico a una parete mobile",
+    "skill": "C6-L05",
+    "prerequisites": [
+      "C6-L01",
+      "C6-L02",
+      "C1-L003",
+      "C3-L07"
+    ],
+    "version": 1,
+    "prompt": "Un gas in un cilindro a pistone quasi statico resta a 120 kPa mentre il volume aumenta da 2,0 L a 2,5 L. Il gas riceve 85 J di calore. Calcola lavoro del gas e variazione di energia interna.",
+    "family": "da-un-grafico-a-una-parete-mobile",
+    "difficulty": 3,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Nel piano p–V il processo è un segmento orizzontale. Il lavoro positivo del gas in espansione è l’area del rettangolo sotto il tratto. La larghezza di 0,5 L equivale a 5,0 × 10⁻⁴ m³."
+      },
+      {
+        "type": "formula",
+        "text": "W_{\\rm gas}=p\\Delta V=(1{,}20\\times10^5)(5{,}0\\times10^{-4})\\ \\mathrm J=60\\ \\mathrm J"
+      },
+      {
+        "type": "text",
+        "text": "Entra calore positivo Q = +85 J ed esce lavoro positivo W = +60 J. Con la convenzione ΔU = Q − W segue il bilancio."
+      },
+      {
+        "type": "formula",
+        "text": "\\Delta U=85-60=+25\\ \\mathrm J"
+      },
+      {
+        "type": "text",
+        "text": "Il gas trattiene 25 J dei suoi 85 J in entrata. I restanti 60 J vengono trasferiti al pistone. Questo controllo associa l’area geometrica al trasferimento fisico."
+      }
+    ]
+  },
+  {
+    "id": "C6-E006",
+    "kind": "example",
+    "course": "C6",
+    "section": "Ripasso e trasferimento",
+    "order": 6,
+    "title": "La stessa dose di energia su due superfici",
+    "skill": "C6-L06",
+    "prerequisites": [
+      "C6-L01",
+      "C6-L02",
+      "C6-L03",
+      "C6-L04",
+      "C6-L05",
+      "C5-L10",
+      "C4-L06"
+    ],
+    "version": 1,
+    "prompt": "Un fascio uniforme e perpendicolare ha intensità 200 W/m². Un assorbitore di area 10 cm² trattiene il 50% della luce raccolta per 20 s. La sua capacità termica è 4,0 J/K. Quale aumento di temperatura si ottiene senza dispersioni?",
+    "family": "la-stessa-dose-di-energia-su-due-superfici",
+    "difficulty": 3,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "La parola «intensità» indica potenza per unità di area. L’area 10 cm² equivale a 1,0 × 10⁻³ m². In queste condizioni l’energia incidente si ricava in due passaggi."
+      },
+      {
+        "type": "formula",
+        "text": "P_{\\rm inc}=IS=200\\cdot10^{-3}=0{,}20\\ \\mathrm W,\\qquad E_{\\rm inc}=0{,}20\\cdot20=4{,}0\\ \\mathrm J"
+      },
+      {
+        "type": "text",
+        "text": "L’assorbitore trattiene solo la metà, ossia 2,0 J. La capacità termica C riguarda già tutto l’oggetto. Non occorre conoscerne la massa."
+      },
+      {
+        "type": "formula",
+        "text": "\\Delta T=\\frac{E_{\\rm ass}}C=\\frac{2{,}0\\ \\mathrm J}{4{,}0\\ \\mathrm{J/K}}=0{,}50\\ \\mathrm K"
+      },
+      {
+        "type": "text",
+        "text": "Raddoppiando il tempo nello stesso regime il risultato raddoppierebbe. Tale previsione vale finché si possono trascurare le dispersioni e la variazione di C."
+      }
+    ]
+  },
+  {
+    "id": "C6-Q001",
+    "kind": "question",
+    "course": "C6",
+    "section": "Orientarsi tra le misure",
+    "order": 1,
+    "title": "Il passaggio tra due strumenti",
+    "skill": "C6-L01",
+    "prerequisites": [
+      "C1-L001",
+      "C1-L003"
+    ],
+    "version": 1,
+    "prompt": "Due sensori sono distanti 30 cm. Un segnale acustico attraversa il tratto d’acqua a 1500 m/s. Il primo sensore avvia il cronometro e il secondo lo ferma. Qual è la lettura in µs?",
+    "family": "il-passaggio-tra-due-strumenti",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "La distanza è 0,30 m. Moltiplicando il tempo in secondi per un milione lo esprimiamo in microsecondi."
+      },
+      {
+        "type": "formula",
+        "text": "\\Delta t=\\frac{0{,}30}{1500}\\ \\mathrm s=2{,}0\\times10^{-4}\\ \\mathrm s=200\\ \\mathrm{\\mu s}"
+      }
+    ],
+    "answer": {
+      "type": "numeric",
+      "value": 200.0,
+      "unit": "µs",
+      "tolerance": 1.0
+    },
+    "hints": [
+      "Il cronometro copre un percorso diretto fra due strumenti distinti."
+    ],
+    "error": {
+      "category": "testo",
+      "message": "In questa misura manca il tratto di ritorno.",
+      "target": "C6-L01"
+    }
+  },
+  {
+    "id": "C6-Q002",
+    "kind": "question",
+    "course": "C6",
+    "section": "Orientarsi tra le misure",
+    "order": 2,
+    "title": "Un ordine di grandezza",
+    "skill": "C6-L01",
+    "prerequisites": [
+      "C1-L001",
+      "C1-L003"
+    ],
+    "version": 1,
+    "prompt": "Un pistone di area 2,0 cm² sostiene una differenza di pressione di 25 kPa. Quale massa in kg eserciterebbe lo stesso peso se g = 10 m/s²?",
+    "family": "un-ordine-di-grandezza",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Con S = 2,0 × 10⁻⁴ m² e Δp = 2,5 × 10⁴ Pa la forza vale ΔpS = 5 N. Dall’uguaglianza mg = 5 N segue m = 5/10 kg = 0,50 kg."
+      }
+    ],
+    "answer": {
+      "type": "numeric",
+      "value": 0.5,
+      "unit": "kg",
+      "tolerance": 0.01
+    },
+    "hints": [
+      "Ricava prima la forza dalla differenza di pressione."
+    ],
+    "error": {
+      "category": "unità",
+      "message": "Il fattore di conversione dell’area va elevato al quadrato.",
+      "target": "C6-L01"
+    }
+  },
+  {
+    "id": "C6-Q003",
+    "kind": "question",
+    "course": "C6",
+    "section": "Portate, correnti e intensità",
+    "order": 3,
+    "title": "Un nodo con memoria",
+    "skill": "C6-L02",
+    "prerequisites": [
+      "C6-L01",
+      "C2-L001",
+      "C4-L05",
+      "C5-L04"
+    ],
+    "version": 1,
+    "prompt": "Una pompa manda 90 mL/min a un raccordo. Un ramo scarica 30 mL/min e un serbatoio laterale accumula 12 mL/min. Quanto scorre nel terzo ramo, in mL/min?",
+    "family": "un-nodo-con-memoria",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Scegliamo il raccordo col serbatoio come volume di controllo. Il volume che vi resta per minuto vale ingresso meno uscite."
+      },
+      {
+        "type": "formula",
+        "text": "Q_3=90-30-12=48\\ \\mathrm{mL/min}"
+      }
+    ],
+    "answer": {
+      "type": "numeric",
+      "value": 48.0,
+      "unit": "mL/min",
+      "tolerance": 0.1
+    },
+    "hints": [
+      "Anche il volume accumulato va incluso nel bilancio."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "La portata in ingresso alimenta sia le uscite sia l’accumulo.",
+      "target": "C6-L02"
+    },
+    "promptBlocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C6-raccordo.svg",
+        "text": "Le frecce contrassegnano i volumi trasferiti nell’unità di tempo e il volume trattenuto."
+      }
+    ]
+  },
+  {
+    "id": "C6-Q004",
+    "kind": "question",
+    "course": "C6",
+    "section": "Portate, correnti e intensità",
+    "order": 4,
+    "title": "Una misura su metallo",
+    "skill": "C6-L02",
+    "prerequisites": [
+      "C6-L01",
+      "C2-L001",
+      "C4-L05",
+      "C5-L04"
+    ],
+    "version": 1,
+    "prompt": "In un tratto di filo passano 12 C in un minuto mentre la caduta di tensione vale 5,0 V. Quale potenza in W riceve il tratto?",
+    "family": "una-misura-su-metallo",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "La corrente media è 12 C / 60 s = 0,20 A. A tensione costante il lavoro per coulomb è 5 J. Il prodotto 5,0 V × 0,20 A dà 1,0 J/s, cioè 1,0 W."
+      }
+    ],
+    "answer": {
+      "type": "numeric",
+      "value": 1.0,
+      "unit": "W",
+      "tolerance": 0.01
+    },
+    "hints": [
+      "Trasforma il flusso di carica in corrente."
+    ],
+    "error": {
+      "category": "unità",
+      "message": "Per ottenere ampere il tempo va espresso in secondi.",
+      "target": "C6-L02"
+    }
+  },
+  {
+    "id": "C6-Q005",
+    "kind": "question",
+    "course": "C6",
+    "section": "Bilanci e trasformazioni",
+    "order": 5,
+    "title": "Due letture sul calorimetro",
+    "skill": "C6-L03",
+    "prerequisites": [
+      "C6-L01",
+      "C6-L02",
+      "C1-L007",
+      "C3-L06",
+      "C4-L05"
+    ],
+    "version": 1,
+    "prompt": "Un blocco che scende perde 30 J di energia potenziale. Un calorimetro collegato registra 24 J. La velocità del blocco resta costante. Quanta energia in J finisce in altri canali nel bilancio complessivo?",
+    "family": "due-letture-sul-calorimetro",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "L’energia potenziale persa si trasferisce al calorimetro e all’ambiente o agli altri elementi del dispositivo. A energia cinetica invariata restano 30 − 24 = 6 J da attribuire agli altri canali."
+      }
+    ],
+    "answer": {
+      "type": "numeric",
+      "value": 6.0,
+      "unit": "J",
+      "tolerance": 0.01
+    },
+    "hints": [
+      "Scrivi la perdita disponibile come somma delle destinazioni."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "La velocità costante rende nulla la variazione di energia cinetica.",
+      "target": "C6-L03"
+    }
+  },
+  {
+    "id": "C6-Q006",
+    "kind": "question",
+    "course": "C6",
+    "section": "Bilanci e trasformazioni",
+    "order": 6,
+    "title": "Un generatore e un carico",
+    "skill": "C6-L03",
+    "prerequisites": [
+      "C6-L01",
+      "C6-L02",
+      "C1-L007",
+      "C3-L06",
+      "C4-L05"
+    ],
+    "version": 1,
+    "prompt": "Una macchina assorbe 900 J di calore da una sorgente e cede 600 J a una seconda tornando allo stato iniziale. Un generatore converte l’80% del lavoro in elettricità. Qual è l’energia elettrica in J?",
+    "family": "un-generatore-e-un-carico",
+    "difficulty": 3,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "La variazione di energia interna sul ciclo è zero. Il lavoro uscente vale 900 − 600 = 300 J. A valle del generatore si ottengono 0,80 × 300 = 240 J elettrici."
+      }
+    ],
+    "answer": {
+      "type": "numeric",
+      "value": 240.0,
+      "unit": "J",
+      "tolerance": 0.5
+    },
+    "hints": [
+      "Calcola il lavoro di un ciclo prima di applicare il rendimento del generatore."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "Il rendimento indicato si applica al lavoro disponibile all’albero.",
+      "target": "C6-L03"
+    }
+  },
+  {
+    "id": "C6-Q007",
+    "kind": "question",
+    "course": "C6",
+    "section": "Rapporti e variazioni successive",
+    "order": 7,
+    "title": "Sostituire solo il tratto",
+    "skill": "C6-L04",
+    "prerequisites": [
+      "C6-L01",
+      "C5-L07",
+      "C5-L08"
+    ],
+    "version": 1,
+    "prompt": "In un tubo rigido a flusso laminare stazionario, stessa viscosità e lunghezza, il raggio raddoppia. Quale Δp₂/Δp₁ serve per conservare la stessa portata?",
+    "family": "sostituire-solo-il-tratto",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "A Q costante, Δp è proporzionale a 1/r⁴."
+      },
+      {
+        "type": "formula",
+        "text": "\\frac{\\Delta p_2}{\\Delta p_1}=\\left(\\frac{r_1}{2r_1}\\right)^4=\\frac1{16}=0{,}0625"
+      },
+      {
+        "type": "text",
+        "text": "Il tratto più ampio richiede meno pressione per sostenere la stessa portata."
+      }
+    ],
+    "answer": {
+      "type": "numeric",
+      "value": 0.0625,
+      "unit": "rapporto",
+      "tolerance": 0.0005
+    },
+    "hints": [
+      "Isola Δp nella legge di Poiseuille a Q fissata."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "In questa prova è fissata la portata e deve cambiare la differenza di pressione.",
+      "target": "C6-L04"
+    }
+  },
+  {
+    "id": "C6-Q008",
+    "kind": "question",
+    "course": "C6",
+    "section": "Rapporti e variazioni successive",
+    "order": 8,
+    "title": "Il rivelatore guarda più lontano",
+    "skill": "C6-L04",
+    "prerequisites": [
+      "C6-L01",
+      "C5-L07",
+      "C5-L08"
+    ],
+    "version": 1,
+    "prompt": "L’attività di una sorgente puntiforme scende alla metà. Un piccolo rivelatore identico e perpendicolare viene spostato a distanza tripla. Senza fondo o assorbimento, di quale fattore si riduce il tasso di conteggio, cioè quanto vale iniziale/finale?",
+    "family": "il-rivelatore-guarda-piu-lontano",
+    "difficulty": 3,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Il conteggio finale è la metà per il decadimento e un nono per la distanza, a emissione isotropa. Il rapporto finale/iniziale è 1/18. Il suo reciproco vale 18."
+      }
+    ],
+    "answer": {
+      "type": "numeric",
+      "value": 18.0,
+      "unit": "rapporto",
+      "tolerance": 0.1
+    },
+    "hints": [
+      "Combina il dimezzamento temporale con l’espansione geometrica."
+    ],
+    "error": {
+      "category": "testo",
+      "message": "È richiesto il fattore iniziale/finale, inverso della frazione rimasta.",
+      "target": "C6-L04"
+    }
+  },
+  {
+    "id": "C6-Q009",
+    "kind": "question",
+    "course": "C6",
+    "section": "Leggere le rappresentazioni",
+    "order": 9,
+    "title": "Un rettangolo orientato",
+    "skill": "C6-L05",
+    "prerequisites": [
+      "C6-L01",
+      "C6-L02",
+      "C1-L003",
+      "C3-L07"
+    ],
+    "version": 1,
+    "prompt": "Una corrente vale +0,30 A per 4 s e poi −0,10 A per 5 s. Qual è la carica netta passata nel verso positivo, in coulomb?",
+    "family": "un-rettangolo-orientato",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Nel primo tratto si trasferiscono +1,2 C e nel secondo −0,50 C. La somma con segno è +0,70 C. Invertire il segno del secondo tratto descriverebbe la quantità totale transitata nei due versi."
+      }
+    ],
+    "answer": {
+      "type": "numeric",
+      "value": 0.7,
+      "unit": "C",
+      "tolerance": 0.01
+    },
+    "hints": [
+      "L’area orientata del grafico i–t dà la carica."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "I tratti sotto l’asse danno contributi negativi alla carica netta.",
+      "target": "C6-L05"
+    },
+    "promptBlocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C6-corrente.svg",
+        "text": "Il tratto finale è sotto l’asse dei tempi. L’ordinata positiva segue il verso convenzionale scelto."
+      }
+    ]
+  },
+  {
+    "id": "C6-Q010",
+    "kind": "question",
+    "course": "C6",
+    "section": "Leggere le rappresentazioni",
+    "order": 10,
+    "title": "Due livelli in quiete",
+    "skill": "C6-L05",
+    "prerequisites": [
+      "C6-L01",
+      "C6-L02",
+      "C1-L003",
+      "C3-L07"
+    ],
+    "version": 1,
+    "prompt": "Un tubo pieno dello stesso liquido ha due prese verticalmente separate di 0,25 m. La pressione alla presa inferiore supera quella superiore di 2,0 kPa. Con g = 10 m/s², trova la densità in kg/m³.",
+    "family": "due-livelli-in-quiete",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Per il liquido fermo Δp = ρgΔh. Usando 2,0 kPa = 2000 Pa otteniamo ρ = 2000/(10 × 0,25) = 800 kg/m³. L’eventuale pressione di riferimento è sottratta fra le due letture."
+      }
+    ],
+    "answer": {
+      "type": "numeric",
+      "value": 800.0,
+      "unit": "kg/m³",
+      "tolerance": 1.0
+    },
+    "hints": [
+      "La pendenza del grafico pressione–profondità vale ρg."
+    ],
+    "error": {
+      "category": "unità",
+      "message": "Serve la differenza di pressione in pascal.",
+      "target": "C6-L05"
+    }
+  },
+  {
+    "id": "C6-Q011",
+    "kind": "question",
+    "course": "C6",
+    "section": "Ripasso e trasferimento",
+    "order": 11,
+    "title": "Una misura che non basta",
+    "skill": "C6-L06",
+    "prerequisites": [
+      "C6-L01",
+      "C6-L02",
+      "C6-L03",
+      "C6-L04",
+      "C6-L05",
+      "C5-L10",
+      "C4-L06"
+    ],
+    "version": 1,
+    "prompt": "Al maggiore livello di un segnale luminoso, quale singola osservazione permette di attribuire l’aumento al numero di fotoni incidenti al secondo e non a un cambiamento della loro energia, per un fascio monocromatico che investe tutto il sensore?",
+    "family": "una-misura-che-non-basta",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Con frequenza invariata ciascun fotone conserva energia hf. Un aumento della potenza ricevuta richiede allora un aumento del numero di fotoni che arrivano nell’unità di tempo."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "La frequenza della luce resta invariata e cresce la potenza ricevuta",
+      "options": [
+        "Il sensore è stato allontanato",
+        "È cambiata l’area illuminata",
+        "La frequenza della luce resta invariata e cresce la potenza ricevuta",
+        "La sola temperatura dell’ambiente è costante"
+      ]
+    },
+    "hints": [
+      "Scrivi la potenza come prodotto di due fattori."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "Per isolare il flusso dei fotoni bisogna stabilire che hf sia invariato.",
+      "target": "C6-L06"
+    }
+  },
+  {
+    "id": "C6-Q012",
+    "kind": "question",
+    "course": "C6",
+    "section": "Ripasso e trasferimento",
+    "order": 12,
+    "title": "Ripensare una previsione",
+    "skill": "C6-L06",
+    "prerequisites": [
+      "C6-L01",
+      "C6-L02",
+      "C6-L03",
+      "C6-L04",
+      "C6-L05",
+      "C5-L10",
+      "C4-L06"
+    ],
+    "version": 1,
+    "prompt": "Una lampada trasforma il 20% di 5 W elettrici in luce. Un rivelatore riceve il 2% di tutta la luce emessa. Che energia in mJ riceve in 3 s?",
+    "family": "ripensare-una-previsione",
+    "difficulty": 3,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "La sorgente emette 0,20 × 5 = 1 W ottico. Il rivelatore ne riceve 0,02 W. In 3 s l’energia è 0,060 J = 60 mJ. Ciascun fattore di efficienza riduce la potenza disponibile."
+      }
+    ],
+    "answer": {
+      "type": "numeric",
+      "value": 60.0,
+      "unit": "mJ",
+      "tolerance": 0.2
+    },
+    "hints": [
+      "Procedi in ordine da elettricità a luce, da luce emessa a luce ricevuta."
+    ],
+    "error": {
+      "category": "calcolo",
+      "message": "Le due percentuali agiscono su quantità successive.",
+      "target": "C6-L06"
+    }
+  },
+  {
+    "id": "C6-Q013",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 1",
+    "order": 1,
+    "title": "Un nastro che torna indietro",
+    "skill": "C1-L003",
+    "prerequisites": [
+      "C1-L003"
+    ],
+    "version": 1,
+    "prompt": "Un carrello percorre 12 m verso destra in 3 s, poi 4 m verso sinistra in 1 s. Scelto il verso positivo a destra, qual è la velocità media nell’intero intervallo?",
+    "family": "un-nastro-che-torna-indietro",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Lo spostamento è +12 − 4 = +8 m. Il tempo totale è 3 + 1 = 4 s. Dividendo +8 m per 4 s otteniamo +2 m/s. I 16 m indicherebbero la lunghezza del cammino."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "+2 m/s",
+      "options": [
+        "+8 m/s",
+        "+4 m/s",
+        "+1 m/s",
+        "−2 m/s",
+        "+2 m/s"
+      ]
+    },
+    "hints": [
+      "Trova lo spostamento netto, poi usa il tempo totale."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "La velocità media con segno usa lo spostamento complessivo.",
+      "target": "C1-L003"
+    },
+    "exam": 1
+  },
+  {
+    "id": "C6-Q014",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 1",
+    "order": 2,
+    "title": "Pressione sulla base comune",
+    "skill": "C2-L002",
+    "prerequisites": [
+      "C2-L002"
+    ],
+    "version": 1,
+    "prompt": "Due recipienti aperti contengono acqua ferma alla stessa altezza e hanno basi orizzontali uguali. Il primo si allarga salendo, il secondo si restringe. Trascurando capillarità, come si confrontano le pressioni sul fondo?",
+    "family": "pressione-sulla-base-comune",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "In entrambi i recipienti il fondo è alla stessa profondità in acqua, e la pressione in superficie è atmosferica. La legge p = p₀ + ρgh dà lo stesso valore. La diversa massa totale non altera questo risultato."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "Sono uguali",
+      "options": [
+        "Sono entrambe nulle",
+        "Sono inversamente proporzionali alle masse totali",
+        "Sono uguali",
+        "È maggiore quella del recipiente che si allarga",
+        "È maggiore quella del recipiente che si restringe"
+      ]
+    },
+    "hints": [
+      "Fissa una colonna verticale tra superficie e fondo."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "In quiete conta il dislivello sotto il pelo libero alla stessa pressione esterna.",
+      "target": "C2-L002"
+    },
+    "exam": 1
+  },
+  {
+    "id": "C6-Q015",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 1",
+    "order": 3,
+    "title": "Primo bilancio con pistone",
+    "skill": "C3-L06",
+    "prerequisites": [
+      "C3-L06"
+    ],
+    "version": 1,
+    "prompt": "Un gas riceve 60 J di calore e subisce una compressione durante la quale l’esterno compie sul gas 25 J di lavoro. Qual è ΔU?",
+    "family": "primo-bilancio-con-pistone",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Il calore entrante e il lavoro dell’esterno sono positivi per il bilancio del gas. Usando il lavoro eseguito dal gas, Wgas = −25 J, otteniamo ΔU = Q − Wgas = 60 − (−25) = 85 J."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "+85 J",
+      "options": [
+        "−35 J",
+        "+85 J",
+        "+35 J",
+        "−85 J",
+        "+60 J"
+      ]
+    },
+    "hints": [
+      "Rappresenta con frecce i trasferimenti diretti verso il gas."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "Il lavoro fatto sul gas durante una compressione entra nel sistema.",
+      "target": "C3-L06"
+    },
+    "exam": 1
+  },
+  {
+    "id": "C6-Q016",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 1",
+    "order": 4,
+    "title": "Energia per cariche di segno opposto",
+    "skill": "C4-L03",
+    "prerequisites": [
+      "C4-L03"
+    ],
+    "version": 1,
+    "prompt": "Due particelle, una con carica +e e l’altra −e, si spostano fra gli stessi due punti con ΔV = +3 V. Come sono le loro variazioni di energia potenziale elettrica?",
+    "family": "energia-per-cariche-di-segno-opposto",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "ΔU = qΔV. Per la carica positiva la variazione è +3 eV. Per quella negativa è −3 eV. Il valore di ΔV rimane lo stesso per entrambe."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "Uguali in modulo e opposte in segno",
+      "options": [
+        "Entrambe negative",
+        "Entrambe positive",
+        "Il modulo è maggiore per la particella positiva",
+        "Entrambe nulle",
+        "Uguali in modulo e opposte in segno"
+      ]
+    },
+    "hints": [
+      "La differenza di potenziale è una proprietà dei punti del campo."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "La variazione di energia potenziale incorpora anche il segno della carica.",
+      "target": "C4-L03"
+    },
+    "exam": 1
+  },
+  {
+    "id": "C6-Q017",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 1",
+    "order": 5,
+    "title": "Il minimo con due cammini",
+    "skill": "C5-L03",
+    "prerequisites": [
+      "C5-L03"
+    ],
+    "version": 1,
+    "prompt": "Due sorgenti coerenti in fase emettono onde di uguale ampiezza al ricevitore, con λ = 0,60 m. Quale differenza di cammino produce un minimo per interferenza?",
+    "family": "il-minimo-con-due-cammini",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "0,90/0,60 = 1,5. Un giro e mezzo introduce opposizione di fase e, con ampiezze uguali, annullamento. Le altre opzioni sono multipli interi della lunghezza d’onda e portano a rinforzo."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "0,90 m",
+      "options": [
+        "1,80 m",
+        "0 m",
+        "1,20 m",
+        "0,90 m",
+        "0,60 m"
+      ]
+    },
+    "hints": [
+      "Esprimi ogni cammino in lunghezze d’onda."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "Per sorgenti in fase serve un multiplo dispari di mezza lunghezza d’onda.",
+      "target": "C5-L03"
+    },
+    "exam": 1
+  },
+  {
+    "id": "C6-Q018",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 1",
+    "order": 6,
+    "title": "Direzioni ortogonali sul foglio",
+    "skill": "C1-L002",
+    "prerequisites": [
+      "C1-L002"
+    ],
+    "version": 1,
+    "prompt": "Il risultante di due forze perpendicolari di moduli 5 N e 12 N ha modulo pari a quanto?",
+    "family": "direzioni-ortogonali-sul-foglio",
+    "difficulty": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "La risultante è la diagonale del rettangolo avente per lati le due forze. Il suo modulo vale √(5² + 12²) N = √169 N = 13 N."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "13 N",
+      "options": [
+        "8,5 N",
+        "60 N",
+        "7 N",
+        "13 N",
+        "17 N"
+      ]
+    },
+    "hints": [
+      "Disegna le due componenti come cateti."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "Per componenti ortogonali si applica Pitagora.",
+      "target": "C1-L002"
+    },
+    "exam": 1
+  },
+  {
+    "id": "C6-Q019",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 1",
+    "order": 7,
+    "title": "Un corpo trattenuto sott’acqua",
+    "skill": "C2-L004",
+    "prerequisites": [
+      "C2-L004"
+    ],
+    "version": 1,
+    "prompt": "Un blocco interamente immerso sposta acqua di peso 9 N. Ha peso proprio 6 N e rimane fermo, lontano da pareti e fondo, grazie a un filo verticale. Qual è la forza del filo sul blocco?",
+    "family": "un-corpo-trattenuto-sottacqua",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "La spinta di Archimede è 9 N verso l’alto. Il peso è 6 N verso il basso. Prima della tensione restano 3 N verso l’alto, quindi il filo applica 3 N verso il basso per l’equilibrio."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "3 N verso il basso",
+      "options": [
+        "15 N verso il basso",
+        "3 N verso l’alto",
+        "9 N verso l’alto",
+        "6 N verso il basso",
+        "3 N verso il basso"
+      ]
+    },
+    "hints": [
+      "Disegna spinta, peso e tensione del filo sul solo blocco."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "La tensione deve compensare l’eccesso di spinta sul peso.",
+      "target": "C2-L004"
+    },
+    "exam": 1
+  },
+  {
+    "id": "C6-Q020",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 1",
+    "order": 8,
+    "title": "Una rete tra due morsetti",
+    "skill": "C4-L06",
+    "prerequisites": [
+      "C4-L06"
+    ],
+    "version": 1,
+    "prompt": "Fra i morsetti A e B ci sono un ramo da 6 Ω e un secondo ramo formato da due resistori da 3 Ω in serie. Qual è la resistenza equivalente?",
+    "family": "una-rete-tra-due-morsetti",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Nel secondo ramo 3 + 3 = 6 Ω. I due rami da 6 Ω sono in parallelo. Il reciproco dell’equivalente è 1/6 + 1/6 = 1/3 Ω⁻¹, quindi Req = 3 Ω."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "3 Ω",
+      "options": [
+        "2 Ω",
+        "9 Ω",
+        "12 Ω",
+        "3 Ω",
+        "6 Ω"
+      ]
+    },
+    "hints": [
+      "Riduci prima i due resistori dello stesso ramo."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "Dopo la riduzione i due rami condividono entrambi i nodi.",
+      "target": "C4-L06"
+    },
+    "exam": 1
+  },
+  {
+    "id": "C6-Q021",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 1",
+    "order": 9,
+    "title": "Un plateau mentre entra energia",
+    "skill": "C3-L04",
+    "prerequisites": [
+      "C3-L04"
+    ],
+    "version": 1,
+    "prompt": "Durante una fusione all’equilibrio di una sostanza pura a pressione costante il riscaldatore continua a fornire energia. Quale previsione vale finché coesistono le due fasi?",
+    "family": "un-plateau-mentre-entra-energia",
+    "difficulty": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "L’energia fornita fa avanzare la fusione. A pressione fissata la temperatura delle fasi in equilibrio rimane quella di transizione mentre cambia la quantità fusa."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "La temperatura resta alla temperatura di fusione",
+      "options": [
+        "L’energia interna è certamente costante",
+        "La temperatura cresce in proporzione al tempo",
+        "La temperatura resta alla temperatura di fusione",
+        "La fase liquida si riduce",
+        "Il calore specifico è necessariamente nullo"
+      ]
+    },
+    "hints": [
+      "Chiediti quale variabile cambia sul plateau."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "Durante la transizione l’energia alimenta il cambiamento di fase.",
+      "target": "C3-L04"
+    },
+    "exam": 1
+  },
+  {
+    "id": "C6-Q022",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 1",
+    "order": 10,
+    "title": "Nuclei residui al terzo controllo",
+    "skill": "C5-L08",
+    "prerequisites": [
+      "C5-L08"
+    ],
+    "version": 1,
+    "prompt": "L’attività di una sola specie, senza produzione, passa da 960 Bq a 120 Bq in 15 h. Qual è l’emivita?",
+    "family": "nuclei-residui-al-terzo-controllo",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "La sequenza 960, 480, 240, 120 contiene tre intervalli di emivita. Ciascun intervallo dura 15/3 = 5 h. Lo stesso rapporto descrive la popolazione residua della specie."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "5 h",
+      "options": [
+        "1,875 h",
+        "5 h",
+        "3 h",
+        "7,5 h",
+        "15 h"
+      ]
+    },
+    "hints": [
+      "Conta i dimezzamenti del rapporto misurato."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "Il fattore otto corrisponde a tre dimezzamenti.",
+      "target": "C5-L08"
+    },
+    "exam": 1
+  },
+  {
+    "id": "C6-Q023",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 1",
+    "order": 11,
+    "title": "Energia fra piattaforma e suolo",
+    "skill": "C1-L008",
+    "prerequisites": [
+      "C1-L008"
+    ],
+    "version": 1,
+    "prompt": "Una biglia parte da ferma a 1,8 m sopra il suolo. Assumendo g = 10 m/s² e trascurando le perdite, qual è il modulo della velocità poco prima dell’arrivo?",
+    "family": "energia-fra-piattaforma-e-suolo",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Dall’uguaglianza mgh = mv²/2 si elimina la massa e si trova v² = 2gh. Inserendo i dati, v = √(2 × 10 × 1,8) m/s = 6 m/s, diretta verso il basso."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "6 m/s",
+      "options": [
+        "6 m/s",
+        "36 m/s",
+        "1,8 m/s",
+        "18 m/s",
+        "3 m/s"
+      ]
+    },
+    "hints": [
+      "L’energia gravitazionale persa diventa cinetica."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "Dopo aver ricavato v² occorre estrarre la radice.",
+      "target": "C1-L008"
+    },
+    "exam": 1
+  },
+  {
+    "id": "C6-Q024",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 1",
+    "order": 12,
+    "title": "Capillari affiancati",
+    "skill": "C2-L009",
+    "prerequisites": [
+      "C2-L009"
+    ],
+    "version": 1,
+    "prompt": "Una pompa mantiene costante la differenza di pressione ai capi di un capillare rigido con moto laminare. Se ne affianca un secondo identico in parallelo. Come varia la portata totale a parità di viscosità?",
+    "family": "capillari-affiancati",
+    "difficulty": 3,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Ciascun capillare vede lo stesso Δp e ha la stessa resistenza di prima. Ciascuno trasporta quindi la portata iniziale Q. Le due portate si sommano a 2Q."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "Raddoppia",
+      "options": [
+        "Raddoppia",
+        "Si annulla",
+        "Quadruplica",
+        "Rimane identica",
+        "Si dimezza"
+      ]
+    },
+    "hints": [
+      "La differenza di pressione rimane uguale per ciascun ramo."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "I rami in parallelo sono attraversati separatamente.",
+      "target": "C2-L009"
+    },
+    "exam": 1
+  },
+  {
+    "id": "C6-Q025",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 1",
+    "order": 13,
+    "title": "Due mezzi e uno stesso ritmo",
+    "skill": "C5-L09",
+    "prerequisites": [
+      "C5-L09"
+    ],
+    "version": 1,
+    "prompt": "La luce passa attraverso un’interfaccia fissa fra due mezzi trasparenti. Quale grandezza è necessariamente identica per onda incidente e trasmessa?",
+    "family": "due-mezzi-e-uno-stesso-ritmo",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Le oscillazioni sulla superficie a contatto devono essere coerenti nel tempo, così la luce trasmessa ha la frequenza della sorgente. Velocità e lunghezza d’onda dipendono invece dal materiale."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "Frequenza",
+      "options": [
+        "Direzione di propagazione",
+        "Velocità di fase",
+        "Lunghezza d’onda",
+        "Frequenza",
+        "Ampiezza del campo elettrico"
+      ]
+    },
+    "hints": [
+      "La sorgente impone una variazione temporale anche alla superficie."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "Una rifrazione può cambiare la lunghezza d’onda mantenendo lo stesso ritmo temporale.",
+      "target": "C5-L09"
+    },
+    "exam": 1
+  },
+  {
+    "id": "C6-Q026",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 1",
+    "order": 14,
+    "title": "Una spira senza variazione netta",
+    "skill": "C4-L10",
+    "prerequisites": [
+      "C4-L10"
+    ],
+    "version": 1,
+    "prompt": "Una spira rigida trasla con velocità costante restando interamente in un campo magnetico uniforme e costante. Area e orientazione non cambiano. Quale fem totale è indotta nella spira?",
+    "family": "una-spira-senza-variazione-netta",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "La superficie, la componente normale del campo e l’area restano uguali. Da ε = −dΦ/dt segue fem totale nulla. Le eventuali forze locali sulle cariche si compensano lungo il circuito chiuso."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "Zero",
+      "options": [
+        "È sempre positiva",
+        "Bv",
+        "BA",
+        "Cresce col tempo",
+        "Zero"
+      ]
+    },
+    "hints": [
+      "Confronta il flusso totale in due posizioni della spira."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "La traslazione in un campo uniforme conserva il flusso attraverso una spira rigida.",
+      "target": "C4-L10"
+    },
+    "exam": 1
+  },
+  {
+    "id": "C6-Q027",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 1",
+    "order": 15,
+    "title": "Rotazione intorno al gomito",
+    "skill": "C1-L010",
+    "prerequisites": [
+      "C1-L010"
+    ],
+    "version": 1,
+    "prompt": "Nel modello statico dell’avambraccio, il peso di 18 N agisce perpendicolarmente a 30 cm dal gomito. Un tendine ha braccio perpendicolare di 3 cm. Trascurando altri pesi, quanto vale la sua tensione?",
+    "family": "rotazione-intorno-al-gomito",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Per l’equilibrio dei momenti T × 3 cm = 18 N × 30 cm. Il rapporto dei bracci è 10, quindi T = 180 N. Le lunghezze compaiono come rapporto nella stessa unità."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "180 N",
+      "options": [
+        "18 N",
+        "540 N",
+        "1,8 N",
+        "180 N",
+        "60 N"
+      ]
+    },
+    "hints": [
+      "Imponi l’uguaglianza dei moduli dei momenti intorno al gomito."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "Per compensare il peso con braccio minore serve forza maggiore.",
+      "target": "C1-L010"
+    },
+    "exam": 1
+  },
+  {
+    "id": "C6-Q028",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 1",
+    "order": 16,
+    "title": "Una macchina e i serbatoi",
+    "skill": "C3-L09",
+    "prerequisites": [
+      "C3-L09"
+    ],
+    "version": 1,
+    "prompt": "Una macchina reversibile opera fra 500 K e 300 K. Qual è il massimo rendimento espresso in percentuale?",
+    "family": "una-macchina-e-i-serbatoi",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Per una macchina reversibile η = 1 − Tc/Th = 1 − 300/500 = 0,40. Il calore assunto dalla sorgente calda non può convertirsi interamente in lavoro in un ciclo fra questi serbatoi."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "40%",
+      "options": [
+        "60%",
+        "67%",
+        "20%",
+        "100%",
+        "40%"
+      ]
+    },
+    "hints": [
+      "Usa temperature assolute nel limite di Carnot."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "Il rendimento è uno meno il rapporto temperatura fredda su calda.",
+      "target": "C3-L09"
+    },
+    "exam": 1
+  },
+  {
+    "id": "C6-Q029",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 1",
+    "order": 17,
+    "title": "Un condotto orizzontale ideale",
+    "skill": "C2-L006",
+    "prerequisites": [
+      "C2-L006"
+    ],
+    "version": 1,
+    "prompt": "In un tratto orizzontale privo di perdite scorre un fluido ideale incomprimibile in regime stazionario. La velocità aumenta passando dalla sezione A alla sezione B lungo la stessa linea di corrente. Come varia la pressione statica?",
+    "family": "un-condotto-orizzontale-ideale",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "L’energia per unità di volume associata alla velocità cresce. Poiché p + ρv²/2 resta costante alla stessa altezza, la pressione statica deve diminuire."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "Diminuisce",
+      "options": [
+        "Aumenta",
+        "Diventa sempre nulla",
+        "Diventa esattamente doppia",
+        "Resta necessariamente costante",
+        "Diminuisce"
+      ]
+    },
+    "hints": [
+      "Confronta p + ρv²/2 tra le due sezioni."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "Usa Bernoulli sotto le ipotesi indicate e alla stessa quota.",
+      "target": "C2-L006"
+    },
+    "exam": 1
+  },
+  {
+    "id": "C6-Q030",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 1",
+    "order": 18,
+    "title": "Energia dopo scollegamento",
+    "skill": "C4-L07",
+    "prerequisites": [
+      "C4-L07"
+    ],
+    "version": 1,
+    "prompt": "Un condensatore carico è scollegato dal generatore e isolato. Un dielettrico inserito senza perdite raddoppia la capacità. Quale diventa la sua energia elettrostatica?",
+    "family": "energia-dopo-scollegamento",
+    "difficulty": 3,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Con q costante è comoda la forma U = q²/(2C). Se C raddoppia il denominatore raddoppia e l’energia diventa U/2. La tensione diminuisce nello stesso rapporto."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "La metà di prima",
+      "options": [
+        "La metà di prima",
+        "Il doppio",
+        "La stessa",
+        "Il quadruplo",
+        "Un quarto"
+      ]
+    },
+    "hints": [
+      "Stabilisci se si conserva q o V."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "Una volta scollegato, il condensatore isolato conserva la carica libera.",
+      "target": "C4-L07"
+    },
+    "exam": 1
+  },
+  {
+    "id": "C6-Q031",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 1",
+    "order": 19,
+    "title": "Un fotone oltre il visibile",
+    "skill": "C5-L07",
+    "prerequisites": [
+      "C5-L07"
+    ],
+    "version": 1,
+    "prompt": "Un fotone ha energia doppia di quella di un altro fotone nel vuoto. Come si confrontano le lunghezze d’onda?",
+    "family": "un-fotone-oltre-il-visibile",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Da E = hc/λ segue λ₁/λ₂ = E₂/E₁. Se E₁ = 2E₂ il rapporto è 1/2. Entrambi i fotoni si propagano a c nel vuoto."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "Il primo ha lunghezza d’onda dimezzata",
+      "options": [
+        "Il primo ha lunghezza d’onda dimezzata",
+        "Il primo ha lunghezza d’onda quadrupla",
+        "Il primo ha lunghezza d’onda nulla",
+        "Il primo ha lunghezza d’onda doppia",
+        "Le due lunghezze sono uguali"
+      ]
+    },
+    "hints": [
+      "Esprimi E in funzione di λ nel vuoto."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "L’energia fotonica è inversamente proporzionale alla lunghezza d’onda nel vuoto.",
+      "target": "C5-L07"
+    },
+    "exam": 1
+  },
+  {
+    "id": "C6-Q032",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 1",
+    "order": 20,
+    "title": "L’area di un impulso triangolare",
+    "skill": "C1-L009",
+    "prerequisites": [
+      "C1-L009"
+    ],
+    "version": 1,
+    "prompt": "Una forza unidirezionale parte da zero, cresce linearmente a 12 N e torna linearmente a zero in un tempo complessivo di 0,50 s. Qual è l’impulso?",
+    "family": "larea-di-un-impulso-triangolare",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Il triangolo ha base 0,50 s e altezza 12 N. La sua area vale 0,50 × 12/2 = 3,0 N·s. La forza finisce a zero ma durante l’intervallo trasferisce quantità di moto."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "3,0 N·s",
+      "options": [
+        "0 N·s",
+        "6,0 N·s",
+        "24 N·s",
+        "3,0 N·s",
+        "12 N·s"
+      ]
+    },
+    "hints": [
+      "L’area sotto il grafico F–t è un triangolo."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "L’impulso è la forza media per la durata.",
+      "target": "C1-L009"
+    },
+    "exam": 1,
+    "promptBlocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C6-impulso.svg",
+        "text": "Diagramma forza–tempo della prova. Le due rampe delimitano un’area triangolare."
+      }
+    ]
+  },
+  {
+    "id": "C6-Q033",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 1",
+    "order": 21,
+    "title": "Due corpi verso la stessa temperatura",
+    "skill": "C3-L03",
+    "prerequisites": [
+      "C3-L03"
+    ],
+    "version": 1,
+    "prompt": "Si mettono in contatto due blocchi isolati dall’esterno con uguale capacità termica costante. Le temperature iniziali sono 15 °C e 45 °C. Qual è la temperatura finale senza cambiamenti di fase?",
+    "family": "due-corpi-verso-la-stessa-temperatura",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Scriviamo C(45 − Tf) = C(Tf − 15). La capacità si cancella, quindi 2Tf = 60 °C e Tf = 30 °C, compresa tra le due temperature."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "30 °C",
+      "options": [
+        "45 °C",
+        "22,5 °C",
+        "15 °C",
+        "60 °C",
+        "30 °C"
+      ]
+    },
+    "hints": [
+      "Uguaglia calore ceduto e assorbito."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "Con capacità termiche uguali gli scostamenti dalla temperatura finale hanno moduli uguali.",
+      "target": "C3-L03"
+    },
+    "exam": 1
+  },
+  {
+    "id": "C6-Q034",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 1",
+    "order": 22,
+    "title": "Grandezze additive",
+    "skill": "C1-L001",
+    "prerequisites": [
+      "C1-L001"
+    ],
+    "version": 1,
+    "prompt": "Il volume di due campioni disgiunti, sommato per ottenere il volume materiale complessivo, è un esempio di grandezza ____.",
+    "family": "grandezze-additive",
+    "difficulty": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Il volume materiale complessivo è la somma dei due volumi. L’additività caratterizza in questo contesto una grandezza estensiva."
+      }
+    ],
+    "answer": {
+      "type": "text",
+      "value": "estensiva",
+      "aliases": []
+    },
+    "hints": [
+      "Chiediti che cosa avviene unendo due porzioni identiche."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "Una grandezza estensiva dipende dalla quantità di materia.",
+      "target": "C1-L001"
+    },
+    "exam": 1
+  },
+  {
+    "id": "C6-Q035",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 1",
+    "order": 23,
+    "title": "Pressione rispetto all’ambiente",
+    "skill": "C2-L002",
+    "prerequisites": [
+      "C2-L002"
+    ],
+    "version": 1,
+    "prompt": "La pressione ottenuta sottraendo la pressione atmosferica alla pressione assoluta viene detta pressione ____.",
+    "family": "pressione-rispetto-allambiente",
+    "difficulty": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "La definizione è pᵣ = pₐₛₛ − pₐₜₘ. Il nome manometrica è usato per la stessa grandezza quando il riferimento è l’atmosfera."
+      }
+    ],
+    "answer": {
+      "type": "text",
+      "value": "relativa",
+      "aliases": [
+        "manometrica"
+      ]
+    },
+    "hints": [
+      "Con quale zero si confronta la misura?"
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "Lo zero atmosferico definisce una pressione relativa.",
+      "target": "C2-L002"
+    },
+    "exam": 1
+  },
+  {
+    "id": "C6-Q036",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 1",
+    "order": 24,
+    "title": "Unità di corrente",
+    "skill": "C4-L05",
+    "prerequisites": [
+      "C4-L05"
+    ],
+    "version": 1,
+    "prompt": "Nel Sistema Internazionale il coulomb al secondo prende il nome di ____.",
+    "family": "unita-di-corrente",
+    "difficulty": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Per definizione 1 A = 1 C/s. Questa unità permette di confrontare quanta carica attraversa una sezione in intervalli uguali."
+      }
+    ],
+    "answer": {
+      "type": "text",
+      "value": "ampere",
+      "aliases": [
+        "ampère",
+        "A"
+      ]
+    },
+    "hints": [
+      "Una carica per unità di tempo è una corrente."
+    ],
+    "error": {
+      "category": "unità",
+      "message": "La corrente elettrica è il rapporto di carica transitata e tempo.",
+      "target": "C4-L05"
+    },
+    "exam": 1
+  },
+  {
+    "id": "C6-Q037",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 1",
+    "order": 25,
+    "title": "Girare di due pi greco",
+    "skill": "C5-L01",
+    "prerequisites": [
+      "C5-L01"
+    ],
+    "version": 1,
+    "prompt": "La grandezza angolare ω = 2πf, espressa in rad/s, si chiama ____.",
+    "family": "girare-di-due-pi-greco",
+    "difficulty": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "La pulsazione è la velocità di variazione della fase di un’oscillazione armonica. Il suo valore numerico è 2π volte quello della frequenza espressa in hertz."
+      }
+    ],
+    "answer": {
+      "type": "text",
+      "value": "pulsazione",
+      "aliases": [
+        "frequenza angolare"
+      ]
+    },
+    "hints": [
+      "Il quesito distingue cicli al secondo e radianti al secondo."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "Il fattore 2π converte un ciclo in radianti.",
+      "target": "C5-L01"
+    },
+    "exam": 1
+  },
+  {
+    "id": "C6-Q038",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 1",
+    "order": 26,
+    "title": "Volume che non cambia",
+    "skill": "C3-L07",
+    "prerequisites": [
+      "C3-L07"
+    ],
+    "version": 1,
+    "prompt": "La trasformazione termodinamica che si svolge a volume costante è chiamata ____.",
+    "family": "volume-che-non-cambia",
+    "difficulty": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Durante un’isocora il volume rimane costante. Sul diagramma con V in ascissa il percorso è verticale, e il lavoro di espansione è nullo."
+      }
+    ],
+    "answer": {
+      "type": "text",
+      "value": "isocora",
+      "aliases": [
+        "isovolumetrica",
+        "isocorica"
+      ]
+    },
+    "hints": [
+      "Individua la variabile mantenuta costante."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "La proprietà fissata nella trasformazione dà il nome al processo.",
+      "target": "C3-L07"
+    },
+    "exam": 1
+  },
+  {
+    "id": "C6-Q039",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 1",
+    "order": 27,
+    "title": "Curvatura e salto di pressione",
+    "skill": "C2-L010",
+    "prerequisites": [
+      "C2-L010"
+    ],
+    "version": 1,
+    "prompt": "Per una goccia sferica in equilibrio, la legge che lega il salto di pressione fra i lati dell’interfaccia alla tensione superficiale e al raggio è la legge di ____.",
+    "family": "curvatura-e-salto-di-pressione",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Per la singola interfaccia sferica Δp = 2γ/r. Il salto cresce al diminuire del raggio a tensione superficiale costante."
+      }
+    ],
+    "answer": {
+      "type": "text",
+      "value": "Laplace",
+      "aliases": [
+        "Young-Laplace",
+        "Young–Laplace"
+      ]
+    },
+    "hints": [
+      "Pensa all’equilibrio di una superficie curva."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "La legge di curvatura della superficie è associata a Laplace.",
+      "target": "C2-L010"
+    },
+    "exam": 1
+  },
+  {
+    "id": "C6-Q040",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 1",
+    "order": 28,
+    "title": "La coppia su corpi distinti",
+    "skill": "C1-L005",
+    "prerequisites": [
+      "C1-L005"
+    ],
+    "version": 1,
+    "prompt": "La terza legge di Newton associa a ogni forza di azione una forza di ____.",
+    "family": "la-coppia-su-corpi-distinti",
+    "difficulty": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "La reazione è uguale in modulo e opposta in verso all’azione e agisce sull’altro corpo. Le due forze non si cancellano nel diagramma di un singolo corpo."
+      }
+    ],
+    "answer": {
+      "type": "text",
+      "value": "reazione",
+      "aliases": []
+    },
+    "hints": [
+      "Le forze di questa coppia agiscono su due corpi diversi."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "La terza legge riguarda due interazioni reciproche.",
+      "target": "C1-L005"
+    },
+    "exam": 1
+  },
+  {
+    "id": "C6-Q041",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 1",
+    "order": 29,
+    "title": "Luce che attraversa uno spessore",
+    "skill": "C5-L07",
+    "prerequisites": [
+      "C5-L07"
+    ],
+    "version": 1,
+    "prompt": "Nella legge I = I₀ exp(−μx), se x è una lunghezza, il prodotto μx deve essere ____.",
+    "family": "luce-che-attraversa-uno-spessore",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Il prodotto deve restare lo stesso numero anche cambiando unità di lunghezza. Con μ in m⁻¹ e x in m, le unità si cancellano."
+      }
+    ],
+    "answer": {
+      "type": "text",
+      "value": "adimensionale",
+      "aliases": [
+        "senza dimensioni",
+        "privo di dimensioni"
+      ]
+    },
+    "hints": [
+      "Un’esponenziale prende un numero puro come argomento."
+    ],
+    "error": {
+      "category": "unità",
+      "message": "Il coefficiente μ porta l’inverso dell’unità usata per lo spessore.",
+      "target": "C5-L07"
+    },
+    "exam": 1
+  },
+  {
+    "id": "C6-Q042",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 1",
+    "order": 30,
+    "title": "Campo dalla carica di prova",
+    "skill": "C4-L02",
+    "prerequisites": [
+      "C4-L02"
+    ],
+    "version": 1,
+    "prompt": "Il vettore forza elettrica diviso per la carica di prova positiva definisce il ____ elettrico nel punto.",
+    "family": "campo-dalla-carica-di-prova",
+    "difficulty": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Con una carica di prova sufficientemente piccola si definisce E = F/q₀. Il verso coincide con quello della forza sulla carica positiva."
+      }
+    ],
+    "answer": {
+      "type": "text",
+      "value": "campo",
+      "aliases": []
+    },
+    "hints": [
+      "Il rapporto rimuove la dipendenza dalla carica di prova."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "Il campo è una proprietà della configurazione di cariche sorgenti.",
+      "target": "C4-L02"
+    },
+    "exam": 1
+  },
+  {
+    "id": "C6-Q043",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 1",
+    "order": 31,
+    "title": "La funzione di stato simbolo S",
+    "skill": "C3-L10",
+    "prerequisites": [
+      "C3-L10"
+    ],
+    "version": 1,
+    "prompt": "La funzione di stato termodinamica indicata con S e misurata in J/K è l’____.",
+    "family": "la-funzione-di-stato-simbolo-s",
+    "difficulty": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "L’entropia caratterizza lo stato termodinamico e può aumentare per produzione interna nei processi irreversibili. La sua variazione si calcola anche tramite un cammino reversibile tra gli stati."
+      }
+    ],
+    "answer": {
+      "type": "text",
+      "value": "entropia",
+      "aliases": []
+    },
+    "hints": [
+      "Considera la grandezza che entra nel secondo principio."
+    ],
+    "error": {
+      "category": "unità",
+      "message": "L’energia interna si misura in joule e ha simbolo U.",
+      "target": "C3-L10"
+    },
+    "exam": 1
+  },
+  {
+    "id": "C6-Q044",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 2",
+    "order": 1,
+    "title": "Densità di due campioni",
+    "skill": "C2-L001",
+    "prerequisites": [
+      "C2-L001"
+    ],
+    "version": 1,
+    "prompt": "Un campione da 12 g occupa 8,0 cm³, un secondo campione omogeneo da 18 g occupa 12 cm³. Che cosa si può dedurre confrontando soltanto massa e volume?",
+    "family": "densita-di-due-campioni",
+    "difficulty": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Nel primo caso la densità è 12/8 = 1,5 g/cm³. Nel secondo è 18/12 = 1,5 g/cm³. Più sostanze possono condividere questa proprietà."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "Le densità medie coincidono",
+      "options": [
+        "Il secondo galleggia sicuramente in acqua",
+        "Il primo ha densità 0,67 g/cm³",
+        "Le densità sono nel rapporto 2:3",
+        "I due materiali sono necessariamente la stessa sostanza",
+        "Le densità medie coincidono"
+      ]
+    },
+    "hints": [
+      "Confronta il rapporto massa/volume per entrambi."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "Uguale densità è una proprietà comune e non identifica univocamente la sostanza.",
+      "target": "C2-L001"
+    },
+    "exam": 2
+  },
+  {
+    "id": "C6-Q045",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 2",
+    "order": 2,
+    "title": "Resistività e dimensioni",
+    "skill": "C4-L05",
+    "prerequisites": [
+      "C4-L05"
+    ],
+    "version": 1,
+    "prompt": "Due fili dello stesso materiale alla stessa temperatura hanno resistenze uguali. Il secondo è lungo quattro volte il primo. Quanto deve valere il diametro del secondo rispetto al primo, per sezioni circolari uniformi?",
+    "family": "resistivita-e-dimensioni",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Per R = ρL/S, a parità di R e ρ serve S₂/S₁ = L₂/L₁ = 4. Da S ∝ d² segue d₂/d₁ = √4 = 2."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "Il doppio",
+      "options": [
+        "Lo stesso",
+        "Il quadruplo",
+        "Un quarto",
+        "La metà",
+        "Il doppio"
+      ]
+    },
+    "hints": [
+      "Mantieni costante il rapporto lunghezza/area."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "La sezione circolare cresce con il quadrato del diametro.",
+      "target": "C4-L05"
+    },
+    "exam": 2
+  },
+  {
+    "id": "C6-Q046",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 2",
+    "order": 3,
+    "title": "Pressione dopo fusione dei volumi",
+    "skill": "C3-L02",
+    "prerequisites": [
+      "C3-L02"
+    ],
+    "version": 1,
+    "prompt": "Due contenitori rigidi da 1,0 L ciascuno comunicano tramite un rubinetto. Il primo contiene gas ideale a 180 kPa assoluti, il secondo è vuoto. Dopo l’apertura il gas torna alla temperatura iniziale. Qual è la pressione finale?",
+    "family": "pressione-dopo-fusione-dei-volumi",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Dall’equazione del gas ideale pV = nRT, con stessa quantità e temperatura si ha pᵢVᵢ = p𝒻V𝒻. Il volume accessibile raddoppia, quindi p𝒻 = 180/2 = 90 kPa."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "90 kPa",
+      "options": [
+        "180 kPa",
+        "360 kPa",
+        "45 kPa",
+        "90 kPa",
+        "0 kPa"
+      ]
+    },
+    "hints": [
+      "Per gli stati iniziale e finale n e T sono uguali."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "Usa il volume accessibile totale nello stato finale.",
+      "target": "C3-L02"
+    },
+    "exam": 2
+  },
+  {
+    "id": "C6-Q047",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 2",
+    "order": 4,
+    "title": "Caduta con velocità iniziale",
+    "skill": "C1-L004",
+    "prerequisites": [
+      "C1-L004"
+    ],
+    "version": 1,
+    "prompt": "Un corpo viene lasciato muovere verticalmente verso il basso con velocità iniziale 2,0 m/s. In assenza d’attrito, con g = 10 m/s², quanto spazio percorre nel primo secondo?",
+    "family": "caduta-con-velocita-iniziale",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Con l’asse orientato verso il basso, v₀ e g hanno entrambi segno positivo."
+      },
+      {
+        "type": "formula",
+        "text": "s=v_0t+\\tfrac12gt^2=2{,}0\\cdot1+\\tfrac12(10)\\cdot1^2=7{,}0\\ \\mathrm m"
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "7,0 m",
+      "options": [
+        "14 m",
+        "12 m",
+        "5,0 m",
+        "7,0 m",
+        "2,0 m"
+      ]
+    },
+    "hints": [
+      "Scegli il basso come positivo e conserva la velocità iniziale."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "La formula g t²/2 da sola vale per partenza da fermo.",
+      "target": "C1-L004"
+    },
+    "exam": 2
+  },
+  {
+    "id": "C6-Q048",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 2",
+    "order": 5,
+    "title": "Un’ottava e il suono nell’aria",
+    "skill": "C5-L05",
+    "prerequisites": [
+      "C5-L05"
+    ],
+    "version": 1,
+    "prompt": "Una sorgente passa da 440 Hz a 880 Hz nella stessa aria, con velocità del suono praticamente invariata. Quale coppia di effetti si osserva?",
+    "family": "unottava-e-il-suono-nellaria",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "T = 1/f e λ = v/f. Se il denominatore raddoppia e v resta la stessa, entrambe le grandezze si dimezzano. Ciò non determina da solo l’intensità sonora."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "Il periodo e la lunghezza d’onda si dimezzano",
+      "options": [
+        "Entrambi restano uguali",
+        "Il periodo resta uguale e λ raddoppia",
+        "Entrambi raddoppiano",
+        "Il periodo raddoppia e λ si dimezza",
+        "Il periodo e la lunghezza d’onda si dimezzano"
+      ]
+    },
+    "hints": [
+      "Riscrivi T e λ in funzione di f."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "A mezzo invariato sia il periodo sia la lunghezza dipendono dall’inverso di f.",
+      "target": "C5-L05"
+    },
+    "exam": 2
+  },
+  {
+    "id": "C6-Q049",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 2",
+    "order": 6,
+    "title": "Due pistoni collegati",
+    "skill": "C2-L003",
+    "prerequisites": [
+      "C2-L003"
+    ],
+    "version": 1,
+    "prompt": "Una pressa ideale ha due pistoni alla stessa quota con aree 4 cm² e 100 cm². Applicando un incremento di forza di 8 N sul piccolo, quale incremento di forza si ottiene sul grande?",
+    "family": "due-pistoni-collegati",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "La sovrapressione trasmessa vale Δp = F₁/S₁. Sul pistone grande l’incremento è Δp S₂ = 8 × 100/4 N = 200 N. Le stesse unità di area consentono di usare direttamente il rapporto."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "200 N",
+      "options": [
+        "25 N",
+        "0,32 N",
+        "32 N",
+        "200 N",
+        "800 N"
+      ]
+    },
+    "hints": [
+      "Lo stesso incremento di pressione agisce su aree diverse."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "Il rapporto delle forze coincide con il rapporto delle aree.",
+      "target": "C2-L003"
+    },
+    "exam": 2
+  },
+  {
+    "id": "C6-Q050",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 2",
+    "order": 7,
+    "title": "Tre cariche in linea",
+    "skill": "C4-L01",
+    "prerequisites": [
+      "C4-L01"
+    ],
+    "version": 1,
+    "prompt": "Due cariche puntiformi identiche positive sono tenute ferme a distanza 2d. Una piccola carica negativa è posta esattamente a metà. Considerando solo queste cariche, quale affermazione è corretta?",
+    "family": "tre-cariche-in-linea",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Le due sorgenti attraggono con lo stesso modulo ma in versi opposti, così la risultante è nulla. Il potenziale delle due sorgenti positive, con lo zero all’infinito, è invece positivo."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "La forza totale sulla carica centrale è nulla",
+      "options": [
+        "Ciascuna forza attrattiva ha modulo nullo",
+        "La forza totale punta verso destra",
+        "La forza totale sulla carica centrale è nulla",
+        "Il potenziale generato dalle sorgenti al centro è nullo con zero all’infinito",
+        "Le due attrazioni si sommano nello stesso verso"
+      ]
+    },
+    "hints": [
+      "Disegna le frecce delle forze sul corpo posto al centro."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "La simmetria cancella i vettori forza. I contributi scalari al potenziale si sommano.",
+      "target": "C4-L01"
+    },
+    "exam": 2
+  },
+  {
+    "id": "C6-Q051",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 2",
+    "order": 8,
+    "title": "Sollevamenti a velocità costante",
+    "skill": "C1-L007",
+    "prerequisites": [
+      "C1-L007"
+    ],
+    "version": 1,
+    "prompt": "Lo stesso carico viene sollevato alla stessa altezza prima in 8 s e poi in 2 s a velocità costante, trascurando perdite. Quale coppia di rapporti secondo/primo è corretta per lavoro e potenza media?",
+    "family": "sollevamenti-a-velocita-costante",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Il lavoro del sollevatore vale mgh in entrambi i casi. Dividendo lo stesso lavoro per un tempo quattro volte più breve si ricava una potenza media quattro volte maggiore."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "1 e 4",
+      "options": [
+        "1 e 1/4",
+        "1/4 e 1/4",
+        "1 e 4",
+        "4 e 1",
+        "4 e 4"
+      ]
+    },
+    "hints": [
+      "Il lavoro gravitazionale richiesto dipende dal dislivello."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "La durata cambia la potenza necessaria a eseguire lo stesso lavoro.",
+      "target": "C1-L007"
+    },
+    "exam": 2
+  },
+  {
+    "id": "C6-Q052",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 2",
+    "order": 9,
+    "title": "Passaggio di energia nel vuoto",
+    "skill": "C3-L05",
+    "prerequisites": [
+      "C3-L05"
+    ],
+    "version": 1,
+    "prompt": "Due superfici a temperature diverse sono separate dal vuoto senza alcun supporto materiale tra loro. Quale meccanismo permette trasferimento termico attraverso l’intercapedine?",
+    "family": "passaggio-di-energia-nel-vuoto",
+    "difficulty": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Le superfici emettono e assorbono radiazione. La conduzione e la convezione attraverso l’intercapedine richiederebbero materia, assente nelle condizioni descritte."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "Irraggiamento",
+      "options": [
+        "Convezione del gas",
+        "Conduzione nel liquido",
+        "Irraggiamento",
+        "Diffusione molecolare di aria",
+        "Attrito viscoso del fluido"
+      ]
+    },
+    "hints": [
+      "Servono molecole in moto perché il meccanismo funzioni?"
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "Nel vuoto si propaga radiazione elettromagnetica.",
+      "target": "C3-L05"
+    },
+    "exam": 2
+  },
+  {
+    "id": "C6-Q053",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 2",
+    "order": 10,
+    "title": "Una focale da due distanze uguali",
+    "skill": "C5-L10",
+    "prerequisites": [
+      "C5-L10"
+    ],
+    "version": 1,
+    "prompt": "Lente sottile tra oggetto e schermo, distanti 64 cm. L’immagine è nitida e con lo stesso modulo di altezza dell’oggetto. Quanto vale la focale?",
+    "family": "una-focale-da-due-distanze-uguali",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "I due tratti sono uguali e sommano 64 cm, quindi p = q = 32 cm. La legge 1/f = 1/32 + 1/32 = 1/16 cm⁻¹ dà f = 16 cm."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "16 cm",
+      "options": [
+        "64 cm",
+        "8 cm",
+        "32 cm",
+        "16 cm",
+        "48 cm"
+      ]
+    },
+    "hints": [
+      "Per immagine reale e uguali altezze in modulo, q = p."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "La distanza oggetto–schermo è p + q.",
+      "target": "C5-L10"
+    },
+    "exam": 2
+  },
+  {
+    "id": "C6-Q054",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 2",
+    "order": 11,
+    "title": "Una curva a modulo costante",
+    "skill": "C1-L004",
+    "prerequisites": [
+      "C1-L004"
+    ],
+    "version": 1,
+    "prompt": "Un oggetto percorre metà di una circonferenza a velocità di modulo costante. Quale affermazione descrive correttamente velocità e accelerazione istantanee lungo il tratto?",
+    "family": "una-curva-a-modulo-costante",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "La direzione di v segue la tangente alla traiettoria. La sua continua rotazione richiede un’accelerazione centripeta di modulo v²/r, perpendicolare alla tangente."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "La velocità è tangente e l’accelerazione è diretta al centro",
+      "options": [
+        "La velocità è tangente e l’accelerazione è diretta al centro",
+        "Entrambe sono tangenti",
+        "Entrambe sono nulle",
+        "La velocità punta al centro e l’accelerazione è tangente",
+        "L’accelerazione è nulla perché il modulo di v è costante"
+      ]
+    },
+    "hints": [
+      "Una variazione di direzione è una variazione del vettore velocità."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "La velocità può cambiare come vettore pur mantenendo modulo costante.",
+      "target": "C1-L004"
+    },
+    "exam": 2
+  },
+  {
+    "id": "C6-Q055",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 2",
+    "order": 12,
+    "title": "Firme di viscosità",
+    "skill": "C2-L007",
+    "prerequisites": [
+      "C2-L007"
+    ],
+    "version": 1,
+    "prompt": "In un tubo circolare rigido, lungo, con flusso stazionario laminare sviluppato di un fluido newtoniano e pareti ferme con aderenza, dove si trova il modulo massimo della velocità?",
+    "family": "firme-di-viscosita",
+    "difficulty": 3,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "L’aderenza impone velocità nulla alla parete. La velocità cresce procedendo verso il centro secondo un profilo proporzionale a R² − r², con massimo sull’asse."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "Sull’asse del tubo",
+      "options": [
+        "A metà raggio soltanto",
+        "Sull’asse del tubo",
+        "Uniformemente in tutta la sezione",
+        "Sulla parete",
+        "Fuori dal tubo"
+      ]
+    },
+    "hints": [
+      "Identifica il comportamento del fluido a contatto con la parete."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "Il profilo completamente sviluppato è parabolico.",
+      "target": "C2-L007"
+    },
+    "exam": 2
+  },
+  {
+    "id": "C6-Q056",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 2",
+    "order": 13,
+    "title": "Un campo e una particella paralleli",
+    "skill": "C4-L09",
+    "prerequisites": [
+      "C4-L09"
+    ],
+    "version": 1,
+    "prompt": "Una particella carica entra in un campo magnetico uniforme con velocità esattamente parallela al campo. Agiscono soltanto forze magnetiche. Che traiettoria segue?",
+    "family": "un-campo-e-una-particella-paralleli",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Con angolo zero il modulo della forza qvB sin θ è nullo. Senza altre forze la quantità di moto resta costante e la traiettoria è rettilinea uniforme."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "Rettilinea a velocità costante",
+      "options": [
+        "Parabolica",
+        "Circolare nel piano perpendicolare",
+        "Rettilinea a velocità costante",
+        "Rettilinea rallentando fino a fermarsi",
+        "Elicoidale con raggio non nullo"
+      ]
+    },
+    "hints": [
+      "Considera il seno dell’angolo fra velocità e campo."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "La forza magnetica richiede una componente della velocità perpendicolare al campo.",
+      "target": "C4-L09"
+    },
+    "exam": 2
+  },
+  {
+    "id": "C6-Q057",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 2",
+    "order": 14,
+    "title": "Un ciclo letto al contrario",
+    "skill": "C3-L08",
+    "prerequisites": [
+      "C3-L08"
+    ],
+    "version": 1,
+    "prompt": "Un gas percorre in senso antiorario un ciclo quasi statico nel piano p–V. L’area racchiusa vale 12 kPa·L. Nei primi due tratti il gas riceve 40 J e poi cede 15 J di calore. Quanto calore riceve, con il segno algebrico, nel terzo e ultimo tratto?",
+    "family": "un-ciclo-letto-al-contrario",
+    "difficulty": 3,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Un kPa·L equivale a un joule. Nel verso antiorario Wgas = −12 J. Il gas ritorna allo stato iniziale, quindi Qnetto = Wgas. Risolvendo 40 − 15 + Q₃ = −12 si trova Q₃ = −12 − 25 = −37 J. Nel terzo tratto il gas deve cedere calore."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "−37 J",
+      "options": [
+        "−37 J",
+        "+13 J",
+        "+37 J",
+        "−13 J",
+        "−67 J"
+      ]
+    },
+    "hints": [
+      "Trova il lavoro netto con segno, quindi usa il bilancio sul ciclo."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "Il verso antiorario rende negativo il lavoro del gas. Sul ciclo ΔU vale zero.",
+      "target": "C3-L08"
+    },
+    "exam": 2,
+    "promptBlocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C6-ciclo.svg",
+        "text": "Percorri il ciclo seguendo le frecce. Il lavoro netto del gas ha il segno assegnato dal verso di percorrenza."
+      }
+    ]
+  },
+  {
+    "id": "C6-Q058",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 2",
+    "order": 15,
+    "title": "L’area del rivelatore quadruplica",
+    "skill": "C5-L04",
+    "prerequisites": [
+      "C5-L04"
+    ],
+    "version": 1,
+    "prompt": "Un rivelatore piccolo rispetto al raggio e perpendicolare ai raggi è posto a distanza r da una sorgente isotropa senza perdite. Lo si sostituisce con uno di area quadrupla a distanza 2r. La potenza raccolta diventa quale?",
+    "family": "larea-del-rivelatore-quadruplica",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "A distanza doppia l’intensità è I/4. Moltiplicandola per 4S si ottiene (I/4)(4S) = IS, la stessa potenza raccolta prima."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "La stessa",
+      "options": [
+        "Quattro volte minore",
+        "Sedici volte minore",
+        "Due volte maggiore",
+        "La stessa",
+        "Quattro volte maggiore"
+      ]
+    },
+    "hints": [
+      "Moltiplica il cambiamento di area per quello di intensità."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "La perdita per il quadrato della distanza è compensata dalla maggiore area.",
+      "target": "C5-L04"
+    },
+    "exam": 2
+  },
+  {
+    "id": "C6-Q059",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 2",
+    "order": 16,
+    "title": "Contare i rami di un condotto",
+    "skill": "C2-L005",
+    "prerequisites": [
+      "C2-L005"
+    ],
+    "version": 1,
+    "prompt": "Un liquido incomprimibile scorre in un condotto con portata 12 mL/s. Il condotto si divide in tre rami senza perdite di liquido. In regime stazionario due portano rispettivamente 2 e 7 mL/s. Il terzo ha sezione 0,50 cm². Qual è la sua velocità media?",
+    "family": "contare-i-rami-di-un-condotto",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Al terzo ramo arrivano 12 − 2 − 7 = 3 mL/s = 3 cm³/s. Dividendo per 0,50 cm² resta una velocità di 6 cm/s."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "6 cm/s",
+      "options": [
+        "3 cm/s",
+        "1,5 cm/s",
+        "6 cm/s",
+        "18 cm/s",
+        "24 cm/s"
+      ]
+    },
+    "hints": [
+      "Ricorda che 1 mL equivale a 1 cm³."
+    ],
+    "error": {
+      "category": "unità",
+      "message": "Prima del rapporto Q/S bisogna trovare la portata effettiva del terzo ramo.",
+      "target": "C2-L005"
+    },
+    "exam": 2
+  },
+  {
+    "id": "C6-Q060",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 2",
+    "order": 17,
+    "title": "Tempo di riscaldamento resistivo",
+    "skill": "C4-L05",
+    "prerequisites": [
+      "C4-L05"
+    ],
+    "version": 1,
+    "prompt": "Un resistore ideale fisso da 4 Ω è alimentato a 8 V continui. Quanto tempo occorre per dissipare 80 J?",
+    "family": "tempo-di-riscaldamento-resistivo",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "La potenza dissipata è V²/R = 64/4 W = 16 W. Per fornire 80 J a 16 J ogni secondo servono t = 80/16 = 5 s."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "5 s",
+      "options": [
+        "2,5 s",
+        "5 s",
+        "80 s",
+        "20 s",
+        "10 s"
+      ]
+    },
+    "hints": [
+      "Dalla tensione e dalla resistenza ricava la potenza."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "Il tempo è energia divisa per potenza.",
+      "target": "C4-L05"
+    },
+    "exam": 2
+  },
+  {
+    "id": "C6-Q061",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 2",
+    "order": 18,
+    "title": "Due pattinatori si respingono",
+    "skill": "C1-L009",
+    "prerequisites": [
+      "C1-L009"
+    ],
+    "version": 1,
+    "prompt": "Due pattinatori inizialmente fermi si respingono su ghiaccio senza attrito. Quello di 60 kg acquista velocità +2,0 m/s. Quanto vale la velocità di quello di 40 kg?",
+    "family": "due-pattinatori-si-respingono",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Sul sistema non c’è impulso orizzontale esterno. Quindi 60 × 2,0 + 40v = 0. Si ottiene v = −120/40 m/s = −3,0 m/s."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "−3,0 m/s",
+      "options": [
+        "−1,33 m/s",
+        "−3,0 m/s",
+        "+3,0 m/s",
+        "−2,0 m/s",
+        "+1,33 m/s"
+      ]
+    },
+    "hints": [
+      "La quantità di moto totale iniziale è zero."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "La spinta reciproca cambia le quantità di moto dei singoli in versi opposti.",
+      "target": "C1-L009"
+    },
+    "exam": 2
+  },
+  {
+    "id": "C6-Q062",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 2",
+    "order": 19,
+    "title": "Ritorno tra due stati",
+    "skill": "C3-L10",
+    "prerequisites": [
+      "C3-L10"
+    ],
+    "version": 1,
+    "prompt": "Un sistema chiuso passa da A a B lungo un cammino reversibile. Riceve 60 J a 300 K e 120 J a 400 K. Gli altri tratti sono adiabatici e reversibili. Poi ritorna da B ad A attraverso un cammino irreversibile. Qual è la variazione di entropia del solo sistema nel ritorno?",
+    "family": "ritorno-tra-due-stati",
+    "difficulty": 3,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Sul cammino reversibile i contributi entranti sono 60/300 = 0,20 J/K e 120/400 = 0,30 J/K. I tratti adiabatici reversibili hanno variazione di entropia nulla. L’andata dà Sᴮ − Sᴬ = +0,50 J/K. Sul ritorno si scambiano gli stessi due stati e Sᴬ − Sᴮ = −0,50 J/K. Il risultato riguarda il solo sistema."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "−0,50 J/K",
+      "options": [
+        "−0,50 J/K",
+        "0 J/K",
+        "+0,50 J/K",
+        "−0,10 J/K",
+        "Non è determinabile senza il calore lungo il ritorno"
+      ]
+    },
+    "hints": [
+      "Calcola ΔS all’andata e usa il fatto che S è una funzione di stato."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "Per un processo irreversibile il rapporto fra calore reale e temperatura non fornisce da solo la variazione di entropia.",
+      "target": "C3-L10"
+    },
+    "exam": 2
+  },
+  {
+    "id": "C6-Q063",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 2",
+    "order": 20,
+    "title": "Un grande flusso infrarosso",
+    "skill": "C5-L07",
+    "prerequisites": [
+      "C5-L07"
+    ],
+    "version": 1,
+    "prompt": "Una sorgente infrarossa monocromatica aumenta la potenza emessa lasciando f invariata. Nel regime di interazioni a singolo fotone, quale effetto segue necessariamente?",
+    "family": "un-grande-flusso-infrarosso",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Con h e f invariati, hf è costante. Per aumentare P deve aumentare il tasso di fotoni emessi. L’energia di ciascun evento fotonico resta quella precedente."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "Aumentano i fotoni emessi al secondo",
+      "options": [
+        "Ogni fotone ha più energia",
+        "Ogni fotone viaggia più veloce nel vuoto",
+        "La sorgente diventa automaticamente ionizzante",
+        "Il singolo fotone raddoppia la sua carica",
+        "Aumentano i fotoni emessi al secondo"
+      ]
+    },
+    "hints": [
+      "Scrivi P = numero di fotoni al secondo per hf."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "L’energia per fotone dipende dalla frequenza.",
+      "target": "C5-L07"
+    },
+    "exam": 2
+  },
+  {
+    "id": "C6-Q064",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 2",
+    "order": 21,
+    "title": "Scegliere il verso dell’attrito",
+    "skill": "C1-L006",
+    "prerequisites": [
+      "C1-L006"
+    ],
+    "version": 1,
+    "prompt": "Una cassa viene trascinata verso destra su un piano orizzontale fermo. È già in scorrimento verso destra rispetto al piano. La forza di attrito dinamico del piano sulla cassa è diretta come?",
+    "family": "scegliere-il-verso-dellattrito",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Il contatto della cassa scivola verso destra rispetto al piano. L’attrito che il piano esercita sulla cassa è tangenziale alla superficie e punta a sinistra."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "Verso sinistra",
+      "options": [
+        "Verso sinistra",
+        "Non ha verso perché è scalare",
+        "Verticalmente verso il basso",
+        "Verticalmente verso l’alto",
+        "Verso destra"
+      ]
+    },
+    "hints": [
+      "Individua lo scorrimento relativo delle superfici al contatto."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "La forza del piano sulla cassa contrasta lo scorrimento relativo.",
+      "target": "C1-L006"
+    },
+    "exam": 2
+  },
+  {
+    "id": "C6-Q065",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 2",
+    "order": 22,
+    "title": "Prodotto che dà un numero",
+    "skill": "C1-L002",
+    "prerequisites": [
+      "C1-L002"
+    ],
+    "version": 1,
+    "prompt": "Il prodotto tra due vettori definito come ab cos θ si chiama prodotto ____.",
+    "family": "prodotto-che-da-un-numero",
+    "difficulty": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Il prodotto scalare misura il modulo di un vettore moltiplicato per la componente dell’altro lungo il primo. Il lavoro di una forza costante ne è un’applicazione."
+      }
+    ],
+    "answer": {
+      "type": "text",
+      "value": "scalare",
+      "aliases": []
+    },
+    "hints": [
+      "L’angolo è quello compreso fra i due vettori."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "Il risultato di questa operazione ha una sola componente numerica.",
+      "target": "C1-L002"
+    },
+    "exam": 2
+  },
+  {
+    "id": "C6-Q066",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 2",
+    "order": 23,
+    "title": "Una spinta col nome del principio",
+    "skill": "C2-L004",
+    "prerequisites": [
+      "C2-L004"
+    ],
+    "version": 1,
+    "prompt": "Il principio secondo cui la spinta su un corpo immerso ha modulo pari al peso del fluido spostato porta il nome di ____.",
+    "family": "una-spinta-col-nome-del-principio",
+    "difficulty": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Il principio di Archimede dà una spinta verso l’alto pari a ρfluido g Vimmerso. Vale anche per un corpo non completamente immerso usando il solo volume immerso."
+      }
+    ],
+    "answer": {
+      "type": "text",
+      "value": "Archimede",
+      "aliases": []
+    },
+    "hints": [
+      "La spinta nasce dalla risultante delle pressioni idrostatiche."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "Si confronta il corpo con la porzione di fluido che occuperebbe lo stesso volume immerso.",
+      "target": "C2-L004"
+    },
+    "exam": 2
+  },
+  {
+    "id": "C6-Q067",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 2",
+    "order": 24,
+    "title": "Energia per massa e kelvin",
+    "skill": "C3-L03",
+    "prerequisites": [
+      "C3-L03"
+    ],
+    "version": 1,
+    "prompt": "La capacità termica per unità di massa è il calore ____.",
+    "family": "energia-per-massa-e-kelvin",
+    "difficulty": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Il calore specifico c collega un piccolo incremento di temperatura all’energia per unità di massa nel processo considerato. Per c costante si usa Q = mcΔT senza transizioni di fase."
+      }
+    ],
+    "answer": {
+      "type": "text",
+      "value": "specifico",
+      "aliases": []
+    },
+    "hints": [
+      "L’unità SI di questa grandezza è J/(kg·K)."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "La capacità dell’intero corpo va divisa per la massa.",
+      "target": "C3-L03"
+    },
+    "exam": 2
+  },
+  {
+    "id": "C6-Q068",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 2",
+    "order": 25,
+    "title": "Dipoli in un isolante",
+    "skill": "C4-L04",
+    "prerequisites": [
+      "C4-L04"
+    ],
+    "version": 1,
+    "prompt": "Il parziale orientamento dei dipoli o lo spostamento delle cariche legate in un isolante sotto un campo esterno è una forma di ____ elettrica.",
+    "family": "dipoli-in-un-isolante",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Con un campo applicato le cariche legate si spostano leggermente oppure i dipoli si orientano. Questo cambiamento produce polarizzazione elettrica."
+      }
+    ],
+    "answer": {
+      "type": "text",
+      "value": "polarizzazione",
+      "aliases": []
+    },
+    "hints": [
+      "Gli elettroni restano legati al materiale."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "Il fenomeno riguarda separazioni locali di carica nel dielettrico.",
+      "target": "C4-L04"
+    },
+    "exam": 2
+  },
+  {
+    "id": "C6-Q069",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 2",
+    "order": 26,
+    "title": "Una distanza tra compressioni",
+    "skill": "C5-L02",
+    "prerequisites": [
+      "C5-L02"
+    ],
+    "version": 1,
+    "prompt": "La distanza tra due compressioni consecutive in un’onda sonora armonica progressiva è detta ____ d’onda.",
+    "family": "una-distanza-tra-compressioni",
+    "difficulty": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Due compressioni consecutive corrispondono a stati di fase separati di un giro completo lungo la direzione di propagazione. La loro distanza è la lunghezza d’onda."
+      }
+    ],
+    "answer": {
+      "type": "text",
+      "value": "lunghezza",
+      "aliases": []
+    },
+    "hints": [
+      "Segui la ripetizione spaziale a un istante fissato."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "Il periodo è la ripetizione nel tempo. Qui la misura è spaziale.",
+      "target": "C5-L02"
+    },
+    "exam": 2
+  },
+  {
+    "id": "C6-Q070",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 2",
+    "order": 27,
+    "title": "Trasferimento per unità di tempo",
+    "skill": "C1-L007",
+    "prerequisites": [
+      "C1-L007"
+    ],
+    "version": 1,
+    "prompt": "La grandezza fisica che misura il lavoro compiuto nell’unità di tempo è la ____.",
+    "family": "trasferimento-per-unita-di-tempo",
+    "difficulty": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "La potenza media vale W/Δt. A parità di lavoro un intervallo minore richiede una potenza media maggiore."
+      }
+    ],
+    "answer": {
+      "type": "text",
+      "value": "potenza",
+      "aliases": []
+    },
+    "hints": [
+      "L’unità del risultato è J/s."
+    ],
+    "error": {
+      "category": "unità",
+      "message": "La grandezza cercata ha unità watt.",
+      "target": "C1-L007"
+    },
+    "exam": 2
+  },
+  {
+    "id": "C6-Q071",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 2",
+    "order": 28,
+    "title": "Aderenza fra strati",
+    "skill": "C2-L007",
+    "prerequisites": [
+      "C2-L007"
+    ],
+    "version": 1,
+    "prompt": "La proprietà del fluido che nella legge di Newton per lo sforzo tangenziale moltiplica il gradiente di velocità è la ____ dinamica.",
+    "family": "aderenza-fra-strati",
+    "difficulty": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Per taglio semplice in un fluido newtoniano, lo sforzo tangenziale è η dv/dy. Il coefficiente η si chiama viscosità dinamica."
+      }
+    ],
+    "answer": {
+      "type": "text",
+      "value": "viscosità",
+      "aliases": []
+    },
+    "hints": [
+      "La sua unità SI è Pa·s."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "Il coefficiente comprende l’attrito interno del fluido newtoniano.",
+      "target": "C2-L007"
+    },
+    "exam": 2
+  },
+  {
+    "id": "C6-Q072",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 2",
+    "order": 29,
+    "title": "Scambio termico nullo",
+    "skill": "C3-L06",
+    "prerequisites": [
+      "C3-L06"
+    ],
+    "version": 1,
+    "prompt": "Una trasformazione durante la quale il sistema non scambia calore con l’ambiente si chiama ____.",
+    "family": "scambio-termico-nullo",
+    "difficulty": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "In un’adiabatica Q = 0. Per il primo principio l’energia interna può comunque cambiare attraverso il lavoro."
+      }
+    ],
+    "answer": {
+      "type": "text",
+      "value": "adiabatica",
+      "aliases": []
+    },
+    "hints": [
+      "La temperatura può cambiare per effetto del lavoro."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "L’assenza di scambio di calore definisce il processo.",
+      "target": "C3-L06"
+    },
+    "exam": 2
+  },
+  {
+    "id": "C6-Q073",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 2",
+    "order": 30,
+    "title": "Il verso visto dalla pagina",
+    "skill": "C4-L10",
+    "prerequisites": [
+      "C4-L10"
+    ],
+    "version": 1,
+    "prompt": "Una spira conduttrice chiusa giace sul foglio. Il campo magnetico esterno è diretto verso il lettore e il suo modulo cresce. Visto dal lettore, il verso della corrente indotta è ____.",
+    "family": "il-verso-visto-dalla-pagina",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Il flusso esterno uscente aumenta. Per la legge di Lenz la spira genera un campo entrante. Con il pollice della mano destra verso l’interno del foglio, le dita si chiudono in senso orario."
+      }
+    ],
+    "answer": {
+      "type": "text",
+      "value": "orario",
+      "aliases": [
+        "in senso orario"
+      ]
+    },
+    "hints": [
+      "Il campo prodotto dalla corrente deve puntare dentro il foglio."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "Il verso della corrente si ricava dal campo necessario a contrastare la crescita del flusso.",
+      "target": "C4-L10"
+    },
+    "exam": 2
+  },
+  {
+    "id": "C6-Q074",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 2",
+    "order": 31,
+    "title": "Nuclei che decadono per secondo",
+    "skill": "C5-L08",
+    "prerequisites": [
+      "C5-L08"
+    ],
+    "version": 1,
+    "prompt": "L’unità SI che esprime un decadimento al secondo si chiama ____.",
+    "family": "nuclei-che-decadono-per-secondo",
+    "difficulty": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Un becquerel è un decadimento per secondo in media. L’attività del campione e il tasso letto dal rivelatore coincidono solo nelle opportune condizioni di efficienza e fondo."
+      }
+    ],
+    "answer": {
+      "type": "text",
+      "value": "becquerel",
+      "aliases": [
+        "Bq"
+      ]
+    },
+    "hints": [
+      "Si sta misurando una attività radioattiva."
+    ],
+    "error": {
+      "category": "unità",
+      "message": "Il becquerel misura l’attività e ha dimensione di inverso del tempo.",
+      "target": "C5-L08"
+    },
+    "exam": 2
+  },
+  {
+    "id": "C6-Q075",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 3",
+    "order": 1,
+    "title": "Vetro a due spessori",
+    "skill": "C3-L05",
+    "prerequisites": [
+      "C3-L05"
+    ],
+    "version": 1,
+    "prompt": "Due lastre piane dello stesso materiale hanno stessa area e stesse temperature imposte alle due facce opposte. In conduzione stazionaria, quale effetto produce raddoppiare lo spessore rispetto alla prima lastra?",
+    "family": "vetro-a-due-spessori",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Per una lastra piana con conducibilità costante il modulo della potenza è kSΔT/L. Raddoppiando L a parità di ΔT il gradiente e la potenza si dimezzano."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "La potenza termica si dimezza",
+      "options": [
+        "La potenza quadruplica",
+        "Il salto termico imposto raddoppia",
+        "La potenza termica si dimezza",
+        "La potenza resta costante",
+        "La potenza raddoppia"
+      ]
+    },
+    "hints": [
+      "Scrivi il gradiente di temperatura attraverso lo spessore."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "Il salto termico è fissato, il gradiente cambia.",
+      "target": "C3-L05"
+    },
+    "exam": 3
+  },
+  {
+    "id": "C6-Q076",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 3",
+    "order": 2,
+    "title": "Dal millilitro al metro cubo",
+    "skill": "C1-L001",
+    "prerequisites": [
+      "C1-L001"
+    ],
+    "version": 1,
+    "prompt": "Qual è il volume in m³ di una soluzione di volume 250 mL?",
+    "family": "dal-millilitro-al-metro-cubo",
+    "difficulty": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "250 mL = 0,250 L. Moltiplicando per 10⁻³ m³/L si ottiene 0,000250 m³, cioè 2,50 × 10⁻⁴ m³."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "2,5 × 10⁻⁴ m³",
+      "options": [
+        "2,5 × 10⁻¹ m³",
+        "2,5 × 10⁻² m³",
+        "2,5 × 10⁻⁴ m³",
+        "2,5 × 10² m³",
+        "2,5 × 10⁻⁷ m³"
+      ]
+    },
+    "hints": [
+      "Passa prima ai litri, poi ai metri cubi."
+    ],
+    "error": {
+      "category": "unità",
+      "message": "Un litro equivale a un millesimo di metro cubo.",
+      "target": "C1-L001"
+    },
+    "exam": 3
+  },
+  {
+    "id": "C6-Q077",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 3",
+    "order": 3,
+    "title": "Due cambi nel condensatore",
+    "skill": "C4-L07",
+    "prerequisites": [
+      "C4-L07"
+    ],
+    "version": 1,
+    "prompt": "In un condensatore piano nel vuoto l’area di ogni armatura triplica e la distanza fra esse raddoppia. Trascurando gli effetti di bordo, quale rapporto C₂/C₁ si ottiene?",
+    "family": "due-cambi-nel-condensatore",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Con C = ε₀S/d, formando il rapporto ε₀ si cancella. Restano S₂/S₁ = 3 e d₁/d₂ = 1/2. Il prodotto è 3/2."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "3/2",
+      "options": [
+        "9/4",
+        "2/3",
+        "1/6",
+        "6",
+        "3/2"
+      ]
+    },
+    "hints": [
+      "Area e distanza compaiono in posizioni opposte nella formula."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "La capacità cresce con l’area e diminuisce all’aumentare della distanza.",
+      "target": "C4-L07"
+    },
+    "exam": 3
+  },
+  {
+    "id": "C6-Q078",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 3",
+    "order": 4,
+    "title": "Stima con un tubo a U",
+    "skill": "C2-L002",
+    "prerequisites": [
+      "C2-L002"
+    ],
+    "version": 1,
+    "prompt": "Un manometro a U con liquido di densità 800 kg/m³ ha una differenza verticale dei livelli di 5,0 cm. Un ramo è aperto all’aria e il liquido nel ramo collegato al gas ha livello più basso. Con g = 10 m/s², quanto vale pgas − patm?",
+    "family": "stima-con-un-tubo-a-u",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "La sovrapressione è positiva perché il gas abbassa il livello dal suo lato. Il modulo è ρgh = 800 × 10 × 0,050 Pa = 400 Pa."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "+400 Pa",
+      "options": [
+        "+4000 Pa",
+        "−400 Pa",
+        "+80 Pa",
+        "+40 Pa",
+        "+400 Pa"
+      ]
+    },
+    "hints": [
+      "Il lato a pressione maggiore spinge il liquido verso il basso."
+    ],
+    "error": {
+      "category": "unità",
+      "message": "L’altezza di 5 cm va espressa in metri con la densità SI.",
+      "target": "C2-L002"
+    },
+    "exam": 3
+  },
+  {
+    "id": "C6-Q079",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 3",
+    "order": 5,
+    "title": "Due riflessioni nello stesso piano",
+    "skill": "C5-L09",
+    "prerequisites": [
+      "C5-L09"
+    ],
+    "version": 1,
+    "prompt": "Nella sezione di due specchi perpendicolari un raggio incontra prima la faccia verticale e poi quella orizzontale. Il raggio resta nel piano della sezione. Qual è l’angolo tra il suo vettore direzione iniziale e quello dopo la seconda riflessione?",
+    "family": "due-riflessioni-nello-stesso-piano",
+    "difficulty": 3,
+    "blocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C6-specchi-uscita.svg",
+        "text": "Dopo la seconda riflessione il raggio sale a sinistra. Confronta le direzioni dei due segmenti verdi."
+      },
+      {
+        "type": "text",
+        "text": "Rappresentiamo la direzione con (uₓ, uᵧ). Lo specchio verticale la trasforma in (−uₓ, uᵧ), quello orizzontale in (−uₓ, −uᵧ). Entrambe le componenti sono opposte alle iniziali. La direzione emergente è antiparallela a quella d’ingresso, quindi l’angolo è 180°."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "180°",
+      "options": [
+        "Dipende dal primo angolo d’incidenza",
+        "180°",
+        "90°",
+        "45°",
+        "0°"
+      ]
+    },
+    "hints": [
+      "Segui separatamente le componenti orizzontale e verticale a ogni riflessione."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "La riflessione conserva la componente tangente alla superficie e inverte la componente normale.",
+      "target": "C5-L09"
+    },
+    "exam": 3,
+    "promptBlocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C6-specchi-ingresso.svg",
+        "text": "Il tratto rosso raggiunge il secondo specchio. Completa il cammino del raggio."
+      }
+    ]
+  },
+  {
+    "id": "C6-Q080",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 3",
+    "order": 6,
+    "title": "Il punto medio pesato",
+    "skill": "C1-L010",
+    "prerequisites": [
+      "C1-L010"
+    ],
+    "version": 1,
+    "prompt": "Su un’asta di massa trascurabile si trovano 1 kg a x = 0 e 3 kg a x = 40 cm. Qual è la coordinata del centro di massa?",
+    "family": "il-punto-medio-pesato",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Il momento delle masse rispetto all’origine è 1 × 0 + 3 × 40 = 120 kg·cm. Dividendo per 1 + 3 = 4 kg si ottiene xCM = 30 cm."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "30 cm",
+      "options": [
+        "30 cm",
+        "20 cm",
+        "10 cm",
+        "15 cm",
+        "40 cm"
+      ]
+    },
+    "hints": [
+      "Le masse pesano diversamente nella media delle posizioni."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "Il centro di massa deve trovarsi più vicino alla massa maggiore.",
+      "target": "C1-L010"
+    },
+    "exam": 3
+  },
+  {
+    "id": "C6-Q081",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 3",
+    "order": 7,
+    "title": "Gas ideale a energia interna costante",
+    "skill": "C3-L07",
+    "prerequisites": [
+      "C3-L07"
+    ],
+    "version": 1,
+    "prompt": "Una quantità fissata di gas ideale monoatomico subisce un’espansione isoterma quasi statica. Quale uguaglianza vale usando W come lavoro positivo svolto dal gas?",
+    "family": "gas-ideale-a-energia-interna-costante",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Durante l’isoterma ΔU = 0. Dal principio ΔU = Q − W deriva Q = W. In espansione il gas compie lavoro positivo e deve ricevere lo stesso calore."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "Q = W",
+      "options": [
+        "Q = −W",
+        "Q = W",
+        "Q = 0 con W positivo",
+        "ΔU = Q con W positivo",
+        "ΔU = W"
+      ]
+    },
+    "hints": [
+      "Nel gas ideale l’energia interna dipende dalla temperatura."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "Costanza della temperatura implica variazione di energia interna nulla per il gas ideale.",
+      "target": "C3-L07"
+    },
+    "exam": 3
+  },
+  {
+    "id": "C6-Q082",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 3",
+    "order": 8,
+    "title": "Capacità in una catena isolata",
+    "skill": "C4-L08",
+    "prerequisites": [
+      "C4-L08"
+    ],
+    "version": 1,
+    "prompt": "Due condensatori ideali da 3 µF e 6 µF, inizialmente scarichi, sono collegati in serie a 12 V. Quanto vale il modulo della carica su ciascun condensatore a regime?",
+    "family": "capacita-in-una-catena-isolata",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "La capacità equivalente è 3 × 6/(3 + 6) µF = 2 µF. Con la tensione totale Q = Ceq V = 2 µF × 12 V = 24 µC. Ogni condensatore della serie porta questo modulo."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "24 µC",
+      "options": [
+        "24 µC",
+        "36 µC",
+        "6 µC",
+        "108 µC",
+        "72 µC"
+      ]
+    },
+    "hints": [
+      "Calcola la capacità equivalente della serie e usala con la tensione totale."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "In serie il nodo interno isolato determina uguali moduli di carica.",
+      "target": "C4-L08"
+    },
+    "exam": 3
+  },
+  {
+    "id": "C6-Q083",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 3",
+    "order": 9,
+    "title": "La frazione che emerge",
+    "skill": "C2-L004",
+    "prerequisites": [
+      "C2-L004"
+    ],
+    "version": 1,
+    "prompt": "Un solido omogeneo di densità 750 kg/m³ galleggia in un liquido di densità 1000 kg/m³. Quale percentuale del volume del solido emerge, trascurando la spinta dell’aria?",
+    "family": "la-frazione-che-emerge",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Uguagliando ρliq gVimm e ρsol gVtot si trova Vimm/Vtot = 750/1000 = 0,75. Il volume emerso vale quindi 1 − 0,75 = 0,25, pari al 25%."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "25%",
+      "options": [
+        "100%",
+        "75%",
+        "33%",
+        "50%",
+        "25%"
+      ]
+    },
+    "hints": [
+      "Trova prima la frazione immersa dall’equilibrio verticale."
+    ],
+    "error": {
+      "category": "testo",
+      "message": "Il testo chiede la parte emersa, complemento della parte immersa.",
+      "target": "C2-L004"
+    },
+    "exam": 3
+  },
+  {
+    "id": "C6-Q084",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 3",
+    "order": 10,
+    "title": "Dall’impulso radio al vuoto",
+    "skill": "C5-L06",
+    "prerequisites": [
+      "C5-L06"
+    ],
+    "version": 1,
+    "prompt": "Nel vuoto un impulso radio e un impulso di luce visibile lasciano insieme la stessa sorgente e percorrono lo stesso cammino. Quale previsione è corretta?",
+    "family": "dallimpulso-radio-al-vuoto",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Radio e luce visibile appartengono a regioni differenti dello stesso spettro. Nel vuoto entrambe viaggiano a c e impiegano lo stesso tempo L/c sullo stesso cammino."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "Raggiungono insieme il rivelatore",
+      "options": [
+        "Arriva prima il visibile",
+        "Arriva prima la radio",
+        "Hanno la stessa lunghezza d’onda",
+        "Raggiungono insieme il rivelatore",
+        "Hanno la stessa frequenza"
+      ]
+    },
+    "hints": [
+      "Identifica la natura di entrambe le perturbazioni."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "Nel vuoto la velocità di propagazione delle onde elettromagnetiche è c.",
+      "target": "C5-L06"
+    },
+    "exam": 3
+  },
+  {
+    "id": "C6-Q085",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 3",
+    "order": 11,
+    "title": "Due strumenti nella stessa cabina",
+    "skill": "C1-L005",
+    "prerequisites": [
+      "C1-L005"
+    ],
+    "version": 1,
+    "prompt": "In una cabina in moto verticale un dinamometro sostiene un corpo da 4,0 kg e segna 48 N. Sul pavimento della stessa cabina una bilancia sostiene un secondo corpo da 6,0 kg. Entrambi restano fermi rispetto alla cabina. Trascurando la spinta dell’aria, quanto segna la bilancia in newton?",
+    "family": "due-strumenti-nella-stessa-cabina",
+    "difficulty": 3,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Con asse positivo verso l’alto, T − m₁g = m₁a e N − m₂g = m₂a. Perciò T/m₁ = g + a = N/m₂. Il primo strumento fornisce una forza di sostegno per unità di massa di 48/4,0 = 12 N/kg. Il secondo segna N = 6,0 × 12 N = 72 N."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "72 N",
+      "options": [
+        "60 N",
+        "72 N",
+        "120 N",
+        "48 N",
+        "12 N"
+      ]
+    },
+    "hints": [
+      "Entrambi i corpi condividono l’accelerazione verticale e lo stesso campo gravitazionale."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "Dinamometro e bilancia misurano le rispettive forze di sostegno nel medesimo moto.",
+      "target": "C1-L005"
+    },
+    "exam": 3
+  },
+  {
+    "id": "C6-Q086",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 3",
+    "order": 12,
+    "title": "Vapore che cede energia",
+    "skill": "C3-L04",
+    "prerequisites": [
+      "C3-L04"
+    ],
+    "version": 1,
+    "prompt": "Una massa di 4,0 g di vapore puro condensa interamente alla temperatura di transizione. Il calore latente specifico vale 2,0 × 10⁶ J/kg. Qual è il modulo dell’energia ceduta?",
+    "family": "vapore-che-cede-energia",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "La massa è 0,0040 kg. Il modulo dell’energia è 0,0040 × 2,0 × 10⁶ J = 8000 J = 8,0 kJ. Come calore del vapore il segno sarebbe negativo."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "8,0 kJ",
+      "options": [
+        "0,008 J",
+        "8,0 kJ",
+        "80 kJ",
+        "0,50 kJ",
+        "8,0 J"
+      ]
+    },
+    "hints": [
+      "Per la condensazione usa il modulo mL e converti la massa."
+    ],
+    "error": {
+      "category": "unità",
+      "message": "Il calore latente è espresso per chilogrammo.",
+      "target": "C3-L04"
+    },
+    "exam": 3
+  },
+  {
+    "id": "C6-Q087",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 3",
+    "order": 13,
+    "title": "Carica libera fra due piastre",
+    "skill": "C4-L02",
+    "prerequisites": [
+      "C4-L02"
+    ],
+    "version": 1,
+    "prompt": "Una carica positiva, inizialmente ferma, viene lasciata in un campo elettrico uniforme nella regione centrale tra piastre. Agisce soltanto la forza elettrica. Quale moto compie finché rimane nella regione uniforme?",
+    "family": "carica-libera-fra-due-piastre",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Dalla seconda legge a = qE/m, costante e diretta come il campo per q positiva. Partendo da ferma la particella acquista velocità nella stessa direzione e il moto è rettilineo uniformemente accelerato."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "Rettilineo uniformemente accelerato lungo il campo",
+      "options": [
+        "Rettilineo uniforme",
+        "Circolare uniforme",
+        "Parabolico per inerzia con velocità iniziale trasversale",
+        "Rettilineo uniformemente accelerato lungo il campo",
+        "Rettilineo accelerato contro il campo"
+      ]
+    },
+    "hints": [
+      "La forza elettrica qE è costante in modulo e direzione."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "La traiettoria dipende anche dalla velocità iniziale, qui nulla.",
+      "target": "C4-L02"
+    },
+    "exam": 3
+  },
+  {
+    "id": "C6-Q088",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 3",
+    "order": 14,
+    "title": "Una goccia più piccola",
+    "skill": "C2-L010",
+    "prerequisites": [
+      "C2-L010"
+    ],
+    "version": 1,
+    "prompt": "Due gocce sferiche dello stesso liquido sono nello stesso gas. La seconda ha raggio un terzo della prima. Con uguale tensione superficiale, quanto vale il rapporto fra i salti di pressione interno–esterno, secondo/primo?",
+    "family": "una-goccia-piu-piccola",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Per una goccia sferica Δp = 2γ/r. Con r₂ = r₁/3 il rapporto Δp₂/Δp₁ = r₁/r₂ vale 3. La superficie più curva richiede un salto di pressione maggiore."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "3",
+      "options": [
+        "1/3",
+        "9",
+        "3",
+        "1",
+        "1/9"
+      ]
+    },
+    "hints": [
+      "Usa la legge di Laplace per una sola interfaccia."
+    ],
+    "error": {
+      "category": "algebra",
+      "message": "Il salto di pressione è inversamente proporzionale al raggio di curvatura.",
+      "target": "C2-L010"
+    },
+    "exam": 3
+  },
+  {
+    "id": "C6-Q089",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 3",
+    "order": 15,
+    "title": "Secondo strato uguale",
+    "skill": "C5-L07",
+    "prerequisites": [
+      "C5-L07"
+    ],
+    "version": 1,
+    "prompt": "Un primo strato omogeneo trasmette il 70% di un fascio monocromatico diretto. Un secondo strato identico è posto subito dopo. Trascurando altri effetti, quale percentuale dell’intensità incidente all’origine esce dal secondo strato?",
+    "family": "secondo-strato-uguale",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Dopo il primo rimane 0,70 I₀ e dopo il secondo 0,70 × 0,70 I₀ = 0,49 I₀. La perdita assoluta nel secondo strato è minore che nel primo."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "49%",
+      "options": [
+        "21%",
+        "40%",
+        "49%",
+        "70%",
+        "30%"
+      ]
+    },
+    "hints": [
+      "Usa la stessa frazione trasmessa rispetto all’ingresso di ciascuno strato."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "Il secondo strato agisce sull’intensità che arriva dopo il primo.",
+      "target": "C5-L07"
+    },
+    "exam": 3
+  },
+  {
+    "id": "C6-Q090",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 3",
+    "order": 16,
+    "title": "Il limite dell’attrito statico",
+    "skill": "C1-L006",
+    "prerequisites": [
+      "C1-L006"
+    ],
+    "version": 1,
+    "prompt": "Un corpo è fermo su un piano orizzontale e riceve una sola spinta orizzontale di 3 N. L’attrito statico massimo disponibile è 7 N e il corpo rimane fermo. Quanto vale il modulo dell’attrito effettivo?",
+    "family": "il-limite-dellattrito-statico",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "In equilibrio la risultante orizzontale è zero. L’attrito statico bilancia i 3 N della spinta con 3 N opposti, al di sotto del massimo di 7 N."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "3 N",
+      "options": [
+        "7 N",
+        "3 N",
+        "0 N",
+        "10 N",
+        "4 N"
+      ]
+    },
+    "hints": [
+      "La forza statica si adegua fino al suo limite."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "Il valore massimo disponibile non è necessariamente quello esercitato.",
+      "target": "C1-L006"
+    },
+    "exam": 3
+  },
+  {
+    "id": "C6-Q091",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 3",
+    "order": 17,
+    "title": "Una bobina e un intervallo",
+    "skill": "C4-L10",
+    "prerequisites": [
+      "C4-L10"
+    ],
+    "version": 1,
+    "prompt": "In una bobina di 20 spire uguali il flusso concatenato con ciascuna spira aumenta di 3 mWb in 0,10 s. Qual è il modulo della fem media indotta?",
+    "family": "una-bobina-e-un-intervallo",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "La variazione complessiva concatenata vale 20 × 0,003 Wb = 0,060 Wb. Il modulo della fem media è 0,060/0,10 V = 0,60 V."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "0,60 V",
+      "options": [
+        "6,0 V",
+        "60 V",
+        "0,030 V",
+        "0,0060 V",
+        "0,60 V"
+      ]
+    },
+    "hints": [
+      "Moltiplica la variazione di flusso per il numero di spire."
+    ],
+    "error": {
+      "category": "unità",
+      "message": "La variazione data riguarda una sola spira ed è espressa in milliweber.",
+      "target": "C4-L10"
+    },
+    "exam": 3
+  },
+  {
+    "id": "C6-Q092",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 3",
+    "order": 18,
+    "title": "Due materiali a contatto col tubo",
+    "skill": "C2-L010",
+    "prerequisites": [
+      "C2-L010"
+    ],
+    "version": 1,
+    "prompt": "In un capillare cilindrico verticale, aperto in alto, abbastanza lungo e molto sottile, un liquido bagna bene la parete con angolo di contatto minore di 90°. In equilibrio con un ampio serbatoio aperto, quale situazione si osserva normalmente, in presenza di gravità?",
+    "family": "due-materiali-a-contatto-col-tubo",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Quando il liquido bagna la parete la componente verticale della tensione superficiale sostiene una colonna. Il livello sale fino a bilanciare il peso, con altezza positiva per cos θ > 0."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "Il liquido sale sopra il livello del serbatoio",
+      "options": [
+        "Il liquido sale sopra il livello del serbatoio",
+        "Il livello cresce senza limite",
+        "Il livello si abbassa sempre",
+        "Il liquido bolle spontaneamente",
+        "Il livello è indipendente dall’angolo di contatto"
+      ]
+    },
+    "hints": [
+      "Individua la componente verticale della tensione superficiale alla linea di contatto."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "L’innalzamento dipende da bagnabilità e peso della colonna.",
+      "target": "C2-L010"
+    },
+    "exam": 3
+  },
+  {
+    "id": "C6-Q093",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 3",
+    "order": 19,
+    "title": "Forza obliqua e spostamento negativo",
+    "skill": "C1-L007",
+    "prerequisites": [
+      "C1-L007"
+    ],
+    "version": 1,
+    "prompt": "Una forza costante di modulo 10 N forma 120° con uno spostamento di 2,0 m. Qual è il suo lavoro? Usa cos 120° = −0,5.",
+    "family": "forza-obliqua-e-spostamento-negativo",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Il lavoro vale F s cos θ = 10 × 2,0 × (−0,5) J = −10 J. La forza si oppone parzialmente allo spostamento."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "−10 J",
+      "options": [
+        "0 J",
+        "−10 J",
+        "+20 J",
+        "−20 J",
+        "+10 J"
+      ]
+    },
+    "hints": [
+      "Solo la proiezione parallela allo spostamento contribuisce."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "Se l’angolo è ottuso il lavoro è negativo.",
+      "target": "C1-L007"
+    },
+    "exam": 3
+  },
+  {
+    "id": "C6-Q094",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 3",
+    "order": 20,
+    "title": "Nucleo dopo due emissioni",
+    "skill": "C5-L08",
+    "prerequisites": [
+      "C5-L08"
+    ],
+    "version": 1,
+    "prompt": "Un nucleo emette prima una particella α e poi un elettrone tramite β⁻. Quali sono le variazioni complessive (Afinale − Ainiziale, Zfinale − Ziniziale)?",
+    "family": "nucleo-dopo-due-emissioni",
+    "difficulty": 2,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "L’alfa comporta ΔA = −4 e ΔZ = −2. Il beta meno aggiunge ΔA = 0 e ΔZ = +1. Sommando le variazioni per ogni colonna si trova la coppia (−4, −1)."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "(−4, −1)",
+      "options": [
+        "(−4, +1)",
+        "(0, +1)",
+        "(−4, −3)",
+        "(−2, −1)",
+        "(−4, −1)"
+      ]
+    },
+    "hints": [
+      "Segui separatamente A e Z nei due passaggi."
+    ],
+    "error": {
+      "category": "calcolo",
+      "message": "Il β⁻ lascia A invariato e aumenta Z di uno.",
+      "target": "C5-L08"
+    },
+    "exam": 3
+  },
+  {
+    "id": "C6-Q095",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 3",
+    "order": 21,
+    "title": "Collegare i punti medi",
+    "skill": "C4-L06",
+    "prerequisites": [
+      "C4-L06"
+    ],
+    "version": 1,
+    "prompt": "Tra i morsetti A a 8 V e B a 0 V sono collegati due rami identici in parallelo. Ogni ramo contiene due resistori uguali da 4 Ω in serie. Si inserisce un resistore da 2 Ω fra i punti medi M e N. Qual è il modulo della corrente in questo nuovo collegamento, in regime stazionario?",
+    "family": "collegare-i-punti-medi",
+    "difficulty": 3,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Lo scambio dei rami lascia il circuito invariato, quindi M e N hanno lo stesso potenziale. In queste condizioni il collegamento non altera la ripartizione delle cadute sui due resistori uguali di ogni ramo. Entrambi i nodi medi sono a 4 V. La corrente nel ponte vale (4 − 4) V / (2 Ω) = 0 A."
+      }
+    ],
+    "answer": {
+      "type": "choice",
+      "value": "0 A",
+      "options": [
+        "1 A",
+        "2 A",
+        "0 A",
+        "4 A",
+        "0,5 A"
+      ]
+    },
+    "hints": [
+      "Confronta i potenziali dei due punti medi, usando la simmetria dei rami."
+    ],
+    "error": {
+      "category": "modello",
+      "message": "La presenza di un resistore non garantisce che ai suoi capi vi sia una differenza di potenziale.",
+      "target": "C4-L06"
+    },
+    "exam": 3,
+    "promptBlocks": [
+      {
+        "type": "figure",
+        "src": "/figures/C6-ponte.svg",
+        "text": "I fili continui collegano ciascun punto medio a due resistori da 4 Ω e al collegamento verticale da 2 Ω."
+      }
+    ]
+  },
+  {
+    "id": "C6-Q096",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 3",
+    "order": 22,
+    "title": "Cambio della velocità nel tempo",
+    "skill": "C1-L004",
+    "prerequisites": [
+      "C1-L004"
+    ],
+    "version": 1,
+    "prompt": "La pendenza della tangente al grafico di una componente di velocità in funzione del tempo dà la corrispondente componente dell’____ istantanea.",
+    "family": "cambio-della-velocita-nel-tempo",
+    "difficulty": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "La derivata di una componente della velocità rispetto al tempo è la componente dell’accelerazione. L’unità risultante è (m/s)/s = m/s²."
+      }
+    ],
+    "answer": {
+      "type": "text",
+      "value": "accelerazione",
+      "aliases": []
+    },
+    "hints": [
+      "La pendenza divide una variazione di velocità per una di tempo."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "Nel limite di intervalli piccoli si ottiene la grandezza istantanea.",
+      "target": "C1-L004"
+    },
+    "exam": 3
+  },
+  {
+    "id": "C6-Q097",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 3",
+    "order": 23,
+    "title": "Colonna di mercurio storica",
+    "skill": "C2-L002",
+    "prerequisites": [
+      "C2-L002"
+    ],
+    "version": 1,
+    "prompt": "L’esperimento classico che ricava la pressione atmosferica dall’altezza di una colonna di mercurio chiusa superiormente e in equilibrio porta il nome di ____.",
+    "family": "colonna-di-mercurio-storica",
+    "difficulty": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Nell’esperimento di Torricelli la pressione atmosferica bilancia un dislivello idrostatico. Se la pressione in cima è trascurabile si usa patm ≈ ρgh."
+      }
+    ],
+    "answer": {
+      "type": "text",
+      "value": "Torricelli",
+      "aliases": []
+    },
+    "hints": [
+      "Il dispositivo è alla base del barometro a mercurio."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "La colonna si sostiene grazie alla differenza di pressione.",
+      "target": "C2-L002"
+    },
+    "exam": 3
+  },
+  {
+    "id": "C6-Q098",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 3",
+    "order": 24,
+    "title": "Energia portata dal moto del fluido",
+    "skill": "C3-L05",
+    "prerequisites": [
+      "C3-L05"
+    ],
+    "version": 1,
+    "prompt": "Il trasporto di energia termica accompagnato dal moto macroscopico di porzioni di un fluido si chiama ____.",
+    "family": "energia-portata-dal-moto-del-fluido",
+    "difficulty": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Nella convezione il moto organizzato del fluido sposta energia interna fra regioni diverse. Il moto può essere prodotto da differenze di densità oppure da un dispositivo esterno."
+      }
+    ],
+    "answer": {
+      "type": "text",
+      "value": "convezione",
+      "aliases": []
+    },
+    "hints": [
+      "Il meccanismo richiede trasporto di materia a scala macroscopica."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "La conduzione riguarda un trasferimento locale senza questo moto d’insieme.",
+      "target": "C3-L05"
+    },
+    "exam": 3
+  },
+  {
+    "id": "C6-Q099",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 3",
+    "order": 25,
+    "title": "La bussola e il filo",
+    "skill": "C4-L09",
+    "prerequisites": [
+      "C4-L09"
+    ],
+    "version": 1,
+    "prompt": "L’esperimento storico che mostra la deviazione di una bussola vicina a un filo percorso da corrente è associato al fisico ____.",
+    "family": "la-bussola-e-il-filo",
+    "difficulty": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Nell’esperimento di Ørsted il campo magnetico associato alla corrente si somma al campo preesistente. L’ago si orienta secondo il campo risultante."
+      }
+    ],
+    "answer": {
+      "type": "text",
+      "value": "Oersted",
+      "aliases": [
+        "Ørsted",
+        "Orsted",
+        "Oerstedt"
+      ]
+    },
+    "hints": [
+      "La scoperta collega una corrente a un campo magnetico."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "La corrente nel filo produce un campo che agisce sull’ago.",
+      "target": "C4-L09"
+    },
+    "exam": 3
+  },
+  {
+    "id": "C6-Q100",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 3",
+    "order": 26,
+    "title": "Banda fra visibile e X",
+    "skill": "C5-L06",
+    "prerequisites": [
+      "C5-L06"
+    ],
+    "version": 1,
+    "prompt": "Procedendo dal visibile verso frequenze maggiori, la regione che segue il violetto prende il nome di ____.",
+    "family": "banda-fra-visibile-e-x",
+    "difficulty": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "La regione immediatamente oltre il violetto è l’ultravioletto. A frequenze ancora più alte si incontrano i raggi X."
+      }
+    ],
+    "answer": {
+      "type": "text",
+      "value": "ultravioletto",
+      "aliases": [
+        "UV",
+        "radiazione ultravioletta"
+      ]
+    },
+    "hints": [
+      "Segui la direzione che porta a λ più piccole nel vuoto."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "L’infrarosso si trova oltre il rosso dalla parte delle frequenze minori.",
+      "target": "C5-L06"
+    },
+    "exam": 3
+  },
+  {
+    "id": "C6-Q101",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 3",
+    "order": 27,
+    "title": "Energia conservata dalla molla",
+    "skill": "C1-L008",
+    "prerequisites": [
+      "C1-L008"
+    ],
+    "version": 1,
+    "prompt": "Per una molla ideale l’espressione kx²/2 rappresenta l’energia potenziale ____.",
+    "family": "energia-conservata-dalla-molla",
+    "difficulty": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Durante una deformazione reversibile il lavoro dall’esterno può essere restituito dalla molla. L’energia immagazzinata è l’energia potenziale elastica."
+      }
+    ],
+    "answer": {
+      "type": "text",
+      "value": "elastica",
+      "aliases": []
+    },
+    "hints": [
+      "Il parametro x è la deformazione rispetto alla lunghezza di equilibrio."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "Si tratta dell’energia immagazzinata nella deformazione.",
+      "target": "C1-L008"
+    },
+    "exam": 3
+  },
+  {
+    "id": "C6-Q102",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 3",
+    "order": 28,
+    "title": "Profilo ordinato a strati",
+    "skill": "C2-L007",
+    "prerequisites": [
+      "C2-L007"
+    ],
+    "version": 1,
+    "prompt": "Il regime in cui strati di fluido scorrono ordinatamente senza il rimescolamento irregolare tipico della turbolenza è detto ____.",
+    "family": "profilo-ordinato-a-strati",
+    "difficulty": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "Nel regime laminare le particelle seguono percorsi regolari e strati adiacenti possono scorrere con velocità differenti. L’etichetta «stazionario» indica invece l’assenza di variazioni temporali in punti fissati."
+      }
+    ],
+    "answer": {
+      "type": "text",
+      "value": "laminare",
+      "aliases": []
+    },
+    "hints": [
+      "Il comportamento è compatibile con il modello di Poiseuille nelle sue altre ipotesi."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "La distinzione riguarda l’organizzazione del moto nello spazio.",
+      "target": "C2-L007"
+    },
+    "exam": 3
+  },
+  {
+    "id": "C6-Q103",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 3",
+    "order": 29,
+    "title": "Scala assoluta",
+    "skill": "C3-L02",
+    "prerequisites": [
+      "C3-L02"
+    ],
+    "version": 1,
+    "prompt": "Nell’equazione di stato dei gas ideali, nel SI, la temperatura assoluta si esprime in ____.",
+    "family": "scala-assoluta",
+    "difficulty": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "L’unità SI è il kelvin. Una temperatura in gradi Celsius si converte aggiungendo 273,15 al valore numerico."
+      }
+    ],
+    "answer": {
+      "type": "text",
+      "value": "kelvin",
+      "aliases": [
+        "K"
+      ]
+    },
+    "hints": [
+      "Lo zero della scala termodinamica è lo zero assoluto."
+    ],
+    "error": {
+      "category": "unità",
+      "message": "Il rapporto fra temperature della legge dei gas richiede la scala assoluta.",
+      "target": "C3-L02"
+    },
+    "exam": 3
+  },
+  {
+    "id": "C6-Q104",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 3",
+    "order": 30,
+    "title": "Rapporto tra carica e tensione",
+    "skill": "C4-L07",
+    "prerequisites": [
+      "C4-L07"
+    ],
+    "version": 1,
+    "prompt": "Il rapporto tra la carica positiva su un’armatura e la differenza di potenziale positiva tra le armature definisce la ____ del condensatore.",
+    "family": "rapporto-tra-carica-e-tensione",
+    "difficulty": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "La relazione Q = CΔV identifica C come capacità elettrica. La geometria e il materiale fra le armature ne determinano il valore."
+      }
+    ],
+    "answer": {
+      "type": "text",
+      "value": "capacità",
+      "aliases": [
+        "capacità elettrica"
+      ]
+    },
+    "hints": [
+      "L’unità risultante è il farad."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "Un condensatore lineare immagazzina carica proporzionale alla tensione.",
+      "target": "C4-L07"
+    },
+    "exam": 3
+  },
+  {
+    "id": "C6-Q105",
+    "kind": "question",
+    "course": "C6",
+    "section": "Simulazione 3",
+    "order": 31,
+    "title": "Frequenza da moto relativo",
+    "skill": "C5-L05",
+    "prerequisites": [
+      "C5-L05"
+    ],
+    "version": 1,
+    "prompt": "Il cambiamento di frequenza ricevuta dovuto al moto relativo lungo la linea sorgente–ricevitore è chiamato effetto ____.",
+    "family": "frequenza-da-moto-relativo",
+    "difficulty": 1,
+    "blocks": [
+      {
+        "type": "text",
+        "text": "È l’effetto Doppler. In un mezzo fermo, per moti usuali di avvicinamento la frequenza ricevuta aumenta e per allontanamento diminuisce."
+      }
+    ],
+    "answer": {
+      "type": "text",
+      "value": "Doppler",
+      "aliases": []
+    },
+    "hints": [
+      "Il segnale può essere emesso a una frequenza costante."
+    ],
+    "error": {
+      "category": "concetto",
+      "message": "La frequenza di arrivo dipende dal ritmo con cui i fronti raggiungono il ricevitore.",
+      "target": "C5-L05"
+    },
+    "exam": 3
+  }
+]
