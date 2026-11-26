@@ -1,0 +1,123 @@
+{
+  "scope": "SOURCE_ONLY_MODELS_NOT_CANDIDATE_APPROVAL",
+  "promptCount": 31,
+  "numericResults": {
+    "C6-Q013": {
+      "exact": "2",
+      "unit": "m/s"
+    },
+    "C6-Q015": {
+      "exact": "85",
+      "unit": "J"
+    },
+    "C6-Q018": {
+      "exact": "13",
+      "unit": "N"
+    },
+    "C6-Q019": {
+      "exact": "-3",
+      "unit": "N_upward"
+    },
+    "C6-Q020": {
+      "exact": "3",
+      "unit": "ohm"
+    },
+    "C6-Q022": {
+      "exact": "5",
+      "unit": "hour"
+    },
+    "C6-Q023": {
+      "exact": "6",
+      "unit": "m/s"
+    },
+    "C6-Q027": {
+      "exact": "180",
+      "unit": "N"
+    },
+    "C6-Q028": {
+      "exact": "40",
+      "unit": "percent"
+    },
+    "C6-Q032": {
+      "exact": "3",
+      "unit": "N*s"
+    },
+    "C6-Q033": {
+      "exact": "30",
+      "unit": "degC"
+    }
+  },
+  "conceptualDerivations": 20,
+  "symbolicChecks": {
+    "same_depth_pressure": true,
+    "opposite_charge_potential_changes": true,
+    "destructive_path_family": true,
+    "parallel_capillary_total_double": true,
+    "uniform_translation_closed_loop": true,
+    "isolated_energy_half": true,
+    "photon_wavelength_half": true,
+    "equal_capacity_affine_average": true
+  },
+  "pintChecks": [
+    {
+      "id": "C6-Q013",
+      "exactMagnitude": "2",
+      "unit": "m/s",
+      "ok": true
+    },
+    {
+      "id": "C6-Q015",
+      "exactMagnitude": "85",
+      "unit": "J",
+      "ok": true
+    },
+    {
+      "id": "C6-Q018",
+      "exactMagnitude": "169",
+      "unit": "N**2",
+      "ok": true
+    },
+    {
+      "id": "C6-Q019",
+      "exactMagnitude": "-3",
+      "unit": "N",
+      "ok": true
+    },
+    {
+      "id": "C6-Q020",
+      "exactMagnitude": "3",
+      "unit": "ohm",
+      "ok": true
+    },
+    {
+      "id": "C6-Q023",
+      "exactMagnitude": "36",
+      "unit": "m**2/s**2",
+      "ok": true
+    },
+    {
+      "id": "C6-Q027",
+      "exactMagnitude": "180",
+      "unit": "N",
+      "ok": true
+    },
+    {
+      "id": "C6-Q032",
+      "exactMagnitude": "3",
+      "unit": "kg*m/s",
+      "ok": true
+    }
+  ],
+  "extraUnitIdentities": 2,
+  "invalidExactBoundaryRejected": 8,
+  "candidateExposure": "NONE",
+  "humanApproval": "NOT_RUN",
+  "scientificQuestionCredit": 0,
+  "publicationAction": "NONE",
+  "hypothesisActualConfigurations": {
+    "energy": 40,
+    "passive_network": 40,
+    "affine_temperature": 40
+  },
+  "wallSeconds": 1.020769750000909
+}
