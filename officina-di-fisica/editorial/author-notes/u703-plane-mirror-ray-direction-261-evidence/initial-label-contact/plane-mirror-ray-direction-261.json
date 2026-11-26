@@ -1,0 +1,1142 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u7-plane-mirror-ray-direction-01",
+      "kind": "question",
+      "course": "C5",
+      "section": "Riflessione e direzioni nello stesso riferimento",
+      "order": 26101,
+      "title": "Una direzione rispetto all’asse",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "plane-mirror-ray-direction",
+      "difficulty": 1,
+      "prompt": "Nel piano cartesiano la direzione positiva degli angoli è antioraria dall’asse orizzontale verso destra. La retta di uno specchio piano ha direzione φ; il vettore di propagazione incidente, rivolto verso lo specchio, ha direzione α. Si assume 0<α<φ<90°. La direzione β del vettore riflesso è nello stesso riferimento, nel ramo 0<β<180°, senza riduzioni modulo 360°. Gli angoli dalla normale, invece, si chiamano θ_i e θ_r. Si tratta di riflessione speculare fra configurazioni statiche distinte. Con φ=45° e α=30°, quanto vale β in gradi?",
+      "answer": {
+        "type": "numeric",
+        "value": 60,
+        "unit": "gradi",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La riflessione ribalta la componente normale della propagazione e conserva quella tangenziale. Le direzioni α e β sono simmetriche rispetto alla retta di angolo φ, quindi β−φ=φ−α. Due volte quarantacinque meno trenta vale sessanta gradi. Gli angoli fisici di incidenza e riflessione dalla normale sono entrambi 75°, non α e β."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/5e31b63099198cfa8a364b3d0662ddf5bcc5e72021bea79b7a17a5922b4a4146",
+          "text": "Nel primo pannello α=30° e β=60° sono direzioni dei vettori di propagazione dall’asse orizzontale. Lo specchio è la retta a 45°; la normale è tratteggiata. I due angoli dei raggi dalla normale valgono invece 75°."
+        },
+        {
+          "type": "formula",
+          "text": "\\beta-\\varphi=\\varphi-\\alpha"
+        },
+        {
+          "type": "formula",
+          "text": " \\beta=2\\varphi-\\alpha"
+        },
+        {
+          "type": "formula",
+          "text": " \\beta=2\\cdot45^\\circ-30^\\circ"
+        },
+        {
+          "type": "formula",
+          "text": " \\beta=60^\\circ"
+        },
+        {
+          "type": "text",
+          "text": "Trenta confonde la legge θ_r=θ_i con l’uguaglianza delle direzioni dall’asse. Quindici è φ−α, non β; settantacinque è qui l’angolo dalla normale e centoventi non soddisfa la simmetria assegnata."
+        }
+      ],
+      "hints": [
+        "Distingui l’asse di riferimento dalla normale allo specchio.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Trenta confonde la legge θ_r=θ_i con l’uguaglianza delle direzioni dall’asse. Quindici è φ−α, non β; settantacinque è qui l’angolo dalla normale e centoventi non soddisfa la simmetria assegnata.",
+        "target": "C5-L09"
+      },
+      "coverage": [
+        "Azimut e angoli dalla normale distinti",
+        "Simmetria, settore e inverse",
+        "Medie e tarature di angoli direzionali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-plane-mirror-ray-direction-02",
+      "kind": "question",
+      "course": "C5",
+      "section": "Riflessione e direzioni nello stesso riferimento",
+      "order": 26102,
+      "title": "Quale unità per una direzione angolare?",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "plane-mirror-ray-direction",
+      "difficulty": 1,
+      "prompt": "Quale indicazione può esprimere l’angolo direzionale β di un raggio rispetto a un asse?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "gradi",
+          "cm",
+          "s",
+          "J",
+          "Bq"
+        ],
+        "value": "gradi"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Una direzione piana si può specificare con un angolo, qui misurato in gradi. L’unità SI dell’angolo è il radiante, che è adimensionale; gradi e radianti sono due scale angolari, non lunghezze o tempi. Nelle opzioni solo gradi indica una scala angolare."
+        },
+        {
+          "type": "formula",
+          "text": "180^\\circ=\\pi\\,\\mathrm{rad}"
+        },
+        {
+          "type": "text",
+          "text": "Centimetri, secondi, joule e becquerel misurano rispettivamente lunghezza, tempo, energia e attività. La scelta dell’origine degli angoli non cambia il tipo della grandezza."
+        }
+      ],
+      "hints": [
+        "Non confondere una direzione con una distanza lungo il raggio.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "Centimetri, secondi, joule e becquerel misurano rispettivamente lunghezza, tempo, energia e attività. La scelta dell’origine degli angoli non cambia il tipo della grandezza.",
+        "target": "C5-L09"
+      },
+      "coverage": [
+        "Azimut e angoli dalla normale distinti",
+        "Simmetria, settore e inverse",
+        "Medie e tarature di angoli direzionali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-plane-mirror-ray-direction-03",
+      "kind": "question",
+      "course": "C5",
+      "section": "Riflessione e direzioni nello stesso riferimento",
+      "order": 26103,
+      "title": "La legge usa la normale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "plane-mirror-ray-direction",
+      "difficulty": 1,
+      "prompt": "Caso autonomo: un raggio si riflette su uno specchio piano ideale. θ_i e θ_r sono gli angoli non orientati fra i raggi e la normale nel punto d’incidenza, nello stesso piano. Quale relazione è corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "θ_r = θ_i",
+          "θ_r = 2 θ_i",
+          "θ_r = θ_i / 2",
+          "θ_r + θ_i = 90° in ogni caso",
+          "Gli angoli vanno sempre misurati dalla superficie"
+        ],
+        "value": "θ_r = θ_i"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La legge speculare uguaglia gli angoli dalla normale, con raggio incidente e riflesso nello stesso piano normale alla superficie. Non impone l’uguaglianza di due azimut misurati da un asse esterno. Anche misurando entrambi dalla superficie si ottengono complementi uguali, ma la definizione della legge qui adottata è quella dalla normale."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/5e31b63099198cfa8a364b3d0662ddf5bcc5e72021bea79b7a17a5922b4a4146",
+          "text": "Il primo pannello illustra la distinzione fra direzioni dall’asse e angoli dalla normale. La freccia incidente arriva allo specchio, quella riflessa se ne allontana; i due raggi appartengono allo stesso semipiano rispetto allo specchio."
+        },
+        {
+          "type": "formula",
+          "text": "\\theta_r=\\theta_i"
+        },
+        {
+          "type": "text",
+          "text": "Raddoppiare o dimezzare non conserva la simmetria. La somma vale 90° soltanto nel caso particolare di due angoli da 45°, non sempre. L’ultima opzione sostituisce la superficie alla normale richiesta."
+        }
+      ],
+      "hints": [
+        "Segna la normale prima di associare un nome a ciascun angolo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Raddoppiare o dimezzare non conserva la simmetria. La somma vale 90° soltanto nel caso particolare di due angoli da 45°, non sempre. L’ultima opzione sostituisce la superficie alla normale richiesta.",
+        "target": "C5-L09"
+      },
+      "coverage": [
+        "Azimut e angoli dalla normale distinti",
+        "Simmetria, settore e inverse",
+        "Medie e tarature di angoli direzionali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-plane-mirror-ray-direction-04",
+      "kind": "question",
+      "course": "C5",
+      "section": "Riflessione e direzioni nello stesso riferimento",
+      "order": 26104,
+      "title": "Ruotare lo specchio, lasciare fermo il raggio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "plane-mirror-ray-direction",
+      "difficulty": 1,
+      "prompt": "Nel piano cartesiano la direzione positiva degli angoli è antioraria dall’asse orizzontale verso destra. La retta di uno specchio piano ha direzione φ; il vettore di propagazione incidente, rivolto verso lo specchio, ha direzione α. Si assume 0<α<φ<90°. La direzione β del vettore riflesso è nello stesso riferimento, nel ramo 0<β<180°, senza riduzioni modulo 360°. Gli angoli dalla normale, invece, si chiamano θ_i e θ_r. Si tratta di riflessione speculare fra configurazioni statiche distinte. A usa φ=45°,α=30°; B usa φ=60° e lo stesso α. Come cambia β?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 60° a 90°",
+          "Da 60° a 75°",
+          "Da 60° a 120°",
+          "Resta 60°",
+          "Da 60° a 45°"
+        ],
+        "value": "Da 60° a 90°"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La legge β=2φ−α ha coefficiente due per l’orientamento dello specchio. Ruotare la retta di 15° con propagazione incidente fissa ruota quella riflessa di 30°: da sessanta a novanta. La variazione doppia riguarda β in questo confronto, non θ_r come funzione di θ_i."
+        },
+        {
+          "type": "formula",
+          "text": "\\beta_A=60^\\circ"
+        },
+        {
+          "type": "formula",
+          "text": " \\beta_B=2\\cdot60^\\circ-30^\\circ"
+        },
+        {
+          "type": "formula",
+          "text": " \\beta_B=90^\\circ"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta\\beta=30^\\circ"
+        },
+        {
+          "type": "text",
+          "text": "Settantacinque aggiunge una sola volta la rotazione dello specchio. Centoventi omette α, sessanta ignora la nuova retta e quarantacinque ha il verso della variazione sbagliato."
+        }
+      ],
+      "hints": [
+        "Con α fisso una variazione Δφ produce Δβ=2Δφ.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Settantacinque aggiunge una sola volta la rotazione dello specchio. Centoventi omette α, sessanta ignora la nuova retta e quarantacinque ha il verso della variazione sbagliato.",
+        "target": "C5-L09"
+      },
+      "coverage": [
+        "Azimut e angoli dalla normale distinti",
+        "Simmetria, settore e inverse",
+        "Medie e tarature di angoli direzionali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-plane-mirror-ray-direction-05",
+      "kind": "question",
+      "course": "C5",
+      "section": "Riflessione e direzioni nello stesso riferimento",
+      "order": 26105,
+      "title": "Ricostruire la retta dello specchio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "plane-mirror-ray-direction",
+      "difficulty": 2,
+      "prompt": "Nel piano cartesiano la direzione positiva degli angoli è antioraria dall’asse orizzontale verso destra. La retta di uno specchio piano ha direzione φ; il vettore di propagazione incidente, rivolto verso lo specchio, ha direzione α. Si assume 0<α<φ<90°. La direzione β del vettore riflesso è nello stesso riferimento, nel ramo 0<β<180°, senza riduzioni modulo 360°. Gli angoli dalla normale, invece, si chiamano θ_i e θ_r. Si tratta di riflessione speculare fra configurazioni statiche distinte. Si conoscono β=60° e α=30°. Quanto vale φ in gradi?",
+      "answer": {
+        "type": "numeric",
+        "value": 45,
+        "unit": "gradi",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La retta dello specchio biseca le due direzioni di propagazione nel ramo scelto. Sommo sessanta e trenta e divido per due: quarantacinque gradi. Il controllo 0<30<45<90 conserva il dominio e la sostituzione restituisce β=60°."
+        },
+        {
+          "type": "formula",
+          "text": "2\\varphi=\\beta+\\alpha"
+        },
+        {
+          "type": "formula",
+          "text": " \\varphi=\\frac{\\beta+\\alpha}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\varphi=\\frac{60^\\circ+30^\\circ}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\varphi=45^\\circ"
+        },
+        {
+          "type": "text",
+          "text": "Quindici dimezza la differenza anziché la somma. Novanta omette la divisione per due e trenta copia α, portando al bordo radente escluso."
+        }
+      ],
+      "hints": [
+        "L’inversa deve recuperare una retta fra le due direzioni α e β.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quindici dimezza la differenza anziché la somma. Novanta omette la divisione per due e trenta copia α, portando al bordo radente escluso.",
+        "target": "C5-L09"
+      },
+      "coverage": [
+        "Azimut e angoli dalla normale distinti",
+        "Simmetria, settore e inverse",
+        "Medie e tarature di angoli direzionali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-plane-mirror-ray-direction-06",
+      "kind": "question",
+      "course": "C5",
+      "section": "Riflessione e direzioni nello stesso riferimento",
+      "order": 26106,
+      "title": "La propagazione prima dell’urto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "plane-mirror-ray-direction",
+      "difficulty": 2,
+      "prompt": "Nel piano cartesiano la direzione positiva degli angoli è antioraria dall’asse orizzontale verso destra. La retta di uno specchio piano ha direzione φ; il vettore di propagazione incidente, rivolto verso lo specchio, ha direzione α. Si assume 0<α<φ<90°. La direzione β del vettore riflesso è nello stesso riferimento, nel ramo 0<β<180°, senza riduzioni modulo 360°. Gli angoli dalla normale, invece, si chiamano θ_i e θ_r. Si tratta di riflessione speculare fra configurazioni statiche distinte. Sono assegnati φ=45° e β=60°. Quanto vale α in gradi?",
+      "answer": {
+        "type": "numeric",
+        "value": 30,
+        "unit": "gradi",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Porto α dall’altra parte nella simmetria β=2φ−α: α=2φ−β. Novanta meno sessanta vale trenta. Non si usa il verso opposto della semiretta incidente, che avrebbe direzione 210°: α indica il vettore che arriva allo specchio."
+        },
+        {
+          "type": "formula",
+          "text": "\\alpha=2\\varphi-\\beta"
+        },
+        {
+          "type": "formula",
+          "text": " \\alpha=90^\\circ-60^\\circ"
+        },
+        {
+          "type": "formula",
+          "text": " \\alpha=30^\\circ"
+        },
+        {
+          "type": "text",
+          "text": "Centocinquanta sommerebbe β, mentre meno trenta invertirebbe la differenza. Quindici dimezza ancora il risultato senza una legge;210° inverte il verso di propagazione incidente."
+        }
+      ],
+      "hints": [
+        "Controlla il significato orientato di α, non soltanto la retta che contiene il raggio.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Centocinquanta sommerebbe β, mentre meno trenta invertirebbe la differenza. Quindici dimezza ancora il risultato senza una legge;210° inverte il verso di propagazione incidente.",
+        "target": "C5-L09"
+      },
+      "coverage": [
+        "Azimut e angoli dalla normale distinti",
+        "Simmetria, settore e inverse",
+        "Medie e tarature di angoli direzionali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-plane-mirror-ray-direction-07",
+      "kind": "question",
+      "course": "C5",
+      "section": "Riflessione e direzioni nello stesso riferimento",
+      "order": 26107,
+      "title": "Cambiare il raggio, mantenere la retta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "plane-mirror-ray-direction",
+      "difficulty": 2,
+      "prompt": "Nel piano cartesiano la direzione positiva degli angoli è antioraria dall’asse orizzontale verso destra. La retta di uno specchio piano ha direzione φ; il vettore di propagazione incidente, rivolto verso lo specchio, ha direzione α. Si assume 0<α<φ<90°. La direzione β del vettore riflesso è nello stesso riferimento, nel ramo 0<β<180°, senza riduzioni modulo 360°. Gli angoli dalla normale, invece, si chiamano θ_i e θ_r. Si tratta di riflessione speculare fra configurazioni statiche distinte. A ha φ=45°,α=30°; B mantiene φ e usa α=15°. Quanto vale β_B/β_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "5/4",
+          "4/5",
+          "1/2",
+          "2",
+          "1"
+        ],
+        "value": "5/4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A dà sessanta gradi; B dà novanta meno quindici, cioè settantacinque. Il rapporto dei numeri delle direzioni nel riferimento fissato è 75/60=5/4. Non è il rapporto degli angoli dalla normale e dipende dall’asse adottato, che qui resta lo stesso."
+        },
+        {
+          "type": "formula",
+          "text": "\\beta_A=60^\\circ"
+        },
+        {
+          "type": "formula",
+          "text": " \\beta_B=75^\\circ"
+        },
+        {
+          "type": "formula",
+          "text": " \\beta_B/\\beta_A=\\frac54"
+        },
+        {
+          "type": "text",
+          "text": "Quattro quinti inverte B/A; un mezzo segue soltanto α, due ne inverte il fattore e uno ignora la variazione. L’offset 2φ impedisce una semplice proporzione inversa."
+        }
+      ],
+      "hints": [
+        "Usa entrambe le direzioni riflesse nello stesso riferimento.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro quinti inverte B/A; un mezzo segue soltanto α, due ne inverte il fattore e uno ignora la variazione. L’offset 2φ impedisce una semplice proporzione inversa.",
+        "target": "C5-L09"
+      },
+      "coverage": [
+        "Azimut e angoli dalla normale distinti",
+        "Simmetria, settore e inverse",
+        "Medie e tarature di angoli direzionali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-plane-mirror-ray-direction-08",
+      "kind": "question",
+      "course": "C5",
+      "section": "Riflessione e direzioni nello stesso riferimento",
+      "order": 26108,
+      "title": "Scarto angolare con segno",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "plane-mirror-ray-direction",
+      "difficulty": 2,
+      "prompt": "Nel piano cartesiano la direzione positiva degli angoli è antioraria dall’asse orizzontale verso destra. La retta di uno specchio piano ha direzione φ; il vettore di propagazione incidente, rivolto verso lo specchio, ha direzione α. Si assume 0<α<φ<90°. La direzione β del vettore riflesso è nello stesso riferimento, nel ramo 0<β<180°, senza riduzioni modulo 360°. Gli angoli dalla normale, invece, si chiamano θ_i e θ_r. Si tratta di riflessione speculare fra configurazioni statiche distinte. Per φ=45°,α=30° viene proposto β=120°. Quanto vale proposto meno corretto, in gradi?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "60",
+          "−60",
+          "120",
+          "2",
+          "0"
+        ],
+        "value": "60"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La direzione corretta è sessanta gradi. Il proposto centoventi la supera di sessanta: lo scarto nel ramo direzionale dichiarato è+60°. Il quoziente sarebbe due, una grandezza diversa dalla differenza angolare richiesta."
+        },
+        {
+          "type": "formula",
+          "text": "\\beta=60^\\circ"
+        },
+        {
+          "type": "formula",
+          "text": " \\delta\\beta=120^\\circ-60^\\circ"
+        },
+        {
+          "type": "formula",
+          "text": " \\delta\\beta=60^\\circ"
+        },
+        {
+          "type": "text",
+          "text": "−60 scambia l’ordine,120 ripete la proposta e due copia il valore numerico del rapporto. Zero non controlla la simmetria. Non si riduce lo scarto modulo 360° perché il ramo è fissato."
+        }
+      ],
+      "hints": [
+        "Sottrai nello stesso sistema di angoli e nell’ordine richiesto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−60 scambia l’ordine,120 ripete la proposta e due copia il valore numerico del rapporto. Zero non controlla la simmetria. Non si riduce lo scarto modulo 360° perché il ramo è fissato.",
+        "target": "C5-L09"
+      },
+      "coverage": [
+        "Azimut e angoli dalla normale distinti",
+        "Simmetria, settore e inverse",
+        "Medie e tarature di angoli direzionali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-plane-mirror-ray-direction-09",
+      "kind": "question",
+      "course": "C5",
+      "section": "Riflessione e direzioni nello stesso riferimento",
+      "order": 26109,
+      "title": "L’inversa simbolica conserva il ramo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "plane-mirror-ray-direction",
+      "difficulty": 2,
+      "prompt": "Nel piano cartesiano la direzione positiva degli angoli è antioraria dall’asse orizzontale verso destra. La retta di uno specchio piano ha direzione φ; il vettore di propagazione incidente, rivolto verso lo specchio, ha direzione α. Si assume 0<α<φ<90°. La direzione β del vettore riflesso è nello stesso riferimento, nel ramo 0<β<180°, senza riduzioni modulo 360°. Gli angoli dalla normale, invece, si chiamano θ_i e θ_r. Si tratta di riflessione speculare fra configurazioni statiche distinte. Con α e β note, quale formula ricostruisce φ?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "φ = (β + α) / 2",
+          "φ = (β − α) / 2",
+          "φ = β + α",
+          "φ = 2β − α",
+          "φ = α / β"
+        ],
+        "value": "φ = (β + α) / 2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Aggiungo α e divido per due. La formula è valida nel ramo geometrico dichiarato solo se β>α e β+α<180°, così φ resta fra α e 90°. La somma di angoli ha la stessa unità dei due termini e la divisione per due non la elimina."
+        },
+        {
+          "type": "formula",
+          "text": "2\\varphi=\\beta+\\alpha"
+        },
+        {
+          "type": "formula",
+          "text": " \\varphi=\\frac{\\beta+\\alpha}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\beta>\\alpha"
+        },
+        {
+          "type": "formula",
+          "text": " \\beta+\\alpha<180^\\circ"
+        },
+        {
+          "type": "text",
+          "text": "La differenza ricostruisce un altro asse, la somma non dimezzata e 2β−α non annullano il coefficiente della legge. α/β è un rapporto puro, non l’angolo cercato."
+        }
+      ],
+      "hints": [
+        "Oltre all’algebra verifica che la retta ricostruita appartenga al settore assegnato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La differenza ricostruisce un altro asse, la somma non dimezzata e 2β−α non annullano il coefficiente della legge. α/β è un rapporto puro, non l’angolo cercato.",
+        "target": "C5-L09"
+      },
+      "coverage": [
+        "Azimut e angoli dalla normale distinti",
+        "Simmetria, settore e inverse",
+        "Medie e tarature di angoli direzionali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-plane-mirror-ray-direction-10",
+      "kind": "question",
+      "course": "C5",
+      "section": "Riflessione e direzioni nello stesso riferimento",
+      "order": 26110,
+      "title": "Due fattori su angoli direzionali",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "plane-mirror-ray-direction",
+      "difficulty": 2,
+      "prompt": "Nel piano cartesiano la direzione positiva degli angoli è antioraria dall’asse orizzontale verso destra. La retta di uno specchio piano ha direzione φ; il vettore di propagazione incidente, rivolto verso lo specchio, ha direzione α. Si assume 0<α<φ<90°. La direzione β del vettore riflesso è nello stesso riferimento, nel ramo 0<β<180°, senza riduzioni modulo 360°. Gli angoli dalla normale, invece, si chiamano θ_i e θ_r. Si tratta di riflessione speculare fra configurazioni statiche distinte. Fra A e B:φ_B=κ₁φ_A e α_B=κ₂α_A; entrambe le prove mantengono 0<α<φ<90°. Qual è β_B/β_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "(2κ₁φ − κ₂α) / (2φ − α)",
+          "κ₁ / κ₂",
+          "κ₁ κ₂",
+          "(2κ₁φ + κ₂α) / (2φ + α)",
+          "κ₁ + κ₂"
+        ],
+        "value": "(2κ₁φ − κ₂α) / (2φ − α)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituisco i fattori nei due termini della differenza β. Il rapporto non si riduce a un prodotto o quoziente dei soli fattori perché φ e α entrano in una somma algebrica. Il settore deve rimanere valido anche dopo la variazione:0<κ₂α<κ₁φ<90°."
+        },
+        {
+          "type": "formula",
+          "text": "\\beta_B=2\\kappa_1\\varphi-\\kappa_2\\alpha"
+        },
+        {
+          "type": "formula",
+          "text": " R=\\frac{2\\kappa_1\\varphi-\\kappa_2\\alpha}{2\\varphi-\\alpha}"
+        },
+        {
+          "type": "text",
+          "text": "I soli fattori perdono il peso due e la sottrazione. Il segno più non rispetta la riflessione; la somma κ₁+κ₂ darebbe due per configurazioni identiche."
+        }
+      ],
+      "hints": [
+        "Non trasferire una legge di scala moltiplicativa a una differenza di angoli.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "I soli fattori perdono il peso due e la sottrazione. Il segno più non rispetta la riflessione; la somma κ₁+κ₂ darebbe due per configurazioni identiche.",
+        "target": "C5-L09"
+      },
+      "coverage": [
+        "Azimut e angoli dalla normale distinti",
+        "Simmetria, settore e inverse",
+        "Medie e tarature di angoli direzionali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-plane-mirror-ray-direction-11",
+      "kind": "question",
+      "course": "C5",
+      "section": "Riflessione e direzioni nello stesso riferimento",
+      "order": 26111,
+      "title": "Entrambi gli orientamenti cambiano",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "plane-mirror-ray-direction",
+      "difficulty": 2,
+      "prompt": "Nel piano cartesiano la direzione positiva degli angoli è antioraria dall’asse orizzontale verso destra. La retta di uno specchio piano ha direzione φ; il vettore di propagazione incidente, rivolto verso lo specchio, ha direzione α. Si assume 0<α<φ<90°. La direzione β del vettore riflesso è nello stesso riferimento, nel ramo 0<β<180°, senza riduzioni modulo 360°. Gli angoli dalla normale, invece, si chiamano θ_i e θ_r. Si tratta di riflessione speculare fra configurazioni statiche distinte. A ha φ=45°,α=30°; B ha φ=60°,α=15°. Quanto vale β_B/β_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "7/4",
+          "4/7",
+          "4/3",
+          "1/2",
+          "2"
+        ],
+        "value": "7/4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Calcolo ogni direzione: A vale 60°, B vale 120°−15°=105°. Il rapporto 105/60 si riduce a 7/4. Una β maggiore di 90° è una direzione ammessa nel secondo quadrante, non un angolo di incidenza maggiore di 90°."
+        },
+        {
+          "type": "formula",
+          "text": "\\beta_A=60^\\circ"
+        },
+        {
+          "type": "formula",
+          "text": " \\beta_B=105^\\circ"
+        },
+        {
+          "type": "formula",
+          "text": " R=\\frac{105}{60}"
+        },
+        {
+          "type": "formula",
+          "text": " R=\\frac74"
+        },
+        {
+          "type": "text",
+          "text": "4/7 inverte il confronto,4/3 segue solo φ e 1/2 solo α. Due non ricostruisce la nuova direzione 105°. Non si confondono le direzioni dall’asse con gli angoli dalla normale."
+        }
+      ],
+      "hints": [
+        "Ricava prima β in entrambe le prove, anche quando oltrepassa 90°.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "4/7 inverte il confronto,4/3 segue solo φ e 1/2 solo α. Due non ricostruisce la nuova direzione 105°. Non si confondono le direzioni dall’asse con gli angoli dalla normale.",
+        "target": "C5-L09"
+      },
+      "coverage": [
+        "Azimut e angoli dalla normale distinti",
+        "Simmetria, settore e inverse",
+        "Medie e tarature di angoli direzionali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-plane-mirror-ray-direction-12",
+      "kind": "question",
+      "course": "C5",
+      "section": "Riflessione e direzioni nello stesso riferimento",
+      "order": 26112,
+      "title": "Media aritmetica nel riferimento fissato",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "plane-mirror-ray-direction",
+      "difficulty": 2,
+      "prompt": "Nel piano cartesiano la direzione positiva degli angoli è antioraria dall’asse orizzontale verso destra. La retta di uno specchio piano ha direzione φ; il vettore di propagazione incidente, rivolto verso lo specchio, ha direzione α. Si assume 0<α<φ<90°. La direzione β del vettore riflesso è nello stesso riferimento, nel ramo 0<β<180°, senza riduzioni modulo 360°. Gli angoli dalla normale, invece, si chiamano θ_i e θ_r. Si tratta di riflessione speculare fra configurazioni statiche distinte. A ha φ=45°,α=30°; B ha φ=60°,α=15°. Qual è la media aritmetica delle due β, in gradi?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "165/2",
+          "165",
+          "45/2",
+          "60",
+          "105"
+        ],
+        "value": "165/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le direzioni nel ramo fissato sono sessanta e centocinque gradi. La loro semisomma vale 165/2°. Qui la legge lineare negli angoli fa coincidere questa media con 2φ_m−α_m usando φ_m=105/2° e α_m=45/2°. La richiesta è una statistica degli angoli nello stesso riferimento, non un calcolo di potenza o intensità del fascio."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/5e31b63099198cfa8a364b3d0662ddf5bcc5e72021bea79b7a17a5922b4a4146",
+          "text": "Le barre centrali rappresentano β_A=60°,β_B=105° e media 165/2° con origine e scala comuni. Il grafico inferiore riguarda invece soltanto α=30° fissato; non va usato per una configurazione con α=15°."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline\\beta=\\frac{60+105}{2}\\,{}^\\circ"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline\\beta=\\frac{165}{2}\\,{}^\\circ"
+        },
+        {
+          "type": "formula",
+          "text": " \\varphi_m=\\frac{105}{2}\\,{}^\\circ"
+        },
+        {
+          "type": "formula",
+          "text": " \\alpha_m=\\frac{45}{2}\\,{}^\\circ"
+        },
+        {
+          "type": "text",
+          "text": "165 somma senza mediare;45/2 è la semidifferenza e 60 o 105 ripete una sola configurazione. Non si inventa una differenza fra le due operazioni quando la legge è lineare."
+        }
+      ],
+      "hints": [
+        "Gli angoli sono sullo stesso ramo: non c’è un salto attraverso 360° da trattare.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "165 somma senza mediare;45/2 è la semidifferenza e 60 o 105 ripete una sola configurazione. Non si inventa una differenza fra le due operazioni quando la legge è lineare.",
+        "target": "C5-L09"
+      },
+      "coverage": [
+        "Azimut e angoli dalla normale distinti",
+        "Simmetria, settore e inverse",
+        "Medie e tarature di angoli direzionali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-plane-mirror-ray-direction-13",
+      "kind": "question",
+      "course": "C5",
+      "section": "Riflessione e direzioni nello stesso riferimento",
+      "order": 26113,
+      "title": "Il raggio incidente richiesto dal target",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "plane-mirror-ray-direction",
+      "difficulty": 3,
+      "prompt": "Nel piano cartesiano la direzione positiva degli angoli è antioraria dall’asse orizzontale verso destra. La retta di uno specchio piano ha direzione φ; il vettore di propagazione incidente, rivolto verso lo specchio, ha direzione α. Si assume 0<α<φ<90°. La direzione β del vettore riflesso è nello stesso riferimento, nel ramo 0<β<180°, senza riduzioni modulo 360°. Gli angoli dalla normale, invece, si chiamano θ_i e θ_r. Si tratta di riflessione speculare fra configurazioni statiche distinte. A usa φ=45°,α_A=30°. In B si fissa φ=60° e si vuole β_B=(7/4)β_A. Quanto vale α_B/α_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "2",
+          "7/4",
+          "4/7",
+          "1"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il target riflesso è 105°. Con la nuova retta a 60° l’inversa dà α_B=120°−105°=15°. Divido per i 30° iniziali e ottengo un mezzo;15° resta strettamente fra zero e 60°."
+        },
+        {
+          "type": "formula",
+          "text": "\\beta_B=105^\\circ"
+        },
+        {
+          "type": "formula",
+          "text": " \\alpha_B=120^\\circ-105^\\circ"
+        },
+        {
+          "type": "formula",
+          "text": " \\alpha_B=15^\\circ"
+        },
+        {
+          "type": "formula",
+          "text": " \\alpha_B/\\alpha_A=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Due inverte il confronto;7/4 e 4/7 appartengono alle uscite. Uno lascerebbe α_B=30° e darebbe β_B=90°, non 105°."
+        }
+      ],
+      "hints": [
+        "Il target va combinato con la nuova retta prima di fare il rapporto degli ingressi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due inverte il confronto;7/4 e 4/7 appartengono alle uscite. Uno lascerebbe α_B=30° e darebbe β_B=90°, non 105°.",
+        "target": "C5-L09"
+      },
+      "coverage": [
+        "Azimut e angoli dalla normale distinti",
+        "Simmetria, settore e inverse",
+        "Medie e tarature di angoli direzionali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-plane-mirror-ray-direction-14",
+      "kind": "question",
+      "course": "C5",
+      "section": "Riflessione e direzioni nello stesso riferimento",
+      "order": 26114,
+      "title": "Un display dell’azimut",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "plane-mirror-ray-direction",
+      "difficulty": 3,
+      "prompt": "Nel piano cartesiano la direzione positiva degli angoli è antioraria dall’asse orizzontale verso destra. La retta di uno specchio piano ha direzione φ; il vettore di propagazione incidente, rivolto verso lo specchio, ha direzione α. Si assume 0<α<φ<90°. La direzione β del vettore riflesso è nello stesso riferimento, nel ramo 0<β<180°, senza riduzioni modulo 360°. Gli angoli dalla normale, invece, si chiamano θ_i e θ_r. Si tratta di riflessione speculare fra configurazioni statiche distinte. D=gβ senza offset legge 180 quando φ=45°,α=30°. Poi legge 315 con α=15°. Quanto vale il nuovo φ in gradi?",
+      "answer": {
+        "type": "numeric",
+        "value": 60,
+        "unit": "gradi",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento β=60° fissa g=3 per grado. La lettura 315 indica β=105°. Dall’inversa φ=(β+α)/2 ricavo(105°+15°)/2=60°. Il guadagno riguarda il display numerico, non una rotazione dello specchio."
+        },
+        {
+          "type": "formula",
+          "text": "g=3\\,({}^\\circ)^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " \\beta=105^\\circ"
+        },
+        {
+          "type": "formula",
+          "text": " \\varphi=\\frac{105^\\circ+15^\\circ}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\varphi=60^\\circ"
+        },
+        {
+          "type": "text",
+          "text": "165° tratterebbe il display come angolo e uscirebbe dal settore φ<90°. Quarantacinque ripete la retta precedente; centocinque è β e non φ."
+        }
+      ],
+      "hints": [
+        "Decodifica la direzione prima di ricostruire la bisettrice.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "165° tratterebbe il display come angolo e uscirebbe dal settore φ<90°. Quarantacinque ripete la retta precedente; centocinque è β e non φ.",
+        "target": "C5-L09"
+      },
+      "coverage": [
+        "Azimut e angoli dalla normale distinti",
+        "Simmetria, settore e inverse",
+        "Medie e tarature di angoli direzionali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-plane-mirror-ray-direction-15",
+      "kind": "question",
+      "course": "C5",
+      "section": "Riflessione e direzioni nello stesso riferimento",
+      "order": 26115,
+      "title": "Guadagno e offset prima dell’inversa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "plane-mirror-ray-direction",
+      "difficulty": 3,
+      "prompt": "Nel piano cartesiano la direzione positiva degli angoli è antioraria dall’asse orizzontale verso destra. La retta di uno specchio piano ha direzione φ; il vettore di propagazione incidente, rivolto verso lo specchio, ha direzione α. Si assume 0<α<φ<90°. La direzione β del vettore riflesso è nello stesso riferimento, nel ramo 0<β<180°, senza riduzioni modulo 360°. Gli angoli dalla normale, invece, si chiamano θ_i e θ_r. Si tratta di riflessione speculare fra configurazioni statiche distinte. D=gβ+b. A:φ=45°,α=30°,D=121. B:φ=60°,α=15°,D=211. C:α=30°,D=181. Quanto vale φ_C in gradi?",
+      "answer": {
+        "type": "numeric",
+        "value": 60,
+        "unit": "gradi",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti fisici sono β=60° e 105°. Le differenze danno g=90/45=2 per grado; segue b=1. La lettura 181 indica β_C=90°. Con α=30° la retta ricostruita è(90°+30°)/2=60°."
+        },
+        {
+          "type": "formula",
+          "text": "g=\\frac{211-121}{105-60}\\,({}^\\circ)^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " g=2\\,({}^\\circ)^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " \\beta_C=90^\\circ"
+        },
+        {
+          "type": "formula",
+          "text": " \\varphi_C=60^\\circ"
+        },
+        {
+          "type": "text",
+          "text": "241/4° ometterebbe l’offset:β_C=181/2° e φ_C=(181/2+30)/2°.105° ometterebbe il guadagno dopo b e violerebbe φ<90°. Novanta copia β_C senza l’inversa."
+        }
+      ],
+      "hints": [
+        "Trova prima due valori fisici di β per identificare la taratura.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "241/4° ometterebbe l’offset:β_C=181/2° e φ_C=(181/2+30)/2°.105° ometterebbe il guadagno dopo b e violerebbe φ<90°. Novanta copia β_C senza l’inversa.",
+        "target": "C5-L09"
+      },
+      "coverage": [
+        "Azimut e angoli dalla normale distinti",
+        "Simmetria, settore e inverse",
+        "Medie e tarature di angoli direzionali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-plane-mirror-ray-direction-16",
+      "kind": "question",
+      "course": "C5",
+      "section": "Riflessione e direzioni nello stesso riferimento",
+      "order": 26116,
+      "title": "Il vincolo unisce le due direzioni",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "plane-mirror-ray-direction",
+      "difficulty": 3,
+      "prompt": "Nel piano cartesiano la direzione positiva degli angoli è antioraria dall’asse orizzontale verso destra. La retta di uno specchio piano ha direzione φ; il vettore di propagazione incidente, rivolto verso lo specchio, ha direzione α. Si assume 0<α<φ<90°. La direzione β del vettore riflesso è nello stesso riferimento, nel ramo 0<β<180°, senza riduzioni modulo 360°. Gli angoli dalla normale, invece, si chiamano θ_i e θ_r. Si tratta di riflessione speculare fra configurazioni statiche distinte. Si impone φ=(3/2)α e si misura β=60°. Quanto vale α in gradi?",
+      "answer": {
+        "type": "numeric",
+        "value": 30,
+        "unit": "gradi",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituisco il vincolo inβ=2φ−α: due volte 3α/2 meno α vale 2α. La misura fissa α=30° e quindi φ=45°. Il dato assoluto non è ridondante; la soluzione rispetta il settore senza ricorrere a rami periodici."
+        },
+        {
+          "type": "formula",
+          "text": "\\beta=2\\left(\\frac32\\alpha\\right)-\\alpha"
+        },
+        {
+          "type": "formula",
+          "text": " \\beta=2\\alpha"
+        },
+        {
+          "type": "formula",
+          "text": " \\alpha=30^\\circ"
+        },
+        {
+          "type": "formula",
+          "text": " \\varphi=45^\\circ"
+        },
+        {
+          "type": "text",
+          "text": "Sessanta omette il coefficiente due e porterebbe φ al bordo 90°, escluso. Quindici introdurrebbe un altro dimezzamento e non ricostruirebbe β. Infinite soluzioni richiederebbero che la misura non fissasse α, cosa che qui non accade."
+        }
+      ],
+      "hints": [
+        "Sostituisci il vincolo nella legge prima di decidere unicità e settore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Sessanta omette il coefficiente due e porterebbe φ al bordo 90°, escluso. Quindici introdurrebbe un altro dimezzamento e non ricostruirebbe β. Infinite soluzioni richiederebbero che la misura non fissasse α, cosa che qui non accade.",
+        "target": "C5-L09"
+      },
+      "coverage": [
+        "Azimut e angoli dalla normale distinti",
+        "Simmetria, settore e inverse",
+        "Medie e tarature di angoli direzionali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "5e31b63099198cfa8a364b3d0662ddf5bcc5e72021bea79b7a17a5922b4a4146",
+      "name": "plane-mirror-ray-direction-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTc0MCIgdmlld0JveD0iMCAwIDY0MCAxNzQwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyIgZm9udC1mYW1pbHk9InN5c3RlbS11aSwgc2Fucy1zZXJpZiI+PHRpdGxlIGlkPSJ0aXRsZSI+UmlmbGVzc2lvbmU6IGRpcmV6aW9uaSBlIG5vcm1hbGU8L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5OZWwgcGlhbm8sIHZldHRvcmUgaW5jaWRlbnRlIGEgdHJlbnRhIGdyYWRpIGUgcmlmbGVzc28gYSBzZXNzYW50YSByaXNwZXR0byBhbGzigJlvcml6em9udGFsZSwgc3Ugc3BlY2NoaW8gYSBxdWFyYW50YWNpbnF1ZS4gU2VndW9ubyBiYXJyZSBkaSBkaXJlemlvbmkgZSBncmFmaWNvIGNvbiBpbmNpZGVuemEgZGlyZXppb25hbGUgZmlzc2EuPC9kZXNjPjxkZWZzPjxtYXJrZXIgaWQ9ImFyciIgdmlld0JveD0iMCAwIDEwIDEwIiByZWZYPSI5IiByZWZZPSI1IiBtYXJrZXJXaWR0aD0iNSIgbWFya2VySGVpZ2h0PSI1IiBvcmllbnQ9ImF1dG8tc3RhcnQtcmV2ZXJzZSI+PHBhdGggZD0iTTAgMEwxMCA1TDAgMTBaIiBmaWxsPSIjMzA2ZjhjIi8+PC9tYXJrZXI+PC9kZWZzPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSI2NDAiIGhlaWdodD0iMTc0MCIgZmlsbD0id2hpdGUiLz48dGV4dCB4PSIzNSIgeT0iNDgiIGZvbnQtc2l6ZT0iMjUiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+RGFsbOKAmWFzc2Ugb3BwdXJlIGRhbGxhIG5vcm1hbGU/PC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSIxMDUiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+MSDCtyBVbmEgcmlmbGVzc2lvbmUgbmVsIHBpYW5vPC90ZXh0PjxsaW5lIHgxPSI4MCIgeTE9IjMyMCIgeDI9IjU2MCIgeTI9IjMyMCIgc3Ryb2tlPSIjOGU5Y2E0IiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1kYXNoYXJyYXk9IjYgNSIvPjxwYXRoIGQ9Ik0zMDAgMzIwTDU1MCAzMjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzMwNmY4YyIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2FycikiLz48bGluZSB4MT0iMTYwIiB5MT0iNDYwIiB4Mj0iNDQwIiB5Mj0iMTgwIiBzdHJva2U9IiMyMDMyNDciIHN0cm9rZS13aWR0aD0iNCIvPjxsaW5lIHgxPSIxODAiIHkxPSIyMDAiIHgyPSI0MjAiIHkyPSI0NDAiIHN0cm9rZT0iIzhlOWNhNCIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtZGFzaGFycmF5PSI3IDYiLz48cGF0aCBkPSJNMTQ0LjExNTQyNzMxODgwMTA0IDQxMEwzMDAgMzIwIiBmaWxsPSJub25lIiBzdHJva2U9IiMzMDZmOGMiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnIpIi8+PHBhdGggZD0iTTMwMCAzMjBMMzkwIDE2NC4xMTU0MjczMTg4MDEwNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMzA2ZjhjIiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjYXJyKSIvPjx0ZXh0IHg9IjQyNSIgeT0iMTYwIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPs+GID0gNDXCsDwvdGV4dD48dGV4dCB4PSI3NSIgeT0iNDUwIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPs6xID0gMzDCsDwvdGV4dD48dGV4dCB4PSI0MTAiIHk9IjIyMCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij7OsiA9IDYwwrA8L3RleHQ+PHRleHQgeD0iNDAwIiB5PSI0ODUiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+bm9ybWFsZTwvdGV4dD48dGV4dCB4PSI1NDAiIHk9IjM1NSIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij4reDwvdGV4dD48dGV4dCB4PSIzNSIgeT0iNTUwIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPs64X2kgPSDOuF9yID0gNzXCsDogYW5nb2xpIGRhbGxhIG5vcm1hbGUuPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSI1OTAiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+zrEgZSDOsiBpbmRpY2FubyBpbnZlY2UgdmV0dG9yaSBkaSBwcm9wYWdhemlvbmUuPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSI2NjUiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+MiDCtyBEdWUgZGlyZXppb25pIGUgbGEgbG9ybyBtZWRpYTwvdGV4dD48dGV4dCB4PSIxMzAiIHk9Ijc1NyIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9ImVuZCI+QTwvdGV4dD48cmVjdCB4PSIxNTAiIHk9IjczNSIgd2lkdGg9IjE4MCIgaGVpZ2h0PSIzMCIgZmlsbD0iIzNkNzc5MSIvPjx0ZXh0IHg9IjM0MCIgeT0iNzU5IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjYwwrA8L3RleHQ+PHRleHQgeD0iMTMwIiB5PSI4NTciIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJlbmQiPkI8L3RleHQ+PHJlY3QgeD0iMTUwIiB5PSI4MzUiIHdpZHRoPSIzMTUiIGhlaWdodD0iMzAiIGZpbGw9IiM5ODZjMzUiLz48dGV4dCB4PSI0NzUiIHk9Ijg1OSIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij4xMDXCsDwvdGV4dD48dGV4dCB4PSIxMzAiIHk9Ijk1NyIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9ImVuZCI+bWVkaWE8L3RleHQ+PHJlY3QgeD0iMTUwIiB5PSI5MzUiIHdpZHRoPSIyNDcuNSIgaGVpZ2h0PSIzMCIgZmlsbD0iIzYzN2U1NSIvPjx0ZXh0IHg9IjQwNy41IiB5PSI5NTkiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+MTY1LzLCsDwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMTAzMCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5BOiAoz4YszrEpID0gKDQ1wrAsMzDCsCkgwrcgQjogKDYwwrAsMTXCsCk8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjExMjAiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+MyDCtyBTb2xvIM6xID0gMzDCsDsgMzDCsCAmbHQ7IM+GICZsdDsgOTDCsDwvdGV4dD48bGluZSB4MT0iMTUwIiB5MT0iMTUzMCIgeDI9IjU2MCIgeTI9IjE1MzAiIHN0cm9rZT0iIzUyNjQ3NCIgc3Ryb2tlLXdpZHRoPSIyIi8+PGxpbmUgeDE9IjE1MCIgeTE9IjE1MzAiIHgyPSIxNTAiIHkyPSIxMTgwIiBzdHJva2U9IiM1MjY0NzQiIHN0cm9rZS13aWR0aD0iMiIvPjxsaW5lIHgxPSIyNzAiIHkxPSIxNDcwIiB4Mj0iNTEwIiB5Mj0iMTIzMCIgc3Ryb2tlPSIjMzA2ZjhjIiBzdHJva2Utd2lkdGg9IjIiLz48Y2lyY2xlIGN4PSIyNzAiIGN5PSIxNDcwIiByPSI1IiBmaWxsPSJ3aGl0ZSIgc3Ryb2tlPSIjMzA2ZjhjIiBzdHJva2Utd2lkdGg9IjIiLz48Y2lyY2xlIGN4PSI1MTAiIGN5PSIxMjMwIiByPSI1IiBmaWxsPSJ3aGl0ZSIgc3Ryb2tlPSIjMzA2ZjhjIiBzdHJva2Utd2lkdGg9IjIiLz48Y2lyY2xlIGN4PSIzMzAiIGN5PSIxNDEwIiByPSI1IiBmaWxsPSIjMjY2Yjg5Ii8+PGNpcmNsZSBjeD0iMzkwIiBjeT0iMTM1MCIgcj0iNSIgZmlsbD0iIzI2NmI4OSIvPjxsaW5lIHgxPSIyNzAiIHkxPSIxNTI0IiB4Mj0iMjcwIiB5Mj0iMTUzNiIgc3Ryb2tlPSIjNTI2NDc0IiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSIyNzAiIHk9IjE1NzIiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJtaWRkbGUiPjMwPC90ZXh0PjxsaW5lIHgxPSIzMzAiIHkxPSIxNTI0IiB4Mj0iMzMwIiB5Mj0iMTUzNiIgc3Ryb2tlPSIjNTI2NDc0IiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSIzMzAiIHk9IjE1NzIiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJtaWRkbGUiPjQ1PC90ZXh0PjxsaW5lIHgxPSIzOTAiIHkxPSIxNTI0IiB4Mj0iMzkwIiB5Mj0iMTUzNiIgc3Ryb2tlPSIjNTI2NDc0IiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSIzOTAiIHk9IjE1NzIiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJtaWRkbGUiPjYwPC90ZXh0PjxsaW5lIHgxPSI1MTAiIHkxPSIxNTI0IiB4Mj0iNTEwIiB5Mj0iMTUzNiIgc3Ryb2tlPSIjNTI2NDc0IiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSI1MTAiIHk9IjE1NzIiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJtaWRkbGUiPjkwPC90ZXh0PjxsaW5lIHgxPSIxNDQiIHkxPSIxNDEwIiB4Mj0iMTU2IiB5Mj0iMTQxMCIgc3Ryb2tlPSIjNTI2NDc0IiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSIxMzIiIHk9IjE0MTYiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJlbmQiPjYwPC90ZXh0PjxsaW5lIHgxPSIxNDQiIHkxPSIxMzUwIiB4Mj0iMTU2IiB5Mj0iMTM1MCIgc3Ryb2tlPSIjNTI2NDc0IiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSIxMzIiIHk9IjEzNTYiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJlbmQiPjkwPC90ZXh0PjxsaW5lIHgxPSIxNDQiIHkxPSIxMjMwIiB4Mj0iMTU2IiB5Mj0iMTIzMCIgc3Ryb2tlPSIjNTI2NDc0IiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSIxMzIiIHk9IjEyMzYiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJlbmQiPjE1MDwvdGV4dD48dGV4dCB4PSIxNzAiIHk9IjExOTAiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+zrIgKGdyYWRpKTwvdGV4dD48dGV4dCB4PSI0ODUiIHk9IjE2MjAiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+z4YgKGdyYWRpKTwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMTY5MCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5HbGkgZXN0cmVtaSBhcGVydGkgc29ubyBib3JkaSBlc2NsdXNpIGRlbCBzZXR0b3JlLjwvdGV4dD48L3N2Zz4K"
+    }
+  ]
+}
