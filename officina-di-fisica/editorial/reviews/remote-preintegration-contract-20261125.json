@@ -1,0 +1,44 @@
+{
+  "schemaVersion": "1.0.0",
+  "purpose": "INDEPENDENT_TECHNICAL_REVIEW_OF_REMOTE_PREPARATION_NOT_SCIENTIFIC_APPROVAL",
+  "author": "root",
+  "independentReviewer": "author_vectors_b",
+  "files": {
+    ".github/workflows/cric-preintegration-evidence.yml": "2c351f03f5664429945b3c35f97183fb2e73633eaa166ccaf669764b66b8457d",
+    ".github/cric-preintegration-request.json": "35c712a0b961a1fe901f2d9b9101b6387f94a18f36656f339bfe9ee8905bc8d6",
+    ".github/schemas/cric-preintegration-request-v1.schema.json": "1ce1d4a257a3fd4ef5f6852c492704ea928462dca02eaa9ca932a438093ee349",
+    "officina-di-fisica/tools/corpus_engineering/persist_previews.mjs": "75dac9bc8c737a9e126feb61a85634c89e62ddc13958b419cb978ca5608dc651"
+  },
+  "findings": [
+    {
+      "issue": "Missing explicit requested three-protocol pins",
+      "status": "CLOSED_INDEPENDENT_REREAD"
+    },
+    {
+      "issue": "Producer API provenance absent from always-upload on intermediate failure",
+      "status": "CLOSED_INDEPENDENT_REREAD"
+    }
+  ],
+  "sourceFetchStepAfterGithubEnv": true,
+  "deliveryCopiesCurrentEpochOnly": true,
+  "actualIndependentVerifierRefresh": true,
+  "publicationAction": "NONE",
+  "humanApproval": "NOT_RUN",
+  "requiredCIUnchanged": true,
+  "existingHelperTests": {
+    "count": 36,
+    "pass": 36,
+    "fail": 0,
+    "durationMs": 14781.36225,
+    "transcriptSha256": "2dcc37c892a3aa0b08e03fd7d5b6c04a1ad7f0de4c57ca8159bc77bc355e5bdf",
+    "transcript": "TAP version 13\n# Subtest: a second run reuses completed identical batches instead of spawning renderers again\nok 1 - a second run reuses completed identical batches instead of spawning renderers again\n  ---\n  duration_ms: 328.701916\n  ...\n# Subtest: a report written before terminal exit is not a completion marker\nok 2 - a report written before terminal exit is not a completion marker\n  ---\n  duration_ms: 929.2245\n  ...\n# Subtest: absent or nonterminal markers always rerender\nok 3 - absent or nonterminal markers always rerender\n  ---\n  duration_ms: 843.27325\n  ...\n# Subtest: nonzero exit after a complete passing report never writes a marker\nok 4 - nonzero exit after a complete passing report never writes a marker\n  ---\n  duration_ms: 539.406667\n  ...\n# Subtest: exit zero without a fresh report cannot certify an old report\nok 5 - exit zero without a fresh report cannot certify an old report\n  ---\n  duration_ms: 402.158292\n  ...\n# Subtest: terminal exit zero rejects invalid evidence: duplicate\nok 6 - terminal exit zero rejects invalid evidence: duplicate\n  ---\n  duration_ms: 201.87175\n  ...\n# Subtest: terminal exit zero rejects invalid evidence: missing\nok 7 - terminal exit zero rejects invalid evidence: missing\n  ---\n  duration_ms: 172.967458\n  ...\n# Subtest: terminal exit zero rejects invalid evidence: unknown-id\nok 8 - terminal exit zero rejects invalid evidence: unknown-id\n  ---\n  duration_ms: 175.233667\n  ...\n# Subtest: terminal exit zero rejects invalid evidence: violation\nok 9 - terminal exit zero rejects invalid evidence: violation\n  ---\n  duration_ms: 177.487167\n  ...\n# Subtest: terminal exit zero rejects invalid evidence: overflow\nok 10 - terminal exit zero rejects invalid evidence: overflow\n  ---\n  duration_ms: 177.792417\n  ...\n# Subtest: terminal exit zero rejects invalid evidence: formula\nok 11 - terminal exit zero rejects invalid evidence: formula\n  ---\n  duration_ms: 170.931208\n  ...\n# Subtest: terminal exit zero rejects invalid evidence: nonfinite\nok 12 - terminal exit zero rejects invalid evidence: nonfinite\n  ---\n  duration_ms: 171.763209\n  ...\n# Subtest: terminal exit zero rejects invalid evidence: missing-formula\nok 13 - terminal exit zero rejects invalid evidence: missing-formula\n  ---\n  duration_ms: 163.485917\n  ...\n# Subtest: terminal exit zero rejects invalid evidence: missing-figure\nok 14 - terminal exit zero rejects invalid evidence: missing-figure\n  ---\n  duration_ms: 167.82425\n  ...\n# Subtest: package changes invalidate only their own batch\nok 15 - package changes invalidate only their own batch\n  ---\n  duration_ms: 444.353417\n  ...\n# Subtest: changed input invalidates completed batches: static/renderer.js\nok 16 - changed input invalidates completed batches: static/renderer.js\n  ---\n  duration_ms: 519.772625\n  ...\n# Subtest: changed input invalidates completed batches: tests/corpus/browser-drafts.mjs\nok 17 - changed input invalidates completed batches: tests/corpus/browser-drafts.mjs\n  ---\n  duration_ms: 427.094333\n  ...\n# Subtest: changed input invalidates completed batches: tools/corpus_engineering/runtime_fingerprint.py\nok 18 - changed input invalidates completed batches: tools/corpus_engineering/runtime_fingerprint.py\n  ---\n  duration_ms: 391.330459\n  ...\n# Subtest: changed input invalidates completed batches: tests/corpus/browser-batches.mjs\nok 19 - changed input invalidates completed batches: tests/corpus/browser-batches.mjs\n  ---\n  duration_ms: 393.707292\n  ...\n# Subtest: changed input invalidates completed batches: tests/corpus/browser-batches-resume.mjs\nok 20 - changed input invalidates completed batches: tests/corpus/browser-batches-resume.mjs\n  ---\n  duration_ms: 390.812083\n  ...\n# Subtest: report bytes are bound even when JSON meaning is unchanged\nok 21 - report bytes are bound even when JSON meaning is unchanged\n  ---\n  duration_ms: 403.618167\n  ...\n# Subtest: rebound report hashes cannot disguise duplicate coverage\nok 22 - rebound report hashes cannot disguise duplicate coverage\n  ---\n  duration_ms: 418.658084\n  ...\n# Subtest: registry additions deny global success but retain valid individual markers\nok 23 - registry additions deny global success but retain valid individual markers\n  ---\n  duration_ms: 408.332334\n  ...\n# Subtest: a cached package changed during another batch denies global success\nok 24 - a cached package changed during another batch denies global success\n  ---\n  duration_ms: 675.094292\n  ...\n# Subtest: activity revision packages use the same markers and duplicate IDs are rejected\nok 25 - activity revision packages use the same markers and duplicate IDs are rejected\n  ---\n  duration_ms: 369.995458\n  ...\n# Subtest: bounded workers keep real processes concurrent without exceeding the chosen limit\nok 26 - bounded workers keep real processes concurrent without exceeding the chosen limit\n  ---\n  duration_ms: 790.429208\n  ...\n# Subtest: renewing the report hash cannot hide invalid package digest\nok 27 - renewing the report hash cannot hide invalid package digest\n  ---\n  duration_ms: 383.893375\n  ...\n# Subtest: renewing the report hash cannot hide invalid protocol digest\nok 28 - renewing the report hash cannot hide invalid protocol digest\n  ---\n  duration_ms: 387.755375\n  ...\n# Subtest: renewing the report hash cannot hide invalid runtime file map\nok 29 - renewing the report hash cannot hide invalid runtime file map\n  ---\n  duration_ms: 384.820625\n  ...\n# Subtest: renewing the report hash cannot hide invalid protected assets\nok 30 - renewing the report hash cannot hide invalid protected assets\n  ---\n  duration_ms: 452.900583\n  ...\n# Subtest: renewing the report hash cannot hide invalid unsupported viewport\nok 31 - renewing the report hash cannot hide invalid unsupported viewport\n  ---\n  duration_ms: 396.555125\n  ...\n# Subtest: renewing the report hash cannot hide invalid missing rendered formula\nok 32 - renewing the report hash cannot hide invalid missing rendered formula\n  ---\n  duration_ms: 390.80475\n  ...\n# Subtest: renewing the report hash cannot hide invalid invalid formula dimensions\nok 33 - renewing the report hash cannot hide invalid invalid formula dimensions\n  ---\n  duration_ms: 405.618375\n  ...\n# Subtest: all four permitted workers render and then reuse their own evidence\nok 34 - all four permitted workers render and then reuse their own evidence\n  ---\n  duration_ms: 763.913167\n  ...\n# Subtest: question registry IDs must exactly match the package before render and on resume\nok 35 - question registry IDs must exactly match the package before render and on resume\n  ---\n  duration_ms: 404.603208\n  ...\n# Subtest: activity revision candidates must belong to the declared activity IDs, including on resume\nok 36 - activity revision candidates must belong to the declared activity IDs, including on resume\n  ---\n  duration_ms: 488.171833\n  ...\n1..36\n# tests 36\n# suites 0\n# pass 36\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 14781.36225\n"
+  },
+  "realPartialArchiveTest": {
+    "completedBatches": 174,
+    "completedCases": 7827,
+    "standardPromotionRejected": true,
+    "controlReportPreservedSha256": "e0b210d365bbe060b2e117f858e75c32011825f77158bb352f503ea2426c5231"
+  },
+  "remotePreintegrationStatus": "NOT_RUN",
+  "completionCredit": 0
+}

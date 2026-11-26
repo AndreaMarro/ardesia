@@ -1,0 +1,82 @@
+{
+  "phase": "SCENE_GRAPH_FOLLOWUP_NOT_NEW_UI_EVIDENCE",
+  "runtimeSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+  "sourceIds": [
+    "SIM-C2-L003-02",
+    "SIM-C2-L003-03"
+  ],
+  "pressa": {
+    "status": "PRESENTATION_QUESTION_AWAITING_ACTUAL_UI",
+    "physicalForceGain": 4,
+    "sourceTaskIncludesForceComparison": true,
+    "actualLegend": "L’area si misura sulla faccia perpendicolare alla forza",
+    "actualSecondaryReadingLabel": "Rapporto delle forze",
+    "samples": [
+      {
+        "actualAssignedInputCm": 4,
+        "sceneLengths": {
+          "red": 0.3599999999999999,
+          "green": 0.7000000000000002
+        },
+        "actualForceReadoutGain": 4,
+        "sceneLengthRatio": 1.9444444444444455,
+        "greenTip": [
+          1.15,
+          2.5500000000000003,
+          0
+        ],
+        "fourA1Label": {
+          "kind": "label",
+          "p": [
+            1.15,
+            2.65,
+            0
+          ],
+          "text": "4 A₁",
+          "c": 3484994
+        }
+      },
+      {
+        "actualAssignedInputCm": 6,
+        "sceneLengths": {
+          "red": 0.3599999999999999,
+          "green": 0.7000000000000002
+        },
+        "actualForceReadoutGain": 4,
+        "sceneLengthRatio": 1.9444444444444455,
+        "greenTip": [
+          1.15,
+          2.6,
+          0
+        ],
+        "fourA1Label": {
+          "kind": "label",
+          "p": [
+            1.15,
+            2.65,
+            0
+          ],
+          "text": "4 A₁",
+          "c": 3484994
+        }
+      }
+    ],
+    "limit": "Scene vectors are measured, but no new UI/viewport/occlusion or quantitative-versus-directional presentation judgment is certified here."
+  },
+  "vasca": {
+    "status": "EXACT_SHARED_GEOMETRY_WITH_HISTORICAL_NEGATIVE",
+    "newId": "SIM-C2-L003-03",
+    "newInputKPa": 0,
+    "legacyId": "SIM-C2-L002-01",
+    "legacyInputMetres": 3,
+    "legacyRuntimeFileSha256": "172a24ec6a2cc3e486f73f13d21c4872abcff4711fe3fe388ccaaedc86c66cee",
+    "sameCompleteElements": true,
+    "sameSceneSpec": true,
+    "knownHistoricalProblem": "Native320 Sonda sprite covers left probe; actual047PNG retained separately.",
+    "limit": "This exact code/geometry match is not a new screenshot or actualUI run for L00303."
+  },
+  "UI": "NOT_RUN",
+  "acceptedCount": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}

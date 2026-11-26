@@ -1,0 +1,1252 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u5-entropy-hot-cold-01",
+      "kind": "question",
+      "course": "C3",
+      "section": "Entropia totale e trasferimento spontaneo",
+      "order": 18701,
+      "title": "La sorgente fredda acquista più entropia di quanta ne perda la calda",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L06",
+        "C3-L09",
+        "C3-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "entropy-hot-cold",
+      "difficulty": 1,
+      "prompt": "Q=600 J passa spontaneamente da una sorgente ideale calda a T_h a una sorgente ideale fredda a T_c, con T_h>T_c>0 in kelvin. Le temperature restano costanti entro la prova, non ci sono altri scambi con l’esterno né lavoro o accumulo nel collegamento. Il sistema complessivo comprende le due sorgenti e il collegamento. Il trasferimento reale con differenza finita di temperatura è irreversibile. Le variazioni di entropia delle sorgenti si calcolano dai loro stati usando percorsi reversibili equivalenti: ΔS_h=−Q/T_h e ΔS_c=+Q/T_c. Si chiede ΔS_tot=ΔS_h+ΔS_c, non il calore netto, che è nullo per il complesso. Con T_c=200 K e T_h=400 K, quanto vale ΔS_tot?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/2 J/K",
+          "−3/2 J/K",
+          "0 J/K",
+          "9/2 J/K",
+          "600 J/K"
+        ],
+        "value": "3/2 J/K"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La calda perde 600/400=3/2 J/K; la fredda acquista 600/200=3 J/K. La somma è −3/2+3=3/2 J/K, positiva. L’energia non aumenta: i 600 J ceduti sono gli stessi ricevuti, ma il loro rapporto con le due temperature assolute è diverso."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/560a392a20beafb1b9636b4255888814a182d7b58e5fdfd0e10d536fd6ba0cfa",
+          "text": "Nel primo schema 600 J passano spontaneamente dalla sorgente calda a 400 K alla fredda a 200 K; la freccia del calore è schematica. Il caldo perde 3/2 J/K e il freddo acquista 3 J/K: le barre con segno del secondo pannello mostrano un totale positivo 3/2 J/K. L’ultimo confronta due prove del trasferimento: A dà 3/2 J/K, B con temperature 300 e 600 K dà 1 J/K, e la media è 5/4 J/K."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta S_h=-\\frac{600}{400}\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta S_c=\\frac{600}{200}\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta S_{\\rm tot}=(-3/2+3)\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta S_{\\rm tot}=3/2\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "text",
+          "text": "−3/2 J/K cambia il verso del bilancio. Zero confonde conservazione dell’energia con reversibilità. 9/2 J/K somma i moduli delle due variazioni anziché i segni; 600 copia il numero dei joule in una grandezza diversa."
+        }
+      ],
+      "hints": [
+        "Calcola separatamente la perdita della calda e il guadagno della fredda.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−3/2 J/K cambia il verso del bilancio. Zero confonde conservazione dell’energia con reversibilità. 9/2 J/K somma i moduli delle due variazioni anziché i segni; 600 copia il numero dei joule in una grandezza diversa.",
+        "target": "C3-L10"
+      },
+      "coverage": [
+        "Energia conservata ed entropia prodotta fra sorgenti",
+        "Segni, temperature assolute e inverse ammissibili",
+        "Rapporti, medie, display e scala termica dal vincolo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-entropy-hot-cold-02",
+      "kind": "question",
+      "course": "C3",
+      "section": "Entropia totale e trasferimento spontaneo",
+      "order": 18702,
+      "title": "L’unità del bilancio di entropia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L06",
+        "C3-L09",
+        "C3-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "entropy-hot-cold",
+      "difficulty": 1,
+      "prompt": "Q=600 J passa spontaneamente da una sorgente ideale calda a T_h a una sorgente ideale fredda a T_c, con T_h>T_c>0 in kelvin. Le temperature restano costanti entro la prova, non ci sono altri scambi con l’esterno né lavoro o accumulo nel collegamento. Il sistema complessivo comprende le due sorgenti e il collegamento. Il trasferimento reale con differenza finita di temperatura è irreversibile. Le variazioni di entropia delle sorgenti si calcolano dai loro stati usando percorsi reversibili equivalenti: ΔS_h=−Q/T_h e ΔS_c=+Q/T_c. Si chiede ΔS_tot=ΔS_h+ΔS_c, non il calore netto, che è nullo per il complesso. Quale unità esprime ΔS_tot fra queste alternative?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "J/K",
+          "J",
+          "K",
+          "W",
+          "J·K"
+        ],
+        "value": "J/K"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Ogni variazione di entropia è calore con segno diviso per temperatura assoluta costante. Entrambi i termini hanno unità J/K, quindi anche la loro somma. Il fatto che i calori si compensino non cancella le diverse temperature dei denominatori."
+        },
+        {
+          "type": "formula",
+          "text": "[\\Delta S_h]=[\\Delta S_c]"
+        },
+        {
+          "type": "formula",
+          "text": "[\\Delta S_c]=\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " [\\Delta S_{\\rm tot}]=\\mathrm{J/K}"
+        },
+        {
+          "type": "text",
+          "text": "J è energia, K temperatura e W potenza. J·K deriverebbe dal moltiplicare calore e temperatura, operazione diversa dal calcolo dell’entropia. La stessa dimensione J/K di una capacità termica non identifica le due grandezze."
+        }
+      ],
+      "hints": [
+        "Controlla l’unità di ciascun termine prima della somma.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "J è energia, K temperatura e W potenza. J·K deriverebbe dal moltiplicare calore e temperatura, operazione diversa dal calcolo dell’entropia. La stessa dimensione J/K di una capacità termica non identifica le due grandezze.",
+        "target": "C3-L10"
+      },
+      "coverage": [
+        "Energia conservata ed entropia prodotta fra sorgenti",
+        "Segni, temperature assolute e inverse ammissibili",
+        "Rapporti, medie, display e scala termica dal vincolo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-entropy-hot-cold-03",
+      "kind": "question",
+      "course": "C3",
+      "section": "Entropia totale e trasferimento spontaneo",
+      "order": 18703,
+      "title": "Conservazione dell’energia e verso spontaneo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L06",
+        "C3-L09",
+        "C3-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "entropy-hot-cold",
+      "difficulty": 1,
+      "prompt": "Due sorgenti ideali a temperature assolute costanti T_h>T_c>0 scambiano spontaneamente Q=600 J dal caldo al freddo, senza altri scambi esterni. Perché l’entropia totale aumenta anche se l’energia si conserva?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Il freddo acquista Q/T_c, maggiore del modulo Q/T_h perso dal caldo",
+          "Si crea energia durante il passaggio del calore",
+          "Entrambe le sorgenti perdono entropia",
+          "Il caldo perde più entropia di quanta ne guadagni il freddo",
+          "L’entropia totale deve essere zero perché il calore totale è zero"
+        ],
+        "value": "Il freddo acquista Q/T_c, maggiore del modulo Q/T_h perso dal caldo"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La fredda riceve la stessa energia che la calda perde. Tuttavia 1/T_c>1/T_h perché le temperature sono positive e ordinate. Quindi Q/T_c>Q/T_h e la differenza è positiva. L’irreversibilità produce entropia senza creare energia; l’entropia del complesso isolato seleziona il verso spontaneo."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/560a392a20beafb1b9636b4255888814a182d7b58e5fdfd0e10d536fd6ba0cfa",
+          "text": "Le energie ceduta e ricevuta hanno uguale modulo e somma zero; le variazioni di entropia hanno denominatori diversi. Il diagramma distingue la variazione negativa della calda, quella positiva della fredda e il totale positivo del processo irreversibile. Le barre rappresentano J/K, non joule o temperature. Non è lo schema di uno scambio reversibile fra sorgenti alla medesima temperatura."
+        },
+        {
+          "type": "formula",
+          "text": "Q_h+Q_c=-Q+Q"
+        },
+        {
+          "type": "formula",
+          "text": "-Q+Q=0"
+        },
+        {
+          "type": "formula",
+          "text": " T_c<T_h"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{Q}{T_c}>\\frac{Q}{T_h}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta S_{\\rm tot}=Q\\left(\\frac1{T_c}-\\frac1{T_h}\\right)>0"
+        },
+        {
+          "type": "text",
+          "text": "La produzione di entropia non è creazione di energia. La sorgente fredda aumenta, non diminuisce, la propria entropia. Il modulo perso dalla calda è minore del guadagno della fredda; il bilancio del calore nullo non impone un bilancio di entropia nullo."
+        }
+      ],
+      "hints": [
+        "Confronta i reciproci delle temperature assolute, non i soli joule.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La produzione di entropia non è creazione di energia. La sorgente fredda aumenta, non diminuisce, la propria entropia. Il modulo perso dalla calda è minore del guadagno della fredda; il bilancio del calore nullo non impone un bilancio di entropia nullo.",
+        "target": "C3-L10"
+      },
+      "coverage": [
+        "Energia conservata ed entropia prodotta fra sorgenti",
+        "Segni, temperature assolute e inverse ammissibili",
+        "Rapporti, medie, display e scala termica dal vincolo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-entropy-hot-cold-04",
+      "kind": "question",
+      "course": "C3",
+      "section": "Entropia totale e trasferimento spontaneo",
+      "order": 18704,
+      "title": "Ridurre la differenza termica cambiando la fredda",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L06",
+        "C3-L09",
+        "C3-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "entropy-hot-cold",
+      "difficulty": 1,
+      "prompt": "Q=600 J passa spontaneamente da una sorgente ideale calda a T_h a una sorgente ideale fredda a T_c, con T_h>T_c>0 in kelvin. Le temperature restano costanti entro la prova, non ci sono altri scambi con l’esterno né lavoro o accumulo nel collegamento. Il sistema complessivo comprende le due sorgenti e il collegamento. Il trasferimento reale con differenza finita di temperatura è irreversibile. Le variazioni di entropia delle sorgenti si calcolano dai loro stati usando percorsi reversibili equivalenti: ΔS_h=−Q/T_h e ΔS_c=+Q/T_c. Si chiede ΔS_tot=ΔS_h+ΔS_c, non il calore netto, che è nullo per il complesso. T_c passa da 200 a 300 K mentre T_h=400 K. Come cambia ΔS_tot?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 3/2 a 1/2 J/K",
+          "Da 3/2 a 3 J/K",
+          "Resta 3/2 J/K",
+          "Da 3/2 a 0 J/K",
+          "Da 3/2 a −1/2 J/K"
+        ],
+        "value": "Da 3/2 a 1/2 J/K"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La perdita della calda resta 3/2 J/K. La fredda a 300 K acquista 600/300=2 J/K, quindi il totale diventa 2−3/2=1/2 J/K. È ancora positivo perché 300<400 K, ma minore del totale iniziale. A parità di Q, temperature più vicine riducono la produzione di entropia del trasferimento."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta S_{{\\rm tot},A}=3/2\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta S_{{\\rm tot},B}=(2-3/2)\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta S_{{\\rm tot},B}=1/2\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "text",
+          "text": "Tre J/K ignora la perdita calda e copia il guadagno freddo iniziale. Zero richiederebbe temperature uguali, non 300 e 400 K. Il segno negativo violerebbe il verso spontaneo caldo-freddo dichiarato."
+        }
+      ],
+      "hints": [
+        "Ricalcola il guadagno della fredda e conserva la stessa perdita della calda.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Tre J/K ignora la perdita calda e copia il guadagno freddo iniziale. Zero richiederebbe temperature uguali, non 300 e 400 K. Il segno negativo violerebbe il verso spontaneo caldo-freddo dichiarato.",
+        "target": "C3-L10"
+      },
+      "coverage": [
+        "Energia conservata ed entropia prodotta fra sorgenti",
+        "Segni, temperature assolute e inverse ammissibili",
+        "Rapporti, medie, display e scala termica dal vincolo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-entropy-hot-cold-05",
+      "kind": "question",
+      "course": "C3",
+      "section": "Entropia totale e trasferimento spontaneo",
+      "order": 18705,
+      "title": "La temperatura fredda dal bilancio totale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L06",
+        "C3-L09",
+        "C3-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "entropy-hot-cold",
+      "difficulty": 2,
+      "prompt": "Q=600 J passa spontaneamente da una sorgente ideale calda a T_h a una sorgente ideale fredda a T_c, con T_h>T_c>0 in kelvin. Le temperature restano costanti entro la prova, non ci sono altri scambi con l’esterno né lavoro o accumulo nel collegamento. Il sistema complessivo comprende le due sorgenti e il collegamento. Il trasferimento reale con differenza finita di temperatura è irreversibile. Le variazioni di entropia delle sorgenti si calcolano dai loro stati usando percorsi reversibili equivalenti: ΔS_h=−Q/T_h e ΔS_c=+Q/T_c. Si chiede ΔS_tot=ΔS_h+ΔS_c, non il calore netto, che è nullo per il complesso. Si misura ΔS_tot=3/2 J/K e si conosce T_h=400 K. Quanto vale T_c in K?",
+      "answer": {
+        "type": "numeric",
+        "value": 200,
+        "unit": "K",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Aggiungiamo al totale il modulo perso dalla calda: Q/T_c=ΔS_tot+Q/T_h=3/2+3/2=3 J/K. Dividendo 600 J per 3 J/K si ottiene 200 K, minore dei 400 K caldi come richiesto."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{Q}{T_c}=\\Delta S_{\\rm tot}+\\frac{Q}{T_h}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{Q}{T_c}=3\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " T_c=\\frac{600\\,\\mathrm J}{3\\,\\mathrm{J/K}}"
+        },
+        {
+          "type": "formula",
+          "text": " T_c=200\\,\\mathrm K"
+        },
+        {
+          "type": "text",
+          "text": "400 K darebbe equilibrio e totale zero. Usare soltanto Q/ΔS_tot darebbe ancora 400 K, omettendo la perdita calda. Sottrarre tale perdita dal totale renderebbe qui il denominatore zero e non ricostruirebbe l’inversa."
+        }
+      ],
+      "hints": [
+        "Ricostruisci il guadagno freddo sommando totale e modulo perso dal caldo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "400 K darebbe equilibrio e totale zero. Usare soltanto Q/ΔS_tot darebbe ancora 400 K, omettendo la perdita calda. Sottrarre tale perdita dal totale renderebbe qui il denominatore zero e non ricostruirebbe l’inversa.",
+        "target": "C3-L10"
+      },
+      "coverage": [
+        "Energia conservata ed entropia prodotta fra sorgenti",
+        "Segni, temperature assolute e inverse ammissibili",
+        "Rapporti, medie, display e scala termica dal vincolo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-entropy-hot-cold-06",
+      "kind": "question",
+      "course": "C3",
+      "section": "Entropia totale e trasferimento spontaneo",
+      "order": 18706,
+      "title": "La temperatura calda richiede un denominatore positivo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L06",
+        "C3-L09",
+        "C3-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "entropy-hot-cold",
+      "difficulty": 2,
+      "prompt": "Q=600 J passa spontaneamente da una sorgente ideale calda a T_h a una sorgente ideale fredda a T_c, con T_h>T_c>0 in kelvin. Le temperature restano costanti entro la prova, non ci sono altri scambi con l’esterno né lavoro o accumulo nel collegamento. Il sistema complessivo comprende le due sorgenti e il collegamento. Il trasferimento reale con differenza finita di temperatura è irreversibile. Le variazioni di entropia delle sorgenti si calcolano dai loro stati usando percorsi reversibili equivalenti: ΔS_h=−Q/T_h e ΔS_c=+Q/T_c. Si chiede ΔS_tot=ΔS_h+ΔS_c, non il calore netto, che è nullo per il complesso. ΔS_tot=3/2 J/K e T_c=200 K. Quanto vale T_h in K?",
+      "answer": {
+        "type": "numeric",
+        "value": 400,
+        "unit": "K",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La fredda acquista Q/T_c=3 J/K. Dal guadagno sottraiamo l’aumento totale: il modulo perso dalla calda è 3−3/2=3/2 J/K. La temperatura calda è 600/(3/2)=400 K. In generale l’inversa richiede 0<ΔS_tot<Q/T_c per ottenere una temperatura calda positiva e finita."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{Q}{T_h}=\\frac{Q}{T_c}-\\Delta S_{\\rm tot}"
+        },
+        {
+          "type": "formula",
+          "text": " T_h=\\frac{Q}{Q/T_c-\\Delta S_{\\rm tot}}"
+        },
+        {
+          "type": "formula",
+          "text": " T_h=400\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " 0<\\Delta S_{\\rm tot}<Q/T_c"
+        },
+        {
+          "type": "text",
+          "text": "Se si sommasse il totale al guadagno freddo si otterrebbero 400/3 K, meno della sorgente chiamata fredda. Un totale uguale a Q/T_c annullerebbe il denominatore e non darebbe una sorgente finita. Non si può accettare una temperatura negativa da dati incompatibili."
+        }
+      ],
+      "hints": [
+        "Togli la produzione totale dal guadagno freddo per ritrovare il modulo perso dal caldo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Se si sommasse il totale al guadagno freddo si otterrebbero 400/3 K, meno della sorgente chiamata fredda. Un totale uguale a Q/T_c annullerebbe il denominatore e non darebbe una sorgente finita. Non si può accettare una temperatura negativa da dati incompatibili.",
+        "target": "C3-L10"
+      },
+      "coverage": [
+        "Energia conservata ed entropia prodotta fra sorgenti",
+        "Segni, temperature assolute e inverse ammissibili",
+        "Rapporti, medie, display e scala termica dal vincolo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-entropy-hot-cold-07",
+      "kind": "question",
+      "course": "C3",
+      "section": "Entropia totale e trasferimento spontaneo",
+      "order": 18707,
+      "title": "Una sorgente calda ancora più calda",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L06",
+        "C3-L09",
+        "C3-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "entropy-hot-cold",
+      "difficulty": 2,
+      "prompt": "Q=600 J passa spontaneamente da una sorgente ideale calda a T_h a una sorgente ideale fredda a T_c, con T_h>T_c>0 in kelvin. Le temperature restano costanti entro la prova, non ci sono altri scambi con l’esterno né lavoro o accumulo nel collegamento. Il sistema complessivo comprende le due sorgenti e il collegamento. Il trasferimento reale con differenza finita di temperatura è irreversibile. Le variazioni di entropia delle sorgenti si calcolano dai loro stati usando percorsi reversibili equivalenti: ΔS_h=−Q/T_h e ΔS_c=+Q/T_c. Si chiede ΔS_tot=ΔS_h+ΔS_c, non il calore netto, che è nullo per il complesso. A ha T_c=200 K, T_h=400 K. B mantiene T_c=200 K e porta T_h a 600 K. Quanto vale ΔS_tot,B/ΔS_tot,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4/3",
+          "3/4",
+          "3/2",
+          "2",
+          "1"
+        ],
+        "value": "4/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il guadagno della fredda resta 3 J/K. In B la perdita calda è solo 600/600=1 J/K e il totale è 2 J/K. Dividendo per 3/2 J/K di A otteniamo 2·2/3=4/3. A parità di calore e temperatura fredda, una calda più calda perde meno entropia per joule."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta S_{{\\rm tot},A}=3/2\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta S_{{\\rm tot},B}=(3-1)\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta S_{{\\rm tot},B}=2\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta S_{{\\rm tot},B}/\\Delta S_{{\\rm tot},A}=4/3"
+        },
+        {
+          "type": "text",
+          "text": "3/4 è il reciproco; 3/2 segue solo T_h. Due copia il numero della nuova entropia senza dividerla per A; uno ignora la perdita calda modificata."
+        }
+      ],
+      "hints": [
+        "Mantieni il guadagno freddo e ricalcola la perdita calda prima del rapporto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "3/4 è il reciproco; 3/2 segue solo T_h. Due copia il numero della nuova entropia senza dividerla per A; uno ignora la perdita calda modificata.",
+        "target": "C3-L10"
+      },
+      "coverage": [
+        "Energia conservata ed entropia prodotta fra sorgenti",
+        "Segni, temperature assolute e inverse ammissibili",
+        "Rapporti, medie, display e scala termica dal vincolo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-entropy-hot-cold-08",
+      "kind": "question",
+      "course": "C3",
+      "section": "Entropia totale e trasferimento spontaneo",
+      "order": 18708,
+      "title": "Una proposta con totale doppio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L06",
+        "C3-L09",
+        "C3-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "entropy-hot-cold",
+      "difficulty": 2,
+      "prompt": "Q=600 J passa spontaneamente da una sorgente ideale calda a T_h a una sorgente ideale fredda a T_c, con T_h>T_c>0 in kelvin. Le temperature restano costanti entro la prova, non ci sono altri scambi con l’esterno né lavoro o accumulo nel collegamento. Il sistema complessivo comprende le due sorgenti e il collegamento. Il trasferimento reale con differenza finita di temperatura è irreversibile. Le variazioni di entropia delle sorgenti si calcolano dai loro stati usando percorsi reversibili equivalenti: ΔS_h=−Q/T_h e ΔS_c=+Q/T_c. Si chiede ΔS_tot=ΔS_h+ΔS_c, non il calore netto, che è nullo per il complesso. Con T_c=200 K e T_h=400 K si propone ΔS_tot=3 J/K. Quanto vale proposta meno valore corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/2 J/K",
+          "−3/2 J/K",
+          "3 J/K",
+          "0 J/K",
+          "2"
+        ],
+        "value": "3/2 J/K"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bilancio corretto è 3−3/2=3/2 J/K. La proposta supera questo valore di altri 3/2 J/K. Il rapporto due, pur essendo il fattore fra proposta e risultato, non è lo scarto con unità richiesto."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta S_{\\rm tot}=3/2\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " e=(3-3/2)\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " e=3/2\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "text",
+          "text": "−3/2 J/K rovescia la sottrazione, 3 J/K copia la proposta e zero la accetta. Il numero puro due risponde a un rapporto invece che a una differenza."
+        }
+      ],
+      "hints": [
+        "Rispetta il verso proposta meno corretto dopo aver sommato i termini con segno.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−3/2 J/K rovescia la sottrazione, 3 J/K copia la proposta e zero la accetta. Il numero puro due risponde a un rapporto invece che a una differenza.",
+        "target": "C3-L10"
+      },
+      "coverage": [
+        "Energia conservata ed entropia prodotta fra sorgenti",
+        "Segni, temperature assolute e inverse ammissibili",
+        "Rapporti, medie, display e scala termica dal vincolo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-entropy-hot-cold-09",
+      "kind": "question",
+      "course": "C3",
+      "section": "Entropia totale e trasferimento spontaneo",
+      "order": 18709,
+      "title": "Isolare T_c senza perdere la perdita calda",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L06",
+        "C3-L09",
+        "C3-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "entropy-hot-cold",
+      "difficulty": 2,
+      "prompt": "Q=600 J passa spontaneamente da una sorgente ideale calda a T_h a una sorgente ideale fredda a T_c, con T_h>T_c>0 in kelvin. Le temperature restano costanti entro la prova, non ci sono altri scambi con l’esterno né lavoro o accumulo nel collegamento. Il sistema complessivo comprende le due sorgenti e il collegamento. Il trasferimento reale con differenza finita di temperatura è irreversibile. Le variazioni di entropia delle sorgenti si calcolano dai loro stati usando percorsi reversibili equivalenti: ΔS_h=−Q/T_h e ΔS_c=+Q/T_c. Si chiede ΔS_tot=ΔS_h+ΔS_c, non il calore netto, che è nullo per il complesso. Sono noti ΔS_tot>0 e T_h>0. Quale formula ricava T_c?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "T_c = Q / (ΔS_tot + Q/T_h)",
+          "T_c = Q / ΔS_tot",
+          "T_c = Q / (ΔS_tot − Q/T_h)",
+          "T_c = (ΔS_tot + Q/T_h) / Q",
+          "T_c = T_h + Q/ΔS_tot"
+        ],
+        "value": "T_c = Q / (ΔS_tot + Q/T_h)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Spostiamo il termine −Q/T_h nel membro con ΔS_tot: Q/T_c=ΔS_tot+Q/T_h. Il denominatore positivo è in J/K, quindi Q diviso quel denominatore è in K. Poiché supera Q/T_h, la temperatura ricavata è automaticamente minore di T_h e positiva."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta S_{\\rm tot}+Q/T_h=Q/T_c"
+        },
+        {
+          "type": "formula",
+          "text": " T_c=\\frac{Q}{\\Delta S_{\\rm tot}+Q/T_h}"
+        },
+        {
+          "type": "formula",
+          "text": " 0<T_c<T_h"
+        },
+        {
+          "type": "text",
+          "text": "Q/ΔS_tot omette l’altro serbatoio. Il meno può dare un denominatore nullo o negativo e non è l’inversa del bilancio. Il reciproco ha K⁻¹; la somma finale darebbe T_c>T_h, incompatibile col nome di sorgente fredda nel modello."
+        }
+      ],
+      "hints": [
+        "Ricostruisci Q/T_c prima di invertire il quoziente.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Q/ΔS_tot omette l’altro serbatoio. Il meno può dare un denominatore nullo o negativo e non è l’inversa del bilancio. Il reciproco ha K⁻¹; la somma finale darebbe T_c>T_h, incompatibile col nome di sorgente fredda nel modello.",
+        "target": "C3-L10"
+      },
+      "coverage": [
+        "Energia conservata ed entropia prodotta fra sorgenti",
+        "Segni, temperature assolute e inverse ammissibili",
+        "Rapporti, medie, display e scala termica dal vincolo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-entropy-hot-cold-10",
+      "kind": "question",
+      "course": "C3",
+      "section": "Entropia totale e trasferimento spontaneo",
+      "order": 18710,
+      "title": "Riscalare due temperature assolute mantenendone l’ordine",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L06",
+        "C3-L09",
+        "C3-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "entropy-hot-cold",
+      "difficulty": 2,
+      "prompt": "Q=600 J passa spontaneamente da una sorgente ideale calda a T_h a una sorgente ideale fredda a T_c, con T_h>T_c>0 in kelvin. Le temperature restano costanti entro la prova, non ci sono altri scambi con l’esterno né lavoro o accumulo nel collegamento. Il sistema complessivo comprende le due sorgenti e il collegamento. Il trasferimento reale con differenza finita di temperatura è irreversibile. Le variazioni di entropia delle sorgenti si calcolano dai loro stati usando percorsi reversibili equivalenti: ΔS_h=−Q/T_h e ΔS_c=+Q/T_c. Si chiede ΔS_tot=ΔS_h+ΔS_c, non il calore netto, che è nullo per il complesso. Definiamo a=1/T_c,A e b=1/T_h,A, entrambi in K⁻¹. B usa T_c,B=κ₁T_c,A e T_h,B=κ₂T_h,A, con fattori positivi e κ₂T_h,A>κ₁T_c,A. Quanto vale ΔS_tot,B/ΔS_tot,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "(a/κ₁ − b/κ₂)/(a − b)",
+          "κ₁/κ₂",
+          "κ₂/κ₁",
+          "(κ₁ a − κ₂ b)/(a − b)",
+          "κ₁ κ₂"
+        ],
+        "value": "(a/κ₁ − b/κ₂)/(a − b)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I reciproci delle temperature portano gli inversi dei fattori: il guadagno freddo è Qa/κ₁ e la perdita calda ha modulo Qb/κ₂. Il rapporto con Q(a−b) cancella Q, ma mantiene entrambi i pesi. Se le due temperature sono moltiplicate per lo stesso κ, la variazione totale si divide per κ."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta S_A=Q(a-b)"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta S_B=Q(a/\\kappa_1-b/\\kappa_2)"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{\\Delta S_B}{\\Delta S_A}=\\frac{a/\\kappa_1-b/\\kappa_2}{a-b}"
+        },
+        {
+          "type": "text",
+          "text": "I quozienti semplici perdono i pesi a e b. Moltiplicare i reciproci per κ invece di dividerli tratta in modo errato una temperatura al denominatore. Il prodotto non rispetta la dipendenza inversa da un fattore comune."
+        }
+      ],
+      "hints": [
+        "Sostituisci i fattori dentro i denominatori delle temperature prima di semplificare.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "I quozienti semplici perdono i pesi a e b. Moltiplicare i reciproci per κ invece di dividerli tratta in modo errato una temperatura al denominatore. Il prodotto non rispetta la dipendenza inversa da un fattore comune.",
+        "target": "C3-L10"
+      },
+      "coverage": [
+        "Energia conservata ed entropia prodotta fra sorgenti",
+        "Segni, temperature assolute e inverse ammissibili",
+        "Rapporti, medie, display e scala termica dal vincolo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-entropy-hot-cold-11",
+      "kind": "question",
+      "course": "C3",
+      "section": "Entropia totale e trasferimento spontaneo",
+      "order": 18711,
+      "title": "Due temperature entrambe maggiori nella seconda prova",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L06",
+        "C3-L09",
+        "C3-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "entropy-hot-cold",
+      "difficulty": 2,
+      "prompt": "Q=600 J passa spontaneamente da una sorgente ideale calda a T_h a una sorgente ideale fredda a T_c, con T_h>T_c>0 in kelvin. Le temperature restano costanti entro la prova, non ci sono altri scambi con l’esterno né lavoro o accumulo nel collegamento. Il sistema complessivo comprende le due sorgenti e il collegamento. Il trasferimento reale con differenza finita di temperatura è irreversibile. Le variazioni di entropia delle sorgenti si calcolano dai loro stati usando percorsi reversibili equivalenti: ΔS_h=−Q/T_h e ΔS_c=+Q/T_c. Si chiede ΔS_tot=ΔS_h+ΔS_c, non il calore netto, che è nullo per il complesso. A ha T_c=200 K, T_h=400 K. B ha T_c=300 K, T_h=600 K. Quanto vale ΔS_tot,B/ΔS_tot,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2/3",
+          "3/2",
+          "1",
+          "2",
+          "1/2"
+        ],
+        "value": "2/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A dà 3/2 J/K. In B il freddo acquista 2 J/K e il caldo perde 1 J/K, quindi il totale è 1 J/K. Il rapporto è 1/(3/2)=2/3. Entrambe le temperature sono cresciute di 3/2, e la differenza dei loro reciproci è diminuita del fattore inverso."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta S_A=3/2\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta S_B=(2-1)\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta S_B=1\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta S_B/\\Delta S_A=2/3"
+        },
+        {
+          "type": "text",
+          "text": "3/2 è il reciproco del confronto richiesto. Uno ignora il cambiamento delle temperature assolute; due e un mezzo non ricostruiscono i due bilanci con Q fissato."
+        }
+      ],
+      "hints": [
+        "Trova prima il guadagno e la perdita di ciascuna prova, poi fai il rapporto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "3/2 è il reciproco del confronto richiesto. Uno ignora il cambiamento delle temperature assolute; due e un mezzo non ricostruiscono i due bilanci con Q fissato.",
+        "target": "C3-L10"
+      },
+      "coverage": [
+        "Energia conservata ed entropia prodotta fra sorgenti",
+        "Segni, temperature assolute e inverse ammissibili",
+        "Rapporti, medie, display e scala termica dal vincolo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-entropy-hot-cold-12",
+      "kind": "question",
+      "course": "C3",
+      "section": "Entropia totale e trasferimento spontaneo",
+      "order": 18712,
+      "title": "Media delle variazioni totali, non dei serbatoi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L06",
+        "C3-L09",
+        "C3-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "entropy-hot-cold",
+      "difficulty": 2,
+      "prompt": "Q=600 J passa spontaneamente da una sorgente ideale calda a T_h a una sorgente ideale fredda a T_c, con T_h>T_c>0 in kelvin. Le temperature restano costanti entro la prova, non ci sono altri scambi con l’esterno né lavoro o accumulo nel collegamento. Il sistema complessivo comprende le due sorgenti e il collegamento. Il trasferimento reale con differenza finita di temperatura è irreversibile. Le variazioni di entropia delle sorgenti si calcolano dai loro stati usando percorsi reversibili equivalenti: ΔS_h=−Q/T_h e ΔS_c=+Q/T_c. Si chiede ΔS_tot=ΔS_h+ΔS_c, non il calore netto, che è nullo per il complesso. A usa T_c=200 K, T_h=400 K; B usa T_c=300 K, T_h=600 K. Qual è la media aritmetica delle due ΔS_tot con uguale peso?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "5/4 J/K",
+          "6/5 J/K",
+          "5/2 J/K",
+          "1/4 J/K",
+          "3/2 J/K"
+        ],
+        "value": "5/4 J/K"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le variazioni totali sono 3/2 e 1 J/K. Sommiamo 3/2+2/2=5/2 e dividiamo per due: la media è 5/4 J/K. Per confrontarla con il modello alle temperature medie, poniamo T_c,m=250 K e T_h,m=500 K. Definiamo a_m=Q/T_c,m, entropia acquistata dalla fredda, e b_m=Q/T_h,m, modulo di quella persa dalla calda: valgono 12/5 e 6/5 J/K. Il modello dà ΔS_m=a_m−b_m=6/5 J/K. Chiamiamo d_m la media delle uscite meno ΔS_m: è 1/20 J/K. Non si stanno mettendo in contatto fisico quattro sorgenti."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline{\\Delta S_{\\rm tot}}=\\frac{3/2+1}{2}\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline{\\Delta S_{\\rm tot}}=5/4\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " a_m=\\frac{600}{250}\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " a_m=12/5\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " b_m=\\frac{600}{500}\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " b_m=6/5\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta S_m=a_m-b_m"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta S_m=6/5\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " d_m=\\overline{\\Delta S_{\\rm tot}}-\\Delta S_m"
+        },
+        {
+          "type": "formula",
+          "text": " d_m=1/20\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "text",
+          "text": "6/5 J/K applica il modello alle temperature medie. 5/2 J/K non dimezza la somma; 1/4 J/K è metà della differenza e 3/2 J/K copia A."
+        }
+      ],
+      "hints": [
+        "Media le variazioni già ricostruite da ogni coppia di temperature.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "6/5 J/K applica il modello alle temperature medie. 5/2 J/K non dimezza la somma; 1/4 J/K è metà della differenza e 3/2 J/K copia A.",
+        "target": "C3-L10"
+      },
+      "coverage": [
+        "Energia conservata ed entropia prodotta fra sorgenti",
+        "Segni, temperature assolute e inverse ammissibili",
+        "Rapporti, medie, display e scala termica dal vincolo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-entropy-hot-cold-13",
+      "kind": "question",
+      "course": "C3",
+      "section": "Entropia totale e trasferimento spontaneo",
+      "order": 18713,
+      "title": "La sorgente calda per un totale bersaglio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L06",
+        "C3-L09",
+        "C3-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "entropy-hot-cold",
+      "difficulty": 3,
+      "prompt": "Q=600 J passa spontaneamente da una sorgente ideale calda a T_h a una sorgente ideale fredda a T_c, con T_h>T_c>0 in kelvin. Le temperature restano costanti entro la prova, non ci sono altri scambi con l’esterno né lavoro o accumulo nel collegamento. Il sistema complessivo comprende le due sorgenti e il collegamento. Il trasferimento reale con differenza finita di temperatura è irreversibile. Le variazioni di entropia delle sorgenti si calcolano dai loro stati usando percorsi reversibili equivalenti: ΔS_h=−Q/T_h e ΔS_c=+Q/T_c. Si chiede ΔS_tot=ΔS_h+ΔS_c, non il calore netto, che è nullo per il complesso. A ha T_c=200 K e T_h,A=400 K. B usa T_c=300 K e deve avere ΔS_tot,B=(2/3)ΔS_tot,A. Quanto vale T_h,B/T_h,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/2",
+          "2/3",
+          "2",
+          "1/2",
+          "3"
+        ],
+        "value": "3/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è 1 J/K. La fredda B acquista 600/300=2 J/K, quindi la calda B deve perdere 1 J/K. La sua temperatura è 600 J/(1 J/K)=600 K. Il rapporto con 400 K iniziali è 3/2 e l’ordine 600>300 K è rispettato."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta S_B=1\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " Q/T_{h,B}=(2-1)\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " T_{h,B}=600\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " T_{h,B}/T_{h,A}=3/2"
+        },
+        {
+          "type": "text",
+          "text": "2/3 e 1/2 darebbero temperature calde inferiori ai 300 K freddi. Due darebbe 800 K e totale 5/4 J/K, non 1. Tre darebbe 1200 K e totale 3/2 J/K."
+        }
+      ],
+      "hints": [
+        "Ricostruisci la perdita calda necessaria sottraendo il bersaglio dal guadagno freddo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "2/3 e 1/2 darebbero temperature calde inferiori ai 300 K freddi. Due darebbe 800 K e totale 5/4 J/K, non 1. Tre darebbe 1200 K e totale 3/2 J/K.",
+        "target": "C3-L10"
+      },
+      "coverage": [
+        "Energia conservata ed entropia prodotta fra sorgenti",
+        "Segni, temperature assolute e inverse ammissibili",
+        "Rapporti, medie, display e scala termica dal vincolo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-entropy-hot-cold-14",
+      "kind": "question",
+      "course": "C3",
+      "section": "Entropia totale e trasferimento spontaneo",
+      "order": 18714,
+      "title": "Decodificare un display di entropia totale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L06",
+        "C3-L09",
+        "C3-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "entropy-hot-cold",
+      "difficulty": 3,
+      "prompt": "Q=600 J passa spontaneamente da una sorgente ideale calda a T_h a una sorgente ideale fredda a T_c, con T_h>T_c>0 in kelvin. Le temperature restano costanti entro la prova, non ci sono altri scambi con l’esterno né lavoro o accumulo nel collegamento. Il sistema complessivo comprende le due sorgenti e il collegamento. Il trasferimento reale con differenza finita di temperatura è irreversibile. Le variazioni di entropia delle sorgenti si calcolano dai loro stati usando percorsi reversibili equivalenti: ΔS_h=−Q/T_h e ΔS_c=+Q/T_c. Si chiede ΔS_tot=ΔS_h+ΔS_c, non il calore netto, che è nullo per il complesso. D=qΔS_tot è un display continuo adimensionale, q>0. A con T_c=200 K, T_h=400 K dà D=9/2. B ha T_h=600 K e dà D=3. Quanto vale T_c,B in K?",
+      "answer": {
+        "type": "numeric",
+        "value": 300,
+        "unit": "K",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento ha ΔS_tot=3/2 J/K, quindi q=3 K/J. Il display B indica 1 J/K. La perdita della calda B è 1 J/K; la fredda deve acquistarne due. Quindi T_c,B=600 J/(2 J/K)=300 K, inferiore a T_h,B."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{K/J}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta S_B=1\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " Q/T_{c,B}=(1+1)\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " T_{c,B}=300\\,\\mathrm K"
+        },
+        {
+          "type": "text",
+          "text": "150 K usa D=3 come se fosse già J/K e dà guadagno freddo 4 J/K. 600 K annulla il saldo totale; 400 K darebbe solo 1/2 J/K e non la lettura D=3."
+        }
+      ],
+      "hints": [
+        "Togli il guadagno del display prima di applicare l’inversa del bilancio.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "150 K usa D=3 come se fosse già J/K e dà guadagno freddo 4 J/K. 600 K annulla il saldo totale; 400 K darebbe solo 1/2 J/K e non la lettura D=3.",
+        "target": "C3-L10"
+      },
+      "coverage": [
+        "Energia conservata ed entropia prodotta fra sorgenti",
+        "Segni, temperature assolute e inverse ammissibili",
+        "Rapporti, medie, display e scala termica dal vincolo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-entropy-hot-cold-15",
+      "kind": "question",
+      "course": "C3",
+      "section": "Entropia totale e trasferimento spontaneo",
+      "order": 18715,
+      "title": "Un offset strumentale non è un termine termodinamico",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L06",
+        "C3-L09",
+        "C3-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "entropy-hot-cold",
+      "difficulty": 3,
+      "prompt": "Q=600 J passa spontaneamente da una sorgente ideale calda a T_h a una sorgente ideale fredda a T_c, con T_h>T_c>0 in kelvin. Le temperature restano costanti entro la prova, non ci sono altri scambi con l’esterno né lavoro o accumulo nel collegamento. Il sistema complessivo comprende le due sorgenti e il collegamento. Il trasferimento reale con differenza finita di temperatura è irreversibile. Le variazioni di entropia delle sorgenti si calcolano dai loro stati usando percorsi reversibili equivalenti: ΔS_h=−Q/T_h e ΔS_c=+Q/T_c. Si chiede ΔS_tot=ΔS_h+ΔS_c, non il calore netto, che è nullo per il complesso. D=qΔS_tot+b è continuo e adimensionale, q>0. A: T_c=200 K, T_h=400 K, D=4. B: T_c=300 K, T_h=600 K, D=3. C: T_h=400 K, D=2. Quanto vale T_c,C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "300 K",
+          "240 K",
+          "200 K",
+          "400 K",
+          "600 K"
+        ],
+        "value": "300 K"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti danno 3/2 e 1 J/K. La differenza delle letture dà q=(4−3)/(3/2−1)=2 K/J; poi b=1. C ha ΔS_tot=(2−1)/q=1/2 J/K. Alla perdita calda 600/400=3/2 J/K aggiungiamo il totale: la fredda acquista 2 J/K e ha T_c=300 K."
+        },
+        {
+          "type": "formula",
+          "text": "q=2\\,\\mathrm{K/J}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta S_C=1/2\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " Q/T_{c,C}=(1/2+3/2)\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " T_{c,C}=300\\,\\mathrm K"
+        },
+        {
+          "type": "text",
+          "text": "240 K omette b e usa totale 1 J/K. 200 K torna al riferimento A e al display 4. 400 K darebbe totale zero e display b=1; 600 K violerebbe T_c<T_h."
+        }
+      ],
+      "hints": [
+        "Rimuovi l’offset e poi somma la perdita calda al totale fisico decodificato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "240 K omette b e usa totale 1 J/K. 200 K torna al riferimento A e al display 4. 400 K darebbe totale zero e display b=1; 600 K violerebbe T_c<T_h.",
+        "target": "C3-L10"
+      },
+      "coverage": [
+        "Energia conservata ed entropia prodotta fra sorgenti",
+        "Segni, temperature assolute e inverse ammissibili",
+        "Rapporti, medie, display e scala termica dal vincolo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-entropy-hot-cold-16",
+      "kind": "question",
+      "course": "C3",
+      "section": "Entropia totale e trasferimento spontaneo",
+      "order": 18716,
+      "title": "Un rapporto termico fissa la forma, il totale fissa la scala",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L06",
+        "C3-L09",
+        "C3-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "entropy-hot-cold",
+      "difficulty": 3,
+      "prompt": "Q=600 J passa spontaneamente da una sorgente ideale calda a T_h a una sorgente ideale fredda a T_c, con T_h>T_c>0 in kelvin. Le temperature restano costanti entro la prova, non ci sono altri scambi con l’esterno né lavoro o accumulo nel collegamento. Il sistema complessivo comprende le due sorgenti e il collegamento. Il trasferimento reale con differenza finita di temperatura è irreversibile. Le variazioni di entropia delle sorgenti si calcolano dai loro stati usando percorsi reversibili equivalenti: ΔS_h=−Q/T_h e ΔS_c=+Q/T_c. Si chiede ΔS_tot=ΔS_h+ΔS_c, non il calore netto, che è nullo per il complesso. Fra prove si impone T_c=T_h/2. Si misura ΔS_tot=3/2 J/K. Quanto vale T_h nel dominio fisico?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "400 K",
+          "−400 K",
+          "200 K",
+          "600 K",
+          "Infinite temperature positive"
+        ],
+        "value": "400 K"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituiamo T_c=T_h/2 nella differenza dei reciproci. Il termine freddo diventa 2Q/T_h e quello caldo Q/T_h: il totale è Q/T_h. Il dato richiede T_h=600/(3/2)=400 K. Ne segue T_c=200 K, positiva e minore. La relazione non lascia infinita la scala perché il totale misurato dipende ancora da 1/T_h."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta S_{\\rm tot}=Q\\left(\\frac2{T_h}-\\frac1{T_h}\\right)"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta S_{\\rm tot}=Q/T_h"
+        },
+        {
+          "type": "formula",
+          "text": " T_h=\\frac{600\\,\\mathrm J}{3/2\\,\\mathrm{J/K}}"
+        },
+        {
+          "type": "formula",
+          "text": " T_h=400\\,\\mathrm K"
+        },
+        {
+          "type": "text",
+          "text": "−400 K viola le temperature assolute positive. 200 K copia il valore finale della fredda e darebbe totale 3 J/K con il vincolo; 600 K darebbe 1 J/K. La misura è indipendente dal semplice rapporto fra temperature e determina una sola scala positiva."
+        }
+      ],
+      "hints": [
+        "Imponi il rapporto prima di invertire il totale per ricavare la temperatura calda.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "−400 K viola le temperature assolute positive. 200 K copia il valore finale della fredda e darebbe totale 3 J/K con il vincolo; 600 K darebbe 1 J/K. La misura è indipendente dal semplice rapporto fra temperature e determina una sola scala positiva.",
+        "target": "C3-L10"
+      },
+      "coverage": [
+        "Energia conservata ed entropia prodotta fra sorgenti",
+        "Segni, temperature assolute e inverse ammissibili",
+        "Rapporti, medie, display e scala termica dal vincolo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "560a392a20beafb1b9636b4255888814a182d7b58e5fdfd0e10d536fd6ba0cfa",
+      "name": "entropy-hot-cold-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTM3MCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgo8dGl0bGUgaWQ9InRpdGxlIj5JbCBjYWxvcmUgc2kgY29uc2VydmEsIGzigJllbnRyb3BpYSB0b3RhbGUgYXVtZW50YTwvdGl0bGU+CjxkZXNjIGlkPSJkZXNjIj5TZWljZW50byBqb3VsZSBwYXNzYW5vIHNwb250YW5lYW1lbnRlIGRhIHVuYSBzb3JnZW50ZSBhIHF1YXR0cm9jZW50byBrZWx2aW4gYSB1bmEgYSBkdWVjZW50byBrZWx2aW4uIExhIGNhbGRhIHBlcmRlIHRyZSBtZXp6aSBkaSBqb3VsZSBwZXIga2VsdmluOyBsYSBmcmVkZGEgbmUgYWNxdWlzdGEgdHJlLiBJbCB0b3RhbGUgY3Jlc2NlIGRpIHRyZSBtZXp6aS4gVW4gY29uZnJvbnRvIHNlcGFyYXRvIGZyYSBkdWUgY29wcGllIGRpIHRlbXBlcmF0dXJlIGTDoCB2YXJpYXppb25pIHRvdGFsaSB0cmUgbWV6emkgZSB1bm8sIGNvbiBtZWRpYSBjaW5xdWUgcXVhcnRpLjwvZGVzYz4KPGRlZnM+PG1hcmtlciBpZD0iaGVhdCIgdmlld0JveD0iMCAwIDEwIDEwIiByZWZYPSI5IiByZWZZPSI1IiBtYXJrZXJXaWR0aD0iNyIgbWFya2VySGVpZ2h0PSI3IiBvcmllbnQ9ImF1dG8iPjxwYXRoIGQ9Ik0wIDBMMTAgNUwwIDEwWiIgZmlsbD0iI2I0NTMyOCIvPjwvbWFya2VyPjwvZGVmcz4KPHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxMzcwIiByeD0iMTIiIGZpbGw9IiNmOGZhZmMiLz4KPGcgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZpbGw9IiMxNDI0M2EiIGZvbnQtc2l6ZT0iMjAiPgo8dGV4dCB4PSIzMiIgeT0iNDIiIGZvbnQtc2l6ZT0iMjUiIGZvbnQtd2VpZ2h0PSJib2xkIj4xIMK3IFN0ZXNzbyBjYWxvcmUsIHRlbXBlcmF0dXJlIGRpdmVyc2U8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI4MyIgZm9udC1zaXplPSIxOCI+VHJhc2ZlcmltZW50byBzcG9udGFuZW8gZSBpcnJldmVyc2liaWxlLjwvdGV4dD4KPHJlY3QgeD0iNDUiIHk9IjEzMCIgd2lkdGg9IjIxMCIgaGVpZ2h0PSIxNTAiIHJ4PSIxMCIgZmlsbD0iI2ZjZTZkYyIgc3Ryb2tlPSIjYjQ1MzI4Ii8+CjxyZWN0IHg9IjM4NSIgeT0iMTMwIiB3aWR0aD0iMjEwIiBoZWlnaHQ9IjE1MCIgcng9IjEwIiBmaWxsPSIjZTRmM2ZhIiBzdHJva2U9IiMxNjVhODciLz4KPHRleHQgeD0iNzciIHk9IjE3NCI+U29yZ2VudGUgY2FsZGE8L3RleHQ+PHRleHQgeD0iODgiIHk9IjIxNyI+VF9oID0gNDAwIEs8L3RleHQ+PHRleHQgeD0iODAiIHk9IjI1NyI+Q2VkZSA2MDAgSjwvdGV4dD4KPHRleHQgeD0iNDEzIiB5PSIxNzQiPlNvcmdlbnRlIGZyZWRkYTwvdGV4dD48dGV4dCB4PSI0MjYiIHk9IjIxNyI+VF9jID0gMjAwIEs8L3RleHQ+PHRleHQgeD0iNDE0IiB5PSIyNTciPlJpY2V2ZSA2MDAgSjwvdGV4dD4KPHBhdGggZD0iTTI3MiAyMTBIMzY3IiBzdHJva2U9IiNiNDUzMjgiIHN0cm9rZS13aWR0aD0iNCIgbWFya2VyLWVuZD0idXJsKCNoZWF0KSIvPgo8dGV4dCB4PSIyNzkiIHk9IjE4MCIgZm9udC1zaXplPSIxOCI+NjAwIEo8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIzMjMiIGZvbnQtc2l6ZT0iMTgiPlNjaGVtYSBkZWwgdHJhc2ZlcmltZW50bywgc2VuemEgc2NhbGEgbWV0cmljYS48L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIzNTUiIGZvbnQtc2l6ZT0iMTgiPkJpbGFuY2lvIGVuZXJnZXRpY286IOKIkjYwMCBKICsgNjAwIEogPSAwLjwvdGV4dD4KPHBhdGggZD0iTTMyIDM4N0g2MDgiIHN0cm9rZT0iIzliYWJiYyIvPgo8dGV4dCB4PSIzMiIgeT0iNDMyIiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iYm9sZCI+MiDCtyBJbCBiaWxhbmNpbyBkaSBlbnRyb3BpYSDDqCBwb3NpdGl2bzwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjQ3MSIgZm9udC1zaXplPSIxOCI+VmFyaWF6aW9uaSBpbiBKL0ssIGRhbCBtZWRlc2ltbyB6ZXJvIGNvbiBzZWduby48L3RleHQ+CjxwYXRoIGQ9Ik0zMjAgNTE1VjgxMSIgc3Ryb2tlPSIjMTQyNDNhIiBzdHJva2Utd2lkdGg9IjIiLz4KPHJlY3QgeD0iMjAwIiB5PSI1NDciIHdpZHRoPSIxMjAiIGhlaWdodD0iNDAiIGZpbGw9IiNiNDUzMjgiLz4KPHJlY3QgeD0iMzIwIiB5PSI2MzEiIHdpZHRoPSIyNDAiIGhlaWdodD0iNDAiIGZpbGw9IiMxNjVhODciLz4KPHJlY3QgeD0iMzIwIiB5PSI3MTUiIHdpZHRoPSIxMjAiIGhlaWdodD0iNDAiIGZpbGw9IiMyODY2NGQiLz4KPHRleHQgeD0iNDAiIHk9IjU3NSI+Q2FsZGE8L3RleHQ+PHRleHQgeD0iMjEwIiB5PSI1NzQiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IndoaXRlIj7iiJIzLzIgSi9LPC90ZXh0Pgo8dGV4dCB4PSI0MCIgeT0iNjU5Ij5GcmVkZGE8L3RleHQ+PHRleHQgeD0iNDAwIiB5PSI2NTgiIGZpbGw9IndoaXRlIj4rMyBKL0s8L3RleHQ+Cjx0ZXh0IHg9IjQwIiB5PSI3NDMiPlRvdGFsZTwvdGV4dD48dGV4dCB4PSIzMzAiIHk9Ijc0MiIgZm9udC1zaXplPSIxOCIgZmlsbD0id2hpdGUiPiszLzIgSi9LPC90ZXh0Pgo8dGV4dCB4PSIzMTQiIHk9Ijg0NCI+MDwvdGV4dD4KPHRleHQgeD0iMzIiIHk9Ijg4NCIgZm9udC1zaXplPSIxOCI+SWwgZnJlZGRvIGFjcXVpc3RhIHBpw7kgZW50cm9waWEgZGVsIG1vZHVsbyBwZXJzbzwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjkxNCIgZm9udC1zaXplPSIxOCI+ZGFsIGNhbGRvOyBs4oCZZW5lcmdpYSB0cmFzZmVyaXRhIG5vbiB2aWVuZSBjcmVhdGEuPC90ZXh0Pgo8cGF0aCBkPSJNMzIgOTQ3SDYwOCIgc3Ryb2tlPSIjOWJhYmJjIi8+Cjx0ZXh0IHg9IjMyIiB5PSI5OTIiIGZvbnQtc2l6ZT0iMjUiIGZvbnQtd2VpZ2h0PSJib2xkIj4zIMK3IE1lZGlhIGRlaSB0b3RhbGkgZGkgZHVlIHByb3ZlPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iMTAzMSIgZm9udC1zaXplPSIxOCI+QTogMjAwIGUgNDAwIEs7IEI6IDMwMCBlIDYwMCBLIChmcmVkZGEsIGNhbGRhKS48L3RleHQ+CjxwYXRoIGQ9Ik0xMzAgMTA1OFYxMjkyIiBzdHJva2U9IiMxNDI0M2EiIHN0cm9rZS13aWR0aD0iMiIvPgo8cmVjdCB4PSIxMzAiIHk9IjEwNzgiIHdpZHRoPSIyNDAiIGhlaWdodD0iMzQiIGZpbGw9IiMxNjVhODciLz4KPHJlY3QgeD0iMTMwIiB5PSIxMTQ1IiB3aWR0aD0iMTYwIiBoZWlnaHQ9IjM0IiBmaWxsPSIjYjQ1MzI4Ii8+CjxyZWN0IHg9IjEzMCIgeT0iMTIxMiIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIzNCIgZmlsbD0iIzI4NjY0ZCIvPgo8dGV4dCB4PSI1MCIgeT0iMTEwNCI+QTwvdGV4dD48dGV4dCB4PSIzODkiIHk9IjExMDQiPjMvMiBKL0s8L3RleHQ+Cjx0ZXh0IHg9IjUwIiB5PSIxMTcxIj5CPC90ZXh0Pjx0ZXh0IHg9IjMwOSIgeT0iMTE3MSI+MSBKL0s8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIxMjM4Ij5NZWRpYTwvdGV4dD48dGV4dCB4PSIzNDkiIHk9IjEyMzgiPjUvNCBKL0s8L3RleHQ+Cjx0ZXh0IHg9IjEwNSIgeT0iMTI4NiI+MDwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjEzMzIiIGZvbnQtc2l6ZT0iMTgiPk1lZGlhIGRlbGxlIHVzY2l0ZTogKDMvMiArIDEpLzIgPSA1LzQgSi9LLjwvdGV4dD4KPC9nPjwvc3ZnPgo="
+    }
+  ]
+}

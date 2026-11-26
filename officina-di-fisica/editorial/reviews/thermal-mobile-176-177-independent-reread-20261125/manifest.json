@@ -1,0 +1,79 @@
+{
+  "schemaVersion": "1.0.0",
+  "scope": "Manual independent rereading and selective frozen-edition update; new automation/UI NOT_RUN",
+  "candidateRef": "e6e35298f6e3e5d5f3a1be75924e523eb77fee8c",
+  "preservedPriorFileSha256": {
+    "tests/corpus/test_cross_review_phase_processes.py": "de4d573412be9114654c5ec1eaf6e80230051fbecb65345991fde08add7788e0",
+    "editorial/reviews/phase-processes-173-177-independent-tests.txt": "6c27acda40992ad18c26290e572f683d4c3e93066c2de6f20d7fb15ce7d6f1c6",
+    "editorial/reviews/phase-processes-173-177-independent-handoff-20261125.json": "16ce849780555048747922984ed3c63d142e782bdb5f0775f492191ae5e6773e",
+    "tools/corpus_engineering/warm_water_and_ice_verifier.py": "fbba798cb2d8b28f8bca65b71b1dc2e285b72a820e01d1a82f26ea498dd05131",
+    "editorial/reviews/warm-water-and-ice-176.json": "642b9cd9b22840b880921cd950de2bc68206f72eef5d04b607d560f1b826252c",
+    "editorial/reviews/warm-water-and-ice-176-mutations.json": "081be484fedb7b0d66b4d96bfef0eeda5a66da27bc57005b5a5fa065e933d7de",
+    "editorial/reviews/independent-warm-water-and-ice-176.md": "c0aebe7e64705d8b1078a232f1d64fc323ac19f01a9f0c0ebc473254c392386f",
+    "editorial/assets/warm-water-and-ice-progressive.svg": "a0d701a3f938978b82c70c09d308e2318449ce39d962c447f378e0ac7c5637fd",
+    "tools/corpus_engineering/freezing_time_verifier.py": "532e1f2705e103cbd72c575acbec3c9669c1c3249431158dc77d3d7200584a75",
+    "editorial/reviews/freezing-time-177.json": "4cd206ef047d30433799b92e032097a31f0cc7caa0eca3c4adbd1b76efcdbdc7",
+    "editorial/reviews/freezing-time-177-mutations.json": "08aefabe7ac865208b9d9757572f5daabee3e758c6c3675dcfd8352f7ee944d8",
+    "editorial/reviews/independent-freezing-time-177.md": "afd2243ff66bf196103e6a416be1ed5357b929c55f47119648baf18b3b253b67",
+    "editorial/assets/freezing-time-progressive.svg": "11e559cc06d94c00e7ff7b1150a15828b0fe975132ba73a420c46c755307a906"
+  },
+  "proofs": [
+    {
+      "family": 176,
+      "changedIds": [
+        "AR-u5-warm-water-and-ice-01",
+        "AR-u5-warm-water-and-ice-03",
+        "AR-u5-warm-water-and-ice-09"
+      ],
+      "candidatePin": "e6e35298f6e3e5d5f3a1be75924e523eb77fee8c",
+      "rootCandidateStateAtReading": "OLD_PENDING_INTEGRATOR_CHERRY_PICK",
+      "finalPackageSha256": "5d01c047a2a1a434752a2ae4fd9b187718132ee6f0cecaf96ad7f7dc8df68b88",
+      "finalBindingsSha256": "6b6ad05a0a4c8f6f9e3f2ee87c77a00771c19a955931ad9c09b156c74bcadcaa",
+      "newFrozenTokens": {
+        "AR-u5-warm-water-and-ice-01": "e24c7dc4b592d33937b92a5f3a0dd36a4300cfea872060c5ccde7c6c12f5ad5c",
+        "AR-u5-warm-water-and-ice-03": "6c6b32eae3944dd7e435a62f5fe9ed859632ace2bd589a396feebea47db6a498",
+        "AR-u5-warm-water-and-ice-09": "3bb9af79c4a0c55e9c2e21077a75cd92ac90a007d150ceefb0aa50fbb0306f72"
+      },
+      "otherFrozenTokensUnchanged": 13,
+      "verifierSha256": "bb6e297d04454fca19fce965d3ff82a3de8f30df276445ca232c5c1cd44dcff9",
+      "mathematicalFunctionsASTByteEquivalent": true,
+      "allOtherConstantsASTEquivalent": true,
+      "integrityHelperSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+      "localAutomation": "NOT_RUN",
+      "UI": "NOT_RUN"
+    },
+    {
+      "family": 177,
+      "changedIds": [
+        "AR-u5-freezing-time-11"
+      ],
+      "candidatePin": "e6e35298f6e3e5d5f3a1be75924e523eb77fee8c",
+      "rootCandidateStateAtReading": "OLD_PENDING_INTEGRATOR_CHERRY_PICK",
+      "finalPackageSha256": "134b68c9e30a535f4d9a6e5a955e4cedc80d2fb17433919d52bcd79ebfebf306",
+      "finalBindingsSha256": "1d0dba19d7d314bcb198fd26b502b60c76a3a012b4f8df0228930436b47b127e",
+      "newFrozenTokens": {
+        "AR-u5-freezing-time-11": "98e4e03f2e15ae481a5ce8ac022c370769f2687ef2640069a35711d038906988"
+      },
+      "otherFrozenTokensUnchanged": 15,
+      "verifierSha256": "e3d1fa3d676271be112bbb8726f6bcb0a915aa22b609b54684f24e62b6308c42",
+      "mathematicalFunctionsASTByteEquivalent": true,
+      "allOtherConstantsASTEquivalent": true,
+      "integrityHelperSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+      "localAutomation": "NOT_RUN",
+      "UI": "NOT_RUN"
+    }
+  ],
+  "exactFractionManualChecks": {
+    "thetaK": "25",
+    "QhJ": "400",
+    "QmJ": "300",
+    "QwJ": "100",
+    "timeRatio": "20"
+  },
+  "noteSha256": "9836cfd33318d9ad7e5b614702817fda67e0770500844f6b7a90d5790b8ddcf2",
+  "testFileUnchangedNoOldCandidatePinLiteral": true,
+  "localAutomation": "NOT_RUN",
+  "UI": "NOT_RUN",
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}

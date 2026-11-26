@@ -1,0 +1,1192 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u6-joule-energy-voltage-time-01",
+      "kind": "question",
+      "course": "C4",
+      "section": "Energia Joule a tensione costante",
+      "order": 21401,
+      "title": "Energia dopo tre secondi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "joule-energy-voltage-time",
+      "difficulty": 1,
+      "prompt": "Un resistore ohmico ha R=2 Ω, mantenuta costante. In ogni prova si applica una caduta positiva V costante per una durata T>0 finita; il tempo interno τ va da 0 a T. L’energia E assorbita elettricamente e convertita termicamente nell’intervallo è E=(V²/R)T. La corrente V/R e la potenza V²/R restano costanti durante la prova. Fra prove V e T possono cambiare; non si assume che l’energia resti accumulata nel resistore o che ne determini da sola l’aumento di temperatura. Con V=2 V e T=3 s, quanto vale E in J?",
+      "answer": {
+        "type": "numeric",
+        "value": 6,
+        "unit": "J",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La potenza è P=V²/R=4 V²/(2 Ω)=2 W. Rimane tale per tre secondi, perciò E=PT=2 W·3 s=6 J. Due è il valore numerico della potenza, non l’energia totale. L’intervallo inizia con energia cumulata E(0)=0."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/37e533b95cced8a2fed91ff364d281288cc6ac300291fcc4638f97f145978318",
+          "text": "Per V=2 V e R=2 Ω la potenza è costante 2 W. Nel primo pannello il rettangolo alto 2 W e largo 3 s rappresenta 6 J, non un valore di temperatura. La tensione e la resistenza sono costanti durante l’intervallo."
+        },
+        {
+          "type": "formula",
+          "text": "P=\\frac{V^2}{R}"
+        },
+        {
+          "type": "formula",
+          "text": " P=2\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " E=PT"
+        },
+        {
+          "type": "formula",
+          "text": " E=6\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Dodici J omette la divisione per R=2 Ω nella sostituzione numerica. Due J copia il numero della potenza; tre copia la durata; 2/3 rende inversa la dipendenza dal tempo. Il prodotto W·s deve dare joule."
+        }
+      ],
+      "hints": [
+        "Trova prima la potenza costante e poi moltiplicala per la durata.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dodici J omette la divisione per R=2 Ω nella sostituzione numerica. Due J copia il numero della potenza; tre copia la durata; 2/3 rende inversa la dipendenza dal tempo. Il prodotto W·s deve dare joule.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Energia come integrale della potenza costante",
+        "Tensione al quadrato e durata lineare",
+        "Inverse positive, medie e taratura affine",
+        "Vincolo fra preparazioni distinto da una rampa temporale"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-joule-energy-voltage-time-02",
+      "kind": "question",
+      "course": "C4",
+      "section": "Energia Joule a tensione costante",
+      "order": 21402,
+      "title": "Joule, non watt",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "joule-energy-voltage-time",
+      "difficulty": 1,
+      "prompt": "Un resistore ohmico ha R=2 Ω, mantenuta costante. In ogni prova si applica una caduta positiva V costante per una durata T>0 finita; il tempo interno τ va da 0 a T. L’energia E assorbita elettricamente e convertita termicamente nell’intervallo è E=(V²/R)T. La corrente V/R e la potenza V²/R restano costanti durante la prova. Fra prove V e T possono cambiare; non si assume che l’energia resti accumulata nel resistore o che ne determini da sola l’aumento di temperatura. Quale unità esprime E?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "J",
+          "W",
+          "V",
+          "s",
+          "Ω"
+        ],
+        "value": "J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’energia dissipata nell’intero intervallo ha unità joule. P si misura in W=J/s; moltiplicare per T in s restituisce J. La durata è un dato necessario per passare dalla potenza all’energia."
+        },
+        {
+          "type": "formula",
+          "text": "E=PT"
+        },
+        {
+          "type": "formula",
+          "text": " [E]=\\mathrm W\\cdot\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " [E]=\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Il watt misura potenza, il volt una differenza di potenziale, il secondo una durata e l’ohm una resistenza. Nessuno di questi da solo esprime l’energia richiesta."
+        }
+      ],
+      "hints": [
+        "Individua se la domanda riguarda un ritmo o il totale nell’intervallo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "Il watt misura potenza, il volt una differenza di potenziale, il secondo una durata e l’ohm una resistenza. Nessuno di questi da solo esprime l’energia richiesta.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Energia come integrale della potenza costante",
+        "Tensione al quadrato e durata lineare",
+        "Inverse positive, medie e taratura affine",
+        "Vincolo fra preparazioni distinto da una rampa temporale"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-joule-energy-voltage-time-03",
+      "kind": "question",
+      "course": "C4",
+      "section": "Energia Joule a tensione costante",
+      "order": 21403,
+      "title": "Integrare una potenza costante",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "joule-energy-voltage-time",
+      "difficulty": 1,
+      "prompt": "Un resistore ohmico ha R=2 Ω, mantenuta costante. In ogni prova si applica una caduta positiva V costante per una durata T>0 finita; il tempo interno τ va da 0 a T. L’energia E assorbita elettricamente e convertita termicamente nell’intervallo è E=(V²/R)T. La corrente V/R e la potenza V²/R restano costanti durante la prova. Fra prove V e T possono cambiare; non si assume che l’energia resti accumulata nel resistore o che ne determini da sola l’aumento di temperatura. Quale legge fisica dà E, usando anche R=2 Ω esplicita?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "E = V² T / R",
+          "E = V T / R",
+          "E = V² / (R T)",
+          "E = V² R T",
+          "E = V² T² / R"
+        ],
+        "value": "E = V² T / R"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nel resistore I=V/R e P=VI=V²/R. Poiché V e R non cambiano durante la prova, integrare P da τ=0 a T equivale a moltiplicare per T. La durata compare una volta sola e al numeratore. Il valore R=2 Ω si sostituisce conservando le unità."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/37e533b95cced8a2fed91ff364d281288cc6ac300291fcc4638f97f145978318",
+          "text": "Il grafico centrale mostra l’energia cumulata E(τ)=2 W·τ per la prova V=2 V, fino a T=3 s: E(0)=0 e E(3 s)=6 J. Il tempo interno τ non è una tensione in rampa. Le coordinate rappresentano energia assorbita nell’intervallo, non necessariamente energia trattenuta dal resistore."
+        },
+        {
+          "type": "formula",
+          "text": "P=\\frac{V^2}{R}"
+        },
+        {
+          "type": "formula",
+          "text": " E=\\int_0^T P\\,d\\tau"
+        },
+        {
+          "type": "formula",
+          "text": " E=\\frac{V^2T}{R}"
+        },
+        {
+          "type": "text",
+          "text": "VT/R non ha unità di energia e perde un fattore V. Dividere per T rende inverso il tempo; moltiplicare per R inverte la legge della potenza a tensione fissata. T² descriverebbe un’altra dipendenza temporale, non una potenza costante."
+        }
+      ],
+      "hints": [
+        "Il rettangolo sotto P(τ) ha altezza P e larghezza T.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "VT/R non ha unità di energia e perde un fattore V. Dividere per T rende inverso il tempo; moltiplicare per R inverte la legge della potenza a tensione fissata. T² descriverebbe un’altra dipendenza temporale, non una potenza costante.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Energia come integrale della potenza costante",
+        "Tensione al quadrato e durata lineare",
+        "Inverse positive, medie e taratura affine",
+        "Vincolo fra preparazioni distinto da una rampa temporale"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-joule-energy-voltage-time-04",
+      "kind": "question",
+      "course": "C4",
+      "section": "Energia Joule a tensione costante",
+      "order": 21404,
+      "title": "Metà tensione per la stessa durata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "joule-energy-voltage-time",
+      "difficulty": 1,
+      "prompt": "Un resistore ohmico ha R=2 Ω, mantenuta costante. In ogni prova si applica una caduta positiva V costante per una durata T>0 finita; il tempo interno τ va da 0 a T. L’energia E assorbita elettricamente e convertita termicamente nell’intervallo è E=(V²/R)T. La corrente V/R e la potenza V²/R restano costanti durante la prova. Fra prove V e T possono cambiare; non si assume che l’energia resti accumulata nel resistore o che ne determini da sola l’aumento di temperatura. V passa da 2 a 1 V, mentre T resta 3 s. Come cambia E?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 6 a 3/2 J",
+          "Da 6 a 3 J",
+          "Resta 6 J",
+          "Da 6 a 12 J",
+          "Da 6 a 24 J"
+        ],
+        "value": "Da 6 a 3/2 J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’energia iniziale è 6 J. Con metà tensione la potenza si riduce a un quarto: P_B=(1 V)²/(2 Ω)=1/2 W. Per tre secondi l’energia finale è (1/2)·3=3/2 J. La resistenza non è cambiata."
+        },
+        {
+          "type": "formula",
+          "text": "P_B=\\frac12\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " E_B=\\frac12\\cdot3\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " E_B=\\frac32\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Tre J usa una legge lineare in V. Sei ignora la modifica; dodici o ventiquattro rendono inverso il cambiamento della tensione, mentre a R fissata la potenza dipende direttamente da V²."
+        }
+      ],
+      "hints": [
+        "Prima considera il quadrato del rapporto delle tensioni.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Tre J usa una legge lineare in V. Sei ignora la modifica; dodici o ventiquattro rendono inverso il cambiamento della tensione, mentre a R fissata la potenza dipende direttamente da V².",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Energia come integrale della potenza costante",
+        "Tensione al quadrato e durata lineare",
+        "Inverse positive, medie e taratura affine",
+        "Vincolo fra preparazioni distinto da una rampa temporale"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-joule-energy-voltage-time-05",
+      "kind": "question",
+      "course": "C4",
+      "section": "Energia Joule a tensione costante",
+      "order": 21405,
+      "title": "Tensione dall’energia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "joule-energy-voltage-time",
+      "difficulty": 2,
+      "prompt": "Un resistore ohmico ha R=2 Ω, mantenuta costante. In ogni prova si applica una caduta positiva V costante per una durata T>0 finita; il tempo interno τ va da 0 a T. L’energia E assorbita elettricamente e convertita termicamente nell’intervallo è E=(V²/R)T. La corrente V/R e la potenza V²/R restano costanti durante la prova. Fra prove V e T possono cambiare; non si assume che l’energia resti accumulata nel resistore o che ne determini da sola l’aumento di temperatura. Si misura E=6 J e si conosce T=3 s. Quanto vale V in volt?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "V",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Da E=V²T/R si moltiplica per R e si divide per T>0: V²=ER/T. Con 6 J, 2 Ω e 3 s si ottiene 4 V². La radice positiva è 2 V, come richiesto dal dominio della caduta applicata."
+        },
+        {
+          "type": "formula",
+          "text": "V^2=\\frac{ER}{T}"
+        },
+        {
+          "type": "formula",
+          "text": " V^2=4\\,\\mathrm{V^2}"
+        },
+        {
+          "type": "formula",
+          "text": " V=2\\,\\mathrm V"
+        },
+        {
+          "type": "text",
+          "text": "Quattro V copia V² e darebbe 24 J. −2 V non è la caduta positiva chiesta, anche se il quadrato produrrebbe la stessa energia. Sei V darebbe 54 J. Il ramo positivo e le unità della radice sono entrambi necessari."
+        }
+      ],
+      "hints": [
+        "Ricava prima V² con energia, resistenza e durata coerenti.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro V copia V² e darebbe 24 J. −2 V non è la caduta positiva chiesta, anche se il quadrato produrrebbe la stessa energia. Sei V darebbe 54 J. Il ramo positivo e le unità della radice sono entrambi necessari.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Energia come integrale della potenza costante",
+        "Tensione al quadrato e durata lineare",
+        "Inverse positive, medie e taratura affine",
+        "Vincolo fra preparazioni distinto da una rampa temporale"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-joule-energy-voltage-time-06",
+      "kind": "question",
+      "course": "C4",
+      "section": "Energia Joule a tensione costante",
+      "order": 21406,
+      "title": "Durata dall’energia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "joule-energy-voltage-time",
+      "difficulty": 2,
+      "prompt": "Un resistore ohmico ha R=2 Ω, mantenuta costante. In ogni prova si applica una caduta positiva V costante per una durata T>0 finita; il tempo interno τ va da 0 a T. L’energia E assorbita elettricamente e convertita termicamente nell’intervallo è E=(V²/R)T. La corrente V/R e la potenza V²/R restano costanti durante la prova. Fra prove V e T possono cambiare; non si assume che l’energia resti accumulata nel resistore o che ne determini da sola l’aumento di temperatura. Si misura E=6 J con V=2 V. Quanto vale T in s?",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La potenza è 2 W. Dalla relazione E=PT si ricava T=E/P=6 J/(2 W)=3 s. In forma equivalente T=ER/V². L’energia positiva e la tensione non nulla danno una durata positiva finita."
+        },
+        {
+          "type": "formula",
+          "text": "T=\\frac{ER}{V^2}"
+        },
+        {
+          "type": "formula",
+          "text": " T=\\frac{6\\cdot2}{4}\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " T=3\\,\\mathrm s"
+        },
+        {
+          "type": "text",
+          "text": "Sei s raddoppia la durata corretta e darebbe 12 J. 3/2 s omette il fattore R nell’inversa e darebbe 3 J. Due s copia il valore numerico della potenza e darebbe 4 J."
+        }
+      ],
+      "hints": [
+        "L’energia divisa per una potenza costante dà il tempo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sei s raddoppia la durata corretta e darebbe 12 J. 3/2 s omette il fattore R nell’inversa e darebbe 3 J. Due s copia il valore numerico della potenza e darebbe 4 J.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Energia come integrale della potenza costante",
+        "Tensione al quadrato e durata lineare",
+        "Inverse positive, medie e taratura affine",
+        "Vincolo fra preparazioni distinto da una rampa temporale"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-joule-energy-voltage-time-07",
+      "kind": "question",
+      "course": "C4",
+      "section": "Energia Joule a tensione costante",
+      "order": 21407,
+      "title": "Più tempo alla stessa tensione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "joule-energy-voltage-time",
+      "difficulty": 2,
+      "prompt": "Un resistore ohmico ha R=2 Ω, mantenuta costante. In ogni prova si applica una caduta positiva V costante per una durata T>0 finita; il tempo interno τ va da 0 a T. L’energia E assorbita elettricamente e convertita termicamente nell’intervallo è E=(V²/R)T. La corrente V/R e la potenza V²/R restano costanti durante la prova. Fra prove V e T possono cambiare; non si assume che l’energia resti accumulata nel resistore o che ne determini da sola l’aumento di temperatura. A usa V=2 V e T_A=3 s. B mantiene V e usa T_B=5 s. Quanto vale E_B/E_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "5/3",
+          "3/5",
+          "25/9",
+          "1",
+          "2"
+        ],
+        "value": "5/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La potenza è la stessa, 2 W. Le energie sono E_A=6 J ed E_B=10 J, quindi E_B/E_A=10/6=5/3. La dipendenza dal tempo è lineare perché la tensione rimane costante all’interno di entrambi gli intervalli."
+        },
+        {
+          "type": "formula",
+          "text": "E_A=6\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " E_B=10\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{E_B}{E_A}=\\frac53"
+        },
+        {
+          "type": "text",
+          "text": "3/5 inverte il confronto. 25/9 eleva al quadrato il rapporto dei tempi invece di quello delle tensioni. Uno ignora il tempo aggiunto e due non coincide con il rapporto delle durate assegnate."
+        }
+      ],
+      "hints": [
+        "Con la stessa potenza, il rapporto delle energie è quello delle durate.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "3/5 inverte il confronto. 25/9 eleva al quadrato il rapporto dei tempi invece di quello delle tensioni. Uno ignora il tempo aggiunto e due non coincide con il rapporto delle durate assegnate.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Energia come integrale della potenza costante",
+        "Tensione al quadrato e durata lineare",
+        "Inverse positive, medie e taratura affine",
+        "Vincolo fra preparazioni distinto da una rampa temporale"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-joule-energy-voltage-time-08",
+      "kind": "question",
+      "course": "C4",
+      "section": "Energia Joule a tensione costante",
+      "order": 21408,
+      "title": "Lo scarto della proposta energetica",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "joule-energy-voltage-time",
+      "difficulty": 2,
+      "prompt": "Un resistore ohmico ha R=2 Ω, mantenuta costante. In ogni prova si applica una caduta positiva V costante per una durata T>0 finita; il tempo interno τ va da 0 a T. L’energia E assorbita elettricamente e convertita termicamente nell’intervallo è E=(V²/R)T. La corrente V/R e la potenza V²/R restano costanti durante la prova. Fra prove V e T possono cambiare; non si assume che l’energia resti accumulata nel resistore o che ne determini da sola l’aumento di temperatura. Con V=2 V e T=3 s si propone E=12 J. Quanto vale proposta meno corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "6 J",
+          "−6 J",
+          "12 J",
+          "0 J",
+          "2"
+        ],
+        "value": "6 J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il valore corretto è 6 J. La differenza richiesta è 12−6=+6 J. La proposta avrebbe dimenticato il divisore numerico due dovuto alla resistenza assegnata; non è necessario approssimare alcun valore."
+        },
+        {
+          "type": "formula",
+          "text": "E=6\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " e=(12-6)\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " e=6\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "−6 inverte l’ordine. Dodici copia la proposta, zero la accetta e due è il rapporto senza unità proposta/corretto, non una differenza di energie."
+        }
+      ],
+      "hints": [
+        "Mantieni R=2 Ω anche nel calcolo del valore con cui confronti la proposta.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−6 inverte l’ordine. Dodici copia la proposta, zero la accetta e due è il rapporto senza unità proposta/corretto, non una differenza di energie.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Energia come integrale della potenza costante",
+        "Tensione al quadrato e durata lineare",
+        "Inverse positive, medie e taratura affine",
+        "Vincolo fra preparazioni distinto da una rampa temporale"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-joule-energy-voltage-time-09",
+      "kind": "question",
+      "course": "C4",
+      "section": "Energia Joule a tensione costante",
+      "order": 21409,
+      "title": "La formula inversa della tensione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "joule-energy-voltage-time",
+      "difficulty": 2,
+      "prompt": "Un resistore ohmico ha R=2 Ω, mantenuta costante. In ogni prova si applica una caduta positiva V costante per una durata T>0 finita; il tempo interno τ va da 0 a T. L’energia E assorbita elettricamente e convertita termicamente nell’intervallo è E=(V²/R)T. La corrente V/R e la potenza V²/R restano costanti durante la prova. Fra prove V e T possono cambiare; non si assume che l’energia resti accumulata nel resistore o che ne determini da sola l’aumento di temperatura. Sono noti E, T e R. Quale formula ricava la caduta positiva V?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "V = √(E R / T)",
+          "V = E R / T",
+          "V = √(E T / R)",
+          "V = √(R / (E T))",
+          "V = −√(E R / T)"
+        ],
+        "value": "V = √(E R / T)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "E=V²T/R implica ER=V²T. Si divide per T>0 e si prende la radice positiva: V=√(ER/T). Il contenuto della radice ha unità J·Ω/s=W·Ω=V². Senza la convenzione di segno l’energia non distinguerebbe due tensioni opposte."
+        },
+        {
+          "type": "formula",
+          "text": "ER=V^2T"
+        },
+        {
+          "type": "formula",
+          "text": " V^2=\\frac{ER}{T}"
+        },
+        {
+          "type": "formula",
+          "text": " V=\\sqrt{\\frac{ER}{T}}"
+        },
+        {
+          "type": "text",
+          "text": "ER/T è il quadrato della tensione e non la tensione. ET/R avrebbe unità C² e ricaverebbe una grandezza con dimensione di carica, non una tensione. L’altra radice con R/(ET) ha dimensioni inverse di carica; la radice negativa non è nel dominio dichiarato."
+        }
+      ],
+      "hints": [
+        "Controlla l’unità sotto radice prima di scegliere il ramo positivo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "ER/T è il quadrato della tensione e non la tensione. ET/R avrebbe unità C² e ricaverebbe una grandezza con dimensione di carica, non una tensione. L’altra radice con R/(ET) ha dimensioni inverse di carica; la radice negativa non è nel dominio dichiarato.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Energia come integrale della potenza costante",
+        "Tensione al quadrato e durata lineare",
+        "Inverse positive, medie e taratura affine",
+        "Vincolo fra preparazioni distinto da una rampa temporale"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-joule-energy-voltage-time-10",
+      "kind": "question",
+      "course": "C4",
+      "section": "Energia Joule a tensione costante",
+      "order": 21410,
+      "title": "Scalare tensione e durata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "joule-energy-voltage-time",
+      "difficulty": 2,
+      "prompt": "Un resistore ohmico ha R=2 Ω, mantenuta costante. In ogni prova si applica una caduta positiva V costante per una durata T>0 finita; il tempo interno τ va da 0 a T. L’energia E assorbita elettricamente e convertita termicamente nell’intervallo è E=(V²/R)T. La corrente V/R e la potenza V²/R restano costanti durante la prova. Fra prove V e T possono cambiare; non si assume che l’energia resti accumulata nel resistore o che ne determini da sola l’aumento di temperatura. B usa V_B=κ₁V_A e T_B=κ₂T_A, con fattori positivi. Quanto vale E_B/E_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁² κ₂",
+          "κ₁ κ₂",
+          "κ₁² / κ₂",
+          "κ₁ κ₂²",
+          "κ₂ / κ₁²"
+        ],
+        "value": "κ₁² κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La stessa R si cancella. Il nuovo valore V_B² contiene κ₁², mentre la durata contiene κ₂ una sola volta. Quindi E_B/E_A=κ₁²κ₂. Ogni tensione resta costante durante la propria prova, anche se cambia fra le preparazioni."
+        },
+        {
+          "type": "formula",
+          "text": "E_B=\\frac{\\kappa_1^2V_A^2}{R}\\kappa_2T_A"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{E_B}{E_A}=\\kappa_1^2\\kappa_2"
+        },
+        {
+          "type": "text",
+          "text": "κ₁κ₂ dimentica il quadrato della tensione; κ₁²/κ₂ rende inverso il tempo. κ₂² attribuisce alla durata il quadrato non presente nel prodotto con una potenza costante. L’ultimo rapporto inverte l’effetto della tensione."
+        }
+      ],
+      "hints": [
+        "Il quadrato riguarda V, non T.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "κ₁κ₂ dimentica il quadrato della tensione; κ₁²/κ₂ rende inverso il tempo. κ₂² attribuisce alla durata il quadrato non presente nel prodotto con una potenza costante. L’ultimo rapporto inverte l’effetto della tensione.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Energia come integrale della potenza costante",
+        "Tensione al quadrato e durata lineare",
+        "Inverse positive, medie e taratura affine",
+        "Vincolo fra preparazioni distinto da una rampa temporale"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-joule-energy-voltage-time-11",
+      "kind": "question",
+      "course": "C4",
+      "section": "Energia Joule a tensione costante",
+      "order": 21411,
+      "title": "Tensione doppia e intervallo minore",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "joule-energy-voltage-time",
+      "difficulty": 2,
+      "prompt": "Un resistore ohmico ha R=2 Ω, mantenuta costante. In ogni prova si applica una caduta positiva V costante per una durata T>0 finita; il tempo interno τ va da 0 a T. L’energia E assorbita elettricamente e convertita termicamente nell’intervallo è E=(V²/R)T. La corrente V/R e la potenza V²/R restano costanti durante la prova. Fra prove V e T possono cambiare; non si assume che l’energia resti accumulata nel resistore o che ne determini da sola l’aumento di temperatura. A usa V=2 V e T=3 s. B usa V=4 V e T=2 s. Quanto vale E_B/E_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "8/3",
+          "3/8",
+          "4/3",
+          "2/3",
+          "4"
+        ],
+        "value": "8/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha potenza 2 W ed energia 6 J. B ha potenza 4²/2=8 W ed energia 16 J. Il rapporto è 16/6=8/3, che combina il fattore quattro della potenza con il fattore 2/3 del tempo."
+        },
+        {
+          "type": "formula",
+          "text": "E_A=6\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " E_B=16\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{E_B}{E_A}=\\frac83"
+        },
+        {
+          "type": "text",
+          "text": "3/8 è il reciproco. 4/3 usa V linearmente; 2/3 segue soltanto T; quattro segue soltanto V² e ignora il nuovo intervallo. I due effetti non si sommano."
+        }
+      ],
+      "hints": [
+        "Calcola la nuova potenza e moltiplicala per il nuovo tempo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "3/8 è il reciproco. 4/3 usa V linearmente; 2/3 segue soltanto T; quattro segue soltanto V² e ignora il nuovo intervallo. I due effetti non si sommano.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Energia come integrale della potenza costante",
+        "Tensione al quadrato e durata lineare",
+        "Inverse positive, medie e taratura affine",
+        "Vincolo fra preparazioni distinto da una rampa temporale"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-joule-energy-voltage-time-12",
+      "kind": "question",
+      "course": "C4",
+      "section": "Energia Joule a tensione costante",
+      "order": 21412,
+      "title": "Media delle due energie",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "joule-energy-voltage-time",
+      "difficulty": 2,
+      "prompt": "Un resistore ohmico ha R=2 Ω, mantenuta costante. In ogni prova si applica una caduta positiva V costante per una durata T>0 finita; il tempo interno τ va da 0 a T. L’energia E assorbita elettricamente e convertita termicamente nell’intervallo è E=(V²/R)T. La corrente V/R e la potenza V²/R restano costanti durante la prova. Fra prove V e T possono cambiare; non si assume che l’energia resti accumulata nel resistore o che ne determini da sola l’aumento di temperatura. A usa V=2 V, T=3 s; B usa V=4 V, T=2 s. Qual è la media aritmetica delle due E?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "11 J",
+          "45/4 J",
+          "22 J",
+          "5 J",
+          "16 J"
+        ],
+        "value": "11 J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le energie sono 6 e 16 J; la loro media è 11 J. Ai dati medi V=3 V e T=5/2 s, invece, il modello darebbe (9/2)(5/2)=45/4 J. Tale valore supera di 1/4 J la media richiesta. Non occorre trasformare le frazioni in decimali."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/37e533b95cced8a2fed91ff364d281288cc6ac300291fcc4638f97f145978318",
+          "text": "Le barre finali confrontano A: V=2 V, T=3 s ed E=6 J con B: V=4 V, T=2 s ed E=16 J; la media è 11 J. Origine e scala delle tre barre sono comuni. B non appartiene alla retta centrale a tensione 2 V. Ai dati medi si avrebbe 45/4 J, un’altra quantità."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline E=\\frac{6+16}{2}\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline E=11\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " E_{\\rm dati\\ medi}=\\frac{45}{4}\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "45/4 J applica il modello agli ingressi medi. Ventidue non dimezza; cinque è metà della differenza; sedici ripete B. Le preparazioni hanno uguale peso statistico, non un tempo medio da inserire automaticamente nella legge."
+        }
+      ],
+      "hints": [
+        "Trova le energie dei due intervalli separatamente prima della media.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "45/4 J applica il modello agli ingressi medi. Ventidue non dimezza; cinque è metà della differenza; sedici ripete B. Le preparazioni hanno uguale peso statistico, non un tempo medio da inserire automaticamente nella legge.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Energia come integrale della potenza costante",
+        "Tensione al quadrato e durata lineare",
+        "Inverse positive, medie e taratura affine",
+        "Vincolo fra preparazioni distinto da una rampa temporale"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-joule-energy-voltage-time-13",
+      "kind": "question",
+      "course": "C4",
+      "section": "Energia Joule a tensione costante",
+      "order": 21413,
+      "title": "Il tempo per il bersaglio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "joule-energy-voltage-time",
+      "difficulty": 3,
+      "prompt": "Un resistore ohmico ha R=2 Ω, mantenuta costante. In ogni prova si applica una caduta positiva V costante per una durata T>0 finita; il tempo interno τ va da 0 a T. L’energia E assorbita elettricamente e convertita termicamente nell’intervallo è E=(V²/R)T. La corrente V/R e la potenza V²/R restano costanti durante la prova. Fra prove V e T possono cambiare; non si assume che l’energia resti accumulata nel resistore o che ne determini da sola l’aumento di temperatura. A usa V=2 V e T=3 s. B usa V=4 V e deve dare E_B=(8/3)E_A. Quanto vale T_B/T_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2/3",
+          "3/2",
+          "8/3",
+          "4",
+          "1/3"
+        ],
+        "value": "2/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è (8/3)·6=16 J. A 4 V la potenza è 8 W, quindi T_B=16/8=2 s. Dividendo per T_A=3 s si ottiene 2/3. La durata è positiva e ogni tensione resta costante nel proprio intervallo."
+        },
+        {
+          "type": "formula",
+          "text": "E_B=16\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " P_B=8\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " T_B=2\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{T_B}{T_A}=\\frac23"
+        },
+        {
+          "type": "text",
+          "text": "3/2 inverte il confronto. 8/3 copia il rapporto delle energie senza rimuovere il fattore della potenza; quattro copia il rapporto delle potenze. Un terzo darebbe un secondo e solo 8 J."
+        }
+      ],
+      "hints": [
+        "Dividi l’energia bersaglio per la potenza della prova B.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "3/2 inverte il confronto. 8/3 copia il rapporto delle energie senza rimuovere il fattore della potenza; quattro copia il rapporto delle potenze. Un terzo darebbe un secondo e solo 8 J.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Energia come integrale della potenza costante",
+        "Tensione al quadrato e durata lineare",
+        "Inverse positive, medie e taratura affine",
+        "Vincolo fra preparazioni distinto da una rampa temporale"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-joule-energy-voltage-time-14",
+      "kind": "question",
+      "course": "C4",
+      "section": "Energia Joule a tensione costante",
+      "order": 21414,
+      "title": "Dalla lettura alla radice esatta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "joule-energy-voltage-time",
+      "difficulty": 3,
+      "prompt": "Un resistore ohmico ha R=2 Ω, mantenuta costante. In ogni prova si applica una caduta positiva V costante per una durata T>0 finita; il tempo interno τ va da 0 a T. L’energia E assorbita elettricamente e convertita termicamente nell’intervallo è E=(V²/R)T. La corrente V/R e la potenza V²/R restano costanti durante la prova. Fra prove V e T possono cambiare; non si assume che l’energia resti accumulata nel resistore o che ne determini da sola l’aumento di temperatura. D=a_cal E è continuo e adimensionale, a_cal>0, senza offset. A con V=2 V e T=3 s dà D=18. C dà D=48 e dura T=2 s. Quanto vale V_C in volt?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "V",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento ha E_A=6 J, perciò a_cal=18/(6 J)=3 J⁻¹. C ha E_C=48/(3 J⁻¹)=16 J. Dall’inversa V_C²=E_CR/T_C=16 V² segue la caduta positiva V_C=4 V."
+        },
+        {
+          "type": "formula",
+          "text": "a_{\\rm cal}=3\\,\\mathrm J^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " E_C=16\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " V_C^2=16\\,\\mathrm{V^2}"
+        },
+        {
+          "type": "formula",
+          "text": " V_C=4\\,\\mathrm V"
+        },
+        {
+          "type": "text",
+          "text": "Sedici V copia V² e darebbe 256 J nell’intervallo. Due V darebbe 4 J e D=12; otto V darebbe 64 J e D=192. Usare D come joule non rimuove il guadagno del display."
+        }
+      ],
+      "hints": [
+        "Rimuovi la taratura e poi usa V²=ER/T.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sedici V copia V² e darebbe 256 J nell’intervallo. Due V darebbe 4 J e D=12; otto V darebbe 64 J e D=192. Usare D come joule non rimuove il guadagno del display.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Energia come integrale della potenza costante",
+        "Tensione al quadrato e durata lineare",
+        "Inverse positive, medie e taratura affine",
+        "Vincolo fra preparazioni distinto da una rampa temporale"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-joule-energy-voltage-time-15",
+      "kind": "question",
+      "course": "C4",
+      "section": "Energia Joule a tensione costante",
+      "order": 21415,
+      "title": "Offset prima dell’energia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "joule-energy-voltage-time",
+      "difficulty": 3,
+      "prompt": "Un resistore ohmico ha R=2 Ω, mantenuta costante. In ogni prova si applica una caduta positiva V costante per una durata T>0 finita; il tempo interno τ va da 0 a T. L’energia E assorbita elettricamente e convertita termicamente nell’intervallo è E=(V²/R)T. La corrente V/R e la potenza V²/R restano costanti durante la prova. Fra prove V e T possono cambiare; non si assume che l’energia resti accumulata nel resistore o che ne determini da sola l’aumento di temperatura. D=a_cal E+b è continuo e adimensionale. A: V=2 V, T=3 s, D=13. B: V=4 V, T=2 s, D=33. C: T=1 s, D=37. Quanto vale V_C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "6 V",
+          "√37 V",
+          "18 V",
+          "36 V",
+          "3 V"
+        ],
+        "value": "6 V"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le energie di riferimento sono 6 e 16 J. Guadagno a_cal=(33−13)/(16−6) J⁻¹=2 J⁻¹, offset b=1. C ha E_C=(37−1)/2=18 J. Con R=2 Ω e T=1 s si trova V_C²=36 V²; il modulo positivo è 6 V."
+        },
+        {
+          "type": "formula",
+          "text": "a_{\\rm cal}=2\\,\\mathrm J^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " E_C=18\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " V_C=6\\,\\mathrm V"
+        },
+        {
+          "type": "text",
+          "text": "√37 V omette l’offset: produrrebbe E=37/2 J e D=38, non 37. Diciotto copia il numero dell’energia; trentasei copia quello di V². Tre V darebbe E=9/2 J e D=10. Il controllo del display può essere fatto con quadrati esatti, senza calcolare √37 in decimali."
+        }
+      ],
+      "hints": [
+        "Sottrai b e dividi per a_cal prima di estrarre la radice.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "√37 V omette l’offset: produrrebbe E=37/2 J e D=38, non 37. Diciotto copia il numero dell’energia; trentasei copia quello di V². Tre V darebbe E=9/2 J e D=10. Il controllo del display può essere fatto con quadrati esatti, senza calcolare √37 in decimali.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Energia come integrale della potenza costante",
+        "Tensione al quadrato e durata lineare",
+        "Inverse positive, medie e taratura affine",
+        "Vincolo fra preparazioni distinto da una rampa temporale"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-joule-energy-voltage-time-16",
+      "kind": "question",
+      "course": "C4",
+      "section": "Energia Joule a tensione costante",
+      "order": 21416,
+      "title": "Durate preparate, non una rampa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "joule-energy-voltage-time",
+      "difficulty": 3,
+      "prompt": "Un resistore ohmico ha R=2 Ω, mantenuta costante. In ogni prova si applica una caduta positiva V costante per una durata T>0 finita; il tempo interno τ va da 0 a T. L’energia E assorbita elettricamente e convertita termicamente nell’intervallo è E=(V²/R)T. La corrente V/R e la potenza V²/R restano costanti durante la prova. Fra prove V e T possono cambiare; non si assume che l’energia resti accumulata nel resistore o che ne determini da sola l’aumento di temperatura. Fra prove si impone V=αT, con α=(2/3) V/s. La tensione così preparata resta costante per tutto il proprio intervallo. Si misura E=6 J. Quanto vale T?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3 s",
+          "27 s",
+          "2 s",
+          "−3 s",
+          "Infinite durate positive"
+        ],
+        "value": "3 s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Definiamo x=T/(1 s)>0. Il vincolo di preparazione dà V/(1 V)=2x/3. Sostituendo nell’energia totale si ottiene E/(1 J)=2x³/9. La misura 6 J impone x³=27 e quindi T=3 s; la tensione della prova è 2 V. Non si deve inserire V(τ)=ατ: sarebbe una rampa, diversa dal controllo costante dichiarato."
+        },
+        {
+          "type": "formula",
+          "text": "x=\\frac T{1\\,\\mathrm s}"
+        },
+        {
+          "type": "formula",
+          "text": " 6=\\frac29x^3"
+        },
+        {
+          "type": "formula",
+          "text": " x^3=27"
+        },
+        {
+          "type": "formula",
+          "text": " T=3\\,\\mathrm s"
+        },
+        {
+          "type": "text",
+          "text": "Ventisette copia x³ e due copia il valore numerico della tensione risultante. −3 s viola la durata positiva. La cubica cresce strettamente per x>0 e seleziona un solo intervallo; non c’è una scala libera residua."
+        }
+      ],
+      "hints": [
+        "Sostituisci il valore di V preparato in funzione della durata, mantenendolo costante nel tempo interno.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Ventisette copia x³ e due copia il valore numerico della tensione risultante. −3 s viola la durata positiva. La cubica cresce strettamente per x>0 e seleziona un solo intervallo; non c’è una scala libera residua.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Energia come integrale della potenza costante",
+        "Tensione al quadrato e durata lineare",
+        "Inverse positive, medie e taratura affine",
+        "Vincolo fra preparazioni distinto da una rampa temporale"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "37e533b95cced8a2fed91ff364d281288cc6ac300291fcc4638f97f145978318",
+      "name": "joule-energy-voltage-time-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2ODAgMTU3MCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgo8dGl0bGUgaWQ9InRpdGxlIj5Qb3RlbnphIGNvc3RhbnRlIGVkIGVuZXJnaWEgbmVsbOKAmWludGVydmFsbG88L3RpdGxlPgo8ZGVzYyBpZD0iZGVzYyI+VW4gcmVzaXN0b3JlIGRhIDIgb2htIGEgdGVuc2lvbmUgY29zdGFudGUgMiB2b2x0IGFzc29yYmUgcG90ZW56YSAyIHdhdHQuIElsIHJldHRhbmdvbG8gcG90ZW56YS10ZW1wbywgYWx0byAyIHdhdHQgZSBsYXJnbyAzIHNlY29uZGksIHJhcHByZXNlbnRhIGVuZXJnaWEgNiBqb3VsZS4gTOKAmWVuZXJnaWEgY3VtdWxhdGEgY3Jlc2NlIGxpbmVhcm1lbnRlIGRhIHplcm8gYSA2IGpvdWxlLiBEdWUgcHJlcGFyYXppb25pIGZpbmFsaSBkaXN0aW50ZSBkYW5ubyBlbmVyZ2llIDYgZSAxNiBqb3VsZSBlIG1lZGlhIDExIGpvdWxlOyBsYSBzZWNvbmRhIGhhIHRlbnNpb25lIDQgdm9sdCBlIGR1cmF0YSAyIHNlY29uZGkuPC9kZXNjPgo8cmVjdCB3aWR0aD0iNjgwIiBoZWlnaHQ9IjE1NzAiIGZpbGw9IiNmZmZkZjYiLz4KPHRleHQgeD0iMzQiIHk9IjQ4IiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyNiIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iIzE4MzY0YSI+MSDCtyBJbCByZXR0YW5nb2xvIHNvdHRvIGxhIHBvdGVuemE8L3RleHQ+Cjx0ZXh0IHg9IjM0IiB5PSI4OCIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiMxODM2NGEiPlIgPSAyIM6pIDsgViA9IDIgViA7IFAgPSAyIFcgOyBUID0gMyBzLjwvdGV4dD4KPHBhdGggZD0iTTEwMCAxNzBWNDAwSDUzMCIgc3Ryb2tlPSIjNTI2YTc4IiBzdHJva2Utd2lkdGg9IjIiIGZpbGw9Im5vbmUiLz4KPHJlY3QgeD0iMTAwIiB5PSIyODAiIHdpZHRoPSIzMDAiIGhlaWdodD0iMTIwIiBmaWxsPSIjZDllYWY1IiBzdHJva2U9IiMxNjVhODciIHN0cm9rZS13aWR0aD0iMyIvPgo8dGV4dCB4PSIzNCIgeT0iMTg1IiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzE4MzY0YSI+UCAoVyk8L3RleHQ+PHRleHQgeD0iNTIwIiB5PSI0MzAiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIwIiBmaWxsPSIjMTgzNjRhIj7PhCAocyk8L3RleHQ+Cjx0ZXh0IHg9Ijc1IiB5PSI0MjUiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjE2IiBmaWxsPSIjMTgzNjRhIj4wPC90ZXh0Pjx0ZXh0IHg9IjM5MyIgeT0iNDI1IiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzE4MzY0YSI+MzwvdGV4dD4KPHRleHQgeD0iNzQiIHk9IjI4NiIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiMxODM2NGEiPjI8L3RleHQ+PHRleHQgeD0iMjEwIiB5PSIzNDUiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIyIiBmaWxsPSIjMTgzNjRhIj5FID0gNiBKPC90ZXh0Pgo8dGV4dCB4PSIzNCIgeT0iNDc1IiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzE4MzY0YSI+QXJlYSBmaXNpY2E6ICgyIFcpIMK3ICgzIHMpID0gNiBKLjwvdGV4dD4KPHRleHQgeD0iMzQiIHk9IjU1NSIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjYiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiMxODM2NGEiPjIgwrcgTOKAmWVuZXJnaWEgY3VtdWxhdGEgY3Jlc2NlPC90ZXh0Pgo8dGV4dCB4PSIzNCIgeT0iNTk1IiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzE4MzY0YSI+U3Rlc3NhIHByb3ZhOiBFKM+EKSA9ICgyIFcpIM+ELCBmaW5vIGEgVCA9IDMgcy48L3RleHQ+CjxwYXRoIGQ9Ik0xMDAgNjIwVjg4MEg1NDAiIHN0cm9rZT0iIzUyNmE3OCIgc3Ryb2tlLXdpZHRoPSIyIiBmaWxsPSJub25lIi8+CjxwYXRoIGQ9Ik0xMDAgODgwTDQwMCA2NDAiIHN0cm9rZT0iIzE2NWE4NyIgc3Ryb2tlLXdpZHRoPSI0IiBmaWxsPSJub25lIi8+CjxjaXJjbGUgY3g9IjEwMCIgY3k9Ijg4MCIgcj0iNCIgZmlsbD0iIzE2NWE4NyIvPjxjaXJjbGUgY3g9IjQwMCIgY3k9IjY0MCIgcj0iNSIgZmlsbD0iIzE2NWE4NyIvPgo8dGV4dCB4PSIzNSIgeT0iNjM1IiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzE4MzY0YSI+RSAoSik8L3RleHQ+PHRleHQgeD0iNTI1IiB5PSI5MTAiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIwIiBmaWxsPSIjMTgzNjRhIj7PhCAocyk8L3RleHQ+Cjx0ZXh0IHg9Ijc1IiB5PSI5MDUiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjE2IiBmaWxsPSIjMTgzNjRhIj4wPC90ZXh0Pjx0ZXh0IHg9IjM5NCIgeT0iOTA1IiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzE4MzY0YSI+MzwvdGV4dD48dGV4dCB4PSI0MTUiIHk9IjY0NSIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiMxODM2NGEiPjYgSjwvdGV4dD4KPHRleHQgeD0iMzQiIHk9Ijk1MCIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMxODM2NGEiPkxhIHRlbnNpb25lIHJlc3RhIGNvc3RhbnRlOiBub24gw6ggdW5hIHJhbXBhIFYoz4QpLjwvdGV4dD4KPHRleHQgeD0iMzQiIHk9IjEwMzAiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjI2IiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjMTgzNjRhIj4zIMK3IER1ZSBwcm92ZSBlIGxhIGxvcm8gbWVkaWE8L3RleHQ+Cjx0ZXh0IHg9IjM0IiB5PSIxMDcwIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzE4MzY0YSI+QTogMiBWIHBlciAzIHMgOyBCOiA0IFYgcGVyIDIgcyA7IHNlbXByZSBSID0gMiDOqS48L3RleHQ+CjxsaW5lIHgxPSIxNTAiIHkxPSIxMTEwIiB4Mj0iMTUwIiB5Mj0iMTQwMCIgc3Ryb2tlPSIjNTI2YTc4IiBzdHJva2Utd2lkdGg9IjIiLz48bGluZSB4MT0iMTUwIiB5MT0iMTQwMCIgeDI9IjUxMCIgeTI9IjE0MDAiIHN0cm9rZT0iIzUyNmE3OCIgc3Ryb2tlLXdpZHRoPSIyIi8+CjxyZWN0IHg9IjE1MCIgeT0iMTEzMCIgd2lkdGg9IjEyMCIgaGVpZ2h0PSIzNCIgZmlsbD0iIzE2NWE4NyIvPjxyZWN0IHg9IjE1MCIgeT0iMTIzMCIgd2lkdGg9IjMyMCIgaGVpZ2h0PSIzNCIgZmlsbD0iIzI4NjY0ZCIvPjxyZWN0IHg9IjE1MCIgeT0iMTMzMCIgd2lkdGg9IjIyMCIgaGVpZ2h0PSIzNCIgZmlsbD0iIzlhNGYyMyIvPgo8dGV4dCB4PSI4MCIgeT0iMTE1NSIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiMxODM2NGEiPkE8L3RleHQ+PHRleHQgeD0iMjg1IiB5PSIxMTU1IiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzE4MzY0YSI+NiBKPC90ZXh0Pgo8dGV4dCB4PSI4MCIgeT0iMTI1NSIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiMxODM2NGEiPkI8L3RleHQ+PHRleHQgeD0iNDg1IiB5PSIxMjU1IiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzE4MzY0YSI+MTYgSjwvdGV4dD4KPHRleHQgeD0iNDQiIHk9IjEzNTUiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIwIiBmaWxsPSIjMTgzNjRhIj5NZWRpYTwvdGV4dD48dGV4dCB4PSIzODUiIHk9IjEzNTUiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIwIiBmaWxsPSIjMTgzNjRhIj4xMSBKPC90ZXh0Pgo8dGV4dCB4PSIxMjUiIHk9IjE0MjUiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjE2IiBmaWxsPSIjMTgzNjRhIj4wPC90ZXh0Pjx0ZXh0IHg9IjQ2MCIgeT0iMTQyNSIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiMxODM2NGEiPjE2IEo8L3RleHQ+Cjx0ZXh0IHg9IjM0IiB5PSIxNDgwIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzE4MzY0YSI+TGUgdHJlIGJhcnJlIGhhbm5vIG9yaWdpbmUgZSBzY2FsYSBjb211bmkuPC90ZXh0Pgo8dGV4dCB4PSIzNCIgeT0iMTUxNSIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMxODM2NGEiPkFpIGRhdGkgbWVkaSBWID0gMyBWIGUgVCA9IDUvMiBzLCBFID0gNDUvNCBKLjwvdGV4dD4KPC9zdmc+Cg=="
+    }
+  ]
+}

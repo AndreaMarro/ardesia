@@ -1,0 +1,638 @@
+{
+  "phase": "SAFE_INPUT_PROJECTION_BEFORE_NEW_C5_SOLUTION_MODEL_READING",
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+  "sourcePath": "officina-di-fisica/content/esperienze-C5.json",
+  "sourceFileSha256": "7fff6e6703886003c45695e95b3361f8e09875da4b080ae17e6aa26d33f9bd84",
+  "disclosure": "Prior C5waves/optics lessons/examples/bench reviews and sharedclockreading. Notblind; noNEWC5model/solutionfieldreading inthisphasebeforefrozenprimary.",
+  "excluded": [
+    "measure/output",
+    "formula",
+    "substitution",
+    "interpretation",
+    "reference ordinates",
+    "prediction.correct",
+    "implementation",
+    "blocks",
+    "apparatus"
+  ],
+  "records": [
+    {
+      "id": "SIM-C5-L01-01",
+      "kind": "experiment",
+      "course": "C5",
+      "skill": "C5-L01",
+      "version": 1,
+      "title": "Oscillatore armonico come sorgente",
+      "section": "Il tempo di un’oscillazione",
+      "summary": "Quale moto della sorgente produce un’oscillazione sinusoidale?",
+      "transferPrompt": "Una massa parte da +4 cm e oscilla con periodo 2 s. Quale posizione con segno occupa dopo {x}?",
+      "control": {
+        "label": "Tempo dall’estremo positivo",
+        "unit": "s",
+        "min": 0.0,
+        "max": 4.0,
+        "step": 0.125
+      },
+      "referenceInputs": [
+        0.0,
+        1.0
+      ]
+    },
+    {
+      "id": "SIM-C5-L01-02",
+      "kind": "experiment",
+      "course": "C5",
+      "skill": "C5-L01",
+      "version": 2,
+      "title": "Ampiezza, periodo, frequenza e pulsazione",
+      "section": "Il tempo di un’oscillazione",
+      "summary": "Come cambia il numero di ritorni in un secondo se allunghi il periodo?",
+      "transferPrompt": "Un sensore rileva un’oscillazione completa ogni {x}. Quanti cicli registra per secondo?",
+      "control": {
+        "label": "Periodo",
+        "unit": "s",
+        "min": 0.5,
+        "max": 4.0,
+        "step": 0.25
+      },
+      "referenceInputs": [
+        0.5,
+        2.0
+      ]
+    },
+    {
+      "id": "SIM-C5-L02-01",
+      "kind": "experiment",
+      "course": "C5",
+      "skill": "C5-L02",
+      "version": 1,
+      "title": "Perturbazione, energia e mezzo materiale",
+      "section": "Lo spazio di un’onda",
+      "summary": "Un pezzetto di corda viaggia insieme all’impulso?",
+      "transferPrompt": "Un impulso si propaga su una corda a 2 m/s. Dopo {x}, quanto dista il centro dell’impulso dal punto di partenza?",
+      "control": {
+        "label": "Tempo di propagazione",
+        "unit": "s",
+        "min": 0.0,
+        "max": 3.0,
+        "step": 0.125
+      },
+      "referenceInputs": [
+        0.5,
+        2.0
+      ]
+    },
+    {
+      "id": "SIM-C5-L02-02",
+      "kind": "experiment",
+      "course": "C5",
+      "skill": "C5-L02",
+      "version": 1,
+      "title": "Velocità, frequenza e lunghezza d’onda",
+      "section": "Lo spazio di un’onda",
+      "summary": "Come cambia la distanza fra due creste su una corda con velocità di propagazione fissa?",
+      "transferPrompt": "Su una corda le onde viaggiano a 6 m/s. Se il generatore oscilla a {x}, quanto distano due creste consecutive?",
+      "control": {
+        "label": "Frequenza della sorgente",
+        "unit": "Hz",
+        "min": 1.0,
+        "max": 5.0,
+        "step": 0.5
+      },
+      "referenceInputs": [
+        2.0,
+        4.0
+      ]
+    },
+    {
+      "id": "SIM-C5-L02-03",
+      "kind": "experiment",
+      "course": "C5",
+      "skill": "C5-L02",
+      "version": 1,
+      "title": "Equazione armonica di propagazione",
+      "section": "Lo spazio di un’onda",
+      "summary": "Dove leggi la fase di un’onda che passa davanti a una sonda ferma?",
+      "transferPrompt": "Per la legge y = 3 sin(2πt − πx) in centimetri, la sonda è fissa in x = 0. Quale spostamento con segno registra al tempo {x}?",
+      "control": {
+        "label": "Tempo alla sonda",
+        "unit": "s",
+        "min": 0.0,
+        "max": 2.0,
+        "step": 0.125
+      },
+      "referenceInputs": [
+        0.25,
+        0.75
+      ]
+    },
+    {
+      "id": "SIM-C5-L02-04",
+      "kind": "experiment",
+      "course": "C5",
+      "skill": "C5-L02",
+      "version": 1,
+      "title": "Onde trasversali su corda e longitudinali nei fluidi",
+      "section": "Lo spazio di un’onda",
+      "summary": "In quale direzione si spostano le particelle in un’onda trasversale e in una longitudinale?",
+      "transferPrompt": "Il punto marcato ha ampiezza di 2 mm e fase {x}. Misurando lungo la sua direzione di oscillazione, quale spostamento con segno trovi?",
+      "control": {
+        "label": "Fase del punto marcato",
+        "unit": "°",
+        "min": 0.0,
+        "max": 360.0,
+        "step": 15.0
+      },
+      "referenceInputs": [
+        90.0,
+        270.0
+      ]
+    },
+    {
+      "id": "SIM-C5-L03-01",
+      "kind": "experiment",
+      "course": "C5",
+      "skill": "C5-L03",
+      "version": 1,
+      "title": "Principio di sovrapposizione",
+      "section": "Sovrapposizione e interferenza",
+      "summary": "Come si sommano due spostamenti istantanei sulla stessa corda?",
+      "transferPrompt": "Alla sonda arrivano insieme una perturbazione di +2 cm e una di {x}. Di quanto si sposta in quell’istante il punto della corda?",
+      "control": {
+        "label": "Spostamento della seconda onda",
+        "unit": "cm",
+        "min": -3.0,
+        "max": 3.0,
+        "step": 0.5
+      },
+      "referenceInputs": [
+        -2.0,
+        2.0
+      ]
+    },
+    {
+      "id": "SIM-C5-L03-02",
+      "kind": "experiment",
+      "course": "C5",
+      "skill": "C5-L03",
+      "version": 1,
+      "title": "Interferenza costruttiva e distruttiva",
+      "section": "Sovrapposizione e interferenza",
+      "summary": "Quanta ampiezza misura la sonda per mezzo periodo spaziale di differenza?",
+      "transferPrompt": "Due sorgenti coerenti, in fase e ciascuna di ampiezza 2 cm, arrivano alla sonda con differenza di cammino di {x} lunghezze d’onda. Quale ampiezza risulta?",
+      "control": {
+        "label": "Differenza di cammino in lunghezze d’onda",
+        "unit": "1",
+        "min": 0.0,
+        "max": 1.0,
+        "step": 0.05
+      },
+      "referenceInputs": [
+        0.0,
+        0.5
+      ]
+    },
+    {
+      "id": "SIM-C5-L04-01",
+      "kind": "experiment",
+      "course": "C5",
+      "skill": "C5-L04",
+      "version": 1,
+      "title": "Energia e potenza di un’onda meccanica in un mezzo elastico",
+      "section": "Energia, potenza e intensità",
+      "summary": "Raddoppiare l’ampiezza raddoppia anche la potenza trasportata?",
+      "transferPrompt": "Sulla stessa corda mantieni invariata la frequenza e porti l’ampiezza a {x} volte quella iniziale. Per quale fattore cambia la potenza media?",
+      "control": {
+        "label": "Ampiezza rispetto ad A₀",
+        "unit": "1",
+        "min": 0.0,
+        "max": 3.0,
+        "step": 0.25
+      },
+      "referenceInputs": [
+        0.5,
+        2.0
+      ]
+    },
+    {
+      "id": "SIM-C5-L04-02",
+      "kind": "experiment",
+      "course": "C5",
+      "skill": "C5-L04",
+      "version": 1,
+      "title": "Intensità come energia per area e tempo",
+      "section": "Energia, potenza e intensità",
+      "summary": "Quanta energia intercetta una sonda più grande nello stesso intervallo?",
+      "transferPrompt": "Un ricevitore di area {x} è investito perpendicolarmente da 10 W/m² per 2 s. Quanti millijoule intercetta?",
+      "control": {
+        "label": "Area del ricevitore",
+        "unit": "cm²",
+        "min": 0.5,
+        "max": 5.0,
+        "step": 0.5
+      },
+      "referenceInputs": [
+        1.0,
+        4.0
+      ]
+    },
+    {
+      "id": "SIM-C5-L04-03",
+      "kind": "experiment",
+      "course": "C5",
+      "skill": "C5-L04",
+      "version": 1,
+      "title": "Legge dell’inverso del quadrato della distanza",
+      "section": "Energia, potenza e intensità",
+      "summary": "Perché raddoppiando la distanza ricevi un quarto dell’intensità?",
+      "transferPrompt": "Una sorgente isotropa irradia 4π W. Alla distanza di {x}, quale intensità attraversa una piccola superficie perpendicolare ai raggi?",
+      "control": {
+        "label": "Distanza dalla sorgente",
+        "unit": "m",
+        "min": 1.0,
+        "max": 5.0,
+        "step": 0.25
+      },
+      "referenceInputs": [
+        2.0,
+        4.0
+      ]
+    },
+    {
+      "id": "SIM-C5-L05-01",
+      "kind": "experiment",
+      "course": "C5",
+      "skill": "C5-L05",
+      "version": 1,
+      "title": "Velocità del suono nei mezzi",
+      "section": "Suono e movimento relativo",
+      "summary": "Lo stesso impulso arriva contemporaneamente attraverso aria, acqua e metallo?",
+      "transferPrompt": "Devi sincronizzare due sensori distanti 150 m nel mezzo «{x}». Usando la velocità indicata sul banco, quanti millisecondi impiega il suono?",
+      "control": {
+        "label": "Mezzo di propagazione",
+        "unit": "1",
+        "min": 1.0,
+        "max": 3.0,
+        "step": 1.0,
+        "choices": [
+          "Aria",
+          "Acqua",
+          "Acciaio"
+        ]
+      },
+      "referenceInputs": [
+        2.0,
+        3.0
+      ]
+    },
+    {
+      "id": "SIM-C5-L05-02",
+      "kind": "experiment",
+      "course": "C5",
+      "skill": "C5-L05",
+      "version": 1,
+      "title": "Intensità, percezione e livello sonoro in decibel",
+      "section": "Suono e movimento relativo",
+      "summary": "Di quanti decibel cresce il livello moltiplicando l’intensità per dieci?",
+      "transferPrompt": "Il rapporto fra l’intensità misurata e quella di riferimento è 10ⁿ, con n = {x}. Quale livello leggeresti sul fonometro in decibel?",
+      "control": {
+        "label": "Esponente in I/I₀ = 10ⁿ",
+        "unit": "1",
+        "min": 0.0,
+        "max": 8.0,
+        "step": 1.0
+      },
+      "referenceInputs": [
+        2.0,
+        6.0
+      ]
+    },
+    {
+      "id": "SIM-C5-L05-03",
+      "kind": "experiment",
+      "course": "C5",
+      "skill": "C5-L05",
+      "version": 1,
+      "title": "Effetto Doppler qualitativo",
+      "section": "Suono e movimento relativo",
+      "summary": "Che cosa vede il ricevitore quando la sorgente si avvicina e poi si allontana?",
+      "transferPrompt": "La sorgente emette 300 Hz e ha velocità con segno {x} verso il ricevitore fermo. Se il suono viaggia a 300 m/s, quale frequenza riceve?",
+      "control": {
+        "label": "Velocità della sorgente verso il ricevitore",
+        "unit": "m/s",
+        "min": -40.0,
+        "max": 40.0,
+        "step": 5.0
+      },
+      "referenceInputs": [
+        0.0,
+        30.0
+      ]
+    },
+    {
+      "id": "SIM-C5-L06-01",
+      "kind": "experiment",
+      "course": "C5",
+      "skill": "C5-L06",
+      "version": 2,
+      "title": "Onde elettromagnetiche e campi ortogonali",
+      "section": "Campi e spettro elettromagnetico",
+      "summary": "Come cambiano i due campi passando da 90° a 270°? Che cosa misuri a metà del percorso?",
+      "transferPrompt": "In un’onda nel vuoto E = 3 sin φ V/m. Alla fase {x}, quale componente magnetica con segno misuri in nT?",
+      "control": {
+        "label": "Fase del campo",
+        "unit": "°",
+        "min": 0.0,
+        "max": 360.0,
+        "step": 15.0
+      },
+      "referenceInputs": [
+        90.0,
+        270.0
+      ]
+    },
+    {
+      "id": "SIM-C5-L06-02",
+      "kind": "experiment",
+      "course": "C5",
+      "skill": "C5-L06",
+      "version": 1,
+      "title": "Velocità, frequenza, lunghezza d’onda, ampiezza e intensità",
+      "section": "Campi e spettro elettromagnetico",
+      "summary": "Cambiando l’ampiezza di un’onda luminosa ne modifichi anche la lunghezza d’onda?",
+      "transferPrompt": "Nel vuoto confronti l’onda di riferimento da 2 V/m con una di ampiezza {x}. Quale rapporto trovi fra le intensità medie?",
+      "control": {
+        "label": "Ampiezza del campo elettrico",
+        "unit": "V/m",
+        "min": 0.0,
+        "max": 6.0,
+        "step": 0.5
+      },
+      "referenceInputs": [
+        2.0,
+        4.0
+      ]
+    },
+    {
+      "id": "SIM-C5-L06-03",
+      "kind": "experiment",
+      "course": "C5",
+      "skill": "C5-L06",
+      "version": 1,
+      "title": "Spettro: radio, microonde, infrarosso, visibile, UV, X e gamma",
+      "section": "Campi e spettro elettromagnetico",
+      "summary": "Come confronti onde di dimensioni enormemente diverse sulla stessa scala?",
+      "transferPrompt": "Per la banda «{x}» leggi la lunghezza d’onda campione in metri. Quale coordinata le assegni su un asse graduato in log₁₀(λ/m)?",
+      "control": {
+        "label": "Banda dello spettro",
+        "unit": "1",
+        "min": 1.0,
+        "max": 7.0,
+        "step": 1.0,
+        "choices": [
+          "Radio",
+          "Microonde",
+          "Infrarosso",
+          "Visibile",
+          "UV",
+          "X",
+          "Gamma"
+        ]
+      },
+      "referenceInputs": [
+        1.0,
+        4.0
+      ]
+    },
+    {
+      "id": "SIM-C5-L07-01",
+      "kind": "experiment",
+      "course": "C5",
+      "skill": "C5-L07",
+      "version": 1,
+      "title": "Quantizzazione dell’energia e relazione di Planck",
+      "section": "Fotoni e attenuazione",
+      "summary": "Come cambia l’energia del singolo fotone se raddoppi la frequenza?",
+      "transferPrompt": "Una sorgente emette fotoni di frequenza {x}. Con h ≈ 4,136 × 10⁻¹⁵ eV·s, quale energia trasporta un fotone?",
+      "control": {
+        "label": "Frequenza del fotone",
+        "unit": "THz",
+        "min": 100.0,
+        "max": 1000.0,
+        "step": 50.0
+      },
+      "referenceInputs": [
+        250.0,
+        750.0
+      ]
+    },
+    {
+      "id": "SIM-C5-L07-02",
+      "kind": "experiment",
+      "course": "C5",
+      "skill": "C5-L07",
+      "version": 1,
+      "title": "Assorbimento e legge di Lambert–Beer",
+      "section": "Fotoni e attenuazione",
+      "summary": "Due strati identici sottraggono la stessa energia assoluta?",
+      "transferPrompt": "Un fascio attraversa {x} strati emivalenti dello stesso materiale. Quale percentuale dell’intensità iniziale ritrovi al rivelatore?",
+      "control": {
+        "label": "Spessore in strati emivalenti",
+        "unit": "1",
+        "min": 0.0,
+        "max": 5.0,
+        "step": 0.25
+      },
+      "referenceInputs": [
+        1.0,
+        3.0
+      ]
+    },
+    {
+      "id": "SIM-C5-L07-03",
+      "kind": "experiment",
+      "course": "C5",
+      "skill": "C5-L07",
+      "version": 1,
+      "title": "Distinzione fra radiazioni ionizzanti e non ionizzanti",
+      "section": "Fotoni e attenuazione",
+      "summary": "Basta aumentare l’intensità se ogni fotone è sotto la soglia?",
+      "transferPrompt": "Un fotone da {x} incontra un bersaglio con energia di legame 14 eV. Qual è l’energia cinetica massima liberata, ponendo zero se il bersaglio resta legato?",
+      "control": {
+        "label": "Energia del singolo fotone",
+        "unit": "eV",
+        "min": 5.0,
+        "max": 25.0,
+        "step": 1.0
+      },
+      "referenceInputs": [
+        8.0,
+        20.0
+      ]
+    },
+    {
+      "id": "SIM-C5-L08-01",
+      "kind": "experiment",
+      "course": "C5",
+      "skill": "C5-L08",
+      "version": 1,
+      "title": "Nucleo instabile, nuclidi e isotopi radioattivi",
+      "section": "Decadimenti e attività",
+      "summary": "Come riconosci isotopi dello stesso elemento senza confondere A e Z?",
+      "transferPrompt": "Un isotopo del carbonio ha sei protoni e {x} neutroni. Quale numero di massa scrivi accanto al simbolo chimico?",
+      "control": {
+        "label": "Neutroni in un nucleo con 6 protoni",
+        "unit": "1",
+        "min": 6.0,
+        "max": 8.0,
+        "step": 1.0
+      },
+      "referenceInputs": [
+        6.0,
+        8.0
+      ]
+    },
+    {
+      "id": "SIM-C5-L08-02",
+      "kind": "experiment",
+      "course": "C5",
+      "skill": "C5-L08",
+      "version": 1,
+      "title": "Attività, legge di decadimento e tempo di dimezzamento",
+      "section": "Decadimenti e attività",
+      "summary": "In un’emivita decade sempre esattamente metà di un piccolo campione?",
+      "transferPrompt": "Partendo da 64 nuclei instabili, aspetti {x} emivite. Quale numero medio ti aspetti di trovare ancora nello stato iniziale?",
+      "control": {
+        "label": "Tempo in emivite",
+        "unit": "1",
+        "min": 0.0,
+        "max": 5.0,
+        "step": 0.25
+      },
+      "referenceInputs": [
+        1.0,
+        3.0
+      ]
+    },
+    {
+      "id": "SIM-C5-L08-03",
+      "kind": "experiment",
+      "course": "C5",
+      "skill": "C5-L08",
+      "version": 1,
+      "title": "Decadimenti α, β e transizioni γ",
+      "section": "Decadimenti e attività",
+      "summary": "Quali conteggi del nucleo cambiano nelle transizioni alfa, beta meno e gamma?",
+      "transferPrompt": "Segui il nucleo figlio nella transizione «{x}». Di quanto cambia il suo numero atomico rispetto al nucleo di partenza, con segno?",
+      "control": {
+        "label": "Transizione considerata",
+        "unit": "1",
+        "min": 1.0,
+        "max": 3.0,
+        "step": 1.0,
+        "choices": [
+          "Alfa",
+          "Beta meno",
+          "Gamma"
+        ]
+      },
+      "referenceInputs": [
+        1.0,
+        2.0
+      ]
+    },
+    {
+      "id": "SIM-C5-L09-01",
+      "kind": "experiment",
+      "course": "C5",
+      "skill": "C5-L09",
+      "version": 1,
+      "title": "Legge della riflessione",
+      "section": "Riflessione e rifrazione",
+      "summary": "Quale linea divide in due parti uguali il disegno della riflessione?",
+      "transferPrompt": "Uno specchio riceve il raggio a {x} dalla normale. Qual è l’angolo fra la direzione che dal punto di incidenza torna alla sorgente e quella del raggio riflesso?",
+      "control": {
+        "label": "Angolo incidente rispetto alla normale",
+        "unit": "°",
+        "min": 0.0,
+        "max": 75.0,
+        "step": 5.0
+      },
+      "referenceInputs": [
+        20.0,
+        50.0
+      ]
+    },
+    {
+      "id": "SIM-C5-L09-02",
+      "kind": "experiment",
+      "course": "C5",
+      "skill": "C5-L09",
+      "version": 1,
+      "title": "Indice di rifrazione e legge di Snell",
+      "section": "Riflessione e rifrazione",
+      "summary": "Da aria a vetro il raggio piega verso la normale o se ne allontana?",
+      "transferPrompt": "Un raggio passa dall’aria (n = 1) al vetro (n = 1,5) con incidenza {x} rispetto alla normale. Quale angolo con la normale assume nel vetro?",
+      "control": {
+        "label": "Angolo incidente in aria",
+        "unit": "°",
+        "min": 0.0,
+        "max": 80.0,
+        "step": 5.0
+      },
+      "referenceInputs": [
+        0.0,
+        30.0
+      ]
+    },
+    {
+      "id": "SIM-C5-L10-01",
+      "kind": "experiment",
+      "course": "C5",
+      "skill": "C5-L10",
+      "version": 1,
+      "title": "Lenti sottili convergenti",
+      "section": "Lenti e immagini",
+      "summary": "Quale lente fa incontrare prima raggi paralleli all’asse?",
+      "transferPrompt": "Una lente convergente mette a fuoco raggi paralleli a {x} dalla lente. Quale potere diottrico scrivi sulla sua etichetta?",
+      "control": {
+        "label": "Distanza focale della lente",
+        "unit": "cm",
+        "min": 5.0,
+        "max": 20.0,
+        "step": 1.0
+      },
+      "referenceInputs": [
+        5.0,
+        20.0
+      ]
+    },
+    {
+      "id": "SIM-C5-L10-02",
+      "kind": "experiment",
+      "course": "C5",
+      "skill": "C5-L10",
+      "version": 1,
+      "title": "Legge dei punti coniugati e formazione di immagini",
+      "section": "Lenti e immagini",
+      "summary": "Come riconosci un’immagine reale, virtuale o all’infinito senza dividere per zero?",
+      "transferPrompt": "Una lente convergente di focale 10 cm guarda un oggetto posto a {x}. Quale vergenza con segno 1/q, in diottrie, hanno i raggi in uscita?",
+      "control": {
+        "label": "Distanza dell’oggetto",
+        "unit": "cm",
+        "min": 5.0,
+        "max": 25.0,
+        "step": 1.0
+      },
+      "referenceInputs": [
+        5.0,
+        20.0
+      ]
+    }
+  ],
+  "localOnly": true,
+  "UI": "NOT_RUN",
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}

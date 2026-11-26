@@ -1,0 +1,109 @@
+{
+  "runtimeFingerprint": "54054f7ac463ef52f7c4c881d50ee071713315d891812696f18e39d9ad45ab3d",
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+  "purpose": "Byte-identical real observed PNG evidence; manifest states exact inputs and limits, not a new consumer run or scientific approval",
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "proof": {
+    "path": "editorial/reviews/experiments-energy-momentum-046-browser-originals.json",
+    "sha256": "52f889654d1b6afb8497855d7684d1630c0217495c6849ced22734c9cc2b4478"
+  },
+  "files": [
+    {
+      "name": "rigid-native-assigned90deg.png",
+      "sourceScreenshot": "/tmp/cric-review046-proof-fNlAFl/SIM-C1-L010-02-boundary2.png",
+      "case": {
+        "id": "SIM-C1-L010-02",
+        "input": 90,
+        "inputUnit": "degrees",
+        "mode": "native3D",
+        "scope": "first graded task; lower endpoint hidden in post"
+      },
+      "sha256": "8ddae95e5d49ddc073e1aec804ab8cc6c06fde8f4942559fff93910504724536",
+      "bytes": 153318
+    },
+    {
+      "name": "rigid-fallback-reference30deg.png",
+      "sourceScreenshot": "/tmp/cric-review046-proof-fNlAFl/SIM-C1-L010-02-2d.png",
+      "case": {
+        "id": "SIM-C1-L010-02",
+        "input": 30,
+        "inputUnit": "degrees",
+        "mode": "forcedfallback",
+        "scope": "reference, not same input as critical90deg"
+      },
+      "sha256": "ccbef5612c86072ef5562118c6b16608aa0ef489391d5c9ed18f939d528be61d",
+      "bytes": 122885
+    },
+    {
+      "name": "torque-native-boundary0cm.png",
+      "sourceScreenshot": "/tmp/cric-review046-proof-fNlAFl/SIM-C1-L010-03-boundary0.png",
+      "case": {
+        "id": "SIM-C1-L010-03",
+        "input": 0,
+        "inputUnit": "cm",
+        "mode": "native3D",
+        "scope": "reachable zero-arm boundary, NOT a graded task; nonzero force hidden"
+      },
+      "sha256": "c74bc531402144c39f57552bcc8604fc08cd4d5c614ec69187bbe9e4553f8ce8",
+      "bytes": 152043
+    },
+    {
+      "name": "torque-fallback-reference10cm.png",
+      "sourceScreenshot": "/tmp/cric-review046-proof-fNlAFl/SIM-C1-L010-03-2d.png",
+      "case": {
+        "id": "SIM-C1-L010-03",
+        "input": 10,
+        "inputUnit": "cm",
+        "mode": "forcedfallback",
+        "scope": "reference, not same input as critical0cm"
+      },
+      "sha256": "9d6f1c2c12a21a201335c0bb949e1413e1f8671eb0d218a3ad60f712f3648214",
+      "bytes": 123445
+    },
+    {
+      "name": "human-native-assigned4cm.png",
+      "sourceScreenshot": "/tmp/cric-review046-proof-fNlAFl/SIM-C1-L010-05-boundary1.png",
+      "case": {
+        "id": "SIM-C1-L010-05",
+        "input": 4,
+        "inputUnit": "cm",
+        "mode": "native3D",
+        "scope": "actual transfer, muscle75N/load10N; load not recognizably visible"
+      },
+      "sha256": "ed32644260dae0c5435c69102473061b2e38e8c97c2e89177640fa2db56937ad",
+      "bytes": 155425
+    },
+    {
+      "name": "human-native-assigned6cm.png",
+      "sourceScreenshot": "/tmp/cric-review046-proof-fNlAFl/SIM-C1-L010-05-boundary2.png",
+      "case": {
+        "id": "SIM-C1-L010-05",
+        "input": 6,
+        "inputUnit": "cm",
+        "mode": "native3D",
+        "scope": "first graded task, muscle50N/load10N; load not recognizably visible"
+      },
+      "sha256": "1a7f15750f54e9e3600b2e74598c86abae51aa14367fa7cc464d693494585059",
+      "bytes": 155997
+    },
+    {
+      "name": "human-fallback-reference3cm.png",
+      "sourceScreenshot": "/tmp/cric-review046-proof-fNlAFl/SIM-C1-L010-05-2d.png",
+      "case": {
+        "id": "SIM-C1-L010-05",
+        "input": 3,
+        "inputUnit": "cm",
+        "mode": "forcedfallback",
+        "scope": "reference, muscle100N/load10N; different muscle input, constant load glyph"
+      },
+      "sha256": "4527f6fc9d6068aeba7927c585b1836a6943d80400ce5bc81b41b27c2cd6c748",
+      "bytes": 123716
+    }
+  ],
+  "limits": [
+    "Fallback PNGs are reference-input comparisons, not fabricated same-input renderings.",
+    "Torque zero-arm issue is a reachable observation boundary; the actual graded arms30/20cm are not alleged hidden.",
+    "Human load issue is actual default-projection visibility; nominal radius comparison is not total geometric containment or an all-camera claim."
+  ]
+}

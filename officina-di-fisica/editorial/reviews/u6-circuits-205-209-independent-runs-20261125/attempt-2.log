@@ -1,0 +1,41 @@
+test_calibrations_with_signed_display_offset (cross_circuits.CrossReviewCircuits205209.test_calibrations_with_signed_display_offset) ... ok
+test_eighty_fresh_saved_reports_identity_dependency (cross_circuits.CrossReviewCircuits205209.test_eighty_fresh_saved_reports_identity_dependency) ... ok
+test_exact_lexical_codec_and_dependency_drift (cross_circuits.CrossReviewCircuits205209.test_exact_lexical_codec_and_dependency_drift) ... ok
+test_finite_real_domain_and_passive_inverse_boundaries (cross_circuits.CrossReviewCircuits205209.test_finite_real_domain_and_passive_inverse_boundaries) ... ok
+test_five_inverse_faults_are_independently_detected (cross_circuits.CrossReviewCircuits205209.test_five_inverse_faults_are_independently_detected) ... ok
+test_identical_chain_integer_domain_and_inverse (cross_circuits.CrossReviewCircuits205209.test_identical_chain_integer_domain_and_inverse) ... ok
+test_means_exact_roots_units_and_constitutive_faults (cross_circuits.CrossReviewCircuits205209.test_means_exact_roots_units_and_constitutive_faults) ... ok
+test_native_svg_exact_scales_and_topology (cross_circuits.CrossReviewCircuits205209.test_native_svg_exact_scales_and_topology) ... FAIL
+test_network_two_occurrences_and_inverse (cross_circuits.CrossReviewCircuits205209.test_network_two_occurrences_and_inverse) ... ok
+test_parallel_current_balance_and_inverse (cross_circuits.CrossReviewCircuits205209.test_parallel_current_balance_and_inverse) ... ok
+test_retokenized_wrong_keys_binding_and_package_faults (cross_circuits.CrossReviewCircuits205209.test_retokenized_wrong_keys_binding_and_package_faults) ... ok
+test_series_kirchhoff_and_bypass (cross_circuits.CrossReviewCircuits205209.test_series_kirchhoff_and_bypass) ... ok
+test_source_primary_and_git_frozen_fixtures (cross_circuits.CrossReviewCircuits205209.test_source_primary_and_git_frozen_fixtures) ... ok
+test_volume_conservation_and_inverse (cross_circuits.CrossReviewCircuits205209.test_volume_conservation_and_inverse) ... ok
+
+======================================================================
+FAIL: test_native_svg_exact_scales_and_topology (cross_circuits.CrossReviewCircuits205209.test_native_svg_exact_scales_and_topology)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-a-resident/officina-di-fisica/tests/corpus/test_cross_review_circuits_205_209.py", line 280, in test_native_svg_exact_scales_and_topology
+    widths208=[int(e.attrib['width'])for e in roots['208'].findall('.//s:rect',ns)if e.attrib.get('height')=='40'];self.assertEqual(widths208,[80,40,120,80])
+                                                                                                                   ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [100, 100, 100, 80, 40, 120, 80] != [80, 40, 120, 80]
+
+First differing element 0:
+100
+80
+
+First list contains 3 additional elements.
+First extra element 4:
+40
+
+- [100, 100, 100, 80, 40, 120, 80]
++ [80, 40, 120, 80]
+
+----------------------------------------------------------------------
+Ran 14 tests in 3.485s
+
+FAILED (failures=1)
+
+OBSERVED_EXIT=1

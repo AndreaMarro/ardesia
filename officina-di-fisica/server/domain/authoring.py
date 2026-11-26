@@ -6,6 +6,7 @@ import math
 from .errors import require
 from .identity import safe_key
 from .method import validate_method
+from .experiment_assessment import validate_assessment_selection
 
 
 @dataclass(frozen=True)
@@ -42,6 +43,7 @@ def validate_record(r: dict, objects: dict, policy: ContentPolicy) -> bool:
         )
 
     kind = r["kind"]
+    validate_assessment_selection(r)
     ref(r.get("course"), {"course"})
     if kind == "course":
         policy.exam_profile(r)

@@ -1,0 +1,537 @@
+{
+  "phase": "SOURCE_AND_INSTALLED_CODE_PARTIAL_NOT_REGISTRABLE",
+  "runtimeSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+  "sourceFileSha256": "33a38d74b953889eccce3281c4413060aa6af14f6a7c022d5049b927137656c1",
+  "proofSha256": "fc17b5b6d321905c8945ebb72c2379b2c83fd0c9e853d5c563047bd30063d80e",
+  "exactCheckCount": 29,
+  "installedGridCount": 77,
+  "records": [
+    {
+      "id": "SIM-C2-L003-02",
+      "exactChecks": [
+        {
+          "claim": "first_reference",
+          "independentExact": "1/2",
+          "expected": "1/2",
+          "residual": "0",
+          "unit": "cm",
+          "dimension": {
+            "[length]": "1"
+          },
+          "ok": true
+        },
+        {
+          "claim": "comparison_task",
+          "independentExact": "3/2",
+          "expected": "3/2",
+          "residual": "0",
+          "unit": "cm",
+          "dimension": {
+            "[length]": "1"
+          },
+          "ok": true
+        },
+        {
+          "claim": "actual_transfer",
+          "independentExact": "1",
+          "expected": "1",
+          "residual": "0",
+          "unit": "cm",
+          "dimension": {
+            "[length]": "1"
+          },
+          "ok": true
+        },
+        {
+          "claim": "solve incompressible volume balance",
+          "independentExact": "s1/4",
+          "expected": "s1/4",
+          "residual": "0",
+          "unit": "cm",
+          "dimension": {
+            "[length]": "1"
+          },
+          "ok": true
+        },
+        {
+          "claim": "inverse force gain at equal pressure",
+          "independentExact": "4",
+          "expected": "4",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "work gain is unity",
+          "independentExact": "1",
+          "expected": "1",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        }
+      ],
+      "installedCode": {
+        "ok": true,
+        "errors": [],
+        "caseCount": 17,
+        "clockExpected": null,
+        "actualAssignedTasks": [
+          {
+            "actualPrompt": "Imposta «Corsa del pistone piccolo» su 6 cm. Quale valore ottieni per «Sollevamento del pistone grande»?",
+            "input": 6,
+            "independentExact": "3/2",
+            "actualAnswer": 1.5,
+            "actualWorked": "A₁s₁ = A₂s₂; A₂ = 4A₁. 6 / 4 = 1,5 cm.",
+            "unit": "cm",
+            "ok": true
+          },
+          {
+            "actualPrompt": "Spingi per 4 cm il pistone piccolo di una pressa. Se l’area grande è quadrupla, di quanto sollevi l’altro pistone?",
+            "input": 4,
+            "independentExact": "1",
+            "actualAnswer": 1,
+            "actualWorked": "A₁s₁ = A₂s₂; A₂ = 4A₁. 4 / 4 = 1 cm.",
+            "unit": "cm",
+            "ok": true
+          }
+        ]
+      },
+      "mathAndCodeOk": true,
+      "UI": "NOT_RUN",
+      "visualReview": "NOT_RUN",
+      "ok": false,
+      "overallComplete": false,
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "SIM-C2-L003-03",
+      "exactChecks": [
+        {
+          "claim": "first_reference",
+          "independentExact": "20",
+          "expected": "20",
+          "residual": "0",
+          "unit": "kPa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "ok": true
+        },
+        {
+          "claim": "comparison_task",
+          "independentExact": "28",
+          "expected": "28",
+          "residual": "0",
+          "unit": "kPa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "ok": true
+        },
+        {
+          "claim": "actual_transfer",
+          "independentExact": "26",
+          "expected": "26",
+          "residual": "0",
+          "unit": "kPa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "ok": true
+        },
+        {
+          "claim": "hydrostatic gradient integrates to density*g*depth",
+          "independentExact": "g*rho*s2",
+          "expected": "g*rho*s2",
+          "residual": "0",
+          "unit": "Pa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "ok": true
+        },
+        {
+          "claim": "added surface pressure unchanged at fixed depth",
+          "independentExact": "1",
+          "expected": "1",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "assigned20kPa baseline plus6kPa",
+          "independentExact": "26",
+          "expected": "26",
+          "residual": "0",
+          "unit": "kPa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "ok": true
+        }
+      ],
+      "installedCode": {
+        "ok": true,
+        "errors": [],
+        "caseCount": 13,
+        "clockExpected": null,
+        "actualAssignedTasks": [
+          {
+            "actualPrompt": "Imposta «Incremento di pressione in superficie» su 8 kPa. Quale valore ottieni per «Pressione relativa alla sonda profonda»?",
+            "input": 8,
+            "independentExact": "28",
+            "actualAnswer": 28,
+            "actualWorked": "p relativa = Δp superficie + ρgh = Δp superficie + 20 kPa. 20 + 8 = 28 kPa.",
+            "unit": "kPa",
+            "ok": true
+          },
+          {
+            "actualPrompt": "La colonna d’acqua dà già 20 kPa di sovrapressione. Aggiungi 6 kPa in superficie. Quale pressione relativa leggi alla sonda profonda?",
+            "input": 6,
+            "independentExact": "26",
+            "actualAnswer": 26,
+            "actualWorked": "p relativa = Δp superficie + ρgh = Δp superficie + 20 kPa. 20 + 6 = 26 kPa.",
+            "unit": "kPa",
+            "ok": true
+          }
+        ]
+      },
+      "mathAndCodeOk": true,
+      "UI": "NOT_RUN",
+      "visualReview": "NOT_RUN",
+      "ok": false,
+      "overallComplete": false,
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "SIM-C2-L004-01",
+      "exactChecks": [
+        {
+          "claim": "first_reference",
+          "independentExact": "10",
+          "expected": "10",
+          "residual": "0",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "ok": true
+        },
+        {
+          "claim": "comparison_task",
+          "independentExact": "30",
+          "expected": "30",
+          "residual": "0",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "ok": true
+        },
+        {
+          "claim": "actual_transfer",
+          "independentExact": "20",
+          "expected": "20",
+          "residual": "0",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "ok": true
+        },
+        {
+          "claim": "one litre water assignedg10 weighs10N",
+          "independentExact": "10",
+          "expected": "10",
+          "residual": "0",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "ok": true
+        },
+        {
+          "claim": "actual transfer two litres weighs20N",
+          "independentExact": "20",
+          "expected": "20",
+          "residual": "0",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "ok": true
+        }
+      ],
+      "installedCode": {
+        "ok": true,
+        "errors": [],
+        "caseCount": 17,
+        "clockExpected": null,
+        "actualAssignedTasks": [
+          {
+            "actualPrompt": "Imposta «Volume immerso» su 3 L. Quale valore ottieni per «Spinta di Archimede»?",
+            "input": 3,
+            "independentExact": "30",
+            "actualAnswer": 30,
+            "actualWorked": "Fₐ = ρgV immerso; 1 L d’acqua pesa circa 10 N. 10 × 3 = 30 N.",
+            "unit": "N",
+            "ok": true
+          },
+          {
+            "actualPrompt": "Un oggetto sposta 2 L d’acqua. Con un peso dell’acqua di circa 10 N per litro, quale spinta verso l’alto riceve?",
+            "input": 2,
+            "independentExact": "20",
+            "actualAnswer": 20,
+            "actualWorked": "Fₐ = ρgV immerso; 1 L d’acqua pesa circa 10 N. 10 × 2 = 20 N.",
+            "unit": "N",
+            "ok": true
+          }
+        ]
+      },
+      "mathAndCodeOk": true,
+      "UI": "NOT_RUN",
+      "visualReview": "NOT_RUN",
+      "ok": false,
+      "overallComplete": false,
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "SIM-C2-L004-02",
+      "exactChecks": [
+        {
+          "claim": "first_reference",
+          "independentExact": "16",
+          "expected": "16",
+          "residual": "0",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "ok": true
+        },
+        {
+          "claim": "comparison_task",
+          "independentExact": "20",
+          "expected": "20",
+          "residual": "0",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "ok": true
+        },
+        {
+          "claim": "actual_transfer",
+          "independentExact": "18",
+          "expected": "18",
+          "residual": "0",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "ok": true
+        },
+        {
+          "claim": "two litres is1over500m3",
+          "independentExact": "1/500",
+          "expected": "1/500",
+          "residual": "0",
+          "unit": "m^3",
+          "dimension": {
+            "[length]": "3"
+          },
+          "ok": true
+        },
+        {
+          "claim": "actual900kg_per_m3 gives18N",
+          "independentExact": "18",
+          "expected": "18",
+          "residual": "0",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "ok": true
+        },
+        {
+          "claim": "doubling density doubles buoyancy",
+          "independentExact": "2",
+          "expected": "2",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        }
+      ],
+      "installedCode": {
+        "ok": true,
+        "errors": [],
+        "caseCount": 13,
+        "clockExpected": null,
+        "actualAssignedTasks": [
+          {
+            "actualPrompt": "Imposta «Densità del liquido» su 1000 kg/m³. Quale valore ottieni per «Spinta su 2 litri immersi»?",
+            "input": 1000,
+            "independentExact": "20",
+            "actualAnswer": 20,
+            "actualWorked": "Fₐ = ρ × 10 × 0,002. 0,02 × 1000 = 20 N.",
+            "unit": "N",
+            "ok": true
+          },
+          {
+            "actualPrompt": "Immergi completamente un oggetto da 2 L in un liquido di densità 900 kg/m³. Quale spinta misura il dinamometro per differenza?",
+            "input": 900,
+            "independentExact": "18",
+            "actualAnswer": 18,
+            "actualWorked": "Fₐ = ρ × 10 × 0,002. 0,02 × 900 = 18 N.",
+            "unit": "N",
+            "ok": true
+          }
+        ]
+      },
+      "mathAndCodeOk": true,
+      "UI": "NOT_RUN",
+      "visualReview": "NOT_RUN",
+      "ok": false,
+      "overallComplete": false,
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "SIM-C2-L004-03",
+      "exactChecks": [
+        {
+          "claim": "first_reference",
+          "independentExact": "25",
+          "expected": "25",
+          "residual": "0",
+          "unit": "%",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "comparison_task",
+          "independentExact": "80",
+          "expected": "80",
+          "residual": "0",
+          "unit": "%",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "actual_transfer",
+          "independentExact": "60",
+          "expected": "60",
+          "residual": "0",
+          "unit": "%",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "float balance cancelsg and totalvolume",
+          "independentExact": "rho/1000",
+          "expected": "rho/1000",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "percentage at600kg_per_m3",
+          "independentExact": "60",
+          "expected": "60",
+          "residual": "0",
+          "unit": "%",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "neutraldensity allvolume submerged",
+          "independentExact": "1",
+          "expected": "1",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        }
+      ],
+      "installedCode": {
+        "ok": true,
+        "errors": [],
+        "caseCount": 17,
+        "clockExpected": null,
+        "actualAssignedTasks": [
+          {
+            "actualPrompt": "Imposta «Densità del blocco» su 800 kg/m³. Quale valore ottieni per «Frazione immersa in equilibrio»?",
+            "input": 800,
+            "independentExact": "80",
+            "actualAnswer": 80,
+            "actualWorked": "V immerso / V = ρ corpo / ρ acqua. 800 / 10 = 80 %.",
+            "unit": "%",
+            "ok": true
+          },
+          {
+            "actualPrompt": "Un blocco omogeneo di densità 600 kg/m³ è libero in acqua da 1000 kg/m³. All’equilibrio quale percentuale del volume è immersa?",
+            "input": 600,
+            "independentExact": "60",
+            "actualAnswer": 60,
+            "actualWorked": "V immerso / V = ρ corpo / ρ acqua. 600 / 10 = 60 %.",
+            "unit": "%",
+            "ok": true
+          }
+        ]
+      },
+      "mathAndCodeOk": true,
+      "UI": "NOT_RUN",
+      "visualReview": "NOT_RUN",
+      "ok": false,
+      "overallComplete": false,
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    }
+  ],
+  "acceptedCount": 0,
+  "activityCredit": 0,
+  "overallComplete": false,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}

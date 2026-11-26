@@ -1,0 +1,44 @@
+{
+  "schemaVersion": "1.0.0",
+  "scope": "Actual remote UI and diagnostics; not complete ETL or full CI",
+  "runId": 45602120352,
+  "headSha": "63aea898e309df69a9de149de1a477b550e4cf1b",
+  "terminalConclusion": "FAILURE",
+  "artifactId": 15016352220,
+  "artifactSha256": "c3db78a031f76f3ae398970d9222b76b2a00e809d1598719e10aef999d692b83",
+  "artifactBytes": 79720038,
+  "ui": {
+    "batches": 177,
+    "cases": 7971,
+    "reused": 177,
+    "rendered": 0,
+    "failed": 0,
+    "observedTerminal": "PASS"
+  },
+  "independentQuestionScientificRefreshes": [
+    "calorimeter-capacity-171",
+    "warm-water-and-ice-176",
+    "freezing-time-177"
+  ],
+  "etl": "FAILED_STRICT_ACTIVITY_REPORT_IDENTITY_140",
+  "drift": [
+    {
+      "path": "$.records[4].checks[126].minimumPlaneClearance",
+      "saved": 0.5470168936457429,
+      "fresh": 0.547016893645743
+    },
+    {
+      "path": "$.records[4].checks[130].minimumPlaneClearance",
+      "saved": 0.47,
+      "fresh": 0.4700000000000003
+    }
+  ],
+  "coexistence": "NOT_RUN",
+  "fullSuite": "NOT_RUN",
+  "release": "NOT_RUN",
+  "actualVerifiedZip": "local temporary archive SHA-verified before safe selected extraction",
+  "remoteReportAdoption": "six actual scientific/integration JSON reports adopted after local frozen module and individual identity validation",
+  "checkpointCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}

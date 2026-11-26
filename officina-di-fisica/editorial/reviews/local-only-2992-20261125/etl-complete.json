@@ -1,0 +1,43 @@
+{
+  "scope": "Actual local canonical ETL fresh/incremental and recovered final verification; no CI claim or upload",
+  "stages": {
+    "fresh": {
+      "label": "fresh",
+      "observedExitCode": 0,
+      "stop": null,
+      "seconds": 180.531,
+      "logSha256": "70cb0fc6bec595f174c315523ad10612f8b5e6b5534f3cec44268b0d327dcfb8"
+    },
+    "incremental": {
+      "label": "incremental",
+      "observedExitCode": 0,
+      "stop": null,
+      "seconds": 190.608,
+      "logSha256": "70cb0fc6bec595f174c315523ad10612f8b5e6b5534f3cec44268b0d327dcfb8"
+    }
+  },
+  "counts": [
+    4606,
+    385,
+    2992,
+    246
+  ],
+  "identicalArtifactBytes": true,
+  "filesVerified": 56,
+  "checkpoint": {
+    "generation": "generations/5bf6580b19cfb977b6b9ec9e55af2b44735a8216ae6a7eea9d52f62e140db047",
+    "manifestSha256": "fc03c8a711985064a8f37ed59b345635a679dad9c5e1fd9110100732916266ae",
+    "questionCount": 4606,
+    "schemaVersion": "1.0.0"
+  },
+  "registrySha256": "e8925f07cf45318ce425379286656404406c943af3477cc0b2fb5c5b3377f119",
+  "parentSupervisorExitCode": 1,
+  "parentFailure": "Both actual canonical commands completed0 and byte comparison passed; parent import then lacked PYTHONPATH. Final load_checkpoint/hash/count validation recovered here without repeating successful scientific work.",
+  "resourceObservationLog": "Not persisted because parent import failed; per-stage no-stop receipts retained, no minimum percentage invented.",
+  "compiledCheckpointAdoptedIntoEditorialCorpus": false,
+  "fullSuite": "NOT_RUN_YET_ON_THIS_TREE",
+  "coexistence": "NOT_RUN_YET_ON_THIS_GENERATION",
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "uploads": false
+}

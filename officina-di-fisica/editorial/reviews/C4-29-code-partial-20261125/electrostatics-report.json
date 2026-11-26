@@ -1,0 +1,975 @@
+{
+  "UI": "NOT_RUN",
+  "activityCredit": 0,
+  "consumerCodeFailIds": [
+    "SIM-C4-L02-01"
+  ],
+  "disclosure": "PriorrelatedC4lessons,fieldsbenchesandsharedclocks/secondaryreading;notblind.29sourceonlyprimaryfrozenbeforeNEWC4model/solutionreading.",
+  "group": "electrostatics",
+  "humanApproval": "NOT_RUN",
+  "localOnly": true,
+  "ok": false,
+  "overallComplete": false,
+  "phase": "ORIGINAL_SOURCE_MATH_INSTALLED_CODE_PARTIAL_NOT_REGISTRABLE",
+  "primaryPath": "editorial/reviews/C4-29-source-only-primary-20261125.json",
+  "primarySha256": "bc79ade1d508af29ae85d2660eedef00826100270d1d8a86e6a1277226697740",
+  "proofPath": "editorial/reviews/C4-electrostatics-installed-code-1a35-20261125.json",
+  "proofSha256": "e00bba28efeb935b147c9e8a4220979179ceb2a93aa840bf2385435348c55516",
+  "publicationAction": "NONE",
+  "records": [
+    {
+      "CodeGeometryFailure": [],
+      "ManualityFailure": false,
+      "SourceScientificFailure": null,
+      "UI": "NOT_RUN",
+      "UI_Observed": false,
+      "activityCredit": 0,
+      "actualTasks": [
+        {
+          "actualValue": 6,
+          "independentExact": "6",
+          "input": "6",
+          "literalAcceptedByNumericRule": true,
+          "manualNumericLiteral": "6",
+          "ok": true,
+          "prompt": "Imposta «Elettroni trasferiti da A a B» su 6. Quale valore ottieni per «Carica acquistata da A in unità e»?",
+          "unit": "1"
+        },
+        {
+          "actualValue": 4,
+          "independentExact": "4",
+          "input": "4",
+          "literalAcceptedByNumericRule": true,
+          "manualNumericLiteral": "4",
+          "ok": true,
+          "prompt": "Due sfere erano neutre. Trasferisci 4 elettroni da A a B. Quale carica con segno, espressa in cariche elementari, rimane su A?",
+          "unit": "1"
+        }
+      ],
+      "assumptionsAndDomain": "Closed integer-electrontransfer; chargeconservation, workingk≈9e9, pointchargesseparationcenter-to-center notsurface.",
+      "checkedGeometryScope": "AllcollectedarrowtipXYZvsopaqueboxes/spheres/cappedrods; materialalpha1 only. Notfullglyphs/meshfacets/camera/raster/labels/fallback. NoUIobserved.",
+      "clockSampleCount": 0,
+      "consumerCodeGeometryOk": true,
+      "consumerJudgment": "PARTIAL_NO_FAILURE_FOUND_IN_CHECKED_CODE",
+      "errors": [],
+      "geometryObservations": [],
+      "gridCount": 9,
+      "humanApproval": "NOT_RUN",
+      "id": "SIM-C4-L01-01",
+      "manualProcedure": "RemovingNnegativeelectrons leaves+N elementarycharges onA:6;4, donor/receiver sum0.",
+      "manualityScope": "Independentreviewerderivedhandprocedureforbothactualtasks;notastudentperformancecalibrationorclaimthesourcealreadyteachesallbounds.",
+      "nativeMeshCodeSupplement": {
+        "fallbackRaster": "NOT_RUN",
+        "nativeRaster": "NOT_RUN",
+        "observations": [],
+        "path": "editorial/reviews/C4-29-code-partial-20261125/mesh-halfspace-negatives.json",
+        "sha256": "dc45af7cc6acfaa0bea6d79f3371f96bf2e91e5969f871949ffad4fc4c685156"
+      },
+      "ok": false,
+      "publicationAction": "NONE",
+      "reviewDependencySha256": {
+        "editorial/reviews/C4-29-code-partial-20261125/mesh-halfspace-negatives.json": "dc45af7cc6acfaa0bea6d79f3371f96bf2e91e5969f871949ffad4fc4c685156",
+        "tests/corpus/check-C4-contained-geometry.mjs": "9ce6e5a491401ae8cf5ef6bc8d2942702b3b4021dbc064e7b01d9b8893a16ebd",
+        "tests/corpus/collect-C4-bounded-code-only.mjs": "a188910901eac6c43a43acf871e6659e0b227e50577420438aa811dc0cc5ad2a",
+        "tools/corpus_engineering/collect_C4_code_partial.py": "44590f26defaeea067ee7578319e612ddc8c261cf08eb0fcc7b765e1dcaa3ea8",
+        "tools/corpus_engineering/experiments_C4_code_partial_verifier.py": "0b45859434d079801542ebd75182f55ea10cc3365b02b21d8123fc63ee805655"
+      },
+      "sourceJudgment": "PASS_MATH_ONLY",
+      "sourceMathAndActualTasksOk": true,
+      "sourceSha256": "35fb34a80292c1654dbe43b3e827d7b7a7d017a959e87eb70d4518631bbf3c6a",
+      "sourceVersion": 1,
+      "studentTaskScope": "Two actual generated numeric questions; predictiondistractors independently checked; bounds/extraoracles are reviewerprobes not assignedstudenttasks.",
+      "visualReview": "NOT_RUN"
+    },
+    {
+      "CodeGeometryFailure": [],
+      "ManualityFailure": false,
+      "SourceScientificFailure": null,
+      "UI": "NOT_RUN",
+      "UI_Observed": false,
+      "activityCredit": 0,
+      "actualTasks": [
+        {
+          "actualValue": 10,
+          "independentExact": "10",
+          "input": "3",
+          "literalAcceptedByNumericRule": true,
+          "manualNumericLiteral": "10",
+          "ok": true,
+          "prompt": "Imposta «Distanza fra le cariche» su 3 cm. Quale valore ottieni per «Forza di repulsione»?",
+          "unit": "µN"
+        },
+        {
+          "actualValue": 5.625,
+          "independentExact": "45/8",
+          "input": "4",
+          "literalAcceptedByNumericRule": true,
+          "manualNumericLiteral": "5.625",
+          "ok": true,
+          "prompt": "Due cariche di +1 nC sono ora distanti 4 cm. Usando k ≈ 9 × 10⁹, quale forza di repulsione prevedi in micronewton?",
+          "unit": "µN"
+        }
+      ],
+      "assumptionsAndDomain": "Closed integer-electrontransfer; chargeconservation, workingk≈9e9, pointchargesseparationcenter-to-center notsurface.",
+      "checkedGeometryScope": "AllcollectedarrowtipXYZvsopaqueboxes/spheres/cappedrods; materialalpha1 only. Notfullglyphs/meshfacets/camera/raster/labels/fallback. NoUIobserved.",
+      "clockSampleCount": 0,
+      "consumerCodeGeometryOk": true,
+      "consumerJudgment": "PARTIAL_NO_FAILURE_FOUND_IN_CHECKED_CODE",
+      "errors": [],
+      "geometryObservations": [],
+      "gridCount": 11,
+      "humanApproval": "NOT_RUN",
+      "id": "SIM-C4-L01-02",
+      "manualProcedure": "k(10^-9C)^2/(.01r)^2=90/r²µN;90/9=10;90/16=5.625.",
+      "manualityScope": "Independentreviewerderivedhandprocedureforbothactualtasks;notastudentperformancecalibrationorclaimthesourcealreadyteachesallbounds.",
+      "nativeMeshCodeSupplement": {
+        "fallbackRaster": "NOT_RUN",
+        "nativeRaster": "NOT_RUN",
+        "observations": [],
+        "path": "editorial/reviews/C4-29-code-partial-20261125/mesh-halfspace-negatives.json",
+        "sha256": "dc45af7cc6acfaa0bea6d79f3371f96bf2e91e5969f871949ffad4fc4c685156"
+      },
+      "ok": false,
+      "publicationAction": "NONE",
+      "reviewDependencySha256": {
+        "editorial/reviews/C4-29-code-partial-20261125/mesh-halfspace-negatives.json": "dc45af7cc6acfaa0bea6d79f3371f96bf2e91e5969f871949ffad4fc4c685156",
+        "tests/corpus/check-C4-contained-geometry.mjs": "9ce6e5a491401ae8cf5ef6bc8d2942702b3b4021dbc064e7b01d9b8893a16ebd",
+        "tests/corpus/collect-C4-bounded-code-only.mjs": "a188910901eac6c43a43acf871e6659e0b227e50577420438aa811dc0cc5ad2a",
+        "tools/corpus_engineering/collect_C4_code_partial.py": "44590f26defaeea067ee7578319e612ddc8c261cf08eb0fcc7b765e1dcaa3ea8",
+        "tools/corpus_engineering/experiments_C4_code_partial_verifier.py": "0b45859434d079801542ebd75182f55ea10cc3365b02b21d8123fc63ee805655"
+      },
+      "sourceJudgment": "PASS_MATH_ONLY",
+      "sourceMathAndActualTasksOk": true,
+      "sourceSha256": "95422dfcd482f7c35e53047fabca2a210a38608c60e3eb02e1c12dfa34cf85fe",
+      "sourceVersion": 1,
+      "studentTaskScope": "Two actual generated numeric questions; predictiondistractors independently checked; bounds/extraoracles are reviewerprobes not assignedstudenttasks.",
+      "visualReview": "NOT_RUN"
+    },
+    {
+      "CodeGeometryFailure": [
+        "ARROW_TIP_INSIDE_OPAQUE_SPHERE",
+        "ARROW_TIP_INSIDE_OPAQUE_SPHERE",
+        "ARROW_TIP_INSIDE_OPAQUE_SPHERE",
+        "ARROW_TIP_INSIDE_OPAQUE_SPHERE",
+        "ARROW_TIP_INSIDE_OPAQUE_SPHERE",
+        "ARROW_TIP_INSIDE_OPAQUE_SPHERE",
+        "ARROW_TIP_INSIDE_OPAQUE_SPHERE",
+        "ARROW_TIP_INSIDE_OPAQUE_SPHERE",
+        "ARROW_TIP_INSIDE_OPAQUE_SPHERE"
+      ],
+      "ManualityFailure": false,
+      "SourceScientificFailure": null,
+      "UI": "NOT_RUN",
+      "UI_Observed": false,
+      "activityCredit": 0,
+      "actualTasks": [
+        {
+          "actualValue": 10,
+          "independentExact": "10",
+          "input": "3",
+          "literalAcceptedByNumericRule": true,
+          "manualNumericLiteral": "10",
+          "ok": true,
+          "prompt": "Imposta «Distanza della sonda» su 3 cm. Quale valore ottieni per «Campo elettrico»?",
+          "unit": "kN/C"
+        },
+        {
+          "actualValue": 3.6,
+          "independentExact": "18/5",
+          "input": "5",
+          "literalAcceptedByNumericRule": true,
+          "manualNumericLiteral": "3.6",
+          "ok": true,
+          "prompt": "Sposti una sonda alla distanza di 5 cm da una carica puntiforme di +1 nC. Quale intensità di campo leggi in kN/C?",
+          "unit": "kN/C"
+        }
+      ],
+      "assumptionsAndDomain": "Fixedpositivesource+1nC; signedvectorsuperposition; uniformlyacceleratedpositivecharge releasedfromrest, otherforcesneglected. Controltimeinmilliseconds.",
+      "checkedGeometryScope": "AllcollectedarrowtipXYZvsopaqueboxes/spheres/cappedrods; materialalpha1 only. Notfullglyphs/meshfacets/camera/raster/labels/fallback. NoUIobserved.",
+      "clockSampleCount": 0,
+      "consumerCodeGeometryOk": false,
+      "consumerJudgment": "FAIL_CODE_GEOMETRY",
+      "errors": [],
+      "geometryObservations": [
+        {
+          "a": [
+            -0.009999999999999787,
+            0.96,
+            0
+          ],
+          "center": [
+            -0.009999999999999787,
+            0.96,
+            0
+          ],
+          "code": "ARROW_TIP_INSIDE_OPAQUE_SPHERE",
+          "input": 4.0,
+          "limit": "AllXYZstrictinterior; noentireconeclaim/UI/nativeRaster/fallbackRaster observed. Actualmeshplane supplementalcheckplanned.",
+          "radius": 0.09,
+          "tip": [
+            0.07653846153846175,
+            0.96,
+            0
+          ],
+          "tipDistance": 0.08653846153846154
+        },
+        {
+          "a": [
+            0.15875000000000017,
+            0.96,
+            0
+          ],
+          "center": [
+            0.15875000000000017,
+            0.96,
+            0
+          ],
+          "code": "ARROW_TIP_INSIDE_OPAQUE_SPHERE",
+          "input": 4.5,
+          "limit": "AllXYZstrictinterior; noentireconeclaim/UI/nativeRaster/fallbackRaster observed. Actualmeshplane supplementalcheckplanned.",
+          "radius": 0.09,
+          "tip": [
+            0.22712606837606855,
+            0.96,
+            0
+          ],
+          "tipDistance": 0.06837606837606838
+        },
+        {
+          "a": [
+            0.3275000000000001,
+            0.96,
+            0
+          ],
+          "center": [
+            0.3275000000000001,
+            0.96,
+            0
+          ],
+          "code": "ARROW_TIP_INSIDE_OPAQUE_SPHERE",
+          "input": 5.0,
+          "limit": "AllXYZstrictinterior; noentireconeclaim/UI/nativeRaster/fallbackRaster observed. Actualmeshplane supplementalcheckplanned.",
+          "radius": 0.09,
+          "tip": [
+            0.3828846153846155,
+            0.96,
+            0
+          ],
+          "tipDistance": 0.055384615384615365
+        },
+        {
+          "a": [
+            0.4962500000000003,
+            0.96,
+            0
+          ],
+          "center": [
+            0.4962500000000003,
+            0.96,
+            0
+          ],
+          "code": "ARROW_TIP_INSIDE_OPAQUE_SPHERE",
+          "input": 5.5,
+          "limit": "AllXYZstrictinterior; noentireconeclaim/UI/nativeRaster/fallbackRaster observed. Actualmeshplane supplementalcheckplanned.",
+          "radius": 0.09,
+          "tip": [
+            0.5420224094087733,
+            0.96,
+            0
+          ],
+          "tipDistance": 0.04577240940877303
+        },
+        {
+          "a": [
+            0.6650000000000005,
+            0.96,
+            0
+          ],
+          "center": [
+            0.6650000000000005,
+            0.96,
+            0
+          ],
+          "code": "ARROW_TIP_INSIDE_OPAQUE_SPHERE",
+          "input": 6.0,
+          "limit": "AllXYZstrictinterior; noentireconeclaim/UI/nativeRaster/fallbackRaster observed. Actualmeshplane supplementalcheckplanned.",
+          "radius": 0.09,
+          "tip": [
+            0.7034615384615389,
+            0.96,
+            0
+          ],
+          "tipDistance": 0.038461538461538436
+        },
+        {
+          "a": [
+            0.8337500000000002,
+            0.96,
+            0
+          ],
+          "center": [
+            0.8337500000000002,
+            0.96,
+            0
+          ],
+          "code": "ARROW_TIP_INSIDE_OPAQUE_SPHERE",
+          "input": 6.5,
+          "limit": "AllXYZstrictinterior; noentireconeclaim/UI/nativeRaster/fallbackRaster observed. Actualmeshplane supplementalcheckplanned.",
+          "radius": 0.09,
+          "tip": [
+            0.8665219617660448,
+            0.96,
+            0
+          ],
+          "tipDistance": 0.03277196176604458
+        },
+        {
+          "a": [
+            1.0025000000000004,
+            0.96,
+            0
+          ],
+          "center": [
+            1.0025000000000004,
+            0.96,
+            0
+          ],
+          "code": "ARROW_TIP_INSIDE_OPAQUE_SPHERE",
+          "input": 7.0,
+          "limit": "AllXYZstrictinterior; noentireconeclaim/UI/nativeRaster/fallbackRaster observed. Actualmeshplane supplementalcheckplanned.",
+          "radius": 0.09,
+          "tip": [
+            1.0307574568288858,
+            0.96,
+            0
+          ],
+          "tipDistance": 0.028257456828885363
+        },
+        {
+          "a": [
+            1.1712500000000001,
+            0.96,
+            0
+          ],
+          "center": [
+            1.1712500000000001,
+            0.96,
+            0
+          ],
+          "code": "ARROW_TIP_INSIDE_OPAQUE_SPHERE",
+          "input": 7.5,
+          "limit": "AllXYZstrictinterior; noentireconeclaim/UI/nativeRaster/fallbackRaster observed. Actualmeshplane supplementalcheckplanned.",
+          "radius": 0.09,
+          "tip": [
+            1.1958653846153848,
+            0.96,
+            0
+          ],
+          "tipDistance": 0.024615384615384706
+        },
+        {
+          "a": [
+            1.3400000000000003,
+            0.96,
+            0
+          ],
+          "center": [
+            1.3400000000000003,
+            0.96,
+            0
+          ],
+          "code": "ARROW_TIP_INSIDE_OPAQUE_SPHERE",
+          "input": 8.0,
+          "limit": "AllXYZstrictinterior; noentireconeclaim/UI/nativeRaster/fallbackRaster observed. Actualmeshplane supplementalcheckplanned.",
+          "radius": 0.09,
+          "tip": [
+            1.3616346153846157,
+            0.96,
+            0
+          ],
+          "tipDistance": 0.02163461538461542
+        }
+      ],
+      "gridCount": 15,
+      "humanApproval": "NOT_RUN",
+      "id": "SIM-C4-L02-01",
+      "manualProcedure": "E=kq/r²=90/r_cm²kN/C;90/9=10;90/25=3.6.",
+      "manualityScope": "Independentreviewerderivedhandprocedureforbothactualtasks;notastudentperformancecalibrationorclaimthesourcealreadyteachesallbounds.",
+      "nativeMeshCodeSupplement": {
+        "fallbackRaster": "NOT_RUN",
+        "nativeRaster": "NOT_RUN",
+        "observations": [
+          {
+            "a": [
+              -0.009999999999999787,
+              0.96,
+              0
+            ],
+            "bodyCenter": [
+              -0.009999999999999787,
+              0.96,
+              0
+            ],
+            "bodyRadius": 0.09,
+            "id": "SIM-C4-L02-01",
+            "input": 4,
+            "minimumTipPlaneMargin": 0.003415675730790088,
+            "minimumWholeGlyphPlaneMargin": -0.011445222740990843,
+            "time": null,
+            "tip": [
+              0.07653846153846175,
+              0.96,
+              0
+            ],
+            "tipStrictlyInsideActualMesh": true,
+            "wholeGlyphInsideActualMesh": false
+          },
+          {
+            "a": [
+              0.15875000000000017,
+              0.96,
+              0
+            ],
+            "bodyCenter": [
+              0.15875000000000017,
+              0.96,
+              0
+            ],
+            "bodyRadius": 0.09,
+            "id": "SIM-C4-L02-01",
+            "input": 4.5,
+            "minimumTipPlaneMargin": 0.02133744536930776,
+            "minimumWholeGlyphPlaneMargin": -0.004493419930281017,
+            "time": null,
+            "tip": [
+              0.22712606837606855,
+              0.96,
+              0
+            ],
+            "tipStrictlyInsideActualMesh": true,
+            "wholeGlyphInsideActualMesh": false
+          },
+          {
+            "a": [
+              0.3275000000000001,
+              0.96,
+              0
+            ],
+            "bodyCenter": [
+              0.3275000000000001,
+              0.96,
+              0
+            ],
+            "bodyRadius": 0.09,
+            "id": "SIM-C4-L02-01",
+            "input": 5,
+            "minimumTipPlaneMargin": 0.034156781769565145,
+            "minimumWholeGlyphPlaneMargin": -0.000616362607116186,
+            "time": null,
+            "tip": [
+              0.3828846153846155,
+              0.96,
+              0
+            ],
+            "tipStrictlyInsideActualMesh": true,
+            "wholeGlyphInsideActualMesh": false
+          },
+          {
+            "a": [
+              0.4962500000000003,
+              0.96,
+              0
+            ],
+            "bodyCenter": [
+              0.4962500000000003,
+              0.96,
+              0
+            ],
+            "bodyRadius": 0.09,
+            "id": "SIM-C4-L02-01",
+            "input": 5.5,
+            "minimumTipPlaneMargin": 0.04364164093304394,
+            "minimumWholeGlyphPlaneMargin": 0.0018731302568960884,
+            "time": null,
+            "tip": [
+              0.5420224094087733,
+              0.96,
+              0
+            ],
+            "tipStrictlyInsideActualMesh": true,
+            "wholeGlyphInsideActualMesh": true
+          },
+          {
+            "a": [
+              0.6650000000000005,
+              0.96,
+              0
+            ],
+            "bodyCenter": [
+              0.6650000000000005,
+              0.96,
+              0
+            ],
+            "bodyRadius": 0.09,
+            "id": "SIM-C4-L02-01",
+            "input": 6,
+            "minimumTipPlaneMargin": 0.05085565418568986,
+            "minimumWholeGlyphPlaneMargin": 0.0037082920713375905,
+            "time": null,
+            "tip": [
+              0.7034615384615389,
+              0.96,
+              0
+            ],
+            "tipStrictlyInsideActualMesh": true,
+            "wholeGlyphInsideActualMesh": true
+          },
+          {
+            "a": [
+              0.8337500000000002,
+              0.96,
+              0
+            ],
+            "bodyCenter": [
+              0.8337500000000002,
+              0.96,
+              0
+            ],
+            "bodyRadius": 0.09,
+            "id": "SIM-C4-L02-01",
+            "input": 6.5,
+            "minimumTipPlaneMargin": 0.056469852819405815,
+            "minimumWholeGlyphPlaneMargin": 0.004951224297501555,
+            "time": null,
+            "tip": [
+              0.8665219617660448,
+              0.96,
+              0
+            ],
+            "tipStrictlyInsideActualMesh": true,
+            "wholeGlyphInsideActualMesh": true
+          },
+          {
+            "a": [
+              1.0025000000000004,
+              0.96,
+              0
+            ],
+            "bodyCenter": [
+              1.0025000000000004,
+              0.96,
+              0
+            ],
+            "bodyRadius": 0.09,
+            "id": "SIM-C4-L02-01",
+            "input": 7,
+            "minimumTipPlaneMargin": 0.06092454757203594,
+            "minimumWholeGlyphPlaneMargin": 0.005799527133150767,
+            "time": null,
+            "tip": [
+              1.0307574568288858,
+              0.96,
+              0
+            ],
+            "tipStrictlyInsideActualMesh": true,
+            "wholeGlyphInsideActualMesh": true
+          },
+          {
+            "a": [
+              1.1712500000000001,
+              0.96,
+              0
+            ],
+            "bodyCenter": [
+              1.1712500000000001,
+              0.96,
+              0
+            ],
+            "bodyRadius": 0.09,
+            "id": "SIM-C4-L02-01",
+            "input": 7.5,
+            "minimumTipPlaneMargin": 0.06451836798070087,
+            "minimumWholeGlyphPlaneMargin": 0.006121259347588406,
+            "time": null,
+            "tip": [
+              1.1958653846153848,
+              0.96,
+              0
+            ],
+            "tipStrictlyInsideActualMesh": true,
+            "wholeGlyphInsideActualMesh": true
+          },
+          {
+            "a": [
+              1.3400000000000003,
+              0.96,
+              0
+            ],
+            "bodyCenter": [
+              1.3400000000000003,
+              0.96,
+              0
+            ],
+            "bodyRadius": 0.09,
+            "id": "SIM-C4-L02-01",
+            "input": 8,
+            "minimumTipPlaneMargin": 0.06745964664490471,
+            "minimumWholeGlyphPlaneMargin": 0.006384573589900272,
+            "time": null,
+            "tip": [
+              1.3616346153846157,
+              0.96,
+              0
+            ],
+            "tipStrictlyInsideActualMesh": true,
+            "wholeGlyphInsideActualMesh": true
+          }
+        ],
+        "path": "editorial/reviews/C4-29-code-partial-20261125/mesh-halfspace-negatives.json",
+        "sha256": "dc45af7cc6acfaa0bea6d79f3371f96bf2e91e5969f871949ffad4fc4c685156"
+      },
+      "ok": false,
+      "publicationAction": "NONE",
+      "reviewDependencySha256": {
+        "editorial/reviews/C4-29-code-partial-20261125/mesh-halfspace-negatives.json": "dc45af7cc6acfaa0bea6d79f3371f96bf2e91e5969f871949ffad4fc4c685156",
+        "tests/corpus/check-C4-contained-geometry.mjs": "9ce6e5a491401ae8cf5ef6bc8d2942702b3b4021dbc064e7b01d9b8893a16ebd",
+        "tests/corpus/collect-C4-bounded-code-only.mjs": "a188910901eac6c43a43acf871e6659e0b227e50577420438aa811dc0cc5ad2a",
+        "tools/corpus_engineering/collect_C4_code_partial.py": "44590f26defaeea067ee7578319e612ddc8c261cf08eb0fcc7b765e1dcaa3ea8",
+        "tools/corpus_engineering/experiments_C4_code_partial_verifier.py": "0b45859434d079801542ebd75182f55ea10cc3365b02b21d8123fc63ee805655"
+      },
+      "sourceJudgment": "PASS_MATH_ONLY",
+      "sourceMathAndActualTasksOk": true,
+      "sourceSha256": "2096204a103d7504b5b264bce126d1eb4d210b084a877ef79fa253a2c869377b",
+      "sourceVersion": 1,
+      "studentTaskScope": "Two actual generated numeric questions; predictiondistractors independently checked; bounds/extraoracles are reviewerprobes not assignedstudenttasks.",
+      "visualReview": "NOT_RUN"
+    },
+    {
+      "CodeGeometryFailure": [],
+      "ManualityFailure": false,
+      "SourceScientificFailure": null,
+      "UI": "NOT_RUN",
+      "UI_Observed": false,
+      "activityCredit": 0,
+      "actualTasks": [
+        {
+          "actualValue": 0,
+          "independentExact": "0",
+          "input": "1",
+          "literalAcceptedByNumericRule": true,
+          "manualNumericLiteral": "0",
+          "ok": true,
+          "prompt": "Imposta «Carica di destra» su 1 nC. Quale valore ottieni per «Campo al punto medio lungo x»?",
+          "unit": "kN/C"
+        },
+        {
+          "actualValue": 22.5,
+          "independentExact": "45/2",
+          "input": "0",
+          "literalAcceptedByNumericRule": true,
+          "manualNumericLiteral": "22.5",
+          "ok": true,
+          "prompt": "Fra una carica sinistra da +1 nC e una destra da 0 nC poni la sonda a 2 cm da entrambe. Qual è la componente del campo, positiva verso destra?",
+          "unit": "kN/C"
+        }
+      ],
+      "assumptionsAndDomain": "Fixedpositivesource+1nC; signedvectorsuperposition; uniformlyacceleratedpositivecharge releasedfromrest, otherforcesneglected. Controltimeinmilliseconds.",
+      "checkedGeometryScope": "AllcollectedarrowtipXYZvsopaqueboxes/spheres/cappedrods; materialalpha1 only. Notfullglyphs/meshfacets/camera/raster/labels/fallback. NoUIobserved.",
+      "clockSampleCount": 0,
+      "consumerCodeGeometryOk": true,
+      "consumerJudgment": "PARTIAL_NO_FAILURE_FOUND_IN_CHECKED_CODE",
+      "errors": [],
+      "geometryObservations": [],
+      "gridCount": 13,
+      "humanApproval": "NOT_RUN",
+      "id": "SIM-C4-L02-02",
+      "manualProcedure": "Rightwardleftsource22.5, rightsourcecontribution−22.5q;22.5(1−1)=0;22.5(1−0)=22.5.",
+      "manualityScope": "Independentreviewerderivedhandprocedureforbothactualtasks;notastudentperformancecalibrationorclaimthesourcealreadyteachesallbounds.",
+      "nativeMeshCodeSupplement": {
+        "fallbackRaster": "NOT_RUN",
+        "nativeRaster": "NOT_RUN",
+        "observations": [],
+        "path": "editorial/reviews/C4-29-code-partial-20261125/mesh-halfspace-negatives.json",
+        "sha256": "dc45af7cc6acfaa0bea6d79f3371f96bf2e91e5969f871949ffad4fc4c685156"
+      },
+      "ok": false,
+      "publicationAction": "NONE",
+      "reviewDependencySha256": {
+        "editorial/reviews/C4-29-code-partial-20261125/mesh-halfspace-negatives.json": "dc45af7cc6acfaa0bea6d79f3371f96bf2e91e5969f871949ffad4fc4c685156",
+        "tests/corpus/check-C4-contained-geometry.mjs": "9ce6e5a491401ae8cf5ef6bc8d2942702b3b4021dbc064e7b01d9b8893a16ebd",
+        "tests/corpus/collect-C4-bounded-code-only.mjs": "a188910901eac6c43a43acf871e6659e0b227e50577420438aa811dc0cc5ad2a",
+        "tools/corpus_engineering/collect_C4_code_partial.py": "44590f26defaeea067ee7578319e612ddc8c261cf08eb0fcc7b765e1dcaa3ea8",
+        "tools/corpus_engineering/experiments_C4_code_partial_verifier.py": "0b45859434d079801542ebd75182f55ea10cc3365b02b21d8123fc63ee805655"
+      },
+      "sourceJudgment": "PASS_MATH_ONLY",
+      "sourceMathAndActualTasksOk": true,
+      "sourceSha256": "c58054465c3b58b4b0f0d709a2fb17f13e99c318fcc14f2c01462e807f18e343",
+      "sourceVersion": 1,
+      "studentTaskScope": "Two actual generated numeric questions; predictiondistractors independently checked; bounds/extraoracles are reviewerprobes not assignedstudenttasks.",
+      "visualReview": "NOT_RUN"
+    },
+    {
+      "CodeGeometryFailure": [],
+      "ManualityFailure": false,
+      "SourceScientificFailure": null,
+      "UI": "NOT_RUN",
+      "UI_Observed": false,
+      "activityCredit": 0,
+      "actualTasks": [
+        {
+          "actualValue": 4.5,
+          "independentExact": "9/2",
+          "input": "3",
+          "literalAcceptedByNumericRule": true,
+          "manualNumericLiteral": "4.5",
+          "ok": true,
+          "prompt": "Imposta «Tempo dalla partenza» su 3 ms. Quale valore ottieni per «Spostamento lungo il campo»?",
+          "unit": "mm"
+        },
+        {
+          "actualValue": 2,
+          "independentExact": "2",
+          "input": "2",
+          "literalAcceptedByNumericRule": true,
+          "manualNumericLiteral": "2",
+          "ok": true,
+          "prompt": "Una particella parte ferma e acquista 1000 m/s² lungo il campo. Dopo 2 ms, quanti millimetri ha percorso?",
+          "unit": "mm"
+        }
+      ],
+      "assumptionsAndDomain": "Fixedpositivesource+1nC; signedvectorsuperposition; uniformlyacceleratedpositivecharge releasedfromrest, otherforcesneglected. Controltimeinmilliseconds.",
+      "checkedGeometryScope": "AllcollectedarrowtipXYZvsopaqueboxes/spheres/cappedrods; materialalpha1 only. Notfullglyphs/meshfacets/camera/raster/labels/fallback. NoUIobserved.",
+      "clockSampleCount": 85,
+      "consumerCodeGeometryOk": true,
+      "consumerJudgment": "PARTIAL_NO_FAILURE_FOUND_IN_CHECKED_CODE",
+      "errors": [],
+      "geometryObservations": [],
+      "gridCount": 17,
+      "humanApproval": "NOT_RUN",
+      "id": "SIM-C4-L02-03",
+      "manualProcedure": "1000m/s²*(t_ms/1000)^2/2*1000mm/m=t_ms²/2:9/2=4.5;4/2=2mm.",
+      "manualityScope": "Independentreviewerderivedhandprocedureforbothactualtasks;notastudentperformancecalibrationorclaimthesourcealreadyteachesallbounds.",
+      "nativeMeshCodeSupplement": {
+        "fallbackRaster": "NOT_RUN",
+        "nativeRaster": "NOT_RUN",
+        "observations": [],
+        "path": "editorial/reviews/C4-29-code-partial-20261125/mesh-halfspace-negatives.json",
+        "sha256": "dc45af7cc6acfaa0bea6d79f3371f96bf2e91e5969f871949ffad4fc4c685156"
+      },
+      "ok": false,
+      "publicationAction": "NONE",
+      "reviewDependencySha256": {
+        "editorial/reviews/C4-29-code-partial-20261125/mesh-halfspace-negatives.json": "dc45af7cc6acfaa0bea6d79f3371f96bf2e91e5969f871949ffad4fc4c685156",
+        "tests/corpus/check-C4-contained-geometry.mjs": "9ce6e5a491401ae8cf5ef6bc8d2942702b3b4021dbc064e7b01d9b8893a16ebd",
+        "tests/corpus/collect-C4-bounded-code-only.mjs": "a188910901eac6c43a43acf871e6659e0b227e50577420438aa811dc0cc5ad2a",
+        "tools/corpus_engineering/collect_C4_code_partial.py": "44590f26defaeea067ee7578319e612ddc8c261cf08eb0fcc7b765e1dcaa3ea8",
+        "tools/corpus_engineering/experiments_C4_code_partial_verifier.py": "0b45859434d079801542ebd75182f55ea10cc3365b02b21d8123fc63ee805655"
+      },
+      "sourceJudgment": "PASS_MATH_ONLY",
+      "sourceMathAndActualTasksOk": true,
+      "sourceSha256": "65f891f4c52042bb5a82be8ed60ed1ade8d78509d68f65edc196e94f352b86ba",
+      "sourceVersion": 1,
+      "studentTaskScope": "Two actual generated numeric questions; predictiondistractors independently checked; bounds/extraoracles are reviewerprobes not assignedstudenttasks.",
+      "visualReview": "NOT_RUN"
+    },
+    {
+      "CodeGeometryFailure": [],
+      "ManualityFailure": false,
+      "SourceScientificFailure": null,
+      "UI": "NOT_RUN",
+      "UI_Observed": false,
+      "activityCredit": 0,
+      "actualTasks": [
+        {
+          "actualValue": 4.5,
+          "independentExact": "9/2",
+          "input": "2",
+          "literalAcceptedByNumericRule": true,
+          "manualNumericLiteral": "4.5",
+          "ok": true,
+          "prompt": "Imposta «Terza carica al vertice» su 2 nC. Quale valore ottieni per «Energia della terna»?",
+          "unit": "µJ"
+        },
+        {
+          "actualValue": 1.8,
+          "independentExact": "9/5",
+          "input": "1/2",
+          "literalAcceptedByNumericRule": true,
+          "manualNumericLiteral": "1.8",
+          "ok": true,
+          "prompt": "Due vertici di un triangolo equilatero di lato 1 cm portano +1 nC ciascuno. Se il terzo porta 0,5 nC, quanto vale in µJ l’energia totale delle tre coppie?",
+          "unit": "µJ"
+        }
+      ],
+      "assumptionsAndDomain": "Electrostaticpairenergy count3pairs once, zeroatinfinity, constantuniformE, finalminusinitialV, positivepotentialdropforpositivecharge; onlyelectricfieldwork.",
+      "checkedGeometryScope": "AllcollectedarrowtipXYZvsopaqueboxes/spheres/cappedrods; materialalpha1 only. Notfullglyphs/meshfacets/camera/raster/labels/fallback. NoUIobserved.",
+      "clockSampleCount": 0,
+      "consumerCodeGeometryOk": true,
+      "consumerJudgment": "PARTIAL_NO_FAILURE_FOUND_IN_CHECKED_CODE",
+      "errors": [],
+      "geometryObservations": [],
+      "gridCount": 11,
+      "humanApproval": "NOT_RUN",
+      "id": "SIM-C4-L03-01",
+      "manualProcedure": "Threepairs:.9(1+2q3)µJ; .9(1+4)=4.5; .9(1+1)=1.8.",
+      "manualityScope": "Independentreviewerderivedhandprocedureforbothactualtasks;notastudentperformancecalibrationorclaimthesourcealreadyteachesallbounds.",
+      "nativeMeshCodeSupplement": {
+        "fallbackRaster": "NOT_RUN",
+        "nativeRaster": "NOT_RUN",
+        "observations": [],
+        "path": "editorial/reviews/C4-29-code-partial-20261125/mesh-halfspace-negatives.json",
+        "sha256": "dc45af7cc6acfaa0bea6d79f3371f96bf2e91e5969f871949ffad4fc4c685156"
+      },
+      "ok": false,
+      "publicationAction": "NONE",
+      "reviewDependencySha256": {
+        "editorial/reviews/C4-29-code-partial-20261125/mesh-halfspace-negatives.json": "dc45af7cc6acfaa0bea6d79f3371f96bf2e91e5969f871949ffad4fc4c685156",
+        "tests/corpus/check-C4-contained-geometry.mjs": "9ce6e5a491401ae8cf5ef6bc8d2942702b3b4021dbc064e7b01d9b8893a16ebd",
+        "tests/corpus/collect-C4-bounded-code-only.mjs": "a188910901eac6c43a43acf871e6659e0b227e50577420438aa811dc0cc5ad2a",
+        "tools/corpus_engineering/collect_C4_code_partial.py": "44590f26defaeea067ee7578319e612ddc8c261cf08eb0fcc7b765e1dcaa3ea8",
+        "tools/corpus_engineering/experiments_C4_code_partial_verifier.py": "0b45859434d079801542ebd75182f55ea10cc3365b02b21d8123fc63ee805655"
+      },
+      "sourceJudgment": "PASS_MATH_ONLY",
+      "sourceMathAndActualTasksOk": true,
+      "sourceSha256": "7e43565208cccd072a83d557acf7158673935a412ed86b51a5b88c731eba427f",
+      "sourceVersion": 1,
+      "studentTaskScope": "Two actual generated numeric questions; predictiondistractors independently checked; bounds/extraoracles are reviewerprobes not assignedstudenttasks.",
+      "visualReview": "NOT_RUN"
+    },
+    {
+      "CodeGeometryFailure": [],
+      "ManualityFailure": false,
+      "SourceScientificFailure": null,
+      "UI": "NOT_RUN",
+      "UI_Observed": false,
+      "activityCredit": 0,
+      "actualTasks": [
+        {
+          "actualValue": -6,
+          "independentExact": "-6",
+          "input": "3",
+          "literalAcceptedByNumericRule": true,
+          "manualNumericLiteral": "-6",
+          "ok": true,
+          "prompt": "Imposta «Spostamento lungo il campo» su 3 cm. Quale valore ottieni per «Differenza di potenziale»?",
+          "unit": "V"
+        },
+        {
+          "actualValue": 0,
+          "independentExact": "0",
+          "input": "0",
+          "literalAcceptedByNumericRule": true,
+          "manualNumericLiteral": "0",
+          "ok": true,
+          "prompt": "Ti sposti di 0 cm, con segno lungo un campo uniforme di 200 V/m. Quale differenza di potenziale finale meno iniziale misura il voltmetro?",
+          "unit": "V"
+        }
+      ],
+      "assumptionsAndDomain": "Electrostaticpairenergy count3pairs once, zeroatinfinity, constantuniformE, finalminusinitialV, positivepotentialdropforpositivecharge; onlyelectricfieldwork.",
+      "checkedGeometryScope": "AllcollectedarrowtipXYZvsopaqueboxes/spheres/cappedrods; materialalpha1 only. Notfullglyphs/meshfacets/camera/raster/labels/fallback. NoUIobserved.",
+      "clockSampleCount": 0,
+      "consumerCodeGeometryOk": true,
+      "consumerJudgment": "PARTIAL_NO_FAILURE_FOUND_IN_CHECKED_CODE",
+      "errors": [],
+      "geometryObservations": [],
+      "gridCount": 17,
+      "humanApproval": "NOT_RUN",
+      "id": "SIM-C4-L03-02",
+      "manualProcedure": "ΔV=−200*.01x=−2x:−6V;0V.",
+      "manualityScope": "Independentreviewerderivedhandprocedureforbothactualtasks;notastudentperformancecalibrationorclaimthesourcealreadyteachesallbounds.",
+      "nativeMeshCodeSupplement": {
+        "fallbackRaster": "NOT_RUN",
+        "nativeRaster": "NOT_RUN",
+        "observations": [],
+        "path": "editorial/reviews/C4-29-code-partial-20261125/mesh-halfspace-negatives.json",
+        "sha256": "dc45af7cc6acfaa0bea6d79f3371f96bf2e91e5969f871949ffad4fc4c685156"
+      },
+      "ok": false,
+      "publicationAction": "NONE",
+      "reviewDependencySha256": {
+        "editorial/reviews/C4-29-code-partial-20261125/mesh-halfspace-negatives.json": "dc45af7cc6acfaa0bea6d79f3371f96bf2e91e5969f871949ffad4fc4c685156",
+        "tests/corpus/check-C4-contained-geometry.mjs": "9ce6e5a491401ae8cf5ef6bc8d2942702b3b4021dbc064e7b01d9b8893a16ebd",
+        "tests/corpus/collect-C4-bounded-code-only.mjs": "a188910901eac6c43a43acf871e6659e0b227e50577420438aa811dc0cc5ad2a",
+        "tools/corpus_engineering/collect_C4_code_partial.py": "44590f26defaeea067ee7578319e612ddc8c261cf08eb0fcc7b765e1dcaa3ea8",
+        "tools/corpus_engineering/experiments_C4_code_partial_verifier.py": "0b45859434d079801542ebd75182f55ea10cc3365b02b21d8123fc63ee805655"
+      },
+      "sourceJudgment": "PASS_MATH_ONLY",
+      "sourceMathAndActualTasksOk": true,
+      "sourceSha256": "3401f190f1a2675f9d5e546299b7984511bb1104ca4aa51683d2fe15324b074b",
+      "sourceVersion": 1,
+      "studentTaskScope": "Two actual generated numeric questions; predictiondistractors independently checked; bounds/extraoracles are reviewerprobes not assignedstudenttasks.",
+      "visualReview": "NOT_RUN"
+    },
+    {
+      "CodeGeometryFailure": [],
+      "ManualityFailure": false,
+      "SourceScientificFailure": null,
+      "UI": "NOT_RUN",
+      "UI_Observed": false,
+      "activityCredit": 0,
+      "actualTasks": [
+        {
+          "actualValue": 15,
+          "independentExact": "15",
+          "input": "5",
+          "literalAcceptedByNumericRule": true,
+          "manualNumericLiteral": "15",
+          "ok": true,
+          "prompt": "Imposta «Caduta di potenziale» su 5 V. Quale valore ottieni per «Energia cinetica acquistata»?",
+          "unit": "µJ"
+        },
+        {
+          "actualValue": 12,
+          "independentExact": "12",
+          "input": "4",
+          "literalAcceptedByNumericRule": true,
+          "manualNumericLiteral": "12",
+          "ok": true,
+          "prompt": "Una carica di +3 µC attraversa una caduta di potenziale di 4 V. Di quanti microjoule varia la sua energia cinetica per azione del campo?",
+          "unit": "µJ"
+        }
+      ],
+      "assumptionsAndDomain": "Electrostaticpairenergy count3pairs once, zeroatinfinity, constantuniformE, finalminusinitialV, positivepotentialdropforpositivecharge; onlyelectricfieldwork.",
+      "checkedGeometryScope": "AllcollectedarrowtipXYZvsopaqueboxes/spheres/cappedrods; materialalpha1 only. Notfullglyphs/meshfacets/camera/raster/labels/fallback. NoUIobserved.",
+      "clockSampleCount": 0,
+      "consumerCodeGeometryOk": true,
+      "consumerJudgment": "PARTIAL_NO_FAILURE_FOUND_IN_CHECKED_CODE",
+      "errors": [],
+      "geometryObservations": [],
+      "gridCount": 17,
+      "humanApproval": "NOT_RUN",
+      "id": "SIM-C4-L03-03",
+      "manualProcedure": "ΔK=3µC*potentialdrop:3*5=15;3*4=12µJ.",
+      "manualityScope": "Independentreviewerderivedhandprocedureforbothactualtasks;notastudentperformancecalibrationorclaimthesourcealreadyteachesallbounds.",
+      "nativeMeshCodeSupplement": {
+        "fallbackRaster": "NOT_RUN",
+        "nativeRaster": "NOT_RUN",
+        "observations": [],
+        "path": "editorial/reviews/C4-29-code-partial-20261125/mesh-halfspace-negatives.json",
+        "sha256": "dc45af7cc6acfaa0bea6d79f3371f96bf2e91e5969f871949ffad4fc4c685156"
+      },
+      "ok": false,
+      "publicationAction": "NONE",
+      "reviewDependencySha256": {
+        "editorial/reviews/C4-29-code-partial-20261125/mesh-halfspace-negatives.json": "dc45af7cc6acfaa0bea6d79f3371f96bf2e91e5969f871949ffad4fc4c685156",
+        "tests/corpus/check-C4-contained-geometry.mjs": "9ce6e5a491401ae8cf5ef6bc8d2942702b3b4021dbc064e7b01d9b8893a16ebd",
+        "tests/corpus/collect-C4-bounded-code-only.mjs": "a188910901eac6c43a43acf871e6659e0b227e50577420438aa811dc0cc5ad2a",
+        "tools/corpus_engineering/collect_C4_code_partial.py": "44590f26defaeea067ee7578319e612ddc8c261cf08eb0fcc7b765e1dcaa3ea8",
+        "tools/corpus_engineering/experiments_C4_code_partial_verifier.py": "0b45859434d079801542ebd75182f55ea10cc3365b02b21d8123fc63ee805655"
+      },
+      "sourceJudgment": "PASS_MATH_ONLY",
+      "sourceMathAndActualTasksOk": true,
+      "sourceSha256": "95f2a96d7afa59daaf1273df164c6345612804ebe559a46aef3039aff1c34395",
+      "sourceVersion": 1,
+      "studentTaskScope": "Two actual generated numeric questions; predictiondistractors independently checked; bounds/extraoracles are reviewerprobes not assignedstudenttasks.",
+      "visualReview": "NOT_RUN"
+    }
+  ],
+  "remoteDispatch": false,
+  "runtimeSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+  "sourceFileSha256": "b56b6df61c44009e1508cf0e2cb7992b936db985e37f8c21fc9afd51b811e58d",
+  "sourceManualityFailureIds": [],
+  "sourceMathPassCount": 8,
+  "sourcePath": "officina-di-fisica/content/esperienze-C4.json",
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d"
+}

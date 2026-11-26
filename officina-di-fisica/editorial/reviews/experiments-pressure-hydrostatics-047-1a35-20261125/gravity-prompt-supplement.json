@@ -1,0 +1,1350 @@
+{
+  "purpose": "INDEPENDENT047_TARGETED_DOM_PROMPT_SUPPLEMENT_ORIGINAL228LABEL_ONLY_CAPTURE_LIMIT",
+  "runtimeProfileBefore": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+  "sourceFileSha256": "33a38d74b953889eccce3281c4413060aa6af14f6a7c022d5049b927137656c1",
+  "protocolSha256": "e7e38ec4506466be648c534f49e27c65b9eeceb21bd1f76c622765bec81bfc9a",
+  "scientificApproval": false,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "cases": [
+    {
+      "kind": "activity",
+      "id": "SIM-C2-L002-01",
+      "width": 320,
+      "fallback": false,
+      "display": "3D interattivo",
+      "stages": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nAbbassa la sonda a partire dal pelo libero. L’altezza verticale determina il peso sovrastante per unità di superficie. Il manometro è azzerato alla superficie.\n\nΔp = ρgh, con ρ = 1000 kg/m³\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Profondità della sonda\n1 m\nSovrapressione dell’acqua\n9,81 kPa\nVariazione dal riferimento\n0 kPa"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Profondità della sonda» e confronta la scena con il punto segnato sul grafico. Parti da 1 m, poi prova 2 m.\n\nProfondità della sonda = 1 m · Sovrapressione dell’acqua = 9,81 kPa\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Profondità della sonda\n1 m\nSovrapressione dell’acqua\n9,81 kPa\nVariazione dal riferimento\n0 kPa"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\nΔp = ρgh, con ρ = 1000 kg/m³. Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\n9,81 × 1 = 9,81 kPa\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Profondità della sonda\n1 m\nSovrapressione dell’acqua\n9,81 kPa\nVariazione dal riferimento\n0 kPa"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Profondità della sonda» a 1,5 m. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nΔp = ρgh, con ρ = 1000 kg/m³\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Profondità della sonda\n1 m\nSovrapressione dell’acqua\n9,81 kPa\nVariazione dal riferimento\n0 kPa"
+        }
+      ],
+      "assessments": [
+        {
+          "index": 0,
+          "prompt": "Imposta «Profondità della sonda» su 2 m. Quale valore ottieni per «Sovrapressione dell’acqua»?",
+          "promptScreenshots": [],
+          "independentlyDerivedInput": 19.62,
+          "status": "Corretto. Δp = ρgh, con ρ = 1000 kg/m³. 9,81 × 2 = 19,62 kPa.",
+          "observedWrongKey": 14.715,
+          "wrongPhysicalKeyStatus": null
+        },
+        {
+          "index": 1,
+          "prompt": "Un sensore azzerato in superficie viene immerso a 1,5 m nell’acqua. Di quanti kPa sale la lettura usando g = 10 m/s²?",
+          "promptScreenshots": [
+            "supplement-320-false-physical15-rejected.png",
+            "supplement-320-false-model14.715-accepted.png"
+          ],
+          "independentlyDerivedInput": 15,
+          "status": "Rivedi il calcolo. Δp = ρgh, con ρ = 1000 kg/m³. 9,81 × 1,5 ≈ 14,72 kPa.",
+          "observedWrongKey": 14.715,
+          "wrongPhysicalKeyStatus": "Corretto. Δp = ρgh, con ρ = 1000 kg/m³. 9,81 × 1,5 ≈ 14,72 kPa."
+        }
+      ]
+    },
+    {
+      "kind": "boundary",
+      "id": "SIM-C2-L002-01",
+      "x": 1.5,
+      "requestedTime": null,
+      "fallback": false,
+      "width": 320,
+      "display": "3D interattivo",
+      "elements": [
+        {
+          "kind": "rod",
+          "a": [
+            -1.35,
+            0.08,
+            -0.7
+          ],
+          "b": [
+            -1.35,
+            2.42,
+            -0.7
+          ],
+          "r": 0.024,
+          "c": 7499137,
+          "alpha": 1,
+          "r2": 0.024,
+          "openEnded": false
+        },
+        {
+          "kind": "rod",
+          "a": [
+            -1.35,
+            0.08,
+            0.7
+          ],
+          "b": [
+            -1.35,
+            2.42,
+            0.7
+          ],
+          "r": 0.024,
+          "c": 7499137,
+          "alpha": 1,
+          "r2": 0.024,
+          "openEnded": false
+        },
+        {
+          "kind": "rod",
+          "a": [
+            1.35,
+            0.08,
+            -0.7
+          ],
+          "b": [
+            1.35,
+            2.42,
+            -0.7
+          ],
+          "r": 0.024,
+          "c": 7499137,
+          "alpha": 1,
+          "r2": 0.024,
+          "openEnded": false
+        },
+        {
+          "kind": "rod",
+          "a": [
+            1.35,
+            0.08,
+            0.7
+          ],
+          "b": [
+            1.35,
+            2.42,
+            0.7
+          ],
+          "r": 0.024,
+          "c": 7499137,
+          "alpha": 1,
+          "r2": 0.024,
+          "openEnded": false
+        },
+        {
+          "kind": "line",
+          "points": [
+            [
+              -1.35,
+              2.42,
+              -0.7
+            ],
+            [
+              1.35,
+              2.42,
+              -0.7
+            ],
+            [
+              1.35,
+              2.42,
+              0.7
+            ],
+            [
+              -1.35,
+              2.42,
+              0.7
+            ],
+            [
+              -1.35,
+              2.42,
+              -0.7
+            ]
+          ],
+          "c": 7499137,
+          "dash": false
+        },
+        {
+          "kind": "box",
+          "p": [
+            0,
+            1.15,
+            0
+          ],
+          "size": [
+            2.64,
+            2.07,
+            1.34
+          ],
+          "c": 6864335,
+          "alpha": 0.26
+        },
+        {
+          "kind": "line",
+          "points": [
+            [
+              -0.8,
+              2.37,
+              0.3
+            ],
+            [
+              -0.8,
+              1.2200000000000002,
+              0.3
+            ]
+          ],
+          "c": 7499137,
+          "dash": false
+        },
+        {
+          "kind": "ball",
+          "p": [
+            -0.8,
+            1.2200000000000002,
+            0.3
+          ],
+          "r": 0.105,
+          "c": 7557296,
+          "alpha": 1
+        },
+        {
+          "kind": "line",
+          "points": [
+            [
+              0.8,
+              2.37,
+              0.3
+            ],
+            [
+              0.8,
+              1.2200000000000002,
+              0.3
+            ]
+          ],
+          "c": 7499137,
+          "dash": false
+        },
+        {
+          "kind": "ball",
+          "p": [
+            0.8,
+            1.2200000000000002,
+            0.3
+          ],
+          "r": 0.105,
+          "c": 7557296,
+          "alpha": 1
+        },
+        {
+          "kind": "line",
+          "points": [
+            [
+              -1,
+              1.2200000000000002,
+              0.3
+            ],
+            [
+              1,
+              1.2200000000000002,
+              0.3
+            ]
+          ],
+          "c": 1341817,
+          "dash": true
+        },
+        {
+          "kind": "label",
+          "p": [
+            -1.17,
+            1.4000000000000001,
+            0.55
+          ],
+          "text": "Sonda",
+          "c": 3484994
+        },
+        {
+          "kind": "label",
+          "p": [
+            0.6,
+            2.52,
+            -0.45
+          ],
+          "text": "Superficie",
+          "c": 3484994
+        }
+      ],
+      "spec": {
+        "target": [
+          0,
+          0.95,
+          0
+        ],
+        "height": 4.25,
+        "width": 8.1,
+        "eye": [
+          2.6,
+          1.9,
+          6.1
+        ],
+        "bg": 15200229
+      },
+      "model": {
+        "x": 1.5,
+        "y": 14.715
+      },
+      "time": "0",
+      "canvas": {
+        "width": 294,
+        "height": 340
+      },
+      "legend": "La linea tratteggiata unisce le sonde che si trovano alla stessa quota",
+      "legendLayout": {
+        "width": 265,
+        "scrollWidth": 265,
+        "visible": true
+      },
+      "labels": [
+        {
+          "kind": "label",
+          "p": [
+            -1.17,
+            1.4000000000000001,
+            0.55
+          ],
+          "text": "Sonda",
+          "c": 3484994,
+          "textureWidth": 161,
+          "textureHeight": 68
+        },
+        {
+          "kind": "label",
+          "p": [
+            0.6,
+            2.52,
+            -0.45
+          ],
+          "text": "Superficie",
+          "c": 3484994,
+          "textureWidth": 236,
+          "textureHeight": 68
+        }
+      ],
+      "svg": null,
+      "screenshot": "supplement-SIM-C2-L002-01-320-native-x1.5-tnull.png",
+      "screenshotSha256": "9fe3878c39ffdeddc59e20c353272bf8a734ea31c2a574f49a7b4ccda50063d3"
+    },
+    {
+      "kind": "activity",
+      "id": "SIM-C2-L002-01",
+      "width": 1280,
+      "fallback": false,
+      "display": "3D interattivo",
+      "stages": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nAbbassa la sonda a partire dal pelo libero. L’altezza verticale determina il peso sovrastante per unità di superficie. Il manometro è azzerato alla superficie.\n\nΔp = ρgh, con ρ = 1000 kg/m³\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Profondità della sonda\n1 m\nSovrapressione dell’acqua\n9,81 kPa\nVariazione dal riferimento\n0 kPa"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Profondità della sonda» e confronta la scena con il punto segnato sul grafico. Parti da 1 m, poi prova 2 m.\n\nProfondità della sonda = 1 m · Sovrapressione dell’acqua = 9,81 kPa\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Profondità della sonda\n1 m\nSovrapressione dell’acqua\n9,81 kPa\nVariazione dal riferimento\n0 kPa"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\nΔp = ρgh, con ρ = 1000 kg/m³. Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\n9,81 × 1 = 9,81 kPa\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Profondità della sonda\n1 m\nSovrapressione dell’acqua\n9,81 kPa\nVariazione dal riferimento\n0 kPa"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Profondità della sonda» a 1,5 m. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nΔp = ρgh, con ρ = 1000 kg/m³\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Profondità della sonda\n1 m\nSovrapressione dell’acqua\n9,81 kPa\nVariazione dal riferimento\n0 kPa"
+        }
+      ],
+      "assessments": [
+        {
+          "index": 0,
+          "prompt": "Imposta «Profondità della sonda» su 2 m. Quale valore ottieni per «Sovrapressione dell’acqua»?",
+          "promptScreenshots": [],
+          "independentlyDerivedInput": 19.62,
+          "status": "Corretto. Δp = ρgh, con ρ = 1000 kg/m³. 9,81 × 2 = 19,62 kPa.",
+          "observedWrongKey": 14.715,
+          "wrongPhysicalKeyStatus": null
+        },
+        {
+          "index": 1,
+          "prompt": "Un sensore azzerato in superficie viene immerso a 1,5 m nell’acqua. Di quanti kPa sale la lettura usando g = 10 m/s²?",
+          "promptScreenshots": [
+            "supplement-1280-false-physical15-rejected.png",
+            "supplement-1280-false-model14.715-accepted.png"
+          ],
+          "independentlyDerivedInput": 15,
+          "status": "Rivedi il calcolo. Δp = ρgh, con ρ = 1000 kg/m³. 9,81 × 1,5 ≈ 14,72 kPa.",
+          "observedWrongKey": 14.715,
+          "wrongPhysicalKeyStatus": "Corretto. Δp = ρgh, con ρ = 1000 kg/m³. 9,81 × 1,5 ≈ 14,72 kPa."
+        }
+      ]
+    },
+    {
+      "kind": "boundary",
+      "id": "SIM-C2-L002-01",
+      "x": 1.5,
+      "requestedTime": null,
+      "fallback": false,
+      "width": 1280,
+      "display": "3D interattivo",
+      "elements": [
+        {
+          "kind": "rod",
+          "a": [
+            -1.35,
+            0.08,
+            -0.7
+          ],
+          "b": [
+            -1.35,
+            2.42,
+            -0.7
+          ],
+          "r": 0.024,
+          "c": 7499137,
+          "alpha": 1,
+          "r2": 0.024,
+          "openEnded": false
+        },
+        {
+          "kind": "rod",
+          "a": [
+            -1.35,
+            0.08,
+            0.7
+          ],
+          "b": [
+            -1.35,
+            2.42,
+            0.7
+          ],
+          "r": 0.024,
+          "c": 7499137,
+          "alpha": 1,
+          "r2": 0.024,
+          "openEnded": false
+        },
+        {
+          "kind": "rod",
+          "a": [
+            1.35,
+            0.08,
+            -0.7
+          ],
+          "b": [
+            1.35,
+            2.42,
+            -0.7
+          ],
+          "r": 0.024,
+          "c": 7499137,
+          "alpha": 1,
+          "r2": 0.024,
+          "openEnded": false
+        },
+        {
+          "kind": "rod",
+          "a": [
+            1.35,
+            0.08,
+            0.7
+          ],
+          "b": [
+            1.35,
+            2.42,
+            0.7
+          ],
+          "r": 0.024,
+          "c": 7499137,
+          "alpha": 1,
+          "r2": 0.024,
+          "openEnded": false
+        },
+        {
+          "kind": "line",
+          "points": [
+            [
+              -1.35,
+              2.42,
+              -0.7
+            ],
+            [
+              1.35,
+              2.42,
+              -0.7
+            ],
+            [
+              1.35,
+              2.42,
+              0.7
+            ],
+            [
+              -1.35,
+              2.42,
+              0.7
+            ],
+            [
+              -1.35,
+              2.42,
+              -0.7
+            ]
+          ],
+          "c": 7499137,
+          "dash": false
+        },
+        {
+          "kind": "box",
+          "p": [
+            0,
+            1.15,
+            0
+          ],
+          "size": [
+            2.64,
+            2.07,
+            1.34
+          ],
+          "c": 6864335,
+          "alpha": 0.26
+        },
+        {
+          "kind": "line",
+          "points": [
+            [
+              -0.8,
+              2.37,
+              0.3
+            ],
+            [
+              -0.8,
+              1.2200000000000002,
+              0.3
+            ]
+          ],
+          "c": 7499137,
+          "dash": false
+        },
+        {
+          "kind": "ball",
+          "p": [
+            -0.8,
+            1.2200000000000002,
+            0.3
+          ],
+          "r": 0.105,
+          "c": 7557296,
+          "alpha": 1
+        },
+        {
+          "kind": "line",
+          "points": [
+            [
+              0.8,
+              2.37,
+              0.3
+            ],
+            [
+              0.8,
+              1.2200000000000002,
+              0.3
+            ]
+          ],
+          "c": 7499137,
+          "dash": false
+        },
+        {
+          "kind": "ball",
+          "p": [
+            0.8,
+            1.2200000000000002,
+            0.3
+          ],
+          "r": 0.105,
+          "c": 7557296,
+          "alpha": 1
+        },
+        {
+          "kind": "line",
+          "points": [
+            [
+              -1,
+              1.2200000000000002,
+              0.3
+            ],
+            [
+              1,
+              1.2200000000000002,
+              0.3
+            ]
+          ],
+          "c": 1341817,
+          "dash": true
+        },
+        {
+          "kind": "label",
+          "p": [
+            -1.17,
+            1.4000000000000001,
+            0.55
+          ],
+          "text": "Sonda",
+          "c": 3484994
+        },
+        {
+          "kind": "label",
+          "p": [
+            0.6,
+            2.52,
+            -0.45
+          ],
+          "text": "Superficie",
+          "c": 3484994
+        }
+      ],
+      "spec": {
+        "target": [
+          0,
+          0.95,
+          0
+        ],
+        "height": 4.25,
+        "width": 8.1,
+        "eye": [
+          2.6,
+          1.9,
+          6.1
+        ],
+        "bg": 15200229
+      },
+      "model": {
+        "x": 1.5,
+        "y": 14.715
+      },
+      "time": "0",
+      "canvas": {
+        "width": 837.921875,
+        "height": 450
+      },
+      "legend": "La linea tratteggiata unisce le sonde che si trovano alla stessa quota",
+      "legendLayout": {
+        "width": 809,
+        "scrollWidth": 809,
+        "visible": true
+      },
+      "labels": [
+        {
+          "kind": "label",
+          "p": [
+            -1.17,
+            1.4000000000000001,
+            0.55
+          ],
+          "text": "Sonda",
+          "c": 3484994,
+          "textureWidth": 161,
+          "textureHeight": 68
+        },
+        {
+          "kind": "label",
+          "p": [
+            0.6,
+            2.52,
+            -0.45
+          ],
+          "text": "Superficie",
+          "c": 3484994,
+          "textureWidth": 236,
+          "textureHeight": 68
+        }
+      ],
+      "svg": null,
+      "screenshot": "supplement-SIM-C2-L002-01-1280-native-x1.5-tnull.png",
+      "screenshotSha256": "7d8ec21c414e913a65698b03b67d7155a209ee06ec11192e4a3a4a82b8a7889e"
+    },
+    {
+      "kind": "activity",
+      "id": "SIM-C2-L002-01",
+      "width": 320,
+      "fallback": true,
+      "display": "Tavola di misura",
+      "stages": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nAbbassa la sonda a partire dal pelo libero. L’altezza verticale determina il peso sovrastante per unità di superficie. Il manometro è azzerato alla superficie.\n\nΔp = ρgh, con ρ = 1000 kg/m³\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Profondità della sonda\n1 m\nSovrapressione dell’acqua\n9,81 kPa\nVariazione dal riferimento\n0 kPa"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Profondità della sonda» e confronta la scena con il punto segnato sul grafico. Parti da 1 m, poi prova 2 m.\n\nProfondità della sonda = 1 m · Sovrapressione dell’acqua = 9,81 kPa\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Profondità della sonda\n1 m\nSovrapressione dell’acqua\n9,81 kPa\nVariazione dal riferimento\n0 kPa"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\nΔp = ρgh, con ρ = 1000 kg/m³. Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\n9,81 × 1 = 9,81 kPa\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Profondità della sonda\n1 m\nSovrapressione dell’acqua\n9,81 kPa\nVariazione dal riferimento\n0 kPa"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Profondità della sonda» a 1,5 m. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nΔp = ρgh, con ρ = 1000 kg/m³\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Profondità della sonda\n1 m\nSovrapressione dell’acqua\n9,81 kPa\nVariazione dal riferimento\n0 kPa"
+        }
+      ],
+      "assessments": [
+        {
+          "index": 0,
+          "prompt": "Imposta «Profondità della sonda» su 2 m. Quale valore ottieni per «Sovrapressione dell’acqua»?",
+          "promptScreenshots": [],
+          "independentlyDerivedInput": 19.62,
+          "status": "Corretto. Δp = ρgh, con ρ = 1000 kg/m³. 9,81 × 2 = 19,62 kPa.",
+          "observedWrongKey": 14.715,
+          "wrongPhysicalKeyStatus": null
+        },
+        {
+          "index": 1,
+          "prompt": "Un sensore azzerato in superficie viene immerso a 1,5 m nell’acqua. Di quanti kPa sale la lettura usando g = 10 m/s²?",
+          "promptScreenshots": [
+            "supplement-320-true-physical15-rejected.png",
+            "supplement-320-true-model14.715-accepted.png"
+          ],
+          "independentlyDerivedInput": 15,
+          "status": "Rivedi il calcolo. Δp = ρgh, con ρ = 1000 kg/m³. 9,81 × 1,5 ≈ 14,72 kPa.",
+          "observedWrongKey": 14.715,
+          "wrongPhysicalKeyStatus": "Corretto. Δp = ρgh, con ρ = 1000 kg/m³. 9,81 × 1,5 ≈ 14,72 kPa."
+        }
+      ]
+    },
+    {
+      "kind": "boundary",
+      "id": "SIM-C2-L002-01",
+      "x": 1.5,
+      "requestedTime": null,
+      "fallback": true,
+      "width": 320,
+      "display": "Tavola di misura",
+      "elements": [
+        {
+          "kind": "rod",
+          "a": [
+            -1.35,
+            0.08,
+            -0.7
+          ],
+          "b": [
+            -1.35,
+            2.42,
+            -0.7
+          ],
+          "r": 0.024,
+          "c": 7499137,
+          "alpha": 1,
+          "r2": 0.024,
+          "openEnded": false
+        },
+        {
+          "kind": "rod",
+          "a": [
+            -1.35,
+            0.08,
+            0.7
+          ],
+          "b": [
+            -1.35,
+            2.42,
+            0.7
+          ],
+          "r": 0.024,
+          "c": 7499137,
+          "alpha": 1,
+          "r2": 0.024,
+          "openEnded": false
+        },
+        {
+          "kind": "rod",
+          "a": [
+            1.35,
+            0.08,
+            -0.7
+          ],
+          "b": [
+            1.35,
+            2.42,
+            -0.7
+          ],
+          "r": 0.024,
+          "c": 7499137,
+          "alpha": 1,
+          "r2": 0.024,
+          "openEnded": false
+        },
+        {
+          "kind": "rod",
+          "a": [
+            1.35,
+            0.08,
+            0.7
+          ],
+          "b": [
+            1.35,
+            2.42,
+            0.7
+          ],
+          "r": 0.024,
+          "c": 7499137,
+          "alpha": 1,
+          "r2": 0.024,
+          "openEnded": false
+        },
+        {
+          "kind": "line",
+          "points": [
+            [
+              -1.35,
+              2.42,
+              -0.7
+            ],
+            [
+              1.35,
+              2.42,
+              -0.7
+            ],
+            [
+              1.35,
+              2.42,
+              0.7
+            ],
+            [
+              -1.35,
+              2.42,
+              0.7
+            ],
+            [
+              -1.35,
+              2.42,
+              -0.7
+            ]
+          ],
+          "c": 7499137,
+          "dash": false
+        },
+        {
+          "kind": "box",
+          "p": [
+            0,
+            1.15,
+            0
+          ],
+          "size": [
+            2.64,
+            2.07,
+            1.34
+          ],
+          "c": 6864335,
+          "alpha": 0.26
+        },
+        {
+          "kind": "line",
+          "points": [
+            [
+              -0.8,
+              2.37,
+              0.3
+            ],
+            [
+              -0.8,
+              1.2200000000000002,
+              0.3
+            ]
+          ],
+          "c": 7499137,
+          "dash": false
+        },
+        {
+          "kind": "ball",
+          "p": [
+            -0.8,
+            1.2200000000000002,
+            0.3
+          ],
+          "r": 0.105,
+          "c": 7557296,
+          "alpha": 1
+        },
+        {
+          "kind": "line",
+          "points": [
+            [
+              0.8,
+              2.37,
+              0.3
+            ],
+            [
+              0.8,
+              1.2200000000000002,
+              0.3
+            ]
+          ],
+          "c": 7499137,
+          "dash": false
+        },
+        {
+          "kind": "ball",
+          "p": [
+            0.8,
+            1.2200000000000002,
+            0.3
+          ],
+          "r": 0.105,
+          "c": 7557296,
+          "alpha": 1
+        },
+        {
+          "kind": "line",
+          "points": [
+            [
+              -1,
+              1.2200000000000002,
+              0.3
+            ],
+            [
+              1,
+              1.2200000000000002,
+              0.3
+            ]
+          ],
+          "c": 1341817,
+          "dash": true
+        },
+        {
+          "kind": "label",
+          "p": [
+            -1.17,
+            1.4000000000000001,
+            0.55
+          ],
+          "text": "Sonda",
+          "c": 3484994
+        },
+        {
+          "kind": "label",
+          "p": [
+            0.6,
+            2.52,
+            -0.45
+          ],
+          "text": "Superficie",
+          "c": 3484994
+        }
+      ],
+      "spec": {
+        "target": [
+          0,
+          0.95,
+          0
+        ],
+        "height": 4.25,
+        "width": 8.1,
+        "eye": [
+          2.6,
+          1.9,
+          6.1
+        ],
+        "bg": 15200229
+      },
+      "model": {
+        "x": 1.5,
+        "y": 14.715
+      },
+      "time": "0",
+      "canvas": {
+        "width": 0,
+        "height": 0
+      },
+      "legend": "La linea tratteggiata unisce le sonde che si trovano alla stessa quota",
+      "legendLayout": {
+        "width": 265,
+        "scrollWidth": 265,
+        "visible": true
+      },
+      "labels": [
+        {
+          "kind": "label",
+          "p": [
+            -1.17,
+            1.4000000000000001,
+            0.55
+          ],
+          "text": "Sonda",
+          "c": 3484994,
+          "textureWidth": 161,
+          "textureHeight": 68
+        },
+        {
+          "kind": "label",
+          "p": [
+            0.6,
+            2.52,
+            -0.45
+          ],
+          "text": "Superficie",
+          "c": 3484994,
+          "textureWidth": 236,
+          "textureHeight": 68
+        }
+      ],
+      "screenshot": "supplement-SIM-C2-L002-01-320-fallback-x1.5-tnull.png",
+      "screenshotSha256": "a4a8c88b2e7d946454ce745308ce2c8a8dce7b1a8a72063d056c7c9660d0ece0"
+    },
+    {
+      "kind": "activity",
+      "id": "SIM-C2-L002-01",
+      "width": 1280,
+      "fallback": true,
+      "display": "Tavola di misura",
+      "stages": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nAbbassa la sonda a partire dal pelo libero. L’altezza verticale determina il peso sovrastante per unità di superficie. Il manometro è azzerato alla superficie.\n\nΔp = ρgh, con ρ = 1000 kg/m³\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Profondità della sonda\n1 m\nSovrapressione dell’acqua\n9,81 kPa\nVariazione dal riferimento\n0 kPa"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Profondità della sonda» e confronta la scena con il punto segnato sul grafico. Parti da 1 m, poi prova 2 m.\n\nProfondità della sonda = 1 m · Sovrapressione dell’acqua = 9,81 kPa\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Profondità della sonda\n1 m\nSovrapressione dell’acqua\n9,81 kPa\nVariazione dal riferimento\n0 kPa"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\nΔp = ρgh, con ρ = 1000 kg/m³. Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\n9,81 × 1 = 9,81 kPa\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Profondità della sonda\n1 m\nSovrapressione dell’acqua\n9,81 kPa\nVariazione dal riferimento\n0 kPa"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Profondità della sonda» a 1,5 m. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nΔp = ρgh, con ρ = 1000 kg/m³\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Profondità della sonda\n1 m\nSovrapressione dell’acqua\n9,81 kPa\nVariazione dal riferimento\n0 kPa"
+        }
+      ],
+      "assessments": [
+        {
+          "index": 0,
+          "prompt": "Imposta «Profondità della sonda» su 2 m. Quale valore ottieni per «Sovrapressione dell’acqua»?",
+          "promptScreenshots": [],
+          "independentlyDerivedInput": 19.62,
+          "status": "Corretto. Δp = ρgh, con ρ = 1000 kg/m³. 9,81 × 2 = 19,62 kPa.",
+          "observedWrongKey": 14.715,
+          "wrongPhysicalKeyStatus": null
+        },
+        {
+          "index": 1,
+          "prompt": "Un sensore azzerato in superficie viene immerso a 1,5 m nell’acqua. Di quanti kPa sale la lettura usando g = 10 m/s²?",
+          "promptScreenshots": [
+            "supplement-1280-true-physical15-rejected.png",
+            "supplement-1280-true-model14.715-accepted.png"
+          ],
+          "independentlyDerivedInput": 15,
+          "status": "Rivedi il calcolo. Δp = ρgh, con ρ = 1000 kg/m³. 9,81 × 1,5 ≈ 14,72 kPa.",
+          "observedWrongKey": 14.715,
+          "wrongPhysicalKeyStatus": "Corretto. Δp = ρgh, con ρ = 1000 kg/m³. 9,81 × 1,5 ≈ 14,72 kPa."
+        }
+      ]
+    },
+    {
+      "kind": "boundary",
+      "id": "SIM-C2-L002-01",
+      "x": 1.5,
+      "requestedTime": null,
+      "fallback": true,
+      "width": 1280,
+      "display": "Tavola di misura",
+      "elements": [
+        {
+          "kind": "rod",
+          "a": [
+            -1.35,
+            0.08,
+            -0.7
+          ],
+          "b": [
+            -1.35,
+            2.42,
+            -0.7
+          ],
+          "r": 0.024,
+          "c": 7499137,
+          "alpha": 1,
+          "r2": 0.024,
+          "openEnded": false
+        },
+        {
+          "kind": "rod",
+          "a": [
+            -1.35,
+            0.08,
+            0.7
+          ],
+          "b": [
+            -1.35,
+            2.42,
+            0.7
+          ],
+          "r": 0.024,
+          "c": 7499137,
+          "alpha": 1,
+          "r2": 0.024,
+          "openEnded": false
+        },
+        {
+          "kind": "rod",
+          "a": [
+            1.35,
+            0.08,
+            -0.7
+          ],
+          "b": [
+            1.35,
+            2.42,
+            -0.7
+          ],
+          "r": 0.024,
+          "c": 7499137,
+          "alpha": 1,
+          "r2": 0.024,
+          "openEnded": false
+        },
+        {
+          "kind": "rod",
+          "a": [
+            1.35,
+            0.08,
+            0.7
+          ],
+          "b": [
+            1.35,
+            2.42,
+            0.7
+          ],
+          "r": 0.024,
+          "c": 7499137,
+          "alpha": 1,
+          "r2": 0.024,
+          "openEnded": false
+        },
+        {
+          "kind": "line",
+          "points": [
+            [
+              -1.35,
+              2.42,
+              -0.7
+            ],
+            [
+              1.35,
+              2.42,
+              -0.7
+            ],
+            [
+              1.35,
+              2.42,
+              0.7
+            ],
+            [
+              -1.35,
+              2.42,
+              0.7
+            ],
+            [
+              -1.35,
+              2.42,
+              -0.7
+            ]
+          ],
+          "c": 7499137,
+          "dash": false
+        },
+        {
+          "kind": "box",
+          "p": [
+            0,
+            1.15,
+            0
+          ],
+          "size": [
+            2.64,
+            2.07,
+            1.34
+          ],
+          "c": 6864335,
+          "alpha": 0.26
+        },
+        {
+          "kind": "line",
+          "points": [
+            [
+              -0.8,
+              2.37,
+              0.3
+            ],
+            [
+              -0.8,
+              1.2200000000000002,
+              0.3
+            ]
+          ],
+          "c": 7499137,
+          "dash": false
+        },
+        {
+          "kind": "ball",
+          "p": [
+            -0.8,
+            1.2200000000000002,
+            0.3
+          ],
+          "r": 0.105,
+          "c": 7557296,
+          "alpha": 1
+        },
+        {
+          "kind": "line",
+          "points": [
+            [
+              0.8,
+              2.37,
+              0.3
+            ],
+            [
+              0.8,
+              1.2200000000000002,
+              0.3
+            ]
+          ],
+          "c": 7499137,
+          "dash": false
+        },
+        {
+          "kind": "ball",
+          "p": [
+            0.8,
+            1.2200000000000002,
+            0.3
+          ],
+          "r": 0.105,
+          "c": 7557296,
+          "alpha": 1
+        },
+        {
+          "kind": "line",
+          "points": [
+            [
+              -1,
+              1.2200000000000002,
+              0.3
+            ],
+            [
+              1,
+              1.2200000000000002,
+              0.3
+            ]
+          ],
+          "c": 1341817,
+          "dash": true
+        },
+        {
+          "kind": "label",
+          "p": [
+            -1.17,
+            1.4000000000000001,
+            0.55
+          ],
+          "text": "Sonda",
+          "c": 3484994
+        },
+        {
+          "kind": "label",
+          "p": [
+            0.6,
+            2.52,
+            -0.45
+          ],
+          "text": "Superficie",
+          "c": 3484994
+        }
+      ],
+      "spec": {
+        "target": [
+          0,
+          0.95,
+          0
+        ],
+        "height": 4.25,
+        "width": 8.1,
+        "eye": [
+          2.6,
+          1.9,
+          6.1
+        ],
+        "bg": 15200229
+      },
+      "model": {
+        "x": 1.5,
+        "y": 14.715
+      },
+      "time": "0",
+      "canvas": {
+        "width": 0,
+        "height": 0
+      },
+      "legend": "La linea tratteggiata unisce le sonde che si trovano alla stessa quota",
+      "legendLayout": {
+        "width": 809,
+        "scrollWidth": 809,
+        "visible": true
+      },
+      "labels": [
+        {
+          "kind": "label",
+          "p": [
+            -1.17,
+            1.4000000000000001,
+            0.55
+          ],
+          "text": "Sonda",
+          "c": 3484994,
+          "textureWidth": 161,
+          "textureHeight": 68
+        },
+        {
+          "kind": "label",
+          "p": [
+            0.6,
+            2.52,
+            -0.45
+          ],
+          "text": "Superficie",
+          "c": 3484994,
+          "textureWidth": 236,
+          "textureHeight": 68
+        }
+      ],
+      "screenshot": "supplement-SIM-C2-L002-01-1280-fallback-x1.5-tnull.png",
+      "screenshotSha256": "a20d262b8738da0320ff74e45d0f569352218f68198a50fab514ad1d0f9f3e1f"
+    }
+  ],
+  "errors": [],
+  "browserVersion": "158.0.8127.37",
+  "runtimeProfileAfter": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+  "terminalStatus": "COMPLETED"
+}

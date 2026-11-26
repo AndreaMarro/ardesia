@@ -1,0 +1,525 @@
+{
+  "phase": "PROMPT_ONLY_PRIMARY_NOT_REGISTRABLE",
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+  "sourcePath": "officina-di-fisica/content/esperienze-C2.json",
+  "sourceFileSha256": "33a38d74b953889eccce3281c4413060aa6af14f6a7c022d5049b927137656c1",
+  "projectionFileSha256": "12f608d49c4588aaf0e17d20d4b9cb1ac09d4ef9f8c0204df1e1e0c37c97e0d3",
+  "priorKnowledgeDisclosure": "Whole shared consumer C2.js was incidentally read during047; its laws were therefore previously visible. No remaining source reference ordinate/formula/interpretation/substitution/answer field is exposed here. This projection is prompt-only, not claimed as fully blind independent reading.",
+  "reviewer": "AI distinct from historical source author; no human approval",
+  "records": [
+    {
+      "id": "SIM-C2-L006-01",
+      "title": "Teorema di Bernoulli",
+      "promptOnlySha256": "4e14da9dae183ca8ed2ca35a7fb55b53b08ff71c63ba627d72d5fd947ed47124",
+      "independentDerivation": "Bernoulli: p2=p1+(rho/2)(v1²-v2²); with rho1000kg/m³ gives p2[kPa]=41/2-v2²/2",
+      "assumptionsAndManualProcedure": "Steady incompressible inviscid same streamline, horizontal, no pump/loss; density1000kg/m³ must be assigned in full context. Square velocity, subtract1, halve and subtract from20.",
+      "adversarialInterpretation": "Conditional on assigned water density; kPa conversion is Pa/1000, not multiply1000.",
+      "referenceInputCalculations": [
+        {
+          "x": "1",
+          "derivedY": "20",
+          "unit": "kPa"
+        },
+        {
+          "x": "3",
+          "derivedY": "16",
+          "unit": "kPa"
+        }
+      ],
+      "sourceSolutionFieldsRead": false,
+      "consumerReview": "NOT_RUN",
+      "scientificReview": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C2-L006-02",
+      "title": "Pressione statica e dinamica",
+      "promptOnlySha256": "7fe0d1f9236fd720a1d51d48240ec2af74268892c479a937d49e6cde71629b7e",
+      "independentDerivation": "Pitot stagnation-minus-static pressure=rho*v²/2; with rho1000 gives q[kPa]=v²/2",
+      "assumptionsAndManualProcedure": "Ideal stagnation along streamline, incompressible liquid, correct alignment and equal datum; rho needs full context. Square then divide2.",
+      "adversarialInterpretation": "Stagnation pressure exceeds static; this is not absolute static pressure.",
+      "referenceInputCalculations": [
+        {
+          "x": "2",
+          "derivedY": "2",
+          "unit": "kPa"
+        },
+        {
+          "x": "4",
+          "derivedY": "8",
+          "unit": "kPa"
+        }
+      ],
+      "sourceSolutionFieldsRead": false,
+      "consumerReview": "NOT_RUN",
+      "scientificReview": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C2-L006-03",
+      "title": "Stenosi e aneurisma in modello ideale",
+      "promptOnlySha256": "5d1a242ddc1d00b6f61ac15a69de78d30fe5195ad8b18ff8af47a91662d9db59",
+      "independentDerivation": "Q=A0*2m/s=A_local*v => v=2/area_ratio",
+      "assumptionsAndManualProcedure": "Steady incompressible flow and positive area ratio. Divide2 by dimensionless area ratio.",
+      "adversarialInterpretation": "Area ratio is not radius ratio; mechanical physiology in real pulsatile/compliant vessels not implied.",
+      "referenceInputCalculations": [
+        {
+          "x": "1/2",
+          "derivedY": "4",
+          "unit": "m/s"
+        },
+        {
+          "x": "2",
+          "derivedY": "1",
+          "unit": "m/s"
+        }
+      ],
+      "sourceSolutionFieldsRead": false,
+      "consumerReview": "NOT_RUN",
+      "scientificReview": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C2-L006-04",
+      "title": "Condizioni di validità",
+      "promptOnlySha256": "ebd27fe135415611ef4191b479aca61571f74ef129f25ba62bc3757217b61828",
+      "independentDerivation": "p_out=15kPa-loss_per_volume",
+      "assumptionsAndManualProcedure": "Steady horizontal constant-area incompressible flow; no pump/turbine, identical velocity terms. Subtract loss in kPa.",
+      "adversarialInterpretation": "Loss positive reduces pressure; J/m³=Pa.",
+      "referenceInputCalculations": [
+        {
+          "x": "0",
+          "derivedY": "15",
+          "unit": "kPa"
+        },
+        {
+          "x": "6",
+          "derivedY": "9",
+          "unit": "kPa"
+        }
+      ],
+      "sourceSolutionFieldsRead": false,
+      "consumerReview": "NOT_RUN",
+      "scientificReview": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C2-L007-01",
+      "title": "Flussi laminari e turbolenti",
+      "promptOnlySha256": "dbb831569a1a4af07f4f82163ba34a2e58aadb9ccd55fbd234bc9a98c5c3c4f9",
+      "independentDerivation": "Re=rho*v*D/eta; D=1/100m eta=1/1000Pa*s => Re=10*rho*v; rho1000 gives10000v",
+      "assumptionsAndManualProcedure": "Newtonian liquid and diameter-based Reynolds definition. Density absent in prompt-only projection:1000kg/m³ conditional. Convert1cm to.01m; dimensions cancel.",
+      "adversarialInterpretation": "Re is a regime indicator; transition threshold is not an exact universal classifier or guaranteed parabola.",
+      "referenceInputCalculations": [
+        {
+          "x": "1/10",
+          "derivedY": "1000",
+          "unit": "1"
+        },
+        {
+          "x": "2/5",
+          "derivedY": "4000",
+          "unit": "1"
+        }
+      ],
+      "sourceSolutionFieldsRead": false,
+      "consumerReview": "NOT_RUN",
+      "scientificReview": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C2-L007-02",
+      "title": "Regime stazionario",
+      "promptOnlySha256": "559e29a4b4465ff105230647e59f9a71fda85238a7cbcbb694e61e1eb5d71583",
+      "independentDerivation": "Stationary only says partial_t(v)=0; if parabolic profile with vmax8, v(R/2)=8(1-1/4)=6cm/s",
+      "assumptionsAndManualProcedure": "Need supplied parabolic fully-developed circular profile for6; stationary alone does not determine6. Once profile given,8*3/4 by manual multiplication.",
+      "adversarialInterpretation": "A stationary plug profile with axis8 has velocity8 at half-radius: distinguish steady from spatially uniform.",
+      "referenceInputCalculations": [
+        {
+          "x": "1",
+          "derivedY": "6",
+          "unit": "cm/s"
+        },
+        {
+          "x": "3",
+          "derivedY": "6",
+          "unit": "cm/s"
+        }
+      ],
+      "sourceSolutionFieldsRead": false,
+      "consumerReview": "NOT_RUN",
+      "scientificReview": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C2-L007-03",
+      "title": "Viscosità dinamica",
+      "promptOnlySha256": "ddf0ed61b00491cda216a94cc61c7ac8fcdb8462074effc652f2625da8041c7e",
+      "independentDerivation": "Newtonian shear magnitude tau=eta*gradient=4eta",
+      "assumptionsAndManualProcedure": "Assigned Newtonian constitutive relation and gradient4s^-1. Multiply viscosity by4; Pa*s times s^-1 is Pa.",
+      "adversarialInterpretation": "Reported positive magnitude differs from vector sign of force on each opposite plate.",
+      "referenceInputCalculations": [
+        {
+          "x": "1/2",
+          "derivedY": "2",
+          "unit": "Pa"
+        },
+        {
+          "x": "3/2",
+          "derivedY": "6",
+          "unit": "Pa"
+        }
+      ],
+      "sourceSolutionFieldsRead": false,
+      "consumerReview": "NOT_RUN",
+      "scientificReview": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C2-L007-04",
+      "title": "Gradiente di velocità",
+      "promptOnlySha256": "965fd9ef1450edfb4ea2f60a5a52030dd919a78f90a053f7afac0bdcd7ee044c",
+      "independentDerivation": "Linear Couette gradient=delta_u/h=40mm/s divided by h[mm]",
+      "assumptionsAndManualProcedure": "Parallel plates with linear velocity profile; positive gap1..8mm. Common mm factors cancel.",
+      "adversarialInterpretation": "Endpoint difference/gap is mean gradient; without a linear profile not every local gradient is this value.",
+      "referenceInputCalculations": [
+        {
+          "x": "2",
+          "derivedY": "20",
+          "unit": "s⁻¹"
+        },
+        {
+          "x": "4",
+          "derivedY": "10",
+          "unit": "s⁻¹"
+        }
+      ],
+      "sourceSolutionFieldsRead": false,
+      "consumerReview": "NOT_RUN",
+      "scientificReview": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C2-L007-05",
+      "title": "Profilo parabolico laminare",
+      "promptOnlySha256": "940954b6e8b4db506fa0bcce32a78ef93c6b75fc816072836206b10f0dccddf0",
+      "independentDerivation": "Parabolic v(r)=vmax(1-(r/R)²)=12(1-x²)cm/s",
+      "assumptionsAndManualProcedure": "Topic explicitly parabolic; positive axial speed, no slip circular fully-developed Newtonian flow. Square ratio, subtract from1, multiply12.",
+      "adversarialInterpretation": "Zero at wall; negative speed outside r/R>1 would be outside control domain.",
+      "referenceInputCalculations": [
+        {
+          "x": "0",
+          "derivedY": "12",
+          "unit": "cm/s"
+        },
+        {
+          "x": "1/2",
+          "derivedY": "9",
+          "unit": "cm/s"
+        }
+      ],
+      "sourceSolutionFieldsRead": false,
+      "consumerReview": "NOT_RUN",
+      "scientificReview": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C2-L008-01",
+      "title": "Legge di Hagen–Poiseuille",
+      "promptOnlySha256": "63669cec447eba3961b0509fdc1988a129cfc4e533ef3bdcfe2761762541e2b8",
+      "independentDerivation": "Hagen-Poiseuille Q=pi*delta_p*r⁴/(8etaL) => Q/Q0=(r/r0)⁴",
+      "assumptionsAndManualProcedure": "Same delta_p, viscosity, length, rigid circular tube, Newtonian steady fully-developed laminar regime. Square ratio twice.",
+      "adversarialInterpretation": "A diameter/radius confusion has same ratio only if changed consistently; laminar regime must remain applicable after radius change.",
+      "referenceInputCalculations": [
+        {
+          "x": "1",
+          "derivedY": "1",
+          "unit": "1"
+        },
+        {
+          "x": "2",
+          "derivedY": "16",
+          "unit": "1"
+        }
+      ],
+      "sourceSolutionFieldsRead": false,
+      "consumerReview": "NOT_RUN",
+      "scientificReview": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C2-L008-02",
+      "title": "Ruolo di raggio, lunghezza, viscosità e salto di pressione",
+      "promptOnlySha256": "92b110de85fe811e3d26810eddb169804eb6df3bf92657aab96187e8389b84ba",
+      "independentDerivation": "Poiseuille factors: doubled radius16; doubled length1/2; doubled viscosity1/2; doubled pressure2",
+      "assumptionsAndManualProcedure": "Only the selected parameter changes; same rigid circular laminar assumptions. Integer choice index maps to displayed category, not physical multiplier x.",
+      "adversarialInterpretation": "Index2 and3 give same output legitimately; assessment asks numeric factor for chosen modification, not uniquely identify cause.",
+      "referenceInputCalculations": [
+        {
+          "x": "1",
+          "derivedY": "16",
+          "unit": "1"
+        },
+        {
+          "x": "4",
+          "derivedY": "2",
+          "unit": "1"
+        }
+      ],
+      "sourceSolutionFieldsRead": false,
+      "consumerReview": "NOT_RUN",
+      "scientificReview": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C2-L008-03",
+      "title": "Resistenza idraulica",
+      "promptOnlySha256": "b39b0b07dd496917aec918f939d44d6b5c1c81528bcc255f8844220f8cc91831",
+      "independentDerivation": "delta_p=R_h*Q=(3kPa*s/mL)*Q",
+      "assumptionsAndManualProcedure": "Linear capillary resistance fixed3kPa*s/mL. Multiply flow by3; s and mL cancel.",
+      "adversarialInterpretation": "This is pressure difference, not absolute pressure or power; zero flow needs zero modeled drop.",
+      "referenceInputCalculations": [
+        {
+          "x": "2",
+          "derivedY": "6",
+          "unit": "kPa"
+        },
+        {
+          "x": "5",
+          "derivedY": "15",
+          "unit": "kPa"
+        }
+      ],
+      "sourceSolutionFieldsRead": false,
+      "consumerReview": "NOT_RUN",
+      "scientificReview": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C2-L008-04",
+      "title": "Limiti dei modelli fisiologici",
+      "promptOnlySha256": "dcbe7a79e1588ab9915d7485de8ea81f6737001f4b942c5969824d4460da356f",
+      "independentDerivation": "Relative radius=1+percent/100; Q/Q0=(1+percent/100)⁴",
+      "assumptionsAndManualProcedure": "Rigid Poiseuille model, unchanged pressure difference/length/viscosity. Convert percent, then square twice.",
+      "adversarialInterpretation": "+20% radius gives1296/625, not+80%; -20% gives256/625. This ideal sensitivity is not a patient-specific prediction.",
+      "referenceInputCalculations": [
+        {
+          "x": "-20",
+          "derivedY": "256/625",
+          "unit": "1"
+        },
+        {
+          "x": "20",
+          "derivedY": "1296/625",
+          "unit": "1"
+        }
+      ],
+      "sourceSolutionFieldsRead": false,
+      "consumerReview": "NOT_RUN",
+      "scientificReview": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C2-L009-01",
+      "title": "Resistenze idrauliche in serie e in parallelo",
+      "promptOnlySha256": "75b8e12021f15421fe6b9968344464728e1e232eb61ef20c5a6d01fccd952b7b",
+      "independentDerivation": "Parallel equal pressure:1/Req=1/2+1/R2 => Req=2R2/(2+R2)",
+      "assumptionsAndManualProcedure": "Two linear positive hydraulic resistances in parallel with common endpoints. Multiply2R2 and divide by sum.",
+      "adversarialInterpretation": "Equivalent below each branch; same formula is not a series sum.",
+      "referenceInputCalculations": [
+        {
+          "x": "2",
+          "derivedY": "1",
+          "unit": "kPa·s/mL"
+        },
+        {
+          "x": "6",
+          "derivedY": "3/2",
+          "unit": "kPa·s/mL"
+        }
+      ],
+      "sourceSolutionFieldsRead": false,
+      "consumerReview": "NOT_RUN",
+      "scientificReview": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C2-L009-02",
+      "title": "Portata nei rami",
+      "promptOnlySha256": "3e312f732b09f63a78e40f0fd49982c2c4451880e2ed3af8409a106f28879d57",
+      "independentDerivation": "Q_upper=delta_p/R_upper=12/R_upper",
+      "assumptionsAndManualProcedure": "Shared prescribed12kPa node pressure difference; positive linear branch resistance. Divide12 by resistance.",
+      "adversarialInterpretation": "Other branch changes do not change this branch flow if node pressure difference remains externally fixed.",
+      "referenceInputCalculations": [
+        {
+          "x": "2",
+          "derivedY": "6",
+          "unit": "mL/s"
+        },
+        {
+          "x": "6",
+          "derivedY": "2",
+          "unit": "mL/s"
+        }
+      ],
+      "sourceSolutionFieldsRead": false,
+      "consumerReview": "NOT_RUN",
+      "scientificReview": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C2-L009-03",
+      "title": "Resistenze e pressioni nei sistemi biologici",
+      "promptOnlySha256": "341bba5abdc754206ed404289b5830c15f1041f1f2e94791c328d346125139b9",
+      "independentDerivation": "Series Q=(10-0)/(2+Rdown), node p=Q*Rdown=10Rdown/(2+Rdown)",
+      "assumptionsAndManualProcedure": "Steady positive linear resistances; downstream outlet0kPa, inlet10kPa. Divide total drop by sum then multiply downstreamR.",
+      "adversarialInterpretation": "Node pressure is measured relative to downstream0; upstream drop uses other resistor.",
+      "referenceInputCalculations": [
+        {
+          "x": "2",
+          "derivedY": "5",
+          "unit": "kPa"
+        },
+        {
+          "x": "6",
+          "derivedY": "15/2",
+          "unit": "kPa"
+        }
+      ],
+      "sourceSolutionFieldsRead": false,
+      "consumerReview": "NOT_RUN",
+      "scientificReview": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C2-L010-01",
+      "title": "Tensione superficiale",
+      "promptOnlySha256": "dd75a04bbc858049cc615ca66e72e7295641121e7e61a883ba920235f4e7ffa5",
+      "independentDerivation": "Two film surfaces F=2gammaL; gamma1/20N/m, L=x/100m => F=x mN",
+      "assumptionsAndManualProcedure": "Soap film has two interfaces and uniform tension, straight mobile boundary; ignore additional support weight in modeled balance. Convertcm tom, NtomN.",
+      "adversarialInterpretation": "Single surface would give half. Count interfaces, not two sides of boundary arbitrarily.",
+      "referenceInputCalculations": [
+        {
+          "x": "1",
+          "derivedY": "1",
+          "unit": "mN"
+        },
+        {
+          "x": "4",
+          "derivedY": "4",
+          "unit": "mN"
+        }
+      ],
+      "sourceSolutionFieldsRead": false,
+      "consumerReview": "NOT_RUN",
+      "scientificReview": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C2-L010-02",
+      "title": "Piccole quantità di liquido",
+      "promptOnlySha256": "46dcd5e10ac23287f490ce515804acc85df8d166db0637730450c205dae471e9",
+      "independentDerivation": "Sphere A/V=(4pi*r²)/(4pi*r³/3)=3/r",
+      "assumptionsAndManualProcedure": "Spherical droplets of common positive radius; total area/totalvolume for equal spheres same3/r. Pi cancels, no calculator required.",
+      "adversarialInterpretation": "Doubling radius halves area/volume; planar/merged drops do not satisfy this formula.",
+      "referenceInputCalculations": [
+        {
+          "x": "1",
+          "derivedY": "3",
+          "unit": "mm⁻¹"
+        },
+        {
+          "x": "3",
+          "derivedY": "1",
+          "unit": "mm⁻¹"
+        }
+      ],
+      "sourceSolutionFieldsRead": false,
+      "consumerReview": "NOT_RUN",
+      "scientificReview": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C2-L010-03",
+      "title": "Bagnabilità e capillarità",
+      "promptOnlySha256": "f38a5dc01a956ea167f43e8aa2c725f25ca0ce9f2430c4c2baf4fe271323797f",
+      "independentDerivation": "Jurin h=2gamma*cos(theta)/(rho*g*r); assigned maximum10mm gives h=10cos(theta)mm",
+      "assumptionsAndManualProcedure": "Static capillary model, contact angle through liquid, fixed radius/liquid/gravity. Use exact known cosine for assigned angles.",
+      "adversarialInterpretation": "90° gives0, obtuse gives depression. Actual selected angle must be checked later for manual feasibility; no approximate cosine demanded here.",
+      "referenceInputCalculations": [
+        {
+          "x": "0",
+          "derivedY": "10",
+          "unit": "mm"
+        },
+        {
+          "x": "120",
+          "derivedY": "-5",
+          "unit": "mm"
+        }
+      ],
+      "sourceSolutionFieldsRead": false,
+      "consumerReview": "NOT_RUN",
+      "scientificReview": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C2-L010-04",
+      "title": "Interfacce piane e curve",
+      "promptOnlySha256": "29ba4ff879c65473843b86490aad5545bad5014bace563fc94db15ecb8973b58",
+      "independentDerivation": "Single spherical interface delta_p=2gamma/r=2gamma*k; k[mm^-1]*1000 gives m^-1 => delta_p=100k Pa",
+      "assumptionsAndManualProcedure": "Spherical liquid drop one interface; gamma.05N/m, positive curvature1/r. At0 curvature interpret planar limit.",
+      "adversarialInterpretation": "The defined k is1/r, while mean-sum curvature is2/r; do not remove physical factor2.",
+      "referenceInputCalculations": [
+        {
+          "x": "0",
+          "derivedY": "0",
+          "unit": "Pa"
+        },
+        {
+          "x": "1",
+          "derivedY": "100",
+          "unit": "Pa"
+        }
+      ],
+      "sourceSolutionFieldsRead": false,
+      "consumerReview": "NOT_RUN",
+      "scientificReview": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C2-L010-05",
+      "title": "Legge di Laplace e pressione di curvatura",
+      "promptOnlySha256": "3e6764009d43f7edf13d7f9c7263908de239a84186963c21b1ba63441c25dc86",
+      "independentDerivation": "Soap bubble two spherical interfaces delta_p=4gamma/r; gamma.05 gives delta_p=200/r_mm Pa",
+      "assumptionsAndManualProcedure": "Thin soap film with nearly equal inner/outer radii; gamma constant, negligible thickness. Convertmm tom then divide200 by r_mm.",
+      "adversarialInterpretation": "Single droplet would give100/r_mm. Positive radius excludes division byzero.",
+      "referenceInputCalculations": [
+        {
+          "x": "2",
+          "derivedY": "100",
+          "unit": "Pa"
+        },
+        {
+          "x": "5",
+          "derivedY": "40",
+          "unit": "Pa"
+        }
+      ],
+      "sourceSolutionFieldsRead": false,
+      "consumerReview": "NOT_RUN",
+      "scientificReview": "NOT_RUN",
+      "activityCredit": 0
+    }
+  ],
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "credit": 0,
+  "limits": [
+    "Source formula/reference ordinates/interpretation/substitution not yet read for these21 when this primary was saved.",
+    "Whole shared implementation was previously visible incidentally: independent derivation is not claimed blind.",
+    "Density/profile/constants absent from prompt projection remain conditional until full source context.",
+    "No actual assessment selection, grading, installed engine, geometry, UI, browser or DB review performed.",
+    "Exact stdlib Fraction and named exact trigonometric identities only; no floating trigonometry or numeric logarithms used."
+  ]
+}

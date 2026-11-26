@@ -1,0 +1,1203 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u5-steam-condensation-cooling-01",
+      "kind": "question",
+      "course": "C3",
+      "section": "Condensazione e raffreddamento del liquido",
+      "order": 17401,
+      "title": "Due tratti che cedono entrambi energia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "steam-condensation-cooling",
+      "difficulty": 1,
+      "prompt": "Una massa m>0 di vapore d’acqua saturo secco, in g, condensa completamente a pressione costante alla temperatura T_s. L’acqua ottenuta si raffredda poi di ΔT>0, in K, restando liquida: le prove ammesse rispettano ΔT<T_s−T_fus, dove T_fus è la temperatura di fusione alla stessa pressione. Non si perde massa e si trascurano recipiente e dispersioni. Il modello assegna L_v=2400 J/g e c_l=4 J/(g·K), costanti ideali per il calcolo. Q_c>0 è il modulo del calore ceduto; il calore con segno ricevuto dal campione è Q=−Q_c. Con m=1 g e ΔT=25 K, quanto vale Q_c in J?",
+      "answer": {
+        "type": "numeric",
+        "value": 2500,
+        "unit": "J",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La condensazione del grammo di vapore cede 2400 J senza cambiare la temperatura di fase. Il successivo raffreddamento del liquido cede altri mc_lΔT=100 J. Il modulo totale è la somma, 2500 J. Non occorre conoscere il valore di T_s per questi due contributi: è assegnata la differenza termica del secondo tratto e si garantisce che l’acqua resti liquida."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/6749056d9180b2dd91ca0fd0412552d82755ef4f3765572dddc1d143671e49d1",
+          "text": "Tre pannelli: il diagramma usa il calore ceduto cumulativo in modulo Q_c e la differenza T−T_s, non temperature assolute negative. La condensazione cede 2400 J a T_s; il raffreddamento di 25 K cede altri 100 J. Gli assi indicano Q_c in J e la differenza termica in K. Le barre energetiche del secondo pannello distinguono i contributi in J. Nell’ultimo, 2500 J, 5200 J e la media 3850 J sono energie in J confrontate da un’origine comune."
+        },
+        {
+          "type": "formula",
+          "text": "Q_{c,\\rm cond}=mL_v"
+        },
+        {
+          "type": "formula",
+          "text": "mL_v=2400\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{c,\\rm raff}=mc_l\\Delta T"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{c,\\rm raff}=100\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " Q_c=2500\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " Q=-2500\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "2400 J omette il raffreddamento e 100 J omette la condensazione. 2300 J sottrae due contributi che sono entrambi ceduti. −2500 J sarebbe il calore con segno del campione, non il modulo positivo chiesto."
+        }
+      ],
+      "hints": [
+        "Calcola prima la condensazione, poi il raffreddamento dell’acqua ottenuta.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "2400 J omette il raffreddamento e 100 J omette la condensazione. 2300 J sottrae due contributi che sono entrambi ceduti. −2500 J sarebbe il calore con segno del campione, non il modulo positivo chiesto.",
+        "target": "C3-L04"
+      },
+      "coverage": [
+        "Calore latente ceduto e calore sensibile",
+        "Modulo energetico e campo liquido",
+        "Inverse, medie, taratura e ramo fisico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-steam-condensation-cooling-02",
+      "kind": "question",
+      "course": "C3",
+      "section": "Condensazione e raffreddamento del liquido",
+      "order": 17402,
+      "title": "Il modulo del calore è ancora energia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "steam-condensation-cooling",
+      "difficulty": 1,
+      "prompt": "Una massa m>0 di vapore d’acqua saturo secco, in g, condensa completamente a pressione costante alla temperatura T_s. L’acqua ottenuta si raffredda poi di ΔT>0, in K, restando liquida: le prove ammesse rispettano ΔT<T_s−T_fus, dove T_fus è la temperatura di fusione alla stessa pressione. Non si perde massa e si trascurano recipiente e dispersioni. Il modello assegna L_v=2400 J/g e c_l=4 J/(g·K), costanti ideali per il calcolo. Q_c>0 è il modulo del calore ceduto; il calore con segno ricevuto dal campione è Q=−Q_c. Quale unità misura Q_c?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "J",
+          "K",
+          "J/g",
+          "J/(g·K)",
+          "W"
+        ],
+        "value": "J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sia mL_v sia mc_lΔT hanno unità joule. Il fatto di chiedere il modulo stabilisce il segno del risultato, senza cambiarne la dimensione. Il raffreddamento ΔT è un intervallo positivo, mentre la variazione di temperatura del liquido è T_f−T_s=−ΔT."
+        },
+        {
+          "type": "formula",
+          "text": "[mL_v]=\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " [mc_l\\Delta T]=\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " [Q_c]=\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "J/g è energia per unità di massa e J/(g·K) capacità specifica, non il trasferimento totale. K è un intervallo; W richiederebbe anche una durata."
+        }
+      ],
+      "hints": [
+        "Controlla l’unità di entrambi i termini prima di sommarli.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "J/g è energia per unità di massa e J/(g·K) capacità specifica, non il trasferimento totale. K è un intervallo; W richiederebbe anche una durata.",
+        "target": "C3-L04"
+      },
+      "coverage": [
+        "Calore latente ceduto e calore sensibile",
+        "Modulo energetico e campo liquido",
+        "Inverse, medie, taratura e ramo fisico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-steam-condensation-cooling-03",
+      "kind": "question",
+      "course": "C3",
+      "section": "Condensazione e raffreddamento del liquido",
+      "order": 17403,
+      "title": "Una somma di moduli coerente con i versi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "steam-condensation-cooling",
+      "difficulty": 1,
+      "prompt": "Una massa m>0 di vapore d’acqua saturo secco, in g, condensa completamente a pressione costante alla temperatura T_s. L’acqua ottenuta si raffredda poi di ΔT>0, in K, restando liquida: le prove ammesse rispettano ΔT<T_s−T_fus, dove T_fus è la temperatura di fusione alla stessa pressione. Non si perde massa e si trascurano recipiente e dispersioni. Il modello assegna L_v=2400 J/g e c_l=4 J/(g·K), costanti ideali per il calcolo. Q_c>0 è il modulo del calore ceduto; il calore con segno ricevuto dal campione è Q=−Q_c. Quale relazione dà Q_c?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Q_c = m (L_v + c_l ΔT)",
+          "Q_c = m (L_v − c_l ΔT)",
+          "Q_c = m L_v",
+          "Q_c = m c_l ΔT",
+          "Q_c = m c_l (L_v + ΔT)"
+        ],
+        "value": "Q_c = m (L_v + c_l ΔT)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La fase iniziale è vapore, quindi prima si libera il calore latente di condensazione. La massa ormai liquida cede poi calore sensibile diminuendo la temperatura. Per il calore con segno del campione entrambi i contributi sarebbero negativi; il loro modulo totale è mL_v+mc_lΔT. Raccogliamo la massa comune."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/6749056d9180b2dd91ca0fd0412552d82755ef4f3765572dddc1d143671e49d1",
+          "text": "La prima linea orizzontale appartiene alla condensazione completa, non a un raffreddamento senza cessione. La linea successiva riguarda soltanto acqua liquida. I moduli dei due contributi si sommano; il calore con segno del campione è negativo. Ogni pannello indica le grandezze fisiche confrontate."
+        },
+        {
+          "type": "formula",
+          "text": "Q=-mL_v-mc_l\\Delta T"
+        },
+        {
+          "type": "formula",
+          "text": " Q_c=-Q"
+        },
+        {
+          "type": "formula",
+          "text": " Q_c=m(L_v+c_l\\Delta T)"
+        },
+        {
+          "type": "text",
+          "text": "Il segno meno nella parentesi tratterebbe il raffreddamento come un assorbimento. I termini isolati saltano una fase del percorso. L_v+ΔT somma J/g e K, grandezze diverse: non si può raccogliere c_l anche dal calore latente."
+        }
+      ],
+      "hints": [
+        "Assegna il verso a ciascuno scambio prima di prendere il modulo totale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Il segno meno nella parentesi tratterebbe il raffreddamento come un assorbimento. I termini isolati saltano una fase del percorso. L_v+ΔT somma J/g e K, grandezze diverse: non si può raccogliere c_l anche dal calore latente.",
+        "target": "C3-L04"
+      },
+      "coverage": [
+        "Calore latente ceduto e calore sensibile",
+        "Modulo energetico e campo liquido",
+        "Inverse, medie, taratura e ramo fisico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-steam-condensation-cooling-04",
+      "kind": "question",
+      "course": "C3",
+      "section": "Condensazione e raffreddamento del liquido",
+      "order": 17404,
+      "title": "La massa raddoppia entrambi gli scambi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "steam-condensation-cooling",
+      "difficulty": 1,
+      "prompt": "Una massa m>0 di vapore d’acqua saturo secco, in g, condensa completamente a pressione costante alla temperatura T_s. L’acqua ottenuta si raffredda poi di ΔT>0, in K, restando liquida: le prove ammesse rispettano ΔT<T_s−T_fus, dove T_fus è la temperatura di fusione alla stessa pressione. Non si perde massa e si trascurano recipiente e dispersioni. Il modello assegna L_v=2400 J/g e c_l=4 J/(g·K), costanti ideali per il calcolo. Q_c>0 è il modulo del calore ceduto; il calore con segno ricevuto dal campione è Q=−Q_c. A ha m=1 g e B m=2 g; entrambe le prove hanno ΔT=25 K. Come cambia Q_c?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 2500 a 5000 J",
+          "Resta 2500 J",
+          "Da 2500 a 1250 J",
+          "Da 2500 a 4900 J",
+          "Da 2500 a 10000 J"
+        ],
+        "value": "Da 2500 a 5000 J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Ogni grammo cede 2400 J condensando e 100 J raffreddandosi. Due grammi cedono 4800 J più 200 J, cioè 5000 J. L’intervallo del liquido e i coefficienti assegnati rimangono uguali: il totale è proporzionale alla massa."
+        },
+        {
+          "type": "formula",
+          "text": "L_v+c_l\\Delta T=2500\\,\\mathrm{J/g}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{c,A}=2500\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{c,B}=2\\cdot2500\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{c,B}=5000\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "1250 J inverte la dipendenza dalla massa. 4900 J raddoppia soltanto la condensazione e lascia 100 J di raffreddamento per un solo grammo. 10000 J introduce un secondo raddoppio."
+        }
+      ],
+      "hints": [
+        "La massa moltiplica tutta la parentesi, non il solo calore latente.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "1250 J inverte la dipendenza dalla massa. 4900 J raddoppia soltanto la condensazione e lascia 100 J di raffreddamento per un solo grammo. 10000 J introduce un secondo raddoppio.",
+        "target": "C3-L04"
+      },
+      "coverage": [
+        "Calore latente ceduto e calore sensibile",
+        "Modulo energetico e campo liquido",
+        "Inverse, medie, taratura e ramo fisico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-steam-condensation-cooling-05",
+      "kind": "question",
+      "course": "C3",
+      "section": "Condensazione e raffreddamento del liquido",
+      "order": 17405,
+      "title": "La massa dalla somma energetica specifica",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "steam-condensation-cooling",
+      "difficulty": 2,
+      "prompt": "Una massa m>0 di vapore d’acqua saturo secco, in g, condensa completamente a pressione costante alla temperatura T_s. L’acqua ottenuta si raffredda poi di ΔT>0, in K, restando liquida: le prove ammesse rispettano ΔT<T_s−T_fus, dove T_fus è la temperatura di fusione alla stessa pressione. Non si perde massa e si trascurano recipiente e dispersioni. Il modello assegna L_v=2400 J/g e c_l=4 J/(g·K), costanti ideali per il calcolo. Q_c>0 è il modulo del calore ceduto; il calore con segno ricevuto dal campione è Q=−Q_c. Q_c=2500 J e ΔT=25 K. Quanto vale m in g?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "g",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il percorso completo richiede una cessione di 2500 J per ogni grammo. Dividendo il modulo totale per L_v+c_lΔT troviamo un grammo. La verifica dà 2400 J di condensazione e 100 J di raffreddamento."
+        },
+        {
+          "type": "formula",
+          "text": "m=\\frac{Q_c}{L_v+c_l\\Delta T}"
+        },
+        {
+          "type": "formula",
+          "text": " L_v+c_l\\Delta T=2500\\,\\mathrm{J/g}"
+        },
+        {
+          "type": "formula",
+          "text": " m=1\\,\\mathrm g"
+        },
+        {
+          "type": "text",
+          "text": "25/24 g divide soltanto per L_v e sovrastima la massa. 25 g divide soltanto per c_lΔT e omette la condensazione. Le due unità di massa possono sembrare corrette, ma i rispettivi bilanci non ricostruiscono Q_c."
+        }
+      ],
+      "hints": [
+        "Dividi per il calore ceduto da un grammo nell’intero percorso.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "25/24 g divide soltanto per L_v e sovrastima la massa. 25 g divide soltanto per c_lΔT e omette la condensazione. Le due unità di massa possono sembrare corrette, ma i rispettivi bilanci non ricostruiscono Q_c.",
+        "target": "C3-L04"
+      },
+      "coverage": [
+        "Calore latente ceduto e calore sensibile",
+        "Modulo energetico e campo liquido",
+        "Inverse, medie, taratura e ramo fisico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-steam-condensation-cooling-06",
+      "kind": "question",
+      "course": "C3",
+      "section": "Condensazione e raffreddamento del liquido",
+      "order": 17406,
+      "title": "Il raffreddamento dopo la condensazione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "steam-condensation-cooling",
+      "difficulty": 2,
+      "prompt": "Una massa m>0 di vapore d’acqua saturo secco, in g, condensa completamente a pressione costante alla temperatura T_s. L’acqua ottenuta si raffredda poi di ΔT>0, in K, restando liquida: le prove ammesse rispettano ΔT<T_s−T_fus, dove T_fus è la temperatura di fusione alla stessa pressione. Non si perde massa e si trascurano recipiente e dispersioni. Il modello assegna L_v=2400 J/g e c_l=4 J/(g·K), costanti ideali per il calcolo. Q_c>0 è il modulo del calore ceduto; il calore con segno ricevuto dal campione è Q=−Q_c. Q_c=2500 J e m=1 g. Quanto vale ΔT in K?",
+      "answer": {
+        "type": "numeric",
+        "value": 25,
+        "unit": "K",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dai 2500 J/g ceduti togliamo i 2400 J/g della condensazione. Restano 100 J/g per il raffreddamento del liquido. Dividendo per c_l=4 J/(g·K) otteniamo 25 K. La temperatura finale sarebbe T_s−25 K; non è determinata numericamente senza assegnare T_s."
+        },
+        {
+          "type": "formula",
+          "text": "Q_c/m-L_v=c_l\\Delta T"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta T=\\frac{Q_c/m-L_v}{c_l}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta T=100/4\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta T=25\\,\\mathrm K"
+        },
+        {
+          "type": "text",
+          "text": "625 K usa tutta la cessione come se provenisse dal raffreddamento. −25 K è la variazione con segno T_f−T_s, non il positivo ΔT chiesto. L’inversa richiede Q_c/m>L_v e deve rispettare il campo liquido dichiarato."
+        }
+      ],
+      "hints": [
+        "Togli prima l’energia latente per grammo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "625 K usa tutta la cessione come se provenisse dal raffreddamento. −25 K è la variazione con segno T_f−T_s, non il positivo ΔT chiesto. L’inversa richiede Q_c/m>L_v e deve rispettare il campo liquido dichiarato.",
+        "target": "C3-L04"
+      },
+      "coverage": [
+        "Calore latente ceduto e calore sensibile",
+        "Modulo energetico e campo liquido",
+        "Inverse, medie, taratura e ramo fisico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-steam-condensation-cooling-07",
+      "kind": "question",
+      "course": "C3",
+      "section": "Condensazione e raffreddamento del liquido",
+      "order": 17407,
+      "title": "Raddoppiare il raffreddamento non la condensazione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "steam-condensation-cooling",
+      "difficulty": 2,
+      "prompt": "Una massa m>0 di vapore d’acqua saturo secco, in g, condensa completamente a pressione costante alla temperatura T_s. L’acqua ottenuta si raffredda poi di ΔT>0, in K, restando liquida: le prove ammesse rispettano ΔT<T_s−T_fus, dove T_fus è la temperatura di fusione alla stessa pressione. Non si perde massa e si trascurano recipiente e dispersioni. Il modello assegna L_v=2400 J/g e c_l=4 J/(g·K), costanti ideali per il calcolo. Q_c>0 è il modulo del calore ceduto; il calore con segno ricevuto dal campione è Q=−Q_c. m=1 g. A usa ΔT_A=25 K, B usa ΔT_B=50 K, entrambe nel campo liquido. Quanto vale Q_c,B/Q_c,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "26/25",
+          "2",
+          "25/26",
+          "26",
+          "1"
+        ],
+        "value": "26/25"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A cede 2500 J. In B il raffreddamento cede 200 J, mentre la condensazione resta 2400 J: totale 2600 J. Il rapporto 2600/2500 si riduce a 26/25. La parte latente non raddoppia quando cambia soltanto l’intervallo del liquido."
+        },
+        {
+          "type": "formula",
+          "text": "Q_{c,A}=2500\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{c,B}=(2400+200)\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{c,B}=2600\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{c,B}/Q_{c,A}=26/25"
+        },
+        {
+          "type": "text",
+          "text": "Due raddoppia erroneamente tutto il percorso. 25/26 inverte il confronto, 26 omette il denominatore e uno trascura il raffreddamento aggiuntivo."
+        }
+      ],
+      "hints": [
+        "Conserva mL_v invariato mentre confronti i secondi tratti.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due raddoppia erroneamente tutto il percorso. 25/26 inverte il confronto, 26 omette il denominatore e uno trascura il raffreddamento aggiuntivo.",
+        "target": "C3-L04"
+      },
+      "coverage": [
+        "Calore latente ceduto e calore sensibile",
+        "Modulo energetico e campo liquido",
+        "Inverse, medie, taratura e ramo fisico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-steam-condensation-cooling-08",
+      "kind": "question",
+      "course": "C3",
+      "section": "Condensazione e raffreddamento del liquido",
+      "order": 17408,
+      "title": "La proposta usa il doppio dell’energia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "steam-condensation-cooling",
+      "difficulty": 2,
+      "prompt": "Una massa m>0 di vapore d’acqua saturo secco, in g, condensa completamente a pressione costante alla temperatura T_s. L’acqua ottenuta si raffredda poi di ΔT>0, in K, restando liquida: le prove ammesse rispettano ΔT<T_s−T_fus, dove T_fus è la temperatura di fusione alla stessa pressione. Non si perde massa e si trascurano recipiente e dispersioni. Il modello assegna L_v=2400 J/g e c_l=4 J/(g·K), costanti ideali per il calcolo. Q_c>0 è il modulo del calore ceduto; il calore con segno ricevuto dal campione è Q=−Q_c. Con m=1 g e ΔT=25 K si propone Q_c=5000 J. Quanto vale proposta meno risultato corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2500 J",
+          "−2500 J",
+          "5000 J",
+          "0 J",
+          "1250 J"
+        ],
+        "value": "2500 J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il modulo corretto è 2500 J. La proposta lo supera di altri 2500 J, perciò lo scarto è positivo. Il raffreddamento del sistema non rende negativo questo confronto fra due moduli: lo scarto segue l’ordine richiesto."
+        },
+        {
+          "type": "formula",
+          "text": "Q_c=2500\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " e=(5000-2500)\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " e=2500\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "−2500 J scambia proposta e risultato. 5000 J ripete la proposta, zero la accetta e 1250 J divide ancora la differenza per due."
+        }
+      ],
+      "hints": [
+        "Distingui segno del calore del campione e segno dello scarto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−2500 J scambia proposta e risultato. 5000 J ripete la proposta, zero la accetta e 1250 J divide ancora la differenza per due.",
+        "target": "C3-L04"
+      },
+      "coverage": [
+        "Calore latente ceduto e calore sensibile",
+        "Modulo energetico e campo liquido",
+        "Inverse, medie, taratura e ramo fisico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-steam-condensation-cooling-09",
+      "kind": "question",
+      "course": "C3",
+      "section": "Condensazione e raffreddamento del liquido",
+      "order": 17409,
+      "title": "L’inversa deve conservare i due tratti",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "steam-condensation-cooling",
+      "difficulty": 2,
+      "prompt": "Una massa m>0 di vapore d’acqua saturo secco, in g, condensa completamente a pressione costante alla temperatura T_s. L’acqua ottenuta si raffredda poi di ΔT>0, in K, restando liquida: le prove ammesse rispettano ΔT<T_s−T_fus, dove T_fus è la temperatura di fusione alla stessa pressione. Non si perde massa e si trascurano recipiente e dispersioni. Il modello assegna L_v=2400 J/g e c_l=4 J/(g·K), costanti ideali per il calcolo. Q_c>0 è il modulo del calore ceduto; il calore con segno ricevuto dal campione è Q=−Q_c. Quale formula isola m?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "m = Q_c / (L_v + c_l ΔT)",
+          "m = Q_c / L_v",
+          "m = Q_c / (c_l ΔT)",
+          "m = (L_v + c_l ΔT) / Q_c",
+          "m = Q_c (L_v + c_l ΔT)"
+        ],
+        "value": "m = Q_c / (L_v + c_l ΔT)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La parentesi L_v+c_lΔT è un’energia per unità di massa, positiva. Dividiamo Q_c per l’intera parentesi, ottenendo g. Usare un solo termine ricostruirebbe un processo diverso da quello che comprende condensazione e raffreddamento."
+        },
+        {
+          "type": "formula",
+          "text": "Q_c=m(L_v+c_l\\Delta T)"
+        },
+        {
+          "type": "formula",
+          "text": " m=\\frac{Q_c}{L_v+c_l\\Delta T}"
+        },
+        {
+          "type": "formula",
+          "text": " [m]=\\mathrm g"
+        },
+        {
+          "type": "text",
+          "text": "I divisori singoli omettono una parte della cessione. Il reciproco ha g⁻¹ e il prodotto J²/g; nessuno rappresenta la massa iniziale di vapore."
+        }
+      ],
+      "hints": [
+        "L’energia specifica totale, non una sua parte, divide Q_c.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "I divisori singoli omettono una parte della cessione. Il reciproco ha g⁻¹ e il prodotto J²/g; nessuno rappresenta la massa iniziale di vapore.",
+        "target": "C3-L04"
+      },
+      "coverage": [
+        "Calore latente ceduto e calore sensibile",
+        "Modulo energetico e campo liquido",
+        "Inverse, medie, taratura e ramo fisico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-steam-condensation-cooling-10",
+      "kind": "question",
+      "course": "C3",
+      "section": "Condensazione e raffreddamento del liquido",
+      "order": 17410,
+      "title": "Due fattori e un termine latente fisso",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "steam-condensation-cooling",
+      "difficulty": 2,
+      "prompt": "Una massa m>0 di vapore d’acqua saturo secco, in g, condensa completamente a pressione costante alla temperatura T_s. L’acqua ottenuta si raffredda poi di ΔT>0, in K, restando liquida: le prove ammesse rispettano ΔT<T_s−T_fus, dove T_fus è la temperatura di fusione alla stessa pressione. Non si perde massa e si trascurano recipiente e dispersioni. Il modello assegna L_v=2400 J/g e c_l=4 J/(g·K), costanti ideali per il calcolo. Q_c>0 è il modulo del calore ceduto; il calore con segno ricevuto dal campione è Q=−Q_c. Fra prove m_B=κ₁m_A e ΔT_B=κ₂ΔT_A, κ₁,κ₂>0; anche B resta interamente nel campo liquido dopo la condensazione. Qual è Q_c,B/Q_c,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ (L_v + c_l κ₂ ΔT_A) / (L_v + c_l ΔT_A)",
+          "κ₁ κ₂",
+          "κ₁ / κ₂",
+          "(L_v + c_l ΔT_A) / [κ₁ (L_v + c_l κ₂ ΔT_A)]",
+          "κ₁ + κ₂"
+        ],
+        "value": "κ₁ (L_v + c_l κ₂ ΔT_A) / (L_v + c_l ΔT_A)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituiamo il fattore di massa nell’intero percorso e quello termico soltanto nel termine c_lΔT. La massa A si cancella nel rapporto. L_v è un dato fisso, non viene moltiplicato per κ₂. I parametri devono descrivere due prove ammesse, senza introdurre una successiva solidificazione."
+        },
+        {
+          "type": "formula",
+          "text": "Q_{c,B}=\\kappa_1m_A(L_v+c_l\\kappa_2\\Delta T_A)"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{c,A}=m_A(L_v+c_l\\Delta T_A)"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{Q_{c,B}}{Q_{c,A}}=\\frac{\\kappa_1(L_v+c_l\\kappa_2\\Delta T_A)}{L_v+c_l\\Delta T_A}"
+        },
+        {
+          "type": "text",
+          "text": "κ₁κ₂ raddoppierebbe anche il calore latente sotto un fattore termico doppio. Il quoziente semplice inverte l’effetto del raffreddamento. L’espressione reciproca scambia B e A; la somma dà due per prove identiche."
+        }
+      ],
+      "hints": [
+        "Separa il termine che cambia con ΔT da quello che non cambia.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "κ₁κ₂ raddoppierebbe anche il calore latente sotto un fattore termico doppio. Il quoziente semplice inverte l’effetto del raffreddamento. L’espressione reciproca scambia B e A; la somma dà due per prove identiche.",
+        "target": "C3-L04"
+      },
+      "coverage": [
+        "Calore latente ceduto e calore sensibile",
+        "Modulo energetico e campo liquido",
+        "Inverse, medie, taratura e ramo fisico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-steam-condensation-cooling-11",
+      "kind": "question",
+      "course": "C3",
+      "section": "Condensazione e raffreddamento del liquido",
+      "order": 17411,
+      "title": "Massa e raffreddamento aumentano insieme",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "steam-condensation-cooling",
+      "difficulty": 2,
+      "prompt": "Una massa m>0 di vapore d’acqua saturo secco, in g, condensa completamente a pressione costante alla temperatura T_s. L’acqua ottenuta si raffredda poi di ΔT>0, in K, restando liquida: le prove ammesse rispettano ΔT<T_s−T_fus, dove T_fus è la temperatura di fusione alla stessa pressione. Non si perde massa e si trascurano recipiente e dispersioni. Il modello assegna L_v=2400 J/g e c_l=4 J/(g·K), costanti ideali per il calcolo. Q_c>0 è il modulo del calore ceduto; il calore con segno ricevuto dal campione è Q=−Q_c. A: m=1 g, ΔT=25 K. B: m=2 g, ΔT=50 K. Quanto vale Q_c,B/Q_c,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "52/25",
+          "25/52",
+          "2",
+          "4",
+          "26/25"
+        ],
+        "value": "52/25"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A cede 2500 J. Ogni grammo di B cede 2600 J e i due grammi ne cedono 5200. Il rapporto 5200/2500 è 52/25. Il fattore due della massa agisce su tutti i termini; quello sul raffreddamento solo sul calore sensibile."
+        },
+        {
+          "type": "formula",
+          "text": "Q_{c,A}=2500\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{c,B}=2(2400+200)\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{c,B}=5200\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{c,B}/Q_{c,A}=52/25"
+        },
+        {
+          "type": "text",
+          "text": "Due ignora il nuovo raffreddamento, 26/25 ignora la massa doppia. Quattro tratta il totale come un prodotto mΔT e 25/52 inverte il confronto."
+        }
+      ],
+      "hints": [
+        "Calcola prima la cessione per grammo di ciascuna prova.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due ignora il nuovo raffreddamento, 26/25 ignora la massa doppia. Quattro tratta il totale come un prodotto mΔT e 25/52 inverte il confronto.",
+        "target": "C3-L04"
+      },
+      "coverage": [
+        "Calore latente ceduto e calore sensibile",
+        "Modulo energetico e campo liquido",
+        "Inverse, medie, taratura e ramo fisico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-steam-condensation-cooling-12",
+      "kind": "question",
+      "course": "C3",
+      "section": "Condensazione e raffreddamento del liquido",
+      "order": 17412,
+      "title": "Media dei moduli ceduti nelle due prove",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "steam-condensation-cooling",
+      "difficulty": 2,
+      "prompt": "Una massa m>0 di vapore d’acqua saturo secco, in g, condensa completamente a pressione costante alla temperatura T_s. L’acqua ottenuta si raffredda poi di ΔT>0, in K, restando liquida: le prove ammesse rispettano ΔT<T_s−T_fus, dove T_fus è la temperatura di fusione alla stessa pressione. Non si perde massa e si trascurano recipiente e dispersioni. Il modello assegna L_v=2400 J/g e c_l=4 J/(g·K), costanti ideali per il calcolo. Q_c>0 è il modulo del calore ceduto; il calore con segno ricevuto dal campione è Q=−Q_c. A usa m=1 g e ΔT=25 K; B usa m=2 g e ΔT=50 K. Qual è la media aritmetica dei due Q_c con uguale peso?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3850 J",
+          "7700 J",
+          "3825 J",
+          "1350 J",
+          "1925 J"
+        ],
+        "value": "3850 J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I moduli sono 2500 e 5200 J. La somma 7700 J divisa per due dà 3850 J. Gli ingressi medi sarebbero m=3/2 g e ΔT=75/2 K: il modello darebbe (3/2)(2400+150)=3825 J. È una terza prova, non la media delle due cessioni."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline Q_c=\\frac{2500+5200}{2}\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline Q_c=3850\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{c,\\rm ingressi\\ medi}=3825\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "7700 J è la somma, 1350 J metà della differenza e 1925 J dimezza due volte. 3825 J applica la legge agli ingressi medi. Tutti sono moduli di energia, ma rispondono a operazioni differenti."
+        }
+      ],
+      "hints": [
+        "Media le energie dopo aver completato separatamente i due percorsi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "7700 J è la somma, 1350 J metà della differenza e 1925 J dimezza due volte. 3825 J applica la legge agli ingressi medi. Tutti sono moduli di energia, ma rispondono a operazioni differenti.",
+        "target": "C3-L04"
+      },
+      "coverage": [
+        "Calore latente ceduto e calore sensibile",
+        "Modulo energetico e campo liquido",
+        "Inverse, medie, taratura e ramo fisico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-steam-condensation-cooling-13",
+      "kind": "question",
+      "course": "C3",
+      "section": "Condensazione e raffreddamento del liquido",
+      "order": 17413,
+      "title": "Un bersaglio sul modulo totale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "steam-condensation-cooling",
+      "difficulty": 3,
+      "prompt": "Una massa m>0 di vapore d’acqua saturo secco, in g, condensa completamente a pressione costante alla temperatura T_s. L’acqua ottenuta si raffredda poi di ΔT>0, in K, restando liquida: le prove ammesse rispettano ΔT<T_s−T_fus, dove T_fus è la temperatura di fusione alla stessa pressione. Non si perde massa e si trascurano recipiente e dispersioni. Il modello assegna L_v=2400 J/g e c_l=4 J/(g·K), costanti ideali per il calcolo. Q_c>0 è il modulo del calore ceduto; il calore con segno ricevuto dal campione è Q=−Q_c. A ha m=1 g e ΔT_A=25 K. B ha m=2 g e deve cedere Q_c,B=(52/25)Q_c,A. Quanto vale ΔT_B/ΔT_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "52/25",
+          "1/2",
+          "26/25",
+          "4"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento cede 2500 J e il bersaglio 5200 J. Su due grammi sono 2600 J/g. Togliendo la condensazione restano 200 J/g; divisi per c_l danno 50 K di raffreddamento, il doppio dei 25 K iniziali. La prova B rimane nel campo liquido come garantito."
+        },
+        {
+          "type": "formula",
+          "text": "Q_{c,B}=5200\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{c,B}/m_B=2600\\,\\mathrm{J/g}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta T_B=\\frac{Q_{c,B}/m_B-L_v}{c_l}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta T_B=50\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta T_B/\\Delta T_A=2"
+        },
+        {
+          "type": "text",
+          "text": "52/25 copia il bersaglio sulle energie. 26/25 è il confronto energetico a massa uguale, non quello fra raffreddamenti. Un mezzo inverte il rapporto; quattro non ricostruisce 5200 J."
+        }
+      ],
+      "hints": [
+        "Ricostruisci prima la cessione specifica di B.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "52/25 copia il bersaglio sulle energie. 26/25 è il confronto energetico a massa uguale, non quello fra raffreddamenti. Un mezzo inverte il rapporto; quattro non ricostruisce 5200 J.",
+        "target": "C3-L04"
+      },
+      "coverage": [
+        "Calore latente ceduto e calore sensibile",
+        "Modulo energetico e campo liquido",
+        "Inverse, medie, taratura e ramo fisico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-steam-condensation-cooling-14",
+      "kind": "question",
+      "course": "C3",
+      "section": "Condensazione e raffreddamento del liquido",
+      "order": 17414,
+      "title": "Tarare la lettura prima della massa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "steam-condensation-cooling",
+      "difficulty": 3,
+      "prompt": "Una massa m>0 di vapore d’acqua saturo secco, in g, condensa completamente a pressione costante alla temperatura T_s. L’acqua ottenuta si raffredda poi di ΔT>0, in K, restando liquida: le prove ammesse rispettano ΔT<T_s−T_fus, dove T_fus è la temperatura di fusione alla stessa pressione. Non si perde massa e si trascurano recipiente e dispersioni. Il modello assegna L_v=2400 J/g e c_l=4 J/(g·K), costanti ideali per il calcolo. Q_c>0 è il modulo del calore ceduto; il calore con segno ricevuto dal campione è Q=−Q_c. S=qQ_c è continuo e adimensionale, q>0 costante. A con m=1 g, ΔT=25 K dà S=7500. B con ΔT=50 K dà S=15600. Quanto vale m_B in g?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "g",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A cede 2500 J, perciò q=3 J⁻¹. La nuova lettura rappresenta 5200 J. Con ΔT=50 K la cessione specifica è 2600 J/g: 5200 diviso 2600 dà due grammi. Il valore del display non è una quantità di calore già espressa in joule."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{J^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{c,B}=15600/q"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{c,B}=5200\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " m_B=\\frac{Q_{c,B}}{L_v+c_l\\Delta T_B}"
+        },
+        {
+          "type": "formula",
+          "text": " m_B=2\\,\\mathrm g"
+        },
+        {
+          "type": "text",
+          "text": "Usare 15600 come joule darebbe 6 g. Dividere soltanto per L_v darebbe 13/6 g e ometterebbe il raffreddamento. La taratura e la legge del percorso sono due passaggi distinti."
+        }
+      ],
+      "hints": [
+        "Converti S in modulo energetico prima di applicare l’inversa.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Usare 15600 come joule darebbe 6 g. Dividere soltanto per L_v darebbe 13/6 g e ometterebbe il raffreddamento. La taratura e la legge del percorso sono due passaggi distinti.",
+        "target": "C3-L04"
+      },
+      "coverage": [
+        "Calore latente ceduto e calore sensibile",
+        "Modulo energetico e campo liquido",
+        "Inverse, medie, taratura e ramo fisico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-steam-condensation-cooling-15",
+      "kind": "question",
+      "course": "C3",
+      "section": "Condensazione e raffreddamento del liquido",
+      "order": 17415,
+      "title": "Separare guadagno e offset",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "steam-condensation-cooling",
+      "difficulty": 3,
+      "prompt": "Una massa m>0 di vapore d’acqua saturo secco, in g, condensa completamente a pressione costante alla temperatura T_s. L’acqua ottenuta si raffredda poi di ΔT>0, in K, restando liquida: le prove ammesse rispettano ΔT<T_s−T_fus, dove T_fus è la temperatura di fusione alla stessa pressione. Non si perde massa e si trascurano recipiente e dispersioni. Il modello assegna L_v=2400 J/g e c_l=4 J/(g·K), costanti ideali per il calcolo. Q_c>0 è il modulo del calore ceduto; il calore con segno ricevuto dal campione è Q=−Q_c. S=qQ_c+b è continuo e adimensionale. A: m=1 g, ΔT=25 K, S=5001. B: m=2 g, ΔT=50 K, S=10401. C: ΔT=25 K, S=10001. Quanto vale m_C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2 g",
+          "4 g",
+          "1 g",
+          "10001/5000 g",
+          "5000 g"
+        ],
+        "value": "2 g"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti cedono 2500 e 5200 J. La differenza 5400 delle letture su 2700 J dà q=2 J⁻¹; A fissa b=1. C cede (10001−1)/2=5000 J. Il suo costo specifico è 2500 J/g, perciò la massa è due grammi."
+        },
+        {
+          "type": "formula",
+          "text": "q=\\frac{10401-5001}{(5200-2500)\\,\\mathrm J}"
+        },
+        {
+          "type": "formula",
+          "text": " q=2\\,\\mathrm{J^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{c,C}=5000\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " m_C=2\\,\\mathrm g"
+        },
+        {
+          "type": "text",
+          "text": "4 g darebbero S=20001 e 1 g S=5001. 10001/5000 g omette b e ricostruisce S=10002. 5000 g usa il numero dell’energia come se fosse la massa."
+        }
+      ],
+      "hints": [
+        "Trova q dalle differenze e b da un riferimento.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "4 g darebbero S=20001 e 1 g S=5001. 10001/5000 g omette b e ricostruisce S=10002. 5000 g usa il numero dell’energia come se fosse la massa.",
+        "target": "C3-L04"
+      },
+      "coverage": [
+        "Calore latente ceduto e calore sensibile",
+        "Modulo energetico e campo liquido",
+        "Inverse, medie, taratura e ramo fisico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-steam-condensation-cooling-16",
+      "kind": "question",
+      "course": "C3",
+      "section": "Condensazione e raffreddamento del liquido",
+      "order": 17416,
+      "title": "Un vincolo fra massa e raffreddamento",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "steam-condensation-cooling",
+      "difficulty": 3,
+      "prompt": "Una massa m>0 di vapore d’acqua saturo secco, in g, condensa completamente a pressione costante alla temperatura T_s. L’acqua ottenuta si raffredda poi di ΔT>0, in K, restando liquida: le prove ammesse rispettano ΔT<T_s−T_fus, dove T_fus è la temperatura di fusione alla stessa pressione. Non si perde massa e si trascurano recipiente e dispersioni. Il modello assegna L_v=2400 J/g e c_l=4 J/(g·K), costanti ideali per il calcolo. Q_c>0 è il modulo del calore ceduto; il calore con segno ricevuto dal campione è Q=−Q_c. Fra preparazioni diverse si impone m=dΔT, d=(1/25) g/K. La massa resta costante durante ogni processo. Se Q_c=2500 J, quanto vale ΔT nel dominio fisico?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "25 K",
+          "−625 K",
+          "625 K",
+          "50 K",
+          "2500 K"
+        ],
+        "value": "25 K"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituendo la massa scelta nella legge, l’incognita compare anche nel contributo sensibile. Poniamo x=ΔT/(1 K): l’equazione si riduce a x²+600x−15625=0, che si fattorizza (x−25)(x+625)=0. Il ramo positivo dà 25 K e m=1 g. Il ramo −625 renderebbe negativi sia ΔT sia m e non descrive il raffreddamento ammesso."
+        },
+        {
+          "type": "formula",
+          "text": "Q_c=d\\Delta T(L_v+c_l\\Delta T)"
+        },
+        {
+          "type": "formula",
+          "text": " x=\\Delta T/(1\\,\\mathrm K)"
+        },
+        {
+          "type": "formula",
+          "text": " x^2+600x-15625=0"
+        },
+        {
+          "type": "formula",
+          "text": " (x-25)(x+625)=0"
+        },
+        {
+          "type": "formula",
+          "text": " x=25"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta T=25\\,\\mathrm K"
+        },
+        {
+          "type": "text",
+          "text": "625 K cambia soltanto il segno della radice esclusa senza soddisfare la quadratica. 50 K darebbe m=2 g e Q_c=5200 J; 2500 K copia un numero di energia come intervallo e non soddisfa né il bilancio né il campo liquido garantito."
+        }
+      ],
+      "hints": [
+        "Fattorizza la quadratica e verifica segno e stato finale del ramo scelto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "625 K cambia soltanto il segno della radice esclusa senza soddisfare la quadratica. 50 K darebbe m=2 g e Q_c=5200 J; 2500 K copia un numero di energia come intervallo e non soddisfa né il bilancio né il campo liquido garantito.",
+        "target": "C3-L04"
+      },
+      "coverage": [
+        "Calore latente ceduto e calore sensibile",
+        "Modulo energetico e campo liquido",
+        "Inverse, medie, taratura e ramo fisico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "6749056d9180b2dd91ca0fd0412552d82755ef4f3765572dddc1d143671e49d1",
+      "name": "steam-condensation-cooling-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTIxMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgo8dGl0bGUgaWQ9InRpdGxlIj5Db25kZW5zYXJlIGlsIHZhcG9yZSBlIHJhZmZyZWRkYXJlIGzigJlhY3F1YTwvdGl0bGU+CjxkZXNjIGlkPSJkZXNjIj5QZXIgdW4gZ3JhbW1vIGxhIGNvbmRlbnNhemlvbmUgY2VkZSAyNDAwIGpvdWxlIGFsbGEgdGVtcGVyYXR1cmEgZGkgZmFzZTsgaWwgbGlxdWlkbyBjZWRlIHBvaSAxMDAgam91bGUgcmFmZnJlZGRhbmRvc2kgZGkgMjUga2VsdmluLiBMZSBlbmVyZ2llIGNlZHV0ZSBzb25vIG1vZHVsaSBwb3NpdGl2aTsgaWwgY2Fsb3JlIGNvbiBzZWdubyBkZWwgY2FtcGlvbmUgw6ggbmVnYXRpdm8uIER1ZSBwcm92ZSBjZWRvbm8gMjUwMCBlIDUyMDAgam91bGUsIG1lZGlhIDM4NTAuPC9kZXNjPgo8cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjEyMTAiIHJ4PSIxMiIgZmlsbD0iI2Y4ZmFmYyIvPgo8ZyBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZmlsbD0iIzE0MjQzYSIgZm9udC1zaXplPSIyMCI+Cjx0ZXh0IHg9IjMyIiB5PSI0MiIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9ImJvbGQiPjEgwrcgUHJpbWEgY29uZGVuc2FyZSwgcG9pIHJhZmZyZWRkYXJlPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iODMiIGZvbnQtc2l6ZT0iMTgiPlVuIGdyYW1tbzsgaWwgbGlxdWlkbyByZXN0YSBuZWwgY2FtcG8gYW1tZXNzby48L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIxMjMiPihUIOKIkiBU4oKbKSAvIEs8L3RleHQ+CjxnIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE0MjQzYSIgc3Ryb2tlLXdpZHRoPSIyIj48cGF0aCBkPSJNMTAwIDM1MFYxNDUiLz48cGF0aCBkPSJNMTAwIDM1MEg1MzUiLz48L2c+CjxwYXRoIGQ9Ik0xMDAgMjIwSDQ2MEw0NzUgMzIwIiBzdHJva2U9IiMxNjVhODciIHN0cm9rZS13aWR0aD0iNCIgZmlsbD0ibm9uZSIvPgo8cGF0aCBkPSJNNDYwIDIyMFYzNTBNNDc1IDMyMFYzNTBNMTAwIDMyMEg0NzUiIHN0cm9rZT0iIzgyOTJhMiIgc3Ryb2tlLWRhc2hhcnJheT0iNSA1IiBmaWxsPSJub25lIi8+CjxnIGZpbGw9IiMxNjVhODciPjxjaXJjbGUgY3g9IjEwMCIgY3k9IjIyMCIgcj0iNSIvPjxjaXJjbGUgY3g9IjQ2MCIgY3k9IjIyMCIgcj0iNSIvPjxjaXJjbGUgY3g9IjQ3NSIgY3k9IjMyMCIgcj0iNSIvPjwvZz4KPHRleHQgeD0iNjUiIHk9IjIyNyI+MDwvdGV4dD48dGV4dCB4PSI0MiIgeT0iMzI3Ij7iiJIyNTwvdGV4dD48dGV4dCB4PSI4OSIgeT0iMzgxIj4wPC90ZXh0Pjx0ZXh0IHg9IjQyMyIgeT0iMzgzIj4yNDAwPC90ZXh0Pjx0ZXh0IHg9IjQ3NSIgeT0iNDExIj4yNTAwPC90ZXh0Pjx0ZXh0IHg9IjU0NSIgeT0iMzU2Ij5R6pyAIC8gSjwvdGV4dD4KPHRleHQgeD0iMTQ0IiB5PSIxODQiPkNvbmRlbnNhemlvbmUgYSBU4oKbIGNvc3RhbnRlPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iNDUwIiBmb250LXNpemU9IjE4Ij5Bc3NpOiBjYWxvcmUgY2VkdXRvIGluIEogZSBkaWZmZXJlbnphIHRlcm1pY2EgaW4gSy48L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI0ODIiIGZvbnQtc2l6ZT0iMTgiPlQg4oiSIFTigpsgw6ggdW4gaW50ZXJ2YWxsbzogbm9uIMOoIFQgYXNzb2x1dGEgbmVnYXRpdmEuPC90ZXh0Pgo8cGF0aCBkPSJNMzIgNTExSDYwOCIgc3Ryb2tlPSIjOWJhYmJjIi8+Cjx0ZXh0IHg9IjMyIiB5PSI1NTUiIGZvbnQtc2l6ZT0iMjUiIGZvbnQtd2VpZ2h0PSJib2xkIj4yIMK3IER1ZSBjZXNzaW9uaSwgdW4gc29sbyBtb2R1bG8gdG90YWxlPC90ZXh0Pgo8cGF0aCBkPSJNMTMwIDU3NlY4MDUiIHN0cm9rZT0iIzE0MjQzYSIgc3Ryb2tlLXdpZHRoPSIyIi8+CjxyZWN0IHg9IjEzMCIgeT0iNTk4IiB3aWR0aD0iMzYwIiBoZWlnaHQ9IjM0IiBmaWxsPSIjMjg2NjRkIi8+PHJlY3QgeD0iMTMwIiB5PSI2NjYiIHdpZHRoPSIxNSIgaGVpZ2h0PSIzNCIgZmlsbD0iIzE2NWE4NyIvPgo8cmVjdCB4PSIxMzAiIHk9IjczNCIgd2lkdGg9IjM2MCIgaGVpZ2h0PSIzNCIgZmlsbD0iIzI4NjY0ZCIvPjxyZWN0IHg9IjQ5MCIgeT0iNzM0IiB3aWR0aD0iMTUiIGhlaWdodD0iMzQiIGZpbGw9IiMxNjVhODciLz4KPHRleHQgeD0iMzMiIHk9IjYyMyI+TGF0ZW50ZTwvdGV4dD48dGV4dCB4PSI1MDYiIHk9IjYyMyI+MjQwMCBKPC90ZXh0Pjx0ZXh0IHg9IjMzIiB5PSI2OTEiPlNlbnNpYmlsZTwvdGV4dD48dGV4dCB4PSIxNjIiIHk9IjY5MSI+MTAwIEo8L3RleHQ+PHRleHQgeD0iMzMiIHk9Ijc1OSI+VG90YWxlPC90ZXh0Pjx0ZXh0IHg9IjUyMiIgeT0iNzU5Ij4yNTAwIEo8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI4MzciIGZvbnQtc2l6ZT0iMTgiPkNhbG9yZSBjZWR1dG8gUeqcgCA9IDI1MDAgSjsgcmljZXZ1dG8gUSA9IOKIkjI1MDAgSi48L3RleHQ+CjxwYXRoIGQ9Ik0zMiA4NjZINjA4IiBzdHJva2U9IiM5YmFiYmMiLz4KPHRleHQgeD0iMzIiIHk9IjkxMCIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9ImJvbGQiPjMgwrcgTWVkaWEgZGVpIG1vZHVsaSBkaSBkdWUgcHJvdmU8L3RleHQ+CjxwYXRoIGQ9Ik0xMjAgOTI5VjExMjgiIHN0cm9rZT0iIzE0MjQzYSIgc3Ryb2tlLXdpZHRoPSIyIi8+CjxyZWN0IHg9IjEyMCIgeT0iOTQ2IiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjMTY1YTg3Ii8+PHJlY3QgeD0iMTIwIiB5PSIxMDA2IiB3aWR0aD0iNDE2IiBoZWlnaHQ9IjMwIiBmaWxsPSIjMTY1YTg3Ii8+PHJlY3QgeD0iMTIwIiB5PSIxMDY2IiB3aWR0aD0iMzA4IiBoZWlnaHQ9IjMwIiBmaWxsPSIjMjg2NjRkIi8+Cjx0ZXh0IHg9IjUwIiB5PSI5NjkiPkE8L3RleHQ+PHRleHQgeD0iMzM3IiB5PSI5NjkiPjI1MDAgSjwvdGV4dD48dGV4dCB4PSI1MCIgeT0iMTAyOSI+QjwvdGV4dD48dGV4dCB4PSI1NTIiIHk9IjEwMjkiPjUyMDAgSjwvdGV4dD48dGV4dCB4PSIzMiIgeT0iMTA4OSI+TWVkaWE8L3RleHQ+PHRleHQgeD0iNDQ1IiB5PSIxMDg5Ij4zODUwIEo8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIxMTYyIiBmb250LXNpemU9IjE4Ij5BOiAxIGcsIDI1IEs7IEI6IDIgZywgNTAgSy4gRW5lcmdpZSBpbiBKLjwvdGV4dD4KPC9nPjwvc3ZnPgo="
+    }
+  ]
+}

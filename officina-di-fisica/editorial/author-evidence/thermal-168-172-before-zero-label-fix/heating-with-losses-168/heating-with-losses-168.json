@@ -1,0 +1,1143 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u5-heating-with-losses-01",
+      "kind": "question",
+      "course": "C3",
+      "section": "Tempo di riscaldamento e dispersioni",
+      "order": 16801,
+      "title": "Il campione trattiene soltanto la differenza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "heating-with-losses",
+      "difficulty": 1,
+      "prompt": "Un campione chiuso richiede E=120 J netti per raggiungere la temperatura obiettivo; non cambia fase e il lavoro meccanico è trascurabile. Dal riscaldatore entra potenza termica P e verso l’ambiente esce P_d, entrambe costanti durante ciascuna prova, con P>P_d>0. La dispersione costante è un’ipotesi prescritta per questo intervallo, non una legge universale di raffreddamento. Il tempo t parte dall’accensione. Fra prove P e P_d possono cambiare, mentre E resta uguale. P=20 W e P_d=5 W. Quanto vale t in s?",
+      "answer": {
+        "type": "numeric",
+        "value": 8,
+        "unit": "s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Ogni secondo entrano venti joule e ne escono cinque: ne rimangono quindici. Per accumulare centoventi joule servono otto secondi. In quel tempo il riscaldatore trasferisce 160 J e l’ambiente ne riceve 40 J, lasciando proprio 120 J nel campione."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/a1bc51d66b9486314580db6ab6fd3ff8452532df26c68c3eac8ddf9bbdd90f6b",
+          "text": "Il primo pannello separa le potenze costanti:20 W entrano e 5 W escono, lasciando 15 W netti. Il secondo mostra Q_netto=15 t: il campione accumula 120 J in 8 s. Il terzo confronta due durate di prove diverse,8 e 6 s, la cui media a pesi uguali è 7 s. Le barre di potenza e di durata rappresentano grandezze diverse; non sono vettori di forza."
+        },
+        {
+          "type": "formula",
+          "text": "P_{\\rm net}=P-P_d"
+        },
+        {
+          "type": "formula",
+          "text": " P_{\\rm net}=15\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " t=\\frac{E}{P_{\\rm net}}"
+        },
+        {
+          "type": "formula",
+          "text": " t=8\\,\\mathrm s"
+        },
+        {
+          "type": "text",
+          "text": "Sei secondi usa 120/20 e trascura la dispersione. Ventiquattro secondi usa soltanto 120/5. Sommare le potenze darebbe 24/5 s, ma conterebbe un’uscita come ingresso. Il reciproco della durata non è il tempo richiesto."
+        }
+      ],
+      "hints": [
+        "Prima calcola quanti joule restano nel campione ogni secondo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sei secondi usa 120/20 e trascura la dispersione. Ventiquattro secondi usa soltanto 120/5. Sommare le potenze darebbe 24/5 s, ma conterebbe un’uscita come ingresso. Il reciproco della durata non è il tempo richiesto.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Bilancio di potenze termiche",
+        "Durata da energia netta e inverse",
+        "Media, letture e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-heating-with-losses-02",
+      "kind": "question",
+      "course": "C3",
+      "section": "Tempo di riscaldamento e dispersioni",
+      "order": 16802,
+      "title": "L’unità del tempo ricavato da energia e potenza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "heating-with-losses",
+      "difficulty": 1,
+      "prompt": "Un riscaldamento richiede energia netta E e riceve potenza netta P_net>0. Quale unità esprime la durata E/P_net?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "s",
+          "W",
+          "J",
+          "J/K",
+          "s⁻¹"
+        ],
+        "value": "s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Un watt è un joule al secondo. Dividere un’energia per una potenza elimina il joule e lascia il secondo: è una durata, non la quantità di energia o il ritmo con cui arriva."
+        },
+        {
+          "type": "formula",
+          "text": "[t]=\\frac{\\mathrm J}{\\mathrm{J/s}}"
+        },
+        {
+          "type": "formula",
+          "text": " [t]=\\mathrm s"
+        },
+        {
+          "type": "text",
+          "text": "W misura la potenza e J l’energia. J/K è una capacità termica; s⁻¹ è una frequenza o un tasso. Nessuna di queste quattro unità equivale a una durata."
+        }
+      ],
+      "hints": [
+        "Scrivi watt come joule diviso secondo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "W misura la potenza e J l’energia. J/K è una capacità termica; s⁻¹ è una frequenza o un tasso. Nessuna di queste quattro unità equivale a una durata.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Bilancio di potenze termiche",
+        "Durata da energia netta e inverse",
+        "Media, letture e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-heating-with-losses-03",
+      "kind": "question",
+      "course": "C3",
+      "section": "Tempo di riscaldamento e dispersioni",
+      "order": 16803,
+      "title": "Il bilancio prima della divisione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "heating-with-losses",
+      "difficulty": 1,
+      "prompt": "Un campione chiuso richiede E=120 J netti per raggiungere la temperatura obiettivo; non cambia fase e il lavoro meccanico è trascurabile. Dal riscaldatore entra potenza termica P e verso l’ambiente esce P_d, entrambe costanti durante ciascuna prova, con P>P_d>0. La dispersione costante è un’ipotesi prescritta per questo intervallo, non una legge universale di raffreddamento. Il tempo t parte dall’accensione. Fra prove P e P_d possono cambiare, mentre E resta uguale. Quale relazione dà t?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "t = E / (P − P_d)",
+          "t = E / (P + P_d)",
+          "t = (P − P_d) / E",
+          "t = E / P",
+          "t = E / P_d"
+        ],
+        "value": "t = E / (P − P_d)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bilancio energetico è E=Pt−P_dt=(P−P_d)t. Le due potenze hanno versi opposti al confine del campione. Poiché la differenza è positiva, si può dividerla e ottenere un tempo positivo e finito."
+        },
+        {
+          "type": "formula",
+          "text": "E=(P-P_d)t"
+        },
+        {
+          "type": "formula",
+          "text": " t=\\frac{E}{P-P_d}"
+        },
+        {
+          "type": "formula",
+          "text": " P-P_d>0"
+        },
+        {
+          "type": "text",
+          "text": "La somma attribuisce alla dispersione il verso sbagliato. Il reciproco ha unità s⁻¹. E/P trascura l’uscita e E/P_d trascura l’ingresso. Se P=P_d non si raggiunge l’obiettivo energetico E>0 in un tempo finito."
+        }
+      ],
+      "hints": [
+        "Conserva il segno dell’energia che lascia il campione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La somma attribuisce alla dispersione il verso sbagliato. Il reciproco ha unità s⁻¹. E/P trascura l’uscita e E/P_d trascura l’ingresso. Se P=P_d non si raggiunge l’obiettivo energetico E>0 in un tempo finito.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Bilancio di potenze termiche",
+        "Durata da energia netta e inverse",
+        "Media, letture e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-heating-with-losses-04",
+      "kind": "question",
+      "course": "C3",
+      "section": "Tempo di riscaldamento e dispersioni",
+      "order": 16804,
+      "title": "Più potenza entrante a dispersione invariata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "heating-with-losses",
+      "difficulty": 1,
+      "prompt": "Un campione chiuso richiede E=120 J netti per raggiungere la temperatura obiettivo; non cambia fase e il lavoro meccanico è trascurabile. Dal riscaldatore entra potenza termica P e verso l’ambiente esce P_d, entrambe costanti durante ciascuna prova, con P>P_d>0. La dispersione costante è un’ipotesi prescritta per questo intervallo, non una legge universale di raffreddamento. Il tempo t parte dall’accensione. Fra prove P e P_d possono cambiare, mentre E resta uguale. A ha P=20 W e P_d=5 W. B ha P=30 W e lo stesso P_d=5 W. Come cambia t?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 8 a 24/5 s",
+          "Da 8 a 16/3 s",
+          "Da 8 a 12 s",
+          "Resta 8 s",
+          "Da 8 a 4 s"
+        ],
+        "value": "Da 8 a 24/5 s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le potenze nette sono 15 W in A e 25 W in B. Le durate sono quindi 120/15=8 s e 120/25=24/5 s. Il tempo diminuisce, ma non basta invertire il rapporto 30/20 delle sole potenze entranti: prima va tolta la stessa dispersione."
+        },
+        {
+          "type": "formula",
+          "text": "P_{\\rm net,A}=15\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_{\\rm net,B}=25\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " t_B=\\frac{120}{25}\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " t_B=\\frac{24}{5}\\,\\mathrm s"
+        },
+        {
+          "type": "text",
+          "text": "16/3 s moltiplica 8 per 20/30 e dimentica la sottrazione. Dodici segue direttamente P, otto ignora il cambiamento e quattro imporrebbe una potenza netta 30 W, superiore ai 25 W effettivi."
+        }
+      ],
+      "hints": [
+        "Confronta le potenze nette, non soltanto quelle del riscaldatore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "16/3 s moltiplica 8 per 20/30 e dimentica la sottrazione. Dodici segue direttamente P, otto ignora il cambiamento e quattro imporrebbe una potenza netta 30 W, superiore ai 25 W effettivi.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Bilancio di potenze termiche",
+        "Durata da energia netta e inverse",
+        "Media, letture e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-heating-with-losses-05",
+      "kind": "question",
+      "course": "C3",
+      "section": "Tempo di riscaldamento e dispersioni",
+      "order": 16805,
+      "title": "Ricostruire l’ingresso dalle due destinazioni",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "heating-with-losses",
+      "difficulty": 2,
+      "prompt": "Un campione chiuso richiede E=120 J netti per raggiungere la temperatura obiettivo; non cambia fase e il lavoro meccanico è trascurabile. Dal riscaldatore entra potenza termica P e verso l’ambiente esce P_d, entrambe costanti durante ciascuna prova, con P>P_d>0. La dispersione costante è un’ipotesi prescritta per questo intervallo, non una legge universale di raffreddamento. Il tempo t parte dall’accensione. Fra prove P e P_d possono cambiare, mentre E resta uguale. Si misura t=8 s e si conosce P_d=5 W. Quanto vale P in W?",
+      "answer": {
+        "type": "numeric",
+        "value": 20,
+        "unit": "W",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Per trattenere 120 J in 8 s occorrono 15 W netti. L’ingresso deve fornire anche i 5 W che escono: P=15+5=20 W. Il risultato supera la dispersione, come richiede il ramo assegnato."
+        },
+        {
+          "type": "formula",
+          "text": "P-P_d=\\frac Et"
+        },
+        {
+          "type": "formula",
+          "text": " P=P_d+\\frac Et"
+        },
+        {
+          "type": "formula",
+          "text": " P=20\\,\\mathrm W"
+        },
+        {
+          "type": "text",
+          "text": "Dieci watt sottrae 5 dai 15 netti; produrrebbe solo 5 W netti e richiederebbe 24 s. Quindici è la sola potenza netta, cinque la sola dispersione. Non si sommano direttamente secondi e watt."
+        }
+      ],
+      "hints": [
+        "Dividi l’energia per il tempo, poi aggiungi l’uscita termica.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dieci watt sottrae 5 dai 15 netti; produrrebbe solo 5 W netti e richiederebbe 24 s. Quindici è la sola potenza netta, cinque la sola dispersione. Non si sommano direttamente secondi e watt.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Bilancio di potenze termiche",
+        "Durata da energia netta e inverse",
+        "Media, letture e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-heating-with-losses-06",
+      "kind": "question",
+      "course": "C3",
+      "section": "Tempo di riscaldamento e dispersioni",
+      "order": 16806,
+      "title": "Quanto viene disperso durante il riscaldamento",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "heating-with-losses",
+      "difficulty": 2,
+      "prompt": "Un campione chiuso richiede E=120 J netti per raggiungere la temperatura obiettivo; non cambia fase e il lavoro meccanico è trascurabile. Dal riscaldatore entra potenza termica P e verso l’ambiente esce P_d, entrambe costanti durante ciascuna prova, con P>P_d>0. La dispersione costante è un’ipotesi prescritta per questo intervallo, non una legge universale di raffreddamento. Il tempo t parte dall’accensione. Fra prove P e P_d possono cambiare, mentre E resta uguale. Si misura t=8 s e P=20 W. Quanto vale P_d in W?",
+      "answer": {
+        "type": "numeric",
+        "value": 5,
+        "unit": "W",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il campione deve ricevere 120/8=15 W netti. Dall’ingresso di 20 W restano 5 W diretti all’ambiente. L’inversa è P_d=P−E/t, e la positività richiede P>E/t, soddisfatto dai dati."
+        },
+        {
+          "type": "formula",
+          "text": "P_d=P-\\frac Et"
+        },
+        {
+          "type": "formula",
+          "text": " P_d=(20-15)\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_d=5\\,\\mathrm W"
+        },
+        {
+          "type": "text",
+          "text": "Trentacinque somma la potenza netta all’ingresso. Quindici copia ciò che rimane nel campione; meno cinque inverte la sottrazione e cambierebbe il verso della dispersione dichiarata."
+        }
+      ],
+      "hints": [
+        "Separa ciò che entra da ciò che deve rimanere.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Trentacinque somma la potenza netta all’ingresso. Quindici copia ciò che rimane nel campione; meno cinque inverte la sottrazione e cambierebbe il verso della dispersione dichiarata.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Bilancio di potenze termiche",
+        "Durata da energia netta e inverse",
+        "Media, letture e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-heating-with-losses-07",
+      "kind": "question",
+      "course": "C3",
+      "section": "Tempo di riscaldamento e dispersioni",
+      "order": 16807,
+      "title": "Dispersione maggiore, durata maggiore",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "heating-with-losses",
+      "difficulty": 2,
+      "prompt": "Un campione chiuso richiede E=120 J netti per raggiungere la temperatura obiettivo; non cambia fase e il lavoro meccanico è trascurabile. Dal riscaldatore entra potenza termica P e verso l’ambiente esce P_d, entrambe costanti durante ciascuna prova, con P>P_d>0. La dispersione costante è un’ipotesi prescritta per questo intervallo, non una legge universale di raffreddamento. Il tempo t parte dall’accensione. Fra prove P e P_d possono cambiare, mentre E resta uguale. A ha P=20 W, P_d=5 W. B mantiene P=20 W e ha P_d=10 W. Quanto vale t_B/t_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/2",
+          "2/3",
+          "2",
+          "1/2",
+          "1"
+        ],
+        "value": "3/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A dispone di 15 W netti e dura 8 s; B dispone di 10 W netti e dura 12 s. Il rapporto 12/8 è tre mezzi. Raddoppiare la dispersione non raddoppia la durata, perché l’ingresso resta presente nel bilancio."
+        },
+        {
+          "type": "formula",
+          "text": "t_A=8\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " t_B=12\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " t_B/t_A=\\frac32"
+        },
+        {
+          "type": "text",
+          "text": "Due terzi è il reciproco. Due segue soltanto P_d e un mezzo ne prende l’inverso, entrambi ignorando P−P_d. Uno trascura i 5 W netti in meno."
+        }
+      ],
+      "hints": [
+        "Trova separatamente i due denominatori positivi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due terzi è il reciproco. Due segue soltanto P_d e un mezzo ne prende l’inverso, entrambi ignorando P−P_d. Uno trascura i 5 W netti in meno.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Bilancio di potenze termiche",
+        "Durata da energia netta e inverse",
+        "Media, letture e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-heating-with-losses-08",
+      "kind": "question",
+      "course": "C3",
+      "section": "Tempo di riscaldamento e dispersioni",
+      "order": 16808,
+      "title": "Una proposta doppia del tempo richiesto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "heating-with-losses",
+      "difficulty": 2,
+      "prompt": "Un campione chiuso richiede E=120 J netti per raggiungere la temperatura obiettivo; non cambia fase e il lavoro meccanico è trascurabile. Dal riscaldatore entra potenza termica P e verso l’ambiente esce P_d, entrambe costanti durante ciascuna prova, con P>P_d>0. La dispersione costante è un’ipotesi prescritta per questo intervallo, non una legge universale di raffreddamento. Il tempo t parte dall’accensione. Fra prove P e P_d possono cambiare, mentre E resta uguale. Con P=20 W e P_d=5 W si propone t=16 s. Quanto vale proposta meno durata corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "8 s",
+          "−8 s",
+          "16 s",
+          "0 s",
+          "2"
+        ],
+        "value": "8 s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il tempo corretto è 120/(20−5)=8 s. La proposta supera quel risultato di 8 s. A 16 s il modello avrebbe trattenuto 240 J, il doppio dell’obiettivo, dunque non è il primo istante in cui lo raggiunge."
+        },
+        {
+          "type": "formula",
+          "text": "t=8\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " e=(16-8)\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " e=8\\,\\mathrm s"
+        },
+        {
+          "type": "text",
+          "text": "Meno otto inverte l’ordine dello scarto. Sedici copia la proposta, zero la accetta. Due è il rapporto fra proposta e corretta e non una differenza di durate."
+        }
+      ],
+      "hints": [
+        "Calcola prima la durata dal bilancio, poi la differenza richiesta.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Meno otto inverte l’ordine dello scarto. Sedici copia la proposta, zero la accetta. Due è il rapporto fra proposta e corretta e non una differenza di durate.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Bilancio di potenze termiche",
+        "Durata da energia netta e inverse",
+        "Media, letture e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-heating-with-losses-09",
+      "kind": "question",
+      "course": "C3",
+      "section": "Tempo di riscaldamento e dispersioni",
+      "order": 16809,
+      "title": "L’inversa generale per la potenza entrante",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "heating-with-losses",
+      "difficulty": 2,
+      "prompt": "Un campione chiuso richiede E=120 J netti per raggiungere la temperatura obiettivo; non cambia fase e il lavoro meccanico è trascurabile. Dal riscaldatore entra potenza termica P e verso l’ambiente esce P_d, entrambe costanti durante ciascuna prova, con P>P_d>0. La dispersione costante è un’ipotesi prescritta per questo intervallo, non una legge universale di raffreddamento. Il tempo t parte dall’accensione. Fra prove P e P_d possono cambiare, mentre E resta uguale. Sono noti t>0 e P_d>0. Quale formula ricava P?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "P = P_d + E / t",
+          "P = P_d − E / t",
+          "P = E / t − P_d",
+          "P = E t + P_d",
+          "P = E / (t + P_d)"
+        ],
+        "value": "P = P_d + E / t"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dal bilancio(P−P_d)t=E dividiamo per t e aggiungiamo P_d. I due addendi P_d ed E/t sono entrambi potenze. E>0 e t>0 garantiscono P>P_d, quindi l’inversa conserva automaticamente il ramo fisico."
+        },
+        {
+          "type": "formula",
+          "text": "P-P_d=\\frac Et"
+        },
+        {
+          "type": "formula",
+          "text": " P=P_d+\\frac Et"
+        },
+        {
+          "type": "text",
+          "text": "Le due differenze non ricostruiscono la potenza che fornisce entrambe le destinazioni. Et ha unità J·s e non watt. Sommare t e P_d nel denominatore mescola secondi e watt prima ancora di calcolare."
+        }
+      ],
+      "hints": [
+        "Isola prima P−P_d, poi elimina la sottrazione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Le due differenze non ricostruiscono la potenza che fornisce entrambe le destinazioni. Et ha unità J·s e non watt. Sommare t e P_d nel denominatore mescola secondi e watt prima ancora di calcolare.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Bilancio di potenze termiche",
+        "Durata da energia netta e inverse",
+        "Media, letture e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-heating-with-losses-10",
+      "kind": "question",
+      "course": "C3",
+      "section": "Tempo di riscaldamento e dispersioni",
+      "order": 16810,
+      "title": "Due fattori nel denominatore netto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "heating-with-losses",
+      "difficulty": 2,
+      "prompt": "Un campione chiuso richiede E=120 J netti per raggiungere la temperatura obiettivo; non cambia fase e il lavoro meccanico è trascurabile. Dal riscaldatore entra potenza termica P e verso l’ambiente esce P_d, entrambe costanti durante ciascuna prova, con P>P_d>0. La dispersione costante è un’ipotesi prescritta per questo intervallo, non una legge universale di raffreddamento. Il tempo t parte dall’accensione. Fra prove P e P_d possono cambiare, mentre E resta uguale. In A scriviamo D=P−P_d. B ha P_B=κ₁P e P_d,B=κ₂P_d; definiamo D_B=κ₁P−κ₂P_d. I fattori sono positivi e D_B>0. Quanto vale t_B/t_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "D / D_B",
+          "D_B / D",
+          "κ₁ / κ₂",
+          "κ₁ κ₂",
+          "κ₂ / κ₁"
+        ],
+        "value": "D / D_B"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’energia obiettivo è la stessa: t_A=E/D e t_B=E/D_B. Nel quoziente E si semplifica e resta D/D_B, con entrambe le potenze nette positive. Se κ₁=κ₂=κ, allora D_B=κD e la durata si riduce di un fattoreκ."
+        },
+        {
+          "type": "formula",
+          "text": "t_A=\\frac ED"
+        },
+        {
+          "type": "formula",
+          "text": " t_B=\\frac E{D_B}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{t_B}{t_A}=\\frac D{D_B}"
+        },
+        {
+          "type": "text",
+          "text": "D_B/D descrive il rapporto delle potenze nette, inverso delle durate. I quozienti dei soli fattori non trattano la differenza fra ingresso e uscita. Il prodotto darebbe κ² per un fattore comune, mentre la legge richiede 1/κ."
+        }
+      ],
+      "hints": [
+        "Forma ciascuna differenza prima di confrontare le durate.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "D_B/D descrive il rapporto delle potenze nette, inverso delle durate. I quozienti dei soli fattori non trattano la differenza fra ingresso e uscita. Il prodotto darebbe κ² per un fattore comune, mentre la legge richiede 1/κ.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Bilancio di potenze termiche",
+        "Durata da energia netta e inverse",
+        "Media, letture e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-heating-with-losses-11",
+      "kind": "question",
+      "course": "C3",
+      "section": "Tempo di riscaldamento e dispersioni",
+      "order": 16811,
+      "title": "Cambiano insieme ingresso e dispersione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "heating-with-losses",
+      "difficulty": 2,
+      "prompt": "Un campione chiuso richiede E=120 J netti per raggiungere la temperatura obiettivo; non cambia fase e il lavoro meccanico è trascurabile. Dal riscaldatore entra potenza termica P e verso l’ambiente esce P_d, entrambe costanti durante ciascuna prova, con P>P_d>0. La dispersione costante è un’ipotesi prescritta per questo intervallo, non una legge universale di raffreddamento. Il tempo t parte dall’accensione. Fra prove P e P_d possono cambiare, mentre E resta uguale. A ha P=20 W, P_d=5 W. B ha P=30 W, P_d=10 W. Quanto vale t_B/t_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/4",
+          "4/3",
+          "3/2",
+          "2",
+          "1"
+        ],
+        "value": "3/4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha 15 W netti e dura 8 s. B ha 20 W netti e dura 6 s. Sei su otto si riduce a tre quarti: il nuovo riscaldatore fornisce più potenza netta anche se disperde di più."
+        },
+        {
+          "type": "formula",
+          "text": "t_A=8\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " t_B=6\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " t_B/t_A=\\frac34"
+        },
+        {
+          "type": "text",
+          "text": "Quattro terzi è il reciproco. Tre mezzi segue il rapporto degli ingressi e due quello delle dispersioni. Uno richiederebbe potenze nette uguali, mentre 15 e 20 W differiscono."
+        }
+      ],
+      "hints": [
+        "Sottrai in ciascuna prova prima della divisione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro terzi è il reciproco. Tre mezzi segue il rapporto degli ingressi e due quello delle dispersioni. Uno richiederebbe potenze nette uguali, mentre 15 e 20 W differiscono.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Bilancio di potenze termiche",
+        "Durata da energia netta e inverse",
+        "Media, letture e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-heating-with-losses-12",
+      "kind": "question",
+      "course": "C3",
+      "section": "Tempo di riscaldamento e dispersioni",
+      "order": 16812,
+      "title": "Media di due durate, non durata alla potenza media",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "heating-with-losses",
+      "difficulty": 2,
+      "prompt": "Un campione chiuso richiede E=120 J netti per raggiungere la temperatura obiettivo; non cambia fase e il lavoro meccanico è trascurabile. Dal riscaldatore entra potenza termica P e verso l’ambiente esce P_d, entrambe costanti durante ciascuna prova, con P>P_d>0. La dispersione costante è un’ipotesi prescritta per questo intervallo, non una legge universale di raffreddamento. Il tempo t parte dall’accensione. Fra prove P e P_d possono cambiare, mentre E resta uguale. A ha P=20 W, P_d=5 W; B ha P=30 W, P_d=10 W. Qual è la media aritmetica dei due t con uguale peso?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "7 s",
+          "48/7 s",
+          "14 s",
+          "6 s",
+          "8 s"
+        ],
+        "value": "7 s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le due durate sono 8 e 6 s; la metà della somma è 7 s. Gli ingressi medi sarebbero 25 W e 15/2 W, quindi la potenza netta media 35/2 W e il modello darebbe 120/(35/2)=48/7 s. I due calcoli rispondono a domande diverse perché la durata dipende dal reciproco della potenza netta."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/a1bc51d66b9486314580db6ab6fd3ff8452532df26c68c3eac8ddf9bbdd90f6b",
+          "text": "Nel pannello finale le durate 8 e 6 s hanno media aritmetica 7 s. Il pannello centrale riguarda soltanto la provaA con 15 W netti e 120 J da accumulare; non rappresenta la prova agli ingressi medi."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline t=\\frac{8+6}{2}\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline t=7\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " t_{\\rm ingressi\\ medi}=\\frac{48}{7}\\,\\mathrm s"
+        },
+        {
+          "type": "text",
+          "text": "48/7 s applica la legge agli ingressi medi, senza mediare le due uscite. Quattordici è la somma; sei e otto copiano una sola prova. Non sono necessarie durate sperimentali o incertezze per la media statistica assegnata."
+        }
+      ],
+      "hints": [
+        "Calcola i due tempi prima della loro media.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "48/7 s applica la legge agli ingressi medi, senza mediare le due uscite. Quattordici è la somma; sei e otto copiano una sola prova. Non sono necessarie durate sperimentali o incertezze per la media statistica assegnata.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Bilancio di potenze termiche",
+        "Durata da energia netta e inverse",
+        "Media, letture e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-heating-with-losses-13",
+      "kind": "question",
+      "course": "C3",
+      "section": "Tempo di riscaldamento e dispersioni",
+      "order": 16813,
+      "title": "Il bersaglio decide quanto si può disperdere",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "heating-with-losses",
+      "difficulty": 3,
+      "prompt": "Un campione chiuso richiede E=120 J netti per raggiungere la temperatura obiettivo; non cambia fase e il lavoro meccanico è trascurabile. Dal riscaldatore entra potenza termica P e verso l’ambiente esce P_d, entrambe costanti durante ciascuna prova, con P>P_d>0. La dispersione costante è un’ipotesi prescritta per questo intervallo, non una legge universale di raffreddamento. Il tempo t parte dall’accensione. Fra prove P e P_d possono cambiare, mentre E resta uguale. A ha P=20 W, P_d,A=5 W. B usa P=30 W e deve avere t_B=(3/4)t_A. Quanto vale P_d,B/P_d,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/2",
+          "3/4",
+          "3/2",
+          "10"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è 6 s. Per trattenere 120 J in quel tempo occorrono 20 W netti. Dei 30 W entranti,10 W possono disperdersi:10/5=2. La nuova dispersione è positiva e minore dell’ingresso."
+        },
+        {
+          "type": "formula",
+          "text": "t_B=6\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " P_{d,B}=30\\,\\mathrm W-\\frac{120\\,\\mathrm J}{6\\,\\mathrm s}"
+        },
+        {
+          "type": "formula",
+          "text": " P_{d,B}=10\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_{d,B}/P_{d,A}=2"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo capovolge il rapporto. Tre quarti copia il fattore della durata e tre mezzi quello dell’ingresso. Dieci copia il valore numerico di P_d,B espresso in watt, senza dividerlo per il valore 5 W di P_d,A: l’opzione 10 è un numero puro, ma non il rapporto richiesto."
+        }
+      ],
+      "hints": [
+        "Ricava la potenza netta dal tempo bersaglio, poi sottraila dall’ingresso.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo capovolge il rapporto. Tre quarti copia il fattore della durata e tre mezzi quello dell’ingresso. Dieci copia il valore numerico di P_d,B espresso in watt, senza dividerlo per il valore 5 W di P_d,A: l’opzione 10 è un numero puro, ma non il rapporto richiesto.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Bilancio di potenze termiche",
+        "Durata da energia netta e inverse",
+        "Media, letture e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-heating-with-losses-14",
+      "kind": "question",
+      "course": "C3",
+      "section": "Tempo di riscaldamento e dispersioni",
+      "order": 16814,
+      "title": "Un display misura la durata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "heating-with-losses",
+      "difficulty": 3,
+      "prompt": "Un campione chiuso richiede E=120 J netti per raggiungere la temperatura obiettivo; non cambia fase e il lavoro meccanico è trascurabile. Dal riscaldatore entra potenza termica P e verso l’ambiente esce P_d, entrambe costanti durante ciascuna prova, con P>P_d>0. La dispersione costante è un’ipotesi prescritta per questo intervallo, non una legge universale di raffreddamento. Il tempo t parte dall’accensione. Fra prove P e P_d possono cambiare, mentre E resta uguale. Il display continuo adimensionale è S=q t, con q>0 costante. A: P=20 W, P_d=5 W, S=24. B: P_d=10 W, S=18. Quanto vale P_B in W?",
+      "answer": {
+        "type": "numeric",
+        "value": 30,
+        "unit": "W",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A dura 8 s, quindi q=24/(8 s)=3 s⁻¹. B dura 18/3=6 s e richiede 20 W netti. Aggiungendo i 10 W dispersi si ricostruiscono 30 W entranti. Il display non è una potenza né un conteggio obbligatoriamente intero."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{s^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " t_B=6\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " P_B=P_{d,B}+\\frac E{t_B}"
+        },
+        {
+          "type": "formula",
+          "text": " P_B=30\\,\\mathrm W"
+        },
+        {
+          "type": "text",
+          "text": "Venti W è la sola potenza netta. Usare 18 come secondi darebbe P_B=10+20/3 W, non 30 W. Quaranta W darebbero t_B=4 s e S=12, incompatibili con la lettura 18."
+        }
+      ],
+      "hints": [
+        "Decodifica il tempo prima di usare il bilancio energetico.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Venti W è la sola potenza netta. Usare 18 come secondi darebbe P_B=10+20/3 W, non 30 W. Quaranta W darebbero t_B=4 s e S=12, incompatibili con la lettura 18.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Bilancio di potenze termiche",
+        "Durata da energia netta e inverse",
+        "Media, letture e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-heating-with-losses-15",
+      "kind": "question",
+      "course": "C3",
+      "section": "Tempo di riscaldamento e dispersioni",
+      "order": 16815,
+      "title": "L’offset non è tempo di riscaldamento",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "heating-with-losses",
+      "difficulty": 3,
+      "prompt": "Un campione chiuso richiede E=120 J netti per raggiungere la temperatura obiettivo; non cambia fase e il lavoro meccanico è trascurabile. Dal riscaldatore entra potenza termica P e verso l’ambiente esce P_d, entrambe costanti durante ciascuna prova, con P>P_d>0. La dispersione costante è un’ipotesi prescritta per questo intervallo, non una legge universale di raffreddamento. Il tempo t parte dall’accensione. Fra prove P e P_d possono cambiare, mentre E resta uguale. Il display continuo adimensionale è S=q t+b, con q>0 e b costanti. A: P=20 W, P_d=5 W, S=17. B: P=30 W, P_d=10 W, S=13. C: P_d=5 W, S=53/5. Quanto vale P_C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "30 W",
+          "25 W",
+          "1465/53 W",
+          "15 W",
+          "35 W"
+        ],
+        "value": "30 W"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le durate dei riferimenti sono 8 e 6 s. La differenza delle letture 4 divisa per 2 s dà q=2 s⁻¹; b=1. Per C si toglie uno da 53/5 e si divide per due: t_C=24/5 s. La potenza netta è 120/(24/5)=25 W; aggiungendo 5 W si ottiene 30 W."
+        },
+        {
+          "type": "formula",
+          "text": "q=2\\,\\mathrm{s^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " t_C=\\frac{24}{5}\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " P_C=5\\,\\mathrm W+25\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_C=30\\,\\mathrm W"
+        },
+        {
+          "type": "text",
+          "text": "Venticinque watt dimentica la dispersione. Trentacinque W darebbero 4 s e S=9; quindici W darebbero 12 s e S=25. 1465/53 W deriva da t_C=(53/5)/2=53/10 s, dimenticando l’offset prima della divisione:5+1200/53=1465/53 W."
+        }
+      ],
+      "hints": [
+        "Trova guadagno e offset dai due riferimenti prima dell’inversa termica.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Venticinque watt dimentica la dispersione. Trentacinque W darebbero 4 s e S=9; quindici W darebbero 12 s e S=25. 1465/53 W deriva da t_C=(53/5)/2=53/10 s, dimenticando l’offset prima della divisione:5+1200/53=1465/53 W.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Bilancio di potenze termiche",
+        "Durata da energia netta e inverse",
+        "Media, letture e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-heating-with-losses-16",
+      "kind": "question",
+      "course": "C3",
+      "section": "Tempo di riscaldamento e dispersioni",
+      "order": 16816,
+      "title": "Il vincolo collega due potenze della stessa prova",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "heating-with-losses",
+      "difficulty": 3,
+      "prompt": "Un campione chiuso richiede E=120 J netti per raggiungere la temperatura obiettivo; non cambia fase e il lavoro meccanico è trascurabile. Dal riscaldatore entra potenza termica P e verso l’ambiente esce P_d, entrambe costanti durante ciascuna prova, con P>P_d>0. La dispersione costante è un’ipotesi prescritta per questo intervallo, non una legge universale di raffreddamento. Il tempo t parte dall’accensione. Fra prove P e P_d possono cambiare, mentre E resta uguale. Fra preparazioni si impone P=4 P_d. Si misura t=8 s. Quanto vale P_d>0?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "5 W",
+          "15 W",
+          "20 W",
+          "15/4 W",
+          "−5 W"
+        ],
+        "value": "5 W"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il vincolo lascia P−P_d=3 P_d. Da 120 J=3 P_d·8 s segue P_d=120/24 W=5 W. Quindi P=20 W e la potenza netta 15 W restituisce il tempo misurato. Non è una potenza che cresce nel tempo: i valori sono costanti entro ciascuna preparazione."
+        },
+        {
+          "type": "formula",
+          "text": "P-P_d=3P_d"
+        },
+        {
+          "type": "formula",
+          "text": " P_d=\\frac E{3t}"
+        },
+        {
+          "type": "formula",
+          "text": " P_d=5\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P=20\\,\\mathrm W"
+        },
+        {
+          "type": "text",
+          "text": "Quindici watt copia la potenza netta e venti quella entrante.15/4 W divide per 4 anziché per 3 dopo aver omesso la dispersione. Meno cinque viola il verso positivo dichiarato e renderebbe anche l’ingresso negativo."
+        }
+      ],
+      "hints": [
+        "Sostituisci P prima di combinare i coefficienti di P_d.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Quindici watt copia la potenza netta e venti quella entrante.15/4 W divide per 4 anziché per 3 dopo aver omesso la dispersione. Meno cinque viola il verso positivo dichiarato e renderebbe anche l’ingresso negativo.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Bilancio di potenze termiche",
+        "Durata da energia netta e inverse",
+        "Media, letture e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "a1bc51d66b9486314580db6ab6fd3ff8452532df26c68c3eac8ddf9bbdd90f6b",
+      "name": "heating-with-losses-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1NjAiIGhlaWdodD0iMTUwMCIgdmlld0JveD0iMCAwIDU2MCAxNTAwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+Cjx0aXRsZSBpZD0idGl0bGUiPkRhbGxhIHBvdGVuemEgbmV0dGEgYWxsYSBkdXJhdGE8L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5UcmUgcGFubmVsbGkgY29uIHNjYWxlIGRpY2hpYXJhdGU6IGRpZmZlcmVuemEgZGkgcG90ZW56ZSAyMCBtZW5vIDUgVywgZW5lcmdpYSBuZXR0YSAxNSB0IGZpbm8gYSAxMjAgSiBlIG1lZGlhIGRpIGR1cmF0ZSA4IGUgNiBzLjwvZGVzYz4KPHJlY3Qgd2lkdGg9IjU2MCIgaGVpZ2h0PSIxNTAwIiBmaWxsPSIjZmZmYWYxIi8+CjxnIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmaWxsPSIjMzUyZDQyIiBmb250LXNpemU9IjE5Ij4KPHRleHQgeD0iMjUiIHk9IjQwIiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iYm9sZCI+MSDCtyBDaGUgY29zYSByZXN0YSBuZWwgY2FtcGlvbmU/PC90ZXh0Pgo8dGV4dCB4PSIyNSIgeT0iNzUiPlBvdGVuemUgY29zdGFudGksIGVzcHJlc3NlIGluIFc8L3RleHQ+CjxsaW5lIHgxPSIxMDAiIHkxPSIxMTUiIHgyPSIxMDAiIHkyPSIzNTUiIHN0cm9rZT0iIzM1MmQ0MiIgc3Ryb2tlLXdpZHRoPSIyIi8+Cjx0ZXh0IHg9IjI1IiB5PSIxNTAiPlA8L3RleHQ+PHJlY3QgeD0iMTAwIiB5PSIxMjUiIHdpZHRoPSI0MDAiIGhlaWdodD0iNDAiIGZpbGw9IiMxNDc5NzkiLz48dGV4dCB4PSIxMDgiIHk9IjE1MSIgZmlsbD0id2hpdGUiPjIwIFcgZW50cmFubzwvdGV4dD4KPHRleHQgeD0iMjUiIHk9IjIyMCI+UF9kPC90ZXh0PjxyZWN0IHg9IjEwMCIgeT0iMTk1IiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjYjk0ZjQ4Ii8+PHRleHQgeD0iMjE1IiB5PSIyMjIiPjUgVyBlc2Nvbm88L3RleHQ+Cjx0ZXh0IHg9IjI1IiB5PSIzMDAiPlBfbmV0PC90ZXh0PjxyZWN0IHg9IjEwMCIgeT0iMjc1IiB3aWR0aD0iMzAwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjNzM1MGIwIi8+PHRleHQgeD0iMTEwIiB5PSIzMDIiIGZpbGw9IndoaXRlIj4xNSBXIHJpbWFuZ29ubzwvdGV4dD4KPHRleHQgeD0iOTYiIHk9IjM1MCI+MDwvdGV4dD48dGV4dCB4PSIyOTEiIHk9IjM1MCI+MTA8L3RleHQ+PHRleHQgeD0iNDg5IiB5PSIzNTAiPjIwIFc8L3RleHQ+Cjx0ZXh0IHg9IjI1IiB5PSIzOTUiPjIwIOKIkiA1ID0gMTUgSiBvZ25pIHNlY29uZG88L3RleHQ+CjxsaW5lIHgxPSIyNSIgeTE9IjQzMCIgeDI9IjUzNSIgeTI9IjQzMCIgc3Ryb2tlPSIjYjhhZGEwIi8+Cjx0ZXh0IHg9IjI1IiB5PSI0NzUiIGZvbnQtc2l6ZT0iMjUiIGZvbnQtd2VpZ2h0PSJib2xkIj4yIMK3IEFjY3VtdWxhcmUgMTIwIEogbmV0dGk8L3RleHQ+Cjx0ZXh0IHg9IjI1IiB5PSI1MTAiPlRlbXBvIHQgaW4gcyDCtyBlbmVyZ2lhIG5ldHRhIFEgaW4gSjwvdGV4dD4KPGxpbmUgeDE9IjEwMCIgeTE9IjkxMCIgeDI9IjQ2MCIgeTI9IjkxMCIgc3Ryb2tlPSIjMzUyZDQyIiBzdHJva2Utd2lkdGg9IjIiLz4KPGxpbmUgeDE9IjEwMCIgeTE9IjkxMCIgeDI9IjEwMCIgeTI9IjU1MCIgc3Ryb2tlPSIjMzUyZDQyIiBzdHJva2Utd2lkdGg9IjIiLz4KPHBhdGggZD0iTTEwMCA1OTBINDIwVjkxMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYjk0ZjQ4IiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1kYXNoYXJyYXk9IjcgNSIvPgo8cGF0aCBkPSJNMTAwIDkxMEw0MjAgNTkwIiBmaWxsPSJub25lIiBzdHJva2U9IiMxNDc5NzkiIHN0cm9rZS13aWR0aD0iNSIvPgo8Y2lyY2xlIGN4PSI0MjAiIGN5PSI1OTAiIHI9IjYiIGZpbGw9IiNiOTRmNDgiLz4KPHRleHQgeD0iMzIiIHk9IjU5NSI+MTIwIEo8L3RleHQ+PHRleHQgeD0iNjgiIHk9IjkxNSI+MDwvdGV4dD48dGV4dCB4PSI0MDUiIHk9Ijk0MiI+OCBzPC90ZXh0Pgo8dGV4dCB4PSIxNzUiIHk9IjY5MCI+UV9uZXR0byA9IDE1IHQ8L3RleHQ+Cjx0ZXh0IHg9IjI1IiB5PSI5OTAiPkEgOCBzOjE2MCBKIGVudHJhbnRpIOKIkiA0MCBKIHVzY2l0aSA9MTIwIEo8L3RleHQ+CjxsaW5lIHgxPSIyNSIgeTE9IjEwMzAiIHgyPSI1MzUiIHkyPSIxMDMwIiBzdHJva2U9IiNiOGFkYTAiLz4KPHRleHQgeD0iMjUiIHk9IjEwNzUiIGZvbnQtc2l6ZT0iMjUiIGZvbnQtd2VpZ2h0PSJib2xkIj4zIMK3IER1ZSBwcm92ZSwgdW5hIG1lZGlhPC90ZXh0Pgo8dGV4dCB4PSIyNSIgeT0iMTExMCI+RHVyYXRlIGluIHMsIGNvbiB6ZXJvIGNvbXVuZTwvdGV4dD4KPGxpbmUgeDE9IjEwMCIgeTE9IjExNDAiIHgyPSIxMDAiIHkyPSIxMzc1IiBzdHJva2U9IiMzNTJkNDIiIHN0cm9rZS13aWR0aD0iMiIvPgo8dGV4dCB4PSIyNSIgeT0iMTE4MCI+QTwvdGV4dD48cmVjdCB4PSIxMDAiIHk9IjExNTUiIHdpZHRoPSIzMjAiIGhlaWdodD0iNDAiIGZpbGw9IiMxNDc5NzkiLz48dGV4dCB4PSI0MzUiIHk9IjExODIiPjggczwvdGV4dD4KPHRleHQgeD0iMjUiIHk9IjEyNTAiPkI8L3RleHQ+PHJlY3QgeD0iMTAwIiB5PSIxMjI1IiB3aWR0aD0iMjQwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjZDQ5MzMyIi8+PHRleHQgeD0iMzU1IiB5PSIxMjUyIj42IHM8L3RleHQ+Cjx0ZXh0IHg9IjI1IiB5PSIxMzIwIj5NZWRpYTwvdGV4dD48cmVjdCB4PSIxMDAiIHk9IjEyOTUiIHdpZHRoPSIyODAiIGhlaWdodD0iNDAiIGZpbGw9IiM3MzUwYjAiLz48dGV4dCB4PSIzOTUiIHk9IjEzMjIiPjcgczwvdGV4dD4KPHRleHQgeD0iOTYiIHk9IjEzNzAiPjA8L3RleHQ+PHRleHQgeD0iMjUiIHk9IjE0MjAiPk1lZGlhIGEgcGVzaSB1Z3VhbGk6KDgrNikvMj03IHM8L3RleHQ+Cjx0ZXh0IHg9IjI1IiB5PSIxNDYwIj5JbCB0ZW1wbyBkaXBlbmRlIGRhbGxhIHBvdGVuemEgbmV0dGEuPC90ZXh0Pgo8L2c+PC9zdmc+Cg=="
+    }
+  ]
+}

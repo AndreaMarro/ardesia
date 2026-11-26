@@ -1,0 +1,1198 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u6-two-parallel-resistors-01",
+      "kind": "question",
+      "course": "C4",
+      "section": "Nodi e resistenze in parallelo",
+      "order": 20701,
+      "title": "Due percorsi per la stessa tensione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-parallel-resistors",
+      "difficulty": 1,
+      "prompt": "Due resistori ohmici positivi R₁,R₂, a temperatura fissata, sono collegati fra la stessa coppia di nodi. I fili sono ideali e il regime è stazionario. R_eq è la resistenza equivalente del parallelo. La tensione V fra i nodi è comune, mentre la corrente totale è la somma delle correnti nei due rami. Con R₁=2 Ω,R₂=2 Ω, quanto vale R_eq in Ω?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "Ω",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Ogni ramo assorbe V/(2 Ω). La corrente totale è quindi V/(1 Ω): l’equivalente vale un ohm. Due resistori uguali in parallelo dimezzano la resistenza di ciascun ramo, perché offrono un secondo percorso alla stessa tensione."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/ca2cc267659f0b551de8fa8f66fa1ef3a72441451f9e3e991fe3991832ee6bac",
+          "text": "Nel primo schema entrambi i resistori condividono i due nodi A,B. I simboli resistivi sono schematici: le loro dimensioni non codificano il valore. Nel secondo è illustrata una modifica distinta: ramo3 Ω aperto e6 Ω rimasto, a tensione costante. Le barre finali rappresentano le equivalenti1 e2 Ω e la media3/2 Ω."
+        },
+        {
+          "type": "formula",
+          "text": "I=\\frac V{R_1}+\\frac V{R_2}"
+        },
+        {
+          "type": "formula",
+          "text": " G_1=G_2"
+        },
+        {
+          "type": "formula",
+          "text": "G_2=\\frac12\\,\\mathrm S"
+        },
+        {
+          "type": "formula",
+          "text": " G_{\\rm eq}=1\\,\\mathrm S"
+        },
+        {
+          "type": "formula",
+          "text": " R_{\\rm eq}=1\\,\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "Quattro Ω somma come in serie; due Ω omette un ramo; mezzo Ω dividerebbe ancora per due il risultato già equivalente. La resistenza deve essere minore di ciascuna delle due resistenze positive."
+        }
+      ],
+      "hints": [
+        "Somma le conduttanze, poi prendi il reciproco.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro Ω somma come in serie; due Ω omette un ramo; mezzo Ω dividerebbe ancora per due il risultato già equivalente. La resistenza deve essere minore di ciascuna delle due resistenze positive.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Tensione comune e correnti dei rami",
+        "Apertura di un ramo a tensione fissata",
+        "Inverse con 0<R_eq<R_noto, medie e display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-two-parallel-resistors-02",
+      "kind": "question",
+      "course": "C4",
+      "section": "Nodi e resistenze in parallelo",
+      "order": 20702,
+      "title": "Il reciproco finale conta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-parallel-resistors",
+      "difficulty": 1,
+      "prompt": "Due resistori ohmici positivi R₁,R₂, a temperatura fissata, sono collegati fra la stessa coppia di nodi. I fili sono ideali e il regime è stazionario. R_eq è la resistenza equivalente del parallelo. La tensione V fra i nodi è comune, mentre la corrente totale è la somma delle correnti nei due rami. Quale unità misura R_eq?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Ω",
+          "S",
+          "A",
+          "V",
+          "Ω²"
+        ],
+        "value": "Ω"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La somma 1/R₁+1/R₂ è una conduttanza in siemens. La resistenza equivalente ne è il reciproco e si misura in ohm. Il passaggio al parallelo non cambia la definizione R_eq=V/I ai morsetti."
+        },
+        {
+          "type": "formula",
+          "text": "G_{\\rm eq}=\\frac1{R_1}+\\frac1{R_2}"
+        },
+        {
+          "type": "formula",
+          "text": " [G_{\\rm eq}]=\\mathrm S"
+        },
+        {
+          "type": "formula",
+          "text": " [R_{\\rm eq}]=\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "S è l’unità della somma dei reciproci, non della resistenza richiesta. A e V misurano corrente e tensione; Ω² sarebbe l’unità di un prodotto di due resistenze senza il denominatore."
+        }
+      ],
+      "hints": [
+        "Distingui la grandezza che sommi da quella chiesta.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "S è l’unità della somma dei reciproci, non della resistenza richiesta. A e V misurano corrente e tensione; Ω² sarebbe l’unità di un prodotto di due resistenze senza il denominatore.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Tensione comune e correnti dei rami",
+        "Apertura di un ramo a tensione fissata",
+        "Inverse con 0<R_eq<R_noto, medie e display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-two-parallel-resistors-03",
+      "kind": "question",
+      "course": "C4",
+      "section": "Nodi e resistenze in parallelo",
+      "order": 20703,
+      "title": "Gli stessi due nodi impongono la tensione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-parallel-resistors",
+      "difficulty": 1,
+      "prompt": "Due resistori ohmici diversi R₁,R₂ sono collegati in parallelo a un generatore ideale, con fili ideali e regime stazionario. Quale relazione è necessariamente vera?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "La tensione ai capi dei due resistori è la stessa",
+          "Le correnti nei due resistori sono uguali",
+          "Le potenze dissipate sono uguali",
+          "La resistenza equivalente è R₁+R₂",
+          "La corrente totale coincide con quella di un solo ramo"
+        ],
+        "value": "La tensione ai capi dei due resistori è la stessa"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Ogni resistore è collegato direttamente alla stessa coppia di nodi. Perciò entrambi hanno la tensione del generatore. Le correnti sono V/R₁ e V/R₂: con resistenze diverse non sono obbligate a coincidere. Il generatore ideale mantiene la tensione, non uguaglia le correnti dei rami."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/ca2cc267659f0b551de8fa8f66fa1ef3a72441451f9e3e991fe3991832ee6bac",
+          "text": "La connessione a due nodi comuni assegna la stessa tensione ai rami; non impone la stessa corrente se le resistenze sono diverse. Il pannello con interruttore aperto è un altro circuito, con valori3 e6 Ω."
+        },
+        {
+          "type": "formula",
+          "text": "V_1=V_2"
+        },
+        {
+          "type": "formula",
+          "text": "V_2=V"
+        },
+        {
+          "type": "formula",
+          "text": " I_1=\\frac V{R_1}"
+        },
+        {
+          "type": "formula",
+          "text": " I_2=\\frac V{R_2}"
+        },
+        {
+          "type": "formula",
+          "text": " I=I_1+I_2"
+        },
+        {
+          "type": "text",
+          "text": "Correnti o potenze uguali non seguono dalla sola connessione: a tensione non nulla dipendono dalle rispettive resistenze. La somma R₁+R₂ sarebbe una serie; la corrente totale include entrambi i rami."
+        }
+      ],
+      "hints": [
+        "Individua quali morsetti sono davvero gli stessi nodi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Correnti o potenze uguali non seguono dalla sola connessione: a tensione non nulla dipendono dalle rispettive resistenze. La somma R₁+R₂ sarebbe una serie; la corrente totale include entrambi i rami.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Tensione comune e correnti dei rami",
+        "Apertura di un ramo a tensione fissata",
+        "Inverse con 0<R_eq<R_noto, medie e display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-two-parallel-resistors-04",
+      "kind": "question",
+      "course": "C4",
+      "section": "Nodi e resistenze in parallelo",
+      "order": 20704,
+      "title": "Un ramo conduce più facilmente",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-parallel-resistors",
+      "difficulty": 1,
+      "prompt": "Due resistori ohmici positivi R₁,R₂, a temperatura fissata, sono collegati fra la stessa coppia di nodi. I fili sono ideali e il regime è stazionario. R_eq è la resistenza equivalente del parallelo. La tensione V fra i nodi è comune, mentre la corrente totale è la somma delle correnti nei due rami. A usa R₁=2 Ω,R₂=2 Ω. B porta R₁ a1 Ω e lascia R₂=2 Ω. Come cambia R_eq?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 1 a 2/3 Ω",
+          "Da 1 a 3 Ω",
+          "Da 1 a 1/2 Ω",
+          "Resta 1 Ω",
+          "Da 1 a 3/2 Ω"
+        ],
+        "value": "Da 1 a 2/3 Ω"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "In B la somma delle conduttanze è 1+1/2=3/2 S e il reciproco è 2/3 Ω. Riducendo una resistenza si facilita il passaggio della corrente e l’equivalente diminuisce. Il ramo che resta da due ohm continua a contribuire."
+        },
+        {
+          "type": "formula",
+          "text": "G_B=\\frac32\\,\\mathrm S"
+        },
+        {
+          "type": "formula",
+          "text": " R_{{\\rm eq},B}=\\frac23\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " R_{{\\rm eq},A}=1\\,\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "Tre Ω somma come in serie. Mezzo Ω dimezza entrambi i rami anziché uno solo. Uno Ω ignora il cambio; 3/2 Ω copia il numero della conduttanza senza prenderne il reciproco."
+        }
+      ],
+      "hints": [
+        "Valuta le due conduttanze e inverti soltanto alla fine.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Tre Ω somma come in serie. Mezzo Ω dimezza entrambi i rami anziché uno solo. Uno Ω ignora il cambio; 3/2 Ω copia il numero della conduttanza senza prenderne il reciproco.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Tensione comune e correnti dei rami",
+        "Apertura di un ramo a tensione fissata",
+        "Inverse con 0<R_eq<R_noto, medie e display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-two-parallel-resistors-05",
+      "kind": "question",
+      "course": "C4",
+      "section": "Nodi e resistenze in parallelo",
+      "order": 20705,
+      "title": "Una resistenza dal parallelo misurato",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-parallel-resistors",
+      "difficulty": 2,
+      "prompt": "Due resistori ohmici positivi R₁,R₂, a temperatura fissata, sono collegati fra la stessa coppia di nodi. I fili sono ideali e il regime è stazionario. R_eq è la resistenza equivalente del parallelo. La tensione V fra i nodi è comune, mentre la corrente totale è la somma delle correnti nei due rami. Si misura R_eq=1 Ω e si conosce R₂=2 Ω. Quanto vale R₁ in Ω?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "Ω",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dalla conduttanza totale si toglie quella del ramo noto: 1/R₁=1−1/2=1/2 S. Invertendo si trova R₁=2 Ω. L’inversa ammette un resistore positivo finito solo se 0<R_eq<R₂."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac1{R_1}=\\frac1{R_{\\rm eq}}-\\frac1{R_2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac1{R_1}=\\frac12\\,\\mathrm S"
+        },
+        {
+          "type": "formula",
+          "text": " R_1=2\\,\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "Un Ω copia l’equivalente e darebbe un parallelo2/3 Ω. Tre Ω sommerebbe resistenze invece di sottrarre conduttanze. Il denominatore nullo descriverebbe un ramo aperto, non un R₁ positivo finito."
+        }
+      ],
+      "hints": [
+        "Sottrai prima le conduttanze, poi ritorna alla resistenza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un Ω copia l’equivalente e darebbe un parallelo2/3 Ω. Tre Ω sommerebbe resistenze invece di sottrarre conduttanze. Il denominatore nullo descriverebbe un ramo aperto, non un R₁ positivo finito.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Tensione comune e correnti dei rami",
+        "Apertura di un ramo a tensione fissata",
+        "Inverse con 0<R_eq<R_noto, medie e display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-two-parallel-resistors-06",
+      "kind": "question",
+      "course": "C4",
+      "section": "Nodi e resistenze in parallelo",
+      "order": 20706,
+      "title": "Aprire un ramo non cambia la tensione imposta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-parallel-resistors",
+      "difficulty": 2,
+      "prompt": "Due resistori da3 Ω e6 Ω sono in parallelo a un generatore ideale con tensione V>0 costante. Si apre soltanto il ramo da3 Ω; quello da6 Ω resta integro. Quanto vale corrente totale finale divisa per corrente totale iniziale?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/3",
+          "3",
+          "1/2",
+          "2/3",
+          "1"
+        ],
+        "value": "1/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Prima dell’apertura I_i=V/(3 Ω)+V/(6 Ω)=V/(2 Ω). Dopo rimane I_f=V/(6 Ω), con la stessa tensione. Il rapporto è quindi 1/3. La corrente nel ramo superstite non è diminuita: era già V/(6 Ω); è sparito il contributo dell’altro ramo."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/ca2cc267659f0b551de8fa8f66fa1ef3a72441451f9e3e991fe3991832ee6bac",
+          "text": "Nel secondo pannello è aperto soltanto il ramo3 Ω. La tensione ai nodi resta quella del generatore ideale; la corrente del ramo6 Ω resta V/(6 Ω), mentre la totale cala perché l’altro contributo è eliminato."
+        },
+        {
+          "type": "formula",
+          "text": "R_{{\\rm eq},i}=2\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " R_{{\\rm eq},f}=6\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{I_f}{I_i}=\\frac{V/(6\\,\\Omega)}{V/(2\\,\\Omega)}"
+        },
+        {
+          "type": "formula",
+          "text": " I_f/I_i=\\frac13"
+        },
+        {
+          "type": "text",
+          "text": "Tre è il rapporto delle resistenze equivalenti, inverso a quello delle correnti a V fissata. Un mezzo suppone rami uguali; 2/3 è la frazione di corrente nel ramo eliminato. Uno ignora la corrente che è stata rimossa."
+        }
+      ],
+      "hints": [
+        "Confronta le correnti totali alla stessa tensione, senza cambiare il ramo rimasto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre è il rapporto delle resistenze equivalenti, inverso a quello delle correnti a V fissata. Un mezzo suppone rami uguali; 2/3 è la frazione di corrente nel ramo eliminato. Uno ignora la corrente che è stata rimossa.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Tensione comune e correnti dei rami",
+        "Apertura di un ramo a tensione fissata",
+        "Inverse con 0<R_eq<R_noto, medie e display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-two-parallel-resistors-07",
+      "kind": "question",
+      "course": "C4",
+      "section": "Nodi e resistenze in parallelo",
+      "order": 20707,
+      "title": "Ridurre il secondo ramo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-parallel-resistors",
+      "difficulty": 2,
+      "prompt": "Due resistori ohmici positivi R₁,R₂, a temperatura fissata, sono collegati fra la stessa coppia di nodi. I fili sono ideali e il regime è stazionario. R_eq è la resistenza equivalente del parallelo. La tensione V fra i nodi è comune, mentre la corrente totale è la somma delle correnti nei due rami. A usa R₁=2 Ω,R₂=2 Ω. B mantiene R₁ e ha R₂=1 Ω. Quanto vale R_eq,B/R_eq,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2/3",
+          "3/2",
+          "1/2",
+          "2",
+          "1"
+        ],
+        "value": "2/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A vale un ohm. B vale (2·1)/(2+1)=2/3 Ω. Il rapporto è 2/3, non il rapporto1/2 delle sole R₂: la corrente può ancora attraversare anche R₁."
+        },
+        {
+          "type": "formula",
+          "text": "R_{{\\rm eq},A}=1\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " R_{{\\rm eq},B}=\\frac23\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " R_{{\\rm eq},B}/R_{{\\rm eq},A}=\\frac23"
+        },
+        {
+          "type": "text",
+          "text": "3/2 inverte il confronto; 1/2 segue un solo ramo; due rende diretta la dipendenza dalla conduttanza totale e uno ignora il nuovo parallelo."
+        }
+      ],
+      "hints": [
+        "Usa prodotto diviso somma in ciascuna prova.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "3/2 inverte il confronto; 1/2 segue un solo ramo; due rende diretta la dipendenza dalla conduttanza totale e uno ignora il nuovo parallelo.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Tensione comune e correnti dei rami",
+        "Apertura di un ramo a tensione fissata",
+        "Inverse con 0<R_eq<R_noto, medie e display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-two-parallel-resistors-08",
+      "kind": "question",
+      "course": "C4",
+      "section": "Nodi e resistenze in parallelo",
+      "order": 20708,
+      "title": "Lo scarto di una proposta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-parallel-resistors",
+      "difficulty": 2,
+      "prompt": "Due resistori ohmici positivi R₁,R₂, a temperatura fissata, sono collegati fra la stessa coppia di nodi. I fili sono ideali e il regime è stazionario. R_eq è la resistenza equivalente del parallelo. La tensione V fra i nodi è comune, mentre la corrente totale è la somma delle correnti nei due rami. Con R₁=2 Ω,R₂=2 Ω si propone R_eq=2 Ω. Quanto vale proposta meno risultato corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1 Ω",
+          "−1 Ω",
+          "2 Ω",
+          "0 Ω",
+          "2"
+        ],
+        "value": "1 Ω"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il parallelo vale un ohm. La proposta lo supera di 2−1=1 Ω. L’equivalente non è uguale a uno dei resistori quando sono presenti due rami positivi finiti."
+        },
+        {
+          "type": "formula",
+          "text": "R_{\\rm eq}=1\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " e=(2-1)\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " e=1\\,\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "−1 inverte l’ordine, due Ω copia la proposta e zero la accetta. Due puro è il rapporto e non ha unità di resistenza."
+        }
+      ],
+      "hints": [
+        "Ricostruisci il parallelo prima di calcolare lo scarto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−1 inverte l’ordine, due Ω copia la proposta e zero la accetta. Due puro è il rapporto e non ha unità di resistenza.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Tensione comune e correnti dei rami",
+        "Apertura di un ramo a tensione fissata",
+        "Inverse con 0<R_eq<R_noto, medie e display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-two-parallel-resistors-09",
+      "kind": "question",
+      "course": "C4",
+      "section": "Nodi e resistenze in parallelo",
+      "order": 20709,
+      "title": "Isolare R₁ richiede un residuo positivo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-parallel-resistors",
+      "difficulty": 2,
+      "prompt": "Due resistori ohmici positivi R₁,R₂, a temperatura fissata, sono collegati fra la stessa coppia di nodi. I fili sono ideali e il regime è stazionario. R_eq è la resistenza equivalente del parallelo. La tensione V fra i nodi è comune, mentre la corrente totale è la somma delle correnti nei due rami. Quale formula ricava R₁ da R_eq e R₂ nel dominio di resistori positivi finiti?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "R₁ = R_eq R₂ / (R₂ − R_eq)",
+          "R₁ = R_eq R₂ / (R₂ + R_eq)",
+          "R₁ = R₂ − R_eq",
+          "R₁ = R_eq − R₂",
+          "R₁ = R₂ / R_eq"
+        ],
+        "value": "R₁ = R_eq R₂ / (R₂ − R_eq)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dalla somma dei reciproci si ottiene 1/R₁=(R₂−R_eq)/(R_eqR₂). Invertendo si trova R₁=R_eqR₂/(R₂−R_eq), con 0<R_eq<R₂. Numeratore e denominatore hanno unità Ω² e Ω, quindi il risultato è in ohm."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac1{R_1}=\\frac{R_2-R_{\\rm eq}}{R_{\\rm eq}R_2}"
+        },
+        {
+          "type": "formula",
+          "text": " R_1=\\frac{R_{\\rm eq}R_2}{R_2-R_{\\rm eq}}"
+        },
+        {
+          "type": "formula",
+          "text": " 0<R_{\\rm eq}<R_2"
+        },
+        {
+          "type": "text",
+          "text": "Il più nel denominatore non sottrae la conduttanza nota. Una differenza diretta di resistenze inverte il modello come se fosse una serie; l’ordine opposto dà negativo. Il rapporto R₂/R_eq è puro."
+        }
+      ],
+      "hints": [
+        "Porta a denominatore comune prima del reciproco finale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il più nel denominatore non sottrae la conduttanza nota. Una differenza diretta di resistenze inverte il modello come se fosse una serie; l’ordine opposto dà negativo. Il rapporto R₂/R_eq è puro.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Tensione comune e correnti dei rami",
+        "Apertura di un ramo a tensione fissata",
+        "Inverse con 0<R_eq<R_noto, medie e display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-two-parallel-resistors-10",
+      "kind": "question",
+      "course": "C4",
+      "section": "Nodi e resistenze in parallelo",
+      "order": 20710,
+      "title": "Fattori dentro prodotto e somma",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-parallel-resistors",
+      "difficulty": 2,
+      "prompt": "Due resistori ohmici positivi R₁,R₂, a temperatura fissata, sono collegati fra la stessa coppia di nodi. I fili sono ideali e il regime è stazionario. R_eq è la resistenza equivalente del parallelo. La tensione V fra i nodi è comune, mentre la corrente totale è la somma delle correnti nei due rami. B ha R₁,B=κ₁R₁,A e R₂,B=κ₂R₂,A, con fattori positivi. Quale legge dà R_eq,B/R_eq,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ κ₂ (R₁ + R₂) / (κ₁ R₁ + κ₂ R₂)",
+          "κ₁ κ₂",
+          "κ₁/κ₂",
+          "(κ₁ R₁ + κ₂ R₂) / (R₁ + R₂)",
+          "1 / (κ₁ κ₂)"
+        ],
+        "value": "κ₁ κ₂ (R₁ + R₂) / (κ₁ R₁ + κ₂ R₂)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nel prodotto al numeratore compaiono entrambi i fattori; nella somma al denominatore ciascun fattore pesa il proprio ramo. Dividendo per R₁R₂/(R₁+R₂) si trova κ₁κ₂(R₁+R₂)/(κ₁R₁+κ₂R₂). Se κ₁=κ₂=κ, il rapporto è κ, non κ²."
+        },
+        {
+          "type": "formula",
+          "text": "R_{{\\rm eq},B}=\\frac{\\kappa_1\\kappa_2R_1R_2}{\\kappa_1R_1+\\kappa_2R_2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{R_{{\\rm eq},B}}{R_{{\\rm eq},A}}=\\frac{\\kappa_1\\kappa_2(R_1+R_2)}{\\kappa_1R_1+\\kappa_2R_2}"
+        },
+        {
+          "type": "text",
+          "text": "Il solo prodotto ignora la somma; il quoziente dei fattori perde i pesi. Il rapporto delle somme da solo appartiene alla serie e il reciproco del prodotto non scala correttamente due resistenze insieme."
+        }
+      ],
+      "hints": [
+        "Sostituisci i fattori in tutto il quoziente prodotto/somma.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il solo prodotto ignora la somma; il quoziente dei fattori perde i pesi. Il rapporto delle somme da solo appartiene alla serie e il reciproco del prodotto non scala correttamente due resistenze insieme.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Tensione comune e correnti dei rami",
+        "Apertura di un ramo a tensione fissata",
+        "Inverse con 0<R_eq<R_noto, medie e display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-two-parallel-resistors-11",
+      "kind": "question",
+      "course": "C4",
+      "section": "Nodi e resistenze in parallelo",
+      "order": 20711,
+      "title": "Rami entrambi diversi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-parallel-resistors",
+      "difficulty": 2,
+      "prompt": "Due resistori ohmici positivi R₁,R₂, a temperatura fissata, sono collegati fra la stessa coppia di nodi. I fili sono ideali e il regime è stazionario. R_eq è la resistenza equivalente del parallelo. La tensione V fra i nodi è comune, mentre la corrente totale è la somma delle correnti nei due rami. A usa R₁=2 Ω,R₂=2 Ω. B usa R₁=3 Ω,R₂=6 Ω. Quanto vale R_eq,B/R_eq,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/2",
+          "3",
+          "9/4",
+          "9/2"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A vale un ohm. B vale (3·6)/(3+6)=18/9=2 Ω. Il rapporto è due. La somma delle resistenze cresce da4 a9 Ω, ma il parallelo non segue semplicemente quel rapporto."
+        },
+        {
+          "type": "formula",
+          "text": "R_{{\\rm eq},A}=1\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " R_{{\\rm eq},B}=2\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " R_{{\\rm eq},B}/R_{{\\rm eq},A}=2"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo è il reciproco. Tre segue solo R₂; 9/4 confronta le somme e 9/2 i prodotti, omettendo la variazione dell’altra parte della frazione."
+        }
+      ],
+      "hints": [
+        "Riduci le due reti prima del confronto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo è il reciproco. Tre segue solo R₂; 9/4 confronta le somme e 9/2 i prodotti, omettendo la variazione dell’altra parte della frazione.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Tensione comune e correnti dei rami",
+        "Apertura di un ramo a tensione fissata",
+        "Inverse con 0<R_eq<R_noto, medie e display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-two-parallel-resistors-12",
+      "kind": "question",
+      "course": "C4",
+      "section": "Nodi e resistenze in parallelo",
+      "order": 20712,
+      "title": "La media non riduce una rete intermedia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-parallel-resistors",
+      "difficulty": 2,
+      "prompt": "Due resistori ohmici positivi R₁,R₂, a temperatura fissata, sono collegati fra la stessa coppia di nodi. I fili sono ideali e il regime è stazionario. R_eq è la resistenza equivalente del parallelo. La tensione V fra i nodi è comune, mentre la corrente totale è la somma delle correnti nei due rami. A usa R₁=2 Ω,R₂=2 Ω; B usa R₁=3 Ω,R₂=6 Ω. Qual è la media aritmetica di R_eq con uguale peso?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/2 Ω",
+          "20/13 Ω",
+          "3 Ω",
+          "1/2 Ω",
+          "1 Ω"
+        ],
+        "value": "3/2 Ω"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le letture sono1 e2 Ω e la media vale3/2 Ω. I resistori medi sarebbero R₁=5/2 Ω,R₂=4 Ω: il loro parallelo vale10/(13/2)=20/13 Ω. Non coincide, perché3/2=39/26 e20/13=40/26. Nessun arrotondamento è necessario."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/ca2cc267659f0b551de8fa8f66fa1ef3a72441451f9e3e991fe3991832ee6bac",
+          "text": "Le barre condividono origine e scala: equivalenti1 e2 Ω, media3/2 Ω. Non rappresentano resistenze dei singoli rami. Il modello ai dati medi darebbe20/13 Ω, diverso dalla media delle uscite."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline R_{\\rm eq}=\\frac{1+2}{2}\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline R_{\\rm eq}=\\frac32\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " R_{\\rm dati\\ medi}=\\frac{20}{13}\\,\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "20/13 Ω usa i dati medi, tre Ω non dimezza la somma, mezzo Ω è metà della differenza e un Ω ripete A. Sono reti di prove separate, non quattro rami simultanei."
+        }
+      ],
+      "hints": [
+        "Prima calcola i due equivalenti, poi assegna loro lo stesso peso.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "20/13 Ω usa i dati medi, tre Ω non dimezza la somma, mezzo Ω è metà della differenza e un Ω ripete A. Sono reti di prove separate, non quattro rami simultanei.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Tensione comune e correnti dei rami",
+        "Apertura di un ramo a tensione fissata",
+        "Inverse con 0<R_eq<R_noto, medie e display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-two-parallel-resistors-13",
+      "kind": "question",
+      "course": "C4",
+      "section": "Nodi e resistenze in parallelo",
+      "order": 20713,
+      "title": "Il bersaglio fissa il secondo ramo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-parallel-resistors",
+      "difficulty": 3,
+      "prompt": "Due resistori ohmici positivi R₁,R₂, a temperatura fissata, sono collegati fra la stessa coppia di nodi. I fili sono ideali e il regime è stazionario. R_eq è la resistenza equivalente del parallelo. La tensione V fra i nodi è comune, mentre la corrente totale è la somma delle correnti nei due rami. A usa R₁=2 Ω,R₂,A=2 Ω. B ha R₁,B=3 Ω e deve avere R_eq,B=2R_eq,A. Quanto vale R₂,B/R₂,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3",
+          "1/3",
+          "2",
+          "6",
+          "3/2"
+        ],
+        "value": "3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è2 Ω, minore dei3 Ω noti come richiesto dal dominio. L’inversa dà R₂,B=(2·3)/(3−2)=6 Ω. Il rapporto con i2 Ω di A è tre, non sei."
+        },
+        {
+          "type": "formula",
+          "text": "R_{{\\rm eq},B}=2\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " R_{2,B}=\\frac{2\\cdot3}{3-2}\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " R_{2,B}=6\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " R_{2,B}/R_{2,A}=3"
+        },
+        {
+          "type": "text",
+          "text": "1/3 inverte il confronto, due copia il fattore del totale e sei copia il valore in ohm senza dividerlo per R₂,A. 3/2 segue solo il primo ramo."
+        }
+      ],
+      "hints": [
+        "Controlla che il bersaglio sia minore del ramo noto prima dell’inversa.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "1/3 inverte il confronto, due copia il fattore del totale e sei copia il valore in ohm senza dividerlo per R₂,A. 3/2 segue solo il primo ramo.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Tensione comune e correnti dei rami",
+        "Apertura di un ramo a tensione fissata",
+        "Inverse con 0<R_eq<R_noto, medie e display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-two-parallel-resistors-14",
+      "kind": "question",
+      "course": "C4",
+      "section": "Nodi e resistenze in parallelo",
+      "order": 20714,
+      "title": "Il guadagno si applica all’equivalente",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-parallel-resistors",
+      "difficulty": 3,
+      "prompt": "Due resistori ohmici positivi R₁,R₂, a temperatura fissata, sono collegati fra la stessa coppia di nodi. I fili sono ideali e il regime è stazionario. R_eq è la resistenza equivalente del parallelo. La tensione V fra i nodi è comune, mentre la corrente totale è la somma delle correnti nei due rami. D=aR_eq è continuo e adimensionale,a>0. A con R₁=2 Ω,R₂=2 Ω dà D=3. B ha R₂=6 Ω,D=6. Quanto vale R₁,B in Ω?",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "Ω",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento vale1 Ω, quindi a=3 Ω⁻¹. D=6 indica R_eq,B=2 Ω. Con R₂=6 Ω, l’inversa R₁=R_eqR₂/(R₂−R_eq) dà12/4=3 Ω. Il totale decodificato è minore del ramo noto."
+        },
+        {
+          "type": "formula",
+          "text": "a=3\\,\\Omega^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " R_{{\\rm eq},B}=2\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " R_{1,B}=\\frac{12}{4}\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " R_{1,B}=3\\,\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "Sei Ω copiando la lettura darebbero un parallelo3 Ω e D=9. Due Ω copia il totale e darebbe3/2 Ω. Trattare D=6 come equivalente renderebbe nullo il denominatore dell’inversa."
+        }
+      ],
+      "hints": [
+        "Decodifica R_eq e verifica R_eq<R₂ prima di calcolare il ramo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sei Ω copiando la lettura darebbero un parallelo3 Ω e D=9. Due Ω copia il totale e darebbe3/2 Ω. Trattare D=6 come equivalente renderebbe nullo il denominatore dell’inversa.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Tensione comune e correnti dei rami",
+        "Apertura di un ramo a tensione fissata",
+        "Inverse con 0<R_eq<R_noto, medie e display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-two-parallel-resistors-15",
+      "kind": "question",
+      "course": "C4",
+      "section": "Nodi e resistenze in parallelo",
+      "order": 20715,
+      "title": "Offset e ramo incognito",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-parallel-resistors",
+      "difficulty": 3,
+      "prompt": "Due resistori ohmici positivi R₁,R₂, a temperatura fissata, sono collegati fra la stessa coppia di nodi. I fili sono ideali e il regime è stazionario. R_eq è la resistenza equivalente del parallelo. La tensione V fra i nodi è comune, mentre la corrente totale è la somma delle correnti nei due rami. D=aR_eq+b è continuo e adimensionale. A: R₁=2 Ω,R₂=2 Ω,D=3. B: R₁=3 Ω,R₂=6 Ω,D=5. C: R₂=1 Ω,D=2. Quanto vale R₁,C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1 Ω",
+          "2 Ω",
+          "1/2 Ω",
+          "0 Ω",
+          "3 Ω"
+        ],
+        "value": "1 Ω"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le equivalenti note sono1 e2 Ω. a=(5−3)/(2−1)=2 Ω⁻¹ e b=1. D_C=2 significa R_eq,C=1/2 Ω. Con R₂,C=1 Ω, l’inversa dà R₁,C=(1/2)/(1−1/2) Ω=1 Ω."
+        },
+        {
+          "type": "formula",
+          "text": "a=2\\,\\Omega^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " R_{{\\rm eq},C}=\\frac12\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " R_{1,C}=1\\,\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "Due Ω darebbero R_eq=2/3 Ω e D=7/3, non due. Mezzo Ω darebbe R_eq=1/3 Ω e D=5/3. Zero viola R₁>0; tre Ω darebbero R_eq=3/4 Ω e D=5/2."
+        }
+      ],
+      "hints": [
+        "Rimuovi offset e guadagno prima di invertire la somma delle conduttanze.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due Ω darebbero R_eq=2/3 Ω e D=7/3, non due. Mezzo Ω darebbe R_eq=1/3 Ω e D=5/3. Zero viola R₁>0; tre Ω darebbero R_eq=3/4 Ω e D=5/2.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Tensione comune e correnti dei rami",
+        "Apertura di un ramo a tensione fissata",
+        "Inverse con 0<R_eq<R_noto, medie e display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-two-parallel-resistors-16",
+      "kind": "question",
+      "course": "C4",
+      "section": "Nodi e resistenze in parallelo",
+      "order": 20716,
+      "title": "Due rami uguali e una misura",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-parallel-resistors",
+      "difficulty": 3,
+      "prompt": "Due resistori ohmici positivi R₁,R₂, a temperatura fissata, sono collegati fra la stessa coppia di nodi. I fili sono ideali e il regime è stazionario. R_eq è la resistenza equivalente del parallelo. La tensione V fra i nodi è comune, mentre la corrente totale è la somma delle correnti nei due rami. Fra prove si impone R₁=R₂. Si misura R_eq=1 Ω. Quanto vale R₂?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2 Ω",
+          "1 Ω",
+          "1/2 Ω",
+          "−2 Ω",
+          "Infinite resistenze positive"
+        ],
+        "value": "2 Ω"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Con rami uguali la somma delle conduttanze è2/R₂ e quindi R_eq=R₂/2. La misura determina R₂=2 Ω e R₁=2 Ω. Il vincolo di uguaglianza da solo non fissa i valori, ma la resistenza equivalente misurata sì."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac1{R_{\\rm eq}}=\\frac2{R_2}"
+        },
+        {
+          "type": "formula",
+          "text": " R_2=2R_{\\rm eq}"
+        },
+        {
+          "type": "formula",
+          "text": " R_2=2\\,\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "Uno Ω copia l’equivalente; mezzo Ω applica un dimezzamento al contrario; −2 viola la passività. Non rimane una famiglia libera dopo una misura positiva indipendente."
+        }
+      ],
+      "hints": [
+        "Sostituisci l’uguaglianza dentro la relazione dei reciproci.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Uno Ω copia l’equivalente; mezzo Ω applica un dimezzamento al contrario; −2 viola la passività. Non rimane una famiglia libera dopo una misura positiva indipendente.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Tensione comune e correnti dei rami",
+        "Apertura di un ramo a tensione fissata",
+        "Inverse con 0<R_eq<R_noto, medie e display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "ca2cc267659f0b551de8fa8f66fa1ef3a72441451f9e3e991fe3991832ee6bac",
+      "name": "two-parallel-resistors-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTQ5MCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgo8dGl0bGUgaWQ9InRpdGxlIj5Ob2RpIGNvbXVuaSBlIGNvcnJlbnRlIGRpIHVuIHJhbW8gYXBlcnRvPC90aXRsZT48ZGVzYyBpZD0iZGVzYyI+RHVlIHJlc2lzdG9yaSBkYTIgb2htIGZyYSBnbGkgc3Rlc3NpIG5vZGkgZGFubm8gZXF1aXZhbGVudGUxIG9obS4gTmVsIGNhc28gZGlzdGludG8zIGU2IG9obSwgaWwgcmFtbzMgb2htIMOoIGFwZXJ0byBlIHJpbWFuZSBzb2x0YW50bzYgb2htIGFsbGEgc3Rlc3NhIHRlbnNpb25lLiBJIHRvdGFsaTEgZTIgb2htIGRpIGR1ZSBwcm92ZSBoYW5ubyBtZWRpYTMvMiBvaG0uPC9kZXNjPgo8cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjE0OTAiIHJ4PSIxMiIgZmlsbD0iI2Y4ZmFmYyIvPgo8ZyBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZmlsbD0iIzE0MjQzYSIgZm9udC1zaXplPSIyMCI+Cjx0ZXh0IHg9IjMyIiB5PSI0MiIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9ImJvbGQiPjEgwrcgRHVlIHJhbWkgZnJhIGdsaSBzdGVzc2kgbm9kaTwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjgyIiBmb250LXNpemU9IjE4Ij5MYSB0ZW5zaW9uZSDDqCBjb211bmUgOyBzaSBzb21tYW5vIGxlIGNvcnJlbnRpLjwvdGV4dD4KPGcgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMTQyNDNhIiBzdHJva2Utd2lkdGg9IjMiPjxwYXRoIGQ9Ik02MCAyMzBIMTMwVjE1NUgyNTBNMzkwIDE1NUg1MTBWMzA1SDM5ME0yNTAgMzA1SDEzMFYyMzBNNTEwIDIzMEg1NzAiLz48cmVjdCB4PSIyNTAiIHk9IjEzNSIgd2lkdGg9IjE0MCIgaGVpZ2h0PSI0MCIvPjxyZWN0IHg9IjI1MCIgeT0iMjg1IiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjQwIi8+PC9nPgo8Y2lyY2xlIGN4PSIxMzAiIGN5PSIyMzAiIHI9IjUiIGZpbGw9IiMxNjVhODciLz48Y2lyY2xlIGN4PSI1MTAiIGN5PSIyMzAiIHI9IjUiIGZpbGw9IiMxNjVhODciLz4KPHRleHQgeD0iOTEiIHk9IjI3MCI+QTwvdGV4dD48dGV4dCB4PSI1MjciIHk9IjI3MCI+QjwvdGV4dD48dGV4dCB4PSIyOTAiIHk9IjEyMCI+MiDOqTwvdGV4dD48dGV4dCB4PSIyOTAiIHk9IjM1NSI+MiDOqTwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjQwNSI+R19lcSA9IDEvMiBTICsgMS8yIFMgPSAxIFMuPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iNDQ3Ij5SX2VxID0gMSDOqS48L3RleHQ+CjxwYXRoIGQ9Ik0zMiA0ODhINjA4IiBzdHJva2U9IiM5YmFiYmMiLz4KPHRleHQgeD0iMzIiIHk9IjUzMyIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9ImJvbGQiPjIgwrcgQXByaWFtbyBzb2x0YW50byB1biByYW1vPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iNTc0IiBmb250LXNpemU9IjE4Ij5DYXNvIGRpc3RpbnRvOiAzIM6pIGUgNiDOqSA7IFZfQUIgcmVzdGEgY29zdGFudGUuPC90ZXh0Pgo8ZyBmaWxsPSJub25lIiBzdHJva2U9IiMxNDI0M2EiIHN0cm9rZS13aWR0aD0iMyI+PHBhdGggZD0iTTYwIDczMEgxMzBWNjU1SDE4ME0yNDAgNjU1SDI1ME0zOTAgNjU1SDUxMFY4MDVIMzkwTTI1MCA4MDVIMTMwVjczME01MTAgNzMwSDU3MCIvPjxyZWN0IHg9IjI1MCIgeT0iNjM1IiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjQwIi8+PHJlY3QgeD0iMjUwIiB5PSI3ODUiIHdpZHRoPSIxNDAiIGhlaWdodD0iNDAiLz48L2c+CjxwYXRoIGQ9Ik0xODAgNjU1TDIyMCA2MjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2I0NTMyOCIgc3Ryb2tlLXdpZHRoPSIzIi8+CjxjaXJjbGUgY3g9IjE4MCIgY3k9IjY1NSIgcj0iNCIgZmlsbD0iI2I0NTMyOCIvPjxjaXJjbGUgY3g9IjI0MCIgY3k9IjY1NSIgcj0iNCIgZmlsbD0iI2I0NTMyOCIvPgo8Y2lyY2xlIGN4PSIxMzAiIGN5PSI3MzAiIHI9IjUiIGZpbGw9IiMxNjVhODciLz48Y2lyY2xlIGN4PSI1MTAiIGN5PSI3MzAiIHI9IjUiIGZpbGw9IiMxNjVhODciLz4KPHRleHQgeD0iMjkwIiB5PSI2MjAiPjMgzqk8L3RleHQ+PHRleHQgeD0iMjkwIiB5PSI4NTUiPjYgzqk8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI5MDAiPlByaW1hOiBJX2kgPSBWX0FCIC8gKDIgzqkpLjwvdGV4dD48dGV4dCB4PSIzMiIgeT0iOTQyIj5Eb3BvOiBJX2YgPSBWX0FCIC8gKDYgzqkpIDsgSV9mL0lfaSA9IDEvMy48L3RleHQ+CjxwYXRoIGQ9Ik0zMiA5ODJINjA4IiBzdHJva2U9IiM5YmFiYmMiLz4KPHRleHQgeD0iMzIiIHk9IjEwMjciIGZvbnQtc2l6ZT0iMjUiIGZvbnQtd2VpZ2h0PSJib2xkIj4zIMK3IEVxdWl2YWxlbnRpIGRpIGR1ZSBwcm92ZSBkaXN0aW50ZTwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjEwNjciIGZvbnQtc2l6ZT0iMTgiPkE6IHJhbWkgMiDOqSBlIDIgzqkgOyBCOiByYW1pIDMgzqkgZSA2IM6pLjwvdGV4dD4KPHBhdGggZD0iTTE1MCAxMDk1VjEzNTAiIHN0cm9rZT0iIzE0MjQzYSIgc3Ryb2tlLXdpZHRoPSIyIi8+CjxyZWN0IHg9IjE1MCIgeT0iMTExNSIgd2lkdGg9IjE2MCIgaGVpZ2h0PSIzNCIgZmlsbD0iIzE2NWE4NyIvPgo8cmVjdCB4PSIxNTAiIHk9IjExOTUiIHdpZHRoPSIzMjAiIGhlaWdodD0iMzQiIGZpbGw9IiNiNDUzMjgiLz4KPHJlY3QgeD0iMTUwIiB5PSIxMjc1IiB3aWR0aD0iMjQwIiBoZWlnaHQ9IjM0IiBmaWxsPSIjMjg2NjRkIi8+Cjx0ZXh0IHg9IjUwIiB5PSIxMTQwIj5BPC90ZXh0Pjx0ZXh0IHg9IjMzMCIgeT0iMTE0MCI+MSDOqTwvdGV4dD48dGV4dCB4PSI1MCIgeT0iMTIyMCI+QjwvdGV4dD48dGV4dCB4PSI0OTAiIHk9IjEyMjAiPjIgzqk8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIxMzAwIj5NZWRpYTwvdGV4dD48dGV4dCB4PSI0MTAiIHk9IjEzMDAiPjMvMiDOqTwvdGV4dD48dGV4dCB4PSIxMjUiIHk9IjEzNDQiPjA8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIxNDAwIiBmb250LXNpemU9IjE4Ij5MZSBiYXJyZSBjb25kaXZpZG9ubyBvcmlnaW5lIGUgc2NhbGEgaW4gb2htLjwvdGV4dD48dGV4dCB4PSIzMiIgeT0iMTQ0MCIgZm9udC1zaXplPSIxOCI+SWwgcGFyYWxsZWxvIGFpIGRhdGkgbWVkaSBkYXJlYmJlIDIwLzEzIM6pLjwvdGV4dD4KPC9nPjwvc3ZnPgo="
+    }
+  ]
+}

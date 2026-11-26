@@ -4,6 +4,7 @@ from pathlib import Path
 
 from .pipeline import digest, sha, git_bytes
 from .recovery import recover
+from .acceptance_withdrawals import attach_withdrawal_audit,assert_unchanged_acceptance
 from .batches import load_registry,validate_batch,load_activity_registry,validate_activity_batch
 
 
@@ -22,6 +23,9 @@ def apply_activity_evidence(repo,app,activities):
             sources[key]=files[identity][key]
             if digest(sources[key])!=entry['sourceSha256']:raise ValueError('Activity source digest mismatch')
     batches=[validate_activity_batch(spec,sources,app) for spec in specs]
+    # A later verifier must not reopen an earlier withdrawal before credit is compiled.
+    for batch in batches:
+        assert_unchanged_acceptance(batch.get('acceptanceWithdrawals'),batch['spec'],set(batch['spec']['activityIds']),app)
     for batch in batches:
         for result in batch['records']:
             entry=by_id[result['id']]
@@ -35,6 +39,7 @@ def apply_activity_evidence(repo,app,activities):
               publishedEditionCalculatorFreeReview='FAIL' if result.get('failedPublishedEdition') else 'PASS_AI',
               evidence=[{'kind':'independent_activity_revision_review' if draft else 'independent_unchanged_activity_review','batchId':batch['spec']['id'],
                          'path':batch['path'],'sha256':batch['sha256'],'sourceSha256':result['sourceSha256']}])
+            attach_withdrawal_audit(entry,batch,result)
             if draft:
                 entry['evidence'][0].update(candidateSha256=result['candidateSha256'],reviewedSignature=result['reviewedSignature'],
                     candidateVersion=result['candidateVersion'],baseVersion=result['baseVersion'],revision=batch['revision'])
@@ -64,6 +69,8 @@ def apply_evidence(repo, app, source_ref, entries, questions):
             "path": "editorial/recovery/selection-199.json", "sha256": sha(recovery_file.read_bytes()),
             "method": result["method"], "limits": "Numeric probes or AI conceptual review; remaining chain NOT_RUN"}]
     batches=[validate_batch(spec,app) for spec in load_registry(app/"editorial/batches/registry.json")]
+    for batch in batches:
+        assert_unchanged_acceptance(batch.get("acceptanceWithdrawals"),batch["spec"],set(batch["spec"]["questionIds"]),app)
     revisions={}
     for batch in batches:
         candidates={r["id"]:r for r in batch["package"]["records"]}
@@ -85,6 +92,7 @@ def apply_evidence(repo, app, source_ref, entries, questions):
                 "sciencePath":paths["science"],"scienceSha256":sums["science"],"integrationPath":paths["integration"],
                 "integrationSha256":sums["integration"],"browserPath":paths["browser"],"browserSha256":sums["browser"],
                 "assetChecksums":result["assetChecksums"]}]
+            attach_withdrawal_audit(entry,batch,result)
     return {"recoveredTechnicalQuestionCount":199,"revisedDraftCount":sum(len(b["records"]) for b in batches),
         "recoveredRequestedPro100":"NOT_IDENTIFIED","newlyPublishedQuestionCount":0,
         "completedBatchIds":[b["spec"]["id"] for b in batches],

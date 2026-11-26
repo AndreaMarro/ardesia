@@ -1,0 +1,568 @@
+{
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "AR-u6-capacitor-charge-01",
+      "sourceSha256": "2361d60c43b8a22f6be4a18966a984e32969f148c7d561d4f1ee10862a151abf",
+      "candidateSha256": "01a7b043c4a560c457193396e941c04044961d4c82ef4b5ebdcd0e6ef414744a",
+      "reviewedSignature": "cf1c9c7df677c2ccef5d08020c36d4a2cf1848830733270005b65a94eebfc692",
+      "assetChecksums": {
+        "capacitor-charge-progressive.svg": "b9b26a924e85ce53cf8d03c802da100e527a6180ff5a7c984896d5a9850ab132"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "6",
+      "dimension": {
+        "[current]": "1",
+        "[time]": "1"
+      },
+      "manualArithmetic": "Per condensatore lineare Q=CV. μF·V=μC, dunque 2·3=6 μC su ciascuna armatura in modulo. Le cariche sono +Q e −Q: la carica netta dell’intero condensatore ideale resta zero, non 12 μC.",
+      "physicalAssumptions": "Condensatore lineare ideale in stato elettrostatico, C,V finiti positivi; Q è modulo su una sola armatura, non somma dei moduli né carica netta. V imposta da generatore per ciascuna preparazione, non transitorio. Nel16 relazione C=(2/3 μF/V)V solo fra preparazioni; denominatori non nulli e ramo positivo.",
+      "distractors": "6 μC è il modulo su una piastra; 12 somma i moduli e zero è invece la carica netta. I prefissi non introducono milli aggiuntivi.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Per condensatore lineare Q=CV. μF·V=μC, dunque 2·3=6 μC su ciascuna armatura in modulo. Le cariche sono +Q e −Q: la carica netta dell’intero condensatore ideale resta zero, non 12 μC.",
+      "scientificAssetReview": "SVG completo e PNG indipendente 640×1490 letti. Sei simboli per piastra, ciascuno 1 μC esplicito, non sei particelle elementari: netta zero e moduli 6 μC. Curva Q(V) per C=2 μF, x=150+100V,y=850−30Q, segmento e punto (250,790)=(1 V,2 μC), origine come limite. Barre 300/250/275 per 6/5/11/2 μC, origine 150 e scala 50 coordinate/μC; zeri e label leggibili.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "circuit_capacitor_review_models.py": "f27c33334a9349c8941704334fd73761fe9bf0e4209472ea74ae5bb4a48081b4"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-capacitor-charge-02",
+      "sourceSha256": "d19c5c0b89f0b8c4864fae443d62e17276d512f2c2f1b7562b4083e9f7208879",
+      "candidateSha256": "88d55e34a30427172563060a3824122b0b97fe2a410d81e608631f7967dbcd25",
+      "reviewedSignature": "1034ef7306f4c3641df0d559114ecdb62e57159afb25c0117764270b3308bca0",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "C",
+      "dimension": {},
+      "manualArithmetic": "La carica si misura in coulomb, C, o suoi multipli/sottomultipli; qui μC. Da Q=CV segue F·V=C. Nella primaria le alternative non erano aperte; nella successiva lettura tutte e cinque sono state confrontate individualmente.",
+      "physicalAssumptions": "Condensatore lineare ideale in stato elettrostatico, C,V finiti positivi; Q è modulo su una sola armatura, non somma dei moduli né carica netta. V imposta da generatore per ciascuna preparazione, non transitorio. Nel16 relazione C=(2/3 μF/V)V solo fra preparazioni; denominatori non nulli e ramo positivo.",
+      "distractors": "Solo C è carica: F capacità, V tensione, J energia e A corrente. Tutte le cinque alternative lette nella successiva review.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. La carica si misura in coulomb, C, o suoi multipli/sottomultipli; qui μC. Da Q=CV segue F·V=C. Nella primaria le alternative non erano aperte; nella successiva lettura tutte e cinque sono state confrontate individualmente.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "circuit_capacitor_review_models.py": "f27c33334a9349c8941704334fd73761fe9bf0e4209472ea74ae5bb4a48081b4"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-capacitor-charge-03",
+      "sourceSha256": "1c0cd88411356328e76b8c313c37d030c29c695aaa101ec62b189fc0724f9028",
+      "candidateSha256": "d155d6ec49ae4fd672e60814f255c3b87dbeaa908866c82fb02283a0e7c2dce4",
+      "reviewedSignature": "763de6946f1f5b9f6f05defecf07c391d6ed6bbd59baed8fa1a534cfe239b4d4",
+      "assetChecksums": {
+        "capacitor-charge-progressive.svg": "b9b26a924e85ce53cf8d03c802da100e527a6180ff5a7c984896d5a9850ab132"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Q = C V",
+      "dimension": {},
+      "manualArithmetic": "La capacità è il coefficiente C=Q/V per armature con moduli uguali e opposti; isolando la carica positiva in modulo si ottiene Q=CV, con C,V>0. Non occorre un ulteriore fattore due perché si chiede il modulo su ciascuna armatura e non la somma dei moduli.",
+      "physicalAssumptions": "Condensatore lineare ideale in stato elettrostatico, C,V finiti positivi; Q è modulo su una sola armatura, non somma dei moduli né carica netta. V imposta da generatore per ciascuna preparazione, non transitorio. Nel16 relazione C=(2/3 μF/V)V solo fra preparazioni; denominatori non nulli e ramo positivo.",
+      "distractors": "Q=CV isola il modulo su una armatura. C/V e V/C cambiano dimensione; 2CV conta due moduli; CV²/2 è energia, non carica.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. La capacità è il coefficiente C=Q/V per armature con moduli uguali e opposti; isolando la carica positiva in modulo si ottiene Q=CV, con C,V>0. Non occorre un ulteriore fattore due perché si chiede il modulo su ciascuna armatura e non la somma dei moduli.",
+      "scientificAssetReview": "SVG completo e PNG indipendente 640×1490 letti. Sei simboli per piastra, ciascuno 1 μC esplicito, non sei particelle elementari: netta zero e moduli 6 μC. Curva Q(V) per C=2 μF, x=150+100V,y=850−30Q, segmento e punto (250,790)=(1 V,2 μC), origine come limite. Barre 300/250/275 per 6/5/11/2 μC, origine 150 e scala 50 coordinate/μC; zeri e label leggibili.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "circuit_capacitor_review_models.py": "f27c33334a9349c8941704334fd73761fe9bf0e4209472ea74ae5bb4a48081b4"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-capacitor-charge-04",
+      "sourceSha256": "5c66f12cf6b3faf04e0fcbad6fa0d8813dc52cfa1ac9ddaab903e891a222049c",
+      "candidateSha256": "6cb34c8a42aa58554b22fd75eac78aa56743be1ab7ab13ff0c99afd268c14729",
+      "reviewedSignature": "fe9ece51cb3309500713602bdee4000cc17a348923b4b90396093c7ae5e8e0de",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Da 6 μC a 3 μC",
+      "dimension": {
+        "[current]": "1",
+        "[time]": "1"
+      },
+      "manualArithmetic": "V resta 3 V e C dimezza da 2 a 1 μF. Q passa da 6 a 3 μC, una dipendenza lineare. A tensione mantenuta, il generatore può scambiare carica; non si assume isolamento delle armature.",
+      "physicalAssumptions": "Condensatore lineare ideale in stato elettrostatico, C,V finiti positivi; Q è modulo su una sola armatura, non somma dei moduli né carica netta. V imposta da generatore per ciascuna preparazione, non transitorio. Nel16 relazione C=(2/3 μF/V)V solo fra preparazioni; denominatori non nulli e ramo positivo.",
+      "distractors": "A V=3 V fissata, C dimezzata porta Q da 6 a 3 μC. Dodici inverte, sei ignora, 3/2 dimezza due volte, uno copia C_B.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. V resta 3 V e C dimezza da 2 a 1 μF. Q passa da 6 a 3 μC, una dipendenza lineare. A tensione mantenuta, il generatore può scambiare carica; non si assume isolamento delle armature.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "circuit_capacitor_review_models.py": "f27c33334a9349c8941704334fd73761fe9bf0e4209472ea74ae5bb4a48081b4"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-capacitor-charge-05",
+      "sourceSha256": "2ff2cea069338a526c5952b9a62abda39a3c856b3d51a3597b7f96c40c076cce",
+      "candidateSha256": "00b178ea06cf31c844000b84205e51e1d574cbf65d3395158b48ede1b8174ce2",
+      "reviewedSignature": "f3ef7819ce3062732c4c036c61b03717854d1adea782a144a32ee2e805054628",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[current]": "2",
+        "[time]": "4",
+        "[mass]": "-1",
+        "[length]": "-2"
+      },
+      "manualArithmetic": "C=Q/V=6 μC/(3 V)=2 μF. Divisione per V>0 finita. La dimensione è C/V=F e non energia.",
+      "physicalAssumptions": "Condensatore lineare ideale in stato elettrostatico, C,V finiti positivi; Q è modulo su una sola armatura, non somma dei moduli né carica netta. V imposta da generatore per ciascuna preparazione, non transitorio. Nel16 relazione C=(2/3 μF/V)V solo fra preparazioni; denominatori non nulli e ramo positivo.",
+      "distractors": "6 μC/3 V=2 μF. QV è energia; V/Q è capacità inversa. Reinserendo 2 μF si recuperano 6 μC.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. C=Q/V=6 μC/(3 V)=2 μF. Divisione per V>0 finita. La dimensione è C/V=F e non energia.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "circuit_capacitor_review_models.py": "f27c33334a9349c8941704334fd73761fe9bf0e4209472ea74ae5bb4a48081b4"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-capacitor-charge-06",
+      "sourceSha256": "4d0f7e763b36b06f8db7c50c89746f6c930efed0a0cb6639c666d15429f42d89",
+      "candidateSha256": "86d905e6da1c48b670bc4253c60a2b101cf58e343badb188a98079159798c6bf",
+      "reviewedSignature": "2c6cfbec5d141d442bf9f6c396472485611ff9f2aff53995d68333fa1dba491f",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "3",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3",
+        "[current]": "-1"
+      },
+      "manualArithmetic": "V=Q/C=6 μC/(2 μF)=3 V. Si usa il modulo della differenza di potenziale nel ramo positivo assegnato; il segno della singola armatura non cambia il valore richiesto.",
+      "physicalAssumptions": "Condensatore lineare ideale in stato elettrostatico, C,V finiti positivi; Q è modulo su una sola armatura, non somma dei moduli né carica netta. V imposta da generatore per ciascuna preparazione, non transitorio. Nel16 relazione C=(2/3 μF/V)V solo fra preparazioni; denominatori non nulli e ramo positivo.",
+      "distractors": "6 μC/2 μF=3 V. Il segno delle armature non altera il modulo richiesto; il problema fissa V>0.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. V=Q/C=6 μC/(2 μF)=3 V. Si usa il modulo della differenza di potenziale nel ramo positivo assegnato; il segno della singola armatura non cambia il valore richiesto.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "circuit_capacitor_review_models.py": "f27c33334a9349c8941704334fd73761fe9bf0e4209472ea74ae5bb4a48081b4"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-capacitor-charge-07",
+      "sourceSha256": "247f6f8f4393669127256418084478b07662764e055e0861908cae580326419e",
+      "candidateSha256": "a46263a30769cca68e7c3c04624a2fd7a52f3e3909e407e8d7414d3b0487793d",
+      "reviewedSignature": "b088b1cc0ef92823e12101f7ff8dcfdc60c10b61fbbcfba183438d361c0c3e32",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1/3",
+      "dimension": {},
+      "manualArithmetic": "C resta 2 μF. Q_A=6 μC e Q_B=2 μC. Rapporto Q_B/Q_A=2/6=1/3, uguale al rapporto delle tensioni.",
+      "physicalAssumptions": "Condensatore lineare ideale in stato elettrostatico, C,V finiti positivi; Q è modulo su una sola armatura, non somma dei moduli né carica netta. V imposta da generatore per ciascuna preparazione, non transitorio. Nel16 relazione C=(2/3 μF/V)V solo fra preparazioni; denominatori non nulli e ramo positivo.",
+      "distractors": "1/3 è il rapporto; 3 è reciproco, 1/9 e 9 introducono un quadrato e uno ignora il cambiamento.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. C resta 2 μF. Q_A=6 μC e Q_B=2 μC. Rapporto Q_B/Q_A=2/6=1/3, uguale al rapporto delle tensioni.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "circuit_capacitor_review_models.py": "f27c33334a9349c8941704334fd73761fe9bf0e4209472ea74ae5bb4a48081b4"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-capacitor-charge-08",
+      "sourceSha256": "f4aa5c8e05782ddd2c9faf00f269e4d6ebee8603d61dcb392418f6f10a9ea7d4",
+      "candidateSha256": "2dbde197c0ce09334e9d362b5958193b08f8702b4ae720fa9298896daaeb71b5",
+      "reviewedSignature": "20e81c45e1d489b2606dc03f9933bee2e286422585ca26446d41d026ae31fdb9",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "6",
+      "dimension": {
+        "[current]": "1",
+        "[time]": "1"
+      },
+      "manualArithmetic": "Carica corretta 6 μC; proposta 12 μC. Scarto proposta−corretto=+6 μC. Il raddoppio errato può confondere il modulo di una singola armatura con la somma dei due moduli, che non è la quantità richiesta.",
+      "physicalAssumptions": "Condensatore lineare ideale in stato elettrostatico, C,V finiti positivi; Q è modulo su una sola armatura, non somma dei moduli né carica netta. V imposta da generatore per ciascuna preparazione, non transitorio. Nel16 relazione C=(2/3 μF/V)V solo fra preparazioni; denominatori non nulli e ramo positivo.",
+      "distractors": "Scarto +6 μC. −6 scambia ordine; 2 è rapporto puro; 12 copia proposta; zero accetta errore.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Carica corretta 6 μC; proposta 12 μC. Scarto proposta−corretto=+6 μC. Il raddoppio errato può confondere il modulo di una singola armatura con la somma dei due moduli, che non è la quantità richiesta.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "circuit_capacitor_review_models.py": "f27c33334a9349c8941704334fd73761fe9bf0e4209472ea74ae5bb4a48081b4"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-capacitor-charge-09",
+      "sourceSha256": "da881760b354abb3948d68e591b41be9200b857402faff608a3aa86fdebf5e37",
+      "candidateSha256": "2f29d63355c3fdcbd3e3f5374523a6543e09dc3b6eea3fdd6ebe1295a0af432c",
+      "reviewedSignature": "a3eb4c1d934bc560b1e72e48064d81f7fc2a7771283c3260f0125ed637f434d0",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "C = Q / V",
+      "dimension": {
+        "[current]": "2",
+        "[time]": "4",
+        "[mass]": "-1",
+        "[length]": "-2"
+      },
+      "manualArithmetic": "Da Q=CV si divide per V>0 e si ricava C=Q/V. Le unità μC/V danno μF. Il denominatore nullo è escluso; con V=0 non si inferisce C dal solo Q=0.",
+      "physicalAssumptions": "Condensatore lineare ideale in stato elettrostatico, C,V finiti positivi; Q è modulo su una sola armatura, non somma dei moduli né carica netta. V imposta da generatore per ciascuna preparazione, non transitorio. Nel16 relazione C=(2/3 μF/V)V solo fra preparazioni; denominatori non nulli e ramo positivo.",
+      "distractors": "Q/V ha F; QV ha J, V/Q ha F⁻¹, 2Q/V² e Q/V² hanno C/V². V è positivo e non nullo.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Da Q=CV si divide per V>0 e si ricava C=Q/V. Le unità μC/V danno μF. Il denominatore nullo è escluso; con V=0 non si inferisce C dal solo Q=0.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "circuit_capacitor_review_models.py": "f27c33334a9349c8941704334fd73761fe9bf0e4209472ea74ae5bb4a48081b4"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-capacitor-charge-10",
+      "sourceSha256": "64405a173a3d751e6487687f01c196d31cd7b99729c348dac3b01549baf6157c",
+      "candidateSha256": "826064764779a7d34cd9a34ee711839a4ccaef3e352d5a12b2a18bd7b1ca914e",
+      "reviewedSignature": "78c8b82d9bc63c9421300117e73a7d729a04cd76bde6c7acd9ff2fff6e6efa98",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "κ₁ κ₂",
+      "dimension": {},
+      "manualArithmetic": "Sostituendo C_B=κ₁C e V_B=κ₂V si trova Q_B=κ₁κ₂CV. Rapporto Q_B/Q_A=κ₁κ₂, con tutti i dati finiti positivi. Sono confronti fra preparazioni, non una variazione obbligata nello stesso condensatore isolato.",
+      "physicalAssumptions": "Condensatore lineare ideale in stato elettrostatico, C,V finiti positivi; Q è modulo su una sola armatura, non somma dei moduli né carica netta. V imposta da generatore per ciascuna preparazione, non transitorio. Nel16 relazione C=(2/3 μF/V)V solo fra preparazioni; denominatori non nulli e ramo positivo.",
+      "distractors": "κ₁κ₂ segue il prodotto. Quozienti invertono un ingresso, il quadrato di κ₂ aggiunge un fattore e la somma darebbe due per prove identiche.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Sostituendo C_B=κ₁C e V_B=κ₂V si trova Q_B=κ₁κ₂CV. Rapporto Q_B/Q_A=κ₁κ₂, con tutti i dati finiti positivi. Sono confronti fra preparazioni, non una variazione obbligata nello stesso condensatore isolato.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "circuit_capacitor_review_models.py": "f27c33334a9349c8941704334fd73761fe9bf0e4209472ea74ae5bb4a48081b4"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-capacitor-charge-11",
+      "sourceSha256": "cb24e7d725e2a426b4c6595c29ac73ce36e587aa704995bc5cf806b9754114d4",
+      "candidateSha256": "d14877a2dc4d8e8eee822d2e754607c2d5589ede29485bcb131856d620749e16",
+      "reviewedSignature": "54b5730201448a25be1cc175313d7c890ac34b104be98af5c79b07c456779ee4",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "5/6",
+      "dimension": {},
+      "manualArithmetic": "A: 2·3=6 μC. B: 1·5=5 μC. Rapporto 5/6: la tensione aumenta ma la capacità si dimezza, perciò la carica finale è leggermente minore.",
+      "physicalAssumptions": "Condensatore lineare ideale in stato elettrostatico, C,V finiti positivi; Q è modulo su una sola armatura, non somma dei moduli né carica netta. V imposta da generatore per ciascuna preparazione, non transitorio. Nel16 relazione C=(2/3 μF/V)V solo fra preparazioni; denominatori non nulli e ramo positivo.",
+      "distractors": "5/6 confronta Q_B=5 con Q_A=6 μC. 6/5 è reciproco, 5/3 ignora il cambio di capacità, 1/2 segue solo C, uno presume compensazione.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. A: 2·3=6 μC. B: 1·5=5 μC. Rapporto 5/6: la tensione aumenta ma la capacità si dimezza, perciò la carica finale è leggermente minore.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "circuit_capacitor_review_models.py": "f27c33334a9349c8941704334fd73761fe9bf0e4209472ea74ae5bb4a48081b4"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-capacitor-charge-12",
+      "sourceSha256": "fa4636b85a9f1b9c2dfe2023826a701b0c76807f18f944dab15991a388a5bbd5",
+      "candidateSha256": "2f2fcdfdc0ab372dbba599a4533f592d8185fd9f6a258d2e54492b0c3db4bd41",
+      "reviewedSignature": "7eef25a32a8b62e6722a6c5aaeb7408765273d26f36b3c572d700bc5c6c00de3",
+      "assetChecksums": {
+        "capacitor-charge-progressive.svg": "b9b26a924e85ce53cf8d03c802da100e527a6180ff5a7c984896d5a9850ab132"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "11/2",
+      "dimension": {
+        "[current]": "1",
+        "[time]": "1"
+      },
+      "manualArithmetic": "Media delle uscite (6+5)/2=11/2 μC. Ai dati medi C=3/2 μF e V=4 V il prodotto sarebbe 6 μC, diverso di 1/2 μC. La media del prodotto non è in generale il prodotto delle medie.",
+      "physicalAssumptions": "Condensatore lineare ideale in stato elettrostatico, C,V finiti positivi; Q è modulo su una sola armatura, non somma dei moduli né carica netta. V imposta da generatore per ciascuna preparazione, non transitorio. Nel16 relazione C=(2/3 μF/V)V solo fra preparazioni; denominatori non nulli e ramo positivo.",
+      "distractors": "Media 11/2 μC. Sei μC è il prodotto dei dati medi, undici la somma, mezzo la semidifferenza, zero la confusione con carica netta.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Media delle uscite (6+5)/2=11/2 μC. Ai dati medi C=3/2 μF e V=4 V il prodotto sarebbe 6 μC, diverso di 1/2 μC. La media del prodotto non è in generale il prodotto delle medie.",
+      "scientificAssetReview": "SVG completo e PNG indipendente 640×1490 letti. Sei simboli per piastra, ciascuno 1 μC esplicito, non sei particelle elementari: netta zero e moduli 6 μC. Curva Q(V) per C=2 μF, x=150+100V,y=850−30Q, segmento e punto (250,790)=(1 V,2 μC), origine come limite. Barre 300/250/275 per 6/5/11/2 μC, origine 150 e scala 50 coordinate/μC; zeri e label leggibili.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "circuit_capacitor_review_models.py": "f27c33334a9349c8941704334fd73761fe9bf0e4209472ea74ae5bb4a48081b4"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-capacitor-charge-13",
+      "sourceSha256": "597f35810638c67e4e69697793341322165dc2ef90c717c69f53feaf7190d5ac",
+      "candidateSha256": "981865426725214e624917266e29017efb18ea6acba496e8acaebd9a75d555d3",
+      "reviewedSignature": "95aaa4f757753ae56857a2d0ddeca69bb74f82d3b79e99285e5b3e485be3b4c5",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "5/3",
+      "dimension": {},
+      "manualArithmetic": "Bersaglio Q_B=(5/6)·6=5 μC. Con C_B=1 μF, V_B=5 V. Rapporto V_B/V_A=5/3; tutti i parametri restano nel ramo positivo.",
+      "physicalAssumptions": "Condensatore lineare ideale in stato elettrostatico, C,V finiti positivi; Q è modulo su una sola armatura, non somma dei moduli né carica netta. V imposta da generatore per ciascuna preparazione, non transitorio. Nel16 relazione C=(2/3 μF/V)V solo fra preparazioni; denominatori non nulli e ramo positivo.",
+      "distractors": "B deve avere Q=5 μC e C=1 μF, quindi V=5 V e rapporto 5/3. 3/5 inverte; 5/6 copia il rapporto delle cariche; mezzo e due non ricostruiscono il bersaglio.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Bersaglio Q_B=(5/6)·6=5 μC. Con C_B=1 μF, V_B=5 V. Rapporto V_B/V_A=5/3; tutti i parametri restano nel ramo positivo.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "circuit_capacitor_review_models.py": "f27c33334a9349c8941704334fd73761fe9bf0e4209472ea74ae5bb4a48081b4"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-capacitor-charge-14",
+      "sourceSha256": "8f6c910fbcf7a2ea2bf25e0ef41688562553d2d2aa22478fe0bea8b65c1a890b",
+      "candidateSha256": "13a06243b64b3e4b62e9555b26a1ea17f0e072e64fcdd0faa8e44d649c741f56",
+      "reviewedSignature": "4fe046e6cb697f49af855f7dcf768047400088edbed62a2cde5ce579956f89cb",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1",
+      "dimension": {
+        "[current]": "2",
+        "[time]": "4",
+        "[mass]": "-1",
+        "[length]": "-2"
+      },
+      "manualArithmetic": "Q_A=6 μC con lettura 18 dà a_cal=3 μC⁻¹ per display adimensionale. Lettura 15 restituisce Q=5 μC. Con V=5 V, C=1 μF. Non dividere direttamente la lettura strumentale per la tensione.",
+      "physicalAssumptions": "Condensatore lineare ideale in stato elettrostatico, C,V finiti positivi; Q è modulo su una sola armatura, non somma dei moduli né carica netta. V imposta da generatore per ciascuna preparazione, non transitorio. Nel16 relazione C=(2/3 μF/V)V solo fra preparazioni; denominatori non nulli e ramo positivo.",
+      "distractors": "Guadagno 3 μC⁻¹, lettura 15 dà Q=5 μC, V=5 V dà C=1 μF. La controprova finale 1/5 μF produce Q=1 μC, non 5: riletta 035031b9 dopo eliminazione dell’attribuzione falsa al reciproco.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Q_A=6 μC con lettura 18 dà a_cal=3 μC⁻¹ per display adimensionale. Lettura 15 restituisce Q=5 μC. Con V=5 V, C=1 μF. Non dividere direttamente la lettura strumentale per la tensione.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "circuit_capacitor_review_models.py": "f27c33334a9349c8941704334fd73761fe9bf0e4209472ea74ae5bb4a48081b4"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-capacitor-charge-15",
+      "sourceSha256": "16573ec33e8a78bd5e0c5746f09aed724fc4d5b40b96f65d905f4f3b15dcf862",
+      "candidateSha256": "715f66b4be084ccb4be7d923f6ff449e626351edc713e6207308bc1364cdf03d",
+      "reviewedSignature": "303ba2423b344bb0d49caa3a9681ad73ca8cb78e330fe3dac9a62e986bd82ad6",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4",
+      "dimension": {
+        "[current]": "2",
+        "[time]": "4",
+        "[mass]": "-1",
+        "[length]": "-2"
+      },
+      "manualArithmetic": "Riferimenti Q_A=6 e Q_B=5 μC, letture 13,11: a_cal=2 μC⁻¹ e b_cal=1. Lettura 17 restituisce Q_C=(17−1)/2=8 μC. Con V_C=2 V, C_C=4 μF.",
+      "physicalAssumptions": "Condensatore lineare ideale in stato elettrostatico, C,V finiti positivi; Q è modulo su una sola armatura, non somma dei moduli né carica netta. V imposta da generatore per ciascuna preparazione, non transitorio. Nel16 relazione C=(2/3 μF/V)V solo fra preparazioni; denominatori non nulli e ramo positivo.",
+      "distractors": "Guadagno 2 μC⁻¹, offset 1, Q_C=8 μC e C_C=4 μF. 17/4 μF omette offset e dà D=18; 8 μF dà D=33; 16 μF dà D=65.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Riferimenti Q_A=6 e Q_B=5 μC, letture 13,11: a_cal=2 μC⁻¹ e b_cal=1. Lettura 17 restituisce Q_C=(17−1)/2=8 μC. Con V_C=2 V, C_C=4 μF.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "circuit_capacitor_review_models.py": "f27c33334a9349c8941704334fd73761fe9bf0e4209472ea74ae5bb4a48081b4"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-capacitor-charge-16",
+      "sourceSha256": "64c01b225bf5abca10b2e1749cbcb2efc2009e5927d17570bd773af642778d29",
+      "candidateSha256": "cb4b0f59dd39087075f879f027e48505ff56811ba0b07d104f4b4873576c00d2",
+      "reviewedSignature": "2d10a17edecba29044aa10bc1a709814e38ecfb8e3467c761538bd623ae427b2",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "3",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3",
+        "[current]": "-1"
+      },
+      "manualArithmetic": "Il vincolo numerico C[μF]=(2/3)V[V] ha coefficiente fisico (2/3) μF/V. Inserendo in Q=CV si ottiene 6=(2/3)V² per i valori numerici dichiarati. Quindi V²=9 e il ramo V>0 seleziona 3 V; C=2 μF. L’altra radice non appartiene al dominio positivo.",
+      "physicalAssumptions": "Condensatore lineare ideale in stato elettrostatico, C,V finiti positivi; Q è modulo su una sola armatura, non somma dei moduli né carica netta. V imposta da generatore per ciascuna preparazione, non transitorio. Nel16 relazione C=(2/3 μF/V)V solo fra preparazioni; denominatori non nulli e ramo positivo.",
+      "distractors": "v²=9 con ramo positivo v=3; C=2 μF. −3 darebbe capacità negativa nel vincolo, nove copia il quadrato, due darebbe Q=8/3 μC; misura non ridondante.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Il vincolo numerico C[μF]=(2/3)V[V] ha coefficiente fisico (2/3) μF/V. Inserendo in Q=CV si ottiene 6=(2/3)V² per i valori numerici dichiarati. Quindi V²=9 e il ramo V>0 seleziona 3 V; C=2 μF. L’altra radice non appartiene al dominio positivo.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "circuit_capacitor_review_models.py": "f27c33334a9349c8941704334fd73761fe9bf0e4209472ea74ae5bb4a48081b4"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "6cb71e14341818f44d31b28482b388293e186e57a275c5da246b0ad8dfe60ec8",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "publicationAction": "NONE",
+  "reviewedCandidateCommit": "035031b9d0c968b9510ccf8275c1fcb0722cf14d",
+  "packageSha256": "9eae49d463d096eef23e4412bdb28dc375d5896bc6a4bedcc58f9ae8e93463cf",
+  "bindingsSha256": "cd9e73e84e570c9dbdcce97c205f37aada963dc6982c00b9ed713390b9018c4e",
+  "sourceFirstPrimarySha256": "4c49ff1e2020d073891686e5289e263561531a9b81e84e2f0fa9c8648dc90f4b",
+  "source": {
+    "commit": "5cfbdcb055ba3ba136f97fb56e997f06e6cf3605",
+    "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U6-03.json",
+    "reference": "Primaria prompt-only di tutti80 originali U6-03 215–219 congelata prima di qualunque candidato; modelli indipendenti preparati ed eseguiti prima delle chiavi. Successivamente letti individualmente tutti16 prompt/opzioni/blocchi/formule/hint/error/metadati del lotto finale, XML e nuovo PNG nativo completo. Rettifiche B rilette prima delle firme. Nessun modulo autore importato; lezioni C4-L03/L04/L07 e C3-L03/L04 reali rilette per i casi autonomi. UI prodotto e human NOT_RUN; confronto ROOT integrato PENDING."
+  }
+}

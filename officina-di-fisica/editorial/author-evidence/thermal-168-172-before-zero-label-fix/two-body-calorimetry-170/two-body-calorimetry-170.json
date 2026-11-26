@@ -1,0 +1,1130 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u5-two-body-calorimetry-01",
+      "kind": "question",
+      "course": "C3",
+      "section": "Equilibrio di due capacità termiche",
+      "order": 17001,
+      "title": "L’energia persa dal caldo riscalda il freddo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-body-calorimetry",
+      "difficulty": 1,
+      "prompt": "Due corpi formano un sistema chiuso e isolato dall’ambiente. Il primo parte da 80 °C, il secondo da 20 °C; le loro capacità termiche complessive C₁,C₂>0 in J/K sono costanti. Non avvengono cambiamenti di fase e si trascurano recipiente e lavoro meccanico. Si attende l’equilibrio comune. θ_f indica il valore numerico della lettura finale in°C, compreso strettamente fra 20 e 80. Le differenze numeriche Celsius hanno ampiezza uguale alle differenze in kelvin. I rapporti fra θ_f richiesti sono di letture Celsius, non di temperature assolute. C₁=C₂=1 J/K. Qual è la lettura finale in°C?",
+      "answer": {
+        "type": "numeric",
+        "value": 50,
+        "unit": "°C",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le capacità sono uguali, quindi la stessa energia trasferita produce intervalli termici uguali e opposti. Il caldo scende da 80 a 50 °C e il freddo sale da 20 a 50 °C: entrambi cambiano di 30 K. Il caldo cede 30 J e il freddo ne riceve 30, senza scambio netto con l’ambiente."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/f789653a2ab4db097a6e3245c99817e88c7697454d0fb130379f187076c8aa02",
+          "text": "Il primo schema descrive il trasferimento di 30 J fra corpi con C₁=C₂=1 J/K: da 80/20 °C arrivano entrambi a 50 °C. Il secondo pannello usa capacità 2 e 3 J/K:72 J escono dal caldo e 72 J entrano nel freddo, con intervalli 36 e 24 K. Il terzo confronta le letture Celsius 50 e 44 e la loro media 47; lo zero della scala è esplicito e non rappresenta lo zero assoluto."
+        },
+        {
+          "type": "formula",
+          "text": "C_1(80-\\theta_f)=C_2(\\theta_f-20)"
+        },
+        {
+          "type": "formula",
+          "text": " 80-\\theta_f=\\theta_f-20"
+        },
+        {
+          "type": "formula",
+          "text": " 2\\theta_f=100"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_f=50"
+        },
+        {
+          "type": "text",
+          "text": "Cento è la somma delle letture, non la loro media nel caso di capacità uguali. Trenta è l’intervallo attraversato da ciascun corpo. Venti o ottanta richiederebbero capacità nulla di uno dei due corpi, escluse dal dominio positivo."
+        }
+      ],
+      "hints": [
+        "Imponi energia ceduta uguale a energia ricevuta.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Cento è la somma delle letture, non la loro media nel caso di capacità uguali. Trenta è l’intervallo attraversato da ciascun corpo. Venti o ottanta richiederebbero capacità nulla di uno dei due corpi, escluse dal dominio positivo.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Bilancio energetico isolato",
+        "Capacità complessiva distinta dal calore specifico",
+        "Inverse, letture e non identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-two-body-calorimetry-02",
+      "kind": "question",
+      "course": "C3",
+      "section": "Equilibrio di due capacità termiche",
+      "order": 17002,
+      "title": "La temperatura comune non è una capacità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-body-calorimetry",
+      "difficulty": 1,
+      "prompt": "La grandezza richiesta è la temperatura comune letta in gradi Celsius dopo un contatto termico. Quale unità la esprime?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "°C",
+          "J/K",
+          "J",
+          "W",
+          "kg"
+        ],
+        "value": "°C"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il grado Celsius è un’unità di temperatura. Una capacità termica esprime invece energia per unità di variazione termica e si misura in J/K. Il termometro finale non fornisce da solo una misura della capacità o dell’energia trasferita."
+        },
+        {
+          "type": "formula",
+          "text": "[T]=\\Theta"
+        },
+        {
+          "type": "formula",
+          "text": " [C]=\\mathrm{J/K}"
+        },
+        {
+          "type": "text",
+          "text": "J/K appartiene alla capacità, J all’energia, W alla potenza e kg alla massa. Nessuna di queste quattro unità è una temperatura. Il kelvin sarebbe dimensionalmente compatibile, con conversione dello zero, ma non compare fra le alternative."
+        }
+      ],
+      "hints": [
+        "Distingui la lettura del termometro dall’energia necessaria a cambiarla.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "J/K appartiene alla capacità, J all’energia, W alla potenza e kg alla massa. Nessuna di queste quattro unità è una temperatura. Il kelvin sarebbe dimensionalmente compatibile, con conversione dello zero, ma non compare fra le alternative.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Bilancio energetico isolato",
+        "Capacità complessiva distinta dal calore specifico",
+        "Inverse, letture e non identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-two-body-calorimetry-03",
+      "kind": "question",
+      "course": "C3",
+      "section": "Equilibrio di due capacità termiche",
+      "order": 17003,
+      "title": "Stesso materiale, quantità doppia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-body-calorimetry",
+      "difficulty": 1,
+      "prompt": "Due campioni omogenei della stessa sostanza, nelle medesime condizioni e senza cambiamenti di fase, hanno masse m e 2 m. Il loro calore specifico c è uguale e costante. Come si confrontano le capacità termiche complessive?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "La seconda è il doppio della prima",
+          "Sono uguali perché c è uguale",
+          "La seconda è la metà",
+          "La seconda è quattro volte la prima",
+          "Non dipendono dalla massa"
+        ],
+        "value": "La seconda è il doppio della prima"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La capacità complessiva è C=mc. Il secondo campione ha il doppio della massa e lo stesso c, quindi C_B=2 mc=2 C_A. Per aumentare entrambi della stessa temperatura occorre al secondo il doppio dell’energia. c resta uguale perché è riferito all’unità di massa."
+        },
+        {
+          "type": "formula",
+          "text": "C_A=mc"
+        },
+        {
+          "type": "formula",
+          "text": " C_B=(2m)c"
+        },
+        {
+          "type": "formula",
+          "text": " C_B=2C_A"
+        },
+        {
+          "type": "text",
+          "text": "Capacità uguali confonde C con il calore specifico c. La metà rende inversa la dipendenza dalla massa, quattro introduce un quadrato assente. Una capacità totale indipendente dalla quantità contraddirebbe Q=mcΔT nelle condizioni date."
+        }
+      ],
+      "hints": [
+        "Scrivi separatamente C e c prima di confrontare i campioni.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Capacità uguali confonde C con il calore specifico c. La metà rende inversa la dipendenza dalla massa, quattro introduce un quadrato assente. Una capacità totale indipendente dalla quantità contraddirebbe Q=mcΔT nelle condizioni date.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Bilancio energetico isolato",
+        "Capacità complessiva distinta dal calore specifico",
+        "Inverse, letture e non identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-two-body-calorimetry-04",
+      "kind": "question",
+      "course": "C3",
+      "section": "Equilibrio di due capacità termiche",
+      "order": 17004,
+      "title": "Il corpo caldo ha capacità maggiore",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-body-calorimetry",
+      "difficulty": 1,
+      "prompt": "Due corpi formano un sistema chiuso e isolato dall’ambiente. Il primo parte da 80 °C, il secondo da 20 °C; le loro capacità termiche complessive C₁,C₂>0 in J/K sono costanti. Non avvengono cambiamenti di fase e si trascurano recipiente e lavoro meccanico. Si attende l’equilibrio comune. θ_f indica il valore numerico della lettura finale in°C, compreso strettamente fra 20 e 80. Le differenze numeriche Celsius hanno ampiezza uguale alle differenze in kelvin. I rapporti fra θ_f richiesti sono di letture Celsius, non di temperature assolute. A ha C₁=C₂=1 J/K. B ha C₁=3 J/K e C₂=1 J/K. Come cambia la lettura finale?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 50 a 65 °C",
+          "Da 50 a 150 °C",
+          "Da 50 a 35 °C",
+          "Resta 50 °C",
+          "Da 50 a 75 °C"
+        ],
+        "value": "Da 50 a 65 °C"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A termina a 50 °C. In B il bilancio è 3(80−θ)=θ−20: da 260=4θ si trova 65 °C. La temperatura si avvicina a quella iniziale del corpo con capacità maggiore e rimane fra 20 e 80 °C."
+        },
+        {
+          "type": "formula",
+          "text": "3(80-\\theta_f)=\\theta_f-20"
+        },
+        {
+          "type": "formula",
+          "text": " 4\\theta_f=260"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_f=65"
+        },
+        {
+          "type": "text",
+          "text": "Centocinquanta moltiplica direttamente la letturaA e supera perfino 80 °C. Trentacinque scambia i ruoli caldo/freddo. Cinquanta ignora la nuova capacità; settantacinque non bilancia le energie, perché il caldo cederebbe 15 J e il freddo ne richiederebbe 55."
+        }
+      ],
+      "hints": [
+        "La media va pesata per le capacità, non soltanto per il numero dei corpi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Centocinquanta moltiplica direttamente la letturaA e supera perfino 80 °C. Trentacinque scambia i ruoli caldo/freddo. Cinquanta ignora la nuova capacità; settantacinque non bilancia le energie, perché il caldo cederebbe 15 J e il freddo ne richiederebbe 55.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Bilancio energetico isolato",
+        "Capacità complessiva distinta dal calore specifico",
+        "Inverse, letture e non identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-two-body-calorimetry-05",
+      "kind": "question",
+      "course": "C3",
+      "section": "Equilibrio di due capacità termiche",
+      "order": 17005,
+      "title": "Ricostruire la capacità del corpo caldo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-body-calorimetry",
+      "difficulty": 2,
+      "prompt": "Due corpi formano un sistema chiuso e isolato dall’ambiente. Il primo parte da 80 °C, il secondo da 20 °C; le loro capacità termiche complessive C₁,C₂>0 in J/K sono costanti. Non avvengono cambiamenti di fase e si trascurano recipiente e lavoro meccanico. Si attende l’equilibrio comune. θ_f indica il valore numerico della lettura finale in°C, compreso strettamente fra 20 e 80. Le differenze numeriche Celsius hanno ampiezza uguale alle differenze in kelvin. I rapporti fra θ_f richiesti sono di letture Celsius, non di temperature assolute. Si misura θ_f=50 e C₂=1 J/K. Quanto vale C₁ in J/K?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "J/K",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il corpo freddo guadagna 30 K e quindi 30 J. Il caldo perde anch’esso 30 K: per cedere 30 J deve avere capacità 30/30=1 J/K. L’inversa divide l’energia ceduta per la diminuzione termica del caldo, positiva."
+        },
+        {
+          "type": "formula",
+          "text": "C_1=C_2\\frac{\\theta_f-20}{80-\\theta_f}"
+        },
+        {
+          "type": "formula",
+          "text": " C_1=1\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "text",
+          "text": "Due J/K non rispetterebbero il bilancio: il caldo cederebbe 60 J contro 30 ricevuti. Trenta J è l’energia, non la capacità. Il segno negativo confonde il calore ceduto con una capacità negativa."
+        }
+      ],
+      "hints": [
+        "Confronta i due intervalli rispetto alle rispettive temperature iniziali.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due J/K non rispetterebbero il bilancio: il caldo cederebbe 60 J contro 30 ricevuti. Trenta J è l’energia, non la capacità. Il segno negativo confonde il calore ceduto con una capacità negativa.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Bilancio energetico isolato",
+        "Capacità complessiva distinta dal calore specifico",
+        "Inverse, letture e non identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-two-body-calorimetry-06",
+      "kind": "question",
+      "course": "C3",
+      "section": "Equilibrio di due capacità termiche",
+      "order": 17006,
+      "title": "Ricostruire la capacità del corpo freddo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-body-calorimetry",
+      "difficulty": 2,
+      "prompt": "Due corpi formano un sistema chiuso e isolato dall’ambiente. Il primo parte da 80 °C, il secondo da 20 °C; le loro capacità termiche complessive C₁,C₂>0 in J/K sono costanti. Non avvengono cambiamenti di fase e si trascurano recipiente e lavoro meccanico. Si attende l’equilibrio comune. θ_f indica il valore numerico della lettura finale in°C, compreso strettamente fra 20 e 80. Le differenze numeriche Celsius hanno ampiezza uguale alle differenze in kelvin. I rapporti fra θ_f richiesti sono di letture Celsius, non di temperature assolute. Si misura θ_f=50 e C₁=1 J/K. Quanto vale C₂ in J/K?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "J/K",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il caldo cede C₁·30 K=30 J. Il freddo aumenta di 30 K, dunque C₂=30 J/30 K=1 J/K. La formula è C₂=C₁(80−θ_f)/(θ_f−20), con entrambi gli intervalli positivi nel dominio dichiarato."
+        },
+        {
+          "type": "formula",
+          "text": "C_2=C_1\\frac{80-\\theta_f}{\\theta_f-20}"
+        },
+        {
+          "type": "formula",
+          "text": " C_2=1\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "text",
+          "text": "Meno uno avrebbe il segno del calore ceduto invece della capacità positiva. Due farebbe assorbire 60 J al freddo contro 30 disponibili. Cinquanta copia la lettura finale, che non ha l’unità J/K."
+        }
+      ],
+      "hints": [
+        "Dividi l’energia ricevuta dall’aumento del corpo freddo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Meno uno avrebbe il segno del calore ceduto invece della capacità positiva. Due farebbe assorbire 60 J al freddo contro 30 disponibili. Cinquanta copia la lettura finale, che non ha l’unità J/K.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Bilancio energetico isolato",
+        "Capacità complessiva distinta dal calore specifico",
+        "Inverse, letture e non identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-two-body-calorimetry-07",
+      "kind": "question",
+      "course": "C3",
+      "section": "Equilibrio di due capacità termiche",
+      "order": 17007,
+      "title": "Più capacità fredda abbassa la lettura comune",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-body-calorimetry",
+      "difficulty": 2,
+      "prompt": "Due corpi formano un sistema chiuso e isolato dall’ambiente. Il primo parte da 80 °C, il secondo da 20 °C; le loro capacità termiche complessive C₁,C₂>0 in J/K sono costanti. Non avvengono cambiamenti di fase e si trascurano recipiente e lavoro meccanico. Si attende l’equilibrio comune. θ_f indica il valore numerico della lettura finale in°C, compreso strettamente fra 20 e 80. Le differenze numeriche Celsius hanno ampiezza uguale alle differenze in kelvin. I rapporti fra θ_f richiesti sono di letture Celsius, non di temperature assolute. A ha C₁=C₂=1 J/K. B mantiene C₁=1 J/K e ha C₂=3 J/K. Quanto vale θ_f,B/θ_f,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "7/10",
+          "10/7",
+          "3",
+          "1/3",
+          "1"
+        ],
+        "value": "7/10"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A dà 50 °C. In B il numeratore della media pesata è 80+60=140 e il denominatore 4, quindi 35 °C. Il rapporto delle letture 35/50 si riduce a sette decimi. È dichiaratamente un rapporto Celsius; con kelvin il rapporto sarebbe diverso."
+        },
+        {
+          "type": "formula",
+          "text": "\\theta_{f,A}=50"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_{f,B}=\\frac{140}{4}"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_{f,B}=35"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_{f,B}/\\theta_{f,A}=\\frac7{10}"
+        },
+        {
+          "type": "text",
+          "text": "Dieci settimi inverte il rapporto. Tre e un terzo confrontano soltanto le capacità fredde, senza il bilancio con quella calda. Uno ignora l’energia aggiuntiva necessaria per ogni kelvin del nuovo corpo freddo."
+        }
+      ],
+      "hints": [
+        "Calcola la nuova media pesata prima del rapporto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dieci settimi inverte il rapporto. Tre e un terzo confrontano soltanto le capacità fredde, senza il bilancio con quella calda. Uno ignora l’energia aggiuntiva necessaria per ogni kelvin del nuovo corpo freddo.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Bilancio energetico isolato",
+        "Capacità complessiva distinta dal calore specifico",
+        "Inverse, letture e non identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-two-body-calorimetry-08",
+      "kind": "question",
+      "course": "C3",
+      "section": "Equilibrio di due capacità termiche",
+      "order": 17008,
+      "title": "Una proposta oltre la temperatura iniziale più alta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-body-calorimetry",
+      "difficulty": 2,
+      "prompt": "Due corpi formano un sistema chiuso e isolato dall’ambiente. Il primo parte da 80 °C, il secondo da 20 °C; le loro capacità termiche complessive C₁,C₂>0 in J/K sono costanti. Non avvengono cambiamenti di fase e si trascurano recipiente e lavoro meccanico. Si attende l’equilibrio comune. θ_f indica il valore numerico della lettura finale in°C, compreso strettamente fra 20 e 80. Le differenze numeriche Celsius hanno ampiezza uguale alle differenze in kelvin. I rapporti fra θ_f richiesti sono di letture Celsius, non di temperature assolute. Con C₁=C₂=1 J/K si propone θ_f=100. Quanto vale proposta meno lettura corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "50 K",
+          "−50 K",
+          "100 K",
+          "0 K",
+          "2"
+        ],
+        "value": "50 K"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bilancio fornisce 50 °C. La proposta 100 °C lo supera di 50 K e supera entrambe le temperature iniziali: con solo scambio interno e capacità positive non può essere l’equilibrio di questi dati."
+        },
+        {
+          "type": "formula",
+          "text": "\\theta_f=50"
+        },
+        {
+          "type": "formula",
+          "text": " e=(100-50)\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " e=50\\,\\mathrm K"
+        },
+        {
+          "type": "text",
+          "text": "Meno cinquanta inverte lo scarto, cento copia la proposta e zero la accetta. Due è il rapporto delle letture, non la differenza. Per lo scarto le scale Celsius e Kelvin hanno la stessa ampiezza."
+        }
+      ],
+      "hints": [
+        "Controlla il bilancio e l’intervallo fra le temperature iniziali.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Meno cinquanta inverte lo scarto, cento copia la proposta e zero la accetta. Due è il rapporto delle letture, non la differenza. Per lo scarto le scale Celsius e Kelvin hanno la stessa ampiezza.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Bilancio energetico isolato",
+        "Capacità complessiva distinta dal calore specifico",
+        "Inverse, letture e non identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-two-body-calorimetry-09",
+      "kind": "question",
+      "course": "C3",
+      "section": "Equilibrio di due capacità termiche",
+      "order": 17009,
+      "title": "L’inversa generale della capacità calda",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-body-calorimetry",
+      "difficulty": 2,
+      "prompt": "Due corpi formano un sistema chiuso e isolato dall’ambiente. Il primo parte da 80 °C, il secondo da 20 °C; le loro capacità termiche complessive C₁,C₂>0 in J/K sono costanti. Non avvengono cambiamenti di fase e si trascurano recipiente e lavoro meccanico. Si attende l’equilibrio comune. θ_f indica il valore numerico della lettura finale in°C, compreso strettamente fra 20 e 80. Le differenze numeriche Celsius hanno ampiezza uguale alle differenze in kelvin. I rapporti fra θ_f richiesti sono di letture Celsius, non di temperature assolute. Sono noti θ_f e C₂. Quale formula dà C₁?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "C₁ = C₂ (θ_f − 20) / (80 − θ_f)",
+          "C₁ = C₂ (80 − θ_f) / (θ_f − 20)",
+          "C₁ = C₂ (80 + θ_f) / (θ_f + 20)",
+          "C₁ = (θ_f − 20) / C₂",
+          "C₁ = C₂ + θ_f"
+        ],
+        "value": "C₁ = C₂ (θ_f − 20) / (80 − θ_f)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dal bilancio C₁(80−θ_f)=C₂(θ_f−20) dividiamo per 80−θ_f, positivo. Il rapporto dei due intervalli è puro, così il risultato conserva l’unità J/K diC₂. Il valore finale deve essere interno all’intervallo 20..80 per entrambe le capacità positive finite."
+        },
+        {
+          "type": "formula",
+          "text": "C_1(80-\\theta_f)=C_2(\\theta_f-20)"
+        },
+        {
+          "type": "formula",
+          "text": " C_1=C_2\\frac{\\theta_f-20}{80-\\theta_f}"
+        },
+        {
+          "type": "text",
+          "text": "Il rapporto inverso risolverebbe il confronto opposto degli intervalli. Le somme non rappresentano differenze termiche. Dividere per C₂ cambia la dimensione, mentre aggiungere una lettura numerica a una capacità non è un bilancio energetico."
+        }
+      ],
+      "hints": [
+        "Dividi soltanto dopo aver isolato il fattore che moltiplica C₁.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il rapporto inverso risolverebbe il confronto opposto degli intervalli. Le somme non rappresentano differenze termiche. Dividere per C₂ cambia la dimensione, mentre aggiungere una lettura numerica a una capacità non è un bilancio energetico.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Bilancio energetico isolato",
+        "Capacità complessiva distinta dal calore specifico",
+        "Inverse, letture e non identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-two-body-calorimetry-10",
+      "kind": "question",
+      "course": "C3",
+      "section": "Equilibrio di due capacità termiche",
+      "order": 17010,
+      "title": "Cambiano separatamente i due pesi della media",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-body-calorimetry",
+      "difficulty": 2,
+      "prompt": "Due corpi formano un sistema chiuso e isolato dall’ambiente. Il primo parte da 80 °C, il secondo da 20 °C; le loro capacità termiche complessive C₁,C₂>0 in J/K sono costanti. Non avvengono cambiamenti di fase e si trascurano recipiente e lavoro meccanico. Si attende l’equilibrio comune. θ_f indica il valore numerico della lettura finale in°C, compreso strettamente fra 20 e 80. Le differenze numeriche Celsius hanno ampiezza uguale alle differenze in kelvin. I rapporti fra θ_f richiesti sono di letture Celsius, non di temperature assolute. In A definiamo N=80 C₁+20 C₂ e D=C₁+C₂. B usa κ₁C₁ e κ₂C₂, con κ₁,κ₂>0; siano N_B=80κ₁C₁+20κ₂C₂ e D_B=κ₁C₁+κ₂C₂. Quanto vale θ_f,B/θ_f,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "N_B D / (D_B N)",
+          "N_B / N",
+          "D_B / D",
+          "κ₁ κ₂",
+          "κ₁ / κ₂"
+        ],
+        "value": "N_B D / (D_B N)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le letture sono N/D e N_B/D_B. Dividendo la seconda per la prima bisogna invertire tutto il rapportoA: resta N_BD/(D_BN). Per un fattore comuneκ i due numeratori e i due denominatori scalano allo stesso modo, perciò la lettura resta uguale e il rapporto è 1."
+        },
+        {
+          "type": "formula",
+          "text": "\\theta_{f,A}=\\frac ND"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_{f,B}=\\frac{N_B}{D_B}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{\\theta_{f,B}}{\\theta_{f,A}}=\\frac{N_BD}{D_BN}"
+        },
+        {
+          "type": "text",
+          "text": "N_B/N ignora il nuovo denominatore e D_B/D ignora il numeratore pesato. Il prodotto dei fattori non descrive una media; il loro quoziente può essere 1 quando sono uguali ma non rappresenta il caso generale. Entrambe le prove mantengono 20<θ_f<80."
+        }
+      ],
+      "hints": [
+        "Forma una media completa per ciascuna prova.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "N_B/N ignora il nuovo denominatore e D_B/D ignora il numeratore pesato. Il prodotto dei fattori non descrive una media; il loro quoziente può essere 1 quando sono uguali ma non rappresenta il caso generale. Entrambe le prove mantengono 20<θ_f<80.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Bilancio energetico isolato",
+        "Capacità complessiva distinta dal calore specifico",
+        "Inverse, letture e non identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-two-body-calorimetry-11",
+      "kind": "question",
+      "course": "C3",
+      "section": "Equilibrio di due capacità termiche",
+      "order": 17011,
+      "title": "Due capacità nuove, due letture da confrontare",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-body-calorimetry",
+      "difficulty": 2,
+      "prompt": "Due corpi formano un sistema chiuso e isolato dall’ambiente. Il primo parte da 80 °C, il secondo da 20 °C; le loro capacità termiche complessive C₁,C₂>0 in J/K sono costanti. Non avvengono cambiamenti di fase e si trascurano recipiente e lavoro meccanico. Si attende l’equilibrio comune. θ_f indica il valore numerico della lettura finale in°C, compreso strettamente fra 20 e 80. Le differenze numeriche Celsius hanno ampiezza uguale alle differenze in kelvin. I rapporti fra θ_f richiesti sono di letture Celsius, non di temperature assolute. A ha C₁=C₂=1 J/K. B ha C₁=2 J/K,C₂=3 J/K. Quanto vale θ_f,B/θ_f,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "22/25",
+          "25/22",
+          "2/3",
+          "3/2",
+          "44"
+        ],
+        "value": "22/25"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A termina a 50 °C. B ha numeratore 160+60=220 e capacità totale 5 J/K: la lettura è 44 °C. Quarantaquattro diviso cinquanta si riduce a 22/25. I due corpi non hanno ricevuto né ceduto calore dall’esterno."
+        },
+        {
+          "type": "formula",
+          "text": "\\theta_{f,A}=50"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_{f,B}=\\frac{220}{5}"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_{f,B}=44"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_{f,B}/\\theta_{f,A}=\\frac{22}{25}"
+        },
+        {
+          "type": "text",
+          "text": "25/22 inverte le letture. Due terzi e tre mezzi confrontano le sole capacitàB, non le temperature finaliA eB. Quarantaquattro copia la letturaB senza dividerla perA."
+        }
+      ],
+      "hints": [
+        "Somma separatamente le capacità e i contributi pesati.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "25/22 inverte le letture. Due terzi e tre mezzi confrontano le sole capacitàB, non le temperature finaliA eB. Quarantaquattro copia la letturaB senza dividerla perA.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Bilancio energetico isolato",
+        "Capacità complessiva distinta dal calore specifico",
+        "Inverse, letture e non identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-two-body-calorimetry-12",
+      "kind": "question",
+      "course": "C3",
+      "section": "Equilibrio di due capacità termiche",
+      "order": 17012,
+      "title": "La media di due equilibri è un’altra domanda",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-body-calorimetry",
+      "difficulty": 2,
+      "prompt": "Due corpi formano un sistema chiuso e isolato dall’ambiente. Il primo parte da 80 °C, il secondo da 20 °C; le loro capacità termiche complessive C₁,C₂>0 in J/K sono costanti. Non avvengono cambiamenti di fase e si trascurano recipiente e lavoro meccanico. Si attende l’equilibrio comune. θ_f indica il valore numerico della lettura finale in°C, compreso strettamente fra 20 e 80. Le differenze numeriche Celsius hanno ampiezza uguale alle differenze in kelvin. I rapporti fra θ_f richiesti sono di letture Celsius, non di temperature assolute. A ha C₁=C₂=1 J/K. B ha C₁=2 J/K,C₂=3 J/K. Qual è la media aritmetica delle letture finali in°C, con uguale peso?",
+      "answer": {
+        "type": "numeric",
+        "value": 47,
+        "unit": "°C",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le letture sono 50 e 44 °C; la metà di 94 è 47 °C. Con le capacità medie 3/2 e 2 J/K si avrebbe invece(120+40)/(7/2)=320/7 °C. La media delle uscite è distinta dalla lettura di un nuovo esperimento con pesi medi."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline\\theta_f=\\frac{50+44}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline\\theta_f=47"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_f(\\overline C_1,\\overline C_2)=\\frac{320}{7}"
+        },
+        {
+          "type": "text",
+          "text": "Novantaquattro è la somma,320/7 usa gli ingressi medi e 6 è la differenza delle letture. Il numero dei corpi non giustifica una media semplice delle loro temperature iniziali quando le capacità sono diverse."
+        }
+      ],
+      "hints": [
+        "Media le due letture già ottenute dal rispettivo bilancio.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Novantaquattro è la somma,320/7 usa gli ingressi medi e 6 è la differenza delle letture. Il numero dei corpi non giustifica una media semplice delle loro temperature iniziali quando le capacità sono diverse.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Bilancio energetico isolato",
+        "Capacità complessiva distinta dal calore specifico",
+        "Inverse, letture e non identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-two-body-calorimetry-13",
+      "kind": "question",
+      "course": "C3",
+      "section": "Equilibrio di due capacità termiche",
+      "order": 17013,
+      "title": "Quale capacità fredda produce il bersaglio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-body-calorimetry",
+      "difficulty": 3,
+      "prompt": "Due corpi formano un sistema chiuso e isolato dall’ambiente. Il primo parte da 80 °C, il secondo da 20 °C; le loro capacità termiche complessive C₁,C₂>0 in J/K sono costanti. Non avvengono cambiamenti di fase e si trascurano recipiente e lavoro meccanico. Si attende l’equilibrio comune. θ_f indica il valore numerico della lettura finale in°C, compreso strettamente fra 20 e 80. Le differenze numeriche Celsius hanno ampiezza uguale alle differenze in kelvin. I rapporti fra θ_f richiesti sono di letture Celsius, non di temperature assolute. A ha C₁=C₂=1 J/K. B usa C₁=2 J/K e deve avere θ_f,B=(22/25)θ_f,A. Quanto vale C₂,B/C₂,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3",
+          "1/3",
+          "22/25",
+          "2",
+          "44"
+        ],
+        "value": "3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A termina a 50 °C, quindi il bersaglioB è 44 °C. Il caldoB cede 2·36=72 J; il freddo deve aumentare di 24 K, quindi ha capacità 72/24=3 J/K. Dividendo per 1 J/K diA si ottiene 3."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/f789653a2ab4db097a6e3245c99817e88c7697454d0fb130379f187076c8aa02",
+          "text": "Il pannello centrale corrisponde al bersaglio 44 °C: il caldo di capacità 2 J/K perde 36 K e cede 72 J; il freddo di capacità 3 J/K guadagna 24 K e assorbe 72 J. Le barre confrontano questi due moduli uguali. I pannelli iniziale e finale riguardano le altre prove dichiarate."
+        },
+        {
+          "type": "formula",
+          "text": "\\theta_{f,B}=44"
+        },
+        {
+          "type": "formula",
+          "text": " C_{2,B}=2\\frac{80-44}{44-20}\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " C_{2,B}=3\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " C_{2,B}/C_{2,A}=3"
+        },
+        {
+          "type": "text",
+          "text": "Un terzo inverte il rapporto.22/25 copia il bersaglio sulla lettura e due la variazione diC₁. Quarantaquattro è la lettura finale, non un rapporto fra capacità."
+        }
+      ],
+      "hints": [
+        "Usa la temperatura bersaglio nei due intervalli termici.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un terzo inverte il rapporto.22/25 copia il bersaglio sulla lettura e due la variazione diC₁. Quarantaquattro è la lettura finale, non un rapporto fra capacità.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Bilancio energetico isolato",
+        "Capacità complessiva distinta dal calore specifico",
+        "Inverse, letture e non identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-two-body-calorimetry-14",
+      "kind": "question",
+      "course": "C3",
+      "section": "Equilibrio di due capacità termiche",
+      "order": 17014,
+      "title": "Un display aiuta soltanto dopo la taratura",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-body-calorimetry",
+      "difficulty": 3,
+      "prompt": "Due corpi formano un sistema chiuso e isolato dall’ambiente. Il primo parte da 80 °C, il secondo da 20 °C; le loro capacità termiche complessive C₁,C₂>0 in J/K sono costanti. Non avvengono cambiamenti di fase e si trascurano recipiente e lavoro meccanico. Si attende l’equilibrio comune. θ_f indica il valore numerico della lettura finale in°C, compreso strettamente fra 20 e 80. Le differenze numeriche Celsius hanno ampiezza uguale alle differenze in kelvin. I rapporti fra θ_f richiesti sono di letture Celsius, non di temperature assolute. Il display continuo è S=qθ_f, adimensionale, q>0 costante. A: C₁=C₂=1 J/K,S=150. B: C₂=3 J/K,S=132. Quanto vale C₁,B in J/K?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "J/K",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A indica 50 °C, quindi q=3. Il display 132 corrisponde a 44 °C. In B il freddo assorbe 3·24=72 J; il caldo perde 36 K e deve avere capacità 72/36=2 J/K."
+        },
+        {
+          "type": "formula",
+          "text": "q=3"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_{f,B}=44"
+        },
+        {
+          "type": "formula",
+          "text": " C_{1,B}=3\\frac{44-20}{80-44}\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " C_{1,B}=2\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "text",
+          "text": "Tre J/K copia la capacità fredda e 132 è una lettura strumentale. Una lettura termica 132 °C violerebbe anche il dominio 20..80: il guadagno non può essere ignorato. Un mezzo J/K non ricostruisce l’equilibrio 44 °C."
+        }
+      ],
+      "hints": [
+        "Decodifica θ_f prima di isolare la capacità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre J/K copia la capacità fredda e 132 è una lettura strumentale. Una lettura termica 132 °C violerebbe anche il dominio 20..80: il guadagno non può essere ignorato. Un mezzo J/K non ricostruisce l’equilibrio 44 °C.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Bilancio energetico isolato",
+        "Capacità complessiva distinta dal calore specifico",
+        "Inverse, letture e non identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-two-body-calorimetry-15",
+      "kind": "question",
+      "course": "C3",
+      "section": "Equilibrio di due capacità termiche",
+      "order": 17015,
+      "title": "L’offset del display non è temperatura",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-body-calorimetry",
+      "difficulty": 3,
+      "prompt": "Due corpi formano un sistema chiuso e isolato dall’ambiente. Il primo parte da 80 °C, il secondo da 20 °C; le loro capacità termiche complessive C₁,C₂>0 in J/K sono costanti. Non avvengono cambiamenti di fase e si trascurano recipiente e lavoro meccanico. Si attende l’equilibrio comune. θ_f indica il valore numerico della lettura finale in°C, compreso strettamente fra 20 e 80. Le differenze numeriche Celsius hanno ampiezza uguale alle differenze in kelvin. I rapporti fra θ_f richiesti sono di letture Celsius, non di temperature assolute. S=qθ_f+b è continuo e adimensionale, q>0. A: C₁=C₂=1 J/K,S=101. B: C₁=2 J/K,C₂=3 J/K,S=89. C: C₂=1 J/K,S=131. Quanto vale C₁,C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3 J/K",
+          "91/29 J/K",
+          "1 J/K",
+          "2 J/K",
+          "65 J/K"
+        ],
+        "value": "3 J/K"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le lettureA eB sono 50 e 44 °C. Da(101−89)/(50−44) si trova q=2 e poi b=1. La provaC indica(131−1)/2=65 °C. Il bilancio dà C₁,C=1·45/15=3 J/K, positivo."
+        },
+        {
+          "type": "formula",
+          "text": "q=2"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_{f,C}=65"
+        },
+        {
+          "type": "formula",
+          "text": " C_{1,C}=\\frac{65-20}{80-65}\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " C_{1,C}=3\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "text",
+          "text": "91/29 J/K omette l’offset e usaθ_f=131/2, dando(91/2)/(29/2). Uno e due J/K darebbero rispettivamente 50 e 60 °C, con display 101 e 121. Sessantacinque copia la lettura al posto della capacità."
+        }
+      ],
+      "hints": [
+        "Elimina l’offset prima dell’inversa del bilancio.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "91/29 J/K omette l’offset e usaθ_f=131/2, dando(91/2)/(29/2). Uno e due J/K darebbero rispettivamente 50 e 60 °C, con display 101 e 121. Sessantacinque copia la lettura al posto della capacità.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Bilancio energetico isolato",
+        "Capacità complessiva distinta dal calore specifico",
+        "Inverse, letture e non identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-two-body-calorimetry-16",
+      "kind": "question",
+      "course": "C3",
+      "section": "Equilibrio di due capacità termiche",
+      "order": 17016,
+      "title": "La temperatura non rivela la scala delle capacità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-body-calorimetry",
+      "difficulty": 3,
+      "prompt": "Due corpi formano un sistema chiuso e isolato dall’ambiente. Il primo parte da 80 °C, il secondo da 20 °C; le loro capacità termiche complessive C₁,C₂>0 in J/K sono costanti. Non avvengono cambiamenti di fase e si trascurano recipiente e lavoro meccanico. Si attende l’equilibrio comune. θ_f indica il valore numerico della lettura finale in°C, compreso strettamente fra 20 e 80. Le differenze numeriche Celsius hanno ampiezza uguale alle differenze in kelvin. I rapporti fra θ_f richiesti sono di letture Celsius, non di temperature assolute. Si sa C₁=C₂ e si misura θ_f=50. Quante coppie positive(C₁,C₂) sono determinate?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Infinite coppie",
+          "Una sola coppia",
+          "Due coppie",
+          "Nessuna coppia",
+          "Soltanto C₁=C₂=1 J/K"
+        ],
+        "value": "Infinite coppie"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituendo C₁=C₂=C>0 nel bilancio, C si semplifica e resta 80−θ=θ−20. La lettura 50 è quindi compatibile con ogniC positivo. I dati fissano il rapporto delle capacità, non la quantità assoluta di materiale o l’energia trasferita."
+        },
+        {
+          "type": "formula",
+          "text": "\\theta_f=\\frac{80C+20C}{2C}"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_f=50"
+        },
+        {
+          "type": "formula",
+          "text": " C>0"
+        },
+        {
+          "type": "text",
+          "text": "Un’unica coppia richiederebbe un dato ulteriore, per esempio il calore trasferito. Due non segue da alcuna equazione quadratica. Nessuna è falso perché 1 J/K e 1 J/K funzionano; non sono però l’unica realizzazione."
+        }
+      ],
+      "hints": [
+        "Controlla se un fattore comune nelle capacità cambia la lettura.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Un’unica coppia richiederebbe un dato ulteriore, per esempio il calore trasferito. Due non segue da alcuna equazione quadratica. Nessuna è falso perché 1 J/K e 1 J/K funzionano; non sono però l’unica realizzazione.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Bilancio energetico isolato",
+        "Capacità complessiva distinta dal calore specifico",
+        "Inverse, letture e non identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "f789653a2ab4db097a6e3245c99817e88c7697454d0fb130379f187076c8aa02",
+      "name": "two-body-calorimetry-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1NjAiIGhlaWdodD0iMTQzMCIgdmlld0JveD0iMCAwIDU2MCAxNDMwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+Cjx0aXRsZSBpZD0idGl0bGUiPkVxdWlsaWJyaW8gZGkgZHVlIGNhcGFjaXTDoCB0ZXJtaWNoZTwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPlByaW1hIGR1ZSBjYXBhY2l0w6AgdWd1YWxpIGNvbiBsZXR0dXJhIGZpbmFsZSA1MCBDZWxzaXVzLCBwb2kgY2FwYWNpdMOgIDIgZSAzIEovSyBjb24gZXF1aWxpYnJpbyA0NCBDZWxzaXVzIGUgdHJhc2ZlcmltZW50byA3MiBKLCBpbmZpbmUgbWVkaWEgZGVsbGUgbGV0dHVyZSA1MCBlIDQ0LjwvZGVzYz4KPHJlY3Qgd2lkdGg9IjU2MCIgaGVpZ2h0PSIxNDMwIiBmaWxsPSIjZmZmYWYxIi8+CjxnIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmaWxsPSIjMzUyZDQyIiBmb250LXNpemU9IjE5Ij4KPHRleHQgeD0iMjUiIHk9IjQwIiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iYm9sZCI+MSDCtyBDYXBhY2l0w6AgdWd1YWxpLCBpbnRlcnZhbGxpIHVndWFsaTwvdGV4dD4KPHRleHQgeD0iMjUiIHk9IjgwIj5TY2hlbWEgZGVpIGR1ZSBjb3JwaSDCtyBuZXNzdW5hIHNjYWxhIG1ldHJpY2E8L3RleHQ+CjxyZWN0IHg9IjM1IiB5PSIxMjAiIHdpZHRoPSIyMTUiIGhlaWdodD0iMTQwIiByeD0iMTAiIGZpbGw9IiNmNGRkZDYiIHN0cm9rZT0iI2I5NGY0OCIgc3Ryb2tlLXdpZHRoPSIyIi8+CjxyZWN0IHg9IjMxMCIgeT0iMTIwIiB3aWR0aD0iMjE1IiBoZWlnaHQ9IjE0MCIgcng9IjEwIiBmaWxsPSIjZTFlZWViIiBzdHJva2U9IiMxNDc5NzkiIHN0cm9rZS13aWR0aD0iMiIvPgo8dGV4dCB4PSI1NSIgeT0iMTU1Ij5D4oKBPTEgSi9LPC90ZXh0Pjx0ZXh0IHg9IjU1IiB5PSIxOTUiPjgw4oaSNTAgwrBDPC90ZXh0Pjx0ZXh0IHg9IjU1IiB5PSIyMzUiPkNlZGUgMzAgSjwvdGV4dD4KPHRleHQgeD0iMzMwIiB5PSIxNTUiPkPigoI9MSBKL0s8L3RleHQ+PHRleHQgeD0iMzMwIiB5PSIxOTUiPjIw4oaSNTAgwrBDPC90ZXh0Pjx0ZXh0IHg9IjMzMCIgeT0iMjM1Ij5SaWNldmUgMzAgSjwvdGV4dD4KPHBhdGggZD0iTTI1NSAxODVIMzAwIiBzdHJva2U9IiM3MzUwYjAiIHN0cm9rZS13aWR0aD0iNCIvPjxwYXRoIGQ9Ik0yOTAgMTc3TDMwMCAxODVMMjkwIDE5MyIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNzM1MGIwIiBzdHJva2Utd2lkdGg9IjMiLz4KPHRleHQgeD0iMjUiIHk9IjMxMCI+Q2FsZG864oiSMzAgSyDCtyBmcmVkZG86KzMwIEs8L3RleHQ+Cjx0ZXh0IHg9IjI1IiB5PSIzNTAiPkxhIHNvbW1hIGRlaSBjYWxvcmkgw6jiiJIzMCszMD0wIEouPC90ZXh0Pgo8bGluZSB4MT0iMjUiIHkxPSIzOTAiIHgyPSI1MzUiIHkyPSIzOTAiIHN0cm9rZT0iI2I4YWRhMCIvPgo8dGV4dCB4PSIyNSIgeT0iNDM1IiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iYm9sZCI+MiDCtyBDYXBhY2l0w6AgZGl2ZXJzZSwgc3Rlc3NvIGNhbG9yZTwvdGV4dD4KPHRleHQgeD0iMjUiIHk9IjQ3NSI+QjogQ+KCgT0yIEovSyDCtyBD4oKCPTMgSi9LIMK3IGZpbmFsZSA0NCDCsEM8L3RleHQ+Cjx0ZXh0IHg9IjI1IiB5PSI1MTUiPkNhbG9yaSBjZWR1dGkgZSByaWNldnV0aSwgaW4gSjwvdGV4dD4KPGxpbmUgeDE9IjEwMCIgeTE9IjU0NSIgeDI9IjEwMCIgeTI9IjczNSIgc3Ryb2tlPSIjMzUyZDQyIiBzdHJva2Utd2lkdGg9IjIiLz4KPHRleHQgeD0iMjUiIHk9IjU4NSI+Q2FsZG88L3RleHQ+PHJlY3QgeD0iMTAwIiB5PSI1NjAiIHdpZHRoPSIzNjAiIGhlaWdodD0iNDUiIGZpbGw9IiNiOTRmNDgiLz48dGV4dCB4PSIxMTUiIHk9IjU5MCIgZmlsbD0id2hpdGUiPjIgSi9LIMOXIDM2IEsgPTcyIEogY2VkdXRpPC90ZXh0Pgo8dGV4dCB4PSIyNSIgeT0iNjgwIj5GcmVkZG88L3RleHQ+PHJlY3QgeD0iMTAwIiB5PSI2NTUiIHdpZHRoPSIzNjAiIGhlaWdodD0iNDUiIGZpbGw9IiMxNDc5NzkiLz48dGV4dCB4PSIxMTUiIHk9IjY4NSIgZmlsbD0id2hpdGUiPjMgSi9LIMOXIDI0IEsgPTcyIEogcmljZXZ1dGk8L3RleHQ+Cjx0ZXh0IHg9Ijk2IiB5PSI3NTAiPjA8L3RleHQ+PHRleHQgeD0iNDQzIiB5PSI3NTAiPjcyIEo8L3RleHQ+Cjx0ZXh0IHg9IjI1IiB5PSI4MDAiPkludGVydmFsbGkgZGl2ZXJzaSwgZW5lcmdpZSB1Z3VhbGkgaW4gbW9kdWxvLjwvdGV4dD4KPHRleHQgeD0iMjUiIHk9Ijg0MCI+UeKCgT3iiJI3MiBKIMK3IFHigoI9KzcyIEogwrcgc29tbWEgMDwvdGV4dD4KPGxpbmUgeDE9IjI1IiB5MT0iODgwIiB4Mj0iNTM1IiB5Mj0iODgwIiBzdHJva2U9IiNiOGFkYTAiLz4KPHRleHQgeD0iMjUiIHk9IjkyNSIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9ImJvbGQiPjMgwrcgRHVlIGVxdWlsaWJyaSBlIGxhIGxvcm8gbWVkaWE8L3RleHQ+Cjx0ZXh0IHg9IjI1IiB5PSI5NjUiPkxldHR1cmUgZmluYWxpIHN1bGxhIHNjYWxhIENlbHNpdXM8L3RleHQ+CjxsaW5lIHgxPSIxNDAiIHkxPSIxMDAwIiB4Mj0iMTQwIiB5Mj0iMTI5MCIgc3Ryb2tlPSIjMzUyZDQyIiBzdHJva2Utd2lkdGg9IjIiLz4KPHRleHQgeD0iMjUiIHk9IjEwNDAiPkE8L3RleHQ+PHJlY3QgeD0iMTQwIiB5PSIxMDE1IiB3aWR0aD0iMzAwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjMTQ3OTc5Ii8+PHRleHQgeD0iNDU1IiB5PSIxMDQyIj41MCDCsEM8L3RleHQ+Cjx0ZXh0IHg9IjI1IiB5PSIxMTIwIj5CPC90ZXh0PjxyZWN0IHg9IjE0MCIgeT0iMTA5NSIgd2lkdGg9IjI2NCIgaGVpZ2h0PSI0MCIgZmlsbD0iI2Q0OTMzMiIvPjx0ZXh0IHg9IjQxOSIgeT0iMTEyMiI+NDQgwrBDPC90ZXh0Pgo8dGV4dCB4PSIyNSIgeT0iMTIwMCI+TWVkaWE8L3RleHQ+PHJlY3QgeD0iMTQwIiB5PSIxMTc1IiB3aWR0aD0iMjgyIiBoZWlnaHQ9IjQwIiBmaWxsPSIjNzM1MGIwIi8+PHRleHQgeD0iNDM3IiB5PSIxMjAyIj40NyDCsEM8L3RleHQ+Cjx0ZXh0IHg9IjEzNiIgeT0iMTI3MCI+MDwvdGV4dD48dGV4dCB4PSIyNSIgeT0iMTMzMCI+KDUwKzQ0KS8yPTQ3LCBjb24gdWd1YWxlIHBlc28gc3RhdGlzdGljby48L3RleHQ+Cjx0ZXh0IHg9IjI1IiB5PSIxMzcwIj5MZSBiYXJyZSB1c2FubyBsbyB6ZXJvIENlbHNpdXMgc2NlbHRvLDwvdGV4dD48dGV4dCB4PSIyNSIgeT0iMTQwNSI+bm9uIHJhcHByZXNlbnRhbm8gdGVtcGVyYXR1cmUgYXNzb2x1dGUuPC90ZXh0Pgo8L2c+PC9zdmc+Cg=="
+    }
+  ]
+}

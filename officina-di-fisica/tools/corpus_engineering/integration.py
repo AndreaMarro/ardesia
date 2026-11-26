@@ -85,6 +85,14 @@ with store.connect() as db:
   saved=json.loads(db.execute('SELECT payload FROM versions WHERE id=? AND v=?',(row['id'],head['draft'])).fetchone()[0])
   assert material(saved)==material(row)
  objects={row['id']:row for row in [*before,*rows]}
+ # A revised lesson must preserve the entry points of every existing experiment,
+ # including experiments that are not themselves part of this import cohort.
+ experiments=[row for row in objects.values() if row.get('kind')=='experiment']
+ for experiment in experiments:
+  lesson=objects[experiment['skill']]
+  assert lesson['course']==experiment['course'] and experiment['topic'] in lesson.get('coverage',[])
+  assert any(block.get('type')=='text' and block['text'].startswith(experiment['anchor'])
+    for block in lesson['blocks']), 'Lost experiment paragraph: '+experiment['id']
  questions=[row for row in rows if row['kind']=='question']
  available=[row for row in objects.values() if row.get('kind')=='question' and not row.get('exam')]
  proofs=[]
@@ -128,6 +136,7 @@ with store.connect() as db:
   'beforePublishedSha256':digest(before),'afterPublishedSha256':digest(after),
   'preservedHistoricalVersions':len(versions_before),'preservedLiveHeads':sum(v is not None for v in live_before.values()),
   'learnerAttemptsBefore':attempts_before,'learnerAttemptsAfter':attempts_after,'records':proofs,
+  'preservedExperimentEntryPoints':len(experiments),
   'learningEvidence':'synthetic_private_fixtures_only','humanApproval':'NOT_RUN',
   'newPublications':0,'database':'disposable_sqlite'}))
 '''

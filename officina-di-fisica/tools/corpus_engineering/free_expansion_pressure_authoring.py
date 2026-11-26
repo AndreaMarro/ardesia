@@ -1,0 +1,78 @@
+"""Author-only ideal-gas free expansion into an initially evacuated rigid compartment."""
+from .vector_geometry_authoring import assemble_family, write_family
+P=('Un gas ideale chiuso occupa inizialmente un comparto rigido V₀=1 L, a pressione assoluta p₁>0. Un comparto adiacente V_v>0 è inizialmente vuoto. '
+   'Il recipiente totale è isolato e rigido: si rimuove il setto e si attende il nuovo equilibrio, senza scambi di materia o altri lavori e senza variazioni finali di energia cinetica o potenziale macroscopica. '
+   'Il gas si espande irreversibilmente nel vuoto: Q=0, W=0, ΔU=0 e, per il gas ideale, T_f=T₁>0. Quindi p_f=p₁V₀/(V₀+V_v). Le pressioni sono in kPa e i volumi in L, salvo conversione esplicita. ')
+TASKS=[
+('Più volume senza raffreddamento ideale',P+'Con p₁=100 kPa e V_v=1 L, quanto vale p_f in kPa?',50,
+ 'Il vuoto non oppone una pressione esterna al gas e il confine esterno del recipiente non si sposta: non esce lavoro. L’isolamento annulla il calore entrante, quindi l’energia interna rimane uguale. Per il gas ideale ciò conserva la temperatura fra i due equilibri. A parità di moli e temperatura, raddoppiare il volume dimezza la pressione: da cento a cinquanta kilopascal.',
+ r'Q=W=0\qquad \Delta U=0\qquad T_f=T_1\qquad V_f=V_0+V_v=2\,\mathrm L\qquad p_f=\frac{100\cdot1}{2}\,\mathrm{kPa}\qquad p_f=50\,\mathrm{kPa}',
+ 'Cento kPa ignorerebbe il volume reso accessibile. La formula reversibile pV^γ=costante non si applica: questo processo non attraversa una successione di equilibri reversibili. Non si calcola il lavoro con la pressione iniziale interna moltiplicata per il volume aggiunto.','Applica prima il bilancio energetico al recipiente isolato e rigido.'),
+('Il rapporto volumico è adimensionale',P+'Quale unità misura p_f?',['kPa','L','J','K','kPa/L'],
+ 'V₀ e V₀+V_v sono volumi e devono essere espressi nella stessa unità; il loro rapporto non porta unità. Rimane quella di p₁, qui kilopascal. La scelta dei litri non altera il rapporto purché sia coerente in entrambi i termini.',
+ r'\left[\frac{V_0}{V_0+V_v}\right]=1\qquad [p_f]=[p_1]=\mathrm{kPa}',
+ 'L misura il volume, J energia e K temperatura. kPa/L comparirebbe dividendo per un volume senza il corrispondente fattore V₀ al numeratore.','Cancella le unità dei volumi prima di leggere quella finale.'),
+('La temperatura resta, l’entropia aumenta',P+'Quale coppia di variazioni del gas fra i due equilibri è corretta?',['ΔT = 0 e ΔS > 0','ΔT < 0 e ΔS = 0','ΔT = 0 e ΔS = 0','ΔT > 0 e ΔS < 0','ΔT < 0 e ΔS < 0'],
+ 'Il primo principio annulla ΔU perché calore e lavoro esterni sono nulli. Per un gas ideale l’energia interna dipende dalla temperatura, quindi ΔT=0. Il processo è però irreversibile: il gas acquista volume accessibile e la sua entropia aumenta. Per calcolare questa variazione di stato si può immaginare un percorso reversibile isotermo fra gli stessi estremi, senza attribuire quel percorso al processo reale. Nella formula, n>0 indica le moli del campione e R la costante universale dei gas.',
+ r'\Delta U=Q-W=0\qquad \Delta T=0\qquad \Delta S=nR\ln\!\left(\frac{V_0+V_v}{V_0}\right)\qquad V_v>0\Rightarrow\Delta S>0',
+ 'Adiabatico significa Q=0, non ΔS=0: l’entropia resta costante solo nell’adiabatica reversibile. Il raffreddamento è proprio di altre espansioni, per esempio quella reversibile adiabatica con lavoro uscente. Qui non si assume una temperatura uniforme durante ogni istante del transitorio.','Distingui bilancio di energia ed entropia prodotta irreversibilmente.'),
+('Raddoppiare la pressione preparata',P+'In due prove con V_v=1 L, p₁ passa da 100 a 200 kPa. Come cambia p_f?',['Da 50 a 100 kPa','Resta 50 kPa','Da 50 a 25 kPa','Da 50 a 200 kPa','Diventa zero'],
+ 'Il volume finale resta il doppio di quello iniziale in entrambe le prove. Il fattore geometrico è quindi sempre un mezzo. Applicato alle due pressioni preparate separatamente dà cinquanta e cento kilopascal: la pressione finale raddoppia.',
+ r'V_0/(V_0+V_v)=1/2\qquad p_{f,A}=50\,\mathrm{kPa}\qquad p_{f,B}=100\,\mathrm{kPa}',
+ 'Venticinque kPa renderebbe inversa la dipendenza da p₁. Duecento ripeterebbe la nuova pressione iniziale senza espansione; zero richiederebbe un limite di volume finale infinito, non i due litri assegnati.','Mantieni fisso il rapporto geometrico e applicalo a ciascun p₁.'),
+('La pressione prima della rimozione del setto',P+'Si misura p_f=50 kPa e si conosce V_v=1 L. Quanto vale p₁ in kPa?',100,
+ 'Il volume finale è due volte quello iniziale; per ricostruire la pressione precedente all’espansione moltiplichiamo la finale per due. Cinquanta kilopascal diventano cento. La pressione iniziale deve essere maggiore della finale perché il volume aggiunto è positivo.',
+ r'p_1=p_f\frac{V_0+V_v}{V_0}\qquad p_1=50\cdot2\,\mathrm{kPa}\qquad p_1=100\,\mathrm{kPa}',
+ 'Dividere ancora per due darebbe 25 kPa, minore di p_f e incompatibile con l’espansione descritta. Cinquanta ignora che il volume è aumentato.','Inverti il fattore volumico, non il bilancio di energia.'),
+('Il volume che era vuoto',P+'p₁=100 kPa e p_f=50 kPa. Quanto vale V_v in L?',1,
+ 'Dal rapporto delle pressioni ricaviamo che il volume finale è due volte V₀. Quel volume comprende sia il comparto inizialmente occupato sia quello vuoto. Togliendo il primo litro dai due finali otteniamo un litro inizialmente vuoto. L’inversa richiede 0<p_f<p₁ per dare V_v>0.',
+ r'V_0+V_v=V_0p_1/p_f\qquad V_v=V_0(p_1/p_f-1)\qquad V_v=(1\,\mathrm L)(2-1)\qquad V_v=1\,\mathrm L',
+ 'Due L è il volume totale finale, non il solo comparto vuoto. Un valore negativo descriverebbe un volume rimosso, fuori dal modello. La differenza di pressioni da sola non ha unità di volume.','Ricava prima V_f, poi sottrai V₀.'),
+('Aggiungere tre litri anziché uno',P+'p₁=100 kPa in entrambe le prove. A ha V_v=1 L, B ha V_v=3 L. Quanto vale p_f,B/p_f,A?',['1/2','1/3','3','2','1'],
+ 'A termina in due litri a cinquanta kilopascal. B termina in quattro litri a venticinque kilopascal. Il rapporto venticinque su cinquanta è un mezzo. V_v triplica, ma la pressione dipende dal volume totale V₀+V_v, che qui soltanto raddoppia.',
+ r'V_{f,A}=2\,\mathrm L\qquad V_{f,B}=4\,\mathrm L\qquad p_{f,A}=50\,\mathrm{kPa}\qquad p_{f,B}=25\,\mathrm{kPa}\qquad p_{f,B}/p_{f,A}=1/2',
+ 'Un terzo usa solo il volume vuoto e dimentica il litro iniziale. Due inverte il rapporto delle pressioni; tre trasforma una dipendenza inversa nel volume totale in una diretta nel solo V_v.','Somma sempre V₀ al volume vuoto prima di confrontare.'),
+('Lo scarto della pressione non aggiornata',P+'Con p₁=100 kPa e V_v=1 L si propone p_f=100 kPa. Quanto vale proposta meno risultato corretto?',['50 kPa','−50 kPa','100 kPa','0 kPa','25 kPa'],
+ 'La pressione corretta è cinquanta kilopascal. La proposta mantiene erroneamente quella iniziale e la supera di cinquanta kilopascal. Lo scarto positivo segnala una sovrastima, non un riscaldamento del gas.',
+ r'p_f=50\,\mathrm{kPa}\qquad e=(100-50)\,\mathrm{kPa}\qquad e=50\,\mathrm{kPa}',
+ 'Meno cinquanta sottrae nell’ordine opposto. Cento copia la proposta, zero la accetta e venticinque non è la differenza fra i due valori.','Calcola la pressione finale prima della sottrazione con segno.'),
+('L’inversa conserva il litro iniziale',P+'Quale formula isola p₁?',['p₁ = p_f (V₀ + V_v) / V₀','p₁ = p_f V₀ / (V₀ + V_v)','p₁ = p_f V_v / V₀','p₁ = p_f (V₀ + V_v)','p₁ = p_f / (V₀ + V_v)'],
+ 'Il fattore V₀/(V₀+V_v) è positivo. Per annullarlo moltiplichiamo per il suo reciproco. Il rapporto di volumi mantiene l’unità di pressione e, essendo maggiore di uno, produce p₁>p_f, come richiede l’espansione.',
+ r'p_f=p_1\frac{V_0}{V_0+V_v}\qquad p_1=p_f\frac{V_0+V_v}{V_0}',
+ 'La seconda opzione applica ancora il fattore di espansione. Usare il solo V_v dimentica il volume iniziale già occupato. Le ultime due espressioni hanno unità pressione moltiplicata per volume e pressione divisa per volume, non pressione.','Moltiplica per il reciproco dell’intero rapporto geometrico.'),
+('Due riscalamenti con un volume fisso',P+'B ha p₁,B=κ₁p₁ e V_v,B=κ₂V_v, con κ₁,κ₂>0; V₀=1 L resta identico. Qual è p_f,B/p_f,A?',['κ₁ (V₀ + V_v) / (V₀ + κ₂ V_v)','κ₁ / κ₂','κ₁ κ₂','(V₀ + κ₂ V_v) / (κ₁ (V₀ + V_v))','κ₁ V₀ / (κ₂ V_v)'],
+ 'Il nuovo volume vuoto va sommato allo stesso V₀, non si riscalano entrambi i comparti. Scrivendo le pressioni finali e dividendo, p₁ e V₀ al numeratore si cancellano. Rimangono κ₁ e il rapporto inverso dei volumi totali. Per κ₁=κ₂=1 il risultato torna uno.',
+ r'p_{f,B}=\frac{\kappa_1p_1V_0}{V_0+\kappa_2V_v}\qquad p_{f,A}=\frac{p_1V_0}{V_0+V_v}\qquad \frac{p_{f,B}}{p_{f,A}}=\frac{\kappa_1(V_0+V_v)}{V_0+\kappa_2V_v}',
+ 'κ₁/κ₂ sarebbe valido se si scalasse tutto il volume finale, che qui contiene un termine fisso. Il prodotto assegna al volume l’effetto opposto; la quarta opzione inverte il rapporto e l’ultima omette volumi presenti in entrambe le prove.','Conserva V₀ come termine fisso quando sostituisci i fattori.'),
+('Una pressione iniziale molto minore',P+'A: p₁=100 kPa, V_v=1 L. B: p₁=1 kPa, V_v=2 L. Quanto vale p_f,B/p_f,A?',['1/150','1/100','150','1/3','2/3'],
+ 'A termina a 50 kPa. B distribuisce la pressione iniziale di un kilopascal sul triplo del volume occupato inizialmente: p_f,B=1/3 kPa. Dividendo per 50 kPa si ottiene 1/150. La piccola pressione assoluta è positiva e compatibile col modello ideale assegnato.',
+ r'p_{f,A}=50\,\mathrm{kPa}\qquad p_{f,B}=\frac13\,\mathrm{kPa}\qquad \frac{p_{f,B}}{p_{f,A}}=\frac{1/3}{50}\qquad p_{f,B}/p_{f,A}=1/150',
+ '1/100 considera solo il cambiamento di p₁. Due terzi considera solo i volumi totali e 1/3 ripete il valore numerico della pressione B. Centocinquanta scambia B e A.','Riduci prima ogni pressione finale a una frazione esatta.'),
+('Media delle pressioni, non degli ingressi',P+'A usa p₁=100 kPa, V_v=1 L; B usa p₁=1 kPa, V_v=2 L. Qual è la media aritmetica delle due p_f?',['151/6 kPa','151/3 kPa','101/5 kPa','149/6 kPa','25 kPa'],
+ 'Le letture sono cinquanta e un terzo di kilopascal. Portandole a denominatore tre, la somma è 151/3 kPa; la metà è 151/6 kPa. Gli ingressi medi sarebbero 101/2 kPa e 3/2 L: produrrebbero invece 101/5 kPa, una terza prova distinta dalla media richiesta.',
+ r'\overline p_f=\frac{50+1/3}{2}\,\mathrm{kPa}\qquad \overline p_f=\frac{151}{6}\,\mathrm{kPa}',
+ '151/3 è la somma senza dimezzamento. 149/6 fa metà della differenza anziché della somma; 25 ignora la piccola lettura B. 101/5 applica il modello agli ingressi medi e non dà la media delle uscite.','Somma 50 e 1/3 con denominatore comune, poi dividi per due.'),
+('Il comparto per un bersaglio piccolo',P+'A ha p₁=100 kPa e V_v,A=1 L. In B si prepara p₁=1 kPa e si vuole p_f,B=p_f,A/150. Quanto vale V_v,B/V_v,A?',2,
+ 'Il riferimento dà 50 kPa e il bersaglio è 1/3 kPa. Con p₁,B=1 kPa, il volume totale deve essere tre volte V₀, dunque tre litri. Togliendo il litro inizialmente occupato restano due litri vuoti: il rapporto col comparto A di un litro è due.',
+ r'p_{f,B}=50/150\,\mathrm{kPa}\qquad p_{f,B}=\tfrac13\,\mathrm{kPa}\qquad V_{v,B}=V_0(p_{1,B}/p_{f,B}-1)\qquad V_{v,B}=2\,\mathrm L\qquad V_{v,B}/V_{v,A}=2',
+ 'Tre è il rapporto dei volumi totali, non dei comparti vuoti. Centocinquanta è il fattore sulle pressioni finali e non si trasferisce direttamente a V_v perché cambia anche p₁.','Ricava il volume totale dal rapporto delle pressioni e sottrai V₀.'),
+('Tarare prima di ricostruire p₁',P+'S=qp_f è un display continuo e adimensionale. A con p₁=100 kPa, V_v=1 L dà S=150. B dà S=1 e ha V_v=2 L. Quanto vale p₁,B in kPa?',1,
+ 'A termina a 50 kPa, quindi q=3 kPa⁻¹. La lettura uno di B vale 1/3 kPa. Il volume finale B è tre volte V₀: l’inversa moltiplica la pressione finale per tre e ricostruisce un kilopascal iniziale.',
+ r'p_{f,A}=50\,\mathrm{kPa}\qquad q=3\,\mathrm{kPa^{-1}}\qquad p_{f,B}=\tfrac13\,\mathrm{kPa}\qquad p_{1,B}=3p_{f,B}\qquad p_{1,B}=1\,\mathrm{kPa}',
+ 'Tre kPa risulterebbero trattando la lettura come una pressione già espressa in kPa. Un terzo è la finale, non l’iniziale; la taratura e l’inversa geometrica sono due passaggi distinti.','Usa il riferimento per convertire S in pressione finale.'),
+('Due riferimenti separano il guadagno dall’offset',P+'S=qp_f+b è continuo e adimensionale. A: p₁=100 kPa, V_v=1 L, S=101. B: p₁=1 kPa, V_v=2 L, S=5/3. C: V_v=1 L, S=201. Quanto vale p₁,C?',['200 kPa','100 kPa','201 kPa','400 kPa','50 kPa'],
+ 'Le finali di riferimento sono 50 kPa e 1/3 kPa. Le differenze delle letture e delle pressioni valgono 298/3 e 149/3 kPa: il rapporto dà q=2 kPa⁻¹. A fissa b=1. Per C, tolto uno e diviso per due, troviamo 100 kPa finali. Il volume raddoppiato richiede una pressione iniziale doppia, cioè 200 kPa.',
+ r'q=\frac{101-5/3}{(50-1/3)\,\mathrm{kPa}}\qquad q=2\,\mathrm{kPa^{-1}}\qquad b=1\qquad p_{f,C}=100\,\mathrm{kPa}\qquad p_{1,C}=200\,\mathrm{kPa}',
+ 'Cento kPa si ferma alla finale. 201 kPa omette l’offset e ricostruisce S=202. Quattrocento kPa darebbero S=401, cinquanta kPa darebbero S=51: la sostituzione nelle due leggi rifiuta queste alternative.','Trova q dalle differenze, poi b, quindi applica l’inversa della pressione.'),
+('Una pressione scelta insieme al comparto',P+'Fra preparazioni diverse si impone p₁=dV_v, con d=100 kPa/L. Si misura p_f=50 kPa. Quanto vale V_v>0?',['1 L','−1 L','2 L','1/2 L','Infinite quantità positive'],
+ 'Sostituiamo nella legge e moltiplichiamo per V₀+V_v, che è positivo. Rimane un’equazione lineare: p_fV₀=(dV₀−p_f)V_v. Qui dV₀−p_f=50 kPa, positivo, e il quoziente dà un litro. Ricostruiamo p₁=100 kPa e p_f=50 kPa: il vincolo riguarda prove preparate diversamente, non un aumento di pressione durante l’espansione.',
+ r'p_f=\frac{dV_vV_0}{V_0+V_v}\qquad p_fV_0=(dV_0-p_f)V_v\qquad V_v=\frac{p_fV_0}{dV_0-p_f}\qquad V_v=1\,\mathrm L',
+ 'Meno un litro viola il dominio. Due litri darebbero 200/3 kPa finali e mezzo litro 100/3 kPa. Il denominatore è non nullo e fissa una sola soluzione; per questo vincolo il dominio delle pressioni finali è 0<p_f<dV₀.','Sostituisci il vincolo con unità esplicite e risolvi la nuova equazione lineare.'),
+]
+CHOICES={n:0 for n in [2,3,4,7,8,9,10,11,12,15,16]}
+UNITS={1:'kPa',5:'kPa',6:'L',13:'1',14:'kPa'}
+FIGURES={1:'Tre passaggi: il gas iniziale occupa metà del recipiente mentre l’altra metà è vuota; rimosso il setto, occupa il doppio del volume alla stessa temperatura finale del gas ideale. I rettangoli mantengono la stessa altezza e scala geometrica. Le barre finali di 100 kPa e 50 kPa condividono origine e scala 3 px/kPa. La sequenza dei pannelli descrive il passaggio fra equilibri, non un percorso reversibile.',3:'Il confine esterno rigido e isolato racchiude entrambi i comparti. I punti sono simboli del gas e non un conteggio di molecole o di probabilità. L’uguaglianza delle temperature riguarda gli equilibri estremi; il transitorio è irreversibile e l’entropia aumenta pur con Q=0.'}
+OVERRIDES={3:{'skill':'C3-L10','prerequisites':['C3-L01','C3-L02','C3-L06','C3-L07','C3-L09','C3-L10']}}
+def assemble(repo,source_ref):
+ return assemble_family(repo,source_ref,'free-expansion-pressure',TASKS,CHOICES,UNITS,'free-expansion-pressure-progressive.svg',FIGURES,16600,unit='u5',course='C3',source_path='packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U5-02.json',skill='C3-L07',prerequisites=['C1-L001','C3-L01','C3-L02','C3-L06','C3-L07','C3-L08','C3-L09'],section='Espansione libera del gas ideale isolato',coverage=['Primo principio e irreversibilità','Volume totale e pressione assoluta','Inverse, medie e taratura'],overrides=OVERRIDES)
+if __name__=='__main__':write_family(assemble,'free-expansion-pressure-166')

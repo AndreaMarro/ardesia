@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 1740" role="img" aria-labelledby="title desc">
+<title id="title">Microstati interi, variazioni logaritmiche</title>
+<desc id="desc">Due alternative iniziali e otto finali danno un rapporto quattro e coefficiente entropico due. Raddoppiare le alternative aggiunge uno al coefficiente normalizzato. Le uscite due e uno hanno media tre mezzi. Infinite coppie intere sul rapporto quattro danno lo stesso coefficiente due.</desc>
+<defs><marker id="change" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#28664d"/></marker></defs>
+<rect width="640" height="1740" rx="12" fill="#f8fafc"/>
+<g font-family="Arial,sans-serif" fill="#14243a" font-size="20">
+<text x="32" y="42" font-size="25" font-weight="bold">1 · Contare stati, non particelle</text>
+<text x="32" y="83" font-size="18">Confronto fra due macrostati del modello.</text>
+<rect x="55" y="120" width="205" height="180" rx="10" fill="#e4f3fa" stroke="#165a87"/>
+<rect x="350" y="120" width="235" height="180" rx="10" fill="#e8f3ed" stroke="#28664d"/>
+<text x="105" y="155">Ω_i = 2</text><text x="418" y="155">Ω_f = 8</text>
+<g fill="#165a87"><circle cx="115" cy="215" r="13"/><circle cx="200" cy="215" r="13"/></g>
+<g fill="#28664d"><circle cx="390" cy="197" r="11"/><circle cx="442" cy="197" r="11"/><circle cx="494" cy="197" r="11"/><circle cx="546" cy="197" r="11"/><circle cx="390" cy="250" r="11"/><circle cx="442" cy="250" r="11"/><circle cx="494" cy="250" r="11"/><circle cx="546" cy="250" r="11"/></g>
+<path d="M278 220H333" stroke="#28664d" stroke-width="4" marker-end="url(#change)"/>
+<text x="32" y="341" font-size="18">Ogni cerchio è un’alternativa equiprobabile.</text>
+<text x="32" y="373" font-size="18">Non sono particelle presenti contemporaneamente.</text>
+<text x="32" y="405" font-size="18">Ω_f / Ω_i = 4 = 2² ; z = ΔS / (k_B ln2) = 2.</text>
+<path d="M32 438H608" stroke="#9babbc"/>
+<text x="32" y="482" font-size="25" font-weight="bold">2 · Un raddoppio aggiunge uno</text>
+<text x="32" y="523" font-size="18">Qui resta fisso il riferimento Ω_i = 2.</text>
+<rect x="65" y="565" width="110" height="105" rx="8" fill="#e4f3fa" stroke="#165a87"/>
+<rect x="265" y="565" width="110" height="105" rx="8" fill="#e4f3fa" stroke="#165a87"/>
+<rect x="465" y="565" width="110" height="105" rx="8" fill="#e4f3fa" stroke="#165a87"/>
+<text x="88" y="605">Ω = 2</text><text x="88" y="645">z = 0</text>
+<text x="288" y="605">Ω = 4</text><text x="288" y="645">z = 1</text>
+<text x="488" y="605">Ω = 8</text><text x="488" y="645">z = 2</text>
+<path d="M190 620H250" stroke="#28664d" stroke-width="4" marker-end="url(#change)"/>
+<path d="M390 620H450" stroke="#28664d" stroke-width="4" marker-end="url(#change)"/>
+<text x="204" y="590">×2</text><text x="404" y="590">×2</text>
+<text x="32" y="718" font-size="18">Ogni passaggio aggiunge ΔS = k_B ln2.</text>
+<text x="32" y="750" font-size="18">Il logaritmo trasforma prodotti in somme.</text>
+<path d="M32 782H608" stroke="#9babbc"/>
+<text x="32" y="826" font-size="25" font-weight="bold">3 · Media delle uscite</text>
+<text x="32" y="865" font-size="18">A: Ω_f / Ω_i = 8/2 ; B: Ω_f / Ω_i = 2/1.</text>
+<path d="M130 896V1165" stroke="#14243a" stroke-width="2"/>
+<rect x="130" y="925" width="240" height="38" fill="#165a87"/>
+<rect x="130" y="1005" width="120" height="38" fill="#165a87"/>
+<rect x="130" y="1085" width="180" height="38" fill="#28664d"/>
+<text x="50" y="952">A</text><text x="390" y="952">z = 2</text>
+<text x="50" y="1032">B</text><text x="270" y="1032">z = 1</text>
+<text x="32" y="1112">Media</text><text x="330" y="1112">z = 3/2</text>
+<text x="104" y="1160">0</text>
+<text x="32" y="1210" font-size="18">Coefficienti adimensionali, origine e scala comuni.</text>
+<text x="32" y="1242" font-size="18">La media 3/2 non è un conteggio di microstati.</text>
+<path d="M32 1274H608" stroke="#9babbc"/>
+<text x="32" y="1318" font-size="25" font-weight="bold">4 · La misura non fissa n</text>
+<text x="32" y="1357" font-size="18">Ω_i = n ; Ω_f = 4n ; n intero positivo.</text>
+<rect x="65" y="1390" width="510" height="210" rx="8" fill="#e8f3ed" stroke="#28664d"/>
+<path d="M65 1443H575M65 1495H575M65 1547H575" stroke="#8292a2"/>
+<text x="95" y="1425">Ω_i</text><text x="285" y="1425">Ω_f</text><text x="480" y="1425">z</text>
+<text x="105" y="1478">1</text><text x="297" y="1478">4</text><text x="480" y="1478">2</text>
+<text x="105" y="1530">2</text><text x="297" y="1530">8</text><text x="480" y="1530">2</text>
+<text x="105" y="1582">3</text><text x="285" y="1582">12</text><text x="480" y="1582">2</text>
+<text x="32" y="1645" font-size="18">Si continua per n = 4, 5, 6, … : infinite coppie intere.</text>
+<text x="32" y="1677" font-size="18">Non si interpolano conteggi frazionari fra le righe.</text>
+<text x="32" y="1709" font-size="18">Lo stesso rapporto lascia libera una scala discreta.</text>
+</g></svg>

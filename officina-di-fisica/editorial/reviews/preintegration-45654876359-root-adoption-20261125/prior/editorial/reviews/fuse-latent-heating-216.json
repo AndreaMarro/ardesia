@@ -1,0 +1,548 @@
+{
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "AR-u6-fuse-latent-heating-01",
+      "sourceSha256": "c603cf09abef190990d6c98c559a737e42fa11e3c42e800676257ac73647a87b",
+      "candidateSha256": "fd79b5541caf114405f642a08a14081d606bdfc80b92e144164f0a611815b0fa",
+      "reviewedSignature": "6a83c49be6a730703e9f1a41944fefa18da26a86b6ba2cbe0a0c8070c69dc235",
+      "assetChecksums": {
+        "fuse-latent-heating-progressive.svg": "ba9c5e69283be14c2745156243c67eaa0fb02eb028d817b69d4afbae69eb87c0"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1",
+      "dimension": {
+        "[time]": "1"
+      },
+      "manualArithmetic": "10 mg=1/100 g. Il calore latente richiesto è (1/100 g)(200 J/g)=2 J. La potenza Joule costante è I²R=(1 A)²·2 Ω=2 W. Tempo t=2 J/(2 W)=1 s; non si aggiunge riscaldamento sensibile, perché il filamento parte già alla temperatura di fusione.",
+      "physicalAssumptions": "Filamento già alla temperatura di fusione, pressione fissata, trasformazione completa, L_f=200 J/g e R=2 Ω costanti ideali, I>0 mantenuta costante entro prova, nessuna perdita. Solo calore latente: il modello termina alla fusione completa e non è una legge universale dell’apertura di un fusibile reale. Vincolo del16 soltanto fra preparazioni.",
+      "distractors": "10 mg=1/100 g; energia 2 J e potenza 2 W danno 1 s. Mille s tratterebbe 10 mg come 10 g; 2 s copia il numero dell’energia; 1/2 s dimezza ancora. Le barre energetiche sono nel primo pannello, come ora precisa la didascalia finale 0444dc79 riletta.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. 10 mg=1/100 g. Il calore latente richiesto è (1/100 g)(200 J/g)=2 J. La potenza Joule costante è I²R=(1 A)²·2 Ω=2 W. Tempo t=2 J/(2 W)=1 s; non si aggiunge riscaldamento sensibile, perché il filamento parte già alla temperatura di fusione.",
+      "scientificAssetReview": "SVG completo e PNG indipendente 640×1480 letti. Primo pannello energie 2/16 J e barre 40/320 da origine 150. Secondo E(t): x=150+300t, y=850−100E, segmento fino a (450,650), quindi E=2Wt e fusione completa a 1 s. Ultimo tempi 1/2/3/2 s con barre 160/320/240, origine 150. Scale distinte per grandezze fisiche; zeri e testo terminale liberi, niente prosecuzione oltre fusione.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "circuit_capacitor_review_models.py": "f27c33334a9349c8941704334fd73761fe9bf0e4209472ea74ae5bb4a48081b4"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-fuse-latent-heating-02",
+      "sourceSha256": "150c8e0af91fbba3df43a97fa6be3240fcf70e9db7b2f0f5be438824d7a04615",
+      "candidateSha256": "8a732c4c5d8375554720736def79b4150638a89444c66f3591720195a055a730",
+      "reviewedSignature": "70fb8ed331afafc63583140cd463c61b588579e05ab28dfa12dc75bbbea52574",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "s",
+      "dimension": {},
+      "manualArithmetic": "Il tempo ha dimensione temporale e si esprime in s o in suoi multipli/sottomultipli. Dal bilancio t=energia/potenza segue J/W=s. Nella primaria le alternative non erano aperte; nella successiva lettura tutte e cinque sono state confrontate individualmente.",
+      "physicalAssumptions": "Filamento già alla temperatura di fusione, pressione fissata, trasformazione completa, L_f=200 J/g e R=2 Ω costanti ideali, I>0 mantenuta costante entro prova, nessuna perdita. Solo calore latente: il modello termina alla fusione completa e non è una legge universale dell’apertura di un fusibile reale. Vincolo del16 soltanto fra preparazioni.",
+      "distractors": "Solo s rappresenta J/W. Le alternative J,W,A,J/s misurano energia, potenza, corrente, potenza. Prova dimensionale specifica, senza calcolo numerico autonomo.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Il tempo ha dimensione temporale e si esprime in s o in suoi multipli/sottomultipli. Dal bilancio t=energia/potenza segue J/W=s. Nella primaria le alternative non erano aperte; nella successiva lettura tutte e cinque sono state confrontate individualmente.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "circuit_capacitor_review_models.py": "f27c33334a9349c8941704334fd73761fe9bf0e4209472ea74ae5bb4a48081b4"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-fuse-latent-heating-03",
+      "sourceSha256": "25a952717092f3f7bd74fc78d2b4d167e39cb5c660361ae0085c4d58ec804f3a",
+      "candidateSha256": "f7cd84b9cbecdefbd70228c79671100415dec0a20bac192ab9ce61eb0f383c8d",
+      "reviewedSignature": "760a24e755d0e53bb94adeee0ba68cd4643cca51a145b89b5f82dc7593ef38ec",
+      "assetChecksums": {
+        "fuse-latent-heating-progressive.svg": "ba9c5e69283be14c2745156243c67eaa0fb02eb028d817b69d4afbae69eb87c0"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "t / (1 s) = x / (10 i²)",
+      "dimension": {
+        "[time]": "1"
+      },
+      "manualArithmetic": "Per una massa numerica m in mg, Q_f=(m/1000 g)(200 J/g)=(m/5) J. La potenza numerica è 2I² W quando I è in A. Quindi t[s]=m[mg]/(10 I[A]²). La legge fisica è t=mL_f/(I²R) con unità coerenti, non una massa in mg trattata come grammi.",
+      "physicalAssumptions": "Filamento già alla temperatura di fusione, pressione fissata, trasformazione completa, L_f=200 J/g e R=2 Ω costanti ideali, I>0 mantenuta costante entro prova, nessuna perdita. Solo calore latente: il modello termina alla fusione completa e non è una legge universale dell’apertura di un fusibile reale. Vincolo del16 soltanto fra preparazioni.",
+      "distractors": "Con x=m/(1 mg), i=I/(1 A), il tempo normalizzato è x/(10i²).10x/i² è cento volte il corretto; xi²/10 inverte l’effetto della potenza; x/(10i) perde il quadrato; i²/(10x) inverte la dipendenza dalla massa. Sono formule generali, non confronti a un valore particolare.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Per una massa numerica m in mg, Q_f=(m/1000 g)(200 J/g)=(m/5) J. La potenza numerica è 2I² W quando I è in A. Quindi t[s]=m[mg]/(10 I[A]²). La legge fisica è t=mL_f/(I²R) con unità coerenti, non una massa in mg trattata come grammi.",
+      "scientificAssetReview": "SVG completo e PNG indipendente 640×1480 letti. Primo pannello energie 2/16 J e barre 40/320 da origine 150. Secondo E(t): x=150+300t, y=850−100E, segmento fino a (450,650), quindi E=2Wt e fusione completa a 1 s. Ultimo tempi 1/2/3/2 s con barre 160/320/240, origine 150. Scale distinte per grandezze fisiche; zeri e testo terminale liberi, niente prosecuzione oltre fusione.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "circuit_capacitor_review_models.py": "f27c33334a9349c8941704334fd73761fe9bf0e4209472ea74ae5bb4a48081b4"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-fuse-latent-heating-04",
+      "sourceSha256": "f3acb1ea10f046592e36523a13379895c872e9e4a6fe40edd1018cfb6d12c696",
+      "candidateSha256": "57d94f2bbfd1040d5f2d40ef524d92b9cedea60f3ca96ae3577f7e1f76783175",
+      "reviewedSignature": "891e907c671b80af49b09cfbb78e93b62a01398eb9e1ab7ef9d20adad4511f88",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Da 1 s a 2 s",
+      "dimension": {
+        "[time]": "1"
+      },
+      "manualArithmetic": "I resta 1 A e raddoppia soltanto la massa da 10 a 20 mg. Raddoppia il calore latente da 2 a 4 J mentre P=2 W resta fisso; t passa da 1 a 2 s.",
+      "physicalAssumptions": "Filamento già alla temperatura di fusione, pressione fissata, trasformazione completa, L_f=200 J/g e R=2 Ω costanti ideali, I>0 mantenuta costante entro prova, nessuna perdita. Solo calore latente: il modello termina alla fusione completa e non è una legge universale dell’apertura di un fusibile reale. Vincolo del16 soltanto fra preparazioni.",
+      "distractors": "Raddoppia solo m: energia2→4 J, potenza2 W invariata, t1→2 s. Le alternative1/2,1,4,20 s invertono, ignorano, quadrano o copiano un dato di massa.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. I resta 1 A e raddoppia soltanto la massa da 10 a 20 mg. Raddoppia il calore latente da 2 a 4 J mentre P=2 W resta fisso; t passa da 1 a 2 s.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "circuit_capacitor_review_models.py": "f27c33334a9349c8941704334fd73761fe9bf0e4209472ea74ae5bb4a48081b4"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-fuse-latent-heating-05",
+      "sourceSha256": "06bd5456304709bcebaa73497b06313d6196d4f171e3b589144585407555174c",
+      "candidateSha256": "0f5e1f7ee309fb1ca9818e41966de33e54356e594338f6b5c40fb84874602f4e",
+      "reviewedSignature": "e38f924b0de62bc1bc7b79706131997580272adce8afe7778dd2724c2af6fc3b",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "10",
+      "dimension": {
+        "[mass]": "1"
+      },
+      "manualArithmetic": "Il bilancio inverte la legge: m=I²Rt/L_f. Nelle unità assegnate m[mg]=10 I[A]² t[s]. Con I=1 A e t=1 s si ottiene 10 mg. Parametri e tempo sono finiti positivi.",
+      "physicalAssumptions": "Filamento già alla temperatura di fusione, pressione fissata, trasformazione completa, L_f=200 J/g e R=2 Ω costanti ideali, I>0 mantenuta costante entro prova, nessuna perdita. Solo calore latente: il modello termina alla fusione completa e non è una legge universale dell’apertura di un fusibile reale. Vincolo del16 soltanto fra preparazioni.",
+      "distractors": "La massa è10 mg, non1/100 mg. Dividere2 J per200 J/g produce1/100 g.2 mg copia il numero dei joule;200 mg copia il coefficiente L_f, non una massa ricostruita.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Il bilancio inverte la legge: m=I²Rt/L_f. Nelle unità assegnate m[mg]=10 I[A]² t[s]. Con I=1 A e t=1 s si ottiene 10 mg. Parametri e tempo sono finiti positivi.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "circuit_capacitor_review_models.py": "f27c33334a9349c8941704334fd73761fe9bf0e4209472ea74ae5bb4a48081b4"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-fuse-latent-heating-06",
+      "sourceSha256": "c813624f497d7a36abd5198aadabd0d9f32863eb2b59fc162d27766bff43475f",
+      "candidateSha256": "da5b0e1e3e3ae3b9eff08f3701de7d4a4fdbb227903916cbb0ee6b7e2bf4be99",
+      "reviewedSignature": "48bef1bf59f61e4b6a4d3faf94af39dfbacc466fa5ad86e8a746079761551659",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1",
+      "dimension": {
+        "[current]": "1"
+      },
+      "manualArithmetic": "I²=mL_f/(Rt). Con m=10 mg, Q_f=2 J, R=2 Ω e t=1 s: I²=1 A². Le radici matematiche sono ±1 A; il ramo dichiarato I>0 seleziona 1 A, modulo della corrente di riscaldamento.",
+      "physicalAssumptions": "Filamento già alla temperatura di fusione, pressione fissata, trasformazione completa, L_f=200 J/g e R=2 Ω costanti ideali, I>0 mantenuta costante entro prova, nessuna perdita. Solo calore latente: il modello termina alla fusione completa e non è una legge universale dell’apertura di un fusibile reale. Vincolo del16 soltanto fra preparazioni.",
+      "distractors": "I²=1 A² e il ramo positivo dà1 A. Due A darebbe8 W e1/4 s; mezzo A darebbe1/2 W e4 s; zero non trasferisce energia, −1 A è fuori dal dominio dichiarato.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. I²=mL_f/(Rt). Con m=10 mg, Q_f=2 J, R=2 Ω e t=1 s: I²=1 A². Le radici matematiche sono ±1 A; il ramo dichiarato I>0 seleziona 1 A, modulo della corrente di riscaldamento.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "circuit_capacitor_review_models.py": "f27c33334a9349c8941704334fd73761fe9bf0e4209472ea74ae5bb4a48081b4"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-fuse-latent-heating-07",
+      "sourceSha256": "511a0d71bc43f127d3b12d3ed90e07bb4c868ef8c61ee356c554666825820992",
+      "candidateSha256": "15ec6a317c6b51bca62d731dda36986938747db0446c231b88f0bab1de905acf",
+      "reviewedSignature": "8cf7f8c4b2ee8eede87e546512da1a2efedfe228f7b923f9de0a6db6e3fff81b",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1/4",
+      "dimension": {},
+      "manualArithmetic": "A massa fissa t è inversamente proporzionale a I². Da 1 a 2 A la potenza quadruplica e t_B/t_A=1/4. Il nuovo tempo è 1/4 s, non 1/2 s.",
+      "physicalAssumptions": "Filamento già alla temperatura di fusione, pressione fissata, trasformazione completa, L_f=200 J/g e R=2 Ω costanti ideali, I>0 mantenuta costante entro prova, nessuna perdita. Solo calore latente: il modello termina alla fusione completa e non è una legge universale dell’apertura di un fusibile reale. Vincolo del16 soltanto fra preparazioni.",
+      "distractors": "Il fattore di corrente2 produce fattore di potenza4 e di tempo1/4. Le altre scelte seguono linearmente I, rendono il tempo diretto a I/P, oppure ignorano il cambiamento.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. A massa fissa t è inversamente proporzionale a I². Da 1 a 2 A la potenza quadruplica e t_B/t_A=1/4. Il nuovo tempo è 1/4 s, non 1/2 s.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "circuit_capacitor_review_models.py": "f27c33334a9349c8941704334fd73761fe9bf0e4209472ea74ae5bb4a48081b4"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-fuse-latent-heating-08",
+      "sourceSha256": "62ae0952df60a6d2c44621830ff877aa606cc946e2fc9ff7703f0f4ce2303fc3",
+      "candidateSha256": "ece4d314eaad1b7fdf0e56a85ff1c2dff8be4171981743c6932d6473ce576f85",
+      "reviewedSignature": "e7d33b7f20ae7ea2f6d9bacceba9a4d9d431dfdba05dec0f129c7eeedadb18a4",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1",
+      "dimension": {
+        "[time]": "1"
+      },
+      "manualArithmetic": "Tempo corretto 1 s, proposta 2 s: scarto +1 s. La differenza è un tempo; il rapporto 2 sarebbe adimensionale e risponderebbe a un’altra domanda.",
+      "physicalAssumptions": "Filamento già alla temperatura di fusione, pressione fissata, trasformazione completa, L_f=200 J/g e R=2 Ω costanti ideali, I>0 mantenuta costante entro prova, nessuna perdita. Solo calore latente: il modello termina alla fusione completa e non è una legge universale dell’apertura di un fusibile reale. Vincolo del16 soltanto fra preparazioni.",
+      "distractors": "Scarto+1 s. −1 s inverte,2 puro è rapporto,2 s copia la proposta,0 accetta l’errore. Dopo la fusione completa la sola legge di fase non descrive il successivo stato termico.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Tempo corretto 1 s, proposta 2 s: scarto +1 s. La differenza è un tempo; il rapporto 2 sarebbe adimensionale e risponderebbe a un’altra domanda.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "circuit_capacitor_review_models.py": "f27c33334a9349c8941704334fd73761fe9bf0e4209472ea74ae5bb4a48081b4"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-fuse-latent-heating-09",
+      "sourceSha256": "a3acda17e85873bfce0a027eb5c4f31879f2243643a98560417fffa9f3eee42c",
+      "candidateSha256": "3321176bce7060e9098b8d092da6ab04225694edbed9527730eba4f6cd75eaa8",
+      "reviewedSignature": "37ba2d428e31597c5a26ebe8066be0945f2c4d2fc9c7062bad422b25c9d1960f",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "m = I² R t / L_f",
+      "dimension": {
+        "[mass]": "1"
+      },
+      "manualArithmetic": "Da t[s]=m[mg]/(10 I[A]²), moltiplicando per 10 I[A]² segue m[mg]=10 t[s] I[A]². In forma dimensionale m=I²Rt/L_f. La corrente non deve annullarsi nel modello di fusione a tempo finito.",
+      "physicalAssumptions": "Filamento già alla temperatura di fusione, pressione fissata, trasformazione completa, L_f=200 J/g e R=2 Ω costanti ideali, I>0 mantenuta costante entro prova, nessuna perdita. Solo calore latente: il modello termina alla fusione completa e non è una legge universale dell’apertura di un fusibile reale. Vincolo del16 soltanto fra preparazioni.",
+      "distractors": "m=I²Rt/L_f ha unità g con L_f in J/g; si converte poi in mg. Un solo I altera le dimensioni; t al denominatore farebbe diminuire la massa all’aumentare della durata a potenza fissata. Non si assegna quel segno quando variano insieme P e t. Il reciproco finale ha g⁻¹. Finding 09 corretto e riletto nel finale 0444dc79.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Da t[s]=m[mg]/(10 I[A]²), moltiplicando per 10 I[A]² segue m[mg]=10 t[s] I[A]². In forma dimensionale m=I²Rt/L_f. La corrente non deve annullarsi nel modello di fusione a tempo finito.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "circuit_capacitor_review_models.py": "f27c33334a9349c8941704334fd73761fe9bf0e4209472ea74ae5bb4a48081b4"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-fuse-latent-heating-10",
+      "sourceSha256": "623f7f222b1d17638262bb362c1796be8ed58a0e2e846275ff7f4cf5a0e730a6",
+      "candidateSha256": "5992f0052dbf8ee2d7d7f7b5f873d5cfe4a6129c735c3056944fb4808a3b3dd8",
+      "reviewedSignature": "f0339becc35d2e577fc77f7c89fc3f71d6ff518f37303204bc361223e07aabaf",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "κ₁ / κ₂²",
+      "dimension": {},
+      "manualArithmetic": "Con m_B=κ₁m e I_B=κ₂I: t_B/t_A=κ₁/κ₂², con i fattori positivi e R,L_f invariati. Il fattore della massa è diretto; quello della corrente è inverso e quadratico.",
+      "physicalAssumptions": "Filamento già alla temperatura di fusione, pressione fissata, trasformazione completa, L_f=200 J/g e R=2 Ω costanti ideali, I>0 mantenuta costante entro prova, nessuna perdita. Solo calore latente: il modello termina alla fusione completa e non è una legge universale dell’apertura di un fusibile reale. Vincolo del16 soltanto fra preparazioni.",
+      "distractors": "Rapportoκ₁/κ₂². Il prodotto rende il tempo diretto alla potenza; la prima potenzaκ₂ omette il quadrato;κ₂²/κ₁ inverte B/A;κ₁² introduce una massa quadratica assente nel bilancio.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Con m_B=κ₁m e I_B=κ₂I: t_B/t_A=κ₁/κ₂², con i fattori positivi e R,L_f invariati. Il fattore della massa è diretto; quello della corrente è inverso e quadratico.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "circuit_capacitor_review_models.py": "f27c33334a9349c8941704334fd73761fe9bf0e4209472ea74ae5bb4a48081b4"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-fuse-latent-heating-11",
+      "sourceSha256": "7bf1f015277e6223f367d600b975ea9edd55550d19796a7b22200bbbc431c458",
+      "candidateSha256": "fff5c6015d4166028cb54b1ee5cc43ffd5b5ea08f6420ad22345f24ac885aa0a",
+      "reviewedSignature": "d0b24a0a497833b1590e5c57dcc3f131835b30eae416544cb6337ccbbe718f72",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {},
+      "manualArithmetic": "A: 10/(10·1²)=1 s. B: 80/(10·2²)=2 s. Il rapporto t_B/t_A è 2: la massa fornisce un fattore otto e la potenza un fattore quattro.",
+      "physicalAssumptions": "Filamento già alla temperatura di fusione, pressione fissata, trasformazione completa, L_f=200 J/g e R=2 Ω costanti ideali, I>0 mantenuta costante entro prova, nessuna perdita. Solo calore latente: il modello termina alla fusione completa e non è una legge universale dell’apertura di un fusibile reale. Vincolo del16 soltanto fra preparazioni.",
+      "distractors": "Tempi1 e2 s danno rapporto2. Otto segue solo massa, quattro copia la potenza,1/2 è reciproco,1/4 considera solo la corrente. Massa e potenza devono essere confrontate insieme.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. A: 10/(10·1²)=1 s. B: 80/(10·2²)=2 s. Il rapporto t_B/t_A è 2: la massa fornisce un fattore otto e la potenza un fattore quattro.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "circuit_capacitor_review_models.py": "f27c33334a9349c8941704334fd73761fe9bf0e4209472ea74ae5bb4a48081b4"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-fuse-latent-heating-12",
+      "sourceSha256": "8538d66db644d76ce2e82dd3c061e77c1c25a62442900395b083775b2c6f5b68",
+      "candidateSha256": "56230e4aa6f7c872ef45367c21b56280780c97ddd9faf3595a42c16d47c42f5e",
+      "reviewedSignature": "8682cd264526c547b3f438d49e1cceb69d8c24087f100ac2317a30a01b471ffb",
+      "assetChecksums": {
+        "fuse-latent-heating-progressive.svg": "ba9c5e69283be14c2745156243c67eaa0fb02eb028d817b69d4afbae69eb87c0"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "3/2",
+      "dimension": {
+        "[time]": "1"
+      },
+      "manualArithmetic": "Media delle uscite (1+2)/2=3/2 s. Ai dati medi m=45 mg e I=3/2 A, il modello darebbe 45/[10·(9/4)]=2 s, diverso di 1/2 s. Il quesito chiede la prima media e non il modello applicato agli ingressi medi.",
+      "physicalAssumptions": "Filamento già alla temperatura di fusione, pressione fissata, trasformazione completa, L_f=200 J/g e R=2 Ω costanti ideali, I>0 mantenuta costante entro prova, nessuna perdita. Solo calore latente: il modello termina alla fusione completa e non è una legge universale dell’apertura di un fusibile reale. Vincolo del16 soltanto fra preparazioni.",
+      "distractors": "Media3/2 s; ai dati medi45 mg e3/2 A il tempo è2 s. Le alternative2,3,1/2,1 s rappresentano ingressi medi, somma, semidifferenza o sola prova A. Il tempo medio qui è statistico, non quello di una corrente variabile.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Media delle uscite (1+2)/2=3/2 s. Ai dati medi m=45 mg e I=3/2 A, il modello darebbe 45/[10·(9/4)]=2 s, diverso di 1/2 s. Il quesito chiede la prima media e non il modello applicato agli ingressi medi.",
+      "scientificAssetReview": "SVG completo e PNG indipendente 640×1480 letti. Primo pannello energie 2/16 J e barre 40/320 da origine 150. Secondo E(t): x=150+300t, y=850−100E, segmento fino a (450,650), quindi E=2Wt e fusione completa a 1 s. Ultimo tempi 1/2/3/2 s con barre 160/320/240, origine 150. Scale distinte per grandezze fisiche; zeri e testo terminale liberi, niente prosecuzione oltre fusione.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "circuit_capacitor_review_models.py": "f27c33334a9349c8941704334fd73761fe9bf0e4209472ea74ae5bb4a48081b4"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-fuse-latent-heating-13",
+      "sourceSha256": "f59cdfb1069e48e26da1662df3fe2444ade8c7abb02dd32a50c88c8898fc86e9",
+      "candidateSha256": "3034636f2daa05abdbc4773d6ec35cb8d101f8bd1cf8d0610a1e9b463202644c",
+      "reviewedSignature": "9a865d3456500d8a02dc625a9d7088813ccca3bdaeb165f13a7acd7b473ca79f",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {},
+      "manualArithmetic": "Il bersaglio è t_B=2 s. Con m_B=80 mg: 2=80/(10 I_B²) ⇒ I_B²=4 A². La radice positiva è I_B=2 A; il rapporto con I_A=1 A vale 2.",
+      "physicalAssumptions": "Filamento già alla temperatura di fusione, pressione fissata, trasformazione completa, L_f=200 J/g e R=2 Ω costanti ideali, I>0 mantenuta costante entro prova, nessuna perdita. Solo calore latente: il modello termina alla fusione completa e non è una legge universale dell’apertura di un fusibile reale. Vincolo del16 soltanto fra preparazioni.",
+      "distractors": "Bersaglio2 s con massa80 mg impone rapporto delle correnti2. Quattro copia il quadrato del rapporto,1/2 è reciproco,otto segue massa e√2 ignora il fattore della massa.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Il bersaglio è t_B=2 s. Con m_B=80 mg: 2=80/(10 I_B²) ⇒ I_B²=4 A². La radice positiva è I_B=2 A; il rapporto con I_A=1 A vale 2.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "circuit_capacitor_review_models.py": "f27c33334a9349c8941704334fd73761fe9bf0e4209472ea74ae5bb4a48081b4"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-fuse-latent-heating-14",
+      "sourceSha256": "64c5c44e2eee3b1dcf150a7d3de02f2426d0c123b1c61e9d8f12e2c9c70548d7",
+      "candidateSha256": "55f96692ff5da4a1605318ed5379f1d8392ea298fc7ea984bd3f47be604a0598",
+      "reviewedSignature": "50874cf24b457a37b92e9099b896964fce992cf0b6d5258b2dd2cb04ac12087b",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "80",
+      "dimension": {
+        "[mass]": "1"
+      },
+      "manualArithmetic": "Riferimento t=1 s e lettura 3 danno a_cal=3 s⁻¹ per display adimensionale. Lettura 6 restituisce t=2 s. Con I=2 A, m[mg]=10·2·4=80. Rimuovere prima la taratura e poi invertire il bilancio.",
+      "physicalAssumptions": "Filamento già alla temperatura di fusione, pressione fissata, trasformazione completa, L_f=200 J/g e R=2 Ω costanti ideali, I>0 mantenuta costante entro prova, nessuna perdita. Solo calore latente: il modello termina alla fusione completa e non è una legge universale dell’apertura di un fusibile reale. Vincolo del16 soltanto fra preparazioni.",
+      "distractors": "Guadagno3 s⁻¹, lettura6→t2 s, corrente2 A→8 W e16 J, massa80 mg. Usare D come secondi dà240 mg.20 mg corrisponderebbe a mantenere I=1 A nella ricostruzione della massa; verificato nel modello reale a2 A darebbe1/2 s.8 mg perde un fattore dieci.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Riferimento t=1 s e lettura 3 danno a_cal=3 s⁻¹ per display adimensionale. Lettura 6 restituisce t=2 s. Con I=2 A, m[mg]=10·2·4=80. Rimuovere prima la taratura e poi invertire il bilancio.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "circuit_capacitor_review_models.py": "f27c33334a9349c8941704334fd73761fe9bf0e4209472ea74ae5bb4a48081b4"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-fuse-latent-heating-15",
+      "sourceSha256": "211ce100582a9d8d9bc8813468302bc2e61d3c58022a4a31d1e8bb8ab0e5718f",
+      "candidateSha256": "a32cadf72b3056596f686a6d400ea3a74ee516a88fc6d9efc4b9ce0c2bef42c1",
+      "reviewedSignature": "64130e4e7875af0c3be6627924787415de3fa0c9286b8cfe63e37453916fce1b",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1",
+      "dimension": {
+        "[mass]": "1"
+      },
+      "manualArithmetic": "Riferimenti t_A=1 s, t_B=2 s e letture 3,5: a_cal=2 s⁻¹, b_cal=1. Lettura 6/5 restituisce t=(6/5−1)/2 s=1/10 s. Con I=1 A si trova m=10·(1/10) mg=1 mg; il risultato è positivo nonostante la piccola lettura.",
+      "physicalAssumptions": "Filamento già alla temperatura di fusione, pressione fissata, trasformazione completa, L_f=200 J/g e R=2 Ω costanti ideali, I>0 mantenuta costante entro prova, nessuna perdita. Solo calore latente: il modello termina alla fusione completa e non è una legge universale dell’apertura di un fusibile reale. Vincolo del16 soltanto fra preparazioni.",
+      "distractors": "Guadagno2 s⁻¹ e offset1, quindi tempo1/10 s e massa1 mg. Omettere offset dà6 mg e D11/5; omettere guadagno dà2 mg e D7/5.1/10 mg copia il tempo come massa.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Riferimenti t_A=1 s, t_B=2 s e letture 3,5: a_cal=2 s⁻¹, b_cal=1. Lettura 6/5 restituisce t=(6/5−1)/2 s=1/10 s. Con I=1 A si trova m=10·(1/10) mg=1 mg; il risultato è positivo nonostante la piccola lettura.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "circuit_capacitor_review_models.py": "f27c33334a9349c8941704334fd73761fe9bf0e4209472ea74ae5bb4a48081b4"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-fuse-latent-heating-16",
+      "sourceSha256": "727cacb9bcf5af8c7bd6cd7616baaf6c6c0b5d23c463a5c12fe2e42de55db479",
+      "candidateSha256": "e09bd9e510b5cd0ecf4492aba84e0834a70295f3848686f5fe1bc5722e7e05ba",
+      "reviewedSignature": "e3b483a828b6a4518346cf1b83ff618f871c2efa9bf6ffa4461e146515222e2a",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1",
+      "dimension": {
+        "[current]": "1"
+      },
+      "manualArithmetic": "Il vincolo fra preparazioni è m[mg]=10 I[A], con coefficiente fisico 10 mg/A. Inserendo nel bilancio t[s]=1/I[A]. La misura 1 s seleziona I=1 A e m=10 mg, un’unica coppia positiva. Non è una corrente variabile durante la fusione: ogni prova ha corrente costante.",
+      "physicalAssumptions": "Filamento già alla temperatura di fusione, pressione fissata, trasformazione completa, L_f=200 J/g e R=2 Ω costanti ideali, I>0 mantenuta costante entro prova, nessuna perdita. Solo calore latente: il modello termina alla fusione completa e non è una legge universale dell’apertura di un fusibile reale. Vincolo del16 soltanto fra preparazioni.",
+      "distractors": "Vincolo m=(10 mg/A)I fra prove, non una rampa nel tempo. t/(1 s)=1/i e misura1 s danno unica corrente1 A e massa10 mg. Due,mezzo,dieci A darebbero rispettivamente1/2,2,1/10 s; la misura non è ridondante.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Il vincolo fra preparazioni è m[mg]=10 I[A], con coefficiente fisico 10 mg/A. Inserendo nel bilancio t[s]=1/I[A]. La misura 1 s seleziona I=1 A e m=10 mg, un’unica coppia positiva. Non è una corrente variabile durante la fusione: ogni prova ha corrente costante.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "circuit_capacitor_review_models.py": "f27c33334a9349c8941704334fd73761fe9bf0e4209472ea74ae5bb4a48081b4"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "c47f221843ed5af9181934056e1a00fe03a1d82822d10494fcc89f038b1900b0",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "publicationAction": "NONE",
+  "reviewedCandidateCommit": "0444dc79935bb8323c532fc03c4376f599253205",
+  "packageSha256": "33e39e1aa3c0a0160e8cd17712e55e78428cdec045e69aa0b8a7bbd01387547c",
+  "bindingsSha256": "3a0c29e4f3594804563ee30e44947649708b0adb1f3376b9b9958efe32ad6ba6",
+  "sourceFirstPrimarySha256": "4c49ff1e2020d073891686e5289e263561531a9b81e84e2f0fa9c8648dc90f4b",
+  "source": {
+    "commit": "5cfbdcb055ba3ba136f97fb56e997f06e6cf3605",
+    "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U6-03.json",
+    "reference": "Primaria prompt-only di tutti80 originali U6-03 215–219 congelata prima di qualunque candidato; modelli indipendenti preparati ed eseguiti prima delle chiavi. Successivamente letti individualmente tutti16 prompt/opzioni/blocchi/formule/hint/error/metadati del lotto finale, XML e nuovo PNG nativo completo. Rettifiche B rilette prima delle firme. Nessun modulo autore importato; lezioni C4-L03/L04/L07 e C3-L03/L04 reali rilette per i casi autonomi. UI prodotto e human NOT_RUN; confronto ROOT integrato PENDING."
+  }
+}

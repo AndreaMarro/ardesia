@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 1080" role="img" aria-labelledby="title desc">
+<title id="title">Calore a volume costante, dal confine al confronto</title>
+<desc id="desc">Tre pannelli: un recipiente rigido riceve venti joule senza lavoro di espansione; una retta calore incremento termico con capacità totale due joule per kelvin; tre barre per venti, ottanta e cinquanta joule.</desc>
+<defs><marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#165a87"/></marker></defs>
+<rect width="640" height="1080" rx="12" fill="#f8fafc"/>
+<g font-family="Arial,sans-serif" fill="#14243a" font-size="20">
+<text x="32" y="40" font-size="25" font-weight="bold">1 · Il confine non si muove</text>
+<rect x="230" y="93" width="220" height="150" rx="7" fill="#dceef6" stroke="#14243a" stroke-width="6"/>
+<path d="M65 168H218" stroke="#165a87" stroke-width="5" marker-end="url(#arrow)"/>
+<text x="58" y="144">Q = 20 J</text>
+<text x="251" y="135">Cᵥ = 2 J/K</text><text x="251" y="173">ΔT = 10 K</text><text x="251" y="211">V fisso</text>
+<text x="32" y="282">W = 0 → ΔU = Q = 20 J</text>
+<text x="32" y="316" font-size="17">Freccia schematica: energia trasferita al campione.</text>
+<path d="M32 347H608" stroke="#9babbc"/>
+<text x="32" y="390" font-size="25" font-weight="bold">2 · Ogni kelvin richiede 2 J</text>
+<g stroke="#14243a" stroke-width="2" fill="none"><path d="M100 640V425M100 640H465"/><path d="M250 635V645M400 635V645M95 540H105M95 440H105"/></g>
+<path d="M100 640L400 440" stroke="#165a87" stroke-width="4"/>
+<path d="M250 640V540H100M400 640V440H100" stroke="#7d8b9e" stroke-dasharray="5 5" fill="none"/>
+<g fill="#165a87"><circle cx="250" cy="540" r="5"/><circle cx="400" cy="440" r="5"/></g>
+<text x="63" y="649">0</text><text x="58" y="547">20</text><text x="58" y="447">40</text>
+<text x="238" y="670">10</text><text x="388" y="670">20</text><text x="476" y="646">ΔT / K</text>
+<text x="57" y="416">Q / J</text><text x="440" y="500">Q = Cᵥ ΔT</text>
+<text x="32" y="709" font-size="17">Scale: 15 px/K; 5 px/J. Pendenza: 2 J/K.</text>
+<path d="M32 738H608" stroke="#9babbc"/>
+<text x="32" y="781" font-size="25" font-weight="bold">3 · Prima le energie, poi la media</text>
+<g fill="#165a87"><rect x="120" y="819" width="100" height="32"/><rect x="120" y="879" width="400" height="32"/></g>
+<rect x="120" y="939" width="250" height="32" fill="#28664d"/>
+<text x="45" y="843">A</text><text x="237" y="843">20 J</text>
+<text x="45" y="903">B</text><text x="537" y="903">80 J</text>
+<text x="32" y="963">Media</text><text x="387" y="963">50 J</text>
+<text x="32" y="1011" font-size="18">A: 2 J/K × 10 K; B: 4 J/K × 20 K.</text>
+<text x="32" y="1044" font-size="18">Barre: 5 px/J. Media = (20 + 80) J / 2.</text>
+</g></svg>

@@ -1,0 +1,205 @@
+{
+  "schemaVersion": "1.0.0",
+  "observedAt": "2026-11-25T16:14:35.144444+00:00",
+  "snapshotHead": "4a15046fda85be6904df29031cc2aa89a0c17139",
+  "canonicalHead": "831b73fa71076b2e9b363006ffd94a350f22fe90",
+  "mandate": "INCOMPLETE",
+  "questions": {
+    "accounted": 4606,
+    "scientificallyReviewed": 3312,
+    "scientificallyUnreviewed": 1294,
+    "registeredDrafts": 3312,
+    "compiledDraftsLocally": 3152,
+    "compiledCandidateFullyLocallyValidated": false,
+    "canonicalHistoricalRevisedDrafts": 1728,
+    "newRootAcceptanceReceipt": "editorial/reviews/u6-03-B80-root-integration-20261125/receipt.json",
+    "compiledCandidateFullyRemotelyValidated": true,
+    "unreviewedBySource": {
+      "Ardesia": 688,
+      "Cric": 606
+    },
+    "newRootAcceptanceReceipts": [
+      "editorial/reviews/u6-03-A80-root-integration-20261125/receipt.json",
+      "editorial/reviews/u6-03-B80-root-integration-20261125/receipt.json"
+    ]
+  },
+  "activities": {
+    "accounted": 385,
+    "scientificallyReviewedInFeature": 246,
+    "remaining": 139,
+    "remainingByCourse": {
+      "C2": 41,
+      "C3": 36,
+      "C4": 29,
+      "C5": 27,
+      "C6": 6
+    },
+    "C2C3PartialReviewsAddCredit": 0,
+    "partialC2C3C4DeliveriesRecovered": true,
+    "partialRootTargetTests": {
+      "tests": 14,
+      "result": "PASS",
+      "additionalActivityCredit": 0,
+      "receipt": "editorial/reviews/partial-inventory-root-tests-20261125/receipt.json"
+    },
+    "C3L0705PedagogicalManualityNegative": "REQUIRES_NEW_EDITION; exact radical not accepted by Number, reviewer approximation method absent from source",
+    "C4L0902PedagogicalManualityNegative": "REQUIRES_NEW_EDITION; sin95 input not supported, accepted6 approximation alone is not usability proof",
+    "partialC5C6DeliveriesRecovered": true,
+    "partialAll139Recovered": true,
+    "confirmedFailureUniqueIds": 19,
+    "supportGapOnlyUniqueIds": 4,
+    "partialRootCleanCloneTests": {
+      "tests": 14,
+      "result": "PASS",
+      "rawMarkdownPhysicallyAbsent": true,
+      "secondsByGroup": [
+        3.974,
+        17.643
+      ],
+      "receipt": "editorial/reviews/independent-artifact-adoption-456352-20261125/root-clean-clone-receipt.json"
+    }
+  },
+  "protectedExamQuestions": 93,
+  "humanApprovals": 0,
+  "newPublications": 0,
+  "Pro100Recovery": "NOT_IDENTIFIED",
+  "recovered199TechnicalChecksAreNotFullReviews": true,
+  "lastFullyValidatedRemotePreparation": {
+    "runId": 45635225687,
+    "headSha": "6f7553f28b4134941db7c11fdb1d0e7e6a971269",
+    "counts": [
+      4606,
+      385,
+      3152,
+      246
+    ],
+    "uiCases": 9507,
+    "uiBatches": 209,
+    "ui": "PASS",
+    "etlFreshAndIncremental": "PASS_IDENTICAL_BYTES",
+    "coexistence": "PASS",
+    "fullSuite": {
+      "tests": 879,
+      "result": "PASS",
+      "seconds": 909.603
+    },
+    "release": "PASS",
+    "checkpointDownloadedAndAdopted": true,
+    "artifactSha256": "cafbd2eb618dadc42dbaafadce7a0924b268e9c9414ac6030d32ff0d815c9267",
+    "receipt": "editorial/reviews/preintegration-45635225687-root-adoption-20261125/receipt.json"
+  },
+  "lastFailedRemotePreparation": {
+    "runId": 45611122114,
+    "headSha": "7f5c956f92f7a1aeb284a680667caef5b1c3198f",
+    "failedId": "AR-u5-entropy-hot-cold-12",
+    "failure": "320px math overflow and scrollable-region-focusable",
+    "validTerminalPackages": 188,
+    "validCases": 8499,
+    "downstreamChecks": "SKIPPED",
+    "fixRereadAndActualLocalUI": "PASS"
+  },
+  "currentLocalPreparation": {
+    "scientificallyReviewedQuestionDrafts": 3312,
+    "registeredQuestionDrafts": 3312,
+    "compiledQuestionDrafts": 3152,
+    "new210Through219ProductUi": "NOT_RUN",
+    "new210Through219RootIndependentTests": "PASS_17_AND_14",
+    "new210Through219CanonicalImports": "PASS_16_THEN_0_SAVED_AND_16_UNCHANGED_FOR_EACH_BATCH",
+    "fullSuiteOnCurrentHead": "NOT_RUN",
+    "registrySha256": "e83e2ca0ef40f4d02f881d992c3b349d2f771ab00d7b0bdec7c81fad99d7e308"
+  },
+  "nextScientificAcceptanceId": "AR-u6-parallel-capacitors-01",
+  "nextNewAuthoringId": "See disjoint ownership U6-03 210-219; authoring in progress, no reallocation",
+  "assignments": "U6-03 all160 Root independently accepted. U6-04 all160 authored; cross-review still in progress; authoring alone grants no credit.",
+  "governance": {
+    "publication": "DEFAULT_DENY",
+    "humanApproval": "NOT_RUN",
+    "newMaterials": "DRAFT",
+    "repositoryVisibility": "PUBLIC_VERIFIED",
+    "visibilityVerifiedVia": "GitHub connector get_repo plus gh repo view",
+    "externalWrites": "AUTHORIZED_BY_LATEST_USER_INSTRUCTIONS",
+    "requiredClarification": "RESOLVED: no, mantieni pubblico; no, metti pure tutto",
+    "priorPublicPushesExist": true,
+    "applicationDefaultDenyDoesNotMakeGitHubFilesPrivate": true,
+    "automaticApprovalReviewRejected": false,
+    "githubEditorialContentsPublicExplicitlyAuthorized": true,
+    "appDraftAndExamAccess": "DEFAULT_DENY_UNCHANGED",
+    "humanPublicationGate": "SEPARATE_NOT_RUN"
+  },
+  "resumeAuthority": "Existing Git corpus manifests, SHA-pinned reports and actual terminal evidence; this operational snapshot is not a second completion ledger",
+  "lastFullyValidatedLocalPreparation": {
+    "ui": {
+      "result": "PASS",
+      "packages": 199,
+      "cases": 9027,
+      "reused": 188,
+      "newlyRendered": 11,
+      "actualLogSha256": "b800226487c12591caf204e25fa9b27855f34809b7e848ff3f962a569a0bbfbf"
+    },
+    "etlFreshAndIncremental": "PASS",
+    "identicalFiles": 56,
+    "checkpoint": {
+      "generation": "generations/5bf6580b19cfb977b6b9ec9e55af2b44735a8216ae6a7eea9d52f62e140db047",
+      "manifestSha256": "fc03c8a711985064a8f37ed59b345635a679dad9c5e1fd9110100732916266ae",
+      "questionCount": 4606,
+      "schemaVersion": "1.0.0"
+    },
+    "registrySha256": "e8925f07cf45318ce425379286656404406c943af3477cc0b2fb5c5b3377f119",
+    "coexistence": "PASS",
+    "fullSuite": {
+      "result": "PASS",
+      "tests": 800,
+      "seconds": 491.766
+    },
+    "release": "PASS",
+    "isGitHubCI": false,
+    "uploads": false,
+    "validationReceiptSha256": "23a0acdbc503569282a0ced8f6ee033bcd1a93c4fc7361665aa0c38a42fbbc66"
+  },
+  "durableLocalGitBackup": {
+    "scope": "Private durable local backup outside temporary worktrees; no upload",
+    "createdAt": "2026-11-25T14:00:58.255749+00:00",
+    "bundlePath": "/Users/andreamarro/Documents/Codex/2026-11-24/codex-cric-full-corpus-scientific-pedagogical/work/private-recovery/cric-after-public-83cafbb.bundle",
+    "sha256": "38c90c7451947e5b7c49ca53642f24615c1ad8847b6d260121c2fd8e3c91b0d0",
+    "bytes": 43555590,
+    "heads": "8dda5f7c32f6b4b7173e91a98707c2d70166d546 refs/heads/feat/cric-experiment-manual-revisions\n7c71e095686a96dae449f7a4507c98bd651f45e8 refs/heads/feat/cric-inclines-a\n459f43c7869844673c18f14d86b40e2de2b636ec refs/heads/feat/cric-contact-b\n",
+    "prerequisite": "83cafbb9e42ebf6d32f505573602add041c00bf8 and its reachable objects from existing repository or public GitHub history",
+    "verifiedAgainstExistingRepository": true,
+    "restore": "Ensure prerequisite commit exists; git bundle verify PATH; git fetch PATH refs/heads/feat/cric-experiment-manual-revisions:refs/heads/recovered-cric; other listed refs likewise as needed",
+    "uploads": false,
+    "humanApproval": "NOT_RUN",
+    "publicationAction": "NONE",
+    "sourcePinsReachableFromPrerequisite": {
+      "ardesia-source": {
+        "sha256": "5cfbdcb055ba3ba136f97fb56e997f06e6cf3605",
+        "reachableFromRequired83cafbbHistory": true
+      },
+      "cric-source": {
+        "sha256": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+        "reachableFromRequired83cafbbHistory": true
+      },
+      "historical-fixture-493": {
+        "sha256": "493df796527bdb31b71f223343384656258e8e3a",
+        "reachableFromRequired83cafbbHistory": true
+      },
+      "historical-fixture-da2": {
+        "sha256": "da2d1ad10542c0d5054650aa8a8e6c46d9ca4f1b",
+        "reachableFromRequired83cafbbHistory": true
+      }
+    },
+    "listedHeadsAreActualBundleContents": true
+  },
+  "currentCheckpoint": {
+    "generation": "generations/201726f6645939c1e18a78d16fab3e79e299f720b6b1015ff211c0e6266becc4",
+    "manifestSha256": "7a6e0f3b0e91019051282111b952512255819c333b15ca1fad4b61ec601b666d",
+    "questionCount": 4606,
+    "schemaVersion": "1.0.0",
+    "validationOrigin": "GITHUB_ACTIONS_RUN_45635225687",
+    "questionsReviewed": 3152,
+    "activitiesReviewed": 246,
+    "rootAuthenticTerminalMarkersRevalidated": true
+  },
+  "lastPublicRootHeadObserved": "4a15046fda85be6904df29031cc2aa89a0c17139",
+  "nextRegistrationId": null,
+  "adoptionTransportIndependentReview": "PASS_LIMITED_7_TEMP_ONLY_PROBES_NO_NEW_CREDIT"
+}

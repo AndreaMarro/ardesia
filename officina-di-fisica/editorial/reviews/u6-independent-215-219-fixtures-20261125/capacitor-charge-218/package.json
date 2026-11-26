@@ -1,0 +1,1139 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u6-capacitor-charge-01",
+      "kind": "question",
+      "course": "C4",
+      "section": "Modulo della carica su una armatura",
+      "order": 21801,
+      "title": "Il modulo su una sola armatura",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capacitor-charge",
+      "difficulty": 1,
+      "prompt": "Un condensatore lineare ideale di capacità C>0 è mantenuto da un generatore ideale alla differenza di potenziale positiva V>0. Si confrontano stati finali elettrostatici, trascurando perdite; le armature portano cariche opposte +Q e−Q. Q indica il modulo della carica su una sola armatura, non la somma dei due moduli né la carica netta dell’intero condensatore. C è in μF e Q in μC. Con C=2 μF e V=3 V, quanto vale Q in μC?",
+      "answer": {
+        "type": "numeric",
+        "value": 6,
+        "unit": "μC",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La definizione di capacità è C=Q/V, quindi Q=CV. Due μF per tre volt danno 6 μC perché F·V=C. La carica dell’altra armatura ha lo stesso modulo e segno opposto; la carica netta delle due piastre insieme resta nulla."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/b9b26a924e85ce53cf8d03c802da100e527a6180ff5a7c984896d5a9850ab132",
+          "text": "Le cariche+Q e−Q sono su armature diverse; le lunghezze delle piastre sono schematiche. Il grafico Q(V) ha capacità fissata; le barre finali riguardano invece due preparazioni con capacità diverse."
+        },
+        {
+          "type": "formula",
+          "text": "Q=CV"
+        },
+        {
+          "type": "formula",
+          "text": " Q=(2\\,\\mu\\mathrm F)(3\\,\\mathrm V)"
+        },
+        {
+          "type": "formula",
+          "text": " Q=6\\,\\mu\\mathrm C"
+        },
+        {
+          "type": "text",
+          "text": "Dodici μC somma i moduli di entrambe le armature, cambiando grandezza richiesta. Zero confonde Q con la carica netta totale. Due e tre copiano gli ingressi senza moltiplicarli; non occorre un fattore 1/2, che appartiene all’energia."
+        }
+      ],
+      "hints": [
+        "Distingui modulo su una piastra, segno su ciascuna piastra e carica totale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dodici μC somma i moduli di entrambe le armature, cambiando grandezza richiesta. Zero confonde Q con la carica netta totale. Due e tre copiano gli ingressi senza moltiplicarli; non occorre un fattore 1/2, che appartiene all’energia.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Definizione di capacità e prefissi micro",
+        "Modulo e cariche opposte",
+        "Inverse, confronti, medie e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-capacitor-charge-02",
+      "kind": "question",
+      "course": "C4",
+      "section": "Modulo della carica su una armatura",
+      "order": 21802,
+      "title": "Carica e capacità hanno unità diverse",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capacitor-charge",
+      "difficulty": 1,
+      "prompt": "Q è il modulo della carica su un’armatura di un condensatore. Quale unità è dimensionalmente adatta a Q?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "C",
+          "F",
+          "V",
+          "J",
+          "A"
+        ],
+        "value": "C"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La carica ha unità coulomb, C. La capacità ha invece unità farad, F=C/V. Dalla legge Q=CV, farad per volt restituisce coulomb. I μC sono un milionesimo di coulomb e hanno la stessa dimensione."
+        },
+        {
+          "type": "formula",
+          "text": "[Q]=\\mathrm F\\cdot\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " [Q]=\\mathrm C"
+        },
+        {
+          "type": "text",
+          "text": "F misura capacità e V tensione; J è energia e A è corrente, cioè carica per tempo. Nessuna di queste unità da sola misura la carica richiesta."
+        }
+      ],
+      "hints": [
+        "Usa la definizione del farad prima di cancellare le unità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "F misura capacità e V tensione; J è energia e A è corrente, cioè carica per tempo. Nessuna di queste unità da sola misura la carica richiesta.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Definizione di capacità e prefissi micro",
+        "Modulo e cariche opposte",
+        "Inverse, confronti, medie e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-capacitor-charge-03",
+      "kind": "question",
+      "course": "C4",
+      "section": "Modulo della carica su una armatura",
+      "order": 21803,
+      "title": "La definizione si legge anche al contrario",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capacitor-charge",
+      "difficulty": 1,
+      "prompt": "Un condensatore lineare ideale di capacità C>0 è mantenuto da un generatore ideale alla differenza di potenziale positiva V>0. Si confrontano stati finali elettrostatici, trascurando perdite; le armature portano cariche opposte +Q e−Q. Q indica il modulo della carica su una sola armatura, non la somma dei due moduli né la carica netta dell’intero condensatore. C è in μF e Q in μC. Quale relazione calcola Q?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Q = C V",
+          "Q = C / V",
+          "Q = V / C",
+          "Q = 2 C V",
+          "Q = C V² / 2"
+        ],
+        "value": "Q = C V"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La capacità dice quanta carica in modulo su un’armatura corrisponde a un volt. Con capacità lineare costante, moltiplicare per la tensione dà Q=CV. La relazione si riferisce allo stato finale; non assegna la durata o la corrente del transitorio di carica."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/b9b26a924e85ce53cf8d03c802da100e527a6180ff5a7c984896d5a9850ab132",
+          "text": "Le sei unità di carica positive e le sei negative rappresentano moduli uguali sulle due piastre. Non si sommano in Q: si cerca una sola armatura."
+        },
+        {
+          "type": "formula",
+          "text": "C=\\frac QV"
+        },
+        {
+          "type": "formula",
+          "text": " Q=CV"
+        },
+        {
+          "type": "text",
+          "text": "C/V e V/C non sono cariche.2 CV somma i moduli delle due armature senza rispettare la definizione di Q. CV²/2 è energia immagazzinata, non carica."
+        }
+      ],
+      "hints": [
+        "Parti da C=Q/V e isola il modulo Q.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "C/V e V/C non sono cariche.2 CV somma i moduli delle due armature senza rispettare la definizione di Q. CV²/2 è energia immagazzinata, non carica.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Definizione di capacità e prefissi micro",
+        "Modulo e cariche opposte",
+        "Inverse, confronti, medie e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-capacitor-charge-04",
+      "kind": "question",
+      "course": "C4",
+      "section": "Modulo della carica su una armatura",
+      "order": 21804,
+      "title": "Capacità dimezzata a tensione imposta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capacitor-charge",
+      "difficulty": 1,
+      "prompt": "Un condensatore lineare ideale di capacità C>0 è mantenuto da un generatore ideale alla differenza di potenziale positiva V>0. Si confrontano stati finali elettrostatici, trascurando perdite; le armature portano cariche opposte +Q e−Q. Q indica il modulo della carica su una sola armatura, non la somma dei due moduli né la carica netta dell’intero condensatore. C è in μF e Q in μC. A usa C=2 μF, V=3 V. B usa C=1 μF alla stessa tensione. Come cambia Q?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 6 μC a 3 μC",
+          "Da 6 μC a 12 μC",
+          "Resta 6 μC",
+          "Da 6 μC a 3/2 μC",
+          "Da 6 μC a 1 μC"
+        ],
+        "value": "Da 6 μC a 3 μC"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il generatore mantiene V a tre volt anche nella prova B. La carica finale è 1·3=3 μC, metà dei 6 μC iniziali. Non si conserva Q durante un confronto a tensione mantenuta con il generatore collegato: può avvenire trasferimento di carica."
+        },
+        {
+          "type": "formula",
+          "text": "Q_A=6\\,\\mu\\mathrm C"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B=3\\,\\mu\\mathrm C"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B/Q_A=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Dodici μC inverte la dipendenza da C. Sei μC imporrebbe carica isolata non dichiarata qui.3/2 μC introduce il fattore 1/2 dell’energia; un μC copia il valore della capacità senza la tensione."
+        }
+      ],
+      "hints": [
+        "Quale grandezza mantiene il generatore nelle due prove?",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Dodici μC inverte la dipendenza da C. Sei μC imporrebbe carica isolata non dichiarata qui.3/2 μC introduce il fattore 1/2 dell’energia; un μC copia il valore della capacità senza la tensione.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Definizione di capacità e prefissi micro",
+        "Modulo e cariche opposte",
+        "Inverse, confronti, medie e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-capacitor-charge-05",
+      "kind": "question",
+      "course": "C4",
+      "section": "Modulo della carica su una armatura",
+      "order": 21805,
+      "title": "La capacità da Q e V",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capacitor-charge",
+      "difficulty": 2,
+      "prompt": "Un condensatore lineare ideale di capacità C>0 è mantenuto da un generatore ideale alla differenza di potenziale positiva V>0. Si confrontano stati finali elettrostatici, trascurando perdite; le armature portano cariche opposte +Q e−Q. Q indica il modulo della carica su una sola armatura, non la somma dei due moduli né la carica netta dell’intero condensatore. C è in μF e Q in μC. Si misura Q=6 μC e si conosce V=3 V. Quanto vale C in μF?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "μF",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Isolo C=Q/V. Sei μC divisi per tre volt danno 2 μC/V=2 μF. La tensione è positiva e non nulla, quindi l’inversa è lecita. Reinserendo 2 μF alla tensione 3 V ritrovo il modulo 6 μC."
+        },
+        {
+          "type": "formula",
+          "text": "C=\\frac QV"
+        },
+        {
+          "type": "formula",
+          "text": " C=2\\,\\mu\\mathrm F"
+        },
+        {
+          "type": "text",
+          "text": "Diciotto moltiplica invece di dividere; 1/2 prende il reciproco del valore richiesto. Sei copia Q senza dividere per V. Un risultato in μC avrebbe ancora dimensione di carica, non capacità."
+        }
+      ],
+      "hints": [
+        "Carica per tensione è capacità, non corrente.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Diciotto moltiplica invece di dividere; 1/2 prende il reciproco del valore richiesto. Sei copia Q senza dividere per V. Un risultato in μC avrebbe ancora dimensione di carica, non capacità.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Definizione di capacità e prefissi micro",
+        "Modulo e cariche opposte",
+        "Inverse, confronti, medie e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-capacitor-charge-06",
+      "kind": "question",
+      "course": "C4",
+      "section": "Modulo della carica su una armatura",
+      "order": 21806,
+      "title": "Ricostruire la tensione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capacitor-charge",
+      "difficulty": 2,
+      "prompt": "Un condensatore lineare ideale di capacità C>0 è mantenuto da un generatore ideale alla differenza di potenziale positiva V>0. Si confrontano stati finali elettrostatici, trascurando perdite; le armature portano cariche opposte +Q e−Q. Q indica il modulo della carica su una sola armatura, non la somma dei due moduli né la carica netta dell’intero condensatore. C è in μF e Q in μC. Si misura Q=6 μC e si conosce C=2 μF. Quanto vale V in V?",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "V",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Da Q=CV si ricava V=Q/C. I prefissi micro si cancellano:6 μC/(2 μF)=3 C/F=3 V. Si cerca la differenza positiva di potenziale, non il potenziale assoluto di ciascuna armatura rispetto a un riferimento esterno."
+        },
+        {
+          "type": "formula",
+          "text": "V=\\frac QC"
+        },
+        {
+          "type": "formula",
+          "text": " V=3\\,\\mathrm V"
+        },
+        {
+          "type": "text",
+          "text": "Dodici moltiplica Q e C; 1/3 inverte la divisione. Sei copia il modulo della carica e zero confonde differenza di potenziale con la carica netta nulla dell’intero condensatore."
+        }
+      ],
+      "hints": [
+        "F=C/V, quindi C/F ha unità volt.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dodici moltiplica Q e C; 1/3 inverte la divisione. Sei copia il modulo della carica e zero confonde differenza di potenziale con la carica netta nulla dell’intero condensatore.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Definizione di capacità e prefissi micro",
+        "Modulo e cariche opposte",
+        "Inverse, confronti, medie e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-capacitor-charge-07",
+      "kind": "question",
+      "course": "C4",
+      "section": "Modulo della carica su una armatura",
+      "order": 21807,
+      "title": "Una tensione minore",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capacitor-charge",
+      "difficulty": 2,
+      "prompt": "Un condensatore lineare ideale di capacità C>0 è mantenuto da un generatore ideale alla differenza di potenziale positiva V>0. Si confrontano stati finali elettrostatici, trascurando perdite; le armature portano cariche opposte +Q e−Q. Q indica il modulo della carica su una sola armatura, non la somma dei due moduli né la carica netta dell’intero condensatore. C è in μF e Q in μC. A usa C=2 μF, V=3 V. B mantiene C=2 μF e porta V a 1 V. Quanto vale Q_B/Q_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/3",
+          "3",
+          "1/9",
+          "9",
+          "1"
+        ],
+        "value": "1/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le due cariche in modulo sono 6 e 2 μC. Il rapporto B/A è 2/6=1/3, lo stesso fattore della tensione. Una capacità costante rende Q lineare in V; il quadrato della tensione riguarda l’energia."
+        },
+        {
+          "type": "formula",
+          "text": "Q_A=6\\,\\mu\\mathrm C"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B=2\\,\\mu\\mathrm C"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B/Q_A=\\frac13"
+        },
+        {
+          "type": "text",
+          "text": "Tre inverte B/A.1/9 e nove importano il quadrato da una legge energetica diversa. Uno ignora la nuova tensione e non segue la capacità lineare."
+        }
+      ],
+      "hints": [
+        "Tieni distinta la legge della carica dalla legge dell’energia.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre inverte B/A.1/9 e nove importano il quadrato da una legge energetica diversa. Uno ignora la nuova tensione e non segue la capacità lineare.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Definizione di capacità e prefissi micro",
+        "Modulo e cariche opposte",
+        "Inverse, confronti, medie e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-capacitor-charge-08",
+      "kind": "question",
+      "course": "C4",
+      "section": "Modulo della carica su una armatura",
+      "order": 21808,
+      "title": "Lo scarto non è un rapporto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capacitor-charge",
+      "difficulty": 2,
+      "prompt": "Un condensatore lineare ideale di capacità C>0 è mantenuto da un generatore ideale alla differenza di potenziale positiva V>0. Si confrontano stati finali elettrostatici, trascurando perdite; le armature portano cariche opposte +Q e−Q. Q indica il modulo della carica su una sola armatura, non la somma dei due moduli né la carica netta dell’intero condensatore. C è in μF e Q in μC. Con C=2 μF, V=3 V si propone Q=12 μC. Quanto vale proposta meno corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "6 μC",
+          "−6 μC",
+          "2",
+          "12 μC",
+          "0 μC"
+        ],
+        "value": "6 μC"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il modulo corretto è 6 μC. La proposta supera il risultato di 12−6=6 μC. Due, invece, sarebbe il rapporto proposta/corretta; non porta l’unità della differenza di cariche."
+        },
+        {
+          "type": "formula",
+          "text": "Q=6\\,\\mu\\mathrm C"
+        },
+        {
+          "type": "formula",
+          "text": " \\delta Q=(12-6)\\,\\mu\\mathrm C"
+        },
+        {
+          "type": "formula",
+          "text": " \\delta Q=6\\,\\mu\\mathrm C"
+        },
+        {
+          "type": "text",
+          "text": "−6 μC scambia l’ordine. Due puro confronta per divisione, dodici μC copia la proposta e zero non rileva la discrepanza. La somma dei due moduli non è Q su una singola armatura."
+        }
+      ],
+      "hints": [
+        "Conserva l’unità μC e l’ordine della sottrazione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−6 μC scambia l’ordine. Due puro confronta per divisione, dodici μC copia la proposta e zero non rileva la discrepanza. La somma dei due moduli non è Q su una singola armatura.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Definizione di capacità e prefissi micro",
+        "Modulo e cariche opposte",
+        "Inverse, confronti, medie e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-capacitor-charge-09",
+      "kind": "question",
+      "course": "C4",
+      "section": "Modulo della carica su una armatura",
+      "order": 21809,
+      "title": "L’inversa simbolica",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capacitor-charge",
+      "difficulty": 2,
+      "prompt": "Un condensatore lineare ideale di capacità C>0 è mantenuto da un generatore ideale alla differenza di potenziale positiva V>0. Si confrontano stati finali elettrostatici, trascurando perdite; le armature portano cariche opposte +Q e−Q. Q indica il modulo della carica su una sola armatura, non la somma dei due moduli né la carica netta dell’intero condensatore. C è in μF e Q in μC. Q e V sono noti. Quale formula isola C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "C = Q / V",
+          "C = Q V",
+          "C = V / Q",
+          "C = 2 Q / V²",
+          "C = Q / V²"
+        ],
+        "value": "C = Q / V"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Divido entrambi i membri di Q=CV per la tensione positiva. Ottengo C=Q/V con unità coulomb per volt, cioè farad. Non introduco un quadrato della tensione perché si sta invertendo una legge di carica."
+        },
+        {
+          "type": "formula",
+          "text": "Q=CV"
+        },
+        {
+          "type": "formula",
+          "text": " C=\\frac QV"
+        },
+        {
+          "type": "formula",
+          "text": " [C]=\\mathrm{C/V}"
+        },
+        {
+          "type": "text",
+          "text": "QV è energia, V/Q capacità inversa.2 Q/V² e Q/V² hanno unità C/V², non farad; il due e il quadrato non provengono dalla definizione."
+        }
+      ],
+      "hints": [
+        "Controlla sia l’algebra sia C/V=F.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "QV è energia, V/Q capacità inversa.2 Q/V² e Q/V² hanno unità C/V², non farad; il due e il quadrato non provengono dalla definizione.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Definizione di capacità e prefissi micro",
+        "Modulo e cariche opposte",
+        "Inverse, confronti, medie e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-capacitor-charge-10",
+      "kind": "question",
+      "course": "C4",
+      "section": "Modulo della carica su una armatura",
+      "order": 21810,
+      "title": "Due fattori, entrambi diretti",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capacitor-charge",
+      "difficulty": 2,
+      "prompt": "Un condensatore lineare ideale di capacità C>0 è mantenuto da un generatore ideale alla differenza di potenziale positiva V>0. Si confrontano stati finali elettrostatici, trascurando perdite; le armature portano cariche opposte +Q e−Q. Q indica il modulo della carica su una sola armatura, non la somma dei due moduli né la carica netta dell’intero condensatore. C è in μF e Q in μC. Fra prove C_B=κ₁C_A e V_B=κ₂V_A, con fattori positivi. Quanto vale Q_B/Q_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ κ₂",
+          "κ₁ / κ₂",
+          "κ₂ / κ₁",
+          "κ₁ κ₂²",
+          "κ₁ + κ₂"
+        ],
+        "value": "κ₁ κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituendo nella relazione Q=CV, la carica finale si moltiplica per il prodotto dei due fattori. Se la capacità raddoppia e la tensione si dimezza, il prodotto è uno e il modulo resta uguale, pur con configurazioni diverse."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{Q_B}{Q_A}=\\frac{(\\kappa_1C_A)(\\kappa_2V_A)}{C_AV_A}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B/Q_A=\\kappa_1\\kappa_2"
+        },
+        {
+          "type": "text",
+          "text": "I quozienti rendono inverso un parametro che entra al numeratore. Il quadrato diκ₂ usa la legge energetica; la somma darebbe due anche per prove identiche, dove il rapporto deve essere uno."
+        }
+      ],
+      "hints": [
+        "Inserisci entrambi i fattori prima di cancellare gli ingressi A.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "I quozienti rendono inverso un parametro che entra al numeratore. Il quadrato diκ₂ usa la legge energetica; la somma darebbe due anche per prove identiche, dove il rapporto deve essere uno.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Definizione di capacità e prefissi micro",
+        "Modulo e cariche opposte",
+        "Inverse, confronti, medie e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-capacitor-charge-11",
+      "kind": "question",
+      "course": "C4",
+      "section": "Modulo della carica su una armatura",
+      "order": 21811,
+      "title": "Capacità minore, tensione maggiore",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capacitor-charge",
+      "difficulty": 2,
+      "prompt": "Un condensatore lineare ideale di capacità C>0 è mantenuto da un generatore ideale alla differenza di potenziale positiva V>0. Si confrontano stati finali elettrostatici, trascurando perdite; le armature portano cariche opposte +Q e−Q. Q indica il modulo della carica su una sola armatura, non la somma dei due moduli né la carica netta dell’intero condensatore. C è in μF e Q in μC. A usa C=2 μF, V=3 V. B usa C=1 μF, V=5 V. Quanto vale Q_B/Q_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "5/6",
+          "6/5",
+          "5/3",
+          "1/2",
+          "1"
+        ],
+        "value": "5/6"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A porta 6 μC in modulo su un’armatura; B ne porta 5 μC. Il rapporto è 5/6, minore di uno. La maggiore tensione non compensa del tutto la capacità dimezzata: il fattore complessivo è(1/2)(5/3)=5/6."
+        },
+        {
+          "type": "formula",
+          "text": "Q_A=6\\,\\mu\\mathrm C"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B=5\\,\\mu\\mathrm C"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B/Q_A=\\frac56"
+        },
+        {
+          "type": "text",
+          "text": "6/5 inverte il confronto; 5/3 segue solo V e 1/2 solo C. Uno presume una compensazione completa che non è presente nei due fattori."
+        }
+      ],
+      "hints": [
+        "Calcola entrambe le cariche prima del confronto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "6/5 inverte il confronto; 5/3 segue solo V e 1/2 solo C. Uno presume una compensazione completa che non è presente nei due fattori.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Definizione di capacità e prefissi micro",
+        "Modulo e cariche opposte",
+        "Inverse, confronti, medie e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-capacitor-charge-12",
+      "kind": "question",
+      "course": "C4",
+      "section": "Modulo della carica su una armatura",
+      "order": 21812,
+      "title": "La media dei moduli misurati",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capacitor-charge",
+      "difficulty": 2,
+      "prompt": "Un condensatore lineare ideale di capacità C>0 è mantenuto da un generatore ideale alla differenza di potenziale positiva V>0. Si confrontano stati finali elettrostatici, trascurando perdite; le armature portano cariche opposte +Q e−Q. Q indica il modulo della carica su una sola armatura, non la somma dei due moduli né la carica netta dell’intero condensatore. C è in μF e Q in μC. A usa C=2 μF, V=3 V; B usa C=1 μF, V=5 V. Qual è la media aritmetica dei due moduli Q, con uguale peso?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "11/2 μC",
+          "6 μC",
+          "11 μC",
+          "1/2 μC",
+          "0 μC"
+        ],
+        "value": "11/2 μC"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I due moduli sono 6 e 5 μC, quindi la media vale 11/2 μC. Ai valori medi C 3/2 μF e V 4 V si otterrebbero invece 6 μC. I segni opposti delle due piastre di ciascun condensatore non si sommano in questa media di moduli su una piastra."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/b9b26a924e85ce53cf8d03c802da100e527a6180ff5a7c984896d5a9850ab132",
+          "text": "Le barre 6 μC, 5 μC e 11/2 μC condividono origine e scala. Rappresentano moduli positivi di due prove separate, non cariche orientate da sommare fra armature."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline Q=\\frac{6+5}{2}\\,\\mu\\mathrm C"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline Q=\\frac{11}{2}\\,\\mu\\mathrm C"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{\\rm dati\\ medi}=6\\,\\mu\\mathrm C"
+        },
+        {
+          "type": "text",
+          "text": "Sei μC usa gli ingressi medi. Undici μC somma le uscite senza dimezzare e mezzo μC è semidifferenza. Zero fa la somma algebrica delle piastre invece della media di due moduli."
+        }
+      ],
+      "hints": [
+        "La parola modulo va mantenuta anche nella media.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sei μC usa gli ingressi medi. Undici μC somma le uscite senza dimezzare e mezzo μC è semidifferenza. Zero fa la somma algebrica delle piastre invece della media di due moduli.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Definizione di capacità e prefissi micro",
+        "Modulo e cariche opposte",
+        "Inverse, confronti, medie e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-capacitor-charge-13",
+      "kind": "question",
+      "course": "C4",
+      "section": "Modulo della carica su una armatura",
+      "order": 21813,
+      "title": "Il bersaglio impone una tensione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capacitor-charge",
+      "difficulty": 3,
+      "prompt": "Un condensatore lineare ideale di capacità C>0 è mantenuto da un generatore ideale alla differenza di potenziale positiva V>0. Si confrontano stati finali elettrostatici, trascurando perdite; le armature portano cariche opposte +Q e−Q. Q indica il modulo della carica su una sola armatura, non la somma dei due moduli né la carica netta dell’intero condensatore. C è in μF e Q in μC. A usa C=2 μF, V=3 V. B ha C=1 μF e deve ottenere Q_B=(5/6)Q_A. Quanto vale V_B/V_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "5/3",
+          "3/5",
+          "5/6",
+          "1/2",
+          "2"
+        ],
+        "value": "5/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il modulo bersaglio è(5/6)6 μC=5 μC. Con una capacità 1 μF serve V_B 5 V. Il confronto con V_A 3 V dà 5/3. Il fattore della carica non è direttamente quello della tensione, perché cambia anche C."
+        },
+        {
+          "type": "formula",
+          "text": "Q_B=5\\,\\mu\\mathrm C"
+        },
+        {
+          "type": "formula",
+          "text": " V_B=5\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " V_B/V_A=\\frac53"
+        },
+        {
+          "type": "text",
+          "text": "3/5 inverte il rapporto; 5/6 copia il bersaglio della carica.1/2 considera la sola capacità e due sarebbe la compensazione necessaria per mantenere Q invariata, non per portarla a 5/6."
+        }
+      ],
+      "hints": [
+        "Ricostruisci Q_B e solo dopo dividi per la nuova capacità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "3/5 inverte il rapporto; 5/6 copia il bersaglio della carica.1/2 considera la sola capacità e due sarebbe la compensazione necessaria per mantenere Q invariata, non per portarla a 5/6.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Definizione di capacità e prefissi micro",
+        "Modulo e cariche opposte",
+        "Inverse, confronti, medie e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-capacitor-charge-14",
+      "kind": "question",
+      "course": "C4",
+      "section": "Modulo della carica su una armatura",
+      "order": 21814,
+      "title": "Taratura proporzionale della carica",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capacitor-charge",
+      "difficulty": 3,
+      "prompt": "Un condensatore lineare ideale di capacità C>0 è mantenuto da un generatore ideale alla differenza di potenziale positiva V>0. Si confrontano stati finali elettrostatici, trascurando perdite; le armature portano cariche opposte +Q e−Q. Q indica il modulo della carica su una sola armatura, non la somma dei due moduli né la carica netta dell’intero condensatore. C è in μF e Q in μC. D=a_cal Q è continuo e adimensionale, a_cal>0. A con C=2 μF, V=3 V dà D=18. B legge D=15 e ha V=5 V. Quanto vale C_B in μF?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "μF",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A corrisponde a 6 μC, quindi a_cal=3 μC⁻¹. D_B 15 indica Q_B 5 μC. Dividendo per V_B 5 V ottengo C_B 1 μF. La taratura collega D alla carica, non direttamente alla capacità."
+        },
+        {
+          "type": "formula",
+          "text": "a_{\\rm cal}=3\\,(\\mu\\mathrm C)^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B=5\\,\\mu\\mathrm C"
+        },
+        {
+          "type": "formula",
+          "text": " C_B=1\\,\\mu\\mathrm F"
+        },
+        {
+          "type": "text",
+          "text": "Tre μF tratterebbe D 15 come 15 μC e predirebbe D 45. Cinque μF copia il numero della carica senza dividere per la tensione; 1/5 μF darebbe Q 1 μC, non 5 μC."
+        }
+      ],
+      "hints": [
+        "Togli il guadagno prima di applicare C=Q/V.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre μF tratterebbe D 15 come 15 μC e predirebbe D 45. Cinque μF copia il numero della carica senza dividere per la tensione; 1/5 μF darebbe Q 1 μC, non 5 μC.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Definizione di capacità e prefissi micro",
+        "Modulo e cariche opposte",
+        "Inverse, confronti, medie e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-capacitor-charge-15",
+      "kind": "question",
+      "course": "C4",
+      "section": "Modulo della carica su una armatura",
+      "order": 21815,
+      "title": "Offset e due riferimenti",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capacitor-charge",
+      "difficulty": 3,
+      "prompt": "Un condensatore lineare ideale di capacità C>0 è mantenuto da un generatore ideale alla differenza di potenziale positiva V>0. Si confrontano stati finali elettrostatici, trascurando perdite; le armature portano cariche opposte +Q e−Q. Q indica il modulo della carica su una sola armatura, non la somma dei due moduli né la carica netta dell’intero condensatore. C è in μF e Q in μC. D=a_cal Q+b_cal è continuo. A: C=2 μF, V=3 V, D=13. B: C=1 μF, V=5 V, D=11. C: V=2 V, D=17. Quanto vale la capacità della prova C in μF?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "μF",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I moduli noti sono 6 e 5 μC. Il guadagno è(13−11)/(6−5)=2 μC⁻¹ e l’offset uno. D 17 decodifica Q_C=(17−1)/2=8 μC. Alla tensione 2 V servono 4 μF; reinserendo si ritrova la lettura 17."
+        },
+        {
+          "type": "formula",
+          "text": "a_{\\rm cal}=2\\,(\\mu\\mathrm C)^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " b_{\\rm cal}=1"
+        },
+        {
+          "type": "formula",
+          "text": " Q_C=8\\,\\mu\\mathrm C"
+        },
+        {
+          "type": "formula",
+          "text": " C_C=4\\,\\mu\\mathrm F"
+        },
+        {
+          "type": "text",
+          "text": "17/4 μF omette l’offset e predice D 18. Otto μF copia Q_C senza dividere per 2 V; sedici μF sottrae l’offset ma omette il guadagno e la divisione fisica, dando D 65."
+        }
+      ],
+      "hints": [
+        "Usa prima i due riferimenti di carica, poi la tensione della prova nuova.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "17/4 μF omette l’offset e predice D 18. Otto μF copia Q_C senza dividere per 2 V; sedici μF sottrae l’offset ma omette il guadagno e la divisione fisica, dando D 65.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Definizione di capacità e prefissi micro",
+        "Modulo e cariche opposte",
+        "Inverse, confronti, medie e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-capacitor-charge-16",
+      "kind": "question",
+      "course": "C4",
+      "section": "Modulo della carica su una armatura",
+      "order": 21816,
+      "title": "Un vincolo quadratico",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "capacitor-charge",
+      "difficulty": 3,
+      "prompt": "Un condensatore lineare ideale di capacità C>0 è mantenuto da un generatore ideale alla differenza di potenziale positiva V>0. Si confrontano stati finali elettrostatici, trascurando perdite; le armature portano cariche opposte +Q e−Q. Q indica il modulo della carica su una sola armatura, non la somma dei due moduli né la carica netta dell’intero condensatore. C è in μF e Q in μC. Fra preparazioni si impone C=(2/3 μF/V)V. Si misura Q=6 μC. Quanto vale V?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3 V",
+          "−3 V",
+          "9 V",
+          "2 V",
+          "Infinite tensioni positive"
+        ],
+        "value": "3 V"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Ponendo v=V/(1 V), il vincolo dà C/(1 μF)=(2/3)v. Allora Q/(1 μC)=(2/3)v². La misura sei impone v²9. Il dominio positivo sceglie v 3 e quindi V 3 V, C 2 μF: una sola coppia, senza libertà residua."
+        },
+        {
+          "type": "formula",
+          "text": "v=\\frac{V}{1\\,\\mathrm V}"
+        },
+        {
+          "type": "formula",
+          "text": " v^2=9"
+        },
+        {
+          "type": "formula",
+          "text": " V=3\\,\\mathrm V"
+        },
+        {
+          "type": "text",
+          "text": "−3 V è l’altro ramo algebrico ma viola V>0 e renderebbe C negativa nel vincolo. Nove V omette la radice; due V darebbe Q 8/3 μC. La misura non è ridondante: fissa il quadrato di una variabile positiva."
+        }
+      ],
+      "hints": [
+        "Sostituisci il vincolo e seleziona il ramo positivo soltanto dopo il quadrato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "−3 V è l’altro ramo algebrico ma viola V>0 e renderebbe C negativa nel vincolo. Nove V omette la radice; due V darebbe Q 8/3 μC. La misura non è ridondante: fissa il quadrato di una variabile positiva.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Definizione di capacità e prefissi micro",
+        "Modulo e cariche opposte",
+        "Inverse, confronti, medie e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "b9b26a924e85ce53cf8d03c802da100e527a6180ff5a7c984896d5a9850ab132",
+      "name": "capacitor-charge-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTQ5MCIgdmlld0JveD0iMCAwIDY0MCAxNDkwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+Q2FyaWNoZSBk4oCZYXJtYXR1cmEgZSBjYXBhY2l0w6A8L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5TZWkgc2ltYm9saSBwb3NpdGl2aSBlIHNlaSBuZWdhdGl2aSByYXBwcmVzZW50YW5vIHNlaSBtaWNyb2NvdWxvbWIgc3UgY2lhc2N1bmEgYXJtYXR1cmEgY29uIHNlZ25pIG9wcG9zdGkuIEdyYWZpY28gZGVsbGEgY2FyaWNhIHN1IHVuYSBwaWFzdHJhIGNvbnRybyBsYSB0ZW5zaW9uZSBhIGNhcGFjaXTDoCBkdWUgbWljcm9mYXJhZCBjb3N0YW50ZS4gQmFycmUgZGVpIG1vZHVsaSBzZWksIGNpbnF1ZSBlIHVuZGljaSBtZXp6aSBtaWNyb2NvdWxvbWIuPC9kZXNjPjxkZWZzPjxtYXJrZXIgaWQ9ImFycm93IiB2aWV3Qm94PSIwIDAgMTAgMTAiIHJlZlg9IjkiIHJlZlk9IjUiIG1hcmtlcldpZHRoPSI3IiBtYXJrZXJIZWlnaHQ9IjciIG9yaWVudD0iYXV0byI+PHBhdGggZD0iTTAgMEwxMCA1TDAgMTBaIiBmaWxsPSIjMTg1ZDgzIi8+PC9tYXJrZXI+PC9kZWZzPjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMTQ5MCIgcng9IjE2IiBmaWxsPSIjZjdmOWZjIi8+Cjx0ZXh0IHg9IjMyIiB5PSI0NCIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjUiIGZpbGw9IiMxODJjNDYiIGZvbnQtd2VpZ2h0PSI3MDAiPjEgwrcgRHVlIHNlZ25pLCB1biBtb2R1bG8gcGVyIGFybWF0dXJhPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iODQiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTgyYzQ2Ij5DID0gMiDOvEYgOyBWID0gMyBWIDsgb2duaSBzZWdubyB2YWxlIDEgzrxDLjwvdGV4dD4KPHJlY3QgeD0iMTMwIiB5PSIxNDAiIHdpZHRoPSIxMiIgaGVpZ2h0PSIyNDUiIGZpbGw9IiNiODUzMjIiLz4KPHJlY3QgeD0iNTAwIiB5PSIxNDAiIHdpZHRoPSIxMiIgaGVpZ2h0PSIyNDUiIGZpbGw9IiMxODVkODMiLz4KPHRleHQgeD0iMTU1IiB5PSIxNzAiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjI0IiBmaWxsPSIjMTgyYzQ2Ij4rPC90ZXh0Pgo8dGV4dCB4PSI0NzAiIHk9IjE3MCIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiMxODJjNDYiPuKIkjwvdGV4dD4KPHRleHQgeD0iMTU1IiB5PSIyMTAiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjI0IiBmaWxsPSIjMTgyYzQ2Ij4rPC90ZXh0Pgo8dGV4dCB4PSI0NzAiIHk9IjIxMCIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiMxODJjNDYiPuKIkjwvdGV4dD4KPHRleHQgeD0iMTU1IiB5PSIyNTAiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjI0IiBmaWxsPSIjMTgyYzQ2Ij4rPC90ZXh0Pgo8dGV4dCB4PSI0NzAiIHk9IjI1MCIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiMxODJjNDYiPuKIkjwvdGV4dD4KPHRleHQgeD0iMTU1IiB5PSIyOTAiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjI0IiBmaWxsPSIjMTgyYzQ2Ij4rPC90ZXh0Pgo8dGV4dCB4PSI0NzAiIHk9IjI5MCIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiMxODJjNDYiPuKIkjwvdGV4dD4KPHRleHQgeD0iMTU1IiB5PSIzMzAiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjI0IiBmaWxsPSIjMTgyYzQ2Ij4rPC90ZXh0Pgo8dGV4dCB4PSI0NzAiIHk9IjMzMCIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiMxODJjNDYiPuKIkjwvdGV4dD4KPHRleHQgeD0iMTU1IiB5PSIzNzAiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjI0IiBmaWxsPSIjMTgyYzQ2Ij4rPC90ZXh0Pgo8dGV4dCB4PSI0NzAiIHk9IjM3MCIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiMxODJjNDYiPuKIkjwvdGV4dD4KPHRleHQgeD0iMjMwIiB5PSIyNDUiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTgyYzQ2Ij4rUSA9ICs2IM68QzwvdGV4dD4KPHRleHQgeD0iMjMwIiB5PSIyOTUiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTgyYzQ2Ij7iiJJRID0g4oiSNiDOvEM8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI0MzAiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTgyYzQ2Ij5Nb2R1bG8gc3UgdW5hIHBpYXN0cmE6IFEgPSA2IM68QyA7IHRvdGFsZSA9IDAuPC90ZXh0Pgo8cGF0aCBkPSJNMzIgNDc1SDYwOCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYzRjZmRiIiBzdHJva2Utd2lkdGg9IjIiLz4KPHRleHQgeD0iMzIiIHk9IjUyMyIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjUiIGZpbGw9IiMxODJjNDYiIGZvbnQtd2VpZ2h0PSI3MDAiPjIgwrcgUShWKSBhIGNhcGFjaXTDoCBtYW50ZW51dGEgZmlzc2E8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI1NjUiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTgyYzQ2Ij5QZW5kZW56YSBDID0gMiDOvEYuPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iNjE1IiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE4MmM0NiI+USAvIM68QzwvdGV4dD4KPHBhdGggZD0iTTE1MCA2MzBWODUwSDUzMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMTgyYzQ2IiBzdHJva2Utd2lkdGg9IjIiLz4KPHBhdGggZD0iTTQ1MCA4NTBWNjcwSDE1MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYWFiYWNhIiBzdHJva2Utd2lkdGg9IjIiLz4KPHBhdGggZD0iTTE1MCA4NTBMNDUwIDY3MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMTg1ZDgzIiBzdHJva2Utd2lkdGg9IjQiLz4KPGNpcmNsZSBjeD0iMTUwIiBjeT0iODUwIiByPSI1IiBmaWxsPSIjZjdmOWZjIi8+CjxjaXJjbGUgY3g9IjE1MCIgY3k9Ijg1MCIgcj0iNSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMTg1ZDgzIiBzdHJva2Utd2lkdGg9IjIiLz4KPGNpcmNsZSBjeD0iMjUwIiBjeT0iNzkwIiByPSI0IiBmaWxsPSIjMTg1ZDgzIi8+CjxjaXJjbGUgY3g9IjQ1MCIgY3k9IjY3MCIgcj0iNSIgZmlsbD0iIzE4NWQ4MyIvPgo8dGV4dCB4PSIxMTgiIHk9IjY3OCIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxODJjNDYiPjY8L3RleHQ+Cjx0ZXh0IHg9IjExOCIgeT0iODgwIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE4MmM0NiI+MDwvdGV4dD4KPHRleHQgeD0iNDQ1IiB5PSI4ODAiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTgyYzQ2Ij4zPC90ZXh0Pgo8dGV4dCB4PSI1MzgiIHk9Ijg1OCIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxODJjNDYiPlYgLyBWPC90ZXh0Pgo8dGV4dCB4PSIyNjYiIHk9IjgwMiIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxODJjNDYiPjEgViwgMiDOvEM8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI5NDAiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTgyYzQ2Ij5TdGF0aSBjb24gViAmZ3Q7IDAgOyBvcmlnaW5lIG1vc3RyYXRhIGNvbWUgbGltaXRlLjwvdGV4dD4KPHRleHQgeD0iMzIiIHk9Ijk4MCIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxODJjNDYiPkxhIHByb3ZhIEIgc290dG8gaGEgY2FwYWNpdMOgIGRpdmVyc2EuPC90ZXh0Pgo8cGF0aCBkPSJNMzIgMTAyMEg2MDgiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2M0Y2ZkYiIgc3Ryb2tlLXdpZHRoPSIyIi8+Cjx0ZXh0IHg9IjMyIiB5PSIxMDY4IiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyNSIgZmlsbD0iIzE4MmM0NiIgZm9udC13ZWlnaHQ9IjcwMCI+MyDCtyBNZWRpYSBkZWkgbW9kdWxpLCBub24gZGVpIHNlZ25pPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iMTExMCIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxODJjNDYiPkE6IDIgzrxGLCAzIFYgOyBCOiAxIM68RiwgNSBWLjwvdGV4dD4KPHBhdGggZD0iTTE1MCAxMTQwVjEzODAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE4MmM0NiIgc3Ryb2tlLXdpZHRoPSIyIi8+CjxyZWN0IHg9IjE1MCIgeT0iMTE1NSIgd2lkdGg9IjMwMCIgaGVpZ2h0PSI0MiIgZmlsbD0iIzE4NWQ4MyIvPgo8dGV4dCB4PSIzMiIgeT0iMTE4NSIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxODJjNDYiPkE8L3RleHQ+Cjx0ZXh0IHg9IjQ2OCIgeT0iMTE4NSIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxODJjNDYiPjYgzrxDPC90ZXh0Pgo8cmVjdCB4PSIxNTAiIHk9IjEyMzUiIHdpZHRoPSIyNTAiIGhlaWdodD0iNDIiIGZpbGw9IiNiODUzMjIiLz4KPHRleHQgeD0iMzIiIHk9IjEyNjUiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTgyYzQ2Ij5CPC90ZXh0Pgo8dGV4dCB4PSI0MTgiIHk9IjEyNjUiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTgyYzQ2Ij41IM68QzwvdGV4dD4KPHJlY3QgeD0iMTUwIiB5PSIxMzE1IiB3aWR0aD0iMjc1IiBoZWlnaHQ9IjQyIiBmaWxsPSIjMzU2NTRlIi8+Cjx0ZXh0IHg9IjMyIiB5PSIxMzQ1IiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE4MmM0NiI+TWVkaWE8L3RleHQ+Cjx0ZXh0IHg9IjQ0MyIgeT0iMTM0NSIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxODJjNDYiPjExLzIgzrxDPC90ZXh0Pgo8dGV4dCB4PSIxMTgiIHk9IjE0MDYiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTgyYzQ2Ij4wPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iMTQ1MCIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxODJjNDYiPlN0ZXNzYSBvcmlnaW5lIGUgc2NhbGEgZGVsbGUgdHJlIGJhcnJlLjwvdGV4dD4KPC9zdmc+Cg=="
+    }
+  ]
+}

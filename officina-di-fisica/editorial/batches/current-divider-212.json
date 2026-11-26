@@ -1,0 +1,1184 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u6-current-divider-01",
+      "kind": "question",
+      "course": "C4",
+      "section": "Partitore di corrente a totale imposto",
+      "order": 21201,
+      "title": "Corrente totale e due percorsi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "current-divider",
+      "difficulty": 1,
+      "prompt": "Due soli resistori ohmici R₁>0 e R₂>0 finiti sono collegati fra gli stessi nodi A e B, con fili ideali e temperatura fissata. Una sorgente impone la corrente totale I_T=12 mA entrante in A e uscente da B. Le correnti I₁ e I₂ sono orientate da A a B nei rispettivi rami e sommano I_T. La tensione comune V_AB si adatta ai resistori: non è mantenuta costante fra prove. Cerchiamo I₁ in R₁; vale I₁=I_T R₂/(R₁+R₂), con 0<I₁<I_T. Con R₁=R₂=2 Ω, quanto vale I₁ in mA?",
+      "answer": {
+        "type": "numeric",
+        "value": 6,
+        "unit": "mA",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I due rami sono identici e ricevono la stessa tensione. Hanno quindi correnti uguali: I₁=I₂. La loro somma è 12 mA, così ciascuna vale 6 mA. Come controllo, l’equivalente è 1 Ω e la tensione comune è 12 mV; 12 mV divisi per 2 Ω danno 6 mA."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/e52f171aea7e03a1f88f65f4758828c5a0293cff8ada567a9af3a8fe3e46b464",
+          "text": "I due resistori da 2 Ω condividono i nodi A e B; la sorgente impone 12 mA totali e ciascun ramo porta 6 mA da A a B. Non è imposta una tensione uguale fra prove. Nel pannello centrale cambia R₁, mentre nell’ultimo confronto cambiano entrambi i resistori."
+        },
+        {
+          "type": "formula",
+          "text": "I_1=I_2"
+        },
+        {
+          "type": "formula",
+          "text": " I_1+I_2=12\\,\\mathrm{mA}"
+        },
+        {
+          "type": "formula",
+          "text": " I_1=6\\,\\mathrm{mA}"
+        },
+        {
+          "type": "text",
+          "text": "Dodici mA assegna tutta la corrente a un ramo e nulla all’altro positivo. Ventiquattro raddoppia la corrente invece di dividerla; due copia un valore in Ω e un mezzo è una frazione del totale, non la corrente in mA."
+        }
+      ],
+      "hints": [
+        "Con rami uguali la conservazione della corrente impone due quote uguali.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dodici mA assegna tutta la corrente a un ramo e nulla all’altro positivo. Ventiquattro raddoppia la corrente invece di dividerla; due copia un valore in Ω e un mezzo è una frazione del totale, non la corrente in mA.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Tensione comune e conservazione della corrente",
+        "Il resistore opposto al numeratore",
+        "Inverse nel dominio 0<I₁<I_T",
+        "Rapporti, medie, display e scala non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-current-divider-02",
+      "kind": "question",
+      "course": "C4",
+      "section": "Partitore di corrente a totale imposto",
+      "order": 21202,
+      "title": "L’unità del ramo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "current-divider",
+      "difficulty": 1,
+      "prompt": "Due soli resistori ohmici R₁>0 e R₂>0 finiti sono collegati fra gli stessi nodi A e B, con fili ideali e temperatura fissata. Una sorgente impone la corrente totale I_T=12 mA entrante in A e uscente da B. Le correnti I₁ e I₂ sono orientate da A a B nei rispettivi rami e sommano I_T. La tensione comune V_AB si adatta ai resistori: non è mantenuta costante fra prove. Cerchiamo I₁ in R₁; vale I₁=I_T R₂/(R₁+R₂), con 0<I₁<I_T. Quale unità esprime I₁?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "mA",
+          "V",
+          "Ω",
+          "W",
+          "1"
+        ],
+        "value": "mA"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il fattore R₂/(R₁+R₂) è puro. Moltiplicandolo per I_T si conserva la dimensione di corrente, qui espressa in mA. Un mA vale 10⁻³ A: il prefisso cambia il numero usato, non la grandezza fisica."
+        },
+        {
+          "type": "formula",
+          "text": "[I_1]=[I_T]"
+        },
+        {
+          "type": "formula",
+          "text": " 1\\,\\mathrm{mA}=10^{-3}\\,\\mathrm A"
+        },
+        {
+          "type": "text",
+          "text": "Volt misura la tensione comune, ohm il valore dei rami e watt una potenza. Uno esprime soltanto la frazione I₁/I_T, non la corrente del ramo."
+        }
+      ],
+      "hints": [
+        "Il partitore restituisce una quota di una corrente assegnata.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "Volt misura la tensione comune, ohm il valore dei rami e watt una potenza. Uno esprime soltanto la frazione I₁/I_T, non la corrente del ramo.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Tensione comune e conservazione della corrente",
+        "Il resistore opposto al numeratore",
+        "Inverse nel dominio 0<I₁<I_T",
+        "Rapporti, medie, display e scala non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-current-divider-03",
+      "kind": "question",
+      "course": "C4",
+      "section": "Partitore di corrente a totale imposto",
+      "order": 21203,
+      "title": "Perché compare l’altro resistore",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "current-divider",
+      "difficulty": 1,
+      "prompt": "Due soli resistori ohmici R₁>0 e R₂>0 finiti sono collegati fra gli stessi nodi A e B, con fili ideali e temperatura fissata. Una sorgente impone la corrente totale I_T=12 mA entrante in A e uscente da B. Le correnti I₁ e I₂ sono orientate da A a B nei rispettivi rami e sommano I_T. La tensione comune V_AB si adatta ai resistori: non è mantenuta costante fra prove. Cerchiamo I₁ in R₁; vale I₁=I_T R₂/(R₁+R₂), con 0<I₁<I_T. Quale formula dà I₁?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "I₁ = I_T R₂ / (R₁ + R₂)",
+          "I₁ = I_T R₁ / (R₁ + R₂)",
+          "I₁ = I_T (R₁ + R₂) / R₂",
+          "I₁ = I_T R₂ / R₁",
+          "I₁ = I_T R₁ R₂"
+        ],
+        "value": "I₁ = I_T R₂ / (R₁ + R₂)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La tensione comune dà I₁/I₂=R₂/R₁: il ramo meno resistivo porta più corrente. Usando I_T=V_AB(1/R₁+1/R₂) e I₁=V_AB/R₁, si elimina V_AB e resta I₁=I_T R₂/(R₁+R₂). R₂ al numeratore non significa che I₁ attraversi R₂."
+        },
+        {
+          "type": "formula",
+          "text": "I_T=V_{AB}\\left(\\frac1{R_1}+\\frac1{R_2}\\right)"
+        },
+        {
+          "type": "formula",
+          "text": " I_1=\\frac{V_{AB}}{R_1}"
+        },
+        {
+          "type": "formula",
+          "text": " I_1=I_T\\frac{R_2}{R_1+R_2}"
+        },
+        {
+          "type": "text",
+          "text": "R₁ al numeratore dà la corrente del secondo ramo. Invertire la frazione produce I₁>I_T e viola la somma di due correnti positive. Il solo rapporto R₂/R₁ confronta i rami ma non è la quota sul totale; I_TR₁R₂ ha unità A·Ω²."
+        }
+      ],
+      "hints": [
+        "Dividi una conduttanza di ramo per la conduttanza totale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "R₁ al numeratore dà la corrente del secondo ramo. Invertire la frazione produce I₁>I_T e viola la somma di due correnti positive. Il solo rapporto R₂/R₁ confronta i rami ma non è la quota sul totale; I_TR₁R₂ ha unità A·Ω².",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Tensione comune e conservazione della corrente",
+        "Il resistore opposto al numeratore",
+        "Inverse nel dominio 0<I₁<I_T",
+        "Rapporti, medie, display e scala non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-current-divider-04",
+      "kind": "question",
+      "course": "C4",
+      "section": "Partitore di corrente a totale imposto",
+      "order": 21204,
+      "title": "R₁ diminuisce, la quota cresce",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "current-divider",
+      "difficulty": 1,
+      "prompt": "Due soli resistori ohmici R₁>0 e R₂>0 finiti sono collegati fra gli stessi nodi A e B, con fili ideali e temperatura fissata. Una sorgente impone la corrente totale I_T=12 mA entrante in A e uscente da B. Le correnti I₁ e I₂ sono orientate da A a B nei rispettivi rami e sommano I_T. La tensione comune V_AB si adatta ai resistori: non è mantenuta costante fra prove. Cerchiamo I₁ in R₁; vale I₁=I_T R₂/(R₁+R₂), con 0<I₁<I_T. R₁ passa da 2 a 1 Ω, mantenendo R₂=2 Ω. Come cambia I₁?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 6 a 8 mA",
+          "Da 6 a 3 mA",
+          "Resta 6 mA",
+          "Da 6 a 12 mA",
+          "Da 6 a 4 mA"
+        ],
+        "value": "Da 6 a 8 mA"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Prima le quote sono uguali, 6 mA. Dopo I₁=12·2/(1+2)=8 mA, mentre I₂=4 mA: il ramo meno resistivo prende due terzi del totale. La tensione comune passa da 12 a 8 mV. Non si può mantenere anche la precedente tensione senza cambiare la corrente totale."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/e52f171aea7e03a1f88f65f4758828c5a0293cff8ada567a9af3a8fe3e46b464",
+          "text": "Il pannello centrale ripartisce sempre il totale 12 mA. Prima I₁=I₂=6 mA. Dopo R₁=1 Ω e R₂=2 Ω danno I₁=8 mA e I₂=4 mA, mantenendo la somma. Le barre hanno scala comune entro questo pannello."
+        },
+        {
+          "type": "formula",
+          "text": "I_{1,A}=6\\,\\mathrm{mA}"
+        },
+        {
+          "type": "formula",
+          "text": " I_{1,B}=12\\frac23\\,\\mathrm{mA}"
+        },
+        {
+          "type": "formula",
+          "text": " I_{1,B}=8\\,\\mathrm{mA}"
+        },
+        {
+          "type": "text",
+          "text": "Tre mA rende diretta la dipendenza dal proprio resistore. Sei ignora la modifica; dodici farebbe sparire la corrente nel ramo R₂ ancora presente; quattro è la corrente finale nell’altro ramo."
+        }
+      ],
+      "hints": [
+        "La corrente totale resta 12 mA, ma il ramo meno resistivo ne riceve di più.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Tre mA rende diretta la dipendenza dal proprio resistore. Sei ignora la modifica; dodici farebbe sparire la corrente nel ramo R₂ ancora presente; quattro è la corrente finale nell’altro ramo.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Tensione comune e conservazione della corrente",
+        "Il resistore opposto al numeratore",
+        "Inverse nel dominio 0<I₁<I_T",
+        "Rapporti, medie, display e scala non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-current-divider-05",
+      "kind": "question",
+      "course": "C4",
+      "section": "Partitore di corrente a totale imposto",
+      "order": 21205,
+      "title": "Ricostruire il primo ramo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "current-divider",
+      "difficulty": 2,
+      "prompt": "Due soli resistori ohmici R₁>0 e R₂>0 finiti sono collegati fra gli stessi nodi A e B, con fili ideali e temperatura fissata. Una sorgente impone la corrente totale I_T=12 mA entrante in A e uscente da B. Le correnti I₁ e I₂ sono orientate da A a B nei rispettivi rami e sommano I_T. La tensione comune V_AB si adatta ai resistori: non è mantenuta costante fra prove. Cerchiamo I₁ in R₁; vale I₁=I_T R₂/(R₁+R₂), con 0<I₁<I_T. Si misura I₁=6 mA e si conosce R₂=2 Ω. Quanto vale R₁ in Ω?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "Ω",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplichiamo la legge per R₁+R₂: I₁R₁+I₁R₂=I_TR₂. Dunque I₁R₁=(I_T−I₁)R₂ e R₁=R₂(I_T−I₁)/I₁. Con 6 mA e totale 12 mA il rapporto di correnti vale uno e R₁=2 Ω."
+        },
+        {
+          "type": "formula",
+          "text": "I_1R_1=(I_T-I_1)R_2"
+        },
+        {
+          "type": "formula",
+          "text": " R_1=R_2\\frac{I_T-I_1}{I_1}"
+        },
+        {
+          "type": "formula",
+          "text": " R_1=2\\,\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "Quattro Ω darebbe I₁=4 mA; sei Ω darebbe 3 mA. Non si sottrae una corrente da una resistenza. Il dominio 0<I₁<I_T conserva numeratore e denominatore positivi."
+        }
+      ],
+      "hints": [
+        "Usa la corrente dell’altro ramo I_T−I₁ nel rapporto delle resistenze.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro Ω darebbe I₁=4 mA; sei Ω darebbe 3 mA. Non si sottrae una corrente da una resistenza. Il dominio 0<I₁<I_T conserva numeratore e denominatore positivi.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Tensione comune e conservazione della corrente",
+        "Il resistore opposto al numeratore",
+        "Inverse nel dominio 0<I₁<I_T",
+        "Rapporti, medie, display e scala non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-current-divider-06",
+      "kind": "question",
+      "course": "C4",
+      "section": "Partitore di corrente a totale imposto",
+      "order": 21206,
+      "title": "Ricostruire il secondo ramo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "current-divider",
+      "difficulty": 2,
+      "prompt": "Due soli resistori ohmici R₁>0 e R₂>0 finiti sono collegati fra gli stessi nodi A e B, con fili ideali e temperatura fissata. Una sorgente impone la corrente totale I_T=12 mA entrante in A e uscente da B. Le correnti I₁ e I₂ sono orientate da A a B nei rispettivi rami e sommano I_T. La tensione comune V_AB si adatta ai resistori: non è mantenuta costante fra prove. Cerchiamo I₁ in R₁; vale I₁=I_T R₂/(R₁+R₂), con 0<I₁<I_T. Si misura I₁=6 mA e si conosce R₁=2 Ω. Quanto vale R₂ in Ω?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "Ω",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dall’equazione I₁R₁=(I_T−I₁)R₂ si divide per la corrente dell’altro ramo: R₂=I₁R₁/(I_T−I₁). Qui entrambe le correnti sono 6 mA, quindi R₂=2 Ω. Il limite I₁=I_T richiederebbe un ramo R₂ aperto, non una resistenza finita."
+        },
+        {
+          "type": "formula",
+          "text": "R_2=\\frac{I_1R_1}{I_T-I_1}"
+        },
+        {
+          "type": "formula",
+          "text": " R_2=\\frac{6}{12-6}\\,2\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " R_2=2\\,\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "Uno Ω darebbe I₁=4 mA e quattro Ω darebbe 8 mA. Sommare I_T e I₁ nel denominatore darebbe 2/3 Ω e non ricomporrebbe la misura. Le unità di corrente si cancellano nel rapporto."
+        }
+      ],
+      "hints": [
+        "Per isolare R₂ dividi per la corrente rimasta nel suo ramo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Uno Ω darebbe I₁=4 mA e quattro Ω darebbe 8 mA. Sommare I_T e I₁ nel denominatore darebbe 2/3 Ω e non ricomporrebbe la misura. Le unità di corrente si cancellano nel rapporto.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Tensione comune e conservazione della corrente",
+        "Il resistore opposto al numeratore",
+        "Inverse nel dominio 0<I₁<I_T",
+        "Rapporti, medie, display e scala non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-current-divider-07",
+      "kind": "question",
+      "course": "C4",
+      "section": "Partitore di corrente a totale imposto",
+      "order": 21207,
+      "title": "Si restringe il percorso alternativo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "current-divider",
+      "difficulty": 2,
+      "prompt": "Due soli resistori ohmici R₁>0 e R₂>0 finiti sono collegati fra gli stessi nodi A e B, con fili ideali e temperatura fissata. Una sorgente impone la corrente totale I_T=12 mA entrante in A e uscente da B. Le correnti I₁ e I₂ sono orientate da A a B nei rispettivi rami e sommano I_T. La tensione comune V_AB si adatta ai resistori: non è mantenuta costante fra prove. Cerchiamo I₁ in R₁; vale I₁=I_T R₂/(R₁+R₂), con 0<I₁<I_T. A ha R₁=R₂=2 Ω. B mantiene R₁=2 Ω e porta R₂ a 4 Ω. Quanto vale I₁,B/I₁,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4/3",
+          "3/4",
+          "2",
+          "1/2",
+          "1"
+        ],
+        "value": "4/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il primo ramo non cambia, ma il percorso alternativo diventa più resistivo. A porta 6 mA nel primo ramo; B porta 12·4/(2+4)=8 mA. Il rapporto è 4/3. La tensione comune cresce a 16 mV per mantenere la stessa corrente totale."
+        },
+        {
+          "type": "formula",
+          "text": "I_{1,A}=6\\,\\mathrm{mA}"
+        },
+        {
+          "type": "formula",
+          "text": " I_{1,B}=8\\,\\mathrm{mA}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{I_{1,B}}{I_{1,A}}=\\frac43"
+        },
+        {
+          "type": "text",
+          "text": "3/4 è il reciproco; due segue soltanto R₂ senza il totale; un mezzo inverte il cambiamento della quota. Uno sarebbe giustificato a tensione comune mantenuta costante, condizione diversa da quella assegnata."
+        }
+      ],
+      "hints": [
+        "Il valore del proprio ramo non basta a fissarne la corrente quando cambia la tensione comune.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "3/4 è il reciproco; due segue soltanto R₂ senza il totale; un mezzo inverte il cambiamento della quota. Uno sarebbe giustificato a tensione comune mantenuta costante, condizione diversa da quella assegnata.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Tensione comune e conservazione della corrente",
+        "Il resistore opposto al numeratore",
+        "Inverse nel dominio 0<I₁<I_T",
+        "Rapporti, medie, display e scala non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-current-divider-08",
+      "kind": "question",
+      "course": "C4",
+      "section": "Partitore di corrente a totale imposto",
+      "order": 21208,
+      "title": "La corrente proposta è tutto il totale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "current-divider",
+      "difficulty": 2,
+      "prompt": "Due soli resistori ohmici R₁>0 e R₂>0 finiti sono collegati fra gli stessi nodi A e B, con fili ideali e temperatura fissata. Una sorgente impone la corrente totale I_T=12 mA entrante in A e uscente da B. Le correnti I₁ e I₂ sono orientate da A a B nei rispettivi rami e sommano I_T. La tensione comune V_AB si adatta ai resistori: non è mantenuta costante fra prove. Cerchiamo I₁ in R₁; vale I₁=I_T R₂/(R₁+R₂), con 0<I₁<I_T. Con R₁=R₂=2 Ω si propone I₁=12 mA. Quanto vale proposta meno corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "6 mA",
+          "−6 mA",
+          "12 mA",
+          "0 mA",
+          "2"
+        ],
+        "value": "6 mA"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La corrente corretta è 6 mA. Lo scarto richiesto vale 12−6=+6 mA. La proposta assegnerebbe l’intero totale al primo ramo, incompatibile con una corrente positiva anche nel secondo ramo."
+        },
+        {
+          "type": "formula",
+          "text": "I_1=6\\,\\mathrm{mA}"
+        },
+        {
+          "type": "formula",
+          "text": " e=(12-6)\\,\\mathrm{mA}"
+        },
+        {
+          "type": "formula",
+          "text": " e=6\\,\\mathrm{mA}"
+        },
+        {
+          "type": "text",
+          "text": "−6 inverte l’ordine; dodici copia la proposta; zero la accetta. Due è il rapporto puro proposta/corretto, non uno scarto in mA."
+        }
+      ],
+      "hints": [
+        "Confronta la proposta con metà del totale, non con zero.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−6 inverte l’ordine; dodici copia la proposta; zero la accetta. Due è il rapporto puro proposta/corretto, non uno scarto in mA.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Tensione comune e conservazione della corrente",
+        "Il resistore opposto al numeratore",
+        "Inverse nel dominio 0<I₁<I_T",
+        "Rapporti, medie, display e scala non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-current-divider-09",
+      "kind": "question",
+      "course": "C4",
+      "section": "Partitore di corrente a totale imposto",
+      "order": 21209,
+      "title": "L’inversa del partitore di corrente",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "current-divider",
+      "difficulty": 2,
+      "prompt": "Due soli resistori ohmici R₁>0 e R₂>0 finiti sono collegati fra gli stessi nodi A e B, con fili ideali e temperatura fissata. Una sorgente impone la corrente totale I_T=12 mA entrante in A e uscente da B. Le correnti I₁ e I₂ sono orientate da A a B nei rispettivi rami e sommano I_T. La tensione comune V_AB si adatta ai resistori: non è mantenuta costante fra prove. Cerchiamo I₁ in R₁; vale I₁=I_T R₂/(R₁+R₂), con 0<I₁<I_T. Sono noti I₁, I_T e R₂. Quale formula ricava R₁?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "R₁ = R₂ (I_T − I₁) / I₁",
+          "R₁ = R₂ (I_T + I₁) / I₁",
+          "R₁ = R₂ I₁ / (I_T − I₁)",
+          "R₁ = I₁ / R₂",
+          "R₁ = R₂ − I₁"
+        ],
+        "value": "R₁ = R₂ (I_T − I₁) / I₁"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il ramo alternativo porta I₂=I_T−I₁. La tensione comune impone I₁R₁=I₂R₂. Dividendo per I₁>0 si ottiene R₁=R₂(I_T−I₁)/I₁, con unità Ω perché il rapporto delle correnti è puro."
+        },
+        {
+          "type": "formula",
+          "text": "I_2=I_T-I_1"
+        },
+        {
+          "type": "formula",
+          "text": " I_1R_1=I_2R_2"
+        },
+        {
+          "type": "formula",
+          "text": " R_1=R_2\\frac{I_T-I_1}{I_1}"
+        },
+        {
+          "type": "text",
+          "text": "Il più non esprime la corrente dell’altro ramo. Il reciproco del rapporto scambia il ruolo delle correnti. I₁/R₂ non ha unità Ω e R₂−I₁ sottrae grandezze incompatibili. Gli estremi I₁=0 e I₁=I_T sono esclusi dai due rami finiti positivi."
+        }
+      ],
+      "hints": [
+        "Combina conservazione al nodo ed eguaglianza della tensione dei rami.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il più non esprime la corrente dell’altro ramo. Il reciproco del rapporto scambia il ruolo delle correnti. I₁/R₂ non ha unità Ω e R₂−I₁ sottrae grandezze incompatibili. Gli estremi I₁=0 e I₁=I_T sono esclusi dai due rami finiti positivi.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Tensione comune e conservazione della corrente",
+        "Il resistore opposto al numeratore",
+        "Inverse nel dominio 0<I₁<I_T",
+        "Rapporti, medie, display e scala non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-current-divider-10",
+      "kind": "question",
+      "course": "C4",
+      "section": "Partitore di corrente a totale imposto",
+      "order": 21210,
+      "title": "Scalare i due rami",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "current-divider",
+      "difficulty": 2,
+      "prompt": "Due soli resistori ohmici R₁>0 e R₂>0 finiti sono collegati fra gli stessi nodi A e B, con fili ideali e temperatura fissata. Una sorgente impone la corrente totale I_T=12 mA entrante in A e uscente da B. Le correnti I₁ e I₂ sono orientate da A a B nei rispettivi rami e sommano I_T. La tensione comune V_AB si adatta ai resistori: non è mantenuta costante fra prove. Cerchiamo I₁ in R₁; vale I₁=I_T R₂/(R₁+R₂), con 0<I₁<I_T. B usa R₁,B=κ₁R₁ e R₂,B=κ₂R₂. Definiamo S=R₁+R₂ e S_B=κ₁R₁+κ₂R₂, entrambe somme di resistenze. Quanto vale I₁,B/I₁,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₂ S / S_B",
+          "κ₁ S / S_B",
+          "κ₁ κ₂",
+          "S_B / (κ₂ S)",
+          "κ₂ / κ₁"
+        ],
+        "value": "κ₂ S / S_B"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La corrente totale rimane fissata. Il confronto fra I_TR₂/S e I_Tκ₂R₂/S_B dà κ₂S/S_B. Una scalatura comune dei due resistori lascia invariate le quote di corrente, mentre cambia la tensione necessaria a mantenere I_T."
+        },
+        {
+          "type": "formula",
+          "text": "I_{1,A}=I_T\\frac{R_2}{S}"
+        },
+        {
+          "type": "formula",
+          "text": " I_{1,B}=I_T\\frac{\\kappa_2R_2}{S_B}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{I_{1,B}}{I_{1,A}}=\\frac{\\kappa_2S}{S_B}"
+        },
+        {
+          "type": "text",
+          "text": "κ₁ al numeratore segue il ramo sbagliato. Il prodotto dei fattori omette la variazione della somma; il reciproco inverte le prove. κ₂/κ₁ confronta direttamente i resistori senza formare la quota sul totale."
+        }
+      ],
+      "hints": [
+        "Il generatore mantiene la corrente totale, quindi quella si cancella nel rapporto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "κ₁ al numeratore segue il ramo sbagliato. Il prodotto dei fattori omette la variazione della somma; il reciproco inverte le prove. κ₂/κ₁ confronta direttamente i resistori senza formare la quota sul totale.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Tensione comune e conservazione della corrente",
+        "Il resistore opposto al numeratore",
+        "Inverse nel dominio 0<I₁<I_T",
+        "Rapporti, medie, display e scala non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-current-divider-11",
+      "kind": "question",
+      "course": "C4",
+      "section": "Partitore di corrente a totale imposto",
+      "order": 21211,
+      "title": "Una quota dimezzata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "current-divider",
+      "difficulty": 2,
+      "prompt": "Due soli resistori ohmici R₁>0 e R₂>0 finiti sono collegati fra gli stessi nodi A e B, con fili ideali e temperatura fissata. Una sorgente impone la corrente totale I_T=12 mA entrante in A e uscente da B. Le correnti I₁ e I₂ sono orientate da A a B nei rispettivi rami e sommano I_T. La tensione comune V_AB si adatta ai resistori: non è mantenuta costante fra prove. Cerchiamo I₁ in R₁; vale I₁=I_T R₂/(R₁+R₂), con 0<I₁<I_T. A usa R₁=R₂=2 Ω. B usa R₁=3 Ω e R₂=1 Ω. Quanto vale I₁,B/I₁,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "2",
+          "3/2",
+          "1",
+          "1/3"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A divide il totale in 6 e 6 mA. B dà I₁=12·1/(3+1)=3 mA e I₂=9 mA: la corrente maggiore passa nel ramo da 1 Ω. Il rapporto della corrente nel primo ramo è 3/6=1/2."
+        },
+        {
+          "type": "formula",
+          "text": "I_{1,A}=6\\,\\mathrm{mA}"
+        },
+        {
+          "type": "formula",
+          "text": " I_{1,B}=3\\,\\mathrm{mA}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{I_{1,B}}{I_{1,A}}=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Due inverte il rapporto; 3/2 segue soltanto R₁ come se la corrente gli fosse direttamente proporzionale. Un terzo è il rapporto delle due correnti dentro B, non il confronto di I₁ fra B e A. Uno ignora il diverso riparto."
+        }
+      ],
+      "hints": [
+        "Non confondere il confronto fra rami con quello fra prove.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due inverte il rapporto; 3/2 segue soltanto R₁ come se la corrente gli fosse direttamente proporzionale. Un terzo è il rapporto delle due correnti dentro B, non il confronto di I₁ fra B e A. Uno ignora il diverso riparto.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Tensione comune e conservazione della corrente",
+        "Il resistore opposto al numeratore",
+        "Inverse nel dominio 0<I₁<I_T",
+        "Rapporti, medie, display e scala non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-current-divider-12",
+      "kind": "question",
+      "course": "C4",
+      "section": "Partitore di corrente a totale imposto",
+      "order": 21212,
+      "title": "Media delle correnti di ramo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "current-divider",
+      "difficulty": 2,
+      "prompt": "Due soli resistori ohmici R₁>0 e R₂>0 finiti sono collegati fra gli stessi nodi A e B, con fili ideali e temperatura fissata. Una sorgente impone la corrente totale I_T=12 mA entrante in A e uscente da B. Le correnti I₁ e I₂ sono orientate da A a B nei rispettivi rami e sommano I_T. La tensione comune V_AB si adatta ai resistori: non è mantenuta costante fra prove. Cerchiamo I₁ in R₁; vale I₁=I_T R₂/(R₁+R₂), con 0<I₁<I_T. A usa R₁=2 Ω, R₂=2 Ω; B usa R₁=3 Ω, R₂=1 Ω. Qual è la media aritmetica delle due I₁?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "9/2 mA",
+          "9 mA",
+          "3/2 mA",
+          "6 mA",
+          "3 mA"
+        ],
+        "value": "9/2 mA"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le uscite sono 6 e 3 mA e la media vale 9/2 mA. Qui il modello ai dati medi R₁=5/2 Ω, R₂=3/2 Ω restituisce ancora 12·(3/2)/4=9/2 mA: la somma R₁+R₂ resta 4 Ω in entrambe le prove. Questa coincidenza non è una proprietà generale del partitore."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/e52f171aea7e03a1f88f65f4758828c5a0293cff8ada567a9af3a8fe3e46b464",
+          "text": "Le prove finali sono A: R₁=2 Ω, R₂=2 Ω e B: R₁=3 Ω, R₂=1 Ω. Le correnti del primo ramo sono 6 e 3 mA e hanno media 9/2 mA. Questo B non è il caso del pannello centrale. Le scale fra pannelli sono indipendenti; entro ogni pannello origine e scala sono comuni."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline I_1=\\frac{6+3}{2}\\,\\mathrm{mA}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline I_1=\\frac92\\,\\mathrm{mA}"
+        },
+        {
+          "type": "text",
+          "text": "Nove non dimezza la somma, 3/2 è metà della differenza e sei o tre ripetono una singola prova. La media statistica non è una nuova legge di conservazione al nodo."
+        }
+      ],
+      "hints": [
+        "Prima trova ciascuna quota, poi applica gli uguali pesi statistici.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Nove non dimezza la somma, 3/2 è metà della differenza e sei o tre ripetono una singola prova. La media statistica non è una nuova legge di conservazione al nodo.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Tensione comune e conservazione della corrente",
+        "Il resistore opposto al numeratore",
+        "Inverse nel dominio 0<I₁<I_T",
+        "Rapporti, medie, display e scala non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-current-divider-13",
+      "kind": "question",
+      "course": "C4",
+      "section": "Partitore di corrente a totale imposto",
+      "order": 21213,
+      "title": "Il ramo alternativo per il bersaglio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "current-divider",
+      "difficulty": 3,
+      "prompt": "Due soli resistori ohmici R₁>0 e R₂>0 finiti sono collegati fra gli stessi nodi A e B, con fili ideali e temperatura fissata. Una sorgente impone la corrente totale I_T=12 mA entrante in A e uscente da B. Le correnti I₁ e I₂ sono orientate da A a B nei rispettivi rami e sommano I_T. La tensione comune V_AB si adatta ai resistori: non è mantenuta costante fra prove. Cerchiamo I₁ in R₁; vale I₁=I_T R₂/(R₁+R₂), con 0<I₁<I_T. A ha R₁=R₂=2 Ω. B usa R₁=3 Ω e deve dare I₁,B=I₁,A/2. Quanto vale R₂,B/R₂,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "2",
+          "1/3",
+          "3/2",
+          "1"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è I₁,B=3 mA e l’altro ramo deve portare 9 mA. Dall’uguaglianza delle tensioni, 3 mA·3 Ω=9 mA·R₂,B, quindi R₂,B=1 Ω. Il rapporto con 2 Ω iniziali è 1/2."
+        },
+        {
+          "type": "formula",
+          "text": "I_{1,B}=3\\,\\mathrm{mA}"
+        },
+        {
+          "type": "formula",
+          "text": " I_{2,B}=9\\,\\mathrm{mA}"
+        },
+        {
+          "type": "formula",
+          "text": " R_{2,B}=1\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{R_{2,B}}{R_{2,A}}=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Due inverte il confronto; un terzo è R₂,B/R₁,B; 3/2 segue solo il primo resistore. Uno lascia R₂=2 Ω e darebbe I₁=24/5 mA, non 3 mA."
+        }
+      ],
+      "hints": [
+        "Assegna prima le due correnti che devono sommare 12 mA.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due inverte il confronto; un terzo è R₂,B/R₁,B; 3/2 segue solo il primo resistore. Uno lascia R₂=2 Ω e darebbe I₁=24/5 mA, non 3 mA.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Tensione comune e conservazione della corrente",
+        "Il resistore opposto al numeratore",
+        "Inverse nel dominio 0<I₁<I_T",
+        "Rapporti, medie, display e scala non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-current-divider-14",
+      "kind": "question",
+      "course": "C4",
+      "section": "Partitore di corrente a totale imposto",
+      "order": 21214,
+      "title": "Un display della corrente",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "current-divider",
+      "difficulty": 3,
+      "prompt": "Due soli resistori ohmici R₁>0 e R₂>0 finiti sono collegati fra gli stessi nodi A e B, con fili ideali e temperatura fissata. Una sorgente impone la corrente totale I_T=12 mA entrante in A e uscente da B. Le correnti I₁ e I₂ sono orientate da A a B nei rispettivi rami e sommano I_T. La tensione comune V_AB si adatta ai resistori: non è mantenuta costante fra prove. Cerchiamo I₁ in R₁; vale I₁=I_T R₂/(R₁+R₂), con 0<I₁<I_T. D=a_cal I₁ è continuo e adimensionale, a_cal>0, senza offset. A con R₁=R₂=2 Ω dà D=18. C dà D=9 e ha R₂=1 Ω. Quanto vale R₁,C in Ω?",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "Ω",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento porta I₁,A=6 mA, perciò a_cal=3 mA⁻¹. La nuova lettura restituisce I₁,C=3 mA; nel secondo ramo restano 9 mA. La tensione comune impone R₁,C=(9/3)·1 Ω=3 Ω."
+        },
+        {
+          "type": "formula",
+          "text": "a_{\\rm cal}=3\\,\\mathrm{mA}^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " I_{1,C}=3\\,\\mathrm{mA}"
+        },
+        {
+          "type": "formula",
+          "text": " R_{1,C}=3\\,\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "1/3 Ω usa il display come corrente di 9 mA senza taratura. Uno Ω dividerebbe in parti uguali e darebbe D=18; nove Ω porterebbe I₁=6/5 mA e D=18/5. Solo tre Ω ricostruisce la lettura nove."
+        }
+      ],
+      "hints": [
+        "Decodifica I₁ prima di calcolare I₂ e il rapporto delle resistenze.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "1/3 Ω usa il display come corrente di 9 mA senza taratura. Uno Ω dividerebbe in parti uguali e darebbe D=18; nove Ω porterebbe I₁=6/5 mA e D=18/5. Solo tre Ω ricostruisce la lettura nove.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Tensione comune e conservazione della corrente",
+        "Il resistore opposto al numeratore",
+        "Inverse nel dominio 0<I₁<I_T",
+        "Rapporti, medie, display e scala non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-current-divider-15",
+      "kind": "question",
+      "course": "C4",
+      "section": "Partitore di corrente a totale imposto",
+      "order": 21215,
+      "title": "Offset prima del riparto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "current-divider",
+      "difficulty": 3,
+      "prompt": "Due soli resistori ohmici R₁>0 e R₂>0 finiti sono collegati fra gli stessi nodi A e B, con fili ideali e temperatura fissata. Una sorgente impone la corrente totale I_T=12 mA entrante in A e uscente da B. Le correnti I₁ e I₂ sono orientate da A a B nei rispettivi rami e sommano I_T. La tensione comune V_AB si adatta ai resistori: non è mantenuta costante fra prove. Cerchiamo I₁ in R₁; vale I₁=I_T R₂/(R₁+R₂), con 0<I₁<I_T. D=a_cal I₁+b è continuo e adimensionale. A: R₁=2 Ω, R₂=2 Ω, D=13. B: R₁=3 Ω, R₂=1 Ω, D=7. C: R₂=2 Ω, D=17. Quanto vale R₁,C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1 Ω",
+          "14/17 Ω",
+          "2 Ω",
+          "4 Ω",
+          "8 Ω"
+        ],
+        "value": "1 Ω"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti hanno I₁,A=6 mA e I₁,B=3 mA. Quindi a_cal=2 mA⁻¹ e b=1. C porta I₁,C=(17−1)/2=8 mA e I₂,C=4 mA. Dalla tensione comune, R₁,C=2 Ω·(4/8)=1 Ω."
+        },
+        {
+          "type": "formula",
+          "text": "a_{\\rm cal}=2\\,\\mathrm{mA}^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " I_{1,C}=8\\,\\mathrm{mA}"
+        },
+        {
+          "type": "formula",
+          "text": " R_{1,C}=1\\,\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "14/17 Ω omette l’offset e porterebbe 17/2 mA, ricostruendo D=18. Due Ω dà D=13; quattro Ω dà D=9; otto Ω dà D=29/5. Il totale resta 12 mA, non la tensione dei riferimenti."
+        }
+      ],
+      "hints": [
+        "Il valore utile è la corrente dopo aver rimosso offset e guadagno.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "14/17 Ω omette l’offset e porterebbe 17/2 mA, ricostruendo D=18. Due Ω dà D=13; quattro Ω dà D=9; otto Ω dà D=29/5. Il totale resta 12 mA, non la tensione dei riferimenti.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Tensione comune e conservazione della corrente",
+        "Il resistore opposto al numeratore",
+        "Inverse nel dominio 0<I₁<I_T",
+        "Rapporti, medie, display e scala non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-current-divider-16",
+      "kind": "question",
+      "course": "C4",
+      "section": "Partitore di corrente a totale imposto",
+      "order": 21216,
+      "title": "Correnti uguali, scala libera",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "current-divider",
+      "difficulty": 3,
+      "prompt": "Due soli resistori ohmici R₁>0 e R₂>0 finiti sono collegati fra gli stessi nodi A e B, con fili ideali e temperatura fissata. Una sorgente impone la corrente totale I_T=12 mA entrante in A e uscente da B. Le correnti I₁ e I₂ sono orientate da A a B nei rispettivi rami e sommano I_T. La tensione comune V_AB si adatta ai resistori: non è mantenuta costante fra prove. Cerchiamo I₁ in R₁; vale I₁=I_T R₂/(R₁+R₂), con 0<I₁<I_T. Fra preparazioni vale R₁=R₂. Si misura inoltre I₁=6 mA. Quante coppie positive (R₁,R₂) sono determinate?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Infinite coppie positive con R₁ = R₂",
+          "Una sola: R₁ = R₂ = 2 Ω",
+          "Nessuna coppia",
+          "Solo R₁ = R₂ = 1 Ω",
+          "Qualunque coppia positiva, anche con R₁ diverso da R₂"
+        ],
+        "value": "Infinite coppie positive con R₁ = R₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Con R₁=R₂=x>0, le correnti sono uguali e ognuna vale metà dei 12 mA imposti, qualunque sia x finito positivo. La misura di 6 mA è quindi ridondante: non fissa la scala delle resistenze. La tensione comune cambia come V_AB=(6 mA)x, ma non è misurata."
+        },
+        {
+          "type": "formula",
+          "text": "R_1=R_2"
+        },
+        {
+          "type": "formula",
+          "text": "R_2=x"
+        },
+        {
+          "type": "formula",
+          "text": " I_1=I_T\\frac{x}{2x}"
+        },
+        {
+          "type": "formula",
+          "text": " I_1=\\frac{I_T}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " I_1=6\\,\\mathrm{mA}"
+        },
+        {
+          "type": "text",
+          "text": "Le coppie uguali singole sono soltanto esempi. Nessuna è falso perché ogni x positivo ne costruisce una. La scala è libera ma il rapporto non lo è: resistenze diverse non soddisfano il vincolo. Una misura di tensione aggiungerebbe la scala, ma non è data."
+        }
+      ],
+      "hints": [
+        "Controlla quale dato manca dopo aver usato la simmetria dei rami.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Le coppie uguali singole sono soltanto esempi. Nessuna è falso perché ogni x positivo ne costruisce una. La scala è libera ma il rapporto non lo è: resistenze diverse non soddisfano il vincolo. Una misura di tensione aggiungerebbe la scala, ma non è data.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Tensione comune e conservazione della corrente",
+        "Il resistore opposto al numeratore",
+        "Inverse nel dominio 0<I₁<I_T",
+        "Rapporti, medie, display e scala non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "e52f171aea7e03a1f88f65f4758828c5a0293cff8ada567a9af3a8fe3e46b464",
+      "name": "current-divider-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2ODAgMTU4MCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgo8dGl0bGUgaWQ9InRpdGxlIj5SaXBhcnRpcmUgdW5hIGNvcnJlbnRlIHRvdGFsZSBpbXBvc3RhPC90aXRsZT4KPGRlc2MgaWQ9ImRlc2MiPkR1ZSByZXNpc3RvcmkgY29uZGl2aWRvbm8gQSBlIEIuIExhIGNvcnJlbnRlIHRvdGFsZSBkaSAxMiBtaWxsaWFtcGVyZSBlbnRyYSBpbiBBIGVkIGVzY2UgZGEgQjsgaSBkdWUgcmFtaSBpZGVudGljaSBwb3J0YW5vIDYgbWlsbGlhbXBlcmUgY2lhc2N1bm8uIFJpZHVjZW5kbyBpbCBwcmltbyByZXNpc3RvcmUgYSAxIG9obSwgY29uIGlsIHNlY29uZG8gYSAyIG9obSwgbGUgY29ycmVudGkgZGl2ZW50YW5vIDggZSA0IG1pbGxpYW1wZXJlLiBEdWUgcHJlcGFyYXppb25pIGRpc3RpbnRlIGZpbmFsaSBkYW5ubyBjb3JyZW50aSBuZWwgcHJpbW8gcmFtbyA2IGUgMyBtaWxsaWFtcGVyZSwgZGkgbWVkaWEgOS8yIG1pbGxpYW1wZXJlLiBMYSB0ZW5zaW9uZSBjb211bmUgbm9uIMOoIGltcG9zdGEuIExlIHNjYWxlIHNvbm8gY29tdW5pIHNvbHRhbnRvIGVudHJvIG9nbmkgcGFubmVsbG8gZGkgYmFycmUuPC9kZXNjPgo8cmVjdCB3aWR0aD0iNjgwIiBoZWlnaHQ9IjE1ODAiIGZpbGw9IiNmZmZkZjYiLz4KPHRleHQgeD0iMzQiIHk9IjQ4IiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyNiIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iIzE4MzY0YSI+MSDCtyBEdWUgcmFtaSwgdW4gdG90YWxlIGltcG9zdG88L3RleHQ+Cjx0ZXh0IHg9IjM0IiB5PSI4OCIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiMxODM2NGEiPklfVCA9IDEyIG1BIDsgUuKCgSA9IFLigoIgPSAyIM6pLjwvdGV4dD4KPHBhdGggZD0iTTkwIDI1MEgxNjBWMTYwSDUyMFYzNDBIMTYwVjI1ME01MjAgMjUwSDYwMCIgc3Ryb2tlPSIjMjQ0ODVjIiBzdHJva2Utd2lkdGg9IjMiIGZpbGw9Im5vbmUiLz4KPHJlY3QgeD0iMzAwIiB5PSIxNDUiIHdpZHRoPSIxMDAiIGhlaWdodD0iMzAiIHN0cm9rZT0iIzE2NWE4NyIgc3Ryb2tlLXdpZHRoPSIzIiBmaWxsPSIjZWFmM2Y4Ii8+PHJlY3QgeD0iMzAwIiB5PSIzMjUiIHdpZHRoPSIxMDAiIGhlaWdodD0iMzAiIHN0cm9rZT0iIzE2NWE4NyIgc3Ryb2tlLXdpZHRoPSIzIiBmaWxsPSIjZWFmM2Y4Ii8+CjxjaXJjbGUgY3g9IjE2MCIgY3k9IjI1MCIgcj0iNiIgZmlsbD0iIzI0NDg1YyIvPjxjaXJjbGUgY3g9IjUyMCIgY3k9IjI1MCIgcj0iNiIgZmlsbD0iIzI0NDg1YyIvPgo8dGV4dCB4PSI4NSIgeT0iMjMwIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzE4MzY0YSI+QTwvdGV4dD48dGV4dCB4PSI2MDAiIHk9IjIzMCIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiMxODM2NGEiPkI8L3RleHQ+Cjx0ZXh0IHg9IjI5MCIgeT0iMTMwIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzE4MzY0YSI+UuKCgSA9IDIgzqk8L3RleHQ+PHRleHQgeD0iMjkwIiB5PSIzOTAiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIwIiBmaWxsPSIjMTgzNjRhIj5S4oKCID0gMiDOqTwvdGV4dD4KPHRleHQgeD0iMzQiIHk9IjQ0MCIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiMxODM2NGEiPkRhIEEgYSBCOiBJ4oKBID0gNiBtQSBlIEnigoIgPSA2IG1BLjwvdGV4dD4KPHRleHQgeD0iMzQiIHk9IjQ4MCIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiMxODM2NGEiPknigoEgKyBJ4oKCID0gSV9UIDsgbGEgdGVuc2lvbmUgY29tdW5lIMOoIDEyIG1WLjwvdGV4dD4KPHRleHQgeD0iMzQiIHk9IjU2MCIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjYiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiMxODM2NGEiPjIgwrcgQ2FtYmlhIHNvbHRhbnRvIFLigoE8L3RleHQ+Cjx0ZXh0IHg9IjM0IiB5PSI2MDAiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIwIiBmaWxsPSIjMTgzNjRhIj5S4oKBIHBhc3NhIGRhIDIgYSAxIM6pIDsgUuKCgiByZXN0YSAyIM6pLjwvdGV4dD4KPHJlY3QgeD0iMTUwIiB5PSI2NTAiIHdpZHRoPSIxODAiIGhlaWdodD0iNDAiIGZpbGw9IiMxNjVhODciLz48cmVjdCB4PSIzMzAiIHk9IjY1MCIgd2lkdGg9IjE4MCIgaGVpZ2h0PSI0MCIgZmlsbD0iIzI4NjY0ZCIvPgo8cmVjdCB4PSIxNTAiIHk9Ijc1MCIgd2lkdGg9IjI0MCIgaGVpZ2h0PSI0MCIgZmlsbD0iIzE2NWE4NyIvPjxyZWN0IHg9IjM5MCIgeT0iNzUwIiB3aWR0aD0iMTIwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjMjg2NjRkIi8+Cjx0ZXh0IHg9IjQ1IiB5PSI2NzciIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIwIiBmaWxsPSIjMTgzNjRhIj5QcmltYTwvdGV4dD48dGV4dCB4PSIyMTAiIHk9IjYzNiIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiMxODM2NGEiPjYgbUE8L3RleHQ+PHRleHQgeD0iNDAwIiB5PSI2MzYiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIwIiBmaWxsPSIjMTgzNjRhIj42IG1BPC90ZXh0Pgo8dGV4dCB4PSI0NSIgeT0iNzc3IiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzE4MzY0YSI+RG9wbzwvdGV4dD48dGV4dCB4PSIyNDUiIHk9IjczNiIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiMxODM2NGEiPjggbUE8L3RleHQ+PHRleHQgeD0iNDE1IiB5PSI3MzYiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIwIiBmaWxsPSIjMTgzNjRhIj40IG1BPC90ZXh0Pgo8bGluZSB4MT0iMTUwIiB5MT0iODIwIiB4Mj0iNTQ1IiB5Mj0iODIwIiBzdHJva2U9IiM1MjZhNzgiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjEyNSIgeT0iODQ1IiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzE4MzY0YSI+MDwvdGV4dD48dGV4dCB4PSI0OTAiIHk9Ijg0NSIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiMxODM2NGEiPjEyIG1BPC90ZXh0Pgo8dGV4dCB4PSIzNCIgeT0iODg1IiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzE4MzY0YSI+Qmx1OiBJ4oKBIDsgdmVyZGU6IEnigoIuIElsIHRvdGFsZSByZXN0YSAxMiBtQS48L3RleHQ+Cjx0ZXh0IHg9IjM0IiB5PSI5NjUiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjI2IiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjMTgzNjRhIj4zIMK3IER1ZSBhbHRyZSBwcm92ZSBlIGxhIG1lZGlhPC90ZXh0Pgo8dGV4dCB4PSIzNCIgeT0iMTAwNSIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiMxODM2NGEiPkE6IFLigoEgPSAyIM6pLCBS4oKCID0gMiDOqSA7IEnigoEsQSA9IDYgbUEuPC90ZXh0Pgo8dGV4dCB4PSIzNCIgeT0iMTA0MCIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiMxODM2NGEiPkI6IFLigoEgPSAzIM6pLCBS4oKCID0gMSDOqSA7IEnigoEsQiA9IDMgbUEuPC90ZXh0Pgo8bGluZSB4MT0iMTUwIiB5MT0iMTA4MCIgeDI9IjE1MCIgeTI9IjEzODAiIHN0cm9rZT0iIzUyNmE3OCIgc3Ryb2tlLXdpZHRoPSIyIi8+PGxpbmUgeDE9IjE1MCIgeTE9IjEzODAiIHgyPSI0NDAiIHkyPSIxMzgwIiBzdHJva2U9IiM1MjZhNzgiIHN0cm9rZS13aWR0aD0iMiIvPgo8cmVjdCB4PSIxNTAiIHk9IjExMDUiIHdpZHRoPSIyNDAiIGhlaWdodD0iMzQiIGZpbGw9IiMxNjVhODciLz48cmVjdCB4PSIxNTAiIHk9IjEyMDUiIHdpZHRoPSIxMjAiIGhlaWdodD0iMzQiIGZpbGw9IiMyODY2NGQiLz48cmVjdCB4PSIxNTAiIHk9IjEzMDUiIHdpZHRoPSIxODAiIGhlaWdodD0iMzQiIGZpbGw9IiM5YTRmMjMiLz4KPHRleHQgeD0iODAiIHk9IjExMzAiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIwIiBmaWxsPSIjMTgzNjRhIj5BPC90ZXh0Pjx0ZXh0IHg9IjQwNSIgeT0iMTEzMCIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiMxODM2NGEiPjYgbUE8L3RleHQ+Cjx0ZXh0IHg9IjgwIiB5PSIxMjMwIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzE4MzY0YSI+QjwvdGV4dD48dGV4dCB4PSIyODUiIHk9IjEyMzAiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIwIiBmaWxsPSIjMTgzNjRhIj4zIG1BPC90ZXh0Pgo8dGV4dCB4PSI0NCIgeT0iMTMzMCIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiMxODM2NGEiPk1lZGlhPC90ZXh0Pjx0ZXh0IHg9IjM0NSIgeT0iMTMzMCIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiMxODM2NGEiPjkvMiBtQTwvdGV4dD4KPHRleHQgeD0iMTI1IiB5PSIxNDA1IiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzE4MzY0YSI+MDwvdGV4dD48dGV4dCB4PSIzODAiIHk9IjE0MDUiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjE2IiBmaWxsPSIjMTgzNjRhIj42IG1BPC90ZXh0Pgo8dGV4dCB4PSIzNCIgeT0iMTQ1MCIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMxODM2NGEiPlNjYWxlIGNvbXVuaSBlbnRybyBpbCBwYW5uZWxsbywgaW5kaXBlbmRlbnRpIGZyYSBwYW5uZWxsaS48L3RleHQ+Cjx0ZXh0IHg9IjM0IiB5PSIxNDkwIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzE4MzY0YSI+UXVpIGFuY2hlIGFpIGRhdGkgbWVkaSBS4oKBID0gNS8yIM6pLCBS4oKCID0gMy8yIM6pPC90ZXh0Pgo8dGV4dCB4PSIzNCIgeT0iMTUyNSIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMxODM2NGEiPnNpIG90dGllbmUgSeKCgSA9IDkvMiBtQSwgcGVyY2jDqSBS4oKBICsgUuKCgiByZXN0YSA0IM6pLjwvdGV4dD4KPC9zdmc+Cg=="
+    }
+  ]
+}

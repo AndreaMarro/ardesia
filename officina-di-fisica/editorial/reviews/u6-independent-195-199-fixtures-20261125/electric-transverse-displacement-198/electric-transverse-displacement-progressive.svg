@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 1450" role="img" aria-labelledby="title desc">
+<title id="title">Accelerazione elettrica e spostamento trasversale</title>
+<desc id="desc">Nel piano orizzontale la forza elettrica è trasversale alla velocità iniziale. Il peso è compensato fuori dal piano. Per campo due kilonewton al coulomb l’accelerazione è due metri al secondo quadrato e y cresce come t al quadrato. Le barre confrontano deviazioni uno e due metri e la media tre mezzi.</desc>
+<defs><marker id="force" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#b45328"/></marker><marker id="velocity" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#28664d"/></marker><marker id="field" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="#165a87"/></marker></defs>
+<rect width="640" height="1450" rx="12" fill="#f8fafc"/>
+<g font-family="Arial,sans-serif" fill="#14243a" font-size="20">
+<text x="32" y="42" font-size="25" font-weight="bold">1 · Due componenti diverse</text>
+<text x="32" y="83" font-size="18">Vista dall’alto: +x a destra, +y verso l’alto nel piano.</text>
+<circle cx="220" cy="270" r="26" fill="#fce6dc" stroke="#b45328" stroke-width="2"/>
+<text x="210" y="279" font-size="28">+</text>
+<path d="M220 244V150" stroke="#b45328" stroke-width="5" marker-end="url(#force)"/>
+<path d="M246 270H400" stroke="#28664d" stroke-width="4" marker-end="url(#velocity)"/>
+<path d="M500 330V150" stroke="#165a87" stroke-width="4" marker-end="url(#field)"/>
+<text x="75" y="188">F_y = qE</text><text x="285" y="246" fill="#28664d">v_x iniziale</text><text x="522" y="232" fill="#165a87">E</text>
+<text x="32" y="376" font-size="18">All’ingresso: y = 0 e v_y = 0 ; q = 1 μC, m = 1 g.</text>
+<text x="32" y="408" font-size="18">Frecce schematiche; peso compensato fuori dal piano.</text>
+<text x="32" y="440" font-size="18">Nel piano F_x = 0: v_x resta costante.</text>
+<path d="M32 470H608" stroke="#9babbc"/>
+<text x="32" y="514" font-size="25" font-weight="bold">2 · Deviazione nel tempo: y(t)</text>
+<text x="32" y="553" font-size="18">E = 2 kN/C ; a_y = 2 m/s² ; y in m, t in s.</text>
+<path d="M100 830V575M100 830H540" fill="none" stroke="#14243a" stroke-width="2"/>
+<path d="M100 830Q300 830 500 590" fill="none" stroke="#165a87" stroke-width="4"/>
+<path d="M100 770H300V830M100 590H500V830" fill="none" stroke="#8292a2" stroke-dasharray="5 5"/>
+<circle cx="300" cy="770" r="5" fill="#165a87"/><circle cx="500" cy="590" r="5" fill="#165a87"/>
+<text x="65" y="597">4</text><text x="65" y="777">1</text><text x="65" y="837">0</text>
+<text x="82" y="865">0</text><text x="291" y="865">1</text><text x="491" y="865">2</text>
+<text x="32" y="905" font-size="18">È una legge oraria, non il disegno della traiettoria.</text>
+<path d="M32 938H608" stroke="#9babbc"/>
+<text x="32" y="982" font-size="25" font-weight="bold">3 · Media di due deviazioni</text>
+<path d="M130 1010V1282" stroke="#14243a" stroke-width="2"/>
+<rect x="130" y="1035" width="160" height="38" fill="#165a87"/>
+<rect x="130" y="1115" width="320" height="38" fill="#165a87"/>
+<rect x="130" y="1195" width="240" height="38" fill="#28664d"/>
+<text x="50" y="1063">A</text><text x="310" y="1063">1 m</text>
+<text x="50" y="1143">B</text><text x="470" y="1143">2 m</text>
+<text x="32" y="1223">Media</text><text x="390" y="1223">3/2 m</text>
+<text x="104" y="1276">0</text>
+<text x="32" y="1324" font-size="18">A: E = 2 kN/C, t = 1 s ; B: E = 1 kN/C, t = 2 s.</text>
+<text x="32" y="1356" font-size="18">Spostamenti in m, origine e scala comuni.</text>
+<text x="32" y="1388" font-size="18">B usa un campo diverso dalla curva centrale.</text>
+<text x="32" y="1420" font-size="18">Lo spostamento y non è la lunghezza del percorso.</text>
+</g></svg>

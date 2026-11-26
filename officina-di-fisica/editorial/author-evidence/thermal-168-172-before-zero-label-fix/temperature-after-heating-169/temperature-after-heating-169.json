@@ -1,0 +1,1159 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u5-temperature-after-heating-01",
+      "kind": "question",
+      "course": "C3",
+      "section": "Aumento termico e lettura finale",
+      "order": 16901,
+      "title": "L’energia aumenta una lettura già diversa da zero",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "temperature-after-heating",
+      "difficulty": 1,
+      "prompt": "Un campione chiuso di capacità termica complessiva C=10 J/K parte da 20 °C. Riceve potenza termica netta costante P>0 per un tempo t>0, senza cambiamenti di fase né lavoro meccanico apprezzabile. C resta costante nell’intervallo considerato. Indichiamo con ΔT l’aumento di temperatura e con θ_f il valore numerico della lettura finale in gradi Celsius. Un aumento di 1 K aumenta la lettura Celsius di 1. Gli eventuali rapporti fra θ_f sono rapporti di letture sulla scala Celsius, dipendenti dallo zero scelto; non sono rapporti di temperature assolute. P=5 W e t=10 s. Qual è la lettura finale in°C?",
+      "answer": {
+        "type": "numeric",
+        "value": 25,
+        "unit": "°C",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il campione riceve cinquanta joule. Dividendo per la capacità complessiva di dieci joule per kelvin troviamo un aumento di cinque kelvin, cioè cinque gradi sulla scala Celsius. Alla lettura iniziale venti si aggiunge cinque: il termometro indica 25 °C."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/02ebb7ed0c6e8f0b367ab474402be20700d33f4f2120c476d57e68b9cac7fe01",
+          "text": "Il campione ha C=10 J/K: nella provaA,50 J producono un aumento 5 K a partire da 20 °C, quindi lettura finale 25 °C. Il pannello centrale separa la lettura iniziale 20 dagli aumenti 5 e 10. Il pannello finale riguarda un altro confronto,25 e 40 °C, con media 65/2 °C. Le barre Celsius partono dallo zero scelto: i rapporti di letture non sono rapporti di temperature assolute."
+        },
+        {
+          "type": "formula",
+          "text": "Q=Pt"
+        },
+        {
+          "type": "formula",
+          "text": " Q=50\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta T=\\frac QC"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta T=5\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_f=25"
+        },
+        {
+          "type": "text",
+          "text": "Cinque è l’aumento, non la lettura finale. Cinquanta copia l’energia e venti ignora il riscaldamento.Settanta somma il numero 50 dell’energia alla lettura 20 senza dividere per la capacità: joule e gradi Celsius non si possono sommare."
+        }
+      ],
+      "hints": [
+        "Distingui l’aumento dalla temperatura di partenza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Cinque è l’aumento, non la lettura finale. Cinquanta copia l’energia e venti ignora il riscaldamento.Settanta somma il numero 50 dell’energia alla lettura 20 senza dividere per la capacità: joule e gradi Celsius non si possono sommare.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Capacità termica complessiva e potenza netta",
+        "Letture Celsius distinte dalle temperature assolute",
+        "Inverse, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-temperature-after-heating-02",
+      "kind": "question",
+      "course": "C3",
+      "section": "Aumento termico e lettura finale",
+      "order": 16902,
+      "title": "Lettura di temperatura e unità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "temperature-after-heating",
+      "difficulty": 1,
+      "prompt": "Quale unità esprime una temperatura misurata con un termometro Celsius?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "°C",
+          "J",
+          "W",
+          "J/K",
+          "K⁻¹"
+        ],
+        "value": "°C"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il grado Celsius è un’unità di temperatura. Una differenza di un grado Celsius ha la stessa ampiezza di un kelvin, mentre i valori numerici delle due scale hanno zeri differenti. La domanda riguarda la lettura, non l’energia necessaria a modificarla."
+        },
+        {
+          "type": "formula",
+          "text": "T[\\mathrm K]=\\theta[{}^\\circ\\mathrm C]+273{,}15"
+        },
+        {
+          "type": "text",
+          "text": "J è energia, W potenza, J/K capacità termica e K⁻¹ temperatura inversa. Il kelvin sarebbe dimensionalmente adatto a una temperatura, ma non è una delle cinque alternative qui proposte e non conserva lo stesso valore numerico Celsius."
+        }
+      ],
+      "hints": [
+        "La grandezza descritta è una temperatura, non una differenza di energia.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "J è energia, W potenza, J/K capacità termica e K⁻¹ temperatura inversa. Il kelvin sarebbe dimensionalmente adatto a una temperatura, ma non è una delle cinque alternative qui proposte e non conserva lo stesso valore numerico Celsius.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Capacità termica complessiva e potenza netta",
+        "Letture Celsius distinte dalle temperature assolute",
+        "Inverse, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-temperature-after-heating-03",
+      "kind": "question",
+      "course": "C3",
+      "section": "Aumento termico e lettura finale",
+      "order": 16903,
+      "title": "Due passaggi dal bilancio alla lettura",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "temperature-after-heating",
+      "difficulty": 1,
+      "prompt": "Un campione chiuso di capacità termica complessiva C=10 J/K parte da 20 °C. Riceve potenza termica netta costante P>0 per un tempo t>0, senza cambiamenti di fase né lavoro meccanico apprezzabile. C resta costante nell’intervallo considerato. Indichiamo con ΔT l’aumento di temperatura e con θ_f il valore numerico della lettura finale in gradi Celsius. Un aumento di 1 K aumenta la lettura Celsius di 1. Gli eventuali rapporti fra θ_f sono rapporti di letture sulla scala Celsius, dipendenti dallo zero scelto; non sono rapporti di temperature assolute. Quale coppia di relazioni è corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "ΔT = P t / C; θ_f = 20 + ΔT/(1 K)",
+          "ΔT = C P t; θ_f = 20 + ΔT/(1 K)",
+          "ΔT = P / (C t); θ_f = 20 + ΔT/(1 K)",
+          "ΔT = P t / C; θ_f = ΔT/(1 K)",
+          "ΔT = P t / C; θ_f = 20 − ΔT/(1 K)"
+        ],
+        "value": "ΔT = P t / C; θ_f = 20 + ΔT/(1 K)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Prima si usa Q=Pt e Q=CΔT per ricavare l’aumento. Poi si aggiunge alla lettura iniziale il numero di kelvin dell’aumento. Perciò ΔT=Pt/C e θ_f=20+ΔT/(1 K). Scrivere soltanto Pt/C non restituisce una lettura che parte da 20 °C."
+        },
+        {
+          "type": "formula",
+          "text": "C\\Delta T=Pt"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta T=\\frac{Pt}{C}"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_f=20+\\frac{\\Delta T}{1\\,\\mathrm K}"
+        },
+        {
+          "type": "text",
+          "text": "Moltiplicare per C invece di dividere non dà una temperatura. P/(Ct) ha unità K/s². Omettere 20 scambia aumento e lettura, mentre il segno meno descriverebbe raffreddamento anziché l’ingresso termico positivo qui imposto."
+        }
+      ],
+      "hints": [
+        "Usa il bilancio energetico per l’aumento e la scala per il valore finale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Moltiplicare per C invece di dividere non dà una temperatura. P/(Ct) ha unità K/s². Omettere 20 scambia aumento e lettura, mentre il segno meno descriverebbe raffreddamento anziché l’ingresso termico positivo qui imposto.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Capacità termica complessiva e potenza netta",
+        "Letture Celsius distinte dalle temperature assolute",
+        "Inverse, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-temperature-after-heating-04",
+      "kind": "question",
+      "course": "C3",
+      "section": "Aumento termico e lettura finale",
+      "order": 16904,
+      "title": "Raddoppia l’aumento, non la lettura iniziale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "temperature-after-heating",
+      "difficulty": 1,
+      "prompt": "Un campione chiuso di capacità termica complessiva C=10 J/K parte da 20 °C. Riceve potenza termica netta costante P>0 per un tempo t>0, senza cambiamenti di fase né lavoro meccanico apprezzabile. C resta costante nell’intervallo considerato. Indichiamo con ΔT l’aumento di temperatura e con θ_f il valore numerico della lettura finale in gradi Celsius. Un aumento di 1 K aumenta la lettura Celsius di 1. Gli eventuali rapporti fra θ_f sono rapporti di letture sulla scala Celsius, dipendenti dallo zero scelto; non sono rapporti di temperature assolute. A ha P=5 W e t=10 s. B ha P=10 W e lo stesso t=10 s. Come cambia la lettura finale?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 25 a 30 °C",
+          "Da 25 a 50 °C",
+          "Da 25 a 10 °C",
+          "Resta 25 °C",
+          "Da 25 a 15 °C"
+        ],
+        "value": "Da 25 a 30 °C"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Gli aumenti sono cinque e dieci kelvin. Sommando separatamente i venti gradi iniziali si ottengono 25 e 30 °C. L’energia e l’aumento raddoppiano, ma il valore iniziale della scala non viene raddoppiato."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta T_A=5\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta T_B=10\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_{f,A}=25"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_{f,B}=30"
+        },
+        {
+          "type": "text",
+          "text": "Cinquanta raddoppia direttamente la letturaA. Dieci è il solo aumentoB, venticinque ignora la potenza nuova e quindici sottrae energia al posto di aggiungerla."
+        }
+      ],
+      "hints": [
+        "Conserva la stessa temperatura iniziale in entrambe le prove.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Cinquanta raddoppia direttamente la letturaA. Dieci è il solo aumentoB, venticinque ignora la potenza nuova e quindici sottrae energia al posto di aggiungerla.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Capacità termica complessiva e potenza netta",
+        "Letture Celsius distinte dalle temperature assolute",
+        "Inverse, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-temperature-after-heating-05",
+      "kind": "question",
+      "course": "C3",
+      "section": "Aumento termico e lettura finale",
+      "order": 16905,
+      "title": "La potenza necessaria per raggiungere 25 °C",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "temperature-after-heating",
+      "difficulty": 2,
+      "prompt": "Un campione chiuso di capacità termica complessiva C=10 J/K parte da 20 °C. Riceve potenza termica netta costante P>0 per un tempo t>0, senza cambiamenti di fase né lavoro meccanico apprezzabile. C resta costante nell’intervallo considerato. Indichiamo con ΔT l’aumento di temperatura e con θ_f il valore numerico della lettura finale in gradi Celsius. Un aumento di 1 K aumenta la lettura Celsius di 1. Gli eventuali rapporti fra θ_f sono rapporti di letture sulla scala Celsius, dipendenti dallo zero scelto; non sono rapporti di temperature assolute. La lettura finale è 25 °C dopo t=10 s. Quanto vale P in W?",
+      "answer": {
+        "type": "numeric",
+        "value": 5,
+        "unit": "W",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’aumento rispetto ai 20 °C iniziali è cinque kelvin. Servono dieci per cinque, cinquanta joule. Dividendo per dieci secondi si ottengono cinque watt netti, positivi come richiesto."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta T=5\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " Q=C\\Delta T"
+        },
+        {
+          "type": "formula",
+          "text": " Q=50\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " P=Q/t"
+        },
+        {
+          "type": "formula",
+          "text": " P=5\\,\\mathrm W"
+        },
+        {
+          "type": "text",
+          "text": "Venticinque watt usa 25 al posto dell’aumento 5. Cinquanta watt copia il numero di joule senza dividere per il tempo; un mezzo watt divide una seconda volta per la capacità dopo averla già usata."
+        }
+      ],
+      "hints": [
+        "Sottrai prima la lettura iniziale, poi ricostruisci l’energia.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Venticinque watt usa 25 al posto dell’aumento 5. Cinquanta watt copia il numero di joule senza dividere per il tempo; un mezzo watt divide una seconda volta per la capacità dopo averla già usata.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Capacità termica complessiva e potenza netta",
+        "Letture Celsius distinte dalle temperature assolute",
+        "Inverse, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-temperature-after-heating-06",
+      "kind": "question",
+      "course": "C3",
+      "section": "Aumento termico e lettura finale",
+      "order": 16906,
+      "title": "La durata da un aumento assegnato",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "temperature-after-heating",
+      "difficulty": 2,
+      "prompt": "Un campione chiuso di capacità termica complessiva C=10 J/K parte da 20 °C. Riceve potenza termica netta costante P>0 per un tempo t>0, senza cambiamenti di fase né lavoro meccanico apprezzabile. C resta costante nell’intervallo considerato. Indichiamo con ΔT l’aumento di temperatura e con θ_f il valore numerico della lettura finale in gradi Celsius. Un aumento di 1 K aumenta la lettura Celsius di 1. Gli eventuali rapporti fra θ_f sono rapporti di letture sulla scala Celsius, dipendenti dallo zero scelto; non sono rapporti di temperature assolute. P=5 W e lettura finale 25 °C. Quanto vale t in s?",
+      "answer": {
+        "type": "numeric",
+        "value": 10,
+        "unit": "s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’aumento è cinque kelvin e richiede 50 J. Il riscaldatore cede cinque joule ogni secondo, quindi occorrono 50/5=10 s. La durata positiva è univoca perché P è costante e non nullo."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta T=5\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " t=\\frac{C\\Delta T}{P}"
+        },
+        {
+          "type": "formula",
+          "text": " t=10\\,\\mathrm s"
+        },
+        {
+          "type": "text",
+          "text": "Cinquanta secondi prende la lettura 25 °C come aumento 25 K. Due secondi divide la capacità per la potenza senza includere l’aumento; meno dieci viola il tempo positivo e corrisponderebbe al verso opposto del trasferimento."
+        }
+      ],
+      "hints": [
+        "Trova l’energia da accumulare prima di dividerla per P.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Cinquanta secondi prende la lettura 25 °C come aumento 25 K. Due secondi divide la capacità per la potenza senza includere l’aumento; meno dieci viola il tempo positivo e corrisponderebbe al verso opposto del trasferimento.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Capacità termica complessiva e potenza netta",
+        "Letture Celsius distinte dalle temperature assolute",
+        "Inverse, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-temperature-after-heating-07",
+      "kind": "question",
+      "course": "C3",
+      "section": "Aumento termico e lettura finale",
+      "order": 16907,
+      "title": "Un rapporto dichiaratamente di letture Celsius",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "temperature-after-heating",
+      "difficulty": 2,
+      "prompt": "Un campione chiuso di capacità termica complessiva C=10 J/K parte da 20 °C. Riceve potenza termica netta costante P>0 per un tempo t>0, senza cambiamenti di fase né lavoro meccanico apprezzabile. C resta costante nell’intervallo considerato. Indichiamo con ΔT l’aumento di temperatura e con θ_f il valore numerico della lettura finale in gradi Celsius. Un aumento di 1 K aumenta la lettura Celsius di 1. Gli eventuali rapporti fra θ_f sono rapporti di letture sulla scala Celsius, dipendenti dallo zero scelto; non sono rapporti di temperature assolute. A ha P=5 W,t=10 s. B mantiene P=5 W e dura 20 s. Quanto vale θ_f,B/θ_f,A sulla scala Celsius?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "6/5",
+          "2",
+          "5/6",
+          "1/2",
+          "1"
+        ],
+        "value": "6/5"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A termina a 25 °C e B a 30 °C, perché gli aumenti sono 5 e 10 K. Il rapporto delle letture 30/25 è sei quinti. Il rapporto termodinamico sarebbe invece 303,15/298,15 fra temperature in kelvin: è un’altra quantità e non è quello richiesto."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/02ebb7ed0c6e8f0b367ab474402be20700d33f4f2120c476d57e68b9cac7fe01",
+          "text": "Nel pannello centraleA indica 25 °C e la prova a durata doppia 30 °C: il rapporto delle letture è 6/5, mentre quello degli aumenti 5 e 10 K è 2. Le corrispondenti temperature assolute sono 298,15 e 303,15 K e hanno un altro rapporto. Il pannello finale riguarda inveceA 25 eB 40 dei casi 11/12."
+        },
+        {
+          "type": "formula",
+          "text": "\\theta_{f,A}=25"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_{f,B}=30"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_{f,B}/\\theta_{f,A}=\\frac65"
+        },
+        {
+          "type": "text",
+          "text": "Due è il rapporto degli aumenti o delle durate, non delle letture finali. Cinque sesti inverte il quoziente; un mezzo nega l’aumento e uno lo ignora. Il rapporto richiesto non è invariante per cambio dello zero della scala."
+        }
+      ],
+      "hints": [
+        "Calcola entrambe le letture includendo 20 prima del rapporto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due è il rapporto degli aumenti o delle durate, non delle letture finali. Cinque sesti inverte il quoziente; un mezzo nega l’aumento e uno lo ignora. Il rapporto richiesto non è invariante per cambio dello zero della scala.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Capacità termica complessiva e potenza netta",
+        "Letture Celsius distinte dalle temperature assolute",
+        "Inverse, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-temperature-after-heating-08",
+      "kind": "question",
+      "course": "C3",
+      "section": "Aumento termico e lettura finale",
+      "order": 16908,
+      "title": "Lo scarto non è un rapporto di temperature",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "temperature-after-heating",
+      "difficulty": 2,
+      "prompt": "Un campione chiuso di capacità termica complessiva C=10 J/K parte da 20 °C. Riceve potenza termica netta costante P>0 per un tempo t>0, senza cambiamenti di fase né lavoro meccanico apprezzabile. C resta costante nell’intervallo considerato. Indichiamo con ΔT l’aumento di temperatura e con θ_f il valore numerico della lettura finale in gradi Celsius. Un aumento di 1 K aumenta la lettura Celsius di 1. Gli eventuali rapporti fra θ_f sono rapporti di letture sulla scala Celsius, dipendenti dallo zero scelto; non sono rapporti di temperature assolute. Con P=5 W e t=10 s si propone una lettura finale 50 °C. Quanto vale proposta meno lettura corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "25 K",
+          "−25 K",
+          "50 K",
+          "0 K",
+          "2"
+        ],
+        "value": "25 K"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La lettura corretta è 25 °C. Cinquanta meno venticinque sono 25 gradi di differenza, cioè 25 K. Per una sottrazione Celsius e kelvin danno lo stesso intervallo: qui non si sta facendo un rapporto di temperature assolute."
+        },
+        {
+          "type": "formula",
+          "text": "\\theta_f=25"
+        },
+        {
+          "type": "formula",
+          "text": " e=(50-25)\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " e=25\\,\\mathrm K"
+        },
+        {
+          "type": "text",
+          "text": "Meno venticinque inverte l’ordine dello scarto, cinquanta copia la proposta e zero la accetta. Due è il rapporto di letture 50/25, una quantità pura diversa dalla differenza."
+        }
+      ],
+      "hints": [
+        "La differenza fra due letture cancella lo zero della scala.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Meno venticinque inverte l’ordine dello scarto, cinquanta copia la proposta e zero la accetta. Due è il rapporto di letture 50/25, una quantità pura diversa dalla differenza.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Capacità termica complessiva e potenza netta",
+        "Letture Celsius distinte dalle temperature assolute",
+        "Inverse, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-temperature-after-heating-09",
+      "kind": "question",
+      "course": "C3",
+      "section": "Aumento termico e lettura finale",
+      "order": 16909,
+      "title": "L’inversa della potenza usa una differenza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "temperature-after-heating",
+      "difficulty": 2,
+      "prompt": "Un campione chiuso di capacità termica complessiva C=10 J/K parte da 20 °C. Riceve potenza termica netta costante P>0 per un tempo t>0, senza cambiamenti di fase né lavoro meccanico apprezzabile. C resta costante nell’intervallo considerato. Indichiamo con ΔT l’aumento di temperatura e con θ_f il valore numerico della lettura finale in gradi Celsius. Un aumento di 1 K aumenta la lettura Celsius di 1. Gli eventuali rapporti fra θ_f sono rapporti di letture sulla scala Celsius, dipendenti dallo zero scelto; non sono rapporti di temperature assolute. Sono noti t e θ_f>20. Poniamo ΔT=(θ_f−20) K. Quale relazione isola P?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "P = C ΔT / t",
+          "P = C ΔT t",
+          "P = t / (C ΔT)",
+          "P = C θ_f / t",
+          "P = C / (ΔT t)"
+        ],
+        "value": "P = C ΔT / t"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bilancio è Pt=CΔT. Dividendo per il tempo positivo si ottiene P=CΔT/t. Con ΔT=(θ_f−20) K compare la differenza dalla temperatura iniziale. Il prodotto capacità per intervallo è energia e la successiva divisione per il tempo dà watt."
+        },
+        {
+          "type": "formula",
+          "text": "Pt=C\\Delta T"
+        },
+        {
+          "type": "formula",
+          "text": " P=\\frac{C\\Delta T}{t}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta T=(\\theta_f-20)\\,\\mathrm K"
+        },
+        {
+          "type": "text",
+          "text": "Moltiplicare per t dà J·s, non watt. t/(CΔT) è il reciproco della potenza. θ_f è una lettura numerica e non l’intervallo richiesto; la quarta alternativa omette lo zero iniziale. C/(ΔTt) ha unità J/(K²s)."
+        }
+      ],
+      "hints": [
+        "Parti dall’energia accumulata, non dalla lettura isolata.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Moltiplicare per t dà J·s, non watt. t/(CΔT) è il reciproco della potenza. θ_f è una lettura numerica e non l’intervallo richiesto; la quarta alternativa omette lo zero iniziale. C/(ΔTt) ha unità J/(K²s).",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Capacità termica complessiva e potenza netta",
+        "Letture Celsius distinte dalle temperature assolute",
+        "Inverse, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-temperature-after-heating-10",
+      "kind": "question",
+      "course": "C3",
+      "section": "Aumento termico e lettura finale",
+      "order": 16910,
+      "title": "Due fattori moltiplicano soltanto l’aumento",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "temperature-after-heating",
+      "difficulty": 2,
+      "prompt": "Un campione chiuso di capacità termica complessiva C=10 J/K parte da 20 °C. Riceve potenza termica netta costante P>0 per un tempo t>0, senza cambiamenti di fase né lavoro meccanico apprezzabile. C resta costante nell’intervallo considerato. Indichiamo con ΔT l’aumento di temperatura e con θ_f il valore numerico della lettura finale in gradi Celsius. Un aumento di 1 K aumenta la lettura Celsius di 1. Gli eventuali rapporti fra θ_f sono rapporti di letture sulla scala Celsius, dipendenti dallo zero scelto; non sono rapporti di temperature assolute. In A sia d=ΔT_A/(1 K)>0. B usa P_B=κ₁P_A,t_B=κ₂t_A con κ₁,κ₂>0. Quanto vale il rapporto delle letture θ_f,B/θ_f,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "(20 + κ₁ κ₂ d) / (20 + d)",
+          "κ₁ κ₂",
+          "(20 + d) / (20 + κ₁ κ₂ d)",
+          "κ₁ / κ₂",
+          "(κ₁ + κ₂) d"
+        ],
+        "value": "(20 + κ₁ κ₂ d) / (20 + d)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’energia Pt e quindi l’aumento si moltiplicano per κ₁κ₂. La lettura iniziale 20 resta uguale: A dà 20+d e B 20+κ₁κ₂d. Il loro quoziente conserva entrambi i termini 20; non coincide in generale col rapporto degli aumenti."
+        },
+        {
+          "type": "formula",
+          "text": "d_B=\\kappa_1\\kappa_2d"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_{f,A}=20+d"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_{f,B}=20+\\kappa_1\\kappa_2d"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{\\theta_{f,B}}{\\theta_{f,A}}=\\frac{20+\\kappa_1\\kappa_2d}{20+d}"
+        },
+        {
+          "type": "text",
+          "text": "κ₁κ₂ omette la lettura iniziale. Il rapporto inverso scambiaA eB; κ₁/κ₂ rende inversa la dipendenza dalla durata. La somma dei fattori non corrisponde all’energiaPt e, per due fattori unitari, non restituisce in generale il rapporto 1."
+        }
+      ],
+      "hints": [
+        "Confronta le letture dopo aver ricostruito l’aumentoB.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "κ₁κ₂ omette la lettura iniziale. Il rapporto inverso scambiaA eB; κ₁/κ₂ rende inversa la dipendenza dalla durata. La somma dei fattori non corrisponde all’energiaPt e, per due fattori unitari, non restituisce in generale il rapporto 1.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Capacità termica complessiva e potenza netta",
+        "Letture Celsius distinte dalle temperature assolute",
+        "Inverse, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-temperature-after-heating-11",
+      "kind": "question",
+      "course": "C3",
+      "section": "Aumento termico e lettura finale",
+      "order": 16911,
+      "title": "Quattro volte l’energia a partire dallo stesso 20",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "temperature-after-heating",
+      "difficulty": 2,
+      "prompt": "Un campione chiuso di capacità termica complessiva C=10 J/K parte da 20 °C. Riceve potenza termica netta costante P>0 per un tempo t>0, senza cambiamenti di fase né lavoro meccanico apprezzabile. C resta costante nell’intervallo considerato. Indichiamo con ΔT l’aumento di temperatura e con θ_f il valore numerico della lettura finale in gradi Celsius. Un aumento di 1 K aumenta la lettura Celsius di 1. Gli eventuali rapporti fra θ_f sono rapporti di letture sulla scala Celsius, dipendenti dallo zero scelto; non sono rapporti di temperature assolute. A ha P=5 W,t=10 s. B ha P=10 W,t=20 s. Quanto vale il rapporto delle letture finaliB/A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "8/5",
+          "4",
+          "5/8",
+          "2",
+          "1"
+        ],
+        "value": "8/5"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A riceve 50 J e aumenta di 5 K, finendo a 25 °C. B riceve 200 J e aumenta di 20 K, finendo a 40 °C. Quaranta su venticinque si riduce a otto quinti. Quattro è invece il rapporto delle energie e degli aumenti."
+        },
+        {
+          "type": "formula",
+          "text": "\\theta_{f,A}=25"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_{f,B}=40"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_{f,B}/\\theta_{f,A}=\\frac85"
+        },
+        {
+          "type": "text",
+          "text": "Quattro dimentica i 20 iniziali. Cinque ottavi è il reciproco; due segue soltanto una delle due variazioni dei dati. Uno ignorerebbe entrambi i cambiamenti."
+        }
+      ],
+      "hints": [
+        "Trova i joule e l’aumento di ciascun campione prima delle letture.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro dimentica i 20 iniziali. Cinque ottavi è il reciproco; due segue soltanto una delle due variazioni dei dati. Uno ignorerebbe entrambi i cambiamenti.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Capacità termica complessiva e potenza netta",
+        "Letture Celsius distinte dalle temperature assolute",
+        "Inverse, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-temperature-after-heating-12",
+      "kind": "question",
+      "course": "C3",
+      "section": "Aumento termico e lettura finale",
+      "order": 16912,
+      "title": "Media statistica di due letture",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "temperature-after-heating",
+      "difficulty": 2,
+      "prompt": "Un campione chiuso di capacità termica complessiva C=10 J/K parte da 20 °C. Riceve potenza termica netta costante P>0 per un tempo t>0, senza cambiamenti di fase né lavoro meccanico apprezzabile. C resta costante nell’intervallo considerato. Indichiamo con ΔT l’aumento di temperatura e con θ_f il valore numerico della lettura finale in gradi Celsius. Un aumento di 1 K aumenta la lettura Celsius di 1. Gli eventuali rapporti fra θ_f sono rapporti di letture sulla scala Celsius, dipendenti dallo zero scelto; non sono rapporti di temperature assolute. A ha P=5 W,t=10 s. B ha P=10 W,t=20 s. Qual è la media aritmetica delle letture finali in°C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "65/2 °C",
+          "125/4 °C",
+          "65 °C",
+          "15/2 °C",
+          "30 °C"
+        ],
+        "value": "65/2 °C"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le letture sono 25 e 40 °C: la metà di 65 è 65/2 °C. Se invece si usa la potenza media 15/2 W per il tempo medio 15 s, si ottiene ΔT=45/4 K e lettura 125/4 °C, diversa. La media delle uscite non è il prodotto delle medie degli ingressi."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline\\theta_f=\\frac{25+40}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline\\theta_f=\\frac{65}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_f(\\overline P,\\overline t)=\\frac{125}{4}"
+        },
+        {
+          "type": "text",
+          "text": "125/4 °C è la prova agli ingressi medi. Sessantacinque è la somma,15/2 copia la potenza media come temperatura e 30 proviene dal caso con durataB ancora 10 s. La media delle temperature si può convertire in kelvin aggiungendo 273,15 dopo la media."
+        }
+      ],
+      "hints": [
+        "Media le due letture già calcolate.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "125/4 °C è la prova agli ingressi medi. Sessantacinque è la somma,15/2 copia la potenza media come temperatura e 30 proviene dal caso con durataB ancora 10 s. La media delle temperature si può convertire in kelvin aggiungendo 273,15 dopo la media.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Capacità termica complessiva e potenza netta",
+        "Letture Celsius distinte dalle temperature assolute",
+        "Inverse, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-temperature-after-heating-13",
+      "kind": "question",
+      "course": "C3",
+      "section": "Aumento termico e lettura finale",
+      "order": 16913,
+      "title": "La durata richiesta dal bersaglio di lettura",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "temperature-after-heating",
+      "difficulty": 3,
+      "prompt": "Un campione chiuso di capacità termica complessiva C=10 J/K parte da 20 °C. Riceve potenza termica netta costante P>0 per un tempo t>0, senza cambiamenti di fase né lavoro meccanico apprezzabile. C resta costante nell’intervallo considerato. Indichiamo con ΔT l’aumento di temperatura e con θ_f il valore numerico della lettura finale in gradi Celsius. Un aumento di 1 K aumenta la lettura Celsius di 1. Gli eventuali rapporti fra θ_f sono rapporti di letture sulla scala Celsius, dipendenti dallo zero scelto; non sono rapporti di temperature assolute. A ha P=5 W,t_A=10 s. B usa P_B=10 W e deve avere θ_f,B=(8/5)θ_f,A. Quanto vale t_B/t_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/2",
+          "8/5",
+          "4",
+          "20"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A indica 25 °C, quindi B deve indicare 40 °C. L’aumentoB è 20 K e richiede 200 J. A 10 W occorrono 20 s; dividendo per i 10 s diA si ottiene 2. Il vincolo usa esplicitamente letture Celsius, non una moltiplicazione universale delle temperature assolute."
+        },
+        {
+          "type": "formula",
+          "text": "\\theta_{f,B}=40"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta T_B=20\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " t_B=20\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " t_B/t_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo capovolge il rapporto. Otto quinti copia il bersaglio sulla lettura e quattro quello sull’aumento o energia. Venti è il numero di secondi della provaB e non un rapporto puro."
+        }
+      ],
+      "hints": [
+        "Dal bersaglio finale togli la temperatura iniziale prima di ricavare il tempo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo capovolge il rapporto. Otto quinti copia il bersaglio sulla lettura e quattro quello sull’aumento o energia. Venti è il numero di secondi della provaB e non un rapporto puro.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Capacità termica complessiva e potenza netta",
+        "Letture Celsius distinte dalle temperature assolute",
+        "Inverse, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-temperature-after-heating-14",
+      "kind": "question",
+      "course": "C3",
+      "section": "Aumento termico e lettura finale",
+      "order": 16914,
+      "title": "Tarare un display di letture Celsius",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "temperature-after-heating",
+      "difficulty": 3,
+      "prompt": "Un campione chiuso di capacità termica complessiva C=10 J/K parte da 20 °C. Riceve potenza termica netta costante P>0 per un tempo t>0, senza cambiamenti di fase né lavoro meccanico apprezzabile. C resta costante nell’intervallo considerato. Indichiamo con ΔT l’aumento di temperatura e con θ_f il valore numerico della lettura finale in gradi Celsius. Un aumento di 1 K aumenta la lettura Celsius di 1. Gli eventuali rapporti fra θ_f sono rapporti di letture sulla scala Celsius, dipendenti dallo zero scelto; non sono rapporti di temperature assolute. Il display continuo adimensionale è S=q θ_f, con q>0 costante. A: P=5 W,t=10 s,S=75. B: t=20 s,S=120. Quanto vale P_B in W?",
+      "answer": {
+        "type": "numeric",
+        "value": 10,
+        "unit": "W",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La letturaA è 25 °C, quindi q=75/25=3 per unità numerica Celsius. La letturaB è 120/3=40 °C. Il suo aumento 20 K richiede 200 J; dividendo per 20 s troviamo 10 W. La calibrazione si riferisce alla scala scelta, non alla temperatura assoluta."
+        },
+        {
+          "type": "formula",
+          "text": "q=3"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_{f,B}=40"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B=200\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " P_B=10\\,\\mathrm W"
+        },
+        {
+          "type": "text",
+          "text": "Venti watt confonde la lettura 40 con l’aumento 20 K. Sei watt deriverebbero dall’uso diretto di 120 come energia in joule. Cinque watt darebbero 30 °C e S=90, non 120."
+        }
+      ],
+      "hints": [
+        "Decodifica la lettura, poi ricostruisci l’intervallo termico.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Venti watt confonde la lettura 40 con l’aumento 20 K. Sei watt deriverebbero dall’uso diretto di 120 come energia in joule. Cinque watt darebbero 30 °C e S=90, non 120.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Capacità termica complessiva e potenza netta",
+        "Letture Celsius distinte dalle temperature assolute",
+        "Inverse, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-temperature-after-heating-15",
+      "kind": "question",
+      "course": "C3",
+      "section": "Aumento termico e lettura finale",
+      "order": 16915,
+      "title": "Due riferimenti separano guadagno e offset",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "temperature-after-heating",
+      "difficulty": 3,
+      "prompt": "Un campione chiuso di capacità termica complessiva C=10 J/K parte da 20 °C. Riceve potenza termica netta costante P>0 per un tempo t>0, senza cambiamenti di fase né lavoro meccanico apprezzabile. C resta costante nell’intervallo considerato. Indichiamo con ΔT l’aumento di temperatura e con θ_f il valore numerico della lettura finale in gradi Celsius. Un aumento di 1 K aumenta la lettura Celsius di 1. Gli eventuali rapporti fra θ_f sono rapporti di letture sulla scala Celsius, dipendenti dallo zero scelto; non sono rapporti di temperature assolute. Il display è S=q θ_f+b, adimensionale e continuo, q>0. A: P=5 W,t=10 s,S=51. B: P=10 W,t=20 s,S=81. C: t=10 s,S=61. Quanto vale P_C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "10 W",
+          "21/2 W",
+          "30 W",
+          "5 W",
+          "20 W"
+        ],
+        "value": "10 W"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A eB terminano a 25 e 40 °C. La differenza 30 delle letture divisa per 15 dàq=2 e poi b=1. PerC, (61−1)/2=30 °C: l’aumento è 10 K, l’energia 100 J e la potenza 100/10=10 W."
+        },
+        {
+          "type": "formula",
+          "text": "q=2"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_{f,C}=30"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta T_C=10\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " P_C=10\\,\\mathrm W"
+        },
+        {
+          "type": "text",
+          "text": "21/2 W omette l’offset: usaθ=61/2 e ΔT=21/2 K. Trenta watt usa la lettura 30 come aumento 30 K. Cinque watt tornerebbe al riferimentoA; venti watt darebbe 40 °C e S=81."
+        }
+      ],
+      "hints": [
+        "Dopo la taratura resta ancora da sottrarre il 20 iniziale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "21/2 W omette l’offset: usaθ=61/2 e ΔT=21/2 K. Trenta watt usa la lettura 30 come aumento 30 K. Cinque watt tornerebbe al riferimentoA; venti watt darebbe 40 °C e S=81.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Capacità termica complessiva e potenza netta",
+        "Letture Celsius distinte dalle temperature assolute",
+        "Inverse, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-temperature-after-heating-16",
+      "kind": "question",
+      "course": "C3",
+      "section": "Aumento termico e lettura finale",
+      "order": 16916,
+      "title": "Un vincolo fra preparazioni, non una rampa di potenza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "temperature-after-heating",
+      "difficulty": 3,
+      "prompt": "Un campione chiuso di capacità termica complessiva C=10 J/K parte da 20 °C. Riceve potenza termica netta costante P>0 per un tempo t>0, senza cambiamenti di fase né lavoro meccanico apprezzabile. C resta costante nell’intervallo considerato. Indichiamo con ΔT l’aumento di temperatura e con θ_f il valore numerico della lettura finale in gradi Celsius. Un aumento di 1 K aumenta la lettura Celsius di 1. Gli eventuali rapporti fra θ_f sono rapporti di letture sulla scala Celsius, dipendenti dallo zero scelto; non sono rapporti di temperature assolute. Fra prove si impone P=(1/2 W/s)t. Si misura una lettura finale 25 °C. Quanto vale t>0?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "10 s",
+          "−10 s",
+          "100 s",
+          "50 s",
+          "5 s"
+        ],
+        "value": "10 s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riscaldamento deve fornireC·5 K=50 J. Sostituendo P=αt con α=1/2 W/s nell’energia totalePt si ha αt²=50 J, quindi t²=100 s². Nel dominio t>0 resta 10 s e P=5 W. Il vincolo seleziona una potenza costante per ciascuna prova: non si integra una potenza istantaneaP(tempo) crescente."
+        },
+        {
+          "type": "formula",
+          "text": "\\alpha=\\frac12\\,\\mathrm{W/s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\alpha t^2=50\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " t^2=100\\,\\mathrm{s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " t=10\\,\\mathrm s"
+        },
+        {
+          "type": "text",
+          "text": "Meno dieci è la radice scartata dal dominio. Cento copia t² senza radice e cinquanta copia l’energia. Cinque s con il vincolo darebbero 12,5 J e una lettura 21,25 °C, non 25."
+        }
+      ],
+      "hints": [
+        "Sostituisci il vincolo nell’energia complessivaPt e scegli la radice positiva.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Meno dieci è la radice scartata dal dominio. Cento copia t² senza radice e cinquanta copia l’energia. Cinque s con il vincolo darebbero 12,5 J e una lettura 21,25 °C, non 25.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Capacità termica complessiva e potenza netta",
+        "Letture Celsius distinte dalle temperature assolute",
+        "Inverse, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "02ebb7ed0c6e8f0b367ab474402be20700d33f4f2120c476d57e68b9cac7fe01",
+      "name": "temperature-after-heating-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1NjAiIGhlaWdodD0iMTQwMCIgdmlld0JveD0iMCAwIDU2MCAxNDAwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+Cjx0aXRsZSBpZD0idGl0bGUiPkVuZXJnaWEsIGF1bWVudG8gZSBsZXR0dXJhIGZpbmFsZTwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPkNvbiBjYXBhY2l0w6AgMTAgSi9LLDUwIEogYXVtZW50YW5vIGxhIHRlbXBlcmF0dXJhIGRpIDUgSy4gTGUgbGV0dHVyZSBDZWxzaXVzIDI1IGUgMzAgaGFubm8gcmFwcG9ydG8gNi81LCBtZW50cmUgZ2xpIGF1bWVudGkgaGFubm8gcmFwcG9ydG8gMi4gVW4gYWx0cm8gY29uZnJvbnRvIDI1IGUgNDAgaGEgbWVkaWEgMzIsNS48L2Rlc2M+CjxyZWN0IHdpZHRoPSI1NjAiIGhlaWdodD0iMTQwMCIgZmlsbD0iI2ZmZmFmMSIvPgo8ZyBmaWxsPSIjMzUyZDQyIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxOSI+Cjx0ZXh0IHg9IjI1IiB5PSI0MCIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9ImJvbGQiPjEgwrcgUHJpbWEgdHJvdmEgbOKAmWF1bWVudG88L3RleHQ+Cjx0ZXh0IHg9IjI1IiB5PSI4MCI+NSBXIHBlciAxMCBzIOKGkiBRPTUwIEo8L3RleHQ+CjxyZWN0IHg9Ijc1IiB5PSIxMjAiIHdpZHRoPSI0MTAiIGhlaWdodD0iMTI1IiByeD0iMTIiIGZpbGw9IiNlNWVmZWEiIHN0cm9rZT0iIzE0Nzk3OSIgc3Ryb2tlLXdpZHRoPSIyIi8+Cjx0ZXh0IHg9IjEwNSIgeT0iMTYwIj5DYXBhY2l0w6AgY29tcGxlc3NpdmEgQz0xMCBKL0s8L3RleHQ+Cjx0ZXh0IHg9IjEwNSIgeT0iMjA1Ij7OlFQ9NTAgSi8oMTAgSi9LKT01IEs8L3RleHQ+Cjx0ZXh0IHg9IjI1IiB5PSIyOTAiPjIwIMKwQyBpbml6aWFsaSArIGF1bWVudG8gNSBLIOKGkjI1IMKwQzwvdGV4dD4KPHRleHQgeD0iMjUiIHk9IjMzMCI+TG8gc2NoZW1hIG5vbiBoYSB1bmEgc2NhbGEgZW5lcmdldGljYS48L3RleHQ+CjxsaW5lIHgxPSIyNSIgeTE9IjM2NSIgeDI9IjUzNSIgeTI9IjM2NSIgc3Ryb2tlPSIjYjhhZGEwIi8+Cjx0ZXh0IHg9IjI1IiB5PSI0MTAiIGZvbnQtc2l6ZT0iMjUiIGZvbnQtd2VpZ2h0PSJib2xkIj4yIMK3IExhIHNjYWxhIENlbHNpdXMgaGEgdW5vIHplcm88L3RleHQ+Cjx0ZXh0IHg9IjI1IiB5PSI0NTAiPkxldHR1cmUgbnVtZXJpY2hlIHN1bGxhIHNjYWxhIENlbHNpdXM8L3RleHQ+CjxsaW5lIHgxPSIxNDAiIHkxPSI0OTAiIHgyPSIxNDAiIHkyPSI3MzUiIHN0cm9rZT0iIzM1MmQ0MiIgc3Ryb2tlLXdpZHRoPSIyIi8+Cjx0ZXh0IHg9IjI1IiB5PSI1MzUiPkEsMTAgczwvdGV4dD48cmVjdCB4PSIxNDAiIHk9IjUwNSIgd2lkdGg9IjIwMCIgaGVpZ2h0PSI0NSIgZmlsbD0iI2I4YWRhMCIvPjxyZWN0IHg9IjM0MCIgeT0iNTA1IiB3aWR0aD0iNTAiIGhlaWdodD0iNDUiIGZpbGw9IiMxNDc5NzkiLz48dGV4dCB4PSI0MDciIHk9IjUzNSI+MjU8L3RleHQ+Cjx0ZXh0IHg9IjI1IiB5PSI2MjUiPlAgdWd1YWxlLDwvdGV4dD48dGV4dCB4PSIyNSIgeT0iNjUwIj50PTIwIHM8L3RleHQ+PHJlY3QgeD0iMTQwIiB5PSI2MDAiIHdpZHRoPSIyMDAiIGhlaWdodD0iNDUiIGZpbGw9IiNiOGFkYTAiLz48cmVjdCB4PSIzNDAiIHk9IjYwMCIgd2lkdGg9IjEwMCIgaGVpZ2h0PSI0NSIgZmlsbD0iIzczNTBiMCIvPjx0ZXh0IHg9IjQ1NyIgeT0iNjMwIj4zMDwvdGV4dD4KPHRleHQgeD0iMTM2IiB5PSI3MTAiPjA8L3RleHQ+PHRleHQgeD0iMzMwIiB5PSI3MTAiPjIwPC90ZXh0Pjx0ZXh0IHg9IjI1IiB5PSI3NzAiPkdyaWdpbzpsZXR0dXJhIGluaXppYWxlIDIwIMK3IGNvbG9yaTphdW1lbnRvPC90ZXh0Pgo8dGV4dCB4PSIyNSIgeT0iODEwIj5MZXR0dXJlOjMwLzI1PTYvNSDCtyBhdW1lbnRpOjEwLzU9MjwvdGV4dD4KPHRleHQgeD0iMjUiIHk9Ijg1MCI+S2VsdmluOjMwMywxNS8yOTgsMTUgw6ggdW4gYWx0cm8gcmFwcG9ydG8uPC90ZXh0Pgo8bGluZSB4MT0iMjUiIHkxPSI4ODUiIHgyPSI1MzUiIHkyPSI4ODUiIHN0cm9rZT0iI2I4YWRhMCIvPgo8dGV4dCB4PSIyNSIgeT0iOTMwIiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iYm9sZCI+MyDCtyBNZWRpYSBkaSB1biBhbHRybyBjb25mcm9udG88L3RleHQ+Cjx0ZXh0IHg9IjI1IiB5PSI5NzAiPkNhc2kgMTEvMTIgwrcgbGV0dHVyZSBmaW5hbGkgaW4gwrBDPC90ZXh0Pgo8bGluZSB4MT0iMTQwIiB5MT0iMTAwMCIgeDI9IjE0MCIgeTI9IjEyODAiIHN0cm9rZT0iIzM1MmQ0MiIgc3Ryb2tlLXdpZHRoPSIyIi8+Cjx0ZXh0IHg9IjI1IiB5PSIxMDQwIj5BPC90ZXh0PjxyZWN0IHg9IjE0MCIgeT0iMTAxNSIgd2lkdGg9IjIwMCIgaGVpZ2h0PSI0MCIgZmlsbD0iIzE0Nzk3OSIvPjx0ZXh0IHg9IjM1NyIgeT0iMTA0MiI+MjUgwrBDPC90ZXh0Pgo8dGV4dCB4PSIyNSIgeT0iMTEyMCI+QjwvdGV4dD48cmVjdCB4PSIxNDAiIHk9IjEwOTUiIHdpZHRoPSIzMjAiIGhlaWdodD0iNDAiIGZpbGw9IiNkNDkzMzIiLz48dGV4dCB4PSI0NzUiIHk9IjExMjIiPjQwIMKwQzwvdGV4dD4KPHRleHQgeD0iMjUiIHk9IjEyMDAiPk1lZGlhPC90ZXh0PjxyZWN0IHg9IjE0MCIgeT0iMTE3NSIgd2lkdGg9IjI2MCIgaGVpZ2h0PSI0MCIgZmlsbD0iIzczNTBiMCIvPjx0ZXh0IHg9IjQxNSIgeT0iMTIwMiI+MzIsNSDCsEM8L3RleHQ+Cjx0ZXh0IHg9IjEzNiIgeT0iMTI2MCI+MDwvdGV4dD48dGV4dCB4PSIyNSIgeT0iMTMyMCI+TWVkaWEgZGVsbGUgdXNjaXRlOigyNSs0MCkvMj02NS8yIMKwQzwvdGV4dD4KPHRleHQgeD0iMjUiIHk9IjEzNjAiPk5vbiDDqCBsYSBwcm92YSBhZ2xpIGluZ3Jlc3NpIG1lZGkuPC90ZXh0Pgo8L2c+PC9zdmc+Cg=="
+    }
+  ]
+}

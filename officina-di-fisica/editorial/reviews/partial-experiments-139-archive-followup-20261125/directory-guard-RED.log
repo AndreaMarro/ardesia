@@ -1,0 +1,15 @@
+test_present_directory_cannot_be_masked_by_archive (transport_test.FrozenTextEvidence.test_present_directory_cannot_be_masked_by_archive) ... FAIL
+
+======================================================================
+FAIL: test_present_directory_cannot_be_masked_by_archive (transport_test.FrozenTextEvidence.test_present_directory_cannot_be_masked_by_archive)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-experiment-contract-fix/officina-di-fisica/tests/corpus/test_frozen_text_evidence.py", line 32, in test_present_directory_cannot_be_masked_by_archive
+    with self.assertRaisesRegex(ValueError,'not a regular file'):v.verified_frozen_bytes(root,name,expected)
+         ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 1 test in 0.007s
+
+FAILED (failures=1)

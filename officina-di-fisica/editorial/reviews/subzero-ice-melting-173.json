@@ -1,0 +1,495 @@
+{
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "AR-u5-subzero-ice-melting-01",
+      "sourceSha256": "3c8ca6d2476b638149b3c844d22fd709e5085ed516402afcdcb6defa006a0732",
+      "candidateSha256": "b2a4f627bba89d8f6ff6eb9f544b94be0b0f3aad001b800a10b660f08a4be3b9",
+      "reviewedSignature": "476eb1b0d571602aeab598ffacffa628713e0ddb30598375b86f421e78176eb9",
+      "assetChecksums": {
+        "subzero-ice-melting-progressive.svg": "48dfcab91588ce5bbc9899bf71f70b0a1331204fd3580747f5b929141c76946d"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "320",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Il grammo assorbe 2·10=20 J prima della fusione e 300 J durante la fase: Q=320 J. Il secondo tratto è a temperatura costante.",
+      "physicalAssumptions": "Massa positiva di ghiaccio inizialmente a −θ °C, con 0<θ<273,15 K; fusione completa a 0 °C a pressione atmosferica. Coefficienti ideali prescritti c_i=2 J/(g K), L_f=300 J/g, costanti nel campo considerato. Recipiente e dispersioni trascurati, massa conservata, nessun riscaldamento successivo del liquido. Guadagni e offset del display, quando presenti, convertono letture continue e non impongono integrità numerica.",
+      "distractors": "300 J e 20 J omettono un tratto; 280 J sottrae due assorbimenti; 640 J duplica la massa.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Il grammo assorbe 2·10=20 J prima della fusione e 300 J durante la fase: Q=320 J. Il secondo tratto è a temperatura costante.",
+      "scientificAssetReview": "SVG completo letto in XML e rendering nativo a piena altezza. Curva Q/T con coordinate (100,320)→(120,220)→(420,220): 1 coordinata/J e 10 coordinate/K rappresentano 20 J sensibili e 300 J latenti. Barre 24/360/384 per 20/300/320 J, scala comune 6/5; confronto 192/408/300 per 320/680/500 J, scala 3/5. Assi fisici e riferimento Celsius espliciti, nessuna pretesa di pixel fisici dopo resize.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-subzero-ice-melting-02",
+      "sourceSha256": "69979f28adc83fa8e30c96dfa8995e267855ae8848f21c0cb949415171bd3c17",
+      "candidateSha256": "a05bab729c69c02b30e404d8ddfd5c47b21c8c13ed1e2e71dcd016cbd68160ae",
+      "reviewedSignature": "eaf3cc6054ec2428b8fdf59c6e751bf4a7e499ea4777de9bb0d295daddc877c9",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "J",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "La somma di due trasferimenti energetici è in joule: g·J/(g K)·K e g·J/g danno entrambi J; W richiederebbe una durata.",
+      "physicalAssumptions": "Massa positiva di ghiaccio inizialmente a −θ °C, con 0<θ<273,15 K; fusione completa a 0 °C a pressione atmosferica. Coefficienti ideali prescritti c_i=2 J/(g K), L_f=300 J/g, costanti nel campo considerato. Recipiente e dispersioni trascurati, massa conservata, nessun riscaldamento successivo del liquido. Guadagni e offset del display, quando presenti, convertono letture continue e non impongono integrità numerica.",
+      "distractors": "J/(g K), J/g e K sono capacità specifica, costo specifico e intervallo; W richiede tempo.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. La somma di due trasferimenti energetici è in joule: g·J/(g K)·K e g·J/g danno entrambi J; W richiederebbe una durata.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-subzero-ice-melting-03",
+      "sourceSha256": "2de8757c2507788ca170c20e96f3929006ec50ca03e4d4cab0828e2ce2384bae",
+      "candidateSha256": "2405f9f3ee5c92033d4a610e1a4d3ba30876e4c0c9d99128ebb60aec6ddfe662",
+      "reviewedSignature": "13ecb6ea5a3672ed462d98f6dece7d2ecc062a307cf069fd12f019539f1d8e21",
+      "assetChecksums": {
+        "subzero-ice-melting-progressive.svg": "48dfcab91588ce5bbc9899bf71f70b0a1331204fd3580747f5b929141c76946d"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Q = m (c_i θ + L_f)",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Integrare mc_i dT fra −θ e 0 dà mc_iθ; fondere l’intera massa aggiunge mL_f. Quindi Q=m(c_iθ+L_f), positivo nei due tratti.",
+      "physicalAssumptions": "Massa positiva di ghiaccio inizialmente a −θ °C, con 0<θ<273,15 K; fusione completa a 0 °C a pressione atmosferica. Coefficienti ideali prescritti c_i=2 J/(g K), L_f=300 J/g, costanti nel campo considerato. Recipiente e dispersioni trascurati, massa conservata, nessun riscaldamento successivo del liquido. Guadagni e offset del display, quando presenti, convertono letture continue e non impongono integrità numerica.",
+      "distractors": "Il segno meno non descrive due assorbimenti; omettere massa da un termine altera le unità.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Integrare mc_i dT fra −θ e 0 dà mc_iθ; fondere l’intera massa aggiunge mL_f. Quindi Q=m(c_iθ+L_f), positivo nei due tratti.",
+      "scientificAssetReview": "SVG completo letto in XML e rendering nativo a piena altezza. Curva Q/T con coordinate (100,320)→(120,220)→(420,220): 1 coordinata/J e 10 coordinate/K rappresentano 20 J sensibili e 300 J latenti. Barre 24/360/384 per 20/300/320 J, scala comune 6/5; confronto 192/408/300 per 320/680/500 J, scala 3/5. Assi fisici e riferimento Celsius espliciti, nessuna pretesa di pixel fisici dopo resize.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-subzero-ice-melting-04",
+      "sourceSha256": "1d045487d62818566bc6deea692c9bd067701d19f21cfc5bb77125aec80bed5c",
+      "candidateSha256": "25b885cc2e0e7ddf87affb26e3d35a1a08225cf2deb71667aae4632148e509f0",
+      "reviewedSignature": "3b82f5c30c240539596427ef5debdebe8b23825826fb97f2749bb3dde5eb1eb2",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Da 320 a 640 J",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Con θ=10 K fisso, il costo è 320 J/g. Una massa da 1 a 2 g porta Q da 320 a 640 J: dipendenza lineare, nessun quadrato.",
+      "physicalAssumptions": "Massa positiva di ghiaccio inizialmente a −θ °C, con 0<θ<273,15 K; fusione completa a 0 °C a pressione atmosferica. Coefficienti ideali prescritti c_i=2 J/(g K), L_f=300 J/g, costanti nel campo considerato. Recipiente e dispersioni trascurati, massa conservata, nessun riscaldamento successivo del liquido. Guadagni e offset del display, quando presenti, convertono letture continue e non impongono integrità numerica.",
+      "distractors": "320 J ignora il cambio di massa; 1280 J usa il quadrato; zero è impossibile con massa positiva.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Con θ=10 K fisso, il costo è 320 J/g. Una massa da 1 a 2 g porta Q da 320 a 640 J: dipendenza lineare, nessun quadrato.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-subzero-ice-melting-05",
+      "sourceSha256": "c83ce9bde355c0acae35cb3ae75610668959ef0ff4b35bac172619a1bc48eb07",
+      "candidateSha256": "d7bb14ff48358224db5167e6639415133703070bc32dca12a6241714c9aba111",
+      "reviewedSignature": "644092ac92fb6a8c1ae0d52b315ccab4ebb1e49e302ed5f34edd1f363235fdb4",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1",
+      "dimension": {
+        "[mass]": "1"
+      },
+      "manualArithmetic": "m=Q/(c_iθ+L_f)=320/(20+300)=1 g. Il denominatore è 320 J/g e non una capacità specifica in J/(g K).",
+      "physicalAssumptions": "Massa positiva di ghiaccio inizialmente a −θ °C, con 0<θ<273,15 K; fusione completa a 0 °C a pressione atmosferica. Coefficienti ideali prescritti c_i=2 J/(g K), L_f=300 J/g, costanti nel campo considerato. Recipiente e dispersioni trascurati, massa conservata, nessun riscaldamento successivo del liquido. Guadagni e offset del display, quando presenti, convertono letture continue e non impongono integrità numerica.",
+      "distractors": "Solo L_f dà 16/15 g; solo c_iθ dà 16 g. Nessuno ricostruisce i due tratti.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. m=Q/(c_iθ+L_f)=320/(20+300)=1 g. Il denominatore è 320 J/g e non una capacità specifica in J/(g K).",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-subzero-ice-melting-06",
+      "sourceSha256": "3340cce98c4e0fe482f57b8d5a6b31976afd0e4afeeeebcb5aac9f29b17a9685",
+      "candidateSha256": "3e6e4b1dbbc2e45c9f94c2c18c5a03ef880ac493d69e1cf0743565c288e8b5d5",
+      "reviewedSignature": "1e01a120dfcc1e52f5a01f6a28953500308dcfeff1f8f2a9b8647125c66892b3",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "10",
+      "dimension": {
+        "[temperature]": "1"
+      },
+      "manualArithmetic": "Q/m−L_f=320−300=20 J/g. Dividendo per c_i=2 J/(g K) si ottiene θ=10 K, sotto il limite assoluto del modello.",
+      "physicalAssumptions": "Massa positiva di ghiaccio inizialmente a −θ °C, con 0<θ<273,15 K; fusione completa a 0 °C a pressione atmosferica. Coefficienti ideali prescritti c_i=2 J/(g K), L_f=300 J/g, costanti nel campo considerato. Recipiente e dispersioni trascurati, massa conservata, nessun riscaldamento successivo del liquido. Guadagni e offset del display, quando presenti, convertono letture continue e non impongono integrità numerica.",
+      "distractors": "Usare tutto Q come sensibile dà 160 K; il reciproco scambia energia specifica e intervallo.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Q/m−L_f=320−300=20 J/g. Dividendo per c_i=2 J/(g K) si ottiene θ=10 K, sotto il limite assoluto del modello.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-subzero-ice-melting-07",
+      "sourceSha256": "32f96e14c3158ceb9525eb15cca46c92a30e876bc834aa9e9fe386a789d476c5",
+      "candidateSha256": "5fb1bee959f939817503e47c551fef5b4d57489d4e0f572f50e0d0518caeecca",
+      "reviewedSignature": "a7560484b4d61fc1e9f275a1ad49b9b52ef776e5705e9f6a32d265a07979dba0",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "17/16",
+      "dimension": {},
+      "manualArithmetic": "A richiede 320 J; a massa uguale B con θ=20 K richiede 340 J. Rapporto 340/320=17/16, non 2: il costo latente non raddoppia.",
+      "physicalAssumptions": "Massa positiva di ghiaccio inizialmente a −θ °C, con 0<θ<273,15 K; fusione completa a 0 °C a pressione atmosferica. Coefficienti ideali prescritti c_i=2 J/(g K), L_f=300 J/g, costanti nel campo considerato. Recipiente e dispersioni trascurati, massa conservata, nessun riscaldamento successivo del liquido. Guadagni e offset del display, quando presenti, convertono letture continue e non impongono integrità numerica.",
+      "distractors": "2 perde il costo latente; 16/17 è il reciproco; 1 ignora il sensibile cambiato.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. A richiede 320 J; a massa uguale B con θ=20 K richiede 340 J. Rapporto 340/320=17/16, non 2: il costo latente non raddoppia.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-subzero-ice-melting-08",
+      "sourceSha256": "4e26f60eab87134dca867de92da149cf91ade9631b6202b690dde2f5cbcb60b4",
+      "candidateSha256": "5d372b63371d8647e8054fa2d5eacfcdbbc36190cf48ba5ea32928093cb99d03",
+      "reviewedSignature": "c66c5cf249da92382384b65dc5d212f72d2d6db4f8a73c3543ce793a7ca1e993",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "320",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "La proposta è 640 J e il valore corretto 320 J: proposta meno corretto è +320 J. Il segno si riferisce allo scarto.",
+      "physicalAssumptions": "Massa positiva di ghiaccio inizialmente a −θ °C, con 0<θ<273,15 K; fusione completa a 0 °C a pressione atmosferica. Coefficienti ideali prescritti c_i=2 J/(g K), L_f=300 J/g, costanti nel campo considerato. Recipiente e dispersioni trascurati, massa conservata, nessun riscaldamento successivo del liquido. Guadagni e offset del display, quando presenti, convertono letture continue e non impongono integrità numerica.",
+      "distractors": "Segno inverso produce −320 J; copiare la proposta dà 640 J; accettarla dà zero.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. La proposta è 640 J e il valore corretto 320 J: proposta meno corretto è +320 J. Il segno si riferisce allo scarto.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-subzero-ice-melting-09",
+      "sourceSha256": "ba250e33d79728afcfd8f64f2d0668266e8f4069e48558092c2bb2d132874ac0",
+      "candidateSha256": "6318bbc2846d3b059ea5775959e7111e11465e0c348cac34f3318af8fc3fc13a",
+      "reviewedSignature": "34b3214463610fcc558eafb86ec330bfc916ca0fbae11f83658c97e2f03d5218",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "m = Q / (c_i θ + L_f)",
+      "dimension": {
+        "[mass]": "1"
+      },
+      "manualArithmetic": "Dal bilancio Q=m(c_iθ+L_f), dividere per l’energia positiva richiesta da un grammo dà m=Q/(c_iθ+L_f).",
+      "physicalAssumptions": "Massa positiva di ghiaccio inizialmente a −θ °C, con 0<θ<273,15 K; fusione completa a 0 °C a pressione atmosferica. Coefficienti ideali prescritti c_i=2 J/(g K), L_f=300 J/g, costanti nel campo considerato. Recipiente e dispersioni trascurati, massa conservata, nessun riscaldamento successivo del liquido. Guadagni e offset del display, quando presenti, convertono letture continue e non impongono integrità numerica.",
+      "distractors": "Q/(c_iθ+L_f) è massa; prodotti o reciproci non soddisfano la legge e spesso cambiano dimensione.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Dal bilancio Q=m(c_iθ+L_f), dividere per l’energia positiva richiesta da un grammo dà m=Q/(c_iθ+L_f).",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-subzero-ice-melting-10",
+      "sourceSha256": "6c86da77b75516b4a23811871ec0872e13b13aa1afeb43496e13f9b7851e9ac2",
+      "candidateSha256": "282183f32f2eca60783b72eda77ddf3f9a75f2570737c1cccc12299691fa3b46",
+      "reviewedSignature": "fc2d897c2b4cc55881fb66b3e23a12100fb69bc71ddaf06c652b12b577b3beb8",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "κ₁ (c_i κ₂ θ_A + L_f) / (c_i θ_A + L_f)",
+      "dimension": {},
+      "manualArithmetic": "Sostituire m_B=κ₁m_A, θ_B=κ₂θ_A prima del rapporto: κ₁(c_iκ₂θ_A+L_f)/(c_iθ_A+L_f). Nessuna legge temporale implicita.",
+      "physicalAssumptions": "Massa positiva di ghiaccio inizialmente a −θ °C, con 0<θ<273,15 K; fusione completa a 0 °C a pressione atmosferica. Coefficienti ideali prescritti c_i=2 J/(g K), L_f=300 J/g, costanti nel campo considerato. Recipiente e dispersioni trascurati, massa conservata, nessun riscaldamento successivo del liquido. Guadagni e offset del display, quando presenti, convertono letture continue e non impongono integrità numerica.",
+      "distractors": "κ₁κ₂ moltiplicherebbe anche la parte latente per κ₂; rapporto solo dei fattori perde la somma.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Sostituire m_B=κ₁m_A, θ_B=κ₂θ_A prima del rapporto: κ₁(c_iκ₂θ_A+L_f)/(c_iθ_A+L_f). Nessuna legge temporale implicita.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-subzero-ice-melting-11",
+      "sourceSha256": "28c629288c6b6a871d96b74504c60773696d5ce79fbcaf258325ca2df40025b5",
+      "candidateSha256": "51b883aa8e47016d2be043afabee96069997a4f007e5b4db6490028ef4c26a54",
+      "reviewedSignature": "6334112d6d16f1dbc2d3785dcf59fd9732510256b61a981d765790edb5adc3b0",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "17/8",
+      "dimension": {},
+      "manualArithmetic": "A: 1 g, 10 K dà 320 J. B: 2 g, 20 K dà 680 J. Rapporto 680/320=17/8; controllati entrambi i contributi.",
+      "physicalAssumptions": "Massa positiva di ghiaccio inizialmente a −θ °C, con 0<θ<273,15 K; fusione completa a 0 °C a pressione atmosferica. Coefficienti ideali prescritti c_i=2 J/(g K), L_f=300 J/g, costanti nel campo considerato. Recipiente e dispersioni trascurati, massa conservata, nessun riscaldamento successivo del liquido. Guadagni e offset del display, quando presenti, convertono letture continue e non impongono integrità numerica.",
+      "distractors": "2 considera solo la massa; 17/16 solo l’intervallo; 8/17 capovolge B/A.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. A: 1 g, 10 K dà 320 J. B: 2 g, 20 K dà 680 J. Rapporto 680/320=17/8; controllati entrambi i contributi.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-subzero-ice-melting-12",
+      "sourceSha256": "62aac9b7f8cc5be6c97e9ea25a1817a2dc6ede4f426128ee49cbc35b4abfc50b",
+      "candidateSha256": "39299a29f737f6b44d92947ed315e1a10ee2adca9775626462db87dc5e6261dd",
+      "reviewedSignature": "fa9ed296069a75fe2e2061a8e869da12c954db9c3a8accfcc87901a3151babe1",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "500",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Media delle energie (320+680)/2=500 J. Con ingressi medi 3/2 g e 15 K si ottiene 495 J, differenza esatta 5 J.",
+      "physicalAssumptions": "Massa positiva di ghiaccio inizialmente a −θ °C, con 0<θ<273,15 K; fusione completa a 0 °C a pressione atmosferica. Coefficienti ideali prescritti c_i=2 J/(g K), L_f=300 J/g, costanti nel campo considerato. Recipiente e dispersioni trascurati, massa conservata, nessun riscaldamento successivo del liquido. Guadagni e offset del display, quando presenti, convertono letture continue e non impongono integrità numerica.",
+      "distractors": "495 J usa ingressi medi; 1000 J non dimezza; 180 J è metà della differenza.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Media delle energie (320+680)/2=500 J. Con ingressi medi 3/2 g e 15 K si ottiene 495 J, differenza esatta 5 J.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-subzero-ice-melting-13",
+      "sourceSha256": "4eb36f1ebc5e31e8122b27418fdde7aef5c7e2d30ec80ae6b478559a182846bb",
+      "candidateSha256": "6b9ca032ede0e17b507fc4652a7f7ada91eb0986cac266158a25b34201d8ab37",
+      "reviewedSignature": "7ad302895082d69279e22a540f0e2285cb89105b07b39b08fab2ee252e456328",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {},
+      "manualArithmetic": "Il bersaglio 17/8 di 320 J è 680 J. Con 2 g servono 340 J/g: θ_B=(340−300)/2=20 K, rapporto 2.",
+      "physicalAssumptions": "Massa positiva di ghiaccio inizialmente a −θ °C, con 0<θ<273,15 K; fusione completa a 0 °C a pressione atmosferica. Coefficienti ideali prescritti c_i=2 J/(g K), L_f=300 J/g, costanti nel campo considerato. Recipiente e dispersioni trascurati, massa conservata, nessun riscaldamento successivo del liquido. Guadagni e offset del display, quando presenti, convertono letture continue e non impongono integrità numerica.",
+      "distractors": "17/8 è rapporto di energie, non intervalli; 1 omette il cambio di θ.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Il bersaglio 17/8 di 320 J è 680 J. Con 2 g servono 340 J/g: θ_B=(340−300)/2=20 K, rapporto 2.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-subzero-ice-melting-14",
+      "sourceSha256": "0d570fc03888d726c5c0812de61e2e00a85fc751f00f7aa88cca3850b9015a7c",
+      "candidateSha256": "e7387222aa165271e54b5adac91fbd06833f1ba6b444e7dd5320f6944a30cfa0",
+      "reviewedSignature": "a3a09ee965b62ba221ae2d6a21a62c3f80e617a282098103f2ed84603f182534",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[mass]": "1"
+      },
+      "manualArithmetic": "A: Q=320 J, S=960 dà q=3 J⁻¹. B: S=2040 dà Q=680 J. A θ=20 K il costo è 340 J/g: massa 2 g.",
+      "physicalAssumptions": "Massa positiva di ghiaccio inizialmente a −θ °C, con 0<θ<273,15 K; fusione completa a 0 °C a pressione atmosferica. Coefficienti ideali prescritti c_i=2 J/(g K), L_f=300 J/g, costanti nel campo considerato. Recipiente e dispersioni trascurati, massa conservata, nessun riscaldamento successivo del liquido. Guadagni e offset del display, quando presenti, convertono letture continue e non impongono integrità numerica.",
+      "distractors": "Omettere q porta massa 6 g; il guadagno positivo deve convertire il display prima dell’inversa.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. A: Q=320 J, S=960 dà q=3 J⁻¹. B: S=2040 dà Q=680 J. A θ=20 K il costo è 340 J/g: massa 2 g.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-subzero-ice-melting-15",
+      "sourceSha256": "c381ad8a04a0ccef2c1543214d69df5a64f655c353efda21a2dc121add53e5b9",
+      "candidateSha256": "0a004ffa5c2c58485385b89822176f33eccad47e0db174e34c3072b8e7a35d2e",
+      "reviewedSignature": "6e3ff514f514c9cb1141de73a1d54142747f3e3df049b43f3aa9dd6c0d516f2f",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[mass]": "1"
+      },
+      "manualArithmetic": "Riferimenti 320 e 680 J con letture 641 e 1361: q=720/360=2 J⁻¹, b=1. S_C=1281 dà Q_C=640 J; a 10 K massa 2 g.",
+      "physicalAssumptions": "Massa positiva di ghiaccio inizialmente a −θ °C, con 0<θ<273,15 K; fusione completa a 0 °C a pressione atmosferica. Coefficienti ideali prescritti c_i=2 J/(g K), L_f=300 J/g, costanti nel campo considerato. Recipiente e dispersioni trascurati, massa conservata, nessun riscaldamento successivo del liquido. Guadagni e offset del display, quando presenti, convertono letture continue e non impongono integrità numerica.",
+      "distractors": "Omettere b dà 1281/640 g e predice S=1282, non 1281. 4 g e 1 g non soddisfano la nuova lettura.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Riferimenti 320 e 680 J con letture 641 e 1361: q=720/360=2 J⁻¹, b=1. S_C=1281 dà Q_C=640 J; a 10 K massa 2 g.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-subzero-ice-melting-16",
+      "sourceSha256": "56d9dbb8e354506288d9e8d5346a0de6e2dfcc38cabcd3db148cc8adeaf0caea",
+      "candidateSha256": "442fba34c4f433fc79a9152a891fb0955a5aa1ea755eec84054d1dbff265f328",
+      "reviewedSignature": "d69f0455c77748bd3319f4dbd38b62d0104e5e14b5274e0a833c028288d99442",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "10",
+      "dimension": {
+        "[temperature]": "1"
+      },
+      "manualArithmetic": "Fra preparazioni m=(1/10 g/K)θ. Il bilancio a Q=320 J diventa x²+150x−1600=0, x=θ/K. Si cercano due interi di prodotto −1600 e somma 150: 160 e −10. Quindi (x−10)(x+160)=0, con radici 10 e −160; soltanto 10 dà θ>0 e m>0, massa 1 g.",
+      "physicalAssumptions": "Massa positiva di ghiaccio inizialmente a −θ °C, con 0<θ<273,15 K; fusione completa a 0 °C a pressione atmosferica. Coefficienti ideali prescritti c_i=2 J/(g K), L_f=300 J/g, costanti nel campo considerato. Recipiente e dispersioni trascurati, massa conservata, nessun riscaldamento successivo del liquido. Il vincolo confronta preparazioni diverse, non modifica massa o coefficienti nel tempo interno della singola prova.",
+      "distractors": "La radice −160 rende massa negativa; 20 K dà Q=680 J sotto il vincolo, 320 K viola anche il limite assoluto.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Fra preparazioni m=(1/10 g/K)θ. Il bilancio a Q=320 J diventa x²+150x−1600=0, x=θ/K. Si cercano due interi di prodotto −1600 e somma 150: 160 e −10. Quindi (x−10)(x+160)=0, con radici 10 e −160; soltanto 10 dà θ>0 e m>0, massa 1 g.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "874cbafa499fca68e8ce8a897fc0b10cb30fc8284708473b482a1bdb981da98d",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "publicationAction": "NONE",
+  "reviewedCandidateCommit": "5579fe2187e28f34c6dfa8632c07113f46610559",
+  "packageSha256": "899079e9619ab86278ffdda891211d2f9a1eed76bd370b7f94f5c40e0ca0a326",
+  "bindingsSha256": "feeef92a7d7e4bb8dda9d22f3cb17f0e08777e1c8f39cfd922a92167eabafd41",
+  "source": {
+    "commit": "5cfbdcb055ba3ba136f97fb56e997f06e6cf3605",
+    "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U5-03.json",
+    "reference": "Primaria indipendente di tutti gli 80 prompt U5-03, prima di candidati, opzioni o chiavi: SHA256 ea13a6d7b6eca676daa520594e324f8c84aaabe64114d375dc3eabf35f47e2d9. Fonte intera pin 5cf, SHA256 417d221f47f7e8e3b1f3af5f9a38fb9eebc7f344371b9e64b699e3892039fe6b. Dopo la primaria, tutti i 16 candidati del lotto letti integralmente, ogni blocco, formula, opzione, hint e feedback, metadati e didascalie. Derivazioni ricontrollate sui dati finali; SVG XML e rendering nativo integrali letti. Catalogo reale C3-L01/L03/L04 verificato. Nessun authoring importato; autore e revisore distinti. ROOT identico ai byte finali B 9d647bca e, per 17309, 5579fe21."
+  }
+}

@@ -1,0 +1,279 @@
+{
+  "schemaVersion": "1.0.0",
+  "reviewer": "independent_AI_not_consumer_fix_author",
+  "runtimeProfileSha256": "c177aba9dfdbfd8296addd3583ce487e8f43ed1b52cef784636a2d1cd40f0744",
+  "acceptedCount": 16,
+  "failedCount": 0,
+  "reportChecks": 262,
+  "independentExactAndSIChecks": 127,
+  "actualControlConfigurations": 263,
+  "actualClockSamples": 245,
+  "allPowerMeanClockReadoutsChecked": 68,
+  "actualAssignedManualTasks": 32,
+  "technicalConsumerCases": {
+    "048": 68,
+    "049": 104,
+    "049ClockSceneSupplement": 24
+  },
+  "scientificScope": "Only16 exact source IDs at this frozen current consumer; all historical failures retained separately",
+  "tests": {
+    "command": "env PYTHONPYCACHEPREFIX=/private/tmp/cric-recovery-pycache PYTHONDONTWRITEBYTECODE=1 /private/tmp/cric-recovery-venv/bin/python -m unittest tests.corpus.test_experiments_c1_corrected_048_049_review",
+    "passed": 9,
+    "seconds": 62.832,
+    "exitCode": 0,
+    "output": "editorial/reviews/experiments-c1-corrected-048-049-tests-20261125.txt"
+  },
+  "negativeEpochsRetained": [
+    "ROOT original5405 reports045/046 unchanged",
+    "CORE47c3 diagnostic manifest509fdcbd0c68aeb6fb8fb26c1f775656bd204ab5bbee6efa9980f9f02dd6af99",
+    "CORE805e diagnostic manifestd75283b1969e698ad8ae8e200f2e06d2e48adad09085e21dbd49cc288bd5af78"
+  ],
+  "sourceContentChanged": false,
+  "runtimeChangedByReviewer": false,
+  "registryChangedByReviewer": false,
+  "checkpointCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "files": [
+    {
+      "path": "tools/corpus_engineering/experiments_energy_momentum_corrected_049_verifier.py",
+      "sha256": "816b5e184596d0fcae6047d5cdbcaaa269d4977cb51a1a0fef615e8badd99f70",
+      "bytes": 46019
+    },
+    {
+      "path": "tools/corpus_engineering/experiments_force_work_corrected_048_verifier.py",
+      "sha256": "844ca4421bb2ce356ae8306a695e2d220b094dbaab9271c2c26594a1af110b5d",
+      "bytes": 32787
+    },
+    {
+      "path": "tests/corpus/browser-experiments-energy-momentum-corrected-049.mjs",
+      "sha256": "939185a7d461efd71e57e7b2be68d50116f4b9dcc754c13222d9c234204fc522",
+      "bytes": 14727
+    },
+    {
+      "path": "tests/corpus/browser-experiments-force-work-corrected-048.mjs",
+      "sha256": "b920cf79d09cf09dd9656584d5581c6fbd4104f76995805f5e0793f3d5401987",
+      "bytes": 12601
+    },
+    {
+      "path": "tests/corpus/browser-experiments-collision-clock-049-supplement.mjs",
+      "sha256": "cfbce9e4dc5cbc06bfabe0ffd9ac39243c3a6742097a35e7088b81f81c5d9296",
+      "bytes": 14852
+    },
+    {
+      "path": "tests/corpus/test_experiments_c1_corrected_048_049_review.py",
+      "sha256": "254bce362635060b7d765c98da56f37d5c01226bfbefef9400d5b44159593d41",
+      "bytes": 8954
+    },
+    {
+      "path": "editorial/reviews/experiments-energy-momentum-corrected-049-browser.json",
+      "sha256": "19e3a6588b38e438d5f99a2d43ca6bdc59129688f003dc2a0871c98440d93671",
+      "bytes": 81128
+    },
+    {
+      "path": "editorial/reviews/experiments-energy-momentum-corrected-049.json",
+      "sha256": "b65811d07244f925a82aec5905ca1dc72dce688943bd05d114be257be1d562ec",
+      "bytes": 159791
+    },
+    {
+      "path": "editorial/reviews/experiments-force-work-corrected-048-browser.json",
+      "sha256": "baea6b36e5f56d24a678f430d51679e98407c53e033d224e746b8bdfe7c8dedf",
+      "bytes": 50051
+    },
+    {
+      "path": "editorial/reviews/experiments-force-work-corrected-048.json",
+      "sha256": "af58cebabb3b70898638e876a0a8a23ff6898242fe7194082d1ed62fa7b7ff66",
+      "bytes": 87816
+    },
+    {
+      "path": "editorial/reviews/experiments-collision-clock-049-supplement.json",
+      "sha256": "2d74ac492480defeabbfdd4deb46f6470c108b070afe25bee8b05d6c1f7fbe8e",
+      "bytes": 17806
+    },
+    {
+      "path": "editorial/reviews/independent-experiments-energy-momentum-corrected-049-20261125.md",
+      "sha256": "19134856fdc23319a7ba6689649f346c236767178e607a16075d34d79d2c92ac",
+      "bytes": 18779
+    },
+    {
+      "path": "editorial/reviews/independent-experiments-force-work-corrected-048-20261125.md",
+      "sha256": "608b7a5ba9da36961981aba222fe1a31d70a6b21b72dc88c33b9f44bf3dae55b",
+      "bytes": 14147
+    },
+    {
+      "path": "editorial/reviews/experiments-c1-corrected-048-049-tests-20261125.txt",
+      "sha256": "3ad30ba122f9f22466a30324eb9385a60116cb64a90a3acc764ff430557eba66",
+      "bytes": 108
+    },
+    {
+      "path": "editorial/reviews/evidence/c1-corrected-048-049-final-20261125/SIM-C1-L006-02-false-boundary3.png",
+      "sha256": "404d99f4ea8b4e30099632f95a0a8ecda83d49e6177f1bb389264e9a83d08f88",
+      "bytes": 157062
+    },
+    {
+      "path": "editorial/reviews/evidence/c1-corrected-048-049-final-20261125/SIM-C1-L006-02-narrow-false-1.png",
+      "sha256": "0bec4e882ecfe4d875b816d74f6a403946a223faa02a64df13cf721b1e0e7062",
+      "bytes": 63785
+    },
+    {
+      "path": "editorial/reviews/evidence/c1-corrected-048-049-final-20261125/SIM-C1-L006-02-narrow-true-1.png",
+      "sha256": "86ba47e7f92ad5003996cf37c3d78863aa2af64993804ece4434c553700fbe0f",
+      "bytes": 58348
+    },
+    {
+      "path": "editorial/reviews/evidence/c1-corrected-048-049-final-20261125/SIM-C1-L006-02-true-boundary3.png",
+      "sha256": "ccf7b144ce64184f9680ee9df2b720f3e8326e1689310bb3db02cf710e8bd344",
+      "bytes": 127642
+    },
+    {
+      "path": "editorial/reviews/evidence/c1-corrected-048-049-final-20261125/SIM-C1-L007-02-false-boundary0.png",
+      "sha256": "bb28ecac3923d858f9927632f2a7246c8909bfa04792794fbd92ebede165c394",
+      "bytes": 130765
+    },
+    {
+      "path": "editorial/reviews/evidence/c1-corrected-048-049-final-20261125/SIM-C1-L007-02-narrow-false-0.png",
+      "sha256": "260da1ca1cf832cca3afd75a97ac9fe68f2d49ae434cb1ce45496e0d64081a68",
+      "bytes": 57774
+    },
+    {
+      "path": "editorial/reviews/evidence/c1-corrected-048-049-final-20261125/SIM-C1-L007-02-narrow-true-0.png",
+      "sha256": "0f35a5e7fe8204cbbb44e49acb4cefb754981d3f06e96cbdcb9138b6ff4d27a2",
+      "bytes": 53970
+    },
+    {
+      "path": "editorial/reviews/evidence/c1-corrected-048-049-final-20261125/SIM-C1-L007-02-true-boundary0.png",
+      "sha256": "e58849886b65e374091923ad6f9ad9e182d2e5952e559763138e652e951ad71d",
+      "bytes": 99587
+    },
+    {
+      "path": "editorial/reviews/evidence/c1-corrected-048-049-final-20261125/SIM-C1-L010-02-false-boundary2.png",
+      "sha256": "d877a1c7022bbcc852900e7d41eadb732b27d790cf5775aaee245a47f7ab6591",
+      "bytes": 153598
+    },
+    {
+      "path": "editorial/reviews/evidence/c1-corrected-048-049-final-20261125/SIM-C1-L010-02-legend-false-90.png",
+      "sha256": "061f6d152c756ce2e6923a49020b334d794576a53207254a5319291fd3c4639e",
+      "bytes": 68567
+    },
+    {
+      "path": "editorial/reviews/evidence/c1-corrected-048-049-final-20261125/SIM-C1-L010-02-narrow-false-90.png",
+      "sha256": "337fd4e99297be762fab245827c62729b95efb41027952baea393155c55c26a3",
+      "bytes": 60333
+    },
+    {
+      "path": "editorial/reviews/evidence/c1-corrected-048-049-final-20261125/SIM-C1-L010-02-narrow-true-90.png",
+      "sha256": "669be2a8d8b9652539a9177fde330167e92e32d6b283655681a1ded254bc5a5d",
+      "bytes": 54232
+    },
+    {
+      "path": "editorial/reviews/evidence/c1-corrected-048-049-final-20261125/SIM-C1-L010-03-false-boundary0.png",
+      "sha256": "d8b57598bea1f648ab119bb6d660f6ae737f25b6090f95f8602d913fc21709d0",
+      "bytes": 152210
+    },
+    {
+      "path": "editorial/reviews/evidence/c1-corrected-048-049-final-20261125/SIM-C1-L010-03-narrow-false-0.png",
+      "sha256": "88c8a00bf3742981404b92858e1cbfeff72cfab43e2b0dda03a8e6d40c6d8a48",
+      "bytes": 57633
+    },
+    {
+      "path": "editorial/reviews/evidence/c1-corrected-048-049-final-20261125/SIM-C1-L010-03-narrow-true-0.png",
+      "sha256": "de8ed437e4ca97a6d0de9420ac182e4628839b41438596b57a09f720fb2d8041",
+      "bytes": 51307
+    },
+    {
+      "path": "editorial/reviews/evidence/c1-corrected-048-049-final-20261125/SIM-C1-L010-04-false-boundary0.png",
+      "sha256": "42682481105bfe17c7390814e9bd17b9532f7e6f845a8a2f1c1cfb2bbcc768ab",
+      "bytes": 156630
+    },
+    {
+      "path": "editorial/reviews/evidence/c1-corrected-048-049-final-20261125/SIM-C1-L010-04-narrow-false-10.png",
+      "sha256": "fc7f633a656e2011d493ef8b7ba8d677bb91213991b10d608c8feb6357dc4610",
+      "bytes": 60600
+    },
+    {
+      "path": "editorial/reviews/evidence/c1-corrected-048-049-final-20261125/SIM-C1-L010-04-narrow-true-10.png",
+      "sha256": "a30da0fe84b70430a46d9f330662ece339286d3b41669eeb463207d99536bd12",
+      "bytes": 54104
+    },
+    {
+      "path": "editorial/reviews/evidence/c1-corrected-048-049-final-20261125/SIM-C1-L010-05-false-boundary1.png",
+      "sha256": "9dfeb56ae45a03be858314dbcfdaec6835b1ede0fd62840411b5fdce2fe935f4",
+      "bytes": 154567
+    },
+    {
+      "path": "editorial/reviews/evidence/c1-corrected-048-049-final-20261125/SIM-C1-L010-05-legend-true-6.png",
+      "sha256": "e20d3665bc65b8c9e272bda8d7951b09702afa8a77250404664d713e7494eb2c",
+      "bytes": 59727
+    },
+    {
+      "path": "editorial/reviews/evidence/c1-corrected-048-049-final-20261125/SIM-C1-L010-05-narrow-false-4.png",
+      "sha256": "22b91ad74e1b4889227fa8d6e019d0ef140964790b155958a41c7b3ea91b4d76",
+      "bytes": 59311
+    },
+    {
+      "path": "editorial/reviews/evidence/c1-corrected-048-049-final-20261125/SIM-C1-L010-05-narrow-false-6.png",
+      "sha256": "091f973d47fa4793bfa8095686a940e8e483bb77c1c318cb519ffa0746b76bbf",
+      "bytes": 59547
+    },
+    {
+      "path": "editorial/reviews/evidence/c1-corrected-048-049-final-20261125/SIM-C1-L010-05-narrow-true-4.png",
+      "sha256": "76f943783c9653efbbf0c29abe032e46d5d40793a0ea0fc257bfb6fbbb52ce67",
+      "bytes": 52771
+    },
+    {
+      "path": "editorial/reviews/evidence/c1-corrected-048-049-final-20261125/SIM-C1-L010-05-narrow-true-6.png",
+      "sha256": "5454ef8acf05bd9f908166c8d5f49391a7eb7180eedc0b76bcce8b580e1e3e18",
+      "bytes": 53028
+    },
+    {
+      "path": "editorial/reviews/evidence/c1-corrected-048-049-final-20261125/manifest.json",
+      "sha256": "7cd38f65630bc5ed795f96ec0d815f1f2be029f907efc851687e86d61fbfa997",
+      "bytes": 8731
+    },
+    {
+      "path": "editorial/reviews/evidence/collision-clock-049-final-20261125/SIM-C1-L009-02-false-clock-3-0.49.png",
+      "sha256": "88d83b937fb409f6d22f5b429a6c633a4a57c373478b324f7714278f32f41e29",
+      "bytes": 192775
+    },
+    {
+      "path": "editorial/reviews/evidence/collision-clock-049-final-20261125/SIM-C1-L009-02-false-clock-3-1.2.png",
+      "sha256": "c3ab48473046cd4fe2eb40a7a0fbffba123957f12efe74f4c7100a0d85694c69",
+      "bytes": 192544
+    },
+    {
+      "path": "editorial/reviews/evidence/collision-clock-049-final-20261125/SIM-C1-L009-02-false-clock3-0.49.png",
+      "sha256": "ab48ab2b04505c45b770b07a4b011c0d479e613885eedc6341f48c9c6d2907dc",
+      "bytes": 192982
+    },
+    {
+      "path": "editorial/reviews/evidence/collision-clock-049-final-20261125/SIM-C1-L009-02-false-clock3-1.2.png",
+      "sha256": "8425d67aaa346f864c24a8e1c3ffa35c68bf181be0f96e514cf1f676c312895c",
+      "bytes": 192518
+    },
+    {
+      "path": "editorial/reviews/evidence/collision-clock-049-final-20261125/SIM-C1-L009-02-true-clock-3-0.49.png",
+      "sha256": "d45a4e08fbf757986819074f53398bd5c171d5aaa88328f269d97e4568717eb5",
+      "bytes": 134734
+    },
+    {
+      "path": "editorial/reviews/evidence/collision-clock-049-final-20261125/SIM-C1-L009-02-true-clock-3-1.2.png",
+      "sha256": "52a01235b45bb1a74668b6413df50deafb1e7ee4431dfbc2c82306ccc171b18a",
+      "bytes": 134245
+    },
+    {
+      "path": "editorial/reviews/evidence/collision-clock-049-final-20261125/SIM-C1-L009-02-true-clock3-0.49.png",
+      "sha256": "849fbe3bb2fc14edd011d9e27b573fae82dbffc36cd3ee55f89afa4a66e7b8a8",
+      "bytes": 135215
+    },
+    {
+      "path": "editorial/reviews/evidence/collision-clock-049-final-20261125/SIM-C1-L009-02-true-clock3-1.2.png",
+      "sha256": "abf27c3edd7c2b9573f22e9c53b6d58df629bd1146164018ed7fc0606b7aed76",
+      "bytes": 134691
+    },
+    {
+      "path": "editorial/reviews/evidence/collision-clock-049-final-20261125/manifest.json",
+      "sha256": "d41fe256e9637433c3418ca4bf5b12c4c3d3c65b106b1ee91c2e3f3cdf80bc35",
+      "bytes": 2827
+    }
+  ]
+}

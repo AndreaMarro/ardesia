@@ -1,0 +1,125 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "SIM-C1-L001-06",
+      "kind": "experiment",
+      "course": "C1",
+      "skill": "C1-L001",
+      "order": 6,
+      "section": "Misura e rappresentazione",
+      "version": 2,
+      "title": "Scalari e vettori",
+      "topic": "Scalari e vettori",
+      "anchor": "Nel Sistema Internazionale lunghezza, massa e tempo",
+      "summary": "Ruotando la velocità cambiano il modulo e la componente orizzontale nello stesso modo?",
+      "apparatus": "vettori",
+      "control": {
+        "label": "Direzione della velocità",
+        "unit": "°",
+        "min": 0.0,
+        "max": 180.0,
+        "step": 5.0
+      },
+      "measure": {
+        "label": "Componente orizzontale",
+        "unit": "m/s"
+      },
+      "formula": "vₓ = 4 cos θ, con modulo v = 4 m/s",
+      "interpretation": "La punta resta sulla circonferenza di raggio fisso. L’ombra sull’asse orizzontale cambia segno oltre 90°. Il modulo è uno scalare.",
+      "references": [
+        [
+          0.0,
+          4.0
+        ],
+        [
+          90.0,
+          0.0
+        ]
+      ],
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Prima di ruotare la freccia, scegli il verso positivo dell’asse orizzontale. Il carrello mantiene rapidità 4 m/s: ciò che può cambiare è la velocità letta da un sensore che registra soltanto il moto lungo quell’asse. Una lettura negativa indica moto in verso opposto; non una rapidità negativa."
+        },
+        {
+          "type": "text",
+          "text": "La componente orizzontale è la proiezione ortogonale del vettore velocità sull’asse. Come l’ombra di un segmento su una retta, può accorciarsi fino a scomparire mentre il segmento conserva lunghezza. Qui l’analogia riguarda soltanto una proiezione geometrica: la freccia rappresenta metri al secondo, non una lunghezza percorsa."
+        },
+        {
+          "type": "formula",
+          "text": "v_x=v\\cos\\theta"
+        },
+        {
+          "type": "formula",
+          "text": " v=4\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "figure",
+          "src": "/asset/1fb9c3a41050106bd08d817a5b7c7c9d9b4c2e3dd39f926d755317e097a8f54b",
+          "text": "Tre orientamenti della stessa velocità, alla stessa scala: 0°, 90°, 180°. L’asse positivo è verso destra; i valori sotto i pannelli sono componenti con segno, mentre il modulo resta 4 m/s."
+        },
+        {
+          "type": "text",
+          "text": "Parti dal riferimento 0°: tutta la velocità è parallela e concorde con l’asse, perciò cos0°=1 e vₓ=4 m/s. Ruota fino a 90°. La freccia è perpendicolare all’asse: non ha avanzamento orizzontale e la sua proiezione è nulla. Non occorre stimare il coseno di un angolo vicino a 90°: l’ortogonalità fornisce esattamente zero."
+        },
+        {
+          "type": "formula",
+          "text": "v_x(90^\\circ)=4\\cdot0\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": "4\\cdot0\\,\\mathrm{m/s}=0\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Per la nuova situazione, il carrello si muove a 180° rispetto al verso positivo della guida. La velocità è interamente lungo la guida ma nel verso contrario. Il coseno vale −1: moltiplica 4 per −1, conservando l’unità m/s. Il sensore deve quindi leggere −4, non +4 e non zero."
+        },
+        {
+          "type": "formula",
+          "text": "v_x(180^\\circ)=4\\cdot(-1)\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": "4\\cdot(-1)\\,\\mathrm{m/s}=-4\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Un controllo indipendente è il limite geometrico |vₓ|≤v: le componenti ottenute 0 e −4 rispettano il modulo 4. Scambiare modulo e componente produrrebbe sempre +4; usare il seno darebbe invece una componente verticale e scambierebbe i casi parallelo e perpendicolare. Nella scena esplora anche le posizioni intermedie come osservazioni: le due risposte numeriche richieste sono i casi esatti a 90° e 180°."
+        },
+        {
+          "type": "formula",
+          "text": "\\cos\\theta=\\frac{v_x}{v}\\quad(v\\ne0)"
+        },
+        {
+          "type": "formula",
+          "text": " v=\\frac{v_x}{\\cos\\theta}\\quad(\\cos\\theta\\ne0)"
+        },
+        {
+          "type": "text",
+          "text": "Le formule inverse hanno condizioni diverse. Con vₓ=−4 m/s e v=4 m/s ottieni cosθ=−4/4=−1; nel dominio 0°≤θ≤180° ciò identifica θ=180° senza valutare un’inversa trigonometrica. A 90° il rapporto vₓ/cosθ è 0/0 e non permette di ricavare il modulo: una proiezione nulla, da sola, non dice quanto sia rapida una velocità perpendicolare."
+        }
+      ],
+      "substitution": "4 × cos({x}°)",
+      "transferPrompt": "Un carrello viaggia a 4 m/s formando un angolo di {x} con l’asse della guida. Quale velocità misura un sensore orientato lungo quell’asse?",
+      "baseVersion": 1,
+      "assessmentSelection": {
+        "schemaVersion": "1.0.0",
+        "points": [
+          90,
+          180
+        ]
+      },
+      "prerequisites": [],
+      "review": "Candidata DRAFT; revisione scientifica distinta NOT_RUN; approvazione umana NOT_RUN."
+    }
+  ],
+  "assets": [
+    {
+      "id": "1fb9c3a41050106bd08d817a5b7c7c9d9b4c2e3dd39f926d755317e097a8f54b",
+      "name": "velocity-projection-exact.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA4NjAgMjkwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+UHJvaWV6aW9uZSBkaSB1bmEgdmVsb2NpdMOgIGEgbW9kdWxvIGNvc3RhbnRlPC90aXRsZT48ZGVzYyBpZD0iZGVzYyI+VHJlIG9yaWVudGFtZW50aSBkZWxsYSBzdGVzc2EgZnJlY2NpYTogY29uY29yZGUsIHBlcnBlbmRpY29sYXJlIGUgb3Bwb3N0byBhbGzigJlhc3NlIHBvc2l0aXZvLiBMYSBjb21wb25lbnRlIMOoIHJpc3BldHRpdmFtZW50ZSBwb3NpdGl2YSwgbnVsbGEgZSBuZWdhdGl2YS48L2Rlc2M+PGRlZnM+PG1hcmtlciBpZD0iYSIgdmlld0JveD0iMCAwIDEwIDEwIiByZWZYPSI5IiByZWZZPSI1IiBtYXJrZXJXaWR0aD0iNCIgbWFya2VySGVpZ2h0PSI0IiBvcmllbnQ9ImF1dG8iPjxwYXRoIGQ9Ik0wIDBMMTAgNUwwIDEwIiBmaWxsPSIjOGY0NjE1Ii8+PC9tYXJrZXI+PG1hcmtlciBpZD0iYiIgdmlld0JveD0iMCAwIDEwIDEwIiByZWZYPSI5IiByZWZZPSI1IiBtYXJrZXJXaWR0aD0iNCIgbWFya2VySGVpZ2h0PSI0IiBvcmllbnQ9ImF1dG8iPjxwYXRoIGQ9Ik0wIDBMMTAgNUwwIDEwIiBmaWxsPSIjMTY1YjhjIi8+PC9tYXJrZXI+PC9kZWZzPjxyZWN0IHdpZHRoPSI4NjAiIGhlaWdodD0iMjkwIiBmaWxsPSIjZmZmIi8+PGcgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTciIGZpbGw9IiMxNzJiNDMiPjxnPjx0ZXh0IHg9IjM0IiB5PSI0MyI+MS4gzrggPSAwwrA8L3RleHQ+PGxpbmUgeDE9IjMyIiB5MT0iMTQ1IiB4Mj0iMjcwIiB5Mj0iMTQ1IiBzdHJva2U9IiM3MTgxOTgiIHN0cm9rZS13aWR0aD0iMSIvPjxsaW5lIHgxPSIxMzciIHkxPSIxNDUiIHgyPSIyMDkiIHkyPSIxNDUiIHN0cm9rZT0iIzE2NWI4YyIgc3Ryb2tlLXdpZHRoPSI0IiBtYXJrZXItZW5kPSJ1cmwoI2IpIi8+PGNpcmNsZSBjeD0iMTM3IiBjeT0iMTQ1IiByPSIzIi8+PHRleHQgeD0iMzQiIHk9IjIxOCI+diA9IDQgbS9zPC90ZXh0Pjx0ZXh0IHg9IjM0IiB5PSIyNTAiPis0IG0vczwvdGV4dD48L2c+PGc+PHRleHQgeD0iMzE0IiB5PSI0MyI+Mi4gzrggPSA5MMKwPC90ZXh0PjxsaW5lIHgxPSIzMTIiIHkxPSIxNDUiIHgyPSI1NTAiIHkyPSIxNDUiIHN0cm9rZT0iIzcxODE5OCIgc3Ryb2tlLXdpZHRoPSIxIi8+PGxpbmUgeDE9IjQxNyIgeTE9IjE0NSIgeDI9IjQxNyIgeTI9IjczIiBzdHJva2U9IiMxNjViOGMiIHN0cm9rZS13aWR0aD0iNCIgbWFya2VyLWVuZD0idXJsKCNiKSIvPjxjaXJjbGUgY3g9IjQxNyIgY3k9IjE0NSIgcj0iMyIvPjx0ZXh0IHg9IjMxNCIgeT0iMjE4Ij52ID0gNCBtL3M8L3RleHQ+PHRleHQgeD0iMzE0IiB5PSIyNTAiPjAgbS9zPC90ZXh0PjwvZz48Zz48dGV4dCB4PSI1OTQiIHk9IjQzIj4zLiDOuCA9IDE4MMKwPC90ZXh0PjxsaW5lIHgxPSI1OTIiIHkxPSIxNDUiIHgyPSI4MzAiIHkyPSIxNDUiIHN0cm9rZT0iIzcxODE5OCIgc3Ryb2tlLXdpZHRoPSIxIi8+PGxpbmUgeDE9IjY5NyIgeTE9IjE0NSIgeDI9IjYyNSIgeTI9IjE0NSIgc3Ryb2tlPSIjMTY1YjhjIiBzdHJva2Utd2lkdGg9IjQiIG1hcmtlci1lbmQ9InVybCgjYikiLz48Y2lyY2xlIGN4PSI2OTciIGN5PSIxNDUiIHI9IjMiLz48dGV4dCB4PSI1OTQiIHk9IjIxOCI+diA9IDQgbS9zPC90ZXh0Pjx0ZXh0IHg9IjU5NCIgeT0iMjUwIj7iiJI0IG0vczwvdGV4dD48L2c+PC9nPjwvc3ZnPgo="
+    }
+  ]
+}

@@ -1,0 +1,1199 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u5-first-law-expansion-01",
+      "kind": "question",
+      "course": "C3",
+      "section": "Calore entrante e lavoro uscente nel primo principio",
+      "order": 15601,
+      "title": "Quanto resta nel sistema",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "first-law-expansion",
+      "difficulty": 1,
+      "prompt": "Il sistema è chiuso e non cambia energia cinetica o potenziale macroscopica. Q>0 è energia ricevuta come calore e W>0 è lavoro compiuto dal sistema sull’ambiente. Con questa convenzione ΔU=U_f−U_i=Q−W. Q e W descrivono trasferimenti durante il processo, non proprietà dello stato. La variazione ΔU può essere positiva, nulla o negativa, secondo il bilancio. Con Q=100 J e W=40 J, quanto vale ΔU in J?",
+      "answer": {
+        "type": "numeric",
+        "value": 60,
+        "unit": "J",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Entrano cento joule come calore e quaranta escono come lavoro. L’energia interna aumenta della differenza: sessanta joule. Non si calcola U_f in valore assoluto, perché non è assegnata U_i; si trova soltanto la sua variazione."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/c524da679ac274a11f3575db2707e3e46b178a2539d1a5ec195ddc7b3793eb76",
+          "text": "Prima il confine: Q entra e W esce, mentre ΔU è la variazione dell’energia interna. Le frecce sono schematiche e indicano i versi. Il secondo pannello usa una scala comune 5 px/J per i 100 J entranti e la ripartizione 60 J più 40 J. Il terzo usa 3 px/J per le due variazioni 60 J e 140 J e per la loro media 100 J."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta U=Q-W"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta U=(100-40)\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta U=60\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Centoquaranta J sommerebbero un’uscita a un’entrata; quaranta J sono il lavoro e cento J il calore, ciascuno solo una parte del bilancio. Il sistema chiuso può scambiare energia pur conservando la materia."
+        }
+      ],
+      "hints": [
+        "Disegna un’entrata per Q e un’uscita per W prima di sottrarre.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Centoquaranta J sommerebbero un’uscita a un’entrata; quaranta J sono il lavoro e cento J il calore, ciascuno solo una parte del bilancio. Il sistema chiuso può scambiare energia pur conservando la materia.",
+        "target": "C3-L06"
+      },
+      "coverage": [
+        "Trasferimenti distinti da energia di stato",
+        "Bilancio e convenzioni di segno",
+        "Inverse, rapporti e calibrazioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-first-law-expansion-02",
+      "kind": "question",
+      "course": "C3",
+      "section": "Calore entrante e lavoro uscente nel primo principio",
+      "order": 15602,
+      "title": "L’unità della variazione di energia interna",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "first-law-expansion",
+      "difficulty": 1,
+      "prompt": "Quale unità misura ΔU=U_f−U_i nel primo principio?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "J",
+          "J/K",
+          "K",
+          "W",
+          "Pa"
+        ],
+        "value": "J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "U e la sua variazione hanno entrambe dimensione di energia, quindi si misurano in joule. Essere una differenza può cambiare il segno del valore, non l’unità. Calore e lavoro si esprimono anch’essi in joule perché trasferiscono energia."
+        },
+        {
+          "type": "formula",
+          "text": "[\\Delta U]=[Q]"
+        },
+        {
+          "type": "formula",
+          "text": "[Q]=[W]"
+        },
+        {
+          "type": "formula",
+          "text": "[W]=\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "J/K è capacità termica, K temperatura, Pa pressione. Il watt è joule al secondo e misura una velocità di trasferimento, non un’energia."
+        }
+      ],
+      "hints": [
+        "La sottrazione fra due energie mantiene la loro unità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "J/K è capacità termica, K temperatura, Pa pressione. Il watt è joule al secondo e misura una velocità di trasferimento, non un’energia.",
+        "target": "C3-L06"
+      },
+      "coverage": [
+        "Trasferimenti distinti da energia di stato",
+        "Bilancio e convenzioni di segno",
+        "Inverse, rapporti e calibrazioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-first-law-expansion-03",
+      "kind": "question",
+      "course": "C3",
+      "section": "Calore entrante e lavoro uscente nel primo principio",
+      "order": 15603,
+      "title": "Calore è un trasferimento",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "first-law-expansion",
+      "difficulty": 1,
+      "prompt": "Quale frase usa correttamente il concetto di calore in termodinamica?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "È energia trasferita a causa di una differenza di temperatura",
+          "È una sostanza contenuta nel corpo",
+          "È sempre uguale alla temperatura",
+          "È una funzione di stato indipendente dal percorso",
+          "È lavoro immagazzinato nel sistema"
+        ],
+        "value": "È energia trasferita a causa di una differenza di temperatura"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il calore identifica un modo in cui l’energia attraversa il confine quando vi è una differenza di temperatura. Dopo il trasferimento si descrive l’energia del sistema mediante U, non mediante una quantità di calore contenuta. Due percorsi fra gli stessi stati possono avere lo stesso ΔU ma differenti Q e W."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/c524da679ac274a11f3575db2707e3e46b178a2539d1a5ec195ddc7b3793eb76",
+          "text": "U è una funzione di stato; Q e W descrivono trasferimenti durante un processo. Le barre non rappresentano calore contenuto nel sistema. Nella media del terzo pannello la differenza lineare conserva la media: 150 J−50 J=100 J; ciò non viene esteso a modelli non lineari."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta U=Q-W"
+        },
+        {
+          "type": "formula",
+          "text": " \\text{U: funzione di stato}"
+        },
+        {
+          "type": "formula",
+          "text": " \\text{Q,W: trasferimenti}"
+        },
+        {
+          "type": "text",
+          "text": "Una sostanza non è la descrizione energetica del calore. Temperatura ed energia hanno unità diverse; Q non è funzione di stato. Anche il lavoro è una modalità di trasferimento, non una riserva chiamata lavoro immagazzinato."
+        }
+      ],
+      "hints": [
+        "Separa ciò che attraversa il confine da ciò che descrive lo stato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Una sostanza non è la descrizione energetica del calore. Temperatura ed energia hanno unità diverse; Q non è funzione di stato. Anche il lavoro è una modalità di trasferimento, non una riserva chiamata lavoro immagazzinato.",
+        "target": "C3-L06"
+      },
+      "coverage": [
+        "Trasferimenti distinti da energia di stato",
+        "Bilancio e convenzioni di segno",
+        "Inverse, rapporti e calibrazioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-first-law-expansion-04",
+      "kind": "question",
+      "course": "C3",
+      "section": "Calore entrante e lavoro uscente nel primo principio",
+      "order": 15604,
+      "title": "Più calore con la stessa uscita di lavoro",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "first-law-expansion",
+      "difficulty": 1,
+      "prompt": "Il sistema è chiuso e non cambia energia cinetica o potenziale macroscopica. Q>0 è energia ricevuta come calore e W>0 è lavoro compiuto dal sistema sull’ambiente. Con questa convenzione ΔU=U_f−U_i=Q−W. Q e W descrivono trasferimenti durante il processo, non proprietà dello stato. La variazione ΔU può essere positiva, nulla o negativa, secondo il bilancio. A riceve Q=100 J, B riceve Q=200 J. Entrambe le prove compiono W=40 J. Quale confronto è corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "ΔU passa da 60 a 160 J",
+          "ΔU passa da 60 a 120 J",
+          "ΔU resta 60 J",
+          "ΔU passa da 60 a 240 J",
+          "ΔU passa da 60 a −160 J"
+        ],
+        "value": "ΔU passa da 60 a 160 J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "In A restano sessanta joule; in B duecento meno quaranta sono centosessanta. L’aumento di Q di cento joule aumenta ΔU degli stessi cento, poiché W è fermo. Raddoppiare Q non raddoppia in questo caso ΔU: il termine sottratto non viene raddoppiato."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta U_A=60\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta U_B=(200-40)\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta U_B=160\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Centoventi raddoppia direttamente la prima uscita, ignorando il lavoro fisso. Duecentoquaranta aggiunge W; sessanta ignora Q nuova e meno centosessanta rovescia il bilancio."
+        }
+      ],
+      "hints": [
+        "Confronta le differenze, non il solo fattore del calore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Centoventi raddoppia direttamente la prima uscita, ignorando il lavoro fisso. Duecentoquaranta aggiunge W; sessanta ignora Q nuova e meno centosessanta rovescia il bilancio.",
+        "target": "C3-L06"
+      },
+      "coverage": [
+        "Trasferimenti distinti da energia di stato",
+        "Bilancio e convenzioni di segno",
+        "Inverse, rapporti e calibrazioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-first-law-expansion-05",
+      "kind": "question",
+      "course": "C3",
+      "section": "Calore entrante e lavoro uscente nel primo principio",
+      "order": 15605,
+      "title": "Ricavare il calore dal bilancio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "first-law-expansion",
+      "difficulty": 2,
+      "prompt": "Il sistema è chiuso e non cambia energia cinetica o potenziale macroscopica. Q>0 è energia ricevuta come calore e W>0 è lavoro compiuto dal sistema sull’ambiente. Con questa convenzione ΔU=U_f−U_i=Q−W. Q e W descrivono trasferimenti durante il processo, non proprietà dello stato. La variazione ΔU può essere positiva, nulla o negativa, secondo il bilancio. Si misura ΔU=60 J e si conosce W=40 J. Quanto vale Q in J?",
+      "answer": {
+        "type": "numeric",
+        "value": 100,
+        "unit": "J",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il calore deve alimentare sia l’aumento di energia interna sia il lavoro che esce. Aggiungiamo quaranta a sessanta e otteniamo cento joule. Il risultato è positivo, coerente con un trasferimento termico entrante."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta U=Q-W"
+        },
+        {
+          "type": "formula",
+          "text": " Q=\\Delta U+W"
+        },
+        {
+          "type": "formula",
+          "text": " Q=(60+40)\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " Q=100\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Sottrarre di nuovo il lavoro darebbe venti joule e non ricostruirebbe ΔU=60 J. Il segno meno del primo principio cambia quando W viene portato al membro con ΔU."
+        }
+      ],
+      "hints": [
+        "Per ricostruire l’entrata, somma ciò che rimane e ciò che esce.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sottrarre di nuovo il lavoro darebbe venti joule e non ricostruirebbe ΔU=60 J. Il segno meno del primo principio cambia quando W viene portato al membro con ΔU.",
+        "target": "C3-L06"
+      },
+      "coverage": [
+        "Trasferimenti distinti da energia di stato",
+        "Bilancio e convenzioni di segno",
+        "Inverse, rapporti e calibrazioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-first-law-expansion-06",
+      "kind": "question",
+      "course": "C3",
+      "section": "Calore entrante e lavoro uscente nel primo principio",
+      "order": 15606,
+      "title": "Il lavoro dalla quota che non rimane",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "first-law-expansion",
+      "difficulty": 2,
+      "prompt": "Il sistema è chiuso e non cambia energia cinetica o potenziale macroscopica. Q>0 è energia ricevuta come calore e W>0 è lavoro compiuto dal sistema sull’ambiente. Con questa convenzione ΔU=U_f−U_i=Q−W. Q e W descrivono trasferimenti durante il processo, non proprietà dello stato. La variazione ΔU può essere positiva, nulla o negativa, secondo il bilancio. Q=100 J e ΔU=60 J. Quanto vale W in J?",
+      "answer": {
+        "type": "numeric",
+        "value": 40,
+        "unit": "J",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dall’energia ricevuta togliamo l’aumento che rimane nel sistema. La differenza è quaranta joule di lavoro uscente. Il valore positivo conferma il verso dichiarato: il sistema compie lavoro sull’ambiente."
+        },
+        {
+          "type": "formula",
+          "text": "W=Q-\\Delta U"
+        },
+        {
+          "type": "formula",
+          "text": " W=(100-60)\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " W=40\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Centosessanta sommerebbe ingresso e accumulo. Meno quaranta scambierebbe il verso del trasferimento meccanico; sessanta copia ΔU anziché ricavare il lavoro."
+        }
+      ],
+      "hints": [
+        "Sottrai l’accumulo dall’energia entrata come calore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Centosessanta sommerebbe ingresso e accumulo. Meno quaranta scambierebbe il verso del trasferimento meccanico; sessanta copia ΔU anziché ricavare il lavoro.",
+        "target": "C3-L06"
+      },
+      "coverage": [
+        "Trasferimenti distinti da energia di stato",
+        "Bilancio e convenzioni di segno",
+        "Inverse, rapporti e calibrazioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-first-law-expansion-07",
+      "kind": "question",
+      "course": "C3",
+      "section": "Calore entrante e lavoro uscente nel primo principio",
+      "order": 15607,
+      "title": "Più lavoro lascia un aumento minore",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "first-law-expansion",
+      "difficulty": 2,
+      "prompt": "Il sistema è chiuso e non cambia energia cinetica o potenziale macroscopica. Q>0 è energia ricevuta come calore e W>0 è lavoro compiuto dal sistema sull’ambiente. Con questa convenzione ΔU=U_f−U_i=Q−W. Q e W descrivono trasferimenti durante il processo, non proprietà dello stato. La variazione ΔU può essere positiva, nulla o negativa, secondo il bilancio. A ha Q=100 J, W=40 J. B mantiene Q=100 J ma compie W=60 J. Quanto vale ΔU_B/ΔU_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2/3",
+          "3/2",
+          "1",
+          "2",
+          "−2/3"
+        ],
+        "value": "2/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A aumenta U di sessanta joule; B di quaranta. Il rapporto quaranta su sessanta è due terzi. Più energia esce come lavoro mentre l’entrata termica è uguale, quindi rimane un aumento minore."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta U_A=60\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta U_B=40\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta U_B/\\Delta U_A=\\frac23"
+        },
+        {
+          "type": "text",
+          "text": "Tre mezzi è il reciproco e anche il rapporto dei lavori, che non è quello chiesto. Uno ignora W nuova; due non segue dal bilancio. Il rapporto qui resta positivo perché entrambi gli aumenti sono positivi."
+        }
+      ],
+      "hints": [
+        "Valuta Q−W in entrambe le prove prima di fare un rapporto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre mezzi è il reciproco e anche il rapporto dei lavori, che non è quello chiesto. Uno ignora W nuova; due non segue dal bilancio. Il rapporto qui resta positivo perché entrambi gli aumenti sono positivi.",
+        "target": "C3-L06"
+      },
+      "coverage": [
+        "Trasferimenti distinti da energia di stato",
+        "Bilancio e convenzioni di segno",
+        "Inverse, rapporti e calibrazioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-first-law-expansion-08",
+      "kind": "question",
+      "course": "C3",
+      "section": "Calore entrante e lavoro uscente nel primo principio",
+      "order": 15608,
+      "title": "Lo scarto della proposta di 120 J",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "first-law-expansion",
+      "difficulty": 2,
+      "prompt": "Il sistema è chiuso e non cambia energia cinetica o potenziale macroscopica. Q>0 è energia ricevuta come calore e W>0 è lavoro compiuto dal sistema sull’ambiente. Con questa convenzione ΔU=U_f−U_i=Q−W. Q e W descrivono trasferimenti durante il processo, non proprietà dello stato. La variazione ΔU può essere positiva, nulla o negativa, secondo il bilancio. Q=100 J e W=40 J. Una soluzione propone ΔU=120 J. Quanto vale proposta meno valore corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "60 J",
+          "−60 J",
+          "120 J",
+          "0 J",
+          "30 J"
+        ],
+        "value": "60 J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La variazione corretta è sessanta joule. La proposta centoventi la supera di sessanta: lo scarto richiesto è positivo. Il numero centoventi non è il risultato della somma Q+W, che in questi dati varrebbe centoquaranta; basta confutarlo nel bilancio senza attribuirgli quell’errore diverso."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta U=60\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " e=(120-60)\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " e=60\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Meno sessanta inverte l’ordine della sottrazione; centoventi copia la proposta e zero la accetta. Trenta dimezza nuovamente lo scarto."
+        }
+      ],
+      "hints": [
+        "Ricalcola ΔU e rispetta l’ordine proposta meno corretta.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Meno sessanta inverte l’ordine della sottrazione; centoventi copia la proposta e zero la accetta. Trenta dimezza nuovamente lo scarto.",
+        "target": "C3-L06"
+      },
+      "coverage": [
+        "Trasferimenti distinti da energia di stato",
+        "Bilancio e convenzioni di segno",
+        "Inverse, rapporti e calibrazioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-first-law-expansion-09",
+      "kind": "question",
+      "course": "C3",
+      "section": "Calore entrante e lavoro uscente nel primo principio",
+      "order": 15609,
+      "title": "L’inversa simbolica del calore",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "first-law-expansion",
+      "difficulty": 2,
+      "prompt": "Il sistema è chiuso e non cambia energia cinetica o potenziale macroscopica. Q>0 è energia ricevuta come calore e W>0 è lavoro compiuto dal sistema sull’ambiente. Con questa convenzione ΔU=U_f−U_i=Q−W. Q e W descrivono trasferimenti durante il processo, non proprietà dello stato. La variazione ΔU può essere positiva, nulla o negativa, secondo il bilancio. Dati ΔU e W compatibili con Q>0, quale formula ricostruisce Q?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Q = ΔU + W",
+          "Q = ΔU − W",
+          "Q = W − ΔU",
+          "Q = 2(ΔU + W)",
+          "Q = (ΔU + W)/2"
+        ],
+        "value": "Q = ΔU + W"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Aggiungiamo W a entrambi i membri di ΔU=Q−W. Il calore è quindi ΔU+W. ΔU può anche essere negativo: allora una parte del lavoro uscente proviene dalla diminuzione di U. Per restare nel dominio di calore entrante occorre comunque ΔU+W>0."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta U+W=Q"
+        },
+        {
+          "type": "formula",
+          "text": " Q=\\Delta U+W"
+        },
+        {
+          "type": "formula",
+          "text": " Q>0\\ \\Longrightarrow\\ \\Delta U+W>0"
+        },
+        {
+          "type": "text",
+          "text": "Sottrarre W una seconda volta non annulla il termine meno del primo principio. W−ΔU cambia il segno dell’accumulo; il doppio e la metà non conservano il bilancio."
+        }
+      ],
+      "hints": [
+        "Sposta il lavoro mantenendo il significato del suo segno.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sottrarre W una seconda volta non annulla il termine meno del primo principio. W−ΔU cambia il segno dell’accumulo; il doppio e la metà non conservano il bilancio.",
+        "target": "C3-L06"
+      },
+      "coverage": [
+        "Trasferimenti distinti da energia di stato",
+        "Bilancio e convenzioni di segno",
+        "Inverse, rapporti e calibrazioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-first-law-expansion-10",
+      "kind": "question",
+      "course": "C3",
+      "section": "Calore entrante e lavoro uscente nel primo principio",
+      "order": 15610,
+      "title": "Due fattori in una differenza di energie",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "first-law-expansion",
+      "difficulty": 2,
+      "prompt": "Il sistema è chiuso e non cambia energia cinetica o potenziale macroscopica. Q>0 è energia ricevuta come calore e W>0 è lavoro compiuto dal sistema sull’ambiente. Con questa convenzione ΔU=U_f−U_i=Q−W. Q e W descrivono trasferimenti durante il processo, non proprietà dello stato. La variazione ΔU può essere positiva, nulla o negativa, secondo il bilancio. B ha Q_B=κ₁Q e W_B=κ₂W, con κ₁,κ₂>0; Q e W senza pedice sono della prova A. Si assume Q≠W per definire il rapporto. Quale formula dà ΔU_B/ΔU_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "(κ₁ Q − κ₂ W) / (Q − W)",
+          "(κ₁ Q + κ₂ W) / (Q − W)",
+          "κ₁ κ₂",
+          "(κ₁ Q − κ₂ W) / (Q + W)",
+          "(κ₂ Q − κ₁ W) / (Q − W)"
+        ],
+        "value": "(κ₁ Q − κ₂ W) / (Q − W)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il primo principio va applicato alla differenza in ciascuna prova. La variazione di A è Q−W e quella di B è κ₁Q−κ₂W. Non esiste in generale un solo fattore prodotto per una differenza con due ingressi modificati indipendentemente. Il denominatore deve essere diverso da zero; il numeratore può essere nullo o negativo senza rendere negativi Q_B o W_B."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta U_A=Q-W"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta U_B=\\kappa_1Q-\\kappa_2W"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{\\Delta U_B}{\\Delta U_A}=\\frac{\\kappa_1Q-\\kappa_2W}{Q-W}"
+        },
+        {
+          "type": "formula",
+          "text": " Q-W\\ne0"
+        },
+        {
+          "type": "text",
+          "text": "Il più al numeratore conta il lavoro uscente come entrante; Q+W al denominatore cambia la variazione di A. Il prodotto κ₁κ₂ sarebbe adatto a un prodotto di ingressi, non a questo bilancio. Scambiare i fattori li assegna alle grandezze sbagliate."
+        }
+      ],
+      "hints": [
+        "Forma prima due differenze complete e controlla il denominatore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il più al numeratore conta il lavoro uscente come entrante; Q+W al denominatore cambia la variazione di A. Il prodotto κ₁κ₂ sarebbe adatto a un prodotto di ingressi, non a questo bilancio. Scambiare i fattori li assegna alle grandezze sbagliate.",
+        "target": "C3-L06"
+      },
+      "coverage": [
+        "Trasferimenti distinti da energia di stato",
+        "Bilancio e convenzioni di segno",
+        "Inverse, rapporti e calibrazioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-first-law-expansion-11",
+      "kind": "question",
+      "course": "C3",
+      "section": "Calore entrante e lavoro uscente nel primo principio",
+      "order": 15611,
+      "title": "Confrontare due bilanci completi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "first-law-expansion",
+      "difficulty": 2,
+      "prompt": "Il sistema è chiuso e non cambia energia cinetica o potenziale macroscopica. Q>0 è energia ricevuta come calore e W>0 è lavoro compiuto dal sistema sull’ambiente. Con questa convenzione ΔU=U_f−U_i=Q−W. Q e W descrivono trasferimenti durante il processo, non proprietà dello stato. La variazione ΔU può essere positiva, nulla o negativa, secondo il bilancio. A: Q=100 J, W=40 J. B: Q=200 J, W=60 J. Quanto vale ΔU_B/ΔU_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "7/3",
+          "3/7",
+          "2",
+          "3/2",
+          "140"
+        ],
+        "value": "7/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A aumenta U di sessanta joule, B di centoquaranta. La frazione centoquaranta su sessanta si riduce dividendo per venti: sette terzi. Il rapporto non coincide né con quello dei calori né con quello dei lavori."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta U_A=60\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta U_B=140\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta U_B/\\Delta U_A=\\frac{140}{60}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{140}{60}=\\frac73"
+        },
+        {
+          "type": "text",
+          "text": "Tre settimi è il reciproco, due è Q_B/Q_A e tre mezzi è W_B/W_A. Centoquaranta è il numero di joule della variazione B, non il rapporto."
+        }
+      ],
+      "hints": [
+        "Riduci il rapporto solo dopo le due sottrazioni.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre settimi è il reciproco, due è Q_B/Q_A e tre mezzi è W_B/W_A. Centoquaranta è il numero di joule della variazione B, non il rapporto.",
+        "target": "C3-L06"
+      },
+      "coverage": [
+        "Trasferimenti distinti da energia di stato",
+        "Bilancio e convenzioni di segno",
+        "Inverse, rapporti e calibrazioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-first-law-expansion-12",
+      "kind": "question",
+      "course": "C3",
+      "section": "Calore entrante e lavoro uscente nel primo principio",
+      "order": 15612,
+      "title": "Una media che qui conserva il bilancio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "first-law-expansion",
+      "difficulty": 2,
+      "prompt": "Il sistema è chiuso e non cambia energia cinetica o potenziale macroscopica. Q>0 è energia ricevuta come calore e W>0 è lavoro compiuto dal sistema sull’ambiente. Con questa convenzione ΔU=U_f−U_i=Q−W. Q e W descrivono trasferimenti durante il processo, non proprietà dello stato. La variazione ΔU può essere positiva, nulla o negativa, secondo il bilancio. A: Q=100 J, W=40 J. B: Q=200 J, W=60 J. Qual è la media aritmetica dei due ΔU con uguale peso?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "100 J",
+          "200 J",
+          "50 J",
+          "80 J",
+          "150 J"
+        ],
+        "value": "100 J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le variazioni sono sessanta e centoquaranta joule. La semisomma è cento joule. Qui si può anche fare la differenza fra il calore medio centocinquanta e il lavoro medio cinquanta: il bilancio è lineare e dà lo stesso risultato. Questa proprietà non si estende automaticamente a modelli con prodotti o quadrati."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline{\\Delta U}=\\frac{60+140}{2}\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline{\\Delta U}=100\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline Q-\\overline W=(150-50)\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Duecento è la somma, cinquanta dimezza ancora e ottanta è la differenza delle uscite. Centocinquanta è il solo calore medio, prima di togliere il lavoro medio."
+        }
+      ],
+      "hints": [
+        "Calcola le due variazioni; verifica poi la linearità della differenza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Duecento è la somma, cinquanta dimezza ancora e ottanta è la differenza delle uscite. Centocinquanta è il solo calore medio, prima di togliere il lavoro medio.",
+        "target": "C3-L06"
+      },
+      "coverage": [
+        "Trasferimenti distinti da energia di stato",
+        "Bilancio e convenzioni di segno",
+        "Inverse, rapporti e calibrazioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-first-law-expansion-13",
+      "kind": "question",
+      "course": "C3",
+      "section": "Calore entrante e lavoro uscente nel primo principio",
+      "order": 15613,
+      "title": "Il lavoro compatibile con il bersaglio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "first-law-expansion",
+      "difficulty": 3,
+      "prompt": "Il sistema è chiuso e non cambia energia cinetica o potenziale macroscopica. Q>0 è energia ricevuta come calore e W>0 è lavoro compiuto dal sistema sull’ambiente. Con questa convenzione ΔU=U_f−U_i=Q−W. Q e W descrivono trasferimenti durante il processo, non proprietà dello stato. La variazione ΔU può essere positiva, nulla o negativa, secondo il bilancio. A ha Q=100 J, W_A=40 J. B riceve Q_B=200 J e deve avere ΔU_B=(7/3)ΔU_A. Quanto vale W_B/W_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/2",
+          "2/3",
+          "7/3",
+          "2",
+          "60"
+        ],
+        "value": "3/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio per ΔU è sette terzi di sessanta joule, cioè centoquaranta. Da duecento joule entranti togliamo questo aumento e rimangono sessanta joule di lavoro. Il rapporto sessanta su quaranta è tre mezzi e soddisfa W_B>0."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta U_B=140\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " W_B=Q_B-\\Delta U_B"
+        },
+        {
+          "type": "formula",
+          "text": " W_B=60\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " W_B/W_A=\\frac32"
+        },
+        {
+          "type": "text",
+          "text": "Due terzi è il reciproco; sette terzi copia il bersaglio della variazione interna. Due darebbe W_B=80 J e quindi ΔU_B=120 J. Sessanta è un lavoro in joule, non il rapporto adimensionale."
+        }
+      ],
+      "hints": [
+        "Prima ricostruisci la variazione bersaglio, poi usa il bilancio inverso.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due terzi è il reciproco; sette terzi copia il bersaglio della variazione interna. Due darebbe W_B=80 J e quindi ΔU_B=120 J. Sessanta è un lavoro in joule, non il rapporto adimensionale.",
+        "target": "C3-L06"
+      },
+      "coverage": [
+        "Trasferimenti distinti da energia di stato",
+        "Bilancio e convenzioni di segno",
+        "Inverse, rapporti e calibrazioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-first-law-expansion-14",
+      "kind": "question",
+      "course": "C3",
+      "section": "Calore entrante e lavoro uscente nel primo principio",
+      "order": 15614,
+      "title": "Tarare una misura della variazione interna",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "first-law-expansion",
+      "difficulty": 3,
+      "prompt": "Il sistema è chiuso e non cambia energia cinetica o potenziale macroscopica. Q>0 è energia ricevuta come calore e W>0 è lavoro compiuto dal sistema sull’ambiente. Con questa convenzione ΔU=U_f−U_i=Q−W. Q e W descrivono trasferimenti durante il processo, non proprietà dello stato. La variazione ΔU può essere positiva, nulla o negativa, secondo il bilancio. S=qΔU è continuo e adimensionale, con q>0. A con Q=100 J, W=40 J dà S=180. B dà S=420 e compie W=60 J. Quanto vale Q_B in J?",
+      "answer": {
+        "type": "numeric",
+        "value": 200,
+        "unit": "J",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento ha ΔU=60 J e fissa q=3 J⁻¹. La nuova lettura corrisponde a centoquaranta joule di aumento interno. Il calore deve fornire anche i sessanta joule di lavoro: il totale entrante è duecento joule."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta U_A=60\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " q=3\\,\\mathrm{J^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta U_B=140\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B=\\Delta U_B+W_B"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B=200\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Centoquaranta omette l’energia uscita come lavoro. Usare S=420 come joule e sommare sessanta darebbe 480 J, ignorando il guadagno. La calibrazione si riferisce a ΔU e non direttamente a Q."
+        }
+      ],
+      "hints": [
+        "Decodifica ΔU dal display prima di ricostruire il calore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Centoquaranta omette l’energia uscita come lavoro. Usare S=420 come joule e sommare sessanta darebbe 480 J, ignorando il guadagno. La calibrazione si riferisce a ΔU e non direttamente a Q.",
+        "target": "C3-L06"
+      },
+      "coverage": [
+        "Trasferimenti distinti da energia di stato",
+        "Bilancio e convenzioni di segno",
+        "Inverse, rapporti e calibrazioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-first-law-expansion-15",
+      "kind": "question",
+      "course": "C3",
+      "section": "Calore entrante e lavoro uscente nel primo principio",
+      "order": 15615,
+      "title": "Un offset nella misura del bilancio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "first-law-expansion",
+      "difficulty": 3,
+      "prompt": "Il sistema è chiuso e non cambia energia cinetica o potenziale macroscopica. Q>0 è energia ricevuta come calore e W>0 è lavoro compiuto dal sistema sull’ambiente. Con questa convenzione ΔU=U_f−U_i=Q−W. Q e W descrivono trasferimenti durante il processo, non proprietà dello stato. La variazione ΔU può essere positiva, nulla o negativa, secondo il bilancio. S=qΔU+b è continuo e adimensionale. A: Q=100 J, W=40 J, S=121. B: Q=200 J, W=60 J, S=281. C: W=40 J, S=321. Quanto vale Q_C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "200 J",
+          "160 J",
+          "100 J",
+          "400 J",
+          "401/2 J"
+        ],
+        "value": "200 J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le variazioni dei riferimenti sono sessanta e centoquaranta joule. La differenza centosessanta delle letture su ottanta joule dà q=2 J⁻¹; poi b=1. C equivale a centosessanta joule di aumento di U. Aggiungendo i quaranta joule di lavoro si ricavano duecento joule entranti come calore."
+        },
+        {
+          "type": "formula",
+          "text": "q=\\frac{281-121}{(140-60)\\,\\mathrm J}"
+        },
+        {
+          "type": "formula",
+          "text": " q=2\\,\\mathrm{J^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta U_C=160\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " Q_C=160\\,\\mathrm J+40\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " Q_C=200\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Centosessanta è l’aumento interno prima di aggiungere W. Cento J darebbero S=121 e quattrocento J S=721. 401/2 J omette l’offset e ricostruisce S=322 invece di 321."
+        }
+      ],
+      "hints": [
+        "Ricava prima q e b, poi l’accumulo e infine l’entrata totale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Centosessanta è l’aumento interno prima di aggiungere W. Cento J darebbero S=121 e quattrocento J S=721. 401/2 J omette l’offset e ricostruisce S=322 invece di 321.",
+        "target": "C3-L06"
+      },
+      "coverage": [
+        "Trasferimenti distinti da energia di stato",
+        "Bilancio e convenzioni di segno",
+        "Inverse, rapporti e calibrazioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-first-law-expansion-16",
+      "kind": "question",
+      "course": "C3",
+      "section": "Calore entrante e lavoro uscente nel primo principio",
+      "order": 15616,
+      "title": "Un vincolo fra calore e lavoro",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "first-law-expansion",
+      "difficulty": 3,
+      "prompt": "Il sistema è chiuso e non cambia energia cinetica o potenziale macroscopica. Q>0 è energia ricevuta come calore e W>0 è lavoro compiuto dal sistema sull’ambiente. Con questa convenzione ΔU=U_f−U_i=Q−W. Q e W descrivono trasferimenti durante il processo, non proprietà dello stato. La variazione ΔU può essere positiva, nulla o negativa, secondo il bilancio. Si sceglie Q=(5/2)W e si misura ΔU=60 J. Quanto vale W>0?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "40 J",
+          "−40 J",
+          "60 J",
+          "100 J",
+          "24 J"
+        ],
+        "value": "40 J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituendo Q nel bilancio resta ΔU=(5/2)W−W=(3/2)W. Per isolare il lavoro moltiplichiamo sessanta per due terzi e otteniamo quaranta joule. Il calore corrispondente è cento joule: entrambi i trasferimenti rispettano i versi assegnati."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta U=\\frac52W-W"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta U=\\frac32W"
+        },
+        {
+          "type": "formula",
+          "text": " W=\\frac23\\Delta U"
+        },
+        {
+          "type": "formula",
+          "text": " W=40\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " Q=100\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Meno quaranta viola W>0. Sessanta copia ΔU e cento copia Q. Ventiquattro divide per cinque mezzi anziché per il coefficiente tre mezzi che rimane dopo la sottrazione."
+        }
+      ],
+      "hints": [
+        "Combina i due termini in W prima di applicare l’inversa.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Meno quaranta viola W>0. Sessanta copia ΔU e cento copia Q. Ventiquattro divide per cinque mezzi anziché per il coefficiente tre mezzi che rimane dopo la sottrazione.",
+        "target": "C3-L06"
+      },
+      "coverage": [
+        "Trasferimenti distinti da energia di stato",
+        "Bilancio e convenzioni di segno",
+        "Inverse, rapporti e calibrazioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "c524da679ac274a11f3575db2707e3e46b178a2539d1a5ec195ddc7b3793eb76",
+      "name": "first-law-expansion-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTEyMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgo8dGl0bGUgaWQ9InRpdGxlIj5QcmltbyBwcmluY2lwaW8sIGVudHJhdGEgdXNjaXRhIGUgYWNjdW11bG88L3RpdGxlPgo8ZGVzYyBpZD0iZGVzYyI+SWwgc2lzdGVtYSByaWNldmUgY2VudG8gam91bGUgY29tZSBjYWxvcmUgZSBjZWRlIHF1YXJhbnRhIGpvdWxlIGNvbWUgbGF2b3JvLCBjb24gYXVtZW50byBkaSBlbmVyZ2lhIGludGVybmEgZGkgc2Vzc2FudGEgam91bGUuIExhIHJpcGFydGl6aW9uZSBlbmVyZ2V0aWNhIMOoIG1vc3RyYXRhIGluIHVuYSBiYXJyYS4gTmVsIGNvbmZyb250byBmcmEgcHJvdmUgbGUgdmFyaWF6aW9uaSBzZXNzYW50YSBlIGNlbnRvcXVhcmFudGEgam91bGUgaGFubm8gbWVkaWEgY2VudG8gam91bGUuPC9kZXNjPgo8ZGVmcz48bWFya2VyIGlkPSJhcnJvdyIgbWFya2VyV2lkdGg9IjgiIG1hcmtlckhlaWdodD0iOCIgcmVmWD0iNyIgcmVmWT0iNCIgb3JpZW50PSJhdXRvIj48cGF0aCBkPSJNMCAwTDggNEwwIDhaIiBmaWxsPSIjMTY1YTg3Ii8+PC9tYXJrZXI+PC9kZWZzPgo8cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjExMjAiIHJ4PSIxMiIgZmlsbD0iI2Y4ZmFmYyIvPgo8ZyBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzE0MjQzYSI+Cjx0ZXh0IHg9IjMyIiB5PSI0MiIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9ImJvbGQiPjEgwrcgU2NlZ2xpZXJlIGlsIGNvbmZpbmUgZSBpIHNlZ25pPC90ZXh0Pgo8cmVjdCB4PSIyNjAiIHk9IjEwMCIgd2lkdGg9IjE2MCIgaGVpZ2h0PSIxNjAiIHJ4PSI4IiBmaWxsPSIjZTZmMWU5IiBzdHJva2U9IiMxNDI0M2EiIHN0cm9rZS13aWR0aD0iMyIvPgo8dGV4dCB4PSIyODYiIHk9IjEzOSI+U2lzdGVtYTwvdGV4dD48dGV4dCB4PSIyODIiIHk9IjE5MyI+zpRVID0gNjAgSjwvdGV4dD4KPHBhdGggZD0iTTUwIDE2NUgyNTAiIHN0cm9rZT0iIzE2NWE4NyIgc3Ryb2tlLXdpZHRoPSI0IiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPgo8cGF0aCBkPSJNNDMwIDIxNUg1MTAiIHN0cm9rZT0iIzE2NWE4NyIgc3Ryb2tlLXdpZHRoPSI0IiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPgo8dGV4dCB4PSI2MiIgeT0iMTM5Ij5RID0gMTAwIEo8L3RleHQ+PHRleHQgeD0iNDQzIiB5PSIxODgiPlcgPSA0MCBKPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iMzA2IiBmb250LXNpemU9IjE4Ij5RIGVudHJhbnRlIHBvc2l0aXZvOyBXIHVzY2VudGUgcG9zaXRpdm8uPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iMzQwIiBmb250LXNpemU9IjE4Ij5GcmVjY2Ugc2NoZW1hdGljaGUuIM6UVSA9IFEg4oiSIFcuPC90ZXh0Pgo8cGF0aCBkPSJNMzIgMzcxSDYwOCIgc3Ryb2tlPSIjOWJhYmJjIi8+Cjx0ZXh0IHg9IjMyIiB5PSI0MTciIGZvbnQtc2l6ZT0iMjUiIGZvbnQtd2VpZ2h0PSJib2xkIj4yIMK3IFVuYSBzb2xhIGNvbnRhYmlsaXTDoCBlbmVyZ2V0aWNhPC90ZXh0Pgo8cmVjdCB4PSI5MCIgeT0iNDU2IiB3aWR0aD0iNTAwIiBoZWlnaHQ9IjQ0IiBmaWxsPSIjMTQyNDNhIi8+PHRleHQgeD0iMjc2IiB5PSI0ODYiIGZpbGw9IiNmZmYiPlEgPSAxMDAgSjwvdGV4dD4KPHJlY3QgeD0iOTAiIHk9IjUzNiIgd2lkdGg9IjMwMCIgaGVpZ2h0PSI1MiIgZmlsbD0iIzI4NjY0ZCIvPgo8cmVjdCB4PSIzOTAiIHk9IjUzNiIgd2lkdGg9IjIwMCIgaGVpZ2h0PSI1MiIgZmlsbD0iIzE2NWE4NyIvPgo8dGV4dCB4PSIxNjEiIHk9IjU3MCIgZmlsbD0iI2ZmZiI+zpRVID0gNjAgSjwvdGV4dD48dGV4dCB4PSI0MjYiIHk9IjU3MCIgZmlsbD0iI2ZmZiI+VyA9IDQwIEo8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI2MzUiPjEwMCBKIOKIkiA0MCBKID0gNjAgSjwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjY3MCIgZm9udC1zaXplPSIxOCI+QmFycmUgYSA1IHB4L0o6IGVudHJhdGEgPSBhY2N1bXVsbyArIHVzY2l0YS48L3RleHQ+CjxwYXRoIGQ9Ik0zMiA3MDNINjA4IiBzdHJva2U9IiM5YmFiYmMiLz4KPHRleHQgeD0iMzIiIHk9Ijc0OSIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9ImJvbGQiPjMgwrcgRHVlIHByb3ZlIGUgbGEgbG9ybyBtZWRpYTwvdGV4dD4KPHRleHQgeD0iNTAiIHk9IjgxNSI+QTwvdGV4dD48cmVjdCB4PSIxMzAiIHk9Ijc5MiIgd2lkdGg9IjE4MCIgaGVpZ2h0PSIzMiIgZmlsbD0iIzE2NWE4NyIvPjx0ZXh0IHg9IjMyNyIgeT0iODE1Ij42MCBKPC90ZXh0Pgo8dGV4dCB4PSI1MCIgeT0iODc1Ij5CPC90ZXh0PjxyZWN0IHg9IjEzMCIgeT0iODUyIiB3aWR0aD0iNDIwIiBoZWlnaHQ9IjMyIiBmaWxsPSIjMTY1YTg3Ii8+PHRleHQgeD0iNTY2IiB5PSI4NzUiPjE0MCBKPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iOTM1Ij5NZWRpYTwvdGV4dD48cmVjdCB4PSIxMzAiIHk9IjkxMiIgd2lkdGg9IjMwMCIgaGVpZ2h0PSIzMiIgZmlsbD0iIzI4NjY0ZCIvPjx0ZXh0IHg9IjQ0NyIgeT0iOTM1Ij4xMDAgSjwvdGV4dD4KPHRleHQgeD0iMzIiIHk9Ijk4OCI+TWVkaWEgzpRVID0gKDYwICsgMTQwKSBKIC8gMiA9IDEwMCBKPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iMTAzMCIgZm9udC1zaXplPSIxOCI+QmFycmUgYSAzIHB4L0ouIE1lZGlhIFEgPSAxNTAgSjsgbWVkaWEgVyA9IDUwIEouPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iMTA2NSIgZm9udC1zaXplPSIxOCI+TGEgZGlmZmVyZW56YSBsaW5lYXJlIGNvbnNlcnZhIHF1ZXN0YSBtZWRpYS48L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIxMDk5IiBmb250LXNpemU9IjE4Ij5VIGRlc2NyaXZlIGxvIHN0YXRvOyBRIGUgVyBkZXNjcml2b25vIGlsIHByb2Nlc3NvLjwvdGV4dD4KPC9nPjwvc3ZnPgo="
+    }
+  ]
+}

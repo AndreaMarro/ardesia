@@ -1,0 +1,1245 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u5-free-expansion-pressure-01",
+      "kind": "question",
+      "course": "C3",
+      "section": "Espansione libera del gas ideale isolato",
+      "order": 16601,
+      "title": "Più volume senza raffreddamento ideale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L06",
+        "C3-L07",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "free-expansion-pressure",
+      "difficulty": 1,
+      "prompt": "Un gas ideale chiuso occupa inizialmente un comparto rigido V₀=1 L, a pressione assoluta p₁>0. Un comparto adiacente V_v>0 è inizialmente vuoto. Il recipiente totale è isolato e rigido: si rimuove il setto e si attende il nuovo equilibrio, senza scambi di materia o altri lavori e senza variazioni finali di energia cinetica o potenziale macroscopica. Il gas si espande irreversibilmente nel vuoto: Q=0, W=0, ΔU=0 e, per il gas ideale, T_f=T₁>0. Quindi p_f=p₁V₀/(V₀+V_v). Le pressioni sono in kPa e i volumi in L, salvo conversione esplicita. Con p₁=100 kPa e V_v=1 L, quanto vale p_f in kPa?",
+      "answer": {
+        "type": "numeric",
+        "value": 50,
+        "unit": "kPa",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il vuoto non oppone una pressione esterna al gas e il confine esterno del recipiente non si sposta: non esce lavoro. L’isolamento annulla il calore entrante, quindi l’energia interna rimane uguale. Per il gas ideale ciò conserva la temperatura fra i due equilibri. A parità di moli e temperatura, raddoppiare il volume dimezza la pressione: da cento a cinquanta kilopascal."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/8d197aff47e6391c775f5f38c8528dc2b5ce4a58d604b2281d74e5faa9d81397",
+          "text": "Tre passaggi: il gas iniziale occupa metà del recipiente mentre l’altra metà è vuota; rimosso il setto, occupa il doppio del volume alla stessa temperatura finale del gas ideale. I rettangoli mantengono la stessa altezza e scala geometrica. Le barre finali di 100 kPa e 50 kPa condividono origine e scala 3 px/kPa. La sequenza dei pannelli descrive il passaggio fra equilibri, non un percorso reversibile."
+        },
+        {
+          "type": "formula",
+          "text": "Q=W"
+        },
+        {
+          "type": "formula",
+          "text": "W=0"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta U=0"
+        },
+        {
+          "type": "formula",
+          "text": " T_f=T_1"
+        },
+        {
+          "type": "formula",
+          "text": " V_f=V_0+V_v"
+        },
+        {
+          "type": "formula",
+          "text": "V_0+V_v=2\\,\\mathrm L"
+        },
+        {
+          "type": "formula",
+          "text": " p_f=\\frac{100\\cdot1}{2}\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " p_f=50\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "text",
+          "text": "Cento kPa ignorerebbe il volume reso accessibile. La formula reversibile pV^γ=costante non si applica: questo processo non attraversa una successione di equilibri reversibili. Non si calcola il lavoro con la pressione iniziale interna moltiplicata per il volume aggiunto."
+        }
+      ],
+      "hints": [
+        "Applica prima il bilancio energetico al recipiente isolato e rigido.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Cento kPa ignorerebbe il volume reso accessibile. La formula reversibile pV^γ=costante non si applica: questo processo non attraversa una successione di equilibri reversibili. Non si calcola il lavoro con la pressione iniziale interna moltiplicata per il volume aggiunto.",
+        "target": "C3-L07"
+      },
+      "coverage": [
+        "Primo principio e irreversibilità",
+        "Volume totale e pressione assoluta",
+        "Inverse, medie e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-free-expansion-pressure-02",
+      "kind": "question",
+      "course": "C3",
+      "section": "Espansione libera del gas ideale isolato",
+      "order": 16602,
+      "title": "Il rapporto volumico è adimensionale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L06",
+        "C3-L07",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "free-expansion-pressure",
+      "difficulty": 1,
+      "prompt": "Un gas ideale chiuso occupa inizialmente un comparto rigido V₀=1 L, a pressione assoluta p₁>0. Un comparto adiacente V_v>0 è inizialmente vuoto. Il recipiente totale è isolato e rigido: si rimuove il setto e si attende il nuovo equilibrio, senza scambi di materia o altri lavori e senza variazioni finali di energia cinetica o potenziale macroscopica. Il gas si espande irreversibilmente nel vuoto: Q=0, W=0, ΔU=0 e, per il gas ideale, T_f=T₁>0. Quindi p_f=p₁V₀/(V₀+V_v). Le pressioni sono in kPa e i volumi in L, salvo conversione esplicita. Quale unità misura p_f?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "kPa",
+          "L",
+          "J",
+          "K",
+          "kPa/L"
+        ],
+        "value": "kPa"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "V₀ e V₀+V_v sono volumi e devono essere espressi nella stessa unità; il loro rapporto non porta unità. Rimane quella di p₁, qui kilopascal. La scelta dei litri non altera il rapporto purché sia coerente in entrambi i termini."
+        },
+        {
+          "type": "formula",
+          "text": "\\left[\\frac{V_0}{V_0+V_v}\\right]=1"
+        },
+        {
+          "type": "formula",
+          "text": " [p_f]=[p_1]"
+        },
+        {
+          "type": "formula",
+          "text": "[p_1]=\\mathrm{kPa}"
+        },
+        {
+          "type": "text",
+          "text": "L misura il volume, J energia e K temperatura. kPa/L comparirebbe dividendo per un volume senza il corrispondente fattore V₀ al numeratore."
+        }
+      ],
+      "hints": [
+        "Cancella le unità dei volumi prima di leggere quella finale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "L misura il volume, J energia e K temperatura. kPa/L comparirebbe dividendo per un volume senza il corrispondente fattore V₀ al numeratore.",
+        "target": "C3-L07"
+      },
+      "coverage": [
+        "Primo principio e irreversibilità",
+        "Volume totale e pressione assoluta",
+        "Inverse, medie e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-free-expansion-pressure-03",
+      "kind": "question",
+      "course": "C3",
+      "section": "Espansione libera del gas ideale isolato",
+      "order": 16603,
+      "title": "La temperatura resta, l’entropia aumenta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L02",
+        "C3-L06",
+        "C3-L07",
+        "C3-L09",
+        "C3-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "free-expansion-pressure",
+      "difficulty": 1,
+      "prompt": "Un gas ideale chiuso occupa inizialmente un comparto rigido V₀=1 L, a pressione assoluta p₁>0. Un comparto adiacente V_v>0 è inizialmente vuoto. Il recipiente totale è isolato e rigido: si rimuove il setto e si attende il nuovo equilibrio, senza scambi di materia o altri lavori e senza variazioni finali di energia cinetica o potenziale macroscopica. Il gas si espande irreversibilmente nel vuoto: Q=0, W=0, ΔU=0 e, per il gas ideale, T_f=T₁>0. Quindi p_f=p₁V₀/(V₀+V_v). Le pressioni sono in kPa e i volumi in L, salvo conversione esplicita. Quale coppia di variazioni del gas fra i due equilibri è corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "ΔT = 0 e ΔS > 0",
+          "ΔT < 0 e ΔS = 0",
+          "ΔT = 0 e ΔS = 0",
+          "ΔT > 0 e ΔS < 0",
+          "ΔT < 0 e ΔS < 0"
+        ],
+        "value": "ΔT = 0 e ΔS > 0"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il primo principio annulla ΔU perché calore e lavoro esterni sono nulli. Per un gas ideale l’energia interna dipende dalla temperatura, quindi ΔT=0. Il processo è però irreversibile: il gas acquista volume accessibile e la sua entropia aumenta. Per calcolare questa variazione di stato si può immaginare un percorso reversibile isotermo fra gli stessi estremi, senza attribuire quel percorso al processo reale. Nella formula, n>0 indica le moli del campione e R la costante universale dei gas."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/8d197aff47e6391c775f5f38c8528dc2b5ce4a58d604b2281d74e5faa9d81397",
+          "text": "Il confine esterno rigido e isolato racchiude entrambi i comparti. I punti sono simboli del gas e non un conteggio di molecole o di probabilità. L’uguaglianza delle temperature riguarda gli equilibri estremi; il transitorio è irreversibile e l’entropia aumenta pur con Q=0."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta U=Q-W"
+        },
+        {
+          "type": "formula",
+          "text": "Q-W=0"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta T=0"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta S=nR\\ln\\!\\left(\\frac{V_0+V_v}{V_0}\\right)"
+        },
+        {
+          "type": "formula",
+          "text": " V_v>0\\Rightarrow\\Delta S>0"
+        },
+        {
+          "type": "text",
+          "text": "Adiabatico significa Q=0, non ΔS=0: l’entropia resta costante solo nell’adiabatica reversibile. Il raffreddamento è proprio di altre espansioni, per esempio quella reversibile adiabatica con lavoro uscente. Qui non si assume una temperatura uniforme durante ogni istante del transitorio."
+        }
+      ],
+      "hints": [
+        "Distingui bilancio di energia ed entropia prodotta irreversibilmente.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Adiabatico significa Q=0, non ΔS=0: l’entropia resta costante solo nell’adiabatica reversibile. Il raffreddamento è proprio di altre espansioni, per esempio quella reversibile adiabatica con lavoro uscente. Qui non si assume una temperatura uniforme durante ogni istante del transitorio.",
+        "target": "C3-L10"
+      },
+      "coverage": [
+        "Primo principio e irreversibilità",
+        "Volume totale e pressione assoluta",
+        "Inverse, medie e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-free-expansion-pressure-04",
+      "kind": "question",
+      "course": "C3",
+      "section": "Espansione libera del gas ideale isolato",
+      "order": 16604,
+      "title": "Raddoppiare la pressione preparata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L06",
+        "C3-L07",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "free-expansion-pressure",
+      "difficulty": 1,
+      "prompt": "Un gas ideale chiuso occupa inizialmente un comparto rigido V₀=1 L, a pressione assoluta p₁>0. Un comparto adiacente V_v>0 è inizialmente vuoto. Il recipiente totale è isolato e rigido: si rimuove il setto e si attende il nuovo equilibrio, senza scambi di materia o altri lavori e senza variazioni finali di energia cinetica o potenziale macroscopica. Il gas si espande irreversibilmente nel vuoto: Q=0, W=0, ΔU=0 e, per il gas ideale, T_f=T₁>0. Quindi p_f=p₁V₀/(V₀+V_v). Le pressioni sono in kPa e i volumi in L, salvo conversione esplicita. In due prove con V_v=1 L, p₁ passa da 100 a 200 kPa. Come cambia p_f?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 50 a 100 kPa",
+          "Resta 50 kPa",
+          "Da 50 a 25 kPa",
+          "Da 50 a 200 kPa",
+          "Diventa zero"
+        ],
+        "value": "Da 50 a 100 kPa"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il volume finale resta il doppio di quello iniziale in entrambe le prove. Il fattore geometrico è quindi sempre un mezzo. Applicato alle due pressioni preparate separatamente dà cinquanta e cento kilopascal: la pressione finale raddoppia."
+        },
+        {
+          "type": "formula",
+          "text": "V_0/(V_0+V_v)=1/2"
+        },
+        {
+          "type": "formula",
+          "text": " p_{f,A}=50\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " p_{f,B}=100\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "text",
+          "text": "Venticinque kPa renderebbe inversa la dipendenza da p₁. Duecento ripeterebbe la nuova pressione iniziale senza espansione; zero richiederebbe un limite di volume finale infinito, non i due litri assegnati."
+        }
+      ],
+      "hints": [
+        "Mantieni fisso il rapporto geometrico e applicalo a ciascun p₁.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Venticinque kPa renderebbe inversa la dipendenza da p₁. Duecento ripeterebbe la nuova pressione iniziale senza espansione; zero richiederebbe un limite di volume finale infinito, non i due litri assegnati.",
+        "target": "C3-L07"
+      },
+      "coverage": [
+        "Primo principio e irreversibilità",
+        "Volume totale e pressione assoluta",
+        "Inverse, medie e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-free-expansion-pressure-05",
+      "kind": "question",
+      "course": "C3",
+      "section": "Espansione libera del gas ideale isolato",
+      "order": 16605,
+      "title": "La pressione prima della rimozione del setto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L06",
+        "C3-L07",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "free-expansion-pressure",
+      "difficulty": 2,
+      "prompt": "Un gas ideale chiuso occupa inizialmente un comparto rigido V₀=1 L, a pressione assoluta p₁>0. Un comparto adiacente V_v>0 è inizialmente vuoto. Il recipiente totale è isolato e rigido: si rimuove il setto e si attende il nuovo equilibrio, senza scambi di materia o altri lavori e senza variazioni finali di energia cinetica o potenziale macroscopica. Il gas si espande irreversibilmente nel vuoto: Q=0, W=0, ΔU=0 e, per il gas ideale, T_f=T₁>0. Quindi p_f=p₁V₀/(V₀+V_v). Le pressioni sono in kPa e i volumi in L, salvo conversione esplicita. Si misura p_f=50 kPa e si conosce V_v=1 L. Quanto vale p₁ in kPa?",
+      "answer": {
+        "type": "numeric",
+        "value": 100,
+        "unit": "kPa",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il volume finale è due volte quello iniziale; per ricostruire la pressione precedente all’espansione moltiplichiamo la finale per due. Cinquanta kilopascal diventano cento. La pressione iniziale deve essere maggiore della finale perché il volume aggiunto è positivo."
+        },
+        {
+          "type": "formula",
+          "text": "p_1=p_f\\frac{V_0+V_v}{V_0}"
+        },
+        {
+          "type": "formula",
+          "text": " p_1=50\\cdot2\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " p_1=100\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "text",
+          "text": "Dividere ancora per due darebbe 25 kPa, minore di p_f e incompatibile con l’espansione descritta. Cinquanta ignora che il volume è aumentato."
+        }
+      ],
+      "hints": [
+        "Inverti il fattore volumico, non il bilancio di energia.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dividere ancora per due darebbe 25 kPa, minore di p_f e incompatibile con l’espansione descritta. Cinquanta ignora che il volume è aumentato.",
+        "target": "C3-L07"
+      },
+      "coverage": [
+        "Primo principio e irreversibilità",
+        "Volume totale e pressione assoluta",
+        "Inverse, medie e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-free-expansion-pressure-06",
+      "kind": "question",
+      "course": "C3",
+      "section": "Espansione libera del gas ideale isolato",
+      "order": 16606,
+      "title": "Il volume che era vuoto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L06",
+        "C3-L07",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "free-expansion-pressure",
+      "difficulty": 2,
+      "prompt": "Un gas ideale chiuso occupa inizialmente un comparto rigido V₀=1 L, a pressione assoluta p₁>0. Un comparto adiacente V_v>0 è inizialmente vuoto. Il recipiente totale è isolato e rigido: si rimuove il setto e si attende il nuovo equilibrio, senza scambi di materia o altri lavori e senza variazioni finali di energia cinetica o potenziale macroscopica. Il gas si espande irreversibilmente nel vuoto: Q=0, W=0, ΔU=0 e, per il gas ideale, T_f=T₁>0. Quindi p_f=p₁V₀/(V₀+V_v). Le pressioni sono in kPa e i volumi in L, salvo conversione esplicita. p₁=100 kPa e p_f=50 kPa. Quanto vale V_v in L?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "L",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dal rapporto delle pressioni ricaviamo che il volume finale è due volte V₀. Quel volume comprende sia il comparto inizialmente occupato sia quello vuoto. Togliendo il primo litro dai due finali otteniamo un litro inizialmente vuoto. L’inversa richiede 0<p_f<p₁ per dare V_v>0."
+        },
+        {
+          "type": "formula",
+          "text": "V_0+V_v=V_0p_1/p_f"
+        },
+        {
+          "type": "formula",
+          "text": " V_v=V_0(p_1/p_f-1)"
+        },
+        {
+          "type": "formula",
+          "text": " V_v=(1\\,\\mathrm L)(2-1)"
+        },
+        {
+          "type": "formula",
+          "text": " V_v=1\\,\\mathrm L"
+        },
+        {
+          "type": "text",
+          "text": "Due L è il volume totale finale, non il solo comparto vuoto. Un valore negativo descriverebbe un volume rimosso, fuori dal modello. La differenza di pressioni da sola non ha unità di volume."
+        }
+      ],
+      "hints": [
+        "Ricava prima V_f, poi sottrai V₀.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due L è il volume totale finale, non il solo comparto vuoto. Un valore negativo descriverebbe un volume rimosso, fuori dal modello. La differenza di pressioni da sola non ha unità di volume.",
+        "target": "C3-L07"
+      },
+      "coverage": [
+        "Primo principio e irreversibilità",
+        "Volume totale e pressione assoluta",
+        "Inverse, medie e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-free-expansion-pressure-07",
+      "kind": "question",
+      "course": "C3",
+      "section": "Espansione libera del gas ideale isolato",
+      "order": 16607,
+      "title": "Aggiungere tre litri anziché uno",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L06",
+        "C3-L07",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "free-expansion-pressure",
+      "difficulty": 2,
+      "prompt": "Un gas ideale chiuso occupa inizialmente un comparto rigido V₀=1 L, a pressione assoluta p₁>0. Un comparto adiacente V_v>0 è inizialmente vuoto. Il recipiente totale è isolato e rigido: si rimuove il setto e si attende il nuovo equilibrio, senza scambi di materia o altri lavori e senza variazioni finali di energia cinetica o potenziale macroscopica. Il gas si espande irreversibilmente nel vuoto: Q=0, W=0, ΔU=0 e, per il gas ideale, T_f=T₁>0. Quindi p_f=p₁V₀/(V₀+V_v). Le pressioni sono in kPa e i volumi in L, salvo conversione esplicita. p₁=100 kPa in entrambe le prove. A ha V_v=1 L, B ha V_v=3 L. Quanto vale p_f,B/p_f,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "1/3",
+          "3",
+          "2",
+          "1"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A termina in due litri a cinquanta kilopascal. B termina in quattro litri a venticinque kilopascal. Il rapporto venticinque su cinquanta è un mezzo. V_v triplica, ma la pressione dipende dal volume totale V₀+V_v, che qui soltanto raddoppia."
+        },
+        {
+          "type": "formula",
+          "text": "V_{f,A}=2\\,\\mathrm L"
+        },
+        {
+          "type": "formula",
+          "text": " V_{f,B}=4\\,\\mathrm L"
+        },
+        {
+          "type": "formula",
+          "text": " p_{f,A}=50\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " p_{f,B}=25\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " p_{f,B}/p_{f,A}=1/2"
+        },
+        {
+          "type": "text",
+          "text": "Un terzo usa solo il volume vuoto e dimentica il litro iniziale. Due inverte il rapporto delle pressioni; tre trasforma una dipendenza inversa nel volume totale in una diretta nel solo V_v."
+        }
+      ],
+      "hints": [
+        "Somma sempre V₀ al volume vuoto prima di confrontare.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un terzo usa solo il volume vuoto e dimentica il litro iniziale. Due inverte il rapporto delle pressioni; tre trasforma una dipendenza inversa nel volume totale in una diretta nel solo V_v.",
+        "target": "C3-L07"
+      },
+      "coverage": [
+        "Primo principio e irreversibilità",
+        "Volume totale e pressione assoluta",
+        "Inverse, medie e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-free-expansion-pressure-08",
+      "kind": "question",
+      "course": "C3",
+      "section": "Espansione libera del gas ideale isolato",
+      "order": 16608,
+      "title": "Lo scarto della pressione non aggiornata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L06",
+        "C3-L07",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "free-expansion-pressure",
+      "difficulty": 2,
+      "prompt": "Un gas ideale chiuso occupa inizialmente un comparto rigido V₀=1 L, a pressione assoluta p₁>0. Un comparto adiacente V_v>0 è inizialmente vuoto. Il recipiente totale è isolato e rigido: si rimuove il setto e si attende il nuovo equilibrio, senza scambi di materia o altri lavori e senza variazioni finali di energia cinetica o potenziale macroscopica. Il gas si espande irreversibilmente nel vuoto: Q=0, W=0, ΔU=0 e, per il gas ideale, T_f=T₁>0. Quindi p_f=p₁V₀/(V₀+V_v). Le pressioni sono in kPa e i volumi in L, salvo conversione esplicita. Con p₁=100 kPa e V_v=1 L si propone p_f=100 kPa. Quanto vale proposta meno risultato corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "50 kPa",
+          "−50 kPa",
+          "100 kPa",
+          "0 kPa",
+          "25 kPa"
+        ],
+        "value": "50 kPa"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La pressione corretta è cinquanta kilopascal. La proposta mantiene erroneamente quella iniziale e la supera di cinquanta kilopascal. Lo scarto positivo segnala una sovrastima, non un riscaldamento del gas."
+        },
+        {
+          "type": "formula",
+          "text": "p_f=50\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " e=(100-50)\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " e=50\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "text",
+          "text": "Meno cinquanta sottrae nell’ordine opposto. Cento copia la proposta, zero la accetta e venticinque non è la differenza fra i due valori."
+        }
+      ],
+      "hints": [
+        "Calcola la pressione finale prima della sottrazione con segno.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Meno cinquanta sottrae nell’ordine opposto. Cento copia la proposta, zero la accetta e venticinque non è la differenza fra i due valori.",
+        "target": "C3-L07"
+      },
+      "coverage": [
+        "Primo principio e irreversibilità",
+        "Volume totale e pressione assoluta",
+        "Inverse, medie e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-free-expansion-pressure-09",
+      "kind": "question",
+      "course": "C3",
+      "section": "Espansione libera del gas ideale isolato",
+      "order": 16609,
+      "title": "L’inversa conserva il litro iniziale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L06",
+        "C3-L07",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "free-expansion-pressure",
+      "difficulty": 2,
+      "prompt": "Un gas ideale chiuso occupa inizialmente un comparto rigido V₀=1 L, a pressione assoluta p₁>0. Un comparto adiacente V_v>0 è inizialmente vuoto. Il recipiente totale è isolato e rigido: si rimuove il setto e si attende il nuovo equilibrio, senza scambi di materia o altri lavori e senza variazioni finali di energia cinetica o potenziale macroscopica. Il gas si espande irreversibilmente nel vuoto: Q=0, W=0, ΔU=0 e, per il gas ideale, T_f=T₁>0. Quindi p_f=p₁V₀/(V₀+V_v). Le pressioni sono in kPa e i volumi in L, salvo conversione esplicita. Quale formula isola p₁?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "p₁ = p_f (V₀ + V_v) / V₀",
+          "p₁ = p_f V₀ / (V₀ + V_v)",
+          "p₁ = p_f V_v / V₀",
+          "p₁ = p_f (V₀ + V_v)",
+          "p₁ = p_f / (V₀ + V_v)"
+        ],
+        "value": "p₁ = p_f (V₀ + V_v) / V₀"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il fattore V₀/(V₀+V_v) è positivo. Per annullarlo moltiplichiamo per il suo reciproco. Il rapporto di volumi mantiene l’unità di pressione e, essendo maggiore di uno, produce p₁>p_f, come richiede l’espansione."
+        },
+        {
+          "type": "formula",
+          "text": "p_f=p_1\\frac{V_0}{V_0+V_v}"
+        },
+        {
+          "type": "formula",
+          "text": " p_1=p_f\\frac{V_0+V_v}{V_0}"
+        },
+        {
+          "type": "text",
+          "text": "La seconda opzione applica ancora il fattore di espansione. Usare il solo V_v dimentica il volume iniziale già occupato. Le ultime due espressioni hanno unità pressione moltiplicata per volume e pressione divisa per volume, non pressione."
+        }
+      ],
+      "hints": [
+        "Moltiplica per il reciproco dell’intero rapporto geometrico.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La seconda opzione applica ancora il fattore di espansione. Usare il solo V_v dimentica il volume iniziale già occupato. Le ultime due espressioni hanno unità pressione moltiplicata per volume e pressione divisa per volume, non pressione.",
+        "target": "C3-L07"
+      },
+      "coverage": [
+        "Primo principio e irreversibilità",
+        "Volume totale e pressione assoluta",
+        "Inverse, medie e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-free-expansion-pressure-10",
+      "kind": "question",
+      "course": "C3",
+      "section": "Espansione libera del gas ideale isolato",
+      "order": 16610,
+      "title": "Due riscalamenti con un volume fisso",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L06",
+        "C3-L07",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "free-expansion-pressure",
+      "difficulty": 2,
+      "prompt": "Un gas ideale chiuso occupa inizialmente un comparto rigido V₀=1 L, a pressione assoluta p₁>0. Un comparto adiacente V_v>0 è inizialmente vuoto. Il recipiente totale è isolato e rigido: si rimuove il setto e si attende il nuovo equilibrio, senza scambi di materia o altri lavori e senza variazioni finali di energia cinetica o potenziale macroscopica. Il gas si espande irreversibilmente nel vuoto: Q=0, W=0, ΔU=0 e, per il gas ideale, T_f=T₁>0. Quindi p_f=p₁V₀/(V₀+V_v). Le pressioni sono in kPa e i volumi in L, salvo conversione esplicita. B ha p₁,B=κ₁p₁ e V_v,B=κ₂V_v, con κ₁,κ₂>0; V₀=1 L resta identico. Qual è p_f,B/p_f,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ (V₀ + V_v) / (V₀ + κ₂ V_v)",
+          "κ₁ / κ₂",
+          "κ₁ κ₂",
+          "(V₀ + κ₂ V_v) / (κ₁ (V₀ + V_v))",
+          "κ₁ V₀ / (κ₂ V_v)"
+        ],
+        "value": "κ₁ (V₀ + V_v) / (V₀ + κ₂ V_v)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il nuovo volume vuoto va sommato allo stesso V₀, non si riscalano entrambi i comparti. Scrivendo le pressioni finali e dividendo, p₁ e V₀ al numeratore si cancellano. Rimangono κ₁ e il rapporto inverso dei volumi totali. Per κ₁=κ₂=1 il risultato torna uno."
+        },
+        {
+          "type": "formula",
+          "text": "p_{f,B}=\\frac{\\kappa_1p_1V_0}{V_0+\\kappa_2V_v}"
+        },
+        {
+          "type": "formula",
+          "text": " p_{f,A}=\\frac{p_1V_0}{V_0+V_v}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{p_{f,B}}{p_{f,A}}=\\frac{\\kappa_1(V_0+V_v)}{V_0+\\kappa_2V_v}"
+        },
+        {
+          "type": "text",
+          "text": "κ₁/κ₂ sarebbe valido se si scalasse tutto il volume finale, che qui contiene un termine fisso. Il prodotto assegna al volume l’effetto opposto; la quarta opzione inverte il rapporto e l’ultima omette volumi presenti in entrambe le prove."
+        }
+      ],
+      "hints": [
+        "Conserva V₀ come termine fisso quando sostituisci i fattori.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "κ₁/κ₂ sarebbe valido se si scalasse tutto il volume finale, che qui contiene un termine fisso. Il prodotto assegna al volume l’effetto opposto; la quarta opzione inverte il rapporto e l’ultima omette volumi presenti in entrambe le prove.",
+        "target": "C3-L07"
+      },
+      "coverage": [
+        "Primo principio e irreversibilità",
+        "Volume totale e pressione assoluta",
+        "Inverse, medie e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-free-expansion-pressure-11",
+      "kind": "question",
+      "course": "C3",
+      "section": "Espansione libera del gas ideale isolato",
+      "order": 16611,
+      "title": "Una pressione iniziale molto minore",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L06",
+        "C3-L07",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "free-expansion-pressure",
+      "difficulty": 2,
+      "prompt": "Un gas ideale chiuso occupa inizialmente un comparto rigido V₀=1 L, a pressione assoluta p₁>0. Un comparto adiacente V_v>0 è inizialmente vuoto. Il recipiente totale è isolato e rigido: si rimuove il setto e si attende il nuovo equilibrio, senza scambi di materia o altri lavori e senza variazioni finali di energia cinetica o potenziale macroscopica. Il gas si espande irreversibilmente nel vuoto: Q=0, W=0, ΔU=0 e, per il gas ideale, T_f=T₁>0. Quindi p_f=p₁V₀/(V₀+V_v). Le pressioni sono in kPa e i volumi in L, salvo conversione esplicita. A: p₁=100 kPa, V_v=1 L. B: p₁=1 kPa, V_v=2 L. Quanto vale p_f,B/p_f,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/150",
+          "1/100",
+          "150",
+          "1/3",
+          "2/3"
+        ],
+        "value": "1/150"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A termina a 50 kPa. B distribuisce la pressione iniziale di un kilopascal sul triplo del volume occupato inizialmente: p_f,B=1/3 kPa. Dividendo per 50 kPa si ottiene 1/150. La piccola pressione assoluta è positiva e compatibile col modello ideale assegnato."
+        },
+        {
+          "type": "formula",
+          "text": "p_{f,A}=50\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " p_{f,B}=\\frac13\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{p_{f,B}}{p_{f,A}}=\\frac{1/3}{50}"
+        },
+        {
+          "type": "formula",
+          "text": " p_{f,B}/p_{f,A}=1/150"
+        },
+        {
+          "type": "text",
+          "text": "1/100 considera solo il cambiamento di p₁. Due terzi considera solo i volumi totali e 1/3 ripete il valore numerico della pressione B. Centocinquanta scambia B e A."
+        }
+      ],
+      "hints": [
+        "Riduci prima ogni pressione finale a una frazione esatta.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "1/100 considera solo il cambiamento di p₁. Due terzi considera solo i volumi totali e 1/3 ripete il valore numerico della pressione B. Centocinquanta scambia B e A.",
+        "target": "C3-L07"
+      },
+      "coverage": [
+        "Primo principio e irreversibilità",
+        "Volume totale e pressione assoluta",
+        "Inverse, medie e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-free-expansion-pressure-12",
+      "kind": "question",
+      "course": "C3",
+      "section": "Espansione libera del gas ideale isolato",
+      "order": 16612,
+      "title": "Media delle pressioni, non degli ingressi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L06",
+        "C3-L07",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "free-expansion-pressure",
+      "difficulty": 2,
+      "prompt": "Un gas ideale chiuso occupa inizialmente un comparto rigido V₀=1 L, a pressione assoluta p₁>0. Un comparto adiacente V_v>0 è inizialmente vuoto. Il recipiente totale è isolato e rigido: si rimuove il setto e si attende il nuovo equilibrio, senza scambi di materia o altri lavori e senza variazioni finali di energia cinetica o potenziale macroscopica. Il gas si espande irreversibilmente nel vuoto: Q=0, W=0, ΔU=0 e, per il gas ideale, T_f=T₁>0. Quindi p_f=p₁V₀/(V₀+V_v). Le pressioni sono in kPa e i volumi in L, salvo conversione esplicita. A usa p₁=100 kPa, V_v=1 L; B usa p₁=1 kPa, V_v=2 L. Qual è la media aritmetica delle due p_f?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "151/6 kPa",
+          "151/3 kPa",
+          "101/5 kPa",
+          "149/6 kPa",
+          "25 kPa"
+        ],
+        "value": "151/6 kPa"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le letture sono cinquanta e un terzo di kilopascal. Portandole a denominatore tre, la somma è 151/3 kPa; la metà è 151/6 kPa. Gli ingressi medi sarebbero 101/2 kPa e 3/2 L: produrrebbero invece 101/5 kPa, una terza prova distinta dalla media richiesta."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline p_f=\\frac{50+1/3}{2}\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline p_f=\\frac{151}{6}\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "text",
+          "text": "151/3 è la somma senza dimezzamento. 149/6 fa metà della differenza anziché della somma; 25 ignora la piccola lettura B. 101/5 applica il modello agli ingressi medi e non dà la media delle uscite."
+        }
+      ],
+      "hints": [
+        "Somma 50 e 1/3 con denominatore comune, poi dividi per due.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "151/3 è la somma senza dimezzamento. 149/6 fa metà della differenza anziché della somma; 25 ignora la piccola lettura B. 101/5 applica il modello agli ingressi medi e non dà la media delle uscite.",
+        "target": "C3-L07"
+      },
+      "coverage": [
+        "Primo principio e irreversibilità",
+        "Volume totale e pressione assoluta",
+        "Inverse, medie e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-free-expansion-pressure-13",
+      "kind": "question",
+      "course": "C3",
+      "section": "Espansione libera del gas ideale isolato",
+      "order": 16613,
+      "title": "Il comparto per un bersaglio piccolo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L06",
+        "C3-L07",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "free-expansion-pressure",
+      "difficulty": 3,
+      "prompt": "Un gas ideale chiuso occupa inizialmente un comparto rigido V₀=1 L, a pressione assoluta p₁>0. Un comparto adiacente V_v>0 è inizialmente vuoto. Il recipiente totale è isolato e rigido: si rimuove il setto e si attende il nuovo equilibrio, senza scambi di materia o altri lavori e senza variazioni finali di energia cinetica o potenziale macroscopica. Il gas si espande irreversibilmente nel vuoto: Q=0, W=0, ΔU=0 e, per il gas ideale, T_f=T₁>0. Quindi p_f=p₁V₀/(V₀+V_v). Le pressioni sono in kPa e i volumi in L, salvo conversione esplicita. A ha p₁=100 kPa e V_v,A=1 L. In B si prepara p₁=1 kPa e si vuole p_f,B=p_f,A/150. Quanto vale V_v,B/V_v,A?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento dà 50 kPa e il bersaglio è 1/3 kPa. Con p₁,B=1 kPa, il volume totale deve essere tre volte V₀, dunque tre litri. Togliendo il litro inizialmente occupato restano due litri vuoti: il rapporto col comparto A di un litro è due."
+        },
+        {
+          "type": "formula",
+          "text": "p_{f,B}=50/150\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " p_{f,B}=\\tfrac13\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " V_{v,B}=V_0(p_{1,B}/p_{f,B}-1)"
+        },
+        {
+          "type": "formula",
+          "text": " V_{v,B}=2\\,\\mathrm L"
+        },
+        {
+          "type": "formula",
+          "text": " V_{v,B}/V_{v,A}=2"
+        },
+        {
+          "type": "text",
+          "text": "Tre è il rapporto dei volumi totali, non dei comparti vuoti. Centocinquanta è il fattore sulle pressioni finali e non si trasferisce direttamente a V_v perché cambia anche p₁."
+        }
+      ],
+      "hints": [
+        "Ricava il volume totale dal rapporto delle pressioni e sottrai V₀.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre è il rapporto dei volumi totali, non dei comparti vuoti. Centocinquanta è il fattore sulle pressioni finali e non si trasferisce direttamente a V_v perché cambia anche p₁.",
+        "target": "C3-L07"
+      },
+      "coverage": [
+        "Primo principio e irreversibilità",
+        "Volume totale e pressione assoluta",
+        "Inverse, medie e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-free-expansion-pressure-14",
+      "kind": "question",
+      "course": "C3",
+      "section": "Espansione libera del gas ideale isolato",
+      "order": 16614,
+      "title": "Tarare prima di ricostruire p₁",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L06",
+        "C3-L07",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "free-expansion-pressure",
+      "difficulty": 3,
+      "prompt": "Un gas ideale chiuso occupa inizialmente un comparto rigido V₀=1 L, a pressione assoluta p₁>0. Un comparto adiacente V_v>0 è inizialmente vuoto. Il recipiente totale è isolato e rigido: si rimuove il setto e si attende il nuovo equilibrio, senza scambi di materia o altri lavori e senza variazioni finali di energia cinetica o potenziale macroscopica. Il gas si espande irreversibilmente nel vuoto: Q=0, W=0, ΔU=0 e, per il gas ideale, T_f=T₁>0. Quindi p_f=p₁V₀/(V₀+V_v). Le pressioni sono in kPa e i volumi in L, salvo conversione esplicita. S=qp_f è un display continuo e adimensionale. A con p₁=100 kPa, V_v=1 L dà S=150. B dà S=1 e ha V_v=2 L. Quanto vale p₁,B in kPa?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "kPa",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A termina a 50 kPa, quindi q=3 kPa⁻¹. La lettura uno di B vale 1/3 kPa. Il volume finale B è tre volte V₀: l’inversa moltiplica la pressione finale per tre e ricostruisce un kilopascal iniziale."
+        },
+        {
+          "type": "formula",
+          "text": "p_{f,A}=50\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " q=3\\,\\mathrm{kPa^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " p_{f,B}=\\tfrac13\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " p_{1,B}=3p_{f,B}"
+        },
+        {
+          "type": "formula",
+          "text": " p_{1,B}=1\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "text",
+          "text": "Tre kPa risulterebbero trattando la lettura come una pressione già espressa in kPa. Un terzo è la finale, non l’iniziale; la taratura e l’inversa geometrica sono due passaggi distinti."
+        }
+      ],
+      "hints": [
+        "Usa il riferimento per convertire S in pressione finale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre kPa risulterebbero trattando la lettura come una pressione già espressa in kPa. Un terzo è la finale, non l’iniziale; la taratura e l’inversa geometrica sono due passaggi distinti.",
+        "target": "C3-L07"
+      },
+      "coverage": [
+        "Primo principio e irreversibilità",
+        "Volume totale e pressione assoluta",
+        "Inverse, medie e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-free-expansion-pressure-15",
+      "kind": "question",
+      "course": "C3",
+      "section": "Espansione libera del gas ideale isolato",
+      "order": 16615,
+      "title": "Due riferimenti separano il guadagno dall’offset",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L06",
+        "C3-L07",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "free-expansion-pressure",
+      "difficulty": 3,
+      "prompt": "Un gas ideale chiuso occupa inizialmente un comparto rigido V₀=1 L, a pressione assoluta p₁>0. Un comparto adiacente V_v>0 è inizialmente vuoto. Il recipiente totale è isolato e rigido: si rimuove il setto e si attende il nuovo equilibrio, senza scambi di materia o altri lavori e senza variazioni finali di energia cinetica o potenziale macroscopica. Il gas si espande irreversibilmente nel vuoto: Q=0, W=0, ΔU=0 e, per il gas ideale, T_f=T₁>0. Quindi p_f=p₁V₀/(V₀+V_v). Le pressioni sono in kPa e i volumi in L, salvo conversione esplicita. S=qp_f+b è continuo e adimensionale. A: p₁=100 kPa, V_v=1 L, S=101. B: p₁=1 kPa, V_v=2 L, S=5/3. C: V_v=1 L, S=201. Quanto vale p₁,C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "200 kPa",
+          "100 kPa",
+          "201 kPa",
+          "400 kPa",
+          "50 kPa"
+        ],
+        "value": "200 kPa"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le finali di riferimento sono 50 kPa e 1/3 kPa. Le differenze delle letture e delle pressioni valgono 298/3 e 149/3 kPa: il rapporto dà q=2 kPa⁻¹. A fissa b=1. Per C, tolto uno e diviso per due, troviamo 100 kPa finali. Il volume raddoppiato richiede una pressione iniziale doppia, cioè 200 kPa."
+        },
+        {
+          "type": "formula",
+          "text": "q=\\frac{101-5/3}{(50-1/3)\\,\\mathrm{kPa}}"
+        },
+        {
+          "type": "formula",
+          "text": " q=2\\,\\mathrm{kPa^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " p_{f,C}=100\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " p_{1,C}=200\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "text",
+          "text": "Cento kPa si ferma alla finale. 201 kPa omette l’offset e ricostruisce S=202. Quattrocento kPa darebbero S=401, cinquanta kPa darebbero S=51: la sostituzione nelle due leggi rifiuta queste alternative."
+        }
+      ],
+      "hints": [
+        "Trova q dalle differenze, poi b, quindi applica l’inversa della pressione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Cento kPa si ferma alla finale. 201 kPa omette l’offset e ricostruisce S=202. Quattrocento kPa darebbero S=401, cinquanta kPa darebbero S=51: la sostituzione nelle due leggi rifiuta queste alternative.",
+        "target": "C3-L07"
+      },
+      "coverage": [
+        "Primo principio e irreversibilità",
+        "Volume totale e pressione assoluta",
+        "Inverse, medie e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-free-expansion-pressure-16",
+      "kind": "question",
+      "course": "C3",
+      "section": "Espansione libera del gas ideale isolato",
+      "order": 16616,
+      "title": "Una pressione scelta insieme al comparto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L06",
+        "C3-L07",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "free-expansion-pressure",
+      "difficulty": 3,
+      "prompt": "Un gas ideale chiuso occupa inizialmente un comparto rigido V₀=1 L, a pressione assoluta p₁>0. Un comparto adiacente V_v>0 è inizialmente vuoto. Il recipiente totale è isolato e rigido: si rimuove il setto e si attende il nuovo equilibrio, senza scambi di materia o altri lavori e senza variazioni finali di energia cinetica o potenziale macroscopica. Il gas si espande irreversibilmente nel vuoto: Q=0, W=0, ΔU=0 e, per il gas ideale, T_f=T₁>0. Quindi p_f=p₁V₀/(V₀+V_v). Le pressioni sono in kPa e i volumi in L, salvo conversione esplicita. Fra preparazioni diverse si impone p₁=dV_v, con d=100 kPa/L. Si misura p_f=50 kPa. Quanto vale V_v>0?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1 L",
+          "−1 L",
+          "2 L",
+          "1/2 L",
+          "Infinite quantità positive"
+        ],
+        "value": "1 L"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituiamo nella legge e moltiplichiamo per V₀+V_v, che è positivo. Rimane un’equazione lineare: p_fV₀=(dV₀−p_f)V_v. Qui dV₀−p_f=50 kPa, positivo, e il quoziente dà un litro. Ricostruiamo p₁=100 kPa e p_f=50 kPa: il vincolo riguarda prove preparate diversamente, non un aumento di pressione durante l’espansione."
+        },
+        {
+          "type": "formula",
+          "text": "p_f=\\frac{dV_vV_0}{V_0+V_v}"
+        },
+        {
+          "type": "formula",
+          "text": " p_fV_0=(dV_0-p_f)V_v"
+        },
+        {
+          "type": "formula",
+          "text": " V_v=\\frac{p_fV_0}{dV_0-p_f}"
+        },
+        {
+          "type": "formula",
+          "text": " V_v=1\\,\\mathrm L"
+        },
+        {
+          "type": "text",
+          "text": "Meno un litro viola il dominio. Due litri darebbero 200/3 kPa finali e mezzo litro 100/3 kPa. Il denominatore è non nullo e fissa una sola soluzione; per questo vincolo il dominio delle pressioni finali è 0<p_f<dV₀."
+        }
+      ],
+      "hints": [
+        "Sostituisci il vincolo con unità esplicite e risolvi la nuova equazione lineare.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Meno un litro viola il dominio. Due litri darebbero 200/3 kPa finali e mezzo litro 100/3 kPa. Il denominatore è non nullo e fissa una sola soluzione; per questo vincolo il dominio delle pressioni finali è 0<p_f<dV₀.",
+        "target": "C3-L07"
+      },
+      "coverage": [
+        "Primo principio e irreversibilità",
+        "Volume totale e pressione assoluta",
+        "Inverse, medie e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "8d197aff47e6391c775f5f38c8528dc2b5ce4a58d604b2281d74e5faa9d81397",
+      "name": "free-expansion-pressure-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTExMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgo8dGl0bGUgaWQ9InRpdGxlIj5M4oCZZXNwYW5zaW9uZSBsaWJlcmEgb2NjdXBhIGxvIHNwYXppbyBwcmltYSB2dW90bzwvdGl0bGU+CjxkZXNjIGlkPSJkZXNjIj5VbiByZWNpcGllbnRlIHRvdGFsZSBkaSBkdWUgbGl0cmkgw6ggcmlnaWRvIGUgaXNvbGF0by4gSW5pemlhbG1lbnRlIHVuIGxpdHJvIGNvbnRpZW5lIGdhcyBlIGzigJlhbHRybyDDqCB2dW90bzsgYWxsYSBmaW5lIGlsIGdhcyBvY2N1cGEgZW50cmFtYmkuIExhIHRlbXBlcmF0dXJhIGZpbmFsZSBpZGVhbGUgw6ggaW52YXJpYXRhLCBsYSBwcmVzc2lvbmUgc2kgZGltZXp6YSBlIGzigJllbnRyb3BpYSBhdW1lbnRhLjwvZGVzYz4KPHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxMTEwIiByeD0iMTIiIGZpbGw9IiNmOGZhZmMiLz4KPGcgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZpbGw9IiMxNDI0M2EiIGZvbnQtc2l6ZT0iMjAiPgo8dGV4dCB4PSIzMiIgeT0iNDIiIGZvbnQtc2l6ZT0iMjUiIGZvbnQtd2VpZ2h0PSJib2xkIj4xIMK3IElsIHZ1b3RvIMOoIGdpw6AgZGVudHJvIGlsIHJlY2lwaWVudGU8L3RleHQ+CjxyZWN0IHg9IjEwNSIgeT0iOTUiIHdpZHRoPSI0MDAiIGhlaWdodD0iMTQwIiBmaWxsPSJ3aGl0ZSIgc3Ryb2tlPSIjMTQyNDNhIiBzdHJva2Utd2lkdGg9IjYiLz4KPHJlY3QgeD0iMTA5IiB5PSI5OSIgd2lkdGg9IjE5NiIgaGVpZ2h0PSIxMzIiIGZpbGw9IiNkY2VlZjYiLz48cGF0aCBkPSJNMzA1IDk4VjIzMiIgc3Ryb2tlPSIjMTQyNDNhIiBzdHJva2Utd2lkdGg9IjQiLz4KPGcgZmlsbD0iIzE2NWE4NyI+PGNpcmNsZSBjeD0iMTQwIiBjeT0iMTMwIiByPSI1Ii8+PGNpcmNsZSBjeD0iMTk1IiBjeT0iMTMwIiByPSI1Ii8+PGNpcmNsZSBjeD0iMjUwIiBjeT0iMTMwIiByPSI1Ii8+PGNpcmNsZSBjeD0iMTQwIiBjeT0iMTg1IiByPSI1Ii8+PGNpcmNsZSBjeD0iMTk1IiBjeT0iMTg1IiByPSI1Ii8+PGNpcmNsZSBjeD0iMjUwIiBjeT0iMTg1IiByPSI1Ii8+PC9nPgo8dGV4dCB4PSIzNTAiIHk9IjE3MiI+VnVvdG88L3RleHQ+PHRleHQgeD0iMTMyIiB5PSIyNzIiPlbigoAgPSAxIEw8L3RleHQ+PHRleHQgeD0iMzUyIiB5PSIyNzIiPlbhtaUgPSAxIEw8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIzMTIiPnDigoEgPSAxMDAga1BhIDsgVOKCgSAmZ3Q7IDA8L3RleHQ+PHRleHQgeD0iMzIiIHk9IjM0NCIgZm9udC1zaXplPSIxNyI+U3Rlc3NhIHNjYWxhIGdlb21ldHJpY2EgbmVpIHByaW1pIGR1ZSBwYW5uZWxsaS48L3RleHQ+CjxwYXRoIGQ9Ik0zMiAzNzFINjA4IiBzdHJva2U9IiM5YmFiYmMiLz4KPHRleHQgeD0iMzIiIHk9IjQxNSIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9ImJvbGQiPjIgwrcgSWwgc2V0dG8gw6ggcmltb3NzbywgaWwgZ2FzIHNpIGFzc2VzdGE8L3RleHQ+CjxyZWN0IHg9IjEwNSIgeT0iNDY1IiB3aWR0aD0iNDAwIiBoZWlnaHQ9IjE0MCIgZmlsbD0iI2RjZWVmNiIgc3Ryb2tlPSIjMTQyNDNhIiBzdHJva2Utd2lkdGg9IjYiLz4KPGcgZmlsbD0iIzE2NWE4NyI+PGNpcmNsZSBjeD0iMTQwIiBjeT0iNTAwIiByPSI1Ii8+PGNpcmNsZSBjeD0iMjg1IiBjeT0iNTAwIiByPSI1Ii8+PGNpcmNsZSBjeD0iNDUwIiBjeT0iNTAwIiByPSI1Ii8+PGNpcmNsZSBjeD0iMTkwIiBjeT0iNTU1IiByPSI1Ii8+PGNpcmNsZSBjeD0iMzUwIiBjeT0iNTU1IiByPSI1Ii8+PGNpcmNsZSBjeD0iNDc1IiBjeT0iNTU1IiByPSI1Ii8+PC9nPgo8dGV4dCB4PSIxNzAiIHk9IjY0MCI+Vl9mID0gVuKCgCArIFbhtaUgPSAyIEw8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI2ODEiPlEgPSAwIDsgVyA9IDAgOyDOlFUgPSAwIDsgVF9mID0gVOKCgTwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjcxNSIgZm9udC1zaXplPSIxOCI+zpRTICZndDsgMDogbm9uIMOoIHVu4oCZYWRpYWJhdGljYSByZXZlcnNpYmlsZS48L3RleHQ+CjxwYXRoIGQ9Ik0zMiA3NDZINjA4IiBzdHJva2U9IiM5YmFiYmMiLz4KPHRleHQgeD0iMzIiIHk9Ijc5MCIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9ImJvbGQiPjMgwrcgTGEgc3Rlc3NhIHF1YW50aXTDoCBkaSBnYXMgaW4gMiBW4oKAPC90ZXh0Pgo8cGF0aCBkPSJNMTUwIDgxOFY5OTciIHN0cm9rZT0iIzE0MjQzYSIgc3Ryb2tlLXdpZHRoPSIyIi8+CjxyZWN0IHg9IjE1MCIgeT0iODQ0IiB3aWR0aD0iMzAwIiBoZWlnaHQ9IjM0IiBmaWxsPSIjMTY1YTg3Ii8+PHJlY3QgeD0iMTUwIiB5PSI5MjIiIHdpZHRoPSIxNTAiIGhlaWdodD0iMzQiIGZpbGw9IiMyODY2NGQiLz4KPHRleHQgeD0iNTAiIHk9Ijg3MCI+cOKCgTwvdGV4dD48dGV4dCB4PSI0NjUiIHk9Ijg3MCI+MTAwIGtQYTwvdGV4dD48dGV4dCB4PSI1MCIgeT0iOTQ4Ij5wX2Y8L3RleHQ+PHRleHQgeD0iMzE1IiB5PSI5NDgiPjUwIGtQYTwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjEwMzEiIGZvbnQtc2l6ZT0iMTgiPk9yaWdpbmUgeCA9IDE1MDsgcHJlc3Npb25lIGEgMyBweC9rUGEuPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iMTA2NiIgZm9udC1zaXplPSIxOCI+UHVudGkgc2NoZW1hdGljaTogbm9uIG1pc3VyYW5vIGxhIHRlbXBlcmF0dXJhLjwvdGV4dD4KPC9nPjwvc3ZnPgo="
+    }
+  ]
+}

@@ -1,0 +1,499 @@
+{
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "AR-u5-parallel-heat-losses-01",
+      "sourceSha256": "d5e8e0e0fc4cc942efc61f9722b2547fd817528c65ad83c4e0b864339415ce07",
+      "candidateSha256": "ff696a692add938d4bcdc1d714c91fabe7669231d2ea9d09385b2db7c8073034",
+      "reviewedSignature": "80651779cc99104428770e668ea9fb82c87c7cac089613d609cfdf5256efaf81",
+      "assetChecksums": {
+        "parallel-heat-losses-progressive.svg": "5d5e09b7df9ed8e992f185856e82f80a91b6aec3f32243707cba6e54d6aaca25"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "100",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3"
+      },
+      "manualArithmetic": "Due percorsi distinti e diretti fra le stesse temperature hanno conduttanze in parallelo: G_tot=5 W/K+h·1 m². Con h=5 W/(m² K) e ΔT=10 K: P=(5+5)·10=100 W, 50 W per percorso.",
+      "physicalAssumptions": "Due percorsi distinti diretti fra corpo mantenuto e medesimo ambiente: sostegno G=5 W/K, superficie A=1 m² con h>0 costante entro la prova. Salto ΔT>0 comune, solo questi percorsi, nessun accumulo nei collegamenti. Potenze additive, non resistenze in serie. Variabili normalizzate x,u,p pure. I display ove presenti sono letture continue; guadagno positivo e offset con unità esplicite.",
+      "distractors": "50 W omette un percorso;25 W pone in serie due resistenze1/5 K/W;2500 avrebbeW².",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Due percorsi distinti e diretti fra le stesse temperature hanno conduttanze in parallelo: G_tot=5 W/K+h·1 m². Con h=5 W/(m² K) e ΔT=10 K: P=(5+5)·10=100 W, 50 W per percorso.",
+      "scientificAssetReview": "XML e PNG nativo integrale letti. Due percorsi diretti fra stesso corpo e ambiente con frecce separate; schema non geometria delle resistenze. Barre50+50=100W larghezze175+175=350; confronto100/300/200W larghezze120/360/240. Ogni pannello ha scala propria dichiarata tramite valori fisici, zeri staccati dagli assi e nessuna misura di pixel effettivi.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-parallel-heat-losses-02",
+      "sourceSha256": "8d51184691b7b09354b793b8dc4754a774bdff6a5c1bb64b16ff8ac68a64103c",
+      "candidateSha256": "55e34028fa2f2e37b570b2ce82175552f56705d6d136eb6fcd056606b8e97760",
+      "reviewedSignature": "d5ed9dd9f2e51818c5789936be33d9c9aafa3fe39ba45477f653cc534c69fbe7",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "W",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3"
+      },
+      "manualArithmetic": "P è potenza W. Una conduttanza è W/K e il coefficiente superficiale h è W/(m² K): occorre l’area prima di sommare con 5 W/K. Le alternative candidate sono state poi lette integralmente: unica unità compatibile W.",
+      "physicalAssumptions": "Due percorsi distinti diretti fra corpo mantenuto e medesimo ambiente: sostegno G=5 W/K, superficie A=1 m² con h>0 costante entro la prova. Salto ΔT>0 comune, solo questi percorsi, nessun accumulo nei collegamenti. Potenze additive, non resistenze in serie. Variabili normalizzate x,u,p pure. I display ove presenti sono letture continue; guadagno positivo e offset con unità esplicite.",
+      "distractors": "G haW/K e hW/(m² K); solo dopo hA e ΔT si ottieneW.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. P è potenza W. Una conduttanza è W/K e il coefficiente superficiale h è W/(m² K): occorre l’area prima di sommare con 5 W/K. Le alternative candidate sono state poi lette integralmente: unica unità compatibile W.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-parallel-heat-losses-03",
+      "sourceSha256": "f10d6157f53da81a20dae14942b558a0c15ca6c8f2cc91e2d2463d7ef70b710a",
+      "candidateSha256": "051dae8551e533ef01db0c9b2dfcd6fbd58716edd84336fb3e36f1ec109ae3a4",
+      "reviewedSignature": "6bc313bc888d0d690ac85cf9a5b54ea8ca8df0f2d0c30eae479d24331fd58ead",
+      "assetChecksums": {
+        "parallel-heat-losses-progressive.svg": "5d5e09b7df9ed8e992f185856e82f80a91b6aec3f32243707cba6e54d6aaca25"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "P = (G + h A) ΔT",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3"
+      },
+      "manualArithmetic": "Formula fisica P=[G_s+hA]ΔT, G_s=5 W/K e A=1 m². Nei valori numerici dichiarati P[W]=(5+h[W/(m² K)])ΔT[K]. Non si sommano resistenze in serie perché i percorsi sono distinti.",
+      "physicalAssumptions": "Due percorsi distinti diretti fra corpo mantenuto e medesimo ambiente: sostegno G=5 W/K, superficie A=1 m² con h>0 costante entro la prova. Salto ΔT>0 comune, solo questi percorsi, nessun accumulo nei collegamenti. Potenze additive, non resistenze in serie. Variabili normalizzate x,u,p pure. I display ove presenti sono letture continue; guadagno positivo e offset con unità esplicite.",
+      "distractors": "G+h non è somma omogenea;GhAΔT haW²/K;ΔT/(G+hA) haK²/W;divisione perΔT haW/K².",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Formula fisica P=[G_s+hA]ΔT, G_s=5 W/K e A=1 m². Nei valori numerici dichiarati P[W]=(5+h[W/(m² K)])ΔT[K]. Non si sommano resistenze in serie perché i percorsi sono distinti.",
+      "scientificAssetReview": "XML e PNG nativo integrale letti. Due percorsi diretti fra stesso corpo e ambiente con frecce separate; schema non geometria delle resistenze. Barre50+50=100W larghezze175+175=350; confronto100/300/200W larghezze120/360/240. Ogni pannello ha scala propria dichiarata tramite valori fisici, zeri staccati dagli assi e nessuna misura di pixel effettivi.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-parallel-heat-losses-04",
+      "sourceSha256": "91bc8facd51d3ee70633bcf912851547656fcae82b900f542bd47d948c567150",
+      "candidateSha256": "91fb6ff25483b81e61c499f765eef9186b5d2bdf50ecdb6bf934424e6f57bdd3",
+      "reviewedSignature": "7ac11516246120c8bf547c41359bbebc2de1860e8600a8a9f605777b41a6c34e",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Da 100 a 200 W",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3"
+      },
+      "manualArithmetic": "h=5 fisso: G_tot=10 W/K; ΔT da 10 a 20 K porta P da 100 a 200 W. La relazione è lineare a conduttanze costanti.",
+      "physicalAssumptions": "Due percorsi distinti diretti fra corpo mantenuto e medesimo ambiente: sostegno G=5 W/K, superficie A=1 m² con h>0 costante entro la prova. Salto ΔT>0 comune, solo questi percorsi, nessun accumulo nei collegamenti. Potenze additive, non resistenze in serie. Variabili normalizzate x,u,p pure. I display ove presenti sono letture continue; guadagno positivo e offset con unità esplicite.",
+      "distractors": "50 rende inverso il salto;400 usa quadrato;150 raddoppia un solo ramo.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. h=5 fisso: G_tot=10 W/K; ΔT da 10 a 20 K porta P da 100 a 200 W. La relazione è lineare a conduttanze costanti.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-parallel-heat-losses-05",
+      "sourceSha256": "722ccdd70055150467146cb4ba2dd1b3b700abee48c96453a42b0840cf37fefc",
+      "candidateSha256": "51c6b1ed746e5bbf9d6174b0e6c9ea70fd769d946430154c9a807e8c78b87c2a",
+      "reviewedSignature": "f65184003bc2f1ecf9f0f6c4edd0777ed10d43ab86cd16667a1e660987574cf4",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "10",
+      "dimension": {
+        "[temperature]": "1"
+      },
+      "manualArithmetic": "ΔT=P/(G_s+hA)=100/(5+5)=10 K. Il denominatore positivo è una conduttanza, non una resistenza.",
+      "physicalAssumptions": "Due percorsi distinti diretti fra corpo mantenuto e medesimo ambiente: sostegno G=5 W/K, superficie A=1 m² con h>0 costante entro la prova. Salto ΔT>0 comune, solo questi percorsi, nessun accumulo nei collegamenti. Potenze additive, non resistenze in serie. Variabili normalizzate x,u,p pure. I display ove presenti sono letture continue; guadagno positivo e offset con unità esplicite.",
+      "distractors": "20 K ignora convezione;100 copia il numero deiW senza conduttanza.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. ΔT=P/(G_s+hA)=100/(5+5)=10 K. Il denominatore positivo è una conduttanza, non una resistenza.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-parallel-heat-losses-06",
+      "sourceSha256": "10c1f0ca93293cc5a067e75e744ada865b6a5ed21af101a5020b3cf449ec0c56",
+      "candidateSha256": "30ae047442b0749194735b9fb3f536ab4c53c4534d6ab95f4cb2df691d807de1",
+      "reviewedSignature": "ac4d2ab6e02de5192abaf68f3c2895e79475ef1521bc9f4e1496687a8b857f76",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "5",
+      "dimension": {
+        "[mass]": "1",
+        "[time]": "-3",
+        "[temperature]": "-1"
+      },
+      "manualArithmetic": "h=(P/ΔT−G_s)/A=(100/10−5)/1=5 W/(m² K). Per il ramo h>0 occorre P>G_sΔT.",
+      "physicalAssumptions": "Due percorsi distinti diretti fra corpo mantenuto e medesimo ambiente: sostegno G=5 W/K, superficie A=1 m² con h>0 costante entro la prova. Salto ΔT>0 comune, solo questi percorsi, nessun accumulo nei collegamenti. Potenze additive, non resistenze in serie. Variabili normalizzate x,u,p pure. I display ove presenti sono letture continue; guadagno positivo e offset con unità esplicite.",
+      "distractors": "10 attribuisce a h anche il sostegno;15 somma G invece di sottrarre; h≤0 viola il ramo.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. h=(P/ΔT−G_s)/A=(100/10−5)/1=5 W/(m² K). Per il ramo h>0 occorre P>G_sΔT.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-parallel-heat-losses-07",
+      "sourceSha256": "7f8f8d4d8154a464ce446f570d2f37dd14db9e0881f9f4c2b69cda37239c41e1",
+      "candidateSha256": "9279be84ef6c89e25e0c4b88d7bc1d9f5d8db11354a3b52f6f7ad516786dd0ae",
+      "reviewedSignature": "4a615965dc0ab0b288738222853d24987a2e5e2ed2c09858ea63aa5e8885cc07",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "3/2",
+      "dimension": {},
+      "manualArithmetic": "A: P=100 W; B a ΔT=10 K e h=10 dà P=150 W. Rapporto 3/2, non 2, perché il sostegno mantiene 5 W/K.",
+      "physicalAssumptions": "Due percorsi distinti diretti fra corpo mantenuto e medesimo ambiente: sostegno G=5 W/K, superficie A=1 m² con h>0 costante entro la prova. Salto ΔT>0 comune, solo questi percorsi, nessun accumulo nei collegamenti. Potenze additive, non resistenze in serie. Variabili normalizzate x,u,p pure. I display ove presenti sono letture continue; guadagno positivo e offset con unità esplicite.",
+      "distractors": "2 segue solo convezione;2/3 inverte il totale;1 ignora il cambiamento.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. A: P=100 W; B a ΔT=10 K e h=10 dà P=150 W. Rapporto 3/2, non 2, perché il sostegno mantiene 5 W/K.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-parallel-heat-losses-08",
+      "sourceSha256": "644903432f1f4ffc8f4b152c8334f82cc956b5b63eb862200bb294d80e43874a",
+      "candidateSha256": "ab72a809922206cb0f10bc16c5719a0678a13ee907b1ece4901f3b62116723ca",
+      "reviewedSignature": "b9cf84e775b04e1b32450bea60efb857c6412e2bc67750ee1f9bcb6a11626ce7",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "100",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3"
+      },
+      "manualArithmetic": "Proposta 200 W−corretto 100 W=+100 W. Non si cambia il segno della dispersione fisica positiva.",
+      "physicalAssumptions": "Due percorsi distinti diretti fra corpo mantenuto e medesimo ambiente: sostegno G=5 W/K, superficie A=1 m² con h>0 costante entro la prova. Salto ΔT>0 comune, solo questi percorsi, nessun accumulo nei collegamenti. Potenze additive, non resistenze in serie. Variabili normalizzate x,u,p pure. I display ove presenti sono letture continue; guadagno positivo e offset con unità esplicite.",
+      "distractors": "−100 inverte ordine;200 copia proposta;0 la accetta;2 è rapporto puro.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Proposta 200 W−corretto 100 W=+100 W. Non si cambia il segno della dispersione fisica positiva.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-parallel-heat-losses-09",
+      "sourceSha256": "365566d90b71560c328716b4771ef4d915880033359b4cf43010ac80ae229e51",
+      "candidateSha256": "dd0594333223712347ee763ba00b37358fccc3f449647f2f14b4aaa13820364a",
+      "reviewedSignature": "6e21ec169c332b04ddcab97bd5dee1d6cb766f915a9c7c0ccb5cd0bbcb8d2c44",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "ΔT = P / (G + h A)",
+      "dimension": {
+        "[temperature]": "1"
+      },
+      "manualArithmetic": "Raccogliere ΔT dà ΔT=P/(5 W/K+h·1 m²). Le due conduttanze sono positive e il risultato è in K.",
+      "physicalAssumptions": "Due percorsi distinti diretti fra corpo mantenuto e medesimo ambiente: sostegno G=5 W/K, superficie A=1 m² con h>0 costante entro la prova. Salto ΔT>0 comune, solo questi percorsi, nessun accumulo nei collegamenti. Potenze additive, non resistenze in serie. Variabili normalizzate x,u,p pure. I display ove presenti sono letture continue; guadagno positivo e offset con unità esplicite.",
+      "distractors": "P/G oP/(hA) omettono un percorso;reciproco dàK⁻¹;P/(GhA) dàK²/W.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Raccogliere ΔT dà ΔT=P/(5 W/K+h·1 m²). Le due conduttanze sono positive e il risultato è in K.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-parallel-heat-losses-10",
+      "sourceSha256": "c2065f1a627acb1436f4db478d2130ad21f0cf342a80bc9aacb4b67cc400bd0e",
+      "candidateSha256": "a2482ce95889d48b04d0decd83c985bad1a357ab9c5512ec15f3c968790189bb",
+      "reviewedSignature": "ae1c3dbd37c5516777fb2afbd9b23995a844fa3dabc130097026086514248295",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "κ₁ (G + κ₂ h A)/(G + h A)",
+      "dimension": {},
+      "manualArithmetic": "P_B/P_A=κ₁(G_s+κ₂hA)/(G_s+hA). Nei numeri assegnati κ₁(5+κ₂h)/(5+h). Il sostegno non si scala con κ₂.",
+      "physicalAssumptions": "Due percorsi distinti diretti fra corpo mantenuto e medesimo ambiente: sostegno G=5 W/K, superficie A=1 m² con h>0 costante entro la prova. Salto ΔT>0 comune, solo questi percorsi, nessun accumulo nei collegamenti. Potenze additive, non resistenze in serie. Variabili normalizzate x,u,p pure. I display ove presenti sono letture continue; guadagno positivo e offset con unità esplicite.",
+      "distractors": "G non viene scalato:κ₁κ₂ lo cambierebbe;omissioneκ₁ perde il salto;ultimo inverte conduttanze.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. P_B/P_A=κ₁(G_s+κ₂hA)/(G_s+hA). Nei numeri assegnati κ₁(5+κ₂h)/(5+h). Il sostegno non si scala con κ₂.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-parallel-heat-losses-11",
+      "sourceSha256": "123cf3fd15fd3af138078cbe982fc3fe47f9a7903421a1c66b88d0517f41f55d",
+      "candidateSha256": "cba5afb55e4308e74e8b3a2bcec0b2d11934d27414a2b5ed05f72436c318381c",
+      "reviewedSignature": "f8bdc462174bd24d8a8bed149875f6ee5152d0532c535395e7f71767c2c24c1f",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "3",
+      "dimension": {},
+      "manualArithmetic": "A=100 W; B con ΔT=20 K e h=10 dà (5+10)20=300 W. Rapporto 3.",
+      "physicalAssumptions": "Due percorsi distinti diretti fra corpo mantenuto e medesimo ambiente: sostegno G=5 W/K, superficie A=1 m² con h>0 costante entro la prova. Salto ΔT>0 comune, solo questi percorsi, nessun accumulo nei collegamenti. Potenze additive, non resistenze in serie. Variabili normalizzate x,u,p pure. I display ove presenti sono letture continue; guadagno positivo e offset con unità esplicite.",
+      "distractors": "4 presume due raddoppi su tutto;2 segue salto;3/2 segue conduttanza;1/3 è reciproco.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. A=100 W; B con ΔT=20 K e h=10 dà (5+10)20=300 W. Rapporto 3.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-parallel-heat-losses-12",
+      "sourceSha256": "44081c89e0b00899cbcccf18e869a408d596a1a1838b64fe5ffba3fe2128625f",
+      "candidateSha256": "307b81413c57f472c72e8775c4d51bac7bdd43021aece943285df197a10b975a",
+      "reviewedSignature": "b3401743ce049fc07633b1ccea087034f8850a387716e4be856300627c75c82a",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "200",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3"
+      },
+      "manualArithmetic": "Media (100+300)/2=200 W. Ingressi medi 15 K e 15/2 W/(m² K) darebbero (25/2)15=375/2 W; differenza 25/2 W.",
+      "physicalAssumptions": "Due percorsi distinti diretti fra corpo mantenuto e medesimo ambiente: sostegno G=5 W/K, superficie A=1 m² con h>0 costante entro la prova. Salto ΔT>0 comune, solo questi percorsi, nessun accumulo nei collegamenti. Potenze additive, non resistenze in serie. Variabili normalizzate x,u,p pure. I display ove presenti sono letture continue; guadagno positivo e offset con unità esplicite.",
+      "distractors": "375/2 W usa dati medi;400 non dimezza;100 e300 ignorano una prova.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Media (100+300)/2=200 W. Ingressi medi 15 K e 15/2 W/(m² K) darebbero (25/2)15=375/2 W; differenza 25/2 W.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-parallel-heat-losses-13",
+      "sourceSha256": "8f0ae0b1b7556f550e902986cef41bbad0fa319b57f4789d13eefc694a91a9da",
+      "candidateSha256": "b31a63ba5264e299ce7ffa0695934665bf4cab022993aa2149825dbefa38ea68",
+      "reviewedSignature": "9b0853cff2c51c094ecacaf9255a444f294c3ab619efc99fdcf6b15f33ed2d68",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {},
+      "manualArithmetic": "Bersaglio 300 W a ΔT=20 K richiede G_tot=15 W/K; h_BA=10 W/K, h_B=10 e rapporto con h_A=5 pari a 2.",
+      "physicalAssumptions": "Due percorsi distinti diretti fra corpo mantenuto e medesimo ambiente: sostegno G=5 W/K, superficie A=1 m² con h>0 costante entro la prova. Salto ΔT>0 comune, solo questi percorsi, nessun accumulo nei collegamenti. Potenze additive, non resistenze in serie. Variabili normalizzate x,u,p pure. I display ove presenti sono letture continue; guadagno positivo e offset con unità esplicite.",
+      "distractors": "3 copia potenza e3/2 conduttanza;1/2 inverte coefficiente; nessuno soddisfa300 W.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Bersaglio 300 W a ΔT=20 K richiede G_tot=15 W/K; h_BA=10 W/K, h_B=10 e rapporto con h_A=5 pari a 2.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-parallel-heat-losses-14",
+      "sourceSha256": "91d66ec7c87e6897ecad29877b18026309d54aaf2a1e377ae0b3a1c668a607c7",
+      "candidateSha256": "5c349e10c913696159cd8bc39948e21ff238f80a34c7e88f7f8dbe7494d72233",
+      "reviewedSignature": "8ad181d00a38cc17eb321c81e4d18d6c04cd8406761f7f1a9946b59edff32075",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "20",
+      "dimension": {
+        "[temperature]": "1"
+      },
+      "manualArithmetic": "A=100 W, S=300 implica a=3 W⁻¹. Nuova lettura 900 dà 300 W. Con h=10 la conduttanza totale è 15 W/K, ΔT=20 K.",
+      "physicalAssumptions": "Due percorsi distinti diretti fra corpo mantenuto e medesimo ambiente: sostegno G=5 W/K, superficie A=1 m² con h>0 costante entro la prova. Salto ΔT>0 comune, solo questi percorsi, nessun accumulo nei collegamenti. Potenze additive, non resistenze in serie. Variabili normalizzate x,u,p pure. I display ove presenti sono letture continue; guadagno positivo e offset con unità esplicite.",
+      "distractors": "900/15=60 K trascura guadagno3;300/10=30 K trascura nuova h.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. A=100 W, S=300 implica a=3 W⁻¹. Nuova lettura 900 dà 300 W. Con h=10 la conduttanza totale è 15 W/K, ΔT=20 K.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-parallel-heat-losses-15",
+      "sourceSha256": "5840f26fcd9e8b751f38cdd5851185f8228ae50ad65ead9e0b85eccc87f10c4f",
+      "candidateSha256": "5273b56c76f4a4f2c939fc790fdd8e776eea0f2727c4bea56972a8d1c093643e",
+      "reviewedSignature": "6ac5932fb9c635944b18f90547a5530b50d0e22bc68962a0bb8b901ec90ab69e",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "20",
+      "dimension": {
+        "[temperature]": "1"
+      },
+      "manualArithmetic": "a=(601−201)/(300−100)=400/200=2 W⁻¹, b=1. S_C=401 dà 200 W; a h=5 la conduttanza totale 10 W/K dà ΔT_C=20 K.",
+      "physicalAssumptions": "Due percorsi distinti diretti fra corpo mantenuto e medesimo ambiente: sostegno G=5 W/K, superficie A=1 m² con h>0 costante entro la prova. Salto ΔT>0 comune, solo questi percorsi, nessun accumulo nei collegamenti. Potenze additive, non resistenze in serie. Variabili normalizzate x,u,p pure. I display ove presenti sono letture continue; guadagno positivo e offset con unità esplicite.",
+      "distractors": "401/20 omette offset e predice402;40 non divide perq;200 copiaW.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. a=(601−201)/(300−100)=400/200=2 W⁻¹, b=1. S_C=401 dà 200 W; a h=5 la conduttanza totale 10 W/K dà ΔT_C=20 K.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-parallel-heat-losses-16",
+      "sourceSha256": "dbb6d50612ebd7bc10132d33880b35e6755200acd05f36498a253d10e3d3183e",
+      "candidateSha256": "53cef5f043c0e527016d61c78e4ef8829d94cd1c1fab97c9d542d68ec7fee629",
+      "reviewedSignature": "af716c40a022eb22b209a7b5533b77ddd98c737475b302ff4b7503be6f380ded",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "5",
+      "dimension": {
+        "[mass]": "1",
+        "[time]": "-3",
+        "[temperature]": "-1"
+      },
+      "manualArithmetic": "Vincolo numerico ΔT=2h fra preparazioni, coefficiente con unità m²K²/W. P=2h(5+h)=100 implica h²+5h−50=0=(h−5)(h+10). Radici 5 e −10; soltanto h=5 W/(m² K) è positivo e dà ΔT=10 K.",
+      "physicalAssumptions": "Due percorsi distinti diretti fra corpo mantenuto e medesimo ambiente: sostegno G=5 W/K, superficie A=1 m² con h>0 costante entro la prova. Salto ΔT>0 comune, solo questi percorsi, nessun accumulo nei collegamenti. Potenze additive, non resistenze in serie. Variabili normalizzate x,u,p pure. Il vincolo fra preparazioni non è una legge temporale entro la singola prova.",
+      "distractors": "−10 rende h e salto negativi;10 produce300 W;50 produce5500 W; radici fisiche una sola.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Vincolo numerico ΔT=2h fra preparazioni, coefficiente con unità m²K²/W. P=2h(5+h)=100 implica h²+5h−50=0=(h−5)(h+10). Radici 5 e −10; soltanto h=5 W/(m² K) è positivo e dà ΔT=10 K.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "4036e32b4512ec9c419dafbbc2e0fd58e528daedea0b0834e6d3e2ad008a25e9",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "publicationAction": "NONE",
+  "reviewedCandidateCommit": "9f0907273410a8cf981acf1e1a441a046bc84b18",
+  "packageSha256": "fb8df8032a68bc7f995229103b8423f89e4527d60538c100f7ddb36befd3ac86",
+  "bindingsSha256": "c3514e94d659bb657f35d6846d39d4c9c4f1d2438f08bdb46e52ff7b6fef049c",
+  "source": {
+    "commit": "5cfbdcb055ba3ba136f97fb56e997f06e6cf3605",
+    "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U5-04.json",
+    "reference": "Primaria indipendente80 prompt-only U5-04 prima di candidati, opzioni o chiavi: SHA256 004be03cceb688102d1fd50cfb07cf059633b87b608ffc149f19a1a8a4831c95. Shard intero SHA256 dd52bd4155f765395f5cd10f89259dd35a1dab194da5942ee067e73578a1ff16. Poi lettura individuale completa dei16 candidati, ogni opzione/blocco/formula/hint/feedback/metadato/didascalia, confronto con derivazioni e dati finali; cinque SVG XML e rendering QuickLook integrali realmente letti sotto mutex e guardia2GiB. ROOT byte-identico al pin B finale. Lezioni reali C3-L01/L05/L06/L09/L10 rilette; nessun autore importato, nessuna approvazione da chiavi."
+  }
+}

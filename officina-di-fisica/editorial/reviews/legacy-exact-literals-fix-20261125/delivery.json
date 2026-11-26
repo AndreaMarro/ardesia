@@ -1,0 +1,138 @@
+{
+  "phase": "ISOLATED_DECODER_PATCH_READY_FOR_INDEPENDENT_INTEGRATOR_REVIEW",
+  "author": "AI independent technical reviewer; ROOT is separate patch reviewer/integrator",
+  "targetBatches": [
+    "isochoric-heat-153",
+    "isobaric-monatomic-heat-154",
+    "compression-heating-157",
+    "reversible-isothermal-entropy-186",
+    "entropy-hot-cold-187"
+  ],
+  "dependentReportsAlsoNeedExplicitRefresh": [
+    "ideal-expansion-entropy-188",
+    "statistical-entropy-189"
+  ],
+  "red": {
+    "tests": 6,
+    "failures": 21,
+    "errors": 0,
+    "seconds": 1.418
+  },
+  "green": {
+    "tests": 6,
+    "failures": 0,
+    "errors": 0,
+    "seconds": 1.434
+  },
+  "existingFrozenRecordsVerified": 80,
+  "reboundFalseChoicesRejected": 5,
+  "rootModified": false,
+  "rootGitModified": false,
+  "runtimeModified": false,
+  "reportJsonEdited": false,
+  "physicalModelsAndAllPinsUnchanged": true,
+  "fullsuite": "NOT_RUN_PER_COORDINATOR_CONSTRAINT",
+  "browser": "NOT_RUN",
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "newActivityCredit": 0,
+  "patchFiles": [
+    {
+      "path": "tools/corpus_engineering/isochoric_heat_verifier.py",
+      "bytes": 22348,
+      "sha256": "aee940727877a6281557963df8b6fb4c987dc5b35af9c02c4922f5fe43ad5c45"
+    },
+    {
+      "path": "tools/corpus_engineering/isobaric_monatomic_heat_verifier.py",
+      "bytes": 23457,
+      "sha256": "ad9073cfaf2714594ac2e6dcd8dfac9c49c88538b1f895aba5246fd4683f1685"
+    },
+    {
+      "path": "tools/corpus_engineering/compression_heating_verifier.py",
+      "bytes": 20965,
+      "sha256": "72370ed42d0d84b8c3cad9d58cc468439d263ae88de06491c0717493b185f1af"
+    },
+    {
+      "path": "tools/corpus_engineering/reversible_isothermal_entropy_verifier.py",
+      "bytes": 23025,
+      "sha256": "1a6a72fe0584448abd0b45050bf0c30337b563a08aea8257424d4ce03c94f7f2"
+    },
+    {
+      "path": "tools/corpus_engineering/entropy_hot_cold_verifier.py",
+      "bytes": 23942,
+      "sha256": "1d95f2b8be3cae2a98b558629b1f71f43a8c3f4a90400d81f7d0915e8564dff7"
+    },
+    {
+      "path": "tools/corpus_engineering/exact_arithmetic_literals.py",
+      "bytes": 2372,
+      "sha256": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+    },
+    {
+      "path": "tests/corpus/test_legacy_exact_arithmetic_literals.py",
+      "bytes": 5726,
+      "sha256": "6752868ea8f49fb68ad602678d182c6b3e1e445fddd25cf044ded3dec06b41c5"
+    }
+  ],
+  "evidenceFiles": [
+    {
+      "path": "editorial/reviews/legacy-exact-literals-before-fix-20261125/manifest.json",
+      "bytes": 2609,
+      "sha256": "f50248f28e484bcaa1797ab952465d986469854dccbf11757249c8ebb513c539"
+    },
+    {
+      "path": "editorial/reviews/legacy-exact-literals-before-fix-20261125/RED.log",
+      "bytes": 23682,
+      "sha256": "e220791b19ef25b1cd2a51c75df66f285f7aea38290e0c52ba41c2b7b904ac0e"
+    },
+    {
+      "path": "editorial/reviews/legacy-exact-literals-before-fix-20261125/isochoric_heat_verifier.py",
+      "bytes": 24045,
+      "sha256": "066aeec6bca2a36261a6a140a5d1fa78eb820c3fd517a2c0d8593299050db0a4"
+    },
+    {
+      "path": "editorial/reviews/legacy-exact-literals-before-fix-20261125/isobaric_monatomic_heat_verifier.py",
+      "bytes": 25154,
+      "sha256": "4ed651dfbb34bdb0744275fe27432dbcb00a23bec7d8b45714bf25dddb187c30"
+    },
+    {
+      "path": "editorial/reviews/legacy-exact-literals-before-fix-20261125/compression_heating_verifier.py",
+      "bytes": 22662,
+      "sha256": "ff6bec642081fb9236339355af4a19ae7d035c074adc5d8e1254dcd4c38d5cec"
+    },
+    {
+      "path": "editorial/reviews/legacy-exact-literals-before-fix-20261125/reversible_isothermal_entropy_verifier.py",
+      "bytes": 24722,
+      "sha256": "426f985bbfb0a1e40bb7f37fceae2f28231129378d08e0178916d3c046c79962"
+    },
+    {
+      "path": "editorial/reviews/legacy-exact-literals-before-fix-20261125/entropy_hot_cold_verifier.py",
+      "bytes": 25639,
+      "sha256": "905cd2e4cb60e1f9f987fb2abbbd4809aa85485eba0acb13b066399bf0e71fbc"
+    },
+    {
+      "path": "editorial/reviews/legacy-exact-literals-fix-20261125/GREEN.log",
+      "bytes": 1260,
+      "sha256": "40838ed2aa4c911444421d1514b149b48b0f6311db96d1eea9b307b3248803c2"
+    },
+    {
+      "path": "editorial/reviews/legacy-exact-literals-fix-20261125/parser-and-model-integrity.json",
+      "bytes": 2418,
+      "sha256": "62c7d61125170e99eda5711aeac65314a3eaf03cd27e295edc06ad51fb579483"
+    },
+    {
+      "path": "editorial/reviews/legacy-exact-literals-fix-20261125/patch-apply-check.json",
+      "bytes": 1171,
+      "sha256": "9afeaa5ca59505654488a4afe003728e0238bc9c4ce48f5004b4ed4e76dcd782"
+    },
+    {
+      "path": "editorial/reviews/legacy-exact-literals-fix-20261125/patch.diff",
+      "bytes": 25621,
+      "sha256": "0f2de7c10acd58620713538c6245c0fc9775089e28d482afd0e37ffc846b55bd"
+    },
+    {
+      "path": "editorial/reviews/legacy-exact-literals-fix-20261125/independent-decoder-fix-handoff.md",
+      "bytes": 4794,
+      "sha256": "449c24210f33a2b9677b0603799ea9835c744cdf8aa38a22128268404572f8b1"
+    }
+  ]
+}

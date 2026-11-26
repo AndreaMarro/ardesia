@@ -1,0 +1,39 @@
+test_calibrations_with_signed_display_offset (cross_circuits.CrossReviewCircuits205209.test_calibrations_with_signed_display_offset) ... ok
+test_eighty_fresh_saved_reports_identity_dependency (cross_circuits.CrossReviewCircuits205209.test_eighty_fresh_saved_reports_identity_dependency) ... ok
+test_exact_lexical_codec_and_dependency_drift (cross_circuits.CrossReviewCircuits205209.test_exact_lexical_codec_and_dependency_drift) ... ok
+test_finite_real_domain_and_passive_inverse_boundaries (cross_circuits.CrossReviewCircuits205209.test_finite_real_domain_and_passive_inverse_boundaries) ... ok
+test_five_inverse_faults_are_independently_detected (cross_circuits.CrossReviewCircuits205209.test_five_inverse_faults_are_independently_detected) ... ok
+test_identical_chain_integer_domain_and_inverse (cross_circuits.CrossReviewCircuits205209.test_identical_chain_integer_domain_and_inverse) ... ok
+test_means_exact_roots_units_and_constitutive_faults (cross_circuits.CrossReviewCircuits205209.test_means_exact_roots_units_and_constitutive_faults) ... FAIL
+test_native_svg_exact_scales_and_topology (cross_circuits.CrossReviewCircuits205209.test_native_svg_exact_scales_and_topology) ... FAIL
+test_network_two_occurrences_and_inverse (cross_circuits.CrossReviewCircuits205209.test_network_two_occurrences_and_inverse) ... ok
+test_parallel_current_balance_and_inverse (cross_circuits.CrossReviewCircuits205209.test_parallel_current_balance_and_inverse) ... ok
+test_retokenized_wrong_keys_binding_and_package_faults (cross_circuits.CrossReviewCircuits205209.test_retokenized_wrong_keys_binding_and_package_faults) ... ok
+test_series_kirchhoff_and_bypass (cross_circuits.CrossReviewCircuits205209.test_series_kirchhoff_and_bypass) ... ok
+test_source_primary_and_git_frozen_fixtures (cross_circuits.CrossReviewCircuits205209.test_source_primary_and_git_frozen_fixtures) ... ok
+test_volume_conservation_and_inverse (cross_circuits.CrossReviewCircuits205209.test_volume_conservation_and_inverse) ... ok
+
+======================================================================
+FAIL: test_means_exact_roots_units_and_constitutive_faults (cross_circuits.CrossReviewCircuits205209.test_means_exact_roots_units_and_constitutive_faults)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-a-resident/officina-di-fisica/tests/corpus/test_cross_review_circuits_205_209.py", line 234, in test_means_exact_roots_units_and_constitutive_faults
+    self.assertEqual((1/Q(2,'ohm')+1/Q(3,'ohm')).to('siemens').magnitude,Fraction(5,6))
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 0.8333333333333333 != Fraction(5, 6)
+
+======================================================================
+FAIL: test_native_svg_exact_scales_and_topology (cross_circuits.CrossReviewCircuits205209.test_native_svg_exact_scales_and_topology)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-a-resident/officina-di-fisica/tests/corpus/test_cross_review_circuits_205_209.py", line 278, in test_native_svg_exact_scales_and_topology
+    all207=' '.join(roots['207'].itertext());self.assertIn('V_AB>0',all207)
+                                             ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+AssertionError: 'V_AB>0' not found in '\n Nodi comuni e corrente di un ramo aperto Due resistori da2 ohm fra gli stessi nodi danno equivalente1 ohm. Nel caso distinto3 e6 ohm, il ramo3 ohm è aperto e rimane soltanto6 ohm alla stessa tensione positiva. I totali1 e2 ohm di due prove hanno media3/2 ohm. \n \n \n 1 · Due rami fra gli stessi nodi \n La tensione è comune ; si sommano le correnti. \n \n \n A B 2 Ω 2 Ω \n G_eq = 1/2 S + 1/2 S = 1 S. \n R_eq = 1 Ω. \n \n 2 · Apriamo soltanto un ramo \n Caso distinto: 3 Ω e 6 Ω ; V_AB > 0 resta costante. \n \n \n \n \n 3 Ω 6 Ω \n Prima: I_i = V_AB / (2 Ω). Dopo: I_f = V_AB / (6 Ω) ; I_f/I_i = 1/3. \n \n 3 · Equivalenti di due prove distinte \n A: rami 2 Ω e 2 Ω ; B: rami 3 Ω e 6 Ω. \n \n \n \n \n A 1 Ω B 2 Ω \n Media 3/2 Ω 0 \n Le barre condividono origine e scala in ohm. Il parallelo ai dati medi darebbe 20/13 Ω. \n'
+
+----------------------------------------------------------------------
+Ran 14 tests in 2.288s
+
+FAILED (failures=2)
+
+OBSERVED_EXIT=1

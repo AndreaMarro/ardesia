@@ -1,0 +1,1275 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u5-adiabatic-monatomic-01",
+      "kind": "question",
+      "course": "C3",
+      "section": "Adiabatica reversibile del gas monoatomico",
+      "order": 16501,
+      "title": "Una compressione di rapporto otto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "adiabatic-monatomic",
+      "difficulty": 1,
+      "prompt": "Un campione chiuso di gas ideale monoatomico classico, con capacità molari costanti e γ=5/3, segue un’adiabatica reversibile fra stati di equilibrio. Q=0; si trascurano energie cinetiche e potenziali macroscopiche e dissipazioni. Il lavoro W è positivo se compiuto dal gas, quindi ΔU=−W. T₁>0 è assoluta in K e r=V₁/V₂>0 è adimensionale: T₂=T₁ r^(2/3). r>1 indica compressione, 0<r<1 espansione. Con T₁=100 K e r=8, quanto vale T₂ in K?",
+      "answer": {
+        "type": "numeric",
+        "value": 400,
+        "unit": "K",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Prima estraiamo la radice cubica di otto, che è due; elevandola al quadrato otteniamo quattro. La temperatura finale è quindi quattro volte i cento kelvin iniziali. Nella compressione il gas riceve lavoro: W è negativo e l’energia interna aumenta, in accordo con l’aumento di temperatura senza calore entrante."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/9fb7ccaf4835c9084cf006ab976fe3ddfbc10a5db40c13248f9bee2258496d19",
+          "text": "Tre pannelli: i volumi di una stessa adiabatica reversibile sono mostrati con rettangoli a pari altezza e aree in rapporto 8 a 1; le barre delle temperature 100 K e 400 K hanno origine comune e scala 1 px/K; il diagramma dei passaggi distingue radice cubica, quadrato e moltiplicazione. Le frecce di compressione sono schematiche e non rappresentano un processo irreversibile improvviso."
+        },
+        {
+          "type": "formula",
+          "text": "r^{2/3}=(\\sqrt[3]{8})^2"
+        },
+        {
+          "type": "formula",
+          "text": " r^{2/3}=2^2"
+        },
+        {
+          "type": "formula",
+          "text": "2^2=4"
+        },
+        {
+          "type": "formula",
+          "text": " T_2=100\\cdot4\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " T_2=400\\,\\mathrm K"
+        },
+        {
+          "type": "text",
+          "text": "Ottocento K usa r alla prima potenza; duecento usa soltanto la radice cubica. La reversibilità adiabatica non impone temperatura costante: impone la relazione fra T e V."
+        }
+      ],
+      "hints": [
+        "Trova prima la radice cubica esatta di r, poi quadrala.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Ottocento K usa r alla prima potenza; duecento usa soltanto la radice cubica. La reversibilità adiabatica non impone temperatura costante: impone la relazione fra T e V.",
+        "target": "C3-L07"
+      },
+      "coverage": [
+        "Legge temperatura-volume e reversibilità",
+        "Potenze razionali manuali e dominio positivo",
+        "Inverse, medie e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-adiabatic-monatomic-02",
+      "kind": "question",
+      "course": "C3",
+      "section": "Adiabatica reversibile del gas monoatomico",
+      "order": 16502,
+      "title": "Il rapporto di volumi non porta unità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "adiabatic-monatomic",
+      "difficulty": 1,
+      "prompt": "Un campione chiuso di gas ideale monoatomico classico, con capacità molari costanti e γ=5/3, segue un’adiabatica reversibile fra stati di equilibrio. Q=0; si trascurano energie cinetiche e potenziali macroscopiche e dissipazioni. Il lavoro W è positivo se compiuto dal gas, quindi ΔU=−W. T₁>0 è assoluta in K e r=V₁/V₂>0 è adimensionale: T₂=T₁ r^(2/3). r>1 indica compressione, 0<r<1 espansione. Quale unità misura T₂?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "K",
+          "J",
+          "K²",
+          "Pa",
+          "J/K"
+        ],
+        "value": "K"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I due volumi sono espressi nella stessa unità, perciò il loro rapporto e ogni sua potenza sono numeri puri. Moltiplicare T₁ per r^(2/3) conserva l’unità kelvin. La legge usa temperature assolute: la stessa moltiplicazione non vale per letture Celsius."
+        },
+        {
+          "type": "formula",
+          "text": "[r]=[V_1]/[V_2]"
+        },
+        {
+          "type": "formula",
+          "text": "[V_1]/[V_2]=1"
+        },
+        {
+          "type": "formula",
+          "text": " [T_2]=[T_1]"
+        },
+        {
+          "type": "formula",
+          "text": "[T_1]=\\mathrm K"
+        },
+        {
+          "type": "text",
+          "text": "J esprime energia, Pa pressione e J/K una capacità termica. K² introdurrebbe una potenza della temperatura assente nella legge."
+        }
+      ],
+      "hints": [
+        "Controlla prima l’unità del rapporto V₁/V₂.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "J esprime energia, Pa pressione e J/K una capacità termica. K² introdurrebbe una potenza della temperatura assente nella legge.",
+        "target": "C3-L07"
+      },
+      "coverage": [
+        "Legge temperatura-volume e reversibilità",
+        "Potenze razionali manuali e dominio positivo",
+        "Inverse, medie e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-adiabatic-monatomic-03",
+      "kind": "question",
+      "course": "C3",
+      "section": "Adiabatica reversibile del gas monoatomico",
+      "order": 16503,
+      "title": "Reversibile adiabatica non significa isoterma",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "adiabatic-monatomic",
+      "difficulty": 1,
+      "prompt": "Un campione chiuso di gas ideale monoatomico classico, con capacità molari costanti e γ=5/3, segue un’adiabatica reversibile fra stati di equilibrio. Q=0; si trascurano energie cinetiche e potenziali macroscopiche e dissipazioni. Il lavoro W è positivo se compiuto dal gas, quindi ΔU=−W. T₁>0 è assoluta in K e r=V₁/V₂>0 è adimensionale: T₂=T₁ r^(2/3). r>1 indica compressione, 0<r<1 espansione. Quale relazione lega T₁, T₂ e r?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "T₂ = T₁ r^(2/3)",
+          "T₂ = T₁ r",
+          "T₂ = T₁ / r",
+          "T₂ = T₁",
+          "T₂ = T₁ r^(5/3)"
+        ],
+        "value": "T₂ = T₁ r^(2/3)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Per un’adiabatica reversibile del gas ideale vale TV^(γ−1)=costante. Con γ=5/3, l’esponente è due terzi. Dividendo i due stati di equilibrio, V₁/V₂ diventa r e si ottiene la legge richiesta. L’assenza di calore non annulla il lavoro e dunque non annulla necessariamente ΔU."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/9fb7ccaf4835c9084cf006ab976fe3ddfbc10a5db40c13248f9bee2258496d19",
+          "text": "La geometria confronta due stati di equilibrio collegati reversibilmente e adiabaticamente. La riduzione di volume non implica temperatura costante: il lavoro ricevuto aumenta U. Le temperature sono assolute; la figura separa il rapporto volumico 8 dal rapporto termico 4."
+        },
+        {
+          "type": "formula",
+          "text": "T_1V_1^{\\gamma-1}=T_2V_2^{\\gamma-1}"
+        },
+        {
+          "type": "formula",
+          "text": " \\gamma-1=2/3"
+        },
+        {
+          "type": "formula",
+          "text": " T_2=T_1(V_1/V_2)^{2/3}"
+        },
+        {
+          "type": "formula",
+          "text": " T_2=T_1r^{2/3}"
+        },
+        {
+          "type": "text",
+          "text": "T₂=T₁/r sarebbe la relazione a pressione costante per lo stesso campione ideale; T₂=T₁r non è la legge adiabatica assegnata. T costante sarebbe invece un’isoterma. Cinque terzi è l’esponente della legge pV^γ=costante, non di TV^(γ−1). La legge qui non descrive l’espansione libera irreversibile."
+        }
+      ],
+      "hints": [
+        "Usa l’esponente γ−1 nella relazione temperatura-volume.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "T₂=T₁/r sarebbe la relazione a pressione costante per lo stesso campione ideale; T₂=T₁r non è la legge adiabatica assegnata. T costante sarebbe invece un’isoterma. Cinque terzi è l’esponente della legge pV^γ=costante, non di TV^(γ−1). La legge qui non descrive l’espansione libera irreversibile.",
+        "target": "C3-L07"
+      },
+      "coverage": [
+        "Legge temperatura-volume e reversibilità",
+        "Potenze razionali manuali e dominio positivo",
+        "Inverse, medie e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-adiabatic-monatomic-04",
+      "kind": "question",
+      "course": "C3",
+      "section": "Adiabatica reversibile del gas monoatomico",
+      "order": 16504,
+      "title": "Cambiare solo la temperatura iniziale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "adiabatic-monatomic",
+      "difficulty": 1,
+      "prompt": "Un campione chiuso di gas ideale monoatomico classico, con capacità molari costanti e γ=5/3, segue un’adiabatica reversibile fra stati di equilibrio. Q=0; si trascurano energie cinetiche e potenziali macroscopiche e dissipazioni. Il lavoro W è positivo se compiuto dal gas, quindi ΔU=−W. T₁>0 è assoluta in K e r=V₁/V₂>0 è adimensionale: T₂=T₁ r^(2/3). r>1 indica compressione, 0<r<1 espansione. r resta 8. T₁ passa da 100 a 200 K fra due prove. Come cambia T₂?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 400 a 800 K",
+          "Da 400 a 200 K",
+          "Resta 400 K",
+          "Da 400 a 1600 K",
+          "Da 400 a 600 K"
+        ],
+        "value": "Da 400 a 800 K"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il fattore di compressione termica r^(2/3) rimane quattro. Moltiplica cento kelvin nella prima prova e duecento nella seconda: la temperatura finale raddoppia da quattrocento a ottocento kelvin. Non va raddoppiato anche r, che è esplicitamente fisso."
+        },
+        {
+          "type": "formula",
+          "text": "8^{2/3}=4"
+        },
+        {
+          "type": "formula",
+          "text": " T_{2,A}=100\\cdot4\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " T_{2,B}=200\\cdot4\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " T_{2,B}=800\\,\\mathrm K"
+        },
+        {
+          "type": "text",
+          "text": "Duecento K confonde il nuovo ingresso con l’uscita. Milleseicento quadrerebbe un raddoppio lineare; seicento non applica il fattore quattro al nuovo ingresso: 200 K per quattro danno 800 K."
+        }
+      ],
+      "hints": [
+        "Mantieni r^(2/3) comune e confronta soltanto T₁.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Duecento K confonde il nuovo ingresso con l’uscita. Milleseicento quadrerebbe un raddoppio lineare; seicento non applica il fattore quattro al nuovo ingresso: 200 K per quattro danno 800 K.",
+        "target": "C3-L07"
+      },
+      "coverage": [
+        "Legge temperatura-volume e reversibilità",
+        "Potenze razionali manuali e dominio positivo",
+        "Inverse, medie e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-adiabatic-monatomic-05",
+      "kind": "question",
+      "course": "C3",
+      "section": "Adiabatica reversibile del gas monoatomico",
+      "order": 16505,
+      "title": "La temperatura prima della compressione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "adiabatic-monatomic",
+      "difficulty": 2,
+      "prompt": "Un campione chiuso di gas ideale monoatomico classico, con capacità molari costanti e γ=5/3, segue un’adiabatica reversibile fra stati di equilibrio. Q=0; si trascurano energie cinetiche e potenziali macroscopiche e dissipazioni. Il lavoro W è positivo se compiuto dal gas, quindi ΔU=−W. T₁>0 è assoluta in K e r=V₁/V₂>0 è adimensionale: T₂=T₁ r^(2/3). r>1 indica compressione, 0<r<1 espansione. T₂=400 K e r=8. Quanto vale T₁ in K?",
+      "answer": {
+        "type": "numeric",
+        "value": 100,
+        "unit": "K",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il processo moltiplica la temperatura per quattro. Per tornare all’ingresso dividiamo la finale per quattro: quattrocento su quattro dà cento kelvin. Tutte le temperature restano positive e la compressione le aumenta nel verso corretto."
+        },
+        {
+          "type": "formula",
+          "text": "T_1=T_2/r^{2/3}"
+        },
+        {
+          "type": "formula",
+          "text": " r^{2/3}=4"
+        },
+        {
+          "type": "formula",
+          "text": " T_1=400/4\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " T_1=100\\,\\mathrm K"
+        },
+        {
+          "type": "text",
+          "text": "Moltiplicare ancora per quattro darebbe 1600 K e ricostruirebbe una finale di 6400 K. Dividere per otto darebbe 50 K e ometterebbe l’esponente termico corretto."
+        }
+      ],
+      "hints": [
+        "Annulla il fattore termico con una divisione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Moltiplicare ancora per quattro darebbe 1600 K e ricostruirebbe una finale di 6400 K. Dividere per otto darebbe 50 K e ometterebbe l’esponente termico corretto.",
+        "target": "C3-L07"
+      },
+      "coverage": [
+        "Legge temperatura-volume e reversibilità",
+        "Potenze razionali manuali e dominio positivo",
+        "Inverse, medie e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-adiabatic-monatomic-06",
+      "kind": "question",
+      "course": "C3",
+      "section": "Adiabatica reversibile del gas monoatomico",
+      "order": 16506,
+      "title": "Il rapporto di volumi dalla temperatura",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "adiabatic-monatomic",
+      "difficulty": 2,
+      "prompt": "Un campione chiuso di gas ideale monoatomico classico, con capacità molari costanti e γ=5/3, segue un’adiabatica reversibile fra stati di equilibrio. Q=0; si trascurano energie cinetiche e potenziali macroscopiche e dissipazioni. Il lavoro W è positivo se compiuto dal gas, quindi ΔU=−W. T₁>0 è assoluta in K e r=V₁/V₂>0 è adimensionale: T₂=T₁ r^(2/3). r>1 indica compressione, 0<r<1 espansione. T₁=100 K e T₂=400 K. Quanto vale r?",
+      "answer": {
+        "type": "numeric",
+        "value": 8,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il rapporto delle temperature è quattro. Per annullare la potenza due terzi eleviamo alla potenza tre mezzi: la radice quadrata positiva di quattro è due, e il suo cubo è otto. r è positivo perché è un rapporto di volumi positivi; non c’è un secondo ramo negativo da conservare."
+        },
+        {
+          "type": "formula",
+          "text": "r^{2/3}=T_2/T_1"
+        },
+        {
+          "type": "formula",
+          "text": "T_2/T_1=4"
+        },
+        {
+          "type": "formula",
+          "text": " r=(T_2/T_1)^{3/2}"
+        },
+        {
+          "type": "formula",
+          "text": " r=(\\sqrt4)^3"
+        },
+        {
+          "type": "formula",
+          "text": " r=8"
+        },
+        {
+          "type": "text",
+          "text": "Quattro è il rapporto termico, non quello volumico. Sedici ne prende il quadrato, due si ferma alla radice. Un valore negativo non rappresenta volumi del modello."
+        }
+      ],
+      "hints": [
+        "Inverti l’esponente con la potenza tre mezzi e usa radici positive.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro è il rapporto termico, non quello volumico. Sedici ne prende il quadrato, due si ferma alla radice. Un valore negativo non rappresenta volumi del modello.",
+        "target": "C3-L07"
+      },
+      "coverage": [
+        "Legge temperatura-volume e reversibilità",
+        "Potenze razionali manuali e dominio positivo",
+        "Inverse, medie e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-adiabatic-monatomic-07",
+      "kind": "question",
+      "course": "C3",
+      "section": "Adiabatica reversibile del gas monoatomico",
+      "order": 16507,
+      "title": "Da otto a ventisette",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "adiabatic-monatomic",
+      "difficulty": 2,
+      "prompt": "Un campione chiuso di gas ideale monoatomico classico, con capacità molari costanti e γ=5/3, segue un’adiabatica reversibile fra stati di equilibrio. Q=0; si trascurano energie cinetiche e potenziali macroscopiche e dissipazioni. Il lavoro W è positivo se compiuto dal gas, quindi ΔU=−W. T₁>0 è assoluta in K e r=V₁/V₂>0 è adimensionale: T₂=T₁ r^(2/3). r>1 indica compressione, 0<r<1 espansione. T₁=100 K. A ha r=8, B ha r=27. Quanto vale T₂,B/T₂,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "9/4",
+          "27/8",
+          "3/2",
+          "4/9",
+          "9"
+        ],
+        "value": "9/4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Otto ha radice cubica due e dà un fattore termico quattro; ventisette ha radice cubica tre e dà nove. Le temperature finali sono 400 K e 900 K. Il rapporto richiesto è nove quarti; la temperatura iniziale comune si cancella."
+        },
+        {
+          "type": "formula",
+          "text": "8^{2/3}=4"
+        },
+        {
+          "type": "formula",
+          "text": " 27^{2/3}=9"
+        },
+        {
+          "type": "formula",
+          "text": " T_{2,A}=400\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " T_{2,B}=900\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " T_{2,B}/T_{2,A}=9/4"
+        },
+        {
+          "type": "text",
+          "text": "27/8 conserva il rapporto dei volumi senza l’esponente. Tre mezzi considera solo le radici cubiche; quattro noni scambia B e A. Nove è il solo fattore di B, non il confronto con A."
+        }
+      ],
+      "hints": [
+        "Calcola le due potenze usando cubi perfetti.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "27/8 conserva il rapporto dei volumi senza l’esponente. Tre mezzi considera solo le radici cubiche; quattro noni scambia B e A. Nove è il solo fattore di B, non il confronto con A.",
+        "target": "C3-L07"
+      },
+      "coverage": [
+        "Legge temperatura-volume e reversibilità",
+        "Potenze razionali manuali e dominio positivo",
+        "Inverse, medie e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-adiabatic-monatomic-08",
+      "kind": "question",
+      "course": "C3",
+      "section": "Adiabatica reversibile del gas monoatomico",
+      "order": 16508,
+      "title": "Uno scarto positivo in kelvin",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "adiabatic-monatomic",
+      "difficulty": 2,
+      "prompt": "Un campione chiuso di gas ideale monoatomico classico, con capacità molari costanti e γ=5/3, segue un’adiabatica reversibile fra stati di equilibrio. Q=0; si trascurano energie cinetiche e potenziali macroscopiche e dissipazioni. Il lavoro W è positivo se compiuto dal gas, quindi ΔU=−W. T₁>0 è assoluta in K e r=V₁/V₂>0 è adimensionale: T₂=T₁ r^(2/3). r>1 indica compressione, 0<r<1 espansione. Con T₁=100 K e r=8 si propone T₂=800 K. Quanto vale proposta meno risultato corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "400 K",
+          "−400 K",
+          "800 K",
+          "0 K",
+          "200 K"
+        ],
+        "value": "400 K"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La temperatura finale corretta è quattrocento kelvin. La proposta è più alta di quattrocento kelvin, quindi lo scarto ha segno positivo. È una differenza di temperature, non un nuovo valore assoluto a cui aggiungere un offset Celsius."
+        },
+        {
+          "type": "formula",
+          "text": "T_2=400\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " e=T_{2,\\rm proposto}-T_2"
+        },
+        {
+          "type": "formula",
+          "text": " e=(800-400)\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " e=400\\,\\mathrm K"
+        },
+        {
+          "type": "text",
+          "text": "Meno quattrocento inverte la sottrazione. Ottocento ripete la proposta, zero la accetta e duecento non coincide con la differenza assegnata."
+        }
+      ],
+      "hints": [
+        "Calcola la potenza esatta prima dello scarto con segno.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Meno quattrocento inverte la sottrazione. Ottocento ripete la proposta, zero la accetta e duecento non coincide con la differenza assegnata.",
+        "target": "C3-L07"
+      },
+      "coverage": [
+        "Legge temperatura-volume e reversibilità",
+        "Potenze razionali manuali e dominio positivo",
+        "Inverse, medie e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-adiabatic-monatomic-09",
+      "kind": "question",
+      "course": "C3",
+      "section": "Adiabatica reversibile del gas monoatomico",
+      "order": 16509,
+      "title": "Isolare la temperatura iniziale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "adiabatic-monatomic",
+      "difficulty": 2,
+      "prompt": "Un campione chiuso di gas ideale monoatomico classico, con capacità molari costanti e γ=5/3, segue un’adiabatica reversibile fra stati di equilibrio. Q=0; si trascurano energie cinetiche e potenziali macroscopiche e dissipazioni. Il lavoro W è positivo se compiuto dal gas, quindi ΔU=−W. T₁>0 è assoluta in K e r=V₁/V₂>0 è adimensionale: T₂=T₁ r^(2/3). r>1 indica compressione, 0<r<1 espansione. Quale formula isola T₁?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "T₁ = T₂ / r^(2/3)",
+          "T₁ = T₂ r^(2/3)",
+          "T₁ = T₂ / r",
+          "T₁ = T₂ / r^(3/2)",
+          "T₁ = r^(2/3) / T₂"
+        ],
+        "value": "T₁ = T₂ / r^(2/3)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "r>0 rende positivo e non nullo il fattore r^(2/3). Dividiamo per esso i due membri della legge: resta T₁. Per una compressione r>1 la finale viene divisa per un numero maggiore di uno, ricostruendo una temperatura iniziale minore."
+        },
+        {
+          "type": "formula",
+          "text": "T_2=T_1r^{2/3}"
+        },
+        {
+          "type": "formula",
+          "text": " T_1=\\frac{T_2}{r^{2/3}}"
+        },
+        {
+          "type": "formula",
+          "text": " [T_1]=\\mathrm K"
+        },
+        {
+          "type": "text",
+          "text": "Moltiplicare applica di nuovo la trasformazione invece di invertirla. Dividere per r o per r^(3/2) cambia la legge: tre mezzi serve a isolare r, non T₁. L’ultima formula ha unità K⁻¹."
+        }
+      ],
+      "hints": [
+        "L’incognita moltiplica un fattore noto positivo: dividilo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Moltiplicare applica di nuovo la trasformazione invece di invertirla. Dividere per r o per r^(3/2) cambia la legge: tre mezzi serve a isolare r, non T₁. L’ultima formula ha unità K⁻¹.",
+        "target": "C3-L07"
+      },
+      "coverage": [
+        "Legge temperatura-volume e reversibilità",
+        "Potenze razionali manuali e dominio positivo",
+        "Inverse, medie e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-adiabatic-monatomic-10",
+      "kind": "question",
+      "course": "C3",
+      "section": "Adiabatica reversibile del gas monoatomico",
+      "order": 16510,
+      "title": "Due variazioni con esponenti diversi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "adiabatic-monatomic",
+      "difficulty": 2,
+      "prompt": "Un campione chiuso di gas ideale monoatomico classico, con capacità molari costanti e γ=5/3, segue un’adiabatica reversibile fra stati di equilibrio. Q=0; si trascurano energie cinetiche e potenziali macroscopiche e dissipazioni. Il lavoro W è positivo se compiuto dal gas, quindi ΔU=−W. T₁>0 è assoluta in K e r=V₁/V₂>0 è adimensionale: T₂=T₁ r^(2/3). r>1 indica compressione, 0<r<1 espansione. Fra prove si impone T₁,B=κ₁T₁,A e r_B=κ₂r_A, κ₁,κ₂>0. Qual è T₂,B/T₂,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ κ₂^(2/3)",
+          "κ₁ κ₂",
+          "κ₁ / κ₂^(2/3)",
+          "κ₁^(2/3) κ₂",
+          "κ₁ + κ₂^(2/3)"
+        ],
+        "value": "κ₁ κ₂^(2/3)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il primo fattore moltiplica direttamente T₁. Il secondo entra invece nella potenza del rapporto volumico. Per quantità positive la potenza del prodotto si separa: dopo aver cancellato T₁,A e r_A^(2/3), rimane κ₁κ₂^(2/3). Questo vale anche quando una prova è un’espansione, purché i rapporti rimangano positivi."
+        },
+        {
+          "type": "formula",
+          "text": "T_{2,B}=\\kappa_1T_{1,A}(\\kappa_2r_A)^{2/3}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{T_{2,B}}{T_{2,A}}=\\kappa_1\\kappa_2^{2/3}"
+        },
+        {
+          "type": "text",
+          "text": "κ₁κ₂ ignora l’esponente; il quoziente rende inversa una dipendenza crescente. La formula con κ₁^(2/3) scambia i ruoli degli ingressi. La somma darebbe due per prove identiche, anziché uno."
+        }
+      ],
+      "hints": [
+        "Sostituisci i fattori nella legge prima di cancellare.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "κ₁κ₂ ignora l’esponente; il quoziente rende inversa una dipendenza crescente. La formula con κ₁^(2/3) scambia i ruoli degli ingressi. La somma darebbe due per prove identiche, anziché uno.",
+        "target": "C3-L07"
+      },
+      "coverage": [
+        "Legge temperatura-volume e reversibilità",
+        "Potenze razionali manuali e dominio positivo",
+        "Inverse, medie e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-adiabatic-monatomic-11",
+      "kind": "question",
+      "course": "C3",
+      "section": "Adiabatica reversibile del gas monoatomico",
+      "order": 16511,
+      "title": "Preparazioni diverse e compressioni diverse",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "adiabatic-monatomic",
+      "difficulty": 2,
+      "prompt": "Un campione chiuso di gas ideale monoatomico classico, con capacità molari costanti e γ=5/3, segue un’adiabatica reversibile fra stati di equilibrio. Q=0; si trascurano energie cinetiche e potenziali macroscopiche e dissipazioni. Il lavoro W è positivo se compiuto dal gas, quindi ΔU=−W. T₁>0 è assoluta in K e r=V₁/V₂>0 è adimensionale: T₂=T₁ r^(2/3). r>1 indica compressione, 0<r<1 espansione. A: T₁=100 K, r=8. B: T₁=200 K, r=27. Quanto vale T₂,B/T₂,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "9/2",
+          "2/9",
+          "9/4",
+          "27/4",
+          "2"
+        ],
+        "value": "9/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A termina a quattrocento kelvin. B parte da duecento kelvin e li moltiplica per nove, terminando a 1800 K. Il quoziente è 1800/400=18/4=9/2. Si ottiene anche moltiplicando il raddoppio di T₁ per il fattore termico nove quarti."
+        },
+        {
+          "type": "formula",
+          "text": "T_{2,A}=100\\cdot4\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " T_{2,B}=200\\cdot9\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " T_{2,B}/T_{2,A}=1800/400"
+        },
+        {
+          "type": "formula",
+          "text": " T_{2,B}/T_{2,A}=9/2"
+        },
+        {
+          "type": "text",
+          "text": "Nove quarti considera solo la variazione di r e due solo T₁. 27/4 usa l’esponente sbagliato sul rapporto dei volumi; due noni inverte il confronto."
+        }
+      ],
+      "hints": [
+        "Ricava entrambe le temperature finali con le radici cubiche esatte.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Nove quarti considera solo la variazione di r e due solo T₁. 27/4 usa l’esponente sbagliato sul rapporto dei volumi; due noni inverte il confronto.",
+        "target": "C3-L07"
+      },
+      "coverage": [
+        "Legge temperatura-volume e reversibilità",
+        "Potenze razionali manuali e dominio positivo",
+        "Inverse, medie e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-adiabatic-monatomic-12",
+      "kind": "question",
+      "course": "C3",
+      "section": "Adiabatica reversibile del gas monoatomico",
+      "order": 16512,
+      "title": "Media delle temperature finali",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "adiabatic-monatomic",
+      "difficulty": 2,
+      "prompt": "Un campione chiuso di gas ideale monoatomico classico, con capacità molari costanti e γ=5/3, segue un’adiabatica reversibile fra stati di equilibrio. Q=0; si trascurano energie cinetiche e potenziali macroscopiche e dissipazioni. Il lavoro W è positivo se compiuto dal gas, quindi ΔU=−W. T₁>0 è assoluta in K e r=V₁/V₂>0 è adimensionale: T₂=T₁ r^(2/3). r>1 indica compressione, 0<r<1 espansione. A usa T₁=100 K, r=8; B usa T₁=200 K, r=27. Qual è la media aritmetica dei due T₂?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1100 K",
+          "2200 K",
+          "700 K",
+          "900 K",
+          "550 K"
+        ],
+        "value": "1100 K"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le due letture finali sono 400 K e 1800 K. La somma è 2200 K e la metà 1100 K. I due ingressi medi descriverebbero invece una terza adiabatica, con T₁=150 K e r=35/2: non sostituiscono la media richiesta. Non occorre estrarre la radice cubica di quel rapporto per risolvere questo compito."
+        },
+        {
+          "type": "formula",
+          "text": "T_{2,A}=400\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " T_{2,B}=1800\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline T_2=\\frac{400+1800}{2}\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline T_2=1100\\,\\mathrm K"
+        },
+        {
+          "type": "text",
+          "text": "2200 K è la somma e 550 K divide due volte per due. 700 K è metà della differenza, non la media; 900 K considera soltanto il fattore nove applicato all’ingresso di A."
+        }
+      ],
+      "hints": [
+        "Prima completa ogni prova, poi dai loro uguale peso.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "2200 K è la somma e 550 K divide due volte per due. 700 K è metà della differenza, non la media; 900 K considera soltanto il fattore nove applicato all’ingresso di A.",
+        "target": "C3-L07"
+      },
+      "coverage": [
+        "Legge temperatura-volume e reversibilità",
+        "Potenze razionali manuali e dominio positivo",
+        "Inverse, medie e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-adiabatic-monatomic-13",
+      "kind": "question",
+      "course": "C3",
+      "section": "Adiabatica reversibile del gas monoatomico",
+      "order": 16513,
+      "title": "Il rapporto volumico per un bersaglio termico",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "adiabatic-monatomic",
+      "difficulty": 3,
+      "prompt": "Un campione chiuso di gas ideale monoatomico classico, con capacità molari costanti e γ=5/3, segue un’adiabatica reversibile fra stati di equilibrio. Q=0; si trascurano energie cinetiche e potenziali macroscopiche e dissipazioni. Il lavoro W è positivo se compiuto dal gas, quindi ΔU=−W. T₁>0 è assoluta in K e r=V₁/V₂>0 è adimensionale: T₂=T₁ r^(2/3). r>1 indica compressione, 0<r<1 espansione. A ha T₁=100 K e r_A=8. B parte da T₁=200 K e deve avere T₂,B=(9/2)T₂,A. Quanto vale r_B/r_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "27/8",
+          "8/27",
+          "9/2",
+          "9",
+          "3/2"
+        ],
+        "value": "27/8"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento finisce a 400 K e il bersaglio è 1800 K. Con ingresso 200 K, B richiede r_B^(2/3)=9. La radice quadrata di nove è tre; il cubo di tre dà r_B=27. Confrontando con otto troviamo 27/8."
+        },
+        {
+          "type": "formula",
+          "text": "T_{2,B}=1800\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " r_B^{2/3}=1800/200"
+        },
+        {
+          "type": "formula",
+          "text": "1800/200=9"
+        },
+        {
+          "type": "formula",
+          "text": " r_B=(\\sqrt9)^3"
+        },
+        {
+          "type": "formula",
+          "text": "(\\sqrt9)^3=27"
+        },
+        {
+          "type": "formula",
+          "text": " r_B/r_A=27/8"
+        },
+        {
+          "type": "text",
+          "text": "Nove è il fattore termico, non r_B né il rapporto r_B/r_A. Tre mezzi si ferma al confronto delle radici cubiche. Il rapporto delle temperature finali non è quello volumico perché cambia anche T₁."
+        }
+      ],
+      "hints": [
+        "Isola r_B dalla temperatura bersaglio usando il nuovo T₁.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Nove è il fattore termico, non r_B né il rapporto r_B/r_A. Tre mezzi si ferma al confronto delle radici cubiche. Il rapporto delle temperature finali non è quello volumico perché cambia anche T₁.",
+        "target": "C3-L07"
+      },
+      "coverage": [
+        "Legge temperatura-volume e reversibilità",
+        "Potenze razionali manuali e dominio positivo",
+        "Inverse, medie e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-adiabatic-monatomic-14",
+      "kind": "question",
+      "course": "C3",
+      "section": "Adiabatica reversibile del gas monoatomico",
+      "order": 16514,
+      "title": "Il display va convertito in kelvin",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "adiabatic-monatomic",
+      "difficulty": 3,
+      "prompt": "Un campione chiuso di gas ideale monoatomico classico, con capacità molari costanti e γ=5/3, segue un’adiabatica reversibile fra stati di equilibrio. Q=0; si trascurano energie cinetiche e potenziali macroscopiche e dissipazioni. Il lavoro W è positivo se compiuto dal gas, quindi ΔU=−W. T₁>0 è assoluta in K e r=V₁/V₂>0 è adimensionale: T₂=T₁ r^(2/3). r>1 indica compressione, 0<r<1 espansione. S=qT₂ è continuo e adimensionale, q>0. A con T₁=100 K, r=8 dà S=1200. B dà S=5400 e usa r=27. Quanto vale T₁,B in K?",
+      "answer": {
+        "type": "numeric",
+        "value": 200,
+        "unit": "K",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A termina a 400 K, perciò q=1200/(400 K)=3 K⁻¹. La lettura 5400 corrisponde a 1800 K. Il rapporto volumico 27 moltiplica T₁ per nove: dividendo 1800 per nove si ottengono 200 K."
+        },
+        {
+          "type": "formula",
+          "text": "T_{2,A}=400\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " q=3\\,\\mathrm{K^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " T_{2,B}=5400/q"
+        },
+        {
+          "type": "formula",
+          "text": " T_{2,B}=1800\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " T_{1,B}=1800/9\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " T_{1,B}=200\\,\\mathrm K"
+        },
+        {
+          "type": "text",
+          "text": "Usare 5400 direttamente come kelvin darebbe T₁=600 K. Dividere per 27 invece che per nove darebbe 200/3 K e non ricostruirebbe la lettura con la legge adiabatica."
+        }
+      ],
+      "hints": [
+        "Calibra il display, poi annulla r^(2/3).",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Usare 5400 direttamente come kelvin darebbe T₁=600 K. Dividere per 27 invece che per nove darebbe 200/3 K e non ricostruirebbe la lettura con la legge adiabatica.",
+        "target": "C3-L07"
+      },
+      "coverage": [
+        "Legge temperatura-volume e reversibilità",
+        "Potenze razionali manuali e dominio positivo",
+        "Inverse, medie e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-adiabatic-monatomic-15",
+      "kind": "question",
+      "course": "C3",
+      "section": "Adiabatica reversibile del gas monoatomico",
+      "order": 16515,
+      "title": "Una taratura con zero spostato",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "adiabatic-monatomic",
+      "difficulty": 3,
+      "prompt": "Un campione chiuso di gas ideale monoatomico classico, con capacità molari costanti e γ=5/3, segue un’adiabatica reversibile fra stati di equilibrio. Q=0; si trascurano energie cinetiche e potenziali macroscopiche e dissipazioni. Il lavoro W è positivo se compiuto dal gas, quindi ΔU=−W. T₁>0 è assoluta in K e r=V₁/V₂>0 è adimensionale: T₂=T₁ r^(2/3). r>1 indica compressione, 0<r<1 espansione. S=qT₂+b è continuo e adimensionale. A: T₁=100 K, r=8, S=801. B: T₁=200 K, r=27, S=3601. C: r=8, S=1601. Quanto vale T₁,C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "200 K",
+          "400 K",
+          "100 K",
+          "1601/8 K",
+          "800 K"
+        ],
+        "value": "200 K"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le finali di riferimento sono 400 K e 1800 K. La differenza 2800 delle letture su 1400 K fissa q=2 K⁻¹; da A ricaviamo b=1. La finale C è (1601−1)/2=800 K. Con r=8 il fattore è quattro, quindi l’iniziale è 200 K."
+        },
+        {
+          "type": "formula",
+          "text": "q=\\frac{3601-801}{(1800-400)\\,\\mathrm K}"
+        },
+        {
+          "type": "formula",
+          "text": " q=2\\,\\mathrm{K^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " T_{2,C}=800\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " T_{1,C}=800/4\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " T_{1,C}=200\\,\\mathrm K"
+        },
+        {
+          "type": "text",
+          "text": "400 K e 100 K darebbero rispettivamente S=3201 e S=801. 1601/8 K dimentica l’offset e ricostruisce S=1602. 800 K si ferma alla finale, prima dell’inversa per T₁."
+        }
+      ],
+      "hints": [
+        "Sottrai l’offset prima di dividere per guadagno e fattore termico.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "400 K e 100 K darebbero rispettivamente S=3201 e S=801. 1601/8 K dimentica l’offset e ricostruisce S=1602. 800 K si ferma alla finale, prima dell’inversa per T₁.",
+        "target": "C3-L07"
+      },
+      "coverage": [
+        "Legge temperatura-volume e reversibilità",
+        "Potenze razionali manuali e dominio positivo",
+        "Inverse, medie e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-adiabatic-monatomic-16",
+      "kind": "question",
+      "course": "C3",
+      "section": "Adiabatica reversibile del gas monoatomico",
+      "order": 16516,
+      "title": "Un vincolo fra stati iniziali preparati",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06",
+        "C3-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "adiabatic-monatomic",
+      "difficulty": 3,
+      "prompt": "Un campione chiuso di gas ideale monoatomico classico, con capacità molari costanti e γ=5/3, segue un’adiabatica reversibile fra stati di equilibrio. Q=0; si trascurano energie cinetiche e potenziali macroscopiche e dissipazioni. Il lavoro W è positivo se compiuto dal gas, quindi ΔU=−W. T₁>0 è assoluta in K e r=V₁/V₂>0 è adimensionale: T₂=T₁ r^(2/3). r>1 indica compressione, 0<r<1 espansione. Fra prove diverse si sceglie T₁=d r, con d=(25/2) K. Questa scelta collega i dati iniziali della prova, non le temperature lungo la trasformazione. Se T₂=400 K, quanto vale r>0?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "8",
+          "−8",
+          "4",
+          "32",
+          "2"
+        ],
+        "value": "8"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituendo il vincolo, T₂=d r^(5/3). Il quoziente 400 K su 25/2 K è 32. Poniamo z uguale alla radice cubica positiva di r: l’equazione diventa z⁵=32=2⁵. La funzione quinta potenza è crescente e dà z=2, quindi r=8; il vincolo restituisce T₁=100 K e la legge produce 400 K."
+        },
+        {
+          "type": "formula",
+          "text": "T_2=dr^{5/3}"
+        },
+        {
+          "type": "formula",
+          "text": " r^{5/3}=400/(25/2)"
+        },
+        {
+          "type": "formula",
+          "text": "400/(25/2)=32"
+        },
+        {
+          "type": "formula",
+          "text": " z=\\sqrt[3]r>0"
+        },
+        {
+          "type": "formula",
+          "text": " z^5=2^5"
+        },
+        {
+          "type": "formula",
+          "text": " z=2"
+        },
+        {
+          "type": "formula",
+          "text": " r=z^3"
+        },
+        {
+          "type": "formula",
+          "text": "z^3=8"
+        },
+        {
+          "type": "text",
+          "text": "Meno otto viola i volumi positivi. Quattro non soddisfa r^(5/3)=32; trentadue confonde la potenza con la sua base. Due è z, non r. L’unica soluzione positiva è verificata anche dai dati iniziali ricostruiti."
+        }
+      ],
+      "hints": [
+        "Usa una radice cubica ausiliaria per trasformare l’equazione in una quinta potenza esatta.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Meno otto viola i volumi positivi. Quattro non soddisfa r^(5/3)=32; trentadue confonde la potenza con la sua base. Due è z, non r. L’unica soluzione positiva è verificata anche dai dati iniziali ricostruiti.",
+        "target": "C3-L07"
+      },
+      "coverage": [
+        "Legge temperatura-volume e reversibilità",
+        "Potenze razionali manuali e dominio positivo",
+        "Inverse, medie e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "9fb7ccaf4835c9084cf006ab976fe3ddfbc10a5db40c13248f9bee2258496d19",
+      "name": "adiabatic-monatomic-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTA4MCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgo8dGl0bGUgaWQ9InRpdGxlIj5Db21wcmVzc2lvbmUgYWRpYWJhdGljYSByZXZlcnNpYmlsZTogdm9sdW1lIGUgdGVtcGVyYXR1cmE8L3RpdGxlPgo8ZGVzYyBpZD0iZGVzYyI+RHVlIHN0YXRpIGRpIGVxdWlsaWJyaW8gZGkgdW4gZ2FzIG1vbm9hdG9taWNvLiBWb2x1bWkgaW4gcmFwcG9ydG8gb3R0byBhIHVubywgdGVtcGVyYXR1cmUgYXNzb2x1dGUgY2VudG8gZSBxdWF0dHJvY2VudG8ga2VsdmluLiBMYSByYWRpY2UgY3ViaWNhIGRpIG90dG8gw6ggZHVlIGUgaWwgc3VvIHF1YWRyYXRvIMOoIHF1YXR0cm8uPC9kZXNjPgo8ZGVmcz48bWFya2VyIGlkPSJhcnJvdyIgbWFya2VyV2lkdGg9IjgiIG1hcmtlckhlaWdodD0iOCIgcmVmWD0iNyIgcmVmWT0iNCIgb3JpZW50PSJhdXRvIj48cGF0aCBkPSJNMCAwTDggNEwwIDhaIiBmaWxsPSIjMTY1YTg3Ii8+PC9tYXJrZXI+PC9kZWZzPgo8cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjEwODAiIHJ4PSIxMiIgZmlsbD0iI2Y4ZmFmYyIvPgo8ZyBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZmlsbD0iIzE0MjQzYSIgZm9udC1zaXplPSIyMCI+Cjx0ZXh0IHg9IjMyIiB5PSI0MiIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9ImJvbGQiPjEgwrcgRHVlIHN0YXRpLCBub24gdW4gdXJ0byBkZWwgcGlzdG9uZTwvdGV4dD4KPHJlY3QgeD0iNjUiIHk9IjEwNSIgd2lkdGg9IjMyMCIgaGVpZ2h0PSIxMDAiIGZpbGw9IiNkY2VlZjYiIHN0cm9rZT0iIzE0MjQzYSIgc3Ryb2tlLXdpZHRoPSIyIi8+PHJlY3QgeD0iNDc1IiB5PSIxMDUiIHdpZHRoPSI0MCIgaGVpZ2h0PSIxMDAiIGZpbGw9IiNmOWU0Y2MiIHN0cm9rZT0iIzE0MjQzYSIgc3Ryb2tlLXdpZHRoPSIyIi8+CjxwYXRoIGQ9Ik00MDAgMTU1SDQ1OCIgc3Ryb2tlPSIjMTY1YTg3IiBzdHJva2Utd2lkdGg9IjQiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+Cjx0ZXh0IHg9IjY1IiB5PSIyNDAiPlbigoEgPSA4IFYqPC90ZXh0Pjx0ZXh0IHg9IjQ1MSIgeT0iMjQwIj5W4oKCID0gVio8L3RleHQ+Cjx0ZXh0IHg9IjY1IiB5PSIyNzIiPlTigoEgPSAxMDAgSzwvdGV4dD48dGV4dCB4PSI0NTEiIHk9IjI3MiI+VOKCgiA9IDQwMCBLPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iMzEwIiBmb250LXNpemU9IjE3Ij5WKiDDqCB1biB2b2x1bWUgcG9zaXRpdm87IGFyZWUgYSBwYXJpIGFsdGV6emE6IDggOiAxLjwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjMzOCIgZm9udC1zaXplPSIxNyI+Q29sbGVnYW1lbnRvIHJldmVyc2liaWxlLCBRID0gMDsgZnJlY2NpYSBzY2hlbWF0aWNhLjwvdGV4dD4KPHBhdGggZD0iTTMyIDM2NUg2MDgiIHN0cm9rZT0iIzliYWJiYyIvPgo8dGV4dCB4PSIzMiIgeT0iNDA5IiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iYm9sZCI+MiDCtyBMYSB0ZW1wZXJhdHVyYSBhc3NvbHV0YSBjcmVzY2U8L3RleHQ+CjxwYXRoIGQ9Ik0xMzAgNDM1VjYzNSIgc3Ryb2tlPSIjMTQyNDNhIiBzdHJva2Utd2lkdGg9IjIiLz4KPHJlY3QgeD0iMTMwIiB5PSI0NjAiIHdpZHRoPSIxMDAiIGhlaWdodD0iMzYiIGZpbGw9IiMxNjVhODciLz48cmVjdCB4PSIxMzAiIHk9IjU0MCIgd2lkdGg9IjQwMCIgaGVpZ2h0PSIzNiIgZmlsbD0iI2FiNWIyMiIvPgo8dGV4dCB4PSI1NSIgeT0iNDg3Ij5U4oKBPC90ZXh0Pjx0ZXh0IHg9IjI0NyIgeT0iNDg3Ij4xMDAgSzwvdGV4dD48dGV4dCB4PSI1NSIgeT0iNTY3Ij5U4oKCPC90ZXh0Pjx0ZXh0IHg9IjUzNSIgeT0iNTY3Ij40MDAgSzwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjY3MyIgZm9udC1zaXplPSIxOCI+T3JpZ2luZSBjb211bmUgeCA9IDEzMDsgc2NhbGEgMSBweC9LLjwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjcwNyIgZm9udC1zaXplPSIxOCI+Q29tcHJlc3Npb25lOiBXIGRlbCBnYXMgJmx0OyAwLCBxdWluZGkgzpRVID0g4oiSVyAmZ3Q7IDAuPC90ZXh0Pgo8cGF0aCBkPSJNMzIgNzM5SDYwOCIgc3Ryb2tlPSIjOWJhYmJjIi8+Cjx0ZXh0IHg9IjMyIiB5PSI3ODMiIGZvbnQtc2l6ZT0iMjUiIGZvbnQtd2VpZ2h0PSJib2xkIj4zIMK3IFVuIHBlcmNvcnNvIHNlbnphIGNhbGNvbGF0cmljZTwvdGV4dD4KPHJlY3QgeD0iNTUiIHk9IjgyOSIgd2lkdGg9IjEzMCIgaGVpZ2h0PSI3MCIgcng9IjgiIGZpbGw9IiNkY2VlZjYiLz48cmVjdCB4PSIyNTUiIHk9IjgyOSIgd2lkdGg9IjEzMCIgaGVpZ2h0PSI3MCIgcng9IjgiIGZpbGw9IiNkY2VlZjYiLz48cmVjdCB4PSI0NTUiIHk9IjgyOSIgd2lkdGg9IjEzMCIgaGVpZ2h0PSI3MCIgcng9IjgiIGZpbGw9IiNlMWVmZTciLz4KPHRleHQgeD0iNzciIHk9Ijg3MSI+4oibOCA9IDI8L3RleHQ+PHRleHQgeD0iMjc4IiB5PSI4NzEiPjLCsiA9IDQ8L3RleHQ+PHRleHQgeD0iNDcxIiB5PSI4NzEiPjEwMCDDlyA0PC90ZXh0Pgo8cGF0aCBkPSJNMTk0IDg2NEgyNDUiIHN0cm9rZT0iIzE2NWE4NyIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjxwYXRoIGQ9Ik0zOTQgODY0SDQ0NSIgc3Ryb2tlPSIjMTY1YTg3IiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+Cjx0ZXh0IHg9IjMyIiB5PSI5NTEiPlTigoIgLyBU4oKBID0gcsKy4ZCfwrMgPSA0LCBub24gOC48L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI5OTIiIGZvbnQtc2l6ZT0iMTgiPlN0ZXNzYSBxdWFudGl0w6AgZGkgZ2FzLCBjYXBhY2l0w6AgbW9sYXJpIGNvc3RhbnRpLjwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjEwMjYiIGZvbnQtc2l6ZT0iMTgiPk5vbiBzaSBhcHBsaWNhIHF1ZXN0YSBsZWdnZSBhbGzigJllc3BhbnNpb25lIGxpYmVyYS48L3RleHQ+CjwvZz48L3N2Zz4K"
+    }
+  ]
+}

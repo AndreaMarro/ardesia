@@ -1,0 +1,673 @@
+{
+  "phase": "SOURCE_MATH_INSTALLED_CODE_PARTIAL_NOT_REGISTRABLE",
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+  "sourcePath": "officina-di-fisica/content/esperienze-C2.json",
+  "sourceFileSha256": "33a38d74b953889eccce3281c4413060aa6af14f6a7c022d5049b927137656c1",
+  "runtimeSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+  "proofSha256": "cf5899fcbe7843d547458b5d16e580587dd144d9e8876c2995021950f0dcd6ad",
+  "exactCheckCount": 36,
+  "promptPrimaryPath": "editorial/reviews/experiments-C2-flow-capillarity-prompt-primary-20261125.json",
+  "promptPrimarySha256": "d501eeb1dfc34ce8d75a4abf0d0ab2d629616d6c01893e06e0e5243232710a42",
+  "installedStates": 72,
+  "clockFrames": 0,
+  "records": [
+    {
+      "id": "SIM-C2-L010-01",
+      "sourceVersion": 1,
+      "sourceSha256": "5a5c1b69ba3e8cae507782979d941352624f264e1d3738e3fba92f1564fde4b1",
+      "mathOk": true,
+      "exactChecks": [
+        {
+          "claim": "reference",
+          "independentExact": "1",
+          "expected": "1",
+          "residual": "0",
+          "unit": "mN",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "ok": true
+        },
+        {
+          "claim": "physical inverse includes actual input1",
+          "independentExact": "1",
+          "expected": "1",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "comparison_actual",
+          "independentExact": "4",
+          "expected": "4",
+          "residual": "0",
+          "unit": "mN",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "ok": true
+        },
+        {
+          "claim": "physical inverse includes actual input4",
+          "independentExact": "1",
+          "expected": "1",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "transfer_actual",
+          "independentExact": "3",
+          "expected": "3",
+          "residual": "0",
+          "unit": "mN",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "ok": true
+        },
+        {
+          "claim": "physical inverse includes actual input3",
+          "independentExact": "1",
+          "expected": "1",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "two surface tension forces",
+          "independentExact": "3",
+          "expected": "3",
+          "residual": "0",
+          "unit": "mN",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "ok": true
+        }
+      ],
+      "installedConsumerCode": {
+        "installedScalarTasksAndClocksOk": true,
+        "errors": [],
+        "geometryCodeOk": true,
+        "geometryErrors": [],
+        "caseCount": 10,
+        "clockFrameCount": 0,
+        "actualAssignedTasks": [
+          {
+            "actualPrompt": "Imposta «Lunghezza del bordo mobile» su 4 cm. Quale valore ottieni per «Forza sul bordo»?",
+            "input": 4,
+            "independentExact": "4",
+            "actualAnswer": 4,
+            "actualWorked": "F = 2γℓ, con γ = 0,05 N/m. 4 = 4 mN.",
+            "unit": "mN",
+            "ok": true
+          },
+          {
+            "actualPrompt": "Una pellicola di sapone con due superfici trascina un bordo lungo 3 cm. Con γ = 0,05 N/m, quale forza in mN devi bilanciare?",
+            "input": 3,
+            "independentExact": "3",
+            "actualAnswer": 3,
+            "actualWorked": "F = 2γℓ, con γ = 0,05 N/m. 3 = 3 mN.",
+            "unit": "mN",
+            "ok": true
+          }
+        ]
+      },
+      "manualArithmetic": "Two film surfaces F=2gammaL; gamma1/20N/m, L=x/100m => F=x mN. Soap film has two interfaces and uniform tension, straight mobile boundary; ignore additional support weight in modeled balance. Convertcm tom, NtomN.",
+      "physicalAssumptionsAndDomain": "Soap film has two interfaces and uniform tension, straight mobile boundary; ignore additional support weight in modeled balance. Convertcm tom, NtomN.",
+      "pedagogicalReview": "Single surface would give half. Count interfaces, not two sides of boundary arbitrarily. Actual assigned inputs are checked literally against generated questions; reviewer symbolic/numerical grid calculations are not extra learner tasks. Native/fallback UI not run.",
+      "sourceFirstPrimaryDisclosure": "Prompt-only primary persisted; shared C2.js had previously been incidentally visible; not claimed blinded.",
+      "reviewDependencySha256": {
+        "experiments_C2_code_partial_review.py": "f2af77d4abe3e994a8c66e37b077ee434c57c812bfbd90d2a86b047f0e50e1d3",
+        "experiments_C2_flows_interfaces_code_verifier.py": "3cf1525e7f7e6fb218a6a13f597d3be88e13c94ae9b06c5636fa7a457109e070",
+        "tests/corpus/collect-C2-bounded-code-only.mjs": "97bfa582144f3bb8608fa290211bd16a23620b449336543250ece590cd7ee89b",
+        "tools/corpus_engineering/collect_C2_code_partial.py": "3bb0a2982c643bb7265b570bc163d47c2317f66d93d26e213acb22f010de1c37"
+      },
+      "UI": "NOT_RUN",
+      "visualReview": "NOT_RUN",
+      "ok": false,
+      "overallComplete": false,
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "SIM-C2-L010-02",
+      "sourceVersion": 1,
+      "sourceSha256": "3448a2a8c4d6a9469e59b8042145f004f869bcbf11591c2fdc50a67c2db39a8f",
+      "mathOk": true,
+      "exactChecks": [
+        {
+          "claim": "reference",
+          "independentExact": "3",
+          "expected": "3",
+          "residual": "0",
+          "unit": "1/mm",
+          "dimension": {
+            "[length]": "-1"
+          },
+          "ok": true
+        },
+        {
+          "claim": "physical inverse includes actual input1",
+          "independentExact": "1",
+          "expected": "1",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "comparison_actual",
+          "independentExact": "1",
+          "expected": "1",
+          "residual": "0",
+          "unit": "1/mm",
+          "dimension": {
+            "[length]": "-1"
+          },
+          "ok": true
+        },
+        {
+          "claim": "physical inverse includes actual input3",
+          "independentExact": "1",
+          "expected": "1",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "transfer_actual",
+          "independentExact": "6/5",
+          "expected": "6/5",
+          "residual": "0",
+          "unit": "1/mm",
+          "dimension": {
+            "[length]": "-1"
+          },
+          "ok": true
+        },
+        {
+          "claim": "physical inverse includes actual input2.5",
+          "independentExact": "1",
+          "expected": "1",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "sphere surface to volume with pi cancellation",
+          "independentExact": "3/radius",
+          "expected": "3/radius",
+          "residual": "0",
+          "unit": "1/mm",
+          "dimension": {
+            "[length]": "-1"
+          },
+          "ok": true
+        }
+      ],
+      "installedConsumerCode": {
+        "installedScalarTasksAndClocksOk": true,
+        "errors": [],
+        "geometryCodeOk": true,
+        "geometryErrors": [],
+        "caseCount": 8,
+        "clockFrameCount": 0,
+        "actualAssignedTasks": [
+          {
+            "actualPrompt": "Imposta «Raggio della goccia» su 3 mm. Quale valore ottieni per «Rapporto superficie/volume»?",
+            "input": 3,
+            "independentExact": "1",
+            "actualAnswer": 1,
+            "actualWorked": "A/V = 4πr²/(4πr³/3) = 3/r. 3 / 3 = 1 mm⁻¹.",
+            "unit": "mm⁻¹",
+            "ok": true
+          },
+          {
+            "actualPrompt": "Suddividendo un liquido ottieni gocce sferiche di raggio 2,5 mm. Quanta area espongono per unità di volume, in mm⁻¹?",
+            "input": 2.5,
+            "independentExact": "6/5",
+            "actualAnswer": 1.2,
+            "actualWorked": "A/V = 4πr²/(4πr³/3) = 3/r. 3 / 2,5 = 1,2 mm⁻¹.",
+            "unit": "mm⁻¹",
+            "ok": true
+          }
+        ]
+      },
+      "manualArithmetic": "Sphere A/V=(4pi*r²)/(4pi*r³/3)=3/r. Spherical droplets of common positive radius; total area/totalvolume for equal spheres same3/r. Pi cancels, no calculator required.",
+      "physicalAssumptionsAndDomain": "Spherical droplets of common positive radius; total area/totalvolume for equal spheres same3/r. Pi cancels, no calculator required.",
+      "pedagogicalReview": "Doubling radius halves area/volume; planar/merged drops do not satisfy this formula. Actual assigned inputs are checked literally against generated questions; reviewer symbolic/numerical grid calculations are not extra learner tasks. Native/fallback UI not run.",
+      "sourceFirstPrimaryDisclosure": "Prompt-only primary persisted; shared C2.js had previously been incidentally visible; not claimed blinded.",
+      "reviewDependencySha256": {
+        "experiments_C2_code_partial_review.py": "f2af77d4abe3e994a8c66e37b077ee434c57c812bfbd90d2a86b047f0e50e1d3",
+        "experiments_C2_flows_interfaces_code_verifier.py": "3cf1525e7f7e6fb218a6a13f597d3be88e13c94ae9b06c5636fa7a457109e070",
+        "tests/corpus/collect-C2-bounded-code-only.mjs": "97bfa582144f3bb8608fa290211bd16a23620b449336543250ece590cd7ee89b",
+        "tools/corpus_engineering/collect_C2_code_partial.py": "3bb0a2982c643bb7265b570bc163d47c2317f66d93d26e213acb22f010de1c37"
+      },
+      "UI": "NOT_RUN",
+      "visualReview": "NOT_RUN",
+      "ok": false,
+      "overallComplete": false,
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "SIM-C2-L010-03",
+      "sourceVersion": 1,
+      "sourceSha256": "0202092c21750466a79f5442db69e255d26063b2b7cd1d28cf4b4fd590a1e65c",
+      "mathOk": true,
+      "exactChecks": [
+        {
+          "claim": "reference",
+          "independentExact": "10",
+          "expected": "10",
+          "residual": "0",
+          "unit": "mm",
+          "dimension": {
+            "[length]": "1"
+          },
+          "ok": true
+        },
+        {
+          "claim": "physical inverse includes actual input0",
+          "independentExact": "1",
+          "expected": "1",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "comparison_actual",
+          "independentExact": "-5",
+          "expected": "-5",
+          "residual": "0",
+          "unit": "mm",
+          "dimension": {
+            "[length]": "1"
+          },
+          "ok": true
+        },
+        {
+          "claim": "physical inverse includes actual input120",
+          "independentExact": "1",
+          "expected": "1",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "transfer_actual",
+          "independentExact": "0",
+          "expected": "0",
+          "residual": "0",
+          "unit": "mm",
+          "dimension": {
+            "[length]": "1"
+          },
+          "ok": true
+        },
+        {
+          "claim": "physical inverse includes actual input90",
+          "independentExact": "1",
+          "expected": "1",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "Jurin prefactor in millimetres",
+          "independentExact": "10",
+          "expected": "10",
+          "residual": "0",
+          "unit": "mm",
+          "dimension": {
+            "[length]": "1"
+          },
+          "ok": true
+        }
+      ],
+      "installedConsumerCode": {
+        "installedScalarTasksAndClocksOk": true,
+        "errors": [],
+        "geometryCodeOk": true,
+        "geometryErrors": [],
+        "caseCount": 37,
+        "clockFrameCount": 0,
+        "actualAssignedTasks": [
+          {
+            "actualPrompt": "Imposta «Angolo di contatto» su 120 °. Quale valore ottieni per «Salita con segno»?",
+            "input": 120,
+            "independentExact": "-5",
+            "actualAnswer": -4.999999999999998,
+            "actualWorked": "h = 2γ cos θ/(ρgr); qui h = 10 cos θ mm. 10 × cos(120°) ≈ -5 mm.",
+            "unit": "mm",
+            "ok": true
+          },
+          {
+            "actualPrompt": "In un capillare una salita massima di 10 mm corrisponde ad angolo nullo. Se l’angolo di contatto diventa 90 °, quale dislivello con segno devi cercare?",
+            "input": 90,
+            "independentExact": "0",
+            "actualAnswer": 0,
+            "actualWorked": "h = 2γ cos θ/(ρgr); qui h = 10 cos θ mm. 10 × cos(90°) = 0 mm.",
+            "unit": "mm",
+            "ok": true
+          }
+        ]
+      },
+      "manualArithmetic": "Jurin h=2gamma*cos(theta)/(rho*g*r); assigned maximum10mm gives h=10cos(theta)mm. Static capillary model, contact angle through liquid, fixed radius/liquid/gravity. Use exact known cosine for assigned angles. Actual transfer is90degrees, exact zero, not a nonnotable angle inferred from5degree grid.",
+      "physicalAssumptionsAndDomain": "Static capillary model, contact angle through liquid, fixed radius/liquid/gravity. Use exact known cosine for assigned angles.",
+      "pedagogicalReview": "90° gives0, obtuse gives depression. Actual selected angle must be checked later for manual feasibility; no approximate cosine demanded here. Actual assigned inputs are checked literally against generated questions; reviewer symbolic/numerical grid calculations are not extra learner tasks. Native/fallback UI not run.",
+      "sourceFirstPrimaryDisclosure": "Prompt-only primary persisted; shared C2.js had previously been incidentally visible; not claimed blinded.",
+      "reviewDependencySha256": {
+        "experiments_C2_code_partial_review.py": "f2af77d4abe3e994a8c66e37b077ee434c57c812bfbd90d2a86b047f0e50e1d3",
+        "experiments_C2_flows_interfaces_code_verifier.py": "3cf1525e7f7e6fb218a6a13f597d3be88e13c94ae9b06c5636fa7a457109e070",
+        "tests/corpus/collect-C2-bounded-code-only.mjs": "97bfa582144f3bb8608fa290211bd16a23620b449336543250ece590cd7ee89b",
+        "tools/corpus_engineering/collect_C2_code_partial.py": "3bb0a2982c643bb7265b570bc163d47c2317f66d93d26e213acb22f010de1c37"
+      },
+      "UI": "NOT_RUN",
+      "visualReview": "NOT_RUN",
+      "ok": false,
+      "overallComplete": false,
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "SIM-C2-L010-04",
+      "sourceVersion": 1,
+      "sourceSha256": "5e83d0f1151cff064534575f479b28d8e1a0139e827586f029a316e0fdf9c182",
+      "mathOk": true,
+      "exactChecks": [
+        {
+          "claim": "reference",
+          "independentExact": "0",
+          "expected": "0",
+          "residual": "0",
+          "unit": "Pa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "ok": true
+        },
+        {
+          "claim": "physical inverse includes actual input0",
+          "independentExact": "1",
+          "expected": "1",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "comparison_actual",
+          "independentExact": "100",
+          "expected": "100",
+          "residual": "0",
+          "unit": "Pa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "ok": true
+        },
+        {
+          "claim": "physical inverse includes actual input1",
+          "independentExact": "1",
+          "expected": "1",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "transfer_actual",
+          "independentExact": "125",
+          "expected": "125",
+          "residual": "0",
+          "unit": "Pa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "ok": true
+        },
+        {
+          "claim": "physical inverse includes actual input1.25",
+          "independentExact": "1",
+          "expected": "1",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "single spherical interface curvature conversion",
+          "independentExact": "125",
+          "expected": "125",
+          "residual": "0",
+          "unit": "Pa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "ok": true
+        }
+      ],
+      "installedConsumerCode": {
+        "installedScalarTasksAndClocksOk": true,
+        "errors": [],
+        "geometryCodeOk": true,
+        "geometryErrors": [],
+        "caseCount": 9,
+        "clockFrameCount": 0,
+        "actualAssignedTasks": [
+          {
+            "actualPrompt": "Imposta «Curvatura 1/r» su 1 mm⁻¹. Quale valore ottieni per «Eccesso di pressione»?",
+            "input": 1,
+            "independentExact": "100",
+            "actualAnswer": 100,
+            "actualWorked": "Δp = 2γ/r = 100 × (1/r in mm⁻¹). 100 × 1 = 100 Pa.",
+            "unit": "Pa",
+            "ok": true
+          },
+          {
+            "actualPrompt": "Per una goccia con una sola interfaccia e γ = 0,05 N/m, la curvatura 1/r vale 1,25 mm⁻¹. Di quanti pascal la pressione interna supera quella esterna?",
+            "input": 1.25,
+            "independentExact": "125",
+            "actualAnswer": 125,
+            "actualWorked": "Δp = 2γ/r = 100 × (1/r in mm⁻¹). 100 × 1,25 = 125 Pa.",
+            "unit": "Pa",
+            "ok": true
+          }
+        ]
+      },
+      "manualArithmetic": "Single spherical interface delta_p=2gamma/r=2gamma*k; k[mm^-1]*1000 gives m^-1 => delta_p=100k Pa. Spherical liquid drop one interface; gamma.05N/m, positive curvature1/r. At0 curvature interpret planar limit.",
+      "physicalAssumptionsAndDomain": "Spherical liquid drop one interface; gamma.05N/m, positive curvature1/r. At0 curvature interpret planar limit.",
+      "pedagogicalReview": "The defined k is1/r, while mean-sum curvature is2/r; do not remove physical factor2. Actual assigned inputs are checked literally against generated questions; reviewer symbolic/numerical grid calculations are not extra learner tasks. Native/fallback UI not run. Generic goccia legend talks about a radius, whereas this branch draws a spherical-cap curvature/pressure illustration; interpretation needs actual UI reading, not an invented radius measurement.",
+      "sourceFirstPrimaryDisclosure": "Prompt-only primary persisted; shared C2.js had previously been incidentally visible; not claimed blinded.",
+      "reviewDependencySha256": {
+        "experiments_C2_code_partial_review.py": "f2af77d4abe3e994a8c66e37b077ee434c57c812bfbd90d2a86b047f0e50e1d3",
+        "experiments_C2_flows_interfaces_code_verifier.py": "3cf1525e7f7e6fb218a6a13f597d3be88e13c94ae9b06c5636fa7a457109e070",
+        "tests/corpus/collect-C2-bounded-code-only.mjs": "97bfa582144f3bb8608fa290211bd16a23620b449336543250ece590cd7ee89b",
+        "tools/corpus_engineering/collect_C2_code_partial.py": "3bb0a2982c643bb7265b570bc163d47c2317f66d93d26e213acb22f010de1c37"
+      },
+      "UI": "NOT_RUN",
+      "visualReview": "NOT_RUN",
+      "ok": false,
+      "overallComplete": false,
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "SIM-C2-L010-05",
+      "sourceVersion": 1,
+      "sourceSha256": "a5564f12b6ced7c4c43d7297762370ead5a970574d3c07a84f7c9943d83da467",
+      "mathOk": true,
+      "exactChecks": [
+        {
+          "claim": "reference",
+          "independentExact": "100",
+          "expected": "100",
+          "residual": "0",
+          "unit": "Pa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "ok": true
+        },
+        {
+          "claim": "physical inverse includes actual input2",
+          "independentExact": "1",
+          "expected": "1",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "comparison_actual",
+          "independentExact": "40",
+          "expected": "40",
+          "residual": "0",
+          "unit": "Pa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "ok": true
+        },
+        {
+          "claim": "physical inverse includes actual input5",
+          "independentExact": "1",
+          "expected": "1",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "transfer_actual",
+          "independentExact": "100/3",
+          "expected": "100/3",
+          "residual": "0",
+          "unit": "Pa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "ok": true
+        },
+        {
+          "claim": "physical inverse includes actual input6",
+          "independentExact": "1",
+          "expected": "1",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        },
+        {
+          "claim": "soap bubble two interfaces",
+          "independentExact": "100/3",
+          "expected": "100/3",
+          "residual": "0",
+          "unit": "Pa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "ok": true
+        },
+        {
+          "claim": "manual decimal relative-error bound (not a submitted UI answer)",
+          "independentExact": "1/10000",
+          "expected": "1/10000",
+          "residual": "0",
+          "unit": "",
+          "dimension": {},
+          "ok": true
+        }
+      ],
+      "installedConsumerCode": {
+        "installedScalarTasksAndClocksOk": true,
+        "errors": [],
+        "geometryCodeOk": true,
+        "geometryErrors": [],
+        "caseCount": 8,
+        "clockFrameCount": 0,
+        "actualAssignedTasks": [
+          {
+            "actualPrompt": "Imposta «Raggio della bolla di sapone» su 5 mm. Quale valore ottieni per «Pressione interna in eccesso»?",
+            "input": 5,
+            "independentExact": "40",
+            "actualAnswer": 40,
+            "actualWorked": "Δp = 4γ/r; γ = 0,05 N/m. 200 / 5 = 40 Pa.",
+            "unit": "Pa",
+            "ok": true
+          },
+          {
+            "actualPrompt": "Una bolla di sapone ha due interfacce e raggio 6 mm. Con γ = 0,05 N/m, quale sovrapressione interna serve?",
+            "input": 6,
+            "independentExact": "100/3",
+            "actualAnswer": 33.333333333333336,
+            "actualWorked": "Δp = 4γ/r; γ = 0,05 N/m. 200 / 6 ≈ 33,33 Pa.",
+            "unit": "Pa",
+            "ok": true
+          }
+        ]
+      },
+      "manualArithmetic": "Soap bubble two spherical interfaces delta_p=4gamma/r; gamma.05 gives delta_p=200/r_mm Pa. Thin soap film with nearly equal inner/outer radii; gamma constant, negligible thickness. Convertmm tom then divide200 by r_mm. Actual200/6=100/3Pa; hand33.33 relative error1/10000, within0.5%.",
+      "physicalAssumptionsAndDomain": "Thin soap film with nearly equal inner/outer radii; gamma constant, negligible thickness. Convertmm tom then divide200 by r_mm.",
+      "pedagogicalReview": "Single droplet would give100/r_mm. Positive radius excludes division byzero. Actual assigned inputs are checked literally against generated questions; reviewer symbolic/numerical grid calculations are not extra learner tasks. Native/fallback UI not run.",
+      "sourceFirstPrimaryDisclosure": "Prompt-only primary persisted; shared C2.js had previously been incidentally visible; not claimed blinded.",
+      "reviewDependencySha256": {
+        "experiments_C2_code_partial_review.py": "f2af77d4abe3e994a8c66e37b077ee434c57c812bfbd90d2a86b047f0e50e1d3",
+        "experiments_C2_flows_interfaces_code_verifier.py": "3cf1525e7f7e6fb218a6a13f597d3be88e13c94ae9b06c5636fa7a457109e070",
+        "tests/corpus/collect-C2-bounded-code-only.mjs": "97bfa582144f3bb8608fa290211bd16a23620b449336543250ece590cd7ee89b",
+        "tools/corpus_engineering/collect_C2_code_partial.py": "3bb0a2982c643bb7265b570bc163d47c2317f66d93d26e213acb22f010de1c37"
+      },
+      "UI": "NOT_RUN",
+      "visualReview": "NOT_RUN",
+      "ok": false,
+      "overallComplete": false,
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    }
+  ],
+  "overallComplete": false,
+  "acceptedCount": 0,
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}

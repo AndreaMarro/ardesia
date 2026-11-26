@@ -1,0 +1,480 @@
+{
+  "bindingsSha256": "1bfe5870701f282c7ddca5c885236d1faae97d8c2f14c6f952ee28206d9aa79f",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "dependencyVersions": {
+    "hypothesis": "6.148.7",
+    "pint": "0.25.2",
+    "sympy": "1.14.0"
+  },
+  "humanApproval": "NOT_RUN",
+  "packageSha256": "2979eea898e3fd90274f53bea34cad0cea712f40dd9445d2b9113dd5340de1ec",
+  "primaryBeforeCandidateKeys": {
+    "path": "editorial/reviews/u5-thermal-cycles-158-162-primary-source-only.md",
+    "sha256": "097f117b5082b44e84ae4171e538079a7aef07f6998a50da3ffbf328ba678009"
+  },
+  "publication": "DRAFT",
+  "records": [
+    {
+      "assetChecksums": {
+        "cyclic-work-progressive.svg": "c306839d3caad80d7127b04bfb07772fd30e809431a2bca752efecb189d05aa1"
+      },
+      "assetReview": "Full XML and full-height Chrome rendering independently read. Schematic arrows: heat from hot source enters, cold heat and outgoing work leave. At 4 px/J the 400 px hot-energy bar equals adjacent 160 px cold and 240 px work segments. At 3 px/J distinct-work bars have lengths 180,420,300 px for 60,140,100 J, same x 110 origin. No source-temperature or instantaneous-power inference.",
+      "candidateSha256": "5028a4f78863a0046a9cd0fcd86a459b73134f9c38385aa9e72d39b7ce5c283a",
+      "dimension": {
+        "[length]": "2",
+        "[mass]": "1",
+        "[time]": "-2"
+      },
+      "distractors": "La somma 140 J conta il calore ceduto come entrante.100 e 40 J sono trasferimenti singoli; zero confonde ΔU_ciclo con W.",
+      "errors": [],
+      "expectedExact": "60",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u5-cyclic-work-01",
+      "manualArithmetic": "Il ritorno allo stato iniziale annulla ΔU e le energie macroscopiche sul ciclo; Q_net=Q_h−Q_c e ΔU=Q_net−W impongono W=100−40=60 J. Entrambi i Q sono moduli positivi e W>0.",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_cycle_first_law_reversible_entropy_ratio_mean_power_inverse_and_calibration",
+        "Pint_exact_energy_temperature_power_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "La legge è motivata prima della sostituzione e il risultato resta legato alla grandezza chiesta, con unità esplicite.",
+      "physicalAssumptions": "Sistema ciclico chiuso senza altre entrate energetiche, energie macroscopiche finali uguali alle iniziali. Q_h>Q_c>0 sono moduli, lavoro positivo uscente. Nessuna coppia di sorgenti è imposta comune fra prove; il bilancio ammette realizzazioni compatibili col secondo principio.",
+      "publication": "DRAFT",
+      "reviewedSignature": "c4631bb414e8aea64b24239276fa66b974db7e41ccff01a4f55ce90285d2ff19",
+      "sourceSha256": "4fa9e550023407d84a022bdc811d588b950aeded76b0284968c3f3c2497ecfa6",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetChecksums": {},
+      "assetReview": "not attached to this record",
+      "candidateSha256": "2d19ab2aafec9ddb1bcff00472fa3c92ca94fe2688c7f3568d6a40295ba24a47",
+      "dimension": {
+        "[length]": "2",
+        "[mass]": "1",
+        "[time]": "-2"
+      },
+      "distractors": "W come unità è J/s; J/K misura capacità,K temperatura e Pa pressione. Il lavoro in J è il trasferimento, non un rapporto col tempo.",
+      "errors": [],
+      "expectedExact": "J",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u5-cyclic-work-02",
+      "manualArithmetic": "Il lavoro è energia: J. La differenza di due energie conserva la dimensione; watt sarebbe energia divisa per tempo, non assegnato.",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_cycle_first_law_reversible_entropy_ratio_mean_power_inverse_and_calibration",
+        "Pint_exact_energy_temperature_power_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "È distinta la dimensione della grandezza dalla scala del prefisso e da grandezze fisiche di nome vicino.",
+      "physicalAssumptions": "Sistema ciclico chiuso senza altre entrate energetiche, energie macroscopiche finali uguali alle iniziali. Q_h>Q_c>0 sono moduli, lavoro positivo uscente. Nessuna coppia di sorgenti è imposta comune fra prove; il bilancio ammette realizzazioni compatibili col secondo principio.",
+      "publication": "DRAFT",
+      "reviewedSignature": "677f81799f0b5cd19782ff72e97bdd6588aea9707a8b8e5c939ae09cf413db50",
+      "sourceSha256": "79e71068deae5a5dadbdb76f44fc8bdece780324b200077426d8006afde433e3",
+      "verificationMode": "AI_CONCEPTUAL"
+    },
+    {
+      "assetChecksums": {},
+      "assetReview": "not attached to this record",
+      "candidateSha256": "3aede4830c86d12a5ff832864515de538e3b2067981c6547380954c7645add6c",
+      "dimension": {
+        "[length]": "2",
+        "[mass]": "1",
+        "[time]": "-2"
+      },
+      "distractors": "Somma e differenza opposta errano il segno del calore uscente; prodotto J² e rapporto puro non hanno dimensione di lavoro.",
+      "errors": [],
+      "expectedExact": "W = Q_h − Q_c",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u5-cyclic-work-03",
+      "manualArithmetic": "Da ΔU_ciclo=0 e nessun altro trasferimento, W=Q_h−Q_c. Il segno meno tiene conto del calore ceduto. La somma sarebbe il totale dei moduli scambiati e non il lavoro.",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_cycle_first_law_reversible_entropy_ratio_mean_power_inverse_and_calibration",
+        "Pint_exact_energy_temperature_power_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Il caso concettuale o la legge richiesta sono spiegati con le loro ipotesi, senza una scorciatoia dal numero della chiave.",
+      "physicalAssumptions": "Sistema ciclico chiuso senza altre entrate energetiche, energie macroscopiche finali uguali alle iniziali. Q_h>Q_c>0 sono moduli, lavoro positivo uscente. Nessuna coppia di sorgenti è imposta comune fra prove; il bilancio ammette realizzazioni compatibili col secondo principio.",
+      "publication": "DRAFT",
+      "reviewedSignature": "f77fc72ab723b4c7a792c19f8e40d81e5c449a67f21f573a503fd329da934b2a",
+      "sourceSha256": "517fe07f4d816fdeddb2d30a0b79005b3d54137b510a661cc433c43799d09bfd",
+      "verificationMode": "AI_CONCEPTUAL"
+    },
+    {
+      "assetChecksums": {},
+      "assetReview": "not attached to this record",
+      "candidateSha256": "3f88e59cdbfddb98508031430c8db443fc3dd1ae611d3ae81dc3d488a7c25fa5",
+      "dimension": {
+        "[length]": "2",
+        "[mass]": "1",
+        "[time]": "-2"
+      },
+      "distractors": "120 J applica all’uscita il raddoppio del solo Q_h.240 J somma invece di sottrarre; −160 J usa lavoro entrante positivo e 60 J ignora B.",
+      "errors": [],
+      "expectedExact": "Da 60 a 160 J",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u5-cyclic-work-04",
+      "manualArithmetic": "A: 100−40=60 J. B: 200−40=160 J. Il lavoro cresce di 100 J e ha rapporto 160/60=8/3, non raddoppia perché Q_c resta fisso.",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_cycle_first_law_reversible_entropy_ratio_mean_power_inverse_and_calibration",
+        "Pint_exact_energy_temperature_power_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Il confronto controllato tiene fermi gli altri ingressi e non assegna al risultato automaticamente il fattore del solo ingresso.",
+      "physicalAssumptions": "Sistema ciclico chiuso senza altre entrate energetiche, energie macroscopiche finali uguali alle iniziali. Q_h>Q_c>0 sono moduli, lavoro positivo uscente. Nessuna coppia di sorgenti è imposta comune fra prove; il bilancio ammette realizzazioni compatibili col secondo principio.",
+      "publication": "DRAFT",
+      "reviewedSignature": "22867096eac08ddd0c8d9b1e4b02532db4b0a84c7b8e218f5b504343c9167110",
+      "sourceSha256": "a599438ef64f3e00447a688bddce8b72901361f4393d1007e276837de3aa2d85",
+      "verificationMode": "AI_CONCEPTUAL"
+    },
+    {
+      "assetChecksums": {},
+      "assetReview": "not attached to this record",
+      "candidateSha256": "dba147ee59250fd8773e8c7297f24a90576f469f3d9e79f2db7da6465f02b356",
+      "dimension": {
+        "[length]": "2",
+        "[mass]": "1",
+        "[time]": "-2"
+      },
+      "distractors": "20 J ricostruisce lavoro−20 J anziché 60 J.60/40 J copiano un trasferimento; un prodotto di energie non isola un addendo.",
+      "errors": [],
+      "expectedExact": "100",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u5-cyclic-work-05",
+      "manualArithmetic": "Q_h=W+Q_c=60+40=100 J. W>0 e Q_c>0 garantiscono Q_h>Q_c.",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_cycle_first_law_reversible_entropy_ratio_mean_power_inverse_and_calibration",
+        "Pint_exact_energy_temperature_power_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "L’inversa è svolta prima con i simboli e controllata per sostituzione e positività.",
+      "physicalAssumptions": "Sistema ciclico chiuso senza altre entrate energetiche, energie macroscopiche finali uguali alle iniziali. Q_h>Q_c>0 sono moduli, lavoro positivo uscente. Nessuna coppia di sorgenti è imposta comune fra prove; il bilancio ammette realizzazioni compatibili col secondo principio.",
+      "publication": "DRAFT",
+      "reviewedSignature": "d7ec03bed6908fb57217ceabb7e5fdd9e4fa1452c6342884b63c927aadda7c55",
+      "sourceSha256": "369f8d6daa9eaa6b4ddeeb6648bf98c32c6a365bac7557159433a12709c3e4a5",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetChecksums": {},
+      "assetReview": "not attached to this record",
+      "candidateSha256": "e700ebb71030565f49ff59f4829b8e14976f53709e57d79830b4c274f11929b9",
+      "dimension": {
+        "[length]": "2",
+        "[mass]": "1",
+        "[time]": "-2"
+      },
+      "distractors": "−40 J è il contributo con segno al calore ricevuto dal gas, non il modulo scaricato.160 J somma lavoro e ingresso; 60 J copia il lavoro.",
+      "errors": [],
+      "expectedExact": "40",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u5-cyclic-work-06",
+      "manualArithmetic": "Q_c=Q_h−W=100−60=40 J. Occorre 0<W<Q_h per rispettare Q_c>0.",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_cycle_first_law_reversible_entropy_ratio_mean_power_inverse_and_calibration",
+        "Pint_exact_energy_temperature_power_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "L’incognita o il caso separato sono riconosciuti prima di applicare la legge; sono esplicitati unità e dominio.",
+      "physicalAssumptions": "Sistema ciclico chiuso senza altre entrate energetiche, energie macroscopiche finali uguali alle iniziali. Q_h>Q_c>0 sono moduli, lavoro positivo uscente. Nessuna coppia di sorgenti è imposta comune fra prove; il bilancio ammette realizzazioni compatibili col secondo principio.",
+      "publication": "DRAFT",
+      "reviewedSignature": "3cc28687d6c02e3f8beca5f3655bcf38bfdbdef997b6b116c1a3797a423712e0",
+      "sourceSha256": "a7b79ea640406151e5bc094255b97264e20000b409927cfeb6706331315da7e6",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetChecksums": {},
+      "assetReview": "not attached to this record",
+      "candidateSha256": "fb365c3ebcf3636fbd46a96cdb2c5c82c154930c5ae0e926ecf8fbb5edb41aa4",
+      "dimension": {},
+      "distractors": "3/2 è sia il reciproco dei lavori sia il rapporto degli scarichi.1 ignora la nuova uscita; 2 e−2/3 non soddisfano due lavori positivi 60 e 40 J.",
+      "errors": [],
+      "expectedExact": "2/3",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u5-cyclic-work-07",
+      "manualArithmetic": "W_A=100−40=60 J, W_B=100−60=40 J; W_B/W_A=40/60=2/3. Più calore scaricato riduce il lavoro a Q_h fisso.",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_cycle_first_law_reversible_entropy_ratio_mean_power_inverse_and_calibration",
+        "Pint_exact_energy_temperature_power_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Le due risposte vengono valutate prima del rapporto e i singoli fattori non sono confusi con il risultato totale.",
+      "physicalAssumptions": "Sistema ciclico chiuso senza altre entrate energetiche, energie macroscopiche finali uguali alle iniziali. Q_h>Q_c>0 sono moduli, lavoro positivo uscente. Nessuna coppia di sorgenti è imposta comune fra prove; il bilancio ammette realizzazioni compatibili col secondo principio.",
+      "publication": "DRAFT",
+      "reviewedSignature": "a8f50a713b4eff135f11fe53153aa805bed24957f5d72fcf995060be548511c6",
+      "sourceSha256": "eff3b60d2ba7b6016020406411a13bdac5b4dc519ca1d4694b7cbd3cc7eae9e0",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetChecksums": {},
+      "assetReview": "not attached to this record",
+      "candidateSha256": "a7118acf1720ec6d01df92466ed428fd6c15d430754b06736a1025d73a99aab8",
+      "dimension": {
+        "[length]": "2",
+        "[mass]": "1",
+        "[time]": "-2"
+      },
+      "distractors": "−60 J cambia l’ordine dello scarto.120 J copia la proposta,zero la accetta e 30 J dimezza ancora la differenza.",
+      "errors": [],
+      "expectedExact": "60",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u5-cyclic-work-08",
+      "manualArithmetic": "Corretto 60 J; proposta 120 J. Proposta meno corretto=+60 J, non −60 J. La proposta supera anche Q_h e non rispetta il bilancio del modello.",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_cycle_first_law_reversible_entropy_ratio_mean_power_inverse_and_calibration",
+        "Pint_exact_energy_temperature_power_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Il caso specifico è distinto dalla sola procedura numerica comune; lo scarto o la diversa legge sono motivati.",
+      "physicalAssumptions": "Sistema ciclico chiuso senza altre entrate energetiche, energie macroscopiche finali uguali alle iniziali. Q_h>Q_c>0 sono moduli, lavoro positivo uscente. Nessuna coppia di sorgenti è imposta comune fra prove; il bilancio ammette realizzazioni compatibili col secondo principio.",
+      "publication": "DRAFT",
+      "reviewedSignature": "a65b043c70aa07216c43dcb3ceefdc9c211cb28f4c71ea2974998feb543dcc98",
+      "sourceSha256": "e481ae2cea50d97768b56f22c79d637d0b01f6ced21ecc7bcd7cb83009872d11",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetChecksums": {},
+      "assetReview": "not attached to this record",
+      "candidateSha256": "b3d2830214ab74829e6fcc9552b2a1cfab1f5e061224cdae68e7f8f82620d809",
+      "dimension": {
+        "[length]": "2",
+        "[mass]": "1",
+        "[time]": "-2"
+      },
+      "distractors": "Sottrarre di nuovo Q_c non inverte il bilancio; Q_c−W può essere negativo. Prodotto e quoziente danno J² e 1.",
+      "errors": [],
+      "expectedExact": "Q_h = W + Q_c",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u5-cyclic-work-09",
+      "manualArithmetic": "W=Q_h−Q_c implica Q_h=W+Q_c, in J. Non si divide per Q_c né si cambia il segno di W.",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_cycle_first_law_reversible_entropy_ratio_mean_power_inverse_and_calibration",
+        "Pint_exact_energy_temperature_power_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "L’inversa simbolica include la condizione che rende lecita la divisione e mantiene le unità delle quantità.",
+      "physicalAssumptions": "Sistema ciclico chiuso senza altre entrate energetiche, energie macroscopiche finali uguali alle iniziali. Q_h>Q_c>0 sono moduli, lavoro positivo uscente. Nessuna coppia di sorgenti è imposta comune fra prove; il bilancio ammette realizzazioni compatibili col secondo principio.",
+      "publication": "DRAFT",
+      "reviewedSignature": "f147ecb91834a23c5654d74a488f96585c976c0c8ecb51da9a2c1702c276dc29",
+      "sourceSha256": "cf71d01adb1e375d1510008a8f1d5059431a00f8520ef967f2b4e5407c11cd79",
+      "verificationMode": "AI_CONCEPTUAL"
+    },
+    {
+      "assetChecksums": {},
+      "assetReview": "not attached to this record",
+      "candidateSha256": "11d1850af2cb8ef5585dbde1e1ea842a558bd712b0bcff42dbc28fb2eaad5d8a",
+      "dimension": {},
+      "distractors": "κ₁κ₂ quadra il fattore comune,κ₁/κ₂ perde i pesi,le somme contano lo scarico come ingresso eκ₁−κ₂ dàzero a prove identiche.",
+      "errors": [],
+      "expectedExact": "(κ₁ Q_h − κ₂ Q_c) / (Q_h − Q_c)",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u5-cyclic-work-10",
+      "manualArithmetic": "W_B=κ₁Q_h−κ₂Q_c. Dividendo per W_A=Q_h−Q_c si ottiene (κ₁Q_h−κ₂Q_c)/(Q_h−Q_c). Richiesti Q_h>Q_c>0 e κ₁Q_h>κ₂Q_c>0. Per κ₁=κ₂=κ, rapporto κ.",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_cycle_first_law_reversible_entropy_ratio_mean_power_inverse_and_calibration",
+        "Pint_exact_energy_temperature_power_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "I fattori sono sostituiti nei rispettivi ingressi prima del rapporto e le ipotesi di confronto sono esplicite.",
+      "physicalAssumptions": "Sistema ciclico chiuso senza altre entrate energetiche, energie macroscopiche finali uguali alle iniziali. Q_h>Q_c>0 sono moduli, lavoro positivo uscente. Nessuna coppia di sorgenti è imposta comune fra prove; il bilancio ammette realizzazioni compatibili col secondo principio.",
+      "publication": "DRAFT",
+      "reviewedSignature": "3172cb67644d4b3fba05f7065f7e4e66f3803a30358444165590babd5d5e695b",
+      "sourceSha256": "35d36b43260b378410f30d239831ba9608e302f6ec06eda6fad09de9eaf260d6",
+      "verificationMode": "AI_CONCEPTUAL"
+    },
+    {
+      "assetChecksums": {},
+      "assetReview": "not attached to this record",
+      "candidateSha256": "084a7ba6b74bfb8733d324fc59e5c1988edc40dc2e514ddad834319dcf9dede8",
+      "dimension": {},
+      "distractors": "3/7 reciproco; 2 segue soltanto il calore caldo e 3/2 soltanto lo scarico.140 è il numero di joule del lavoro B, non un rapporto.",
+      "errors": [],
+      "expectedExact": "7/3",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u5-cyclic-work-11",
+      "manualArithmetic": "A 60 J, B 200−60=140 J; rapporto 140/60=7/3.",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_cycle_first_law_reversible_entropy_ratio_mean_power_inverse_and_calibration",
+        "Pint_exact_energy_temperature_power_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Entrambi gli ingressi modificati sono valutati nello stesso modello prima di ridurre il rapporto.",
+      "physicalAssumptions": "Sistema ciclico chiuso senza altre entrate energetiche, energie macroscopiche finali uguali alle iniziali. Q_h>Q_c>0 sono moduli, lavoro positivo uscente. Nessuna coppia di sorgenti è imposta comune fra prove; il bilancio ammette realizzazioni compatibili col secondo principio.",
+      "publication": "DRAFT",
+      "reviewedSignature": "c97b6b290ba3cb72b09da7747aa9b18979249aa6426dce1c6b8e2346614d9a21",
+      "sourceSha256": "f0e306840934761511300594256b18229537075df056b6c4efc40e65b2e4c309",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetChecksums": {
+        "cyclic-work-progressive.svg": "c306839d3caad80d7127b04bfb07772fd30e809431a2bca752efecb189d05aa1"
+      },
+      "assetReview": "Full XML and full-height Chrome rendering independently read. Schematic arrows: heat from hot source enters, cold heat and outgoing work leave. At 4 px/J the 400 px hot-energy bar equals adjacent 160 px cold and 240 px work segments. At 3 px/J distinct-work bars have lengths 180,420,300 px for 60,140,100 J, same x 110 origin. No source-temperature or instantaneous-power inference.",
+      "candidateSha256": "6aacbc76440583af8679098b6d425a570a0ca4229bdaf6f510f200d80cbb6f7d",
+      "dimension": {
+        "[length]": "2",
+        "[mass]": "1",
+        "[time]": "-2"
+      },
+      "distractors": "200 J è la somma; 50 J dimezza due volte; 80 J è la differenza; 150 J copia l’ingresso medio senza scarico.",
+      "errors": [],
+      "expectedExact": "100",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u5-cyclic-work-12",
+      "manualArithmetic": "Media=(60+140)/2=100 J. La legge è lineare: agli ingressi medi 150 e 50 J si trova 100 J, coincidenza motivata esattamente dalla linearità, non una legge generale per modelli non lineari.",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_cycle_first_law_reversible_entropy_ratio_mean_power_inverse_and_calibration",
+        "Pint_exact_energy_temperature_power_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "La media statistica è distinta da un processo fisico; è spiegato quando il modello conserva o non conserva le medie.",
+      "physicalAssumptions": "Sistema ciclico chiuso senza altre entrate energetiche, energie macroscopiche finali uguali alle iniziali. Q_h>Q_c>0 sono moduli, lavoro positivo uscente. Nessuna coppia di sorgenti è imposta comune fra prove; il bilancio ammette realizzazioni compatibili col secondo principio.",
+      "publication": "DRAFT",
+      "reviewedSignature": "ed137f6634f95517cff305d4da3627726ee74f8b0202209cbd14ba80307a60cf",
+      "sourceSha256": "9562e0178c5eee702e8512558926b85d11ef64191daa15a8eb9d345f163b7295",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetChecksums": {},
+      "assetReview": "not attached to this record",
+      "candidateSha256": "b94ab50f533e084941f1f574c7fc0071b0520d924ff6712352d4bacc14696d5e",
+      "dimension": {},
+      "distractors": "2/3 reciproco; 7/3 è il bersaglio sui lavori. Rapporto 2 imporrebbe scarico 80 J e lavoro 120 J, non 140 J.60 copia un’energia.",
+      "errors": [],
+      "expectedExact": "3/2",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u5-cyclic-work-13",
+      "manualArithmetic": "Bersaglio=(7/3)60=140 J. A Q_h,B=200 J occorre Q_c,B=200−140=60 J. Rapporto Q_c,B/Q_c,A=60/40=3/2; entrambi i cicli hanno Q_h>Q_c>0.",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_cycle_first_law_reversible_entropy_ratio_mean_power_inverse_and_calibration",
+        "Pint_exact_energy_temperature_power_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Il bersaglio è ricostruito prima dell’inversa e il rapporto richiesto è distinto dal valore finale dell’ingresso.",
+      "physicalAssumptions": "Sistema ciclico chiuso senza altre entrate energetiche, energie macroscopiche finali uguali alle iniziali. Q_h>Q_c>0 sono moduli, lavoro positivo uscente. Nessuna coppia di sorgenti è imposta comune fra prove; il bilancio ammette realizzazioni compatibili col secondo principio.",
+      "publication": "DRAFT",
+      "reviewedSignature": "b0e7ec869d01f96d25223bab8b92ff34611a7337418c001ed34c4f1d8eaca50b",
+      "sourceSha256": "f52de82aa33c468d5312cb423f93a74e3c4abd03afc21e3d9adb6528d22ea8b0",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetChecksums": {},
+      "assetReview": "not attached to this record",
+      "candidateSha256": "36478be0551789ea79e5d4c0129c8dbd51435e76659d2db8db246045d80cd643",
+      "dimension": {
+        "[length]": "2",
+        "[mass]": "1",
+        "[time]": "-2"
+      },
+      "distractors": "Il display grezzo 420 non è in J e darebbe ingresso 480 J.140 J si ferma al lavoro senza aggiungere lo scarico.",
+      "errors": [],
+      "expectedExact": "200",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u5-cyclic-work-14",
+      "manualArithmetic": "Riferimento W 60 J, S 180: q=3 J⁻¹. Nuova W 420/q=140 J. Q_h=140+60=200 J. La lettura S non è un lavoro espresso in J.",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_cycle_first_law_reversible_entropy_ratio_mean_power_inverse_and_calibration",
+        "Pint_exact_energy_temperature_power_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "La taratura del display continuo è separata dall’inversa della legge fisica.",
+      "physicalAssumptions": "Sistema ciclico chiuso senza altre entrate energetiche, energie macroscopiche finali uguali alle iniziali. Q_h>Q_c>0 sono moduli, lavoro positivo uscente. Nessuna coppia di sorgenti è imposta comune fra prove; il bilancio ammette realizzazioni compatibili col secondo principio.",
+      "publication": "DRAFT",
+      "reviewedSignature": "32ad7c7e66b5e4913fe63d581398e1e57ef06c88c46b4a970eaa01069c22bbe3",
+      "sourceSha256": "381da499c99ef5e0f32b425ab5a308251e5310315e4d2bc3e2d52edf0ba98cd1",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetChecksums": {},
+      "assetReview": "not attached to this record",
+      "candidateSha256": "a4c5ee197cb2bbab4ca444e883e79c7baa6151f83babe798ab55aa9c7a0c654f",
+      "dimension": {
+        "[length]": "2",
+        "[mass]": "1",
+        "[time]": "-2"
+      },
+      "distractors": "160 J si ferma al lavoro C.100/400 J danno S 121/721.401/2 J omette b e ricostruisce S 322 anziché 321.",
+      "errors": [],
+      "expectedExact": "200",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u5-cyclic-work-15",
+      "manualArithmetic": "A 60 J,S 121 e B 140 J,S 281: q=(281−121)/(140−60)=2 J⁻¹, b=121−2·60=1. C: W=(321−1)/2=160 J; Q_h=160+40=200 J.",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_cycle_first_law_reversible_entropy_ratio_mean_power_inverse_and_calibration",
+        "Pint_exact_energy_temperature_power_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Guadagno e offset sono ricavati da due riferimenti distinti e rimossi prima di ricostruire la grandezza fisica.",
+      "physicalAssumptions": "Sistema ciclico chiuso senza altre entrate energetiche, energie macroscopiche finali uguali alle iniziali. Q_h>Q_c>0 sono moduli, lavoro positivo uscente. Nessuna coppia di sorgenti è imposta comune fra prove; il bilancio ammette realizzazioni compatibili col secondo principio.",
+      "publication": "DRAFT",
+      "reviewedSignature": "38ab4ee4b85247e8084ff77c21ae5cf52c748853d8f56206cedf33ea72a76936",
+      "sourceSha256": "78dd430f5617efafda51e00d335e144e926d1b405179e475d526dddc570e1a1e",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetChecksums": {},
+      "assetReview": "not attached to this record",
+      "candidateSha256": "fd293f91a93220d178c3ff156d3a3cbfabfc56df6df74fbf77d6235bfc7946fc",
+      "dimension": {
+        "[length]": "2",
+        "[mass]": "1",
+        "[time]": "-2"
+      },
+      "distractors": "−40 J viola i moduli; 60 e 100 J copiano lavoro e ingresso.24 J divide per 5/2 anziché per il coefficiente netto 3/2.",
+      "errors": [],
+      "expectedExact": "40",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u5-cyclic-work-16",
+      "manualArithmetic": "Q_h=(5/2)Q_c, quindi W=(3/2)Q_c=60 J. Q_c=60·2/3=40 J e Q_h 100 J. Soluzione positiva unica; coefficiente 5/2 puro, non dimensionato in energia.",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_cycle_first_law_reversible_entropy_ratio_mean_power_inverse_and_calibration",
+        "Pint_exact_energy_temperature_power_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Il vincolo o il ciclo separato sono sostituiti nella legge prima di discutere unicità, dominio e grandezza richiesta.",
+      "physicalAssumptions": "Sistema ciclico chiuso senza altre entrate energetiche, energie macroscopiche finali uguali alle iniziali. Q_h>Q_c>0 sono moduli, lavoro positivo uscente. Nessuna coppia di sorgenti è imposta comune fra prove; il bilancio ammette realizzazioni compatibili col secondo principio.",
+      "publication": "DRAFT",
+      "reviewedSignature": "c7b5a2c480dc437d7e138e7474d025d30fd1ce8a7117c4528541cb3f29bb8644",
+      "sourceSha256": "bba1eb2ced8f25c9ca1f0af913214b4b9061a9636bfb0de6104b7bd8989135a0",
+      "verificationMode": "EXACT_ORACLE"
+    }
+  ],
+  "reviewedCandidateCommit": "dbbd103fcf9ba5e3999e5892f09b8502a24bb632",
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "schemaVersion": "1.0.0",
+  "source": {
+    "commit": "5cfbdcb055ba3ba136f97fb56e997f06e6cf3605",
+    "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U5-02.json",
+    "reference": "Sistema ciclico chiuso senza altre entrate energetiche, energie macroscopiche finali uguali alle iniziali. Q_h>Q_c>0 sono moduli, lavoro positivo uscente. Nessuna coppia di sorgenti è imposta comune fra prove; il bilancio ammette realizzazioni compatibili col secondo principio.",
+    "title": "cyclic-work"
+  },
+  "verifierSha256": "818f1a4e106461df15d9f917cfd9ea615266ff4bc913a137138db3010afdbe42"
+}

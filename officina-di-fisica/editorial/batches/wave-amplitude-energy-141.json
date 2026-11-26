@@ -1,0 +1,1135 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u4-wave-amplitude-energy-01",
+      "kind": "question",
+      "course": "C5",
+      "section": "Intensità, ampiezza e frequenza",
+      "order": 14101,
+      "title": "Ampiezza doppia, intensità quadrupla",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L04",
+      "prerequisites": [
+        "C5-L01",
+        "C5-L02",
+        "C5-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-amplitude-energy",
+      "difficulty": 1,
+      "prompt": "Nel regime lineare di piccole perturbazioni, onde armoniche nello stesso mezzo e alla stessa frequenza hanno intensità media I=C A², con C>0 comune e A ampiezza dello spostamento del mezzo. In ciascuna prova un’onda di riferimento ha ampiezza A₀>0 e intensità I₀=C A₀²>0; l’onda modificata ha ampiezza A=sA₀, con fattore puro s>0. Quindi I=I₀s². Tra prove diverse può cambiare anche l’onda di riferimento: I₀ diverso significa A₀ diverso, pur lasciando C uguale. Tutte le ampiezze restano nel regime lineare; non si sommano qui due onde simultanee. Con I₀=1 W/m² e s=2, quanto vale I in W/m²?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "W/m²",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il fattore due dell’ampiezza viene elevato al quadrato. L’intensità è quindi quattro volte quella dell’onda di riferimento, cioè quattro W/m². L’ampiezza descrive lo spostamento del mezzo, non la distanza percorsa dalla perturbazione."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/9b3a9479643d16d2a640b2a11a9a7776078b85c0d3defe8a779a227b77567061",
+          "text": "Confronto a frequenza fissa: segmenti di spostamento da A₀=1 mm ad A=2 mm, alla scala 50 px/mm; sono ampiezze del mezzo, non forze. Per la coppia con I₀=1 W/m², s=2 dà I=4 W/m²: barre a 100 px/(W/m²). Il pannello finale è il caso distinto 06: stessa ampiezza e area ma frequenza moltiplicata per 3/2, che richiede la legge completa I=Kf²A²."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac I{I_0}=\\left(\\frac A{A_0}\\right)^2"
+        },
+        {
+          "type": "formula",
+          "text": " I=I_0s^2"
+        },
+        {
+          "type": "formula",
+          "text": " I=4\\,\\mathrm{W/m^2}"
+        },
+        {
+          "type": "text",
+          "text": "Due segue l’ampiezza linearmente; otto le attribuisce un cubo. Un quarto inverte l’effetto dell’aumento e uno ignora la modifica. La proporzionalità quadratica richiede stessa frequenza e stesso mezzo."
+        }
+      ],
+      "hints": [
+        "Eleva al quadrato il fattore puro s, non l’intensità iniziale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due segue l’ampiezza linearmente; otto le attribuisce un cubo. Un quarto inverte l’effetto dell’aumento e uno ignora la modifica. La proporzionalità quadratica richiede stessa frequenza e stesso mezzo.",
+        "target": "C5-L04"
+      },
+      "coverage": [
+        "Legge quadratica e riferimenti",
+        "Caso distinto con frequenza variata",
+        "Inverse, medie, tarature e vincolo cubico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-wave-amplitude-energy-02",
+      "kind": "question",
+      "course": "C5",
+      "section": "Intensità, ampiezza e frequenza",
+      "order": 14102,
+      "title": "L’unità dell’intensità modificata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L04",
+      "prerequisites": [
+        "C5-L01",
+        "C5-L02",
+        "C5-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-amplitude-energy",
+      "difficulty": 1,
+      "prompt": "I₀ è un’intensità media e s=A/A₀ è un rapporto fra ampiezze omogenee. Quale unità è adatta a I=I₀s²?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "W/m²",
+          "W",
+          "J",
+          "m",
+          "W/m"
+        ],
+        "value": "W/m²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il fattore s e il suo quadrato sono adimensionali, quindi I mantiene le unità di I₀. Un’intensità è potenza per area normale al flusso, espressa in W/m². Il cambiamento di ampiezza non la trasforma in una potenza totale."
+        },
+        {
+          "type": "formula",
+          "text": "[s]=1"
+        },
+        {
+          "type": "formula",
+          "text": " [I]=[I_0]"
+        },
+        {
+          "type": "formula",
+          "text": " [I]=\\mathrm{W/m^2}"
+        },
+        {
+          "type": "text",
+          "text": "W misura potenza, J energia e m spostamento; W/m è potenza per lunghezza. Per ricavare una potenza da I occorrerebbe un’area attraversata."
+        }
+      ],
+      "hints": [
+        "Il rapporto A/A₀ non porta metri residui.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "W misura potenza, J energia e m spostamento; W/m è potenza per lunghezza. Per ricavare una potenza da I occorrerebbe un’area attraversata.",
+        "target": "C5-L04"
+      },
+      "coverage": [
+        "Legge quadratica e riferimenti",
+        "Caso distinto con frequenza variata",
+        "Inverse, medie, tarature e vincolo cubico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-wave-amplitude-energy-03",
+      "kind": "question",
+      "course": "C5",
+      "section": "Intensità, ampiezza e frequenza",
+      "order": 14103,
+      "title": "Il rapporto fra i quadrati",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L04",
+      "prerequisites": [
+        "C5-L01",
+        "C5-L02",
+        "C5-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-amplitude-energy",
+      "difficulty": 1,
+      "prompt": "Nel regime lineare di piccole perturbazioni, onde armoniche nello stesso mezzo e alla stessa frequenza hanno intensità media I=C A², con C>0 comune e A ampiezza dello spostamento del mezzo. In ciascuna prova un’onda di riferimento ha ampiezza A₀>0 e intensità I₀=C A₀²>0; l’onda modificata ha ampiezza A=sA₀, con fattore puro s>0. Quindi I=I₀s². Tra prove diverse può cambiare anche l’onda di riferimento: I₀ diverso significa A₀ diverso, pur lasciando C uguale. Tutte le ampiezze restano nel regime lineare; non si sommano qui due onde simultanee. Quale relazione dà l’intensità modificata?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "I = I₀ s²",
+          "I = I₀ s",
+          "I = I₀ / s²",
+          "I = I₀² s",
+          "I = 2 I₀ s²"
+        ],
+        "value": "I = I₀ s²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dividendo le due leggi I=CA² e I₀=CA₀², il coefficiente comune si cancella. Rimane I/I₀=(A/A₀)²=s². Il fattore due non compare: si confrontano energie o potenze medie di due condizioni, senza raddoppiare il numero di onde."
+        },
+        {
+          "type": "formula",
+          "text": "I=CA^2"
+        },
+        {
+          "type": "formula",
+          "text": " I_0=CA_0^2"
+        },
+        {
+          "type": "formula",
+          "text": " I/I_0=s^2"
+        },
+        {
+          "type": "formula",
+          "text": " I=I_0s^2"
+        },
+        {
+          "type": "text",
+          "text": "Una sola s perde una potenza di ampiezza, la divisione inverte la dipendenza. I₀² cambierebbe le dimensioni, mentre il due aggiunto modifica senza motivo il coefficiente comune già cancellato."
+        }
+      ],
+      "hints": [
+        "Forma prima I/I₀ e cancella C.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Una sola s perde una potenza di ampiezza, la divisione inverte la dipendenza. I₀² cambierebbe le dimensioni, mentre il due aggiunto modifica senza motivo il coefficiente comune già cancellato.",
+        "target": "C5-L04"
+      },
+      "coverage": [
+        "Legge quadratica e riferimenti",
+        "Caso distinto con frequenza variata",
+        "Inverse, medie, tarature e vincolo cubico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-wave-amplitude-energy-04",
+      "kind": "question",
+      "course": "C5",
+      "section": "Intensità, ampiezza e frequenza",
+      "order": 14104,
+      "title": "Un riferimento più intenso",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L04",
+      "prerequisites": [
+        "C5-L01",
+        "C5-L02",
+        "C5-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-amplitude-energy",
+      "difficulty": 1,
+      "prompt": "Nel regime lineare di piccole perturbazioni, onde armoniche nello stesso mezzo e alla stessa frequenza hanno intensità media I=C A², con C>0 comune e A ampiezza dello spostamento del mezzo. In ciascuna prova un’onda di riferimento ha ampiezza A₀>0 e intensità I₀=C A₀²>0; l’onda modificata ha ampiezza A=sA₀, con fattore puro s>0. Quindi I=I₀s². Tra prove diverse può cambiare anche l’onda di riferimento: I₀ diverso significa A₀ diverso, pur lasciando C uguale. Tutte le ampiezze restano nel regime lineare; non si sommano qui due onde simultanee. Fra due prove I₀ passa da 1 a 4 W/m², mentre s=2 in entrambe. Come cambia I?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 4 a 16 W/m²",
+          "Da 4 a 8 W/m²",
+          "Da 4 a 64 W/m²",
+          "Resta 4 W/m²",
+          "Da 4 a 1 W/m²"
+        ],
+        "value": "Da 4 a 16 W/m²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il fattore s² resta quattro. La nuova onda di riferimento ha intensità quadrupla e l’intensità modificata è quattro per quattro, sedici W/m². Non si sta mantenendo la stessa A₀ quando cambia I₀ a C fisso."
+        },
+        {
+          "type": "formula",
+          "text": "I_A=4\\,\\mathrm{W/m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " I_B=(4\\,\\mathrm{W/m^2})\\,2^2"
+        },
+        {
+          "type": "formula",
+          "text": " I_B=16\\,\\mathrm{W/m^2}"
+        },
+        {
+          "type": "text",
+          "text": "Otto confonde l’aumento di I₀ con un raddoppio; sessantaquattro quadra indebitamente il fattore quattro dell’intensità di riferimento. Quattro ignora il nuovo riferimento e uno ne inverte l’effetto."
+        }
+      ],
+      "hints": [
+        "I dipende linearmente da I₀ quando s è fissato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Otto confonde l’aumento di I₀ con un raddoppio; sessantaquattro quadra indebitamente il fattore quattro dell’intensità di riferimento. Quattro ignora il nuovo riferimento e uno ne inverte l’effetto.",
+        "target": "C5-L04"
+      },
+      "coverage": [
+        "Legge quadratica e riferimenti",
+        "Caso distinto con frequenza variata",
+        "Inverse, medie, tarature e vincolo cubico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-wave-amplitude-energy-05",
+      "kind": "question",
+      "course": "C5",
+      "section": "Intensità, ampiezza e frequenza",
+      "order": 14105,
+      "title": "Ricavare l’intensità di riferimento",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L04",
+      "prerequisites": [
+        "C5-L01",
+        "C5-L02",
+        "C5-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-amplitude-energy",
+      "difficulty": 2,
+      "prompt": "Nel regime lineare di piccole perturbazioni, onde armoniche nello stesso mezzo e alla stessa frequenza hanno intensità media I=C A², con C>0 comune e A ampiezza dello spostamento del mezzo. In ciascuna prova un’onda di riferimento ha ampiezza A₀>0 e intensità I₀=C A₀²>0; l’onda modificata ha ampiezza A=sA₀, con fattore puro s>0. Quindi I=I₀s². Tra prove diverse può cambiare anche l’onda di riferimento: I₀ diverso significa A₀ diverso, pur lasciando C uguale. Tutte le ampiezze restano nel regime lineare; non si sommano qui due onde simultanee. Si misura I=4 W/m² e si conosce s=2. Quanto vale I₀ in W/m²?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "W/m²",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’inversa divide I per s². Quattro W/m² diviso quattro dà un W/m². Usare s soltanto al denominatore dimenticherebbe una potenza del rapporto di ampiezza."
+        },
+        {
+          "type": "formula",
+          "text": "I_0=\\frac I{s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " I_0=\\frac44\\,\\mathrm{W/m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " I_0=1\\,\\mathrm{W/m^2}"
+        },
+        {
+          "type": "text",
+          "text": "Due divide solo per s; sedici moltiplica per s² invece di dividere. Il risultato deve riprodurre I=4 W/m² quando viene moltiplicato di nuovo per quattro."
+        }
+      ],
+      "hints": [
+        "Calcola s² prima di dividere.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due divide solo per s; sedici moltiplica per s² invece di dividere. Il risultato deve riprodurre I=4 W/m² quando viene moltiplicato di nuovo per quattro.",
+        "target": "C5-L04"
+      },
+      "coverage": [
+        "Legge quadratica e riferimenti",
+        "Caso distinto con frequenza variata",
+        "Inverse, medie, tarature e vincolo cubico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-wave-amplitude-energy-06",
+      "kind": "question",
+      "course": "C5",
+      "section": "Intensità, ampiezza e frequenza",
+      "order": 14106,
+      "title": "Un altro confronto: cambia la frequenza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L04",
+      "prerequisites": [
+        "C5-L01",
+        "C5-L02",
+        "C5-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-amplitude-energy",
+      "difficulty": 2,
+      "prompt": "Per due onde sonore piane progressive nello stesso mezzo lineare non dispersivo è fornita la legge I=K f² A², con K>0 costante. A>0 è l’ampiezza dello spostamento delle particelle, f>0 la frequenza. Le onde attraversano la stessa area normale S>0, con potenza P=IS. La seconda ha f₂=(3/2)f₁ e A₂=A₁. Quanto vale P₂/P₁?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "9/4",
+          "3/2",
+          "4/9",
+          "1",
+          "27/8"
+        ],
+        "value": "9/4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Qui la frequenza cambia, perciò non basta richiamare I proporzionale ad A² con un coefficiente invariato rispetto a f. Usiamo la legge completa data: K, A² e S sono uguali e si cancellano. Resta il quadrato di tre mezzi, nove quarti. Non occorre valutare alcuna funzione trigonometrica."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/9b3a9479643d16d2a640b2a11a9a7776078b85c0d3defe8a779a227b77567061",
+          "text": "Il pannello finale riguarda solo il confronto a frequenza variata: f₂/f₁=3/2 e A₂=A₁ nello stesso mezzo e sulla stessa area. Barre del rapporto puro P/P₁: 100 e 225 px a 100 px per unità, per 1 e 9/4. Non si usa la sola proporzionalità con A² mantenendo erroneamente costante il coefficiente che contiene f²."
+        },
+        {
+          "type": "formula",
+          "text": "P=Kf^2A^2S"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{P_2}{P_1}=\\left(\\frac{f_2}{f_1}\\right)^2"
+        },
+        {
+          "type": "formula",
+          "text": " P_2/P_1=\\frac94"
+        },
+        {
+          "type": "text",
+          "text": "Tre mezzi segue f linearmente, quattro noni inverte il rapporto e uno usa erroneamente solo l’ampiezza invariata. Ventisette ottavi eleva al cubo invece che al quadrato. Il coefficiente K ha le unità richieste dalla legge e non è una costante pura."
+        }
+      ],
+      "hints": [
+        "Cancella l’area e l’ampiezza comuni, poi confronta f².",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre mezzi segue f linearmente, quattro noni inverte il rapporto e uno usa erroneamente solo l’ampiezza invariata. Ventisette ottavi eleva al cubo invece che al quadrato. Il coefficiente K ha le unità richieste dalla legge e non è una costante pura.",
+        "target": "C5-L04"
+      },
+      "coverage": [
+        "Legge quadratica e riferimenti",
+        "Caso distinto con frequenza variata",
+        "Inverse, medie, tarature e vincolo cubico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-wave-amplitude-energy-07",
+      "kind": "question",
+      "course": "C5",
+      "section": "Intensità, ampiezza e frequenza",
+      "order": 14107,
+      "title": "Eliminare il raddoppio dell’ampiezza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L04",
+      "prerequisites": [
+        "C5-L01",
+        "C5-L02",
+        "C5-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-amplitude-energy",
+      "difficulty": 2,
+      "prompt": "Nel regime lineare di piccole perturbazioni, onde armoniche nello stesso mezzo e alla stessa frequenza hanno intensità media I=C A², con C>0 comune e A ampiezza dello spostamento del mezzo. In ciascuna prova un’onda di riferimento ha ampiezza A₀>0 e intensità I₀=C A₀²>0; l’onda modificata ha ampiezza A=sA₀, con fattore puro s>0. Quindi I=I₀s². Tra prove diverse può cambiare anche l’onda di riferimento: I₀ diverso significa A₀ diverso, pur lasciando C uguale. Tutte le ampiezze restano nel regime lineare; non si sommano qui due onde simultanee. La prova A usa I₀=1 W/m²,s=2. B mantiene I₀ e usa s=1. Quanto vale I_B/I_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/4",
+          "1/2",
+          "4",
+          "2",
+          "1"
+        ],
+        "value": "1/4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La prova A ha quattro W/m² e B coincide con il riferimento a un W/m². Il rapporto è un quarto. Il fattore di ampiezza passa da due a uno, quindi il rapporto tra fattori è un mezzo e va elevato al quadrato."
+        },
+        {
+          "type": "formula",
+          "text": "I_A=4\\,\\mathrm{W/m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " I_B=1\\,\\mathrm{W/m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " I_B/I_A=\\frac14"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo omette il quadrato, quattro inverte le prove e due inverte soltanto il rapporto lineare. Uno ignora che l’onda modificata cambia ampiezza."
+        }
+      ],
+      "hints": [
+        "Confronta i due s e poi fai il quadrato del rapporto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo omette il quadrato, quattro inverte le prove e due inverte soltanto il rapporto lineare. Uno ignora che l’onda modificata cambia ampiezza.",
+        "target": "C5-L04"
+      },
+      "coverage": [
+        "Legge quadratica e riferimenti",
+        "Caso distinto con frequenza variata",
+        "Inverse, medie, tarature e vincolo cubico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-wave-amplitude-energy-08",
+      "kind": "question",
+      "course": "C5",
+      "section": "Intensità, ampiezza e frequenza",
+      "order": 14108,
+      "title": "Scarto di un’intensità duplicata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L04",
+      "prerequisites": [
+        "C5-L01",
+        "C5-L02",
+        "C5-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-amplitude-energy",
+      "difficulty": 2,
+      "prompt": "Nel regime lineare di piccole perturbazioni, onde armoniche nello stesso mezzo e alla stessa frequenza hanno intensità media I=C A², con C>0 comune e A ampiezza dello spostamento del mezzo. In ciascuna prova un’onda di riferimento ha ampiezza A₀>0 e intensità I₀=C A₀²>0; l’onda modificata ha ampiezza A=sA₀, con fattore puro s>0. Quindi I=I₀s². Tra prove diverse può cambiare anche l’onda di riferimento: I₀ diverso significa A₀ diverso, pur lasciando C uguale. Tutte le ampiezze restano nel regime lineare; non si sommano qui due onde simultanee. Con I₀=1 W/m²,s=2 si propone I=8 W/m². Quanto vale proposta meno corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4 W/m²",
+          "−4 W/m²",
+          "8 W/m²",
+          "0 W/m²",
+          "12 W/m²"
+        ],
+        "value": "4 W/m²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il modello dà quattro W/m². La proposta otto meno il corretto quattro lascia uno scarto positivo di quattro W/m². Un fattore due aggiunto all’intensità non discende dal raddoppio di ampiezza: quel raddoppio è già contato nel quadrato."
+        },
+        {
+          "type": "formula",
+          "text": "I=4\\,\\mathrm{W/m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " e=(8-4)\\,\\mathrm{W/m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " e=4\\,\\mathrm{W/m^2}"
+        },
+        {
+          "type": "text",
+          "text": "Meno quattro cambia l’ordine, otto copia la proposta e dodici somma. Zero accetta il raddoppio superfluo. Lo scarto con segno non è un’ampiezza né il verso dell’onda."
+        }
+      ],
+      "hints": [
+        "Trova prima il valore fisico e poi sottrailo dalla proposta.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Meno quattro cambia l’ordine, otto copia la proposta e dodici somma. Zero accetta il raddoppio superfluo. Lo scarto con segno non è un’ampiezza né il verso dell’onda.",
+        "target": "C5-L04"
+      },
+      "coverage": [
+        "Legge quadratica e riferimenti",
+        "Caso distinto con frequenza variata",
+        "Inverse, medie, tarature e vincolo cubico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-wave-amplitude-energy-09",
+      "kind": "question",
+      "course": "C5",
+      "section": "Intensità, ampiezza e frequenza",
+      "order": 14109,
+      "title": "L’inversa per I₀",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L04",
+      "prerequisites": [
+        "C5-L01",
+        "C5-L02",
+        "C5-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-amplitude-energy",
+      "difficulty": 2,
+      "prompt": "Nel regime lineare di piccole perturbazioni, onde armoniche nello stesso mezzo e alla stessa frequenza hanno intensità media I=C A², con C>0 comune e A ampiezza dello spostamento del mezzo. In ciascuna prova un’onda di riferimento ha ampiezza A₀>0 e intensità I₀=C A₀²>0; l’onda modificata ha ampiezza A=sA₀, con fattore puro s>0. Quindi I=I₀s². Tra prove diverse può cambiare anche l’onda di riferimento: I₀ diverso significa A₀ diverso, pur lasciando C uguale. Tutte le ampiezze restano nel regime lineare; non si sommano qui due onde simultanee. Si conoscono I e s. Quale relazione isola I₀?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "I₀ = I / s²",
+          "I₀ = I s²",
+          "I₀ = I / s",
+          "I₀ = s² / I",
+          "I₀ = √I / s"
+        ],
+        "value": "I₀ = I / s²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I₀ è moltiplicata per s². Dividiamo entrambi i membri per quel fattore positivo e otteniamo I₀=I/s². La divisione per un rapporto puro mantiene le unità di intensità; non occorre estrarre una radice perché l’incognita non è s."
+        },
+        {
+          "type": "formula",
+          "text": "I=I_0s^2"
+        },
+        {
+          "type": "formula",
+          "text": " I_0=\\frac I{s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " [I_0]=\\mathrm{W/m^2}"
+        },
+        {
+          "type": "text",
+          "text": "Moltiplicare per s² non inverte il prodotto; dividere per s perde il quadrato. s²/I è un’intensità inversa, mentre √I/s non ha dimensione di intensità. La radice serve semmai a isolare s."
+        }
+      ],
+      "hints": [
+        "Guarda quale grandezza è al quadrato nella legge.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Moltiplicare per s² non inverte il prodotto; dividere per s perde il quadrato. s²/I è un’intensità inversa, mentre √I/s non ha dimensione di intensità. La radice serve semmai a isolare s.",
+        "target": "C5-L04"
+      },
+      "coverage": [
+        "Legge quadratica e riferimenti",
+        "Caso distinto con frequenza variata",
+        "Inverse, medie, tarature e vincolo cubico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-wave-amplitude-energy-10",
+      "kind": "question",
+      "course": "C5",
+      "section": "Intensità, ampiezza e frequenza",
+      "order": 14110,
+      "title": "Due fattori con ruoli diversi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L04",
+      "prerequisites": [
+        "C5-L01",
+        "C5-L02",
+        "C5-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-amplitude-energy",
+      "difficulty": 2,
+      "prompt": "Nel regime lineare di piccole perturbazioni, onde armoniche nello stesso mezzo e alla stessa frequenza hanno intensità media I=C A², con C>0 comune e A ampiezza dello spostamento del mezzo. In ciascuna prova un’onda di riferimento ha ampiezza A₀>0 e intensità I₀=C A₀²>0; l’onda modificata ha ampiezza A=sA₀, con fattore puro s>0. Quindi I=I₀s². Tra prove diverse può cambiare anche l’onda di riferimento: I₀ diverso significa A₀ diverso, pur lasciando C uguale. Tutte le ampiezze restano nel regime lineare; non si sommano qui due onde simultanee. B ha I₀,B=κ₁I₀,A e s_B=κ₂s_A, con fattori positivi e regime lineare in entrambe le prove. Quanto vale I_B/I_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ κ₂²",
+          "κ₁ κ₂",
+          "κ₁² κ₂",
+          "κ₁ / κ₂²",
+          "κ₂² / κ₁"
+        ],
+        "value": "κ₁ κ₂²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’intensità di riferimento porta κ₁ direttamente. Il fattore di ampiezza compare al quadrato e porta κ₂². Il rapporto è κ₁κ₂², mantenendo separate l’intensità di riferimento e il rapporto puro di ampiezze."
+        },
+        {
+          "type": "formula",
+          "text": "I_B=\\kappa_1I_{0,A}(\\kappa_2s_A)^2"
+        },
+        {
+          "type": "formula",
+          "text": " I_B/I_A=\\kappa_1\\kappa_2^2"
+        },
+        {
+          "type": "text",
+          "text": "Una sola κ₂ perde una potenza; κ₁² quadra l’intensità sbagliata. I quozienti rendono inversa una dipendenza diretta. Il confronto non conserva necessariamente l’ampiezza di riferimento A₀ fra le prove."
+        }
+      ],
+      "hints": [
+        "Assegna il quadrato al cambiamento del fattore s.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Una sola κ₂ perde una potenza; κ₁² quadra l’intensità sbagliata. I quozienti rendono inversa una dipendenza diretta. Il confronto non conserva necessariamente l’ampiezza di riferimento A₀ fra le prove.",
+        "target": "C5-L04"
+      },
+      "coverage": [
+        "Legge quadratica e riferimenti",
+        "Caso distinto con frequenza variata",
+        "Inverse, medie, tarature e vincolo cubico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-wave-amplitude-energy-11",
+      "kind": "question",
+      "course": "C5",
+      "section": "Intensità, ampiezza e frequenza",
+      "order": 14111,
+      "title": "Più riferimento e più amplificazione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L04",
+      "prerequisites": [
+        "C5-L01",
+        "C5-L02",
+        "C5-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-amplitude-energy",
+      "difficulty": 2,
+      "prompt": "Nel regime lineare di piccole perturbazioni, onde armoniche nello stesso mezzo e alla stessa frequenza hanno intensità media I=C A², con C>0 comune e A ampiezza dello spostamento del mezzo. In ciascuna prova un’onda di riferimento ha ampiezza A₀>0 e intensità I₀=C A₀²>0; l’onda modificata ha ampiezza A=sA₀, con fattore puro s>0. Quindi I=I₀s². Tra prove diverse può cambiare anche l’onda di riferimento: I₀ diverso significa A₀ diverso, pur lasciando C uguale. Tutte le ampiezze restano nel regime lineare; non si sommano qui due onde simultanee. A usa I₀=1 W/m²,s=2. B usa I₀=2 W/m²,s=3. Quanto vale I_B/I_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "9/2",
+          "2/9",
+          "2",
+          "9/4",
+          "18"
+        ],
+        "value": "9/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A dà quattro W/m² e B due per nove, diciotto W/m². Il rapporto diciotto quarti è nove mezzi. Lo stesso risultato combina l’intensità di riferimento doppia con il quadrato di tre mezzi, rapporto fra i fattori s."
+        },
+        {
+          "type": "formula",
+          "text": "I_A=4\\,\\mathrm{W/m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " I_B=18\\,\\mathrm{W/m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " I_B/I_A=\\frac92"
+        },
+        {
+          "type": "text",
+          "text": "Due considera solo I₀, nove quarti solo s². Due noni è il reciproco e diciotto il numero della sola intensità B, non il rapporto adimensionale."
+        }
+      ],
+      "hints": [
+        "Calcola i due prodotti I₀s² prima del loro confronto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due considera solo I₀, nove quarti solo s². Due noni è il reciproco e diciotto il numero della sola intensità B, non il rapporto adimensionale.",
+        "target": "C5-L04"
+      },
+      "coverage": [
+        "Legge quadratica e riferimenti",
+        "Caso distinto con frequenza variata",
+        "Inverse, medie, tarature e vincolo cubico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-wave-amplitude-energy-12",
+      "kind": "question",
+      "course": "C5",
+      "section": "Intensità, ampiezza e frequenza",
+      "order": 14112,
+      "title": "Media di due intensità modificate",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L04",
+      "prerequisites": [
+        "C5-L01",
+        "C5-L02",
+        "C5-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-amplitude-energy",
+      "difficulty": 2,
+      "prompt": "Nel regime lineare di piccole perturbazioni, onde armoniche nello stesso mezzo e alla stessa frequenza hanno intensità media I=C A², con C>0 comune e A ampiezza dello spostamento del mezzo. In ciascuna prova un’onda di riferimento ha ampiezza A₀>0 e intensità I₀=C A₀²>0; l’onda modificata ha ampiezza A=sA₀, con fattore puro s>0. Quindi I=I₀s². Tra prove diverse può cambiare anche l’onda di riferimento: I₀ diverso significa A₀ diverso, pur lasciando C uguale. Tutte le ampiezze restano nel regime lineare; non si sommano qui due onde simultanee. A ha I₀=1 W/m²,s=2 e B I₀=2 W/m²,s=3. Qual è la media aritmetica delle due I con uguale peso statistico?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "11 W/m²",
+          "22 W/m²",
+          "11/2 W/m²",
+          "75/8 W/m²",
+          "14 W/m²"
+        ],
+        "value": "11 W/m²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le due intensità quattro e diciotto hanno semisomma undici W/m². La media è fra due risultati già calcolati. Non si costruisce prima un’onda con I₀ e s medi, perché la dipendenza contiene un prodotto e un quadrato."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline I=\\frac{4+18}{2}\\,\\mathrm{W/m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline I=11\\,\\mathrm{W/m^2}"
+        },
+        {
+          "type": "text",
+          "text": "Ventidue è la somma, undici mezzi dimezza ancora e quattordici è la differenza. I₀ medio 3/2 W/m² e s medio 5/2 darebbero 75/8 W/m², inferiore alla media richiesta di 13/8 W/m²."
+        }
+      ],
+      "hints": [
+        "Media le uscite, dopo aver calcolato ciascun quadrato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Ventidue è la somma, undici mezzi dimezza ancora e quattordici è la differenza. I₀ medio 3/2 W/m² e s medio 5/2 darebbero 75/8 W/m², inferiore alla media richiesta di 13/8 W/m².",
+        "target": "C5-L04"
+      },
+      "coverage": [
+        "Legge quadratica e riferimenti",
+        "Caso distinto con frequenza variata",
+        "Inverse, medie, tarature e vincolo cubico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-wave-amplitude-energy-13",
+      "kind": "question",
+      "course": "C5",
+      "section": "Intensità, ampiezza e frequenza",
+      "order": 14113,
+      "title": "Il fattore s per un bersaglio di intensità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L04",
+      "prerequisites": [
+        "C5-L01",
+        "C5-L02",
+        "C5-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-amplitude-energy",
+      "difficulty": 3,
+      "prompt": "Nel regime lineare di piccole perturbazioni, onde armoniche nello stesso mezzo e alla stessa frequenza hanno intensità media I=C A², con C>0 comune e A ampiezza dello spostamento del mezzo. In ciascuna prova un’onda di riferimento ha ampiezza A₀>0 e intensità I₀=C A₀²>0; l’onda modificata ha ampiezza A=sA₀, con fattore puro s>0. Quindi I=I₀s². Tra prove diverse può cambiare anche l’onda di riferimento: I₀ diverso significa A₀ diverso, pur lasciando C uguale. Tutte le ampiezze restano nel regime lineare; non si sommano qui due onde simultanee. A usa I₀=1 W/m²,s=2. B impone I₀=2 W/m² e I_B=(9/2)I_A. Quanto vale s_B/s_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/2",
+          "9/4",
+          "2/3",
+          "9/2",
+          "3"
+        ],
+        "value": "3/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’obiettivo è diciotto W/m². Con riferimento due W/m² occorre s_B²=9, dunque s_B=3 positivo. Dividendo per s_A=2 si ottiene tre mezzi. Il rapporto delle ampiezze effettive A_B/A_A non è chiesto e richiederebbe tenere conto anche dei riferimenti A₀ diversi."
+        },
+        {
+          "type": "formula",
+          "text": "I_B=18\\,\\mathrm{W/m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " s_B^2=9"
+        },
+        {
+          "type": "formula",
+          "text": " s_B=3"
+        },
+        {
+          "type": "formula",
+          "text": " s_B/s_A=\\frac32"
+        },
+        {
+          "type": "text",
+          "text": "Nove quarti è il rapporto ancora al quadrato, due terzi il reciproco e nove mezzi il target. Tre è s_B, non s_B/s_A. La positività di s esclude il ramo negativo."
+        }
+      ],
+      "hints": [
+        "Togli il contributo di I₀ prima di estrarre la radice.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Nove quarti è il rapporto ancora al quadrato, due terzi il reciproco e nove mezzi il target. Tre è s_B, non s_B/s_A. La positività di s esclude il ramo negativo.",
+        "target": "C5-L04"
+      },
+      "coverage": [
+        "Legge quadratica e riferimenti",
+        "Caso distinto con frequenza variata",
+        "Inverse, medie, tarature e vincolo cubico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-wave-amplitude-energy-14",
+      "kind": "question",
+      "course": "C5",
+      "section": "Intensità, ampiezza e frequenza",
+      "order": 14114,
+      "title": "Tarare l’intensità prima del riferimento",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L04",
+      "prerequisites": [
+        "C5-L01",
+        "C5-L02",
+        "C5-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-amplitude-energy",
+      "difficulty": 3,
+      "prompt": "Nel regime lineare di piccole perturbazioni, onde armoniche nello stesso mezzo e alla stessa frequenza hanno intensità media I=C A², con C>0 comune e A ampiezza dello spostamento del mezzo. In ciascuna prova un’onda di riferimento ha ampiezza A₀>0 e intensità I₀=C A₀²>0; l’onda modificata ha ampiezza A=sA₀, con fattore puro s>0. Quindi I=I₀s². Tra prove diverse può cambiare anche l’onda di riferimento: I₀ diverso significa A₀ diverso, pur lasciando C uguale. Tutte le ampiezze restano nel regime lineare; non si sommano qui due onde simultanee. Un display continuo adimensionale segue S=qI, con q>0 e nessun offset. A con I₀=1 W/m²,s=2 legge S=12. B legge S=54 e usa s=3. Quanto vale I₀,B in W/m²?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "W/m²",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La prova A ha I=4 W/m², quindi q=3 m²/W. La lettura cinquantaquattro rappresenta diciotto W/m². Dividere per s_B²=9 dà I₀,B=2 W/m². Il display non misura direttamente l’intensità di riferimento."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{m^2/W}"
+        },
+        {
+          "type": "formula",
+          "text": " I_B=18\\,\\mathrm{W/m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " I_{0,B}=\\frac{I_B}{s_B^2}"
+        },
+        {
+          "type": "formula",
+          "text": " I_{0,B}=2\\,\\mathrm{W/m^2}"
+        },
+        {
+          "type": "text",
+          "text": "Usare S come intensità darebbe I₀,B=6 W/m², triplo. La taratura non elimina la necessità di dividere per il quadrato del nuovo fattore di ampiezza."
+        }
+      ],
+      "hints": [
+        "Decodifica I e solo dopo ricava I₀.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Usare S come intensità darebbe I₀,B=6 W/m², triplo. La taratura non elimina la necessità di dividere per il quadrato del nuovo fattore di ampiezza.",
+        "target": "C5-L04"
+      },
+      "coverage": [
+        "Legge quadratica e riferimenti",
+        "Caso distinto con frequenza variata",
+        "Inverse, medie, tarature e vincolo cubico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-wave-amplitude-energy-15",
+      "kind": "question",
+      "course": "C5",
+      "section": "Intensità, ampiezza e frequenza",
+      "order": 14115,
+      "title": "Offset del display e intensità di riferimento",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L04",
+      "prerequisites": [
+        "C5-L01",
+        "C5-L02",
+        "C5-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-amplitude-energy",
+      "difficulty": 3,
+      "prompt": "Nel regime lineare di piccole perturbazioni, onde armoniche nello stesso mezzo e alla stessa frequenza hanno intensità media I=C A², con C>0 comune e A ampiezza dello spostamento del mezzo. In ciascuna prova un’onda di riferimento ha ampiezza A₀>0 e intensità I₀=C A₀²>0; l’onda modificata ha ampiezza A=sA₀, con fattore puro s>0. Quindi I=I₀s². Tra prove diverse può cambiare anche l’onda di riferimento: I₀ diverso significa A₀ diverso, pur lasciando C uguale. Tutte le ampiezze restano nel regime lineare; non si sommano qui due onde simultanee. Il display continuo adimensionale segue S=qI+b con q>0 e q,b costanti. A: I₀=1 W/m²,s=2,S=9. B: I₀=2 W/m²,s=3,S=37. C: s=2,S=33. Quanto vale I₀,C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4 W/m²",
+          "8 W/m²",
+          "16 W/m²",
+          "2 W/m²",
+          "33/4 W/m²"
+        ],
+        "value": "4 W/m²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti hanno intensità modificate quattro e diciotto W/m². Il guadagno è (37−9)/(18−4)=2 m²/W e b=1. La lettura trentatré equivale a sedici W/m². Con s_C²=4, il riferimento vale quattro W/m²."
+        },
+        {
+          "type": "formula",
+          "text": "q=2\\,\\mathrm{m^2/W}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " I_C=16\\,\\mathrm{W/m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " I_{0,C}=4\\,\\mathrm{W/m^2}"
+        },
+        {
+          "type": "text",
+          "text": "Otto divide per s anziché s², sedici copia l’intensità modificata e due la prova B. 33/4 usa la lettura grezza al posto di I e non ricostruisce S=33: con quel riferimento il display darebbe sessantasette."
+        }
+      ],
+      "hints": [
+        "Sottrai b e dividi per q prima di usare la relazione fisica.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Otto divide per s anziché s², sedici copia l’intensità modificata e due la prova B. 33/4 usa la lettura grezza al posto di I e non ricostruisce S=33: con quel riferimento il display darebbe sessantasette.",
+        "target": "C5-L04"
+      },
+      "coverage": [
+        "Legge quadratica e riferimenti",
+        "Caso distinto con frequenza variata",
+        "Inverse, medie, tarature e vincolo cubico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-wave-amplitude-energy-16",
+      "kind": "question",
+      "course": "C5",
+      "section": "Intensità, ampiezza e frequenza",
+      "order": 14116,
+      "title": "Un vincolo cubico tra le prove",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L04",
+      "prerequisites": [
+        "C5-L01",
+        "C5-L02",
+        "C5-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wave-amplitude-energy",
+      "difficulty": 3,
+      "prompt": "Nel regime lineare di piccole perturbazioni, onde armoniche nello stesso mezzo e alla stessa frequenza hanno intensità media I=C A², con C>0 comune e A ampiezza dello spostamento del mezzo. In ciascuna prova un’onda di riferimento ha ampiezza A₀>0 e intensità I₀=C A₀²>0; l’onda modificata ha ampiezza A=sA₀, con fattore puro s>0. Quindi I=I₀s². Tra prove diverse può cambiare anche l’onda di riferimento: I₀ diverso significa A₀ diverso, pur lasciando C uguale. Tutte le ampiezze restano nel regime lineare; non si sommano qui due onde simultanee. Fra prove si impone I₀=cs con c=1/2 W/m². Si misura I=4 W/m². Quanto vale s>0?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituendo il riferimento nel modello otteniamo I=cs³. Quattro W/m² diviso mezzo W/m² dà s³=8, un numero puro. La radice cubica positiva è due, che restituisce I₀=1 W/m² e I=4 W/m²."
+        },
+        {
+          "type": "formula",
+          "text": "I=cs^3"
+        },
+        {
+          "type": "formula",
+          "text": " s^3=8"
+        },
+        {
+          "type": "formula",
+          "text": " s=2"
+        },
+        {
+          "type": "formula",
+          "text": " I_0=1\\,\\mathrm{W/m^2}"
+        },
+        {
+          "type": "text",
+          "text": "Otto è il cubo e non s. √8 risolverebbe un’equazione quadratica diversa. Su s>0 la cubica è crescente e dà una sola soluzione; c porta unità di intensità e il vincolo collega coppie di onde di riferimento/modificate in prove diverse."
+        }
+      ],
+      "hints": [
+        "Sostituisci I₀ prima di contare le potenze di s.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Otto è il cubo e non s. √8 risolverebbe un’equazione quadratica diversa. Su s>0 la cubica è crescente e dà una sola soluzione; c porta unità di intensità e il vincolo collega coppie di onde di riferimento/modificate in prove diverse.",
+        "target": "C5-L04"
+      },
+      "coverage": [
+        "Legge quadratica e riferimenti",
+        "Caso distinto con frequenza variata",
+        "Inverse, medie, tarature e vincolo cubico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "9b3a9479643d16d2a640b2a11a9a7776078b85c0d3defe8a779a227b77567061",
+      "name": "wave-amplitude-energy-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTU4MCIgdmlld0JveD0iMCAwIDY0MCAxNTgwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+Cjx0aXRsZSBpZD0idGl0bGUiPklsIHF1YWRyYXRvIGRlbGzigJlhbXBpZXp6YSBlIGlsIHJ1b2xvIGRlbGxhIGZyZXF1ZW56YTwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPkFtcGllenphIGRhIHVubyBhIGR1ZSBtaWxsaW1ldHJpIGEgZnJlcXVlbnphIHVndWFsZSwgaW50ZW5zaXTDoCBkYSB1bm8gYSBxdWF0dHJvIHdhdHQgYWwgbWV0cm8gcXVhZHJhdG8uIFVuIGNvbmZyb250byBzZXBhcmF0byBtYW50aWVuZSBhbXBpZXp6YSBlIGFyZWEgbWEgY2FtYmlhIGxhIGZyZXF1ZW56YSBkaSB0cmUgbWV6emksIG90dGVuZW5kbyB1bmEgcG90ZW56YSBub3ZlIHF1YXJ0aS48L2Rlc2M+CjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMTU4MCIgcng9IjIwIiBmaWxsPSIjZjdmYmZmIi8+CjxnIGZvbnQtZmFtaWx5PSJzeXN0ZW0tdWksc2Fucy1zZXJpZiIgZmlsbD0iIzE0MmQ0MCIgZm9udC1zaXplPSIyMCI+Cjx0ZXh0IHg9IjM1IiB5PSI0OCIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9IjcwMCI+MSDCtyBEdWUgYW1waWV6emUgYSBmcmVxdWVuemEgdWd1YWxlPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iOTAiPlN0ZXNzbyBtZXp6byDCtyBwaWNjb2xlIHBlcnR1cmJhemlvbmk8L3RleHQ+CjxwYXRoIGQ9Ik05NSAzMDBINTUwIiBzdHJva2U9IiM2ZThiOWMiIHN0cm9rZS13aWR0aD0iMiIvPgo8cGF0aCBkPSJNMjAwIDMwMFYyNTBNNDMwIDMwMFYyMDAiIHN0cm9rZT0iIzE0NWQ4MSIgc3Ryb2tlLXdpZHRoPSI0Ii8+CjxwYXRoIGQ9Ik0xOTAgMjUwSDIxME00MjAgMjAwSDQ0MCIgc3Ryb2tlPSIjMTQ1ZDgxIiBzdHJva2Utd2lkdGg9IjIiLz4KPHRleHQgeD0iMTQ1IiB5PSIyMTUiPkHigoAgPSAxIG1tPC90ZXh0Pjx0ZXh0IHg9IjM3NSIgeT0iMTY1Ij5BID0gMiBtbTwvdGV4dD4KPHRleHQgeD0iMjQwIiB5PSIzNDAiPkVxdWlsaWJyaW88L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIzOTAiPlNlZ21lbnRpIGRpIHNwb3N0YW1lbnRvOiA1MCBweC9tbTwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjQzNSI+cyA9IEEvQeKCgCA9IDIsIHNlbnphIGRpbWVuc2lvbmU8L3RleHQ+CjxwYXRoIGQ9Ik0zNSA0NzVINjA1IiBzdHJva2U9IiNiM2NiZDkiLz4KPHRleHQgeD0iMzUiIHk9IjUyNSIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9IjcwMCI+MiDCtyBMYSBzdGVzc2EgY29wcGlhIGRpIG9uZGU8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI1NjUiPkJhcnJlIGRhIHplcm86IDEwMCBweC8oVy9twrIpPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iNjI1Ij5SaWZlcmltZW50bzogSeKCgCA9IDEgVy9twrI8L3RleHQ+CjxyZWN0IHg9IjEwMCIgeT0iNjU1IiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjM1IiBmaWxsPSIjMTQ1ZDgxIi8+PHRleHQgeD0iMjIwIiB5PSI2ODIiPjEgVy9twrI8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI3NjUiPk1vZGlmaWNhdGE6IEkgPSBJ4oKAc8KyID0gNCBXL23CsjwvdGV4dD4KPHJlY3QgeD0iMTAwIiB5PSI3OTUiIHdpZHRoPSI0MDAiIGhlaWdodD0iMzUiIGZpbGw9IiNjNjU5MTkiLz48dGV4dCB4PSI1MTAiIHk9IjgyMiI+NCBXL23CsjwvdGV4dD4KPHBhdGggZD0iTTEwMCA2NDBWNzA1TTEwMCA3ODBWODQ1IiBzdHJva2U9IiM2ZThiOWMiIHN0cm9rZS1kYXNoYXJyYXk9IjYgNSIvPgo8dGV4dCB4PSIzNSIgeT0iOTA1Ij5BbXBpZXp6YSDDlzIg4oeSIGludGVuc2l0w6Agw5c0PC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iOTUwIj5RdWkgbGEgZnJlcXVlbnphIHJlc3RhIGxhIHN0ZXNzYS48L3RleHQ+CjxwYXRoIGQ9Ik0zNSA5ODVINjA1IiBzdHJva2U9IiNiM2NiZDkiLz4KPHRleHQgeD0iMzUiIHk9IjEwMzUiIGZvbnQtc2l6ZT0iMjUiIGZvbnQtd2VpZ2h0PSI3MDAiPjMgwrcgQWx0cm8gY2FzbzogY2FtYmlhIGYsIG5vbiBBPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTA3NSI+U29sbyBxdWVzaXRvIDA2IMK3IHN0ZXNzYSBhcmVhIGUgc3Rlc3NvIEE8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxMTIwIj5JID0gS2bCskHCsiDCtyBm4oKCL2bigoEgPSAzLzIgwrcgUCA9IElTPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTE5MCI+QmFycmUgZGkgUC9Q4oKBOiAxMDAgcHggcGVyIHVuaXTDoCBwdXJhPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTI1MCI+UHJpbWEgb25kYTwvdGV4dD48cmVjdCB4PSIyMDAiIHk9IjEyMjUiIHdpZHRoPSIxMDAiIGhlaWdodD0iMzUiIGZpbGw9IiMxNDVkODEiLz48dGV4dCB4PSIzMjAiIHk9IjEyNTIiPjE8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxMzUwIj5TZWNvbmRhPC90ZXh0PjxyZWN0IHg9IjIwMCIgeT0iMTMyNSIgd2lkdGg9IjIyNSIgaGVpZ2h0PSIzNSIgZmlsbD0iI2M2NTkxOSIvPjx0ZXh0IHg9IjQ0NSIgeT0iMTM1MiI+OS80PC90ZXh0Pgo8cGF0aCBkPSJNMjAwIDEyMTBWMTM4MCIgc3Ryb2tlPSIjNmU4YjljIiBzdHJva2UtZGFzaGFycmF5PSI2IDUiLz4KPHRleHQgeD0iMzUiIHk9IjE0MzAiPlDigoIvUOKCgSA9ICgzLzIpwrIgPSA5LzQ8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxNDgwIj5BIGludmFyaWF0YSBub24gaW1wbGljYSBwb3RlbnphIGludmFyaWF0YTwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjE1MjUiPnF1YW5kbyBjYW1iaWEgYW5jaGUgbGEgZnJlcXVlbnphLjwvdGV4dD4KPC9nPjwvc3ZnPgo="
+    }
+  ]
+}

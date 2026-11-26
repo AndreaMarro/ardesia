@@ -1,0 +1,1144 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u6-ohmic-current-01",
+      "kind": "question",
+      "course": "C4",
+      "section": "Corrente in un resistore ohmico",
+      "order": 20301,
+      "title": "La tensione divisa per la resistenza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "ohmic-current",
+      "difficulty": 1,
+      "prompt": "Un resistore ohmico ideale ha resistenza R>0 in Ω e temperatura mantenuta fissa. Un generatore ideale impone ai suoi capi una caduta V>0 in volt, costante durante ogni prova. La corrente I>0 in ampere entra nel morsetto a potenziale maggiore: usiamo la convenzione passiva V=RI. Fili e altri elementi hanno resistenza trascurabile. Fra prove si possono preparare V o R diversi; non si attribuisce a un riscaldamento incontrollato la variazione di R. Con V=12 V e R=3 Ω, quanto vale I in A?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "A",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La relazione del resistore è V=RI. Dividiamo per R>0: I=V/R=12/3=4 A. Il generatore mantiene la tensione assegnata e fornisce la corrente richiesta dal carico. La temperatura fissata permette di usare lo stesso R nella misura."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/6337c956dacbaa5191266c76c4c13032a93b6b59c321e6cb62c8bf0a810511d6",
+          "text": "Il generatore ideale impone 12 V al resistore da 3 Ω e la corrente convenzionale è 4 A, entrante nel morsetto del resistore a potenziale maggiore. Il grafico centrale I(V) tiene R=3 Ω fisso e passa per (3 V,1 A) e (12 V,4 A). Le barre finali riguardano due configurazioni: A ha 12 V e 3 Ω, B ha 15 V e 5 Ω. B non appartiene alla retta centrale a R=3 Ω."
+        },
+        {
+          "type": "formula",
+          "text": "V=RI"
+        },
+        {
+          "type": "formula",
+          "text": " I=\\frac VR"
+        },
+        {
+          "type": "formula",
+          "text": " I=4\\,\\mathrm A"
+        },
+        {
+          "type": "text",
+          "text": "Trentasei moltiplica V e R; un quarto inverte V/R. Dodici copia la tensione e tre copia la resistenza. Un valore negativo cambierebbe la convenzione dichiarata per corrente e caduta."
+        }
+      ],
+      "hints": [
+        "Isola I nella relazione V=RI e controlla V/Ω=A.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Trentasei moltiplica V e R; un quarto inverte V/R. Dodici copia la tensione e tre copia la resistenza. Un valore negativo cambierebbe la convenzione dichiarata per corrente e caduta.",
+        "target": "C4-L05"
+      },
+      "coverage": [
+        "Convenzione passiva e temperatura fissata",
+        "Prima legge di Ohm e inverse",
+        "Rapporti, medie, display e vincolo fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-ohmic-current-02",
+      "kind": "question",
+      "course": "C4",
+      "section": "Corrente in un resistore ohmico",
+      "order": 20302,
+      "title": "L’unità della corrente",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "ohmic-current",
+      "difficulty": 1,
+      "prompt": "Un resistore ohmico ideale ha resistenza R>0 in Ω e temperatura mantenuta fissa. Un generatore ideale impone ai suoi capi una caduta V>0 in volt, costante durante ogni prova. La corrente I>0 in ampere entra nel morsetto a potenziale maggiore: usiamo la convenzione passiva V=RI. Fili e altri elementi hanno resistenza trascurabile. Fra prove si possono preparare V o R diversi; non si attribuisce a un riscaldamento incontrollato la variazione di R. Quale unità è dimensionalmente compatibile con I?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "A",
+          "V",
+          "Ω",
+          "C",
+          "W"
+        ],
+        "value": "A"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Un ohm è un volt per ampere. Il rapporto V/Ω restituisce quindi A. La corrente non è né la tensione del generatore né la carica totale trasferita durante un intervallo; per quest’ultima servirebbe anche il tempo."
+        },
+        {
+          "type": "formula",
+          "text": "1\\,\\Omega=1\\,\\mathrm{V/A}"
+        },
+        {
+          "type": "formula",
+          "text": " [I]=\\frac{\\mathrm V}{\\Omega}"
+        },
+        {
+          "type": "formula",
+          "text": " [I]=\\mathrm A"
+        },
+        {
+          "type": "text",
+          "text": "V misura potenziale, Ω resistenza, C carica e W potenza. Queste grandezze possono essere collegate alla corrente da altre leggi, ma non ne sono unità."
+        }
+      ],
+      "hints": [
+        "Sostituisci la definizione dell’ohm nel rapporto V/R.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "V misura potenziale, Ω resistenza, C carica e W potenza. Queste grandezze possono essere collegate alla corrente da altre leggi, ma non ne sono unità.",
+        "target": "C4-L05"
+      },
+      "coverage": [
+        "Convenzione passiva e temperatura fissata",
+        "Prima legge di Ohm e inverse",
+        "Rapporti, medie, display e vincolo fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-ohmic-current-03",
+      "kind": "question",
+      "course": "C4",
+      "section": "Corrente in un resistore ohmico",
+      "order": 20303,
+      "title": "La forma corretta di Ohm",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "ohmic-current",
+      "difficulty": 1,
+      "prompt": "Un resistore ohmico ideale ha resistenza R>0 in Ω e temperatura mantenuta fissa. Un generatore ideale impone ai suoi capi una caduta V>0 in volt, costante durante ogni prova. La corrente I>0 in ampere entra nel morsetto a potenziale maggiore: usiamo la convenzione passiva V=RI. Fili e altri elementi hanno resistenza trascurabile. Fra prove si possono preparare V o R diversi; non si attribuisce a un riscaldamento incontrollato la variazione di R. Quale relazione dà I?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "I = V/R",
+          "I = R/V",
+          "I = V R",
+          "I = V/R²",
+          "I = √(V/R)"
+        ],
+        "value": "I = V/R"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nel modello ohmico V è proporzionale a I con coefficiente R. Per lasciare I da sola si divide per R. La resistenza non è un fattore al numeratore: a tensione assegnata un carico maggiore lascia passare meno corrente."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/6337c956dacbaa5191266c76c4c13032a93b6b59c321e6cb62c8bf0a810511d6",
+          "text": "Lo schema usa la convenzione passiva del resistore. La retta centrale ha I in ordinata e V in ascissa: la pendenza è 1/R, non R. Cambiando gli assi come in C4-L05 cambierebbe anche il significato della pendenza. Il confronto delle barre finali non è una somma di correnti nello stesso circuito."
+        },
+        {
+          "type": "formula",
+          "text": "V=RI"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac VR=I"
+        },
+        {
+          "type": "formula",
+          "text": " I=\\frac VR"
+        },
+        {
+          "type": "text",
+          "text": "R/V ha dimensione A⁻¹; VR non è corrente. R² introduce una resistenza in più al denominatore. La radice di V/R avrebbe dimensione A alla potenza un mezzo e non deriva dalla legge lineare."
+        }
+      ],
+      "hints": [
+        "Non confondere la pendenza V/I con l’inversa I/V.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "R/V ha dimensione A⁻¹; VR non è corrente. R² introduce una resistenza in più al denominatore. La radice di V/R avrebbe dimensione A alla potenza un mezzo e non deriva dalla legge lineare.",
+        "target": "C4-L05"
+      },
+      "coverage": [
+        "Convenzione passiva e temperatura fissata",
+        "Prima legge di Ohm e inverse",
+        "Rapporti, medie, display e vincolo fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-ohmic-current-04",
+      "kind": "question",
+      "course": "C4",
+      "section": "Corrente in un resistore ohmico",
+      "order": 20304,
+      "title": "Una tensione più piccola",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "ohmic-current",
+      "difficulty": 1,
+      "prompt": "Un resistore ohmico ideale ha resistenza R>0 in Ω e temperatura mantenuta fissa. Un generatore ideale impone ai suoi capi una caduta V>0 in volt, costante durante ogni prova. La corrente I>0 in ampere entra nel morsetto a potenziale maggiore: usiamo la convenzione passiva V=RI. Fili e altri elementi hanno resistenza trascurabile. Fra prove si possono preparare V o R diversi; non si attribuisce a un riscaldamento incontrollato la variazione di R. V passa da 12 a 1 V, mentre R resta 3 Ω. Come cambia I?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 4 a 1/3 A",
+          "Da 4 a 48 A",
+          "Resta 4 A",
+          "Da 4 a 1 A",
+          "Da 4 a 3 A"
+        ],
+        "value": "Da 4 a 1/3 A"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La resistenza non cambia e I è direttamente proporzionale a V. Nel primo caso 12/3=4 A; nel secondo 1/3 A. Il fattore fra le tensioni è 1/12 e lo stesso fattore vale per le correnti, a temperatura fissata."
+        },
+        {
+          "type": "formula",
+          "text": "I_A=4\\,\\mathrm A"
+        },
+        {
+          "type": "formula",
+          "text": " I_B=\\frac13\\,\\mathrm A"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{I_B}{I_A}=\\frac1{12}"
+        },
+        {
+          "type": "text",
+          "text": "Quarantotto rende inversa la dipendenza da V. Quattro ignora la nuova tensione; uno copia V_B senza dividerla per R e tre copia la resistenza."
+        }
+      ],
+      "hints": [
+        "Mantieni il denominatore R e cambia soltanto la caduta.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Quarantotto rende inversa la dipendenza da V. Quattro ignora la nuova tensione; uno copia V_B senza dividerla per R e tre copia la resistenza.",
+        "target": "C4-L05"
+      },
+      "coverage": [
+        "Convenzione passiva e temperatura fissata",
+        "Prima legge di Ohm e inverse",
+        "Rapporti, medie, display e vincolo fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-ohmic-current-05",
+      "kind": "question",
+      "course": "C4",
+      "section": "Corrente in un resistore ohmico",
+      "order": 20305,
+      "title": "Il generatore necessario",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "ohmic-current",
+      "difficulty": 2,
+      "prompt": "Un resistore ohmico ideale ha resistenza R>0 in Ω e temperatura mantenuta fissa. Un generatore ideale impone ai suoi capi una caduta V>0 in volt, costante durante ogni prova. La corrente I>0 in ampere entra nel morsetto a potenziale maggiore: usiamo la convenzione passiva V=RI. Fili e altri elementi hanno resistenza trascurabile. Fra prove si possono preparare V o R diversi; non si attribuisce a un riscaldamento incontrollato la variazione di R. Si vuole I=4 A con R=3 Ω. Quanto vale V in volt?",
+      "answer": {
+        "type": "numeric",
+        "value": 12,
+        "unit": "V",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La legge V=RI è già isolata per la tensione. Moltiplichiamo 3 Ω per 4 A e otteniamo 12 V. La convenzione passiva dà una caduta positiva nel verso in cui entra la corrente nel resistore."
+        },
+        {
+          "type": "formula",
+          "text": "V=RI"
+        },
+        {
+          "type": "formula",
+          "text": " V=3\\cdot4\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " V=12\\,\\mathrm V"
+        },
+        {
+          "type": "text",
+          "text": "3/4 divide invece di moltiplicare. Quattro copia la corrente, tre la resistenza. Una caduta negativa non corrisponde al resistore passivo con I positiva nella convenzione assegnata."
+        }
+      ],
+      "hints": [
+        "Usa Ω·A=V e non il rapporto fra R e I.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "3/4 divide invece di moltiplicare. Quattro copia la corrente, tre la resistenza. Una caduta negativa non corrisponde al resistore passivo con I positiva nella convenzione assegnata.",
+        "target": "C4-L05"
+      },
+      "coverage": [
+        "Convenzione passiva e temperatura fissata",
+        "Prima legge di Ohm e inverse",
+        "Rapporti, medie, display e vincolo fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-ohmic-current-06",
+      "kind": "question",
+      "course": "C4",
+      "section": "Corrente in un resistore ohmico",
+      "order": 20306,
+      "title": "La resistenza dal rapporto V/I",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "ohmic-current",
+      "difficulty": 2,
+      "prompt": "Un resistore ohmico ideale ha resistenza R>0 in Ω e temperatura mantenuta fissa. Un generatore ideale impone ai suoi capi una caduta V>0 in volt, costante durante ogni prova. La corrente I>0 in ampere entra nel morsetto a potenziale maggiore: usiamo la convenzione passiva V=RI. Fili e altri elementi hanno resistenza trascurabile. Fra prove si possono preparare V o R diversi; non si attribuisce a un riscaldamento incontrollato la variazione di R. Si misura I=4 A con V=12 V. Quanto vale R in Ω?",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "Ω",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dividendo V=RI per I>0 troviamo R=V/I. Il rapporto 12 V/(4 A)=3 Ω. Si tratta della resistenza del componente nelle condizioni della prova, non di una resistività del materiale."
+        },
+        {
+          "type": "formula",
+          "text": "R=\\frac VI"
+        },
+        {
+          "type": "formula",
+          "text": " R=\\frac{12}4\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " R=3\\,\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "Un terzo ha unità di conduttanza se ricavato come I/V. Quarantotto moltiplica V e I e darebbe una potenza. Non si assegna a R l’unità Ω·m, propria della resistività."
+        }
+      ],
+      "hints": [
+        "Il rapporto della tensione sulla corrente dà Ω, non Ω⁻¹.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un terzo ha unità di conduttanza se ricavato come I/V. Quarantotto moltiplica V e I e darebbe una potenza. Non si assegna a R l’unità Ω·m, propria della resistività.",
+        "target": "C4-L05"
+      },
+      "coverage": [
+        "Convenzione passiva e temperatura fissata",
+        "Prima legge di Ohm e inverse",
+        "Rapporti, medie, display e vincolo fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-ohmic-current-07",
+      "kind": "question",
+      "course": "C4",
+      "section": "Corrente in un resistore ohmico",
+      "order": 20307,
+      "title": "Meno resistenza, più corrente",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "ohmic-current",
+      "difficulty": 2,
+      "prompt": "Un resistore ohmico ideale ha resistenza R>0 in Ω e temperatura mantenuta fissa. Un generatore ideale impone ai suoi capi una caduta V>0 in volt, costante durante ogni prova. La corrente I>0 in ampere entra nel morsetto a potenziale maggiore: usiamo la convenzione passiva V=RI. Fili e altri elementi hanno resistenza trascurabile. Fra prove si possono preparare V o R diversi; non si attribuisce a un riscaldamento incontrollato la variazione di R. A ha V=12 V e R_A=3 Ω. B mantiene V e usa R_B=1 Ω. Quanto vale I_B/I_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3",
+          "1/3",
+          "1",
+          "9",
+          "−3"
+        ],
+        "value": "3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha 4 A; B ha 12 A. A tensione fissa il rapporto è R_A/R_B=3. È un cambiamento del carico fra preparazioni: non si conserva anche la corrente quando un generatore ideale conserva la tensione."
+        },
+        {
+          "type": "formula",
+          "text": "I_A=4\\,\\mathrm A"
+        },
+        {
+          "type": "formula",
+          "text": " I_B=12\\,\\mathrm A"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{I_B}{I_A}=3"
+        },
+        {
+          "type": "text",
+          "text": "Un terzo rende diretta la dipendenza da R. Uno imporrebbe contemporaneamente V e I nonostante R diversa. Nove introduce un quadrato e il segno negativo non rappresenta i due moduli positivi."
+        }
+      ],
+      "hints": [
+        "Con V invariata confronta le resistenze nell’ordine inverso.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un terzo rende diretta la dipendenza da R. Uno imporrebbe contemporaneamente V e I nonostante R diversa. Nove introduce un quadrato e il segno negativo non rappresenta i due moduli positivi.",
+        "target": "C4-L05"
+      },
+      "coverage": [
+        "Convenzione passiva e temperatura fissata",
+        "Prima legge di Ohm e inverse",
+        "Rapporti, medie, display e vincolo fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-ohmic-current-08",
+      "kind": "question",
+      "course": "C4",
+      "section": "Corrente in un resistore ohmico",
+      "order": 20308,
+      "title": "Errore in ampere",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "ohmic-current",
+      "difficulty": 2,
+      "prompt": "Un resistore ohmico ideale ha resistenza R>0 in Ω e temperatura mantenuta fissa. Un generatore ideale impone ai suoi capi una caduta V>0 in volt, costante durante ogni prova. La corrente I>0 in ampere entra nel morsetto a potenziale maggiore: usiamo la convenzione passiva V=RI. Fili e altri elementi hanno resistenza trascurabile. Fra prove si possono preparare V o R diversi; non si attribuisce a un riscaldamento incontrollato la variazione di R. Con V=12 V e R=3 Ω si propone I=8 A. Quanto vale proposta meno corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4 A",
+          "−4 A",
+          "8 A",
+          "0 A",
+          "2"
+        ],
+        "value": "4 A"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il corretto è 12/3=4 A. La proposta lo supera di 8−4=4 A, positivo. Il rapporto proposta/corretto sarebbe due: è puro e non lo scarto richiesto."
+        },
+        {
+          "type": "formula",
+          "text": "I=4\\,\\mathrm A"
+        },
+        {
+          "type": "formula",
+          "text": " e=(8-4)\\,\\mathrm A"
+        },
+        {
+          "type": "formula",
+          "text": " e=4\\,\\mathrm A"
+        },
+        {
+          "type": "text",
+          "text": "−4 cambia l’ordine. Otto copia la proposta e zero la accetta. Due è un rapporto senza unità, diverso dalla differenza di correnti."
+        }
+      ],
+      "hints": [
+        "Trova I dal resistore prima di confrontarla con il valore proposto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−4 cambia l’ordine. Otto copia la proposta e zero la accetta. Due è un rapporto senza unità, diverso dalla differenza di correnti.",
+        "target": "C4-L05"
+      },
+      "coverage": [
+        "Convenzione passiva e temperatura fissata",
+        "Prima legge di Ohm e inverse",
+        "Rapporti, medie, display e vincolo fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-ohmic-current-09",
+      "kind": "question",
+      "course": "C4",
+      "section": "Corrente in un resistore ohmico",
+      "order": 20309,
+      "title": "Isolare la caduta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "ohmic-current",
+      "difficulty": 2,
+      "prompt": "Un resistore ohmico ideale ha resistenza R>0 in Ω e temperatura mantenuta fissa. Un generatore ideale impone ai suoi capi una caduta V>0 in volt, costante durante ogni prova. La corrente I>0 in ampere entra nel morsetto a potenziale maggiore: usiamo la convenzione passiva V=RI. Fili e altri elementi hanno resistenza trascurabile. Fra prove si possono preparare V o R diversi; non si attribuisce a un riscaldamento incontrollato la variazione di R. Sono noti I e R. Quale formula ricava V?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "V = I R",
+          "V = I/R",
+          "V = R/I",
+          "V = I R²",
+          "V = I² R"
+        ],
+        "value": "V = I R"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplicare I=V/R per R>0 restituisce V=IR. La dimensione è A·Ω=V. Il risultato è la caduta di tensione ai capi del resistore nella convenzione passiva, non l’energia dissipata."
+        },
+        {
+          "type": "formula",
+          "text": "I=\\frac VR"
+        },
+        {
+          "type": "formula",
+          "text": " IR=V"
+        },
+        {
+          "type": "formula",
+          "text": " V=IR"
+        },
+        {
+          "type": "text",
+          "text": "I/R e R/I non hanno dimensione V. IR² aggiunge una resistenza; I²R è invece la potenza Joule in watt. Il fatto che quest’ultima sia una legge corretta non la rende la risposta alla domanda sulla tensione."
+        }
+      ],
+      "hints": [
+        "Controlla quale grandezza è incognita prima di usare una relazione del circuito.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "I/R e R/I non hanno dimensione V. IR² aggiunge una resistenza; I²R è invece la potenza Joule in watt. Il fatto che quest’ultima sia una legge corretta non la rende la risposta alla domanda sulla tensione.",
+        "target": "C4-L05"
+      },
+      "coverage": [
+        "Convenzione passiva e temperatura fissata",
+        "Prima legge di Ohm e inverse",
+        "Rapporti, medie, display e vincolo fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-ohmic-current-10",
+      "kind": "question",
+      "course": "C4",
+      "section": "Corrente in un resistore ohmico",
+      "order": 20310,
+      "title": "Scalare tensione e resistenza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "ohmic-current",
+      "difficulty": 2,
+      "prompt": "Un resistore ohmico ideale ha resistenza R>0 in Ω e temperatura mantenuta fissa. Un generatore ideale impone ai suoi capi una caduta V>0 in volt, costante durante ogni prova. La corrente I>0 in ampere entra nel morsetto a potenziale maggiore: usiamo la convenzione passiva V=RI. Fili e altri elementi hanno resistenza trascurabile. Fra prove si possono preparare V o R diversi; non si attribuisce a un riscaldamento incontrollato la variazione di R. B ha V_B=κ₁V_A e R_B=κ₂R_A, con fattori positivi. Quanto vale I_B/I_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁/κ₂",
+          "κ₁ κ₂",
+          "κ₂/κ₁",
+          "κ₁/κ₂²",
+          "κ₁ + κ₂"
+        ],
+        "value": "κ₁/κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il nuovo numeratore porta κ₁ e il nuovo denominatore κ₂. Dividendo I_B per I_A tutti i valori iniziali si cancellano e rimane κ₁/κ₂. I due fattori uguali lasciano I invariata."
+        },
+        {
+          "type": "formula",
+          "text": "I_B=\\frac{\\kappa_1V_A}{\\kappa_2R_A}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{I_B}{I_A}=\\frac{\\kappa_1}{\\kappa_2}"
+        },
+        {
+          "type": "text",
+          "text": "Il prodotto rende diretta la dipendenza dalla resistenza. Il reciproco inverte B/A e il quadrato del denominatore non compare nella legge. La somma vale due per configurazioni identiche, non uno."
+        }
+      ],
+      "hints": [
+        "Inserisci i fattori nel quoziente originale prima di semplificare.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il prodotto rende diretta la dipendenza dalla resistenza. Il reciproco inverte B/A e il quadrato del denominatore non compare nella legge. La somma vale due per configurazioni identiche, non uno.",
+        "target": "C4-L05"
+      },
+      "coverage": [
+        "Convenzione passiva e temperatura fissata",
+        "Prima legge di Ohm e inverse",
+        "Rapporti, medie, display e vincolo fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-ohmic-current-11",
+      "kind": "question",
+      "course": "C4",
+      "section": "Corrente in un resistore ohmico",
+      "order": 20311,
+      "title": "Due carichi, due tensioni",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "ohmic-current",
+      "difficulty": 2,
+      "prompt": "Un resistore ohmico ideale ha resistenza R>0 in Ω e temperatura mantenuta fissa. Un generatore ideale impone ai suoi capi una caduta V>0 in volt, costante durante ogni prova. La corrente I>0 in ampere entra nel morsetto a potenziale maggiore: usiamo la convenzione passiva V=RI. Fili e altri elementi hanno resistenza trascurabile. Fra prove si possono preparare V o R diversi; non si attribuisce a un riscaldamento incontrollato la variazione di R. A usa V=12 V, R=3 Ω. B usa V=15 V, R=5 Ω. Quanto vale I_B/I_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/4",
+          "4/3",
+          "5/4",
+          "3/5",
+          "1"
+        ],
+        "value": "3/4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A richiede 4 A e B richiede 15/5=3 A. La tensione maggiore non implica da sola corrente maggiore, perché cresce anche la resistenza. Il rapporto corretto è 3/4."
+        },
+        {
+          "type": "formula",
+          "text": "I_A=4\\,\\mathrm A"
+        },
+        {
+          "type": "formula",
+          "text": " I_B=3\\,\\mathrm A"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{I_B}{I_A}=\\frac34"
+        },
+        {
+          "type": "text",
+          "text": "4/3 inverte il confronto. 5/4 segue solo le tensioni; 3/5 segue solo le resistenze nel rapporto inverso. Uno presume una compensazione esatta dei due cambiamenti."
+        }
+      ],
+      "hints": [
+        "Calcola ciascun rapporto V/R con i dati della stessa prova.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "4/3 inverte il confronto. 5/4 segue solo le tensioni; 3/5 segue solo le resistenze nel rapporto inverso. Uno presume una compensazione esatta dei due cambiamenti.",
+        "target": "C4-L05"
+      },
+      "coverage": [
+        "Convenzione passiva e temperatura fissata",
+        "Prima legge di Ohm e inverse",
+        "Rapporti, medie, display e vincolo fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-ohmic-current-12",
+      "kind": "question",
+      "course": "C4",
+      "section": "Corrente in un resistore ohmico",
+      "order": 20312,
+      "title": "La media di due correnti",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "ohmic-current",
+      "difficulty": 2,
+      "prompt": "Un resistore ohmico ideale ha resistenza R>0 in Ω e temperatura mantenuta fissa. Un generatore ideale impone ai suoi capi una caduta V>0 in volt, costante durante ogni prova. La corrente I>0 in ampere entra nel morsetto a potenziale maggiore: usiamo la convenzione passiva V=RI. Fili e altri elementi hanno resistenza trascurabile. Fra prove si possono preparare V o R diversi; non si attribuisce a un riscaldamento incontrollato la variazione di R. A usa V=12 V, R=3 Ω; B usa V=15 V, R=5 Ω. Qual è la media aritmetica delle due I con uguale peso?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "7/2 A",
+          "27/8 A",
+          "7 A",
+          "1/2 A",
+          "3 A"
+        ],
+        "value": "7/2 A"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I valori sono 4 e 3 A. La loro media è 7/2 A. Ai dati medi V=27/2 V e R=4 Ω si avrebbe I=27/8 A, mentre 7/2=28/8: differiscono di 1/8 A. Il quoziente non conserva in generale la media degli ingressi."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/6337c956dacbaa5191266c76c4c13032a93b6b59c321e6cb62c8bf0a810511d6",
+          "text": "Le barre hanno valori 4 A, 3 A e media 7/2 A con origine e scala comuni. Sono uscite di configurazioni diverse, non rami di un circuito parallelo. La corrente ai dati medi sarebbe 27/8 A, distinta dalla media delle uscite."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline I=\\frac{4+3}{2}\\,\\mathrm A"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline I=\\frac72\\,\\mathrm A"
+        },
+        {
+          "type": "formula",
+          "text": " I_{\\rm dati\\ medi}=\\frac{27}8\\,\\mathrm A"
+        },
+        {
+          "type": "text",
+          "text": "27/8 usa gli ingressi medi. Sette non dimezza; un mezzo è metà differenza e tre copia B. Non si collegano i due resistori per ottenere una nuova corrente: si mediano due misure separate."
+        }
+      ],
+      "hints": [
+        "Media le due uscite solo dopo aver risolto le due configurazioni.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "27/8 usa gli ingressi medi. Sette non dimezza; un mezzo è metà differenza e tre copia B. Non si collegano i due resistori per ottenere una nuova corrente: si mediano due misure separate.",
+        "target": "C4-L05"
+      },
+      "coverage": [
+        "Convenzione passiva e temperatura fissata",
+        "Prima legge di Ohm e inverse",
+        "Rapporti, medie, display e vincolo fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-ohmic-current-13",
+      "kind": "question",
+      "course": "C4",
+      "section": "Corrente in un resistore ohmico",
+      "order": 20313,
+      "title": "La resistenza per il bersaglio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "ohmic-current",
+      "difficulty": 3,
+      "prompt": "Un resistore ohmico ideale ha resistenza R>0 in Ω e temperatura mantenuta fissa. Un generatore ideale impone ai suoi capi una caduta V>0 in volt, costante durante ogni prova. La corrente I>0 in ampere entra nel morsetto a potenziale maggiore: usiamo la convenzione passiva V=RI. Fili e altri elementi hanno resistenza trascurabile. Fra prove si possono preparare V o R diversi; non si attribuisce a un riscaldamento incontrollato la variazione di R. A ha V=12 V, R_A=3 Ω. B usa V=15 V e deve dare I_B=(3/4)I_A. Quanto vale R_B/R_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "5/3",
+          "3/5",
+          "5/4",
+          "3/4",
+          "1"
+        ],
+        "value": "5/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è I_B=3 A. Con V_B=15 V serve R_B=15/3=5 Ω. Il rapporto con la resistenza iniziale è 5/3. Non si copia il rapporto delle tensioni perché è imposto anche un nuovo valore di corrente."
+        },
+        {
+          "type": "formula",
+          "text": "I_B=3\\,\\mathrm A"
+        },
+        {
+          "type": "formula",
+          "text": " R_B=5\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{R_B}{R_A}=\\frac53"
+        },
+        {
+          "type": "text",
+          "text": "3/5 inverte B/A. 5/4 confronta solo le tensioni e 3/4 copia il bersaglio delle correnti. Uno lascerebbe R=3 Ω e produrrebbe 5 A, non 3 A."
+        }
+      ],
+      "hints": [
+        "Trova la corrente bersaglio e poi isola R_B dalla sua legge di Ohm.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "3/5 inverte B/A. 5/4 confronta solo le tensioni e 3/4 copia il bersaglio delle correnti. Uno lascerebbe R=3 Ω e produrrebbe 5 A, non 3 A.",
+        "target": "C4-L05"
+      },
+      "coverage": [
+        "Convenzione passiva e temperatura fissata",
+        "Prima legge di Ohm e inverse",
+        "Rapporti, medie, display e vincolo fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-ohmic-current-14",
+      "kind": "question",
+      "course": "C4",
+      "section": "Corrente in un resistore ohmico",
+      "order": 20314,
+      "title": "Tarare e risalire alla tensione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "ohmic-current",
+      "difficulty": 3,
+      "prompt": "Un resistore ohmico ideale ha resistenza R>0 in Ω e temperatura mantenuta fissa. Un generatore ideale impone ai suoi capi una caduta V>0 in volt, costante durante ogni prova. La corrente I>0 in ampere entra nel morsetto a potenziale maggiore: usiamo la convenzione passiva V=RI. Fili e altri elementi hanno resistenza trascurabile. Fra prove si possono preparare V o R diversi; non si attribuisce a un riscaldamento incontrollato la variazione di R. Il display continuo adimensionale D=aI ha a>0 e nessun offset. A con V=12 V, R=3 Ω dà D=12. C dà D=9 e ha R_C=5 Ω. Quanto vale V_C in volt?",
+      "answer": {
+        "type": "numeric",
+        "value": 15,
+        "unit": "V",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento ha I_A=4 A e guadagno a=3 A⁻¹. La lettura nove restituisce I_C=3 A. Per il nuovo resistore V_C=R_CI_C=5·3=15 V. La tensione si ricava solo dopo la corrente fisica."
+        },
+        {
+          "type": "formula",
+          "text": "a=3\\,\\mathrm{A^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " I_C=3\\,\\mathrm A"
+        },
+        {
+          "type": "formula",
+          "text": " V_C=15\\,\\mathrm V"
+        },
+        {
+          "type": "text",
+          "text": "Quarantacinque V usa D=9 come ampere. Nove V copia il display, cinque V la resistenza e tre V il numero della corrente. La taratura non è una resistenza elettrica."
+        }
+      ],
+      "hints": [
+        "Decodifica D, poi moltiplica la corrente per il nuovo R.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quarantacinque V usa D=9 come ampere. Nove V copia il display, cinque V la resistenza e tre V il numero della corrente. La taratura non è una resistenza elettrica.",
+        "target": "C4-L05"
+      },
+      "coverage": [
+        "Convenzione passiva e temperatura fissata",
+        "Prima legge di Ohm e inverse",
+        "Rapporti, medie, display e vincolo fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-ohmic-current-15",
+      "kind": "question",
+      "course": "C4",
+      "section": "Corrente in un resistore ohmico",
+      "order": 20315,
+      "title": "Un offset prima della tensione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "ohmic-current",
+      "difficulty": 3,
+      "prompt": "Un resistore ohmico ideale ha resistenza R>0 in Ω e temperatura mantenuta fissa. Un generatore ideale impone ai suoi capi una caduta V>0 in volt, costante durante ogni prova. La corrente I>0 in ampere entra nel morsetto a potenziale maggiore: usiamo la convenzione passiva V=RI. Fili e altri elementi hanno resistenza trascurabile. Fra prove si possono preparare V o R diversi; non si attribuisce a un riscaldamento incontrollato la variazione di R. D=aI+b è continuo e adimensionale, a>0. A: V=12 V, R=3 Ω, D=9. B: V=15 V, R=5 Ω, D=7. C: R=4 Ω, D=4. Quanto vale V_C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "6 V",
+          "8 V",
+          "3/2 V",
+          "4 V",
+          "12 V"
+        ],
+        "value": "6 V"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A e B danno correnti 4 e 3 A. Il guadagno è (9−7)/(4−3)=2 A⁻¹ e l’offset b=1. C ha I_C=(4−1)/2=3/2 A. Il prodotto con 4 Ω è 6 V."
+        },
+        {
+          "type": "formula",
+          "text": "a=2\\,\\mathrm{A^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " I_C=\\frac32\\,\\mathrm A"
+        },
+        {
+          "type": "formula",
+          "text": " V_C=6\\,\\mathrm V"
+        },
+        {
+          "type": "text",
+          "text": "Otto V omette b e predice D=5. 3/2 V copia il numero della corrente; quattro V copia il display e darebbe D=3. Dodici V sottrae b senza dividere per a e predice D=7."
+        }
+      ],
+      "hints": [
+        "Sottrai b e dividi per a prima di usare V=RI.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Otto V omette b e predice D=5. 3/2 V copia il numero della corrente; quattro V copia il display e darebbe D=3. Dodici V sottrae b senza dividere per a e predice D=7.",
+        "target": "C4-L05"
+      },
+      "coverage": [
+        "Convenzione passiva e temperatura fissata",
+        "Prima legge di Ohm e inverse",
+        "Rapporti, medie, display e vincolo fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-ohmic-current-16",
+      "kind": "question",
+      "course": "C4",
+      "section": "Corrente in un resistore ohmico",
+      "order": 20316,
+      "title": "Il rapporto V/R lascia una scala",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "ohmic-current",
+      "difficulty": 3,
+      "prompt": "Un resistore ohmico ideale ha resistenza R>0 in Ω e temperatura mantenuta fissa. Un generatore ideale impone ai suoi capi una caduta V>0 in volt, costante durante ogni prova. La corrente I>0 in ampere entra nel morsetto a potenziale maggiore: usiamo la convenzione passiva V=RI. Fili e altri elementi hanno resistenza trascurabile. Fra prove si possono preparare V o R diversi; non si attribuisce a un riscaldamento incontrollato la variazione di R. Fra preparazioni si impone V=βR, con β=4 V/Ω=4 A. Si misura inoltre I=4 A. Quante coppie positive (V,R) sono determinate?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Infinite coppie positive",
+          "Una sola: 12 V e 3 Ω",
+          "Nessuna coppia",
+          "Solo 4 V e 1 Ω",
+          "Qualunque V, con R fisso a 3 Ω"
+        ],
+        "value": "Infinite coppie positive"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Inserire il vincolo in I=V/R dà I=β per ogni R>0. La misura non aggiunge una condizione indipendente: per esempio 12 V con 3 Ω e 4 V con 1 Ω danno entrambe 4 A. Le coppie sono configurazioni diverse di generatore e carico, ciascuna ohmica a temperatura fissata."
+        },
+        {
+          "type": "formula",
+          "text": "V=\\beta R"
+        },
+        {
+          "type": "formula",
+          "text": " I=\\frac{\\beta R}R"
+        },
+        {
+          "type": "formula",
+          "text": " I=4\\,\\mathrm A"
+        },
+        {
+          "type": "text",
+          "text": "Le coppie singole sono esempi, non una soluzione unica. V e R non sono liberi indipendentemente: il rapporto deve restare β. R nulla è esclusa e non si usa un cortocircuito ideale per creare altre soluzioni."
+        }
+      ],
+      "hints": [
+        "Sostituisci il vincolo e controlla se la misura fissa ancora una scala.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Le coppie singole sono esempi, non una soluzione unica. V e R non sono liberi indipendentemente: il rapporto deve restare β. R nulla è esclusa e non si usa un cortocircuito ideale per creare altre soluzioni.",
+        "target": "C4-L05"
+      },
+      "coverage": [
+        "Convenzione passiva e temperatura fissata",
+        "Prima legge di Ohm e inverse",
+        "Rapporti, medie, display e vincolo fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "6337c956dacbaa5191266c76c4c13032a93b6b59c321e6cb62c8bf0a810511d6",
+      "name": "ohmic-current-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTQ1MCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgo8dGl0bGUgaWQ9InRpdGxlIj5Db3JyZW50ZSwgY2FkdXRhIGUgcmVzaXN0ZW56YTwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPkdlbmVyYXRvcmUgaWRlYWxlIGRhIGRvZGljaSB2b2x0IGUgcmVzaXN0b3JlIGRhIHRyZSBvaG06IGNvcnJlbnRlIHF1YXR0cm8gYW1wZXJlLiBHcmFmaWNvIGRlbGxhIGNvcnJlbnRlIGluIGZ1bnppb25lIGRlbGxhIHRlbnNpb25lIGEgcmVzaXN0ZW56YSBmaXNzYSB0cmUgb2htLiBCYXJyZSBmaW5hbGkgcXVhdHRybywgdHJlIGUgbWVkaWEgc2V0dGUgbWV6emkgYW1wZXJlLjwvZGVzYz48ZGVmcz48bWFya2VyIGlkPSJJIiB2aWV3Qm94PSIwIDAgMTAgMTAiIHJlZlg9IjEwIiByZWZZPSI1IiBtYXJrZXJXaWR0aD0iNyIgbWFya2VySGVpZ2h0PSI3IiBvcmllbnQ9ImF1dG8iPjxwYXRoIGQ9Ik0wIDBMMTAgNUwwIDEwWiIgZmlsbD0iIzE2NWE4NyIvPjwvbWFya2VyPjwvZGVmcz4KPHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxNDUwIiByeD0iMTIiIGZpbGw9IiNmOGZhZmMiLz48ZyBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzE0MjQzYSI+Cjx0ZXh0IHg9IjMyIiB5PSI0MiIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9ImJvbGQiPjEgwrcgVW4gZ2VuZXJhdG9yZSwgdW4gY2FyaWNvPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSI4MyIgZm9udC1zaXplPSIxOCI+UmVzaXN0b3JlIG9obWljbyBhIHRlbXBlcmF0dXJhIG1hbnRlbnV0YSBmaXNzYS48L3RleHQ+CjxwYXRoIGQ9Ik0xMDAgMjEwVjE0MEg0ODBWMjA1TTQ4MCAzMDVWNDAwSDEwMFYyNTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzgyOTJhMiIgc3Ryb2tlLXdpZHRoPSIzIi8+PHBhdGggZD0iTTc1IDIxMEgxMjVNODUgMjUwSDExNSIgc3Ryb2tlPSIjMTQyNDNhIiBzdHJva2Utd2lkdGg9IjQiLz48dGV4dCB4PSI0MCIgeT0iMjE2Ij4rPC90ZXh0Pjx0ZXh0IHg9IjQwIiB5PSIyNTciPuKIkjwvdGV4dD48cmVjdCB4PSI0NTUiIHk9IjIwNSIgd2lkdGg9IjUwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iI2ZjZTZkYyIgc3Ryb2tlPSIjYjQ1MzI4IiBzdHJva2Utd2lkdGg9IjMiLz4KPHBhdGggZD0iTTIwMCAxNDBIMzcwIiBzdHJva2U9IiMxNjVhODciIHN0cm9rZS13aWR0aD0iNSIgbWFya2VyLWVuZD0idXJsKCNJKSIvPjx0ZXh0IHg9IjIyMCIgeT0iMTIxIiBmaWxsPSIjMTY1YTg3Ij5JID0gNCBBPC90ZXh0Pjx0ZXh0IHg9IjE1MCIgeT0iMjQwIj5WID0gMTIgVjwvdGV4dD48dGV4dCB4PSIzMzAiIHk9IjI3MCI+UiA9IDMgzqk8L3RleHQ+PHRleHQgeD0iMzIiIHk9IjQ0NSIgZm9udC1zaXplPSIxOCI+SSBlbnRyYSBuZWwgcmVzaXN0b3JlIGRhbCBtb3JzZXR0byBhIHBvdGVuemlhbGUgbWFnZ2lvcmUuPC90ZXh0Pgo8cGF0aCBkPSJNMzIgNDc4SDYwOCIgc3Ryb2tlPSIjOWJhYmJjIi8+Cjx0ZXh0IHg9IjMyIiB5PSI1MjMiIGZvbnQtc2l6ZT0iMjUiIGZvbnQtd2VpZ2h0PSJib2xkIj4yIMK3IEkoVikgYSBSID0gMyDOqTwvdGV4dD48dGV4dCB4PSIzMiIgeT0iNTYzIiBmb250LXNpemU9IjE4Ij5JIGluIEEgOyBWIGluIHZvbHQgOyBwZW5kZW56YSBJL1YgPSAxL1IuPC90ZXh0Pgo8cGF0aCBkPSJNMTMwIDg1MFY1OTBNMTMwIDg1MEg1NTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE0MjQzYSIgc3Ryb2tlLXdpZHRoPSIyIi8+PHBhdGggZD0iTTEzMCA4NTBMNDkwIDYxMCIgc3Ryb2tlPSIjMTY1YTg3IiBzdHJva2Utd2lkdGg9IjQiLz48cGF0aCBkPSJNMTMwIDc5MEgyMjBWODUwTTEzMCA2MTBINDkwVjg1MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjODI5MmEyIiBzdHJva2UtZGFzaGFycmF5PSI1IDUiLz4KPGNpcmNsZSBjeD0iMjIwIiBjeT0iNzkwIiByPSI1IiBmaWxsPSIjMTY1YTg3Ii8+PGNpcmNsZSBjeD0iNDkwIiBjeT0iNjEwIiByPSI1IiBmaWxsPSIjMTY1YTg3Ii8+PHRleHQgeD0iOTIiIHk9IjYxNyI+NDwvdGV4dD48dGV4dCB4PSI5MiIgeT0iNzk3Ij4xPC90ZXh0Pjx0ZXh0IHg9IjkyIiB5PSI4NTciPjA8L3RleHQ+PHRleHQgeD0iMTE4IiB5PSI4ODYiPjA8L3RleHQ+PHRleHQgeD0iMjExIiB5PSI4ODYiPjM8L3RleHQ+PHRleHQgeD0iNDc2IiB5PSI4ODYiPjEyPC90ZXh0Pjx0ZXh0IHg9IjQ3MCIgeT0iOTI1Ij5WIGluIHZvbHQ8L3RleHQ+CjxwYXRoIGQ9Ik0zMiA5NTdINjA4IiBzdHJva2U9IiM5YmFiYmMiLz4KPHRleHQgeD0iMzIiIHk9IjEwMDIiIGZvbnQtc2l6ZT0iMjUiIGZvbnQtd2VpZ2h0PSJib2xkIj4zIMK3IER1ZSBwcm92ZSwgdW5hIG1lZGlhPC90ZXh0PjxwYXRoIGQ9Ik0xMzAgMTAzMlYxMjk4IiBzdHJva2U9IiMxNDI0M2EiIHN0cm9rZS13aWR0aD0iMiIvPgo8cmVjdCB4PSIxMzAiIHk9IjEwNTgiIHdpZHRoPSIzMjAiIGhlaWdodD0iMzgiIGZpbGw9IiMxNjVhODciLz48cmVjdCB4PSIxMzAiIHk9IjExMzgiIHdpZHRoPSIyNDAiIGhlaWdodD0iMzgiIGZpbGw9IiMxNjVhODciLz48cmVjdCB4PSIxMzAiIHk9IjEyMTgiIHdpZHRoPSIyODAiIGhlaWdodD0iMzgiIGZpbGw9IiMyODY2NGQiLz48dGV4dCB4PSI1MCIgeT0iMTA4NiI+QTwvdGV4dD48dGV4dCB4PSI0NzAiIHk9IjEwODYiPjQgQTwvdGV4dD48dGV4dCB4PSI1MCIgeT0iMTE2NiI+QjwvdGV4dD48dGV4dCB4PSIzOTAiIHk9IjExNjYiPjMgQTwvdGV4dD48dGV4dCB4PSIzMiIgeT0iMTI0NiI+TWVkaWE8L3RleHQ+PHRleHQgeD0iNDMwIiB5PSIxMjQ2Ij43LzIgQTwvdGV4dD48dGV4dCB4PSIxMDQiIHk9IjEyOTIiPjA8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIxMzM5IiBmb250LXNpemU9IjE4Ij5BOiAxMiBWLCAzIM6pIDsgQjogMTUgViwgNSDOqS48L3RleHQ+PHRleHQgeD0iMzIiIHk9IjEzNzUiIGZvbnQtc2l6ZT0iMTgiPkIgaGEgUiBkaXZlcnNhIGRhbGxhIHJldHRhIGNlbnRyYWxlLjwvdGV4dD48dGV4dCB4PSIzMiIgeT0iMTQxMSIgZm9udC1zaXplPSIxOCI+QmFycmUgaW4gQSwgc3Rlc3NhIG9yaWdpbmUgZSBzdGVzc2Egc2NhbGEuPC90ZXh0Pgo8L2c+PC9zdmc+Cg=="
+    }
+  ]
+}

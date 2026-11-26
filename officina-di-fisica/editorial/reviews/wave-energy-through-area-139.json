@@ -1,0 +1,499 @@
+{
+  "bindingsSha256": "c94a7a86c998ed17a082842526ac72b77dcf61bd7970654826d45afd509621e8",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "dependencyVersions": {
+    "pint": "0.25.2",
+    "sympy": "1.14.0"
+  },
+  "humanApproval": "NOT_RUN",
+  "packageSha256": "1d507f284147ab9d5d9a7c423f4f62a0ae591a477a827400e3f177c42ee69f6d",
+  "publication": "DRAFT",
+  "publicationAction": "NONE",
+  "records": [
+    {
+      "assetChecksums": {
+        "wave-energy-through-area-progressive.svg": "1272c4de5450dd5fc01dff11594864b213a6965afe5a4c57bf1d2eff09577983"
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "candidateSha256": "674bcdca7044a3c68e46084c89150dab87381c6525e64b447b1e088f8e29d601",
+      "dimension": {
+        "[length]": "2",
+        "[mass]": "1",
+        "[time]": "-2"
+      },
+      "distractors": "6 è potenza W; 24 conta durata due volte. E_ass 12 richiederebbe assorbimento completo non assegnato.",
+      "errors": [],
+      "expectedExact": "12",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u4-wave-energy-through-area-01",
+      "manualArithmetic": "I=2 W/m², A=3 m², Δt=2 s danno E=12 J.",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. I=2 W/m², A=3 m², Δt=2 s danno E=12 J.",
+      "physicalAssumptions": "Onda progressiva a incidenza normale; intensità media incidente I>0 uniforme sulla superficie A>0 e costante per Δt=2 s. Media definita su molti cicli, energia media del modello E=IAΔt. Riflessione, trasmissione e assorbimento successivi non determinati senza ulteriori dati. Vincoli fra prove non disuniformità all’interno della superficie.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "bc4825ad213b879b04ec0110cff596bc52d2329e401d99315cdd18b0ae32da9e",
+      "scientificAssetReview": "XML e rendering completo letti. Tre quadrati 50×50 px a 50 px/m rappresentano 3 m², vista frontale; ⊙ verso il lettore e freccia laterale schematica indicano incidenza normale. Ogni m² riceve 2 W e in 2 s 4 J: 12 J totali. Timeline due caselle 60 px a 60 px/s, ciascuna 6 J. Esempio distinto assegna α=1/2: barre 120/60 px a 10 px/J per 12 J incidenti e 6 J assorbiti, senza inferire assorbimento nei quesiti.",
+      "sourceSha256": "4f5f89d9e3f9ad54e62122bc8a1d19acb4d755ab2fcf2dad998f2306a7339876",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetChecksums": {},
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "candidateSha256": "3d5c63b0ae8a4222a61b67c6a4102aba428ef92dfed664d76e85aee80c1e9ebe",
+      "dimension": {
+        "[length]": "2",
+        "[mass]": "1",
+        "[time]": "-2"
+      },
+      "distractors": "W potenza, W/m² intensità, m² area, J/s² dimensione diversa. W·s=J.",
+      "errors": [],
+      "expectedExact": "J",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u4-wave-energy-through-area-02",
+      "manualArithmetic": "W·s=J; intensità per area per tempo.",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. W·s=J; intensità per area per tempo.",
+      "physicalAssumptions": "Onda progressiva a incidenza normale; intensità media incidente I>0 uniforme sulla superficie A>0 e costante per Δt=2 s. Media definita su molti cicli, energia media del modello E=IAΔt. Riflessione, trasmissione e assorbimento successivi non determinati senza ulteriori dati. Vincoli fra prove non disuniformità all’interno della superficie.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "401e1f74c5e5867fb1fe16d7981146d9c40747f21cb0a4e11cfb9c4f14efdb7a",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "sourceSha256": "a4ecd347e853877ec3e7239cb318c5a5ac33ef5a02249262db9c81b1879eeb29",
+      "verificationMode": "AI_CONCEPTUAL"
+    },
+    {
+      "assetChecksums": {
+        "wave-energy-through-area-progressive.svg": "1272c4de5450dd5fc01dff11594864b213a6965afe5a4c57bf1d2eff09577983"
+      },
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "candidateSha256": "a7d40596e57de4c2c411430214a3fede72162906c42ed9c01da05a110dd062ae",
+      "dimension": {
+        "[length]": "2",
+        "[mass]": "1",
+        "[time]": "-2"
+      },
+      "distractors": "Suono non solo aria, non velocità universale, non vuoto; oscillazione locale non richiede viaggio della singola particella. Nei solidi esistono anche modi elastici trasversali.",
+      "errors": [],
+      "expectedExact": "Il suono può propagarsi in gas, liquidi e solidi; le sue proprietà dipendono dal mezzo",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u4-wave-energy-through-area-03",
+      "manualArithmetic": "criterio fisico prima delle opzioni: il suono richiede un mezzo materiale e può propagarsi in gas, liquidi e solidi; la velocità dipende da inerzia e proprietà elastiche, non da una costante universale né dalla sola classificazione del materiale. Le opzioni sono ancora ignote e non anticipo una stringa chiave.",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. criterio fisico prima delle opzioni: il suono richiede un mezzo materiale e può propagarsi in gas, liquidi e solidi; la velocità dipende da inerzia e proprietà elastiche, non da una costante universale né dalla sola classificazione del materiale. Le opzioni sono ancora ignote e non anticipo una stringa chiave.",
+      "physicalAssumptions": "Solo 03: regime usuale di piccole perturbazioni meccaniche nei mezzi materiali. Gas e liquidi sostengono modi longitudinali, solidi anche modi trasversali; nessun valore universale della velocità o trasporto della stessa particella dalla sorgente al ricevitore.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "bd91f63ed14509b5fa14fcb2d3886b675e5be58b38b88df84e02d0ee317c5504",
+      "scientificAssetReview": "XML e rendering completo letti. Tre quadrati 50×50 px a 50 px/m rappresentano 3 m², vista frontale; ⊙ verso il lettore e freccia laterale schematica indicano incidenza normale. Ogni m² riceve 2 W e in 2 s 4 J: 12 J totali. Timeline due caselle 60 px a 60 px/s, ciascuna 6 J. Esempio distinto assegna α=1/2: barre 120/60 px a 10 px/J per 12 J incidenti e 6 J assorbiti, senza inferire assorbimento nei quesiti.",
+      "sourceSha256": "4af022329f688974ab312fe15f4be8053f2102228f5d6cedd511b4550ac4b220",
+      "verificationMode": "AI_CONCEPTUAL"
+    },
+    {
+      "assetChecksums": {},
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "candidateSha256": "838f5c771cef58e93a5f6b22e98463c1303ba5988ceebe237ebf561bd010c87a",
+      "dimension": {
+        "[length]": "2",
+        "[mass]": "1",
+        "[time]": "-2"
+      },
+      "distractors": "24 inverte rapporto; 3 dimezza due volte; 12 ignora I nuova; zero fuori dominio positivo.",
+      "errors": [],
+      "expectedExact": "Da 12 a 6 J",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u4-wave-energy-through-area-04",
+      "manualArithmetic": "I=1 con A=3 dà E=6 J.",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. I=1 con A=3 dà E=6 J.",
+      "physicalAssumptions": "Onda progressiva a incidenza normale; intensità media incidente I>0 uniforme sulla superficie A>0 e costante per Δt=2 s. Media definita su molti cicli, energia media del modello E=IAΔt. Riflessione, trasmissione e assorbimento successivi non determinati senza ulteriori dati. Vincoli fra prove non disuniformità all’interno della superficie.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "80e74ea979933dc71dc9d0f02159b539b829ab1f384c25543ecd15188a58904d",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "sourceSha256": "dd93a780716fd7d105bd144cfe23fce16570a54eb85c786741f4f99eafe18397",
+      "verificationMode": "AI_CONCEPTUAL"
+    },
+    {
+      "assetChecksums": {},
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "candidateSha256": "62a4502ab3caec6c26a5f7c6d86528bdc60c3406d6e0a9402de4413016682e1c",
+      "dimension": {
+        "[mass]": "1",
+        "[time]": "-3"
+      },
+      "distractors": "4 omette tempo e dà J/m²; energia assorbita senza frazione non determina I incidente.",
+      "errors": [],
+      "expectedExact": "2",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u4-wave-energy-through-area-05",
+      "manualArithmetic": "I=E/(AΔt)=12/(3·2)=2 W/m².",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. I=E/(AΔt)=12/(3·2)=2 W/m².",
+      "physicalAssumptions": "Onda progressiva a incidenza normale; intensità media incidente I>0 uniforme sulla superficie A>0 e costante per Δt=2 s. Media definita su molti cicli, energia media del modello E=IAΔt. Riflessione, trasmissione e assorbimento successivi non determinati senza ulteriori dati. Vincoli fra prove non disuniformità all’interno della superficie.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "b73e472e3375bc3284fad1a1e931073d667fbe0798c7930e6e8ce3391aa46446",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "sourceSha256": "5cac2048bc7fe8cd942e553f523714e128c27bc9d943b13d6fb2db9ff2b34305",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetChecksums": {},
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "candidateSha256": "26253ce319db3996c240f02871686f2f3eb98cd45efdad6a5050e3e0bf39e85b",
+      "dimension": {
+        "[length]": "2"
+      },
+      "distractors": "6 omette durata; radice darebbe lunghezza, non area richiesta. La forma della superficie non serve per I uniforme.",
+      "errors": [],
+      "expectedExact": "3",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u4-wave-energy-through-area-06",
+      "manualArithmetic": "A=E/(IΔt)=12/(2·2)=3 m².",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. A=E/(IΔt)=12/(2·2)=3 m².",
+      "physicalAssumptions": "Onda progressiva a incidenza normale; intensità media incidente I>0 uniforme sulla superficie A>0 e costante per Δt=2 s. Media definita su molti cicli, energia media del modello E=IAΔt. Riflessione, trasmissione e assorbimento successivi non determinati senza ulteriori dati. Vincoli fra prove non disuniformità all’interno della superficie.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "b9430d51cd624655beaed6edc16728199e59a46b7824f55b5b3fadb7a8f93da9",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "sourceSha256": "23e11cc9250aba40ad9fdb67ffa9ce766af2f8889e960f629332772c119c4823",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetChecksums": {},
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "candidateSha256": "f33b66f10bed71f3bef8e855ab694125ff9841d0766d550065bd390b233011b5",
+      "dimension": {},
+      "distractors": "3 reciproco; 1/9 quadra un’area già data; 2 copia I; 1 ignora riduzione.",
+      "errors": [],
+      "expectedExact": "1/3",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u4-wave-energy-through-area-07",
+      "manualArithmetic": "A=1 a I=2 dà E_B=4 J, rapporto 1/3.",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. A=1 a I=2 dà E_B=4 J, rapporto 1/3.",
+      "physicalAssumptions": "Onda progressiva a incidenza normale; intensità media incidente I>0 uniforme sulla superficie A>0 e costante per Δt=2 s. Media definita su molti cicli, energia media del modello E=IAΔt. Riflessione, trasmissione e assorbimento successivi non determinati senza ulteriori dati. Vincoli fra prove non disuniformità all’interno della superficie.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "a9ece8d58ee7cc85f77223a7cb94d308f7cbc129bdb69af3fd4459185d7d17fe",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "sourceSha256": "69235a7d4ac401665c81decf809e70f22f0a31a8ccefbc83d043e64e0b4494d4",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetChecksums": {},
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "candidateSha256": "2b1ee83ba5c4aa8a812b4a28a55c0ca8728ba72bda66ef743457626fac04ef71",
+      "dimension": {
+        "[length]": "2",
+        "[mass]": "1",
+        "[time]": "-2"
+      },
+      "distractors": "−12 ordine inverso; 24 proposta; zero accetta; 6 copia la potenza numerica non lo scarto di energia.",
+      "errors": [],
+      "expectedExact": "12",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u4-wave-energy-through-area-08",
+      "manualArithmetic": "e=24−12=+12 J.",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. e=24−12=+12 J.",
+      "physicalAssumptions": "Onda progressiva a incidenza normale; intensità media incidente I>0 uniforme sulla superficie A>0 e costante per Δt=2 s. Media definita su molti cicli, energia media del modello E=IAΔt. Riflessione, trasmissione e assorbimento successivi non determinati senza ulteriori dati. Vincoli fra prove non disuniformità all’interno della superficie.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "757c01ecbbdbda9b508e4decd8652d7d31a5b1ebf7a69eac0147a8915b575410",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "sourceSha256": "ffd9ce19ec933f9af3d48588d3637b1256861a826620f605866b7dc1237d20e3",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetChecksums": {},
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "candidateSha256": "92bd3f174451c8c83bb37866c4ad2e5843c05011b304f23ca1bdae27661ae26a",
+      "dimension": {
+        "[mass]": "1",
+        "[time]": "-3"
+      },
+      "distractors": "EA/Δt W·m²; EΔt/A J·s/m²; AΔt/E intensità inversa; E/A energia per area senza durata.",
+      "errors": [],
+      "expectedExact": "I = E / (A Δt)",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u4-wave-energy-through-area-09",
+      "manualArithmetic": "I=E/(AΔt), con Δt=2 s come quantità dimensionata, non un due privo di secondi.",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. I=E/(AΔt), con Δt=2 s come quantità dimensionata, non un due privo di secondi.",
+      "physicalAssumptions": "Onda progressiva a incidenza normale; intensità media incidente I>0 uniforme sulla superficie A>0 e costante per Δt=2 s. Media definita su molti cicli, energia media del modello E=IAΔt. Riflessione, trasmissione e assorbimento successivi non determinati senza ulteriori dati. Vincoli fra prove non disuniformità all’interno della superficie.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "10abcaa74485b32a8c0ad57cb9fe877bde8ceeb0365bc7febafcbbedf650b5df",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "sourceSha256": "4cf26e7937540ba355c27e7153f2ceeeb0079b1ffa03c9336c9fb62a16ebe479",
+      "verificationMode": "AI_CONCEPTUAL"
+    },
+    {
+      "assetChecksums": {},
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "candidateSha256": "238aca3f6f6d0b84337c3e3456564eb5883dca3c0f47c02e3fb8b2a8ef6ff988",
+      "dimension": {},
+      "distractors": "Quozienti invertono dipendenze; κ₂² quadra l’area già assegnata; somma due per stati identici.",
+      "errors": [],
+      "expectedExact": "κ₁ κ₂",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u4-wave-energy-through-area-10",
+      "manualArithmetic": "rapporto κ₁κ₂ per stessa durata.",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. rapporto κ₁κ₂ per stessa durata.",
+      "physicalAssumptions": "Onda progressiva a incidenza normale; intensità media incidente I>0 uniforme sulla superficie A>0 e costante per Δt=2 s. Media definita su molti cicli, energia media del modello E=IAΔt. Riflessione, trasmissione e assorbimento successivi non determinati senza ulteriori dati. Vincoli fra prove non disuniformità all’interno della superficie.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "622100831760b7c3332ee18b3a710841722f8714929bcc0a4e8c1eee9edf3638",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "sourceSha256": "3209775e14cd32e62ca9755866e4b56002633d957d342dd9f0f9e13a4222aef5",
+      "verificationMode": "AI_CONCEPTUAL"
+    },
+    {
+      "assetChecksums": {},
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "candidateSha256": "8b6574c0f2b110fe12c39eab734f7c3725187bef7d72d776778c91441caf895f",
+      "dimension": {},
+      "distractors": "3/4 reciproco; 2 solo I; 2/3 solo area; 16 energia finale numerica non rapporto.",
+      "errors": [],
+      "expectedExact": "4/3",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u4-wave-energy-through-area-11",
+      "manualArithmetic": "B con I=4, A=2 dà E_B=16 J, rapporto 4/3.",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. B con I=4, A=2 dà E_B=16 J, rapporto 4/3.",
+      "physicalAssumptions": "Onda progressiva a incidenza normale; intensità media incidente I>0 uniforme sulla superficie A>0 e costante per Δt=2 s. Media definita su molti cicli, energia media del modello E=IAΔt. Riflessione, trasmissione e assorbimento successivi non determinati senza ulteriori dati. Vincoli fra prove non disuniformità all’interno della superficie.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "17b0689353f11ac497b4c7e0f978bc37a4c6ce43bb3af42a2c8db9a12534ffc5",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "sourceSha256": "d122e8b685635f9f6396ac2879a3aed0011a5463bb934e66d1a1f72cdc45a411",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetChecksums": {},
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "candidateSha256": "2308d5c139efd7507b03e9725de7e7d0833f8257718f10ca4d0c9b0bba88e09e",
+      "dimension": {
+        "[length]": "2",
+        "[mass]": "1",
+        "[time]": "-2"
+      },
+      "distractors": "28 somma; 7 doppia metà; 4 differenza; 15 modello agli ingressi medi, maggiore 1 J.",
+      "errors": [],
+      "expectedExact": "14",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u4-wave-energy-through-area-12",
+      "manualArithmetic": "media (12+16)/2=14 J; ingressi medi I=3, A=5/2 danno 15 J, maggiore per 1 J.",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. media (12+16)/2=14 J; ingressi medi I=3, A=5/2 danno 15 J, maggiore per 1 J.",
+      "physicalAssumptions": "Onda progressiva a incidenza normale; intensità media incidente I>0 uniforme sulla superficie A>0 e costante per Δt=2 s. Media definita su molti cicli, energia media del modello E=IAΔt. Riflessione, trasmissione e assorbimento successivi non determinati senza ulteriori dati. Vincoli fra prove non disuniformità all’interno della superficie.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "32c2c19ffc677a250ce7c5cc7e0b42a22b51ac76ca191bb6d65a85da49fa71e2",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "sourceSha256": "bdb8ebc86fcfaa3d1d3d032b69cf1b6f5b4cd70888eee42d61d5db1f5ee5f405",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetChecksums": {},
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "candidateSha256": "d7421da44db9c56013359fc5556934095f981e9d222240473d7933485747e2b0",
+      "dimension": {},
+      "distractors": "3/2 reciproco; 4/3 target; 2 numero di area B; 1/3 darebbe 8 J anziché 16.",
+      "errors": [],
+      "expectedExact": "2/3",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u4-wave-energy-through-area-13",
+      "manualArithmetic": "target E_B=16 a I_B=4 richiede A_B=2 m², rapporto con 3 pari a 2/3.",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. target E_B=16 a I_B=4 richiede A_B=2 m², rapporto con 3 pari a 2/3.",
+      "physicalAssumptions": "Onda progressiva a incidenza normale; intensità media incidente I>0 uniforme sulla superficie A>0 e costante per Δt=2 s. Media definita su molti cicli, energia media del modello E=IAΔt. Riflessione, trasmissione e assorbimento successivi non determinati senza ulteriori dati. Vincoli fra prove non disuniformità all’interno della superficie.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "21fe92ae62cbd2afc0e646ed2b863e6663c500b9936ae1045a7ed84fccdbef4e",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "sourceSha256": "8a7e75986a54943fe7e48345912a864ac304f9ae0d4963372d4f9341a73ac648",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetChecksums": {},
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "candidateSha256": "2dfee320673d52699aff8537cf165b6396cf40ce7e0ccdbd075c581388f047a9",
+      "dimension": {
+        "[mass]": "1",
+        "[time]": "-3"
+      },
+      "distractors": "S 48 come J dà 12 W/m², triplo; non misura direttamente intensità né assorbimento.",
+      "errors": [],
+      "expectedExact": "4",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u4-wave-energy-through-area-14",
+      "manualArithmetic": "gain 36/(12 J)=3 J⁻¹; S_B=48 dà E_B=16; A_B=2 porta I_B=4 W/m².",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. gain 36/(12 J)=3 J⁻¹; S_B=48 dà E_B=16; A_B=2 porta I_B=4 W/m².",
+      "physicalAssumptions": "Onda progressiva a incidenza normale; intensità media incidente I>0 uniforme sulla superficie A>0 e costante per Δt=2 s. Media definita su molti cicli, energia media del modello E=IAΔt. Riflessione, trasmissione e assorbimento successivi non determinati senza ulteriori dati. Vincoli fra prove non disuniformità all’interno della superficie.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "bd2f9867028c5aeb93b11879ea25a5af96590968e3d03429df95034376a06419",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "sourceSha256": "3c9acb889a70ff89b4c5372957a9a8a3a4227031da7b4459bb78027624191892",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetChecksums": {},
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "candidateSha256": "6985e3dc0ea70bab803914f14333c7b1deb5e945673c01a1f8cd40f706487255",
+      "dimension": {
+        "[mass]": "1",
+        "[time]": "-3"
+      },
+      "distractors": "I 2, 4, 1/2 generano S 41, 81, 11; 21/10 usa S come E e genera S 43, non 21.",
+      "errors": [],
+      "expectedExact": "1",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u4-wave-energy-through-area-15",
+      "manualArithmetic": "gain (33−25)/(16−12)=2 J⁻¹, offset 1. S_C=21 dà E_C=10; A_C=5 porta I_C=1 W/m².",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. gain (33−25)/(16−12)=2 J⁻¹, offset 1. S_C=21 dà E_C=10; A_C=5 porta I_C=1 W/m².",
+      "physicalAssumptions": "Onda progressiva a incidenza normale; intensità media incidente I>0 uniforme sulla superficie A>0 e costante per Δt=2 s. Media definita su molti cicli, energia media del modello E=IAΔt. Riflessione, trasmissione e assorbimento successivi non determinati senza ulteriori dati. Vincoli fra prove non disuniformità all’interno della superficie.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "2809bd25f81b76a2540bcf8eeb68c6735df6cb17f8e6b16c7cfa9da130e9e56e",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "sourceSha256": "a194db2442780fd8bc5d5224540cb6e485e8e92251e15c1a408ccc552ebbcbac",
+      "verificationMode": "EXACT_ORACLE"
+    },
+    {
+      "assetChecksums": {},
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "candidateSha256": "6d591ef25398cf0481ba6341c2ab943aa13e20c6b0623dbd0a643f448df44d9d",
+      "dimension": {
+        "[length]": "2"
+      },
+      "distractors": "A²9 m⁴ implica A 3 m²; negativo viola A e I positive. Non applicare un’altra radice per un lato che non è richiesto.",
+      "errors": [],
+      "expectedExact": "3",
+      "humanApproval": "NOT_RUN",
+      "id": "AR-u4-wave-energy-through-area-16",
+      "manualArithmetic": "I=cA con c=2/3 W/m⁴; E=cΔt A². Dato E=12 J, A²=9 m⁴ e ramo A=3 m² positivo; I=2 W/m². Il quadrato dell’area ha dimensione m⁴, non m².",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "ok": true,
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. I=cA con c=2/3 W/m⁴; E=cΔt A². Dato E=12 J, A²=9 m⁴ e ramo A=3 m² positivo; I=2 W/m². Il quadrato dell’area ha dimensione m⁴, non m².",
+      "physicalAssumptions": "Onda progressiva a incidenza normale; intensità media incidente I>0 uniforme sulla superficie A>0 e costante per Δt=2 s. Media definita su molti cicli, energia media del modello E=IAΔt. Riflessione, trasmissione e assorbimento successivi non determinati senza ulteriori dati. Vincoli fra prove non disuniformità all’interno della superficie.",
+      "publication": "DRAFT",
+      "publicationAction": "NONE",
+      "reviewedSignature": "9350355a0783a366c8e852d9be7e82f28633a5725dc30f4d9d6e0855a65843b5",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "sourceSha256": "acad7ce0645c0a692745b990a7e02fcfe4267255405d9148d5deaf7ef0281c06",
+      "verificationMode": "EXACT_ORACLE"
+    }
+  ],
+  "reviewedCandidateCommit": "9aa69c9434d1022c29202618b0a3c544e331478d",
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "schemaVersion": "1.0.0",
+  "source": {
+    "commit": "5cfbdcb055ba3ba136f97fb56e997f06e6cf3605",
+    "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U4-01.json",
+    "reference": "All 80 B135–139 U4-01 original prompts individually read and independent per-ID derivations persisted before opening any B candidate. Handoffs exposed only commits, files and general assumptions, no numeric result or key. Reviewer authored distinct A130–134 and knows oscillator laws from that work; no claim of ignorance of the physics. All 16 final candidate records, options, blocks, hints, feedback, metadata and figure captions read completely, with full SVG XML and native rendering. Never imports authoring. Existing C5-L01/L02/L03/L04/L05 and C1-L003/L005/L006/L008 lessons reread during this U4 work."
+  },
+  "verifierSha256": "dd7c6bfe08f3fb44d1d3abf4358a693fb3b46d10b82549247ebeb4a2028be1dd"
+}

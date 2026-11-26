@@ -1,0 +1,1176 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u5-convective-loss-01",
+      "kind": "question",
+      "course": "C3",
+      "section": "Potenza convettiva e riferimento dell’aria",
+      "order": 18201,
+      "title": "Il salto è rispetto all’aria",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "convective-loss",
+      "difficulty": 1,
+      "prompt": "Una superficie di area A=1 m² è mantenuta alla temperatura T_s>20 °C in aria a T_a=20 °C. Il coefficiente convettivo h>0, in W/(m²·K), è assegnato e costante entro ciascuna prova. Si considera soltanto la potenza convettiva ceduta P=hAΔT, con ΔT=T_s−T_a>0; non si cerca la somma con eventuali altri meccanismi. θ_s è il numero della lettura di T_s in °C, quindi ΔT=(θ_s−20) K. Le prove con h diverso rappresentano condizioni di scambio diverse, senza imporre una legge transitoria h(T_s). Eventuali rapporti fra θ_s sono rapporti di letture Celsius dichiarati, non rapporti di temperature assolute. Con h=5 W/(m²·K) e T_s=30 °C, quanto vale P in W?",
+      "answer": {
+        "type": "numeric",
+        "value": 50,
+        "unit": "W",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La superficie è dieci kelvin più calda dell’aria. Il prodotto hA vale 5 W/K, perciò la potenza ceduta è 5·10=50 W. La lettura 30 °C non è il salto da usare: lo scambio si annullerebbe al limite T_s=T_a, non al punto arbitrario 0 °C."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/9da88e7fec06528b65c4594d5226d072cf19e1680e479ae32a6f8f9776f9b295",
+          "text": "La prima scena è schematica: la superficie mantenuta a 30 °C cede per convezione 50 W all’aria a 20 °C, con h=5 W/(m²·K) e A=1 m². La freccia indica trasferimento di calore, non un getto d’aria. Il grafico centrale tiene fisso h=5 e mostra 50 e 100 W per letture 30 e 40 °C; il punto vuoto a 20 °C è soltanto il limite escluso dal ramo caldo. Le barre finali riguardano un altro confronto: in B cambia anche h, quindi le potenze sono 50 e 200 W e la media 125 W."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta T=(30-20)\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta T=10\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " hA=5\\,\\mathrm{W/K}"
+        },
+        {
+          "type": "formula",
+          "text": " P=hA\\Delta T"
+        },
+        {
+          "type": "formula",
+          "text": " P=50\\,\\mathrm W"
+        },
+        {
+          "type": "text",
+          "text": "150 W userebbe 30 K al posto del salto di 10 K. Cinque copia il numero di h; dieci copia l’intervallo. Nessuna conversione aggiunge 273,15 a una differenza termica."
+        }
+      ],
+      "hints": [
+        "Sottrai prima la temperatura dell’aria, poi moltiplica per hA.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "150 W userebbe 30 K al posto del salto di 10 K. Cinque copia il numero di h; dieci copia l’intervallo. Nessuna conversione aggiunge 273,15 a una differenza termica.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Legge convettiva con coefficiente assegnato",
+        "Temperatura puntuale e differenza rispetto all’ambiente",
+        "Inverse, medie, tarature e vincoli fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-convective-loss-02",
+      "kind": "question",
+      "course": "C3",
+      "section": "Potenza convettiva e riferimento dell’aria",
+      "order": 18202,
+      "title": "La dimensione del trasferimento convettivo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "convective-loss",
+      "difficulty": 1,
+      "prompt": "Si chiede la potenza ceduta per convezione da una superficie. Quale unità è adatta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "W",
+          "J",
+          "W/(m²·K)",
+          "m²",
+          "K"
+        ],
+        "value": "W"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il coefficiente h va moltiplicato per l’area e per un intervallo termico. Metri quadrati e kelvin si cancellano, lasciando watt: joule trasferiti ogni secondo. h da solo non è una potenza."
+        },
+        {
+          "type": "formula",
+          "text": "[P]=\\frac{\\mathrm W}{\\mathrm{m^2K}}\\,\\mathrm{m^2}\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " [P]=\\mathrm W"
+        },
+        {
+          "type": "text",
+          "text": "J è energia; W/(m²·K) esprime h, m² area e K intervallo termico. Senza una durata assegnata non si può ricavare un’energia totale dalla sola potenza."
+        }
+      ],
+      "hints": [
+        "Controlla l’unità del prodotto completo hAΔT.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "J è energia; W/(m²·K) esprime h, m² area e K intervallo termico. Senza una durata assegnata non si può ricavare un’energia totale dalla sola potenza.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Legge convettiva con coefficiente assegnato",
+        "Temperatura puntuale e differenza rispetto all’ambiente",
+        "Inverse, medie, tarature e vincoli fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-convective-loss-03",
+      "kind": "question",
+      "course": "C3",
+      "section": "Potenza convettiva e riferimento dell’aria",
+      "order": 18203,
+      "title": "Una legge che usa una differenza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "convective-loss",
+      "difficulty": 1,
+      "prompt": "Una superficie di area A=1 m² è mantenuta alla temperatura T_s>20 °C in aria a T_a=20 °C. Il coefficiente convettivo h>0, in W/(m²·K), è assegnato e costante entro ciascuna prova. Si considera soltanto la potenza convettiva ceduta P=hAΔT, con ΔT=T_s−T_a>0; non si cerca la somma con eventuali altri meccanismi. θ_s è il numero della lettura di T_s in °C, quindi ΔT=(θ_s−20) K. Le prove con h diverso rappresentano condizioni di scambio diverse, senza imporre una legge transitoria h(T_s). Eventuali rapporti fra θ_s sono rapporti di letture Celsius dichiarati, non rapporti di temperature assolute. Quale relazione restituisce P?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "P = h A ΔT",
+          "P = h A T_s",
+          "P = h A / ΔT",
+          "P = ΔT / (h A)",
+          "P = h ΔT / A"
+        ],
+        "value": "P = h A ΔT"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La legge assegnata lega il modulo uscente alla differenza superficie-aria: P=hAΔT. Un aumento di 1 K del salto ha lo stesso significato di 1 °C di differenza. Usare il punto termometrico T_s anziché la differenza renderebbe la legge dipendente dallo zero della scala."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/9da88e7fec06528b65c4594d5226d072cf19e1680e479ae32a6f8f9776f9b295",
+          "text": "Nel grafico centrale l’ascissa è la lettura Celsius della superficie e il riferimento dell’aria è 20 °C. A h fissato, la retta raggiunge P=0 nel limite T_s=T_a: non passa per T_s=0 °C. Il punto vuoto segnala un limite, mentre il dominio del quesito richiede T_s>20 °C. Il confronto finale modifica anche h e non appartiene alla stessa retta centrale."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta T=T_s-T_a"
+        },
+        {
+          "type": "formula",
+          "text": " P=hA\\Delta T"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta T>0"
+        },
+        {
+          "type": "text",
+          "text": "Il solo T_s non si annulla quando superficie e aria hanno la stessa temperatura. Dividere per ΔT dà W/K²; ΔT/(hA) ha unità K²/W invece di W. Dividere per A, invece di moltiplicare, non descrive il contributo di una superficie maggiore."
+        }
+      ],
+      "hints": [
+        "Il punto di riferimento fisico è l’aria, non lo zero Celsius.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Il solo T_s non si annulla quando superficie e aria hanno la stessa temperatura. Dividere per ΔT dà W/K²; ΔT/(hA) ha unità K²/W invece di W. Dividere per A, invece di moltiplicare, non descrive il contributo di una superficie maggiore.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Legge convettiva con coefficiente assegnato",
+        "Temperatura puntuale e differenza rispetto all’ambiente",
+        "Inverse, medie, tarature e vincoli fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-convective-loss-04",
+      "kind": "question",
+      "course": "C3",
+      "section": "Potenza convettiva e riferimento dell’aria",
+      "order": 18204,
+      "title": "Cambiare le condizioni di scambio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "convective-loss",
+      "difficulty": 1,
+      "prompt": "Una superficie di area A=1 m² è mantenuta alla temperatura T_s>20 °C in aria a T_a=20 °C. Il coefficiente convettivo h>0, in W/(m²·K), è assegnato e costante entro ciascuna prova. Si considera soltanto la potenza convettiva ceduta P=hAΔT, con ΔT=T_s−T_a>0; non si cerca la somma con eventuali altri meccanismi. θ_s è il numero della lettura di T_s in °C, quindi ΔT=(θ_s−20) K. Le prove con h diverso rappresentano condizioni di scambio diverse, senza imporre una legge transitoria h(T_s). Eventuali rapporti fra θ_s sono rapporti di letture Celsius dichiarati, non rapporti di temperature assolute. A ha h=5 W/(m²·K), B ha h=10 W/(m²·K); entrambe hanno T_s=30 °C. Come cambia P?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 50 a 100 W",
+          "Da 50 a 25 W",
+          "Resta 50 W",
+          "Da 50 a 200 W",
+          "Da 50 a 300 W"
+        ],
+        "value": "Da 50 a 100 W"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il salto resta 10 K e l’area resta un metro quadrato. Un coefficiente doppio dà una potenza doppia: 50 W in A e 100 W in B. Si confrontano due condizioni mantenute, senza dedurre il moto temporale di una superficie che si raffredda."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta T_A=\\Delta T_B"
+        },
+        {
+          "type": "formula",
+          "text": " P_A=50\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_B=100\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_B/P_A=2"
+        },
+        {
+          "type": "text",
+          "text": "25 W rende inversa la dipendenza da h. 200 W introduce un quadrato. 300 W usa la lettura 30 come salto in B, dimenticando l’aria a 20 °C."
+        }
+      ],
+      "hints": [
+        "Mantieni il salto uguale e confronta il solo coefficiente.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "25 W rende inversa la dipendenza da h. 200 W introduce un quadrato. 300 W usa la lettura 30 come salto in B, dimenticando l’aria a 20 °C.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Legge convettiva con coefficiente assegnato",
+        "Temperatura puntuale e differenza rispetto all’ambiente",
+        "Inverse, medie, tarature e vincoli fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-convective-loss-05",
+      "kind": "question",
+      "course": "C3",
+      "section": "Potenza convettiva e riferimento dell’aria",
+      "order": 18205,
+      "title": "Ricavare il coefficiente h",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "convective-loss",
+      "difficulty": 2,
+      "prompt": "Una superficie di area A=1 m² è mantenuta alla temperatura T_s>20 °C in aria a T_a=20 °C. Il coefficiente convettivo h>0, in W/(m²·K), è assegnato e costante entro ciascuna prova. Si considera soltanto la potenza convettiva ceduta P=hAΔT, con ΔT=T_s−T_a>0; non si cerca la somma con eventuali altri meccanismi. θ_s è il numero della lettura di T_s in °C, quindi ΔT=(θ_s−20) K. Le prove con h diverso rappresentano condizioni di scambio diverse, senza imporre una legge transitoria h(T_s). Eventuali rapporti fra θ_s sono rapporti di letture Celsius dichiarati, non rapporti di temperature assolute. Si misura P=50 W con T_s=30 °C. Quanto vale h in W/(m²·K)?",
+      "answer": {
+        "type": "numeric",
+        "value": 5,
+        "unit": "W/(m²·K)",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il salto è 10 K. Dal prodotto P=hAΔT isoliamo h dividendo per AΔT: 50 W/(1 m²·10 K)=5 W/(m²·K). Il divisore è positivo per il ramo caldo considerato."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta T=10\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " h=\\frac{P}{A\\Delta T}"
+        },
+        {
+          "type": "formula",
+          "text": " h=5\\,\\mathrm{W/(m^2K)}"
+        },
+        {
+          "type": "text",
+          "text": "5/3 W/(m²·K) dividerebbe per la lettura 30 invece del salto 10. Cinquanta copia la potenza, mentre moltiplicare per ΔT non restituisce le unità del coefficiente."
+        }
+      ],
+      "hints": [
+        "Forma prima il prodotto area per salto termico al denominatore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "5/3 W/(m²·K) dividerebbe per la lettura 30 invece del salto 10. Cinquanta copia la potenza, mentre moltiplicare per ΔT non restituisce le unità del coefficiente.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Legge convettiva con coefficiente assegnato",
+        "Temperatura puntuale e differenza rispetto all’ambiente",
+        "Inverse, medie, tarature e vincoli fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-convective-loss-06",
+      "kind": "question",
+      "course": "C3",
+      "section": "Potenza convettiva e riferimento dell’aria",
+      "order": 18206,
+      "title": "Tornare dall’intervallo al punto termometrico",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "convective-loss",
+      "difficulty": 2,
+      "prompt": "Una superficie di area A=1 m² è mantenuta alla temperatura T_s>20 °C in aria a T_a=20 °C. Il coefficiente convettivo h>0, in W/(m²·K), è assegnato e costante entro ciascuna prova. Si considera soltanto la potenza convettiva ceduta P=hAΔT, con ΔT=T_s−T_a>0; non si cerca la somma con eventuali altri meccanismi. θ_s è il numero della lettura di T_s in °C, quindi ΔT=(θ_s−20) K. Le prove con h diverso rappresentano condizioni di scambio diverse, senza imporre una legge transitoria h(T_s). Eventuali rapporti fra θ_s sono rapporti di letture Celsius dichiarati, non rapporti di temperature assolute. P=50 W e h=5 W/(m²·K). Quanto vale T_s in °C?",
+      "answer": {
+        "type": "numeric",
+        "value": 30,
+        "unit": "°C",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dividendo per hA otteniamo il salto di 10 K. La superficie deve essere dieci gradi più calda dell’aria a 20 °C, dunque T_s=30 °C. Dieci è soltanto la differenza, non la lettura cercata."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta T=\\frac{P}{hA}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta T=10\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_s=20+\\frac{\\Delta T}{1\\,\\mathrm K}"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_s=30"
+        },
+        {
+          "type": "formula",
+          "text": " T_s=30\\,{}^\\circ\\mathrm C"
+        },
+        {
+          "type": "text",
+          "text": "10 °C ometterebbe il riferimento dell’aria e farebbe la superficie più fredda, contraddicendo la cessione positiva. 20 °C annullerebbe il salto. 303,15 è il numero dello stesso punto in kelvin, non la lettura Celsius chiesta."
+        }
+      ],
+      "hints": [
+        "Dopo l’inversa della potenza bisogna aggiungere il riferimento termico.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "10 °C ometterebbe il riferimento dell’aria e farebbe la superficie più fredda, contraddicendo la cessione positiva. 20 °C annullerebbe il salto. 303,15 è il numero dello stesso punto in kelvin, non la lettura Celsius chiesta.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Legge convettiva con coefficiente assegnato",
+        "Temperatura puntuale e differenza rispetto all’ambiente",
+        "Inverse, medie, tarature e vincoli fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-convective-loss-07",
+      "kind": "question",
+      "course": "C3",
+      "section": "Potenza convettiva e riferimento dell’aria",
+      "order": 18207,
+      "title": "Raddoppia il salto, non la lettura",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "convective-loss",
+      "difficulty": 2,
+      "prompt": "Una superficie di area A=1 m² è mantenuta alla temperatura T_s>20 °C in aria a T_a=20 °C. Il coefficiente convettivo h>0, in W/(m²·K), è assegnato e costante entro ciascuna prova. Si considera soltanto la potenza convettiva ceduta P=hAΔT, con ΔT=T_s−T_a>0; non si cerca la somma con eventuali altri meccanismi. θ_s è il numero della lettura di T_s in °C, quindi ΔT=(θ_s−20) K. Le prove con h diverso rappresentano condizioni di scambio diverse, senza imporre una legge transitoria h(T_s). Eventuali rapporti fra θ_s sono rapporti di letture Celsius dichiarati, non rapporti di temperature assolute. A ha h=5 W/(m²·K), T_s=30 °C. B mantiene h e ha T_s=40 °C. Quanto vale P_B/P_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "4/3",
+          "1/2",
+          "4",
+          "1"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I salti sono 30−20=10 K e 40−20=20 K. Le potenze sono 50 e 100 W, quindi il rapporto è due. Quattro terzi è il rapporto numerico delle letture Celsius 40/30, che è una grandezza diversa dal rapporto dei salti e delle potenze."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta T_A=10\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta T_B=20\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " P_B/P_A=2"
+        },
+        {
+          "type": "text",
+          "text": "4/3 usa le letture anziché le differenze rispetto all’aria. Un mezzo capovolge B/A; quattro introduce un quadrato e uno trascura il nuovo salto."
+        }
+      ],
+      "hints": [
+        "Confronta T_s−T_a in entrambe le prove.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "4/3 usa le letture anziché le differenze rispetto all’aria. Un mezzo capovolge B/A; quattro introduce un quadrato e uno trascura il nuovo salto.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Legge convettiva con coefficiente assegnato",
+        "Temperatura puntuale e differenza rispetto all’ambiente",
+        "Inverse, medie, tarature e vincoli fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-convective-loss-08",
+      "kind": "question",
+      "course": "C3",
+      "section": "Potenza convettiva e riferimento dell’aria",
+      "order": 18208,
+      "title": "Lo scarto su una potenza proposta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "convective-loss",
+      "difficulty": 2,
+      "prompt": "Una superficie di area A=1 m² è mantenuta alla temperatura T_s>20 °C in aria a T_a=20 °C. Il coefficiente convettivo h>0, in W/(m²·K), è assegnato e costante entro ciascuna prova. Si considera soltanto la potenza convettiva ceduta P=hAΔT, con ΔT=T_s−T_a>0; non si cerca la somma con eventuali altri meccanismi. θ_s è il numero della lettura di T_s in °C, quindi ΔT=(θ_s−20) K. Le prove con h diverso rappresentano condizioni di scambio diverse, senza imporre una legge transitoria h(T_s). Eventuali rapporti fra θ_s sono rapporti di letture Celsius dichiarati, non rapporti di temperature assolute. Con h=5 W/(m²·K), T_s=30 °C si propone P=100 W. Quanto vale proposta meno risultato corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "50 W",
+          "−50 W",
+          "100 W",
+          "0 W",
+          "2"
+        ],
+        "value": "50 W"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il valore corretto è 50 W. La proposta lo supera di 100−50=50 W. È uno scarto positivo fra potenze, mentre il numero due esprime il loro rapporto puro."
+        },
+        {
+          "type": "formula",
+          "text": "P=50\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " e=(100-50)\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " e=50\\,\\mathrm W"
+        },
+        {
+          "type": "text",
+          "text": "−50 W scambia l’ordine. 100 W copia la proposta e zero la accetta. Due non ha la dimensione della differenza di potenza richiesta."
+        }
+      ],
+      "hints": [
+        "Ricalcola il salto e la potenza prima della sottrazione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−50 W scambia l’ordine. 100 W copia la proposta e zero la accetta. Due non ha la dimensione della differenza di potenza richiesta.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Legge convettiva con coefficiente assegnato",
+        "Temperatura puntuale e differenza rispetto all’ambiente",
+        "Inverse, medie, tarature e vincoli fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-convective-loss-09",
+      "kind": "question",
+      "course": "C3",
+      "section": "Potenza convettiva e riferimento dell’aria",
+      "order": 18209,
+      "title": "L’inversa usa area e intervallo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "convective-loss",
+      "difficulty": 2,
+      "prompt": "Una superficie di area A=1 m² è mantenuta alla temperatura T_s>20 °C in aria a T_a=20 °C. Il coefficiente convettivo h>0, in W/(m²·K), è assegnato e costante entro ciascuna prova. Si considera soltanto la potenza convettiva ceduta P=hAΔT, con ΔT=T_s−T_a>0; non si cerca la somma con eventuali altri meccanismi. θ_s è il numero della lettura di T_s in °C, quindi ΔT=(θ_s−20) K. Le prove con h diverso rappresentano condizioni di scambio diverse, senza imporre una legge transitoria h(T_s). Eventuali rapporti fra θ_s sono rapporti di letture Celsius dichiarati, non rapporti di temperature assolute. Sono noti P e T_s, quindi ΔT. Quale formula ricava h?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "h = P / (A ΔT)",
+          "h = P A / ΔT",
+          "h = P ΔT / A",
+          "h = A ΔT / P",
+          "h = P / (A T_s)"
+        ],
+        "value": "h = P / (A ΔT)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bilancio P=hAΔT si divide per il prodotto positivo AΔT. Il risultato h=P/(AΔT) è in W/(m²·K). In questa prova ΔT=(θ_s−20) K; la lettura della superficie da sola non sostituisce la differenza rispetto all’aria."
+        },
+        {
+          "type": "formula",
+          "text": "P=hA\\Delta T"
+        },
+        {
+          "type": "formula",
+          "text": " h=\\frac P{A\\Delta T}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta T=(\\theta_s-20)\\,\\mathrm K"
+        },
+        {
+          "type": "text",
+          "text": "Moltiplicare per A o per ΔT cambia le unità e la dipendenza geometrica. AΔT/P è il reciproco di h. L’ultima relazione usa una temperatura puntuale al posto dell’intervallo e non ricostruisce il trasferimento assegnato."
+        }
+      ],
+      "hints": [
+        "Dividi per entrambi i fattori che moltiplicano h.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Moltiplicare per A o per ΔT cambia le unità e la dipendenza geometrica. AΔT/P è il reciproco di h. L’ultima relazione usa una temperatura puntuale al posto dell’intervallo e non ricostruisce il trasferimento assegnato.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Legge convettiva con coefficiente assegnato",
+        "Temperatura puntuale e differenza rispetto all’ambiente",
+        "Inverse, medie, tarature e vincoli fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-convective-loss-10",
+      "kind": "question",
+      "course": "C3",
+      "section": "Potenza convettiva e riferimento dell’aria",
+      "order": 18210,
+      "title": "Scalare letture Celsius non scala il salto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "convective-loss",
+      "difficulty": 2,
+      "prompt": "Una superficie di area A=1 m² è mantenuta alla temperatura T_s>20 °C in aria a T_a=20 °C. Il coefficiente convettivo h>0, in W/(m²·K), è assegnato e costante entro ciascuna prova. Si considera soltanto la potenza convettiva ceduta P=hAΔT, con ΔT=T_s−T_a>0; non si cerca la somma con eventuali altri meccanismi. θ_s è il numero della lettura di T_s in °C, quindi ΔT=(θ_s−20) K. Le prove con h diverso rappresentano condizioni di scambio diverse, senza imporre una legge transitoria h(T_s). Eventuali rapporti fra θ_s sono rapporti di letture Celsius dichiarati, non rapporti di temperature assolute. A ha lettura numerica θ_s>20. B usa h_B=κ₁h_A e θ_s,B=κ₂θ_s, con κ₁,κ₂>0 e κ₂θ_s>20. Quanto vale P_B/P_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ (κ₂ θ_s − 20) / (θ_s − 20)",
+          "κ₁ κ₂",
+          "κ₁ (θ_s − 20) / (κ₂ θ_s − 20)",
+          "κ₁ / κ₂",
+          "(κ₁ + κ₂) θ_s"
+        ],
+        "value": "κ₁ (κ₂ θ_s − 20) / (θ_s − 20)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il salto A è (θ_s−20) K. In B si scala il numero della lettura, non il suo aumento sull’aria: il salto è (κ₂θ_s−20) K. Il rapporto contiene quindi κ₁(κ₂θ_s−20)/(θ_s−20). Le condizioni del prompt mantengono entrambi i salti positivi e i denominatori non nulli."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta T_A=(\\theta_s-20)\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta T_B=(\\kappa_2\\theta_s-20)\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{P_B}{P_A}=\\kappa_1\\frac{\\kappa_2\\theta_s-20}{\\theta_s-20}"
+        },
+        {
+          "type": "text",
+          "text": "κ₁κ₂ sarebbe corretto se κ₂ scalasse ΔT, ma qui scala la lettura Celsius. Il rapporto degli intervalli invertito cambia la dipendenza termica; κ₁/κ₂ perde il riferimento dell’aria. La somma non nasce dal prodotto della legge assegnata."
+        }
+      ],
+      "hints": [
+        "Sostituisci la lettura B prima di sottrarre i venti gradi dell’aria.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "κ₁κ₂ sarebbe corretto se κ₂ scalasse ΔT, ma qui scala la lettura Celsius. Il rapporto degli intervalli invertito cambia la dipendenza termica; κ₁/κ₂ perde il riferimento dell’aria. La somma non nasce dal prodotto della legge assegnata.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Legge convettiva con coefficiente assegnato",
+        "Temperatura puntuale e differenza rispetto all’ambiente",
+        "Inverse, medie, tarature e vincoli fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-convective-loss-11",
+      "kind": "question",
+      "course": "C3",
+      "section": "Potenza convettiva e riferimento dell’aria",
+      "order": 18211,
+      "title": "Due cambiamenti sulla stessa superficie",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "convective-loss",
+      "difficulty": 2,
+      "prompt": "Una superficie di area A=1 m² è mantenuta alla temperatura T_s>20 °C in aria a T_a=20 °C. Il coefficiente convettivo h>0, in W/(m²·K), è assegnato e costante entro ciascuna prova. Si considera soltanto la potenza convettiva ceduta P=hAΔT, con ΔT=T_s−T_a>0; non si cerca la somma con eventuali altri meccanismi. θ_s è il numero della lettura di T_s in °C, quindi ΔT=(θ_s−20) K. Le prove con h diverso rappresentano condizioni di scambio diverse, senza imporre una legge transitoria h(T_s). Eventuali rapporti fra θ_s sono rapporti di letture Celsius dichiarati, non rapporti di temperature assolute. A ha h=5 W/(m²·K), T_s=30 °C; B ha h=10 W/(m²·K), T_s=40 °C. Quanto vale P_B/P_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4",
+          "2",
+          "4/3",
+          "8/3",
+          "1/4"
+        ],
+        "value": "4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha salto 10 K e conduce verso l’aria 50 W per convezione. B ha salto 20 K e coefficiente doppio: 10·1·20=200 W. Il rapporto è 200/50=4, prodotto dei due fattori due, uno su h e uno sul salto."
+        },
+        {
+          "type": "formula",
+          "text": "P_A=50\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_B=200\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_B/P_A=4"
+        },
+        {
+          "type": "text",
+          "text": "Due considera soltanto h oppure soltanto il salto. 4/3 segue le letture Celsius e 8/3 lo moltiplica per il fattore due di h, ma entrambi perdono la sottrazione dell’aria. Un quarto capovolge il confronto."
+        }
+      ],
+      "hints": [
+        "Ricostruisci le due differenze termiche prima delle potenze.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due considera soltanto h oppure soltanto il salto. 4/3 segue le letture Celsius e 8/3 lo moltiplica per il fattore due di h, ma entrambi perdono la sottrazione dell’aria. Un quarto capovolge il confronto.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Legge convettiva con coefficiente assegnato",
+        "Temperatura puntuale e differenza rispetto all’ambiente",
+        "Inverse, medie, tarature e vincoli fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-convective-loss-12",
+      "kind": "question",
+      "course": "C3",
+      "section": "Potenza convettiva e riferimento dell’aria",
+      "order": 18212,
+      "title": "Media di due condizioni mantenute",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "convective-loss",
+      "difficulty": 2,
+      "prompt": "Una superficie di area A=1 m² è mantenuta alla temperatura T_s>20 °C in aria a T_a=20 °C. Il coefficiente convettivo h>0, in W/(m²·K), è assegnato e costante entro ciascuna prova. Si considera soltanto la potenza convettiva ceduta P=hAΔT, con ΔT=T_s−T_a>0; non si cerca la somma con eventuali altri meccanismi. θ_s è il numero della lettura di T_s in °C, quindi ΔT=(θ_s−20) K. Le prove con h diverso rappresentano condizioni di scambio diverse, senza imporre una legge transitoria h(T_s). Eventuali rapporti fra θ_s sono rapporti di letture Celsius dichiarati, non rapporti di temperature assolute. A usa h=5 W/(m²·K), T_s=30 °C; B usa h=10 W/(m²·K), T_s=40 °C. Qual è la media aritmetica di P con uguale peso?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "125 W",
+          "225/2 W",
+          "250 W",
+          "75 W",
+          "50 W"
+        ],
+        "value": "125 W"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le potenze sono 50 e 200 W, perciò la metà della somma 250 W è 125 W. Agli ingressi medi h=15/2 W/(m²·K) e T_s=35 °C il salto è 15 K: la potenza sarebbe 225/2 W. La media delle uscite è diversa dal prodotto dei dati medi."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/9da88e7fec06528b65c4594d5226d072cf19e1680e479ae32a6f8f9776f9b295",
+          "text": "Le barre finali hanno origine e scala comuni nella potenza: A=50 W, B=200 W, media=125 W. B ha h=10 W/(m²·K), diverso da quello fisso nel grafico centrale. Agli ingressi medi la potenza sarebbe 225/2 W e non la media richiesta."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline P=\\frac{50+200}{2}\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline P=125\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P(\\overline h,\\overline T_s)=\\frac{225}{2}\\,\\mathrm W"
+        },
+        {
+          "type": "text",
+          "text": "225/2 W usa gli ingressi medi. 250 W non dimezza la somma, 75 W è metà della differenza e 50 W ignora B. Non si stanno mescolando fisicamente due superfici per cercare una temperatura finale."
+        }
+      ],
+      "hints": [
+        "Media le due potenze dopo aver risolto ciascuna prova.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "225/2 W usa gli ingressi medi. 250 W non dimezza la somma, 75 W è metà della differenza e 50 W ignora B. Non si stanno mescolando fisicamente due superfici per cercare una temperatura finale.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Legge convettiva con coefficiente assegnato",
+        "Temperatura puntuale e differenza rispetto all’ambiente",
+        "Inverse, medie, tarature e vincoli fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-convective-loss-13",
+      "kind": "question",
+      "course": "C3",
+      "section": "Potenza convettiva e riferimento dell’aria",
+      "order": 18213,
+      "title": "Il bersaglio sulla potenza e il rapporto di letture",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "convective-loss",
+      "difficulty": 3,
+      "prompt": "Una superficie di area A=1 m² è mantenuta alla temperatura T_s>20 °C in aria a T_a=20 °C. Il coefficiente convettivo h>0, in W/(m²·K), è assegnato e costante entro ciascuna prova. Si considera soltanto la potenza convettiva ceduta P=hAΔT, con ΔT=T_s−T_a>0; non si cerca la somma con eventuali altri meccanismi. θ_s è il numero della lettura di T_s in °C, quindi ΔT=(θ_s−20) K. Le prove con h diverso rappresentano condizioni di scambio diverse, senza imporre una legge transitoria h(T_s). Eventuali rapporti fra θ_s sono rapporti di letture Celsius dichiarati, non rapporti di temperature assolute. A ha h=5 W/(m²·K), T_s,A=30 °C. B ha h_B=10 W/(m²·K) e deve cedere quattro volte P_A. Quanto vale θ_s,B/θ_s,A sulla scala Celsius?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4/3",
+          "2",
+          "3/4",
+          "4",
+          "1"
+        ],
+        "value": "4/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è 200 W. Con h_BA=10 W/K serve ΔT_B=20 K, quindi T_s,B=40 °C. Il rapporto delle letture numeriche Celsius è 40/30=4/3. Due è invece il rapporto dei salti 20 K e 10 K: non coincide con la quantità chiesta."
+        },
+        {
+          "type": "formula",
+          "text": "P_B=200\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta T_B=20\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_{s,B}=40"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_{s,B}/\\theta_{s,A}=\\frac43"
+        },
+        {
+          "type": "text",
+          "text": "Due confonde il rapporto degli intervalli con quello delle letture. Tre quarti inverte B/A; quattro copia il bersaglio sulla potenza e uno non produrrebbe l’aumento richiesto. Il rapporto domandato non è una temperatura assoluta normalizzata."
+        }
+      ],
+      "hints": [
+        "Dopo l’inversa del salto, torna alla lettura Celsius e solo allora fai il rapporto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due confonde il rapporto degli intervalli con quello delle letture. Tre quarti inverte B/A; quattro copia il bersaglio sulla potenza e uno non produrrebbe l’aumento richiesto. Il rapporto domandato non è una temperatura assoluta normalizzata.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Legge convettiva con coefficiente assegnato",
+        "Temperatura puntuale e differenza rispetto all’ambiente",
+        "Inverse, medie, tarature e vincoli fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-convective-loss-14",
+      "kind": "question",
+      "course": "C3",
+      "section": "Potenza convettiva e riferimento dell’aria",
+      "order": 18214,
+      "title": "Tarare la potenza prima del coefficiente",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "convective-loss",
+      "difficulty": 3,
+      "prompt": "Una superficie di area A=1 m² è mantenuta alla temperatura T_s>20 °C in aria a T_a=20 °C. Il coefficiente convettivo h>0, in W/(m²·K), è assegnato e costante entro ciascuna prova. Si considera soltanto la potenza convettiva ceduta P=hAΔT, con ΔT=T_s−T_a>0; non si cerca la somma con eventuali altri meccanismi. θ_s è il numero della lettura di T_s in °C, quindi ΔT=(θ_s−20) K. Le prove con h diverso rappresentano condizioni di scambio diverse, senza imporre una legge transitoria h(T_s). Eventuali rapporti fra θ_s sono rapporti di letture Celsius dichiarati, non rapporti di temperature assolute. Il display continuo adimensionale segue S=qP, q>0. A con h=5 W/(m²·K), T_s=30 °C dà S=150. B dà S=600 e ha T_s=40 °C. Quanto vale h_B in W/(m²·K)?",
+      "answer": {
+        "type": "numeric",
+        "value": 10,
+        "unit": "W/(m²·K)",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A cede 50 W e quindi q=3 W⁻¹. La lettura B significa 600/3=200 W. La sua differenza rispetto all’aria è 20 K: h_B=200/(1·20)=10 W/(m²·K). Il guadagno dello strumento e il coefficiente fisico h sono fattori distinti."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{W^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " P_B=200\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta T_B=20\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " h_B=10\\,\\mathrm{W/(m^2K)}"
+        },
+        {
+          "type": "text",
+          "text": "Usare 600 direttamente come watt darebbe h=30 W/(m²·K). Cinque conserverebbe il riferimento e predirebbe S=300, non 600. Venti copia il numero del salto in un’altra grandezza."
+        }
+      ],
+      "hints": [
+        "Converti prima il display in watt, poi dividili per area e salto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Usare 600 direttamente come watt darebbe h=30 W/(m²·K). Cinque conserverebbe il riferimento e predirebbe S=300, non 600. Venti copia il numero del salto in un’altra grandezza.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Legge convettiva con coefficiente assegnato",
+        "Temperatura puntuale e differenza rispetto all’ambiente",
+        "Inverse, medie, tarature e vincoli fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-convective-loss-15",
+      "kind": "question",
+      "course": "C3",
+      "section": "Potenza convettiva e riferimento dell’aria",
+      "order": 18215,
+      "title": "Offset strumentale e riferimento termico",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "convective-loss",
+      "difficulty": 3,
+      "prompt": "Una superficie di area A=1 m² è mantenuta alla temperatura T_s>20 °C in aria a T_a=20 °C. Il coefficiente convettivo h>0, in W/(m²·K), è assegnato e costante entro ciascuna prova. Si considera soltanto la potenza convettiva ceduta P=hAΔT, con ΔT=T_s−T_a>0; non si cerca la somma con eventuali altri meccanismi. θ_s è il numero della lettura di T_s in °C, quindi ΔT=(θ_s−20) K. Le prove con h diverso rappresentano condizioni di scambio diverse, senza imporre una legge transitoria h(T_s). Eventuali rapporti fra θ_s sono rapporti di letture Celsius dichiarati, non rapporti di temperature assolute. Il display è S=qP+b, continuo e adimensionale, q>0. A: h=5 W/(m²·K), T_s=30 °C,S=101. B: h=10 W/(m²·K), T_s=40 °C,S=401. C: T_s=30 °C,S=201. Quanto vale h_C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "10 W/(m²·K)",
+          "201/20 W/(m²·K)",
+          "5 W/(m²·K)",
+          "20 W/(m²·K)",
+          "100 W/(m²·K)"
+        ],
+        "value": "10 W/(m²·K)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti cedono 50 e 200 W. Dalle differenze q=(401−101)/(200−50)=2 W⁻¹; dal primo b=1. C cede (201−1)/2=100 W. A 30 °C il salto è 10 K, quindi h_C=10 W/(m²·K). Si tolgono due riferimenti diversi: l’offset dal display e la temperatura dell’aria dalla lettura termica."
+        },
+        {
+          "type": "formula",
+          "text": "q=2\\,\\mathrm{W^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " P_C=100\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta T_C=10\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " h_C=10\\,\\mathrm{W/(m^2K)}"
+        },
+        {
+          "type": "text",
+          "text": "201/20 W/(m²·K) omette b, usa P=201/2 W e predice S=202. Cinque torna ad A; venti a questo salto darebbe S=401. Cento copia il numero della potenza e darebbe S=2001."
+        }
+      ],
+      "hints": [
+        "Rimuovi l’offset, ricava P e usa la differenza superficie-aria.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "201/20 W/(m²·K) omette b, usa P=201/2 W e predice S=202. Cinque torna ad A; venti a questo salto darebbe S=401. Cento copia il numero della potenza e darebbe S=2001.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Legge convettiva con coefficiente assegnato",
+        "Temperatura puntuale e differenza rispetto all’ambiente",
+        "Inverse, medie, tarature e vincoli fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-convective-loss-16",
+      "kind": "question",
+      "course": "C3",
+      "section": "Potenza convettiva e riferimento dell’aria",
+      "order": 18216,
+      "title": "Un vincolo fra prove sulla lettura Celsius",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "convective-loss",
+      "difficulty": 3,
+      "prompt": "Una superficie di area A=1 m² è mantenuta alla temperatura T_s>20 °C in aria a T_a=20 °C. Il coefficiente convettivo h>0, in W/(m²·K), è assegnato e costante entro ciascuna prova. Si considera soltanto la potenza convettiva ceduta P=hAΔT, con ΔT=T_s−T_a>0; non si cerca la somma con eventuali altri meccanismi. θ_s è il numero della lettura di T_s in °C, quindi ΔT=(θ_s−20) K. Le prove con h diverso rappresentano condizioni di scambio diverse, senza imporre una legge transitoria h(T_s). Eventuali rapporti fra θ_s sono rapporti di letture Celsius dichiarati, non rapporti di temperature assolute. Fra preparazioni si impone h=βθ_s, con β=1/6 W/(m²·K), poiché θ_s è un numero puro. Si misura P=50 W. Quanto vale T_s nel ramo θ_s>20?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "30 °C",
+          "−10 °C",
+          "10 °C",
+          "50 °C",
+          "300 °C"
+        ],
+        "value": "30 °C"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Chiamiamo P₀=βA·1 K il fattore di potenza, pari a 1/6 W. Inserendo il vincolo nella legge, P=P₀θ_s(θ_s−20), quindi θ_s(θ_s−20)=300. Il polinomio θ_s²−20θ_s−300 si fattorizza come (θ_s−30)(θ_s+10): i due numeri hanno somma −20 e prodotto −300. Le radici alternative sono 30 e −10. Solo 30 rispetta θ_s>20 e dà h=5 W/(m²·K). Il vincolo confronta preparazioni diverse e non descrive un coefficiente che varia durante il raffreddamento."
+        },
+        {
+          "type": "formula",
+          "text": "P_0=\\beta A\\cdot1\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " P_0=\\frac16\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P=P_0\\theta_s(\\theta_s-20)"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_s(\\theta_s-20)=300"
+        },
+        {
+          "type": "formula",
+          "text": " (\\theta_s-30)(\\theta_s+10)=0"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_s=30"
+        },
+        {
+          "type": "formula",
+          "text": " T_s=30\\,{}^\\circ\\mathrm C"
+        },
+        {
+          "type": "text",
+          "text": "−10 °C è esclusa qui perché la superficie deve essere più calda di 20 °C e il vincolo darebbe h negativo, non perché tutte le letture Celsius negative siano impossibili. Dieci è anch’essa sotto l’aria; 50 e 300 non soddisfano la potenza assegnata nel vincolo."
+        }
+      ],
+      "hints": [
+        "Sostituisci il legame sul numero Celsius e controlla entrambe le condizioni fisiche delle radici.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "−10 °C è esclusa qui perché la superficie deve essere più calda di 20 °C e il vincolo darebbe h negativo, non perché tutte le letture Celsius negative siano impossibili. Dieci è anch’essa sotto l’aria; 50 e 300 non soddisfano la potenza assegnata nel vincolo.",
+        "target": "C3-L05"
+      },
+      "coverage": [
+        "Legge convettiva con coefficiente assegnato",
+        "Temperatura puntuale e differenza rispetto all’ambiente",
+        "Inverse, medie, tarature e vincoli fra prove"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "9da88e7fec06528b65c4594d5226d072cf19e1680e479ae32a6f8f9776f9b295",
+      "name": "convective-loss-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTMyMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgo8dGl0bGUgaWQ9InRpdGxlIj5MYSBjb252ZXppb25lIHVzYSBsYSBkaWZmZXJlbnphIHJpc3BldHRvIGFsbOKAmWFyaWE8L3RpdGxlPgo8ZGVzYyBpZD0iZGVzYyI+VW5hIHN1cGVyZmljaWUgbWFudGVudXRhIGEgdHJlbnRhIGdyYWRpIENlbHNpdXMgY2VkZSBjaW5xdWFudGEgd2F0dCBhbGzigJlhcmlhIGEgdmVudGkgbmVsIG1vZGVsbG8gYXNzZWduYXRvLiBBIGNvZWZmaWNpZW50ZSBjaW5xdWUgZmlzc2F0bywgaWwgZ3JhZmljbyDDqCBsaW5lYXJlIG5lbCBzYWx0byBkYWxsYSBsZXR0dXJhIHZlbnRpLCBwdW50byBsaW1pdGUgZXNjbHVzby4gVW4gY29uZnJvbnRvIHNlcGFyYXRvIG1vZGlmaWNhIGFuY2hlIGlsIGNvZWZmaWNpZW50ZTogY2lucXVhbnRhIGUgZHVlY2VudG8gd2F0dCwgbWVkaWEgY2VudG92ZW50aWNpbnF1ZS48L2Rlc2M+CjxkZWZzPjxtYXJrZXIgaWQ9ImhlYXQiIHZpZXdCb3g9IjAgMCAxMCAxMCIgcmVmWD0iOSIgcmVmWT0iNSIgbWFya2VyV2lkdGg9IjciIG1hcmtlckhlaWdodD0iNyIgb3JpZW50PSJhdXRvIj48cGF0aCBkPSJNMCAwTDEwIDVMMCAxMFoiIGZpbGw9IiNiNDUzMjgiLz48L21hcmtlcj48L2RlZnM+CjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMTMyMCIgcng9IjEyIiBmaWxsPSIjZjhmYWZjIi8+CjxnIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmaWxsPSIjMTQyNDNhIiBmb250LXNpemU9IjIwIj4KPHRleHQgeD0iMzIiIHk9IjQyIiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iYm9sZCI+MSDCtyBVbmEgc3VwZXJmaWNpZSBtYW50ZW51dGEgcGnDuSBjYWxkYTwvdGV4dD4KPHRleHQgeD0iMzIiIHk9Ijg1IiBmb250LXNpemU9IjE4Ij5BID0gMSBtwrIgOyBoID0gNSBXLyhtwrLCt0spIG5lbGxhIHByb3ZhIEEuPC90ZXh0Pgo8dGV4dCB4PSIyOTYiIHk9IjEzOSI+UCA9IDUwIFc8L3RleHQ+CjxyZWN0IHg9IjgwIiB5PSIxNzUiIHdpZHRoPSIxMzAiIGhlaWdodD0iMTQwIiByeD0iOCIgZmlsbD0iI2I0NTMyOCIvPgo8dGV4dCB4PSIxMDMiIHk9IjIxNyIgZmlsbD0id2hpdGUiPlN1cGVyZmljaWU8L3RleHQ+PHRleHQgeD0iMTA1IiB5PSIyNjAiIGZpbGw9IndoaXRlIj4zMCDCsEM8L3RleHQ+CjxyZWN0IHg9IjMyMCIgeT0iMTc1IiB3aWR0aD0iMjMwIiBoZWlnaHQ9IjE0MCIgcng9IjgiIGZpbGw9IiNlNGYzZmEiIHN0cm9rZT0iIzE2NWE4NyIvPgo8dGV4dCB4PSIzOTIiIHk9IjIxNCI+QXJpYTwvdGV4dD48dGV4dCB4PSIzODciIHk9IjI0NyI+MjAgwrBDPC90ZXh0Pgo8cGF0aCBkPSJNMjMwIDI4M0g1MTAiIHN0cm9rZT0iI2I0NTMyOCIgc3Ryb2tlLXdpZHRoPSI0IiBtYXJrZXItZW5kPSJ1cmwoI2hlYXQpIi8+Cjx0ZXh0IHg9IjMyIiB5PSIzNjIiIGZvbnQtc2l6ZT0iMTgiPlNjaGVtYTogbGEgZnJlY2NpYSBpbmRpY2EgY2Fsb3JlLCBub24gdW4gZ2V0dG8gZOKAmWFyaWEuPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iMzk0IiBmb250LXNpemU9IjE4Ij5JbCBzYWx0byB0ZXJtaWNvIMOoIDMwIOKIkiAyMCA9IDEwIEsuPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iNDI2IiBmb250LXNpemU9IjE4Ij5MYSBzdXBlcmZpY2llIMOoIG1hbnRlbnV0YTogbm9uIHNpIGRlc2NyaXZlIHVuIHRyYW5zaXRvcmlvLjwvdGV4dD4KPHBhdGggZD0iTTMyIDQ1NUg2MDgiIHN0cm9rZT0iIzliYWJiYyIvPgo8dGV4dCB4PSIzMiIgeT0iNDk5IiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iYm9sZCI+MiDCtyBJbCByaWZlcmltZW50byDDqCBs4oCZYXJpYSBhIDIwIMKwQzwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjUzOCIgZm9udC1zaXplPSIxOCI+UCBpbiBXIDsgaCA9IDUgVy8obcKywrdLKSBlIEEgPSAxIG3CsiBmaXNzYXRpLjwvdGV4dD4KPHBhdGggZD0iTTEwMCA3OTVWNTc1TTEwMCA3OTVINTMwIiBmaWxsPSJub25lIiBzdHJva2U9IiMxNDI0M2EiIHN0cm9rZS13aWR0aD0iMiIvPgo8cGF0aCBkPSJNMTAwIDc5NUwzMDAgNjk1TDUwMCA1OTUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE2NWE4NyIgc3Ryb2tlLXdpZHRoPSI0Ii8+CjxwYXRoIGQ9Ik0xMDAgNjk1SDMwMFY3OTVNMTAwIDU5NUg1MDBWNzk1IiBmaWxsPSJub25lIiBzdHJva2U9IiM4MjkyYTIiIHN0cm9rZS1kYXNoYXJyYXk9IjUgNSIvPgo8Y2lyY2xlIGN4PSIxMDAiIGN5PSI3OTUiIHI9IjYiIGZpbGw9IiNmOGZhZmMiIHN0cm9rZT0iIzE2NWE4NyIgc3Ryb2tlLXdpZHRoPSIzIi8+CjxjaXJjbGUgY3g9IjMwMCIgY3k9IjY5NSIgcj0iNSIgZmlsbD0iIzE2NWE4NyIvPjxjaXJjbGUgY3g9IjUwMCIgY3k9IjU5NSIgcj0iNSIgZmlsbD0iIzE2NWE4NyIvPgo8dGV4dCB4PSI0OSIgeT0iNjAyIj4xMDA8L3RleHQ+PHRleHQgeD0iNTkiIHk9IjcwMiI+NTA8L3RleHQ+PHRleHQgeD0iNjUiIHk9IjgwMiI+MDwvdGV4dD48dGV4dCB4PSI4MiIgeT0iODMyIj4yMDwvdGV4dD48dGV4dCB4PSIyODIiIHk9IjgzMiI+MzA8L3RleHQ+PHRleHQgeD0iNDgyIiB5PSI4MzIiPjQwPC90ZXh0Pgo8dGV4dCB4PSI0MzAiIHk9Ijg2NiI+VF9zIC8gwrBDPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iODk1IiBmb250LXNpemU9IjE4Ij5QdW50byB2dW90bzogaWwgbGltaXRlIDIwIMKwQyBub24gw6ggbmVsIHJhbW8gVF9zICZndDsgMjAgwrBDLjwvdGV4dD4KPHBhdGggZD0iTTMyIDkyM0g2MDgiIHN0cm9rZT0iIzliYWJiYyIvPgo8dGV4dCB4PSIzMiIgeT0iOTY3IiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iYm9sZCI+MyDCtyBPcmEgY2FtYmlhIGFuY2hlIGlsIGNvZWZmaWNpZW50ZSBoPC90ZXh0Pgo8cGF0aCBkPSJNMTMwIDk5MFYxMjI0IiBzdHJva2U9IiMxNDI0M2EiIHN0cm9rZS13aWR0aD0iMiIvPgo8cmVjdCB4PSIxMzAiIHk9IjEwMDciIHdpZHRoPSI4MCIgaGVpZ2h0PSIzNCIgZmlsbD0iIzE2NWE4NyIvPjxyZWN0IHg9IjEzMCIgeT0iMTA4MCIgd2lkdGg9IjMyMCIgaGVpZ2h0PSIzNCIgZmlsbD0iIzE2NWE4NyIvPjxyZWN0IHg9IjEzMCIgeT0iMTE1MyIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIzNCIgZmlsbD0iIzI4NjY0ZCIvPgo8dGV4dCB4PSI1MCIgeT0iMTAzMiI+QTwvdGV4dD48dGV4dCB4PSIyMjgiIHk9IjEwMzIiPjUwIFc8L3RleHQ+PHRleHQgeD0iNTAiIHk9IjExMDUiPkI8L3RleHQ+PHRleHQgeD0iNDY4IiB5PSIxMTA1Ij4yMDAgVzwvdGV4dD48dGV4dCB4PSIzMiIgeT0iMTE3OCI+TWVkaWE8L3RleHQ+PHRleHQgeD0iMzQ4IiB5PSIxMTc4Ij4xMjUgVzwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjEyNjIiIGZvbnQtc2l6ZT0iMTgiPkE6IGggPSA1LCBUX3MgPSAzMCDCsEMgOyBCOiBoID0gMTAsIFRfcyA9IDQwIMKwQy48L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIxMjkyIiBmb250LXNpemU9IjE4Ij5Qb3RlbnplIGluIFcsIHN0ZXNzYSBvcmlnaW5lOyBoIGluIFcvKG3CssK3SykuPC90ZXh0Pgo8L2c+PC9zdmc+Cg=="
+    }
+  ]
+}

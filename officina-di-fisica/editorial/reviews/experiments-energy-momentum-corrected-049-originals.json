@@ -1,0 +1,3552 @@
+{
+  "schemaVersion": "1.0.0",
+  "batch": "experiments-energy-momentum-corrected-049",
+  "records": [
+    {
+      "id": "SIM-C1-L008-01",
+      "sourceSha256": "2b8d6d010928997afc9f7fd8d8c11280c378b19a5d62ba6a00697c899b1c9d12",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/esperienze-C1.json",
+      "sourceFileSha256": "84d13bd2658be3b0ce2a55bf7dc698d64ceae151b09deafeabd71507a41d70e3",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "first reference",
+          "independentExact": "-2",
+          "expectedValue": "-2",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "relation": "exact",
+          "scope": "actual_assigned_manual_calculation",
+          "ok": true
+        },
+        {
+          "claim": "first assigned task",
+          "independentExact": "-8",
+          "expectedValue": "-8",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "relation": "exact",
+          "scope": "actual_assigned_manual_calculation",
+          "ok": true
+        },
+        {
+          "claim": "actual generated transfer",
+          "independentExact": "-6",
+          "expectedValue": "-6",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "relation": "exact",
+          "scope": "actual_assigned_manual_calculation",
+          "ok": true
+        },
+        {
+          "claim": "opposing friction integral",
+          "independentExact": "-2*L",
+          "expectedValue": "-2*L",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "relation": "exact",
+          "scope": "independent_path_integral",
+          "ok": true
+        },
+        {
+          "claim": "same-height gravity work zero",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "relation": "exact",
+          "scope": "actual_assigned_manual_calculation",
+          "ok": true
+        },
+        {
+          "claim": "actual3m friction minus6J",
+          "independentExact": "-6",
+          "expectedValue": "-6",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "relation": "exact",
+          "scope": "actual_assigned_manual_calculation",
+          "ok": true
+        },
+        {
+          "claim": "two-to-one path length doubles dissipated energy",
+          "independentExact": "2",
+          "expectedValue": "2",
+          "unit": "",
+          "dimension": {},
+          "residual": "0",
+          "relation": "exact",
+          "scope": "actual_assigned_manual_calculation",
+          "ok": true
+        },
+        {
+          "claim": "zigzag total arc length matches1.55timesinput",
+          "independentExact": "31*L/20",
+          "expectedValue": "31*L/20",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "residual": "0",
+          "relation": "exact",
+          "scope": "renderer_metric_probe_L_at_least1",
+          "ok": true
+        },
+        {
+          "claim": "fresh actual adapter/law/graph/apparatus/clock/generated-task comparison",
+          "ok": true,
+          "dimension": {},
+          "caseCount": 9,
+          "clockSampleCount": 0,
+          "errors": []
+        },
+        {
+          "claim": "actual numeric display/input roundtrip0",
+          "ok": true,
+          "dimension": {},
+          "actual": {
+            "display": "-8",
+            "parsed": -8
+          },
+          "independentExact": "-8"
+        },
+        {
+          "claim": "actual numeric display/input roundtrip1",
+          "ok": true,
+          "dimension": {},
+          "actual": {
+            "display": "-6",
+            "parsed": -6
+          },
+          "independentExact": "-6"
+        }
+      ],
+      "dimension": {
+        "first reference": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "first assigned task": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "actual generated transfer": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "opposing friction integral": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "same-height gravity work zero": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "actual3m friction minus6J": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "two-to-one path length doubles dissipated energy": {},
+        "zigzag total arc length matches1.55timesinput": {
+          "[length]": "1"
+        },
+        "fresh actual adapter/law/graph/apparatus/clock/generated-task comparison": {},
+        "actual numeric display/input roundtrip0": {},
+        "actual numeric display/input roundtrip1": {}
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "sourceScientificReview": {
+        "ok": true,
+        "errors": []
+      },
+      "consumerReview": {
+        "ok": true,
+        "errors": []
+      },
+      "manualArithmetic": "Horizontal-path line integral of constant opposing2N friction is-2*length J; gravity work only depends on equal endpoint height and is0. Piecewise planar zigzag has true physical length when segment sqrt(dx²+dz²) is summed, to be compared with controller, not assumed schematic. Generated tasks4m=>-8J and3m=>-6J.",
+      "manualFeasibility": "PASS_AI_EXACT_ASSIGNED_TASKS",
+      "physicalAssumptions": "Horizontal planar piecewise-smooth paths, same endpoints within each comparison and equal height. Constant kinetic friction2N always opposes tangential motion; no other dissipative work inferred. Path control1..5m, direct path1m. Gravity conservative with zero height change; corners are ideal geometric constraints, not an assigned acceleration history.",
+      "pedagogicalReview": "All source fields and actual generated predictions, two assessments, worked substitutions, stage guides, readouts, graphs, apparatus and clocks read. Explicit actual transfer values/manual procedures, domain/zero/sign cases and physical hypotheses reviewed; independent numeric/unit/renderer probes are not source-authored instructions, student calibration or human approval.",
+      "assetChecksums": {},
+      "figureReview": "Four zigzag segments have dx1.55/4, alternating dz=(1.55/4)sqrt(L²-1), so sum of lengths1.55L with common1.55scene/m scale; direct endpoints span1.55. At L1 paths coincide correctly. Their common vertical level ensures zero weight work. Endpoint z translation between separate trials is not falsely called a change of relative endpoints.",
+      "runtimeSha256": {
+        "static/js/banchi/voci/esperimento.js": "cc435e51b62d5b9961b32f5d9b349171f7432e3bf6a6911cd80daaa1f419767b",
+        "static/js/banchi/voci/engines.js": "09a6447a971d0e90c49cfea0307e82ea75f4441a7174c017768d6d62ad514dab",
+        "static/js/banchi/voci/assessment-selection.js": "2f5435b6c9e8b76667d0a95f35860f835117cf8230a635c4c3a54c479fbc54b3",
+        "static/js/banchi/voci/geometria.js": "986bdbfad0cf6e6e057002ee2efdeff0a08df31bfb45f9c046063fcba5840f08",
+        "static/js/banchi/voci/tavola.js": "cc3f7fa8da541109fdda9f8bacca23eea43d1031b2145688b2d80513f47d5283",
+        "static/js/banchi/voci/confronti.js": "83f1ab0d443dc93eb72c0318e32856179486643257c5bbf136e686464fdc6c39",
+        "static/js/banchi/voci/legende.js": "eb303ca6a6013377462b51c92b541a650ee2686257cd7e4ee39fea5221a521f7",
+        "static/js/banchi/voci/orologi.js": "30dd8ab535a31b514c0db13d97d2b046a1add160a7ca7d374deea0d991be73a6",
+        "static/js/banchi/voci/modelli/C1.js": "e5818f20fd19d00fc73434fcacef752d06331efc41d198ffe8c185063e97fa34",
+        "static/js/banchi/voci/apparati/meccanica.js": "9be7ce68847af3d901374e98c7511921d6177d939c547e9b03f2c07a0ebd857d",
+        "static/js/banchi/banco.js": "8200aa5adf026372699790c21f60e0cf3f5fffcb705ef5ee36f609ac3c1e3ed9",
+        "static/js/banchi/misure.js": "46c769f22651529e439b1396e59a017d2c429310b7ae59e2a9717b2ced93c66d",
+        "static/js/banchi/grafici.js": "e5567e88ee6df5c604f8e62228da5e70841556ad0b55fb212fd4d091fdeee3fd",
+        "static/js/banchi/scena.js": "4d94c92a834573062a2af541df113bad06bd11ca538b31bddddc5ec8621a5095",
+        "static/js/banchi/etichette.js": "455ae33c790be4e207e5b5667918c44ea16c95f49e1fea0b13cc92f08aa003f3",
+        "static/js/banchi/aula.js": "44c74446d0d60b20e9dad05b32321f1000f026acdec386ca5aa2f74c20421967",
+        "static/js/ui.js": "77e5f000f5e1a1fe028fff32dad97be29ad72b46d753787a19ad36164cb98f27"
+      },
+      "reviewedRuntimeSha256": {
+        "static/js/banchi/voci/esperimento.js": "cc435e51b62d5b9961b32f5d9b349171f7432e3bf6a6911cd80daaa1f419767b",
+        "static/js/banchi/voci/engines.js": "09a6447a971d0e90c49cfea0307e82ea75f4441a7174c017768d6d62ad514dab",
+        "static/js/banchi/voci/assessment-selection.js": "2f5435b6c9e8b76667d0a95f35860f835117cf8230a635c4c3a54c479fbc54b3",
+        "static/js/banchi/voci/geometria.js": "986bdbfad0cf6e6e057002ee2efdeff0a08df31bfb45f9c046063fcba5840f08",
+        "static/js/banchi/voci/tavola.js": "cc3f7fa8da541109fdda9f8bacca23eea43d1031b2145688b2d80513f47d5283",
+        "static/js/banchi/voci/confronti.js": "83f1ab0d443dc93eb72c0318e32856179486643257c5bbf136e686464fdc6c39",
+        "static/js/banchi/voci/legende.js": "eb303ca6a6013377462b51c92b541a650ee2686257cd7e4ee39fea5221a521f7",
+        "static/js/banchi/voci/orologi.js": "30dd8ab535a31b514c0db13d97d2b046a1add160a7ca7d374deea0d991be73a6",
+        "static/js/banchi/voci/modelli/C1.js": "e5818f20fd19d00fc73434fcacef752d06331efc41d198ffe8c185063e97fa34",
+        "static/js/banchi/voci/apparati/meccanica.js": "9be7ce68847af3d901374e98c7511921d6177d939c547e9b03f2c07a0ebd857d",
+        "static/js/banchi/banco.js": "8200aa5adf026372699790c21f60e0cf3f5fffcb705ef5ee36f609ac3c1e3ed9",
+        "static/js/banchi/misure.js": "46c769f22651529e439b1396e59a017d2c429310b7ae59e2a9717b2ced93c66d",
+        "static/js/banchi/grafici.js": "e5567e88ee6df5c604f8e62228da5e70841556ad0b55fb212fd4d091fdeee3fd",
+        "static/js/banchi/scena.js": "4d94c92a834573062a2af541df113bad06bd11ca538b31bddddc5ec8621a5095",
+        "static/js/banchi/etichette.js": "455ae33c790be4e207e5b5667918c44ea16c95f49e1fea0b13cc92f08aa003f3",
+        "static/js/banchi/aula.js": "44c74446d0d60b20e9dad05b32321f1000f026acdec386ca5aa2f74c20421967",
+        "static/js/ui.js": "77e5f000f5e1a1fe028fff32dad97be29ad72b46d753787a19ad36164cb98f27"
+      },
+      "runtimeProfileSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+      "reviewedRuntimeProfileSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+      "runtimeComparison": {
+        "ok": true,
+        "caseCount": 9,
+        "plannedCaseCount": 9,
+        "clockSampleCount": 0,
+        "errors": [],
+        "firstAssessmentInput": 4,
+        "transferInput": 3,
+        "formatRoundtrip": [
+          {
+            "display": "-8",
+            "parsed": -8
+          },
+          {
+            "display": "-6",
+            "parsed": -6
+          }
+        ]
+      },
+      "consumerEvidence": {
+        "layoutEvidence": {
+          "ok": true,
+          "errors": [],
+          "manifestSha256": "7004239d984ca479d4cfe36872fa1c922c2d213e982134c1a3d3dfd71f40a9d8",
+          "runtimeProfileSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+          "scope": "26 consumers;352 real frames;1245 grid/clock/contact states; default-camera full-glyph and actual label projection; no arbitrary-camera guarantee"
+        },
+        "clockSceneEvidence": {
+          "ok": true,
+          "proofSha256": "3588bf3c79a8d4af6a652b2dde0190cc45cdb079376e12e7a5a2ad50e38a32d2",
+          "protocolSha256": "6e2a41d479d5ca30407f7605fa16ca70e2f2813b20d078161f51998730eb822b",
+          "manifestSha256": "a307e5974daba99c32cd47703aba61df241df88c628a0eac303bdc398d4819c4",
+          "observedCaseCount": 24,
+          "visibleClockSceneCount": 16
+        },
+        "ok": true,
+        "proofSha256": "02f6c079b05f932deb8619854684eea23d34c3f9f08d329222e9079d9b44ccbb",
+        "protocolSha256": "7fbe8e90780d0379a2aaff996094eab5c72c526f9b642c1bc85cd9dc8ed20460",
+        "observedCaseCount": 104,
+        "runtimeProfileSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+        "meaning": "Genuine current runtime observation, no historical retag. Technical PASS alone is not independent scientific approval; whole runtime and fresh exact-engine comparisons required per report."
+      },
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "previousConsumerReview": {
+        "runtimeProfileSha256": "54054f7ac463ef52f7c4c881d50ee071713315d891812696f18e39d9ad45ab3d",
+        "ok": true,
+        "sourcePhysicsAndAssignedManualTasks": "PASS_AI",
+        "reportSha256": "3da592a5c4342d8220c1ce3e0b8e93a81873ff8ad42865e8468817805718e022",
+        "meaning": "Immutable historical consumer judgment, not retagged as current"
+      },
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "SIM-C1-L008-02",
+      "sourceSha256": "9c45efcc810be79778c82fbbc3c64b2d0a4a189091f4f544f7c2618b2f2650e6",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/esperienze-C1.json",
+      "sourceFileSha256": "84d13bd2658be3b0ce2a55bf7dc698d64ceae151b09deafeabd71507a41d70e3",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "first reference",
+          "independentExact": "22",
+          "expectedValue": "22",
+          "unit": "mJ",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "relation": "exact",
+          "scope": "actual_assigned_manual_calculation",
+          "ok": true
+        },
+        {
+          "claim": "first assigned task",
+          "independentExact": "150",
+          "expectedValue": "150",
+          "unit": "mJ",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "relation": "exact",
+          "scope": "actual_assigned_manual_calculation",
+          "ok": true
+        },
+        {
+          "claim": "actual generated transfer",
+          "independentExact": "125/2",
+          "expectedValue": "125/2",
+          "unit": "mJ",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "relation": "exact",
+          "scope": "actual_assigned_manual_calculation",
+          "ok": true
+        },
+        {
+          "claim": "5cm gravitational50mJ",
+          "independentExact": "50",
+          "expectedValue": "50",
+          "unit": "mJ",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "relation": "exact",
+          "scope": "actual_assigned_manual_calculation",
+          "ok": true
+        },
+        {
+          "claim": "5cm elastic12.5mJ",
+          "independentExact": "25/2",
+          "expectedValue": "25/2",
+          "unit": "mJ",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "relation": "exact",
+          "scope": "actual_assigned_manual_calculation",
+          "ok": true
+        },
+        {
+          "claim": "10cm total150mJ",
+          "independentExact": "150",
+          "expectedValue": "150",
+          "unit": "mJ",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "relation": "exact",
+          "scope": "actual_assigned_manual_calculation",
+          "ok": true
+        },
+        {
+          "claim": "initial unstrained zero potential reference",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "relation": "exact",
+          "scope": "actual_assigned_manual_calculation",
+          "ok": true
+        },
+        {
+          "claim": "external quasistatic lift force from potential derivative",
+          "independentExact": "F + h*k",
+          "expectedValue": "F + h*k",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "relation": "exact",
+          "scope": "reviewer_probe_not_assigned_work",
+          "ok": true
+        },
+        {
+          "claim": "fresh actual adapter/law/graph/apparatus/clock/generated-task comparison",
+          "ok": true,
+          "dimension": {},
+          "caseCount": 11,
+          "clockSampleCount": 0,
+          "errors": []
+        },
+        {
+          "claim": "actual numeric display/input roundtrip0",
+          "ok": true,
+          "dimension": {},
+          "actual": {
+            "display": "150",
+            "parsed": 150
+          },
+          "independentExact": "150"
+        },
+        {
+          "claim": "actual numeric display/input roundtrip1",
+          "ok": true,
+          "dimension": {},
+          "actual": {
+            "display": "62,5",
+            "parsed": 62.5
+          },
+          "independentExact": "125/2"
+        }
+      ],
+      "dimension": {
+        "first reference": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "first assigned task": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "actual generated transfer": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "5cm gravitational50mJ": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "5cm elastic12.5mJ": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "10cm total150mJ": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "initial unstrained zero potential reference": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "external quasistatic lift force from potential derivative": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "fresh actual adapter/law/graph/apparatus/clock/generated-task comparison": {},
+        "actual numeric display/input roundtrip0": {},
+        "actual numeric display/input roundtrip1": {}
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "sourceScientificReview": {
+        "ok": true,
+        "errors": []
+      },
+      "consumerReview": {
+        "ok": true,
+        "errors": []
+      },
+      "manualArithmetic": "Assigned weight1N and springk10N/m; h=x_cm/100m. Gravitational increase .01xJ=10x mJ; spring increase .5*10*(x/100)²J=.5x²mJ. Total10x+.5x²;10cm150mJ and generated5cm125/2mJ. External lifting agent implied, not free equilibrium of the unloaded vertical spring.",
+      "manualFeasibility": "PASS_AI_EXACT_ASSIGNED_TASKS",
+      "physicalAssumptions": "Assigned weight1N, ideal springk10N/m initially unstrained below body, common positive vertical rise/extension0..10cm. Potential reference at that initial quota/unstrained spring. Externally imposed lifting, not spontaneous equilibrium of an unsupported weight at the unloaded position. No mass/g value or actual material yield calibration invented.",
+      "pedagogicalReview": "All source fields and actual generated predictions, two assessments, worked substitutions, stage guides, readouts, graphs, apparatus and clocks read. Explicit actual transfer values/manual procedures, domain/zero/sign cases and physical hypotheses reviewed; independent numeric/unit/renderer probes are not source-authored instructions, student calibration or human approval.",
+      "assetChecksums": {},
+      "figureReview": "Vertical spring length1.5+0.105*x_cm, mass centre1.6+0.105*x. Height increase and spring extension have common metric, no force arrow falsely showing free equilibrium. Energy contributions independently checked in mJ, and zero reference is assigned, not inferred from desktop pixels.",
+      "runtimeSha256": {
+        "static/js/banchi/voci/esperimento.js": "cc435e51b62d5b9961b32f5d9b349171f7432e3bf6a6911cd80daaa1f419767b",
+        "static/js/banchi/voci/engines.js": "09a6447a971d0e90c49cfea0307e82ea75f4441a7174c017768d6d62ad514dab",
+        "static/js/banchi/voci/assessment-selection.js": "2f5435b6c9e8b76667d0a95f35860f835117cf8230a635c4c3a54c479fbc54b3",
+        "static/js/banchi/voci/geometria.js": "986bdbfad0cf6e6e057002ee2efdeff0a08df31bfb45f9c046063fcba5840f08",
+        "static/js/banchi/voci/tavola.js": "cc3f7fa8da541109fdda9f8bacca23eea43d1031b2145688b2d80513f47d5283",
+        "static/js/banchi/voci/confronti.js": "83f1ab0d443dc93eb72c0318e32856179486643257c5bbf136e686464fdc6c39",
+        "static/js/banchi/voci/legende.js": "eb303ca6a6013377462b51c92b541a650ee2686257cd7e4ee39fea5221a521f7",
+        "static/js/banchi/voci/orologi.js": "30dd8ab535a31b514c0db13d97d2b046a1add160a7ca7d374deea0d991be73a6",
+        "static/js/banchi/voci/modelli/C1.js": "e5818f20fd19d00fc73434fcacef752d06331efc41d198ffe8c185063e97fa34",
+        "static/js/banchi/voci/apparati/meccanica.js": "9be7ce68847af3d901374e98c7511921d6177d939c547e9b03f2c07a0ebd857d",
+        "static/js/banchi/banco.js": "8200aa5adf026372699790c21f60e0cf3f5fffcb705ef5ee36f609ac3c1e3ed9",
+        "static/js/banchi/misure.js": "46c769f22651529e439b1396e59a017d2c429310b7ae59e2a9717b2ced93c66d",
+        "static/js/banchi/grafici.js": "e5567e88ee6df5c604f8e62228da5e70841556ad0b55fb212fd4d091fdeee3fd",
+        "static/js/banchi/scena.js": "4d94c92a834573062a2af541df113bad06bd11ca538b31bddddc5ec8621a5095",
+        "static/js/banchi/etichette.js": "455ae33c790be4e207e5b5667918c44ea16c95f49e1fea0b13cc92f08aa003f3",
+        "static/js/banchi/aula.js": "44c74446d0d60b20e9dad05b32321f1000f026acdec386ca5aa2f74c20421967",
+        "static/js/ui.js": "77e5f000f5e1a1fe028fff32dad97be29ad72b46d753787a19ad36164cb98f27"
+      },
+      "reviewedRuntimeSha256": {
+        "static/js/banchi/voci/esperimento.js": "cc435e51b62d5b9961b32f5d9b349171f7432e3bf6a6911cd80daaa1f419767b",
+        "static/js/banchi/voci/engines.js": "09a6447a971d0e90c49cfea0307e82ea75f4441a7174c017768d6d62ad514dab",
+        "static/js/banchi/voci/assessment-selection.js": "2f5435b6c9e8b76667d0a95f35860f835117cf8230a635c4c3a54c479fbc54b3",
+        "static/js/banchi/voci/geometria.js": "986bdbfad0cf6e6e057002ee2efdeff0a08df31bfb45f9c046063fcba5840f08",
+        "static/js/banchi/voci/tavola.js": "cc3f7fa8da541109fdda9f8bacca23eea43d1031b2145688b2d80513f47d5283",
+        "static/js/banchi/voci/confronti.js": "83f1ab0d443dc93eb72c0318e32856179486643257c5bbf136e686464fdc6c39",
+        "static/js/banchi/voci/legende.js": "eb303ca6a6013377462b51c92b541a650ee2686257cd7e4ee39fea5221a521f7",
+        "static/js/banchi/voci/orologi.js": "30dd8ab535a31b514c0db13d97d2b046a1add160a7ca7d374deea0d991be73a6",
+        "static/js/banchi/voci/modelli/C1.js": "e5818f20fd19d00fc73434fcacef752d06331efc41d198ffe8c185063e97fa34",
+        "static/js/banchi/voci/apparati/meccanica.js": "9be7ce68847af3d901374e98c7511921d6177d939c547e9b03f2c07a0ebd857d",
+        "static/js/banchi/banco.js": "8200aa5adf026372699790c21f60e0cf3f5fffcb705ef5ee36f609ac3c1e3ed9",
+        "static/js/banchi/misure.js": "46c769f22651529e439b1396e59a017d2c429310b7ae59e2a9717b2ced93c66d",
+        "static/js/banchi/grafici.js": "e5567e88ee6df5c604f8e62228da5e70841556ad0b55fb212fd4d091fdeee3fd",
+        "static/js/banchi/scena.js": "4d94c92a834573062a2af541df113bad06bd11ca538b31bddddc5ec8621a5095",
+        "static/js/banchi/etichette.js": "455ae33c790be4e207e5b5667918c44ea16c95f49e1fea0b13cc92f08aa003f3",
+        "static/js/banchi/aula.js": "44c74446d0d60b20e9dad05b32321f1000f026acdec386ca5aa2f74c20421967",
+        "static/js/ui.js": "77e5f000f5e1a1fe028fff32dad97be29ad72b46d753787a19ad36164cb98f27"
+      },
+      "runtimeProfileSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+      "reviewedRuntimeProfileSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+      "runtimeComparison": {
+        "ok": true,
+        "caseCount": 11,
+        "plannedCaseCount": 11,
+        "clockSampleCount": 0,
+        "errors": [],
+        "firstAssessmentInput": 10,
+        "transferInput": 5,
+        "formatRoundtrip": [
+          {
+            "display": "150",
+            "parsed": 150
+          },
+          {
+            "display": "62,5",
+            "parsed": 62.5
+          }
+        ]
+      },
+      "consumerEvidence": {
+        "layoutEvidence": {
+          "ok": true,
+          "errors": [],
+          "manifestSha256": "7004239d984ca479d4cfe36872fa1c922c2d213e982134c1a3d3dfd71f40a9d8",
+          "runtimeProfileSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+          "scope": "26 consumers;352 real frames;1245 grid/clock/contact states; default-camera full-glyph and actual label projection; no arbitrary-camera guarantee"
+        },
+        "clockSceneEvidence": {
+          "ok": true,
+          "proofSha256": "3588bf3c79a8d4af6a652b2dde0190cc45cdb079376e12e7a5a2ad50e38a32d2",
+          "protocolSha256": "6e2a41d479d5ca30407f7605fa16ca70e2f2813b20d078161f51998730eb822b",
+          "manifestSha256": "a307e5974daba99c32cd47703aba61df241df88c628a0eac303bdc398d4819c4",
+          "observedCaseCount": 24,
+          "visibleClockSceneCount": 16
+        },
+        "ok": true,
+        "proofSha256": "02f6c079b05f932deb8619854684eea23d34c3f9f08d329222e9079d9b44ccbb",
+        "protocolSha256": "7fbe8e90780d0379a2aaff996094eab5c72c526f9b642c1bc85cd9dc8ed20460",
+        "observedCaseCount": 104,
+        "runtimeProfileSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+        "meaning": "Genuine current runtime observation, no historical retag. Technical PASS alone is not independent scientific approval; whole runtime and fresh exact-engine comparisons required per report."
+      },
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "previousConsumerReview": {
+        "runtimeProfileSha256": "54054f7ac463ef52f7c4c881d50ee071713315d891812696f18e39d9ad45ab3d",
+        "ok": true,
+        "sourcePhysicsAndAssignedManualTasks": "PASS_AI",
+        "reportSha256": "3da592a5c4342d8220c1ce3e0b8e93a81873ff8ad42865e8468817805718e022",
+        "meaning": "Immutable historical consumer judgment, not retagged as current"
+      },
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "SIM-C1-L008-03",
+      "sourceSha256": "d22fc2f2c71f9e014f8416f7093cf82d2e4ef54e2a9cd75451dba35383eb280f",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/esperienze-C1.json",
+      "sourceFileSha256": "84d13bd2658be3b0ce2a55bf7dc698d64ceae151b09deafeabd71507a41d70e3",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "first reference",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "relation": "exact",
+          "scope": "actual_assigned_manual_calculation",
+          "ok": true
+        },
+        {
+          "claim": "first assigned task",
+          "independentExact": "30",
+          "expectedValue": "30",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "relation": "exact",
+          "scope": "actual_assigned_manual_calculation",
+          "ok": true
+        },
+        {
+          "claim": "actual generated transfer",
+          "independentExact": "25",
+          "expectedValue": "25",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "relation": "exact",
+          "scope": "actual_assigned_manual_calculation",
+          "ok": true
+        },
+        {
+          "claim": "KplusU conserved50",
+          "independentExact": "50",
+          "expectedValue": "50",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "relation": "exact",
+          "scope": "actual_assigned_manual_calculation",
+          "ok": true
+        },
+        {
+          "claim": "5m initial50J gravitational",
+          "independentExact": "50",
+          "expectedValue": "50",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "relation": "exact",
+          "scope": "actual_assigned_manual_calculation",
+          "ok": true
+        },
+        {
+          "claim": "at2.5m descending25J",
+          "independentExact": "25",
+          "expectedValue": "25",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "relation": "exact",
+          "scope": "actual_assigned_manual_calculation",
+          "ok": true
+        },
+        {
+          "claim": "zeroheight has50J kinetic",
+          "independentExact": "50",
+          "expectedValue": "50",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "relation": "exact",
+          "scope": "actual_assigned_manual_calculation",
+          "ok": true
+        },
+        {
+          "claim": "fresh actual adapter/law/graph/apparatus/clock/generated-task comparison",
+          "ok": true,
+          "dimension": {},
+          "caseCount": 21,
+          "clockSampleCount": 0,
+          "errors": []
+        },
+        {
+          "claim": "actual numeric display/input roundtrip0",
+          "ok": true,
+          "dimension": {},
+          "actual": {
+            "display": "30",
+            "parsed": 30
+          },
+          "independentExact": "30"
+        },
+        {
+          "claim": "actual numeric display/input roundtrip1",
+          "ok": true,
+          "dimension": {},
+          "actual": {
+            "display": "25",
+            "parsed": 25
+          },
+          "independentExact": "25"
+        }
+      ],
+      "dimension": {
+        "first reference": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "first assigned task": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "actual generated transfer": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "KplusU conserved50": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "5m initial50J gravitational": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "at2.5m descending25J": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "zeroheight has50J kinetic": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "fresh actual adapter/law/graph/apparatus/clock/generated-task comparison": {},
+        "actual numeric display/input roundtrip0": {},
+        "actual numeric display/input roundtrip1": {}
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "sourceScientificReview": {
+        "ok": true,
+        "errors": []
+      },
+      "consumerReview": {
+        "ok": true,
+        "errors": []
+      },
+      "manualArithmetic": "Conserved mechanical energy from rest at h0=5m,m1kg,g10 is50J. U10h and K50-10h on0<=h<=5. Tasks2m=>30J, generated2.5m=>25J. Static height comparison, not a prescribed-time trajectory.",
+      "manualFeasibility": "PASS_AI_EXACT_ASSIGNED_TASKS",
+      "physicalAssumptions": "Mass1kg,g10m/s², from rest at5m, no friction; mechanical energy50J. Quota0..5m, potential reference at zero quota, not an asserted physical tabletop height. Static comparison of energies at selected positions, no clock or post-impact rebound model.",
+      "pedagogicalReview": "All source fields and actual generated predictions, two assessments, worked substitutions, stage guides, readouts, graphs, apparatus and clocks read. Explicit actual transfer values/manual procedures, domain/zero/sign cases and physical hypotheses reviewed; independent numeric/unit/renderer probes are not source-authored instructions, student calibration or human approval.",
+      "assetChecksums": {},
+      "figureReview": "Quota maps linearly to sphere centre0.3+0.41h, red weight constant, no inappropriate20N label from the different tension caller. K and U readings sum50. Figure is an energy-at-height comparison; no elapsed-motion trajectory or quantitative force-arrow scale inferred.",
+      "runtimeSha256": {
+        "static/js/banchi/voci/esperimento.js": "cc435e51b62d5b9961b32f5d9b349171f7432e3bf6a6911cd80daaa1f419767b",
+        "static/js/banchi/voci/engines.js": "09a6447a971d0e90c49cfea0307e82ea75f4441a7174c017768d6d62ad514dab",
+        "static/js/banchi/voci/assessment-selection.js": "2f5435b6c9e8b76667d0a95f35860f835117cf8230a635c4c3a54c479fbc54b3",
+        "static/js/banchi/voci/geometria.js": "986bdbfad0cf6e6e057002ee2efdeff0a08df31bfb45f9c046063fcba5840f08",
+        "static/js/banchi/voci/tavola.js": "cc3f7fa8da541109fdda9f8bacca23eea43d1031b2145688b2d80513f47d5283",
+        "static/js/banchi/voci/confronti.js": "83f1ab0d443dc93eb72c0318e32856179486643257c5bbf136e686464fdc6c39",
+        "static/js/banchi/voci/legende.js": "eb303ca6a6013377462b51c92b541a650ee2686257cd7e4ee39fea5221a521f7",
+        "static/js/banchi/voci/orologi.js": "30dd8ab535a31b514c0db13d97d2b046a1add160a7ca7d374deea0d991be73a6",
+        "static/js/banchi/voci/modelli/C1.js": "e5818f20fd19d00fc73434fcacef752d06331efc41d198ffe8c185063e97fa34",
+        "static/js/banchi/voci/apparati/meccanica.js": "9be7ce68847af3d901374e98c7511921d6177d939c547e9b03f2c07a0ebd857d",
+        "static/js/banchi/banco.js": "8200aa5adf026372699790c21f60e0cf3f5fffcb705ef5ee36f609ac3c1e3ed9",
+        "static/js/banchi/misure.js": "46c769f22651529e439b1396e59a017d2c429310b7ae59e2a9717b2ced93c66d",
+        "static/js/banchi/grafici.js": "e5567e88ee6df5c604f8e62228da5e70841556ad0b55fb212fd4d091fdeee3fd",
+        "static/js/banchi/scena.js": "4d94c92a834573062a2af541df113bad06bd11ca538b31bddddc5ec8621a5095",
+        "static/js/banchi/etichette.js": "455ae33c790be4e207e5b5667918c44ea16c95f49e1fea0b13cc92f08aa003f3",
+        "static/js/banchi/aula.js": "44c74446d0d60b20e9dad05b32321f1000f026acdec386ca5aa2f74c20421967",
+        "static/js/ui.js": "77e5f000f5e1a1fe028fff32dad97be29ad72b46d753787a19ad36164cb98f27"
+      },
+      "reviewedRuntimeSha256": {
+        "static/js/banchi/voci/esperimento.js": "cc435e51b62d5b9961b32f5d9b349171f7432e3bf6a6911cd80daaa1f419767b",
+        "static/js/banchi/voci/engines.js": "09a6447a971d0e90c49cfea0307e82ea75f4441a7174c017768d6d62ad514dab",
+        "static/js/banchi/voci/assessment-selection.js": "2f5435b6c9e8b76667d0a95f35860f835117cf8230a635c4c3a54c479fbc54b3",
+        "static/js/banchi/voci/geometria.js": "986bdbfad0cf6e6e057002ee2efdeff0a08df31bfb45f9c046063fcba5840f08",
+        "static/js/banchi/voci/tavola.js": "cc3f7fa8da541109fdda9f8bacca23eea43d1031b2145688b2d80513f47d5283",
+        "static/js/banchi/voci/confronti.js": "83f1ab0d443dc93eb72c0318e32856179486643257c5bbf136e686464fdc6c39",
+        "static/js/banchi/voci/legende.js": "eb303ca6a6013377462b51c92b541a650ee2686257cd7e4ee39fea5221a521f7",
+        "static/js/banchi/voci/orologi.js": "30dd8ab535a31b514c0db13d97d2b046a1add160a7ca7d374deea0d991be73a6",
+        "static/js/banchi/voci/modelli/C1.js": "e5818f20fd19d00fc73434fcacef752d06331efc41d198ffe8c185063e97fa34",
+        "static/js/banchi/voci/apparati/meccanica.js": "9be7ce68847af3d901374e98c7511921d6177d939c547e9b03f2c07a0ebd857d",
+        "static/js/banchi/banco.js": "8200aa5adf026372699790c21f60e0cf3f5fffcb705ef5ee36f609ac3c1e3ed9",
+        "static/js/banchi/misure.js": "46c769f22651529e439b1396e59a017d2c429310b7ae59e2a9717b2ced93c66d",
+        "static/js/banchi/grafici.js": "e5567e88ee6df5c604f8e62228da5e70841556ad0b55fb212fd4d091fdeee3fd",
+        "static/js/banchi/scena.js": "4d94c92a834573062a2af541df113bad06bd11ca538b31bddddc5ec8621a5095",
+        "static/js/banchi/etichette.js": "455ae33c790be4e207e5b5667918c44ea16c95f49e1fea0b13cc92f08aa003f3",
+        "static/js/banchi/aula.js": "44c74446d0d60b20e9dad05b32321f1000f026acdec386ca5aa2f74c20421967",
+        "static/js/ui.js": "77e5f000f5e1a1fe028fff32dad97be29ad72b46d753787a19ad36164cb98f27"
+      },
+      "runtimeProfileSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+      "reviewedRuntimeProfileSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+      "runtimeComparison": {
+        "ok": true,
+        "caseCount": 21,
+        "plannedCaseCount": 21,
+        "clockSampleCount": 0,
+        "errors": [],
+        "firstAssessmentInput": 2,
+        "transferInput": 2.5,
+        "formatRoundtrip": [
+          {
+            "display": "30",
+            "parsed": 30
+          },
+          {
+            "display": "25",
+            "parsed": 25
+          }
+        ]
+      },
+      "consumerEvidence": {
+        "layoutEvidence": {
+          "ok": true,
+          "errors": [],
+          "manifestSha256": "7004239d984ca479d4cfe36872fa1c922c2d213e982134c1a3d3dfd71f40a9d8",
+          "runtimeProfileSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+          "scope": "26 consumers;352 real frames;1245 grid/clock/contact states; default-camera full-glyph and actual label projection; no arbitrary-camera guarantee"
+        },
+        "clockSceneEvidence": {
+          "ok": true,
+          "proofSha256": "3588bf3c79a8d4af6a652b2dde0190cc45cdb079376e12e7a5a2ad50e38a32d2",
+          "protocolSha256": "6e2a41d479d5ca30407f7605fa16ca70e2f2813b20d078161f51998730eb822b",
+          "manifestSha256": "a307e5974daba99c32cd47703aba61df241df88c628a0eac303bdc398d4819c4",
+          "observedCaseCount": 24,
+          "visibleClockSceneCount": 16
+        },
+        "ok": true,
+        "proofSha256": "02f6c079b05f932deb8619854684eea23d34c3f9f08d329222e9079d9b44ccbb",
+        "protocolSha256": "7fbe8e90780d0379a2aaff996094eab5c72c526f9b642c1bc85cd9dc8ed20460",
+        "observedCaseCount": 104,
+        "runtimeProfileSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+        "meaning": "Genuine current runtime observation, no historical retag. Technical PASS alone is not independent scientific approval; whole runtime and fresh exact-engine comparisons required per report."
+      },
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "previousConsumerReview": {
+        "runtimeProfileSha256": "54054f7ac463ef52f7c4c881d50ee071713315d891812696f18e39d9ad45ab3d",
+        "ok": true,
+        "sourcePhysicsAndAssignedManualTasks": "PASS_AI",
+        "reportSha256": "3da592a5c4342d8220c1ce3e0b8e93a81873ff8ad42865e8468817805718e022",
+        "meaning": "Immutable historical consumer judgment, not retagged as current"
+      },
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "SIM-C1-L009-01",
+      "sourceSha256": "eccdf47fee4ba0e66fa1b39662cc1fb43a15668928e9afdef5e08533cc54f91e",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/esperienze-C1.json",
+      "sourceFileSha256": "84d13bd2658be3b0ce2a55bf7dc698d64ceae151b09deafeabd71507a41d70e3",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "first reference",
+          "independentExact": "4",
+          "expectedValue": "4",
+          "unit": "N*s",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "residual": "0",
+          "relation": "exact",
+          "scope": "actual_assigned_manual_calculation",
+          "ok": true
+        },
+        {
+          "claim": "first assigned task",
+          "independentExact": "8",
+          "expectedValue": "8",
+          "unit": "N*s",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "residual": "0",
+          "relation": "exact",
+          "scope": "actual_assigned_manual_calculation",
+          "ok": true
+        },
+        {
+          "claim": "actual generated transfer",
+          "independentExact": "6",
+          "expectedValue": "6",
+          "unit": "N*s",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "residual": "0",
+          "relation": "exact",
+          "scope": "actual_assigned_manual_calculation",
+          "ok": true
+        },
+        {
+          "claim": "impulse from force integral",
+          "independentExact": "4*t",
+          "expectedValue": "4*t",
+          "unit": "N*s",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "residual": "0",
+          "relation": "exact",
+          "scope": "actual_assigned_manual_calculation",
+          "ok": true
+        },
+        {
+          "claim": "Ns equalskgmetrepersecond",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "kg*m/s",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "residual": "0",
+          "relation": "exact",
+          "scope": "actual_assigned_manual_calculation",
+          "ok": true
+        },
+        {
+          "claim": "8kg timesvelocity equals impulse",
+          "independentExact": "4*t",
+          "expectedValue": "4*t",
+          "unit": "kg*m/s",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "residual": "0",
+          "relation": "exact",
+          "scope": "actual_assigned_manual_calculation",
+          "ok": true
+        },
+        {
+          "claim": "4N acrossdisplacement equals kinetic gain",
+          "independentExact": "t**2",
+          "expectedValue": "t**2",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "relation": "exact",
+          "scope": "independent_consistency_probe",
+          "ok": true
+        },
+        {
+          "claim": "constantforce Newton accelerationhalf",
+          "independentExact": "1/2",
+          "expectedValue": "1/2",
+          "unit": "m/s^2",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "relation": "exact",
+          "scope": "actual_assigned_manual_calculation",
+          "ok": true
+        },
+        {
+          "claim": "fresh actual adapter/law/graph/apparatus/clock/generated-task comparison",
+          "ok": true,
+          "dimension": {},
+          "caseCount": 13,
+          "clockSampleCount": 52,
+          "errors": []
+        },
+        {
+          "claim": "actual numeric display/input roundtrip0",
+          "ok": true,
+          "dimension": {},
+          "actual": {
+            "display": "8",
+            "parsed": 8
+          },
+          "independentExact": "8"
+        },
+        {
+          "claim": "actual numeric display/input roundtrip1",
+          "ok": true,
+          "dimension": {},
+          "actual": {
+            "display": "6",
+            "parsed": 6
+          },
+          "independentExact": "6"
+        }
+      ],
+      "dimension": {
+        "first reference": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "first assigned task": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "actual generated transfer": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "impulse from force integral": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "Ns equalskgmetrepersecond": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "8kg timesvelocity equals impulse": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "4N acrossdisplacement equals kinetic gain": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "constantforce Newton accelerationhalf": {
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "fresh actual adapter/law/graph/apparatus/clock/generated-task comparison": {},
+        "actual numeric display/input roundtrip0": {},
+        "actual numeric display/input roundtrip1": {}
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "sourceScientificReview": {
+        "ok": true,
+        "errors": []
+      },
+      "consumerReview": {
+        "ok": true,
+        "errors": []
+      },
+      "manualArithmetic": "Impulse4N*t changes momentum from0. Mass8kg has a1/2 m/s², v=t/2, displacementt²/4. Tasks2s8Ns, generated1.5s6Ns. Ns=kgm/s. Actual elapsed clock must synchronize scalar, speed arrow and position.",
+      "manualFeasibility": "PASS_AI_EXACT_ASSIGNED_TASKS",
+      "physicalAssumptions": "Mass8kg from rest under constant net4N along one straight axis; duration0..3s, a0.5m/s². Impulse equals signed momentum change; zero duration0impulse. This is an elapsed-time experiment, not independent repeated-parameter animation.",
+      "pedagogicalReview": "All source fields and actual generated predictions, two assessments, worked substitutions, stage guides, readouts, graphs, apparatus and clocks read. Explicit actual transfer values/manual procedures, domain/zero/sign cases and physical hypotheses reviewed; independent numeric/unit/renderer probes are not source-authored instructions, student calibration or human approval.",
+      "assetChecksums": {},
+      "figureReview": "One purple cart centre-1.8+t²/4, velocity-arrowdelta t/2, elapsedinput0..3s. Geometry, scalar4t impulse, clock and readings share the actual elapsed instant. Cart shape is illustrative, not an inferred8kg-from-volume calibration.",
+      "runtimeSha256": {
+        "static/js/banchi/voci/esperimento.js": "cc435e51b62d5b9961b32f5d9b349171f7432e3bf6a6911cd80daaa1f419767b",
+        "static/js/banchi/voci/engines.js": "09a6447a971d0e90c49cfea0307e82ea75f4441a7174c017768d6d62ad514dab",
+        "static/js/banchi/voci/assessment-selection.js": "2f5435b6c9e8b76667d0a95f35860f835117cf8230a635c4c3a54c479fbc54b3",
+        "static/js/banchi/voci/geometria.js": "986bdbfad0cf6e6e057002ee2efdeff0a08df31bfb45f9c046063fcba5840f08",
+        "static/js/banchi/voci/tavola.js": "cc3f7fa8da541109fdda9f8bacca23eea43d1031b2145688b2d80513f47d5283",
+        "static/js/banchi/voci/confronti.js": "83f1ab0d443dc93eb72c0318e32856179486643257c5bbf136e686464fdc6c39",
+        "static/js/banchi/voci/legende.js": "eb303ca6a6013377462b51c92b541a650ee2686257cd7e4ee39fea5221a521f7",
+        "static/js/banchi/voci/orologi.js": "30dd8ab535a31b514c0db13d97d2b046a1add160a7ca7d374deea0d991be73a6",
+        "static/js/banchi/voci/modelli/C1.js": "e5818f20fd19d00fc73434fcacef752d06331efc41d198ffe8c185063e97fa34",
+        "static/js/banchi/voci/apparati/meccanica.js": "9be7ce68847af3d901374e98c7511921d6177d939c547e9b03f2c07a0ebd857d",
+        "static/js/banchi/banco.js": "8200aa5adf026372699790c21f60e0cf3f5fffcb705ef5ee36f609ac3c1e3ed9",
+        "static/js/banchi/misure.js": "46c769f22651529e439b1396e59a017d2c429310b7ae59e2a9717b2ced93c66d",
+        "static/js/banchi/grafici.js": "e5567e88ee6df5c604f8e62228da5e70841556ad0b55fb212fd4d091fdeee3fd",
+        "static/js/banchi/scena.js": "4d94c92a834573062a2af541df113bad06bd11ca538b31bddddc5ec8621a5095",
+        "static/js/banchi/etichette.js": "455ae33c790be4e207e5b5667918c44ea16c95f49e1fea0b13cc92f08aa003f3",
+        "static/js/banchi/aula.js": "44c74446d0d60b20e9dad05b32321f1000f026acdec386ca5aa2f74c20421967",
+        "static/js/ui.js": "77e5f000f5e1a1fe028fff32dad97be29ad72b46d753787a19ad36164cb98f27"
+      },
+      "reviewedRuntimeSha256": {
+        "static/js/banchi/voci/esperimento.js": "cc435e51b62d5b9961b32f5d9b349171f7432e3bf6a6911cd80daaa1f419767b",
+        "static/js/banchi/voci/engines.js": "09a6447a971d0e90c49cfea0307e82ea75f4441a7174c017768d6d62ad514dab",
+        "static/js/banchi/voci/assessment-selection.js": "2f5435b6c9e8b76667d0a95f35860f835117cf8230a635c4c3a54c479fbc54b3",
+        "static/js/banchi/voci/geometria.js": "986bdbfad0cf6e6e057002ee2efdeff0a08df31bfb45f9c046063fcba5840f08",
+        "static/js/banchi/voci/tavola.js": "cc3f7fa8da541109fdda9f8bacca23eea43d1031b2145688b2d80513f47d5283",
+        "static/js/banchi/voci/confronti.js": "83f1ab0d443dc93eb72c0318e32856179486643257c5bbf136e686464fdc6c39",
+        "static/js/banchi/voci/legende.js": "eb303ca6a6013377462b51c92b541a650ee2686257cd7e4ee39fea5221a521f7",
+        "static/js/banchi/voci/orologi.js": "30dd8ab535a31b514c0db13d97d2b046a1add160a7ca7d374deea0d991be73a6",
+        "static/js/banchi/voci/modelli/C1.js": "e5818f20fd19d00fc73434fcacef752d06331efc41d198ffe8c185063e97fa34",
+        "static/js/banchi/voci/apparati/meccanica.js": "9be7ce68847af3d901374e98c7511921d6177d939c547e9b03f2c07a0ebd857d",
+        "static/js/banchi/banco.js": "8200aa5adf026372699790c21f60e0cf3f5fffcb705ef5ee36f609ac3c1e3ed9",
+        "static/js/banchi/misure.js": "46c769f22651529e439b1396e59a017d2c429310b7ae59e2a9717b2ced93c66d",
+        "static/js/banchi/grafici.js": "e5567e88ee6df5c604f8e62228da5e70841556ad0b55fb212fd4d091fdeee3fd",
+        "static/js/banchi/scena.js": "4d94c92a834573062a2af541df113bad06bd11ca538b31bddddc5ec8621a5095",
+        "static/js/banchi/etichette.js": "455ae33c790be4e207e5b5667918c44ea16c95f49e1fea0b13cc92f08aa003f3",
+        "static/js/banchi/aula.js": "44c74446d0d60b20e9dad05b32321f1000f026acdec386ca5aa2f74c20421967",
+        "static/js/ui.js": "77e5f000f5e1a1fe028fff32dad97be29ad72b46d753787a19ad36164cb98f27"
+      },
+      "runtimeProfileSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+      "reviewedRuntimeProfileSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+      "runtimeComparison": {
+        "ok": true,
+        "caseCount": 13,
+        "plannedCaseCount": 13,
+        "clockSampleCount": 52,
+        "errors": [],
+        "firstAssessmentInput": 2,
+        "transferInput": 1.5,
+        "formatRoundtrip": [
+          {
+            "display": "8",
+            "parsed": 8
+          },
+          {
+            "display": "6",
+            "parsed": 6
+          }
+        ]
+      },
+      "consumerEvidence": {
+        "layoutEvidence": {
+          "ok": true,
+          "errors": [],
+          "manifestSha256": "7004239d984ca479d4cfe36872fa1c922c2d213e982134c1a3d3dfd71f40a9d8",
+          "runtimeProfileSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+          "scope": "26 consumers;352 real frames;1245 grid/clock/contact states; default-camera full-glyph and actual label projection; no arbitrary-camera guarantee"
+        },
+        "clockSceneEvidence": {
+          "ok": true,
+          "proofSha256": "3588bf3c79a8d4af6a652b2dde0190cc45cdb079376e12e7a5a2ad50e38a32d2",
+          "protocolSha256": "6e2a41d479d5ca30407f7605fa16ca70e2f2813b20d078161f51998730eb822b",
+          "manifestSha256": "a307e5974daba99c32cd47703aba61df241df88c628a0eac303bdc398d4819c4",
+          "observedCaseCount": 24,
+          "visibleClockSceneCount": 16
+        },
+        "ok": true,
+        "proofSha256": "02f6c079b05f932deb8619854684eea23d34c3f9f08d329222e9079d9b44ccbb",
+        "protocolSha256": "7fbe8e90780d0379a2aaff996094eab5c72c526f9b642c1bc85cd9dc8ed20460",
+        "observedCaseCount": 104,
+        "runtimeProfileSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+        "meaning": "Genuine current runtime observation, no historical retag. Technical PASS alone is not independent scientific approval; whole runtime and fresh exact-engine comparisons required per report."
+      },
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "previousConsumerReview": {
+        "runtimeProfileSha256": "54054f7ac463ef52f7c4c881d50ee071713315d891812696f18e39d9ad45ab3d",
+        "ok": true,
+        "sourcePhysicsAndAssignedManualTasks": "PASS_AI",
+        "reportSha256": "3da592a5c4342d8220c1ce3e0b8e93a81873ff8ad42865e8468817805718e022",
+        "meaning": "Immutable historical consumer judgment, not retagged as current"
+      },
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "SIM-C1-L009-02",
+      "sourceSha256": "30b511ec4f02a6306a50fdcf8154e765d0427287ed06d1213ba321fe11d2afb6",
+      "sourceVersion": 2,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/esperienze-C1.json",
+      "sourceFileSha256": "84d13bd2658be3b0ce2a55bf7dc698d64ceae151b09deafeabd71507a41d70e3",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "first reference",
+          "independentExact": "-1",
+          "expectedValue": "-1",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "residual": "0",
+          "relation": "exact",
+          "scope": "actual_assigned_manual_calculation",
+          "ok": true
+        },
+        {
+          "claim": "first assigned task",
+          "independentExact": "3/2",
+          "expectedValue": "3/2",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "residual": "0",
+          "relation": "exact",
+          "scope": "actual_assigned_manual_calculation",
+          "ok": true
+        },
+        {
+          "claim": "actual generated transfer",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "residual": "0",
+          "relation": "exact",
+          "scope": "actual_assigned_manual_calculation",
+          "ok": true
+        },
+        {
+          "claim": "isolated momentum independently solves commonvelocity",
+          "independentExact": "u/2",
+          "expectedValue": "u/2",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "residual": "0",
+          "relation": "exact",
+          "scope": "actual_assigned_manual_calculation",
+          "ok": true
+        },
+        {
+          "claim": "inelastic kinetic ratio for nonzeroinitialvelocity",
+          "independentExact": "1/2",
+          "expectedValue": "1/2",
+          "unit": "",
+          "dimension": {},
+          "residual": "0",
+          "relation": "exact",
+          "scope": "domain_initial_velocity_nonzero",
+          "ok": true
+        },
+        {
+          "claim": "dissipated kinetic fractionhalf",
+          "independentExact": "1/2",
+          "expectedValue": "1/2",
+          "unit": "",
+          "dimension": {},
+          "residual": "0",
+          "relation": "exact",
+          "scope": "domain_initial_velocity_nonzero",
+          "ok": true
+        },
+        {
+          "claim": "zero initial means both kineticenergieszero",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "relation": "exact",
+          "scope": "actual_assigned_manual_calculation",
+          "ok": true
+        },
+        {
+          "claim": "negative initialminus3 givesminus1.5",
+          "independentExact": "-3/2",
+          "expectedValue": "-3/2",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "residual": "0",
+          "relation": "exact",
+          "scope": "actual_assigned_manual_calculation",
+          "ok": true
+        },
+        {
+          "claim": "fresh actual adapter/law/graph/apparatus/clock/generated-task comparison",
+          "ok": true,
+          "dimension": {},
+          "caseCount": 13,
+          "clockSampleCount": 73,
+          "errors": []
+        },
+        {
+          "claim": "actual numeric display/input roundtrip0",
+          "ok": true,
+          "dimension": {},
+          "actual": {
+            "display": "1,5",
+            "parsed": 1.5
+          },
+          "independentExact": "3/2"
+        },
+        {
+          "claim": "actual numeric display/input roundtrip1",
+          "ok": true,
+          "dimension": {},
+          "actual": {
+            "display": "0",
+            "parsed": 0
+          },
+          "independentExact": "0"
+        }
+      ],
+      "dimension": {
+        "first reference": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "first assigned task": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "actual generated transfer": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "isolated momentum independently solves commonvelocity": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "inelastic kinetic ratio for nonzeroinitialvelocity": {},
+        "dissipated kinetic fractionhalf": {},
+        "zero initial means both kineticenergieszero": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "negative initialminus3 givesminus1.5": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "fresh actual adapter/law/graph/apparatus/clock/generated-task comparison": {},
+        "actual numeric display/input roundtrip0": {},
+        "actual numeric display/input roundtrip1": {}
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "sourceScientificReview": {
+        "ok": true,
+        "errors": []
+      },
+      "consumerReview": {
+        "ok": true,
+        "errors": []
+      },
+      "manualArithmetic": "Equal masses, isolated perfectly inelastic collinear collision: m*u+0=2m*v=>v=u/2. Kf/Ki1/2 only u!=0; u0 both K0 and no collision, source explicitly distinguishes. Generated transfer0 gives unchanged0 velocities; source first tasku3=>1.5m/s. Before/after event at0.5s must be checked with signed approach side, current velocities and final-labeled instrument; no ratio0/0.",
+      "manualFeasibility": "PASS_AI_EXACT_ASSIGNED_TASKS",
+      "physicalAssumptions": "Equal masses, initially B at rest, perfectly inelastic collinear contact at0.5s with negligible external impulse. Initial u-3..3m/s sets approach side; scalar readout is explicitly final, while position signal/arrows are current. At u0 both energieszero, no collision and no numerical kinetic ratio0/0. Sourceversion2 explicitly describes this degenerate branch.",
+      "pedagogicalReview": "All source fields and actual generated predictions, two assessments, worked substitutions, stage guides, readouts, graphs, apparatus and clocks read. Explicit actual transfer values/manual procedures, domain/zero/sign cases and physical hypotheses reviewed; independent numeric/unit/renderer probes are not source-authored instructions, student calibration or human approval.",
+      "assetChecksums": {},
+      "figureReview": "Native/fallback before/after contact in both signs read. Motion uses physical A=centreB-sign0.7+u*min(t-0.5,0), B=centreB=u*max(t-0.5,0)/2; scene positions gain0.8. At contact separation0.56 matches two cart half-widths0.28, rather than an unexplained gap/overlap. Velocity arrows correctly change from u/0 to u/2,u/2; time plot/current-A readout agree. Base no-time pose is separately checked and is not mistaken for the animated frame.",
+      "runtimeSha256": {
+        "static/js/banchi/voci/esperimento.js": "cc435e51b62d5b9961b32f5d9b349171f7432e3bf6a6911cd80daaa1f419767b",
+        "static/js/banchi/voci/engines.js": "09a6447a971d0e90c49cfea0307e82ea75f4441a7174c017768d6d62ad514dab",
+        "static/js/banchi/voci/assessment-selection.js": "2f5435b6c9e8b76667d0a95f35860f835117cf8230a635c4c3a54c479fbc54b3",
+        "static/js/banchi/voci/geometria.js": "986bdbfad0cf6e6e057002ee2efdeff0a08df31bfb45f9c046063fcba5840f08",
+        "static/js/banchi/voci/tavola.js": "cc3f7fa8da541109fdda9f8bacca23eea43d1031b2145688b2d80513f47d5283",
+        "static/js/banchi/voci/confronti.js": "83f1ab0d443dc93eb72c0318e32856179486643257c5bbf136e686464fdc6c39",
+        "static/js/banchi/voci/legende.js": "eb303ca6a6013377462b51c92b541a650ee2686257cd7e4ee39fea5221a521f7",
+        "static/js/banchi/voci/orologi.js": "30dd8ab535a31b514c0db13d97d2b046a1add160a7ca7d374deea0d991be73a6",
+        "static/js/banchi/voci/modelli/C1.js": "e5818f20fd19d00fc73434fcacef752d06331efc41d198ffe8c185063e97fa34",
+        "static/js/banchi/voci/apparati/meccanica.js": "9be7ce68847af3d901374e98c7511921d6177d939c547e9b03f2c07a0ebd857d",
+        "static/js/banchi/banco.js": "8200aa5adf026372699790c21f60e0cf3f5fffcb705ef5ee36f609ac3c1e3ed9",
+        "static/js/banchi/misure.js": "46c769f22651529e439b1396e59a017d2c429310b7ae59e2a9717b2ced93c66d",
+        "static/js/banchi/grafici.js": "e5567e88ee6df5c604f8e62228da5e70841556ad0b55fb212fd4d091fdeee3fd",
+        "static/js/banchi/scena.js": "4d94c92a834573062a2af541df113bad06bd11ca538b31bddddc5ec8621a5095",
+        "static/js/banchi/etichette.js": "455ae33c790be4e207e5b5667918c44ea16c95f49e1fea0b13cc92f08aa003f3",
+        "static/js/banchi/aula.js": "44c74446d0d60b20e9dad05b32321f1000f026acdec386ca5aa2f74c20421967",
+        "static/js/ui.js": "77e5f000f5e1a1fe028fff32dad97be29ad72b46d753787a19ad36164cb98f27"
+      },
+      "reviewedRuntimeSha256": {
+        "static/js/banchi/voci/esperimento.js": "cc435e51b62d5b9961b32f5d9b349171f7432e3bf6a6911cd80daaa1f419767b",
+        "static/js/banchi/voci/engines.js": "09a6447a971d0e90c49cfea0307e82ea75f4441a7174c017768d6d62ad514dab",
+        "static/js/banchi/voci/assessment-selection.js": "2f5435b6c9e8b76667d0a95f35860f835117cf8230a635c4c3a54c479fbc54b3",
+        "static/js/banchi/voci/geometria.js": "986bdbfad0cf6e6e057002ee2efdeff0a08df31bfb45f9c046063fcba5840f08",
+        "static/js/banchi/voci/tavola.js": "cc3f7fa8da541109fdda9f8bacca23eea43d1031b2145688b2d80513f47d5283",
+        "static/js/banchi/voci/confronti.js": "83f1ab0d443dc93eb72c0318e32856179486643257c5bbf136e686464fdc6c39",
+        "static/js/banchi/voci/legende.js": "eb303ca6a6013377462b51c92b541a650ee2686257cd7e4ee39fea5221a521f7",
+        "static/js/banchi/voci/orologi.js": "30dd8ab535a31b514c0db13d97d2b046a1add160a7ca7d374deea0d991be73a6",
+        "static/js/banchi/voci/modelli/C1.js": "e5818f20fd19d00fc73434fcacef752d06331efc41d198ffe8c185063e97fa34",
+        "static/js/banchi/voci/apparati/meccanica.js": "9be7ce68847af3d901374e98c7511921d6177d939c547e9b03f2c07a0ebd857d",
+        "static/js/banchi/banco.js": "8200aa5adf026372699790c21f60e0cf3f5fffcb705ef5ee36f609ac3c1e3ed9",
+        "static/js/banchi/misure.js": "46c769f22651529e439b1396e59a017d2c429310b7ae59e2a9717b2ced93c66d",
+        "static/js/banchi/grafici.js": "e5567e88ee6df5c604f8e62228da5e70841556ad0b55fb212fd4d091fdeee3fd",
+        "static/js/banchi/scena.js": "4d94c92a834573062a2af541df113bad06bd11ca538b31bddddc5ec8621a5095",
+        "static/js/banchi/etichette.js": "455ae33c790be4e207e5b5667918c44ea16c95f49e1fea0b13cc92f08aa003f3",
+        "static/js/banchi/aula.js": "44c74446d0d60b20e9dad05b32321f1000f026acdec386ca5aa2f74c20421967",
+        "static/js/ui.js": "77e5f000f5e1a1fe028fff32dad97be29ad72b46d753787a19ad36164cb98f27"
+      },
+      "runtimeProfileSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+      "reviewedRuntimeProfileSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+      "runtimeComparison": {
+        "ok": true,
+        "caseCount": 13,
+        "plannedCaseCount": 13,
+        "clockSampleCount": 73,
+        "errors": [],
+        "firstAssessmentInput": 3,
+        "transferInput": 0,
+        "formatRoundtrip": [
+          {
+            "display": "1,5",
+            "parsed": 1.5
+          },
+          {
+            "display": "0",
+            "parsed": 0
+          }
+        ]
+      },
+      "consumerEvidence": {
+        "layoutEvidence": {
+          "ok": true,
+          "errors": [],
+          "manifestSha256": "7004239d984ca479d4cfe36872fa1c922c2d213e982134c1a3d3dfd71f40a9d8",
+          "runtimeProfileSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+          "scope": "26 consumers;352 real frames;1245 grid/clock/contact states; default-camera full-glyph and actual label projection; no arbitrary-camera guarantee"
+        },
+        "clockSceneEvidence": {
+          "ok": true,
+          "proofSha256": "3588bf3c79a8d4af6a652b2dde0190cc45cdb079376e12e7a5a2ad50e38a32d2",
+          "protocolSha256": "6e2a41d479d5ca30407f7605fa16ca70e2f2813b20d078161f51998730eb822b",
+          "manifestSha256": "a307e5974daba99c32cd47703aba61df241df88c628a0eac303bdc398d4819c4",
+          "observedCaseCount": 24,
+          "visibleClockSceneCount": 16
+        },
+        "ok": true,
+        "proofSha256": "02f6c079b05f932deb8619854684eea23d34c3f9f08d329222e9079d9b44ccbb",
+        "protocolSha256": "7fbe8e90780d0379a2aaff996094eab5c72c526f9b642c1bc85cd9dc8ed20460",
+        "observedCaseCount": 104,
+        "runtimeProfileSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+        "meaning": "Genuine current runtime observation, no historical retag. Technical PASS alone is not independent scientific approval; whole runtime and fresh exact-engine comparisons required per report."
+      },
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "previousConsumerReview": {
+        "runtimeProfileSha256": "54054f7ac463ef52f7c4c881d50ee071713315d891812696f18e39d9ad45ab3d",
+        "ok": true,
+        "sourcePhysicsAndAssignedManualTasks": "PASS_AI",
+        "reportSha256": "3da592a5c4342d8220c1ce3e0b8e93a81873ff8ad42865e8468817805718e022",
+        "meaning": "Immutable historical consumer judgment, not retagged as current"
+      },
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "SIM-C1-L010-01",
+      "sourceSha256": "f6b55612be3759babf84f15ac73ec255231ebfaab03289b66c4d86eb4a4edd2f",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/esperienze-C1.json",
+      "sourceFileSha256": "84d13bd2658be3b0ce2a55bf7dc698d64ceae151b09deafeabd71507a41d70e3",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "first reference",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "residual": "0",
+          "relation": "exact",
+          "scope": "actual_assigned_manual_calculation",
+          "ok": true
+        },
+        {
+          "claim": "first assigned task",
+          "independentExact": "3",
+          "expectedValue": "3",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "residual": "0",
+          "relation": "exact",
+          "scope": "actual_assigned_manual_calculation",
+          "ok": true
+        },
+        {
+          "claim": "actual generated transfer",
+          "independentExact": "5/2",
+          "expectedValue": "5/2",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "residual": "0",
+          "relation": "exact",
+          "scope": "actual_assigned_manual_calculation",
+          "ok": true
+        },
+        {
+          "claim": "mass weighted centre from actualpositions",
+          "independentExact": "t + 1",
+          "expectedValue": "t + 1",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "residual": "0",
+          "relation": "exact",
+          "scope": "actual_assigned_manual_calculation",
+          "ok": true
+        },
+        {
+          "claim": "centre velocity1",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "residual": "0",
+          "relation": "exact",
+          "scope": "actual_assigned_manual_calculation",
+          "ok": true
+        },
+        {
+          "claim": "centre acceleration0",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "m/s^2",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "relation": "exact",
+          "scope": "actual_assigned_manual_calculation",
+          "ok": true
+        },
+        {
+          "claim": "distance tolightcart3",
+          "independentExact": "3",
+          "expectedValue": "3",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "residual": "0",
+          "relation": "exact",
+          "scope": "actual_assigned_manual_calculation",
+          "ok": true
+        },
+        {
+          "claim": "distance toheavycart1",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "residual": "0",
+          "relation": "exact",
+          "scope": "actual_assigned_manual_calculation",
+          "ok": true
+        },
+        {
+          "claim": "total momentum4kgmpersecond",
+          "independentExact": "4",
+          "expectedValue": "4",
+          "unit": "kg*m/s",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "residual": "0",
+          "relation": "exact",
+          "scope": "actual_assigned_manual_calculation",
+          "ok": true
+        },
+        {
+          "claim": "fresh actual adapter/law/graph/apparatus/clock/generated-task comparison",
+          "ok": true,
+          "dimension": {},
+          "caseCount": 13,
+          "clockSampleCount": 52,
+          "errors": []
+        },
+        {
+          "claim": "actual numeric display/input roundtrip0",
+          "ok": true,
+          "dimension": {},
+          "actual": {
+            "display": "3",
+            "parsed": 3
+          },
+          "independentExact": "3"
+        },
+        {
+          "claim": "actual numeric display/input roundtrip1",
+          "ok": true,
+          "dimension": {},
+          "actual": {
+            "display": "2,5",
+            "parsed": 2.5
+          },
+          "independentExact": "5/2"
+        }
+      ],
+      "dimension": {
+        "first reference": {
+          "[length]": "1"
+        },
+        "first assigned task": {
+          "[length]": "1"
+        },
+        "actual generated transfer": {
+          "[length]": "1"
+        },
+        "mass weighted centre from actualpositions": {
+          "[length]": "1"
+        },
+        "centre velocity1": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "centre acceleration0": {
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "distance tolightcart3": {
+          "[length]": "1"
+        },
+        "distance toheavycart1": {
+          "[length]": "1"
+        },
+        "total momentum4kgmpersecond": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "fresh actual adapter/law/graph/apparatus/clock/generated-task comparison": {},
+        "actual numeric display/input roundtrip0": {},
+        "actual numeric display/input roundtrip1": {}
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "sourceScientificReview": {
+        "ok": true,
+        "errors": []
+      },
+      "consumerReview": {
+        "ok": true,
+        "errors": []
+      },
+      "manualArithmetic": "mA1kg,mB3kg,xA=-2+t,xB=2+t; xCM=(xA+3xB)/4=1+t, velocity1, zero acceleration. Centre is3m fromA/1m fromB. Tasks2s=>3m, generated1.5s=>2.5m. Renderer off=-.9 andscale.65 keep both carts on rail through3s; do not falsely infer raw position exceeds rail before applying actual mapping.",
+      "manualFeasibility": "PASS_AI_EXACT_ASSIGNED_TASKS",
+      "physicalAssumptions": "Point centres for masses1/3kg, both +1m/s from positions-2/+2m, zero net external horizontal force, elapsedtime0..3s. Centre weighted by mass, not visual cart volume or arithmetic midpoint. Actual off=-0.9/scale0.65 keep cart centres/wheels on the rail over the whole domain.",
+      "pedagogicalReview": "All source fields and actual generated predictions, two assessments, worked substitutions, stage guides, readouts, graphs, apparatus and clocks read. Explicit actual transfer values/manual procedures, domain/zero/sign cases and physical hypotheses reviewed; independent numeric/unit/renderer probes are not source-authored instructions, student calibration or human approval.",
+      "assetChecksums": {},
+      "figureReview": "World x=-0.9+0.65*physicalx; centre marker uses the same mapping. At t3 heavycart centre2.35 with outerbody2.63<rail2.65, and lightcart start-2.2 also fits. Centre stays between carts and three times closer to heavy in physical distance. Body height styling is not a claimed density/volume measurement.",
+      "runtimeSha256": {
+        "static/js/banchi/voci/esperimento.js": "cc435e51b62d5b9961b32f5d9b349171f7432e3bf6a6911cd80daaa1f419767b",
+        "static/js/banchi/voci/engines.js": "09a6447a971d0e90c49cfea0307e82ea75f4441a7174c017768d6d62ad514dab",
+        "static/js/banchi/voci/assessment-selection.js": "2f5435b6c9e8b76667d0a95f35860f835117cf8230a635c4c3a54c479fbc54b3",
+        "static/js/banchi/voci/geometria.js": "986bdbfad0cf6e6e057002ee2efdeff0a08df31bfb45f9c046063fcba5840f08",
+        "static/js/banchi/voci/tavola.js": "cc3f7fa8da541109fdda9f8bacca23eea43d1031b2145688b2d80513f47d5283",
+        "static/js/banchi/voci/confronti.js": "83f1ab0d443dc93eb72c0318e32856179486643257c5bbf136e686464fdc6c39",
+        "static/js/banchi/voci/legende.js": "eb303ca6a6013377462b51c92b541a650ee2686257cd7e4ee39fea5221a521f7",
+        "static/js/banchi/voci/orologi.js": "30dd8ab535a31b514c0db13d97d2b046a1add160a7ca7d374deea0d991be73a6",
+        "static/js/banchi/voci/modelli/C1.js": "e5818f20fd19d00fc73434fcacef752d06331efc41d198ffe8c185063e97fa34",
+        "static/js/banchi/voci/apparati/meccanica.js": "9be7ce68847af3d901374e98c7511921d6177d939c547e9b03f2c07a0ebd857d",
+        "static/js/banchi/banco.js": "8200aa5adf026372699790c21f60e0cf3f5fffcb705ef5ee36f609ac3c1e3ed9",
+        "static/js/banchi/misure.js": "46c769f22651529e439b1396e59a017d2c429310b7ae59e2a9717b2ced93c66d",
+        "static/js/banchi/grafici.js": "e5567e88ee6df5c604f8e62228da5e70841556ad0b55fb212fd4d091fdeee3fd",
+        "static/js/banchi/scena.js": "4d94c92a834573062a2af541df113bad06bd11ca538b31bddddc5ec8621a5095",
+        "static/js/banchi/etichette.js": "455ae33c790be4e207e5b5667918c44ea16c95f49e1fea0b13cc92f08aa003f3",
+        "static/js/banchi/aula.js": "44c74446d0d60b20e9dad05b32321f1000f026acdec386ca5aa2f74c20421967",
+        "static/js/ui.js": "77e5f000f5e1a1fe028fff32dad97be29ad72b46d753787a19ad36164cb98f27"
+      },
+      "reviewedRuntimeSha256": {
+        "static/js/banchi/voci/esperimento.js": "cc435e51b62d5b9961b32f5d9b349171f7432e3bf6a6911cd80daaa1f419767b",
+        "static/js/banchi/voci/engines.js": "09a6447a971d0e90c49cfea0307e82ea75f4441a7174c017768d6d62ad514dab",
+        "static/js/banchi/voci/assessment-selection.js": "2f5435b6c9e8b76667d0a95f35860f835117cf8230a635c4c3a54c479fbc54b3",
+        "static/js/banchi/voci/geometria.js": "986bdbfad0cf6e6e057002ee2efdeff0a08df31bfb45f9c046063fcba5840f08",
+        "static/js/banchi/voci/tavola.js": "cc3f7fa8da541109fdda9f8bacca23eea43d1031b2145688b2d80513f47d5283",
+        "static/js/banchi/voci/confronti.js": "83f1ab0d443dc93eb72c0318e32856179486643257c5bbf136e686464fdc6c39",
+        "static/js/banchi/voci/legende.js": "eb303ca6a6013377462b51c92b541a650ee2686257cd7e4ee39fea5221a521f7",
+        "static/js/banchi/voci/orologi.js": "30dd8ab535a31b514c0db13d97d2b046a1add160a7ca7d374deea0d991be73a6",
+        "static/js/banchi/voci/modelli/C1.js": "e5818f20fd19d00fc73434fcacef752d06331efc41d198ffe8c185063e97fa34",
+        "static/js/banchi/voci/apparati/meccanica.js": "9be7ce68847af3d901374e98c7511921d6177d939c547e9b03f2c07a0ebd857d",
+        "static/js/banchi/banco.js": "8200aa5adf026372699790c21f60e0cf3f5fffcb705ef5ee36f609ac3c1e3ed9",
+        "static/js/banchi/misure.js": "46c769f22651529e439b1396e59a017d2c429310b7ae59e2a9717b2ced93c66d",
+        "static/js/banchi/grafici.js": "e5567e88ee6df5c604f8e62228da5e70841556ad0b55fb212fd4d091fdeee3fd",
+        "static/js/banchi/scena.js": "4d94c92a834573062a2af541df113bad06bd11ca538b31bddddc5ec8621a5095",
+        "static/js/banchi/etichette.js": "455ae33c790be4e207e5b5667918c44ea16c95f49e1fea0b13cc92f08aa003f3",
+        "static/js/banchi/aula.js": "44c74446d0d60b20e9dad05b32321f1000f026acdec386ca5aa2f74c20421967",
+        "static/js/ui.js": "77e5f000f5e1a1fe028fff32dad97be29ad72b46d753787a19ad36164cb98f27"
+      },
+      "runtimeProfileSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+      "reviewedRuntimeProfileSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+      "runtimeComparison": {
+        "ok": true,
+        "caseCount": 13,
+        "plannedCaseCount": 13,
+        "clockSampleCount": 52,
+        "errors": [],
+        "firstAssessmentInput": 2,
+        "transferInput": 1.5,
+        "formatRoundtrip": [
+          {
+            "display": "3",
+            "parsed": 3
+          },
+          {
+            "display": "2,5",
+            "parsed": 2.5
+          }
+        ]
+      },
+      "consumerEvidence": {
+        "layoutEvidence": {
+          "ok": true,
+          "errors": [],
+          "manifestSha256": "7004239d984ca479d4cfe36872fa1c922c2d213e982134c1a3d3dfd71f40a9d8",
+          "runtimeProfileSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+          "scope": "26 consumers;352 real frames;1245 grid/clock/contact states; default-camera full-glyph and actual label projection; no arbitrary-camera guarantee"
+        },
+        "clockSceneEvidence": {
+          "ok": true,
+          "proofSha256": "3588bf3c79a8d4af6a652b2dde0190cc45cdb079376e12e7a5a2ad50e38a32d2",
+          "protocolSha256": "6e2a41d479d5ca30407f7605fa16ca70e2f2813b20d078161f51998730eb822b",
+          "manifestSha256": "a307e5974daba99c32cd47703aba61df241df88c628a0eac303bdc398d4819c4",
+          "observedCaseCount": 24,
+          "visibleClockSceneCount": 16
+        },
+        "ok": true,
+        "proofSha256": "02f6c079b05f932deb8619854684eea23d34c3f9f08d329222e9079d9b44ccbb",
+        "protocolSha256": "7fbe8e90780d0379a2aaff996094eab5c72c526f9b642c1bc85cd9dc8ed20460",
+        "observedCaseCount": 104,
+        "runtimeProfileSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+        "meaning": "Genuine current runtime observation, no historical retag. Technical PASS alone is not independent scientific approval; whole runtime and fresh exact-engine comparisons required per report."
+      },
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "previousConsumerReview": {
+        "runtimeProfileSha256": "54054f7ac463ef52f7c4c881d50ee071713315d891812696f18e39d9ad45ab3d",
+        "ok": true,
+        "sourcePhysicsAndAssignedManualTasks": "PASS_AI",
+        "reportSha256": "3da592a5c4342d8220c1ce3e0b8e93a81873ff8ad42865e8468817805718e022",
+        "meaning": "Immutable historical consumer judgment, not retagged as current"
+      },
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "SIM-C1-L010-02",
+      "sourceSha256": "3cd2f92e596fc283f3701196e6a1dfa830fbedaa3be927f5529d2d1d5ded7a63",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/esperienze-C1.json",
+      "sourceFileSha256": "84d13bd2658be3b0ce2a55bf7dc698d64ceae151b09deafeabd71507a41d70e3",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "first reference",
+          "independentExact": "10",
+          "expectedValue": "10",
+          "unit": "cm",
+          "dimension": {
+            "[length]": "1"
+          },
+          "residual": "0",
+          "relation": "exact",
+          "scope": "actual_assigned_manual_calculation",
+          "ok": true
+        },
+        {
+          "claim": "first assigned task",
+          "independentExact": "20",
+          "expectedValue": "20",
+          "unit": "cm",
+          "dimension": {
+            "[length]": "1"
+          },
+          "residual": "0",
+          "relation": "exact",
+          "scope": "actual_assigned_manual_calculation",
+          "ok": true
+        },
+        {
+          "claim": "actual generated transfer",
+          "independentExact": "10*sqrt(2)",
+          "expectedValue": "10*sqrt(2)",
+          "unit": "cm",
+          "dimension": {
+            "[length]": "1"
+          },
+          "residual": "0",
+          "relation": "exact",
+          "scope": "actual_assigned_manual_calculation",
+          "ok": true
+        },
+        {
+          "claim": "rotated rigid separation squarednorm400",
+          "independentExact": "400",
+          "expectedValue": "400",
+          "unit": "cm^2",
+          "dimension": {
+            "[length]": "2"
+          },
+          "residual": "0",
+          "relation": "exact",
+          "scope": "actual_assigned_manual_calculation",
+          "ok": true
+        },
+        {
+          "claim": "actual45degree exactly10sqrt2",
+          "independentExact": "10*sqrt(2)",
+          "expectedValue": "10*sqrt(2)",
+          "unit": "cm",
+          "dimension": {
+            "[length]": "1"
+          },
+          "residual": "0",
+          "relation": "exact",
+          "scope": "actual_assigned_manual_calculation",
+          "ok": true
+        },
+        {
+          "claim": "manual14.14 squared199.9396",
+          "independentExact": "499849/2500",
+          "expectedValue": "499849/2500",
+          "unit": "cm^2",
+          "dimension": {
+            "[length]": "2"
+          },
+          "residual": "0",
+          "relation": "exact",
+          "scope": "reviewer_manual_bound",
+          "ok": true
+        },
+        {
+          "claim": "manual14.15 squared200.2225",
+          "independentExact": "80089/400",
+          "expectedValue": "80089/400",
+          "unit": "cm^2",
+          "dimension": {
+            "[length]": "2"
+          },
+          "residual": "0",
+          "relation": "exact",
+          "scope": "reviewer_manual_bound",
+          "ok": true
+        },
+        {
+          "claim": "manual bracket below halfpercent",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "residual": "0",
+          "relation": "exact",
+          "scope": "reviewer_manual_bound",
+          "ok": true
+        },
+        {
+          "claim": "fresh actual adapter/law/graph/apparatus/clock/generated-task comparison",
+          "ok": true,
+          "dimension": {},
+          "caseCount": 19,
+          "clockSampleCount": 0,
+          "errors": []
+        },
+        {
+          "claim": "actual numeric display/input roundtrip0",
+          "ok": true,
+          "dimension": {},
+          "actual": {
+            "display": "20",
+            "parsed": 20
+          },
+          "independentExact": "20"
+        },
+        {
+          "claim": "actual numeric display/input roundtrip1",
+          "ok": true,
+          "dimension": {},
+          "actual": {
+            "display": "14,14",
+            "parsed": 14.14
+          },
+          "independentExact": "10*sqrt(2)"
+        },
+        {
+          "claim": "actual reachable lever geometry clears rear post and opaque base x=0",
+          "ok": true,
+          "baseGlyphMargin": null,
+          "dimension": {},
+          "scope": "analytic only; label overlay/default projections independently read in browser proof"
+        },
+        {
+          "claim": "actual reachable lever geometry clears rear post and opaque base x=5",
+          "ok": true,
+          "baseGlyphMargin": null,
+          "dimension": {},
+          "scope": "analytic only; label overlay/default projections independently read in browser proof"
+        },
+        {
+          "claim": "actual reachable lever geometry clears rear post and opaque base x=10",
+          "ok": true,
+          "baseGlyphMargin": null,
+          "dimension": {},
+          "scope": "analytic only; label overlay/default projections independently read in browser proof"
+        },
+        {
+          "claim": "actual reachable lever geometry clears rear post and opaque base x=15",
+          "ok": true,
+          "baseGlyphMargin": null,
+          "dimension": {},
+          "scope": "analytic only; label overlay/default projections independently read in browser proof"
+        },
+        {
+          "claim": "actual reachable lever geometry clears rear post and opaque base x=20",
+          "ok": true,
+          "baseGlyphMargin": null,
+          "dimension": {},
+          "scope": "analytic only; label overlay/default projections independently read in browser proof"
+        },
+        {
+          "claim": "actual reachable lever geometry clears rear post and opaque base x=25",
+          "ok": true,
+          "baseGlyphMargin": null,
+          "dimension": {},
+          "scope": "analytic only; label overlay/default projections independently read in browser proof"
+        },
+        {
+          "claim": "actual reachable lever geometry clears rear post and opaque base x=30",
+          "ok": true,
+          "baseGlyphMargin": null,
+          "dimension": {},
+          "scope": "analytic only; label overlay/default projections independently read in browser proof"
+        },
+        {
+          "claim": "actual reachable lever geometry clears rear post and opaque base x=35",
+          "ok": true,
+          "baseGlyphMargin": null,
+          "dimension": {},
+          "scope": "analytic only; label overlay/default projections independently read in browser proof"
+        },
+        {
+          "claim": "actual reachable lever geometry clears rear post and opaque base x=40",
+          "ok": true,
+          "baseGlyphMargin": null,
+          "dimension": {},
+          "scope": "analytic only; label overlay/default projections independently read in browser proof"
+        },
+        {
+          "claim": "actual reachable lever geometry clears rear post and opaque base x=45",
+          "ok": true,
+          "baseGlyphMargin": null,
+          "dimension": {},
+          "scope": "analytic only; label overlay/default projections independently read in browser proof"
+        },
+        {
+          "claim": "actual reachable lever geometry clears rear post and opaque base x=50",
+          "ok": true,
+          "baseGlyphMargin": null,
+          "dimension": {},
+          "scope": "analytic only; label overlay/default projections independently read in browser proof"
+        },
+        {
+          "claim": "actual reachable lever geometry clears rear post and opaque base x=55",
+          "ok": true,
+          "baseGlyphMargin": null,
+          "dimension": {},
+          "scope": "analytic only; label overlay/default projections independently read in browser proof"
+        },
+        {
+          "claim": "actual reachable lever geometry clears rear post and opaque base x=60",
+          "ok": true,
+          "baseGlyphMargin": null,
+          "dimension": {},
+          "scope": "analytic only; label overlay/default projections independently read in browser proof"
+        },
+        {
+          "claim": "actual reachable lever geometry clears rear post and opaque base x=65",
+          "ok": true,
+          "baseGlyphMargin": null,
+          "dimension": {},
+          "scope": "analytic only; label overlay/default projections independently read in browser proof"
+        },
+        {
+          "claim": "actual reachable lever geometry clears rear post and opaque base x=70",
+          "ok": true,
+          "baseGlyphMargin": null,
+          "dimension": {},
+          "scope": "analytic only; label overlay/default projections independently read in browser proof"
+        },
+        {
+          "claim": "actual reachable lever geometry clears rear post and opaque base x=75",
+          "ok": true,
+          "baseGlyphMargin": null,
+          "dimension": {},
+          "scope": "analytic only; label overlay/default projections independently read in browser proof"
+        },
+        {
+          "claim": "actual reachable lever geometry clears rear post and opaque base x=80",
+          "ok": true,
+          "baseGlyphMargin": null,
+          "dimension": {},
+          "scope": "analytic only; label overlay/default projections independently read in browser proof"
+        },
+        {
+          "claim": "actual reachable lever geometry clears rear post and opaque base x=85",
+          "ok": true,
+          "baseGlyphMargin": null,
+          "dimension": {},
+          "scope": "analytic only; label overlay/default projections independently read in browser proof"
+        },
+        {
+          "claim": "actual reachable lever geometry clears rear post and opaque base x=90",
+          "ok": true,
+          "baseGlyphMargin": null,
+          "dimension": {},
+          "scope": "analytic only; label overlay/default projections independently read in browser proof"
+        }
+      ],
+      "dimension": {
+        "first reference": {
+          "[length]": "1"
+        },
+        "first assigned task": {
+          "[length]": "1"
+        },
+        "actual generated transfer": {
+          "[length]": "1"
+        },
+        "rotated rigid separation squarednorm400": {
+          "[length]": "2"
+        },
+        "actual45degree exactly10sqrt2": {
+          "[length]": "1"
+        },
+        "manual14.14 squared199.9396": {
+          "[length]": "2"
+        },
+        "manual14.15 squared200.2225": {
+          "[length]": "2"
+        },
+        "manual bracket below halfpercent": {},
+        "fresh actual adapter/law/graph/apparatus/clock/generated-task comparison": {},
+        "actual numeric display/input roundtrip0": {},
+        "actual numeric display/input roundtrip1": {},
+        "actual reachable lever geometry clears rear post and opaque base x=0": {},
+        "actual reachable lever geometry clears rear post and opaque base x=5": {},
+        "actual reachable lever geometry clears rear post and opaque base x=10": {},
+        "actual reachable lever geometry clears rear post and opaque base x=15": {},
+        "actual reachable lever geometry clears rear post and opaque base x=20": {},
+        "actual reachable lever geometry clears rear post and opaque base x=25": {},
+        "actual reachable lever geometry clears rear post and opaque base x=30": {},
+        "actual reachable lever geometry clears rear post and opaque base x=35": {},
+        "actual reachable lever geometry clears rear post and opaque base x=40": {},
+        "actual reachable lever geometry clears rear post and opaque base x=45": {},
+        "actual reachable lever geometry clears rear post and opaque base x=50": {},
+        "actual reachable lever geometry clears rear post and opaque base x=55": {},
+        "actual reachable lever geometry clears rear post and opaque base x=60": {},
+        "actual reachable lever geometry clears rear post and opaque base x=65": {},
+        "actual reachable lever geometry clears rear post and opaque base x=70": {},
+        "actual reachable lever geometry clears rear post and opaque base x=75": {},
+        "actual reachable lever geometry clears rear post and opaque base x=80": {},
+        "actual reachable lever geometry clears rear post and opaque base x=85": {},
+        "actual reachable lever geometry clears rear post and opaque base x=90": {}
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "sourceScientificReview": {
+        "ok": true,
+        "errors": []
+      },
+      "consumerReview": {
+        "ok": true,
+        "errors": []
+      },
+      "manualArithmetic": "Rigid endpoint separation20cm decomposes20cos(theta),20sin(theta), squared norm400cm². First task90=>20cm; algorithm transfer45, not50, yields10sqrt2cm. Manual14.14²199.9396<200<200.2225=14.15² gives sub0.5percent numeric14.14. Arbitrary slider angles are observations, not all assigned inverse-trig work.",
+      "manualFeasibility": "PASS_AI_EXACT_ASSIGNED_TASKS",
+      "physicalAssumptions": "Ideal rigid20cm endpoint separation, angle0..90deg in a fixed vertical plane, static configuration comparison with no angular-speed claim. Measurement is endpoint vertical difference, not half-rod from fulcrum. Historical5405 native marker occlusion is retained separately; current rear support must clear the swept plane.",
+      "pedagogicalReview": "All source fields and actual generated predictions, two assessments, worked substitutions, stage guides, readouts, graphs, apparatus and clocks read. Explicit actual transfer values/manual procedures, domain/zero/sign cases and physical hypotheses reviewed; independent numeric/unit/renderer probes are not source-authored instructions, student calibration or human approval.",
+      "assetChecksums": {},
+      "figureReview": "Rigid endpoints remain20cm apart:2scene units at all angles. Rear post atz=-.45/r.13 clears endpoint planez0/r.11; rear axle reaches only the pivot. Both lower/upper markers actually visible at assigned90deg in native/fallback wide/narrow final views. No in-canvas pivot label or leader remains to cover the small lower marker. HTML legend identifies purple pivot as fulcrum/gomito and was opened/closed with keyboard at320px.",
+      "runtimeSha256": {
+        "static/js/banchi/voci/esperimento.js": "cc435e51b62d5b9961b32f5d9b349171f7432e3bf6a6911cd80daaa1f419767b",
+        "static/js/banchi/voci/engines.js": "09a6447a971d0e90c49cfea0307e82ea75f4441a7174c017768d6d62ad514dab",
+        "static/js/banchi/voci/assessment-selection.js": "2f5435b6c9e8b76667d0a95f35860f835117cf8230a635c4c3a54c479fbc54b3",
+        "static/js/banchi/voci/geometria.js": "986bdbfad0cf6e6e057002ee2efdeff0a08df31bfb45f9c046063fcba5840f08",
+        "static/js/banchi/voci/tavola.js": "cc3f7fa8da541109fdda9f8bacca23eea43d1031b2145688b2d80513f47d5283",
+        "static/js/banchi/voci/confronti.js": "83f1ab0d443dc93eb72c0318e32856179486643257c5bbf136e686464fdc6c39",
+        "static/js/banchi/voci/legende.js": "eb303ca6a6013377462b51c92b541a650ee2686257cd7e4ee39fea5221a521f7",
+        "static/js/banchi/voci/orologi.js": "30dd8ab535a31b514c0db13d97d2b046a1add160a7ca7d374deea0d991be73a6",
+        "static/js/banchi/voci/modelli/C1.js": "e5818f20fd19d00fc73434fcacef752d06331efc41d198ffe8c185063e97fa34",
+        "static/js/banchi/voci/apparati/meccanica.js": "9be7ce68847af3d901374e98c7511921d6177d939c547e9b03f2c07a0ebd857d",
+        "static/js/banchi/banco.js": "8200aa5adf026372699790c21f60e0cf3f5fffcb705ef5ee36f609ac3c1e3ed9",
+        "static/js/banchi/misure.js": "46c769f22651529e439b1396e59a017d2c429310b7ae59e2a9717b2ced93c66d",
+        "static/js/banchi/grafici.js": "e5567e88ee6df5c604f8e62228da5e70841556ad0b55fb212fd4d091fdeee3fd",
+        "static/js/banchi/scena.js": "4d94c92a834573062a2af541df113bad06bd11ca538b31bddddc5ec8621a5095",
+        "static/js/banchi/etichette.js": "455ae33c790be4e207e5b5667918c44ea16c95f49e1fea0b13cc92f08aa003f3",
+        "static/js/banchi/aula.js": "44c74446d0d60b20e9dad05b32321f1000f026acdec386ca5aa2f74c20421967",
+        "static/js/ui.js": "77e5f000f5e1a1fe028fff32dad97be29ad72b46d753787a19ad36164cb98f27"
+      },
+      "reviewedRuntimeSha256": {
+        "static/js/banchi/voci/esperimento.js": "cc435e51b62d5b9961b32f5d9b349171f7432e3bf6a6911cd80daaa1f419767b",
+        "static/js/banchi/voci/engines.js": "09a6447a971d0e90c49cfea0307e82ea75f4441a7174c017768d6d62ad514dab",
+        "static/js/banchi/voci/assessment-selection.js": "2f5435b6c9e8b76667d0a95f35860f835117cf8230a635c4c3a54c479fbc54b3",
+        "static/js/banchi/voci/geometria.js": "986bdbfad0cf6e6e057002ee2efdeff0a08df31bfb45f9c046063fcba5840f08",
+        "static/js/banchi/voci/tavola.js": "cc3f7fa8da541109fdda9f8bacca23eea43d1031b2145688b2d80513f47d5283",
+        "static/js/banchi/voci/confronti.js": "83f1ab0d443dc93eb72c0318e32856179486643257c5bbf136e686464fdc6c39",
+        "static/js/banchi/voci/legende.js": "eb303ca6a6013377462b51c92b541a650ee2686257cd7e4ee39fea5221a521f7",
+        "static/js/banchi/voci/orologi.js": "30dd8ab535a31b514c0db13d97d2b046a1add160a7ca7d374deea0d991be73a6",
+        "static/js/banchi/voci/modelli/C1.js": "e5818f20fd19d00fc73434fcacef752d06331efc41d198ffe8c185063e97fa34",
+        "static/js/banchi/voci/apparati/meccanica.js": "9be7ce68847af3d901374e98c7511921d6177d939c547e9b03f2c07a0ebd857d",
+        "static/js/banchi/banco.js": "8200aa5adf026372699790c21f60e0cf3f5fffcb705ef5ee36f609ac3c1e3ed9",
+        "static/js/banchi/misure.js": "46c769f22651529e439b1396e59a017d2c429310b7ae59e2a9717b2ced93c66d",
+        "static/js/banchi/grafici.js": "e5567e88ee6df5c604f8e62228da5e70841556ad0b55fb212fd4d091fdeee3fd",
+        "static/js/banchi/scena.js": "4d94c92a834573062a2af541df113bad06bd11ca538b31bddddc5ec8621a5095",
+        "static/js/banchi/etichette.js": "455ae33c790be4e207e5b5667918c44ea16c95f49e1fea0b13cc92f08aa003f3",
+        "static/js/banchi/aula.js": "44c74446d0d60b20e9dad05b32321f1000f026acdec386ca5aa2f74c20421967",
+        "static/js/ui.js": "77e5f000f5e1a1fe028fff32dad97be29ad72b46d753787a19ad36164cb98f27"
+      },
+      "runtimeProfileSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+      "reviewedRuntimeProfileSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+      "runtimeComparison": {
+        "ok": true,
+        "caseCount": 19,
+        "plannedCaseCount": 19,
+        "clockSampleCount": 0,
+        "errors": [],
+        "firstAssessmentInput": 90,
+        "transferInput": 45,
+        "formatRoundtrip": [
+          {
+            "display": "20",
+            "parsed": 20
+          },
+          {
+            "display": "14,14",
+            "parsed": 14.14
+          }
+        ]
+      },
+      "consumerEvidence": {
+        "layoutEvidence": {
+          "ok": true,
+          "errors": [],
+          "manifestSha256": "7004239d984ca479d4cfe36872fa1c922c2d213e982134c1a3d3dfd71f40a9d8",
+          "runtimeProfileSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+          "scope": "26 consumers;352 real frames;1245 grid/clock/contact states; default-camera full-glyph and actual label projection; no arbitrary-camera guarantee"
+        },
+        "clockSceneEvidence": {
+          "ok": true,
+          "proofSha256": "3588bf3c79a8d4af6a652b2dde0190cc45cdb079376e12e7a5a2ad50e38a32d2",
+          "protocolSha256": "6e2a41d479d5ca30407f7605fa16ca70e2f2813b20d078161f51998730eb822b",
+          "manifestSha256": "a307e5974daba99c32cd47703aba61df241df88c628a0eac303bdc398d4819c4",
+          "observedCaseCount": 24,
+          "visibleClockSceneCount": 16
+        },
+        "ok": true,
+        "proofSha256": "02f6c079b05f932deb8619854684eea23d34c3f9f08d329222e9079d9b44ccbb",
+        "protocolSha256": "7fbe8e90780d0379a2aaff996094eab5c72c526f9b642c1bc85cd9dc8ed20460",
+        "observedCaseCount": 104,
+        "runtimeProfileSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+        "meaning": "Genuine current runtime observation, no historical retag. Technical PASS alone is not independent scientific approval; whole runtime and fresh exact-engine comparisons required per report."
+      },
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "previousConsumerReview": {
+        "runtimeProfileSha256": "54054f7ac463ef52f7c4c881d50ee071713315d891812696f18e39d9ad45ab3d",
+        "ok": false,
+        "sourcePhysicsAndAssignedManualTasks": "PASS_AI",
+        "reportSha256": "3da592a5c4342d8220c1ce3e0b8e93a81873ff8ad42865e8468817805718e022",
+        "meaning": "Immutable historical consumer judgment, not retagged as current"
+      },
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "SIM-C1-L010-03",
+      "sourceSha256": "87d69e9d1164d74700948dce8e744e4e8613d0fcb28e3667f268ab5847d83634",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/esperienze-C1.json",
+      "sourceFileSha256": "84d13bd2658be3b0ce2a55bf7dc698d64ceae151b09deafeabd71507a41d70e3",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "first reference",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "N*m",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "relation": "exact",
+          "scope": "actual_assigned_manual_calculation",
+          "ok": true
+        },
+        {
+          "claim": "first assigned task",
+          "independentExact": "3",
+          "expectedValue": "3",
+          "unit": "N*m",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "relation": "exact",
+          "scope": "actual_assigned_manual_calculation",
+          "ok": true
+        },
+        {
+          "claim": "actual generated transfer",
+          "independentExact": "2",
+          "expectedValue": "2",
+          "unit": "N*m",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "relation": "exact",
+          "scope": "actual_assigned_manual_calculation",
+          "ok": true
+        },
+        {
+          "claim": "30cm torque3Nm",
+          "independentExact": "3",
+          "expectedValue": "3",
+          "unit": "N*m",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "relation": "exact",
+          "scope": "actual_assigned_manual_calculation",
+          "ok": true
+        },
+        {
+          "claim": "20cm torque2Nm",
+          "independentExact": "2",
+          "expectedValue": "2",
+          "unit": "N*m",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "relation": "exact",
+          "scope": "actual_assigned_manual_calculation",
+          "ok": true
+        },
+        {
+          "claim": "rightdown signedcross is clockwise",
+          "independentExact": "-10*b",
+          "expectedValue": "-10*b",
+          "unit": "N*m",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "relation": "exact",
+          "scope": "source_measures_modulus_not_signed_z",
+          "ok": true
+        },
+        {
+          "claim": "zero arm withnonzero force zero torque",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "N*m",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "relation": "exact",
+          "scope": "actual_assigned_manual_calculation",
+          "ok": true
+        },
+        {
+          "claim": "fresh actual adapter/law/graph/apparatus/clock/generated-task comparison",
+          "ok": true,
+          "dimension": {},
+          "caseCount": 21,
+          "clockSampleCount": 0,
+          "errors": []
+        },
+        {
+          "claim": "actual numeric display/input roundtrip0",
+          "ok": true,
+          "dimension": {},
+          "actual": {
+            "display": "3",
+            "parsed": 3
+          },
+          "independentExact": "3"
+        },
+        {
+          "claim": "actual numeric display/input roundtrip1",
+          "ok": true,
+          "dimension": {},
+          "actual": {
+            "display": "2",
+            "parsed": 2
+          },
+          "independentExact": "2"
+        },
+        {
+          "claim": "actual reachable lever geometry clears rear post and opaque base x=0",
+          "ok": true,
+          "baseGlyphMargin": 1.43,
+          "dimension": {},
+          "scope": "analytic only; label overlay/default projections independently read in browser proof"
+        },
+        {
+          "claim": "actual reachable lever geometry clears rear post and opaque base x=2",
+          "ok": true,
+          "baseGlyphMargin": 1.43,
+          "dimension": {},
+          "scope": "analytic only; label overlay/default projections independently read in browser proof"
+        },
+        {
+          "claim": "actual reachable lever geometry clears rear post and opaque base x=4",
+          "ok": true,
+          "baseGlyphMargin": 1.43,
+          "dimension": {},
+          "scope": "analytic only; label overlay/default projections independently read in browser proof"
+        },
+        {
+          "claim": "actual reachable lever geometry clears rear post and opaque base x=6",
+          "ok": true,
+          "baseGlyphMargin": 1.43,
+          "dimension": {},
+          "scope": "analytic only; label overlay/default projections independently read in browser proof"
+        },
+        {
+          "claim": "actual reachable lever geometry clears rear post and opaque base x=8",
+          "ok": true,
+          "baseGlyphMargin": 1.43,
+          "dimension": {},
+          "scope": "analytic only; label overlay/default projections independently read in browser proof"
+        },
+        {
+          "claim": "actual reachable lever geometry clears rear post and opaque base x=10",
+          "ok": true,
+          "baseGlyphMargin": 1.43,
+          "dimension": {},
+          "scope": "analytic only; label overlay/default projections independently read in browser proof"
+        },
+        {
+          "claim": "actual reachable lever geometry clears rear post and opaque base x=12",
+          "ok": true,
+          "baseGlyphMargin": 1.43,
+          "dimension": {},
+          "scope": "analytic only; label overlay/default projections independently read in browser proof"
+        },
+        {
+          "claim": "actual reachable lever geometry clears rear post and opaque base x=14",
+          "ok": true,
+          "baseGlyphMargin": 1.43,
+          "dimension": {},
+          "scope": "analytic only; label overlay/default projections independently read in browser proof"
+        },
+        {
+          "claim": "actual reachable lever geometry clears rear post and opaque base x=16",
+          "ok": true,
+          "baseGlyphMargin": 1.43,
+          "dimension": {},
+          "scope": "analytic only; label overlay/default projections independently read in browser proof"
+        },
+        {
+          "claim": "actual reachable lever geometry clears rear post and opaque base x=18",
+          "ok": true,
+          "baseGlyphMargin": 1.43,
+          "dimension": {},
+          "scope": "analytic only; label overlay/default projections independently read in browser proof"
+        },
+        {
+          "claim": "actual reachable lever geometry clears rear post and opaque base x=20",
+          "ok": true,
+          "baseGlyphMargin": 1.43,
+          "dimension": {},
+          "scope": "analytic only; label overlay/default projections independently read in browser proof"
+        },
+        {
+          "claim": "actual reachable lever geometry clears rear post and opaque base x=22",
+          "ok": true,
+          "baseGlyphMargin": 1.43,
+          "dimension": {},
+          "scope": "analytic only; label overlay/default projections independently read in browser proof"
+        },
+        {
+          "claim": "actual reachable lever geometry clears rear post and opaque base x=24",
+          "ok": true,
+          "baseGlyphMargin": 1.43,
+          "dimension": {},
+          "scope": "analytic only; label overlay/default projections independently read in browser proof"
+        },
+        {
+          "claim": "actual reachable lever geometry clears rear post and opaque base x=26",
+          "ok": true,
+          "baseGlyphMargin": 1.43,
+          "dimension": {},
+          "scope": "analytic only; label overlay/default projections independently read in browser proof"
+        },
+        {
+          "claim": "actual reachable lever geometry clears rear post and opaque base x=28",
+          "ok": true,
+          "baseGlyphMargin": 1.43,
+          "dimension": {},
+          "scope": "analytic only; label overlay/default projections independently read in browser proof"
+        },
+        {
+          "claim": "actual reachable lever geometry clears rear post and opaque base x=30",
+          "ok": true,
+          "baseGlyphMargin": 1.43,
+          "dimension": {},
+          "scope": "analytic only; label overlay/default projections independently read in browser proof"
+        },
+        {
+          "claim": "actual reachable lever geometry clears rear post and opaque base x=32",
+          "ok": true,
+          "baseGlyphMargin": 1.43,
+          "dimension": {},
+          "scope": "analytic only; label overlay/default projections independently read in browser proof"
+        },
+        {
+          "claim": "actual reachable lever geometry clears rear post and opaque base x=34",
+          "ok": true,
+          "baseGlyphMargin": 1.43,
+          "dimension": {},
+          "scope": "analytic only; label overlay/default projections independently read in browser proof"
+        },
+        {
+          "claim": "actual reachable lever geometry clears rear post and opaque base x=36",
+          "ok": true,
+          "baseGlyphMargin": 1.43,
+          "dimension": {},
+          "scope": "analytic only; label overlay/default projections independently read in browser proof"
+        },
+        {
+          "claim": "actual reachable lever geometry clears rear post and opaque base x=38",
+          "ok": true,
+          "baseGlyphMargin": 1.43,
+          "dimension": {},
+          "scope": "analytic only; label overlay/default projections independently read in browser proof"
+        },
+        {
+          "claim": "actual reachable lever geometry clears rear post and opaque base x=40",
+          "ok": true,
+          "baseGlyphMargin": 1.43,
+          "dimension": {},
+          "scope": "analytic only; label overlay/default projections independently read in browser proof"
+        }
+      ],
+      "dimension": {
+        "first reference": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "first assigned task": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "actual generated transfer": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "30cm torque3Nm": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "20cm torque2Nm": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "rightdown signedcross is clockwise": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "zero arm withnonzero force zero torque": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "fresh actual adapter/law/graph/apparatus/clock/generated-task comparison": {},
+        "actual numeric display/input roundtrip0": {},
+        "actual numeric display/input roundtrip1": {},
+        "actual reachable lever geometry clears rear post and opaque base x=0": {},
+        "actual reachable lever geometry clears rear post and opaque base x=2": {},
+        "actual reachable lever geometry clears rear post and opaque base x=4": {},
+        "actual reachable lever geometry clears rear post and opaque base x=6": {},
+        "actual reachable lever geometry clears rear post and opaque base x=8": {},
+        "actual reachable lever geometry clears rear post and opaque base x=10": {},
+        "actual reachable lever geometry clears rear post and opaque base x=12": {},
+        "actual reachable lever geometry clears rear post and opaque base x=14": {},
+        "actual reachable lever geometry clears rear post and opaque base x=16": {},
+        "actual reachable lever geometry clears rear post and opaque base x=18": {},
+        "actual reachable lever geometry clears rear post and opaque base x=20": {},
+        "actual reachable lever geometry clears rear post and opaque base x=22": {},
+        "actual reachable lever geometry clears rear post and opaque base x=24": {},
+        "actual reachable lever geometry clears rear post and opaque base x=26": {},
+        "actual reachable lever geometry clears rear post and opaque base x=28": {},
+        "actual reachable lever geometry clears rear post and opaque base x=30": {},
+        "actual reachable lever geometry clears rear post and opaque base x=32": {},
+        "actual reachable lever geometry clears rear post and opaque base x=34": {},
+        "actual reachable lever geometry clears rear post and opaque base x=36": {},
+        "actual reachable lever geometry clears rear post and opaque base x=38": {},
+        "actual reachable lever geometry clears rear post and opaque base x=40": {}
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "sourceScientificReview": {
+        "ok": true,
+        "errors": []
+      },
+      "consumerReview": {
+        "ok": true,
+        "errors": []
+      },
+      "manualArithmetic": "Moment magnitude10N*(b_cm/100)=b/10 Nm; signed CCW-positive torque would be negative for right-down force, but source explicitly measures modulus. Tasks30cm3Nm, generated20cm2Nm. Pivot reaction haszero moment and actual perpendicular distance, not total rod length, is used.",
+      "manualFeasibility": "PASS_AI_EXACT_ASSIGNED_TASKS",
+      "physicalAssumptions": "Constant downward10N at a perpendicular right-side arm0..40cm. Source explicitly reports torque magnitude; signedz with CCW-positive would be negative. A pivot reaction has zero moment about pivot. At zero arm force remains nonzero though torquezero; historical5405 native support hid that arrow; current glyph must remain visible.",
+      "pedagogicalReview": "All source fields and actual generated predictions, two assessments, worked substitutions, stage guides, readouts, graphs, apparatus and clocks read. Explicit actual transfer values/manual procedures, domain/zero/sign cases and physical hypotheses reviewed; independent numeric/unit/renderer probes are not source-authored instructions, student calibration or human approval.",
+      "assetChecksums": {},
+      "figureReview": "10N downward force delta-.8 remains at horizontal moment armb/24. Entire glyph is translated upward along its own vertical line: its downward tip ends.18 above marker, not inside post/base. At zeroarm the nonzero force arrow and its downward tip remain visible in actual wide/narrow native/fallback views, while torque magnitude is0. Label identity moved to keyboard-operable HTML legend, without hiding the arrow.",
+      "runtimeSha256": {
+        "static/js/banchi/voci/esperimento.js": "cc435e51b62d5b9961b32f5d9b349171f7432e3bf6a6911cd80daaa1f419767b",
+        "static/js/banchi/voci/engines.js": "09a6447a971d0e90c49cfea0307e82ea75f4441a7174c017768d6d62ad514dab",
+        "static/js/banchi/voci/assessment-selection.js": "2f5435b6c9e8b76667d0a95f35860f835117cf8230a635c4c3a54c479fbc54b3",
+        "static/js/banchi/voci/geometria.js": "986bdbfad0cf6e6e057002ee2efdeff0a08df31bfb45f9c046063fcba5840f08",
+        "static/js/banchi/voci/tavola.js": "cc3f7fa8da541109fdda9f8bacca23eea43d1031b2145688b2d80513f47d5283",
+        "static/js/banchi/voci/confronti.js": "83f1ab0d443dc93eb72c0318e32856179486643257c5bbf136e686464fdc6c39",
+        "static/js/banchi/voci/legende.js": "eb303ca6a6013377462b51c92b541a650ee2686257cd7e4ee39fea5221a521f7",
+        "static/js/banchi/voci/orologi.js": "30dd8ab535a31b514c0db13d97d2b046a1add160a7ca7d374deea0d991be73a6",
+        "static/js/banchi/voci/modelli/C1.js": "e5818f20fd19d00fc73434fcacef752d06331efc41d198ffe8c185063e97fa34",
+        "static/js/banchi/voci/apparati/meccanica.js": "9be7ce68847af3d901374e98c7511921d6177d939c547e9b03f2c07a0ebd857d",
+        "static/js/banchi/banco.js": "8200aa5adf026372699790c21f60e0cf3f5fffcb705ef5ee36f609ac3c1e3ed9",
+        "static/js/banchi/misure.js": "46c769f22651529e439b1396e59a017d2c429310b7ae59e2a9717b2ced93c66d",
+        "static/js/banchi/grafici.js": "e5567e88ee6df5c604f8e62228da5e70841556ad0b55fb212fd4d091fdeee3fd",
+        "static/js/banchi/scena.js": "4d94c92a834573062a2af541df113bad06bd11ca538b31bddddc5ec8621a5095",
+        "static/js/banchi/etichette.js": "455ae33c790be4e207e5b5667918c44ea16c95f49e1fea0b13cc92f08aa003f3",
+        "static/js/banchi/aula.js": "44c74446d0d60b20e9dad05b32321f1000f026acdec386ca5aa2f74c20421967",
+        "static/js/ui.js": "77e5f000f5e1a1fe028fff32dad97be29ad72b46d753787a19ad36164cb98f27"
+      },
+      "reviewedRuntimeSha256": {
+        "static/js/banchi/voci/esperimento.js": "cc435e51b62d5b9961b32f5d9b349171f7432e3bf6a6911cd80daaa1f419767b",
+        "static/js/banchi/voci/engines.js": "09a6447a971d0e90c49cfea0307e82ea75f4441a7174c017768d6d62ad514dab",
+        "static/js/banchi/voci/assessment-selection.js": "2f5435b6c9e8b76667d0a95f35860f835117cf8230a635c4c3a54c479fbc54b3",
+        "static/js/banchi/voci/geometria.js": "986bdbfad0cf6e6e057002ee2efdeff0a08df31bfb45f9c046063fcba5840f08",
+        "static/js/banchi/voci/tavola.js": "cc3f7fa8da541109fdda9f8bacca23eea43d1031b2145688b2d80513f47d5283",
+        "static/js/banchi/voci/confronti.js": "83f1ab0d443dc93eb72c0318e32856179486643257c5bbf136e686464fdc6c39",
+        "static/js/banchi/voci/legende.js": "eb303ca6a6013377462b51c92b541a650ee2686257cd7e4ee39fea5221a521f7",
+        "static/js/banchi/voci/orologi.js": "30dd8ab535a31b514c0db13d97d2b046a1add160a7ca7d374deea0d991be73a6",
+        "static/js/banchi/voci/modelli/C1.js": "e5818f20fd19d00fc73434fcacef752d06331efc41d198ffe8c185063e97fa34",
+        "static/js/banchi/voci/apparati/meccanica.js": "9be7ce68847af3d901374e98c7511921d6177d939c547e9b03f2c07a0ebd857d",
+        "static/js/banchi/banco.js": "8200aa5adf026372699790c21f60e0cf3f5fffcb705ef5ee36f609ac3c1e3ed9",
+        "static/js/banchi/misure.js": "46c769f22651529e439b1396e59a017d2c429310b7ae59e2a9717b2ced93c66d",
+        "static/js/banchi/grafici.js": "e5567e88ee6df5c604f8e62228da5e70841556ad0b55fb212fd4d091fdeee3fd",
+        "static/js/banchi/scena.js": "4d94c92a834573062a2af541df113bad06bd11ca538b31bddddc5ec8621a5095",
+        "static/js/banchi/etichette.js": "455ae33c790be4e207e5b5667918c44ea16c95f49e1fea0b13cc92f08aa003f3",
+        "static/js/banchi/aula.js": "44c74446d0d60b20e9dad05b32321f1000f026acdec386ca5aa2f74c20421967",
+        "static/js/ui.js": "77e5f000f5e1a1fe028fff32dad97be29ad72b46d753787a19ad36164cb98f27"
+      },
+      "runtimeProfileSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+      "reviewedRuntimeProfileSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+      "runtimeComparison": {
+        "ok": true,
+        "caseCount": 21,
+        "plannedCaseCount": 21,
+        "clockSampleCount": 0,
+        "errors": [],
+        "firstAssessmentInput": 30,
+        "transferInput": 20,
+        "formatRoundtrip": [
+          {
+            "display": "3",
+            "parsed": 3
+          },
+          {
+            "display": "2",
+            "parsed": 2
+          }
+        ]
+      },
+      "consumerEvidence": {
+        "layoutEvidence": {
+          "ok": true,
+          "errors": [],
+          "manifestSha256": "7004239d984ca479d4cfe36872fa1c922c2d213e982134c1a3d3dfd71f40a9d8",
+          "runtimeProfileSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+          "scope": "26 consumers;352 real frames;1245 grid/clock/contact states; default-camera full-glyph and actual label projection; no arbitrary-camera guarantee"
+        },
+        "clockSceneEvidence": {
+          "ok": true,
+          "proofSha256": "3588bf3c79a8d4af6a652b2dde0190cc45cdb079376e12e7a5a2ad50e38a32d2",
+          "protocolSha256": "6e2a41d479d5ca30407f7605fa16ca70e2f2813b20d078161f51998730eb822b",
+          "manifestSha256": "a307e5974daba99c32cd47703aba61df241df88c628a0eac303bdc398d4819c4",
+          "observedCaseCount": 24,
+          "visibleClockSceneCount": 16
+        },
+        "ok": true,
+        "proofSha256": "02f6c079b05f932deb8619854684eea23d34c3f9f08d329222e9079d9b44ccbb",
+        "protocolSha256": "7fbe8e90780d0379a2aaff996094eab5c72c526f9b642c1bc85cd9dc8ed20460",
+        "observedCaseCount": 104,
+        "runtimeProfileSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+        "meaning": "Genuine current runtime observation, no historical retag. Technical PASS alone is not independent scientific approval; whole runtime and fresh exact-engine comparisons required per report."
+      },
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "previousConsumerReview": {
+        "runtimeProfileSha256": "54054f7ac463ef52f7c4c881d50ee071713315d891812696f18e39d9ad45ab3d",
+        "ok": false,
+        "sourcePhysicsAndAssignedManualTasks": "PASS_AI",
+        "reportSha256": "3da592a5c4342d8220c1ce3e0b8e93a81873ff8ad42865e8468817805718e022",
+        "meaning": "Immutable historical consumer judgment, not retagged as current"
+      },
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "SIM-C1-L010-04",
+      "sourceSha256": "89d0958e0230b3d1213481b542974af688857d4825eae01cb66e50094ec2fb96",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/esperienze-C1.json",
+      "sourceFileSha256": "84d13bd2658be3b0ce2a55bf7dc698d64ceae151b09deafeabd71507a41d70e3",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "first reference",
+          "independentExact": "12",
+          "expectedValue": "12",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "relation": "exact",
+          "scope": "actual_assigned_manual_calculation",
+          "ok": true
+        },
+        {
+          "claim": "first assigned task",
+          "independentExact": "4",
+          "expectedValue": "4",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "relation": "exact",
+          "scope": "actual_assigned_manual_calculation",
+          "ok": true
+        },
+        {
+          "claim": "actual generated transfer",
+          "independentExact": "60/13",
+          "expectedValue": "60/13",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "relation": "exact",
+          "scope": "actual_assigned_manual_calculation",
+          "ok": true
+        },
+        {
+          "claim": "opposite moments independently solve balance",
+          "independentExact": "120/b",
+          "expectedValue": "120/b",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "relation": "exact",
+          "scope": "actual_assigned_manual_calculation",
+          "ok": true
+        },
+        {
+          "claim": "actual26cm gives60over13",
+          "independentExact": "60/13",
+          "expectedValue": "60/13",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "relation": "exact",
+          "scope": "actual_assigned_manual_calculation",
+          "ok": true
+        },
+        {
+          "claim": "load moment is1.2Nm",
+          "independentExact": "6/5",
+          "expectedValue": "6/5",
+          "unit": "N*m",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "relation": "exact",
+          "scope": "actual_assigned_manual_calculation",
+          "ok": true
+        },
+        {
+          "claim": "manual4.615 relativeerror1over12000",
+          "independentExact": "1/12000",
+          "expectedValue": "1/12000",
+          "unit": "",
+          "dimension": {},
+          "residual": "0",
+          "relation": "exact",
+          "scope": "reviewer_manual_bound",
+          "ok": true
+        },
+        {
+          "claim": "longdivision remainder5",
+          "independentExact": "5",
+          "expectedValue": "5",
+          "unit": "",
+          "dimension": {},
+          "residual": "0",
+          "relation": "exact",
+          "scope": "reviewer_manual_bound",
+          "ok": true
+        },
+        {
+          "claim": "fresh actual adapter/law/graph/apparatus/clock/generated-task comparison",
+          "ok": true,
+          "dimension": {},
+          "caseCount": 16,
+          "clockSampleCount": 0,
+          "errors": []
+        },
+        {
+          "claim": "actual numeric display/input roundtrip0",
+          "ok": true,
+          "dimension": {},
+          "actual": {
+            "display": "4",
+            "parsed": 4
+          },
+          "independentExact": "4"
+        },
+        {
+          "claim": "actual numeric display/input roundtrip1",
+          "ok": true,
+          "dimension": {},
+          "actual": {
+            "display": "4,615",
+            "parsed": 4.615
+          },
+          "independentExact": "60/13"
+        },
+        {
+          "claim": "actual reachable lever geometry clears rear post and opaque base x=10",
+          "ok": true,
+          "baseGlyphMargin": 1.4299999999999997,
+          "dimension": {},
+          "scope": "analytic only; label overlay/default projections independently read in browser proof"
+        },
+        {
+          "claim": "actual reachable lever geometry clears rear post and opaque base x=12",
+          "ok": true,
+          "baseGlyphMargin": 1.4299999999999997,
+          "dimension": {},
+          "scope": "analytic only; label overlay/default projections independently read in browser proof"
+        },
+        {
+          "claim": "actual reachable lever geometry clears rear post and opaque base x=14",
+          "ok": true,
+          "baseGlyphMargin": 1.4299999999999997,
+          "dimension": {},
+          "scope": "analytic only; label overlay/default projections independently read in browser proof"
+        },
+        {
+          "claim": "actual reachable lever geometry clears rear post and opaque base x=16",
+          "ok": true,
+          "baseGlyphMargin": 1.4299999999999997,
+          "dimension": {},
+          "scope": "analytic only; label overlay/default projections independently read in browser proof"
+        },
+        {
+          "claim": "actual reachable lever geometry clears rear post and opaque base x=18",
+          "ok": true,
+          "baseGlyphMargin": 1.4299999999999997,
+          "dimension": {},
+          "scope": "analytic only; label overlay/default projections independently read in browser proof"
+        },
+        {
+          "claim": "actual reachable lever geometry clears rear post and opaque base x=20",
+          "ok": true,
+          "baseGlyphMargin": 1.4299999999999997,
+          "dimension": {},
+          "scope": "analytic only; label overlay/default projections independently read in browser proof"
+        },
+        {
+          "claim": "actual reachable lever geometry clears rear post and opaque base x=22",
+          "ok": true,
+          "baseGlyphMargin": 1.4299999999999997,
+          "dimension": {},
+          "scope": "analytic only; label overlay/default projections independently read in browser proof"
+        },
+        {
+          "claim": "actual reachable lever geometry clears rear post and opaque base x=24",
+          "ok": true,
+          "baseGlyphMargin": 1.4299999999999997,
+          "dimension": {},
+          "scope": "analytic only; label overlay/default projections independently read in browser proof"
+        },
+        {
+          "claim": "actual reachable lever geometry clears rear post and opaque base x=26",
+          "ok": true,
+          "baseGlyphMargin": 1.4299999999999997,
+          "dimension": {},
+          "scope": "analytic only; label overlay/default projections independently read in browser proof"
+        },
+        {
+          "claim": "actual reachable lever geometry clears rear post and opaque base x=28",
+          "ok": true,
+          "baseGlyphMargin": 1.4299999999999997,
+          "dimension": {},
+          "scope": "analytic only; label overlay/default projections independently read in browser proof"
+        },
+        {
+          "claim": "actual reachable lever geometry clears rear post and opaque base x=30",
+          "ok": true,
+          "baseGlyphMargin": 1.4299999999999997,
+          "dimension": {},
+          "scope": "analytic only; label overlay/default projections independently read in browser proof"
+        },
+        {
+          "claim": "actual reachable lever geometry clears rear post and opaque base x=32",
+          "ok": true,
+          "baseGlyphMargin": 1.4299999999999997,
+          "dimension": {},
+          "scope": "analytic only; label overlay/default projections independently read in browser proof"
+        },
+        {
+          "claim": "actual reachable lever geometry clears rear post and opaque base x=34",
+          "ok": true,
+          "baseGlyphMargin": 1.4299999999999997,
+          "dimension": {},
+          "scope": "analytic only; label overlay/default projections independently read in browser proof"
+        },
+        {
+          "claim": "actual reachable lever geometry clears rear post and opaque base x=36",
+          "ok": true,
+          "baseGlyphMargin": 1.4299999999999997,
+          "dimension": {},
+          "scope": "analytic only; label overlay/default projections independently read in browser proof"
+        },
+        {
+          "claim": "actual reachable lever geometry clears rear post and opaque base x=38",
+          "ok": true,
+          "baseGlyphMargin": 1.4299999999999997,
+          "dimension": {},
+          "scope": "analytic only; label overlay/default projections independently read in browser proof"
+        },
+        {
+          "claim": "actual reachable lever geometry clears rear post and opaque base x=40",
+          "ok": true,
+          "baseGlyphMargin": 1.4299999999999997,
+          "dimension": {},
+          "scope": "analytic only; label overlay/default projections independently read in browser proof"
+        }
+      ],
+      "dimension": {
+        "first reference": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "first assigned task": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "actual generated transfer": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "opposite moments independently solve balance": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "actual26cm gives60over13": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "load moment is1.2Nm": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "manual4.615 relativeerror1over12000": {},
+        "longdivision remainder5": {},
+        "fresh actual adapter/law/graph/apparatus/clock/generated-task comparison": {},
+        "actual numeric display/input roundtrip0": {},
+        "actual numeric display/input roundtrip1": {},
+        "actual reachable lever geometry clears rear post and opaque base x=10": {},
+        "actual reachable lever geometry clears rear post and opaque base x=12": {},
+        "actual reachable lever geometry clears rear post and opaque base x=14": {},
+        "actual reachable lever geometry clears rear post and opaque base x=16": {},
+        "actual reachable lever geometry clears rear post and opaque base x=18": {},
+        "actual reachable lever geometry clears rear post and opaque base x=20": {},
+        "actual reachable lever geometry clears rear post and opaque base x=22": {},
+        "actual reachable lever geometry clears rear post and opaque base x=24": {},
+        "actual reachable lever geometry clears rear post and opaque base x=26": {},
+        "actual reachable lever geometry clears rear post and opaque base x=28": {},
+        "actual reachable lever geometry clears rear post and opaque base x=30": {},
+        "actual reachable lever geometry clears rear post and opaque base x=32": {},
+        "actual reachable lever geometry clears rear post and opaque base x=34": {},
+        "actual reachable lever geometry clears rear post and opaque base x=36": {},
+        "actual reachable lever geometry clears rear post and opaque base x=38": {},
+        "actual reachable lever geometry clears rear post and opaque base x=40": {}
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "sourceScientificReview": {
+        "ok": true,
+        "errors": []
+      },
+      "consumerReview": {
+        "ok": true,
+        "errors": []
+      },
+      "manualArithmetic": "Equilibrium about pivot:6N*20cm=F*b_cm; F120/b N. Positive arm10..40cm. Source30cm4N, generated26cm60/13N. Long division60000=13*4615+5 gives4.615N; relative error1/12000<0.005. Opposite sides/downward forces have opposite moments; fulcrum reaction provides translation balance and is not another pivot torque.",
+      "manualFeasibility": "PASS_AI_EXACT_ASSIGNED_TASKS",
+      "physicalAssumptions": "Ideal weightless lever, opposed-side downward forces6N at20cm versus positive balancing force at10..40cm. Pivot supplies translational reaction; no reaction torque. Equation is rotational balance, not a claim that the two downward forces cancel vectorially. Positive nonzero arm makes inverse identifiable.",
+      "pedagogicalReview": "All source fields and actual generated predictions, two assessments, worked substitutions, stage guides, readouts, graphs, apparatus and clocks read. Explicit actual transfer values/manual procedures, domain/zero/sign cases and physical hypotheses reviewed; independent numeric/unit/renderer probes are not source-authored instructions, student calibration or human approval.",
+      "assetChecksums": {},
+      "figureReview": "Lever arms b/22 and20/22 and common force gain.1sceneunit/N remain unchanged. Full downward glyphs end.18 above their actual marked application points, so12N at10cm no longer penetrates the opaque table. F*b=6*20, pivot reaction balances translation. Both actual native and fallback views show the arrows; narrow final view and HTML legend read.",
+      "runtimeSha256": {
+        "static/js/banchi/voci/esperimento.js": "cc435e51b62d5b9961b32f5d9b349171f7432e3bf6a6911cd80daaa1f419767b",
+        "static/js/banchi/voci/engines.js": "09a6447a971d0e90c49cfea0307e82ea75f4441a7174c017768d6d62ad514dab",
+        "static/js/banchi/voci/assessment-selection.js": "2f5435b6c9e8b76667d0a95f35860f835117cf8230a635c4c3a54c479fbc54b3",
+        "static/js/banchi/voci/geometria.js": "986bdbfad0cf6e6e057002ee2efdeff0a08df31bfb45f9c046063fcba5840f08",
+        "static/js/banchi/voci/tavola.js": "cc3f7fa8da541109fdda9f8bacca23eea43d1031b2145688b2d80513f47d5283",
+        "static/js/banchi/voci/confronti.js": "83f1ab0d443dc93eb72c0318e32856179486643257c5bbf136e686464fdc6c39",
+        "static/js/banchi/voci/legende.js": "eb303ca6a6013377462b51c92b541a650ee2686257cd7e4ee39fea5221a521f7",
+        "static/js/banchi/voci/orologi.js": "30dd8ab535a31b514c0db13d97d2b046a1add160a7ca7d374deea0d991be73a6",
+        "static/js/banchi/voci/modelli/C1.js": "e5818f20fd19d00fc73434fcacef752d06331efc41d198ffe8c185063e97fa34",
+        "static/js/banchi/voci/apparati/meccanica.js": "9be7ce68847af3d901374e98c7511921d6177d939c547e9b03f2c07a0ebd857d",
+        "static/js/banchi/banco.js": "8200aa5adf026372699790c21f60e0cf3f5fffcb705ef5ee36f609ac3c1e3ed9",
+        "static/js/banchi/misure.js": "46c769f22651529e439b1396e59a017d2c429310b7ae59e2a9717b2ced93c66d",
+        "static/js/banchi/grafici.js": "e5567e88ee6df5c604f8e62228da5e70841556ad0b55fb212fd4d091fdeee3fd",
+        "static/js/banchi/scena.js": "4d94c92a834573062a2af541df113bad06bd11ca538b31bddddc5ec8621a5095",
+        "static/js/banchi/etichette.js": "455ae33c790be4e207e5b5667918c44ea16c95f49e1fea0b13cc92f08aa003f3",
+        "static/js/banchi/aula.js": "44c74446d0d60b20e9dad05b32321f1000f026acdec386ca5aa2f74c20421967",
+        "static/js/ui.js": "77e5f000f5e1a1fe028fff32dad97be29ad72b46d753787a19ad36164cb98f27"
+      },
+      "reviewedRuntimeSha256": {
+        "static/js/banchi/voci/esperimento.js": "cc435e51b62d5b9961b32f5d9b349171f7432e3bf6a6911cd80daaa1f419767b",
+        "static/js/banchi/voci/engines.js": "09a6447a971d0e90c49cfea0307e82ea75f4441a7174c017768d6d62ad514dab",
+        "static/js/banchi/voci/assessment-selection.js": "2f5435b6c9e8b76667d0a95f35860f835117cf8230a635c4c3a54c479fbc54b3",
+        "static/js/banchi/voci/geometria.js": "986bdbfad0cf6e6e057002ee2efdeff0a08df31bfb45f9c046063fcba5840f08",
+        "static/js/banchi/voci/tavola.js": "cc3f7fa8da541109fdda9f8bacca23eea43d1031b2145688b2d80513f47d5283",
+        "static/js/banchi/voci/confronti.js": "83f1ab0d443dc93eb72c0318e32856179486643257c5bbf136e686464fdc6c39",
+        "static/js/banchi/voci/legende.js": "eb303ca6a6013377462b51c92b541a650ee2686257cd7e4ee39fea5221a521f7",
+        "static/js/banchi/voci/orologi.js": "30dd8ab535a31b514c0db13d97d2b046a1add160a7ca7d374deea0d991be73a6",
+        "static/js/banchi/voci/modelli/C1.js": "e5818f20fd19d00fc73434fcacef752d06331efc41d198ffe8c185063e97fa34",
+        "static/js/banchi/voci/apparati/meccanica.js": "9be7ce68847af3d901374e98c7511921d6177d939c547e9b03f2c07a0ebd857d",
+        "static/js/banchi/banco.js": "8200aa5adf026372699790c21f60e0cf3f5fffcb705ef5ee36f609ac3c1e3ed9",
+        "static/js/banchi/misure.js": "46c769f22651529e439b1396e59a017d2c429310b7ae59e2a9717b2ced93c66d",
+        "static/js/banchi/grafici.js": "e5567e88ee6df5c604f8e62228da5e70841556ad0b55fb212fd4d091fdeee3fd",
+        "static/js/banchi/scena.js": "4d94c92a834573062a2af541df113bad06bd11ca538b31bddddc5ec8621a5095",
+        "static/js/banchi/etichette.js": "455ae33c790be4e207e5b5667918c44ea16c95f49e1fea0b13cc92f08aa003f3",
+        "static/js/banchi/aula.js": "44c74446d0d60b20e9dad05b32321f1000f026acdec386ca5aa2f74c20421967",
+        "static/js/ui.js": "77e5f000f5e1a1fe028fff32dad97be29ad72b46d753787a19ad36164cb98f27"
+      },
+      "runtimeProfileSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+      "reviewedRuntimeProfileSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+      "runtimeComparison": {
+        "ok": true,
+        "caseCount": 16,
+        "plannedCaseCount": 16,
+        "clockSampleCount": 0,
+        "errors": [],
+        "firstAssessmentInput": 30,
+        "transferInput": 26,
+        "formatRoundtrip": [
+          {
+            "display": "4",
+            "parsed": 4
+          },
+          {
+            "display": "4,615",
+            "parsed": 4.615
+          }
+        ]
+      },
+      "consumerEvidence": {
+        "layoutEvidence": {
+          "ok": true,
+          "errors": [],
+          "manifestSha256": "7004239d984ca479d4cfe36872fa1c922c2d213e982134c1a3d3dfd71f40a9d8",
+          "runtimeProfileSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+          "scope": "26 consumers;352 real frames;1245 grid/clock/contact states; default-camera full-glyph and actual label projection; no arbitrary-camera guarantee"
+        },
+        "clockSceneEvidence": {
+          "ok": true,
+          "proofSha256": "3588bf3c79a8d4af6a652b2dde0190cc45cdb079376e12e7a5a2ad50e38a32d2",
+          "protocolSha256": "6e2a41d479d5ca30407f7605fa16ca70e2f2813b20d078161f51998730eb822b",
+          "manifestSha256": "a307e5974daba99c32cd47703aba61df241df88c628a0eac303bdc398d4819c4",
+          "observedCaseCount": 24,
+          "visibleClockSceneCount": 16
+        },
+        "ok": true,
+        "proofSha256": "02f6c079b05f932deb8619854684eea23d34c3f9f08d329222e9079d9b44ccbb",
+        "protocolSha256": "7fbe8e90780d0379a2aaff996094eab5c72c526f9b642c1bc85cd9dc8ed20460",
+        "observedCaseCount": 104,
+        "runtimeProfileSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+        "meaning": "Genuine current runtime observation, no historical retag. Technical PASS alone is not independent scientific approval; whole runtime and fresh exact-engine comparisons required per report."
+      },
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "previousConsumerReview": {
+        "runtimeProfileSha256": "54054f7ac463ef52f7c4c881d50ee071713315d891812696f18e39d9ad45ab3d",
+        "ok": true,
+        "sourcePhysicsAndAssignedManualTasks": "PASS_AI",
+        "reportSha256": "3da592a5c4342d8220c1ce3e0b8e93a81873ff8ad42865e8468817805718e022",
+        "meaning": "Immutable historical consumer judgment, not retagged as current"
+      },
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "SIM-C1-L010-05",
+      "sourceSha256": "e8e0c72bb68751a27756cf288ae133a61450c3d7f832271d6aa6870419d9201a",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/esperienze-C1.json",
+      "sourceFileSha256": "84d13bd2658be3b0ce2a55bf7dc698d64ceae151b09deafeabd71507a41d70e3",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "first reference",
+          "independentExact": "100",
+          "expectedValue": "100",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "relation": "exact",
+          "scope": "actual_assigned_manual_calculation",
+          "ok": true
+        },
+        {
+          "claim": "first assigned task",
+          "independentExact": "50",
+          "expectedValue": "50",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "relation": "exact",
+          "scope": "actual_assigned_manual_calculation",
+          "ok": true
+        },
+        {
+          "claim": "actual generated transfer",
+          "independentExact": "75",
+          "expectedValue": "75",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "relation": "exact",
+          "scope": "actual_assigned_manual_calculation",
+          "ok": true
+        },
+        {
+          "claim": "same side opposing force moments",
+          "independentExact": "300/b",
+          "expectedValue": "300/b",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "relation": "exact",
+          "scope": "actual_assigned_manual_calculation",
+          "ok": true
+        },
+        {
+          "claim": "30cm load moment3Nm",
+          "independentExact": "3",
+          "expectedValue": "3",
+          "unit": "N*m",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "relation": "exact",
+          "scope": "actual_assigned_manual_calculation",
+          "ok": true
+        },
+        {
+          "claim": "actual4cm muscle75N",
+          "independentExact": "75",
+          "expectedValue": "75",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "relation": "exact",
+          "scope": "actual_assigned_manual_calculation",
+          "ok": true
+        },
+        {
+          "claim": "2cm smallestarm150N",
+          "independentExact": "150",
+          "expectedValue": "150",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "relation": "exact",
+          "scope": "actual_assigned_manual_calculation",
+          "ok": true
+        },
+        {
+          "claim": "joint reaction not ignored in full forcebalance",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "relation": "exact",
+          "scope": "reviewer_probe_joint_force_opposes_net_muscle_load",
+          "ok": true
+        },
+        {
+          "claim": "fresh actual adapter/law/graph/apparatus/clock/generated-task comparison",
+          "ok": true,
+          "dimension": {},
+          "caseCount": 9,
+          "clockSampleCount": 0,
+          "errors": []
+        },
+        {
+          "claim": "actual numeric display/input roundtrip0",
+          "ok": true,
+          "dimension": {},
+          "actual": {
+            "display": "50",
+            "parsed": 50
+          },
+          "independentExact": "50"
+        },
+        {
+          "claim": "actual numeric display/input roundtrip1",
+          "ok": true,
+          "dimension": {},
+          "actual": {
+            "display": "75",
+            "parsed": 75
+          },
+          "independentExact": "75"
+        },
+        {
+          "claim": "actual reachable lever geometry clears rear post and opaque base x=2",
+          "ok": true,
+          "baseGlyphMargin": 1.43,
+          "dimension": {},
+          "scope": "analytic only; label overlay/default projections independently read in browser proof"
+        },
+        {
+          "claim": "actual reachable lever geometry clears rear post and opaque base x=2.5",
+          "ok": true,
+          "baseGlyphMargin": 1.43,
+          "dimension": {},
+          "scope": "analytic only; label overlay/default projections independently read in browser proof"
+        },
+        {
+          "claim": "actual reachable lever geometry clears rear post and opaque base x=3",
+          "ok": true,
+          "baseGlyphMargin": 1.43,
+          "dimension": {},
+          "scope": "analytic only; label overlay/default projections independently read in browser proof"
+        },
+        {
+          "claim": "actual reachable lever geometry clears rear post and opaque base x=3.5",
+          "ok": true,
+          "baseGlyphMargin": 1.43,
+          "dimension": {},
+          "scope": "analytic only; label overlay/default projections independently read in browser proof"
+        },
+        {
+          "claim": "actual reachable lever geometry clears rear post and opaque base x=4",
+          "ok": true,
+          "baseGlyphMargin": 1.43,
+          "dimension": {},
+          "scope": "analytic only; label overlay/default projections independently read in browser proof"
+        },
+        {
+          "claim": "actual reachable lever geometry clears rear post and opaque base x=4.5",
+          "ok": true,
+          "baseGlyphMargin": 1.43,
+          "dimension": {},
+          "scope": "analytic only; label overlay/default projections independently read in browser proof"
+        },
+        {
+          "claim": "actual reachable lever geometry clears rear post and opaque base x=5",
+          "ok": true,
+          "baseGlyphMargin": 1.43,
+          "dimension": {},
+          "scope": "analytic only; label overlay/default projections independently read in browser proof"
+        },
+        {
+          "claim": "actual reachable lever geometry clears rear post and opaque base x=5.5",
+          "ok": true,
+          "baseGlyphMargin": 1.43,
+          "dimension": {},
+          "scope": "analytic only; label overlay/default projections independently read in browser proof"
+        },
+        {
+          "claim": "actual reachable lever geometry clears rear post and opaque base x=6",
+          "ok": true,
+          "baseGlyphMargin": 1.43,
+          "dimension": {},
+          "scope": "analytic only; label overlay/default projections independently read in browser proof"
+        }
+      ],
+      "dimension": {
+        "first reference": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "first assigned task": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "actual generated transfer": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "same side opposing force moments": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "30cm load moment3Nm": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "actual4cm muscle75N": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "2cm smallestarm150N": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "joint reaction not ignored in full forcebalance": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "fresh actual adapter/law/graph/apparatus/clock/generated-task comparison": {},
+        "actual numeric display/input roundtrip0": {},
+        "actual numeric display/input roundtrip1": {},
+        "actual reachable lever geometry clears rear post and opaque base x=2": {},
+        "actual reachable lever geometry clears rear post and opaque base x=2.5": {},
+        "actual reachable lever geometry clears rear post and opaque base x=3": {},
+        "actual reachable lever geometry clears rear post and opaque base x=3.5": {},
+        "actual reachable lever geometry clears rear post and opaque base x=4": {},
+        "actual reachable lever geometry clears rear post and opaque base x=4.5": {},
+        "actual reachable lever geometry clears rear post and opaque base x=5": {},
+        "actual reachable lever geometry clears rear post and opaque base x=5.5": {},
+        "actual reachable lever geometry clears rear post and opaque base x=6": {}
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "sourceScientificReview": {
+        "ok": true,
+        "errors": []
+      },
+      "consumerReview": {
+        "ok": true,
+        "errors": []
+      },
+      "manualArithmetic": "Same-side muscle-up andhand-weight-down have opposite moments: T*b=10N*30cm, soT300/b_cm. Arms2..6cm imply T150..50N. First task6cm50N, generated4cm75N. Uses perpendicular musclearm; neglects forearm weight explicitly. Joint reaction notzero and no physiological calibration/patient recommendation inferred. Manual torque balance remains correct; the historical5405 load-visibility failure is retained separately and the corrected consumer is rereviewed.",
+      "manualFeasibility": "PASS_AI_EXACT_ASSIGNED_TASKS",
+      "physicalAssumptions": "Ideal static forearm lever; muscle and10N hand load on same side with opposite vertical forces. Perpendicular musclearm2..6cm, loadarm30cm; forearm weight neglected explicitly. Joint reaction generally nonzero. This is a toy mechanics calculation, not a patient/muscle calibration or biological force safety estimate.",
+      "pedagogicalReview": "All source fields and actual generated predictions, two assessments, worked substitutions, stage guides, readouts, graphs, apparatus and clocks read. Explicit actual transfer values/manual procedures, domain/zero/sign cases and physical hypotheses reviewed; independent numeric/unit/renderer probes are not source-authored instructions, student calibration or human approval.",
+      "assetChecksums": {},
+      "figureReview": "Same-side rigid forearm handarm1.9 represents30cm, musclearm1.9*b/30. MuscleupT/90 and loaddown10/90 preserve common scale; upward glyph starts.18 above musclemarker, downward one ends.18 above handmarker. The formerly hidden10N load direction is now recognizable at assigned4/6cm in native and fallback final views, including320px. Purplepivot/gomito identity is retained in native HTML details. No total-occlusion or physiological calibration claim.",
+      "runtimeSha256": {
+        "static/js/banchi/voci/esperimento.js": "cc435e51b62d5b9961b32f5d9b349171f7432e3bf6a6911cd80daaa1f419767b",
+        "static/js/banchi/voci/engines.js": "09a6447a971d0e90c49cfea0307e82ea75f4441a7174c017768d6d62ad514dab",
+        "static/js/banchi/voci/assessment-selection.js": "2f5435b6c9e8b76667d0a95f35860f835117cf8230a635c4c3a54c479fbc54b3",
+        "static/js/banchi/voci/geometria.js": "986bdbfad0cf6e6e057002ee2efdeff0a08df31bfb45f9c046063fcba5840f08",
+        "static/js/banchi/voci/tavola.js": "cc3f7fa8da541109fdda9f8bacca23eea43d1031b2145688b2d80513f47d5283",
+        "static/js/banchi/voci/confronti.js": "83f1ab0d443dc93eb72c0318e32856179486643257c5bbf136e686464fdc6c39",
+        "static/js/banchi/voci/legende.js": "eb303ca6a6013377462b51c92b541a650ee2686257cd7e4ee39fea5221a521f7",
+        "static/js/banchi/voci/orologi.js": "30dd8ab535a31b514c0db13d97d2b046a1add160a7ca7d374deea0d991be73a6",
+        "static/js/banchi/voci/modelli/C1.js": "e5818f20fd19d00fc73434fcacef752d06331efc41d198ffe8c185063e97fa34",
+        "static/js/banchi/voci/apparati/meccanica.js": "9be7ce68847af3d901374e98c7511921d6177d939c547e9b03f2c07a0ebd857d",
+        "static/js/banchi/banco.js": "8200aa5adf026372699790c21f60e0cf3f5fffcb705ef5ee36f609ac3c1e3ed9",
+        "static/js/banchi/misure.js": "46c769f22651529e439b1396e59a017d2c429310b7ae59e2a9717b2ced93c66d",
+        "static/js/banchi/grafici.js": "e5567e88ee6df5c604f8e62228da5e70841556ad0b55fb212fd4d091fdeee3fd",
+        "static/js/banchi/scena.js": "4d94c92a834573062a2af541df113bad06bd11ca538b31bddddc5ec8621a5095",
+        "static/js/banchi/etichette.js": "455ae33c790be4e207e5b5667918c44ea16c95f49e1fea0b13cc92f08aa003f3",
+        "static/js/banchi/aula.js": "44c74446d0d60b20e9dad05b32321f1000f026acdec386ca5aa2f74c20421967",
+        "static/js/ui.js": "77e5f000f5e1a1fe028fff32dad97be29ad72b46d753787a19ad36164cb98f27"
+      },
+      "reviewedRuntimeSha256": {
+        "static/js/banchi/voci/esperimento.js": "cc435e51b62d5b9961b32f5d9b349171f7432e3bf6a6911cd80daaa1f419767b",
+        "static/js/banchi/voci/engines.js": "09a6447a971d0e90c49cfea0307e82ea75f4441a7174c017768d6d62ad514dab",
+        "static/js/banchi/voci/assessment-selection.js": "2f5435b6c9e8b76667d0a95f35860f835117cf8230a635c4c3a54c479fbc54b3",
+        "static/js/banchi/voci/geometria.js": "986bdbfad0cf6e6e057002ee2efdeff0a08df31bfb45f9c046063fcba5840f08",
+        "static/js/banchi/voci/tavola.js": "cc3f7fa8da541109fdda9f8bacca23eea43d1031b2145688b2d80513f47d5283",
+        "static/js/banchi/voci/confronti.js": "83f1ab0d443dc93eb72c0318e32856179486643257c5bbf136e686464fdc6c39",
+        "static/js/banchi/voci/legende.js": "eb303ca6a6013377462b51c92b541a650ee2686257cd7e4ee39fea5221a521f7",
+        "static/js/banchi/voci/orologi.js": "30dd8ab535a31b514c0db13d97d2b046a1add160a7ca7d374deea0d991be73a6",
+        "static/js/banchi/voci/modelli/C1.js": "e5818f20fd19d00fc73434fcacef752d06331efc41d198ffe8c185063e97fa34",
+        "static/js/banchi/voci/apparati/meccanica.js": "9be7ce68847af3d901374e98c7511921d6177d939c547e9b03f2c07a0ebd857d",
+        "static/js/banchi/banco.js": "8200aa5adf026372699790c21f60e0cf3f5fffcb705ef5ee36f609ac3c1e3ed9",
+        "static/js/banchi/misure.js": "46c769f22651529e439b1396e59a017d2c429310b7ae59e2a9717b2ced93c66d",
+        "static/js/banchi/grafici.js": "e5567e88ee6df5c604f8e62228da5e70841556ad0b55fb212fd4d091fdeee3fd",
+        "static/js/banchi/scena.js": "4d94c92a834573062a2af541df113bad06bd11ca538b31bddddc5ec8621a5095",
+        "static/js/banchi/etichette.js": "455ae33c790be4e207e5b5667918c44ea16c95f49e1fea0b13cc92f08aa003f3",
+        "static/js/banchi/aula.js": "44c74446d0d60b20e9dad05b32321f1000f026acdec386ca5aa2f74c20421967",
+        "static/js/ui.js": "77e5f000f5e1a1fe028fff32dad97be29ad72b46d753787a19ad36164cb98f27"
+      },
+      "runtimeProfileSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+      "reviewedRuntimeProfileSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+      "runtimeComparison": {
+        "ok": true,
+        "caseCount": 9,
+        "plannedCaseCount": 9,
+        "clockSampleCount": 0,
+        "errors": [],
+        "firstAssessmentInput": 6,
+        "transferInput": 4,
+        "formatRoundtrip": [
+          {
+            "display": "50",
+            "parsed": 50
+          },
+          {
+            "display": "75",
+            "parsed": 75
+          }
+        ]
+      },
+      "consumerEvidence": {
+        "layoutEvidence": {
+          "ok": true,
+          "errors": [],
+          "manifestSha256": "7004239d984ca479d4cfe36872fa1c922c2d213e982134c1a3d3dfd71f40a9d8",
+          "runtimeProfileSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+          "scope": "26 consumers;352 real frames;1245 grid/clock/contact states; default-camera full-glyph and actual label projection; no arbitrary-camera guarantee"
+        },
+        "clockSceneEvidence": {
+          "ok": true,
+          "proofSha256": "3588bf3c79a8d4af6a652b2dde0190cc45cdb079376e12e7a5a2ad50e38a32d2",
+          "protocolSha256": "6e2a41d479d5ca30407f7605fa16ca70e2f2813b20d078161f51998730eb822b",
+          "manifestSha256": "a307e5974daba99c32cd47703aba61df241df88c628a0eac303bdc398d4819c4",
+          "observedCaseCount": 24,
+          "visibleClockSceneCount": 16
+        },
+        "ok": true,
+        "proofSha256": "02f6c079b05f932deb8619854684eea23d34c3f9f08d329222e9079d9b44ccbb",
+        "protocolSha256": "7fbe8e90780d0379a2aaff996094eab5c72c526f9b642c1bc85cd9dc8ed20460",
+        "observedCaseCount": 104,
+        "runtimeProfileSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+        "meaning": "Genuine current runtime observation, no historical retag. Technical PASS alone is not independent scientific approval; whole runtime and fresh exact-engine comparisons required per report."
+      },
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "previousConsumerReview": {
+        "runtimeProfileSha256": "54054f7ac463ef52f7c4c881d50ee071713315d891812696f18e39d9ad45ab3d",
+        "ok": false,
+        "sourcePhysicsAndAssignedManualTasks": "PASS_AI",
+        "reportSha256": "3da592a5c4342d8220c1ce3e0b8e93a81873ff8ad42865e8468817805718e022",
+        "meaning": "Immutable historical consumer judgment, not retagged as current"
+      },
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "b0d5fd91e6d7d111ff838e3222d7d32802e63390a94f1d33d38071dfcf78d28f",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+  "sourcePath": "officina-di-fisica/content/esperienze-C1.json",
+  "sourceFileSha256": "84d13bd2658be3b0ce2a55bf7dc698d64ceae151b09deafeabd71507a41d70e3",
+  "acceptedCount": 10,
+  "failedCount": 0,
+  "historicalFailedConsumerIds": [
+    "SIM-C1-L010-02",
+    "SIM-C1-L010-03",
+    "SIM-C1-L010-05"
+  ],
+  "historicalRuntimeProfileSha256": "54054f7ac463ef52f7c4c881d50ee071713315d891812696f18e39d9ad45ab3d",
+  "historicalReportSha256": "3da592a5c4342d8220c1ce3e0b8e93a81873ff8ad42865e8468817805718e022",
+  "draftReviewedCount": 0,
+  "failedPublishedEditionIds": [],
+  "sourceManualityIssueIds": [],
+  "consumerInterfaceIssueIds": [],
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_original_author",
+  "originalEditionRetained": true,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}

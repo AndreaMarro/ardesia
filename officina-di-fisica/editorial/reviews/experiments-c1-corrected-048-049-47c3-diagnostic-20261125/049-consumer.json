@@ -1,0 +1,1361 @@
+{
+  "appRoot": "/private/tmp/cric-experiment-contract-fix/officina-di-fisica",
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+  "cases": [
+    {
+      "id": "SIM-C1-L008-01",
+      "noWebGL": false,
+      "display": "3D interattivo",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nLe estremità hanno lo stesso dislivello nullo. Il peso compie lavoro nullo su entrambi; l’attrito di 2 N dissipa energia lungo tutto il cammino. Osserva l’allungarsi della deviazione.\n\nW attrito = −fℓ = −2ℓ; W peso = 0\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Lunghezza del percorso sul piano\n1 m\nLavoro dell’attrito\n-2 J\nLavoro del peso\n0 J"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Lunghezza del percorso sul piano» e confronta la scena con il punto segnato sul grafico. Parti da 1 m, poi prova 4 m.\n\nLunghezza del percorso sul piano = 1 m · Lavoro dell’attrito = -2 J\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Lunghezza del percorso sul piano\n1 m\nLavoro dell’attrito\n-2 J\nLavoro del peso\n0 J"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\nW attrito = −fℓ = −2ℓ; W peso = 0. Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\n−2 × 1 = -2 J\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Lunghezza del percorso sul piano\n1 m\nLavoro dell’attrito\n-2 J\nLavoro del peso\n0 J"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Lunghezza del percorso sul piano» a 3 m. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nW attrito = −fℓ = −2ℓ; W peso = 0\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Lunghezza del percorso sul piano\n1 m\nLavoro dell’attrito\n-2 J\nLavoro del peso\n0 J"
+        }
+      ],
+      "answerCount": 2,
+      "independentAnswers": [
+        -8,
+        -6
+      ],
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L008-01-3d.png"
+    },
+    {
+      "id": "SIM-C1-L008-01",
+      "noWebGLBoundary": "3D interattivo",
+      "boundary": 0,
+      "input": 1,
+      "want": "-2 J",
+      "readings": "Lunghezza del percorso sul piano\n1 m\nLavoro dell’attrito\n-2 J\nLavoro del peso\n0 J",
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L008-01-false-boundary0.png"
+    },
+    {
+      "id": "SIM-C1-L008-01",
+      "noWebGLBoundary": "3D interattivo",
+      "boundary": 1,
+      "input": 3,
+      "want": "-6 J",
+      "readings": "Lunghezza del percorso sul piano\n3 m\nLavoro dell’attrito\n-6 J\nLavoro del peso\n0 J",
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L008-01-false-boundary1.png"
+    },
+    {
+      "id": "SIM-C1-L008-01",
+      "noWebGLBoundary": "3D interattivo",
+      "boundary": 2,
+      "input": 5,
+      "want": "-10 J",
+      "readings": "Lunghezza del percorso sul piano\n5 m\nLavoro dell’attrito\n-10 J\nLavoro del peso\n0 J",
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L008-01-false-boundary2.png"
+    },
+    {
+      "id": "SIM-C1-L008-02",
+      "noWebGL": false,
+      "display": "3D interattivo",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nIl riferimento è la molla scarica e la quota iniziale. Sollevando il corpo di h si guadagna energia gravitazionale e si allunga la molla di h. Converti i centimetri in metri prima di sommare.\n\nΔU = mgh + ½kh²; mg = 1 N, k = 10 N/m\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Spostamento verticale\n2 cm\nEnergia potenziale totale\n22 mJ\nContributo elastico\n2 mJ"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Spostamento verticale» e confronta la scena con il punto segnato sul grafico. Parti da 2 cm, poi prova 10 cm.\n\nSpostamento verticale = 2 cm · Energia potenziale totale = 22 mJ\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Spostamento verticale\n2 cm\nEnergia potenziale totale\n22 mJ\nContributo elastico\n2 mJ"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\nΔU = mgh + ½kh²; mg = 1 N, k = 10 N/m. Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\n10 × 2 + 0,5 × 2 × 2 = 22 mJ\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Spostamento verticale\n2 cm\nEnergia potenziale totale\n22 mJ\nContributo elastico\n2 mJ"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Spostamento verticale» a 5 cm. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nΔU = mgh + ½kh²; mg = 1 N, k = 10 N/m\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Spostamento verticale\n2 cm\nEnergia potenziale totale\n22 mJ\nContributo elastico\n2 mJ"
+        }
+      ],
+      "answerCount": 2,
+      "independentAnswers": [
+        150,
+        62.5
+      ],
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L008-02-3d.png"
+    },
+    {
+      "id": "SIM-C1-L008-02",
+      "noWebGLBoundary": "3D interattivo",
+      "boundary": 0,
+      "input": 0,
+      "want": "0 mJ",
+      "readings": "Spostamento verticale\n0 cm\nEnergia potenziale totale\n0 mJ\nContributo elastico\n0 mJ",
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L008-02-false-boundary0.png"
+    },
+    {
+      "id": "SIM-C1-L008-02",
+      "noWebGLBoundary": "3D interattivo",
+      "boundary": 1,
+      "input": 5,
+      "want": "62,5 mJ",
+      "readings": "Spostamento verticale\n5 cm\nEnergia potenziale totale\n62,5 mJ\nContributo elastico\n12,5 mJ",
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L008-02-false-boundary1.png"
+    },
+    {
+      "id": "SIM-C1-L008-02",
+      "noWebGLBoundary": "3D interattivo",
+      "boundary": 2,
+      "input": 10,
+      "want": "150 mJ",
+      "readings": "Spostamento verticale\n10 cm\nEnergia potenziale totale\n150 mJ\nContributo elastico\n50 mJ",
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L008-02-false-boundary2.png"
+    },
+    {
+      "id": "SIM-C1-L008-03",
+      "noWebGL": false,
+      "display": "3D interattivo",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nUna massa di 1 kg parte ferma a 5 m, con g = 10 m/s² e attriti trascurati. La somma di energia potenziale e cinetica resta 50 J durante la discesa.\n\nK = mg(h₀−h) = 10(5−h)\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Quota sulla guida\n5 m\nEnergia cinetica\n0 J\nEnergia potenziale\n50 J"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Quota sulla guida» e confronta la scena con il punto segnato sul grafico. Parti da 5 m, poi prova 2 m.\n\nQuota sulla guida = 5 m · Energia cinetica = 0 J\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Quota sulla guida\n5 m\nEnergia cinetica\n0 J\nEnergia potenziale\n50 J"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\nK = mg(h₀−h) = 10(5−h). Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\n10 × (5 − 5) = 0 J\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Quota sulla guida\n5 m\nEnergia cinetica\n0 J\nEnergia potenziale\n50 J"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Quota sulla guida» a 2,5 m. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nK = mg(h₀−h) = 10(5−h)\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Quota sulla guida\n5 m\nEnergia cinetica\n0 J\nEnergia potenziale\n50 J"
+        }
+      ],
+      "answerCount": 2,
+      "independentAnswers": [
+        30,
+        25
+      ],
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L008-03-3d.png"
+    },
+    {
+      "id": "SIM-C1-L008-03",
+      "noWebGLBoundary": "3D interattivo",
+      "boundary": 0,
+      "input": 5,
+      "want": "0 J",
+      "readings": "Quota sulla guida\n5 m\nEnergia cinetica\n0 J\nEnergia potenziale\n50 J",
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L008-03-false-boundary0.png"
+    },
+    {
+      "id": "SIM-C1-L008-03",
+      "noWebGLBoundary": "3D interattivo",
+      "boundary": 1,
+      "input": 2.5,
+      "want": "25 J",
+      "readings": "Quota sulla guida\n2,5 m\nEnergia cinetica\n25 J\nEnergia potenziale\n25 J",
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L008-03-false-boundary1.png"
+    },
+    {
+      "id": "SIM-C1-L008-03",
+      "noWebGLBoundary": "3D interattivo",
+      "boundary": 2,
+      "input": 0,
+      "want": "50 J",
+      "readings": "Quota sulla guida\n0 m\nEnergia cinetica\n50 J\nEnergia potenziale\n0 J",
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L008-03-false-boundary2.png"
+    },
+    {
+      "id": "SIM-C1-L009-01",
+      "noWebGL": false,
+      "display": "3D interattivo",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nUna massa di 8 kg parte ferma sotto 4 N costanti. La freccia di velocità cresce con la durata della spinta. Un newton secondo equivale a un chilogrammo metro al secondo.\n\nJ = FΔt = Δp, con F = 4 N\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Durata della spinta\n1 s\nImpulso ricevuto\n4 N·s\nVariazione dal riferimento\n0 N·s"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Durata della spinta» e confronta la scena con il punto segnato sul grafico. Parti da 1 s, poi prova 2 s.\n\nDurata della spinta = 1 s · Impulso ricevuto = 4 N·s\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Durata della spinta\n1 s\nImpulso ricevuto\n4 N·s\nVariazione dal riferimento\n0 N·s"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\nJ = FΔt = Δp, con F = 4 N. Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\n4 × 1 = 4 N·s\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Durata della spinta\n1 s\nImpulso ricevuto\n4 N·s\nVariazione dal riferimento\n0 N·s"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Durata della spinta» a 1,5 s. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nJ = FΔt = Δp, con F = 4 N\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Durata della spinta\n1 s\nImpulso ricevuto\n4 N·s\nVariazione dal riferimento\n0 N·s"
+        }
+      ],
+      "answerCount": 2,
+      "independentAnswers": [
+        8,
+        6
+      ],
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L009-01-3d.png"
+    },
+    {
+      "id": "SIM-C1-L009-01",
+      "noWebGLBoundary": "3D interattivo",
+      "boundary": 0,
+      "input": 0,
+      "want": "0 N·s",
+      "readings": "Durata della spinta\n0 s\nImpulso ricevuto\n0 N·s\nVariazione dal riferimento\n-4 N·s",
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L009-01-false-boundary0.png"
+    },
+    {
+      "id": "SIM-C1-L009-01",
+      "noWebGLBoundary": "3D interattivo",
+      "boundary": 1,
+      "input": 1.5,
+      "want": "6 N·s",
+      "readings": "Durata della spinta\n1,5 s\nImpulso ricevuto\n6 N·s\nVariazione dal riferimento\n2 N·s",
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L009-01-false-boundary1.png"
+    },
+    {
+      "id": "SIM-C1-L009-01",
+      "noWebGLBoundary": "3D interattivo",
+      "boundary": 2,
+      "input": 3,
+      "want": "12 N·s",
+      "readings": "Durata della spinta\n3 s\nImpulso ricevuto\n12 N·s\nVariazione dal riferimento\n8 N·s",
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L009-01-false-boundary2.png"
+    },
+    {
+      "id": "SIM-C1-L009-02",
+      "noWebGL": false,
+      "display": "3D interattivo",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nIl secondo carrello è fermo. Il primo si avvicina dal lato indicato dal suo verso. Dopo l’aggancio la massa mobile raddoppia e la velocità comune è metà di quella iniziale. Per una velocità iniziale diversa da zero la quantità di moto si conserva e l’energia cinetica si dimezza. Imposta zero. Entrambi i carrelli restano fermi, senza urto né perdita di energia.\n\nv finale = (mvₐ + m·0)/(2m) = vₐ/2\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Velocità iniziale di A\n-2 m/s\nVelocità comune dopo l’urto (a fine prova)\n-1 m/s\nEnergia cinetica finale / iniziale\n0,5\nPosizione del centro di A\n1,7 m"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Velocità iniziale di A» e confronta la scena con il punto segnato sul grafico. Parti da -2 m/s, poi prova 3 m/s.\n\nVelocità iniziale di A = -2 m/s · Velocità comune dopo l’urto = -1 m/s\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Velocità iniziale di A\n-2 m/s\nVelocità comune dopo l’urto (a fine prova)\n-1 m/s\nEnergia cinetica finale / iniziale\n0,5\nPosizione del centro di A\n1,7 m"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\nv finale = (mvₐ + m·0)/(2m) = vₐ/2. Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\n(-2) / 2 = -1 m/s\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Velocità iniziale di A\n-2 m/s\nVelocità comune dopo l’urto (a fine prova)\n-1 m/s\nEnergia cinetica finale / iniziale\n0,5\nPosizione del centro di A\n1,7 m"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Velocità iniziale di A» a 0 m/s. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nv finale = (mvₐ + m·0)/(2m) = vₐ/2\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Velocità iniziale di A\n-2 m/s\nVelocità comune dopo l’urto (a fine prova)\n-1 m/s\nEnergia cinetica finale / iniziale\n0,5\nPosizione del centro di A\n1,7 m"
+        }
+      ],
+      "answerCount": 2,
+      "independentAnswers": [
+        1.5,
+        0
+      ],
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L009-02-3d.png"
+    },
+    {
+      "id": "SIM-C1-L009-02",
+      "noWebGLBoundary": "3D interattivo",
+      "boundary": 0,
+      "input": -3,
+      "want": "-1,5 m/s",
+      "readings": "Velocità iniziale di A\n-3 m/s\nVelocità comune dopo l’urto (a fine prova)\n-1,5 m/s\nEnergia cinetica finale / iniziale\n0,5\nPosizione del centro di A\n2,2 m",
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L009-02-false-boundary0.png"
+    },
+    {
+      "id": "SIM-C1-L009-02",
+      "noWebGLBoundary": "3D interattivo",
+      "boundary": 1,
+      "input": 0,
+      "want": "0 m/s",
+      "readings": "Velocità iniziale di A\n0 m/s\nVelocità comune dopo l’urto (a fine prova)\n0 m/s\nEnergia cinetica finale / iniziale\nEntrambe nulle\nPosizione del centro di A\n-0,7 m",
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L009-02-false-boundary1.png"
+    },
+    {
+      "id": "SIM-C1-L009-02",
+      "noWebGLBoundary": "3D interattivo",
+      "boundary": 2,
+      "input": 3,
+      "want": "1,5 m/s",
+      "readings": "Velocità iniziale di A\n3 m/s\nVelocità comune dopo l’urto (a fine prova)\n1,5 m/s\nEnergia cinetica finale / iniziale\n0,5\nPosizione del centro di A\n-2,2 m",
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L009-02-false-boundary2.png"
+    },
+    {
+      "id": "SIM-C1-L009-02",
+      "kind": "collision_clock",
+      "initialVelocity": -3,
+      "time": 0,
+      "readout": "2,2 m",
+      "independentPosition": 2.2,
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L009-02-false-clock-3-0.png"
+    },
+    {
+      "id": "SIM-C1-L009-02",
+      "kind": "collision_clock",
+      "initialVelocity": -3,
+      "time": 0.49,
+      "readout": "0,73 m",
+      "independentPosition": 0.73,
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L009-02-false-clock-3-0.49.png"
+    },
+    {
+      "id": "SIM-C1-L009-02",
+      "kind": "collision_clock",
+      "initialVelocity": -3,
+      "time": 0.5,
+      "readout": "0,7 m",
+      "independentPosition": 0.7,
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L009-02-false-clock-3-0.5.png"
+    },
+    {
+      "id": "SIM-C1-L009-02",
+      "kind": "collision_clock",
+      "initialVelocity": -3,
+      "time": 1.2,
+      "readout": "-0,35 m",
+      "independentPosition": -0.35,
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L009-02-false-clock-3-1.2.png"
+    },
+    {
+      "id": "SIM-C1-L009-02",
+      "kind": "collision_clock",
+      "initialVelocity": 3,
+      "time": 0,
+      "readout": "-2,2 m",
+      "independentPosition": -2.2,
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L009-02-false-clock3-0.png"
+    },
+    {
+      "id": "SIM-C1-L009-02",
+      "kind": "collision_clock",
+      "initialVelocity": 3,
+      "time": 0.49,
+      "readout": "-0,73 m",
+      "independentPosition": -0.73,
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L009-02-false-clock3-0.49.png"
+    },
+    {
+      "id": "SIM-C1-L009-02",
+      "kind": "collision_clock",
+      "initialVelocity": 3,
+      "time": 0.5,
+      "readout": "-0,7 m",
+      "independentPosition": -0.7,
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L009-02-false-clock3-0.5.png"
+    },
+    {
+      "id": "SIM-C1-L009-02",
+      "kind": "collision_clock",
+      "initialVelocity": 3,
+      "time": 1.2,
+      "readout": "0,35 m",
+      "independentPosition": 0.35,
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L009-02-false-clock3-1.2.png"
+    },
+    {
+      "id": "SIM-C1-L010-01",
+      "noWebGL": false,
+      "display": "3D interattivo",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nI carrelli da 1 e 3 kg avanzano entrambi a 1 m/s. Il punto di equilibrio è più vicino al carrello pesante. All’esterno non agisce alcuna risultante orizzontale.\n\nxCM = (xₐ + 3xᵦ)/4; xₐ = −2+t, xᵦ = 2+t\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Tempo\n0 s\nPosizione del centro di massa\n1 m\nVariazione dal riferimento\n0 m"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Tempo» e confronta la scena con il punto segnato sul grafico. Parti da 0 s, poi prova 2 s.\n\nTempo = 0 s · Posizione del centro di massa = 1 m\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Tempo\n0 s\nPosizione del centro di massa\n1 m\nVariazione dal riferimento\n0 m"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\nxCM = (xₐ + 3xᵦ)/4; xₐ = −2+t, xᵦ = 2+t. Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\n1 + 0 = 1 m\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Tempo\n0 s\nPosizione del centro di massa\n1 m\nVariazione dal riferimento\n0 m"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Tempo» a 1,5 s. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nxCM = (xₐ + 3xᵦ)/4; xₐ = −2+t, xᵦ = 2+t\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Tempo\n0 s\nPosizione del centro di massa\n1 m\nVariazione dal riferimento\n0 m"
+        }
+      ],
+      "answerCount": 2,
+      "independentAnswers": [
+        3,
+        2.5
+      ],
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L010-01-3d.png"
+    },
+    {
+      "id": "SIM-C1-L010-01",
+      "noWebGLBoundary": "3D interattivo",
+      "boundary": 0,
+      "input": 0,
+      "want": "1 m",
+      "readings": "Tempo\n0 s\nPosizione del centro di massa\n1 m\nVariazione dal riferimento\n0 m",
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L010-01-false-boundary0.png"
+    },
+    {
+      "id": "SIM-C1-L010-01",
+      "noWebGLBoundary": "3D interattivo",
+      "boundary": 1,
+      "input": 1.5,
+      "want": "2,5 m",
+      "readings": "Tempo\n1,5 s\nPosizione del centro di massa\n2,5 m\nVariazione dal riferimento\n1,5 m",
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L010-01-false-boundary1.png"
+    },
+    {
+      "id": "SIM-C1-L010-01",
+      "noWebGLBoundary": "3D interattivo",
+      "boundary": 2,
+      "input": 3,
+      "want": "4 m",
+      "readings": "Tempo\n3 s\nPosizione del centro di massa\n4 m\nVariazione dal riferimento\n3 m",
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L010-01-false-boundary2.png"
+    },
+    {
+      "id": "SIM-C1-L010-02",
+      "noWebGL": false,
+      "display": "3D interattivo",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nI due punti marcati sono distanti 20 cm lungo l’asta. La distanza fra loro rimane costante anche quando le proiezioni verticale e orizzontale cambiano.\n\nΔy = L sin θ, con L = 20 cm\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Angolo dell’asta\n30 °\nSeparazione verticale degli estremi\n10 cm\nVariazione dal riferimento\n0 cm"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Angolo dell’asta» e confronta la scena con il punto segnato sul grafico. Parti da 30 °, poi prova 90 °.\n\nAngolo dell’asta = 30 ° · Separazione verticale degli estremi = 10 cm\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Angolo dell’asta\n30 °\nSeparazione verticale degli estremi\n10 cm\nVariazione dal riferimento\n0 cm"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\nΔy = L sin θ, con L = 20 cm. Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\n20 × sin(30°) ≈ 10 cm\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Angolo dell’asta\n30 °\nSeparazione verticale degli estremi\n10 cm\nVariazione dal riferimento\n0 cm"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Angolo dell’asta» a 45 °. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nΔy = L sin θ, con L = 20 cm\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Angolo dell’asta\n30 °\nSeparazione verticale degli estremi\n10 cm\nVariazione dal riferimento\n0 cm"
+        }
+      ],
+      "answerCount": 2,
+      "independentAnswers": [
+        20,
+        14.14
+      ],
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L010-02-3d.png"
+    },
+    {
+      "id": "SIM-C1-L010-02",
+      "noWebGLBoundary": "3D interattivo",
+      "boundary": 0,
+      "input": 0,
+      "want": "0 cm",
+      "readings": "Angolo dell’asta\n0 °\nSeparazione verticale degli estremi\n0 cm\nVariazione dal riferimento\n-10 cm",
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L010-02-false-boundary0.png"
+    },
+    {
+      "id": "SIM-C1-L010-02",
+      "noWebGLBoundary": "3D interattivo",
+      "boundary": 1,
+      "input": 45,
+      "want": "14,14 cm",
+      "readings": "Angolo dell’asta\n45 °\nSeparazione verticale degli estremi\n14,14 cm\nVariazione dal riferimento\n4,142 cm",
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L010-02-false-boundary1.png"
+    },
+    {
+      "id": "SIM-C1-L010-02",
+      "noWebGLBoundary": "3D interattivo",
+      "boundary": 2,
+      "input": 90,
+      "want": "20 cm",
+      "readings": "Angolo dell’asta\n90 °\nSeparazione verticale degli estremi\n20 cm\nVariazione dal riferimento\n10 cm",
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L010-02-false-boundary2.png"
+    },
+    {
+      "id": "SIM-C1-L010-03",
+      "noWebGL": false,
+      "display": "3D interattivo",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nLa forza di 10 N è perpendicolare all’asta. Misura dal perno alla linea d’azione. Qui si legge il modulo del momento; la spinta sul lato destro verso il basso fa ruotare in senso orario.\n\nτ = F b = 10 × b(cm)/100\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Braccio perpendicolare\n10 cm\nMomento della forza\n1 N·m\nVariazione dal riferimento\n0 N·m"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Braccio perpendicolare» e confronta la scena con il punto segnato sul grafico. Parti da 10 cm, poi prova 30 cm.\n\nBraccio perpendicolare = 10 cm · Momento della forza = 1 N·m\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Braccio perpendicolare\n10 cm\nMomento della forza\n1 N·m\nVariazione dal riferimento\n0 N·m"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\nτ = F b = 10 × b(cm)/100. Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\n10 / 10 = 1 N·m\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Braccio perpendicolare\n10 cm\nMomento della forza\n1 N·m\nVariazione dal riferimento\n0 N·m"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Braccio perpendicolare» a 20 cm. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nτ = F b = 10 × b(cm)/100\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Braccio perpendicolare\n10 cm\nMomento della forza\n1 N·m\nVariazione dal riferimento\n0 N·m"
+        }
+      ],
+      "answerCount": 2,
+      "independentAnswers": [
+        3,
+        2
+      ],
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L010-03-3d.png"
+    },
+    {
+      "id": "SIM-C1-L010-03",
+      "noWebGLBoundary": "3D interattivo",
+      "boundary": 0,
+      "input": 0,
+      "want": "0 N·m",
+      "readings": "Braccio perpendicolare\n0 cm\nMomento della forza\n0 N·m\nVariazione dal riferimento\n-1 N·m",
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L010-03-false-boundary0.png"
+    },
+    {
+      "id": "SIM-C1-L010-03",
+      "noWebGLBoundary": "3D interattivo",
+      "boundary": 1,
+      "input": 40,
+      "want": "4 N·m",
+      "readings": "Braccio perpendicolare\n40 cm\nMomento della forza\n4 N·m\nVariazione dal riferimento\n3 N·m",
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L010-03-false-boundary1.png"
+    },
+    {
+      "id": "SIM-C1-L010-04",
+      "noWebGL": false,
+      "display": "3D interattivo",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nLe due forze verticali ai lati opposti producono momenti di segno opposto. Per l’equilibrio rotazionale i loro moduli devono coincidere.\n\nF b = (6 N)(20 cm) ⇒ F = 120/b\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Braccio della forza equilibrante\n10 cm\nForza richiesta\n12 N\nVariazione dal riferimento\n0 N"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Braccio della forza equilibrante» e confronta la scena con il punto segnato sul grafico. Parti da 10 cm, poi prova 30 cm.\n\nBraccio della forza equilibrante = 10 cm · Forza richiesta = 12 N\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Braccio della forza equilibrante\n10 cm\nForza richiesta\n12 N\nVariazione dal riferimento\n0 N"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\nF b = (6 N)(20 cm) ⇒ F = 120/b. Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\n120 / 10 = 12 N\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Braccio della forza equilibrante\n10 cm\nForza richiesta\n12 N\nVariazione dal riferimento\n0 N"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Braccio della forza equilibrante» a 26 cm. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nF b = (6 N)(20 cm) ⇒ F = 120/b\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Braccio della forza equilibrante\n10 cm\nForza richiesta\n12 N\nVariazione dal riferimento\n0 N"
+        }
+      ],
+      "answerCount": 2,
+      "independentAnswers": [
+        4,
+        4.615
+      ],
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L010-04-3d.png"
+    },
+    {
+      "id": "SIM-C1-L010-04",
+      "noWebGLBoundary": "3D interattivo",
+      "boundary": 0,
+      "input": 10,
+      "want": "12 N",
+      "readings": "Braccio della forza equilibrante\n10 cm\nForza richiesta\n12 N\nVariazione dal riferimento\n0 N",
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L010-04-false-boundary0.png"
+    },
+    {
+      "id": "SIM-C1-L010-04",
+      "noWebGLBoundary": "3D interattivo",
+      "boundary": 1,
+      "input": 26,
+      "want": "4,615 N",
+      "readings": "Braccio della forza equilibrante\n26 cm\nForza richiesta\n4,615 N\nVariazione dal riferimento\n-7,385 N",
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L010-04-false-boundary1.png"
+    },
+    {
+      "id": "SIM-C1-L010-04",
+      "noWebGLBoundary": "3D interattivo",
+      "boundary": 2,
+      "input": 40,
+      "want": "3 N",
+      "readings": "Braccio della forza equilibrante\n40 cm\nForza richiesta\n3 N\nVariazione dal riferimento\n-9 N",
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L010-04-false-boundary2.png"
+    },
+    {
+      "id": "SIM-C1-L010-05",
+      "noWebGL": false,
+      "display": "3D interattivo",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nIl gomito è il fulcro. Mano e inserzione sono dallo stesso lato e le forze hanno versi opposti. Si trascura il peso dell’avambraccio e si usa il braccio perpendicolare della trazione.\n\nF muscolo × b = (10 N)(30 cm)\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Braccio del muscolo\n3 cm\nTrazione del muscolo\n100 N\nVariazione dal riferimento\n0 N"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Braccio del muscolo» e confronta la scena con il punto segnato sul grafico. Parti da 3 cm, poi prova 6 cm.\n\nBraccio del muscolo = 3 cm · Trazione del muscolo = 100 N\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Braccio del muscolo\n3 cm\nTrazione del muscolo\n100 N\nVariazione dal riferimento\n0 N"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\nF muscolo × b = (10 N)(30 cm). Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\n300 / 3 = 100 N\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Braccio del muscolo\n3 cm\nTrazione del muscolo\n100 N\nVariazione dal riferimento\n0 N"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Braccio del muscolo» a 4 cm. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nF muscolo × b = (10 N)(30 cm)\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Braccio del muscolo\n3 cm\nTrazione del muscolo\n100 N\nVariazione dal riferimento\n0 N"
+        }
+      ],
+      "answerCount": 2,
+      "independentAnswers": [
+        50,
+        75
+      ],
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L010-05-3d.png"
+    },
+    {
+      "id": "SIM-C1-L010-05",
+      "noWebGLBoundary": "3D interattivo",
+      "boundary": 0,
+      "input": 2,
+      "want": "150 N",
+      "readings": "Braccio del muscolo\n2 cm\nTrazione del muscolo\n150 N\nVariazione dal riferimento\n50 N",
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L010-05-false-boundary0.png"
+    },
+    {
+      "id": "SIM-C1-L010-05",
+      "noWebGLBoundary": "3D interattivo",
+      "boundary": 1,
+      "input": 4,
+      "want": "75 N",
+      "readings": "Braccio del muscolo\n4 cm\nTrazione del muscolo\n75 N\nVariazione dal riferimento\n-25 N",
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L010-05-false-boundary1.png"
+    },
+    {
+      "id": "SIM-C1-L010-05",
+      "noWebGLBoundary": "3D interattivo",
+      "boundary": 2,
+      "input": 6,
+      "want": "50 N",
+      "readings": "Braccio del muscolo\n6 cm\nTrazione del muscolo\n50 N\nVariazione dal riferimento\n-50 N",
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L010-05-false-boundary2.png"
+    },
+    {
+      "id": "SIM-C1-L008-01",
+      "noWebGL": true,
+      "display": "Tavola di misura",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nLe estremità hanno lo stesso dislivello nullo. Il peso compie lavoro nullo su entrambi; l’attrito di 2 N dissipa energia lungo tutto il cammino. Osserva l’allungarsi della deviazione.\n\nW attrito = −fℓ = −2ℓ; W peso = 0\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Lunghezza del percorso sul piano\n1 m\nLavoro dell’attrito\n-2 J\nLavoro del peso\n0 J"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Lunghezza del percorso sul piano» e confronta la scena con il punto segnato sul grafico. Parti da 1 m, poi prova 4 m.\n\nLunghezza del percorso sul piano = 1 m · Lavoro dell’attrito = -2 J\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Lunghezza del percorso sul piano\n1 m\nLavoro dell’attrito\n-2 J\nLavoro del peso\n0 J"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\nW attrito = −fℓ = −2ℓ; W peso = 0. Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\n−2 × 1 = -2 J\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Lunghezza del percorso sul piano\n1 m\nLavoro dell’attrito\n-2 J\nLavoro del peso\n0 J"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Lunghezza del percorso sul piano» a 3 m. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nW attrito = −fℓ = −2ℓ; W peso = 0\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Lunghezza del percorso sul piano\n1 m\nLavoro dell’attrito\n-2 J\nLavoro del peso\n0 J"
+        }
+      ],
+      "answerCount": 2,
+      "independentAnswers": [
+        -8,
+        -6
+      ],
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L008-01-2d.png"
+    },
+    {
+      "id": "SIM-C1-L008-01",
+      "noWebGLBoundary": "Tavola di misura",
+      "boundary": 0,
+      "input": 1,
+      "want": "-2 J",
+      "readings": "Lunghezza del percorso sul piano\n1 m\nLavoro dell’attrito\n-2 J\nLavoro del peso\n0 J",
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L008-01-true-boundary0.png"
+    },
+    {
+      "id": "SIM-C1-L008-01",
+      "noWebGLBoundary": "Tavola di misura",
+      "boundary": 1,
+      "input": 3,
+      "want": "-6 J",
+      "readings": "Lunghezza del percorso sul piano\n3 m\nLavoro dell’attrito\n-6 J\nLavoro del peso\n0 J",
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L008-01-true-boundary1.png"
+    },
+    {
+      "id": "SIM-C1-L008-01",
+      "noWebGLBoundary": "Tavola di misura",
+      "boundary": 2,
+      "input": 5,
+      "want": "-10 J",
+      "readings": "Lunghezza del percorso sul piano\n5 m\nLavoro dell’attrito\n-10 J\nLavoro del peso\n0 J",
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L008-01-true-boundary2.png"
+    },
+    {
+      "id": "SIM-C1-L008-02",
+      "noWebGL": true,
+      "display": "Tavola di misura",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nIl riferimento è la molla scarica e la quota iniziale. Sollevando il corpo di h si guadagna energia gravitazionale e si allunga la molla di h. Converti i centimetri in metri prima di sommare.\n\nΔU = mgh + ½kh²; mg = 1 N, k = 10 N/m\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Spostamento verticale\n2 cm\nEnergia potenziale totale\n22 mJ\nContributo elastico\n2 mJ"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Spostamento verticale» e confronta la scena con il punto segnato sul grafico. Parti da 2 cm, poi prova 10 cm.\n\nSpostamento verticale = 2 cm · Energia potenziale totale = 22 mJ\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Spostamento verticale\n2 cm\nEnergia potenziale totale\n22 mJ\nContributo elastico\n2 mJ"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\nΔU = mgh + ½kh²; mg = 1 N, k = 10 N/m. Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\n10 × 2 + 0,5 × 2 × 2 = 22 mJ\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Spostamento verticale\n2 cm\nEnergia potenziale totale\n22 mJ\nContributo elastico\n2 mJ"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Spostamento verticale» a 5 cm. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nΔU = mgh + ½kh²; mg = 1 N, k = 10 N/m\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Spostamento verticale\n2 cm\nEnergia potenziale totale\n22 mJ\nContributo elastico\n2 mJ"
+        }
+      ],
+      "answerCount": 2,
+      "independentAnswers": [
+        150,
+        62.5
+      ],
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L008-02-2d.png"
+    },
+    {
+      "id": "SIM-C1-L008-02",
+      "noWebGLBoundary": "Tavola di misura",
+      "boundary": 0,
+      "input": 0,
+      "want": "0 mJ",
+      "readings": "Spostamento verticale\n0 cm\nEnergia potenziale totale\n0 mJ\nContributo elastico\n0 mJ",
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L008-02-true-boundary0.png"
+    },
+    {
+      "id": "SIM-C1-L008-02",
+      "noWebGLBoundary": "Tavola di misura",
+      "boundary": 1,
+      "input": 5,
+      "want": "62,5 mJ",
+      "readings": "Spostamento verticale\n5 cm\nEnergia potenziale totale\n62,5 mJ\nContributo elastico\n12,5 mJ",
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L008-02-true-boundary1.png"
+    },
+    {
+      "id": "SIM-C1-L008-02",
+      "noWebGLBoundary": "Tavola di misura",
+      "boundary": 2,
+      "input": 10,
+      "want": "150 mJ",
+      "readings": "Spostamento verticale\n10 cm\nEnergia potenziale totale\n150 mJ\nContributo elastico\n50 mJ",
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L008-02-true-boundary2.png"
+    },
+    {
+      "id": "SIM-C1-L008-03",
+      "noWebGL": true,
+      "display": "Tavola di misura",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nUna massa di 1 kg parte ferma a 5 m, con g = 10 m/s² e attriti trascurati. La somma di energia potenziale e cinetica resta 50 J durante la discesa.\n\nK = mg(h₀−h) = 10(5−h)\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Quota sulla guida\n5 m\nEnergia cinetica\n0 J\nEnergia potenziale\n50 J"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Quota sulla guida» e confronta la scena con il punto segnato sul grafico. Parti da 5 m, poi prova 2 m.\n\nQuota sulla guida = 5 m · Energia cinetica = 0 J\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Quota sulla guida\n5 m\nEnergia cinetica\n0 J\nEnergia potenziale\n50 J"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\nK = mg(h₀−h) = 10(5−h). Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\n10 × (5 − 5) = 0 J\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Quota sulla guida\n5 m\nEnergia cinetica\n0 J\nEnergia potenziale\n50 J"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Quota sulla guida» a 2,5 m. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nK = mg(h₀−h) = 10(5−h)\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Quota sulla guida\n5 m\nEnergia cinetica\n0 J\nEnergia potenziale\n50 J"
+        }
+      ],
+      "answerCount": 2,
+      "independentAnswers": [
+        30,
+        25
+      ],
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L008-03-2d.png"
+    },
+    {
+      "id": "SIM-C1-L008-03",
+      "noWebGLBoundary": "Tavola di misura",
+      "boundary": 0,
+      "input": 5,
+      "want": "0 J",
+      "readings": "Quota sulla guida\n5 m\nEnergia cinetica\n0 J\nEnergia potenziale\n50 J",
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L008-03-true-boundary0.png"
+    },
+    {
+      "id": "SIM-C1-L008-03",
+      "noWebGLBoundary": "Tavola di misura",
+      "boundary": 1,
+      "input": 2.5,
+      "want": "25 J",
+      "readings": "Quota sulla guida\n2,5 m\nEnergia cinetica\n25 J\nEnergia potenziale\n25 J",
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L008-03-true-boundary1.png"
+    },
+    {
+      "id": "SIM-C1-L008-03",
+      "noWebGLBoundary": "Tavola di misura",
+      "boundary": 2,
+      "input": 0,
+      "want": "50 J",
+      "readings": "Quota sulla guida\n0 m\nEnergia cinetica\n50 J\nEnergia potenziale\n0 J",
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L008-03-true-boundary2.png"
+    },
+    {
+      "id": "SIM-C1-L009-01",
+      "noWebGL": true,
+      "display": "Tavola di misura",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nUna massa di 8 kg parte ferma sotto 4 N costanti. La freccia di velocità cresce con la durata della spinta. Un newton secondo equivale a un chilogrammo metro al secondo.\n\nJ = FΔt = Δp, con F = 4 N\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Durata della spinta\n1 s\nImpulso ricevuto\n4 N·s\nVariazione dal riferimento\n0 N·s"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Durata della spinta» e confronta la scena con il punto segnato sul grafico. Parti da 1 s, poi prova 2 s.\n\nDurata della spinta = 1 s · Impulso ricevuto = 4 N·s\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Durata della spinta\n1 s\nImpulso ricevuto\n4 N·s\nVariazione dal riferimento\n0 N·s"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\nJ = FΔt = Δp, con F = 4 N. Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\n4 × 1 = 4 N·s\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Durata della spinta\n1 s\nImpulso ricevuto\n4 N·s\nVariazione dal riferimento\n0 N·s"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Durata della spinta» a 1,5 s. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nJ = FΔt = Δp, con F = 4 N\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Durata della spinta\n1 s\nImpulso ricevuto\n4 N·s\nVariazione dal riferimento\n0 N·s"
+        }
+      ],
+      "answerCount": 2,
+      "independentAnswers": [
+        8,
+        6
+      ],
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L009-01-2d.png"
+    },
+    {
+      "id": "SIM-C1-L009-01",
+      "noWebGLBoundary": "Tavola di misura",
+      "boundary": 0,
+      "input": 0,
+      "want": "0 N·s",
+      "readings": "Durata della spinta\n0 s\nImpulso ricevuto\n0 N·s\nVariazione dal riferimento\n-4 N·s",
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L009-01-true-boundary0.png"
+    },
+    {
+      "id": "SIM-C1-L009-01",
+      "noWebGLBoundary": "Tavola di misura",
+      "boundary": 1,
+      "input": 1.5,
+      "want": "6 N·s",
+      "readings": "Durata della spinta\n1,5 s\nImpulso ricevuto\n6 N·s\nVariazione dal riferimento\n2 N·s",
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L009-01-true-boundary1.png"
+    },
+    {
+      "id": "SIM-C1-L009-01",
+      "noWebGLBoundary": "Tavola di misura",
+      "boundary": 2,
+      "input": 3,
+      "want": "12 N·s",
+      "readings": "Durata della spinta\n3 s\nImpulso ricevuto\n12 N·s\nVariazione dal riferimento\n8 N·s",
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L009-01-true-boundary2.png"
+    },
+    {
+      "id": "SIM-C1-L009-02",
+      "noWebGL": true,
+      "display": "Tavola di misura",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nIl secondo carrello è fermo. Il primo si avvicina dal lato indicato dal suo verso. Dopo l’aggancio la massa mobile raddoppia e la velocità comune è metà di quella iniziale. Per una velocità iniziale diversa da zero la quantità di moto si conserva e l’energia cinetica si dimezza. Imposta zero. Entrambi i carrelli restano fermi, senza urto né perdita di energia.\n\nv finale = (mvₐ + m·0)/(2m) = vₐ/2\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Velocità iniziale di A\n-2 m/s\nVelocità comune dopo l’urto (a fine prova)\n-1 m/s\nEnergia cinetica finale / iniziale\n0,5\nPosizione del centro di A\n1,7 m"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Velocità iniziale di A» e confronta la scena con il punto segnato sul grafico. Parti da -2 m/s, poi prova 3 m/s.\n\nVelocità iniziale di A = -2 m/s · Velocità comune dopo l’urto = -1 m/s\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Velocità iniziale di A\n-2 m/s\nVelocità comune dopo l’urto (a fine prova)\n-1 m/s\nEnergia cinetica finale / iniziale\n0,5\nPosizione del centro di A\n1,7 m"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\nv finale = (mvₐ + m·0)/(2m) = vₐ/2. Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\n(-2) / 2 = -1 m/s\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Velocità iniziale di A\n-2 m/s\nVelocità comune dopo l’urto (a fine prova)\n-1 m/s\nEnergia cinetica finale / iniziale\n0,5\nPosizione del centro di A\n1,7 m"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Velocità iniziale di A» a 0 m/s. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nv finale = (mvₐ + m·0)/(2m) = vₐ/2\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Velocità iniziale di A\n-2 m/s\nVelocità comune dopo l’urto (a fine prova)\n-1 m/s\nEnergia cinetica finale / iniziale\n0,5\nPosizione del centro di A\n1,7 m"
+        }
+      ],
+      "answerCount": 2,
+      "independentAnswers": [
+        1.5,
+        0
+      ],
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L009-02-2d.png"
+    },
+    {
+      "id": "SIM-C1-L009-02",
+      "noWebGLBoundary": "Tavola di misura",
+      "boundary": 0,
+      "input": -3,
+      "want": "-1,5 m/s",
+      "readings": "Velocità iniziale di A\n-3 m/s\nVelocità comune dopo l’urto (a fine prova)\n-1,5 m/s\nEnergia cinetica finale / iniziale\n0,5\nPosizione del centro di A\n2,2 m",
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L009-02-true-boundary0.png"
+    },
+    {
+      "id": "SIM-C1-L009-02",
+      "noWebGLBoundary": "Tavola di misura",
+      "boundary": 1,
+      "input": 0,
+      "want": "0 m/s",
+      "readings": "Velocità iniziale di A\n0 m/s\nVelocità comune dopo l’urto (a fine prova)\n0 m/s\nEnergia cinetica finale / iniziale\nEntrambe nulle\nPosizione del centro di A\n-0,7 m",
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L009-02-true-boundary1.png"
+    },
+    {
+      "id": "SIM-C1-L009-02",
+      "noWebGLBoundary": "Tavola di misura",
+      "boundary": 2,
+      "input": 3,
+      "want": "1,5 m/s",
+      "readings": "Velocità iniziale di A\n3 m/s\nVelocità comune dopo l’urto (a fine prova)\n1,5 m/s\nEnergia cinetica finale / iniziale\n0,5\nPosizione del centro di A\n-2,2 m",
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L009-02-true-boundary2.png"
+    },
+    {
+      "id": "SIM-C1-L009-02",
+      "kind": "collision_clock",
+      "initialVelocity": -3,
+      "time": 0,
+      "readout": "2,2 m",
+      "independentPosition": 2.2,
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L009-02-true-clock-3-0.png"
+    },
+    {
+      "id": "SIM-C1-L009-02",
+      "kind": "collision_clock",
+      "initialVelocity": -3,
+      "time": 0.49,
+      "readout": "0,73 m",
+      "independentPosition": 0.73,
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L009-02-true-clock-3-0.49.png"
+    },
+    {
+      "id": "SIM-C1-L009-02",
+      "kind": "collision_clock",
+      "initialVelocity": -3,
+      "time": 0.5,
+      "readout": "0,7 m",
+      "independentPosition": 0.7,
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L009-02-true-clock-3-0.5.png"
+    },
+    {
+      "id": "SIM-C1-L009-02",
+      "kind": "collision_clock",
+      "initialVelocity": -3,
+      "time": 1.2,
+      "readout": "-0,35 m",
+      "independentPosition": -0.35,
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L009-02-true-clock-3-1.2.png"
+    },
+    {
+      "id": "SIM-C1-L009-02",
+      "kind": "collision_clock",
+      "initialVelocity": 3,
+      "time": 0,
+      "readout": "-2,2 m",
+      "independentPosition": -2.2,
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L009-02-true-clock3-0.png"
+    },
+    {
+      "id": "SIM-C1-L009-02",
+      "kind": "collision_clock",
+      "initialVelocity": 3,
+      "time": 0.49,
+      "readout": "-0,73 m",
+      "independentPosition": -0.73,
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L009-02-true-clock3-0.49.png"
+    },
+    {
+      "id": "SIM-C1-L009-02",
+      "kind": "collision_clock",
+      "initialVelocity": 3,
+      "time": 0.5,
+      "readout": "-0,7 m",
+      "independentPosition": -0.7,
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L009-02-true-clock3-0.5.png"
+    },
+    {
+      "id": "SIM-C1-L009-02",
+      "kind": "collision_clock",
+      "initialVelocity": 3,
+      "time": 1.2,
+      "readout": "0,35 m",
+      "independentPosition": 0.35,
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L009-02-true-clock3-1.2.png"
+    },
+    {
+      "id": "SIM-C1-L010-01",
+      "noWebGL": true,
+      "display": "Tavola di misura",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nI carrelli da 1 e 3 kg avanzano entrambi a 1 m/s. Il punto di equilibrio è più vicino al carrello pesante. All’esterno non agisce alcuna risultante orizzontale.\n\nxCM = (xₐ + 3xᵦ)/4; xₐ = −2+t, xᵦ = 2+t\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Tempo\n0 s\nPosizione del centro di massa\n1 m\nVariazione dal riferimento\n0 m"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Tempo» e confronta la scena con il punto segnato sul grafico. Parti da 0 s, poi prova 2 s.\n\nTempo = 0 s · Posizione del centro di massa = 1 m\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Tempo\n0 s\nPosizione del centro di massa\n1 m\nVariazione dal riferimento\n0 m"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\nxCM = (xₐ + 3xᵦ)/4; xₐ = −2+t, xᵦ = 2+t. Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\n1 + 0 = 1 m\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Tempo\n0 s\nPosizione del centro di massa\n1 m\nVariazione dal riferimento\n0 m"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Tempo» a 1,5 s. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nxCM = (xₐ + 3xᵦ)/4; xₐ = −2+t, xᵦ = 2+t\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Tempo\n0 s\nPosizione del centro di massa\n1 m\nVariazione dal riferimento\n0 m"
+        }
+      ],
+      "answerCount": 2,
+      "independentAnswers": [
+        3,
+        2.5
+      ],
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L010-01-2d.png"
+    },
+    {
+      "id": "SIM-C1-L010-01",
+      "noWebGLBoundary": "Tavola di misura",
+      "boundary": 0,
+      "input": 0,
+      "want": "1 m",
+      "readings": "Tempo\n0 s\nPosizione del centro di massa\n1 m\nVariazione dal riferimento\n0 m",
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L010-01-true-boundary0.png"
+    },
+    {
+      "id": "SIM-C1-L010-01",
+      "noWebGLBoundary": "Tavola di misura",
+      "boundary": 1,
+      "input": 1.5,
+      "want": "2,5 m",
+      "readings": "Tempo\n1,5 s\nPosizione del centro di massa\n2,5 m\nVariazione dal riferimento\n1,5 m",
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L010-01-true-boundary1.png"
+    },
+    {
+      "id": "SIM-C1-L010-01",
+      "noWebGLBoundary": "Tavola di misura",
+      "boundary": 2,
+      "input": 3,
+      "want": "4 m",
+      "readings": "Tempo\n3 s\nPosizione del centro di massa\n4 m\nVariazione dal riferimento\n3 m",
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L010-01-true-boundary2.png"
+    },
+    {
+      "id": "SIM-C1-L010-02",
+      "noWebGL": true,
+      "display": "Tavola di misura",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nI due punti marcati sono distanti 20 cm lungo l’asta. La distanza fra loro rimane costante anche quando le proiezioni verticale e orizzontale cambiano.\n\nΔy = L sin θ, con L = 20 cm\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Angolo dell’asta\n30 °\nSeparazione verticale degli estremi\n10 cm\nVariazione dal riferimento\n0 cm"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Angolo dell’asta» e confronta la scena con il punto segnato sul grafico. Parti da 30 °, poi prova 90 °.\n\nAngolo dell’asta = 30 ° · Separazione verticale degli estremi = 10 cm\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Angolo dell’asta\n30 °\nSeparazione verticale degli estremi\n10 cm\nVariazione dal riferimento\n0 cm"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\nΔy = L sin θ, con L = 20 cm. Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\n20 × sin(30°) ≈ 10 cm\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Angolo dell’asta\n30 °\nSeparazione verticale degli estremi\n10 cm\nVariazione dal riferimento\n0 cm"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Angolo dell’asta» a 45 °. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nΔy = L sin θ, con L = 20 cm\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Angolo dell’asta\n30 °\nSeparazione verticale degli estremi\n10 cm\nVariazione dal riferimento\n0 cm"
+        }
+      ],
+      "answerCount": 2,
+      "independentAnswers": [
+        20,
+        14.14
+      ],
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L010-02-2d.png"
+    },
+    {
+      "id": "SIM-C1-L010-02",
+      "noWebGLBoundary": "Tavola di misura",
+      "boundary": 0,
+      "input": 0,
+      "want": "0 cm",
+      "readings": "Angolo dell’asta\n0 °\nSeparazione verticale degli estremi\n0 cm\nVariazione dal riferimento\n-10 cm",
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L010-02-true-boundary0.png"
+    },
+    {
+      "id": "SIM-C1-L010-02",
+      "noWebGLBoundary": "Tavola di misura",
+      "boundary": 1,
+      "input": 45,
+      "want": "14,14 cm",
+      "readings": "Angolo dell’asta\n45 °\nSeparazione verticale degli estremi\n14,14 cm\nVariazione dal riferimento\n4,142 cm",
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L010-02-true-boundary1.png"
+    },
+    {
+      "id": "SIM-C1-L010-02",
+      "noWebGLBoundary": "Tavola di misura",
+      "boundary": 2,
+      "input": 90,
+      "want": "20 cm",
+      "readings": "Angolo dell’asta\n90 °\nSeparazione verticale degli estremi\n20 cm\nVariazione dal riferimento\n10 cm",
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L010-02-true-boundary2.png"
+    },
+    {
+      "id": "SIM-C1-L010-03",
+      "noWebGL": true,
+      "display": "Tavola di misura",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nLa forza di 10 N è perpendicolare all’asta. Misura dal perno alla linea d’azione. Qui si legge il modulo del momento; la spinta sul lato destro verso il basso fa ruotare in senso orario.\n\nτ = F b = 10 × b(cm)/100\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Braccio perpendicolare\n10 cm\nMomento della forza\n1 N·m\nVariazione dal riferimento\n0 N·m"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Braccio perpendicolare» e confronta la scena con il punto segnato sul grafico. Parti da 10 cm, poi prova 30 cm.\n\nBraccio perpendicolare = 10 cm · Momento della forza = 1 N·m\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Braccio perpendicolare\n10 cm\nMomento della forza\n1 N·m\nVariazione dal riferimento\n0 N·m"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\nτ = F b = 10 × b(cm)/100. Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\n10 / 10 = 1 N·m\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Braccio perpendicolare\n10 cm\nMomento della forza\n1 N·m\nVariazione dal riferimento\n0 N·m"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Braccio perpendicolare» a 20 cm. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nτ = F b = 10 × b(cm)/100\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Braccio perpendicolare\n10 cm\nMomento della forza\n1 N·m\nVariazione dal riferimento\n0 N·m"
+        }
+      ],
+      "answerCount": 2,
+      "independentAnswers": [
+        3,
+        2
+      ],
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L010-03-2d.png"
+    },
+    {
+      "id": "SIM-C1-L010-03",
+      "noWebGLBoundary": "Tavola di misura",
+      "boundary": 0,
+      "input": 0,
+      "want": "0 N·m",
+      "readings": "Braccio perpendicolare\n0 cm\nMomento della forza\n0 N·m\nVariazione dal riferimento\n-1 N·m",
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L010-03-true-boundary0.png"
+    },
+    {
+      "id": "SIM-C1-L010-03",
+      "noWebGLBoundary": "Tavola di misura",
+      "boundary": 1,
+      "input": 40,
+      "want": "4 N·m",
+      "readings": "Braccio perpendicolare\n40 cm\nMomento della forza\n4 N·m\nVariazione dal riferimento\n3 N·m",
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L010-03-true-boundary1.png"
+    },
+    {
+      "id": "SIM-C1-L010-04",
+      "noWebGL": true,
+      "display": "Tavola di misura",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nLe due forze verticali ai lati opposti producono momenti di segno opposto. Per l’equilibrio rotazionale i loro moduli devono coincidere.\n\nF b = (6 N)(20 cm) ⇒ F = 120/b\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Braccio della forza equilibrante\n10 cm\nForza richiesta\n12 N\nVariazione dal riferimento\n0 N"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Braccio della forza equilibrante» e confronta la scena con il punto segnato sul grafico. Parti da 10 cm, poi prova 30 cm.\n\nBraccio della forza equilibrante = 10 cm · Forza richiesta = 12 N\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Braccio della forza equilibrante\n10 cm\nForza richiesta\n12 N\nVariazione dal riferimento\n0 N"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\nF b = (6 N)(20 cm) ⇒ F = 120/b. Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\n120 / 10 = 12 N\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Braccio della forza equilibrante\n10 cm\nForza richiesta\n12 N\nVariazione dal riferimento\n0 N"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Braccio della forza equilibrante» a 26 cm. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nF b = (6 N)(20 cm) ⇒ F = 120/b\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Braccio della forza equilibrante\n10 cm\nForza richiesta\n12 N\nVariazione dal riferimento\n0 N"
+        }
+      ],
+      "answerCount": 2,
+      "independentAnswers": [
+        4,
+        4.615
+      ],
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L010-04-2d.png"
+    },
+    {
+      "id": "SIM-C1-L010-04",
+      "noWebGLBoundary": "Tavola di misura",
+      "boundary": 0,
+      "input": 10,
+      "want": "12 N",
+      "readings": "Braccio della forza equilibrante\n10 cm\nForza richiesta\n12 N\nVariazione dal riferimento\n0 N",
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L010-04-true-boundary0.png"
+    },
+    {
+      "id": "SIM-C1-L010-04",
+      "noWebGLBoundary": "Tavola di misura",
+      "boundary": 1,
+      "input": 26,
+      "want": "4,615 N",
+      "readings": "Braccio della forza equilibrante\n26 cm\nForza richiesta\n4,615 N\nVariazione dal riferimento\n-7,385 N",
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L010-04-true-boundary1.png"
+    },
+    {
+      "id": "SIM-C1-L010-04",
+      "noWebGLBoundary": "Tavola di misura",
+      "boundary": 2,
+      "input": 40,
+      "want": "3 N",
+      "readings": "Braccio della forza equilibrante\n40 cm\nForza richiesta\n3 N\nVariazione dal riferimento\n-9 N",
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L010-04-true-boundary2.png"
+    },
+    {
+      "id": "SIM-C1-L010-05",
+      "noWebGL": true,
+      "display": "Tavola di misura",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nIl gomito è il fulcro. Mano e inserzione sono dallo stesso lato e le forze hanno versi opposti. Si trascura il peso dell’avambraccio e si usa il braccio perpendicolare della trazione.\n\nF muscolo × b = (10 N)(30 cm)\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Braccio del muscolo\n3 cm\nTrazione del muscolo\n100 N\nVariazione dal riferimento\n0 N"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Braccio del muscolo» e confronta la scena con il punto segnato sul grafico. Parti da 3 cm, poi prova 6 cm.\n\nBraccio del muscolo = 3 cm · Trazione del muscolo = 100 N\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Braccio del muscolo\n3 cm\nTrazione del muscolo\n100 N\nVariazione dal riferimento\n0 N"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\nF muscolo × b = (10 N)(30 cm). Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\n300 / 3 = 100 N\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Braccio del muscolo\n3 cm\nTrazione del muscolo\n100 N\nVariazione dal riferimento\n0 N"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Braccio del muscolo» a 4 cm. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nF muscolo × b = (10 N)(30 cm)\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Braccio del muscolo\n3 cm\nTrazione del muscolo\n100 N\nVariazione dal riferimento\n0 N"
+        }
+      ],
+      "answerCount": 2,
+      "independentAnswers": [
+        50,
+        75
+      ],
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L010-05-2d.png"
+    },
+    {
+      "id": "SIM-C1-L010-05",
+      "noWebGLBoundary": "Tavola di misura",
+      "boundary": 0,
+      "input": 2,
+      "want": "150 N",
+      "readings": "Braccio del muscolo\n2 cm\nTrazione del muscolo\n150 N\nVariazione dal riferimento\n50 N",
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L010-05-true-boundary0.png"
+    },
+    {
+      "id": "SIM-C1-L010-05",
+      "noWebGLBoundary": "Tavola di misura",
+      "boundary": 1,
+      "input": 4,
+      "want": "75 N",
+      "readings": "Braccio del muscolo\n4 cm\nTrazione del muscolo\n75 N\nVariazione dal riferimento\n-25 N",
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L010-05-true-boundary1.png"
+    },
+    {
+      "id": "SIM-C1-L010-05",
+      "noWebGLBoundary": "Tavola di misura",
+      "boundary": 2,
+      "input": 6,
+      "want": "50 N",
+      "readings": "Braccio del muscolo\n6 cm\nTrazione del muscolo\n50 N\nVariazione dal riferimento\n-50 N",
+      "screenshot": "/tmp/cric-review049-proof-OXr1KJ/SIM-C1-L010-05-true-boundary2.png"
+    }
+  ],
+  "errors": [],
+  "scientificApproval": false,
+  "reviewScope": "CORRECTED_049_OBSERVATION_ONLY_NO_SCIENTIFIC_APPROVAL",
+  "publicationAction": "NONE",
+  "humanApproval": "NOT_RUN",
+  "runtimeProfileSha256": "47c3bed2308846b84fb069571319225fbc486fcb7c2bdaa1959979c6aeb6b4ca",
+  "base": "http://127.0.0.1:52482/",
+  "runtimeSha256": {
+    "static/js/banchi/voci/esperimento.js": "cc435e51b62d5b9961b32f5d9b349171f7432e3bf6a6911cd80daaa1f419767b",
+    "static/js/banchi/voci/engines.js": "09a6447a971d0e90c49cfea0307e82ea75f4441a7174c017768d6d62ad514dab",
+    "static/js/banchi/voci/assessment-selection.js": "2f5435b6c9e8b76667d0a95f35860f835117cf8230a635c4c3a54c479fbc54b3",
+    "static/js/banchi/voci/geometria.js": "986bdbfad0cf6e6e057002ee2efdeff0a08df31bfb45f9c046063fcba5840f08",
+    "static/js/banchi/voci/tavola.js": "cc3f7fa8da541109fdda9f8bacca23eea43d1031b2145688b2d80513f47d5283",
+    "static/js/banchi/voci/confronti.js": "83f1ab0d443dc93eb72c0318e32856179486643257c5bbf136e686464fdc6c39",
+    "static/js/banchi/voci/legende.js": "2de769cc9358c907eb30ac6b18c6bc3e06e18a1ece514a7d368ecd40bec33d1b",
+    "static/js/banchi/voci/orologi.js": "30dd8ab535a31b514c0db13d97d2b046a1add160a7ca7d374deea0d991be73a6",
+    "static/js/banchi/voci/modelli/C1.js": "e5818f20fd19d00fc73434fcacef752d06331efc41d198ffe8c185063e97fa34",
+    "static/js/banchi/voci/apparati/meccanica.js": "b59e779404d917f81f2fb1f022a596be5eb24ba7f6865f2046aee8546bebddd3",
+    "static/js/banchi/banco.js": "8200aa5adf026372699790c21f60e0cf3f5fffcb705ef5ee36f609ac3c1e3ed9",
+    "static/js/banchi/misure.js": "46c769f22651529e439b1396e59a017d2c429310b7ae59e2a9717b2ced93c66d",
+    "static/js/banchi/grafici.js": "e5567e88ee6df5c604f8e62228da5e70841556ad0b55fb212fd4d091fdeee3fd",
+    "static/js/banchi/scena.js": "4d94c92a834573062a2af541df113bad06bd11ca538b31bddddc5ec8621a5095",
+    "static/js/banchi/etichette.js": "455ae33c790be4e207e5b5667918c44ea16c95f49e1fea0b13cc92f08aa003f3",
+    "static/js/banchi/aula.js": "44c74446d0d60b20e9dad05b32321f1000f026acdec386ca5aa2f74c20421967",
+    "static/js/ui.js": "77e5f000f5e1a1fe028fff32dad97be29ad72b46d753787a19ad36164cb98f27"
+  },
+  "protocolSha256": "0cb0d75a132c5aa0d2f284b202001a8bd3917cdc36ff777de69db19e7b3148c9",
+  "terminalStatus": "PASS",
+  "browserVersion": "158.0.8127.37"
+}

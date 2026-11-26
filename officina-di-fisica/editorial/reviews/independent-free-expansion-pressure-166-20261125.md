@@ -1,0 +1,203 @@
+# Review scientifica indipendente — free-expansion-pressure-166
+
+Primaria di tutti80 originali letta e persistita prima dei candidati, delle opzioni e delle chiavi: primary-thermal-cycles-163-167-before-candidates-20261125.md, SHA2568fcf9fac8628518c925d20eb460d5f1c60ef67be4a3cedecd111b84f3a9bce65. I messaggi dell’autore hanno esposto soltantoSHA, file e ipotesi generali, non risultati. Tutti16 candidati di questo lotto, relativi hint/feedback/metadati e l’intero SVG in XML e rendering nativo sono stati letti dopo la primaria. Oracoli autonomi SymPy/Pint/Fraction, nessun authoring importato.
+
+Edizione letta: 673d14536a72996b52c74f357e21e8042014cee1. Package, binding e asset confrontati byte per byte con ROOT integrato. Nessun finding residuo. Le25 controprove del lotto includono16 chiavi errate con binding e tutte le firme/guardie editoriali rinnovate esclusivamente in memoria, per isolare il rifiuto matematico; comprendono inoltre testo fisico falso a chiave corretta, fonte errata, unità, corso, confini incompleti e asset mutati.
+
+Il test comune controlla identità canoniche fresh+saved su tutti80 e sei proprietà Hypothesis con40 esempi ciascuna, oltre ai domini, alle procedure manuali e alle scale delle figure. Queste prove sono tecniche/AI: human NOT_RUN, DRAFT e publicationAction NONE; nessuna pubblicazione o approvazione umana attribuita.
+
+Finding e rilettura: la prima caption01 citava una freccia assente nel disegno. Il fix autore673d14536a72996b52c74f357e21e8042014cee1 descrive la sequenza dei pannelli e il passaggio fra equilibri; riletto integralmente e confrontato. Solo figure.text01 e binding01 cambiati, altri15 record e tutte chiavi/formule/SVG byte identici. Il vecchio token01 non è riutilizzato.
+
+## AR-u5-free-expansion-pressure-01
+
+Ipotesi: Gas ideale chiuso, espansione nel vuoto in recipiente totale rigido e termicamente isolato; nessun trasferimento energetico mediante pareti, nessuna altra forma di lavoro, energie cinetiche/potenziali macroscopiche uguali nei due equilibri. Q=0 e W_esterno=0, quindi ΔU=0; per il gas ideale con capacità termica positiva U dipende da T, dunque T_f=T_1. Non si suppone una successione di stati di equilibrio durante l’espansione. Con V_0=1 L, n costante e pressione assoluta p_f=p_1 V_0/(V_0+V_v). V_v>0 implica 0<p_f<p_1. Entropia ΔS=n R ln[(V_0+V_v)/V_0]>0, calcolabile su un percorso reversibile immaginario: l’adiabaticità del percorso reale non impone ΔS=0. L’inversa del vuoto richiede p_1>p_f>0.
+
+Procedura manuale e prova: V_f=1 L+1 L=2 L. T invariata e quantità fissa danno p_f=100 k Pa·1/2=50 k Pa, non zero: il vuoto era il comparto prima del rilascio, non il gas finale.
+
+Distrattori: 100 k Pa ignora il volume aggiunto; una pressione gas iniziale moltiplicata per ΔV non è lavoro esterno di questa espansione nel vuoto. La legge reversibile p V^γ non si applica.
+
+Figura: XML e rendering nativo intero letti: due rettangoli esterni identici 400×140 px, setto iniziale a x 305 metà del segmento 105..505. V₀1 L e V_v 1 L, finali 2 L alla medesima scala; punti schematici non misurano temperatura o probabilità. Pressioni 100/50 k Pa: barre 300/150 px da x 150 a 3 px/k Pa. Nessuna freccia di processo presente: caption 01 finale riletta su 673 d 145 descrive correttamente la sequenza dei pannelli; asset e 15 altri record identici alla prima lettura. ΔU=0 e T_f=T₁ riguardano equilibri estremi; ΔS>0 non è un’adiabatica reversibile.
+
+Fonte SHA256 ac9cc9fbdb08793cadf52d7fe98d33fa2ee3450a7ffdb94e412e550a4499604b; candidato SHA256 68e7e9d3dcd0d1f80762054daf59048a29986bdecbe2b54a0ed864cf762ea3ef; firma indipendente adec70b52f8cefc5493aaee9aed10eda388c67431375e7686865db6fcfb37d8f.
+
+## AR-u5-free-expansion-pressure-02
+
+Ipotesi: Gas ideale chiuso, espansione nel vuoto in recipiente totale rigido e termicamente isolato; nessun trasferimento energetico mediante pareti, nessuna altra forma di lavoro, energie cinetiche/potenziali macroscopiche uguali nei due equilibri. Q=0 e W_esterno=0, quindi ΔU=0; per il gas ideale con capacità termica positiva U dipende da T, dunque T_f=T_1. Non si suppone una successione di stati di equilibrio durante l’espansione. Con V_0=1 L, n costante e pressione assoluta p_f=p_1 V_0/(V_0+V_v). V_v>0 implica 0<p_f<p_1. Entropia ΔS=n R ln[(V_0+V_v)/V_0]>0, calcolabile su un percorso reversibile immaginario: l’adiabaticità del percorso reale non impone ΔS=0. L’inversa del vuoto richiede p_1>p_f>0.
+
+Procedura manuale e prova: Pressione ha unità Pa o k Pa, dimensione energia/volume=forza/area. Il prefisso cambia il numero ma non la dimensione. Il rapporto dei volumi resta puro.
+
+Distrattori: L, J e K non sono pressioni. k Pa/L omette il volume al numeratore; il rapporto fra volumi mantiene k Pa.
+
+Figura: Nessuna figura collegata a questo record; testi e formule letti integralmente.
+
+Fonte SHA256 a2e95f26e07bf04aca9202f2744c3e5919835a40e880b5839056d5bc0f42b77c; candidato SHA256 4f58e1ab444ceb1eac3bde6d0ae6fca299d22af573423f1efd22317af860d419; firma indipendente 451625364dbc1d967af0e85918ace4a8def0b7d2e79328824b7573366ae76e27.
+
+## AR-u5-free-expansion-pressure-03
+
+Ipotesi: Stesso campione ideale chiuso, recipiente totale rigido e isolato, espansione nel vuoto. Nessun calore o lavoro esterno, energie macroscopiche uguali agli estremi. U dipende da T con capacità positiva, quindi ΔT=0. Il volume aumenta e ΔS=n R ln(V_f/V₀)>0 con n, R positivi definiti. Risposta qualitativa su due componenti: ΔT in K e ΔS in J/K, non un unico scalare dimensionato. Calcolo numerico non richiesto; prova energetica ed entropica specifica sì.
+
+Procedura manuale e prova: Q=0 e lavoro esterno 0 implicano ΔU=0; per gas ideale Tf=T1. Entropia aumenta: ΔS=n R ln(V_f/V_i)>0. Espansione spontanea irreversibile, quindi non si applica TV^(γ−1)=costante né si deduce ΔS=0 dall’adiabaticità. La risposta precisa dipenderà dalla coppia di variazioni che il candidato espliciterà; questi risultati sono fissati prima delle opzioni.
+
+Distrattori: Q=0 non implica ΔS=0. L’adiabatica reversibile si raffredda compiendo lavoro, ma questo processo irreversibile non compie lavoro esterno. ΔT=0 deriva da U ideale e ΔS>0 dal volume accessibile maggiore. ΔT ha unità K e ΔS J/K.
+
+Figura: XML e rendering nativo intero letti: due rettangoli esterni identici 400×140 px, setto iniziale a x 305 metà del segmento 105..505. V₀1 L e V_v 1 L, finali 2 L alla medesima scala; punti schematici non misurano temperatura o probabilità. Pressioni 100/50 k Pa: barre 300/150 px da x 150 a 3 px/k Pa. Nessuna freccia di processo presente: caption 01 finale riletta su 673 d 145 descrive correttamente la sequenza dei pannelli; asset e 15 altri record identici alla prima lettura. ΔU=0 e T_f=T₁ riguardano equilibri estremi; ΔS>0 non è un’adiabatica reversibile.
+
+Fonte SHA256 e569062a963ca2c5f2b9cebdc0ea0300a6ba92a1350e870477de92cc4ac729fe; candidato SHA256 1c8449ee1bc293cf623d11223be6f1c944a4cb428c4e34c9e818cb9827812e90; firma indipendente 889fe3da76998d841ed80f934c76f07370b3652a7332c5d831275d4b52968f77.
+
+## AR-u5-free-expansion-pressure-04
+
+Ipotesi: Gas ideale chiuso, espansione nel vuoto in recipiente totale rigido e termicamente isolato; nessun trasferimento energetico mediante pareti, nessuna altra forma di lavoro, energie cinetiche/potenziali macroscopiche uguali nei due equilibri. Q=0 e W_esterno=0, quindi ΔU=0; per il gas ideale con capacità termica positiva U dipende da T, dunque T_f=T_1. Non si suppone una successione di stati di equilibrio durante l’espansione. Con V_0=1 L, n costante e pressione assoluta p_f=p_1 V_0/(V_0+V_v). V_v>0 implica 0<p_f<p_1. Entropia ΔS=n R ln[(V_0+V_v)/V_0]>0, calcolabile su un percorso reversibile immaginario: l’adiabaticità del percorso reale non impone ΔS=0. L’inversa del vuoto richiede p_1>p_f>0.
+
+Procedura manuale e prova: Con volume finale 2 L costante, p_f è metà di p_1. Da p_1=100 a 200 k Pa, p_f va da 50 a 100 k Pa. È un confronto fra preparazioni, non una compressione lungo il rilascio.
+
+Distrattori: 25 k Pa rende inversa la dipendenza da p₁, 200 k Pa copia il nuovo ingresso. Zero non segue da volumi finiti positivi; 50 ignora il raddoppio preparato.
+
+Figura: Nessuna figura collegata a questo record; testi e formule letti integralmente.
+
+Fonte SHA256 37a89c7279a5a6679d5b717eb6448a23000057252dfd5cfdc35e2032248098e4; candidato SHA256 6b8ae477cac8dafc73ca159413c86c7428053c372cabb1b31a972a1887571df0; firma indipendente 33306ea12c6beb80d95b4074e4add36255cf1684463596c54a5eb89b0e9cc9ec.
+
+## AR-u5-free-expansion-pressure-05
+
+Ipotesi: Gas ideale chiuso, espansione nel vuoto in recipiente totale rigido e termicamente isolato; nessun trasferimento energetico mediante pareti, nessuna altra forma di lavoro, energie cinetiche/potenziali macroscopiche uguali nei due equilibri. Q=0 e W_esterno=0, quindi ΔU=0; per il gas ideale con capacità termica positiva U dipende da T, dunque T_f=T_1. Non si suppone una successione di stati di equilibrio durante l’espansione. Con V_0=1 L, n costante e pressione assoluta p_f=p_1 V_0/(V_0+V_v). V_v>0 implica 0<p_f<p_1. Entropia ΔS=n R ln[(V_0+V_v)/V_0]>0, calcolabile su un percorso reversibile immaginario: l’adiabaticità del percorso reale non impone ΔS=0. L’inversa del vuoto richiede p_1>p_f>0.
+
+Procedura manuale e prova: p_1=p_f(V_0+V_v)/V_0=50·2=100 k Pa. Il rapporto di volume è adimensionale e positivo.
+
+Distrattori: 25 k Pa applica ancora il fattore 1/2 e viola p₁>p_f.50 k Pa ignora il cambiamento di volume.100 k Pa restituiscono 50 k Pa finali.
+
+Figura: Nessuna figura collegata a questo record; testi e formule letti integralmente.
+
+Fonte SHA256 ac0537e0a521b87e6c96f1ff671cc28a6a80a3cc88130db63377a2fd0b24c655; candidato SHA256 db8787ddcdc82201052fd9dd4412437020ad75526aeccf78505c462e9f1f8de9; firma indipendente d5e2eaaeeefd1fb21001768d6ca5ed9332f984f49c2a5fbfc5586e16b8d95851.
+
+## AR-u5-free-expansion-pressure-06
+
+Ipotesi: Gas ideale chiuso, espansione nel vuoto in recipiente totale rigido e termicamente isolato; nessun trasferimento energetico mediante pareti, nessuna altra forma di lavoro, energie cinetiche/potenziali macroscopiche uguali nei due equilibri. Q=0 e W_esterno=0, quindi ΔU=0; per il gas ideale con capacità termica positiva U dipende da T, dunque T_f=T_1. Non si suppone una successione di stati di equilibrio durante l’espansione. Con V_0=1 L, n costante e pressione assoluta p_f=p_1 V_0/(V_0+V_v). V_v>0 implica 0<p_f<p_1. Entropia ΔS=n R ln[(V_0+V_v)/V_0]>0, calcolabile su un percorso reversibile immaginario: l’adiabaticità del percorso reale non impone ΔS=0. L’inversa del vuoto richiede p_1>p_f>0.
+
+Procedura manuale e prova: V_v=V_0(p_1/p_f−1)=1 L·(100/50−1)=1 L. L’inversa è positiva perché p_1>p_f; con p_1≤p_f non descriverebbe il vuoto positivo richiesto.
+
+Distrattori: 2 L è il volume finale intero, non il vuoto. Volumi negativi sono esclusi; la differenza di pressioni non ha unità di volume. Il divisore p_f è strettamente positivo.
+
+Figura: Nessuna figura collegata a questo record; testi e formule letti integralmente.
+
+Fonte SHA256 1b76d5baac717dceb02e9174e1e978badb5ec00ca2888de86979c3dbd9b274e0; candidato SHA256 ec4e8500f46970e6306c749f634d1b8dc5b384b94b7975c27e0a9f992b3431fc; firma indipendente 88a9f303529514222b4daebd3ce412851275c3003ffe50747c140d884868203e.
+
+## AR-u5-free-expansion-pressure-07
+
+Ipotesi: Gas ideale chiuso, espansione nel vuoto in recipiente totale rigido e termicamente isolato; nessun trasferimento energetico mediante pareti, nessuna altra forma di lavoro, energie cinetiche/potenziali macroscopiche uguali nei due equilibri. Q=0 e W_esterno=0, quindi ΔU=0; per il gas ideale con capacità termica positiva U dipende da T, dunque T_f=T_1. Non si suppone una successione di stati di equilibrio durante l’espansione. Con V_0=1 L, n costante e pressione assoluta p_f=p_1 V_0/(V_0+V_v). V_v>0 implica 0<p_f<p_1. Entropia ΔS=n R ln[(V_0+V_v)/V_0]>0, calcolabile su un percorso reversibile immaginario: l’adiabaticità del percorso reale non impone ΔS=0. L’inversa del vuoto richiede p_1>p_f>0.
+
+Procedura manuale e prova: A pf 50 k Pa. B con V_v 3 L occupa 4 L e ha pf 25 k Pa. Rapporto 1/2; il fattore sul solo vuoto è 3, ma il volume finale contiene anche 1 L iniziale.
+
+Distrattori: 1/3 confronta soltanto i vuoti e dimentica V₀.2 capovolge il rapporto delle pressioni; 3 trasforma la dipendenza in una diretta.1 ignora l’espansione ulteriore.
+
+Figura: Nessuna figura collegata a questo record; testi e formule letti integralmente.
+
+Fonte SHA256 adfceb2cca6e250ad8d305b1875c57e9bb85b93b0abfc90587201e5e31c61854; candidato SHA256 4b36514cdde0041730fccb34231c2b104699393e500f953d0c5ef127193c98ad; firma indipendente 03b6aa94c77f800ef631a32425573f8aa4395e8d74c2a0a4af1e6e097165350e.
+
+## AR-u5-free-expansion-pressure-08
+
+Ipotesi: Gas ideale chiuso, espansione nel vuoto in recipiente totale rigido e termicamente isolato; nessun trasferimento energetico mediante pareti, nessuna altra forma di lavoro, energie cinetiche/potenziali macroscopiche uguali nei due equilibri. Q=0 e W_esterno=0, quindi ΔU=0; per il gas ideale con capacità termica positiva U dipende da T, dunque T_f=T_1. Non si suppone una successione di stati di equilibrio durante l’espansione. Con V_0=1 L, n costante e pressione assoluta p_f=p_1 V_0/(V_0+V_v). V_v>0 implica 0<p_f<p_1. Entropia ΔS=n R ln[(V_0+V_v)/V_0]>0, calcolabile su un percorso reversibile immaginario: l’adiabaticità del percorso reale non impone ΔS=0. L’inversa del vuoto richiede p_1>p_f>0.
+
+Procedura manuale e prova: Proposto 100 k Pa meno corretto 50 k Pa dà+50 k Pa. La proposta mantiene il valore iniziale ignorando l’aumento di volume finale a T costante.
+
+Distrattori: −50 k Pa scambia i termini, 100 copia la proposta, 0 la accetta, 25 non è lo scarto. Non si inferisce un riscaldamento dalla proposta sbagliata.
+
+Figura: Nessuna figura collegata a questo record; testi e formule letti integralmente.
+
+Fonte SHA256 3ae70d1dfb91ef3e9ef12a87ae943596e6171f1732539b67724ad6f795563f84; candidato SHA256 a724c665095a1496a211b99460bc55225afe407203480ba4e0836f8d6e6918a5; firma indipendente 0fc31f77a432d20a0d930afef321b8f5a4fc2c6af0b1aba38671a09a6d0edeb3.
+
+## AR-u5-free-expansion-pressure-09
+
+Ipotesi: Gas ideale chiuso, espansione nel vuoto in recipiente totale rigido e termicamente isolato; nessun trasferimento energetico mediante pareti, nessuna altra forma di lavoro, energie cinetiche/potenziali macroscopiche uguali nei due equilibri. Q=0 e W_esterno=0, quindi ΔU=0; per il gas ideale con capacità termica positiva U dipende da T, dunque T_f=T_1. Non si suppone una successione di stati di equilibrio durante l’espansione. Con V_0=1 L, n costante e pressione assoluta p_f=p_1 V_0/(V_0+V_v). V_v>0 implica 0<p_f<p_1. Entropia ΔS=n R ln[(V_0+V_v)/V_0]>0, calcolabile su un percorso reversibile immaginario: l’adiabaticità del percorso reale non impone ΔS=0. L’inversa del vuoto richiede p_1>p_f>0.
+
+Procedura manuale e prova: p_1=p_f(V_0+V_v)/V_0=p_f(1+V_v/V_0), V_0=1 L. L’addizione deve essere fra volumi, non fra 1 puro e un volume senza normalizzazione.
+
+Distrattori: La seconda espressione ripete la legge diretta. Il solo V_v omette V₀; gli ultimi due prodotti hanno pressione·volume e pressione/volume. Unicità simbolica e dimensionale generale.
+
+Figura: Nessuna figura collegata a questo record; testi e formule letti integralmente.
+
+Fonte SHA256 3f0129acce4b141fb8cf821ff48c6735e33db42fe26462b243ed93c7e5aea712; candidato SHA256 c51aec0e1871f9e9f9263172109762d0b449e83ac9903ee633aa4551188e3316; firma indipendente 0a2abdb81fa7d4ef2b76bd277e7a195eebea542112177e1ba3cb544eafe02060.
+
+## AR-u5-free-expansion-pressure-10
+
+Ipotesi: Gas ideale chiuso, espansione nel vuoto in recipiente totale rigido e termicamente isolato; nessun trasferimento energetico mediante pareti, nessuna altra forma di lavoro, energie cinetiche/potenziali macroscopiche uguali nei due equilibri. Q=0 e W_esterno=0, quindi ΔU=0; per il gas ideale con capacità termica positiva U dipende da T, dunque T_f=T_1. Non si suppone una successione di stati di equilibrio durante l’espansione. Con V_0=1 L, n costante e pressione assoluta p_f=p_1 V_0/(V_0+V_v). V_v>0 implica 0<p_f<p_1. Entropia ΔS=n R ln[(V_0+V_v)/V_0]>0, calcolabile su un percorso reversibile immaginario: l’adiabaticità del percorso reale non impone ΔS=0. L’inversa del vuoto richiede p_1>p_f>0.
+
+Procedura manuale e prova: p_f, B/p_f, A=κ₁(V_0+V_v)/(V_0+κ₂V_v). Il volume iniziale V_0 resta 1 L e non viene scalato; perciò non si semplifica genericamente a κ₁/κ₂.
+
+Distrattori: κ₁/κ₂ scalerebbe tutto il volume finale, ma V₀ resta fisso. Il prodotto inverte l’effetto del volume; la quarta è reciproca e l’ultima omette termini geometrici.
+
+Figura: Nessuna figura collegata a questo record; testi e formule letti integralmente.
+
+Fonte SHA256 1fa7a5ed316ea85e55ec6e951712a6a815c414fc6134148ec39d47c41b8b186b; candidato SHA256 1bbd40a8678586249f9034164266897edfe0712064b8bb7f1f504ea927c2f433; firma indipendente 11624f354587feec859ec7e07a9edf7c0acd5a79c5ecb051e234c646a3875561.
+
+## AR-u5-free-expansion-pressure-11
+
+Ipotesi: Gas ideale chiuso, espansione nel vuoto in recipiente totale rigido e termicamente isolato; nessun trasferimento energetico mediante pareti, nessuna altra forma di lavoro, energie cinetiche/potenziali macroscopiche uguali nei due equilibri. Q=0 e W_esterno=0, quindi ΔU=0; per il gas ideale con capacità termica positiva U dipende da T, dunque T_f=T_1. Non si suppone una successione di stati di equilibrio durante l’espansione. Con V_0=1 L, n costante e pressione assoluta p_f=p_1 V_0/(V_0+V_v). V_v>0 implica 0<p_f<p_1. Entropia ΔS=n R ln[(V_0+V_v)/V_0]>0, calcolabile su un percorso reversibile immaginario: l’adiabaticità del percorso reale non impone ΔS=0. L’inversa del vuoto richiede p_1>p_f>0.
+
+Procedura manuale e prova: A50 k Pa. B1 k Pa distribuito su 3 L da 1 L iniziale dà 1/3 k Pa. Rapporto(1/3)/50=1/150. Nessuna divisione decimale necessaria.
+
+Distrattori: 1/100 segue solo p₁; 2/3 solo il rapporto inverso dei volumi totali; 1/3 copia la pressione B in k Pa; 150 è il reciproco.
+
+Figura: Nessuna figura collegata a questo record; testi e formule letti integralmente.
+
+Fonte SHA256 9badebb95fdcfc83b0444077d08560e197b5edadf8ebc92c95a36d77db499176; candidato SHA256 738d4d98c960ce9c24cfb2147a099d6e8b0808f986bf4ae65d6cdc154632dd62; firma indipendente 4fe4578d62247e81b31bd85589e33ab0a13c6304099f11f5145e095822f776ec.
+
+## AR-u5-free-expansion-pressure-12
+
+Ipotesi: Gas ideale chiuso, espansione nel vuoto in recipiente totale rigido e termicamente isolato; nessun trasferimento energetico mediante pareti, nessuna altra forma di lavoro, energie cinetiche/potenziali macroscopiche uguali nei due equilibri. Q=0 e W_esterno=0, quindi ΔU=0; per il gas ideale con capacità termica positiva U dipende da T, dunque T_f=T_1. Non si suppone una successione di stati di equilibrio durante l’espansione. Con V_0=1 L, n costante e pressione assoluta p_f=p_1 V_0/(V_0+V_v). V_v>0 implica 0<p_f<p_1. Entropia ΔS=n R ln[(V_0+V_v)/V_0]>0, calcolabile su un percorso reversibile immaginario: l’adiabaticità del percorso reale non impone ΔS=0. L’inversa del vuoto richiede p_1>p_f>0.
+
+Procedura manuale e prova: Media=(50+1/3)/2=151/6 k Pa. Valutando il modello su p_1 medio 101/2 k Pa e V_v medio 3/2 L si ottiene 101/5 k Pa, diverso: 151·5=755 contro 101·6=606. Statistica a pesi uguali distinta dal modello su medie degli ingressi.
+
+Distrattori: 151/3 è somma, 149/6 metà differenza, 25 ignora B.101/5 risponde al modello su ingressi medi, non alla media delle pressioni finali.
+
+Figura: Nessuna figura collegata a questo record; testi e formule letti integralmente.
+
+Fonte SHA256 7ab80a0f264560b7e3d259627d0c228d2d4473a408451344cf927ff0a5045d4e; candidato SHA256 bec528a20e7ed4715fa69a90090a634bc76b50f00f180b598955756c0ce6a134; firma indipendente 69c45a1c8d84d478574dfde79c1fd86b53c49067be51c71a3dbdea23519b6433.
+
+## AR-u5-free-expansion-pressure-13
+
+Ipotesi: Gas ideale chiuso, espansione nel vuoto in recipiente totale rigido e termicamente isolato; nessun trasferimento energetico mediante pareti, nessuna altra forma di lavoro, energie cinetiche/potenziali macroscopiche uguali nei due equilibri. Q=0 e W_esterno=0, quindi ΔU=0; per il gas ideale con capacità termica positiva U dipende da T, dunque T_f=T_1. Non si suppone una successione di stati di equilibrio durante l’espansione. Con V_0=1 L, n costante e pressione assoluta p_f=p_1 V_0/(V_0+V_v). V_v>0 implica 0<p_f<p_1. Entropia ΔS=n R ln[(V_0+V_v)/V_0]>0, calcolabile su un percorso reversibile immaginario: l’adiabaticità del percorso reale non impone ΔS=0. L’inversa del vuoto richiede p_1>p_f>0.
+
+Procedura manuale e prova: Targetpf, B=(1/150)50=1/3 k Pa. Con p_1, B1 k Pa: V_v, B=1 L·(3−1)=2 L; rapporto rispetto a 1 L iniziale A è 2.
+
+Distrattori: 3 è il fattore sul volume totale, non sul vuoto.150 riguarda le pressioni e non passa direttamente a V_v quando cambia anchep₁. Inversa esplicita dà 2 L e rapporto 2.
+
+Figura: Nessuna figura collegata a questo record; testi e formule letti integralmente.
+
+Fonte SHA256 0469e2d39085b13a72104878a523f7927334f9b4460acc47638a64a043061a72; candidato SHA256 7102def96dfee16b3086110c3a9ecbf5aba019d93a644b12d8af9639c78a4820; firma indipendente 882be0ce26316cbe08d7bdd7ef754cc8aaa813e638eea85f103a67b43148bef9.
+
+## AR-u5-free-expansion-pressure-14
+
+Ipotesi: Gas ideale chiuso, espansione nel vuoto in recipiente totale rigido e termicamente isolato; nessun trasferimento energetico mediante pareti, nessuna altra forma di lavoro, energie cinetiche/potenziali macroscopiche uguali nei due equilibri. Q=0 e W_esterno=0, quindi ΔU=0; per il gas ideale con capacità termica positiva U dipende da T, dunque T_f=T_1. Non si suppone una successione di stati di equilibrio durante l’espansione. Con V_0=1 L, n costante e pressione assoluta p_f=p_1 V_0/(V_0+V_v). V_v>0 implica 0<p_f<p_1. Entropia ΔS=n R ln[(V_0+V_v)/V_0]>0, calcolabile su un percorso reversibile immaginario: l’adiabaticità del percorso reale non impone ΔS=0. L’inversa del vuoto richiede p_1>p_f>0.
+
+Procedura manuale e prova: Apf 50 k Pa, S150⇒q 3 k Pa⁻¹. S_B1⇒pf, B1/3 k Pa. V_v 2 L⇒p_1, B=(1/3)·3=1 k Pa. Letture nella stessa scala e nessun offset.
+
+Distrattori: 3 k Pa tratta S come pressione fisica; 1/3 k Pa èla finale, non l’iniziale. Guadagno e rapporto dei volumi vanno invertiti in successione.
+
+Figura: Nessuna figura collegata a questo record; testi e formule letti integralmente.
+
+Fonte SHA256 3d0ae637c32a700295c3bd4e609542efc7566d8f618bab05185ee2aba75a0f37; candidato SHA256 622880444c2eee795f8a6c980d6d9c9f4fa50da7882b18ef038b9c7fc087e63c; firma indipendente 963b194acef9564cf3a56d7d7953fd551470f09b747ffd4b0d8526b37545bf9b.
+
+## AR-u5-free-expansion-pressure-15
+
+Ipotesi: Gas ideale chiuso, espansione nel vuoto in recipiente totale rigido e termicamente isolato; nessun trasferimento energetico mediante pareti, nessuna altra forma di lavoro, energie cinetiche/potenziali macroscopiche uguali nei due equilibri. Q=0 e W_esterno=0, quindi ΔU=0; per il gas ideale con capacità termica positiva U dipende da T, dunque T_f=T_1. Non si suppone una successione di stati di equilibrio durante l’espansione. Con V_0=1 L, n costante e pressione assoluta p_f=p_1 V_0/(V_0+V_v). V_v>0 implica 0<p_f<p_1. Entropia ΔS=n R ln[(V_0+V_v)/V_0]>0, calcolabile su un percorso reversibile immaginario: l’adiabaticità del percorso reale non impone ΔS=0. L’inversa del vuoto richiede p_1>p_f>0.
+
+Procedura manuale e prova: Riferimenti pf, A50 k Pa, pf, B1/3 k Pa. q=(101−5/3)/(50−1/3)=2 k Pa⁻¹, b 1. S_C201⇒pf, C100 k Pa. Con V_v 1 L, p_1, C200 k Pa.
+
+Distrattori: 100 k Pa si ferma alla finale; 201 k Pa omette l’offset e dà S202; 400 k Pa dà S401; 50 k Pa dà S51. Solo 200 k Pa restituiscono S201.
+
+Figura: Nessuna figura collegata a questo record; testi e formule letti integralmente.
+
+Fonte SHA256 3c60f87a78f7022ad501ed79cc53b36c7df745c40cf47f60fdcb13d6006b4471; candidato SHA256 ebbf99e28ac837bdd9796f31f7f0b352165c46df70ac4f5845b023c19deb23b9; firma indipendente 7aea1f5322c5ee6ecfaed8d0c683b3b9c3b8854aa27ce4458ae92aa775fdd362.
+
+## AR-u5-free-expansion-pressure-16
+
+Ipotesi: Gas ideale chiuso, espansione nel vuoto in recipiente totale rigido e termicamente isolato; nessun trasferimento energetico mediante pareti, nessuna altra forma di lavoro, energie cinetiche/potenziali macroscopiche uguali nei due equilibri. Q=0 e W_esterno=0, quindi ΔU=0; per il gas ideale con capacità termica positiva U dipende da T, dunque T_f=T_1. Non si suppone una successione di stati di equilibrio durante l’espansione. Con V_0=1 L, n costante e pressione assoluta p_f=p_1 V_0/(V_0+V_v). V_v>0 implica 0<p_f<p_1. Entropia ΔS=n R ln[(V_0+V_v)/V_0]>0, calcolabile su un percorso reversibile immaginario: l’adiabaticità del percorso reale non impone ΔS=0. L’inversa del vuoto richiede p_1>p_f>0.
+
+Procedura manuale e prova: Vincolo p_1=(100 k Pa/L)V_v. Con x=V_v/(1 L)>0, pf=100 x/(1+x) k Pa=50 k Pa⇒100 x=50+50 x⇒x 1. V_v 1 L, p_1=100 k Pa, unica soluzione positiva. L’uscita ammissibile sotto tale vincolo è 0<pf<100 k Pa.
+
+Distrattori: −1 L viola il dominio; 2 L danno 200/3 k Pa e 1/2 L danno 100/3 k Pa. L’alternativa infinita è confutata dall’equazione lineare con coefficiente positivo 50 k Pa. Denominatore diverso da zero e unica soluzione.
+
+Figura: Nessuna figura collegata a questo record; testi e formule letti integralmente.
+
+Fonte SHA256 4b8de2176a9831632755529d9eb3d4dc7e726ba9555b308601e6eda9754e3d9e; candidato SHA256 710308dddd5510545851de393bc0f27f1bdecaca7ebb8ea40abc9229a4deb577; firma indipendente 48544cd19fb2ee33d22865d9dfb3781eb35a80266d2eac6c492bd0edb1193cb5.
+
+Run finale effettivo:12 test, exit0,2,948 s;240 configurazioni Hypothesis e125 controprove complessive sui cinque lotti. Trascrizione originale: thermal-cycles-materials-163-167-tests-20261125.txt. Le identità fresh+saved sono verificate su tutti80; nessun cambio ai candidati o al runtime.

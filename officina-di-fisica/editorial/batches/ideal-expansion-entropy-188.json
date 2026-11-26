@@ -1,0 +1,1199 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u5-ideal-expansion-entropy-01",
+      "kind": "question",
+      "course": "C3",
+      "section": "Entropia del gas e percorsi fra stati",
+      "order": 18801,
+      "title": "Un raddoppio conta una volta B",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L06",
+        "C3-L07",
+        "C3-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "ideal-expansion-entropy",
+      "difficulty": 1,
+      "prompt": "Un campione chiuso di gas ideale ha stati iniziale e finale di equilibrio alla stessa temperatura assoluta T>0. La quantità n resta fissata entro ciascuna trasformazione. Si definiscono r=V_f/V_i>0 e B=nR ln 2>0, in J/K. La variazione di entropia del gas è ΔS=B ln(r)/ln 2. Questa è una differenza fra stati: si può calcolarla con un percorso reversibile ausiliario, senza identificare il calore di quel percorso con il calore effettivo di un processo irreversibile. B diverso fra prove significa campioni o preparazioni diversi, non ingresso di materia nello stesso gas chiuso. Con B=2 J/K e r=2, quanto vale ΔS in J/K?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "J/K",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il rapporto dei volumi è proprio due. Il logaritmo al numeratore coincide con ln 2 al denominatore: il loro rapporto è uno. Il gas aumenta quindi la propria entropia di B=2 J/K. Non occorre assegnare un valore decimale a ln 2, né sapere il percorso reale seguito."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/76458603b4e1ac32d5c3a2c1b9163d35166b393987f7eef35694f5fdba6e9d72",
+          "text": "Il primo pannello rappresenta gli stati estremi con volume finale doppio e uguale temperatura, senza specificare il percorso reale. Con B=2 J/K si ha ΔS=2 J/K. Nel confronto centrale A usa B=2 e r=2, C usa B=4 e r=4: le variazioni sono 2 e 8 J/K, con media 5 J/K. Il pannello finale riguarda invece il campione del quesito a due tappe: lì B=4 J/K, il gas guadagna 12, la sorgente perde 4 e l’insieme aumenta di 8 J/K."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{\\ln 2}{\\ln 2}=1"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta S=B"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta S=2\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "text",
+          "text": "Quattro J/K moltiplicherebbe B per r invece che per ln(r)/ln 2. Zero confonderebbe uguale temperatura con entropia invariata; −2 J/K corrisponderebbe invece al dimezzamento del volume. Il valore di B non è un calore in joule."
+        }
+      ],
+      "hints": [
+        "Semplifica prima i logaritmi identici, poi conserva le unità di B.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro J/K moltiplicherebbe B per r invece che per ln(r)/ln 2. Zero confonderebbe uguale temperatura con entropia invariata; −2 J/K corrisponderebbe invece al dimezzamento del volume. Il valore di B non è un calore in joule.",
+        "target": "C3-L10"
+      },
+      "coverage": [
+        "Logaritmi esatti e numero di raddoppi del volume",
+        "Variazione di stato, calore reale e produzione totale",
+        "Inverse, confronti fra campioni e taratura del display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-ideal-expansion-entropy-02",
+      "kind": "question",
+      "course": "C3",
+      "section": "Entropia del gas e percorsi fra stati",
+      "order": 18802,
+      "title": "Un logaritmo puro non cambia le unità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L06",
+        "C3-L07",
+        "C3-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "ideal-expansion-entropy",
+      "difficulty": 1,
+      "prompt": "Per un gas ideale si usa ΔS=B ln(r)/ln 2, con B in J/K e r=V_f/V_i adimensionale. Quale unità esprime ΔS?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "J/K",
+          "J",
+          "K",
+          "W",
+          "m³"
+        ],
+        "value": "J/K"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’argomento del logaritmo è un rapporto fra volumi nella stessa unità, quindi è puro. Anche ln(r)/ln 2 è adimensionale. Moltiplicarlo per B lascia J/K, l’unità di una variazione di entropia. La coincidenza di unità con una capacità termica non rende uguali le due grandezze."
+        },
+        {
+          "type": "formula",
+          "text": "[r]=1"
+        },
+        {
+          "type": "formula",
+          "text": " \\left[\\frac{\\ln r}{\\ln 2}\\right]=1"
+        },
+        {
+          "type": "formula",
+          "text": " [\\Delta S]=\\mathrm{J/K}"
+        },
+        {
+          "type": "text",
+          "text": "J esprime energia, K temperatura, W potenza e m³ volume. Scrivere ln di un volume dimensionato sarebbe diverso da usare ln(V_f/V_i)."
+        }
+      ],
+      "hints": [
+        "Controlla prima che il rapporto dentro il logaritmo sia adimensionale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "J esprime energia, K temperatura, W potenza e m³ volume. Scrivere ln di un volume dimensionato sarebbe diverso da usare ln(V_f/V_i).",
+        "target": "C3-L10"
+      },
+      "coverage": [
+        "Logaritmi esatti e numero di raddoppi del volume",
+        "Variazione di stato, calore reale e produzione totale",
+        "Inverse, confronti fra campioni e taratura del display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-ideal-expansion-entropy-03",
+      "kind": "question",
+      "course": "C3",
+      "section": "Entropia del gas e percorsi fra stati",
+      "order": 18803,
+      "title": "Gli stessi estremi, due percorsi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L06",
+        "C3-L07",
+        "C3-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "ideal-expansion-entropy",
+      "difficulty": 1,
+      "prompt": "Lo stesso campione chiuso di gas ideale collega gli stessi stati di equilibrio I e F, con uguale temperatura assoluta iniziale e finale e V_f>V_i. Un percorso è reversibile e un altro irreversibile. Quale affermazione riguarda correttamente ΔS del gas?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "È uguale e positiva nei due percorsi",
+          "È nulla nel reversibile e positiva solo nell’altro",
+          "È maggiore nel percorso irreversibile perché dipende dal cammino",
+          "È uguale al calore reale diviso per T in ogni percorso",
+          "È negativa nei due percorsi perché il gas si espande"
+        ],
+        "value": "È uguale e positiva nei due percorsi"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Entropia è una funzione di stato: una volta fissati gli estremi I e F, ΔS=S_F−S_I non può cambiare scegliendo un altro cammino. Qui r>1 rende ln r positivo, dunque ΔS>0 in entrambi. Cambiano invece trasferimenti e produzione di entropia del processo completo. In una libera espansione isolata il calore reale è nullo, ma questa variazione del gas è positiva."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/76458603b4e1ac32d5c3a2c1b9163d35166b393987f7eef35694f5fdba6e9d72",
+          "text": "I due disegni di volume sono stati di equilibrio estremi, non fotogrammi di un percorso necessariamente reversibile. L’entropia del gas fra gli stessi estremi non dipende dal cammino; il pannello finale mostra perché bisogna sommare anche la sorgente per parlare di produzione del processo completo."
+        },
+        {
+          "type": "formula",
+          "text": "r=\\frac{V_f}{V_i}>1"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta S=\\frac{B\\ln r}{\\ln 2}>0"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta S_{\\rm rev}=\\Delta S_{\\rm irr}"
+        },
+        {
+          "type": "text",
+          "text": "Reversibile significa produzione totale nulla, non variazione nulla di ogni parte. Aggiungere più entropia al gas soltanto perché il cammino è irreversibile contraddice gli stessi estremi. Q_reale/T non sostituisce l’integrale sul percorso reversibile di confronto; l’espansione dà segno positivo, non negativo."
+        }
+      ],
+      "hints": [
+        "Separa differenza di stato del gas e produzione del processo completo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Reversibile significa produzione totale nulla, non variazione nulla di ogni parte. Aggiungere più entropia al gas soltanto perché il cammino è irreversibile contraddice gli stessi estremi. Q_reale/T non sostituisce l’integrale sul percorso reversibile di confronto; l’espansione dà segno positivo, non negativo.",
+        "target": "C3-L10"
+      },
+      "coverage": [
+        "Logaritmi esatti e numero di raddoppi del volume",
+        "Variazione di stato, calore reale e produzione totale",
+        "Inverse, confronti fra campioni e taratura del display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-ideal-expansion-entropy-04",
+      "kind": "question",
+      "course": "C3",
+      "section": "Entropia del gas e percorsi fra stati",
+      "order": 18804,
+      "title": "Stesso raddoppio, un campione con B doppio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L06",
+        "C3-L07",
+        "C3-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "ideal-expansion-entropy",
+      "difficulty": 1,
+      "prompt": "Un campione chiuso di gas ideale ha stati iniziale e finale di equilibrio alla stessa temperatura assoluta T>0. La quantità n resta fissata entro ciascuna trasformazione. Si definiscono r=V_f/V_i>0 e B=nR ln 2>0, in J/K. La variazione di entropia del gas è ΔS=B ln(r)/ln 2. Questa è una differenza fra stati: si può calcolarla con un percorso reversibile ausiliario, senza identificare il calore di quel percorso con il calore effettivo di un processo irreversibile. B diverso fra prove significa campioni o preparazioni diversi, non ingresso di materia nello stesso gas chiuso. Due campioni A e C hanno entrambi r=2. A ha B_A=2 J/K, C ha B_C=4 J/K. Come cambia la variazione del gas?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 2 a 4 J/K",
+          "Da 2 a 1 J/K",
+          "Resta 2 J/K",
+          "Da 2 a 8 J/K",
+          "Diventa zero"
+        ],
+        "value": "Da 2 a 4 J/K"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Con r=2 il fattore logaritmico vale uno per entrambi. Le variazioni sono perciò 2 e 4 J/K. Il parametro doppio può descrivere una quantità doppia di gas nella seconda preparazione, ma ciascun campione rimane chiuso durante la propria trasformazione. Non si modifica n nel tempo per ottenere questa proporzione."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta S_A=B_A"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta S_C=B_C"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{\\Delta S_C}{\\Delta S_A}=2"
+        },
+        {
+          "type": "text",
+          "text": "Un J/K renderebbe inversa la dipendenza da B; otto introdurrebbe un quadrato. Due J/K ignora il diverso campione. Zero non segue dall’uguaglianza delle temperature estreme."
+        }
+      ],
+      "hints": [
+        "Il fattore logaritmico resta uno: confronta soltanto i parametri dei campioni.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Un J/K renderebbe inversa la dipendenza da B; otto introdurrebbe un quadrato. Due J/K ignora il diverso campione. Zero non segue dall’uguaglianza delle temperature estreme.",
+        "target": "C3-L10"
+      },
+      "coverage": [
+        "Logaritmi esatti e numero di raddoppi del volume",
+        "Variazione di stato, calore reale e produzione totale",
+        "Inverse, confronti fra campioni e taratura del display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-ideal-expansion-entropy-05",
+      "kind": "question",
+      "course": "C3",
+      "section": "Entropia del gas e percorsi fra stati",
+      "order": 18805,
+      "title": "Ricavare il parametro del campione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L06",
+        "C3-L07",
+        "C3-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "ideal-expansion-entropy",
+      "difficulty": 2,
+      "prompt": "Un campione chiuso di gas ideale ha stati iniziale e finale di equilibrio alla stessa temperatura assoluta T>0. La quantità n resta fissata entro ciascuna trasformazione. Si definiscono r=V_f/V_i>0 e B=nR ln 2>0, in J/K. La variazione di entropia del gas è ΔS=B ln(r)/ln 2. Questa è una differenza fra stati: si può calcolarla con un percorso reversibile ausiliario, senza identificare il calore di quel percorso con il calore effettivo di un processo irreversibile. B diverso fra prove significa campioni o preparazioni diversi, non ingresso di materia nello stesso gas chiuso. Si misura ΔS=2 J/K e si conosce r=2. Quanto vale B in J/K?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "J/K",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Si parte dalla legge, si moltiplica per ln 2 e si divide per ln r. A r=2 i due logaritmi si cancellano e B=ΔS=2 J/K. Il divisore non è nullo: r=1 non sarebbe utilizzabile per identificare B da questa sola misura."
+        },
+        {
+          "type": "formula",
+          "text": "B=\\frac{\\Delta S\\ln 2}{\\ln r}"
+        },
+        {
+          "type": "formula",
+          "text": " r=2"
+        },
+        {
+          "type": "formula",
+          "text": " B=2\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "text",
+          "text": "Quattro J/K moltiplica per r; un J/K divide per r. Nessuna delle due operazioni sostituisce il rapporto di logaritmi. Se r=1, la legge darebbe ΔS=0 per qualunque B e l’inversa qui non sarebbe definita."
+        }
+      ],
+      "hints": [
+        "Isola B conservando il rapporto dei logaritmi fino alla sostituzione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro J/K moltiplica per r; un J/K divide per r. Nessuna delle due operazioni sostituisce il rapporto di logaritmi. Se r=1, la legge darebbe ΔS=0 per qualunque B e l’inversa qui non sarebbe definita.",
+        "target": "C3-L10"
+      },
+      "coverage": [
+        "Logaritmi esatti e numero di raddoppi del volume",
+        "Variazione di stato, calore reale e produzione totale",
+        "Inverse, confronti fra campioni e taratura del display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-ideal-expansion-entropy-06",
+      "kind": "question",
+      "course": "C3",
+      "section": "Entropia del gas e percorsi fra stati",
+      "order": 18806,
+      "title": "Ricostruire il rapporto di volumi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L06",
+        "C3-L07",
+        "C3-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "ideal-expansion-entropy",
+      "difficulty": 2,
+      "prompt": "Un campione chiuso di gas ideale ha stati iniziale e finale di equilibrio alla stessa temperatura assoluta T>0. La quantità n resta fissata entro ciascuna trasformazione. Si definiscono r=V_f/V_i>0 e B=nR ln 2>0, in J/K. La variazione di entropia del gas è ΔS=B ln(r)/ln 2. Questa è una differenza fra stati: si può calcolarla con un percorso reversibile ausiliario, senza identificare il calore di quel percorso con il calore effettivo di un processo irreversibile. B diverso fra prove significa campioni o preparazioni diversi, non ingresso di materia nello stesso gas chiuso. Con ΔS=2 J/K e B=2 J/K, quanto vale r?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dividendo la variazione per B si trova un numero di raddoppi pari a uno. Dalla legge ln r=(ΔS/B)ln 2 si ottiene r=2^(ΔS/B)=2. È un rapporto puro e positivo, non un volume in litri. L’esponenziale fornisce un unico r>0 per ogni rapporto reale ΔS/B."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{\\Delta S}{B}=1"
+        },
+        {
+          "type": "formula",
+          "text": " \\ln r=\\ln 2"
+        },
+        {
+          "type": "formula",
+          "text": " r=2^{\\Delta S/B}"
+        },
+        {
+          "type": "formula",
+          "text": " r=2"
+        },
+        {
+          "type": "text",
+          "text": "Uno confonde il numero di raddoppi con il fattore di volume. Quattro comporterebbe ΔS=2B=4 J/K. Un mezzo darebbe −2 J/K, con segno opposto alla misura; r=0 è escluso dal logaritmo e dai volumi positivi."
+        }
+      ],
+      "hints": [
+        "Trasforma il numero di raddoppi in un fattore di volume con una potenza di due.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Uno confonde il numero di raddoppi con il fattore di volume. Quattro comporterebbe ΔS=2B=4 J/K. Un mezzo darebbe −2 J/K, con segno opposto alla misura; r=0 è escluso dal logaritmo e dai volumi positivi.",
+        "target": "C3-L10"
+      },
+      "coverage": [
+        "Logaritmi esatti e numero di raddoppi del volume",
+        "Variazione di stato, calore reale e produzione totale",
+        "Inverse, confronti fra campioni e taratura del display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-ideal-expansion-entropy-07",
+      "kind": "question",
+      "course": "C3",
+      "section": "Entropia del gas e percorsi fra stati",
+      "order": 18807,
+      "title": "Da un raddoppio a due raddoppi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L06",
+        "C3-L07",
+        "C3-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "ideal-expansion-entropy",
+      "difficulty": 2,
+      "prompt": "Un campione chiuso di gas ideale ha stati iniziale e finale di equilibrio alla stessa temperatura assoluta T>0. La quantità n resta fissata entro ciascuna trasformazione. Si definiscono r=V_f/V_i>0 e B=nR ln 2>0, in J/K. La variazione di entropia del gas è ΔS=B ln(r)/ln 2. Questa è una differenza fra stati: si può calcolarla con un percorso reversibile ausiliario, senza identificare il calore di quel percorso con il calore effettivo di un processo irreversibile. B diverso fra prove significa campioni o preparazioni diversi, non ingresso di materia nello stesso gas chiuso. A usa B=2 J/K e r_A=2. C mantiene B e ha r_C=4. Quanto vale ΔS_C/ΔS_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "4",
+          "1",
+          "1/2",
+          "−2"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Quattro è due al quadrato, perciò ln 4=2 ln 2. A dà 2 J/K; C dà 4 J/K. Il rapporto è due. Il rapporto dei volumi tra gli estremi è cresciuto da due a quattro, ma la variazione entropica segue il logaritmo di quei numeri."
+        },
+        {
+          "type": "formula",
+          "text": "\\ln 4=2\\ln 2"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta S_A=2\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta S_C=4\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{\\Delta S_C}{\\Delta S_A}=2"
+        },
+        {
+          "type": "text",
+          "text": "Quattro copia r_C, senza confrontare i logaritmi. Un mezzo capovolge C/A. Uno ignora il secondo raddoppio; −2 darebbe un confronto negativo fra due variazioni positive."
+        }
+      ],
+      "hints": [
+        "Riconosci 4=2² prima di formare il rapporto delle entropie.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro copia r_C, senza confrontare i logaritmi. Un mezzo capovolge C/A. Uno ignora il secondo raddoppio; −2 darebbe un confronto negativo fra due variazioni positive.",
+        "target": "C3-L10"
+      },
+      "coverage": [
+        "Logaritmi esatti e numero di raddoppi del volume",
+        "Variazione di stato, calore reale e produzione totale",
+        "Inverse, confronti fra campioni e taratura del display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-ideal-expansion-entropy-08",
+      "kind": "question",
+      "course": "C3",
+      "section": "Entropia del gas e percorsi fra stati",
+      "order": 18808,
+      "title": "Una proposta doppia non è il valore corretto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L06",
+        "C3-L07",
+        "C3-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "ideal-expansion-entropy",
+      "difficulty": 2,
+      "prompt": "Un campione chiuso di gas ideale ha stati iniziale e finale di equilibrio alla stessa temperatura assoluta T>0. La quantità n resta fissata entro ciascuna trasformazione. Si definiscono r=V_f/V_i>0 e B=nR ln 2>0, in J/K. La variazione di entropia del gas è ΔS=B ln(r)/ln 2. Questa è una differenza fra stati: si può calcolarla con un percorso reversibile ausiliario, senza identificare il calore di quel percorso con il calore effettivo di un processo irreversibile. B diverso fra prove significa campioni o preparazioni diversi, non ingresso di materia nello stesso gas chiuso. Con B=2 J/K e r=2, si propone ΔS=4 J/K. Quanto vale proposta meno risultato corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2 J/K",
+          "−2 J/K",
+          "4 J/K",
+          "0 J/K",
+          "2"
+        ],
+        "value": "2 J/K"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il valore corretto è B=2 J/K. Lo scarto richiesto è 4−2=+2 J/K, positivo perché la proposta è eccessiva. Il rapporto proposta/corretta è numericamente due ma è puro: non ha le unità della differenza cercata."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta S=2\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " e=(4-2)\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " e=2\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "text",
+          "text": "−2 J/K inverte l’ordine, quattro copia la proposta, zero l’accetta. Il numero puro due risponde al rapporto e non allo scarto dimensionato."
+        }
+      ],
+      "hints": [
+        "Calcola prima il valore fisico e poi conserva l’ordine della sottrazione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−2 J/K inverte l’ordine, quattro copia la proposta, zero l’accetta. Il numero puro due risponde al rapporto e non allo scarto dimensionato.",
+        "target": "C3-L10"
+      },
+      "coverage": [
+        "Logaritmi esatti e numero di raddoppi del volume",
+        "Variazione di stato, calore reale e produzione totale",
+        "Inverse, confronti fra campioni e taratura del display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-ideal-expansion-entropy-09",
+      "kind": "question",
+      "course": "C3",
+      "section": "Entropia del gas e percorsi fra stati",
+      "order": 18809,
+      "title": "L’inversa richiede r diverso da uno",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L06",
+        "C3-L07",
+        "C3-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "ideal-expansion-entropy",
+      "difficulty": 2,
+      "prompt": "Un campione chiuso di gas ideale ha stati iniziale e finale di equilibrio alla stessa temperatura assoluta T>0. La quantità n resta fissata entro ciascuna trasformazione. Si definiscono r=V_f/V_i>0 e B=nR ln 2>0, in J/K. La variazione di entropia del gas è ΔS=B ln(r)/ln 2. Questa è una differenza fra stati: si può calcolarla con un percorso reversibile ausiliario, senza identificare il calore di quel percorso con il calore effettivo di un processo irreversibile. B diverso fra prove significa campioni o preparazioni diversi, non ingresso di materia nello stesso gas chiuso. Sono noti ΔS e r, con r≠1 e ΔS ln r>0, così che il parametro ricavato sia positivo. Quale formula isola B?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "B = ΔS ln 2 / ln r",
+          "B = ΔS ln r / ln 2",
+          "B = ln r / (ΔS ln 2)",
+          "B = ΔS / (ln 2 ln r)",
+          "B = ΔS + ln r"
+        ],
+        "value": "B = ΔS ln 2 / ln r"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplichiamo ΔS=B ln r/ln 2 per ln 2, poi dividiamo per ln r. Il risultato è B=ΔS ln 2/ln r. ln 2 è positivo e ln r è non nullo per r≠1. Per una compressione 0<r<1, ΔS deve essere negativa: il rapporto resta B>0. Non si assume che ogni variazione di entropia di un gas debba essere positiva."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta S\\ln 2=B\\ln r"
+        },
+        {
+          "type": "formula",
+          "text": " B=\\frac{\\Delta S\\ln 2}{\\ln r}"
+        },
+        {
+          "type": "formula",
+          "text": " r>0"
+        },
+        {
+          "type": "formula",
+          "text": " r\\ne1"
+        },
+        {
+          "type": "text",
+          "text": "Scambiare i logaritmi non inverte la moltiplicazione originaria. Il reciproco ha K/J invece di J/K. Mettere anche ln 2 al denominatore cambia il fattore costante. Sommare ΔS e ln r mescola una grandezza dimensionata e un numero puro."
+        }
+      ],
+      "hints": [
+        "Distingui il dominio del logaritmo r>0 da quello dell’inversa r≠1.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Scambiare i logaritmi non inverte la moltiplicazione originaria. Il reciproco ha K/J invece di J/K. Mettere anche ln 2 al denominatore cambia il fattore costante. Sommare ΔS e ln r mescola una grandezza dimensionata e un numero puro.",
+        "target": "C3-L10"
+      },
+      "coverage": [
+        "Logaritmi esatti e numero di raddoppi del volume",
+        "Variazione di stato, calore reale e produzione totale",
+        "Inverse, confronti fra campioni e taratura del display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-ideal-expansion-entropy-10",
+      "kind": "question",
+      "course": "C3",
+      "section": "Entropia del gas e percorsi fra stati",
+      "order": 18810,
+      "title": "Scalare un argomento non scala il suo logaritmo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L06",
+        "C3-L07",
+        "C3-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "ideal-expansion-entropy",
+      "difficulty": 2,
+      "prompt": "Un campione chiuso di gas ideale ha stati iniziale e finale di equilibrio alla stessa temperatura assoluta T>0. La quantità n resta fissata entro ciascuna trasformazione. Si definiscono r=V_f/V_i>0 e B=nR ln 2>0, in J/K. La variazione di entropia del gas è ΔS=B ln(r)/ln 2. Questa è una differenza fra stati: si può calcolarla con un percorso reversibile ausiliario, senza identificare il calore di quel percorso con il calore effettivo di un processo irreversibile. B diverso fra prove significa campioni o preparazioni diversi, non ingresso di materia nello stesso gas chiuso. Le prove A e C hanno B_C=κ₁B_A e r_C=κ₂r_A, con κ₁,κ₂>0, r_A>0 e r_A≠1. Quale legge generale dà ΔS_C/ΔS_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ ln(κ₂ r_A) / ln r_A",
+          "κ₁ κ₂",
+          "κ₁ / κ₂",
+          "κ₁ ln r_A / ln(κ₂ r_A)",
+          "κ₁ + κ₂"
+        ],
+        "value": "κ₁ ln(κ₂ r_A) / ln r_A"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituiamo entrambi i cambiamenti: ΔS_C=κ₁B_A ln(κ₂r_A)/ln 2. Nel rapporto si cancellano B_A e ln 2, ma non il logaritmo dell’argomento nuovo. Resta κ₁ ln(κ₂r_A)/ln r_A. La base A non può avere r_A=1 perché in quel caso ΔS_A=0; se κ₂r_A=1, invece, il numeratore si annulla lecitamente e il rapporto è zero."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta S_C=\\frac{\\kappa_1 B_A\\ln(\\kappa_2r_A)}{\\ln 2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{\\Delta S_C}{\\Delta S_A}=\\kappa_1\\frac{\\ln(\\kappa_2r_A)}{\\ln r_A}"
+        },
+        {
+          "type": "text",
+          "text": "κ₁κ₂ tratta il logaritmo come una funzione lineare del rapporto di volumi. κ₁/κ₂ gli attribuisce una dipendenza inversa. La frazione dei logaritmi capovolta cambia il confronto e non è neppure definita quando r_C=1; la somma non segue dal modello e darebbe due per prove identiche."
+        }
+      ],
+      "hints": [
+        "Sostituisci i fattori dentro ln prima di cancellare i termini comuni.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "κ₁κ₂ tratta il logaritmo come una funzione lineare del rapporto di volumi. κ₁/κ₂ gli attribuisce una dipendenza inversa. La frazione dei logaritmi capovolta cambia il confronto e non è neppure definita quando r_C=1; la somma non segue dal modello e darebbe due per prove identiche.",
+        "target": "C3-L10"
+      },
+      "coverage": [
+        "Logaritmi esatti e numero di raddoppi del volume",
+        "Variazione di stato, calore reale e produzione totale",
+        "Inverse, confronti fra campioni e taratura del display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-ideal-expansion-entropy-11",
+      "kind": "question",
+      "course": "C3",
+      "section": "Entropia del gas e percorsi fra stati",
+      "order": 18811,
+      "title": "Due raddoppi con un campione più grande",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L06",
+        "C3-L07",
+        "C3-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "ideal-expansion-entropy",
+      "difficulty": 2,
+      "prompt": "Un campione chiuso di gas ideale ha stati iniziale e finale di equilibrio alla stessa temperatura assoluta T>0. La quantità n resta fissata entro ciascuna trasformazione. Si definiscono r=V_f/V_i>0 e B=nR ln 2>0, in J/K. La variazione di entropia del gas è ΔS=B ln(r)/ln 2. Questa è una differenza fra stati: si può calcolarla con un percorso reversibile ausiliario, senza identificare il calore di quel percorso con il calore effettivo di un processo irreversibile. B diverso fra prove significa campioni o preparazioni diversi, non ingresso di materia nello stesso gas chiuso. A ha B_A=2 J/K e r_A=2. C ha B_C=4 J/K e r_C=4. Quanto vale ΔS_C/ΔS_A?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A dà 2 J/K. C ha parametro 4 J/K e due raddoppi di volume, dunque ΔS_C=4·2=8 J/K. Il rapporto 8/2=4 contiene un fattore due dal parametro del campione e un altro dal numero di raddoppi. Non proviene dal quadrato della quantità di gas."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta S_A=2\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta S_C=(4\\,\\mathrm{J/K})\\cdot2"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta S_C=8\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{\\Delta S_C}{\\Delta S_A}=4"
+        },
+        {
+          "type": "text",
+          "text": "Due considera un solo cambiamento. Otto copia il numero della variazione C senza dividerlo per quella A; un quarto è il reciproco del confronto richiesto. La stessa temperatura iniziale e finale non annulla nessuna delle due variazioni."
+        }
+      ],
+      "hints": [
+        "Ricostruisci il numero di raddoppi di ciascuna prova prima del rapporto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due considera un solo cambiamento. Otto copia il numero della variazione C senza dividerlo per quella A; un quarto è il reciproco del confronto richiesto. La stessa temperatura iniziale e finale non annulla nessuna delle due variazioni.",
+        "target": "C3-L10"
+      },
+      "coverage": [
+        "Logaritmi esatti e numero di raddoppi del volume",
+        "Variazione di stato, calore reale e produzione totale",
+        "Inverse, confronti fra campioni e taratura del display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-ideal-expansion-entropy-12",
+      "kind": "question",
+      "course": "C3",
+      "section": "Entropia del gas e percorsi fra stati",
+      "order": 18812,
+      "title": "Media delle variazioni, non dei parametri",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L06",
+        "C3-L07",
+        "C3-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "ideal-expansion-entropy",
+      "difficulty": 2,
+      "prompt": "Un campione chiuso di gas ideale ha stati iniziale e finale di equilibrio alla stessa temperatura assoluta T>0. La quantità n resta fissata entro ciascuna trasformazione. Si definiscono r=V_f/V_i>0 e B=nR ln 2>0, in J/K. La variazione di entropia del gas è ΔS=B ln(r)/ln 2. Questa è una differenza fra stati: si può calcolarla con un percorso reversibile ausiliario, senza identificare il calore di quel percorso con il calore effettivo di un processo irreversibile. B diverso fra prove significa campioni o preparazioni diversi, non ingresso di materia nello stesso gas chiuso. A ha B_A=2 J/K, r_A=2; C ha B_C=4 J/K, r_C=4. Qual è la media aritmetica delle due ΔS, con uguale peso?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "5 J/K",
+          "10 J/K",
+          "5/2 J/K",
+          "3 ln 3 / ln 2 J/K",
+          "4 J/K"
+        ],
+        "value": "5 J/K"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le due letture sono 2 e 8 J/K. La metà della somma è 5 J/K. Gli ingressi medi sarebbero B=3 J/K e r=3: il modello darebbe 3 ln 3/ln 2 J/K, che si lascia esatto. Non è uguale a cinque: l’uguaglianza richiederebbe ln 27=ln 32, ma 27≠32. Non serve stimare alcun logaritmo."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/76458603b4e1ac32d5c3a2c1b9163d35166b393987f7eef35694f5fdba6e9d72",
+          "text": "Le barre centrali delle due prove hanno origine e scala comuni: 2 e 8 J/K danno media 5 J/K. Non rappresentano campioni messi in contatto o un processo con B variabile nel tempo. Il successivo bilancio firmato delle due tappe è un altro compito, con B=4 J/K fissato."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline{\\Delta S}=\\frac{2+8}{2}\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline{\\Delta S}=5\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " 3\\ln 3=\\ln 27"
+        },
+        {
+          "type": "formula",
+          "text": " 5\\ln 2=\\ln 32"
+        },
+        {
+          "type": "formula",
+          "text": " 27\\ne32"
+        },
+        {
+          "type": "text",
+          "text": "Dieci J/K non dimezza la somma; 5/2 la dimezza due volte; quattro ignora il confronto delle due letture. 3 ln 3/ln 2 applica il modello ai dati medi, operazione non richiesta e qui non equivalente."
+        }
+      ],
+      "hints": [
+        "Media i due risultati già calcolati e lascia esatti eventuali confronti logaritmici.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dieci J/K non dimezza la somma; 5/2 la dimezza due volte; quattro ignora il confronto delle due letture. 3 ln 3/ln 2 applica il modello ai dati medi, operazione non richiesta e qui non equivalente.",
+        "target": "C3-L10"
+      },
+      "coverage": [
+        "Logaritmi esatti e numero di raddoppi del volume",
+        "Variazione di stato, calore reale e produzione totale",
+        "Inverse, confronti fra campioni e taratura del display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-ideal-expansion-entropy-13",
+      "kind": "question",
+      "course": "C3",
+      "section": "Entropia del gas e percorsi fra stati",
+      "order": 18813,
+      "title": "Il bersaglio sull’entropia e il rapporto di volumi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L06",
+        "C3-L07",
+        "C3-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "ideal-expansion-entropy",
+      "difficulty": 3,
+      "prompt": "Un campione chiuso di gas ideale ha stati iniziale e finale di equilibrio alla stessa temperatura assoluta T>0. La quantità n resta fissata entro ciascuna trasformazione. Si definiscono r=V_f/V_i>0 e B=nR ln 2>0, in J/K. La variazione di entropia del gas è ΔS=B ln(r)/ln 2. Questa è una differenza fra stati: si può calcolarla con un percorso reversibile ausiliario, senza identificare il calore di quel percorso con il calore effettivo di un processo irreversibile. B diverso fra prove significa campioni o preparazioni diversi, non ingresso di materia nello stesso gas chiuso. A ha B_A=2 J/K, r_A=2. C ha B_C=4 J/K e deve avere ΔS_C=4ΔS_A. Quanto vale r_C/r_A?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è 4·2=8 J/K. Dividendo per B_C=4 J/K si trovano due raddoppi: ln r_C/ln 2=2. Dunque r_C=2²=4 e il rapporto richiesto è 4/2=2. Il parametro B è cambiato tra campioni, ma i volumi di ogni campione restano gli estremi della propria trasformazione chiusa."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta S_C=8\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{\\ln r_C}{\\ln 2}=2"
+        },
+        {
+          "type": "formula",
+          "text": " r_C=4"
+        },
+        {
+          "type": "formula",
+          "text": " r_C/r_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Quattro copia il bersaglio o r_C, non il rapporto r_C/r_A. Un mezzo inverte il confronto; uno darebbe soltanto 4 J/K. Non si può far passare il fattore quattro attraverso il logaritmo come un moltiplicatore dell’argomento."
+        }
+      ],
+      "hints": [
+        "Trasforma l’entropia bersaglio in numero di raddoppi, poi torna al rapporto dei volumi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro copia il bersaglio o r_C, non il rapporto r_C/r_A. Un mezzo inverte il confronto; uno darebbe soltanto 4 J/K. Non si può far passare il fattore quattro attraverso il logaritmo come un moltiplicatore dell’argomento.",
+        "target": "C3-L10"
+      },
+      "coverage": [
+        "Logaritmi esatti e numero di raddoppi del volume",
+        "Variazione di stato, calore reale e produzione totale",
+        "Inverse, confronti fra campioni e taratura del display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-ideal-expansion-entropy-14",
+      "kind": "question",
+      "course": "C3",
+      "section": "Entropia del gas e percorsi fra stati",
+      "order": 18814,
+      "title": "Il display si tara su una variazione nota",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L06",
+        "C3-L07",
+        "C3-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "ideal-expansion-entropy",
+      "difficulty": 3,
+      "prompt": "Un campione chiuso di gas ideale ha stati iniziale e finale di equilibrio alla stessa temperatura assoluta T>0. La quantità n resta fissata entro ciascuna trasformazione. Si definiscono r=V_f/V_i>0 e B=nR ln 2>0, in J/K. La variazione di entropia del gas è ΔS=B ln(r)/ln 2. Questa è una differenza fra stati: si può calcolarla con un percorso reversibile ausiliario, senza identificare il calore di quel percorso con il calore effettivo di un processo irreversibile. B diverso fra prove significa campioni o preparazioni diversi, non ingresso di materia nello stesso gas chiuso. Il display continuo adimensionale è D=qΔS, q>0. Il riferimento B=2 J/K e r=2 dà D=6. Una nuova prova ha r=4 e D=24. Quanto vale B della nuova prova in J/K?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "J/K",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento ha ΔS=2 J/K, quindi q=6/(2 J/K)=3 K/J. La nuova lettura indica ΔS=24/q=8 J/K. A r=4 ci sono due raddoppi: dividendo 8 J/K per due si ottiene B=4 J/K. Guadagno dello strumento e parametro termodinamico sono grandezze diverse."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{K/J}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta S_C=8\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{\\ln 4}{\\ln 2}=2"
+        },
+        {
+          "type": "formula",
+          "text": " B_C=4\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "text",
+          "text": "Dodici J/K usa D=24 come variazione senza togliere q. Otto J/K si ferma alla variazione invece di dividere per due; due J/K conserverebbe il riferimento e predirebbe D=12, non 24."
+        }
+      ],
+      "hints": [
+        "Decodifica prima ΔS dal display e poi dividi per il numero di raddoppi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dodici J/K usa D=24 come variazione senza togliere q. Otto J/K si ferma alla variazione invece di dividere per due; due J/K conserverebbe il riferimento e predirebbe D=12, non 24.",
+        "target": "C3-L10"
+      },
+      "coverage": [
+        "Logaritmi esatti e numero di raddoppi del volume",
+        "Variazione di stato, calore reale e produzione totale",
+        "Inverse, confronti fra campioni e taratura del display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-ideal-expansion-entropy-15",
+      "kind": "question",
+      "course": "C3",
+      "section": "Entropia del gas e percorsi fra stati",
+      "order": 18815,
+      "title": "Guadagno e offset prima del parametro del gas",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L06",
+        "C3-L07",
+        "C3-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "ideal-expansion-entropy",
+      "difficulty": 3,
+      "prompt": "Un campione chiuso di gas ideale ha stati iniziale e finale di equilibrio alla stessa temperatura assoluta T>0. La quantità n resta fissata entro ciascuna trasformazione. Si definiscono r=V_f/V_i>0 e B=nR ln 2>0, in J/K. La variazione di entropia del gas è ΔS=B ln(r)/ln 2. Questa è una differenza fra stati: si può calcolarla con un percorso reversibile ausiliario, senza identificare il calore di quel percorso con il calore effettivo di un processo irreversibile. B diverso fra prove significa campioni o preparazioni diversi, non ingresso di materia nello stesso gas chiuso. D=qΔS+b è un display continuo adimensionale, q>0. Riferimento A: B_A=2 J/K, r_A=2, D_A=5. Riferimento C: B_C=4 J/K, r_C=4, D_C=17. Prova E: r_E=2, D_E=9. Quanto vale B_E?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4 J/K",
+          "9/2 J/K",
+          "2 J/K",
+          "8 J/K",
+          "3 J/K"
+        ],
+        "value": "4 J/K"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le variazioni dei riferimenti sono 2 e 8 J/K. Il guadagno è (17−5)/(8−2)=2 K/J; dal primo riferimento b=1. La prova E dà ΔS_E=(9−1)/q=4 J/K. Poiché r_E=2 conta un solo raddoppio, il parametro cercato è B_E=4 J/K."
+        },
+        {
+          "type": "formula",
+          "text": "q=2\\,\\mathrm{K/J}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta S_E=4\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " B_E=4\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "text",
+          "text": "9/2 J/K omette l’offset e, reinserito nel display, predice dieci anziché nove. Otto J/K toglie b ma non divide per q. Due e tre J/K predicono rispettivamente D=5 e D=7, diversi dalla lettura E."
+        }
+      ],
+      "hints": [
+        "Sottrai l’offset prima del guadagno; solo dopo usa r della nuova prova.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "9/2 J/K omette l’offset e, reinserito nel display, predice dieci anziché nove. Otto J/K toglie b ma non divide per q. Due e tre J/K predicono rispettivamente D=5 e D=7, diversi dalla lettura E.",
+        "target": "C3-L10"
+      },
+      "coverage": [
+        "Logaritmi esatti e numero di raddoppi del volume",
+        "Variazione di stato, calore reale e produzione totale",
+        "Inverse, confronti fra campioni e taratura del display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-ideal-expansion-entropy-16",
+      "kind": "question",
+      "course": "C3",
+      "section": "Entropia del gas e percorsi fra stati",
+      "order": 18816,
+      "title": "Due tappe: variazione del gas e aumento dell’insieme",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L06",
+        "C3-L07",
+        "C3-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "ideal-expansion-entropy",
+      "difficulty": 3,
+      "prompt": "Lo stesso campione chiuso di gas ideale compie due tappe. Prima raddoppia il volume mediante espansione isoterma reversibile con una sola sorgente a temperatura T>0. Poi, dentro un recipiente totale rigido e isolato, si espande liberamente nel vuoto quadruplicando il nuovo volume. La sorgente interviene soltanto nella prima tappa e i dispositivi meccanici ideali non producono entropia. Fra gli stati iniziale e finale del gas si misura ΔS_gas=12 J/K. Si forniscono ΔS=nR ln(V_f/V_i) per estremi alla stessa temperatura e B=nR ln 2. Quanto aumenta l’entropia del gas più la sorgente?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "8 J/K",
+          "0 J/K",
+          "4 J/K",
+          "6 J/K",
+          "12 J/K"
+        ],
+        "value": "8 J/K"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La prima tappa aumenta l’entropia del gas di B. La libera espansione successiva ha Q=0 e W=0; per un gas ideale l’energia interna dipende solo da T, quindi gli stati di equilibrio estremi hanno ancora la stessa temperatura. Il fattore quattro dà ln 4=2 ln 2 e aumenta l’entropia del gas di 2B. In totale il gas guadagna 3B=12 J/K: B=4 J/K. La sorgente perde soltanto B=4 J/K durante la prima tappa reversibile. Sommando le parti, 12−4=8 J/K: è la produzione della libera espansione isolata, non il calore scambiato dal gas."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/76458603b4e1ac32d5c3a2c1b9163d35166b393987f7eef35694f5fdba6e9d72",
+          "text": "Nel pannello finale il primo raddoppio reversibile dà al gas 4 J/K e ne toglie 4 alla sorgente. La successiva libera espansione per un fattore quattro produce 8 J/K senza calore o lavoro esterni. Le barre con segno, tutte dalla stessa origine, rappresentano gas +12, sorgente −4, insieme +8 J/K. Il totale del gas +12 non è il totale dell’insieme."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta S_1=B"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta S_2=2B"
+        },
+        {
+          "type": "formula",
+          "text": " 3B=12\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " B=4\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta S_{\\rm sorg}=-4\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta S_{\\rm insieme}=8\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "text",
+          "text": "Zero estende erroneamente la reversibilità alla libera espansione. Quattro J/K è il guadagno della prima tappa e il modulo perso dalla sorgente; sei dimezza il dato del gas senza bilancio. Dodici J/K ignora la perdita della sorgente. Q=0 nella seconda tappa non impone ΔS_2=0."
+        }
+      ],
+      "hints": [
+        "Conta i raddoppi nelle due tappe e poi somma gas e sorgente con i segni.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Zero estende erroneamente la reversibilità alla libera espansione. Quattro J/K è il guadagno della prima tappa e il modulo perso dalla sorgente; sei dimezza il dato del gas senza bilancio. Dodici J/K ignora la perdita della sorgente. Q=0 nella seconda tappa non impone ΔS_2=0.",
+        "target": "C3-L10"
+      },
+      "coverage": [
+        "Logaritmi esatti e numero di raddoppi del volume",
+        "Variazione di stato, calore reale e produzione totale",
+        "Inverse, confronti fra campioni e taratura del display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "76458603b4e1ac32d5c3a2c1b9163d35166b393987f7eef35694f5fdba6e9d72",
+      "name": "ideal-expansion-entropy-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTUxMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgo8dGl0bGUgaWQ9InRpdGxlIj5Db250YXJlIHJhZGRvcHBpIGUgZGlzdGluZ3VlcmUgZ2FzIGUgaW5zaWVtZTwvdGl0bGU+CjxkZXNjIGlkPSJkZXNjIj5EdWUgc3RhdGkgZGVsbG8gc3Rlc3NvIGdhcyBhIHVndWFsZSB0ZW1wZXJhdHVyYSBoYW5ubyB2b2x1bWkgdW5vIGUgZHVlIGxpdHJpLiBVbiByYWRkb3BwaW8gZMOgIHVuYSB2YXJpYXppb25lIEIuIER1ZSBwcm92ZSBjb24gQiBkdWUgZSBxdWF0dHJvIGpvdWxlIHBlciBrZWx2aW4sIHJhcHBvcnRpIGRpIHZvbHVtZSBkdWUgZSBxdWF0dHJvLCBkYW5ubyB2YXJpYXppb25pIGR1ZSBlIG90dG8gZSBtZWRpYSBjaW5xdWUuIFVuIGRpdmVyc28gY2FtcGlvbmUgY29uIEIgcXVhdHRybyBjb21waWUgdW4gcmFkZG9wcGlvIHJldmVyc2liaWxlIGUgcG9pIHVuYSBsaWJlcmEgZXNwYW5zaW9uZSBwZXIgcXVhdHRybzogaWwgZ2FzIGd1YWRhZ25hIGRvZGljaSwgbGEgc29yZ2VudGUgcGVyZGUgcXVhdHRybyBlIGzigJlpbnNpZW1lIGd1YWRhZ25hIG90dG8gam91bGUgcGVyIGtlbHZpbi48L2Rlc2M+CjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMTUxMCIgcng9IjEyIiBmaWxsPSIjZjhmYWZjIi8+CjxnIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmaWxsPSIjMTQyNDNhIiBmb250LXNpemU9IjIwIj4KPHRleHQgeD0iMzIiIHk9IjQyIiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iYm9sZCI+MSDCtyBHbGkgZXN0cmVtaSBkaSB1biByYWRkb3BwaW88L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI4MyIgZm9udC1zaXplPSIxOCI+U3Rlc3NvIGNhbXBpb25lOyB0ZW1wZXJhdHVyYSBUIHVndWFsZSBuZWkgZHVlIHN0YXRpLjwvdGV4dD4KPHJlY3QgeD0iNzAiIHk9IjEzNSIgd2lkdGg9IjEwMCIgaGVpZ2h0PSIxMTAiIGZpbGw9IiNlNGYzZmEiIHN0cm9rZT0iIzE2NWE4NyIgc3Ryb2tlLXdpZHRoPSIyIi8+CjxyZWN0IHg9IjM0MCIgeT0iMTM1IiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjExMCIgZmlsbD0iI2UwZWZlNyIgc3Ryb2tlPSIjMjg2NjRkIiBzdHJva2Utd2lkdGg9IjIiLz4KPHRleHQgeD0iNzAiIHk9IjI4NiI+Vl9pID0gMSBMPC90ZXh0Pjx0ZXh0IHg9IjM3MCIgeT0iMjg2Ij5WX2YgPSAyIEw8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIzMzEiIGZvbnQtc2l6ZT0iMTgiPlNlemlvbmUgY29tdW5lOiBsdW5naGV6emEgZG9wcGlhLCB2b2x1bWUgZG9wcGlvLjwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjM2NSIgZm9udC1zaXplPSIxOCI+ciA9IDIgOyBsbiByIC8gbG4gMiA9IDEgOyBjb24gQiA9IDIgSi9LLCDOlFMgPSAyIEovSy48L3RleHQ+CjxwYXRoIGQ9Ik0zMiA0MDVINjA4IiBzdHJva2U9IiM5YmFiYmMiLz4KPHRleHQgeD0iMzIiIHk9IjQ1MSIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9ImJvbGQiPjIgwrcgRHVlIHByb3ZlLCBwb2kgbGEgbG9ybyBtZWRpYTwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjQ5MSIgZm9udC1zaXplPSIxOCI+QTogQiA9IDIgSi9LLCByID0gMiA7IEM6IEIgPSA0IEovSywgciA9IDQuPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iNTI2IiBmb250LXNpemU9IjE4Ij5sbiA0IC8gbG4gMiA9IDIgOiBkdWUgcmFkZG9wcGkgbmVsIHNlY29uZG8gY2FtcGlvbmUuPC90ZXh0Pgo8cGF0aCBkPSJNMTMwIDU2M1Y4MzEiIHN0cm9rZT0iIzE0MjQzYSIgc3Ryb2tlLXdpZHRoPSIyIi8+CjxyZWN0IHg9IjEzMCIgeT0iNTg2IiB3aWR0aD0iOTAiIGhlaWdodD0iMzYiIGZpbGw9IiMxNjVhODciLz4KPHJlY3QgeD0iMTMwIiB5PSI2NjQiIHdpZHRoPSIzNjAiIGhlaWdodD0iMzYiIGZpbGw9IiNiNDUzMjgiLz4KPHJlY3QgeD0iMTMwIiB5PSI3NDIiIHdpZHRoPSIyMjUiIGhlaWdodD0iMzYiIGZpbGw9IiMyODY2NGQiLz4KPHRleHQgeD0iNTAiIHk9IjYxNCI+QTwvdGV4dD48dGV4dCB4PSIyNDIiIHk9IjYxNCI+MiBKL0s8L3RleHQ+Cjx0ZXh0IHg9IjUwIiB5PSI2OTIiPkM8L3RleHQ+PHRleHQgeD0iNTEyIiB5PSI2OTIiPjggSi9LPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iNzcwIj5NZWRpYTwvdGV4dD48dGV4dCB4PSIzNzciIHk9Ijc3MCI+NSBKL0s8L3RleHQ+Cjx0ZXh0IHg9IjEwNSIgeT0iODI2Ij4wPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iODc5IiBmb250LXNpemU9IjE4Ij5WYXJpYXppb25pIGluIEovSywgc3Rlc3NhIG9yaWdpbmUgZSBzY2FsYSBkZWxsZSBiYXJyZS48L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI5MTMiIGZvbnQtc2l6ZT0iMTgiPlNvbm8gcHJvdmUgZGl2ZXJzZSwgbm9uIHVuIGdhcyBjaGUgY2FtYmlhIHF1YW50aXTDoC48L3RleHQ+CjxwYXRoIGQ9Ik0zMiA5NTNINjA4IiBzdHJva2U9IiM5YmFiYmMiLz4KPHRleHQgeD0iMzIiIHk9Ijk5OSIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9ImJvbGQiPjMgwrcgRHVlIHRhcHBlIGRpIHVuIGFsdHJvIGNhbXBpb25lPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iMTAzOSIgZm9udC1zaXplPSIxOCI+QiA9IDQgSi9LIGZpc3NhdG8gOiBwcmltYSDDlzIgcmV2ZXJzaWJpbGUsIHBvaSDDlzQgbGliZXJhLjwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjEwNzQiIGZvbnQtc2l6ZT0iMTgiPkdhczogKzQgKyA4ID0gKzEyIEovSyA7IHNvcmdlbnRlOiDiiJI0IEovSy48L3RleHQ+CjxwYXRoIGQ9Ik0yNTAgMTExMFYxMzkwIiBzdHJva2U9IiMxNDI0M2EiIHN0cm9rZS13aWR0aD0iMiIvPgo8cmVjdCB4PSIyNTAiIHk9IjExMzUiIHdpZHRoPSIzMDAiIGhlaWdodD0iNDAiIGZpbGw9IiMxNjVhODciLz4KPHJlY3QgeD0iMTUwIiB5PSIxMjIxIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjYjQ1MzI4Ii8+CjxyZWN0IHg9IjI1MCIgeT0iMTMwNyIgd2lkdGg9IjIwMCIgaGVpZ2h0PSI0MCIgZmlsbD0iIzI4NjY0ZCIvPgo8dGV4dCB4PSI0MCIgeT0iMTE2NCI+R2FzPC90ZXh0Pjx0ZXh0IHg9IjM0NyIgeT0iMTE2MyIgZmlsbD0id2hpdGUiPisxMiBKL0s8L3RleHQ+Cjx0ZXh0IHg9IjQwIiB5PSIxMjUwIj5Tb3JnZW50ZTwvdGV4dD48dGV4dCB4PSIxNTciIHk9IjEyNDkiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IndoaXRlIj7iiJI0IEovSzwvdGV4dD4KPHRleHQgeD0iNDAiIHk9IjEzMzYiPkluc2llbWU8L3RleHQ+PHRleHQgeD0iMjk5IiB5PSIxMzM1IiBmaWxsPSJ3aGl0ZSI+KzggSi9LPC90ZXh0Pgo8dGV4dCB4PSIyNDQiIHk9IjE0MjUiPjA8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIxNDY2IiBmb250LXNpemU9IjE4Ij5CaWxhbmNpbyBjb24gc2Vnbm8gaW4gSi9LIDogMTIg4oiSIDQgPSA4LjwvdGV4dD4KPC9nPjwvc3ZnPgo="
+    }
+  ]
+}

@@ -1,0 +1,479 @@
+{
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "AR-u5-adiabatic-monatomic-01",
+      "sourceSha256": "87fb85661b034f74df06b119bd05f0ddd033aa80130757af1a8441198ec35622",
+      "candidateSha256": "21f89fbd0a60be550fb3c7af0943f12b662c1de0fc03729c6bc489d98126f06c",
+      "reviewedSignature": "75276499e8e92e3d2428d469a548b6170c1b41ea1c30781df1f5d98cd0efc81c",
+      "assetChecksums": {
+        "adiabatic-monatomic-progressive.svg": "9fb7ccaf4835c9084cf006ab976fe3ddfbc10a5db40c13248f9bee2258496d19"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "400",
+      "dimension": {
+        "[temperature]": "1"
+      },
+      "manualArithmetic": "8^(2/3)=(∛8)²=2²=4. T_2=100·4=400 K; compressione r 8>1 scalda, con Q=0 e lavoro entrante positivo sul gas.",
+      "physicalAssumptions": "Campione chiuso di gas ideale monoatomico classico con C_V=3 n R/2 e γ=5/3; processo adiabatico reversibile con solo lavoro p d V, senza variazioni macroscopiche di energia fra gli stati di equilibrio. Da(3 n R/2)d T=−n RT d V/V segue d T/T=−(2/3)d V/V, quindi T V^(2/3)=costante. Per r=V_1/V_2>0 si ha T_2=T_1 r^(2/3), con T_1>0 assoluta. Compressione r>1 riscalda; espansione 0<r<1 raffredda. L’inversa r=(T_2/T_1)^(3/2) usa il solo ramo reale positivo; non si applica questa legge alla successiva espansione libera irreversibile.",
+      "distractors": "800 K usa r 8 alla prima potenza, 200 K solo∛8=2. Il fattore 4 non implica Q entrante: ΔU aumenta per lavoro ricevuto.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. 8^(2/3)=(∛8)²=2²=4. T_2=100·4=400 K; compressione r 8>1 scalda, con Q=0 e lavoro entrante positivo sul gas.",
+      "scientificAssetReview": "XML e rendering nativo intero letti: rettangoli a pari altezza 100 px e larghezze 320/40 px danno volume 8: 1, con V*positivo e freccia soltanto schematica fra equilibri. Temperature 100/400 K, barre 100/400 px da x 130 a 1 px/K. Ramo compressione r 8→fattore termico 4, ΔU>0 e W_del_gas<0. Flowchart∛8=2→2²=4→100·4 con ognuna delle frecce separata, nessuna trasformazione improvvisa o libera implicita. Distinte scale e grandezze.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-adiabatic-monatomic-02",
+      "sourceSha256": "dd3cd9d8686f2e5ca50e12da34186ea29a28d0a49b1b14a73e49508ad4ccec74",
+      "candidateSha256": "90ade007ee367c83309fb061b05e7f53c4c1c3cb2d9e967708be5fd473fe54e4",
+      "reviewedSignature": "e98d6b58fcdff0e6a2f7d29fcbc926e05e1408e5677fcfb645f70e5f1d1119b4",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "K",
+      "dimension": {
+        "[temperature]": "1"
+      },
+      "manualArithmetic": "T_2 ha unità K perché r è un rapporto di volumi e quindi puro. La scala assoluta è necessaria per la legge moltiplicativa; non si usa la lettura Celsius come T_1.",
+      "physicalAssumptions": "Campione chiuso di gas ideale monoatomico classico con C_V=3 n R/2 e γ=5/3; processo adiabatico reversibile con solo lavoro p d V, senza variazioni macroscopiche di energia fra gli stati di equilibrio. Da(3 n R/2)d T=−n RT d V/V segue d T/T=−(2/3)d V/V, quindi T V^(2/3)=costante. Per r=V_1/V_2>0 si ha T_2=T_1 r^(2/3), con T_1>0 assoluta. Compressione r>1 riscalda; espansione 0<r<1 raffredda. L’inversa r=(T_2/T_1)^(3/2) usa il solo ramo reale positivo; non si applica questa legge alla successiva espansione libera irreversibile.",
+      "distractors": "Rapporto di volumi e potenza sono puri; J, Pa, J/K e K² hanno dimensioni diverse dalla temperatura K.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. T_2 ha unità K perché r è un rapporto di volumi e quindi puro. La scala assoluta è necessaria per la legge moltiplicativa; non si usa la lettura Celsius come T_1.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-adiabatic-monatomic-03",
+      "sourceSha256": "5fabc7bea760fb515c85eae8436b334f398123c00860046c0d77e6f20a861922",
+      "candidateSha256": "9ef9b542818a0a5725a003659c5a0160d8244d9b72c1cb09e20e48a61ebfb910",
+      "reviewedSignature": "11689d32176d3099b06aac815c352d1fe1db6e965cb66db0d5531759c20ccf81",
+      "assetChecksums": {
+        "adiabatic-monatomic-progressive.svg": "9fb7ccaf4835c9084cf006ab976fe3ddfbc10a5db40c13248f9bee2258496d19"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "T₂ = T₁ r^(2/3)",
+      "dimension": {
+        "[temperature]": "1"
+      },
+      "manualArithmetic": "T_1 V_1^(2/3)=T_2 V_2^(2/3)⇒T_2=T_1(V_1/V_2)^(2/3)=T_1 r^(2/3). Il segno dell’esponente assicura T_2>T_1 per compressione.",
+      "physicalAssumptions": "Campione chiuso di gas ideale monoatomico classico con C_V=3 n R/2 e γ=5/3; processo adiabatico reversibile con solo lavoro p d V, senza variazioni macroscopiche di energia fra gli stati di equilibrio. Da(3 n R/2)d T=−n RT d V/V segue d T/T=−(2/3)d V/V, quindi T V^(2/3)=costante. Per r=V_1/V_2>0 si ha T_2=T_1 r^(2/3), con T_1>0 assoluta. Compressione r>1 riscalda; espansione 0<r<1 raffredda. L’inversa r=(T_2/T_1)^(3/2) usa il solo ramo reale positivo; non si applica questa legge alla successiva espansione libera irreversibile.",
+      "distractors": "T/r è la legge isobara di campione ideale, non l’adiabatica. T r usa esponente 1, T costante isoterma.5/3 è l’esponente di p V^γ, 2/3 di TV^(γ−1); libera irreversibile esclusa.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. T_1 V_1^(2/3)=T_2 V_2^(2/3)⇒T_2=T_1(V_1/V_2)^(2/3)=T_1 r^(2/3). Il segno dell’esponente assicura T_2>T_1 per compressione.",
+      "scientificAssetReview": "XML e rendering nativo intero letti: rettangoli a pari altezza 100 px e larghezze 320/40 px danno volume 8: 1, con V*positivo e freccia soltanto schematica fra equilibri. Temperature 100/400 K, barre 100/400 px da x 130 a 1 px/K. Ramo compressione r 8→fattore termico 4, ΔU>0 e W_del_gas<0. Flowchart∛8=2→2²=4→100·4 con ognuna delle frecce separata, nessuna trasformazione improvvisa o libera implicita. Distinte scale e grandezze.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-adiabatic-monatomic-04",
+      "sourceSha256": "c3d5adb83eaf1c21804cbfc4ba045562d58c6dd2ced812034bd18178624b354c",
+      "candidateSha256": "8c56b421648265f51a690b39e5c7210affb60f9413d757ddee8bb34a7f3d08df",
+      "reviewedSignature": "9ac7c8508936e75a508a0c52f474787f6f8a9b812f2166760a16cb9d0c130e2c",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Da 400 a 800 K",
+      "dimension": {
+        "[temperature]": "1"
+      },
+      "manualArithmetic": "Con r 8, il fattore resta 4. Portare T_1 da 100 a 200 K porta T_2 da 400 a 800 K, raddoppio diretto fra preparazioni diverse.",
+      "physicalAssumptions": "Campione chiuso di gas ideale monoatomico classico con C_V=3 n R/2 e γ=5/3; processo adiabatico reversibile con solo lavoro p d V, senza variazioni macroscopiche di energia fra gli stati di equilibrio. Da(3 n R/2)d T=−n RT d V/V segue d T/T=−(2/3)d V/V, quindi T V^(2/3)=costante. Per r=V_1/V_2>0 si ha T_2=T_1 r^(2/3), con T_1>0 assoluta. Compressione r>1 riscalda; espansione 0<r<1 raffredda. L’inversa r=(T_2/T_1)^(3/2) usa il solo ramo reale positivo; non si applica questa legge alla successiva espansione libera irreversibile.",
+      "distractors": "200 K copia nuovo ingresso, 400 ignora aumento.1600 quadrerebbe il fattore 2 fra preparazioni; 600 non moltiplica 200 per 4.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Con r 8, il fattore resta 4. Portare T_1 da 100 a 200 K porta T_2 da 400 a 800 K, raddoppio diretto fra preparazioni diverse.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-adiabatic-monatomic-05",
+      "sourceSha256": "4c4d69336256a19b003d4b41049d506742fd6ca92e2a03057673db8e01e07951",
+      "candidateSha256": "2dc14dab300c029b7000adfa9eb7526120584e40d4790253ee85b07f059d19a4",
+      "reviewedSignature": "02388816b8b0de678056482ee610d334bf4dda12bbd174b27200c23e98e0001c",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "100",
+      "dimension": {
+        "[temperature]": "1"
+      },
+      "manualArithmetic": "T_1=T_2/r^(2/3)=400/4=100 K. Dividere per il fattore di compressione termica non significa dividere per r 8.",
+      "physicalAssumptions": "Campione chiuso di gas ideale monoatomico classico con C_V=3 n R/2 e γ=5/3; processo adiabatico reversibile con solo lavoro p d V, senza variazioni macroscopiche di energia fra gli stati di equilibrio. Da(3 n R/2)d T=−n RT d V/V segue d T/T=−(2/3)d V/V, quindi T V^(2/3)=costante. Per r=V_1/V_2>0 si ha T_2=T_1 r^(2/3), con T_1>0 assoluta. Compressione r>1 riscalda; espansione 0<r<1 raffredda. L’inversa r=(T_2/T_1)^(3/2) usa il solo ramo reale positivo; non si applica questa legge alla successiva espansione libera irreversibile.",
+      "distractors": "1600 K applica di nuovo 4 e darebbe finale 6400 K. Dividere per 8 dà 50 K e ricostruisce solo 200 K finale.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. T_1=T_2/r^(2/3)=400/4=100 K. Dividere per il fattore di compressione termica non significa dividere per r 8.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-adiabatic-monatomic-06",
+      "sourceSha256": "14ebf47bbc61f0f632bc629a17752bcc1c1a0afe535afffd5daddbd16f862bdd",
+      "candidateSha256": "76e76f754ec6cb050345da7755216a520091a5f5dd068dff8a83c027ffb55d05",
+      "reviewedSignature": "9bdc21d2297bd869d0fea15b14db5d46ca544fbaf9b0b167795720acb780024f",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "8",
+      "dimension": {},
+      "manualArithmetic": "T_2/T_1=4; r=(4)^(3/2)=(√4)³=2³=8. Ramo r>0 unico; usare una radice negativa non descrive un rapporto di volumi.",
+      "physicalAssumptions": "Campione chiuso di gas ideale monoatomico classico con C_V=3 n R/2 e γ=5/3; processo adiabatico reversibile con solo lavoro p d V, senza variazioni macroscopiche di energia fra gli stati di equilibrio. Da(3 n R/2)d T=−n RT d V/V segue d T/T=−(2/3)d V/V, quindi T V^(2/3)=costante. Per r=V_1/V_2>0 si ha T_2=T_1 r^(2/3), con T_1>0 assoluta. Compressione r>1 riscalda; espansione 0<r<1 raffredda. L’inversa r=(T_2/T_1)^(3/2) usa il solo ramo reale positivo; non si applica questa legge alla successiva espansione libera irreversibile.",
+      "distractors": "4 è il rapporto termico, 16 il suo quadrato, 2 solo la radice. Rapporti volumetrici negativi non fisici; potenza 3/2 cancella 2/3 solo sul ramo positivo.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. T_2/T_1=4; r=(4)^(3/2)=(√4)³=2³=8. Ramo r>0 unico; usare una radice negativa non descrive un rapporto di volumi.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-adiabatic-monatomic-07",
+      "sourceSha256": "5f9d1bf0897c6981c5be13daa3f08b27465884a7f3097d7042d9ea1fe215bfa5",
+      "candidateSha256": "bb6ef518abfbc4385aae830e89d0fae49bd3eb653ef16f4e710b5581996b9691",
+      "reviewedSignature": "c8fc89e15fedf055fff8e219ff9d5d395a261874c58668a2a7ebb60ee58ddf45",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "9/4",
+      "dimension": {},
+      "manualArithmetic": "r_A=8 dà fattore 4, T_2, A400 K. r_B=27 dà fattore 9, T_2, B900 K. Rapporto 900/400=9/4, equivalente a(27/8)^(2/3).",
+      "physicalAssumptions": "Campione chiuso di gas ideale monoatomico classico con C_V=3 n R/2 e γ=5/3; processo adiabatico reversibile con solo lavoro p d V, senza variazioni macroscopiche di energia fra gli stati di equilibrio. Da(3 n R/2)d T=−n RT d V/V segue d T/T=−(2/3)d V/V, quindi T V^(2/3)=costante. Per r=V_1/V_2>0 si ha T_2=T_1 r^(2/3), con T_1>0 assoluta. Compressione r>1 riscalda; espansione 0<r<1 raffredda. L’inversa r=(T_2/T_1)^(3/2) usa il solo ramo reale positivo; non si applica questa legge alla successiva espansione libera irreversibile.",
+      "distractors": "27/8 è il rapporto volumico prima dell’esponente; 3/2 rapporto radici cubiche; 4/9 reciproco; 9 fattore B non rapporto B/A.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. r_A=8 dà fattore 4, T_2, A400 K. r_B=27 dà fattore 9, T_2, B900 K. Rapporto 900/400=9/4, equivalente a(27/8)^(2/3).",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-adiabatic-monatomic-08",
+      "sourceSha256": "52e658f28885d5dc3b41ae863350669bb4ca3cc544cbe624eafa7a173a40034e",
+      "candidateSha256": "f5cfad9d5e5e57079dc9cdd065cd0d21b4364bc02ee52e6c00c6c2ba659460e2",
+      "reviewedSignature": "532a256067f0440c04ee8efefcab3fa8bcbc64bb2a5b82738447f2fdd7f011dd",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "400",
+      "dimension": {
+        "[temperature]": "1"
+      },
+      "manualArithmetic": "Corretto 400 K; proposto 800 K; scarto+400 K. Ottocento usa T_1 r e omette l’esponente 2/3; non si sottraggono letture di coefficienti diversi.",
+      "physicalAssumptions": "Campione chiuso di gas ideale monoatomico classico con C_V=3 n R/2 e γ=5/3; processo adiabatico reversibile con solo lavoro p d V, senza variazioni macroscopiche di energia fra gli stati di equilibrio. Da(3 n R/2)d T=−n RT d V/V segue d T/T=−(2/3)d V/V, quindi T V^(2/3)=costante. Per r=V_1/V_2>0 si ha T_2=T_1 r^(2/3), con T_1>0 assoluta. Compressione r>1 riscalda; espansione 0<r<1 raffredda. L’inversa r=(T_2/T_1)^(3/2) usa il solo ramo reale positivo; non si applica questa legge alla successiva espansione libera irreversibile.",
+      "distractors": "−400 sottrae al contrario, 800 copia proposta, 0 la accetta, 200 non è lo scarto. Differenza in K può avere segno; qui+400.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Corretto 400 K; proposto 800 K; scarto+400 K. Ottocento usa T_1 r e omette l’esponente 2/3; non si sottraggono letture di coefficienti diversi.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-adiabatic-monatomic-09",
+      "sourceSha256": "9511b4ba90bf35274d7bf94ed6b8e7ac98a6243151aa07d0a07ae480b10a14de",
+      "candidateSha256": "8cea68cc0bf85b543b39b8927c541cbf5636d2471899f590fae2005a6de2292e",
+      "reviewedSignature": "85f998cec18daaedb2d87d64214999f9ce57c2b7e31d79cb9cd9b25367b03713",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "T₁ = T₂ / r^(2/3)",
+      "dimension": {
+        "[temperature]": "1"
+      },
+      "manualArithmetic": "T_1=T_2/r^(2/3), r>0. L’inversa è positiva e ha unità K. Scritta coi volumi è T_2(V_2/V_1)^(2/3).",
+      "physicalAssumptions": "Campione chiuso di gas ideale monoatomico classico con C_V=3 n R/2 e γ=5/3; processo adiabatico reversibile con solo lavoro p d V, senza variazioni macroscopiche di energia fra gli stati di equilibrio. Da(3 n R/2)d T=−n RT d V/V segue d T/T=−(2/3)d V/V, quindi T V^(2/3)=costante. Per r=V_1/V_2>0 si ha T_2=T_1 r^(2/3), con T_1>0 assoluta. Compressione r>1 riscalda; espansione 0<r<1 raffredda. L’inversa r=(T_2/T_1)^(3/2) usa il solo ramo reale positivo; non si applica questa legge alla successiva espansione libera irreversibile.",
+      "distractors": "Moltiplicazione applica di nuovo il fattore, dividere perr o r^(3/2) cambia legge; ultima ha K⁻¹. Unicità simbolica per ingressi positivi.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. T_1=T_2/r^(2/3), r>0. L’inversa è positiva e ha unità K. Scritta coi volumi è T_2(V_2/V_1)^(2/3).",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-adiabatic-monatomic-10",
+      "sourceSha256": "c503b7459e4e5845d399a63c31eec728f40d8a86c4b01c99af8745b37e757e90",
+      "candidateSha256": "1b863b0203f96c323e1a5d49ddd46ddfb0c9ffe0788da7234b7471d8082fd0d0",
+      "reviewedSignature": "27a36ffea1b3d496ec24b391b9e38057badfd5c9248a151db59e43ad601c47ec",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "κ₁ κ₂^(2/3)",
+      "dimension": {},
+      "manualArithmetic": "Rapporto T_2, B/T_2, A=κ₁κ₂^(2/3), poiché(κ₂r)^(2/3)=κ₂^(2/3)r^(2/3) per fattori reali positivi. Non κ₁κ₂, né rapporto reciproco.",
+      "physicalAssumptions": "Campione chiuso di gas ideale monoatomico classico con C_V=3 n R/2 e γ=5/3; processo adiabatico reversibile con solo lavoro p d V, senza variazioni macroscopiche di energia fra gli stati di equilibrio. Da(3 n R/2)d T=−n RT d V/V segue d T/T=−(2/3)d V/V, quindi T V^(2/3)=costante. Per r=V_1/V_2>0 si ha T_2=T_1 r^(2/3), con T_1>0 assoluta. Compressione r>1 riscalda; espansione 0<r<1 raffredda. L’inversa r=(T_2/T_1)^(3/2) usa il solo ramo reale positivo; non si applica questa legge alla successiva espansione libera irreversibile.",
+      "distractors": "κ₁κ₂ omette l’esponente, quoziente inverte dipendenza, κ₁^(2/3)κ₂ scambia ruoli. Somma dà 2 per prove uguali, non 1.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Rapporto T_2, B/T_2, A=κ₁κ₂^(2/3), poiché(κ₂r)^(2/3)=κ₂^(2/3)r^(2/3) per fattori reali positivi. Non κ₁κ₂, né rapporto reciproco.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-adiabatic-monatomic-11",
+      "sourceSha256": "cfa9b225b7bf94176acd99be5c14fe6f2b9e36a05705c42b1a53cca2f8b2a5ae",
+      "candidateSha256": "36cfaf8a48b27cdfe084ca5c3bea1cde94594636225c92f40a567102e76c2c98",
+      "reviewedSignature": "bd821838d42d3daffed0ae62e3eb32932a8dc46ff3e89a106cdf0119c80ee047",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "9/2",
+      "dimension": {},
+      "manualArithmetic": "B con T_1=200 K, r 27 dà T_2=200·9=1800 K. A400 K. Rapporto 1800/400=9/2; combina fattore 2 su T_1 e 9/4 sulla compressione termica.",
+      "physicalAssumptions": "Campione chiuso di gas ideale monoatomico classico con C_V=3 n R/2 e γ=5/3; processo adiabatico reversibile con solo lavoro p d V, senza variazioni macroscopiche di energia fra gli stati di equilibrio. Da(3 n R/2)d T=−n RT d V/V segue d T/T=−(2/3)d V/V, quindi T V^(2/3)=costante. Per r=V_1/V_2>0 si ha T_2=T_1 r^(2/3), con T_1>0 assoluta. Compressione r>1 riscalda; espansione 0<r<1 raffredda. L’inversa r=(T_2/T_1)^(3/2) usa il solo ramo reale positivo; non si applica questa legge alla successiva espansione libera irreversibile.",
+      "distractors": "9/4 ignora raddoppio T₁; 2 ignora variazione r; 27/4 usa 2·27/8 senza esponente 2/3; 2/9 reciproco.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. B con T_1=200 K, r 27 dà T_2=200·9=1800 K. A400 K. Rapporto 1800/400=9/2; combina fattore 2 su T_1 e 9/4 sulla compressione termica.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-adiabatic-monatomic-12",
+      "sourceSha256": "fd6a72abdffecbf02db83909b2bbe87598e1e04d64a58e1dd41dd5f6a75d8b32",
+      "candidateSha256": "301f717a3b25b1d5d3ab105b300b01f575a0655609eca69764e4e8ba6b52bfbf",
+      "reviewedSignature": "164311f4c4c6d746a317b0d9c1acca11e7a957abd36159001c97f00422ed3cf9",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1100",
+      "dimension": {
+        "[temperature]": "1"
+      },
+      "manualArithmetic": "Media=(400+1800)/2=1100 K. Il modello sugli ingressi medi è invece 150(35/2)^(2/3) K. Non serve approssimarlo: l’uguaglianza a 1100 richiederebbe(35/2)²=(22/3)³, falsa per 33075≠42592 dopo moltiplicazione comune 108.",
+      "physicalAssumptions": "Campione chiuso di gas ideale monoatomico classico con C_V=3 n R/2 e γ=5/3; processo adiabatico reversibile con solo lavoro p d V, senza variazioni macroscopiche di energia fra gli stati di equilibrio. Da(3 n R/2)d T=−n RT d V/V segue d T/T=−(2/3)d V/V, quindi T V^(2/3)=costante. Per r=V_1/V_2>0 si ha T_2=T_1 r^(2/3), con T_1>0 assoluta. Compressione r>1 riscalda; espansione 0<r<1 raffredda. L’inversa r=(T_2/T_1)^(3/2) usa il solo ramo reale positivo; non si applica questa legge alla successiva espansione libera irreversibile.",
+      "distractors": "2200 somma, 550 doppio dimezzamento; 700 metà della differenza; 900 usa il solo fattore B su T₁, A. I dati medi non richiedono approssimare una radice non notevole per questo quesito.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Media=(400+1800)/2=1100 K. Il modello sugli ingressi medi è invece 150(35/2)^(2/3) K. Non serve approssimarlo: l’uguaglianza a 1100 richiederebbe(35/2)²=(22/3)³, falsa per 33075≠42592 dopo moltiplicazione comune 108.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-adiabatic-monatomic-13",
+      "sourceSha256": "1922f60c2aec0824c3eccc8eb57854a359b86ed4e70b084a5fa31fdf70e46a60",
+      "candidateSha256": "3b410f2dc3899a60c2700698226b4c8fc6878e5900a7d1d76df14b1e361f4061",
+      "reviewedSignature": "5446334604cf56b601a710e5ab9ef47e02e7350d0549a8fff05e4d84dd57ff9c",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "27/8",
+      "dimension": {},
+      "manualArithmetic": "Target T_2, B=(9/2)400=1800 K. Con T_1, B200 K resta r_B^(2/3)=9⇒r_B=27. Rapporto r_B/r_A=27/8, puro.",
+      "physicalAssumptions": "Campione chiuso di gas ideale monoatomico classico con C_V=3 n R/2 e γ=5/3; processo adiabatico reversibile con solo lavoro p d V, senza variazioni macroscopiche di energia fra gli stati di equilibrio. Da(3 n R/2)d T=−n RT d V/V segue d T/T=−(2/3)d V/V, quindi T V^(2/3)=costante. Per r=V_1/V_2>0 si ha T_2=T_1 r^(2/3), con T_1>0 assoluta. Compressione r>1 riscalda; espansione 0<r<1 raffredda. L’inversa r=(T_2/T_1)^(3/2) usa il solo ramo reale positivo; non si applica questa legge alla successiva espansione libera irreversibile.",
+      "distractors": "8/27 reciproco; 9 fattore termico B; 3/2 confronta radici; 9/2 rapporto finali, non volumico. Solo 27/8 ricostruisce il bersaglio con nuovo T₁.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Target T_2, B=(9/2)400=1800 K. Con T_1, B200 K resta r_B^(2/3)=9⇒r_B=27. Rapporto r_B/r_A=27/8, puro.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-adiabatic-monatomic-14",
+      "sourceSha256": "1b630e1a716bf97a30772a2e61042372c6701c19a8c9ab9ae50e7cbd6ae589ac",
+      "candidateSha256": "9471fea2b82b7a079e11c43257092aa5a77a4560c12a927c4cc063941d23a076",
+      "reviewedSignature": "b61d95921dfbfcb4ece8fa2411d63659c216132bb02f3cc7c8608335ef9982d8",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "200",
+      "dimension": {
+        "[temperature]": "1"
+      },
+      "manualArithmetic": "A T_2=400 K, S1200⇒q 3 K⁻¹. S_B5400⇒T_2, B1800 K. Con r 27, T_1, B=1800/9=200 K.",
+      "physicalAssumptions": "Campione chiuso di gas ideale monoatomico classico con C_V=3 n R/2 e γ=5/3; processo adiabatico reversibile con solo lavoro p d V, senza variazioni macroscopiche di energia fra gli stati di equilibrio. Da(3 n R/2)d T=−n RT d V/V segue d T/T=−(2/3)d V/V, quindi T V^(2/3)=costante. Per r=V_1/V_2>0 si ha T_2=T_1 r^(2/3), con T_1>0 assoluta. Compressione r>1 riscalda; espansione 0<r<1 raffredda. L’inversa r=(T_2/T_1)^(3/2) usa il solo ramo reale positivo; non si applica questa legge alla successiva espansione libera irreversibile.",
+      "distractors": "Senza q, T₁600 K. Usare 27 anziché 9 al divisore dà 200/3 K e ricostruisce una lettura diversa. Entrambe le operazioni inverse sono necessarie.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. A T_2=400 K, S1200⇒q 3 K⁻¹. S_B5400⇒T_2, B1800 K. Con r 27, T_1, B=1800/9=200 K.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-adiabatic-monatomic-15",
+      "sourceSha256": "b55b03991275fe9b14285cf10d0c7253c5fe676645094240fa8d46d846b4e3ac",
+      "candidateSha256": "a25c398bb159f513b8d0001813839f4fcb979b81c280a0a3718eebca75b9d126",
+      "reviewedSignature": "939a5a0884233b8e664da1e2d926c2a4a5ecc4b1d3b968b2f75c66344375038c",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "200",
+      "dimension": {
+        "[temperature]": "1"
+      },
+      "manualArithmetic": "Riferimenti 400 K e 1800 K. q=(3601−801)/(1800−400)=2800/1400=2 K⁻¹, b 1. S_C1601⇒T_2, C800 K. r 8 dà T_1, C=800/4=200 K.",
+      "physicalAssumptions": "Campione chiuso di gas ideale monoatomico classico con C_V=3 n R/2 e γ=5/3; processo adiabatico reversibile con solo lavoro p d V, senza variazioni macroscopiche di energia fra gli stati di equilibrio. Da(3 n R/2)d T=−n RT d V/V segue d T/T=−(2/3)d V/V, quindi T V^(2/3)=costante. Per r=V_1/V_2>0 si ha T_2=T_1 r^(2/3), con T_1>0 assoluta. Compressione r>1 riscalda; espansione 0<r<1 raffredda. L’inversa r=(T_2/T_1)^(3/2) usa il solo ramo reale positivo; non si applica questa legge alla successiva espansione libera irreversibile.",
+      "distractors": "400 K→S3201; 100 K→S801.1601/8 K omette l’offset e ricostruisce S1602.800 K confonde finale con iniziale.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Riferimenti 400 K e 1800 K. q=(3601−801)/(1800−400)=2800/1400=2 K⁻¹, b 1. S_C1601⇒T_2, C800 K. r 8 dà T_1, C=800/4=200 K.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u5-adiabatic-monatomic-16",
+      "sourceSha256": "70f53cc770a935718e43013adf081374dc06929584999fcd2ead41ac20444d8b",
+      "candidateSha256": "23eae35e3341653ce5b5b5c4dd832c45ed7c50a29f6d299827660a5449782989",
+      "reviewedSignature": "96e2c9187fb50f90ed4d2e38ae901eccadce948e8f5c5f2433e9ededca55b9c1",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "8",
+      "dimension": {},
+      "manualArithmetic": "Vincolo T_1=(25/2 K)r. Ponendo x=∛r>0, T_2=(25/2 K)x^5=400 K⇒x^5=32=2^5. Quindi x 2, r 8, T_1=100 K. Unicità per monotonia stretta su x>0; nessuna radice negativa fisica.",
+      "physicalAssumptions": "Campione chiuso di gas ideale monoatomico classico con C_V=3 n R/2 e γ=5/3; processo adiabatico reversibile con solo lavoro p d V, senza variazioni macroscopiche di energia fra gli stati di equilibrio. Da(3 n R/2)d T=−n RT d V/V segue d T/T=−(2/3)d V/V, quindi T V^(2/3)=costante. Per r=V_1/V_2>0 si ha T_2=T_1 r^(2/3), con T_1>0 assoluta. Compressione r>1 riscalda; espansione 0<r<1 raffredda. L’inversa r=(T_2/T_1)^(3/2) usa il solo ramo reale positivo; non si applica questa legge alla successiva espansione libera irreversibile.",
+      "distractors": "−8 viola volumi positivi.4 non soddisfa r^(5/3)=32; 32 èla potenza, 2 la radice cubica ausiliaria. Equazione monotona positiva dà il solo valore 8.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Vincolo T_1=(25/2 K)r. Ponendo x=∛r>0, T_2=(25/2 K)x^5=400 K⇒x^5=32=2^5. Quindi x 2, r 8, T_1=100 K. Unicità per monotonia stretta su x>0; nessuna radice negativa fisica.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "0ff4477be8c9c743d8bf592068514a74e825b4ddd8ef73a7ea465ebd6392d015",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "publicationAction": "NONE",
+  "reviewedCandidateCommit": "2adf56f740437cf4c1dc37ef594dbb117684e069",
+  "packageSha256": "d8fb5a987b9dc5dd86f43c9ce34ebdac94176454e1ae08062c511680c2e08f25",
+  "bindingsSha256": "55ae257d3adf9f71d78504cca666cd3126392a0dafa7dfea9c79358f891c2675",
+  "source": {
+    "commit": "5cfbdcb055ba3ba136f97fb56e997f06e6cf3605",
+    "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U5-02.json",
+    "reference": "Primaria80 U5-02 prima di candidati/chiavi/opzioni, SHA2568fcf9fac8628518c925d20eb460d5f1c60ef67be4a3cedecd111b84f3a9bce65. Fonte prompt soltanto e80 derivazioni individuali persistite. Nessuna chiave anticipata nei messaggi autore: soltantoSHA, file e ipotesi generali. Dopo la primaria, tutti16 candidati finali di questo lotto letti integralmente: prompt, opzioni, blocchi, formule, hint, feedback, metadati e didascalie. SVG XML e rendering nativo completo riletti, leggi/domini e calcoli rifatti. Mapping sui reali corsi/lezioni Cric C3, senza inventareID. Package/binding/asset byte identici al pin finale e al ROOT integrato. Nessun authoring importato; reviewer diverso dall’autore."
+  }
+}

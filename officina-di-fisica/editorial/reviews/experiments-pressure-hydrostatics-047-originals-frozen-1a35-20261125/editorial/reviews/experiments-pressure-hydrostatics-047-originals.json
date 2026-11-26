@@ -1,0 +1,2240 @@
+{
+  "schemaVersion": "1.0.0",
+  "batch": "experiments-pressure-hydrostatics-047",
+  "records": [
+    {
+      "id": "SIM-C2-L001-01",
+      "sourceSha256": "62d5e54b6ef6ab079e8dc48e0772df3349ce0d3c7153a2dd229f3beb8520073b",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/esperienze-C2.json",
+      "sourceFileSha256": "33a38d74b953889eccce3281c4413060aa6af14f6a7c022d5049b927137656c1",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "first actual assessment derived independently",
+          "independentExact": "60",
+          "expectedValue": "60",
+          "unit": "cm^3",
+          "dimension": {
+            "[length]": "3"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_manual_calculation"
+        },
+        {
+          "claim": "generated transfer derived independently",
+          "independentExact": "15/2",
+          "expectedValue": "15/2",
+          "unit": "cm^3",
+          "dimension": {
+            "[length]": "3"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_manual_calculation"
+        },
+        {
+          "claim": "6g/gasdensity gives60cm3",
+          "independentExact": "60",
+          "expectedValue": "60",
+          "unit": "cm^3",
+          "dimension": {
+            "[length]": "3"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_exact_physics"
+        },
+        {
+          "claim": "6g/liquiddensity gives15over2cm3",
+          "independentExact": "15/2",
+          "expectedValue": "15/2",
+          "unit": "cm^3",
+          "dimension": {
+            "[length]": "3"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_exact_physics"
+        },
+        {
+          "claim": "phase1densitytimesvolume preserves6gmass",
+          "independentExact": "6",
+          "expectedValue": "6",
+          "unit": "g",
+          "dimension": {
+            "[mass]": "1"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_exact_physics"
+        },
+        {
+          "claim": "phase2densitytimesvolume preserves6gmass",
+          "independentExact": "6",
+          "expectedValue": "6",
+          "unit": "g",
+          "dimension": {
+            "[mass]": "1"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_exact_physics"
+        },
+        {
+          "claim": "phase3densitytimesvolume preserves6gmass",
+          "independentExact": "6",
+          "expectedValue": "6",
+          "unit": "g",
+          "dimension": {
+            "[mass]": "1"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_exact_physics"
+        },
+        {
+          "claim": "fresh installed140grid aggregate law/graph/phase/generated-task comparison for thisID",
+          "ok": true,
+          "caseCount": 3,
+          "dimension": {}
+        }
+      ],
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "dimension": {
+        "first actual assessment derived independently": {
+          "[length]": "3"
+        },
+        "generated transfer derived independently": {
+          "[length]": "3"
+        },
+        "6g/gasdensity gives60cm3": {
+          "[length]": "3"
+        },
+        "6g/liquiddensity gives15over2cm3": {
+          "[length]": "3"
+        },
+        "phase1densitytimesvolume preserves6gmass": {
+          "[mass]": "1"
+        },
+        "phase2densitytimesvolume preserves6gmass": {
+          "[mass]": "1"
+        },
+        "phase3densitytimesvolume preserves6gmass": {
+          "[mass]": "1"
+        },
+        "fresh installed140grid aggregate law/graph/phase/generated-task comparison for thisID": {}
+      },
+      "sourceScientificReview": {
+        "ok": true,
+        "errors": []
+      },
+      "consumerReview": {
+        "ok": true,
+        "errors": []
+      },
+      "manualFeasibility": "PASS_AI_EXACT_ASSIGNED_TASKS",
+      "manualArithmetic": "Assignedm6g and phase densities1,4/5,1/10g/cm³ yield6,15/2,60cm³. Tasks gas60 and liquid7.5. Divide by a fraction:6/(4/5)=6*5/4. The phase-density ordering is toy assigned data, not universalwater expansion.",
+      "physicalAssumptions": "Three discrete illustrative states at same6gmass; densities assigned perstate. No continuousphasepath, equationofstate or universal densityordering inferred.",
+      "pedagogicalReview": "Full original record, actual generatedprediction/options/reason, two numeric tasks, four guidephases, substitutions, readouts, graph, parameterdomain and apparatus read. Emptyblocks do not mean no calculation. Reviewer-generatedderivations/meshprobes distinguished from student-suppliedprocedures; no studentcalibration or humanapproval.",
+      "figureReview": "Same24greenballs; arrangement/statevolume illustrative. Separatevolumeindicatorheight2.1V/60 gives correctcommonvolume scale; do not treat tank boundingboxes or particlehard-spheres as exact6/7.5/60 ratios.",
+      "runtimeComparison": {
+        "ok": true,
+        "errors": [],
+        "caseCount": 3,
+        "plannedCaseCount": 3,
+        "clockSampleCount": 0,
+        "tasks": [
+          {
+            "index": 0,
+            "input": 3,
+            "modelExact": "60",
+            "requiredByDeliveredQuestion": "60",
+            "agreement": true,
+            "actualPrompt": "Imposta «Stato del campione» su Gas. Quale valore ottieni per «Volume del modello»?",
+            "actualWorked": "V = m/ρ; m = 6 g. 6 / 0,1 = 60 cm³."
+          },
+          {
+            "index": 1,
+            "input": 2,
+            "modelExact": "15/2",
+            "requiredByDeliveredQuestion": "15/2",
+            "agreement": true,
+            "actualPrompt": "Preleva 6 g di materiale e scegli lo stato «Liquido». Usando la densità indicata per questo campione, quale volume occupa?",
+            "actualWorked": "V = m/ρ; m = 6 g. 6 / 0,8 = 7,5 cm³."
+          }
+        ],
+        "requestedTaskAgreement": true,
+        "formatRoundtrip": [
+          {
+            "display": "60",
+            "parsed": 60
+          },
+          {
+            "display": "7,5",
+            "parsed": 7.5
+          }
+        ]
+      },
+      "runtimeProfileSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+      "reviewedRuntimeProfileSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+      "runtimeSha256": {
+        "static/js/banchi/voci/esperimento.js": "cc435e51b62d5b9961b32f5d9b349171f7432e3bf6a6911cd80daaa1f419767b",
+        "static/js/banchi/voci/engines.js": "09a6447a971d0e90c49cfea0307e82ea75f4441a7174c017768d6d62ad514dab",
+        "static/js/banchi/voci/assessment-selection.js": "2f5435b6c9e8b76667d0a95f35860f835117cf8230a635c4c3a54c479fbc54b3",
+        "static/js/banchi/voci/geometria.js": "986bdbfad0cf6e6e057002ee2efdeff0a08df31bfb45f9c046063fcba5840f08",
+        "static/js/banchi/voci/modelli/C2.js": "a2bfb8da7c5f2ab29cd5afdd724e62192c7bd3cc5feea46e5b05f3b025561ea2",
+        "static/js/banchi/voci/apparati/fluidi.js": "02113df5c60acc56c8a75b0c83afd0d9e3dfa39809848df4197ba50e3f823eb5",
+        "static/js/banchi/voci/apparati/meccanica.js": "9be7ce68847af3d901374e98c7511921d6177d939c547e9b03f2c07a0ebd857d",
+        "static/js/banchi/voci/confronti.js": "83f1ab0d443dc93eb72c0318e32856179486643257c5bbf136e686464fdc6c39",
+        "static/js/banchi/voci/orologi.js": "30dd8ab535a31b514c0db13d97d2b046a1add160a7ca7d374deea0d991be73a6",
+        "static/js/banchi/voci/tavola.js": "cc3f7fa8da541109fdda9f8bacca23eea43d1031b2145688b2d80513f47d5283",
+        "static/js/banchi/voci/legende.js": "eb303ca6a6013377462b51c92b541a650ee2686257cd7e4ee39fea5221a521f7",
+        "static/js/banchi/banco.js": "8200aa5adf026372699790c21f60e0cf3f5fffcb705ef5ee36f609ac3c1e3ed9",
+        "static/js/banchi/misure.js": "46c769f22651529e439b1396e59a017d2c429310b7ae59e2a9717b2ced93c66d",
+        "static/js/banchi/grafici.js": "e5567e88ee6df5c604f8e62228da5e70841556ad0b55fb212fd4d091fdeee3fd",
+        "static/js/banchi/scena.js": "4d94c92a834573062a2af541df113bad06bd11ca538b31bddddc5ec8621a5095",
+        "static/js/banchi/etichette.js": "455ae33c790be4e207e5b5667918c44ea16c95f49e1fea0b13cc92f08aa003f3",
+        "static/js/banchi/aula.js": "44c74446d0d60b20e9dad05b32321f1000f026acdec386ca5aa2f74c20421967"
+      },
+      "consumerEvidence": {
+        "ok": true,
+        "errors": [],
+        "proofSha256": "1706fbb58be195a147592df01990f9b3e15fc19f92afd4ca25c776547fd0bbb2",
+        "protocolSha256": "80dc3aaab13f04631bc8e666edc7bc428e9f488c3ff77140202a84b7264424ef",
+        "visualManifestSha256": "52e9a21ce5eeafd29d3e15891ca30382e97622e6639da22b6c0c5a8addd2635d",
+        "observedCases": 228,
+        "scientificApproval": false
+      },
+      "assetChecksums": {},
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "SIM-C2-L001-02",
+      "sourceSha256": "98fe4067a10e28ae9abd8d94f67a611b6ede0b453fdbdac7414091c595ebbcef",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/esperienze-C2.json",
+      "sourceFileSha256": "33a38d74b953889eccce3281c4413060aa6af14f6a7c022d5049b927137656c1",
+      "ok": false,
+      "errors": [
+        "At native upper-plate velocity6cm/s, top green shaft/tip lie inside the opaque upper plate: arrowY1.4575, plateY1.3875..1.5275. Cone rims can protrude slightly; no whole-cone containment claim. Actual native PNG shows only the lower four nonzero layer arrows. Fallback comparison retained."
+      ],
+      "checks": [
+        {
+          "claim": "first actual assessment derived independently",
+          "independentExact": "3",
+          "expectedValue": "3",
+          "unit": "Pa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_manual_calculation"
+        },
+        {
+          "claim": "generated transfer derived independently",
+          "independentExact": "2",
+          "expectedValue": "2",
+          "unit": "Pa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_manual_calculation"
+        },
+        {
+          "claim": "stationary plane Couette derivative",
+          "independentExact": "x/2",
+          "expectedValue": "x/2",
+          "unit": "1/s",
+          "dimension": {
+            "[time]": "-1"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_exact_physics"
+        },
+        {
+          "claim": "viscosity times6cmpersec over2cm",
+          "independentExact": "3",
+          "expectedValue": "3",
+          "unit": "Pa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_exact_physics"
+        },
+        {
+          "claim": "fourcmpersec gives2Pa",
+          "independentExact": "2",
+          "expectedValue": "2",
+          "unit": "Pa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_exact_physics"
+        },
+        {
+          "claim": "zero speed zero stress",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "Pa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_exact_physics"
+        },
+        {
+          "claim": "fresh installed140grid aggregate law/graph/phase/generated-task comparison for thisID",
+          "ok": true,
+          "caseCount": 9,
+          "dimension": {}
+        }
+      ],
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "dimension": {
+        "first actual assessment derived independently": {
+          "[mass]": "1",
+          "[length]": "-1",
+          "[time]": "-2"
+        },
+        "generated transfer derived independently": {
+          "[mass]": "1",
+          "[length]": "-1",
+          "[time]": "-2"
+        },
+        "stationary plane Couette derivative": {
+          "[time]": "-1"
+        },
+        "viscosity times6cmpersec over2cm": {
+          "[mass]": "1",
+          "[length]": "-1",
+          "[time]": "-2"
+        },
+        "fourcmpersec gives2Pa": {
+          "[mass]": "1",
+          "[length]": "-1",
+          "[time]": "-2"
+        },
+        "zero speed zero stress": {
+          "[mass]": "1",
+          "[length]": "-1",
+          "[time]": "-2"
+        },
+        "fresh installed140grid aggregate law/graph/phase/generated-task comparison for thisID": {}
+      },
+      "sourceScientificReview": {
+        "ok": true,
+        "errors": []
+      },
+      "consumerReview": {
+        "ok": false,
+        "errors": [
+          "At native upper-plate velocity6cm/s, top green shaft/tip lie inside the opaque upper plate: arrowY1.4575, plateY1.3875..1.5275. Cone rims can protrude slightly; no whole-cone containment claim. Actual native PNG shows only the lower four nonzero layer arrows. Fallback comparison retained."
+        ]
+      },
+      "manualFeasibility": "PASS_AI_EXACT_ASSIGNED_TASKS",
+      "manualArithmetic": "Stationary Newtonian Couetteτ=ηU/d. Centimetres cancel inU/d;1Pa*s*6cm/s/2cm=3Pa, transfer4 gives2Pa. ZeroU yields0; arbitrarygridinteger speeds divideby2. Studenttext explicitly says a regime, so no unqualified startup assumption is supplied by reviewer.",
+      "physicalAssumptions": "Atregime, parallelplates, no-slip linear stationary Newtonian profileη1Pa*s,d2cm, lowerplatefixed, no imposedpressuregradient; shear magnitude fornonnegativeU.",
+      "pedagogicalReview": "Full original record, actual generatedprediction/options/reason, two numeric tasks, four guidephases, substitutions, readouts, graph, parameterdomain and apparatus read. Emptyblocks do not mean no calculation. Reviewer-generatedderivations/meshprobes distinguished from student-suppliedprocedures; no studentcalibration or humanapproval.",
+      "figureReview": "At native upper-plate velocity6cm/s, top green shaft/tip lie inside the opaque upper plate: arrowY1.4575, plateY1.3875..1.5275. Cone rims can protrude slightly; no whole-cone containment claim. Actual native PNG shows only the lower four nonzero layer arrows. Fallback comparison retained.",
+      "runtimeComparison": {
+        "ok": true,
+        "errors": [],
+        "caseCount": 9,
+        "plannedCaseCount": 9,
+        "clockSampleCount": 0,
+        "tasks": [
+          {
+            "index": 0,
+            "input": 6,
+            "modelExact": "3",
+            "requiredByDeliveredQuestion": "3",
+            "agreement": true,
+            "actualPrompt": "Imposta «Velocità della lastra superiore» su 6 cm/s. Quale valore ottieni per «Sforzo viscoso»?",
+            "actualWorked": "τ = ηv/h; η = 1 Pa·s, h = 2 cm. 6 / 2 = 3 Pa."
+          },
+          {
+            "index": 1,
+            "input": 4,
+            "modelExact": "2",
+            "requiredByDeliveredQuestion": "2",
+            "agreement": true,
+            "actualPrompt": "Una piastra scorre a 4 cm/s sopra uno strato spesso 2 cm con viscosità 1 Pa·s. Quanto sforzo tangenziale dev’essere trasmesso?",
+            "actualWorked": "τ = ηv/h; η = 1 Pa·s, h = 2 cm. 4 / 2 = 2 Pa."
+          }
+        ],
+        "requestedTaskAgreement": true,
+        "formatRoundtrip": [
+          {
+            "display": "3",
+            "parsed": 3
+          },
+          {
+            "display": "2",
+            "parsed": 2
+          }
+        ]
+      },
+      "runtimeProfileSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+      "reviewedRuntimeProfileSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+      "runtimeSha256": {
+        "static/js/banchi/voci/esperimento.js": "cc435e51b62d5b9961b32f5d9b349171f7432e3bf6a6911cd80daaa1f419767b",
+        "static/js/banchi/voci/engines.js": "09a6447a971d0e90c49cfea0307e82ea75f4441a7174c017768d6d62ad514dab",
+        "static/js/banchi/voci/assessment-selection.js": "2f5435b6c9e8b76667d0a95f35860f835117cf8230a635c4c3a54c479fbc54b3",
+        "static/js/banchi/voci/geometria.js": "986bdbfad0cf6e6e057002ee2efdeff0a08df31bfb45f9c046063fcba5840f08",
+        "static/js/banchi/voci/modelli/C2.js": "a2bfb8da7c5f2ab29cd5afdd724e62192c7bd3cc5feea46e5b05f3b025561ea2",
+        "static/js/banchi/voci/apparati/fluidi.js": "02113df5c60acc56c8a75b0c83afd0d9e3dfa39809848df4197ba50e3f823eb5",
+        "static/js/banchi/voci/apparati/meccanica.js": "9be7ce68847af3d901374e98c7511921d6177d939c547e9b03f2c07a0ebd857d",
+        "static/js/banchi/voci/confronti.js": "83f1ab0d443dc93eb72c0318e32856179486643257c5bbf136e686464fdc6c39",
+        "static/js/banchi/voci/orologi.js": "30dd8ab535a31b514c0db13d97d2b046a1add160a7ca7d374deea0d991be73a6",
+        "static/js/banchi/voci/tavola.js": "cc3f7fa8da541109fdda9f8bacca23eea43d1031b2145688b2d80513f47d5283",
+        "static/js/banchi/voci/legende.js": "eb303ca6a6013377462b51c92b541a650ee2686257cd7e4ee39fea5221a521f7",
+        "static/js/banchi/banco.js": "8200aa5adf026372699790c21f60e0cf3f5fffcb705ef5ee36f609ac3c1e3ed9",
+        "static/js/banchi/misure.js": "46c769f22651529e439b1396e59a017d2c429310b7ae59e2a9717b2ced93c66d",
+        "static/js/banchi/grafici.js": "e5567e88ee6df5c604f8e62228da5e70841556ad0b55fb212fd4d091fdeee3fd",
+        "static/js/banchi/scena.js": "4d94c92a834573062a2af541df113bad06bd11ca538b31bddddc5ec8621a5095",
+        "static/js/banchi/etichette.js": "455ae33c790be4e207e5b5667918c44ea16c95f49e1fea0b13cc92f08aa003f3",
+        "static/js/banchi/aula.js": "44c74446d0d60b20e9dad05b32321f1000f026acdec386ca5aa2f74c20421967"
+      },
+      "consumerEvidence": {
+        "ok": true,
+        "errors": [],
+        "proofSha256": "1706fbb58be195a147592df01990f9b3e15fc19f92afd4ca25c776547fd0bbb2",
+        "protocolSha256": "80dc3aaab13f04631bc8e666edc7bc428e9f488c3ff77140202a84b7264424ef",
+        "visualManifestSha256": "52e9a21ce5eeafd29d3e15891ca30382e97622e6639da22b6c0c5a8addd2635d",
+        "observedCases": 228,
+        "scientificApproval": false
+      },
+      "assetChecksums": {},
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": true,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "SIM-C2-L001-03",
+      "sourceSha256": "78084f0d65eadcfea0a9b93dd043fbcc25a20a1b39c14bfc15a2c29c0cb4e6ae",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/esperienze-C2.json",
+      "sourceFileSha256": "33a38d74b953889eccce3281c4413060aa6af14f6a7c022d5049b927137656c1",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "first actual assessment derived independently",
+          "independentExact": "15",
+          "expectedValue": "15",
+          "unit": "g",
+          "dimension": {
+            "[mass]": "1"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_manual_calculation"
+        },
+        {
+          "claim": "generated transfer derived independently",
+          "independentExact": "25/2",
+          "expectedValue": "25/2",
+          "unit": "g",
+          "dimension": {
+            "[mass]": "1"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_manual_calculation"
+        },
+        {
+          "claim": "densitySI conversion",
+          "independentExact": "2500",
+          "expectedValue": "2500",
+          "unit": "kg/m^3",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-3"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_exact_physics"
+        },
+        {
+          "claim": "6cm3 gives15g",
+          "independentExact": "15",
+          "expectedValue": "15",
+          "unit": "g",
+          "dimension": {
+            "[mass]": "1"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_exact_physics"
+        },
+        {
+          "claim": "5cm3 gives12.5g",
+          "independentExact": "25/2",
+          "expectedValue": "25/2",
+          "unit": "g",
+          "dimension": {
+            "[mass]": "1"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_exact_physics"
+        },
+        {
+          "claim": "fresh installed140grid aggregate law/graph/phase/generated-task comparison for thisID",
+          "ok": true,
+          "caseCount": 8,
+          "dimension": {}
+        }
+      ],
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "dimension": {
+        "first actual assessment derived independently": {
+          "[mass]": "1"
+        },
+        "generated transfer derived independently": {
+          "[mass]": "1"
+        },
+        "densitySI conversion": {
+          "[mass]": "1",
+          "[length]": "-3"
+        },
+        "6cm3 gives15g": {
+          "[mass]": "1"
+        },
+        "5cm3 gives12.5g": {
+          "[mass]": "1"
+        },
+        "fresh installed140grid aggregate law/graph/phase/generated-task comparison for thisID": {}
+      },
+      "sourceScientificReview": {
+        "ok": true,
+        "errors": []
+      },
+      "consumerReview": {
+        "ok": true,
+        "errors": []
+      },
+      "manualFeasibility": "PASS_AI_EXACT_ASSIGNED_TASKS",
+      "manualArithmetic": "m=(5/2g/cm³)V. At6cm³15g, transfer5cm³25/2g. Multiply by5 thenhalve, container tare excluded by solo contenuto. Density2500kg/m³. Volumecontrols1..8, same uniform material.",
+      "physicalAssumptions": "Homogeneousmaterial, fixedρ2.5g/cm³, contentmass only, positivediscretevolume1..8cm³; no mass-to-weight conflation.",
+      "pedagogicalReview": "Full original record, actual generatedprediction/options/reason, two numeric tasks, four guidephases, substitutions, readouts, graph, parameterdomain and apparatus read. Emptyblocks do not mean no calculation. Reviewer-generatedderivations/meshprobes distinguished from student-suppliedprocedures; no studentcalibration or humanapproval.",
+      "figureReview": "Cubeedge2.05*cuberoot(V/8), so graphicalvolumes proportionalphysicalV and allthreeedges equal. Color/boxtransparency schematic; scalar mass readout supplies measurement.",
+      "runtimeComparison": {
+        "ok": true,
+        "errors": [],
+        "caseCount": 8,
+        "plannedCaseCount": 8,
+        "clockSampleCount": 0,
+        "tasks": [
+          {
+            "index": 0,
+            "input": 6,
+            "modelExact": "15",
+            "requiredByDeliveredQuestion": "15",
+            "agreement": true,
+            "actualPrompt": "Imposta «Volume del materiale» su 6 cm³. Quale valore ottieni per «Massa sulla bilancia»?",
+            "actualWorked": "m = ρV; ρ = 2,5 g/cm³. 2,5 × 6 = 15 g."
+          },
+          {
+            "index": 1,
+            "input": 5,
+            "modelExact": "25/2",
+            "requiredByDeliveredQuestion": "25/2",
+            "agreement": true,
+            "actualPrompt": "Una provetta contiene 5 cm³ di un materiale con densità 2,5 g/cm³. Qual è la massa del solo contenuto?",
+            "actualWorked": "m = ρV; ρ = 2,5 g/cm³. 2,5 × 5 = 12,5 g."
+          }
+        ],
+        "requestedTaskAgreement": true,
+        "formatRoundtrip": [
+          {
+            "display": "15",
+            "parsed": 15
+          },
+          {
+            "display": "12,5",
+            "parsed": 12.5
+          }
+        ]
+      },
+      "runtimeProfileSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+      "reviewedRuntimeProfileSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+      "runtimeSha256": {
+        "static/js/banchi/voci/esperimento.js": "cc435e51b62d5b9961b32f5d9b349171f7432e3bf6a6911cd80daaa1f419767b",
+        "static/js/banchi/voci/engines.js": "09a6447a971d0e90c49cfea0307e82ea75f4441a7174c017768d6d62ad514dab",
+        "static/js/banchi/voci/assessment-selection.js": "2f5435b6c9e8b76667d0a95f35860f835117cf8230a635c4c3a54c479fbc54b3",
+        "static/js/banchi/voci/geometria.js": "986bdbfad0cf6e6e057002ee2efdeff0a08df31bfb45f9c046063fcba5840f08",
+        "static/js/banchi/voci/modelli/C2.js": "a2bfb8da7c5f2ab29cd5afdd724e62192c7bd3cc5feea46e5b05f3b025561ea2",
+        "static/js/banchi/voci/apparati/fluidi.js": "02113df5c60acc56c8a75b0c83afd0d9e3dfa39809848df4197ba50e3f823eb5",
+        "static/js/banchi/voci/apparati/meccanica.js": "9be7ce68847af3d901374e98c7511921d6177d939c547e9b03f2c07a0ebd857d",
+        "static/js/banchi/voci/confronti.js": "83f1ab0d443dc93eb72c0318e32856179486643257c5bbf136e686464fdc6c39",
+        "static/js/banchi/voci/orologi.js": "30dd8ab535a31b514c0db13d97d2b046a1add160a7ca7d374deea0d991be73a6",
+        "static/js/banchi/voci/tavola.js": "cc3f7fa8da541109fdda9f8bacca23eea43d1031b2145688b2d80513f47d5283",
+        "static/js/banchi/voci/legende.js": "eb303ca6a6013377462b51c92b541a650ee2686257cd7e4ee39fea5221a521f7",
+        "static/js/banchi/banco.js": "8200aa5adf026372699790c21f60e0cf3f5fffcb705ef5ee36f609ac3c1e3ed9",
+        "static/js/banchi/misure.js": "46c769f22651529e439b1396e59a017d2c429310b7ae59e2a9717b2ced93c66d",
+        "static/js/banchi/grafici.js": "e5567e88ee6df5c604f8e62228da5e70841556ad0b55fb212fd4d091fdeee3fd",
+        "static/js/banchi/scena.js": "4d94c92a834573062a2af541df113bad06bd11ca538b31bddddc5ec8621a5095",
+        "static/js/banchi/etichette.js": "455ae33c790be4e207e5b5667918c44ea16c95f49e1fea0b13cc92f08aa003f3",
+        "static/js/banchi/aula.js": "44c74446d0d60b20e9dad05b32321f1000f026acdec386ca5aa2f74c20421967"
+      },
+      "consumerEvidence": {
+        "ok": true,
+        "errors": [],
+        "proofSha256": "1706fbb58be195a147592df01990f9b3e15fc19f92afd4ca25c776547fd0bbb2",
+        "protocolSha256": "80dc3aaab13f04631bc8e666edc7bc428e9f488c3ff77140202a84b7264424ef",
+        "visualManifestSha256": "52e9a21ce5eeafd29d3e15891ca30382e97622e6639da22b6c0c5a8addd2635d",
+        "observedCases": 228,
+        "scientificApproval": false
+      },
+      "assetChecksums": {},
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "SIM-C2-L001-04",
+      "sourceSha256": "9f26f80ffa3441925c41497c73f043baf07d624d5cadcafc2f0e43da17614d0f",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/esperienze-C2.json",
+      "sourceFileSha256": "33a38d74b953889eccce3281c4413060aa6af14f6a7c022d5049b927137656c1",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "first actual assessment derived independently",
+          "independentExact": "20",
+          "expectedValue": "20",
+          "unit": "kPa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_manual_calculation"
+        },
+        {
+          "claim": "generated transfer derived independently",
+          "independentExact": "100/7",
+          "expectedValue": "100/7",
+          "unit": "kPa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_manual_calculation"
+        },
+        {
+          "claim": "squarecm conversion",
+          "independentExact": "1/10000",
+          "expectedValue": "1/10000",
+          "unit": "m^2",
+          "dimension": {
+            "[length]": "2"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_exact_physics"
+        },
+        {
+          "claim": "10N over5cm2 gives20kPa",
+          "independentExact": "20",
+          "expectedValue": "20",
+          "unit": "kPa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_exact_physics"
+        },
+        {
+          "claim": "10N over7cm2 exact100over7kPa",
+          "independentExact": "100/7",
+          "expectedValue": "100/7",
+          "unit": "kPa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_exact_physics"
+        },
+        {
+          "claim": "manual longdivision remainder5",
+          "independentExact": "5",
+          "expectedValue": "5",
+          "unit": "",
+          "dimension": {},
+          "residual": "0",
+          "ok": true,
+          "scope": "reviewer_manual_feasibility_not_source_supplied_step"
+        },
+        {
+          "claim": "14.286 relative error1over50000",
+          "independentExact": "1/50000",
+          "expectedValue": "1/50000",
+          "unit": "",
+          "dimension": {},
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_exact_physics"
+        },
+        {
+          "claim": "fresh installed140grid aggregate law/graph/phase/generated-task comparison for thisID",
+          "ok": true,
+          "caseCount": 10,
+          "dimension": {}
+        }
+      ],
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "dimension": {
+        "first actual assessment derived independently": {
+          "[mass]": "1",
+          "[length]": "-1",
+          "[time]": "-2"
+        },
+        "generated transfer derived independently": {
+          "[mass]": "1",
+          "[length]": "-1",
+          "[time]": "-2"
+        },
+        "squarecm conversion": {
+          "[length]": "2"
+        },
+        "10N over5cm2 gives20kPa": {
+          "[mass]": "1",
+          "[length]": "-1",
+          "[time]": "-2"
+        },
+        "10N over7cm2 exact100over7kPa": {
+          "[mass]": "1",
+          "[length]": "-1",
+          "[time]": "-2"
+        },
+        "manual longdivision remainder5": {},
+        "14.286 relative error1over50000": {},
+        "fresh installed140grid aggregate law/graph/phase/generated-task comparison for thisID": {}
+      },
+      "sourceScientificReview": {
+        "ok": true,
+        "errors": []
+      },
+      "consumerReview": {
+        "ok": true,
+        "errors": []
+      },
+      "manualFeasibility": "PASS_AI_EXACT_ASSIGNED_TASKS",
+      "manualArithmetic": "Acm²=A/10000m²;10N/(A/10000)m²=100/AkPa. Task5cm²20kPa; transfer7 gives100/7. Manual100000=7*14285+5 gives14.285..., input14.286 relativeerror1/50000<0.005 actualgrader. Mean normal pressure, no proof of uniformlocalcontact pressure.",
+      "physicalAssumptions": "Fixednormal10N, positivearea1..10cm², averagepressureFnormal/A; shear/localstress distribution not specified.",
+      "pedagogicalReview": "Full original record, actual generatedprediction/options/reason, two numeric tasks, four guidephases, substitutions, readouts, graph, parameterdomain and apparatus read. Emptyblocks do not mean no calculation. Reviewer-generatedderivations/meshprobes distinguished from student-suppliedprocedures; no studentcalibration or humanapproval.",
+      "figureReview": "Square contactplateedge1.9sqrt(A/10), area proportionalA; fixedload and same downwardforcearrow. Theloadplate spreadsload tofloor; the constantloadblock itself isnot claimed to havevariablefaces.",
+      "runtimeComparison": {
+        "ok": true,
+        "errors": [],
+        "caseCount": 10,
+        "plannedCaseCount": 10,
+        "clockSampleCount": 0,
+        "tasks": [
+          {
+            "index": 0,
+            "input": 5,
+            "modelExact": "20",
+            "requiredByDeliveredQuestion": "20",
+            "agreement": true,
+            "actualPrompt": "Imposta «Area della faccia» su 5 cm². Quale valore ottieni per «Pressione sul piano»?",
+            "actualWorked": "p = F/A; F = 10 N ⇒ p(kPa) = 100/A. 100 / 5 = 20 kPa."
+          },
+          {
+            "index": 1,
+            "input": 7,
+            "modelExact": "100/7",
+            "requiredByDeliveredQuestion": "100/7",
+            "agreement": true,
+            "actualPrompt": "Un blocco esercita 10 N sul piano. Se appoggia su una faccia di area 7 cm², quale pressione in kPa registra il piano?",
+            "actualWorked": "p = F/A; F = 10 N ⇒ p(kPa) = 100/A. 100 / 7 ≈ 14,29 kPa."
+          }
+        ],
+        "requestedTaskAgreement": true,
+        "formatRoundtrip": [
+          {
+            "display": "20",
+            "parsed": 20
+          },
+          {
+            "display": "14,29",
+            "parsed": 14.29
+          }
+        ]
+      },
+      "runtimeProfileSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+      "reviewedRuntimeProfileSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+      "runtimeSha256": {
+        "static/js/banchi/voci/esperimento.js": "cc435e51b62d5b9961b32f5d9b349171f7432e3bf6a6911cd80daaa1f419767b",
+        "static/js/banchi/voci/engines.js": "09a6447a971d0e90c49cfea0307e82ea75f4441a7174c017768d6d62ad514dab",
+        "static/js/banchi/voci/assessment-selection.js": "2f5435b6c9e8b76667d0a95f35860f835117cf8230a635c4c3a54c479fbc54b3",
+        "static/js/banchi/voci/geometria.js": "986bdbfad0cf6e6e057002ee2efdeff0a08df31bfb45f9c046063fcba5840f08",
+        "static/js/banchi/voci/modelli/C2.js": "a2bfb8da7c5f2ab29cd5afdd724e62192c7bd3cc5feea46e5b05f3b025561ea2",
+        "static/js/banchi/voci/apparati/fluidi.js": "02113df5c60acc56c8a75b0c83afd0d9e3dfa39809848df4197ba50e3f823eb5",
+        "static/js/banchi/voci/apparati/meccanica.js": "9be7ce68847af3d901374e98c7511921d6177d939c547e9b03f2c07a0ebd857d",
+        "static/js/banchi/voci/confronti.js": "83f1ab0d443dc93eb72c0318e32856179486643257c5bbf136e686464fdc6c39",
+        "static/js/banchi/voci/orologi.js": "30dd8ab535a31b514c0db13d97d2b046a1add160a7ca7d374deea0d991be73a6",
+        "static/js/banchi/voci/tavola.js": "cc3f7fa8da541109fdda9f8bacca23eea43d1031b2145688b2d80513f47d5283",
+        "static/js/banchi/voci/legende.js": "eb303ca6a6013377462b51c92b541a650ee2686257cd7e4ee39fea5221a521f7",
+        "static/js/banchi/banco.js": "8200aa5adf026372699790c21f60e0cf3f5fffcb705ef5ee36f609ac3c1e3ed9",
+        "static/js/banchi/misure.js": "46c769f22651529e439b1396e59a017d2c429310b7ae59e2a9717b2ced93c66d",
+        "static/js/banchi/grafici.js": "e5567e88ee6df5c604f8e62228da5e70841556ad0b55fb212fd4d091fdeee3fd",
+        "static/js/banchi/scena.js": "4d94c92a834573062a2af541df113bad06bd11ca538b31bddddc5ec8621a5095",
+        "static/js/banchi/etichette.js": "455ae33c790be4e207e5b5667918c44ea16c95f49e1fea0b13cc92f08aa003f3",
+        "static/js/banchi/aula.js": "44c74446d0d60b20e9dad05b32321f1000f026acdec386ca5aa2f74c20421967"
+      },
+      "consumerEvidence": {
+        "ok": true,
+        "errors": [],
+        "proofSha256": "1706fbb58be195a147592df01990f9b3e15fc19f92afd4ca25c776547fd0bbb2",
+        "protocolSha256": "80dc3aaab13f04631bc8e666edc7bc428e9f488c3ff77140202a84b7264424ef",
+        "visualManifestSha256": "52e9a21ce5eeafd29d3e15891ca30382e97622e6639da22b6c0c5a8addd2635d",
+        "observedCases": 228,
+        "scientificApproval": false
+      },
+      "assetChecksums": {},
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "SIM-C2-L001-05",
+      "sourceSha256": "4ad7ee8bb05309e37052c43fcdb7a687ef4184d0f2c42e7a64d180b659de8234",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/esperienze-C2.json",
+      "sourceFileSha256": "33a38d74b953889eccce3281c4413060aa6af14f6a7c022d5049b927137656c1",
+      "ok": false,
+      "errors": [
+        "Native320 opaque Sonda sprite completely covers left probe; Superficie also covers atmospheric-force tip at70..100kPa. At110 tip leaves that rectangle; only probe/partial-shaft claim retained there. Scalar absolute/relative pressure model remains correct."
+      ],
+      "checks": [
+        {
+          "claim": "first actual assessment derived independently",
+          "independentExact": "110",
+          "expectedValue": "110",
+          "unit": "kPa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_manual_calculation"
+        },
+        {
+          "claim": "generated transfer derived independently",
+          "independentExact": "100",
+          "expectedValue": "100",
+          "unit": "kPa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_manual_calculation"
+        },
+        {
+          "claim": "assigned waterg10 depth1 increment10kPa",
+          "independentExact": "10",
+          "expectedValue": "10",
+          "unit": "kPa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_exact_physics"
+        },
+        {
+          "claim": "100kPa boundary plus10 gives110",
+          "independentExact": "110",
+          "expectedValue": "110",
+          "unit": "kPa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_exact_physics"
+        },
+        {
+          "claim": "90kPa boundary plus10 gives100",
+          "independentExact": "100",
+          "expectedValue": "100",
+          "unit": "kPa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_exact_physics"
+        },
+        {
+          "claim": "relative pressure independent atmosphere",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "",
+          "dimension": {},
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_exact_physics"
+        },
+        {
+          "claim": "fresh installed140grid aggregate law/graph/phase/generated-task comparison for thisID",
+          "ok": true,
+          "caseCount": 21,
+          "dimension": {}
+        }
+      ],
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "dimension": {
+        "first actual assessment derived independently": {
+          "[mass]": "1",
+          "[length]": "-1",
+          "[time]": "-2"
+        },
+        "generated transfer derived independently": {
+          "[mass]": "1",
+          "[length]": "-1",
+          "[time]": "-2"
+        },
+        "assigned waterg10 depth1 increment10kPa": {
+          "[mass]": "1",
+          "[length]": "-1",
+          "[time]": "-2"
+        },
+        "100kPa boundary plus10 gives110": {
+          "[mass]": "1",
+          "[length]": "-1",
+          "[time]": "-2"
+        },
+        "90kPa boundary plus10 gives100": {
+          "[mass]": "1",
+          "[length]": "-1",
+          "[time]": "-2"
+        },
+        "relative pressure independent atmosphere": {},
+        "fresh installed140grid aggregate law/graph/phase/generated-task comparison for thisID": {}
+      },
+      "sourceScientificReview": {
+        "ok": true,
+        "errors": []
+      },
+      "consumerReview": {
+        "ok": false,
+        "errors": [
+          "Native320 opaque Sonda sprite completely covers left probe; Superficie also covers atmospheric-force tip at70..100kPa. At110 tip leaves that rectangle; only probe/partial-shaft claim retained there. Scalar absolute/relative pressure model remains correct."
+        ]
+      },
+      "manualFeasibility": "PASS_AI_EXACT_ASSIGNED_TASKS",
+      "manualArithmetic": "Explicitρ1000,g10,h1m gives10kPa relative pressure. Absolute at100kPa110, transfer90→100. Surface variation does not changeρgh. Vacuum is absolutezero; relativezero atsurface. Only arithmeticaddition and elementarySIconversion required.",
+      "physicalAssumptions": "Staticconstantdensitywaterρ1000,g10, fixed1mdepth, surfacepressure70..110kPa; atmospheric and hydrostatic contributions additive.",
+      "pedagogicalReview": "Full original record, actual generatedprediction/options/reason, two numeric tasks, four guidephases, substitutions, readouts, graph, parameterdomain and apparatus read. Emptyblocks do not mean no calculation. Reviewer-generatedderivations/meshprobes distinguished from student-suppliedprocedures; no studentcalibration or humanapproval.",
+      "figureReview": "Native320 opaque Sonda sprite completely covers left probe; Superficie also covers atmospheric-force tip at70..100kPa. At110 tip leaves that rectangle; only probe/partial-shaft claim retained there. Scalar absolute/relative pressure model remains correct.",
+      "runtimeComparison": {
+        "ok": true,
+        "errors": [],
+        "caseCount": 21,
+        "plannedCaseCount": 21,
+        "clockSampleCount": 0,
+        "tasks": [
+          {
+            "index": 0,
+            "input": 100,
+            "modelExact": "110",
+            "requiredByDeliveredQuestion": "110",
+            "agreement": true,
+            "actualPrompt": "Imposta «Pressione atmosferica» su 100 kPa. Quale valore ottieni per «Pressione assoluta a 1 m»?",
+            "actualWorked": "p assoluta = p atmosferica + ρgh = p atmosferica + 10 kPa. 100 + 10 = 110 kPa."
+          },
+          {
+            "index": 1,
+            "input": 90,
+            "modelExact": "100",
+            "requiredByDeliveredQuestion": "100",
+            "agreement": true,
+            "actualPrompt": "Sposti la vasca in un luogo con pressione atmosferica 90 kPa. Che pressione assoluta indica il sensore a un metro sott’acqua?",
+            "actualWorked": "p assoluta = p atmosferica + ρgh = p atmosferica + 10 kPa. 90 + 10 = 100 kPa."
+          }
+        ],
+        "requestedTaskAgreement": true,
+        "formatRoundtrip": [
+          {
+            "display": "110",
+            "parsed": 110
+          },
+          {
+            "display": "100",
+            "parsed": 100
+          }
+        ]
+      },
+      "runtimeProfileSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+      "reviewedRuntimeProfileSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+      "runtimeSha256": {
+        "static/js/banchi/voci/esperimento.js": "cc435e51b62d5b9961b32f5d9b349171f7432e3bf6a6911cd80daaa1f419767b",
+        "static/js/banchi/voci/engines.js": "09a6447a971d0e90c49cfea0307e82ea75f4441a7174c017768d6d62ad514dab",
+        "static/js/banchi/voci/assessment-selection.js": "2f5435b6c9e8b76667d0a95f35860f835117cf8230a635c4c3a54c479fbc54b3",
+        "static/js/banchi/voci/geometria.js": "986bdbfad0cf6e6e057002ee2efdeff0a08df31bfb45f9c046063fcba5840f08",
+        "static/js/banchi/voci/modelli/C2.js": "a2bfb8da7c5f2ab29cd5afdd724e62192c7bd3cc5feea46e5b05f3b025561ea2",
+        "static/js/banchi/voci/apparati/fluidi.js": "02113df5c60acc56c8a75b0c83afd0d9e3dfa39809848df4197ba50e3f823eb5",
+        "static/js/banchi/voci/apparati/meccanica.js": "9be7ce68847af3d901374e98c7511921d6177d939c547e9b03f2c07a0ebd857d",
+        "static/js/banchi/voci/confronti.js": "83f1ab0d443dc93eb72c0318e32856179486643257c5bbf136e686464fdc6c39",
+        "static/js/banchi/voci/orologi.js": "30dd8ab535a31b514c0db13d97d2b046a1add160a7ca7d374deea0d991be73a6",
+        "static/js/banchi/voci/tavola.js": "cc3f7fa8da541109fdda9f8bacca23eea43d1031b2145688b2d80513f47d5283",
+        "static/js/banchi/voci/legende.js": "eb303ca6a6013377462b51c92b541a650ee2686257cd7e4ee39fea5221a521f7",
+        "static/js/banchi/banco.js": "8200aa5adf026372699790c21f60e0cf3f5fffcb705ef5ee36f609ac3c1e3ed9",
+        "static/js/banchi/misure.js": "46c769f22651529e439b1396e59a017d2c429310b7ae59e2a9717b2ced93c66d",
+        "static/js/banchi/grafici.js": "e5567e88ee6df5c604f8e62228da5e70841556ad0b55fb212fd4d091fdeee3fd",
+        "static/js/banchi/scena.js": "4d94c92a834573062a2af541df113bad06bd11ca538b31bddddc5ec8621a5095",
+        "static/js/banchi/etichette.js": "455ae33c790be4e207e5b5667918c44ea16c95f49e1fea0b13cc92f08aa003f3",
+        "static/js/banchi/aula.js": "44c74446d0d60b20e9dad05b32321f1000f026acdec386ca5aa2f74c20421967"
+      },
+      "consumerEvidence": {
+        "ok": true,
+        "errors": [],
+        "proofSha256": "1706fbb58be195a147592df01990f9b3e15fc19f92afd4ca25c776547fd0bbb2",
+        "protocolSha256": "80dc3aaab13f04631bc8e666edc7bc428e9f488c3ff77140202a84b7264424ef",
+        "visualManifestSha256": "52e9a21ce5eeafd29d3e15891ca30382e97622e6639da22b6c0c5a8addd2635d",
+        "observedCases": 228,
+        "scientificApproval": false
+      },
+      "assetChecksums": {},
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": true,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "SIM-C2-L002-01",
+      "sourceSha256": "39b198952767ed38a2e5fa8dd81fd439fa8a7c0334ae1aaf08054629bb8f4abb",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/esperienze-C2.json",
+      "sourceFileSha256": "33a38d74b953889eccce3281c4413060aa6af14f6a7c022d5049b927137656c1",
+      "ok": false,
+      "errors": [
+        "Original version1 transfer explicitly requires g=10m/s², but substitution/reference/installed law and answer use9.81. At actual transfer1.5m physics requires15kPa; grader rejects15 and accepts14.715. The comparison question itself refers to the9.81-model readout and is not independently claimed to specify g10.",
+        "Native320 Sonda sprite completely covers left probe; scalar-pressure conflict is separately a source task inconsistency, not inferred from drawing."
+      ],
+      "checks": [
+        {
+          "claim": "first actual assessment derived independently",
+          "independentExact": "981/50",
+          "expectedValue": "981/50",
+          "unit": "kPa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_manual_calculation"
+        },
+        {
+          "claim": "generated transfer derived independently",
+          "independentExact": "15",
+          "expectedValue": "15",
+          "unit": "kPa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_manual_calculation"
+        },
+        {
+          "claim": "hydrostatic differential force balance",
+          "independentExact": "g*h*rho",
+          "expectedValue": "g*h*rho",
+          "unit": "Pa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_exact_physics"
+        },
+        {
+          "claim": "explicit transferg10 at1.5m requires15kPa",
+          "independentExact": "15",
+          "expectedValue": "15",
+          "unit": "kPa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_exact_physics"
+        },
+        {
+          "claim": "model9.81 at1.5m gives14.715kPa",
+          "independentExact": "2943/200",
+          "expectedValue": "2943/200",
+          "unit": "kPa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_exact_physics"
+        },
+        {
+          "claim": "explicit requested gravity disagrees with installed-key gravity",
+          "independentExact": "2943/200",
+          "expectedValue": "15",
+          "unit": "kPa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "residual": "-57/200",
+          "ok": false,
+          "scope": "SOURCE_CONTRACT_CONFLICT_EXPECTED_FAIL"
+        },
+        {
+          "claim": "fresh installed140grid aggregate law/graph/phase/generated-task comparison for thisID",
+          "ok": true,
+          "caseCount": 13,
+          "dimension": {}
+        },
+        {
+          "claim": "actual task answer matches explicit student physical data",
+          "ok": false,
+          "dimension": {},
+          "detail": [
+            {
+              "index": 0,
+              "input": 2,
+              "modelExact": "981/50",
+              "requiredByDeliveredQuestion": "981/50",
+              "agreement": true,
+              "actualPrompt": "Imposta «Profondità della sonda» su 2 m. Quale valore ottieni per «Sovrapressione dell’acqua»?",
+              "actualWorked": "Δp = ρgh, con ρ = 1000 kg/m³. 9,81 × 2 = 19,62 kPa."
+            },
+            {
+              "index": 1,
+              "input": 1.5,
+              "modelExact": "2943/200",
+              "requiredByDeliveredQuestion": "15",
+              "agreement": false,
+              "actualPrompt": "Un sensore azzerato in superficie viene immerso a 1,5 m nell’acqua. Di quanti kPa sale la lettura usando g = 10 m/s²?",
+              "actualWorked": "Δp = ρgh, con ρ = 1000 kg/m³. 9,81 × 1,5 ≈ 14,72 kPa."
+            }
+          ]
+        }
+      ],
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "dimension": {
+        "first actual assessment derived independently": {
+          "[mass]": "1",
+          "[length]": "-1",
+          "[time]": "-2"
+        },
+        "generated transfer derived independently": {
+          "[mass]": "1",
+          "[length]": "-1",
+          "[time]": "-2"
+        },
+        "hydrostatic differential force balance": {
+          "[mass]": "1",
+          "[length]": "-1",
+          "[time]": "-2"
+        },
+        "explicit transferg10 at1.5m requires15kPa": {
+          "[mass]": "1",
+          "[length]": "-1",
+          "[time]": "-2"
+        },
+        "model9.81 at1.5m gives14.715kPa": {
+          "[mass]": "1",
+          "[length]": "-1",
+          "[time]": "-2"
+        },
+        "explicit requested gravity disagrees with installed-key gravity": {
+          "[mass]": "1",
+          "[length]": "-1",
+          "[time]": "-2"
+        },
+        "fresh installed140grid aggregate law/graph/phase/generated-task comparison for thisID": {},
+        "actual task answer matches explicit student physical data": {}
+      },
+      "sourceScientificReview": {
+        "ok": false,
+        "errors": [
+          "Original version1 transfer explicitly requires g=10m/s², but substitution/reference/installed law and answer use9.81. At actual transfer1.5m physics requires15kPa; grader rejects15 and accepts14.715. The comparison question itself refers to the9.81-model readout and is not independently claimed to specify g10."
+        ]
+      },
+      "consumerReview": {
+        "ok": false,
+        "errors": [
+          "Native320 Sonda sprite completely covers left probe; scalar-pressure conflict is separately a source task inconsistency, not inferred from drawing."
+        ]
+      },
+      "manualFeasibility": "FAIL_INCONSISTENT_ASSIGNED_GRAVITY",
+      "manualArithmetic": "Model substitution9.81h and first comparisonh2 give19.62kPa. However actual transfer specifically saysg10:ρ1000*10*1.5=15000Pa=15kPa; consumer rejects15 and accepts14.715=(981/100)*(3/2)=2943/200. First task does not independently specifyg10; do not falsely broaden the conflicting transfer to thatquestion. Originalv1FAIL, no silent reinterpretation.",
+      "physicalAssumptions": "Staticwaterρ1000, downwarddepth0..3m, surfacerelativezero. g is contradictory between9.81model and explicitg10 transfer; preserveconflict rather thanchooseone silently.",
+      "pedagogicalReview": "Full original record, actual generatedprediction/options/reason, two numeric tasks, four guidephases, substitutions, readouts, graph, parameterdomain and apparatus read. Emptyblocks do not mean no calculation. Reviewer-generatedderivations/meshprobes distinguished from student-suppliedprocedures; no studentcalibration or humanapproval.",
+      "figureReview": "Native320 Sonda sprite completely covers left probe; scalar-pressure conflict is separately a source task inconsistency, not inferred from drawing.",
+      "runtimeComparison": {
+        "ok": true,
+        "errors": [],
+        "caseCount": 13,
+        "plannedCaseCount": 13,
+        "clockSampleCount": 0,
+        "tasks": [
+          {
+            "index": 0,
+            "input": 2,
+            "modelExact": "981/50",
+            "requiredByDeliveredQuestion": "981/50",
+            "agreement": true,
+            "actualPrompt": "Imposta «Profondità della sonda» su 2 m. Quale valore ottieni per «Sovrapressione dell’acqua»?",
+            "actualWorked": "Δp = ρgh, con ρ = 1000 kg/m³. 9,81 × 2 = 19,62 kPa."
+          },
+          {
+            "index": 1,
+            "input": 1.5,
+            "modelExact": "2943/200",
+            "requiredByDeliveredQuestion": "15",
+            "agreement": false,
+            "actualPrompt": "Un sensore azzerato in superficie viene immerso a 1,5 m nell’acqua. Di quanti kPa sale la lettura usando g = 10 m/s²?",
+            "actualWorked": "Δp = ρgh, con ρ = 1000 kg/m³. 9,81 × 1,5 ≈ 14,72 kPa."
+          }
+        ],
+        "requestedTaskAgreement": false,
+        "formatRoundtrip": [
+          {
+            "display": "19,62",
+            "parsed": 19.62
+          },
+          {
+            "display": "14,72",
+            "parsed": 14.72
+          }
+        ]
+      },
+      "runtimeProfileSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+      "reviewedRuntimeProfileSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+      "runtimeSha256": {
+        "static/js/banchi/voci/esperimento.js": "cc435e51b62d5b9961b32f5d9b349171f7432e3bf6a6911cd80daaa1f419767b",
+        "static/js/banchi/voci/engines.js": "09a6447a971d0e90c49cfea0307e82ea75f4441a7174c017768d6d62ad514dab",
+        "static/js/banchi/voci/assessment-selection.js": "2f5435b6c9e8b76667d0a95f35860f835117cf8230a635c4c3a54c479fbc54b3",
+        "static/js/banchi/voci/geometria.js": "986bdbfad0cf6e6e057002ee2efdeff0a08df31bfb45f9c046063fcba5840f08",
+        "static/js/banchi/voci/modelli/C2.js": "a2bfb8da7c5f2ab29cd5afdd724e62192c7bd3cc5feea46e5b05f3b025561ea2",
+        "static/js/banchi/voci/apparati/fluidi.js": "02113df5c60acc56c8a75b0c83afd0d9e3dfa39809848df4197ba50e3f823eb5",
+        "static/js/banchi/voci/apparati/meccanica.js": "9be7ce68847af3d901374e98c7511921d6177d939c547e9b03f2c07a0ebd857d",
+        "static/js/banchi/voci/confronti.js": "83f1ab0d443dc93eb72c0318e32856179486643257c5bbf136e686464fdc6c39",
+        "static/js/banchi/voci/orologi.js": "30dd8ab535a31b514c0db13d97d2b046a1add160a7ca7d374deea0d991be73a6",
+        "static/js/banchi/voci/tavola.js": "cc3f7fa8da541109fdda9f8bacca23eea43d1031b2145688b2d80513f47d5283",
+        "static/js/banchi/voci/legende.js": "eb303ca6a6013377462b51c92b541a650ee2686257cd7e4ee39fea5221a521f7",
+        "static/js/banchi/banco.js": "8200aa5adf026372699790c21f60e0cf3f5fffcb705ef5ee36f609ac3c1e3ed9",
+        "static/js/banchi/misure.js": "46c769f22651529e439b1396e59a017d2c429310b7ae59e2a9717b2ced93c66d",
+        "static/js/banchi/grafici.js": "e5567e88ee6df5c604f8e62228da5e70841556ad0b55fb212fd4d091fdeee3fd",
+        "static/js/banchi/scena.js": "4d94c92a834573062a2af541df113bad06bd11ca538b31bddddc5ec8621a5095",
+        "static/js/banchi/etichette.js": "455ae33c790be4e207e5b5667918c44ea16c95f49e1fea0b13cc92f08aa003f3",
+        "static/js/banchi/aula.js": "44c74446d0d60b20e9dad05b32321f1000f026acdec386ca5aa2f74c20421967"
+      },
+      "consumerEvidence": {
+        "ok": true,
+        "errors": [],
+        "proofSha256": "1706fbb58be195a147592df01990f9b3e15fc19f92afd4ca25c776547fd0bbb2",
+        "protocolSha256": "80dc3aaab13f04631bc8e666edc7bc428e9f488c3ff77140202a84b7264424ef",
+        "visualManifestSha256": "52e9a21ce5eeafd29d3e15891ca30382e97622e6639da22b6c0c5a8addd2635d",
+        "observedCases": 228,
+        "scientificApproval": false
+      },
+      "assetChecksums": {},
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": true,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "SIM-C2-L002-02",
+      "sourceSha256": "c1796958ce9c149c706ec657215910a75a615e03c981646a7bedd1121435983b",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/esperienze-C2.json",
+      "sourceFileSha256": "33a38d74b953889eccce3281c4413060aa6af14f6a7c022d5049b927137656c1",
+      "ok": false,
+      "errors": [
+        "Native320 Sonda sprite completely covers left probe, undermining the delivered equal-quota two-probe comparison. Right probe and equal-level line remain; no claim that the whole tank disappears."
+      ],
+      "checks": [
+        {
+          "claim": "first actual assessment derived independently",
+          "independentExact": "10",
+          "expectedValue": "10",
+          "unit": "kPa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_manual_calculation"
+        },
+        {
+          "claim": "generated transfer derived independently",
+          "independentExact": "15",
+          "expectedValue": "15",
+          "unit": "kPa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_manual_calculation"
+        },
+        {
+          "claim": "depth fromsurface-minusquota",
+          "independentExact": "3 - z",
+          "expectedValue": "3 - z",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_exact_physics"
+        },
+        {
+          "claim": "relative pressure decreases upward",
+          "independentExact": "-10",
+          "expectedValue": "-10",
+          "unit": "kPa/m",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-2",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_exact_physics"
+        },
+        {
+          "claim": "quota2 depth1 gives10kPa",
+          "independentExact": "10",
+          "expectedValue": "10",
+          "unit": "kPa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_exact_physics"
+        },
+        {
+          "claim": "quota1.5 gives15kPa",
+          "independentExact": "15",
+          "expectedValue": "15",
+          "unit": "kPa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_exact_physics"
+        },
+        {
+          "claim": "atfree surface relative zero",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "kPa",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-1",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_exact_physics"
+        },
+        {
+          "claim": "fresh installed140grid aggregate law/graph/phase/generated-task comparison for thisID",
+          "ok": true,
+          "caseCount": 13,
+          "dimension": {}
+        }
+      ],
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "dimension": {
+        "first actual assessment derived independently": {
+          "[mass]": "1",
+          "[length]": "-1",
+          "[time]": "-2"
+        },
+        "generated transfer derived independently": {
+          "[mass]": "1",
+          "[length]": "-1",
+          "[time]": "-2"
+        },
+        "depth fromsurface-minusquota": {
+          "[length]": "1"
+        },
+        "relative pressure decreases upward": {
+          "[mass]": "1",
+          "[length]": "-2",
+          "[time]": "-2"
+        },
+        "quota2 depth1 gives10kPa": {
+          "[mass]": "1",
+          "[length]": "-1",
+          "[time]": "-2"
+        },
+        "quota1.5 gives15kPa": {
+          "[mass]": "1",
+          "[length]": "-1",
+          "[time]": "-2"
+        },
+        "atfree surface relative zero": {
+          "[mass]": "1",
+          "[length]": "-1",
+          "[time]": "-2"
+        },
+        "fresh installed140grid aggregate law/graph/phase/generated-task comparison for thisID": {}
+      },
+      "sourceScientificReview": {
+        "ok": true,
+        "errors": []
+      },
+      "consumerReview": {
+        "ok": false,
+        "errors": [
+          "Native320 Sonda sprite completely covers left probe, undermining the delivered equal-quota two-probe comparison. Right probe and equal-level line remain; no claim that the whole tank disappears."
+        ]
+      },
+      "manualFeasibility": "PASS_AI_EXACT_ASSIGNED_TASKS",
+      "manualArithmetic": "Waterheight3m, quota z abovebottom; h=3-z, assignedcoefficient10kPa/m. Atz2 pressure10kPa, transfer1.5→15; z3→0, z0→30. Subtractbeforemultiply; dp/dz negative. No assumedclock or negativepressures within0..3.",
+      "physicalAssumptions": "Water3mdeep, upwardsquotafrombottom, relativepressure10(3-z)kPa. Uniformdensity/g impliedbyassignedlinearcoefficient; no flowdynamicpressure.",
+      "pedagogicalReview": "Full original record, actual generatedprediction/options/reason, two numeric tasks, four guidephases, substitutions, readouts, graph, parameterdomain and apparatus read. Emptyblocks do not mean no calculation. Reviewer-generatedderivations/meshprobes distinguished from student-suppliedprocedures; no studentcalibration or humanapproval.",
+      "figureReview": "Native320 Sonda sprite completely covers left probe, undermining the delivered equal-quota two-probe comparison. Right probe and equal-level line remain; no claim that the whole tank disappears.",
+      "runtimeComparison": {
+        "ok": true,
+        "errors": [],
+        "caseCount": 13,
+        "plannedCaseCount": 13,
+        "clockSampleCount": 0,
+        "tasks": [
+          {
+            "index": 0,
+            "input": 2,
+            "modelExact": "10",
+            "requiredByDeliveredQuestion": "10",
+            "agreement": true,
+            "actualPrompt": "Imposta «Quota della sonda sopra il fondo» su 2 m. Quale valore ottieni per «Pressione relativa»?",
+            "actualWorked": "h = 3−z; Δp = 10(3−z) kPa. 10 × (3 − 2) = 10 kPa."
+          },
+          {
+            "index": 1,
+            "input": 1.5,
+            "modelExact": "15",
+            "requiredByDeliveredQuestion": "15",
+            "agreement": true,
+            "actualPrompt": "L’acqua raggiunge quota 3 m rispetto al fondo. Installi la sonda alla quota 1,5 m. Quale pressione relativa devi aspettarti?",
+            "actualWorked": "h = 3−z; Δp = 10(3−z) kPa. 10 × (3 − 1,5) = 15 kPa."
+          }
+        ],
+        "requestedTaskAgreement": true,
+        "formatRoundtrip": [
+          {
+            "display": "10",
+            "parsed": 10
+          },
+          {
+            "display": "15",
+            "parsed": 15
+          }
+        ]
+      },
+      "runtimeProfileSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+      "reviewedRuntimeProfileSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+      "runtimeSha256": {
+        "static/js/banchi/voci/esperimento.js": "cc435e51b62d5b9961b32f5d9b349171f7432e3bf6a6911cd80daaa1f419767b",
+        "static/js/banchi/voci/engines.js": "09a6447a971d0e90c49cfea0307e82ea75f4441a7174c017768d6d62ad514dab",
+        "static/js/banchi/voci/assessment-selection.js": "2f5435b6c9e8b76667d0a95f35860f835117cf8230a635c4c3a54c479fbc54b3",
+        "static/js/banchi/voci/geometria.js": "986bdbfad0cf6e6e057002ee2efdeff0a08df31bfb45f9c046063fcba5840f08",
+        "static/js/banchi/voci/modelli/C2.js": "a2bfb8da7c5f2ab29cd5afdd724e62192c7bd3cc5feea46e5b05f3b025561ea2",
+        "static/js/banchi/voci/apparati/fluidi.js": "02113df5c60acc56c8a75b0c83afd0d9e3dfa39809848df4197ba50e3f823eb5",
+        "static/js/banchi/voci/apparati/meccanica.js": "9be7ce68847af3d901374e98c7511921d6177d939c547e9b03f2c07a0ebd857d",
+        "static/js/banchi/voci/confronti.js": "83f1ab0d443dc93eb72c0318e32856179486643257c5bbf136e686464fdc6c39",
+        "static/js/banchi/voci/orologi.js": "30dd8ab535a31b514c0db13d97d2b046a1add160a7ca7d374deea0d991be73a6",
+        "static/js/banchi/voci/tavola.js": "cc3f7fa8da541109fdda9f8bacca23eea43d1031b2145688b2d80513f47d5283",
+        "static/js/banchi/voci/legende.js": "eb303ca6a6013377462b51c92b541a650ee2686257cd7e4ee39fea5221a521f7",
+        "static/js/banchi/banco.js": "8200aa5adf026372699790c21f60e0cf3f5fffcb705ef5ee36f609ac3c1e3ed9",
+        "static/js/banchi/misure.js": "46c769f22651529e439b1396e59a017d2c429310b7ae59e2a9717b2ced93c66d",
+        "static/js/banchi/grafici.js": "e5567e88ee6df5c604f8e62228da5e70841556ad0b55fb212fd4d091fdeee3fd",
+        "static/js/banchi/scena.js": "4d94c92a834573062a2af541df113bad06bd11ca538b31bddddc5ec8621a5095",
+        "static/js/banchi/etichette.js": "455ae33c790be4e207e5b5667918c44ea16c95f49e1fea0b13cc92f08aa003f3",
+        "static/js/banchi/aula.js": "44c74446d0d60b20e9dad05b32321f1000f026acdec386ca5aa2f74c20421967"
+      },
+      "consumerEvidence": {
+        "ok": true,
+        "errors": [],
+        "proofSha256": "1706fbb58be195a147592df01990f9b3e15fc19f92afd4ca25c776547fd0bbb2",
+        "protocolSha256": "80dc3aaab13f04631bc8e666edc7bc428e9f488c3ff77140202a84b7264424ef",
+        "visualManifestSha256": "52e9a21ce5eeafd29d3e15891ca30382e97622e6639da22b6c0c5a8addd2635d",
+        "observedCases": 228,
+        "scientificApproval": false
+      },
+      "assetChecksums": {},
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": true,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "SIM-C2-L002-03",
+      "sourceSha256": "c2be7516d571aa319bb70077386c4d915ed29409885a5a9d09aca460a27abf09",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/esperienze-C2.json",
+      "sourceFileSha256": "33a38d74b953889eccce3281c4413060aa6af14f6a7c022d5049b927137656c1",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "first actual assessment derived independently",
+          "independentExact": "75",
+          "expectedValue": "75",
+          "unit": "cm",
+          "dimension": {
+            "[length]": "1"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_manual_calculation"
+        },
+        {
+          "claim": "generated transfer derived independently",
+          "independentExact": "65",
+          "expectedValue": "65",
+          "unit": "cm",
+          "dimension": {
+            "[length]": "1"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_manual_calculation"
+        },
+        {
+          "claim": "column force balance independently solved",
+          "independentExact": "p/(g*rho)",
+          "expectedValue": "p/(g*rho)",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_exact_physics"
+        },
+        {
+          "claim": "102kPa mercury13600g10 gives75cm",
+          "independentExact": "75",
+          "expectedValue": "75",
+          "unit": "cm",
+          "dimension": {
+            "[length]": "1"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_exact_physics"
+        },
+        {
+          "claim": "88.4kPa gives65cm",
+          "independentExact": "65",
+          "expectedValue": "65",
+          "unit": "cm",
+          "dimension": {
+            "[length]": "1"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_exact_physics"
+        },
+        {
+          "claim": "manual exact1.36step gives1cm",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "cm",
+          "dimension": {
+            "[length]": "1"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_exact_physics"
+        },
+        {
+          "claim": "fresh installed140grid aggregate law/graph/phase/generated-task comparison for thisID",
+          "ok": true,
+          "caseCount": 31,
+          "dimension": {}
+        }
+      ],
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "dimension": {
+        "first actual assessment derived independently": {
+          "[length]": "1"
+        },
+        "generated transfer derived independently": {
+          "[length]": "1"
+        },
+        "column force balance independently solved": {
+          "[length]": "1"
+        },
+        "102kPa mercury13600g10 gives75cm": {
+          "[length]": "1"
+        },
+        "88.4kPa gives65cm": {
+          "[length]": "1"
+        },
+        "manual exact1.36step gives1cm": {
+          "[length]": "1"
+        },
+        "fresh installed140grid aggregate law/graph/phase/generated-task comparison for thisID": {}
+      },
+      "sourceScientificReview": {
+        "ok": true,
+        "errors": []
+      },
+      "consumerReview": {
+        "ok": true,
+        "errors": []
+      },
+      "manualFeasibility": "PASS_AI_EXACT_ASSIGNED_TASKS",
+      "manualArithmetic": "p=ρgh with13600kg/m³,g10; cmoutput=25p_kPa/34.102/34=3 then*25=75cm;88.4/34=2.6 then*25=65cm. Vaporpressure explicitly neglected, topvacuum specified. Step1.36kPa givesexact1cm, no inverse nonlinearcalculator.",
+      "physicalAssumptions": "Mercury13600kg/m³,g10, topvacuum/negligiblevaporpressure, surfaceopenair. Positiveairpressure68..108.8kPa; idealcolumnfitstube.",
+      "pedagogicalReview": "Full original record, actual generatedprediction/options/reason, two numeric tasks, four guidephases, substitutions, readouts, graph, parameterdomain and apparatus read. Emptyblocks do not mean no calculation. Reviewer-generatedderivations/meshprobes distinguished from student-suppliedprocedures; no studentcalibration or humanapproval.",
+      "figureReview": "Mercurytop .58+.026h_cm belowtube2.84. Reservoirsurfaceat.575 gives .005 displayclearanceoffset; changesinheight use common.026scene/cm. Vacuumlabel indicatesairspace, not a negativeheight. Native/fallback checked.",
+      "runtimeComparison": {
+        "ok": true,
+        "errors": [],
+        "caseCount": 31,
+        "plannedCaseCount": 31,
+        "clockSampleCount": 0,
+        "tasks": [
+          {
+            "index": 0,
+            "input": 102,
+            "modelExact": "75",
+            "requiredByDeliveredQuestion": "75",
+            "agreement": true,
+            "actualPrompt": "Imposta «Pressione dell’aria» su 102 kPa. Quale valore ottieni per «Altezza della colonna di mercurio»?",
+            "actualWorked": "h = p/(ρg); ρ = 13600 kg/m³, g = 10 m/s². 102 / 1,36 = 75 cm."
+          },
+          {
+            "index": 1,
+            "input": 88.4,
+            "modelExact": "65",
+            "requiredByDeliveredQuestion": "65",
+            "agreement": true,
+            "actualPrompt": "Un barometro a mercurio è esposto alla pressione 88,4 kPa. Quale altezza della colonna prevedi con ρ = 13 600 kg/m³ e g = 10 m/s²?",
+            "actualWorked": "h = p/(ρg); ρ = 13600 kg/m³, g = 10 m/s². 88,4 / 1,36 = 65 cm."
+          }
+        ],
+        "requestedTaskAgreement": true,
+        "formatRoundtrip": [
+          {
+            "display": "75",
+            "parsed": 75
+          },
+          {
+            "display": "65",
+            "parsed": 65
+          }
+        ]
+      },
+      "runtimeProfileSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+      "reviewedRuntimeProfileSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+      "runtimeSha256": {
+        "static/js/banchi/voci/esperimento.js": "cc435e51b62d5b9961b32f5d9b349171f7432e3bf6a6911cd80daaa1f419767b",
+        "static/js/banchi/voci/engines.js": "09a6447a971d0e90c49cfea0307e82ea75f4441a7174c017768d6d62ad514dab",
+        "static/js/banchi/voci/assessment-selection.js": "2f5435b6c9e8b76667d0a95f35860f835117cf8230a635c4c3a54c479fbc54b3",
+        "static/js/banchi/voci/geometria.js": "986bdbfad0cf6e6e057002ee2efdeff0a08df31bfb45f9c046063fcba5840f08",
+        "static/js/banchi/voci/modelli/C2.js": "a2bfb8da7c5f2ab29cd5afdd724e62192c7bd3cc5feea46e5b05f3b025561ea2",
+        "static/js/banchi/voci/apparati/fluidi.js": "02113df5c60acc56c8a75b0c83afd0d9e3dfa39809848df4197ba50e3f823eb5",
+        "static/js/banchi/voci/apparati/meccanica.js": "9be7ce68847af3d901374e98c7511921d6177d939c547e9b03f2c07a0ebd857d",
+        "static/js/banchi/voci/confronti.js": "83f1ab0d443dc93eb72c0318e32856179486643257c5bbf136e686464fdc6c39",
+        "static/js/banchi/voci/orologi.js": "30dd8ab535a31b514c0db13d97d2b046a1add160a7ca7d374deea0d991be73a6",
+        "static/js/banchi/voci/tavola.js": "cc3f7fa8da541109fdda9f8bacca23eea43d1031b2145688b2d80513f47d5283",
+        "static/js/banchi/voci/legende.js": "eb303ca6a6013377462b51c92b541a650ee2686257cd7e4ee39fea5221a521f7",
+        "static/js/banchi/banco.js": "8200aa5adf026372699790c21f60e0cf3f5fffcb705ef5ee36f609ac3c1e3ed9",
+        "static/js/banchi/misure.js": "46c769f22651529e439b1396e59a017d2c429310b7ae59e2a9717b2ced93c66d",
+        "static/js/banchi/grafici.js": "e5567e88ee6df5c604f8e62228da5e70841556ad0b55fb212fd4d091fdeee3fd",
+        "static/js/banchi/scena.js": "4d94c92a834573062a2af541df113bad06bd11ca538b31bddddc5ec8621a5095",
+        "static/js/banchi/etichette.js": "455ae33c790be4e207e5b5667918c44ea16c95f49e1fea0b13cc92f08aa003f3",
+        "static/js/banchi/aula.js": "44c74446d0d60b20e9dad05b32321f1000f026acdec386ca5aa2f74c20421967"
+      },
+      "consumerEvidence": {
+        "ok": true,
+        "errors": [],
+        "proofSha256": "1706fbb58be195a147592df01990f9b3e15fc19f92afd4ca25c776547fd0bbb2",
+        "protocolSha256": "80dc3aaab13f04631bc8e666edc7bc428e9f488c3ff77140202a84b7264424ef",
+        "visualManifestSha256": "52e9a21ce5eeafd29d3e15891ca30382e97622e6639da22b6c0c5a8addd2635d",
+        "observedCases": 228,
+        "scientificApproval": false
+      },
+      "assetChecksums": {},
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "SIM-C2-L002-04",
+      "sourceSha256": "6931192982208a0aad15a657d2fbcafa7d40a727a951e25fda05f1ddee372c24",
+      "sourceVersion": 2,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/esperienze-C2.json",
+      "sourceFileSha256": "33a38d74b953889eccce3281c4413060aa6af14f6a7c022d5049b927137656c1",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "first actual assessment derived independently",
+          "independentExact": "20",
+          "expectedValue": "20",
+          "unit": "cm",
+          "dimension": {
+            "[length]": "1"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_manual_calculation"
+        },
+        {
+          "claim": "generated transfer derived independently",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "cm",
+          "dimension": {
+            "[length]": "1"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_manual_calculation"
+        },
+        {
+          "claim": "1kPa waterg10 gives10cm",
+          "independentExact": "10",
+          "expectedValue": "10",
+          "unit": "cm",
+          "dimension": {
+            "[length]": "1"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_exact_physics"
+        },
+        {
+          "claim": "left excess2kPa rightminusleft20cm",
+          "independentExact": "20",
+          "expectedValue": "20",
+          "unit": "cm",
+          "dimension": {
+            "[length]": "1"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_exact_physics"
+        },
+        {
+          "claim": "zero difference levels equal",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "cm",
+          "dimension": {
+            "[length]": "1"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_exact_physics"
+        },
+        {
+          "claim": "equal sections eachsurface moveshalf10cm",
+          "independentExact": "10",
+          "expectedValue": "10",
+          "unit": "cm",
+          "dimension": {
+            "[length]": "1"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_exact_physics"
+        },
+        {
+          "claim": "signed negative pressure givesnegativeheight",
+          "independentExact": "-10",
+          "expectedValue": "-10",
+          "unit": "cm",
+          "dimension": {
+            "[length]": "1"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_exact_physics"
+        },
+        {
+          "claim": "fresh installed140grid aggregate law/graph/phase/generated-task comparison for thisID",
+          "ok": true,
+          "caseCount": 21,
+          "dimension": {}
+        }
+      ],
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "dimension": {
+        "first actual assessment derived independently": {
+          "[length]": "1"
+        },
+        "generated transfer derived independently": {
+          "[length]": "1"
+        },
+        "1kPa waterg10 gives10cm": {
+          "[length]": "1"
+        },
+        "left excess2kPa rightminusleft20cm": {
+          "[length]": "1"
+        },
+        "zero difference levels equal": {
+          "[length]": "1"
+        },
+        "equal sections eachsurface moveshalf10cm": {
+          "[length]": "1"
+        },
+        "signed negative pressure givesnegativeheight": {
+          "[length]": "1"
+        },
+        "fresh installed140grid aggregate law/graph/phase/generated-task comparison for thisID": {}
+      },
+      "sourceScientificReview": {
+        "ok": true,
+        "errors": []
+      },
+      "consumerReview": {
+        "ok": true,
+        "errors": []
+      },
+      "manualFeasibility": "PASS_AI_EXACT_ASSIGNED_TASKS",
+      "manualArithmetic": "Commonbottom balance givespL-pR=ρg(zR-zL); withwater/g10 signedcm=10Δp_kPa. First2→20cm, transfer0→0; negative−1→−10. Equalareameans eachsurface moves halfdislevel, not full. Actualcomparison showsrightsurface5xcm. No kinetic pressure or absolutevacuumbaseline assumed.",
+      "physicalAssumptions": "Staticwater, g10; Δp leftminusright and Δh rightminusleft signed. Equalcrosssections forhalfdisplacements; zeroΔp equallevels, no pressureloss.",
+      "pedagogicalReview": "Full original record, actual generatedprediction/options/reason, two numeric tasks, four guidephases, substitutions, readouts, graph, parameterdomain and apparatus read. Emptyblocks do not mean no calculation. Reviewer-generatedderivations/meshprobes distinguished from student-suppliedprocedures; no studentcalibration or humanapproval.",
+      "figureReview": "Levels1.36±.295Δp have signedheightdifference.59Δp, eachsurfacehalf. Atzero signedarrow omitted. Native320 small±.2 has tip-only0.253px entry intoΔhlabel; cone partlyvisible and1280/fallback direction observable. This bounded partial-overlay observation is not asserted as totalglyphinvisibility or used alone as a sourceFAIL.",
+      "runtimeComparison": {
+        "ok": true,
+        "errors": [],
+        "caseCount": 21,
+        "plannedCaseCount": 21,
+        "clockSampleCount": 0,
+        "tasks": [
+          {
+            "index": 0,
+            "input": 2,
+            "modelExact": "20",
+            "requiredByDeliveredQuestion": "20",
+            "agreement": true,
+            "actualPrompt": "Imposta «Differenza di pressione» su 2 kPa. Quale valore ottieni per «Dislivello con segno»?",
+            "actualWorked": "Δp = p sinistra − p destra. Δh = h destra − h sinistra = Δp/(ρg), con acqua e g = 10 m/s².. 10 × 2 = 20 cm."
+          },
+          {
+            "index": 1,
+            "input": 0,
+            "modelExact": "0",
+            "requiredByDeliveredQuestion": "0",
+            "agreement": true,
+            "actualPrompt": "La pressione a sinistra meno la pressione a destra vale 0 kPa. Quanto misura, in centimetri e con segno, il livello destro meno quello sinistro?",
+            "actualWorked": "Δp = p sinistra − p destra. Δh = h destra − h sinistra = Δp/(ρg), con acqua e g = 10 m/s².. 10 × 0 = 0 cm."
+          }
+        ],
+        "requestedTaskAgreement": true,
+        "formatRoundtrip": [
+          {
+            "display": "20",
+            "parsed": 20
+          },
+          {
+            "display": "0",
+            "parsed": 0
+          }
+        ]
+      },
+      "runtimeProfileSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+      "reviewedRuntimeProfileSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+      "runtimeSha256": {
+        "static/js/banchi/voci/esperimento.js": "cc435e51b62d5b9961b32f5d9b349171f7432e3bf6a6911cd80daaa1f419767b",
+        "static/js/banchi/voci/engines.js": "09a6447a971d0e90c49cfea0307e82ea75f4441a7174c017768d6d62ad514dab",
+        "static/js/banchi/voci/assessment-selection.js": "2f5435b6c9e8b76667d0a95f35860f835117cf8230a635c4c3a54c479fbc54b3",
+        "static/js/banchi/voci/geometria.js": "986bdbfad0cf6e6e057002ee2efdeff0a08df31bfb45f9c046063fcba5840f08",
+        "static/js/banchi/voci/modelli/C2.js": "a2bfb8da7c5f2ab29cd5afdd724e62192c7bd3cc5feea46e5b05f3b025561ea2",
+        "static/js/banchi/voci/apparati/fluidi.js": "02113df5c60acc56c8a75b0c83afd0d9e3dfa39809848df4197ba50e3f823eb5",
+        "static/js/banchi/voci/apparati/meccanica.js": "9be7ce68847af3d901374e98c7511921d6177d939c547e9b03f2c07a0ebd857d",
+        "static/js/banchi/voci/confronti.js": "83f1ab0d443dc93eb72c0318e32856179486643257c5bbf136e686464fdc6c39",
+        "static/js/banchi/voci/orologi.js": "30dd8ab535a31b514c0db13d97d2b046a1add160a7ca7d374deea0d991be73a6",
+        "static/js/banchi/voci/tavola.js": "cc3f7fa8da541109fdda9f8bacca23eea43d1031b2145688b2d80513f47d5283",
+        "static/js/banchi/voci/legende.js": "eb303ca6a6013377462b51c92b541a650ee2686257cd7e4ee39fea5221a521f7",
+        "static/js/banchi/banco.js": "8200aa5adf026372699790c21f60e0cf3f5fffcb705ef5ee36f609ac3c1e3ed9",
+        "static/js/banchi/misure.js": "46c769f22651529e439b1396e59a017d2c429310b7ae59e2a9717b2ced93c66d",
+        "static/js/banchi/grafici.js": "e5567e88ee6df5c604f8e62228da5e70841556ad0b55fb212fd4d091fdeee3fd",
+        "static/js/banchi/scena.js": "4d94c92a834573062a2af541df113bad06bd11ca538b31bddddc5ec8621a5095",
+        "static/js/banchi/etichette.js": "455ae33c790be4e207e5b5667918c44ea16c95f49e1fea0b13cc92f08aa003f3",
+        "static/js/banchi/aula.js": "44c74446d0d60b20e9dad05b32321f1000f026acdec386ca5aa2f74c20421967"
+      },
+      "consumerEvidence": {
+        "ok": true,
+        "errors": [],
+        "proofSha256": "1706fbb58be195a147592df01990f9b3e15fc19f92afd4ca25c776547fd0bbb2",
+        "protocolSha256": "80dc3aaab13f04631bc8e666edc7bc428e9f488c3ff77140202a84b7264424ef",
+        "visualManifestSha256": "52e9a21ce5eeafd29d3e15891ca30382e97622e6639da22b6c0c5a8addd2635d",
+        "observedCases": 228,
+        "scientificApproval": false
+      },
+      "assetChecksums": {},
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "SIM-C2-L003-01",
+      "sourceSha256": "94028905ba7c74aceb6579da0400b5b3f89e923d3ef093d0a897379df752d79a",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/esperienze-C2.json",
+      "sourceFileSha256": "33a38d74b953889eccce3281c4413060aa6af14f6a7c022d5049b927137656c1",
+      "ok": false,
+      "errors": [
+        "Native320 and1280: at2kPa A1 sprite covers red force tip; at10kPa4A1 sprite covers green tip. Force law2xN remains correct. This finding concerns actual label occlusion, not an unsupported inference of common force-glyph calibration."
+      ],
+      "checks": [
+        {
+          "claim": "first actual assessment derived independently",
+          "independentExact": "12",
+          "expectedValue": "12",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_manual_calculation"
+        },
+        {
+          "claim": "generated transfer derived independently",
+          "independentExact": "10",
+          "expectedValue": "10",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "actual_assigned_manual_calculation"
+        },
+        {
+          "claim": "20cm2 toSI",
+          "independentExact": "1/500",
+          "expectedValue": "1/500",
+          "unit": "m^2",
+          "dimension": {
+            "[length]": "2"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_exact_physics"
+        },
+        {
+          "claim": "6kPa times20cm2 gives12N",
+          "independentExact": "12",
+          "expectedValue": "12",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_exact_physics"
+        },
+        {
+          "claim": "5kPa times20cm2 gives10N",
+          "independentExact": "10",
+          "expectedValue": "10",
+          "unit": "N",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_exact_physics"
+        },
+        {
+          "claim": "pressureincrement uniform,force proportionalarea",
+          "independentExact": "4",
+          "expectedValue": "4",
+          "unit": "",
+          "dimension": {},
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_exact_physics"
+        },
+        {
+          "claim": "pistonradiusratio2 meansarearatio4",
+          "independentExact": "4",
+          "expectedValue": "4",
+          "unit": "",
+          "dimension": {},
+          "residual": "0",
+          "ok": true,
+          "scope": "independent_exact_physics"
+        },
+        {
+          "claim": "fresh installed140grid aggregate law/graph/phase/generated-task comparison for thisID",
+          "ok": true,
+          "caseCount": 11,
+          "dimension": {}
+        }
+      ],
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "dimension": {
+        "first actual assessment derived independently": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "generated transfer derived independently": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "20cm2 toSI": {
+          "[length]": "2"
+        },
+        "6kPa times20cm2 gives12N": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "5kPa times20cm2 gives10N": {
+          "[mass]": "1",
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "pressureincrement uniform,force proportionalarea": {},
+        "pistonradiusratio2 meansarearatio4": {},
+        "fresh installed140grid aggregate law/graph/phase/generated-task comparison for thisID": {}
+      },
+      "sourceScientificReview": {
+        "ok": true,
+        "errors": []
+      },
+      "consumerReview": {
+        "ok": false,
+        "errors": [
+          "Native320 and1280: at2kPa A1 sprite covers red force tip; at10kPa4A1 sprite covers green tip. Force law2xN remains correct. This finding concerns actual label occlusion, not an unsupported inference of common force-glyph calibration."
+        ]
+      },
+      "manualFeasibility": "PASS_AI_EXACT_ASSIGNED_TASKS",
+      "manualArithmetic": "Addedpressure, not totalbaseline pressure:20cm²=1/500m²,1kPa=1000Pa, soΔF=2Δp_kPaN. Task6→12N, transfer5→10N. Finite0..10, no hydraulicstroke assigned. Geometricradiusratio2 meansarearatio4; ifoutlet20cm² inletwould5cm². Different glyphgains are not used to infer quantitative force ratios.",
+      "physicalAssumptions": "Confinedquiescentliquid; pressureincrement transmitted, not arbitrarytotalforceequality. Assignedlargearea20cm²; pistonareasfixed, no displacement/energy-output demand.",
+      "pedagogicalReview": "Full original record, actual generatedprediction/options/reason, two numeric tasks, four guidephases, substitutions, readouts, graph, parameterdomain and apparatus read. Emptyblocks do not mean no calculation. Reviewer-generatedderivations/meshprobes distinguished from student-suppliedprocedures; no studentcalibration or humanapproval.",
+      "figureReview": "Native320 and1280: at2kPa A1 sprite covers red force tip; at10kPa4A1 sprite covers green tip. Force law2xN remains correct. This finding concerns actual label occlusion, not an unsupported inference of common force-glyph calibration.",
+      "runtimeComparison": {
+        "ok": true,
+        "errors": [],
+        "caseCount": 11,
+        "plannedCaseCount": 11,
+        "clockSampleCount": 0,
+        "tasks": [
+          {
+            "index": 0,
+            "input": 6,
+            "modelExact": "12",
+            "requiredByDeliveredQuestion": "12",
+            "agreement": true,
+            "actualPrompt": "Imposta «Pressione aggiunta» su 6 kPa. Quale valore ottieni per «Incremento di forza sul pistone grande»?",
+            "actualWorked": "ΔF = Δp A; A = 20 cm². 2 × 6 = 12 N."
+          },
+          {
+            "index": 1,
+            "input": 5,
+            "modelExact": "10",
+            "requiredByDeliveredQuestion": "10",
+            "agreement": true,
+            "actualPrompt": "Aumenti di 5 kPa la pressione idraulica. Il pistone di uscita ha area 20 cm². Di quanto aumenta la forza che può esercitare?",
+            "actualWorked": "ΔF = Δp A; A = 20 cm². 2 × 5 = 10 N."
+          }
+        ],
+        "requestedTaskAgreement": true,
+        "formatRoundtrip": [
+          {
+            "display": "12",
+            "parsed": 12
+          },
+          {
+            "display": "10",
+            "parsed": 10
+          }
+        ]
+      },
+      "runtimeProfileSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+      "reviewedRuntimeProfileSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+      "runtimeSha256": {
+        "static/js/banchi/voci/esperimento.js": "cc435e51b62d5b9961b32f5d9b349171f7432e3bf6a6911cd80daaa1f419767b",
+        "static/js/banchi/voci/engines.js": "09a6447a971d0e90c49cfea0307e82ea75f4441a7174c017768d6d62ad514dab",
+        "static/js/banchi/voci/assessment-selection.js": "2f5435b6c9e8b76667d0a95f35860f835117cf8230a635c4c3a54c479fbc54b3",
+        "static/js/banchi/voci/geometria.js": "986bdbfad0cf6e6e057002ee2efdeff0a08df31bfb45f9c046063fcba5840f08",
+        "static/js/banchi/voci/modelli/C2.js": "a2bfb8da7c5f2ab29cd5afdd724e62192c7bd3cc5feea46e5b05f3b025561ea2",
+        "static/js/banchi/voci/apparati/fluidi.js": "02113df5c60acc56c8a75b0c83afd0d9e3dfa39809848df4197ba50e3f823eb5",
+        "static/js/banchi/voci/apparati/meccanica.js": "9be7ce68847af3d901374e98c7511921d6177d939c547e9b03f2c07a0ebd857d",
+        "static/js/banchi/voci/confronti.js": "83f1ab0d443dc93eb72c0318e32856179486643257c5bbf136e686464fdc6c39",
+        "static/js/banchi/voci/orologi.js": "30dd8ab535a31b514c0db13d97d2b046a1add160a7ca7d374deea0d991be73a6",
+        "static/js/banchi/voci/tavola.js": "cc3f7fa8da541109fdda9f8bacca23eea43d1031b2145688b2d80513f47d5283",
+        "static/js/banchi/voci/legende.js": "eb303ca6a6013377462b51c92b541a650ee2686257cd7e4ee39fea5221a521f7",
+        "static/js/banchi/banco.js": "8200aa5adf026372699790c21f60e0cf3f5fffcb705ef5ee36f609ac3c1e3ed9",
+        "static/js/banchi/misure.js": "46c769f22651529e439b1396e59a017d2c429310b7ae59e2a9717b2ced93c66d",
+        "static/js/banchi/grafici.js": "e5567e88ee6df5c604f8e62228da5e70841556ad0b55fb212fd4d091fdeee3fd",
+        "static/js/banchi/scena.js": "4d94c92a834573062a2af541df113bad06bd11ca538b31bddddc5ec8621a5095",
+        "static/js/banchi/etichette.js": "455ae33c790be4e207e5b5667918c44ea16c95f49e1fea0b13cc92f08aa003f3",
+        "static/js/banchi/aula.js": "44c74446d0d60b20e9dad05b32321f1000f026acdec386ca5aa2f74c20421967"
+      },
+      "consumerEvidence": {
+        "ok": true,
+        "errors": [],
+        "proofSha256": "1706fbb58be195a147592df01990f9b3e15fc19f92afd4ca25c776547fd0bbb2",
+        "protocolSha256": "80dc3aaab13f04631bc8e666edc7bc428e9f488c3ff77140202a84b7264424ef",
+        "visualManifestSha256": "52e9a21ce5eeafd29d3e15891ca30382e97622e6639da22b6c0c5a8addd2635d",
+        "observedCases": 228,
+        "scientificApproval": false
+      },
+      "assetChecksums": {},
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": true,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    }
+  ],
+  "acceptedCount": 5,
+  "failedCount": 5,
+  "draftReviewedCount": 0,
+  "failedPublishedEditionIds": [
+    "SIM-C2-L001-02",
+    "SIM-C2-L001-05",
+    "SIM-C2-L002-01",
+    "SIM-C2-L002-02",
+    "SIM-C2-L003-01"
+  ],
+  "sourceManualityIssueIds": [
+    "SIM-C2-L002-01"
+  ],
+  "consumerInterfaceIssueIds": [
+    "SIM-C2-L001-02",
+    "SIM-C2-L001-05",
+    "SIM-C2-L002-01",
+    "SIM-C2-L002-02",
+    "SIM-C2-L003-01"
+  ],
+  "verifierSha256": "5fb99817d6661298f38a86b6c9edb3813ba8ec0e6cfe5a3c3c85c58f2f7feaf5",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+  "sourcePath": "officina-di-fisica/content/esperienze-C2.json",
+  "sourceFileSha256": "33a38d74b953889eccce3281c4413060aa6af14f6a7c022d5049b927137656c1",
+  "originalEditionRetained": true,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "reviewer": "separate_AI_not_source_or_future_revision_author",
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  }
+}

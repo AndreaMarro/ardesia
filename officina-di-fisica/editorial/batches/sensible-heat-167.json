@@ -1,0 +1,1213 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u5-sensible-heat-01",
+      "kind": "question",
+      "course": "C3",
+      "section": "Calore sensibile di un corpo omogeneo",
+      "order": 16701,
+      "title": "Quaranta joule trasferiti al corpo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "sensible-heat",
+      "difficulty": 1,
+      "prompt": "Un corpo omogeneo chiuso di massa m>0, espressa in g, ha calore specifico costante c=2 J/(g·K) nell’intervallo considerato. Si riscalda fra stati di equilibrio di temperature assolute positive, con ΔT=T_f−T_i>0 in K, senza cambiamenti di fase, lavoro apprezzabile o variazioni macroscopiche di energia cinetica o potenziale. Q>0 è energia entrata come calore: Q=mcΔT. La capacità totale è C=mc in J/K, distinta dal calore specifico per unità di massa. Con m=2 g e ΔT=10 K, quanto vale Q in J?",
+      "answer": {
+        "type": "numeric",
+        "value": 40,
+        "unit": "J",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La massa di due grammi moltiplica il calore specifico di due joule per grammo e kelvin: la capacità totale è quattro joule al kelvin. Per aumentare di dieci kelvin servono quindi quaranta joule. Il calore è il trasferimento attraverso il confine durante il processo; alla fine è aumentata l’energia interna, non una funzione di stato chiamata calore."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/6f82f67cadf2ffe5347431327fe9c8fc8f3ad2f83b241d29b9713ccd7148f650",
+          "text": "Tre pannelli: un corpo di 2 g riceve Q=40 J con freccia schematica e capacità totale 4 J/K; la retta Q contro ΔT usa 15 px/K e 3 px/J, con punti 10 K,40 J e 20 K,80 J; le barre finali delle due prove e della media partono da un’origine comune a 2 px/J. c=2 J/(g·K) è assegnato al materiale, C=mc al campione."
+        },
+        {
+          "type": "formula",
+          "text": "C=mc"
+        },
+        {
+          "type": "formula",
+          "text": " C=(2\\,\\mathrm g)(2\\,\\mathrm{J/(g\\,K)})"
+        },
+        {
+          "type": "formula",
+          "text": " C=4\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " Q=C\\Delta T"
+        },
+        {
+          "type": "formula",
+          "text": " Q=40\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Venti J dimenticano il fattore due della massa o del calore specifico. Ottanta J raddoppiano un dato già incluso. Non si moltiplica per una temperatura assoluta finale: la legge usa il suo incremento."
+        }
+      ],
+      "hints": [
+        "Calcola prima la capacità dell’intero corpo, poi moltiplicala per l’incremento.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Venti J dimenticano il fattore due della massa o del calore specifico. Ottanta J raddoppiano un dato già incluso. Non si moltiplica per una temperatura assoluta finale: la legge usa il suo incremento.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Calore trasferito e capacità specifica o totale",
+        "Confine del sistema e assenza di fase",
+        "Inverse, medie, taratura e ramo fisico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-sensible-heat-02",
+      "kind": "question",
+      "course": "C3",
+      "section": "Calore sensibile di un corpo omogeneo",
+      "order": 16702,
+      "title": "Il calore specifico cancella grammi e kelvin",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "sensible-heat",
+      "difficulty": 1,
+      "prompt": "Un corpo omogeneo chiuso di massa m>0, espressa in g, ha calore specifico costante c=2 J/(g·K) nell’intervallo considerato. Si riscalda fra stati di equilibrio di temperature assolute positive, con ΔT=T_f−T_i>0 in K, senza cambiamenti di fase, lavoro apprezzabile o variazioni macroscopiche di energia cinetica o potenziale. Q>0 è energia entrata come calore: Q=mcΔT. La capacità totale è C=mc in J/K, distinta dal calore specifico per unità di massa. Quale unità misura Q?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "J",
+          "J/K",
+          "J/(g·K)",
+          "K",
+          "W"
+        ],
+        "value": "J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nel prodotto m c ΔT il grammo della massa cancella quello al denominatore di c; anche il kelvin dell’incremento si cancella. Rimane il joule, unità di energia trasferita. Il valore c=2 J/(g·K) equivale a 2000 J/(kg·K), perché un chilogrammo contiene mille grammi."
+        },
+        {
+          "type": "formula",
+          "text": "[Q]=\\mathrm g\\cdot\\frac{\\mathrm J}{\\mathrm{g\\,K}}\\cdot\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " [Q]=\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " c=2000\\,\\mathrm{J/(kg\\,K)}"
+        },
+        {
+          "type": "text",
+          "text": "J/K misura la capacità totale, J/(g·K) il calore specifico, K l’incremento termico. W=J/s richiederebbe un tempo non assegnato. Cambiare unità di massa richiede convertire anche il valore del calore specifico."
+        }
+      ],
+      "hints": [
+        "Cancella grammi e kelvin nel prodotto completo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "J/K misura la capacità totale, J/(g·K) il calore specifico, K l’incremento termico. W=J/s richiederebbe un tempo non assegnato. Cambiare unità di massa richiede convertire anche il valore del calore specifico.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Calore trasferito e capacità specifica o totale",
+        "Confine del sistema e assenza di fase",
+        "Inverse, medie, taratura e ramo fisico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-sensible-heat-03",
+      "kind": "question",
+      "course": "C3",
+      "section": "Calore sensibile di un corpo omogeneo",
+      "order": 16703,
+      "title": "Sigillato alla materia, aperto agli scambi termici",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L01",
+      "prerequisites": [
+        "C3-L01"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "sensible-heat",
+      "difficulty": 1,
+      "prompt": "Il sistema comprende un recipiente sigillato e la sostanza interna; il bagno termico è nell’ambiente. Il recipiente può scambiare calore con il bagno attraverso le pareti ma non materia. Come si classifica il sistema?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Chiuso e non isolato termicamente",
+          "Aperto perché passa calore",
+          "Isolato perché è sigillato",
+          "Adiabatico perché non passa materia",
+          "Aperto e adiabatico"
+        ],
+        "value": "Chiuso e non isolato termicamente"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La classificazione dipende dal confine scelto. Attraverso questo confine non passa materia: il sistema è chiuso. Le pareti consentono però scambio di energia come calore con il bagno esterno, dunque non è termicamente isolato. Non serve sapere il valore istantaneo o netto del calore per riconoscere questa possibilità di scambio."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/6f82f67cadf2ffe5347431327fe9c8fc8f3ad2f83b241d29b9713ccd7148f650",
+          "text": "La figura del corpo è uno schema del confine termico, mentre il caso del recipiente sigillato nel testo include anche il recipiente nel sistema. Le frecce indicano calore che può attraversare il confine, non materia. I pannelli quantitativi si riferiscono al modello separato del corpo omogeneo senza cambiamento di fase."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta m_{\\rm scambiata}=0"
+        },
+        {
+          "type": "formula",
+          "text": " Q\\ \\text{può attraversare il confine}"
+        },
+        {
+          "type": "text",
+          "text": "Aperto richiederebbe scambio di materia, non soltanto di calore. Sigillato non equivale a isolato. Adiabatico escluderebbe il calore attraverso il confine, in contrasto con le pareti descritte; l’eventuale Q netto nullo da solo non proverebbe isolamento."
+        }
+      ],
+      "hints": [
+        "Chiediti separatamente se attraversano il confine materia ed energia.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Aperto richiederebbe scambio di materia, non soltanto di calore. Sigillato non equivale a isolato. Adiabatico escluderebbe il calore attraverso il confine, in contrasto con le pareti descritte; l’eventuale Q netto nullo da solo non proverebbe isolamento.",
+        "target": "C3-L01"
+      },
+      "coverage": [
+        "Calore trasferito e capacità specifica o totale",
+        "Confine del sistema e assenza di fase",
+        "Inverse, medie, taratura e ramo fisico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-sensible-heat-04",
+      "kind": "question",
+      "course": "C3",
+      "section": "Calore sensibile di un corpo omogeneo",
+      "order": 16704,
+      "title": "Raddoppiare la massa del campione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "sensible-heat",
+      "difficulty": 1,
+      "prompt": "Un corpo omogeneo chiuso di massa m>0, espressa in g, ha calore specifico costante c=2 J/(g·K) nell’intervallo considerato. Si riscalda fra stati di equilibrio di temperature assolute positive, con ΔT=T_f−T_i>0 in K, senza cambiamenti di fase, lavoro apprezzabile o variazioni macroscopiche di energia cinetica o potenziale. Q>0 è energia entrata come calore: Q=mcΔT. La capacità totale è C=mc in J/K, distinta dal calore specifico per unità di massa. A ha m=2 g e B m=4 g; entrambi aumentano la temperatura di 10 K in prove separate. Come cambia Q?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 40 a 80 J",
+          "Resta 40 J",
+          "Da 40 a 20 J",
+          "Da 40 a 160 J",
+          "Diventa zero"
+        ],
+        "value": "Da 40 a 80 J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Ogni grammo richiede lo stesso calore per lo stesso incremento. Il corpo B contiene il doppio della massa e ha capacità totale otto J/K anziché quattro. Per dieci kelvin assorbe ottanta joule, il doppio dei quaranta di A. La massa non cambia durante ciascuna prova chiusa."
+        },
+        {
+          "type": "formula",
+          "text": "Q_A=(2)(2)(10)\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": "(2)(2)(10)\\,\\mathrm J=40\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B=(4)(2)(10)\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B=80\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Venti J rende inversa la dipendenza dalla massa; 160 J raddoppia anche un secondo ingresso, qui fisso. Zero è incompatibile con m,c,ΔT tutti positivi."
+        }
+      ],
+      "hints": [
+        "A c e ΔT fissi il calore è proporzionale alla massa.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Venti J rende inversa la dipendenza dalla massa; 160 J raddoppia anche un secondo ingresso, qui fisso. Zero è incompatibile con m,c,ΔT tutti positivi.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Calore trasferito e capacità specifica o totale",
+        "Confine del sistema e assenza di fase",
+        "Inverse, medie, taratura e ramo fisico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-sensible-heat-05",
+      "kind": "question",
+      "course": "C3",
+      "section": "Calore sensibile di un corpo omogeneo",
+      "order": 16705,
+      "title": "La massa dal calore assorbito",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "sensible-heat",
+      "difficulty": 2,
+      "prompt": "Un corpo omogeneo chiuso di massa m>0, espressa in g, ha calore specifico costante c=2 J/(g·K) nell’intervallo considerato. Si riscalda fra stati di equilibrio di temperature assolute positive, con ΔT=T_f−T_i>0 in K, senza cambiamenti di fase, lavoro apprezzabile o variazioni macroscopiche di energia cinetica o potenziale. Q>0 è energia entrata come calore: Q=mcΔT. La capacità totale è C=mc in J/K, distinta dal calore specifico per unità di massa. Q=40 J e ΔT=10 K. Quanto vale m in g?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "g",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il prodotto cΔT vale venti joule per grammo. Quaranta joule divisi per questi venti joule al grammo restituiscono due grammi. Le unità dell’inversa permettono di distinguere la massa dalla capacità totale del corpo."
+        },
+        {
+          "type": "formula",
+          "text": "m=\\frac{Q}{c\\Delta T}"
+        },
+        {
+          "type": "formula",
+          "text": " c\\Delta T=20\\,\\mathrm{J/g}"
+        },
+        {
+          "type": "formula",
+          "text": " m=\\frac{40\\,\\mathrm J}{20\\,\\mathrm{J/g}}"
+        },
+        {
+          "type": "formula",
+          "text": " m=2\\,\\mathrm g"
+        },
+        {
+          "type": "text",
+          "text": "Quattro è il numero della capacità totale in J/K, non della massa in g. Moltiplicare anziché dividere per cΔT non avrebbe dimensione di massa."
+        }
+      ],
+      "hints": [
+        "Dividi Q per l’energia richiesta da un singolo grammo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro è il numero della capacità totale in J/K, non della massa in g. Moltiplicare anziché dividere per cΔT non avrebbe dimensione di massa.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Calore trasferito e capacità specifica o totale",
+        "Confine del sistema e assenza di fase",
+        "Inverse, medie, taratura e ramo fisico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-sensible-heat-06",
+      "kind": "question",
+      "course": "C3",
+      "section": "Calore sensibile di un corpo omogeneo",
+      "order": 16706,
+      "title": "L’incremento non è la temperatura finale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "sensible-heat",
+      "difficulty": 2,
+      "prompt": "Un corpo omogeneo chiuso di massa m>0, espressa in g, ha calore specifico costante c=2 J/(g·K) nell’intervallo considerato. Si riscalda fra stati di equilibrio di temperature assolute positive, con ΔT=T_f−T_i>0 in K, senza cambiamenti di fase, lavoro apprezzabile o variazioni macroscopiche di energia cinetica o potenziale. Q>0 è energia entrata come calore: Q=mcΔT. La capacità totale è C=mc in J/K, distinta dal calore specifico per unità di massa. Q=40 J e m=2 g. Quanto vale ΔT in K?",
+      "answer": {
+        "type": "numeric",
+        "value": 10,
+        "unit": "K",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La capacità del corpo è quattro joule al kelvin. L’energia entrata di quaranta joule produce quindi dieci kelvin di aumento. Senza la temperatura iniziale non si conosce quella finale. Un incremento di dieci kelvin corrisponde anche a dieci gradi Celsius di differenza, senza aggiungere alcun offset."
+        },
+        {
+          "type": "formula",
+          "text": "mc=4\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta T=\\frac{Q}{mc}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta T=40/4\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta T=10\\,\\mathrm K"
+        },
+        {
+          "type": "text",
+          "text": "Venti K omette la massa. Quaranta copia il valore dell’energia senza convertirlo in incremento. Aggiungere 273,15 a una differenza confonde intervalli e temperature assolute."
+        }
+      ],
+      "hints": [
+        "Calcola mc, poi dividi l’energia per questa capacità totale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Venti K omette la massa. Quaranta copia il valore dell’energia senza convertirlo in incremento. Aggiungere 273,15 a una differenza confonde intervalli e temperature assolute.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Calore trasferito e capacità specifica o totale",
+        "Confine del sistema e assenza di fase",
+        "Inverse, medie, taratura e ramo fisico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-sensible-heat-07",
+      "kind": "question",
+      "course": "C3",
+      "section": "Calore sensibile di un corpo omogeneo",
+      "order": 16707,
+      "title": "Un incremento termico doppio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "sensible-heat",
+      "difficulty": 2,
+      "prompt": "Un corpo omogeneo chiuso di massa m>0, espressa in g, ha calore specifico costante c=2 J/(g·K) nell’intervallo considerato. Si riscalda fra stati di equilibrio di temperature assolute positive, con ΔT=T_f−T_i>0 in K, senza cambiamenti di fase, lavoro apprezzabile o variazioni macroscopiche di energia cinetica o potenziale. Q>0 è energia entrata come calore: Q=mcΔT. La capacità totale è C=mc in J/K, distinta dal calore specifico per unità di massa. m=2 g in entrambe le prove. A usa ΔT=10 K e B ΔT=20 K. Quanto vale Q_B/Q_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/2",
+          "4",
+          "1",
+          "−2"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le energie sono quaranta e ottanta joule. La massa e il calore specifico comuni si cancellano nel quoziente: il rapporto delle energie è quello degli incrementi, cioè due. Entrambi sono riscaldamenti, quindi il rapporto è positivo."
+        },
+        {
+          "type": "formula",
+          "text": "Q_A=40\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B=80\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B/Q_A=\\Delta T_B/\\Delta T_A"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B/Q_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo rovescia il confronto, quattro introduce un quadrato assente e uno ignora il cambiamento. Il valore negativo non descrive due trasferimenti entranti come quelli dichiarati."
+        }
+      ],
+      "hints": [
+        "Cancella massa e calore specifico comuni.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo rovescia il confronto, quattro introduce un quadrato assente e uno ignora il cambiamento. Il valore negativo non descrive due trasferimenti entranti come quelli dichiarati.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Calore trasferito e capacità specifica o totale",
+        "Confine del sistema e assenza di fase",
+        "Inverse, medie, taratura e ramo fisico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-sensible-heat-08",
+      "kind": "question",
+      "course": "C3",
+      "section": "Calore sensibile di un corpo omogeneo",
+      "order": 16708,
+      "title": "Lo scarto di una proposta raddoppiata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "sensible-heat",
+      "difficulty": 2,
+      "prompt": "Un corpo omogeneo chiuso di massa m>0, espressa in g, ha calore specifico costante c=2 J/(g·K) nell’intervallo considerato. Si riscalda fra stati di equilibrio di temperature assolute positive, con ΔT=T_f−T_i>0 in K, senza cambiamenti di fase, lavoro apprezzabile o variazioni macroscopiche di energia cinetica o potenziale. Q>0 è energia entrata come calore: Q=mcΔT. La capacità totale è C=mc in J/K, distinta dal calore specifico per unità di massa. Con m=2 g e ΔT=10 K si propone Q=80 J. Quanto vale proposta meno risultato corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "40 J",
+          "−40 J",
+          "80 J",
+          "0 J",
+          "20 J"
+        ],
+        "value": "40 J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La legge fornisce quaranta joule. Ottanta supera il risultato di quaranta joule, quindi lo scarto richiesto è positivo. Non è un calore ceduto: il segno appartiene al confronto fra proposta e modello."
+        },
+        {
+          "type": "formula",
+          "text": "Q=40\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " e=(80-40)\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " e=40\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Meno quaranta esegue l’ordine opposto; ottanta copia la proposta. Zero la accetta e venti dimezza uno scarto già determinato."
+        }
+      ],
+      "hints": [
+        "Determina Q prima di eseguire la sottrazione con segno.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Meno quaranta esegue l’ordine opposto; ottanta copia la proposta. Zero la accetta e venti dimezza uno scarto già determinato.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Calore trasferito e capacità specifica o totale",
+        "Confine del sistema e assenza di fase",
+        "Inverse, medie, taratura e ramo fisico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-sensible-heat-09",
+      "kind": "question",
+      "course": "C3",
+      "section": "Calore sensibile di un corpo omogeneo",
+      "order": 16709,
+      "title": "Isolare m senza perdere c",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "sensible-heat",
+      "difficulty": 2,
+      "prompt": "Un corpo omogeneo chiuso di massa m>0, espressa in g, ha calore specifico costante c=2 J/(g·K) nell’intervallo considerato. Si riscalda fra stati di equilibrio di temperature assolute positive, con ΔT=T_f−T_i>0 in K, senza cambiamenti di fase, lavoro apprezzabile o variazioni macroscopiche di energia cinetica o potenziale. Q>0 è energia entrata come calore: Q=mcΔT. La capacità totale è C=mc in J/K, distinta dal calore specifico per unità di massa. Quale formula isola m?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "m = Q / (c ΔT)",
+          "m = Q c ΔT",
+          "m = c ΔT / Q",
+          "m = Q / ΔT",
+          "m = Q / (c T_f)"
+        ],
+        "value": "m = Q / (c ΔT)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La massa moltiplica cΔT, fattore positivo non nullo. Dividiamo entrambi i membri per quel fattore. Q/(cΔT) ha unità g, perché cΔT misura joule per grammo. L’ultimo denominatore usa invece una temperatura assoluta, che non è l’incremento del modello."
+        },
+        {
+          "type": "formula",
+          "text": "Q=mc\\Delta T"
+        },
+        {
+          "type": "formula",
+          "text": " m=\\frac{Q}{c\\Delta T}"
+        },
+        {
+          "type": "formula",
+          "text": " [m]=\\frac{\\mathrm J}{\\mathrm{J/g}}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{\\mathrm J}{\\mathrm{J/g}}=\\mathrm g"
+        },
+        {
+          "type": "text",
+          "text": "Il prodotto ha dimensioni J²/g e il reciproco ha g⁻¹, non g. Q/ΔT dà la capacità totale in J/K. Sostituire T_f a ΔT non mantiene il significato fisico anche se ha la stessa unità."
+        }
+      ],
+      "hints": [
+        "Dividi per entrambi i fattori che moltiplicano m.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il prodotto ha dimensioni J²/g e il reciproco ha g⁻¹, non g. Q/ΔT dà la capacità totale in J/K. Sostituire T_f a ΔT non mantiene il significato fisico anche se ha la stessa unità.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Calore trasferito e capacità specifica o totale",
+        "Confine del sistema e assenza di fase",
+        "Inverse, medie, taratura e ramo fisico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-sensible-heat-10",
+      "kind": "question",
+      "course": "C3",
+      "section": "Calore sensibile di un corpo omogeneo",
+      "order": 16710,
+      "title": "Un prodotto di due riscalamenti",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "sensible-heat",
+      "difficulty": 2,
+      "prompt": "Un corpo omogeneo chiuso di massa m>0, espressa in g, ha calore specifico costante c=2 J/(g·K) nell’intervallo considerato. Si riscalda fra stati di equilibrio di temperature assolute positive, con ΔT=T_f−T_i>0 in K, senza cambiamenti di fase, lavoro apprezzabile o variazioni macroscopiche di energia cinetica o potenziale. Q>0 è energia entrata come calore: Q=mcΔT. La capacità totale è C=mc in J/K, distinta dal calore specifico per unità di massa. Fra prove diverse m_B=κ₁m_A e ΔT_B=κ₂ΔT_A, κ₁,κ₂>0; c è invariato. Qual è Q_B/Q_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ κ₂",
+          "κ₁ / κ₂",
+          "κ₂ / κ₁",
+          "κ₁ + κ₂",
+          "κ₁ κ₂²"
+        ],
+        "value": "κ₁ κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Ogni ingresso entra alla prima potenza. Sostituendo massa e incremento della prova B, il loro prodotto porta i fattori κ₁ e κ₂. Dividendo per Q_A, massa, calore specifico e incremento iniziali si cancellano e resta κ₁κ₂."
+        },
+        {
+          "type": "formula",
+          "text": "Q_B=(\\kappa_1m_A)c(\\kappa_2\\Delta T_A)"
+        },
+        {
+          "type": "formula",
+          "text": " Q_A=m_Ac\\Delta T_A"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B/Q_A=\\kappa_1\\kappa_2"
+        },
+        {
+          "type": "text",
+          "text": "I quozienti rendono inversa una dipendenza diretta. La somma dà due per prove identiche; il fattore κ₂² attribuisce all’incremento un quadrato che la legge non contiene."
+        }
+      ],
+      "hints": [
+        "Sostituisci i fattori nel prodotto prima di semplificare.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "I quozienti rendono inversa una dipendenza diretta. La somma dà due per prove identiche; il fattore κ₂² attribuisce all’incremento un quadrato che la legge non contiene.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Calore trasferito e capacità specifica o totale",
+        "Confine del sistema e assenza di fase",
+        "Inverse, medie, taratura e ramo fisico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-sensible-heat-11",
+      "kind": "question",
+      "course": "C3",
+      "section": "Calore sensibile di un corpo omogeneo",
+      "order": 16711,
+      "title": "Massa e incremento raddoppiano insieme",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "sensible-heat",
+      "difficulty": 2,
+      "prompt": "Un corpo omogeneo chiuso di massa m>0, espressa in g, ha calore specifico costante c=2 J/(g·K) nell’intervallo considerato. Si riscalda fra stati di equilibrio di temperature assolute positive, con ΔT=T_f−T_i>0 in K, senza cambiamenti di fase, lavoro apprezzabile o variazioni macroscopiche di energia cinetica o potenziale. Q>0 è energia entrata come calore: Q=mcΔT. La capacità totale è C=mc in J/K, distinta dal calore specifico per unità di massa. A: m=2 g, ΔT=10 K. B: m=4 g, ΔT=20 K. Quanto vale Q_B/Q_A?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A assorbe quaranta joule. In B i quattro grammi hanno capacità otto J/K e vengono scaldati di venti kelvin: assorbono 160 J. Il rapporto 160/40 è quattro, prodotto dei due raddoppi."
+        },
+        {
+          "type": "formula",
+          "text": "Q_A=40\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B=4\\cdot2\\cdot20\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B=160\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B/Q_A=4"
+        },
+        {
+          "type": "text",
+          "text": "Due considera soltanto un raddoppio. 160 è un’energia, non il rapporto adimensionale; un quarto scambia B e A."
+        }
+      ],
+      "hints": [
+        "Calcola entrambe le energie o moltiplica i due fattori di variazione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due considera soltanto un raddoppio. 160 è un’energia, non il rapporto adimensionale; un quarto scambia B e A.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Calore trasferito e capacità specifica o totale",
+        "Confine del sistema e assenza di fase",
+        "Inverse, medie, taratura e ramo fisico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-sensible-heat-12",
+      "kind": "question",
+      "course": "C3",
+      "section": "Calore sensibile di un corpo omogeneo",
+      "order": 16712,
+      "title": "La media delle due energie trasferite",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "sensible-heat",
+      "difficulty": 2,
+      "prompt": "Un corpo omogeneo chiuso di massa m>0, espressa in g, ha calore specifico costante c=2 J/(g·K) nell’intervallo considerato. Si riscalda fra stati di equilibrio di temperature assolute positive, con ΔT=T_f−T_i>0 in K, senza cambiamenti di fase, lavoro apprezzabile o variazioni macroscopiche di energia cinetica o potenziale. Q>0 è energia entrata come calore: Q=mcΔT. La capacità totale è C=mc in J/K, distinta dal calore specifico per unità di massa. A usa m=2 g, ΔT=10 K; B usa m=4 g, ΔT=20 K. Qual è la media aritmetica dei due Q con uguale peso?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "100 J",
+          "200 J",
+          "90 J",
+          "60 J",
+          "50 J"
+        ],
+        "value": "100 J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I trasferimenti sono quaranta e centosessanta joule. Sommandoli otteniamo duecento, che diviso due dà cento joule. Gli ingressi medi sarebbero m=3 g e ΔT=15 K e produrrebbero novanta joule: quella è l’energia di un terzo processo, diversa dalla media richiesta."
+        },
+        {
+          "type": "formula",
+          "text": "Q_A=40\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B=160\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline Q=\\frac{40+160}{2}\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline Q=100\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Duecento J è la somma, cinquanta divide due volte per due e sessanta fa metà della differenza. Novanta usa il prodotto degli ingressi medi: il prodotto non conserva in generale la media quando cambiano entrambi i fattori."
+        }
+      ],
+      "hints": [
+        "Media le energie dopo averle ricavate per ciascuna prova.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Duecento J è la somma, cinquanta divide due volte per due e sessanta fa metà della differenza. Novanta usa il prodotto degli ingressi medi: il prodotto non conserva in generale la media quando cambiano entrambi i fattori.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Calore trasferito e capacità specifica o totale",
+        "Confine del sistema e assenza di fase",
+        "Inverse, medie, taratura e ramo fisico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-sensible-heat-13",
+      "kind": "question",
+      "course": "C3",
+      "section": "Calore sensibile di un corpo omogeneo",
+      "order": 16713,
+      "title": "Il bersaglio quadruplo con massa doppia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "sensible-heat",
+      "difficulty": 3,
+      "prompt": "Un corpo omogeneo chiuso di massa m>0, espressa in g, ha calore specifico costante c=2 J/(g·K) nell’intervallo considerato. Si riscalda fra stati di equilibrio di temperature assolute positive, con ΔT=T_f−T_i>0 in K, senza cambiamenti di fase, lavoro apprezzabile o variazioni macroscopiche di energia cinetica o potenziale. Q>0 è energia entrata come calore: Q=mcΔT. La capacità totale è C=mc in J/K, distinta dal calore specifico per unità di massa. A ha m=2 g e ΔT_A=10 K. B ha m=4 g e deve assorbire Q_B=4Q_A. Quanto vale ΔT_B/ΔT_A?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento richiede quaranta joule e il bersaglio 160 J. La capacità totale di B è già doppia, otto J/K: per ottenere 160 J occorrono venti kelvin. Rispetto ai dieci iniziali, l’incremento è doppio. Il fattore quattro del calore non va applicato interamente a ΔT."
+        },
+        {
+          "type": "formula",
+          "text": "Q_B=160\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " m_Bc=8\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta T_B=160/8\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta T_B=20\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta T_B/\\Delta T_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Quattro come rapporto termico, insieme alla massa doppia, produrrebbe otto volte il calore di A. Uno produrrebbe soltanto il doppio, non il quadruplo."
+        }
+      ],
+      "hints": [
+        "Togli dal fattore richiesto il raddoppio già fornito dalla massa.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro come rapporto termico, insieme alla massa doppia, produrrebbe otto volte il calore di A. Uno produrrebbe soltanto il doppio, non il quadruplo.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Calore trasferito e capacità specifica o totale",
+        "Confine del sistema e assenza di fase",
+        "Inverse, medie, taratura e ramo fisico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-sensible-heat-14",
+      "kind": "question",
+      "course": "C3",
+      "section": "Calore sensibile di un corpo omogeneo",
+      "order": 16714,
+      "title": "Dal display tarato alla massa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "sensible-heat",
+      "difficulty": 3,
+      "prompt": "Un corpo omogeneo chiuso di massa m>0, espressa in g, ha calore specifico costante c=2 J/(g·K) nell’intervallo considerato. Si riscalda fra stati di equilibrio di temperature assolute positive, con ΔT=T_f−T_i>0 in K, senza cambiamenti di fase, lavoro apprezzabile o variazioni macroscopiche di energia cinetica o potenziale. Q>0 è energia entrata come calore: Q=mcΔT. La capacità totale è C=mc in J/K, distinta dal calore specifico per unità di massa. S=qQ è continuo e adimensionale, q>0. A con m=2 g e ΔT=10 K dà S=120. B dà S=480 e usa ΔT=20 K. Quanto vale m_B in g?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "g",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A assorbe quaranta joule: il guadagno è q=3 J⁻¹. La nuova lettura 480 rappresenta 160 J. Con ΔT=20 K, ogni grammo richiede quaranta joule; 160 diviso quaranta restituisce quattro grammi. Prima si interpreta il display, poi si inverte la legge fisica."
+        },
+        {
+          "type": "formula",
+          "text": "Q_A=40\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " q=3\\,\\mathrm{J^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B=480/q"
+        },
+        {
+          "type": "formula",
+          "text": "480/q=160\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " m_B=\\frac{Q_B}{c\\Delta T_B}"
+        },
+        {
+          "type": "formula",
+          "text": " m_B=4\\,\\mathrm g"
+        },
+        {
+          "type": "text",
+          "text": "Dividere direttamente 480 per cΔT darebbe dodici grammi, perché la lettura non è un’energia in joule. Due grammi restituirebbero S=240 nelle condizioni di B, non 480."
+        }
+      ],
+      "hints": [
+        "Usa il riferimento per convertire S in joule.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dividere direttamente 480 per cΔT darebbe dodici grammi, perché la lettura non è un’energia in joule. Due grammi restituirebbero S=240 nelle condizioni di B, non 480.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Calore trasferito e capacità specifica o totale",
+        "Confine del sistema e assenza di fase",
+        "Inverse, medie, taratura e ramo fisico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-sensible-heat-15",
+      "kind": "question",
+      "course": "C3",
+      "section": "Calore sensibile di un corpo omogeneo",
+      "order": 16715,
+      "title": "Guadagno e offset prima della massa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "sensible-heat",
+      "difficulty": 3,
+      "prompt": "Un corpo omogeneo chiuso di massa m>0, espressa in g, ha calore specifico costante c=2 J/(g·K) nell’intervallo considerato. Si riscalda fra stati di equilibrio di temperature assolute positive, con ΔT=T_f−T_i>0 in K, senza cambiamenti di fase, lavoro apprezzabile o variazioni macroscopiche di energia cinetica o potenziale. Q>0 è energia entrata come calore: Q=mcΔT. La capacità totale è C=mc in J/K, distinta dal calore specifico per unità di massa. S=qQ+b è continuo e adimensionale. A: m=2 g, ΔT=10 K, S=81. B: m=4 g, ΔT=20 K, S=321. C: ΔT=10 K, S=161. Quanto vale m_C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4 g",
+          "8 g",
+          "2 g",
+          "161/40 g",
+          "80 g"
+        ],
+        "value": "4 g"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le energie dei riferimenti sono quaranta e centosessanta joule. La differenza delle letture 240 divisa per 120 J dà q=2 J⁻¹; il primo riferimento fissa b=1. Per C, sottratto l’offset, 160 diviso due dà 80 J. Ogni grammo richiede venti joule, dunque la massa è quattro grammi."
+        },
+        {
+          "type": "formula",
+          "text": "q=\\frac{321-81}{(160-40)\\,\\mathrm J}"
+        },
+        {
+          "type": "formula",
+          "text": " q=2\\,\\mathrm{J^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " Q_C=(161-1)/q"
+        },
+        {
+          "type": "formula",
+          "text": " Q_C=80\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " m_C=4\\,\\mathrm g"
+        },
+        {
+          "type": "text",
+          "text": "Otto grammi darebbero S=321 e due grammi S=81. 161/40 g omette l’offset e ricostruisce S=162. Ottanta grammi confonde il numero dell’energia con una massa e darebbe S=3201."
+        }
+      ],
+      "hints": [
+        "Calibra prima q e b; soltanto dopo ricava Q e m.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Otto grammi darebbero S=321 e due grammi S=81. 161/40 g omette l’offset e ricostruisce S=162. Ottanta grammi confonde il numero dell’energia con una massa e darebbe S=3201.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Calore trasferito e capacità specifica o totale",
+        "Confine del sistema e assenza di fase",
+        "Inverse, medie, taratura e ramo fisico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-sensible-heat-16",
+      "kind": "question",
+      "course": "C3",
+      "section": "Calore sensibile di un corpo omogeneo",
+      "order": 16716,
+      "title": "La massa scelta in proporzione all’incremento",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "sensible-heat",
+      "difficulty": 3,
+      "prompt": "Un corpo omogeneo chiuso di massa m>0, espressa in g, ha calore specifico costante c=2 J/(g·K) nell’intervallo considerato. Si riscalda fra stati di equilibrio di temperature assolute positive, con ΔT=T_f−T_i>0 in K, senza cambiamenti di fase, lavoro apprezzabile o variazioni macroscopiche di energia cinetica o potenziale. Q>0 è energia entrata come calore: Q=mcΔT. La capacità totale è C=mc in J/K, distinta dal calore specifico per unità di massa. Fra preparazioni diverse si impone m=dΔT, con d=(1/5) g/K. In ogni singolo riscaldamento la massa resta costante. Se Q=40 J, quanto vale ΔT>0?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "10 K",
+          "−10 K",
+          "100 K",
+          "5 K",
+          "20 K"
+        ],
+        "value": "10 K"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il vincolo lega campioni e incrementi assegnati a prove diverse; non indica ingresso di materia durante il riscaldamento. Sostituendolo otteniamo Q=cd(ΔT)². Il prodotto cd vale due quinti di joule per kelvin quadrato: quaranta diviso due quinti dà cento kelvin quadrati. La radice fisica positiva è dieci kelvin e restituisce m=2 g."
+        },
+        {
+          "type": "formula",
+          "text": "Q=cd(\\Delta T)^2"
+        },
+        {
+          "type": "formula",
+          "text": " cd=\\tfrac25\\,\\mathrm{J/K^2}"
+        },
+        {
+          "type": "formula",
+          "text": " (\\Delta T)^2=100\\,\\mathrm{K^2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta T=10\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " m=2\\,\\mathrm g"
+        },
+        {
+          "type": "text",
+          "text": "La radice negativa renderebbe negativi sia l’incremento sia la massa, fuori dominio. Cento è il numero del quadrato, non dell’incremento. Cinque e venti kelvin produrrebbero rispettivamente 10 J e 160 J sotto il vincolo, non 40 J."
+        }
+      ],
+      "hints": [
+        "Sostituisci il vincolo dimensionato e scegli la radice positiva.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La radice negativa renderebbe negativi sia l’incremento sia la massa, fuori dominio. Cento è il numero del quadrato, non dell’incremento. Cinque e venti kelvin produrrebbero rispettivamente 10 J e 160 J sotto il vincolo, non 40 J.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Calore trasferito e capacità specifica o totale",
+        "Confine del sistema e assenza di fase",
+        "Inverse, medie, taratura e ramo fisico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "6f82f67cadf2ffe5347431327fe9c8fc8f3ad2f83b241d29b9713ccd7148f650",
+      "name": "sensible-heat-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTEyMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgo8dGl0bGUgaWQ9InRpdGxlIj5NYXNzYSwgY2FwYWNpdMOgIGUgY2Fsb3JlIHBlciB1biBhdW1lbnRvIHRlcm1pY288L3RpdGxlPgo8ZGVzYyBpZD0iZGVzYyI+VW4gY29ycG8gZGkgZHVlIGdyYW1taSBjb24gY2Fsb3JlIHNwZWNpZmljbyBkdWUgam91bGUgcGVyIGdyYW1tbyBlIGtlbHZpbiByaWNldmUgcXVhcmFudGEgam91bGUgcGVyIGF1bWVudGFyZSBkaSBkaWVjaSBrZWx2aW4uIEdyYWZpY28gY2Fsb3JlIGluY3JlbWVudG8gdGVybWljbyBlIGJhcnJlIHBlciBsZSBlbmVyZ2llIGRpIGR1ZSBwcm92ZSwgcXVhcmFudGEgZSBjZW50b3Nlc3NhbnRhIGpvdWxlLCBjb24gbWVkaWEgY2VudG8uPC9kZXNjPgo8ZGVmcz48bWFya2VyIGlkPSJhcnJvdyIgbWFya2VyV2lkdGg9IjgiIG1hcmtlckhlaWdodD0iOCIgcmVmWD0iNyIgcmVmWT0iNCIgb3JpZW50PSJhdXRvIj48cGF0aCBkPSJNMCAwTDggNEwwIDhaIiBmaWxsPSIjMTY1YTg3Ii8+PC9tYXJrZXI+PC9kZWZzPgo8cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjExMjAiIHJ4PSIxMiIgZmlsbD0iI2Y4ZmFmYyIvPgo8ZyBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZmlsbD0iIzE0MjQzYSIgZm9udC1zaXplPSIyMCI+Cjx0ZXh0IHg9IjMyIiB5PSI0MiIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9ImJvbGQiPjEgwrcgTGEgY2FwYWNpdMOgIGRlbGzigJlpbnRlcm8gY29ycG88L3RleHQ+CjxyZWN0IHg9IjI1MCIgeT0iOTUiIHdpZHRoPSIyNDAiIGhlaWdodD0iMTMwIiByeD0iOCIgZmlsbD0iI2RjZWVmNiIgc3Ryb2tlPSIjMTQyNDNhIiBzdHJva2Utd2lkdGg9IjIiLz4KPHBhdGggZD0iTTY1IDE2MEgyMzUiIHN0cm9rZT0iIzE2NWE4NyIgc3Ryb2tlLXdpZHRoPSI0IiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPgo8dGV4dCB4PSI2NSIgeT0iMTM1Ij5RID0gNDAgSjwvdGV4dD48dGV4dCB4PSIyNzQiIHk9IjEzMiI+bSA9IDIgZzwvdGV4dD48dGV4dCB4PSIyNzQiIHk9IjE2NiI+YyA9IDIgSi8oZ8K3Syk8L3RleHQ+PHRleHQgeD0iMjc0IiB5PSIyMDAiPkMgPSBtYyA9IDQgSi9LPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iMjcwIj7OlFQgPSAxMCBLIDsgUSA9IEMgzpRUID0gNDAgSjwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjMwNSIgZm9udC1zaXplPSIxOCI+RnJlY2NpYSBzY2hlbWF0aWNhOiBlbmVyZ2lhIHRyYXNmZXJpdGEsIG5vbiBtYXRlcmlhLjwvdGV4dD4KPHBhdGggZD0iTTMyIDMzN0g2MDgiIHN0cm9rZT0iIzliYWJiYyIvPgo8dGV4dCB4PSIzMiIgeT0iMzgxIiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iYm9sZCI+MiDCtyBTdGVzc2EgbWFzc2EsIHVuIGdyYWZpY28gbGluZWFyZTwvdGV4dD4KPGcgc3Ryb2tlPSIjMTQyNDNhIiBzdHJva2Utd2lkdGg9IjIiIGZpbGw9Im5vbmUiPjxwYXRoIGQ9Ik0xMTAgNjkwVjQyMU0xMTAgNjkwSDQ3MCIvPjxwYXRoIGQ9Ik0yNjAgNjg1VjY5NU00MTAgNjg1VjY5NU0xMDUgNTcwSDExNU0xMDUgNDUwSDExNSIvPjwvZz4KPHBhdGggZD0iTTExMCA2OTBMNDEwIDQ1MCIgc3Ryb2tlPSIjMTY1YTg3IiBzdHJva2Utd2lkdGg9IjQiLz4KPHBhdGggZD0iTTI2MCA2OTBWNTcwSDExME00MTAgNjkwVjQ1MEgxMTAiIHN0cm9rZT0iIzdkOGI5ZSIgc3Ryb2tlLWRhc2hhcnJheT0iNSA1IiBmaWxsPSJub25lIi8+CjxnIGZpbGw9IiMxNjVhODciPjxjaXJjbGUgY3g9IjI2MCIgY3k9IjU3MCIgcj0iNSIvPjxjaXJjbGUgY3g9IjQxMCIgY3k9IjQ1MCIgcj0iNSIvPjwvZz4KPHRleHQgeD0iNzIiIHk9IjY5OSI+MDwvdGV4dD48dGV4dCB4PSI2NiIgeT0iNTc3Ij40MDwvdGV4dD48dGV4dCB4PSI2NiIgeT0iNDU3Ij44MDwvdGV4dD48dGV4dCB4PSIyNDgiIHk9IjcyMCI+MTA8L3RleHQ+PHRleHQgeD0iMzk4IiB5PSI3MjAiPjIwPC90ZXh0Pjx0ZXh0IHg9IjQ4MCIgeT0iNjk2Ij7OlFQvSzwvdGV4dD48dGV4dCB4PSI2NyIgeT0iNDE2Ij5RL0o8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI3NTgiIGZvbnQtc2l6ZT0iMTgiPlNjYWxlOiAxNSBweC9LIGUgMyBweC9KOyBDID0gNCBKL0sgY29zdGFudGUuPC90ZXh0Pgo8cGF0aCBkPSJNMzIgNzkwSDYwOCIgc3Ryb2tlPSIjOWJhYmJjIi8+Cjx0ZXh0IHg9IjMyIiB5PSI4MzQiIGZvbnQtc2l6ZT0iMjUiIGZvbnQtd2VpZ2h0PSJib2xkIj4zIMK3IExhIG1lZGlhIGRlbGxlIGR1ZSBlbmVyZ2llPC90ZXh0Pgo8cGF0aCBkPSJNMTQ1IDg1NFYxMDQwIiBzdHJva2U9IiMxNDI0M2EiIHN0cm9rZS13aWR0aD0iMiIvPgo8cmVjdCB4PSIxNDUiIHk9Ijg3MCIgd2lkdGg9IjgwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjMTY1YTg3Ii8+PHJlY3QgeD0iMTQ1IiB5PSI5MzAiIHdpZHRoPSIzMjAiIGhlaWdodD0iMzAiIGZpbGw9IiMxNjVhODciLz48cmVjdCB4PSIxNDUiIHk9Ijk5MCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIzMCIgZmlsbD0iIzI4NjY0ZCIvPgo8dGV4dCB4PSI1MCIgeT0iODkzIj5BPC90ZXh0Pjx0ZXh0IHg9IjI0MiIgeT0iODkzIj40MCBKPC90ZXh0Pjx0ZXh0IHg9IjUwIiB5PSI5NTMiPkI8L3RleHQ+PHRleHQgeD0iNDgyIiB5PSI5NTMiPjE2MCBKPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSIxMDEzIj5NZWRpYTwvdGV4dD48dGV4dCB4PSIzNjIiIHk9IjEwMTMiPjEwMCBKPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iMTA3MCIgZm9udC1zaXplPSIxOCI+QTogMiBnLCAxMCBLOyBCOiA0IGcsIDIwIEsuIEJhcnJlIGEgMiBweC9KLjwvdGV4dD4KPC9nPjwvc3ZnPgo="
+    }
+  ]
+}

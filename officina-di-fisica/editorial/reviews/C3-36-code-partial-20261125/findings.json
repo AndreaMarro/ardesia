@@ -1,0 +1,120 @@
+{
+  "CodeGeometryFailureIds": [
+    "SIM-C3-L01-04",
+    "SIM-C3-L09-01"
+  ],
+  "humanApproval": "NOT_RUN",
+  "limits": "No browser, native/fallback raster, full glyph/rod/label projection or learner calibration performed. No source edits. Root is separate future author.",
+  "localOnly": true,
+  "manualityFailureIds": [],
+  "meshSupplementSha256": "4c079bd5a19b5a69ed0e0416fd1b95a81d99d80def88177ba5bc68355bad789d",
+  "overallAccepted": false,
+  "phase": "CODE_GEOMETRY_NEGATIVES_NOT_UI",
+  "publicationAction": "NONE",
+  "records": [
+    {
+      "UI_Observed": false,
+      "activityCredit": 0,
+      "id": "SIM-C3-L01-04",
+      "observations": [
+        {
+          "bulbCenter": [
+            0,
+            0.39,
+            0
+          ],
+          "bulbRadius": 0.27,
+          "code": "THERMOMETER_TOP_CAP_CONTAINED",
+          "input": -50.0,
+          "limit": "Opaque3Dgeometriccontainment; noactualUI/fallbackpixelsobserved.",
+          "rodRadius": 0.085,
+          "tip": [
+            0,
+            0.55,
+            0
+          ]
+        },
+        {
+          "bulbCenter": [
+            0,
+            0.39,
+            0
+          ],
+          "bulbRadius": 0.27,
+          "code": "THERMOMETER_TOP_CAP_CONTAINED",
+          "input": -45.0,
+          "limit": "Opaque3Dgeometriccontainment; noactualUI/fallbackpixelsobserved.",
+          "rodRadius": 0.085,
+          "tip": [
+            0,
+            0.6073333333333334,
+            0
+          ]
+        }
+      ],
+      "sourceSha256": "cc9401c0ce4d31fa48a00c808f720213753ffae05584dc76107aae82adfa963e",
+      "sourceVersion": 1
+    },
+    {
+      "UI_Observed": false,
+      "activityCredit": 0,
+      "id": "SIM-C3-L09-01",
+      "observations": [
+        {
+          "a": [
+            -0.37750000000000006,
+            1,
+            0
+          ],
+          "boxCenter": [
+            -2,
+            1.05,
+            0
+          ],
+          "boxSize": [
+            0.68,
+            1.45,
+            0.92
+          ],
+          "code": "ARROW_TIP_INSIDE_OPAQUE_BOX",
+          "input": 75.0,
+          "limit": "Tipinsideonly; NOT wholeconecontainment orfallback/nativeUIclaim.",
+          "tip": [
+            -1.6825,
+            1,
+            0
+          ]
+        },
+        {
+          "a": [
+            -0.3340000000000001,
+            1,
+            0
+          ],
+          "boxCenter": [
+            -2,
+            1.05,
+            0
+          ],
+          "boxSize": [
+            0.68,
+            1.45,
+            0.92
+          ],
+          "code": "ARROW_TIP_INSIDE_OPAQUE_BOX",
+          "input": 80.0,
+          "limit": "Tipinsideonly; NOT wholeconecontainment orfallback/nativeUIclaim.",
+          "tip": [
+            -1.726,
+            1,
+            0
+          ]
+        }
+      ],
+      "sourceSha256": "265cd7694ea6d28e08ec88e09887f74d6d9f44b79bcdbb15062b751aef9f5920",
+      "sourceVersion": 1
+    }
+  ],
+  "runtimeSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+  "sourceScientificFailureIds": []
+}

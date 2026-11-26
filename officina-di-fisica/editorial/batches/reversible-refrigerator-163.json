@@ -1,0 +1,1243 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u5-reversible-refrigerator-01",
+      "kind": "question",
+      "course": "C3",
+      "section": "Frigorifero reversibile fra due sorgenti",
+      "order": 16301,
+      "title": "Il calore utile viene dalla sorgente fredda",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L06",
+        "C3-L07",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "reversible-refrigerator",
+      "difficulty": 1,
+      "prompt": "Un frigorifero ideale reversibile opera ciclicamente fra due sorgenti a temperature assolute costanti T_h>T_c>0, in K. Q_c>0 è il calore prelevato dalla sorgente fredda, W_in>0 il lavoro ricevuto e Q_h=Q_c+W_in il calore ceduto alla calda. Il coefficiente frigorifero è C=Q_c/W_in=T_c/(T_h−T_c), adimensionale; non è il rendimento di un motore né il coefficiente di una pompa di calore. Con T_h=400 K e T_c=200 K, quanto vale C?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La reversibilità impone Q_h/Q_c=T_h/T_c=2. Se si prelevano venti joule dalla sorgente fredda, se ne devono cedere quaranta alla calda e occorrono venti joule di lavoro. Il rapporto utile è quindi uno. Anche direttamente, la differenza delle temperature è duecento kelvin e coincide con il numeratore."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/a600b714c688bd33f42f6fc85cfc7db57cba8b15b22a722abdf46ed0aae60319",
+          "text": "Tre letture del frigorifero reversibile: i flussi di un ciclo rispettano Q_h=Q_c+W_in, con frecce schematiche; i tre trasferimenti sono poi confrontati con barre a 5 px/J; l’ultimo pannello confronta C=1, C=3/2 e la loro media C=5/4 a 200 px per unità di coefficiente. Il lavoro è ricevuto, il calore utile è quello prelevato alla sorgente fredda."
+        },
+        {
+          "type": "formula",
+          "text": "Q_h/Q_c=T_h/T_c"
+        },
+        {
+          "type": "formula",
+          "text": " W_{\\rm in}=Q_h-Q_c"
+        },
+        {
+          "type": "formula",
+          "text": " C=\\frac{T_c}{T_h-T_c}"
+        },
+        {
+          "type": "formula",
+          "text": " C=\\frac{200}{400-200}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{200}{400-200}=1"
+        },
+        {
+          "type": "text",
+          "text": "Due è qui il coefficiente della pompa di calore Q_h/W_in, che conta anche il lavoro entrato. Un mezzo sarebbe il rendimento del motore reversibile fra queste temperature, un dispositivo con uno scopo diverso. C non misura una frazione di energia trasformata in lavoro."
+        }
+      ],
+      "hints": [
+        "Sottrai le temperature assolute e usa al numeratore quella fredda.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due è qui il coefficiente della pompa di calore Q_h/W_in, che conta anche il lavoro entrato. Un mezzo sarebbe il rendimento del motore reversibile fra queste temperature, un dispositivo con uno scopo diverso. C non misura una frazione di energia trasformata in lavoro.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Bilancio ciclico e coefficiente frigorifero",
+        "Temperature assolute e dominio fisico",
+        "Inverse, medie, taratura e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-reversible-refrigerator-02",
+      "kind": "question",
+      "course": "C3",
+      "section": "Frigorifero reversibile fra due sorgenti",
+      "order": 16302,
+      "title": "Due energie nello stesso rapporto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L06",
+        "C3-L07",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "reversible-refrigerator",
+      "difficulty": 1,
+      "prompt": "Un frigorifero ideale reversibile opera ciclicamente fra due sorgenti a temperature assolute costanti T_h>T_c>0, in K. Q_c>0 è il calore prelevato dalla sorgente fredda, W_in>0 il lavoro ricevuto e Q_h=Q_c+W_in il calore ceduto alla calda. Il coefficiente frigorifero è C=Q_c/W_in=T_c/(T_h−T_c), adimensionale; non è il rendimento di un motore né il coefficiente di una pompa di calore. Quale unità è compatibile con C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1",
+          "J",
+          "K",
+          "J/K",
+          "W"
+        ],
+        "value": "1"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Q_c e W_in sono entrambi energie, misurate nella stessa unità. I joule si cancellano. La forma termica conferma il risultato: al numeratore e al denominatore vi sono kelvin. Un numero puro può essere maggiore di uno perché si trasferisce calore usando lavoro, non si converte in lavoro tutto quel calore."
+        },
+        {
+          "type": "formula",
+          "text": "[C]=\\frac{\\mathrm J}{\\mathrm J}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{\\mathrm J}{\\mathrm J}=1"
+        },
+        {
+          "type": "formula",
+          "text": " [C]=\\frac{\\mathrm K}{\\mathrm K}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{\\mathrm K}{\\mathrm K}=1"
+        },
+        {
+          "type": "text",
+          "text": "J misura un singolo trasferimento energetico; K una temperatura. J/K sarebbe una capacità termica, W un trasferimento per unità di tempo. Nessuna di queste unità rimane nel quoziente richiesto."
+        }
+      ],
+      "hints": [
+        "Cancella l’unità delle due energie.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "J misura un singolo trasferimento energetico; K una temperatura. J/K sarebbe una capacità termica, W un trasferimento per unità di tempo. Nessuna di queste unità rimane nel quoziente richiesto.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Bilancio ciclico e coefficiente frigorifero",
+        "Temperature assolute e dominio fisico",
+        "Inverse, medie, taratura e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-reversible-refrigerator-03",
+      "kind": "question",
+      "course": "C3",
+      "section": "Frigorifero reversibile fra due sorgenti",
+      "order": 16303,
+      "title": "Bilancio del ciclo e reversibilità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L06",
+        "C3-L07",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "reversible-refrigerator",
+      "difficulty": 1,
+      "prompt": "Un frigorifero ideale reversibile opera ciclicamente fra due sorgenti a temperature assolute costanti T_h>T_c>0, in K. Q_c>0 è il calore prelevato dalla sorgente fredda, W_in>0 il lavoro ricevuto e Q_h=Q_c+W_in il calore ceduto alla calda. Il coefficiente frigorifero è C=Q_c/W_in=T_c/(T_h−T_c), adimensionale; non è il rendimento di un motore né il coefficiente di una pompa di calore. Quale relazione esprime il coefficiente frigorifero?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "C = T_c / (T_h − T_c)",
+          "C = T_h / (T_h − T_c)",
+          "C = 1 − T_c / T_h",
+          "C = (T_h − T_c) / T_c",
+          "C = T_c / T_h"
+        ],
+        "value": "C = T_c / (T_h − T_c)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sul ciclo la variazione di energia interna è nulla. Il lavoro ricevuto copre la differenza fra calore scaricato e calore sottratto alla sorgente fredda. Dividendo il bilancio per Q_c e usando il rapporto reversibile dei calori otteniamo l’inverso di T_h/T_c−1, ossia T_c/(T_h−T_c). Le temperature sono assolute: i loro rapporti non si calcolano in gradi Celsius."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/a600b714c688bd33f42f6fc85cfc7db57cba8b15b22a722abdf46ed0aae60319",
+          "text": "Il diagramma distingue sorgente fredda, macchina ciclica e sorgente calda. Le frecce indicano trasferimenti, non energia contenuta nel fluido. Il lavoro entrante completa il bilancio; le barre, tutte con origine comune e scala dichiarata, rendono esplicite sia la conservazione dell’energia sia la media di due coefficienti."
+        },
+        {
+          "type": "formula",
+          "text": "W_{\\rm in}=Q_h-Q_c"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{W_{\\rm in}}{Q_c}=\\frac{T_h}{T_c}-1"
+        },
+        {
+          "type": "formula",
+          "text": " C=\\frac{T_c}{T_h-T_c}"
+        },
+        {
+          "type": "text",
+          "text": "T_h al numeratore riguarda la pompa di calore; 1−T_c/T_h è il rendimento del motore. Il quoziente (T_h−T_c)/T_c è il lavoro necessario per unità di calore freddo, cioè 1/C. T_c/T_h confronta i calori, senza sottrarre il lavoro."
+        }
+      ],
+      "hints": [
+        "Parti dal bilancio energetico del ciclo e dal rapporto reversibile dei calori.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "T_h al numeratore riguarda la pompa di calore; 1−T_c/T_h è il rendimento del motore. Il quoziente (T_h−T_c)/T_c è il lavoro necessario per unità di calore freddo, cioè 1/C. T_c/T_h confronta i calori, senza sottrarre il lavoro.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Bilancio ciclico e coefficiente frigorifero",
+        "Temperature assolute e dominio fisico",
+        "Inverse, medie, taratura e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-reversible-refrigerator-04",
+      "kind": "question",
+      "course": "C3",
+      "section": "Frigorifero reversibile fra due sorgenti",
+      "order": 16304,
+      "title": "Una sorgente calda più calda",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L06",
+        "C3-L07",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "reversible-refrigerator",
+      "difficulty": 1,
+      "prompt": "Un frigorifero ideale reversibile opera ciclicamente fra due sorgenti a temperature assolute costanti T_h>T_c>0, in K. Q_c>0 è il calore prelevato dalla sorgente fredda, W_in>0 il lavoro ricevuto e Q_h=Q_c+W_in il calore ceduto alla calda. Il coefficiente frigorifero è C=Q_c/W_in=T_c/(T_h−T_c), adimensionale; non è il rendimento di un motore né il coefficiente di una pompa di calore. T_c resta 200 K; T_h passa da 400 a 500 K fra prove separate. Come cambia C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 1 a 2/3: diminuisce",
+          "Da 1 a 3/2: aumenta",
+          "Resta 1",
+          "Da 1 a 5/4: aumenta",
+          "Diventa negativo"
+        ],
+        "value": "Da 1 a 2/3: diminuisce"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La temperatura fredda è invariata, mentre il salto da superare passa da duecento a trecento kelvin. A parità di calore prelevato serve più lavoro, perciò il coefficiente diminuisce. Duecento su trecento si riduce a due terzi, senza approssimazioni."
+        },
+        {
+          "type": "formula",
+          "text": "C_A=\\frac{200}{400-200}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{200}{400-200}=1"
+        },
+        {
+          "type": "formula",
+          "text": " C_B=\\frac{200}{500-200}"
+        },
+        {
+          "type": "formula",
+          "text": " C_B=\\frac23"
+        },
+        {
+          "type": "text",
+          "text": "Tre mezzi inverte il coefficiente B; cinque quarti confronta soltanto le temperature calde e ignora la differenza al denominatore. Il coefficiente resta positivo perché T_h>T_c."
+        }
+      ],
+      "hints": [
+        "Confronta i due salti termici mantenendo fisso il numeratore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Tre mezzi inverte il coefficiente B; cinque quarti confronta soltanto le temperature calde e ignora la differenza al denominatore. Il coefficiente resta positivo perché T_h>T_c.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Bilancio ciclico e coefficiente frigorifero",
+        "Temperature assolute e dominio fisico",
+        "Inverse, medie, taratura e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-reversible-refrigerator-05",
+      "kind": "question",
+      "course": "C3",
+      "section": "Frigorifero reversibile fra due sorgenti",
+      "order": 16305,
+      "title": "Ricostruire la temperatura calda",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L06",
+        "C3-L07",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "reversible-refrigerator",
+      "difficulty": 2,
+      "prompt": "Un frigorifero ideale reversibile opera ciclicamente fra due sorgenti a temperature assolute costanti T_h>T_c>0, in K. Q_c>0 è il calore prelevato dalla sorgente fredda, W_in>0 il lavoro ricevuto e Q_h=Q_c+W_in il calore ceduto alla calda. Il coefficiente frigorifero è C=Q_c/W_in=T_c/(T_h−T_c), adimensionale; non è il rendimento di un motore né il coefficiente di una pompa di calore. Si misura C=1 con T_c=200 K. Quanto vale T_h in K?",
+      "answer": {
+        "type": "numeric",
+        "value": 400,
+        "unit": "K",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Un coefficiente pari a uno richiede che il salto termico sia uguale alla temperatura fredda. A duecento kelvin di salto aggiungiamo i duecento kelvin della sorgente fredda: la calda è a quattrocento kelvin. La temperatura ottenuta è maggiore di T_c, come deve essere."
+        },
+        {
+          "type": "formula",
+          "text": "T_h-T_c=\\frac{T_c}{C}"
+        },
+        {
+          "type": "formula",
+          "text": " T_h=T_c+\\frac{T_c}{C}"
+        },
+        {
+          "type": "formula",
+          "text": " T_h=(200+200)\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " T_h=400\\,\\mathrm K"
+        },
+        {
+          "type": "text",
+          "text": "Duecento K annullerebbe il salto e non darebbe C=1. Sottrarre il salto darebbe zero, fuori dominio; il reciproco di C non sostituisce una temperatura."
+        }
+      ],
+      "hints": [
+        "Prima ricava il salto T_c/C, poi aggiungilo alla temperatura fredda.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Duecento K annullerebbe il salto e non darebbe C=1. Sottrarre il salto darebbe zero, fuori dominio; il reciproco di C non sostituisce una temperatura.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Bilancio ciclico e coefficiente frigorifero",
+        "Temperature assolute e dominio fisico",
+        "Inverse, medie, taratura e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-reversible-refrigerator-06",
+      "kind": "question",
+      "course": "C3",
+      "section": "Frigorifero reversibile fra due sorgenti",
+      "order": 16306,
+      "title": "Ricostruire la temperatura fredda",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L06",
+        "C3-L07",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "reversible-refrigerator",
+      "difficulty": 2,
+      "prompt": "Un frigorifero ideale reversibile opera ciclicamente fra due sorgenti a temperature assolute costanti T_h>T_c>0, in K. Q_c>0 è il calore prelevato dalla sorgente fredda, W_in>0 il lavoro ricevuto e Q_h=Q_c+W_in il calore ceduto alla calda. Il coefficiente frigorifero è C=Q_c/W_in=T_c/(T_h−T_c), adimensionale; non è il rendimento di un motore né il coefficiente di una pompa di calore. C=1 e T_h=400 K. Quanto vale T_c in K?",
+      "answer": {
+        "type": "numeric",
+        "value": 200,
+        "unit": "K",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’incognita compare sia al numeratore sia nella differenza. Moltiplichiamo per il denominatore e riuniamo i termini contenenti T_c. Con C=1, quattrocento è due volte la temperatura fredda; segue duecento kelvin. Il risultato soddisfa entrambi i vincoli di positività e ordinamento."
+        },
+        {
+          "type": "formula",
+          "text": "C(T_h-T_c)=T_c"
+        },
+        {
+          "type": "formula",
+          "text": " CT_h=(1+C)T_c"
+        },
+        {
+          "type": "formula",
+          "text": " T_c=\\frac{CT_h}{1+C}"
+        },
+        {
+          "type": "formula",
+          "text": " T_c=200\\,\\mathrm K"
+        },
+        {
+          "type": "text",
+          "text": "Usare T_h/C darebbe quattrocento K e salto nullo. Dividere per 1−C sarebbe qui impossibile e deriva dal portare il termine nel membro sbagliato."
+        }
+      ],
+      "hints": [
+        "Sviluppa C(T_h−T_c) prima di raccogliere T_c.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Usare T_h/C darebbe quattrocento K e salto nullo. Dividere per 1−C sarebbe qui impossibile e deriva dal portare il termine nel membro sbagliato.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Bilancio ciclico e coefficiente frigorifero",
+        "Temperature assolute e dominio fisico",
+        "Inverse, medie, taratura e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-reversible-refrigerator-07",
+      "kind": "question",
+      "course": "C3",
+      "section": "Frigorifero reversibile fra due sorgenti",
+      "order": 16307,
+      "title": "Avvicinare la sorgente fredda alla calda",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L06",
+        "C3-L07",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "reversible-refrigerator",
+      "difficulty": 2,
+      "prompt": "Un frigorifero ideale reversibile opera ciclicamente fra due sorgenti a temperature assolute costanti T_h>T_c>0, in K. Q_c>0 è il calore prelevato dalla sorgente fredda, W_in>0 il lavoro ricevuto e Q_h=Q_c+W_in il calore ceduto alla calda. Il coefficiente frigorifero è C=Q_c/W_in=T_c/(T_h−T_c), adimensionale; non è il rendimento di un motore né il coefficiente di una pompa di calore. T_h=400 K in entrambe le prove. A usa T_c=200 K e B usa T_c=300 K. Quanto vale C_B/C_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3",
+          "1/3",
+          "3/2",
+          "2",
+          "1"
+        ],
+        "value": "3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha coefficiente uno. In B il numeratore cresce a trecento e il salto si riduce a cento: il coefficiente diventa tre. Agiscono insieme sia il cambiamento del numeratore sia quello del denominatore; il rapporto finale è tre."
+        },
+        {
+          "type": "formula",
+          "text": "C_A=1"
+        },
+        {
+          "type": "formula",
+          "text": " C_B=\\frac{300}{400-300}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{300}{400-300}=3"
+        },
+        {
+          "type": "formula",
+          "text": " C_B/C_A=3"
+        },
+        {
+          "type": "text",
+          "text": "Tre mezzi considera soltanto il numeratore; due considera soltanto la riduzione del salto. Un terzo scambia B e A, uno ignora entrambi i cambiamenti."
+        }
+      ],
+      "hints": [
+        "Calcola separatamente temperatura fredda e salto in ciascuna prova.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre mezzi considera soltanto il numeratore; due considera soltanto la riduzione del salto. Un terzo scambia B e A, uno ignora entrambi i cambiamenti.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Bilancio ciclico e coefficiente frigorifero",
+        "Temperature assolute e dominio fisico",
+        "Inverse, medie, taratura e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-reversible-refrigerator-08",
+      "kind": "question",
+      "course": "C3",
+      "section": "Frigorifero reversibile fra due sorgenti",
+      "order": 16308,
+      "title": "Lo scarto della proposta due",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L06",
+        "C3-L07",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "reversible-refrigerator",
+      "difficulty": 2,
+      "prompt": "Un frigorifero ideale reversibile opera ciclicamente fra due sorgenti a temperature assolute costanti T_h>T_c>0, in K. Q_c>0 è il calore prelevato dalla sorgente fredda, W_in>0 il lavoro ricevuto e Q_h=Q_c+W_in il calore ceduto alla calda. Il coefficiente frigorifero è C=Q_c/W_in=T_c/(T_h−T_c), adimensionale; non è il rendimento di un motore né il coefficiente di una pompa di calore. Con T_h=400 K e T_c=200 K una proposta dà C=2. Quanto vale proposta meno valore corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1",
+          "−1",
+          "2",
+          "0",
+          "1/2"
+        ],
+        "value": "1"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La legge frigorifera restituisce uno. Due supera questo valore di una unità, quindi lo scarto richiesto è positivo. La proposta corrisponderebbe al coefficiente della pompa di calore, non a quello frigorifero definito nel quesito."
+        },
+        {
+          "type": "formula",
+          "text": "C=1"
+        },
+        {
+          "type": "formula",
+          "text": " e=C_{\\rm proposto}-C"
+        },
+        {
+          "type": "formula",
+          "text": " e=2-1"
+        },
+        {
+          "type": "formula",
+          "text": "2-1=1"
+        },
+        {
+          "type": "text",
+          "text": "Meno uno scambia l’ordine della sottrazione; due ripete la proposta. Zero tratterebbe la proposta come corretta e un mezzo richiama il rendimento del motore anziché lo scarto."
+        }
+      ],
+      "hints": [
+        "Trova C e sottrailo alla proposta, nell’ordine indicato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Meno uno scambia l’ordine della sottrazione; due ripete la proposta. Zero tratterebbe la proposta come corretta e un mezzo richiama il rendimento del motore anziché lo scarto.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Bilancio ciclico e coefficiente frigorifero",
+        "Temperature assolute e dominio fisico",
+        "Inverse, medie, taratura e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-reversible-refrigerator-09",
+      "kind": "question",
+      "course": "C3",
+      "section": "Frigorifero reversibile fra due sorgenti",
+      "order": 16309,
+      "title": "L’inversa mantiene la differenza termica",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L06",
+        "C3-L07",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "reversible-refrigerator",
+      "difficulty": 2,
+      "prompt": "Un frigorifero ideale reversibile opera ciclicamente fra due sorgenti a temperature assolute costanti T_h>T_c>0, in K. Q_c>0 è il calore prelevato dalla sorgente fredda, W_in>0 il lavoro ricevuto e Q_h=Q_c+W_in il calore ceduto alla calda. Il coefficiente frigorifero è C=Q_c/W_in=T_c/(T_h−T_c), adimensionale; non è il rendimento di un motore né il coefficiente di una pompa di calore. Quale formula isola T_h?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "T_h = T_c (1 + 1/C)",
+          "T_h = T_c / C",
+          "T_h = T_c (1 − 1/C)",
+          "T_h = C T_c",
+          "T_h = T_c / (1 + C)"
+        ],
+        "value": "T_h = T_c (1 + 1/C)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplichiamo la definizione per T_h−T_c, dividiamo per C>0 e infine aggiungiamo T_c. Il fattore fra parentesi è maggiore di uno, quindi l’inversa produce automaticamente una temperatura calda maggiore di quella fredda. Per C=1 il fattore è due."
+        },
+        {
+          "type": "formula",
+          "text": "C(T_h-T_c)=T_c"
+        },
+        {
+          "type": "formula",
+          "text": " T_h-T_c=T_c/C"
+        },
+        {
+          "type": "formula",
+          "text": " T_h=T_c(1+1/C)"
+        },
+        {
+          "type": "text",
+          "text": "T_c/C restituisce il solo salto. Il segno meno abbassa T_h rispetto a T_c e viola l’ordine termico. C T_c e T_c/(1+C) non ricostruiscono la legge: con C=1 darebbero rispettivamente T_c e T_c/2."
+        }
+      ],
+      "hints": [
+        "Non confondere il salto con la temperatura calda assoluta.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "T_c/C restituisce il solo salto. Il segno meno abbassa T_h rispetto a T_c e viola l’ordine termico. C T_c e T_c/(1+C) non ricostruiscono la legge: con C=1 darebbero rispettivamente T_c e T_c/2.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Bilancio ciclico e coefficiente frigorifero",
+        "Temperature assolute e dominio fisico",
+        "Inverse, medie, taratura e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-reversible-refrigerator-10",
+      "kind": "question",
+      "course": "C3",
+      "section": "Frigorifero reversibile fra due sorgenti",
+      "order": 16310,
+      "title": "Due riscalamenti, un dominio da conservare",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L06",
+        "C3-L07",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "reversible-refrigerator",
+      "difficulty": 2,
+      "prompt": "Un frigorifero ideale reversibile opera ciclicamente fra due sorgenti a temperature assolute costanti T_h>T_c>0, in K. Q_c>0 è il calore prelevato dalla sorgente fredda, W_in>0 il lavoro ricevuto e Q_h=Q_c+W_in il calore ceduto alla calda. Il coefficiente frigorifero è C=Q_c/W_in=T_c/(T_h−T_c), adimensionale; non è il rendimento di un motore né il coefficiente di una pompa di calore. A ha T_h,T_c; B ha T_h,B=κ₁T_h e T_c,B=κ₂T_c, con κ₁,κ₂>0 e κ₁T_h>κ₂T_c. Quale rapporto è corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "C_B/C_A = κ₂ (T_h − T_c) / (κ₁ T_h − κ₂ T_c)",
+          "C_B/C_A = κ₂ / κ₁",
+          "C_B/C_A = κ₁ / κ₂",
+          "C_B/C_A = (κ₁ T_h − κ₂ T_c) / (T_h − T_c)",
+          "C_B/C_A = κ₁ κ₂"
+        ],
+        "value": "C_B/C_A = κ₂ (T_h − T_c) / (κ₁ T_h − κ₂ T_c)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La differenza delle temperature di B deve essere costruita prima di dividere. Formiamo C_B e lo moltiplichiamo per l’inverso di C_A; T_c si cancella lasciando κ₂ al numeratore. Se i due fattori sono uguali, si cancellano anche nel salto e il rapporto è uno: una scala termica comune non cambia il coefficiente."
+        },
+        {
+          "type": "formula",
+          "text": "C_A=\\frac{T_c}{T_h-T_c}"
+        },
+        {
+          "type": "formula",
+          "text": " C_B=\\frac{\\kappa_2T_c}{\\kappa_1T_h-\\kappa_2T_c}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{C_B}{C_A}=\\frac{\\kappa_2(T_h-T_c)}{\\kappa_1T_h-\\kappa_2T_c}"
+        },
+        {
+          "type": "text",
+          "text": "κ₂/κ₁ trascura che il denominatore è una differenza, non T_h da solo. Il rapporto dei soli salti omette il numeratore e ha il verso sbagliato. κ₁κ₂ fallisce anche per un riscalamento comune diverso da uno."
+        }
+      ],
+      "hints": [
+        "Scrivi entrambi i coefficienti completi; controlla poi il caso κ₁=κ₂.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "κ₂/κ₁ trascura che il denominatore è una differenza, non T_h da solo. Il rapporto dei soli salti omette il numeratore e ha il verso sbagliato. κ₁κ₂ fallisce anche per un riscalamento comune diverso da uno.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Bilancio ciclico e coefficiente frigorifero",
+        "Temperature assolute e dominio fisico",
+        "Inverse, medie, taratura e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-reversible-refrigerator-11",
+      "kind": "question",
+      "course": "C3",
+      "section": "Frigorifero reversibile fra due sorgenti",
+      "order": 16311,
+      "title": "Cambiano entrambe le sorgenti",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L06",
+        "C3-L07",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "reversible-refrigerator",
+      "difficulty": 2,
+      "prompt": "Un frigorifero ideale reversibile opera ciclicamente fra due sorgenti a temperature assolute costanti T_h>T_c>0, in K. Q_c>0 è il calore prelevato dalla sorgente fredda, W_in>0 il lavoro ricevuto e Q_h=Q_c+W_in il calore ceduto alla calda. Il coefficiente frigorifero è C=Q_c/W_in=T_c/(T_h−T_c), adimensionale; non è il rendimento di un motore né il coefficiente di una pompa di calore. A: T_h=400 K, T_c=200 K. B: T_h=500 K, T_c=300 K. Quanto vale C_B/C_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/2",
+          "2/3",
+          "5/4",
+          "1",
+          "5/2"
+        ],
+        "value": "3/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Entrambi i salti sono duecento kelvin. Il coefficiente di A è uno e quello di B è trecento su duecento, cioè tre mezzi. Qui il salto comune consente di confrontare direttamente le temperature fredde; è una proprietà di questi dati, non una regola per due prove qualsiasi."
+        },
+        {
+          "type": "formula",
+          "text": "C_A=200/200"
+        },
+        {
+          "type": "formula",
+          "text": "200/200=1"
+        },
+        {
+          "type": "formula",
+          "text": " C_B=300/200"
+        },
+        {
+          "type": "formula",
+          "text": "300/200=3/2"
+        },
+        {
+          "type": "formula",
+          "text": " C_B/C_A=3/2"
+        },
+        {
+          "type": "text",
+          "text": "Due terzi inverte il confronto. Cinque quarti confronta le temperature calde anziché i coefficienti, uno guarda soltanto i salti comuni e cinque mezzi usa T_h,B al numeratore."
+        }
+      ],
+      "hints": [
+        "Ricava i due salti prima di semplificare il rapporto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due terzi inverte il confronto. Cinque quarti confronta le temperature calde anziché i coefficienti, uno guarda soltanto i salti comuni e cinque mezzi usa T_h,B al numeratore.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Bilancio ciclico e coefficiente frigorifero",
+        "Temperature assolute e dominio fisico",
+        "Inverse, medie, taratura e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-reversible-refrigerator-12",
+      "kind": "question",
+      "course": "C3",
+      "section": "Frigorifero reversibile fra due sorgenti",
+      "order": 16312,
+      "title": "Media di due coefficienti misurati",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L06",
+        "C3-L07",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "reversible-refrigerator",
+      "difficulty": 2,
+      "prompt": "Un frigorifero ideale reversibile opera ciclicamente fra due sorgenti a temperature assolute costanti T_h>T_c>0, in K. Q_c>0 è il calore prelevato dalla sorgente fredda, W_in>0 il lavoro ricevuto e Q_h=Q_c+W_in il calore ceduto alla calda. Il coefficiente frigorifero è C=Q_c/W_in=T_c/(T_h−T_c), adimensionale; non è il rendimento di un motore né il coefficiente di una pompa di calore. A usa 400 K e 200 K; B usa 500 K e 300 K, nell’ordine calda e fredda. Qual è la media aritmetica dei due C con uguale peso?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "5/4",
+          "5/2",
+          "3/4",
+          "1",
+          "3/2"
+        ],
+        "value": "5/4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le letture sono uno e tre mezzi. Sommiamo ottenendo cinque mezzi e dividiamo ancora per due: cinque quarti. Le temperature medie sarebbero 450 K e 250 K; qui danno lo stesso risultato perché le due prove hanno uguale salto termico. Non è una proprietà generale: fra 400/200 K e 400/300 K la media dei coefficienti è due, mentre gli ingressi medi danno cinque terzi."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline C=\\frac{1+3/2}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline C=\\frac54"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{250}{450-250}=\\frac54"
+        },
+        {
+          "type": "text",
+          "text": "Cinque mezzi è la somma, tre quarti dimezza solo la seconda lettura. Uno e tre mezzi ripetono un singolo riferimento, senza dare peso uguale a entrambi. La coincidenza con gli ingressi medi va motivata, non generalizzata."
+        }
+      ],
+      "hints": [
+        "Calcola prima le due uscite; poi fai somma e metà.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Cinque mezzi è la somma, tre quarti dimezza solo la seconda lettura. Uno e tre mezzi ripetono un singolo riferimento, senza dare peso uguale a entrambi. La coincidenza con gli ingressi medi va motivata, non generalizzata.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Bilancio ciclico e coefficiente frigorifero",
+        "Temperature assolute e dominio fisico",
+        "Inverse, medie, taratura e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-reversible-refrigerator-13",
+      "kind": "question",
+      "course": "C3",
+      "section": "Frigorifero reversibile fra due sorgenti",
+      "order": 16313,
+      "title": "La sorgente fredda per un bersaglio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L06",
+        "C3-L07",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "reversible-refrigerator",
+      "difficulty": 3,
+      "prompt": "Un frigorifero ideale reversibile opera ciclicamente fra due sorgenti a temperature assolute costanti T_h>T_c>0, in K. Q_c>0 è il calore prelevato dalla sorgente fredda, W_in>0 il lavoro ricevuto e Q_h=Q_c+W_in il calore ceduto alla calda. Il coefficiente frigorifero è C=Q_c/W_in=T_c/(T_h−T_c), adimensionale; non è il rendimento di un motore né il coefficiente di una pompa di calore. A ha T_h=400 K e T_c=200 K. In B si sceglie T_h,B=500 K e si vuole C_B=(3/2)C_A. Quanto vale T_c,B/T_c,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/2",
+          "2/3",
+          "5/4",
+          "1",
+          "5/2"
+        ],
+        "value": "3/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento dà C_A=1, quindi il bersaglio è tre mezzi. Nell’inversa per la temperatura fredda, (3/2) volte 500 K si divide per 5/2 e restituisce 300 K. Questa temperatura è positiva e inferiore ai 500 K della sorgente calda; rispetto ai 200 K iniziali il rapporto è tre mezzi."
+        },
+        {
+          "type": "formula",
+          "text": "C_B=3/2"
+        },
+        {
+          "type": "formula",
+          "text": " T_{c,B}=\\frac{C_BT_{h,B}}{1+C_B}"
+        },
+        {
+          "type": "formula",
+          "text": " T_{c,B}=300\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " T_{c,B}/T_{c,A}=3/2"
+        },
+        {
+          "type": "text",
+          "text": "Scalare direttamente T_c senza controllare il nuovo salto non costituisce un’inversa. Il rapporto qui coincide con quello dei coefficienti soltanto perché l’inversa porta di nuovo a un salto di 200 K. Due terzi scambia i riferimenti."
+        }
+      ],
+      "hints": [
+        "Isola T_c con il nuovo T_h, poi forma il rapporto richiesto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Scalare direttamente T_c senza controllare il nuovo salto non costituisce un’inversa. Il rapporto qui coincide con quello dei coefficienti soltanto perché l’inversa porta di nuovo a un salto di 200 K. Due terzi scambia i riferimenti.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Bilancio ciclico e coefficiente frigorifero",
+        "Temperature assolute e dominio fisico",
+        "Inverse, medie, taratura e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-reversible-refrigerator-14",
+      "kind": "question",
+      "course": "C3",
+      "section": "Frigorifero reversibile fra due sorgenti",
+      "order": 16314,
+      "title": "Una taratura senza offset",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L06",
+        "C3-L07",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "reversible-refrigerator",
+      "difficulty": 3,
+      "prompt": "Un frigorifero ideale reversibile opera ciclicamente fra due sorgenti a temperature assolute costanti T_h>T_c>0, in K. Q_c>0 è il calore prelevato dalla sorgente fredda, W_in>0 il lavoro ricevuto e Q_h=Q_c+W_in il calore ceduto alla calda. Il coefficiente frigorifero è C=Q_c/W_in=T_c/(T_h−T_c), adimensionale; non è il rendimento di un motore né il coefficiente di una pompa di calore. Un display continuo e adimensionale segue S=qC, q>0 costante. A con T_h=400 K e T_c=200 K dà S=3. B dà S=9/2 con T_c=300 K. Quanto vale T_h,B in K?",
+      "answer": {
+        "type": "numeric",
+        "value": 500,
+        "unit": "K",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nel riferimento C_A=1: la lettura tre fissa q=3, adimensionale. Dividendo nove mezzi per tre ricaviamo C_B=3/2. Il salto è T_c/C=200 K; sommato ai 300 K della sorgente fredda dà 500 K. La lettura del display non va inserita direttamente come coefficiente fisico."
+        },
+        {
+          "type": "formula",
+          "text": "C_A=1"
+        },
+        {
+          "type": "formula",
+          "text": " q=3"
+        },
+        {
+          "type": "formula",
+          "text": " C_B=\\frac{9/2}{3}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{9/2}{3}=3/2"
+        },
+        {
+          "type": "formula",
+          "text": " T_{h,B}=T_{c,B}(1+1/C_B)"
+        },
+        {
+          "type": "formula",
+          "text": " T_{h,B}=500\\,\\mathrm K"
+        },
+        {
+          "type": "text",
+          "text": "Usare C=9/2 trascurerebbe la taratura e darebbe 1100/3 K. Restituire 200 K significherebbe fermarsi al salto e violerebbe T_h>T_c."
+        }
+      ],
+      "hints": [
+        "Converti S in C prima di usare l’inversa termica.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Usare C=9/2 trascurerebbe la taratura e darebbe 1100/3 K. Restituire 200 K significherebbe fermarsi al salto e violerebbe T_h>T_c.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Bilancio ciclico e coefficiente frigorifero",
+        "Temperature assolute e dominio fisico",
+        "Inverse, medie, taratura e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-reversible-refrigerator-15",
+      "kind": "question",
+      "course": "C3",
+      "section": "Frigorifero reversibile fra due sorgenti",
+      "order": 16315,
+      "title": "Guadagno e offset del display",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L06",
+        "C3-L07",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "reversible-refrigerator",
+      "difficulty": 3,
+      "prompt": "Un frigorifero ideale reversibile opera ciclicamente fra due sorgenti a temperature assolute costanti T_h>T_c>0, in K. Q_c>0 è il calore prelevato dalla sorgente fredda, W_in>0 il lavoro ricevuto e Q_h=Q_c+W_in il calore ceduto alla calda. Il coefficiente frigorifero è C=Q_c/W_in=T_c/(T_h−T_c), adimensionale; non è il rendimento di un motore né il coefficiente di una pompa di calore. S=qC+b è continuo e adimensionale. A: 400/200 K, S=3. B: 500/300 K, S=4. C: T_c=200 K, S=7/3. Quanto vale T_h,C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "500 K",
+          "400 K",
+          "300 K",
+          "450 K",
+          "200 K"
+        ],
+        "value": "500 K"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti hanno coefficienti uno e tre mezzi. La differenza delle letture è uno e quella dei coefficienti è un mezzo, dunque q=2; da A segue b=1. Tolto l’offset alla lettura di C, quattro terzi diviso due dà due terzi. Il salto è 200/(2/3)=300 K e la temperatura calda è 500 K."
+        },
+        {
+          "type": "formula",
+          "text": "q=\\frac{4-3}{3/2-1}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{4-3}{3/2-1}=2"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " C_C=\\frac{7/3-1}{2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{7/3-1}{2}=2/3"
+        },
+        {
+          "type": "formula",
+          "text": " T_{h,C}=200(1+3/2)\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " T_{h,C}=500\\,\\mathrm K"
+        },
+        {
+          "type": "text",
+          "text": "400 K produrrebbero C=1 e S=3; 300 K darebbero C=2 e S=5. A 450 K si avrebbe C=4/5 e S=13/5. 200 K annulla il salto e non è ammesso. Queste sostituzioni controllano l’inversa senza approssimare."
+        }
+      ],
+      "hints": [
+        "Determina q dalle differenze, poi b, quindi sottrai l’offset.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "400 K produrrebbero C=1 e S=3; 300 K darebbero C=2 e S=5. A 450 K si avrebbe C=4/5 e S=13/5. 200 K annulla il salto e non è ammesso. Queste sostituzioni controllano l’inversa senza approssimare.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Bilancio ciclico e coefficiente frigorifero",
+        "Temperature assolute e dominio fisico",
+        "Inverse, medie, taratura e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-reversible-refrigerator-16",
+      "kind": "question",
+      "course": "C3",
+      "section": "Frigorifero reversibile fra due sorgenti",
+      "order": 16316,
+      "title": "Un rapporto non fissa la scala assoluta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L06",
+        "C3-L07",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "reversible-refrigerator",
+      "difficulty": 3,
+      "prompt": "Un frigorifero ideale reversibile opera ciclicamente fra due sorgenti a temperature assolute costanti T_h>T_c>0, in K. Q_c>0 è il calore prelevato dalla sorgente fredda, W_in>0 il lavoro ricevuto e Q_h=Q_c+W_in il calore ceduto alla calda. Il coefficiente frigorifero è C=Q_c/W_in=T_c/(T_h−T_c), adimensionale; non è il rendimento di un motore né il coefficiente di una pompa di calore. Si impone T_h=2T_c e si misura C=1. Quante coppie di temperature assolute soddisfano i dati?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Infinite coppie con T_c>0 e T_h=2T_c",
+          "Una sola coppia: 400 K e 200 K",
+          "Nessuna coppia fisica",
+          "Solo la coppia 2 K e 1 K",
+          "Due sole coppie, scambiando le sorgenti"
+        ],
+        "value": "Infinite coppie con T_c>0 e T_h=2T_c"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il vincolo sostituito nella legge cancella completamente T_c: il coefficiente diventa uno per ogni temperatura fredda positiva. Le due informazioni sono quindi ridondanti e non fissano una scala termica assoluta. Le coppie 400/200 K e 600/300 K, per esempio, rispettano entrambe i dati. Occorre un’ulteriore misura indipendente di una temperatura o di un salto."
+        },
+        {
+          "type": "formula",
+          "text": "T_h=2T_c"
+        },
+        {
+          "type": "formula",
+          "text": " C=\\frac{T_c}{2T_c-T_c}"
+        },
+        {
+          "type": "formula",
+          "text": " C=1\\quad(T_c>0)"
+        },
+        {
+          "type": "text",
+          "text": "Le coppie numeriche proposte sono esempi leciti ma non uniche. Scambiare le sorgenti renderebbe T_h<T_c e violerebbe il dominio. Nessuna coppia non è corretto, perché ogni scala positiva costruisce una soluzione."
+        }
+      ],
+      "hints": [
+        "Sostituisci il vincolo e osserva se resta un’incognita da determinare.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Le coppie numeriche proposte sono esempi leciti ma non uniche. Scambiare le sorgenti renderebbe T_h<T_c e violerebbe il dominio. Nessuna coppia non è corretto, perché ogni scala positiva costruisce una soluzione.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Bilancio ciclico e coefficiente frigorifero",
+        "Temperature assolute e dominio fisico",
+        "Inverse, medie, taratura e identificabilità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "a600b714c688bd33f42f6fc85cfc7db57cba8b15b22a722abdf46ed0aae60319",
+      "name": "reversible-refrigerator-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTEzMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgo8dGl0bGUgaWQ9InRpdGxlIj5JbCBmcmlnb3JpZmVybzogZmx1c3NpLCBiaWxhbmNpbyBlIGNvbmZyb250bzwvdGl0bGU+CjxkZXNjIGlkPSJkZXNjIj5UcmUgcGFubmVsbGkuIFVuIGNpY2xvIGZyYSAyMDAgZSA0MDAga2VsdmluIHByZWxldmEgMjAgam91bGUgZGFsbGEgc29yZ2VudGUgZnJlZGRhLCByaWNldmUgMjAgam91bGUgZGkgbGF2b3JvIGUgc2NhcmljYSA0MCBqb3VsZSBhbGxhIGNhbGRhLiBCYXJyZSBlbmVyZ2V0aWNoZSBpbiBzY2FsYSBlIGNvbmZyb250byBkaSBkdWUgY29lZmZpY2llbnRpIGNvbiBsYSBsb3JvIG1lZGlhLjwvZGVzYz4KPGRlZnM+PG1hcmtlciBpZD0iYXJyb3ciIG1hcmtlcldpZHRoPSI4IiBtYXJrZXJIZWlnaHQ9IjgiIHJlZlg9IjciIHJlZlk9IjQiIG9yaWVudD0iYXV0byI+PHBhdGggZD0iTTAgMEw4IDRMMCA4WiIgZmlsbD0iIzE2NWE4NyIvPjwvbWFya2VyPjwvZGVmcz4KPHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxMTMwIiByeD0iMTIiIGZpbGw9IiNmOGZhZmMiLz4KPGcgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZpbGw9IiMxNDI0M2EiIGZvbnQtc2l6ZT0iMjAiPgo8dGV4dCB4PSIzMiIgeT0iNDIiIGZvbnQtc2l6ZT0iMjUiIGZvbnQtd2VpZ2h0PSJib2xkIj4xIMK3IFNwb3N0YXJlIGNhbG9yZSByaWNoaWVkZSBsYXZvcm88L3RleHQ+CjxyZWN0IHg9IjU1IiB5PSIxMDAiIHdpZHRoPSIxNTAiIGhlaWdodD0iNzAiIGZpbGw9IiNkY2VlZjYiIHN0cm9rZT0iIzE0MjQzYSIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iNjkiIHk9IjEyOSI+RnJlZGRhPC90ZXh0Pjx0ZXh0IHg9IjY5IiB5PSIxNTUiPlTqnIAgPSAyMDAgSzwvdGV4dD4KPHJlY3QgeD0iMjcwIiB5PSIxMDAiIHdpZHRoPSIxMTAiIGhlaWdodD0iNzAiIHJ4PSI4IiBmaWxsPSIjZTNlOWVmIiBzdHJva2U9IiMxNDI0M2EiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjI4NSIgeT0iMTQyIj5DaWNsbzwvdGV4dD4KPHJlY3QgeD0iNDQ1IiB5PSIxMDAiIHdpZHRoPSIxNTAiIGhlaWdodD0iNzAiIGZpbGw9IiNmOWU0Y2MiIHN0cm9rZT0iIzE0MjQzYSIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iNDYwIiB5PSIxMjkiPkNhbGRhPC90ZXh0Pjx0ZXh0IHg9IjQ2MCIgeT0iMTU1Ij5U4oKVID0gNDAwIEs8L3RleHQ+CjxnIHN0cm9rZT0iIzE2NWE4NyIgc3Ryb2tlLXdpZHRoPSI0IiBmaWxsPSJub25lIj48cGF0aCBkPSJNMjEwIDEzNUgyNjIiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PHBhdGggZD0iTTM4NiAxMzVINDM3IiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjxwYXRoIGQ9Ik0zMjUgMjYwVjE4MCIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48L2c+Cjx0ZXh0IHg9IjcyIiB5PSIyMDYiPlHqnIAgPSAyMCBKPC90ZXh0Pjx0ZXh0IHg9IjQ1NCIgeT0iMjA2Ij5R4oKVID0gNDAgSjwvdGV4dD48dGV4dCB4PSIzNTIiIHk9IjI0NSI+V+G1ouKCmSA9IDIwIEo8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIyOTkiPlHigpUgPSBR6pyAICsgV+G1ouKCmSA7IEMgPSBR6pyAIC8gV+G1ouKCmSA9IDE8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIzMzEiIGZvbnQtc2l6ZT0iMTciPkZyZWNjZSBzY2hlbWF0aWNoZTsgUSBlIFcgc29ubyB0cmFzZmVyaW1lbnRpLjwvdGV4dD4KPHBhdGggZD0iTTMyIDM1OUg2MDgiIHN0cm9rZT0iIzliYWJiYyIvPgo8dGV4dCB4PSIzMiIgeT0iNDAzIiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iYm9sZCI+MiDCtyBJbCBiaWxhbmNpbyBpbiBqb3VsZTwvdGV4dD4KPHBhdGggZD0iTTE2MCA0MzNWNjUwIiBzdHJva2U9IiMxNDI0M2EiIHN0cm9rZS13aWR0aD0iMiIvPgo8ZyBmaWxsPSIjMTY1YTg3Ij48cmVjdCB4PSIxNjAiIHk9IjQ1MCIgd2lkdGg9IjEwMCIgaGVpZ2h0PSIzMiIvPjxyZWN0IHg9IjE2MCIgeT0iNTE1IiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjMyIi8+PC9nPjxyZWN0IHg9IjE2MCIgeT0iNTgwIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjMyIiBmaWxsPSIjYWI1YjIyIi8+Cjx0ZXh0IHg9IjU1IiB5PSI0NzQiPlHqnIA8L3RleHQ+PHRleHQgeD0iMjc2IiB5PSI0NzQiPjIwIEo8L3RleHQ+PHRleHQgeD0iNTUiIHk9IjUzOSI+V+G1ouKCmTwvdGV4dD48dGV4dCB4PSIyNzYiIHk9IjUzOSI+MjAgSjwvdGV4dD48dGV4dCB4PSI1NSIgeT0iNjA0Ij5R4oKVPC90ZXh0Pjx0ZXh0IHg9IjM3NiIgeT0iNjA0Ij40MCBKPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iNjc2IiBmb250LXNpemU9IjE4Ij5PcmlnaW5lIGNvbXVuZSBhIHggPSAxNjA7IHNjYWxhIDUgcHgvSi48L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI3MDgiIGZvbnQtc2l6ZT0iMTgiPkxhIG1hY2NoaW5hIHRvcm5hIGFsbG8gc3RhdG8gaW5pemlhbGU6IM6UVSA9IDAuPC90ZXh0Pgo8cGF0aCBkPSJNMzIgNzM4SDYwOCIgc3Ryb2tlPSIjOWJhYmJjIi8+Cjx0ZXh0IHg9IjMyIiB5PSI3ODIiIGZvbnQtc2l6ZT0iMjUiIGZvbnQtd2VpZ2h0PSJib2xkIj4zIMK3IENvZWZmaWNpZW50aSBlIG1lZGlhIGRlbGxlIHVzY2l0ZTwvdGV4dD4KPHBhdGggZD0iTTE1NSA4MDVWMTAyMCIgc3Ryb2tlPSIjMTQyNDNhIiBzdHJva2Utd2lkdGg9IjIiLz4KPGcgZmlsbD0iIzE2NWE4NyI+PHJlY3QgeD0iMTU1IiB5PSI4MjUiIHdpZHRoPSIyMDAiIGhlaWdodD0iMzIiLz48cmVjdCB4PSIxNTUiIHk9Ijg5MCIgd2lkdGg9IjMwMCIgaGVpZ2h0PSIzMiIvPjwvZz48cmVjdCB4PSIxNTUiIHk9Ijk1NSIgd2lkdGg9IjI1MCIgaGVpZ2h0PSIzMiIgZmlsbD0iIzI4NjY0ZCIvPgo8dGV4dCB4PSI1NSIgeT0iODQ5Ij5BPC90ZXh0Pjx0ZXh0IHg9IjM3MiIgeT0iODQ5Ij4xPC90ZXh0Pjx0ZXh0IHg9IjU1IiB5PSI5MTQiPkI8L3RleHQ+PHRleHQgeD0iNDcyIiB5PSI5MTQiPjMvMjwvdGV4dD48dGV4dCB4PSIzMiIgeT0iOTc5Ij5NZWRpYTwvdGV4dD48dGV4dCB4PSI0MjIiIHk9Ijk3OSI+NS80PC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iMTA0NiIgZm9udC1zaXplPSIxOCI+QTogNDAwLzIwMCBLOyBCOiA1MDAvMzAwIEsgKGNhbGRhL2ZyZWRkYSkuPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iMTA4MCIgZm9udC1zaXplPSIxOCI+U2NhbGE6IDIwMCBweCBwZXIgdW5pdMOgIGRpIEM7IEMgbm9uIGhhIHVuaXTDoC48L3RleHQ+CjwvZz48L3N2Zz4K"
+    }
+  ]
+}

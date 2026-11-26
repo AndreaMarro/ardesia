@@ -1,0 +1,1145 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u5-calorimeter-capacity-01",
+      "kind": "question",
+      "course": "C3",
+      "section": "Bilancio termico con il recipiente",
+      "order": 17101,
+      "title": "Anche il recipiente assorbe energia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "calorimeter-capacity",
+      "difficulty": 1,
+      "prompt": "Un sistema chiuso e isolato comprende due porzioni della stessa sostanza, con calore specifico costante c=1 J/(g K), e un recipiente di capacità complessiva C_r=2 J/K. La massa calda m_h>0 parte da 80 °C; la massa fredda m_c>0 e il recipiente partono da 20 °C. Non ci sono cambiamenti di fase o lavoro apprezzabile. Si attende l’equilibrio comune. θ_f è il numero letto in°C, fra 20 e 80. Definiamo m₀=C_r/c=2 g, massa equivalente termica del recipiente: non è necessariamente la sua massa reale. Rapporti di θ_f significano rapporti di letture Celsius, non di temperature assolute. m_h=m_c=2 g. Qual è la lettura finale in°C?",
+      "answer": {
+        "type": "numeric",
+        "value": 40,
+        "unit": "°C",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il corpo caldo ha capacità 2 J/K. Il corpo freddo e il recipiente hanno insieme 4 J/K e devono essere entrambi riscaldati. Dal bilancio 2(80−θ)=4(θ−20) segue 240=6θ e la lettura 40 °C. Il caldo cede 80 J:40 J vanno al freddo e 40 J al recipiente."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/18972dfbd17d498129b6b8f6a4becb6fedd80b8422092a03885d1b3a8927435f",
+          "text": "Il sistema comprende caldo 2 J/K a 80 °C, freddo 2 J/K e recipiente 2 J/K a 20 °C. L’equilibrio è 40 °C. Il secondo pannello divide gli 80 J ceduti dal caldo in 40 J al freddo e 40 J al recipiente. Il pannello finale confronta letture 40 e 44 °C e media 42: non è un confronto di energie o di temperature assolute."
+        },
+        {
+          "type": "formula",
+          "text": "2(80-\\theta_f)=4(\\theta_f-20)"
+        },
+        {
+          "type": "formula",
+          "text": " 6\\theta_f=240"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_f=40"
+        },
+        {
+          "type": "text",
+          "text": "Cinquanta °C trascura il recipiente e usa solo le due masse uguali. Venti o ottanta escludono uno dei contributi positivi. Sessanta °C farebbe assorbire 160 J ai corpi freddi mentre il caldo ne cederebbe 40, senza una fonte esterna."
+        }
+      ],
+      "hints": [
+        "Somma prima le capacità inizialmente fredde.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Cinquanta °C trascura il recipiente e usa solo le due masse uguali. Venti o ottanta escludono uno dei contributi positivi. Sessanta °C farebbe assorbire 160 J ai corpi freddi mentre il caldo ne cederebbe 40, senza una fonte esterna.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Recipiente come terzo corpo",
+        "Equilibrio e principio zero",
+        "Inverse e capacità fissa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-calorimeter-capacity-02",
+      "kind": "question",
+      "course": "C3",
+      "section": "Bilancio termico con il recipiente",
+      "order": 17102,
+      "title": "La grandezza letta dal calorimetro",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "calorimeter-capacity",
+      "difficulty": 1,
+      "prompt": "Il termometro del calorimetro indica una temperatura di equilibrio sulla scala Celsius. Quale unità esprime tale lettura?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "°C",
+          "J/K",
+          "J/(g K)",
+          "g",
+          "J"
+        ],
+        "value": "°C"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La lettura è una temperatura e si esprime in gradi Celsius. Capacità termica totale e calore specifico sono altre grandezze: dicono quanta energia modifica la temperatura, non sono ciò che il termometro legge."
+        },
+        {
+          "type": "formula",
+          "text": "[T]=\\Theta"
+        },
+        {
+          "type": "formula",
+          "text": " [C_r]=\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " [c]=\\mathrm{J/(g\\,K)}"
+        },
+        {
+          "type": "text",
+          "text": "J/K è capacità totale, J/(g K) calore specifico, g massa e J energia. Cambiare quantità di sostanza modifica una capacità, ma non cambia l’unità di temperatura."
+        }
+      ],
+      "hints": [
+        "Il sensore finale è un termometro.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "J/K è capacità totale, J/(g K) calore specifico, g massa e J energia. Cambiare quantità di sostanza modifica una capacità, ma non cambia l’unità di temperatura.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Recipiente come terzo corpo",
+        "Equilibrio e principio zero",
+        "Inverse e capacità fissa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-calorimeter-capacity-03",
+      "kind": "question",
+      "course": "C3",
+      "section": "Bilancio termico con il recipiente",
+      "order": 17103,
+      "title": "La transitività dell’equilibrio termico",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L01",
+      "prerequisites": [],
+      "reuse": [
+        "C6"
+      ],
+      "family": "calorimeter-capacity",
+      "difficulty": 1,
+      "prompt": "Un termometro A è in equilibrio termico con un corpo B e, separatamente, con un corpo C. Nei due confronti il termometro ha la medesima lettura stabile, senza perturbare apprezzabilmente i corpi. Quale conclusione esprime il principio zero?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "B e C hanno la stessa temperatura e sono in equilibrio termico fra loro",
+          "B e C contengono la stessa energia interna",
+          "B e C hanno la stessa massa",
+          "B e C hanno lo stesso calore specifico",
+          "B deve cedere calore a C"
+        ],
+        "value": "B e C hanno la stessa temperatura e sono in equilibrio termico fra loro"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’equilibrio termico è una relazione transitiva: se i due corpi sono alla stessa temperatura del medesimo termometro, hanno la stessa temperatura fra loro. Un loro contatto non produce un trasferimento netto di energia dovuto a una differenza termica. Non è necessario che siano uguali per massa o materiale."
+        },
+        {
+          "type": "formula",
+          "text": "T_B=T_A"
+        },
+        {
+          "type": "formula",
+          "text": " T_C=T_A"
+        },
+        {
+          "type": "formula",
+          "text": " T_B=T_C"
+        },
+        {
+          "type": "text",
+          "text": "Energia interna, massa e calore specifico possono differire anche a temperatura uguale. Un flusso netto obbligatorio da B a C contraddice la temperatura comune. La medesima lettura si riferisce a stati del termometro stabili, non a due istanti durante transitori diversi."
+        }
+      ],
+      "hints": [
+        "Il principio zero confronta temperature, non quantità di energia.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Energia interna, massa e calore specifico possono differire anche a temperatura uguale. Un flusso netto obbligatorio da B a C contraddice la temperatura comune. La medesima lettura si riferisce a stati del termometro stabili, non a due istanti durante transitori diversi.",
+        "target": "C3-L01"
+      },
+      "coverage": [
+        "Principio zero ed equilibrio termico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-calorimeter-capacity-04",
+      "kind": "question",
+      "course": "C3",
+      "section": "Bilancio termico con il recipiente",
+      "order": 17104,
+      "title": "Più massa calda con lo stesso recipiente",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "calorimeter-capacity",
+      "difficulty": 1,
+      "prompt": "Un sistema chiuso e isolato comprende due porzioni della stessa sostanza, con calore specifico costante c=1 J/(g K), e un recipiente di capacità complessiva C_r=2 J/K. La massa calda m_h>0 parte da 80 °C; la massa fredda m_c>0 e il recipiente partono da 20 °C. Non ci sono cambiamenti di fase o lavoro apprezzabile. Si attende l’equilibrio comune. θ_f è il numero letto in°C, fra 20 e 80. Definiamo m₀=C_r/c=2 g, massa equivalente termica del recipiente: non è necessariamente la sua massa reale. Rapporti di θ_f significano rapporti di letture Celsius, non di temperature assolute. A ha m_h=m_c=2 g. B usa m_h=4 g e m_c=2 g. Come cambia θ_f?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 40 a 50",
+          "Da 40 a 80",
+          "Da 40 a 20",
+          "Resta 40",
+          "Da 40 a 60"
+        ],
+        "value": "Da 40 a 50"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "In A la lettura è 40. In B la capacità calda 4 J/K uguaglia la somma di capacità fredda e recipiente,4 J/K. Gli intervalli diventano uguali, così l’equilibrio è 50 °C, fra 20 e 80."
+        },
+        {
+          "type": "formula",
+          "text": "4(80-\\theta_f)=4(\\theta_f-20)"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_f=50"
+        },
+        {
+          "type": "text",
+          "text": "Ottanta raddoppia direttamente la letturaA; venti la dimezza. Quaranta ignora la massa calda aggiunta e sessanta deriverebbe da un peso caldo maggiore di quello effettivo. Il recipiente mantiene C_r=2 J/K anche in B."
+        }
+      ],
+      "hints": [
+        "Confronta la capacità calda con tutte quelle fredde.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Ottanta raddoppia direttamente la letturaA; venti la dimezza. Quaranta ignora la massa calda aggiunta e sessanta deriverebbe da un peso caldo maggiore di quello effettivo. Il recipiente mantiene C_r=2 J/K anche in B.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Recipiente come terzo corpo",
+        "Equilibrio e principio zero",
+        "Inverse e capacità fissa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-calorimeter-capacity-05",
+      "kind": "question",
+      "course": "C3",
+      "section": "Bilancio termico con il recipiente",
+      "order": 17105,
+      "title": "La massa calda richiesta da 40 °C",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "calorimeter-capacity",
+      "difficulty": 2,
+      "prompt": "Un sistema chiuso e isolato comprende due porzioni della stessa sostanza, con calore specifico costante c=1 J/(g K), e un recipiente di capacità complessiva C_r=2 J/K. La massa calda m_h>0 parte da 80 °C; la massa fredda m_c>0 e il recipiente partono da 20 °C. Non ci sono cambiamenti di fase o lavoro apprezzabile. Si attende l’equilibrio comune. θ_f è il numero letto in°C, fra 20 e 80. Definiamo m₀=C_r/c=2 g, massa equivalente termica del recipiente: non è necessariamente la sua massa reale. Rapporti di θ_f significano rapporti di letture Celsius, non di temperature assolute. Si misura θ_f=40 e m_c=2 g. Quanto vale m_h in g?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "g",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il freddo e il recipiente aumentano entrambi di 20 K; insieme assorbono 4 J/K·20 K=80 J. La porzione calda perde 40 K e cede 40 J per ogni grammo, quindi ne servono 2 g."
+        },
+        {
+          "type": "formula",
+          "text": "m_h=(m_c+m_0)\\frac{\\theta_f-20}{80-\\theta_f}"
+        },
+        {
+          "type": "formula",
+          "text": " m_h=4\\frac{20}{40}\\,\\mathrm g"
+        },
+        {
+          "type": "formula",
+          "text": " m_h=2\\,\\mathrm g"
+        },
+        {
+          "type": "text",
+          "text": "Un grammo dimentica il recipiente. Quattro grammi copia la massa equivalente fredda senza considerare gli intervalli diversi. Una massa negativa invertirebbe il segno di una capacità e non appartiene al modello."
+        }
+      ],
+      "hints": [
+        "Conta l’energia destinata al recipiente prima dell’inversa.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un grammo dimentica il recipiente. Quattro grammi copia la massa equivalente fredda senza considerare gli intervalli diversi. Una massa negativa invertirebbe il segno di una capacità e non appartiene al modello.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Recipiente come terzo corpo",
+        "Equilibrio e principio zero",
+        "Inverse e capacità fissa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-calorimeter-capacity-06",
+      "kind": "question",
+      "course": "C3",
+      "section": "Bilancio termico con il recipiente",
+      "order": 17106,
+      "title": "La massa fredda senza contare due volte il recipiente",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "calorimeter-capacity",
+      "difficulty": 2,
+      "prompt": "Un sistema chiuso e isolato comprende due porzioni della stessa sostanza, con calore specifico costante c=1 J/(g K), e un recipiente di capacità complessiva C_r=2 J/K. La massa calda m_h>0 parte da 80 °C; la massa fredda m_c>0 e il recipiente partono da 20 °C. Non ci sono cambiamenti di fase o lavoro apprezzabile. Si attende l’equilibrio comune. θ_f è il numero letto in°C, fra 20 e 80. Definiamo m₀=C_r/c=2 g, massa equivalente termica del recipiente: non è necessariamente la sua massa reale. Rapporti di θ_f significano rapporti di letture Celsius, non di temperature assolute. Si misura θ_f=40 e m_h=2 g. Quanto vale m_c in g?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "g",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il caldo cede 80 J. Aumentando di 20 K, l’insieme inizialmente freddo deve avere capacità 4 J/K, equivalente a 4 g della sostanza. Due grammi equivalenti appartengono già al recipiente: per la sostanza fredda restano 2 g. In generale questa inversa richiede che il totale equivalente superi m₀, altrimenti non dà m_c>0."
+        },
+        {
+          "type": "formula",
+          "text": "m_c+m_0=m_h\\frac{80-\\theta_f}{\\theta_f-20}"
+        },
+        {
+          "type": "formula",
+          "text": " m_c=(4-2)\\,\\mathrm g"
+        },
+        {
+          "type": "formula",
+          "text": " m_c=2\\,\\mathrm g"
+        },
+        {
+          "type": "text",
+          "text": "Quattro grammi attribuisce alla sostanza anche la capacità del recipiente. Sei grammi aggiunge invece di togliere i 2 g equivalenti. Zero grammi renderebbe il solo recipiente destinatario dell’energia, ma non riprodurrebbe 40 °C con questi dati."
+        }
+      ],
+      "hints": [
+        "Dalla capacità fredda totale togli quella già nota del contenitore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro grammi attribuisce alla sostanza anche la capacità del recipiente. Sei grammi aggiunge invece di togliere i 2 g equivalenti. Zero grammi renderebbe il solo recipiente destinatario dell’energia, ma non riprodurrebbe 40 °C con questi dati.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Recipiente come terzo corpo",
+        "Equilibrio e principio zero",
+        "Inverse e capacità fissa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-calorimeter-capacity-07",
+      "kind": "question",
+      "course": "C3",
+      "section": "Bilancio termico con il recipiente",
+      "order": 17107,
+      "title": "La parte fredda più grande",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "calorimeter-capacity",
+      "difficulty": 2,
+      "prompt": "Un sistema chiuso e isolato comprende due porzioni della stessa sostanza, con calore specifico costante c=1 J/(g K), e un recipiente di capacità complessiva C_r=2 J/K. La massa calda m_h>0 parte da 80 °C; la massa fredda m_c>0 e il recipiente partono da 20 °C. Non ci sono cambiamenti di fase o lavoro apprezzabile. Si attende l’equilibrio comune. θ_f è il numero letto in°C, fra 20 e 80. Definiamo m₀=C_r/c=2 g, massa equivalente termica del recipiente: non è necessariamente la sua massa reale. Rapporti di θ_f significano rapporti di letture Celsius, non di temperature assolute. A ha m_h=m_c=2 g. B mantiene m_h=2 g e ha m_c=4 g. Quanto vale θ_f,B/θ_f,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "7/8",
+          "8/7",
+          "2",
+          "1/2",
+          "1"
+        ],
+        "value": "7/8"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A termina a 40 °C. In B il caldo ha capacità 2 J/K e le parti fredde insieme 6 J/K. La media pesata è(160+120)/8=35 °C. Il rapporto delle letture 35/40 è sette ottavi, non il rapporto delle sole masse fredde."
+        },
+        {
+          "type": "formula",
+          "text": "\\theta_{f,A}=40"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_{f,B}=\\frac{280}{8}"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_{f,B}=35"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_{f,B}/\\theta_{f,A}=\\frac78"
+        },
+        {
+          "type": "text",
+          "text": "Otto settimi inverte le letture. Due e un mezzo confrontano soltanto m_c, ignorando caldo e recipiente. Uno trascura la maggiore capacità inizialmente fredda. Il risultato è un rapporto numerico Celsius, distinto da quello in kelvin."
+        }
+      ],
+      "hints": [
+        "Rifai il bilancio completo con il nuovo m_c.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Otto settimi inverte le letture. Due e un mezzo confrontano soltanto m_c, ignorando caldo e recipiente. Uno trascura la maggiore capacità inizialmente fredda. Il risultato è un rapporto numerico Celsius, distinto da quello in kelvin.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Recipiente come terzo corpo",
+        "Equilibrio e principio zero",
+        "Inverse e capacità fissa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-calorimeter-capacity-08",
+      "kind": "question",
+      "course": "C3",
+      "section": "Bilancio termico con il recipiente",
+      "order": 17108,
+      "title": "Una proposta uguale alla temperatura del caldo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "calorimeter-capacity",
+      "difficulty": 2,
+      "prompt": "Un sistema chiuso e isolato comprende due porzioni della stessa sostanza, con calore specifico costante c=1 J/(g K), e un recipiente di capacità complessiva C_r=2 J/K. La massa calda m_h>0 parte da 80 °C; la massa fredda m_c>0 e il recipiente partono da 20 °C. Non ci sono cambiamenti di fase o lavoro apprezzabile. Si attende l’equilibrio comune. θ_f è il numero letto in°C, fra 20 e 80. Definiamo m₀=C_r/c=2 g, massa equivalente termica del recipiente: non è necessariamente la sua massa reale. Rapporti di θ_f significano rapporti di letture Celsius, non di temperature assolute. Con m_h=m_c=2 g si propone θ_f=80. Quanto vale proposta meno lettura corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "40 K",
+          "−40 K",
+          "80 K",
+          "0 K",
+          "2"
+        ],
+        "value": "40 K"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bilancio dei tre contributi dà 40 °C. La proposta la supera di 40 K. Se il caldo restasse a 80 °C non cederebbe energia, mentre freddo e recipiente dovrebbero entrambi scaldarsi: mancherebbe la fonte per quell’aumento."
+        },
+        {
+          "type": "formula",
+          "text": "\\theta_f=40"
+        },
+        {
+          "type": "formula",
+          "text": " e=(80-40)\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " e=40\\,\\mathrm K"
+        },
+        {
+          "type": "text",
+          "text": "Meno quaranta cambia l’ordine dello scarto, ottanta copia la proposta e zero la accetta. Due è il rapporto di letture 80/40 e non uno scarto termico."
+        }
+      ],
+      "hints": [
+        "Una differenza Celsius ha la stessa ampiezza in kelvin.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Meno quaranta cambia l’ordine dello scarto, ottanta copia la proposta e zero la accetta. Due è il rapporto di letture 80/40 e non uno scarto termico.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Recipiente come terzo corpo",
+        "Equilibrio e principio zero",
+        "Inverse e capacità fissa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-calorimeter-capacity-09",
+      "kind": "question",
+      "course": "C3",
+      "section": "Bilancio termico con il recipiente",
+      "order": 17109,
+      "title": "L’inversa generale della massa calda",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "calorimeter-capacity",
+      "difficulty": 2,
+      "prompt": "Un sistema chiuso e isolato comprende due porzioni della stessa sostanza, con calore specifico costante c=1 J/(g K), e un recipiente di capacità complessiva C_r=2 J/K. La massa calda m_h>0 parte da 80 °C; la massa fredda m_c>0 e il recipiente partono da 20 °C. Non ci sono cambiamenti di fase o lavoro apprezzabile. Si attende l’equilibrio comune. θ_f è il numero letto in°C, fra 20 e 80. Definiamo m₀=C_r/c=2 g, massa equivalente termica del recipiente: non è necessariamente la sua massa reale. Rapporti di θ_f significano rapporti di letture Celsius, non di temperature assolute. Sono noti m_c e θ_f. Quale formula isola m_h?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "m_h = (m_c + m₀) (θ_f − 20) / (80 − θ_f)",
+          "m_h = m_c (θ_f − 20) / (80 − θ_f)",
+          "m_h = (m_c + m₀) (80 − θ_f) / (θ_f − 20)",
+          "m_h = (m_c − m₀) (θ_f − 20) / (80 − θ_f)",
+          "m_h = m_c + m₀ + θ_f"
+        ],
+        "value": "m_h = (m_c + m₀) (θ_f − 20) / (80 − θ_f)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Raccogliamo la massa equivalente fredda in M=m_c+m₀. Chiamiamo Δ_h=(80−θ_f) K l’intervallo di raffreddamento del caldo e Δ_c=(θ_f−20) K quello di riscaldamento della parte fredda. Sono entrambi positivi nel dominio dato. Dopo aver diviso il bilancio per c, rimane m_hΔ_h=MΔ_c. Dividiamo per Δ_h: il rapporto Δ_c/Δ_h è puro e la massa cercata resta in grammi. Sostituire le tre definizioni restituisce la formula proposta nelle risposte."
+        },
+        {
+          "type": "formula",
+          "text": "M=m_c+m_0"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta_h=(80-\\theta_f)\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta_c=(\\theta_f-20)\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " m_h\\Delta_h=M\\Delta_c"
+        },
+        {
+          "type": "formula",
+          "text": " m_h=M\\frac{\\Delta_c}{\\Delta_h}"
+        },
+        {
+          "type": "text",
+          "text": "Omettere m₀ elimina una capacità reale. Il rapporto inverso scambia i due intervalli; sottrarre m₀ tratterebbe il recipiente come fonte anziché destinatario termico. La somma finale mescola una lettura numerica con masse invece di usare un bilancio."
+        }
+      ],
+      "hints": [
+        "Il recipiente si aggiunge al lato inizialmente freddo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Omettere m₀ elimina una capacità reale. Il rapporto inverso scambia i due intervalli; sottrarre m₀ tratterebbe il recipiente come fonte anziché destinatario termico. La somma finale mescola una lettura numerica con masse invece di usare un bilancio.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Recipiente come terzo corpo",
+        "Equilibrio e principio zero",
+        "Inverse e capacità fissa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-calorimeter-capacity-10",
+      "kind": "question",
+      "course": "C3",
+      "section": "Bilancio termico con il recipiente",
+      "order": 17110,
+      "title": "Il recipiente non scala con le due masse",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "calorimeter-capacity",
+      "difficulty": 2,
+      "prompt": "Un sistema chiuso e isolato comprende due porzioni della stessa sostanza, con calore specifico costante c=1 J/(g K), e un recipiente di capacità complessiva C_r=2 J/K. La massa calda m_h>0 parte da 80 °C; la massa fredda m_c>0 e il recipiente partono da 20 °C. Non ci sono cambiamenti di fase o lavoro apprezzabile. Si attende l’equilibrio comune. θ_f è il numero letto in°C, fra 20 e 80. Definiamo m₀=C_r/c=2 g, massa equivalente termica del recipiente: non è necessariamente la sua massa reale. Rapporti di θ_f significano rapporti di letture Celsius, non di temperature assolute. A ha N=80 m_h+20(m_c+m₀), D=m_h+m_c+m₀. B usa κ₁m_h e κ₂m_c, con fattori positivi, ma lo stesso recipiente. Definiamo N_B=80κ₁m_h+20(κ₂m_c+m₀) e D_B=κ₁m_h+κ₂m_c+m₀. Quanto vale θ_f,B/θ_f,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "N_B D / (D_B N)",
+          "κ₁ / κ₂",
+          "κ₁ κ₂",
+          "N_B / N",
+          "D_B / D"
+        ],
+        "value": "N_B D / (D_B N)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il recipiente mantiene la stessa capacità, quindi m₀ non riceve alcun fattoreκ. Le letture sono N/D e N_B/D_B; il rapporto è N_BD/(D_BN). Anche se κ₁=κ₂, il recipiente impedisce in generale di semplificare un fattore comune da tutti i contributi."
+        },
+        {
+          "type": "formula",
+          "text": "\\theta_{f,A}=\\frac ND"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_{f,B}=\\frac{N_B}{D_B}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{\\theta_{f,B}}{\\theta_{f,A}}=\\frac{N_BD}{D_BN}"
+        },
+        {
+          "type": "text",
+          "text": "Il quoziente dei fattori trascura m₀ e la media pesata. Il prodotto non descrive una temperatura finale. N_B/N omette il denominatore nuovo e D_B/D omette il numeratore. Raddoppiare solo le due porzioni non raddoppia la capacità del recipiente."
+        }
+      ],
+      "hints": [
+        "Mantieni il termine m₀ uguale nei due bilanci.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il quoziente dei fattori trascura m₀ e la media pesata. Il prodotto non descrive una temperatura finale. N_B/N omette il denominatore nuovo e D_B/D omette il numeratore. Raddoppiare solo le due porzioni non raddoppia la capacità del recipiente.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Recipiente come terzo corpo",
+        "Equilibrio e principio zero",
+        "Inverse e capacità fissa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-calorimeter-capacity-11",
+      "kind": "question",
+      "course": "C3",
+      "section": "Bilancio termico con il recipiente",
+      "order": 17111,
+      "title": "Le due masse raddoppiano, il recipiente resta uguale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "calorimeter-capacity",
+      "difficulty": 2,
+      "prompt": "Un sistema chiuso e isolato comprende due porzioni della stessa sostanza, con calore specifico costante c=1 J/(g K), e un recipiente di capacità complessiva C_r=2 J/K. La massa calda m_h>0 parte da 80 °C; la massa fredda m_c>0 e il recipiente partono da 20 °C. Non ci sono cambiamenti di fase o lavoro apprezzabile. Si attende l’equilibrio comune. θ_f è il numero letto in°C, fra 20 e 80. Definiamo m₀=C_r/c=2 g, massa equivalente termica del recipiente: non è necessariamente la sua massa reale. Rapporti di θ_f significano rapporti di letture Celsius, non di temperature assolute. A ha m_h=m_c=2 g. B ha m_h=m_c=4 g. Quanto vale θ_f,B/θ_f,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "11/10",
+          "1",
+          "2",
+          "10/11",
+          "44"
+        ],
+        "value": "11/10"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A dà 40 °C. In B il numeratore pesato è 320+20·6=440 e il totale equivalente 10 g: la lettura è 44 °C. Il rapporto 44/40 è 11/10. Con campioni maggiori la stessa capacità del recipiente pesa relativamente meno, quindi il risultato si avvicina a 50 °C."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/18972dfbd17d498129b6b8f6a4becb6fedd80b8422092a03885d1b3a8927435f",
+          "text": "Nel pannello finaleA usa 2 g e 2 g; B 4 g e 4 g, mentre il recipiente mantiene 2 J/K. Le letture sono 40 e 44 °C e la media 42 °C. Le barre partono dallo zero Celsius scelto. Il pannello centrale mostra soltanto la ripartizione 40 J più 40 J della provaA."
+        },
+        {
+          "type": "formula",
+          "text": "\\theta_{f,A}=40"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_{f,B}=\\frac{440}{10}"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_{f,B}=44"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_{f,B}/\\theta_{f,A}=\\frac{11}{10}"
+        },
+        {
+          "type": "text",
+          "text": "Uno sarebbe corretto se anche la capacità del recipiente raddoppiasse, ma non succede qui. Due raddoppia una lettura direttamente.10/11 è il reciproco;44 è la letturaB prima del rapporto."
+        }
+      ],
+      "hints": [
+        "Non moltiplicare per due la capacità del contenitore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Uno sarebbe corretto se anche la capacità del recipiente raddoppiasse, ma non succede qui. Due raddoppia una lettura direttamente.10/11 è il reciproco;44 è la letturaB prima del rapporto.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Recipiente come terzo corpo",
+        "Equilibrio e principio zero",
+        "Inverse e capacità fissa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-calorimeter-capacity-12",
+      "kind": "question",
+      "course": "C3",
+      "section": "Bilancio termico con il recipiente",
+      "order": 17112,
+      "title": "Media di due equilibri con contenitore fisso",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "calorimeter-capacity",
+      "difficulty": 2,
+      "prompt": "Un sistema chiuso e isolato comprende due porzioni della stessa sostanza, con calore specifico costante c=1 J/(g K), e un recipiente di capacità complessiva C_r=2 J/K. La massa calda m_h>0 parte da 80 °C; la massa fredda m_c>0 e il recipiente partono da 20 °C. Non ci sono cambiamenti di fase o lavoro apprezzabile. Si attende l’equilibrio comune. θ_f è il numero letto in°C, fra 20 e 80. Definiamo m₀=C_r/c=2 g, massa equivalente termica del recipiente: non è necessariamente la sua massa reale. Rapporti di θ_f significano rapporti di letture Celsius, non di temperature assolute. A ha m_h=m_c=2 g. B ha m_h=m_c=4 g. Qual è la media aritmetica delle letture finali in°C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "42 °C",
+          "85/2 °C",
+          "84 °C",
+          "4 °C",
+          "50 °C"
+        ],
+        "value": "42 °C"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La metà di 40+44 è 42 °C. Con le masse medie 3 g e 3 g e lo stesso recipiente si avrebbe invece(240+100)/8=85/2 °C. La frazione prodotta dal modello sulle medie degli ingressi non è la media delle uscite richiesta."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline\\theta_f=\\frac{40+44}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline\\theta_f=42"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_f(\\overline m_h,\\overline m_c)=\\frac{85}{2}"
+        },
+        {
+          "type": "text",
+          "text": "85/2 °C usa le masse medie.84 è la somma e 4 la differenza delle letture. Cinquanta °C ignora il recipiente in entrambe le prove. La media statistica non è un nuovo contatto fra le due miscele finali."
+        }
+      ],
+      "hints": [
+        "Calcola prima ciascun equilibrio completo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "85/2 °C usa le masse medie.84 è la somma e 4 la differenza delle letture. Cinquanta °C ignora il recipiente in entrambe le prove. La media statistica non è un nuovo contatto fra le due miscele finali.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Recipiente come terzo corpo",
+        "Equilibrio e principio zero",
+        "Inverse e capacità fissa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-calorimeter-capacity-13",
+      "kind": "question",
+      "course": "C3",
+      "section": "Bilancio termico con il recipiente",
+      "order": 17113,
+      "title": "Quanto freddo serve per il bersaglio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "calorimeter-capacity",
+      "difficulty": 3,
+      "prompt": "Un sistema chiuso e isolato comprende due porzioni della stessa sostanza, con calore specifico costante c=1 J/(g K), e un recipiente di capacità complessiva C_r=2 J/K. La massa calda m_h>0 parte da 80 °C; la massa fredda m_c>0 e il recipiente partono da 20 °C. Non ci sono cambiamenti di fase o lavoro apprezzabile. Si attende l’equilibrio comune. θ_f è il numero letto in°C, fra 20 e 80. Definiamo m₀=C_r/c=2 g, massa equivalente termica del recipiente: non è necessariamente la sua massa reale. Rapporti di θ_f significano rapporti di letture Celsius, non di temperature assolute. A ha m_h=m_c=2 g. B usa m_h=4 g e deve avere θ_f,B=(11/10)θ_f,A. Quanto vale m_c,B/m_c,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/2",
+          "11/10",
+          "3",
+          "4"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è 44 °C. Il caldoB cede 4·36=144 J. Per salire di 24 K servono 6 J/K complessivi sul lato freddo:2 appartengono al recipiente e 4 J/K alla porzione fredda, cioè 4 g. Dividendo 4 per 2 si ottiene 2."
+        },
+        {
+          "type": "formula",
+          "text": "\\theta_{f,B}=44"
+        },
+        {
+          "type": "formula",
+          "text": " m_{c,B}+m_0=4\\frac{36}{24}\\,\\mathrm g"
+        },
+        {
+          "type": "formula",
+          "text": " m_{c,B}=4\\,\\mathrm g"
+        },
+        {
+          "type": "formula",
+          "text": " m_{c,B}/m_{c,A}=2"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo inverte le masse.11/10 copia il rapporto delle letture; tre attribuisce alla sola sostanza anche i 2 g equivalenti del recipiente, usando 6/2. Quattro copia il numero di grammiB senza dividerlo perA."
+        }
+      ],
+      "hints": [
+        "Trova la capacità fredda totale e sottrai quella del recipiente.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo inverte le masse.11/10 copia il rapporto delle letture; tre attribuisce alla sola sostanza anche i 2 g equivalenti del recipiente, usando 6/2. Quattro copia il numero di grammiB senza dividerlo perA.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Recipiente come terzo corpo",
+        "Equilibrio e principio zero",
+        "Inverse e capacità fissa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-calorimeter-capacity-14",
+      "kind": "question",
+      "course": "C3",
+      "section": "Bilancio termico con il recipiente",
+      "order": 17114,
+      "title": "Il display misura una lettura, non una massa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "calorimeter-capacity",
+      "difficulty": 3,
+      "prompt": "Un sistema chiuso e isolato comprende due porzioni della stessa sostanza, con calore specifico costante c=1 J/(g K), e un recipiente di capacità complessiva C_r=2 J/K. La massa calda m_h>0 parte da 80 °C; la massa fredda m_c>0 e il recipiente partono da 20 °C. Non ci sono cambiamenti di fase o lavoro apprezzabile. Si attende l’equilibrio comune. θ_f è il numero letto in°C, fra 20 e 80. Definiamo m₀=C_r/c=2 g, massa equivalente termica del recipiente: non è necessariamente la sua massa reale. Rapporti di θ_f significano rapporti di letture Celsius, non di temperature assolute. Il display continuo adimensionale è S=qθ_f,q>0 costante. A: m_h=m_c=2 g,S=120. B: m_c=4 g,S=132. Quanto vale m_h,B in g?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "g",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A indica 40 °C e dàq=3. La lettura 132 corrisponde a 44 °C. Il lato inizialmente freddo diB ha capacità 6 J/K e assorbe 144 J; il caldo perde 36 K, quindi richiede 4 g della sostanza."
+        },
+        {
+          "type": "formula",
+          "text": "q=3"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_{f,B}=44"
+        },
+        {
+          "type": "formula",
+          "text": " m_{h,B}=6\\frac{44-20}{80-44}\\,\\mathrm g"
+        },
+        {
+          "type": "formula",
+          "text": " m_{h,B}=4\\,\\mathrm g"
+        },
+        {
+          "type": "text",
+          "text": "Sei grammi copia la massa equivalente fredda senza il rapporto 24/36. Otto terzi di grammo dimentica il recipiente e usa soltanto m_c=4 g.132 non è una massa né una lettura in°C: è il display da decodificare."
+        }
+      ],
+      "hints": [
+        "Usa la taratura prima dell’inversa del bilancio a tre contributi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sei grammi copia la massa equivalente fredda senza il rapporto 24/36. Otto terzi di grammo dimentica il recipiente e usa soltanto m_c=4 g.132 non è una massa né una lettura in°C: è il display da decodificare.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Recipiente come terzo corpo",
+        "Equilibrio e principio zero",
+        "Inverse e capacità fissa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-calorimeter-capacity-15",
+      "kind": "question",
+      "course": "C3",
+      "section": "Bilancio termico con il recipiente",
+      "order": 17115,
+      "title": "Guadagno e offset da due esperimenti",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "calorimeter-capacity",
+      "difficulty": 3,
+      "prompt": "Un sistema chiuso e isolato comprende due porzioni della stessa sostanza, con calore specifico costante c=1 J/(g K), e un recipiente di capacità complessiva C_r=2 J/K. La massa calda m_h>0 parte da 80 °C; la massa fredda m_c>0 e il recipiente partono da 20 °C. Non ci sono cambiamenti di fase o lavoro apprezzabile. Si attende l’equilibrio comune. θ_f è il numero letto in°C, fra 20 e 80. Definiamo m₀=C_r/c=2 g, massa equivalente termica del recipiente: non è necessariamente la sua massa reale. Rapporti di θ_f significano rapporti di letture Celsius, non di temperature assolute. Il display è S=qθ_f+b, continuo e adimensionale, q>0. A: m_h=m_c=2 g,S=81. B: m_h=m_c=4 g,S=89. C: m_c=2 g,S=101. Quanto vale m_h,C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4 g",
+          "244/59 g",
+          "2 g",
+          "6 g",
+          "50 g"
+        ],
+        "value": "4 g"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Gli equilibriA eB sono 40 e 44 °C. Da 8/4 si trova q=2 e poi b=1. La provaC indica 50 °C. A questa lettura gli intervalli caldo/freddo sono entrambi 30 K: m_h deve uguagliare m_c+m₀=4 g."
+        },
+        {
+          "type": "formula",
+          "text": "q=2"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_{f,C}=50"
+        },
+        {
+          "type": "formula",
+          "text": " m_{h,C}=4\\frac{50-20}{80-50}\\,\\mathrm g"
+        },
+        {
+          "type": "formula",
+          "text": " m_{h,C}=4\\,\\mathrm g"
+        },
+        {
+          "type": "text",
+          "text": "244/59 g omette l’offset: θ=101/2 darebbe 4(61/2)/(59/2). Due grammi omette il recipiente; sei non bilancia intervalli uguali con lato freddo equivalente 4 g. Cinquanta copia una lettura come massa."
+        }
+      ],
+      "hints": [
+        "Togli b prima di risolvere il bilancio termico.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "244/59 g omette l’offset: θ=101/2 darebbe 4(61/2)/(59/2). Due grammi omette il recipiente; sei non bilancia intervalli uguali con lato freddo equivalente 4 g. Cinquanta copia una lettura come massa.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Recipiente come terzo corpo",
+        "Equilibrio e principio zero",
+        "Inverse e capacità fissa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-calorimeter-capacity-16",
+      "kind": "question",
+      "course": "C3",
+      "section": "Bilancio termico con il recipiente",
+      "order": 17116,
+      "title": "La capacità fissa elimina la libertà di scala",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L03",
+      "prerequisites": [
+        "C3-L01",
+        "C3-L03",
+        "C3-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "calorimeter-capacity",
+      "difficulty": 3,
+      "prompt": "Un sistema chiuso e isolato comprende due porzioni della stessa sostanza, con calore specifico costante c=1 J/(g K), e un recipiente di capacità complessiva C_r=2 J/K. La massa calda m_h>0 parte da 80 °C; la massa fredda m_c>0 e il recipiente partono da 20 °C. Non ci sono cambiamenti di fase o lavoro apprezzabile. Si attende l’equilibrio comune. θ_f è il numero letto in°C, fra 20 e 80. Definiamo m₀=C_r/c=2 g, massa equivalente termica del recipiente: non è necessariamente la sua massa reale. Rapporti di θ_f significano rapporti di letture Celsius, non di temperature assolute. Si impone m_h=m_c=m>0 e si misura θ_f=40. Quanto vale m_c?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2 g",
+          "Qualunque massa positiva",
+          "4 g",
+          "1 g",
+          "−2 g"
+        ],
+        "value": "2 g"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bilancio diventa m·40=(m+2 g)·20 nelle unità assegnate. Dividendo per 20 K si ha 2 m=m+m₀, quindi m=m₀=2 g. Il recipiente fisso impedisce che una scala arbitraria delle masse si semplifichi, a differenza del modello con recipiente trascurabile."
+        },
+        {
+          "type": "formula",
+          "text": "2m=m+m_0"
+        },
+        {
+          "type": "formula",
+          "text": " m=m_0"
+        },
+        {
+          "type": "formula",
+          "text": " m=2\\,\\mathrm g"
+        },
+        {
+          "type": "text",
+          "text": "Qualunque massa positiva varrebbe solo se non ci fosse il termine fisso del recipiente e la lettura appropriata restasse invariata per scala. Quattro grammi darebbero 44 °C, uno 35 °C. Meno due viola le masse positive."
+        }
+      ],
+      "hints": [
+        "Mantieni il termine noto del recipiente quando raccogli la massa.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Qualunque massa positiva varrebbe solo se non ci fosse il termine fisso del recipiente e la lettura appropriata restasse invariata per scala. Quattro grammi darebbero 44 °C, uno 35 °C. Meno due viola le masse positive.",
+        "target": "C3-L03"
+      },
+      "coverage": [
+        "Recipiente come terzo corpo",
+        "Equilibrio e principio zero",
+        "Inverse e capacità fissa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "18972dfbd17d498129b6b8f6a4becb6fedd80b8422092a03885d1b3a8927435f",
+      "name": "calorimeter-capacity-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI1NjAiIGhlaWdodD0iMTQ1MCIgdmlld0JveD0iMCAwIDU2MCAxNDUwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+Cjx0aXRsZSBpZD0idGl0bGUiPklsIHJlY2lwaWVudGUgw6ggaWwgdGVyem8gY29udHJpYnV0bzwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPk5lbGxhIHByb3ZhQSBpbCBjYWxkbyBjZWRlIDgwIEogZSBmcmVkZG8gZSByZWNpcGllbnRlIGFzc29yYm9ubyA0MCBKIGNpYXNjdW5vLCBlcXVpbGlicmlvIDQwIENlbHNpdXMuIFJhZGRvcHBpYW5kbyBsZSBzb2xlIG1hc3NlIHNpIGFycml2YSA0NCBDZWxzaXVzIGNvbiBsbyBzdGVzc28gcmVjaXBpZW50ZS48L2Rlc2M+CjxyZWN0IHdpZHRoPSI1NjAiIGhlaWdodD0iMTQ1MCIgZmlsbD0iI2ZmZmFmMSIvPgo8ZyBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZmlsbD0iIzM1MmQ0MiIgZm9udC1zaXplPSIxOSI+Cjx0ZXh0IHg9IjI1IiB5PSI0MCIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9ImJvbGQiPjEgwrcgVHJlIGNhcGFjaXTDoCwgdW4gZXF1aWxpYnJpbzwvdGV4dD4KPHRleHQgeD0iMjUiIHk9IjgwIj5Qcm92YUEgwrcgc2NoZW1hIHNlbnphIHNjYWxhIG1ldHJpY2E8L3RleHQ+CjxyZWN0IHg9IjM1IiB5PSIxMjAiIHdpZHRoPSIyMTUiIGhlaWdodD0iMTQ1IiByeD0iMTAiIGZpbGw9IiNmNGRkZDYiIHN0cm9rZT0iI2I5NGY0OCIgc3Ryb2tlLXdpZHRoPSIyIi8+Cjx0ZXh0IHg9IjU1IiB5PSIxNTUiPkNhbGRvOm1faD0yIGc8L3RleHQ+PHRleHQgeD0iNTUiIHk9IjE5NSI+Q2FwYWNpdMOgIDIgSi9LPC90ZXh0Pjx0ZXh0IHg9IjU1IiB5PSIyMzUiPjgw4oaSNDAgwrBDPC90ZXh0Pgo8cmVjdCB4PSIzMTAiIHk9IjEyMCIgd2lkdGg9IjIxNSIgaGVpZ2h0PSIxNDUiIHJ4PSIxMCIgZmlsbD0iI2UxZWVlYiIgc3Ryb2tlPSIjMTQ3OTc5IiBzdHJva2Utd2lkdGg9IjIiLz4KPHRleHQgeD0iMzMwIiB5PSIxNTUiPkZyZWRkbzptX2M9MiBnPC90ZXh0Pjx0ZXh0IHg9IjMzMCIgeT0iMTk1Ij5DYXBhY2l0w6AgMiBKL0s8L3RleHQ+PHRleHQgeD0iMzMwIiB5PSIyMzUiPjIw4oaSNDAgwrBDPC90ZXh0Pgo8cmVjdCB4PSI5MCIgeT0iMzAwIiB3aWR0aD0iMzgwIiBoZWlnaHQ9IjkwIiByeD0iMTAiIGZpbGw9IiNlOWUyZjIiIHN0cm9rZT0iIzczNTBiMCIgc3Ryb2tlLXdpZHRoPSIyIi8+Cjx0ZXh0IHg9IjExNSIgeT0iMzM1Ij5SZWNpcGllbnRlOkNfcj0yIEovSzwvdGV4dD48dGV4dCB4PSIxMTUiIHk9IjM3MCI+QW5jaGUgcXVlc3RvIHNhbGUgZGEgMjAgYSA0MCDCsEMuPC90ZXh0Pgo8bGluZSB4MT0iMjUiIHkxPSI0MzAiIHgyPSI1MzUiIHkyPSI0MzAiIHN0cm9rZT0iI2I4YWRhMCIvPgo8dGV4dCB4PSIyNSIgeT0iNDc1IiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iYm9sZCI+MiDCtyBEb3ZlIHZhbm5vIGdsaSA4MCBKIGNlZHV0aT88L3RleHQ+Cjx0ZXh0IHg9IjI1IiB5PSI1MTUiPkVuZXJnaWUgdHJhc2Zlcml0ZSwgZXNwcmVzc2UgaW4gSjwvdGV4dD4KPGxpbmUgeDE9IjEwMCIgeTE9IjU0NSIgeDI9IjEwMCIgeTI9Ijc3NSIgc3Ryb2tlPSIjMzUyZDQyIiBzdHJva2Utd2lkdGg9IjIiLz4KPHRleHQgeD0iMjUiIHk9IjU5MCI+Q2VkZTwvdGV4dD48cmVjdCB4PSIxMDAiIHk9IjU2NSIgd2lkdGg9IjQwMCIgaGVpZ2h0PSI0NSIgZmlsbD0iI2I5NGY0OCIvPjx0ZXh0IHg9IjExNSIgeT0iNTk1IiBmaWxsPSJ3aGl0ZSI+Q2FsZG86MiBKL0sgw5cgNDAgSyA9ODAgSjwvdGV4dD4KPHRleHQgeD0iMjUiIHk9IjY5MCI+RW50cmFubzwvdGV4dD48cmVjdCB4PSIxMDAiIHk9IjY2NSIgd2lkdGg9IjIwMCIgaGVpZ2h0PSI0NSIgZmlsbD0iIzE0Nzk3OSIvPjxyZWN0IHg9IjMwMCIgeT0iNjY1IiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjQ1IiBmaWxsPSIjNzM1MGIwIi8+Cjx0ZXh0IHg9IjExNCIgeT0iNjk1IiBmaWxsPSJ3aGl0ZSI+RnJlZGRvIDQwIEo8L3RleHQ+PHRleHQgeD0iMzE1IiB5PSI2OTUiIGZpbGw9IndoaXRlIj5SZWNpcGllbnRlIDQwIEo8L3RleHQ+Cjx0ZXh0IHg9Ijc2IiB5PSI3NjUiPjA8L3RleHQ+PHRleHQgeD0iMjgwIiB5PSI3NjUiPjQwPC90ZXh0Pjx0ZXh0IHg9IjQ3NSIgeT0iNzY1Ij44MCBKPC90ZXh0Pgo8dGV4dCB4PSIyNSIgeT0iODI1Ij40MCBKICs0MCBKID04MCBKIMK3IG5lc3N1bmEgZW5lcmdpYSBlc3Rlcm5hPC90ZXh0Pgo8bGluZSB4MT0iMjUiIHkxPSI4NjUiIHgyPSI1MzUiIHkyPSI4NjUiIHN0cm9rZT0iI2I4YWRhMCIvPgo8dGV4dCB4PSIyNSIgeT0iOTEwIiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iYm9sZCI+MyDCtyBJbCByZWNpcGllbnRlIHJlc3RhIHVndWFsZTwvdGV4dD4KPHRleHQgeD0iMjUiIHk9Ijk1MCI+TGV0dHVyZSBpbiDCsEMgwrcgQ19yIHNlbXByZSAyIEovSzwvdGV4dD4KPGxpbmUgeDE9IjE0MCIgeTE9Ijk5MCIgeDI9IjE0MCIgeTI9IjEyNzUiIHN0cm9rZT0iIzM1MmQ0MiIgc3Ryb2tlLXdpZHRoPSIyIi8+Cjx0ZXh0IHg9IjI1IiB5PSIxMDM1Ij5BOjIgZysyIGc8L3RleHQ+PHJlY3QgeD0iMTQwIiB5PSIxMDEwIiB3aWR0aD0iMjQwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjMTQ3OTc5Ii8+PHRleHQgeD0iMzk1IiB5PSIxMDM3Ij40MCDCsEM8L3RleHQ+Cjx0ZXh0IHg9IjI1IiB5PSIxMTE1Ij5COjQgZys0IGc8L3RleHQ+PHJlY3QgeD0iMTQwIiB5PSIxMDkwIiB3aWR0aD0iMjY0IiBoZWlnaHQ9IjQwIiBmaWxsPSIjZDQ5MzMyIi8+PHRleHQgeD0iNDE5IiB5PSIxMTE3Ij40NCDCsEM8L3RleHQ+Cjx0ZXh0IHg9IjI1IiB5PSIxMTk1Ij5NZWRpYTwvdGV4dD48cmVjdCB4PSIxNDAiIHk9IjExNzAiIHdpZHRoPSIyNTIiIGhlaWdodD0iNDAiIGZpbGw9IiM3MzUwYjAiLz48dGV4dCB4PSI0MDciIHk9IjExOTciPjQyIMKwQzwvdGV4dD4KPHRleHQgeD0iMTE2IiB5PSIxMjU1Ij4wPC90ZXh0Pjx0ZXh0IHg9IjI1IiB5PSIxMzIwIj5JIGR1ZSBjYW1waW9uaSBjYW1iaWFubywgaWwgY29udGVuaXRvcmUgbm8uPC90ZXh0Pgo8dGV4dCB4PSIyNSIgeT0iMTM2MCI+TWVkaWEgZGVsbGUgdXNjaXRlOig0MCs0NCkvMj00MiDCsEMuPC90ZXh0Pgo8dGV4dCB4PSIyNSIgeT0iMTQwMCI+TGUgYmFycmUgdXNhbm8gbG8gemVybyBDZWxzaXVzIHNjZWx0by48L3RleHQ+CjwvZz48L3N2Zz4K"
+    }
+  ]
+}

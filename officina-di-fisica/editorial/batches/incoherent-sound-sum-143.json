@@ -1,0 +1,1151 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u4-incoherent-sound-sum-01",
+      "kind": "question",
+      "course": "C5",
+      "section": "Somma di intensità non coerenti",
+      "order": 14301,
+      "title": "Due contributi non coerenti",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L04",
+      "prerequisites": [
+        "C5-L02",
+        "C5-L03",
+        "C5-L04",
+        "C5-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "incoherent-sound-sum",
+      "difficulty": 1,
+      "prompt": "Due contributi sonori progressivi nello stesso mezzo lineare attraversano localmente la stessa area normale nella stessa direzione. I₁,I₂>0 sono le intensità medie che ciascuna sorgente produrrebbe da sola nel punto. Le sorgenti sono non coerenti: sul tempo di osservazione il termine incrociato ha media nulla. Non vi sono interazioni non lineari né cambiamenti delle sorgenti quando vengono accese insieme; allora l’intensità media totale è Iₜ=I₁+I₂. Non si sommano i livelli in dB. Con I₁=1 W/m² e I₂=2 W/m², quanto vale Iₜ in W/m²?",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "W/m²",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La media del termine incrociato è nulla nelle ipotesi dichiarate. Si sommano quindi le due intensità: uno più due dà tre W/m². Questo risultato riguarda il flusso medio di energia, non la somma delle ampiezze o dei livelli sonori."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/f76cdeabba83109c5a04e275bb75a570150547b65572735fce779351dbace01e",
+          "text": "Barre da zero alla scala comune 100 px/(W/m²): i contributi singoli 1 e 2 W/m² formano il totale 3 W/m². Non sono ampiezze né dB. La seconda prova mostra contributi 2 e 3 con totale 5; la media dei totali è 4 W/m². Il pannello finale separato illustra il caso 06, in unità normalizzate: contributi iniziali 1 e 3, totale 4; spegnendo il secondo resta 1, cioè un quarto del totale iniziale."
+        },
+        {
+          "type": "formula",
+          "text": "I_t=I_1+I_2"
+        },
+        {
+          "type": "formula",
+          "text": " I_t=(1+2)\\,\\mathrm{W/m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " I_t=3\\,\\mathrm{W/m^2}"
+        },
+        {
+          "type": "text",
+          "text": "Uno sottrarrebbe le intensità come se la seconda avesse verso opposto. Due copierebbe solo I₂ e sei aggiungerebbe un raddoppio superfluo alla somma. Elevare al quadrato la somma dei numeri non dà unità di intensità."
+        }
+      ],
+      "hints": [
+        "Somma quantità omogenee già espresse come intensità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Uno sottrarrebbe le intensità come se la seconda avesse verso opposto. Due copierebbe solo I₂ e sei aggiungerebbe un raddoppio superfluo alla somma. Elevare al quadrato la somma dei numeri non dà unità di intensità.",
+        "target": "C5-L04"
+      },
+      "coverage": [
+        "Media del termine incrociato",
+        "Spegnimento di una sorgente",
+        "Linearità della media, inverse e display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-incoherent-sound-sum-02",
+      "kind": "question",
+      "course": "C5",
+      "section": "Somma di intensità non coerenti",
+      "order": 14302,
+      "title": "L’unità della somma",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L04",
+      "prerequisites": [
+        "C5-L02",
+        "C5-L03",
+        "C5-L04",
+        "C5-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "incoherent-sound-sum",
+      "difficulty": 1,
+      "prompt": "I₁ e I₂ sono intensità in W/m² e Iₜ=I₁+I₂. Quale unità ha Iₜ?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "W/m²",
+          "W²/m⁴",
+          "W",
+          "dB",
+          "J"
+        ],
+        "value": "W/m²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Una somma di grandezze omogenee conserva le unità dei termini. L’intensità totale è ancora potenza media per area normale. Non abbiamo moltiplicato le intensità né convertito la somma in un livello logaritmico."
+        },
+        {
+          "type": "formula",
+          "text": "[I_t]=[I_1]"
+        },
+        {
+          "type": "formula",
+          "text": "[I_1]=[I_2]"
+        },
+        {
+          "type": "formula",
+          "text": " [I_t]=\\mathrm{W/m^2}"
+        },
+        {
+          "type": "text",
+          "text": "W²/m⁴ sarebbe l’unità del prodotto I₁I₂. W richiederebbe un’area, J un’area e un intervallo di tempo; dB richiede invece un riferimento e un logaritmo."
+        }
+      ],
+      "hints": [
+        "Nella somma non si moltiplicano le unità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "W²/m⁴ sarebbe l’unità del prodotto I₁I₂. W richiederebbe un’area, J un’area e un intervallo di tempo; dB richiede invece un riferimento e un logaritmo.",
+        "target": "C5-L04"
+      },
+      "coverage": [
+        "Media del termine incrociato",
+        "Spegnimento di una sorgente",
+        "Linearità della media, inverse e display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-incoherent-sound-sum-03",
+      "kind": "question",
+      "course": "C5",
+      "section": "Somma di intensità non coerenti",
+      "order": 14303,
+      "title": "Perché si aggiungono le intensità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L04",
+      "prerequisites": [
+        "C5-L02",
+        "C5-L03",
+        "C5-L04",
+        "C5-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "incoherent-sound-sum",
+      "difficulty": 1,
+      "prompt": "Due contributi sonori progressivi nello stesso mezzo lineare attraversano localmente la stessa area normale nella stessa direzione. I₁,I₂>0 sono le intensità medie che ciascuna sorgente produrrebbe da sola nel punto. Le sorgenti sono non coerenti: sul tempo di osservazione il termine incrociato ha media nulla. Non vi sono interazioni non lineari né cambiamenti delle sorgenti quando vengono accese insieme; allora l’intensità media totale è Iₜ=I₁+I₂. Non si sommano i livelli in dB. Quale passaggio giustifica Iₜ=I₁+I₂?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "La media temporale del termine incrociato è nulla",
+          "Le ampiezze positive si sommano e poi si elevano al quadrato",
+          "La fase relativa è sempre zero",
+          "I livelli in dB sono proporzionali alle ampiezze",
+          "L’energia delle due onde si annulla"
+        ],
+        "value": "La media temporale del termine incrociato è nulla"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "In un mezzo lineare si sovrappongono le perturbazioni istantanee, ma l’intensità media contiene anche un termine incrociato. Per contributi non coerenti quel termine ha media nulla sul tempo scelto. Restano le intensità delle due onde prese singolarmente: la non coerenza non significa assenza di energia."
+        },
+        {
+          "type": "formula",
+          "text": "I_t=I_1+I_2+I_{\\rm inc}"
+        },
+        {
+          "type": "formula",
+          "text": " I_{\\rm inc}=0"
+        },
+        {
+          "type": "formula",
+          "text": " I_t=I_1+I_2"
+        },
+        {
+          "type": "text",
+          "text": "La fase sempre zero descrive interferenza costruttiva coerente, che conserva un termine incrociato. Sommare ampiezze positive richiederebbe proprio quella fase. I dB sono logaritmici e l’energia non si annulla."
+        }
+      ],
+      "hints": [
+        "Distingui la somma istantanea delle perturbazioni dalla sua energia media.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La fase sempre zero descrive interferenza costruttiva coerente, che conserva un termine incrociato. Sommare ampiezze positive richiederebbe proprio quella fase. I dB sono logaritmici e l’energia non si annulla.",
+        "target": "C5-L04"
+      },
+      "coverage": [
+        "Media del termine incrociato",
+        "Spegnimento di una sorgente",
+        "Linearità della media, inverse e display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-incoherent-sound-sum-04",
+      "kind": "question",
+      "course": "C5",
+      "section": "Somma di intensità non coerenti",
+      "order": 14304,
+      "title": "Aumentare la prima sorgente",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L04",
+      "prerequisites": [
+        "C5-L02",
+        "C5-L03",
+        "C5-L04",
+        "C5-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "incoherent-sound-sum",
+      "difficulty": 1,
+      "prompt": "Due contributi sonori progressivi nello stesso mezzo lineare attraversano localmente la stessa area normale nella stessa direzione. I₁,I₂>0 sono le intensità medie che ciascuna sorgente produrrebbe da sola nel punto. Le sorgenti sono non coerenti: sul tempo di osservazione il termine incrociato ha media nulla. Non vi sono interazioni non lineari né cambiamenti delle sorgenti quando vengono accese insieme; allora l’intensità media totale è Iₜ=I₁+I₂. Non si sommano i livelli in dB. I₂ resta 2 W/m², mentre I₁ passa da 1 a 2 W/m². Come cambia Iₜ?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 3 a 4 W/m²",
+          "Da 3 a 6 W/m²",
+          "Da 3 a 5 W/m²",
+          "Resta 3 W/m²",
+          "Da 3 a 2 W/m²"
+        ],
+        "value": "Da 3 a 4 W/m²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "In A la somma vale tre W/m²; in B vale due più due, quattro. Il raddoppio della sola prima intensità non raddoppia la seconda. L’incremento totale è lo stesso incremento di I₁, un W/m²."
+        },
+        {
+          "type": "formula",
+          "text": "I_{t,A}=3\\,\\mathrm{W/m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " I_{t,B}=(2+2)\\,\\mathrm{W/m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " I_{t,B}=4\\,\\mathrm{W/m^2}"
+        },
+        {
+          "type": "text",
+          "text": "Sei raddoppia entrambe le sorgenti; cinque aggiunge l’intera nuova I₁ alla vecchia somma senza togliere la vecchia I₁. Due elimina la seconda sorgente o scambia intensità e incremento."
+        }
+      ],
+      "hints": [
+        "Sostituisci solo il termine che cambia.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Sei raddoppia entrambe le sorgenti; cinque aggiunge l’intera nuova I₁ alla vecchia somma senza togliere la vecchia I₁. Due elimina la seconda sorgente o scambia intensità e incremento.",
+        "target": "C5-L04"
+      },
+      "coverage": [
+        "Media del termine incrociato",
+        "Spegnimento di una sorgente",
+        "Linearità della media, inverse e display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-incoherent-sound-sum-05",
+      "kind": "question",
+      "course": "C5",
+      "section": "Somma di intensità non coerenti",
+      "order": 14305,
+      "title": "Ricostruire una sorgente",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L04",
+      "prerequisites": [
+        "C5-L02",
+        "C5-L03",
+        "C5-L04",
+        "C5-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "incoherent-sound-sum",
+      "difficulty": 2,
+      "prompt": "Due contributi sonori progressivi nello stesso mezzo lineare attraversano localmente la stessa area normale nella stessa direzione. I₁,I₂>0 sono le intensità medie che ciascuna sorgente produrrebbe da sola nel punto. Le sorgenti sono non coerenti: sul tempo di osservazione il termine incrociato ha media nulla. Non vi sono interazioni non lineari né cambiamenti delle sorgenti quando vengono accese insieme; allora l’intensità media totale è Iₜ=I₁+I₂. Non si sommano i livelli in dB. Si misura Iₜ=3 W/m² e si conosce I₂=2 W/m². Quanto vale I₁ in W/m²?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "W/m²",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sottraiamo dalla somma il contributo noto: tre meno due dà un W/m². Il dato totale supera I₂, quindi il risultato è positivo e rispetta il dominio della prima sorgente accesa. La somma di controllo uno più due restituisce tre."
+        },
+        {
+          "type": "formula",
+          "text": "I_1=I_t-I_2"
+        },
+        {
+          "type": "formula",
+          "text": " I_1=(3-2)\\,\\mathrm{W/m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " I_1=1\\,\\mathrm{W/m^2}"
+        },
+        {
+          "type": "text",
+          "text": "Cinque aggiunge invece di sottrarre. Tre copia il totale e meno uno inverte l’ordine. Un’intensità singola negativa non è ammessa in questo modello di contributi codirezionali positivi."
+        }
+      ],
+      "hints": [
+        "Togli il contributo che conosci dal totale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Cinque aggiunge invece di sottrarre. Tre copia il totale e meno uno inverte l’ordine. Un’intensità singola negativa non è ammessa in questo modello di contributi codirezionali positivi.",
+        "target": "C5-L04"
+      },
+      "coverage": [
+        "Media del termine incrociato",
+        "Spegnimento di una sorgente",
+        "Linearità della media, inverse e display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-incoherent-sound-sum-06",
+      "kind": "question",
+      "course": "C5",
+      "section": "Somma di intensità non coerenti",
+      "order": 14306,
+      "title": "Spegnere una sorgente",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L04",
+      "prerequisites": [
+        "C5-L02",
+        "C5-L03",
+        "C5-L04",
+        "C5-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "incoherent-sound-sum",
+      "difficulty": 2,
+      "prompt": "Due sorgenti non coerenti producono intensità singole positive I₁,I₂ nel medesimo punto, con flusso locale nella stessa direzione e termine incrociato medio nullo. Quando entrambe sono accese Iₜ=I₁+I₂. Spegnere la seconda non altera la prima e riduce il totale del 75%. Quanto vale I₁/I₂ prima dello spegnimento?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/3",
+          "3",
+          "1/4",
+          "3/4",
+          "1"
+        ],
+        "value": "1/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dopo lo spegnimento resta il venticinque per cento del totale iniziale, cioè un quarto. Quindi I₁=(I₁+I₂)/4. Moltiplicando per quattro e sottraendo I₁ segue 3I₁=I₂: il rapporto richiesto è un terzo. Solo nello stato finale I₂ è zero; i simboli nel rapporto indicano i contributi iniziali."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/f76cdeabba83109c5a04e275bb75a570150547b65572735fce779351dbace01e",
+          "text": "Solo il pannello finale riguarda lo spegnimento: scala 100 px per unità normalizzata di intensità. Totale iniziale 4 e residuo 1 hanno barre 400 e 100 px. La frazione rimossa è 3/4, mentre I₁/I₂ iniziale è 1/3. Non sono barre di livelli in decibel."
+        },
+        {
+          "type": "formula",
+          "text": "I_1=\\frac{I_1+I_2}{4}"
+        },
+        {
+          "type": "formula",
+          "text": " 4I_1=I_1+I_2"
+        },
+        {
+          "type": "formula",
+          "text": " 3I_1=I_2"
+        },
+        {
+          "type": "formula",
+          "text": " I_1/I_2=\\frac13"
+        },
+        {
+          "type": "text",
+          "text": "Un quarto è I₁ rispetto al totale, non rispetto a I₂. Tre quarti è la frazione rimossa; tre inverte il rapporto fra sorgenti. Uno darebbe una riduzione del cinquanta per cento."
+        }
+      ],
+      "hints": [
+        "La frazione che resta è 1−3/4, non 3/4.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un quarto è I₁ rispetto al totale, non rispetto a I₂. Tre quarti è la frazione rimossa; tre inverte il rapporto fra sorgenti. Uno darebbe una riduzione del cinquanta per cento.",
+        "target": "C5-L04"
+      },
+      "coverage": [
+        "Media del termine incrociato",
+        "Spegnimento di una sorgente",
+        "Linearità della media, inverse e display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-incoherent-sound-sum-07",
+      "kind": "question",
+      "course": "C5",
+      "section": "Somma di intensità non coerenti",
+      "order": 14307,
+      "title": "Dimezzare la seconda intensità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L04",
+      "prerequisites": [
+        "C5-L02",
+        "C5-L03",
+        "C5-L04",
+        "C5-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "incoherent-sound-sum",
+      "difficulty": 2,
+      "prompt": "Due contributi sonori progressivi nello stesso mezzo lineare attraversano localmente la stessa area normale nella stessa direzione. I₁,I₂>0 sono le intensità medie che ciascuna sorgente produrrebbe da sola nel punto. Le sorgenti sono non coerenti: sul tempo di osservazione il termine incrociato ha media nulla. Non vi sono interazioni non lineari né cambiamenti delle sorgenti quando vengono accese insieme; allora l’intensità media totale è Iₜ=I₁+I₂. Non si sommano i livelli in dB. A ha I₁=1 W/m²,I₂=2 W/m². B mantiene I₁ e porta I₂ a 1 W/m². Quanto vale Iₜ,B/Iₜ,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2/3",
+          "1/2",
+          "3/2",
+          "1",
+          "1/3"
+        ],
+        "value": "2/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I totali sono tre e due W/m². Il loro rapporto è due terzi. Un mezzo descrive soltanto il cambiamento della seconda intensità, mentre la prima resta presente e impedisce al totale di dimezzarsi."
+        },
+        {
+          "type": "formula",
+          "text": "I_{t,A}=3\\,\\mathrm{W/m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " I_{t,B}=2\\,\\mathrm{W/m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " I_{t,B}/I_{t,A}=\\frac23"
+        },
+        {
+          "type": "text",
+          "text": "Tre mezzi inverte il confronto; uno ignora la variazione. Un terzo confronta il solo contributo costante con il totale iniziale. Non si applica un unico fattore a tutta la somma quando cambia un solo termine."
+        }
+      ],
+      "hints": [
+        "Ricalcola entrambi i totali.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre mezzi inverte il confronto; uno ignora la variazione. Un terzo confronta il solo contributo costante con il totale iniziale. Non si applica un unico fattore a tutta la somma quando cambia un solo termine.",
+        "target": "C5-L04"
+      },
+      "coverage": [
+        "Media del termine incrociato",
+        "Spegnimento di una sorgente",
+        "Linearità della media, inverse e display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-incoherent-sound-sum-08",
+      "kind": "question",
+      "course": "C5",
+      "section": "Somma di intensità non coerenti",
+      "order": 14308,
+      "title": "Uno scarto positivo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L04",
+      "prerequisites": [
+        "C5-L02",
+        "C5-L03",
+        "C5-L04",
+        "C5-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "incoherent-sound-sum",
+      "difficulty": 2,
+      "prompt": "Due contributi sonori progressivi nello stesso mezzo lineare attraversano localmente la stessa area normale nella stessa direzione. I₁,I₂>0 sono le intensità medie che ciascuna sorgente produrrebbe da sola nel punto. Le sorgenti sono non coerenti: sul tempo di osservazione il termine incrociato ha media nulla. Non vi sono interazioni non lineari né cambiamenti delle sorgenti quando vengono accese insieme; allora l’intensità media totale è Iₜ=I₁+I₂. Non si sommano i livelli in dB. Con I₁=1 W/m²,I₂=2 W/m² si propone Iₜ=6 W/m². Quanto vale proposta meno corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3 W/m²",
+          "−3 W/m²",
+          "6 W/m²",
+          "0 W/m²",
+          "9 W/m²"
+        ],
+        "value": "3 W/m²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La somma corretta vale tre W/m². La proposta sei supera quel valore di tre W/m². Il fattore due già incluso nella proposta non deriva dalla presenza di due sorgenti: i loro due contributi sono già contati nella somma."
+        },
+        {
+          "type": "formula",
+          "text": "I_t=3\\,\\mathrm{W/m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " e=(6-3)\\,\\mathrm{W/m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " e=3\\,\\mathrm{W/m^2}"
+        },
+        {
+          "type": "text",
+          "text": "Meno tre cambia l’ordine, sei copia la proposta e nove somma. Zero accetterebbe un raddoppio senza giustificazione fisica. Lo scarto ha le unità della grandezza confrontata."
+        }
+      ],
+      "hints": [
+        "Sottrai il risultato fisico dalla proposta.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Meno tre cambia l’ordine, sei copia la proposta e nove somma. Zero accetterebbe un raddoppio senza giustificazione fisica. Lo scarto ha le unità della grandezza confrontata.",
+        "target": "C5-L04"
+      },
+      "coverage": [
+        "Media del termine incrociato",
+        "Spegnimento di una sorgente",
+        "Linearità della media, inverse e display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-incoherent-sound-sum-09",
+      "kind": "question",
+      "course": "C5",
+      "section": "Somma di intensità non coerenti",
+      "order": 14309,
+      "title": "L’inversa della somma",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L04",
+      "prerequisites": [
+        "C5-L02",
+        "C5-L03",
+        "C5-L04",
+        "C5-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "incoherent-sound-sum",
+      "difficulty": 2,
+      "prompt": "Due contributi sonori progressivi nello stesso mezzo lineare attraversano localmente la stessa area normale nella stessa direzione. I₁,I₂>0 sono le intensità medie che ciascuna sorgente produrrebbe da sola nel punto. Le sorgenti sono non coerenti: sul tempo di osservazione il termine incrociato ha media nulla. Non vi sono interazioni non lineari né cambiamenti delle sorgenti quando vengono accese insieme; allora l’intensità media totale è Iₜ=I₁+I₂. Non si sommano i livelli in dB. Con Iₜ>I₂ noti, quale relazione isola I₁?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "I₁ = Iₜ − I₂",
+          "I₁ = Iₜ + I₂",
+          "I₁ = I₂ − Iₜ",
+          "I₁ = Iₜ / I₂",
+          "I₁ = √(Iₜ − I₂)"
+        ],
+        "value": "I₁ = Iₜ − I₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sottraiamo I₂ da entrambi i membri della somma. Rimane I₁=Iₜ−I₂, positivo grazie al dominio dato. Non vi sono potenze o prodotti da invertire: è un bilancio additivo di intensità medie."
+        },
+        {
+          "type": "formula",
+          "text": "I_t=I_1+I_2"
+        },
+        {
+          "type": "formula",
+          "text": " I_1=I_t-I_2"
+        },
+        {
+          "type": "formula",
+          "text": " I_t>I_2"
+        },
+        {
+          "type": "text",
+          "text": "Aggiungere I₂ ne conterebbe due copie. Sottrarre al contrario darebbe un valore negativo; il quoziente è puro e la radice ha dimensioni diverse da un’intensità."
+        }
+      ],
+      "hints": [
+        "L’operazione inversa dell’addizione è la sottrazione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Aggiungere I₂ ne conterebbe due copie. Sottrarre al contrario darebbe un valore negativo; il quoziente è puro e la radice ha dimensioni diverse da un’intensità.",
+        "target": "C5-L04"
+      },
+      "coverage": [
+        "Media del termine incrociato",
+        "Spegnimento di una sorgente",
+        "Linearità della media, inverse e display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-incoherent-sound-sum-10",
+      "kind": "question",
+      "course": "C5",
+      "section": "Somma di intensità non coerenti",
+      "order": 14310,
+      "title": "Una variazione diversa per ciascuna sorgente",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L04",
+      "prerequisites": [
+        "C5-L02",
+        "C5-L03",
+        "C5-L04",
+        "C5-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "incoherent-sound-sum",
+      "difficulty": 2,
+      "prompt": "Due contributi sonori progressivi nello stesso mezzo lineare attraversano localmente la stessa area normale nella stessa direzione. I₁,I₂>0 sono le intensità medie che ciascuna sorgente produrrebbe da sola nel punto. Le sorgenti sono non coerenti: sul tempo di osservazione il termine incrociato ha media nulla. Non vi sono interazioni non lineari né cambiamenti delle sorgenti quando vengono accese insieme; allora l’intensità media totale è Iₜ=I₁+I₂. Non si sommano i livelli in dB. Fra prove B ha I₁,B=κ₁I₁,A e I₂,B=κ₂I₂,A, con κ₁,κ₂>0. Per brevità poniamo U=I₁,A+I₂,A e V=κ₁I₁,A+κ₂I₂,A. Quanto vale Iₜ,B/Iₜ,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "V / U",
+          "U / V",
+          "κ₁ + κ₂",
+          "κ₁ κ₂",
+          "(V − U) / U"
+        ],
+        "value": "V / U"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "U e V sono rispettivamente i totali A e B, nelle stesse unità. Il rapporto richiesto è V/U. Espandendolo si vede una media dei due fattori pesata dai contributi iniziali; non basta sommare o moltiplicare i fattori senza considerare quei contributi."
+        },
+        {
+          "type": "formula",
+          "text": "I_{t,A}=U"
+        },
+        {
+          "type": "formula",
+          "text": " I_{t,B}=V"
+        },
+        {
+          "type": "formula",
+          "text": " I_{t,B}/I_{t,A}=V/U"
+        },
+        {
+          "type": "text",
+          "text": "U/V inverte il confronto. κ₁+κ₂ e κ₁κ₂ perdono i pesi delle due intensità; (V−U)/U è l’incremento relativo, inferiore al rapporto totale di uno."
+        }
+      ],
+      "hints": [
+        "Identifica il totale di ogni prova prima del quoziente.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "U/V inverte il confronto. κ₁+κ₂ e κ₁κ₂ perdono i pesi delle due intensità; (V−U)/U è l’incremento relativo, inferiore al rapporto totale di uno.",
+        "target": "C5-L04"
+      },
+      "coverage": [
+        "Media del termine incrociato",
+        "Spegnimento di una sorgente",
+        "Linearità della media, inverse e display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-incoherent-sound-sum-11",
+      "kind": "question",
+      "course": "C5",
+      "section": "Somma di intensità non coerenti",
+      "order": 14311,
+      "title": "Due sorgenti entrambe più intense",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L04",
+      "prerequisites": [
+        "C5-L02",
+        "C5-L03",
+        "C5-L04",
+        "C5-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "incoherent-sound-sum",
+      "difficulty": 2,
+      "prompt": "Due contributi sonori progressivi nello stesso mezzo lineare attraversano localmente la stessa area normale nella stessa direzione. I₁,I₂>0 sono le intensità medie che ciascuna sorgente produrrebbe da sola nel punto. Le sorgenti sono non coerenti: sul tempo di osservazione il termine incrociato ha media nulla. Non vi sono interazioni non lineari né cambiamenti delle sorgenti quando vengono accese insieme; allora l’intensità media totale è Iₜ=I₁+I₂. Non si sommano i livelli in dB. A: I₁=1 W/m²,I₂=2 W/m². B: I₁=2 W/m²,I₂=3 W/m². Quanto vale Iₜ,B/Iₜ,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "5/3",
+          "3/5",
+          "2",
+          "3/2",
+          "5"
+        ],
+        "value": "5/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A produce tre W/m² e B cinque W/m². Il rapporto è cinque terzi. I singoli fattori due e tre mezzi non sono uguali, perciò nessuno dei due può rappresentare da solo il cambiamento del totale."
+        },
+        {
+          "type": "formula",
+          "text": "I_{t,A}=3\\,\\mathrm{W/m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " I_{t,B}=5\\,\\mathrm{W/m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " I_{t,B}/I_{t,A}=\\frac53"
+        },
+        {
+          "type": "text",
+          "text": "Tre quinti inverte le prove; due e tre mezzi seguono una sola sorgente. Cinque è il numero del totale B e non il rapporto puro."
+        }
+      ],
+      "hints": [
+        "Somma prima, poi confronta.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre quinti inverte le prove; due e tre mezzi seguono una sola sorgente. Cinque è il numero del totale B e non il rapporto puro.",
+        "target": "C5-L04"
+      },
+      "coverage": [
+        "Media del termine incrociato",
+        "Spegnimento di una sorgente",
+        "Linearità della media, inverse e display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-incoherent-sound-sum-12",
+      "kind": "question",
+      "course": "C5",
+      "section": "Somma di intensità non coerenti",
+      "order": 14312,
+      "title": "La media e la linearità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L04",
+      "prerequisites": [
+        "C5-L02",
+        "C5-L03",
+        "C5-L04",
+        "C5-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "incoherent-sound-sum",
+      "difficulty": 2,
+      "prompt": "Due contributi sonori progressivi nello stesso mezzo lineare attraversano localmente la stessa area normale nella stessa direzione. I₁,I₂>0 sono le intensità medie che ciascuna sorgente produrrebbe da sola nel punto. Le sorgenti sono non coerenti: sul tempo di osservazione il termine incrociato ha media nulla. Non vi sono interazioni non lineari né cambiamenti delle sorgenti quando vengono accese insieme; allora l’intensità media totale è Iₜ=I₁+I₂. Non si sommano i livelli in dB. A: I₁=1 W/m²,I₂=2 W/m². B: I₁=2 W/m²,I₂=3 W/m². Qual è la media aritmetica dei due totali con uguale peso?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4 W/m²",
+          "8 W/m²",
+          "2 W/m²",
+          "5 W/m²",
+          "3 W/m²"
+        ],
+        "value": "4 W/m²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La semisomma dei totali tre e cinque dà quattro W/m². Qui si ottiene lo stesso valore usando le intensità singole medie, tre mezzi e cinque mezzi, perché la legge è lineare e i pesi statistici sono gli stessi. Non occorre inventare una differenza fra le due procedure."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline I_t=\\frac{3+5}{2}\\,\\mathrm{W/m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline I_t=4\\,\\mathrm{W/m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline I_1+\\overline I_2=4\\,\\mathrm{W/m^2}"
+        },
+        {
+          "type": "text",
+          "text": "Otto dimentica la divisione per due; due dimezza una seconda volta. Tre e cinque copiano una prova. La coincidenza con la somma delle medie dipende dalla linearità, non dalla sola positività delle intensità."
+        }
+      ],
+      "hints": [
+        "La media di una somma è la somma delle medie con gli stessi pesi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Otto dimentica la divisione per due; due dimezza una seconda volta. Tre e cinque copiano una prova. La coincidenza con la somma delle medie dipende dalla linearità, non dalla sola positività delle intensità.",
+        "target": "C5-L04"
+      },
+      "coverage": [
+        "Media del termine incrociato",
+        "Spegnimento di una sorgente",
+        "Linearità della media, inverse e display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-incoherent-sound-sum-13",
+      "kind": "question",
+      "course": "C5",
+      "section": "Somma di intensità non coerenti",
+      "order": 14313,
+      "title": "Un bersaglio sul totale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L04",
+      "prerequisites": [
+        "C5-L02",
+        "C5-L03",
+        "C5-L04",
+        "C5-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "incoherent-sound-sum",
+      "difficulty": 3,
+      "prompt": "Due contributi sonori progressivi nello stesso mezzo lineare attraversano localmente la stessa area normale nella stessa direzione. I₁,I₂>0 sono le intensità medie che ciascuna sorgente produrrebbe da sola nel punto. Le sorgenti sono non coerenti: sul tempo di osservazione il termine incrociato ha media nulla. Non vi sono interazioni non lineari né cambiamenti delle sorgenti quando vengono accese insieme; allora l’intensità media totale è Iₜ=I₁+I₂. Non si sommano i livelli in dB. A ha I₁=1 W/m²,I₂=2 W/m². B usa I₁,B=2 W/m² e richiede Iₜ,B=(5/3)Iₜ,A. Quanto vale I₂,B/I₂,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/2",
+          "2/3",
+          "5/3",
+          "5/2",
+          "1"
+        ],
+        "value": "3/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il totale A vale tre W/m², quindi il target B è cinque W/m². Togliendo il contributo noto due resta I₂,B=3 W/m². Dividendo per i due W/m² iniziali della seconda sorgente otteniamo tre mezzi."
+        },
+        {
+          "type": "formula",
+          "text": "I_{t,B}=5\\,\\mathrm{W/m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " I_{2,B}=3\\,\\mathrm{W/m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " I_{2,B}/I_{2,A}=\\frac32"
+        },
+        {
+          "type": "text",
+          "text": "Cinque terzi è il rapporto dei totali, cinque mezzi usa tutto il totale B al numeratore. Due terzi inverte le sorgenti temporali. Uno non raggiungerebbe il target: darebbe quattro W/m²."
+        }
+      ],
+      "hints": [
+        "Togli dal target il contributo della prima sorgente.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Cinque terzi è il rapporto dei totali, cinque mezzi usa tutto il totale B al numeratore. Due terzi inverte le sorgenti temporali. Uno non raggiungerebbe il target: darebbe quattro W/m².",
+        "target": "C5-L04"
+      },
+      "coverage": [
+        "Media del termine incrociato",
+        "Spegnimento di una sorgente",
+        "Linearità della media, inverse e display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-incoherent-sound-sum-14",
+      "kind": "question",
+      "course": "C5",
+      "section": "Somma di intensità non coerenti",
+      "order": 14314,
+      "title": "Tarare il display dell’intensità totale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L04",
+      "prerequisites": [
+        "C5-L02",
+        "C5-L03",
+        "C5-L04",
+        "C5-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "incoherent-sound-sum",
+      "difficulty": 3,
+      "prompt": "Due contributi sonori progressivi nello stesso mezzo lineare attraversano localmente la stessa area normale nella stessa direzione. I₁,I₂>0 sono le intensità medie che ciascuna sorgente produrrebbe da sola nel punto. Le sorgenti sono non coerenti: sul tempo di osservazione il termine incrociato ha media nulla. Non vi sono interazioni non lineari né cambiamenti delle sorgenti quando vengono accese insieme; allora l’intensità media totale è Iₜ=I₁+I₂. Non si sommano i livelli in dB. Un display continuo puro segue S=qIₜ, q>0. A con I₁=1 W/m²,I₂=2 W/m² legge S=9. B legge S=15 e ha I₂=3 W/m². Quanto vale I₁,B in W/m²?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "W/m²",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha totale tre W/m², quindi q=3 m²/W. La lettura quindici rappresenta cinque W/m². Sottraiamo I₂,B=3 W/m² e troviamo due W/m². Il display misura il totale, non direttamente la prima sorgente."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{m^2/W}"
+        },
+        {
+          "type": "formula",
+          "text": " I_{t,B}=5\\,\\mathrm{W/m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " I_{1,B}=2\\,\\mathrm{W/m^2}"
+        },
+        {
+          "type": "text",
+          "text": "Dodici sottrae I₂ alla lettura grezza senza decodificarla; cinque dimentica di togliere I₂. Usare il guadagno come un’intensità mescola unità incompatibili."
+        }
+      ],
+      "hints": [
+        "Dividi S per q prima della sottrazione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dodici sottrae I₂ alla lettura grezza senza decodificarla; cinque dimentica di togliere I₂. Usare il guadagno come un’intensità mescola unità incompatibili.",
+        "target": "C5-L04"
+      },
+      "coverage": [
+        "Media del termine incrociato",
+        "Spegnimento di una sorgente",
+        "Linearità della media, inverse e display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-incoherent-sound-sum-15",
+      "kind": "question",
+      "course": "C5",
+      "section": "Somma di intensità non coerenti",
+      "order": 14315,
+      "title": "Due tarature con offset",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L04",
+      "prerequisites": [
+        "C5-L02",
+        "C5-L03",
+        "C5-L04",
+        "C5-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "incoherent-sound-sum",
+      "difficulty": 3,
+      "prompt": "Due contributi sonori progressivi nello stesso mezzo lineare attraversano localmente la stessa area normale nella stessa direzione. I₁,I₂>0 sono le intensità medie che ciascuna sorgente produrrebbe da sola nel punto. Le sorgenti sono non coerenti: sul tempo di osservazione il termine incrociato ha media nulla. Non vi sono interazioni non lineari né cambiamenti delle sorgenti quando vengono accese insieme; allora l’intensità media totale è Iₜ=I₁+I₂. Non si sommano i livelli in dB. Il display continuo segue S=qIₜ+b con q>0 e q,b costanti. A: I₁=1 W/m²,I₂=2 W/m²,S=7. B: I₁=2 W/m²,I₂=3 W/m²,S=11. C: I₂=5 W/m²,S=17. Quanto vale I₁,C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3 W/m²",
+          "8 W/m²",
+          "6 W/m²",
+          "7/2 W/m²",
+          "2 W/m²"
+        ],
+        "value": "3 W/m²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I totali A e B sono tre e cinque W/m². Il guadagno è (11−7)/(5−3)=2 m²/W; l’offset è uno. C ha totale (17−1)/2=8 W/m². Sottraendo cinque W/m² rimane I₁,C=3 W/m²."
+        },
+        {
+          "type": "formula",
+          "text": "q=2\\,\\mathrm{m^2/W}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " I_{t,C}=8\\,\\mathrm{W/m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " I_{1,C}=3\\,\\mathrm{W/m^2}"
+        },
+        {
+          "type": "text",
+          "text": "Otto è il totale, sei dimezza la lettura dopo aver tolto impropriamente I₂. Sette mezzi trascura l’offset: 17/2−5=7/2. Due copia la prova B. Tre riproduce S=2(3+5)+1=17."
+        }
+      ],
+      "hints": [
+        "Isola il totale dal display e poi la sorgente incognita.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Otto è il totale, sei dimezza la lettura dopo aver tolto impropriamente I₂. Sette mezzi trascura l’offset: 17/2−5=7/2. Due copia la prova B. Tre riproduce S=2(3+5)+1=17.",
+        "target": "C5-L04"
+      },
+      "coverage": [
+        "Media del termine incrociato",
+        "Spegnimento di una sorgente",
+        "Linearità della media, inverse e display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-incoherent-sound-sum-16",
+      "kind": "question",
+      "course": "C5",
+      "section": "Somma di intensità non coerenti",
+      "order": 14316,
+      "title": "Un vincolo che rende unica la coppia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L04",
+      "prerequisites": [
+        "C5-L02",
+        "C5-L03",
+        "C5-L04",
+        "C5-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "incoherent-sound-sum",
+      "difficulty": 3,
+      "prompt": "Due contributi sonori progressivi nello stesso mezzo lineare attraversano localmente la stessa area normale nella stessa direzione. I₁,I₂>0 sono le intensità medie che ciascuna sorgente produrrebbe da sola nel punto. Le sorgenti sono non coerenti: sul tempo di osservazione il termine incrociato ha media nulla. Non vi sono interazioni non lineari né cambiamenti delle sorgenti quando vengono accese insieme; allora l’intensità media totale è Iₜ=I₁+I₂. Non si sommano i livelli in dB. Si impone I₁=I₂/2 e si misura Iₜ=3 W/m². Quanto vale I₂ in W/m²?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "W/m²",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituiamo il vincolo nella somma: Iₜ=I₂/2+I₂=3I₂/2. Moltiplicare tre W/m² per due terzi dà I₂=2 W/m²; I₁ vale uno W/m². Entrambe sono positive e la coppia è unica perché il coefficiente tre mezzi è non nullo."
+        },
+        {
+          "type": "formula",
+          "text": "I_t=\\frac32 I_2"
+        },
+        {
+          "type": "formula",
+          "text": " I_2=\\frac23 I_t"
+        },
+        {
+          "type": "formula",
+          "text": " I_2=2\\,\\mathrm{W/m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " I_1=1\\,\\mathrm{W/m^2}"
+        },
+        {
+          "type": "text",
+          "text": "Uno scambia le sorgenti, tre copia il totale e sei ignora il termine I₂ già presente. Non compare alcun quadrato: una radice risolverebbe un’altra legge. Il vincolo collega contributi di prove stazionarie, non una variazione nel tempo."
+        }
+      ],
+      "hints": [
+        "Sostituisci il vincolo prima di isolare l’incognita.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Uno scambia le sorgenti, tre copia il totale e sei ignora il termine I₂ già presente. Non compare alcun quadrato: una radice risolverebbe un’altra legge. Il vincolo collega contributi di prove stazionarie, non una variazione nel tempo.",
+        "target": "C5-L04"
+      },
+      "coverage": [
+        "Media del termine incrociato",
+        "Spegnimento di una sorgente",
+        "Linearità della media, inverse e display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "f76cdeabba83109c5a04e275bb75a570150547b65572735fce779351dbace01e",
+      "name": "incoherent-sound-sum-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTYwMCIgdmlld0JveD0iMCAwIDY0MCAxNjAwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idCBkIj48dGl0bGUgaWQ9InQiPlNvbW1hIGRpIGludGVuc2l0w6Agbm9uIGNvZXJlbnRpPC90aXRsZT48ZGVzYyBpZD0iZCI+QmFycmUgZGkgaW50ZW5zaXTDoDogcHJvdmEgQSBjb24gdW5vIHBpw7kgZHVlIHVndWFsZSB0cmUsIEIgY29uIGR1ZSBwacO5IHRyZSB1Z3VhbGUgY2lucXVlLiBDYXNvIHNlcGFyYXRvIGRpIHNwZWduaW1lbnRvIGNvbiByZXNpZHVvIHVuIHF1YXJ0byBkZWwgdG90YWxlLjwvZGVzYz48cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjE2MDAiIHJ4PSIyNCIgZmlsbD0iI2Y1ZmFmZiIvPjxnIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIwIiBmaWxsPSIjMTYzMDQ3Ij48dGV4dCB4PSIzNSIgeT0iNTAiIGZvbnQtc2l6ZT0iMjYiIGZvbnQtd2VpZ2h0PSJib2xkIj4xIMK3IENvbnRyaWJ1dGkgbm9uIGNvZXJlbnRpPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSIxMDAiPlN0ZXNzbyBwdW50bywgZGlyZXppb25lIGUgbWV6em8gbGluZWFyZTwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMTQ1Ij5UZXJtaW5lIGluY3JvY2lhdG86IG1lZGlhIG51bGxhPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSIxOTAiPkJhcnJlOiAxMDAgcHgvKFcvbcKyKSwgcGFydGVuemEgZGEgemVybzwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMjUwIj5Qcm92YSBBOiAxICsgMiA9IDMgVy9twrI8L3RleHQ+PHJlY3QgeD0iODAiIHk9IjI5MCIgd2lkdGg9IjEwMCIgaGVpZ2h0PSI0OCIgZmlsbD0iIzE5NjA4MiIvPjxyZWN0IHg9IjE4MCIgeT0iMjkwIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjQ4IiBmaWxsPSIjYmM1MzE1Ii8+PHRleHQgeD0iMTEyIiB5PSIzMjIiIGZpbGw9IndoaXRlIj4xPC90ZXh0Pjx0ZXh0IHg9IjI2OCIgeT0iMzIyIiBmaWxsPSJ3aGl0ZSI+MjwvdGV4dD48dGV4dCB4PSIzOTUiIHk9IjMyMiI+MyBXL23CsjwvdGV4dD48dGV4dCB4PSIzNSIgeT0iNDAwIj5Tb25vIGludGVuc2l0w6AsIG5vbiBhbXBpZXp6ZSBvIGRCLjwvdGV4dD48cGF0aCBkPSJNMzUgNDU1SDYwNSIgc3Ryb2tlPSIjYjVjYmQ5Ii8+PHRleHQgeD0iMzUiIHk9IjUxMCIgZm9udC1zaXplPSIyNiIgZm9udC13ZWlnaHQ9ImJvbGQiPjIgwrcgVW5hIHNlY29uZGEgcHJvdmE8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjU2NSI+U3Rlc3NhIHNjYWxhOiAxMDAgcHgvKFcvbcKyKTwvdGV4dD48dGV4dCB4PSIzNSIgeT0iNjIwIj5COiAyICsgMyA9IDUgVy9twrI8L3RleHQ+PHJlY3QgeD0iNjAiIHk9IjY2MCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSI0OCIgZmlsbD0iIzE5NjA4MiIvPjxyZWN0IHg9IjI2MCIgeT0iNjYwIiB3aWR0aD0iMzAwIiBoZWlnaHQ9IjQ4IiBmaWxsPSIjYmM1MzE1Ii8+PHRleHQgeD0iMTUwIiB5PSI2OTIiIGZpbGw9IndoaXRlIj4yPC90ZXh0Pjx0ZXh0IHg9IjQwMCIgeT0iNjkyIiBmaWxsPSJ3aGl0ZSI+MzwvdGV4dD48dGV4dCB4PSIzNSIgeT0iNzgwIj5NZWRpYSBkZWkgdG90YWxpOiAoMyArIDUpLzIgPSA0IFcvbcKyPC90ZXh0PjxyZWN0IHg9IjYwIiB5PSI4MjAiIHdpZHRoPSI0MDAiIGhlaWdodD0iNDgiIGZpbGw9IiM0NDdkNWUiLz48dGV4dCB4PSI0NzgiIHk9Ijg1MyI+NCBXL23CsjwvdGV4dD48dGV4dCB4PSIzNSIgeT0iOTMwIj5RdWkgbGEgc29tbWEgZGVsbGUgbWVkaWUgY29pbmNpZGU6PC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSI5NzUiPjMvMiArIDUvMiA9IDQgVy9twrIgwrcgbGVnZ2UgbGluZWFyZTwvdGV4dD48cGF0aCBkPSJNMzUgMTAyMEg2MDUiIHN0cm9rZT0iI2I1Y2JkOSIvPjx0ZXh0IHg9IjM1IiB5PSIxMDc1IiBmb250LXNpemU9IjI2IiBmb250LXdlaWdodD0iYm9sZCI+MyDCtyBDYXNvIGRpc3RpbnRvOiBzaSBzcGVnbmUgSeKCgjwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMTEyNSI+U29sbyAwNiDCtyAxMDAgcHggcGVyIHVuaXTDoCBub3JtYWxpenphdGE8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjExODAiPlByaW1hOiBJ4oKBID0gMSwgSeKCgiA9IDMg4oaSIHRvdGFsZSA0PC90ZXh0PjxyZWN0IHg9IjgwIiB5PSIxMjIwIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjQyIiBmaWxsPSIjMTk2MDgyIi8+PHJlY3QgeD0iMTgwIiB5PSIxMjIwIiB3aWR0aD0iMzAwIiBoZWlnaHQ9IjQyIiBmaWxsPSIjYmM1MzE1Ii8+PHRleHQgeD0iMzUiIHk9IjEzMjAiPkRvcG86IHJlc3RhIEnigoEgPSAxLCBjaW/DqCAxLzQgZGVsIHRvdGFsZTwvdGV4dD48cmVjdCB4PSI4MCIgeT0iMTM2MCIgd2lkdGg9IjEwMCIgaGVpZ2h0PSI0MiIgZmlsbD0iIzE5NjA4MiIvPjx0ZXh0IHg9IjM1IiB5PSIxNDcwIj5SaWR1emlvbmUgMy80IMK3IHJhcHBvcnRvIEnigoEvSeKCgiBpbml6aWFsZSAxLzM8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjE1MzAiPkxvIHNwZWduaW1lbnRvIG5vbiBjYW1iaWEgbGEgc29yZ2VudGUgMS48L3RleHQ+PC9nPjwvc3ZnPgo="
+    }
+  ]
+}

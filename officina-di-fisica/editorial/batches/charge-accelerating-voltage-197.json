@@ -1,0 +1,1220 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u6-charge-accelerating-voltage-01",
+      "kind": "question",
+      "course": "C4",
+      "section": "Caduta elettrica ed energia cinetica",
+      "order": 19701,
+      "title": "Dall’energia alla rapidità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C4-L01",
+        "C4-L02",
+        "C4-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "charge-accelerating-voltage",
+      "difficulty": 1,
+      "prompt": "Un piccolo corpo ideale ha carica positiva fissa q=1 μC e massa m>0, in grammi. Parte da fermo e attraversa la caduta U=V_A−V_B>0, in kV. U indica una tensione, non un’energia potenziale. Solo la forza elettrostatica compie lavoro; la variazione di energia potenziale elettrica fornisce tutta l’energia cinetica. Il moto è nel regime non relativistico e i dati restano in questo dominio. Si chiede la rapidità finale v>0, in m/s, cioè il modulo della velocità. Con U=2 kV e m=1 g, quanto vale v?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il campo compie lavoro qU=(1 μC)(2 kV)=2 mJ. La partenza da fermo dà K_f=mv²/2=qU. Con m=10⁻³ kg e qU=2·10⁻³ J si trova v²=4 m²/s², quindi v=2 m/s. Non si sceglie una velocità negativa da un bilancio che determina solo il modulo."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/e17cd2ac703e4fe6a041d7aac97d090263f098c6d20a67698784d9b724126e00",
+          "text": "Con q=1 μC e caduta U=2 kV il lavoro è 2 mJ. Partendo da fermo e senza altri lavori, K_f=2 mJ; con massa 1 g la rapidità è 2 m/s. Il grafico centrale è K in funzione di v a massa fissa 1 g, non una traiettoria: i punti (2 m/s,2 mJ) e (4 m/s,8 mJ) mostrano la dipendenza quadratica. Le barre finali confrontano prove A=2 m/s e B=3 m/s, media 5/2 m/s."
+        },
+        {
+          "type": "formula",
+          "text": "qU=2\\,\\mathrm{mJ}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac12mv^2=qU"
+        },
+        {
+          "type": "formula",
+          "text": " v^2=4\\,\\mathrm{m^2/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " v=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Quattro m/s copia v² come se fosse v. Un m/s darebbe K_f=1/2 mJ, non i 2 mJ disponibili. Due km/s tratterebbe 1 μC come 1 C, sovrastimando qU di 10⁶ e v di 10³. Il lavoro assegnato è in millijoule, non in kilojoule."
+        }
+      ],
+      "hints": [
+        "Converti prima qU e m, poi ricava il quadrato della rapidità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro m/s copia v² come se fosse v. Un m/s darebbe K_f=1/2 mJ, non i 2 mJ disponibili. Due km/s tratterebbe 1 μC come 1 C, sovrastimando qU di 10⁶ e v di 10³. Il lavoro assegnato è in millijoule, non in kilojoule.",
+        "target": "C4-L03"
+      },
+      "coverage": [
+        "Bilancio da fermo e rapidità non relativistica",
+        "Prefissi, radici positive e inverse",
+        "Rapporti, medie e tarature",
+        "Vincolo e scala non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-charge-accelerating-voltage-02",
+      "kind": "question",
+      "course": "C4",
+      "section": "Caduta elettrica ed energia cinetica",
+      "order": 19702,
+      "title": "La dimensione di una rapidità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C4-L01",
+        "C4-L02",
+        "C4-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "charge-accelerating-voltage",
+      "difficulty": 1,
+      "prompt": "Un piccolo corpo ideale ha carica positiva fissa q=1 μC e massa m>0, in grammi. Parte da fermo e attraversa la caduta U=V_A−V_B>0, in kV. U indica una tensione, non un’energia potenziale. Solo la forza elettrostatica compie lavoro; la variazione di energia potenziale elettrica fornisce tutta l’energia cinetica. Il moto è nel regime non relativistico e i dati restano in questo dominio. Si chiede la rapidità finale v>0, in m/s, cioè il modulo della velocità. Quale unità è adatta a v?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "m/s",
+          "m/s²",
+          "J",
+          "V",
+          "kg"
+        ],
+        "value": "m/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Una rapidità è lunghezza per tempo. Dal bilancio, 2qU/m ha unità J/kg=m²/s²; la radice quadrata lascia m/s. Il fatto che il fenomeno sia elettrico non rende la velocità una tensione."
+        },
+        {
+          "type": "formula",
+          "text": "[2qU/m]=\\mathrm{J/kg}"
+        },
+        {
+          "type": "formula",
+          "text": " [2qU/m]=\\mathrm{m^2/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " [v]=\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "m/s² indica accelerazione, J energia, V potenziale e kg massa. Sono grandezze presenti o correlate al problema, ma non l’unità dell’uscita richiesta."
+        }
+      ],
+      "hints": [
+        "Controlla la radice dell’unità J/kg.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "m/s² indica accelerazione, J energia, V potenziale e kg massa. Sono grandezze presenti o correlate al problema, ma non l’unità dell’uscita richiesta.",
+        "target": "C4-L03"
+      },
+      "coverage": [
+        "Bilancio da fermo e rapidità non relativistica",
+        "Prefissi, radici positive e inverse",
+        "Rapporti, medie e tarature",
+        "Vincolo e scala non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-charge-accelerating-voltage-03",
+      "kind": "question",
+      "course": "C4",
+      "section": "Caduta elettrica ed energia cinetica",
+      "order": 19703,
+      "title": "Il fattore due nasce da K",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C4-L01",
+        "C4-L02",
+        "C4-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "charge-accelerating-voltage",
+      "difficulty": 1,
+      "prompt": "Un piccolo corpo ideale ha carica positiva fissa q=1 μC e massa m>0, in grammi. Parte da fermo e attraversa la caduta U=V_A−V_B>0, in kV. U indica una tensione, non un’energia potenziale. Solo la forza elettrostatica compie lavoro; la variazione di energia potenziale elettrica fornisce tutta l’energia cinetica. Il moto è nel regime non relativistico e i dati restano in questo dominio. Si chiede la rapidità finale v>0, in m/s, cioè il modulo della velocità. Quale formula dimensionale ricava v, usando tutte le quantità in SI?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "v = √(2 q U / m)",
+          "v = 2 q U / m",
+          "v = √(q U / m)",
+          "v = √(2 m / (q U))",
+          "v = q U / m"
+        ],
+        "value": "v = √(2 q U / m)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il lavoro del campo è positivo perché q e la caduta U sono positivi. Uguagliando qU a mv²/2 si ottiene v²=2qU/m e poi la radice positiva. Senza il fattore due si userebbe K=mv²; senza radice si restituirebbe una grandezza con dimensioni di rapidità al quadrato."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/e17cd2ac703e4fe6a041d7aac97d090263f098c6d20a67698784d9b724126e00",
+          "text": "Le energie sono uguali nel primo pannello perché il corpo parte da fermo e non ci sono altri lavori. Il grafico centrale rappresenta K=mv²/2 a massa 1 g fissa: leggere un valore sull’asse verticale non dà direttamente una rapidità. L’ultimo pannello usa anche una massa diversa nella prova B, come dichiarato nei casi 11 e 12."
+        },
+        {
+          "type": "formula",
+          "text": "qU=\\frac12mv^2"
+        },
+        {
+          "type": "formula",
+          "text": " v^2=\\frac{2qU}{m}"
+        },
+        {
+          "type": "formula",
+          "text": " v=\\sqrt{\\frac{2qU}{m}}"
+        },
+        {
+          "type": "formula",
+          "text": " v>0"
+        },
+        {
+          "type": "text",
+          "text": "2qU/m e qU/m hanno unità m²/s², non m/s. La radice senza due ha la dimensione giusta ma il valore fisico sbagliato. La radice del quoziente inverso ha unità s/m. Non si scambiano caduta di potenziale ed energia potenziale."
+        }
+      ],
+      "hints": [
+        "Isola prima v² nella relazione cinetica e soltanto dopo estrai la radice.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "2qU/m e qU/m hanno unità m²/s², non m/s. La radice senza due ha la dimensione giusta ma il valore fisico sbagliato. La radice del quoziente inverso ha unità s/m. Non si scambiano caduta di potenziale ed energia potenziale.",
+        "target": "C4-L03"
+      },
+      "coverage": [
+        "Bilancio da fermo e rapidità non relativistica",
+        "Prefissi, radici positive e inverse",
+        "Rapporti, medie e tarature",
+        "Vincolo e scala non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-charge-accelerating-voltage-04",
+      "kind": "question",
+      "course": "C4",
+      "section": "Caduta elettrica ed energia cinetica",
+      "order": 19704,
+      "title": "Quadruplicare la caduta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C4-L01",
+        "C4-L02",
+        "C4-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "charge-accelerating-voltage",
+      "difficulty": 1,
+      "prompt": "Un piccolo corpo ideale ha carica positiva fissa q=1 μC e massa m>0, in grammi. Parte da fermo e attraversa la caduta U=V_A−V_B>0, in kV. U indica una tensione, non un’energia potenziale. Solo la forza elettrostatica compie lavoro; la variazione di energia potenziale elettrica fornisce tutta l’energia cinetica. Il moto è nel regime non relativistico e i dati restano in questo dominio. Si chiede la rapidità finale v>0, in m/s, cioè il modulo della velocità. A usa U=2 kV, B usa U=8 kV; entrambe hanno m=1 g. Come cambia v?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 2 a 4 m/s",
+          "Da 2 a 8 m/s",
+          "Da 2 a 1 m/s",
+          "Resta 2 m/s",
+          "Da 2 a 16 m/s"
+        ],
+        "value": "Da 2 a 4 m/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il lavoro e l’energia cinetica quadruplicano, ma la rapidità dipende dalla loro radice. A ha v²=4 m²/s² e v=2 m/s; B ha v²=16 m²/s² e v=4 m/s. A massa fissa il fattore sulla rapidità è √4=2."
+        },
+        {
+          "type": "formula",
+          "text": "v_A^2=4\\,\\mathrm{m^2/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " v_B^2=16\\,\\mathrm{m^2/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " v_A=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " v_B=4\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Otto trasferisce il fattore quattro direttamente a v. Un m/s inverte la dipendenza da U; due ignora il cambiamento e sedici copia il valore del quadrato in B."
+        }
+      ],
+      "hints": [
+        "Confronta le energie, poi prendi la radice del fattore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Otto trasferisce il fattore quattro direttamente a v. Un m/s inverte la dipendenza da U; due ignora il cambiamento e sedici copia il valore del quadrato in B.",
+        "target": "C4-L03"
+      },
+      "coverage": [
+        "Bilancio da fermo e rapidità non relativistica",
+        "Prefissi, radici positive e inverse",
+        "Rapporti, medie e tarature",
+        "Vincolo e scala non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-charge-accelerating-voltage-05",
+      "kind": "question",
+      "course": "C4",
+      "section": "Caduta elettrica ed energia cinetica",
+      "order": 19705,
+      "title": "La caduta da una rapidità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C4-L01",
+        "C4-L02",
+        "C4-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "charge-accelerating-voltage",
+      "difficulty": 2,
+      "prompt": "Un piccolo corpo ideale ha carica positiva fissa q=1 μC e massa m>0, in grammi. Parte da fermo e attraversa la caduta U=V_A−V_B>0, in kV. U indica una tensione, non un’energia potenziale. Solo la forza elettrostatica compie lavoro; la variazione di energia potenziale elettrica fornisce tutta l’energia cinetica. Il moto è nel regime non relativistico e i dati restano in questo dominio. Si chiede la rapidità finale v>0, in m/s, cioè il modulo della velocità. Si misura v=2 m/s e si conosce m=1 g. Quanto vale U in kV?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "kV",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il corpo ha K=mv²/2=(10⁻³ kg)(4 m²/s²)/2=2·10⁻³ J. Il lavoro è qU e la carica vale 10⁻⁶ C, quindi U=K/q=2·10³ V=2 kV. La rapidità va elevata al quadrato prima della divisione."
+        },
+        {
+          "type": "formula",
+          "text": "U=\\frac{mv^2}{2q}"
+        },
+        {
+          "type": "formula",
+          "text": " K=2\\cdot10^{-3}\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " U=2\\cdot10^3\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " U=2\\,\\mathrm{kV}"
+        },
+        {
+          "type": "text",
+          "text": "Quattro kV ometterebbe il mezzo nell’energia cinetica. Due volt perderebbero il fattore kilo; un kV non fornirebbe l’energia cinetica richiesta. Non si interpreta 2 m/s come 2 m²/s²."
+        }
+      ],
+      "hints": [
+        "Ricostruisci K e dividila per q con joule e coulomb.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro kV ometterebbe il mezzo nell’energia cinetica. Due volt perderebbero il fattore kilo; un kV non fornirebbe l’energia cinetica richiesta. Non si interpreta 2 m/s come 2 m²/s².",
+        "target": "C4-L03"
+      },
+      "coverage": [
+        "Bilancio da fermo e rapidità non relativistica",
+        "Prefissi, radici positive e inverse",
+        "Rapporti, medie e tarature",
+        "Vincolo e scala non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-charge-accelerating-voltage-06",
+      "kind": "question",
+      "course": "C4",
+      "section": "Caduta elettrica ed energia cinetica",
+      "order": 19706,
+      "title": "La massa dal lavoro disponibile",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C4-L01",
+        "C4-L02",
+        "C4-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "charge-accelerating-voltage",
+      "difficulty": 2,
+      "prompt": "Un piccolo corpo ideale ha carica positiva fissa q=1 μC e massa m>0, in grammi. Parte da fermo e attraversa la caduta U=V_A−V_B>0, in kV. U indica una tensione, non un’energia potenziale. Solo la forza elettrostatica compie lavoro; la variazione di energia potenziale elettrica fornisce tutta l’energia cinetica. Il moto è nel regime non relativistico e i dati restano in questo dominio. Si chiede la rapidità finale v>0, in m/s, cioè il modulo della velocità. Si misura v=2 m/s con U=2 kV. Quanto vale m in g?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "g",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il lavoro disponibile è qU=2 mJ. Dalla relazione cinetica m=2qU/v²: si divide 4 mJ per 4 m²/s² e si ottiene 10⁻³ kg, cioè un grammo. La massa positiva è univoca perché v è non nulla."
+        },
+        {
+          "type": "formula",
+          "text": "qU=2\\,\\mathrm{mJ}"
+        },
+        {
+          "type": "formula",
+          "text": " m=\\frac{2qU}{v^2}"
+        },
+        {
+          "type": "formula",
+          "text": " m=10^{-3}\\,\\mathrm{kg}"
+        },
+        {
+          "type": "formula",
+          "text": " m=1\\,\\mathrm g"
+        },
+        {
+          "type": "text",
+          "text": "Due grammi perderebbero il quadrato di v in questo calcolo numerico; mezzo grammo ometterebbe il due al numeratore. Un chilogrammo perderebbe il prefisso milli dell’energia. La formula non è m=qU/v."
+        }
+      ],
+      "hints": [
+        "Usa v² al denominatore e controlla che J/(m²/s²) sia kg.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due grammi perderebbero il quadrato di v in questo calcolo numerico; mezzo grammo ometterebbe il due al numeratore. Un chilogrammo perderebbe il prefisso milli dell’energia. La formula non è m=qU/v.",
+        "target": "C4-L03"
+      },
+      "coverage": [
+        "Bilancio da fermo e rapidità non relativistica",
+        "Prefissi, radici positive e inverse",
+        "Rapporti, medie e tarature",
+        "Vincolo e scala non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-charge-accelerating-voltage-07",
+      "kind": "question",
+      "course": "C4",
+      "section": "Caduta elettrica ed energia cinetica",
+      "order": 19707,
+      "title": "La massa raddoppia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C4-L01",
+        "C4-L02",
+        "C4-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "charge-accelerating-voltage",
+      "difficulty": 2,
+      "prompt": "Un piccolo corpo ideale ha carica positiva fissa q=1 μC e massa m>0, in grammi. Parte da fermo e attraversa la caduta U=V_A−V_B>0, in kV. U indica una tensione, non un’energia potenziale. Solo la forza elettrostatica compie lavoro; la variazione di energia potenziale elettrica fornisce tutta l’energia cinetica. Il moto è nel regime non relativistico e i dati restano in questo dominio. Si chiede la rapidità finale v>0, in m/s, cioè il modulo della velocità. A ha U=2 kV e m=1 g. B mantiene U=2 kV e usa m=2 g. Quanto vale v_B/v_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "√2/2",
+          "1/2",
+          "√2",
+          "2",
+          "1"
+        ],
+        "value": "√2/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il lavoro è lo stesso in entrambe le prove. In A v_A=2 m/s; in B v_B²=2 m²/s² e v_B=√2 m/s. Il rapporto è √2/2, equivalente a 1/√2. Raddoppiare la massa dimezza v², non v."
+        },
+        {
+          "type": "formula",
+          "text": "v_A=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " v_B=\\sqrt2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{v_B}{v_A}=\\frac{\\sqrt2}{2}"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo è il rapporto dei quadrati. √2 è il reciproco del rapporto richiesto, due rende diretta la dipendenza dalla massa e uno presume rapidità invariata. La radice resta esatta, senza sostituirla con un decimale."
+        }
+      ],
+      "hints": [
+        "Confronta 2qU/m e poi prendi la radice del rapporto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo è il rapporto dei quadrati. √2 è il reciproco del rapporto richiesto, due rende diretta la dipendenza dalla massa e uno presume rapidità invariata. La radice resta esatta, senza sostituirla con un decimale.",
+        "target": "C4-L03"
+      },
+      "coverage": [
+        "Bilancio da fermo e rapidità non relativistica",
+        "Prefissi, radici positive e inverse",
+        "Rapporti, medie e tarature",
+        "Vincolo e scala non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-charge-accelerating-voltage-08",
+      "kind": "question",
+      "course": "C4",
+      "section": "Caduta elettrica ed energia cinetica",
+      "order": 19708,
+      "title": "Uno scarto di rapidità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C4-L01",
+        "C4-L02",
+        "C4-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "charge-accelerating-voltage",
+      "difficulty": 2,
+      "prompt": "Un piccolo corpo ideale ha carica positiva fissa q=1 μC e massa m>0, in grammi. Parte da fermo e attraversa la caduta U=V_A−V_B>0, in kV. U indica una tensione, non un’energia potenziale. Solo la forza elettrostatica compie lavoro; la variazione di energia potenziale elettrica fornisce tutta l’energia cinetica. Il moto è nel regime non relativistico e i dati restano in questo dominio. Si chiede la rapidità finale v>0, in m/s, cioè il modulo della velocità. Con U=2 kV e m=1 g si propone v=4 m/s. Quanto vale proposta meno risultato corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2 m/s",
+          "−2 m/s",
+          "4 m/s",
+          "0 m/s",
+          "2"
+        ],
+        "value": "2 m/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bilancio dà v=2 m/s. La proposta è maggiore di due metri al secondo: 4−2=+2 m/s. Quattro è il numero di v² nelle unità assegnate, ma non la rapidità corretta."
+        },
+        {
+          "type": "formula",
+          "text": "v=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " e=v_{\\rm proposto}-v"
+        },
+        {
+          "type": "formula",
+          "text": " e=(4-2)\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " e=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "−2 inverte lo scarto, quattro copia la proposta e zero la accetta. Il numero puro due è il rapporto proposta/corretto; non misura una differenza di rapidità."
+        }
+      ],
+      "hints": [
+        "Estrai la radice prima di confrontare la proposta con il valore corretto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−2 inverte lo scarto, quattro copia la proposta e zero la accetta. Il numero puro due è il rapporto proposta/corretto; non misura una differenza di rapidità.",
+        "target": "C4-L03"
+      },
+      "coverage": [
+        "Bilancio da fermo e rapidità non relativistica",
+        "Prefissi, radici positive e inverse",
+        "Rapporti, medie e tarature",
+        "Vincolo e scala non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-charge-accelerating-voltage-09",
+      "kind": "question",
+      "course": "C4",
+      "section": "Caduta elettrica ed energia cinetica",
+      "order": 19709,
+      "title": "Isolare U dal bilancio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C4-L01",
+        "C4-L02",
+        "C4-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "charge-accelerating-voltage",
+      "difficulty": 2,
+      "prompt": "Un piccolo corpo ideale ha carica positiva fissa q=1 μC e massa m>0, in grammi. Parte da fermo e attraversa la caduta U=V_A−V_B>0, in kV. U indica una tensione, non un’energia potenziale. Solo la forza elettrostatica compie lavoro; la variazione di energia potenziale elettrica fornisce tutta l’energia cinetica. Il moto è nel regime non relativistico e i dati restano in questo dominio. Si chiede la rapidità finale v>0, in m/s, cioè il modulo della velocità. Sono note m e v. Quale formula dimensionale ricava U?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "U = m v² / (2 q)",
+          "U = 2 m v² / q",
+          "U = m v / (2 q)",
+          "U = 2 q / (m v²)",
+          "U = q v² / (2 m)"
+        ],
+        "value": "U = m v² / (2 q)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplichiamo l’equazione cinetica per due oppure usiamo direttamente K=mv²/2. Dividere per q dà U=mv²/(2q). Le unità sono J/C=V. Nelle unità numeriche assegnate, con q fissata, u=U/(1 kV), M=m/(1 g), w=v/(1 m/s) soddisfano u=Mw²/2."
+        },
+        {
+          "type": "formula",
+          "text": "qU=\\frac12mv^2"
+        },
+        {
+          "type": "formula",
+          "text": " U=\\frac{mv^2}{2q}"
+        },
+        {
+          "type": "formula",
+          "text": " [U]=\\mathrm{J/C}"
+        },
+        {
+          "type": "formula",
+          "text": " [U]=\\mathrm V"
+        },
+        {
+          "type": "text",
+          "text": "2mv²/q è quattro volte la formula corretta. Sostituire v a v² altera anche le dimensioni; il quoziente inverso ha V⁻¹. Scambiare massa e carica non deriva dall’equazione dell’energia."
+        }
+      ],
+      "hints": [
+        "Isola la tensione senza perdere il mezzo dell’energia cinetica.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "2mv²/q è quattro volte la formula corretta. Sostituire v a v² altera anche le dimensioni; il quoziente inverso ha V⁻¹. Scambiare massa e carica non deriva dall’equazione dell’energia.",
+        "target": "C4-L03"
+      },
+      "coverage": [
+        "Bilancio da fermo e rapidità non relativistica",
+        "Prefissi, radici positive e inverse",
+        "Rapporti, medie e tarature",
+        "Vincolo e scala non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-charge-accelerating-voltage-10",
+      "kind": "question",
+      "course": "C4",
+      "section": "Caduta elettrica ed energia cinetica",
+      "order": 19710,
+      "title": "Due preparazioni riscalate",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C4-L01",
+        "C4-L02",
+        "C4-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "charge-accelerating-voltage",
+      "difficulty": 2,
+      "prompt": "Un piccolo corpo ideale ha carica positiva fissa q=1 μC e massa m>0, in grammi. Parte da fermo e attraversa la caduta U=V_A−V_B>0, in kV. U indica una tensione, non un’energia potenziale. Solo la forza elettrostatica compie lavoro; la variazione di energia potenziale elettrica fornisce tutta l’energia cinetica. Il moto è nel regime non relativistico e i dati restano in questo dominio. Si chiede la rapidità finale v>0, in m/s, cioè il modulo della velocità. B usa U_B=κ₁U_A e m_B=κ₂m_A, fattori positivi con entrambe le prove nel dominio non relativistico. Quanto vale v_B/v_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "√(κ₁/κ₂)",
+          "κ₁/κ₂",
+          "√(κ₂/κ₁)",
+          "κ₁ κ₂",
+          "κ₁/√κ₂"
+        ],
+        "value": "√(κ₁/κ₂)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La carica fissata e il fattore due si cancellano nel rapporto dei quadrati: v_B²/v_A²=κ₁/κ₂. Le rapidità sono positive, quindi il rapporto richiesto è la radice positiva √(κ₁/κ₂). Un fattore comune su U e m lascia invariata v."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{v_B^2}{v_A^2}=\\frac{\\kappa_1}{\\kappa_2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{v_B}{v_A}=\\sqrt{\\frac{\\kappa_1}{\\kappa_2}}"
+        },
+        {
+          "type": "text",
+          "text": "κ₁/κ₂ è il rapporto dei quadrati. La radice inversa scambia A e B; il prodotto rende diretta la dipendenza dalla massa. κ₁/√κ₂ applica la radice solo alla massa, dimenticando quella della caduta."
+        }
+      ],
+      "hints": [
+        "Semplifica il rapporto di v² e poi passa ai moduli positivi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "κ₁/κ₂ è il rapporto dei quadrati. La radice inversa scambia A e B; il prodotto rende diretta la dipendenza dalla massa. κ₁/√κ₂ applica la radice solo alla massa, dimenticando quella della caduta.",
+        "target": "C4-L03"
+      },
+      "coverage": [
+        "Bilancio da fermo e rapidità non relativistica",
+        "Prefissi, radici positive e inverse",
+        "Rapporti, medie e tarature",
+        "Vincolo e scala non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-charge-accelerating-voltage-11",
+      "kind": "question",
+      "course": "C4",
+      "section": "Caduta elettrica ed energia cinetica",
+      "order": 19711,
+      "title": "Due rapidità intere",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C4-L01",
+        "C4-L02",
+        "C4-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "charge-accelerating-voltage",
+      "difficulty": 2,
+      "prompt": "Un piccolo corpo ideale ha carica positiva fissa q=1 μC e massa m>0, in grammi. Parte da fermo e attraversa la caduta U=V_A−V_B>0, in kV. U indica una tensione, non un’energia potenziale. Solo la forza elettrostatica compie lavoro; la variazione di energia potenziale elettrica fornisce tutta l’energia cinetica. Il moto è nel regime non relativistico e i dati restano in questo dominio. Si chiede la rapidità finale v>0, in m/s, cioè il modulo della velocità. A usa U=2 kV, m=1 g. B usa U=9 kV, m=2 g. Quanto vale v_B/v_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/2",
+          "2/3",
+          "9/2",
+          "3",
+          "9/4"
+        ],
+        "value": "3/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha v_A=2 m/s. In B il numero di v_B² è 2·9/2=9, quindi v_B=3 m/s. Il rapporto è tre mezzi. Il rapporto delle energie non basta da solo perché è cambiata anche la massa."
+        },
+        {
+          "type": "formula",
+          "text": "v_A=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " v_B^2=9\\,\\mathrm{m^2/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " v_B=3\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " v_B/v_A=3/2"
+        },
+        {
+          "type": "text",
+          "text": "Due terzi inverte il confronto. 9/2 considera il solo rapporto delle tensioni; tre copia la rapidità B e 9/4 è il rapporto dei quadrati delle due rapidità."
+        }
+      ],
+      "hints": [
+        "Calcola le due radici esatte prima del quoziente.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due terzi inverte il confronto. 9/2 considera il solo rapporto delle tensioni; tre copia la rapidità B e 9/4 è il rapporto dei quadrati delle due rapidità.",
+        "target": "C4-L03"
+      },
+      "coverage": [
+        "Bilancio da fermo e rapidità non relativistica",
+        "Prefissi, radici positive e inverse",
+        "Rapporti, medie e tarature",
+        "Vincolo e scala non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-charge-accelerating-voltage-12",
+      "kind": "question",
+      "course": "C4",
+      "section": "Caduta elettrica ed energia cinetica",
+      "order": 19712,
+      "title": "La media delle rapidità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C4-L01",
+        "C4-L02",
+        "C4-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "charge-accelerating-voltage",
+      "difficulty": 2,
+      "prompt": "Un piccolo corpo ideale ha carica positiva fissa q=1 μC e massa m>0, in grammi. Parte da fermo e attraversa la caduta U=V_A−V_B>0, in kV. U indica una tensione, non un’energia potenziale. Solo la forza elettrostatica compie lavoro; la variazione di energia potenziale elettrica fornisce tutta l’energia cinetica. Il moto è nel regime non relativistico e i dati restano in questo dominio. Si chiede la rapidità finale v>0, in m/s, cioè il modulo della velocità. A usa U=2 kV, m=1 g; B usa U=9 kV, m=2 g. Qual è la media aritmetica di v con uguale peso?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "5/2 m/s",
+          "√(22/3) m/s",
+          "5 m/s",
+          "1/2 m/s",
+          "3 m/s"
+        ],
+        "value": "5/2 m/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le rapidità sono 2 e 3 m/s, dunque la media è 5/2 m/s. Ai dati medi U=11/2 kV e m=3/2 g si avrebbe v²=22/3 m²/s² e v=√(22/3) m/s. È diverso: il quadrato della media richiesta è 25/4, mentre 22/3 vale 88/12 e 25/4 vale 75/12. Non serve approssimare la radice."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/e17cd2ac703e4fe6a041d7aac97d090263f098c6d20a67698784d9b724126e00",
+          "text": "Le barre finali partono dalla stessa origine e hanno scala comune nelle rapidità: 2, 3 e media 5/2 m/s. La prova B ha U=9 kV e m=2 g; non appartiene alla curva K(v) disegnata per m=1 g. La rapidità agli ingressi medi sarebbe √(22/3) m/s, diversa dalla media richiesta."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline v=\\frac{2+3}{2}\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline v=5/2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " v(\\overline U,\\overline m)=\\sqrt{22/3}\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "La radice √(22/3) usa gli ingressi medi. Cinque non dimezza la somma; un mezzo dimezza la differenza e tre copia B. Il modello non è lineare nelle due grandezze che variano."
+        }
+      ],
+      "hints": [
+        "Media i valori già ricavati da ciascuna coppia di dati.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La radice √(22/3) usa gli ingressi medi. Cinque non dimezza la somma; un mezzo dimezza la differenza e tre copia B. Il modello non è lineare nelle due grandezze che variano.",
+        "target": "C4-L03"
+      },
+      "coverage": [
+        "Bilancio da fermo e rapidità non relativistica",
+        "Prefissi, radici positive e inverse",
+        "Rapporti, medie e tarature",
+        "Vincolo e scala non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-charge-accelerating-voltage-13",
+      "kind": "question",
+      "course": "C4",
+      "section": "Caduta elettrica ed energia cinetica",
+      "order": 19713,
+      "title": "Il bersaglio fissa la massa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C4-L01",
+        "C4-L02",
+        "C4-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "charge-accelerating-voltage",
+      "difficulty": 3,
+      "prompt": "Un piccolo corpo ideale ha carica positiva fissa q=1 μC e massa m>0, in grammi. Parte da fermo e attraversa la caduta U=V_A−V_B>0, in kV. U indica una tensione, non un’energia potenziale. Solo la forza elettrostatica compie lavoro; la variazione di energia potenziale elettrica fornisce tutta l’energia cinetica. Il moto è nel regime non relativistico e i dati restano in questo dominio. Si chiede la rapidità finale v>0, in m/s, cioè il modulo della velocità. A usa U=2 kV, m_A=1 g. B usa U_B=9 kV e deve avere v_B=(3/2)v_A. Quanto vale m_B/m_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/2",
+          "9/2",
+          "3/2",
+          "4"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha rapidità 2 m/s, quindi il bersaglio B è 3 m/s. Il lavoro B è 9 mJ. La massa necessaria è 2·9 mJ/(9 m²/s²)=2 g, il doppio di quella A. Il rapporto delle rapidità va prima elevato al quadrato per usarlo nel bilancio."
+        },
+        {
+          "type": "formula",
+          "text": "v_B=3\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " m_B=\\frac{2qU_B}{v_B^2}"
+        },
+        {
+          "type": "formula",
+          "text": " m_B=2\\,\\mathrm g"
+        },
+        {
+          "type": "formula",
+          "text": " m_B/m_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo inverte il confronto. 9/2 segue soltanto U, tre mezzi copia il bersaglio su v. Quattro grammi darebbero v_B²=9/2 m²/s², non i 9 m²/s² richiesti."
+        }
+      ],
+      "hints": [
+        "Ricostruisci la rapidità bersaglio prima di invertire per la massa.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo inverte il confronto. 9/2 segue soltanto U, tre mezzi copia il bersaglio su v. Quattro grammi darebbero v_B²=9/2 m²/s², non i 9 m²/s² richiesti.",
+        "target": "C4-L03"
+      },
+      "coverage": [
+        "Bilancio da fermo e rapidità non relativistica",
+        "Prefissi, radici positive e inverse",
+        "Rapporti, medie e tarature",
+        "Vincolo e scala non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-charge-accelerating-voltage-14",
+      "kind": "question",
+      "course": "C4",
+      "section": "Caduta elettrica ed energia cinetica",
+      "order": 19714,
+      "title": "Tarare una misura di rapidità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C4-L01",
+        "C4-L02",
+        "C4-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "charge-accelerating-voltage",
+      "difficulty": 3,
+      "prompt": "Un piccolo corpo ideale ha carica positiva fissa q=1 μC e massa m>0, in grammi. Parte da fermo e attraversa la caduta U=V_A−V_B>0, in kV. U indica una tensione, non un’energia potenziale. Solo la forza elettrostatica compie lavoro; la variazione di energia potenziale elettrica fornisce tutta l’energia cinetica. Il moto è nel regime non relativistico e i dati restano in questo dominio. Si chiede la rapidità finale v>0, in m/s, cioè il modulo della velocità. Il display continuo adimensionale D=av ha a>0 e nessun offset. A con U=2 kV, m=1 g dà D=6. B dà D=9 e ha m=2 g. Quanto vale U_B in kV?",
+      "answer": {
+        "type": "numeric",
+        "value": 9,
+        "unit": "kV",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento ha v=2 m/s, quindi a=3 s/m. La lettura B indica v_B=3 m/s. Con massa 2 g l’energia cinetica è 9 mJ; la carica fissata 1 μC richiede U_B=9 kV. Il display non legge direttamente energia o tensione."
+        },
+        {
+          "type": "formula",
+          "text": "a=3\\,\\mathrm{s/m}"
+        },
+        {
+          "type": "formula",
+          "text": " v_B=3\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " K_B=9\\,\\mathrm{mJ}"
+        },
+        {
+          "type": "formula",
+          "text": " U_B=9\\,\\mathrm{kV}"
+        },
+        {
+          "type": "text",
+          "text": "Usare D=9 come m/s darebbe U=81 kV con questa massa. Tre copia la rapidità e due copia il riferimento. La tensione si ricava solo dopo la decodifica e il quadrato della rapidità."
+        }
+      ],
+      "hints": [
+        "Torna dal display a v, poi usa U=mv²/(2q).",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Usare D=9 come m/s darebbe U=81 kV con questa massa. Tre copia la rapidità e due copia il riferimento. La tensione si ricava solo dopo la decodifica e il quadrato della rapidità.",
+        "target": "C4-L03"
+      },
+      "coverage": [
+        "Bilancio da fermo e rapidità non relativistica",
+        "Prefissi, radici positive e inverse",
+        "Rapporti, medie e tarature",
+        "Vincolo e scala non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-charge-accelerating-voltage-15",
+      "kind": "question",
+      "course": "C4",
+      "section": "Caduta elettrica ed energia cinetica",
+      "order": 19715,
+      "title": "L’offset viene prima del quadrato",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C4-L01",
+        "C4-L02",
+        "C4-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "charge-accelerating-voltage",
+      "difficulty": 3,
+      "prompt": "Un piccolo corpo ideale ha carica positiva fissa q=1 μC e massa m>0, in grammi. Parte da fermo e attraversa la caduta U=V_A−V_B>0, in kV. U indica una tensione, non un’energia potenziale. Solo la forza elettrostatica compie lavoro; la variazione di energia potenziale elettrica fornisce tutta l’energia cinetica. Il moto è nel regime non relativistico e i dati restano in questo dominio. Si chiede la rapidità finale v>0, in m/s, cioè il modulo della velocità. D=av+b è continuo e adimensionale, a>0. A: U=2 kV, m=1 g, D=5. B: U=9 kV, m=2 g, D=7. C: m=1 g, D=9. Quanto vale U_C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "8 kV",
+          "81/8 kV",
+          "4 kV",
+          "9 kV",
+          "16 kV"
+        ],
+        "value": "8 kV"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A e B hanno rapidità 2 e 3 m/s. a=(7−5)/(3−2)=2 s/m e b=1. C ha v_C=(9−1)/2=4 m/s. Con m=1 g serve U_C=8 kV: prima si rimuove l’offset, poi si eleva al quadrato la rapidità fisica."
+        },
+        {
+          "type": "formula",
+          "text": "a=2\\,\\mathrm{s/m}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " v_C=4\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " U_C=8\\,\\mathrm{kV}"
+        },
+        {
+          "type": "text",
+          "text": "81/8 kV omette b, usa v=9/2 m/s e ricostruisce D=10. Quattro copia il numero della rapidità; nove copierebbe la tensione B pur cambiando massa. Sedici omette il mezzo nell’inversa e produrrebbe v_C²=32 m²/s²."
+        }
+      ],
+      "hints": [
+        "Sottrai l’offset prima di elevare al quadrato il valore decodificato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "81/8 kV omette b, usa v=9/2 m/s e ricostruisce D=10. Quattro copia il numero della rapidità; nove copierebbe la tensione B pur cambiando massa. Sedici omette il mezzo nell’inversa e produrrebbe v_C²=32 m²/s².",
+        "target": "C4-L03"
+      },
+      "coverage": [
+        "Bilancio da fermo e rapidità non relativistica",
+        "Prefissi, radici positive e inverse",
+        "Rapporti, medie e tarature",
+        "Vincolo e scala non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-charge-accelerating-voltage-16",
+      "kind": "question",
+      "course": "C4",
+      "section": "Caduta elettrica ed energia cinetica",
+      "order": 19716,
+      "title": "Una famiglia continua di coppie",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C4-L01",
+        "C4-L02",
+        "C4-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "charge-accelerating-voltage",
+      "difficulty": 3,
+      "prompt": "Un piccolo corpo ideale ha carica positiva fissa q=1 μC e massa m>0, in grammi. Parte da fermo e attraversa la caduta U=V_A−V_B>0, in kV. U indica una tensione, non un’energia potenziale. Solo la forza elettrostatica compie lavoro; la variazione di energia potenziale elettrica fornisce tutta l’energia cinetica. Il moto è nel regime non relativistico e i dati restano in questo dominio. Si chiede la rapidità finale v>0, in m/s, cioè il modulo della velocità. Fra preparazioni si impone U=αm, con α=2 kV/g. Si misura v=2 m/s. Quante coppie positive (U,m) sono determinate?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Infinite coppie positive",
+          "Una sola: U = 2 kV, m = 1 g",
+          "Nessuna coppia",
+          "Solo U = 4 kV, m = 2 g",
+          "Tutte le masse, con U fisso a 2 kV"
+        ],
+        "value": "Infinite coppie positive"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituendo U=αm nel rapporto energetico, v²=2qα e la massa si cancella per m>0. α=2·10⁶ V/kg e q=10⁻⁶ C danno v²=4 m²/s²: il dato misurato è già conseguenza del vincolo. Per ogni massa positiva esiste U=αm, per esempio 1 g e 2 kV oppure 3/2 g e 3 kV. La scala è continua nel modello e non si determina una sola coppia."
+        },
+        {
+          "type": "formula",
+          "text": "U=\\alpha m"
+        },
+        {
+          "type": "formula",
+          "text": " v^2=\\frac{2q\\alpha m}{m}"
+        },
+        {
+          "type": "formula",
+          "text": " v^2=2q\\alpha"
+        },
+        {
+          "type": "formula",
+          "text": " v=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Le coppie specifiche proposte sono esempi, non uniche soluzioni. Non sono tutte le masse con U=2 kV fisso: il vincolo richiede di cambiare U insieme a m. Non si importa qui il vincolo intero dei conteggi di microstati di un altro modello."
+        }
+      ],
+      "hints": [
+        "Sostituisci il vincolo e verifica se la misura aggiunge davvero un’informazione indipendente.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Le coppie specifiche proposte sono esempi, non uniche soluzioni. Non sono tutte le masse con U=2 kV fisso: il vincolo richiede di cambiare U insieme a m. Non si importa qui il vincolo intero dei conteggi di microstati di un altro modello.",
+        "target": "C4-L03"
+      },
+      "coverage": [
+        "Bilancio da fermo e rapidità non relativistica",
+        "Prefissi, radici positive e inverse",
+        "Rapporti, medie e tarature",
+        "Vincolo e scala non identificata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "e17cd2ac703e4fe6a041d7aac97d090263f098c6d20a67698784d9b724126e00",
+      "name": "charge-accelerating-voltage-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTQ1MCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgo8dGl0bGUgaWQ9InRpdGxlIj5EYWwgbGF2b3JvIGVsZXR0cmljbyBhbCBtb2R1bG8gZGVsbGEgdmVsb2NpdMOgPC90aXRsZT4KPGRlc2MgaWQ9ImRlc2MiPlVuIGxhdm9ybyBkaSBkdWUgbWlsbGlqb3VsZSBkaXZlbnRhIGVuZXJnaWEgY2luZXRpY2EgZGkgZHVlIG1pbGxpam91bGUuIFVuIGNvcnBvIGRpIG1hc3NhIHVuIGdyYW1tbyBoYSByYXBpZGl0w6AgZmluYWxlIGR1ZSBtZXRyaSBhbCBzZWNvbmRvLiBBIG1hc3NhIGZpc3NhdGEsIGlsIGdyYWZpY28gZGVsbOKAmWVuZXJnaWEgY2luZXRpY2EgY3Jlc2NlIGNvbCBxdWFkcmF0byBkZWxsYSByYXBpZGl0w6AuIExlIGJhcnJlIGNvbmZyb250YW5vIHJhcGlkaXTDoCBkdWUgZSB0cmUgbWV0cmkgYWwgc2Vjb25kbyBlIGxhIG1lZGlhIGNpbnF1ZSBtZXp6aS48L2Rlc2M+CjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMTQ1MCIgcng9IjEyIiBmaWxsPSIjZjhmYWZjIi8+CjxnIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmaWxsPSIjMTQyNDNhIiBmb250LXNpemU9IjIwIj4KPHRleHQgeD0iMzIiIHk9IjQyIiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iYm9sZCI+MSDCtyBMbyBzdGVzc28gdHJhc2ZlcmltZW50byBkaSBlbmVyZ2lhPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iODMiIGZvbnQtc2l6ZT0iMTgiPnEgPSAxIM68QyA7IFUgPSAyIGtWIDsgbSA9IDEgZyA7IHBhcnRlbnphIGRhIGZlcm1vLjwvdGV4dD4KPHBhdGggZD0iTTE1MCAxMTVWMzEwIiBzdHJva2U9IiMxNDI0M2EiIHN0cm9rZS13aWR0aD0iMiIvPgo8cmVjdCB4PSIxNTAiIHk9IjE0NSIgd2lkdGg9IjIwMCIgaGVpZ2h0PSI0MCIgZmlsbD0iI2I0NTMyOCIvPgo8cmVjdCB4PSIxNTAiIHk9IjIzNSIgd2lkdGg9IjIwMCIgaGVpZ2h0PSI0MCIgZmlsbD0iIzE2NWE4NyIvPgo8dGV4dCB4PSI2MCIgeT0iMTc0Ij5xVTwvdGV4dD48dGV4dCB4PSIzNzAiIHk9IjE3NCI+MiBtSjwvdGV4dD4KPHRleHQgeD0iNjAiIHk9IjI2NCI+S19mPC90ZXh0Pjx0ZXh0IHg9IjM3MCIgeT0iMjY0Ij4yIG1KPC90ZXh0Pgo8dGV4dCB4PSIxMjQiIHk9IjMwNSI+MDwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjM1MyIgZm9udC1zaXplPSIxOCI+SWwgbGF2b3JvIGRlbCBjYW1wbyDDqCB0dXR0YSBs4oCZZW5lcmdpYSBjaW5ldGljYSBmaW5hbGUuPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iMzg1IiBmb250LXNpemU9IjE4Ij5Ob24gc29ubyBkdWUgZW5lcmdpZSBkYSBzb21tYXJlLjwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjQxNyIgZm9udC1zaXplPSIxOCI+dsKyID0gNCBtwrIvc8KyIDsgcmFwaWRpdMOgIGZpbmFsZSB2ID0gMiBtL3MuPC90ZXh0Pgo8cGF0aCBkPSJNMzIgNDUwSDYwOCIgc3Ryb2tlPSIjOWJhYmJjIi8+Cjx0ZXh0IHg9IjMyIiB5PSI0OTQiIGZvbnQtc2l6ZT0iMjUiIGZvbnQtd2VpZ2h0PSJib2xkIj4yIMK3IEEgbWFzc2EgZmlzc2F0YTogSyh2KTwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjUzMyIgZm9udC1zaXplPSIxOCI+bSA9IDEgZyA7IEsgaW4gbUogOyB2IGluIG0vcy48L3RleHQ+CjxwYXRoIGQ9Ik0xMDAgODMwVjU3ME0xMDAgODMwSDU0MCIgc3Ryb2tlPSIjMTQyNDNhIiBzdHJva2Utd2lkdGg9IjIiIGZpbGw9Im5vbmUiLz4KPHBhdGggZD0iTTEwMCA4MzBRMzAwIDgzMCA1MDAgNTkwIiBzdHJva2U9IiMxNjVhODciIHN0cm9rZS13aWR0aD0iNCIgZmlsbD0ibm9uZSIvPgo8cGF0aCBkPSJNMTAwIDc3MEgzMDBWODMwTTEwMCA1OTBINTAwVjgzMCIgc3Ryb2tlPSIjODI5MmEyIiBzdHJva2UtZGFzaGFycmF5PSI1IDUiIGZpbGw9Im5vbmUiLz4KPGNpcmNsZSBjeD0iMzAwIiBjeT0iNzcwIiByPSI1IiBmaWxsPSIjMTY1YTg3Ii8+PGNpcmNsZSBjeD0iNTAwIiBjeT0iNTkwIiByPSI1IiBmaWxsPSIjMTY1YTg3Ii8+Cjx0ZXh0IHg9IjY1IiB5PSI1OTciPjg8L3RleHQ+PHRleHQgeD0iNjUiIHk9Ijc3NyI+MjwvdGV4dD48dGV4dCB4PSI2NSIgeT0iODM3Ij4wPC90ZXh0Pgo8dGV4dCB4PSI4MiIgeT0iODY1Ij4wPC90ZXh0Pjx0ZXh0IHg9IjI5MSIgeT0iODY1Ij4yPC90ZXh0Pjx0ZXh0IHg9IjQ5MSIgeT0iODY1Ij40PC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iOTA1IiBmb250LXNpemU9IjE4Ij7DiCB1biBncmFmaWNvIGVuZXJnZXRpY28sIG5vbiB1bmEgdHJhaWV0dG9yaWEuPC90ZXh0Pgo8cGF0aCBkPSJNMzIgOTM4SDYwOCIgc3Ryb2tlPSIjOWJhYmJjIi8+Cjx0ZXh0IHg9IjMyIiB5PSI5ODIiIGZvbnQtc2l6ZT0iMjUiIGZvbnQtd2VpZ2h0PSJib2xkIj4zIMK3IE1lZGlhIGRlbGxlIHJhcGlkaXTDoCBmaW5hbGk8L3RleHQ+CjxwYXRoIGQ9Ik0xMzAgMTAxMFYxMjgyIiBzdHJva2U9IiMxNDI0M2EiIHN0cm9rZS13aWR0aD0iMiIvPgo8cmVjdCB4PSIxMzAiIHk9IjEwMzUiIHdpZHRoPSIyMDAiIGhlaWdodD0iMzgiIGZpbGw9IiMxNjVhODciLz4KPHJlY3QgeD0iMTMwIiB5PSIxMTE1IiB3aWR0aD0iMzAwIiBoZWlnaHQ9IjM4IiBmaWxsPSIjMTY1YTg3Ii8+CjxyZWN0IHg9IjEzMCIgeT0iMTE5NSIgd2lkdGg9IjI1MCIgaGVpZ2h0PSIzOCIgZmlsbD0iIzI4NjY0ZCIvPgo8dGV4dCB4PSI1MCIgeT0iMTA2MyI+QTwvdGV4dD48dGV4dCB4PSIzNTAiIHk9IjEwNjMiPjIgbS9zPC90ZXh0Pgo8dGV4dCB4PSI1MCIgeT0iMTE0MyI+QjwvdGV4dD48dGV4dCB4PSI0NTAiIHk9IjExNDMiPjMgbS9zPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iMTIyMyI+TWVkaWE8L3RleHQ+PHRleHQgeD0iNDAwIiB5PSIxMjIzIj41LzIgbS9zPC90ZXh0Pgo8dGV4dCB4PSIxMDQiIHk9IjEyNzYiPjA8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIxMzI0IiBmb250LXNpemU9IjE4Ij5BOiBVID0gMiBrViwgbSA9IDEgZyA7IEI6IFUgPSA5IGtWLCBtID0gMiBnLjwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjEzNTYiIGZvbnQtc2l6ZT0iMTgiPk1vZHVsaSBpbiBtL3MsIG9yaWdpbmUgZSBzY2FsYSBjb211bmkuPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iMTM4OCIgZm9udC1zaXplPSIxOCI+TGEgcHJvdmEgQiBub24gdXNhIGxhIG1hc3NhIGRlbGxhIGN1cnZhIGNlbnRyYWxlLjwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjE0MjAiIGZvbnQtc2l6ZT0iMTgiPk9nbmkgcHJvdmEgaGEgdmVsb2NpdMOgIGluaXppYWxlIG51bGxhLjwvdGV4dD4KPC9nPjwvc3ZnPgo="
+    }
+  ]
+}

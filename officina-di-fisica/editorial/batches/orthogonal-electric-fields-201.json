@@ -1,0 +1,1160 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u6-orthogonal-electric-fields-01",
+      "kind": "question",
+      "course": "C4",
+      "section": "Campi elettrici perpendicolari",
+      "order": 20101,
+      "title": "Tre, quattro e la diagonale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "orthogonal-electric-fields",
+      "difficulty": 1,
+      "prompt": "Nel punto P si sovrappongono due contributi di campo elettrico esattamente perpendicolari, di moduli E₁>0 ed E₂>0 in N/C. Scegliamo +x lungo il primo e +y lungo il secondo. E>0 indica il modulo del campo risultante, non una forza su una carica. Vale E²=E₁²+E₂². Ogni confronto riguarda configurazioni statiche assegnate; non si sommano moduli di prove diverse. Con E₁=3 N/C ed E₂=4 N/C, quanto vale E in N/C?",
+      "answer": {
+        "type": "numeric",
+        "value": 5,
+        "unit": "N/C",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le componenti sono perpendicolari, quindi il prodotto scalare incrociato è zero. Il quadrato del modulo è 3²+4²=9+16=25 nelle unità (N/C)². La radice positiva vale 5 N/C. La somma 3+4 darebbe sette solo per contributi concordi sulla stessa retta."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/2b3a795b30f86f3951bbc0cdcd78ad41f1f09922c16da1d0b02d4020a931ab64",
+          "text": "Le componenti 3 e 4 N/C partono dallo stesso punto P e sono perpendicolari. La diagonale ha modulo 5 N/C; i segmenti tratteggiati trasportano le componenti senza cambiare i vettori. Il secondo pannello riguarda il caso separato di componenti uguali: la direzione è 45°. Le barre finali confrontano i moduli delle prove A e B, con origine e scala comuni."
+        },
+        {
+          "type": "formula",
+          "text": "E^2=E_1^2+E_2^2"
+        },
+        {
+          "type": "formula",
+          "text": " E^2=25\\,\\mathrm{(N/C)^2}"
+        },
+        {
+          "type": "formula",
+          "text": " E=5\\,\\mathrm{N/C}"
+        },
+        {
+          "type": "text",
+          "text": "Sette N/C somma i moduli ignorando l’angolo. Un N/C sottrae moduli come se i campi fossero opposti. Venticinque è il valore di E² nelle unità dichiarate, non di E; dodici moltiplica i dati senza una legge vettoriale."
+        }
+      ],
+      "hints": [
+        "Disegna il triangolo delle componenti e applica Pitagora prima della radice.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sette N/C somma i moduli ignorando l’angolo. Un N/C sottrae moduli come se i campi fossero opposti. Venticinque è il valore di E² nelle unità dichiarate, non di E; dodici moltiplica i dati senza una legge vettoriale.",
+        "target": "C4-L02"
+      },
+      "coverage": [
+        "Sovrapposizione e teorema di Pitagora",
+        "Moduli, angolo isoscele e radicali esatti",
+        "Inverse con dominio, medie, tarature e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-orthogonal-electric-fields-02",
+      "kind": "question",
+      "course": "C4",
+      "section": "Campi elettrici perpendicolari",
+      "order": 20102,
+      "title": "Un campo resta un campo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "orthogonal-electric-fields",
+      "difficulty": 1,
+      "prompt": "Nel punto P si sovrappongono due contributi di campo elettrico esattamente perpendicolari, di moduli E₁>0 ed E₂>0 in N/C. Scegliamo +x lungo il primo e +y lungo il secondo. E>0 indica il modulo del campo risultante, non una forza su una carica. Vale E²=E₁²+E₂². Ogni confronto riguarda configurazioni statiche assegnate; non si sommano moduli di prove diverse. Quale unità è dimensionalmente compatibile con E?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "N/C",
+          "N",
+          "C",
+          "J",
+          "V"
+        ],
+        "value": "N/C"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La somma vettoriale di due campi è ancora un campo. E₁² ed E₂² hanno entrambe dimensione (N/C)²; la radice della loro somma ha N/C. Non si introduce una carica di prova nel calcolo del modulo della risultante."
+        },
+        {
+          "type": "formula",
+          "text": "[E^2]=\\mathrm{(N/C)^2}"
+        },
+        {
+          "type": "formula",
+          "text": " [E]=\\mathrm{N/C}"
+        },
+        {
+          "type": "text",
+          "text": "N è forza e richiederebbe una carica per F=qE. C è carica, J energia, V potenziale: un’unità equivalente al campo sarebbe V/m, non V da solo."
+        }
+      ],
+      "hints": [
+        "Distingui il campo elettrico dalla forza che eserciterebbe su una carica.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "N è forza e richiederebbe una carica per F=qE. C è carica, J energia, V potenziale: un’unità equivalente al campo sarebbe V/m, non V da solo.",
+        "target": "C4-L02"
+      },
+      "coverage": [
+        "Sovrapposizione e teorema di Pitagora",
+        "Moduli, angolo isoscele e radicali esatti",
+        "Inverse con dominio, medie, tarature e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-orthogonal-electric-fields-03",
+      "kind": "question",
+      "course": "C4",
+      "section": "Campi elettrici perpendicolari",
+      "order": 20103,
+      "title": "La somma dei quadrati",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "orthogonal-electric-fields",
+      "difficulty": 1,
+      "prompt": "Nel punto P si sovrappongono due contributi di campo elettrico esattamente perpendicolari, di moduli E₁>0 ed E₂>0 in N/C. Scegliamo +x lungo il primo e +y lungo il secondo. E>0 indica il modulo del campo risultante, non una forza su una carica. Vale E²=E₁²+E₂². Ogni confronto riguarda configurazioni statiche assegnate; non si sommano moduli di prove diverse. Quale legge fornisce E?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "E = √(E₁² + E₂²)",
+          "E = E₁ + E₂",
+          "E = E₁ − E₂",
+          "E = E₁² + E₂²",
+          "E = √(E₁ E₂)"
+        ],
+        "value": "E = √(E₁² + E₂²)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Per due vettori ortogonali il modulo al quadrato della somma è la somma dei quadrati dei moduli. Per ottenere E, e non E², si estrae la radice positiva. Il fatto che entrambi i moduli siano positivi non permette di sommarli scalarmente."
+        },
+        {
+          "type": "formula",
+          "text": "\\vec E=\\vec E_1+\\vec E_2"
+        },
+        {
+          "type": "formula",
+          "text": " E^2=E_1^2+E_2^2"
+        },
+        {
+          "type": "formula",
+          "text": " E=\\sqrt{E_1^2+E_2^2}"
+        },
+        {
+          "type": "text",
+          "text": "Somma e differenza dei moduli appartengono a casi collineari, non a un angolo retto. E₁²+E₂² senza radice ha unità di campo al quadrato. La media geometrica √(E₁E₂) non è il modulo del vettore somma."
+        }
+      ],
+      "hints": [
+        "Prima somma i vettori mediante componenti, poi ricava il loro modulo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Somma e differenza dei moduli appartengono a casi collineari, non a un angolo retto. E₁²+E₂² senza radice ha unità di campo al quadrato. La media geometrica √(E₁E₂) non è il modulo del vettore somma.",
+        "target": "C4-L02"
+      },
+      "coverage": [
+        "Sovrapposizione e teorema di Pitagora",
+        "Moduli, angolo isoscele e radicali esatti",
+        "Inverse con dominio, medie, tarature e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-orthogonal-electric-fields-04",
+      "kind": "question",
+      "course": "C4",
+      "section": "Campi elettrici perpendicolari",
+      "order": 20104,
+      "title": "Un contributo più piccolo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "orthogonal-electric-fields",
+      "difficulty": 1,
+      "prompt": "Nel punto P si sovrappongono due contributi di campo elettrico esattamente perpendicolari, di moduli E₁>0 ed E₂>0 in N/C. Scegliamo +x lungo il primo e +y lungo il secondo. E>0 indica il modulo del campo risultante, non una forza su una carica. Vale E²=E₁²+E₂². Ogni confronto riguarda configurazioni statiche assegnate; non si sommano moduli di prove diverse. E₂ resta 4 N/C. E₁ passa da 3 a 1 N/C. Come cambia E?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 5 a √17 N/C",
+          "Da 5 a 5/3 N/C",
+          "Da 5 a 5 N/C",
+          "Da 5 a 3 N/C",
+          "Da 5 a 17 N/C"
+        ],
+        "value": "Da 5 a √17 N/C"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "All’inizio la terna 3,4,5 dà E_A=5 N/C. Alla fine il quadrato è 1²+4²=17 nelle unità (N/C)²: il modulo è √17 N/C. Il radicale esatto è una risposta completa; non occorre una sua approssimazione decimale. Poiché 16<17<25, il nuovo modulo sta tra 4 e 5 N/C."
+        },
+        {
+          "type": "formula",
+          "text": "E_A=5\\,\\mathrm{N/C}"
+        },
+        {
+          "type": "formula",
+          "text": " E_B^2=17\\,\\mathrm{(N/C)^2}"
+        },
+        {
+          "type": "formula",
+          "text": " E_B=\\sqrt{17}\\,\\mathrm{N/C}"
+        },
+        {
+          "type": "text",
+          "text": "5/3 riduce tutta la risultante come E₁, ma E₂ resta invariato. Cinque ignora il cambiamento; tre sottrae i moduli e diciassette dimentica la radice."
+        }
+      ],
+      "hints": [
+        "Ricalcola il quadrato della risultante: può essere corretto lasciarlo sotto radice.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "5/3 riduce tutta la risultante come E₁, ma E₂ resta invariato. Cinque ignora il cambiamento; tre sottrae i moduli e diciassette dimentica la radice.",
+        "target": "C4-L02"
+      },
+      "coverage": [
+        "Sovrapposizione e teorema di Pitagora",
+        "Moduli, angolo isoscele e radicali esatti",
+        "Inverse con dominio, medie, tarature e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-orthogonal-electric-fields-05",
+      "kind": "question",
+      "course": "C4",
+      "section": "Campi elettrici perpendicolari",
+      "order": 20105,
+      "title": "Il cateto dall’ipotenusa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "orthogonal-electric-fields",
+      "difficulty": 2,
+      "prompt": "Nel punto P si sovrappongono due contributi di campo elettrico esattamente perpendicolari, di moduli E₁>0 ed E₂>0 in N/C. Scegliamo +x lungo il primo e +y lungo il secondo. E>0 indica il modulo del campo risultante, non una forza su una carica. Vale E²=E₁²+E₂². Ogni confronto riguarda configurazioni statiche assegnate; non si sommano moduli di prove diverse. Si misura E=5 N/C e si conosce E₂=4 N/C. Quanto vale E₁ in N/C?",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "N/C",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sottraiamo E₂² da E²: E₁²=25−16=9 nelle unità (N/C)². La radice positiva dà E₁=3 N/C. Il dato E deve essere strettamente maggiore di E₂ per ricostruire un primo contributo positivo."
+        },
+        {
+          "type": "formula",
+          "text": "E_1^2=E^2-E_2^2"
+        },
+        {
+          "type": "formula",
+          "text": " E_1^2=9\\,\\mathrm{(N/C)^2}"
+        },
+        {
+          "type": "formula",
+          "text": " E_1=3\\,\\mathrm{N/C}"
+        },
+        {
+          "type": "text",
+          "text": "Uno N/C sottrae direttamente 5−4. Nove N/C copia il quadrato senza radice; √41 N/C somma i quadrati invece di usare l’inversa. La radice negativa non è un modulo."
+        }
+      ],
+      "hints": [
+        "Isola il quadrato del contributo prima della radice positiva.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Uno N/C sottrae direttamente 5−4. Nove N/C copia il quadrato senza radice; √41 N/C somma i quadrati invece di usare l’inversa. La radice negativa non è un modulo.",
+        "target": "C4-L02"
+      },
+      "coverage": [
+        "Sovrapposizione e teorema di Pitagora",
+        "Moduli, angolo isoscele e radicali esatti",
+        "Inverse con dominio, medie, tarature e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-orthogonal-electric-fields-06",
+      "kind": "question",
+      "course": "C4",
+      "section": "Campi elettrici perpendicolari",
+      "order": 20106,
+      "title": "Due contributi uguali",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "orthogonal-electric-fields",
+      "difficulty": 2,
+      "prompt": "Nel punto P si sovrappongono due contributi di campo elettrico esattamente perpendicolari, di moduli E₁>0 ed E₂>0 in N/C. Scegliamo +x lungo il primo e +y lungo il secondo. E>0 indica il modulo del campo risultante, non una forza su una carica. Vale E²=E₁²+E₂². Ogni confronto riguarda configurazioni statiche assegnate; non si sommano moduli di prove diverse. Nel caso presente E₁=E₂=3 N/C. Il primo è lungo +x e il secondo lungo +y. Qual è l’angolo della risultante rispetto a +x, misurato verso +y?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "45°",
+          "0°",
+          "90°",
+          "180°",
+          "30°"
+        ],
+        "value": "45°"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le due componenti positive sono uguali, quindi il triangolo rettangolo è isoscele. La risultante giace nel primo quadrante sulla bisettrice dell’angolo retto. I due angoli acuti uguali sommano 90° e valgono 45° ciascuno: non serve valutare una funzione trigonometrica con la calcolatrice."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/2b3a795b30f86f3951bbc0cdcd78ad41f1f09922c16da1d0b02d4020a931ab64",
+          "text": "Nel pannello centrale i contributi sono entrambi 3 N/C, lungo +x e +y. La diagonale biseca l’angolo retto e forma 45° con +x verso +y. I due triangoli non sono lo stesso caso numerico: il primo usa 3 e 4 N/C, il secondo 3 e 3 N/C. Le frecce sono contributi di campo, non traiettorie."
+        },
+        {
+          "type": "formula",
+          "text": "E_x=E_y"
+        },
+        {
+          "type": "formula",
+          "text": "E_y=3\\,\\mathrm{N/C}"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta+\\theta=90^\\circ"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta=45^\\circ"
+        },
+        {
+          "type": "text",
+          "text": "Zero e novanta gradi ignorano una delle componenti non nulle. Centottanta punterebbe nel verso −x, incompatibile con entrambe le componenti positive. Trenta gradi non divide in parti uguali l’angolo retto."
+        }
+      ],
+      "hints": [
+        "Usa la simmetria delle componenti uguali e il quadrante indicato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Zero e novanta gradi ignorano una delle componenti non nulle. Centottanta punterebbe nel verso −x, incompatibile con entrambe le componenti positive. Trenta gradi non divide in parti uguali l’angolo retto.",
+        "target": "C4-L02"
+      },
+      "coverage": [
+        "Sovrapposizione e teorema di Pitagora",
+        "Moduli, angolo isoscele e radicali esatti",
+        "Inverse con dominio, medie, tarature e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-orthogonal-electric-fields-07",
+      "kind": "question",
+      "course": "C4",
+      "section": "Campi elettrici perpendicolari",
+      "order": 20107,
+      "title": "Il confronto conserva la radice",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "orthogonal-electric-fields",
+      "difficulty": 2,
+      "prompt": "Nel punto P si sovrappongono due contributi di campo elettrico esattamente perpendicolari, di moduli E₁>0 ed E₂>0 in N/C. Scegliamo +x lungo il primo e +y lungo il secondo. E>0 indica il modulo del campo risultante, non una forza su una carica. Vale E²=E₁²+E₂². Ogni confronto riguarda configurazioni statiche assegnate; non si sommano moduli di prove diverse. A usa E₁=3 N/C, E₂=4 N/C. B mantiene E₁ e usa E₂=1 N/C. Quanto vale E_B/E_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "√10/5",
+          "1/5",
+          "1/2",
+          "2",
+          "5/√10"
+        ],
+        "value": "√10/5"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha modulo 5 N/C. B ha quadrato 3²+1²=10 e modulo √10 N/C. Il rapporto è √10/5, puro. Non occorre un valore decimale: elevandolo al quadrato si ottiene 10/25=2/5, controllo esatto della frazione sotto radice."
+        },
+        {
+          "type": "formula",
+          "text": "E_A=5\\,\\mathrm{N/C}"
+        },
+        {
+          "type": "formula",
+          "text": " E_B=\\sqrt{10}\\,\\mathrm{N/C}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{E_B}{E_A}=\\frac{\\sqrt{10}}5"
+        },
+        {
+          "type": "text",
+          "text": "1/5 scarta la componente 3. Un mezzo non ha quadrato 2/5; due è maggiore di uno mentre B ha campo minore di A. 5/√10 inverte l’ordine B/A."
+        }
+      ],
+      "hints": [
+        "Ricava separatamente i due moduli e non perdere la radice nel rapporto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "1/5 scarta la componente 3. Un mezzo non ha quadrato 2/5; due è maggiore di uno mentre B ha campo minore di A. 5/√10 inverte l’ordine B/A.",
+        "target": "C4-L02"
+      },
+      "coverage": [
+        "Sovrapposizione e teorema di Pitagora",
+        "Moduli, angolo isoscele e radicali esatti",
+        "Inverse con dominio, medie, tarature e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-orthogonal-electric-fields-08",
+      "kind": "question",
+      "course": "C4",
+      "section": "Campi elettrici perpendicolari",
+      "order": 20108,
+      "title": "Scarto dimensionato del modulo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "orthogonal-electric-fields",
+      "difficulty": 2,
+      "prompt": "Nel punto P si sovrappongono due contributi di campo elettrico esattamente perpendicolari, di moduli E₁>0 ed E₂>0 in N/C. Scegliamo +x lungo il primo e +y lungo il secondo. E>0 indica il modulo del campo risultante, non una forza su una carica. Vale E²=E₁²+E₂². Ogni confronto riguarda configurazioni statiche assegnate; non si sommano moduli di prove diverse. Con E₁=3 N/C ed E₂=4 N/C si propone E=10 N/C. Quanto vale proposta meno risultato corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "5 N/C",
+          "−5 N/C",
+          "10 N/C",
+          "0 N/C",
+          "2"
+        ],
+        "value": "5 N/C"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Pitagora restituisce 5 N/C. La proposta 10 N/C supera il valore corretto di 10−5=5 N/C. Il rapporto proposta/corretto sarebbe il numero puro due, che non ha l’unità della differenza richiesta."
+        },
+        {
+          "type": "formula",
+          "text": "E=5\\,\\mathrm{N/C}"
+        },
+        {
+          "type": "formula",
+          "text": " e=(10-5)\\,\\mathrm{N/C}"
+        },
+        {
+          "type": "formula",
+          "text": " e=5\\,\\mathrm{N/C}"
+        },
+        {
+          "type": "text",
+          "text": "−5 N/C inverte la sottrazione; dieci copia la proposta, zero la accetta. Due senza unità è un rapporto e non uno scarto fra moduli di campo."
+        }
+      ],
+      "hints": [
+        "Usa il corretto modulo vettoriale prima di sottrarre la proposta.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−5 N/C inverte la sottrazione; dieci copia la proposta, zero la accetta. Due senza unità è un rapporto e non uno scarto fra moduli di campo.",
+        "target": "C4-L02"
+      },
+      "coverage": [
+        "Sovrapposizione e teorema di Pitagora",
+        "Moduli, angolo isoscele e radicali esatti",
+        "Inverse con dominio, medie, tarature e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-orthogonal-electric-fields-09",
+      "kind": "question",
+      "course": "C4",
+      "section": "Campi elettrici perpendicolari",
+      "order": 20109,
+      "title": "L’inversa richiede una differenza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "orthogonal-electric-fields",
+      "difficulty": 2,
+      "prompt": "Nel punto P si sovrappongono due contributi di campo elettrico esattamente perpendicolari, di moduli E₁>0 ed E₂>0 in N/C. Scegliamo +x lungo il primo e +y lungo il secondo. E>0 indica il modulo del campo risultante, non una forza su una carica. Vale E²=E₁²+E₂². Ogni confronto riguarda configurazioni statiche assegnate; non si sommano moduli di prove diverse. Sono noti E ed E₂, con E>E₂>0. Quale formula ricava E₁?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "E₁ = √(E² − E₂²)",
+          "E₁ = E − E₂",
+          "E₁ = √(E² + E₂²)",
+          "E₁ = E² − E₂²",
+          "E₁ = E₂ / E"
+        ],
+        "value": "E₁ = √(E² − E₂²)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Eleviamo al quadrato E=√(E₁²+E₂²) e sottraiamo E₂². Poi scegliamo la radice positiva. La condizione E>E₂ rende positivo il radicando; l’uguaglianza E=E₂ produrrebbe E₁=0, escluso dal dominio di questo quesito."
+        },
+        {
+          "type": "formula",
+          "text": "E^2=E_1^2+E_2^2"
+        },
+        {
+          "type": "formula",
+          "text": " E_1^2=E^2-E_2^2"
+        },
+        {
+          "type": "formula",
+          "text": " E_1=\\sqrt{E^2-E_2^2}"
+        },
+        {
+          "type": "text",
+          "text": "E−E₂ è un’inversa scalare per campi concordi, non per campi perpendicolari. La somma dei quadrati non isola il cateto. Senza radice rimangono unità (N/C)²; E₂/E è adimensionale."
+        }
+      ],
+      "hints": [
+        "Controlla il dominio del radicando prima di estrarre la radice.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "E−E₂ è un’inversa scalare per campi concordi, non per campi perpendicolari. La somma dei quadrati non isola il cateto. Senza radice rimangono unità (N/C)²; E₂/E è adimensionale.",
+        "target": "C4-L02"
+      },
+      "coverage": [
+        "Sovrapposizione e teorema di Pitagora",
+        "Moduli, angolo isoscele e radicali esatti",
+        "Inverse con dominio, medie, tarature e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-orthogonal-electric-fields-10",
+      "kind": "question",
+      "course": "C4",
+      "section": "Campi elettrici perpendicolari",
+      "order": 20110,
+      "title": "Fattori sui due cateti",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "orthogonal-electric-fields",
+      "difficulty": 2,
+      "prompt": "Nel punto P si sovrappongono due contributi di campo elettrico esattamente perpendicolari, di moduli E₁>0 ed E₂>0 in N/C. Scegliamo +x lungo il primo e +y lungo il secondo. E>0 indica il modulo del campo risultante, non una forza su una carica. Vale E²=E₁²+E₂². Ogni confronto riguarda configurazioni statiche assegnate; non si sommano moduli di prove diverse. B ha E₁,B=κ₁E₁,A ed E₂,B=κ₂E₂,A, con κ₁,κ₂>0. Per scrivere risposte brevi definiamo a=E₁,A/E_A e b=E₂,A/E_A: sono puri e a²+b²=1. Quale legge generale dà E_B/E_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "√(κ₁² a² + κ₂² b²)",
+          "κ₁ a + κ₂ b",
+          "√(κ₁ a² + κ₂ b²)",
+          "√(κ₁² a² − κ₂² b²)",
+          "√(κ₂² a² + κ₁² b²)"
+        ],
+        "value": "√(κ₁² a² + κ₂² b²)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nel quadrato del modulo B si trovano κ₁²E₁,A² e κ₂²E₂,A². Dividendo per E_A² si ottiene κ₁²a²+κ₂²b². Il rapporto dei moduli è la radice positiva di questa somma. I due nuovi simboli rappresentano solo le componenti iniziali normalizzate; non modificano il problema fisico."
+        },
+        {
+          "type": "formula",
+          "text": "E_B^2=\\kappa_1^2E_{1,A}^2+\\kappa_2^2E_{2,A}^2"
+        },
+        {
+          "type": "formula",
+          "text": " \\left(\\frac{E_B}{E_A}\\right)^2=\\kappa_1^2a^2+\\kappa_2^2b^2"
+        },
+        {
+          "type": "text",
+          "text": "La somma κ₁a+κ₂b somma moduli invece di componenti ortogonali. I fattori κ vanno anch’essi al quadrato prima della radice; il segno meno non è Pitagora. Scambiare κ₁ e κ₂ assegna le variazioni ai cateti sbagliati, e non è una legge generale anche se coincide in casi simmetrici particolari."
+        }
+      ],
+      "hints": [
+        "Normalizza i quadrati dei due contributi prima della radice finale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La somma κ₁a+κ₂b somma moduli invece di componenti ortogonali. I fattori κ vanno anch’essi al quadrato prima della radice; il segno meno non è Pitagora. Scambiare κ₁ e κ₂ assegna le variazioni ai cateti sbagliati, e non è una legge generale anche se coincide in casi simmetrici particolari.",
+        "target": "C4-L02"
+      },
+      "coverage": [
+        "Sovrapposizione e teorema di Pitagora",
+        "Moduli, angolo isoscele e radicali esatti",
+        "Inverse con dominio, medie, tarature e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-orthogonal-electric-fields-11",
+      "kind": "question",
+      "course": "C4",
+      "section": "Campi elettrici perpendicolari",
+      "order": 20111,
+      "title": "Due terne pitagoriche",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "orthogonal-electric-fields",
+      "difficulty": 2,
+      "prompt": "Nel punto P si sovrappongono due contributi di campo elettrico esattamente perpendicolari, di moduli E₁>0 ed E₂>0 in N/C. Scegliamo +x lungo il primo e +y lungo il secondo. E>0 indica il modulo del campo risultante, non una forza su una carica. Vale E²=E₁²+E₂². Ogni confronto riguarda configurazioni statiche assegnate; non si sommano moduli di prove diverse. A usa E₁=3 N/C, E₂=4 N/C. B usa E₁=5 N/C, E₂=12 N/C. Quanto vale E_B/E_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "13/5",
+          "5/13",
+          "5/3",
+          "3",
+          "169/25"
+        ],
+        "value": "13/5"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A dà √25=5 N/C. In B i quadrati sono 25 e 144, somma 169=13². Quindi E_B=13 N/C e il rapporto puro è 13/5. Entrambi i contributi cambiano: non basta il fattore di un singolo cateto."
+        },
+        {
+          "type": "formula",
+          "text": "E_A=5\\,\\mathrm{N/C}"
+        },
+        {
+          "type": "formula",
+          "text": " E_B^2=169\\,\\mathrm{(N/C)^2}"
+        },
+        {
+          "type": "formula",
+          "text": " E_B=13\\,\\mathrm{N/C}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{E_B}{E_A}=\\frac{13}5"
+        },
+        {
+          "type": "text",
+          "text": "5/13 inverte B/A. 5/3 segue solo E₁ e tre solo E₂. 169/25 è il rapporto dei quadrati, non quello dei moduli."
+        }
+      ],
+      "hints": [
+        "Riconosci le terne 3-4-5 e 5-12-13 dopo aver controllato i quadrati.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "5/13 inverte B/A. 5/3 segue solo E₁ e tre solo E₂. 169/25 è il rapporto dei quadrati, non quello dei moduli.",
+        "target": "C4-L02"
+      },
+      "coverage": [
+        "Sovrapposizione e teorema di Pitagora",
+        "Moduli, angolo isoscele e radicali esatti",
+        "Inverse con dominio, medie, tarature e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-orthogonal-electric-fields-12",
+      "kind": "question",
+      "course": "C4",
+      "section": "Campi elettrici perpendicolari",
+      "order": 20112,
+      "title": "La media non è un altro vettore",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "orthogonal-electric-fields",
+      "difficulty": 2,
+      "prompt": "Nel punto P si sovrappongono due contributi di campo elettrico esattamente perpendicolari, di moduli E₁>0 ed E₂>0 in N/C. Scegliamo +x lungo il primo e +y lungo il secondo. E>0 indica il modulo del campo risultante, non una forza su una carica. Vale E²=E₁²+E₂². Ogni confronto riguarda configurazioni statiche assegnate; non si sommano moduli di prove diverse. A usa E₁=3 N/C, E₂=4 N/C; B usa E₁=5 N/C, E₂=12 N/C. Qual è la media aritmetica dei due moduli E con uguale peso?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "9 N/C",
+          "4√5 N/C",
+          "18 N/C",
+          "4 N/C",
+          "13 N/C"
+        ],
+        "value": "9 N/C"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I moduli sono 5 e 13 N/C: la media è (5+13)/2=9 N/C. Le componenti medie sarebbero 4 e 8 N/C e il loro modulo √80=4√5 N/C. Non coincide: il quadrato di 9 è 81, mentre quello di 4√5 è 80. Il confronto è esatto senza decimali."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/2b3a795b30f86f3951bbc0cdcd78ad41f1f09922c16da1d0b02d4020a931ab64",
+          "text": "Le barre finali mostrano E_A=5 N/C, E_B=13 N/C e media 9 N/C. B usa componenti 5 e 12 N/C. La media dei moduli non è il modulo delle componenti medie 4 e 8 N/C, che vale 4√5 N/C. Ogni barra parte dalla stessa origine e usa la stessa scala."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline E=\\frac{5+13}{2}\\,\\mathrm{N/C}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline E=9\\,\\mathrm{N/C}"
+        },
+        {
+          "type": "formula",
+          "text": " E_{\\rm dati\\ medi}=4\\sqrt5\\,\\mathrm{N/C}"
+        },
+        {
+          "type": "text",
+          "text": "4√5 N/C usa le componenti medie. Diciotto non dimezza; quattro è metà della differenza e tredici copia B. La media statistica dei moduli non è la somma fisica dei vettori delle due configurazioni."
+        }
+      ],
+      "hints": [
+        "Calcola i due moduli prima della media, mantenendo separata ogni configurazione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "4√5 N/C usa le componenti medie. Diciotto non dimezza; quattro è metà della differenza e tredici copia B. La media statistica dei moduli non è la somma fisica dei vettori delle due configurazioni.",
+        "target": "C4-L02"
+      },
+      "coverage": [
+        "Sovrapposizione e teorema di Pitagora",
+        "Moduli, angolo isoscele e radicali esatti",
+        "Inverse con dominio, medie, tarature e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-orthogonal-electric-fields-13",
+      "kind": "question",
+      "course": "C4",
+      "section": "Campi elettrici perpendicolari",
+      "order": 20113,
+      "title": "Il nuovo cateto per il bersaglio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "orthogonal-electric-fields",
+      "difficulty": 3,
+      "prompt": "Nel punto P si sovrappongono due contributi di campo elettrico esattamente perpendicolari, di moduli E₁>0 ed E₂>0 in N/C. Scegliamo +x lungo il primo e +y lungo il secondo. E>0 indica il modulo del campo risultante, non una forza su una carica. Vale E²=E₁²+E₂². Ogni confronto riguarda configurazioni statiche assegnate; non si sommano moduli di prove diverse. A ha E₁=3 N/C, E₂=4 N/C. B usa E₁=5 N/C e deve dare E_B=(13/5)E_A. Quanto vale E₂,B/E₂,A?",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è 13 N/C. Sottraiamo il quadrato del primo cateto B: E₂,B²=13²−5²=169−25=144. Il modulo positivo è 12 N/C. Il rapporto con 4 N/C iniziali è tre."
+        },
+        {
+          "type": "formula",
+          "text": "E_B=13\\,\\mathrm{N/C}"
+        },
+        {
+          "type": "formula",
+          "text": " E_{2,B}^2=144\\,\\mathrm{(N/C)^2}"
+        },
+        {
+          "type": "formula",
+          "text": " E_{2,B}=12\\,\\mathrm{N/C}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{E_{2,B}}{E_{2,A}}=3"
+        },
+        {
+          "type": "text",
+          "text": "Un terzo inverte il confronto; nove è il rapporto dei quadrati dei cateti. 13/5 copia il bersaglio dei moduli, mentre dodici è il solo valore di E₂,B nelle unità N/C."
+        }
+      ],
+      "hints": [
+        "Ricostruisci il cateto B e solo dopo confrontalo con il cateto iniziale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un terzo inverte il confronto; nove è il rapporto dei quadrati dei cateti. 13/5 copia il bersaglio dei moduli, mentre dodici è il solo valore di E₂,B nelle unità N/C.",
+        "target": "C4-L02"
+      },
+      "coverage": [
+        "Sovrapposizione e teorema di Pitagora",
+        "Moduli, angolo isoscele e radicali esatti",
+        "Inverse con dominio, medie, tarature e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-orthogonal-electric-fields-14",
+      "kind": "question",
+      "course": "C4",
+      "section": "Campi elettrici perpendicolari",
+      "order": 20114,
+      "title": "Un display proporzionale al modulo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "orthogonal-electric-fields",
+      "difficulty": 3,
+      "prompt": "Nel punto P si sovrappongono due contributi di campo elettrico esattamente perpendicolari, di moduli E₁>0 ed E₂>0 in N/C. Scegliamo +x lungo il primo e +y lungo il secondo. E>0 indica il modulo del campo risultante, non una forza su una carica. Vale E²=E₁²+E₂². Ogni confronto riguarda configurazioni statiche assegnate; non si sommano moduli di prove diverse. D=aE è continuo e adimensionale, a>0. A con E₁=3 N/C, E₂=4 N/C dà D=15. C ha E₂=12 N/C e D=39. Quanto vale E₁,C in N/C?",
+      "answer": {
+        "type": "numeric",
+        "value": 5,
+        "unit": "N/C",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il modulo di riferimento è 5 N/C, quindi a=3 C/N. D=39 indica E_C=13 N/C. L’inversa per il primo cateto dà √(13²−12²)=√25=5 N/C. La lettura non è direttamente un campo."
+        },
+        {
+          "type": "formula",
+          "text": "a=3\\,\\mathrm{C/N}"
+        },
+        {
+          "type": "formula",
+          "text": " E_C=13\\,\\mathrm{N/C}"
+        },
+        {
+          "type": "formula",
+          "text": " E_{1,C}^2=25\\,\\mathrm{(N/C)^2}"
+        },
+        {
+          "type": "formula",
+          "text": " E_{1,C}=5\\,\\mathrm{N/C}"
+        },
+        {
+          "type": "text",
+          "text": "Un N/C sottrae 13−12 senza quadrati. Venticinque N/C dimentica la radice. Usare 39 come E lascerebbe nella ricostruzione il guadagno strumentale e non riprodurrebbe il display."
+        }
+      ],
+      "hints": [
+        "Rimuovi la taratura, poi usa la differenza dei quadrati dei campi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un N/C sottrae 13−12 senza quadrati. Venticinque N/C dimentica la radice. Usare 39 come E lascerebbe nella ricostruzione il guadagno strumentale e non riprodurrebbe il display.",
+        "target": "C4-L02"
+      },
+      "coverage": [
+        "Sovrapposizione e teorema di Pitagora",
+        "Moduli, angolo isoscele e radicali esatti",
+        "Inverse con dominio, medie, tarature e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-orthogonal-electric-fields-15",
+      "kind": "question",
+      "course": "C4",
+      "section": "Campi elettrici perpendicolari",
+      "order": 20115,
+      "title": "Offset prima del teorema",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "orthogonal-electric-fields",
+      "difficulty": 3,
+      "prompt": "Nel punto P si sovrappongono due contributi di campo elettrico esattamente perpendicolari, di moduli E₁>0 ed E₂>0 in N/C. Scegliamo +x lungo il primo e +y lungo il secondo. E>0 indica il modulo del campo risultante, non una forza su una carica. Vale E²=E₁²+E₂². Ogni confronto riguarda configurazioni statiche assegnate; non si sommano moduli di prove diverse. Il display continuo adimensionale è D=aE+b, a>0. A: E₁=3 N/C, E₂=4 N/C, D=11. B: E₁=5 N/C, E₂=12 N/C, D=27. C: E₂=8 N/C, D=21. Quanto vale E₁,C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "6 N/C",
+          "√57 N/C",
+          "2 N/C",
+          "10 N/C",
+          "36 N/C"
+        ],
+        "value": "6 N/C"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti hanno moduli 5 e 13 N/C. a=(27−11)/(13−5)=2 C/N e b=1. C dà E_C=(21−1)/2=10 N/C. Quindi E₁,C²=100−64=36 nelle unità (N/C)², e il modulo positivo è 6 N/C."
+        },
+        {
+          "type": "formula",
+          "text": "a=2\\,\\mathrm{C/N}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " E_C=10\\,\\mathrm{N/C}"
+        },
+        {
+          "type": "formula",
+          "text": " E_{1,C}^2=36\\,\\mathrm{(N/C)^2}"
+        },
+        {
+          "type": "formula",
+          "text": " E_{1,C}=6\\,\\mathrm{N/C}"
+        },
+        {
+          "type": "text",
+          "text": "Due N/C sottrae direttamente 10−8. Dieci copia il modulo totale; trentasei non estrae la radice. √57 N/C darebbe E_C=11 N/C e D=23, non 21: la sostituzione confuta il distrattore senza approssimare il radicale."
+        }
+      ],
+      "hints": [
+        "Trova a e b dai due moduli, non dai singoli cateti; poi decodifica C.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due N/C sottrae direttamente 10−8. Dieci copia il modulo totale; trentasei non estrae la radice. √57 N/C darebbe E_C=11 N/C e D=23, non 21: la sostituzione confuta il distrattore senza approssimare il radicale.",
+        "target": "C4-L02"
+      },
+      "coverage": [
+        "Sovrapposizione e teorema di Pitagora",
+        "Moduli, angolo isoscele e radicali esatti",
+        "Inverse con dominio, medie, tarature e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-orthogonal-electric-fields-16",
+      "kind": "question",
+      "course": "C4",
+      "section": "Campi elettrici perpendicolari",
+      "order": 20116,
+      "title": "Un vincolo fra componenti",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L02",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "orthogonal-electric-fields",
+      "difficulty": 3,
+      "prompt": "Nel punto P si sovrappongono due contributi di campo elettrico esattamente perpendicolari, di moduli E₁>0 ed E₂>0 in N/C. Scegliamo +x lungo il primo e +y lungo il secondo. E>0 indica il modulo del campo risultante, non una forza su una carica. Vale E²=E₁²+E₂². Ogni confronto riguarda configurazioni statiche assegnate; non si sommano moduli di prove diverse. Si impone E₁=(3/4)E₂ e si misura E=5 N/C. Quanto vale E₂?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4 N/C",
+          "3 N/C",
+          "5 N/C",
+          "−4 N/C",
+          "Infinite componenti positive"
+        ],
+        "value": "4 N/C"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituiamo il vincolo: E²=(9/16)E₂²+E₂²=(25/16)E₂². La misura 25 nelle unità (N/C)² impone E₂²=16, quindi E₂=4 N/C e E₁=3 N/C. La misura del modulo fissa la scala che il solo rapporto non fissava."
+        },
+        {
+          "type": "formula",
+          "text": "E^2=\\frac{25}{16}E_2^2"
+        },
+        {
+          "type": "formula",
+          "text": " E_2^2=16\\,\\mathrm{(N/C)^2}"
+        },
+        {
+          "type": "formula",
+          "text": " E_2=4\\,\\mathrm{N/C}"
+        },
+        {
+          "type": "text",
+          "text": "Tre N/C è l’altro cateto della terna. Cinque copia il modulo totale e −4 non è un modulo positivo. Non restano infinite coppie: per un rapporto fissato il modulo cresce con la scala delle componenti."
+        }
+      ],
+      "hints": [
+        "Sostituisci il rapporto fra componenti prima di cercare la scala positiva.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Tre N/C è l’altro cateto della terna. Cinque copia il modulo totale e −4 non è un modulo positivo. Non restano infinite coppie: per un rapporto fissato il modulo cresce con la scala delle componenti.",
+        "target": "C4-L02"
+      },
+      "coverage": [
+        "Sovrapposizione e teorema di Pitagora",
+        "Moduli, angolo isoscele e radicali esatti",
+        "Inverse con dominio, medie, tarature e vincoli"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "2b3a795b30f86f3951bbc0cdcd78ad41f1f09922c16da1d0b02d4020a931ab64",
+      "name": "orthogonal-electric-fields-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTcyMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgo8dGl0bGUgaWQ9InRpdGxlIj5Tb21tYSBkaSBjYW1waSBlbGV0dHJpY2kgcGVycGVuZGljb2xhcmk8L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5QcmltbyB0cmlhbmdvbG8gY29uIGNhdGV0aSB0cmUgZSBxdWF0dHJvIGUgaXBvdGVudXNhIGNpbnF1ZSBuZXd0b24gYWwgY291bG9tYi4gU2Vjb25kbyB0cmlhbmdvbG8gY29uIGNvbXBvbmVudGkgdWd1YWxpIHRyZSBlIHRyZSwgZGlyZXppb25lIHF1YXJhbnRhY2lucXVlIGdyYWRpLiBCYXJyZSBmaW5hbGkgY2lucXVlLCB0cmVkaWNpIGUgbWVkaWEgbm92ZSBuZXd0b24gYWwgY291bG9tYi48L2Rlc2M+CjxkZWZzPjxtYXJrZXIgaWQ9ImJsdWUiIHZpZXdCb3g9IjAgMCAxMCAxMCIgcmVmWD0iMTAiIHJlZlk9IjUiIG1hcmtlcldpZHRoPSI3IiBtYXJrZXJIZWlnaHQ9IjciIG9yaWVudD0iYXV0byI+PHBhdGggZD0iTTAgMEwxMCA1TDAgMTBaIiBmaWxsPSIjMTY1YTg3Ii8+PC9tYXJrZXI+PG1hcmtlciBpZD0icmVkIiB2aWV3Qm94PSIwIDAgMTAgMTAiIHJlZlg9IjEwIiByZWZZPSI1IiBtYXJrZXJXaWR0aD0iNyIgbWFya2VySGVpZ2h0PSI3IiBvcmllbnQ9ImF1dG8iPjxwYXRoIGQ9Ik0wIDBMMTAgNUwwIDEwWiIgZmlsbD0iI2I0NTMyOCIvPjwvbWFya2VyPjwvZGVmcz4KPHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxNzIwIiByeD0iMTIiIGZpbGw9IiNmOGZhZmMiLz48ZyBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzE0MjQzYSI+Cjx0ZXh0IHg9IjMyIiB5PSI0MiIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9ImJvbGQiPjEgwrcgSWwgdHJpYW5nb2xvIDPigJM04oCTNTwvdGV4dD48dGV4dCB4PSIzMiIgeT0iODMiIGZvbnQtc2l6ZT0iMTgiPkNhbXBpIG5lbGxvIHN0ZXNzbyBwdW50byA7IHVuaXTDoCBjb211bmkgTi9DLjwvdGV4dD4KPHBhdGggZD0iTTQwMCA0NzBWMTUwSDE2MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjODI5MmEyIiBzdHJva2UtZGFzaGFycmF5PSI2IDYiIHN0cm9rZS13aWR0aD0iMiIvPgo8cGF0aCBkPSJNMTYwIDQ3MEg0MDAiIHN0cm9rZT0iIzE2NWE4NyIgc3Ryb2tlLXdpZHRoPSI0IiBtYXJrZXItZW5kPSJ1cmwoI2JsdWUpIi8+PHBhdGggZD0iTTE2MCA0NzBWMTUwIiBzdHJva2U9IiMxNjVhODciIHN0cm9rZS13aWR0aD0iNCIgbWFya2VyLWVuZD0idXJsKCNibHVlKSIvPjxwYXRoIGQ9Ik0xNjAgNDcwTDQwMCAxNTAiIHN0cm9rZT0iI2I0NTMyOCIgc3Ryb2tlLXdpZHRoPSI1IiBtYXJrZXItZW5kPSJ1cmwoI3JlZCkiLz4KPHBhdGggZD0iTTE2MCA0NDdIMTgzVjQ3MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMTQyNDNhIiBzdHJva2Utd2lkdGg9IjIiLz4KPGNpcmNsZSBjeD0iMTYwIiBjeT0iNDcwIiByPSI0IiBmaWxsPSIjMTQyNDNhIi8+PHRleHQgeD0iMTI4IiB5PSI1MDIiPlA8L3RleHQ+PHRleHQgeD0iMjU1IiB5PSI1MTAiIGZpbGw9IiMxNjVhODciPkXigoEgPSAzPC90ZXh0Pjx0ZXh0IHg9IjQyIiB5PSIzMDAiIGZpbGw9IiMxNjVhODciPkXigoIgPSA0PC90ZXh0Pjx0ZXh0IHg9IjMxNSIgeT0iMzMwIiBmaWxsPSIjYjQ1MzI4Ij5FID0gNTwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjU1MSIgZm9udC1zaXplPSIxOCI+U3Rlc3NhIHNjYWxhIHBlciBjb21wb25lbnRpIGUgcmlzdWx0YW50ZS48L3RleHQ+PHRleHQgeD0iMzIiIHk9IjU4NiIgZm9udC1zaXplPSIxOCI+TGEgZGlhZ29uYWxlIMOoIHVuIGNhbXBvLCBub24gdW5hIHRyYWlldHRvcmlhLjwvdGV4dD4KPHBhdGggZD0iTTMyIDYyMEg2MDgiIHN0cm9rZT0iIzliYWJiYyIvPgo8dGV4dCB4PSIzMiIgeT0iNjY1IiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iYm9sZCI+MiDCtyBVZ3VhbGkgY29tcG9uZW50aSwgYmlzZXR0cmljZTwvdGV4dD48dGV4dCB4PSIzMiIgeT0iNzA3IiBmb250LXNpemU9IjE4Ij5DYXNvIHNlcGFyYXRvOiBFX3ggPSBFX3kgPSAzIE4vQy48L3RleHQ+CjxwYXRoIGQ9Ik0zODAgMTAwNVY3OTVIMTcwIiBmaWxsPSJub25lIiBzdHJva2U9IiM4MjkyYTIiIHN0cm9rZS1kYXNoYXJyYXk9IjYgNiIgc3Ryb2tlLXdpZHRoPSIyIi8+CjxwYXRoIGQ9Ik0xNzAgMTAwNUgzODAiIHN0cm9rZT0iIzE2NWE4NyIgc3Ryb2tlLXdpZHRoPSI0IiBtYXJrZXItZW5kPSJ1cmwoI2JsdWUpIi8+PHBhdGggZD0iTTE3MCAxMDA1Vjc5NSIgc3Ryb2tlPSIjMTY1YTg3IiBzdHJva2Utd2lkdGg9IjQiIG1hcmtlci1lbmQ9InVybCgjYmx1ZSkiLz48cGF0aCBkPSJNMTcwIDEwMDVMMzgwIDc5NSIgc3Ryb2tlPSIjYjQ1MzI4IiBzdHJva2Utd2lkdGg9IjUiIG1hcmtlci1lbmQ9InVybCgjcmVkKSIvPgo8cGF0aCBkPSJNMjMwIDEwMDVBNjAgNjAgMCAwIDAgMjEyLjQyNiA5NjIuNTc0IiBmaWxsPSJub25lIiBzdHJva2U9IiMyODY2NGQiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjI0OSIgeT0iOTg0IiBmaWxsPSIjMjg2NjRkIj40NcKwPC90ZXh0Pgo8dGV4dCB4PSIxNDAiIHk9IjEwMzkiPlA8L3RleHQ+PHRleHQgeD0iMjYwIiB5PSIxMDQ4IiBmaWxsPSIjMTY1YTg3Ij4zIE4vQzwvdGV4dD48dGV4dCB4PSI2NSIgeT0iODkwIiBmaWxsPSIjMTY1YTg3Ij4zIE4vQzwvdGV4dD48dGV4dCB4PSIzNTUiIHk9Ijg4NCIgZmlsbD0iI2I0NTMyOCI+RTwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjEwOTMiIGZvbnQtc2l6ZT0iMTgiPkxhIHJpc3VsdGFudGUgw6ggbmVsIHByaW1vIHF1YWRyYW50ZS48L3RleHQ+PHRleHQgeD0iMzIiIHk9IjExMjgiIGZvbnQtc2l6ZT0iMTgiPkdsaSBhbmdvbGkgYWN1dGkgdWd1YWxpIHNvbW1hbm8gOTDCsC48L3RleHQ+CjxwYXRoIGQ9Ik0zMiAxMTYySDYwOCIgc3Ryb2tlPSIjOWJhYmJjIi8+Cjx0ZXh0IHg9IjMyIiB5PSIxMjA3IiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iYm9sZCI+MyDCtyBNZWRpYSBkaSBkdWUgbW9kdWxpPC90ZXh0Pgo8cGF0aCBkPSJNMTMwIDEyMzdWMTUwNyIgc3Ryb2tlPSIjMTQyNDNhIiBzdHJva2Utd2lkdGg9IjIiLz4KPHJlY3QgeD0iMTMwIiB5PSIxMjY1IiB3aWR0aD0iMTIwIiBoZWlnaHQ9IjM4IiBmaWxsPSIjMTY1YTg3Ii8+PHJlY3QgeD0iMTMwIiB5PSIxMzQ1IiB3aWR0aD0iMzEyIiBoZWlnaHQ9IjM4IiBmaWxsPSIjMTY1YTg3Ii8+PHJlY3QgeD0iMTMwIiB5PSIxNDI1IiB3aWR0aD0iMjE2IiBoZWlnaHQ9IjM4IiBmaWxsPSIjMjg2NjRkIi8+Cjx0ZXh0IHg9IjUwIiB5PSIxMjkzIj5BPC90ZXh0Pjx0ZXh0IHg9IjI3MCIgeT0iMTI5MyI+NSBOL0M8L3RleHQ+PHRleHQgeD0iNTAiIHk9IjEzNzMiPkI8L3RleHQ+PHRleHQgeD0iNDYyIiB5PSIxMzczIj4xMyBOL0M8L3RleHQ+PHRleHQgeD0iMzIiIHk9IjE0NTMiPk1lZGlhPC90ZXh0Pjx0ZXh0IHg9IjM2NiIgeT0iMTQ1MyI+OSBOL0M8L3RleHQ+PHRleHQgeD0iMTA0IiB5PSIxNTAxIj4wPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iMTU1MCIgZm9udC1zaXplPSIxOCI+QTogMyBlIDQgTi9DIDsgQjogNSBlIDEyIE4vQy48L3RleHQ+PHRleHQgeD0iMzIiIHk9IjE1ODYiIGZvbnQtc2l6ZT0iMTgiPkxlIGJhcnJlIGhhbm5vIG9yaWdpbmUgZSBzY2FsYSBjb211bmkuPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSIxNjIyIiBmb250LXNpemU9IjE4Ij5Db21wb25lbnRpIG1lZGllIDQgZSA4IE4vQzogbW9kdWxvIDTiiJo1IE4vQy48L3RleHQ+PHRleHQgeD0iMzIiIHk9IjE2NTgiIGZvbnQtc2l6ZT0iMTgiPlF1ZWwgbW9kdWxvIG5vbiDDqCBsYSBtZWRpYSA5IE4vQyByYXBwcmVzZW50YXRhLjwvdGV4dD4KPC9nPjwvc3ZnPgo="
+    }
+  ]
+}

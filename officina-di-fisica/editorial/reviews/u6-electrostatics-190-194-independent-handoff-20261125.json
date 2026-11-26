@@ -1,0 +1,70 @@
+{
+  "schemaVersion": "1.0.0",
+  "scope": "independent_scientific_review_U6_01_A190_194",
+  "reviewer": "B_not_candidate_author",
+  "sourceCommit": "5cfbdcb055ba3ba136f97fb56e997f06e6cf3605",
+  "sourcePath": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U6-01.json",
+  "primaryBeforeCandidateKeys": {
+    "path": "editorial/reviews/u6-electrostatics-190-194-primary-source-only.md",
+    "sha256": "12031f00b348d12feff99b677c4031308ed67876612eec5d77fb98df866b037a"
+  },
+  "candidateCommits": [
+    "1713e2030d2b037bea9d1664d156e277fca2b4fb",
+    "2ca7a13fa8d183ad41a31d30bc0b90d8e12fe1e8",
+    "5627f51bd046c63df3b04c9daeafad7e3c2f18a5",
+    "2bc133eade6c14f82c3f959e6364df013863235f",
+    "303633531a2f63db14279ee443b2de70eba3aaa7"
+  ],
+  "records": 80,
+  "tests": 14,
+  "testElapsedSeconds": 4.220498459006194,
+  "actualExitCode": 0,
+  "packageMutations": 135,
+  "constitutiveFaults": 5,
+  "hypothesisConfigurations": 240,
+  "freshAndSavedCanonicalIdentity": true,
+  "filesUnchangedDuringFinalTests": true,
+  "allSourceHashesCheckedAgainstGit": true,
+  "parserDependencySha256": {
+    "entropy_state_review.py": "f75450bbf820fd030b618625bbecba044092df7bef895d31ea2d8cd9f8bc82cf"
+  },
+  "disclosure": {
+    "sourceFirstExposure": "No candidate, option, answer, solution, hint or authored SVG before complete primary80 was frozen. Conceptual source19103 has no alternatives: valid principles were recorded without inventing a verbal key; final alternatives subsequently read in full.",
+    "findings": "19002 work/energy wording and19005 inverse distractor operation corrected by author in1713e203, independently reread. No residual finding.",
+    "launcherFailure": "Initial persistence invocation without PYTHONPATH failed ModuleNotFoundError tools; corrected invocation actually completed. It was not treated as a successful test.",
+    "productUI": "NOT_RUN by this reviewer; all five complete native asset-only images were actually rendered and read, no acceptance credit assigned."
+  },
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "publicationAction": "NONE",
+  "files": {
+    "tools/corpus_engineering/coulomb_force_verifier.py": "0fc6a6dd77881c9bb6e81f89b9a40c60c3eb92f5357eb0e9ca7cbfa25d5512e2",
+    "editorial/reviews/coulomb-force-190.json": "5c99d0307466ff6cbcd93f23bd63ce371d597431d7941528e0346718d56d887f",
+    "editorial/reviews/coulomb-force-190-mutations.json": "f0a66b240558ec7a35f690188608bfac12da84f096830d32aec49a8dec425afe",
+    "editorial/reviews/coulomb-force-190-independent-notes.md": "8d332fcfd113913453883e68b8d9290ab8daa278f0e1ae3e411d929d318d6a2f",
+    "tools/corpus_engineering/point_electric_field_verifier.py": "138a7cab682cfe082e0c8605bd3b3a6f8445ceb684660a456a7f77d12c774da6",
+    "editorial/reviews/point-electric-field-191.json": "b371e7d95493156ef28b21cb09f5f96fbc9966394d73949d408dd0842206023a",
+    "editorial/reviews/point-electric-field-191-mutations.json": "4f8ab5c18aa2c0778a6bbe4e998e90ec5eed94895967818c79f7f0211d780246",
+    "editorial/reviews/point-electric-field-191-independent-notes.md": "8a2f4dffff095fb6051299dc1d9de87af2fcfbc38e5212bdefac2e5c073104c8",
+    "tools/corpus_engineering/point_electric_potential_verifier.py": "02d7fb5a349e55c0fa74a9a5ffbabdde298426cfbd76d886274d47bb20163c4c",
+    "editorial/reviews/point-electric-potential-192.json": "c3d6d0804ef840d779bb4253d75e722f278b1557367f368a7df8b2613ba4bf31",
+    "editorial/reviews/point-electric-potential-192-mutations.json": "8cc8b370bbd47d60fd763b5b92903c8fc960ec835b8e4d915a7628b4b18023c2",
+    "editorial/reviews/point-electric-potential-192-independent-notes.md": "d5c8839d1d8c5c8bde56f8a8c21d741bd146fa290735cfe06bc993ba0eb2a746",
+    "tools/corpus_engineering/midpoint_electric_field_verifier.py": "c20645f752aabdd2dcc37aae3bbc65e2659722d3d1b90f59973a9e79a94aac81",
+    "editorial/reviews/midpoint-electric-field-193.json": "2e366286bfa4822d3396bfe850905f84ca7e82b6e803ed8840ae7644e451f7ff",
+    "editorial/reviews/midpoint-electric-field-193-mutations.json": "5c5ee167ae0d22a91085ba4628863fa15cdc4dbb5caa9f66fd211bf4a243f7af",
+    "editorial/reviews/midpoint-electric-field-193-independent-notes.md": "991f92a81b1a9c9ddd293d7902756dd4dd8a8b858e8e65b5941c72e781e45314",
+    "tools/corpus_engineering/symmetric_electric_potential_verifier.py": "4e03c8bfcab53a3affa85b088fb23ac3738669dc788108a2b29bcd0ea3c9668e",
+    "editorial/reviews/symmetric-electric-potential-194.json": "74c432a6fed9e7137983ce6f85e8f676432de7b9439303bcf592494dae406529",
+    "editorial/reviews/symmetric-electric-potential-194-mutations.json": "654680526d3e55423254a8799f67fceaf4548d6bb979debfae29abde85254f61",
+    "editorial/reviews/symmetric-electric-potential-194-independent-notes.md": "9f3c6489956ecc871cab1aee445f559f17653cd0d4b4e4a7564b751f10bd222a",
+    "tests/corpus/test_u6_electrostatics_190_194_independent.py": "5ae63cb2266f61a0b868cccaf564702c397154ad851a246cce417941ddfc8a07",
+    "editorial/reviews/u6-electrostatics-190-194-svg-independent-evidence/coulomb-force-full.png": "5c7269bba3a7ae4022d845222880709a17489b174048b8d1fd42c6d7701c4120",
+    "editorial/reviews/u6-electrostatics-190-194-svg-independent-evidence/manifest.json": "e4f4d74e083a25279fdca9c1e029cbb682f39379ef833af9d6cbe7b886847f72",
+    "editorial/reviews/u6-electrostatics-190-194-svg-independent-evidence/midpoint-electric-field-full.png": "ecd32b6c2c33452f833d39c94aa5284d9a8732c3c1426a8a4119c7f851e21a9f",
+    "editorial/reviews/u6-electrostatics-190-194-svg-independent-evidence/point-electric-field-full.png": "6b598ba86b0d470b17a5777d16c63a1359a9a4a895d09a35938b611662f3b727",
+    "editorial/reviews/u6-electrostatics-190-194-svg-independent-evidence/point-electric-potential-full.png": "d9822823472834650c12c8df93b12c511f870cb0ff1b4507e223814c71a9dcd0",
+    "editorial/reviews/u6-electrostatics-190-194-svg-independent-evidence/symmetric-electric-potential-full.png": "a050d443bf245e7b496d66e42c984a822497ae8dc28a4b623137ea0bb0e4a759",
+    "editorial/reviews/u6-electrostatics-190-194-independent-tests-20261125.log": "40cd2eabf3a7e79147a8661b6afa36869300eed59e864c1e35c9ed4358fb1d42"
+  }
+}

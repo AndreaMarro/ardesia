@@ -1,0 +1,677 @@
+{
+  "appRoot": "/private/tmp/cric-resident-integrator/officina-di-fisica",
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+  "cases": [
+    {
+      "id": "SIM-C1-L006-01",
+      "noWebGL": false,
+      "display": "3D interattivo",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nOgni prova comincia da fermo. Fino a 6 N l’attrito statico si adatta. Oltre la soglia il blocco parte e il modello assegna all’attrito dinamico 3 N.\n\nfₛ = F fino a 6 N; superata la soglia f𝒹 = 3 N\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Spinta su un blocco fermo\n4 N\nAttrito in modulo\n4 N\nStato del blocco\nQuiete"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Spinta su un blocco fermo» e confronta la scena con il punto segnato sul grafico. Parti da 4 N, poi prova 10 N.\n\nSpinta su un blocco fermo = 4 N · Attrito in modulo = 4 N\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Spinta su un blocco fermo\n4 N\nAttrito in modulo\n4 N\nStato del blocco\nQuiete"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\nfₛ = F fino a 6 N; superata la soglia f𝒹 = 3 N. Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\nF applicata = 4 = 4 N\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Spinta su un blocco fermo\n4 N\nAttrito in modulo\n4 N\nStato del blocco\nQuiete"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Spinta su un blocco fermo» a 6 N. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nfₛ = F fino a 6 N; superata la soglia f𝒹 = 3 N\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Spinta su un blocco fermo\n4 N\nAttrito in modulo\n4 N\nStato del blocco\nQuiete"
+        }
+      ],
+      "answerCount": 2,
+      "independentAnswers": [
+        3,
+        6
+      ],
+      "screenshot": "/tmp/cric-review045-proof-w0qg5a/SIM-C1-L006-01-3d.png",
+      "screenshotSha256": "6b71e48c1310cf804e2301286ac7381f68a9784f576612569cb0e591bb5b8c07"
+    },
+    {
+      "id": "SIM-C1-L006-01",
+      "boundary": 0,
+      "input": 6,
+      "want": "6 N",
+      "readings": "Spinta su un blocco fermo\n6 N\nAttrito in modulo\n6 N\nStato del blocco\nQuiete",
+      "observedIssue": null,
+      "screenshot": "/tmp/cric-review045-proof-w0qg5a/SIM-C1-L006-01-boundary0.png",
+      "screenshotSha256": "6e38419df3d5b390e052b71a16b7fdc3c90947db8becd76d857620131c9d5cdf"
+    },
+    {
+      "id": "SIM-C1-L006-01",
+      "boundary": 1,
+      "input": 7,
+      "want": "3 N",
+      "readings": "Spinta su un blocco fermo\n7 N\nAttrito in modulo\n3 N\nStato del blocco\nScivolamento",
+      "observedIssue": null,
+      "screenshot": "/tmp/cric-review045-proof-w0qg5a/SIM-C1-L006-01-boundary1.png",
+      "screenshotSha256": "d02a5dc1073aff362763799ab81b5d3260117992e9848c8f3233ef7d9e49f75b"
+    },
+    {
+      "id": "SIM-C1-L006-01",
+      "boundary": 2,
+      "input": 12,
+      "want": "3 N",
+      "readings": "Spinta su un blocco fermo\n12 N\nAttrito in modulo\n3 N\nStato del blocco\nScivolamento",
+      "observedIssue": null,
+      "screenshot": "/tmp/cric-review045-proof-w0qg5a/SIM-C1-L006-01-boundary2.png",
+      "screenshotSha256": "92798ba48c031609f16c4af3025f306897cb664591e12cef0e3531e9f0e281b1"
+    },
+    {
+      "id": "SIM-C1-L006-01",
+      "boundary": 3,
+      "input": 0,
+      "want": "0 N",
+      "readings": "Spinta su un blocco fermo\n0 N\nAttrito in modulo\n0 N\nStato del blocco\nQuiete",
+      "observedIssue": null,
+      "screenshot": "/tmp/cric-review045-proof-w0qg5a/SIM-C1-L006-01-boundary3.png",
+      "screenshotSha256": "d7e74f004e5024056c41b5ea255d6c8e724be5726112b4810486d900355e121c"
+    },
+    {
+      "id": "SIM-C1-L006-02",
+      "noWebGL": false,
+      "display": "3D interattivo",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nIl segno meno indica il ritorno verso l’equilibrio. Con 50 N/m ogni centimetro produce mezzo newton. La legge vale nel tratto elastico.\n\nF = −kx; k = 50 N/m; x(m) = x(cm)/100\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Allungamento\n-2 cm\nForza elastica\n1 N\nVariazione dal riferimento\n0 N"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Allungamento» e confronta la scena con il punto segnato sul grafico. Parti da -2 cm, poi prova 4 cm.\n\nAllungamento = -2 cm · Forza elastica = 1 N\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Allungamento\n-2 cm\nForza elastica\n1 N\nVariazione dal riferimento\n0 N"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\nF = −kx; k = 50 N/m; x(m) = x(cm)/100. Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\n−0,5 × (-2) = 1 N\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Allungamento\n-2 cm\nForza elastica\n1 N\nVariazione dal riferimento\n0 N"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Allungamento» a 1 cm. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nF = −kx; k = 50 N/m; x(m) = x(cm)/100\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Allungamento\n-2 cm\nForza elastica\n1 N\nVariazione dal riferimento\n0 N"
+        }
+      ],
+      "answerCount": 2,
+      "independentAnswers": [
+        -2,
+        -0.5
+      ],
+      "screenshot": "/tmp/cric-review045-proof-w0qg5a/SIM-C1-L006-02-3d.png",
+      "screenshotSha256": "522b66e57ce5cc4636099dc0f438543a90154715cfd9863b0487961def5c108f"
+    },
+    {
+      "id": "SIM-C1-L006-02",
+      "boundary": 0,
+      "input": -4,
+      "want": "2 N",
+      "readings": "Allungamento\n-4 cm\nForza elastica\n2 N\nVariazione dal riferimento\n1 N",
+      "observedIssue": null,
+      "screenshot": "/tmp/cric-review045-proof-w0qg5a/SIM-C1-L006-02-boundary0.png",
+      "screenshotSha256": "6b9016799809cd4f77d5fb5571aaa3077393b4082b50e811472a6bbe2ea78993"
+    },
+    {
+      "id": "SIM-C1-L006-02",
+      "boundary": 1,
+      "input": 0,
+      "want": "0 N",
+      "readings": "Allungamento\n0 cm\nForza elastica\n0 N\nVariazione dal riferimento\n-1 N",
+      "observedIssue": null,
+      "screenshot": "/tmp/cric-review045-proof-w0qg5a/SIM-C1-L006-02-boundary1.png",
+      "screenshotSha256": "6e9b04fafd08bf3e56962d190787bff8207c8c851bfd895135776feffef81563"
+    },
+    {
+      "id": "SIM-C1-L006-02",
+      "boundary": 2,
+      "input": 6,
+      "want": "-3 N",
+      "readings": "Allungamento\n6 cm\nForza elastica\n-3 N\nVariazione dal riferimento\n-4 N",
+      "observedIssue": null,
+      "screenshot": "/tmp/cric-review045-proof-w0qg5a/SIM-C1-L006-02-boundary2.png",
+      "screenshotSha256": "757aeabcb7bb4d4f3193df68428b5052589e9b4e3b2727f303fc8c542b1ac3b2"
+    },
+    {
+      "id": "SIM-C1-L006-02",
+      "boundary": 3,
+      "input": 1,
+      "want": "-0,5 N",
+      "readings": "Allungamento\n1 cm\nForza elastica\n-0,5 N\nVariazione dal riferimento\n-1,5 N",
+      "observedIssue": {
+        "id": "SIM-C1-L006-02",
+        "kind": "NONZERO_RESTORING_FORCE_OCCLUDED_BY_OPAQUE_MASS",
+        "actual": "-0,5 N",
+        "input": 1,
+        "observation": "Independent AI screenshot reading corroborated by exact mesh containment: length0.2 and head joint0.136/r0.0812 wholly inside opaque sphere r0.25. No automated pixel classifier claimed."
+      },
+      "screenshot": "/tmp/cric-review045-proof-w0qg5a/SIM-C1-L006-02-boundary3.png",
+      "screenshotSha256": "b0f126360a25ff9a89722aae0e1d1c31797ea8df03fceae213c323af4421963c"
+    },
+    {
+      "id": "SIM-C1-L006-03",
+      "noWebGL": false,
+      "display": "3D interattivo",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nLe due sfere hanno masse fisse e distribuzioni simmetriche. Misura dal centro al centro. Entrambe subiscono forze uguali in modulo e dirette l’una verso l’altra.\n\nF/F₀ = (r₀/r)²\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Distanza fra i centri in raggi di riferimento\n1\nForza rispetto a F₀\n1\nVariazione dal riferimento\n0"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Distanza fra i centri in raggi di riferimento» e confronta la scena con il punto segnato sul grafico. Parti da 1, poi prova 2.\n\nDistanza fra i centri in raggi di riferimento = 1 · Forza rispetto a F₀ = 1\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Distanza fra i centri in raggi di riferimento\n1\nForza rispetto a F₀\n1\nVariazione dal riferimento\n0"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\nF/F₀ = (r₀/r)². Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\n1 / (1²) = 1\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Distanza fra i centri in raggi di riferimento\n1\nForza rispetto a F₀\n1\nVariazione dal riferimento\n0"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Distanza fra i centri in raggi di riferimento» a 2,75. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nF/F₀ = (r₀/r)²\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Distanza fra i centri in raggi di riferimento\n1\nForza rispetto a F₀\n1\nVariazione dal riferimento\n0"
+        }
+      ],
+      "answerCount": 2,
+      "independentAnswers": [
+        0.25,
+        0.1322
+      ],
+      "screenshot": "/tmp/cric-review045-proof-w0qg5a/SIM-C1-L006-03-3d.png",
+      "screenshotSha256": "e83b1ed02e1f39e42a789357440406393ee7cc6e806ae8a68ebdb3e225488b8a"
+    },
+    {
+      "id": "SIM-C1-L006-03",
+      "boundary": 0,
+      "input": 1,
+      "want": "1",
+      "readings": "Distanza fra i centri in raggi di riferimento\n1\nForza rispetto a F₀\n1\nVariazione dal riferimento\n0",
+      "observedIssue": null,
+      "screenshot": "/tmp/cric-review045-proof-w0qg5a/SIM-C1-L006-03-boundary0.png",
+      "screenshotSha256": "a48ceb2a139c1867fc34f2010d1a5371315686299831921712ecd250cc724c93"
+    },
+    {
+      "id": "SIM-C1-L006-03",
+      "boundary": 1,
+      "input": 2,
+      "want": "0,25",
+      "readings": "Distanza fra i centri in raggi di riferimento\n2\nForza rispetto a F₀\n0,25\nVariazione dal riferimento\n-0,75",
+      "observedIssue": null,
+      "screenshot": "/tmp/cric-review045-proof-w0qg5a/SIM-C1-L006-03-boundary1.png",
+      "screenshotSha256": "04c086cdde1fea67a4534ffa6d0a928da1fe1bfad0e33283067b090f937bd186"
+    },
+    {
+      "id": "SIM-C1-L006-03",
+      "boundary": 2,
+      "input": 4,
+      "want": "0,0625",
+      "readings": "Distanza fra i centri in raggi di riferimento\n4\nForza rispetto a F₀\n0,0625\nVariazione dal riferimento\n-0,9375",
+      "observedIssue": null,
+      "screenshot": "/tmp/cric-review045-proof-w0qg5a/SIM-C1-L006-03-boundary2.png",
+      "screenshotSha256": "77888a3eb3b4e73a2e01f64f565c917c842b5c9d240c4643447f0796d0bdb6df"
+    },
+    {
+      "id": "SIM-C1-L007-01",
+      "noWebGL": false,
+      "display": "3D interattivo",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nLo spostamento è verso destra. Soltanto la componente parallela della forza compie lavoro. A 90° il contributo è nullo; oltre diventa negativo.\n\nW = Fs cos θ = (4 N)(3 m)cos θ\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Angolo tra forza e spostamento\n0 °\nLavoro della forza\n12 J\nVariazione dal riferimento\n0 J"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Angolo tra forza e spostamento» e confronta la scena con il punto segnato sul grafico. Parti da 0 °, poi prova 120 °.\n\nAngolo tra forza e spostamento = 0 ° · Lavoro della forza = 12 J\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Angolo tra forza e spostamento\n0 °\nLavoro della forza\n12 J\nVariazione dal riferimento\n0 J"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\nW = Fs cos θ = (4 N)(3 m)cos θ. Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\n12 × cos(0°) = 12 J\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Angolo tra forza e spostamento\n0 °\nLavoro della forza\n12 J\nVariazione dal riferimento\n0 J"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Angolo tra forza e spostamento» a 90 °. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nW = Fs cos θ = (4 N)(3 m)cos θ\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Angolo tra forza e spostamento\n0 °\nLavoro della forza\n12 J\nVariazione dal riferimento\n0 J"
+        }
+      ],
+      "answerCount": 2,
+      "independentAnswers": [
+        -6,
+        0
+      ],
+      "screenshot": "/tmp/cric-review045-proof-w0qg5a/SIM-C1-L007-01-3d.png",
+      "screenshotSha256": "33eaaee74fdbd63fcd4745445a127cc8eee779387a5add1e12b7d913d9ec17a9"
+    },
+    {
+      "id": "SIM-C1-L007-01",
+      "boundary": 0,
+      "input": 0,
+      "want": "12 J",
+      "readings": "Angolo tra forza e spostamento\n0 °\nLavoro della forza\n12 J\nVariazione dal riferimento\n0 J",
+      "observedIssue": null,
+      "screenshot": "/tmp/cric-review045-proof-w0qg5a/SIM-C1-L007-01-boundary0.png",
+      "screenshotSha256": "4315e10f74ca51d7cbcd031e95744539e10f6078f6e35d1d45d93828d97c09f6"
+    },
+    {
+      "id": "SIM-C1-L007-01",
+      "boundary": 1,
+      "input": 90,
+      "want": "0 J",
+      "readings": "Angolo tra forza e spostamento\n90 °\nLavoro della forza\n0 J\nVariazione dal riferimento\n-12 J",
+      "observedIssue": null,
+      "screenshot": "/tmp/cric-review045-proof-w0qg5a/SIM-C1-L007-01-boundary1.png",
+      "screenshotSha256": "32911949f0fdb3af3e796befaf59c8dd5434d707544436cbbaab789ad9c9387b"
+    },
+    {
+      "id": "SIM-C1-L007-01",
+      "boundary": 2,
+      "input": 120,
+      "want": "-6 J",
+      "readings": "Angolo tra forza e spostamento\n120 °\nLavoro della forza\n-6 J\nVariazione dal riferimento\n-18 J",
+      "observedIssue": null,
+      "screenshot": "/tmp/cric-review045-proof-w0qg5a/SIM-C1-L007-01-boundary2.png",
+      "screenshotSha256": "786354052a5997943ee0e96b8d6e138f9f184d664fae1723277532861e00f240"
+    },
+    {
+      "id": "SIM-C1-L007-01",
+      "boundary": 3,
+      "input": 180,
+      "want": "-12 J",
+      "readings": "Angolo tra forza e spostamento\n180 °\nLavoro della forza\n-12 J\nVariazione dal riferimento\n-24 J",
+      "observedIssue": null,
+      "screenshot": "/tmp/cric-review045-proof-w0qg5a/SIM-C1-L007-01-boundary3.png",
+      "screenshotSha256": "3ed8a888a8d1bd7af7182db8be9c1d880e778096c876263baea7fc81913c3b02"
+    },
+    {
+      "id": "SIM-C1-L007-02",
+      "noWebGL": false,
+      "display": "3D interattivo",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nLa forza costante di 3 N accelera da fermo una massa di 1,5 kg. Il tachimetro cresce linearmente. Da zero all’istante scelto la potenza media vale metà di quella finale.\n\nF = 3 N; v = 2t; P = Fv = 6t\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Istante della lettura\n1 s\nPotenza istantanea\n6 W\nPotenza media dall’avvio\n3 W"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Istante della lettura» e confronta la scena con il punto segnato sul grafico. Parti da 1 s, poi prova 3 s.\n\nIstante della lettura = 1 s · Potenza istantanea = 6 W\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Istante della lettura\n1 s\nPotenza istantanea\n6 W\nPotenza media dall’avvio\n3 W"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\nF = 3 N; v = 2t; P = Fv = 6t. Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\n6 × 1 = 6 W\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Istante della lettura\n1 s\nPotenza istantanea\n6 W\nPotenza media dall’avvio\n3 W"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Istante della lettura» a 2 s. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nF = 3 N; v = 2t; P = Fv = 6t\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Istante della lettura\n1 s\nPotenza istantanea\n6 W\nPotenza media dall’avvio\n3 W"
+        }
+      ],
+      "answerCount": 2,
+      "independentAnswers": [
+        18,
+        12
+      ],
+      "screenshot": "/tmp/cric-review045-proof-w0qg5a/SIM-C1-L007-02-3d.png",
+      "screenshotSha256": "2dca8366368d4b9953bcd81d35d0b6eae5bae7853067295d0a7f96afab2cbede"
+    },
+    {
+      "id": "SIM-C1-L007-02",
+      "boundary": 0,
+      "input": 0,
+      "want": "0 W",
+      "readings": "Istante della lettura\n0 s\nPotenza istantanea\n0 W\nPotenza media dall’avvio\n0 W",
+      "observedIssue": {
+        "id": "SIM-C1-L007-02",
+        "kind": "UNDEFINED_MEAN_OVER_EMPTY_INTERVAL_SHOWN_AS_ZERO",
+        "actual": "Potenza media dall’avvio\n0 W",
+        "independent": "W(t)=3t², mean=W/t for t>0 only; at0 undefined, limit0 is not labeled"
+      },
+      "screenshot": "/tmp/cric-review045-proof-w0qg5a/SIM-C1-L007-02-boundary0.png",
+      "screenshotSha256": "2996aff05e7c4f602030f8f55fec3f37cba6e44805b8bb31a2d566b18b1d310c"
+    },
+    {
+      "id": "SIM-C1-L007-02",
+      "boundary": 1,
+      "input": 2,
+      "want": "12 W",
+      "readings": "Istante della lettura\n2 s\nPotenza istantanea\n12 W\nPotenza media dall’avvio\n6 W",
+      "observedIssue": null,
+      "screenshot": "/tmp/cric-review045-proof-w0qg5a/SIM-C1-L007-02-boundary1.png",
+      "screenshotSha256": "a3a66fc3166c250f916b5e2b6292c932e19c16642a50f93308bfcbb18e67a937"
+    },
+    {
+      "id": "SIM-C1-L007-02",
+      "boundary": 2,
+      "input": 4,
+      "want": "24 W",
+      "readings": "Istante della lettura\n4 s\nPotenza istantanea\n24 W\nPotenza media dall’avvio\n12 W",
+      "observedIssue": null,
+      "screenshot": "/tmp/cric-review045-proof-w0qg5a/SIM-C1-L007-02-boundary2.png",
+      "screenshotSha256": "217bdcdff0f981bd4d9c33f2ab91857c7fea50d00fa5764396da0b3ef867775a"
+    },
+    {
+      "id": "SIM-C1-L007-03",
+      "noWebGL": false,
+      "display": "3D interattivo",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nUna risultante di 1 N accompagna il carrello lungo la guida. Il lavoro netto diventa energia cinetica. Con la massa di 2 kg e un lavoro di 9 J ottieni v² = 9 m²/s², quindi v = 3 m/s. Per raddoppiare la rapidità occorre quadruplicare il lavoro, perché l’energia dipende da v².\n\nW = ΔK. Da fermo v = √(2W/m), con m = 2 kg.\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Lavoro netto\n4 J\nVelocità finale\n2 m/s\nVariazione dal riferimento\n0 m/s"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Lavoro netto» e confronta la scena con il punto segnato sul grafico. Parti da 4 J, poi prova 9 J.\n\nLavoro netto = 4 J · Velocità finale = 2 m/s\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Lavoro netto\n4 J\nVelocità finale\n2 m/s\nVariazione dal riferimento\n0 m/s"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\nW = ΔK. Da fermo v = √(2W/m), con m = 2 kg.. Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\n√(4) = 2 m/s\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Lavoro netto\n4 J\nVelocità finale\n2 m/s\nVariazione dal riferimento\n0 m/s"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Lavoro netto» a 8 J. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nW = ΔK. Da fermo v = √(2W/m), con m = 2 kg.\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Lavoro netto\n4 J\nVelocità finale\n2 m/s\nVariazione dal riferimento\n0 m/s"
+        }
+      ],
+      "answerCount": 2,
+      "independentAnswers": [
+        3,
+        2.83
+      ],
+      "screenshot": "/tmp/cric-review045-proof-w0qg5a/SIM-C1-L007-03-3d.png",
+      "screenshotSha256": "dd3ecf7788ca176ef54919646a9b523b4b32322acaf4f19ffc917c1132826f2a"
+    },
+    {
+      "id": "SIM-C1-L007-03",
+      "boundary": 0,
+      "input": 0,
+      "want": "0 m/s",
+      "readings": "Lavoro netto\n0 J\nVelocità finale\n0 m/s\nVariazione dal riferimento\n-2 m/s",
+      "observedIssue": null,
+      "screenshot": "/tmp/cric-review045-proof-w0qg5a/SIM-C1-L007-03-boundary0.png",
+      "screenshotSha256": "f3d69cd31055df26d223e7d59dd6047f54cb5ec2a2d086e9596e8b33c287b1ee"
+    },
+    {
+      "id": "SIM-C1-L007-03",
+      "boundary": 1,
+      "input": 1,
+      "want": "1 m/s",
+      "readings": "Lavoro netto\n1 J\nVelocità finale\n1 m/s\nVariazione dal riferimento\n-1 m/s",
+      "observedIssue": null,
+      "screenshot": "/tmp/cric-review045-proof-w0qg5a/SIM-C1-L007-03-boundary1.png",
+      "screenshotSha256": "d93c49a12d5259c49a8f5b2a5c13866e8f651e0fab7050ccde3e23a08e46fda3"
+    },
+    {
+      "id": "SIM-C1-L007-03",
+      "boundary": 2,
+      "input": 8,
+      "want": "2,828 m/s",
+      "readings": "Lavoro netto\n8 J\nVelocità finale\n2,828 m/s\nVariazione dal riferimento\n0,8284 m/s",
+      "observedIssue": null,
+      "screenshot": "/tmp/cric-review045-proof-w0qg5a/SIM-C1-L007-03-boundary2.png",
+      "screenshotSha256": "c7db7eec43c9a6b923d0fbd967c286aa1b3a88fa324f36e69516fc2d7a9e6dd9"
+    },
+    {
+      "id": "SIM-C1-L007-03",
+      "boundary": 3,
+      "input": 16,
+      "want": "4 m/s",
+      "readings": "Lavoro netto\n16 J\nVelocità finale\n4 m/s\nVariazione dal riferimento\n2 m/s",
+      "observedIssue": null,
+      "screenshot": "/tmp/cric-review045-proof-w0qg5a/SIM-C1-L007-03-boundary3.png",
+      "screenshotSha256": "9a6addc034e062f28104b395c09f0198938923905e0d16a7f019287aaee4f32e"
+    },
+    {
+      "id": "SIM-C1-L006-01",
+      "noWebGL": true,
+      "display": "Tavola di misura",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nOgni prova comincia da fermo. Fino a 6 N l’attrito statico si adatta. Oltre la soglia il blocco parte e il modello assegna all’attrito dinamico 3 N.\n\nfₛ = F fino a 6 N; superata la soglia f𝒹 = 3 N\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Spinta su un blocco fermo\n4 N\nAttrito in modulo\n4 N\nStato del blocco\nQuiete"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Spinta su un blocco fermo» e confronta la scena con il punto segnato sul grafico. Parti da 4 N, poi prova 10 N.\n\nSpinta su un blocco fermo = 4 N · Attrito in modulo = 4 N\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Spinta su un blocco fermo\n4 N\nAttrito in modulo\n4 N\nStato del blocco\nQuiete"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\nfₛ = F fino a 6 N; superata la soglia f𝒹 = 3 N. Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\nF applicata = 4 = 4 N\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Spinta su un blocco fermo\n4 N\nAttrito in modulo\n4 N\nStato del blocco\nQuiete"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Spinta su un blocco fermo» a 6 N. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nfₛ = F fino a 6 N; superata la soglia f𝒹 = 3 N\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Spinta su un blocco fermo\n4 N\nAttrito in modulo\n4 N\nStato del blocco\nQuiete"
+        }
+      ],
+      "answerCount": 2,
+      "independentAnswers": [
+        3,
+        6
+      ],
+      "screenshot": "/tmp/cric-review045-proof-w0qg5a/SIM-C1-L006-01-2d.png",
+      "screenshotSha256": "82b5edfeca93bdff2f34f80a852901fd0a7b03d897f02126701cf9cc65b22966"
+    },
+    {
+      "id": "SIM-C1-L006-02",
+      "noWebGL": true,
+      "display": "Tavola di misura",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nIl segno meno indica il ritorno verso l’equilibrio. Con 50 N/m ogni centimetro produce mezzo newton. La legge vale nel tratto elastico.\n\nF = −kx; k = 50 N/m; x(m) = x(cm)/100\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Allungamento\n-2 cm\nForza elastica\n1 N\nVariazione dal riferimento\n0 N"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Allungamento» e confronta la scena con il punto segnato sul grafico. Parti da -2 cm, poi prova 4 cm.\n\nAllungamento = -2 cm · Forza elastica = 1 N\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Allungamento\n-2 cm\nForza elastica\n1 N\nVariazione dal riferimento\n0 N"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\nF = −kx; k = 50 N/m; x(m) = x(cm)/100. Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\n−0,5 × (-2) = 1 N\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Allungamento\n-2 cm\nForza elastica\n1 N\nVariazione dal riferimento\n0 N"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Allungamento» a 1 cm. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nF = −kx; k = 50 N/m; x(m) = x(cm)/100\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Allungamento\n-2 cm\nForza elastica\n1 N\nVariazione dal riferimento\n0 N"
+        }
+      ],
+      "answerCount": 2,
+      "independentAnswers": [
+        -2,
+        -0.5
+      ],
+      "screenshot": "/tmp/cric-review045-proof-w0qg5a/SIM-C1-L006-02-2d.png",
+      "screenshotSha256": "726d2e5ef2c1d4530ea1c9ddd7ae89710c8f3f55a0ea7e416fa68b5e5f97ac2a"
+    },
+    {
+      "id": "SIM-C1-L006-03",
+      "noWebGL": true,
+      "display": "Tavola di misura",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nLe due sfere hanno masse fisse e distribuzioni simmetriche. Misura dal centro al centro. Entrambe subiscono forze uguali in modulo e dirette l’una verso l’altra.\n\nF/F₀ = (r₀/r)²\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Distanza fra i centri in raggi di riferimento\n1\nForza rispetto a F₀\n1\nVariazione dal riferimento\n0"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Distanza fra i centri in raggi di riferimento» e confronta la scena con il punto segnato sul grafico. Parti da 1, poi prova 2.\n\nDistanza fra i centri in raggi di riferimento = 1 · Forza rispetto a F₀ = 1\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Distanza fra i centri in raggi di riferimento\n1\nForza rispetto a F₀\n1\nVariazione dal riferimento\n0"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\nF/F₀ = (r₀/r)². Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\n1 / (1²) = 1\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Distanza fra i centri in raggi di riferimento\n1\nForza rispetto a F₀\n1\nVariazione dal riferimento\n0"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Distanza fra i centri in raggi di riferimento» a 2,75. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nF/F₀ = (r₀/r)²\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Distanza fra i centri in raggi di riferimento\n1\nForza rispetto a F₀\n1\nVariazione dal riferimento\n0"
+        }
+      ],
+      "answerCount": 2,
+      "independentAnswers": [
+        0.25,
+        0.1322
+      ],
+      "screenshot": "/tmp/cric-review045-proof-w0qg5a/SIM-C1-L006-03-2d.png",
+      "screenshotSha256": "bd01c705c7071e4c8c573e554ab023310bc5e860eb1512cfcbfd1650bae08e06"
+    },
+    {
+      "id": "SIM-C1-L007-01",
+      "noWebGL": true,
+      "display": "Tavola di misura",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nLo spostamento è verso destra. Soltanto la componente parallela della forza compie lavoro. A 90° il contributo è nullo; oltre diventa negativo.\n\nW = Fs cos θ = (4 N)(3 m)cos θ\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Angolo tra forza e spostamento\n0 °\nLavoro della forza\n12 J\nVariazione dal riferimento\n0 J"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Angolo tra forza e spostamento» e confronta la scena con il punto segnato sul grafico. Parti da 0 °, poi prova 120 °.\n\nAngolo tra forza e spostamento = 0 ° · Lavoro della forza = 12 J\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Angolo tra forza e spostamento\n0 °\nLavoro della forza\n12 J\nVariazione dal riferimento\n0 J"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\nW = Fs cos θ = (4 N)(3 m)cos θ. Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\n12 × cos(0°) = 12 J\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Angolo tra forza e spostamento\n0 °\nLavoro della forza\n12 J\nVariazione dal riferimento\n0 J"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Angolo tra forza e spostamento» a 90 °. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nW = Fs cos θ = (4 N)(3 m)cos θ\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Angolo tra forza e spostamento\n0 °\nLavoro della forza\n12 J\nVariazione dal riferimento\n0 J"
+        }
+      ],
+      "answerCount": 2,
+      "independentAnswers": [
+        -6,
+        0
+      ],
+      "screenshot": "/tmp/cric-review045-proof-w0qg5a/SIM-C1-L007-01-2d.png",
+      "screenshotSha256": "392eab906d22a2fc2563985857fd26bf5528ebc98c60ab1f8422df9475426cf8"
+    },
+    {
+      "id": "SIM-C1-L007-02",
+      "noWebGL": true,
+      "display": "Tavola di misura",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nLa forza costante di 3 N accelera da fermo una massa di 1,5 kg. Il tachimetro cresce linearmente. Da zero all’istante scelto la potenza media vale metà di quella finale.\n\nF = 3 N; v = 2t; P = Fv = 6t\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Istante della lettura\n1 s\nPotenza istantanea\n6 W\nPotenza media dall’avvio\n3 W"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Istante della lettura» e confronta la scena con il punto segnato sul grafico. Parti da 1 s, poi prova 3 s.\n\nIstante della lettura = 1 s · Potenza istantanea = 6 W\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Istante della lettura\n1 s\nPotenza istantanea\n6 W\nPotenza media dall’avvio\n3 W"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\nF = 3 N; v = 2t; P = Fv = 6t. Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\n6 × 1 = 6 W\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Istante della lettura\n1 s\nPotenza istantanea\n6 W\nPotenza media dall’avvio\n3 W"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Istante della lettura» a 2 s. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nF = 3 N; v = 2t; P = Fv = 6t\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Istante della lettura\n1 s\nPotenza istantanea\n6 W\nPotenza media dall’avvio\n3 W"
+        }
+      ],
+      "answerCount": 2,
+      "independentAnswers": [
+        18,
+        12
+      ],
+      "screenshot": "/tmp/cric-review045-proof-w0qg5a/SIM-C1-L007-02-2d.png",
+      "screenshotSha256": "3570314194d3b3b66b4b7646986ca815d606f66e6610db98e657aa86cb427f07"
+    },
+    {
+      "id": "SIM-C1-L007-03",
+      "noWebGL": true,
+      "display": "Tavola di misura",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nUna risultante di 1 N accompagna il carrello lungo la guida. Il lavoro netto diventa energia cinetica. Con la massa di 2 kg e un lavoro di 9 J ottieni v² = 9 m²/s², quindi v = 3 m/s. Per raddoppiare la rapidità occorre quadruplicare il lavoro, perché l’energia dipende da v².\n\nW = ΔK. Da fermo v = √(2W/m), con m = 2 kg.\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Lavoro netto\n4 J\nVelocità finale\n2 m/s\nVariazione dal riferimento\n0 m/s"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Lavoro netto» e confronta la scena con il punto segnato sul grafico. Parti da 4 J, poi prova 9 J.\n\nLavoro netto = 4 J · Velocità finale = 2 m/s\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Lavoro netto\n4 J\nVelocità finale\n2 m/s\nVariazione dal riferimento\n0 m/s"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\nW = ΔK. Da fermo v = √(2W/m), con m = 2 kg.. Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\n√(4) = 2 m/s\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Lavoro netto\n4 J\nVelocità finale\n2 m/s\nVariazione dal riferimento\n0 m/s"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Lavoro netto» a 8 J. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nW = ΔK. Da fermo v = √(2W/m), con m = 2 kg.\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Lavoro netto\n4 J\nVelocità finale\n2 m/s\nVariazione dal riferimento\n0 m/s"
+        }
+      ],
+      "answerCount": 2,
+      "independentAnswers": [
+        3,
+        2.83
+      ],
+      "screenshot": "/tmp/cric-review045-proof-w0qg5a/SIM-C1-L007-03-2d.png",
+      "screenshotSha256": "9a152cd52b7648a1bced63ff64e89d65204d7ba104e1dba63e37cc4a04e08d4d"
+    }
+  ],
+  "errors": [],
+  "scientificApproval": false,
+  "expectedConsumerIssueIds": [
+    "SIM-C1-L006-02",
+    "SIM-C1-L007-02"
+  ],
+  "publicationAction": "NONE",
+  "humanApproval": "NOT_RUN",
+  "runtimeProfileSha256": "54054f7ac463ef52f7c4c881d50ee071713315d891812696f18e39d9ad45ab3d",
+  "base": "http://127.0.0.1:55110/",
+  "runtimeSha256": {
+    "static/js/banchi/voci/esperimento.js": "cc435e51b62d5b9961b32f5d9b349171f7432e3bf6a6911cd80daaa1f419767b",
+    "static/js/banchi/voci/engines.js": "09a6447a971d0e90c49cfea0307e82ea75f4441a7174c017768d6d62ad514dab",
+    "static/js/banchi/voci/assessment-selection.js": "2f5435b6c9e8b76667d0a95f35860f835117cf8230a635c4c3a54c479fbc54b3",
+    "static/js/banchi/voci/geometria.js": "986bdbfad0cf6e6e057002ee2efdeff0a08df31bfb45f9c046063fcba5840f08",
+    "static/js/banchi/voci/tavola.js": "cc3f7fa8da541109fdda9f8bacca23eea43d1031b2145688b2d80513f47d5283",
+    "static/js/banchi/voci/confronti.js": "f853be6383d2b9d45ea80c4dbfce108fc566e1b11b0c44ea6ce0e229686ff86c",
+    "static/js/banchi/voci/legende.js": "2de769cc9358c907eb30ac6b18c6bc3e06e18a1ece514a7d368ecd40bec33d1b",
+    "static/js/banchi/voci/orologi.js": "30dd8ab535a31b514c0db13d97d2b046a1add160a7ca7d374deea0d991be73a6",
+    "static/js/banchi/voci/modelli/C1.js": "e5818f20fd19d00fc73434fcacef752d06331efc41d198ffe8c185063e97fa34",
+    "static/js/banchi/voci/apparati/meccanica.js": "7ab903b26e32977736ac011ee88842fcaddb3b6efe0dc11012b3d3470667b9f5",
+    "static/js/banchi/banco.js": "8200aa5adf026372699790c21f60e0cf3f5fffcb705ef5ee36f609ac3c1e3ed9",
+    "static/js/banchi/misure.js": "46c769f22651529e439b1396e59a017d2c429310b7ae59e2a9717b2ced93c66d",
+    "static/js/banchi/grafici.js": "e5567e88ee6df5c604f8e62228da5e70841556ad0b55fb212fd4d091fdeee3fd",
+    "static/js/banchi/scena.js": "4d94c92a834573062a2af541df113bad06bd11ca538b31bddddc5ec8621a5095",
+    "static/js/banchi/etichette.js": "455ae33c790be4e207e5b5667918c44ea16c95f49e1fea0b13cc92f08aa003f3",
+    "static/js/banchi/aula.js": "44c74446d0d60b20e9dad05b32321f1000f026acdec386ca5aa2f74c20421967",
+    "static/js/ui.js": "77e5f000f5e1a1fe028fff32dad97be29ad72b46d753787a19ad36164cb98f27"
+  },
+  "protocolSha256": "66ca14b85372ea0fcc1b854c1d38a2882a344382324014ef4b16101cf4f68a32",
+  "terminalStatus": "PASS",
+  "browserVersion": "158.0.8127.37"
+}

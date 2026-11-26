@@ -36,9 +36,12 @@ jobs:
         run: |
           git fetch --depth=1 --filter=blob:none origin 5cfbdcb055ba3ba136f97fb56e997f06e6cf3605
           git fetch --depth=1 --filter=blob:none origin 5d1dc8dc7b601aef959d10d564c75462be74708d
+          git fetch --depth=1 --filter=blob:none origin 493df796527bdb31b71f223343384656258e8e3a
+          git fetch --depth=1 --filter=blob:none origin da2d1ad10542c0d5054650aa8a8e6c46d9ca4f1b
           python3 -m venv var/corpus-venv
           var/corpus-venv/bin/pip install -r tools/corpus_engineering/requirements.txt
           npm ci --no-audit --no-fund
+          var/corpus-venv/bin/python -m tools.corpus_engineering.git_provenance --fetch-missing
       - name: Controprove scientifiche e importazione canonica senza pubblicazione
         run: |
           var/corpus-venv/bin/python -m unittest discover -s tests/corpus -v
@@ -50,6 +53,8 @@ jobs:
           var/corpus-venv/bin/python -c "from pathlib import Path; from tools.corpus_engineering.pipeline import load_checkpoint; load_checkpoint(Path('editorial/corpus'))"
           var/corpus-venv/bin/python -m tools.corpus_engineering --source-ref 5cfbdcb055ba3ba136f97fb56e997f06e6cf3605 --cric-ref 5d1dc8dc7b601aef959d10d564c75462be74708d --destination var/corpus-reproduction
           cmp editorial/corpus/checkpoint.json var/corpus-reproduction/checkpoint.json
+      - name: Ripresa delle anteprime vincolata alle prove terminali
+        run: node --test tests/corpus/browser-batches-resume.test.mjs
       - name: Anteprime private e controllo delle formule a tre larghezze
         run: node tests/corpus/browser-batches.mjs
       - name: Boundary del pacchetto distribuito

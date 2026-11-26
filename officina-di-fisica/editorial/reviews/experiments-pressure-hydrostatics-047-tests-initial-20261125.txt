@@ -1,0 +1,22 @@
+test_actual_plate_and_sprite_negatives_are_not_whole_cone_inventions (test_experiments_pressure_hydrostatics_047_review.Original047Review.test_actual_plate_and_sprite_negatives_are_not_whole_cone_inventions) ... ok
+test_changed_proof_protocol_or_png_manifest_cannot_inherit_current_review (test_experiments_pressure_hydrostatics_047_review.Original047Review.test_changed_proof_protocol_or_png_manifest_cannot_inherit_current_review) ... ok
+test_complete_exact_science_and_real_grid (test_experiments_pressure_hydrostatics_047_review.Original047Review.test_complete_exact_science_and_real_grid) ... ok
+test_every_scalar_graph_grid_and_rebound_task_unit_is_independent (test_experiments_pressure_hydrostatics_047_review.Original047Review.test_every_scalar_graph_grid_and_rebound_task_unit_is_independent) ... ok
+test_explicit_g10_transfer_conflict_reproduces_actual_grader (test_experiments_pressure_hydrostatics_047_review.Original047Review.test_explicit_g10_transfer_conflict_reproduces_actual_grader) ... FAIL
+test_fresh_report_preserves_source_failure_and_material_visual_negatives (test_experiments_pressure_hydrostatics_047_review.Original047Review.test_fresh_report_preserves_source_failure_and_material_visual_negatives) ... ok
+test_hydrostatic_sign_and_geometric_profile_mutations_are_rejected (test_experiments_pressure_hydrostatics_047_review.Original047Review.test_hydrostatic_sign_and_geometric_profile_mutations_are_rejected) ... ok
+test_unreviewed_source_and_unknown_runtime_never_execute (test_experiments_pressure_hydrostatics_047_review.Original047Review.test_unreviewed_source_and_unknown_runtime_never_execute) ... ok
+
+======================================================================
+FAIL: test_explicit_g10_transfer_conflict_reproduces_actual_grader (test_experiments_pressure_hydrostatics_047_review.Original047Review.test_explicit_g10_transfer_conflict_reproduces_actual_grader)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-experiment-contract-fix/officina-di-fisica/tests/corpus/test_experiments_pressure_hydrostatics_047_review.py", line 44, in test_explicit_g10_transfer_conflict_reproduces_actual_grader
+    task=v['assessments'][1];self.assertIn('g = 10',task['prompt']);self.assertFalse(task['status'].startswith('Corretto'));self.assertTrue(task['wrongPhysicalKeyStatus'].startswith('Corretto'))
+                             ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 'g = 10' not found in 'Risposta (kPa)'
+
+----------------------------------------------------------------------
+Ran 8 tests in 59.151s
+
+FAILED (failures=1)

@@ -1,0 +1,1204 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u6-wire-stretched-fixed-volume-01",
+      "kind": "question",
+      "course": "C4",
+      "section": "Filo uniforme a volume conservato",
+      "order": 20501,
+      "title": "Allungare cambia anche la sezione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wire-stretched-fixed-volume",
+      "difficulty": 1,
+      "prompt": "Un filo omogeneo inizialmente uniforme ha lunghezza L₀, sezione A₀ e resistenza R₀>0. Nella preparazione viene allungato uniformemente fino a L=sL₀, con s≥1. Il volume LA resta L₀A₀ e la resistività ρ resta invariata: si assume un modello ideale alla stessa temperatura, senza rottura o variazioni di materiale. Dopo la preparazione il filo è ancora uniforme. Dalla legge R=ρL/A si cerca la resistenza finale, non la resistività. Con R₀=1 Ω e s=2, quanto vale R in Ω?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "Ω",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il volume conservato impone A=A₀/2 quando la lunghezza raddoppia. Nella resistenza, il fattore due della lunghezza e quello due dell’inverso dell’area si moltiplicano: R=4R₀=4 Ω. Non si mantiene la sezione mentre si impone anche il volume costante."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/f496d8140d09411ffb81ecd2a12433d547734757db9bf638a8902934559772b0",
+          "text": "Nel diagramma L–A l’altezza rappresenta l’area di sezione, non il diametro di un filo. L raddoppia e A si dimezza: il prodotto LA è lo stesso. Il grafico centrale mostra R/R₀=s² soltanto per s≥1. Le barre finali confrontano R_A=4 Ω,R_B=18 Ω e media 11 Ω con origine e scala comuni."
+        },
+        {
+          "type": "formula",
+          "text": "LA=L_0A_0"
+        },
+        {
+          "type": "formula",
+          "text": " A=\\frac{A_0}{s}"
+        },
+        {
+          "type": "formula",
+          "text": " R=\\rho\\frac{sL_0}{A_0/s}"
+        },
+        {
+          "type": "formula",
+          "text": " R=R_0s^2"
+        },
+        {
+          "type": "formula",
+          "text": " R=4\\,\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "Due ohm cambierebbero solo la lunghezza, ignorando la sezione dimezzata. Mezzo ohm renderebbe inversa la lunghezza; otto ohm aggiungerebbe un fattore due estraneo. La resistività, nelle ipotesi, non quadruplica."
+        }
+      ],
+      "hints": [
+        "Ricava prima la nuova area dal volume conservato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due ohm cambierebbero solo la lunghezza, ignorando la sezione dimezzata. Mezzo ohm renderebbe inversa la lunghezza; otto ohm aggiungerebbe un fattore due estraneo. La resistività, nelle ipotesi, non quadruplica.",
+        "target": "C4-L05"
+      },
+      "coverage": [
+        "Resistività distinta da resistenza",
+        "Volume conservato e sezione inversa alla lunghezza",
+        "Inverse con s≥1, rapporti, medie e display",
+        "Vincolo dimensionato fra preparazioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-wire-stretched-fixed-volume-02",
+      "kind": "question",
+      "course": "C4",
+      "section": "Filo uniforme a volume conservato",
+      "order": 20502,
+      "title": "Resistenza non è resistività",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wire-stretched-fixed-volume",
+      "difficulty": 1,
+      "prompt": "Un filo omogeneo inizialmente uniforme ha lunghezza L₀, sezione A₀ e resistenza R₀>0. Nella preparazione viene allungato uniformemente fino a L=sL₀, con s≥1. Il volume LA resta L₀A₀ e la resistività ρ resta invariata: si assume un modello ideale alla stessa temperatura, senza rottura o variazioni di materiale. Dopo la preparazione il filo è ancora uniforme. Dalla legge R=ρL/A si cerca la resistenza finale, non la resistività. Quale unità misura R?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Ω",
+          "Ω·m",
+          "S",
+          "A",
+          "V"
+        ],
+        "value": "Ω"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "In R=ρL/A, la resistività ha unità Ω·m. Moltiplicare per la lunghezza e dividere per l’area lascia Ω. Il fattore s è un rapporto di lunghezze e non aggiunge un’unità alla resistenza."
+        },
+        {
+          "type": "formula",
+          "text": "[R]=\\frac{(\\Omega\\,\\mathrm m)\\,\\mathrm m}{\\mathrm{m^2}}"
+        },
+        {
+          "type": "formula",
+          "text": " [R]=\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " [s]=1"
+        },
+        {
+          "type": "text",
+          "text": "Ω·m misura resistività, S conduttanza, A corrente e V tensione. Un fattore di allungamento puro non converte una di queste grandezze nell’altra."
+        }
+      ],
+      "hints": [
+        "Cancella separatamente le due potenze di metro.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "Ω·m misura resistività, S conduttanza, A corrente e V tensione. Un fattore di allungamento puro non converte una di queste grandezze nell’altra.",
+        "target": "C4-L05"
+      },
+      "coverage": [
+        "Resistività distinta da resistenza",
+        "Volume conservato e sezione inversa alla lunghezza",
+        "Inverse con s≥1, rapporti, medie e display",
+        "Vincolo dimensionato fra preparazioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-wire-stretched-fixed-volume-03",
+      "kind": "question",
+      "course": "C4",
+      "section": "Filo uniforme a volume conservato",
+      "order": 20503,
+      "title": "Stesso materiale e stessa temperatura",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wire-stretched-fixed-volume",
+      "difficulty": 1,
+      "prompt": "Due fili uniformi sono dello stesso materiale, alla stessa temperatura e nello stesso stato fisico del modello ohmico. Hanno lunghezze e sezioni diverse. Quale grandezza deve essere uguale?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "La resistività ρ",
+          "La resistenza R",
+          "La conduttanza 1/R",
+          "Il rapporto L/A",
+          "La corrente, senza specificare la tensione"
+        ],
+        "value": "La resistività ρ"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La resistività caratterizza il materiale nelle condizioni assegnate. Le resistenze sono invece R₁=ρL₁/A₁ e R₂=ρL₂/A₂: geometrie diverse possono produrre resistenze diverse. Non si sta affermando che la resistività sia universale o indipendente dalla temperatura."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/f496d8140d09411ffb81ecd2a12433d547734757db9bf638a8902934559772b0",
+          "text": "Il caso dei due fili è autonomo: identità di materiale e temperatura fissa impone la stessa resistività, non la stessa resistenza. Il diagramma della preparazione illustra invece il vincolo geometrico L A costante con ρ assegnata e invariata."
+        },
+        {
+          "type": "formula",
+          "text": "\\rho_1=\\rho_2"
+        },
+        {
+          "type": "formula",
+          "text": " R_1=\\rho\\frac{L_1}{A_1}"
+        },
+        {
+          "type": "formula",
+          "text": " R_2=\\rho\\frac{L_2}{A_2}"
+        },
+        {
+          "type": "text",
+          "text": "La resistenza dipende anche dalla geometria e non è obbligata a coincidere; la stessa osservazione vale per la conduttanza. L/A non è fissato dall’identità di materiale. Una corrente richiede anche un circuito e una tensione."
+        }
+      ],
+      "hints": [
+        "Distingui proprietà del materiale e proprietà dell’intero filo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La resistenza dipende anche dalla geometria e non è obbligata a coincidere; la stessa osservazione vale per la conduttanza. L/A non è fissato dall’identità di materiale. Una corrente richiede anche un circuito e una tensione.",
+        "target": "C4-L05"
+      },
+      "coverage": [
+        "Resistività distinta da resistenza",
+        "Volume conservato e sezione inversa alla lunghezza",
+        "Inverse con s≥1, rapporti, medie e display",
+        "Vincolo dimensionato fra preparazioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-wire-stretched-fixed-volume-04",
+      "kind": "question",
+      "course": "C4",
+      "section": "Filo uniforme a volume conservato",
+      "order": 20504,
+      "title": "Una resistenza iniziale tripla",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wire-stretched-fixed-volume",
+      "difficulty": 1,
+      "prompt": "Un filo omogeneo inizialmente uniforme ha lunghezza L₀, sezione A₀ e resistenza R₀>0. Nella preparazione viene allungato uniformemente fino a L=sL₀, con s≥1. Il volume LA resta L₀A₀ e la resistività ρ resta invariata: si assume un modello ideale alla stessa temperatura, senza rottura o variazioni di materiale. Dopo la preparazione il filo è ancora uniforme. Dalla legge R=ρL/A si cerca la resistenza finale, non la resistività. A ha R₀,A=1 Ω, B ha R₀,B=3 Ω; entrambe hanno s=2. Come cambia R?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 4 a 12 Ω",
+          "Da 4 a 4/3 Ω",
+          "Da 4 a 36 Ω",
+          "Resta 4 Ω",
+          "Da 4 a 6 Ω"
+        ],
+        "value": "Da 4 a 12 Ω"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Entrambi i fili ricevono il medesimo fattore s²=4. La resistenza iniziale B è tripla, perciò anche la finale è tripla: 4 e 12 Ω. Il quadrato riguarda s, non il fattore della resistenza iniziale."
+        },
+        {
+          "type": "formula",
+          "text": "R_A=1\\cdot2^2\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " R_A=4\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " R_B=3\\cdot2^2\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " R_B=12\\,\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "4/3 rende inversa R₀; 36 eleva al quadrato anche il fattore tre; quattro ignora il nuovo R₀. Sei Ω userebbe R₀s nella prova B, perdendo la variazione di area."
+        }
+      ],
+      "hints": [
+        "Mantieni s² comune e confronta R₀.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "4/3 rende inversa R₀; 36 eleva al quadrato anche il fattore tre; quattro ignora il nuovo R₀. Sei Ω userebbe R₀s nella prova B, perdendo la variazione di area.",
+        "target": "C4-L05"
+      },
+      "coverage": [
+        "Resistività distinta da resistenza",
+        "Volume conservato e sezione inversa alla lunghezza",
+        "Inverse con s≥1, rapporti, medie e display",
+        "Vincolo dimensionato fra preparazioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-wire-stretched-fixed-volume-05",
+      "kind": "question",
+      "course": "C4",
+      "section": "Filo uniforme a volume conservato",
+      "order": 20505,
+      "title": "Risolvere per il filo iniziale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wire-stretched-fixed-volume",
+      "difficulty": 2,
+      "prompt": "Un filo omogeneo inizialmente uniforme ha lunghezza L₀, sezione A₀ e resistenza R₀>0. Nella preparazione viene allungato uniformemente fino a L=sL₀, con s≥1. Il volume LA resta L₀A₀ e la resistività ρ resta invariata: si assume un modello ideale alla stessa temperatura, senza rottura o variazioni di materiale. Dopo la preparazione il filo è ancora uniforme. Dalla legge R=ρL/A si cerca la resistenza finale, non la resistività. Si misura R=4 Ω e si conosce s=2. Quanto vale R₀ in Ω?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "Ω",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dividendo R=R₀s² per s² si ottiene R₀=4/4=1 Ω. Il filo dopo la preparazione oppone una resistenza maggiore, quindi il risultato iniziale deve essere minore di quattro in questa prova."
+        },
+        {
+          "type": "formula",
+          "text": "R_0=\\frac{R}{s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " R_0=\\frac4{2^2}\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " R_0=1\\,\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "Due Ω divide soltanto per s; sedici Ω moltiplica per s² anziché dividere; quattro Ω ignora la preparazione. La resistività non si ricava da R e s senza la geometria iniziale."
+        }
+      ],
+      "hints": [
+        "Annulla entrambi i fattori s del rapporto finale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due Ω divide soltanto per s; sedici Ω moltiplica per s² anziché dividere; quattro Ω ignora la preparazione. La resistività non si ricava da R e s senza la geometria iniziale.",
+        "target": "C4-L05"
+      },
+      "coverage": [
+        "Resistività distinta da resistenza",
+        "Volume conservato e sezione inversa alla lunghezza",
+        "Inverse con s≥1, rapporti, medie e display",
+        "Vincolo dimensionato fra preparazioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-wire-stretched-fixed-volume-06",
+      "kind": "question",
+      "course": "C4",
+      "section": "Filo uniforme a volume conservato",
+      "order": 20506,
+      "title": "Il fattore di allungamento dalla misura",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wire-stretched-fixed-volume",
+      "difficulty": 2,
+      "prompt": "Un filo omogeneo inizialmente uniforme ha lunghezza L₀, sezione A₀ e resistenza R₀>0. Nella preparazione viene allungato uniformemente fino a L=sL₀, con s≥1. Il volume LA resta L₀A₀ e la resistività ρ resta invariata: si assume un modello ideale alla stessa temperatura, senza rottura o variazioni di materiale. Dopo la preparazione il filo è ancora uniforme. Dalla legge R=ρL/A si cerca la resistenza finale, non la resistività. Si misura R=4 Ω e si conosce R₀=1 Ω. Quanto vale s?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il rapporto R/R₀ vale quattro, quindi s²=4. Fra le due radici algebriche si sceglie s=2: un rapporto di lunghezze è positivo e qui deve essere almeno uno. In generale una misura R<R₀ non sarebbe compatibile con questo modello di allungamento."
+        },
+        {
+          "type": "formula",
+          "text": "s^2=\\frac{R}{R_0}"
+        },
+        {
+          "type": "formula",
+          "text": " s=\\sqrt{\\frac{R}{R_0}}"
+        },
+        {
+          "type": "formula",
+          "text": " s=2"
+        },
+        {
+          "type": "formula",
+          "text": " s\\ge1"
+        },
+        {
+          "type": "text",
+          "text": "Quattro copia s², −2 viola il significato geometrico e 1/2 descriverebbe un accorciamento. Non si attribuisce un’unità ohm al fattore s."
+        }
+      ],
+      "hints": [
+        "Prendi la radice positiva e controlla s≥1.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro copia s², −2 viola il significato geometrico e 1/2 descriverebbe un accorciamento. Non si attribuisce un’unità ohm al fattore s.",
+        "target": "C4-L05"
+      },
+      "coverage": [
+        "Resistività distinta da resistenza",
+        "Volume conservato e sezione inversa alla lunghezza",
+        "Inverse con s≥1, rapporti, medie e display",
+        "Vincolo dimensionato fra preparazioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-wire-stretched-fixed-volume-07",
+      "kind": "question",
+      "course": "C4",
+      "section": "Filo uniforme a volume conservato",
+      "order": 20507,
+      "title": "Il filo non allungato come confronto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wire-stretched-fixed-volume",
+      "difficulty": 2,
+      "prompt": "Un filo omogeneo inizialmente uniforme ha lunghezza L₀, sezione A₀ e resistenza R₀>0. Nella preparazione viene allungato uniformemente fino a L=sL₀, con s≥1. Il volume LA resta L₀A₀ e la resistività ρ resta invariata: si assume un modello ideale alla stessa temperatura, senza rottura o variazioni di materiale. Dopo la preparazione il filo è ancora uniforme. Dalla legge R=ρL/A si cerca la resistenza finale, non la resistività. A ha R₀=1 Ω e s_A=2; B ha lo stesso R₀ e s_B=1. Quanto vale R_B/R_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/4",
+          "1/2",
+          "4",
+          "1",
+          "−1/4"
+        ],
+        "value": "1/4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A vale 4 Ω; B non viene allungato e conserva 1 Ω. Il rapporto B/A è quindi un quarto. s=1 è incluso nel dominio e indica semplicemente la configurazione iniziale."
+        },
+        {
+          "type": "formula",
+          "text": "R_A=4\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " R_B=1\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " R_B/R_A=\\frac14"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo segue soltanto L; quattro è il reciproco del rapporto; uno ignora la deformazione. Il rapporto negativo non confronta due resistenze passive positive."
+        }
+      ],
+      "hints": [
+        "Calcola entrambe le resistenze prima di dividere.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo segue soltanto L; quattro è il reciproco del rapporto; uno ignora la deformazione. Il rapporto negativo non confronta due resistenze passive positive.",
+        "target": "C4-L05"
+      },
+      "coverage": [
+        "Resistività distinta da resistenza",
+        "Volume conservato e sezione inversa alla lunghezza",
+        "Inverse con s≥1, rapporti, medie e display",
+        "Vincolo dimensionato fra preparazioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-wire-stretched-fixed-volume-08",
+      "kind": "question",
+      "course": "C4",
+      "section": "Filo uniforme a volume conservato",
+      "order": 20508,
+      "title": "Uno scarto tra due resistenze",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wire-stretched-fixed-volume",
+      "difficulty": 2,
+      "prompt": "Un filo omogeneo inizialmente uniforme ha lunghezza L₀, sezione A₀ e resistenza R₀>0. Nella preparazione viene allungato uniformemente fino a L=sL₀, con s≥1. Il volume LA resta L₀A₀ e la resistività ρ resta invariata: si assume un modello ideale alla stessa temperatura, senza rottura o variazioni di materiale. Dopo la preparazione il filo è ancora uniforme. Dalla legge R=ρL/A si cerca la resistenza finale, non la resistività. Con R₀=1 Ω e s=2 si propone R=8 Ω. Quanto vale proposta meno risultato corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4 Ω",
+          "−4 Ω",
+          "8 Ω",
+          "0 Ω",
+          "2"
+        ],
+        "value": "4 Ω"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il risultato corretto è 4 Ω. La proposta lo supera di 8−4=4 Ω. Il numero due è invece il rapporto proposta/corretto, e non ha unità di resistenza."
+        },
+        {
+          "type": "formula",
+          "text": "R_{\\rm corretto}=4\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " e=(8-4)\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " e=4\\,\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "−4 inverte l’ordine, otto copia la proposta e zero la accetta. Due puro è il fattore di sovrastima, non lo scarto richiesto."
+        }
+      ],
+      "hints": [
+        "Sottrai dalla proposta la resistenza ricostruita con volume costante.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−4 inverte l’ordine, otto copia la proposta e zero la accetta. Due puro è il fattore di sovrastima, non lo scarto richiesto.",
+        "target": "C4-L05"
+      },
+      "coverage": [
+        "Resistività distinta da resistenza",
+        "Volume conservato e sezione inversa alla lunghezza",
+        "Inverse con s≥1, rapporti, medie e display",
+        "Vincolo dimensionato fra preparazioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-wire-stretched-fixed-volume-09",
+      "kind": "question",
+      "course": "C4",
+      "section": "Filo uniforme a volume conservato",
+      "order": 20509,
+      "title": "L’inversa conserva il quadrato",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wire-stretched-fixed-volume",
+      "difficulty": 2,
+      "prompt": "Un filo omogeneo inizialmente uniforme ha lunghezza L₀, sezione A₀ e resistenza R₀>0. Nella preparazione viene allungato uniformemente fino a L=sL₀, con s≥1. Il volume LA resta L₀A₀ e la resistività ρ resta invariata: si assume un modello ideale alla stessa temperatura, senza rottura o variazioni di materiale. Dopo la preparazione il filo è ancora uniforme. Dalla legge R=ρL/A si cerca la resistenza finale, non la resistività. Quale formula isola R₀ da R e s?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "R₀ = R / s²",
+          "R₀ = R / s",
+          "R₀ = R s²",
+          "R₀ = s² / R",
+          "R₀ = R / (2 s²)"
+        ],
+        "value": "R₀ = R / s²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La relazione finale è R=R₀s². Poiché s≥1 e quindi s² non è zero, si divide per s² e si trova R₀=R/s². Il fattore di allungamento è puro e l’inversa conserva l’unità ohm."
+        },
+        {
+          "type": "formula",
+          "text": "R=R_0s^2"
+        },
+        {
+          "type": "formula",
+          "text": " R_0=\\frac{R}{s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " [R_0]=\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "Dividere per s annulla solo un fattore; moltiplicare per s² non isola R₀. Il reciproco s²/R ha unità Ω⁻¹ e il fattore due è arbitrario."
+        }
+      ],
+      "hints": [
+        "Tratta s² come un unico fattore moltiplicativo positivo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dividere per s annulla solo un fattore; moltiplicare per s² non isola R₀. Il reciproco s²/R ha unità Ω⁻¹ e il fattore due è arbitrario.",
+        "target": "C4-L05"
+      },
+      "coverage": [
+        "Resistività distinta da resistenza",
+        "Volume conservato e sezione inversa alla lunghezza",
+        "Inverse con s≥1, rapporti, medie e display",
+        "Vincolo dimensionato fra preparazioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-wire-stretched-fixed-volume-10",
+      "kind": "question",
+      "course": "C4",
+      "section": "Filo uniforme a volume conservato",
+      "order": 20510,
+      "title": "Due preparazioni ammissibili",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wire-stretched-fixed-volume",
+      "difficulty": 2,
+      "prompt": "Un filo omogeneo inizialmente uniforme ha lunghezza L₀, sezione A₀ e resistenza R₀>0. Nella preparazione viene allungato uniformemente fino a L=sL₀, con s≥1. Il volume LA resta L₀A₀ e la resistività ρ resta invariata: si assume un modello ideale alla stessa temperatura, senza rottura o variazioni di materiale. Dopo la preparazione il filo è ancora uniforme. Dalla legge R=ρL/A si cerca la resistenza finale, non la resistività. B usa R₀,B=κ₁R₀,A e s_B=κ₂s_A. I fattori sono positivi e s_A≥1, κ₂s_A≥1. Quale legge dà R_B/R_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ κ₂²",
+          "κ₁ κ₂",
+          "κ₁/κ₂²",
+          "κ₁² κ₂²",
+          "κ₂²/κ₁"
+        ],
+        "value": "κ₁ κ₂²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituendo entrambi i fattori si ha R_B=(κ₁R₀,A)(κ₂s_A)². Nel rapporto con R_A resta κ₁κ₂². La seconda condizione sul dominio serve: un κ₂ positivo ma troppo piccolo potrebbe portare s_B sotto uno."
+        },
+        {
+          "type": "formula",
+          "text": "R_B=\\kappa_1R_{0,A}(\\kappa_2s_A)^2"
+        },
+        {
+          "type": "formula",
+          "text": " R_B/R_A=\\kappa_1\\kappa_2^2"
+        },
+        {
+          "type": "text",
+          "text": "κ₁κ₂ perde il secondo fattore geometrico. Dividere per κ₂² inverte l’allungamento; κ₁² aggiunge un quadrato a R₀ e l’ultimo quoziente rende inverso R₀."
+        }
+      ],
+      "hints": [
+        "Inserisci i fattori prima di elevare s_B al quadrato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "κ₁κ₂ perde il secondo fattore geometrico. Dividere per κ₂² inverte l’allungamento; κ₁² aggiunge un quadrato a R₀ e l’ultimo quoziente rende inverso R₀.",
+        "target": "C4-L05"
+      },
+      "coverage": [
+        "Resistività distinta da resistenza",
+        "Volume conservato e sezione inversa alla lunghezza",
+        "Inverse con s≥1, rapporti, medie e display",
+        "Vincolo dimensionato fra preparazioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-wire-stretched-fixed-volume-11",
+      "kind": "question",
+      "course": "C4",
+      "section": "Filo uniforme a volume conservato",
+      "order": 20511,
+      "title": "Cambiano entrambi i dati iniziali",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wire-stretched-fixed-volume",
+      "difficulty": 2,
+      "prompt": "Un filo omogeneo inizialmente uniforme ha lunghezza L₀, sezione A₀ e resistenza R₀>0. Nella preparazione viene allungato uniformemente fino a L=sL₀, con s≥1. Il volume LA resta L₀A₀ e la resistività ρ resta invariata: si assume un modello ideale alla stessa temperatura, senza rottura o variazioni di materiale. Dopo la preparazione il filo è ancora uniforme. Dalla legge R=ρL/A si cerca la resistenza finale, non la resistività. A ha R₀=1 Ω, s=2. B ha R₀=2 Ω, s=3. Quanto vale R_B/R_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "9/2",
+          "2",
+          "9/4",
+          "3",
+          "2/9"
+        ],
+        "value": "9/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A dà 1·4=4 Ω. B dà 2·9=18 Ω. Il rapporto è 18/4=9/2: il fattore due della resistenza iniziale si moltiplica per (3/2)²=9/4."
+        },
+        {
+          "type": "formula",
+          "text": "R_A=4\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " R_B=18\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " R_B/R_A=\\frac92"
+        },
+        {
+          "type": "text",
+          "text": "Due considera solo R₀; 9/4 considera solo s. Tre usa la prima potenza di 3/2, mentre 2/9 è il reciproco."
+        }
+      ],
+      "hints": [
+        "Valuta R₀s² per entrambe le prove.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due considera solo R₀; 9/4 considera solo s. Tre usa la prima potenza di 3/2, mentre 2/9 è il reciproco.",
+        "target": "C4-L05"
+      },
+      "coverage": [
+        "Resistività distinta da resistenza",
+        "Volume conservato e sezione inversa alla lunghezza",
+        "Inverse con s≥1, rapporti, medie e display",
+        "Vincolo dimensionato fra preparazioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-wire-stretched-fixed-volume-12",
+      "kind": "question",
+      "course": "C4",
+      "section": "Filo uniforme a volume conservato",
+      "order": 20512,
+      "title": "Media delle letture, non delle preparazioni",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wire-stretched-fixed-volume",
+      "difficulty": 2,
+      "prompt": "Un filo omogeneo inizialmente uniforme ha lunghezza L₀, sezione A₀ e resistenza R₀>0. Nella preparazione viene allungato uniformemente fino a L=sL₀, con s≥1. Il volume LA resta L₀A₀ e la resistività ρ resta invariata: si assume un modello ideale alla stessa temperatura, senza rottura o variazioni di materiale. Dopo la preparazione il filo è ancora uniforme. Dalla legge R=ρL/A si cerca la resistenza finale, non la resistività. A usa R₀=1 Ω,s=2 e B usa R₀=2 Ω,s=3. Qual è la media aritmetica di R con uguale peso?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "11 Ω",
+          "75/8 Ω",
+          "22 Ω",
+          "7 Ω",
+          "4 Ω"
+        ],
+        "value": "11 Ω"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le resistenze finali sono 4 e 18 Ω, quindi la media è 11 Ω. Con i dati medi R₀=3/2 Ω e s=5/2 si avrebbe invece (3/2)(25/4)=75/8 Ω. La dipendenza quadratica da s impedisce di sostituire automaticamente le medie degli ingressi."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/f496d8140d09411ffb81ecd2a12433d547734757db9bf638a8902934559772b0",
+          "text": "Le barre finali rappresentano due fili di prove diverse, non un collegamento elettrico: 4 e18 Ω hanno media 11 Ω. I dati medi R₀=3/2 Ω,s=5/2 darebbero75/8 Ω. Il grafico centrale usa soltanto R₀=1 Ω; B della media ha R₀=2 Ω."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline R=\\frac{4+18}{2}\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline R=11\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " R_{\\rm dati\\ medi}=\\frac{75}{8}\\,\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "75/8 Ω usa i dati medi; 22 somma senza dimezzare; sette è metà della differenza; quattro ripete A. Due fili di prove separate non diventano resistori collegati in serie."
+        }
+      ],
+      "hints": [
+        "Media soltanto dopo aver ricavato ogni resistenza finale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "75/8 Ω usa i dati medi; 22 somma senza dimezzare; sette è metà della differenza; quattro ripete A. Due fili di prove separate non diventano resistori collegati in serie.",
+        "target": "C4-L05"
+      },
+      "coverage": [
+        "Resistività distinta da resistenza",
+        "Volume conservato e sezione inversa alla lunghezza",
+        "Inverse con s≥1, rapporti, medie e display",
+        "Vincolo dimensionato fra preparazioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-wire-stretched-fixed-volume-13",
+      "kind": "question",
+      "course": "C4",
+      "section": "Filo uniforme a volume conservato",
+      "order": 20513,
+      "title": "Il bersaglio determina s",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wire-stretched-fixed-volume",
+      "difficulty": 3,
+      "prompt": "Un filo omogeneo inizialmente uniforme ha lunghezza L₀, sezione A₀ e resistenza R₀>0. Nella preparazione viene allungato uniformemente fino a L=sL₀, con s≥1. Il volume LA resta L₀A₀ e la resistività ρ resta invariata: si assume un modello ideale alla stessa temperatura, senza rottura o variazioni di materiale. Dopo la preparazione il filo è ancora uniforme. Dalla legge R=ρL/A si cerca la resistenza finale, non la resistività. A usa R₀=1 Ω,s_A=2. B ha R₀,B=2 Ω e deve avere R_B=(9/2)R_A. Quanto vale s_B/s_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/2",
+          "2/3",
+          "9/4",
+          "9/2",
+          "3"
+        ],
+        "value": "3/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è 18 Ω. Dividendo per R₀,B=2 Ω si trova s_B²=9 e il ramo s_B≥1 dà tre. Il rapporto richiesto con s_A=2 è 3/2, non il valore tre del fattore finale."
+        },
+        {
+          "type": "formula",
+          "text": "R_B=18\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " s_B^2=9"
+        },
+        {
+          "type": "formula",
+          "text": " s_B=3"
+        },
+        {
+          "type": "formula",
+          "text": " s_B/s_A=\\frac32"
+        },
+        {
+          "type": "text",
+          "text": "2/3 è il reciproco, 9/4 confronta i quadrati e 9/2 copia il rapporto delle resistenze. Tre omette la divisione per s_A."
+        }
+      ],
+      "hints": [
+        "Decodifica il bersaglio, risolvi per s_B e poi confrontalo con s_A.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "2/3 è il reciproco, 9/4 confronta i quadrati e 9/2 copia il rapporto delle resistenze. Tre omette la divisione per s_A.",
+        "target": "C4-L05"
+      },
+      "coverage": [
+        "Resistività distinta da resistenza",
+        "Volume conservato e sezione inversa alla lunghezza",
+        "Inverse con s≥1, rapporti, medie e display",
+        "Vincolo dimensionato fra preparazioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-wire-stretched-fixed-volume-14",
+      "kind": "question",
+      "course": "C4",
+      "section": "Filo uniforme a volume conservato",
+      "order": 20514,
+      "title": "Tarare prima di invertire",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wire-stretched-fixed-volume",
+      "difficulty": 3,
+      "prompt": "Un filo omogeneo inizialmente uniforme ha lunghezza L₀, sezione A₀ e resistenza R₀>0. Nella preparazione viene allungato uniformemente fino a L=sL₀, con s≥1. Il volume LA resta L₀A₀ e la resistività ρ resta invariata: si assume un modello ideale alla stessa temperatura, senza rottura o variazioni di materiale. Dopo la preparazione il filo è ancora uniforme. Dalla legge R=ρL/A si cerca la resistenza finale, non la resistività. Il display continuo adimensionale D=aR ha a>0. A con R₀=1 Ω,s=2 dà D=12. B dà D=54 e ha s=3. Quanto vale R₀,B in Ω?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "Ω",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha R_A=4 Ω, quindi a=3 Ω⁻¹. La nuova lettura significa R_B=54/a=18 Ω. Dividendo per s_B²=9 si trova R₀,B=2 Ω. Il valore del display non è già una resistenza in ohm."
+        },
+        {
+          "type": "formula",
+          "text": "a=3\\,\\Omega^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " R_B=18\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " R_{0,B}=\\frac{18}{9}\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " R_{0,B}=2\\,\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "Sei Ω tratterebbe 54 come resistenza e ignorerebbe il guadagno. Diciotto Ω copia la finale; un Ω predirebbe D=27, non 54."
+        }
+      ],
+      "hints": [
+        "Ricava il guadagno dal riferimento noto prima di dividere per s².",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sei Ω tratterebbe 54 come resistenza e ignorerebbe il guadagno. Diciotto Ω copia la finale; un Ω predirebbe D=27, non 54.",
+        "target": "C4-L05"
+      },
+      "coverage": [
+        "Resistività distinta da resistenza",
+        "Volume conservato e sezione inversa alla lunghezza",
+        "Inverse con s≥1, rapporti, medie e display",
+        "Vincolo dimensionato fra preparazioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-wire-stretched-fixed-volume-15",
+      "kind": "question",
+      "course": "C4",
+      "section": "Filo uniforme a volume conservato",
+      "order": 20515,
+      "title": "Rimuovere anche l’offset",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wire-stretched-fixed-volume",
+      "difficulty": 3,
+      "prompt": "Un filo omogeneo inizialmente uniforme ha lunghezza L₀, sezione A₀ e resistenza R₀>0. Nella preparazione viene allungato uniformemente fino a L=sL₀, con s≥1. Il volume LA resta L₀A₀ e la resistività ρ resta invariata: si assume un modello ideale alla stessa temperatura, senza rottura o variazioni di materiale. Dopo la preparazione il filo è ancora uniforme. Dalla legge R=ρL/A si cerca la resistenza finale, non la resistività. D=aR+b è un display continuo adimensionale. A: R₀=1 Ω,s=2,D=9. B: R₀=2 Ω,s=3,D=37. C: s=2,D=25. Quanto vale R₀,C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3 Ω",
+          "25/8 Ω",
+          "1 Ω",
+          "6 Ω",
+          "12 Ω"
+        ],
+        "value": "3 Ω"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti valgono 4 e 18 Ω. Il guadagno è (37−9)/(18−4)=2 Ω⁻¹ e b=1. C ha R_C=(25−1)/2=12 Ω; con s=2 la resistenza iniziale è 12/4=3 Ω."
+        },
+        {
+          "type": "formula",
+          "text": "a=2\\,\\Omega^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " R_C=12\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " R_{0,C}=3\\,\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "25/8 Ω omette b e predice D=26. Uno Ω torna ad A; sei Ω divide per s anziché per s² e darebbe D=49. Dodici Ω copia la finale e darebbe D=97."
+        }
+      ],
+      "hints": [
+        "Separa le due operazioni: decodifica il display, poi annulla s².",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "25/8 Ω omette b e predice D=26. Uno Ω torna ad A; sei Ω divide per s anziché per s² e darebbe D=49. Dodici Ω copia la finale e darebbe D=97.",
+        "target": "C4-L05"
+      },
+      "coverage": [
+        "Resistività distinta da resistenza",
+        "Volume conservato e sezione inversa alla lunghezza",
+        "Inverse con s≥1, rapporti, medie e display",
+        "Vincolo dimensionato fra preparazioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-wire-stretched-fixed-volume-16",
+      "kind": "question",
+      "course": "C4",
+      "section": "Filo uniforme a volume conservato",
+      "order": 20516,
+      "title": "Un vincolo con potenza cubica",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "wire-stretched-fixed-volume",
+      "difficulty": 3,
+      "prompt": "Un filo omogeneo inizialmente uniforme ha lunghezza L₀, sezione A₀ e resistenza R₀>0. Nella preparazione viene allungato uniformemente fino a L=sL₀, con s≥1. Il volume LA resta L₀A₀ e la resistività ρ resta invariata: si assume un modello ideale alla stessa temperatura, senza rottura o variazioni di materiale. Dopo la preparazione il filo è ancora uniforme. Dalla legge R=ρL/A si cerca la resistenza finale, non la resistività. Fra preparazioni si impone R₀=βs, con β=1/2 Ω. Si misura R=4 Ω. Quanto vale s?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "8",
+          "4",
+          "−2",
+          "Infinite soluzioni con s≥1"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituendo il vincolo si ottiene R=βs³. Il rapporto R/β=8 impone s³=8, quindi s=2, ammissibile e unico nel ramo s≥1. Allora R₀=1 Ω. Il coefficiente β ha unità ohm perché s è puro."
+        },
+        {
+          "type": "formula",
+          "text": "R=\\beta s^3"
+        },
+        {
+          "type": "formula",
+          "text": " s^3=\\frac{4\\,\\Omega}{(1/2)\\,\\Omega}"
+        },
+        {
+          "type": "formula",
+          "text": " s^3=8"
+        },
+        {
+          "type": "formula",
+          "text": " s=2"
+        },
+        {
+          "type": "text",
+          "text": "Otto copia s³; quattro non prende la radice cubica corretta. −2 non è un allungamento e darebbe R negativo con questo vincolo; non sono infinite soluzioni perché la misura fissa la scala cubica."
+        }
+      ],
+      "hints": [
+        "Sostituisci R₀=βs prima di decidere quale radice occorre.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Otto copia s³; quattro non prende la radice cubica corretta. −2 non è un allungamento e darebbe R negativo con questo vincolo; non sono infinite soluzioni perché la misura fissa la scala cubica.",
+        "target": "C4-L05"
+      },
+      "coverage": [
+        "Resistività distinta da resistenza",
+        "Volume conservato e sezione inversa alla lunghezza",
+        "Inverse con s≥1, rapporti, medie e display",
+        "Vincolo dimensionato fra preparazioni"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "f496d8140d09411ffb81ecd2a12433d547734757db9bf638a8902934559772b0",
+      "name": "wire-stretched-fixed-volume-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTQ1MCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgo8dGl0bGUgaWQ9InRpdGxlIj5BbGx1bmdhbWVudG8gdW5pZm9ybWUgZSB2b2x1bWUgY29uc2VydmF0bzwvdGl0bGU+CjxkZXNjIGlkPSJkZXNjIj5EaWFncmFtbWEgZGVsbGEgbHVuZ2hlenphIHBlciBs4oCZYXJlYSBkaSBzZXppb25lOiBpIHJldHRhbmdvbGkgTOKCgCBwZXIgQeKCgCBlIDJM4oKAIHBlciBB4oKALzIgY29uc2VydmFubyBpbCBwcm9kb3R0by4gTOKAmWFyZWEgZGkgc2V6aW9uZSBub24gw6ggaWwgZGlhbWV0cm8gZGVsIGZpbG8uIExhIHJlc2lzdGVuemEgY3Jlc2NlIGNvbiBpbCBxdWFkcmF0byBkZWxs4oCZYWxsdW5nYW1lbnRvLiBEdWUgcmVzaXN0ZW56ZSBmaW5hbGk0IGUxOCBvaG0gaGFubm8gbWVkaWExMS48L2Rlc2M+CjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMTQ1MCIgcng9IjEyIiBmaWxsPSIjZjhmYWZjIi8+CjxnIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmaWxsPSIjMTQyNDNhIiBmb250LXNpemU9IjIwIj4KPHRleHQgeD0iMzIiIHk9IjQyIiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iYm9sZCI+MSDCtyBSYWRkb3BwaWEgTCwgc2kgZGltZXp6YSBBPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iODIiIGZvbnQtc2l6ZT0iMTgiPkRpYWdyYW1tYSBM4oCTQTogbGEgc2V6aW9uZSBub24gw6ggdW4gZGlhbWV0cm8uPC90ZXh0Pgo8cGF0aCBkPSJNMTUwIDExMFYzNDBINTMwIiBmaWxsPSJub25lIiBzdHJva2U9IiMxNDI0M2EiIHN0cm9rZS13aWR0aD0iMiIvPgo8cmVjdCB4PSIxNTAiIHk9IjEzMCIgd2lkdGg9IjEyMCIgaGVpZ2h0PSI4MCIgZmlsbD0iIzE2NWE4NyIvPgo8cmVjdCB4PSIxNTAiIHk9IjI3MCIgd2lkdGg9IjI0MCIgaGVpZ2h0PSI0MCIgZmlsbD0iIzI4NjY0ZCIvPgo8dGV4dCB4PSI0MiIgeT0iMTc0Ij5B4oKAPC90ZXh0Pjx0ZXh0IHg9IjI5MCIgeT0iMTc0Ij5M4oKAPC90ZXh0Pgo8dGV4dCB4PSI0MiIgeT0iMjk5Ij5B4oKALzI8L3RleHQ+PHRleHQgeD0iNDEwIiB5PSIyOTkiPjJM4oKAPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iMzg5IiBmb250LXNpemU9IjE4Ij5TdGVzc28gcHJvZG90dG8gTEEgPSBM4oKAQeKCgCA7IM+BIGludmFyaWF0YS48L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI0MjMiIGZvbnQtc2l6ZT0iMTgiPklsIHJldHRhbmdvbG8gcmFwcHJlc2VudGEgTCDDlyBBLCBub24gaWwgcHJvZmlsbyBkZWwgZmlsby48L3RleHQ+CjxwYXRoIGQ9Ik0zMiA0NjRINjA4IiBzdHJva2U9IiM5YmFiYmMiLz4KPHRleHQgeD0iMzIiIHk9IjUwOSIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9ImJvbGQiPjIgwrcgTGEgcmVzaXN0ZW56YSBzZWd1ZSBzwrI8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI1NTAiIGZvbnQtc2l6ZT0iMTgiPlLigoAgPSAxIM6pIDsgZG9taW5pbyBzIOKJpSAxIDsgbm9uIHVuYSBsZWdnZSB0ZW1wb3JhbGUuPC90ZXh0Pgo8cGF0aCBkPSJNMTAwIDY0MFY4NjBINTEwIiBmaWxsPSJub25lIiBzdHJva2U9IiMxNDI0M2EiIHN0cm9rZS13aWR0aD0iMiIvPgo8cGF0aCBkPSJNMjIwIDg0MFEzNDAgODAwIDQ2MCA2ODAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE2NWE4NyIgc3Ryb2tlLXdpZHRoPSI0Ii8+CjxjaXJjbGUgY3g9IjIyMCIgY3k9Ijg0MCIgcj0iNCIgZmlsbD0iIzE0MjQzYSIvPjxjaXJjbGUgY3g9IjM0MCIgY3k9Ijc4MCIgcj0iNCIgZmlsbD0iIzE0MjQzYSIvPjxjaXJjbGUgY3g9IjQ2MCIgY3k9IjY4MCIgcj0iNCIgZmlsbD0iIzE0MjQzYSIvPgo8dGV4dCB4PSIzOCIgeT0iNjUwIj5SICjOqSk8L3RleHQ+PHRleHQgeD0iNTE1IiB5PSI4NjQiPnM8L3RleHQ+Cjx0ZXh0IHg9Ijc2IiB5PSI4ODUiPjA8L3RleHQ+PHRleHQgeD0iMjE1IiB5PSI4OTUiPjE8L3RleHQ+PHRleHQgeD0iMzM1IiB5PSI4OTUiPjI8L3RleHQ+PHRleHQgeD0iNDU1IiB5PSI4OTUiPjM8L3RleHQ+Cjx0ZXh0IHg9IjE4NSIgeT0iODEwIj4xIM6pPC90ZXh0Pjx0ZXh0IHg9IjI3NyIgeT0iNzU0Ij40IM6pPC90ZXh0Pjx0ZXh0IHg9IjQ3NSIgeT0iNjgwIj45IM6pPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iOTQ0IiBmb250LXNpemU9IjE4Ij5MYSBjdXJ2YSBpbml6aWEgYSBzID0gMSA7IGlsIGZpbG8gbm9uIHNpIGFjY29yY2lhLjwvdGV4dD4KPHBhdGggZD0iTTMyIDk4Mkg2MDgiIHN0cm9rZT0iIzliYWJiYyIvPgo8dGV4dCB4PSIzMiIgeT0iMTAyNyIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9ImJvbGQiPjMgwrcgRHVlIHByZXBhcmF6aW9uaSBlIHVuYSBtZWRpYTwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjEwNjYiIGZvbnQtc2l6ZT0iMTgiPkE6IFLigoAgPSAxIM6pLHMgPSAyIDsgQjogUuKCgCA9IDIgzqkscyA9IDMuPC90ZXh0Pgo8cGF0aCBkPSJNMTUwIDEwOTBWMTM0MCIgc3Ryb2tlPSIjMTQyNDNhIiBzdHJva2Utd2lkdGg9IjIiLz4KPHJlY3QgeD0iMTUwIiB5PSIxMTEwIiB3aWR0aD0iODAiIGhlaWdodD0iMzQiIGZpbGw9IiMxNjVhODciLz4KPHJlY3QgeD0iMTUwIiB5PSIxMTkwIiB3aWR0aD0iMzYwIiBoZWlnaHQ9IjM0IiBmaWxsPSIjYjQ1MzI4Ii8+CjxyZWN0IHg9IjE1MCIgeT0iMTI3MCIgd2lkdGg9IjIyMCIgaGVpZ2h0PSIzNCIgZmlsbD0iIzI4NjY0ZCIvPgo8dGV4dCB4PSI1MCIgeT0iMTEzNSI+QTwvdGV4dD48dGV4dCB4PSIyNTAiIHk9IjExMzUiPjQgzqk8L3RleHQ+Cjx0ZXh0IHg9IjUwIiB5PSIxMjE1Ij5CPC90ZXh0Pjx0ZXh0IHg9IjUzMCIgeT0iMTIxNSI+MTggzqk8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIxMjk1Ij5NZWRpYTwvdGV4dD48dGV4dCB4PSIzOTAiIHk9IjEyOTUiPjExIM6pPC90ZXh0Pjx0ZXh0IHg9IjEyNSIgeT0iMTMzNCI+MDwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjEzOTIiIGZvbnQtc2l6ZT0iMTgiPkxlIGJhcnJlIGNvbmRpdmlkb25vIG9yaWdpbmUgZSBzY2FsYSBpbiBvaG0uPC90ZXh0Pgo8L2c+PC9zdmc+Cg=="
+    }
+  ]
+}

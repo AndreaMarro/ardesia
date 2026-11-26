@@ -1,0 +1,11 @@
+# Exact frozen-document transport followup
+
+The original100ac inventory manifest andall8 originalfiles are preserved byte-for-byte underpartial-experiments-139-inventory-100ac-snapshot-20261125. The originalmanifest atits initialpathisalso unchanged; the currentinventoryimplementation has a separately versioned archive-aware followup, not a retroactive scientific regrade.
+
+IntegratorRoot supplied raw-frozen-documents.zip SHA2984d8fe2f3ea635ffd505f8db8ad4fcd744592e83375132e0b256d39df69f4e andsidecarSHA7bc2e4423d7e8f4b061e1e54bdc4fb077bda8b4139baeab791026787e56f5e7a. Botharecopiedbyte-identically. Only2frozenMDfileswithterminalblanklines aretransportedinsidethearchive; theirordinarylocalfilesremainunchanged andmustnotenterGitindex. No normalizedcopyisclaimedoriginal.
+
+Reader prefersanexistingregularfileand verifiesitsexpectedSHA. A presentalteredfile, presentdirectory, unsafe/outsidepath orunknownmissingfile isrejected. Onlythe2exactallowlistedabsentpaths mayuseZIP; sidecar, wholeZIP, membernames, boundedsize andmemberSHAareverified. No extractionorrewritingoccurs. ActualbytesusedforZIPreadarehashedagain.
+
+Currentinventory records bindresolver/module/ZIP/sidecar hashes perrecord. Missing-originalarchive modeandordinary-file mode produceidentical139-record output. Scientificsourcehashes, originalfailures,278tasks,2144grid/2615clockrecords,10historicalUIvs129NOT_RUN and0credits unchanged. No runtime/registry/ledger/Rootedits orUIrun.
+
+Tests14/14PASS2.344s: original7inventorychecksplus7transportchecks. Initial13PASS preserved; thenadir-at-original-path counterexample observed1REDandcorrectedbeforefinal14GREEN. TheREDconcernsnewofflinehelper only, not sourcephysics. Raw2Markdownoriginalsarenottrimmed; Gitwhitespacegatemustpassbyverifiedtransport, notbyignoringwhitespace.

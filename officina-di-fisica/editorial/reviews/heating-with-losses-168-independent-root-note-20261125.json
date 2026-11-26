@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "1.0.0",
+  "status": "16_INDEPENDENT_SCIENTIFIC_REVIEWS_PASS_PRODUCT_PREVIEWS_AND_CHECKPOINT_PENDING",
+  "reviewer": "root_not_candidate_author_A",
+  "candidateFinalCommit": "955436596da3ed30259421fc62e7f4073a4783f6",
+  "reportSha256": "3fc187e1c870e0ece604c0c62d4b93aeafe897065e4ce60e7fdeb2bd9fbd5a80",
+  "primary": {
+    "path": "editorial/reviews/heating-with-losses-168-primary-source-only-20261125.md",
+    "sha256": "3d20a03b3a949bc28bc89abd1a0ff0b239708de59d71b403880d75160776b4e4"
+  },
+  "tests": {
+    "count": 15,
+    "seconds": 16.308,
+    "terminalExitCode": 0,
+    "hypothesisExamples": 80,
+    "wrongKeysRetokenizedAndRebound": 16,
+    "physicalSvgMutationsWithAllHashesReplaced": 2,
+    "transcript": "test_conservation_integral_symbolic_inverses_and_scaling (tests.corpus.test_heating_with_losses_primary.HeatingWithLossesPrimary.test_conservation_integral_symbolic_inverses_and_scaling) ... ok\ntest_monotonicity_of_real_domain_and_nonlinear_mean (tests.corpus.test_heating_with_losses_primary.HeatingWithLossesPrimary.test_monotonicity_of_real_domain_and_nonlinear_mean) ... ok\ntest_nonphysical_and_unidentifiable_states_fail_before_division (tests.corpus.test_heating_with_losses_primary.HeatingWithLossesPrimary.test_nonphysical_and_unidentifiable_states_fail_before_division) ... ok\ntest_positive_energy_balance_inverse_and_reciprocal_scale (tests.corpus.test_heating_with_losses_primary.HeatingWithLossesPrimary.test_positive_energy_balance_inverse_and_reciprocal_scale) ... ok\ntest_prompt_only_numeric_results_and_distinct_arithmetic_mean (tests.corpus.test_heating_with_losses_primary.HeatingWithLossesPrimary.test_prompt_only_numeric_results_and_distinct_arithmetic_mean) ... ok\ntest_units_and_exact_calibration_with_offset (tests.corpus.test_heating_with_losses_primary.HeatingWithLossesPrimary.test_units_and_exact_calibration_with_offset) ... ok\ntest_all_sixteen_wrong_keys_fail_independent_math_after_rebinding_every_guard (tests.corpus.test_heating_with_losses_review.HeatingWithLossesReview.test_all_sixteen_wrong_keys_fail_independent_math_after_rebinding_every_guard) ... ok\ntest_correct_choice_is_not_inferred_from_original_option_position (tests.corpus.test_heating_with_losses_review.HeatingWithLossesReview.test_correct_choice_is_not_inferred_from_original_option_position) ... ok\ntest_fresh_saved_complete_identity_and_distinct_primary (tests.corpus.test_heating_with_losses_review.HeatingWithLossesReview.test_fresh_saved_complete_identity_and_distinct_primary) ... ok\ntest_helper_dependency_change_invalidates_saved_evidence_without_changing_keys (tests.corpus.test_heating_with_losses_review.HeatingWithLossesReview.test_helper_dependency_change_invalidates_saved_evidence_without_changing_keys) ... ok\ntest_original_source_and_actual_competency_mapping_cannot_be_rebound (tests.corpus.test_heating_with_losses_review.HeatingWithLossesReview.test_original_source_and_actual_competency_mapping_cannot_be_rebound) ... ok\ntest_partial_batches_unknown_symbolic_options_and_unbounded_arithmetic_fail_closed (tests.corpus.test_heating_with_losses_review.HeatingWithLossesReview.test_partial_batches_unknown_symbolic_options_and_unbounded_arithmetic_fail_closed) ... ok\ntest_unread_explanation_cannot_inherit_a_correct_numeric_key (tests.corpus.test_heating_with_losses_review.HeatingWithLossesReview.test_unread_explanation_cannot_inherit_a_correct_numeric_key) ... ok\ntest_wrong_dimension_and_duplicate_compatible_units_are_rejected (tests.corpus.test_heating_with_losses_review.HeatingWithLossesReview.test_wrong_dimension_and_duplicate_compatible_units_are_rejected) ... ok\ntest_wrong_physical_bar_and_unreadable_zero_fail_even_with_all_hashes_replaced (tests.corpus.test_heating_with_losses_review.HeatingWithLossesReview.test_wrong_physical_bar_and_unreadable_zero_fail_even_with_all_hashes_replaced) ... ok\n\n----------------------------------------------------------------------\nRan 15 tests in 16.308s\n\nOK\n",
+    "transcriptSha256": "252757b61a4ccaf5eb2cb79e82cdd50c0637220fad6221568f3ec3d6f678a15f"
+  },
+  "reading": "All16 complete prompts, alternatives, explanations, inverse formulas, hints, errors, skill links and metadata read. Final13/14 text,01/12 physical-unit captions and complete SVG XML plus full author-provided560x1500 asset render reread; initial QuickLook square thumbnail was cropped and was not used as a complete-figure proof.",
+  "asset": {
+    "svgSha256": "bc48cf2f33f683ea7b55b2964b809fae2653ae7ffea9ddd0474045b7ddd4330e",
+    "independentlyInspectedFullAuthorRender": "editorial/author-evidence/thermal-168-172-zero-label-fix/heating-with-losses-168-asset-only.png",
+    "renderSha256": "840dea7d0f48d3e5b2927071ea3e4cd0fda66b1e88fdc051b6487c6f282ec36c",
+    "physicalGeometry": "Shared zero for400/100/300power bars,120J at8s,320/240/280duration bars. Original geometry retained; zero names clear of vertical axes."
+  },
+  "findingsClosed": [
+    "13distractor10 is a copied numeric watt value, not itself a dimensioned power",
+    "14gain computed as24/(8s), with inverse-time dimension",
+    "visiblefigure labels use physical units; engineering pixel scales retained outside learner text",
+    "two origin-zero labels moved left without changing bars or curve"
+  ],
+  "productUI": "NOT_RUN_FINAL_EDITION",
+  "questionCheckpointCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}

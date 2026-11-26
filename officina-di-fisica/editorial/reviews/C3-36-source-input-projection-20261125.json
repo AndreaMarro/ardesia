@@ -1,0 +1,838 @@
+{
+  "phase": "C3_SOURCE_ONLY_PROBLEM_INPUT_PROJECTION_NOT_REGISTRABLE",
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+  "sourcePath": "officina-di-fisica/content/esperienze-C3.json",
+  "sourceFileSha256": "2738799d5195ca5eda77c4dce1cdc79f708237e5660bb9cabcc7fac4f80ea3ff",
+  "recordCount": 36,
+  "allowlist": [
+    "id",
+    "kind",
+    "course",
+    "skill",
+    "version",
+    "title",
+    "section",
+    "summary",
+    "transferPrompt",
+    "control.label",
+    "control.unit",
+    "control.min",
+    "control.max",
+    "control.step",
+    "control.choices",
+    "references[*][0]"
+  ],
+  "deliberatelyExcluded": [
+    "measure/output fields",
+    "formula",
+    "substitution",
+    "interpretation",
+    "reference ordinates",
+    "prediction",
+    "answer",
+    "blocks",
+    "apparatus/implementation",
+    "source implementations"
+  ],
+  "priorExposureDisclosure": "Previously reviewed historical thermal lessons/examples and incidentally read shared orologi.js, which contains some C3 ramp/heat-input/time laws. No claim of full blinding. In this new phase modelli/C3.js and solution-bearing fields of these36 have not been read.",
+  "records": [
+    {
+      "id": "SIM-C3-L01-01",
+      "kind": "experiment",
+      "course": "C3",
+      "skill": "C3-L01",
+      "version": 1,
+      "title": "Sistema e ambiente",
+      "section": "Il confine del sistema e il termometro",
+      "summary": "Che cosa attraversa il confine di un gas chiuso quando sposti il pistone?",
+      "transferPrompt": "La camera contiene inizialmente 20 cm³. Il pistone di area 10 cm² avanza verso l’esterno di {x}. Qual è il nuovo volume del gas?",
+      "control": {
+        "label": "Corsa del pistone",
+        "unit": "cm",
+        "min": 0.0,
+        "max": 8.0,
+        "step": 0.5
+      },
+      "referenceInputsOnly": [
+        2.0,
+        6.0
+      ]
+    },
+    {
+      "id": "SIM-C3-L01-02",
+      "kind": "experiment",
+      "course": "C3",
+      "skill": "C3-L01",
+      "version": 1,
+      "title": "Stato termodinamico e variabili p, V, T",
+      "section": "Il confine del sistema e il termometro",
+      "summary": "Quale variabile cambia se riscaldi una quantità fissa di gas in un volume bloccato?",
+      "transferPrompt": "In un recipiente rigido il sensore misura 0,4 kPa per ogni kelvin. Portando il gas a {x}, quale pressione assoluta prevedi?",
+      "control": {
+        "label": "Temperatura assoluta",
+        "unit": "K",
+        "min": 200.0,
+        "max": 500.0,
+        "step": 10.0
+      },
+      "referenceInputsOnly": [
+        250.0,
+        400.0
+      ]
+    },
+    {
+      "id": "SIM-C3-L01-03",
+      "kind": "experiment",
+      "course": "C3",
+      "skill": "C3-L01",
+      "version": 1,
+      "title": "Funzioni di stato",
+      "section": "Il confine del sistema e il termometro",
+      "summary": "Due preparazioni che portano a uguali n, T e V possono dare pressioni finali diverse?",
+      "transferPrompt": "Lo stesso gas ideale raggiunge il volume {x} alla temperatura fissata, con nRT = 120 kPa·L. Quale pressione finale misuri?",
+      "control": {
+        "label": "Volume finale",
+        "unit": "L",
+        "min": 1.0,
+        "max": 5.0,
+        "step": 0.25
+      },
+      "referenceInputsOnly": [
+        2.0,
+        4.0
+      ]
+    },
+    {
+      "id": "SIM-C3-L01-04",
+      "kind": "experiment",
+      "course": "C3",
+      "skill": "C3-L01",
+      "version": 1,
+      "title": "Temperatura e scale",
+      "section": "Il confine del sistema e il termometro",
+      "summary": "Di quanto si sposta la colonna salendo di dieci gradi sulle due scale?",
+      "transferPrompt": "Il termometro in laboratorio indica {x}. Quale valore scriveresti in una legge che richiede la temperatura assoluta?",
+      "control": {
+        "label": "Temperatura Celsius",
+        "unit": "°C",
+        "min": -50.0,
+        "max": 100.0,
+        "step": 5.0
+      },
+      "referenceInputsOnly": [
+        0.0,
+        50.0
+      ]
+    },
+    {
+      "id": "SIM-C3-L02-01",
+      "kind": "experiment",
+      "course": "C3",
+      "skill": "C3-L02",
+      "version": 1,
+      "title": "Gas perfetti",
+      "section": "Contare le moli con il gas perfetto",
+      "summary": "Come si dispone il pistone quando raddoppia il volume a temperatura costante?",
+      "transferPrompt": "Un gas si espande isotermicamente fino a {x}, con pV costante di 240 kPa·L. A quale pressione si ferma il pistone?",
+      "control": {
+        "label": "Volume del gas",
+        "unit": "L",
+        "min": 1.0,
+        "max": 8.0,
+        "step": 0.5
+      },
+      "referenceInputsOnly": [
+        2.0,
+        6.0
+      ]
+    },
+    {
+      "id": "SIM-C3-L02-02",
+      "kind": "experiment",
+      "course": "C3",
+      "skill": "C3-L02",
+      "version": 1,
+      "title": "Equazione di stato e variabili assolute",
+      "section": "Contare le moli con il gas perfetto",
+      "summary": "Puoi ricostruire la temperatura dalla pressione del pistone bloccato?",
+      "transferPrompt": "In un recipiente chiuso e rigido la pressione assoluta è {x}. Se V/(nR) = 2,5 K/kPa, quale temperatura deduci?",
+      "control": {
+        "label": "Pressione assoluta",
+        "unit": "kPa",
+        "min": 50.0,
+        "max": 200.0,
+        "step": 10.0
+      },
+      "referenceInputsOnly": [
+        100.0,
+        160.0
+      ]
+    },
+    {
+      "id": "SIM-C3-L03-01",
+      "kind": "experiment",
+      "course": "C3",
+      "skill": "C3-L03",
+      "version": 1,
+      "title": "Calore e scambio di energia",
+      "section": "Pesare il riscaldamento",
+      "summary": "Quanti joule servono per far salire il termometro del campione?",
+      "transferPrompt": "Vuoi scaldare un campione con capacità termica 50 J/K di {x}. Quanti joule gli devi fornire?",
+      "control": {
+        "label": "Aumento di temperatura",
+        "unit": "K",
+        "min": 0.0,
+        "max": 12.0,
+        "step": 1.0
+      },
+      "referenceInputsOnly": [
+        2.0,
+        8.0
+      ]
+    },
+    {
+      "id": "SIM-C3-L03-02",
+      "kind": "experiment",
+      "course": "C3",
+      "skill": "C3-L03",
+      "version": 1,
+      "title": "Capacità termica e calore specifico",
+      "section": "Pesare il riscaldamento",
+      "summary": "Raddoppiando la massa raddoppia anche il calore specifico?",
+      "transferPrompt": "Tagli un pezzo di massa {x} da un materiale di calore specifico 0,4 J/(g·K). Qual è la capacità termica del pezzo?",
+      "control": {
+        "label": "Massa del campione",
+        "unit": "g",
+        "min": 50.0,
+        "max": 300.0,
+        "step": 25.0
+      },
+      "referenceInputsOnly": [
+        100.0,
+        250.0
+      ]
+    },
+    {
+      "id": "SIM-C3-L03-03",
+      "kind": "experiment",
+      "course": "C3",
+      "skill": "C3-L03",
+      "version": 1,
+      "title": "Capacità termiche dei gas ideali",
+      "section": "Pesare il riscaldamento",
+      "summary": "Perché il gas richiede più calore se il pistone può salire?",
+      "transferPrompt": "Riscaldi una mole di gas ideale di {x}, prima a pressione costante e poi, ripartendo dalle stesse condizioni, a volume costante. Con R = 8,314 J/(mol·K), quanti joule in più occorrono nella prima prova?",
+      "control": {
+        "label": "Aumento di temperatura",
+        "unit": "K",
+        "min": 0.0,
+        "max": 20.0,
+        "step": 1.0
+      },
+      "referenceInputsOnly": [
+        2.0,
+        10.0
+      ]
+    },
+    {
+      "id": "SIM-C3-L03-04",
+      "kind": "experiment",
+      "course": "C3",
+      "skill": "C3-L03",
+      "version": 1,
+      "title": "Calorimetria",
+      "section": "Pesare il riscaldamento",
+      "summary": "Quale temperatura si raggiunge mescolando due quantità disuguali d’acqua?",
+      "transferPrompt": "Versi {x} d’acqua a 80 °C in 200 g d’acqua a 20 °C. Trascurando il recipiente e le dispersioni, quale temperatura finale trovi?",
+      "control": {
+        "label": "Massa di acqua calda",
+        "unit": "g",
+        "min": 50.0,
+        "max": 300.0,
+        "step": 25.0
+      },
+      "referenceInputsOnly": [
+        100.0,
+        200.0
+      ]
+    },
+    {
+      "id": "SIM-C3-L04-01",
+      "kind": "experiment",
+      "course": "C3",
+      "skill": "C3-L04",
+      "version": 1,
+      "title": "Fusione",
+      "section": "Quando la temperatura si ferma",
+      "summary": "Mentre il ghiaccio fonde, dove va l’energia fornita?",
+      "transferPrompt": "Al ghiaccio già a 0 °C fornisci {x}. Con calore latente di fusione 334 J/g, quanti grammi diventano acqua?",
+      "control": {
+        "label": "Energia fornita a ghiaccio a 0 °C",
+        "unit": "kJ",
+        "min": 0.0,
+        "max": 33.4,
+        "step": 1.67
+      },
+      "referenceInputsOnly": [
+        8.35,
+        16.7
+      ]
+    },
+    {
+      "id": "SIM-C3-L04-02",
+      "kind": "experiment",
+      "course": "C3",
+      "skill": "C3-L04",
+      "version": 1,
+      "title": "Evaporazione e condensazione",
+      "section": "Quando la temperatura si ferma",
+      "summary": "Che segno ha il calore quando il vapore si condensa?",
+      "transferPrompt": "Nel cambio di fase la massa trasformata, con il segno scelto nel banco, è {x}. Quale calore scambia l’acqua con l’esterno, usando 2,26 kJ/g?",
+      "control": {
+        "label": "Massa che diventa vapore con segno",
+        "unit": "g",
+        "min": -5.0,
+        "max": 5.0,
+        "step": 0.5
+      },
+      "referenceInputsOnly": [
+        -2.0,
+        3.0
+      ]
+    },
+    {
+      "id": "SIM-C3-L04-03",
+      "kind": "experiment",
+      "course": "C3",
+      "skill": "C3-L04",
+      "version": 1,
+      "title": "Calore latente e bilanci a tratti",
+      "section": "Quando la temperatura si ferma",
+      "summary": "Quale parte dell’energia cambia la temperatura e quale cambia la fase?",
+      "transferPrompt": "Al campione arrivano in tutto {x}. Tolti i 2 kJ di riscaldamento iniziale, quanti grammi dei 100 g di ghiaccio sono fusi, con L = 340 J/g?",
+      "control": {
+        "label": "Energia dall’inizio del riscaldamento",
+        "unit": "kJ",
+        "min": 0.0,
+        "max": 54.0,
+        "step": 1.0
+      },
+      "referenceInputsOnly": [
+        1.0,
+        19.0
+      ]
+    },
+    {
+      "id": "SIM-C3-L05-01",
+      "kind": "experiment",
+      "course": "C3",
+      "skill": "C3-L05",
+      "version": 1,
+      "title": "Conduzione",
+      "section": "Tre vie per trasferire energia",
+      "summary": "Una parete due volte più spessa lascia passare la stessa potenza?",
+      "transferPrompt": "Una parete con k = 1 W/(m·K), area 0,01 m² e spessore {x} separa ambienti con 20 K di differenza. Quale potenza la attraversa?",
+      "control": {
+        "label": "Spessore della parete",
+        "unit": "cm",
+        "min": 1.0,
+        "max": 8.0,
+        "step": 0.5
+      },
+      "referenceInputsOnly": [
+        2.0,
+        5.0
+      ]
+    },
+    {
+      "id": "SIM-C3-L05-02",
+      "kind": "experiment",
+      "course": "C3",
+      "skill": "C3-L05",
+      "version": 1,
+      "title": "Convezione",
+      "section": "Tre vie per trasferire energia",
+      "summary": "Come trasporta energia un liquido che entra caldo ed esce più freddo?",
+      "transferPrompt": "In uno scambiatore l’acqua scorre con portata di massa {x} e cede 42 J per grammo. Quanti watt trasferisce al secondo circuito?",
+      "control": {
+        "label": "Portata di massa",
+        "unit": "g/s",
+        "min": 0.0,
+        "max": 5.0,
+        "step": 0.25
+      },
+      "referenceInputsOnly": [
+        1.0,
+        3.0
+      ]
+    },
+    {
+      "id": "SIM-C3-L05-03",
+      "kind": "experiment",
+      "course": "C3",
+      "skill": "C3-L05",
+      "version": 1,
+      "title": "Irraggiamento",
+      "section": "Tre vie per trasferire energia",
+      "summary": "Quale superficie perde energia quando la tua piastra è più fredda dell’ambiente?",
+      "transferPrompt": "La superficie nera è a {x} in un ambiente a 300 K. Quale flusso netto per metro quadrato ottieni includendo l’irraggiamento dell’ambiente?",
+      "control": {
+        "label": "Temperatura della superficie",
+        "unit": "K",
+        "min": 200.0,
+        "max": 500.0,
+        "step": 10.0
+      },
+      "referenceInputsOnly": [
+        300.0,
+        400.0
+      ]
+    },
+    {
+      "id": "SIM-C3-L06-01",
+      "kind": "experiment",
+      "course": "C3",
+      "skill": "C3-L06",
+      "version": 1,
+      "title": "Primo principio",
+      "section": "Fare i conti con il primo principio",
+      "summary": "Il gas può espandersi senza aumentare la sua energia interna?",
+      "transferPrompt": "Il gas riceve un calore con segno di {x} e compie 10 J di lavoro. Di quanti joule cambia la sua energia interna?",
+      "control": {
+        "label": "Calore entrante",
+        "unit": "J",
+        "min": -20.0,
+        "max": 50.0,
+        "step": 5.0
+      },
+      "referenceInputsOnly": [
+        10.0,
+        30.0
+      ]
+    },
+    {
+      "id": "SIM-C3-L06-02",
+      "kind": "experiment",
+      "course": "C3",
+      "skill": "C3-L06",
+      "version": 1,
+      "title": "Energia interna",
+      "section": "Fare i conti con il primo principio",
+      "summary": "Quale lettura determina la variazione di energia interna del gas perfetto?",
+      "transferPrompt": "Per questo gas nCᵥ vale 12 J/K. Con una variazione di temperatura di {x}, quanta energia interna acquista o perde?",
+      "control": {
+        "label": "Variazione di temperatura",
+        "unit": "K",
+        "min": -20.0,
+        "max": 30.0,
+        "step": 2.0
+      },
+      "referenceInputsOnly": [
+        -10.0,
+        20.0
+      ]
+    },
+    {
+      "id": "SIM-C3-L06-03",
+      "kind": "experiment",
+      "course": "C3",
+      "skill": "C3-L06",
+      "version": 1,
+      "title": "Calore e lavoro",
+      "section": "Fare i conti con il primo principio",
+      "summary": "Quale scambio di calore serve per ottenere lo stesso aumento di energia interna?",
+      "transferPrompt": "Il motore compie un lavoro con segno di {x} mentre l’energia interna aumenta di 10 J. Quanto calore deve entrare nel gas?",
+      "control": {
+        "label": "Lavoro compiuto dal gas",
+        "unit": "J",
+        "min": -20.0,
+        "max": 30.0,
+        "step": 5.0
+      },
+      "referenceInputsOnly": [
+        -10.0,
+        20.0
+      ]
+    },
+    {
+      "id": "SIM-C3-L06-04",
+      "kind": "experiment",
+      "course": "C3",
+      "skill": "C3-L06",
+      "version": 1,
+      "title": "Interpretazione del lavoro su un diagramma p–V",
+      "section": "Fare i conti con il primo principio",
+      "summary": "Cosa misura l’area sotto un’isobara quando il volume diminuisce?",
+      "transferPrompt": "Il pistone spazza una variazione di volume di {x} a 100 kPa costanti. Quale lavoro con segno compie il gas sull’ambiente?",
+      "control": {
+        "label": "Variazione di volume",
+        "unit": "L",
+        "min": -1.0,
+        "max": 2.0,
+        "step": 0.25
+      },
+      "referenceInputsOnly": [
+        -0.5,
+        1.5
+      ]
+    },
+    {
+      "id": "SIM-C3-L07-01",
+      "kind": "experiment",
+      "course": "C3",
+      "skill": "C3-L07",
+      "version": 1,
+      "title": "Trasformazioni reversibili e irreversibili",
+      "section": "Riconoscere il percorso nel piano p–V",
+      "summary": "Come si avvicina il lavoro a quello di un’espansione reversibile?",
+      "transferPrompt": "Il pistone passa da 1 L a 2 L in {x} espansioni uguali. In ogni tratto la pressione esterna è 100 diviso il volume finale in litri, in kPa. Quanti joule di lavoro raccogli?",
+      "control": {
+        "label": "Numero di espansioni a gradini",
+        "unit": "1",
+        "min": 1.0,
+        "max": 8.0,
+        "step": 1.0
+      },
+      "referenceInputsOnly": [
+        1.0,
+        2.0
+      ]
+    },
+    {
+      "id": "SIM-C3-L07-02",
+      "kind": "experiment",
+      "course": "C3",
+      "skill": "C3-L07",
+      "version": 1,
+      "title": "Isoterma",
+      "section": "Riconoscere il percorso nel piano p–V",
+      "summary": "Qual è la traccia di una compressione isoterma sul piano p–V?",
+      "transferPrompt": "In un’espansione isoterma pV resta 100 kPa·L. Se il pistone si ferma a {x}, quale pressione leggi?",
+      "control": {
+        "label": "Volume dopo l’espansione",
+        "unit": "L",
+        "min": 1.0,
+        "max": 4.0,
+        "step": 0.25
+      },
+      "referenceInputsOnly": [
+        1.0,
+        2.0
+      ]
+    },
+    {
+      "id": "SIM-C3-L07-03",
+      "kind": "experiment",
+      "course": "C3",
+      "skill": "C3-L07",
+      "version": 1,
+      "title": "Isocora",
+      "section": "Riconoscere il percorso nel piano p–V",
+      "summary": "Che cosa succede al carico sulle pareti se il pistone è bloccato?",
+      "transferPrompt": "In un cilindro rigido il gas era a 150 kPa e 300 K. Quando il termometro segna {x}, quale pressione assoluta ti aspetti?",
+      "control": {
+        "label": "Temperatura del gas",
+        "unit": "K",
+        "min": 200.0,
+        "max": 500.0,
+        "step": 25.0
+      },
+      "referenceInputsOnly": [
+        250.0,
+        400.0
+      ]
+    },
+    {
+      "id": "SIM-C3-L07-04",
+      "kind": "experiment",
+      "course": "C3",
+      "skill": "C3-L07",
+      "version": 1,
+      "title": "Isobara",
+      "section": "Riconoscere il percorso nel piano p–V",
+      "summary": "Perché il pistone può salire senza che aumenti la pressione?",
+      "transferPrompt": "Il gas occupava 3 L a 300 K. Raggiunge {x} con un pistone libero alla stessa pressione. Che volume leggi sulla scala?",
+      "control": {
+        "label": "Temperatura del gas",
+        "unit": "K",
+        "min": 200.0,
+        "max": 500.0,
+        "step": 25.0
+      },
+      "referenceInputsOnly": [
+        250.0,
+        400.0
+      ]
+    },
+    {
+      "id": "SIM-C3-L07-05",
+      "kind": "experiment",
+      "course": "C3",
+      "skill": "C3-L07",
+      "version": 1,
+      "title": "Adiabatica e confronto qualitativo",
+      "section": "Riconoscere il percorso nel piano p–V",
+      "summary": "A parità di espansione la pressione scende più in isoterma o in adiabatica?",
+      "transferPrompt": "Espandi adiabaticamente il gas fino a V/V₀ = {x}. Con γ = 1,5 e pressione iniziale 100 kPa, quale pressione finale prevedi?",
+      "control": {
+        "label": "Rapporto di espansione V/V₀",
+        "unit": "1",
+        "min": 1.0,
+        "max": 4.0,
+        "step": 0.25
+      },
+      "referenceInputsOnly": [
+        1.0,
+        4.0
+      ]
+    },
+    {
+      "id": "SIM-C3-L08-01",
+      "kind": "experiment",
+      "course": "C3",
+      "skill": "C3-L08",
+      "version": 1,
+      "title": "Ciclo termodinamico",
+      "section": "Leggere il lavoro di un ciclo",
+      "summary": "Cosa misura l’area racchiusa da un giro sul piano p–V?",
+      "transferPrompt": "Un ciclo rettangolare orario ha un salto fra isobare di 60 kPa e una larghezza di {x} in volume. Quanti joule fornisce in un giro?",
+      "control": {
+        "label": "Ampiezza del ciclo in volume",
+        "unit": "L",
+        "min": 0.0,
+        "max": 3.0,
+        "step": 0.25
+      },
+      "referenceInputsOnly": [
+        1.0,
+        2.0
+      ]
+    },
+    {
+      "id": "SIM-C3-L08-02",
+      "kind": "experiment",
+      "course": "C3",
+      "skill": "C3-L08",
+      "version": 1,
+      "title": "Bilancio energetico di un ciclo",
+      "section": "Leggere il lavoro di un ciclo",
+      "summary": "Dopo un giro completo che fine fanno i 100 J ricevuti?",
+      "transferPrompt": "Un motore assorbe 100 J per ciclo e ne cede {x} alla sorgente fredda. Quanti joule di lavoro puoi raccogliere all’albero?",
+      "control": {
+        "label": "Calore ceduto alla sorgente fredda",
+        "unit": "J",
+        "min": 20.0,
+        "max": 100.0,
+        "step": 5.0
+      },
+      "referenceInputsOnly": [
+        40.0,
+        80.0
+      ]
+    },
+    {
+      "id": "SIM-C3-L08-03",
+      "kind": "experiment",
+      "course": "C3",
+      "skill": "C3-L08",
+      "version": 1,
+      "title": "Funzionamento ciclico",
+      "section": "Leggere il lavoro di un ciclo",
+      "summary": "Tornare allo stesso punto nel diagramma annulla anche il lavoro accumulato?",
+      "transferPrompt": "Il contatore registra {x} giri completi di un motore che produce 20 J a giro. Qual è il lavoro complessivo?",
+      "control": {
+        "label": "Numero di giri",
+        "unit": "1",
+        "min": 1.0,
+        "max": 6.0,
+        "step": 1.0
+      },
+      "referenceInputsOnly": [
+        2.0,
+        5.0
+      ]
+    },
+    {
+      "id": "SIM-C3-L09-01",
+      "kind": "experiment",
+      "course": "C3",
+      "skill": "C3-L09",
+      "version": 1,
+      "title": "Secondo principio, enunciati di Kelvin–Planck e Clausius",
+      "section": "Dal calore al lavoro utile",
+      "summary": "Puoi trasferire calore dal freddo al caldo senza fornire lavoro?",
+      "transferPrompt": "Un frigorifero reversibile preleva {x} dalla sorgente fredda. Se T calda/T fredda = 1,5, quale calore minimo deve cedere all’ambiente caldo?",
+      "control": {
+        "label": "Calore prelevato dal freddo",
+        "unit": "J",
+        "min": 0.0,
+        "max": 80.0,
+        "step": 5.0
+      },
+      "referenceInputsOnly": [
+        20.0,
+        60.0
+      ]
+    },
+    {
+      "id": "SIM-C3-L09-02",
+      "kind": "experiment",
+      "course": "C3",
+      "skill": "C3-L09",
+      "version": 1,
+      "title": "Macchine termiche",
+      "section": "Dal calore al lavoro utile",
+      "summary": "Come si distribuisce l’energia assorbita da questa macchina termica?",
+      "transferPrompt": "Una macchina con rendimento del 30% assorbe {x} per ciclo. Quale parte arriva all’albero sotto forma di lavoro?",
+      "control": {
+        "label": "Calore assorbito per ciclo",
+        "unit": "J",
+        "min": 0.0,
+        "max": 200.0,
+        "step": 10.0
+      },
+      "referenceInputsOnly": [
+        50.0,
+        150.0
+      ]
+    },
+    {
+      "id": "SIM-C3-L09-03",
+      "kind": "experiment",
+      "course": "C3",
+      "skill": "C3-L09",
+      "version": 1,
+      "title": "Rendimento",
+      "section": "Dal calore al lavoro utile",
+      "summary": "Quale frazione del calore in ingresso diventa lavoro utile?",
+      "transferPrompt": "Con 100 J di calore assorbito, un motore consegna {x} all’albero. Quale rendimento percentuale scrivi sul rapporto?",
+      "control": {
+        "label": "Lavoro per ciclo",
+        "unit": "J",
+        "min": 0.0,
+        "max": 50.0,
+        "step": 5.0
+      },
+      "referenceInputsOnly": [
+        10.0,
+        40.0
+      ]
+    },
+    {
+      "id": "SIM-C3-L09-04",
+      "kind": "experiment",
+      "course": "C3",
+      "skill": "C3-L09",
+      "version": 1,
+      "title": "Ciclo di Carnot",
+      "section": "Dal calore al lavoro utile",
+      "summary": "Perché avvicinare le temperature riduce il massimo lavoro ottenibile?",
+      "transferPrompt": "La sorgente calda rimane a 500 K e quella fredda passa a {x}. Qual è il massimo rendimento percentuale ammesso per un ciclo fra queste sorgenti?",
+      "control": {
+        "label": "Temperatura della sorgente fredda",
+        "unit": "K",
+        "min": 250.0,
+        "max": 500.0,
+        "step": 25.0
+      },
+      "referenceInputsOnly": [
+        250.0,
+        400.0
+      ]
+    },
+    {
+      "id": "SIM-C3-L10-01",
+      "kind": "experiment",
+      "course": "C3",
+      "skill": "C3-L10",
+      "version": 1,
+      "title": "Entropia funzione di stato",
+      "section": "Seguire il verso dei processi",
+      "summary": "Quale variazione di entropia collega i due stati di un sistema isotermo?",
+      "transferPrompt": "Un corpo a 300 K scambia reversibilmente il calore con segno {x}. Quale variazione di entropia attribuisci al corpo?",
+      "control": {
+        "label": "Calore reversibile scambiato",
+        "unit": "J",
+        "min": -60.0,
+        "max": 60.0,
+        "step": 5.0
+      },
+      "referenceInputsOnly": [
+        -30.0,
+        60.0
+      ]
+    },
+    {
+      "id": "SIM-C3-L10-02",
+      "kind": "experiment",
+      "course": "C3",
+      "skill": "C3-L10",
+      "version": 1,
+      "title": "Implicazioni macroscopiche",
+      "section": "Seguire il verso dei processi",
+      "summary": "Se una parte perde entropia, come controlli il bilancio complessivo?",
+      "transferPrompt": "Passano {x} da un serbatoio a 600 K a uno a 300 K. Quanto aumenta l’entropia dei due serbatoi considerati insieme?",
+      "control": {
+        "label": "Calore dal caldo al freddo",
+        "unit": "J",
+        "min": 0.0,
+        "max": 120.0,
+        "step": 10.0
+      },
+      "referenceInputsOnly": [
+        30.0,
+        90.0
+      ]
+    },
+    {
+      "id": "SIM-C3-L10-03",
+      "kind": "experiment",
+      "course": "C3",
+      "skill": "C3-L10",
+      "version": 1,
+      "title": "Interpretazione statistica",
+      "section": "Seguire il verso dei processi",
+      "summary": "Perché osservi più spesso una distribuzione equilibrata delle particelle?",
+      "transferPrompt": "Quattro particelle distinguibili possono trovarsi a destra o a sinistra. Se ne osservi {x} a sinistra, quante configurazioni sono compatibili con il conteggio?",
+      "control": {
+        "label": "Particelle nella metà sinistra",
+        "unit": "1",
+        "min": 0.0,
+        "max": 4.0,
+        "step": 1.0
+      },
+      "referenceInputsOnly": [
+        1.0,
+        2.0
+      ]
+    },
+    {
+      "id": "SIM-C3-L10-04",
+      "kind": "experiment",
+      "course": "C3",
+      "skill": "C3-L10",
+      "version": 1,
+      "title": "Direzione naturale dei processi",
+      "section": "Seguire il verso dei processi",
+      "summary": "Quale verso dello scambio è spontaneo per due serbatoi isolati dall’esterno?",
+      "transferPrompt": "Nel verso convenzionale dal caldo al freddo il calore è {x}. Fra 600 K e 300 K, quale variazione totale di entropia ottieni con quel segno?",
+      "control": {
+        "label": "Calore con segno dal caldo al freddo",
+        "unit": "J",
+        "min": -60.0,
+        "max": 60.0,
+        "step": 10.0
+      },
+      "referenceInputsOnly": [
+        -60.0,
+        30.0
+      ]
+    }
+  ],
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "UI": "NOT_RUN",
+  "activityCredit": 0,
+  "remoteDispatchAuthorized": false,
+  "localOnly": true
+}

@@ -1,0 +1,1171 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u5-engine-average-power-01",
+      "kind": "question",
+      "course": "C3",
+      "section": "Potenza utile media di una macchina",
+      "order": 16001,
+      "title": "Energia utile in due secondi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L06",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "engine-average-power",
+      "difficulty": 1,
+      "prompt": "Una macchina chiusa opera ciclicamente con rendimento assegnato η=1/4 in ciascuna prova, senza altre sorgenti di energia. Q_h>0 è il calore ricevuto per ciclo, in J, t>0 la durata del ciclo in s. Il lavoro utile per ciclo è W=ηQ_h; P è la potenza utile media su quel ciclo, in watt. I cicli si susseguono senza intervalli inattivi quando si parla di funzionamento ripetuto. Non si richiede la potenza istantanea lungo le singole trasformazioni. Q_h=80 J e t=2 s. Quanto vale P in W?",
+      "answer": {
+        "type": "numeric",
+        "value": 10,
+        "unit": "W",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Un quarto degli ottanta joule ricevuti diventa lavoro, cioè venti joule. La potenza media distribuisce quei venti joule sui due secondi del ciclo: dieci joule ogni secondo, dieci watt. Il calore residuo non diventa lavoro utile."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/0996c28f0fe70d91b099f44bf9c96abf624d40e0ef09a44e0f11ddd7757d1800",
+          "text": "Nel primo pannello80 J ricevuti si dividono in60 J ceduti e20 J di lavoro, con tutte le barre energetiche alla scala4 px/J. Nel secondo20 J di lavoro in2 s danno potenza media10 W: la linea cumulativa retta è soltanto un andamento illustrativo con la stessa media, non una potenza istantanea imposta. Assi80 px/s e12 px/J. Le barre finali di potenza delle due prove sono alla scala20 px/W:10 W e1/4 W, con media statistica41/8 W; la barra molto corta di B resta non nulla."
+        },
+        {
+          "type": "formula",
+          "text": "W=\\frac14Q_h"
+        },
+        {
+          "type": "formula",
+          "text": " W=20\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " P=\\frac{W}{t}"
+        },
+        {
+          "type": "formula",
+          "text": " P=10\\,\\mathrm W"
+        },
+        {
+          "type": "text",
+          "text": "Quaranta W divide tutto Q_h per t senza applicare η. Venti è il lavoro in joule prima di dividere per la durata; cinque W dimezza ancora il risultato. Non si moltiplica per t: ciò darebbe unità J·s."
+        }
+      ],
+      "hints": [
+        "Applica prima il rendimento e poi dividi per il tempo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quaranta W divide tutto Q_h per t senza applicare η. Venti è il lavoro in joule prima di dividere per la durata; cinque W dimezza ancora il risultato. Non si moltiplica per t: ciò darebbe unità J·s.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Rendimento e lavoro per ciclo",
+        "Durata e potenza media",
+        "Medie statistiche, inverse e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-engine-average-power-02",
+      "kind": "question",
+      "course": "C3",
+      "section": "Potenza utile media di una macchina",
+      "order": 16002,
+      "title": "L’unità di una potenza media",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L06",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "engine-average-power",
+      "difficulty": 1,
+      "prompt": "P è il rapporto fra lavoro utile di un ciclo e durata del ciclo. Quale unità è corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "W = J/s",
+          "J",
+          "J·s",
+          "1",
+          "K"
+        ],
+        "value": "W = J/s"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il watt è il joule al secondo. Due cicli possono compiere lo stesso lavoro ma avere potenze medie diverse se impiegano tempi differenti. La media su un intervallo finito conserva la dimensione energia diviso tempo."
+        },
+        {
+          "type": "formula",
+          "text": "[P]=\\frac{\\mathrm J}{\\mathrm s}"
+        },
+        {
+          "type": "formula",
+          "text": " 1\\,\\mathrm W=1\\,\\mathrm{J/s}"
+        },
+        {
+          "type": "text",
+          "text": "J indica lavoro per ciclo, J·s moltiplica invece di dividere e 1 è il rendimento adimensionale. K è temperatura. Il simbolo W è qui unità watt, mentre nella legge W/t il numeratore W denota il lavoro: il contesto li distingue."
+        }
+      ],
+      "hints": [
+        "Scrivi le unità del numeratore e del denominatore separatamente.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "J indica lavoro per ciclo, J·s moltiplica invece di dividere e 1 è il rendimento adimensionale. K è temperatura. Il simbolo W è qui unità watt, mentre nella legge W/t il numeratore W denota il lavoro: il contesto li distingue.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Rendimento e lavoro per ciclo",
+        "Durata e potenza media",
+        "Medie statistiche, inverse e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-engine-average-power-03",
+      "kind": "question",
+      "course": "C3",
+      "section": "Potenza utile media di una macchina",
+      "order": 16003,
+      "title": "Dalla definizione al modello medio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L06",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "engine-average-power",
+      "difficulty": 1,
+      "prompt": "Una macchina chiusa opera ciclicamente con rendimento assegnato η=1/4 in ciascuna prova, senza altre sorgenti di energia. Q_h>0 è il calore ricevuto per ciclo, in J, t>0 la durata del ciclo in s. Il lavoro utile per ciclo è W=ηQ_h; P è la potenza utile media su quel ciclo, in watt. I cicli si susseguono senza intervalli inattivi quando si parla di funzionamento ripetuto. Non si richiede la potenza istantanea lungo le singole trasformazioni. Quale formula dà P nelle unità dichiarate?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "P = Q_h / (4 t)",
+          "P = 4 Q_h / t",
+          "P = Q_h t / 4",
+          "P = Q_h / t",
+          "P = t / (4 Q_h)"
+        ],
+        "value": "P = Q_h / (4 t)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La potenza media è lavoro diviso durata. Sostituendo il lavoro ηQ_h con η=1/4 si ottiene Q_h/(4t). La durata positiva è al denominatore: la stessa energia utile trasferita in un tempo maggiore dà potenza media minore."
+        },
+        {
+          "type": "formula",
+          "text": "P=\\frac{W}{t}"
+        },
+        {
+          "type": "formula",
+          "text": " P=\\frac{\\eta Q_h}{t}"
+        },
+        {
+          "type": "formula",
+          "text": " P=\\frac{Q_h}{4t}"
+        },
+        {
+          "type": "text",
+          "text": "Moltiplicare per quattro inverte il rendimento. Moltiplicare per il tempo produce J·s; omettere quattro considera tutta l’energia ricevuta come lavoro. Il rapporto t/(4Q_h) ha unità inversa a una potenza."
+        }
+      ],
+      "hints": [
+        "Il rendimento è una quota, non il suo reciproco.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Moltiplicare per quattro inverte il rendimento. Moltiplicare per il tempo produce J·s; omettere quattro considera tutta l’energia ricevuta come lavoro. Il rapporto t/(4Q_h) ha unità inversa a una potenza.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Rendimento e lavoro per ciclo",
+        "Durata e potenza media",
+        "Medie statistiche, inverse e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-engine-average-power-04",
+      "kind": "question",
+      "course": "C3",
+      "section": "Potenza utile media di una macchina",
+      "order": 16004,
+      "title": "Stessa durata, più calore per ciclo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L06",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "engine-average-power",
+      "difficulty": 1,
+      "prompt": "Una macchina chiusa opera ciclicamente con rendimento assegnato η=1/4 in ciascuna prova, senza altre sorgenti di energia. Q_h>0 è il calore ricevuto per ciclo, in J, t>0 la durata del ciclo in s. Il lavoro utile per ciclo è W=ηQ_h; P è la potenza utile media su quel ciclo, in watt. I cicli si susseguono senza intervalli inattivi quando si parla di funzionamento ripetuto. Non si richiede la potenza istantanea lungo le singole trasformazioni. A usa Q_h=80 J,t=2 s. B usa Q_h=160 J e la stessa durata. Come cambia P?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 10 a 20 W",
+          "Da 10 a 5 W",
+          "Resta 10 W",
+          "Da 10 a 80 W",
+          "Da 10 a 40 W"
+        ],
+        "value": "Da 10 a 20 W"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A compie venti joule in due secondi. B compie un quarto di centosessanta, quaranta joule, ancora in due secondi: venti watt. Con η e t invariati la potenza media raddoppia insieme a Q_h."
+        },
+        {
+          "type": "formula",
+          "text": "P_A=10\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " W_B=40\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " P_B=\\frac{40}{2}\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_B=20\\,\\mathrm W"
+        },
+        {
+          "type": "text",
+          "text": "Cinque rende inversa la dipendenza da Q_h e dieci ignora il cambiamento. Ottanta W dimentica η; quaranta copia il lavoro B senza dividerlo per il tempo."
+        }
+      ],
+      "hints": [
+        "Ricalcola il lavoro utile prima di confrontare le potenze.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Cinque rende inversa la dipendenza da Q_h e dieci ignora il cambiamento. Ottanta W dimentica η; quaranta copia il lavoro B senza dividerlo per il tempo.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Rendimento e lavoro per ciclo",
+        "Durata e potenza media",
+        "Medie statistiche, inverse e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-engine-average-power-05",
+      "kind": "question",
+      "course": "C3",
+      "section": "Potenza utile media di una macchina",
+      "order": 16005,
+      "title": "Quanta energia termica serve al ciclo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L06",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "engine-average-power",
+      "difficulty": 2,
+      "prompt": "Una macchina chiusa opera ciclicamente con rendimento assegnato η=1/4 in ciascuna prova, senza altre sorgenti di energia. Q_h>0 è il calore ricevuto per ciclo, in J, t>0 la durata del ciclo in s. Il lavoro utile per ciclo è W=ηQ_h; P è la potenza utile media su quel ciclo, in watt. I cicli si susseguono senza intervalli inattivi quando si parla di funzionamento ripetuto. Non si richiede la potenza istantanea lungo le singole trasformazioni. P=10 W e t=2 s. Quanto vale Q_h in J?",
+      "answer": {
+        "type": "numeric",
+        "value": 80,
+        "unit": "J",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dieci joule al secondo per due secondi corrispondono a venti joule utili. Poiché sono un quarto del calore assorbito, l’ingresso deve essere quattro volte venti: ottanta joule. L’inversa conserva entrambe le operazioni, moltiplicazione per t e divisione per η."
+        },
+        {
+          "type": "formula",
+          "text": "W=Pt"
+        },
+        {
+          "type": "formula",
+          "text": " W=20\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " Q_h=4Pt"
+        },
+        {
+          "type": "formula",
+          "text": " Q_h=80\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Venti J è soltanto il lavoro utile. Cinque J divide ancora per quattro e quaranta J non conta la durata di due secondi. In unità, W·s sono J."
+        }
+      ],
+      "hints": [
+        "Ricostruisci prima il lavoro medio sul ciclo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Venti J è soltanto il lavoro utile. Cinque J divide ancora per quattro e quaranta J non conta la durata di due secondi. In unità, W·s sono J.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Rendimento e lavoro per ciclo",
+        "Durata e potenza media",
+        "Medie statistiche, inverse e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-engine-average-power-06",
+      "kind": "question",
+      "course": "C3",
+      "section": "Potenza utile media di una macchina",
+      "order": 16006,
+      "title": "La durata che realizza la potenza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L06",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "engine-average-power",
+      "difficulty": 2,
+      "prompt": "Una macchina chiusa opera ciclicamente con rendimento assegnato η=1/4 in ciascuna prova, senza altre sorgenti di energia. Q_h>0 è il calore ricevuto per ciclo, in J, t>0 la durata del ciclo in s. Il lavoro utile per ciclo è W=ηQ_h; P è la potenza utile media su quel ciclo, in watt. I cicli si susseguono senza intervalli inattivi quando si parla di funzionamento ripetuto. Non si richiede la potenza istantanea lungo le singole trasformazioni. P=10 W e Q_h=80 J. Quanto vale t in s?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il lavoro del ciclo vale un quarto di ottanta, venti joule. Dividendo venti joule per dieci joule al secondo otteniamo due secondi. Isolare t richiede P>0; qui segue da Q_h>0 e rendimento positivo."
+        },
+        {
+          "type": "formula",
+          "text": "t=\\frac{Q_h}{4P}"
+        },
+        {
+          "type": "formula",
+          "text": " t=\\frac{80}{40}\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " t=2\\,\\mathrm s"
+        },
+        {
+          "type": "text",
+          "text": "Otto secondi dimentica il rendimento. Un mezzo secondo è il reciproco del risultato numerico e non deriva dall’inversa; quaranta J è una quantità energetica, non una durata. Con t=2 s il modello restituisce10 W."
+        }
+      ],
+      "hints": [
+        "Dividi il lavoro utile, non tutto Q_h, per P.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Otto secondi dimentica il rendimento. Un mezzo secondo è il reciproco del risultato numerico e non deriva dall’inversa; quaranta J è una quantità energetica, non una durata. Con t=2 s il modello restituisce10 W.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Rendimento e lavoro per ciclo",
+        "Durata e potenza media",
+        "Medie statistiche, inverse e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-engine-average-power-07",
+      "kind": "question",
+      "course": "C3",
+      "section": "Potenza utile media di una macchina",
+      "order": 16007,
+      "title": "Lo stesso ciclo energetico svolto più lentamente",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L06",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "engine-average-power",
+      "difficulty": 2,
+      "prompt": "Una macchina chiusa opera ciclicamente con rendimento assegnato η=1/4 in ciascuna prova, senza altre sorgenti di energia. Q_h>0 è il calore ricevuto per ciclo, in J, t>0 la durata del ciclo in s. Il lavoro utile per ciclo è W=ηQ_h; P è la potenza utile media su quel ciclo, in watt. I cicli si susseguono senza intervalli inattivi quando si parla di funzionamento ripetuto. Non si richiede la potenza istantanea lungo le singole trasformazioni. A usa Q_h=80 J,t_A=2 s. B mantiene Q_h ma ha t_B=4 s. Quanto vale P_B/P_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "2",
+          "1",
+          "1/4",
+          "4"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il lavoro utile è venti joule in entrambi i casi. A lo fornisce in due secondi, B in quattro: P_A=10 W e P_B=5 W. Il rapporto è un mezzo, inverso del fattore due sulle durate."
+        },
+        {
+          "type": "formula",
+          "text": "P_A=10\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_B=5\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_B/P_A=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Due segue direttamente il tempo e uno ignora che la potenza è una rapidità di trasferimento. Un quarto e quattro introducono un quadrato assente dalla legge."
+        }
+      ],
+      "hints": [
+        "Cancella il lavoro comune e confronta t_A/t_B.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due segue direttamente il tempo e uno ignora che la potenza è una rapidità di trasferimento. Un quarto e quattro introducono un quadrato assente dalla legge.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Rendimento e lavoro per ciclo",
+        "Durata e potenza media",
+        "Medie statistiche, inverse e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-engine-average-power-08",
+      "kind": "question",
+      "course": "C3",
+      "section": "Potenza utile media di una macchina",
+      "order": 16008,
+      "title": "Controllo di una potenza proposta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L06",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "engine-average-power",
+      "difficulty": 2,
+      "prompt": "Una macchina chiusa opera ciclicamente con rendimento assegnato η=1/4 in ciascuna prova, senza altre sorgenti di energia. Q_h>0 è il calore ricevuto per ciclo, in J, t>0 la durata del ciclo in s. Il lavoro utile per ciclo è W=ηQ_h; P è la potenza utile media su quel ciclo, in watt. I cicli si susseguono senza intervalli inattivi quando si parla di funzionamento ripetuto. Non si richiede la potenza istantanea lungo le singole trasformazioni. Q_h=80 J e t=2 s. Si propone P=20 W. Quanto vale proposta meno risultato corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "10 W",
+          "−10 W",
+          "20 W",
+          "0 W",
+          "5 W"
+        ],
+        "value": "10 W"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il lavoro è venti joule e la potenza corretta dieci watt. La proposta supera il risultato di dieci watt. Il valore venti coincide con il numero del lavoro in J, ma la trasformazione da energia a potenza richiede ancora la durata."
+        },
+        {
+          "type": "formula",
+          "text": "P=10\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " e=(20-10)\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " e=10\\,\\mathrm W"
+        },
+        {
+          "type": "text",
+          "text": "Meno dieci scambia i termini dello scarto. Venti copia la proposta, zero la accetta e cinque dimezza ancora la differenza. Il confronto è fra potenze, quindi lo scarto è in W."
+        }
+      ],
+      "hints": [
+        "Non confondere il valore numerico del lavoro con la potenza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Meno dieci scambia i termini dello scarto. Venti copia la proposta, zero la accetta e cinque dimezza ancora la differenza. Il confronto è fra potenze, quindi lo scarto è in W.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Rendimento e lavoro per ciclo",
+        "Durata e potenza media",
+        "Medie statistiche, inverse e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-engine-average-power-09",
+      "kind": "question",
+      "course": "C3",
+      "section": "Potenza utile media di una macchina",
+      "order": 16009,
+      "title": "L’inversa generale per il calore ricevuto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L06",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "engine-average-power",
+      "difficulty": 2,
+      "prompt": "Una macchina chiusa opera ciclicamente con rendimento assegnato η=1/4 in ciascuna prova, senza altre sorgenti di energia. Q_h>0 è il calore ricevuto per ciclo, in J, t>0 la durata del ciclo in s. Il lavoro utile per ciclo è W=ηQ_h; P è la potenza utile media su quel ciclo, in watt. I cicli si susseguono senza intervalli inattivi quando si parla di funzionamento ripetuto. Non si richiede la potenza istantanea lungo le singole trasformazioni. P e t sono noti e positivi. Quale espressione ricava Q_h?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Q_h = 4 P t",
+          "Q_h = P t / 4",
+          "Q_h = 4 P / t",
+          "Q_h = t / (4 P)",
+          "Q_h = P / (4 t)"
+        ],
+        "value": "Q_h = 4 P t"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplichiamo P=Q_h/(4t) per4t: Q_h=4Pt. Il prodotto potenza per durata è energia; quattro compensa il fatto che solo un quarto dell’ingresso diventa lavoro. Tutti i dati positivi danno Q_h positivo."
+        },
+        {
+          "type": "formula",
+          "text": "4Pt=Q_h"
+        },
+        {
+          "type": "formula",
+          "text": " Q_h=4Pt"
+        },
+        {
+          "type": "formula",
+          "text": " [Pt]=\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Pt/4 applica nuovamente il rendimento invece di invertirlo. P/t e P/(4t) hanno dimensione energia su tempo al quadrato; t/P non è un’energia."
+        }
+      ],
+      "hints": [
+        "L’operazione inversa deve eliminare l’intero denominatore4t.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Pt/4 applica nuovamente il rendimento invece di invertirlo. P/t e P/(4t) hanno dimensione energia su tempo al quadrato; t/P non è un’energia.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Rendimento e lavoro per ciclo",
+        "Durata e potenza media",
+        "Medie statistiche, inverse e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-engine-average-power-10",
+      "kind": "question",
+      "course": "C3",
+      "section": "Potenza utile media di una macchina",
+      "order": 16010,
+      "title": "Fattori indipendenti sul calore e sulla durata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L06",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "engine-average-power",
+      "difficulty": 2,
+      "prompt": "Una macchina chiusa opera ciclicamente con rendimento assegnato η=1/4 in ciascuna prova, senza altre sorgenti di energia. Q_h>0 è il calore ricevuto per ciclo, in J, t>0 la durata del ciclo in s. Il lavoro utile per ciclo è W=ηQ_h; P è la potenza utile media su quel ciclo, in watt. I cicli si susseguono senza intervalli inattivi quando si parla di funzionamento ripetuto. Non si richiede la potenza istantanea lungo le singole trasformazioni. Fra prove Q_h,B=κ₁Q_h,A e t_B=κ₂t_A, con κ₁,κ₂>0. Quanto vale P_B/P_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ / κ₂",
+          "κ₁ κ₂",
+          "κ₂ / κ₁",
+          "κ₁² / κ₂",
+          "κ₁ + κ₂"
+        ],
+        "value": "κ₁ / κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il rendimento comune si cancella nel rapporto delle potenze. Il fattore sul calore rimane al numeratore e quello sul tempo al denominatore. Se entrambi sono uguali, il lavoro aumenta nello stesso rapporto della durata e la potenza media resta la stessa."
+        },
+        {
+          "type": "formula",
+          "text": "P_B=\\frac{\\kappa_1}{\\kappa_2}P_A"
+        },
+        {
+          "type": "formula",
+          "text": " P_B/P_A=\\frac{\\kappa_1}{\\kappa_2}"
+        },
+        {
+          "type": "text",
+          "text": "Il prodotto tratta una durata maggiore come aumento di potenza. Il quoziente inverso scambia le prove, il quadrato di κ₁ non è nella legge e la somma darebbe due per prove identiche."
+        }
+      ],
+      "hints": [
+        "Scrivi entrambe le potenze prima di cancellare η.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il prodotto tratta una durata maggiore come aumento di potenza. Il quoziente inverso scambia le prove, il quadrato di κ₁ non è nella legge e la somma darebbe due per prove identiche.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Rendimento e lavoro per ciclo",
+        "Durata e potenza media",
+        "Medie statistiche, inverse e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-engine-average-power-11",
+      "kind": "question",
+      "course": "C3",
+      "section": "Potenza utile media di una macchina",
+      "order": 16011,
+      "title": "Energia e tempo cambiano nello stesso confronto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L06",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "engine-average-power",
+      "difficulty": 2,
+      "prompt": "Una macchina chiusa opera ciclicamente con rendimento assegnato η=1/4 in ciascuna prova, senza altre sorgenti di energia. Q_h>0 è il calore ricevuto per ciclo, in J, t>0 la durata del ciclo in s. Il lavoro utile per ciclo è W=ηQ_h; P è la potenza utile media su quel ciclo, in watt. I cicli si susseguono senza intervalli inattivi quando si parla di funzionamento ripetuto. Non si richiede la potenza istantanea lungo le singole trasformazioni. A usa Q_h=80 J,t=2 s. B usa Q_h=1 J,t=1 s. Quanto vale P_B/P_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/40",
+          "40",
+          "1/80",
+          "1/2",
+          "1/4"
+        ],
+        "value": "1/40"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha potenza dieci watt. B fornisce un quarto di joule utile in un secondo, quindi un quarto di watt. Dividere1/4 per10 dà1/40. Il confronto deve includere la durata B, che è metà di quella A."
+        },
+        {
+          "type": "formula",
+          "text": "P_A=10\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_B=\\frac14\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_B/P_A=\\frac1{40}"
+        },
+        {
+          "type": "text",
+          "text": "Quaranta è il reciproco. Un ottantesimo segue solo il calore; un mezzo segue il rapporto dei tempi e un quarto copia il valore numerico della potenza B."
+        }
+      ],
+      "hints": [
+        "Mantieni le frazioni esatte: (1/4)/10=1/40.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quaranta è il reciproco. Un ottantesimo segue solo il calore; un mezzo segue il rapporto dei tempi e un quarto copia il valore numerico della potenza B.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Rendimento e lavoro per ciclo",
+        "Durata e potenza media",
+        "Medie statistiche, inverse e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-engine-average-power-12",
+      "kind": "question",
+      "course": "C3",
+      "section": "Potenza utile media di una macchina",
+      "order": 16012,
+      "title": "Media statistica e concatenazione di cicli",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L06",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "engine-average-power",
+      "difficulty": 2,
+      "prompt": "Una macchina chiusa opera ciclicamente con rendimento assegnato η=1/4 in ciascuna prova, senza altre sorgenti di energia. Q_h>0 è il calore ricevuto per ciclo, in J, t>0 la durata del ciclo in s. Il lavoro utile per ciclo è W=ηQ_h; P è la potenza utile media su quel ciclo, in watt. I cicli si susseguono senza intervalli inattivi quando si parla di funzionamento ripetuto. Non si richiede la potenza istantanea lungo le singole trasformazioni. A usa Q_h=80 J,t=2 s; B usa Q_h=1 J,t=1 s. Qual è la media aritmetica dei due P con uguale peso?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "41/8 W",
+          "27/4 W",
+          "41/4 W",
+          "39/8 W",
+          "10 W"
+        ],
+        "value": "41/8 W"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le potenze sono10 W e1/4 W. La loro somma è41/4 W e la metà41/8 W. Due cicli concatenati trasferirebbero invece81/4 J in3 s, con potenza27/4 W: quella è una media pesata sulle durate, non la media statistica a pesi uguali richiesta. È anche il modello valutato su Q_h medio81/2 J e t medio3/2 s."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/0996c28f0fe70d91b099f44bf9c96abf624d40e0ef09a44e0f11ddd7757d1800",
+          "text": "Il pannello finale confronta P_A=10 W e P_B=1/4 W: barre200 px e5 px alla scala20 px/W; media statistica41/8 W con barra102,5 px. La potenza media dei due cicli concatenati sarebbe invece27/4 W perché le durate2 s e1 s danno pesi diversi. Le scale delle energie e delle potenze sono distinte."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline P=\\frac{10+1/4}{2}\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline P=\\frac{41}{8}\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_{\\rm concatenati}=\\frac{27}{4}\\,\\mathrm W"
+        },
+        {
+          "type": "text",
+          "text": "Ventisette quarti corrisponde ai cicli concatenati. Quarantuno quarti non dimezza la somma e trentanove ottavi usa una sottrazione. Dieci copia il ciclo A e ignora B."
+        }
+      ],
+      "hints": [
+        "Controlla se le prove hanno uguale peso o sono pesate per il tempo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Ventisette quarti corrisponde ai cicli concatenati. Quarantuno quarti non dimezza la somma e trentanove ottavi usa una sottrazione. Dieci copia il ciclo A e ignora B.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Rendimento e lavoro per ciclo",
+        "Durata e potenza media",
+        "Medie statistiche, inverse e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-engine-average-power-13",
+      "kind": "question",
+      "course": "C3",
+      "section": "Potenza utile media di una macchina",
+      "order": 16013,
+      "title": "La durata richiesta per una potenza bersaglio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L06",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "engine-average-power",
+      "difficulty": 3,
+      "prompt": "Una macchina chiusa opera ciclicamente con rendimento assegnato η=1/4 in ciascuna prova, senza altre sorgenti di energia. Q_h>0 è il calore ricevuto per ciclo, in J, t>0 la durata del ciclo in s. Il lavoro utile per ciclo è W=ηQ_h; P è la potenza utile media su quel ciclo, in watt. I cicli si susseguono senza intervalli inattivi quando si parla di funzionamento ripetuto. Non si richiede la potenza istantanea lungo le singole trasformazioni. A usa Q_h=80 J,t_A=2 s. B riceve Q_h,B=1 J e deve avere P_B=(1/40)P_A. Quanto vale t_B/t_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "2",
+          "1/40",
+          "1/80",
+          "1"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Un quarantesimo di10 W è1/4 W. Il lavoro B è1/4 J, quindi t_B=(1/4 J)/(1/4 W)=1 s. Il rapporto con i2 s di A vale1/2. La durata è positiva e ricostruisce il bersaglio."
+        },
+        {
+          "type": "formula",
+          "text": "P_B=\\frac14\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " t_B=\\frac{Q_{h,B}}{4P_B}"
+        },
+        {
+          "type": "formula",
+          "text": " t_B=1\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " t_B/t_A=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Due inverte il rapporto, un quarantesimo copia il bersaglio sulle potenze e un ottantesimo segue solo il calore. Uno imporrebbe t_B=2 s e darebbe1/8 W, metà del bersaglio."
+        }
+      ],
+      "hints": [
+        "Il lavoro B è noto: dividilo per la potenza desiderata.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due inverte il rapporto, un quarantesimo copia il bersaglio sulle potenze e un ottantesimo segue solo il calore. Uno imporrebbe t_B=2 s e darebbe1/8 W, metà del bersaglio.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Rendimento e lavoro per ciclo",
+        "Durata e potenza media",
+        "Medie statistiche, inverse e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-engine-average-power-14",
+      "kind": "question",
+      "course": "C3",
+      "section": "Potenza utile media di una macchina",
+      "order": 16014,
+      "title": "Il display di potenza non legge direttamente il calore",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L06",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "engine-average-power",
+      "difficulty": 3,
+      "prompt": "Una macchina chiusa opera ciclicamente con rendimento assegnato η=1/4 in ciascuna prova, senza altre sorgenti di energia. Q_h>0 è il calore ricevuto per ciclo, in J, t>0 la durata del ciclo in s. Il lavoro utile per ciclo è W=ηQ_h; P è la potenza utile media su quel ciclo, in watt. I cicli si susseguono senza intervalli inattivi quando si parla di funzionamento ripetuto. Non si richiede la potenza istantanea lungo le singole trasformazioni. S=qP è un display continuo adimensionale con q>0 costante. A: Q_h=80 J,t=2 s,S=30. B: t=1 s,S=3/4. Quanto vale Q_h,B in J?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "J",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha potenza10 W, dunque q=30/(10 W)=3 W⁻¹. La lettura B divisa per tre vale1/4 W. Moltiplicando per4t_B si ricava un joule ricevuto. La lettura frazionaria è un’uscita continua, non un numero intero di cicli."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{W^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " P_B=\\frac14\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{h,B}=4P_Bt_B"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{h,B}=1\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Tre quarti è la lettura senza unità; usarla come watt darebbe3 J. Un quarto J copia il solo lavoro utile B, mentre l’ingresso è quattro volte maggiore."
+        }
+      ],
+      "hints": [
+        "Decodifica P e poi ricostruisci l’energia ricevuta.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre quarti è la lettura senza unità; usarla come watt darebbe3 J. Un quarto J copia il solo lavoro utile B, mentre l’ingresso è quattro volte maggiore.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Rendimento e lavoro per ciclo",
+        "Durata e potenza media",
+        "Medie statistiche, inverse e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-engine-average-power-15",
+      "kind": "question",
+      "course": "C3",
+      "section": "Potenza utile media di una macchina",
+      "order": 16015,
+      "title": "La taratura affine prima della potenza utile",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L06",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "engine-average-power",
+      "difficulty": 3,
+      "prompt": "Una macchina chiusa opera ciclicamente con rendimento assegnato η=1/4 in ciascuna prova, senza altre sorgenti di energia. Q_h>0 è il calore ricevuto per ciclo, in J, t>0 la durata del ciclo in s. Il lavoro utile per ciclo è W=ηQ_h; P è la potenza utile media su quel ciclo, in watt. I cicli si susseguono senza intervalli inattivi quando si parla di funzionamento ripetuto. Non si richiede la potenza istantanea lungo le singole trasformazioni. Il display continuo è S=qP+b, con q>0 e q,b costanti. A: Q_h=80 J,t=2 s,S=21. B: Q_h=1 J,t=1 s,S=3/2. C: t=2 s,S=41. Quanto vale Q_h,C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "160 J",
+          "80 J",
+          "40 J",
+          "164 J",
+          "320 J"
+        ],
+        "value": "160 J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A e B hanno potenze10 W e1/4 W. La differenza delle letture è39/2 e quella delle potenze39/4 W: q=2 W⁻¹, poi b=1. C ha P_C=(41−1)/2=20 W. In2 s produce40 J utili e richiede160 J termici."
+        },
+        {
+          "type": "formula",
+          "text": "q=2\\,\\mathrm{W^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " P_C=20\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{h,C}=4P_Ct_C"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{h,C}=160\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Ottanta J darebbero la potenza A e lettura21. Quaranta è il lavoro utile C. Centosessantaquattro J omette b, usa P=41/2 W e ricostruisce S=42. Trecentoventi raddoppia di nuovo la durata già conteggiata."
+        }
+      ],
+      "hints": [
+        "Usa le differenze per q; l’offset si toglie prima della divisione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Ottanta J darebbero la potenza A e lettura21. Quaranta è il lavoro utile C. Centosessantaquattro J omette b, usa P=41/2 W e ricostruisce S=42. Trecentoventi raddoppia di nuovo la durata già conteggiata.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Rendimento e lavoro per ciclo",
+        "Durata e potenza media",
+        "Medie statistiche, inverse e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-engine-average-power-16",
+      "kind": "question",
+      "course": "C3",
+      "section": "Potenza utile media di una macchina",
+      "order": 16016,
+      "title": "Un vincolo che rende la misura ridondante",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C3-L06",
+        "C3-L08",
+        "C3-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "engine-average-power",
+      "difficulty": 3,
+      "prompt": "Una macchina chiusa opera ciclicamente con rendimento assegnato η=1/4 in ciascuna prova, senza altre sorgenti di energia. Q_h>0 è il calore ricevuto per ciclo, in J, t>0 la durata del ciclo in s. Il lavoro utile per ciclo è W=ηQ_h; P è la potenza utile media su quel ciclo, in watt. I cicli si susseguono senza intervalli inattivi quando si parla di funzionamento ripetuto. Non si richiede la potenza istantanea lungo le singole trasformazioni. Fra modi operativi diversi si impone Q_h=(40 J/s)t. Si misura P=10 W. Quali durate t>0 sono compatibili?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Infinite: ogni t>0, con Q_h=(40 J/s)t",
+          "Solo t=2 s",
+          "Solo t=10 s",
+          "Nessuna",
+          "Solo t=0"
+        ],
+        "value": "Infinite: ogni t>0, con Q_h=(40 J/s)t"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituendo il vincolo nella potenza media resta P=(40 J/s)t/(4t)=10 W per ogni t positivo. La misura non fornisce una seconda condizione indipendente. Per esempio t=1 s,Q_h=40 J e t=2 s,Q_h=80 J sono entrambi validi. Il vincolo descrive prove diverse, non l’evoluzione del calore durante un singolo ciclo."
+        },
+        {
+          "type": "formula",
+          "text": "P=\\frac{(40\\,\\mathrm{J/s})t}{4t}"
+        },
+        {
+          "type": "formula",
+          "text": " P=10\\,\\mathrm W\\quad(t>0)"
+        },
+        {
+          "type": "text",
+          "text": "Due secondi riprende il riferimento senza essere imposto. Dieci secondi copia il numero della potenza in un’altra unità. Nessuna ignora gli esempi e zero renderebbe il rapporto energia/durata indefinito."
+        }
+      ],
+      "hints": [
+        "Semplifica t solo nel dominio strettamente positivo e valuta l’indipendenza dei dati.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Due secondi riprende il riferimento senza essere imposto. Dieci secondi copia il numero della potenza in un’altra unità. Nessuna ignora gli esempi e zero renderebbe il rapporto energia/durata indefinito.",
+        "target": "C3-L09"
+      },
+      "coverage": [
+        "Rendimento e lavoro per ciclo",
+        "Durata e potenza media",
+        "Medie statistiche, inverse e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "0996c28f0fe70d91b099f44bf9c96abf624d40e0ef09a44e0f11ddd7757d1800",
+      "name": "engine-average-power-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTQ1MCIgdmlld0JveD0iMCAwIDY0MCAxNDUwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+RW5lcmdpYSBwZXIgY2ljbG8gZSBwb3RlbnphIG1lZGlhPC90aXRsZT48ZGVzYyBpZD0iZGVzYyI+T3R0YW50YSBqb3VsZSByaWNldnV0aSwgdmVudGkgdXRpbGkgZSBzZXNzYW50YSBjZWR1dGk7IHVuIGVzZW1waW8gZGkgbGF2b3JvIGN1bXVsYXRpdm8gY29uIG1lZGlhIGRpZWNpIHdhdHQgc3UgZHVlIHNlY29uZGk7IHBvdGVuemUgZGkgZHVlIHByb3ZlIGRpZWNpIHdhdHQgZSB1biBxdWFydG8gZGkgd2F0dCBjb24gbWVkaWEgcXVhcmFudHVubyBvdHRhdmkuIExlIHNjYWxlIGxvY2FsaSBkaXN0aW5ndW9ubyBlbmVyZ2lhLCB0ZW1wbyBlIHBvdGVuemEuPC9kZXNjPjxkZWZzPjxtYXJrZXIgaWQ9ImEiIG1hcmtlcldpZHRoPSI4IiBtYXJrZXJIZWlnaHQ9IjgiIHJlZlg9IjciIHJlZlk9IjQiIG9yaWVudD0iYXV0byI+PHBhdGggZD0iTTAgMEw4IDRMMCA4WiIgZmlsbD0iIzE3Mzk0ZSIvPjwvbWFya2VyPjwvZGVmcz48cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjE0NTAiIHJ4PSIyMCIgZmlsbD0iI2Y1ZmFmZiIvPjxnIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIwIiBmaWxsPSIjMTYzMDQ3Ij48dGV4dCB4PSIzNSIgeT0iNTAiIGZvbnQtc2l6ZT0iMjYiIGZvbnQtd2VpZ2h0PSJib2xkIj4xIMK3IFVuIHF1YXJ0byBkaXZlbnRhIGxhdm9ybzwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMTAwIj5CYXJyZSBkYSB6ZXJvLCBzY2FsYSBjb211bmUgNCBweC9KPC90ZXh0PjxyZWN0IHg9IjEwMCIgeT0iMTQ1IiB3aWR0aD0iMzIwIiBoZWlnaHQ9IjQ4IiBmaWxsPSIjMTYzMDQ3Ii8+PHRleHQgeD0iMTgwIiB5PSIxNzciIGZpbGw9IndoaXRlIj5RX2ggPSA4MCBKPC90ZXh0PjxyZWN0IHg9IjEwMCIgeT0iMjMwIiB3aWR0aD0iMjQwIiBoZWlnaHQ9IjQ4IiBmaWxsPSIjMzk3NDViIi8+PHJlY3QgeD0iMzQwIiB5PSIyMzAiIHdpZHRoPSI4MCIgaGVpZ2h0PSI0OCIgZmlsbD0iIzE5NjA4MiIvPjx0ZXh0IHg9IjE1NSIgeT0iMjYyIiBmaWxsPSJ3aGl0ZSI+UV9jID0gNjAgSjwvdGV4dD48dGV4dCB4PSIzNTIiIHk9IjI2MiIgZmlsbD0id2hpdGUiPjIwIEo8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjMyNSI+VyA9IDIwIEogw6ggbGF2b3JvLCBub24gcG90ZW56YS48L3RleHQ+PHRleHQgeD0iMzUiIHk9IjM2NSI+ODAgSiA9IDYwIEogKyAyMCBKIMK3IM63ID0gMS80PC90ZXh0PjxwYXRoIGQ9Ik0zNSA0MTBINjA1IiBzdHJva2U9IiNiNWNiZDkiLz48dGV4dCB4PSIzNSIgeT0iNDY1IiBmb250LXNpemU9IjI2IiBmb250LXdlaWdodD0iYm9sZCI+MiDCtyBMYSBzdGVzc2EgZW5lcmdpYSBpbiBkdWUgc2Vjb25kaTwvdGV4dD48dGV4dCB4PSIzNSIgeT0iNTEwIj5Fc2VtcGlvIGlsbHVzdHJhdGl2byBkaSBsYXZvcm8gY3VtdWxhdGl2bzwvdGV4dD48cGF0aCBkPSJNMTEwIDg1MFY1NTUiIHN0cm9rZT0iIzE3Mzk0ZSIgc3Ryb2tlLXdpZHRoPSIyIiBmaWxsPSJub25lIiBtYXJrZXItZW5kPSJ1cmwoI2EpIi8+PHBhdGggZD0iTTExMCA4NTBINDEwIiBzdHJva2U9IiMxNzM5NGUiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhKSIvPjxwYXRoIGQ9Ik0xMTAgODUwTDI3MCA2MTAiIHN0cm9rZT0iIzE5NjA4MiIgc3Ryb2tlLXdpZHRoPSI0Ii8+PHBhdGggZD0iTTExMCA2MTBIMjcwVjg1MCIgc3Ryb2tlPSIjNzY5NGE2IiBzdHJva2UtZGFzaGFycmF5PSI1IDUiIGZpbGw9Im5vbmUiLz48Y2lyY2xlIGN4PSIyNzAiIGN5PSI2MTAiIHI9IjUiIGZpbGw9IiMxOTYwODIiLz48dGV4dCB4PSI0NSIgeT0iNjE1Ij4yMCBKPC90ZXh0Pjx0ZXh0IHg9IjkwIiB5PSI4ODAiPjA8L3RleHQ+PHRleHQgeD0iMjUwIiB5PSI4ODAiPjIgczwvdGV4dD48dGV4dCB4PSI0MjUiIHk9Ijg1NSI+dDwvdGV4dD48dGV4dCB4PSIxMzUiIHk9IjU3MCI+TF9jdW08L3RleHQ+PHRleHQgeD0iMzAwIiB5PSI2NDAiPlBfbWVkaWE8L3RleHQ+PHRleHQgeD0iMzAwIiB5PSI2NzUiPj0gMjAgSiAvIDIgczwvdGV4dD48dGV4dCB4PSIzMDAiIHk9IjcxMCI+PSAxMCBXPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSI5MjUiPkFzc2k6IDgwIHB4L3MgZSAxMiBweC9KLjwvdGV4dD48dGV4dCB4PSIzNSIgeT0iOTY1Ij5MYSBtZWRpYSBub24gaW1wb25lIHVuYSBwb3RlbnphIGNvc3RhbnRlLjwvdGV4dD48cGF0aCBkPSJNMzUgMTAwMEg2MDUiIHN0cm9rZT0iI2I1Y2JkOSIvPjx0ZXh0IHg9IjM1IiB5PSIxMDU1IiBmb250LXNpemU9IjI2IiBmb250LXdlaWdodD0iYm9sZCI+MyDCtyBEdWUgcHJvdmUsIHBlc2kgc3RhdGlzdGljaSB1Z3VhbGk8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjExMDAiPlNjYWxhOiAyMCBweC9XLCB0dXR0ZSBsZSBiYXJyZSBkYSB6ZXJvPC90ZXh0Pjx0ZXh0IHg9IjUwIiB5PSIxMTcwIj5BPC90ZXh0PjxyZWN0IHg9IjE0MCIgeT0iMTE0NSIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIzNSIgZmlsbD0iIzE5NjA4MiIvPjx0ZXh0IHg9IjM1NSIgeT0iMTE3MCI+MTAgVzwvdGV4dD48dGV4dCB4PSI1MCIgeT0iMTI0MCI+QjwvdGV4dD48cmVjdCB4PSIxNDAiIHk9IjEyMTUiIHdpZHRoPSI1IiBoZWlnaHQ9IjM1IiBmaWxsPSIjMTk2MDgyIi8+PHRleHQgeD0iMTYwIiB5PSIxMjQwIj4xLzQgVzwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMTMxMCI+TWVkaWE8L3RleHQ+PHJlY3QgeD0iMTQwIiB5PSIxMjg1IiB3aWR0aD0iMTAyLjUiIGhlaWdodD0iMzUiIGZpbGw9IiMzOTc0NWIiLz48dGV4dCB4PSIyNjAiIHk9IjEzMTAiPjQxLzggVzwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMTM4MCI+Q2ljbGkgY29uY2F0ZW5hdGk6IHBlc2kgMiBzIGUgMSBzLCBub24gdWd1YWxpLjwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMTQyMCI+TGEgbG9ybyBwb3RlbnphIG1lZGlhIMOoIGludmVjZSAyNy80IFcuPC90ZXh0PjwvZz48L3N2Zz4K"
+    }
+  ]
+}

@@ -1,0 +1,136 @@
+{
+  "schemaVersion": "1.0.0",
+  "status": "GLOBAL_PREVIEW_INTENTIONALLY_SUSPENDED_NOT_PASS",
+  "reason": "Independent reviewer found hidden weight tip SIM-C1-L004-02 and unreadable centripetal tip SIM-C1-L004-04 in registered040 on currentb963; consolidate related geometry findings before expensive full replay.",
+  "runtimeSha256": "b963060675f372b28d79823f92e3a781b32856779fe1dd6a6fbb3feaba30686f",
+  "actualProcessGroup": 23566,
+  "verifiedDriverPid": 23568,
+  "cwdVerification": "p23568\nfcwd\nn/private/tmp/cric-resident-integrator/officina-di-fisica\n",
+  "groupMembersBeforeSignal": [
+    {
+      "pid": 23566,
+      "ppid": 1466,
+      "pgid": 23566,
+      "command": "/bin/zsh -lc PATH=/private/tmp/cric-recovery-venv/bin:$PATH ASTRA_RESULTS=/private/tmp/cric-runtimeb963-all-ui ASTRA_BROWSER_WORKERS=4 node tests/corpus/browser-batches.mjs > /private/tmp/cric-runtimeb963-all-ui.log 2>&1; result=$?; tail -18 /private/tmp/cric-runtimeb963-all-ui.log; exit $result"
+    },
+    {
+      "pid": 23568,
+      "ppid": 23566,
+      "pgid": 23566,
+      "command": "node tests/corpus/browser-batches.mjs"
+    },
+    {
+      "pid": 23924,
+      "ppid": 23568,
+      "pgid": 23566,
+      "command": "/usr/local/bin/node /private/tmp/cric-resident-integrator/officina-di-fisica/tests/corpus/browser-drafts.mjs uniform-position-011"
+    },
+    {
+      "pid": 23926,
+      "ppid": 23924,
+      "pgid": 23566,
+      "command": "/Library/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python -uc \\012import json,secrets,hashlib,time,os\\012from server import store\\012from tools.corpus_engineering.draft_import import import_drafts\\012from server.web import Handler,ThreadingHTTPServer\\012store.initialize()\\012with store.connect() as db:\\012 import_drafts(db,{'id':'owner','role':'autore'},json.load(open(os.environ['ASTRA_BATCH_FILE'])))\\012 ticket=secrets.token_urlsafe(32)\\012 db.execute('INSERT INTO tickets VALUES(?,?)',(hashlib.sha256(ticket.encode()).hexdigest(),int(time.time())+300))\\012s=ThreadingHTTPServer(('127.0.0.1',0),Handler)\\012print(json.dumps({'port':s.server_port,'ticket':ticket}),flush=True)\\012s.serve_forever()\\012"
+    },
+    {
+      "pid": 23947,
+      "ppid": 23568,
+      "pgid": 23566,
+      "command": "/usr/local/bin/node /private/tmp/cric-resident-integrator/officina-di-fisica/tests/corpus/browser-drafts.mjs mean-velocity-012"
+    },
+    {
+      "pid": 23949,
+      "ppid": 23947,
+      "pgid": 23566,
+      "command": "/Library/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python -uc \\012import json,secrets,hashlib,time,os\\012from server import store\\012from tools.corpus_engineering.draft_import import import_drafts\\012from server.web import Handler,ThreadingHTTPServer\\012store.initialize()\\012with store.connect() as db:\\012 import_drafts(db,{'id':'owner','role':'autore'},json.load(open(os.environ['ASTRA_BATCH_FILE'])))\\012 ticket=secrets.token_urlsafe(32)\\012 db.execute('INSERT INTO tickets VALUES(?,?)',(hashlib.sha256(ticket.encode()).hexdigest(),int(time.time())+300))\\012s=ThreadingHTTPServer(('127.0.0.1',0),Handler)\\012print(json.dumps({'port':s.server_port,'ticket':ticket}),flush=True)\\012s.serve_forever()\\012"
+    },
+    {
+      "pid": 23978,
+      "ppid": 23568,
+      "pgid": 23566,
+      "command": "/usr/local/bin/node /private/tmp/cric-resident-integrator/officina-di-fisica/tests/corpus/browser-drafts.mjs accelerated-final-speed-014"
+    },
+    {
+      "pid": 23980,
+      "ppid": 23568,
+      "pgid": 23566,
+      "command": "/usr/local/bin/node /private/tmp/cric-resident-integrator/officina-di-fisica/tests/corpus/browser-drafts.mjs rest-accelerated-distance-015"
+    },
+    {
+      "pid": 23982,
+      "ppid": 23978,
+      "pgid": 23566,
+      "command": "/Library/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python -uc \\012import json,secrets,hashlib,time,os\\012from server import store\\012from tools.corpus_engineering.draft_import import import_drafts\\012from server.web import Handler,ThreadingHTTPServer\\012store.initialize()\\012with store.connect() as db:\\012 import_drafts(db,{'id':'owner','role':'autore'},json.load(open(os.environ['ASTRA_BATCH_FILE'])))\\012 ticket=secrets.token_urlsafe(32)\\012 db.execute('INSERT INTO tickets VALUES(?,?)',(hashlib.sha256(ticket.encode()).hexdigest(),int(time.time())+300))\\012s=ThreadingHTTPServer(('127.0.0.1',0),Handler)\\012print(json.dumps({'port':s.server_port,'ticket':ticket}),flush=True)\\012s.serve_forever()\\012"
+    },
+    {
+      "pid": 23985,
+      "ppid": 23980,
+      "pgid": 23566,
+      "command": "/Library/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python -uc \\012import json,secrets,hashlib,time,os\\012from server import store\\012from tools.corpus_engineering.draft_import import import_drafts\\012from server.web import Handler,ThreadingHTTPServer\\012store.initialize()\\012with store.connect() as db:\\012 import_drafts(db,{'id':'owner','role':'autore'},json.load(open(os.environ['ASTRA_BATCH_FILE'])))\\012 ticket=secrets.token_urlsafe(32)\\012 db.execute('INSERT INTO tickets VALUES(?,?)',(hashlib.sha256(ticket.encode()).hexdigest(),int(time.time())+300))\\012s=ThreadingHTTPServer(('127.0.0.1',0),Handler)\\012print(json.dumps({'port':s.server_port,'ticket':ticket}),flush=True)\\012s.serve_forever()\\012"
+    }
+  ],
+  "signal": "SIGTERM_TO_ONLY_OWN_VERIFIED_TEST_PROCESS_GROUP",
+  "completedPerBatchMarkersBeforeSuspension": [
+    {
+      "batch": "mean-acceleration-013",
+      "caseCount": 48,
+      "path": "/private/tmp/cric-runtimeb963-all-ui/mean-acceleration-013/completion.json"
+    },
+    {
+      "batch": "scalar-product-006",
+      "caseCount": 48,
+      "path": "/private/tmp/cric-runtimeb963-all-ui/scalar-product-006/completion.json"
+    },
+    {
+      "batch": "scale-002",
+      "caseCount": 48,
+      "path": "/private/tmp/cric-runtimeb963-all-ui/scale-002/completion.json"
+    },
+    {
+      "batch": "uniform-displacement-010",
+      "caseCount": 48,
+      "path": "/private/tmp/cric-runtimeb963-all-ui/uniform-displacement-010/completion.json"
+    },
+    {
+      "batch": "units-001",
+      "caseCount": 96,
+      "path": "/private/tmp/cric-runtimeb963-all-ui/units-001/completion.json"
+    },
+    {
+      "batch": "vector-angle-ratio-009",
+      "caseCount": 48,
+      "path": "/private/tmp/cric-runtimeb963-all-ui/vector-angle-ratio-009/completion.json"
+    },
+    {
+      "batch": "vector-product-007",
+      "caseCount": 48,
+      "path": "/private/tmp/cric-runtimeb963-all-ui/vector-product-007/completion.json"
+    },
+    {
+      "batch": "vector-projection-008",
+      "caseCount": 48,
+      "path": "/private/tmp/cric-runtimeb963-all-ui/vector-projection-008/completion.json"
+    },
+    {
+      "batch": "vectors-003",
+      "caseCount": 48,
+      "path": "/private/tmp/cric-runtimeb963-all-ui/vectors-003/completion.json"
+    },
+    {
+      "batch": "vectors-difference-004",
+      "caseCount": 48,
+      "path": "/private/tmp/cric-runtimeb963-all-ui/vectors-difference-004/completion.json"
+    },
+    {
+      "batch": "vectors-perpendicular-005",
+      "caseCount": 48,
+      "path": "/private/tmp/cric-runtimeb963-all-ui/vectors-perpendicular-005/completion.json"
+    }
+  ],
+  "globalPass": false,
+  "checkpointCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "timeUtc": "2026-11-25T07:52:02.132414+00:00",
+  "actualGlobalProcessTerminalExitCode": 143,
+  "perBatchTerminalCaseCount": 576
+}

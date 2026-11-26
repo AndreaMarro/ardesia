@@ -1,0 +1,109 @@
+{
+  "schemaVersion": "1.0.0",
+  "reviewer": "Independent AI reviewer /root/review_corpus_increment; distinct from runtime author /root",
+  "purpose": "LAYOUT_ONLY_C1_CONSUMER_PATCH_REVIEW_NOT_SCIENTIFIC_BATCH_APPROVAL",
+  "productionFixSha": "3f400ad26a96f95c13c8c26419224c981f9dfbd6",
+  "runtimeProfileSha256": "8d36a399f6a4d7f436369163be9cf48eb15633cbca7683ebf368f2efccb34a55",
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+  "sourceFileSha256": "84d13bd2658be3b0ce2a55bf7dc698d64ceae151b09deafeabd71507a41d70e3",
+  "terminalReview": "CHANGES_REQUIRED",
+  "browser": {
+    "terminalStatus": "COMPLETED",
+    "exitCode": 0,
+    "realCases": 352,
+    "ids": 26,
+    "profiles": [
+      "320 native",
+      "1280 native",
+      "320 fallback",
+      "1280 fallback"
+    ],
+    "browserVersion": "158.0.8127.37",
+    "errors": [],
+    "protocolSha256": "5e5f5c94121f44120a3ea283c990325b19dcc3cfb7b431c31edcfaa86e807f7b",
+    "rawSha256": "6f0e775e4e87817e5992a461030c9b58bfa36aec69cda9b26f3554567f9f5381"
+  },
+  "geometry": {
+    "states": 1245,
+    "signedArrows": 1176,
+    "allSignedVectorDeltasEqualB963": true,
+    "allTipsClearOfOpaqueBodiesAndBase": true,
+    "nativeCasesCompleteGlyphViewport": 176,
+    "allCompleteGlyphMeshesInsideViewport": true,
+    "rawSha256": "e2c44ec458f9b2760c80769c0edc791bea1d4a6afacad1139ca0234018fdf936"
+  },
+  "acceptedFixScope": [
+    "Weight caduta at released-body contact t2 and energy height0/.25 clears opaque body/base at unchanged delta(0,-.42,0). Real h0/contact screenshots read; .25 screenshot now captured in8d (no such screenshot was claimed in b963).",
+    "Hooke+6cm native320 no longer covered by Estremo mobile sprite; endpoint name retained in actual keyboard-opened HTMLlegend.",
+    "Force pair shares one display line/origin and1.14gain, complete cones clear opaque box; visible real6N320native.",
+    "Circular V1 tip and101centerline samples clear opaque sphere; some cone vertices intersect the other vector at shared origin; this is not classified as whole-vector invisibility. New legend correctly distinguishes velocity and acceleration scales."
+  ],
+  "findings": [
+    {
+      "priority": "P2",
+      "id": "SIM-C1-L007-01",
+      "category": "CONSUMER_LABEL_OCCLUSION",
+      "status": "OPEN",
+      "cases": [
+        {
+          "width": 320,
+          "input": 0,
+          "renderer": "native",
+          "screenshot": "SIM-C1-L007-01-320-native-x0-tnull.png",
+          "detail": "Actual green tip(174.1698767605,195.9147501763) inside opaque a label rectangle x165.9346..182.4052,y178.0648..198.0648; actualPNG personally read. Ocra tip also inside same box."
+        },
+        {
+          "width": 320,
+          "input": 180,
+          "renderer": "native",
+          "screenshot": "SIM-C1-L007-01-320-native-x180-tnull.png",
+          "detail": "Green arrowhead is covered by a label while opposing ocra arrow remains visible."
+        },
+        {
+          "width": 1280,
+          "input": 90,
+          "renderer": "native",
+          "screenshot": "SIM-C1-L007-01-1280-native-x90-tnull.png",
+          "detail": "Ocra tip is covered by its b label; PNG personally read."
+        }
+      ],
+      "requiredAction": "Runtime author must prevent vector labels covering measured glyphs; preserve identifiers/colors in accessible representation and rerun current profile."
+    }
+  ],
+  "additionalLimitedObservation": [
+    {
+      "id": "SIM-C1-L003-04",
+      "width": 320,
+      "time": 0,
+      "inputs": [
+        0.25,
+        3
+      ],
+      "category": "PARTIAL_LABEL_OVERLAY_CANDIDATE",
+      "detail": "Via rectangle contains the very short purple-arrow tip by only0.10px at x=.25; actualPNG and fallback comparison read. No claim of whole cone or vector invisibility; keep exact bound and inspect during label correction.",
+      "screenshot": "SIM-C1-L003-04-320-native-x0.25-t0.png"
+    }
+  ],
+  "nonFindingsAndLimits": [
+    "Other-arrow ray intersections at gravita1 and concordant work vectors are recorded, not automatically classed as opaque-body failures.",
+    "The collision-clock null snapshot can overlap velocity arrows, but null is not the actual timed3D/fallback frame; t0/end/contact frames remain separate. No sourceFAIL inferred from unreachable snapshot.",
+    "1245 grid/clock/contact states are bounded, not all continuous times/arbitrary OrbitControls camera angles. Default per-apparatus camera is used.",
+    "Labels projection scans176 native captures with actual fontmetrics/canvas sizes. Containment alone is a candidate; only PNG-read cases above become findings.",
+    "The review covers layout changes and preservation of signed deltas, not a new solution of all26source records. Prior scientific reports are not silently rewritten.",
+    "No036/118/119/140replay or positive048049freeze was started after the b963 findings; runtime author received suspension before any new patch."
+  ],
+  "tests": {
+    "count": 6,
+    "passed": 6,
+    "failed": 0,
+    "seconds": 0.566,
+    "testFile": "tests/corpus/test_c1_grouped_visibility_independent_8d.py",
+    "testSha256": "e955cdcacce8f82efdf4c58a6a2c5930dc31f3d35eed1207a0f99f4901a8bb03",
+    "transcriptSha256": "cbb397a25e4586e6c232c80d8fbf7eacd350418c8b7289781a7643ef87fed84e"
+  },
+  "scientificApproval": false,
+  "questionCredit": 0,
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}

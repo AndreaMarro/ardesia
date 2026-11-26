@@ -1,0 +1,1144 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u6-current-charge-time-01",
+      "kind": "question",
+      "course": "C4",
+      "section": "Corrente media e trasferimento di carica",
+      "order": 20201,
+      "title": "I due milli si cancellano",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "current-charge-time",
+      "difficulty": 1,
+      "prompt": "Attraverso una sezione fissata di un conduttore passa una carica netta Q>0, misurata in mC, durante un intervallo Δt>0, misurato in ms. Il verso positivo è concorde con il trasferimento netto assegnato. I indica la corrente media Q/Δt in ampere: non si assume che la corrente istantanea sia costante. Un millicoulomb è 10⁻³ C e un millisecondo è 10⁻³ s. Con Q=6 mC e Δt=2 ms, quanto vale I in A?",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "A",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Convertiamo separatamente carica e tempo: 6·10⁻³ C diviso 2·10⁻³ s. Il rapporto dei prefissi è uno e il rapporto dei numeri è tre, quindi I=3 C/s=3 A. Questo è il valore medio sul tempo assegnato anche se in una parte dell’intervallo la corrente è maggiore e in un’altra minore."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/e461fa3502871548183d664e1852b7a25bca3d79566d06837ef3c61279b870af",
+          "text": "La sezione fissata permette di definire il trasferimento netto: 6 mC in 2 ms danno media 3 A. Il grafico centrale è un esempio particolare non uniforme: nei primi 1 ms passano 2 mC e nel secondo 1 ms altri 4 mC. La secante complessiva dà ancora 3 A, distinta dalle due pendenze locali. Il pannello magnetico è il caso autonomo del filo molto lungo, visto di fronte con corrente uscente."
+        },
+        {
+          "type": "formula",
+          "text": "Q=6\\cdot10^{-3}\\,\\mathrm C"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta t=2\\cdot10^{-3}\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " I=3\\,\\mathrm{C/s}"
+        },
+        {
+          "type": "formula",
+          "text": " I=3\\,\\mathrm A"
+        },
+        {
+          "type": "text",
+          "text": "Tre mA tratterebbe i 2 ms come 2 s dopo aver convertito correttamente Q in coulomb. Tremila A tratterebbe 6 mC come 6 C mantenendo il tempo in secondi. Dodici moltiplica carica e tempo e non dà una corrente."
+        }
+      ],
+      "hints": [
+        "Converti entrambi i prefissi, oppure cancellali nel rapporto mC/ms.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre mA tratterebbe i 2 ms come 2 s dopo aver convertito correttamente Q in coulomb. Tremila A tratterebbe 6 mC come 6 C mantenendo il tempo in secondi. Dodici moltiplica carica e tempo e non dà una corrente.",
+        "target": "C4-L05"
+      },
+      "coverage": [
+        "Definizione e prefissi milli",
+        "Valore medio distinto da istantaneo e pesi statistici",
+        "Inverse, tarature, vincoli e caso magnetico autonomo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-current-charge-time-02",
+      "kind": "question",
+      "course": "C4",
+      "section": "Corrente media e trasferimento di carica",
+      "order": 20202,
+      "title": "Ampere significa coulomb al secondo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "current-charge-time",
+      "difficulty": 1,
+      "prompt": "Attraverso una sezione fissata di un conduttore passa una carica netta Q>0, misurata in mC, durante un intervallo Δt>0, misurato in ms. Il verso positivo è concorde con il trasferimento netto assegnato. I indica la corrente media Q/Δt in ampere: non si assume che la corrente istantanea sia costante. Un millicoulomb è 10⁻³ C e un millisecondo è 10⁻³ s. Quale unità è dimensionalmente adatta a I?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "A",
+          "C",
+          "s",
+          "V",
+          "Ω"
+        ],
+        "value": "A"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La corrente misura il trasferimento netto di carica per unità di tempo. La sua unità è C/s, denominata ampere. Il fatto che si chieda una media non cambia la dimensione della grandezza."
+        },
+        {
+          "type": "formula",
+          "text": "[I]=\\frac{\\mathrm C}{\\mathrm s}"
+        },
+        {
+          "type": "formula",
+          "text": " 1\\,\\mathrm A=1\\,\\mathrm{C/s}"
+        },
+        {
+          "type": "text",
+          "text": "C misura la carica totale, s la durata. Volt e ohm descrivono rispettivamente differenza di potenziale e resistenza: non sono unità di corrente."
+        }
+      ],
+      "hints": [
+        "Distingui la carica che passa dalla rapidità media del suo trasferimento.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "C misura la carica totale, s la durata. Volt e ohm descrivono rispettivamente differenza di potenziale e resistenza: non sono unità di corrente.",
+        "target": "C4-L05"
+      },
+      "coverage": [
+        "Definizione e prefissi milli",
+        "Valore medio distinto da istantaneo e pesi statistici",
+        "Inverse, tarature, vincoli e caso magnetico autonomo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-current-charge-time-03",
+      "kind": "question",
+      "course": "C4",
+      "section": "Corrente media e trasferimento di carica",
+      "order": 20203,
+      "title": "Il campo circonda il filo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L002",
+        "C4-L01",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "current-charge-time",
+      "difficulty": 1,
+      "prompt": "Caso autonomo: un filo rettilineo molto lungo porta una corrente convenzionale continua uscente dal foglio. Si trascurano gli estremi e il campo di altri conduttori. Quale descrizione del campo magnetico B nel piano del foglio è corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Linee circolari centrate sul filo, con verso antiorario",
+          "Linee radiali uscenti dal filo",
+          "Linee parallele al filo",
+          "Campo nullo perché la corrente è continua",
+          "Linee circolari con verso orario"
+        ],
+        "value": "Linee circolari centrate sul filo, con verso antiorario"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La simmetria del filo lungo dà un campo tangente a circonferenze centrate sul suo asse, nei piani perpendicolari al filo. Per il verso si usa la mano destra: pollice lungo la corrente convenzionale uscente dal foglio, dita in senso antiorario. B è un campo magnetico, distinto dal campo elettrico che guida il trasferimento di carica."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/e461fa3502871548183d664e1852b7a25bca3d79566d06837ef3c61279b870af",
+          "text": "Il pannello finale guarda la sezione del filo: il punto indica corrente convenzionale uscente dal foglio. Le frecce sulle circonferenze sono tangenti e in senso antiorario, secondo la mano destra. Non sono linee di campo elettrico né traiettorie degli elettroni. Il grafico centrale riguarda invece il trasferimento di carica nel tempo, non il campo magnetico."
+        },
+        {
+          "type": "formula",
+          "text": "I\\ \\mathrm{uscente}"
+        },
+        {
+          "type": "formula",
+          "text": " \\vec B\\ \\mathrm{tangente\\ alle\\ circonferenze}"
+        },
+        {
+          "type": "text",
+          "text": "Le linee radiali confondono il campo magnetico del filo con un campo elettrico di sorgente. Le linee parallele non rispettano la direzione tangenziale. Una corrente continua produce un campo magnetico statico non nullo; il verso orario corrisponderebbe alla corrente entrante."
+        }
+      ],
+      "hints": [
+        "Orienta il pollice della mano destra lungo la corrente convenzionale, non lungo la deriva degli elettroni.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Le linee radiali confondono il campo magnetico del filo con un campo elettrico di sorgente. Le linee parallele non rispettano la direzione tangenziale. Una corrente continua produce un campo magnetico statico non nullo; il verso orario corrisponderebbe alla corrente entrante.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Definizione e prefissi milli",
+        "Valore medio distinto da istantaneo e pesi statistici",
+        "Inverse, tarature, vincoli e caso magnetico autonomo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-current-charge-time-04",
+      "kind": "question",
+      "course": "C4",
+      "section": "Corrente media e trasferimento di carica",
+      "order": 20204,
+      "title": "Stesso tempo, meno carica",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "current-charge-time",
+      "difficulty": 1,
+      "prompt": "Attraverso una sezione fissata di un conduttore passa una carica netta Q>0, misurata in mC, durante un intervallo Δt>0, misurato in ms. Il verso positivo è concorde con il trasferimento netto assegnato. I indica la corrente media Q/Δt in ampere: non si assume che la corrente istantanea sia costante. Un millicoulomb è 10⁻³ C e un millisecondo è 10⁻³ s. Q passa da 6 a 1 mC, mentre Δt resta 2 ms. Come cambia I?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 3 a 1/2 A",
+          "Da 3 a 18 A",
+          "Resta 3 A",
+          "Da 3 a 1 A",
+          "Da 3 a 6 A"
+        ],
+        "value": "Da 3 a 1/2 A"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Con il tempo invariato la corrente media è direttamente proporzionale a Q. All’inizio 6/2=3 A; alla fine 1/2 A. La corrente diminuisce di un fattore sei, perché attraverso la sezione passa un sesto della carica nello stesso intervallo."
+        },
+        {
+          "type": "formula",
+          "text": "I_A=3\\,\\mathrm A"
+        },
+        {
+          "type": "formula",
+          "text": " I_B=\\frac12\\,\\mathrm A"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{I_B}{I_A}=\\frac16"
+        },
+        {
+          "type": "text",
+          "text": "Diciotto rende inversa la dipendenza da Q. Tre ignora il cambiamento; uno copia la nuova carica senza dividerla per la durata e sei copia il vecchio Q."
+        }
+      ],
+      "hints": [
+        "Mantieni fisso il denominatore e confronta le cariche nette.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Diciotto rende inversa la dipendenza da Q. Tre ignora il cambiamento; uno copia la nuova carica senza dividerla per la durata e sei copia il vecchio Q.",
+        "target": "C4-L05"
+      },
+      "coverage": [
+        "Definizione e prefissi milli",
+        "Valore medio distinto da istantaneo e pesi statistici",
+        "Inverse, tarature, vincoli e caso magnetico autonomo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-current-charge-time-05",
+      "kind": "question",
+      "course": "C4",
+      "section": "Corrente media e trasferimento di carica",
+      "order": 20205,
+      "title": "Dalla corrente alla carica",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "current-charge-time",
+      "difficulty": 2,
+      "prompt": "Attraverso una sezione fissata di un conduttore passa una carica netta Q>0, misurata in mC, durante un intervallo Δt>0, misurato in ms. Il verso positivo è concorde con il trasferimento netto assegnato. I indica la corrente media Q/Δt in ampere: non si assume che la corrente istantanea sia costante. Un millicoulomb è 10⁻³ C e un millisecondo è 10⁻³ s. Si misura I=3 A durante Δt=2 ms. Quanto vale Q in mC?",
+      "answer": {
+        "type": "numeric",
+        "value": 6,
+        "unit": "mC",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplichiamo I=Q/Δt per il tempo positivo: Q=IΔt. Un ampere per un millisecondo vale un millicoulomb. Quindi 3·2=6 mC; in SI sono 6·10⁻³ C. Usare la corrente media è sufficiente per ricostruire il trasferimento netto totale."
+        },
+        {
+          "type": "formula",
+          "text": "Q=I\\Delta t"
+        },
+        {
+          "type": "formula",
+          "text": " Q=3\\cdot2\\,\\mathrm{mC}"
+        },
+        {
+          "type": "formula",
+          "text": " Q=6\\,\\mathrm{mC}"
+        },
+        {
+          "type": "text",
+          "text": "3/2 divide invece di moltiplicare per il tempo. Sei coulomb perderebbero il prefisso milli. La formula non dà il numero di elettroni senza conoscere il loro contributo al trasferimento netto."
+        }
+      ],
+      "hints": [
+        "Inverti il rapporto e controlla A·ms=mC.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "3/2 divide invece di moltiplicare per il tempo. Sei coulomb perderebbero il prefisso milli. La formula non dà il numero di elettroni senza conoscere il loro contributo al trasferimento netto.",
+        "target": "C4-L05"
+      },
+      "coverage": [
+        "Definizione e prefissi milli",
+        "Valore medio distinto da istantaneo e pesi statistici",
+        "Inverse, tarature, vincoli e caso magnetico autonomo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-current-charge-time-06",
+      "kind": "question",
+      "course": "C4",
+      "section": "Corrente media e trasferimento di carica",
+      "order": 20206,
+      "title": "Il tempo deve essere positivo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "current-charge-time",
+      "difficulty": 2,
+      "prompt": "Attraverso una sezione fissata di un conduttore passa una carica netta Q>0, misurata in mC, durante un intervallo Δt>0, misurato in ms. Il verso positivo è concorde con il trasferimento netto assegnato. I indica la corrente media Q/Δt in ampere: non si assume che la corrente istantanea sia costante. Un millicoulomb è 10⁻³ C e un millisecondo è 10⁻³ s. Si misura I=3 A e passa Q=6 mC. Quanto vale Δt in ms?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "ms",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dalla legge I=Q/Δt ricaviamo IΔt=Q e dividiamo per I>0. Il rapporto 6 mC/(3 A) è 2 ms, perché C/A=s. La durata resta positiva, coerentemente con l’ordine iniziale-finale dell’intervallo."
+        },
+        {
+          "type": "formula",
+          "text": "I\\Delta t=Q"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta t=\\frac QI"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta t=2\\,\\mathrm{ms}"
+        },
+        {
+          "type": "text",
+          "text": "Diciotto moltiplica Q e I; un mezzo capovolge il rapporto. Due secondi dimenticano il milli della carica. Un tempo negativo non è la durata positiva dichiarata."
+        }
+      ],
+      "hints": [
+        "Dividi la carica per la corrente media, mantenendo il prefisso della carica.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Diciotto moltiplica Q e I; un mezzo capovolge il rapporto. Due secondi dimenticano il milli della carica. Un tempo negativo non è la durata positiva dichiarata.",
+        "target": "C4-L05"
+      },
+      "coverage": [
+        "Definizione e prefissi milli",
+        "Valore medio distinto da istantaneo e pesi statistici",
+        "Inverse, tarature, vincoli e caso magnetico autonomo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-current-charge-time-07",
+      "kind": "question",
+      "course": "C4",
+      "section": "Corrente media e trasferimento di carica",
+      "order": 20207,
+      "title": "La stessa carica in metà tempo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "current-charge-time",
+      "difficulty": 2,
+      "prompt": "Attraverso una sezione fissata di un conduttore passa una carica netta Q>0, misurata in mC, durante un intervallo Δt>0, misurato in ms. Il verso positivo è concorde con il trasferimento netto assegnato. I indica la corrente media Q/Δt in ampere: non si assume che la corrente istantanea sia costante. Un millicoulomb è 10⁻³ C e un millisecondo è 10⁻³ s. A ha Q=6 mC e Δt_A=2 ms. B mantiene Q e ha Δt_B=1 ms. Quanto vale I_B/I_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/2",
+          "1",
+          "4",
+          "−2"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha corrente media 3 A. B trasferisce la stessa carica in un millisecondo e ha media 6 A. Il rapporto è due: il tempo sta al denominatore. Questo confronto non stabilisce la forma della corrente istantanea nelle due prove."
+        },
+        {
+          "type": "formula",
+          "text": "I_A=3\\,\\mathrm A"
+        },
+        {
+          "type": "formula",
+          "text": " I_B=6\\,\\mathrm A"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{I_B}{I_A}=2"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo rende diretta la dipendenza dal tempo. Uno ignora il cambiamento; quattro introduce un quadrato assente. Il rapporto non è negativo perché entrambe le medie sono positive nel verso scelto."
+        }
+      ],
+      "hints": [
+        "Con Q invariata confronta i tempi nell’ordine inverso.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo rende diretta la dipendenza dal tempo. Uno ignora il cambiamento; quattro introduce un quadrato assente. Il rapporto non è negativo perché entrambe le medie sono positive nel verso scelto.",
+        "target": "C4-L05"
+      },
+      "coverage": [
+        "Definizione e prefissi milli",
+        "Valore medio distinto da istantaneo e pesi statistici",
+        "Inverse, tarature, vincoli e caso magnetico autonomo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-current-charge-time-08",
+      "kind": "question",
+      "course": "C4",
+      "section": "Corrente media e trasferimento di carica",
+      "order": 20208,
+      "title": "Lo scarto non è il rapporto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "current-charge-time",
+      "difficulty": 2,
+      "prompt": "Attraverso una sezione fissata di un conduttore passa una carica netta Q>0, misurata in mC, durante un intervallo Δt>0, misurato in ms. Il verso positivo è concorde con il trasferimento netto assegnato. I indica la corrente media Q/Δt in ampere: non si assume che la corrente istantanea sia costante. Un millicoulomb è 10⁻³ C e un millisecondo è 10⁻³ s. Con Q=6 mC e Δt=2 ms si propone I=6 A. Quanto vale proposta meno corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3 A",
+          "−3 A",
+          "6 A",
+          "0 A",
+          "2"
+        ],
+        "value": "3 A"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La definizione dà 3 A. La proposta supera il corretto di 6−3=3 A. Il rapporto dei due valori sarebbe invece due e non avrebbe unità. Lo scarto richiesto mantiene l’unità della corrente."
+        },
+        {
+          "type": "formula",
+          "text": "I=3\\,\\mathrm A"
+        },
+        {
+          "type": "formula",
+          "text": " e=(6-3)\\,\\mathrm A"
+        },
+        {
+          "type": "formula",
+          "text": " e=3\\,\\mathrm A"
+        },
+        {
+          "type": "text",
+          "text": "−3 inverte l’ordine, sei copia la proposta e zero l’accetta. Il numero puro due è una divisione e non la differenza richiesta."
+        }
+      ],
+      "hints": [
+        "Calcola prima la corrente corretta con i due prefissi coerenti.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−3 inverte l’ordine, sei copia la proposta e zero l’accetta. Il numero puro due è una divisione e non la differenza richiesta.",
+        "target": "C4-L05"
+      },
+      "coverage": [
+        "Definizione e prefissi milli",
+        "Valore medio distinto da istantaneo e pesi statistici",
+        "Inverse, tarature, vincoli e caso magnetico autonomo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-current-charge-time-09",
+      "kind": "question",
+      "course": "C4",
+      "section": "Corrente media e trasferimento di carica",
+      "order": 20209,
+      "title": "Isolare Q nella definizione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "current-charge-time",
+      "difficulty": 2,
+      "prompt": "Attraverso una sezione fissata di un conduttore passa una carica netta Q>0, misurata in mC, durante un intervallo Δt>0, misurato in ms. Il verso positivo è concorde con il trasferimento netto assegnato. I indica la corrente media Q/Δt in ampere: non si assume che la corrente istantanea sia costante. Un millicoulomb è 10⁻³ C e un millisecondo è 10⁻³ s. Sono noti I e Δt. Quale relazione ricava Q?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Q = I Δt",
+          "Q = I / Δt",
+          "Q = Δt / I",
+          "Q = I Δt²",
+          "Q = I² Δt"
+        ],
+        "value": "Q = I Δt"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I moltiplica il tempo nella formula inversa: Q=IΔt. Per una corrente non uniforme il totale è definito proprio dal prodotto della media dell’intervallo per la sua durata; non si sta imponendo I(t) costante. In SI A·s=C."
+        },
+        {
+          "type": "formula",
+          "text": "I=\\frac Q{\\Delta t}"
+        },
+        {
+          "type": "formula",
+          "text": " Q=I\\Delta t"
+        },
+        {
+          "type": "formula",
+          "text": " [Q]=\\mathrm{A\\,s}"
+        },
+        {
+          "type": "formula",
+          "text": " [Q]=\\mathrm C"
+        },
+        {
+          "type": "text",
+          "text": "I/Δt ha unità A/s; Δt/I non è una carica. Una potenza extra del tempo o della corrente altera le dimensioni e non inverte la definizione della media."
+        }
+      ],
+      "hints": [
+        "Moltiplica entrambi i membri per l’intero intervallo Δt.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "I/Δt ha unità A/s; Δt/I non è una carica. Una potenza extra del tempo o della corrente altera le dimensioni e non inverte la definizione della media.",
+        "target": "C4-L05"
+      },
+      "coverage": [
+        "Definizione e prefissi milli",
+        "Valore medio distinto da istantaneo e pesi statistici",
+        "Inverse, tarature, vincoli e caso magnetico autonomo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-current-charge-time-10",
+      "kind": "question",
+      "course": "C4",
+      "section": "Corrente media e trasferimento di carica",
+      "order": 20210,
+      "title": "Carica e durata cambiano insieme",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "current-charge-time",
+      "difficulty": 2,
+      "prompt": "Attraverso una sezione fissata di un conduttore passa una carica netta Q>0, misurata in mC, durante un intervallo Δt>0, misurato in ms. Il verso positivo è concorde con il trasferimento netto assegnato. I indica la corrente media Q/Δt in ampere: non si assume che la corrente istantanea sia costante. Un millicoulomb è 10⁻³ C e un millisecondo è 10⁻³ s. B ha Q_B=κ₁Q_A e Δt_B=κ₂Δt_A, con fattori positivi. Quanto vale I_B/I_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁/κ₂",
+          "κ₁ κ₂",
+          "κ₂/κ₁",
+          "κ₁/κ₂²",
+          "κ₁ + κ₂"
+        ],
+        "value": "κ₁/κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituiamo nella definizione: I_B=(κ₁Q_A)/(κ₂Δt_A). Dividendo per Q_A/Δt_A rimane κ₁/κ₂. Due incrementi uguali di carica e durata lasciano uguale la corrente media."
+        },
+        {
+          "type": "formula",
+          "text": "I_B=\\frac{\\kappa_1Q_A}{\\kappa_2\\Delta t_A}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{I_B}{I_A}=\\frac{\\kappa_1}{\\kappa_2}"
+        },
+        {
+          "type": "text",
+          "text": "Il prodotto rende diretta anche la durata. Il reciproco scambia B/A; il quadrato del tempo non compare nella definizione. La somma dei fattori vale due per prove identiche, mentre il rapporto deve essere uno."
+        }
+      ],
+      "hints": [
+        "Colloca ogni fattore dove compare la relativa grandezza nella legge.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il prodotto rende diretta anche la durata. Il reciproco scambia B/A; il quadrato del tempo non compare nella definizione. La somma dei fattori vale due per prove identiche, mentre il rapporto deve essere uno.",
+        "target": "C4-L05"
+      },
+      "coverage": [
+        "Definizione e prefissi milli",
+        "Valore medio distinto da istantaneo e pesi statistici",
+        "Inverse, tarature, vincoli e caso magnetico autonomo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-current-charge-time-11",
+      "kind": "question",
+      "course": "C4",
+      "section": "Corrente media e trasferimento di carica",
+      "order": 20211,
+      "title": "Due cariche e due intervalli",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "current-charge-time",
+      "difficulty": 2,
+      "prompt": "Attraverso una sezione fissata di un conduttore passa una carica netta Q>0, misurata in mC, durante un intervallo Δt>0, misurato in ms. Il verso positivo è concorde con il trasferimento netto assegnato. I indica la corrente media Q/Δt in ampere: non si assume che la corrente istantanea sia costante. Un millicoulomb è 10⁻³ C e un millisecondo è 10⁻³ s. A usa Q=6 mC, Δt=2 ms. B usa Q=12 mC, Δt=3 ms. Quanto vale I_B/I_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4/3",
+          "3/4",
+          "2",
+          "3/2",
+          "1"
+        ],
+        "value": "4/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A dà 6/2=3 A e B dà 12/3=4 A. Il rapporto B/A è 4/3. La carica doppia fornisce un fattore due, ma la durata cresce di 3/2 e ne divide l’effetto: 2/(3/2)=4/3."
+        },
+        {
+          "type": "formula",
+          "text": "I_A=3\\,\\mathrm A"
+        },
+        {
+          "type": "formula",
+          "text": " I_B=4\\,\\mathrm A"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{I_B}{I_A}=\\frac43"
+        },
+        {
+          "type": "text",
+          "text": "Tre quarti capovolge il confronto. Due segue soltanto Q; 3/2 segue soltanto la durata nel verso sbagliato e uno presume una compensazione esatta che non avviene."
+        }
+      ],
+      "hints": [
+        "Calcola entrambe le medie e poi il rapporto puro.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre quarti capovolge il confronto. Due segue soltanto Q; 3/2 segue soltanto la durata nel verso sbagliato e uno presume una compensazione esatta che non avviene.",
+        "target": "C4-L05"
+      },
+      "coverage": [
+        "Definizione e prefissi milli",
+        "Valore medio distinto da istantaneo e pesi statistici",
+        "Inverse, tarature, vincoli e caso magnetico autonomo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-current-charge-time-12",
+      "kind": "question",
+      "course": "C4",
+      "section": "Corrente media e trasferimento di carica",
+      "order": 20212,
+      "title": "Due medie con uguale peso",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "current-charge-time",
+      "difficulty": 2,
+      "prompt": "Attraverso una sezione fissata di un conduttore passa una carica netta Q>0, misurata in mC, durante un intervallo Δt>0, misurato in ms. Il verso positivo è concorde con il trasferimento netto assegnato. I indica la corrente media Q/Δt in ampere: non si assume che la corrente istantanea sia costante. Un millicoulomb è 10⁻³ C e un millisecondo è 10⁻³ s. A usa Q=6 mC, Δt=2 ms; B usa Q=12 mC, Δt=3 ms. Qual è la media aritmetica dei due valori I con uguale peso statistico?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "7/2 A",
+          "18/5 A",
+          "7 A",
+          "1/2 A",
+          "4 A"
+        ],
+        "value": "7/2 A"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le due correnti medie sono 3 e 4 A. Con uguale peso la media è (3+4)/2=7/2 A. Il rapporto fra carica totale delle due prove e durata totale darebbe invece 18 mC/(5 ms)=18/5 A: attribuisce pesi temporali diversi. Anche il modello ai dati medi 9 mC e 5/2 ms dà 18/5 A, non la media statistica richiesta."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline I=\\frac{3+4}{2}\\,\\mathrm A"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline I=\\frac72\\,\\mathrm A"
+        },
+        {
+          "type": "formula",
+          "text": " I_{\\rm tempi\\ uniti}=\\frac{18}5\\,\\mathrm A"
+        },
+        {
+          "type": "text",
+          "text": "18/5 A usa una ponderazione per durata o gli ingressi medi. Sette non dimezza la somma, un mezzo è metà differenza e quattro copia B. Le due medie differiscono esattamente di 18/5−7/2=1/10 A."
+        }
+      ],
+      "hints": [
+        "Leggi quali pesi sono richiesti: uguali per registrazione oppure proporzionali alle durate.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "18/5 A usa una ponderazione per durata o gli ingressi medi. Sette non dimezza la somma, un mezzo è metà differenza e quattro copia B. Le due medie differiscono esattamente di 18/5−7/2=1/10 A.",
+        "target": "C4-L05"
+      },
+      "coverage": [
+        "Definizione e prefissi milli",
+        "Valore medio distinto da istantaneo e pesi statistici",
+        "Inverse, tarature, vincoli e caso magnetico autonomo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-current-charge-time-13",
+      "kind": "question",
+      "course": "C4",
+      "section": "Corrente media e trasferimento di carica",
+      "order": 20213,
+      "title": "La nuova durata per il bersaglio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "current-charge-time",
+      "difficulty": 3,
+      "prompt": "Attraverso una sezione fissata di un conduttore passa una carica netta Q>0, misurata in mC, durante un intervallo Δt>0, misurato in ms. Il verso positivo è concorde con il trasferimento netto assegnato. I indica la corrente media Q/Δt in ampere: non si assume che la corrente istantanea sia costante. Un millicoulomb è 10⁻³ C e un millisecondo è 10⁻³ s. A ha Q=6 mC e Δt_A=2 ms. B usa Q=12 mC e deve dare I_B=(4/3)I_A. Quanto vale Δt_B/Δt_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/2",
+          "2/3",
+          "2",
+          "4/3",
+          "1"
+        ],
+        "value": "3/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha I_A=3 A, quindi il bersaglio è 4 A. La durata B è Q_B/I_B=12 mC/(4 A)=3 ms. Dividendo per i 2 ms iniziali si ottiene 3/2. Si ricostruisce prima la durata fisica, poi il rapporto."
+        },
+        {
+          "type": "formula",
+          "text": "I_B=4\\,\\mathrm A"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta t_B=3\\,\\mathrm{ms}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{\\Delta t_B}{\\Delta t_A}=\\frac32"
+        },
+        {
+          "type": "text",
+          "text": "Due terzi inverte il rapporto. Due segue solo il raddoppio di Q; 4/3 copia il bersaglio delle correnti e uno lascerebbe I_B=6 A, non 4 A."
+        }
+      ],
+      "hints": [
+        "Ricava I_B dal bersaglio e usa Δt_B=Q_B/I_B.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due terzi inverte il rapporto. Due segue solo il raddoppio di Q; 4/3 copia il bersaglio delle correnti e uno lascerebbe I_B=6 A, non 4 A.",
+        "target": "C4-L05"
+      },
+      "coverage": [
+        "Definizione e prefissi milli",
+        "Valore medio distinto da istantaneo e pesi statistici",
+        "Inverse, tarature, vincoli e caso magnetico autonomo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-current-charge-time-14",
+      "kind": "question",
+      "course": "C4",
+      "section": "Corrente media e trasferimento di carica",
+      "order": 20214,
+      "title": "Tarare una corrente media",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "current-charge-time",
+      "difficulty": 3,
+      "prompt": "Attraverso una sezione fissata di un conduttore passa una carica netta Q>0, misurata in mC, durante un intervallo Δt>0, misurato in ms. Il verso positivo è concorde con il trasferimento netto assegnato. I indica la corrente media Q/Δt in ampere: non si assume che la corrente istantanea sia costante. Un millicoulomb è 10⁻³ C e un millisecondo è 10⁻³ s. Il display continuo adimensionale D=aI ha a>0 e nessun offset. A con Q=6 mC, Δt=2 ms dà D=9. C dà D=12 durante Δt_C=3 ms. Quanto vale Q_C in mC?",
+      "answer": {
+        "type": "numeric",
+        "value": 12,
+        "unit": "mC",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento è I_A=3 A, quindi a=3 A⁻¹. C ha I_C=12/3=4 A. La carica netta è I_CΔt_C=4·3=12 mC. Il fatto che il numero finale coincida con D non permette di saltare la taratura: deriva dai dati specifici di durata e guadagno."
+        },
+        {
+          "type": "formula",
+          "text": "a=3\\,\\mathrm{A^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " I_C=4\\,\\mathrm A"
+        },
+        {
+          "type": "formula",
+          "text": " Q_C=12\\,\\mathrm{mC}"
+        },
+        {
+          "type": "text",
+          "text": "Trentasei mC userebbe D come ampere e moltiplicherebbe per 3 ms. Quattro mC copia la corrente; tre mC copia la durata. La coincidenza numerica D=Q_C/(1 mC) non è una legge del display."
+        }
+      ],
+      "hints": [
+        "Trasforma D in I prima di moltiplicare per la durata della nuova prova.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Trentasei mC userebbe D come ampere e moltiplicherebbe per 3 ms. Quattro mC copia la corrente; tre mC copia la durata. La coincidenza numerica D=Q_C/(1 mC) non è una legge del display.",
+        "target": "C4-L05"
+      },
+      "coverage": [
+        "Definizione e prefissi milli",
+        "Valore medio distinto da istantaneo e pesi statistici",
+        "Inverse, tarature, vincoli e caso magnetico autonomo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-current-charge-time-15",
+      "kind": "question",
+      "course": "C4",
+      "section": "Corrente media e trasferimento di carica",
+      "order": 20215,
+      "title": "Offset e carica trasferita",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "current-charge-time",
+      "difficulty": 3,
+      "prompt": "Attraverso una sezione fissata di un conduttore passa una carica netta Q>0, misurata in mC, durante un intervallo Δt>0, misurato in ms. Il verso positivo è concorde con il trasferimento netto assegnato. I indica la corrente media Q/Δt in ampere: non si assume che la corrente istantanea sia costante. Un millicoulomb è 10⁻³ C e un millisecondo è 10⁻³ s. D=aI+b è continuo e adimensionale, a>0. A: Q=6 mC, Δt=2 ms, D=7. B: Q=12 mC, Δt=3 ms, D=9. C: Δt=5 ms, D=5. Quanto vale Q_C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "10 mC",
+          "25/2 mC",
+          "2 mC",
+          "5 mC",
+          "20 mC"
+        ],
+        "value": "10 mC"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti danno I_A=3 A e I_B=4 A. Il guadagno è a=(9−7)/(4−3)=2 A⁻¹ e b=1. Per C, I_C=(5−1)/2=2 A. Durante 5 ms passa Q_C=2·5=10 mC."
+        },
+        {
+          "type": "formula",
+          "text": "a=2\\,\\mathrm{A^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " I_C=2\\,\\mathrm A"
+        },
+        {
+          "type": "formula",
+          "text": " Q_C=10\\,\\mathrm{mC}"
+        },
+        {
+          "type": "text",
+          "text": "25/2 mC omette b e usa 5/2 A. Due mC copia il numero della corrente; cinque mC copia la lettura o la durata. Venti mC toglierebbe l’offset senza dividere per il guadagno e predirebbe D=9."
+        }
+      ],
+      "hints": [
+        "Ricava la corrente dal display affine, poi moltiplica per tutti i 5 ms.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "25/2 mC omette b e usa 5/2 A. Due mC copia il numero della corrente; cinque mC copia la lettura o la durata. Venti mC toglierebbe l’offset senza dividere per il guadagno e predirebbe D=9.",
+        "target": "C4-L05"
+      },
+      "coverage": [
+        "Definizione e prefissi milli",
+        "Valore medio distinto da istantaneo e pesi statistici",
+        "Inverse, tarature, vincoli e caso magnetico autonomo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-current-charge-time-16",
+      "kind": "question",
+      "course": "C4",
+      "section": "Corrente media e trasferimento di carica",
+      "order": 20216,
+      "title": "Un vincolo sulla media",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L05",
+      "prerequisites": [
+        "C1-L001",
+        "C4-L01",
+        "C4-L03",
+        "C4-L05"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "current-charge-time",
+      "difficulty": 3,
+      "prompt": "Attraverso una sezione fissata di un conduttore passa una carica netta Q>0, misurata in mC, durante un intervallo Δt>0, misurato in ms. Il verso positivo è concorde con il trasferimento netto assegnato. I indica la corrente media Q/Δt in ampere: non si assume che la corrente istantanea sia costante. Un millicoulomb è 10⁻³ C e un millisecondo è 10⁻³ s. Fra preparazioni si impone Q=βΔt, con β=3 mC/ms=3 A. Si misura inoltre I=3 A. Quante coppie positive (Q,Δt) sono determinate?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Infinite coppie positive",
+          "Una sola: 6 mC e 2 ms",
+          "Nessuna coppia",
+          "Solo 3 mC e 1 ms",
+          "Qualunque Q, con Δt fisso a 2 ms"
+        ],
+        "value": "Infinite coppie positive"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Inserendo Q=βΔt nella definizione si ottiene I=β per qualunque durata positiva. La misura ripete il vincolo e non determina la scala del trasferimento: per esempio 6 mC in 2 ms e 3 mC in 1 ms danno entrambe 3 A. La proporzionalità lega i totali di preparazioni diverse e non impone una corrente istantanea costante in ciascuna."
+        },
+        {
+          "type": "formula",
+          "text": "Q=\\beta\\Delta t"
+        },
+        {
+          "type": "formula",
+          "text": " I=\\frac{\\beta\\Delta t}{\\Delta t}"
+        },
+        {
+          "type": "formula",
+          "text": " I=\\beta"
+        },
+        {
+          "type": "formula",
+          "text": " I=3\\,\\mathrm A"
+        },
+        {
+          "type": "text",
+          "text": "Una singola coppia elencata è un esempio, non tutta la famiglia. Con durata fissata il vincolo fisserebbe anche Q, perciò non è qualunque Q indipendente. Durata nulla darebbe un rapporto indefinito ed è esclusa."
+        }
+      ],
+      "hints": [
+        "Sostituisci il vincolo e verifica se la misura aggiunge davvero un’informazione indipendente.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Una singola coppia elencata è un esempio, non tutta la famiglia. Con durata fissata il vincolo fisserebbe anche Q, perciò non è qualunque Q indipendente. Durata nulla darebbe un rapporto indefinito ed è esclusa.",
+        "target": "C4-L05"
+      },
+      "coverage": [
+        "Definizione e prefissi milli",
+        "Valore medio distinto da istantaneo e pesi statistici",
+        "Inverse, tarature, vincoli e caso magnetico autonomo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "e461fa3502871548183d664e1852b7a25bca3d79566d06837ef3c61279b870af",
+      "name": "current-charge-time-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTUwMCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgo8dGl0bGUgaWQ9InRpdGxlIj5DYXJpY2EgdHJhc2Zlcml0YSwgY29ycmVudGUgbWVkaWEgZSBjYW1wbyBkZWwgZmlsbzwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPlNlaSBtaWxsaWNvdWxvbWIgaW4gZHVlIG1pbGxpc2Vjb25kaSBkYW5ubyB0cmUgYW1wZXJlLiBVbiBncmFmaWNvIGRpIGNhcmljYSBjdW11bGF0aXZhIG5vbiB1bmlmb3JtZSBoYSBwZW5kZW56ZSBsb2NhbGkgZHVlIGUgcXVhdHRybyBhbXBlcmUgZSBzZWNhbnRlIG1lZGlhIHRyZS4gQ2FzbyBzZXBhcmF0bzogdW4gbHVuZ28gZmlsbyBjb24gY29ycmVudGUgdXNjZW50ZSBnZW5lcmEgbGluZWUgbWFnbmV0aWNoZSBjaXJjb2xhcmkgYW50aW9yYXJpZS48L2Rlc2M+CjxkZWZzPjxtYXJrZXIgaWQ9ImN1cnJlbnQiIHZpZXdCb3g9IjAgMCAxMCAxMCIgcmVmWD0iMTAiIHJlZlk9IjUiIG1hcmtlcldpZHRoPSI3IiBtYXJrZXJIZWlnaHQ9IjciIG9yaWVudD0iYXV0byI+PHBhdGggZD0iTTAgMEwxMCA1TDAgMTBaIiBmaWxsPSIjMTY1YTg3Ii8+PC9tYXJrZXI+PG1hcmtlciBpZD0ibWFnbmV0aWMiIHZpZXdCb3g9IjAgMCAxMCAxMCIgcmVmWD0iMTAiIHJlZlk9IjUiIG1hcmtlcldpZHRoPSI2IiBtYXJrZXJIZWlnaHQ9IjYiIG9yaWVudD0iYXV0byI+PHBhdGggZD0iTTAgMEwxMCA1TDAgMTBaIiBmaWxsPSIjMjg2NjRkIi8+PC9tYXJrZXI+PC9kZWZzPgo8cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjE1MDAiIHJ4PSIxMiIgZmlsbD0iI2Y4ZmFmYyIvPjxnIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIwIiBmaWxsPSIjMTQyNDNhIj4KPHRleHQgeD0iMzIiIHk9IjQyIiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iYm9sZCI+MSDCtyBVbmEgc2V6aW9uZSwgdW4gaW50ZXJ2YWxsbzwvdGV4dD48dGV4dCB4PSIzMiIgeT0iODUiIGZvbnQtc2l6ZT0iMTgiPlRyYXNmZXJpbWVudG8gbmV0dG8gUSA9IDYgbUMgZHVyYW50ZSDOlHQgPSAyIG1zLjwvdGV4dD4KPHJlY3QgeD0iMTAwIiB5PSIxNTAiIHdpZHRoPSI0NDAiIGhlaWdodD0iNzAiIHJ4PSIxNSIgZmlsbD0iI2UyZThmMCIgc3Ryb2tlPSIjODI5MmEyIi8+PHBhdGggZD0iTTM0MCAxMzBWMjQyIiBzdHJva2U9IiNiNDUzMjgiIHN0cm9rZS13aWR0aD0iNCIgc3Ryb2tlLWRhc2hhcnJheT0iNiA1Ii8+PHRleHQgeD0iMzU2IiB5PSIxNDEiIGZpbGw9IiNiNDUzMjgiPnNlemlvbmU8L3RleHQ+CjxwYXRoIGQ9Ik0xNzAgMjgwSDQ2NSIgc3Ryb2tlPSIjMTY1YTg3IiBzdHJva2Utd2lkdGg9IjUiIG1hcmtlci1lbmQ9InVybCgjY3VycmVudCkiLz48dGV4dCB4PSIxODAiIHk9IjMyNCIgZmlsbD0iIzE2NWE4NyI+VmVyc28gcG9zaXRpdm8gZGVsIHRyYXNmZXJpbWVudG88L3RleHQ+Cjx0ZXh0IHg9IjcwIiB5PSIzNzAiPjEgbUMgLyAxIG1zID0gMSBDL3MgPSAxIEE8L3RleHQ+PHRleHQgeD0iNzAiIHk9IjQxMCI+SV9tZWRpYSA9IDYvMiBBID0gMyBBPC90ZXh0Pgo8cGF0aCBkPSJNMzIgNDQ1SDYwOCIgc3Ryb2tlPSIjOWJhYmJjIi8+Cjx0ZXh0IHg9IjMyIiB5PSI0OTAiIGZvbnQtc2l6ZT0iMjUiIGZvbnQtd2VpZ2h0PSJib2xkIj4yIMK3IE1lZGlhIHNlbnphIHVuaWZvcm1pdMOgPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSI1MzIiIGZvbnQtc2l6ZT0iMTgiPkVzZW1waW86IGNhcmljYSBjdW11bGF0aXZhIFEodCksIGluIG1DLjwvdGV4dD4KPHBhdGggZD0iTTEzMCA4NTBWNTcyTTEzMCA4NTBINTY1IiBmaWxsPSJub25lIiBzdHJva2U9IiMxNDI0M2EiIHN0cm9rZS13aWR0aD0iMiIvPgo8cGF0aCBkPSJNMTMwIDg1MEw1MzAgNjEwIiBmaWxsPSJub25lIiBzdHJva2U9IiNiNDUzMjgiIHN0cm9rZS13aWR0aD0iMyIgc3Ryb2tlLWRhc2hhcnJheT0iNyA1Ii8+CjxwYXRoIGQ9Ik0xMzAgODUwTDMzMCA3NzBMNTMwIDYxMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMTY1YTg3IiBzdHJva2Utd2lkdGg9IjQiLz4KPGNpcmNsZSBjeD0iMzMwIiBjeT0iNzcwIiByPSI1IiBmaWxsPSIjMTY1YTg3Ii8+PGNpcmNsZSBjeD0iNTMwIiBjeT0iNjEwIiByPSI1IiBmaWxsPSIjMTY1YTg3Ii8+CjxwYXRoIGQ9Ik0xMzAgNzcwSDMzMFY4NTBNMTMwIDYxMEg1MzBWODUwIiBmaWxsPSJub25lIiBzdHJva2U9IiM4MjkyYTIiIHN0cm9rZS1kYXNoYXJyYXk9IjQgNSIvPgo8dGV4dCB4PSI5MSIgeT0iNjE3Ij42PC90ZXh0Pjx0ZXh0IHg9IjkxIiB5PSI3NzciPjI8L3RleHQ+PHRleHQgeD0iOTEiIHk9Ijg1NyI+MDwvdGV4dD48dGV4dCB4PSIxMTgiIHk9Ijg4NSI+MDwvdGV4dD48dGV4dCB4PSIzMjEiIHk9Ijg4NSI+MTwvdGV4dD48dGV4dCB4PSI1MjEiIHk9Ijg4NSI+MjwvdGV4dD48dGV4dCB4PSI1MDAiIHk9IjkyNSI+dCBpbiBtczwvdGV4dD4KPHRleHQgeD0iMzIiIHk9Ijk2NSIgZm9udC1zaXplPSIxOCI+UHJpbWEgcGVuZGVuemEgMiBBIDsgc2Vjb25kYSBwZW5kZW56YSA0IEEuPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSIxMDAwIiBmb250LXNpemU9IjE4Ij5TZWNhbnRlIHN1bGzigJlpbnRlcm8gaW50ZXJ2YWxsbzogMyBBLjwvdGV4dD4KPHBhdGggZD0iTTMyIDEwMzRINjA4IiBzdHJva2U9IiM5YmFiYmMiLz4KPHRleHQgeD0iMzIiIHk9IjEwNzkiIGZvbnQtc2l6ZT0iMjUiIGZvbnQtd2VpZ2h0PSJib2xkIj4zIMK3IENhc28gbWFnbmV0aWNvIHNlcGFyYXRvPC90ZXh0Pgo8Y2lyY2xlIGN4PSIzMjAiIGN5PSIxMjUwIiByPSIxMDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzgyOTJhMiIgc3Ryb2tlLXdpZHRoPSIyIi8+PGNpcmNsZSBjeD0iMzIwIiBjeT0iMTI1MCIgcj0iMTgiIGZpbGw9IiNlMmU4ZjAiIHN0cm9rZT0iIzE0MjQzYSIgc3Ryb2tlLXdpZHRoPSIyIi8+PGNpcmNsZSBjeD0iMzIwIiBjeT0iMTI1MCIgcj0iNSIgZmlsbD0iIzE0MjQzYSIvPgo8cGF0aCBkPSJNNDIwIDEyNTBBMTAwIDEwMCAwIDAgMCAzMjAgMTE1MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMjg2NjRkIiBzdHJva2Utd2lkdGg9IjQiIG1hcmtlci1lbmQ9InVybCgjbWFnbmV0aWMpIi8+PHBhdGggZD0iTTMyMCAxMTUwQTEwMCAxMDAgMCAwIDAgMjIwIDEyNTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzI4NjY0ZCIgc3Ryb2tlLXdpZHRoPSI0IiBtYXJrZXItZW5kPSJ1cmwoI21hZ25ldGljKSIvPjxwYXRoIGQ9Ik0yMjAgMTI1MEExMDAgMTAwIDAgMCAwIDMyMCAxMzUwIiBmaWxsPSJub25lIiBzdHJva2U9IiMyODY2NGQiIHN0cm9rZS13aWR0aD0iNCIgbWFya2VyLWVuZD0idXJsKCNtYWduZXRpYykiLz48cGF0aCBkPSJNMzIwIDEzNTBBMTAwIDEwMCAwIDAgMCA0MjAgMTI1MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMjg2NjRkIiBzdHJva2Utd2lkdGg9IjQiIG1hcmtlci1lbmQ9InVybCgjbWFnbmV0aWMpIi8+Cjx0ZXh0IHg9IjQ1MCIgeT0iMTI0NSIgZmlsbD0iIzI4NjY0ZCI+QiB0YW5nZW50ZTwvdGV4dD48dGV4dCB4PSIzMiIgeT0iMTQwNSIgZm9udC1zaXplPSIxOCI+UHVudG8gY2VudHJhbGU6IGNvcnJlbnRlIGNvbnZlbnppb25hbGUgdXNjZW50ZS48L3RleHQ+PHRleHQgeD0iMzIiIHk9IjE0NDEiIGZvbnQtc2l6ZT0iMTgiPk1hbm8gZGVzdHJhOiBCIGFudGlvcmFyaW8sIG5vbiByYWRpYWxlLjwvdGV4dD4KPC9nPjwvc3ZnPgo="
+    }
+  ]
+}

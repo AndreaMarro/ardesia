@@ -1,0 +1,137 @@
+{
+  "scope": "finite_exact_domain_followup_only_to_independent_verifiers200_204",
+  "baselineCommit": "399c2b8525d327d8f21fe7ae274e615a8e8f6d24",
+  "initialHandoff": "editorial/reviews/u6-circuits-200-204-independent-handoff-20261125.json",
+  "baselineRemainsHistorical": "Original sources,80candidate_readings/signatures,manuals,figures and primary remain unchanged. Only helper domain guard and five report verifier hashes superseded.",
+  "finding": "SymPy positive infinity could pass positivity alone in symbolic inverse helpers; Fraction and Rational converted binary float inputs, and calibration relied on assertions.",
+  "correction": "All public physical math entrypoints validate exact finite real numeric inputs before conversion or operations. Binary floats, SymPy Float atoms even nested, nonreal/nonfinite values, symbols and booleans rejected. SI helpers explicitly require exact rationals. Positive exact algebraic inverse branches still accepted. Calibrate enforces distinct positive references, positive gains and decoded values without assertions.",
+  "preservedConstants": [
+    "CANDIDATE_REF",
+    "PRIMARY_SHA256",
+    "REVIEWED_PACKAGE_SHA256",
+    "REVIEWED_BINDINGS_SHA256",
+    "REVIEWED_CANDIDATES",
+    "EXPECTED_MAPPING",
+    "UNITS",
+    "MANUAL",
+    "DISTRACTORS",
+    "ASSUMPTIONS",
+    "GEOMETRY_REVIEW",
+    "EXACT_LITERAL_DEPENDENCY_SHA256"
+  ],
+  "unchangedExactDecoderSha256": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de",
+  "rows": [
+    {
+      "batch": "zero-field-distance-ratio-200",
+      "candidateSignatureAndCompleteRecordsUnchanged": true,
+      "verifierSha256": "9f52e816be8205ba0d7fd96c2ab17caaaea0398037ea5e0c8c23b2c8fde37355",
+      "reportSha256": "01ffbcd81b6e5114bb68eca450655ab097ed7805af8d66272f7b4898e069a5fc"
+    },
+    {
+      "batch": "orthogonal-electric-fields-201",
+      "candidateSignatureAndCompleteRecordsUnchanged": true,
+      "verifierSha256": "401f2c5b7d3c11ef43e56df01da752d17a06a10fa6d03abfb451108442f0887f",
+      "reportSha256": "a200c4fe27f73598cb6104339e6f1d5f0152a708962f60144367ea296366bb76"
+    },
+    {
+      "batch": "current-charge-time-202",
+      "candidateSignatureAndCompleteRecordsUnchanged": true,
+      "verifierSha256": "3642cf9fd9f42ab562542e73dca6633204f581ca4928981d7258683edac6dacc",
+      "reportSha256": "5a7f65c5f3dba7d2d381172ba17032a02f9fe6f95158d9e8c74007f1d3e9e119"
+    },
+    {
+      "batch": "ohmic-current-203",
+      "candidateSignatureAndCompleteRecordsUnchanged": true,
+      "verifierSha256": "e2f27cbb5a42189eb52c10b1df0da66d225ee18b27229995933aeffe2d3d3c8e",
+      "reportSha256": "78c91f8b77717715d83d7533c04d0580d291188cd29178fa6bb74babae1c16fa"
+    },
+    {
+      "batch": "wire-resistance-204",
+      "candidateSignatureAndCompleteRecordsUnchanged": true,
+      "verifierSha256": "688f0d02119ee437e560b7a19905cd922f632e6fc28ef23f6c0033286491d472",
+      "reportSha256": "097698fbe5f215236ace8b75790609e0d2b1e83f853abe475c073bbfd7fa8dfc"
+    }
+  ],
+  "RED": {
+    "scope": "RED_original_verifiers_accept_nonfinite_or_binary_float",
+    "baselineCommit": "399c2b8525d327d8f21fe7ae274e615a8e8f6d24",
+    "command": [
+      "/private/tmp/cric-recovery-venv/bin/python",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests/corpus",
+      "-p",
+      "test_u6_circuits_200_204_independent.py",
+      "-k",
+      "test_public_math_helpers_reject_nonfinite_nonreal_binary_float",
+      "-v"
+    ],
+    "terminalExitCode": 1,
+    "terminalSignal": null,
+    "logSha256": "abafe5b81272d452ee9805780cdf1b8344bc320137fcae35a12a35df8a65c97a",
+    "scientificApproval": "NOT_RUN",
+    "humanApproval": "NOT_RUN",
+    "rawTextSha256": "f3baf9faed43f5e2834c5c74c928ead153bd7f7086277fe0157019e9b1e37a6b",
+    "logFile": "red-unittest.raw.json",
+    "logStorage": "verbatim UTF-8 in JSON; original trailing space retained inside string"
+  },
+  "RED_disclosure": "251 subtests failed because required ValueError was not raised,605 raised other exception types. Those605 are not claimed as accepted bad outputs; they show inconsistent boundary failures.",
+  "GREEN": {
+    "scope": "bounded_independent_scientific_review_target_not_product_UI",
+    "command": [
+      "/private/tmp/cric-recovery-venv/bin/python",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests/corpus",
+      "-p",
+      "test_u6_circuits_200_204_independent.py",
+      "-v"
+    ],
+    "candidateApp": "/private/tmp/cric-author-a-resident/officina-di-fisica",
+    "terminalExitCode": 0,
+    "terminalSignal": null,
+    "elapsedSeconds": 3.6939004580053734,
+    "logSha256": "d6c6da9a71c4e2d7717363628993d97b463a86622d1d81b60a9e828d3454c737",
+    "humanApproval": "NOT_RUN",
+    "publication": "DRAFT"
+  },
+  "counts": {
+    "targetTests": 16,
+    "reviewedRecordsUnchanged": 80,
+    "hypothesisConfigurations": 240,
+    "candidateMutationCases": 135,
+    "constitutiveFaults": 5,
+    "forbiddenNumericArgumentPositions": 98,
+    "forbiddenValuesPerPositionFinal": 13,
+    "explicitCalibrationInvalidConfigurations": 30
+  },
+  "freshSavedIdentity": "PASS_against_final_A_packages_and_current_unchanged_canonical_identity_contract",
+  "rootIntegratedComparison": "Still deferred to sole Root integrator; no Root files changed.",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "productUI": "NOT_RUN",
+  "push": "NOT_RUN_privacy_hold",
+  "files": {
+    "tools/corpus_engineering/zero_field_distance_ratio_verifier.py": "9f52e816be8205ba0d7fd96c2ab17caaaea0398037ea5e0c8c23b2c8fde37355",
+    "editorial/reviews/zero-field-distance-ratio-200.json": "01ffbcd81b6e5114bb68eca450655ab097ed7805af8d66272f7b4898e069a5fc",
+    "tools/corpus_engineering/orthogonal_electric_fields_verifier.py": "401f2c5b7d3c11ef43e56df01da752d17a06a10fa6d03abfb451108442f0887f",
+    "editorial/reviews/orthogonal-electric-fields-201.json": "a200c4fe27f73598cb6104339e6f1d5f0152a708962f60144367ea296366bb76",
+    "tools/corpus_engineering/current_charge_time_verifier.py": "3642cf9fd9f42ab562542e73dca6633204f581ca4928981d7258683edac6dacc",
+    "editorial/reviews/current-charge-time-202.json": "5a7f65c5f3dba7d2d381172ba17032a02f9fe6f95158d9e8c74007f1d3e9e119",
+    "tools/corpus_engineering/ohmic_current_verifier.py": "e2f27cbb5a42189eb52c10b1df0da66d225ee18b27229995933aeffe2d3d3c8e",
+    "editorial/reviews/ohmic-current-203.json": "78c91f8b77717715d83d7533c04d0580d291188cd29178fa6bb74babae1c16fa",
+    "tools/corpus_engineering/wire_resistance_verifier.py": "688f0d02119ee437e560b7a19905cd922f632e6fc28ef23f6c0033286491d472",
+    "editorial/reviews/wire-resistance-204.json": "097698fbe5f215236ace8b75790609e0d2b1e83f853abe475c073bbfd7fa8dfc",
+    "editorial/reviews/u6-circuits-200-204-domain-guard-20261125/red-result.json": "9f2e1158017a9e19dbb0bbb2e0a93a601bc1b16f5fe256cae9878ab3b840fe03",
+    "editorial/reviews/u6-circuits-200-204-domain-guard-20261125/green-result.json": "bd33b03de2b7bf3f9b9f1971025dbb99ba41b59fbc9f3ccab4365ed69779cb8a",
+    "editorial/reviews/u6-circuits-200-204-domain-guard-20261125/green-unittest.txt": "d6c6da9a71c4e2d7717363628993d97b463a86622d1d81b60a9e828d3454c737",
+    "tests/corpus/test_u6_circuits_200_204_independent.py": "8fe8999bd81981c9899674ad0ee134d857a308859a16cb897b409293e7d242c3",
+    "editorial/reviews/u6-circuits-200-204-domain-guard-20261125/red-unittest.raw.json": "abafe5b81272d452ee9805780cdf1b8344bc320137fcae35a12a35df8a65c97a"
+  }
+}

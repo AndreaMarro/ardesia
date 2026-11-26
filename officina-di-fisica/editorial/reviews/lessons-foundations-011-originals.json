@@ -1,1 +1,1062 @@
-{"acceptedCount":2,"batch":"lessons-foundations-011","contractSha256":"a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60","dependencyVersions":{"pint":"0.25.2","sympy":"1.14.0"},"draftReviewedCount":0,"failedCount":2,"failedPublishedEditionIds":["C1-L002","C1-L003"],"humanApproval":"NOT_RUN","originalEditionRetained":true,"publicationAction":"NONE","records":[{"assetChecksums":{"/figures/C1-scala.svg":"6c59566179802d99d4bc34c78f1a5074d2c3c1f0fd273c850631d0992ec19bad"},"calculationScope":"EXACT_MANUAL_CALCULATION","checks":[{"claim":"3mm equivalgono a0,003m","dimension":{"[length]":"1"},"expectedValue":"3/1000","independentExact":"3/1000","ok":true,"relation":"exact","residual":"0","unit":"m"},{"claim":"area centimetro quadrato","dimension":{"[length]":"2"},"expectedValue":"100","independentExact":"100","ok":true,"relation":"exact","residual":"0","unit":"mm**2"},{"claim":"volume centimetro cubo","dimension":{"[length]":"3"},"expectedValue":"1/1000000","independentExact":"1/1000000","ok":true,"relation":"exact","residual":"0","unit":"m**3"},{"claim":"densita g/cm3 convertita","dimension":{"[length]":"-3","[mass]":"1"},"expectedValue":"1000","independentExact":"1000","ok":true,"relation":"exact","residual":"0","unit":"kg/m**3"},{"claim":"segno notazione scientifica","dimension":{"[length]":"1"},"expectedValue":"-3/1000","independentExact":"-3/1000","ok":true,"relation":"exact","residual":"0","unit":"m"},{"claim":"fattore conversione vale1","dimension":{},"expectedValue":"1","independentExact":"1","ok":true,"relation":"exact","residual":"0","unit":""},{"claim":"densita dopo divisione uniforme","dimension":{"[length]":"-3","[mass]":"1"},"expectedValue":"m/V","independentExact":"m/V","ok":true,"relation":"exact","residual":"0","unit":"kg/m**3"},{"claim":"soglia logaritmica sqrt10","dimension":{},"expectedValue":"1/2","independentExact":"log(sqrt(10))/log(10)","ok":true,"relation":"exact","residual":"0","unit":""},{"claim":"figura10celle per lato","dimension":{},"expectedValue":"10","independentExact":"10","ok":true,"relation":"exact","residual":"0","unit":""},{"claim":"figura100celle di area","dimension":{},"expectedValue":"100","independentExact":"100","ok":true,"relation":"exact","residual":"0","unit":""},{"claim":"SI sette dimensioni base distinte","dimension":{},"expectedValue":"7","independentExact":"m,kg,s,A,K,mol,cd","ok":true,"relation":"independent_unit_dimension_identity","unit":""}],"dimension":{"3mm equivalgono a0,003m":{"[length]":"1"},"SI sette dimensioni base distinte":{},"area centimetro quadrato":{"[length]":"2"},"densita dopo divisione uniforme":{"[length]":"-3","[mass]":"1"},"densita g/cm3 convertita":{"[length]":"-3","[mass]":"1"},"fattore conversione vale1":{},"figura100celle di area":{},"figura10celle per lato":{},"segno notazione scientifica":{"[length]":"1"},"soglia logaritmica sqrt10":{},"volume centimetro cubo":{"[length]":"3"}},"errors":[],"failedPublishedEdition":false,"figureReview":"156px square with9 internal grid lines per direction at15,6px spacing,10x10 cells;red square15,6pxside is1/100totalarea.10mm=1cm and1cm²=100mm² exact.","humanApproval":"NOT_RUN","id":"C1-L001","manualArithmetic":"3mm=3/1000m=0,003m;10mm=1cm,quindi1cm²=100mm² e1cm³=(1/100m)^3=1/1000000m³.1g/cm³=(1/1000kg)/(1/1000000m³)=1000kg/m³.−3*0,001=−0,003. Soglia logaritmica fra10^n e10^(n+1):loga=1/2⇒a=sqrt10;9<10<16 distingue coefficienti3/4 senza calcolatrice. Densita (m/2)/(V/2)=m/V. Griglia10*10=100celle.","manualFeasibility":"PASS_AI_EXACT","ok":true,"originalEditionRetained":true,"pedagogicalReview":"Progression from matching units to derived density,area/volume powers,signed scientific notation,explicit logarithmic threshold,intensive/extensive distinction and scalars/vectors. No prefix shortcut for volumes. Exactmanual comparisons3²<10<4² check threshold without calculating sqrt10.","physicalAssumptions":"SI dimensional framework,nonzero quantity for normalized scientific notation and logarithmic order;zero separately written with unit. Order of magnitude uses explicitly logarithmic distance and upper exponent at tie. Intensive/extensive comparison is same uniform substance and unchanged state;density is average homogeneous mass/volume.","publicationAction":"NONE","sourceFileSha256":"0a79b1212adbef650733d655d1de2d5ffd7af5eb2be2bde50710a0a1721ab0cf","sourcePath":"officina-di-fisica/content/C1.json","sourceRef":"5d1dc8dc7b601aef959d10d564c75462be74708d","sourceSha256":"9c4fe4cb7a39a054a231ba95e5bb8cbf16c144f396dff41146907d9e6a6a1a2a","sourceVersion":2,"verificationMode":"INDEPENDENT_EXISTING_EDITION"},{"assetChecksums":{"/figures/C1-vettore.svg":"aba4cee638235b6a99ea823d57361e3b1366cd79ce92b8ac46240ec29580ff8c"},"calculationScope":"EXACT_MANUAL_CALCULATION","checks":[{"claim":"modulo da componenti ortonormali","dimension":{"[length]":"2"},"expectedValue":"A**2","independentExact":"A**2","ok":true,"relation":"exact","residual":"0","unit":"m**2"},{"claim":"dot da componenti e angolo relativo","dimension":{"[length]":"2"},"expectedValue":"A*B*cos(phi - theta)","independentExact":"A*B*cos(phi - theta)","ok":true,"relation":"exact","residual":"0","unit":"m**2"},{"claim":"identita area parallelogramma","dimension":{"[length]":"4"},"expectedValue":"A**2*B**2","independentExact":"A**2*B**2","ok":true,"relation":"exact","residual":"0","unit":"m**4"},{"claim":"dot paralleli concordi","dimension":{"[length]":"2"},"expectedValue":"A*B","independentExact":"A*B","ok":true,"relation":"exact","residual":"0","unit":"m**2"},{"claim":"dot paralleli discordi","dimension":{"[length]":"2"},"expectedValue":"-A*B","independentExact":"-A*B","ok":true,"relation":"exact","residual":"0","unit":"m**2"},{"claim":"cross paralleli nullo","dimension":{"[length]":"4"},"expectedValue":"0","independentExact":"0","ok":true,"relation":"exact","residual":"0","unit":"m**4"},{"claim":"prova manuale modulo3-4-5","dimension":{"[length]":"1"},"expectedValue":"5","independentExact":"5","ok":true,"relation":"exact","residual":"0","unit":"m"},{"claim":"somma componenti x","dimension":{"[length]":"1"},"expectedValue":"ax + bx","independentExact":"ax + bx","ok":true,"relation":"exact","residual":"0","unit":"m"},{"claim":"somma componenti y","dimension":{"[length]":"1"},"expectedValue":"ay + by","independentExact":"ay + by","ok":true,"relation":"exact","residual":"0","unit":"m"},{"claim":"vettore e opposto sommano zero","dimension":{"[length]":"2"},"expectedValue":"0","independentExact":"0","ok":true,"relation":"exact","residual":"0","unit":"m**2"},{"claim":"prodotto scalare con opposto3-4","dimension":{"[length]":"2"},"expectedValue":"-25","independentExact":"-25","ok":true,"relation":"exact","residual":"0","unit":"m**2"},{"claim":"mano destra basisx cross basisy","dimension":{},"expectedValue":"1","independentExact":"1","ok":true,"relation":"exact","residual":"0","unit":""},{"claim":"dimensione lavoro da forza e spostamento","dimension":{"[length]":"2","[mass]":"1","[time]":"-2"},"expectedValue":"12","independentExact":"12","ok":true,"relation":"exact","residual":"0","unit":"J"},{"claim":"stessa tangente quadranti opposti","dimension":{},"expectedValue":"4/3","independentExact":"4/3","ok":true,"relation":"exact","residual":"0","unit":""},{"claim":"figura rapporto proiezioni","dimension":{},"expectedValue":"1/2","independentExact":"1/2","ok":true,"relation":"exact","residual":"0","unit":""},{"claim":"controesempio alla proiezione firmata massima di tutti i paralleli","dimension":{"[length]":"1"},"expectedValue":"1","independentExact":"-1","ok":false,"relation":"exact","residual":"-2","unit":"m"}],"dimension":{"controesempio alla proiezione firmata massima di tutti i paralleli":{"[length]":"1"},"cross paralleli nullo":{"[length]":"4"},"dimensione lavoro da forza e spostamento":{"[length]":"2","[mass]":"1","[time]":"-2"},"dot da componenti e angolo relativo":{"[length]":"2"},"dot paralleli concordi":{"[length]":"2"},"dot paralleli discordi":{"[length]":"2"},"figura rapporto proiezioni":{},"identita area parallelogramma":{"[length]":"4"},"mano destra basisx cross basisy":{},"modulo da componenti ortonormali":{"[length]":"2"},"prodotto scalare con opposto3-4":{"[length]":"2"},"prova manuale modulo3-4-5":{"[length]":"1"},"somma componenti x":{"[length]":"1"},"somma componenti y":{"[length]":"1"},"stessa tangente quadranti opposti":{},"vettore e opposto sommano zero":{"[length]":"2"}},"errors":["Independent lesson claim counterexample or mathematics failed","Original says parallel vectors have maximum projection without restricting to codirected vectors or projection magnitude; antiparallel signed projection is the minimum."],"failedPublishedEdition":true,"figureReview":"Origin(88,174),tip(328,54):positive x240px,y120px,perpendicular dashed projections and angle from+x toward+y. No numeric length/angle scale assigned;arc is schematic,not decimal atan requirement.","humanApproval":"NOT_RUN","id":"C1-L002","manualArithmetic":"Formule controllate simbolicamente:cos²+sin²=1;dotABcos(theta−phi);cross²+dot²=A²B². Prova costruita dal reviewer(3,4)m ha modulo5m,cos3/5,sin4/5;opposto(−3,−4) ha stessa tangente4/3 ma quadrante opposto. Figura proietta240px e120px,rapporto1/2. FALLIMENTO originale limitato:perA=(1,0)m e direzioneB=(−1,0),proiezione firmata−1m non è massimo+1m. Dire concordi o massimo IN MODULO risolve,ma non è aggiunto retroattivamente.","manualFeasibility":"FAIL_ORIGINAL_EDITION","ok":false,"originalEditionRetained":true,"pedagogicalReview":"Correct components,head-to-tail sum/opposite difference,dot/cross contrast and quadrant warning. Original signed-projection wording needs concordant/discordant qualification;cannot silently read maximum as magnitude because negative projections were explicitly introduced.","physicalAssumptions":"Orthonormal Cartesian axes,right-handed orientation for cross product;A denotes nonnegative magnitude. Angle between nonzero vectors is in[0,pi],so cross magnitudeABsin(alpha) is nonnegative. Zero/parallel cross has no defined nonzero normal direction. Signed projections may be negative. Final original maximum-projection sentence fails for antiparallel vectors.","publicationAction":"NONE","publishedEditionIssue":{"kind":"signed_projection_overgeneralization","priority":"P2","reason":"Original says parallel vectors have maximum projection without restricting to codirected vectors or projection magnitude; antiparallel signed projection is the minimum."},"sourceFileSha256":"0a79b1212adbef650733d655d1de2d5ffd7af5eb2be2bde50710a0a1721ab0cf","sourcePath":"officina-di-fisica/content/C1.json","sourceRef":"5d1dc8dc7b601aef959d10d564c75462be74708d","sourceSha256":"99819e1718415a1562dda30d5475ac988421423a5e1746ca3328d0f5b6419b28","sourceVersion":1,"verificationMode":"INDEPENDENT_EXISTING_EDITION"},{"assetChecksums":{"/figures/C1-posizione.svg":"60f8e433938fb419332373efd343b8986057bea63c44691770fa8d40454e6d89","/figures/C1-velocita.svg":"0983a43aa7f3bb6aeb9493172a1bdc7361ef602887b9bb29c0e4db4e02776d3a"},"calculationScope":"EXACT_MANUAL_CALCULATION","checks":[{"claim":"pendenza primo tratto x-t","dimension":{"[length]":"1","[time]":"-1"},"expectedValue":"3","independentExact":"3","ok":true,"relation":"exact","residual":"0","unit":"m/s"},{"claim":"pendenza sosta x-t","dimension":{"[length]":"1","[time]":"-1"},"expectedValue":"0","independentExact":"0","ok":true,"relation":"exact","residual":"0","unit":"m/s"},{"claim":"pendenza ritorno x-t","dimension":{"[length]":"1","[time]":"-1"},"expectedValue":"-2","independentExact":"-2","ok":true,"relation":"exact","residual":"0","unit":"m/s"},{"claim":"spostamento complessivo x-t","dimension":{"[length]":"1"},"expectedValue":"2","independentExact":"2","ok":true,"relation":"exact","residual":"0","unit":"m"},{"claim":"distanza percorsa x-t","dimension":{"[length]":"1"},"expectedValue":"10","independentExact":"10","ok":true,"relation":"exact","residual":"0","unit":"m"},{"claim":"velocita media su6s","dimension":{"[length]":"1","[time]":"-1"},"expectedValue":"1/3","independentExact":"1/3","ok":true,"relation":"exact","residual":"0","unit":"m/s"},{"claim":"rapidita media diversa","dimension":{"[length]":"1","[time]":"-1"},"expectedValue":"5/3","independentExact":"5/3","ok":true,"relation":"exact","residual":"0","unit":"m/s"},{"claim":"limite secante per velocita istantanea","dimension":{"[length]":"1","[time]":"-1"},"expectedValue":"2*beta*t","independentExact":"2*beta*t","ok":true,"relation":"exact","residual":"0","unit":"m/s"},{"claim":"limite secante per accelerazione","dimension":{"[length]":"1","[time]":"-2"},"expectedValue":"a","independentExact":"a","ok":true,"relation":"exact","residual":"0","unit":"m/s**2"},{"claim":"accelerazione salita v-t","dimension":{"[length]":"1","[time]":"-2"},"expectedValue":"2","independentExact":"2","ok":true,"relation":"exact","residual":"0","unit":"m/s**2"},{"claim":"accelerazione discesa v-t","dimension":{"[length]":"1","[time]":"-2"},"expectedValue":"-2","independentExact":"-2","ok":true,"relation":"exact","residual":"0","unit":"m/s**2"},{"claim":"spostamento da area primo triangolo","dimension":{"[length]":"1"},"expectedValue":"9","independentExact":"9","ok":true,"relation":"exact","residual":"0","unit":"m"},{"claim":"spostamento da area secondo triangolo","dimension":{"[length]":"1"},"expectedValue":"9","independentExact":"9","ok":true,"relation":"exact","residual":"0","unit":"m"},{"claim":"velocita agli estremi v-t","dimension":{"[length]":"1","[time]":"-1"},"expectedValue":"0","independentExact":"0","ok":true,"relation":"exact","residual":"0","unit":"m/s"},{"claim":"caption strettamente positiva anche agli estremi","dimension":{"[length]":"1","[time]":"-1"},"expectedValue":"positive throughout all displayed instants","independentExact":"v(0)=v(6)=0;v>0 only for0<t<6","ok":false,"relation":"editorial_boundary_counterexample_motion_conclusion_remains_correct","unit":"m/s"}],"dimension":{"accelerazione discesa v-t":{"[length]":"1","[time]":"-2"},"accelerazione salita v-t":{"[length]":"1","[time]":"-2"},"caption strettamente positiva anche agli estremi":{"[length]":"1","[time]":"-1"},"distanza percorsa x-t":{"[length]":"1"},"limite secante per accelerazione":{"[length]":"1","[time]":"-2"},"limite secante per velocita istantanea":{"[length]":"1","[time]":"-1"},"pendenza primo tratto x-t":{"[length]":"1","[time]":"-1"},"pendenza ritorno x-t":{"[length]":"1","[time]":"-1"},"pendenza sosta x-t":{"[length]":"1","[time]":"-1"},"rapidita media diversa":{"[length]":"1","[time]":"-1"},"spostamento complessivo x-t":{"[length]":"1"},"spostamento da area primo triangolo":{"[length]":"1"},"spostamento da area secondo triangolo":{"[length]":"1"},"velocita agli estremi v-t":{"[length]":"1","[time]":"-1"},"velocita media su6s":{"[length]":"1","[time]":"-1"}},"errors":["Independent lesson claim counterexample or mathematics failed","Velocity-graph caption says positive throughout; intended labelled endpoints are zero. Motion conclusion and all slope/area formulas remain correct; precision issue only."],"failedPublishedEdition":true,"figureReview":"x-t ticks t2/4/6 andx0/6/2 agree withpiecewise plot,plateau2..4 at6m. v-t ticks peak6at3s and end6s supporttriangle area18m;baselinepolygonoffset1px iswithin stroke,not meaningful residual speed. Caption strictlypositive fails intended zero endpoints;all interiorv positive.","humanApproval":"NOT_RUN","id":"C1-L003","manualArithmetic":"Figura x-t:(0,0),(2,6),(4,6),(6,2),pendenze3,0,−2m/s;spostamento2m,distanza10m,medie1/3 e5/3m/s. Figura v-t distinta:0→6m/s in3s poi0in6s;accelerazioni±2m/s² earee9+9=18m. Nessun ritorno nel secondo grafico. FALLIMENTO editorialeP3:caption dicepositiva,ma v agli estremi è0;corretta la crescita di posizione. Non invento errore nel moto né equivalenza fra due grafici che illustrano moti diversi.","manualFeasibility":"FAIL_ORIGINAL_EDITION","ok":false,"originalEditionRetained":true,"pedagogicalReview":"Correct distinction of trajectory versus time graph,secant/tangent slope,velocity/acceleration and signed area. Correct stop atx6m and falling positive-v segment without return. Original boundary-caption precision only:zero endpoints should be called nonnegative,positive internally. This isP3,not a false acceleration/direction lesson.","physicalAssumptions":"One-dimensional coordinates relative to chosen origin and axis,positive elapsed time;instantaneous derivatives where differentiable. Corners of ideal piecewise plots require one-sided treatment,not unique tangents. Position and velocity figures are separate illustrations,not derivatives of one shared motion. Intended zero endpoints in v-t lie within the SVG stroke/one-pixel baseline offset;caption positivity issue does not reverse motion.","publicationAction":"NONE","publishedEditionIssue":{"kind":"endpoint_caption_precision","priority":"P3","reason":"Velocity-graph caption says positive throughout; intended labelled endpoints are zero. Motion conclusion and all slope/area formulas remain correct; precision issue only."},"sourceFileSha256":"0a79b1212adbef650733d655d1de2d5ffd7af5eb2be2bde50710a0a1721ab0cf","sourcePath":"officina-di-fisica/content/C1.json","sourceRef":"5d1dc8dc7b601aef959d10d564c75462be74708d","sourceSha256":"6c15729bda7bfdfd6dd9b1b6c1387cf59a9a9938a153094c30b2af283eaaea2b","sourceVersion":1,"verificationMode":"INDEPENDENT_EXISTING_EDITION"},{"assetChecksums":{"/figures/C1-circolo.svg":"158b6a3f5b0614ce90034b870182536612b95171a10fc9cb51ee6d7d749341cf","/figures/C1-parabola.svg":"dd8d8c1f3bd2470e26e9867d6d5475286f1bfab0030be95597f689031df37bcb"},"calculationScope":"EXACT_MANUAL_CALCULATION","checks":[{"claim":"integrazione accelerazione costante","dimension":{"[length]":"1","[time]":"-1"},"expectedValue":"a*t + v0","independentExact":"a*t + v0","ok":true,"relation":"exact","residual":"0","unit":"m/s"},{"claim":"integrazione velocita lineare","dimension":{"[length]":"1"},"expectedValue":"a*t**2/2 + t*v0","independentExact":"a*t**2/2 + t*v0","ok":true,"relation":"exact","residual":"0","unit":"m"},{"claim":"accelerazione orizzontale proiettile","dimension":{"[length]":"1","[time]":"-2"},"expectedValue":"0","independentExact":"0","ok":true,"relation":"exact","residual":"0","unit":"m/s**2"},{"claim":"accelerazione verticale proiettile","dimension":{"[length]":"1","[time]":"-2"},"expectedValue":"-g","independentExact":"-g","ok":true,"relation":"exact","residual":"0","unit":"m/s**2"},{"claim":"vy al culmine g nonnullo","dimension":{"[length]":"1","[time]":"-1"},"expectedValue":"0","independentExact":"0","ok":true,"relation":"exact","residual":"0","unit":"m/s"},{"claim":"vx al culmine obliquo","dimension":{"[length]":"1","[time]":"-1"},"expectedValue":"vx","independentExact":"vx","ok":true,"relation":"exact","residual":"0","unit":"m/s"},{"claim":"eliminazione tempo dà parabola","dimension":{"[length]":"-1"},"expectedValue":"-g/vx**2","independentExact":"-g/vx**2","ok":true,"relation":"exact","residual":"0","unit":"1/m"},{"claim":"velocita circolare al quadrato","dimension":{"[length]":"2","[time]":"-2"},"expectedValue":"4*pi**2*r**2/period**2","independentExact":"4*pi**2*r**2/period**2","ok":true,"relation":"exact","residual":"0","unit":"m**2/s**2"},{"claim":"accelerazione radiale reale","dimension":{"[length]":"2","[time]":"-2"},"expectedValue":"-4*pi**2*r**2/period**2","independentExact":"-4*pi**2*r**2/period**2","ok":true,"relation":"exact","residual":"0","unit":"m**2/s**2"},{"claim":"v e a perpendicolari giro uniforme","dimension":{"[length]":"2","[time]":"-3"},"expectedValue":"0","independentExact":"0","ok":true,"relation":"exact","residual":"0","unit":"m**2/s**3"},{"claim":"modulo accelerazione centripeta","dimension":{"[length]":"1","[time]":"-2"},"expectedValue":"4*pi**2*r/period**2","independentExact":"4*pi**2*r/period**2","ok":true,"relation":"exact","residual":"0","unit":"m/s**2"},{"claim":"modulo velocita da periodo","dimension":{"[length]":"1","[time]":"-1"},"expectedValue":"2*pi*r/period","independentExact":"2*pi*r/period","ok":true,"relation":"exact","residual":"0","unit":"m/s"},{"claim":"ac uguale vquadro su r","dimension":{"[length]":"1","[time]":"-2"},"expectedValue":"4*pi**2*r/period**2","independentExact":"4*pi**2*r/period**2","ok":true,"relation":"exact","residual":"0","unit":"m/s**2"},{"claim":"figura parabola culmine x","dimension":{},"expectedValue":"276","independentExact":"276","ok":true,"relation":"exact","residual":"0","unit":""},{"claim":"figura parabola culmine y","dimension":{},"expectedValue":"36","independentExact":"36","ok":true,"relation":"exact","residual":"0","unit":""},{"claim":"tangente orizzontale al culmine SVG","dimension":{},"expectedValue":"0","independentExact":"0","ok":true,"relation":"exact","residual":"0","unit":""},{"claim":"prova firmata v0-1,a1,t3","dimension":{"[length]":"1"},"expectedValue":"3/2","independentExact":"3/2","ok":true,"relation":"exact","residual":"0","unit":"m"},{"claim":"distanza prova invertita","dimension":{"[length]":"1"},"expectedValue":"5/2","independentExact":"5/2","ok":true,"relation":"exact","residual":"0","unit":"m"}],"dimension":{"ac uguale vquadro su r":{"[length]":"1","[time]":"-2"},"accelerazione orizzontale proiettile":{"[length]":"1","[time]":"-2"},"accelerazione radiale reale":{"[length]":"2","[time]":"-2"},"accelerazione verticale proiettile":{"[length]":"1","[time]":"-2"},"distanza prova invertita":{"[length]":"1"},"eliminazione tempo dà parabola":{"[length]":"-1"},"figura parabola culmine x":{},"figura parabola culmine y":{},"integrazione accelerazione costante":{"[length]":"1","[time]":"-1"},"integrazione velocita lineare":{"[length]":"1"},"modulo accelerazione centripeta":{"[length]":"1","[time]":"-2"},"modulo velocita da periodo":{"[length]":"1","[time]":"-1"},"prova firmata v0-1,a1,t3":{"[length]":"1"},"tangente orizzontale al culmine SVG":{},"v e a perpendicolari giro uniforme":{"[length]":"2","[time]":"-3"},"velocita circolare al quadrato":{"[length]":"2","[time]":"-2"},"vx al culmine obliquo":{"[length]":"1","[time]":"-1"},"vy al culmine g nonnullo":{"[length]":"1","[time]":"-1"}},"errors":[],"failedPublishedEdition":false,"figureReview":"Projectile quadraticBezier has apex(276,36) exactly and horizontalv at apex,downwardg;launch/return sameheight. Circlecenter(235,111),rightpoint(311,111),radius76px;velocityup tangent,accelerationleft towardcenter. No numeric physical arrow/length scale claimed.","humanApproval":"NOT_RUN","id":"C1-L004","manualArithmetic":"Integraa costante:v0+at e integralev=v0t+at²/2. Cony alto,secondaderivatay=−g anche in salita;apicevy0 maax0/ay−g,perobliquovx non0. Derivaorbita(r cosωt,r sinωt):v²=ω²r²,a=−ω²rhat,a·v0,ac=ω²r=v²/r,ω2pi/T. Prova numerica del reviewer v0−1,a1,t3:spostamento3/2m,distanza1/2+2=5/2m. Nessun valore decimale di pi richiesto. Bezier culmine(276,36),tangenteorizzontale;circolo r76px,tangente e centro perpendicolari.","manualFeasibility":"PASS_AI_EXACT","ok":true,"originalEditionRetained":true,"pedagogicalReview":"Integrates linearly changing velocity and distinguishes signed displacement from distance. Gravity remains downward at apex;horizontal velocity survives an oblique launch. Circle explains changing direction at constant speed and points to real tension/radial force rather than adding a fictitious centripetal interaction.","physicalAssumptions":"Constant acceleration along fixed line;initial clockt0. Projectile near Earth in approximately inertial lab,uniform downwardg,no air,oblique launchvx nonzero and same clock for axes. Circular uniform motion has positiver,T and constant speed;centripetal is acceleration direction caused by real radial interactions,not an extra force.","publicationAction":"NONE","sourceFileSha256":"0a79b1212adbef650733d655d1de2d5ffd7af5eb2be2bde50710a0a1721ab0cf","sourcePath":"officina-di-fisica/content/C1.json","sourceRef":"5d1dc8dc7b601aef959d10d564c75462be74708d","sourceSha256":"964bdc7021fe5466d3a86cf18356fe1708bb9441d184414cb88587fa4bb00584","sourceVersion":2,"verificationMode":"INDEPENDENT_EXISTING_EDITION"}],"reviewer":"separate_AI_reviewer_not_original_or_revision_author","schemaVersion":"1.0.0","sourceFileSha256":"0a79b1212adbef650733d655d1de2d5ffd7af5eb2be2bde50710a0a1721ab0cf","sourcePath":"officina-di-fisica/content/C1.json","sourceRef":"5d1dc8dc7b601aef959d10d564c75462be74708d","verifierSha256":"316337bf6aad5b99e5a68644133ed8db2265b16cb336f49cd2c450bc5f233cee"}
+{
+  "schemaVersion": "1.0.0",
+  "batch": "lessons-foundations-011",
+  "records": [
+    {
+      "id": "C1-L001",
+      "sourceSha256": "9c4fe4cb7a39a054a231ba95e5bb8cbf16c144f396dff41146907d9e6a6a1a2a",
+      "sourceVersion": 2,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C1.json",
+      "sourceFileSha256": "0a79b1212adbef650733d655d1de2d5ffd7af5eb2be2bde50710a0a1721ab0cf",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "3mm equivalgono a0,003m",
+          "independentExact": "3/1000",
+          "expectedValue": "3/1000",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "area centimetro quadrato",
+          "independentExact": "100",
+          "expectedValue": "100",
+          "unit": "mm**2",
+          "dimension": {
+            "[length]": "2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "volume centimetro cubo",
+          "independentExact": "1/1000000",
+          "expectedValue": "1/1000000",
+          "unit": "m**3",
+          "dimension": {
+            "[length]": "3"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "densita g/cm3 convertita",
+          "independentExact": "1000",
+          "expectedValue": "1000",
+          "unit": "kg/m**3",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-3"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "segno notazione scientifica",
+          "independentExact": "-3/1000",
+          "expectedValue": "-3/1000",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "fattore conversione vale1",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "densita dopo divisione uniforme",
+          "independentExact": "m/V",
+          "expectedValue": "m/V",
+          "unit": "kg/m**3",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "-3"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "soglia logaritmica sqrt10",
+          "independentExact": "log(sqrt(10))/log(10)",
+          "expectedValue": "1/2",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "figura10celle per lato",
+          "independentExact": "10",
+          "expectedValue": "10",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "figura100celle di area",
+          "independentExact": "100",
+          "expectedValue": "100",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "SI sette dimensioni base distinte",
+          "independentExact": "m,kg,s,A,K,mol,cd",
+          "expectedValue": "7",
+          "unit": "",
+          "dimension": {},
+          "relation": "independent_unit_dimension_identity",
+          "ok": true
+        }
+      ],
+      "dimension": {
+        "3mm equivalgono a0,003m": {
+          "[length]": "1"
+        },
+        "area centimetro quadrato": {
+          "[length]": "2"
+        },
+        "volume centimetro cubo": {
+          "[length]": "3"
+        },
+        "densita g/cm3 convertita": {
+          "[mass]": "1",
+          "[length]": "-3"
+        },
+        "segno notazione scientifica": {
+          "[length]": "1"
+        },
+        "fattore conversione vale1": {},
+        "densita dopo divisione uniforme": {
+          "[mass]": "1",
+          "[length]": "-3"
+        },
+        "soglia logaritmica sqrt10": {},
+        "figura10celle per lato": {},
+        "figura100celle di area": {},
+        "SI sette dimensioni base distinte": {}
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "3mm=3/1000m=0,003m;10mm=1cm,quindi1cm²=100mm² e1cm³=(1/100m)^3=1/1000000m³.1g/cm³=(1/1000kg)/(1/1000000m³)=1000kg/m³.−3*0,001=−0,003. Soglia logaritmica fra10^n e10^(n+1):loga=1/2⇒a=sqrt10;9<10<16 distingue coefficienti3/4 senza calcolatrice. Densita (m/2)/(V/2)=m/V. Griglia10*10=100celle.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "SI dimensional framework,nonzero quantity for normalized scientific notation and logarithmic order;zero separately written with unit. Order of magnitude uses explicitly logarithmic distance and upper exponent at tie. Intensive/extensive comparison is same uniform substance and unchanged state;density is average homogeneous mass/volume.",
+      "pedagogicalReview": "Progression from matching units to derived density,area/volume powers,signed scientific notation,explicit logarithmic threshold,intensive/extensive distinction and scalars/vectors. No prefix shortcut for volumes. Exactmanual comparisons3²<10<4² check threshold without calculating sqrt10.",
+      "assetChecksums": {
+        "/figures/C1-scala.svg": "6c59566179802d99d4bc34c78f1a5074d2c3c1f0fd273c850631d0992ec19bad"
+      },
+      "figureReview": "156px square with9 internal grid lines per direction at15,6px spacing,10x10 cells;red square15,6pxside is1/100totalarea.10mm=1cm and1cm²=100mm² exact.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C1-L002",
+      "sourceSha256": "99819e1718415a1562dda30d5475ac988421423a5e1746ca3328d0f5b6419b28",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C1.json",
+      "sourceFileSha256": "0a79b1212adbef650733d655d1de2d5ffd7af5eb2be2bde50710a0a1721ab0cf",
+      "ok": false,
+      "errors": [
+        "Independent lesson claim counterexample or mathematics failed",
+        "Original says parallel vectors have maximum projection without restricting to codirected vectors or projection magnitude; antiparallel signed projection is the minimum."
+      ],
+      "checks": [
+        {
+          "claim": "modulo da componenti ortonormali",
+          "independentExact": "A**2",
+          "expectedValue": "A**2",
+          "unit": "m**2",
+          "dimension": {
+            "[length]": "2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "dot da componenti e angolo relativo",
+          "independentExact": "A*B*cos(phi - theta)",
+          "expectedValue": "A*B*cos(phi - theta)",
+          "unit": "m**2",
+          "dimension": {
+            "[length]": "2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "identita area parallelogramma",
+          "independentExact": "A**2*B**2",
+          "expectedValue": "A**2*B**2",
+          "unit": "m**4",
+          "dimension": {
+            "[length]": "4"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "dot paralleli concordi",
+          "independentExact": "A*B",
+          "expectedValue": "A*B",
+          "unit": "m**2",
+          "dimension": {
+            "[length]": "2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "dot paralleli discordi",
+          "independentExact": "-A*B",
+          "expectedValue": "-A*B",
+          "unit": "m**2",
+          "dimension": {
+            "[length]": "2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "cross paralleli nullo",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "m**4",
+          "dimension": {
+            "[length]": "4"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "prova manuale modulo3-4-5",
+          "independentExact": "5",
+          "expectedValue": "5",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "somma componenti x",
+          "independentExact": "ax + bx",
+          "expectedValue": "ax + bx",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "somma componenti y",
+          "independentExact": "ay + by",
+          "expectedValue": "ay + by",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "vettore e opposto sommano zero",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "m**2",
+          "dimension": {
+            "[length]": "2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "prodotto scalare con opposto3-4",
+          "independentExact": "-25",
+          "expectedValue": "-25",
+          "unit": "m**2",
+          "dimension": {
+            "[length]": "2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "mano destra basisx cross basisy",
+          "independentExact": "1",
+          "expectedValue": "1",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "dimensione lavoro da forza e spostamento",
+          "independentExact": "12",
+          "expectedValue": "12",
+          "unit": "J",
+          "dimension": {
+            "[mass]": "1",
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "stessa tangente quadranti opposti",
+          "independentExact": "4/3",
+          "expectedValue": "4/3",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "figura rapporto proiezioni",
+          "independentExact": "1/2",
+          "expectedValue": "1/2",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "controesempio alla proiezione firmata massima di tutti i paralleli",
+          "independentExact": "-1",
+          "expectedValue": "1",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "-2",
+          "ok": false
+        }
+      ],
+      "dimension": {
+        "modulo da componenti ortonormali": {
+          "[length]": "2"
+        },
+        "dot da componenti e angolo relativo": {
+          "[length]": "2"
+        },
+        "identita area parallelogramma": {
+          "[length]": "4"
+        },
+        "dot paralleli concordi": {
+          "[length]": "2"
+        },
+        "dot paralleli discordi": {
+          "[length]": "2"
+        },
+        "cross paralleli nullo": {
+          "[length]": "4"
+        },
+        "prova manuale modulo3-4-5": {
+          "[length]": "1"
+        },
+        "somma componenti x": {
+          "[length]": "1"
+        },
+        "somma componenti y": {
+          "[length]": "1"
+        },
+        "vettore e opposto sommano zero": {
+          "[length]": "2"
+        },
+        "prodotto scalare con opposto3-4": {
+          "[length]": "2"
+        },
+        "mano destra basisx cross basisy": {},
+        "dimensione lavoro da forza e spostamento": {
+          "[mass]": "1",
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "stessa tangente quadranti opposti": {},
+        "figura rapporto proiezioni": {},
+        "controesempio alla proiezione firmata massima di tutti i paralleli": {
+          "[length]": "1"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "Formule controllate simbolicamente:cos²+sin²=1;dotABcos(theta−phi);cross²+dot²=A²B². Prova costruita dal reviewer(3,4)m ha modulo5m,cos3/5,sin4/5;opposto(−3,−4) ha stessa tangente4/3 ma quadrante opposto. Figura proietta240px e120px,rapporto1/2. FALLIMENTO originale limitato:perA=(1,0)m e direzioneB=(−1,0),proiezione firmata−1m non è massimo+1m. Dire concordi o massimo IN MODULO risolve,ma non è aggiunto retroattivamente.",
+      "manualFeasibility": "FAIL_ORIGINAL_EDITION",
+      "physicalAssumptions": "Orthonormal Cartesian axes,right-handed orientation for cross product;A denotes nonnegative magnitude. Angle between nonzero vectors is in[0,pi],so cross magnitudeABsin(alpha) is nonnegative. Zero/parallel cross has no defined nonzero normal direction. Signed projections may be negative. Final original maximum-projection sentence fails for antiparallel vectors.",
+      "pedagogicalReview": "Correct components,head-to-tail sum/opposite difference,dot/cross contrast and quadrant warning. Original signed-projection wording needs concordant/discordant qualification;cannot silently read maximum as magnitude because negative projections were explicitly introduced.",
+      "assetChecksums": {
+        "/figures/C1-vettore.svg": "aba4cee638235b6a99ea823d57361e3b1366cd79ce92b8ac46240ec29580ff8c"
+      },
+      "figureReview": "Origin(88,174),tip(328,54):positive x240px,y120px,perpendicular dashed projections and angle from+x toward+y. No numeric length/angle scale assigned;arc is schematic,not decimal atan requirement.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": true,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE",
+      "publishedEditionIssue": {
+        "priority": "P2",
+        "kind": "signed_projection_overgeneralization",
+        "reason": "Original says parallel vectors have maximum projection without restricting to codirected vectors or projection magnitude; antiparallel signed projection is the minimum."
+      }
+    },
+    {
+      "id": "C1-L003",
+      "sourceSha256": "6c15729bda7bfdfd6dd9b1b6c1387cf59a9a9938a153094c30b2af283eaaea2b",
+      "sourceVersion": 1,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C1.json",
+      "sourceFileSha256": "0a79b1212adbef650733d655d1de2d5ffd7af5eb2be2bde50710a0a1721ab0cf",
+      "ok": false,
+      "errors": [
+        "Independent lesson claim counterexample or mathematics failed",
+        "Velocity-graph caption says positive throughout; intended labelled endpoints are zero. Motion conclusion and all slope/area formulas remain correct; precision issue only."
+      ],
+      "checks": [
+        {
+          "claim": "pendenza primo tratto x-t",
+          "independentExact": "3",
+          "expectedValue": "3",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "pendenza sosta x-t",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "pendenza ritorno x-t",
+          "independentExact": "-2",
+          "expectedValue": "-2",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "spostamento complessivo x-t",
+          "independentExact": "2",
+          "expectedValue": "2",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "distanza percorsa x-t",
+          "independentExact": "10",
+          "expectedValue": "10",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "velocita media su6s",
+          "independentExact": "1/3",
+          "expectedValue": "1/3",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "rapidita media diversa",
+          "independentExact": "5/3",
+          "expectedValue": "5/3",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "limite secante per velocita istantanea",
+          "independentExact": "2*beta*t",
+          "expectedValue": "2*beta*t",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "limite secante per accelerazione",
+          "independentExact": "a",
+          "expectedValue": "a",
+          "unit": "m/s**2",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "accelerazione salita v-t",
+          "independentExact": "2",
+          "expectedValue": "2",
+          "unit": "m/s**2",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "accelerazione discesa v-t",
+          "independentExact": "-2",
+          "expectedValue": "-2",
+          "unit": "m/s**2",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "spostamento da area primo triangolo",
+          "independentExact": "9",
+          "expectedValue": "9",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "spostamento da area secondo triangolo",
+          "independentExact": "9",
+          "expectedValue": "9",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "velocita agli estremi v-t",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "caption strettamente positiva anche agli estremi",
+          "independentExact": "v(0)=v(6)=0;v>0 only for0<t<6",
+          "expectedValue": "positive throughout all displayed instants",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "editorial_boundary_counterexample_motion_conclusion_remains_correct",
+          "ok": false
+        }
+      ],
+      "dimension": {
+        "pendenza primo tratto x-t": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "pendenza sosta x-t": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "pendenza ritorno x-t": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "spostamento complessivo x-t": {
+          "[length]": "1"
+        },
+        "distanza percorsa x-t": {
+          "[length]": "1"
+        },
+        "velocita media su6s": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "rapidita media diversa": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "limite secante per velocita istantanea": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "limite secante per accelerazione": {
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "accelerazione salita v-t": {
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "accelerazione discesa v-t": {
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "spostamento da area primo triangolo": {
+          "[length]": "1"
+        },
+        "spostamento da area secondo triangolo": {
+          "[length]": "1"
+        },
+        "velocita agli estremi v-t": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "caption strettamente positiva anche agli estremi": {
+          "[length]": "1",
+          "[time]": "-1"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "Figura x-t:(0,0),(2,6),(4,6),(6,2),pendenze3,0,−2m/s;spostamento2m,distanza10m,medie1/3 e5/3m/s. Figura v-t distinta:0→6m/s in3s poi0in6s;accelerazioni±2m/s² earee9+9=18m. Nessun ritorno nel secondo grafico. FALLIMENTO editorialeP3:caption dicepositiva,ma v agli estremi è0;corretta la crescita di posizione. Non invento errore nel moto né equivalenza fra due grafici che illustrano moti diversi.",
+      "manualFeasibility": "FAIL_ORIGINAL_EDITION",
+      "physicalAssumptions": "One-dimensional coordinates relative to chosen origin and axis,positive elapsed time;instantaneous derivatives where differentiable. Corners of ideal piecewise plots require one-sided treatment,not unique tangents. Position and velocity figures are separate illustrations,not derivatives of one shared motion. Intended zero endpoints in v-t lie within the SVG stroke/one-pixel baseline offset;caption positivity issue does not reverse motion.",
+      "pedagogicalReview": "Correct distinction of trajectory versus time graph,secant/tangent slope,velocity/acceleration and signed area. Correct stop atx6m and falling positive-v segment without return. Original boundary-caption precision only:zero endpoints should be called nonnegative,positive internally. This isP3,not a false acceleration/direction lesson.",
+      "assetChecksums": {
+        "/figures/C1-posizione.svg": "60f8e433938fb419332373efd343b8986057bea63c44691770fa8d40454e6d89",
+        "/figures/C1-velocita.svg": "0983a43aa7f3bb6aeb9493172a1bdc7361ef602887b9bb29c0e4db4e02776d3a"
+      },
+      "figureReview": "x-t ticks t2/4/6 andx0/6/2 agree withpiecewise plot,plateau2..4 at6m. v-t ticks peak6at3s and end6s supporttriangle area18m;baselinepolygonoffset1px iswithin stroke,not meaningful residual speed. Caption strictlypositive fails intended zero endpoints;all interiorv positive.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": true,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE",
+      "publishedEditionIssue": {
+        "priority": "P3",
+        "kind": "endpoint_caption_precision",
+        "reason": "Velocity-graph caption says positive throughout; intended labelled endpoints are zero. Motion conclusion and all slope/area formulas remain correct; precision issue only."
+      }
+    },
+    {
+      "id": "C1-L004",
+      "sourceSha256": "964bdc7021fe5466d3a86cf18356fe1708bb9441d184414cb88587fa4bb00584",
+      "sourceVersion": 2,
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourcePath": "officina-di-fisica/content/C1.json",
+      "sourceFileSha256": "0a79b1212adbef650733d655d1de2d5ffd7af5eb2be2bde50710a0a1721ab0cf",
+      "ok": true,
+      "errors": [],
+      "checks": [
+        {
+          "claim": "integrazione accelerazione costante",
+          "independentExact": "a*t + v0",
+          "expectedValue": "a*t + v0",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "integrazione velocita lineare",
+          "independentExact": "a*t**2/2 + t*v0",
+          "expectedValue": "a*t**2/2 + t*v0",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "accelerazione orizzontale proiettile",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "m/s**2",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "accelerazione verticale proiettile",
+          "independentExact": "-g",
+          "expectedValue": "-g",
+          "unit": "m/s**2",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "vy al culmine g nonnullo",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "vx al culmine obliquo",
+          "independentExact": "vx",
+          "expectedValue": "vx",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "eliminazione tempo dà parabola",
+          "independentExact": "-g/vx**2",
+          "expectedValue": "-g/vx**2",
+          "unit": "1/m",
+          "dimension": {
+            "[length]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "velocita circolare al quadrato",
+          "independentExact": "4*pi**2*r**2/period**2",
+          "expectedValue": "4*pi**2*r**2/period**2",
+          "unit": "m**2/s**2",
+          "dimension": {
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "accelerazione radiale reale",
+          "independentExact": "-4*pi**2*r**2/period**2",
+          "expectedValue": "-4*pi**2*r**2/period**2",
+          "unit": "m**2/s**2",
+          "dimension": {
+            "[length]": "2",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "v e a perpendicolari giro uniforme",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "m**2/s**3",
+          "dimension": {
+            "[length]": "2",
+            "[time]": "-3"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "modulo accelerazione centripeta",
+          "independentExact": "4*pi**2*r/period**2",
+          "expectedValue": "4*pi**2*r/period**2",
+          "unit": "m/s**2",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "modulo velocita da periodo",
+          "independentExact": "2*pi*r/period",
+          "expectedValue": "2*pi*r/period",
+          "unit": "m/s",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "ac uguale vquadro su r",
+          "independentExact": "4*pi**2*r/period**2",
+          "expectedValue": "4*pi**2*r/period**2",
+          "unit": "m/s**2",
+          "dimension": {
+            "[length]": "1",
+            "[time]": "-2"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "figura parabola culmine x",
+          "independentExact": "276",
+          "expectedValue": "276",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "figura parabola culmine y",
+          "independentExact": "36",
+          "expectedValue": "36",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "tangente orizzontale al culmine SVG",
+          "independentExact": "0",
+          "expectedValue": "0",
+          "unit": "",
+          "dimension": {},
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "prova firmata v0-1,a1,t3",
+          "independentExact": "3/2",
+          "expectedValue": "3/2",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        },
+        {
+          "claim": "distanza prova invertita",
+          "independentExact": "5/2",
+          "expectedValue": "5/2",
+          "unit": "m",
+          "dimension": {
+            "[length]": "1"
+          },
+          "relation": "exact",
+          "residual": "0",
+          "ok": true
+        }
+      ],
+      "dimension": {
+        "integrazione accelerazione costante": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "integrazione velocita lineare": {
+          "[length]": "1"
+        },
+        "accelerazione orizzontale proiettile": {
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "accelerazione verticale proiettile": {
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "vy al culmine g nonnullo": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "vx al culmine obliquo": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "eliminazione tempo dà parabola": {
+          "[length]": "-1"
+        },
+        "velocita circolare al quadrato": {
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "accelerazione radiale reale": {
+          "[length]": "2",
+          "[time]": "-2"
+        },
+        "v e a perpendicolari giro uniforme": {
+          "[length]": "2",
+          "[time]": "-3"
+        },
+        "modulo accelerazione centripeta": {
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "modulo velocita da periodo": {
+          "[length]": "1",
+          "[time]": "-1"
+        },
+        "ac uguale vquadro su r": {
+          "[length]": "1",
+          "[time]": "-2"
+        },
+        "figura parabola culmine x": {},
+        "figura parabola culmine y": {},
+        "tangente orizzontale al culmine SVG": {},
+        "prova firmata v0-1,a1,t3": {
+          "[length]": "1"
+        },
+        "distanza prova invertita": {
+          "[length]": "1"
+        }
+      },
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "manualArithmetic": "Integraa costante:v0+at e integralev=v0t+at²/2. Cony alto,secondaderivatay=−g anche in salita;apicevy0 maax0/ay−g,perobliquovx non0. Derivaorbita(r cosωt,r sinωt):v²=ω²r²,a=−ω²rhat,a·v0,ac=ω²r=v²/r,ω2pi/T. Prova numerica del reviewer v0−1,a1,t3:spostamento3/2m,distanza1/2+2=5/2m. Nessun valore decimale di pi richiesto. Bezier culmine(276,36),tangenteorizzontale;circolo r76px,tangente e centro perpendicolari.",
+      "manualFeasibility": "PASS_AI_EXACT",
+      "physicalAssumptions": "Constant acceleration along fixed line;initial clockt0. Projectile near Earth in approximately inertial lab,uniform downwardg,no air,oblique launchvx nonzero and same clock for axes. Circular uniform motion has positiver,T and constant speed;centripetal is acceleration direction caused by real radial interactions,not an extra force.",
+      "pedagogicalReview": "Integrates linearly changing velocity and distinguishes signed displacement from distance. Gravity remains downward at apex;horizontal velocity survives an oblique launch. Circle explains changing direction at constant speed and points to real tension/radial force rather than adding a fictitious centripetal interaction.",
+      "assetChecksums": {
+        "/figures/C1-parabola.svg": "dd8d8c1f3bd2470e26e9867d6d5475286f1bfab0030be95597f689031df37bcb",
+        "/figures/C1-circolo.svg": "158b6a3f5b0614ce90034b870182536612b95171a10fc9cb51ee6d7d749341cf"
+      },
+      "figureReview": "Projectile quadraticBezier has apex(276,36) exactly and horizontalv at apex,downwardg;launch/return sameheight. Circlecenter(235,111),rightpoint(311,111),radius76px;velocityup tangent,accelerationleft towardcenter. No numeric physical arrow/length scale claimed.",
+      "verificationMode": "INDEPENDENT_EXISTING_EDITION",
+      "failedPublishedEdition": false,
+      "originalEditionRetained": true,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "40ee9866c607f5bce02d162699cd2e54d5e983477903d3bbcb0565f64be7a037",
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+  "sourcePath": "officina-di-fisica/content/C1.json",
+  "sourceFileSha256": "0a79b1212adbef650733d655d1de2d5ffd7af5eb2be2bde50710a0a1721ab0cf",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "acceptedCount": 2,
+  "failedCount": 2,
+  "draftReviewedCount": 0,
+  "failedPublishedEditionIds": [
+    "C1-L002",
+    "C1-L003"
+  ],
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_original_or_revision_author",
+  "originalEditionRetained": true,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}

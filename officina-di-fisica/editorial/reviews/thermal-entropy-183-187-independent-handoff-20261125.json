@@ -1,0 +1,83 @@
+{
+  "schemaVersion": "1.0.0",
+  "scope": "Separate independent AI scientific review of B183–187, exactly 80 questions; not author self-approval or product UI acceptance",
+  "records": 80,
+  "result": "80/80 independently solved and checked; no remaining findings",
+  "primarySourceOnlySha256": "004be03cceb688102d1fd50cfb07cf059633b87b608ffc149f19a1a8a4831c95",
+  "tests": {
+    "observedExitCode": 0,
+    "count": 13,
+    "elapsedSeconds": "3.763",
+    "packageMutationsRejected": 125,
+    "wrongKeyWithBindingAndAllEditionGuardsReplaced": 80,
+    "constitutiveFaultsRejected": 5,
+    "hypothesisConfigurations": 240
+  },
+  "productUI": "NOT_RUN_IN_THIS_REVIEW",
+  "nativeAssetRenderCount": 5,
+  "packageAndBindingFileSha256": {
+    "emitted-blackbody-power-183": {
+      ".json": "f61bc10027becdb33f2b7fdfaa8f9682af7c20a4159200089279beb153f4f1a0",
+      "-bindings.json": "88b6178db9c483e5475188000e6f62a665a2ffad466b960a09bedc6b7d8ebe64"
+    },
+    "net-blackbody-exchange-184": {
+      ".json": "7ab1b879ba267983fb203ce4683a55004f27e0285bacf03748dd742a617b5a13",
+      "-bindings.json": "b067ad6e23b971ceea61e8c6cc6f1872c8b268991a8e3b6cb06518999c1fd323"
+    },
+    "parallel-heat-losses-185": {
+      ".json": "da28512f60420920bf5f9c6a931106dfbc672ad2431402e7e39cd3df69728b3e",
+      "-bindings.json": "3741bf09e4bfeb00aa81e34cc20ad6f4dbf78cb4e5b3581eda01265aca07b352"
+    },
+    "reversible-isothermal-entropy-186": {
+      ".json": "2b9fd2730ae63f1211e61dda3b64c7a37ff97f40eccb09bb7d1c4fec6d9428b8",
+      "-bindings.json": "2b662f6d36c2d25e94c8ba6afb3ebdb7650954623a0f730f91f9a9ab89355e93"
+    },
+    "entropy-hot-cold-187": {
+      ".json": "c48ed7e44fa0fadc4a7bd7e8c3fa43c118cb3919d498d1b78fdaaff9e2cbbc9b",
+      "-bindings.json": "7a6b17b967aa67888f4bf505206b6b7d019fd22e3f23f7040d9e5b2e44e78e93"
+    }
+  },
+  "files": {
+    "editorial/reviews/thermal-entropy-183-187-independent-tests-20261125.txt": "f6d89e571dd2686a76642f1731ad7112e94595c106080cc30e32661ccdb5a6c7",
+    "tests/corpus/test_cross_review_thermal_entropy.py": "bca6d105d18432937e9759a526c865f8349d64be7ab760051f987f1583c7a00f",
+    "tools/corpus_engineering/emitted_blackbody_power_verifier.py": "202e77c6d620460127e2e4c58c4086166ed386ec4a9123325c85a506e9b27e90",
+    "editorial/reviews/emitted-blackbody-power-183.json": "9fa036bf67820c1baf7dbb6c61bbb60dc47be3c52026416bea4359ae47c2c33b",
+    "editorial/reviews/emitted-blackbody-power-183-mutations.json": "32cbb108efbbf7bc4e117e3349fc5ee14fbb4fdf27eb4c0e04a9a757be159319",
+    "editorial/reviews/independent-emitted-blackbody-power-183.md": "df07251135650d58a55198307103b7d6259fc8ebf1ba7a7ce1d650d88decc930",
+    "tools/corpus_engineering/net_blackbody_exchange_verifier.py": "c4a0632a0c7d6a6f73242c3b93b6d2ac2d2e8eb5965c56cee3d4f2ac824cadd6",
+    "editorial/reviews/net-blackbody-exchange-184.json": "c2ae8d7a0870bbbfa303440e29b78dcbf8663359cd742f41ce9ea9269be86580",
+    "editorial/reviews/net-blackbody-exchange-184-mutations.json": "5649930908e8be9c03724e5404d4541fd176d48eac861f1fe438c890678448f2",
+    "editorial/reviews/independent-net-blackbody-exchange-184.md": "fd5a4e7ec343c63e5cad61b0493663ffa909bdedbfedb56502dbb684b78942ce",
+    "tools/corpus_engineering/parallel_heat_losses_verifier.py": "4036e32b4512ec9c419dafbbc2e0fd58e528daedea0b0834e6d3e2ad008a25e9",
+    "editorial/reviews/parallel-heat-losses-185.json": "433eea16fe4134ce980b7fbafb5e5b79e885d69be3da3c599382bbb86987891d",
+    "editorial/reviews/parallel-heat-losses-185-mutations.json": "5d1d46cc08501a520a9727d4f3f73df55b64c0bbdae7658eca53f91bab9b63e3",
+    "editorial/reviews/independent-parallel-heat-losses-185.md": "9e7c51b7116485cc575f77d72633413d34c23329782884de3c9a30b9f30a22e2",
+    "tools/corpus_engineering/reversible_isothermal_entropy_verifier.py": "426f985bbfb0a1e40bb7f37fceae2f28231129378d08e0178916d3c046c79962",
+    "editorial/reviews/reversible-isothermal-entropy-186.json": "41387cb19f5e147ca0d908163c6af0b5869300b2d1018c58c2facbabfc6da92a",
+    "editorial/reviews/reversible-isothermal-entropy-186-mutations.json": "958f4c942d16149f633e93cfa92a861cda735459c6787319b5f725b5f772062d",
+    "editorial/reviews/independent-reversible-isothermal-entropy-186.md": "2daf1de731abf8a14650752937dfb787a2f24ce723f2e47e6c42061f4b60099a",
+    "tools/corpus_engineering/entropy_hot_cold_verifier.py": "905cd2e4cb60e1f9f987fb2abbbd4809aa85485eba0acb13b066399bf0e71fbc",
+    "editorial/reviews/entropy-hot-cold-187.json": "3664afc12b3d9df9490bc0966e3242aa1936e51ba4f39a0fa80eb382fb3068a5",
+    "editorial/reviews/entropy-hot-cold-187-mutations.json": "90d9ad33fd53e5d49fa74dbbba529f94cc65216822ec5ef359529a509f842e8f",
+    "editorial/reviews/independent-entropy-hot-cold-187.md": "52a395fbd755de1c82d23bae740730f781620228e007c2a5c16a77862744545f",
+    "editorial/reviews/thermal-entropy-183-187-independent-assets-20261125/emitted-blackbody-power-full-native.png": "0722f389d744367848b48c03191bb81456d15d68ae5e4a9f5e7ad49f9242a0a1",
+    "editorial/reviews/thermal-entropy-183-187-independent-assets-20261125/emitted-blackbody-power-native-render.txt": "8d9c536725cba04057c1a262d9c595c84a9c4c6273e594658684b1a9d3ed0801",
+    "editorial/reviews/thermal-entropy-183-187-independent-assets-20261125/emitted-blackbody-power-progressive.svg": "942fa584079654234cb94fc797350cab54b303f04ab786137f99f4b8d12c3dd6",
+    "editorial/reviews/thermal-entropy-183-187-independent-assets-20261125/entropy-hot-cold-full-native.png": "7350bd3bcee451efd95a3467d34935892866411fe56da3264ca5208abd57dde1",
+    "editorial/reviews/thermal-entropy-183-187-independent-assets-20261125/entropy-hot-cold-native-render.txt": "c7d6534055b06f1d8471c8b2f1cc776b4eaaa32796ef340e137404539504e64a",
+    "editorial/reviews/thermal-entropy-183-187-independent-assets-20261125/entropy-hot-cold-progressive.svg": "560a392a20beafb1b9636b4255888814a182d7b58e5fdfd0e10d536fd6ba0cfa",
+    "editorial/reviews/thermal-entropy-183-187-independent-assets-20261125/manifest.json": "5587bfc61f62ab0e965e01b8f88f204e0c765671338811703646adac3164c8d5",
+    "editorial/reviews/thermal-entropy-183-187-independent-assets-20261125/net-blackbody-exchange-full-native.png": "e4d83829d950ed30f89ea3d92d1ce3c747f066db5ad24ad032ad01605d3db0be",
+    "editorial/reviews/thermal-entropy-183-187-independent-assets-20261125/net-blackbody-exchange-native-render.txt": "0a37b64b129f7e79609aed1207b89afc18f022685a5ff4eee92f3233d608c183",
+    "editorial/reviews/thermal-entropy-183-187-independent-assets-20261125/net-blackbody-exchange-progressive.svg": "67c78bf5ccc12832ab35f7ffacb17965fdba70a680246b2edd395fddb18cec3e",
+    "editorial/reviews/thermal-entropy-183-187-independent-assets-20261125/parallel-heat-losses-full-native.png": "cceb955e72a5dc13ec82b25679ef2e82b49840f0c15e830ceb4c4f377f565433",
+    "editorial/reviews/thermal-entropy-183-187-independent-assets-20261125/parallel-heat-losses-native-render.txt": "373ca9e75e3bb058546a483144a08f617ce62e564ffc1cb99629cf78ea61122b",
+    "editorial/reviews/thermal-entropy-183-187-independent-assets-20261125/parallel-heat-losses-progressive.svg": "5d5e09b7df9ed8e992f185856e82f80a91b6aec3f32243707cba6e54d6aaca25",
+    "editorial/reviews/thermal-entropy-183-187-independent-assets-20261125/reversible-isothermal-entropy-full-native.png": "59a82457415ac950fd51287c277efc186874bf62d984a6608c485c71f32a8025",
+    "editorial/reviews/thermal-entropy-183-187-independent-assets-20261125/reversible-isothermal-entropy-native-render.txt": "2edadbae7bb3ea49941b878962cd8dacb25241cc5dcf0f232d2ddc59f9b5cef2",
+    "editorial/reviews/thermal-entropy-183-187-independent-assets-20261125/reversible-isothermal-entropy-progressive.svg": "f890b8a20bf7c0eb9ffd91ae647232309979edf72ab5a3c740c6980876889751"
+  },
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "publicationAction": "NONE"
+}

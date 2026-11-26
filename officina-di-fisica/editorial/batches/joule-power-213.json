@@ -1,0 +1,1188 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u6-joule-power-01",
+      "kind": "question",
+      "course": "C4",
+      "section": "Potenza assorbita ed effetto Joule",
+      "order": 21301,
+      "title": "Potenza assorbita dal resistore",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "joule-power",
+      "difficulty": 1,
+      "prompt": "Un resistore ohmico ha R>0 finita, mantenuta costante durante ciascuna prova. Una corrente continua di modulo I>0 lo attraversa, entrando nel morsetto a potenziale maggiore: la caduta positiva è V=RI. La potenza assorbita P=VI=I²R viene convertita termicamente nel resistore. Non si chiede la velocità di aumento della sua temperatura: può scambiare calore con l’ambiente mantenendo R fissata. Fra preparazioni I e R possono cambiare e il generatore si adatta alla caduta richiesta. Con I=2 A e R=3 Ω, quanto vale P in W?",
+      "answer": {
+        "type": "numeric",
+        "value": 12,
+        "unit": "W",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La caduta è V=IR=6 V. Moltiplicando per la corrente si trova P=VI=6·2 W=12 W. Equivalentemente I²R=(2 A)²·3 Ω=12 W. Si eleva al quadrato il valore della corrente, non quello della resistenza."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/97d8a6e762e2a3f217526d7136348c24de83ccd6fa7f6f6ee56e051ec1922944",
+          "text": "Il resistore da 3 Ω è attraversato da 2 A con caduta positiva 6 V: assorbe 12 W. Si rappresenta potenza convertita termicamente, non un aumento di temperatura necessariamente pari a P diviso una capacità termica. Il grafico centrale mantiene R=3 Ω."
+        },
+        {
+          "type": "formula",
+          "text": "V=IR"
+        },
+        {
+          "type": "formula",
+          "text": " V=6\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " P=VI"
+        },
+        {
+          "type": "formula",
+          "text": " P=12\\,\\mathrm W"
+        },
+        {
+          "type": "text",
+          "text": "Sei W usa IR, che in realtà dà 6 V. Quattro copia I² senza R; diciotto usa IR² e trentasei quadra anche la resistenza. Queste operazioni non ricostruiscono insieme potenza e legge di Ohm."
+        }
+      ],
+      "hints": [
+        "Trova prima la caduta oppure usa direttamente il quadrato della corrente.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sei W usa IR, che in realtà dà 6 V. Quattro copia I² senza R; diciotto usa IR² e trentasei quadra anche la resistenza. Queste operazioni non ricostruiscono insieme potenza e legge di Ohm.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Convenzione passiva e P=VI=I²R",
+        "Controllo di corrente distinto da controllo di tensione",
+        "Due utilizzatori in parallelo come caso autonomo",
+        "Inverse, medie, display e vincolo cubico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-joule-power-02",
+      "kind": "question",
+      "course": "C4",
+      "section": "Potenza assorbita ed effetto Joule",
+      "order": 21302,
+      "title": "Energia per unità di tempo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "joule-power",
+      "difficulty": 1,
+      "prompt": "Un resistore ohmico ha R>0 finita, mantenuta costante durante ciascuna prova. Una corrente continua di modulo I>0 lo attraversa, entrando nel morsetto a potenziale maggiore: la caduta positiva è V=RI. La potenza assorbita P=VI=I²R viene convertita termicamente nel resistore. Non si chiede la velocità di aumento della sua temperatura: può scambiare calore con l’ambiente mantenendo R fissata. Fra preparazioni I e R possono cambiare e il generatore si adatta alla caduta richiesta. Quale unità esprime P?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "W",
+          "J",
+          "V",
+          "Ω",
+          "A"
+        ],
+        "value": "W"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La potenza misura energia trasformata nell’unità di tempo: W=J/s. Dal prodotto VI si ottiene anche V·A=W. I joule da soli misurano energia, che richiederebbe specificare anche una durata per una potenza costante."
+        },
+        {
+          "type": "formula",
+          "text": "[P]=\\mathrm V\\cdot\\mathrm A"
+        },
+        {
+          "type": "formula",
+          "text": " 1\\,\\mathrm W=1\\,\\mathrm{J/s}"
+        },
+        {
+          "type": "text",
+          "text": "J misura energia, V tensione, Ω resistenza e A corrente. Nessuna di queste unità singole sostituisce il watt nel quesito sulla potenza."
+        }
+      ],
+      "hints": [
+        "Distingui un trasferimento energetico dal suo ritmo temporale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "J misura energia, V tensione, Ω resistenza e A corrente. Nessuna di queste unità singole sostituisce il watt nel quesito sulla potenza.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Convenzione passiva e P=VI=I²R",
+        "Controllo di corrente distinto da controllo di tensione",
+        "Due utilizzatori in parallelo come caso autonomo",
+        "Inverse, medie, display e vincolo cubico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-joule-power-03",
+      "kind": "question",
+      "course": "C4",
+      "section": "Potenza assorbita ed effetto Joule",
+      "order": 21303,
+      "title": "Da VI alla legge di Joule",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "joule-power",
+      "difficulty": 1,
+      "prompt": "Un resistore ohmico ha R>0 finita, mantenuta costante durante ciascuna prova. Una corrente continua di modulo I>0 lo attraversa, entrando nel morsetto a potenziale maggiore: la caduta positiva è V=RI. La potenza assorbita P=VI=I²R viene convertita termicamente nel resistore. Non si chiede la velocità di aumento della sua temperatura: può scambiare calore con l’ambiente mantenendo R fissata. Fra preparazioni I e R possono cambiare e il generatore si adatta alla caduta richiesta. Quale relazione dà P in funzione di I e R?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "P = I² R",
+          "P = I R",
+          "P = I R²",
+          "P = I² / R",
+          "P = R / I²"
+        ],
+        "value": "P = I² R"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La potenza assorbita è VI nella convenzione passiva assegnata. Sostituendo V=RI segue P=(RI)I=I²R. La potenza resta non negativa anche se si invertisse il verso fisico della corrente insieme al riferimento della caduta, perché la forma resistiva contiene I²."
+        },
+        {
+          "type": "formula",
+          "text": "P=VI"
+        },
+        {
+          "type": "formula",
+          "text": " V=RI"
+        },
+        {
+          "type": "formula",
+          "text": " P=I^2R"
+        },
+        {
+          "type": "text",
+          "text": "IR è una tensione, non una potenza. IR² introduce una dipendenza da R non ottenuta da VI; I²/R ha dimensioni diverse da W e R/I² non segue la legge. Il segno positivo rappresenta assorbimento, non generazione nel resistore passivo."
+        }
+      ],
+      "hints": [
+        "Sostituisci la legge di Ohm dentro P=VI, senza cambiare l’altro fattore I.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "IR è una tensione, non una potenza. IR² introduce una dipendenza da R non ottenuta da VI; I²/R ha dimensioni diverse da W e R/I² non segue la legge. Il segno positivo rappresenta assorbimento, non generazione nel resistore passivo.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Convenzione passiva e P=VI=I²R",
+        "Controllo di corrente distinto da controllo di tensione",
+        "Due utilizzatori in parallelo come caso autonomo",
+        "Inverse, medie, display e vincolo cubico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-joule-power-04",
+      "kind": "question",
+      "course": "C4",
+      "section": "Potenza assorbita ed effetto Joule",
+      "order": 21304,
+      "title": "Metà corrente, un quarto di potenza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "joule-power",
+      "difficulty": 1,
+      "prompt": "Un resistore ohmico ha R>0 finita, mantenuta costante durante ciascuna prova. Una corrente continua di modulo I>0 lo attraversa, entrando nel morsetto a potenziale maggiore: la caduta positiva è V=RI. La potenza assorbita P=VI=I²R viene convertita termicamente nel resistore. Non si chiede la velocità di aumento della sua temperatura: può scambiare calore con l’ambiente mantenendo R fissata. Fra preparazioni I e R possono cambiare e il generatore si adatta alla caduta richiesta. I passa da 2 a 1 A, mentre R resta 3 Ω. Come cambia P?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 12 a 3 W",
+          "Da 12 a 6 W",
+          "Resta 12 W",
+          "Da 12 a 24 W",
+          "Da 12 a 48 W"
+        ],
+        "value": "Da 12 a 3 W"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La potenza iniziale è 2²·3=12 W. Dopo il cambio è 1²·3=3 W. Dimezzare I riduce il quadrato a un quarto. Anche la caduta cambia, da 6 a 3 V: non è imposto mantenerla uguale fra le due prove."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/97d8a6e762e2a3f217526d7136348c24de83ccd6fa7f6f6ee56e051ec1922944",
+          "text": "Il tratto parabolico centrale tiene R=3 Ω e mostra I=1 A, P=3 W e I=2 A, P=12 W. Tutti i suoi punti rappresentano correnti positive; non è una traiettoria nel tempo né la curva di una trasformazione con R variabile."
+        },
+        {
+          "type": "formula",
+          "text": "P_A=12\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{P_B}{P_A}=\\left(\\frac12\\right)^2"
+        },
+        {
+          "type": "formula",
+          "text": " P_B=3\\,\\mathrm W"
+        },
+        {
+          "type": "text",
+          "text": "Sei W applica una dipendenza lineare da I. Dodici ignora il cambiamento; ventiquattro e quarantotto rendono inversa una variazione che qui diminuisce la potenza. La scelta della grandezza controllata è parte del modello."
+        }
+      ],
+      "hints": [
+        "Eleva al quadrato il rapporto delle correnti, non la loro differenza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Sei W applica una dipendenza lineare da I. Dodici ignora il cambiamento; ventiquattro e quarantotto rendono inversa una variazione che qui diminuisce la potenza. La scelta della grandezza controllata è parte del modello.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Convenzione passiva e P=VI=I²R",
+        "Controllo di corrente distinto da controllo di tensione",
+        "Due utilizzatori in parallelo come caso autonomo",
+        "Inverse, medie, display e vincolo cubico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-joule-power-05",
+      "kind": "question",
+      "course": "C4",
+      "section": "Potenza assorbita ed effetto Joule",
+      "order": 21305,
+      "title": "La corrente dalla potenza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "joule-power",
+      "difficulty": 2,
+      "prompt": "Un resistore ohmico ha R>0 finita, mantenuta costante durante ciascuna prova. Una corrente continua di modulo I>0 lo attraversa, entrando nel morsetto a potenziale maggiore: la caduta positiva è V=RI. La potenza assorbita P=VI=I²R viene convertita termicamente nel resistore. Non si chiede la velocità di aumento della sua temperatura: può scambiare calore con l’ambiente mantenendo R fissata. Fra preparazioni I e R possono cambiare e il generatore si adatta alla caduta richiesta. Si misura P=12 W e si conosce R=3 Ω. Quanto vale I in A?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "A",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Da P=I²R si divide per R>0: I²=P/R=4 A². Si prende la radice positiva perché I è il modulo nel dominio dichiarato. I=2 A ricompone esattamente la potenza 4·3=12 W."
+        },
+        {
+          "type": "formula",
+          "text": "I^2=\\frac PR"
+        },
+        {
+          "type": "formula",
+          "text": " I^2=4\\,\\mathrm{A^2}"
+        },
+        {
+          "type": "formula",
+          "text": " I=2\\,\\mathrm A"
+        },
+        {
+          "type": "text",
+          "text": "Quattro A scambia I² con I e darebbe 48 W. −2 A è l’altro segno di una corrente orientata, ma non il modulo positivo chiesto. Sei A darebbe 108 W; dividere R per P inverte anche le dimensioni."
+        }
+      ],
+      "hints": [
+        "Dividi per R e solo dopo estrai la radice sul ramo positivo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro A scambia I² con I e darebbe 48 W. −2 A è l’altro segno di una corrente orientata, ma non il modulo positivo chiesto. Sei A darebbe 108 W; dividere R per P inverte anche le dimensioni.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Convenzione passiva e P=VI=I²R",
+        "Controllo di corrente distinto da controllo di tensione",
+        "Due utilizzatori in parallelo come caso autonomo",
+        "Inverse, medie, display e vincolo cubico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-joule-power-06",
+      "kind": "question",
+      "course": "C4",
+      "section": "Potenza assorbita ed effetto Joule",
+      "order": 21306,
+      "title": "La resistenza dissipativa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "joule-power",
+      "difficulty": 2,
+      "prompt": "Un resistore ohmico ha R>0 finita, mantenuta costante durante ciascuna prova. Una corrente continua di modulo I>0 lo attraversa, entrando nel morsetto a potenziale maggiore: la caduta positiva è V=RI. La potenza assorbita P=VI=I²R viene convertita termicamente nel resistore. Non si chiede la velocità di aumento della sua temperatura: può scambiare calore con l’ambiente mantenendo R fissata. Fra preparazioni I e R possono cambiare e il generatore si adatta alla caduta richiesta. Si misura P=12 W e si conosce I=2 A. Quanto vale R in Ω?",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "Ω",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I²R=P, quindi R=P/I². Il quadrato della corrente è 4 A² e 12 W/(4 A²)=3 Ω. La divisione per I² è lecita con I>0; a corrente nulla una misura P=0 non determinerebbe R."
+        },
+        {
+          "type": "formula",
+          "text": "R=\\frac P{I^2}"
+        },
+        {
+          "type": "formula",
+          "text": " R=\\frac{12}{4}\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " R=3\\,\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "Sei Ω divide per I anziché I² e darebbe 24 W. Quarantotto Ω moltiplica per I²; 1/3 Ω inverte il rapporto e darebbe 4/3 W. Solo tre Ω riproduce la potenza misurata."
+        }
+      ],
+      "hints": [
+        "Mantieni il quadrato quando sposti il fattore della corrente.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sei Ω divide per I anziché I² e darebbe 24 W. Quarantotto Ω moltiplica per I²; 1/3 Ω inverte il rapporto e darebbe 4/3 W. Solo tre Ω riproduce la potenza misurata.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Convenzione passiva e P=VI=I²R",
+        "Controllo di corrente distinto da controllo di tensione",
+        "Due utilizzatori in parallelo come caso autonomo",
+        "Inverse, medie, display e vincolo cubico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-joule-power-07",
+      "kind": "question",
+      "course": "C4",
+      "section": "Potenza assorbita ed effetto Joule",
+      "order": 21307,
+      "title": "R cambia a corrente fissata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "joule-power",
+      "difficulty": 2,
+      "prompt": "Un resistore ohmico ha R>0 finita, mantenuta costante durante ciascuna prova. Una corrente continua di modulo I>0 lo attraversa, entrando nel morsetto a potenziale maggiore: la caduta positiva è V=RI. La potenza assorbita P=VI=I²R viene convertita termicamente nel resistore. Non si chiede la velocità di aumento della sua temperatura: può scambiare calore con l’ambiente mantenendo R fissata. Fra preparazioni I e R possono cambiare e il generatore si adatta alla caduta richiesta. A ha I=2 A e R=3 Ω. B mantiene I e ha R=1 Ω. Quanto vale P_B/P_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/3",
+          "3",
+          "1",
+          "1/9",
+          "9"
+        ],
+        "value": "1/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La corrente comune alle due preparazioni è 2 A. A dissipa 12 W e B dissipa 4 W: il rapporto è 1/3. A corrente fissata P è proporzionale a R; non si usa la dipendenza inversa V²/R mantenendo implicitamente fisso anche V."
+        },
+        {
+          "type": "formula",
+          "text": "P_A=12\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_B=4\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{P_B}{P_A}=\\frac13"
+        },
+        {
+          "type": "text",
+          "text": "Tre inverte il rapporto e corrisponderebbe al diverso controllo di una tensione invariata. Uno ignora la modifica; un nono e nove introducono un quadrato di R non presente nella legge."
+        }
+      ],
+      "hints": [
+        "La grandezza controllata qui è I, non V.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre inverte il rapporto e corrisponderebbe al diverso controllo di una tensione invariata. Uno ignora la modifica; un nono e nove introducono un quadrato di R non presente nella legge.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Convenzione passiva e P=VI=I²R",
+        "Controllo di corrente distinto da controllo di tensione",
+        "Due utilizzatori in parallelo come caso autonomo",
+        "Inverse, medie, display e vincolo cubico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-joule-power-08",
+      "kind": "question",
+      "course": "C4",
+      "section": "Potenza assorbita ed effetto Joule",
+      "order": 21308,
+      "title": "Due utilizzatori alla stessa tensione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "joule-power",
+      "difficulty": 2,
+      "prompt": "Due utilizzatori A e B assorbono potenza in regime continuo, collegati in parallelo a un generatore ideale che mantiene 12 V ai capi di entrambi. P_A=18 W e P_B=6 W. Le correnti positive entrano nei morsetti a potenziale maggiore. Quanto vale I_A/I_B?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3",
+          "1/3",
+          "2",
+          "12",
+          "1"
+        ],
+        "value": "3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Questo è un caso autonomo: non serve assumere che i due utilizzatori siano resistori ohmici uguali. Per la potenza assorbita P=VI, la tensione comune non nulla si cancella nel rapporto delle correnti. I_A=18/12=3/2 A e I_B=6/12=1/2 A, quindi il rapporto vale tre."
+        },
+        {
+          "type": "formula",
+          "text": "I_A=\\frac32\\,\\mathrm A"
+        },
+        {
+          "type": "formula",
+          "text": " I_B=\\frac12\\,\\mathrm A"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{I_A}{I_B}=\\frac{P_A}{P_B}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{I_A}{I_B}=3"
+        },
+        {
+          "type": "text",
+          "text": "Un terzo inverte A/B. Due non è il rapporto 18/6 delle potenze. La differenza delle correnti varrebbe invece 1 A e risponderebbe a un’altra domanda. Dodici copia il valore numerico della tensione e uno assume correnti uguali nonostante le potenze diverse."
+        }
+      ],
+      "hints": [
+        "Le due correnti si ricavano dividendo per la stessa tensione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un terzo inverte A/B. Due non è il rapporto 18/6 delle potenze. La differenza delle correnti varrebbe invece 1 A e risponderebbe a un’altra domanda. Dodici copia il valore numerico della tensione e uno assume correnti uguali nonostante le potenze diverse.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Convenzione passiva e P=VI=I²R",
+        "Controllo di corrente distinto da controllo di tensione",
+        "Due utilizzatori in parallelo come caso autonomo",
+        "Inverse, medie, display e vincolo cubico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-joule-power-09",
+      "kind": "question",
+      "course": "C4",
+      "section": "Potenza assorbita ed effetto Joule",
+      "order": 21309,
+      "title": "L’inversa sul modulo positivo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "joule-power",
+      "difficulty": 2,
+      "prompt": "Un resistore ohmico ha R>0 finita, mantenuta costante durante ciascuna prova. Una corrente continua di modulo I>0 lo attraversa, entrando nel morsetto a potenziale maggiore: la caduta positiva è V=RI. La potenza assorbita P=VI=I²R viene convertita termicamente nel resistore. Non si chiede la velocità di aumento della sua temperatura: può scambiare calore con l’ambiente mantenendo R fissata. Fra preparazioni I e R possono cambiare e il generatore si adatta alla caduta richiesta. Sono noti P e R. Quale formula ricava il modulo I?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "I = √(P/R)",
+          "I = P / R",
+          "I = √(P R)",
+          "I = R / P",
+          "I = −√(P/R)"
+        ],
+        "value": "I = √(P/R)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dividiamo per R>0, ottenendo I²=P/R. Poiché I è positivo, I=√(P/R). Il rapporto P/R ha unità A², quindi la radice ha unità A. La potenza di un resistore non determina il segno di una corrente orientata senza una convenzione aggiuntiva: qui il dominio lo fissa."
+        },
+        {
+          "type": "formula",
+          "text": "I^2=\\frac PR"
+        },
+        {
+          "type": "formula",
+          "text": " I=\\sqrt{\\frac PR}"
+        },
+        {
+          "type": "formula",
+          "text": " I>0"
+        },
+        {
+          "type": "text",
+          "text": "P/R è il quadrato del modulo, non il modulo. √(PR) ha unità V e ricava invece la caduta positiva. R/P ha unità A⁻². Il segno negativo seleziona un verso orientato escluso dalla definizione richiesta."
+        }
+      ],
+      "hints": [
+        "Verifica sia l’unità sotto radice sia il ramo fisico.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "P/R è il quadrato del modulo, non il modulo. √(PR) ha unità V e ricava invece la caduta positiva. R/P ha unità A⁻². Il segno negativo seleziona un verso orientato escluso dalla definizione richiesta.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Convenzione passiva e P=VI=I²R",
+        "Controllo di corrente distinto da controllo di tensione",
+        "Due utilizzatori in parallelo come caso autonomo",
+        "Inverse, medie, display e vincolo cubico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-joule-power-10",
+      "kind": "question",
+      "course": "C4",
+      "section": "Potenza assorbita ed effetto Joule",
+      "order": 21310,
+      "title": "Due variazioni nella potenza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "joule-power",
+      "difficulty": 2,
+      "prompt": "Un resistore ohmico ha R>0 finita, mantenuta costante durante ciascuna prova. Una corrente continua di modulo I>0 lo attraversa, entrando nel morsetto a potenziale maggiore: la caduta positiva è V=RI. La potenza assorbita P=VI=I²R viene convertita termicamente nel resistore. Non si chiede la velocità di aumento della sua temperatura: può scambiare calore con l’ambiente mantenendo R fissata. Fra preparazioni I e R possono cambiare e il generatore si adatta alla caduta richiesta. B usa I_B=κ₁I_A e R_B=κ₂R_A, con fattori positivi. Quanto vale P_B/P_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁² κ₂",
+          "κ₁ κ₂",
+          "κ₁² / κ₂",
+          "κ₂² κ₁",
+          "κ₂ / κ₁²"
+        ],
+        "value": "κ₁² κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La nuova corrente è elevata al quadrato: P_B=(κ₁I_A)²κ₂R_A. Dividendo per I_A²R_A rimane κ₁²κ₂. Ogni resistenza resta costante entro la sua prova; la relazione fra preparazioni non impone una rampa temporale di I o R."
+        },
+        {
+          "type": "formula",
+          "text": "P_B=\\kappa_1^2\\kappa_2I_A^2R_A"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{P_B}{P_A}=\\kappa_1^2\\kappa_2"
+        },
+        {
+          "type": "text",
+          "text": "κ₁κ₂ perde un fattore della corrente; κ₁²/κ₂ rende inversa R come se fosse fissata V. Il quadrato di κ₂ attribuisce a R la dipendenza quadratica che spetta a I. L’ultimo rapporto inverte l’effetto della corrente."
+        }
+      ],
+      "hints": [
+        "Segui l’esponente della corrente e la prima potenza della resistenza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "κ₁κ₂ perde un fattore della corrente; κ₁²/κ₂ rende inversa R come se fosse fissata V. Il quadrato di κ₂ attribuisce a R la dipendenza quadratica che spetta a I. L’ultimo rapporto inverte l’effetto della corrente.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Convenzione passiva e P=VI=I²R",
+        "Controllo di corrente distinto da controllo di tensione",
+        "Due utilizzatori in parallelo come caso autonomo",
+        "Inverse, medie, display e vincolo cubico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-joule-power-11",
+      "kind": "question",
+      "course": "C4",
+      "section": "Potenza assorbita ed effetto Joule",
+      "order": 21311,
+      "title": "Due cambiamenti con effetto opposto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "joule-power",
+      "difficulty": 2,
+      "prompt": "Un resistore ohmico ha R>0 finita, mantenuta costante durante ciascuna prova. Una corrente continua di modulo I>0 lo attraversa, entrando nel morsetto a potenziale maggiore: la caduta positiva è V=RI. La potenza assorbita P=VI=I²R viene convertita termicamente nel resistore. Non si chiede la velocità di aumento della sua temperatura: può scambiare calore con l’ambiente mantenendo R fissata. Fra preparazioni I e R possono cambiare e il generatore si adatta alla caduta richiesta. A usa I=2 A e R=3 Ω. B usa I=1 A e R=4 Ω. Quanto vale P_B/P_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/3",
+          "3",
+          "1/2",
+          "4/3",
+          "2/3"
+        ],
+        "value": "1/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A dà 12 W; B dà 1²·4=4 W. Il rapporto è 1/3. La corrente dimezzata fornisce un fattore 1/4, mentre la resistenza fornisce 4/3: il prodotto è 1/3."
+        },
+        {
+          "type": "formula",
+          "text": "P_A=12\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_B=4\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{P_B}{P_A}=\\frac13"
+        },
+        {
+          "type": "text",
+          "text": "Tre è il reciproco; un mezzo segue soltanto I; 4/3 segue soltanto R; 2/3 moltiplica i fattori senza elevare al quadrato quello della corrente. Ogni risposta si può controllare ricostruendo P_B."
+        }
+      ],
+      "hints": [
+        "Calcola i due prodotti I²R prima del confronto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre è il reciproco; un mezzo segue soltanto I; 4/3 segue soltanto R; 2/3 moltiplica i fattori senza elevare al quadrato quello della corrente. Ogni risposta si può controllare ricostruendo P_B.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Convenzione passiva e P=VI=I²R",
+        "Controllo di corrente distinto da controllo di tensione",
+        "Due utilizzatori in parallelo come caso autonomo",
+        "Inverse, medie, display e vincolo cubico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-joule-power-12",
+      "kind": "question",
+      "course": "C4",
+      "section": "Potenza assorbita ed effetto Joule",
+      "order": 21312,
+      "title": "La media delle potenze",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "joule-power",
+      "difficulty": 2,
+      "prompt": "Un resistore ohmico ha R>0 finita, mantenuta costante durante ciascuna prova. Una corrente continua di modulo I>0 lo attraversa, entrando nel morsetto a potenziale maggiore: la caduta positiva è V=RI. La potenza assorbita P=VI=I²R viene convertita termicamente nel resistore. Non si chiede la velocità di aumento della sua temperatura: può scambiare calore con l’ambiente mantenendo R fissata. Fra preparazioni I e R possono cambiare e il generatore si adatta alla caduta richiesta. A ha I=2 A, R=3 Ω; B ha I=1 A, R=4 Ω. Qual è la media aritmetica delle due P?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "8 W",
+          "63/8 W",
+          "16 W",
+          "4 W",
+          "12 W"
+        ],
+        "value": "8 W"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le potenze sono 12 e 4 W: media (12+4)/2=8 W. Ai dati medi I=3/2 A e R=7/2 Ω, invece, si avrebbe (9/4)(7/2)=63/8 W. Otto W supera tale valore di 1/8 W. Mediare le uscite conserva la richiesta statistica."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/97d8a6e762e2a3f217526d7136348c24de83ccd6fa7f6f6ee56e051ec1922944",
+          "text": "Le barre finali usano A: I=2 A, R=3 Ω e B: I=1 A, R=4 Ω. Le potenze 12 e 4 W hanno media 8 W con origine e scala comuni. B non appartiene al grafico centrale a R=3 Ω. Il caso autonomo dei due utilizzatori alla stessa tensione nel quesito 08 non è rappresentato da queste due barre."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline P=\\frac{12+4}{2}\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline P=8\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_{\\rm dati\\ medi}=\\frac{63}{8}\\,\\mathrm W"
+        },
+        {
+          "type": "text",
+          "text": "63/8 W usa gli ingressi medi; sedici non divide per due; quattro e dodici ripetono una singola prova. La media di potenze non determina automaticamente una potenza media nel tempo senza durate assegnate."
+        }
+      ],
+      "hints": [
+        "Le due letture hanno uguale peso statistico, non un tempo implicito.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "63/8 W usa gli ingressi medi; sedici non divide per due; quattro e dodici ripetono una singola prova. La media di potenze non determina automaticamente una potenza media nel tempo senza durate assegnate.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Convenzione passiva e P=VI=I²R",
+        "Controllo di corrente distinto da controllo di tensione",
+        "Due utilizzatori in parallelo come caso autonomo",
+        "Inverse, medie, display e vincolo cubico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-joule-power-13",
+      "kind": "question",
+      "course": "C4",
+      "section": "Potenza assorbita ed effetto Joule",
+      "order": 21313,
+      "title": "R per il bersaglio a corrente minore",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "joule-power",
+      "difficulty": 3,
+      "prompt": "Un resistore ohmico ha R>0 finita, mantenuta costante durante ciascuna prova. Una corrente continua di modulo I>0 lo attraversa, entrando nel morsetto a potenziale maggiore: la caduta positiva è V=RI. La potenza assorbita P=VI=I²R viene convertita termicamente nel resistore. Non si chiede la velocità di aumento della sua temperatura: può scambiare calore con l’ambiente mantenendo R fissata. Fra preparazioni I e R possono cambiare e il generatore si adatta alla caduta richiesta. A ha I=2 A e R=3 Ω. B usa I=1 A e deve dare P_B=P_A/3. Quanto vale R_B/R_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4/3",
+          "3/4",
+          "1/3",
+          "2",
+          "4"
+        ],
+        "value": "4/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è 12/3=4 W. Con I_B=1 A, R_B=P_B/I_B²=4 Ω. Il rapporto con 3 Ω iniziali è 4/3. La riduzione di corrente non consente di copiare direttamente il fattore bersaglio nella resistenza."
+        },
+        {
+          "type": "formula",
+          "text": "P_B=4\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " R_B=4\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{R_B}{R_A}=\\frac43"
+        },
+        {
+          "type": "text",
+          "text": "3/4 inverte il confronto. Un terzo copia il rapporto delle potenze ignorando I; due segue il fattore inverso della corrente senza quadrato. Quattro copia il valore numerico di R_B in ohm senza dividerlo per R_A=3 Ω."
+        }
+      ],
+      "hints": [
+        "Ricava la nuova resistenza con la corrente B, poi confronta le R.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "3/4 inverte il confronto. Un terzo copia il rapporto delle potenze ignorando I; due segue il fattore inverso della corrente senza quadrato. Quattro copia il valore numerico di R_B in ohm senza dividerlo per R_A=3 Ω.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Convenzione passiva e P=VI=I²R",
+        "Controllo di corrente distinto da controllo di tensione",
+        "Due utilizzatori in parallelo come caso autonomo",
+        "Inverse, medie, display e vincolo cubico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-joule-power-14",
+      "kind": "question",
+      "course": "C4",
+      "section": "Potenza assorbita ed effetto Joule",
+      "order": 21314,
+      "title": "Potenza dal display, poi corrente",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "joule-power",
+      "difficulty": 3,
+      "prompt": "Un resistore ohmico ha R>0 finita, mantenuta costante durante ciascuna prova. Una corrente continua di modulo I>0 lo attraversa, entrando nel morsetto a potenziale maggiore: la caduta positiva è V=RI. La potenza assorbita P=VI=I²R viene convertita termicamente nel resistore. Non si chiede la velocità di aumento della sua temperatura: può scambiare calore con l’ambiente mantenendo R fissata. Fra preparazioni I e R possono cambiare e il generatore si adatta alla caduta richiesta. D=a_cal P è continuo e adimensionale, a_cal>0, senza offset. A con I=2 A e R=3 Ω dà D=36. C dà D=12 e ha R=4 Ω. Quanto vale I_C in A?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "A",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La potenza di riferimento è 12 W, dunque a_cal=36/(12 W)=3 W⁻¹. C ha P_C=12/(3 W⁻¹)=4 W. Dividendo per R_C=4 Ω si trova I_C²=1 A² e quindi I_C=1 A nel ramo positivo."
+        },
+        {
+          "type": "formula",
+          "text": "a_{\\rm cal}=3\\,\\mathrm W^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " P_C=4\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " I_C^2=1\\,\\mathrm{A^2}"
+        },
+        {
+          "type": "formula",
+          "text": " I_C=1\\,\\mathrm A"
+        },
+        {
+          "type": "text",
+          "text": "√3 A usa D=12 come potenza prima della taratura. Due A darebbe P=16 W e D=48; quattro A darebbe 64 W. Non si copia il valore della potenza come se fosse una corrente."
+        }
+      ],
+      "hints": [
+        "Decodifica P, dividi per R e prendi soltanto alla fine la radice positiva.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "√3 A usa D=12 come potenza prima della taratura. Due A darebbe P=16 W e D=48; quattro A darebbe 64 W. Non si copia il valore della potenza come se fosse una corrente.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Convenzione passiva e P=VI=I²R",
+        "Controllo di corrente distinto da controllo di tensione",
+        "Due utilizzatori in parallelo come caso autonomo",
+        "Inverse, medie, display e vincolo cubico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-joule-power-15",
+      "kind": "question",
+      "course": "C4",
+      "section": "Potenza assorbita ed effetto Joule",
+      "order": 21315,
+      "title": "Offset prima della radice",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "joule-power",
+      "difficulty": 3,
+      "prompt": "Un resistore ohmico ha R>0 finita, mantenuta costante durante ciascuna prova. Una corrente continua di modulo I>0 lo attraversa, entrando nel morsetto a potenziale maggiore: la caduta positiva è V=RI. La potenza assorbita P=VI=I²R viene convertita termicamente nel resistore. Non si chiede la velocità di aumento della sua temperatura: può scambiare calore con l’ambiente mantenendo R fissata. Fra preparazioni I e R possono cambiare e il generatore si adatta alla caduta richiesta. D=a_cal P+b è continuo e adimensionale. A: I=2 A, R=3 Ω, D=25. B: I=1 A, R=4 Ω, D=9. C: R=2 Ω, D=37. Quanto vale I_C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3 A",
+          "37/4 A",
+          "9 A",
+          "18 A",
+          "1 A"
+        ],
+        "value": "3 A"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le potenze A e B sono 12 e 4 W. Quindi a_cal=(25−9)/(12−4) W⁻¹=2 W⁻¹ e b=1. C restituisce P_C=(37−1)/2 W=18 W. Da I_C²=18/2 A²=9 A² segue il modulo I_C=3 A."
+        },
+        {
+          "type": "formula",
+          "text": "a_{\\rm cal}=2\\,\\mathrm W^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " P_C=18\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " I_C=3\\,\\mathrm A"
+        },
+        {
+          "type": "text",
+          "text": "37/4 tratta come corrente il valore di I² stimato senza rimuovere l’offset. Nove A confonde il quadrato nove con il modulo e darebbe 162 W; diciotto copia la potenza in W e uno ricostruisce D=5. Solo tre A restituisce D=37."
+        }
+      ],
+      "hints": [
+        "La sottrazione dell’offset precede la divisione e la radice.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "37/4 tratta come corrente il valore di I² stimato senza rimuovere l’offset. Nove A confonde il quadrato nove con il modulo e darebbe 162 W; diciotto copia la potenza in W e uno ricostruisce D=5. Solo tre A restituisce D=37.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Convenzione passiva e P=VI=I²R",
+        "Controllo di corrente distinto da controllo di tensione",
+        "Due utilizzatori in parallelo come caso autonomo",
+        "Inverse, medie, display e vincolo cubico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-joule-power-16",
+      "kind": "question",
+      "course": "C4",
+      "section": "Potenza assorbita ed effetto Joule",
+      "order": 21316,
+      "title": "Un vincolo fra preparazioni",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L007",
+        "C4-L03",
+        "C4-L05",
+        "C4-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "joule-power",
+      "difficulty": 3,
+      "prompt": "Un resistore ohmico ha R>0 finita, mantenuta costante durante ciascuna prova. Una corrente continua di modulo I>0 lo attraversa, entrando nel morsetto a potenziale maggiore: la caduta positiva è V=RI. La potenza assorbita P=VI=I²R viene convertita termicamente nel resistore. Non si chiede la velocità di aumento della sua temperatura: può scambiare calore con l’ambiente mantenendo R fissata. Fra preparazioni I e R possono cambiare e il generatore si adatta alla caduta richiesta. Fra preparazioni si impone I=αR, con α=(2/3) A/Ω. Si misura P=12 W. Quanto vale R?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3 Ω",
+          "27 Ω",
+          "2 Ω",
+          "−3 Ω",
+          "Infinite resistenze positive"
+        ],
+        "value": "3 Ω"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Definiamo x=R/(1 Ω), numero positivo. Il vincolo dà I/(1 A)=2x/3. La potenza normalizzata è P/(1 W)=4x³/9. Con 12 W si trova x³=27 e quindi x=3: R=3 Ω e I=2 A. È una relazione fra prove, non una variazione della resistenza durante una misura."
+        },
+        {
+          "type": "formula",
+          "text": "x=\\frac R{1\\,\\Omega}"
+        },
+        {
+          "type": "formula",
+          "text": " 12=\\frac49x^3"
+        },
+        {
+          "type": "formula",
+          "text": " x^3=27"
+        },
+        {
+          "type": "formula",
+          "text": " R=3\\,\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "Ventisette copia x³ invece di estrarre la radice cubica. Due Ω darebbe P=32/9 W. −3 Ω viola la passività e il vincolo positivo; la monotonia di x³ per x>0 esclude infinite soluzioni."
+        }
+      ],
+      "hints": [
+        "Sostituisci il vincolo prima di isolare la resistenza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Ventisette copia x³ invece di estrarre la radice cubica. Due Ω darebbe P=32/9 W. −3 Ω viola la passività e il vincolo positivo; la monotonia di x³ per x>0 esclude infinite soluzioni.",
+        "target": "C4-L06"
+      },
+      "coverage": [
+        "Convenzione passiva e P=VI=I²R",
+        "Controllo di corrente distinto da controllo di tensione",
+        "Due utilizzatori in parallelo come caso autonomo",
+        "Inverse, medie, display e vincolo cubico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "97d8a6e762e2a3f217526d7136348c24de83ccd6fa7f6f6ee56e051ec1922944",
+      "name": "joule-power-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2ODAgMTU0MCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgo8dGl0bGUgaWQ9InRpdGxlIj5Qb3RlbnphIEpvdWxlLCBjb3JyZW50ZSBlIGNvbmZyb250byBmcmEgcHJvdmU8L3RpdGxlPgo8ZGVzYyBpZD0iZGVzYyI+VW4gcmVzaXN0b3JlIGRhIDMgb2htIHBlcmNvcnNvIGRhIDIgYW1wZXJlIGhhIGNhZHV0YSA2IHZvbHQgZSBwb3RlbnphIDEyIHdhdHQuIElsIGdyYWZpY28gYSByZXNpc3RlbnphIDMgb2htIHNlZ3VlIHVuYSBwYXJhYm9sYSBlc2F0dGEgZnJhIGNvcnJlbnRlIDEgZSAyIGFtcGVyZSwgY29uIHBvdGVuemUgMyBlIDEyIHdhdHQuIExlIGR1ZSBwcmVwYXJhemlvbmkgZGVsbGUgYmFycmUgaGFubm8gcG90ZW56ZSAxMiBlIDQgd2F0dCBlIG1lZGlhIDggd2F0dDsgbmVsbGEgc2Vjb25kYSBjYW1iaWEgYW5jaGUgbGEgcmVzaXN0ZW56YSBhIDQgb2htLjwvZGVzYz4KPHJlY3Qgd2lkdGg9IjY4MCIgaGVpZ2h0PSIxNTQwIiBmaWxsPSIjZmZmZGY2IiAvPgo8dGV4dCB4PSIzNCIgeT0iNDgiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjI2IiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjMTgzNjRhIj4xIMK3IFVuYSBjYWR1dGEgZSB1bmEgY29ycmVudGU8L3RleHQ+Cjx0ZXh0IHg9IjM0IiB5PSI4OCIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiMxODM2NGEiPlIgPSAzIM6pIDsgSSA9IDIgQSBlbnRyYSBkYWwgbW9yc2V0dG8gQS48L3RleHQ+CjxwYXRoIGQ9Ik0xMDAgMjMwSDI3ME00MTAgMjMwSDU4MCIgc3Ryb2tlPSIjMjQ0ODVjIiBzdHJva2Utd2lkdGg9IjMiIGZpbGw9Im5vbmUiIC8+CjxyZWN0IHg9IjI3MCIgeT0iMjAwIiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjYwIiBzdHJva2U9IiMxNjVhODciIHN0cm9rZS13aWR0aD0iMyIgZmlsbD0iI2VhZjNmOCIgLz4KPGNpcmNsZSBjeD0iMTAwIiBjeT0iMjMwIiByPSI1IiBmaWxsPSIjMjQ0ODVjIiAvPjxjaXJjbGUgY3g9IjU4MCIgY3k9IjIzMCIgcj0iNSIgZmlsbD0iIzI0NDg1YyIgLz4KPHRleHQgeD0iOTAiIHk9IjIwMCIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiMxODM2NGEiPkEgKCspPC90ZXh0Pjx0ZXh0IHg9IjU1MCIgeT0iMjAwIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzE4MzY0YSI+QiAo4oiSKTwvdGV4dD4KPHRleHQgeD0iMzA1IiB5PSIxODAiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIwIiBmaWxsPSIjMTgzNjRhIj4zIM6pPC90ZXh0Pgo8dGV4dCB4PSIzNCIgeT0iMzI1IiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzE4MzY0YSI+Vl9BIOKIkiBWX0IgPSBJUiA9IDYgVi48L3RleHQ+Cjx0ZXh0IHg9IjM0IiB5PSIzNjUiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIwIiBmaWxsPSIjMTgzNjRhIj5QID0gVkkgPSBJwrJSID0gMTIgVyA7IHBvdGVuemEgYXNzb3JiaXRhLjwvdGV4dD4KPHRleHQgeD0iMzQiIHk9IjQwNSIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMxODM2NGEiPkzigJllbmVyZ2lhIGNvbnZlcnRpdGEgcHXDsiBwb2kgdXNjaXJlIGNvbWUgY2Fsb3JlLjwvdGV4dD4KPHRleHQgeD0iMzQiIHk9IjQ4NSIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjYiIGZvbnQtd2VpZ2h0PSI3MDAiIGZpbGw9IiMxODM2NGEiPjIgwrcgUiByZXN0YSAzIM6pPC90ZXh0Pgo8dGV4dCB4PSIzNCIgeT0iNTI1IiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzE4MzY0YSI+UCDDqCBxdWFkcmF0aWNhIGluIEkgOyBxdWkgMSBBIOKJpCBJIOKJpCAyIEEuPC90ZXh0Pgo8cGF0aCBkPSJNMTAwIDU1MFY4MDBINTQwIiBzdHJva2U9IiM1MjZhNzgiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIgLz4KPHBhdGggZD0iTTI0MCA3NDBRMzEwIDY4MCAzODAgNTYwIiBzdHJva2U9IiMxNjVhODciIHN0cm9rZS13aWR0aD0iNCIgZmlsbD0ibm9uZSIgLz4KPGNpcmNsZSBjeD0iMjQwIiBjeT0iNzQwIiByPSI1IiBmaWxsPSIjMTY1YTg3IiAvPjxjaXJjbGUgY3g9IjM4MCIgY3k9IjU2MCIgcj0iNSIgZmlsbD0iIzE2NWE4NyIgLz4KPHRleHQgeD0iMzUiIHk9IjU2NSIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiMxODM2NGEiPlAgKFcpPC90ZXh0Pjx0ZXh0IHg9IjUyNSIgeT0iODMwIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzE4MzY0YSI+SSAoQSk8L3RleHQ+Cjx0ZXh0IHg9Ijc1IiB5PSI4MjUiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjE2IiBmaWxsPSIjMTgzNjRhIj4wPC90ZXh0Pjx0ZXh0IHg9IjIzNCIgeT0iODI1IiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzE4MzY0YSI+MTwvdGV4dD48dGV4dCB4PSIzNzQiIHk9IjgyNSIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiMxODM2NGEiPjI8L3RleHQ+Cjx0ZXh0IHg9IjE3MCIgeT0iNzYwIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzE4MzY0YSI+MyBXPC90ZXh0Pjx0ZXh0IHg9IjM5NSIgeT0iNTY1IiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzE4MzY0YSI+MTIgVzwvdGV4dD4KPHRleHQgeD0iMzQiIHk9Ijg3NSIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMxODM2NGEiPklsIGdyYWZpY28gY29uZnJvbnRhIGNvcnJlbnRpIHByZXBhcmF0ZSwgbm9uIGlzdGFudGkuPC90ZXh0Pgo8dGV4dCB4PSIzNCIgeT0iOTU1IiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyNiIgZm9udC13ZWlnaHQ9IjcwMCIgZmlsbD0iIzE4MzY0YSI+MyDCtyBDYW1iaWFubyBJIGUgUiBmcmEgbGUgcHJvdmU8L3RleHQ+Cjx0ZXh0IHg9IjM0IiB5PSI5OTUiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIwIiBmaWxsPSIjMTgzNjRhIj5BOiAyIEEgZSAzIM6pIDsgQjogMSBBIGUgNCDOqS48L3RleHQ+CjxsaW5lIHgxPSIxNTAiIHkxPSIxMDQwIiB4Mj0iMTUwIiB5Mj0iMTMzMCIgc3Ryb2tlPSIjNTI2YTc4IiBzdHJva2Utd2lkdGg9IjIiIC8+PGxpbmUgeDE9IjE1MCIgeTE9IjEzMzAiIHgyPSI0NTAiIHkyPSIxMzMwIiBzdHJva2U9IiM1MjZhNzgiIHN0cm9rZS13aWR0aD0iMiIgLz4KPHJlY3QgeD0iMTUwIiB5PSIxMDYwIiB3aWR0aD0iMjQwIiBoZWlnaHQ9IjM0IiBmaWxsPSIjMTY1YTg3IiAvPjxyZWN0IHg9IjE1MCIgeT0iMTE2MCIgd2lkdGg9IjgwIiBoZWlnaHQ9IjM0IiBmaWxsPSIjMjg2NjRkIiAvPjxyZWN0IHg9IjE1MCIgeT0iMTI2MCIgd2lkdGg9IjE2MCIgaGVpZ2h0PSIzNCIgZmlsbD0iIzlhNGYyMyIgLz4KPHRleHQgeD0iODAiIHk9IjEwODUiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIwIiBmaWxsPSIjMTgzNjRhIj5BPC90ZXh0Pjx0ZXh0IHg9IjQwNSIgeT0iMTA4NSIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiMxODM2NGEiPjEyIFc8L3RleHQ+Cjx0ZXh0IHg9IjgwIiB5PSIxMTg1IiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzE4MzY0YSI+QjwvdGV4dD48dGV4dCB4PSIyNDUiIHk9IjExODUiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIwIiBmaWxsPSIjMTgzNjRhIj40IFc8L3RleHQ+Cjx0ZXh0IHg9IjQ0IiB5PSIxMjg1IiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzE4MzY0YSI+TWVkaWE8L3RleHQ+PHRleHQgeD0iMzI1IiB5PSIxMjg1IiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzE4MzY0YSI+OCBXPC90ZXh0Pgo8dGV4dCB4PSIxMjUiIHk9IjEzNTUiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjE2IiBmaWxsPSIjMTgzNjRhIj4wPC90ZXh0Pjx0ZXh0IHg9IjM4MCIgeT0iMTM1NSIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiMxODM2NGEiPjEyIFc8L3RleHQ+Cjx0ZXh0IHg9IjM0IiB5PSIxNDEwIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzE4MzY0YSI+QmFycmUgY29uIG9yaWdpbmUgZSBzY2FsYSBjb211bmkgOyBCIGhhIFIgPSA0IM6pLjwvdGV4dD4KPHRleHQgeD0iMzQiIHk9IjE0NTAiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjE4IiBmaWxsPSIjMTgzNjRhIj5BaSBkYXRpIG1lZGkgSSA9IDMvMiBBIGUgUiA9IDcvMiDOqTo8L3RleHQ+Cjx0ZXh0IHg9IjM0IiB5PSIxNDg1IiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzE4MzY0YSI+UCA9IDYzLzggVywgZGl2ZXJzYSBkYWxsYSBtZWRpYSA4IFcuPC90ZXh0Pgo8L3N2Zz4K"
+    }
+  ]
+}

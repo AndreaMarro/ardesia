@@ -1,0 +1,1146 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u6-plane-capacitance-01",
+      "kind": "question",
+      "course": "C4",
+      "section": "Geometria e capacità delle armature",
+      "order": 21701,
+      "title": "Prima le unità geometriche",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "plane-capacitance",
+      "difficulty": 1,
+      "prompt": "Un condensatore piano ideale ha armature parallele di area affacciata A>0 e separazione d>0, molto piccola rispetto alle dimensioni laterali. Si trascurano i bordi; lo spazio è completamente riempito da un dielettrico lineare uniforme di permittività ε=10 pF/m, valore assegnato esattamente nel modello e uguale fra prove. A si esprime in cm², d in mm e C in pF. Con A=100 cm² e d=1 mm, quanto vale C in pF?",
+      "answer": {
+        "type": "numeric",
+        "value": 100,
+        "unit": "pF",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La legge è C=εA/d. Cento cm² valgono 1/100 m², mentre un mm vale 1/1000 m. Il loro rapporto è 10 m. Moltiplicando per 10 pF/m si ottengono 100 pF. L’area richiede il quadrato del fattore di conversione del centimetro; non è una lunghezza di cento centimetri."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/ed120367d77a303c004fa9eaf8a1333c101406735f594ee26a3409c33abbd5cf",
+          "text": "Armature e distanza sono schematiche, con quote fisiche esplicite; le dimensioni del disegno non stabiliscono il rapporto reale fra lato e separazione. Gli altri pannelli distinguono materiale conduttore, spazio tra piastre e capacità misurate."
+        },
+        {
+          "type": "formula",
+          "text": "A=\\frac1{100}\\,\\mathrm m^2"
+        },
+        {
+          "type": "formula",
+          "text": " d=\\frac1{1000}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " A/d=10\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " C=100\\,\\mathrm{pF}"
+        },
+        {
+          "type": "text",
+          "text": "Dieci pF perderebbero un fattore dieci nel rapporto A/d. Un pF confonde area 100 cm² con 1 cm². Centomila pF usa d come 1/1000000 m, invece di 1/1000 m; la capacità non si misura in metri."
+        }
+      ],
+      "hints": [
+        "Converti separatamente un’area e una distanza prima di formare A/d.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dieci pF perderebbero un fattore dieci nel rapporto A/d. Un pF confonde area 100 cm² con 1 cm². Centomila pF usa d come 1/1000000 m, invece di 1/1000 m; la capacità non si misura in metri.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Unità geometriche e permittività assegnata",
+        "Equilibrio nei conduttori distinto dal campo tra piastre",
+        "Inverse, medie, tarature e geometria ammissibile"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-plane-capacitance-02",
+      "kind": "question",
+      "course": "C4",
+      "section": "Geometria e capacità delle armature",
+      "order": 21702,
+      "title": "L’unità della capacità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "plane-capacitance",
+      "difficulty": 1,
+      "prompt": "La capacità C lega il modulo Q della carica su un’armatura alla tensione positiva V fra le armature. Quale unità è dimensionalmente corretta per C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "F",
+          "C",
+          "V",
+          "J",
+          "Ω"
+        ],
+        "value": "F"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Per definizione C=Q/V e l’unità è il farad, F=C/V. I pF sono 10⁻¹² F e hanno la stessa dimensione. La lettera C usata come simbolo della capacità non va confusa con C come simbolo dell’unità coulomb."
+        },
+        {
+          "type": "formula",
+          "text": "[C]=\\mathrm{C/V}"
+        },
+        {
+          "type": "formula",
+          "text": " [C]=\\mathrm F"
+        },
+        {
+          "type": "text",
+          "text": "Il coulomb misura la carica e il volt la tensione. Il joule è energia, l’ohm resistenza. Nessuna di queste unità da sola esprime carica per tensione."
+        }
+      ],
+      "hints": [
+        "Distingui il simbolo della grandezza dal simbolo della sua unità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "Il coulomb misura la carica e il volt la tensione. Il joule è energia, l’ohm resistenza. Nessuna di queste unità da sola esprime carica per tensione.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Unità geometriche e permittività assegnata",
+        "Equilibrio nei conduttori distinto dal campo tra piastre",
+        "Inverse, medie, tarature e geometria ammissibile"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-plane-capacitance-03",
+      "kind": "question",
+      "course": "C4",
+      "section": "Geometria e capacità delle armature",
+      "order": 21703,
+      "title": "Dentro il materiale conduttore",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L04",
+      "prerequisites": [
+        "C1-L002",
+        "C4-L01",
+        "C4-L02",
+        "C4-L03",
+        "C4-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "plane-capacitance",
+      "difficulty": 1,
+      "prompt": "Un conduttore è in equilibrio elettrostatico. Quale affermazione è corretta per l’interno del materiale conduttore, senza riferirsi a eventuali cavità?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Il campo elettrico è nullo e il potenziale è uniforme",
+          "Il potenziale deve essere zero rispetto a ogni riferimento",
+          "Il campo resta uguale a quello esterno",
+          "Le cariche libere scorrono con corrente continua",
+          "Il campo è nullo soltanto se il conduttore è neutro"
+        ],
+        "value": "Il campo elettrico è nullo e il potenziale è uniforme"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Se all’interno rimanesse un campo elettrico, le cariche mobili continuerebbero a ridistribuirsi: non sarebbe equilibrio elettrostatico. La ridistribuzione annulla il campo nel materiale. Il potenziale è quindi uniforme, ma il suo valore dipende dal riferimento e dalla carica del conduttore; non deve essere zero."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/ed120367d77a303c004fa9eaf8a1333c101406735f594ee26a3409c33abbd5cf",
+          "text": "Il pannello del conduttore riguarda l’interno del materiale in equilibrio elettrostatico. Non è la regione isolante fra due armature, nella quale può esserci campo non nullo."
+        },
+        {
+          "type": "formula",
+          "text": "\\vec E_{\\rm materiale}=\\vec0"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta V_{\\rm interno}=0"
+        },
+        {
+          "type": "text",
+          "text": "Potenziale uniforme non significa potenziale nullo. Un campo interno uguale a quello esterno non è in generale compatibile con l’equilibrio. Corrente continua e mobilità in atto non descrivono questo stato. Anche un conduttore carico può avere campo interno nullo."
+        }
+      ],
+      "hints": [
+        "Ragiona su che cosa farebbero le cariche mobili se il campo interno restasse non nullo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Potenziale uniforme non significa potenziale nullo. Un campo interno uguale a quello esterno non è in generale compatibile con l’equilibrio. Corrente continua e mobilità in atto non descrivono questo stato. Anche un conduttore carico può avere campo interno nullo.",
+        "target": "C4-L04"
+      },
+      "coverage": [
+        "Unità geometriche e permittività assegnata",
+        "Equilibrio nei conduttori distinto dal campo tra piastre",
+        "Inverse, medie, tarature e geometria ammissibile"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-plane-capacitance-04",
+      "kind": "question",
+      "course": "C4",
+      "section": "Geometria e capacità delle armature",
+      "order": 21704,
+      "title": "Area cento volte più piccola",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "plane-capacitance",
+      "difficulty": 1,
+      "prompt": "Un condensatore piano ideale ha armature parallele di area affacciata A>0 e separazione d>0, molto piccola rispetto alle dimensioni laterali. Si trascurano i bordi; lo spazio è completamente riempito da un dielettrico lineare uniforme di permittività ε=10 pF/m, valore assegnato esattamente nel modello e uguale fra prove. A si esprime in cm², d in mm e C in pF. A passa da 100 cm² a 1 cm² con d=1 mm invariata. Come cambia C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 100 pF a 1 pF",
+          "Da 100 pF a 10 pF",
+          "Da 100 pF a 10000 pF",
+          "Resta 100 pF",
+          "Da 100 pF a 1/100 pF"
+        ],
+        "value": "Da 100 pF a 1 pF"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A parità di separazione e permittività, la capacità è lineare nell’area. Il fattore d’area è 1/100, quindi C_B=(1/100)100 pF=1 pF. Non si prende una radice: il dato cambiato è già un’area, non il lato di un quadrato."
+        },
+        {
+          "type": "formula",
+          "text": "C_B/C_A=A_B/A_A"
+        },
+        {
+          "type": "formula",
+          "text": " C_B/C_A=\\frac1{100}"
+        },
+        {
+          "type": "formula",
+          "text": " C_B=1\\,\\mathrm{pF}"
+        },
+        {
+          "type": "text",
+          "text": "Dieci pF tratta la variazione di area come variazione del lato. Diecimila pF inverte la dipendenza. Cento pF ignora A nuova; 1/100 pF divide per cento due volte."
+        }
+      ],
+      "hints": [
+        "Il rapporto fra le due aree entra una volta sola.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Dieci pF tratta la variazione di area come variazione del lato. Diecimila pF inverte la dipendenza. Cento pF ignora A nuova; 1/100 pF divide per cento due volte.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Unità geometriche e permittività assegnata",
+        "Equilibrio nei conduttori distinto dal campo tra piastre",
+        "Inverse, medie, tarature e geometria ammissibile"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-plane-capacitance-05",
+      "kind": "question",
+      "course": "C4",
+      "section": "Geometria e capacità delle armature",
+      "order": 21705,
+      "title": "Ricostruire l’area",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "plane-capacitance",
+      "difficulty": 2,
+      "prompt": "Un condensatore piano ideale ha armature parallele di area affacciata A>0 e separazione d>0, molto piccola rispetto alle dimensioni laterali. Si trascurano i bordi; lo spazio è completamente riempito da un dielettrico lineare uniforme di permittività ε=10 pF/m, valore assegnato esattamente nel modello e uguale fra prove. A si esprime in cm², d in mm e C in pF. Si misura C=100 pF e si conosce d=1 mm. Quanto vale A in cm²?",
+      "answer": {
+        "type": "numeric",
+        "value": 100,
+        "unit": "cm²",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Isolo A=Cd/ε. Nelle unità del modello si può prima verificare C[pF]=A[cm²]/d[mm], perché 10·10⁻⁴/10⁻³=1. Perciò il valore numerico dell’area è 100·1=100 cm². La semplificazione numerica dipende dalle unità dichiarate."
+        },
+        {
+          "type": "formula",
+          "text": "A=\\frac{Cd}{\\varepsilon}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{A}{1\\,\\mathrm{cm}^2}=100\\cdot1"
+        },
+        {
+          "type": "formula",
+          "text": " A=100\\,\\mathrm{cm}^2"
+        },
+        {
+          "type": "text",
+          "text": "Dieci cm² dividerebbe ancora per il dieci diε dopo aver già usato la formula numerica ridotta. Cento m² perderebbe la conversione di area. Invertire C darebbe una dipendenza opposta a quella fisica."
+        }
+      ],
+      "hints": [
+        "Usa l’inversa fisica e solo dopo la sua versione numerica nelle unità assegnate.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dieci cm² dividerebbe ancora per il dieci diε dopo aver già usato la formula numerica ridotta. Cento m² perderebbe la conversione di area. Invertire C darebbe una dipendenza opposta a quella fisica.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Unità geometriche e permittività assegnata",
+        "Equilibrio nei conduttori distinto dal campo tra piastre",
+        "Inverse, medie, tarature e geometria ammissibile"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-plane-capacitance-06",
+      "kind": "question",
+      "course": "C4",
+      "section": "Geometria e capacità delle armature",
+      "order": 21706,
+      "title": "La separazione dalle altre misure",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "plane-capacitance",
+      "difficulty": 2,
+      "prompt": "Un condensatore piano ideale ha armature parallele di area affacciata A>0 e separazione d>0, molto piccola rispetto alle dimensioni laterali. Si trascurano i bordi; lo spazio è completamente riempito da un dielettrico lineare uniforme di permittività ε=10 pF/m, valore assegnato esattamente nel modello e uguale fra prove. A si esprime in cm², d in mm e C in pF. Si misura C=100 pF e si conosce A=100 cm². Quanto vale d in mm?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "mm",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Da C=εA/d segue d=εA/C. Con area 1/100 m², il prodotto εA è 1/10 pF·m. Diviso 100 pF si ottiene 1/1000 m=1 mm. La distanza è positiva e resta piccola rispetto ai dieci cm del lato se l’armatura fosse quadrata."
+        },
+        {
+          "type": "formula",
+          "text": "d=\\frac{\\varepsilon A}{C}"
+        },
+        {
+          "type": "formula",
+          "text": " d=\\frac1{1000}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " d=1\\,\\mathrm{mm}"
+        },
+        {
+          "type": "text",
+          "text": "Cento mm copia l’area numerica; 1/100 mm omette parte delle conversioni. Un m confonde la distanza in mm con quella SI; d=0 renderebbe il modello non definito."
+        }
+      ],
+      "hints": [
+        "La capacità è inversa alla distanza: ricontrolla l’inversa con una sostituzione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Cento mm copia l’area numerica; 1/100 mm omette parte delle conversioni. Un m confonde la distanza in mm con quella SI; d=0 renderebbe il modello non definito.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Unità geometriche e permittività assegnata",
+        "Equilibrio nei conduttori distinto dal campo tra piastre",
+        "Inverse, medie, tarature e geometria ammissibile"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-plane-capacitance-07",
+      "kind": "question",
+      "course": "C4",
+      "section": "Geometria e capacità delle armature",
+      "order": 21707,
+      "title": "Distanziare le armature",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "plane-capacitance",
+      "difficulty": 2,
+      "prompt": "Un condensatore piano ideale ha armature parallele di area affacciata A>0 e separazione d>0, molto piccola rispetto alle dimensioni laterali. Si trascurano i bordi; lo spazio è completamente riempito da un dielettrico lineare uniforme di permittività ε=10 pF/m, valore assegnato esattamente nel modello e uguale fra prove. A si esprime in cm², d in mm e C in pF. A usa A=100 cm², d=1 mm. B mantiene l’area e porta d a 2 mm. Quanto vale C_B/C_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "2",
+          "1/4",
+          "4",
+          "1"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’area e il dielettrico sono uguali, mentre il denominatore raddoppia. A ha 100 pF, B 50 pF: il rapporto è 1/2. Non è necessario sapere se il generatore è collegato per la sola capacità geometrica; quella condizione servirebbe per decidere carica e tensione dopo lo spostamento."
+        },
+        {
+          "type": "formula",
+          "text": "C_A=100\\,\\mathrm{pF}"
+        },
+        {
+          "type": "formula",
+          "text": " C_B=50\\,\\mathrm{pF}"
+        },
+        {
+          "type": "formula",
+          "text": " C_B/C_A=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Due rende diretta la dipendenza da d.1/4 e quattro introducono un quadrato assente; uno ignora la separazione nuova. Il campo non va sostituito alla capacità."
+        }
+      ],
+      "hints": [
+        "Controlla quale grandezza geometrica sta al denominatore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due rende diretta la dipendenza da d.1/4 e quattro introducono un quadrato assente; uno ignora la separazione nuova. Il campo non va sostituito alla capacità.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Unità geometriche e permittività assegnata",
+        "Equilibrio nei conduttori distinto dal campo tra piastre",
+        "Inverse, medie, tarature e geometria ammissibile"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-plane-capacitance-08",
+      "kind": "question",
+      "course": "C4",
+      "section": "Geometria e capacità delle armature",
+      "order": 21708,
+      "title": "Il campo fra due potenziali",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L03",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L02",
+        "C4-L03"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "plane-capacitance",
+      "difficulty": 2,
+      "prompt": "Due armature piane parallele distano 2 cm. A sinistra il potenziale è+40 V, a destra 0 V. Lontano dai bordi il campo è uniforme. Qual è il campo elettrico interno?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2000 V/m verso destra",
+          "2000 V/m verso sinistra",
+          "20 V/m verso destra",
+          "0 V/m",
+          "40 V/m verso destra"
+        ],
+        "value": "2000 V/m verso destra"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Con x verso destra il potenziale diminuisce di 40 V in 2 cm=1/50 m. E_x=−ΔV/Δx=−(−40)/(1/50) V/m=2000 V/m, diretto verso destra. È il campo nello spazio tra le piastre; non il campo all’interno del metallo, che in equilibrio è nullo."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/ed120367d77a303c004fa9eaf8a1333c101406735f594ee26a3409c33abbd5cf",
+          "text": "Nel pannello con 40 V a sinistra e 0 V a destra il campo uniforme punta verso destra. Lunghezze delle frecce illustrative uguali indicano uniformità; il loro modulo numerico deriva da 40 V divisi per 2 cm."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta x=\\frac1{50}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta V=-40\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " E_x=2000\\,\\mathrm{V/m}"
+        },
+        {
+          "type": "text",
+          "text": "La sinistra inverte il verso dalla quota di potenziale maggiore a quella minore. Venti V/m divide per 2 trattando i cm come m. Zero confonde spazio tra le armature con materiale conduttore. Quaranta V/m copia la differenza senza dividere per la distanza."
+        }
+      ],
+      "hints": [
+        "Fissa l’asse e il segno diΔV prima di usare E_x=−ΔV/Δx.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La sinistra inverte il verso dalla quota di potenziale maggiore a quella minore. Venti V/m divide per 2 trattando i cm come m. Zero confonde spazio tra le armature con materiale conduttore. Quaranta V/m copia la differenza senza dividere per la distanza.",
+        "target": "C4-L03"
+      },
+      "coverage": [
+        "Unità geometriche e permittività assegnata",
+        "Equilibrio nei conduttori distinto dal campo tra piastre",
+        "Inverse, medie, tarature e geometria ammissibile"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-plane-capacitance-09",
+      "kind": "question",
+      "course": "C4",
+      "section": "Geometria e capacità delle armature",
+      "order": 21709,
+      "title": "L’area nell’inversa simbolica",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "plane-capacitance",
+      "difficulty": 2,
+      "prompt": "Un condensatore piano ideale ha armature parallele di area affacciata A>0 e separazione d>0, molto piccola rispetto alle dimensioni laterali. Si trascurano i bordi; lo spazio è completamente riempito da un dielettrico lineare uniforme di permittività ε=10 pF/m, valore assegnato esattamente nel modello e uguale fra prove. A si esprime in cm², d in mm e C in pF. Sono noti C, d, ε. Quale espressione isola A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "C d / ε",
+          "ε d / C",
+          "C / (ε d)",
+          "ε / (C d)",
+          "C ε d"
+        ],
+        "value": "C d / ε"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplico per d e divido perε: A=Cd/ε. In SI le unità sono F·m/(F/m)=m². La formula fisica conservaε anche quando una particolare scelta delle unità semplifica il coefficiente numerico."
+        },
+        {
+          "type": "formula",
+          "text": "Cd=\\varepsilon A"
+        },
+        {
+          "type": "formula",
+          "text": " A=\\frac{Cd}{\\varepsilon}"
+        },
+        {
+          "type": "formula",
+          "text": " [A]=\\mathrm m^2"
+        },
+        {
+          "type": "text",
+          "text": "εd/C è adimensionale; C/(εd) è anch’esso puro. ε/(Cd) ha unità m⁻², area inversa. Il prodotto Cεd ha unità F², non area."
+        }
+      ],
+      "hints": [
+        "Isola A e controlla esplicitamente i metri al quadrato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "εd/C è adimensionale; C/(εd) è anch’esso puro. ε/(Cd) ha unità m⁻², area inversa. Il prodotto Cεd ha unità F², non area.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Unità geometriche e permittività assegnata",
+        "Equilibrio nei conduttori distinto dal campo tra piastre",
+        "Inverse, medie, tarature e geometria ammissibile"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-plane-capacitance-10",
+      "kind": "question",
+      "course": "C4",
+      "section": "Geometria e capacità delle armature",
+      "order": 21710,
+      "title": "Due cambiamenti geometrici",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "plane-capacitance",
+      "difficulty": 2,
+      "prompt": "Un condensatore piano ideale ha armature parallele di area affacciata A>0 e separazione d>0, molto piccola rispetto alle dimensioni laterali. Si trascurano i bordi; lo spazio è completamente riempito da un dielettrico lineare uniforme di permittività ε=10 pF/m, valore assegnato esattamente nel modello e uguale fra prove. A si esprime in cm², d in mm e C in pF. Fra A e B l’area si moltiplica per κ₁>0 e la separazione per κ₂>0; entrambe le geometrie restano nel regime ideale dichiarato. Qual è C_B/C_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ / κ₂",
+          "κ₁ κ₂",
+          "κ₂ / κ₁",
+          "κ₁² / κ₂",
+          "κ₁ / κ₂²"
+        ],
+        "value": "κ₁ / κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La permittività non cambia. Inserendo entrambi i fattori inεA/d si ottieneκ₁/κ₂. κ₁ è già un fattore d’area, non un fattore della lunghezza laterale, quindi non va elevato di nuovo al quadrato."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{C_B}{C_A}=\\frac{\\varepsilon\\kappa_1A}{\\kappa_2d}\\frac{d}{\\varepsilon A}"
+        },
+        {
+          "type": "formula",
+          "text": " C_B/C_A=\\frac{\\kappa_1}{\\kappa_2}"
+        },
+        {
+          "type": "text",
+          "text": "Il prodotto rende diretta la separazione. Il reciproco inverte B/A. I due quadrati inventano dipendenze ulteriori: area e distanza sono già le grandezze effettive del modello."
+        }
+      ],
+      "hints": [
+        "Non confondere un fattore d’area con il fattore del lato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il prodotto rende diretta la separazione. Il reciproco inverte B/A. I due quadrati inventano dipendenze ulteriori: area e distanza sono già le grandezze effettive del modello.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Unità geometriche e permittività assegnata",
+        "Equilibrio nei conduttori distinto dal campo tra piastre",
+        "Inverse, medie, tarature e geometria ammissibile"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-plane-capacitance-11",
+      "kind": "question",
+      "course": "C4",
+      "section": "Geometria e capacità delle armature",
+      "order": 21711,
+      "title": "Area maggiore e distanza maggiore",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "plane-capacitance",
+      "difficulty": 2,
+      "prompt": "Un condensatore piano ideale ha armature parallele di area affacciata A>0 e separazione d>0, molto piccola rispetto alle dimensioni laterali. Si trascurano i bordi; lo spazio è completamente riempito da un dielettrico lineare uniforme di permittività ε=10 pF/m, valore assegnato esattamente nel modello e uguale fra prove. A si esprime in cm², d in mm e C in pF. A usa A=100 cm², d=1 mm. B usa A=400 cm², d=2 mm. Quanto vale C_B/C_A?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nelle unità assegnate A ha 100/1=100 pF e B 400/2=200 pF. Il rapporto è due: il fattore quattro dell’area supera il fattore due della separazione. Non si decide dal solo fatto che le piastre siano più lontane."
+        },
+        {
+          "type": "formula",
+          "text": "C_A=100\\,\\mathrm{pF}"
+        },
+        {
+          "type": "formula",
+          "text": " C_B=200\\,\\mathrm{pF}"
+        },
+        {
+          "type": "formula",
+          "text": " C_B/C_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Quattro segue soltanto l’area e mezzo segue soltanto d.1/2 inverte il risultato; uno presume una compensazione completa che richiederebbe fattori uguali."
+        }
+      ],
+      "hints": [
+        "Combina il fattore quattro al numeratore con quello due al denominatore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro segue soltanto l’area e mezzo segue soltanto d.1/2 inverte il risultato; uno presume una compensazione completa che richiederebbe fattori uguali.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Unità geometriche e permittività assegnata",
+        "Equilibrio nei conduttori distinto dal campo tra piastre",
+        "Inverse, medie, tarature e geometria ammissibile"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-plane-capacitance-12",
+      "kind": "question",
+      "course": "C4",
+      "section": "Geometria e capacità delle armature",
+      "order": 21712,
+      "title": "Due misure, uguale peso",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "plane-capacitance",
+      "difficulty": 2,
+      "prompt": "Un condensatore piano ideale ha armature parallele di area affacciata A>0 e separazione d>0, molto piccola rispetto alle dimensioni laterali. Si trascurano i bordi; lo spazio è completamente riempito da un dielettrico lineare uniforme di permittività ε=10 pF/m, valore assegnato esattamente nel modello e uguale fra prove. A si esprime in cm², d in mm e C in pF. A usa 100 cm², 1 mm; B usa 400 cm², 2 mm. Qual è la media aritmetica delle due capacità?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "150 pF",
+          "500/3 pF",
+          "300 pF",
+          "50 pF",
+          "200 pF"
+        ],
+        "value": "150 pF"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le capacità sono 100 e 200 pF. La media delle uscite è 150 pF. Gli ingressi medi sarebbero 250 cm² e 3/2 mm, per i quali la capacità sarebbe 500/3 pF, diversa. La capacità non è lineare congiuntamente in area e separazione."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/ed120367d77a303c004fa9eaf8a1333c101406735f594ee26a3409c33abbd5cf",
+          "text": "Le barre 100 pF, 200 pF e 150 pF hanno stessa origine e scala. Sono capacità di prove separate, non tre condensatori simultaneamente collegati."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline C=\\frac{100+200}{2}\\,\\mathrm{pF}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline C=150\\,\\mathrm{pF}"
+        },
+        {
+          "type": "formula",
+          "text": " C_{\\rm dati\\ medi}=\\frac{500}{3}\\,\\mathrm{pF}"
+        },
+        {
+          "type": "text",
+          "text": "500/3 pF usa gli ingressi medi. Trecento pF somma le letture, cinquanta pF è semidifferenza e duecento pF ripete soltanto B."
+        }
+      ],
+      "hints": [
+        "Mantieni ogni coppia area-distanza fino a ottenere la sua capacità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "500/3 pF usa gli ingressi medi. Trecento pF somma le letture, cinquanta pF è semidifferenza e duecento pF ripete soltanto B.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Unità geometriche e permittività assegnata",
+        "Equilibrio nei conduttori distinto dal campo tra piastre",
+        "Inverse, medie, tarature e geometria ammissibile"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-plane-capacitance-13",
+      "kind": "question",
+      "course": "C4",
+      "section": "Geometria e capacità delle armature",
+      "order": 21713,
+      "title": "La distanza per il bersaglio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "plane-capacitance",
+      "difficulty": 3,
+      "prompt": "Un condensatore piano ideale ha armature parallele di area affacciata A>0 e separazione d>0, molto piccola rispetto alle dimensioni laterali. Si trascurano i bordi; lo spazio è completamente riempito da un dielettrico lineare uniforme di permittività ε=10 pF/m, valore assegnato esattamente nel modello e uguale fra prove. A si esprime in cm², d in mm e C in pF. A usa 100 cm², 1 mm. B ha area 400 cm² e deve ottenere C_B=2 C_A. Quanto vale d_B/d_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/2",
+          "4",
+          "1",
+          "8"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è 200 pF. L’inversa nelle unità dichiarate dà d_B=400/200 mm=2 mm. Il rapporto con il millimetro iniziale vale due: il fattore quattro dell’area è parzialmente compensato dalla distanza doppia."
+        },
+        {
+          "type": "formula",
+          "text": "C_B=200\\,\\mathrm{pF}"
+        },
+        {
+          "type": "formula",
+          "text": " d_B=2\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " d_B/d_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Mezzo inverte il rapporto. Quattro compenserebbe del tutto l’aumento d’area lasciando C invariata; uno darebbe 400 pF. Otto darebbe 50 pF, non il bersaglio."
+        }
+      ],
+      "hints": [
+        "Trova il nuovo valore di C prima di invertire rispetto a d.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Mezzo inverte il rapporto. Quattro compenserebbe del tutto l’aumento d’area lasciando C invariata; uno darebbe 400 pF. Otto darebbe 50 pF, non il bersaglio.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Unità geometriche e permittività assegnata",
+        "Equilibrio nei conduttori distinto dal campo tra piastre",
+        "Inverse, medie, tarature e geometria ammissibile"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-plane-capacitance-14",
+      "kind": "question",
+      "course": "C4",
+      "section": "Geometria e capacità delle armature",
+      "order": 21714,
+      "title": "Taratura della capacità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "plane-capacitance",
+      "difficulty": 3,
+      "prompt": "Un condensatore piano ideale ha armature parallele di area affacciata A>0 e separazione d>0, molto piccola rispetto alle dimensioni laterali. Si trascurano i bordi; lo spazio è completamente riempito da un dielettrico lineare uniforme di permittività ε=10 pF/m, valore assegnato esattamente nel modello e uguale fra prove. A si esprime in cm², d in mm e C in pF. D=a_cal C è continuo e adimensionale, a_cal>0. A con 100 cm², 1 mm dà D=300. B legge D=600 e ha d=2 mm. Quanto vale A_B in cm²?",
+      "answer": {
+        "type": "numeric",
+        "value": 400,
+        "unit": "cm²",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A corrisponde a 100 pF, dunque a_cal=3 pF⁻¹. B indica 200 pF e non 600 pF. Con d 2 mm l’inversa numerica dà A_B=200·2 cm²=400 cm². La scala strumentale si rimuove prima dell’inversa geometrica."
+        },
+        {
+          "type": "formula",
+          "text": "a_{\\rm cal}=3\\,\\mathrm{pF}^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " C_B=200\\,\\mathrm{pF}"
+        },
+        {
+          "type": "formula",
+          "text": " A_B=400\\,\\mathrm{cm}^2"
+        },
+        {
+          "type": "text",
+          "text": "Milleduecento cm² tratterebbe D come capacità. Cento cm² divide per la distanza invece di moltiplicare e darebbe 50 pF. Duecento cm² copia il numero della capacità senza il fattore d."
+        }
+      ],
+      "hints": [
+        "Decodifica prima C, poi applica A=Cd/ε.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Milleduecento cm² tratterebbe D come capacità. Cento cm² divide per la distanza invece di moltiplicare e darebbe 50 pF. Duecento cm² copia il numero della capacità senza il fattore d.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Unità geometriche e permittività assegnata",
+        "Equilibrio nei conduttori distinto dal campo tra piastre",
+        "Inverse, medie, tarature e geometria ammissibile"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-plane-capacitance-15",
+      "kind": "question",
+      "course": "C4",
+      "section": "Geometria e capacità delle armature",
+      "order": 21715,
+      "title": "Offset e una piccola area",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "plane-capacitance",
+      "difficulty": 3,
+      "prompt": "Un condensatore piano ideale ha armature parallele di area affacciata A>0 e separazione d>0, molto piccola rispetto alle dimensioni laterali. Si trascurano i bordi; lo spazio è completamente riempito da un dielettrico lineare uniforme di permittività ε=10 pF/m, valore assegnato esattamente nel modello e uguale fra prove. A si esprime in cm², d in mm e C in pF. D=a_cal C+b_cal è continuo. A:100 cm², 1 mm, D=201. B:400 cm², 2 mm, D=401. C: d=1 mm, D=3. Quanto vale l’area della prova C in cm²?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "cm²",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti sono 100 e 200 pF. La pendenza è(401−201)/(200−100)=2 pF⁻¹ e l’offset uno. D_C 3 decodifica C_C=(3−1)/2=1 pF. Con un mm di separazione l’area richiesta è 1 cm²; reinserendo si ritrova D 3."
+        },
+        {
+          "type": "formula",
+          "text": "a_{\\rm cal}=2\\,\\mathrm{pF}^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " b_{\\rm cal}=1"
+        },
+        {
+          "type": "formula",
+          "text": " C_C=1\\,\\mathrm{pF}"
+        },
+        {
+          "type": "formula",
+          "text": " A_C=1\\,\\mathrm{cm}^2"
+        },
+        {
+          "type": "text",
+          "text": "3/2 cm² omette l’offset e predice D 4. Due cm² non divide per il guadagno dopo aver sottratto uno e predice D 5. Tre cm² usa direttamente D come area e predice D 7."
+        }
+      ],
+      "hints": [
+        "Il valore strumentale piccolo va confrontato con l’offset prima dell’inversa.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "3/2 cm² omette l’offset e predice D 4. Due cm² non divide per il guadagno dopo aver sottratto uno e predice D 5. Tre cm² usa direttamente D come area e predice D 7.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Unità geometriche e permittività assegnata",
+        "Equilibrio nei conduttori distinto dal campo tra piastre",
+        "Inverse, medie, tarature e geometria ammissibile"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-plane-capacitance-16",
+      "kind": "question",
+      "course": "C4",
+      "section": "Geometria e capacità delle armature",
+      "order": 21716,
+      "title": "Una misura ridondante",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L03",
+        "C4-L04",
+        "C4-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "plane-capacitance",
+      "difficulty": 3,
+      "prompt": "Un condensatore piano ideale ha armature parallele di area affacciata A>0 e separazione d>0, molto piccola rispetto alle dimensioni laterali. Si trascurano i bordi; lo spazio è completamente riempito da un dielettrico lineare uniforme di permittività ε=10 pF/m, valore assegnato esattamente nel modello e uguale fra prove. A si esprime in cm², d in mm e C in pF. Fra preparazioni si impone A=(100 cm²/mm)d. Si misura inoltre C=100 pF. Quante coppie positive(A, d) sono determinate nel regime di piastre estese?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Infinite coppie positive",
+          "Una sola coppia",
+          "Due coppie",
+          "Nessuna coppia",
+          "Area e distanza indipendenti"
+        ],
+        "value": "Infinite coppie positive"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il vincolo fissa A/d e quindi fissa C. Per esempio(100 cm², 1 mm) e(200 cm², 2 mm) danno entrambe 100 pF. Restano infinite coppie continue nel regime ideale; il requisito geometrico d piccolo rispetto ai lati va mantenuto e non autorizza separazioni arbitrariamente grandi a parità del vincolo."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{A}{1\\,\\mathrm{cm}^2}=100\\frac{d}{1\\,\\mathrm{mm}}"
+        },
+        {
+          "type": "formula",
+          "text": " C=100\\,\\mathrm{pF}"
+        },
+        {
+          "type": "text",
+          "text": "Una o due coppie confondono esempi con l’insieme continuo. Nessuna contraddirebbe gli esempi. I due ingressi non sono indipendenti: il rapporto è vincolato. Il limite d 0 non è una geometria fisica ammessa."
+        }
+      ],
+      "hints": [
+        "Sostituisci il vincolo prima di contare le misure indipendenti.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Una o due coppie confondono esempi con l’insieme continuo. Nessuna contraddirebbe gli esempi. I due ingressi non sono indipendenti: il rapporto è vincolato. Il limite d 0 non è una geometria fisica ammessa.",
+        "target": "C4-L07"
+      },
+      "coverage": [
+        "Unità geometriche e permittività assegnata",
+        "Equilibrio nei conduttori distinto dal campo tra piastre",
+        "Inverse, medie, tarature e geometria ammissibile"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "ed120367d77a303c004fa9eaf8a1333c101406735f594ee26a3409c33abbd5cf",
+      "name": "plane-capacitance-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMjA0MCIgdmlld0JveD0iMCAwIDY0MCAyMDQwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+Q2FwYWNpdMOgLCBtYXRlcmlhbGUgY29uZHV0dG9yZSBlIGNhbXBvIHRyYSBwaWFzdHJlPC90aXRsZT48ZGVzYyBpZD0iZGVzYyI+UXVhdHRybyBwYW5uZWxsaSBkaXN0aW50aTogZ2VvbWV0cmlhIHNjaGVtYXRpY2EgZGVsIGNvbmRlbnNhdG9yZTsgY2FtcG8gbnVsbG8gbmVsIG1hdGVyaWFsZSBjb25kdXR0b3JlIGFsbOKAmWVxdWlsaWJyaW87IGNhbXBvIHVuaWZvcm1lIGRhIHF1YXJhbnRhIHZvbHQgYSB6ZXJvIHZvbHQgZnJhIHBpYXN0cmUgZGlzdGFudGkgZHVlIGNlbnRpbWV0cmk7IGJhcnJlIHF1YW50aXRhdGl2ZSBkZWxsZSBjYXBhY2l0w6AgY2VudG8sIGR1ZWNlbnRvIGUgY2VudG9jaW5xdWFudGEgcGljb2ZhcmFkLjwvZGVzYz48ZGVmcz48bWFya2VyIGlkPSJhcnJvdyIgdmlld0JveD0iMCAwIDEwIDEwIiByZWZYPSI5IiByZWZZPSI1IiBtYXJrZXJXaWR0aD0iNyIgbWFya2VySGVpZ2h0PSI3IiBvcmllbnQ9ImF1dG8iPjxwYXRoIGQ9Ik0wIDBMMTAgNUwwIDEwWiIgZmlsbD0iIzE4NWQ4MyIvPjwvbWFya2VyPjwvZGVmcz48cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjIwNDAiIHJ4PSIxNiIgZmlsbD0iI2Y3ZjlmYyIvPgo8dGV4dCB4PSIzMiIgeT0iNDQiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjI1IiBmaWxsPSIjMTgyYzQ2IiBmb250LXdlaWdodD0iNzAwIj4xIMK3IEdlb21ldHJpYSBlIHBlcm1pdHRpdml0w6A8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI4NCIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxODJjNDYiPs61ID0gMTAgcEYvbSA7IG1vZGVsbG8gaWRlYWxlIHNlbnphIGJvcmRpLjwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjEyNCIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxODJjNDYiPlZpc3RhIGluIHNlemlvbmU6IHF1b3RlIHNjaGVtYXRpY2hlLjwvdGV4dD4KPHJlY3QgeD0iMTgwIiB5PSIxOTAiIHdpZHRoPSIzMjAiIGhlaWdodD0iMTIiIGZpbGw9IiMxODVkODMiLz4KPHJlY3QgeD0iMTgwIiB5PSIyODAiIHdpZHRoPSIzMjAiIGhlaWdodD0iMTIiIGZpbGw9IiNiODUzMjIiLz4KPHRleHQgeD0iMjEwIiB5PSIxNzYiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTgyYzQ2Ij5BcmVhIGFmZmFjY2lhdGEgQSA9IDEwMCBjbcKyPC90ZXh0Pgo8dGV4dCB4PSIxOTAiIHk9IjI0NSIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxODJjNDYiPmRpZWxldHRyaWNvIHVuaWZvcm1lPC90ZXh0Pgo8cGF0aCBkPSJNNTMwIDIwMlYyODAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE4MmM0NiIgc3Ryb2tlLXdpZHRoPSIyIi8+CjxwYXRoIGQ9Ik01MjIgMjAySDUzOE01MjIgMjgwSDUzOCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMTgyYzQ2IiBzdHJva2Utd2lkdGg9IjIiLz4KPHRleHQgeD0iMzIiIHk9IjM0MSIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxODJjNDYiPlNlcGFyYXppb25lIGQgPSAxIG1tIDsgQyA9IDEwMCBwRi48L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIzODUiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTgyYzQ2Ij5MYXRpIGUgZGlzdGFuemEgbm9uIHNvbm8gaW4gc2NhbGEgcmVjaXByb2NhLjwvdGV4dD4KPHBhdGggZD0iTTMyIDQzMEg2MDgiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2M0Y2ZkYiIgc3Ryb2tlLXdpZHRoPSIyIi8+Cjx0ZXh0IHg9IjMyIiB5PSI0ODAiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjI1IiBmaWxsPSIjMTgyYzQ2IiBmb250LXdlaWdodD0iNzAwIj4yIMK3IFVuIGFsdHJvIGNhc286IGlsIG1hdGVyaWFsZSBjb25kdXR0b3JlPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iNTIwIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE4MmM0NiI+RXF1aWxpYnJpbyBlbGV0dHJvc3RhdGljbywgYW5jaGUgY29uIGNhbXBvIGVzdGVybm8uPC90ZXh0Pgo8cmVjdCB4PSIxNzAiIHk9IjU5MCIgd2lkdGg9IjMyMCIgaGVpZ2h0PSIxNjAiIGZpbGw9IiNkY2U3ZWYiLz4KPHBhdGggZD0iTTUwIDYyMEgxMzAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE4NWQ4MyIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPgo8cGF0aCBkPSJNNTMwIDYyMEg2MTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE4NWQ4MyIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPgo8cGF0aCBkPSJNNTAgNzAwSDEzMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMTg1ZDgzIiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+CjxwYXRoIGQ9Ik01MzAgNzAwSDYxMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMTg1ZDgzIiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+Cjx0ZXh0IHg9IjE3OCIgeT0iNjIwIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMyIgZmlsbD0iIzE4MmM0NiI+4oiSPC90ZXh0Pgo8dGV4dCB4PSI0NjQiIHk9IjYyMCIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjMiIGZpbGw9IiMxODJjNDYiPis8L3RleHQ+Cjx0ZXh0IHg9IjE3OCIgeT0iNjY1IiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMyIgZmlsbD0iIzE4MmM0NiI+4oiSPC90ZXh0Pgo8dGV4dCB4PSI0NjQiIHk9IjY2NSIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjMiIGZpbGw9IiMxODJjNDYiPis8L3RleHQ+Cjx0ZXh0IHg9IjE3OCIgeT0iNzEwIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMyIgZmlsbD0iIzE4MmM0NiI+4oiSPC90ZXh0Pgo8dGV4dCB4PSI0NjQiIHk9IjcxMCIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjMiIGZpbGw9IiMxODJjNDYiPis8L3RleHQ+Cjx0ZXh0IHg9IjI1MCIgeT0iNjUzIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE4MmM0NiI+RSA9IDA8L3RleHQ+Cjx0ZXh0IHg9IjIyMCIgeT0iNzA1IiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE4MmM0NiI+cG90ZW56aWFsZSB1bmlmb3JtZTwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjgwMCIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxODJjNDYiPkxlIGNhcmljaGUgbGliZXJlIHNpIHNvbm8gcmlkaXN0cmlidWl0ZS48L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI4NDAiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTgyYzQ2Ij5RdWVzdG8gcGFubmVsbG8gcmlndWFyZGEgaWwgbWF0ZXJpYWxlLCBub24gbGEgY2F2aXTDoC48L3RleHQ+CjxwYXRoIGQ9Ik0zMiA4OTBINjA4IiBmaWxsPSJub25lIiBzdHJva2U9IiNjNGNmZGIiIHN0cm9rZS13aWR0aD0iMiIvPgo8dGV4dCB4PSIzMiIgeT0iOTQwIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyNSIgZmlsbD0iIzE4MmM0NiIgZm9udC13ZWlnaHQ9IjcwMCI+MyDCtyBDYW1wbyB0cmEgbGUgYXJtYXR1cmU8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI5ODIiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTgyYzQ2Ij5DYXNvIGRpc3RpbnRvOiA0MCBWIHN1IHVuYSBkaXN0YW56YSBkaSAyIGNtLjwvdGV4dD4KPHJlY3QgeD0iMTQwIiB5PSIxMDcwIiB3aWR0aD0iMTIiIGhlaWdodD0iMjYwIiBmaWxsPSIjYjg1MzIyIi8+CjxyZWN0IHg9IjUwMCIgeT0iMTA3MCIgd2lkdGg9IjEyIiBoZWlnaHQ9IjI2MCIgZmlsbD0iIzE4NWQ4MyIvPgo8dGV4dCB4PSIxMTIiIHk9IjEwNDQiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTgyYzQ2Ij4rNDAgVjwvdGV4dD4KPHRleHQgeD0iNDg0IiB5PSIxMDQ0IiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE4MmM0NiI+MCBWPC90ZXh0Pgo8cGF0aCBkPSJNMjIwIDExMjBINDI1IiBmaWxsPSJub25lIiBzdHJva2U9IiMxODVkODMiIHN0cm9rZS13aWR0aD0iMyIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz4KPHBhdGggZD0iTTIyMCAxMjAwSDQyNSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMTg1ZDgzIiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+CjxwYXRoIGQ9Ik0yMjAgMTI4MEg0MjUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE4NWQ4MyIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPgo8dGV4dCB4PSIyNTUiIHk9IjExNjMiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTgyYzQ2Ij5FIHZlcnNvIGRlc3RyYTwvdGV4dD4KPHBhdGggZD0iTTE1MiAxMzYwSDUwMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMTgyYzQ2IiBzdHJva2Utd2lkdGg9IjIiLz4KPHBhdGggZD0iTTE1MiAxMzUyVjEzNjhNNTAwIDEzNTJWMTM2OCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMTgyYzQ2IiBzdHJva2Utd2lkdGg9IjIiLz4KPHRleHQgeD0iMjkyIiB5PSIxMzk3IiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE4MmM0NiI+MiBjbTwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjE0NDAiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTgyYzQ2Ij5FID0gMjAwMCBWL20gOyBtZXRhbGxvIGUgc3BhemlvIGludGVybm8gZGlzdGludGkuPC90ZXh0Pgo8cGF0aCBkPSJNMzIgMTQ5MEg2MDgiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2M0Y2ZkYiIgc3Ryb2tlLXdpZHRoPSIyIi8+Cjx0ZXh0IHg9IjMyIiB5PSIxNTQwIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyNSIgZmlsbD0iIzE4MmM0NiIgZm9udC13ZWlnaHQ9IjcwMCI+NCDCtyBDYXBhY2l0w6AgZGkgcHJvdmUgc2VwYXJhdGU8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIxNTgyIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE4MmM0NiI+QTogMTAwIGNtwrIsIDEgbW0gOyBCOiA0MDAgY23CsiwgMiBtbS48L3RleHQ+CjxwYXRoIGQ9Ik0xNTAgMTYyNVYxOTAwIiBmaWxsPSJub25lIiBzdHJva2U9IiMxODJjNDYiIHN0cm9rZS13aWR0aD0iMiIvPgo8cmVjdCB4PSIxNTAiIHk9IjE2NDUiIHdpZHRoPSIxNjAiIGhlaWdodD0iNDIiIGZpbGw9IiMxODVkODMiLz4KPHRleHQgeD0iMzIiIHk9IjE2NzUiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTgyYzQ2Ij5BPC90ZXh0Pgo8dGV4dCB4PSIzMjgiIHk9IjE2NzUiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTgyYzQ2Ij4xMDAgcEY8L3RleHQ+CjxyZWN0IHg9IjE1MCIgeT0iMTczMCIgd2lkdGg9IjMyMCIgaGVpZ2h0PSI0MiIgZmlsbD0iI2I4NTMyMiIvPgo8dGV4dCB4PSIzMiIgeT0iMTc2MCIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxODJjNDYiPkI8L3RleHQ+Cjx0ZXh0IHg9IjQ4OCIgeT0iMTc2MCIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxODJjNDYiPjIwMCBwRjwvdGV4dD4KPHJlY3QgeD0iMTUwIiB5PSIxODE1IiB3aWR0aD0iMjQwIiBoZWlnaHQ9IjQyIiBmaWxsPSIjMzU2NTRlIi8+Cjx0ZXh0IHg9IjMyIiB5PSIxODQ1IiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE4MmM0NiI+TWVkaWE8L3RleHQ+Cjx0ZXh0IHg9IjQwOCIgeT0iMTg0NSIgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMxODJjNDYiPjE1MCBwRjwvdGV4dD4KPHRleHQgeD0iMTE4IiB5PSIxOTMwIiBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzE4MmM0NiI+MDwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjE5ODAiIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMTgyYzQ2Ij5CYXJyZSBjb24gb3JpZ2luZSBlIHNjYWxhIGNvbXVuaSBuZWwgcGFubmVsbG8uPC90ZXh0Pgo8L3N2Zz4K"
+    }
+  ]
+}

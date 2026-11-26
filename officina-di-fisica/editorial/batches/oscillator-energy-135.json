@@ -1,0 +1,1166 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u4-oscillator-energy-01",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia dell’oscillatore e caso dissipativo separato",
+      "order": 13501,
+      "title": "L’energia si legge a un estremo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L01",
+      "prerequisites": [
+        "C1-L005",
+        "C1-L006",
+        "C1-L008",
+        "C5-L01"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "oscillator-energy",
+      "difficulty": 1,
+      "prompt": "Una massa m>0 oscilla lungo un asse orizzontale su una molla ideale di costante k>0. La forza è −kx nell’intero intervallo considerato; x è misurata dall’equilibrio. La molla ha massa trascurabile, non ci sono attriti né forzanti e il riferimento è inerziale. L’ampiezza A>0 è il massimo |x|, non la distanza fra i due estremi. L’energia potenziale elastica è posta a zero in x=0; E indica l’energia meccanica totale della massa e della molla. Si confrontano prove differenti, ciascuna con k e A costanti. Con k=2 N/m e A=2 m, quanto vale E in J?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "J",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A un estremo x=A la velocità si annulla, quindi tutta l’energia meccanica è elastica. Il lavoro per deformare la molla da zero ad A è l’area del triangolo sotto kx: kA²/2. Il quadrato di due è quattro; moltiplicare per due e dividere per due dà quattro joule. Durante il moto E rimane la stessa, benché cambi la sua ripartizione."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/798755b0ba7ddaec6f2c0fda5a92bf1c39eef29cf02158f534c2b047b47fb866",
+          "text": "Oscillatore ideale con equilibrio x=0 ed estremi x=±2 m, scala spaziale 60 px/m. Le tre posizioni sono viste alternative, non tre masse simultanee. Barre energetiche a 25 px/J: all’estremo U=4 J,K=0; al centro K=4 J,U=0. La forma della molla è schematica."
+        },
+        {
+          "type": "formula",
+          "text": "E=\\frac12m\\dot x^2+\\frac12kx^2"
+        },
+        {
+          "type": "formula",
+          "text": " x=A"
+        },
+        {
+          "type": "formula",
+          "text": " \\dot x=0"
+        },
+        {
+          "type": "formula",
+          "text": " E=\\frac12kA^2"
+        },
+        {
+          "type": "formula",
+          "text": " E=4\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Otto omette il mezzo dell’area triangolare. Due segue l’ampiezza anziché il suo quadrato. Al centro l’energia elastica è zero, ma quella cinetica vale quattro J: la totale non si annulla."
+        }
+      ],
+      "hints": [
+        "Scegli un istante in cui la velocità sia nulla.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Otto omette il mezzo dell’area triangolare. Due segue l’ampiezza anziché il suo quadrato. Al centro l’energia elastica è zero, ma quella cinetica vale quattro J: la totale non si annulla.",
+        "target": "C5-L01"
+      },
+      "coverage": [
+        "Energia cinetica ed elastica",
+        "Ampiezza e conservazione",
+        "Smorzamento, inverse e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-oscillator-energy-02",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia dell’oscillatore e caso dissipativo separato",
+      "order": 13502,
+      "title": "L’unità dell’energia di oscillazione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L01",
+      "prerequisites": [
+        "C1-L005",
+        "C1-L006",
+        "C1-L008",
+        "C5-L01"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "oscillator-energy",
+      "difficulty": 1,
+      "prompt": "Una molla ha costante k in N/m e ampiezza A in m. Quale unità esprime kA²/2?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "J",
+          "N",
+          "N/m",
+          "m/s",
+          "W"
+        ],
+        "value": "J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplicare N/m per m² lascia N·m. Un joule è il prodotto di un newton per un metro; il mezzo è adimensionale. L’energia non è una forza né un’energia trasferita per secondo."
+        },
+        {
+          "type": "formula",
+          "text": "[kA^2]=\\mathrm{N/m}\\,\\mathrm{m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " [E]=\\mathrm{N\\,m}"
+        },
+        {
+          "type": "formula",
+          "text": " [E]=\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "N misura una forza, N/m la costante elastica, m/s una velocità e W una potenza. Le unità distinguono l’energia dalla forza massima kA."
+        }
+      ],
+      "hints": [
+        "Conta una potenza di metro che si cancella e una che resta.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "N misura una forza, N/m la costante elastica, m/s una velocità e W una potenza. Le unità distinguono l’energia dalla forza massima kA.",
+        "target": "C5-L01"
+      },
+      "coverage": [
+        "Energia cinetica ed elastica",
+        "Ampiezza e conservazione",
+        "Smorzamento, inverse e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-oscillator-energy-03",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia dell’oscillatore e caso dissipativo separato",
+      "order": 13503,
+      "title": "Una molla reale con smorzamento debole",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L01",
+      "prerequisites": [
+        "C1-L005",
+        "C1-L006",
+        "C1-L008",
+        "C5-L01"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "oscillator-energy",
+      "difficulty": 1,
+      "prompt": "Una massa oscilla su una molla reale con attrito debole, senza ricevere energia da una forzante. Le ampiezze ai successivi estremi diminuiscono. Quale bilancio spiega il fenomeno?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "L’energia meccanica si trasforma in energia interna della massa, della molla o dell’ambiente",
+          "L’energia totale di massa, molla e ambiente viene distrutta",
+          "L’energia meccanica resta costante anche se diminuiscono le ampiezze",
+          "L’attrito fornisce lavoro positivo netto a ogni ciclo",
+          "Il periodo più lungo basta da solo a spiegare la perdita di energia"
+        ],
+        "value": "L’energia meccanica si trasforma in energia interna della massa, della molla o dell’ambiente"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Qui il modello include attrito e va distinto dall’oscillatore ideale conservativo. Il lavoro della forza dissipativa sull’intervallo di moto è negativo: diminuisce la somma di energia cinetica e potenziale. Ai punti di inversione la velocità è nulla e l’energia meccanica è kA_n²/2; ampiezze successive minori indicano energie minori. L’energia si ritrova come energia interna se si include l’ambiente nel bilancio."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/798755b0ba7ddaec6f2c0fda5a92bf1c39eef29cf02158f534c2b047b47fb866",
+          "text": "Tre pannelli distinti: posizioni ed energia nell’oscillatore ideale; bilancio cinetico-elastico con E=4 J; esempio separato di smorzamento con ampiezze ai punti di inversione 2 e 1 m, stessa scala 60 px/m e k=2 N/m. Le energie ai due estremi sono 4 e 1 J, barre a 25 px/J. L’ultimo confronto non è conservativo e non altera il modello ideale dei quesiti numerici."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta E_{\\rm mecc}=W_{\\rm attr}<0"
+        },
+        {
+          "type": "formula",
+          "text": " E_n=\\frac12kA_n^2"
+        },
+        {
+          "type": "formula",
+          "text": " A_{n+1}<A_n"
+        },
+        {
+          "type": "formula",
+          "text": " E_{n+1}<E_n"
+        },
+        {
+          "type": "text",
+          "text": "L’energia complessiva non scompare. La conservazione di E_mecc vale solo quando il lavoro dissipativo è nullo. Un attrito passivo non alimenta i cicli; la variazione del periodo non sostituisce il bilancio di energia. La formula ai punti di inversione non è una pretesa legge esatta dell’inviluppo a ogni istante."
+        }
+      ],
+      "hints": [
+        "Distingui energia meccanica del sistema e energia totale con l’ambiente.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "L’energia complessiva non scompare. La conservazione di E_mecc vale solo quando il lavoro dissipativo è nullo. Un attrito passivo non alimenta i cicli; la variazione del periodo non sostituisce il bilancio di energia. La formula ai punti di inversione non è una pretesa legge esatta dell’inviluppo a ogni istante.",
+        "target": "C5-L01"
+      },
+      "coverage": [
+        "Energia cinetica ed elastica",
+        "Ampiezza e conservazione",
+        "Smorzamento, inverse e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-oscillator-energy-04",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia dell’oscillatore e caso dissipativo separato",
+      "order": 13504,
+      "title": "Stessa ampiezza con una molla meno rigida",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L01",
+      "prerequisites": [
+        "C1-L005",
+        "C1-L006",
+        "C1-L008",
+        "C5-L01"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "oscillator-energy",
+      "difficulty": 1,
+      "prompt": "Una massa m>0 oscilla lungo un asse orizzontale su una molla ideale di costante k>0. La forza è −kx nell’intero intervallo considerato; x è misurata dall’equilibrio. La molla ha massa trascurabile, non ci sono attriti né forzanti e il riferimento è inerziale. L’ampiezza A>0 è il massimo |x|, non la distanza fra i due estremi. L’energia potenziale elastica è posta a zero in x=0; E indica l’energia meccanica totale della massa e della molla. Si confrontano prove differenti, ciascuna con k e A costanti. k passa da 2 a 1 N/m, mentre A resta 2 m. Come cambia E?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 4 a 2 J",
+          "Da 4 a 8 J",
+          "Resta 4 J",
+          "Da 4 a 1 J",
+          "Diventa zero"
+        ],
+        "value": "Da 4 a 2 J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ampiezza uguale resta identico A²/2, pari a due m². Dimezzare k dimezza quindi l’energia totale: da quattro a due J. Il periodo può cambiare, ma non entra nella valutazione energetica all’estremo."
+        },
+        {
+          "type": "formula",
+          "text": "E_A=4\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " E_B=\\frac{k_B}{k_A}E_A"
+        },
+        {
+          "type": "formula",
+          "text": " E_B=2\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Otto inverte la dipendenza da k; uno applica il dimezzamento due volte. Quattro ignora la nuova rigidità e zero contraddice k e A positivi."
+        }
+      ],
+      "hints": [
+        "La costante elastica entra alla prima potenza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Otto inverte la dipendenza da k; uno applica il dimezzamento due volte. Quattro ignora la nuova rigidità e zero contraddice k e A positivi.",
+        "target": "C5-L01"
+      },
+      "coverage": [
+        "Energia cinetica ed elastica",
+        "Ampiezza e conservazione",
+        "Smorzamento, inverse e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-oscillator-energy-05",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia dell’oscillatore e caso dissipativo separato",
+      "order": 13505,
+      "title": "Ricavare k da un’energia e un’ampiezza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L01",
+      "prerequisites": [
+        "C1-L005",
+        "C1-L006",
+        "C1-L008",
+        "C5-L01"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "oscillator-energy",
+      "difficulty": 2,
+      "prompt": "Una massa m>0 oscilla lungo un asse orizzontale su una molla ideale di costante k>0. La forza è −kx nell’intero intervallo considerato; x è misurata dall’equilibrio. La molla ha massa trascurabile, non ci sono attriti né forzanti e il riferimento è inerziale. L’ampiezza A>0 è il massimo |x|, non la distanza fra i due estremi. L’energia potenziale elastica è posta a zero in x=0; E indica l’energia meccanica totale della massa e della molla. Si confrontano prove differenti, ciascuna con k e A costanti. Si misura E=4 J e si conosce A=2 m. Quanto vale k in N/m?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "N/m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Da E=kA²/2 si ricava k=2E/A². Il numeratore è otto J e il denominatore quattro m²: due J/m², equivalenti a due N/m. La divisione usa il quadrato dell’ampiezza, non la lunghezza del percorso fra gli estremi."
+        },
+        {
+          "type": "formula",
+          "text": "k=\\frac{2E}{A^2}"
+        },
+        {
+          "type": "formula",
+          "text": " k=\\frac84\\,\\mathrm{J/m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " k=2\\,\\mathrm{N/m}"
+        },
+        {
+          "type": "text",
+          "text": "Uno omette il due nell’inversa. Usare 2A come ampiezza quadruplicherebbe il denominatore e ridurrebbe di quattro volte la rigidità inferita."
+        }
+      ],
+      "hints": [
+        "Isola k dopo aver calcolato A².",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Uno omette il due nell’inversa. Usare 2A come ampiezza quadruplicherebbe il denominatore e ridurrebbe di quattro volte la rigidità inferita.",
+        "target": "C5-L01"
+      },
+      "coverage": [
+        "Energia cinetica ed elastica",
+        "Ampiezza e conservazione",
+        "Smorzamento, inverse e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-oscillator-energy-06",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia dell’oscillatore e caso dissipativo separato",
+      "order": 13506,
+      "title": "La radice fisica dell’ampiezza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L01",
+      "prerequisites": [
+        "C1-L005",
+        "C1-L006",
+        "C1-L008",
+        "C5-L01"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "oscillator-energy",
+      "difficulty": 2,
+      "prompt": "Una massa m>0 oscilla lungo un asse orizzontale su una molla ideale di costante k>0. La forza è −kx nell’intero intervallo considerato; x è misurata dall’equilibrio. La molla ha massa trascurabile, non ci sono attriti né forzanti e il riferimento è inerziale. L’ampiezza A>0 è il massimo |x|, non la distanza fra i due estremi. L’energia potenziale elastica è posta a zero in x=0; E indica l’energia meccanica totale della massa e della molla. Si confrontano prove differenti, ciascuna con k e A costanti. Si misura E=4 J e si conosce k=2 N/m. Quanto vale A in m?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’ampiezza soddisfa A²=2E/k. Otto J diviso due N/m dà quattro m². La radice positiva è due m; il segno negativo potrebbe descrivere una coordinata x, ma non il modulo massimo A definito nel prompt."
+        },
+        {
+          "type": "formula",
+          "text": "A^2=\\frac{2E}{k}"
+        },
+        {
+          "type": "formula",
+          "text": " A^2=4\\,\\mathrm{m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " A=2\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Quattro è il numero del quadrato dell’ampiezza. La distanza fra i due estremi è quattro m, mentre l’ampiezza dall’equilibrio è due m. Non servono decimali né la massa per questa inversa."
+        }
+      ],
+      "hints": [
+        "Prendi la radice positiva di una grandezza con unità m².",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro è il numero del quadrato dell’ampiezza. La distanza fra i due estremi è quattro m, mentre l’ampiezza dall’equilibrio è due m. Non servono decimali né la massa per questa inversa.",
+        "target": "C5-L01"
+      },
+      "coverage": [
+        "Energia cinetica ed elastica",
+        "Ampiezza e conservazione",
+        "Smorzamento, inverse e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-oscillator-energy-07",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia dell’oscillatore e caso dissipativo separato",
+      "order": 13507,
+      "title": "Ampiezza doppia, stessa molla",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L01",
+      "prerequisites": [
+        "C1-L005",
+        "C1-L006",
+        "C1-L008",
+        "C5-L01"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "oscillator-energy",
+      "difficulty": 2,
+      "prompt": "Una massa m>0 oscilla lungo un asse orizzontale su una molla ideale di costante k>0. La forza è −kx nell’intero intervallo considerato; x è misurata dall’equilibrio. La molla ha massa trascurabile, non ci sono attriti né forzanti e il riferimento è inerziale. L’ampiezza A>0 è il massimo |x|, non la distanza fra i due estremi. L’energia potenziale elastica è posta a zero in x=0; E indica l’energia meccanica totale della massa e della molla. Si confrontano prove differenti, ciascuna con k e A costanti. A ha k=2 N/m,A=2 m. B mantiene k e ha A=4 m. Quanto vale E_B/E_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4",
+          "2",
+          "1/2",
+          "1/4",
+          "1"
+        ],
+        "value": "4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’energia segue A². Il raddoppio dell’ampiezza moltiplica per quattro il quadrato: l’energia passa da quattro a sedici J. La forza massima kA invece raddoppierebbe soltanto, perché contiene una sola potenza di A."
+        },
+        {
+          "type": "formula",
+          "text": "E_A=4\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " E_B=16\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " E_B/E_A=\\left(\\frac42\\right)^2"
+        },
+        {
+          "type": "formula",
+          "text": " E_B/E_A=4"
+        },
+        {
+          "type": "text",
+          "text": "Due segue una lunghezza o la forza massima; un mezzo e un quarto invertono i confronti. Uno ignora l’ampiezza maggiore."
+        }
+      ],
+      "hints": [
+        "Confronta i quadrati, non le sole ampiezze.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due segue una lunghezza o la forza massima; un mezzo e un quarto invertono i confronti. Uno ignora l’ampiezza maggiore.",
+        "target": "C5-L01"
+      },
+      "coverage": [
+        "Energia cinetica ed elastica",
+        "Ampiezza e conservazione",
+        "Smorzamento, inverse e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-oscillator-energy-08",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia dell’oscillatore e caso dissipativo separato",
+      "order": 13508,
+      "title": "Lo scarto di un mezzo dimenticato",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L01",
+      "prerequisites": [
+        "C1-L005",
+        "C1-L006",
+        "C1-L008",
+        "C5-L01"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "oscillator-energy",
+      "difficulty": 2,
+      "prompt": "Una massa m>0 oscilla lungo un asse orizzontale su una molla ideale di costante k>0. La forza è −kx nell’intero intervallo considerato; x è misurata dall’equilibrio. La molla ha massa trascurabile, non ci sono attriti né forzanti e il riferimento è inerziale. L’ampiezza A>0 è il massimo |x|, non la distanza fra i due estremi. L’energia potenziale elastica è posta a zero in x=0; E indica l’energia meccanica totale della massa e della molla. Si confrontano prove differenti, ciascuna con k e A costanti. Con k=2 N/m,A=2 m si propone E=8 J. Quanto vale proposta meno corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4 J",
+          "−4 J",
+          "8 J",
+          "0 J",
+          "2 J"
+        ],
+        "value": "4 J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’energia corretta è quattro J, metà di kA². La proposta otto supera quel valore di quattro J. Il segno positivo indica una sovrastima dell’energia, non il verso della forza elastica."
+        },
+        {
+          "type": "formula",
+          "text": "E=4\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " e=(8-4)\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " e=4\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Meno quattro rovescia la differenza; otto copia la proposta, zero la accetta e due dimezza ancora lo scarto."
+        }
+      ],
+      "hints": [
+        "Calcola E all’estremo e poi sottraila dal valore proposto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Meno quattro rovescia la differenza; otto copia la proposta, zero la accetta e due dimezza ancora lo scarto.",
+        "target": "C5-L01"
+      },
+      "coverage": [
+        "Energia cinetica ed elastica",
+        "Ampiezza e conservazione",
+        "Smorzamento, inverse e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-oscillator-energy-09",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia dell’oscillatore e caso dissipativo separato",
+      "order": 13509,
+      "title": "L’inversa simbolica della rigidità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L01",
+      "prerequisites": [
+        "C1-L005",
+        "C1-L006",
+        "C1-L008",
+        "C5-L01"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "oscillator-energy",
+      "difficulty": 2,
+      "prompt": "Una massa m>0 oscilla lungo un asse orizzontale su una molla ideale di costante k>0. La forza è −kx nell’intero intervallo considerato; x è misurata dall’equilibrio. La molla ha massa trascurabile, non ci sono attriti né forzanti e il riferimento è inerziale. L’ampiezza A>0 è il massimo |x|, non la distanza fra i due estremi. L’energia potenziale elastica è posta a zero in x=0; E indica l’energia meccanica totale della massa e della molla. Si confrontano prove differenti, ciascuna con k e A costanti. Quale formula isola k?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "k = 2 E / A²",
+          "k = E / (2 A²)",
+          "k = 2 E A²",
+          "k = A² / (2 E)",
+          "k = 2 E / A"
+        ],
+        "value": "k = 2 E / A²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplichiamo il bilancio per due e dividiamo per A², positivo. Energia su area ha unità J/m²=N/m. L’inversa deve mantenere il quadrato dell’ampiezza: è esso che riassume l’area sotto la forza elastica lineare."
+        },
+        {
+          "type": "formula",
+          "text": "2E=kA^2"
+        },
+        {
+          "type": "formula",
+          "text": " k=\\frac{2E}{A^2}"
+        },
+        {
+          "type": "formula",
+          "text": " [k]=\\mathrm{J/m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " [k]=\\mathrm{N/m}"
+        },
+        {
+          "type": "text",
+          "text": "E/(2A²) è quattro volte più piccolo della rigidità corretta. Moltiplicare per A² dà J·m², il reciproco ha dimensioni inverse di k e dividere per A soltanto dà una forza."
+        }
+      ],
+      "hints": [
+        "Dividi per l’intero coefficiente A² della costante elastica.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "E/(2A²) è quattro volte più piccolo della rigidità corretta. Moltiplicare per A² dà J·m², il reciproco ha dimensioni inverse di k e dividere per A soltanto dà una forza.",
+        "target": "C5-L01"
+      },
+      "coverage": [
+        "Energia cinetica ed elastica",
+        "Ampiezza e conservazione",
+        "Smorzamento, inverse e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-oscillator-energy-10",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia dell’oscillatore e caso dissipativo separato",
+      "order": 13510,
+      "title": "Due variazioni nell’energia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L01",
+      "prerequisites": [
+        "C1-L005",
+        "C1-L006",
+        "C1-L008",
+        "C5-L01"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "oscillator-energy",
+      "difficulty": 2,
+      "prompt": "Una massa m>0 oscilla lungo un asse orizzontale su una molla ideale di costante k>0. La forza è −kx nell’intero intervallo considerato; x è misurata dall’equilibrio. La molla ha massa trascurabile, non ci sono attriti né forzanti e il riferimento è inerziale. L’ampiezza A>0 è il massimo |x|, non la distanza fra i due estremi. L’energia potenziale elastica è posta a zero in x=0; E indica l’energia meccanica totale della massa e della molla. Si confrontano prove differenti, ciascuna con k e A costanti. B ha k_B=κ₁k_A e A_B=κ₂A_A, con fattori positivi. Quanto vale E_B/E_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ κ₂²",
+          "κ₁ κ₂",
+          "κ₁ / κ₂²",
+          "κ₂² / κ₁",
+          "κ₁² κ₂"
+        ],
+        "value": "κ₁ κ₂²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La rigidità fornisce il fattore κ₁. L’ampiezza è elevata al quadrato, quindi fornisce κ₂². Il mezzo si cancella nel rapporto e rimane il prodotto κ₁κ₂². Si confrontano due oscillatori ideali, non una perdita di energia nel tempo."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{E_B}{E_A}=\\frac{\\kappa_1k_A(\\kappa_2A_A)^2}{k_AA_A^2}"
+        },
+        {
+          "type": "formula",
+          "text": " E_B/E_A=\\kappa_1\\kappa_2^2"
+        },
+        {
+          "type": "text",
+          "text": "Una sola potenza di κ₂ segue la forza massima anziché l’energia. I quozienti invertono una dipendenza diretta e κ₁² attribuisce alla rigidità un quadrato assente."
+        }
+      ],
+      "hints": [
+        "Assegna a ciascun fattore la potenza presente nella legge.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Una sola potenza di κ₂ segue la forza massima anziché l’energia. I quozienti invertono una dipendenza diretta e κ₁² attribuisce alla rigidità un quadrato assente.",
+        "target": "C5-L01"
+      },
+      "coverage": [
+        "Energia cinetica ed elastica",
+        "Ampiezza e conservazione",
+        "Smorzamento, inverse e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-oscillator-energy-11",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia dell’oscillatore e caso dissipativo separato",
+      "order": 13511,
+      "title": "Molla più rigida e ampiezza maggiore",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L01",
+      "prerequisites": [
+        "C1-L005",
+        "C1-L006",
+        "C1-L008",
+        "C5-L01"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "oscillator-energy",
+      "difficulty": 2,
+      "prompt": "Una massa m>0 oscilla lungo un asse orizzontale su una molla ideale di costante k>0. La forza è −kx nell’intero intervallo considerato; x è misurata dall’equilibrio. La molla ha massa trascurabile, non ci sono attriti né forzanti e il riferimento è inerziale. L’ampiezza A>0 è il massimo |x|, non la distanza fra i due estremi. L’energia potenziale elastica è posta a zero in x=0; E indica l’energia meccanica totale della massa e della molla. Si confrontano prove differenti, ciascuna con k e A costanti. A: k=2 N/m,A=2 m. B: k=4 N/m,A=3 m. Quanto vale E_B/E_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "9/2",
+          "2/9",
+          "2",
+          "9/4",
+          "18"
+        ],
+        "value": "9/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha energia quattro J. B ha energia quattro per nove diviso due, diciotto J. Il rapporto diciotto su quattro si riduce a nove mezzi: il raddoppio della rigidità si combina con il quadrato di tre mezzi, variazione dell’ampiezza."
+        },
+        {
+          "type": "formula",
+          "text": "E_A=4\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " E_B=18\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " E_B/E_A=\\frac{18}{4}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{18}{4}=\\frac92"
+        },
+        {
+          "type": "text",
+          "text": "Due segue solo k e nove quarti solo A². Due noni è il reciproco; diciotto è il valore finale in J, non il rapporto adimensionale."
+        }
+      ],
+      "hints": [
+        "Calcola le due energie oppure moltiplica i fattori corretti.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due segue solo k e nove quarti solo A². Due noni è il reciproco; diciotto è il valore finale in J, non il rapporto adimensionale.",
+        "target": "C5-L01"
+      },
+      "coverage": [
+        "Energia cinetica ed elastica",
+        "Ampiezza e conservazione",
+        "Smorzamento, inverse e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-oscillator-energy-12",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia dell’oscillatore e caso dissipativo separato",
+      "order": 13512,
+      "title": "Media di due energie totali",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L01",
+      "prerequisites": [
+        "C1-L005",
+        "C1-L006",
+        "C1-L008",
+        "C5-L01"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "oscillator-energy",
+      "difficulty": 2,
+      "prompt": "Una massa m>0 oscilla lungo un asse orizzontale su una molla ideale di costante k>0. La forza è −kx nell’intero intervallo considerato; x è misurata dall’equilibrio. La molla ha massa trascurabile, non ci sono attriti né forzanti e il riferimento è inerziale. L’ampiezza A>0 è il massimo |x|, non la distanza fra i due estremi. L’energia potenziale elastica è posta a zero in x=0; E indica l’energia meccanica totale della massa e della molla. Si confrontano prove differenti, ciascuna con k e A costanti. A ha k=2 N/m,A=2 m e B ha k=4 N/m,A=3 m. Qual è la media aritmetica delle due E con uguale peso statistico?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "11 J",
+          "22 J",
+          "11/2 J",
+          "75/8 J",
+          "14 J"
+        ],
+        "value": "11 J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le energie sono quattro e diciotto J. La somma ventidue divisa per due dà undici J. Gli ingressi medi k=3 N/m e A=5/2 m darebbero 75/8 J, inferiore di 13/8 J: il prodotto kA² non commuta con la media."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline E=\\frac{4+18}{2}\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline E=11\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Ventidue è la somma, undici mezzi dimezza ancora e quattordici è la differenza. 75/8 appartiene a un altro oscillatore, costruito sugli ingressi medi."
+        }
+      ],
+      "hints": [
+        "Media le energie dopo aver risolto ciascuna prova.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Ventidue è la somma, undici mezzi dimezza ancora e quattordici è la differenza. 75/8 appartiene a un altro oscillatore, costruito sugli ingressi medi.",
+        "target": "C5-L01"
+      },
+      "coverage": [
+        "Energia cinetica ed elastica",
+        "Ampiezza e conservazione",
+        "Smorzamento, inverse e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-oscillator-energy-13",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia dell’oscillatore e caso dissipativo separato",
+      "order": 13513,
+      "title": "L’ampiezza per il fattore bersaglio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L01",
+      "prerequisites": [
+        "C1-L005",
+        "C1-L006",
+        "C1-L008",
+        "C5-L01"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "oscillator-energy",
+      "difficulty": 3,
+      "prompt": "Una massa m>0 oscilla lungo un asse orizzontale su una molla ideale di costante k>0. La forza è −kx nell’intero intervallo considerato; x è misurata dall’equilibrio. La molla ha massa trascurabile, non ci sono attriti né forzanti e il riferimento è inerziale. L’ampiezza A>0 è il massimo |x|, non la distanza fra i due estremi. L’energia potenziale elastica è posta a zero in x=0; E indica l’energia meccanica totale della massa e della molla. Si confrontano prove differenti, ciascuna con k e A costanti. A usa k=2 N/m,A=2 m. B impone k=4 N/m e E_B=(9/2)E_A. Quanto vale A_B/A_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/2",
+          "9/4",
+          "2/3",
+          "9/2",
+          "3"
+        ],
+        "value": "3/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il raddoppio di k fornisce un fattore due. Il quadrato del rapporto delle ampiezze deve quindi essere nove quarti. La radice positiva è tre mezzi e A_B=3 m. Il ramo negativo non è un rapporto di ampiezze positive."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac92=2\\left(\\frac{A_B}{A_A}\\right)^2"
+        },
+        {
+          "type": "formula",
+          "text": " \\left(\\frac{A_B}{A_A}\\right)^2=\\frac94"
+        },
+        {
+          "type": "formula",
+          "text": " A_B/A_A=\\frac32"
+        },
+        {
+          "type": "text",
+          "text": "Nove quarti è il quadrato del rapporto; due terzi lo inverte. Nove mezzi copia il bersaglio e tre è il numero di metri finale."
+        }
+      ],
+      "hints": [
+        "Togli il fattore di k prima di estrarre la radice.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Nove quarti è il quadrato del rapporto; due terzi lo inverte. Nove mezzi copia il bersaglio e tre è il numero di metri finale.",
+        "target": "C5-L01"
+      },
+      "coverage": [
+        "Energia cinetica ed elastica",
+        "Ampiezza e conservazione",
+        "Smorzamento, inverse e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-oscillator-energy-14",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia dell’oscillatore e caso dissipativo separato",
+      "order": 13514,
+      "title": "Un display dell’energia senza offset",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L01",
+      "prerequisites": [
+        "C1-L005",
+        "C1-L006",
+        "C1-L008",
+        "C5-L01"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "oscillator-energy",
+      "difficulty": 3,
+      "prompt": "Una massa m>0 oscilla lungo un asse orizzontale su una molla ideale di costante k>0. La forza è −kx nell’intero intervallo considerato; x è misurata dall’equilibrio. La molla ha massa trascurabile, non ci sono attriti né forzanti e il riferimento è inerziale. L’ampiezza A>0 è il massimo |x|, non la distanza fra i due estremi. L’energia potenziale elastica è posta a zero in x=0; E indica l’energia meccanica totale della massa e della molla. Si confrontano prove differenti, ciascuna con k e A costanti. S=qE è continuo e adimensionale. A con k=2 N/m,A=2 m dà S=12. B dà S=54 e ha A=3 m. Quanto vale k_B in N/m?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "N/m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento ha quattro J e fissa q=3 J⁻¹. La lettura cinquantaquattro corrisponde a diciotto J. L’inversa k=2E/A² dà trentasei su nove, quattro N/m. La lettura non misura direttamente la rigidità."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{J^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " E_B=18\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " k_B=\\frac{2E_B}{A_B^2}"
+        },
+        {
+          "type": "formula",
+          "text": " k_B=4\\,\\mathrm{N/m}"
+        },
+        {
+          "type": "text",
+          "text": "Usare S=54 come joule darebbe k=12 N/m. Anche con display proporzionale occorre tener conto dell’ampiezza diversa prima di inferire k."
+        }
+      ],
+      "hints": [
+        "Decodifica E prima di applicare l’inversa fisica.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Usare S=54 come joule darebbe k=12 N/m. Anche con display proporzionale occorre tener conto dell’ampiezza diversa prima di inferire k.",
+        "target": "C5-L01"
+      },
+      "coverage": [
+        "Energia cinetica ed elastica",
+        "Ampiezza e conservazione",
+        "Smorzamento, inverse e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-oscillator-energy-15",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia dell’oscillatore e caso dissipativo separato",
+      "order": 13515,
+      "title": "Togliere l’offset e poi trovare k",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L01",
+      "prerequisites": [
+        "C1-L005",
+        "C1-L006",
+        "C1-L008",
+        "C5-L01"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "oscillator-energy",
+      "difficulty": 3,
+      "prompt": "Una massa m>0 oscilla lungo un asse orizzontale su una molla ideale di costante k>0. La forza è −kx nell’intero intervallo considerato; x è misurata dall’equilibrio. La molla ha massa trascurabile, non ci sono attriti né forzanti e il riferimento è inerziale. L’ampiezza A>0 è il massimo |x|, non la distanza fra i due estremi. L’energia potenziale elastica è posta a zero in x=0; E indica l’energia meccanica totale della massa e della molla. Si confrontano prove differenti, ciascuna con k e A costanti. S=qE+z è continuo e adimensionale. A: k=2 N/m,A=2 m,S=9. B: k=4 N/m,A=3 m,S=37. C: A=1 m,S=2. Quanto vale k_C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1 N/m",
+          "2 N/m",
+          "4 N/m",
+          "8 N/m",
+          "1/2 N/m"
+        ],
+        "value": "1 N/m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti hanno E=4 e 18 J. La differenza ventotto delle letture divisa per quattordici J dà q=2 J⁻¹, poi z=1. In C la lettura due significa energia un mezzo J. Con ampiezza un metro, k=2E/A² vale un N/m."
+        },
+        {
+          "type": "formula",
+          "text": "q=2\\,\\mathrm{J^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " z=1"
+        },
+        {
+          "type": "formula",
+          "text": " E_C=\\frac12\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " k_C=1\\,\\mathrm{N/m}"
+        },
+        {
+          "type": "text",
+          "text": "Con A=1 m, le rigidità 2,4,8,1/2 N/m darebbero letture 3,5,9,3/2. Solo un N/m restituisce due. L’offset non è una parte dell’energia elastica."
+        }
+      ],
+      "hints": [
+        "Calibra due energie, sottrai z e usa il quadrato di A_C.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Con A=1 m, le rigidità 2,4,8,1/2 N/m darebbero letture 3,5,9,3/2. Solo un N/m restituisce due. L’offset non è una parte dell’energia elastica.",
+        "target": "C5-L01"
+      },
+      "coverage": [
+        "Energia cinetica ed elastica",
+        "Ampiezza e conservazione",
+        "Smorzamento, inverse e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u4-oscillator-energy-16",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia dell’oscillatore e caso dissipativo separato",
+      "order": 13516,
+      "title": "Un vincolo fra rigidità e ampiezza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L01",
+      "prerequisites": [
+        "C1-L005",
+        "C1-L006",
+        "C1-L008",
+        "C5-L01"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "oscillator-energy",
+      "difficulty": 3,
+      "prompt": "Una massa m>0 oscilla lungo un asse orizzontale su una molla ideale di costante k>0. La forza è −kx nell’intero intervallo considerato; x è misurata dall’equilibrio. La molla ha massa trascurabile, non ci sono attriti né forzanti e il riferimento è inerziale. L’ampiezza A>0 è il massimo |x|, non la distanza fra i due estremi. L’energia potenziale elastica è posta a zero in x=0; E indica l’energia meccanica totale della massa e della molla. Si confrontano prove differenti, ciascuna con k e A costanti. Fra prove si impone k=cA con c=1 N/m². Si misura E=4 J. Quanto vale A>0 in m?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il coefficiente ha unità rigidità su lunghezza. Sostituendo k=cA si ottiene E=cA³/2: l’energia rende cubica l’inversa. Otto J diviso un N/m² dà otto m³; la radice cubica positiva è due m, e k=2 N/m."
+        },
+        {
+          "type": "formula",
+          "text": "E=\\frac12cA^3"
+        },
+        {
+          "type": "formula",
+          "text": " A^3=\\frac{2E}{c}"
+        },
+        {
+          "type": "formula",
+          "text": " A^3=8\\,\\mathrm{m^3}"
+        },
+        {
+          "type": "formula",
+          "text": " A=2\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " k=2\\,\\mathrm{N/m}"
+        },
+        {
+          "type": "text",
+          "text": "Otto è il numero del cubo, non l’ampiezza. La cubica è crescente per A>0 e determina una sola ampiezza. Il vincolo confronta prove con rigidità differenti, senza cambiare k durante una stessa oscillazione ideale."
+        }
+      ],
+      "hints": [
+        "Sostituisci k=cA prima di scegliere la radice esatta.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Otto è il numero del cubo, non l’ampiezza. La cubica è crescente per A>0 e determina una sola ampiezza. Il vincolo confronta prove con rigidità differenti, senza cambiare k durante una stessa oscillazione ideale.",
+        "target": "C5-L01"
+      },
+      "coverage": [
+        "Energia cinetica ed elastica",
+        "Ampiezza e conservazione",
+        "Smorzamento, inverse e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "798755b0ba7ddaec6f2c0fda5a92bf1c39eef29cf02158f534c2b047b47fb866",
+      "name": "oscillator-energy-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTUzMCIgdmlld0JveD0iMCAwIDY0MCAxNTMwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+Cjx0aXRsZSBpZD0idGl0bGUiPkVuZXJnaWEgaWRlYWxlIGUgc21vcnphbWVudG8gc2VwYXJhdGk8L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5FcXVpbGlicmlvIGUgZHVlIGVzdHJlbWkgZGkgdW4gb3NjaWxsYXRvcmUgY29uIGFtcGllenphIGR1ZSBtZXRyaS4gRW5lcmdpYSBlbGFzdGljYSBlIGNpbmV0aWNhIHNpIHNjYW1iaWFubyBtYW50ZW5lbmRvIHF1YXR0cm8gam91bGUuIFVuIGVzZW1waW8gc2VwYXJhdG8gZGkgYXR0cml0byByaWR1Y2UgYW1waWV6emEgZWQgZW5lcmdpYSBhaSBtYXNzaW1pIGRpIGlzdGFudGkgZGlzdGludGkuPC9kZXNjPgo8cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjE1MzAiIHJ4PSIyMCIgZmlsbD0iI2Y3ZmJmZiIvPgo8ZyBmb250LWZhbWlseT0ic3lzdGVtLXVpLHNhbnMtc2VyaWYiIGZpbGw9IiMxNDJkNDAiIGZvbnQtc2l6ZT0iMjAiPgo8dGV4dCB4PSIzNSIgeT0iNDgiIGZvbnQtc2l6ZT0iMjUiIGZvbnQtd2VpZ2h0PSI3MDAiPjEgwrcgVHJlIHBvc2l6aW9uaSBhbHRlcm5hdGl2ZTwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjkwIj5JZGVhbGUgwrcgayA9IDIgTi9tIMK3IEEgPSAyIG08L3RleHQ+CjxwYXRoIGQ9Ik04MCAyMzBINTcwIiBzdHJva2U9IiM2ZThiOWMiIHN0cm9rZS13aWR0aD0iMiIvPgo8cGF0aCBkPSJNMzIwIDE2MFYyODAiIHN0cm9rZT0iIzZlOGI5YyIgc3Ryb2tlLWRhc2hhcnJheT0iNiA1Ii8+CjxjaXJjbGUgY3g9IjIwMCIgY3k9IjIzMCIgcj0iMTUiIGZpbGw9IiNkN2YxZmEiIHN0cm9rZT0iIzE0NWQ4MSIgc3Ryb2tlLXdpZHRoPSIyIi8+PGNpcmNsZSBjeD0iMzIwIiBjeT0iMjMwIiByPSIxNSIgZmlsbD0iIzE0NWQ4MSIvPjxjaXJjbGUgY3g9IjQ0MCIgY3k9IjIzMCIgcj0iMTUiIGZpbGw9IiNkN2YxZmEiIHN0cm9rZT0iIzE0NWQ4MSIgc3Ryb2tlLXdpZHRoPSIyIi8+Cjx0ZXh0IHg9IjE2MCIgeT0iMzE1Ij7iiJIyIG08L3RleHQ+PHRleHQgeD0iMzAwIiB5PSIzMTUiPjA8L3RleHQ+PHRleHQgeD0iNDE1IiB5PSIzMTUiPisyIG08L3RleHQ+CjxwYXRoIGQ9Ik0zMjAgMzYwSDQ0ME0zMjAgMzUwVjM3ME00NDAgMzUwVjM3MCIgc3Ryb2tlPSIjYzY1OTE5IiBmaWxsPSJub25lIiBzdHJva2Utd2lkdGg9IjIiLz4KPHRleHQgeD0iMzIwIiB5PSI0MDUiPkEgPSAyIG08L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI0NTAiPlNjYWxhIHg6IDYwIHB4L20gwrcgZXN0cmVtaSBkaXN0YW50aSA0IG08L3RleHQ+CjxwYXRoIGQ9Ik0zNSA0OTBINjA1IiBzdHJva2U9IiNiM2NiZDkiLz4KPHRleHQgeD0iMzUiIHk9IjU0MCIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9IjcwMCI+MiDCtyBMYSByaXBhcnRpemlvbmUgY2FtYmlhLCBFIHJlc3RhPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iNTg1Ij5CYXJyZTogMjUgcHgvSiDCtyBibHUgVSwgYXJhbmNpbyBLPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iNjUwIj5Fc3RyZW1vOiB2ID0gMCwgVSA9IDQgSiwgSyA9IDA8L3RleHQ+CjxyZWN0IHg9IjEwMCIgeT0iNjgwIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjM1IiBmaWxsPSIjMTQ1ZDgxIi8+PHRleHQgeD0iMjMwIiB5PSI3MDciPkUgPSA0IEo8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSI3OTAiPkNlbnRybzogeCA9IDAsIFUgPSAwLCBLID0gNCBKPC90ZXh0Pgo8cmVjdCB4PSIxMDAiIHk9IjgyMCIgd2lkdGg9IjEwMCIgaGVpZ2h0PSIzNSIgZmlsbD0iI2M2NTkxOSIvPjx0ZXh0IHg9IjIzMCIgeT0iODQ3Ij5FID0gNCBKPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iOTI1Ij5FID0gSyArIFUgPSBrQcKyLzI8L3RleHQ+CjxwYXRoIGQ9Ik0zNSA5NjVINjA1IiBzdHJva2U9IiNiM2NiZDkiLz4KPHRleHQgeD0iMzUiIHk9IjEwMTUiIGZvbnQtc2l6ZT0iMjUiIGZvbnQtd2VpZ2h0PSI3MDAiPjMgwrcgQWx0cm8gY2FzbzogYXR0cml0byBkZWJvbGU8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxMDU4Ij5EdWUgbWFzc2ltaSBkaXN0aW50aSwgc3Rlc3NhIGsgPSAyIE4vbTwvdGV4dD4KPHRleHQgeD0iMTEwIiB5PSIxMTIwIj5BbXBpZXp6YTwvdGV4dD48dGV4dCB4PSI0MTAiIHk9IjExMjAiPkVuZXJnaWE8L3RleHQ+CjxwYXRoIGQ9Ik0xNjAgMTE2MEgyODAiIHN0cm9rZT0iIzE0NWQ4MSIgc3Ryb2tlLXdpZHRoPSI0Ii8+PGNpcmNsZSBjeD0iMjgwIiBjeT0iMTE2MCIgcj0iNyIgZmlsbD0iIzE0NWQ4MSIvPgo8cmVjdCB4PSI0MjAiIHk9IjExNDUiIHdpZHRoPSIxMDAiIGhlaWdodD0iMzAiIGZpbGw9IiMxNDVkODEiLz4KPHRleHQgeD0iMTY1IiB5PSIxMjEwIj4yIG08L3RleHQ+PHRleHQgeD0iNTM1IiB5PSIxMTcwIj40IEo8L3RleHQ+CjxwYXRoIGQ9Ik0xNjAgMTI5MEgyMjAiIHN0cm9rZT0iIzE0NWQ4MSIgc3Ryb2tlLXdpZHRoPSI0Ii8+PGNpcmNsZSBjeD0iMjIwIiBjeT0iMTI5MCIgcj0iNyIgZmlsbD0iIzE0NWQ4MSIvPgo8cmVjdCB4PSI0MjAiIHk9IjEyNzUiIHdpZHRoPSIyNSIgaGVpZ2h0PSIzMCIgZmlsbD0iIzE0NWQ4MSIvPgo8dGV4dCB4PSIxNjUiIHk9IjEzNDAiPjEgbTwvdGV4dD48dGV4dCB4PSI0NjUiIHk9IjEzMDAiPjEgSjwvdGV4dD4KPHBhdGggZD0iTTE2MCAxMTM1VjEzMTUiIHN0cm9rZT0iIzZlOGI5YyIgc3Ryb2tlLWRhc2hhcnJheT0iNiA1Ii8+Cjx0ZXh0IHg9IjM1IiB5PSIxNDEwIj5BbXBpZXp6YTogNjAgcHgvbSDCtyBlbmVyZ2lhOiAyNSBweC9KPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTQ2MCI+TGEgcGVyZGl0YSBtZWNjYW5pY2EgZGl2ZW50YSBlbmVyZ2lhIGludGVybmEuPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTUwMCI+UXVlc3RvIHVsdGltbyBjYXNvIG5vbiDDqCBs4oCZb3NjaWxsYXRvcmUgaWRlYWxlLjwvdGV4dD4KPC9nPjwvc3ZnPgo="
+    }
+  ]
+}

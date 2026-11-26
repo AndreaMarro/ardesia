@@ -1,0 +1,29 @@
+test_all36_complete_bounded_code_checks_without_ui_credit (test_C3_code_partial.C3CodePartial.test_all36_complete_bounded_code_checks_without_ui_credit) ... FAIL
+test_carnot_path_drift_and_runtime_proof_drift_fail_closed (test_C3_code_partial.C3CodePartial.test_carnot_path_drift_and_runtime_proof_drift_fail_closed) ... ok
+test_clock_duration_input_units_graph_and_parser_mutations (test_C3_code_partial.C3CodePartial.test_clock_duration_input_units_graph_and_parser_mutations) ... ok
+test_clock_instantaneous_signal_is_not_final_reading (test_C3_code_partial.C3CodePartial.test_clock_instantaneous_signal_is_not_final_reading) ... ok
+test_every_id_wrong_scalar_and_actual_transfer_rejected (test_C3_code_partial.C3CodePartial.test_every_id_wrong_scalar_and_actual_transfer_rejected) ... ok
+test_exact_hand_bounds_radiation_rational_sum_and_domains (test_C3_code_partial.C3CodePartial.test_exact_hand_bounds_radiation_rational_sum_and_domains) ... ok
+test_geometric_negative_precise_containment_limits (test_C3_code_partial.C3CodePartial.test_geometric_negative_precise_containment_limits) ... ok
+test_missing_duplicate_foreign_id_source_and_unit_are_rejected (test_C3_code_partial.C3CodePartial.test_missing_duplicate_foreign_id_source_and_unit_are_rejected) ... ok
+
+======================================================================
+FAIL: test_all36_complete_bounded_code_checks_without_ui_credit (test_C3_code_partial.C3CodePartial.test_all36_complete_bounded_code_checks_without_ui_credit)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-experiment-contract-fix/officina-di-fisica/tests/corpus/test_C3_code_partial.py", line 22, in test_all36_complete_bounded_code_checks_without_ui_credit
+    self.assertEqual(r['errors'],[]);self.assertFalse(r['ok']);self.assertEqual(len(r['actualTasks']),2)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^
+AssertionError: Lists differ: ['Secondaryreadingwrong'] != []
+
+First list contains 1 additional elements.
+First extra element 0:
+'Secondaryreadingwrong'
+
+- ['Secondaryreadingwrong']
++ []
+
+----------------------------------------------------------------------
+Ran 8 tests in 7.889s
+
+FAILED (failures=1)

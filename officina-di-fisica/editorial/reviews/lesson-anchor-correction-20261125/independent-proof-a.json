@@ -1,0 +1,164 @@
+{
+  "schemaVersion": "1.0.0",
+  "reviewer": "separate_AI_reviewer_A_not_root_author",
+  "scope": "three_proposed_paragraphs_and_four_original_entry_points",
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+  "catalogRecords": 991,
+  "originalExperiments": 181,
+  "missingBefore": [
+    [
+      "SIM-C1-L002-01",
+      "C1-L002",
+      "Nel triangolo rettangolo il coseno è cateto"
+    ],
+    [
+      "SIM-C1-L002-04",
+      "C1-L002",
+      "Il prodotto scalare misura quanto un vettore"
+    ],
+    [
+      "SIM-C2-L007-02",
+      "C2-L007",
+      "In un tubo diritto e circolare un"
+    ],
+    [
+      "SIM-C2-L007-05",
+      "C2-L007",
+      "In un tubo diritto e circolare un"
+    ]
+  ],
+  "missingAfter": [],
+  "entryPoints": [
+    {
+      "id": "SIM-C1-L002-01",
+      "lesson": "C1-L002",
+      "anchor": "Nel triangolo rettangolo il coseno è cateto",
+      "proposalBlock": 5,
+      "originalExperimentSha256": "256f3fa7716a412ca99fcea5ce7cf887afc0692784d0c882c341298b89d53e30"
+    },
+    {
+      "id": "SIM-C1-L002-04",
+      "lesson": "C1-L002",
+      "anchor": "Il prodotto scalare misura quanto un vettore",
+      "proposalBlock": 15,
+      "originalExperimentSha256": "fdf6f4118b32662950c450dbe557abd7299fe0758e31783fad3a7da88b66643e"
+    },
+    {
+      "id": "SIM-C2-L007-02",
+      "lesson": "C2-L007",
+      "anchor": "In un tubo diritto e circolare un",
+      "proposalBlock": 10,
+      "originalExperimentSha256": "8048f775f330690d327f059138ae21efcebca800a42e31dbc4e448dfe4f4c638"
+    },
+    {
+      "id": "SIM-C2-L007-05",
+      "lesson": "C2-L007",
+      "anchor": "In un tubo diritto e circolare un",
+      "proposalBlock": 10,
+      "originalExperimentSha256": "220dca3fc2752aaa2f1bd57b5d3fd72847ef153406794cb44e8190f2d7b179ac"
+    }
+  ],
+  "changes": [
+    {
+      "id": "C1-L002",
+      "block": 5,
+      "before": "Per un vettore non nullo il modulo A è positivo e le due componenti possono avere segno diverso. Nel triangolo rettangolo il coseno è cateto adiacente su ipotenusa e il seno è cateto opposto su ipotenusa. Se A_x non è zero, tan θ=A_y/A_x, ma il rapporto da solo non distingue quadranti opposti: servono anche i segni delle componenti. Quando A_x=0 la direzione è verticale e si usa il segno di A_y; non si divide per zero.",
+      "after": "Nel triangolo rettangolo il coseno è cateto adiacente su ipotenusa e il seno è cateto opposto su ipotenusa. Per un vettore non nullo il modulo A è positivo e le due componenti possono avere segno diverso. Se A_x non è zero, tan θ=A_y/A_x, ma il rapporto da solo non distingue quadranti opposti: servono anche i segni delle componenti. Quando A_x=0 la direzione è verticale e si usa il segno di A_y; non si divide per zero."
+    },
+    {
+      "id": "C1-L002",
+      "block": 15,
+      "before": "Il prodotto scalare combina il modulo di un vettore con la proiezione con segno dell’altro: misura l’allineamento e, per esempio, compare nel lavoro di una forza. Il prodotto vettoriale ha modulo pari all’area del parallelogramma costruito sui vettori. Se i vettori non sono paralleli, è perpendicolare al loro piano e il suo verso segue la mano destra; se sono paralleli, il prodotto vettoriale è nullo e non ha una direzione propria.",
+      "after": "Il prodotto scalare misura quanto un vettore è allineato all’altro, tenendo conto del segno della proiezione: combina il modulo del primo con la proiezione con segno del secondo e, per esempio, compare nel lavoro di una forza. Il prodotto vettoriale ha modulo pari all’area del parallelogramma costruito sui vettori. Se i vettori non sono paralleli, è perpendicolare al loro piano e il suo verso segue la mano destra; se sono paralleli, il prodotto vettoriale è nullo e non ha una direzione propria."
+    },
+    {
+      "id": "C2-L007",
+      "block": 10,
+      "before": "Passiamo a un diverso modello: un tubo diritto, circolare e orizzontale di raggio R>0, con pareti ferme e aderenza del fluido alle pareti. Consideriamo un fluido newtoniano incomprimibile, con densità e viscosità positive costanti, mosso dalla differenza di pressione. Il flusso è laminare, stazionario e pienamente sviluppato: nella regione considerata il profilo non cambia né nel tempo né lungo l’asse. Le regioni di ingresso e gli effetti di estremità sono esclusi. Orientiamo l’asse lungo il moto: la velocità centrale v_max è positiva. Sono queste ipotesi, insieme, a giustificare il profilo parabolico.",
+      "after": "In un tubo diritto e circolare un diverso modello descrive il moto del fluido. Il tubo è orizzontale, ha raggio R>0 e pareti ferme a cui il fluido aderisce. Consideriamo un fluido newtoniano incomprimibile, con densità e viscosità positive costanti, mosso dalla differenza di pressione. Il flusso è laminare, stazionario e pienamente sviluppato: nella regione considerata il profilo non cambia né nel tempo né lungo l’asse. Le regioni di ingresso e gli effetti di estremità sono esclusi. Orientiamo l’asse lungo il moto: la velocità centrale v_max è positiva. Sono queste ipotesi, insieme, a giustificare il profilo parabolico."
+    }
+  ],
+  "packages": {
+    "lessons-foundations-revisions-054": {
+      "registeredFileSha256": "8dd275a9a8ed52f695877cfd3bce8e0bc636c5fad9feaaaafe7099d9e3a954fc",
+      "proposalFileSha256": "ffd2e6702152d0a1b484c59a2bb8dadcc44834b5c32f8eda679fd1fb498a289d",
+      "registeredCanonicalSha256": "f644a93db618d25e16de1a8b19a31db9829997eb9dd0dfe9736c9f6f8f96d1e6",
+      "proposalCanonicalSha256": "c061ec2386bdbb939943436abe60bccb0ef6b6a096e974a2ec6a82a5ebfc75bc"
+    },
+    "lessons-viscous-revisions-073": {
+      "registeredFileSha256": "38214ac79e572d4ef8eb0ccef37950539d9c49c337f29fd01bc735b2bf50c644",
+      "proposalFileSha256": "792f3122a00974ad1fe4dbc0df3bbed76e89f92805e0f7eed950ee4544f6ec44",
+      "registeredCanonicalSha256": "998c0123826beee99b1aefdf6947fdf488de8b7b81b33b124b9b92414d608f07",
+      "proposalCanonicalSha256": "934123d1ce4492b6286fb2c8b4c3fe4f8537bc081bc42ac5da9bd16cb743e333"
+    }
+  },
+  "assets": [
+    {
+      "batch": "lessons-foundations-revisions-054",
+      "name": "lesson-vector-sign-limits.svg",
+      "sha256": "ccb458e193fc5cc51ffb9acb50987a6a7c241491e2f23a0d50656263803ccd66",
+      "identicalToRegistered": true
+    },
+    {
+      "batch": "lessons-foundations-revisions-054",
+      "name": "C1-vettore.svg",
+      "sha256": "aba4cee638235b6a99ea823d57361e3b1366cd79ce92b8ac46240ec29580ff8c",
+      "identicalToRegistered": true
+    },
+    {
+      "batch": "lessons-foundations-revisions-054",
+      "name": "C1-posizione.svg",
+      "sha256": "60f8e433938fb419332373efd343b8986057bea63c44691770fa8d40454e6d89",
+      "identicalToRegistered": true
+    },
+    {
+      "batch": "lessons-foundations-revisions-054",
+      "name": "C1-velocita.svg",
+      "sha256": "0983a43aa7f3bb6aeb9493172a1bdc7361ef602887b9bb29c0e4db4e02776d3a",
+      "identicalToRegistered": true
+    },
+    {
+      "batch": "lessons-viscous-revisions-073",
+      "name": "C2-profilo.svg",
+      "sha256": "73907de291ed86769e15e3d90e407b6ee78198524df50a8d456a8101df798b4c",
+      "identicalToRegistered": true
+    }
+  ],
+  "bindings": [
+    {
+      "id": "C1-L002",
+      "sourceSha256": "99819e1718415a1562dda30d5475ac988421423a5e1746ca3328d0f5b6419b28",
+      "candidateSha256": "f56e758acff8833e5f385f2307d86edb6d8f7c1c72eae1d084d815a528f924bc",
+      "sourceAndAssetsUnchanged": true
+    },
+    {
+      "id": "C1-L003",
+      "sourceSha256": "6c15729bda7bfdfd6dd9b1b6c1387cf59a9a9938a153094c30b2af283eaaea2b",
+      "candidateSha256": "e2d1d47ff9a162bf49828fb3c28b3162e8e62219c1af2240fcb549448f5de166",
+      "sourceAndAssetsUnchanged": true
+    },
+    {
+      "id": "C2-L007",
+      "sourceSha256": "f0382da70dabd853ad1d8d6a1f8d006063f7b2f4d12327f390305169a70e3670",
+      "candidateSha256": "23361e3bac577a3747c6dbcf40a179bb205d7f1b365f51c5492eb7f7671651bf",
+      "sourceAndAssetsUnchanged": true
+    }
+  ],
+  "registeredAndConsumerPrePostSha256": {
+    "editorial/batches/lessons-foundations-revisions-054.json": "8dd275a9a8ed52f695877cfd3bce8e0bc636c5fad9feaaaafe7099d9e3a954fc",
+    "editorial/batches/lessons-foundations-revisions-054-bindings.json": "53a37b109589e97e9b28882df7438eb5cee19ac8a73a67289d59c1b1263246ac",
+    "editorial/batches/lessons-viscous-revisions-073.json": "38214ac79e572d4ef8eb0ccef37950539d9c49c337f29fd01bc735b2bf50c644",
+    "editorial/batches/lessons-viscous-revisions-073-bindings.json": "cc72a336a747e3de7cb46b80108b2ed9083788e9ff37b6d69d16982e55684e9e",
+    "editorial/batches/registry.json": "5bee85f99313f0c9212f0108316ab72c031b88f9bb78469172fcc5122d2c280a",
+    "static/js/banchi/collegamenti.js": "23755d6085231531bab2cd86c9791e307e7cad132c96be4f6fdcbaabe6f0e5b7",
+    "server/domain/authoring.py": "bc42796627ca84424576ba189058dd6f37ddbc694d929a6e900fafb0e26dfa94"
+  },
+  "registeredPackagesChanged": 0,
+  "runtimeChanges": 0,
+  "verifierPinsChanged": 0,
+  "scientificChecks": "trigonometric components, signed scalar product, cross-product norm, Couette units, parabolic endpoints and area mean independently derived with SymPy/Pint/Fraction",
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "newCompletedIdCredit": 0,
+  "appliedEditionReview": "NOT_RUN_until_root_applies_and_final_bytes_reread"
+}

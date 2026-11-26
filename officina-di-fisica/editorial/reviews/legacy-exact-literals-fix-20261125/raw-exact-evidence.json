@@ -1,0 +1,19 @@
+{
+  "scope": "Byte-exact originals have whitespace inherent in unittest RED output and unified-diff context; stored in ZIP without changing any byte or weakening a gate",
+  "archive": "editorial/reviews/legacy-exact-literals-fix-20261125/raw-exact-evidence.zip",
+  "sha256": "1cf540066cc0528a75503109d59be81092465fec3bec7cddfbb5886a2e2930a2",
+  "members": [
+    {
+      "path": "editorial/reviews/legacy-exact-literals-before-fix-20261125/RED.log",
+      "sha256": "e220791b19ef25b1cd2a51c75df66f285f7aea38290e0c52ba41c2b7b904ac0e",
+      "bytes": 23682
+    },
+    {
+      "path": "editorial/reviews/legacy-exact-literals-fix-20261125/patch.diff",
+      "sha256": "0f2de7c10acd58620713538c6245c0fc9775089e28d482afd0e37ffc846b55bd",
+      "bytes": 25621
+    }
+  ],
+  "restoreFromAppDirectory": "python3 -m zipfile -e editorial/reviews/legacy-exact-literals-fix-20261125/raw-exact-evidence.zip .",
+  "sourceDeliveryManifestUnmodified": true
+}

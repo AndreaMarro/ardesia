@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="1510" viewBox="0 0 640 1510" role="img" aria-labelledby="title desc">
+<title id="title">Fase nel tempo in un punto fisso</title><desc id="desc">A due hertz, tre secondi contengono sei periodi da mezzo secondo. Un intervallo di tre quarti di secondo accumula un giro e mezzo. Grafico lineare della fase non ridotta contro il tempo.</desc>
+<rect width="640" height="1510" rx="20" fill="#f7fbff"/>
+<g font-family="system-ui,sans-serif" fill="#142d40" font-size="20">
+<text x="35" y="48" font-size="25" font-weight="700">1 · Il sensore resta nello stesso punto</text>
+<text x="35" y="90">f = 2 Hz · T = 1/2 s · durata 3 s</text>
+<text x="35" y="140">Linea temporale: 120 px/s</text>
+<path d="M100 250H460" stroke="#145d81" stroke-width="3"/>
+<g stroke="#145d81" stroke-width="2"><path d="M100 235V265M160 235V265M220 235V265M280 235V265M340 235V265M400 235V265M460 235V265"/></g>
+<g fill="#d7f1fa" stroke="#145d81"><rect x="100" y="190" width="60" height="30"/><rect x="160" y="190" width="60" height="30"/><rect x="220" y="190" width="60" height="30"/><rect x="280" y="190" width="60" height="30"/><rect x="340" y="190" width="60" height="30"/><rect x="400" y="190" width="60" height="30"/></g>
+<text x="91" y="305">0</text><text x="211" y="305">1</text><text x="331" y="305">2</text><text x="451" y="305">3 s</text>
+<text x="35" y="370">Sei intervalli da 60 px: N = 6 giri</text>
+<text x="35" y="415">Nessun movimento del sensore lungo l’onda.</text>
+<path d="M35 455H605" stroke="#b3cbd9"/>
+<text x="35" y="505" font-size="25" font-weight="700">2 · Una frazione di giro è ammessa</text>
+<text x="35" y="550">Stessa f · durata Δt = 3/4 s</text>
+<path d="M100 680H460" stroke="#6e8b9c"/>
+<rect x="100" y="640" width="60" height="30" fill="#145d81"/><rect x="160" y="640" width="30" height="30" fill="#c65919"/>
+<path d="M100 630V700M160 630V700M190 630V700" stroke="#6e8b9c" stroke-dasharray="4 4"/>
+<text x="90" y="735">0</text><text x="145" y="735">1/2 s</text>
+<text x="210" y="620">3/4 s</text>
+<text x="35" y="790">60 px + 30 px = un periodo e mezzo</text>
+<text x="35" y="835">N = (2 Hz)(3/4 s) = 3/2 giri</text>
+<text x="35" y="880">Non si arrotonda a un solo ciclo completo.</text>
+<path d="M35 920H605" stroke="#b3cbd9"/>
+<text x="35" y="970" font-size="25" font-weight="700">3 · Fase accumulata dall’inizio</text>
+<text x="35" y="1015">f = 2 Hz · N in giri</text>
+<path d="M100 1350H550M100 1350V1080" stroke="#142d40" stroke-width="2" fill="none"/>
+<path d="M100 1350L460 1110" stroke="#c65919" stroke-width="4"/>
+<path d="M100 1110H460V1350" stroke="#6e8b9c" stroke-dasharray="6 5" fill="none"/>
+<circle cx="190" cy="1290" r="5" fill="#c65919"/><circle cx="220" cy="1270" r="5" fill="#c65919"/><circle cx="460" cy="1110" r="5" fill="#c65919"/>
+<text x="70" y="1378">0</text><text x="70" y="1117">6</text><text x="70" y="1277">2</text><text x="210" y="1380">1</text><text x="450" y="1380">3</text>
+<text x="430" y="1420">Δt in s</text>
+<text x="35" y="1470">120 px/s · 40 px/giro · fase non ridotta</text>
+</g></svg>

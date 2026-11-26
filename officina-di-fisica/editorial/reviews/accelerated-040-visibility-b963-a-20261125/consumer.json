@@ -1,0 +1,641 @@
+{
+  "appRoot": "/private/tmp/cric-experiment-contract-fix/officina-di-fisica",
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+  "purpose": "DIAGNOSTIC_ORIGINAL_DEFECTS_NOT_SCIENTIFIC_APPROVAL",
+  "expectedSourceIssueIds": [],
+  "expectedConsumerIssueIds": [],
+  "cases": [
+    {
+      "id": "SIM-C1-L004-01",
+      "noWebGL": false,
+      "display": "3D interattivo",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nParti da fermo e mantieni la risultante costante. Confronta la distanza nel primo e nel secondo secondo: la velocità cresce anche durante ciascun intervallo.\n\ns = ½at², con a = 2 m/s²\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Tempo\n1 s\nPosizione dal riposo\n1 m\nVelocità\n2 m/s"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Tempo» e confronta la scena con il punto segnato sul grafico. Parti da 1 s, poi prova 3 s.\n\nTempo = 1 s · Posizione dal riposo = 1 m\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Tempo\n1 s\nPosizione dal riposo\n1 m\nVelocità\n2 m/s"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\ns = ½at², con a = 2 m/s². Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\n1 × 1 = 1 m\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Tempo\n1 s\nPosizione dal riposo\n1 m\nVelocità\n2 m/s"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Tempo» a 2 s. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\ns = ½at², con a = 2 m/s²\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Tempo\n1 s\nPosizione dal riposo\n1 m\nVelocità\n2 m/s"
+        }
+      ],
+      "answerCount": 2,
+      "screenshot": "/private/tmp/cric-040-b963-final/SIM-C1-L004-01-3d.png"
+    },
+    {
+      "id": "SIM-C1-L004-01",
+      "kind": "boundary",
+      "input": 0,
+      "noWebGL": false,
+      "readings": "Tempo\n0 s\nPosizione dal riposo\n0 m\nVelocità\n0 m/s",
+      "screenshot": "/private/tmp/cric-040-b963-final/SIM-C1-L004-01-x0-3d.png"
+    },
+    {
+      "id": "SIM-C1-L004-01",
+      "kind": "boundary",
+      "input": 1,
+      "noWebGL": false,
+      "readings": "Tempo\n1 s\nPosizione dal riposo\n1 m\nVelocità\n2 m/s",
+      "screenshot": "/private/tmp/cric-040-b963-final/SIM-C1-L004-01-x1-3d.png"
+    },
+    {
+      "id": "SIM-C1-L004-01",
+      "kind": "boundary",
+      "input": 2,
+      "noWebGL": false,
+      "readings": "Tempo\n2 s\nPosizione dal riposo\n4 m\nVelocità\n4 m/s",
+      "screenshot": "/private/tmp/cric-040-b963-final/SIM-C1-L004-01-x2-3d.png"
+    },
+    {
+      "id": "SIM-C1-L004-01",
+      "kind": "boundary",
+      "input": 4,
+      "noWebGL": false,
+      "readings": "Tempo\n4 s\nPosizione dal riposo\n16 m\nVelocità\n8 m/s",
+      "screenshot": "/private/tmp/cric-040-b963-final/SIM-C1-L004-01-x4-3d.png"
+    },
+    {
+      "id": "SIM-C1-L004-01",
+      "kind": "graphs",
+      "noWebGL": false,
+      "graphCount": 1,
+      "text": "Lettura al variare di tempo\n0\n0\n8\n2\n16\n4\nPosizione dal riposo (m)\nTempo (s)\nPosizione dal riposo",
+      "screenshot": "/private/tmp/cric-040-b963-final/SIM-C1-L004-01-graphs-3d.png"
+    },
+    {
+      "id": "SIM-C1-L004-02",
+      "noWebGL": false,
+      "display": "3D interattivo",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nSegui la pallina fra le tacche verticali. Ogni secondo guadagna la stessa velocità verso il basso, mentre gli spazi percorsi aumentano. Si trascura l’aria.\n\nh = 20 m − ½gt², con g = 10 m/s²\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Tempo dalla liberazione\n1 s\nQuota sul pavimento\n15 m\nVelocità verticale\n-10 m/s"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Tempo dalla liberazione» e confronta la scena con il punto segnato sul grafico. Parti da 1 s, poi prova 2 s.\n\nTempo dalla liberazione = 1 s · Quota sul pavimento = 15 m\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Tempo dalla liberazione\n1 s\nQuota sul pavimento\n15 m\nVelocità verticale\n-10 m/s"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\nh = 20 m − ½gt², con g = 10 m/s². Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\n20 − (5 × 1 × 1) = 15 m\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Tempo dalla liberazione\n1 s\nQuota sul pavimento\n15 m\nVelocità verticale\n-10 m/s"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Tempo dalla liberazione» a 0,9 s. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nh = 20 m − ½gt², con g = 10 m/s²\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Tempo dalla liberazione\n1 s\nQuota sul pavimento\n15 m\nVelocità verticale\n-10 m/s"
+        }
+      ],
+      "answerCount": 2,
+      "screenshot": "/private/tmp/cric-040-b963-final/SIM-C1-L004-02-3d.png"
+    },
+    {
+      "id": "SIM-C1-L004-02",
+      "kind": "boundary",
+      "input": 0,
+      "noWebGL": false,
+      "readings": "Tempo dalla liberazione\n0 s\nQuota sul pavimento\n20 m\nVelocità verticale\n-0 m/s",
+      "screenshot": "/private/tmp/cric-040-b963-final/SIM-C1-L004-02-x0-3d.png"
+    },
+    {
+      "id": "SIM-C1-L004-02",
+      "kind": "boundary",
+      "input": 1,
+      "noWebGL": false,
+      "readings": "Tempo dalla liberazione\n1 s\nQuota sul pavimento\n15 m\nVelocità verticale\n-10 m/s",
+      "screenshot": "/private/tmp/cric-040-b963-final/SIM-C1-L004-02-x1-3d.png"
+    },
+    {
+      "id": "SIM-C1-L004-02",
+      "kind": "boundary",
+      "input": 2,
+      "noWebGL": false,
+      "readings": "Tempo dalla liberazione\n2 s\nQuota sul pavimento\n0 m\nVelocità verticale\n-20 m/s",
+      "screenshot": "/private/tmp/cric-040-b963-final/SIM-C1-L004-02-x2-3d.png"
+    },
+    {
+      "id": "SIM-C1-L004-02",
+      "kind": "graphs",
+      "noWebGL": false,
+      "graphCount": 1,
+      "text": "Lettura al variare di tempo dalla liberazione\n0\n0\n10\n1\n20\n2\nQuota sul pavimento (m)\nTempo dalla liberazione (s)\nQuota sul pavimento",
+      "screenshot": "/private/tmp/cric-040-b963-final/SIM-C1-L004-02-graphs-3d.png"
+    },
+    {
+      "id": "SIM-C1-L004-03",
+      "noWebGL": false,
+      "display": "3D interattivo",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nLa pallina riparte ogni volta con vᵧ = 10 m/s e ritorna alla quota iniziale. Il tempo di volo resta 2 s per g = 10 m/s². Guarda la proiezione a terra per leggere la gittata.\n\nT = 2vᵧ/g = 2 s; R = vₓT\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Velocità orizzontale\n2 m/s\nGittata\n4 m\nTempo di volo\n2 s\nQuota in volo\n0 m"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Velocità orizzontale» e confronta la scena con il punto segnato sul grafico. Parti da 2 m/s, poi prova 5 m/s.\n\nVelocità orizzontale = 2 m/s · Gittata = 4 m\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Velocità orizzontale\n2 m/s\nGittata\n4 m\nTempo di volo\n2 s\nQuota in volo\n0 m"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\nT = 2vᵧ/g = 2 s; R = vₓT. Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\n2 × 2 = 4 m\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Velocità orizzontale\n2 m/s\nGittata\n4 m\nTempo di volo\n2 s\nQuota in volo\n0 m"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Velocità orizzontale» a 3,5 m/s. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nT = 2vᵧ/g = 2 s; R = vₓT\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Velocità orizzontale\n2 m/s\nGittata\n4 m\nTempo di volo\n2 s\nQuota in volo\n0 m"
+        }
+      ],
+      "answerCount": 2,
+      "screenshot": "/private/tmp/cric-040-b963-final/SIM-C1-L004-03-3d.png"
+    },
+    {
+      "id": "SIM-C1-L004-03",
+      "kind": "boundary",
+      "input": 1,
+      "noWebGL": false,
+      "readings": "Velocità orizzontale\n1 m/s\nGittata\n2 m\nTempo di volo\n2 s\nQuota in volo\n0 m",
+      "screenshot": "/private/tmp/cric-040-b963-final/SIM-C1-L004-03-x1-3d.png"
+    },
+    {
+      "id": "SIM-C1-L004-03",
+      "kind": "boundary",
+      "input": 6,
+      "noWebGL": false,
+      "readings": "Velocità orizzontale\n6 m/s\nGittata\n12 m\nTempo di volo\n2 s\nQuota in volo\n0 m",
+      "screenshot": "/private/tmp/cric-040-b963-final/SIM-C1-L004-03-x6-3d.png"
+    },
+    {
+      "id": "SIM-C1-L004-03",
+      "kind": "clock",
+      "input": 6,
+      "time": 0,
+      "noWebGL": false,
+      "readings": "Velocità orizzontale\n6 m/s\nGittata\n12 m\nTempo di volo\n2 s\nQuota in volo\n0 m",
+      "screenshot": "/private/tmp/cric-040-b963-final/SIM-C1-L004-03-clock0-3d.png"
+    },
+    {
+      "id": "SIM-C1-L004-03",
+      "kind": "clock",
+      "input": 6,
+      "time": 1,
+      "noWebGL": false,
+      "readings": "Velocità orizzontale\n6 m/s\nGittata\n12 m\nTempo di volo\n2 s\nQuota in volo\n5 m",
+      "screenshot": "/private/tmp/cric-040-b963-final/SIM-C1-L004-03-clock1-3d.png"
+    },
+    {
+      "id": "SIM-C1-L004-03",
+      "kind": "clock",
+      "input": 6,
+      "time": 2,
+      "noWebGL": false,
+      "readings": "Velocità orizzontale\n6 m/s\nGittata\n12 m\nTempo di volo\n2 s\nQuota in volo\n0 m",
+      "screenshot": "/private/tmp/cric-040-b963-final/SIM-C1-L004-03-clock2-3d.png"
+    },
+    {
+      "id": "SIM-C1-L004-03",
+      "kind": "graphs",
+      "noWebGL": false,
+      "graphCount": 2,
+      "text": "Lettura al variare di velocità orizzontale\n0\n1\n6\n3,5\n12\n6\nGittata (m)\nVelocità orizzontale (m/s)\nGittata\nQuota in volo\n0\n0\n2,5\n1\n5\n2\nQuota in volo (m)\nTempo (s)\nQuota in volo",
+      "screenshot": "/private/tmp/cric-040-b963-final/SIM-C1-L004-03-graphs-3d.png"
+    },
+    {
+      "id": "SIM-C1-L004-04",
+      "noWebGL": false,
+      "display": "3D interattivo",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nLa velocità è tangente alla circonferenza. La sua direzione cambia continuamente: l’accelerazione è diretta verso il centro e cresce con il quadrato della rapidità.\n\na = v²/r, con r = 2 m\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Velocità tangenziale\n2 m/s\nAccelerazione centripeta\n2 m/s²\nVariazione dal riferimento\n0 m/s²\nPosizione lungo x\n2 m"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Velocità tangenziale» e confronta la scena con il punto segnato sul grafico. Parti da 2 m/s, poi prova 4 m/s.\n\nVelocità tangenziale = 2 m/s · Accelerazione centripeta = 2 m/s²\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Velocità tangenziale\n2 m/s\nAccelerazione centripeta\n2 m/s²\nVariazione dal riferimento\n0 m/s²\nPosizione lungo x\n2 m"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\na = v²/r, con r = 2 m. Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\n2 × 2 / 2 = 2 m/s²\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Velocità tangenziale\n2 m/s\nAccelerazione centripeta\n2 m/s²\nVariazione dal riferimento\n0 m/s²\nPosizione lungo x\n2 m"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Velocità tangenziale» a 3,5 m/s. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\na = v²/r, con r = 2 m\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Velocità tangenziale\n2 m/s\nAccelerazione centripeta\n2 m/s²\nVariazione dal riferimento\n0 m/s²\nPosizione lungo x\n2 m"
+        }
+      ],
+      "answerCount": 2,
+      "screenshot": "/private/tmp/cric-040-b963-final/SIM-C1-L004-04-3d.png"
+    },
+    {
+      "id": "SIM-C1-L004-04",
+      "kind": "boundary",
+      "input": 1,
+      "noWebGL": false,
+      "readings": "Velocità tangenziale\n1 m/s\nAccelerazione centripeta\n0,5 m/s²\nVariazione dal riferimento\n-1,5 m/s²\nPosizione lungo x\n2 m",
+      "screenshot": "/private/tmp/cric-040-b963-final/SIM-C1-L004-04-x1-3d.png"
+    },
+    {
+      "id": "SIM-C1-L004-04",
+      "kind": "boundary",
+      "input": 6,
+      "noWebGL": false,
+      "readings": "Velocità tangenziale\n6 m/s\nAccelerazione centripeta\n18 m/s²\nVariazione dal riferimento\n16 m/s²\nPosizione lungo x\n2 m",
+      "screenshot": "/private/tmp/cric-040-b963-final/SIM-C1-L004-04-x6-3d.png"
+    },
+    {
+      "id": "SIM-C1-L004-04",
+      "kind": "clock",
+      "input": 6,
+      "time": 0,
+      "noWebGL": false,
+      "readings": "Velocità tangenziale\n6 m/s\nAccelerazione centripeta\n18 m/s²\nVariazione dal riferimento\n16 m/s²\nPosizione lungo x\n2 m",
+      "screenshot": "/private/tmp/cric-040-b963-final/SIM-C1-L004-04-clock0-3d.png"
+    },
+    {
+      "id": "SIM-C1-L004-04",
+      "kind": "clock",
+      "input": 6,
+      "time": 0.5235987755982988,
+      "noWebGL": false,
+      "readings": "Velocità tangenziale\n6 m/s\nAccelerazione centripeta\n18 m/s²\nVariazione dal riferimento\n16 m/s²\nPosizione lungo x\n0 m",
+      "screenshot": "/private/tmp/cric-040-b963-final/SIM-C1-L004-04-clock1-3d.png"
+    },
+    {
+      "id": "SIM-C1-L004-04",
+      "kind": "clock",
+      "input": 6,
+      "time": 1.0471975511965976,
+      "noWebGL": false,
+      "readings": "Velocità tangenziale\n6 m/s\nAccelerazione centripeta\n18 m/s²\nVariazione dal riferimento\n16 m/s²\nPosizione lungo x\n-2 m",
+      "screenshot": "/private/tmp/cric-040-b963-final/SIM-C1-L004-04-clock2-3d.png"
+    },
+    {
+      "id": "SIM-C1-L004-04",
+      "kind": "clock",
+      "input": 6,
+      "time": 2.0943951023931953,
+      "noWebGL": false,
+      "readings": "Velocità tangenziale\n6 m/s\nAccelerazione centripeta\n18 m/s²\nVariazione dal riferimento\n16 m/s²\nPosizione lungo x\n2 m",
+      "screenshot": "/private/tmp/cric-040-b963-final/SIM-C1-L004-04-clock3-3d.png"
+    },
+    {
+      "id": "SIM-C1-L004-04",
+      "kind": "graphs",
+      "noWebGL": false,
+      "graphCount": 2,
+      "text": "Lettura al variare di velocità tangenziale\n0\n1\n9\n3,5\n18\n6\nAccelerazione centripeta (m/s²)\nVelocità tangenziale (m/s)\nAccelerazione centripeta\nPosizione lungo x\n-2\n0\n0\n1,047\n2\n2,094\nPosizione lungo x (m)\nTempo (s)\nPosizione lungo x",
+      "screenshot": "/private/tmp/cric-040-b963-final/SIM-C1-L004-04-graphs-3d.png"
+    },
+    {
+      "id": "SIM-C1-L004-01",
+      "noWebGL": true,
+      "display": "Tavola di misura",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nParti da fermo e mantieni la risultante costante. Confronta la distanza nel primo e nel secondo secondo: la velocità cresce anche durante ciascun intervallo.\n\ns = ½at², con a = 2 m/s²\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Tempo\n1 s\nPosizione dal riposo\n1 m\nVelocità\n2 m/s"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Tempo» e confronta la scena con il punto segnato sul grafico. Parti da 1 s, poi prova 3 s.\n\nTempo = 1 s · Posizione dal riposo = 1 m\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Tempo\n1 s\nPosizione dal riposo\n1 m\nVelocità\n2 m/s"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\ns = ½at², con a = 2 m/s². Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\n1 × 1 = 1 m\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Tempo\n1 s\nPosizione dal riposo\n1 m\nVelocità\n2 m/s"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Tempo» a 2 s. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\ns = ½at², con a = 2 m/s²\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Tempo\n1 s\nPosizione dal riposo\n1 m\nVelocità\n2 m/s"
+        }
+      ],
+      "answerCount": 2,
+      "screenshot": "/private/tmp/cric-040-b963-final/SIM-C1-L004-01-2d.png"
+    },
+    {
+      "id": "SIM-C1-L004-01",
+      "kind": "boundary",
+      "input": 0,
+      "noWebGL": true,
+      "readings": "Tempo\n0 s\nPosizione dal riposo\n0 m\nVelocità\n0 m/s",
+      "screenshot": "/private/tmp/cric-040-b963-final/SIM-C1-L004-01-x0-2d.png"
+    },
+    {
+      "id": "SIM-C1-L004-01",
+      "kind": "boundary",
+      "input": 1,
+      "noWebGL": true,
+      "readings": "Tempo\n1 s\nPosizione dal riposo\n1 m\nVelocità\n2 m/s",
+      "screenshot": "/private/tmp/cric-040-b963-final/SIM-C1-L004-01-x1-2d.png"
+    },
+    {
+      "id": "SIM-C1-L004-01",
+      "kind": "boundary",
+      "input": 2,
+      "noWebGL": true,
+      "readings": "Tempo\n2 s\nPosizione dal riposo\n4 m\nVelocità\n4 m/s",
+      "screenshot": "/private/tmp/cric-040-b963-final/SIM-C1-L004-01-x2-2d.png"
+    },
+    {
+      "id": "SIM-C1-L004-01",
+      "kind": "boundary",
+      "input": 4,
+      "noWebGL": true,
+      "readings": "Tempo\n4 s\nPosizione dal riposo\n16 m\nVelocità\n8 m/s",
+      "screenshot": "/private/tmp/cric-040-b963-final/SIM-C1-L004-01-x4-2d.png"
+    },
+    {
+      "id": "SIM-C1-L004-01",
+      "kind": "graphs",
+      "noWebGL": true,
+      "graphCount": 1,
+      "text": "Lettura al variare di tempo\n0\n0\n8\n2\n16\n4\nPosizione dal riposo (m)\nTempo (s)\nPosizione dal riposo",
+      "screenshot": "/private/tmp/cric-040-b963-final/SIM-C1-L004-01-graphs-2d.png"
+    },
+    {
+      "id": "SIM-C1-L004-02",
+      "noWebGL": true,
+      "display": "Tavola di misura",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nSegui la pallina fra le tacche verticali. Ogni secondo guadagna la stessa velocità verso il basso, mentre gli spazi percorsi aumentano. Si trascura l’aria.\n\nh = 20 m − ½gt², con g = 10 m/s²\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Tempo dalla liberazione\n1 s\nQuota sul pavimento\n15 m\nVelocità verticale\n-10 m/s"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Tempo dalla liberazione» e confronta la scena con il punto segnato sul grafico. Parti da 1 s, poi prova 2 s.\n\nTempo dalla liberazione = 1 s · Quota sul pavimento = 15 m\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Tempo dalla liberazione\n1 s\nQuota sul pavimento\n15 m\nVelocità verticale\n-10 m/s"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\nh = 20 m − ½gt², con g = 10 m/s². Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\n20 − (5 × 1 × 1) = 15 m\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Tempo dalla liberazione\n1 s\nQuota sul pavimento\n15 m\nVelocità verticale\n-10 m/s"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Tempo dalla liberazione» a 0,9 s. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nh = 20 m − ½gt², con g = 10 m/s²\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Tempo dalla liberazione\n1 s\nQuota sul pavimento\n15 m\nVelocità verticale\n-10 m/s"
+        }
+      ],
+      "answerCount": 2,
+      "screenshot": "/private/tmp/cric-040-b963-final/SIM-C1-L004-02-2d.png"
+    },
+    {
+      "id": "SIM-C1-L004-02",
+      "kind": "boundary",
+      "input": 0,
+      "noWebGL": true,
+      "readings": "Tempo dalla liberazione\n0 s\nQuota sul pavimento\n20 m\nVelocità verticale\n-0 m/s",
+      "screenshot": "/private/tmp/cric-040-b963-final/SIM-C1-L004-02-x0-2d.png"
+    },
+    {
+      "id": "SIM-C1-L004-02",
+      "kind": "boundary",
+      "input": 1,
+      "noWebGL": true,
+      "readings": "Tempo dalla liberazione\n1 s\nQuota sul pavimento\n15 m\nVelocità verticale\n-10 m/s",
+      "screenshot": "/private/tmp/cric-040-b963-final/SIM-C1-L004-02-x1-2d.png"
+    },
+    {
+      "id": "SIM-C1-L004-02",
+      "kind": "boundary",
+      "input": 2,
+      "noWebGL": true,
+      "readings": "Tempo dalla liberazione\n2 s\nQuota sul pavimento\n0 m\nVelocità verticale\n-20 m/s",
+      "screenshot": "/private/tmp/cric-040-b963-final/SIM-C1-L004-02-x2-2d.png"
+    },
+    {
+      "id": "SIM-C1-L004-02",
+      "kind": "graphs",
+      "noWebGL": true,
+      "graphCount": 1,
+      "text": "Lettura al variare di tempo dalla liberazione\n0\n0\n10\n1\n20\n2\nQuota sul pavimento (m)\nTempo dalla liberazione (s)\nQuota sul pavimento",
+      "screenshot": "/private/tmp/cric-040-b963-final/SIM-C1-L004-02-graphs-2d.png"
+    },
+    {
+      "id": "SIM-C1-L004-03",
+      "noWebGL": true,
+      "display": "Tavola di misura",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nLa pallina riparte ogni volta con vᵧ = 10 m/s e ritorna alla quota iniziale. Il tempo di volo resta 2 s per g = 10 m/s². Guarda la proiezione a terra per leggere la gittata.\n\nT = 2vᵧ/g = 2 s; R = vₓT\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Velocità orizzontale\n2 m/s\nGittata\n4 m\nTempo di volo\n2 s\nQuota in volo\n0 m"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Velocità orizzontale» e confronta la scena con il punto segnato sul grafico. Parti da 2 m/s, poi prova 5 m/s.\n\nVelocità orizzontale = 2 m/s · Gittata = 4 m\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Velocità orizzontale\n2 m/s\nGittata\n4 m\nTempo di volo\n2 s\nQuota in volo\n0 m"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\nT = 2vᵧ/g = 2 s; R = vₓT. Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\n2 × 2 = 4 m\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Velocità orizzontale\n2 m/s\nGittata\n4 m\nTempo di volo\n2 s\nQuota in volo\n0 m"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Velocità orizzontale» a 3,5 m/s. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\nT = 2vᵧ/g = 2 s; R = vₓT\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Velocità orizzontale\n2 m/s\nGittata\n4 m\nTempo di volo\n2 s\nQuota in volo\n0 m"
+        }
+      ],
+      "answerCount": 2,
+      "screenshot": "/private/tmp/cric-040-b963-final/SIM-C1-L004-03-2d.png"
+    },
+    {
+      "id": "SIM-C1-L004-03",
+      "kind": "boundary",
+      "input": 1,
+      "noWebGL": true,
+      "readings": "Velocità orizzontale\n1 m/s\nGittata\n2 m\nTempo di volo\n2 s\nQuota in volo\n0 m",
+      "screenshot": "/private/tmp/cric-040-b963-final/SIM-C1-L004-03-x1-2d.png"
+    },
+    {
+      "id": "SIM-C1-L004-03",
+      "kind": "boundary",
+      "input": 6,
+      "noWebGL": true,
+      "readings": "Velocità orizzontale\n6 m/s\nGittata\n12 m\nTempo di volo\n2 s\nQuota in volo\n0 m",
+      "screenshot": "/private/tmp/cric-040-b963-final/SIM-C1-L004-03-x6-2d.png"
+    },
+    {
+      "id": "SIM-C1-L004-03",
+      "kind": "clock",
+      "input": 6,
+      "time": 0,
+      "noWebGL": true,
+      "readings": "Velocità orizzontale\n6 m/s\nGittata\n12 m\nTempo di volo\n2 s\nQuota in volo\n0 m",
+      "screenshot": "/private/tmp/cric-040-b963-final/SIM-C1-L004-03-clock0-2d.png"
+    },
+    {
+      "id": "SIM-C1-L004-03",
+      "kind": "clock",
+      "input": 6,
+      "time": 1,
+      "noWebGL": true,
+      "readings": "Velocità orizzontale\n6 m/s\nGittata\n12 m\nTempo di volo\n2 s\nQuota in volo\n5 m",
+      "screenshot": "/private/tmp/cric-040-b963-final/SIM-C1-L004-03-clock1-2d.png"
+    },
+    {
+      "id": "SIM-C1-L004-03",
+      "kind": "clock",
+      "input": 6,
+      "time": 2,
+      "noWebGL": true,
+      "readings": "Velocità orizzontale\n6 m/s\nGittata\n12 m\nTempo di volo\n2 s\nQuota in volo\n0 m",
+      "screenshot": "/private/tmp/cric-040-b963-final/SIM-C1-L004-03-clock2-2d.png"
+    },
+    {
+      "id": "SIM-C1-L004-03",
+      "kind": "graphs",
+      "noWebGL": true,
+      "graphCount": 2,
+      "text": "Lettura al variare di velocità orizzontale\n0\n1\n6\n3,5\n12\n6\nGittata (m)\nVelocità orizzontale (m/s)\nGittata\nQuota in volo\n0\n0\n2,5\n1\n5\n2\nQuota in volo (m)\nTempo (s)\nQuota in volo",
+      "screenshot": "/private/tmp/cric-040-b963-final/SIM-C1-L004-03-graphs-2d.png"
+    },
+    {
+      "id": "SIM-C1-L004-04",
+      "noWebGL": true,
+      "display": "Tavola di misura",
+      "modes": [
+        {
+          "phase": 1,
+          "text": "OSSERVA · 2/5\nIndividua il fenomeno\n\nLa velocità è tangente alla circonferenza. La sua direzione cambia continuamente: l’accelerazione è diretta verso il centro e cresce con il quadrato della rapidità.\n\na = v²/r, con r = 2 m\n\n← Indietro\nEsplora →\nLa tua previsione iniziale",
+          "readings": "Velocità tangenziale\n2 m/s\nAccelerazione centripeta\n2 m/s²\nVariazione dal riferimento\n0 m/s²\nPosizione lungo x\n2 m"
+        },
+        {
+          "phase": 2,
+          "text": "ESPLORA · 3/5\nEsegui la misura\n\nRegola «Velocità tangenziale» e confronta la scena con il punto segnato sul grafico. Parti da 2 m/s, poi prova 4 m/s.\n\nVelocità tangenziale = 2 m/s · Accelerazione centripeta = 2 m/s²\n\n← Indietro\nComprendi →\nLa tua previsione iniziale",
+          "readings": "Velocità tangenziale\n2 m/s\nAccelerazione centripeta\n2 m/s²\nVariazione dal riferimento\n0 m/s²\nPosizione lungo x\n2 m"
+        },
+        {
+          "phase": 3,
+          "text": "COMPRENDI · 4/5\nControlla il calcolo\n\na = v²/r, con r = 2 m. Sostituisci i dati e confronta il risultato con la lettura dello strumento.\n\n2 × 2 / 2 = 2 m/s²\n\n← Indietro\nVerifica →\nLa tua previsione iniziale",
+          "readings": "Velocità tangenziale\n2 m/s\nAccelerazione centripeta\n2 m/s²\nVariazione dal riferimento\n0 m/s²\nPosizione lungo x\n2 m"
+        },
+        {
+          "phase": 4,
+          "text": "VERIFICA · 5/5\nRipeti con un altro dato\n\nPrevedi la lettura con «Velocità tangenziale» a 3,5 m/s. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.\n\na = v²/r, con r = 2 m\n\n← Indietro\nApri i problemi ↓\nLa tua previsione iniziale",
+          "readings": "Velocità tangenziale\n2 m/s\nAccelerazione centripeta\n2 m/s²\nVariazione dal riferimento\n0 m/s²\nPosizione lungo x\n2 m"
+        }
+      ],
+      "answerCount": 2,
+      "screenshot": "/private/tmp/cric-040-b963-final/SIM-C1-L004-04-2d.png"
+    },
+    {
+      "id": "SIM-C1-L004-04",
+      "kind": "boundary",
+      "input": 1,
+      "noWebGL": true,
+      "readings": "Velocità tangenziale\n1 m/s\nAccelerazione centripeta\n0,5 m/s²\nVariazione dal riferimento\n-1,5 m/s²\nPosizione lungo x\n2 m",
+      "screenshot": "/private/tmp/cric-040-b963-final/SIM-C1-L004-04-x1-2d.png"
+    },
+    {
+      "id": "SIM-C1-L004-04",
+      "kind": "boundary",
+      "input": 6,
+      "noWebGL": true,
+      "readings": "Velocità tangenziale\n6 m/s\nAccelerazione centripeta\n18 m/s²\nVariazione dal riferimento\n16 m/s²\nPosizione lungo x\n2 m",
+      "screenshot": "/private/tmp/cric-040-b963-final/SIM-C1-L004-04-x6-2d.png"
+    },
+    {
+      "id": "SIM-C1-L004-04",
+      "kind": "clock",
+      "input": 6,
+      "time": 0,
+      "noWebGL": true,
+      "readings": "Velocità tangenziale\n6 m/s\nAccelerazione centripeta\n18 m/s²\nVariazione dal riferimento\n16 m/s²\nPosizione lungo x\n2 m",
+      "screenshot": "/private/tmp/cric-040-b963-final/SIM-C1-L004-04-clock0-2d.png"
+    },
+    {
+      "id": "SIM-C1-L004-04",
+      "kind": "clock",
+      "input": 6,
+      "time": 0.5235987755982988,
+      "noWebGL": true,
+      "readings": "Velocità tangenziale\n6 m/s\nAccelerazione centripeta\n18 m/s²\nVariazione dal riferimento\n16 m/s²\nPosizione lungo x\n0 m",
+      "screenshot": "/private/tmp/cric-040-b963-final/SIM-C1-L004-04-clock1-2d.png"
+    },
+    {
+      "id": "SIM-C1-L004-04",
+      "kind": "clock",
+      "input": 6,
+      "time": 1.0471975511965976,
+      "noWebGL": true,
+      "readings": "Velocità tangenziale\n6 m/s\nAccelerazione centripeta\n18 m/s²\nVariazione dal riferimento\n16 m/s²\nPosizione lungo x\n-2 m",
+      "screenshot": "/private/tmp/cric-040-b963-final/SIM-C1-L004-04-clock2-2d.png"
+    },
+    {
+      "id": "SIM-C1-L004-04",
+      "kind": "clock",
+      "input": 6,
+      "time": 2.0943951023931953,
+      "noWebGL": true,
+      "readings": "Velocità tangenziale\n6 m/s\nAccelerazione centripeta\n18 m/s²\nVariazione dal riferimento\n16 m/s²\nPosizione lungo x\n2 m",
+      "screenshot": "/private/tmp/cric-040-b963-final/SIM-C1-L004-04-clock3-2d.png"
+    },
+    {
+      "id": "SIM-C1-L004-04",
+      "kind": "graphs",
+      "noWebGL": true,
+      "graphCount": 2,
+      "text": "Lettura al variare di velocità tangenziale\n0\n1\n9\n3,5\n18\n6\nAccelerazione centripeta (m/s²)\nVelocità tangenziale (m/s)\nAccelerazione centripeta\nPosizione lungo x\n-2\n0\n0\n1,047\n2\n2,094\nPosizione lungo x (m)\nTempo (s)\nPosizione lungo x",
+      "screenshot": "/private/tmp/cric-040-b963-final/SIM-C1-L004-04-graphs-2d.png"
+    }
+  ],
+  "errors": [],
+  "publicationAction": "NONE",
+  "humanApproval": "NOT_RUN",
+  "scientificApproval": false,
+  "runtimeProfileSha256": "b963060675f372b28d79823f92e3a781b32856779fe1dd6a6fbb3feaba30686f",
+  "base": "http://127.0.0.1:61662/",
+  "runtimeSha256": {
+    "static/js/banchi/voci/esperimento.js": "cc435e51b62d5b9961b32f5d9b349171f7432e3bf6a6911cd80daaa1f419767b",
+    "static/js/banchi/voci/engines.js": "09a6447a971d0e90c49cfea0307e82ea75f4441a7174c017768d6d62ad514dab",
+    "static/js/banchi/voci/geometria.js": "986bdbfad0cf6e6e057002ee2efdeff0a08df31bfb45f9c046063fcba5840f08",
+    "static/js/banchi/voci/tavola.js": "cc3f7fa8da541109fdda9f8bacca23eea43d1031b2145688b2d80513f47d5283",
+    "static/js/banchi/voci/confronti.js": "83f1ab0d443dc93eb72c0318e32856179486643257c5bbf136e686464fdc6c39",
+    "static/js/banchi/voci/legende.js": "89730336965cc57c02580f7f10b185b35575c3dfc8b9bae37ddca8ec20831a93",
+    "static/js/banchi/voci/orologi.js": "30dd8ab535a31b514c0db13d97d2b046a1add160a7ca7d374deea0d991be73a6",
+    "static/js/banchi/voci/modelli/C1.js": "e5818f20fd19d00fc73434fcacef752d06331efc41d198ffe8c185063e97fa34",
+    "static/js/banchi/voci/apparati/meccanica.js": "c87e54ddc90b8cf3b75f2db350274b55cc5d9b0c74e44151190fa37d4ece3f70",
+    "static/js/banchi/banco.js": "8200aa5adf026372699790c21f60e0cf3f5fffcb705ef5ee36f609ac3c1e3ed9",
+    "static/js/banchi/misure.js": "46c769f22651529e439b1396e59a017d2c429310b7ae59e2a9717b2ced93c66d",
+    "static/js/banchi/grafici.js": "e5567e88ee6df5c604f8e62228da5e70841556ad0b55fb212fd4d091fdeee3fd",
+    "static/js/banchi/scena.js": "4d94c92a834573062a2af541df113bad06bd11ca538b31bddddc5ec8621a5095",
+    "static/js/banchi/etichette.js": "455ae33c790be4e207e5b5667918c44ea16c95f49e1fea0b13cc92f08aa003f3",
+    "static/js/banchi/aula.js": "44c74446d0d60b20e9dad05b32321f1000f026acdec386ca5aa2f74c20421967",
+    "static/js/ui.js": "77e5f000f5e1a1fe028fff32dad97be29ad72b46d753787a19ad36164cb98f27",
+    "static/js/banchi/voci/assessment-selection.js": "2f5435b6c9e8b76667d0a95f35860f835117cf8230a635c4c3a54c479fbc54b3",
+    "server/domain/experiment_assessment.py": "c51189c0daed89da19c943900736daa2646bd9862b68edc4c793fc882e4f06f6",
+    "server/domain/authoring.py": "bc42796627ca84424576ba189058dd6f37ddbc694d929a6e900fafb0e26dfa94",
+    "server/adapters/contracts.py": "53e1ea6c8fc912b749e5074eac7384f66ecbcfe89723e51642d3b26475bc07bc",
+    "contracts/experiment-assessment-v1.schema.json": "937df48ca60e874797cf9428a00732eaf6974d1ae7abdc162743f03ceef4ddf5",
+    "contracts/engine.d.ts": "de1760b0df0b5902d4b57aa2bb1a347c87a4520f00e4fe2d0d543bf9e972b0e6",
+    "content/esperienze-C1.json": "84d13bd2658be3b0ce2a55bf7dc698d64ceae151b09deafeabd71507a41d70e3"
+  },
+  "protocolSha256": "3b87a775f4d4aa8cb9d0798f98116b902855c7170da1e9d3089af81426096165",
+  "terminalStatus": "PASS",
+  "browserVersion": "158.0.8127.37"
+}

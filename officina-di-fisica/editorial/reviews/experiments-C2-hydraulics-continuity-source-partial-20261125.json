@@ -1,0 +1,436 @@
+{
+  "phase": "SOURCE_TEXT_MATH_PARTIAL_NOT_REGISTRABLE",
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+  "sourcePath": "officina-di-fisica/content/esperienze-C2.json",
+  "sourceFileSha256": "33a38d74b953889eccce3281c4413060aa6af14f6a7c022d5049b927137656c1",
+  "promptPrimarySha256": "426d81e72ab795564c34f71a906cb863ada6f59e25a57cc3f8878e4335743068",
+  "priorKnowledgeDisclosure": "Whole shared consumer C2.js was incidentally read during047; its laws were therefore previously visible. No remaining source reference ordinate/formula/interpretation/substitution/answer field is exposed here. This projection is prompt-only, not claimed as fully blind independent reading.",
+  "reviewer": "AI independent of historical source author; not human approval",
+  "recordCount": 10,
+  "exactFractionReferenceChecks": 20,
+  "independentFormulaControlGridEvaluations": 145,
+  "records": [
+    {
+      "id": "SIM-C2-L003-02",
+      "sourceVersion": 1,
+      "sourceSha256": "4305c01bf5d0375a4969f8ecd1f6676118f777fc947be526fc534c8b1c36148a",
+      "sourceRead": {
+        "allFields": true,
+        "blocksCount": 0,
+        "formula": true,
+        "interpretation": true,
+        "references": true,
+        "substitution": true,
+        "transferPrompt": true
+      },
+      "sourceTextMath": "NO_DEFECT_IDENTIFIED_WITHIN_SOURCE_SCOPE",
+      "manualAndPhysicalReview": "Volume incompressibile conservato: 2cm→1/2cm e6cm→3/2cm. Forza ideale quadrupla con corsa inversa; non un guadagno di lavoro.",
+      "primaryDerivation": "A1*d1=A2*d2; A2=4*A1 => d2=d1/4",
+      "referenceChecks": [
+        {
+          "x": "2",
+          "independentlyDerivedY": "1/2",
+          "sourceY": "1/2",
+          "ok": true
+        },
+        {
+          "x": "6",
+          "independentlyDerivedY": "3/2",
+          "sourceY": "3/2",
+          "ok": true
+        }
+      ],
+      "controlGridValueCount": 17,
+      "controlOutputRange": [
+        "0",
+        "2"
+      ],
+      "consumerReview": "NOT_RUN",
+      "installedEngineReview": "NOT_RUN",
+      "UI": "NOT_RUN",
+      "overallComplete": false,
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C2-L003-03",
+      "sourceVersion": 1,
+      "sourceSha256": "d10d51cc730cda5f9b3947f31e3b1ae6bb1b9470c2e46b5ccc5cbf823681d1e6",
+      "sourceRead": {
+        "allFields": true,
+        "blocksCount": 0,
+        "formula": true,
+        "interpretation": true,
+        "references": true,
+        "substitution": true,
+        "transferPrompt": true
+      },
+      "sourceTextMath": "NO_DEFECT_IDENTIFIED_WITHIN_SOURCE_SCOPE",
+      "manualAndPhysicalReview": "Baseline20kPa assegnata, distinta dall’incremento. 0→20 e8→28; la trasmissione dell’incremento non rende uguali le pressioni totali a quote diverse.",
+      "primaryDerivation": "p_relative_deep=20kPa+delta_p_surface",
+      "referenceChecks": [
+        {
+          "x": "0",
+          "independentlyDerivedY": "20",
+          "sourceY": "20",
+          "ok": true
+        },
+        {
+          "x": "8",
+          "independentlyDerivedY": "28",
+          "sourceY": "28",
+          "ok": true
+        }
+      ],
+      "controlGridValueCount": 13,
+      "controlOutputRange": [
+        "20",
+        "32"
+      ],
+      "consumerReview": "NOT_RUN",
+      "installedEngineReview": "NOT_RUN",
+      "UI": "NOT_RUN",
+      "overallComplete": false,
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C2-L004-01",
+      "sourceVersion": 1,
+      "sourceSha256": "0c58da03bc25a8f85eadfc06ea214ef468ba8b3f00c2995f536a484874d9d63b",
+      "sourceRead": {
+        "allFields": true,
+        "blocksCount": 0,
+        "formula": true,
+        "interpretation": true,
+        "references": true,
+        "substitution": true,
+        "transferPrompt": true
+      },
+      "sourceTextMath": "NO_DEFECT_IDENTIFIED_WITHIN_SOURCE_SCOPE",
+      "manualAndPhysicalReview": "Formula e interpretazione dichiarano g10 e10N/L circa; 1L→10N,3L→30N. Approssimazione fisica assegnata, non falso valore universale di g.",
+      "primaryDerivation": "F_b=rho_f*g*V_displaced; assigned water weight per litre about10N/L => F_b about10V",
+      "referenceChecks": [
+        {
+          "x": "1",
+          "independentlyDerivedY": "10",
+          "sourceY": "10",
+          "ok": true
+        },
+        {
+          "x": "3",
+          "independentlyDerivedY": "30",
+          "sourceY": "30",
+          "ok": true
+        }
+      ],
+      "controlGridValueCount": 17,
+      "controlOutputRange": [
+        "0",
+        "40"
+      ],
+      "consumerReview": "NOT_RUN",
+      "installedEngineReview": "NOT_RUN",
+      "UI": "NOT_RUN",
+      "overallComplete": false,
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C2-L004-02",
+      "sourceVersion": 1,
+      "sourceSha256": "0b77659a3ab54a38625864835ec65bd9141d74317928fe8aa6fb4e40bd117c68",
+      "sourceRead": {
+        "allFields": true,
+        "blocksCount": 0,
+        "formula": true,
+        "interpretation": true,
+        "references": true,
+        "substitution": true,
+        "transferPrompt": true
+      },
+      "sourceTextMath": "NO_DEFECT_IDENTIFIED_WITHIN_SOURCE_SCOPE",
+      "manualAndPhysicalReview": "Il10 nella formula completa assegna il modello g10m/s²;2L=1/500m³. 800→16N,1000→20N; sostegno esplicitamente presente.",
+      "primaryDerivation": "F_b=(2/1000)m3*rho_f*g",
+      "referenceChecks": [
+        {
+          "x": "800",
+          "independentlyDerivedY": "16",
+          "sourceY": "16",
+          "ok": true
+        },
+        {
+          "x": "1000",
+          "independentlyDerivedY": "20",
+          "sourceY": "20",
+          "ok": true
+        }
+      ],
+      "controlGridValueCount": 13,
+      "controlOutputRange": [
+        "12",
+        "24"
+      ],
+      "consumerReview": "NOT_RUN",
+      "installedEngineReview": "NOT_RUN",
+      "UI": "NOT_RUN",
+      "overallComplete": false,
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C2-L004-03",
+      "sourceVersion": 2,
+      "sourceSha256": "f9c4b4338d9fa15ff5e2b4d55c297a0198cdf6d29d49b9c2e0fdb504917009b7",
+      "sourceRead": {
+        "allFields": true,
+        "blocksCount": 0,
+        "formula": true,
+        "interpretation": true,
+        "references": true,
+        "substitution": true,
+        "transferPrompt": true
+      },
+      "sourceTextMath": "NO_DEFECT_IDENTIFIED_WITHIN_SOURCE_SCOPE",
+      "manualAndPhysicalReview": "Versione2 chiarisce già il limite di galleggiamento neutro: a1000 il volume è tutto immerso ma la profondità non è unica. 250→25%,800→80%.",
+      "primaryDerivation": "rho_f*g*V_immersed=rho_b*g*V_total => percent=100*rho_b/1000",
+      "referenceChecks": [
+        {
+          "x": "250",
+          "independentlyDerivedY": "25",
+          "sourceY": "25",
+          "ok": true
+        },
+        {
+          "x": "800",
+          "independentlyDerivedY": "80",
+          "sourceY": "80",
+          "ok": true
+        }
+      ],
+      "controlGridValueCount": 17,
+      "controlOutputRange": [
+        "20",
+        "100"
+      ],
+      "consumerReview": "NOT_RUN",
+      "installedEngineReview": "NOT_RUN",
+      "UI": "NOT_RUN",
+      "overallComplete": false,
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C2-L005-01",
+      "sourceVersion": 1,
+      "sourceSha256": "2c1385b566f8fc10f826b0885738205ac0e1c02bc1e4d56265169433bfde8d06",
+      "sourceRead": {
+        "allFields": true,
+        "blocksCount": 0,
+        "formula": true,
+        "interpretation": true,
+        "references": true,
+        "substitution": true,
+        "transferPrompt": true
+      },
+      "sourceTextMath": "NO_DEFECT_IDENTIFIED_WITHIN_SOURCE_SCOPE",
+      "manualAndPhysicalReview": "4cm² moltiplicato per la velocità media dà cm³/s=mL/s;2→8,6→24. Nessuna ulteriore divisione per2.",
+      "primaryDerivation": "Q=A*v_mean=4cm2*v_mean; 1cm3=1mL",
+      "referenceChecks": [
+        {
+          "x": "2",
+          "independentlyDerivedY": "8",
+          "sourceY": "8",
+          "ok": true
+        },
+        {
+          "x": "6",
+          "independentlyDerivedY": "24",
+          "sourceY": "24",
+          "ok": true
+        }
+      ],
+      "controlGridValueCount": 13,
+      "controlOutputRange": [
+        "0",
+        "48"
+      ],
+      "consumerReview": "NOT_RUN",
+      "installedEngineReview": "NOT_RUN",
+      "UI": "NOT_RUN",
+      "overallComplete": false,
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C2-L005-02",
+      "sourceVersion": 1,
+      "sourceSha256": "c5e314679d7b705bb65c6dea69abfbcdb56e0588b2723328890314dd91e806de",
+      "sourceRead": {
+        "allFields": true,
+        "blocksCount": 0,
+        "formula": true,
+        "interpretation": true,
+        "references": true,
+        "substitution": true,
+        "transferPrompt": true
+      },
+      "sourceTextMath": "NO_DEFECT_IDENTIFIED_WITHIN_SOURCE_SCOPE",
+      "manualAndPhysicalReview": "0.8kg/L=4/5kg/L. Conservazione della massa senza perdite/accumulo:1L/s→4/5kg/s,3→12/5.",
+      "primaryDerivation": "mass_flow_out=mass_flow_in=rho*Q=(4/5)kg/L*Q",
+      "referenceChecks": [
+        {
+          "x": "1",
+          "independentlyDerivedY": "4/5",
+          "sourceY": "4/5",
+          "ok": true
+        },
+        {
+          "x": "3",
+          "independentlyDerivedY": "12/5",
+          "sourceY": "12/5",
+          "ok": true
+        }
+      ],
+      "controlGridValueCount": 21,
+      "controlOutputRange": [
+        "0",
+        "4"
+      ],
+      "consumerReview": "NOT_RUN",
+      "installedEngineReview": "NOT_RUN",
+      "UI": "NOT_RUN",
+      "overallComplete": false,
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C2-L005-03",
+      "sourceVersion": 1,
+      "sourceSha256": "fd13a8fe629571a0f27076fd812c706b5339129227ae2468e7cf4ea09f68680f",
+      "sourceRead": {
+        "allFields": true,
+        "blocksCount": 0,
+        "formula": true,
+        "interpretation": true,
+        "references": true,
+        "substitution": true,
+        "transferPrompt": true
+      },
+      "sourceTextMath": "NO_DEFECT_IDENTIFIED_WITHIN_SOURCE_SCOPE",
+      "manualAndPhysicalReview": "Area4cm² e6cm/s all’ingresso danno24cm³/s. Area2→12cm/s,6→4cm/s. Area sempre positiva nel controllo.",
+      "primaryDerivation": "Q=A*v_mean => v_mean=24cm3/s/A",
+      "referenceChecks": [
+        {
+          "x": "2",
+          "independentlyDerivedY": "12",
+          "sourceY": "12",
+          "ok": true
+        },
+        {
+          "x": "6",
+          "independentlyDerivedY": "4",
+          "sourceY": "4",
+          "ok": true
+        }
+      ],
+      "controlGridValueCount": 8,
+      "controlOutputRange": [
+        "3",
+        "24"
+      ],
+      "consumerReview": "NOT_RUN",
+      "installedEngineReview": "NOT_RUN",
+      "UI": "NOT_RUN",
+      "overallComplete": false,
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C2-L005-04",
+      "sourceVersion": 1,
+      "sourceSha256": "7088898e6f138971991dfde43178ea1ed50ffa1b7dd7e91a1c01a1a40d1fe10e",
+      "sourceRead": {
+        "allFields": true,
+        "blocksCount": 0,
+        "formula": true,
+        "interpretation": true,
+        "references": true,
+        "substitution": true,
+        "transferPrompt": true
+      },
+      "sourceTextMath": "NO_DEFECT_IDENTIFIED_WITHIN_SOURCE_SCOPE",
+      "manualAndPhysicalReview": "Interpretazione completa dichiara il profilo parabolico e la media pesata per area. Su tale profilo4→2 e10→5; la sola parola laminare senza quel contesto non sarebbe sufficiente.",
+      "primaryDerivation": "IF circular Newtonian fully-developed no-slip Poiseuille profile v(r)=vmax(1-r2/R2), area average gives vmean=vmax/2",
+      "referenceChecks": [
+        {
+          "x": "4",
+          "independentlyDerivedY": "2",
+          "sourceY": "2",
+          "ok": true
+        },
+        {
+          "x": "10",
+          "independentlyDerivedY": "5",
+          "sourceY": "5",
+          "ok": true
+        }
+      ],
+      "controlGridValueCount": 13,
+      "controlOutputRange": [
+        "0",
+        "6"
+      ],
+      "consumerReview": "NOT_RUN",
+      "installedEngineReview": "NOT_RUN",
+      "UI": "NOT_RUN",
+      "overallComplete": false,
+      "activityCredit": 0
+    },
+    {
+      "id": "SIM-C2-L005-05",
+      "sourceVersion": 1,
+      "sourceSha256": "32c452afc5a7c3b8570e77d9ac0bafb12d51f6d61d2f80226a4ff823926d5b95",
+      "sourceRead": {
+        "allFields": true,
+        "blocksCount": 0,
+        "formula": true,
+        "interpretation": true,
+        "references": true,
+        "substitution": true,
+        "transferPrompt": true
+      },
+      "sourceTextMath": "NO_DEFECT_IDENTIFIED_WITHIN_SOURCE_SCOPE",
+      "manualAndPhysicalReview": "Bilancio del nodo senza accumulo:2→10mL/s,8→4. Intero controllo0..12 conserva portate nonnegative e somma12.",
+      "primaryDerivation": "Q_lower=Q_in-Q_upper=12mL/s-Q_upper",
+      "referenceChecks": [
+        {
+          "x": "2",
+          "independentlyDerivedY": "10",
+          "sourceY": "10",
+          "ok": true
+        },
+        {
+          "x": "8",
+          "independentlyDerivedY": "4",
+          "sourceY": "4",
+          "ok": true
+        }
+      ],
+      "controlGridValueCount": 13,
+      "controlOutputRange": [
+        "0",
+        "12"
+      ],
+      "consumerReview": "NOT_RUN",
+      "installedEngineReview": "NOT_RUN",
+      "UI": "NOT_RUN",
+      "overallComplete": false,
+      "activityCredit": 0
+    }
+  ],
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "acceptedCount": 0,
+  "activityCredit": 0,
+  "overallComplete": false,
+  "limits": [
+    "Only text/source mathematics reviewed: these labels are not final scientific acceptance.",
+    "No live consumer, apparatus, clocks, charts, transfer-selection, grading, overlays, 3D/fallback or actual rendering checked.",
+    "Grid evaluations apply to independent formulas and are not installed-engine executions.",
+    "No SymPy/Pint or browser/DB/Node run in this phase; arithmetic uses exact stdlib Fraction.",
+    "No original source, source judgment in047, draft, registry, ledger, runtime or C1 proof modified."
+  ]
+}

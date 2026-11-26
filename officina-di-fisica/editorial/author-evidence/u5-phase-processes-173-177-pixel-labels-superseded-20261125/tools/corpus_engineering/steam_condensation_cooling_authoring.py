@@ -1,0 +1,78 @@
+"""Author-only heat rejected during complete condensation and liquid cooling."""
+from .vector_geometry_authoring import assemble_family,write_family
+P=('Una massa m>0 di vapore d’acqua saturo secco, in g, condensa completamente a pressione costante alla temperatura T_s. '
+   'L’acqua ottenuta si raffredda poi di ΔT>0, in K, restando liquida: le prove ammesse rispettano ΔT<T_s−T_fus, dove T_fus è la temperatura di fusione alla stessa pressione. '
+   'Non si perde massa e si trascurano recipiente e dispersioni. Il modello assegna L_v=2400 J/g e c_l=4 J/(g·K), costanti ideali per il calcolo. '
+   'Q_c>0 è il modulo del calore ceduto; il calore con segno ricevuto dal campione è Q=−Q_c. ')
+TASKS=[
+('Due tratti che cedono entrambi energia',P+'Con m=1 g e ΔT=25 K, quanto vale Q_c in J?',2500,
+ 'La condensazione del grammo di vapore cede 2400 J senza cambiare la temperatura di fase. Il successivo raffreddamento del liquido cede altri mc_lΔT=100 J. Il modulo totale è la somma, 2500 J. Non occorre conoscere il valore di T_s per questi due contributi: è assegnata la differenza termica del secondo tratto e si garantisce che l’acqua resti liquida.',
+ r'Q_{c,\rm cond}=mL_v=2400\,\mathrm J\qquad Q_{c,\rm raff}=mc_l\Delta T\qquad Q_{c,\rm raff}=100\,\mathrm J\qquad Q_c=2500\,\mathrm J\qquad Q=-2500\,\mathrm J',
+ '2400 J omette il raffreddamento e 100 J omette la condensazione. 2300 J sottrae due contributi che sono entrambi ceduti. −2500 J sarebbe il calore con segno del campione, non il modulo positivo chiesto.','Calcola prima la condensazione, poi il raffreddamento dell’acqua ottenuta.'),
+('Il modulo del calore è ancora energia',P+'Quale unità misura Q_c?',['J','K','J/g','J/(g·K)','W'],
+ 'Sia mL_v sia mc_lΔT hanno unità joule. Il fatto di chiedere il modulo stabilisce il segno del risultato, senza cambiarne la dimensione. Il raffreddamento ΔT è un intervallo positivo, mentre la variazione di temperatura del liquido è T_f−T_s=−ΔT.',
+ r'[mL_v]=\mathrm J\qquad [mc_l\Delta T]=\mathrm J\qquad [Q_c]=\mathrm J',
+ 'J/g è energia per unità di massa e J/(g·K) capacità specifica, non il trasferimento totale. K è un intervallo; W richiederebbe anche una durata.','Controlla l’unità di entrambi i termini prima di sommarli.'),
+('Una somma di moduli coerente con i versi',P+'Quale relazione dà Q_c?',['Q_c = m (L_v + c_l ΔT)','Q_c = m (L_v − c_l ΔT)','Q_c = m L_v','Q_c = m c_l ΔT','Q_c = m c_l (L_v + ΔT)'],
+ 'La fase iniziale è vapore, quindi prima si libera il calore latente di condensazione. La massa ormai liquida cede poi calore sensibile diminuendo la temperatura. Per il calore con segno del campione entrambi i contributi sarebbero negativi; il loro modulo totale è mL_v+mc_lΔT. Raccogliamo la massa comune.',
+ r'Q=-mL_v-mc_l\Delta T\qquad Q_c=-Q\qquad Q_c=m(L_v+c_l\Delta T)',
+ 'Il segno meno nella parentesi tratterebbe il raffreddamento come un assorbimento. I termini isolati saltano una fase del percorso. L_v+ΔT somma J/g e K, grandezze diverse: non si può raccogliere c_l anche dal calore latente.','Assegna il verso a ciascuno scambio prima di prendere il modulo totale.'),
+('La massa raddoppia entrambi gli scambi',P+'A ha m=1 g e B m=2 g; entrambe le prove hanno ΔT=25 K. Come cambia Q_c?',['Da 2500 a 5000 J','Resta 2500 J','Da 2500 a 1250 J','Da 2500 a 4900 J','Da 2500 a 10000 J'],
+ 'Ogni grammo cede 2400 J condensando e 100 J raffreddandosi. Due grammi cedono 4800 J più 200 J, cioè 5000 J. L’intervallo del liquido e i coefficienti assegnati rimangono uguali: il totale è proporzionale alla massa.',
+ r'L_v+c_l\Delta T=2500\,\mathrm{J/g}\qquad Q_{c,A}=2500\,\mathrm J\qquad Q_{c,B}=2\cdot2500\,\mathrm J\qquad Q_{c,B}=5000\,\mathrm J',
+ '1250 J inverte la dipendenza dalla massa. 4900 J raddoppia soltanto la condensazione e lascia 100 J di raffreddamento per un solo grammo. 10000 J introduce un secondo raddoppio.','La massa moltiplica tutta la parentesi, non il solo calore latente.'),
+('La massa dalla somma energetica specifica',P+'Q_c=2500 J e ΔT=25 K. Quanto vale m in g?',1,
+ 'Il percorso completo richiede una cessione di 2500 J per ogni grammo. Dividendo il modulo totale per L_v+c_lΔT troviamo un grammo. La verifica dà 2400 J di condensazione e 100 J di raffreddamento.',
+ r'm=\frac{Q_c}{L_v+c_l\Delta T}\qquad L_v+c_l\Delta T=2500\,\mathrm{J/g}\qquad m=1\,\mathrm g',
+ '25/24 g divide soltanto per L_v e sovrastima la massa. 25 g divide soltanto per c_lΔT e omette la condensazione. Le due unità di massa possono sembrare corrette, ma i rispettivi bilanci non ricostruiscono Q_c.','Dividi per il calore ceduto da un grammo nell’intero percorso.'),
+('Il raffreddamento dopo la condensazione',P+'Q_c=2500 J e m=1 g. Quanto vale ΔT in K?',25,
+ 'Dai 2500 J/g ceduti togliamo i 2400 J/g della condensazione. Restano 100 J/g per il raffreddamento del liquido. Dividendo per c_l=4 J/(g·K) otteniamo 25 K. La temperatura finale sarebbe T_s−25 K; non è determinata numericamente senza assegnare T_s.',
+ r'Q_c/m-L_v=c_l\Delta T\qquad \Delta T=\frac{Q_c/m-L_v}{c_l}\qquad \Delta T=100/4\,\mathrm K\qquad \Delta T=25\,\mathrm K',
+ '625 K usa tutta la cessione come se provenisse dal raffreddamento. −25 K è la variazione con segno T_f−T_s, non il positivo ΔT chiesto. L’inversa richiede Q_c/m>L_v e deve rispettare il campo liquido dichiarato.','Togli prima l’energia latente per grammo.'),
+('Raddoppiare il raffreddamento non la condensazione',P+'m=1 g. A usa ΔT_A=25 K, B usa ΔT_B=50 K, entrambe nel campo liquido. Quanto vale Q_c,B/Q_c,A?',['26/25','2','25/26','26','1'],
+ 'A cede 2500 J. In B il raffreddamento cede 200 J, mentre la condensazione resta 2400 J: totale 2600 J. Il rapporto 2600/2500 si riduce a 26/25. La parte latente non raddoppia quando cambia soltanto l’intervallo del liquido.',
+ r'Q_{c,A}=2500\,\mathrm J\qquad Q_{c,B}=(2400+200)\,\mathrm J\qquad Q_{c,B}=2600\,\mathrm J\qquad Q_{c,B}/Q_{c,A}=26/25',
+ 'Due raddoppia erroneamente tutto il percorso. 25/26 inverte il confronto, 26 omette il denominatore e uno trascura il raffreddamento aggiuntivo.','Conserva mL_v invariato mentre confronti i secondi tratti.'),
+('La proposta usa il doppio dell’energia',P+'Con m=1 g e ΔT=25 K si propone Q_c=5000 J. Quanto vale proposta meno risultato corretto?',['2500 J','−2500 J','5000 J','0 J','1250 J'],
+ 'Il modulo corretto è 2500 J. La proposta lo supera di altri 2500 J, perciò lo scarto è positivo. Il raffreddamento del sistema non rende negativo questo confronto fra due moduli: lo scarto segue l’ordine richiesto.',
+ r'Q_c=2500\,\mathrm J\qquad e=(5000-2500)\,\mathrm J\qquad e=2500\,\mathrm J',
+ '−2500 J scambia proposta e risultato. 5000 J ripete la proposta, zero la accetta e 1250 J divide ancora la differenza per due.','Distingui segno del calore del campione e segno dello scarto.'),
+('L’inversa deve conservare i due tratti',P+'Quale formula isola m?',['m = Q_c / (L_v + c_l ΔT)','m = Q_c / L_v','m = Q_c / (c_l ΔT)','m = (L_v + c_l ΔT) / Q_c','m = Q_c (L_v + c_l ΔT)'],
+ 'La parentesi L_v+c_lΔT è un’energia per unità di massa, positiva. Dividiamo Q_c per l’intera parentesi, ottenendo g. Usare un solo termine ricostruirebbe un processo diverso da quello che comprende condensazione e raffreddamento.',
+ r'Q_c=m(L_v+c_l\Delta T)\qquad m=\frac{Q_c}{L_v+c_l\Delta T}\qquad [m]=\mathrm g',
+ 'I divisori singoli omettono una parte della cessione. Il reciproco ha g⁻¹ e il prodotto J²/g; nessuno rappresenta la massa iniziale di vapore.','L’energia specifica totale, non una sua parte, divide Q_c.'),
+('Due fattori e un termine latente fisso',P+'Fra prove m_B=κ₁m_A e ΔT_B=κ₂ΔT_A, κ₁,κ₂>0; anche B resta interamente nel campo liquido dopo la condensazione. Qual è Q_c,B/Q_c,A?',['κ₁ (L_v + c_l κ₂ ΔT_A) / (L_v + c_l ΔT_A)','κ₁ κ₂','κ₁ / κ₂','(L_v + c_l ΔT_A) / [κ₁ (L_v + c_l κ₂ ΔT_A)]','κ₁ + κ₂'],
+ 'Sostituiamo il fattore di massa nell’intero percorso e quello termico soltanto nel termine c_lΔT. La massa A si cancella nel rapporto. L_v è un dato fisso, non viene moltiplicato per κ₂. I parametri devono descrivere due prove ammesse, senza introdurre una successiva solidificazione.',
+ r'Q_{c,B}=\kappa_1m_A(L_v+c_l\kappa_2\Delta T_A)\qquad Q_{c,A}=m_A(L_v+c_l\Delta T_A)\qquad \frac{Q_{c,B}}{Q_{c,A}}=\frac{\kappa_1(L_v+c_l\kappa_2\Delta T_A)}{L_v+c_l\Delta T_A}',
+ 'κ₁κ₂ raddoppierebbe anche il calore latente sotto un fattore termico doppio. Il quoziente semplice inverte l’effetto del raffreddamento. L’espressione reciproca scambia B e A; la somma dà due per prove identiche.','Separa il termine che cambia con ΔT da quello che non cambia.'),
+('Massa e raffreddamento aumentano insieme',P+'A: m=1 g, ΔT=25 K. B: m=2 g, ΔT=50 K. Quanto vale Q_c,B/Q_c,A?',['52/25','25/52','2','4','26/25'],
+ 'A cede 2500 J. Ogni grammo di B cede 2600 J e i due grammi ne cedono 5200. Il rapporto 5200/2500 è 52/25. Il fattore due della massa agisce su tutti i termini; quello sul raffreddamento solo sul calore sensibile.',
+ r'Q_{c,A}=2500\,\mathrm J\qquad Q_{c,B}=2(2400+200)\,\mathrm J\qquad Q_{c,B}=5200\,\mathrm J\qquad Q_{c,B}/Q_{c,A}=52/25',
+ 'Due ignora il nuovo raffreddamento, 26/25 ignora la massa doppia. Quattro tratta il totale come un prodotto mΔT e 25/52 inverte il confronto.','Calcola prima la cessione per grammo di ciascuna prova.'),
+('Media dei moduli ceduti nelle due prove',P+'A usa m=1 g e ΔT=25 K; B usa m=2 g e ΔT=50 K. Qual è la media aritmetica dei due Q_c con uguale peso?',['3850 J','7700 J','3825 J','1350 J','1925 J'],
+ 'I moduli sono 2500 e 5200 J. La somma 7700 J divisa per due dà 3850 J. Gli ingressi medi sarebbero m=3/2 g e ΔT=75/2 K: il modello darebbe (3/2)(2400+150)=3825 J. È una terza prova, non la media delle due cessioni.',
+ r'\overline Q_c=\frac{2500+5200}{2}\,\mathrm J\qquad \overline Q_c=3850\,\mathrm J\qquad Q_{c,\rm ingressi\ medi}=3825\,\mathrm J',
+ '7700 J è la somma, 1350 J metà della differenza e 1925 J dimezza due volte. 3825 J applica la legge agli ingressi medi. Tutti sono moduli di energia, ma rispondono a operazioni differenti.','Media le energie dopo aver completato separatamente i due percorsi.'),
+('Un bersaglio sul modulo totale',P+'A ha m=1 g e ΔT_A=25 K. B ha m=2 g e deve cedere Q_c,B=(52/25)Q_c,A. Quanto vale ΔT_B/ΔT_A?',['2','52/25','1/2','26/25','4'],
+ 'Il riferimento cede 2500 J e il bersaglio 5200 J. Su due grammi sono 2600 J/g. Togliendo la condensazione restano 200 J/g; divisi per c_l danno 50 K di raffreddamento, il doppio dei 25 K iniziali. La prova B rimane nel campo liquido come garantito.',
+ r'Q_{c,B}=5200\,\mathrm J\qquad Q_{c,B}/m_B=2600\,\mathrm{J/g}\qquad \Delta T_B=\frac{Q_{c,B}/m_B-L_v}{c_l}\qquad \Delta T_B=50\,\mathrm K\qquad \Delta T_B/\Delta T_A=2',
+ '52/25 copia il bersaglio sulle energie. 26/25 è il confronto energetico a massa uguale, non quello fra raffreddamenti. Un mezzo inverte il rapporto; quattro non ricostruisce 5200 J.','Ricostruisci prima la cessione specifica di B.'),
+('Tarare la lettura prima della massa',P+'S=qQ_c è continuo e adimensionale, q>0 costante. A con m=1 g, ΔT=25 K dà S=7500. B con ΔT=50 K dà S=15600. Quanto vale m_B in g?',2,
+ 'A cede 2500 J, perciò q=3 J⁻¹. La nuova lettura rappresenta 5200 J. Con ΔT=50 K la cessione specifica è 2600 J/g: 5200 diviso 2600 dà due grammi. Il valore del display non è una quantità di calore già espressa in joule.',
+ r'q=3\,\mathrm{J^{-1}}\qquad Q_{c,B}=15600/q\qquad Q_{c,B}=5200\,\mathrm J\qquad m_B=\frac{Q_{c,B}}{L_v+c_l\Delta T_B}\qquad m_B=2\,\mathrm g',
+ 'Usare 15600 come joule darebbe 6 g. Dividere soltanto per L_v darebbe 13/6 g e ometterebbe il raffreddamento. La taratura e la legge del percorso sono due passaggi distinti.','Converti S in modulo energetico prima di applicare l’inversa.'),
+('Separare guadagno e offset',P+'S=qQ_c+b è continuo e adimensionale. A: m=1 g, ΔT=25 K, S=5001. B: m=2 g, ΔT=50 K, S=10401. C: ΔT=25 K, S=10001. Quanto vale m_C?',['2 g','4 g','1 g','10001/5000 g','5000 g'],
+ 'I riferimenti cedono 2500 e 5200 J. La differenza 5400 delle letture su 2700 J dà q=2 J⁻¹; A fissa b=1. C cede (10001−1)/2=5000 J. Il suo costo specifico è 2500 J/g, perciò la massa è due grammi.',
+ r'q=\frac{10401-5001}{(5200-2500)\,\mathrm J}\qquad q=2\,\mathrm{J^{-1}}\qquad b=1\qquad Q_{c,C}=5000\,\mathrm J\qquad m_C=2\,\mathrm g',
+ '4 g darebbero S=20001 e 1 g S=5001. 10001/5000 g omette b e ricostruisce S=10002. 5000 g usa il numero dell’energia come se fosse la massa.','Trova q dalle differenze e b da un riferimento.'),
+('Un vincolo fra massa e raffreddamento',P+'Fra preparazioni diverse si impone m=dΔT, d=(1/25) g/K. La massa resta costante durante ogni processo. Se Q_c=2500 J, quanto vale ΔT nel dominio fisico?',['25 K','−625 K','625 K','50 K','2500 K'],
+ 'Sostituendo la massa scelta nella legge, l’incognita compare anche nel contributo sensibile. Poniamo x=ΔT/(1 K): l’equazione si riduce a x²+600x−15625=0, che si fattorizza (x−25)(x+625)=0. Il ramo positivo dà 25 K e m=1 g. Il ramo −625 renderebbe negativi sia ΔT sia m e non descrive il raffreddamento ammesso.',
+ r'Q_c=d\Delta T(L_v+c_l\Delta T)\qquad x=\Delta T/(1\,\mathrm K)\qquad x^2+600x-15625=0\qquad (x-25)(x+625)=0\qquad x=25\qquad \Delta T=25\,\mathrm K',
+ '625 K cambia soltanto il segno della radice esclusa senza soddisfare la quadratica. 50 K darebbe m=2 g e Q_c=5200 J; 2500 K copia un numero di energia come intervallo e non soddisfa né il bilancio né il campo liquido garantito.','Fattorizza la quadratica e verifica segno e stato finale del ramo scelto.'),
+]
+CHOICES={n:0 for n in [2,3,4,7,8,9,10,11,12,13,15,16]}
+UNITS={1:'J',5:'g',6:'K',14:'g'}
+FIGURES={1:'Tre pannelli: il diagramma usa il calore ceduto cumulativo in modulo Q_c e la differenza T−T_s, non temperature assolute negative. La condensazione cede 2400 J a T_s; il raffreddamento di 25 K cede altri 100 J. Scale 0,15 px/J e 4 px/K per le differenze. Le barre energetiche del secondo pannello usano 0,15 px/J. Nell’ultimo, 2500 J, 5200 J e la media 3850 J usano 0,08 px/J con origine comune.',3:'La prima linea orizzontale appartiene alla condensazione completa, non a un raffreddamento senza cessione. La linea successiva riguarda soltanto acqua liquida. I moduli dei due contributi si sommano; il calore con segno del campione è negativo. Le scale sono distinte e dichiarate per pannello.'}
+def assemble(repo,source_ref):
+ return assemble_family(repo,source_ref,'steam-condensation-cooling',TASKS,CHOICES,UNITS,'steam-condensation-cooling-progressive.svg',FIGURES,17400,unit='u5',course='C3',source_path='packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U5-03.json',skill='C3-L04',prerequisites=['C1-L001','C3-L01','C3-L03','C3-L04'],section='Condensazione e raffreddamento del liquido',coverage=['Calore latente ceduto e calore sensibile','Modulo energetico e campo liquido','Inverse, medie, taratura e ramo fisico'])
+if __name__=='__main__':write_family(assemble,'steam-condensation-cooling-174')

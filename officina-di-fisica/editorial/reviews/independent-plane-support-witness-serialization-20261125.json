@@ -1,0 +1,252 @@
+{
+  "reviewer": "AI independent of patch author; no human approval",
+  "phase": "TECHNICAL_HELPER_AUDIT_ONLY",
+  "files": [
+    {
+      "path": "/private/tmp/cric-resident-integrator/officina-di-fisica/tools/corpus_engineering/experiments_forces_revision_verifier.py",
+      "sha256": "d1e1757bdc47312dd77b3ecafa242dd370c17535bcaaeb318bd6e44cd61f0187"
+    },
+    {
+      "path": "/private/tmp/cric-resident-integrator/officina-di-fisica/tests/corpus/test_geometry_observation_serialization.py",
+      "sha256": "20e1beeb74e874a50c937e1170e7ae9e8f99d1f5a0ea359eb295971fecc38600"
+    }
+  ],
+  "rootTests": {
+    "command": "recovery-python -m unittest discover -s tests/corpus -p test_geometry_observation_serialization.py -v",
+    "lock": "/private/tmp/cric-bounded-local-work.lock",
+    "minimumFreeGiB": 2,
+    "observedFreeGiB": 5.156,
+    "tests": 3,
+    "failures": 0,
+    "exitCode": 0
+  },
+  "independentOneUlpAndNearBoundaryCases": [
+    {
+      "rawClearance": "0.04299999999999999",
+      "rawRadius": "0.043",
+      "expectedRawStrictPredicate": false,
+      "actual": {
+        "claim": "independent entire glyph clear plane supports",
+        "ok": false,
+        "minimumPlaneClearance": 0.043,
+        "supportRadius": 0.043,
+        "observationSerialization": "scene-coordinate-decimal12/v1",
+        "decisionUsesUnroundedClearance": true,
+        "dimension": {}
+      }
+    },
+    {
+      "rawClearance": "0.043",
+      "rawRadius": "0.043",
+      "expectedRawStrictPredicate": false,
+      "actual": {
+        "claim": "independent entire glyph clear plane supports",
+        "ok": false,
+        "minimumPlaneClearance": 0.043,
+        "supportRadius": 0.043,
+        "observationSerialization": "scene-coordinate-decimal12/v1",
+        "decisionUsesUnroundedClearance": true,
+        "dimension": {}
+      }
+    },
+    {
+      "rawClearance": "0.043000000000000003",
+      "rawRadius": "0.043",
+      "expectedRawStrictPredicate": true,
+      "actual": {
+        "claim": "independent entire glyph clear plane supports",
+        "ok": true,
+        "minimumPlaneClearance": 0.043,
+        "supportRadius": 0.043,
+        "observationSerialization": "scene-coordinate-decimal12/v1",
+        "decisionUsesUnroundedClearance": true,
+        "dimension": {}
+      }
+    },
+    {
+      "rawClearance": "0.04299999999999",
+      "rawRadius": "0.043",
+      "expectedRawStrictPredicate": false,
+      "actual": {
+        "claim": "independent entire glyph clear plane supports",
+        "ok": false,
+        "minimumPlaneClearance": 0.043,
+        "supportRadius": 0.043,
+        "observationSerialization": "scene-coordinate-decimal12/v1",
+        "decisionUsesUnroundedClearance": true,
+        "dimension": {}
+      }
+    },
+    {
+      "rawClearance": "0.043000000000009996",
+      "rawRadius": "0.043",
+      "expectedRawStrictPredicate": true,
+      "actual": {
+        "claim": "independent entire glyph clear plane supports",
+        "ok": true,
+        "minimumPlaneClearance": 0.043,
+        "supportRadius": 0.043,
+        "observationSerialization": "scene-coordinate-decimal12/v1",
+        "decisionUsesUnroundedClearance": true,
+        "dimension": {}
+      }
+    },
+    {
+      "rawClearance": "0.49999999999999994",
+      "rawRadius": "0.5",
+      "expectedRawStrictPredicate": false,
+      "actual": {
+        "claim": "independent entire glyph clear plane supports",
+        "ok": false,
+        "minimumPlaneClearance": 0.5,
+        "supportRadius": 0.5,
+        "observationSerialization": "scene-coordinate-decimal12/v1",
+        "decisionUsesUnroundedClearance": true,
+        "dimension": {}
+      }
+    },
+    {
+      "rawClearance": "0.5",
+      "rawRadius": "0.5",
+      "expectedRawStrictPredicate": false,
+      "actual": {
+        "claim": "independent entire glyph clear plane supports",
+        "ok": false,
+        "minimumPlaneClearance": 0.5,
+        "supportRadius": 0.5,
+        "observationSerialization": "scene-coordinate-decimal12/v1",
+        "decisionUsesUnroundedClearance": true,
+        "dimension": {}
+      }
+    },
+    {
+      "rawClearance": "0.5000000000000001",
+      "rawRadius": "0.5",
+      "expectedRawStrictPredicate": true,
+      "actual": {
+        "claim": "independent entire glyph clear plane supports",
+        "ok": true,
+        "minimumPlaneClearance": 0.5,
+        "supportRadius": 0.5,
+        "observationSerialization": "scene-coordinate-decimal12/v1",
+        "decisionUsesUnroundedClearance": true,
+        "dimension": {}
+      }
+    },
+    {
+      "rawClearance": "0.49999999999999",
+      "rawRadius": "0.5",
+      "expectedRawStrictPredicate": false,
+      "actual": {
+        "claim": "independent entire glyph clear plane supports",
+        "ok": false,
+        "minimumPlaneClearance": 0.5,
+        "supportRadius": 0.5,
+        "observationSerialization": "scene-coordinate-decimal12/v1",
+        "decisionUsesUnroundedClearance": true,
+        "dimension": {}
+      }
+    },
+    {
+      "rawClearance": "0.50000000000001",
+      "rawRadius": "0.5",
+      "expectedRawStrictPredicate": true,
+      "actual": {
+        "claim": "independent entire glyph clear plane supports",
+        "ok": true,
+        "minimumPlaneClearance": 0.5,
+        "supportRadius": 0.5,
+        "observationSerialization": "scene-coordinate-decimal12/v1",
+        "decisionUsesUnroundedClearance": true,
+        "dimension": {}
+      }
+    },
+    {
+      "rawClearance": "0.9999999999999999",
+      "rawRadius": "1.0",
+      "expectedRawStrictPredicate": false,
+      "actual": {
+        "claim": "independent entire glyph clear plane supports",
+        "ok": false,
+        "minimumPlaneClearance": 1.0,
+        "supportRadius": 1.0,
+        "observationSerialization": "scene-coordinate-decimal12/v1",
+        "decisionUsesUnroundedClearance": true,
+        "dimension": {}
+      }
+    },
+    {
+      "rawClearance": "1.0",
+      "rawRadius": "1.0",
+      "expectedRawStrictPredicate": false,
+      "actual": {
+        "claim": "independent entire glyph clear plane supports",
+        "ok": false,
+        "minimumPlaneClearance": 1.0,
+        "supportRadius": 1.0,
+        "observationSerialization": "scene-coordinate-decimal12/v1",
+        "decisionUsesUnroundedClearance": true,
+        "dimension": {}
+      }
+    },
+    {
+      "rawClearance": "1.0000000000000002",
+      "rawRadius": "1.0",
+      "expectedRawStrictPredicate": true,
+      "actual": {
+        "claim": "independent entire glyph clear plane supports",
+        "ok": true,
+        "minimumPlaneClearance": 1.0,
+        "supportRadius": 1.0,
+        "observationSerialization": "scene-coordinate-decimal12/v1",
+        "decisionUsesUnroundedClearance": true,
+        "dimension": {}
+      }
+    },
+    {
+      "rawClearance": "0.99999999999999",
+      "rawRadius": "1.0",
+      "expectedRawStrictPredicate": false,
+      "actual": {
+        "claim": "independent entire glyph clear plane supports",
+        "ok": false,
+        "minimumPlaneClearance": 1.0,
+        "supportRadius": 1.0,
+        "observationSerialization": "scene-coordinate-decimal12/v1",
+        "decisionUsesUnroundedClearance": true,
+        "dimension": {}
+      }
+    },
+    {
+      "rawClearance": "1.00000000000001",
+      "rawRadius": "1.0",
+      "expectedRawStrictPredicate": true,
+      "actual": {
+        "claim": "independent entire glyph clear plane supports",
+        "ok": true,
+        "minimumPlaneClearance": 1.0,
+        "supportRadius": 1.0,
+        "observationSerialization": "scene-coordinate-decimal12/v1",
+        "decisionUsesUnroundedClearance": true,
+        "dimension": {}
+      }
+    }
+  ],
+  "roundingBoundaryLimitation": {
+    "rawPair": [
+      "0.4700000000004999",
+      "0.4700000000005001"
+    ],
+    "rawDifference": "1.6653345369377348e-16",
+    "roundedWitnesses": [
+      0.47,
+      0.470000000001
+    ],
+    "bothDecisionsAccept": true
+  },
+  "finding": "NO_ACCEPTANCE_WEAKENING_IDENTIFIED",
+  "scope": "Only plane-support witness serialization; no browser, source/draft science, complete140 closure or fullsuite approval.",
+  "requiredFollowup": "Explicitly regenerate changed-module report140 and closure; keep historical witnesses and report bytes. Do not retag or generalize decimal12 to physics/calculation decisions.",
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}

@@ -1,4 +1,12 @@
 import { colore as c, punti, rad } from '../geometria.js';
+// Translate a force along its own line of action, retaining the complete signed
+// vector at the existing scale while clearing an opaque point marker.
+function exposedForce(b, point, delta, color, clearance) {
+  const length = Math.hypot(...delta);
+  if (length === 0) return;
+  const start = point.map((value, index) => value + clearance * delta[index] / length);
+  b.arrow(start, start.map((value, index) => value + delta[index]), color);
+}
 const rail = (b, marks) => {
   for (const z of [-0.27, 0.27]) b.rod([-2.65, 0.22, z], [2.65, 0.22, z], 0.045, c.metallo);
   if (marks) {
@@ -118,7 +126,6 @@ export const meccanica = {
     b.label([2.8, oy + 0.14, 0], 'x');
     b.label([ox, oy + 0.14, -2.2], 'y');
     b.arrow(O, A, c.verde);
-    b.label([A[0], oy + 0.26, A[2]], s.bx === undefined ? 'v' : 'a', c.verde);
     if (s.proietta) {
       b.line([A, [A[0], oy, 0]], c.ocra, true);
       b.line([A, [ox, oy, A[2]]], c.ocra, true);
@@ -132,11 +139,9 @@ export const meccanica = {
         end[1] += 0.12;
       }
       b.arrow(start, end, c.ocra);
-      b.label([end[0], oy + 0.55, end[2]], 'b', c.ocra);
       if (s.somma) b.arrow([ox, oy + 0.42, 0], [end[0], oy + 0.42, end[2]], c.viola);
       if (s.croce) {
         b.arrow(O, [ox, oy + 1.55 * s.by, 0], c.viola);
-        b.label([ox, oy + 1.55 * s.by + 0.27, 0], 'a × b', c.viola);
       }
       if (s.prodotto) b.line([B, [B[0], oy, 0]], c.viola, true);
     }
@@ -149,7 +154,7 @@ export const meccanica = {
     b.rod([old, 0.06, 0.65], [old, 0.65, 0.65], 0.026, c.ocra);
     carrello(b, x, c.verde);
     b.arrow([x, 0.95, 0], [x + (s.freccia ?? 0) * 0.65, 0.95, 0], c.viola);
-    b.label([old, 0.85, 0.72], s.startLabel || 'Via', s.marks ? c.inchiostro : c.ocra);
+    if (s.startLabel) b.label([old, 0.85, 0.72], s.startLabel, s.marks ? c.inchiostro : c.ocra);
     if (s.turn !== undefined) {
       b.arrow([old, 0.12, -1.15], [at(s.turn), 0.12, -1.15], c.verde);
       b.arrow([at(s.turn), 0.12, -0.67], [x, 0.12, -0.67], c.viola);
@@ -192,10 +197,12 @@ export const meccanica = {
         ],
         c.inchiostro,
       );
-      b.arrow([0.25, y, 0], [0.25, y + 0.95 * s.tensione, 0], c.verde);
+      // tensione is T / 30 N; use the same 0.42 scene units per 20 N as weight.
+      b.arrow([0.25, y, 0], [0.25, y + 0.42 * (30 / 20) * s.tensione, 0], c.verde);
     }
-    b.arrow([0, y, 0.25], [0, y - 0.42, 0.25], c.rosso);
-    b.label([0.5, y + 0.33, 0], 'Massa');
+    // The complete constant weight keeps its original vertical display axis
+    // and scale, above the body even at first contact with the base.
+    b.arrow([0, y + 0.64, 0.25], [0, y + 0.22, 0.25], c.rosso);
   },
   cerchio(b, s) {
     const r = s.r,
@@ -216,15 +223,16 @@ export const meccanica = {
       true,
     );
     b.ball([x, y, z], 0.14, c.ocra);
-    b.arrow([x, y + 0.13, z], [x - s.tangente * sin, y + 0.13, z - s.tangente * cos], c.verde);
-    b.arrow([x, y + 0.12, z], [x - s.radiale * cos, y + 0.12, z + s.radiale * sin], c.viola);
-    b.label([0, 0.8, 0], 'Centro');
-    b.label([x - s.tangente * sin, 0.78, z - s.tangente * cos], 'v', c.verde);
+    // Velocity and acceleration are drawn in a parallel plane: the entire
+    // cone radius clears the opaque marker, with each vector delta unchanged.
+    const arrowY = y + 0.25;
+    b.arrow([x, arrowY, z], [x - s.tangente * sin, arrowY, z - s.tangente * cos], c.verde);
+    b.arrow([x, arrowY, z], [x - s.radiale * cos, arrowY, z + s.radiale * sin], c.viola);
   },
   forze(b, s) {
     b.box([0, 0.55, 0], [1.3, 0.9, 0.9], c.ocra);
-    b.arrow([0, 0.86, 0.47], [1.14 * s.destra, 0.86, 0.47], c.verde);
-    b.arrow([0, 0.55, 0.47], [-1.14 * (s.sinistra ?? 0), 0.55, 0.47], c.rosso);
+    b.arrow([0, 0.55, 0.56], [1.14 * s.destra, 0.55, 0.56], c.verde);
+    b.arrow([0, 0.55, 0.56], [-1.14 * (s.sinistra ?? 0), 0.55, 0.56], c.rosso);
     if (s.acc !== undefined) b.arrow([0, 1.55, 0], [s.acc, 1.55, 0], c.viola);
     b.label([0, 2.0, 0], s.acc !== undefined ? 'Spinta e accelerazione' : 'Forze sul blocco');
   },
@@ -246,9 +254,15 @@ export const meccanica = {
     for (const u of [0, 0.55, 1.1, 1.65, 2.2, 2.5]) b.rod(at(u, 0, -0.49), at(u, 0, 0.49), 0.04, c.metallo);
     const p = at(1.3, 0.22, 0);
     b.ball(p, 0.22, c.ocra);
-    b.arrow(p, [p[0], p[1] - 0.75, p[2]], c.rosso);
-    b.arrow(p, at(1.3, 0.22 + s.normale, 0), c.verde);
-    b.label(at(1.7, 0.7, 0), 'Normale', c.verde);
+    // peso and normale are normalized to the same 20 N reference.
+    const normalLength = 0.75 * s.normale;
+    const normalTop = (0.25 + normalLength) * dir[0];
+    // Separate the two full vectors along their own lines of action. The
+    // weight ends above the normal, clearing both the table and its opposite
+    // arrow at zero angle; the normal starts outside the opaque sphere.
+    const weightEnd = p[1] + normalTop + 0.18;
+    b.arrow([p[0], weightEnd + 0.75 * s.peso, p[2]], [p[0], weightEnd, p[2]], c.rosso);
+    exposedForce(b, p, [-normalLength * dir[1], normalLength * dir[0], 0], c.verde, 0.25);
   },
   molla(b, s) {
     const vert = s.verticale,
@@ -265,8 +279,7 @@ export const meccanica = {
     );
     const p = at(1);
     b.ball(p, 0.25, c.ocra);
-    if (s.forza !== undefined) b.arrow(p, [p[0] + 0.8 * s.forza, p[1], p[2]], c.verde);
-    b.label([p[0], p[1] + 0.41, 0], 'Estremo mobile');
+    if (s.forza !== undefined) exposedForce(b, p, [0.8 * s.forza, 0, 0], c.verde, 0.3);
   },
   gravita(b, s) {
     const d = 2.4 * s.distanza;
@@ -314,7 +327,11 @@ export const meccanica = {
     const a = rad(s.angolo ?? 0),
       pivot = [-0.4, 1.25, 0],
       at = (d) => [pivot[0] + d * Math.cos(a), pivot[1] + d * Math.sin(a), 0];
-    b.rod([pivot[0], 0.08, 0], pivot, 0.13, c.metallo);
+    // The post sits behind the swept plane of the rod. Its short rear axle
+    // reaches the same pivot without enclosing the lower endpoint at 90°.
+    const rear = [pivot[0], pivot[1], -0.45];
+    b.rod([pivot[0], 0.08, rear[2]], rear, 0.13, c.metallo);
+    b.rod(rear, pivot, 0.07, c.metallo);
     b.ball(pivot, 0.16, c.viola);
     const l = s.braccio ? s.sx : -s.sx,
       r = s.dx,
@@ -326,13 +343,15 @@ export const meccanica = {
     ]) {
       const p = at(u);
       b.ball(p, 0.11, c.verde);
-      if (F)
-        b.arrow(
-          p,
-          [p[0], p[1] + (s.braccio && u === l ? 1 : -1) * F, p[2]],
-          s.braccio && u === l ? c.verde : c.rosso,
-        );
+      if (F) {
+        const dy = (s.braccio && u === l ? 1 : -1) * F;
+        // Put both signs above the point marker: a downward force ends just
+        // above it, so the unchanged full vector cannot penetrate the table.
+        const tail = [p[0], p[1] + 0.18 + Math.max(0, -dy), p[2]];
+        b.arrow(tail, [tail[0], tail[1] + dy, tail[2]], s.braccio && u === l ? c.verde : c.rosso);
+      }
     }
-    b.label([pivot[0], 0.57, 0.45], s.braccio ? 'Gomito' : 'Fulcro');
+    // Identify the pivot in the existing HTML legend. A minimum-size 3D text
+    // sprite can cover the lower rod endpoint on a narrow viewport.
   },
 };

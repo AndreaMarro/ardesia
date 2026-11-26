@@ -1,4 +1,5 @@
-import { api, esc, crumb, main, state, link } from '../ui.js';
+import { api, esc, crumb, main, state, link, blocks, typeset } from '../ui.js';
+import { lettorePersonale } from '../lettura.js';
 import { defaults, inRange, n, nextTime } from './misure.js';
 import { confrontoMisure } from './voci/misure-affiancate.js';
 import { plot, moveCursor } from './grafici.js';
@@ -112,6 +113,7 @@ function bancoMarkup(r, activity, focus, back, model, pilot, logged, origin) {
       <details class="graph-drawer" data-plots><summary>Grafici e misure</summary><div data-graphs></div></details>
     </section></div></div>
     ${activity ? '<section class="bench-comparison" data-comparison hidden></section>' : ''}
+    ${activity && r.blocks?.length ? '<details class="sheetpanel reader" data-authored-reading hidden><summary>Ragionamento e calcoli a mano</summary><div class="lettura-contenuto">' + blocks(r.blocks) + '</div></details>' : ''}
     <section data-assess hidden><h2>Metti alla prova la spiegazione</h2><div class="bench-checks">${exercises(r)}</div>${logged ? '<form class="bench-note"><label>Che cosa hai osservato?<textarea required name="note" rows="2"></textarea></label><button>Salva nel quaderno</button><p role="status"></p></form>' : ''}</section>
     <footer>${link(origin ? 'Torna all’attività' : 'Torna ai laboratori', back)} <a href="#materiale/${esc(r.skill)}/${esc(r.course)}">Lezione associata</a></footer></article>`
   );
@@ -161,6 +163,15 @@ export async function benchPage(id, origin, topicIndex) {
     raf = 0,
     last = 0,
     lastText = -1;
+  const authoredReading = get('[data-authored-reading]');
+  let readingInstalled = false;
+  if (authoredReading) authoredReading.ontoggle = async () => {
+    if (!authoredReading.open || readingInstalled) return;
+    readingInstalled = true;
+    typeset(authoredReading);
+    await lettorePersonale(authoredReading, { ...r, kind: 'worked' });
+    if (authoredReading.hidden || disposed) authoredReading.dispatchEvent(new Event('lettura:sospendi'));
+  };
   const clock = !pilot && activity?.clock;
   const timeline = clock?.input;
   const timeUnit = clock?.clockUnit || 's';
@@ -436,6 +447,10 @@ export async function benchPage(id, origin, topicIndex) {
             : 'Circuito aperto · leggi la tensione ai capi della bobina.',
           onde: 'S₁ e S₂ sono le sorgenti. La sonda P misura la somma delle due onde.',
         }[pilot] || [activity.observe, clock?.setup].filter(Boolean).join(' ');
+    if (authoredReading && authoredReading.hidden !== (stage < 2)) {
+      authoredReading.hidden = stage < 2;
+      authoredReading.dispatchEvent(new Event(stage < 2 ? 'lettura:sospendi' : 'lettura:riprendi'));
+    }
     if (stage >= 0) {
       const explanation = reasoning();
       get('[data-reference]').hidden = !pilot || stage < 2;
@@ -746,6 +761,7 @@ export async function benchPage(id, origin, topicIndex) {
   function dispose() {
     if (disposed) return;
     disposed = true;
+    authoredReading?.dispatchEvent(new Event('lettura:sospendi'));
     leaveFocus();
     finishLoading();
     startingContext?.getExtension('WEBGL_lose_context')?.loseContext();

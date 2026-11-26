@@ -1,0 +1,158 @@
+"""Six force originals: source manuality and same-unit diagram comparisons."""
+from copy import deepcopy
+import json
+import subprocess
+import unittest
+from unittest.mock import patch
+import sympy as sp
+from tools.corpus_engineering import experiments_forces_activity_verifier as review
+from tools.corpus_engineering.pipeline import canonical,digest,sha
+from tools.corpus_engineering.batches import assert_activity_identity
+from tests.corpus.historical_runtime import reviewed_runtime
+
+
+class ForcesExperimentsReview(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.raw=subprocess.check_output(['git','show',review.SOURCE_REF+':'+review.SOURCE_PATH],cwd=review.APP)
+        cls.enterClassContext(reviewed_runtime(review))
+        cls.sources={r['id']:r for r in json.loads(cls.raw) if r['id'] in review.READ_SOURCE_SHA256}
+        cls.actual=review.runtime_values(cls.sources);cls.physics=review.independent_checks()
+
+    def test_six_originals_preserve_source_and_consumer_findings(self):
+        with patch.object(review,'runtime_values',wraps=review.runtime_values) as fresh:
+            first=review.report(self.sources);second=review.report(self.sources)
+        self.assertEqual(fresh.call_count,2);self.assertEqual(first,second)
+        self.assertEqual(first,json.loads(canonical(first)))
+        self.assertEqual((first['acceptedCount'],first['failedCount'],first['draftReviewedCount']),(4,2,0))
+        self.assertEqual(first['sourceManualityIssueIds'],['SIM-C1-L005-05'])
+        self.assertEqual(first['consumerInterfaceIssueIds'],['SIM-C1-L005-05','SIM-C1-L005-06'])
+        self.assertEqual(sum(len(r['checks']) for r in first['records']),64)
+        with self.assertRaises(ValueError):assert_activity_identity(first['records'],set(review.READ_SOURCE_SHA256),self.sources)
+        accepted=[r for r in first['records'] if r['ok']]
+        assert_activity_identity(accepted,{r['id'] for r in accepted},self.sources)
+        for r in first['records']:
+            self.assertEqual(r['humanApproval'],'NOT_RUN');self.assertEqual(r['publicationAction'],'NONE')
+            self.assertTrue(r['originalEditionRetained'])
+            self.assertEqual(r['sourceScientificReview']['ok'],r['id'] not in review.SOURCE_ISSUES)
+            self.assertEqual(r['consumerReview']['ok'],r['id'] not in review.CONSUMER_ISSUES)
+            self.assertTrue(r['runtimeComparison']['numericPhysicsMatches'])
+            self.assertTrue(all(c['ok'] for c in r['checks'] if c.get('mode')=='OBSERVED_INPUT_FORMAT_CONFORMANCE'))
+        self.assertEqual([r['runtimeComparison']['caseCount'] for r in first['records']],[21,11,17,13,16,11])
+
+    def test_source_dependencies_version_and_entire_runtime_are_bound(self):
+        self.assertEqual(sha(self.raw),review.SOURCE_FILE_SHA256)
+        self.assertEqual((review.APP/'content/esperienze-C1.json').read_bytes(),self.raw)
+        self.assertEqual({k:digest(v) for k,v in self.sources.items()},review.READ_SOURCE_SHA256)
+        self.assertEqual(review.runtime_hashes(),review.READ_RUNTIME)
+        self.assertEqual(review.runtime_fingerprint(review.APP)['sha256'],review.READ_RUNTIME_PROFILE_SHA256)
+        self.assertEqual(len(review.READ_RUNTIME),16)
+        self.assertEqual(self.sources['SIM-C1-L005-03']['version'],1)
+
+    def test_unknown_sources_cannot_select_or_execute_an_engine(self):
+        for key in review.SPECS:
+            sources=deepcopy(self.sources);sources[key]['interpretation']+=' changed'
+            with patch.object(review,'runtime_values') as execute:
+                changed=next(r for r in review.verify(sources) if r['id']==key)
+                execute.assert_not_called();self.assertFalse(changed['sourceScientificReview']['ok'])
+                self.assertFalse(changed['ok'])
+            del sources[key]
+            with self.assertRaises(ValueError):review.verify(sources)
+        for field,value in [('kind','example'),('review','HUMAN APPROVED'),('engine',{'id':'unseen','version':'1.0.0'})]:
+            sources=deepcopy(self.sources);sources['SIM-C1-L005-01'][field]=value
+            with patch.object(review,'runtime_values') as execute:
+                self.assertTrue(all(not r['ok'] for r in review.verify(sources)));execute.assert_not_called()
+
+    def test_stale_missing_or_changed_runtime_rejects_before_execution(self):
+        for file in review.READ_RUNTIME:
+            changed=dict(review.READ_RUNTIME);changed[file]='MISSING'
+            with patch.object(review,'runtime_hashes',return_value=changed),patch.object(review,'runtime_values') as execute:
+                self.assertTrue(all(not r['ok'] for r in review.verify(self.sources)));execute.assert_not_called()
+        with patch.object(review,'runtime_fingerprint',return_value={'sha256':'0'*64}),patch.object(review,'runtime_values') as execute:
+            self.assertTrue(all(not r['ok'] for r in review.verify(self.sources)));execute.assert_not_called()
+        with patch.object(review,'runtime_values',side_effect=ValueError('failed actual consumer')):
+            self.assertTrue(all(not r['ok'] for r in review.verify(self.sources)))
+        changed=dict(review.READ_RUNTIME);changed[next(iter(changed))]='0'*64
+        with patch.object(review,'runtime_values',return_value=self.actual),patch.object(review,'runtime_hashes',side_effect=[review.READ_RUNTIME,changed]):
+            self.assertTrue(all('Runtime changed during check; discard evidence' in r['errors'] for r in review.verify(self.sources)))
+
+    def test_empty_or_failed_independent_physics_never_passes(self):
+        with patch.object(review,'runtime_values',return_value=self.actual):
+            for key in review.SPECS:
+                for value in ([],[{'ok':False,'claim':'wrong independent math','dimension':{}}]):
+                    physics=deepcopy(self.physics);physics[key]=value
+                    with patch.object(review,'independent_checks',return_value=physics):
+                        row=next(r for r in review.verify(self.sources) if r['id']==key)
+                        self.assertFalse(row['ok']);self.assertFalse(row['sourceScientificReview']['ok'])
+
+    def test_actual_law_domains_assignments_graphs_and_geometry_are_challenged(self):
+        for key in review.SPECS:
+            actual=deepcopy(self.actual);actual[key]['cases'][0]['output']['y']=999
+            self.assertFalse(review.compare_runtime(actual)[key]['ok'])
+            actual=deepcopy(self.actual);actual[key]['cases'].pop()
+            self.assertFalse(review.compare_runtime(actual)[key]['ok'])
+            actual=deepcopy(self.actual);actual[key]['params'][0]['step']*=2
+            self.assertFalse(review.compare_runtime(actual)[key]['ok'])
+            actual=deepcopy(self.actual);actual[key]['assessment'][1]['value']=999
+            self.assertFalse(review.compare_runtime(actual)[key]['ok'])
+            actual=deepcopy(self.actual);actual[key]['cases'][0]['graphs'][0]['series'][0]['points'][0][1]=999
+            self.assertFalse(review.compare_runtime(actual)[key]['ok'])
+            actual=deepcopy(self.actual);case=actual[key]['cases'][1]
+            next(e for e in case['elements'] if e.get('kind')=='arrow')['b'][0]+=1
+            self.assertFalse(review.compare_runtime(actual)[key]['ok'])
+        actual=deepcopy(self.actual);actual['SIM-C1-L005-02']['formatRoundtrip'][0]['parsed']=1000
+        with patch.object(review,'runtime_values',return_value=actual):
+            self.assertFalse(next(r for r in review.verify(self.sources) if r['id']=='SIM-C1-L005-02')['ok'])
+
+    def test_real_timeline_and_distinct_force_application_bodies_are_challenged(self):
+        key='SIM-C1-L005-01'
+        for field,value in [('input',False),('duration',9)]:
+            actual=deepcopy(self.actual);actual[key]['clock'][field]=value
+            self.assertFalse(review.compare_runtime(actual)[key]['ok'])
+        actual=deepcopy(self.actual);actual[key]['cases'][0]['timeSamples'].pop()
+        self.assertFalse(review.compare_runtime(actual)[key]['ok'])
+        actual=deepcopy(self.actual);actual[key]['cases'][0]['timeSamples'][0]['output']['y']=999
+        self.assertFalse(review.compare_runtime(actual)[key]['ok'])
+        for key in list(review.SPECS)[1:]:
+            actual=deepcopy(self.actual);actual[key]['clock']={'input':True}
+            self.assertFalse(review.compare_runtime(actual)[key]['ok'])
+        actual=deepcopy(self.actual);arrows=[e for e in actual['SIM-C1-L005-04']['cases'][1]['elements'] if e.get('kind')=='arrow']
+        # Preserve the force vector but move its origin to the wrong body.
+        arrows[0]['a'][0]+=.68;arrows[0]['b'][0]+=.68
+        self.assertFalse(review.compare_runtime(actual)['SIM-C1-L005-04']['ok'])
+
+    def test_exact_manual_values_and_unsupported_numeric40_are_independent(self):
+        for checks in self.physics.values():
+            self.assertTrue(all(c['ok'] for c in checks))
+            for c in checks:self.assertFalse(sp.sympify(c['independentExact']).atoms(sp.Float))
+        expected=[sp.Rational(15,4),-2,0,-6,20*sp.cos(2*sp.pi/9),18]
+        self.assertEqual([review.exact_value(k,v[5]) for k,v in review.SPECS.items()],expected)
+        self.assertEqual(sum(c['clockSampleCount'] for c in review.compare_runtime(self.actual).values()),84)
+        self.assertIn('40',self.actual['SIM-C1-L005-05']['assessment'][1]['prompt'])
+        code="console.log(JSON.stringify({rejected:Number.isNaN(Number('20*cos(2*pi/9)'))}))"
+        self.assertEqual(json.loads(subprocess.check_output(['node','--input-type=module','-e',code],text=True)),{'rejected':True})
+
+    def test_actual_force_lengths_are_extracted_not_forged_from_scalar_keys(self):
+        checks=review.force_diagram_checks(self.actual)
+        self.assertEqual([len(checks[k]) for k in sorted(checks)],[1,2])
+        self.assertTrue(all(not c['ok'] for group in checks.values() for c in group))
+        normal=checks['SIM-C1-L005-05'][0]
+        self.assertAlmostEqual(normal['actualSceneLengths']['green'],1)
+        self.assertAlmostEqual(normal['actualSceneLengths']['red'],.75)
+        tension=checks['SIM-C1-L005-06'];zero=tension[0];negative=tension[1]
+        self.assertAlmostEqual(zero['actualSceneLengths']['green'],19/30)
+        self.assertAlmostEqual(zero['actualSceneLengths']['red'],21/50)
+        self.assertEqual(negative['independentForceValuesN'],{'green':14,'red':20})
+        self.assertAlmostEqual(negative['actualSceneLengths']['green'],133/300)
+        self.assertGreater(negative['actualSceneLengths']['green'],negative['actualSceneLengths']['red'])
+        self.assertLess(14,20)
+
+    def test_observed_diagnostic_proof_is_bound_and_not_scientific_approval(self):
+        evidence=review.consumer_evidence();self.assertTrue(evidence['ok'])
+        self.assertFalse(evidence['scientificApproval']);self.assertEqual(evidence['observedCaseCount'],60)
+        for field in ('READ_BROWSER_PROOF_SHA256','READ_BROWSER_PROTOCOL_SHA256'):
+            with patch.object(review,field,'0'*64):self.assertFalse(review.consumer_evidence()['ok'])
+        with patch.object(review,'runtime_values',return_value=self.actual),patch.object(review,'consumer_evidence',return_value={'ok':False}):
+            self.assertTrue(all(not r['ok'] and not r['consumerReview']['ok'] for r in review.verify(self.sources)))
+
+if __name__=='__main__':unittest.main()

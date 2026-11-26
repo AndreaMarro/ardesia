@@ -1,0 +1,1211 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u5-subzero-ice-melting-01",
+      "kind": "question",
+      "course": "C3",
+      "section": "Dal ghiaccio sotto zero all’acqua a zero",
+      "order": 17301,
+      "title": "Prima arrivare a zero, poi fondere",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "subzero-ice-melting",
+      "difficulty": 1,
+      "prompt": "Una massa m>0 di ghiaccio, in g, parte da una lettura −θ °C: θ è l’intervallo positivo fino a 0 °C, espresso in K, con 0<θ<273,15 K. Si fornisce calore fino a ottenere soltanto acqua a 0 °C, senza scaldarla oltre. Il modello a pressione atmosferica assegna c_i=2 J/(g·K), costante, e L_f=300 J/g; sono valori ideali assegnati per il calcolo, non costanti sperimentali esatte. Recipiente e dispersioni sono trascurati, non si perde massa. Q>0 è il calore totale assorbito. Con m=1 g e θ=10 K, quanto vale Q in J?",
+      "answer": {
+        "type": "numeric",
+        "value": 320,
+        "unit": "J",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il ghiaccio deve prima passare da −10 °C alla temperatura di fusione: questo tratto richiede mc_iθ=20 J. A 0 °C occorrono poi mL_f=300 J per trasformare tutta la massa in liquido, senza ulteriore aumento termico. I due trasferimenti entrano nello stesso campione e si sommano: 320 J. I 300 J non comprendono il precedente riscaldamento del solido."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/48dfcab91588ce5bbc9899bf71f70b0a1331204fd3580747f5b929141c76946d",
+          "text": "Tre letture progressive dello stesso cammino: nel primo pannello Q cresce mentre la lettura termica sale da −10 °C a 0 °C, poi resta a 0 °C durante la fusione. Gli assi indicano Q in J e la lettura termica in °C; 0 °C è il riferimento di fusione, non lo zero assoluto. Nel secondo i contributi 20 J e 300 J sommano 320 J con barre energetiche dalla stessa origine. Nel terzo i due calori 320 e 680 J e la loro media 500 J sono energie in J con una sola origine."
+        },
+        {
+          "type": "formula",
+          "text": "Q_{\\rm ris}=mc_i\\theta"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{\\rm ris}=20\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{\\rm fus}=mL_f"
+        },
+        {
+          "type": "formula",
+          "text": "mL_f=300\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " Q=Q_{\\rm ris}+Q_{\\rm fus}"
+        },
+        {
+          "type": "formula",
+          "text": " Q=320\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "300 J omette il riscaldamento sotto zero; 20 J omette la fusione. Sottrarre i contributi darebbe 280 J, ma entrambi sono assorbiti. 640 J raddoppia la massa o l’intero trasferimento senza un dato che lo richieda."
+        }
+      ],
+      "hints": [
+        "Dividi il cammino in due tratti, ciascuno con la propria legge.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "300 J omette il riscaldamento sotto zero; 20 J omette la fusione. Sottrarre i contributi darebbe 280 J, ma entrambi sono assorbiti. 640 J raddoppia la massa o l’intero trasferimento senza un dato che lo richieda.",
+        "target": "C3-L04"
+      },
+      "coverage": [
+        "Riscaldamento sensibile e fusione completa",
+        "Intervalli termici e calore latente assegnato",
+        "Inverse, rapporti, taratura e radice fisica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-subzero-ice-melting-02",
+      "kind": "question",
+      "course": "C3",
+      "section": "Dal ghiaccio sotto zero all’acqua a zero",
+      "order": 17302,
+      "title": "Un intervallo in kelvin, un trasferimento in joule",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "subzero-ice-melting",
+      "difficulty": 1,
+      "prompt": "Una massa m>0 di ghiaccio, in g, parte da una lettura −θ °C: θ è l’intervallo positivo fino a 0 °C, espresso in K, con 0<θ<273,15 K. Si fornisce calore fino a ottenere soltanto acqua a 0 °C, senza scaldarla oltre. Il modello a pressione atmosferica assegna c_i=2 J/(g·K), costante, e L_f=300 J/g; sono valori ideali assegnati per il calcolo, non costanti sperimentali esatte. Recipiente e dispersioni sono trascurati, non si perde massa. Q>0 è il calore totale assorbito. Quale unità misura Q?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "J",
+          "K",
+          "J/g",
+          "J/(g·K)",
+          "W"
+        ],
+        "value": "J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il prodotto mc_iθ cancella grammi e kelvin e dà joule. Anche mL_f cancella grammi e dà joule: solo allora i due termini possono essere sommati. Il kelvin di θ esprime una differenza termica, non una temperatura assoluta negativa."
+        },
+        {
+          "type": "formula",
+          "text": "[mc_i\\theta]=\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " [mL_f]=\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " [Q]=\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "K misura l’intervallo, J/g il calore latente specifico e J/(g·K) il calore specifico del solido. W è una potenza: per ricavarla servirebbe un intervallo di tempo."
+        }
+      ],
+      "hints": [
+        "Verifica separatamente le unità dei due addendi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "K misura l’intervallo, J/g il calore latente specifico e J/(g·K) il calore specifico del solido. W è una potenza: per ricavarla servirebbe un intervallo di tempo.",
+        "target": "C3-L04"
+      },
+      "coverage": [
+        "Riscaldamento sensibile e fusione completa",
+        "Intervalli termici e calore latente assegnato",
+        "Inverse, rapporti, taratura e radice fisica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-subzero-ice-melting-03",
+      "kind": "question",
+      "course": "C3",
+      "section": "Dal ghiaccio sotto zero all’acqua a zero",
+      "order": 17303,
+      "title": "La legge segue le due fasi del percorso",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "subzero-ice-melting",
+      "difficulty": 1,
+      "prompt": "Una massa m>0 di ghiaccio, in g, parte da una lettura −θ °C: θ è l’intervallo positivo fino a 0 °C, espresso in K, con 0<θ<273,15 K. Si fornisce calore fino a ottenere soltanto acqua a 0 °C, senza scaldarla oltre. Il modello a pressione atmosferica assegna c_i=2 J/(g·K), costante, e L_f=300 J/g; sono valori ideali assegnati per il calcolo, non costanti sperimentali esatte. Recipiente e dispersioni sono trascurati, non si perde massa. Q>0 è il calore totale assorbito. Quale relazione esprime Q?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Q = m (c_i θ + L_f)",
+          "Q = m L_f",
+          "Q = m c_i θ",
+          "Q = m (L_f − c_i θ)",
+          "Q = m c_i (θ + L_f)"
+        ],
+        "value": "Q = m (c_i θ + L_f)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Finché il campione è interamente solido, il calore sensibile porta il ghiaccio alla fusione. Durante la successiva coesistenza di ghiaccio e acqua, il calore cambia la frazione fusa alla stessa temperatura di fase. Una volta fusa tutta la massa il processo termina: non compare un terzo tratto di riscaldamento dell’acqua. Raccogliendo la massa comune si ottiene m(c_iθ+L_f)."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/48dfcab91588ce5bbc9899bf71f70b0a1331204fd3580747f5b929141c76946d",
+          "text": "Il primo tratto scalda soltanto il solido; il tratto orizzontale trasforma completamente la massa alla temperatura di fase. Il diagramma non rappresenta una temperatura costante durante tutto il processo. Le barre energetiche hanno origine comune in ciascun pannello; le energie medie si riferiscono a prove separate, non a un mescolamento."
+        },
+        {
+          "type": "formula",
+          "text": "Q=mc_i\\theta+mL_f"
+        },
+        {
+          "type": "formula",
+          "text": " Q=m(c_i\\theta+L_f)"
+        },
+        {
+          "type": "formula",
+          "text": " c_i\\theta+L_f>0"
+        },
+        {
+          "type": "text",
+          "text": "I termini isolati descrivono un solo tratto. Il segno meno renderebbe ceduto uno dei due contributi. θ+L_f mescola K e J/g, grandezze non sommabili: il calore specifico non può essere raccolto anche dal termine latente."
+        }
+      ],
+      "hints": [
+        "Identifica il termine sensibile e quello latente prima di raccogliere m.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "I termini isolati descrivono un solo tratto. Il segno meno renderebbe ceduto uno dei due contributi. θ+L_f mescola K e J/g, grandezze non sommabili: il calore specifico non può essere raccolto anche dal termine latente.",
+        "target": "C3-L04"
+      },
+      "coverage": [
+        "Riscaldamento sensibile e fusione completa",
+        "Intervalli termici e calore latente assegnato",
+        "Inverse, rapporti, taratura e radice fisica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-subzero-ice-melting-04",
+      "kind": "question",
+      "course": "C3",
+      "section": "Dal ghiaccio sotto zero all’acqua a zero",
+      "order": 17304,
+      "title": "Il doppio del ghiaccio allo stesso punto iniziale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "subzero-ice-melting",
+      "difficulty": 1,
+      "prompt": "Una massa m>0 di ghiaccio, in g, parte da una lettura −θ °C: θ è l’intervallo positivo fino a 0 °C, espresso in K, con 0<θ<273,15 K. Si fornisce calore fino a ottenere soltanto acqua a 0 °C, senza scaldarla oltre. Il modello a pressione atmosferica assegna c_i=2 J/(g·K), costante, e L_f=300 J/g; sono valori ideali assegnati per il calcolo, non costanti sperimentali esatte. Recipiente e dispersioni sono trascurati, non si perde massa. Q>0 è il calore totale assorbito. A ha m=1 g, B ha m=2 g; entrambe partono da θ=10 K sotto zero. Come cambia Q?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 320 a 640 J",
+          "Resta 320 J",
+          "Da 320 a 160 J",
+          "Da 320 a 620 J",
+          "Da 320 a 1280 J"
+        ],
+        "value": "Da 320 a 640 J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Ogni grammo richiede 20 J di riscaldamento e 300 J di fusione. Con due grammi ciascun termine raddoppia: 40 J più 600 J danno 640 J. Le proprietà assegnate e l’intervallo iniziale sono gli stessi; cambia soltanto la quantità trasformata."
+        },
+        {
+          "type": "formula",
+          "text": "c_i\\theta+L_f=320\\,\\mathrm{J/g}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_A=320\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B=(2\\,\\mathrm g)(320\\,\\mathrm{J/g})"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B=640\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "160 J tratta una massa maggiore come un risparmio. 620 J raddoppia solo la fusione e lascia i 20 J iniziali per un grammo; 1280 J introduce un secondo raddoppio assente."
+        }
+      ],
+      "hints": [
+        "La massa moltiplica entrambi i contributi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "160 J tratta una massa maggiore come un risparmio. 620 J raddoppia solo la fusione e lascia i 20 J iniziali per un grammo; 1280 J introduce un secondo raddoppio assente.",
+        "target": "C3-L04"
+      },
+      "coverage": [
+        "Riscaldamento sensibile e fusione completa",
+        "Intervalli termici e calore latente assegnato",
+        "Inverse, rapporti, taratura e radice fisica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-subzero-ice-melting-05",
+      "kind": "question",
+      "course": "C3",
+      "section": "Dal ghiaccio sotto zero all’acqua a zero",
+      "order": 17305,
+      "title": "Quanta massa può arrivare tutta ad acqua",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "subzero-ice-melting",
+      "difficulty": 2,
+      "prompt": "Una massa m>0 di ghiaccio, in g, parte da una lettura −θ °C: θ è l’intervallo positivo fino a 0 °C, espresso in K, con 0<θ<273,15 K. Si fornisce calore fino a ottenere soltanto acqua a 0 °C, senza scaldarla oltre. Il modello a pressione atmosferica assegna c_i=2 J/(g·K), costante, e L_f=300 J/g; sono valori ideali assegnati per il calcolo, non costanti sperimentali esatte. Recipiente e dispersioni sono trascurati, non si perde massa. Q>0 è il calore totale assorbito. Si assorbono Q=320 J e si conosce θ=10 K. Quanto vale m in g?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "g",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Per ogni grammo servono c_iθ+L_f=320 J/g. Dividiamo l’energia totale per questa energia specifica e troviamo un grammo. La verifica ricostruisce 20 J nel solido e 300 J nella fusione. Non basta dividere per L_f: il ghiaccio non partiva già a 0 °C."
+        },
+        {
+          "type": "formula",
+          "text": "m=\\frac{Q}{c_i\\theta+L_f}"
+        },
+        {
+          "type": "formula",
+          "text": " c_i\\theta+L_f=320\\,\\mathrm{J/g}"
+        },
+        {
+          "type": "formula",
+          "text": " m=\\frac{320\\,\\mathrm J}{320\\,\\mathrm{J/g}}"
+        },
+        {
+          "type": "formula",
+          "text": " m=1\\,\\mathrm g"
+        },
+        {
+          "type": "text",
+          "text": "16/15 g usa soltanto la fusione, 16 g soltanto il riscaldamento. Nessuno dei due restituisce 320 J quando si percorrono entrambi i tratti assegnati."
+        }
+      ],
+      "hints": [
+        "Calcola prima il calore totale richiesto per un grammo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "16/15 g usa soltanto la fusione, 16 g soltanto il riscaldamento. Nessuno dei due restituisce 320 J quando si percorrono entrambi i tratti assegnati.",
+        "target": "C3-L04"
+      },
+      "coverage": [
+        "Riscaldamento sensibile e fusione completa",
+        "Intervalli termici e calore latente assegnato",
+        "Inverse, rapporti, taratura e radice fisica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-subzero-ice-melting-06",
+      "kind": "question",
+      "course": "C3",
+      "section": "Dal ghiaccio sotto zero all’acqua a zero",
+      "order": 17306,
+      "title": "Quanto era sotto zero il ghiaccio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "subzero-ice-melting",
+      "difficulty": 2,
+      "prompt": "Una massa m>0 di ghiaccio, in g, parte da una lettura −θ °C: θ è l’intervallo positivo fino a 0 °C, espresso in K, con 0<θ<273,15 K. Si fornisce calore fino a ottenere soltanto acqua a 0 °C, senza scaldarla oltre. Il modello a pressione atmosferica assegna c_i=2 J/(g·K), costante, e L_f=300 J/g; sono valori ideali assegnati per il calcolo, non costanti sperimentali esatte. Recipiente e dispersioni sono trascurati, non si perde massa. Q>0 è il calore totale assorbito. Q=320 J e m=1 g. Quanto vale θ in K?",
+      "answer": {
+        "type": "numeric",
+        "value": 10,
+        "unit": "K",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dividendo per la massa ricaviamo 320 J/g. Togliamo i 300 J/g necessari alla fusione: restano 20 J/g per il solo aumento termico del ghiaccio. Divisi per 2 J/(g·K) danno θ=10 K, cioè lettura iniziale −10 °C. Per questa inversa serve Q/m>L_f; il risultato deve inoltre mantenere una temperatura iniziale assoluta positiva."
+        },
+        {
+          "type": "formula",
+          "text": "Q/m-L_f=c_i\\theta"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta=\\frac{Q/m-L_f}{c_i}"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta=\\frac{20\\,\\mathrm{J/g}}{2\\,\\mathrm{J/(g\\,K)}}"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta=10\\,\\mathrm K"
+        },
+        {
+          "type": "text",
+          "text": "160 K divide tutta l’energia specifica per c_i, omettendo la fusione. −10 K confonde il positivo intervallo θ con la lettura iniziale negativa; il punto iniziale è −10 °C, non −10 K."
+        }
+      ],
+      "hints": [
+        "Sottrai prima il contributo latente per unità di massa.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "160 K divide tutta l’energia specifica per c_i, omettendo la fusione. −10 K confonde il positivo intervallo θ con la lettura iniziale negativa; il punto iniziale è −10 °C, non −10 K.",
+        "target": "C3-L04"
+      },
+      "coverage": [
+        "Riscaldamento sensibile e fusione completa",
+        "Intervalli termici e calore latente assegnato",
+        "Inverse, rapporti, taratura e radice fisica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-subzero-ice-melting-07",
+      "kind": "question",
+      "course": "C3",
+      "section": "Dal ghiaccio sotto zero all’acqua a zero",
+      "order": 17307,
+      "title": "Una partenza più fredda cambia solo un tratto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "subzero-ice-melting",
+      "difficulty": 2,
+      "prompt": "Una massa m>0 di ghiaccio, in g, parte da una lettura −θ °C: θ è l’intervallo positivo fino a 0 °C, espresso in K, con 0<θ<273,15 K. Si fornisce calore fino a ottenere soltanto acqua a 0 °C, senza scaldarla oltre. Il modello a pressione atmosferica assegna c_i=2 J/(g·K), costante, e L_f=300 J/g; sono valori ideali assegnati per il calcolo, non costanti sperimentali esatte. Recipiente e dispersioni sono trascurati, non si perde massa. Q>0 è il calore totale assorbito. m=1 g. A ha θ_A=10 K, B ha θ_B=20 K. Quanto vale Q_B/Q_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "17/16",
+          "2",
+          "16/17",
+          "17",
+          "1"
+        ],
+        "value": "17/16"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A richiede 320 J. In B il riscaldamento sensibile cresce da 20 a 40 J, mentre la fusione richiede ancora 300 J: il totale è 340 J. Il rapporto 340/320 si riduce a 17/16. Raddoppiare la distanza termica non raddoppia l’energia latente."
+        },
+        {
+          "type": "formula",
+          "text": "Q_A=320\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B=(40+300)\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B=340\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B/Q_A=17/16"
+        },
+        {
+          "type": "text",
+          "text": "Due raddoppia anche la fusione. 16/17 inverte il confronto, 17 omette il denominatore del rapporto ridotto e uno ignora il maggiore riscaldamento iniziale."
+        }
+      ],
+      "hints": [
+        "Mantieni uguale mL_f quando cambia soltanto θ.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due raddoppia anche la fusione. 16/17 inverte il confronto, 17 omette il denominatore del rapporto ridotto e uno ignora il maggiore riscaldamento iniziale.",
+        "target": "C3-L04"
+      },
+      "coverage": [
+        "Riscaldamento sensibile e fusione completa",
+        "Intervalli termici e calore latente assegnato",
+        "Inverse, rapporti, taratura e radice fisica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-subzero-ice-melting-08",
+      "kind": "question",
+      "course": "C3",
+      "section": "Dal ghiaccio sotto zero all’acqua a zero",
+      "order": 17308,
+      "title": "Lo scarto della proposta raddoppiata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "subzero-ice-melting",
+      "difficulty": 2,
+      "prompt": "Una massa m>0 di ghiaccio, in g, parte da una lettura −θ °C: θ è l’intervallo positivo fino a 0 °C, espresso in K, con 0<θ<273,15 K. Si fornisce calore fino a ottenere soltanto acqua a 0 °C, senza scaldarla oltre. Il modello a pressione atmosferica assegna c_i=2 J/(g·K), costante, e L_f=300 J/g; sono valori ideali assegnati per il calcolo, non costanti sperimentali esatte. Recipiente e dispersioni sono trascurati, non si perde massa. Q>0 è il calore totale assorbito. Con m=1 g e θ=10 K si propone Q=640 J. Quanto vale proposta meno risultato corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "320 J",
+          "−320 J",
+          "640 J",
+          "0 J",
+          "160 J"
+        ],
+        "value": "320 J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il percorso richiede 320 J. La proposta di 640 J lo supera di 320 J, dunque lo scarto è positivo. È una differenza fra due energie; non si cambia il segno del calore assorbito dal campione."
+        },
+        {
+          "type": "formula",
+          "text": "Q=320\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " e=(640-320)\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " e=320\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "−320 J esegue la sottrazione opposta. 640 J copia la proposta, zero la accetta e 160 J divide ancora uno scarto già determinato."
+        }
+      ],
+      "hints": [
+        "Completa prima il bilancio in due tratti, poi sottrai nell’ordine dato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−320 J esegue la sottrazione opposta. 640 J copia la proposta, zero la accetta e 160 J divide ancora uno scarto già determinato.",
+        "target": "C3-L04"
+      },
+      "coverage": [
+        "Riscaldamento sensibile e fusione completa",
+        "Intervalli termici e calore latente assegnato",
+        "Inverse, rapporti, taratura e radice fisica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-subzero-ice-melting-09",
+      "kind": "question",
+      "course": "C3",
+      "section": "Dal ghiaccio sotto zero all’acqua a zero",
+      "order": 17309,
+      "title": "Isolare la massa dal calore di entrambi i tratti",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "subzero-ice-melting",
+      "difficulty": 2,
+      "prompt": "Una massa m>0 di ghiaccio, in g, parte da una lettura −θ °C: θ è l’intervallo positivo fino a 0 °C, espresso in K, con 0<θ<273,15 K. Si fornisce calore fino a ottenere soltanto acqua a 0 °C, senza scaldarla oltre. Il modello a pressione atmosferica assegna c_i=2 J/(g·K), costante, e L_f=300 J/g; sono valori ideali assegnati per il calcolo, non costanti sperimentali esatte. Recipiente e dispersioni sono trascurati, non si perde massa. Q>0 è il calore totale assorbito. Quale formula isola m?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "m = Q / (c_i θ + L_f)",
+          "m = Q / L_f",
+          "m = Q / (c_i θ)",
+          "m = (c_i θ + L_f) / Q",
+          "m = Q (c_i θ + L_f)"
+        ],
+        "value": "m = Q / (c_i θ + L_f)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La massa moltiplica l’intera somma specifica, positiva. Dividendo per c_iθ+L_f eliminiamo quel fattore e conserviamo unità di massa: J diviso J/g dà g. L’inversa tratta con la stessa massa sia il solido scaldato sia la sostanza fusa."
+        },
+        {
+          "type": "formula",
+          "text": "Q=m(c_i\\theta+L_f)"
+        },
+        {
+          "type": "formula",
+          "text": " m=\\frac Q{c_i\\theta+L_f}"
+        },
+        {
+          "type": "formula",
+          "text": " [m]=\\mathrm g"
+        },
+        {
+          "type": "text",
+          "text": "Dividere per uno solo dei contributi omette l’altro. Il reciproco ha unità g⁻¹ e il prodotto ha J²/g: non sono masse."
+        }
+      ],
+      "hints": [
+        "L’energia richiesta per unità di massa in entrambi i tratti compare al denominatore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dividere per uno solo dei contributi omette l’altro. Il reciproco ha unità g⁻¹ e il prodotto ha J²/g: non sono masse.",
+        "target": "C3-L04"
+      },
+      "coverage": [
+        "Riscaldamento sensibile e fusione completa",
+        "Intervalli termici e calore latente assegnato",
+        "Inverse, rapporti, taratura e radice fisica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-subzero-ice-melting-10",
+      "kind": "question",
+      "course": "C3",
+      "section": "Dal ghiaccio sotto zero all’acqua a zero",
+      "order": 17310,
+      "title": "Due fattori senza scalare il calore latente",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "subzero-ice-melting",
+      "difficulty": 2,
+      "prompt": "Una massa m>0 di ghiaccio, in g, parte da una lettura −θ °C: θ è l’intervallo positivo fino a 0 °C, espresso in K, con 0<θ<273,15 K. Si fornisce calore fino a ottenere soltanto acqua a 0 °C, senza scaldarla oltre. Il modello a pressione atmosferica assegna c_i=2 J/(g·K), costante, e L_f=300 J/g; sono valori ideali assegnati per il calcolo, non costanti sperimentali esatte. Recipiente e dispersioni sono trascurati, non si perde massa. Q>0 è il calore totale assorbito. Fra prove m_B=κ₁m_A e θ_B=κ₂θ_A; κ₁,κ₂>0 e anche 0<κ₂θ_A<273,15 K. Qual è Q_B/Q_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ (c_i κ₂ θ_A + L_f) / (c_i θ_A + L_f)",
+          "κ₁ κ₂",
+          "κ₁ / κ₂",
+          "(c_i θ_A + L_f) / [κ₁ (c_i κ₂ θ_A + L_f)]",
+          "κ₁ + κ₂"
+        ],
+        "value": "κ₁ (c_i κ₂ θ_A + L_f) / (c_i θ_A + L_f)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La massa nuova moltiplica tutta l’energia specifica, ma κ₂ moltiplica soltanto θ nel tratto sensibile. Formiamo Q_B e dividiamo per Q_A: la massa A si cancella. Non si riscalano c_i e L_f, assegnati uguali nelle due prove. Il dominio aggiunto mantiene fisicamente ammissibile la temperatura iniziale di B."
+        },
+        {
+          "type": "formula",
+          "text": "Q_B=\\kappa_1m_A(c_i\\kappa_2\\theta_A+L_f)"
+        },
+        {
+          "type": "formula",
+          "text": " Q_A=m_A(c_i\\theta_A+L_f)"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{Q_B}{Q_A}=\\frac{\\kappa_1(c_i\\kappa_2\\theta_A+L_f)}{c_i\\theta_A+L_f}"
+        },
+        {
+          "type": "text",
+          "text": "κ₁κ₂ moltiplica anche il termine latente per κ₂. Il quoziente semplice rende inverso l’effetto di una partenza più fredda. La quarta opzione scambia B e A; la somma dà due per prove identiche."
+        }
+      ],
+      "hints": [
+        "Sostituisci i fattori soltanto nelle grandezze che cambiano.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "κ₁κ₂ moltiplica anche il termine latente per κ₂. Il quoziente semplice rende inverso l’effetto di una partenza più fredda. La quarta opzione scambia B e A; la somma dà due per prove identiche.",
+        "target": "C3-L04"
+      },
+      "coverage": [
+        "Riscaldamento sensibile e fusione completa",
+        "Intervalli termici e calore latente assegnato",
+        "Inverse, rapporti, taratura e radice fisica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-subzero-ice-melting-11",
+      "kind": "question",
+      "course": "C3",
+      "section": "Dal ghiaccio sotto zero all’acqua a zero",
+      "order": 17311,
+      "title": "Cambiano massa e distanza da zero",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "subzero-ice-melting",
+      "difficulty": 2,
+      "prompt": "Una massa m>0 di ghiaccio, in g, parte da una lettura −θ °C: θ è l’intervallo positivo fino a 0 °C, espresso in K, con 0<θ<273,15 K. Si fornisce calore fino a ottenere soltanto acqua a 0 °C, senza scaldarla oltre. Il modello a pressione atmosferica assegna c_i=2 J/(g·K), costante, e L_f=300 J/g; sono valori ideali assegnati per il calcolo, non costanti sperimentali esatte. Recipiente e dispersioni sono trascurati, non si perde massa. Q>0 è il calore totale assorbito. A: m=1 g, θ=10 K. B: m=2 g, θ=20 K. Quanto vale Q_B/Q_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "17/8",
+          "8/17",
+          "2",
+          "4",
+          "17/16"
+        ],
+        "value": "17/8"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A richiede 320 J. Ogni grammo di B richiede 340 J e i due grammi assorbono 680 J. Il rapporto 680/320 si riduce a 17/8. La massa raddoppia tutto il percorso, mentre θ raddoppia soltanto il tratto prima della fusione."
+        },
+        {
+          "type": "formula",
+          "text": "Q_A=320\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B=2(40+300)\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B=680\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B/Q_A=17/8"
+        },
+        {
+          "type": "text",
+          "text": "Due considera solo la massa, 17/16 solo l’intervallo iniziale. Quattro tratta tutti i termini come un prodotto mθ. 8/17 inverte il rapporto."
+        }
+      ],
+      "hints": [
+        "Calcola separatamente il costo per grammo e la massa di ogni prova.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due considera solo la massa, 17/16 solo l’intervallo iniziale. Quattro tratta tutti i termini come un prodotto mθ. 8/17 inverte il rapporto.",
+        "target": "C3-L04"
+      },
+      "coverage": [
+        "Riscaldamento sensibile e fusione completa",
+        "Intervalli termici e calore latente assegnato",
+        "Inverse, rapporti, taratura e radice fisica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-subzero-ice-melting-12",
+      "kind": "question",
+      "course": "C3",
+      "section": "Dal ghiaccio sotto zero all’acqua a zero",
+      "order": 17312,
+      "title": "Media di due trasferimenti completi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "subzero-ice-melting",
+      "difficulty": 2,
+      "prompt": "Una massa m>0 di ghiaccio, in g, parte da una lettura −θ °C: θ è l’intervallo positivo fino a 0 °C, espresso in K, con 0<θ<273,15 K. Si fornisce calore fino a ottenere soltanto acqua a 0 °C, senza scaldarla oltre. Il modello a pressione atmosferica assegna c_i=2 J/(g·K), costante, e L_f=300 J/g; sono valori ideali assegnati per il calcolo, non costanti sperimentali esatte. Recipiente e dispersioni sono trascurati, non si perde massa. Q>0 è il calore totale assorbito. A usa m=1 g, θ=10 K; B usa m=2 g, θ=20 K. Qual è la media aritmetica dei due Q con uguale peso?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "500 J",
+          "1000 J",
+          "495 J",
+          "180 J",
+          "250 J"
+        ],
+        "value": "500 J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le energie sono 320 e 680 J. La somma è 1000 J e la metà 500 J. I dati medi m=3/2 g e θ=15 K descriverebbero invece un terzo processo: il costo specifico sarebbe 330 J/g e il calore 495 J. Qui mediare gli ingressi non sostituisce la media delle due uscite."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline Q=\\frac{320+680}{2}\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline Q=500\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{\\rm ingressi\\ medi}=495\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "1000 J è la somma, 180 J metà della differenza e 250 J dimezza due volte. 495 J usa il modello agli ingressi medi. Non si tratta della temperatura di equilibrio ottenuta mescolando i due campioni."
+        }
+      ],
+      "hints": [
+        "Media i due calori dopo aver percorso entrambi i tratti in ciascuna prova.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "1000 J è la somma, 180 J metà della differenza e 250 J dimezza due volte. 495 J usa il modello agli ingressi medi. Non si tratta della temperatura di equilibrio ottenuta mescolando i due campioni.",
+        "target": "C3-L04"
+      },
+      "coverage": [
+        "Riscaldamento sensibile e fusione completa",
+        "Intervalli termici e calore latente assegnato",
+        "Inverse, rapporti, taratura e radice fisica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-subzero-ice-melting-13",
+      "kind": "question",
+      "course": "C3",
+      "section": "Dal ghiaccio sotto zero all’acqua a zero",
+      "order": 17313,
+      "title": "L’intervallo iniziale per un bersaglio energetico",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "subzero-ice-melting",
+      "difficulty": 3,
+      "prompt": "Una massa m>0 di ghiaccio, in g, parte da una lettura −θ °C: θ è l’intervallo positivo fino a 0 °C, espresso in K, con 0<θ<273,15 K. Si fornisce calore fino a ottenere soltanto acqua a 0 °C, senza scaldarla oltre. Il modello a pressione atmosferica assegna c_i=2 J/(g·K), costante, e L_f=300 J/g; sono valori ideali assegnati per il calcolo, non costanti sperimentali esatte. Recipiente e dispersioni sono trascurati, non si perde massa. Q>0 è il calore totale assorbito. A ha m=1 g e θ_A=10 K. B ha m=2 g e deve assorbire Q_B=(17/8)Q_A. Quanto vale θ_B/θ_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "17/8",
+          "1/2",
+          "17/16",
+          "4"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento richiede 320 J, quindi il bersaglio è 680 J. Dividendo per i due grammi di B otteniamo 340 J/g; tolta la fusione restano 40 J/g, corrispondenti a 20 K nel solido. Il rapporto con i 10 K iniziali è due."
+        },
+        {
+          "type": "formula",
+          "text": "Q_B=680\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B/m_B=340\\,\\mathrm{J/g}"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_B=\\frac{Q_B/m_B-L_f}{c_i}"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_B=20\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_B/\\theta_A=2"
+        },
+        {
+          "type": "text",
+          "text": "17/8 copia il bersaglio sulle energie. 17/16 è il rapporto energetico a massa invariata, non quello fra gli intervalli. Un mezzo inverte il confronto e quattro non soddisfa il bilancio richiesto."
+        }
+      ],
+      "hints": [
+        "Ricava prima l’energia per grammo di B e sottrai la fusione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "17/8 copia il bersaglio sulle energie. 17/16 è il rapporto energetico a massa invariata, non quello fra gli intervalli. Un mezzo inverte il confronto e quattro non soddisfa il bilancio richiesto.",
+        "target": "C3-L04"
+      },
+      "coverage": [
+        "Riscaldamento sensibile e fusione completa",
+        "Intervalli termici e calore latente assegnato",
+        "Inverse, rapporti, taratura e radice fisica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-subzero-ice-melting-14",
+      "kind": "question",
+      "course": "C3",
+      "section": "Dal ghiaccio sotto zero all’acqua a zero",
+      "order": 17314,
+      "title": "Convertire il display in energia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "subzero-ice-melting",
+      "difficulty": 3,
+      "prompt": "Una massa m>0 di ghiaccio, in g, parte da una lettura −θ °C: θ è l’intervallo positivo fino a 0 °C, espresso in K, con 0<θ<273,15 K. Si fornisce calore fino a ottenere soltanto acqua a 0 °C, senza scaldarla oltre. Il modello a pressione atmosferica assegna c_i=2 J/(g·K), costante, e L_f=300 J/g; sono valori ideali assegnati per il calcolo, non costanti sperimentali esatte. Recipiente e dispersioni sono trascurati, non si perde massa. Q>0 è il calore totale assorbito. S=qQ è continuo e adimensionale, q>0 costante. A con m=1 g, θ=10 K dà S=960. B dà S=2040 e ha θ=20 K. Quanto vale m_B in g?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "g",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A richiede 320 J, quindi q=960/(320 J)=3 J⁻¹. La lettura 2040 rappresenta 680 J. A θ=20 K ogni grammo richiede 340 J: dividendo 680 per 340 otteniamo due grammi. Il display non è una massa né un numero di particelle."
+        },
+        {
+          "type": "formula",
+          "text": "q=3\\,\\mathrm{J^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B=2040/q"
+        },
+        {
+          "type": "formula",
+          "text": "2040/q=680\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " m_B=\\frac{Q_B}{c_i\\theta_B+L_f}"
+        },
+        {
+          "type": "formula",
+          "text": " m_B=2\\,\\mathrm g"
+        },
+        {
+          "type": "text",
+          "text": "Usare direttamente 2040 come joule darebbe 6 g. Dividere i 680 J soltanto per L_f darebbe 34/15 g e trascurerebbe il riscaldamento del solido."
+        }
+      ],
+      "hints": [
+        "Taratura prima, energia specifica del percorso poi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Usare direttamente 2040 come joule darebbe 6 g. Dividere i 680 J soltanto per L_f darebbe 34/15 g e trascurerebbe il riscaldamento del solido.",
+        "target": "C3-L04"
+      },
+      "coverage": [
+        "Riscaldamento sensibile e fusione completa",
+        "Intervalli termici e calore latente assegnato",
+        "Inverse, rapporti, taratura e radice fisica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-subzero-ice-melting-15",
+      "kind": "question",
+      "course": "C3",
+      "section": "Dal ghiaccio sotto zero all’acqua a zero",
+      "order": 17315,
+      "title": "Guadagno e offset prima della massa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "subzero-ice-melting",
+      "difficulty": 3,
+      "prompt": "Una massa m>0 di ghiaccio, in g, parte da una lettura −θ °C: θ è l’intervallo positivo fino a 0 °C, espresso in K, con 0<θ<273,15 K. Si fornisce calore fino a ottenere soltanto acqua a 0 °C, senza scaldarla oltre. Il modello a pressione atmosferica assegna c_i=2 J/(g·K), costante, e L_f=300 J/g; sono valori ideali assegnati per il calcolo, non costanti sperimentali esatte. Recipiente e dispersioni sono trascurati, non si perde massa. Q>0 è il calore totale assorbito. S=qQ+b è continuo e adimensionale. A: m=1 g, θ=10 K, S=641. B: m=2 g, θ=20 K, S=1361. C: θ=10 K, S=1281. Quanto vale m_C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2 g",
+          "4 g",
+          "1 g",
+          "1281/640 g",
+          "640 g"
+        ],
+        "value": "2 g"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti assorbono 320 e 680 J. La differenza 720 delle letture su 360 J fissa q=2 J⁻¹, poi b=1. Per C, (1281−1)/2=640 J. Ogni grammo del suo percorso richiede 320 J, quindi la massa è due grammi."
+        },
+        {
+          "type": "formula",
+          "text": "q=\\frac{1361-641}{(680-320)\\,\\mathrm J}"
+        },
+        {
+          "type": "formula",
+          "text": " q=2\\,\\mathrm{J^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " Q_C=640\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " m_C=640/320\\,\\mathrm g"
+        },
+        {
+          "type": "formula",
+          "text": " m_C=2\\,\\mathrm g"
+        },
+        {
+          "type": "text",
+          "text": "4 g darebbero S=2561, 1 g darebbe S=641. 1281/640 g omette l’offset e ricostruisce S=1282. 640 g scambia il numero di joule con una massa e richiederebbe un’energia molto maggiore."
+        }
+      ],
+      "hints": [
+        "Usa le differenze per q e un riferimento per b.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "4 g darebbero S=2561, 1 g darebbe S=641. 1281/640 g omette l’offset e ricostruisce S=1282. 640 g scambia il numero di joule con una massa e richiederebbe un’energia molto maggiore.",
+        "target": "C3-L04"
+      },
+      "coverage": [
+        "Riscaldamento sensibile e fusione completa",
+        "Intervalli termici e calore latente assegnato",
+        "Inverse, rapporti, taratura e radice fisica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u5-subzero-ice-melting-16",
+      "kind": "question",
+      "course": "C3",
+      "section": "Dal ghiaccio sotto zero all’acqua a zero",
+      "order": 17316,
+      "title": "Un vincolo che porta a due radici algebriche",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C3-L04",
+      "prerequisites": [
+        "C1-L001",
+        "C3-L01",
+        "C3-L03",
+        "C3-L04"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "subzero-ice-melting",
+      "difficulty": 3,
+      "prompt": "Una massa m>0 di ghiaccio, in g, parte da una lettura −θ °C: θ è l’intervallo positivo fino a 0 °C, espresso in K, con 0<θ<273,15 K. Si fornisce calore fino a ottenere soltanto acqua a 0 °C, senza scaldarla oltre. Il modello a pressione atmosferica assegna c_i=2 J/(g·K), costante, e L_f=300 J/g; sono valori ideali assegnati per il calcolo, non costanti sperimentali esatte. Recipiente e dispersioni sono trascurati, non si perde massa. Q>0 è il calore totale assorbito. Fra preparazioni diverse si impone m=dθ, con d=(1/10) g/K. La massa non cambia durante ciascun processo. Se Q=320 J, quanto vale θ nel dominio fisico?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "10 K",
+          "−160 K",
+          "160 K",
+          "20 K",
+          "320 K"
+        ],
+        "value": "10 K"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituiamo la massa scelta per la prova nella somma dei due tratti. L’equazione numerica, con θ espresso in K, diventa θ²+150θ−1600=0. Si fattorizza come (θ−10)(θ+160)=0. La radice 10 K è positiva e ricostruisce m=1 g; la radice −160 K rende negativi sia θ sia m e non rappresenta ghiaccio inizialmente sotto zero nel dominio assegnato."
+        },
+        {
+          "type": "formula",
+          "text": "Q=d\\theta(c_i\\theta+L_f)"
+        },
+        {
+          "type": "formula",
+          "text": " x=\\theta/(1\\,\\mathrm K)"
+        },
+        {
+          "type": "formula",
+          "text": " x^2+150x-1600=0"
+        },
+        {
+          "type": "formula",
+          "text": " (x-10)(x+160)=0"
+        },
+        {
+          "type": "formula",
+          "text": " x=10"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta=10\\,\\mathrm K"
+        },
+        {
+          "type": "text",
+          "text": "160 K cambia soltanto il segno della radice esclusa e non soddisfa l’equazione. 20 K darebbe Q=680 J sotto il vincolo. 320 K supera inoltre l’intervallo fisico iniziale consentito e scambia il numero dell’energia con quello dell’intervallo."
+        }
+      ],
+      "hints": [
+        "Sostituisci il vincolo e fattorizza prima di scegliere la radice fisica.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "160 K cambia soltanto il segno della radice esclusa e non soddisfa l’equazione. 20 K darebbe Q=680 J sotto il vincolo. 320 K supera inoltre l’intervallo fisico iniziale consentito e scambia il numero dell’energia con quello dell’intervallo.",
+        "target": "C3-L04"
+      },
+      "coverage": [
+        "Riscaldamento sensibile e fusione completa",
+        "Intervalli termici e calore latente assegnato",
+        "Inverse, rapporti, taratura e radice fisica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "48dfcab91588ce5bbc9899bf71f70b0a1331204fd3580747f5b929141c76946d",
+      "name": "subzero-ice-melting-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTE5MCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPgo8dGl0bGUgaWQ9InRpdGxlIj5EYWwgZ2hpYWNjaW8gYSBtZW5vIGRpZWNpIGdyYWRpIGFsbOKAmWFjcXVhIGEgemVybzwvdGl0bGU+CjxkZXNjIGlkPSJkZXNjIj5QcmltbyBwYW5uZWxsbzogcGVyIHVuIGdyYW1tbyBsYSBsZXR0dXJhIHNhbGUgZGEgbWVubyBkaWVjaSBhIHplcm8gZ3JhZGkgQ2Vsc2l1cyBhc3NvcmJlbmRvIHZlbnRpIGpvdWxlLCBwb2kgcmVzdGEgYSB6ZXJvIHBlciB0cmVjZW50byBqb3VsZSBkaSBmdXNpb25lLiBTZWNvbmRvOiBpIGR1ZSBjb250cmlidXRpIHNvbW1hbm8gdHJlY2VudG92ZW50aSBqb3VsZS4gVGVyem86IGxlIGVuZXJnaWUgZGkgZHVlIHByb3ZlIHNvbm8gdHJlY2VudG92ZW50aSBlIHNlaWNlbnRvdHRhbnRhIGpvdWxlLCBjb24gbWVkaWEgY2lucXVlY2VudG8uPC9kZXNjPgo8cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjExOTAiIHJ4PSIxMiIgZmlsbD0iI2Y4ZmFmYyIvPgo8ZyBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZmlsbD0iIzE0MjQzYSIgZm9udC1zaXplPSIyMCI+Cjx0ZXh0IHg9IjMyIiB5PSI0MiIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9ImJvbGQiPjEgwrcgUHJpbWEgc2NhbGRhcmUsIHBvaSBjYW1iaWFyZSBmYXNlPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iODMiIGZvbnQtc2l6ZT0iMTgiPlVuIGdyYW1tbzsgbGV0dHVyYSBpbml6aWFsZSDiiJIxMCDCsEMuPC90ZXh0Pgo8ZyBmaWxsPSJub25lIiBzdHJva2U9IiMxNDI0M2EiIHN0cm9rZS13aWR0aD0iMiI+PHBhdGggZD0iTTEwMCAzNTBWMTI1Ii8+PHBhdGggZD0iTTEwMCAzNTBINTM1Ii8+PC9nPgo8cGF0aCBkPSJNMTAwIDMyMEwxMjAgMjIwSDQyMCIgc3Ryb2tlPSIjMTY1YTg3IiBzdHJva2Utd2lkdGg9IjQiIGZpbGw9Im5vbmUiLz4KPHBhdGggZD0iTTEyMCAyMjBWMzUwTTQyMCAyMjBWMzUwIiBzdHJva2U9IiM4MjkyYTIiIHN0cm9rZS1kYXNoYXJyYXk9IjUgNSIgZmlsbD0ibm9uZSIvPgo8ZyBmaWxsPSIjMTY1YTg3Ij48Y2lyY2xlIGN4PSIxMDAiIGN5PSIzMjAiIHI9IjUiLz48Y2lyY2xlIGN4PSIxMjAiIGN5PSIyMjAiIHI9IjUiLz48Y2lyY2xlIGN4PSI0MjAiIGN5PSIyMjAiIHI9IjUiLz48L2c+Cjx0ZXh0IHg9IjI1IiB5PSIzMjciPuKIkjEwIMKwQzwvdGV4dD48dGV4dCB4PSIzOSIgeT0iMjI3Ij4wIMKwQzwvdGV4dD48dGV4dCB4PSI0MCIgeT0iMTE5Ij5UIC8gwrBDPC90ZXh0Pgo8dGV4dCB4PSI4OSIgeT0iMzgxIj4wPC90ZXh0Pjx0ZXh0IHg9IjEwOSIgeT0iMzgxIj4yMDwvdGV4dD48dGV4dCB4PSI0MDIiIHk9IjM4MSI+MzIwPC90ZXh0Pjx0ZXh0IHg9IjU0OCIgeT0iMzU2Ij5RIC8gSjwvdGV4dD4KPHRleHQgeD0iMTQ2IiB5PSIxODUiPkZ1c2lvbmUgY29tcGxldGEgYSBUIGNvc3RhbnRlPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iNDIyIiBmb250LXNpemU9IjE4Ij5Bc3NpOiBjYWxvcmUgUSBpbiBKIGUgbGV0dHVyYSB0ZXJtaWNhIGluIMKwQy48L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI0NTQiIGZvbnQtc2l6ZT0iMTgiPjAgwrBDIMOoIGxhIGZ1c2lvbmU7IG5vbiDDqCBsbyB6ZXJvIGFzc29sdXRvLjwvdGV4dD4KPHBhdGggZD0iTTMyIDQ4M0g2MDgiIHN0cm9rZT0iIzliYWJiYyIvPgo8dGV4dCB4PSIzMiIgeT0iNTI3IiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iYm9sZCI+MiDCtyBEdWUgZW5lcmdpZSBlbnRyYW1iZSBhc3NvcmJpdGU8L3RleHQ+CjxwYXRoIGQ9Ik0xMzAgNTQ4Vjc3NyIgc3Ryb2tlPSIjMTQyNDNhIiBzdHJva2Utd2lkdGg9IjIiLz4KPHJlY3QgeD0iMTMwIiB5PSI1NzAiIHdpZHRoPSIyNCIgaGVpZ2h0PSIzNCIgZmlsbD0iIzE2NWE4NyIvPjxyZWN0IHg9IjEzMCIgeT0iNjM4IiB3aWR0aD0iMzYwIiBoZWlnaHQ9IjM0IiBmaWxsPSIjMjg2NjRkIi8+CjxyZWN0IHg9IjEzMCIgeT0iNzA2IiB3aWR0aD0iMjQiIGhlaWdodD0iMzQiIGZpbGw9IiMxNjVhODciLz48cmVjdCB4PSIxNTQiIHk9IjcwNiIgd2lkdGg9IjM2MCIgaGVpZ2h0PSIzNCIgZmlsbD0iIzI4NjY0ZCIvPgo8dGV4dCB4PSIzMyIgeT0iNTk1Ij5TZW5zaWJpbGU8L3RleHQ+PHRleHQgeD0iMTcxIiB5PSI1OTUiPjIwIEo8L3RleHQ+Cjx0ZXh0IHg9IjMzIiB5PSI2NjMiPkZ1c2lvbmU8L3RleHQ+PHRleHQgeD0iNTA3IiB5PSI2NjMiPjMwMCBKPC90ZXh0Pgo8dGV4dCB4PSIzMyIgeT0iNzMxIj5Ub3RhbGU8L3RleHQ+PHRleHQgeD0iNTMxIiB5PSI3MzEiPjMyMCBKPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iODA5IiBmb250LXNpemU9IjE4Ij5Db250cmlidXRpIGVuZXJnZXRpY2k6IDIwIEogKyAzMDAgSiA9IDMyMCBKLjwvdGV4dD4KPHBhdGggZD0iTTMyIDgzOEg2MDgiIHN0cm9rZT0iIzliYWJiYyIvPgo8dGV4dCB4PSIzMiIgeT0iODgyIiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iYm9sZCI+MyDCtyBMYSBtZWRpYSBkZWxsZSBkdWUgcHJvdmU8L3RleHQ+CjxwYXRoIGQ9Ik0xMzAgOTAxVjExMDAiIHN0cm9rZT0iIzE0MjQzYSIgc3Ryb2tlLXdpZHRoPSIyIi8+CjxyZWN0IHg9IjEzMCIgeT0iOTE4IiB3aWR0aD0iMTkyIiBoZWlnaHQ9IjMwIiBmaWxsPSIjMTY1YTg3Ii8+PHJlY3QgeD0iMTMwIiB5PSI5NzgiIHdpZHRoPSI0MDgiIGhlaWdodD0iMzAiIGZpbGw9IiMxNjVhODciLz48cmVjdCB4PSIxMzAiIHk9IjEwMzgiIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAiIGZpbGw9IiMyODY2NGQiLz4KPHRleHQgeD0iNTAiIHk9Ijk0MSI+QTwvdGV4dD48dGV4dCB4PSIzMzkiIHk9Ijk0MSI+MzIwIEo8L3RleHQ+PHRleHQgeD0iNTAiIHk9IjEwMDEiPkI8L3RleHQ+PHRleHQgeD0iNTU0IiB5PSIxMDAxIj42ODAgSjwvdGV4dD48dGV4dCB4PSIzMiIgeT0iMTA2MSI+TWVkaWE8L3RleHQ+PHRleHQgeD0iNDQ3IiB5PSIxMDYxIj41MDAgSjwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjExMzQiIGZvbnQtc2l6ZT0iMTgiPkE6IDEgZywgMTAgSzsgQjogMiBnLCAyMCBLLiBFbmVyZ2llIGluIEouPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iMTE2NiIgZm9udC1zaXplPSIxOCI+U29ubyB0cmFzZmVyaW1lbnRpIGRpIHByb3ZlIHNlcGFyYXRlLCBub24gY2Fsb3JpIGNvbnRlbnV0aS48L3RleHQ+CjwvZz48L3N2Zz4K"
+    }
+  ]
+}

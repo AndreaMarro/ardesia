@@ -1,0 +1,65 @@
+{
+  "scope": "Repair stale test representation; all existing 27 physical subcases unchanged",
+  "rootCause": "Numeric labels are present in actual HTML legend, not 3D sprite labels; banco.draw consumes esperienza.legend",
+  "before": "2 tests,27 actual failures preserved",
+  "productionMutationsRejected": [
+    {
+      "change": [
+        "peso verticale di 20 N",
+        "peso verticale di 30 N"
+      ],
+      "actualExitCode": 1
+    },
+    {
+      "change": [
+        "indica la tensione",
+        "indica la spinta"
+      ],
+      "actualExitCode": 1
+    },
+    {
+      "change": [
+        "peso verticale",
+        "carico verticale"
+      ],
+      "actualExitCode": 1
+    }
+  ],
+  "runtimeUnchanged": true,
+  "legendRestoredSha256": "eb303ca6a6013377462b51c92b541a650ee2686257cd7e4ee39fea5221a521f7",
+  "fullSuiteLogSha256": "2ae6de6b3de1beb7b7a5389db855d9b2a6adcf7a8a387c7d5c8292985d96a07e",
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "reviewFollowup": "Substring20N wrongly accepted120N in real mutated production legend; numeric/unit boundaries fixed",
+  "numericBoundaryMutationsRejected": [
+    {
+      "wrongWeightLabel": "120 N",
+      "actualExitCode": 1
+    },
+    {
+      "wrongWeightLabel": "20 Nm",
+      "actualExitCode": 1
+    },
+    {
+      "wrongWeightLabel": "\u221220 N",
+      "actualExitCode": 1
+    },
+    {
+      "wrongWeightLabel": "20 N/m",
+      "actualExitCode": 1
+    },
+    {
+      "wrongWeightLabel": "20 N\u00b7m",
+      "actualExitCode": 1
+    }
+  ],
+  "testFileSha256": "c3e0477a73b7c0b9ad271a0485d3bb249a996a646ded6e2bb410bd8f7c8737b0",
+  "freshFullSuite": {
+    "tests": 66,
+    "exitCode": 0,
+    "rawLogSha256": "bcbb9109c91e60875f05a8cc20371e225b248675dc4bdfdb87ec9d56b0047c26"
+  },
+  "runtimeSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+  "independentReviewCommit": "1d6f3cb131550a84cb3ee43d2b5c95db2f34154e",
+  "dependencyEnvironment": "Full node_modules reused via symlink from Root with identical package-lock. Initial fingerprint mismatch was only3missingtoolingfiles; no source differences. Final1a fingerprint checked after linking actual dependencies."
+}

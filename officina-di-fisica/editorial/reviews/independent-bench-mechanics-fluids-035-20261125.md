@@ -1,3 +1,9 @@
+## Rinnovo reale del25novembre2026 sul runtime b963
+
+Eseguite nuovamente dieci viste WebGL/fallback e378configurazioni, nove testPASS1,793s. Tutte le14sorgenti specifiche sono byte-identiche ai pin letti; ispezionate le dieci catture complete. La prova distinta B da28560configurazioni/168layout resta legata ai soli sorgenti dichiarati e non è presentata come un nuovo replayb963. Report e catture5405 sono conservati nel relativo snapshot. Ricevuta `bench-mechanics-fluids-035-b963-replay-20261125.json`. HumanNOT_RUN, publicationNONE.
+
+---
+
 # Independent AI review — bench-mechanics-fluids-035
 
 All five original records, model and scene sources, caller, progressive pilot notebook and planar drawings were read. Ten actual published-consumer paths (five WebGL and five fallback) were exercised in disposable SQLite/demo sessions; sixteen distinct assigned exercises, including six pilot tasks, were independently solved and both incorrect/correct submissions checked. Ten captured figures were fully viewed. Final runtime-bound captures have identical bytes to the inspected views. No learner database or published edition changed.
@@ -41,3 +47,9 @@ Fixed amount of ideal dilute gas, equilibrium states, positive absolute T/V/p, t
 Initial verifier implementation had a SymPy Boolean conversion TypeError: RED7tests/19suberrors, corrected without changing any source or physical result. After adding UI-evidence binding, the temporary consumer-copy test was narrowed to its intended numerical verification scope; separate tests enforce UI fingerprint/protocol/images. Final results recorded by tests, not inferred from the failed probes.
 
 Human approval NOT_RUN; publication NONE. Existing source editions retained. Source and consumer pins are literal hashes of the read artefacts; changing any source/model/caller/drawing invalidates the review.
+
+## Refresh del runtime54054f e correzione della precedente accettazione visiva
+
+La precedente convenzione «solo direzioni» per LAB3D-01 era insufficiente e la sua accettazione è stata ritirata. Il primo presunto GREEN locale era in realtà un errore della fixture Node prima delle asserzioni: claim e log originali restano archiviati. Una fixture corretta ha prodotto un RED causale sul vero snapshot f897 e un secondo RED sul layout intermedio0e208. Il renderer finale con base geometrica comune, scala42/P e legenda separata supera4 test reali e264 test Node; typecheck/platform2 PASS. Il verificatore distinto B ha derivato le attese da Newton, confrontato28.560 configurazioni e168 viste reali a tre larghezze, senza ritagli o sovrapposizioni, e firmato solo l’hash esatto del renderer. Questo report è ora vincolato dal verifier035: il suo autore ROOT non autoapprova la propria correzione visiva.
+
+Il replay canonico finale ha realmente riaperto tutti e cinque i banchi in WebGL/fallback:10 viste,16 esercizi distinti con risposte errate respinte e corrette accettate in entrambi i modi. Tutte le dieci immagini sono state rilette;378 configurazioni confrontate con gli oracoli indipendenti recuperati. I modelli e le scene fisiche sono byte-identici; cambiano formatter, banco e tavola. La snapshot f897 conserva17 file con checksum e segnala l’accettazione visiva ritirata.9 test035 sul nuovo report PASS in2,943s, senza togliere controprove. Nessun nuovo ID, nessuna pubblicazione o approvazione umana. Il codice canonico resta da aggiornare mediante i gate della nuova SHA.

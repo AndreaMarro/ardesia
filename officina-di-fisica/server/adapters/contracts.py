@@ -15,6 +15,24 @@ def schema(name):
     return json.loads((CONTRACTS / (name + ".schema.json")).read_text())
 
 
+def _json_identity(value, depth=0):
+    # JSON Schema core4.2.2: numeric1/1.0 compare equal, boolean true/number1 do not.
+    require(depth <= 40, "Valore JSON troppo profondo.")
+    if value is None:
+        return ("null",)
+    if type(value) is bool:
+        return ("boolean", value)
+    if type(value) in (int, float):
+        require(number(value), "Numero JSON non valido.")
+        return ("number", value)
+    if isinstance(value, str):
+        return ("string", value)
+    if isinstance(value, list):
+        return ("array", tuple(_json_identity(item, depth+1) for item in value))
+    require(isinstance(value, dict) and all(isinstance(k, str) for k in value), "Valore JSON non valido.")
+    return ("object", tuple((k, _json_identity(value[k], depth+1)) for k in sorted(value)))
+
+
 def validate(value, rule, field="$", root=None, depth=0):
     root = rule if root is None else root
     require(depth <= 40, "Oggetto troppo profondo in " + field)
@@ -50,6 +68,9 @@ def validate(value, rule, field="$", root=None, depth=0):
                 "Elenco non valido in " + field)
         for item in value:
             validate(item, rule.get("items", {}), field + "[]", root, depth + 1)
+        if rule.get("uniqueItems"):
+            identities = [_json_identity(item) for item in value]
+            require(len(set(identities)) == len(identities), "Valori ripetuti in " + field)
     elif kind == "string":
         require(isinstance(value, str) and rule.get("minLength", 0) <= len(value) <= rule.get("maxLength", float("inf")),
                 "Testo non valido in " + field)
