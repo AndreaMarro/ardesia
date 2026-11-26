@@ -128,7 +128,7 @@ def primary_only_derivations():
     assert sp.solve(sp.Eq(sr,laws[3]),ne)[0]==ni*sr
     assert sp.solve(sp.Eq(q,laws[4]),f)[0]==p*q/(p+q)
     assert sp.solve(sp.Eq(q,laws[4]),p)[0]==q*f/(q-f)
-    assert sp.cancel(((k1*f)*(k2*p)/(k2*p-k1*f))/(f*p/(p-f)))==k1*k2*(p-f)/(k2*p-k1*f)
+    assert sp.cancel(((k1*f)*(k2*p)/(k2*p-k1*f))/(f*p/(p-f))-k1*k2*(p-f)/(k2*p-k1*f))==0
     out={}
     a,b=beta_final(20,1),beta_final(24,2);g,o=calibrate(a,b,43,53)
     out[255]={1:a,2:'dimensionless proton count',3:'Neutron to proton with electron and electron antineutrino; A unchanged,Z+1',4:(a,beta_final(24,1)),5:beta_initial(21,1),6:beta_events(21,20),7:beta_final(20,2)/a,8:42-a,9:sp.Symbol('Zf')-n,10:(k1*z+k2*n)/(z+n),11:b/a,12:(a+b)/2,13:beta_events(sp.Rational(26,21)*a,24),14:beta_initial(78/sp.Integer(3),2),15:beta_initial((51-o)/g,1),16:sp.Integer(21)/21}

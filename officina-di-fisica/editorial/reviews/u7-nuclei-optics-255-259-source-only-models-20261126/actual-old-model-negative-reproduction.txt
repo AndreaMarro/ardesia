@@ -1,0 +1,10 @@
+SHARED_LOCK_ACQUIRED; free bytes 10142363648; one child
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+    import runpy; s=runpy.run_path("editorial/reviews/u7-nuclei-optics-255-259-source-only-models-20261126/failed-initial-model.py.txt"); s["primary_only_derivations"]()
+                                                                                                                                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "editorial/reviews/u7-nuclei-optics-255-259-source-only-models-20261126/failed-initial-model.py.txt", line 131, in primary_only_derivations
+    assert sp.cancel(((k1*f)*(k2*p)/(k2*p-k1*f))/(f*p/(p-f)))==k1*k2*(p-f)/(k2*p-k1*f)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
+CHILD_EXIT 1; free bytes 10142121984
