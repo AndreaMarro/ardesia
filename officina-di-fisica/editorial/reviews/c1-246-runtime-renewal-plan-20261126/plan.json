@@ -1,0 +1,960 @@
+{
+  "phase": "RENEWAL_PLAN_ONLY_NOT_ACTUAL_REVIEW_OR_UI",
+  "registryReadFrom": "Root working snapshot, read-only; not a new canonical checkpoint",
+  "registrySha256": "22e01f2beac0eb49edb9197d01463a94be526b159dbee7848e601e5cbfc0af23",
+  "ledgerSha256": "d74142fa1d345df9678726f255905ff5eb10cfbe1bbed7cebc47315eb63c65c6",
+  "oldRuntimeSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+  "proposedRuntimeSha256": "4c83e0156b74d5a4cdfad90421f4304e6a7a03bde10d5b125f6635aae7eff907",
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+  "totalRegisteredActivities": 246,
+  "totalBatches": 43,
+  "runtimeConsumerActivities": 57,
+  "otherMathSourceActivities": 189,
+  "rows": [
+    {
+      "batchId": "methods-activities-001",
+      "activityIds": [
+        "C1",
+        "C1-M-formula",
+        "C1-M-graph",
+        "C2",
+        "C2-M-formula",
+        "C2-M-graph",
+        "C3",
+        "C3-M-formula",
+        "C3-M-graph",
+        "C4",
+        "C4-M-formula",
+        "C4-M-graph",
+        "C5",
+        "C5-M-formula",
+        "C5-M-graph",
+        "C6"
+      ],
+      "verifier": "method_activity_verifier",
+      "oldReportPath": "editorial/reviews/methods-activities-001.json",
+      "oldReportSha256": "028c9f3a68e548d3c6f856b226bc73c681ce8c675f369ac7bcead8e3e16e3083",
+      "revisionPackage": null,
+      "class": "IMMUTABLE_MATH_SOURCE_PLUS_ACTUAL_READER_RENEWAL_PLAN",
+      "renewalStatus": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "batchId": "labs-activities-002",
+      "activityIds": [
+        "LAB-C1",
+        "LAB-C2",
+        "LAB-C3",
+        "LAB-C4",
+        "LAB-C5"
+      ],
+      "verifier": "lab_activity_verifier",
+      "oldReportPath": "editorial/reviews/labs-activities-002.json",
+      "oldReportSha256": "70a0bc94dc68b86c47c9088e30197190a7613399271adf9e83dbb357a5edc7de",
+      "revisionPackage": null,
+      "class": "INTERACTIVE_LAB_2D_FRESH_CONSUMER_REQUIRED",
+      "renewalStatus": "NOT_RUN",
+      "activityCredit": 0,
+      "consumerFiles": [
+        "static/js/labs.js",
+        "static/js/models.js",
+        "static/lab-models.json"
+      ],
+      "uiRequirement": "Actual existing 2D lab consumer at320/1280 with full legal controls and source-task arithmetic; do not invent a3D/fallback mode."
+    },
+    {
+      "batchId": "examples-c1-activities-003",
+      "activityIds": [
+        "C1-E001",
+        "C1-E002",
+        "C1-E003",
+        "C1-E004",
+        "C1-E005",
+        "C1-E006",
+        "C1-E007",
+        "C1-E008"
+      ],
+      "verifier": "examples_c1_activity_verifier",
+      "oldReportPath": "editorial/reviews/examples-c1-activities-003.json",
+      "oldReportSha256": "2db32f44e2b696fff56c6a7be7ce5951da8c0f0ffa462c54ab0e83462fdbfc31",
+      "revisionPackage": "examples-c1-revisions-016",
+      "class": "IMMUTABLE_MATH_SOURCE_PLUS_ACTUAL_READER_RENEWAL_PLAN",
+      "renewalStatus": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "batchId": "examples-c1-activities-004",
+      "activityIds": [
+        "C1-E009",
+        "C1-E010",
+        "C1-E011",
+        "C1-E012",
+        "C1-E013",
+        "C1-E014",
+        "C1-E015",
+        "C1-E016"
+      ],
+      "verifier": "examples_c1b_activity_verifier",
+      "oldReportPath": "editorial/reviews/examples-c1-activities-004.json",
+      "oldReportSha256": "77ca9e1d7d7963f2ccdf1a638d98dfec3166536330420a9e8ae3822d5089ecfc",
+      "revisionPackage": null,
+      "class": "IMMUTABLE_MATH_SOURCE_PLUS_ACTUAL_READER_RENEWAL_PLAN",
+      "renewalStatus": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "batchId": "examples-c1-activities-005",
+      "activityIds": [
+        "C1-E017",
+        "C1-E018",
+        "C1-E019",
+        "C1-E020",
+        "C2-E001",
+        "C2-E002",
+        "C2-E003",
+        "C2-E004"
+      ],
+      "verifier": "examples_c1c_activity_verifier",
+      "oldReportPath": "editorial/reviews/examples-c1-activities-005.json",
+      "oldReportSha256": "0d0d9f73b0ff6541a60292c0364efe3fb91b85cc3ce2e13db61665bb21d03c65",
+      "revisionPackage": null,
+      "class": "IMMUTABLE_MATH_SOURCE_PLUS_ACTUAL_READER_RENEWAL_PLAN",
+      "renewalStatus": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "batchId": "examples-c2-activities-006",
+      "activityIds": [
+        "C2-E005",
+        "C2-E006",
+        "C2-E007",
+        "C2-E008",
+        "C2-E009",
+        "C2-E010",
+        "C2-E011",
+        "C2-E012"
+      ],
+      "verifier": "examples_c2b_activity_verifier",
+      "oldReportPath": "editorial/reviews/examples-c2-activities-006.json",
+      "oldReportSha256": "a10e15375531b445efc00c34f438b4e162cd63d231d25c9b5413f54e3ac1a7cb",
+      "revisionPackage": "examples-c2-revisions-035",
+      "class": "IMMUTABLE_MATH_SOURCE_PLUS_ACTUAL_READER_RENEWAL_PLAN",
+      "renewalStatus": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "batchId": "examples-coverage-fluid-007",
+      "activityIds": [
+        "C1-E021",
+        "C1-E022",
+        "C1-E023",
+        "C2-E013",
+        "C2-E014",
+        "C2-E015",
+        "C2-E016",
+        "C2-E017"
+      ],
+      "verifier": "examples_coverage_fluid_activity_verifier",
+      "oldReportPath": "editorial/reviews/examples-coverage-fluid-007.json",
+      "oldReportSha256": "93a978f7d3a2f881370d8151b0525f9616e59d3ec2f87651b83152b0d1ecfdda",
+      "revisionPackage": null,
+      "class": "IMMUTABLE_MATH_SOURCE_PLUS_ACTUAL_READER_RENEWAL_PLAN",
+      "renewalStatus": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "batchId": "examples-fluids-thermo-008",
+      "activityIds": [
+        "C2-E018",
+        "C2-E019",
+        "C2-E020",
+        "C2-E021",
+        "C3-E001",
+        "C3-E002",
+        "C3-E003",
+        "C3-E004"
+      ],
+      "verifier": "examples_fluids_thermo_activity_verifier",
+      "oldReportPath": "editorial/reviews/examples-fluids-thermo-008.json",
+      "oldReportSha256": "6c3a4557880a51fe43236ed859c0ccd6a986592c75871865aa7c8a20a7826888",
+      "revisionPackage": "examples-thermo-revisions-042",
+      "class": "IMMUTABLE_MATH_SOURCE_PLUS_ACTUAL_READER_RENEWAL_PLAN",
+      "renewalStatus": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "batchId": "examples-heat-energy-009",
+      "activityIds": [
+        "C3-E005",
+        "C3-E006",
+        "C3-E007",
+        "C3-E008",
+        "C3-E009",
+        "C3-E010",
+        "C3-E011",
+        "C3-E012"
+      ],
+      "verifier": "examples_heat_energy_activity_verifier",
+      "oldReportPath": "editorial/reviews/examples-heat-energy-009.json",
+      "oldReportSha256": "864734dc627f1becf283cc85293d38f068e915bb77856c3bcfba4dcfd845831d",
+      "revisionPackage": null,
+      "class": "IMMUTABLE_MATH_SOURCE_PLUS_ACTUAL_READER_RENEWAL_PLAN",
+      "renewalStatus": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "batchId": "examples-cycles-entropy-010",
+      "activityIds": [
+        "C3-E013",
+        "C3-E014",
+        "C3-E015",
+        "C3-E016",
+        "C3-E017",
+        "C3-E018",
+        "C3-E019",
+        "C3-E020"
+      ],
+      "verifier": "examples_cycles_entropy_activity_verifier",
+      "oldReportPath": "editorial/reviews/examples-cycles-entropy-010.json",
+      "oldReportSha256": "b17070653d8a7fb84e7dc6d9a2a8e9af7bc5d18b41a43c485b68b2738bd80a04",
+      "revisionPackage": "examples-entropy-revisions-043",
+      "class": "IMMUTABLE_MATH_SOURCE_PLUS_ACTUAL_READER_RENEWAL_PLAN",
+      "renewalStatus": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "batchId": "lessons-foundations-011",
+      "activityIds": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C1-L004"
+      ],
+      "verifier": "lessons_foundations_activity_verifier",
+      "oldReportPath": "editorial/reviews/lessons-foundations-011.json",
+      "oldReportSha256": "abe9a2424762d8e5db2303f79464e48084c748397d27df2212f7cd873578fca4",
+      "revisionPackage": "lessons-foundations-revisions-054",
+      "class": "IMMUTABLE_MATH_SOURCE_PLUS_ACTUAL_READER_RENEWAL_PLAN",
+      "renewalStatus": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "batchId": "lessons-mechanics-012",
+      "activityIds": [
+        "C1-L005",
+        "C1-L006",
+        "C1-L007",
+        "C1-L008"
+      ],
+      "verifier": "lessons_mechanics_activity_verifier",
+      "oldReportPath": "editorial/reviews/lessons-mechanics-012.json",
+      "oldReportSha256": "9a948c3c550fa384120ed433d339569eef036b9632775b245838d226c31b48ea",
+      "revisionPackage": null,
+      "class": "IMMUTABLE_MATH_SOURCE_PLUS_ACTUAL_READER_RENEWAL_PLAN",
+      "renewalStatus": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "batchId": "lessons-momentum-fluids-013",
+      "activityIds": [
+        "C1-L009",
+        "C1-L010",
+        "C2-L001",
+        "C2-L002"
+      ],
+      "verifier": "lessons_momentum_fluids_activity_verifier",
+      "oldReportPath": "editorial/reviews/lessons-momentum-fluids-013.json",
+      "oldReportSha256": "62e835fd1ecfff44b10d65d7fc6b0c729afd6640640a9de5673118ecca81697d",
+      "revisionPackage": null,
+      "class": "IMMUTABLE_MATH_SOURCE_PLUS_ACTUAL_READER_RENEWAL_PLAN",
+      "renewalStatus": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "batchId": "lessons-fluids-014",
+      "activityIds": [
+        "C2-L003",
+        "C2-L004",
+        "C2-L005",
+        "C2-L006"
+      ],
+      "verifier": "lessons_fluids_activity_verifier",
+      "oldReportPath": "editorial/reviews/lessons-fluids-014.json",
+      "oldReportSha256": "198ec1e2b6647b614ff682aa080f2635e6f704b2aa5b6f42345a077854f14cd6",
+      "revisionPackage": null,
+      "class": "IMMUTABLE_MATH_SOURCE_PLUS_ACTUAL_READER_RENEWAL_PLAN",
+      "renewalStatus": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "batchId": "lessons-viscous-capillary-015",
+      "activityIds": [
+        "C2-L007",
+        "C2-L008",
+        "C2-L009",
+        "C2-L010"
+      ],
+      "verifier": "lessons_viscous_capillary_activity_verifier",
+      "oldReportPath": "editorial/reviews/lessons-viscous-capillary-015.json",
+      "oldReportSha256": "d87127ced6ced868b9ddf50f4dabd25347c90223f8fe410bd67192641f35570c",
+      "revisionPackage": "lessons-viscous-revisions-073",
+      "class": "IMMUTABLE_MATH_SOURCE_PLUS_ACTUAL_READER_RENEWAL_PLAN",
+      "renewalStatus": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "batchId": "lessons-thermal-basics-016",
+      "activityIds": [
+        "C3-L01",
+        "C3-L02",
+        "C3-L03",
+        "C3-L04"
+      ],
+      "verifier": "lessons_thermal_basics_activity_verifier",
+      "oldReportPath": "editorial/reviews/lessons-thermal-basics-016.json",
+      "oldReportSha256": "dab22f8d91b5e66086a0f2e0b5c2c2ddcf2bff71e07ab2119f47ab40e7278dc9",
+      "revisionPackage": null,
+      "class": "IMMUTABLE_MATH_SOURCE_PLUS_ACTUAL_READER_RENEWAL_PLAN",
+      "renewalStatus": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "batchId": "lessons-thermal-paths-017",
+      "activityIds": [
+        "C3-L05",
+        "C3-L06",
+        "C3-L07",
+        "C3-L08"
+      ],
+      "verifier": "lessons_thermal_paths_activity_verifier",
+      "oldReportPath": "editorial/reviews/lessons-thermal-paths-017.json",
+      "oldReportSha256": "43f1a5e6e6d9d0006f64d73fef973ad114b4539165a836fa482207c3f1ec05f5",
+      "revisionPackage": null,
+      "class": "IMMUTABLE_MATH_SOURCE_PLUS_ACTUAL_READER_RENEWAL_PLAN",
+      "renewalStatus": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "batchId": "lessons-electrostatics-018",
+      "activityIds": [
+        "C4-L01",
+        "C4-L02",
+        "C4-L03",
+        "C4-L04"
+      ],
+      "verifier": "lessons_electrostatics_activity_verifier",
+      "oldReportPath": "editorial/reviews/lessons-electrostatics-018.json",
+      "oldReportSha256": "f918a75fc2d9d91d1fce19ef46272a387b59e0ac803465e71d7efaf23cead2b8",
+      "revisionPackage": null,
+      "class": "IMMUTABLE_MATH_SOURCE_PLUS_ACTUAL_READER_RENEWAL_PLAN",
+      "renewalStatus": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "batchId": "lessons-thermal-second-law-019",
+      "activityIds": [
+        "C3-L09",
+        "C3-L10"
+      ],
+      "verifier": "lessons_thermal_second_law_activity_verifier",
+      "oldReportPath": "editorial/reviews/lessons-thermal-second-law-019.json",
+      "oldReportSha256": "e2a39f13a7d49df10e6780d6f87423cc8d86fee7a32d6728021ab74b8d025845",
+      "revisionPackage": null,
+      "class": "IMMUTABLE_MATH_SOURCE_PLUS_ACTUAL_READER_RENEWAL_PLAN",
+      "renewalStatus": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "batchId": "lessons-circuits-basics-020",
+      "activityIds": [
+        "C4-L05",
+        "C4-L06",
+        "C4-L07",
+        "C4-L08"
+      ],
+      "verifier": "lessons_circuits_basics_activity_verifier",
+      "oldReportPath": "editorial/reviews/lessons-circuits-basics-020.json",
+      "oldReportSha256": "da02800f1f289f607c6e9bf2001e8db958c72497aaa67e009389673519f896b1",
+      "revisionPackage": null,
+      "class": "IMMUTABLE_MATH_SOURCE_PLUS_ACTUAL_READER_RENEWAL_PLAN",
+      "renewalStatus": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "batchId": "lessons-magnetism-induction-021",
+      "activityIds": [
+        "C4-L09",
+        "C4-L10"
+      ],
+      "verifier": "lessons_magnetism_induction_activity_verifier",
+      "oldReportPath": "editorial/reviews/lessons-magnetism-induction-021.json",
+      "oldReportSha256": "e772049fd272211917085762fb69174a8a2ebcb1762bd11e62aba70e05fa714d",
+      "revisionPackage": null,
+      "class": "IMMUTABLE_MATH_SOURCE_PLUS_ACTUAL_READER_RENEWAL_PLAN",
+      "renewalStatus": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "batchId": "lessons-waves-basics-022",
+      "activityIds": [
+        "C5-L01",
+        "C5-L02",
+        "C5-L03",
+        "C5-L04"
+      ],
+      "verifier": "lessons_waves_basics_activity_verifier",
+      "oldReportPath": "editorial/reviews/lessons-waves-basics-022.json",
+      "oldReportSha256": "6224033c1647e7c57151264e5bbf84b2b037dbd2c7ae6c2ffba0f71d7a7e3be0",
+      "revisionPackage": null,
+      "class": "IMMUTABLE_MATH_SOURCE_PLUS_ACTUAL_READER_RENEWAL_PLAN",
+      "renewalStatus": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "batchId": "lessons-sound-radiation-decay-023",
+      "activityIds": [
+        "C5-L05",
+        "C5-L06",
+        "C5-L07",
+        "C5-L08"
+      ],
+      "verifier": "lessons_sound_radiation_decay_activity_verifier",
+      "oldReportPath": "editorial/reviews/lessons-sound-radiation-decay-023.json",
+      "oldReportSha256": "6e05a597f50585c52297e5a02186a60ad99c7439e03798f22b2dc84add6791ab",
+      "revisionPackage": null,
+      "class": "IMMUTABLE_MATH_SOURCE_PLUS_ACTUAL_READER_RENEWAL_PLAN",
+      "renewalStatus": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "batchId": "lessons-geometric-optics-024",
+      "activityIds": [
+        "C5-L09",
+        "C5-L10"
+      ],
+      "verifier": "lessons_geometric_optics_activity_verifier",
+      "oldReportPath": "editorial/reviews/lessons-geometric-optics-024.json",
+      "oldReportSha256": "c0d1672356e87088fe9f1014151180e812c33d95c6ee052234fd8e7fc8930126",
+      "revisionPackage": null,
+      "class": "IMMUTABLE_MATH_SOURCE_PLUS_ACTUAL_READER_RENEWAL_PLAN",
+      "renewalStatus": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "batchId": "lessons-cross-domain-models-025",
+      "activityIds": [
+        "C6-L01",
+        "C6-L02",
+        "C6-L03",
+        "C6-L04"
+      ],
+      "verifier": "lessons_cross_domain_models_activity_verifier",
+      "oldReportPath": "editorial/reviews/lessons-cross-domain-models-025.json",
+      "oldReportSha256": "ec8eb57ad38af252888225962295822b485dd80e5f946585d28d5b36cf6272ed",
+      "revisionPackage": null,
+      "class": "IMMUTABLE_MATH_SOURCE_PLUS_ACTUAL_READER_RENEWAL_PLAN",
+      "renewalStatus": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "batchId": "lessons-representations-transfer-026",
+      "activityIds": [
+        "C6-L05",
+        "C6-L06"
+      ],
+      "verifier": "lessons_representations_transfer_activity_verifier",
+      "oldReportPath": "editorial/reviews/lessons-representations-transfer-026.json",
+      "oldReportSha256": "b86ea0bf1520eeee79c7858fad9ada300973a61aebf0a8bfc17e367acc44703b",
+      "revisionPackage": null,
+      "class": "IMMUTABLE_MATH_SOURCE_PLUS_ACTUAL_READER_RENEWAL_PLAN",
+      "renewalStatus": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "batchId": "examples-electrostatics-027",
+      "activityIds": [
+        "C4-E001",
+        "C4-E002",
+        "C4-E003",
+        "C4-E004",
+        "C4-E005",
+        "C4-E006",
+        "C4-E007",
+        "C4-E008"
+      ],
+      "verifier": "examples_electrostatics_activity_verifier",
+      "oldReportPath": "editorial/reviews/examples-electrostatics-027.json",
+      "oldReportSha256": "ded22e5f9d8457120c612d68db01336695b4076bcb09f1bab3cf533f827c38cd",
+      "revisionPackage": null,
+      "class": "IMMUTABLE_MATH_SOURCE_PLUS_ACTUAL_READER_RENEWAL_PLAN",
+      "renewalStatus": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "batchId": "examples-circuits-capacitors-028",
+      "activityIds": [
+        "C4-E009",
+        "C4-E010",
+        "C4-E011",
+        "C4-E012",
+        "C4-E013",
+        "C4-E014",
+        "C4-E015",
+        "C4-E016"
+      ],
+      "verifier": "examples_circuits_capacitors_activity_verifier",
+      "oldReportPath": "editorial/reviews/examples-circuits-capacitors-028.json",
+      "oldReportSha256": "19fbe848ad245e8b15c7e6de9c32057955fe5e49e3bdf8ade628b2eec3027016",
+      "revisionPackage": null,
+      "class": "IMMUTABLE_MATH_SOURCE_PLUS_ACTUAL_READER_RENEWAL_PLAN",
+      "renewalStatus": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "batchId": "examples-magnetic-induction-029",
+      "activityIds": [
+        "C4-E017",
+        "C4-E018",
+        "C4-E019",
+        "C4-E020"
+      ],
+      "verifier": "examples_magnetic_induction_activity_verifier",
+      "oldReportPath": "editorial/reviews/examples-magnetic-induction-029.json",
+      "oldReportSha256": "a4dbf86de88028eacd000258a5065a8adda893eb7da86871035f52b4e6408dc2",
+      "revisionPackage": null,
+      "class": "IMMUTABLE_MATH_SOURCE_PLUS_ACTUAL_READER_RENEWAL_PLAN",
+      "renewalStatus": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "batchId": "examples-mechanical-waves-030",
+      "activityIds": [
+        "C5-E001",
+        "C5-E002",
+        "C5-E003",
+        "C5-E004",
+        "C5-E005",
+        "C5-E006",
+        "C5-E007",
+        "C5-E008"
+      ],
+      "verifier": "examples_mechanical_waves_activity_verifier",
+      "oldReportPath": "editorial/reviews/examples-mechanical-waves-030.json",
+      "oldReportSha256": "4b217369c3e3e1eba9ea034f197078371431301e750253faf43d4eb29e338797",
+      "revisionPackage": "examples-string-power-revisions-094",
+      "class": "IMMUTABLE_MATH_SOURCE_PLUS_ACTUAL_READER_RENEWAL_PLAN",
+      "renewalStatus": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "batchId": "examples-sound-photons-decay-031",
+      "activityIds": [
+        "C5-E009",
+        "C5-E010",
+        "C5-E011",
+        "C5-E012",
+        "C5-E013",
+        "C5-E014",
+        "C5-E015",
+        "C5-E016"
+      ],
+      "verifier": "examples_sound_photons_decay_activity_verifier",
+      "oldReportPath": "editorial/reviews/examples-sound-photons-decay-031.json",
+      "oldReportSha256": "ddcdb89dd8d3d56cbb73413a990fbe0df83c3b31c2574d8f6b0a34dbc38bb937",
+      "revisionPackage": "examples-echo-revisions-105",
+      "class": "IMMUTABLE_MATH_SOURCE_PLUS_ACTUAL_READER_RENEWAL_PLAN",
+      "renewalStatus": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "batchId": "examples-optics-032",
+      "activityIds": [
+        "C5-E017",
+        "C5-E018",
+        "C5-E019",
+        "C5-E020"
+      ],
+      "verifier": "examples_optics_activity_verifier",
+      "oldReportPath": "editorial/reviews/examples-optics-032.json",
+      "oldReportSha256": "8d6942bfaa8493fd8c039f368d0f0da3592c48ff7db00811c31619f16031fc63",
+      "revisionPackage": "examples-refraction-revisions-106",
+      "class": "IMMUTABLE_MATH_SOURCE_PLUS_ACTUAL_READER_RENEWAL_PLAN",
+      "renewalStatus": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "batchId": "examples-cross-domain-033",
+      "activityIds": [
+        "C6-E001",
+        "C6-E002",
+        "C6-E003",
+        "C6-E004",
+        "C6-E005",
+        "C6-E006"
+      ],
+      "verifier": "examples_cross_domain_activity_verifier",
+      "oldReportPath": "editorial/reviews/examples-cross-domain-033.json",
+      "oldReportSha256": "64ee7959453d4d1baaf8d3977c3d4c7586494e93ebe90354f21ff7763240318a",
+      "revisionPackage": "examples-cross-domain-revisions-117",
+      "class": "IMMUTABLE_MATH_SOURCE_PLUS_ACTUAL_READER_RENEWAL_PLAN",
+      "renewalStatus": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "batchId": "examples-coverage-transfer-034",
+      "activityIds": [
+        "C3-E021",
+        "C3-E022",
+        "C3-E023",
+        "C4-E021",
+        "C5-E021",
+        "C5-E022",
+        "C6-AE01"
+      ],
+      "verifier": "examples_coverage_transfer_activity_verifier",
+      "oldReportPath": "editorial/reviews/examples-coverage-transfer-034.json",
+      "oldReportSha256": "d259ef001cb1a05369fe9f7a609d8cc2853f529a1f5fc8f23feb6f286ef4fe0a",
+      "revisionPackage": null,
+      "class": "IMMUTABLE_MATH_SOURCE_PLUS_ACTUAL_READER_RENEWAL_PLAN",
+      "renewalStatus": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "batchId": "bench-mechanics-fluids-035",
+      "activityIds": [
+        "LAB3D-01",
+        "LAB3D-02",
+        "LAB3D-03",
+        "LAB3D-04",
+        "LAB3D-05"
+      ],
+      "verifier": "bench_mechanics_fluids_activity_verifier",
+      "oldReportPath": "editorial/reviews/bench-mechanics-fluids-035.json",
+      "oldReportSha256": "58a852e94a591b06c30669845dce32bafbedacae514eb7970e07597dc48c27c4",
+      "revisionPackage": null,
+      "class": "RUNTIME_CONSUMER_FRESH_REQUIRED",
+      "renewalStatus": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "batchId": "bench-fields-optics-036",
+      "activityIds": [
+        "LAB3D-06",
+        "LAB3D-07",
+        "LAB3D-08",
+        "LAB3D-09",
+        "LAB3D-10"
+      ],
+      "verifier": "bench_fields_optics_activity_verifier",
+      "oldReportPath": "editorial/reviews/bench-fields-optics-036.json",
+      "oldReportSha256": "bcfe4825db566f26ed7aeec83dc37892359a24e6f5dcee7f1561e57e51b19f9e",
+      "revisionPackage": null,
+      "class": "RUNTIME_CONSUMER_FRESH_REQUIRED",
+      "renewalStatus": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "batchId": "experiments-kinematics-039",
+      "activityIds": [
+        "SIM-C1-L003-01",
+        "SIM-C1-L003-02",
+        "SIM-C1-L003-03",
+        "SIM-C1-L003-04",
+        "SIM-C1-L003-05",
+        "SIM-C1-L003-06"
+      ],
+      "verifier": "experiments_kinematics_activity_verifier",
+      "oldReportPath": "editorial/reviews/experiments-kinematics-039.json",
+      "oldReportSha256": "368389bbc7c0772fbba35e9e4362a915b94d3fb5323ff70ad03f5eaf32870650",
+      "revisionPackage": null,
+      "class": "RUNTIME_CONSUMER_FRESH_REQUIRED",
+      "renewalStatus": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "batchId": "experiments-accelerated-040",
+      "activityIds": [
+        "SIM-C1-L004-01",
+        "SIM-C1-L004-02",
+        "SIM-C1-L004-03",
+        "SIM-C1-L004-04"
+      ],
+      "verifier": "experiments_accelerated_activity_verifier",
+      "oldReportPath": "editorial/reviews/experiments-accelerated-040.json",
+      "oldReportSha256": "d82be449a8c95c0af1f7fa328d200de5d869df36aac2972195447fb85876ace7",
+      "revisionPackage": null,
+      "class": "RUNTIME_CONSUMER_FRESH_REQUIRED",
+      "renewalStatus": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "batchId": "experiments-foundations-revision-118",
+      "activityIds": [
+        "SIM-C1-L001-01",
+        "SIM-C1-L001-02",
+        "SIM-C1-L001-03",
+        "SIM-C1-L001-04",
+        "SIM-C1-L001-05",
+        "SIM-C1-L001-06"
+      ],
+      "verifier": "experiments_foundations_revision_verifier",
+      "oldReportPath": "editorial/reviews/experiments-foundations-revision-118.json",
+      "oldReportSha256": "b45d1457597bec9302998ea9b4abff5082adf24e3e735254b28ad1ee75e9cc4c",
+      "revisionPackage": "experiment-projection-revision-118",
+      "class": "RUNTIME_CONSUMER_FRESH_REQUIRED",
+      "renewalStatus": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "batchId": "experiments-vectors-revision-119",
+      "activityIds": [
+        "SIM-C1-L002-01",
+        "SIM-C1-L002-02",
+        "SIM-C1-L002-03",
+        "SIM-C1-L002-04"
+      ],
+      "verifier": "experiments_vectors_revision_verifier",
+      "oldReportPath": "editorial/reviews/experiments-vectors-revision-119.json",
+      "oldReportSha256": "8aaab11bf14c320c50868756d732661749804e705b76471c8f0d3da8d9bc23fa",
+      "revisionPackage": "experiment-products-revision-119",
+      "class": "RUNTIME_CONSUMER_FRESH_REQUIRED",
+      "renewalStatus": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "batchId": "experiments-forces-revision-140",
+      "activityIds": [
+        "SIM-C1-L005-01",
+        "SIM-C1-L005-02",
+        "SIM-C1-L005-03",
+        "SIM-C1-L005-04",
+        "SIM-C1-L005-05",
+        "SIM-C1-L005-06"
+      ],
+      "verifier": "experiments_forces_revision_verifier",
+      "oldReportPath": "editorial/reviews/experiments-forces-revision-140.json",
+      "oldReportSha256": "b0e122085d233d87fbba093b0d3cc5de4cd36a8ad00d15b957847d89e61e91e3",
+      "revisionPackage": "experiment-normal-revision-140",
+      "class": "RUNTIME_CONSUMER_FRESH_REQUIRED",
+      "renewalStatus": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "batchId": "experiments-force-work-corrected-048",
+      "activityIds": [
+        "SIM-C1-L006-01",
+        "SIM-C1-L006-02",
+        "SIM-C1-L006-03",
+        "SIM-C1-L007-01",
+        "SIM-C1-L007-02",
+        "SIM-C1-L007-03"
+      ],
+      "verifier": "experiments_force_work_corrected_048_verifier",
+      "oldReportPath": "editorial/reviews/experiments-force-work-corrected-048.json",
+      "oldReportSha256": "c1b27ade2c0385b5c5369d874fec0b248d5f0876e1fcde4dff1c4d2c3940d314",
+      "revisionPackage": null,
+      "class": "RUNTIME_CONSUMER_FRESH_REQUIRED",
+      "renewalStatus": "NOT_RUN",
+      "activityCredit": 0
+    },
+    {
+      "batchId": "experiments-energy-momentum-corrected-049",
+      "activityIds": [
+        "SIM-C1-L008-01",
+        "SIM-C1-L008-02",
+        "SIM-C1-L008-03",
+        "SIM-C1-L009-01",
+        "SIM-C1-L009-02",
+        "SIM-C1-L010-01",
+        "SIM-C1-L010-02",
+        "SIM-C1-L010-03",
+        "SIM-C1-L010-04",
+        "SIM-C1-L010-05"
+      ],
+      "verifier": "experiments_energy_momentum_corrected_049_verifier",
+      "oldReportPath": "editorial/reviews/experiments-energy-momentum-corrected-049.json",
+      "oldReportSha256": "3a879c2a4e65b24d6192c21ff6b0530f1fa1d4d5bb626aced5da3a75c2b54305",
+      "revisionPackage": null,
+      "class": "RUNTIME_CONSUMER_FRESH_REQUIRED",
+      "renewalStatus": "NOT_RUN",
+      "activityCredit": 0
+    }
+  ],
+  "sixHistoricalClosuresNeedingFreshSameBatchReports": [
+    {
+      "withdrawalId": "normal-visibility-a-20261125",
+      "batchId": "experiments-forces-revision-140",
+      "recordId": "SIM-C1-L005-05",
+      "historicalClosure": {
+        "batchId": "experiments-forces-revision-140",
+        "closedAt": "2026-11-25T11:37:02.473264Z",
+        "reason": "Explicit integration of independently renewed A/Third current1a35 scientific report and actual browser/whole-glyph evidence. Root59 real tests passed775.434s and1300 delivery files were SHA-verified; root read the six critical final native views. Historical negatives and source-v1 failures remain retained. Human approval and publication are separate and NOT_RUN/NONE. Explicit report renewal after independently audited diagnostic-witness serialization scene-coordinate-decimal12/v1; raw clearance predicate and all native/negative proofs unchanged. Actual six-record regenerated report and Root13 tests PASS8.729s; no new completion credit.",
+        "recordId": "SIM-C1-L005-05",
+        "reviewer": "root_integrator_of_distinct_AI_reviews_A_and_Third",
+        "runtimeSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+        "scientificReport": {
+          "path": "editorial/reviews/experiments-forces-revision-140.json",
+          "sha256": "b0e122085d233d87fbba093b0d3cc5de4cd36a8ad00d15b957847d89e61e91e3"
+        }
+      },
+      "renewalRequiredOnProposedRuntime": true,
+      "freshRuntimeEvidence": "NOT_RUN"
+    },
+    {
+      "withdrawalId": "accelerated-freefall-tip-a-20261125",
+      "batchId": "experiments-accelerated-040",
+      "recordId": "SIM-C1-L004-02",
+      "historicalClosure": {
+        "batchId": "experiments-accelerated-040",
+        "closedAt": "2026-11-25T09:48:37.098177Z",
+        "reason": "Explicit integration of independently renewed A/Third current1a35 scientific report and actual browser/whole-glyph evidence. Root59 real tests passed775.434s and1300 delivery files were SHA-verified; root read the six critical final native views. Historical negatives and source-v1 failures remain retained. Human approval and publication are separate and NOT_RUN/NONE.",
+        "recordId": "SIM-C1-L004-02",
+        "reviewer": "root_integrator_of_distinct_AI_reviews_A_and_Third",
+        "runtimeSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+        "scientificReport": {
+          "path": "editorial/reviews/experiments-accelerated-040.json",
+          "sha256": "d82be449a8c95c0af1f7fa328d200de5d869df36aac2972195447fb85876ace7"
+        }
+      },
+      "renewalRequiredOnProposedRuntime": true,
+      "freshRuntimeEvidence": "NOT_RUN"
+    },
+    {
+      "withdrawalId": "accelerated-centripetal-tip-a-20261125",
+      "batchId": "experiments-accelerated-040",
+      "recordId": "SIM-C1-L004-04",
+      "historicalClosure": {
+        "batchId": "experiments-accelerated-040",
+        "closedAt": "2026-11-25T09:48:37.098177Z",
+        "reason": "Explicit integration of independently renewed A/Third current1a35 scientific report and actual browser/whole-glyph evidence. Root59 real tests passed775.434s and1300 delivery files were SHA-verified; root read the six critical final native views. Historical negatives and source-v1 failures remain retained. Human approval and publication are separate and NOT_RUN/NONE.",
+        "recordId": "SIM-C1-L004-04",
+        "reviewer": "root_integrator_of_distinct_AI_reviews_A_and_Third",
+        "runtimeSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+        "scientificReport": {
+          "path": "editorial/reviews/experiments-accelerated-040.json",
+          "sha256": "d82be449a8c95c0af1f7fa328d200de5d869df36aac2972195447fb85876ace7"
+        }
+      },
+      "renewalRequiredOnProposedRuntime": true,
+      "freshRuntimeEvidence": "NOT_RUN"
+    },
+    {
+      "withdrawalId": "hooke-label-visibility-third-20261125",
+      "batchId": "experiments-force-work-corrected-048",
+      "recordId": "SIM-C1-L006-02",
+      "historicalClosure": {
+        "batchId": "experiments-force-work-corrected-048",
+        "closedAt": "2026-11-25T09:48:37.098177Z",
+        "reason": "Explicit integration of independently renewed A/Third current1a35 scientific report and actual browser/whole-glyph evidence. Root59 real tests passed775.434s and1300 delivery files were SHA-verified; root read the six critical final native views. Historical negatives and source-v1 failures remain retained. Human approval and publication are separate and NOT_RUN/NONE.",
+        "recordId": "SIM-C1-L006-02",
+        "reviewer": "root_integrator_of_distinct_AI_reviews_A_and_Third",
+        "runtimeSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+        "scientificReport": {
+          "path": "editorial/reviews/experiments-force-work-corrected-048.json",
+          "sha256": "c1b27ade2c0385b5c5369d874fec0b248d5f0876e1fcde4dff1c4d2c3940d314"
+        }
+      },
+      "renewalRequiredOnProposedRuntime": true,
+      "freshRuntimeEvidence": "NOT_RUN"
+    },
+    {
+      "withdrawalId": "energy-height-visibility-third-20261125",
+      "batchId": "experiments-energy-momentum-corrected-049",
+      "recordId": "SIM-C1-L008-03",
+      "historicalClosure": {
+        "batchId": "experiments-energy-momentum-corrected-049",
+        "closedAt": "2026-11-25T09:48:37.098177Z",
+        "reason": "Explicit integration of independently renewed A/Third current1a35 scientific report and actual browser/whole-glyph evidence. Root59 real tests passed775.434s and1300 delivery files were SHA-verified; root read the six critical final native views. Historical negatives and source-v1 failures remain retained. Human approval and publication are separate and NOT_RUN/NONE.",
+        "recordId": "SIM-C1-L008-03",
+        "reviewer": "root_integrator_of_distinct_AI_reviews_A_and_Third",
+        "runtimeSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+        "scientificReport": {
+          "path": "editorial/reviews/experiments-energy-momentum-corrected-049.json",
+          "sha256": "3a879c2a4e65b24d6192c21ff6b0530f1fa1d4d5bb626aced5da3a75c2b54305"
+        }
+      },
+      "renewalRequiredOnProposedRuntime": true,
+      "freshRuntimeEvidence": "NOT_RUN"
+    },
+    {
+      "withdrawalId": "work-vector-name-visibility-third-20261125",
+      "batchId": "experiments-force-work-corrected-048",
+      "recordId": "SIM-C1-L007-01",
+      "historicalClosure": {
+        "batchId": "experiments-force-work-corrected-048",
+        "closedAt": "2026-11-25T09:48:37.098177Z",
+        "reason": "Explicit integration of independently renewed A/Third current1a35 scientific report and actual browser/whole-glyph evidence. Root59 real tests passed775.434s and1300 delivery files were SHA-verified; root read the six critical final native views. Historical negatives and source-v1 failures remain retained. Human approval and publication are separate and NOT_RUN/NONE.",
+        "recordId": "SIM-C1-L007-01",
+        "reviewer": "root_integrator_of_distinct_AI_reviews_A_and_Third",
+        "runtimeSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+        "scientificReport": {
+          "path": "editorial/reviews/experiments-force-work-corrected-048.json",
+          "sha256": "c1b27ade2c0385b5c5369d874fec0b248d5f0876e1fcde4dff1c4d2c3940d314"
+        }
+      },
+      "renewalRequiredOnProposedRuntime": true,
+      "freshRuntimeEvidence": "NOT_RUN"
+    }
+  ],
+  "changedBundledRuntimeInputs": [
+    {
+      "file": "static/js/banchi/banco.js",
+      "oldSha256": "8200aa5adf026372699790c21f60e0cf3f5fffcb705ef5ee36f609ac3c1e3ed9",
+      "newSha256": "ef6e31eda7c9dafdfe959f15d35d0939fab49b50bbceb5a5aec39d979f200e49"
+    },
+    {
+      "file": "static/js/banchi/voci/apparati/campi.js",
+      "oldSha256": "869db393319c413814f168003dbbf4bf07fa7dedc8f36d58870fab818c776953",
+      "newSha256": "0f408830b38f2b806ed128d5d26f73b675a587cab8e884ff710d34a157a636c6"
+    },
+    {
+      "file": "static/js/banchi/voci/apparati/fluidi.js",
+      "oldSha256": "02113df5c60acc56c8a75b0c83afd0d9e3dfa39809848df4197ba50e3f823eb5",
+      "newSha256": "a4cd4d9f6a061b9077e2406bbde2d95296a313ec7b7c69f8f5d68cd26fadb8fc"
+    },
+    {
+      "file": "static/js/banchi/voci/apparati/onde.js",
+      "oldSha256": "f996d9043aef594f8df1b321eb2d3b9d87e4ecb5a91a059300278d2794b9d0c2",
+      "newSha256": "b17ef99bd386c0faed820e87b2f4ca476e4cd99597b76ae403c1c38ebe7b1f8c"
+    },
+    {
+      "file": "static/js/banchi/voci/apparati/termica.js",
+      "oldSha256": "d4fc6087783e0888f1680df6b940ed551582eeea8314d83c56deed36560d310d",
+      "newSha256": "71e362248e122dc8086c65d69476fc813982262cbb3126ebfe15f242a60e2cc5"
+    },
+    {
+      "file": "static/js/banchi/voci/esperimento.js",
+      "oldSha256": "cc435e51b62d5b9961b32f5d9b349171f7432e3bf6a6911cd80daaa1f419767b",
+      "newSha256": "7a856fda0835d736b46c631e05652e6b2e27f3758abd94d7026158e56b019843"
+    },
+    {
+      "file": "static/js/banchi/voci/legende.js",
+      "oldSha256": "eb303ca6a6013377462b51c92b541a650ee2686257cd7e4ee39fea5221a521f7",
+      "newSha256": "73be16b9e0e8072a4668674f6c93502ca6310ccf9ea75b945daf25116976b568"
+    },
+    {
+      "file": "static/js/banchi/voci/modelli/C2.js",
+      "oldSha256": "a2bfb8da7c5f2ab29cd5afdd724e62192c7bd3cc5feea46e5b05f3b025561ea2",
+      "newSha256": "7e4db74e7c1e969bfdc5411af5e64cdb012427a6b4433add2d996a64e9b8fc7d"
+    }
+  ],
+  "rules": [
+    "Preserve all historical negative receipts and the six actual1a closures as that epoch history. No silent replacement or relabeling.",
+    "Re-read changed guide flow and all current consumers; reuse frozen independent arithmetic derivations only with exact source/model byte invariants.",
+    "Re-execute actual registered draft previews and source reader consumers where required; static original verification is not a new rendered preview.",
+    "Run C1 control/clock domains and critical nearzero/contact/angle cases in native/fallback at320/1280; add actual Oblique/Side/Top camera contexts where previous matrices lacked Top.",
+    "Full32facetshaft/cone/caps and opaque mesh camera tests, remaining label overlays, scale/direction/zero/readout comparisons; distinguish end-on projection from masking.",
+    "Only after actual same-epoch UI and fresh report verification may the integrator add explicit renewed closure metadata. No credit here.",
+    "LAB-C1..LAB-C5 are five additional interactive2D consumers, not static readers;52 counts only benches+experiments. Their existing controls/SVG and questions must actually be revisited."
+  ],
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "activityCredit": 0,
+  "benchAndExperimentActivities": 52,
+  "interactiveLabActivities": 5,
+  "staticSourcePartition": {
+    "courseAndMethods": 16,
+    "lessons": 56,
+    "examples": 117
+  }
+}
