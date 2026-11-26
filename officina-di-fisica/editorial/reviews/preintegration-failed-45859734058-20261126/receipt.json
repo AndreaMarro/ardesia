@@ -1,0 +1,64 @@
+{
+  "scope": "Failed remote run retained verbatim; no checkpoint adoption or release approval",
+  "runId": 45859734058,
+  "jobId": 140047303643,
+  "sourceHead": "99e98f4984bc5ded6898e6eb8f494f8c1eeceb54",
+  "conclusion": "FAILURE",
+  "artifactId": 15139896065,
+  "artifactBytes": 109850359,
+  "artifactSha256": "8d42d829baaf3c6ce2b1d2f9019b5036298d5fa44fbbf0db13cd79bccedc08a1",
+  "parts": [
+    {
+      "path": "editorial/reviews/preintegration-failed-45859734058-20261126/failed-upstream-artifact.zip.part-001",
+      "sha256": "d94b792bc6355ae12d9ce6f75ad68b006a11b5d5118fdd5ff2028f6390e0d834",
+      "bytes": 41943040
+    },
+    {
+      "path": "editorial/reviews/preintegration-failed-45859734058-20261126/failed-upstream-artifact.zip.part-002",
+      "sha256": "03757011fcef4e87de0fcbe194d50d36f8b5f212f284885c7729a76e7541894c",
+      "bytes": 41943040
+    },
+    {
+      "path": "editorial/reviews/preintegration-failed-45859734058-20261126/failed-upstream-artifact.zip.part-003",
+      "sha256": "b60ec678e28aeb240cf76701a67dc196b761ebb49113f260dc3785d98ef69486",
+      "bytes": 25964279
+    }
+  ],
+  "rawTestResult": {
+    "tests": 1015,
+    "seconds": 954.151,
+    "failures": 1,
+    "errors": 1
+  },
+  "successfulPriorStages": [
+    "terminal preview persistence",
+    "independent scientific refresh",
+    "fresh/incremental ETL identical3632/246",
+    "canonical coexistence"
+  ],
+  "release": "SKIPPED",
+  "checkpointCandidateNotAdopted": {
+    "generation": "generations/c0b84b2576606de5b6edbfb7cab7ea74ed5c6f90656d2c22b93f60db1d6421c8",
+    "manifestSha256": "61ae9fa1b0bec26a70f942871ebb181251392fc05992cbc5250968044e9d4f58",
+    "questionCount": 4606,
+    "schemaVersion": "1.0.0"
+  },
+  "officialCheckpointUnchanged": {
+    "generation": "generations/246f485b3fd81da8a99f124e033af0481dd270136389e3cf21413ca015c5fbbe",
+    "manifestSha256": "e2cdf877d2d81b6cfb4b9db486f0738cf4b459219d6116c532b1152a3a4e4890",
+    "questionCount": 4606,
+    "schemaVersion": "1.0.0"
+  },
+  "missingFixtureRecovered": {
+    "path": "editorial/reviews/experiments-pressure-hydrostatics-047-originals-frozen-1a35-20261125/editorial/reviews/experiments-pressure-hydrostatics-047-1a35-20261125/actual-runtime.json",
+    "sha256": "172a24ec6a2cc3e486f73f13d21c4872abcff4711fe3fe388ccaaedc86c66cee",
+    "bytes": 2143985,
+    "source": "Existing local CORE frozen historical file; identical to independently committed c4b0083f prepatch SHA, never regenerated. Previously not available in Root or clean clone.",
+    "rootTargetTests": 7,
+    "observedExit": 0,
+    "scientificCreditAdded": 0
+  },
+  "remainingFailure": "Python-dependent AST dump hash in independent test235239; distinct authorA fixing; full rerun required.",
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}
