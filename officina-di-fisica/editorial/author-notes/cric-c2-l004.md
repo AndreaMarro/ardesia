@@ -14,7 +14,7 @@ Procedimento: Per Archimede la spinta è il peso del liquido spostato. Il volume
 
 Passaggi esatti: `V=75\cdot10^{-6}\,\mathrm{m^3}\qquad m_f=\rho V=0{,}075\,\mathrm{kg}\qquad S=\rho gV\qquad S=\frac34\,\mathrm N`.
 
-Distrattori: 7,5 N e 0,075 N differiscono di un fattore dieci dalla spinta corretta. 75 N e 750 N trattano il numero dei cm³ senza convertirne l’unità nel prodotto SI. Non si usa il volume totale del recipiente né serve conoscere la massa del corpo per ottenere la spinta.
+Distrattori: 7,5 N e 0,075 N differiscono di un fattore dieci dalla spinta corretta. 75 N richiederebbe 7500 cm³ d’acqua spostati e 750 N ne richiederebbe 75000 cm³, anziché i 75 cm³ assegnati. Non si usa il volume totale del recipiente né serve conoscere la massa del corpo per ottenere la spinta.
 
 Aiuto: Trova il peso dei 75 cm³ d’acqua che occuperebbero il posto del corpo.
 
