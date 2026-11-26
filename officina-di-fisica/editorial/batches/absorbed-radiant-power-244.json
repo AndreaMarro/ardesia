@@ -1,0 +1,1148 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u7-absorbed-radiant-power-01",
+      "kind": "question",
+      "course": "C5",
+      "section": "Bilancio fra potenza trasmessa e assorbita",
+      "order": 24401,
+      "title": "Dove va la potenza non trasmessa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "absorbed-radiant-power",
+      "difficulty": 1,
+      "prompt": "Uno strato riceve potenza radiante P₀>0 e ne trasmette la frazione τ, con 0<τ<1. Qui τ è la trasmittanza, non una profondità ottica. Nel bilancio considerato sono trascurabili riflessione, emissione propria e altri canali radiativi: P₀=P_trasm+P_ass, con P_trasm=τP₀. Si cerca la potenza radiante assorbita, non l’energia assorbita in un intervallo. Le prove hanno dati finiti costanti e i confronti riguardano preparazioni distinte. Con P₀=8 W e τ=1/2, quanto vale P_ass in W?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "W",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La potenza trasmessa è τP₀=4 W. Sottraendola agli 8 W incidenti resta P_ass = 4 W. In questo bilancio senza altri canali la frazione assorbita è 1−τ, non τ per definizione: i due valori coincidono soltanto perché qui τ=1/2."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/c4c4b0d95da705f744e2d5a346ee81ba5085b13465b46b9c5c1e5002fa48d426",
+          "text": "Il primo bilancio distingue ingresso, trasmissione e assorbimento: 8 W=4 W+4 W. Le larghezze delle tre barre usano la stessa scala. Nessuna riflessione o altra perdita è inclusa in questo modello."
+        },
+        {
+          "type": "formula",
+          "text": "P_{\\rm trasm}=\\tau P_0"
+        },
+        {
+          "type": "formula",
+          "text": " P_{\\rm ass}=P_0(1-\\tau)"
+        },
+        {
+          "type": "formula",
+          "text": " P_{\\rm ass}=4\\,\\mathrm W"
+        },
+        {
+          "type": "text",
+          "text": "Otto W assorbe tutta la potenza ignorando la trasmissione. Sedici W divide per τ e supera l’ingresso; zero ignora l’assorbimento. Non basta moltiplicare sempre per τ: a una trasmittanza diversa da 1/2 darebbe la potenza trasmessa, non quella assorbita."
+        }
+      ],
+      "hints": [
+        "Calcola prima la parte trasmessa, poi sottraila da P₀.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Otto W assorbe tutta la potenza ignorando la trasmissione. Sedici W divide per τ e supera l’ingresso; zero ignora l’assorbimento. Non basta moltiplicare sempre per τ: a una trasmittanza diversa da 1/2 darebbe la potenza trasmessa, non quella assorbita.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Trasmittanza e complemento assorbito",
+        "Potenza distinta da energia e intensità",
+        "Inverse e dominio 0<τ<1",
+        "Medie, display e massimo vincolato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-absorbed-radiant-power-02",
+      "kind": "question",
+      "course": "C5",
+      "section": "Bilancio fra potenza trasmessa e assorbita",
+      "order": 24402,
+      "title": "La dimensione del risultato",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "absorbed-radiant-power",
+      "difficulty": 1,
+      "prompt": "Uno strato riceve potenza radiante P₀>0 e ne trasmette la frazione τ, con 0<τ<1. Qui τ è la trasmittanza, non una profondità ottica. Nel bilancio considerato sono trascurabili riflessione, emissione propria e altri canali radiativi: P₀=P_trasm+P_ass, con P_trasm=τP₀. Si cerca la potenza radiante assorbita, non l’energia assorbita in un intervallo. Le prove hanno dati finiti costanti e i confronti riguardano preparazioni distinte. Quale unità è dimensionalmente adatta a P_ass?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "W",
+          "J",
+          "W/m²",
+          "s",
+          "1"
+        ],
+        "value": "W"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La potenza assorbita è una quota della potenza incidente e ha unità watt. τ e 1−τ sono pure e non ne cambiano la dimensione. Per conoscere un’energia servirebbe anche un intervallo e l’integrale della potenza."
+        },
+        {
+          "type": "formula",
+          "text": "[P_{\\rm ass}]=\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " [\\tau]=1"
+        },
+        {
+          "type": "text",
+          "text": "J è energia, W/m² intensità e s tempo. Il simbolo 1 è adatto alla trasmittanza, non a P_ass. Non si elimina il watt formando una frazione della potenza incidente."
+        }
+      ],
+      "hints": [
+        "Un fattore puro conserva l’unità di P₀.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "J è energia, W/m² intensità e s tempo. Il simbolo 1 è adatto alla trasmittanza, non a P_ass. Non si elimina il watt formando una frazione della potenza incidente.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Trasmittanza e complemento assorbito",
+        "Potenza distinta da energia e intensità",
+        "Inverse e dominio 0<τ<1",
+        "Medie, display e massimo vincolato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-absorbed-radiant-power-03",
+      "kind": "question",
+      "course": "C5",
+      "section": "Bilancio fra potenza trasmessa e assorbita",
+      "order": 24403,
+      "title": "La frazione assorbita è il complemento",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "absorbed-radiant-power",
+      "difficulty": 1,
+      "prompt": "Uno strato riceve potenza radiante P₀>0 e ne trasmette la frazione τ, con 0<τ<1. Qui τ è la trasmittanza, non una profondità ottica. Nel bilancio considerato sono trascurabili riflessione, emissione propria e altri canali radiativi: P₀=P_trasm+P_ass, con P_trasm=τP₀. Si cerca la potenza radiante assorbita, non l’energia assorbita in un intervallo. Le prove hanno dati finiti costanti e i confronti riguardano preparazioni distinte. Quale espressione fornisce P_ass?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "P_ass = P₀(1 − τ)",
+          "P_ass = P₀ τ",
+          "P_ass = P₀ / τ",
+          "P_ass = P₀(1 + τ)",
+          "P_ass = τ / P₀"
+        ],
+        "value": "P_ass = P₀(1 − τ)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bilancio è P_ass=P₀−P_trasm. La definizione di trasmittanza dà P_trasm=τP₀, perciò P_ass=P₀(1−τ). Con 0<τ<1 la potenza assorbita è positiva e minore di P₀. La formula è un bilancio del modello dichiarato, non vale aggiungendo tacitamente riflessione o emissione."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/c4c4b0d95da705f744e2d5a346ee81ba5085b13465b46b9c5c1e5002fa48d426",
+          "text": "Nel confronto a P₀=8 W, τ=1/2 dà 4 W trasmessi e 4 W assorbiti; τ=1/4 dà 2 W trasmessi e 6 W assorbiti. La frazione assorbita è sempre il complemento 1−τ."
+        },
+        {
+          "type": "formula",
+          "text": "P_{\\rm ass}=P_0-P_{\\rm trasm}"
+        },
+        {
+          "type": "formula",
+          "text": " P_{\\rm ass}=P_0(1-\\tau)"
+        },
+        {
+          "type": "formula",
+          "text": " 0<P_{\\rm ass}<P_0"
+        },
+        {
+          "type": "text",
+          "text": "P₀τ è la trasmessa. Le espressioni P₀/τ e P₀(1+τ) superano l’ingresso nel dominio dato; τ/P₀ ha dimensione di potenza inversa. La coincidenza numerica a τ = 1/2 non rende uguali le due leggi generali."
+        }
+      ],
+      "hints": [
+        "Sottrai la frazione che esce, non sommarla.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "P₀τ è la trasmessa. Le espressioni P₀/τ e P₀(1+τ) superano l’ingresso nel dominio dato; τ/P₀ ha dimensione di potenza inversa. La coincidenza numerica a τ = 1/2 non rende uguali le due leggi generali.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Trasmittanza e complemento assorbito",
+        "Potenza distinta da energia e intensità",
+        "Inverse e dominio 0<τ<1",
+        "Medie, display e massimo vincolato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-absorbed-radiant-power-04",
+      "kind": "question",
+      "course": "C5",
+      "section": "Bilancio fra potenza trasmessa e assorbita",
+      "order": 24404,
+      "title": "Più potenza con la stessa frazione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "absorbed-radiant-power",
+      "difficulty": 1,
+      "prompt": "Uno strato riceve potenza radiante P₀>0 e ne trasmette la frazione τ, con 0<τ<1. Qui τ è la trasmittanza, non una profondità ottica. Nel bilancio considerato sono trascurabili riflessione, emissione propria e altri canali radiativi: P₀=P_trasm+P_ass, con P_trasm=τP₀. Si cerca la potenza radiante assorbita, non l’energia assorbita in un intervallo. Le prove hanno dati finiti costanti e i confronti riguardano preparazioni distinte. τ resta 1/2 e P₀ passa da 8 a 12 W. Come cambia P_ass?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 4 W a 6 W",
+          "Da 4 W a 8/3 W",
+          "Resta 4 W",
+          "Da 4 W a 12 W",
+          "Da 4 W a 9 W"
+        ],
+        "value": "Da 4 W a 6 W"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il fattore assorbito 1−τ resta 1/2. La potenza assorbita passa da 8/2=4 W a 12/2=6 W, lo stesso rapporto 3/2 dell’ingresso. La trasmittanza non è cambiata."
+        },
+        {
+          "type": "formula",
+          "text": "P_{{\\rm ass},A}=4\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_{{\\rm ass},B}=6\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_{{\\rm ass},B}/P_{{\\rm ass},A}=\\frac32"
+        },
+        {
+          "type": "text",
+          "text": "8/3 W inverte la proporzione; 9 W introduce il quadrato del fattore 3/2. Dodici assorbe tutto l’ingresso e quattro ignora il nuovo valore."
+        }
+      ],
+      "hints": [
+        "Mantieni fisso il complemento 1−τ.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "8/3 W inverte la proporzione; 9 W introduce il quadrato del fattore 3/2. Dodici assorbe tutto l’ingresso e quattro ignora il nuovo valore.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Trasmittanza e complemento assorbito",
+        "Potenza distinta da energia e intensità",
+        "Inverse e dominio 0<τ<1",
+        "Medie, display e massimo vincolato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-absorbed-radiant-power-05",
+      "kind": "question",
+      "course": "C5",
+      "section": "Bilancio fra potenza trasmessa e assorbita",
+      "order": 24405,
+      "title": "La potenza incidente dall’assorbita",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "absorbed-radiant-power",
+      "difficulty": 2,
+      "prompt": "Uno strato riceve potenza radiante P₀>0 e ne trasmette la frazione τ, con 0<τ<1. Qui τ è la trasmittanza, non una profondità ottica. Nel bilancio considerato sono trascurabili riflessione, emissione propria e altri canali radiativi: P₀=P_trasm+P_ass, con P_trasm=τP₀. Si cerca la potenza radiante assorbita, non l’energia assorbita in un intervallo. Le prove hanno dati finiti costanti e i confronti riguardano preparazioni distinte. P_ass=4 W e τ=1/2. Quanto vale P₀ in W?",
+      "answer": {
+        "type": "numeric",
+        "value": 8,
+        "unit": "W",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Divido P_ass=P₀(1−τ) per il fattore positivo 1−τ. P₀=4/(1/2)=8 W. Il risultato è maggiore di P_ass perché una parte viene trasmessa."
+        },
+        {
+          "type": "formula",
+          "text": "P_0=\\frac{P_{\\rm ass}}{1-\\tau}"
+        },
+        {
+          "type": "formula",
+          "text": " P_0=8\\,\\mathrm W"
+        },
+        {
+          "type": "text",
+          "text": "Due W moltiplica ancora per 1/2 e sarebbe inferiore all’assorbita. Quattro W ignora la quota trasmessa; sedici W darebbe 8 W assorbiti. Il caso τ = 1 è escluso perché annullerebbe il denominatore."
+        }
+      ],
+      "hints": [
+        "Controlla che P₀ ricavata sia maggiore di P_ass.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due W moltiplica ancora per 1/2 e sarebbe inferiore all’assorbita. Quattro W ignora la quota trasmessa; sedici W darebbe 8 W assorbiti. Il caso τ = 1 è escluso perché annullerebbe il denominatore.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Trasmittanza e complemento assorbito",
+        "Potenza distinta da energia e intensità",
+        "Inverse e dominio 0<τ<1",
+        "Medie, display e massimo vincolato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-absorbed-radiant-power-06",
+      "kind": "question",
+      "course": "C5",
+      "section": "Bilancio fra potenza trasmessa e assorbita",
+      "order": 24406,
+      "title": "La trasmittanza dal bilancio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "absorbed-radiant-power",
+      "difficulty": 2,
+      "prompt": "Uno strato riceve potenza radiante P₀>0 e ne trasmette la frazione τ, con 0<τ<1. Qui τ è la trasmittanza, non una profondità ottica. Nel bilancio considerato sono trascurabili riflessione, emissione propria e altri canali radiativi: P₀=P_trasm+P_ass, con P_trasm=τP₀. Si cerca la potenza radiante assorbita, non l’energia assorbita in un intervallo. Le prove hanno dati finiti costanti e i confronti riguardano preparazioni distinte. P_ass=4 W e P₀=8 W. Quanto vale τ?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "2",
+          "0",
+          "1",
+          "1/4"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Divido per P₀: P_ass/P₀=1−τ. Porto τ al primo membro e ottengo τ=1−P_ass/P₀=1−1/2=1/2, nel dominio 0<τ<1. In questo dato la frazione trasmessa coincide con l’assorbita, ma la relazione inversa deve conservare il complemento."
+        },
+        {
+          "type": "formula",
+          "text": "\\tau=1-\\frac{P_{\\rm ass}}{P_0}"
+        },
+        {
+          "type": "formula",
+          "text": " \\tau=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Due inverte il rapporto e viola il dominio. Zero e uno sono confini esclusi: corrisponderebbero rispettivamente a tutta o nessuna potenza assorbita. Il rapporto P_ass/P₀ da solo non è sempre τ."
+        }
+      ],
+      "hints": [
+        "Ricava prima la frazione assorbita, poi il suo complemento.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due inverte il rapporto e viola il dominio. Zero e uno sono confini esclusi: corrisponderebbero rispettivamente a tutta o nessuna potenza assorbita. Il rapporto P_ass/P₀ da solo non è sempre τ.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Trasmittanza e complemento assorbito",
+        "Potenza distinta da energia e intensità",
+        "Inverse e dominio 0<τ<1",
+        "Medie, display e massimo vincolato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-absorbed-radiant-power-07",
+      "kind": "question",
+      "course": "C5",
+      "section": "Bilancio fra potenza trasmessa e assorbita",
+      "order": 24407,
+      "title": "Minore trasmissione, più assorbimento",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "absorbed-radiant-power",
+      "difficulty": 2,
+      "prompt": "Uno strato riceve potenza radiante P₀>0 e ne trasmette la frazione τ, con 0<τ<1. Qui τ è la trasmittanza, non una profondità ottica. Nel bilancio considerato sono trascurabili riflessione, emissione propria e altri canali radiativi: P₀=P_trasm+P_ass, con P_trasm=τP₀. Si cerca la potenza radiante assorbita, non l’energia assorbita in un intervallo. Le prove hanno dati finiti costanti e i confronti riguardano preparazioni distinte. A usa P₀=8 W,τ=1/2. B mantiene P₀ e usa τ=1/4. Quanto vale P_ass,B/P_ass,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/2",
+          "2/3",
+          "1/2",
+          "2",
+          "1"
+        ],
+        "value": "3/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A assorbe 4 W. In B la parte trasmessa scende a 2 W e quella assorbita sale a 6 W. Il rapporto è 6/4=3/2. τ dimezzata non significa assorbimento dimezzato, perché conta 1−τ."
+        },
+        {
+          "type": "formula",
+          "text": "P_{{\\rm ass},A}=4\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_{{\\rm ass},B}=6\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_{{\\rm ass},B}/P_{{\\rm ass},A}=\\frac32"
+        },
+        {
+          "type": "text",
+          "text": "2/3 inverte il confronto. 1/2 copia il rapporto delle trasmittanze e due il suo reciproco. Uno ignora il complemento diverso."
+        }
+      ],
+      "hints": [
+        "Calcola il complemento di ciascuna trasmittanza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "2/3 inverte il confronto. 1/2 copia il rapporto delle trasmittanze e due il suo reciproco. Uno ignora il complemento diverso.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Trasmittanza e complemento assorbito",
+        "Potenza distinta da energia e intensità",
+        "Inverse e dominio 0<τ<1",
+        "Medie, display e massimo vincolato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-absorbed-radiant-power-08",
+      "kind": "question",
+      "course": "C5",
+      "section": "Bilancio fra potenza trasmessa e assorbita",
+      "order": 24408,
+      "title": "Lo scarto di una proposta troppo grande",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "absorbed-radiant-power",
+      "difficulty": 2,
+      "prompt": "Uno strato riceve potenza radiante P₀>0 e ne trasmette la frazione τ, con 0<τ<1. Qui τ è la trasmittanza, non una profondità ottica. Nel bilancio considerato sono trascurabili riflessione, emissione propria e altri canali radiativi: P₀=P_trasm+P_ass, con P_trasm=τP₀. Si cerca la potenza radiante assorbita, non l’energia assorbita in un intervallo. Le prove hanno dati finiti costanti e i confronti riguardano preparazioni distinte. Con P₀=8 W,τ=1/2 si propone P_ass=8 W. Quanto vale proposta meno corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4 W",
+          "−4 W",
+          "2",
+          "8 W",
+          "0 W"
+        ],
+        "value": "4 W"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La legge del bilancio dà 4 W assorbiti. La proposta supera il corretto di 8−4=4 W. Non si sottrae la trasmittanza pura direttamente a una potenza."
+        },
+        {
+          "type": "formula",
+          "text": "P_{\\rm ass}=4\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " \\delta P=(8-4)\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " \\delta P=4\\,\\mathrm W"
+        },
+        {
+          "type": "text",
+          "text": "−4 W scambia l’ordine; due è il rapporto puro; otto copia la proposta e zero la accetta. Lo scarto non è una frazione assorbita."
+        }
+      ],
+      "hints": [
+        "Mantieni il watt dopo la sottrazione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−4 W scambia l’ordine; due è il rapporto puro; otto copia la proposta e zero la accetta. Lo scarto non è una frazione assorbita.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Trasmittanza e complemento assorbito",
+        "Potenza distinta da energia e intensità",
+        "Inverse e dominio 0<τ<1",
+        "Medie, display e massimo vincolato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-absorbed-radiant-power-09",
+      "kind": "question",
+      "course": "C5",
+      "section": "Bilancio fra potenza trasmessa e assorbita",
+      "order": 24409,
+      "title": "L’inversa simbolica della potenza incidente",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "absorbed-radiant-power",
+      "difficulty": 2,
+      "prompt": "Uno strato riceve potenza radiante P₀>0 e ne trasmette la frazione τ, con 0<τ<1. Qui τ è la trasmittanza, non una profondità ottica. Nel bilancio considerato sono trascurabili riflessione, emissione propria e altri canali radiativi: P₀=P_trasm+P_ass, con P_trasm=τP₀. Si cerca la potenza radiante assorbita, non l’energia assorbita in un intervallo. Le prove hanno dati finiti costanti e i confronti riguardano preparazioni distinte. P_ass e τ sono noti. Quale formula isola P₀?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "P₀ = P_ass / (1 − τ)",
+          "P₀ = P_ass(1 − τ)",
+          "P₀ = P_ass / τ",
+          "P₀ = (1 − τ) / P_ass",
+          "P₀ = P_ass − τ"
+        ],
+        "value": "P₀ = P_ass / (1 − τ)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La frazione 1−τ è strettamente positiva. Dividendo il bilancio per essa si ottiene P₀=P_ass/(1−τ), con unità watt e valore maggiore di P_ass. Il dominio evita la divisione per zero e la creazione di un ingresso negativo."
+        },
+        {
+          "type": "formula",
+          "text": "P_0=\\frac{P_{\\rm ass}}{1-\\tau}"
+        },
+        {
+          "type": "formula",
+          "text": " P_0>P_{\\rm ass}"
+        },
+        {
+          "type": "text",
+          "text": "Moltiplicare per 1−τ ripete una riduzione invece dell’inversa. Dividere per τ confonde trasmessa e assorbita e coincide soltanto nel dato particolare τ = 1/2. Il reciproco ha W⁻¹; P_ass−τ sottrae grandezze di dimensione diversa."
+        }
+      ],
+      "hints": [
+        "Il denominatore è la frazione assorbita.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Moltiplicare per 1−τ ripete una riduzione invece dell’inversa. Dividere per τ confonde trasmessa e assorbita e coincide soltanto nel dato particolare τ = 1/2. Il reciproco ha W⁻¹; P_ass−τ sottrae grandezze di dimensione diversa.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Trasmittanza e complemento assorbito",
+        "Potenza distinta da energia e intensità",
+        "Inverse e dominio 0<τ<1",
+        "Medie, display e massimo vincolato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-absorbed-radiant-power-10",
+      "kind": "question",
+      "course": "C5",
+      "section": "Bilancio fra potenza trasmessa e assorbita",
+      "order": 24410,
+      "title": "Due variazioni con un complemento",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "absorbed-radiant-power",
+      "difficulty": 2,
+      "prompt": "Uno strato riceve potenza radiante P₀>0 e ne trasmette la frazione τ, con 0<τ<1. Qui τ è la trasmittanza, non una profondità ottica. Nel bilancio considerato sono trascurabili riflessione, emissione propria e altri canali radiativi: P₀=P_trasm+P_ass, con P_trasm=τP₀. Si cerca la potenza radiante assorbita, non l’energia assorbita in un intervallo. Le prove hanno dati finiti costanti e i confronti riguardano preparazioni distinte. Fra preparazioni P₀,B=κ₁P₀,A e τ_B=κ₂τ_A. I fattori sono positivi ed entrambe le trasmittanze sono fra 0 e 1. Quanto vale P_ass,B/P_ass,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁(1 − κ₂τ_A) / (1 − τ_A)",
+          "κ₁ κ₂",
+          "κ₁ / κ₂",
+          "(1 − τ_A) / [κ₁(1 − κ₂τ_A)]",
+          "κ₁ + κ₂"
+        ],
+        "value": "κ₁(1 − κ₂τ_A) / (1 − τ_A)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituisco prima nel bilancio di B: P_ass,B=κ₁P₀,A(1−κ₂τ_A). Divido per P₀,A(1−τ_A) e cancello P₀,A. Indico con R il rapporto P_ass,B/P_ass,A: resta R=κ₁(1−κ₂τ_A)/(1−τ_A). Occorre anche κ₂τ_A<1, non basta che i fattori siano positivi."
+        },
+        {
+          "type": "formula",
+          "text": "R=\\kappa_1\\frac{1-\\kappa_2\\tau_A}{1-\\tau_A}"
+        },
+        {
+          "type": "text",
+          "text": "Il prodotto o il quoziente dei soli fattori ignorano il complemento. Il reciproco scambia A e B; la somma non restituisce uno per preparazioni identiche. Non si estende τ_B fuori dal suo dominio."
+        }
+      ],
+      "hints": [
+        "Calcola 1−τ_B prima di formare il rapporto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il prodotto o il quoziente dei soli fattori ignorano il complemento. Il reciproco scambia A e B; la somma non restituisce uno per preparazioni identiche. Non si estende τ_B fuori dal suo dominio.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Trasmittanza e complemento assorbito",
+        "Potenza distinta da energia e intensità",
+        "Inverse e dominio 0<τ<1",
+        "Medie, display e massimo vincolato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-absorbed-radiant-power-11",
+      "kind": "question",
+      "course": "C5",
+      "section": "Bilancio fra potenza trasmessa e assorbita",
+      "order": 24411,
+      "title": "Potenza maggiore e trasmittanza minore",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "absorbed-radiant-power",
+      "difficulty": 2,
+      "prompt": "Uno strato riceve potenza radiante P₀>0 e ne trasmette la frazione τ, con 0<τ<1. Qui τ è la trasmittanza, non una profondità ottica. Nel bilancio considerato sono trascurabili riflessione, emissione propria e altri canali radiativi: P₀=P_trasm+P_ass, con P_trasm=τP₀. Si cerca la potenza radiante assorbita, non l’energia assorbita in un intervallo. Le prove hanno dati finiti costanti e i confronti riguardano preparazioni distinte. A ha P₀=8 W,τ=1/2. B ha P₀=12 W,τ=1/4. Quanto vale P_ass,B/P_ass,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "9/4",
+          "4/9",
+          "3/2",
+          "1/2",
+          "3/4"
+        ],
+        "value": "9/4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A assorbe 8·1/2=4 W. B assorbe 12·3/4=9 W. Il rapporto è 9/4: cresce sia l’ingresso sia la frazione assorbita. Non si usa direttamente il rapporto delle trasmittanze."
+        },
+        {
+          "type": "formula",
+          "text": "P_{{\\rm ass},A}=4\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_{{\\rm ass},B}=9\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_{{\\rm ass},B}/P_{{\\rm ass},A}=\\frac94"
+        },
+        {
+          "type": "text",
+          "text": "4/9 inverte il rapporto, 3/2 segue solo P₀, 1/2 solo τ. 3/4 moltiplica il rapporto degli ingressi per quello delle trasmittanze, cioè confronta le potenze trasmesse."
+        }
+      ],
+      "hints": [
+        "Usa 1/2 e 3/4 come frazioni assorbite.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "4/9 inverte il rapporto, 3/2 segue solo P₀, 1/2 solo τ. 3/4 moltiplica il rapporto degli ingressi per quello delle trasmittanze, cioè confronta le potenze trasmesse.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Trasmittanza e complemento assorbito",
+        "Potenza distinta da energia e intensità",
+        "Inverse e dominio 0<τ<1",
+        "Medie, display e massimo vincolato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-absorbed-radiant-power-12",
+      "kind": "question",
+      "course": "C5",
+      "section": "Bilancio fra potenza trasmessa e assorbita",
+      "order": 24412,
+      "title": "Media delle potenze assorbite",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "absorbed-radiant-power",
+      "difficulty": 2,
+      "prompt": "Uno strato riceve potenza radiante P₀>0 e ne trasmette la frazione τ, con 0<τ<1. Qui τ è la trasmittanza, non una profondità ottica. Nel bilancio considerato sono trascurabili riflessione, emissione propria e altri canali radiativi: P₀=P_trasm+P_ass, con P_trasm=τP₀. Si cerca la potenza radiante assorbita, non l’energia assorbita in un intervallo. Le prove hanno dati finiti costanti e i confronti riguardano preparazioni distinte. A usa P₀=8 W,τ=1/2; B usa P₀=12 W,τ=1/4. Qual è la media aritmetica di P_ass?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "13/2 W",
+          "25/4 W",
+          "13 W",
+          "5/2 W",
+          "9 W"
+        ],
+        "value": "13/2 W"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le uscite sono 4 e 9 W: media (4+9)/2=13/2 W. Ai dati medi P₀ = 10 W, τ = 3/8, il modello darebbe 10·5/8=25/4 W. Indico con P_m il modello valutato ai dati medi. La media delle uscite è maggiore di 1/4 W. Sono due operazioni diverse su due prove distinte."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/c4c4b0d95da705f744e2d5a346ee81ba5085b13465b46b9c5c1e5002fa48d426",
+          "text": "Le barre finali hanno scala e origine comuni per le uscite 4 W e9 W e la media 13/2 W. Sono due preparazioni differenti: non una media del solo parametro τ."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline P_{\\rm ass}=\\frac{4+9}{2}\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline P_{\\rm ass}=\\frac{13}{2}\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_m=\\frac{25}{4}\\,\\mathrm W"
+        },
+        {
+          "type": "text",
+          "text": "25/4 usa gli ingressi medi; 13 è la somma; 5/2 la semidifferenza e 9 solo B. Non si media τ per poi applicare automaticamente la stessa uscita media."
+        }
+      ],
+      "hints": [
+        "Calcola prima due complementi e due potenze assorbite.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "25/4 usa gli ingressi medi; 13 è la somma; 5/2 la semidifferenza e 9 solo B. Non si media τ per poi applicare automaticamente la stessa uscita media.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Trasmittanza e complemento assorbito",
+        "Potenza distinta da energia e intensità",
+        "Inverse e dominio 0<τ<1",
+        "Medie, display e massimo vincolato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-absorbed-radiant-power-13",
+      "kind": "question",
+      "course": "C5",
+      "section": "Bilancio fra potenza trasmessa e assorbita",
+      "order": 24413,
+      "title": "La trasmittanza per l’assorbimento bersaglio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "absorbed-radiant-power",
+      "difficulty": 3,
+      "prompt": "Uno strato riceve potenza radiante P₀>0 e ne trasmette la frazione τ, con 0<τ<1. Qui τ è la trasmittanza, non una profondità ottica. Nel bilancio considerato sono trascurabili riflessione, emissione propria e altri canali radiativi: P₀=P_trasm+P_ass, con P_trasm=τP₀. Si cerca la potenza radiante assorbita, non l’energia assorbita in un intervallo. Le prove hanno dati finiti costanti e i confronti riguardano preparazioni distinte. A ha P₀,A=8 W,τ_A=1/2. B usa P₀,B=12 W e deve avere P_ass,B=(9/4)P_ass,A. Quanto vale τ_B/τ_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "2",
+          "9/4",
+          "4/9",
+          "3/2"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è 9 W assorbiti. Su 12 W incidenti è una frazione 3/4, quindi la trasmittanza deve essere 1−3/4=1/4. Rispetto a τ_A = 1/2 il rapporto è1/2. Il risultato rispetta 0<τ_B<1."
+        },
+        {
+          "type": "formula",
+          "text": "P_{{\\rm ass},B}=9\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " \\tau_B=1-\\frac9{12}"
+        },
+        {
+          "type": "formula",
+          "text": " \\tau_B=\\frac14"
+        },
+        {
+          "type": "formula",
+          "text": " \\tau_B/\\tau_A=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Due inverte il confronto; 9/4 copia il bersaglio delle potenze e 4/9 il suo reciproco. 3/2 è il rapporto delle frazioni assorbite, non delle trasmittanze."
+        }
+      ],
+      "hints": [
+        "Dalla frazione assorbita torna alla trasmittanza con un complemento.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due inverte il confronto; 9/4 copia il bersaglio delle potenze e 4/9 il suo reciproco. 3/2 è il rapporto delle frazioni assorbite, non delle trasmittanze.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Trasmittanza e complemento assorbito",
+        "Potenza distinta da energia e intensità",
+        "Inverse e dominio 0<τ<1",
+        "Medie, display e massimo vincolato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-absorbed-radiant-power-14",
+      "kind": "question",
+      "course": "C5",
+      "section": "Bilancio fra potenza trasmessa e assorbita",
+      "order": 24414,
+      "title": "Tarare prima di ricavare l’ingresso",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "absorbed-radiant-power",
+      "difficulty": 3,
+      "prompt": "Uno strato riceve potenza radiante P₀>0 e ne trasmette la frazione τ, con 0<τ<1. Qui τ è la trasmittanza, non una profondità ottica. Nel bilancio considerato sono trascurabili riflessione, emissione propria e altri canali radiativi: P₀=P_trasm+P_ass, con P_trasm=τP₀. Si cerca la potenza radiante assorbita, non l’energia assorbita in un intervallo. Le prove hanno dati finiti costanti e i confronti riguardano preparazioni distinte. D=a_cal P_ass è continuo e adimensionale. A con P₀=8 W,τ=1/2 dà D = 12. B ha τ=1/4, D=27. Quanto vale P₀,B in W?",
+      "answer": {
+        "type": "numeric",
+        "value": 12,
+        "unit": "W",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento assorbe 4 W e fissa a_cal = 3 W⁻¹. D = 27 corrisponde a P_ass,B = 9 W. La nuova frazione assorbita è 3/4, quindi P₀,B=9/(3/4)=12 W. La lettura del display non è già una potenza."
+        },
+        {
+          "type": "formula",
+          "text": "a_{\\rm cal}=3\\,\\mathrm W^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " P_{{\\rm ass},B}=9\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_{0,B}=12\\,\\mathrm W"
+        },
+        {
+          "type": "text",
+          "text": "36 W tratta D come 27 W e predice D = 81. 9/4 W moltiplica 9 per la trasmittanza 1/4 anziché dividere per la frazione assorbita 3/4 e non soddisfa il bilancio. Otto W ripete A e darebbe D = 18."
+        }
+      ],
+      "hints": [
+        "Decodifica la potenza assorbita prima di dividere per 1−τ.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "36 W tratta D come 27 W e predice D = 81. 9/4 W moltiplica 9 per la trasmittanza 1/4 anziché dividere per la frazione assorbita 3/4 e non soddisfa il bilancio. Otto W ripete A e darebbe D = 18.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Trasmittanza e complemento assorbito",
+        "Potenza distinta da energia e intensità",
+        "Inverse e dominio 0<τ<1",
+        "Medie, display e massimo vincolato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-absorbed-radiant-power-15",
+      "kind": "question",
+      "course": "C5",
+      "section": "Bilancio fra potenza trasmessa e assorbita",
+      "order": 24415,
+      "title": "Offset e guadagno prima del bilancio fisico",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "absorbed-radiant-power",
+      "difficulty": 3,
+      "prompt": "Uno strato riceve potenza radiante P₀>0 e ne trasmette la frazione τ, con 0<τ<1. Qui τ è la trasmittanza, non una profondità ottica. Nel bilancio considerato sono trascurabili riflessione, emissione propria e altri canali radiativi: P₀=P_trasm+P_ass, con P_trasm=τP₀. Si cerca la potenza radiante assorbita, non l’energia assorbita in un intervallo. Le prove hanno dati finiti costanti e i confronti riguardano preparazioni distinte. D=a_cal P_ass+b_cal è continuo. A: P₀=8 W,τ=1/2,D9. B: P₀=12 W,τ=1/4,D19. C: τ=1/2,D13. Quanto vale P₀,C in W?",
+      "answer": {
+        "type": "numeric",
+        "value": 12,
+        "unit": "W",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti assorbono4 e9 W. Guadagno (19−9)/(9−4)=2 W⁻¹ e offset 1. La lettura 13 indica P_ass,C=(13−1)/2=6 W. Con frazione assorbita 1/2 serve P₀,C = 12 W."
+        },
+        {
+          "type": "formula",
+          "text": "a_{\\rm cal}=2\\,\\mathrm W^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " b_{\\rm cal}=1"
+        },
+        {
+          "type": "formula",
+          "text": " P_{{\\rm ass},C}=6\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_{0,C}=12\\,\\mathrm W"
+        },
+        {
+          "type": "text",
+          "text": "13 W omette l’offset e predice D = 14. 24 W sottrae b ma salta il guadagno; sei W copia la potenza assorbita senza l’inversa dell’ingresso. Si verifica 12·1/2=6 W e 2·6+1=13."
+        }
+      ],
+      "hints": [
+        "Le due potenze assorbite di riferimento sono diverse e identificano la taratura.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "13 W omette l’offset e predice D = 14. 24 W sottrae b ma salta il guadagno; sei W copia la potenza assorbita senza l’inversa dell’ingresso. Si verifica 12·1/2=6 W e 2·6+1=13.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Trasmittanza e complemento assorbito",
+        "Potenza distinta da energia e intensità",
+        "Inverse e dominio 0<τ<1",
+        "Medie, display e massimo vincolato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-absorbed-radiant-power-16",
+      "kind": "question",
+      "course": "C5",
+      "section": "Bilancio fra potenza trasmessa e assorbita",
+      "order": 24416,
+      "title": "Un massimo che seleziona una sola trasmittanza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "absorbed-radiant-power",
+      "difficulty": 3,
+      "prompt": "Uno strato riceve potenza radiante P₀>0 e ne trasmette la frazione τ, con 0<τ<1. Qui τ è la trasmittanza, non una profondità ottica. Nel bilancio considerato sono trascurabili riflessione, emissione propria e altri canali radiativi: P₀=P_trasm+P_ass, con P_trasm=τP₀. Si cerca la potenza radiante assorbita, non l’energia assorbita in un intervallo. Le prove hanno dati finiti costanti e i confronti riguardano preparazioni distinte. Fra preparazioni P₀=(16 W)τ. Si misura P_ass=4 W. Quanto vale τ?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "1/4",
+          "3/4",
+          "2",
+          "Due trasmittanze diverse"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituisco il vincolo nel bilancio: P_ass=(16 W)τ(1−τ). La misura dà τ(1−τ)=1/4, cioè (τ−1/2)²=0 dopo il completamento del quadrato. C’è una sola trasmittanza τ = 1/2, una radice doppia algebrica, con P₀ = 8 W. Non si contano due valori distinti per la molteplicità della radice."
+        },
+        {
+          "type": "formula",
+          "text": "\\tau(1-\\tau)=\\frac14"
+        },
+        {
+          "type": "formula",
+          "text": " \\left(\\tau-\\frac12\\right)^2=0"
+        },
+        {
+          "type": "formula",
+          "text": " \\tau=\\frac12"
+        },
+        {
+          "type": "formula",
+          "text": " P_0=8\\,\\mathrm W"
+        },
+        {
+          "type": "text",
+          "text": "1/4 e 3/4 darebbero entrambe 3 W assorbiti nel vincolo, non 4. Due viola 0<τ<1. L’assorbimento vincolato vale 4 W−(16 W)(τ−1/2)² e raggiunge 4 W soltanto a τ = 1/2."
+        }
+      ],
+      "hints": [
+        "Completa il quadrato e distingui radice doppia da due soluzioni.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "1/4 e 3/4 darebbero entrambe 3 W assorbiti nel vincolo, non 4. Due viola 0<τ<1. L’assorbimento vincolato vale 4 W−(16 W)(τ−1/2)² e raggiunge 4 W soltanto a τ = 1/2.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Trasmittanza e complemento assorbito",
+        "Potenza distinta da energia e intensità",
+        "Inverse e dominio 0<τ<1",
+        "Medie, display e massimo vincolato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "c4c4b0d95da705f744e2d5a346ee81ba5085b13465b46b9c5c1e5002fa48d426",
+      "name": "absorbed-radiant-power-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTQ4MCIgdmlld0JveD0iMCAwIDY0MCAxNDgwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+UG90ZW56YSB0cmFzbWVzc2EgZSBhc3NvcmJpdGE8L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5UcmUgdGFwcGU6IGJpbGFuY2lvIG90dG8gdWd1YWxlIHF1YXR0cm8gcGnDuSBxdWF0dHJvIHdhdHQ7IGJhcnJlIGNvbXBvc3RlIGEgaW5ncmVzc28gb3R0byB3YXR0IGNvbiB0cmFzbWl0dGFuemEgdW4gbWV6em8gbyB1biBxdWFydG87IGR1ZSBhbHRyZSBwcmVwYXJhemlvbmkgYXNzb3Jib25vIHF1YXR0cm8gZSBub3ZlIHdhdHQgZSBoYW5ubyBtZWRpYSB0cmVkaWNpIG1lenppIHdhdHQuPC9kZXNjPjxkZWZzPjxtYXJrZXIgaWQ9ImFycm93IiBtYXJrZXJXaWR0aD0iOCIgbWFya2VySGVpZ2h0PSI4IiByZWZYPSI3IiByZWZZPSI0IiBvcmllbnQ9ImF1dG8iPjxwYXRoIGQ9Ik0wIDBMOCA0TDAgOFoiIGZpbGw9IiM1MjY2N2EiLz48L21hcmtlcj48L2RlZnM+PHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxNDgwIiBmaWxsPSIjZjdmYWZjIi8+PGcgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmaWxsPSIjMjAzNTRkIj48dGV4dCB4PSIzMiIgeT0iNDIiIGZvbnQtc2l6ZT0iMjQiIHRleHQtYW5jaG9yPSJzdGFydCI+UG90ZW56YSB0cmFzbWVzc2EgZSBhc3NvcmJpdGE8L3RleHQ+PHRleHQgeD0iMzIiIHk9IjkyIiBmb250LXNpemU9IjIyIiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjEgwrcgSWwgYmlsYW5jaW8gc2VuemEgYWx0cmkgY2FuYWxpPC90ZXh0Pjx0ZXh0IHg9IjEyOCIgeT0iMTk0IiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0iZW5kIj5JbmdyZXNzbzwvdGV4dD48cmVjdCB4PSIxNTAiIHk9IjE3MCIgd2lkdGg9IjMyMCIgaGVpZ2h0PSIzMiIgZmlsbD0iIzUyNjY3YSIvPjx0ZXh0IHg9IjQ4MiIgeT0iMTk0IiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjggVzwvdGV4dD48dGV4dCB4PSIxMjgiIHk9IjI4NCIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9ImVuZCI+VHJhc21lc3NhPC90ZXh0PjxyZWN0IHg9IjE1MCIgeT0iMjYwIiB3aWR0aD0iMTYwIiBoZWlnaHQ9IjMyIiBmaWxsPSIjMzE2YjliIi8+PHRleHQgeD0iMzIyIiB5PSIyODQiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJzdGFydCI+NCBXPC90ZXh0Pjx0ZXh0IHg9IjEyOCIgeT0iMzc0IiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0iZW5kIj5Bc3NvcmJpdGE8L3RleHQ+PHJlY3QgeD0iMTUwIiB5PSIzNTAiIHdpZHRoPSIxNjAiIGhlaWdodD0iMzIiIGZpbGw9IiNhNzZkMjAiLz48dGV4dCB4PSIzMjIiIHk9IjM3NCIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9InN0YXJ0Ij40IFc8L3RleHQ+PHRleHQgeD0iMzIiIHk9IjQ0MCIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9InN0YXJ0Ij44IFcgPSA0IFcgKyA0IFc7IM+EID0gMS8yLjwvdGV4dD48dGV4dCB4PSIzMiIgeT0iNTA1IiBmb250LXNpemU9IjIyIiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjIgwrcgQSBQ4oKAID0gOCBXLCBjYW1iaWEgaWwgY29tcGxlbWVudG88L3RleHQ+PHRleHQgeD0iMzIiIHk9IjU1MiIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9InN0YXJ0Ij5CbHU6IHRyYXNtZXNzYSDCtyBPY3JhOiBhc3NvcmJpdGE8L3RleHQ+PHRleHQgeD0iMTI4IiB5PSI2NDQiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJlbmQiPs+EID0gMS8yPC90ZXh0PjxyZWN0IHg9IjE1MCIgeT0iNjIwIiB3aWR0aD0iMTYwIiBoZWlnaHQ9IjMyIiBmaWxsPSIjMzE2YjliIi8+PHJlY3QgeD0iMzEwIiB5PSI2MjAiIHdpZHRoPSIxNjAiIGhlaWdodD0iMzIiIGZpbGw9IiNhNzZkMjAiLz48dGV4dCB4PSIyMzAuMCIgeT0iNjg1IiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj40IFc8L3RleHQ+PHRleHQgeD0iMzkwLjAiIHk9IjY4NSIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+NCBXPC90ZXh0Pjx0ZXh0IHg9IjEyOCIgeT0iNzc0IiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0iZW5kIj7PhCA9IDEvNDwvdGV4dD48cmVjdCB4PSIxNTAiIHk9Ijc1MCIgd2lkdGg9IjgwIiBoZWlnaHQ9IjMyIiBmaWxsPSIjMzE2YjliIi8+PHJlY3QgeD0iMjMwIiB5PSI3NTAiIHdpZHRoPSIyNDAiIGhlaWdodD0iMzIiIGZpbGw9IiNhNzZkMjAiLz48dGV4dCB4PSIxOTAuMCIgeT0iODE1IiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj4yIFc8L3RleHQ+PHRleHQgeD0iMzUwLjAiIHk9IjgxNSIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+NiBXPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSI4ODAiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJzdGFydCI+T2duaSBiYXJyYSBpbnRlcmEgcmFwcHJlc2VudGEgZ2xpIHN0ZXNzaSA4IFcuPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSI5NDUiIGZvbnQtc2l6ZT0iMjIiIHRleHQtYW5jaG9yPSJzdGFydCI+MyDCtyBEdWUgcHJvdmUgZSBsYSBtZWRpYSBhc3NvcmJpdGE8L3RleHQ+PHRleHQgeD0iMzIiIHk9Ijk4NyIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9InN0YXJ0Ij5BOiA4IFcsIM+EID0gMS8yIMK3IEI6IDEyIFcsIM+EID0gMS80PC90ZXh0Pjx0ZXh0IHg9IjEyOCIgeT0iMTA3NCIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9ImVuZCI+QTwvdGV4dD48cmVjdCB4PSIxNTAiIHk9IjEwNTAiIHdpZHRoPSIxMjgiIGhlaWdodD0iMzIiIGZpbGw9IiNhNzZkMjAiLz48dGV4dCB4PSIyOTAiIHk9IjEwNzQiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJzdGFydCI+NCBXPC90ZXh0Pjx0ZXh0IHg9IjEyOCIgeT0iMTE3NCIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9ImVuZCI+QjwvdGV4dD48cmVjdCB4PSIxNTAiIHk9IjExNTAiIHdpZHRoPSIyODgiIGhlaWdodD0iMzIiIGZpbGw9IiNhNzZkMjAiLz48dGV4dCB4PSI0NTAiIHk9IjExNzQiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJzdGFydCI+OSBXPC90ZXh0Pjx0ZXh0IHg9IjEyOCIgeT0iMTI3NCIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9ImVuZCI+TWVkaWE8L3RleHQ+PHJlY3QgeD0iMTUwIiB5PSIxMjUwIiB3aWR0aD0iMjA4IiBoZWlnaHQ9IjMyIiBmaWxsPSIjYTc2ZDIwIi8+PHRleHQgeD0iMzcwIiB5PSIxMjc0IiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjEzLzIgVzwvdGV4dD48dGV4dCB4PSIzMiIgeT0iMTM5MCIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9InN0YXJ0Ij5TY2FsYSBjb211bmUgYWxsZSB0cmUgcG90ZW56ZSBhc3NvcmJpdGUuPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSIxNDM1IiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPlBfYXNzID0gUOKCgCgxIOKIkiDPhCksIG5vbiBQ4oKAz4QuPC90ZXh0PjwvZz48L3N2Zz4K"
+    }
+  ]
+}
