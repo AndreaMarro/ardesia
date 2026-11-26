@@ -1,0 +1,19 @@
+from pathlib import Path
+import json,sys,shutil,subprocess,os
+CORE=Path('/private/tmp/cric-experiment-contract-fix/officina-di-fisica');sys.path.insert(0,str(CORE))
+from tools.corpus_engineering import experiment_visibility_request as v
+APP=Path('/private/tmp/cric-vector-apparatus-author-20261126/officina-di-fisica');v.REPO=APP.parent;B=APP/'editorial/author-notes/native-vector-framing-correction-20261126';B.mkdir(exist_ok=True)
+REF='eb51d0e9bdc3f992e9ae0ae76810098376e2ab79';FP='1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba';T=Path('/private/tmp/cric-work-side-historical-1a-app');OUT=Path('/private/tmp/cric-vector-framing-historical-1a-actual-4')
+OLD=APP/'editorial/author-notes/native-vector-apparatus-correction-20261126';plan=v.load(OLD/'actual-final-ui-264/prepared.json');records=[]
+for key,x in [('SIM-C1-L002-01',90),('SIM-C1-L002-02',8)]:
+ row=next(r for r in plan['records']if r['id']==key and r['variant']=='published');i=row['grid'].index(x);row['grid']=[x];row['expectedValues']=[row['expectedValues'][i]];row['originalJudgment']={'scope':'Historical actual exact pair, not source/current whole acceptance','activityCredit':0};records.append(row)
+plan['records']=records;plan['profiles']=[next(p for p in plan['profiles']if p['width']==1280 and p['view']=='top')];old='/private/tmp/cric-native-vectors-final-author-ui-app';plan['packageFiles']=[str(T/Path(p).relative_to(old))for p in plan['packageFiles']];plan['inputFiles']={str(T/Path(p).relative_to(old)):pin for p,pin in plan['inputFiles'].items()};plan.update({'sourceCommit':REF,'course':'AUTHOR_HISTORICAL_VECTOR_FRAMING_PAIR','scope':'ACTUAL_HISTORICAL1A_PAIR_OF_TWO_MAXIMUM_CONTROL_STATES_ONLY_NO_ACCEPTANCE'})
+for name,pin in plan['inputFiles'].items():assert v.sha(Path(name).read_bytes())==pin
+shutil.copy2(CORE/'editorial/reviews/c1-vector-axis-followup-95769-20261126/collector-c1-derived.mjs',B/'collector-historical.mjs');shutil.copy2(OLD/'numerical-observation.mjs',B/'numerical-observation.mjs')
+primary={'scope':'Same two states already author-observed onf782; these are actual historical1a replays, not an inference from identical source. Geometry/model unchanged claim checked separately.','activityCredit':0};(B/'independent-reused-primary.json').write_bytes(v.canonical(primary)+b'\n')
+r=v.load(OLD/'review-request.json');r.update({'candidateRef':REF,'runtimeSha256':FP,'inputFiles':plan['inputFiles'],'packageFiles':plan['packageFiles'],'scope':plan['scope'],'primarySha256':v.sha((B/'independent-reused-primary.json').read_bytes()),'collectorSha256':v.sha((B/'collector-historical.mjs').read_bytes())});(B/'review-request.json').write_bytes(v.canonical(r)+b'\n');plan['requestFile']=str(B/'review-request.json');plan['requestSha256']=v.sha((B/'review-request.json').read_bytes());plan['expectedCaseKeys']=[]
+for row in records:
+ stem='|'.join([row['id'],row['variant'],'1280','top']);plan['expectedCaseKeys'] +=[stem+'|setup',stem+'|grid|0']
+plan['runtimeFingerprint']=json.loads(subprocess.check_output([sys.executable,'-B','-m','tools.corpus_engineering.runtime_fingerprint'],cwd=T,env={**os.environ,'PYTHONDONTWRITEBYTECODE':'1','ASTRA_EXTENSIONS':str(T/'extensions')}));assert plan['runtimeFingerprint']['sha256']==FP
+OUT.mkdir(exist_ok=False);(OUT/'prepared.json').write_bytes(v.canonical(plan)+b'\n');info={'candidateApp':str(T),'prepared':str(OUT/'prepared.json'),'output':str(OUT),'course':plan['course'],'requestSha256':plan['requestSha256']};(OUT/'prepared-info.json').write_bytes(v.canonical(info)+b'\n')
+s=(OLD/'run-author-264.py').read_text().replace('639fa2644280a7bbab83b531fdd3fc47c91e695d',REF).replace('f7827fb98cd218f1657a7e2208737de512235a82b66da3fb7bccbed4c192980f',FP).replace('collector-c1-derived.mjs','collector-historical.mjs');(B/'run-historical-pair.py').write_text(s);print(OUT/'prepared-info.json')
