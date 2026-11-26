@@ -1050,7 +1050,7 @@
         },
         {
           "type": "text",
-          "text": "801 nm omette la sottrazione dell’offset e predice D 802.1600 nm sottrae b ma omette la divisione per il guadagno.400 nm si ferma alla lunghezza nel mezzo, senza tornare al vuoto."
+          "text": "Il valore 801 nm omette la sottrazione dell’offset: usando λ₀=801 nm si avrebbe D=802, non 801. Il valore 1600 nm sottrae l’offset ma omette la divisione per il guadagno. Il valore 400 nm è la lunghezza nel mezzo; occorre ancora moltiplicarla per n=2 per tornare alla lunghezza nel vuoto."
         }
       ],
       "hints": [
@@ -1059,7 +1059,7 @@
       ],
       "error": {
         "category": "algebra",
-        "message": "801 nm omette la sottrazione dell’offset e predice D 802.1600 nm sottrae b ma omette la divisione per il guadagno.400 nm si ferma alla lunghezza nel mezzo, senza tornare al vuoto.",
+        "message": "Il valore 801 nm omette la sottrazione dell’offset: usando λ₀=801 nm si avrebbe D=802, non 801. Il valore 1600 nm sottrae l’offset ma omette la divisione per il guadagno. Il valore 400 nm è la lunghezza nel mezzo; occorre ancora moltiplicarla per n=2 per tornare alla lunghezza nel vuoto.",
         "target": "C5-L06"
       },
       "coverage": [
