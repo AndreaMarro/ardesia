@@ -1,0 +1,1243 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u7-two-layer-transmission-01",
+      "kind": "question",
+      "course": "C5",
+      "section": "Trasmissione attraverso due materiali in successione",
+      "order": 24801,
+      "title": "Il secondo strato riceve soltanto ciò che passa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-layer-transmission",
+      "difficulty": 1,
+      "prompt": "Un fascio monocromatico diretto attraversa in successione due strati omogenei, con μ₁=(ln 2) cm⁻¹ e μ₂=(2 ln 2) cm⁻¹. Si trascurano riflessione, sorgenti interne e radiazione secondaria raccolta. Ogni coefficiente è costante nel proprio strato. Poniamo x₁=d₁/(1 cm)>0, x₂=d₂/(1 cm)>0 e T=I_finale/I₀. Con d₁=d₂=1 cm, quanto vale T?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/8",
+          "1/4",
+          "1/2",
+          "3/4",
+          "1/16"
+        ],
+        "value": "1/8"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il primo strato trasmette un mezzo della sorgente; il secondo trasmette un quarto di ciò che riceve dal primo. La frazione complessiva è il prodotto, 1/8. Non si sommano le trasmittanze: il secondo strato non riceve di nuovo tutta l’intensità I₀."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/98c3a27976950fa6344448ed1013662942310b3f5b3d5cbfc033dec60d63bf74",
+          "text": "La parte superiore segue un unico fascio attraverso i due strati: i rapporti rispetto a I₀ passano da 1 a 1/2 e poi a 1/8. Le dimensioni dei riquadri dei materiali sono schematiche."
+        },
+        {
+          "type": "formula",
+          "text": "T_1=2^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " T_1=\\frac12"
+        },
+        {
+          "type": "formula",
+          "text": " T_2=2^{-2}"
+        },
+        {
+          "type": "formula",
+          "text": " T_2=\\frac14"
+        },
+        {
+          "type": "formula",
+          "text": " T=T_1T_2"
+        },
+        {
+          "type": "formula",
+          "text": " T=\\frac18"
+        },
+        {
+          "type": "text",
+          "text": "Un quarto considera il solo secondo strato e un mezzo il solo primo. Tre quarti somma due frazioni riferite a intensità incidenti diverse; 1/16 aggiungerebbe un dimezzamento non presente."
+        }
+      ],
+      "hints": [
+        "Segui il fascio attraverso la prima interfaccia prima di applicare la seconda perdita.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un quarto considera il solo secondo strato e un mezzo il solo primo. Tre quarti somma due frazioni riferite a intensità incidenti diverse; 1/16 aggiungerebbe un dimezzamento non presente.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Prodotto delle trasmittanze e somma degli esponenti",
+        "Inverse con residui positivi",
+        "Confronti, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-two-layer-transmission-02",
+      "kind": "question",
+      "course": "C5",
+      "section": "Trasmissione attraverso due materiali in successione",
+      "order": 24802,
+      "title": "Una frazione senza unità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-layer-transmission",
+      "difficulty": 1,
+      "prompt": "Quale indicazione di unità è corretta per la trasmittanza T=I_finale/I₀?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1, adimensionale",
+          "W/m²",
+          "cm",
+          "cm⁻¹",
+          "J"
+        ],
+        "value": "1, adimensionale"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nel quoziente si cancellano due intensità espresse nella stessa unità. La trasmittanza è un numero puro fra zero e uno. Non coincide con un’intensità e non ha l’unità inversa di lunghezza del coefficiente μ."
+        },
+        {
+          "type": "formula",
+          "text": "T=I_{\\rm finale}/I_0"
+        },
+        {
+          "type": "formula",
+          "text": " [T]=1"
+        },
+        {
+          "type": "formula",
+          "text": " 0<T<1"
+        },
+        {
+          "type": "text",
+          "text": "W/m² è l’unità dei due termini prima del quoziente; cm e cm⁻¹ appartengono a spessore e coefficiente. J è energia, non una frazione di trasmissione."
+        }
+      ],
+      "hints": [
+        "Controlla l’unità del numeratore e del denominatore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "W/m² è l’unità dei due termini prima del quoziente; cm e cm⁻¹ appartengono a spessore e coefficiente. J è energia, non una frazione di trasmissione.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Prodotto delle trasmittanze e somma degli esponenti",
+        "Inverse con residui positivi",
+        "Confronti, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-two-layer-transmission-03",
+      "kind": "question",
+      "course": "C5",
+      "section": "Trasmissione attraverso due materiali in successione",
+      "order": 24803,
+      "title": "Gli esponenti si sommano",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-layer-transmission",
+      "difficulty": 1,
+      "prompt": "Un fascio monocromatico diretto attraversa in successione due strati omogenei, con μ₁=(ln 2) cm⁻¹ e μ₂=(2 ln 2) cm⁻¹. Si trascurano riflessione, sorgenti interne e radiazione secondaria raccolta. Ogni coefficiente è costante nel proprio strato. Poniamo x₁=d₁/(1 cm)>0, x₂=d₂/(1 cm)>0 e T=I_finale/I₀. Quale espressione fornisce T con le variabili adimensionali definite?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "T = 2^(−x₁ − 2x₂)",
+          "T = 2^(−x₁) + 2^(−2x₂)",
+          "T = 2^(−x₁ − x₂)",
+          "T = 2^(x₁ + 2x₂)",
+          "T = 2^(−2x₁x₂)"
+        ],
+        "value": "T = 2^(−x₁ − 2x₂)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La prima attenuazione è exp(−μ₁d₁), la seconda exp(−μ₂d₂). Il prodotto degli esponenziali ha come esponente la somma dei due spessori ottici. Con i coefficienti assegnati risulta T=2 elevato a meno x₁−2x₂; il due distingue i due materiali."
+        },
+        {
+          "type": "formula",
+          "text": "T=e^{-\\mu_1d_1}e^{-\\mu_2d_2}"
+        },
+        {
+          "type": "formula",
+          "text": " T=e^{-(\\mu_1d_1+\\mu_2d_2)}"
+        },
+        {
+          "type": "formula",
+          "text": " T=2^{-x_1-2x_2}"
+        },
+        {
+          "type": "text",
+          "text": "Sommare le trasmittanze non descrive strati in successione. Omettere il fattore due rende i coefficienti uguali; cambiare segno dà amplificazione. Il prodotto x₁x₂ non nasce dalla somma degli spessori ottici."
+        }
+      ],
+      "hints": [
+        "Moltiplica i fattori di trasmissione, poi usa la regola degli esponenti.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Sommare le trasmittanze non descrive strati in successione. Omettere il fattore due rende i coefficienti uguali; cambiare segno dà amplificazione. Il prodotto x₁x₂ non nasce dalla somma degli spessori ottici.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Prodotto delle trasmittanze e somma degli esponenti",
+        "Inverse con residui positivi",
+        "Confronti, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-two-layer-transmission-04",
+      "kind": "question",
+      "course": "C5",
+      "section": "Trasmissione attraverso due materiali in successione",
+      "order": 24804,
+      "title": "Un centimetro in più nel primo strato",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-layer-transmission",
+      "difficulty": 1,
+      "prompt": "Un fascio monocromatico diretto attraversa in successione due strati omogenei, con μ₁=(ln 2) cm⁻¹ e μ₂=(2 ln 2) cm⁻¹. Si trascurano riflessione, sorgenti interne e radiazione secondaria raccolta. Ogni coefficiente è costante nel proprio strato. Poniamo x₁=d₁/(1 cm)>0, x₂=d₂/(1 cm)>0 e T=I_finale/I₀. A ha d₁=d₂=1 cm; B ha d₁=2 cm e d₂=1 cm. Come cambia T?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 1/8 a 1/16",
+          "Da 1/8 a 1/4",
+          "Da 1/8 a 1/32",
+          "Resta 1/8",
+          "Diventa zero"
+        ],
+        "value": "Da 1/8 a 1/16"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’esponente totale passa da 1+2=3 a 2+2=4. Il centimetro aggiuntivo è del primo materiale e introduce un solo dimezzamento. La trasmittanza passa perciò da 1/8 a 1/16, rimanendo positiva."
+        },
+        {
+          "type": "formula",
+          "text": "T_A=2^{-3}"
+        },
+        {
+          "type": "formula",
+          "text": " T_A=\\frac18"
+        },
+        {
+          "type": "formula",
+          "text": " T_B=2^{-4}"
+        },
+        {
+          "type": "formula",
+          "text": " T_B=\\frac1{16}"
+        },
+        {
+          "type": "text",
+          "text": "Un quarto aumenta la trasmissione nonostante lo spessore maggiore. 1/32 assegnerebbe al primo centimetro il coefficiente doppio del secondo materiale; zero tratterebbe la perdita come sottrazione assoluta."
+        }
+      ],
+      "hints": [
+        "Identifica in quale materiale è stato aggiunto il percorso.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Un quarto aumenta la trasmissione nonostante lo spessore maggiore. 1/32 assegnerebbe al primo centimetro il coefficiente doppio del secondo materiale; zero tratterebbe la perdita come sottrazione assoluta.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Prodotto delle trasmittanze e somma degli esponenti",
+        "Inverse con residui positivi",
+        "Confronti, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-two-layer-transmission-05",
+      "kind": "question",
+      "course": "C5",
+      "section": "Trasmissione attraverso due materiali in successione",
+      "order": 24805,
+      "title": "Ricavare il primo percorso",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-layer-transmission",
+      "difficulty": 2,
+      "prompt": "Un fascio monocromatico diretto attraversa in successione due strati omogenei, con μ₁=(ln 2) cm⁻¹ e μ₂=(2 ln 2) cm⁻¹. Si trascurano riflessione, sorgenti interne e radiazione secondaria raccolta. Ogni coefficiente è costante nel proprio strato. Poniamo x₁=d₁/(1 cm)>0, x₂=d₂/(1 cm)>0 e T=I_finale/I₀. Si misurano T=1/8 e d₂=1 cm. Quanto vale d₁ in cm?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "cm",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La misura T=2⁻³ fissa lo spessore ottico totale in unità ln 2 a tre. Il secondo strato contribuisce due; resta x₁=1, quindi un centimetro nel primo strato. Il residuo è positivo, come deve essere nel dominio dato."
+        },
+        {
+          "type": "formula",
+          "text": "x_1+2x_2=3"
+        },
+        {
+          "type": "formula",
+          "text": " x_1+2=3"
+        },
+        {
+          "type": "formula",
+          "text": " x_1=1"
+        },
+        {
+          "type": "formula",
+          "text": " d_1=1\\,\\mathrm{cm}"
+        },
+        {
+          "type": "text",
+          "text": "Tre centimetri ignora il contributo del secondo strato e darebbe T=1/32. Due centimetri darebbe 1/16; zero darebbe 1/4 e violerebbe anche il percorso strettamente positivo."
+        }
+      ],
+      "hints": [
+        "Sottrai il contributo noto all’esponente totale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre centimetri ignora il contributo del secondo strato e darebbe T=1/32. Due centimetri darebbe 1/16; zero darebbe 1/4 e violerebbe anche il percorso strettamente positivo.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Prodotto delle trasmittanze e somma degli esponenti",
+        "Inverse con residui positivi",
+        "Confronti, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-two-layer-transmission-06",
+      "kind": "question",
+      "course": "C5",
+      "section": "Trasmissione attraverso due materiali in successione",
+      "order": 24806,
+      "title": "Il coefficiente doppio pesa nell’inversa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-layer-transmission",
+      "difficulty": 2,
+      "prompt": "Un fascio monocromatico diretto attraversa in successione due strati omogenei, con μ₁=(ln 2) cm⁻¹ e μ₂=(2 ln 2) cm⁻¹. Si trascurano riflessione, sorgenti interne e radiazione secondaria raccolta. Ogni coefficiente è costante nel proprio strato. Poniamo x₁=d₁/(1 cm)>0, x₂=d₂/(1 cm)>0 e T=I_finale/I₀. Si misurano T=1/8 e d₁=1 cm. Quanto vale d₂ in cm?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "cm",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dall’esponente totale tre tolgo x₁=1; il residuo due corrisponde a 2x₂, non a x₂. Dividendo per due si ricava x₂=1. L’unità fisica di d₂ resta il centimetro."
+        },
+        {
+          "type": "formula",
+          "text": "1+2x_2=3"
+        },
+        {
+          "type": "formula",
+          "text": " 2x_2=2"
+        },
+        {
+          "type": "formula",
+          "text": " x_2=1"
+        },
+        {
+          "type": "formula",
+          "text": " d_2=1\\,\\mathrm{cm}"
+        },
+        {
+          "type": "text",
+          "text": "Due centimetri omette la divisione per il coefficiente relativo due e darebbe T=1/32. Tre centimetri darebbe 1/128; mezzo centimetro darebbe 1/4."
+        }
+      ],
+      "hints": [
+        "Nel secondo materiale un centimetro equivale a due dimezzamenti.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due centimetri omette la divisione per il coefficiente relativo due e darebbe T=1/32. Tre centimetri darebbe 1/128; mezzo centimetro darebbe 1/4.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Prodotto delle trasmittanze e somma degli esponenti",
+        "Inverse con residui positivi",
+        "Confronti, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-two-layer-transmission-07",
+      "kind": "question",
+      "course": "C5",
+      "section": "Trasmissione attraverso due materiali in successione",
+      "order": 24807,
+      "title": "Il secondo strato raddoppia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-layer-transmission",
+      "difficulty": 2,
+      "prompt": "Un fascio monocromatico diretto attraversa in successione due strati omogenei, con μ₁=(ln 2) cm⁻¹ e μ₂=(2 ln 2) cm⁻¹. Si trascurano riflessione, sorgenti interne e radiazione secondaria raccolta. Ogni coefficiente è costante nel proprio strato. Poniamo x₁=d₁/(1 cm)>0, x₂=d₂/(1 cm)>0 e T=I_finale/I₀. A usa d₁=d₂=1 cm. B mantiene d₁=1 cm e usa d₂=2 cm. Quanto vale T_B/T_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/4",
+          "4",
+          "1/2",
+          "1/32",
+          "1"
+        ],
+        "value": "1/4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’esponente passa da tre a cinque: il centimetro aggiuntivo nel secondo materiale aggiunge due dimezzamenti. T_A=1/8 e T_B=1/32, quindi il rapporto finale/iniziale è un quarto. 1/32 è la trasmittanza assoluta finale, non il rapporto fra le due."
+        },
+        {
+          "type": "formula",
+          "text": "T_A=\\frac18"
+        },
+        {
+          "type": "formula",
+          "text": " T_B=\\frac1{32}"
+        },
+        {
+          "type": "formula",
+          "text": " T_B/T_A=\\frac14"
+        },
+        {
+          "type": "text",
+          "text": "Quattro inverte il rapporto; un mezzo usa il coefficiente del primo materiale. Uno ignora lo spessore aggiuntivo."
+        }
+      ],
+      "hints": [
+        "Confronta la differenza degli esponenti totali, non soltanto quella dei centimetri.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro inverte il rapporto; un mezzo usa il coefficiente del primo materiale. Uno ignora lo spessore aggiuntivo.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Prodotto delle trasmittanze e somma degli esponenti",
+        "Inverse con residui positivi",
+        "Confronti, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-two-layer-transmission-08",
+      "kind": "question",
+      "course": "C5",
+      "section": "Trasmissione attraverso due materiali in successione",
+      "order": 24808,
+      "title": "Uno scarto fra frazioni",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-layer-transmission",
+      "difficulty": 2,
+      "prompt": "Un fascio monocromatico diretto attraversa in successione due strati omogenei, con μ₁=(ln 2) cm⁻¹ e μ₂=(2 ln 2) cm⁻¹. Si trascurano riflessione, sorgenti interne e radiazione secondaria raccolta. Ogni coefficiente è costante nel proprio strato. Poniamo x₁=d₁/(1 cm)>0, x₂=d₂/(1 cm)>0 e T=I_finale/I₀. Per d₁=d₂=1 cm viene proposto T=1/4. Quanto vale proposta meno corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/8",
+          "−1/8",
+          "2",
+          "1/4",
+          "0"
+        ],
+        "value": "1/8"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il valore corretto è 1/8. Sottraggo la frazione corretta dalla proposta: 1/4−1/8=1/8. Anche lo scarto è adimensionale, ma resta distinto dal rapporto, che varrebbe due."
+        },
+        {
+          "type": "formula",
+          "text": "T=\\frac18"
+        },
+        {
+          "type": "formula",
+          "text": " \\delta T=\\frac14-\\frac18"
+        },
+        {
+          "type": "formula",
+          "text": " \\delta T=\\frac18"
+        },
+        {
+          "type": "text",
+          "text": "−1/8 cambia l’ordine. Due è il quoziente proposto/corretto; 1/4 ripete la proposta e zero la accetta senza il primo strato."
+        }
+      ],
+      "hints": [
+        "Porta le due frazioni allo stesso denominatore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−1/8 cambia l’ordine. Due è il quoziente proposto/corretto; 1/4 ripete la proposta e zero la accetta senza il primo strato.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Prodotto delle trasmittanze e somma degli esponenti",
+        "Inverse con residui positivi",
+        "Confronti, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-two-layer-transmission-09",
+      "kind": "question",
+      "course": "C5",
+      "section": "Trasmissione attraverso due materiali in successione",
+      "order": 24809,
+      "title": "Il residuo nell’esponente",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-layer-transmission",
+      "difficulty": 2,
+      "prompt": "Un fascio monocromatico diretto attraversa in successione due strati omogenei, con μ₁=(ln 2) cm⁻¹ e μ₂=(2 ln 2) cm⁻¹. Si trascurano riflessione, sorgenti interne e radiazione secondaria raccolta. Ogni coefficiente è costante nel proprio strato. Poniamo x₁=d₁/(1 cm)>0, x₂=d₂/(1 cm)>0 e T=I_finale/I₀. T e x₂ sono noti. Quale formula isola x₁, e quindi d₁=x₁·1 cm?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "x₁ = log₂(1/T) − 2x₂",
+          "x₁ = log₂(1/T) + 2x₂",
+          "x₁ = −log₂(1/T) − 2x₂",
+          "x₁ = log₂(T) + 2x₂",
+          "x₁ = log₂(1/T) / (2x₂)"
+        ],
+        "value": "x₁ = log₂(1/T) − 2x₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Prendo il logaritmo in base due del reciproco della trasmittanza: ottengo x₁+2x₂. Tolgo il contributo noto del secondo strato. Il residuo deve essere strettamente positivo; equivalentemente T deve essere minore di 2 elevato a −2x₂. Il logaritmo ha argomento adimensionale."
+        },
+        {
+          "type": "formula",
+          "text": "\\log_2(1/T)=x_1+2x_2"
+        },
+        {
+          "type": "formula",
+          "text": " x_1=\\log_2(1/T)-2x_2"
+        },
+        {
+          "type": "formula",
+          "text": " d_1=x_1\\,\\mathrm{cm}"
+        },
+        {
+          "type": "text",
+          "text": "Sommare 2x₂ anziché sottrarlo conterebbe due volte il materiale noto. log₂ T è negativo; dividere per 2x₂ confonde somma di contributi e prodotto. La positività del residuo è una verifica fisica dell’inversa."
+        }
+      ],
+      "hints": [
+        "Ricostruisci prima l’esponente totale, poi separa i contributi dei materiali.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sommare 2x₂ anziché sottrarlo conterebbe due volte il materiale noto. log₂ T è negativo; dividere per 2x₂ confonde somma di contributi e prodotto. La positività del residuo è una verifica fisica dell’inversa.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Prodotto delle trasmittanze e somma degli esponenti",
+        "Inverse con residui positivi",
+        "Confronti, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-two-layer-transmission-10",
+      "kind": "question",
+      "course": "C5",
+      "section": "Trasmissione attraverso due materiali in successione",
+      "order": 24810,
+      "title": "Confrontare due esponenti",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-layer-transmission",
+      "difficulty": 2,
+      "prompt": "Un fascio monocromatico diretto attraversa in successione due strati omogenei, con μ₁=(ln 2) cm⁻¹ e μ₂=(2 ln 2) cm⁻¹. Si trascurano riflessione, sorgenti interne e radiazione secondaria raccolta. Ogni coefficiente è costante nel proprio strato. Poniamo x₁=d₁/(1 cm)>0, x₂=d₂/(1 cm)>0 e T=I_finale/I₀. Fra prove x₁,B=κ₁x₁,A e x₂,B=κ₂x₂,A, con κ₁,κ₂>0. Definiamo δ₁=(κ₁−1)x₁,A e δ₂=(κ₂−1)x₂,A. Quanto vale T_B/T_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2^(−δ₁ − 2δ₂)",
+          "κ₁ κ₂",
+          "κ₁ / κ₂",
+          "2^(δ₁ + 2δ₂)",
+          "2^(−δ₁ − δ₂)"
+        ],
+        "value": "2^(−δ₁ − 2δ₂)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il rapporto di due potenze di due si ottiene sottraendo gli esponenti. Il primo strato aggiunge δ₁ al percorso normalizzato; il secondo aggiunge δ₂ con coefficiente relativo due. Il rapporto è quindi 2 elevato a meno δ₁−2δ₂. Anche variazioni negative sono possibili, purché i percorsi finali restino positivi."
+        },
+        {
+          "type": "formula",
+          "text": "\\delta_1=(\\kappa_1-1)x_{1,A}"
+        },
+        {
+          "type": "formula",
+          "text": " \\delta_2=(\\kappa_2-1)x_{2,A}"
+        },
+        {
+          "type": "formula",
+          "text": " T_B/T_A=2^{-\\delta_1-2\\delta_2}"
+        },
+        {
+          "type": "text",
+          "text": "Il prodotto o quoziente dei fattori di lunghezza non è una legge di scala per una trasmittanza esponenziale. Il segno positivo inverte il rapporto e omettere il due rende identici i materiali."
+        }
+      ],
+      "hints": [
+        "La variazione utile è quella dello spessore ottico totale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il prodotto o quoziente dei fattori di lunghezza non è una legge di scala per una trasmittanza esponenziale. Il segno positivo inverte il rapporto e omettere il due rende identici i materiali.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Prodotto delle trasmittanze e somma degli esponenti",
+        "Inverse con residui positivi",
+        "Confronti, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-two-layer-transmission-11",
+      "kind": "question",
+      "course": "C5",
+      "section": "Trasmissione attraverso due materiali in successione",
+      "order": 24811,
+      "title": "Raddoppiare entrambi i percorsi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-layer-transmission",
+      "difficulty": 2,
+      "prompt": "Un fascio monocromatico diretto attraversa in successione due strati omogenei, con μ₁=(ln 2) cm⁻¹ e μ₂=(2 ln 2) cm⁻¹. Si trascurano riflessione, sorgenti interne e radiazione secondaria raccolta. Ogni coefficiente è costante nel proprio strato. Poniamo x₁=d₁/(1 cm)>0, x₂=d₂/(1 cm)>0 e T=I_finale/I₀. A usa d₁=d₂=1 cm; B usa d₁=d₂=2 cm. Quanto vale T_B/T_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/8",
+          "8",
+          "1/2",
+          "1/4",
+          "1/64"
+        ],
+        "value": "1/8"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’esponente totale raddoppia da tre a sei. T_A=1/8 e T_B=1/64; dividendo si ottiene un ottavo. In questo confronto particolare T_B=T_A², ma il rapporto fra le due è T_A, non il suo quadrato."
+        },
+        {
+          "type": "formula",
+          "text": "T_A=2^{-3}"
+        },
+        {
+          "type": "formula",
+          "text": " T_B=2^{-6}"
+        },
+        {
+          "type": "formula",
+          "text": " T_B/T_A=2^{-3}"
+        },
+        {
+          "type": "formula",
+          "text": " T_B/T_A=\\frac18"
+        },
+        {
+          "type": "text",
+          "text": "Otto è il reciproco. Un mezzo o un quarto omette una parte dell’incremento ottico; 1/64 copia la trasmittanza finale assoluta."
+        }
+      ],
+      "hints": [
+        "Ricava entrambi gli esponenti prima di decidere quale rapporto formare.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Otto è il reciproco. Un mezzo o un quarto omette una parte dell’incremento ottico; 1/64 copia la trasmittanza finale assoluta.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Prodotto delle trasmittanze e somma degli esponenti",
+        "Inverse con residui positivi",
+        "Confronti, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-two-layer-transmission-12",
+      "kind": "question",
+      "course": "C5",
+      "section": "Trasmissione attraverso due materiali in successione",
+      "order": 24812,
+      "title": "Media di due trasmittanze",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-layer-transmission",
+      "difficulty": 2,
+      "prompt": "Un fascio monocromatico diretto attraversa in successione due strati omogenei, con μ₁=(ln 2) cm⁻¹ e μ₂=(2 ln 2) cm⁻¹. Si trascurano riflessione, sorgenti interne e radiazione secondaria raccolta. Ogni coefficiente è costante nel proprio strato. Poniamo x₁=d₁/(1 cm)>0, x₂=d₂/(1 cm)>0 e T=I_finale/I₀. A usa d₁=d₂=1 cm; B usa d₁=d₂=2 cm. Qual è la media aritmetica delle due T con uguali pesi?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "9/128",
+          "√2/32",
+          "9/64",
+          "7/128",
+          "1/64"
+        ],
+        "value": "9/128"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I valori da mediare sono 1/8 e 1/64. La somma è 9/64 e la media 9/128. Inserire gli spessori medi 3/2 cm in ciascuno strato darebbe invece 2 elevato a −9/2, cioè √2/32: un valore esatto ma riferito a una terza preparazione, non alla statistica richiesta."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/98c3a27976950fa6344448ed1013662942310b3f5b3d5cbfc033dec60d63bf74",
+          "text": "Le barre centrali hanno origine e scala comuni: T_A=1/8, T_B=1/64 e media 9/128. Non rappresentano le somme delle frazioni trasmesse dai singoli materiali."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline T=\\frac{1/8+1/64}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline T=\\frac9{128}"
+        },
+        {
+          "type": "formula",
+          "text": " T_{\\rm dati\\ medi}=\\frac{\\sqrt2}{32}"
+        },
+        {
+          "type": "text",
+          "text": "9/64 omette il peso un mezzo. 7/128 è la semidifferenza, 1/64 copia B. L’esponenziale non scambia in generale l’ordine con la media aritmetica."
+        }
+      ],
+      "hints": [
+        "Somma le uscite, non gli spessori prima della propagazione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "9/64 omette il peso un mezzo. 7/128 è la semidifferenza, 1/64 copia B. L’esponenziale non scambia in generale l’ordine con la media aritmetica.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Prodotto delle trasmittanze e somma degli esponenti",
+        "Inverse con residui positivi",
+        "Confronti, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-two-layer-transmission-13",
+      "kind": "question",
+      "course": "C5",
+      "section": "Trasmissione attraverso due materiali in successione",
+      "order": 24813,
+      "title": "Distribuire un bersaglio fra i materiali",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-layer-transmission",
+      "difficulty": 3,
+      "prompt": "Un fascio monocromatico diretto attraversa in successione due strati omogenei, con μ₁=(ln 2) cm⁻¹ e μ₂=(2 ln 2) cm⁻¹. Si trascurano riflessione, sorgenti interne e radiazione secondaria raccolta. Ogni coefficiente è costante nel proprio strato. Poniamo x₁=d₁/(1 cm)>0, x₂=d₂/(1 cm)>0 e T=I_finale/I₀. A usa d₁=d₂=1 cm. In B si impone d₁=2 cm e T_B=T_A/8. Quanto vale d₂,B/d₂,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/2",
+          "3",
+          "1/8",
+          "1"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è T_B=1/64, quindi l’esponente totale deve essere sei. Il primo percorso normalizzato è due: restano quattro unità ottiche al secondo materiale, cioè x₂,B=2. Il rapporto rispetto al suo centimetro iniziale è due."
+        },
+        {
+          "type": "formula",
+          "text": "T_B=\\frac1{64}"
+        },
+        {
+          "type": "formula",
+          "text": " x_{1,B}+2x_{2,B}=6"
+        },
+        {
+          "type": "formula",
+          "text": " 2x_{2,B}=4"
+        },
+        {
+          "type": "formula",
+          "text": " x_{2,B}=2"
+        },
+        {
+          "type": "formula",
+          "text": " d_{2,B}/d_{2,A}=2"
+        },
+        {
+          "type": "text",
+          "text": "Tre centimetri nel secondo materiale darebbero T_B=1/256. Uno darebbe 1/16; un ottavo copia il bersaglio delle trasmittanze anziché il rapporto dei percorsi."
+        }
+      ],
+      "hints": [
+        "Trasforma il target di trasmissione nel numero di dimezzamenti richiesti.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre centimetri nel secondo materiale darebbero T_B=1/256. Uno darebbe 1/16; un ottavo copia il bersaglio delle trasmittanze anziché il rapporto dei percorsi.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Prodotto delle trasmittanze e somma degli esponenti",
+        "Inverse con residui positivi",
+        "Confronti, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-two-layer-transmission-14",
+      "kind": "question",
+      "course": "C5",
+      "section": "Trasmissione attraverso due materiali in successione",
+      "order": 24814,
+      "title": "Un display proporzionale alla frazione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-layer-transmission",
+      "difficulty": 3,
+      "prompt": "Un fascio monocromatico diretto attraversa in successione due strati omogenei, con μ₁=(ln 2) cm⁻¹ e μ₂=(2 ln 2) cm⁻¹. Si trascurano riflessione, sorgenti interne e radiazione secondaria raccolta. Ogni coefficiente è costante nel proprio strato. Poniamo x₁=d₁/(1 cm)>0, x₂=d₂/(1 cm)>0 e T=I_finale/I₀. Il display continuo D=gT senza offset legge 3/8 per d₁=d₂=1 cm. Poi legge 3/64 con d₂=2 cm. Quanto vale il nuovo d₁ in cm?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "cm",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento T=1/8 fissa g=3. La nuova lettura corrisponde a T=1/64 e dunque a esponente totale sei. Il secondo materiale contribuisce quattro, lasciando x₁=2. La lettura del display non è direttamente una trasmittanza."
+        },
+        {
+          "type": "formula",
+          "text": "g=\\frac{3/8}{1/8}"
+        },
+        {
+          "type": "formula",
+          "text": " g=3"
+        },
+        {
+          "type": "formula",
+          "text": " T=\\frac{3/64}{3}"
+        },
+        {
+          "type": "formula",
+          "text": " T=\\frac1{64}"
+        },
+        {
+          "type": "formula",
+          "text": " x_1+4=6"
+        },
+        {
+          "type": "formula",
+          "text": " d_1=2\\,\\mathrm{cm}"
+        },
+        {
+          "type": "text",
+          "text": "Sei centimetri nel primo materiale darebbero T=1/1024 e D=3/1024. Uno darebbe D=3/32, non 3/64; quattro darebbe D=3/256. La sostituzione diretta controlla l’inversa senza approssimare logaritmi."
+        }
+      ],
+      "hints": [
+        "Elimina g prima di leggere l’esponente totale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sei centimetri nel primo materiale darebbero T=1/1024 e D=3/1024. Uno darebbe D=3/32, non 3/64; quattro darebbe D=3/256. La sostituzione diretta controlla l’inversa senza approssimare logaritmi.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Prodotto delle trasmittanze e somma degli esponenti",
+        "Inverse con residui positivi",
+        "Confronti, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-two-layer-transmission-15",
+      "kind": "question",
+      "course": "C5",
+      "section": "Trasmissione attraverso due materiali in successione",
+      "order": 24815,
+      "title": "Sottrarre il fondo della taratura",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-layer-transmission",
+      "difficulty": 3,
+      "prompt": "Un fascio monocromatico diretto attraversa in successione due strati omogenei, con μ₁=(ln 2) cm⁻¹ e μ₂=(2 ln 2) cm⁻¹. Si trascurano riflessione, sorgenti interne e radiazione secondaria raccolta. Ogni coefficiente è costante nel proprio strato. Poniamo x₁=d₁/(1 cm)>0, x₂=d₂/(1 cm)>0 e T=I_finale/I₀. D=gT+b. A: d₁=d₂=1 cm, D=5/4. B: d₁=d₂=2 cm, D=33/32. C: d₂=1 cm, D=9/8. Quanto vale d₁,C in cm?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "cm",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le trasmittanze di riferimento sono 1/8 e 1/64. Le differenze delle letture e dei riferimenti danno g=2; poi b=1. D_C=9/8 lascia, tolto il fondo e diviso per due, T_C=1/16. L’esponente quattro meno il contributo due del secondo strato dà x₁,C=2."
+        },
+        {
+          "type": "formula",
+          "text": "g=\\frac{5/4-33/32}{1/8-1/64}"
+        },
+        {
+          "type": "formula",
+          "text": " g=2"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " T_C=\\frac{9/8-1}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " T_C=\\frac1{16}"
+        },
+        {
+          "type": "formula",
+          "text": " d_{1,C}=2\\,\\mathrm{cm}"
+        },
+        {
+          "type": "text",
+          "text": "Ignorare b farebbe interpretare D_C/2=9/16 come trasmittanza: è persino maggiore di 1/4, limite superiore con d₂=1 cm e d₁>0. Quattro centimetri darebbero D=33/32 e uno D=5/4, non 9/8."
+        }
+      ],
+      "hints": [
+        "Dopo la taratura, verifica anche il limite imposto dal solo secondo strato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Ignorare b farebbe interpretare D_C/2=9/16 come trasmittanza: è persino maggiore di 1/4, limite superiore con d₂=1 cm e d₁>0. Quattro centimetri darebbero D=33/32 e uno D=5/4, non 9/8.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Prodotto delle trasmittanze e somma degli esponenti",
+        "Inverse con residui positivi",
+        "Confronti, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-two-layer-transmission-16",
+      "kind": "question",
+      "course": "C5",
+      "section": "Trasmissione attraverso due materiali in successione",
+      "order": 24816,
+      "title": "Stessi percorsi, coefficienti diversi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "two-layer-transmission",
+      "difficulty": 3,
+      "prompt": "Un fascio monocromatico diretto attraversa in successione due strati omogenei, con μ₁=(ln 2) cm⁻¹ e μ₂=(2 ln 2) cm⁻¹. Si trascurano riflessione, sorgenti interne e radiazione secondaria raccolta. Ogni coefficiente è costante nel proprio strato. Poniamo x₁=d₁/(1 cm)>0, x₂=d₂/(1 cm)>0 e T=I_finale/I₀. Si impone d₁=d₂ e si misura T=1/8. Quanto vale d₂ in cm?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "cm",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il vincolo rende uguali i percorsi geometrici, non i contributi ottici: il secondo vale il doppio del primo. Se x=x₁=x₂, l’esponente totale è 3x. Da 2⁻³ˣ=2⁻³ segue x=1, unica soluzione positiva."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/98c3a27976950fa6344448ed1013662942310b3f5b3d5cbfc033dec60d63bf74",
+          "text": "Nel grafico inferiore d₁ resta 1 cm mentre varia soltanto d₂. Il limite d₂=0 è indicato come riferimento di bordo; i quesiti richiedono d₂>0. Non è il grafico del vincolo d₁=d₂."
+        },
+        {
+          "type": "formula",
+          "text": "x_1=x_2"
+        },
+        {
+          "type": "formula",
+          "text": "x_2=x"
+        },
+        {
+          "type": "formula",
+          "text": " T=2^{-3x}"
+        },
+        {
+          "type": "formula",
+          "text": " 3x=3"
+        },
+        {
+          "type": "formula",
+          "text": " x=1"
+        },
+        {
+          "type": "formula",
+          "text": " d_2=1\\,\\mathrm{cm}"
+        },
+        {
+          "type": "text",
+          "text": "Tre centimetri darebbero 1/512 e mezzo centimetro darebbe 1/(2√2), non 1/8. Il vincolo e la misura sono indipendenti: non rimane una famiglia di scale libere."
+        }
+      ],
+      "hints": [
+        "Usa una sola variabile per i percorsi, ma conserva il coefficiente doppio del secondo materiale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Tre centimetri darebbero 1/512 e mezzo centimetro darebbe 1/(2√2), non 1/8. Il vincolo e la misura sono indipendenti: non rimane una famiglia di scale libere.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Prodotto delle trasmittanze e somma degli esponenti",
+        "Inverse con residui positivi",
+        "Confronti, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "98c3a27976950fa6344448ed1013662942310b3f5b3d5cbfc033dec60d63bf74",
+      "name": "two-layer-transmission-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTYwMCIgdmlld0JveD0iMCAwIDY0MCAxNjAwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyIgZm9udC1mYW1pbHk9InN5c3RlbS11aSwgc2Fucy1zZXJpZiI+PHRpdGxlIGlkPSJ0aXRsZSI+RHVlIG1hdGVyaWFsaSBpbiBzdWNjZXNzaW9uZTwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPlRyYXNtaXNzaW9uaSBzdWNjZXNzaXZlLCBtZWRpYSBmcmEgcHJlcGFyYXppb25pIGUgY3VydmEgYWwgdmFyaWFyZSBkZWwgc29sbyBzZWNvbmRvIHNwZXNzb3JlLjwvZGVzYz48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iNjQwIiBoZWlnaHQ9IjE2MDAiIGZpbGw9IiNmZmYiLz48dGV4dCB4PSIzNSIgeT0iNDgiIGZvbnQtc2l6ZT0iMjUiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+TGUgZnJhemlvbmkgc2kgbW9sdGlwbGljYW5vPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSIxMDUiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+MSDCtyBk4oKBID0gZOKCgiA9IDEgY208L3RleHQ+PHJlY3QgeD0iMjEwIiB5PSIxNTAiIHdpZHRoPSI4MCIgaGVpZ2h0PSI4NSIgZmlsbD0iI2Q4ZTdlZSIvPjxyZWN0IHg9IjQwMCIgeT0iMTUwIiB3aWR0aD0iODAiIGhlaWdodD0iODUiIGZpbGw9IiNlZmUyZDEiLz48dGV4dCB4PSIxODAiIHk9IjI3NSIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij7OvOKCgSA9IChsbiAyKSBjbeKBu8K5PC90ZXh0Pjx0ZXh0IHg9IjM4MCIgeT0iMzA1IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPs684oKCID0gKDIgbG4gMikgY23igbvCuTwvdGV4dD48bGluZSB4MT0iODAiIHkxPSIxOTIiIHgyPSI1NTAiIHkyPSIxOTIiIHN0cm9rZT0iIzUyNjQ3NCIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iMzUiIHk9IjM1NSIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij4xIOKGkiAxLzIg4oaSIDEvOCBkZWwgZmFzY2lvIGluY2lkZW50ZTwvdGV4dD48dGV4dCB4PSIxMzAiIHk9IjQzMCIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9ImVuZCI+cHJpbWE8L3RleHQ+PHJlY3QgeD0iMTUwIiB5PSI0MTAiIHdpZHRoPSI0MDAiIGhlaWdodD0iMjUiIGZpbGw9IiMzZDc3OTEiLz48dGV4dCB4PSI1NjAiIHk9IjQzMSIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij4xPC90ZXh0Pjx0ZXh0IHg9IjEzMCIgeT0iNDkwIiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0iZW5kIj5kb3BvIDE8L3RleHQ+PHJlY3QgeD0iMTUwIiB5PSI0NzAiIHdpZHRoPSIyMDAuMCIgaGVpZ2h0PSIyNSIgZmlsbD0iIzNkNzc5MSIvPjx0ZXh0IHg9IjM2MC4wIiB5PSI0OTEiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+MS8yPC90ZXh0Pjx0ZXh0IHg9IjEzMCIgeT0iNTUwIiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0iZW5kIj5kb3BvIDI8L3RleHQ+PHJlY3QgeD0iMTUwIiB5PSI1MzAiIHdpZHRoPSI1MC4wIiBoZWlnaHQ9IjI1IiBmaWxsPSIjM2Q3NzkxIi8+PHRleHQgeD0iMjEwLjAiIHk9IjU1MSIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij4xLzg8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjYxMCIgZm9udC1zaXplPSIyMiIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij4yIMK3IER1ZSBwcmVwYXJhemlvbmkgZSBsYSBsb3JvIG1lZGlhPC90ZXh0Pjx0ZXh0IHg9IjEzMCIgeT0iNjkxIiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0iZW5kIj5BPC90ZXh0PjxyZWN0IHg9IjE1MCIgeT0iNjcwIiB3aWR0aD0iMjQwIiBoZWlnaHQ9IjI4IiBmaWxsPSIjM2Q3NzkxIi8+PHRleHQgeD0iNDAwIiB5PSI2OTIiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+MS84PC90ZXh0Pjx0ZXh0IHg9IjEzMCIgeT0iNzcxIiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0iZW5kIj5CPC90ZXh0PjxyZWN0IHg9IjE1MCIgeT0iNzUwIiB3aWR0aD0iMzAiIGhlaWdodD0iMjgiIGZpbGw9IiM5ODZjMzUiLz48dGV4dCB4PSIxOTAiIHk9Ijc3MiIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij4xLzY0PC90ZXh0Pjx0ZXh0IHg9IjEzMCIgeT0iODUxIiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0iZW5kIj5tZWRpYTwvdGV4dD48cmVjdCB4PSIxNTAiIHk9IjgzMCIgd2lkdGg9IjEzNSIgaGVpZ2h0PSIyOCIgZmlsbD0iIzYzN2U1NSIvPjx0ZXh0IHg9IjI5NSIgeT0iODUyIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjkvMTI4PC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSI5MTgiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+QTogMSBjbSBlIDEgY20gwrcgQjogMiBjbSBlIDIgY208L3RleHQ+PHRleHQgeD0iMzUiIHk9Ijk5MCIgZm9udC1zaXplPSIyMiIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij4zIMK3IENhbWJpYSBzb2x0YW50byBk4oKCOyBk4oKBIHJlc3RhIDEgY208L3RleHQ+PGxpbmUgeDE9IjE1MCIgeTE9IjE0NTAiIHgyPSI1NTAiIHkyPSIxNDUwIiBzdHJva2U9IiM1MjY0NzQiIHN0cm9rZS13aWR0aD0iMiIvPjxsaW5lIHgxPSIxNTAiIHkxPSIxNDUwIiB4Mj0iMTUwIiB5Mj0iMTA5MCIgc3Ryb2tlPSIjNTI2NDc0IiBzdHJva2Utd2lkdGg9IjIiLz48bGluZSB4MT0iMTUwIiB5MT0iMTQ0NCIgeDI9IjE1MCIgeTI9IjE0NTYiIHN0cm9rZT0iIzUyNjQ3NCIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iMTUwIiB5PSIxNDg1IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj4wPC90ZXh0PjxsaW5lIHgxPSIyNjAiIHkxPSIxNDQ0IiB4Mj0iMjYwIiB5Mj0iMTQ1NiIgc3Ryb2tlPSIjNTI2NDc0IiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSIyNjAiIHk9IjE0ODUiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJtaWRkbGUiPjE8L3RleHQ+PGxpbmUgeDE9IjM3MCIgeTE9IjE0NDQiIHgyPSIzNzAiIHkyPSIxNDU2IiBzdHJva2U9IiM1MjY0NzQiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjM3MCIgeT0iMTQ4NSIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MjwvdGV4dD48bGluZSB4MT0iNDgwIiB5MT0iMTQ0NCIgeDI9IjQ4MCIgeTI9IjE0NTYiIHN0cm9rZT0iIzUyNjQ3NCIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iNDgwIiB5PSIxNDg1IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj4zPC90ZXh0PjxsaW5lIHgxPSIxNDQiIHkxPSIxMTMwLjAiIHgyPSIxNTYiIHkyPSIxMTMwLjAiIHN0cm9rZT0iIzUyNjQ3NCIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iMTMyIiB5PSIxMTM2LjAiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJlbmQiPjEvMjwvdGV4dD48bGluZSB4MT0iMTQ0IiB5MT0iMTM3MC4wIiB4Mj0iMTU2IiB5Mj0iMTM3MC4wIiBzdHJva2U9IiM1MjY0NzQiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjEzMiIgeT0iMTM3Ni4wIiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0iZW5kIj4xLzg8L3RleHQ+PGxpbmUgeDE9IjE0NCIgeTE9IjE0MzAuMCIgeDI9IjE1NiIgeTI9IjE0MzAuMCIgc3Ryb2tlPSIjNTI2NDc0IiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSIxMzIiIHk9IjE0MzYuMCIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9ImVuZCI+MS8zMjwvdGV4dD48cGF0aCBkPSJNMTUwLjAwMDAgMTEzMC4wMDAwIEwxNTIuNzUwMCAxMTQwLjkwMDQgTDE1NS41MDAwIDExNTEuNDI5NCBMMTU4LjI1MDAgMTE2MS41OTk5IEwxNjEuMDAwMCAxMTcxLjQyMzggTDE2My43NTAwIDExODAuOTEzMSBMMTY2LjUwMDAgMTE5MC4wNzkyIEwxNjkuMjUwMCAxMTk4LjkzMzEgTDE3Mi4wMDAwIDEyMDcuNDg1MyBMMTc0Ljc1MDAgMTIxNS43NDYzIEwxNzcuNTAwMCAxMjIzLjcyNTggTDE4MC4yNTAwIDEyMzEuNDMzNiBMMTgzLjAwMDAgMTIzOC44Nzg3IEwxODUuNzUwMCAxMjQ2LjA3MDMgTDE4OC41MDAwIDEyNTMuMDE2OSBMMTkxLjI1MDAgMTI1OS43MjY5IEwxOTQuMDAwMCAxMjY2LjIwODMgTDE5Ni43NTAwIDEyNzIuNDY4OSBMMTk5LjUwMDAgMTI3OC41MTYyIEwyMDIuMjUwMCAxMjg0LjM1NzYgTDIwNS4wMDAwIDEyOTAuMDAwMCBMMjA3Ljc1MDAgMTI5NS40NTAyIEwyMTAuNTAwMCAxMzAwLjcxNDcgTDIxMy4yNTAwIDEzMDUuNzk5OSBMMjE2LjAwMDAgMTMxMC43MTE5IEwyMTguNzUwMCAxMzE1LjQ1NjYgTDIyMS41MDAwIDEzMjAuMDM5NiBMMjI0LjI1MDAgMTMyNC40NjY1IEwyMjcuMDAwMCAxMzI4Ljc0MjcgTDIyOS43NTAwIDEzMzIuODczMSBMMjMyLjUwMDAgMTMzNi44NjI5IEwyMzUuMjUwMCAxMzQwLjcxNjggTDIzOC4wMDAwIDEzNDQuNDM5NCBMMjQwLjc1MDAgMTM0OC4wMzUxIEwyNDMuNTAwMCAxMzUxLjUwODQgTDI0Ni4yNTAwIDEzNTQuODYzNCBMMjQ5LjAwMDAgMTM1OC4xMDQxIEwyNTEuNzUwMCAxMzYxLjIzNDQgTDI1NC41MDAwIDEzNjQuMjU4MSBMMjU3LjI1MDAgMTM2Ny4xNzg4IEwyNjAuMDAwMCAxMzcwLjAwMDAgTDI2Mi43NTAwIDEzNzIuNzI1MSBMMjY1LjUwMDAgMTM3NS4zNTc0IEwyNjguMjUwMCAxMzc3LjkwMDAgTDI3MS4wMDAwIDEzODAuMzU2MCBMMjczLjc1MDAgMTM4Mi43MjgzIEwyNzYuNTAwMCAxMzg1LjAxOTggTDI3OS4yNTAwIDEzODcuMjMzMyBMMjgyLjAwMDAgMTM4OS4zNzEzIEwyODQuNzUwMCAxMzkxLjQzNjYgTDI4Ny41MDAwIDEzOTMuNDMxNSBMMjkwLjI1MDAgMTM5NS4zNTg0IEwyOTMuMDAwMCAxMzk3LjIxOTcgTDI5NS43NTAwIDEzOTkuMDE3NiBMMjk4LjUwMDAgMTQwMC43NTQyIEwzMDEuMjUwMCAxNDAyLjQzMTcgTDMwNC4wMDAwIDE0MDQuMDUyMSBMMzA2Ljc1MDAgMTQwNS42MTcyIEwzMDkuNTAwMCAxNDA3LjEyOTEgTDMxMi4yNTAwIDE0MDguNTg5NCBMMzE1LjAwMDAgMTQxMC4wMDAwIEwzMTcuNzUwMCAxNDExLjM2MjUgTDMyMC41MDAwIDE0MTIuNjc4NyBMMzIzLjI1MDAgMTQxMy45NTAwIEwzMjYuMDAwMCAxNDE1LjE3ODAgTDMyOC43NTAwIDE0MTYuMzY0MSBMMzMxLjUwMDAgMTQxNy41MDk5IEwzMzQuMjUwMCAxNDE4LjYxNjYgTDMzNy4wMDAwIDE0MTkuNjg1NyBMMzM5Ljc1MDAgMTQyMC43MTgzIEwzNDIuNTAwMCAxNDIxLjcxNTcgTDM0NS4yNTAwIDE0MjIuNjc5MiBMMzQ4LjAwMDAgMTQyMy42MDk4IEwzNTAuNzUwMCAxNDI0LjUwODggTDM1My41MDAwIDE0MjUuMzc3MSBMMzU2LjI1MDAgMTQyNi4yMTU5IEwzNTkuMDAwMCAxNDI3LjAyNjAgTDM2MS43NTAwIDE0MjcuODA4NiBMMzY0LjUwMDAgMTQyOC41NjQ1IEwzNjcuMjUwMCAxNDI5LjI5NDcgTDM3MC4wMDAwIDE0MzAuMDAwMCBMMzcyLjc1MDAgMTQzMC42ODEzIEwzNzUuNTAwMCAxNDMxLjMzOTMgTDM3OC4yNTAwIDE0MzEuOTc1MCBMMzgxLjAwMDAgMTQzMi41ODkwIEwzODMuNzUwMCAxNDMzLjE4MjEgTDM4Ni41MDAwIDE0MzMuNzU1MCBMMzg5LjI1MDAgMTQzNC4zMDgzIEwzOTIuMDAwMCAxNDM0Ljg0MjggTDM5NC43NTAwIDE0MzUuMzU5MSBMMzk3LjUwMDAgMTQzNS44NTc5IEw0MDAuMjUwMCAxNDM2LjMzOTYgTDQwMy4wMDAwIDE0MzYuODA0OSBMNDA1Ljc1MDAgMTQzNy4yNTQ0IEw0MDguNTAwMCAxNDM3LjY4ODYgTDQxMS4yNTAwIDE0MzguMTA3OSBMNDE0LjAwMDAgMTQzOC41MTMwIEw0MTYuNzUwMCAxNDM4LjkwNDMgTDQxOS41MDAwIDE0MzkuMjgyMyBMNDIyLjI1MDAgMTQzOS42NDc0IEw0MjUuMDAwMCAxNDQwLjAwMDAgTDQyNy43NTAwIDE0NDAuMzQwNiBMNDMwLjUwMDAgMTQ0MC42Njk3IEw0MzMuMjUwMCAxNDQwLjk4NzUgTDQzNi4wMDAwIDE0NDEuMjk0NSBMNDM4Ljc1MDAgMTQ0MS41OTEwIEw0NDEuNTAwMCAxNDQxLjg3NzUgTDQ0NC4yNTAwIDE0NDIuMTU0MiBMNDQ3LjAwMDAgMTQ0Mi40MjE0IEw0NDkuNzUwMCAxNDQyLjY3OTYgTDQ1Mi41MDAwIDE0NDIuOTI4OSBMNDU1LjI1MDAgMTQ0My4xNjk4IEw0NTguMDAwMCAxNDQzLjQwMjUgTDQ2MC43NTAwIDE0NDMuNjI3MiBMNDYzLjUwMDAgMTQ0My44NDQzIEw0NjYuMjUwMCAxNDQ0LjA1NDAgTDQ2OS4wMDAwIDE0NDQuMjU2NSBMNDcxLjc1MDAgMTQ0NC40NTIyIEw0NzQuNTAwMCAxNDQ0LjY0MTEgTDQ3Ny4yNTAwIDE0NDQuODIzNyBMNDgwLjAwMDAgMTQ0NS4wMDAwIiBmaWxsPSJub25lIiBzdHJva2U9IiMzMDZmOGMiIHN0cm9rZS13aWR0aD0iMyIvPjxjaXJjbGUgY3g9IjE1MCIgY3k9IjExMzAiIHI9IjUiIGZpbGw9IndoaXRlIiBzdHJva2U9IiMzMDZmOGMiIHN0cm9rZS13aWR0aD0iMiIvPjxjaXJjbGUgY3g9IjI2MCIgY3k9IjEzNzAuMCIgcj0iNSIgZmlsbD0iIzI2NmI4OSIvPjxjaXJjbGUgY3g9IjM3MCIgY3k9IjE0MzAuMCIgcj0iNSIgZmlsbD0iIzI2NmI4OSIvPjx0ZXh0IHg9IjEzMCIgeT0iMTA3NSIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5UPC90ZXh0Pjx0ZXh0IHg9IjUwNSIgeT0iMTUzNSIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5k4oKCIChjbSk8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjE1ODAiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+SWwgcHVudG8gZOKCgiA9IDAgw6ggc29sbyB1biByaWZlcmltZW50byBkaSBib3Jkby48L3RleHQ+PC9zdmc+Cg=="
+    }
+  ]
+}
