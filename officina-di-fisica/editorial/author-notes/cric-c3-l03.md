@@ -80,9 +80,9 @@ Famiglia: `una-capacita-ignota-dal-mescolamento`; difficoltà 2; versione 2/base
 
 Compito: Si mescolano acqua calda e fredda in isolamento, senza cambi di fase e con capacità positive costanti. Un calcolo trascura il recipiente, inizialmente alla temperatura dell’acqua fredda. Includendo la sua capacità positiva, come cambia la temperatura finale reale?
 
-Procedimento: Il recipiente parte freddo e si scalda insieme all’acqua fredda: richiede una parte dell’energia ceduta dall’acqua calda. Nel bilancio si aggiunge un termine C_r(T_f−T_c)>0. A parità degli altri dati la temperatura comune si sposta verso la lettura fredda, senza uscire dall’intervallo delle due letture iniziali.
+Procedimento: Il recipiente parte freddo e si scalda insieme all’acqua fredda: richiede una parte dell’energia ceduta dall’acqua calda. Nel bilancio si aggiunge un termine C_r(T_f−T_c)>0. A parità degli altri dati la temperatura comune si sposta verso la lettura fredda, senza uscire dall’intervallo delle due letture iniziali. Indico con Q_h, Q_c e Q_r i calori con segno rispettivamente di acqua calda, acqua fredda e recipiente.
 
-Passaggi esatti: `C_h(T_f-T_h)+(C_c+C_r)(T_f-T_c)=0\qquad C_r>0`.
+Passaggi esatti: `Q_h=C_h(T_f-T_h)\qquad Q_c=C_c(T_f-T_c)\qquad Q_r=C_r(T_f-T_c)\qquad Q_h+Q_c+Q_r=0\qquad C_r>0`.
 
 Distrattori: Il recipiente non crea energia. Trascurarlo può essere un’approssimazione, ma non rende il risultato esattamente invariato per capacità positiva. Un valore sotto il freddo o sopra il caldo contraddirebbe il bilancio con sole capacità positive e nessun altro scambio.
 
@@ -98,7 +98,7 @@ Procedimento: Per il gas perfetto C_p−C_V=R per mole. La differenza dei calori
 
 Passaggi esatti: `Q_p-Q_V=nR\Delta T\qquad Q_p-Q_V=124{,}71\,\mathrm J`.
 
-Distrattori: La differenza non è zero: i due vincoli richiedono calori diversi per lo stesso aumento di energia interna. Il solo 8,314 copia il valore numerico di R senza moltiplicare per n e ΔT. Il risultato non richiede di assumere che il gas sia monoatomico.
+Distrattori: La differenza non è zero: i due vincoli richiedono calori diversi per lo stesso aumento di energia interna. Il solo 8,314 copia il valore numerico di R senza moltiplicare per n e ΔT. 15 copia l’incremento termico senza costruire un’energia; il valore negativo inverte la differenza richiesta. Il risultato non richiede un gas monoatomico.
 
 Aiuto: Sottrai prima le due leggi e usa la differenza delle capacità molari.
 

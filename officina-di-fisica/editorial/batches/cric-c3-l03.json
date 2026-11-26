@@ -347,11 +347,23 @@
       "blocks": [
         {
           "type": "text",
-          "text": "Il recipiente parte freddo e si scalda insieme all’acqua fredda: richiede una parte dell’energia ceduta dall’acqua calda. Nel bilancio si aggiunge un termine C_r(T_f−T_c)>0. A parità degli altri dati la temperatura comune si sposta verso la lettura fredda, senza uscire dall’intervallo delle due letture iniziali."
+          "text": "Il recipiente parte freddo e si scalda insieme all’acqua fredda: richiede una parte dell’energia ceduta dall’acqua calda. Nel bilancio si aggiunge un termine C_r(T_f−T_c)>0. A parità degli altri dati la temperatura comune si sposta verso la lettura fredda, senza uscire dall’intervallo delle due letture iniziali. Indico con Q_h, Q_c e Q_r i calori con segno rispettivamente di acqua calda, acqua fredda e recipiente."
         },
         {
           "type": "formula",
-          "text": "C_h(T_f-T_h)+(C_c+C_r)(T_f-T_c)=0"
+          "text": "Q_h=C_h(T_f-T_h)"
+        },
+        {
+          "type": "formula",
+          "text": " Q_c=C_c(T_f-T_c)"
+        },
+        {
+          "type": "formula",
+          "text": " Q_r=C_r(T_f-T_c)"
+        },
+        {
+          "type": "formula",
+          "text": " Q_h+Q_c+Q_r=0"
         },
         {
           "type": "formula",
@@ -422,7 +434,7 @@
         },
         {
           "type": "text",
-          "text": "La differenza non è zero: i due vincoli richiedono calori diversi per lo stesso aumento di energia interna. Il solo 8,314 copia il valore numerico di R senza moltiplicare per n e ΔT. Il risultato non richiede di assumere che il gas sia monoatomico."
+          "text": "La differenza non è zero: i due vincoli richiedono calori diversi per lo stesso aumento di energia interna. Il solo 8,314 copia il valore numerico di R senza moltiplicare per n e ΔT. 15 copia l’incremento termico senza costruire un’energia; il valore negativo inverte la differenza richiesta. Il risultato non richiede un gas monoatomico."
         }
       ],
       "prompt": "Una mole dello stesso gas perfetto viene scaldata di 15 K, una volta a pressione costante e una a volume costante. Nei due percorsi agisce solo lavoro di espansione. Di quanti joule il calore isobaro supera quello isocoro? Usa R=8,314 J/(mol·K).",
@@ -430,10 +442,15 @@
       "family": "quanto-conta-il-vincolo-del-pistone",
       "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
       "answer": {
-        "type": "numeric",
-        "value": 124.71,
-        "unit": "J",
-        "tolerance": 0
+        "type": "choice",
+        "options": [
+          "124,71 J",
+          "8,314 J",
+          "0 J",
+          "15 J",
+          "−124,71 J"
+        ],
+        "value": "124,71 J"
       },
       "hints": [
         "Sottrai prima le due leggi e usa la differenza delle capacità molari.",
@@ -441,7 +458,7 @@
       ],
       "error": {
         "category": "modello",
-        "message": "La differenza non è zero: i due vincoli richiedono calori diversi per lo stesso aumento di energia interna. Il solo 8,314 copia il valore numerico di R senza moltiplicare per n e ΔT. Il risultato non richiede di assumere che il gas sia monoatomico.",
+        "message": "La differenza non è zero: i due vincoli richiedono calori diversi per lo stesso aumento di energia interna. Il solo 8,314 copia il valore numerico di R senza moltiplicare per n e ΔT. 15 copia l’incremento termico senza costruire un’energia; il valore negativo inverte la differenza richiesta. Il risultato non richiede un gas monoatomico.",
         "target": "C3-L03"
       },
       "baseVersion": 1,
