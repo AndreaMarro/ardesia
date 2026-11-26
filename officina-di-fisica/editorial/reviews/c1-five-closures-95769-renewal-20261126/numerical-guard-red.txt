@@ -1,0 +1,34 @@
+test_real_acquired_adjacent_engine_witness_and_default_deny (test_c1_95769_numerical_observation.NumericalObservation.test_real_acquired_adjacent_engine_witness_and_default_deny) ... FAIL
+
+======================================================================
+FAIL: test_real_acquired_adjacent_engine_witness_and_default_deny (test_c1_95769_numerical_observation.NumericalObservation.test_real_acquired_adjacent_engine_witness_and_default_deny)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-experiment-contract-fix/officina-di-fisica/tests/corpus/test_c1_95769_numerical_observation.py", line 7, in test_real_acquired_adjacent_engine_witness_and_default_deny
+    r=subprocess.run(['node','--input-type=module','-e',code],capture_output=True,text=True,timeout=15);self.assertEqual(r.returncode,0,r.stderr)
+                                                                                                        ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 1 != 0 : node:internal/modules/run_main:122
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Independent numerical observation outside frozen range: {"actual":11.471528727020923,"expected":11.471528727020921,"id":"SIM-C1-L005-05","x":55,"range":[11.471528727020921,11.471528727020921],"accepted":false,"mode":"EXACT_WRAPPER_VALUE","sourceOfExpected":"Actual installed esperienza().model.solve; not raw law.measure"}
+    at assertValue (file:///private/tmp/cric-experiment-contract-fix/officina-di-fisica/editorial/reviews/c1-five-closures-95769-renewal-20261126/numerical-observation.mjs:7:45)
+    at file:///private/tmp/cric-experiment-contract-fix/officina-di-fisica/[eval1]:1:324
+    at ModuleJob.run (node:internal/modules/esm/module_job:271:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:236:26)
+    at async ModuleLoader.executeModuleJob (node:internal/modules/esm/loader:232:20)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:116:5) {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: false,
+  expected: true,
+  operator: '=='
+}
+
+Node.js v22.14.0
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.032s
+
+FAILED (failures=1)
