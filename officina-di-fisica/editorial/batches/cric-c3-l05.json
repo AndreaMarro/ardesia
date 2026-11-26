@@ -98,7 +98,7 @@
           "text": "0,050 cm cambia l’unità senza convertire i metri. 50 cm aggiunge un fattore dieci. Aumentare lo spessore non aumenta questa potenza: riduce il gradiente di temperatura."
         }
       ],
-      "prompt": "Una lastra omogenea ha conducibilità 0,040 W/(m·K) e area 0,75 m². In regime stazionario unidimensionale le facce differiscono di 20 K e le perdite laterali sono trascurabili. Quale spessore in cm limita a 12 W la potenza condotta?",
+      "prompt": "Una lastra omogenea ha conducibilità 0,040 W/(m·K) e area 0,75 m². In regime stazionario unidimensionale le facce differiscono di 20 K e le perdite laterali sono trascurabili. Qual è lo spessore minimo, in cm, per non superare una potenza condotta di 12 W?",
       "difficulty": 2,
       "family": "spessore-di-progetto",
       "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
@@ -203,7 +203,7 @@
         {
           "type": "figure",
           "src": "/asset/e901d6cd526c07857c19742ab22b9a808a113be6819cab076673a35740e4bbf4",
-          "text": "Nelle due preparazioni area e spessore raddoppiano insieme: il rapporto A/s resta uguale e la potenza condotta rimane 9 W."
+          "text": "Sono sezioni laterali a profondità uguale: l’altezza è proporzionale all’area A della faccia, la larghezza allo spessore s. L’area del rettangolo disegnato non coincide con A. Area della faccia e spessore raddoppiano insieme: A/s resta uguale e la potenza condotta rimane 9 W."
         },
         {
           "type": "formula",
@@ -279,7 +279,7 @@
           "text": "La stessa geometria non elimina il ruolo del materiale. Una conducibilità minore aumenta la resistenza termica. La temperatura iniziale non determina il flusso dello stato stazionario con estremità fissate."
         }
       ],
-      "prompt": "Due manici hanno uguali area di sezione e lunghezza e le stesse temperature alle estremità. Uno è metallico e ha conducibilità maggiore. In regime stazionario unidimensionale, con perdite laterali trascurabili, quale conduce più potenza?",
+      "prompt": "Due manici hanno uguali area di sezione e lunghezza e la stessa differenza di temperatura positiva ΔT>0 fra le estremità. Le due conducibilità sono positive; il manico metallico ha quella maggiore. In regime stazionario unidimensionale, con perdite laterali trascurabili, quale conduce più potenza?",
       "difficulty": 1,
       "family": "manico-di-metallo-e-manico-di-legno",
       "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",

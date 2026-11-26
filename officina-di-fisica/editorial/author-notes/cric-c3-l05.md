@@ -22,7 +22,7 @@ Famiglia: `vento-sulla-superficie`; difficoltà 1; versione 2/base 1.
 
 ## C3-Q042
 
-Compito: Una lastra omogenea ha conducibilità 0,040 W/(m·K) e area 0,75 m². In regime stazionario unidimensionale le facce differiscono di 20 K e le perdite laterali sono trascurabili. Quale spessore in cm limita a 12 W la potenza condotta?
+Compito: Una lastra omogenea ha conducibilità 0,040 W/(m·K) e area 0,75 m². In regime stazionario unidimensionale le facce differiscono di 20 K e le perdite laterali sono trascurabili. Qual è lo spessore minimo, in cm, per non superare una potenza condotta di 12 W?
 
 Procedimento: La legge stazionaria è P=λAΔT/s. Isolo s=λAΔT/P: 0,040·0,75·20=0,60 W·m. Dividendo per 12 W ottengo 0,050 m, cioè 5 cm. Uno spessore maggiore ridurrebbe ulteriormente la potenza a parità delle altre condizioni.
 
@@ -64,7 +64,7 @@ Famiglia: `doppia-area-e-doppio-spessore`; difficoltà 1; versione 2/base 1.
 
 ## C3-Q045
 
-Compito: Due manici hanno uguali area di sezione e lunghezza e le stesse temperature alle estremità. Uno è metallico e ha conducibilità maggiore. In regime stazionario unidimensionale, con perdite laterali trascurabili, quale conduce più potenza?
+Compito: Due manici hanno uguali area di sezione e lunghezza e la stessa differenza di temperatura positiva ΔT>0 fra le estremità. Le due conducibilità sono positive; il manico metallico ha quella maggiore. In regime stazionario unidimensionale, con perdite laterali trascurabili, quale conduce più potenza?
 
 Procedimento: Con geometria e differenza termica comuni, la legge P=λAΔT/ℓ lascia come unico fattore variabile la conducibilità. Il manico con λ maggiore conduce più potenza. Stazionario significa profilo termico invariato nel tempo, non assenza di trasferimento energetico.
 
