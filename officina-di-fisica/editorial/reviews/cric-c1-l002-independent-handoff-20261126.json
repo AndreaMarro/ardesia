@@ -1,0 +1,72 @@
+{
+  "schemaVersion": "1.0.0",
+  "scope": "separate independent scientific and pedagogical review of ten distinct original Cric questions",
+  "batch": "cric-c1-l002",
+  "records": 10,
+  "reviewedCandidateCommit": "f7b7abe30068318bbaefef8eb2a137b96da60a41",
+  "allFinalRecordsRead": true,
+  "allFinalSVGXmlAndNativeRead": true,
+  "primaryBeforeKeys": {
+    "path": "editorial/reviews/primary-cric-c1-001-050-before-candidates-20261126.md",
+    "sha256": "2e0ac86f9b57804387b68ccdcdbde945bed65b26ee5de6449323f25c3540707a"
+  },
+  "modelBeforeKeys": {
+    "path": "editorial/reviews/cric-c1-001-050-independent-models.py",
+    "sha256": "f7e59ee2a8652933cccd27248b6798c5a6a75c66c8f9f111efe81b20a10fd88c",
+    "commit": "7a2a3784421f346b4784a581e275760a623b4adf"
+  },
+  "actualTarget": {
+    "scope": "actual targeted independent review tests only_not_full_suite_or_product_UI",
+    "command": [
+      "/private/tmp/cric-recovery-venv/bin/python",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests/corpus",
+      "-p",
+      "test_cric_c1_l002_independent.py",
+      "-v"
+    ],
+    "candidateApp": "/private/tmp/cric-author-a-resident/officina-di-fisica",
+    "exitCode": 0,
+    "signal": null,
+    "startedAt": "2026-11-26T19:26:39.859657+00:00",
+    "finishedAt": "2026-11-26T19:26:42.132425+00:00",
+    "elapsedSeconds": 2.2728128750168253,
+    "rawSha256": "59ac6f41d34cf04df10baee9ff13ea31d475b8732de2d74750ca77b4da83b096",
+    "humanApproval": "NOT_RUN",
+    "publication": "DRAFT"
+  },
+  "mutations": 28,
+  "wrongKeyRebindRetokenCases": 10,
+  "modes": {
+    "EXACT_ORACLE": 7,
+    "AI_CONCEPTUAL": 3
+  },
+  "freshAndSavedIdentity": "PASS for exact candidate package and bindings",
+  "scientificResult": "10/10, no residual finding",
+  "humanApproval": "NOT_RUN",
+  "productUI": "NOT_RUN",
+  "publication": "DRAFT",
+  "files": {
+    "tools/corpus_engineering/cric_c1_l002_verifier.py": "4fb0bbf14f630af053e6f9feeb0bace284971fd51da5cecacd93a06ee5a11cbc",
+    "tests/corpus/test_cric_c1_l002_independent.py": "ae238355604ab7fca479de24c222e95ab43014e3b9f94002e7e090f1f58b239d",
+    "editorial/reviews/cric-c1-l002-independent-note.md": "1b2e96f447d1e8b7e404d49b7b5ae7ea5aaf4205d13c09fdd3cc65034abd0bfb",
+    "editorial/reviews/cric-c1-l002-proof-preparation-negative.json": "4e039cbe119c37e069b6081e3b5c6abd28fc1178e6b514a9127a6fc032a1ee4f",
+    "editorial/reviews/cric-c1-l002-target-final.log": "59ac6f41d34cf04df10baee9ff13ea31d475b8732de2d74750ca77b4da83b096",
+    "editorial/reviews/cric-c1-l002-independent-mutations.json": "411f45a15b1924fbbc51bd50d57198459067371a8cd64b61482e8f98dba33fb3",
+    "editorial/reviews/cric-c1-l002.json": "5250d75cd4c2e44ad90241c6ce456023617230e40d1b41ae8bca38950149f16f",
+    "editorial/reviews/cric-c1-l002-target-final.json": "71f784b8e60aea0240aa2dee432883ba5cde39c66d19beb0972605318f40c117",
+    "editorial/reviews/cric-c1-l002-svg-independent-evidence/cric-c1-l002-terminal.json": "b591797de6b0a51d4f8503a2cd5b0d4322b29d8fec143a7a5e4e8aad8685f03a",
+    "editorial/reviews/cric-c1-l002-svg-independent-evidence/cric-c1-l002-render.json": "9ef0ff0f07ef41e939c1aada05c9a4558791079d24804aab8b95b3fb2fc8377c",
+    "editorial/reviews/cric-c1-l002-svg-independent-evidence/native-svg-producer.mjs": "d48800c39d478fca8d96b172714f7704b61f2cbde895855a4f2f7b916089de8e",
+    "editorial/reviews/cric-c1-l002-svg-independent-evidence/cric-c1-l002-full.png": "396121ebe0cacfe1abb59bec7b02456d3d81320359a81a6b7b1af1e3a08ee558",
+    "editorial/reviews/primary-cric-c1-001-050-before-candidates-20261126.md": "2e0ac86f9b57804387b68ccdcdbde945bed65b26ee5de6449323f25c3540707a",
+    "editorial/reviews/cric-c1-001-050-independent-models.py": "f7e59ee2a8652933cccd27248b6798c5a6a75c66c8f9f111efe81b20a10fd88c",
+    "editorial/reviews/cric-c1-001-050-model-before-candidates-20261126.json": "48346dd5a05695563f887e5d4b493f5d0e3d496c8a9203eb578bc907bfe47e5a",
+    "editorial/reviews/cric-c1-001-050-git-evidence/git-inputs.json": "d1d8007896168bb9277cc53220982fa0f6e0818c6f0432ab861592be171b6717",
+    "editorial/reviews/cric-c1-001-050-git-evidence/cric-c1-001-050-independent-models.py": "f7e59ee2a8652933cccd27248b6798c5a6a75c66c8f9f111efe81b20a10fd88c"
+  }
+}

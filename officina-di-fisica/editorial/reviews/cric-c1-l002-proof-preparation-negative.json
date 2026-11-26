@@ -1,0 +1,27 @@
+{
+  "scope": "verifier preparation only, no candidate or scientific result",
+  "exitCode": 1,
+  "cause": "ast.literal_eval rejected Fraction calls in pre-existing geometry constants before writing any verifier",
+  "correction": "read constants from the existing separate reviewer module; no authoring import, source-only model or mathematical change",
+  "scientificResult": "NOT_RUN",
+  "furtherPreparationFailures": [
+    {
+      "exitCode": 1,
+      "stage": "builder AST parse",
+      "cause": "Uppercase ET import was incorrectly selected as a serializable constant; no verifier written",
+      "fix": "Select exactly AST assignment names, read actual values from existing reviewer module"
+    },
+    {
+      "exitCode": 1,
+      "stage": "dependent persistence",
+      "cause": "Module absent after builder failure; premature invocation, no report or signature generated",
+      "fix": "Use one set -e sequential command for builder then persistence"
+    },
+    {
+      "exitCode": 1,
+      "stage": "first fresh report, before persistence",
+      "cause": "code extraction omitted the canonical parse_literal adapter",
+      "fix": "copy the unchanged reviewer adapter as well; shared decoder and model untouched"
+    }
+  ]
+}
