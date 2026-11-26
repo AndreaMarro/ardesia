@@ -1,0 +1,60 @@
+"""Ten distinct photon and attenuation problems; exact thresholds and units."""
+from .vector_geometry_authoring import assemble_family,write_family
+SOURCE_IDS=[f'C5-Q{i:03}'for i in range(61,71)]
+TASKS=[
+('Potenza comune ed energia dei fotoni','Due sorgenti monocromatiche emettono la stessa potenza positiva. La seconda ha frequenza doppia della prima, anch’essa positiva. Come cambia il numero medio di fotoni emessi al secondo?', ['Si dimezza','Raddoppia','Rimane uguale','Si quadruplica','Diventa necessariamente nullo'],
+ 'La potenza è energia emessa per secondo. Un fotone della prima sorgente porta hf₁; uno della seconda porta h(2f₁), cioè energia doppia. A potenza fissata deve uscire metà del numero medio di fotoni per secondo. Il tasso è una media e non richiede di assegnare un conteggio intero a ogni intervallo arbitrariamente breve.',
+ r'P=\dot N h f\qquad \frac{\dot N_2}{\dot N_1}=\frac{f_1}{f_2}\qquad \frac{\dot N_2}{\dot N_1}=\frac12',
+ 'Raddoppiare il tasso mentre raddoppia l’energia unitaria quadruplicherebbe la potenza, contrariamente al vincolo. Un tasso invariato raddoppierebbe la potenza. La frequenza non nulla e la potenza positiva escludono un tasso nullo nel modello.',
+ 'Distribuisci la stessa energia al secondo in pacchetti singoli di energia doppia.'),
+('Superare una soglia, non soltanto raggiungerla','Un modello assegna a un atomo isolato una soglia di ionizzazione di 8,0 eV. Per i calcoli adotta Eγ in eV=1240 diviso λ₀ in nm. Quale fotone fra quelli elencati ha energia strettamente maggiore della soglia?', ['λ₀=130 nm','λ₀=500 nm','λ₀=1000 nm','λ₀=200 nm','λ₀=155 nm'],
+ 'La lunghezza che dà esattamente la soglia è 1240/8=155 nm. Per superare 8 eV occorre una lunghezza minore di 155 nm. Fra le opzioni soltanto 130 nm lo soddisfa. Si può controllare senza decimali: l’energia corrispondente è 124/13 eV e 124>8×13=104. È una condizione energetica del processo a singolo fotone, non una previsione certa della probabilità di interazione.',
+ r'\lambda_{\rm soglia}=155\,\mathrm{nm}\qquad E_\gamma>8\,\mathrm{eV}\qquad \lambda_0<155\,\mathrm{nm}',
+ '155 nm raggiunge soltanto la soglia, mentre il quesito chiede di superarla. 200 nm darebbe 31/5 eV, inferiore a 8 eV; 500 e 1000 nm hanno energie ancora minori. Aumentare la quantità di fotoni di una radiazione non cambia l’energia di ciascun fotone nel modello a singolo evento.',
+ 'Trova prima il valore di confine e poi leggi se l’ineguaglianza è stretta.'),
+('Il nome della costante h','La costante h nella relazione fra energia di un fotone e frequenza prende il nome da quale fisico?', ['Planck','Newton','Ohm','Faraday','Pascal'],
+ 'Si tratta della costante di Planck. Nella legge Eγ=hf, h ha unità joule moltiplicato per secondo. Il prodotto con una frequenza in s⁻¹ restituisce un’energia in joule. Il nome riguarda una costante universale del modello quantistico, non un indice del materiale attraversato.',
+ r'E_\gamma=h f\qquad [h]=\mathrm{J\,s}',
+ 'Newton e Pascal danno il nome a unità di forza e pressione. Ohm riguarda la relazione resistiva, mentre Faraday è associato anche all’induzione. Nessuno di questi nomi sostituisce Planck nella relazione assegnata.',
+ 'Usa la relazione Eγ=hf e controlla le unità del coefficiente che moltiplica f.'),
+('Due frazioni trasmesse in successione','Un fascio incontra due filtri successivi con trasmissioni 80% e 25%, applicate ciascuna alla propria intensità incidente. I filtri mantengono queste trasmissioni nelle condizioni assegnate; trascura riflessioni e ritorni. Qual è la trasmissione complessiva in percento?',20,
+ 'Parto da 100 unità di intensità incidente. Il primo filtro ne lascia 80; il secondo lascia un quarto proprio di quelle 80, quindi 20. La frazione complessiva è (4/5)(1/4)=1/5, pari al 20%. L’inversa è coerente: dividere l’uscita 20 per 1/4 ricostruisce le 80 unità che raggiungevano il secondo filtro.',
+ r'T_{\rm totale}=T_1T_2\qquad T_{\rm totale}=\frac15\qquad 100T_{\rm totale}=20',
+ '105% sommerebbe le due trasmissioni come se fossero quote dello stesso ingresso. 25% ignorerebbe la perdita nel primo filtro. Il secondo filtro assorbe o rimuove il 75% di ciò che lo raggiunge, non il 75% della luce iniziale in aggiunta alla prima perdita.',
+ 'Riporta ogni percentuale al suo ingresso locale prima di moltiplicare le frazioni.'),
+('Il coefficiente da due ordinate logaritmiche','Un fascio monocromatico diretto attraversa un materiale omogeneo con μ costante e legge I(x)=I₀ exp(−μx), con I₀>0. Nel grafico di ln(I/I₀) contro x, le ordinate sono 0 a 0 cm e −2,1 a 3 cm. Trova μ in cm⁻¹.', ['0,70 cm⁻¹','−0,70 cm⁻¹','2,1 cm⁻¹','1/7 cm⁻¹','7 cm⁻¹'],
+ 'Il logaritmo è quello di una frazione adimensionale. Nella legge data ln(I/I₀)=−μx, quindi la pendenza è −μ. Fra i due punti la pendenza vale (−2,1−0)/(3−0) cm⁻¹=−7/10 cm⁻¹. Il coefficiente fisico richiesto è l’opposto: μ=7/10 cm⁻¹, ossia 0,70 cm⁻¹. Le ordinate sono già logaritmi: non serve calcolare un esponenziale.',
+ r'\ln(I/I_0)=-\mu x\qquad s=-\frac7{10}\,\mathrm{cm^{-1}}\qquad \mu=\frac7{10}\,\mathrm{cm^{-1}}',
+ '−0,70 cm⁻¹ copia la pendenza anziché cambiarne il segno. 2,1 cm⁻¹ usa il solo valore numerico della variazione di ordinata senza dividerlo per 3 cm. Un coefficiente 7 cm⁻¹ darebbe ordinata −21 a 3 cm, non −2,1.',
+ 'Identifica che cosa si trova già sull’asse verticale prima di ricavare la pendenza.'),
+('La quota assorbita dal campione','Nel modello di un campione soltanto assorbente, il 35% dell’intensità incidente viene trasmesso. Il bilancio ha soltanto le due quote trasmessa e assorbita, senza riflessione, diffusione o altri contributi. Quanto viene assorbito in percento dell’ingresso?',65,
+ 'Ripartisco 100 unità dell’intensità incidente fra le due sole destinazioni dichiarate. Se 35 escono, 100−35=65 sono assorbite. La percentuale richiesta usa sempre come riferimento l’ingresso, non la sola quota trasmessa. La somma di controllo 35%+65%=100% chiude il bilancio del modello.',
+ r'A+T=1\qquad A=1-\frac{35}{100}\qquad A=\frac{65}{100}',
+ '35% copierebbe la trasmissione come se fosse assorbimento. La frazione 65/35 confronta l’assorbito con il trasmesso e usa un denominatore diverso da quello richiesto. Se ci fossero altri canali di perdita, sottrarre la sola trasmissione non isolerebbe automaticamente l’assorbimento.',
+ 'Scrivi il riferimento della percentuale e verifica quali canali compaiono nel bilancio.'),
+('Un esponente con unità cancellate','Un mezzo ha coefficiente μ=2,0 cm⁻¹. Qual è il prodotto adimensionale μx per spessore x=3,0 mm?', ['3/5','6','60','1/6','3/50'],
+ 'Tre millimetri sono tre decimi di centimetro, perché un centimetro contiene dieci millimetri. Il prodotto è quindi (2 cm⁻¹)(3/10 cm)=6/10=3/5. Centimetro e centimetro inverso si cancellano. Soltanto dopo questa conversione il numero può essere inserito nell’esponente della legge esponenziale.',
+ r'x=\frac3{10}\,\mathrm{cm}\qquad \mu x=\frac35',
+ 'Sei moltiplica 2 per 3 senza convertire i millimetri. 60 introdurrebbe una conversione nel verso opposto. 3/50 darebbe un valore dieci volte minore; 1/6 prende un reciproco che non compare nel prodotto μx.',
+ 'Usa la stessa unità di lunghezza nei due fattori, poi verifica che non ne resti alcuna.'),
+('Dal tasso di fotoni alla potenza','Una sorgente monocromatica emette in media 3,0×10¹⁵ fotoni al secondo; ogni fotone porta 4,0×10⁻¹⁹ J. Qual è la potenza emessa?', ['1,2 mW','0,12 mW','12 mW','1200 mW','0,0012 mW'],
+ 'Moltiplico il numero medio di fotoni al secondo per l’energia di un fotone. I coefficienti danno 3×4=12 e gli esponenti 15−19=−4: P=12×10⁻⁴ J/s. Sono 1,2×10⁻³ W, cioè 6/5 mW=1,2 mW. Il tasso medio non è una potenza finché non viene moltiplicato per l’energia unitaria.',
+ r'P=\dot N E_\gamma\qquad P=12\,10^{-4}\,\mathrm W\qquad P=\frac65\,\mathrm{mW}',
+ '0,0012 mW copierebbe il valore numerico della potenza in watt lasciandogli però l’unità milliwatt. 12 mW richiederebbero un tasso di fotoni dieci volte maggiore a energia unitaria fissata; 0,12 mW un tasso dieci volte minore. I prefissi devono essere convertiti dopo il prodotto energetico.',
+ 'Somma gli esponenti nel prodotto e converti watt in milliwatt soltanto alla fine.'),
+('Una miscela cambia composizione attraversando il mezzo','Un fascio contiene due componenti monocromatiche con intensità iniziali positive e coefficienti costanti μ₁ e μ₂ positivi ma diversi. Il rivelatore somma le due intensità dirette. Perché un’unica μ costante può descrivere male l’intera curva trasmessa?', ['Le due componenti si attenuano in proporzioni diverse e cambia il loro peso relativo','L’intensità iniziale totale deve essere negativa','Il logaritmo è definito soltanto all’ingresso','Ogni fotone deve cambiare frequenza a ogni centimetro','Le due componenti conservano necessariamente lo stesso peso relativo'],
+ 'Ciascuna componente segue la propria esponenziale. Quella con coefficiente maggiore diminuisce più rapidamente, quindi il suo peso relativo nella somma si riduce. La somma di due esponenziali con coefficienti diversi e pesi positivi non ha in generale un’unica pendenza logaritmica costante. Un coefficiente efficace può descrivere un intervallo limitato senza diventare una proprietà unica di tutta la curva.',
+ r'I_1(x)=I_{1,0}e^{-\mu_1x}\qquad I_2(x)=I_{2,0}e^{-\mu_2x}\qquad I=I_1+I_2',
+ 'Le intensità sono positive e il logaritmo della loro frazione è definito anche dopo l’ingresso. Non occorre cambiare la frequenza dei singoli fotoni: è sufficiente rimuovere diversamente le due componenti. Coefficienti uguali o una componente assente darebbero altri casi, qui esplicitamente esclusi.',
+ 'Segui separatamente le due quote e solo dopo costruisci la somma misurata.'),
+('La grandezza da confrontare con una soglia','Per un processo di ionizzazione a singolo fotone, quale grandezza confronti direttamente con l’energia di ionizzazione del sistema?', ['L’energia di un singolo fotone','La durata dell’esposizione da sola','L’intensità del fascio da sola','L’area del rivelatore da sola','Il numero totale di fotoni senza la loro frequenza'],
+ 'Il processo ipotizzato coinvolge l’energia hf di un fotone. È questa energia che va confrontata con la soglia, espressa anch’essa in unità di energia per evento. Intensità, area e durata possono cambiare quanti fotoni arrivano o quanta energia arriva complessivamente, ma a frequenza fissata non cambiano hf. Il criterio energetico da solo non determina la probabilità dell’interazione.',
+ r'E_\gamma=h f',
+ 'Un’area o una durata non sono energie. Anche una grande energia totale distribuita in molti fotoni non sostituisce automaticamente l’energia unitaria richiesta dal modello a singolo fotone. Il modello della domanda resta quello a singolo fotone.',
+ 'Confronta quantità riferite allo stesso singolo evento e con la stessa dimensione fisica.')]
+CHOICES={n:0 for n,t in enumerate(TASKS,1)if isinstance(t[2],list)}
+UNITS={4:'%',6:'%'}
+FIGURES={4:'Nel primo pannello tutte le barre usano la stessa intensità incidente come riferimento: 100 unità diventano 80 dopo il primo filtro e 20 dopo il secondo. Le trasmissioni si applicano in successione.',5:'Nel secondo pannello sono già rappresentate le ordinate ln(I/I₀). La pendenza fra (0 cm,0) e (3 cm,−2,1) è −0,70 cm⁻¹; il coefficiente μ è positivo.',8:'Il terzo pannello separa tasso medio dei fotoni ed energia unitaria. Il prodotto ha unità joule al secondo; 1,2×10⁻³ W corrispondono a 1,2 mW.'}
+def assemble(repo,source_ref):
+ return assemble_family(repo,source_ref,'cric-c5-l07',TASKS,CHOICES,UNITS,'cric-c5-l07-progressive.svg',FIGURES,0,course='C5',source_origin='cric',source_ids=SOURCE_IDS,source_path='officina-di-fisica/content/C5.json',skill='C5-L07',section='Fotoni e attenuazione',coverage=['Energia del singolo fotone','Trasmissione e coefficienti','Unità, inverse e soglie'],overrides={n:{'error':{'category':('unità'if n in(7,8)else'modello'if n in(2,9,10)else'concetto'if n==3 else'algebra'if n in(1,4,5)else'testo'),'message':TASKS[n-1][5],'target':'C5-L07'}}for n in range(1,11)})
+if __name__=='__main__':write_family(assemble,'cric-c5-l07')
