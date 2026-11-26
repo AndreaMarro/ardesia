@@ -1,14 +1,14 @@
 {
   "schemaVersion": "1.0.0",
   "status": "ALL_TERMINAL_EVIDENCE_SAVED_GLOBAL_GATE_STILL_REQUIRED",
-  "registrySha256": "fde7f8ca91fd4d504e5ab78231391e0183f8ceaf4c317a1206a65a98bd26edc1",
+  "registrySha256": "e83e2ca0ef40f4d02f881d992c3b349d2f771ab00d7b0bdec7c81fad99d7e308",
   "runtimeSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
   "protocolSha256": "b77d90368c3fa4d7fee43db65b402804615e0ba353f6514d699864e2cbd46372",
   "runnerSha256": "6da021319685cc5c64b724c0defc040d87a176f2114fa29d4c9a6b0b52521d2b",
   "helperSha256": "95742b52f29e8b94d18aedf49245e737badfdf00a20d70279a577a36b5a1bef9",
-  "expectedBatches": 209,
-  "savedBatches": 209,
-  "savedCases": 9507,
+  "expectedBatches": 219,
+  "savedBatches": 219,
+  "savedCases": 9987,
   "checkpointCredit": 0,
   "humanApproval": "NOT_RUN",
   "publicationAction": "NONE",
@@ -1971,6 +1971,106 @@
       "reportSha256": "cff466ea6373fea4df50de8dbeb50971f0b8186f41788a02cbcc164e45661346",
       "terminalMarkerPath": "editorial/reviews/runtime1a3502eb7459-terminal-evidence/identical-series-resistors-209-completion.json",
       "terminalMarkerSha256": "0fd8244bee719fb7bd2fcc0efec405c7d06f883b6109da135434a105f85adbdc",
+      "terminalExitCode": 0
+    },
+    {
+      "batch": "identical-parallel-resistors-210",
+      "caseCount": 48,
+      "packageFileSha256": "3a57467bf31e60c8fd4513743f0d4ca4bef21c4f5ad6a81d642866bb43998218",
+      "reportPath": "editorial/reviews/runtime1a3502eb7459-terminal-evidence/identical-parallel-resistors-210-report.json",
+      "reportSha256": "14d0c9087085314bbc4ec2d00c07b251b2e5cbfef6a60dc670a9ce44fead4d75",
+      "terminalMarkerPath": "editorial/reviews/runtime1a3502eb7459-terminal-evidence/identical-parallel-resistors-210-completion.json",
+      "terminalMarkerSha256": "ef2e8d617595555c8f831d9751198c44cd328c19b7faaa44cb8ce125dbba86d9",
+      "terminalExitCode": 0
+    },
+    {
+      "batch": "voltage-divider-211",
+      "caseCount": 48,
+      "packageFileSha256": "e59d859178342bca1463460c1e1ef0877042f4fd501d8adf6081f79c03188786",
+      "reportPath": "editorial/reviews/runtime1a3502eb7459-terminal-evidence/voltage-divider-211-report.json",
+      "reportSha256": "0d52b704c5d21726e2cd2dfa01542dabf2e426b90e3e3e8f863fcca6c15a0735",
+      "terminalMarkerPath": "editorial/reviews/runtime1a3502eb7459-terminal-evidence/voltage-divider-211-completion.json",
+      "terminalMarkerSha256": "34a86d144d135ac085ebd149823bc770c2a4c56bbb9548fa00d6fd0cd9315b9d",
+      "terminalExitCode": 0
+    },
+    {
+      "batch": "current-divider-212",
+      "caseCount": 48,
+      "packageFileSha256": "d91acae5d33ae76575b95851d6f16e16cb930c2a54b92d631f6c630d27cf3579",
+      "reportPath": "editorial/reviews/runtime1a3502eb7459-terminal-evidence/current-divider-212-report.json",
+      "reportSha256": "366869b61af6cbe15df2a389ac5c13e58a4fa6c22f4dbfd68f015dbf71cd97fd",
+      "terminalMarkerPath": "editorial/reviews/runtime1a3502eb7459-terminal-evidence/current-divider-212-completion.json",
+      "terminalMarkerSha256": "4e4a318bc9abb5e077c3e11de24740dbfe495591f4e01691abb0b54923ac7990",
+      "terminalExitCode": 0
+    },
+    {
+      "batch": "joule-power-213",
+      "caseCount": 48,
+      "packageFileSha256": "6a096a6059702e784a7c4e882f6eae13aa316c3766f38b48136aeee31aeb26ae",
+      "reportPath": "editorial/reviews/runtime1a3502eb7459-terminal-evidence/joule-power-213-report.json",
+      "reportSha256": "b8262fbc70f933167396de6c68d6e7678f0ffed446ff65f279e943885320cd6b",
+      "terminalMarkerPath": "editorial/reviews/runtime1a3502eb7459-terminal-evidence/joule-power-213-completion.json",
+      "terminalMarkerSha256": "72a72309b90cdc49c50308dcbc278c9dc762c188c20ee9916b84585a0606ddd8",
+      "terminalExitCode": 0
+    },
+    {
+      "batch": "joule-energy-voltage-time-214",
+      "caseCount": 48,
+      "packageFileSha256": "df04d131f2296c07a627002a830635f6ab03ed80fa55af9370c365dfe15bea45",
+      "reportPath": "editorial/reviews/runtime1a3502eb7459-terminal-evidence/joule-energy-voltage-time-214-report.json",
+      "reportSha256": "5602c4555c32bae9d4bea67f8cd7c3de6410b413164e90a647feb7a7e06db26a",
+      "terminalMarkerPath": "editorial/reviews/runtime1a3502eb7459-terminal-evidence/joule-energy-voltage-time-214-completion.json",
+      "terminalMarkerSha256": "6d94c9af58e8e4da5b62c0782f6b5a98a4519306558145bba831435b54016079",
+      "terminalExitCode": 0
+    },
+    {
+      "batch": "line-load-efficiency-215",
+      "caseCount": 48,
+      "packageFileSha256": "8ee2486aadc5e62126ae7fe42af81e09f3facc20e9940e3b5e2fbbd41a266402",
+      "reportPath": "editorial/reviews/runtime1a3502eb7459-terminal-evidence/line-load-efficiency-215-report.json",
+      "reportSha256": "1dc226e944e787495136d9104c6330faa9a5a9b96fc95b252f40d8680984487c",
+      "terminalMarkerPath": "editorial/reviews/runtime1a3502eb7459-terminal-evidence/line-load-efficiency-215-completion.json",
+      "terminalMarkerSha256": "196811e8421001bc883e408b2c44d472698317c1cc961f3ae45e462f1bb65b3a",
+      "terminalExitCode": 0
+    },
+    {
+      "batch": "fuse-latent-heating-216",
+      "caseCount": 48,
+      "packageFileSha256": "58f17f0b174a5fe63b54b3265f3027a42dba4b5b26905a380c1791175cd83b2c",
+      "reportPath": "editorial/reviews/runtime1a3502eb7459-terminal-evidence/fuse-latent-heating-216-report.json",
+      "reportSha256": "6ca34d4b08b0ede9faaf8e9a5f7524176a566f8799b9311b1393c32ae3fc7ffa",
+      "terminalMarkerPath": "editorial/reviews/runtime1a3502eb7459-terminal-evidence/fuse-latent-heating-216-completion.json",
+      "terminalMarkerSha256": "8963ba703f24f93a0eb68d92525e458caea2caf3699c4ea98bd68e357e8b0548",
+      "terminalExitCode": 0
+    },
+    {
+      "batch": "plane-capacitance-217",
+      "caseCount": 48,
+      "packageFileSha256": "98b0ca0dd5d054d5a5fbf849de672c7a66773a4d2b9e6a1443ab0ed917f7cb58",
+      "reportPath": "editorial/reviews/runtime1a3502eb7459-terminal-evidence/plane-capacitance-217-report.json",
+      "reportSha256": "b890250de16f0a9eda13a36b765362ee75d6266302d7bf2aaef1398832519378",
+      "terminalMarkerPath": "editorial/reviews/runtime1a3502eb7459-terminal-evidence/plane-capacitance-217-completion.json",
+      "terminalMarkerSha256": "4a96567eacf38da2f71adcec94418b1ccf99491a8a20765371a6f6185c02bc7e",
+      "terminalExitCode": 0
+    },
+    {
+      "batch": "capacitor-charge-218",
+      "caseCount": 48,
+      "packageFileSha256": "dfdba083f07b8f16acc9eb27d0ca5cab473096cef3ac92cb6dfad5907bc4a645",
+      "reportPath": "editorial/reviews/runtime1a3502eb7459-terminal-evidence/capacitor-charge-218-report.json",
+      "reportSha256": "aed97ab323547dbac75852f08a267c46a0d1fb5b24031f17250980584ae115d7",
+      "terminalMarkerPath": "editorial/reviews/runtime1a3502eb7459-terminal-evidence/capacitor-charge-218-completion.json",
+      "terminalMarkerSha256": "1aceb6d249d2332ace6fe2a8667e3d57b5c5dbca3549db1ca71c6572423f5fec",
+      "terminalExitCode": 0
+    },
+    {
+      "batch": "capacitor-energy-219",
+      "caseCount": 48,
+      "packageFileSha256": "909a27b210b6692c9d08d27ac4203c069a1742b1bc7bf15f068e8d471bfe9a38",
+      "reportPath": "editorial/reviews/runtime1a3502eb7459-terminal-evidence/capacitor-energy-219-report.json",
+      "reportSha256": "8aeed1114415c6db28a16c985c05b4f37034986a98ea018c19726d8b46a8afc0",
+      "terminalMarkerPath": "editorial/reviews/runtime1a3502eb7459-terminal-evidence/capacitor-energy-219-completion.json",
+      "terminalMarkerSha256": "18f38b436e98a1991b600582c4cab35f2caf3423d7cb8b04e63cdffb58d22579",
       "terminalExitCode": 0
     },
     {
