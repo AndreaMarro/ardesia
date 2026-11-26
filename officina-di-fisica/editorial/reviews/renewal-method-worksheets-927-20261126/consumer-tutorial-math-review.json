@@ -1,0 +1,38 @@
+{
+  "scope": "Additional actual method-consumer tutorials read in full from static/js/metodo.js and graph constructor. These five examples/graphs are consumer content associated with the10 worksheets, not new corpus activities. No new UI or scientific approval of unrelated sprint/legal text.",
+  "sourceConsumerSha256": "5e086ed5c8ee8dff92a76880cf0e443467034f133bbf0538efb5b744a899d9eb",
+  "sourceGraphConsumerSha256": "23c98f884e3007e9401c766e02b286b06243e2b0acaa7bc347c03fb4f238b904",
+  "models": {
+    "C1": {
+      "derivation": "Uniform positive v=5m/s, distance20m ⇒t=20/5=4s; graph (0,0),(2,10),(4,20) has slope5m/s; check12m/3s=4m/s. m/(m/s)=s and inverse4·5=20.",
+      "domain": "The stated uniform motion and positive along-path distance; no extension of s=vt to accelerated motion. Distance/position coincide in this monotone example.",
+      "manual": "Two integer divisions and inverse products."
+    },
+    "C2": {
+      "derivation": "Q=πr⁴Δp/(8ηL) ⇒Δp=8ηLQ/(πr⁴). ηLQ/r⁴ has unitsPa. At fixedΔp, Q(2r)/Q(r)=16 and Q(r/2)/Q(r)=1/16. At fixedQ, Δp(2r)/Δp(r)=1/16. Graph (1,1),(2,16) follows r⁴.",
+      "domain": "Named idealPoiseuille model, steady laminar cylindrical flow with its normal Newtonian/no-slip/fully-developed applicability. r,η,L>0 for inversion; plotted r=0 is the continuous zero-flow limit, not evaluation of inverse pressure atzero radius. Constant quantities are explicitly distinguished in the source.",
+      "manual": "2⁴=16; use relative quantities soπ is never numerically evaluated."
+    },
+    "C3": {
+      "derivation": "Qin>0,Wgas>0: ΔU=Q−W ⇒Q=40+20=60J; inverse60−20=40J. Graph constant2kPa, V1→4L: W=2·(4−1)=6kPa·L=6J. Check50−20=30J.",
+      "domain": "First-law working model neglects bulk kinetic/potential changes; gas p−V area interpretation uses the equilibrium/quasistatic path model taught in the linked lesson, not irreversiblefree expansion. No application to arbitrary nonequilibrium trajectories is certified.",
+      "manual": "Addition/subtraction of integers; 1kPa·L=(10³Pa)(10⁻³m³)=J."
+    },
+    "C4": {
+      "derivation": "Ohmic, constantT: ΔV=RI ⇒R=12/3=4Ω. I(U)=U/4 has slope1/4A/V=1/R; reverse axes slope4Ω. CheckI=10V/(5Ω)=2A.",
+      "domain": "The source explicitly declares ohmic resistor, constanttemperature and nonzero current for inversion. This4Ω tutorial differs from the20Ω worksheet data.",
+      "manual": "12/3=4;4·3=12;10/5=2."
+    },
+    "C5": {
+      "derivation": "Periodic wave v=λf: λ=12/3=4m. Spatial plot sin(πx/2) has positive crests atx1,5 with separation4m. f=12/4=3Hz; check18/6=3Hz.",
+      "domain": "Monochromatic spatial snapshot; amplitude in arbitrary units is not wavelength. The separate paired-space/time worksheet uses its own givenT=2s/v=2m/s and is not silently merged with this12m/s tutorial.",
+      "manual": "Integer division and crest-coordinate subtraction; no arbitrary sinusoid value requested."
+    }
+  },
+  "reviewerDisclosure": "All tutorials actually read during this consumer renewal; unchanged worksheet/source models were previously exposed and independently derived. Applicability domains above delimit the provided working examples, not extra assignments invented for the student.",
+  "sourceMathReview": "PASS_WITHIN_STATED_WORKING_MODELS",
+  "consumerLayoutReview": "FAIL_FOR_EIGHT_NARROW_WORKSHEET_CASES",
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}
