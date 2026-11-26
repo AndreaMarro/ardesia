@@ -1,0 +1,9 @@
+{
+  "phase": "OWN_HANDOFF_MANIFEST_NOT_PRODUCTION",
+  "observedExitCode": 1,
+  "cause": "Initial manifest filtered every basename delivery.json, accidentally omitting the nested frozen author manifest. Exact staged-path-set guard rejected it before any commit.",
+  "extraStagedPath": "candidate-input-snapshot/editorial/author-notes/clock-guide-and-interference-rows-20261126/delivery.json",
+  "correction": "Exclude only this review root delivery.json; preserve and hash the nested source manifest.",
+  "productionWrites": 0,
+  "credit": 0
+}

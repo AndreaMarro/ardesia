@@ -1,0 +1,2250 @@
+{
+  "schemaVersion": "1.0.0",
+  "phase": "LIMITED_INDEPENDENT_DRAFT_TEXT_MATH_MANUAL_REVIEW_NEW_GUIDE_EPOCH",
+  "sourceCommit": "cbc64655906e0a3c990c74cdd7fe613d57e130e9",
+  "runtimeProfileSha256": "d9d1bbf4a269a9a7b0e3a9cd4f5595f8dc45a85b77d3337b241b7dfa62968927",
+  "records": [
+    {
+      "id": "SIM-C3-L07-05",
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourceSha256": "4bd92caee07e88d5a8c27241b49545c10cb826643a34d10ae7a5c1582f4dc476",
+      "sourceVersion": 1,
+      "candidateVersion": 2,
+      "baseVersion": 1,
+      "candidateSha256": "81445ba974c35bbe9cbbe186c67db2d3f64a2da634ed31a90459f0504b6fd729",
+      "reviewedSignature": "31a6e90dad133f6a0e102bca1cead75088a8be5bb037277409dd8cafdfbe5888",
+      "assetChecksums": {
+        "adiabatic-manual-paths.svg": "1b74b8071a78ecc314ff6e85ed5556399d3b2084cf29df5dfeaecf37c9ecafef"
+      },
+      "runtimeProfileSha256": "d9d1bbf4a269a9a7b0e3a9cd4f5595f8dc45a85b77d3337b241b7dfa62968927",
+      "reviewDependencySha256": {
+        "tools/corpus_engineering/manual_support_d9d1_review.py": "0f87f6f223d7c9d0e1a21e94e40521451188813d4c938fb717c58651db01f739",
+        "tools/corpus_engineering/experiments_manual_support_revision_verifier.py": "3923af826ff84652e461cf73bc1f5117c5aabfd25b85d252b7d801a9887608f1",
+        "tools/corpus_engineering/review_contract.py": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+        "editorial/reviews/manual-experiments-eight-primary-20261125/input-projection.json": "8fdfbe4be78939411e5e83c0dfc9c82d6e238c68309f2bd501b9ab946e0d41fd",
+        "editorial/reviews/manual-experiments-eight-primary-20261125/exact-primary.json": "9c55e3d05dfe1d093f227bb03a142fb1d510d7015aa6bffa55352091c371c1ea",
+        "editorial/reviews/manual-experiments-eight-primary-20261125/derivations.json": "76041919b432f7936491e0593cf6fddf9e113b80ed28d4543a540a093ffcbe02",
+        "editorial/reviews/experiments-manual-support-263-independent-20261125/native-render.json": "0545e42b04af14c954668e162a4d589db48e3dbb2562d7edb142286e6c8095ea",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/reviewed-candidate-signatures.json": "dc2304492744060c268f458e957dcfcf25dd6809335829ab7a4d196a94c1b895",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/probe-epoch.mjs": "7fe22b43180e6d4ff50ff4cef22a0c5f1277514e8a4ec06addaf577df9820df7",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/code-probe.json": "efc4fc9374af1e4aa05550454530f04679a0fe48ccf2df7e1c7d2d90b36978d7",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/code-execution-receipt.json": "d53708313943729cd25934c8af90be32ed2f1deab647e34704b67f334ae1f894",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/actual-reconstructed-runtime-fingerprint.json": "a073a2d63cb89f17835b4e822d3118d620b6d16310da42b5b03c370672b70290",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/run-immutable-review.py": "4a968e0bf0c1485324c03af0b4ac6988e9a8bddc746ca30357c754bfe09080d4",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/protocol-private-consumer-reading.mjs": "6ddf7359cb0c7f7f788114a8df541fdd2d23323fd90d939930c076af6905b417",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/browser-execution-receipt.json": "ac3d99c372a5bf3ba431133aceb1a077926c2d0006da43e78cc26a73ae8d7c4f",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/browser-reading/report.json": "4a7c61383dc59d5523d8065987513e61b34b0980beebe99381daa71a272b71d9",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/durable-screenshot-map.json": "f4899cad73b92a4ec3dedc319dea940938d9a282265f7e9ab7dc907cd49efce7",
+        "tests/corpus/test_manual_support_d9d1_review.py": "7bfc823ccd05ef81404448e61abe558d18b3a51d142545e3a1ebca1d7ea58ddc"
+      },
+      "mode": "EXACT_ORACLE",
+      "candidateTextMathManualReview": {
+        "ok": true,
+        "checks": [
+          {
+            "claim": "independent selected point 9/4",
+            "actualExact": "800/27",
+            "expectedExact": "800/27",
+            "residual": "0",
+            "ok": true
+          },
+          {
+            "claim": "independent selected point 4",
+            "actualExact": "25/2",
+            "expectedExact": "25/2",
+            "residual": "0",
+            "ok": true
+          },
+          {
+            "claim": "adiabatic pressure-volume invariant",
+            "actualExact": "100",
+            "expectedExact": "100",
+            "residual": "0",
+            "ok": true
+          },
+          {
+            "claim": "temperature ratio at r9/4",
+            "actualExact": "2/3",
+            "expectedExact": "2/3",
+            "residual": "0",
+            "ok": true
+          },
+          {
+            "claim": "temperature ratio at r4",
+            "actualExact": "1/2",
+            "expectedExact": "1/2",
+            "residual": "0",
+            "ok": true
+          },
+          {
+            "claim": "inverse positive volume ratio",
+            "actualExact": "4",
+            "expectedExact": "4",
+            "residual": "0",
+            "ok": true
+          },
+          {
+            "claim": "manual decimal rounding error",
+            "actualExact": "1/2700",
+            "expectedExact": "1/2700",
+            "residual": "0",
+            "ok": true
+          },
+          {
+            "claim": "pressure decreases in positive-r expansion",
+            "ok": true
+          },
+          {
+            "claim": "read endpoint claim p=100\\cdot",
+            "ok": true
+          },
+          {
+            "claim": "read endpoint claim p(4)=",
+            "ok": true
+          },
+          {
+            "claim": "division/rounding is supplied, not reviewer-only",
+            "ok": true
+          },
+          {
+            "claim": "three independently read native figure panels",
+            "ok": true
+          },
+          {
+            "claim": "volume widths use common90px perinitialvolume 0",
+            "actualExact": "90",
+            "expectedExact": "90",
+            "residual": "0",
+            "ok": true
+          },
+          {
+            "claim": "volume widths use common90px perinitialvolume 1",
+            "actualExact": "405/2",
+            "expectedExact": "405/2",
+            "residual": "0",
+            "ok": true
+          },
+          {
+            "claim": "volume widths use common90px perinitialvolume 2",
+            "actualExact": "360",
+            "expectedExact": "360",
+            "residual": "0",
+            "ok": true
+          }
+        ],
+        "errors": []
+      },
+      "actualGeneratedQuestionReview": {
+        "id": "SIM-C3-L07-05",
+        "clock": {
+          "clockUnit": "s",
+          "pace": 5,
+          "label": "Pressione nell’istante scelto",
+          "setup": "Il pistone isolato percorre la corsa impostata a velocità costante in 40 s. Il modello assume che il gas attraversi stati di equilibrio senza scambiare calore.",
+          "finalReading": true,
+          "unit": "kPa"
+        },
+        "samples": [
+          {
+            "x": 2.25,
+            "steps": [
+              [
+                "Individua il fenomeno",
+                "Il cilindro è isolato e il movimento reversibile. L’energia per il lavoro viene dall’energia interna, la temperatura cala. L’isoterma di confronto darebbe 100/(V/V₀) kPa.",
+                "p = 100(V₀/V)ᵞ, qui γ = 1,5"
+              ],
+              [
+                "Esegui la misura",
+                "Regola «Rapporto di espansione V/V₀» e confronta la scena con il punto segnato sul grafico. Parti da 1, poi prova 4.",
+                "Rapporto di espansione V/V₀ = 2,25 · Pressione adiabatica = 29,63 kPa"
+              ],
+              [
+                "Controlla il calcolo",
+                "p = 100(V₀/V)ᵞ, qui γ = 1,5. Sostituisci i dati e confronta il risultato con la lettura dello strumento.",
+                "100 / (2,25^(1,5)) ≈ 29,63 kPa"
+              ],
+              [
+                "Ripeti con un altro dato",
+                "Prevedi la lettura con «Rapporto di espansione V/V₀» a 4. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.",
+                "p = 100(V₀/V)ᵞ, qui γ = 1,5"
+              ]
+            ],
+            "solve": {
+              "x": 2.25,
+              "y": 29.62962962962963
+            }
+          },
+          {
+            "x": 4,
+            "steps": [
+              [
+                "Individua il fenomeno",
+                "Il cilindro è isolato e il movimento reversibile. L’energia per il lavoro viene dall’energia interna, la temperatura cala. L’isoterma di confronto darebbe 100/(V/V₀) kPa.",
+                "p = 100(V₀/V)ᵞ, qui γ = 1,5"
+              ],
+              [
+                "Esegui la misura",
+                "Regola «Rapporto di espansione V/V₀» e confronta la scena con il punto segnato sul grafico. Parti da 1, poi prova 4.",
+                "Rapporto di espansione V/V₀ = 4 · Pressione adiabatica = 12,5 kPa"
+              ],
+              [
+                "Controlla il calcolo",
+                "p = 100(V₀/V)ᵞ, qui γ = 1,5. Sostituisci i dati e confronta il risultato con la lettura dello strumento.",
+                "100 / (4^(1,5)) = 12,5 kPa"
+              ],
+              [
+                "Ripeti con un altro dato",
+                "Prevedi la lettura con «Rapporto di espansione V/V₀» a 4. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.",
+                "p = 100(V₀/V)ᵞ, qui γ = 1,5"
+              ]
+            ],
+            "solve": {
+              "x": 4,
+              "y": 12.5
+            }
+          },
+          {
+            "x": 1.25,
+            "steps": [
+              [
+                "Individua il fenomeno",
+                "Il cilindro è isolato e il movimento reversibile. L’energia per il lavoro viene dall’energia interna, la temperatura cala. L’isoterma di confronto darebbe 100/(V/V₀) kPa.",
+                "p = 100(V₀/V)ᵞ, qui γ = 1,5"
+              ],
+              [
+                "Esegui la misura",
+                "Regola «Rapporto di espansione V/V₀» e confronta la scena con il punto segnato sul grafico. Parti da 1, poi prova 4.",
+                "Rapporto di espansione V/V₀ = 1,25 · Pressione adiabatica = 71,55 kPa"
+              ],
+              [
+                "Osserva la lettura del modello",
+                "Questa posizione serve all’esplorazione. Per il calcolo manuale usa i valori assegnati: 2,25 e 4.",
+                "Pressione adiabatica = 71,55 kPa"
+              ],
+              [
+                "Ripeti con un altro dato",
+                "Prevedi la lettura con «Rapporto di espansione V/V₀» a 4. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.",
+                "p = 100(V₀/V)ᵞ, qui γ = 1,5"
+              ]
+            ],
+            "solve": {
+              "x": 1.25,
+              "y": 71.55417527999327
+            }
+          }
+        ],
+        "assessments": [
+          {
+            "prompt": "Imposta «Rapporto di espansione V/V₀» su 2,25. Quale valore ottieni per «Pressione adiabatica»?",
+            "value": 29.62962962962963,
+            "unit": "kPa",
+            "worked": "p = 100(V₀/V)ᵞ, qui γ = 1,5. 100 / (2,25^(1,5)) ≈ 29,63 kPa."
+          },
+          {
+            "prompt": "Espandi reversibilmente un gas ideale isolato fino a V/V₀ = 4, con γ = 3/2 e p₀ = 100 kPa. Quale pressione finale trovi? Usa la radice quadrata prima del cubo; inserisci il valore in kPa.",
+            "value": 12.5,
+            "unit": "kPa",
+            "worked": "p = 100(V₀/V)ᵞ, qui γ = 1,5. 100 / (4^(1,5)) = 12,5 kPa."
+          }
+        ],
+        "assessmentUnchanged": true,
+        "numberChecks": [
+          {
+            "index": 0,
+            "input": "29.63",
+            "display": "29,63",
+            "finiteManualEntryAccepted": true,
+            "commaEntryAccepted": true,
+            "displayNumberRoundtripAccepted": true,
+            "blankRejected": true,
+            "infiniteRejected": true
+          },
+          {
+            "index": 1,
+            "input": "12.5",
+            "display": "12,5",
+            "finiteManualEntryAccepted": true,
+            "commaEntryAccepted": true,
+            "displayNumberRoundtripAccepted": true,
+            "blankRejected": true,
+            "infiniteRejected": true
+          }
+        ],
+        "unitsDuplicatedInPrompt": false
+      },
+      "limitedGuideAndReadingDeliveryReview": {
+        "ok": true,
+        "errors": [],
+        "matrix": "8 records ×320/1440×actual native/fallback; 32 cases, not full scene acceptance"
+      },
+      "originalPublishedEditionJudgmentPreserved": {
+        "consumerCodeGeometryFailure": false,
+        "consumerObservedUiFailure": false,
+        "manualSupportGap": true,
+        "sourceManualityFailure": false,
+        "sourceScientificFailure": false
+      },
+      "nativeSvgBytesUnchangedFromIndividuallyReadOriginalReview": true,
+      "fullSceneUiReview": "NOT_RUN",
+      "existingConsumerGeometryGates": "OPEN_UNCHANGED",
+      "candidateState": "DRAFT",
+      "ok": false,
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "SIM-C4-L09-02",
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourceSha256": "1a95c439565a3ee5f38e39fa62ecbc5a93cfc19c35e25e960c95b3aa02d3c394",
+      "sourceVersion": 1,
+      "candidateVersion": 2,
+      "baseVersion": 1,
+      "candidateSha256": "2b8f7073001048d6056afb40fee55f55014896035f41da9f4dd541a2ecaf2744",
+      "reviewedSignature": "a6d23eab75bbdc13209ec3c1b3bd0ab7a6b4973ba5767dffeddaee806212c7ae",
+      "assetChecksums": {
+        "lorentz-manual-angles.svg": "1307a27adb0eb1a17dddeff708c8de3ddd0f025cdf4d0c2fc493e27ec0645ce8"
+      },
+      "runtimeProfileSha256": "d9d1bbf4a269a9a7b0e3a9cd4f5595f8dc45a85b77d3337b241b7dfa62968927",
+      "reviewDependencySha256": {
+        "tools/corpus_engineering/manual_support_d9d1_review.py": "0f87f6f223d7c9d0e1a21e94e40521451188813d4c938fb717c58651db01f739",
+        "tools/corpus_engineering/experiments_manual_support_revision_verifier.py": "3923af826ff84652e461cf73bc1f5117c5aabfd25b85d252b7d801a9887608f1",
+        "tools/corpus_engineering/review_contract.py": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+        "editorial/reviews/manual-experiments-eight-primary-20261125/input-projection.json": "8fdfbe4be78939411e5e83c0dfc9c82d6e238c68309f2bd501b9ab946e0d41fd",
+        "editorial/reviews/manual-experiments-eight-primary-20261125/exact-primary.json": "9c55e3d05dfe1d093f227bb03a142fb1d510d7015aa6bffa55352091c371c1ea",
+        "editorial/reviews/manual-experiments-eight-primary-20261125/derivations.json": "76041919b432f7936491e0593cf6fddf9e113b80ed28d4543a540a093ffcbe02",
+        "editorial/reviews/experiments-manual-support-263-independent-20261125/native-render.json": "0545e42b04af14c954668e162a4d589db48e3dbb2562d7edb142286e6c8095ea",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/reviewed-candidate-signatures.json": "dc2304492744060c268f458e957dcfcf25dd6809335829ab7a4d196a94c1b895",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/probe-epoch.mjs": "7fe22b43180e6d4ff50ff4cef22a0c5f1277514e8a4ec06addaf577df9820df7",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/code-probe.json": "efc4fc9374af1e4aa05550454530f04679a0fe48ccf2df7e1c7d2d90b36978d7",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/code-execution-receipt.json": "d53708313943729cd25934c8af90be32ed2f1deab647e34704b67f334ae1f894",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/actual-reconstructed-runtime-fingerprint.json": "a073a2d63cb89f17835b4e822d3118d620b6d16310da42b5b03c370672b70290",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/run-immutable-review.py": "4a968e0bf0c1485324c03af0b4ac6988e9a8bddc746ca30357c754bfe09080d4",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/protocol-private-consumer-reading.mjs": "6ddf7359cb0c7f7f788114a8df541fdd2d23323fd90d939930c076af6905b417",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/browser-execution-receipt.json": "ac3d99c372a5bf3ba431133aceb1a077926c2d0006da43e78cc26a73ae8d7c4f",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/browser-reading/report.json": "4a7c61383dc59d5523d8065987513e61b34b0980beebe99381daa71a272b71d9",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/durable-screenshot-map.json": "f4899cad73b92a4ec3dedc319dea940938d9a282265f7e9ab7dc907cd49efce7",
+        "tests/corpus/test_manual_support_d9d1_review.py": "7bfc823ccd05ef81404448e61abe558d18b3a51d142545e3a1ebca1d7ea58ddc"
+      },
+      "mode": "EXACT_ORACLE",
+      "candidateTextMathManualReview": {
+        "ok": true,
+        "checks": [
+          {
+            "claim": "independent selected point 30",
+            "actualExact": "3",
+            "expectedExact": "3",
+            "residual": "0",
+            "ok": true
+          },
+          {
+            "claim": "independent selected point 90",
+            "actualExact": "6",
+            "expectedExact": "6",
+            "residual": "0",
+            "ok": true
+          },
+          {
+            "claim": "SI Lorentz scale",
+            "actualExact": "6",
+            "expectedExact": "6",
+            "residual": "0",
+            "ok": true
+          },
+          {
+            "claim": "positive-charge right-hand direction",
+            "actualExact": "1",
+            "expectedExact": "1",
+            "residual": "0",
+            "ok": true
+          },
+          {
+            "claim": "inverse field at30deg",
+            "actualExact": "1",
+            "expectedExact": "1",
+            "residual": "0",
+            "ok": true
+          },
+          {
+            "claim": "inverse field undefined atparallel",
+            "ok": true
+          },
+          {
+            "claim": "nonzero5deg force",
+            "ok": true
+          },
+          {
+            "claim": "read endpoint claim F(30^\\circ)=",
+            "ok": true
+          },
+          {
+            "claim": "read endpoint claim F(90^\\circ)=",
+            "ok": true
+          },
+          {
+            "claim": "three independently read native figure panels",
+            "ok": true
+          },
+          {
+            "claim": "v/B constant own gain and direction 0#172033",
+            "ok": true
+          },
+          {
+            "claim": "v/B constant own gain and direction 0#1d4ed8",
+            "ok": true
+          },
+          {
+            "claim": "v/B constant own gain and direction 30#172033",
+            "ok": true
+          },
+          {
+            "claim": "v/B constant own gain and direction 30#1d4ed8",
+            "ok": true
+          },
+          {
+            "claim": "v/B constant own gain and direction 90#172033",
+            "ok": true
+          },
+          {
+            "claim": "v/B constant own gain and direction 90#1d4ed8",
+            "ok": true
+          }
+        ],
+        "errors": []
+      },
+      "actualGeneratedQuestionReview": {
+        "id": "SIM-C4-L09-02",
+        "clock": null,
+        "samples": [
+          {
+            "x": 30,
+            "steps": [
+              [
+                "Individua il fenomeno",
+                "Ruota la vista per distinguere i tre versi. Per q positiva la forza segue v×B. Per un tratto di filo si sostituisce qv con Iℓ: a parità di prodotto e angolo si ottiene la stessa costruzione vettoriale.",
+                "F = qvB sin θ; q = 2 µC, v = 3 m/s, B = 1 T"
+              ],
+              [
+                "Esegui la misura",
+                "Regola «Angolo tra velocità e campo» e confronta la scena con il punto segnato sul grafico. Parti da 30 °, poi prova 90 °.",
+                "Angolo tra velocità e campo = 30 ° · Forza sulla carica = 3 µN"
+              ],
+              [
+                "Controlla il calcolo",
+                "F = qvB sin θ; q = 2 µC, v = 3 m/s, B = 1 T. Sostituisci i dati e confronta il risultato con la lettura dello strumento.",
+                "6 × sin(30°) ≈ 3 µN"
+              ],
+              [
+                "Ripeti con un altro dato",
+                "Prevedi la lettura con «Angolo tra velocità e campo» a 90 °. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.",
+                "F = qvB sin θ; q = 2 µC, v = 3 m/s, B = 1 T"
+              ]
+            ],
+            "solve": {
+              "x": 30,
+              "y": 2.9999999999999996
+            }
+          },
+          {
+            "x": 90,
+            "steps": [
+              [
+                "Individua il fenomeno",
+                "Ruota la vista per distinguere i tre versi. Per q positiva la forza segue v×B. Per un tratto di filo si sostituisce qv con Iℓ: a parità di prodotto e angolo si ottiene la stessa costruzione vettoriale.",
+                "F = qvB sin θ; q = 2 µC, v = 3 m/s, B = 1 T"
+              ],
+              [
+                "Esegui la misura",
+                "Regola «Angolo tra velocità e campo» e confronta la scena con il punto segnato sul grafico. Parti da 30 °, poi prova 90 °.",
+                "Angolo tra velocità e campo = 90 ° · Forza sulla carica = 6 µN"
+              ],
+              [
+                "Controlla il calcolo",
+                "F = qvB sin θ; q = 2 µC, v = 3 m/s, B = 1 T. Sostituisci i dati e confronta il risultato con la lettura dello strumento.",
+                "6 × sin(90°) = 6 µN"
+              ],
+              [
+                "Ripeti con un altro dato",
+                "Prevedi la lettura con «Angolo tra velocità e campo» a 90 °. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.",
+                "F = qvB sin θ; q = 2 µC, v = 3 m/s, B = 1 T"
+              ]
+            ],
+            "solve": {
+              "x": 90,
+              "y": 6
+            }
+          },
+          {
+            "x": 5,
+            "steps": [
+              [
+                "Individua il fenomeno",
+                "Ruota la vista per distinguere i tre versi. Per q positiva la forza segue v×B. Per un tratto di filo si sostituisce qv con Iℓ: a parità di prodotto e angolo si ottiene la stessa costruzione vettoriale.",
+                "F = qvB sin θ; q = 2 µC, v = 3 m/s, B = 1 T"
+              ],
+              [
+                "Esegui la misura",
+                "Regola «Angolo tra velocità e campo» e confronta la scena con il punto segnato sul grafico. Parti da 30 °, poi prova 90 °.",
+                "Angolo tra velocità e campo = 5 ° · Forza sulla carica = 0,5229 µN"
+              ],
+              [
+                "Osserva la lettura del modello",
+                "Questa posizione serve all’esplorazione. Per il calcolo manuale usa i valori assegnati: 30 ° e 90 °.",
+                "Forza sulla carica = 0,5229 µN"
+              ],
+              [
+                "Ripeti con un altro dato",
+                "Prevedi la lettura con «Angolo tra velocità e campo» a 90 °. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.",
+                "F = qvB sin θ; q = 2 µC, v = 3 m/s, B = 1 T"
+              ]
+            ],
+            "solve": {
+              "x": 5,
+              "y": 0.522934456485949
+            }
+          }
+        ],
+        "assessments": [
+          {
+            "prompt": "Imposta «Angolo tra velocità e campo» su 30 °. Quale valore ottieni per «Forza sulla carica»?",
+            "value": 2.9999999999999996,
+            "unit": "µN",
+            "worked": "F = qvB sin θ; q = 2 µC, v = 3 m/s, B = 1 T. 6 × sin(30°) ≈ 3 µN."
+          },
+          {
+            "prompt": "Una carica positiva di 2 µC si muove a 3 m/s in un campo uniforme di 1 T. L’angolo fra velocità e campo è 90 °. Qual è il modulo della forza in µN? Usa i valori esatti degli angoli notevoli.",
+            "value": 6,
+            "unit": "µN",
+            "worked": "F = qvB sin θ; q = 2 µC, v = 3 m/s, B = 1 T. 6 × sin(90°) = 6 µN."
+          }
+        ],
+        "assessmentUnchanged": true,
+        "numberChecks": [
+          {
+            "index": 0,
+            "input": "3",
+            "display": "3",
+            "finiteManualEntryAccepted": true,
+            "commaEntryAccepted": true,
+            "displayNumberRoundtripAccepted": true,
+            "blankRejected": true,
+            "infiniteRejected": true
+          },
+          {
+            "index": 1,
+            "input": "6",
+            "display": "6",
+            "finiteManualEntryAccepted": true,
+            "commaEntryAccepted": true,
+            "displayNumberRoundtripAccepted": true,
+            "blankRejected": true,
+            "infiniteRejected": true
+          }
+        ],
+        "unitsDuplicatedInPrompt": false
+      },
+      "limitedGuideAndReadingDeliveryReview": {
+        "ok": true,
+        "errors": [],
+        "matrix": "8 records ×320/1440×actual native/fallback; 32 cases, not full scene acceptance"
+      },
+      "originalPublishedEditionJudgmentPreserved": {
+        "consumerCodeGeometryFailure": true,
+        "consumerObservedUiFailure": false,
+        "manualSupportGap": true,
+        "sourceManualityFailure": true,
+        "sourceScientificFailure": false
+      },
+      "nativeSvgBytesUnchangedFromIndividuallyReadOriginalReview": true,
+      "fullSceneUiReview": "NOT_RUN",
+      "existingConsumerGeometryGates": "OPEN_UNCHANGED",
+      "candidateState": "DRAFT",
+      "ok": false,
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "SIM-C5-L01-01",
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourceSha256": "91f949bcdac0c7729b9248459ffba3c6863600b33e44dca6d1d0c8c736c40751",
+      "sourceVersion": 1,
+      "candidateVersion": 2,
+      "baseVersion": 1,
+      "candidateSha256": "e27cd5bd81aa4092a71276cc27e4085c401f87361e095b84138a81f4c09ef80c",
+      "reviewedSignature": "7479bf9613c5cece878c1c673b94a785e79d0c7a046f5ee1f350ae63be7d7457",
+      "assetChecksums": {
+        "oscillator-manual-quarter-period.svg": "a297e8dd16ee5c6d2f00fc6cad970815d929af0ef7b685bc1991390461266165"
+      },
+      "runtimeProfileSha256": "d9d1bbf4a269a9a7b0e3a9cd4f5595f8dc45a85b77d3337b241b7dfa62968927",
+      "reviewDependencySha256": {
+        "tools/corpus_engineering/manual_support_d9d1_review.py": "0f87f6f223d7c9d0e1a21e94e40521451188813d4c938fb717c58651db01f739",
+        "tools/corpus_engineering/experiments_manual_support_revision_verifier.py": "3923af826ff84652e461cf73bc1f5117c5aabfd25b85d252b7d801a9887608f1",
+        "tools/corpus_engineering/review_contract.py": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+        "editorial/reviews/manual-experiments-eight-primary-20261125/input-projection.json": "8fdfbe4be78939411e5e83c0dfc9c82d6e238c68309f2bd501b9ab946e0d41fd",
+        "editorial/reviews/manual-experiments-eight-primary-20261125/exact-primary.json": "9c55e3d05dfe1d093f227bb03a142fb1d510d7015aa6bffa55352091c371c1ea",
+        "editorial/reviews/manual-experiments-eight-primary-20261125/derivations.json": "76041919b432f7936491e0593cf6fddf9e113b80ed28d4543a540a093ffcbe02",
+        "editorial/reviews/experiments-manual-support-263-independent-20261125/native-render.json": "0545e42b04af14c954668e162a4d589db48e3dbb2562d7edb142286e6c8095ea",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/reviewed-candidate-signatures.json": "dc2304492744060c268f458e957dcfcf25dd6809335829ab7a4d196a94c1b895",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/probe-epoch.mjs": "7fe22b43180e6d4ff50ff4cef22a0c5f1277514e8a4ec06addaf577df9820df7",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/code-probe.json": "efc4fc9374af1e4aa05550454530f04679a0fe48ccf2df7e1c7d2d90b36978d7",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/code-execution-receipt.json": "d53708313943729cd25934c8af90be32ed2f1deab647e34704b67f334ae1f894",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/actual-reconstructed-runtime-fingerprint.json": "a073a2d63cb89f17835b4e822d3118d620b6d16310da42b5b03c370672b70290",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/run-immutable-review.py": "4a968e0bf0c1485324c03af0b4ac6988e9a8bddc746ca30357c754bfe09080d4",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/protocol-private-consumer-reading.mjs": "6ddf7359cb0c7f7f788114a8df541fdd2d23323fd90d939930c076af6905b417",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/browser-execution-receipt.json": "ac3d99c372a5bf3ba431133aceb1a077926c2d0006da43e78cc26a73ae8d7c4f",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/browser-reading/report.json": "4a7c61383dc59d5523d8065987513e61b34b0980beebe99381daa71a272b71d9",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/durable-screenshot-map.json": "f4899cad73b92a4ec3dedc319dea940938d9a282265f7e9ab7dc907cd49efce7",
+        "tests/corpus/test_manual_support_d9d1_review.py": "7bfc823ccd05ef81404448e61abe558d18b3a51d142545e3a1ebca1d7ea58ddc"
+      },
+      "mode": "EXACT_ORACLE",
+      "candidateTextMathManualReview": {
+        "ok": true,
+        "checks": [
+          {
+            "claim": "independent selected point 1/2",
+            "actualExact": "0",
+            "expectedExact": "0",
+            "residual": "0",
+            "ok": true
+          },
+          {
+            "claim": "independent selected point 1",
+            "actualExact": "-4",
+            "expectedExact": "-4",
+            "residual": "0",
+            "ok": true
+          },
+          {
+            "claim": "first opposite extreme inverse period",
+            "actualExact": "2",
+            "expectedExact": "2",
+            "residual": "0",
+            "ok": true
+          },
+          {
+            "claim": "initial position",
+            "actualExact": "4",
+            "expectedExact": "4",
+            "residual": "0",
+            "ok": true
+          },
+          {
+            "claim": "return after period",
+            "actualExact": "4",
+            "expectedExact": "4",
+            "residual": "0",
+            "ok": true
+          },
+          {
+            "claim": "read endpoint claim x(0{,}5\\,\\mathrm s)=",
+            "ok": true
+          },
+          {
+            "claim": "read endpoint claim x(1\\,\\mathrm s)=",
+            "ok": true
+          },
+          {
+            "claim": "rotation is not falsely attributed to shown rectilinear figure",
+            "ok": true
+          },
+          {
+            "claim": "three independently read native figure panels",
+            "ok": true
+          },
+          {
+            "claim": "signed mass coordinate common45px/cm 4",
+            "actualExact": "4",
+            "expectedExact": "4",
+            "residual": "0",
+            "ok": true
+          },
+          {
+            "claim": "signed mass coordinate common45px/cm 0",
+            "actualExact": "0",
+            "expectedExact": "0",
+            "residual": "0",
+            "ok": true
+          },
+          {
+            "claim": "signed mass coordinate common45px/cm -4",
+            "actualExact": "-4",
+            "expectedExact": "-4",
+            "residual": "0",
+            "ok": true
+          }
+        ],
+        "errors": []
+      },
+      "actualGeneratedQuestionReview": {
+        "id": "SIM-C5-L01-01",
+        "clock": {
+          "input": true,
+          "clockUnit": "s",
+          "pace": 1
+        },
+        "samples": [
+          {
+            "x": 0.5,
+            "steps": [
+              [
+                "Individua il fenomeno",
+                "La molla ideale non dissipa energia. Segui il cursore tra i due estremi. Il punto passa più rapidamente dall’equilibrio e si arresta per un istante dove cambia verso.",
+                "x = A cos(2πt/T); A = 4 cm, T = 2 s"
+              ],
+              [
+                "Esegui la misura",
+                "Regola «Tempo dall’estremo positivo» e confronta la scena con il punto segnato sul grafico. Parti da 0 s, poi prova 1 s.",
+                "Tempo dall’estremo positivo = 0,5 s · Posizione = 0 cm"
+              ],
+              [
+                "Controlla il calcolo",
+                "x = A cos(2πt/T); A = 4 cm, T = 2 s. Sostituisci i dati e confronta il risultato con la lettura dello strumento.",
+                "4 × cos(π × 0,5) = 0 cm"
+              ],
+              [
+                "Ripeti con un altro dato",
+                "Prevedi la lettura con «Tempo dall’estremo positivo» a 1 s. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.",
+                "x = A cos(2πt/T); A = 4 cm, T = 2 s"
+              ]
+            ],
+            "solve": {
+              "x": 0.5,
+              "y": 0
+            }
+          },
+          {
+            "x": 1,
+            "steps": [
+              [
+                "Individua il fenomeno",
+                "La molla ideale non dissipa energia. Segui il cursore tra i due estremi. Il punto passa più rapidamente dall’equilibrio e si arresta per un istante dove cambia verso.",
+                "x = A cos(2πt/T); A = 4 cm, T = 2 s"
+              ],
+              [
+                "Esegui la misura",
+                "Regola «Tempo dall’estremo positivo» e confronta la scena con il punto segnato sul grafico. Parti da 0 s, poi prova 1 s.",
+                "Tempo dall’estremo positivo = 1 s · Posizione = -4 cm"
+              ],
+              [
+                "Controlla il calcolo",
+                "x = A cos(2πt/T); A = 4 cm, T = 2 s. Sostituisci i dati e confronta il risultato con la lettura dello strumento.",
+                "4 × cos(π × 1) = -4 cm"
+              ],
+              [
+                "Ripeti con un altro dato",
+                "Prevedi la lettura con «Tempo dall’estremo positivo» a 1 s. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.",
+                "x = A cos(2πt/T); A = 4 cm, T = 2 s"
+              ]
+            ],
+            "solve": {
+              "x": 1,
+              "y": -4
+            }
+          },
+          {
+            "x": 0.125,
+            "steps": [
+              [
+                "Individua il fenomeno",
+                "La molla ideale non dissipa energia. Segui il cursore tra i due estremi. Il punto passa più rapidamente dall’equilibrio e si arresta per un istante dove cambia verso.",
+                "x = A cos(2πt/T); A = 4 cm, T = 2 s"
+              ],
+              [
+                "Esegui la misura",
+                "Regola «Tempo dall’estremo positivo» e confronta la scena con il punto segnato sul grafico. Parti da 0 s, poi prova 1 s.",
+                "Tempo dall’estremo positivo = 0,125 s · Posizione = 3,696 cm"
+              ],
+              [
+                "Osserva la lettura del modello",
+                "Questa posizione serve all’esplorazione. Per il calcolo manuale usa i valori assegnati: 0,5 s e 1 s.",
+                "Posizione = 3,696 cm"
+              ],
+              [
+                "Ripeti con un altro dato",
+                "Prevedi la lettura con «Tempo dall’estremo positivo» a 1 s. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.",
+                "x = A cos(2πt/T); A = 4 cm, T = 2 s"
+              ]
+            ],
+            "solve": {
+              "x": 0.125,
+              "y": 3.695518130045147
+            }
+          }
+        ],
+        "assessments": [
+          {
+            "prompt": "Imposta «Tempo dall’estremo positivo» su 0,5 s. Quale valore ottieni per «Posizione»?",
+            "value": 0,
+            "unit": "cm",
+            "worked": "x = A cos(2πt/T); A = 4 cm, T = 2 s. 4 × cos(π × 0,5) = 0 cm."
+          },
+          {
+            "prompt": "La massa parte ferma dall’estremo +4 cm e ha periodo 2 s. Quale posizione con segno occupa dopo 1 s? Individua prima la frazione di periodo, senza calcolare un coseno generico.",
+            "value": -4,
+            "unit": "cm",
+            "worked": "x = A cos(2πt/T); A = 4 cm, T = 2 s. 4 × cos(π × 1) = -4 cm."
+          }
+        ],
+        "assessmentUnchanged": true,
+        "numberChecks": [
+          {
+            "index": 0,
+            "input": "0",
+            "display": "0",
+            "finiteManualEntryAccepted": true,
+            "commaEntryAccepted": true,
+            "displayNumberRoundtripAccepted": true,
+            "blankRejected": true,
+            "infiniteRejected": true
+          },
+          {
+            "index": 1,
+            "input": "-4",
+            "display": "-4",
+            "finiteManualEntryAccepted": true,
+            "commaEntryAccepted": true,
+            "displayNumberRoundtripAccepted": true,
+            "blankRejected": true,
+            "infiniteRejected": true
+          }
+        ],
+        "unitsDuplicatedInPrompt": false
+      },
+      "limitedGuideAndReadingDeliveryReview": {
+        "ok": true,
+        "errors": [],
+        "matrix": "8 records ×320/1440×actual native/fallback; 32 cases, not full scene acceptance"
+      },
+      "originalPublishedEditionJudgmentPreserved": {
+        "consumerCodeGeometryFailure": false,
+        "consumerObservedUiFailure": false,
+        "manualSupportGap": true,
+        "sourceManualityFailure": true,
+        "sourceScientificFailure": false
+      },
+      "nativeSvgBytesUnchangedFromIndividuallyReadOriginalReview": true,
+      "fullSceneUiReview": "NOT_RUN",
+      "existingConsumerGeometryGates": "OPEN_UNCHANGED",
+      "candidateState": "DRAFT",
+      "ok": false,
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "SIM-C5-L02-03",
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourceSha256": "c5d893691f554faa7c310ab7d8954f2fc02932920f0bd466b965823ec411f9d3",
+      "sourceVersion": 1,
+      "candidateVersion": 2,
+      "baseVersion": 1,
+      "candidateSha256": "53087b779aab5f9a3ca1b9dfcce6e415ce7d45261cfb6ed837b60c80cc8b358d",
+      "reviewedSignature": "f96871d2c5f810614ef52ae7c777c883309d1345e51d35c37e541960b81f4cb0",
+      "assetChecksums": {
+        "travelling-wave-manual-probe.svg": "27ce67d30f8ad458bac01840a2330cef9d21abdb4a43a3eb34fcc90fa93584b3"
+      },
+      "runtimeProfileSha256": "d9d1bbf4a269a9a7b0e3a9cd4f5595f8dc45a85b77d3337b241b7dfa62968927",
+      "reviewDependencySha256": {
+        "tools/corpus_engineering/manual_support_d9d1_review.py": "0f87f6f223d7c9d0e1a21e94e40521451188813d4c938fb717c58651db01f739",
+        "tools/corpus_engineering/experiments_manual_support_revision_verifier.py": "3923af826ff84652e461cf73bc1f5117c5aabfd25b85d252b7d801a9887608f1",
+        "tools/corpus_engineering/review_contract.py": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+        "editorial/reviews/manual-experiments-eight-primary-20261125/input-projection.json": "8fdfbe4be78939411e5e83c0dfc9c82d6e238c68309f2bd501b9ab946e0d41fd",
+        "editorial/reviews/manual-experiments-eight-primary-20261125/exact-primary.json": "9c55e3d05dfe1d093f227bb03a142fb1d510d7015aa6bffa55352091c371c1ea",
+        "editorial/reviews/manual-experiments-eight-primary-20261125/derivations.json": "76041919b432f7936491e0593cf6fddf9e113b80ed28d4543a540a093ffcbe02",
+        "editorial/reviews/experiments-manual-support-263-independent-20261125/native-render.json": "0545e42b04af14c954668e162a4d589db48e3dbb2562d7edb142286e6c8095ea",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/reviewed-candidate-signatures.json": "dc2304492744060c268f458e957dcfcf25dd6809335829ab7a4d196a94c1b895",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/probe-epoch.mjs": "7fe22b43180e6d4ff50ff4cef22a0c5f1277514e8a4ec06addaf577df9820df7",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/code-probe.json": "efc4fc9374af1e4aa05550454530f04679a0fe48ccf2df7e1c7d2d90b36978d7",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/code-execution-receipt.json": "d53708313943729cd25934c8af90be32ed2f1deab647e34704b67f334ae1f894",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/actual-reconstructed-runtime-fingerprint.json": "a073a2d63cb89f17835b4e822d3118d620b6d16310da42b5b03c370672b70290",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/run-immutable-review.py": "4a968e0bf0c1485324c03af0b4ac6988e9a8bddc746ca30357c754bfe09080d4",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/protocol-private-consumer-reading.mjs": "6ddf7359cb0c7f7f788114a8df541fdd2d23323fd90d939930c076af6905b417",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/browser-execution-receipt.json": "ac3d99c372a5bf3ba431133aceb1a077926c2d0006da43e78cc26a73ae8d7c4f",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/browser-reading/report.json": "4a7c61383dc59d5523d8065987513e61b34b0980beebe99381daa71a272b71d9",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/durable-screenshot-map.json": "f4899cad73b92a4ec3dedc319dea940938d9a282265f7e9ab7dc907cd49efce7",
+        "tests/corpus/test_manual_support_d9d1_review.py": "7bfc823ccd05ef81404448e61abe558d18b3a51d142545e3a1ebca1d7ea58ddc"
+      },
+      "mode": "EXACT_ORACLE",
+      "candidateTextMathManualReview": {
+        "ok": true,
+        "checks": [
+          {
+            "claim": "independent selected point 1/4",
+            "actualExact": "3",
+            "expectedExact": "3",
+            "residual": "0",
+            "ok": true
+          },
+          {
+            "claim": "independent selected point 3/4",
+            "actualExact": "-3",
+            "expectedExact": "-3",
+            "residual": "0",
+            "ok": true
+          },
+          {
+            "claim": "inverse period from first positive maximum",
+            "actualExact": "1",
+            "expectedExact": "1",
+            "residual": "0",
+            "ok": true
+          },
+          {
+            "claim": "wavelength",
+            "actualExact": "2",
+            "expectedExact": "2",
+            "residual": "0",
+            "ok": true
+          },
+          {
+            "claim": "positive propagation speed",
+            "actualExact": "2",
+            "expectedExact": "2",
+            "residual": "0",
+            "ok": true
+          },
+          {
+            "claim": "read endpoint claim y(0,1/4)=",
+            "ok": true
+          },
+          {
+            "claim": "read endpoint claim y(0,3/4)=",
+            "ok": true
+          },
+          {
+            "claim": "three independently read native figure panels",
+            "ok": true
+          },
+          {
+            "claim": "entire travelling profile at time 0",
+            "ok": true
+          },
+          {
+            "claim": "entire travelling profile at time 0.25",
+            "ok": true
+          },
+          {
+            "claim": "entire travelling profile at time 0.75",
+            "ok": true
+          }
+        ],
+        "errors": []
+      },
+      "actualGeneratedQuestionReview": {
+        "id": "SIM-C5-L02-03",
+        "clock": {
+          "input": true,
+          "clockUnit": "s",
+          "pace": 1
+        },
+        "samples": [
+          {
+            "x": 0.25,
+            "steps": [
+              [
+                "Individua il fenomeno",
+                "La sonda è all’origine della corda e la perturbazione si propaga verso destra. A x fisso basta avanzare il tempo per osservare segno, massimi e periodo.",
+                "y(x,t) = 3 sin(2πt−πx) cm; sonda in x = 0"
+              ],
+              [
+                "Esegui la misura",
+                "Regola «Tempo alla sonda» e confronta la scena con il punto segnato sul grafico. Parti da 0,25 s, poi prova 0,75 s.",
+                "Tempo alla sonda = 0,25 s · Spostamento a x = 0 = 3 cm"
+              ],
+              [
+                "Controlla il calcolo",
+                "y(x,t) = 3 sin(2πt−πx) cm; sonda in x = 0. Sostituisci i dati e confronta il risultato con la lettura dello strumento.",
+                "3 × sin(2 × π × 0,25) = 3 cm"
+              ],
+              [
+                "Ripeti con un altro dato",
+                "Prevedi la lettura con «Tempo alla sonda» a 0,75 s. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.",
+                "y(x,t) = 3 sin(2πt−πx) cm; sonda in x = 0"
+              ]
+            ],
+            "solve": {
+              "x": 0.25,
+              "y": 3
+            }
+          },
+          {
+            "x": 0.75,
+            "steps": [
+              [
+                "Individua il fenomeno",
+                "La sonda è all’origine della corda e la perturbazione si propaga verso destra. A x fisso basta avanzare il tempo per osservare segno, massimi e periodo.",
+                "y(x,t) = 3 sin(2πt−πx) cm; sonda in x = 0"
+              ],
+              [
+                "Esegui la misura",
+                "Regola «Tempo alla sonda» e confronta la scena con il punto segnato sul grafico. Parti da 0,25 s, poi prova 0,75 s.",
+                "Tempo alla sonda = 0,75 s · Spostamento a x = 0 = -3 cm"
+              ],
+              [
+                "Controlla il calcolo",
+                "y(x,t) = 3 sin(2πt−πx) cm; sonda in x = 0. Sostituisci i dati e confronta il risultato con la lettura dello strumento.",
+                "3 × sin(2 × π × 0,75) = -3 cm"
+              ],
+              [
+                "Ripeti con un altro dato",
+                "Prevedi la lettura con «Tempo alla sonda» a 0,75 s. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.",
+                "y(x,t) = 3 sin(2πt−πx) cm; sonda in x = 0"
+              ]
+            ],
+            "solve": {
+              "x": 0.75,
+              "y": -3
+            }
+          },
+          {
+            "x": 0.125,
+            "steps": [
+              [
+                "Individua il fenomeno",
+                "La sonda è all’origine della corda e la perturbazione si propaga verso destra. A x fisso basta avanzare il tempo per osservare segno, massimi e periodo.",
+                "y(x,t) = 3 sin(2πt−πx) cm; sonda in x = 0"
+              ],
+              [
+                "Esegui la misura",
+                "Regola «Tempo alla sonda» e confronta la scena con il punto segnato sul grafico. Parti da 0,25 s, poi prova 0,75 s.",
+                "Tempo alla sonda = 0,125 s · Spostamento a x = 0 = 2,121 cm"
+              ],
+              [
+                "Osserva la lettura del modello",
+                "Questa posizione serve all’esplorazione. Per il calcolo manuale usa i valori assegnati: 0,25 s e 0,75 s.",
+                "Spostamento a x = 0 = 2,121 cm"
+              ],
+              [
+                "Ripeti con un altro dato",
+                "Prevedi la lettura con «Tempo alla sonda» a 0,75 s. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.",
+                "y(x,t) = 3 sin(2πt−πx) cm; sonda in x = 0"
+              ]
+            ],
+            "solve": {
+              "x": 0.125,
+              "y": 2.1213203435596424
+            }
+          }
+        ],
+        "assessments": [
+          {
+            "prompt": "Imposta «Tempo alla sonda» su 0,25 s. Quale valore ottieni per «Spostamento a x = 0»?",
+            "value": 3,
+            "unit": "cm",
+            "worked": "y(x,t) = 3 sin(2πt−πx) cm; sonda in x = 0. 3 × sin(2 × π × 0,25) = 3 cm."
+          },
+          {
+            "prompt": "La sonda è fissa in x = 0 per l’onda y = 3 sin(2πt − πx) cm, con t in secondi e x in metri. Quale spostamento con segno misura al tempo 0,75 s? Usa la frazione di periodo.",
+            "value": -3,
+            "unit": "cm",
+            "worked": "y(x,t) = 3 sin(2πt−πx) cm; sonda in x = 0. 3 × sin(2 × π × 0,75) = -3 cm."
+          }
+        ],
+        "assessmentUnchanged": true,
+        "numberChecks": [
+          {
+            "index": 0,
+            "input": "3",
+            "display": "3",
+            "finiteManualEntryAccepted": true,
+            "commaEntryAccepted": true,
+            "displayNumberRoundtripAccepted": true,
+            "blankRejected": true,
+            "infiniteRejected": true
+          },
+          {
+            "index": 1,
+            "input": "-3",
+            "display": "-3",
+            "finiteManualEntryAccepted": true,
+            "commaEntryAccepted": true,
+            "displayNumberRoundtripAccepted": true,
+            "blankRejected": true,
+            "infiniteRejected": true
+          }
+        ],
+        "unitsDuplicatedInPrompt": false
+      },
+      "limitedGuideAndReadingDeliveryReview": {
+        "ok": true,
+        "errors": [],
+        "matrix": "8 records ×320/1440×actual native/fallback; 32 cases, not full scene acceptance"
+      },
+      "originalPublishedEditionJudgmentPreserved": {
+        "consumerCodeGeometryFailure": false,
+        "consumerObservedUiFailure": false,
+        "manualSupportGap": true,
+        "sourceManualityFailure": false,
+        "sourceScientificFailure": false
+      },
+      "nativeSvgBytesUnchangedFromIndividuallyReadOriginalReview": true,
+      "fullSceneUiReview": "NOT_RUN",
+      "existingConsumerGeometryGates": "OPEN_UNCHANGED",
+      "candidateState": "DRAFT",
+      "ok": false,
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "SIM-C5-L03-02",
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourceSha256": "814f76fadf0eaf75d279104775cc0c7ac1ffe3ec514d42a8f6df036a27216fa8",
+      "sourceVersion": 1,
+      "candidateVersion": 2,
+      "baseVersion": 1,
+      "candidateSha256": "3808aeeceaaaf62ae729c12031d0c5b86be60a95b209644703becfdeff8c37e3",
+      "reviewedSignature": "8a87c92c1b48a85b1d26b4e1fb5d686287421362826fc2a18606741bdedae5a5",
+      "assetChecksums": {
+        "interference-manual-half-full-path.svg": "630bcbd41d99ca21ce2a9cd27a9e1bc643645adc961b5a2499885586770e54de"
+      },
+      "runtimeProfileSha256": "d9d1bbf4a269a9a7b0e3a9cd4f5595f8dc45a85b77d3337b241b7dfa62968927",
+      "reviewDependencySha256": {
+        "tools/corpus_engineering/manual_support_d9d1_review.py": "0f87f6f223d7c9d0e1a21e94e40521451188813d4c938fb717c58651db01f739",
+        "tools/corpus_engineering/experiments_manual_support_revision_verifier.py": "3923af826ff84652e461cf73bc1f5117c5aabfd25b85d252b7d801a9887608f1",
+        "tools/corpus_engineering/review_contract.py": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+        "editorial/reviews/manual-experiments-eight-primary-20261125/input-projection.json": "8fdfbe4be78939411e5e83c0dfc9c82d6e238c68309f2bd501b9ab946e0d41fd",
+        "editorial/reviews/manual-experiments-eight-primary-20261125/exact-primary.json": "9c55e3d05dfe1d093f227bb03a142fb1d510d7015aa6bffa55352091c371c1ea",
+        "editorial/reviews/manual-experiments-eight-primary-20261125/derivations.json": "76041919b432f7936491e0593cf6fddf9e113b80ed28d4543a540a093ffcbe02",
+        "editorial/reviews/experiments-manual-support-263-independent-20261125/native-render.json": "0545e42b04af14c954668e162a4d589db48e3dbb2562d7edb142286e6c8095ea",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/reviewed-candidate-signatures.json": "dc2304492744060c268f458e957dcfcf25dd6809335829ab7a4d196a94c1b895",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/probe-epoch.mjs": "7fe22b43180e6d4ff50ff4cef22a0c5f1277514e8a4ec06addaf577df9820df7",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/code-probe.json": "efc4fc9374af1e4aa05550454530f04679a0fe48ccf2df7e1c7d2d90b36978d7",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/code-execution-receipt.json": "d53708313943729cd25934c8af90be32ed2f1deab647e34704b67f334ae1f894",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/actual-reconstructed-runtime-fingerprint.json": "a073a2d63cb89f17835b4e822d3118d620b6d16310da42b5b03c370672b70290",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/run-immutable-review.py": "4a968e0bf0c1485324c03af0b4ac6988e9a8bddc746ca30357c754bfe09080d4",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/protocol-private-consumer-reading.mjs": "6ddf7359cb0c7f7f788114a8df541fdd2d23323fd90d939930c076af6905b417",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/browser-execution-receipt.json": "ac3d99c372a5bf3ba431133aceb1a077926c2d0006da43e78cc26a73ae8d7c4f",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/browser-reading/report.json": "4a7c61383dc59d5523d8065987513e61b34b0980beebe99381daa71a272b71d9",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/durable-screenshot-map.json": "f4899cad73b92a4ec3dedc319dea940938d9a282265f7e9ab7dc907cd49efce7",
+        "tests/corpus/test_manual_support_d9d1_review.py": "7bfc823ccd05ef81404448e61abe558d18b3a51d142545e3a1ebca1d7ea58ddc"
+      },
+      "mode": "EXACT_ORACLE",
+      "candidateTextMathManualReview": {
+        "ok": true,
+        "checks": [
+          {
+            "claim": "independent selected point 1/2",
+            "actualExact": "0",
+            "expectedExact": "0",
+            "residual": "0",
+            "ok": true
+          },
+          {
+            "claim": "independent selected point 1",
+            "actualExact": "4",
+            "expectedExact": "4",
+            "residual": "0",
+            "ok": true
+          },
+          {
+            "claim": "phasor squared magnitude atpi",
+            "actualExact": "0",
+            "expectedExact": "0",
+            "residual": "0",
+            "ok": true
+          },
+          {
+            "claim": "phasor squared magnitude at2pi",
+            "actualExact": "16",
+            "expectedExact": "16",
+            "residual": "0",
+            "ok": true
+          },
+          {
+            "claim": "second maximum atzero path",
+            "actualExact": "4",
+            "expectedExact": "4",
+            "residual": "0",
+            "ok": true
+          },
+          {
+            "claim": "cancellation inverse unique in0..1",
+            "ok": true
+          },
+          {
+            "claim": "read endpoint claim A_{\\rm risultante}(1/2)=",
+            "ok": true
+          },
+          {
+            "claim": "read endpoint claim A_{\\rm risultante}(1)=",
+            "ok": true
+          },
+          {
+            "claim": "three independently read native figure panels",
+            "ok": true
+          },
+          {
+            "claim": "signed instantaneous bar common30px/cm 2",
+            "actualExact": "2",
+            "expectedExact": "2",
+            "residual": "0",
+            "ok": true
+          },
+          {
+            "claim": "signed instantaneous bar common30px/cm 2",
+            "actualExact": "2",
+            "expectedExact": "2",
+            "residual": "0",
+            "ok": true
+          },
+          {
+            "claim": "signed instantaneous bar common30px/cm 4",
+            "actualExact": "4",
+            "expectedExact": "4",
+            "residual": "0",
+            "ok": true
+          },
+          {
+            "claim": "signed instantaneous bar common30px/cm 2",
+            "actualExact": "2",
+            "expectedExact": "2",
+            "residual": "0",
+            "ok": true
+          },
+          {
+            "claim": "signed instantaneous bar common30px/cm -2",
+            "actualExact": "-2",
+            "expectedExact": "-2",
+            "residual": "0",
+            "ok": true
+          },
+          {
+            "claim": "zero resultant is explicitly zero, not nonzero bar",
+            "ok": true
+          },
+          {
+            "claim": "signed instantaneous bar common30px/cm 2",
+            "actualExact": "2",
+            "expectedExact": "2",
+            "residual": "0",
+            "ok": true
+          },
+          {
+            "claim": "signed instantaneous bar common30px/cm 2",
+            "actualExact": "2",
+            "expectedExact": "2",
+            "residual": "0",
+            "ok": true
+          },
+          {
+            "claim": "signed instantaneous bar common30px/cm 4",
+            "actualExact": "4",
+            "expectedExact": "4",
+            "residual": "0",
+            "ok": true
+          },
+          {
+            "claim": "independently read interference line |\\cos(\\pi/2)|=0",
+            "ok": true
+          },
+          {
+            "claim": "independently read interference line A_{\\rm risultante}(1/2)=4\\cdot0\\,\\mathrm{cm}",
+            "ok": true
+          },
+          {
+            "claim": "independently read interference line A_{\\rm risultante}(1/2)=0\\,\\mathrm{cm}",
+            "ok": true
+          },
+          {
+            "claim": "independently read interference line |\\cos\\pi|=1",
+            "ok": true
+          },
+          {
+            "claim": "independently read interference line A_{\\rm risultante}(1)=4\\cdot1\\,\\mathrm{cm}",
+            "ok": true
+          },
+          {
+            "claim": "independently read interference line A_{\\rm risultante}(1)=4\\,\\mathrm{cm}",
+            "ok": true
+          }
+        ],
+        "errors": []
+      },
+      "actualGeneratedQuestionReview": {
+        "id": "SIM-C5-L03-02",
+        "clock": null,
+        "samples": [
+          {
+            "x": 0.5,
+            "steps": [
+              [
+                "Individua il fenomeno",
+                "Le due sorgenti coerenti partono in fase, con uguale frequenza e ampiezza locale. Uno scarto di mezzo ciclo fa arrivare una cresta contro una valle. Dopo un ciclo completo torna il rinforzo.",
+                "A risultante = 2A × valore assoluto di cos(πΔs/λ), con A = 2 cm"
+              ],
+              [
+                "Esegui la misura",
+                "Regola «Differenza di cammino in lunghezze d’onda» e confronta la scena con il punto segnato sul grafico. Parti da 0, poi prova 0,5.",
+                "Differenza di cammino in lunghezze d’onda = 0,5 · Ampiezza risultante = 0 cm"
+              ],
+              [
+                "Controlla il calcolo",
+                "A risultante = 2A × valore assoluto di cos(πΔs/λ), con A = 2 cm. Sostituisci i dati e confronta il risultato con la lettura dello strumento.",
+                "4 × abs(cos(π × 0,5)) = 0 cm"
+              ],
+              [
+                "Ripeti con un altro dato",
+                "Prevedi la lettura con «Differenza di cammino in lunghezze d’onda» a 1. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.",
+                "A risultante = 2A × valore assoluto di cos(πΔs/λ), con A = 2 cm"
+              ]
+            ],
+            "solve": {
+              "x": 0.5,
+              "y": 0
+            }
+          },
+          {
+            "x": 1,
+            "steps": [
+              [
+                "Individua il fenomeno",
+                "Le due sorgenti coerenti partono in fase, con uguale frequenza e ampiezza locale. Uno scarto di mezzo ciclo fa arrivare una cresta contro una valle. Dopo un ciclo completo torna il rinforzo.",
+                "A risultante = 2A × valore assoluto di cos(πΔs/λ), con A = 2 cm"
+              ],
+              [
+                "Esegui la misura",
+                "Regola «Differenza di cammino in lunghezze d’onda» e confronta la scena con il punto segnato sul grafico. Parti da 0, poi prova 0,5.",
+                "Differenza di cammino in lunghezze d’onda = 1 · Ampiezza risultante = 4 cm"
+              ],
+              [
+                "Controlla il calcolo",
+                "A risultante = 2A × valore assoluto di cos(πΔs/λ), con A = 2 cm. Sostituisci i dati e confronta il risultato con la lettura dello strumento.",
+                "4 × abs(cos(π × 1)) = 4 cm"
+              ],
+              [
+                "Ripeti con un altro dato",
+                "Prevedi la lettura con «Differenza di cammino in lunghezze d’onda» a 1. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.",
+                "A risultante = 2A × valore assoluto di cos(πΔs/λ), con A = 2 cm"
+              ]
+            ],
+            "solve": {
+              "x": 1,
+              "y": 4
+            }
+          },
+          {
+            "x": 0.55,
+            "steps": [
+              [
+                "Individua il fenomeno",
+                "Le due sorgenti coerenti partono in fase, con uguale frequenza e ampiezza locale. Uno scarto di mezzo ciclo fa arrivare una cresta contro una valle. Dopo un ciclo completo torna il rinforzo.",
+                "A risultante = 2A × valore assoluto di cos(πΔs/λ), con A = 2 cm"
+              ],
+              [
+                "Esegui la misura",
+                "Regola «Differenza di cammino in lunghezze d’onda» e confronta la scena con il punto segnato sul grafico. Parti da 0, poi prova 0,5.",
+                "Differenza di cammino in lunghezze d’onda = 0,55 · Ampiezza risultante = 0,6257 cm"
+              ],
+              [
+                "Osserva la lettura del modello",
+                "Questa posizione serve all’esplorazione. Per il calcolo manuale usa i valori assegnati: 0,5 e 1.",
+                "Ampiezza risultante = 0,6257 cm"
+              ],
+              [
+                "Ripeti con un altro dato",
+                "Prevedi la lettura con «Differenza di cammino in lunghezze d’onda» a 1. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.",
+                "A risultante = 2A × valore assoluto di cos(πΔs/λ), con A = 2 cm"
+              ]
+            ],
+            "solve": {
+              "x": 0.55,
+              "y": 0.6257378601609241
+            }
+          }
+        ],
+        "assessments": [
+          {
+            "prompt": "Imposta «Differenza di cammino in lunghezze d’onda» su 0,5. Quale valore ottieni per «Ampiezza risultante»?",
+            "value": 0,
+            "unit": "cm",
+            "worked": "A risultante = 2A × valore assoluto di cos(πΔs/λ), con A = 2 cm. 4 × abs(cos(π × 0,5)) = 0 cm."
+          },
+          {
+            "prompt": "Due sorgenti coerenti partono in fase e arrivano alla sonda ciascuna con ampiezza 2 cm. I cammini differiscono di 1 lunghezze d’onda. Quale ampiezza risultante ottieni? Confronta il mezzo ciclo con il ciclo intero.",
+            "value": 4,
+            "unit": "cm",
+            "worked": "A risultante = 2A × valore assoluto di cos(πΔs/λ), con A = 2 cm. 4 × abs(cos(π × 1)) = 4 cm."
+          }
+        ],
+        "assessmentUnchanged": true,
+        "numberChecks": [
+          {
+            "index": 0,
+            "input": "0",
+            "display": "0",
+            "finiteManualEntryAccepted": true,
+            "commaEntryAccepted": true,
+            "displayNumberRoundtripAccepted": true,
+            "blankRejected": true,
+            "infiniteRejected": true
+          },
+          {
+            "index": 1,
+            "input": "4",
+            "display": "4",
+            "finiteManualEntryAccepted": true,
+            "commaEntryAccepted": true,
+            "displayNumberRoundtripAccepted": true,
+            "blankRejected": true,
+            "infiniteRejected": true
+          }
+        ],
+        "unitsDuplicatedInPrompt": false
+      },
+      "limitedGuideAndReadingDeliveryReview": {
+        "ok": true,
+        "errors": [],
+        "matrix": "8 records ×320/1440×actual native/fallback; 32 cases, not full scene acceptance"
+      },
+      "originalPublishedEditionJudgmentPreserved": {
+        "consumerCodeGeometryFailure": false,
+        "consumerObservedUiFailure": false,
+        "manualSupportGap": true,
+        "sourceManualityFailure": true,
+        "sourceScientificFailure": false
+      },
+      "nativeSvgBytesUnchangedFromIndividuallyReadOriginalReview": true,
+      "fullSceneUiReview": "NOT_RUN",
+      "existingConsumerGeometryGates": "OPEN_UNCHANGED",
+      "candidateState": "DRAFT",
+      "ok": false,
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "SIM-C5-L07-02",
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourceSha256": "b470a53daf69051ea6eadbc70408301390205a8737675f5feeb3d81d88b0daba",
+      "sourceVersion": 1,
+      "candidateVersion": 2,
+      "baseVersion": 1,
+      "candidateSha256": "d1fe7ac6c4e710370034d3a0eb7e3e3d46b4743b0fcb0fa7ae8abaa4ced82306",
+      "reviewedSignature": "43237df88a7bf77a7ef819d28991c871b299ba86dfaa15c44354294ab2df150c",
+      "assetChecksums": {
+        "beer-manual-successive-halves.svg": "ef4afffd6ca45eef21a0d8149239221bf89ed1bcd1d8a8445df00f9369e9323d"
+      },
+      "runtimeProfileSha256": "d9d1bbf4a269a9a7b0e3a9cd4f5595f8dc45a85b77d3337b241b7dfa62968927",
+      "reviewDependencySha256": {
+        "tools/corpus_engineering/manual_support_d9d1_review.py": "0f87f6f223d7c9d0e1a21e94e40521451188813d4c938fb717c58651db01f739",
+        "tools/corpus_engineering/experiments_manual_support_revision_verifier.py": "3923af826ff84652e461cf73bc1f5117c5aabfd25b85d252b7d801a9887608f1",
+        "tools/corpus_engineering/review_contract.py": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+        "editorial/reviews/manual-experiments-eight-primary-20261125/input-projection.json": "8fdfbe4be78939411e5e83c0dfc9c82d6e238c68309f2bd501b9ab946e0d41fd",
+        "editorial/reviews/manual-experiments-eight-primary-20261125/exact-primary.json": "9c55e3d05dfe1d093f227bb03a142fb1d510d7015aa6bffa55352091c371c1ea",
+        "editorial/reviews/manual-experiments-eight-primary-20261125/derivations.json": "76041919b432f7936491e0593cf6fddf9e113b80ed28d4543a540a093ffcbe02",
+        "editorial/reviews/experiments-manual-support-263-independent-20261125/native-render.json": "0545e42b04af14c954668e162a4d589db48e3dbb2562d7edb142286e6c8095ea",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/reviewed-candidate-signatures.json": "dc2304492744060c268f458e957dcfcf25dd6809335829ab7a4d196a94c1b895",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/probe-epoch.mjs": "7fe22b43180e6d4ff50ff4cef22a0c5f1277514e8a4ec06addaf577df9820df7",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/code-probe.json": "efc4fc9374af1e4aa05550454530f04679a0fe48ccf2df7e1c7d2d90b36978d7",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/code-execution-receipt.json": "d53708313943729cd25934c8af90be32ed2f1deab647e34704b67f334ae1f894",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/actual-reconstructed-runtime-fingerprint.json": "a073a2d63cb89f17835b4e822d3118d620b6d16310da42b5b03c370672b70290",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/run-immutable-review.py": "4a968e0bf0c1485324c03af0b4ac6988e9a8bddc746ca30357c754bfe09080d4",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/protocol-private-consumer-reading.mjs": "6ddf7359cb0c7f7f788114a8df541fdd2d23323fd90d939930c076af6905b417",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/browser-execution-receipt.json": "ac3d99c372a5bf3ba431133aceb1a077926c2d0006da43e78cc26a73ae8d7c4f",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/browser-reading/report.json": "4a7c61383dc59d5523d8065987513e61b34b0980beebe99381daa71a272b71d9",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/durable-screenshot-map.json": "f4899cad73b92a4ec3dedc319dea940938d9a282265f7e9ab7dc907cd49efce7",
+        "tests/corpus/test_manual_support_d9d1_review.py": "7bfc823ccd05ef81404448e61abe558d18b3a51d142545e3a1ebca1d7ea58ddc"
+      },
+      "mode": "EXACT_ORACLE",
+      "candidateTextMathManualReview": {
+        "ok": true,
+        "checks": [
+          {
+            "claim": "independent selected point 2",
+            "actualExact": "25",
+            "expectedExact": "25",
+            "residual": "0",
+            "ok": true
+          },
+          {
+            "claim": "independent selected point 3",
+            "actualExact": "25/2",
+            "expectedExact": "25/2",
+            "residual": "0",
+            "ok": true
+          },
+          {
+            "claim": "25percent isquarter",
+            "actualExact": "1/4",
+            "expectedExact": "1/4",
+            "residual": "0",
+            "ok": true
+          },
+          {
+            "claim": "12.5percent iseighth",
+            "actualExact": "1/8",
+            "expectedExact": "1/8",
+            "residual": "0",
+            "ok": true
+          },
+          {
+            "claim": "two successive multiplicative layers",
+            "actualExact": "1/4",
+            "expectedExact": "1/4",
+            "residual": "0",
+            "ok": true
+          },
+          {
+            "claim": "two-layer percentage quantity equality",
+            "ok": true
+          },
+          {
+            "claim": "three-layer percent quantities are consistently labelled",
+            "ok": true
+          },
+          {
+            "claim": "three independently read native figure panels",
+            "ok": true
+          },
+          {
+            "claim": "intensity common1.5px perpercentagepoint 100",
+            "actualExact": "100",
+            "expectedExact": "100",
+            "residual": "0",
+            "ok": true
+          },
+          {
+            "claim": "intensity common1.5px perpercentagepoint 25",
+            "actualExact": "25",
+            "expectedExact": "25",
+            "residual": "0",
+            "ok": true
+          },
+          {
+            "claim": "intensity common1.5px perpercentagepoint 25/2",
+            "actualExact": "25/2",
+            "expectedExact": "25/2",
+            "residual": "0",
+            "ok": true
+          }
+        ],
+        "errors": []
+      },
+      "actualGeneratedQuestionReview": {
+        "id": "SIM-C5-L07-02",
+        "clock": null,
+        "samples": [
+          {
+            "x": 2,
+            "steps": [
+              [
+                "Individua il fenomeno",
+                "Ogni spessore emivalente trasmette metà di ciò che gli arriva. Dopo tre ne resta un ottavo. Il fascio è monocromatico e il modello esclude la luce diffusa che rientra nel rivelatore.",
+                "I/I₀ = e^(−μx) = (½)ⁿ"
+              ],
+              [
+                "Esegui la misura",
+                "Regola «Spessore in strati emivalenti» e confronta la scena con il punto segnato sul grafico. Parti da 1, poi prova 3.",
+                "Spessore in strati emivalenti = 2 · Intensità trasmessa = 25 %"
+              ],
+              [
+                "Controlla il calcolo",
+                "I/I₀ = e^(−μx) = (½)ⁿ. Sostituisci i dati e confronta il risultato con la lettura dello strumento.",
+                "100 × 0,5^(2) = 25 %"
+              ],
+              [
+                "Ripeti con un altro dato",
+                "Prevedi la lettura con «Spessore in strati emivalenti» a 3. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.",
+                "I/I₀ = e^(−μx) = (½)ⁿ"
+              ]
+            ],
+            "solve": {
+              "x": 2,
+              "y": 25
+            }
+          },
+          {
+            "x": 3,
+            "steps": [
+              [
+                "Individua il fenomeno",
+                "Ogni spessore emivalente trasmette metà di ciò che gli arriva. Dopo tre ne resta un ottavo. Il fascio è monocromatico e il modello esclude la luce diffusa che rientra nel rivelatore.",
+                "I/I₀ = e^(−μx) = (½)ⁿ"
+              ],
+              [
+                "Esegui la misura",
+                "Regola «Spessore in strati emivalenti» e confronta la scena con il punto segnato sul grafico. Parti da 1, poi prova 3.",
+                "Spessore in strati emivalenti = 3 · Intensità trasmessa = 12,5 %"
+              ],
+              [
+                "Controlla il calcolo",
+                "I/I₀ = e^(−μx) = (½)ⁿ. Sostituisci i dati e confronta il risultato con la lettura dello strumento.",
+                "100 × 0,5^(3) = 12,5 %"
+              ],
+              [
+                "Ripeti con un altro dato",
+                "Prevedi la lettura con «Spessore in strati emivalenti» a 3. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.",
+                "I/I₀ = e^(−μx) = (½)ⁿ"
+              ]
+            ],
+            "solve": {
+              "x": 3,
+              "y": 12.5
+            }
+          },
+          {
+            "x": 2.5,
+            "steps": [
+              [
+                "Individua il fenomeno",
+                "Ogni spessore emivalente trasmette metà di ciò che gli arriva. Dopo tre ne resta un ottavo. Il fascio è monocromatico e il modello esclude la luce diffusa che rientra nel rivelatore.",
+                "I/I₀ = e^(−μx) = (½)ⁿ"
+              ],
+              [
+                "Esegui la misura",
+                "Regola «Spessore in strati emivalenti» e confronta la scena con il punto segnato sul grafico. Parti da 1, poi prova 3.",
+                "Spessore in strati emivalenti = 2,5 · Intensità trasmessa = 17,68 %"
+              ],
+              [
+                "Osserva la lettura del modello",
+                "Questa posizione serve all’esplorazione. Per il calcolo manuale usa i valori assegnati: 2 e 3.",
+                "Intensità trasmessa = 17,68 %"
+              ],
+              [
+                "Ripeti con un altro dato",
+                "Prevedi la lettura con «Spessore in strati emivalenti» a 3. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.",
+                "I/I₀ = e^(−μx) = (½)ⁿ"
+              ]
+            ],
+            "solve": {
+              "x": 2.5,
+              "y": 17.677669529663685
+            }
+          }
+        ],
+        "assessments": [
+          {
+            "prompt": "Imposta «Spessore in strati emivalenti» su 2. Quale valore ottieni per «Intensità trasmessa»?",
+            "value": 25,
+            "unit": "%",
+            "worked": "I/I₀ = e^(−μx) = (½)ⁿ. 100 × 0,5^(2) = 25 %."
+          },
+          {
+            "prompt": "Un fascio monocromatico attraversa 3 strati emivalenti uguali. Ciascuno trasmette metà dell’intensità che riceve. Quale percentuale dell’intensità iniziale esce dall’ultimo strato? Procedi per dimezzamenti.",
+            "value": 12.5,
+            "unit": "%",
+            "worked": "I/I₀ = e^(−μx) = (½)ⁿ. 100 × 0,5^(3) = 12,5 %."
+          }
+        ],
+        "assessmentUnchanged": true,
+        "numberChecks": [
+          {
+            "index": 0,
+            "input": "25",
+            "display": "25",
+            "finiteManualEntryAccepted": true,
+            "commaEntryAccepted": true,
+            "displayNumberRoundtripAccepted": true,
+            "blankRejected": true,
+            "infiniteRejected": true
+          },
+          {
+            "index": 1,
+            "input": "12.5",
+            "display": "12,5",
+            "finiteManualEntryAccepted": true,
+            "commaEntryAccepted": true,
+            "displayNumberRoundtripAccepted": true,
+            "blankRejected": true,
+            "infiniteRejected": true
+          }
+        ],
+        "unitsDuplicatedInPrompt": false
+      },
+      "limitedGuideAndReadingDeliveryReview": {
+        "ok": true,
+        "errors": [],
+        "matrix": "8 records ×320/1440×actual native/fallback; 32 cases, not full scene acceptance"
+      },
+      "originalPublishedEditionJudgmentPreserved": {
+        "consumerCodeGeometryFailure": false,
+        "consumerObservedUiFailure": false,
+        "manualSupportGap": true,
+        "sourceManualityFailure": false,
+        "sourceScientificFailure": false
+      },
+      "nativeSvgBytesUnchangedFromIndividuallyReadOriginalReview": true,
+      "fullSceneUiReview": "NOT_RUN",
+      "existingConsumerGeometryGates": "OPEN_UNCHANGED",
+      "candidateState": "DRAFT",
+      "ok": false,
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "SIM-C5-L08-02",
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourceSha256": "97a549bff7d4c05e610a55bc33d7a05813900afc4df46e9826b868ffbc7a4aa9",
+      "sourceVersion": 1,
+      "candidateVersion": 2,
+      "baseVersion": 1,
+      "candidateSha256": "ad92a565990abb58d9f10328f859099a7100bf058d7d0b6b989a7504f0847cf2",
+      "reviewedSignature": "6a796a3a01c80316bc0ca72d7256d2263083d385ae44a88f372e47c0847d6f33",
+      "assetChecksums": {
+        "decay-manual-expected-population.svg": "f31dac9a35b675aa3c5366c8a5f927598b151e295c3f14d4e691f5b7ef75d54b"
+      },
+      "runtimeProfileSha256": "d9d1bbf4a269a9a7b0e3a9cd4f5595f8dc45a85b77d3337b241b7dfa62968927",
+      "reviewDependencySha256": {
+        "tools/corpus_engineering/manual_support_d9d1_review.py": "0f87f6f223d7c9d0e1a21e94e40521451188813d4c938fb717c58651db01f739",
+        "tools/corpus_engineering/experiments_manual_support_revision_verifier.py": "3923af826ff84652e461cf73bc1f5117c5aabfd25b85d252b7d801a9887608f1",
+        "tools/corpus_engineering/review_contract.py": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+        "editorial/reviews/manual-experiments-eight-primary-20261125/input-projection.json": "8fdfbe4be78939411e5e83c0dfc9c82d6e238c68309f2bd501b9ab946e0d41fd",
+        "editorial/reviews/manual-experiments-eight-primary-20261125/exact-primary.json": "9c55e3d05dfe1d093f227bb03a142fb1d510d7015aa6bffa55352091c371c1ea",
+        "editorial/reviews/manual-experiments-eight-primary-20261125/derivations.json": "76041919b432f7936491e0593cf6fddf9e113b80ed28d4543a540a093ffcbe02",
+        "editorial/reviews/experiments-manual-support-263-independent-20261125/native-render.json": "0545e42b04af14c954668e162a4d589db48e3dbb2562d7edb142286e6c8095ea",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/reviewed-candidate-signatures.json": "dc2304492744060c268f458e957dcfcf25dd6809335829ab7a4d196a94c1b895",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/probe-epoch.mjs": "7fe22b43180e6d4ff50ff4cef22a0c5f1277514e8a4ec06addaf577df9820df7",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/code-probe.json": "efc4fc9374af1e4aa05550454530f04679a0fe48ccf2df7e1c7d2d90b36978d7",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/code-execution-receipt.json": "d53708313943729cd25934c8af90be32ed2f1deab647e34704b67f334ae1f894",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/actual-reconstructed-runtime-fingerprint.json": "a073a2d63cb89f17835b4e822d3118d620b6d16310da42b5b03c370672b70290",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/run-immutable-review.py": "4a968e0bf0c1485324c03af0b4ac6988e9a8bddc746ca30357c754bfe09080d4",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/protocol-private-consumer-reading.mjs": "6ddf7359cb0c7f7f788114a8df541fdd2d23323fd90d939930c076af6905b417",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/browser-execution-receipt.json": "ac3d99c372a5bf3ba431133aceb1a077926c2d0006da43e78cc26a73ae8d7c4f",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/browser-reading/report.json": "4a7c61383dc59d5523d8065987513e61b34b0980beebe99381daa71a272b71d9",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/durable-screenshot-map.json": "f4899cad73b92a4ec3dedc319dea940938d9a282265f7e9ab7dc907cd49efce7",
+        "tests/corpus/test_manual_support_d9d1_review.py": "7bfc823ccd05ef81404448e61abe558d18b3a51d142545e3a1ebca1d7ea58ddc"
+      },
+      "mode": "EXACT_ORACLE",
+      "candidateTextMathManualReview": {
+        "ok": true,
+        "checks": [
+          {
+            "claim": "independent selected point 2",
+            "actualExact": "16",
+            "expectedExact": "16",
+            "residual": "0",
+            "ok": true
+          },
+          {
+            "claim": "independent selected point 4",
+            "actualExact": "4",
+            "expectedExact": "4",
+            "residual": "0",
+            "ok": true
+          },
+          {
+            "claim": "inverse four half-lives",
+            "actualExact": "16",
+            "expectedExact": "16",
+            "residual": "0",
+            "ok": true
+          },
+          {
+            "claim": "constant lambda activity ratio",
+            "actualExact": "1/16",
+            "expectedExact": "1/16",
+            "residual": "0",
+            "ok": true
+          },
+          {
+            "claim": "half-life ratio dimensionless",
+            "ok": true
+          },
+          {
+            "claim": "read endpoint claim \\overline N(2T_{1/2})=",
+            "ok": true
+          },
+          {
+            "claim": "read endpoint claim \\overline N(4T_{1/2})=",
+            "ok": true
+          },
+          {
+            "claim": "three independently read native figure panels",
+            "ok": true
+          },
+          {
+            "claim": "expected population illustrated 64",
+            "actualExact": "64",
+            "expectedExact": "64",
+            "residual": "0",
+            "ok": true
+          },
+          {
+            "claim": "same64 illustrative slots",
+            "actualExact": "64",
+            "expectedExact": "64",
+            "residual": "0",
+            "ok": true
+          },
+          {
+            "claim": "expected population illustrated 16",
+            "actualExact": "16",
+            "expectedExact": "16",
+            "residual": "0",
+            "ok": true
+          },
+          {
+            "claim": "same64 illustrative slots",
+            "actualExact": "64",
+            "expectedExact": "64",
+            "residual": "0",
+            "ok": true
+          },
+          {
+            "claim": "expected population illustrated 4",
+            "actualExact": "4",
+            "expectedExact": "4",
+            "residual": "0",
+            "ok": true
+          },
+          {
+            "claim": "same64 illustrative slots",
+            "actualExact": "64",
+            "expectedExact": "64",
+            "residual": "0",
+            "ok": true
+          }
+        ],
+        "errors": []
+      },
+      "actualGeneratedQuestionReview": {
+        "id": "SIM-C5-L08-02",
+        "clock": {
+          "input": true,
+          "clockUnit": "T½",
+          "pace": 1
+        },
+        "samples": [
+          {
+            "x": 2,
+            "steps": [
+              [
+                "Individua il fenomeno",
+                "Le luci visualizzano il numero medio previsto, arrotondato solo per il disegno. Non identificano l’istante di decadimento del singolo nucleo. A emivita fissata anche l’attività media si dimezza.",
+                "N = 64 × 2^(−t/T½); attività = (ln 2/T½)N"
+              ],
+              [
+                "Esegui la misura",
+                "Regola «Tempo in emivite» e confronta la scena con il punto segnato sul grafico. Parti da 1, poi prova 3.",
+                "Tempo in emivite = 2 · Numero medio di nuclei rimasti = 16"
+              ],
+              [
+                "Controlla il calcolo",
+                "N = 64 × 2^(−t/T½); attività = (ln 2/T½)N. Sostituisci i dati e confronta il risultato con la lettura dello strumento.",
+                "64 × 0,5^(2) = 16"
+              ],
+              [
+                "Ripeti con un altro dato",
+                "Prevedi la lettura con «Tempo in emivite» a 4. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.",
+                "N = 64 × 2^(−t/T½); attività = (ln 2/T½)N"
+              ]
+            ],
+            "solve": {
+              "x": 2,
+              "y": 16
+            }
+          },
+          {
+            "x": 4,
+            "steps": [
+              [
+                "Individua il fenomeno",
+                "Le luci visualizzano il numero medio previsto, arrotondato solo per il disegno. Non identificano l’istante di decadimento del singolo nucleo. A emivita fissata anche l’attività media si dimezza.",
+                "N = 64 × 2^(−t/T½); attività = (ln 2/T½)N"
+              ],
+              [
+                "Esegui la misura",
+                "Regola «Tempo in emivite» e confronta la scena con il punto segnato sul grafico. Parti da 1, poi prova 3.",
+                "Tempo in emivite = 4 · Numero medio di nuclei rimasti = 4"
+              ],
+              [
+                "Controlla il calcolo",
+                "N = 64 × 2^(−t/T½); attività = (ln 2/T½)N. Sostituisci i dati e confronta il risultato con la lettura dello strumento.",
+                "64 × 0,5^(4) = 4"
+              ],
+              [
+                "Ripeti con un altro dato",
+                "Prevedi la lettura con «Tempo in emivite» a 4. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.",
+                "N = 64 × 2^(−t/T½); attività = (ln 2/T½)N"
+              ]
+            ],
+            "solve": {
+              "x": 4,
+              "y": 4
+            }
+          },
+          {
+            "x": 2.5,
+            "steps": [
+              [
+                "Individua il fenomeno",
+                "Le luci visualizzano il numero medio previsto, arrotondato solo per il disegno. Non identificano l’istante di decadimento del singolo nucleo. A emivita fissata anche l’attività media si dimezza.",
+                "N = 64 × 2^(−t/T½); attività = (ln 2/T½)N"
+              ],
+              [
+                "Esegui la misura",
+                "Regola «Tempo in emivite» e confronta la scena con il punto segnato sul grafico. Parti da 1, poi prova 3.",
+                "Tempo in emivite = 2,5 · Numero medio di nuclei rimasti = 11,31"
+              ],
+              [
+                "Osserva la lettura del modello",
+                "Questa posizione serve all’esplorazione. Per il calcolo manuale usa i valori assegnati: 2 e 4.",
+                "Numero medio di nuclei rimasti = 11,31"
+              ],
+              [
+                "Ripeti con un altro dato",
+                "Prevedi la lettura con «Tempo in emivite» a 4. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.",
+                "N = 64 × 2^(−t/T½); attività = (ln 2/T½)N"
+              ]
+            ],
+            "solve": {
+              "x": 2.5,
+              "y": 11.31370849898476
+            }
+          }
+        ],
+        "assessments": [
+          {
+            "prompt": "Imposta «Tempo in emivite» su 2. Quale valore ottieni per «Numero medio di nuclei rimasti»?",
+            "value": 16,
+            "unit": "numero puro",
+            "worked": "N = 64 × 2^(−t/T½); attività = (ln 2/T½)N. 64 × 0,5^(2) = 16."
+          },
+          {
+            "prompt": "Un insieme parte con 64 nuclei instabili indipendenti, tutti dello stesso isotopo. Dopo 4 emivite, quale numero medio di nuclei non decaduti prevede il modello? Dimezza il valore medio una volta per ogni emivita.",
+            "value": 4,
+            "unit": "numero puro",
+            "worked": "N = 64 × 2^(−t/T½); attività = (ln 2/T½)N. 64 × 0,5^(4) = 4."
+          }
+        ],
+        "assessmentUnchanged": true,
+        "numberChecks": [
+          {
+            "index": 0,
+            "input": "16",
+            "display": "16",
+            "finiteManualEntryAccepted": true,
+            "commaEntryAccepted": true,
+            "displayNumberRoundtripAccepted": true,
+            "blankRejected": true,
+            "infiniteRejected": true
+          },
+          {
+            "index": 1,
+            "input": "4",
+            "display": "4",
+            "finiteManualEntryAccepted": true,
+            "commaEntryAccepted": true,
+            "displayNumberRoundtripAccepted": true,
+            "blankRejected": true,
+            "infiniteRejected": true
+          }
+        ],
+        "unitsDuplicatedInPrompt": false
+      },
+      "limitedGuideAndReadingDeliveryReview": {
+        "ok": true,
+        "errors": [],
+        "matrix": "8 records ×320/1440×actual native/fallback; 32 cases, not full scene acceptance"
+      },
+      "originalPublishedEditionJudgmentPreserved": {
+        "consumerCodeGeometryFailure": false,
+        "consumerObservedUiFailure": false,
+        "manualSupportGap": true,
+        "sourceManualityFailure": false,
+        "sourceScientificFailure": false
+      },
+      "nativeSvgBytesUnchangedFromIndividuallyReadOriginalReview": true,
+      "fullSceneUiReview": "NOT_RUN",
+      "existingConsumerGeometryGates": "OPEN_UNCHANGED",
+      "candidateState": "DRAFT",
+      "ok": false,
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "SIM-C5-L09-02",
+      "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+      "sourceSha256": "8d1449cddaa11ad052bde7d338aaeeded2a27751c598377cc8970a755d75c2ca",
+      "sourceVersion": 1,
+      "candidateVersion": 2,
+      "baseVersion": 1,
+      "candidateSha256": "16cfe27f334d361ed701e84e4b82e0796e1a94cb7dc31e041d8eafab793046e8",
+      "reviewedSignature": "de87edc4de84c794dfe18f6ac310a4cb027b053cc70da9f5c64ba3828656b9b2",
+      "assetChecksums": {
+        "snell-manual-bounded-angles.svg": "2baf01eb00752263f2381cb10846cfd0d8573333c6304f0b3c8c4336132efa19"
+      },
+      "runtimeProfileSha256": "d9d1bbf4a269a9a7b0e3a9cd4f5595f8dc45a85b77d3337b241b7dfa62968927",
+      "reviewDependencySha256": {
+        "tools/corpus_engineering/manual_support_d9d1_review.py": "0f87f6f223d7c9d0e1a21e94e40521451188813d4c938fb717c58651db01f739",
+        "tools/corpus_engineering/experiments_manual_support_revision_verifier.py": "3923af826ff84652e461cf73bc1f5117c5aabfd25b85d252b7d801a9887608f1",
+        "tools/corpus_engineering/review_contract.py": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+        "editorial/reviews/manual-experiments-eight-primary-20261125/input-projection.json": "8fdfbe4be78939411e5e83c0dfc9c82d6e238c68309f2bd501b9ab946e0d41fd",
+        "editorial/reviews/manual-experiments-eight-primary-20261125/exact-primary.json": "9c55e3d05dfe1d093f227bb03a142fb1d510d7015aa6bffa55352091c371c1ea",
+        "editorial/reviews/manual-experiments-eight-primary-20261125/derivations.json": "76041919b432f7936491e0593cf6fddf9e113b80ed28d4543a540a093ffcbe02",
+        "editorial/reviews/experiments-manual-support-263-independent-20261125/native-render.json": "0545e42b04af14c954668e162a4d589db48e3dbb2562d7edb142286e6c8095ea",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/reviewed-candidate-signatures.json": "dc2304492744060c268f458e957dcfcf25dd6809335829ab7a4d196a94c1b895",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/probe-epoch.mjs": "7fe22b43180e6d4ff50ff4cef22a0c5f1277514e8a4ec06addaf577df9820df7",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/code-probe.json": "efc4fc9374af1e4aa05550454530f04679a0fe48ccf2df7e1c7d2d90b36978d7",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/code-execution-receipt.json": "d53708313943729cd25934c8af90be32ed2f1deab647e34704b67f334ae1f894",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/actual-reconstructed-runtime-fingerprint.json": "a073a2d63cb89f17835b4e822d3118d620b6d16310da42b5b03c370672b70290",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/run-immutable-review.py": "4a968e0bf0c1485324c03af0b4ac6988e9a8bddc746ca30357c754bfe09080d4",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/protocol-private-consumer-reading.mjs": "6ddf7359cb0c7f7f788114a8df541fdd2d23323fd90d939930c076af6905b417",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/browser-execution-receipt.json": "ac3d99c372a5bf3ba431133aceb1a077926c2d0006da43e78cc26a73ae8d7c4f",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/browser-reading/report.json": "4a7c61383dc59d5523d8065987513e61b34b0980beebe99381daa71a272b71d9",
+        "editorial/reviews/independent-guide-runtime-d9d1-20261126/durable-screenshot-map.json": "f4899cad73b92a4ec3dedc319dea940938d9a282265f7e9ab7dc907cd49efce7",
+        "tests/corpus/test_manual_support_d9d1_review.py": "7bfc823ccd05ef81404448e61abe558d18b3a51d142545e3a1ebca1d7ea58ddc"
+      },
+      "mode": "EXACT_ORACLE",
+      "candidateTextMathManualReview": {
+        "ok": true,
+        "checks": [
+          {
+            "claim": "independent selected point 30",
+            "actualExact": "180*asin(1/3)/pi",
+            "expectedExact": "180*asin(1/3)/pi",
+            "residual": "0",
+            "ok": true
+          },
+          {
+            "claim": "independent selected point 45",
+            "actualExact": "180*asin(sqrt(2)/3)/pi",
+            "expectedExact": "180*asin(sqrt(2)/3)/pi",
+            "residual": "0",
+            "ok": true
+          },
+          {
+            "claim": "first exact target sine",
+            "actualExact": "1/3",
+            "expectedExact": "1/3",
+            "residual": "0",
+            "ok": true
+          },
+          {
+            "claim": "second exact target sine",
+            "actualExact": "sqrt(2)/3",
+            "expectedExact": "sqrt(2)/3",
+            "residual": "0",
+            "ok": true
+          },
+          {
+            "claim": "inverse index from first sine",
+            "actualExact": "3/2",
+            "expectedExact": "3/2",
+            "residual": "0",
+            "ok": true
+          },
+          {
+            "claim": "no low-to-high TIR for source range",
+            "ok": true
+          },
+          {
+            "claim": "given sin19.45 upper bound true",
+            "ok": true
+          },
+          {
+            "claim": "given sin19.5 lower bound true",
+            "ok": true
+          },
+          {
+            "claim": "first rational bracket contains1/3",
+            "ok": true
+          },
+          {
+            "claim": "given square-root bounds true",
+            "ok": true
+          },
+          {
+            "claim": "given sin28.1 upper bound true",
+            "ok": true
+          },
+          {
+            "claim": "given sin28.15 lower bound true",
+            "ok": true
+          },
+          {
+            "claim": "second supplied rational chain",
+            "ok": true
+          },
+          {
+            "claim": "first angle bound ensures accepted0.05degree error",
+            "ok": true
+          },
+          {
+            "claim": "second angle bound ensures accepted0.05degree error",
+            "ok": true
+          },
+          {
+            "claim": "three independently read native figure panels",
+            "ok": true
+          },
+          {
+            "claim": "raySnell sine ratio 0",
+            "ok": true
+          },
+          {
+            "claim": "raySnell sine ratio 30",
+            "ok": true
+          },
+          {
+            "claim": "raySnell sine ratio 45",
+            "ok": true
+          }
+        ],
+        "errors": []
+      },
+      "actualGeneratedQuestionReview": {
+        "id": "SIM-C5-L09-02",
+        "clock": null,
+        "samples": [
+          {
+            "x": 30,
+            "steps": [
+              [
+                "Individua il fenomeno",
+                "Gli angoli sono misurati dalla normale alla superficie piana. Nel vetro la luce rallenta. All’incidenza normale cambia velocità ma la direzione rimane la stessa.",
+                "n₁ sin θ₁ = n₂ sin θ₂; n₁ = 1, n₂ = 1,5"
+              ],
+              [
+                "Esegui la misura",
+                "Regola «Angolo incidente in aria» e confronta la scena con il punto segnato sul grafico. Parti da 0 °, poi prova 30 °.",
+                "Angolo incidente in aria = 30 ° · Angolo rifratto nel vetro = 19,47 °"
+              ],
+              [
+                "Controlla il calcolo",
+                "n₁ sin θ₁ = n₂ sin θ₂; n₁ = 1, n₂ = 1,5. Sostituisci i dati e confronta il risultato con la lettura dello strumento.",
+                "arcsin(sin(30°) / 1,5) × 180 / π ≈ 19,47 °"
+              ],
+              [
+                "Ripeti con un altro dato",
+                "Prevedi la lettura con «Angolo incidente in aria» a 45 °. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.",
+                "n₁ sin θ₁ = n₂ sin θ₂; n₁ = 1, n₂ = 1,5"
+              ]
+            ],
+            "solve": {
+              "x": 30,
+              "y": 19.47122063449069
+            }
+          },
+          {
+            "x": 45,
+            "steps": [
+              [
+                "Individua il fenomeno",
+                "Gli angoli sono misurati dalla normale alla superficie piana. Nel vetro la luce rallenta. All’incidenza normale cambia velocità ma la direzione rimane la stessa.",
+                "n₁ sin θ₁ = n₂ sin θ₂; n₁ = 1, n₂ = 1,5"
+              ],
+              [
+                "Esegui la misura",
+                "Regola «Angolo incidente in aria» e confronta la scena con il punto segnato sul grafico. Parti da 0 °, poi prova 30 °.",
+                "Angolo incidente in aria = 45 ° · Angolo rifratto nel vetro = 28,13 °"
+              ],
+              [
+                "Controlla il calcolo",
+                "n₁ sin θ₁ = n₂ sin θ₂; n₁ = 1, n₂ = 1,5. Sostituisci i dati e confronta il risultato con la lettura dello strumento.",
+                "arcsin(sin(45°) / 1,5) × 180 / π ≈ 28,13 °"
+              ],
+              [
+                "Ripeti con un altro dato",
+                "Prevedi la lettura con «Angolo incidente in aria» a 45 °. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.",
+                "n₁ sin θ₁ = n₂ sin θ₂; n₁ = 1, n₂ = 1,5"
+              ]
+            ],
+            "solve": {
+              "x": 45,
+              "y": 28.1255057020557
+            }
+          },
+          {
+            "x": 5,
+            "steps": [
+              [
+                "Individua il fenomeno",
+                "Gli angoli sono misurati dalla normale alla superficie piana. Nel vetro la luce rallenta. All’incidenza normale cambia velocità ma la direzione rimane la stessa.",
+                "n₁ sin θ₁ = n₂ sin θ₂; n₁ = 1, n₂ = 1,5"
+              ],
+              [
+                "Esegui la misura",
+                "Regola «Angolo incidente in aria» e confronta la scena con il punto segnato sul grafico. Parti da 0 °, poi prova 30 °.",
+                "Angolo incidente in aria = 5 ° · Angolo rifratto nel vetro = 3,331 °"
+              ],
+              [
+                "Osserva la lettura del modello",
+                "Questa posizione serve all’esplorazione. Per il calcolo manuale usa i valori assegnati: 30 ° e 45 °.",
+                "Angolo rifratto nel vetro = 3,331 °"
+              ],
+              [
+                "Ripeti con un altro dato",
+                "Prevedi la lettura con «Angolo incidente in aria» a 45 °. Esegui il controllo nel riquadro sotto il banco e spiega con parole tue il risultato.",
+                "n₁ sin θ₁ = n₂ sin θ₂; n₁ = 1, n₂ = 1,5"
+              ]
+            ],
+            "solve": {
+              "x": 5,
+              "y": 3.3309802044526546
+            }
+          }
+        ],
+        "assessments": [
+          {
+            "prompt": "Imposta «Angolo incidente in aria» su 30 °. Quale valore ottieni per «Angolo rifratto nel vetro»?",
+            "value": 19.47122063449069,
+            "unit": "°",
+            "worked": "n₁ sin θ₁ = n₂ sin θ₂; n₁ = 1, n₂ = 1,5. arcsin(sin(30°) / 1,5) × 180 / π ≈ 19,47 °."
+          },
+          {
+            "prompt": "Il raggio passa dall’aria (n₁=1) al vetro (n₂=3/2), con incidenza 45 ° dalla normale. Trova prima il seno dell’angolo rifratto; poi usa gli intervalli forniti nella spiegazione e inserisci una stima in gradi con errore inferiore a 0,05°.",
+            "value": 28.1255057020557,
+            "unit": "°",
+            "worked": "n₁ sin θ₁ = n₂ sin θ₂; n₁ = 1, n₂ = 1,5. arcsin(sin(45°) / 1,5) × 180 / π ≈ 28,13 °."
+          }
+        ],
+        "assessmentUnchanged": true,
+        "numberChecks": [
+          {
+            "index": 0,
+            "input": "19.5",
+            "display": "19,47",
+            "finiteManualEntryAccepted": true,
+            "commaEntryAccepted": true,
+            "displayNumberRoundtripAccepted": true,
+            "blankRejected": true,
+            "infiniteRejected": true
+          },
+          {
+            "index": 1,
+            "input": "28.1",
+            "display": "28,13",
+            "finiteManualEntryAccepted": true,
+            "commaEntryAccepted": true,
+            "displayNumberRoundtripAccepted": true,
+            "blankRejected": true,
+            "infiniteRejected": true
+          }
+        ],
+        "unitsDuplicatedInPrompt": false
+      },
+      "limitedGuideAndReadingDeliveryReview": {
+        "ok": true,
+        "errors": [],
+        "matrix": "8 records ×320/1440×actual native/fallback; 32 cases, not full scene acceptance"
+      },
+      "originalPublishedEditionJudgmentPreserved": {
+        "consumerCodeGeometryFailure": true,
+        "consumerObservedUiFailure": false,
+        "manualSupportGap": true,
+        "sourceManualityFailure": true,
+        "sourceScientificFailure": false
+      },
+      "nativeSvgBytesUnchangedFromIndividuallyReadOriginalReview": true,
+      "fullSceneUiReview": "NOT_RUN",
+      "existingConsumerGeometryGates": "OPEN_UNCHANGED",
+      "candidateState": "DRAFT",
+      "ok": false,
+      "activityCredit": 0,
+      "humanApproval": "NOT_RUN",
+      "publicationAction": "NONE"
+    }
+  ],
+  "candidateTextMathManualPassCount": 8,
+  "limitedGuideAndReadingCases": 32,
+  "fullActivityAcceptances": 0,
+  "activityCredit": 0,
+  "original139PartialInventoryNotPromoted": true,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}
