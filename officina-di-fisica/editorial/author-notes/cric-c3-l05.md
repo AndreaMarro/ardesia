@@ -78,7 +78,7 @@ Famiglia: `manico-di-metallo-e-manico-di-legno`; difficoltà 1; versione 2/base 
 
 ## C3-Q046
 
-Compito: Una superficie passa da 300 a 450 K mantenendo area ed emissività costanti. Per la potenza totale emessa usa P=εσAT⁴ e trascura in questo confronto l’assorbimento. Qual è P_f/P_i?
+Compito: Una superficie passa da 300 a 450 K mantenendo area A>0 ed emissività ε>0 positive e costanti. Per la potenza totale emessa usa P=εσAT⁴ e trascura in questo confronto l’assorbimento. Qual è P_f/P_i?
 
 Procedimento: Il rapporto delle temperature assolute è 450/300=3/2. Gli altri fattori della legge si cancellano. Elevo il rapporto alla quarta: (3/2)⁴=81/16. Il risultato è adimensionale e riguarda l’emissione, non il saldo netto con un ambiente.
 
