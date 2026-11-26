@@ -151,7 +151,6 @@ export const ondulatoria = {
       if (s.frazioneEco !== undefined) {
         const at = left + d * s.frazioneEco;
         b.ball([at, 1.01, 0.34], 0.13, c.viola);
-        b.label([at, 1.43, 0.36], s.frazioneEco >= 1 - 1e-8 ? 'Riflessione' : 'Impulso', c.viola);
       }
       return;
     }
