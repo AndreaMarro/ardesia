@@ -1,14 +1,14 @@
 {
   "schemaVersion": "1.0.0",
   "status": "ALL_TERMINAL_EVIDENCE_SAVED_GLOBAL_GATE_STILL_REQUIRED",
-  "registrySha256": "e83e2ca0ef40f4d02f881d992c3b349d2f771ab00d7b0bdec7c81fad99d7e308",
+  "registrySha256": "e553ca85b451c375710d91299c6b86abd8a32a6f7ea10769aa6433bd77135ee4",
   "runtimeSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
   "protocolSha256": "b77d90368c3fa4d7fee43db65b402804615e0ba353f6514d699864e2cbd46372",
   "runnerSha256": "6da021319685cc5c64b724c0defc040d87a176f2114fa29d4c9a6b0b52521d2b",
   "helperSha256": "95742b52f29e8b94d18aedf49245e737badfdf00a20d70279a577a36b5a1bef9",
-  "expectedBatches": 219,
-  "savedBatches": 219,
-  "savedCases": 9987,
+  "expectedBatches": 229,
+  "savedBatches": 229,
+  "savedCases": 10467,
   "checkpointCredit": 0,
   "humanApproval": "NOT_RUN",
   "publicationAction": "NONE",
@@ -2071,6 +2071,106 @@
       "reportSha256": "8aeed1114415c6db28a16c985c05b4f37034986a98ea018c19726d8b46a8afc0",
       "terminalMarkerPath": "editorial/reviews/runtime1a3502eb7459-terminal-evidence/capacitor-energy-219-completion.json",
       "terminalMarkerSha256": "18f38b436e98a1991b600582c4cab35f2caf3423d7cb8b04e63cdffb58d22579",
+      "terminalExitCode": 0
+    },
+    {
+      "batch": "parallel-capacitors-220",
+      "caseCount": 48,
+      "packageFileSha256": "26b3c0dcb54f85d2815f405dfdfc33f6bd5b2354750c76d0df2bd0512fada9b8",
+      "reportPath": "editorial/reviews/runtime1a3502eb7459-terminal-evidence/parallel-capacitors-220-report.json",
+      "reportSha256": "a7126ddd75e47f5e7734db38cc119fb098fc97eace5a962fa93878ecbd72686b",
+      "terminalMarkerPath": "editorial/reviews/runtime1a3502eb7459-terminal-evidence/parallel-capacitors-220-completion.json",
+      "terminalMarkerSha256": "c4044615a8255b444000d5098bcb4966a1f24f7aefd255ec7a5f19232759d9d5",
+      "terminalExitCode": 0
+    },
+    {
+      "batch": "series-capacitors-221",
+      "caseCount": 48,
+      "packageFileSha256": "4771baf9f46b7982f871c4dc5600db1cfee4f603e601df6a1cfcfb591678a72e",
+      "reportPath": "editorial/reviews/runtime1a3502eb7459-terminal-evidence/series-capacitors-221-report.json",
+      "reportSha256": "e50f6138f1a78946e1eb462184fdc611b40cf3de8c002c27eca0e9bca7967c24",
+      "terminalMarkerPath": "editorial/reviews/runtime1a3502eb7459-terminal-evidence/series-capacitors-221-completion.json",
+      "terminalMarkerSha256": "acd29855d3799b78c41629e2a1c8daa5f121e284f91094880a363f45bcb15bb3",
+      "terminalExitCode": 0
+    },
+    {
+      "batch": "series-capacitor-voltage-222",
+      "caseCount": 48,
+      "packageFileSha256": "33cce09aff0b63ed849f5c8e6dfe91301de12763f8ef431e81f82bbb8a395ba8",
+      "reportPath": "editorial/reviews/runtime1a3502eb7459-terminal-evidence/series-capacitor-voltage-222-report.json",
+      "reportSha256": "3bc2830aff748cfa002d5b9fb168b4a2dc8185354874c41fcae223fdf60e442f",
+      "terminalMarkerPath": "editorial/reviews/runtime1a3502eb7459-terminal-evidence/series-capacitor-voltage-222-completion.json",
+      "terminalMarkerSha256": "1f8db8fc38ff3385302ec0c2364558bcc5f5e147be3b848d1f3bdd6335942b27",
+      "terminalExitCode": 0
+    },
+    {
+      "batch": "capacitor-charge-sharing-223",
+      "caseCount": 48,
+      "packageFileSha256": "4d6eda109e86973af45b0e4679b262721bff951949f9e7e8560c3230d0ca77df",
+      "reportPath": "editorial/reviews/runtime1a3502eb7459-terminal-evidence/capacitor-charge-sharing-223-report.json",
+      "reportSha256": "d18bac7f1f1e9de751a80514e5e2a5a37ef1aa517737a3cd46affacc4817aa39",
+      "terminalMarkerPath": "editorial/reviews/runtime1a3502eb7459-terminal-evidence/capacitor-charge-sharing-223-completion.json",
+      "terminalMarkerSha256": "8d42ea4484785e997e635053ecd20e3c8e55e632bbe10d49b2cbe581008c01c8",
+      "terminalExitCode": 0
+    },
+    {
+      "batch": "capacitor-sharing-energy-loss-224",
+      "caseCount": 48,
+      "packageFileSha256": "7881949f791d8ba9f925cdb046cef1ae4ce3158a1d18f6f4b88b4a6b1f640c1d",
+      "reportPath": "editorial/reviews/runtime1a3502eb7459-terminal-evidence/capacitor-sharing-energy-loss-224-report.json",
+      "reportSha256": "20222ce980f98753a99c0c9a679b74bee43e8a6491be4733e30217bb8e8b291c",
+      "terminalMarkerPath": "editorial/reviews/runtime1a3502eb7459-terminal-evidence/capacitor-sharing-energy-loss-224-completion.json",
+      "terminalMarkerSha256": "4ab1c2333cd48926ed0c8cbac500a615360f97c927ea98747eae6e3d076cf480",
+      "terminalExitCode": 0
+    },
+    {
+      "batch": "dielectric-isolated-voltage-225",
+      "caseCount": 48,
+      "packageFileSha256": "1785de2704df1e3ad06f4fb091bb5b440f2470eb3ef3b727ad4c515f5398eb93",
+      "reportPath": "editorial/reviews/runtime1a3502eb7459-terminal-evidence/dielectric-isolated-voltage-225-report.json",
+      "reportSha256": "5826d49e384248749dc888a3ce402b00690866686d23a327165e7ab7d5900957",
+      "terminalMarkerPath": "editorial/reviews/runtime1a3502eb7459-terminal-evidence/dielectric-isolated-voltage-225-completion.json",
+      "terminalMarkerSha256": "11b37324326614f9cd0f2a157a53c997c227357ebdf98d16c4e5a2a7433c6698",
+      "terminalExitCode": 0
+    },
+    {
+      "batch": "dielectric-connected-charge-226",
+      "caseCount": 48,
+      "packageFileSha256": "58851c8a19758e0b0e74430e7939c39eda0ad08873ca3bad5d1e9853cba263c1",
+      "reportPath": "editorial/reviews/runtime1a3502eb7459-terminal-evidence/dielectric-connected-charge-226-report.json",
+      "reportSha256": "13ffc0f30ad57b88e22eacfd42bfa826828fe95801901e5fe0d9ddd83f7ce304",
+      "terminalMarkerPath": "editorial/reviews/runtime1a3502eb7459-terminal-evidence/dielectric-connected-charge-226-completion.json",
+      "terminalMarkerSha256": "d26169f162eb3442444cb32f14ed1ea63e3791aca92631ddac0e840db94a8b0a",
+      "terminalExitCode": 0
+    },
+    {
+      "batch": "isolated-plate-separation-energy-227",
+      "caseCount": 48,
+      "packageFileSha256": "8d2d530986579a902a8b670bbc4bb55b9b069d9d6126d94dbd0ce3ea52edb32e",
+      "reportPath": "editorial/reviews/runtime1a3502eb7459-terminal-evidence/isolated-plate-separation-energy-227-report.json",
+      "reportSha256": "2d442c6c47f14d46c31aa7dd4cce2379d91cb053b85684b291c0f6fcbdb594f1",
+      "terminalMarkerPath": "editorial/reviews/runtime1a3502eb7459-terminal-evidence/isolated-plate-separation-energy-227-completion.json",
+      "terminalMarkerSha256": "40cab772317d100e2e38467af39328a792f79ceaf1d8b075d10ce3db6674bd71",
+      "terminalExitCode": 0
+    },
+    {
+      "batch": "connected-plate-separation-charge-228",
+      "caseCount": 48,
+      "packageFileSha256": "7bbc58b896af9ba5ca5510f29852c05b2f24c07056dfcf05811204bf8b6e38a4",
+      "reportPath": "editorial/reviews/runtime1a3502eb7459-terminal-evidence/connected-plate-separation-charge-228-report.json",
+      "reportSha256": "264b634009b4d3318020251c97f539d07aa0362ebbb68ce1e5ea03e42ace62b8",
+      "terminalMarkerPath": "editorial/reviews/runtime1a3502eb7459-terminal-evidence/connected-plate-separation-charge-228-completion.json",
+      "terminalMarkerSha256": "ba971d7ca5315febd195c59b1d0d997ea03bfc88ff7c3a8d65d194876ad209cb",
+      "terminalExitCode": 0
+    },
+    {
+      "batch": "lorentz-force-229",
+      "caseCount": 48,
+      "packageFileSha256": "8558978b871e3bd5d124777c1ee203715f46fde7e88eebbc831bb10b70987c1c",
+      "reportPath": "editorial/reviews/runtime1a3502eb7459-terminal-evidence/lorentz-force-229-report.json",
+      "reportSha256": "9140e11c2903fdb16b5efffcdcc668fcf9a69a60e1c4770b2a403020f60f305e",
+      "terminalMarkerPath": "editorial/reviews/runtime1a3502eb7459-terminal-evidence/lorentz-force-229-completion.json",
+      "terminalMarkerSha256": "a2f09460d361e80f0ca8906233aaa81b2c3e2f8735635c7a811384d1cd4ac17d",
       "terminalExitCode": 0
     },
     {

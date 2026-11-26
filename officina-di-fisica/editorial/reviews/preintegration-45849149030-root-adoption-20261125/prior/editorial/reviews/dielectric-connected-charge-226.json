@@ -1,0 +1,561 @@
+{
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "AR-u6-dielectric-connected-charge-01",
+      "sourceSha256": "0ff225287b2d6d51785f73d2253dca581a5de1a24540c5b7578bf29fada9c26c",
+      "candidateSha256": "1c69dfd73ed330944122561a116c2e762cf74e9686067fbc210cdfef38768f37",
+      "reviewedSignature": "10f20f6deb43cc38fa5870d68ec988bcbcdab9482ae481ed6fba866b7ad3ab50",
+      "assetChecksums": {
+        "dielectric-connected-charge-progressive.svg": "8c9a8fc65a9410dc64c2a960cb8db8f6f68d56df90c5f6ef3f3680dbb90f20eb"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "8",
+      "dimension": {
+        "[current]": "1",
+        "[time]": "1"
+      },
+      "manualArithmetic": "Generatore ideale collegato mantiene V=2 V durante l’inserimento. La capacità finale è κC₀ e il modulo di carica su una piastra è Q=κC₀V. In unità μF, V e μC, Q[μC]=2 κC₀[μF]. Con C₀=2 μF e κ=2 si trova Q=8 μC; il generatore fornisce la carica libera aggiuntiva.",
+      "physicalAssumptions": "Condensatore lineare con generatore ideale mantenuto a 2 V durante ogni inserimento completo. C₀>0 e κ≥1 finiti reali; Q è modulo libero su una sola armatura. Polarizzazione distinta dal trasferimento di carica libera. Il 03 assume κ>1; κ=1 è limite separato. Taratura continua e vincoli soltanto fra preparazioni.",
+      "distractors": "C finale 4 μF e Vg 2 V danno 8 μC su una piastra. Quattro ignora κ; due divide il valore iniziale 4 perκ; sedici conta entrambi i moduli. Il generatore trasferisce carica libera.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Generatore ideale collegato mantiene V=2 V durante l’inserimento. La capacità finale è κC₀ e il modulo di carica su una piastra è Q=κC₀V. In unità μF, V e μC, Q[μC]=2 κC₀[μF]. Con C₀=2 μF e κ=2 si trova Q=8 μC; il generatore fornisce la carica libera aggiuntiva.",
+      "scientificAssetReview": "XML completo e PNG nativo 640 × 1480 letti: batteria 2 V collegata con polo lungo positivo verso piastra+; C₀2 μF, κ 2, C 4 μF, Q 8 μC. Barre 320/240/280 per 8/6/7 μC da origine 150, scala 40 coordinate/μC. Grafico a κ 2, Vg 2: x=150+160 C₀, y=1300−20 Q, segmento(470, 1140)=(2 μF, 8 μC), scala indipendente. Originecome limite, zeri e tutte punte leggibili.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "dielectric_lorentz_review_models.py": "42da25a28a0f45351c833e9c583afeed5f0c615326404dc6ce4e2af1f8df61e9"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-dielectric-connected-charge-02",
+      "sourceSha256": "98031b0d245089d51959a7d471a8c5dda19a7cad19e2ee9ddb31611e40b30bb7",
+      "candidateSha256": "24d5b160a902166329439b3b175ba327b01951ff8e283aff86e31e0da35de4cd",
+      "reviewedSignature": "12d337049c702d72eefc3d3897e42f35daa7338f93c383ef886a96f35ebc05aa",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "C",
+      "dimension": {
+        "[current]": "1",
+        "[time]": "1"
+      },
+      "manualArithmetic": "La carica ha unità coulomb C, qui μC. F·V=C dimostra la dimensione dalla legge Q=CV. Nella primaria le alternative non erano aperte; nella successiva lettura tutte e cinque sono state confrontate individualmente.",
+      "physicalAssumptions": "Condensatore lineare con generatore ideale mantenuto a 2 V durante ogni inserimento completo. C₀>0 e κ≥1 finiti reali; Q è modulo libero su una sola armatura. Polarizzazione distinta dal trasferimento di carica libera. Il 03 assume κ>1; κ=1 è limite separato. Taratura continua e vincoli soltanto fra preparazioni.",
+      "distractors": "C è l’unità di carica: F·V=C. F, V, J, T sono rispettivamente capacità, tensione, energia, campo. Prefisso micro non cambia dimensione.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. La carica ha unità coulomb C, qui μC. F·V=C dimostra la dimensione dalla legge Q=CV. Nella primaria le alternative non erano aperte; nella successiva lettura tutte e cinque sono state confrontate individualmente.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "dielectric_lorentz_review_models.py": "42da25a28a0f45351c833e9c583afeed5f0c615326404dc6ce4e2af1f8df61e9"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-dielectric-connected-charge-03",
+      "sourceSha256": "849722b11d92cf5d78f115e7bf400c579d8d56af014d5024308b700629207ee6",
+      "candidateSha256": "9a171ef5b0bbf548922ee1185347b077f6305186f2dd20b476e1bd1bb0786c6b",
+      "reviewedSignature": "6bddff59fc03f7341ab1ebb09f15205de0e630145e4015cbf7fcc14c8adf8044",
+      "assetChecksums": {
+        "dielectric-connected-charge-progressive.svg": "8c9a8fc65a9410dc64c2a960cb8db8f6f68d56df90c5f6ef3f3680dbb90f20eb"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "V resta 2 V e il modulo Q aumenta",
+      "dimension": {},
+      "manualArithmetic": "Il vincolo del generatore ideale fissa la differenza di potenziale, mentre può scambiare carica con le armature. A geometria invariata l’inserimento ideale con κ>1 aumenta C e il modulo Q; al confine κ=1 non li cambia. Non si conserva la carica libera di ciascuna piastra come nel caso scollegato e non si crea carica netta dal nulla.",
+      "physicalAssumptions": "Condensatore lineare con generatore ideale mantenuto a 2 V durante ogni inserimento completo. C₀>0 e κ≥1 finiti reali; Q è modulo libero su una sola armatura. Polarizzazione distinta dal trasferimento di carica libera. Il 03 assume κ>1; κ=1 è limite separato. Taratura continua e vincoli soltanto fra preparazioni.",
+      "distractors": "Con κ>1 il generatore fissa V 2 V, C aumenta e Q aumenta. Polarizzazione non crea libera aggiuntiva; quella passa dal circuito. κ 1 è il caso limite senza aumento, esplicitamente separato nel prompt.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Il vincolo del generatore ideale fissa la differenza di potenziale, mentre può scambiare carica con le armature. A geometria invariata l’inserimento ideale con κ>1 aumenta C e il modulo Q; al confine κ=1 non li cambia. Non si conserva la carica libera di ciascuna piastra come nel caso scollegato e non si crea carica netta dal nulla.",
+      "scientificAssetReview": "XML completo e PNG nativo 640 × 1480 letti: batteria 2 V collegata con polo lungo positivo verso piastra+; C₀2 μF, κ 2, C 4 μF, Q 8 μC. Barre 320/240/280 per 8/6/7 μC da origine 150, scala 40 coordinate/μC. Grafico a κ 2, Vg 2: x=150+160 C₀, y=1300−20 Q, segmento(470, 1140)=(2 μF, 8 μC), scala indipendente. Originecome limite, zeri e tutte punte leggibili.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "dielectric_lorentz_review_models.py": "42da25a28a0f45351c833e9c583afeed5f0c615326404dc6ce4e2af1f8df61e9"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-dielectric-connected-charge-04",
+      "sourceSha256": "8984f82467960b9d9be99e5bf3f80c1647a0be653efc10fd3453e68f79bac545",
+      "candidateSha256": "6fbe3fc68bce363b3b7ab33d2e423c7c87606b7803349619e69779448480408a",
+      "reviewedSignature": "82688c953eeb1bce0ff09356a3356d54301feeaf41b9729fc10a4b151de4282f",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Da 8 μC a 16 μC",
+      "dimension": {
+        "[current]": "1",
+        "[time]": "1"
+      },
+      "manualArithmetic": "κ=2 e V=2 V restano uguali. C₀ passa da 2 a 4 μF, quindi Q passa da 2·2·2=8 a 2·2·4=16 μC. Dipendenza lineare dalla capacità iniziale; sono preparati distinti e non una carica isolata che deve restare uguale.",
+      "physicalAssumptions": "Condensatore lineare con generatore ideale mantenuto a 2 V durante ogni inserimento completo. C₀>0 e κ≥1 finiti reali; Q è modulo libero su una sola armatura. Polarizzazione distinta dal trasferimento di carica libera. Il 03 assume κ>1; κ=1 è limite separato. Taratura continua e vincoli soltanto fra preparazioni.",
+      "distractors": "C₀ raddoppia, κ e Vg uguali:8→16 μC. Quattro inverte, otto ignora, trentadue quadra il fattore due; due dimezza ulteriormente senza legge.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. κ=2 e V=2 V restano uguali. C₀ passa da 2 a 4 μF, quindi Q passa da 2·2·2=8 a 2·2·4=16 μC. Dipendenza lineare dalla capacità iniziale; sono preparati distinti e non una carica isolata che deve restare uguale.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "dielectric_lorentz_review_models.py": "42da25a28a0f45351c833e9c583afeed5f0c615326404dc6ce4e2af1f8df61e9"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-dielectric-connected-charge-05",
+      "sourceSha256": "5090661afce43502a9b4970616cacb2457bc9ff02f4d477beeb757c981a641f4",
+      "candidateSha256": "3387f99dda6589c5fe7a2a01d7f4ab1ff535b54114c7cfad63bd8b589a585560",
+      "reviewedSignature": "a81ddf314b5d9ab2a69a7e96e7b42d6ec719f467f9a605bc4b5069ef7aec4aba",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[current]": "2",
+        "[time]": "4",
+        "[mass]": "-1",
+        "[length]": "-2"
+      },
+      "manualArithmetic": "Dalla legge Q=κC₀V si isola C₀=Q/(κV). Con Q=8 μC, κ=2 e V=2 V: C₀=8/4=2 μF. Il denominatore è positivo e la capacità cercata è quella prima dell’inserimento, non la capacità finale 4 μF.",
+      "physicalAssumptions": "Condensatore lineare con generatore ideale mantenuto a 2 V durante ogni inserimento completo. C₀>0 e κ≥1 finiti reali; Q è modulo libero su una sola armatura. Polarizzazione distinta dal trasferimento di carica libera. Il 03 assume κ>1; κ=1 è limite separato. Taratura continua e vincoli soltanto fra preparazioni.",
+      "distractors": "C₀=8/(2·2)=2 μF. Quattro è C finale, otto copia Q, mezzo ricostruisce solo 2 μC e non 8. Denominatori non nulli.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Dalla legge Q=κC₀V si isola C₀=Q/(κV). Con Q=8 μC, κ=2 e V=2 V: C₀=8/4=2 μF. Il denominatore è positivo e la capacità cercata è quella prima dell’inserimento, non la capacità finale 4 μF.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "dielectric_lorentz_review_models.py": "42da25a28a0f45351c833e9c583afeed5f0c615326404dc6ce4e2af1f8df61e9"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-dielectric-connected-charge-06",
+      "sourceSha256": "d749e4dfc9a10c8d53355641b77df87e427eecb25077f9da662b01a90f1aff67",
+      "candidateSha256": "43b089c4e2ea0090d2fdd5dc64b85a853c44a8cb99394527bd7fd3c66fd3560e",
+      "reviewedSignature": "8acca7a9d674fe69e5a59c0628523c6630c69a8646044173909a5f7cb16faf59",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {},
+      "manualArithmetic": "κ=Q/(C₀V)=8/(2·2)=2. È puro e soddisfa κ≥1. In generale le misure devono dare Q≥C₀V nel modello di inserimento completo con costante relativa almeno uno.",
+      "physicalAssumptions": "Condensatore lineare con generatore ideale mantenuto a 2 V durante ogni inserimento completo. C₀>0 e κ≥1 finiti reali; Q è modulo libero su una sola armatura. Polarizzazione distinta dal trasferimento di carica libera. Il 03 assume κ>1; κ=1 è limite separato. Taratura continua e vincoli soltanto fra preparazioni.",
+      "distractors": "κ=8/(2·2)=2. Mezzo è reciproco fuori dominio; quattro copia C finale, sedici non forma il rapporto Q/(C₀Vg).",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. κ=Q/(C₀V)=8/(2·2)=2. È puro e soddisfa κ≥1. In generale le misure devono dare Q≥C₀V nel modello di inserimento completo con costante relativa almeno uno.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "dielectric_lorentz_review_models.py": "42da25a28a0f45351c833e9c583afeed5f0c615326404dc6ce4e2af1f8df61e9"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-dielectric-connected-charge-07",
+      "sourceSha256": "2859898d83dddd18aa541b989af7bae83de1a54a685daffebbbe8db9a75d6ee3",
+      "candidateSha256": "e49419d6ee25a291c140b676916be4d66ee7ac8dd387656e742056f000fca548",
+      "reviewedSignature": "a797f6e2d4a2d23bb97629e07935c0f28f1a14de10df5d7644c103c47d85a26a",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1/2",
+      "dimension": {},
+      "manualArithmetic": "A ha Q_A=8 μC. B con κ=1 e stessa C₀=2 μF ha Q_B=4 μC. Rapporto Q_B/Q_A=1/2; il confine κ=1 è valido e il generatore mantiene ancora 2 V.",
+      "physicalAssumptions": "Condensatore lineare con generatore ideale mantenuto a 2 V durante ogni inserimento completo. C₀>0 e κ≥1 finiti reali; Q è modulo libero su una sola armatura. Polarizzazione distinta dal trasferimento di carica libera. Il 03 assume κ>1; κ=1 è limite separato. Taratura continua e vincoli soltanto fra preparazioni.",
+      "distractors": "κ_B 1 dà 4 μC contro 8 μC A: rapporto 1/2. Due reciproco, 1/4 quadrato, zero confonde κ 1 con capacità nulla, uno ignora il cambio.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. A ha Q_A=8 μC. B con κ=1 e stessa C₀=2 μF ha Q_B=4 μC. Rapporto Q_B/Q_A=1/2; il confine κ=1 è valido e il generatore mantiene ancora 2 V.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "dielectric_lorentz_review_models.py": "42da25a28a0f45351c833e9c583afeed5f0c615326404dc6ce4e2af1f8df61e9"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-dielectric-connected-charge-08",
+      "sourceSha256": "ac42415bf44114130fcfe8e5872426fad1a273c0ab483e460cb17754ee5031ac",
+      "candidateSha256": "f34722271e308b35bca9be2a88af64f7fde489c3c0419716cd90829455046993",
+      "reviewedSignature": "cb832371cedbf77265154eb54b3c284dae04071d3c53d717177eb801a37fe2c2",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "8",
+      "dimension": {
+        "[current]": "1",
+        "[time]": "1"
+      },
+      "manualArithmetic": "Q corretto=8 μC e proposta=16 μC. Scarto proposto meno corretto=+8 μC. Il valore non è la carica netta delle due piastre e non si aggiunge un ulteriore fattore due alla carica di una sola armatura.",
+      "physicalAssumptions": "Condensatore lineare con generatore ideale mantenuto a 2 V durante ogni inserimento completo. C₀>0 e κ≥1 finiti reali; Q è modulo libero su una sola armatura. Polarizzazione distinta dal trasferimento di carica libera. Il 03 assume κ>1; κ=1 è limite separato. Taratura continua e vincoli soltanto fra preparazioni.",
+      "distractors": "Scarto+8 μC. −8 inverte, due è rapporto, 16 copia proposta, zero non verificaQ=κC₀Vg.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Q corretto=8 μC e proposta=16 μC. Scarto proposto meno corretto=+8 μC. Il valore non è la carica netta delle due piastre e non si aggiunge un ulteriore fattore due alla carica di una sola armatura.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "dielectric_lorentz_review_models.py": "42da25a28a0f45351c833e9c583afeed5f0c615326404dc6ce4e2af1f8df61e9"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-dielectric-connected-charge-09",
+      "sourceSha256": "f70fa745b8192e04df536423020f09126213434bdc36f4af66a5c301e5c0980f",
+      "candidateSha256": "a2a6facdb3415b2d1751c1afd1d6b8fc696df65a11c13107f9b0d6d21a614be5",
+      "reviewedSignature": "b91f48b7715a41f9f6af55913f20c6e1bf5471993a8c64e4782a3e2808a5c306",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "C₀ = Q / (κ V_g)",
+      "dimension": {
+        "[current]": "2",
+        "[time]": "4",
+        "[mass]": "-1",
+        "[length]": "-2"
+      },
+      "manualArithmetic": "La formula fisica è C₀=Q/(κV), con V=2 V assegnata. La forma per i valori numerici è C₀[μF]=Q[μC]/(2 κ). Il numero 2 non può sostituire una tensione dimensionata fuori da queste unità dichiarate. κ≥1 e V>0 rendono lecita l’inversa.",
+      "physicalAssumptions": "Condensatore lineare con generatore ideale mantenuto a 2 V durante ogni inserimento completo. C₀>0 e κ≥1 finiti reali; Q è modulo libero su una sola armatura. Polarizzazione distinta dal trasferimento di carica libera. Il 03 assume κ>1; κ=1 è limite separato. Taratura continua e vincoli soltanto fra preparazioni.",
+      "distractors": "C₀=Q/(κVg) ha F. Qκ/Vg non annulla κ; QVg/κ ha energia; κVg/Q è capacità inversa; Q/Vg è C finale.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. La formula fisica è C₀=Q/(κV), con V=2 V assegnata. La forma per i valori numerici è C₀[μF]=Q[μC]/(2 κ). Il numero 2 non può sostituire una tensione dimensionata fuori da queste unità dichiarate. κ≥1 e V>0 rendono lecita l’inversa.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "dielectric_lorentz_review_models.py": "42da25a28a0f45351c833e9c583afeed5f0c615326404dc6ce4e2af1f8df61e9"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-dielectric-connected-charge-10",
+      "sourceSha256": "6e07709f170b415297d12e452ba127a377e941d9c318d3d206660a252022bf6c",
+      "candidateSha256": "32189f085eea041218ae691afc017c49ab5c0107b7e01a9b5b53ae7a85eb1632",
+      "reviewedSignature": "32c956067cd7ac02cffd6ee9cd2657c9814c9228128e2a202c677d1bb808ba9f",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "κ₁ κ₂",
+      "dimension": {},
+      "manualArithmetic": "Q_A=κC₀V e Q_B=(κ₂κ)(κ₁C₀)V con lo stesso generatore da 2 V. Il rapporto è κ₁κ₂. Le due costanti relative devono rimanere almeno uno; un fattore comune su entrambi gli ingressi produce un quadrato, senza rendere quadratica la singola legge in C₀.",
+      "physicalAssumptions": "Condensatore lineare con generatore ideale mantenuto a 2 V durante ogni inserimento completo. C₀>0 e κ≥1 finiti reali; Q è modulo libero su una sola armatura. Polarizzazione distinta dal trasferimento di carica libera. Il 03 assume κ>1; κ=1 è limite separato. Taratura continua e vincoli soltanto fra preparazioni.",
+      "distractors": "κ₁κ₂ segue il prodotto a Vg fisso. Quozienti invertono un ingresso, κ₂² aggiunge potenza; somma è due per prove identiche. Entrambi κ fisici≥1.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Q_A=κC₀V e Q_B=(κ₂κ)(κ₁C₀)V con lo stesso generatore da 2 V. Il rapporto è κ₁κ₂. Le due costanti relative devono rimanere almeno uno; un fattore comune su entrambi gli ingressi produce un quadrato, senza rendere quadratica la singola legge in C₀.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "dielectric_lorentz_review_models.py": "42da25a28a0f45351c833e9c583afeed5f0c615326404dc6ce4e2af1f8df61e9"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-dielectric-connected-charge-11",
+      "sourceSha256": "052a181d84fb0afa0b3e27723db368cb92d8c5b489cdb567eb39bf403d4a222c",
+      "candidateSha256": "86dc5db047ff299b9bfaaea236a50d9a2fb596d87cdfaf12acf6bcd56fe2ae67",
+      "reviewedSignature": "fb7d818b1914535ae52eeed6b339984ec66c224ed631e9e43c4eb2e21cda2540",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "3/4",
+      "dimension": {},
+      "manualArithmetic": "A: Q_A=2·2·2=8 μC. B: Q_B=2·3·1=6 μC. Rapporto 6/8=3/4. Aumentare κ non basta a garantire aumento di Q quando contemporaneamente si dimezza C₀.",
+      "physicalAssumptions": "Condensatore lineare con generatore ideale mantenuto a 2 V durante ogni inserimento completo. C₀>0 e κ≥1 finiti reali; Q è modulo libero su una sola armatura. Polarizzazione distinta dal trasferimento di carica libera. Il 03 assume κ>1; κ=1 è limite separato. Taratura continua e vincoli soltanto fra preparazioni.",
+      "distractors": "Q_A 8 e Q_B 6 μC: rapporto 3/4; 4/3 reciproco, mezzo sola C₀, 3/2 soloκ, uno presume compensazione completa.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. A: Q_A=2·2·2=8 μC. B: Q_B=2·3·1=6 μC. Rapporto 6/8=3/4. Aumentare κ non basta a garantire aumento di Q quando contemporaneamente si dimezza C₀.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "dielectric_lorentz_review_models.py": "42da25a28a0f45351c833e9c583afeed5f0c615326404dc6ce4e2af1f8df61e9"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-dielectric-connected-charge-12",
+      "sourceSha256": "62e1a24de68d96389ab381af41acef9beeef74eb33c0e68c4b95a595afbb7f08",
+      "candidateSha256": "a50fafe17422a4cd1e35357dcb87cf265dd53de5b5345fca75f8399e3655d9c5",
+      "reviewedSignature": "f0eddd31eb5863bdf08a32ffc550ab56c7038a5b326ca94e468dc45d0ccac1ca",
+      "assetChecksums": {
+        "dielectric-connected-charge-progressive.svg": "8c9a8fc65a9410dc64c2a960cb8db8f6f68d56df90c5f6ef3f3680dbb90f20eb"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "7",
+      "dimension": {
+        "[current]": "1",
+        "[time]": "1"
+      },
+      "manualArithmetic": "Media delle uscite=(8+6)/2=7 μC. Ai dati medi C₀=3/2 μF e κ=5/2 si otterrebbe 2·(3/2)·(5/2)=15/2 μC, diverso di 1/2 μC. Si mediano i risultati fisici delle due prove, non prima gli ingressi del prodotto.",
+      "physicalAssumptions": "Condensatore lineare con generatore ideale mantenuto a 2 V durante ogni inserimento completo. C₀>0 e κ≥1 finiti reali; Q è modulo libero su una sola armatura. Polarizzazione distinta dal trasferimento di carica libera. Il 03 assume κ>1; κ=1 è limite separato. Taratura continua e vincoli soltanto fra preparazioni.",
+      "distractors": "Media 7 μC, prodotto degli ingressi medi 15/2 μC, differenza mezzo. 14 è somma, 1 semidifferenza, zero carica netta del condensatore.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Media delle uscite=(8+6)/2=7 μC. Ai dati medi C₀=3/2 μF e κ=5/2 si otterrebbe 2·(3/2)·(5/2)=15/2 μC, diverso di 1/2 μC. Si mediano i risultati fisici delle due prove, non prima gli ingressi del prodotto.",
+      "scientificAssetReview": "XML completo e PNG nativo 640 × 1480 letti: batteria 2 V collegata con polo lungo positivo verso piastra+; C₀2 μF, κ 2, C 4 μF, Q 8 μC. Barre 320/240/280 per 8/6/7 μC da origine 150, scala 40 coordinate/μC. Grafico a κ 2, Vg 2: x=150+160 C₀, y=1300−20 Q, segmento(470, 1140)=(2 μF, 8 μC), scala indipendente. Originecome limite, zeri e tutte punte leggibili.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "dielectric_lorentz_review_models.py": "42da25a28a0f45351c833e9c583afeed5f0c615326404dc6ce4e2af1f8df61e9"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-dielectric-connected-charge-13",
+      "sourceSha256": "733d6835739ffaaaeee5aa151abb3dbdc0c85c6704c611a5b5daaf3deb198b0c",
+      "candidateSha256": "ae92d7de5e722b7f7772a8712daa9161ac2de20e0f691ce546f1f273049641ee",
+      "reviewedSignature": "8fcd18d3d2f356b932306e626a728725d21cc439d03308dec61fa31f65ae9544",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "3/2",
+      "dimension": {},
+      "manualArithmetic": "Bersaglio Q_B=(3/4)·8=6 μC con C₀,B=1 μF. Dalla legge 6=2 κ_B·1 segue κ_B=3. Rapporto κ_B/κ_A=3/2, compatibile con κ_A=2 e κ_B=3.",
+      "physicalAssumptions": "Condensatore lineare con generatore ideale mantenuto a 2 V durante ogni inserimento completo. C₀>0 e κ≥1 finiti reali; Q è modulo libero su una sola armatura. Polarizzazione distinta dal trasferimento di carica libera. Il 03 assume κ>1; κ=1 è limite separato. Taratura continua e vincoli soltanto fra preparazioni.",
+      "distractors": "Bersaglio 6 μC con C₀1 μF e 2 V richiede κ 3, rapporto 3/2; 2/3 inverte, 3/4 copia rapporto cariche, 2 darebbeκ 4 e 8 μC. Mezzo non raggiunge il bersaglio.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Bersaglio Q_B=(3/4)·8=6 μC con C₀,B=1 μF. Dalla legge 6=2 κ_B·1 segue κ_B=3. Rapporto κ_B/κ_A=3/2, compatibile con κ_A=2 e κ_B=3.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "dielectric_lorentz_review_models.py": "42da25a28a0f45351c833e9c583afeed5f0c615326404dc6ce4e2af1f8df61e9"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-dielectric-connected-charge-14",
+      "sourceSha256": "941231f13faf39fba1162ef99ef6b10f203d28874d447e59734a12a9f66a66e9",
+      "candidateSha256": "d0773465f41e8a6d752700e50a02fc17eacddf8aeed237afc77e044faea83f11",
+      "reviewedSignature": "753e9e8628251e0e4436633a9cefc723d5b31265a1203ec2ffa0f163cf804f76",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1",
+      "dimension": {
+        "[current]": "2",
+        "[time]": "4",
+        "[mass]": "-1",
+        "[length]": "-2"
+      },
+      "manualArithmetic": "Il riferimento Q_A=8 μC con lettura 24 dà guadagno 3 unità/μC. Lettura 18 indica Q=6 μC. Per κ=3 e V=2 V, C₀=6/(3·2)=1 μF. La taratura agisce sulla carica e non sulla capacità direttamente.",
+      "physicalAssumptions": "Condensatore lineare con generatore ideale mantenuto a 2 V durante ogni inserimento completo. C₀>0 e κ≥1 finiti reali; Q è modulo libero su una sola armatura. Polarizzazione distinta dal trasferimento di carica libera. Il 03 assume κ>1; κ=1 è limite separato. Taratura continua e vincoli soltanto fra preparazioni.",
+      "distractors": "Guadagno 3 μC⁻¹, D 18 dà Q 6 μC, κ 3 e 2 V danno C₀1 μF. Tre usa D come Q; due omette numericamente Vg; sei copia Q come capacità.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Il riferimento Q_A=8 μC con lettura 24 dà guadagno 3 unità/μC. Lettura 18 indica Q=6 μC. Per κ=3 e V=2 V, C₀=6/(3·2)=1 μF. La taratura agisce sulla carica e non sulla capacità direttamente.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "dielectric_lorentz_review_models.py": "42da25a28a0f45351c833e9c583afeed5f0c615326404dc6ce4e2af1f8df61e9"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-dielectric-connected-charge-15",
+      "sourceSha256": "c6b2e38d2bea8414ba7824adcfafdaaa85e4706ecc88d34caa48c1424a6aa540",
+      "candidateSha256": "289dd481daacb9f94809a7ec52ad13c8864b51cda249be120c592cf3b78c1d9f",
+      "reviewedSignature": "e190965459556e7ca37b1cfa624d1f67c8af2fce0b596c3fc71bf32f077357b2",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4",
+      "dimension": {
+        "[current]": "2",
+        "[time]": "4",
+        "[mass]": "-1",
+        "[length]": "-2"
+      },
+      "manualArithmetic": "Q_A=8 μC e Q_B=6 μC, letture 17 e 13: a_cal=(17−13)/(8−6)=2 unità/μC, b_cal=1. Lettura 33 dà Q_C=(33−1)/2=16 μC. Con κ_C=2 e V=2 V, C₀,C=16/4=4 μF.",
+      "physicalAssumptions": "Condensatore lineare con generatore ideale mantenuto a 2 V durante ogni inserimento completo. C₀>0 e κ≥1 finiti reali; Q è modulo libero su una sola armatura. Polarizzazione distinta dal trasferimento di carica libera. Il 03 assume κ>1; κ=1 è limite separato. Taratura continua e vincoli soltanto fra preparazioni.",
+      "distractors": "Guadagno 2 μC⁻¹, offset 1, D 33→Q 16 μC→C₀4 μF. 33/8 omette offset e dàD 34; 8 omette Vg, 16 copia Q con altra dimensione.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Q_A=8 μC e Q_B=6 μC, letture 17 e 13: a_cal=(17−13)/(8−6)=2 unità/μC, b_cal=1. Lettura 33 dà Q_C=(33−1)/2=16 μC. Con κ_C=2 e V=2 V, C₀,C=16/4=4 μF.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "dielectric_lorentz_review_models.py": "42da25a28a0f45351c833e9c583afeed5f0c615326404dc6ce4e2af1f8df61e9"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-dielectric-connected-charge-16",
+      "sourceSha256": "ca15cb80f42381397751b045b2543bd817fe954ad92dc530aa1686dd5123a2d1",
+      "candidateSha256": "94f267e3cb7e0391cc92aaaf6b4e06a4de76aa5a95f7b38a8cb30937a3bb5b5b",
+      "reviewedSignature": "fc4b25a386f853fa7133c67af804bafae500d219f3ba3e4fff2f7cfcebdf86d0",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {},
+      "manualArithmetic": "Il vincolo è C₀=(1 μF)κ, non una capacità adimensionale. Inserendo nella legge a 2 V si ottiene Q[μC]=2 κ². Misura 8 implica κ²=4, radici ±2; solo κ=2 rispetta κ≥1. C₀=2 μF. Il vincolo confronta preparazioni e non una κ temporale durante la carica.",
+      "physicalAssumptions": "Condensatore lineare con generatore ideale mantenuto a 2 V durante ogni inserimento completo. C₀>0 e κ≥1 finiti reali; Q è modulo libero su una sola armatura. Polarizzazione distinta dal trasferimento di carica libera. Il 03 assume κ>1; κ=1 è limite separato. Taratura continua e vincoli soltanto fra preparazioni.",
+      "distractors": "Q/(1 μC)=2 κ² e Q 8 impongono κ²4, κ 2 con C₀2 μF.−2 viola dominio e capacità positiva, 4 copia quadrato, 8 copia Q, nessuna ridondanza.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Il vincolo è C₀=(1 μF)κ, non una capacità adimensionale. Inserendo nella legge a 2 V si ottiene Q[μC]=2 κ². Misura 8 implica κ²=4, radici ±2; solo κ=2 rispetta κ≥1. C₀=2 μF. Il vincolo confronta preparazioni e non una κ temporale durante la carica.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "dielectric_lorentz_review_models.py": "42da25a28a0f45351c833e9c583afeed5f0c615326404dc6ce4e2af1f8df61e9"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "b1127a40658a0e7a2563381b1b78f1867a31bc3488e6025c18912f278513a8ff",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "publicationAction": "NONE",
+  "reviewedCandidateCommit": "0e189e8a589fd53f025fd2c84980407db30a339b",
+  "packageSha256": "a4d50565318196b6c2e82fa34fa650853700ec6070b0f349c8ded359a72d1b61",
+  "bindingsSha256": "b62bb4d5d97b53d567e3eb7015952ab060f83a1b78471ce91bdfc8861905885f",
+  "sourceFirstPrimarySha256": "1884c8105aca5fd3c3f97999c64257e04c67490b7238cb2910764ad2a830684a",
+  "source": {
+    "commit": "5cfbdcb055ba3ba136f97fb56e997f06e6cf3605",
+    "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U6-04.json",
+    "reference": "Primaria prompt-only di tutti80 originali U6-04 B225–229 congelata prima di qualunque candidato. Successiva lettura allowlist di tutti80 prompt finali, poi modelli indipendenti scritti ed eseguiti realmente prima delle chiavi. Solo dopo sono stati letti individualmente tutti16 record finali completi, opzioni, formule, hint, feedback, metadata, XML e nuovo PNG nativo integrale. Nessuna esposizione anticipata a chiavi, nessun modulo autore importato o primaria B aperta. UI prodotto e human NOT_RUN; confronto integrato ROOT PENDING."
+  }
+}

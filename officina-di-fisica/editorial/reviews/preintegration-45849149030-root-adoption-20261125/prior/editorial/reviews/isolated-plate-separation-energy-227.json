@@ -1,0 +1,562 @@
+{
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "AR-u6-isolated-plate-separation-energy-01",
+      "sourceSha256": "5b35fffa2497b984024f76ce9672a1a92e46b4cdaac772ab920a8489a6b32e10",
+      "candidateSha256": "d5f7d9aceda9565124e546a2b2dddbdbb1f25b948ba8ee05162c13f94b67c3b6",
+      "reviewedSignature": "ae1583c46428cfaf4a8b5b79bc251466dbf909ff341887fe8a1645281d5e8eec",
+      "assetChecksums": {
+        "isolated-plate-separation-energy-progressive.svg": "76ba0001dec63f3d6023626970316cc46eeb14b47bc78b55683939578369c1e2"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Area e dielettrico invariati danno C=εA/d=C₀/s. L’isolamento mantiene Q costante su ciascuna armatura; U=Q²/(2 C)=sU₀. Con U₀=2 μJ e s=2 si ottiene U=4 μJ. L’energia del campo aumenta per il lavoro esternonecessario a separare piastre attrattive, nel limite quasi statico senza perdite; non è un’energia conservata del solo campo.",
+      "physicalAssumptions": "Condensatore piano lineare elettricamente isolato, modulo della carica su ciascuna armatura fissato entro prova. Area e permittività costanti, d=s d₀, s≥1, dimensioni laterali grandi rispetto a entrambe le distanze; bordi trascurati. U₀,U positive finite; energia finale del campo distinta dall’energia totale e dall’incremento. Preparazioni iniziali possono differire.",
+      "distractors": "C=C₀/s e Q costante: U=Q²/(2 C)=sU₀=4 μJ. Uno usa erroneamente V fisso, due conserva U campo, otto usa s². Apporto meccanico possibile distinto dall’isolamento elettrico.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Area e dielettrico invariati danno C=εA/d=C₀/s. L’isolamento mantiene Q costante su ciascuna armatura; U=Q²/(2 C)=sU₀. Con U₀=2 μJ e s=2 si ottiene U=4 μJ. L’energia del campo aumenta per il lavoro esternonecessario a separare piastre attrattive, nel limite quasi statico senza perdite; non è un’energia conservata del solo campo.",
+      "scientificAssetReview": "XML completo e PNG nativo 640 × 1480 letti: distanze fra facce interne 50 e 100 coordinate, d₀→2 d₀, area/carica invariate e U 2→4 μJ. Barre 128/288/208 per 4/9/13/2 μJ, comune 32 coordinate/μJ. Grafico a U₀2: x=150+100 s, y=1300−20 U, segmento s 1..3 da(250, 1260) a(450, 1180), punto iniziale chiuso. Nessuna falsa retta per s<1.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "dielectric_lorentz_review_models.py": "42da25a28a0f45351c833e9c583afeed5f0c615326404dc6ce4e2af1f8df61e9"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-isolated-plate-separation-energy-02",
+      "sourceSha256": "90d81a24a320bb70f2950c2f03a9b2dbea5802406d0d613182ab8ee8fe8eafdf",
+      "candidateSha256": "53291519bc7282824f914493303b1f0863293f2a0bc7854c0fbf51281e3a44a1",
+      "reviewedSignature": "623f1c22d449df83ef6ae8137296f197e6e2a0c4111792251b352875fc74c81e",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "J",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "L’energia ha unità joule J, qui μJ. Il fattore s=d/d₀ è puro; moltiplicare U₀ per s conserva la dimensione energetica. Nella primaria le alternative non erano aperte; nella successiva lettura tutte e cinque sono state confrontate individualmente.",
+      "physicalAssumptions": "Condensatore piano lineare elettricamente isolato, modulo della carica su ciascuna armatura fissato entro prova. Area e permittività costanti, d=s d₀, s≥1, dimensioni laterali grandi rispetto a entrambe le distanze; bordi trascurati. U₀,U positive finite; energia finale del campo distinta dall’energia totale e dall’incremento. Preparazioni iniziali possono differire.",
+      "distractors": "J è energia. C²/F=C·V=J; W è potenza, V tensione, C carica, F capacità. Fattore due puro.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. L’energia ha unità joule J, qui μJ. Il fattore s=d/d₀ è puro; moltiplicare U₀ per s conserva la dimensione energetica. Nella primaria le alternative non erano aperte; nella successiva lettura tutte e cinque sono state confrontate individualmente.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "dielectric_lorentz_review_models.py": "42da25a28a0f45351c833e9c583afeed5f0c615326404dc6ce4e2af1f8df61e9"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-isolated-plate-separation-energy-03",
+      "sourceSha256": "9343fa3f339eb0d80b1fcda97c56aff9d4ce4eff50ff8c0bb9c325a3b27db6ac",
+      "candidateSha256": "505ecf5894d112183a4f89b4628146fad6e7d0c91acfaf057c59dd23995719e6",
+      "reviewedSignature": "54b9d7dc3d5aaf4f08627f82efaa73d329dd627c04d81140733f522d54633ff1",
+      "assetChecksums": {
+        "isolated-plate-separation-energy-progressive.svg": "76ba0001dec63f3d6023626970316cc46eeb14b47bc78b55683939578369c1e2"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "U = s U₀",
+      "dimension": {},
+      "manualArithmetic": "Da C/C₀=d₀/d=1/s e Q costante segue U/U₀=C₀/C=s. La legge richiesta è U=sU₀, non U₀/s e non s²U₀. Bisogna conservare il modello piano con separazione ancora piccola rispetto alle dimensioni laterali, anche nello stato finale.",
+      "physicalAssumptions": "Condensatore piano lineare elettricamente isolato, modulo della carica su ciascuna armatura fissato entro prova. Area e permittività costanti, d=s d₀, s≥1, dimensioni laterali grandi rispetto a entrambe le distanze; bordi trascurati. U₀,U positive finite; energia finale del campo distinta dall’energia totale e dall’incremento. Preparazioni iniziali possono differire.",
+      "distractors": "Q resta costante e U/U₀=C₀/C=s. U₀/s vale con V mantenuta e altro circuito; quadrati non derivano da C∝1/s; Ucostante omette apporto esterno meccanico.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Da C/C₀=d₀/d=1/s e Q costante segue U/U₀=C₀/C=s. La legge richiesta è U=sU₀, non U₀/s e non s²U₀. Bisogna conservare il modello piano con separazione ancora piccola rispetto alle dimensioni laterali, anche nello stato finale.",
+      "scientificAssetReview": "XML completo e PNG nativo 640 × 1480 letti: distanze fra facce interne 50 e 100 coordinate, d₀→2 d₀, area/carica invariate e U 2→4 μJ. Barre 128/288/208 per 4/9/13/2 μJ, comune 32 coordinate/μJ. Grafico a U₀2: x=150+100 s, y=1300−20 U, segmento s 1..3 da(250, 1260) a(450, 1180), punto iniziale chiuso. Nessuna falsa retta per s<1.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "dielectric_lorentz_review_models.py": "42da25a28a0f45351c833e9c583afeed5f0c615326404dc6ce4e2af1f8df61e9"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-isolated-plate-separation-energy-04",
+      "sourceSha256": "718a77d774f70f1d63876ce66cc8d32e85a084f61cf7b0eb05e1773cdf55d984",
+      "candidateSha256": "8ce2fbcd54d263287fbfdda68e86181cfa084aab34ad1fd1847854010c5f51b2",
+      "reviewedSignature": "68295f33aa680c3d51432185ddd36012f2626268468e3c7c38629da910a1224b",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Da 4 μJ a 8 μJ",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "A s=2 fissato, U₀ passa da 2 a 4 μJ. Le uscite passano da 4 a 8 μJ, rapporto due. I preparati hanno energie iniziali diverse, ciascuno poi segue il proprio processo isolato; non si impone stessa Q fra preparati se cambia U₀ a C₀ fissata.",
+      "physicalAssumptions": "Condensatore piano lineare elettricamente isolato, modulo della carica su ciascuna armatura fissato entro prova. Area e permittività costanti, d=s d₀, s≥1, dimensioni laterali grandi rispetto a entrambe le distanze; bordi trascurati. U₀,U positive finite; energia finale del campo distinta dall’energia totale e dall’incremento. Preparazioni iniziali possono differire.",
+      "distractors": "A 4, B 8 μJ per s 2 e U₀2, 4 μJ. Due divide invece di moltiplicare, quattro ignora preparazione, sedici aggiunge fattore non previsto. Q fisso entro prova non significa stessoQ fra prove.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. A s=2 fissato, U₀ passa da 2 a 4 μJ. Le uscite passano da 4 a 8 μJ, rapporto due. I preparati hanno energie iniziali diverse, ciascuno poi segue il proprio processo isolato; non si impone stessa Q fra preparati se cambia U₀ a C₀ fissata.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "dielectric_lorentz_review_models.py": "42da25a28a0f45351c833e9c583afeed5f0c615326404dc6ce4e2af1f8df61e9"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-isolated-plate-separation-energy-05",
+      "sourceSha256": "b287f3a3dcb905335f547b0f96685e7bc3d1761ef64f6a40fe7eb66f0fff3206",
+      "candidateSha256": "beee09f69556c6c1196729c5eb5c73c125e80bc37f729976b379ac294db680a0",
+      "reviewedSignature": "0d8ed4e5cf5d13e23f969f6249ce3dd97373e4df3c4671ab50a275b1644d32e4",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "L’inversa è U₀=U/s. Con U=4 μJ e s=2 si trova U₀=2 μJ. Il denominatore è almeno uno, finito, e l’energia iniziale resta positiva. U≥U₀ nel dominio dell’allontanamento.",
+      "physicalAssumptions": "Condensatore piano lineare elettricamente isolato, modulo della carica su ciascuna armatura fissato entro prova. Area e permittività costanti, d=s d₀, s≥1, dimensioni laterali grandi rispetto a entrambe le distanze; bordi trascurati. U₀,U positive finite; energia finale del campo distinta dall’energia totale e dall’incremento. Preparazioni iniziali possono differire.",
+      "distractors": "U₀=4/2=2 μJ. Otto usa sU, quattro ignora s, mezzo darebbe U 1 μJ. U₀≤U nel dominio s≥1.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. L’inversa è U₀=U/s. Con U=4 μJ e s=2 si trova U₀=2 μJ. Il denominatore è almeno uno, finito, e l’energia iniziale resta positiva. U≥U₀ nel dominio dell’allontanamento.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "dielectric_lorentz_review_models.py": "42da25a28a0f45351c833e9c583afeed5f0c615326404dc6ce4e2af1f8df61e9"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-isolated-plate-separation-energy-06",
+      "sourceSha256": "2710f8365ed244411c17152491cfbdb4b2c44b945ced10eb019553c0cc687c1a",
+      "candidateSha256": "90c5b6850ec7997cd062cff6b1320cfd24a4fd24b6b9a04e374763156ff02e83",
+      "reviewedSignature": "da059ae325bd5366a57d14c2651525b5b1bd538104dbd420a7c0eb963b2d2825",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {},
+      "manualArithmetic": "Da U=sU₀ segue s=U/U₀=4/2=2, adimensionale. Serve U₀>0 e deve risultare s≥1; una misura U<U₀ sarebbe incompatibile con allontanamento a carica costante nelle ipotesi dichiarate.",
+      "physicalAssumptions": "Condensatore piano lineare elettricamente isolato, modulo della carica su ciascuna armatura fissato entro prova. Area e permittività costanti, d=s d₀, s≥1, dimensioni laterali grandi rispetto a entrambe le distanze; bordi trascurati. U₀,U positive finite; energia finale del campo distinta dall’energia totale e dall’incremento. Preparazioni iniziali possono differire.",
+      "distractors": "s=4/2=2 e d 2 d₀. Mezzo è avvicinamento escluso, otto prodotto, quattro copia numero di U finale.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Da U=sU₀ segue s=U/U₀=4/2=2, adimensionale. Serve U₀>0 e deve risultare s≥1; una misura U<U₀ sarebbe incompatibile con allontanamento a carica costante nelle ipotesi dichiarate.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "dielectric_lorentz_review_models.py": "42da25a28a0f45351c833e9c583afeed5f0c615326404dc6ce4e2af1f8df61e9"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-isolated-plate-separation-energy-07",
+      "sourceSha256": "0fcb9cee272c7a0103403529dd90e19e1e45926a2857458936695fce595b124f",
+      "candidateSha256": "f51e8e12913aba40141d3a9a59e3adf4b2e52d8964361c71f237d1891925d2a5",
+      "reviewedSignature": "c95aab06b588ff4299720d72a9d453350110b8921f63e9fcc248d3ebd86c3184",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1/2",
+      "dimension": {},
+      "manualArithmetic": "A con s=2 ha U_A=4 μJ. B con s=1 ha U_B=2 μJ. Rapporto 1/2. Il confine s=1 significa nessun allontanamento e non una distanza nulla: d=d₀>0.",
+      "physicalAssumptions": "Condensatore piano lineare elettricamente isolato, modulo della carica su ciascuna armatura fissato entro prova. Area e permittività costanti, d=s d₀, s≥1, dimensioni laterali grandi rispetto a entrambe le distanze; bordi trascurati. U₀,U positive finite; energia finale del campo distinta dall’energia totale e dall’incremento. Preparazioni iniziali possono differire.",
+      "distractors": "s_B 1 conserva U₀2 μJ; A 4 μJ: rapporto 1/2. Due reciproco, uno ignora s, 1/4 quadrato, zero confonde ΔU 0 con U 0.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. A con s=2 ha U_A=4 μJ. B con s=1 ha U_B=2 μJ. Rapporto 1/2. Il confine s=1 significa nessun allontanamento e non una distanza nulla: d=d₀>0.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "dielectric_lorentz_review_models.py": "42da25a28a0f45351c833e9c583afeed5f0c615326404dc6ce4e2af1f8df61e9"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-isolated-plate-separation-energy-08",
+      "sourceSha256": "cf510b704f29a910109979168f5e1e97de54f32c0729eafa93d3485b568e2b9d",
+      "candidateSha256": "6f6d76e23c869d1530dc618671b666edb41a0b49201283f7b13bfc723fa655e3",
+      "reviewedSignature": "9a8864d88e81abf3b30ba532dd6b6906be267aeb8eb239f52cd3414a7c3f0113",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Corretto U=4 μJ; proposta 8 μJ. Scarto proposto meno corretto=+4 μJ. Otto deriverebbe da U₀s² in questa sostituzione; il modello a Q fissata è invece lineare in s.",
+      "physicalAssumptions": "Condensatore piano lineare elettricamente isolato, modulo della carica su ciascuna armatura fissato entro prova. Area e permittività costanti, d=s d₀, s≥1, dimensioni laterali grandi rispetto a entrambe le distanze; bordi trascurati. U₀,U positive finite; energia finale del campo distinta dall’energia totale e dall’incremento. Preparazioni iniziali possono differire.",
+      "distractors": "Proposta 8 meno 4=+4 μJ; ΔU rispetto allo stato iniziale è invece 2 μJ. −4 inverte, due puro è rapporto, otto copia proposta, zero non verifica.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Corretto U=4 μJ; proposta 8 μJ. Scarto proposto meno corretto=+4 μJ. Otto deriverebbe da U₀s² in questa sostituzione; il modello a Q fissata è invece lineare in s.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "dielectric_lorentz_review_models.py": "42da25a28a0f45351c833e9c583afeed5f0c615326404dc6ce4e2af1f8df61e9"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-isolated-plate-separation-energy-09",
+      "sourceSha256": "e72d26b92a70c0f56e4534c502c77f46cfabff844b43e68b45af3240672fba7d",
+      "candidateSha256": "b3e9accbc388a1c5f9f00ddc81f479700786094dcb658aac3ce5c5e78300b009",
+      "reviewedSignature": "f950831d7004e7b41bb72fb6dacb69d05c587a43d3dbe2c884a5ba7586ebee58",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "U₀ = U / s",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Si isola U₀ dalla relazione U=sU₀ dividendo per s≥1: U₀=U/s, con unità di energia. Non si deve usare CV²/2 mantenendo contemporaneamente V fisso: in questo processo V aumenta perché Q è isolata e C diminuisce.",
+      "physicalAssumptions": "Condensatore piano lineare elettricamente isolato, modulo della carica su ciascuna armatura fissato entro prova. Area e permittività costanti, d=s d₀, s≥1, dimensioni laterali grandi rispetto a entrambe le distanze; bordi trascurati. U₀,U positive finite; energia finale del campo distinta dall’energia totale e dall’incremento. Preparazioni iniziali possono differire.",
+      "distractors": "U₀=U/s ha energia e 0<U₀≤U. sU è diretta, s/U energia inversa, U−s dimensioni incompatibili, U/s² aggiunge potenza.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Si isola U₀ dalla relazione U=sU₀ dividendo per s≥1: U₀=U/s, con unità di energia. Non si deve usare CV²/2 mantenendo contemporaneamente V fisso: in questo processo V aumenta perché Q è isolata e C diminuisce.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "dielectric_lorentz_review_models.py": "42da25a28a0f45351c833e9c583afeed5f0c615326404dc6ce4e2af1f8df61e9"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-isolated-plate-separation-energy-10",
+      "sourceSha256": "06b43dfa24c69c97047de97d729fc1838c215fd45120d202e0fd27d283d3d150",
+      "candidateSha256": "af026f4016c7af9c4bab4cd3df88aa38c3a7428efa8477cc48d81825f590ab42",
+      "reviewedSignature": "7ca24df1fe7a949948c9ad9b14b8ba7a7255f80e8d7664efcf19f2712fd940da",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "κ₁ κ₂",
+      "dimension": {},
+      "manualArithmetic": "La notazione sorgente ripete malamente s=d/d₀ nei pedici; interpreto esplicitamente s_A=d_A/d₀,A e s_B=κ₂s_A. Con U₀,B=κ₁U₀,A, le uscite sono U_A=s_AU₀,A e U_B=κ₁κ₂s_AU₀,A, quindi rapporto κ₁κ₂. Entrambi s_A e s_B devono essere almeno uno e mantenere il regime piano; i fattori singoli non devono essere interi.",
+      "physicalAssumptions": "Condensatore piano lineare elettricamente isolato, modulo della carica su ciascuna armatura fissato entro prova. Area e permittività costanti, d=s d₀, s≥1, dimensioni laterali grandi rispetto a entrambe le distanze; bordi trascurati. U₀,U positive finite; energia finale del campo distinta dall’energia totale e dall’incremento. Preparazioni iniziali possono differire.",
+      "distractors": "κ₁κ₂:prodotto delle due variazioni. Quozienti invertono diretta, κ₂² aggiunge potenza, somma fallisce sui fattori unitari. Entrambe le geometrie restano piastre grandi.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. La notazione sorgente ripete malamente s=d/d₀ nei pedici; interpreto esplicitamente s_A=d_A/d₀,A e s_B=κ₂s_A. Con U₀,B=κ₁U₀,A, le uscite sono U_A=s_AU₀,A e U_B=κ₁κ₂s_AU₀,A, quindi rapporto κ₁κ₂. Entrambi s_A e s_B devono essere almeno uno e mantenere il regime piano; i fattori singoli non devono essere interi.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "dielectric_lorentz_review_models.py": "42da25a28a0f45351c833e9c583afeed5f0c615326404dc6ce4e2af1f8df61e9"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-isolated-plate-separation-energy-11",
+      "sourceSha256": "a21f13cd0dd7fa5e3dcdf608d123f26034075475b674a8b6183a09210d165017",
+      "candidateSha256": "87ee2d4f922e1d58713167b4fb9c353d3ab1e7d1967232186b7ab6eef9b66e8b",
+      "reviewedSignature": "3d6d867bb4a9dccb175100b27961a943ebe2bb304897c1181f2184c6759401ee",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "9/4",
+      "dimension": {},
+      "manualArithmetic": "A: U_A=2·2=4 μJ. B: U_B=3·3=9 μJ. Rapporto 9/4, puro. Il fattore 3/2 dell’energia iniziale e quello 3/2 della separazione si moltiplicano.",
+      "physicalAssumptions": "Condensatore piano lineare elettricamente isolato, modulo della carica su ciascuna armatura fissato entro prova. Area e permittività costanti, d=s d₀, s≥1, dimensioni laterali grandi rispetto a entrambe le distanze; bordi trascurati. U₀,U positive finite; energia finale del campo distinta dall’energia totale e dall’incremento. Preparazioni iniziali possono differire.",
+      "distractors": "U_A 4, U_B 9 μJ→9/4; 4/9 reciproco, 3/2 solo ingresso, 9/2 divide per U₀A invece diUA, uno ignora variazione.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. A: U_A=2·2=4 μJ. B: U_B=3·3=9 μJ. Rapporto 9/4, puro. Il fattore 3/2 dell’energia iniziale e quello 3/2 della separazione si moltiplicano.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "dielectric_lorentz_review_models.py": "42da25a28a0f45351c833e9c583afeed5f0c615326404dc6ce4e2af1f8df61e9"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-isolated-plate-separation-energy-12",
+      "sourceSha256": "4972ac4ea7d49f0cde7116238b1b4a198caed8c55ec2fd5056b29a9fcc86a3fb",
+      "candidateSha256": "0fd7f501b7ab263e82a4e809770f56be1eed9d6f03522274ed42e6c8403fb55c",
+      "reviewedSignature": "37d82e71447c366828eeacf89fe24eea3b385788bdb4a7d32145cab36f1dda50",
+      "assetChecksums": {
+        "isolated-plate-separation-energy-progressive.svg": "76ba0001dec63f3d6023626970316cc46eeb14b47bc78b55683939578369c1e2"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "13/2",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Media delle due uscite=(4+9)/2=13/2 μJ. Ai dati medi U₀=5/2 μJ e s=5/2, il prodotto sarebbe 25/4 μJ. Differenza 13/2−25/4=1/4 μJ. Sono medie statistiche di stati, non un singolo processo con ingresso variabile.",
+      "physicalAssumptions": "Condensatore piano lineare elettricamente isolato, modulo della carica su ciascuna armatura fissato entro prova. Area e permittività costanti, d=s d₀, s≥1, dimensioni laterali grandi rispetto a entrambe le distanze; bordi trascurati. U₀,U positive finite; energia finale del campo distinta dall’energia totale e dall’incremento. Preparazioni iniziali possono differire.",
+      "distractors": "Media 13/2 μJ distinta da 25/4 ai dati medi, scarto 1/4.13 somma, 5/2 semidifferenza, zero non è media di energie positive.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Media delle due uscite=(4+9)/2=13/2 μJ. Ai dati medi U₀=5/2 μJ e s=5/2, il prodotto sarebbe 25/4 μJ. Differenza 13/2−25/4=1/4 μJ. Sono medie statistiche di stati, non un singolo processo con ingresso variabile.",
+      "scientificAssetReview": "XML completo e PNG nativo 640 × 1480 letti: distanze fra facce interne 50 e 100 coordinate, d₀→2 d₀, area/carica invariate e U 2→4 μJ. Barre 128/288/208 per 4/9/13/2 μJ, comune 32 coordinate/μJ. Grafico a U₀2: x=150+100 s, y=1300−20 U, segmento s 1..3 da(250, 1260) a(450, 1180), punto iniziale chiuso. Nessuna falsa retta per s<1.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "dielectric_lorentz_review_models.py": "42da25a28a0f45351c833e9c583afeed5f0c615326404dc6ce4e2af1f8df61e9"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-isolated-plate-separation-energy-13",
+      "sourceSha256": "12859a8cb9aa03355a54945173bf947a42ec858b1c7786396ea142b57a0a4819",
+      "candidateSha256": "08f5027a71c12af5d95385fdd7a67c80c1e9d1d86a103de86f23d5bd283f6b5c",
+      "reviewedSignature": "c36f23460c87925732d5adc4a06e8c9008a1cc497818fcf89da8718f7f56245b",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "3/2",
+      "dimension": {},
+      "manualArithmetic": "Il rapporto richiesto del fattore di separazione va scritto s_B/s_A nonostante la stringa sorgente ripetuta. Bersaglio U_B=(9/4)·4=9 μJ, U₀,B=3 μJ: s_B=3. Dividendo per s_A=2 segue s_B/s_A=3/2, entrambi ≥1.",
+      "physicalAssumptions": "Condensatore piano lineare elettricamente isolato, modulo della carica su ciascuna armatura fissato entro prova. Area e permittività costanti, d=s d₀, s≥1, dimensioni laterali grandi rispetto a entrambe le distanze; bordi trascurati. U₀,U positive finite; energia finale del campo distinta dall’energia totale e dall’incremento. Preparazioni iniziali possono differire.",
+      "distractors": "Bersaglio 9 μJ e U₀B 3 μJ danno sB 3, rapporto 3/2; 2/3 reciproco, 9/4 copia rapporto energetico, 2 darebbe UB 12 μJ; 3/4 non raggiunge bersaglio.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Il rapporto richiesto del fattore di separazione va scritto s_B/s_A nonostante la stringa sorgente ripetuta. Bersaglio U_B=(9/4)·4=9 μJ, U₀,B=3 μJ: s_B=3. Dividendo per s_A=2 segue s_B/s_A=3/2, entrambi ≥1.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "dielectric_lorentz_review_models.py": "42da25a28a0f45351c833e9c583afeed5f0c615326404dc6ce4e2af1f8df61e9"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-isolated-plate-separation-energy-14",
+      "sourceSha256": "fa3c398c2a83f77436797281ffab81267186753117d1f72ceb9ec3da5b36814c",
+      "candidateSha256": "62a55883e583bbf3d3dd791367c95ba7f5a32b6056f9b6d35567456412cf801a",
+      "reviewedSignature": "e09f91fe3457e46d5ea00686a75caf14c659f5b5d8d4b5a7279d9963653e8e30",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "3",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Riferimento U_A=4 μJ, lettura 12: guadagno 3 unità/μJ. Lettura 27 indica U_B=9 μJ. Con s_B=3, U₀,B=9/3=3 μJ. Il display misura l’energia finale prima dell’inversione.",
+      "physicalAssumptions": "Condensatore piano lineare elettricamente isolato, modulo della carica su ciascuna armatura fissato entro prova. Area e permittività costanti, d=s d₀, s≥1, dimensioni laterali grandi rispetto a entrambe le distanze; bordi trascurati. U₀,U positive finite; energia finale del campo distinta dall’energia totale e dall’incremento. Preparazioni iniziali possono differire.",
+      "distractors": "Guadagno 3 μJ⁻¹, D 27→U 9 μJ, s 3→U₀3 μJ. Nove omette divisione fisica, 27 copiaD e omette entrambe, uno predice D 9.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Riferimento U_A=4 μJ, lettura 12: guadagno 3 unità/μJ. Lettura 27 indica U_B=9 μJ. Con s_B=3, U₀,B=9/3=3 μJ. Il display misura l’energia finale prima dell’inversione.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "dielectric_lorentz_review_models.py": "42da25a28a0f45351c833e9c583afeed5f0c615326404dc6ce4e2af1f8df61e9"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-isolated-plate-separation-energy-15",
+      "sourceSha256": "e3fe29bd394b2b348d734186edf8610ac9fe213dad844f9cb1acf8bc8a55e3fe",
+      "candidateSha256": "73cc54ea98fa83857ebb336a55b1c7d3b3fb089d8ad6e77e299df5537f8d62ea",
+      "reviewedSignature": "457877a0d0f9c3254407aa5d6f75605f8cfac25cc19f785129934088af43b635",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Le uscite dei riferimenti sono 4 e 9 μJ e le letture 9 e 19. Guadagno a_cal=(19−9)/(9−4)=2 unità/μJ, offset 1. Lettura 17 dà U_C=(17−1)/2=8 μJ; s_C=2 implica U₀,C=4 μJ.",
+      "physicalAssumptions": "Condensatore piano lineare elettricamente isolato, modulo della carica su ciascuna armatura fissato entro prova. Area e permittività costanti, d=s d₀, s≥1, dimensioni laterali grandi rispetto a entrambe le distanze; bordi trascurati. U₀,U positive finite; energia finale del campo distinta dall’energia totale e dall’incremento. Preparazioni iniziali possono differire.",
+      "distractors": "Guadagno 2 μJ⁻¹, offset 1, D 17→U 8 μJ, s 2→U₀4 μJ. 17/4 omette l’offset e D 18; otto copiaUfinale; 16 prediceUC 32 e D 65.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Le uscite dei riferimenti sono 4 e 9 μJ e le letture 9 e 19. Guadagno a_cal=(19−9)/(9−4)=2 unità/μJ, offset 1. Lettura 17 dà U_C=(17−1)/2=8 μJ; s_C=2 implica U₀,C=4 μJ.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "dielectric_lorentz_review_models.py": "42da25a28a0f45351c833e9c583afeed5f0c615326404dc6ce4e2af1f8df61e9"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-isolated-plate-separation-energy-16",
+      "sourceSha256": "4f2699efb9954930a1829faed8abefaed1dd9d0d468f1371d2079a03c7c868c3",
+      "candidateSha256": "b1beabb243057277f5a6fd919dffd9451ec94ec9fb7db784ddafeb2ac45f1f2e",
+      "reviewedSignature": "8654a4c1f787adebcb3263deffe6b67124e4ac5c3c2d88f2d6af0075ab2ffb47",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {},
+      "manualArithmetic": "Leggo il vincolo sorgente U₀=1·s=d/d₀ come U₀=(1 μJ)s, con s=d/d₀, evitando l’uguaglianza fra energia e numero puro. Inserendo in U=sU₀ segue U[μJ]=s². Misura 4 μJ richiede s²=4: solo s=2 è ≥1, con U₀=2 μJ. La geometria finale deve restare nel regime piano.",
+      "physicalAssumptions": "Condensatore piano lineare elettricamente isolato, modulo della carica su ciascuna armatura fissato entro prova. Area e permittività costanti, d=s d₀, s≥1, dimensioni laterali grandi rispetto a entrambe le distanze; bordi trascurati. U₀,U positive finite; energia finale del campo distinta dall’energia totale e dall’incremento. Preparazioni iniziali possono differire.",
+      "distractors": "U₀=(1 μJ)s porta U/(1 μJ)=s²=4, ramo s 2.−2 distanza negativa, 4 omette radice, mezzo avvicina e non soddisfa misura; nessuna ridondanza.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Leggo il vincolo sorgente U₀=1·s=d/d₀ come U₀=(1 μJ)s, con s=d/d₀, evitando l’uguaglianza fra energia e numero puro. Inserendo in U=sU₀ segue U[μJ]=s². Misura 4 μJ richiede s²=4: solo s=2 è ≥1, con U₀=2 μJ. La geometria finale deve restare nel regime piano.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "dielectric_lorentz_review_models.py": "42da25a28a0f45351c833e9c583afeed5f0c615326404dc6ce4e2af1f8df61e9"
+      },
+      "methods": [
+        "SymPy_independent_conservation_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "a5f51d11754b0f931e1a3f59295256f4a6a230696ebd1833998dd897165b23ff",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "publicationAction": "NONE",
+  "reviewedCandidateCommit": "b455db658158695f249e6baf7949687d5ae7453f",
+  "packageSha256": "8dfd9487293f89d073cc1f122ae1baf6acb98e19ffea8b6f93436a273fd96aca",
+  "bindingsSha256": "44e5c1b4ec220abc392c97a13465ca02debf6b1ee29bdd52b6cc873a9463b80b",
+  "sourceFirstPrimarySha256": "1884c8105aca5fd3c3f97999c64257e04c67490b7238cb2910764ad2a830684a",
+  "source": {
+    "commit": "5cfbdcb055ba3ba136f97fb56e997f06e6cf3605",
+    "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U6-04.json",
+    "reference": "Primaria prompt-only di tutti80 originali U6-04 B225–229 congelata prima di qualunque candidato. Successiva lettura allowlist di tutti80 prompt finali, poi modelli indipendenti scritti ed eseguiti realmente prima delle chiavi. Solo dopo sono stati letti individualmente tutti16 record finali completi, opzioni, formule, hint, feedback, metadata, XML e nuovo PNG nativo integrale. Nessuna esposizione anticipata a chiavi, nessun modulo autore importato o primaria B aperta. UI prodotto e human NOT_RUN; confronto integrato ROOT PENDING."
+  }
+}
