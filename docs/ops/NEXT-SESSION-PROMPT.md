@@ -920,3 +920,7 @@ Il codice dell’edizione C4 discende dal lettore integrato `250673b6`. Prima di
 ### Officina · 23 novembre 2026, continuità dei banchi
 
 Riconciliare base, PR e merge con GitHub. La revisione C4 ha verbale post-merge e ZIP identici sulla `d2c9e0a6`. Il banco recupera il contesto sulla sorgente `efef256b` con controprove di immagine, scelte manuali e letture. Proseguire con il registro editoriale degli altri corsi, la correzione delle voci motivate e la verifica dei collegamenti contestuali. Le prove con utenti e telefono fisico rimangono separate. [Contratto](../../officina-di-fisica/docs/verifica-prodotto/continuita-banchi.md)
+
+### Localizzazione del controllo mobile del26novembre
+
+Il replay completo con audit perID ha localizzato il FAILscrollable-region-focusable in SIM-C5-L03-02, formule9/11 dell’interferenza:334/283pixel in260disponibili. La precedente attribuzione all’adiabatica era un’ipotesi prima del dettaglio perID; l’adiabatica ha superato i4controlli di lettura, ma il cleanup del suo processo di test è stato terminato dopo185s con exit−15, quindi non è un test terminalePASS. Autore ha scomposto le due uguaglianze dell’interferenza in righe algebriche brevi, senza cambiare valori/16input/8SVG; verifica distinta e nuovo replay necessari. La correzione della triade delle guide temporali ha invece12casi browser terminaliPASS e24transizioni, più69test37,650s. Tutto rimane candidato isolato e credito attività0.

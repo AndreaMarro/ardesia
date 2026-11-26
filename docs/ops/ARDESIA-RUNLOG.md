@@ -2106,3 +2106,7 @@ Runtime Root/canone resta1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d11
 Repository PUBLIC e tutti i materiali editoriali autorizzati pubblicamente; app DRAFT/default-deny e93esami preservati. Pro100 NOT_IDENTIFIED;199controlli tecnici non sono revisioni complete. Mutex condiviso, almeno2GiB, nessun processo utente terminato.
 
 Prossimi passi: verificare CI postmerge sulla SHA7c29; riprodurre e adottare3632 dopo replay terminale; continuare U7 e Cric606 con autori/verificatori distinti; chiudere guide/geometry eUI delle139; mantenere checkpoint e coda umana separata dalla pubblicazione.
+
+### Localizzazione del controllo mobile del26novembre
+
+Il replay completo con audit perID ha localizzato il FAILscrollable-region-focusable in SIM-C5-L03-02, formule9/11 dell’interferenza:334/283pixel in260disponibili. La precedente attribuzione all’adiabatica era un’ipotesi prima del dettaglio perID; l’adiabatica ha superato i4controlli di lettura, ma il cleanup del suo processo di test è stato terminato dopo185s con exit−15, quindi non è un test terminalePASS. Autore ha scomposto le due uguaglianze dell’interferenza in righe algebriche brevi, senza cambiare valori/16input/8SVG; verifica distinta e nuovo replay necessari. La correzione della triade delle guide temporali ha invece12casi browser terminaliPASS e24transizioni, più69test37,650s. Tutto rimane candidato isolato e credito attività0.
