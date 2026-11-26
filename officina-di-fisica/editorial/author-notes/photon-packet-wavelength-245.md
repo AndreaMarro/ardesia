@@ -16,6 +16,8 @@ Geometria d’autore per il revisore (coordinate intrinseche SVG, non unità fis
 
 Il PNG nativo a piena altezza è stato effettivamente aperto e letto dall’autore, confrontandolo con XML. Resa asset-only; nessuna UI responsive del prodotto o accettazione scientifica anticipata.
 
+Rilettura distinta A: chiarimento selettivo AR-u7-photon-packet-wavelength-01. Archivio precedente completo in `u701-peer-wording-fixes-20261126`, con checksum. Strictdiff: soltanto prompt e binding derivato, altre 15 schede e tutte chiavi/formule/SVG byte-identici. Nuove due assembly e import canonico realmente terminali 0. PNG e ricevuta nativa restano quelli autentici degli stessi byte SVG: nessun nuovo rendering o UI attribuito al delta testuale. Revisione distinta finale ancora NOT_RUN fino al reread di A.
+
 ## AR-u7-photon-packet-wavelength-01 — Dal singolo fotone al pacchetto
 
 Ipotesi e percorso manuale d’autore: La frequenza nel vuoto è c/λ₀ e ciascun fotone porta energia hc/λ₀. Il pacchetto somma N contributi uguali. Prima converto i nanometri in metri: il prodotto hc assegnato è 1,98×10⁻²⁵ J·m. Dividendo per 660×10⁻⁹ m si trovano tre unità E_*. Il fattore 1980 della forma numerica contiene proprio questa conversione.

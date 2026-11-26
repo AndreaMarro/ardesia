@@ -2,7 +2,7 @@
 from .vector_geometry_authoring import assemble_family,write_family
 P='Un pacchetto contiene N fotoni monocromatici di lunghezza d’onda nel vuoto λ₀>0. N è intero positivo. Per questo esercizio si assumono h=6,6×10⁻³⁴ J·s e c=3×10⁸ m/s; i risultati sono esatti entro questi dati assegnati. Poniamo E_*=10⁻¹⁹ J, e=E/E_* e ℓ=λ₀/(1 nm). '
 TASKS=[
-('Dal singolo fotone al pacchetto',P+'Per N=1 e λ₀=660 nm, quanto vale e?',3,
+('Dal singolo fotone al pacchetto',P+'Per N=1 e λ₀=660 nm, quanto vale E nelle unità E_*? Inserisci il coefficiente e.',3,
  'La frequenza nel vuoto è c/λ₀ e ciascun fotone porta energia hc/λ₀. Il pacchetto somma N contributi uguali. Prima converto i nanometri in metri: il prodotto hc assegnato è 1,98×10⁻²⁵ J·m. Dividendo per 660×10⁻⁹ m si trovano tre unità E_*. Il fattore 1980 della forma numerica contiene proprio questa conversione.',
  r'E=\frac{Nhc}{\lambda_0}\qquad hc=1{,}98\times10^{-25}\,\mathrm{J\,m}\qquad e=\frac{1980N}{\ell}\qquad e=\frac{1980}{660}\qquad e=3',
  'Sei corrisponderebbe a due fotoni con questa lunghezza d’onda, non a uno. 1/3 è il reciproco del valore normalizzato richiesto; 1980 omette la divisione per ℓ. Un valore in joule va distinto dal suo numero e nelle unità E_*.','Ricava prima l’energia di un fotone e controlla il prefisso nano.'),

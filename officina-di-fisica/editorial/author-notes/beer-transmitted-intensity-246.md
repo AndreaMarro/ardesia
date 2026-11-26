@@ -16,6 +16,8 @@ Geometria d’autore per il revisore (coordinate intrinseche SVG, non unità fis
 
 Il PNG nativo a piena altezza è stato effettivamente aperto e letto dall’autore, confrontandolo con XML. Resa asset-only; nessuna UI responsive del prodotto o accettazione scientifica anticipata.
 
+Rilettura distinta A: chiarimento selettivo AR-u7-beer-transmitted-intensity-03. Archivio precedente completo in `u701-peer-wording-fixes-20261126`, con checksum. Strictdiff: soltanto before e binding derivato, altre 15 schede e tutte chiavi/formule/SVG byte-identici. Nuove due assembly e import canonico realmente terminali 0. PNG e ricevuta nativa restano quelli autentici degli stessi byte SVG: nessun nuovo rendering o UI attribuito al delta testuale. Revisione distinta finale ancora NOT_RUN fino al reread di A.
+
 ## AR-u7-beer-transmitted-intensity-01 — Ogni centimetro dimezza ciò che arriva
 
 Ipotesi e percorso manuale d’autore: L’esponente è il prodotto adimensionale μd. Per un centimetro vale ln 2 e il fattore esponenziale è un mezzo. L’intensità trasmessa è perciò 32 mW/m²: si dimezza il flusso energetico per area, non si sottrae un numero fisso per ogni centimetro successivo.
@@ -38,7 +40,7 @@ Distrattori: W è potenza totale e J energia; m⁻¹ appartiene al coefficiente 
 
 ## AR-u7-beer-transmitted-intensity-03 — I fotoni che proseguono
 
-Ipotesi e percorso manuale d’autore: Nel modello di assorbimento alcuni fotoni sono rimossi dal fascio diretto. Quelli che vengono trasmessi conservano la frequenza e quindi l’energia hf. A parità di sezione, la potenza per area minore dipende dal tasso medio di fotoni che riescono a passare. Non si sta descrivendo diffusione inelastica o fluorescenza raccolta.
+Ipotesi e percorso manuale d’autore: Nel modello di assorbimento alcuni fotoni sono rimossi dal fascio diretto. Quelli che vengono trasmessi conservano la frequenza e quindi l’energia hf. Qui ṅ_A è il tasso medio di fotoni trasmessi per unità di area, con unità s⁻¹ m⁻². A parità di sezione, la potenza per area minore dipende da questo tasso per area. Non si sta descrivendo diffusione inelastica o fluorescenza raccolta.
 
 Passaggi: E_\gamma=hf;  I=\dot n_Ahf
 

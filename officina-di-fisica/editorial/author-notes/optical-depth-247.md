@@ -16,6 +16,8 @@ Geometria d’autore per il revisore (coordinate intrinseche SVG, non unità fis
 
 Il PNG nativo a piena altezza è stato effettivamente aperto e letto dall’autore, confrontandolo con XML. Resa asset-only; nessuna UI responsive del prodotto o accettazione scientifica anticipata.
 
+Rilettura distinta A: chiarimento selettivo AR-u7-optical-depth-04. Archivio precedente completo in `u701-peer-wording-fixes-20261126`, con checksum. Strictdiff: soltanto hint e binding derivato, altre 15 schede e tutte chiavi/formule/SVG byte-identici. Nuove due assembly e import canonico realmente terminali 0. PNG e ricevuta nativa restano quelli autentici degli stessi byte SVG: nessun nuovo rendering o UI attribuito al delta testuale. Revisione distinta finale ancora NOT_RUN fino al reread di A.
+
 ## AR-u7-optical-depth-01 — Un esponente non ha unità
 
 Ipotesi e percorso manuale d’autore: Il coefficiente misura l’attenuazione per unità di lunghezza. Moltiplicandolo per lo spessore percorso nella stessa unità si cancellano i centimetri: τ=2. Questo numero entra nell’esponenziale, mentre la frazione trasmessa è e⁻² e non il numero due.

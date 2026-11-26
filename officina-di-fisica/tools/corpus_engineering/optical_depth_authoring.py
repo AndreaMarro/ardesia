@@ -19,7 +19,7 @@ TASKS=[
  ['Da 2 a 6','Da 2 a 2/3','Da 2 a 18','Resta 2','Diventa 3'],
  'A spessore fisso τ è direttamente proporzionale a μ. Il prodotto passa da uno per due a tre per due, quindi da due a sei. La trasmittanza diminuirebbe da e⁻² a e⁻⁶: la sua variazione non è lo stesso rapporto lineare dello spessore ottico.',
  r'\tau_A=1\cdot2\qquad \tau_A=2\qquad \tau_B=3\cdot2\qquad \tau_B=6',
- '2/3 seguirebbe una dipendenza inversa e diciotto il quadrato del fattore tre. Tre copia il nuovo coefficiente come se fosse τ; due ignora il cambiamento di materiale.','Il coefficiente e lo spessore hanno ruoli distinti, ma entrambi moltiplicano τ.'),
+ '2/3 seguirebbe una dipendenza inversa e diciotto il quadrato del fattore tre. Tre copia il nuovo coefficiente come se fosse τ; due ignora il cambiamento di materiale.','Il coefficiente e lo spessore hanno ruoli distinti: entrambi compaiono come fattori nel prodotto τ=μd.'),
 ('Il coefficiente da τ e d',P+'Si misurano τ=2 e d=2 cm. Quanto vale μ in cm⁻¹?',1,
  'Divido lo spessore ottico per quello geometrico. Il rapporto 2/(2 cm) vale 1 cm⁻¹, positivo. La verifica μd=2 recupera l’esponente misurato e mantiene l’unità inversa di lunghezza.',
  r'\mu=\frac{\tau}{d}\qquad \mu=\frac{2}{2\,\mathrm{cm}}\qquad \mu=1\,\mathrm{cm^{-1}}',
