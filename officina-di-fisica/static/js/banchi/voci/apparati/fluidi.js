@@ -264,8 +264,6 @@ export const fluidi = {
       tubo(b, r, B, 0.14);
       b.arrow([-0.72, 1.25, 0.9 * k], [-0.72 + 1.1 * f, 1.25, 0.9 * k], k < 0 ? c.viola : c.verde);
     }
-    b.label([-1.7, 1.67, 0], 'Nodo A');
-    b.label([1.7, 1.67, 0], 'Nodo B');
   },
   film(b, s) {
     const w = 3.1 * s.bordo,

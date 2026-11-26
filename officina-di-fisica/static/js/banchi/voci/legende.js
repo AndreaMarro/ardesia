@@ -22,7 +22,7 @@ export const legende = {
   galleggia: 'Pelo libero verde · blocco ocra · spinta verticale viola',
   condotto: 'Verde a monte · viola a valle. Le frecce rappresentano le velocità di sezione',
   profilo: 'Contorno verde · profilo delle velocità. Viola · velocità locale',
-  rete: 'Nelle biforcazioni: ocra · portata in ingresso; viola e verde · portate nei due rami, alla stessa scala. La portata entrante è la somma delle due uscite. Nei tubi in serie la freccia verde segue la portata comune.',
+  rete: 'Nelle biforcazioni: nodo A · ingresso dal tubo con la freccia ocra; nodo B · ricongiunzione e uscita dei due rami. Ocra · portata entrante; viola e verde · portate nei rami, alla stessa scala. La portata entrante è la somma delle due uscite. Nei tubi in serie la freccia verde segue la portata comune.',
   film: 'Bordo mobile ocra · le due facce del film tirano nello stesso verso',
   goccia: 'La misura del raggio parte dal centro della superficie sferica',
   capillare: 'La freccia viola va dal pelo libero esterno al livello interno',
