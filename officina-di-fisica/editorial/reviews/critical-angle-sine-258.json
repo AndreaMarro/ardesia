@@ -1,0 +1,526 @@
+{
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "AR-u7-critical-angle-sine-01",
+      "sourceSha256": "cdb9f2ea5a090ad9c40d522dfa6f4db7da3e93a2ba93afc25e39ac8bceaff7da",
+      "candidateSha256": "2db35b45e3e7087bc950f944a5ea5dc9b82208d9530ed857598baa33c3aba47f",
+      "reviewedSignature": "dda20cf91ee8bec6adeb910edb5782814fa4acd3aa3637592400c01afe9d85ef",
+      "assetChecksums": {
+        "critical-angle-sine-progressive.svg": "b6eecbd97d8cd01fceccb1bb9d2350ab39137254ea843a9cb81b196c85199e6e"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1/2",
+      "dimension": {},
+      "manualArithmetic": "Per rifrazione da indice maggiore n_i a minore n_e, al limite il seno rifratto è1: n_i sinθ_c=n_e. Quindi s_c=n_e/n_i=1/2. Il seno è fra0 e1 per l’ipotesi stretta n_i>n_e>0.",
+      "physicalAssumptions": "Due mezzi trasparenti ideali, interfaccia piana ferma; arrivo dal maggiore indice n_i>n_e>0, angoli dalla normale. Al limite il trasmesso è radente: s_c=n_e/n_i strettamente fra zero e uno. Riflessione totale per θ_i>θ_c, non per semplice disuguaglianza degli indici; campo evanescente distinto dal raggio propagante.",
+      "distractors": "1/2;2 reciproco fuori seno,1 manca contrasto,1/4 quadrato,−1/2 fuori ramo.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Per rifrazione da indice maggiore n_i a minore n_e, al limite il seno rifratto è1: n_i sinθ_c=n_e. Quindi s_c=n_e/n_i=1/2. Il seno è fra0 e1 per l’ipotesi stretta n_i>n_e>0.",
+      "scientificAssetReview": "SVG640×1610 letto XML e native intero dopo child0. Caso limite: incidente(80,−80√3) seno1/2/30°,uscente orizzontale radente. Pannello TIR: incidente(120,−120),riflesso(120,120),45° dalla normale,entrambe le frecce complete; nessun trasmesso propagante,evanescente dichiarato non rappresentato. Barre240/320/280 per1/2,2/3,7/12 alla scala480 comune.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "nuclei_optics_review_models.py": "f32615b7796d7dcb7c5d4e9d58566922ed01dac5f1dfd884fef5efd0108492c7"
+      },
+      "methods": [
+        "SymPy_independent_nuclear_charge_energy_Snell_and_lens_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u7-critical-angle-sine-02",
+      "sourceSha256": "79bc624fbc8bfe61dc7170694135a754790fe257f342e66e690a33cebed2cc66",
+      "candidateSha256": "175994afa6da39c53e8c78f7ddd4fd73066a0179a82717a06523908211427b25",
+      "reviewedSignature": "9480fccb49c1fb93d3840cc81b33743ff54f00a89e46572fd927c4fa5ed1fbf6",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1, adimensionale",
+      "dimension": {},
+      "manualArithmetic": "Il rapporto di indici e il seno limite sono numeri puri. La primaria precedeva tutte le alternative; dopo la freeze tutti e cinque i distrattori/proposte sono stati letti singolarmente.",
+      "physicalAssumptions": "Caso dimensionale autonomo: Due mezzi trasparenti ideali, interfaccia piana ferma; arrivo dal maggiore indice n_i>n_e>0, angoli dalla normale. Al limite il trasmesso è radente: s_c=n_e/n_i strettamente fra zero e uno. Riflessione totale per θ_i>θ_c, non per semplice disuguaglianza degli indici; campo evanescente distinto dal raggio propagante.",
+      "distractors": "s_c puro; gradi angolo,m lunghezza,s tempo,m⁻¹ inverso lunghezza.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Il rapporto di indici e il seno limite sono numeri puri. La primaria precedeva tutte le alternative; dopo la freeze tutti e cinque i distrattori/proposte sono stati letti singolarmente.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "nuclei_optics_review_models.py": "f32615b7796d7dcb7c5d4e9d58566922ed01dac5f1dfd884fef5efd0108492c7"
+      },
+      "methods": [
+        "SymPy_independent_nuclear_charge_energy_Snell_and_lens_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u7-critical-angle-sine-03",
+      "sourceSha256": "10ac14a21a69bd27e88edbc864b9a243351b5542184ae582fc14a186720d176f",
+      "candidateSha256": "c3db36e171db21d35615dacae7100364e1a8d40e14557aa07fc8f63531ad1873",
+      "reviewedSignature": "ded33734a192e0afbc2398c4aa409b7e4c0222508cacd424f9f4d71716929e78",
+      "assetChecksums": {
+        "critical-angle-sine-progressive.svg": "b6eecbd97d8cd01fceccb1bb9d2350ab39137254ea843a9cb81b196c85199e6e"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Arrivo dal mezzo di indice maggiore con θ_i maggiore dell’angolo limite",
+      "dimension": {},
+      "manualArithmetic": "È necessario passare da indice maggiore a indice minore, n_i>n_e. Per avere effettivamente riflessione totale interna serve anche θ_i>θ_c, con sinθ_c=n_e/n_i. All’uguaglianza il raggio rifratto è radente: condizione limite, non un angolo strettamente oltre il limite. Interfaccia fra mezzi trasparenti nel modello geometrico.",
+      "physicalAssumptions": "Due mezzi trasparenti ideali, interfaccia piana ferma; arrivo dal maggiore indice n_i>n_e>0, angoli dalla normale. Al limite il trasmesso è radente: s_c=n_e/n_i strettamente fra zero e uno. Riflessione totale per θ_i>θ_c, non per semplice disuguaglianza degli indici; campo evanescente distinto dal raggio propagante.",
+      "distractors": "n_i>n_e e θ_i>θ_c stretti. Sotto soglia trasmissione,al limite radente; da minore indice nessuna TIR. Campo evanescente non raggio propagante.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. È necessario passare da indice maggiore a indice minore, n_i>n_e. Per avere effettivamente riflessione totale interna serve anche θ_i>θ_c, con sinθ_c=n_e/n_i. All’uguaglianza il raggio rifratto è radente: condizione limite, non un angolo strettamente oltre il limite. Interfaccia fra mezzi trasparenti nel modello geometrico.",
+      "scientificAssetReview": "SVG640×1610 letto XML e native intero dopo child0. Caso limite: incidente(80,−80√3) seno1/2/30°,uscente orizzontale radente. Pannello TIR: incidente(120,−120),riflesso(120,120),45° dalla normale,entrambe le frecce complete; nessun trasmesso propagante,evanescente dichiarato non rappresentato. Barre240/320/280 per1/2,2/3,7/12 alla scala480 comune.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "nuclei_optics_review_models.py": "f32615b7796d7dcb7c5d4e9d58566922ed01dac5f1dfd884fef5efd0108492c7"
+      },
+      "methods": [
+        "SymPy_independent_nuclear_charge_energy_Snell_and_lens_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u7-critical-angle-sine-04",
+      "sourceSha256": "87f139581014b831d5c5005d9689ae85c9d78c4f7b30d86984f10907454cf80f",
+      "candidateSha256": "2e5dc5172c3636117575e417e91ad4c8196b67ba42ccff354241c91b65b69587",
+      "reviewedSignature": "3b302045064af0e3e157219578b2ef4645fe1e7da2a50def7e10aaed3b53651b",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Da 1/2 a 3/4",
+      "dimension": {},
+      "manualArithmetic": "A:1/2. Con n_e3/2,n_i2 si ha s_c3/4. Il seno limite cresce di fattore3/2; non si identifica questo fattore con il rapporto degli angoli.",
+      "physicalAssumptions": "Due mezzi trasparenti ideali, interfaccia piana ferma; arrivo dal maggiore indice n_i>n_e>0, angoli dalla normale. Al limite il trasmesso è radente: s_c=n_e/n_i strettamente fra zero e uno. Riflessione totale per θ_i>θ_c, non per semplice disuguaglianza degli indici; campo evanescente distinto dal raggio propagante.",
+      "distractors": "1/2→3/4;1/3 inversa,3/2 non seno,1/2 ignora,9/16 quadrato.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. A:1/2. Con n_e3/2,n_i2 si ha s_c3/4. Il seno limite cresce di fattore3/2; non si identifica questo fattore con il rapporto degli angoli.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "nuclei_optics_review_models.py": "f32615b7796d7dcb7c5d4e9d58566922ed01dac5f1dfd884fef5efd0108492c7"
+      },
+      "methods": [
+        "SymPy_independent_nuclear_charge_energy_Snell_and_lens_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u7-critical-angle-sine-05",
+      "sourceSha256": "9abc306781f22e273c89808459f454079324f7915c553872058f570f8aaa2577",
+      "candidateSha256": "e6e50406b606841c91920093393e627044eccd78f3f6398b6adc293be8e10924",
+      "reviewedSignature": "85c24df10097be62c8e17cbc86efea9ccb20addb85b7e4dfd333356df8eb0cd2",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1",
+      "dimension": {},
+      "manualArithmetic": "Isolo n_e=n_i s_c=2·1/2=1. Verifico0<n_e<n_i. Il risultato non ha unità.",
+      "physicalAssumptions": "Due mezzi trasparenti ideali, interfaccia piana ferma; arrivo dal maggiore indice n_i>n_e>0, angoli dalla normale. Al limite il trasmesso è radente: s_c=n_e/n_i strettamente fra zero e uno. Riflessione totale per θ_i>θ_c, non per semplice disuguaglianza degli indici; campo evanescente distinto dal raggio propagante.",
+      "distractors": "n_e2·1/2=1.4 inverte ordine,2 elimina contrasto,1/2 copia seno.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Isolo n_e=n_i s_c=2·1/2=1. Verifico0<n_e<n_i. Il risultato non ha unità.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "nuclei_optics_review_models.py": "f32615b7796d7dcb7c5d4e9d58566922ed01dac5f1dfd884fef5efd0108492c7"
+      },
+      "methods": [
+        "SymPy_independent_nuclear_charge_energy_Snell_and_lens_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u7-critical-angle-sine-06",
+      "sourceSha256": "b186713088ea612a088a2247dd9442d42e98ba199e5af0a2282c63be3f2aa544",
+      "candidateSha256": "d4e5a4e29739f7b2536f451c6548a61a11732b5968d761b6a471938bcc022af1",
+      "reviewedSignature": "6c2d4d40d227e34ca489378d45d2c22436b2a3601c39d319d1926f52f74a1052",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {},
+      "manualArithmetic": "Isolo n_i=n_e/s_c=1/(1/2)=2. Per n_e>0 e0<s_c<1 segue n_i>n_e; il denominatore non può essere nullo.",
+      "physicalAssumptions": "Due mezzi trasparenti ideali, interfaccia piana ferma; arrivo dal maggiore indice n_i>n_e>0, angoli dalla normale. Al limite il trasmesso è radente: s_c=n_e/n_i strettamente fra zero e uno. Riflessione totale per θ_i>θ_c, non per semplice disuguaglianza degli indici; campo evanescente distinto dal raggio propagante.",
+      "distractors": "n_i1/(1/2)=2.1/2 ordine inverso,1 parità,4 darebbe1/4.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Isolo n_i=n_e/s_c=1/(1/2)=2. Per n_e>0 e0<s_c<1 segue n_i>n_e; il denominatore non può essere nullo.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "nuclei_optics_review_models.py": "f32615b7796d7dcb7c5d4e9d58566922ed01dac5f1dfd884fef5efd0108492c7"
+      },
+      "methods": [
+        "SymPy_independent_nuclear_charge_energy_Snell_and_lens_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u7-critical-angle-sine-07",
+      "sourceSha256": "dfefb4b31be0d2c1c7fb4e071fbdeb1856272eb83e1553001b5ec483653cce30",
+      "candidateSha256": "90b5dcc169ded4fbdc20782f9c5b98cb283a033e9e76774c97fcf895bff2c505",
+      "reviewedSignature": "245528827d92ce881be9b3e0fd46e810c65fdc87fce883810c871b0e5fa1db2d",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2/3",
+      "dimension": {},
+      "manualArithmetic": "A:s_c1/2. B:n_e1,n_i3→s_c1/3. Rapporto2/3. L’angolo limite diminuisce quando aumenta solo l’indice del mezzo di partenza.",
+      "physicalAssumptions": "Due mezzi trasparenti ideali, interfaccia piana ferma; arrivo dal maggiore indice n_i>n_e>0, angoli dalla normale. Al limite il trasmesso è radente: s_c=n_e/n_i strettamente fra zero e uno. Riflessione totale per θ_i>θ_c, non per semplice disuguaglianza degli indici; campo evanescente distinto dal raggio propagante.",
+      "distractors": "(1/3)/(1/2)=2/3;3/2 reciproco,1/3 o1/2 uscita,1 ignora.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. A:s_c1/2. B:n_e1,n_i3→s_c1/3. Rapporto2/3. L’angolo limite diminuisce quando aumenta solo l’indice del mezzo di partenza.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "nuclei_optics_review_models.py": "f32615b7796d7dcb7c5d4e9d58566922ed01dac5f1dfd884fef5efd0108492c7"
+      },
+      "methods": [
+        "SymPy_independent_nuclear_charge_energy_Snell_and_lens_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u7-critical-angle-sine-08",
+      "sourceSha256": "48f55ea1c2f1f42635e7720fc8f288896119ac81ffbc5b399132f0d8706fa16d",
+      "candidateSha256": "8b8db2fb65231701d221d9985ed75a9bbe15e6637577388df0130394bf14e535",
+      "reviewedSignature": "b010851193d614ea328f63494881fcaf87691189cb75598a34c40431496828a6",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1/2",
+      "dimension": {},
+      "manualArithmetic": "Proposto1 meno corretto1/2 dà+1/2, puro. Il proposto coincide con un seno massimo, ma non con quello richiesto da n_i2,n_e1.",
+      "physicalAssumptions": "Due mezzi trasparenti ideali, interfaccia piana ferma; arrivo dal maggiore indice n_i>n_e>0, angoli dalla normale. Al limite il trasmesso è radente: s_c=n_e/n_i strettamente fra zero e uno. Riflessione totale per θ_i>θ_c, non per semplice disuguaglianza degli indici; campo evanescente distinto dal raggio propagante.",
+      "distractors": "1−1/2=1/2;−1/2 ordine,1 proposta,2 rapporto,0 accetta.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Proposto1 meno corretto1/2 dà+1/2, puro. Il proposto coincide con un seno massimo, ma non con quello richiesto da n_i2,n_e1.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "nuclei_optics_review_models.py": "f32615b7796d7dcb7c5d4e9d58566922ed01dac5f1dfd884fef5efd0108492c7"
+      },
+      "methods": [
+        "SymPy_independent_nuclear_charge_energy_Snell_and_lens_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u7-critical-angle-sine-09",
+      "sourceSha256": "802485b9ac45e15918708e663275c436f292b8fba1947ad9d28dd29ff7bbb45d",
+      "candidateSha256": "6e54a5de28ba5e9e49f3e679c306aec6600b1e86cb481213731847dfefb1da99",
+      "reviewedSignature": "cd8fa5b3ea1dc31880b37795dcb2a94c2ba4947c6ed8ecd8229885da3599ef03",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "n_e = n_i s_c",
+      "dimension": {},
+      "manualArithmetic": "La relazione n_i s_c=n_e dà n_e=n_i s_c. Si mantiene0<s_c<1 per la disuguaglianza stretta fra gli indici; non si usa un reciproco del seno.",
+      "physicalAssumptions": "Due mezzi trasparenti ideali, interfaccia piana ferma; arrivo dal maggiore indice n_i>n_e>0, angoli dalla normale. Al limite il trasmesso è radente: s_c=n_e/n_i strettamente fra zero e uno. Riflessione totale per θ_i>θ_c, non per semplice disuguaglianza degli indici; campo evanescente distinto dal raggio propagante.",
+      "distractors": "n_e=n_i s_c,0<s_c<1. Quozienti/differenza/quadrato non invertono Snell; dimensioni pure da sole insufficienti.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. La relazione n_i s_c=n_e dà n_e=n_i s_c. Si mantiene0<s_c<1 per la disuguaglianza stretta fra gli indici; non si usa un reciproco del seno.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "nuclei_optics_review_models.py": "f32615b7796d7dcb7c5d4e9d58566922ed01dac5f1dfd884fef5efd0108492c7"
+      },
+      "methods": [
+        "SymPy_independent_nuclear_charge_energy_Snell_and_lens_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u7-critical-angle-sine-10",
+      "sourceSha256": "f6c61bdb43a6944700922b41f5fb63d915fece1f29053522b6f54086b86b2701",
+      "candidateSha256": "d71936dba27c57ea0bd6343c477ef5f0bc975b11ef2b61d513fe3fcc85682179",
+      "reviewedSignature": "1febceb74c4bca2aa52b51e0a3418c23068114fe851756951735f72b2f329081",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "κ₁ / κ₂",
+      "dimension": {},
+      "manualArithmetic": "Rapporto s_c,B/s_c,A=κ₁/κ₂. Il dominio delle nuove coppie imponeκ₂n_i>κ₁n_e>0. Se i fattori violano questa condizione non esiste quel limite di riflessione totale nella direzione assegnata.",
+      "physicalAssumptions": "Due mezzi trasparenti ideali, interfaccia piana ferma; arrivo dal maggiore indice n_i>n_e>0, angoli dalla normale. Al limite il trasmesso è radente: s_c=n_e/n_i strettamente fra zero e uno. Riflessione totale per θ_i>θ_c, non per semplice disuguaglianza degli indici; campo evanescente distinto dal raggio propagante.",
+      "distractors": "κ₁/κ₂, con κ₂n_i>κ₁n_e. Prodotto indice interno diretto,reciproco ruoli invertiti,quadrato altra legge,somma2 a prove identiche.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Rapporto s_c,B/s_c,A=κ₁/κ₂. Il dominio delle nuove coppie imponeκ₂n_i>κ₁n_e>0. Se i fattori violano questa condizione non esiste quel limite di riflessione totale nella direzione assegnata.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "nuclei_optics_review_models.py": "f32615b7796d7dcb7c5d4e9d58566922ed01dac5f1dfd884fef5efd0108492c7"
+      },
+      "methods": [
+        "SymPy_independent_nuclear_charge_energy_Snell_and_lens_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u7-critical-angle-sine-11",
+      "sourceSha256": "82892f25a6ed76a0612e0c2f18ea97beacfb3f2f060af81c708aa16473306dcc",
+      "candidateSha256": "7bc186c8fe2087c1c6e2acdffb85f3a37270ddc6225fb083597564c12ceee32a",
+      "reviewedSignature": "2e2e352e63a0d7eca04654432cbedd0f91c579b698e7f545e8ae73ede7aa7e30",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4/3",
+      "dimension": {},
+      "manualArithmetic": "A:s_c1/2. B:n_e2,n_i3→s_c2/3. Rapporto4/3. Si dividono due seni, non due indici senza conservare il loro ruolo.",
+      "physicalAssumptions": "Due mezzi trasparenti ideali, interfaccia piana ferma; arrivo dal maggiore indice n_i>n_e>0, angoli dalla normale. Al limite il trasmesso è radente: s_c=n_e/n_i strettamente fra zero e uno. Riflessione totale per θ_i>θ_c, non per semplice disuguaglianza degli indici; campo evanescente distinto dal raggio propagante.",
+      "distractors": "(2/3)/(1/2)=4/3.3/4 reciproco,2 solo n_e,2/3 o1/2 uscita.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. A:s_c1/2. B:n_e2,n_i3→s_c2/3. Rapporto4/3. Si dividono due seni, non due indici senza conservare il loro ruolo.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "nuclei_optics_review_models.py": "f32615b7796d7dcb7c5d4e9d58566922ed01dac5f1dfd884fef5efd0108492c7"
+      },
+      "methods": [
+        "SymPy_independent_nuclear_charge_energy_Snell_and_lens_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u7-critical-angle-sine-12",
+      "sourceSha256": "949d44160f52cf3b509484d5598997d7b660310a5d735d5903de4a18df2a6a3b",
+      "candidateSha256": "5c536fc8f55cf6fb55305adf90981b3a81ed844e674400b01c1f8556d629adea",
+      "reviewedSignature": "e0cbb2afa570d29b76b1ca02aefa603883e9baaa497afc9f90e5f40ca7305de7",
+      "assetChecksums": {
+        "critical-angle-sine-progressive.svg": "b6eecbd97d8cd01fceccb1bb9d2350ab39137254ea843a9cb81b196c85199e6e"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "7/12",
+      "dimension": {},
+      "manualArithmetic": "Media(1/2+2/3)/2=7/12. Agli indici medi n_e3/2,n_i5/2 si avrebbe3/5. Differenza7/12−3/5=−1/60. Media delle uscite e uscita degli ingressi medi sono diverse.",
+      "physicalAssumptions": "Due mezzi trasparenti ideali, interfaccia piana ferma; arrivo dal maggiore indice n_i>n_e>0, angoli dalla normale. Al limite il trasmesso è radente: s_c=n_e/n_i strettamente fra zero e uno. Riflessione totale per θ_i>θ_c, non per semplice disuguaglianza degli indici; campo evanescente distinto dal raggio propagante.",
+      "distractors": "7/12;3/5 ingressi medi,7/6 somma fuori seno,1/2 e2/3 singole soglie. Differenza dati-medi meno media1/60.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Media(1/2+2/3)/2=7/12. Agli indici medi n_e3/2,n_i5/2 si avrebbe3/5. Differenza7/12−3/5=−1/60. Media delle uscite e uscita degli ingressi medi sono diverse.",
+      "scientificAssetReview": "SVG640×1610 letto XML e native intero dopo child0. Caso limite: incidente(80,−80√3) seno1/2/30°,uscente orizzontale radente. Pannello TIR: incidente(120,−120),riflesso(120,120),45° dalla normale,entrambe le frecce complete; nessun trasmesso propagante,evanescente dichiarato non rappresentato. Barre240/320/280 per1/2,2/3,7/12 alla scala480 comune.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "nuclei_optics_review_models.py": "f32615b7796d7dcb7c5d4e9d58566922ed01dac5f1dfd884fef5efd0108492c7"
+      },
+      "methods": [
+        "SymPy_independent_nuclear_charge_energy_Snell_and_lens_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u7-critical-angle-sine-13",
+      "sourceSha256": "07b2f009d874f15a00d242bcfb2a87b9221e43be69e44b383e3666665639d77c",
+      "candidateSha256": "0331a13652a8d9f37c16fbcd8d046326de535e8078a43de054e20c04c6df865a",
+      "reviewedSignature": "85d85cf3bae0bc60a442ca00db061f18066c967147fe2031463987b351534a20",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "3/2",
+      "dimension": {},
+      "manualArithmetic": "Target(4/3)(1/2)=2/3. Con n_e,B2 serve n_i,B=2/(2/3)=3. Rapporto n_i,B/n_i,A=3/2, dominio3>2 soddisfatto.",
+      "physicalAssumptions": "Due mezzi trasparenti ideali, interfaccia piana ferma; arrivo dal maggiore indice n_i>n_e>0, angoli dalla normale. Al limite il trasmesso è radente: s_c=n_e/n_i strettamente fra zero e uno. Riflessione totale per θ_i>θ_c, non per semplice disuguaglianza degli indici; campo evanescente distinto dal raggio propagante.",
+      "distractors": "Target2/3, n_i,B2/(2/3)=3, rapporto3/2.2/3 reciproco,4/3 target,2 solo n_e,1 annulla contrasto.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Target(4/3)(1/2)=2/3. Con n_e,B2 serve n_i,B=2/(2/3)=3. Rapporto n_i,B/n_i,A=3/2, dominio3>2 soddisfatto.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "nuclei_optics_review_models.py": "f32615b7796d7dcb7c5d4e9d58566922ed01dac5f1dfd884fef5efd0108492c7"
+      },
+      "methods": [
+        "SymPy_independent_nuclear_charge_energy_Snell_and_lens_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u7-critical-angle-sine-14",
+      "sourceSha256": "4040f9f14b7c0429807776154c208852db19fff5b763b677680b6bd121a91a81",
+      "candidateSha256": "61f427a59dc5b2469d03eced93897337502cc38d434ff0cda4a73eb062fd20ba",
+      "reviewedSignature": "828df85e3d0f0a5e24d0ec6a9548a6609d01a9cf70d2eab3149775f16de5a0f3",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {},
+      "manualArithmetic": "Riferimento s_c1/2,D3/2→guadagno3. D2→s_c2/3. Con n_i3 si ottiene n_e2, minore dell’indice di partenza.",
+      "physicalAssumptions": "Due mezzi trasparenti ideali, interfaccia piana ferma; arrivo dal maggiore indice n_i>n_e>0, angoli dalla normale. Al limite il trasmesso è radente: s_c=n_e/n_i strettamente fra zero e uno. Riflessione totale per θ_i>θ_c, non per semplice disuguaglianza degli indici; campo evanescente distinto dal raggio propagante.",
+      "distractors": "g3,D2→s_c2/3; n_e3·2/3=2.6 fuori ordine,2/3 seno,3 parità,1 non display.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Riferimento s_c1/2,D3/2→guadagno3. D2→s_c2/3. Con n_i3 si ottiene n_e2, minore dell’indice di partenza.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "nuclei_optics_review_models.py": "f32615b7796d7dcb7c5d4e9d58566922ed01dac5f1dfd884fef5efd0108492c7"
+      },
+      "methods": [
+        "SymPy_independent_nuclear_charge_energy_Snell_and_lens_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u7-critical-angle-sine-15",
+      "sourceSha256": "667cb94b57332b323472909a7556183888359057b7943adf3cf14d612dae82a9",
+      "candidateSha256": "832139f6686c4b0048afe8f88c2b2725527d7a2198731722631d4896578c8209",
+      "reviewedSignature": "64456a9178330dc28987182ad6bd021a7233e3a746daba603179fd0322ca4a16",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "3/2",
+      "dimension": {},
+      "manualArithmetic": "Riferimenti s_c1/2,2/3 e letture2,7/3 danno guadagno[(7/3)−2]/[(2/3)−1/2]=2 e offset1. D5/2→s_c3/4. Con n_i2 si ricava n_e3/2.",
+      "physicalAssumptions": "Due mezzi trasparenti ideali, interfaccia piana ferma; arrivo dal maggiore indice n_i>n_e>0, angoli dalla normale. Al limite il trasmesso è radente: s_c=n_e/n_i strettamente fra zero e uno. Riflessione totale per θ_i>θ_c, non per semplice disuguaglianza degli indici; campo evanescente distinto dal raggio propagante.",
+      "distractors": "g2,b1,D5/2→s_c3/4,n_e3/2.5/2 omette offset e supera n_i2,3/4 seno,1 riferimento,2 parità.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Riferimenti s_c1/2,2/3 e letture2,7/3 danno guadagno[(7/3)−2]/[(2/3)−1/2]=2 e offset1. D5/2→s_c3/4. Con n_i2 si ricava n_e3/2.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "nuclei_optics_review_models.py": "f32615b7796d7dcb7c5d4e9d58566922ed01dac5f1dfd884fef5efd0108492c7"
+      },
+      "methods": [
+        "SymPy_independent_nuclear_charge_energy_Snell_and_lens_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u7-critical-angle-sine-16",
+      "sourceSha256": "87d45fb4d43e3c5097dcc6aad156f9207ca3c52f69e8eba6c52bc41e05365580",
+      "candidateSha256": "77a9457d23e7836ebed381a06073612a9e8970d333064b450f3c74b32f457965",
+      "reviewedSignature": "c53e76684fa537cf548e6294d48de5fb4859c919627d8e010e612d14f0f22a42",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Infinite coppie positive con n_e = n_i/2",
+      "dimension": {},
+      "manualArithmetic": "Vincolo n_e=n_i/2 rende s_c1/2 ridondante: infinite coppie continue positive. Esempi(n_e,n_i)=(1,2),(2,4). Non si impone n_e≥1 se il testo dichiara soltanto n_i>n_e>0; eventuali ulteriori restrizioni di un materiale reale andrebbero esplicitate e non cambiano l’infinità del modello continuo.",
+      "physicalAssumptions": "Due mezzi trasparenti ideali, interfaccia piana ferma; arrivo dal maggiore indice n_i>n_e>0, angoli dalla normale. Al limite il trasmesso è radente: s_c=n_e/n_i strettamente fra zero e uno. Riflessione totale per θ_i>θ_c, non per semplice disuguaglianza degli indici; campo evanescente distinto dal raggio propagante.",
+      "distractors": "n_e=n_i/2 rende s_c1/2 per ogni n_i>0. Esempi(1,2),(3/2,3); infinite coppie. Nessuna/una/due/sola aria false.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Vincolo n_e=n_i/2 rende s_c1/2 ridondante: infinite coppie continue positive. Esempi(n_e,n_i)=(1,2),(2,4). Non si impone n_e≥1 se il testo dichiara soltanto n_i>n_e>0; eventuali ulteriori restrizioni di un materiale reale andrebbero esplicitate e non cambiano l’infinità del modello continuo.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "nuclei_optics_review_models.py": "f32615b7796d7dcb7c5d4e9d58566922ed01dac5f1dfd884fef5efd0108492c7"
+      },
+      "methods": [
+        "SymPy_independent_nuclear_charge_energy_Snell_and_lens_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "5e93615837b7e0ae8daa4e610519ed175bd45cd6a6b0c7b1b6951672e97c3334",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "publicationAction": "NONE",
+  "reviewedCandidateCommit": "b8d4f026f67fde1303fb13b4b10ce4cdbeb5e9dc",
+  "packageSha256": "e53ce6fb4094e1aa7e2dbb443872c25b62477da0ee92fae9cc686b5f761ecfdc",
+  "bindingsSha256": "63b8b23e09f329dec466199472e9de5e29f2bc31362128e7ef907dd8a81822dd",
+  "sourceFirstPrimarySha256": "5b685efd1f9081ea829990d63cf50291ffc298c922b8aac2b169b8de5cdaa3e4",
+  "source": {
+    "commit": "5cfbdcb055ba3ba136f97fb56e997f06e6cf3605",
+    "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U7-02.json",
+    "reference": "Tutti80 originali derivati nella primaria prompt-only5b685 su d0628ef6 prima di ogni candidata; modelli propri corretti e realmente eseguiti su a114caa9 prima di opzioni/chiavi/blocchi/SVG. La precedente ricevuta5c3af5ea è esplicitamente invalida, conservata con esito negativo e successivo positivo separati. Poi tutti16 record di questa famiglia e cinque XML/native nuovi letti integralmente. Nessun modulo autore o primariaB aperta. Confronto integrato ROOT PENDING, UI prodotto/human NOT_RUN."
+  }
+}

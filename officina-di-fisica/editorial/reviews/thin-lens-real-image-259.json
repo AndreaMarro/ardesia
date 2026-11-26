@@ -1,0 +1,548 @@
+{
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "AR-u7-thin-lens-real-image-01",
+      "sourceSha256": "7ca07a98025d4662ae609fc2960bc21d8b445cb10c258ab3216b7de3c0dea2dc",
+      "candidateSha256": "64bf130673b2729f5db78101ec448580a239875f1857ec63506ed5c084f4b66d",
+      "reviewedSignature": "511ff590e0eae9454f579080f16c3ee1211b6ac93e1f859329ebe410c01b36f0",
+      "assetChecksums": {
+        "thin-lens-real-image-progressive.svg": "1d512388f29d3af21e1a715f93f2edcae1b1d31e94bcb0f4150577b8c1e53d68"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4/3",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "Nel modello parassiale della lente sottile convergente, 1/f=1/p+1/q. Moltiplico per fpq: pq=fq+fp, quindi q=fp/(p−f). Con f1cm,p4cm: q4/3cm, positiva perché p>f. La superficie e lo spessore della lente sono idealizzati.",
+      "physicalAssumptions": "Lente sottile convergente parassiale, stesso mezzo sui due lati, f>0 e oggetto reale p>f salvo il03 autonomo. q positivo sul lato d’uscita per immagine reale, distanze coerenti in cm; inversa in p richiede q>f. Variazioni tra lenti/preparazioni rispettano il nuovo ramo p_B>f_B, senza applicare la formula reale al fuoco.",
+      "distractors": "1/q1−1/4=3/4cm⁻¹→q4/3cm.3/4 numero inverso,4 copia p,5 somma,−4/3 ramo virtuale escluso.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Nel modello parassiale della lente sottile convergente, 1/f=1/p+1/q. Moltiplico per fpq: pq=fq+fp, quindi q=fp/(p−f). Con f1cm,p4cm: q4/3cm, positiva perché p>f. La superficie e lo spessore della lente sono idealizzati.",
+      "scientificAssetReview": "SVG640×1740 letto XML e native intero dopo child0. Asse x:oggetto60,lente360,fuochi285/435,immagine460; scala75 coordinate/cm dà p4,f1,q4/3. Altezze72/−24, stesso fattore verticale e ingrandimento−1/3; anisotropia dichiarata,angoli non misurabili. Raggi intersecano esattamente(460,344); barre120/270/195 per4/3,3,13/6cm con scala90 comune. Curva solo f1 usa x150+65p,y1570−90q; punto(410,1450) per(4,4/3),asintoti p1 e q1. Segmenti campionati dichiarati visualizzazione,coordinate arrotondate a5decimali,nessuna domanda con calcolatrice.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "nuclei_optics_review_models.py": "f32615b7796d7dcb7c5d4e9d58566922ed01dac5f1dfd884fef5efd0108492c7"
+      },
+      "methods": [
+        "SymPy_independent_nuclear_charge_energy_Snell_and_lens_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u7-thin-lens-real-image-02",
+      "sourceSha256": "1e7b64010604d6098619599e0cfd3e3c4da8eb3d06f1e18a13d3512837314d56",
+      "candidateSha256": "231321fc7e61d2f3115f2958cea3d879f26d8fbbe75f91982c7ce58ccfc08fc3",
+      "reviewedSignature": "0ca8778996917666e7d939f3b046ad8783616661984b6771fc06caf4cf2a8cec",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "cm",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "q è una lunghezza in cm, il suo reciproco ha cm⁻¹. La primaria precedeva tutte le alternative; dopo la freeze tutti e cinque i distrattori/proposte sono stati letti singolarmente.",
+      "physicalAssumptions": "Caso dimensionale autonomo: Lente sottile convergente parassiale, stesso mezzo sui due lati, f>0 e oggetto reale p>f salvo il03 autonomo. q positivo sul lato d’uscita per immagine reale, distanze coerenti in cm; inversa in p richiede q>f. Variazioni tra lenti/preparazioni rispettano il nuovo ramo p_B>f_B, senza applicare la formula reale al fuoco.",
+      "distractors": "q lunghezza cm,cm⁻¹ reciproco,1 ingrandimento,gradi angolo,s tempo.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. q è una lunghezza in cm, il suo reciproco ha cm⁻¹. La primaria precedeva tutte le alternative; dopo la freeze tutti e cinque i distrattori/proposte sono stati letti singolarmente.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "nuclei_optics_review_models.py": "f32615b7796d7dcb7c5d4e9d58566922ed01dac5f1dfd884fef5efd0108492c7"
+      },
+      "methods": [
+        "SymPy_independent_nuclear_charge_energy_Snell_and_lens_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u7-thin-lens-real-image-03",
+      "sourceSha256": "c709e165957666cb4d666ac616c9b9327337098f771b711fc220ed2e2b36d32f",
+      "candidateSha256": "50ef80b44daf12dfaa18efef66f28619f747c3071d04018b30395c1e835c1c44",
+      "reviewedSignature": "0656c1fc8b206b6f69372f93548e57b0aa532d452ff0ea25c600eb692546822f",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Virtuale, diritta e ingrandita, sul lato dell’oggetto",
+      "dimension": {},
+      "manualArithmetic": "Caso autonomo p<f, fuori dal ramo di immagine reale degli altri esercizi. q=fp/(p−f)<0: immagine virtuale sul lato dell’oggetto. L’ingrandimento m=−q/p=f/(f−p)>1 è positivo, quindi immagine diritta e ingrandita nel modello parassiale. Non si proietta su uno schermo sul lato opposto.",
+      "physicalAssumptions": "Caso autonomo03:oggetto reale dentro il fuoco0<p<f; q negativo sul lato dell’oggetto e m=−q/p>1. Non applicare p>f dal prefisso degli altri15 record.",
+      "distractors": "0<p<f→q<0,m=f/(f−p)>1: virtuale,diritta,ingrandita. Reale richiede intersezione effettiva,capovolta m<0,nessuna confonde virtuale con assente.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Caso autonomo p<f, fuori dal ramo di immagine reale degli altri esercizi. q=fp/(p−f)<0: immagine virtuale sul lato dell’oggetto. L’ingrandimento m=−q/p=f/(f−p)>1 è positivo, quindi immagine diritta e ingrandita nel modello parassiale. Non si proietta su uno schermo sul lato opposto.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "nuclei_optics_review_models.py": "f32615b7796d7dcb7c5d4e9d58566922ed01dac5f1dfd884fef5efd0108492c7"
+      },
+      "methods": [
+        "SymPy_independent_nuclear_charge_energy_Snell_and_lens_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u7-thin-lens-real-image-04",
+      "sourceSha256": "1b72211af390329939e7ae339f6c68162adac34ce05e644c9432335836aa0933",
+      "candidateSha256": "ba7f4c77fe74deab7776b9de36ba4a94e43f8f599e2ed34b5a5437bcec0bf869",
+      "reviewedSignature": "9bc8f981c70e1a67081536b61e7d6daeac5b7e2d784147d8e095f8695ffc7863",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Da 4/3 a 4 cm",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "A:f1,p4→q4/3cm. B:f2,p4→q4cm. A p costante avvicinare f a p aumenta q; non è una proporzione q∝f perché cambia anche il denominatore.",
+      "physicalAssumptions": "Lente sottile convergente parassiale, stesso mezzo sui due lati, f>0 e oggetto reale p>f salvo il03 autonomo. q positivo sul lato d’uscita per immagine reale, distanze coerenti in cm; inversa in p richiede q>f. Variazioni tra lenti/preparazioni rispettano il nuovo ramo p_B>f_B, senza applicare la formula reale al fuoco.",
+      "distractors": "4/3→4cm.8/3 cambia solo numeratore,2/3 dimezza,immutato ignora,infinito solo p=f non qui.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. A:f1,p4→q4/3cm. B:f2,p4→q4cm. A p costante avvicinare f a p aumenta q; non è una proporzione q∝f perché cambia anche il denominatore.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "nuclei_optics_review_models.py": "f32615b7796d7dcb7c5d4e9d58566922ed01dac5f1dfd884fef5efd0108492c7"
+      },
+      "methods": [
+        "SymPy_independent_nuclear_charge_energy_Snell_and_lens_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u7-thin-lens-real-image-05",
+      "sourceSha256": "520d83db6cca79dec5c1fb1c99d53dea5daa6e6c2be7c2b7b736c03c8e91619a",
+      "candidateSha256": "0120e04809c1a98ec592ddaac049faf09c991aacf1fd19363de0456737215012",
+      "reviewedSignature": "e48b7393bb91fb7230e2932bd330e2cc485b3d4bc9f29dfe7203449b1b13ee6c",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "Isolo f=pq/(p+q). Con p4cm,q4/3cm: prodotto16/3cm² diviso16/3cm dà f1cm. Per p,q positivi il risultato è minore di entrambi, coerente con un oggetto oltre il fuoco.",
+      "physicalAssumptions": "Lente sottile convergente parassiale, stesso mezzo sui due lati, f>0 e oggetto reale p>f salvo il03 autonomo. q positivo sul lato d’uscita per immagine reale, distanze coerenti in cm; inversa in p richiede q>f. Variazioni tra lenti/preparazioni rispettano il nuovo ramo p_B>f_B, senza applicare la formula reale al fuoco.",
+      "distractors": "f=pq/(p+q)=1cm.16/3 somma,3 non legge,4 fuoco impossibile per q finito.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Isolo f=pq/(p+q). Con p4cm,q4/3cm: prodotto16/3cm² diviso16/3cm dà f1cm. Per p,q positivi il risultato è minore di entrambi, coerente con un oggetto oltre il fuoco.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "nuclei_optics_review_models.py": "f32615b7796d7dcb7c5d4e9d58566922ed01dac5f1dfd884fef5efd0108492c7"
+      },
+      "methods": [
+        "SymPy_independent_nuclear_charge_energy_Snell_and_lens_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u7-thin-lens-real-image-06",
+      "sourceSha256": "dd5c6d5d32f953027ab6435dfe618d910ff65ffb9cdd7fd236fad3a476a45128",
+      "candidateSha256": "7231444d12c32c127f42e8c298b2f2fe74bc77a0f434b80f57c09a64282ca446",
+      "reviewedSignature": "2ec84a7bbc894aceb03dbc1ced13a00631c333b9d9cd3a3a8f085bfe8596cd42",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "Da q(p−f)=fp ricavo p(q−f)=qf, dunque p=qf/(q−f). Con q4/3cm,f1cm si ottiene p4cm. L’inversa richiede q>f>0; altrimenti il ramo di oggetto e immagine reali non è quello dichiarato.",
+      "physicalAssumptions": "Lente sottile convergente parassiale, stesso mezzo sui due lati, f>0 e oggetto reale p>f salvo il03 autonomo. q positivo sul lato d’uscita per immagine reale, distanze coerenti in cm; inversa in p richiede q>f. Variazioni tra lenti/preparazioni rispettano il nuovo ramo p_B>f_B, senza applicare la formula reale al fuoco.",
+      "distractors": "p=fq/(q−f)=4cm,q>f.1/4 copia reciproco,7/3 somma, p<f incompatibile reale.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Da q(p−f)=fp ricavo p(q−f)=qf, dunque p=qf/(q−f). Con q4/3cm,f1cm si ottiene p4cm. L’inversa richiede q>f>0; altrimenti il ramo di oggetto e immagine reali non è quello dichiarato.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "nuclei_optics_review_models.py": "f32615b7796d7dcb7c5d4e9d58566922ed01dac5f1dfd884fef5efd0108492c7"
+      },
+      "methods": [
+        "SymPy_independent_nuclear_charge_energy_Snell_and_lens_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u7-thin-lens-real-image-07",
+      "sourceSha256": "ad9aed01429e0936c10ab053460aeae6991d3ef17c6119b995d7b79a4fd76d47",
+      "candidateSha256": "5ff8eeebb64335ad0e202269dd97f75de071926b16b6d9704471606a4e48c221",
+      "reviewedSignature": "d0552b53772e56021891687d602f8bbf043946d1f77a80f66ac3ef7d13d4d0a8",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "9/10",
+      "dimension": {},
+      "manualArithmetic": "A:q4/3cm. B:f1,p6→q6/5cm. Rapporto(6/5)/(4/3)=9/10. Allontanare l’oggetto avvicina l’immagine al fuoco, senza oltrepassarlo nel ramo reale.",
+      "physicalAssumptions": "Lente sottile convergente parassiale, stesso mezzo sui due lati, f>0 e oggetto reale p>f salvo il03 autonomo. q positivo sul lato d’uscita per immagine reale, distanze coerenti in cm; inversa in p richiede q>f. Variazioni tra lenti/preparazioni rispettano il nuovo ramo p_B>f_B, senza applicare la formula reale al fuoco.",
+      "distractors": "(6/5)/(4/3)=9/10.10/9 reciproco,3/2 solo p,6/5 valore numerico di q_B,1 ignora.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. A:q4/3cm. B:f1,p6→q6/5cm. Rapporto(6/5)/(4/3)=9/10. Allontanare l’oggetto avvicina l’immagine al fuoco, senza oltrepassarlo nel ramo reale.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "nuclei_optics_review_models.py": "f32615b7796d7dcb7c5d4e9d58566922ed01dac5f1dfd884fef5efd0108492c7"
+      },
+      "methods": [
+        "SymPy_independent_nuclear_charge_energy_Snell_and_lens_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u7-thin-lens-real-image-08",
+      "sourceSha256": "504a04a751df91714a1af6fad6149899705509479dc68159fcb3befb834d3b63",
+      "candidateSha256": "62a06321db010c221b1cefb0b40a3be9c1f1a64877cebb228395449410726588",
+      "reviewedSignature": "a44eaee11ed2c66b6750ec80be5daaf66a0a2190e29d614fccbacd640bc27b08",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4/3",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "Proposto8/3cm meno corretto4/3cm dà+4/3cm. Il rapporto2 è puro e non risponde allo scarto richiesto.",
+      "physicalAssumptions": "Lente sottile convergente parassiale, stesso mezzo sui due lati, f>0 e oggetto reale p>f salvo il03 autonomo. q positivo sul lato d’uscita per immagine reale, distanze coerenti in cm; inversa in p richiede q>f. Variazioni tra lenti/preparazioni rispettano il nuovo ramo p_B>f_B, senza applicare la formula reale al fuoco.",
+      "distractors": "8/3−4/3=4/3cm;−4/3 ordine,8/3 proposta,2 rapporto non distanza,0 falsa coniugazione.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Proposto8/3cm meno corretto4/3cm dà+4/3cm. Il rapporto2 è puro e non risponde allo scarto richiesto.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "nuclei_optics_review_models.py": "f32615b7796d7dcb7c5d4e9d58566922ed01dac5f1dfd884fef5efd0108492c7"
+      },
+      "methods": [
+        "SymPy_independent_nuclear_charge_energy_Snell_and_lens_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u7-thin-lens-real-image-09",
+      "sourceSha256": "fda69b83efbb5aa806dfe52b44e6c879d69f93e1a5b331f66b857f91150c33b6",
+      "candidateSha256": "96ac3c54c99cda04b92c72bc0b1f3189572820890554b7e1bc2cc1909035916e",
+      "reviewedSignature": "ccde372ad647431b43151ab641ce776b5cdf67ad3b6235f44f508534a2ef3d26",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "f = p q / (p + q)",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "Isolo f=pq/(p+q) sommando le potenze reciproche, oppure dalla relazione pq=f(p+q). Il numeratore ha dimensioneL² e il denominatoreL; per p,q>0 non compare una differenza rischiosa o un ramo negativo.",
+      "physicalAssumptions": "Lente sottile convergente parassiale, stesso mezzo sui due lati, f>0 e oggetto reale p>f salvo il03 autonomo. q positivo sul lato d’uscita per immagine reale, distanze coerenti in cm; inversa in p richiede q>f. Variazioni tra lenti/preparazioni rispettano il nuovo ramo p_B>f_B, senza applicare la formula reale al fuoco.",
+      "distractors": "f=pq/(p+q). Segno meno non somma reciproci,p+q altra legge,(p+q)/(pq) L⁻¹,pq L².",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Isolo f=pq/(p+q) sommando le potenze reciproche, oppure dalla relazione pq=f(p+q). Il numeratore ha dimensioneL² e il denominatoreL; per p,q>0 non compare una differenza rischiosa o un ramo negativo.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "nuclei_optics_review_models.py": "f32615b7796d7dcb7c5d4e9d58566922ed01dac5f1dfd884fef5efd0108492c7"
+      },
+      "methods": [
+        "SymPy_independent_nuclear_charge_energy_Snell_and_lens_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u7-thin-lens-real-image-10",
+      "sourceSha256": "441ac933ea44bcd6f791ff0102be72d1aaaf6bd5dad6251f6d43a0677bfaa678",
+      "candidateSha256": "363b0752bade48d39200a707687fd2faed183d247cc4821ccd1970478e6dfde1",
+      "reviewedSignature": "381f7afd8efa115d39687e4c2a61a6e988dc55c6349ed997c3f779e953e19bac",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "κ₁ κ₂ (p − f) / (κ₂ p − κ₁ f)",
+      "dimension": {},
+      "manualArithmetic": "Rapporto q_B/q_A=κ₁κ₂(p−f)/(κ₂p−κ₁f). Le condizioni includonoκ₂p>κ₁f>0 oltre a p>f>0. Non si cancella il denominatore come se fosse un semplice prodotto fp.",
+      "physicalAssumptions": "Lente sottile convergente parassiale, stesso mezzo sui due lati, f>0 e oggetto reale p>f salvo il03 autonomo. q positivo sul lato d’uscita per immagine reale, distanze coerenti in cm; inversa in p richiede q>f. Variazioni tra lenti/preparazioni rispettano il nuovo ramo p_B>f_B, senza applicare la formula reale al fuoco.",
+      "distractors": "κ₁κ₂(p−f)/(κ₂p−κ₁f),nuovo denominatore>0. Solo prodotto ignora denominatore,quoziente altra legge,rapporto denominatori perde prodotto,somma2 per identiche.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Rapporto q_B/q_A=κ₁κ₂(p−f)/(κ₂p−κ₁f). Le condizioni includonoκ₂p>κ₁f>0 oltre a p>f>0. Non si cancella il denominatore come se fosse un semplice prodotto fp.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "nuclei_optics_review_models.py": "f32615b7796d7dcb7c5d4e9d58566922ed01dac5f1dfd884fef5efd0108492c7"
+      },
+      "methods": [
+        "SymPy_independent_nuclear_charge_energy_Snell_and_lens_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u7-thin-lens-real-image-11",
+      "sourceSha256": "6faf21108f195487abb85df6e7e54415ec836cdd5b00f91ef66bc6b41c3e5071",
+      "candidateSha256": "42f17e0306ceb8da4e5033d620c70f1c27ea7840a64731526ff7dc5e1a6892f8",
+      "reviewedSignature": "461af7040a697af983a5a3490cdd8314e685c1dfb02d1e555a6ff41d775b277d",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "9/4",
+      "dimension": {},
+      "manualArithmetic": "A:q4/3cm. B:f2,p6→q12/4=3cm. Rapporto3/(4/3)=9/4. Entrambi gli stati hanno oggetto oltre il fuoco.",
+      "physicalAssumptions": "Lente sottile convergente parassiale, stesso mezzo sui due lati, f>0 e oggetto reale p>f salvo il03 autonomo. q positivo sul lato d’uscita per immagine reale, distanze coerenti in cm; inversa in p richiede q>f. Variazioni tra lenti/preparazioni rispettano il nuovo ramo p_B>f_B, senza applicare la formula reale al fuoco.",
+      "distractors": "3/(4/3)=9/4.4/9 reciproco,2 solo f,3/2 solo p,3 valore numerico q_B.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. A:q4/3cm. B:f2,p6→q12/4=3cm. Rapporto3/(4/3)=9/4. Entrambi gli stati hanno oggetto oltre il fuoco.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "nuclei_optics_review_models.py": "f32615b7796d7dcb7c5d4e9d58566922ed01dac5f1dfd884fef5efd0108492c7"
+      },
+      "methods": [
+        "SymPy_independent_nuclear_charge_energy_Snell_and_lens_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u7-thin-lens-real-image-12",
+      "sourceSha256": "e91a05e2fd3c717bf4d669ceae3999e4e88a6764c7c60cc85ebbef79f61927fa",
+      "candidateSha256": "c737aca502123b9f8c09d25c3704e7704c87ebb40ca5b7344f78ba6435078262",
+      "reviewedSignature": "1c61ea5ab530a040c766d585281fca3064504404458ed1529eaf9fbb24d830ca",
+      "assetChecksums": {
+        "thin-lens-real-image-progressive.svg": "1d512388f29d3af21e1a715f93f2edcae1b1d31e94bcb0f4150577b8c1e53d68"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "13/6",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "Media(4/3+3)/2=13/6cm. Dati medi f3/2cm,p5cm→q15/7cm. Differenza13/6−15/7=(91−90)/42=1/42cm, positiva. Le frazioni restano esatte.",
+      "physicalAssumptions": "Lente sottile convergente parassiale, stesso mezzo sui due lati, f>0 e oggetto reale p>f salvo il03 autonomo. q positivo sul lato d’uscita per immagine reale, distanze coerenti in cm; inversa in p richiede q>f. Variazioni tra lenti/preparazioni rispettano il nuovo ramo p_B>f_B, senza applicare la formula reale al fuoco.",
+      "distractors": "13/6cm;15/7 dati medi,13/3 somma,4/3 e3 singoli piani. Differenza1/42cm.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Media(4/3+3)/2=13/6cm. Dati medi f3/2cm,p5cm→q15/7cm. Differenza13/6−15/7=(91−90)/42=1/42cm, positiva. Le frazioni restano esatte.",
+      "scientificAssetReview": "SVG640×1740 letto XML e native intero dopo child0. Asse x:oggetto60,lente360,fuochi285/435,immagine460; scala75 coordinate/cm dà p4,f1,q4/3. Altezze72/−24, stesso fattore verticale e ingrandimento−1/3; anisotropia dichiarata,angoli non misurabili. Raggi intersecano esattamente(460,344); barre120/270/195 per4/3,3,13/6cm con scala90 comune. Curva solo f1 usa x150+65p,y1570−90q; punto(410,1450) per(4,4/3),asintoti p1 e q1. Segmenti campionati dichiarati visualizzazione,coordinate arrotondate a5decimali,nessuna domanda con calcolatrice.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "nuclei_optics_review_models.py": "f32615b7796d7dcb7c5d4e9d58566922ed01dac5f1dfd884fef5efd0108492c7"
+      },
+      "methods": [
+        "SymPy_independent_nuclear_charge_energy_Snell_and_lens_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u7-thin-lens-real-image-13",
+      "sourceSha256": "f854b1220cfade8061ab0472e2eafb6eda0d8a7509d5552231a3c662dea65a89",
+      "candidateSha256": "e463b06c5a63ec2e98f319b2830ef0ba96c0607458c4652e8e321182dcd5c0ab",
+      "reviewedSignature": "5f89c1deedca74af2f916000f2570acc6ff6f09fd5186d1fe17824cb46f3875a",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "3/2",
+      "dimension": {},
+      "manualArithmetic": "Target q_B=(9/4)(4/3)=3cm. Con f_B2cm, p_B=qf/(q−f)=6cm. Rapporto p_B/p_A=6/4=3/2 e p_B>f_B.",
+      "physicalAssumptions": "Lente sottile convergente parassiale, stesso mezzo sui due lati, f>0 e oggetto reale p>f salvo il03 autonomo. q positivo sul lato d’uscita per immagine reale, distanze coerenti in cm; inversa in p richiede q>f. Variazioni tra lenti/preparazioni rispettano il nuovo ramo p_B>f_B, senza applicare la formula reale al fuoco.",
+      "distractors": "Target3cm,p_B2·3/(3−2)=6cm,rapporto3/2.2/3 inverso,9/4 target,2 f,1 darebbe q4cm.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Target q_B=(9/4)(4/3)=3cm. Con f_B2cm, p_B=qf/(q−f)=6cm. Rapporto p_B/p_A=6/4=3/2 e p_B>f_B.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "nuclei_optics_review_models.py": "f32615b7796d7dcb7c5d4e9d58566922ed01dac5f1dfd884fef5efd0108492c7"
+      },
+      "methods": [
+        "SymPy_independent_nuclear_charge_energy_Snell_and_lens_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u7-thin-lens-real-image-14",
+      "sourceSha256": "bfd829734651b3d60735f3b7e3e816380b2da4a1eb275e0a827cdda97fceb192",
+      "candidateSha256": "7f33bc9f5f0fefd0cacd6332b2531d2f5bc95e1ed0e5eec8d9a947872c1788c1",
+      "reviewedSignature": "eabf4f168e7614f6e44a6ed44be294578988f879aea6fa947f667a7fe16af938",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "Riferimento q4/3cm,D4→guadagno3cm⁻¹. D9→q3cm. Con p6cm, f=pq/(p+q)=18/9=2cm. Prima display, poi relazione dei punti coniugati.",
+      "physicalAssumptions": "Lente sottile convergente parassiale, stesso mezzo sui due lati, f>0 e oggetto reale p>f salvo il03 autonomo. q positivo sul lato d’uscita per immagine reale, distanze coerenti in cm; inversa in p richiede q>f. Variazioni tra lenti/preparazioni rispettano il nuovo ramo p_B>f_B, senza applicare la formula reale al fuoco.",
+      "distractors": "g3,D9→q3cm,f6·3/(6+3)=2cm.18/5 usa display come q,3 copia q,6 p.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Riferimento q4/3cm,D4→guadagno3cm⁻¹. D9→q3cm. Con p6cm, f=pq/(p+q)=18/9=2cm. Prima display, poi relazione dei punti coniugati.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "nuclei_optics_review_models.py": "f32615b7796d7dcb7c5d4e9d58566922ed01dac5f1dfd884fef5efd0108492c7"
+      },
+      "methods": [
+        "SymPy_independent_nuclear_charge_energy_Snell_and_lens_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u7-thin-lens-real-image-15",
+      "sourceSha256": "31fb7a96ff9d6b6153c5534b4fb1e35b75b41ad5e80574a4ad0df4f46805ac4a",
+      "candidateSha256": "0055505c80e9f7ae1f60134304cb6b000de11de31a69b6a2aa653abf992efbc6",
+      "reviewedSignature": "7de12cc32215f78edffbe1a34b84ed22d8a82d6063ac2a8942398a9da0b3bb06",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "Riferimenti q4/3cm,3cm e letture11/3,7: guadagno[(7−11/3)/(3−4/3)]=2cm⁻¹, offset1. D9→q4cm; con p4cm, f16/8=2cm. Le due letture individuano una taratura non degenere.",
+      "physicalAssumptions": "Lente sottile convergente parassiale, stesso mezzo sui due lati, f>0 e oggetto reale p>f salvo il03 autonomo. q positivo sul lato d’uscita per immagine reale, distanze coerenti in cm; inversa in p richiede q>f. Variazioni tra lenti/preparazioni rispettano il nuovo ramo p_B>f_B, senza applicare la formula reale al fuoco.",
+      "distractors": "g2,b1,D9→q4cm,f2cm.36/17 omette b usando q9/2,4 copia q,1 vecchia focale.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Riferimenti q4/3cm,3cm e letture11/3,7: guadagno[(7−11/3)/(3−4/3)]=2cm⁻¹, offset1. D9→q4cm; con p4cm, f16/8=2cm. Le due letture individuano una taratura non degenere.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "nuclei_optics_review_models.py": "f32615b7796d7dcb7c5d4e9d58566922ed01dac5f1dfd884fef5efd0108492c7"
+      },
+      "methods": [
+        "SymPy_independent_nuclear_charge_energy_Snell_and_lens_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u7-thin-lens-real-image-16",
+      "sourceSha256": "f95b339a1699a64fdf2ee4e2f86d17f76edb65a3ada3690268c06ece8ff17c46",
+      "candidateSha256": "22d86b346123e1793b3e7211b465be8189ff4e2dd9abf0710c85f9af236b736f",
+      "reviewedSignature": "ac1366b39d5787f0352b46d65e6fa1b4db7b82847f681f80846d302d27386a07",
+      "assetChecksums": {
+        "thin-lens-real-image-progressive.svg": "1d512388f29d3af21e1a715f93f2edcae1b1d31e94bcb0f4150577b8c1e53d68"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "Vincolo f=p/4: q=(p²/4)/(3p/4)=p/3. La misura q4/3cm impone p4cm e f1cm. Unica coppia positiva, con p>f verificata; non rimane una famiglia continua.",
+      "physicalAssumptions": "Lente sottile convergente parassiale, stesso mezzo sui due lati, f>0 e oggetto reale p>f salvo il03 autonomo. q positivo sul lato d’uscita per immagine reale, distanze coerenti in cm; inversa in p richiede q>f. Variazioni tra lenti/preparazioni rispettano il nuovo ramo p_B>f_B, senza applicare la formula reale al fuoco.",
+      "distractors": "f=p/4→q=p/3, misura q4/3cm→p4cm.1 copia f,4/9 usa q/3; non infinite con q assoluto.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Vincolo f=p/4: q=(p²/4)/(3p/4)=p/3. La misura q4/3cm impone p4cm e f1cm. Unica coppia positiva, con p>f verificata; non rimane una famiglia continua.",
+      "scientificAssetReview": "SVG640×1740 letto XML e native intero dopo child0. Asse x:oggetto60,lente360,fuochi285/435,immagine460; scala75 coordinate/cm dà p4,f1,q4/3. Altezze72/−24, stesso fattore verticale e ingrandimento−1/3; anisotropia dichiarata,angoli non misurabili. Raggi intersecano esattamente(460,344); barre120/270/195 per4/3,3,13/6cm con scala90 comune. Curva solo f1 usa x150+65p,y1570−90q; punto(410,1450) per(4,4/3),asintoti p1 e q1. Segmenti campionati dichiarati visualizzazione,coordinate arrotondate a5decimali,nessuna domanda con calcolatrice.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "nuclei_optics_review_models.py": "f32615b7796d7dcb7c5d4e9d58566922ed01dac5f1dfd884fef5efd0108492c7"
+      },
+      "methods": [
+        "SymPy_independent_nuclear_charge_energy_Snell_and_lens_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "1134abc901911cbf6ce261ee31e4fe5eae8a7ab482b69ecabb81fdeadefac8a6",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "publicationAction": "NONE",
+  "reviewedCandidateCommit": "4a4e4f91ef352498c66aaf85528cb3f538dbd893",
+  "packageSha256": "e479b6577027a53a4868aa30528e3ce5e32ac5773679102b3b2c99a5f05ea6b5",
+  "bindingsSha256": "b955ee306fa1b4710c1d893af76452f14f30f45af2617f8dac4b84bbac4754e6",
+  "sourceFirstPrimarySha256": "5b685efd1f9081ea829990d63cf50291ffc298c922b8aac2b169b8de5cdaa3e4",
+  "source": {
+    "commit": "5cfbdcb055ba3ba136f97fb56e997f06e6cf3605",
+    "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U7-02.json",
+    "reference": "Tutti80 originali derivati nella primaria prompt-only5b685 su d0628ef6 prima di ogni candidata; modelli propri corretti e realmente eseguiti su a114caa9 prima di opzioni/chiavi/blocchi/SVG. La precedente ricevuta5c3af5ea è esplicitamente invalida, conservata con esito negativo e successivo positivo separati. Poi tutti16 record di questa famiglia e cinque XML/native nuovi letti integralmente. Nessun modulo autore o primariaB aperta. Confronto integrato ROOT PENDING, UI prodotto/human NOT_RUN."
+  }
+}
