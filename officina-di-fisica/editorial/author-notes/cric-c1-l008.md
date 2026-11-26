@@ -122,10 +122,14 @@ Confutazioni proposte: Sessanta joule ignora l’attrito; cinquantacinque sottra
 
 Versione 3, base 2; famiglia trovare-la-tensione-del-filo; difficoltà 3.
 
-Scelta del modello e procedura: L’energia determina prima la rapidità al fondo: il calo mgh diventa (1/2)mv². Per trovare la tensione serve poi la seconda legge radiale, con verso positivo verso il centro: T−mg=mv²/ℓ. Ne segue T=mg(1+2h/ℓ). Il lavoro nullo della tensione non implica forza nulla; la geometria e il filo teso sono condizioni necessarie per applicare il modello.
+Scelta del modello e procedura: L’energia determina prima la rapidità al fondo: il calo mgh diventa (1/2)mv². Per trovare la tensione serve poi la seconda legge radiale, con verso positivo verso il centro: T−mg=mv²/ℓ. Ne segue T=mg(1+2h/ℓ). La condizione 0<h<ℓ rende positiva già la tensione iniziale mg(1−h/ℓ), così il filo può restare teso sotto le sole forze assegnate. Il lavoro nullo della tensione non implica forza nulla.
 
 Passaggi manuali: \frac12mv^2=mgh;  v^2=2gh;  T-mg=\frac{mv^2}{\ell};  T=mg\left(1+\frac{2h}{\ell}\right)
 
 Risposta proposta: Ricavare v²=2gh con l’energia, poi usare T−mg=mv²/ℓ.
 
 Confutazioni proposte: T=mg trascurerebbe l’accelerazione centripeta. T=mv²/ℓ attribuirebbe alla sola tensione la risultante senza sottrarre il peso; mgh è un’energia e non una forza. Lavoro nullo significa forza perpendicolare al moto, non necessariamente forza nulla.
+
+## Rilettura distinta e followup autore
+
+Correzioni puntuali richieste dal revisore A: tassonomia del diario errori, ipotesi meccaniche, distinzione massa/peso e unità della controprova. Le chiavi e tutte le formule restano identiche ai byte archiviati. SVG e precedente native asset-only sono byte-identici e restano prove della sola figura. Cinque nuovi doppi assembly e import canonici reali, ciascuno 10→0/10, con tutti i 991 pubblicati invariati. SCI propria, UI prodotto e human NOT_RUN.

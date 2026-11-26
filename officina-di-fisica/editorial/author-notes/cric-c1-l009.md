@@ -50,7 +50,7 @@ Confutazioni proposte: +2 m/s darebbe quantità di moto totale positiva, non zer
 
 Versione 2, base 1; famiglia catturare-un-piccolo-peso; difficoltà 3.
 
-Scelta del modello e procedura: Prima dell’urto il peso non porta quantità di moto orizzontale; il vassoio ne porta 1,5·2=3 kg·m/s. Dopo, la massa comune è 2 kg: la velocità è 3/2 m/s. Si conserva la componente orizzontale del sistema, non necessariamente quella verticale, perché la guida può esercitare un impulso verticale. La cattura non richiede conservazione dell’energia cinetica.
+Scelta del modello e procedura: Prima dell’urto il corpo in caduta non porta quantità di moto orizzontale; il vassoio ne porta 1,5·2=3 kg·m/s. Dopo, la massa comune è 2 kg: la velocità è 3/2 m/s. Si conserva la componente orizzontale del sistema, non necessariamente quella verticale, perché la guida può esercitare un impulso verticale. La cattura non richiede conservazione dell’energia cinetica.
 
 Passaggi manuali: p_{x,i}=\frac32\cdot2\,\mathrm{kg\,m/s};  p_{x,i}=3\,\mathrm{kg\,m/s};  M=2\,\mathrm{kg};  v_f=\frac32\,\mathrm{m/s}
 
@@ -116,7 +116,7 @@ Passaggi manuali: \Delta\vec v=(-2,2)\,\mathrm{m/s};  \Delta\vec p=(-1,1)\,\math
 
 Risposta proposta: 2√2 N.
 
-Confutazioni proposte: Due newton considera una sola componente, √2 è il modulo della variazione di quantità di moto prima di dividere per il tempo. Quattro somma i moduli delle componenti invece di applicare Pitagora; zero confronta soltanto le rapidità.
+Confutazioni proposte: Due newton considera una sola componente, √2 N copia soltanto il valore numerico del modulo della variazione di quantità di moto, espresso in kg·m/s, senza dividerlo per 0,5 s. Quattro somma i moduli delle componenti invece di applicare Pitagora; zero confronta soltanto le rapidità.
 
 ## C1-Q090 — La pendenza di p_x nel tempo
 
@@ -129,3 +129,7 @@ Passaggi manuali: F_x=\frac{dp_x}{dt};  F_x=\frac{\Delta p_x}{\Delta t};  [F_x]=
 Risposta proposta: La componente x della risultante, costante e positiva.
 
 Confutazioni proposte: Posizione e velocità sono grandezze diverse da una forza; per ricavare v da p occorrerebbe la massa, non la sola pendenza. L’impulso ha unità N·s e l’energia J: la pendenza qui ha unità N.
+
+## Rilettura distinta e followup autore
+
+Correzioni puntuali richieste dal revisore A: tassonomia del diario errori, ipotesi meccaniche, distinzione massa/peso e unità della controprova. Le chiavi e tutte le formule restano identiche ai byte archiviati. Il nuovo SVG L009 sposta soltanto le due frecce sotto i pattini: stesso asse, lunghezze 100 e 150, verso e scala; nuovo native completo realmente terminale 0, aperto e letto per intero. Cinque nuovi doppi assembly e import canonici reali, ciascuno 10→0/10, con tutti i 991 pubblicati invariati. SCI propria, UI prodotto e human NOT_RUN.

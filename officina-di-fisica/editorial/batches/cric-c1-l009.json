@@ -20,7 +20,7 @@
         },
         {
           "type": "figure",
-          "src": "/asset/45e2dc125bd88716549870dfba451a0485d87426fcbe108dff9b960e59b053a3",
+          "src": "/asset/670488d8ee1c99ed930d8b0f2f7a4024a0e538de6b6499bc603305e57fe534b5",
           "text": "Il primo pannello confronta le due quantità di moto orientate della pallina, dalla stessa origine e con scala comune. Il segmento negativo finale non è il modulo dell’impulso: per l’impulso si calcola finale meno iniziale."
         },
         {
@@ -161,7 +161,7 @@
         },
         {
           "type": "figure",
-          "src": "/asset/45e2dc125bd88716549870dfba451a0485d87426fcbe108dff9b960e59b053a3",
+          "src": "/asset/670488d8ee1c99ed930d8b0f2f7a4024a0e538de6b6499bc603305e57fe534b5",
           "text": "Nel pannello centrale i due pattini si allontanano: il più leggero va a +3 m/s e il più pesante a −2 m/s. Le frecce delle velocità condividono una scala; i moduli delle quantità di moto sono invece entrambi 12 kg·m/s."
         },
         {
@@ -190,7 +190,7 @@
         }
       ],
       "difficulty": 2,
-      "prompt": "Due pattini di massa 4 kg e 6 kg sono inizialmente fermi su una guida orizzontale liscia. Una molla interna li separa; l’impulso esterno orizzontale è nullo. Se il pattino di 4 kg va a +3 m/s, quale velocità ha l’altro, in m/s?",
+      "prompt": "Due pattini di massa 4 kg e 6 kg sono inizialmente fermi su una guida orizzontale liscia. Una molla interna di massa trascurabile li separa; l’impulso esterno orizzontale è nullo. Se il pattino di 4 kg va a +3 m/s, quale velocità ha l’altro, in m/s?",
       "family": "spinta-reciproca-su-una-guida",
       "answer": {
         "type": "numeric",
@@ -233,7 +233,7 @@
       "blocks": [
         {
           "type": "text",
-          "text": "Prima dell’urto il peso non porta quantità di moto orizzontale; il vassoio ne porta 1,5·2=3 kg·m/s. Dopo, la massa comune è 2 kg: la velocità è 3/2 m/s. Si conserva la componente orizzontale del sistema, non necessariamente quella verticale, perché la guida può esercitare un impulso verticale. La cattura non richiede conservazione dell’energia cinetica."
+          "text": "Prima dell’urto il corpo in caduta non porta quantità di moto orizzontale; il vassoio ne porta 1,5·2=3 kg·m/s. Dopo, la massa comune è 2 kg: la velocità è 3/2 m/s. Si conserva la componente orizzontale del sistema, non necessariamente quella verticale, perché la guida può esercitare un impulso verticale. La cattura non richiede conservazione dell’energia cinetica."
         },
         {
           "type": "formula",
@@ -257,7 +257,7 @@
         }
       ],
       "difficulty": 3,
-      "prompt": "Un vassoio di massa 1,5 kg viaggia a 2 m/s su una guida orizzontale liscia. Un peso di 0,5 kg cade verticalmente sul vassoio e vi si assesta, così al termine condividono la velocità orizzontale. Durante la cattura l’impulso esterno orizzontale è trascurabile. Quanto vale questa velocità?",
+      "prompt": "Un vassoio di massa 1,5 kg viaggia a 2 m/s su una guida orizzontale liscia. Un corpo di massa 0,5 kg cade verticalmente sul vassoio e vi si assesta, così al termine condividono la velocità orizzontale. Durante la cattura l’impulso esterno orizzontale è trascurabile. Quanto vale questa velocità?",
       "family": "catturare-un-piccolo-peso",
       "answer": {
         "type": "choice",
@@ -407,7 +407,7 @@
         "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
       ],
       "error": {
-        "category": "algebra",
+        "category": "concetto",
         "message": "Completamente anelastico implica invece velocità finale comune e in generale riduzione dell’energia cinetica. Forze di contatto possono esserci eccome; nessuna delle due conservazioni impone che ogni singolo corpo mantenga la velocità iniziale.",
         "target": "C1-L009"
       },
@@ -543,7 +543,7 @@
         "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
       ],
       "error": {
-        "category": "algebra",
+        "category": "concetto",
         "message": "Ogni biglia può cambiare la propria quantità di moto: è proprio l’effetto dell’urto. La conservazione del totale non sceglie un corpo in base alla massa o alla quiete iniziale, e le forze interne non la impediscono.",
         "target": "C1-L009"
       },
@@ -577,7 +577,7 @@
         },
         {
           "type": "figure",
-          "src": "/asset/45e2dc125bd88716549870dfba451a0485d87426fcbe108dff9b960e59b053a3",
+          "src": "/asset/670488d8ee1c99ed930d8b0f2f7a4024a0e538de6b6499bc603305e57fe534b5",
           "text": "Il pannello finale rappresenta la forza media (−2,+2) N e le sue componenti, con una stessa scala su entrambi gli assi. Il modulo diagonale è 2√2 N; non è la somma 4 N dei moduli delle componenti."
         },
         {
@@ -598,7 +598,7 @@
         },
         {
           "type": "text",
-          "text": "Due newton considera una sola componente, √2 è il modulo della variazione di quantità di moto prima di dividere per il tempo. Quattro somma i moduli delle componenti invece di applicare Pitagora; zero confronta soltanto le rapidità."
+          "text": "Due newton considera una sola componente, √2 N copia soltanto il valore numerico del modulo della variazione di quantità di moto, espresso in kg·m/s, senza dividerlo per 0,5 s. Quattro somma i moduli delle componenti invece di applicare Pitagora; zero confronta soltanto le rapidità."
         }
       ],
       "difficulty": 3,
@@ -621,7 +621,7 @@
       ],
       "error": {
         "category": "algebra",
-        "message": "Due newton considera una sola componente, √2 è il modulo della variazione di quantità di moto prima di dividere per il tempo. Quattro somma i moduli delle componenti invece di applicare Pitagora; zero confronta soltanto le rapidità.",
+        "message": "Due newton considera una sola componente, √2 N copia soltanto il valore numerico del modulo della variazione di quantità di moto, espresso in kg·m/s, senza dividerlo per 0,5 s. Quattro somma i moduli delle componenti invece di applicare Pitagora; zero confronta soltanto le rapidità.",
         "target": "C1-L009"
       },
       "baseVersion": 1,
@@ -688,7 +688,7 @@
         "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
       ],
       "error": {
-        "category": "algebra",
+        "category": "concetto",
         "message": "Posizione e velocità sono grandezze diverse da una forza; per ricavare v da p occorrerebbe la massa, non la sola pendenza. L’impulso ha unità N·s e l’energia J: la pendenza qui ha unità N.",
         "target": "C1-L009"
       },
@@ -706,10 +706,10 @@
   ],
   "assets": [
     {
-      "id": "45e2dc125bd88716549870dfba451a0485d87426fcbe108dff9b960e59b053a3",
+      "id": "670488d8ee1c99ed930d8b0f2f7a4024a0e538de6b6499bc603305e57fe534b5",
       "name": "cric-c1-l009-progressive.svg",
       "mime": "image/svg+xml",
-      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTY2MCIgdmlld0JveD0iMCAwIDY0MCAxNjYwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyIgZm9udC1mYW1pbHk9InN5c3RlbS11aSxzYW5zLXNlcmlmIj48dGl0bGUgaWQ9InRpdGxlIj5JbXB1bHNvLCBjb25zZXJ2YXppb25lIGUgZGlmZmVyZW56YSB2ZXR0b3JpYWxlPC90aXRsZT48ZGVzYyBpZD0iZGVzYyI+UXVhbnRpdMOgIGRpIG1vdG8gcHJpbWEgZSBkb3BvIHVuIHJpbWJhbHpvLCBzZXBhcmF6aW9uZSBkaSBwYXR0aW5pIGUgcmlzdWx0YW50ZSBtZWRpYSBpbiBkdWUgZGltZW5zaW9uaS48L2Rlc2M+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxNjYwIiBmaWxsPSJ3aGl0ZSIvPjx0ZXh0IHg9IjM1IiB5PSI0OCIgZm9udC1zaXplPSIyNCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5VbiBpbXB1bHNvIGNhbWJpYSB1biB2ZXR0b3JlPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSIxMTAiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+MSDCtyBJbCByaW1iYWx6byBpbnZlcnRlIGxhIHF1YW50aXTDoCBkaSBtb3RvPC90ZXh0PjxsaW5lIHgxPSIzMzAiIHkxPSIxNzAiIHgyPSIzMzAiIHkyPSI0NTAiIHN0cm9rZT0iIzYwNzM4MyIgc3Ryb2tlLXdpZHRoPSIyIi8+PGxpbmUgeDE9IjMzMCIgeTE9IjIzMCIgeDI9IjQxMCIgeTI9IjIzMCIgc3Ryb2tlPSIjMzA2ZjhjIiBzdHJva2Utd2lkdGg9IjIiLz48cG9seWdvbiBwb2ludHM9IjQxMCwyMzAgNDAyLjAsMjM0LjAgNDAyLjAsMjI2LjAiIGZpbGw9IiMzMDZmOGMiLz48bGluZSB4MT0iMzMwIiB5MT0iMzYwIiB4Mj0iMjcwIiB5Mj0iMzYwIiBzdHJva2U9IiM5ODZjMzUiIHN0cm9rZS13aWR0aD0iMiIvPjxwb2x5Z29uIHBvaW50cz0iMjcwLDM2MCAyNzguMCwzNTYuMCAyNzguMCwzNjQuMCIgZmlsbD0iIzk4NmMzNSIvPjx0ZXh0IHg9IjQzNSIgeT0iMjM1IiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPnBfaSA9ICsyLzUga2fCt20vczwvdGV4dD48dGV4dCB4PSI0MCIgeT0iMzY1IiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPnBfZiA9IOKIkjMvMTAga2fCt20vczwvdGV4dD48dGV4dCB4PSIzNSIgeT0iNTA1IiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPkpfeCA9IHBfZiDiiJIgcF9pID0g4oiSNy8xMCBOwrdzPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSI2MDUiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+MiDCtyBEdWUgcGF0dGluaSBzaSBzZXBhcmFubzwvdGV4dD48cmVjdCB4PSIxNTAiIHk9IjcyMCIgd2lkdGg9IjYwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjOTg2YzM1Ii8+PHJlY3QgeD0iMzkwIiB5PSI3MjAiIHdpZHRoPSI2MCIgaGVpZ2h0PSI0MCIgZmlsbD0iIzNkNzc5MSIvPjxsaW5lIHgxPSIxODAiIHkxPSI3NDAiIHgyPSI4MCIgeTI9Ijc0MCIgc3Ryb2tlPSIjOTg2YzM1IiBzdHJva2Utd2lkdGg9IjIiLz48cG9seWdvbiBwb2ludHM9IjgwLDc0MCA4OC4wLDczNi4wIDg4LjAsNzQ0LjAiIGZpbGw9IiM5ODZjMzUiLz48bGluZSB4MT0iNDIwIiB5MT0iNzQwIiB4Mj0iNTcwIiB5Mj0iNzQwIiBzdHJva2U9IiMzMDZmOGMiIHN0cm9rZS13aWR0aD0iMiIvPjxwb2x5Z29uIHBvaW50cz0iNTcwLDc0MCA1NjIuMCw3NDQuMCA1NjIuMCw3MzYuMCIgZmlsbD0iIzMwNmY4YyIvPjx0ZXh0IHg9IjE4MCIgeT0iNjkwIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj42IGtnPC90ZXh0Pjx0ZXh0IHg9IjQyMCIgeT0iNjkwIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj40IGtnPC90ZXh0Pjx0ZXh0IHg9IjgwIiB5PSI4MTAiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+duKCgiA9IOKIkjIgbS9zPC90ZXh0Pjx0ZXh0IHg9IjQwMCIgeT0iODEwIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPnbigoEgPSArMyBtL3M8L3RleHQ+PHRleHQgeD0iMzUiIHk9Ijg5MCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5w4oKCID0g4oiSMTIga2fCt20vcyDCtyBw4oKBID0gKzEyIGtnwrdtL3M8L3RleHQ+PHRleHQgeD0iMzUiIHk9Ijk0MCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5RdWFudGl0w6AgZGkgbW90byB0b3RhbGUgb3JpenpvbnRhbGUgbnVsbGEuPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSIxMDUwIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjMgwrcgRHVlIGNvbXBvbmVudGksIHVuYSByaXN1bHRhbnRlIG1lZGlhPC90ZXh0PjxsaW5lIHgxPSIzMzAiIHkxPSIxNDMwIiB4Mj0iNTUwIiB5Mj0iMTQzMCIgc3Ryb2tlPSIjNjk3Yjg3IiBzdHJva2Utd2lkdGg9IjIiLz48cG9seWdvbiBwb2ludHM9IjU1MCwxNDMwIDU0Mi4wLDE0MzQuMCA1NDIuMCwxNDI2LjAiIGZpbGw9IiM2OTdiODciLz48bGluZSB4MT0iMzMwIiB5MT0iMTQzMCIgeDI9IjMzMCIgeTI9IjExOTAiIHN0cm9rZT0iIzY5N2I4NyIgc3Ryb2tlLXdpZHRoPSIyIi8+PHBvbHlnb24gcG9pbnRzPSIzMzAsMTE5MCAzMzQuMCwxMTk4LjAgMzI2LjAsMTE5OC4wIiBmaWxsPSIjNjk3Yjg3Ii8+PHRleHQgeD0iNTYwIiB5PSIxNDY1IiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPit4PC90ZXh0Pjx0ZXh0IHg9IjM1MCIgeT0iMTE5NSIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij4reTwvdGV4dD48bGluZSB4MT0iMzMwIiB5MT0iMTQzMCIgeDI9IjIxMCIgeTI9IjE0MzAiIHN0cm9rZT0iIzYzN2U1NSIgc3Ryb2tlLXdpZHRoPSIyIi8+PHBvbHlnb24gcG9pbnRzPSIyMTAsMTQzMCAyMTguMCwxNDI2LjAgMjE4LjAsMTQzNC4wIiBmaWxsPSIjNjM3ZTU1Ii8+PGxpbmUgeDE9IjMzMCIgeTE9IjE0MzAiIHgyPSIzMzAiIHkyPSIxMzEwIiBzdHJva2U9IiM5ODZjMzUiIHN0cm9rZS13aWR0aD0iMiIvPjxwb2x5Z29uIHBvaW50cz0iMzMwLDEzMTAgMzM0LjAsMTMxOC4wIDMyNi4wLDEzMTguMCIgZmlsbD0iIzk4NmMzNSIvPjxsaW5lIHgxPSIzMzAiIHkxPSIxNDMwIiB4Mj0iMjEwIiB5Mj0iMTMxMCIgc3Ryb2tlPSIjMzA2ZjhjIiBzdHJva2Utd2lkdGg9IjIiLz48cG9seWdvbiBwb2ludHM9IjIxMCwxMzEwIDIxOC40ODUyODEzNzQyMzg1NSwxMzEyLjgyODQyNzEyNDc0NjIgMjEyLjgyODQyNzEyNDc0NjE4LDEzMTguNDg1MjgxMzc0MjM4NiIgZmlsbD0iIzMwNmY4YyIvPjxsaW5lIHgxPSIyMTAiIHkxPSIxMzEwIiB4Mj0iMjEwIiB5Mj0iMTQzMCIgc3Ryb2tlPSIjNjA3MzgzIiBzdHJva2Utd2lkdGg9IjIiLz48bGluZSB4MT0iMjEwIiB5MT0iMTMxMCIgeDI9IjMzMCIgeTI9IjEzMTAiIHN0cm9rZT0iIzYwNzM4MyIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iNzUiIHk9IjEyNjAiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+fEZfbWVkaWF8ID0gMuKImjIgTjwvdGV4dD48dGV4dCB4PSIyMDAiIHk9IjE0ODAiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJtaWRkbGUiPkZfeCA9IOKIkjIgTjwvdGV4dD48dGV4dCB4PSIzNTUiIHk9IjEzMjUiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+Rl95ID0gKzIgTjwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMTU4MCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5MZSBkdWUgc2NhbGUgZGVnbGkgYXNzaSBzb25vIHVndWFsaS48L3RleHQ+PC9zdmc+Cg=="
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTY2MCIgdmlld0JveD0iMCAwIDY0MCAxNjYwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyIgZm9udC1mYW1pbHk9InN5c3RlbS11aSxzYW5zLXNlcmlmIj48dGl0bGUgaWQ9InRpdGxlIj5JbXB1bHNvLCBjb25zZXJ2YXppb25lIGUgZGlmZmVyZW56YSB2ZXR0b3JpYWxlPC90aXRsZT48ZGVzYyBpZD0iZGVzYyI+UXVhbnRpdMOgIGRpIG1vdG8gcHJpbWEgZSBkb3BvIHVuIHJpbWJhbHpvLCBzZXBhcmF6aW9uZSBkaSBwYXR0aW5pIGUgcmlzdWx0YW50ZSBtZWRpYSBpbiBkdWUgZGltZW5zaW9uaS48L2Rlc2M+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxNjYwIiBmaWxsPSJ3aGl0ZSIvPjx0ZXh0IHg9IjM1IiB5PSI0OCIgZm9udC1zaXplPSIyNCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5VbiBpbXB1bHNvIGNhbWJpYSB1biB2ZXR0b3JlPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSIxMTAiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+MSDCtyBJbCByaW1iYWx6byBpbnZlcnRlIGxhIHF1YW50aXTDoCBkaSBtb3RvPC90ZXh0PjxsaW5lIHgxPSIzMzAiIHkxPSIxNzAiIHgyPSIzMzAiIHkyPSI0NTAiIHN0cm9rZT0iIzYwNzM4MyIgc3Ryb2tlLXdpZHRoPSIyIi8+PGxpbmUgeDE9IjMzMCIgeTE9IjIzMCIgeDI9IjQxMCIgeTI9IjIzMCIgc3Ryb2tlPSIjMzA2ZjhjIiBzdHJva2Utd2lkdGg9IjIiLz48cG9seWdvbiBwb2ludHM9IjQxMCwyMzAgNDAyLjAsMjM0LjAgNDAyLjAsMjI2LjAiIGZpbGw9IiMzMDZmOGMiLz48bGluZSB4MT0iMzMwIiB5MT0iMzYwIiB4Mj0iMjcwIiB5Mj0iMzYwIiBzdHJva2U9IiM5ODZjMzUiIHN0cm9rZS13aWR0aD0iMiIvPjxwb2x5Z29uIHBvaW50cz0iMjcwLDM2MCAyNzguMCwzNTYuMCAyNzguMCwzNjQuMCIgZmlsbD0iIzk4NmMzNSIvPjx0ZXh0IHg9IjQzNSIgeT0iMjM1IiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPnBfaSA9ICsyLzUga2fCt20vczwvdGV4dD48dGV4dCB4PSI0MCIgeT0iMzY1IiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPnBfZiA9IOKIkjMvMTAga2fCt20vczwvdGV4dD48dGV4dCB4PSIzNSIgeT0iNTA1IiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPkpfeCA9IHBfZiDiiJIgcF9pID0g4oiSNy8xMCBOwrdzPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSI2MDUiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+MiDCtyBEdWUgcGF0dGluaSBzaSBzZXBhcmFubzwvdGV4dD48cmVjdCB4PSIxNTAiIHk9IjcyMCIgd2lkdGg9IjYwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjOTg2YzM1Ii8+PHJlY3QgeD0iMzkwIiB5PSI3MjAiIHdpZHRoPSI2MCIgaGVpZ2h0PSI0MCIgZmlsbD0iIzNkNzc5MSIvPjxsaW5lIHgxPSIxODAiIHkxPSI3ODAiIHgyPSI4MCIgeTI9Ijc4MCIgc3Ryb2tlPSIjOTg2YzM1IiBzdHJva2Utd2lkdGg9IjIiLz48cG9seWdvbiBwb2ludHM9IjgwLDc4MCA4OC4wLDc3Ni4wIDg4LjAsNzg0LjAiIGZpbGw9IiM5ODZjMzUiLz48bGluZSB4MT0iNDIwIiB5MT0iNzgwIiB4Mj0iNTcwIiB5Mj0iNzgwIiBzdHJva2U9IiMzMDZmOGMiIHN0cm9rZS13aWR0aD0iMiIvPjxwb2x5Z29uIHBvaW50cz0iNTcwLDc4MCA1NjIuMCw3ODQuMCA1NjIuMCw3NzYuMCIgZmlsbD0iIzMwNmY4YyIvPjx0ZXh0IHg9IjE4MCIgeT0iNjkwIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj42IGtnPC90ZXh0Pjx0ZXh0IHg9IjQyMCIgeT0iNjkwIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj40IGtnPC90ZXh0Pjx0ZXh0IHg9IjgwIiB5PSI4MTAiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+duKCgiA9IOKIkjIgbS9zPC90ZXh0Pjx0ZXh0IHg9IjQwMCIgeT0iODEwIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPnbigoEgPSArMyBtL3M8L3RleHQ+PHRleHQgeD0iMzUiIHk9Ijg5MCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5w4oKCID0g4oiSMTIga2fCt20vcyDCtyBw4oKBID0gKzEyIGtnwrdtL3M8L3RleHQ+PHRleHQgeD0iMzUiIHk9Ijk0MCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5RdWFudGl0w6AgZGkgbW90byB0b3RhbGUgb3JpenpvbnRhbGUgbnVsbGEuPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSIxMDUwIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjMgwrcgRHVlIGNvbXBvbmVudGksIHVuYSByaXN1bHRhbnRlIG1lZGlhPC90ZXh0PjxsaW5lIHgxPSIzMzAiIHkxPSIxNDMwIiB4Mj0iNTUwIiB5Mj0iMTQzMCIgc3Ryb2tlPSIjNjk3Yjg3IiBzdHJva2Utd2lkdGg9IjIiLz48cG9seWdvbiBwb2ludHM9IjU1MCwxNDMwIDU0Mi4wLDE0MzQuMCA1NDIuMCwxNDI2LjAiIGZpbGw9IiM2OTdiODciLz48bGluZSB4MT0iMzMwIiB5MT0iMTQzMCIgeDI9IjMzMCIgeTI9IjExOTAiIHN0cm9rZT0iIzY5N2I4NyIgc3Ryb2tlLXdpZHRoPSIyIi8+PHBvbHlnb24gcG9pbnRzPSIzMzAsMTE5MCAzMzQuMCwxMTk4LjAgMzI2LjAsMTE5OC4wIiBmaWxsPSIjNjk3Yjg3Ii8+PHRleHQgeD0iNTYwIiB5PSIxNDY1IiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPit4PC90ZXh0Pjx0ZXh0IHg9IjM1MCIgeT0iMTE5NSIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij4reTwvdGV4dD48bGluZSB4MT0iMzMwIiB5MT0iMTQzMCIgeDI9IjIxMCIgeTI9IjE0MzAiIHN0cm9rZT0iIzYzN2U1NSIgc3Ryb2tlLXdpZHRoPSIyIi8+PHBvbHlnb24gcG9pbnRzPSIyMTAsMTQzMCAyMTguMCwxNDI2LjAgMjE4LjAsMTQzNC4wIiBmaWxsPSIjNjM3ZTU1Ii8+PGxpbmUgeDE9IjMzMCIgeTE9IjE0MzAiIHgyPSIzMzAiIHkyPSIxMzEwIiBzdHJva2U9IiM5ODZjMzUiIHN0cm9rZS13aWR0aD0iMiIvPjxwb2x5Z29uIHBvaW50cz0iMzMwLDEzMTAgMzM0LjAsMTMxOC4wIDMyNi4wLDEzMTguMCIgZmlsbD0iIzk4NmMzNSIvPjxsaW5lIHgxPSIzMzAiIHkxPSIxNDMwIiB4Mj0iMjEwIiB5Mj0iMTMxMCIgc3Ryb2tlPSIjMzA2ZjhjIiBzdHJva2Utd2lkdGg9IjIiLz48cG9seWdvbiBwb2ludHM9IjIxMCwxMzEwIDIxOC40ODUyODEzNzQyMzg1NSwxMzEyLjgyODQyNzEyNDc0NjIgMjEyLjgyODQyNzEyNDc0NjE4LDEzMTguNDg1MjgxMzc0MjM4NiIgZmlsbD0iIzMwNmY4YyIvPjxsaW5lIHgxPSIyMTAiIHkxPSIxMzEwIiB4Mj0iMjEwIiB5Mj0iMTQzMCIgc3Ryb2tlPSIjNjA3MzgzIiBzdHJva2Utd2lkdGg9IjIiLz48bGluZSB4MT0iMjEwIiB5MT0iMTMxMCIgeDI9IjMzMCIgeTI9IjEzMTAiIHN0cm9rZT0iIzYwNzM4MyIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iNzUiIHk9IjEyNjAiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+fEZfbWVkaWF8ID0gMuKImjIgTjwvdGV4dD48dGV4dCB4PSIyMDAiIHk9IjE0ODAiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJtaWRkbGUiPkZfeCA9IOKIkjIgTjwvdGV4dD48dGV4dCB4PSIzNTUiIHk9IjEzMjUiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+Rl95ID0gKzIgTjwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMTU4MCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5MZSBkdWUgc2NhbGUgZGVnbGkgYXNzaSBzb25vIHVndWFsaS48L3RleHQ+PC9zdmc+Cg=="
     }
   ]
 }

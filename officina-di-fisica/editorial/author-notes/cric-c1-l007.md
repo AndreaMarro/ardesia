@@ -129,3 +129,7 @@ Passaggi manuali: K_i=\frac12\cdot4\cdot3^2\,\mathrm J;  K_i=18\,\mathrm J;  -Fs
 Risposta proposta: 3 m.
 
 Confutazioni proposte: Sei metri ometterebbe il fattore un mezzo nell’energia iniziale. Meno tre confonderebbe il segno del lavoro con quello della distanza; diciotto è il valore numerico dell’energia, da dividere ancora per la forza.
+
+## Rilettura distinta e followup autore
+
+Correzioni puntuali richieste dal revisore A: tassonomia del diario errori, ipotesi meccaniche, distinzione massa/peso e unità della controprova. Le chiavi e tutte le formule restano identiche ai byte archiviati. SVG e precedente native asset-only sono byte-identici e restano prove della sola figura. Cinque nuovi doppi assembly e import canonici reali, ciascuno 10→0/10, con tutti i 991 pubblicati invariati. SCI propria, UI prodotto e human NOT_RUN.

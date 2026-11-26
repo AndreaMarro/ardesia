@@ -129,3 +129,7 @@ Passaggi manuali: r_x>0;  F_y<0;  \tau_z=r_xF_y;  \tau_z<0
 Risposta proposta: Negativo, perché tende a ruotare in senso orario.
 
 Confutazioni proposte: Essere a destra non basta a rendere positivo il momento: serve anche il verso della forza. La verticalità non annulla il braccio orizzontale e il modulo non può cambiare il segno fissato dalla geometria.
+
+## Rilettura distinta e followup autore
+
+Correzioni puntuali richieste dal revisore A: tassonomia del diario errori, ipotesi meccaniche, distinzione massa/peso e unità della controprova. Le chiavi e tutte le formule restano identiche ai byte archiviati. SVG e precedente native asset-only sono byte-identici e restano prove della sola figura. Cinque nuovi doppi assembly e import canonici reali, ciascuno 10→0/10, con tutti i 991 pubblicati invariati. SCI propria, UI prodotto e human NOT_RUN.

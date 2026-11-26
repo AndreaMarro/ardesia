@@ -54,7 +54,7 @@
         "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
       ],
       "error": {
-        "category": "algebra",
+        "category": "concetto",
         "message": "Un lavoro sempre positivo o sempre negativo non si annullerebbe invertendo il cammino. La lunghezza del percorso non ha unità di energia e la durata non entra nella differenza di potenziale per la forza conservativa assegnata.",
         "target": "C1-L008"
       },
@@ -407,7 +407,7 @@
         "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
       ],
       "error": {
-        "category": "algebra",
+        "category": "concetto",
         "message": "Il tempo dipende dal moto lungo l’intera pista. La direzione finale dipende dalla tangente al fondo; normale e accelerazione dipendono anche dalla curvatura locale. L’uguaglianza di energia non le rende uguali.",
         "target": "C1-L008"
       },
@@ -542,7 +542,7 @@
         "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
       ],
       "error": {
-        "category": "algebra",
+        "category": "concetto",
         "message": "Tornare allo stesso punto annulla il lavoro solo per una forza conservativa, non per qualunque forza. Il ritorno non elimina il contatto ruvido e non rende nullo l’attrito. Un potenziale di sola posizione darebbe invece differenza zero sul giro.",
         "target": "C1-L008"
       },
@@ -643,7 +643,7 @@
       "blocks": [
         {
           "type": "text",
-          "text": "L’energia determina prima la rapidità al fondo: il calo mgh diventa (1/2)mv². Per trovare la tensione serve poi la seconda legge radiale, con verso positivo verso il centro: T−mg=mv²/ℓ. Ne segue T=mg(1+2h/ℓ). Il lavoro nullo della tensione non implica forza nulla; la geometria e il filo teso sono condizioni necessarie per applicare il modello."
+          "text": "L’energia determina prima la rapidità al fondo: il calo mgh diventa (1/2)mv². Per trovare la tensione serve poi la seconda legge radiale, con verso positivo verso il centro: T−mg=mv²/ℓ. Ne segue T=mg(1+2h/ℓ). La condizione 0<h<ℓ rende positiva già la tensione iniziale mg(1−h/ℓ), così il filo può restare teso sotto le sole forze assegnate. Il lavoro nullo della tensione non implica forza nulla."
         },
         {
           "type": "formula",
@@ -667,7 +667,7 @@
         }
       ],
       "difficulty": 3,
-      "prompt": "Una massa m nota è appesa a un filo ideale leggero e inestensibile di lunghezza ℓ nota. Parte da ferma da un dislivello h noto rispetto al fondo; la preparazione mantiene il filo teso. Senza aria e in gravità uniforme, quale procedimento determina la tensione al punto più basso?",
+      "prompt": "Una massa m nota è appesa a un filo ideale leggero e inestensibile di lunghezza ℓ nota. Parte da ferma da un dislivello h noto rispetto al fondo, con 0<h<ℓ. Dopo il rilascio agiscono soltanto il peso e la tensione del filo. Senza aria e in gravità uniforme, quale procedimento determina la tensione al punto più basso?",
       "family": "trovare-la-tensione-del-filo",
       "answer": {
         "type": "choice",

@@ -129,3 +129,7 @@ Passaggi manuali: F_1=kx;  F_2=kx;  F_{\rm tot}=F_1+F_2;  F_{\rm tot}=2kx
 Risposta proposta: 2 k x.
 
 Confutazioni proposte: kx dimentica una molla; kx/2 usa la costante di due molle uguali in serie. 2k/x ha dimensione N/m² e kx² ha dimensione N·m, quindi nessuna delle due esprime una forza.
+
+## Rilettura distinta e followup autore
+
+Correzioni puntuali richieste dal revisore A: tassonomia del diario errori, ipotesi meccaniche, distinzione massa/peso e unità della controprova. Le chiavi e tutte le formule restano identiche ai byte archiviati. SVG e precedente native asset-only sono byte-identici e restano prove della sola figura. Cinque nuovi doppi assembly e import canonici reali, ciascuno 10→0/10, con tutti i 991 pubblicati invariati. SCI propria, UI prodotto e human NOT_RUN.
