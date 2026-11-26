@@ -1,6 +1,6 @@
 """Snell sine, an autonomous parallel slab, and physical branches; authoring only."""
 from .vector_geometry_authoring import assemble_family,write_family
-P='Un raggio monocromatico passa dall’aria, modellata con indice 1, a un mezzo trasparente omogeneo di indice n≥1. L’interfaccia è piana e ferma; si usa l’ottica geometrica per il raggio trasmesso. Gli angoli sono misurati dalla normale. Sono assegnati s_i=sinθ_i, con 0<s_i≤1, e s_r=sinθ_r. '
+P='Un raggio monocromatico passa dall’aria, modellata con indice 1, a un mezzo trasparente omogeneo di indice n≥1. L’interfaccia è piana e ferma; si usa l’ottica geometrica per il raggio trasmesso. Gli angoli sono misurati dalla normale. Sono assegnati s_i=sinθ_i, con 0<s_i≤1, e s_r=sinθ_r. Il bordo s_i=1 è inteso come limite di incidenza radente, non come un fascio con flusso normale incidente non nullo. '
 TASKS=[
 ('Il seno oltre l’interfaccia',P+'Se s_i=1/2 e n=2, quanto vale s_r?',
  ['1/4','1','1/2','2','−1/4'],

@@ -1,0 +1,1208 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u7-snell-refracted-sine-01",
+      "kind": "question",
+      "course": "C5",
+      "section": "Seni rifratti e due facce parallele",
+      "order": 25701,
+      "title": "Il seno oltre l’interfaccia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L06",
+        "C5-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "snell-refracted-sine",
+      "difficulty": 1,
+      "prompt": "Un raggio monocromatico passa dall’aria, modellata con indice 1, a un mezzo trasparente omogeneo di indice n≥1. L’interfaccia è piana e ferma; si usa l’ottica geometrica per il raggio trasmesso. Gli angoli sono misurati dalla normale. Sono assegnati s_i=sinθ_i, con 0<s_i≤1, e s_r=sinθ_r. Se s_i=1/2 e n=2, quanto vale s_r?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/4",
+          "1",
+          "1/2",
+          "2",
+          "−1/4"
+        ],
+        "value": "1/4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La legge di Snell conserva n sinθ fra i due mezzi. Sul lato aria il fattore di indice è uno; sul lato di arrivo è due. Divido quindi un mezzo per due e ottengo un quarto. È il seno esatto: non serve cercare un angolo decimale con una calcolatrice."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/11fe9ec7816b43018680c9ecb87eee1dd42fb5cb4d3bcfaeaa9d346be94fcd5c",
+          "text": "Nel pannello 1 i raggi hanno la stessa lunghezza rappresentata: il seno incidente è 1/2 e quello trasmesso 1/4. La linea tratteggiata è la normale. Le direzioni rispettano Snell, senza attribuire all’angolo un valore decimale."
+        },
+        {
+          "type": "formula",
+          "text": "1\\,s_i=ns_r"
+        },
+        {
+          "type": "formula",
+          "text": " s_r=\\frac{s_i}{n}"
+        },
+        {
+          "type": "formula",
+          "text": " s_r=\\frac{1/2}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " s_r=\\frac14"
+        },
+        {
+          "type": "text",
+          "text": "Uno moltiplica per n invece di dividere, un mezzo ignora la rifrazione. Due non è un seno reale e il ramo negativo non appartiene agli angoli fra zero e 90° dichiarati."
+        }
+      ],
+      "hints": [
+        "Nel mezzo di indice maggiore il raggio si avvicina alla normale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Uno moltiplica per n invece di dividere, un mezzo ignora la rifrazione. Due non è un seno reale e il ramo negativo non appartiene agli angoli fra zero e 90° dichiarati.",
+        "target": "C5-L09"
+      },
+      "coverage": [
+        "Snell dalla normale",
+        "Domini dei seni e indici",
+        "Lastra autonoma e inverse senza trigonometria numerica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-snell-refracted-sine-02",
+      "kind": "question",
+      "course": "C5",
+      "section": "Seni rifratti e due facce parallele",
+      "order": 25702,
+      "title": "Il seno non si misura in gradi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L06",
+        "C5-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "snell-refracted-sine",
+      "difficulty": 1,
+      "prompt": "Quale unità è corretta per s_r=sinθ_r?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1, adimensionale",
+          "gradi",
+          "rad",
+          "m",
+          "m⁻¹"
+        ],
+        "value": "1, adimensionale"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il seno è un rapporto fra lunghezze nel triangolo di una direzione e dunque un numero puro. L’angolo di cui si prende il seno può essere espresso in gradi o radianti, ma il seno non eredita quelle indicazioni di angolo."
+        },
+        {
+          "type": "formula",
+          "text": "s_r=\\sin\\theta_r"
+        },
+        {
+          "type": "formula",
+          "text": " [s_r]=1"
+        },
+        {
+          "type": "text",
+          "text": "Gradi e radianti esprimono l’angolo, non il valore della sua funzione seno. Metri e inversi di metro descriverebbero altre grandezze ottiche come lunghezze o numeri d’onda."
+        }
+      ],
+      "hints": [
+        "Non confondere θ_r con sinθ_r.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "Gradi e radianti esprimono l’angolo, non il valore della sua funzione seno. Metri e inversi di metro descriverebbero altre grandezze ottiche come lunghezze o numeri d’onda.",
+        "target": "C5-L09"
+      },
+      "coverage": [
+        "Snell dalla normale",
+        "Domini dei seni e indici",
+        "Lastra autonoma e inverse senza trigonometria numerica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-snell-refracted-sine-03",
+      "kind": "question",
+      "course": "C5",
+      "section": "Seni rifratti e due facce parallele",
+      "order": 25703,
+      "title": "La relazione prima dei numeri",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L06",
+        "C5-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "snell-refracted-sine",
+      "difficulty": 1,
+      "prompt": "Un raggio monocromatico passa dall’aria, modellata con indice 1, a un mezzo trasparente omogeneo di indice n≥1. L’interfaccia è piana e ferma; si usa l’ottica geometrica per il raggio trasmesso. Gli angoli sono misurati dalla normale. Sono assegnati s_i=sinθ_i, con 0<s_i≤1, e s_r=sinθ_r. Quale espressione fornisce s_r?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "s_r = s_i / n",
+          "s_r = n s_i",
+          "s_r = n / s_i",
+          "s_r = s_i − n",
+          "s_r = s_i / n²"
+        ],
+        "value": "s_r = s_i / n"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Parto da s_i=n s_r, perché l’indice di partenza è uno. Dividendo per n positivo trovo s_r=s_i/n. Il dominio garantisce un seno fisico non maggiore di uno e, per n>1, non maggiore di quello incidente."
+        },
+        {
+          "type": "formula",
+          "text": "s_i=ns_r"
+        },
+        {
+          "type": "formula",
+          "text": " s_r=\\frac{s_i}{n}"
+        },
+        {
+          "type": "formula",
+          "text": " 0<s_r\\leq1"
+        },
+        {
+          "type": "text",
+          "text": "Il prodotto n s_i può superare uno per dati ammessi; n/s_i può farlo ancora più facilmente. La differenza darebbe un seno non positivo nel dominio e il quadrato dell’indice non compare nella legge di Snell."
+        }
+      ],
+      "hints": [
+        "Usa gli indici dei due mezzi nel verso realmente percorso.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Il prodotto n s_i può superare uno per dati ammessi; n/s_i può farlo ancora più facilmente. La differenza darebbe un seno non positivo nel dominio e il quadrato dell’indice non compare nella legge di Snell.",
+        "target": "C5-L09"
+      },
+      "coverage": [
+        "Snell dalla normale",
+        "Domini dei seni e indici",
+        "Lastra autonoma e inverse senza trigonometria numerica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-snell-refracted-sine-04",
+      "kind": "question",
+      "course": "C5",
+      "section": "Seni rifratti e due facce parallele",
+      "order": 25704,
+      "title": "Un’incidenza diversa sullo stesso mezzo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L06",
+        "C5-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "snell-refracted-sine",
+      "difficulty": 1,
+      "prompt": "Un raggio monocromatico passa dall’aria, modellata con indice 1, a un mezzo trasparente omogeneo di indice n≥1. L’interfaccia è piana e ferma; si usa l’ottica geometrica per il raggio trasmesso. Gli angoli sono misurati dalla normale. Sono assegnati s_i=sinθ_i, con 0<s_i≤1, e s_r=sinθ_r. A ha s_i=1/2,n=2; B ha s_i=3/4 e lo stesso n. Come cambia s_r?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 1/4 a 3/8",
+          "Da 1/4 a 1/6",
+          "Da 1/4 a 3/2",
+          "Resta 1/4",
+          "Da 1/4 a 9/16"
+        ],
+        "value": "Da 1/4 a 3/8"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Con lo stesso mezzo divido entrambi i seni incidenti per due. Il seno trasmesso passa da un quarto a tre ottavi, aumentando di un fattore 3/2. Questo rapporto vale per i seni; non autorizza a moltiplicare gli angoli stessi per 3/2."
+        },
+        {
+          "type": "formula",
+          "text": "s_{r,A}=\\frac14"
+        },
+        {
+          "type": "formula",
+          "text": " s_{r,B}=\\frac{3/4}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " s_{r,B}=\\frac38"
+        },
+        {
+          "type": "formula",
+          "text": " s_{r,B}/s_{r,A}=\\frac32"
+        },
+        {
+          "type": "text",
+          "text": "Un sesto seguirebbe una falsa dipendenza inversa da s_i. Tre mezzi non è un seno ammissibile; il valore invariato ignora l’incidenza e 9/16 eleva al quadrato il dato nuovo senza legge fisica."
+        }
+      ],
+      "hints": [
+        "Fai il rapporto dei seni soltanto dopo i due quozienti.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Un sesto seguirebbe una falsa dipendenza inversa da s_i. Tre mezzi non è un seno ammissibile; il valore invariato ignora l’incidenza e 9/16 eleva al quadrato il dato nuovo senza legge fisica.",
+        "target": "C5-L09"
+      },
+      "coverage": [
+        "Snell dalla normale",
+        "Domini dei seni e indici",
+        "Lastra autonoma e inverse senza trigonometria numerica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-snell-refracted-sine-05",
+      "kind": "question",
+      "course": "C5",
+      "section": "Seni rifratti e due facce parallele",
+      "order": 25705,
+      "title": "Risalire al seno incidente",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L06",
+        "C5-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "snell-refracted-sine",
+      "difficulty": 2,
+      "prompt": "Un raggio monocromatico passa dall’aria, modellata con indice 1, a un mezzo trasparente omogeneo di indice n≥1. L’interfaccia è piana e ferma; si usa l’ottica geometrica per il raggio trasmesso. Gli angoli sono misurati dalla normale. Sono assegnati s_i=sinθ_i, con 0<s_i≤1, e s_r=sinθ_r. Si conoscono s_r=1/4 e n=2. Quanto vale s_i?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "1/8",
+          "2",
+          "1/4",
+          "−1/2"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplico il seno rifratto per l’indice del mezzo di arrivo. Due volte un quarto vale un mezzo. L’inversa deve anche soddisfare n s_r≤1, altrimenti non descriverebbe un raggio incidente reale dall’aria."
+        },
+        {
+          "type": "formula",
+          "text": "s_i=ns_r"
+        },
+        {
+          "type": "formula",
+          "text": " s_i=2\\cdot\\frac14"
+        },
+        {
+          "type": "formula",
+          "text": " s_i=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Un ottavo dividerebbe ancora per n. Due supera il massimo del seno, un quarto omette il fattore e il valore negativo viola il ramo degli angoli dichiarato."
+        }
+      ],
+      "hints": [
+        "Nell’inversa ricontrolla il limite superiore del seno incidente.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un ottavo dividerebbe ancora per n. Due supera il massimo del seno, un quarto omette il fattore e il valore negativo viola il ramo degli angoli dichiarato.",
+        "target": "C5-L09"
+      },
+      "coverage": [
+        "Snell dalla normale",
+        "Domini dei seni e indici",
+        "Lastra autonoma e inverse senza trigonometria numerica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-snell-refracted-sine-06",
+      "kind": "question",
+      "course": "C5",
+      "section": "Seni rifratti e due facce parallele",
+      "order": 25706,
+      "title": "Due facce parallele, due rifrazioni",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L06",
+        "C5-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "snell-refracted-sine",
+      "difficulty": 2,
+      "prompt": "Caso autonomo: una lastra trasparente omogenea di indice 3/2 ha facce piane parallele ed è in aria di indice 1. Un raggio con sinθ_in=3/5 entra, attraversa la lastra ed esce dalla faccia opposta. Gli angoli sono dalla normale; si segue il fascio trasmesso attraverso entrambe le facce ferme. Quanto vale sinθ_out in aria?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/5",
+          "2/5",
+          "9/10",
+          "1",
+          "0"
+        ],
+        "value": "3/5"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Alla prima faccia Snell dà seno interno due quinti. Le due normali sono parallele, quindi quello stesso angolo interno è l’incidenza sulla seconda faccia. Tornando in aria moltiplico due quinti per 3/2 e recupero tre quinti. Il raggio emergente è parallelo all’incidente, pur essendo spostato lateralmente. Il seno interno 2/5 è sotto il limite 2/3 per l’uscita."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/11fe9ec7816b43018680c9ecb87eee1dd42fb5cb4d3bcfaeaa9d346be94fcd5c",
+          "text": "Il secondo pannello riguarda soltanto la lastra con n=3/2. Le normali alle facce sono parallele; il raggio in aria emerge parallelo a quello incidente. Dentro la lastra il seno è 2/5, fuori torna 3/5."
+        },
+        {
+          "type": "formula",
+          "text": "\\sin\\theta_{\\rm int}=\\frac{3/5}{3/2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\sin\\theta_{\\rm int}=\\frac25"
+        },
+        {
+          "type": "formula",
+          "text": " \\sin\\theta_{\\rm out}=\\frac32\\,\\frac25"
+        },
+        {
+          "type": "formula",
+          "text": " \\sin\\theta_{\\rm out}=\\frac35"
+        },
+        {
+          "type": "text",
+          "text": "Due quinti si ferma dentro la lastra dopo la prima faccia.9/10 moltiplica direttamente il seno esterno per l’indice senza la prima divisione; uno e zero non ricostruiscono il raggio incidente assegnato."
+        }
+      ],
+      "hints": [
+        "Applica Snell a entrambe le facce e usa il parallelismo delle normali.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due quinti si ferma dentro la lastra dopo la prima faccia.9/10 moltiplica direttamente il seno esterno per l’indice senza la prima divisione; uno e zero non ricostruiscono il raggio incidente assegnato.",
+        "target": "C5-L09"
+      },
+      "coverage": [
+        "Snell dalla normale",
+        "Domini dei seni e indici",
+        "Lastra autonoma e inverse senza trigonometria numerica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-snell-refracted-sine-07",
+      "kind": "question",
+      "course": "C5",
+      "section": "Seni rifratti e due facce parallele",
+      "order": 25707,
+      "title": "Un indice più piccolo all’arrivo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L06",
+        "C5-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "snell-refracted-sine",
+      "difficulty": 2,
+      "prompt": "Un raggio monocromatico passa dall’aria, modellata con indice 1, a un mezzo trasparente omogeneo di indice n≥1. L’interfaccia è piana e ferma; si usa l’ottica geometrica per il raggio trasmesso. Gli angoli sono misurati dalla normale. Sono assegnati s_i=sinθ_i, con 0<s_i≤1, e s_r=sinθ_r. A ha s_i=1/2,n=2; B mantiene s_i ma usa n=3/2. Quanto vale s_r,B/s_r,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4/3",
+          "3/4",
+          "1/3",
+          "1/4",
+          "1"
+        ],
+        "value": "4/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I seni trasmessi sono un quarto e un terzo. Il rapporto B/A è(1/3)/(1/4)=4/3: diminuendo l’indice di arrivo il raggio si allontana dalla normale rispetto alla prova A, restando ancora più vicino alla normale del raggio in aria."
+        },
+        {
+          "type": "formula",
+          "text": "s_{r,A}=\\frac14"
+        },
+        {
+          "type": "formula",
+          "text": " s_{r,B}=\\frac{1/2}{3/2}"
+        },
+        {
+          "type": "formula",
+          "text": " s_{r,B}=\\frac13"
+        },
+        {
+          "type": "formula",
+          "text": " R=\\frac43"
+        },
+        {
+          "type": "text",
+          "text": "Tre quarti segue il rapporto degli indici invece del suo inverso. Un terzo e un quarto sono le singole uscite, mentre uno ignora il cambiamento di mezzo."
+        }
+      ],
+      "hints": [
+        "Il confronto è fra due seni trasmessi, non fra i due indici.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre quarti segue il rapporto degli indici invece del suo inverso. Un terzo e un quarto sono le singole uscite, mentre uno ignora il cambiamento di mezzo.",
+        "target": "C5-L09"
+      },
+      "coverage": [
+        "Snell dalla normale",
+        "Domini dei seni e indici",
+        "Lastra autonoma e inverse senza trigonometria numerica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-snell-refracted-sine-08",
+      "kind": "question",
+      "course": "C5",
+      "section": "Seni rifratti e due facce parallele",
+      "order": 25708,
+      "title": "Scarto di un seno sovrastimato",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L06",
+        "C5-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "snell-refracted-sine",
+      "difficulty": 2,
+      "prompt": "Un raggio monocromatico passa dall’aria, modellata con indice 1, a un mezzo trasparente omogeneo di indice n≥1. L’interfaccia è piana e ferma; si usa l’ottica geometrica per il raggio trasmesso. Gli angoli sono misurati dalla normale. Sono assegnati s_i=sinθ_i, con 0<s_i≤1, e s_r=sinθ_r. Con s_i=1/2,n=2 viene proposto s_r=1/2. Quanto vale proposto meno corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/4",
+          "−1/4",
+          "1/2",
+          "2",
+          "0"
+        ],
+        "value": "1/4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il seno corretto è un quarto. Il proposto un mezzo gli toglie soltanto un quarto quando si fa la differenza richiesta: lo scarto è+1/4. Tutti i termini sono puri; non si sottraggono direttamente gli angoli."
+        },
+        {
+          "type": "formula",
+          "text": "s_r=\\frac14"
+        },
+        {
+          "type": "formula",
+          "text": " \\delta s=\\frac12-\\frac14"
+        },
+        {
+          "type": "formula",
+          "text": " \\delta s=\\frac14"
+        },
+        {
+          "type": "text",
+          "text": "−1/4 inverte l’ordine e un mezzo copia la proposta. Due è il rapporto proposta/corretto, zero ignora la necessaria divisione per l’indice due."
+        }
+      ],
+      "hints": [
+        "Uno scarto di seni non è uno scarto espresso in gradi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−1/4 inverte l’ordine e un mezzo copia la proposta. Due è il rapporto proposta/corretto, zero ignora la necessaria divisione per l’indice due.",
+        "target": "C5-L09"
+      },
+      "coverage": [
+        "Snell dalla normale",
+        "Domini dei seni e indici",
+        "Lastra autonoma e inverse senza trigonometria numerica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-snell-refracted-sine-09",
+      "kind": "question",
+      "course": "C5",
+      "section": "Seni rifratti e due facce parallele",
+      "order": 25709,
+      "title": "L’inversa con il limite fisico",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L06",
+        "C5-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "snell-refracted-sine",
+      "difficulty": 2,
+      "prompt": "Un raggio monocromatico passa dall’aria, modellata con indice 1, a un mezzo trasparente omogeneo di indice n≥1. L’interfaccia è piana e ferma; si usa l’ottica geometrica per il raggio trasmesso. Gli angoli sono misurati dalla normale. Sono assegnati s_i=sinθ_i, con 0<s_i≤1, e s_r=sinθ_r. Con s_r e n noti, quale formula ricostruisce s_i?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "s_i = n s_r",
+          "s_i = s_r / n",
+          "s_i = n / s_r",
+          "s_i = s_r − n",
+          "s_i = n² s_r"
+        ],
+        "value": "s_i = n s_r"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La forma s_i=n s_r è già Snell riordinata per questo verso di passaggio. Per un’inversa fisica occorre 0<n s_r≤1; la sola positività non basta. Con n≥1 essa implica anche s_r≤1/n."
+        },
+        {
+          "type": "formula",
+          "text": "s_i=ns_r"
+        },
+        {
+          "type": "formula",
+          "text": " 0<ns_r\\leq1"
+        },
+        {
+          "type": "formula",
+          "text": " s_r\\leq\\frac1n"
+        },
+        {
+          "type": "text",
+          "text": "La divisione applicherebbe una seconda volta la trasformazione in avanti. Il reciproco e il quadrato dell’indice non soddisfano Snell in generale; la differenza è non positiva per s_r≤1,n≥1."
+        }
+      ],
+      "hints": [
+        "Controlla sia la relazione sia l’intervallo del seno ricostruito.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La divisione applicherebbe una seconda volta la trasformazione in avanti. Il reciproco e il quadrato dell’indice non soddisfano Snell in generale; la differenza è non positiva per s_r≤1,n≥1.",
+        "target": "C5-L09"
+      },
+      "coverage": [
+        "Snell dalla normale",
+        "Domini dei seni e indici",
+        "Lastra autonoma e inverse senza trigonometria numerica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-snell-refracted-sine-10",
+      "kind": "question",
+      "course": "C5",
+      "section": "Seni rifratti e due facce parallele",
+      "order": 25710,
+      "title": "Variare incidenza e indice",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L06",
+        "C5-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "snell-refracted-sine",
+      "difficulty": 2,
+      "prompt": "Un raggio monocromatico passa dall’aria, modellata con indice 1, a un mezzo trasparente omogeneo di indice n≥1. L’interfaccia è piana e ferma; si usa l’ottica geometrica per il raggio trasmesso. Gli angoli sono misurati dalla normale. Sono assegnati s_i=sinθ_i, con 0<s_i≤1, e s_r=sinθ_r. Fra A e B: s_i,B=κ₁s_i,A e n_B=κ₂n_A. Entrambe le prove rispettano 0<s_i≤1 e n≥1. Quanto vale s_r,B/s_r,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ / κ₂",
+          "κ₁ κ₂",
+          "κ₂ / κ₁",
+          "κ₁² / κ₂",
+          "κ₁ + κ₂"
+        ],
+        "value": "κ₁ / κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La variazione del numeratore entra direttamente e quella del denominatore inversamente. Sostituisco i due fattori e divido per s_i,A/n_A, che è positivo. Rimane κ₁/κ₂; vanno comunque mantenuti il limiteκ₁s_i,A≤1 e l’indiceκ₂n_A≥1."
+        },
+        {
+          "type": "formula",
+          "text": "s_{r,B}=\\frac{\\kappa_1s_i}{\\kappa_2n}"
+        },
+        {
+          "type": "formula",
+          "text": " R=\\frac{\\kappa_1}{\\kappa_2}"
+        },
+        {
+          "type": "text",
+          "text": "Il prodotto rende diretto anche l’indice, il rapporto inverso scambia i due ruoli e il quadrato di κ₁ non compare. La somma darebbe due se entrambi i fattori fossero uno."
+        }
+      ],
+      "hints": [
+        "Semplifica solo dopo aver preservato i domini delle due prove.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il prodotto rende diretto anche l’indice, il rapporto inverso scambia i due ruoli e il quadrato di κ₁ non compare. La somma darebbe due se entrambi i fattori fossero uno.",
+        "target": "C5-L09"
+      },
+      "coverage": [
+        "Snell dalla normale",
+        "Domini dei seni e indici",
+        "Lastra autonoma e inverse senza trigonometria numerica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-snell-refracted-sine-11",
+      "kind": "question",
+      "course": "C5",
+      "section": "Seni rifratti e due facce parallele",
+      "order": 25711,
+      "title": "Cambiano entrambi i dati",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L06",
+        "C5-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "snell-refracted-sine",
+      "difficulty": 2,
+      "prompt": "Un raggio monocromatico passa dall’aria, modellata con indice 1, a un mezzo trasparente omogeneo di indice n≥1. L’interfaccia è piana e ferma; si usa l’ottica geometrica per il raggio trasmesso. Gli angoli sono misurati dalla normale. Sono assegnati s_i=sinθ_i, con 0<s_i≤1, e s_r=sinθ_r. A usa s_i=1/2,n=2; B usa s_i=3/4,n=3/2. Quanto vale s_r,B/s_r,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/2",
+          "3/2",
+          "4/3",
+          "1/2 + 1/4"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A trasmette con seno un quarto; B con seno(3/4)/(3/2)=un mezzo. Il rapporto delle uscite è due. Il fattore incidente 3/2 e quello inverso dell’indice 4/3 si combinano proprio in due."
+        },
+        {
+          "type": "formula",
+          "text": "s_{r,A}=\\frac14"
+        },
+        {
+          "type": "formula",
+          "text": " s_{r,B}=\\frac12"
+        },
+        {
+          "type": "formula",
+          "text": " R=\\frac{1/2}{1/4}"
+        },
+        {
+          "type": "formula",
+          "text": " R=2"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo inverte il confronto,3/2 considera soltanto l’incidenza e 4/3 soltanto l’indice. Tre quarti è la somma dei due seni, non il loro rapporto."
+        }
+      ],
+      "hints": [
+        "Calcola il seno trasmesso di ciascuna preparazione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo inverte il confronto,3/2 considera soltanto l’incidenza e 4/3 soltanto l’indice. Tre quarti è la somma dei due seni, non il loro rapporto.",
+        "target": "C5-L09"
+      },
+      "coverage": [
+        "Snell dalla normale",
+        "Domini dei seni e indici",
+        "Lastra autonoma e inverse senza trigonometria numerica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-snell-refracted-sine-12",
+      "kind": "question",
+      "course": "C5",
+      "section": "Seni rifratti e due facce parallele",
+      "order": 25712,
+      "title": "Mediare due seni trasmessi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L06",
+        "C5-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "snell-refracted-sine",
+      "difficulty": 2,
+      "prompt": "Un raggio monocromatico passa dall’aria, modellata con indice 1, a un mezzo trasparente omogeneo di indice n≥1. L’interfaccia è piana e ferma; si usa l’ottica geometrica per il raggio trasmesso. Gli angoli sono misurati dalla normale. Sono assegnati s_i=sinθ_i, con 0<s_i≤1, e s_r=sinθ_r. Si mediano con uguali pesi le letture A: s_i=1/2,n=2 e B: s_i=3/4,n=3/2. Quanto vale la media di s_r?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/8",
+          "5/14",
+          "3/4",
+          "1/4",
+          "1/2"
+        ],
+        "value": "3/8"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La media delle uscite un quarto e un mezzo vale tre ottavi. I dati medi s_i=5/8,n=7/4 darebbero invece 5/14, minore di 3/8 di 1/56. Il seno dell’angolo medio non è neppure definito da questa richiesta: si mediano direttamente i seni osservati."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/11fe9ec7816b43018680c9ecb87eee1dd42fb5cb4d3bcfaeaa9d346be94fcd5c",
+          "text": "Le barre inferiori rappresentano s_r,A=1/4, s_r,B=1/2 e media 3/8 con origine e scala comuni. Non rappresentano direttamente angoli in gradi."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline s_r=\\frac{1/4+1/2}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline s_r=\\frac38"
+        },
+        {
+          "type": "formula",
+          "text": " s_{r,\\rm dati\\ medi}=\\frac{5/8}{7/4}"
+        },
+        {
+          "type": "formula",
+          "text": " s_{r,\\rm dati\\ medi}=\\frac5{14}"
+        },
+        {
+          "type": "text",
+          "text": "5/14 usa le medie degli ingressi;3/4 somma senza dimezzare. Un quarto e un mezzo conservano una sola lettura. La non linearità nel denominatore impedisce la sostituzione indiscriminata delle medie."
+        }
+      ],
+      "hints": [
+        "Identifica esattamente quale funzione viene mediata.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "5/14 usa le medie degli ingressi;3/4 somma senza dimezzare. Un quarto e un mezzo conservano una sola lettura. La non linearità nel denominatore impedisce la sostituzione indiscriminata delle medie.",
+        "target": "C5-L09"
+      },
+      "coverage": [
+        "Snell dalla normale",
+        "Domini dei seni e indici",
+        "Lastra autonoma e inverse senza trigonometria numerica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-snell-refracted-sine-13",
+      "kind": "question",
+      "course": "C5",
+      "section": "Seni rifratti e due facce parallele",
+      "order": 25713,
+      "title": "L’indice richiesto dal nuovo seno",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L06",
+        "C5-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "snell-refracted-sine",
+      "difficulty": 3,
+      "prompt": "Un raggio monocromatico passa dall’aria, modellata con indice 1, a un mezzo trasparente omogeneo di indice n≥1. L’interfaccia è piana e ferma; si usa l’ottica geometrica per il raggio trasmesso. Gli angoli sono misurati dalla normale. Sono assegnati s_i=sinθ_i, con 0<s_i≤1, e s_r=sinθ_r. A ha s_i=1/2,n=2. In B si fissa s_i=3/4 e si vuole s_r,B=2 s_r,A. Quanto vale n_B/n_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/4",
+          "4/3",
+          "2",
+          "3/2",
+          "1"
+        ],
+        "value": "3/4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è s_r,B=un mezzo. Dall’inversa n_B=s_i,B/s_r,B ricavo(3/4)/(1/2)=3/2. Divido per l’indice A pari a due e ottengo tre quarti, mantenendo n_B≥1."
+        },
+        {
+          "type": "formula",
+          "text": "s_{r,B}=\\frac12"
+        },
+        {
+          "type": "formula",
+          "text": " n_B=\\frac{3/4}{1/2}"
+        },
+        {
+          "type": "formula",
+          "text": " n_B=\\frac32"
+        },
+        {
+          "type": "formula",
+          "text": " n_B/n_A=\\frac34"
+        },
+        {
+          "type": "text",
+          "text": "4/3 inverte il confronto; due copia il fattore dell’uscita,3/2 il nuovo indice senza dividerlo per quello iniziale. Uno darebbe s_r,B=3/8, non un mezzo."
+        }
+      ],
+      "hints": [
+        "Dopo aver trovato n_B, completa ancora il rapporto richiesto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "4/3 inverte il confronto; due copia il fattore dell’uscita,3/2 il nuovo indice senza dividerlo per quello iniziale. Uno darebbe s_r,B=3/8, non un mezzo.",
+        "target": "C5-L09"
+      },
+      "coverage": [
+        "Snell dalla normale",
+        "Domini dei seni e indici",
+        "Lastra autonoma e inverse senza trigonometria numerica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-snell-refracted-sine-14",
+      "kind": "question",
+      "course": "C5",
+      "section": "Seni rifratti e due facce parallele",
+      "order": 25714,
+      "title": "Un display del seno",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L06",
+        "C5-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "snell-refracted-sine",
+      "difficulty": 3,
+      "prompt": "Un raggio monocromatico passa dall’aria, modellata con indice 1, a un mezzo trasparente omogeneo di indice n≥1. L’interfaccia è piana e ferma; si usa l’ottica geometrica per il raggio trasmesso. Gli angoli sono misurati dalla normale. Sono assegnati s_i=sinθ_i, con 0<s_i≤1, e s_r=sinθ_r. D=gs_r senza offset legge 3/4 con s_i=1/2,n=2. Poi legge 3/2 con n=3/2. Quanto vale il nuovo s_i?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/4",
+          "1/2",
+          "9/4",
+          "1/4",
+          "1"
+        ],
+        "value": "3/4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento ha s_r=un quarto: il guadagno è tre. La nuova lettura 3/2 divisa per tre dà seno rifratto un mezzo; moltiplicando per l’indice 3/2 ricavo seno incidente 3/4. Il controllo del limite uno è soddisfatto."
+        },
+        {
+          "type": "formula",
+          "text": "g=\\frac{3/4}{1/4}"
+        },
+        {
+          "type": "formula",
+          "text": " g=3"
+        },
+        {
+          "type": "formula",
+          "text": " s_r=\\frac{3/2}{3}"
+        },
+        {
+          "type": "formula",
+          "text": " s_r=\\frac12"
+        },
+        {
+          "type": "formula",
+          "text": " s_i=\\frac34"
+        },
+        {
+          "type": "text",
+          "text": "9/4 moltiplicherebbe direttamente il display per n e sarebbe impossibile come seno. Un mezzo è solo s_r, un quarto il riferimento; uno non riproduce la lettura del display."
+        }
+      ],
+      "hints": [
+        "Il numero del display va ricondotto al seno prima di applicare l’inversa.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "9/4 moltiplicherebbe direttamente il display per n e sarebbe impossibile come seno. Un mezzo è solo s_r, un quarto il riferimento; uno non riproduce la lettura del display.",
+        "target": "C5-L09"
+      },
+      "coverage": [
+        "Snell dalla normale",
+        "Domini dei seni e indici",
+        "Lastra autonoma e inverse senza trigonometria numerica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-snell-refracted-sine-15",
+      "kind": "question",
+      "course": "C5",
+      "section": "Seni rifratti e due facce parallele",
+      "order": 25715,
+      "title": "Offset prima di Snell",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L06",
+        "C5-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "snell-refracted-sine",
+      "difficulty": 3,
+      "prompt": "Un raggio monocromatico passa dall’aria, modellata con indice 1, a un mezzo trasparente omogeneo di indice n≥1. L’interfaccia è piana e ferma; si usa l’ottica geometrica per il raggio trasmesso. Gli angoli sono misurati dalla normale. Sono assegnati s_i=sinθ_i, con 0<s_i≤1, e s_r=sinθ_r. D=gs_r+b. A: s_i=1/2,n=2,D=3/2. B: s_i=3/4,n=3/2,D=2. C: n=2,D=7/4. Quanto vale s_i,C?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/4",
+          "7/4",
+          "3/8",
+          "1/2",
+          "1"
+        ],
+        "value": "3/4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I seni di riferimento sono un quarto e un mezzo. La differenza del display è un mezzo, quella fisica un quarto: g=2 e b=1. Per C sottraggo uno da 7/4 e divido per due: s_r=3/8. Con indice due il seno incidente è 3/4."
+        },
+        {
+          "type": "formula",
+          "text": "g=\\frac{2-3/2}{1/2-1/4}"
+        },
+        {
+          "type": "formula",
+          "text": " g=2"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " s_{r,C}=\\frac{7/4-1}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " s_{r,C}=\\frac38"
+        },
+        {
+          "type": "formula",
+          "text": " s_{i,C}=\\frac34"
+        },
+        {
+          "type": "text",
+          "text": "7/4 ometterebbe l’offset e porterebbe fuori dall’intervallo dei seni.3/8 si ferma al valore rifratto, un mezzo ripete una vecchia incidenza e uno produrrebbe un display diverso."
+        }
+      ],
+      "hints": [
+        "Le due tarature devono usare le uscite fisiche, non i due indici.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "7/4 ometterebbe l’offset e porterebbe fuori dall’intervallo dei seni.3/8 si ferma al valore rifratto, un mezzo ripete una vecchia incidenza e uno produrrebbe un display diverso.",
+        "target": "C5-L09"
+      },
+      "coverage": [
+        "Snell dalla normale",
+        "Domini dei seni e indici",
+        "Lastra autonoma e inverse senza trigonometria numerica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-snell-refracted-sine-16",
+      "kind": "question",
+      "course": "C5",
+      "section": "Seni rifratti e due facce parallele",
+      "order": 25716,
+      "title": "Il vincolo non fissa l’indice",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L06",
+        "C5-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "snell-refracted-sine",
+      "difficulty": 3,
+      "prompt": "Un raggio monocromatico passa dall’aria, modellata con indice 1, a un mezzo trasparente omogeneo di indice n≥1. L’interfaccia è piana e ferma; si usa l’ottica geometrica per il raggio trasmesso. Gli angoli sono misurati dalla normale. Sono assegnati s_i=sinθ_i, con 0<s_i≤1, e s_r=sinθ_r. Si impone s_i=n/4 e si misura s_r=1/4. Quante coppie(s_i,n) sono compatibili?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Infinite coppie, con 1 ≤ n ≤ 4 e s_i = n/4",
+          "Una sola coppia",
+          "Nessuna coppia",
+          "Due coppie",
+          "Infinite coppie con qualsiasi n positivo"
+        ],
+        "value": "Infinite coppie, con 1 ≤ n ≤ 4 e s_i = n/4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituendo s_i=n/4 in Snell ottengo s_r=(n/4)/n=1/4: la misura ripete il vincolo e non fissa la scala. Il dominio però restringe n: da n≥1 e s_i≤1 segue 1≤n≤4. Per esempio(1/4,1) e(1/2,2) sono due coppie distinte; l’intervallo continuo fornisce infinite soluzioni."
+        },
+        {
+          "type": "formula",
+          "text": "s_r=\\frac{n/4}{n}"
+        },
+        {
+          "type": "formula",
+          "text": " s_r=\\frac14"
+        },
+        {
+          "type": "formula",
+          "text": " 1\\leq n\\leq4"
+        },
+        {
+          "type": "formula",
+          "text": " s_i=n/4"
+        },
+        {
+          "type": "text",
+          "text": "Una o due coppie non esauriscono l’intervallo. La risposta «Nessuna coppia» è smentita dagli esempi; ammettere qualsiasi n positivo includerebbe n<1 o s_i>1, fuori dal modello."
+        }
+      ],
+      "hints": [
+        "La ridondanza della misura non elimina i limiti fisici sugli ingressi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Una o due coppie non esauriscono l’intervallo. La risposta «Nessuna coppia» è smentita dagli esempi; ammettere qualsiasi n positivo includerebbe n<1 o s_i>1, fuori dal modello.",
+        "target": "C5-L09"
+      },
+      "coverage": [
+        "Snell dalla normale",
+        "Domini dei seni e indici",
+        "Lastra autonoma e inverse senza trigonometria numerica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "11fe9ec7816b43018680c9ecb87eee1dd42fb5cb4d3bcfaeaa9d346be94fcd5c",
+      "name": "snell-refracted-sine-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTc1MCIgdmlld0JveD0iMCAwIDY0MCAxNzUwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyIgZm9udC1mYW1pbHk9InN5c3RlbS11aSwgc2Fucy1zZXJpZiI+PHRpdGxlIGlkPSJ0aXRsZSI+U25lbGwgZGFsbGEgbm9ybWFsZSBlIGxhc3RyYSBwYXJhbGxlbGE8L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5VbiByYWdnaW8gaW4gYXJpYSByaWZyYXR0byBuZWwgbWV6em8sIGR1ZSBmYWNjZSBwYXJhbGxlbGUgZSBjb25mcm9udG8gZGkgc2VuaSB0cmFzbWVzc2kgY29uIGJhcnJlIGNvbXVuaS48L2Rlc2M+PGRlZnM+PG1hcmtlciBpZD0iYXJyIiB2aWV3Qm94PSIwIDAgMTAgMTAiIHJlZlg9IjkiIHJlZlk9IjUiIG1hcmtlcldpZHRoPSI1IiBtYXJrZXJIZWlnaHQ9IjUiIG9yaWVudD0iYXV0by1zdGFydC1yZXZlcnNlIj48cGF0aCBkPSJNMCAwTDEwIDVMMCAxMFoiIGZpbGw9IiMzMDZmOGMiLz48L21hcmtlcj48L2RlZnM+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxNzUwIiBmaWxsPSJ3aGl0ZSIvPjx0ZXh0IHg9IjM1IiB5PSI0OCIgZm9udC1zaXplPSIyNSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5EaXJlemlvbmksIG5vbiBhbmdvbGkgZGVjaW1hbGk8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjEwOCIgZm9udC1zaXplPSIyMiIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij4xIMK3IEFyaWEgdmVyc28gbiA9IDI8L3RleHQ+PHJlY3QgeD0iNjAiIHk9IjM1MCIgd2lkdGg9IjUyMCIgaGVpZ2h0PSIyMDUiIGZpbGw9IiNlNGVlZjMiLz48bGluZSB4MT0iNjAiIHkxPSIzNTAiIHgyPSI1ODAiIHkyPSIzNTAiIHN0cm9rZT0iIzUyNjQ3NCIgc3Ryb2tlLXdpZHRoPSIyIi8+PGxpbmUgeDE9IjMyMCIgeTE9IjE1NSIgeDI9IjMyMCIgeTI9IjU0NSIgc3Ryb2tlPSIjNzI4MThjIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1kYXNoYXJyYXk9IjcgNiIvPjxwYXRoIGQ9Ik0yNDAgMjExLjQzNTkzNTM5NDQ4OTgzTDMyMCAzNTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzMwNmY4YyIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2FycikiLz48cGF0aCBkPSJNMzIwIDM1MEwzNjAgNTA0LjkxOTMzMzg0ODI5NjciIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzMwNmY4YyIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2FycikiLz48dGV4dCB4PSI4MCIgeT0iMTgwIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPm4gPSAxIMK3IHNpbiDOuF9pID0gMS8yPC90ZXh0Pjx0ZXh0IHg9IjM4MCIgeT0iNDcwIiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPnNpbiDOuF9yID0gMS80PC90ZXh0Pjx0ZXh0IHg9IjM0NSIgeT0iNTM1IiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPm4gPSAyPC90ZXh0Pjx0ZXh0IHg9IjMzNSIgeT0iMjkwIiBmb250LXNpemU9IjE3IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPm5vcm1hbGU8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjYxMCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5JbCBzZW5vIGRpbWludWlzY2UgbmVsIG1lenpvIGRpIGluZGljZSBtYWdnaW9yZS48L3RleHQ+PHRleHQgeD0iMzUiIHk9IjY5MCIgZm9udC1zaXplPSIyMiIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij4yIMK3IER1ZSBmYWNjZSBwYXJhbGxlbGUsIG4gPSAzLzI8L3RleHQ+PHJlY3QgeD0iNjAiIHk9Ijg2MCIgd2lkdGg9IjUyMCIgaGVpZ2h0PSIxNTAiIGZpbGw9IiNlNGVlZjMiLz48bGluZSB4MT0iNjAiIHkxPSI4NjAiIHgyPSI1ODAiIHkyPSI4NjAiIHN0cm9rZT0iIzUyNjQ3NCIgc3Ryb2tlLXdpZHRoPSIyIi8+PGxpbmUgeDE9IjYwIiB5MT0iMTAxMCIgeDI9IjU4MCIgeTI9IjEwMTAiIHN0cm9rZT0iIzUyNjQ3NCIgc3Ryb2tlLXdpZHRoPSIyIi8+PGxpbmUgeDE9IjIxMCIgeTE9Ijc0MCIgeDI9IjIxMCIgeTI9Ijk2MCIgc3Ryb2tlPSIjNzI4MThjIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1kYXNoYXJyYXk9IjcgNiIvPjxsaW5lIHgxPSIyNzUuNDY1MzY3MDcwNzk3NyIgeTE9Ijk1MCIgeDI9IjI3NS40NjUzNjcwNzA3OTc3IiB5Mj0iMTE3MCIgc3Ryb2tlPSIjNzI4MThjIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1kYXNoYXJyYXk9IjcgNiIvPjxwYXRoIGQ9Ik0xMjAgNzQwTDIxMCA4NjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzMwNmY4YyIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2FycikiLz48cGF0aCBkPSJNMjEwIDg2MEwyNzUuNDY1MzY3MDcwNzk3NyAxMDEwIiBmaWxsPSJub25lIiBzdHJva2U9IiMzMDZmOGMiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnIpIi8+PHBhdGggZD0iTTI3NS40NjUzNjcwNzA3OTc3IDEwMTBMMzY1LjQ2NTM2NzA3MDc5NzcgMTEzMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMzA2ZjhjIiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjYXJyKSIvPjx0ZXh0IHg9IjM0MCIgeT0iNzk1IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPmFyaWEgwrcgc2luIM64X2luID0gMy81PC90ZXh0Pjx0ZXh0IHg9IjM1MCIgeT0iOTMwIiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPnNpbiDOuF9pbnQgPSAyLzU8L3RleHQ+PHRleHQgeD0iMzQwIiB5PSIxMTY4IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPnNpbiDOuF9vdXQgPSAzLzU8L3RleHQ+PHRleHQgeD0iODAiIHk9IjEyMjUiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+TGUgbm9ybWFsaSBzb25vIHBhcmFsbGVsZTogZGlyZXppb25lIHJlY3VwZXJhdGEuPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSIxMzAwIiBmb250LXNpemU9IjIyIiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjMgwrcgRHVlIHNlbmkgdHJhc21lc3NpIGUgbGEgbG9ybyBtZWRpYTwvdGV4dD48dGV4dCB4PSIxMzAiIHk9IjEzOTIiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJlbmQiPkE8L3RleHQ+PHJlY3QgeD0iMTUwIiB5PSIxMzcwIiB3aWR0aD0iMTYwLjAiIGhlaWdodD0iMzAiIGZpbGw9IiMzZDc3OTEiLz48dGV4dCB4PSIzMjAuMCIgeT0iMTM5NCIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij4xLzQ8L3RleHQ+PHRleHQgeD0iMTMwIiB5PSIxNDkyIiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0iZW5kIj5CPC90ZXh0PjxyZWN0IHg9IjE1MCIgeT0iMTQ3MCIgd2lkdGg9IjMyMC4wIiBoZWlnaHQ9IjMwIiBmaWxsPSIjOTg2YzM1Ii8+PHRleHQgeD0iNDgwLjAiIHk9IjE0OTQiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+MS8yPC90ZXh0Pjx0ZXh0IHg9IjEzMCIgeT0iMTU5MiIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9ImVuZCI+bWVkaWE8L3RleHQ+PHJlY3QgeD0iMTUwIiB5PSIxNTcwIiB3aWR0aD0iMjQwLjAiIGhlaWdodD0iMzAiIGZpbGw9IiM2MzdlNTUiLz48dGV4dCB4PSI0MDAuMCIgeT0iMTU5NCIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij4zLzg8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjE2ODAiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+QmFycmUgYWRpbWVuc2lvbmFsaSwgbm9uIG1pc3VyZSBkaSBhbmdvbGkgaW4gZ3JhZGkuPC90ZXh0Pjwvc3ZnPgo="
+    }
+  ]
+}
