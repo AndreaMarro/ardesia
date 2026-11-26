@@ -98,7 +98,7 @@ Procedimento: La componente centripeta soddisfa a_c=v²/r. Moltiplico per r e di
 
 Passaggi esatti: `a_cr=v^2\qquad r=\frac{v^2}{a_c}\qquad r=\frac9{9/2}\,\mathrm m\qquad r=2\,\mathrm m`.
 
-Distrattori: 1/2 m inverte il rapporto numerico;3/2 m divide v per a_c senza elevare al quadrato, operazione che avrebbe unità di tempo. 9 m copia v² senza dividere per l’accelerazione. 6 m non soddisfa a_c r=v².
+Distrattori: 1/2 m inverte il rapporto numerico;3/2 m darebbe a_c=6 m/s² anziché 9/2 m/s². 9 m copia v² senza dividere per l’accelerazione. 6 m non soddisfa a_c r=v².
 
 Aiuto: Isola r prima di sostituire e controlla le unità del quoziente.
 
@@ -140,7 +140,7 @@ Procedimento: La velocità è la derivata della posizione rispetto al tempo. Il 
 
 Passaggi esatti: `v(t)=2\,\mathrm{m/s}+(6\,\mathrm{m/s^2})t\qquad v(2\,\mathrm s)=(2+12)\,\mathrm{m/s}\qquad v(2\,\mathrm s)=14\,\mathrm{m/s}`.
 
-Distrattori: 17 è il valore numerico di x(2 s) in metri, non una velocità. 8 m/s deriva come se il termine quadratico fosse lineare;12 m/s ignora il contributo iniziale 2 m/s. 6 è il valore numerico dell’accelerazione in m/s², non della velocità a 2 s.
+Distrattori: 17 è il valore numerico di x(2 s) in metri, non una velocità. 8 m/s deriva da 2+3·2: omette il fattore 2 nella derivata di t², mantenendo t;12 m/s ignora il contributo iniziale 2 m/s. 6 è il valore numerico dell’accelerazione in m/s², non della velocità a 2 s.
 
 Aiuto: La derivata di t² è 2 t: conserva il coefficiente e le sue unità.
 
@@ -148,6 +148,6 @@ Famiglia: `trovare-la-velocita-del-fotogramma`; difficoltà 3; versione 2/base 1
 
 ## Geometria, riletture e limiti
 
-Arresto:160 coordinate/s e60 coordinate per m/s, triangolo di area4 m fino aT2 s. Quota:300 coordinate/s e100 coordinate/m, Bézier quadratica esatta M1201030 Q3006704801030 pery=6t−5t²; vertice(3/5 s,9/5 m), ritorno6/5 s. Disco: raggi80/160 e vettori50/100, rapporto2 in scala comune. Etichetta a₂ spostata nella corona senza cambiare geometria; vecchia resa completa reale0 conservata, nuova resa reale0 letta. Nessun confronto di scale fra pannelli.
+Arresto:160 coordinate/s e60 coordinate per m/s, triangolo di area4 m fino aT2 s. Quota:300 coordinate/s e100 coordinate/m, Bézier quadratica esatta M1201030 Q3006704801030 pery=6t−5t²; vertice(3/5 s,9/5 m), ritorno6/5 s. Disco: raggi80/160 e vettori50/100, rapporto2 in scala comune. Etichetta a₂ spostata nella corona senza cambiare geometria; vecchia resa completa reale0 conservata, nuova resa reale0 letta. Nessun confronto di scale fra pannelli. Riletti i feedback Q037 e Q040: 3/2 m ricostruisce6 m/s² anziché9/2; 8 m/s deriva da2+3·2 omettendo il fattore2 della derivata. Chiavi, formule e SVG identici; vecchi byte conservati.
 
 Stato SCI proprio, UI prodotto e human NOT_RUN; nessun credito di integrazione. Le prove strutturali appartengono soltanto ai payload finali descritti dal loro hash.
