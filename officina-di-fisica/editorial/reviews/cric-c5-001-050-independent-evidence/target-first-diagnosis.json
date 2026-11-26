@@ -1,0 +1,9 @@
+{
+  "scope": "actual target negative, not a candidate defect",
+  "observed": "10*log(100)/log(10) structurally unequal to20 despite exact mathematical equality",
+  "cause": "Test used structural assertEqual on unevaluated SymPy logarithm",
+  "change": "Compare simplify(expression\u2212expected) exactly to zero; no approximation or tolerance, models and verifier unchanged",
+  "initialTestSha256": "bfe7624c51c052e54ccb2c0ecbf23ff6a520c39f588fa14da5c7d88a50a7d08e",
+  "negativeRaw": "target-first.log",
+  "exitCode": 1
+}

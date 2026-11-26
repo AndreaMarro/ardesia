@@ -1,0 +1,343 @@
+{
+  "schemaVersion": "1.0.0",
+  "lessonReference": {
+    "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "gitPath": "officina-di-fisica/content/C5.json",
+    "sourceSha256": "dac4490e6a900f5da191bf7a1f5b8463ddc57c8bbaa36cb7a4a375c70fa77422",
+    "primarySkill": "C5-L05",
+    "title": "Ascoltare il mezzo, la sorgente e il ricevitore",
+    "actualLessonPrerequisites": [
+      "C5-L02",
+      "C5-L04"
+    ]
+  },
+  "records": [
+    {
+      "id": "C5-Q041",
+      "sourceSha256": "251d37e790fce613d2ac80e7f0fa151f09e598a232e82d50946df07504ecd977",
+      "candidateSha256": "121b537e907d397d1630f5041017c60496f569e2787e20b44a1b59ca479d410a",
+      "reviewedSignature": "3b70673a6d37a6d967e76f3fcd93b7f0fffd392e1000153e0984f04013a248df",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "cric-c5-l05-progressive.svg": "9bf7dd4afc3e870261154750830924fed711c82c9257603e5eb3a6d61fb82b37"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1/10",
+      "dimension": {
+        "[mass]": "1",
+        "[time]": "-3"
+      },
+      "manualArithmetic": "Da β=10 log₁₀(I/I₀), 50 dB implica I/I₀=10⁵. Quindi I=10⁻⁷ W/m²=(1/10) µW/m². Il riferimento resta quello assegnato; il rapporto non è 50.",
+      "physicalAssumptions": "50/10=5 e I=10⁵·10⁻¹²=10⁻⁷ W/m²=0,1 μW/m²;10 μW/m² sarebbe70 dB.",
+      "distractors": "50/10=5 e I=10⁵·10⁻¹²=10⁻⁷ W/m²=0,1 μW/m²;10 μW/m² sarebbe70 dB.",
+      "pedagogicalReview": "50/10=5 e I=10⁵·10⁻¹²=10⁻⁷ W/m²=0,1 μW/m²;10 μW/m² sarebbe70 dB.",
+      "assetReview": "PNG640×1580 e XML completi: tabella0/10/50 dB corrisponde a1/10/100000 volteI₀; frecce sono corrispondenze e non scala lineare. Due percorsi di350 coordinate rappresentano51 m ciascuno con punte opposte visibili. Sinusoide di pressione con creste180/476, distanza296 per1,48 m; pressione schematica non traiettoria materiale. Tutto dentro il riquadro.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_wave_models_and_separate_concepts",
+        "Pint_exact_wave_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C5-Q042",
+      "sourceSha256": "33bc5624de198f39503f92167a74c0e76eff501c155fa4ec5b2dc132fb4f8d30",
+      "candidateSha256": "86a99875661c8fc50dffcf53faed48623c6edfd5fde47bc7d8ea0861e5e8de6c",
+      "reviewedSignature": "439667f7bfc5b6a5059c71f7a7c54838d37347c68f450ab3f9c6dcdd52562d73",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "L’intensità positiva I₀",
+      "dimension": {},
+      "manualArithmetic": "Zero decibel significa I/I₀=1, dunque I=I₀, non intensità nulla. Senza fissare un riferimento numerico ulteriore, la risposta fisica è il valore di riferimento non nullo.",
+      "physicalAssumptions": "Logaritmo nullo significa rapporto uno e I=I₀>0; I=0 è fuori dominio, non0 dB.",
+      "distractors": "Logaritmo nullo significa rapporto uno e I=I₀>0; I=0 è fuori dominio, non0 dB.",
+      "pedagogicalReview": "Logaritmo nullo significa rapporto uno e I=I₀>0; I=0 è fuori dominio, non0 dB.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_wave_models_and_separate_concepts",
+        "Pint_exact_wave_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C5-Q043",
+      "sourceSha256": "859dbc67b403d07c2e333543a2461a45f0efef8cb09654e0d0c9cec2a6019aee",
+      "candidateSha256": "347e115119878fe8327f036527203bb24bd6040e46b202e66d814297edaa55d8",
+      "reviewedSignature": "000906ee455d43c97d4b548fe59a1f9677f64fb8f13a0bbd37a110e255d27310",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "-10*log(100)/log(10)",
+      "dimension": {},
+      "manualArithmetic": "La variazione è 10 log₁₀(I_f/I_i)=10 log₁₀(1/100)=−20 dB. L’uso di un coefficiente 20 si riferirebbe invece a un rapporto di ampiezze nelle condizioni appropriate, non al rapporto di intensità già dato.",
+      "physicalAssumptions": "Un centesimo=10⁻² dà−20 dB; invertire il rapporto cambia segno e omettere dieci dà−2.",
+      "distractors": "Un centesimo=10⁻² dà−20 dB; invertire il rapporto cambia segno e omettere dieci dà−2.",
+      "pedagogicalReview": "Un centesimo=10⁻² dà−20 dB; invertire il rapporto cambia segno e omettere dieci dà−2.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_wave_models_and_separate_concepts",
+        "Pint_exact_wave_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C5-Q044",
+      "sourceSha256": "31a7df22cab67973c98feed823be4e1931285fcd45f4c497f7260a9ab341fa8f",
+      "candidateSha256": "34a2b667f09109cb7508f04c689be3ec4746891795ebf13f8760b753d149623b",
+      "reviewedSignature": "d68fa7dd9b4112871e1723485dd8594520f59628f533e231bd5a1d5803f53215",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "No: la sensibilità dell’udito dipende anche dalla frequenza",
+      "dimension": {},
+      "manualArithmetic": "No. Il livello percepito dipende anche dalla frequenza e dalla sensibilità dell’ascoltatore; identica intensità fisica non determina da sola identica sensazione sonora. Non si inferiscono condizioni cliniche dal solo confronto.",
+      "physicalAssumptions": "Uguale intensità e riferimento danno uguale livello fisico ma non obbligano uguale percezione a frequenze diverse.",
+      "distractors": "Uguale intensità e riferimento danno uguale livello fisico ma non obbligano uguale percezione a frequenze diverse.",
+      "pedagogicalReview": "Uguale intensità e riferimento danno uguale livello fisico ma non obbligano uguale percezione a frequenze diverse.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_wave_models_and_separate_concepts",
+        "Pint_exact_wave_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C5-Q045",
+      "sourceSha256": "d251171a6ecaf1e38dba5f6bb9a80260844f9195a28e9ebd527d57f32e0edca2",
+      "candidateSha256": "1ab9c6dc0b77ca3546827dbb722a7d0e0680360bca48ec8d3686d8e812d51718",
+      "reviewedSignature": "bf940f7c36df248cde53fd5d6c38ab2c66f9acc685002fe7dcf6869fbf7584b4",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "cric-c5-l05-progressive.svg": "9bf7dd4afc3e870261154750830924fed711c82c9257603e5eb3a6d61fb82b37"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "340",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Il tempo dell’eco include andata e ritorno tra sorgente e parete. La distanza percorsa è 2·51=102 m, perciò v=102/0,30=340 m/s. Dividere la sola distanza della parete per il tempo darebbe metà della velocità.",
+      "physicalAssumptions": "L’eco compie102 m in0,30 s:340 m/s;170 dimentica ritorno e680 conterebbe quattro tratte.",
+      "distractors": "L’eco compie102 m in0,30 s:340 m/s;170 dimentica ritorno e680 conterebbe quattro tratte.",
+      "pedagogicalReview": "L’eco compie102 m in0,30 s:340 m/s;170 dimentica ritorno e680 conterebbe quattro tratte.",
+      "assetReview": "PNG640×1580 e XML completi: tabella0/10/50 dB corrisponde a1/10/100000 volteI₀; frecce sono corrispondenze e non scala lineare. Due percorsi di350 coordinate rappresentano51 m ciascuno con punte opposte visibili. Sinusoide di pressione con creste180/476, distanza296 per1,48 m; pressione schematica non traiettoria materiale. Tutto dentro il riquadro.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_wave_models_and_separate_concepts",
+        "Pint_exact_wave_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C5-Q046",
+      "sourceSha256": "1117baabe4f35015e8d555fc7d349c5789132de4c484793c49b53681510fbaf3",
+      "candidateSha256": "c257a16207a9eafa6f3f7177ee59567aa5de468e2b24d6285cb3fd5ed6967a10",
+      "reviewedSignature": "ee36a95897a1018f21c31a51c1121105ad99ff888b49ffc8670c2d497a545a8a",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Prima superiore, poi inferiore a quella emessa",
+      "dimension": {},
+      "manualArithmetic": "Nel consueto modello Doppler subsonico in aria ferma, la frequenza ricevuta è maggiore di quella emessa durante l’avvicinamento e minore durante l’allontanamento. Per sorgente radiale con 0<v_s<c si usa f_avv=f₀c/(c−v_s) e f_all=f₀c/(c+v_s). Non si estendono queste formule a una sorgente supersonica senza riconsiderare il modello.",
+      "physicalAssumptions": "Sorgente subsonica con velocità radiali non nulle: avvicinamento aumenta e allontanamento diminuisce la frequenza ricevuta.",
+      "distractors": "Sorgente subsonica con velocità radiali non nulle: avvicinamento aumenta e allontanamento diminuisce la frequenza ricevuta.",
+      "pedagogicalReview": "Sorgente subsonica con velocità radiali non nulle: avvicinamento aumenta e allontanamento diminuisce la frequenza ricevuta.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_wave_models_and_separate_concepts",
+        "Pint_exact_wave_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C5-Q047",
+      "sourceSha256": "c89ec275d9ef091a921d2634a38ff8f6ffaaa976d23eac20bdaff1db0c6f2902",
+      "candidateSha256": "03d231f67900ba217f676262792e07cfa36a27a3aad018b948fcba69409216b0",
+      "reviewedSignature": "429718b73de43cc854d588aa55c9cfcff183c264080ebea5fa58f9a46f812df6",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Incontra più fronti nell’unità di tempo",
+      "dimension": {},
+      "manualArithmetic": "Nel modello classico di ricevitore ideale non perturbativo che si muove verso la sorgente ferma, incontra più fronti al secondo e riceve una frequenza maggiore. La lunghezza d’onda nell’aria resta quella fissata dalla sorgente e dal mezzo, anche se cambia il ritmo di incontro del ricevitore.",
+      "physicalAssumptions": "Il ricevitore va incontro ai fronti già emessi; cambia ritmo degli incontri, non frequenza della sorgente o velocità rispetto all’aria.",
+      "distractors": "Il ricevitore va incontro ai fronti già emessi; cambia ritmo degli incontri, non frequenza della sorgente o velocità rispetto all’aria.",
+      "pedagogicalReview": "Il ricevitore va incontro ai fronti già emessi; cambia ritmo degli incontri, non frequenza della sorgente o velocità rispetto all’aria.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_wave_models_and_separate_concepts",
+        "Pint_exact_wave_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C5-Q048",
+      "sourceSha256": "11bd0e52b90445b81820ea0430f704eb8df61da147060a1e90aeba512b383625",
+      "candidateSha256": "758d562aef0ebbd7777ff70f94c01dfaba02cae036b077cbd60c27e1362c0397",
+      "reviewedSignature": "6fa0202ad75368e3dd22da1f1e5c57db831815881d4f659e662d00765f5f8a62",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "cric-c5-l05-progressive.svg": "9bf7dd4afc3e870261154750830924fed711c82c9257603e5eb3a6d61fb82b37"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "37/25",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "Attraverso l’interfaccia stazionaria la frequenza resta 1,00 kHz=1000 Hz. Nell’acqua λ=v/f=1480/1000=37/25 m=1,48 m. Cambia la lunghezza d’onda insieme alla velocità, non la frequenza.",
+      "physicalAssumptions": "Interfaccia fissa conserva1000 Hz:λ=1480/1000=1,48 m; uso di1 Hz dà1480 m e doppio prefisso0,00148 m.",
+      "distractors": "Interfaccia fissa conserva1000 Hz:λ=1480/1000=1,48 m; uso di1 Hz dà1480 m e doppio prefisso0,00148 m.",
+      "pedagogicalReview": "Interfaccia fissa conserva1000 Hz:λ=1480/1000=1,48 m; uso di1 Hz dà1480 m e doppio prefisso0,00148 m.",
+      "assetReview": "PNG640×1580 e XML completi: tabella0/10/50 dB corrisponde a1/10/100000 volteI₀; frecce sono corrispondenze e non scala lineare. Due percorsi di350 coordinate rappresentano51 m ciascuno con punte opposte visibili. Sinusoide di pressione con creste180/476, distanza296 per1,48 m; pressione schematica non traiettoria materiale. Tutto dentro il riquadro.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_wave_models_and_separate_concepts",
+        "Pint_exact_wave_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C5-Q049",
+      "sourceSha256": "46fba86c694ed7ef22150d664c668a8dda6fb4068dcf5cceea3e18159c9b08f0",
+      "candidateSha256": "411955055ecb7b7a272fdb154a7c5166f0b90820503ba9b35fd8bcb90091fe29",
+      "reviewedSignature": "c4c93f59b5b91033cc4951ea5d45d626784784973883ca94e160f98eae0ebed5",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Decibel",
+      "dimension": {},
+      "manualArithmetic": "L’unità usuale del livello di intensità sonora è il decibel. Il livello è logaritmico e distinto dall’intensità fisica misurata in W/m².",
+      "physicalAssumptions": "dB significa decibel; hertz, pascal e joule sono altre grandezze e W/m² misura I, non il suo livello.",
+      "distractors": "dB significa decibel; hertz, pascal e joule sono altre grandezze e W/m² misura I, non il suo livello.",
+      "pedagogicalReview": "dB significa decibel; hertz, pascal e joule sono altre grandezze e W/m² misura I, non il suo livello.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_wave_models_and_separate_concepts",
+        "Pint_exact_wave_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C5-Q050",
+      "sourceSha256": "7a7296964b9c7bbb38df3e6e9ff05409a653ba1f2516c4b0ee967cb71ac0779b",
+      "candidateSha256": "baf99f44fdefefd19a065beec9c86e9450af72641d98dfaf9c8f4a8cbc66af4c",
+      "reviewedSignature": "3edcf793947468f0a7991f29c8d29e184d6f8b0aa299342c508f7ca1f59f755f",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "10*log(3)/log(10)",
+      "dimension": {},
+      "manualArithmetic": "Per sorgenti indipendenti il termine di interferenza si annulla sulla media e le intensità si sommano: I_tot=3I, con I positivo. L’aumento esatto del livello è 10 log₁₀3 dB=10 ln3/ln10 dB, positivo. Non è un intero né un decimale finito esatto: senza logaritmi numerici il risultato va mantenuto simbolico o va dichiarata una parametrizzazione manuale nella nuova candidata.",
+      "physicalAssumptions": "Le tre intensità incoerenti sommano3I: incremento esatto10 log10 3 positivo;30 dB richiederebbe1000I, non3I.",
+      "distractors": "Le tre intensità incoerenti sommano3I: incremento esatto10 log10 3 positivo;30 dB richiederebbe1000I, non3I.",
+      "pedagogicalReview": "Le tre intensità incoerenti sommano3I: incremento esatto10 log10 3 positivo;30 dB richiederebbe1000I, non3I.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_wave_models_and_separate_concepts",
+        "Pint_exact_wave_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    }
+  ],
+  "verifierSha256": "227b954394e8990cc1a29a7d204e2878dab8677a8ac03c4c71de8fab93bb5b69",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "reviewDependencySha256": {
+    "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de",
+    "cric_c5_wave_physics.py": "93914663cf78ebfeca77636e9817dd6c77435641de4a9e83c3140df24909ea27"
+  },
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2",
+    "hypothesis": "6.148.7"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "reviewedCandidateCommit": "6529aca9064bbd93fbf343f0d9c504beaf08ec57",
+  "packageSha256": "d23e601397aa37f2e2573669a3ee33f6fc29978b707cba04de18eccfb33c0749",
+  "bindingsSha256": "486e0fc771632a71bd66ab4b8ffec4bbe1391fc4d2af9d416c0aa7fe13b11c52",
+  "source": {
+    "commit": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "path": "officina-di-fisica/content/C5.json",
+    "title": "cric-c5-l05",
+    "reference": "Fifty original prompts derived before candidate answers; final cohort fully read separately."
+  },
+  "modelsBeforeCandidateKeys": {
+    "path": "editorial/reviews/cric-c5-001-050-independent-models.py",
+    "sha256": "0908ada36b1ff643d239adf7d25e636eeefd4cc7b21053ac6b6b6a53c75317b8",
+    "commit": "18fd1cd488c90f4d294e4cfc6fb361be9a042d88"
+  },
+  "modelFunctionBodies": "All functions in the frozen source-only C5 model retain identical AST. Generic finite/exact literal guards are reused unchanged from the earlier independent C2 verifier.",
+  "primaryBeforeCandidateKeys": {
+    "path": "editorial/reviews/primary-cric-c5-001-050-before-candidates-20261126.md",
+    "sha256": "27a0255c29f25dd30e89b343b8a1a1268bc76fbbdd8551d2cc8c83f9db569059"
+  }
+}

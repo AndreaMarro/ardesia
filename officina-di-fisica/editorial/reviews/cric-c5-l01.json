@@ -1,0 +1,338 @@
+{
+  "schemaVersion": "1.0.0",
+  "lessonReference": {
+    "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "gitPath": "officina-di-fisica/content/C5.json",
+    "sourceSha256": "dac4490e6a900f5da191bf7a1f5b8463ddc57c8bbaa36cb7a4a375c70fa77422",
+    "primarySkill": "C5-L01",
+    "title": "Contare i ritorni all’equilibrio",
+    "actualLessonPrerequisites": []
+  },
+  "records": [
+    {
+      "id": "C5-Q001",
+      "sourceSha256": "d42ca282b4b9bfab3c83d6a43bd141a5cfe986c85ddeb99073e3400de968c7f2",
+      "candidateSha256": "889af0e2e7a41fa68600f6ea0d66c43d9b821f5f660f096da1aa3831c37b661f",
+      "reviewedSignature": "80ba2a36fb20e4f38c9376ecf83799bc514e927f7ce9a4e7a2ef060bc9b8fa7f",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "cric-c5-l01-progressive.svg": "213f58ec51042560641ca2d0879d1b699664ad76796ef8c827be90ba4903f743"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "7",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "L’ampiezza è il massimo modulo dell’allontanamento dall’equilibrio: 7 mm. La distanza fra i due estremi è invece 14 mm e non è l’ampiezza.",
+      "physicalAssumptions": "Il percorso fra estremi è 14 mm; ampiezza 7 mm rispetto allo zero. Non si divide ancora per due il massimo modulo.",
+      "distractors": "Il percorso fra estremi è 14 mm; ampiezza 7 mm rispetto allo zero. Non si divide ancora per due il massimo modulo.",
+      "pedagogicalReview": "Il percorso fra estremi è 14 mm; ampiezza 7 mm rispetto allo zero. Non si divide ancora per due il massimo modulo.",
+      "assetReview": "Tre pannelli integralmente letti nel PNG640×1560 e XML: estremi+7/−7 mm a140 coordinate dal centro, stessa scala20/mm; sei tacche equispaziate rappresentano0,10..0,85 s e cinque intervalli0,15 s; barre160/120/90 rappresentano8/6/4,5 mm a20/mm. Gli indici dei massimi non rappresentano il tempo. Testi, estremi e zeri separati dagli assi.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_wave_models_and_separate_concepts",
+        "Pint_exact_wave_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C5-Q002",
+      "sourceSha256": "e6f15cde96a6f5e34791d3ad4f550413571e98fd6f347746270c4112614564b8",
+      "candidateSha256": "eda9649c49a7c2951af203eee11cf746927d0fae00b7e07f947e9a16c110c920",
+      "reviewedSignature": "7d4c385e4b062d478b2e7be6cb9c6fd625f6ae2645b3a78ab9db184eccbef961",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "cric-c5-l01-progressive.svg": "213f58ec51042560641ca2d0879d1b699664ad76796ef8c827be90ba4903f743"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "3/20",
+      "dimension": {
+        "[time]": "1"
+      },
+      "manualArithmetic": "Dal primo al sesto massimo trascorrono cinque periodi, non sei. Δt=0,85−0,10=0,75 s e T=0,75/5=3/20 s=0,15 s. Si suppongono massimi consecutivi dello stesso oscillatore.",
+      "physicalAssumptions": "Cinque intervalli fra sei massimi: 0,75/5 s; dividere per sei o usare un istante assoluto non ricostruisce le tacche.",
+      "distractors": "Cinque intervalli fra sei massimi: 0,75/5 s; dividere per sei o usare un istante assoluto non ricostruisce le tacche.",
+      "pedagogicalReview": "Cinque intervalli fra sei massimi: 0,75/5 s; dividere per sei o usare un istante assoluto non ricostruisce le tacche.",
+      "assetReview": "Tre pannelli integralmente letti nel PNG640×1560 e XML: estremi+7/−7 mm a140 coordinate dal centro, stessa scala20/mm; sei tacche equispaziate rappresentano0,10..0,85 s e cinque intervalli0,15 s; barre160/120/90 rappresentano8/6/4,5 mm a20/mm. Gli indici dei massimi non rappresentano il tempo. Testi, estremi e zeri separati dagli assi.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_wave_models_and_separate_concepts",
+        "Pint_exact_wave_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C5-Q003",
+      "sourceSha256": "e0f5189c8572e88d30c6e62de127e7a053facbe3fa2191a4e602b580b4760c7a",
+      "candidateSha256": "46a81b04d130ddad124fbd457cdf0cce379a06b73d47a921f1b7644eb55ec648",
+      "reviewedSignature": "9a58178c1de7e438fe67b0072ec4eca074b2f1521b599a57a020037ede92386f",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "250/9",
+      "dimension": {
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Due attraversamenti consecutivi dell’equilibrio in versi opposti sono separati da T/2. T=36 ms=9/250 s, quindi f=250/9 Hz. Questa frazione è esatta; un decimale periodico richiederebbe un arrotondamento dichiarato.",
+      "physicalAssumptions": "Gli attraversamenti opposti sono separati da mezzo periodo; 18 ms come periodo raddoppia f, quattro intervalli la dimezzano.",
+      "distractors": "Gli attraversamenti opposti sono separati da mezzo periodo; 18 ms come periodo raddoppia f, quattro intervalli la dimezzano.",
+      "pedagogicalReview": "Gli attraversamenti opposti sono separati da mezzo periodo; 18 ms come periodo raddoppia f, quattro intervalli la dimezzano.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_wave_models_and_separate_concepts",
+        "Pint_exact_wave_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C5-Q004",
+      "sourceSha256": "d3ba40c2e74a557cb14b9422ef3248700a4fd161129efce2d6061626543ebc59",
+      "candidateSha256": "4a77f4442ef84e9ff137108a2411767cdc632c180340e78196d211bc98c1d1d8",
+      "reviewedSignature": "c6b17e1e5dd7d603c644e728e629bf4ddb6760571ea36eb5309275d7546f1819",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Stessa posizione e stesso verso della velocità",
+      "dimension": {},
+      "manualArithmetic": "Lontano dagli estremi, uguale posizione e uguale verso della velocità identificano la stessa fase modulo 2π per lo stesso oscillatore ideale ad ampiezza costante. La sola posizione non basta perché viene attraversata in due versi. La fase accumulata può differire di un numero intero di 2π.",
+      "physicalAssumptions": "Uguale posizione con verso opposto identifica le due fasi distinte; uguali energia o moduli di velocità e accelerazione non fissano il verso.",
+      "distractors": "Uguale posizione con verso opposto identifica le due fasi distinte; uguali energia o moduli di velocità e accelerazione non fissano il verso.",
+      "pedagogicalReview": "Uguale posizione con verso opposto identifica le due fasi distinte; uguali energia o moduli di velocità e accelerazione non fissano il verso.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_wave_models_and_separate_concepts",
+        "Pint_exact_wave_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C5-Q005",
+      "sourceSha256": "a430aae5ade1ebf472b78bad86b9281ec7b1420d0c55c8e15f1d1300fc5ef3b4",
+      "candidateSha256": "e61e5aafdd43e7d7e9aacb5c3a93a6ba98c58dcedae7fbc30d5a26a470095ad7",
+      "reviewedSignature": "5fceafdedfe5020935d09d9792218863be9cced349aebe495acac45079e4a95c",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Estremo positivo e velocità nulla",
+      "dimension": {},
+      "manualArithmetic": "A t=0 si ha x=A, velocità zero e accelerazione −ω²A, verso l’equilibrio. È l’estremo positivo, non un attraversamento dell’origine. Ampiezza e pulsazione sono positive nel moto oscillatorio non banale.",
+      "physicalAssumptions": "A t=0 il coseno vale uno e il seno zero: accelerazione verso il centro, non punto con velocità massima.",
+      "distractors": "A t=0 il coseno vale uno e il seno zero: accelerazione verso il centro, non punto con velocità massima.",
+      "pedagogicalReview": "A t=0 il coseno vale uno e il seno zero: accelerazione verso il centro, non punto con velocità massima.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_wave_models_and_separate_concepts",
+        "Pint_exact_wave_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C5-Q006",
+      "sourceSha256": "475c465ee6f41711222e9dea7f06a299aeff7d9468891e0bdf61997019c343e2",
+      "candidateSha256": "04551233b7be296023414f0fbaacd9b7430cab2fbfac5985345b0db8428b82b9",
+      "reviewedSignature": "36461c038a40ec06062fb43d86aa7912c0e7b1a9a9bc18797357486c1edba47b",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "3/2",
+      "dimension": {},
+      "manualArithmetic": "La fase accumulata cresce di 2π per ogni periodo. Il numero trascorso è N=3π/(2π)=3/2 periodi. Non si riduce prima la variazione modulo 2π e non si arrotonda N a un intero.",
+      "physicalAssumptions": "La fase è accumulata: 3π/(2π)=3/2, non fase ridotta a π né conteggio necessariamente intero.",
+      "distractors": "La fase è accumulata: 3π/(2π)=3/2, non fase ridotta a π né conteggio necessariamente intero.",
+      "pedagogicalReview": "La fase è accumulata: 3π/(2π)=3/2, non fase ridotta a π né conteggio necessariamente intero.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_wave_models_and_separate_concepts",
+        "Pint_exact_wave_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C5-Q007",
+      "sourceSha256": "53a254737335e45f6c5235b5b65ec539ed9da4a75a6c1776927d04c131f41d9b",
+      "candidateSha256": "ddd7da248a5768117d133e00a9bc98b176a45d82cfda4f62602cdeec19fc4a67",
+      "reviewedSignature": "de52dd79287c0b6c21a469b44193d4bffea973d7de7c4adaad91c0aba365301a",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "La posizione di equilibrio",
+      "dimension": {},
+      "manualArithmetic": "La parola è equilibrio. Il segno meno rende l’accelerazione opposta allo spostamento x e diretta verso x=0; non significa accelerazione sempre orientata nel verso negativo dell’asse.",
+      "physicalAssumptions": "Il segno meno confronta accelerazione e spostamento; non implica sempre asse negativo o forza opposta alla velocità.",
+      "distractors": "Il segno meno confronta accelerazione e spostamento; non implica sempre asse negativo o forza opposta alla velocità.",
+      "pedagogicalReview": "Il segno meno confronta accelerazione e spostamento; non implica sempre asse negativo o forza opposta alla velocità.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_wave_models_and_separate_concepts",
+        "Pint_exact_wave_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C5-Q008",
+      "sourceSha256": "8c98005b248bc7adbfaa6e3ffac52a9ee77609d182abc39fdd6c31bc5cc36eff",
+      "candidateSha256": "422fe9619f477b31741017ed8d9a62ec13c80500fa9a9f5db77b1f49a6b8d876",
+      "reviewedSignature": "fc594c7cd31128730afc27ce64d591137e10b8c319f828f3b320357cbc67a6d6",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "La velocità",
+      "dimension": {},
+      "manualArithmetic": "La rapidità raggiunge il massimo, |v|=ωA, e di conseguenza anche l’energia cinetica è massima. Accelerazione e forza elastica sono invece nulle all’equilibrio. Senza opzioni il testo consente più grandezze correlate massime: la futura alternativa va controllata per evitare due risposte vere.",
+      "physicalAssumptions": "Fra le alternative solo il modulo della velocità è massimo; forza, accelerazione e spostamento sono nulli. K sarebbe anch’essa massima ma non è proposta.",
+      "distractors": "Fra le alternative solo il modulo della velocità è massimo; forza, accelerazione e spostamento sono nulli. K sarebbe anch’essa massima ma non è proposta.",
+      "pedagogicalReview": "Fra le alternative solo il modulo della velocità è massimo; forza, accelerazione e spostamento sono nulli. K sarebbe anch’essa massima ma non è proposta.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_wave_models_and_separate_concepts",
+        "Pint_exact_wave_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C5-Q009",
+      "sourceSha256": "98c06028672f4bd580c7796a455d2efc7303db8f5a8ffce7a8c768d72c7b31d0",
+      "candidateSha256": "a16397b530862fff99b50d5c3a9ffeab625b75de2146bb1abe6c876edb2047ca",
+      "reviewedSignature": "2e18bf48d2f8353221f4daf148dd4038f8cad034c2f13750f0fa3cd1d55ed237",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {},
+      "manualArithmetic": "Con m invariata e k_f=k_i/4, ω_f=ω_i/2 da ω²=k/m. Poiché T=2π/ω, il periodo raddoppia. L’ampiezza non determina il periodo nel modello di molla lineare ideale.",
+      "physicalAssumptions": "Il periodo varia con la radice di m/k: dividere k per quattro raddoppia T, non lo quadruplica.",
+      "distractors": "Il periodo varia con la radice di m/k: dividere k per quattro raddoppia T, non lo quadruplica.",
+      "pedagogicalReview": "Il periodo varia con la radice di m/k: dividere k per quattro raddoppia T, non lo quadruplica.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_wave_models_and_separate_concepts",
+        "Pint_exact_wave_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C5-Q010",
+      "sourceSha256": "4087fa74ee1ed7c954006b5e573bfa9c9c7d0ec492e5c16862829dbb9ba02166",
+      "candidateSha256": "b7e1ed04b4c34c8886abd2a0bc66cdc4833d64d133e91ad7fd565d3f37e44bfd",
+      "reviewedSignature": "9bccc0bfe97bcb8a233d3af5f1b78a05b7e94a2f4807e9ae138e8f796698d04c",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "cric-c5-l01-progressive.svg": "213f58ec51042560641ca2d0879d1b699664ad76796ef8c827be90ba4903f743"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Ampiezza decrescente e periodo osservato quasi costante",
+      "dimension": {},
+      "manualArithmetic": "È compatibile con oscillazioni smorzate, con ampiezza che cala e intervalli fra massimi quasi costanti. I rapporti 6/8 e 4,5/6 valgono entrambi 3/4; ciò è coerente con un decadimento esponenziale campionato ogni periodo. Non si pretende di identificare dal solo grafico una causa microscopica unica.",
+      "physicalAssumptions": "Decadimento dei picchi con rapporti 3/4 e intervalli quasi costanti è compatibile con smorzamento; non identifica da solo la causa.",
+      "distractors": "Decadimento dei picchi con rapporti 3/4 e intervalli quasi costanti è compatibile con smorzamento; non identifica da solo la causa.",
+      "pedagogicalReview": "Decadimento dei picchi con rapporti 3/4 e intervalli quasi costanti è compatibile con smorzamento; non identifica da solo la causa.",
+      "assetReview": "Tre pannelli integralmente letti nel PNG640×1560 e XML: estremi+7/−7 mm a140 coordinate dal centro, stessa scala20/mm; sei tacche equispaziate rappresentano0,10..0,85 s e cinque intervalli0,15 s; barre160/120/90 rappresentano8/6/4,5 mm a20/mm. Gli indici dei massimi non rappresentano il tempo. Testi, estremi e zeri separati dagli assi.",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_wave_models_and_separate_concepts",
+        "Pint_exact_wave_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    }
+  ],
+  "verifierSha256": "69882be04398a14fd03936c239f609c5cd310b485dd5856126660771306ae327",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "reviewDependencySha256": {
+    "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de",
+    "cric_c5_wave_physics.py": "93914663cf78ebfeca77636e9817dd6c77435641de4a9e83c3140df24909ea27"
+  },
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2",
+    "hypothesis": "6.148.7"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "reviewedCandidateCommit": "cd2c949a12535d7504e92dffb874eddcc71eecee",
+  "packageSha256": "4f1677a2c93ad5053e2f5edec760100dd40f17a5316b6ae9471ed916e30c00cd",
+  "bindingsSha256": "681117ee46008c699381f235a199f16bfd929a0b6bb28acca8a350c295488909",
+  "source": {
+    "commit": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "path": "officina-di-fisica/content/C5.json",
+    "title": "cric-c5-l01",
+    "reference": "Fifty original prompts derived before candidate answers; final cohort fully read separately."
+  },
+  "modelsBeforeCandidateKeys": {
+    "path": "editorial/reviews/cric-c5-001-050-independent-models.py",
+    "sha256": "0908ada36b1ff643d239adf7d25e636eeefd4cc7b21053ac6b6b6a53c75317b8",
+    "commit": "18fd1cd488c90f4d294e4cfc6fb361be9a042d88"
+  },
+  "modelFunctionBodies": "All functions in the frozen source-only C5 model retain identical AST. Generic finite/exact literal guards are reused unchanged from the earlier independent C2 verifier.",
+  "primaryBeforeCandidateKeys": {
+    "path": "editorial/reviews/primary-cric-c5-001-050-before-candidates-20261126.md",
+    "sha256": "27a0255c29f25dd30e89b343b8a1a1268bc76fbbdd8551d2cc8c83f9db569059"
+  }
+}

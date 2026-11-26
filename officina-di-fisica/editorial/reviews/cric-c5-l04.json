@@ -1,0 +1,347 @@
+{
+  "schemaVersion": "1.0.0",
+  "lessonReference": {
+    "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "gitPath": "officina-di-fisica/content/C5.json",
+    "sourceSha256": "dac4490e6a900f5da191bf7a1f5b8463ddc57c8bbaa36cb7a4a375c70fa77422",
+    "primarySkill": "C5-L04",
+    "title": "Dalla potenza della sorgente all’energia raccolta",
+    "actualLessonPrerequisites": [
+      "C5-L02"
+    ]
+  },
+  "records": [
+    {
+      "id": "C5-Q031",
+      "sourceSha256": "54489ddeb76fc89f20305d942fed6deb99110ff1b0f6b884951d4ade22d6ce58",
+      "candidateSha256": "7cb2602923b0e5662be35d8844ea08695aefd5bdaaf7198eb669f836f59a1878",
+      "reviewedSignature": "78a3dd31bd5b78e4085cb3526f31492a7a569972467b3cc471612ee66d294250",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "cric-c5-l04-progressive.svg": "88294b6965693c785a0084154a399b7d4dfbe5be34229b54ac9fdf323119516d"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "20",
+      "dimension": {
+        "[mass]": "1",
+        "[time]": "-3"
+      },
+      "manualArithmetic": "I=E/(AΔt). Dodici millijoule sono 3/250 J e due centimetri quadrati sono 1/5000 m². I=(3/250)/[(1/5000)·3]=20 W/m². La superficie è normale al fascio, quindi non serve un fattore di proiezione.",
+      "physicalAssumptions": "12 mJ/3 s=4 mW e area 2·10⁻⁴ m²:20 W/m²; dimenticare l’area non completa il compito.",
+      "distractors": "12 mJ/3 s=4 mW e area 2·10⁻⁴ m²:20 W/m²; dimenticare l’area non completa il compito.",
+      "pedagogicalReview": "12 mJ/3 s=4 mW e area 2·10⁻⁴ m²:20 W/m²; dimenticare l’area non completa il compito.",
+      "assetReview": "PNG640×1560 e XML completi: E(t) lineare0→12 mJ in3 s, punto medio6 mJ/1,5 s; barre320/160 indicano I e I/2. Segmento del sensore da150,1265 a410,1415 ha lunghezza300 e proiezione150, con normale a60° dal raggio. L’approssimazione delle coordinate non altera le proporzioni esatte derivate; area laterale non identificata con area fisica. Testi e punte interi.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_wave_models_and_separate_concepts",
+        "Pint_exact_wave_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C5-Q032",
+      "sourceSha256": "cc17360a56dc71b77955a661005a6a74fa28dad406c1960eee3ad0cc38bfceb8",
+      "candidateSha256": "c6d3872c47529c009ca89a1a46fc99ca2cfad4196792b0cec845829d4a094e45",
+      "reviewedSignature": "a8baf3376597f5836a0851ae4578a5e52e255433b88eb22f1f72a6c7421587fb",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "cric-c5-l04-progressive.svg": "88294b6965693c785a0084154a399b7d4dfbe5be34229b54ac9fdf323119516d"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1/2",
+      "dimension": {},
+      "manualArithmetic": "Per emissione isotropa senza assorbimento I=P/(4πr²). Raddoppiare P e r dà I_f/I_i=2/4=1/2, con r positivo. La geometria sferica è essenziale al fattore inverso del quadrato.",
+      "physicalAssumptions": "Potenza doppia su area sferica quadrupla dà 1/2; 2 ignora geometria, 1/4 ignora potenza e 8 inverte il fattore geometrico.",
+      "distractors": "Potenza doppia su area sferica quadrupla dà 1/2; 2 ignora geometria, 1/4 ignora potenza e 8 inverte il fattore geometrico.",
+      "pedagogicalReview": "Potenza doppia su area sferica quadrupla dà 1/2; 2 ignora geometria, 1/4 ignora potenza e 8 inverte il fattore geometrico.",
+      "assetReview": "PNG640×1560 e XML completi: E(t) lineare0→12 mJ in3 s, punto medio6 mJ/1,5 s; barre320/160 indicano I e I/2. Segmento del sensore da150,1265 a410,1415 ha lunghezza300 e proiezione150, con normale a60° dal raggio. L’approssimazione delle coordinate non altera le proporzioni esatte derivate; area laterale non identificata con area fisica. Testi e punte interi.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_wave_models_and_separate_concepts",
+        "Pint_exact_wave_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C5-Q033",
+      "sourceSha256": "2796dd77df909301d8da4986acd3aa9d36e18c8f1e5df555a73e130b1433f9d7",
+      "candidateSha256": "911bb4ec0be211733070a83b40316700dc12073cf8ea575311212309b06ce4bb",
+      "reviewedSignature": "a991757df916bce37faf8444df87bb513b0858642e02abc0823f2d10b6ad7f47",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "12/5",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "Con la stessa potenza in campo sferico ideale, I_A/I_B=(r_B/r_A)²=9. Si prende la radice positiva: r_B=3·0,80=12/5 m=2,40 m. Si misura dal centro della sorgente.",
+      "physicalAssumptions": "La radice positiva di nove è tre: 0,80·3=2,4 m; fattore nove sulla distanza darebbe intensità divisa per81.",
+      "distractors": "La radice positiva di nove è tre: 0,80·3=2,4 m; fattore nove sulla distanza darebbe intensità divisa per81.",
+      "pedagogicalReview": "La radice positiva di nove è tre: 0,80·3=2,4 m; fattore nove sulla distanza darebbe intensità divisa per81.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_wave_models_and_separate_concepts",
+        "Pint_exact_wave_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C5-Q034",
+      "sourceSha256": "a09108a195765a1377eb8d7c0f23db1b592fce8a242da4cae82cccf6a87ee7e1",
+      "candidateSha256": "28027ef034b9816203ef03088ed76c374368c725b097636eabb017f990b754ed",
+      "reviewedSignature": "f9b3829f1074f9424ce0d35121c55e275de406932be5808c747bceb9371409ac",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "L’intensità resta uguale e la potenza raddoppia",
+      "dimension": {},
+      "manualArithmetic": "In campo uniforme non perturbato dalla sonda, l’intensità locale resta uguale. La potenza incidente raccolta P=IA raddoppia con l’area perpendicolare. La potenza effettivamente assorbita richiederebbe anche il coefficiente di assorbimento.",
+      "physicalAssumptions": "Il campo resta imposto: I invariata, potenza raccolta doppia se area doppia e campo non perturbato.",
+      "distractors": "Il campo resta imposto: I invariata, potenza raccolta doppia se area doppia e campo non perturbato.",
+      "pedagogicalReview": "Il campo resta imposto: I invariata, potenza raccolta doppia se area doppia e campo non perturbato.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_wave_models_and_separate_concepts",
+        "Pint_exact_wave_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C5-Q035",
+      "sourceSha256": "a080ed40346db2de738668b63dc6bd5176d785019f857a30f4b05855dd7da86a",
+      "candidateSha256": "e0bfb71d2e19c65f4637f583004cbafc7b3a9677a8e3f6d70e6db9d8841d7a6a",
+      "reviewedSignature": "d23e730a1fe193ef34b3a6ddd5867c2ab4d0aae16d3f153a49bb4f8e6aa4c5bd",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Tempo",
+      "dimension": {},
+      "manualArithmetic": "La parola è tempo: W/m²=J/(s·m²). L’intensità è un flusso energetico per unità di area, non l’energia per area soltanto.",
+      "physicalAssumptions": "W/m²=J/(s·m²), quindi tempo; frequenza al denominatore moltiplicherebbe per secondi.",
+      "distractors": "W/m²=J/(s·m²), quindi tempo; frequenza al denominatore moltiplicherebbe per secondi.",
+      "pedagogicalReview": "W/m²=J/(s·m²), quindi tempo; frequenza al denominatore moltiplicherebbe per secondi.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_wave_models_and_separate_concepts",
+        "Pint_exact_wave_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C5-Q036",
+      "sourceSha256": "3c1156b9e27dec9f9d54c1e9bf5b9f2f6e955e57c489434de0e48c6fcacaae6b",
+      "candidateSha256": "c4133a9f340ce39eb8443d8658c9ca9e9fb3327b429f6259384a8f4b6e1ca416",
+      "reviewedSignature": "656d53f4c7572d26659ae76dfae2b4dc69e63bae597561c549824e837b75c881",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Rimane costante",
+      "dimension": {},
+      "manualArithmetic": "La potenza media sulla sezione divisa per l’area resta uguale perché entrambe sono costanti. Non si applica automaticamente 1/r² a un fascio collimato che non aumenta la propria sezione nel modello ideale.",
+      "physicalAssumptions": "Potenza e sezione positive costanti danno intensità costante; 1/r² richiede invece espansione sferica.",
+      "distractors": "Potenza e sezione positive costanti danno intensità costante; 1/r² richiede invece espansione sferica.",
+      "pedagogicalReview": "Potenza e sezione positive costanti danno intensità costante; 1/r² richiede invece espansione sferica.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_wave_models_and_separate_concepts",
+        "Pint_exact_wave_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C5-Q037",
+      "sourceSha256": "02cd5033427790d9a423c4d7817466d6a09e2fd85eacb231d288a123c8aec886",
+      "candidateSha256": "2559f13d69718be29f7e227f48b5958e31f3544cffbcd1ee20a00664f5b74e8e",
+      "reviewedSignature": "e53a173088c94e27081969efc8d38064d90c0d91bfb246bedcd7fa146d434863",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4/5",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3"
+      },
+      "manualArithmetic": "Il duty cycle è 2/10=1/5. Con potenza zero nel resto del periodo, P_media=4·1/5=4/5 W=0,80 W. I 4 W sono la potenza durante l’impulso, non la media sul ciclo.",
+      "physicalAssumptions": "Il denominatore della media include pausa: 4·2/10=4/5 W; inversione della frazione attiva dà 20 W.",
+      "distractors": "Il denominatore della media include pausa: 4·2/10=4/5 W; inversione della frazione attiva dà 20 W.",
+      "pedagogicalReview": "Il denominatore della media include pausa: 4·2/10=4/5 W; inversione della frazione attiva dà 20 W.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_wave_models_and_separate_concepts",
+        "Pint_exact_wave_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C5-Q038",
+      "sourceSha256": "5bc5c1c712ab06d448b498b29ce9162804c9281b5da041dbf44030014568430b",
+      "candidateSha256": "e6bfae742a088d01489b0ae96a0ac1ba7680766cb02d75de20394afcd32ee26c",
+      "reviewedSignature": "581aa13afe3c6a5030d0518d683bd5e53a11d343a2542b77af96d5086c9e125d",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "3",
+      "dimension": {},
+      "manualArithmetic": "Per onda armonica progressiva su corda P_media=(1/2)μω²A²v. A uguali A, f e v, il rapporto è μ_B/μ_A=3. Per il rapporto si assumono A e f non nulli; le tensioni sono diverse quanto necessario a mantenere la stessa velocità, come il prompt permette.",
+      "physicalAssumptions": "μ compare linearmente con v,ω,A comuni: rapporto tre. Tensioni uguali sarebbero incompatibili con stessa v e densità diverse.",
+      "distractors": "μ compare linearmente con v,ω,A comuni: rapporto tre. Tensioni uguali sarebbero incompatibili con stessa v e densità diverse.",
+      "pedagogicalReview": "μ compare linearmente con v,ω,A comuni: rapporto tre. Tensioni uguali sarebbero incompatibili con stessa v e densità diverse.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_wave_models_and_separate_concepts",
+        "Pint_exact_wave_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C5-Q039",
+      "sourceSha256": "6cc0d77ed435986ae7bd8fbccadae6a95b0168939afa18c7c1c4c0f7342efb38",
+      "candidateSha256": "8a7afd0607ca5707d827bfc549afe27b6b93979fd1e65615ee381fff941d8055",
+      "reviewedSignature": "906f079e09f11decc33f386b1bc9b1d4105465b0d2271597a964298725ec5934",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "cric-c5-l04-progressive.svg": "88294b6965693c785a0084154a399b7d4dfbe5be34229b54ac9fdf323119516d"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "10",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3"
+      },
+      "manualArithmetic": "La potenza che attraversa l’area piana è IA cosθ. Con θ rispetto alla normale, cos60°=1/2 e P=5·4·1/2=10 W. Non si usa sin60° e non occorre conoscere l’assorbimento per la potenza attraversante.",
+      "physicalAssumptions": "La normale è a60° dal raggio: area efficace4·1/2=2 m², potenza10 W; il caso20 W è incidenza normale.",
+      "distractors": "La normale è a60° dal raggio: area efficace4·1/2=2 m², potenza10 W; il caso20 W è incidenza normale.",
+      "pedagogicalReview": "La normale è a60° dal raggio: area efficace4·1/2=2 m², potenza10 W; il caso20 W è incidenza normale.",
+      "assetReview": "PNG640×1560 e XML completi: E(t) lineare0→12 mJ in3 s, punto medio6 mJ/1,5 s; barre320/160 indicano I e I/2. Segmento del sensore da150,1265 a410,1415 ha lunghezza300 e proiezione150, con normale a60° dal raggio. L’approssimazione delle coordinate non altera le proporzioni esatte derivate; area laterale non identificata con area fisica. Testi e punte interi.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_wave_models_and_separate_concepts",
+        "Pint_exact_wave_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C5-Q040",
+      "sourceSha256": "fba8a77651c97c706172877ab7d815e609eead3a266d8ed88cfbe340eb20fc65",
+      "candidateSha256": "8c0dd294528a54abc2c89ccb22617225999445bfd994f0493ec5451f0c9eed7c",
+      "reviewedSignature": "0f8adfd4fbc2b064f398904825ef057115fc8ac49b4c41446096a8a524a036a1",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "È la stessa",
+      "dimension": {},
+      "manualArithmetic": "In regime stazionario senza assorbimento fra le sfere, la potenza totale che le attraversa è la stessa. La sua distribuzione per area può cambiare, ma l’integrale del flusso sulle due superfici chiuse conserva la potenza emessa.",
+      "physicalAssumptions": "Il guscio senza sorgenti, perdite o accumulo conserva potenza integrata; superficie chiusa non significa barriera.",
+      "distractors": "Il guscio senza sorgenti, perdite o accumulo conserva potenza integrata; superficie chiusa non significa barriera.",
+      "pedagogicalReview": "Il guscio senza sorgenti, perdite o accumulo conserva potenza integrata; superficie chiusa non significa barriera.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_wave_models_and_separate_concepts",
+        "Pint_exact_wave_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    }
+  ],
+  "verifierSha256": "972bb19307cbe690cc8c187082226645081d08b5ad00566bf2ee0b6e9a555ecc",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "reviewDependencySha256": {
+    "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de",
+    "cric_c5_wave_physics.py": "93914663cf78ebfeca77636e9817dd6c77435641de4a9e83c3140df24909ea27"
+  },
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2",
+    "hypothesis": "6.148.7"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "reviewedCandidateCommit": "5fb56b5ca057ec0587f8a5e6f26105b2d45d099a",
+  "packageSha256": "76e9ead83bb889d8e84ccc055a21d0d7250690df4794f0d9683a8e6aab7a26ea",
+  "bindingsSha256": "e14114ee8fb62b61f09ea4db08220260e362196727a0d71ec3a726c9e376fe12",
+  "source": {
+    "commit": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "path": "officina-di-fisica/content/C5.json",
+    "title": "cric-c5-l04",
+    "reference": "Fifty original prompts derived before candidate answers; final cohort fully read separately."
+  },
+  "modelsBeforeCandidateKeys": {
+    "path": "editorial/reviews/cric-c5-001-050-independent-models.py",
+    "sha256": "0908ada36b1ff643d239adf7d25e636eeefd4cc7b21053ac6b6b6a53c75317b8",
+    "commit": "18fd1cd488c90f4d294e4cfc6fb361be9a042d88"
+  },
+  "modelFunctionBodies": "All functions in the frozen source-only C5 model retain identical AST. Generic finite/exact literal guards are reused unchanged from the earlier independent C2 verifier.",
+  "primaryBeforeCandidateKeys": {
+    "path": "editorial/reviews/primary-cric-c5-001-050-before-candidates-20261126.md",
+    "sha256": "27a0255c29f25dd30e89b343b8a1a1268bc76fbbdd8551d2cc8c83f9db569059"
+  }
+}

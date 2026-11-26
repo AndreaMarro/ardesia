@@ -1,0 +1,343 @@
+{
+  "schemaVersion": "1.0.0",
+  "lessonReference": {
+    "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "gitPath": "officina-di-fisica/content/C5.json",
+    "sourceSha256": "dac4490e6a900f5da191bf7a1f5b8463ddc57c8bbaa36cb7a4a375c70fa77422",
+    "primarySkill": "C5-L02",
+    "title": "Una fotografia e un cronometro raccontano due cose diverse",
+    "actualLessonPrerequisites": [
+      "C5-L01"
+    ]
+  },
+  "records": [
+    {
+      "id": "C5-Q011",
+      "sourceSha256": "e839f4490f07a14761daf37324c97d0597cf6ece24c6962a8792033af59f6e31",
+      "candidateSha256": "9cb9d7e61248c7f22390bbba39f812aebdb0afe31bb64e7aa79e73c9af9d9445",
+      "reviewedSignature": "8d52bf10ddae0bfb371fa2d636fe83ded21acafc67cb0ff57161d8a0db2c33a2",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "cric-c5-l02-progressive.svg": "0edf33b30fc1aec70a37a5d483293521c166da9d787cc32ebceb9066c77e9cf1"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "36",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "Fra cresta e valle immediatamente successiva corre metà lunghezza d’onda. Quindi λ=2·18=36 cm. Si legge una distanza nello spazio, non una durata.",
+      "physicalAssumptions": "La separazione cresta-valle è mezza lunghezza, non ampiezza verticale; raddoppiare 18 cm produce 36 cm.",
+      "distractors": "La separazione cresta-valle è mezza lunghezza, non ampiezza verticale; raddoppiare 18 cm produce 36 cm.",
+      "pedagogicalReview": "La separazione cresta-valle è mezza lunghezza, non ampiezza verticale; raddoppiare 18 cm produce 36 cm.",
+      "assetReview": "PNG640×1560 e XML completi: creste a150/510 e valle330 rappresentano0/36/18 cm, scala10/cm e ordinata schematica. Cerchio di fase a320,850 r110 e arco r60 indicano un quarto di giro, non moto materiale. Retta delle differenze da140,1430 a500,1190 rappresenta1,20 m in0,08 s; punto medio0,60 m/0,04 s. Zeri, testi e punte leggibili.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_wave_models_and_separate_concepts",
+        "Pint_exact_wave_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C5-Q012",
+      "sourceSha256": "8c7c5682ed68629cd5d5ee4f8ed1a8f0c466d427b9a9e483ab4497f9bf5ac3b7",
+      "candidateSha256": "e43652d16365b27e346c552a931d349986846098d111a923191700d0c218b779",
+      "reviewedSignature": "aae5991f0bdc02bdfe1a094b17c3190f1a5d310e269698a2fa6d09f4f2679e41",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Il periodo",
+      "dimension": {},
+      "manualArithmetic": "La distanza fra massimi consecutivi sul grafico temporale nello stesso punto è il periodo. L’unità è millisecondi; una lunghezza d’onda richiederebbe invece un’ascissa spaziale.",
+      "physicalAssumptions": "Un sensore fisso misura separazioni temporali; pressione in pascal è ordinata, non distanza spaziale o traiettoria.",
+      "distractors": "Un sensore fisso misura separazioni temporali; pressione in pascal è ordinata, non distanza spaziale o traiettoria.",
+      "pedagogicalReview": "Un sensore fisso misura separazioni temporali; pressione in pascal è ordinata, non distanza spaziale o traiettoria.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_wave_models_and_separate_concepts",
+        "Pint_exact_wave_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C5-Q013",
+      "sourceSha256": "bedb1abc9b5bcb971f738a56b7665bb7c772ec45c2871d170045567a36ee9249",
+      "candidateSha256": "7ed1b3acb580162eef67e02aca9158e1ec51c206d8e9ec0433e7208114ef2e76",
+      "reviewedSignature": "d2e6cb4a92c8933c96f9b6e6335ecd0cf3c7909cd24e8141718d6bff2fcc4276",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Torna alla posizione di equilibrio iniziale",
+      "dimension": {},
+      "manualArithmetic": "Per un impulso localizzato ideale che riporta la corda all’equilibrio, la macchia oscilla con l’elemento materiale e poi torna nella posizione di riposo, senza seguire il massimo lungo la corda. È distinta la propagazione della deformazione dal trasporto materiale nel modello trasversale lineare.",
+      "physicalAssumptions": "La macchia segue la porzione materiale e torna al riposo nel modello trasversale lineare senza residuo; il massimo della forma prosegue.",
+      "distractors": "La macchia segue la porzione materiale e torna al riposo nel modello trasversale lineare senza residuo; il massimo della forma prosegue.",
+      "pedagogicalReview": "La macchia segue la porzione materiale e torna al riposo nel modello trasversale lineare senza residuo; il massimo della forma prosegue.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_wave_models_and_separate_concepts",
+        "Pint_exact_wave_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C5-Q014",
+      "sourceSha256": "b7348287291fba07aabdefa42813f76974eb36bb037ad20539a5c6eeb6fa21f0",
+      "candidateSha256": "53b728ae2d0a88ace84490719e4646f531a88942d424901fdf13d3851d6ecb99",
+      "reviewedSignature": "2fd4a255d84f08c33052e62f71f01128baaa4bd447cbfaad032eec21154fd3ed",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "cric-c5-l02-progressive.svg": "0edf33b30fc1aec70a37a5d483293521c166da9d787cc32ebceb9066c77e9cf1"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "pi/2",
+      "dimension": {},
+      "manualArithmetic": "La differenza di fase spaziale ha modulo kΔx=2πΔx/λ=2π(0,12/0,48)=π/2 rad. Il rapporto delle lunghezze è 1/4. Si confronta lo stesso istante e si assume la stessa onda progressiva.",
+      "physicalAssumptions": "La separazione vale un quarto di ciclo, cioè π/2 rad; 1/4 senza 2π non è il valore in radianti.",
+      "distractors": "La separazione vale un quarto di ciclo, cioè π/2 rad; 1/4 senza 2π non è il valore in radianti.",
+      "pedagogicalReview": "La separazione vale un quarto di ciclo, cioè π/2 rad; 1/4 senza 2π non è il valore in radianti.",
+      "assetReview": "PNG640×1560 e XML completi: creste a150/510 e valle330 rappresentano0/36/18 cm, scala10/cm e ordinata schematica. Cerchio di fase a320,850 r110 e arco r60 indicano un quarto di giro, non moto materiale. Retta delle differenze da140,1430 a500,1190 rappresenta1,20 m in0,08 s; punto medio0,60 m/0,04 s. Zeri, testi e punte leggibili.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_wave_models_and_separate_concepts",
+        "Pint_exact_wave_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C5-Q015",
+      "sourceSha256": "5a46a60efd480e10e246f7868cd2c519cb01f711aca0707796f9dfc8fe7e01cd",
+      "candidateSha256": "39fa4ccb6f5f6e3f99f1c310b43dd5944d5ed1b5decf7542e835d08e81b390f8",
+      "reviewedSignature": "5504dc14f5d600809ee9873f8b92cf52bdaf07f3cd29a5d438f6fb14bbe404a0",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "cric-c5-l02-progressive.svg": "0edf33b30fc1aec70a37a5d483293521c166da9d787cc32ebceb9066c77e9cf1"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "15",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "La velocità media del massimo è (1,60−0,40)/(0,24−0,16)=1,20/0,08=15 m/s verso x crescente. Una velocità media non richiede di assumere velocità istantanea costante.",
+      "physicalAssumptions": "Dividere differenze dà 1,20/0,08=15 m/s; 20 usa posizione finale senza sottrarre il primo evento.",
+      "distractors": "Dividere differenze dà 1,20/0,08=15 m/s; 20 usa posizione finale senza sottrarre il primo evento.",
+      "pedagogicalReview": "Dividere differenze dà 1,20/0,08=15 m/s; 20 usa posizione finale senza sottrarre il primo evento.",
+      "assetReview": "PNG640×1560 e XML completi: creste a150/510 e valle330 rappresentano0/36/18 cm, scala10/cm e ordinata schematica. Cerchio di fase a320,850 r110 e arco r60 indicano un quarto di giro, non moto materiale. Retta delle differenze da140,1430 a500,1190 rappresenta1,20 m in0,08 s; punto medio0,60 m/0,04 s. Zeri, testi e punte leggibili.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_wave_models_and_separate_concepts",
+        "Pint_exact_wave_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C5-Q016",
+      "sourceSha256": "5bd04ba10afea7de82acaea8299c33bb7d8dcf661deac54b35c2f3109c35a464",
+      "candidateSha256": "0d186b36a81a1741bac0df1525cecab043378978b777ed2fc7af635666ff22b0",
+      "reviewedSignature": "23f6422183a7996fc8969e124f8f55a04fb947a02c1a535137664c2f9249ef8f",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1/3",
+      "dimension": {},
+      "manualArithmetic": "A velocità di propagazione invariata, λ=v/f. Triplicando f, la distanza fra massimi adiacenti diventa un terzo; non si triplica la velocità se il mezzo resta quello dichiarato.",
+      "physicalAssumptions": "A v costante λ è inversa di f; triplicare entrambi darebbe fattore nove nel prodotto, non v fissata.",
+      "distractors": "A v costante λ è inversa di f; triplicare entrambi darebbe fattore nove nel prodotto, non v fissata.",
+      "pedagogicalReview": "A v costante λ è inversa di f; triplicare entrambi darebbe fattore nove nel prodotto, non v fissata.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_wave_models_and_separate_concepts",
+        "Pint_exact_wave_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C5-Q017",
+      "sourceSha256": "4d67234ba45bc98f5a16c0acdbd89115a58092483318aa08434c939c3830f759",
+      "candidateSha256": "6c5fe958ccd3cfac753c8fc801bff6b3cecf8c87d66dd555e6d67338451a05dc",
+      "reviewedSignature": "284a5f1d1e475f6f05cde745416dd413cc3290d0a63fbf46b1c272608962ea89",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4*pi/5",
+      "dimension": {
+        "[length]": "-1"
+      },
+      "manualArithmetic": "k=2π/λ=2π/(5/2)=4π/5 rad/m. Il radiante è adimensionale in SI, ma scriverlo chiarisce che k moltiplica una lunghezza per costruire una fase.",
+      "physicalAssumptions": "k=2π/λ=4π/5 rad/m; 2/5 è il numero di cicli per metro, reciproci e prodotti hanno altra dipendenza.",
+      "distractors": "k=2π/λ=4π/5 rad/m; 2/5 è il numero di cicli per metro, reciproci e prodotti hanno altra dipendenza.",
+      "pedagogicalReview": "k=2π/λ=4π/5 rad/m; 2/5 è il numero di cicli per metro, reciproci e prodotti hanno altra dipendenza.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_wave_models_and_separate_concepts",
+        "Pint_exact_wave_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C5-Q018",
+      "sourceSha256": "4602074595012fc6e7534b246c7b92114d3ca97e51e6cbb2cf64c4b8d2cc38e7",
+      "candidateSha256": "dd4622460e2e499b66e4bbd875548aba593cde4e5151b360dc644f7163ccb273",
+      "reviewedSignature": "3636baeae6feecfe939e28208c2fba16142703428657f707c3faaa9941b55d34",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Longitudinale",
+      "dimension": {},
+      "manualArithmetic": "È un’onda longitudinale. Il moto oscillatorio locale è parallelo alla propagazione; il grafico della pressione non è una traiettoria trasversale delle particelle d’aria.",
+      "physicalAssumptions": "La geometria del moto materiale parallelo al vettore di propagazione definisce longitudinale, non un’onda stazionaria.",
+      "distractors": "La geometria del moto materiale parallelo al vettore di propagazione definisce longitudinale, non un’onda stazionaria.",
+      "pedagogicalReview": "La geometria del moto materiale parallelo al vettore di propagazione definisce longitudinale, non un’onda stazionaria.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_wave_models_and_separate_concepts",
+        "Pint_exact_wave_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C5-Q019",
+      "sourceSha256": "d9359232125b02d279b441032ae59f700aab0f829da1e965964c9c951f9c0732",
+      "candidateSha256": "61b72dcee767fe118aca3053b72a0bd6e9e89e506ea4b4435eade29fa10a9811",
+      "reviewedSignature": "d5cc187005caff60e5e4e24ab2fe961430ec26868b8361d6fc20dd9cd677655e",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "3/5",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "La fase costante di una cresta soddisfa 6x−12t=costante, quindi dx/dt=12/6=2 m/s verso x positivo. In 0,30 s si sposta di 3/5 m=0,60 m. Non si usa il coefficiente 12 direttamente come velocità.",
+      "physicalAssumptions": "La fase costante impone 6Δx=12Δt: verso positivo, 0,60 m; invertire il rapporto dà 0,15 m.",
+      "distractors": "La fase costante impone 6Δx=12Δt: verso positivo, 0,60 m; invertire il rapporto dà 0,15 m.",
+      "pedagogicalReview": "La fase costante impone 6Δx=12Δt: verso positivo, 0,60 m; invertire il rapporto dà 0,15 m.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_wave_models_and_separate_concepts",
+        "Pint_exact_wave_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C5-Q020",
+      "sourceSha256": "bab6017838d4e3e710fe3e656787350325673162be5cfdf67cbbf49dbf8f510f",
+      "candidateSha256": "3bfee0eea2c3c26e43c17bec611902adae08014d394cb916e200c70bfa3ffb7a",
+      "reviewedSignature": "d6c6036241aff3fe5d73bcc874a3d4e91fe2676f9efc31e86d55c9082672a57a",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "La lunghezza d’onda",
+      "dimension": {},
+      "manualArithmetic": "Con scala spaziale calibrata si può misurare direttamente λ, e anche A se è nota la scala dello spostamento verticale. Una sola istantanea non determina periodo, frequenza, velocità o verso della propagazione senza altri dati. La futura scelta deve essere controllata perché λ e A possono essere entrambe grandezze geometriche osservabili.",
+      "physicalAssumptions": "Una fotografia calibrata nello spazio offre λ; senza tempi o dinamica non dà f, T o velocità. Ampiezza possibile ma assente fra le scelte.",
+      "distractors": "Una fotografia calibrata nello spazio offre λ; senza tempi o dinamica non dà f, T o velocità. Ampiezza possibile ma assente fra le scelte.",
+      "pedagogicalReview": "Una fotografia calibrata nello spazio offre λ; senza tempi o dinamica non dà f, T o velocità. Ampiezza possibile ma assente fra le scelte.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_wave_models_and_separate_concepts",
+        "Pint_exact_wave_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    }
+  ],
+  "verifierSha256": "6d3bc0088f070c66af9dd749a8e039e09c9b37a5c2521daf5161351556ee00d2",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "reviewDependencySha256": {
+    "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de",
+    "cric_c5_wave_physics.py": "93914663cf78ebfeca77636e9817dd6c77435641de4a9e83c3140df24909ea27"
+  },
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2",
+    "hypothesis": "6.148.7"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "reviewedCandidateCommit": "637af6f6dda9e7c8a58869ca0d3b92d284e3dee2",
+  "packageSha256": "037d37781615de8bc4e404e3be5eb5e855b8aada120fbdea0c35b6137cc74cbc",
+  "bindingsSha256": "d8cfe5e10410a0c00e5a60ccec8b17d3df03cbe3a52aeb10934585c36744a353",
+  "source": {
+    "commit": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "path": "officina-di-fisica/content/C5.json",
+    "title": "cric-c5-l02",
+    "reference": "Fifty original prompts derived before candidate answers; final cohort fully read separately."
+  },
+  "modelsBeforeCandidateKeys": {
+    "path": "editorial/reviews/cric-c5-001-050-independent-models.py",
+    "sha256": "0908ada36b1ff643d239adf7d25e636eeefd4cc7b21053ac6b6b6a53c75317b8",
+    "commit": "18fd1cd488c90f4d294e4cfc6fb361be9a042d88"
+  },
+  "modelFunctionBodies": "All functions in the frozen source-only C5 model retain identical AST. Generic finite/exact literal guards are reused unchanged from the earlier independent C2 verifier.",
+  "primaryBeforeCandidateKeys": {
+    "path": "editorial/reviews/primary-cric-c5-001-050-before-candidates-20261126.md",
+    "sha256": "27a0255c29f25dd30e89b343b8a1a1268bc76fbbdd8551d2cc8c83f9db569059"
+  }
+}

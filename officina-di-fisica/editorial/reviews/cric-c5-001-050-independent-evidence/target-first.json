@@ -1,0 +1,22 @@
+{
+  "scope": "actual independent preparation or targeted tests only_not_product_UI",
+  "command": [
+    "/private/tmp/cric-recovery-venv/bin/python",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests/corpus",
+    "-p",
+    "test_cric_c5_l01_l05_independent.py",
+    "-v"
+  ],
+  "candidateApp": "/private/tmp/cric-author-a-resident/officina-di-fisica",
+  "exitCode": 1,
+  "signal": null,
+  "elapsedSeconds": 6.000532625010237,
+  "rawSha256": "7dbcf01f6507b57955d485bea7d04229660be235171812dadce1dc5f96208d12",
+  "humanApproval": "NOT_RUN",
+  "productUI": "NOT_RUN"
+}
