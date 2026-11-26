@@ -1,0 +1,29 @@
+import json,hashlib,os,subprocess
+from pathlib import Path
+workspace=Path('/private/tmp/cric-vector-apparatus-author-20261126');app=workspace/'officina-di-fisica'
+core=Path('/private/tmp/cric-experiment-contract-fix');core_source='634096804360f9b4bf37efd295af643a502d1398';delivery_sha='23d76bd51d5c7edf60548598efca3fd5f52aa0cd33fa4c837199c4e975ccc4ed'
+base='officina-di-fisica/editorial/reviews/renewal-readers-179-748-20261127/'
+out=app/'editorial/author-notes/reader-formula-reflow-20261127';fixture=out/'fixture';fixture.mkdir(exist_ok=True)
+sha=lambda b:hashlib.sha256(b).hexdigest()
+def read(name):return subprocess.check_output(['git','-c','gc.auto=0','show',core_source+':'+base+name],cwd=core,env={**os.environ,'GIT_NO_LAZY_FETCH':'1'})
+manifest_bytes=read('complete-reader-delivery.json');assert sha(manifest_bytes)==delivery_sha
+manifest=json.loads(manifest_bytes)['files']
+def acquire(path):
+ raw=read(path);entry=manifest.get(base+path,manifest.get(path));assert entry,(path,list(manifest)[:1]);pin=entry['sha256'] if isinstance(entry,dict)else entry;assert sha(raw)==pin,path
+ return raw
+assert acquire('all-measured-overflow-formulas.json')==(out/'observed-inputs.json').read_bytes()
+for name in ('reader-blueprint.json','canonical-input-file-shas.json','browser-readers.mjs'):
+ (fixture/name).write_bytes(acquire(name))
+pins=json.loads((fixture/'canonical-input-file-shas.json').read_bytes()); assert len(pins)==20
+(fixture/'canonical-package-inputs').mkdir(exist_ok=True)
+for name,pin in pins.items():
+ raw=acquire('canonical-package-inputs/'+name);assert sha(raw)==pin
+ (fixture/'canonical-package-inputs'/name).write_bytes(raw)
+blueprint=json.loads((fixture/'reader-blueprint.json').read_bytes());source_pin=sha((fixture/'reader-blueprint.json').read_bytes());prior={k:blueprint[k]for k in ('runtimeSha256','runtimeSourceCommit')}
+head=subprocess.check_output(['git','rev-parse','HEAD'],cwd=workspace,text=True).strip()
+fp=json.loads(subprocess.check_output(['/private/tmp/cric-recovery-venv/bin/python','-B','-m','tools.corpus_engineering.runtime_fingerprint'],cwd=app))
+blueprint.update(runtimeSha256=fp['sha256'],runtimeSourceCommit=head)
+(fixture/'reader-blueprint.json').write_text(json.dumps(blueprint,ensure_ascii=False,separators=(',',':'))+'\n')
+protocol=fixture/'browser-readers.mjs';original=protocol.read_text();candidate=original.replace("app='/private/tmp/cric-method-css-748-independent-app'", "app=path.resolve(B,'../../../..')").replace("/^(catalogs|C[1-6])$/", "/^(targeted|catalogs|C[1-6])$/").replace("r=>cohort==='catalogs'?", "r=>cohort==='targeted'?['C1-E011','C5-L03','C6-L05'].includes(r.id):cohort==='catalogs'?");assert candidate!=original;protocol.write_text(candidate)
+receipt={'scope':'Author browser harness derived from independent 179-reader probe. Only runtime pins, local app path and scoped three longest residual cases changed.','sourceDeliveryCommit':core_source,'sourceDeliverySha256':delivery_sha,'originalRuntimePins':prior,'runtimeSourceCommit':head,'runtimeSha256':fp['sha256'],'originalBlueprintSha256':source_pin,'blueprintSha256':sha((fixture/'reader-blueprint.json').read_bytes()),'originalProtocolSha256':sha(original.encode()),'protocolSha256':sha(candidate.encode()),'candidateIsNotIntegrated':True,'activityCredit':0}
+(out/'actual-targeted-derivation.json').write_text(json.dumps(receipt,indent=2)+'\n');print(receipt)
