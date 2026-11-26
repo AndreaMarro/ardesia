@@ -1,0 +1,896 @@
+{
+  "caseCount": 62,
+  "failedCases": 24,
+  "actualTerminalExit": 1,
+  "runtimeSha256": "748b31decc821162f9631e619747cf8d273202b35ebe9ca993e7e0b2a0e2ebc4",
+  "errors": {
+    "AssertionError [ERR_ASSERTION]: Formula overflow": 24
+  },
+  "axe": {
+    "scrollable-region-focusable": 24
+  },
+  "records": [
+    {
+      "id": "C4-L01",
+      "variant": "ORIGINAL",
+      "width": 320,
+      "sourceVersion": 1,
+      "effectiveVersion": 1,
+      "sourcePath": "officina-di-fisica/content/C4.json",
+      "error": "AssertionError [ERR_ASSERTION]: Formula overflow",
+      "failedFormulaExtents": [
+        {
+          "observedFormulaIndex": 0,
+          "sourceFormulaText": "F=k\\frac{|q_1q_2|}{r^2},\\qquad k\\simeq8{,}99\\cdot10^9\\ \\mathrm{N\\,m^2/C^2}",
+          "width": 294,
+          "scroll": 342,
+          "typeset": 284.40625
+        }
+      ],
+      "axeViolations": [
+        {
+          "id": "scrollable-region-focusable",
+          "targets": [
+            [
+              ".math"
+            ]
+          ]
+        }
+      ],
+      "pngSha256": "18f239f463cc3b1788de5dea3ba725c467a35b392ec31bbc36e4c4513118dab3",
+      "classification": "UI_RESPONSIVE_FORMULA_HORIZONTAL_SCROLL",
+      "activityCredit": 0
+    },
+    {
+      "id": "C4-L02",
+      "variant": "ORIGINAL",
+      "width": 320,
+      "sourceVersion": 1,
+      "effectiveVersion": 1,
+      "sourcePath": "officina-di-fisica/content/C4.json",
+      "error": "AssertionError [ERR_ASSERTION]: Formula overflow",
+      "failedFormulaExtents": [
+        {
+          "observedFormulaIndex": 0,
+          "sourceFormulaText": "\\vec E=\\frac{\\vec F_{\\rm prova}}{q_{\\rm prova}},\\qquad\\vec F=q\\vec E,\\qquad [E]=\\mathrm{N/C}",
+          "width": 294,
+          "scroll": 348,
+          "typeset": 284.40625
+        }
+      ],
+      "axeViolations": [
+        {
+          "id": "scrollable-region-focusable",
+          "targets": [
+            [
+              ".math:nth-child(2)"
+            ]
+          ]
+        }
+      ],
+      "pngSha256": "baf23a95589836cd3521e5a16cc4748cff438bb8cb8ad6799d006b649c6021f6",
+      "classification": "UI_RESPONSIVE_FORMULA_HORIZONTAL_SCROLL",
+      "activityCredit": 0
+    },
+    {
+      "id": "C4-L03",
+      "variant": "ORIGINAL",
+      "width": 320,
+      "sourceVersion": 1,
+      "effectiveVersion": 1,
+      "sourcePath": "officina-di-fisica/content/C4.json",
+      "error": "AssertionError [ERR_ASSERTION]: Formula overflow",
+      "failedFormulaExtents": [
+        {
+          "observedFormulaIndex": 0,
+          "sourceFormulaText": "\\Delta U=q\\Delta V,\\qquad W_{\\rm campo}=-\\Delta U,\\qquad 1\\ \\mathrm V=1\\ \\mathrm{J/C}",
+          "width": 294,
+          "scroll": 431,
+          "typeset": 284.40625
+        },
+        {
+          "observedFormulaIndex": 1,
+          "sourceFormulaText": "V(P)=\\sum_i k\\frac{q_i}{r_i},\\qquad U_{\\rm coppia}=k\\frac{q_1q_2}{r_{12}}",
+          "width": 294,
+          "scroll": 311,
+          "typeset": 284.40625
+        },
+        {
+          "observedFormulaIndex": 2,
+          "sourceFormulaText": "\\Delta K=-q\\Delta V,\\qquad \\Delta V=-\\vec E\\cdot\\Delta\\vec r\\quad(\\vec E\\ \\text{uniforme})",
+          "width": 294,
+          "scroll": 425,
+          "typeset": 284.40625
+        }
+      ],
+      "axeViolations": [
+        {
+          "id": "scrollable-region-focusable",
+          "targets": [
+            [
+              ".math:nth-child(2)"
+            ],
+            [
+              ".math:nth-child(5)"
+            ],
+            [
+              ".math:nth-child(7)"
+            ]
+          ]
+        }
+      ],
+      "pngSha256": "2586c5e1e58b5f0fdf576c4bc921b9c00b50043161cfa07dfad6136dd33e4086",
+      "classification": "UI_RESPONSIVE_FORMULA_HORIZONTAL_SCROLL",
+      "activityCredit": 0
+    },
+    {
+      "id": "C4-L05",
+      "variant": "ORIGINAL",
+      "width": 320,
+      "sourceVersion": 1,
+      "effectiveVersion": 1,
+      "sourcePath": "officina-di-fisica/content/C4.json",
+      "error": "AssertionError [ERR_ASSERTION]: Formula overflow",
+      "failedFormulaExtents": [
+        {
+          "observedFormulaIndex": 1,
+          "sourceFormulaText": "\\Delta V=RI,\\qquad 1\\ \\Omega=1\\ \\mathrm{V/A},\\qquad R=\\rho\\frac{\\ell}{A}",
+          "width": 294,
+          "scroll": 359,
+          "typeset": 284.40625
+        }
+      ],
+      "axeViolations": [
+        {
+          "id": "scrollable-region-focusable",
+          "targets": [
+            [
+              ".math:nth-child(5)"
+            ]
+          ]
+        }
+      ],
+      "pngSha256": "4630bc8185ac24c86c9a0c16b2b0971cda414417c952fe45c2effca694e43579",
+      "classification": "UI_RESPONSIVE_FORMULA_HORIZONTAL_SCROLL",
+      "activityCredit": 0
+    },
+    {
+      "id": "C4-L06",
+      "variant": "ORIGINAL",
+      "width": 320,
+      "sourceVersion": 1,
+      "effectiveVersion": 1,
+      "sourcePath": "officina-di-fisica/content/C4.json",
+      "error": "AssertionError [ERR_ASSERTION]: Formula overflow",
+      "failedFormulaExtents": [
+        {
+          "observedFormulaIndex": 0,
+          "sourceFormulaText": "R_{\\rm serie}=R_1+R_2,\\qquad\\frac1{R_{\\rm par}}=\\frac1{R_1}+\\frac1{R_2}",
+          "width": 294,
+          "scroll": 332,
+          "typeset": 284.40625
+        },
+        {
+          "observedFormulaIndex": 1,
+          "sourceFormulaText": "P=VI=I^2R=\\frac{V^2}{R},\\qquad E=P\\Delta t\\quad(P\\ \\text{costante})",
+          "width": 294,
+          "scroll": 435,
+          "typeset": 284.40625
+        }
+      ],
+      "axeViolations": [
+        {
+          "id": "scrollable-region-focusable",
+          "targets": [
+            [
+              ".math:nth-child(3)"
+            ],
+            [
+              ".math:nth-child(6)"
+            ]
+          ]
+        }
+      ],
+      "pngSha256": "6020ad886cc8b7122dac64e79925e04914d0a502412e0fb434a438826d7cd12d",
+      "classification": "UI_RESPONSIVE_FORMULA_HORIZONTAL_SCROLL",
+      "activityCredit": 0
+    },
+    {
+      "id": "C4-L07",
+      "variant": "ORIGINAL",
+      "width": 320,
+      "sourceVersion": 1,
+      "effectiveVersion": 1,
+      "sourcePath": "officina-di-fisica/content/C4.json",
+      "error": "AssertionError [ERR_ASSERTION]: Formula overflow",
+      "failedFormulaExtents": [
+        {
+          "observedFormulaIndex": 1,
+          "sourceFormulaText": "C=\\varepsilon\\frac{A}{d},\\quad \\varepsilon=\\varepsilon_0\\varepsilon_r,\\quad \\varepsilon_0\\simeq8{,}85\\cdot10^{-12}\\ \\mathrm{F/m}",
+          "width": 294,
+          "scroll": 377,
+          "typeset": 284.40625
+        }
+      ],
+      "axeViolations": [
+        {
+          "id": "scrollable-region-focusable",
+          "targets": [
+            [
+              ".math:nth-child(5)"
+            ]
+          ]
+        }
+      ],
+      "pngSha256": "a7eb316245431e9d0236bc1595f98bc8c76addd5e3981fd7be9b7e230db028ef",
+      "classification": "UI_RESPONSIVE_FORMULA_HORIZONTAL_SCROLL",
+      "activityCredit": 0
+    },
+    {
+      "id": "C4-L08",
+      "variant": "ORIGINAL",
+      "width": 320,
+      "sourceVersion": 1,
+      "effectiveVersion": 1,
+      "sourcePath": "officina-di-fisica/content/C4.json",
+      "error": "AssertionError [ERR_ASSERTION]: Formula overflow",
+      "failedFormulaExtents": [
+        {
+          "observedFormulaIndex": 0,
+          "sourceFormulaText": "C_{\\rm par}=C_1+C_2,\\qquad Q_{\\rm tot}=(C_1+C_2)V",
+          "width": 294,
+          "scroll": 336,
+          "typeset": 284.40625
+        },
+        {
+          "observedFormulaIndex": 1,
+          "sourceFormulaText": "V=\\frac{Q}{C_1}+\\frac{Q}{C_2}=\\frac{Q}{C_{\\rm serie}},\\qquad \\frac1{C_{\\rm serie}}=\\frac1{C_1}+\\frac1{C_2}",
+          "width": 294,
+          "scroll": 389,
+          "typeset": 284.40625
+        }
+      ],
+      "axeViolations": [
+        {
+          "id": "scrollable-region-focusable",
+          "targets": [
+            [
+              ".math:nth-child(3)"
+            ],
+            [
+              ".math:nth-child(5)"
+            ]
+          ]
+        }
+      ],
+      "pngSha256": "22520bb8123c3ec40a99d81d6cdd2c5312863ab43273e3004b3ce7b956f83b0a",
+      "classification": "UI_RESPONSIVE_FORMULA_HORIZONTAL_SCROLL",
+      "activityCredit": 0
+    },
+    {
+      "id": "C4-L09",
+      "variant": "ORIGINAL",
+      "width": 320,
+      "sourceVersion": 1,
+      "effectiveVersion": 1,
+      "sourcePath": "officina-di-fisica/content/C4.json",
+      "error": "AssertionError [ERR_ASSERTION]: Formula overflow",
+      "failedFormulaExtents": [
+        {
+          "observedFormulaIndex": 0,
+          "sourceFormulaText": "\\vec F_B=q\\vec v\\times\\vec B,\\qquad F_B=|q|vB\\sin\\theta",
+          "width": 294,
+          "scroll": 297,
+          "typeset": 284.40625
+        },
+        {
+          "observedFormulaIndex": 1,
+          "sourceFormulaText": "|q|vB=\\frac{mv^2}{r}\\quad\\Longrightarrow\\quad r=\\frac{mv}{|q|B}\\quad(\\vec v\\perp\\vec B)",
+          "width": 294,
+          "scroll": 359,
+          "typeset": 284.40625
+        }
+      ],
+      "axeViolations": [
+        {
+          "id": "scrollable-region-focusable",
+          "targets": [
+            [
+              ".math:nth-child(7)"
+            ]
+          ]
+        }
+      ],
+      "pngSha256": "248253e3b24ee7248cecec18b6aaf7f48ede7245ca8301624beb623306d9b27d",
+      "classification": "UI_RESPONSIVE_FORMULA_HORIZONTAL_SCROLL",
+      "activityCredit": 0
+    },
+    {
+      "id": "C4-L10",
+      "variant": "ORIGINAL",
+      "width": 320,
+      "sourceVersion": 1,
+      "effectiveVersion": 1,
+      "sourcePath": "officina-di-fisica/content/C4.json",
+      "error": "AssertionError [ERR_ASSERTION]: Formula overflow",
+      "failedFormulaExtents": [
+        {
+          "observedFormulaIndex": 0,
+          "sourceFormulaText": "\\Phi_B=BA\\cos\\theta,\\qquad [\\Phi_B]=\\mathrm{T\\,m^2}=\\mathrm{Wb}",
+          "width": 294,
+          "scroll": 336,
+          "typeset": 284.40625
+        }
+      ],
+      "axeViolations": [
+        {
+          "id": "scrollable-region-focusable",
+          "targets": [
+            [
+              ".math:nth-child(3)"
+            ]
+          ]
+        }
+      ],
+      "pngSha256": "db5b4b8aed6252d7358ec679538fca314200db8b47e94e48e3fb7979b0cb760a",
+      "classification": "UI_RESPONSIVE_FORMULA_HORIZONTAL_SCROLL",
+      "activityCredit": 0
+    },
+    {
+      "id": "C4-E001",
+      "variant": "ORIGINAL",
+      "width": 320,
+      "sourceVersion": 1,
+      "effectiveVersion": 1,
+      "sourcePath": "officina-di-fisica/content/C4.json",
+      "error": "AssertionError [ERR_ASSERTION]: Formula overflow",
+      "failedFormulaExtents": [
+        {
+          "observedFormulaIndex": 0,
+          "sourceFormulaText": "r=0{,}030\\ \\mathrm m,\\qquad |q_1q_2|=(2\\cdot10^{-9})(3\\cdot10^{-9})=6\\cdot10^{-18}\\ \\mathrm{C^2}",
+          "width": 294,
+          "scroll": 495,
+          "typeset": 284.40625
+        },
+        {
+          "observedFormulaIndex": 1,
+          "sourceFormulaText": "F=9{,}0\\cdot10^9\\frac{6\\cdot10^{-18}}{(0{,}030)^2}=6{,}0\\cdot10^{-5}\\ \\mathrm N",
+          "width": 294,
+          "scroll": 306,
+          "typeset": 284.40625
+        }
+      ],
+      "axeViolations": [
+        {
+          "id": "scrollable-region-focusable",
+          "targets": [
+            [
+              ".math:nth-child(2)"
+            ]
+          ]
+        }
+      ],
+      "pngSha256": "72b748c86a202993ee75a1ea335a54a4a6dd3b82591206121d440cb5c87f8114",
+      "classification": "UI_RESPONSIVE_FORMULA_HORIZONTAL_SCROLL",
+      "activityCredit": 0
+    },
+    {
+      "id": "C4-E003",
+      "variant": "ORIGINAL",
+      "width": 320,
+      "sourceVersion": 1,
+      "effectiveVersion": 1,
+      "sourcePath": "officina-di-fisica/content/C4.json",
+      "error": "AssertionError [ERR_ASSERTION]: Formula overflow",
+      "failedFormulaExtents": [
+        {
+          "observedFormulaIndex": 0,
+          "sourceFormulaText": "r=0{,}10\\ \\mathrm m,\\qquad E_1=E_2=9{,}0\\cdot10^9\\frac{10^{-9}}{(0{,}10)^2}=900\\ \\mathrm{N/C}",
+          "width": 294,
+          "scroll": 464,
+          "typeset": 284.40625
+        }
+      ],
+      "axeViolations": [
+        {
+          "id": "scrollable-region-focusable",
+          "targets": [
+            [
+              ".math:nth-child(2)"
+            ]
+          ]
+        }
+      ],
+      "pngSha256": "04e2079d45e76680e6974540bfc53482971917ae3488efdd768cfeb635dc1772",
+      "classification": "UI_RESPONSIVE_FORMULA_HORIZONTAL_SCROLL",
+      "activityCredit": 0
+    },
+    {
+      "id": "C4-E004",
+      "variant": "ORIGINAL",
+      "width": 320,
+      "sourceVersion": 1,
+      "effectiveVersion": 1,
+      "sourcePath": "officina-di-fisica/content/C4.json",
+      "error": "AssertionError [ERR_ASSERTION]: Formula overflow",
+      "failedFormulaExtents": [
+        {
+          "observedFormulaIndex": 0,
+          "sourceFormulaText": "a_y=qE/m=\\frac{4{,}0\\cdot10^{-8}\\cdot500}{2{,}0\\cdot10^{-6}}=10\\ \\mathrm{m/s^2}",
+          "width": 294,
+          "scroll": 341,
+          "typeset": 284.40625
+        },
+        {
+          "observedFormulaIndex": 1,
+          "sourceFormulaText": "\\Delta y=\\tfrac12 a_y t^2=\\tfrac12\\cdot10\\cdot(0{,}20)^2=0{,}20\\ \\mathrm m",
+          "width": 294,
+          "scroll": 324,
+          "typeset": 284.40625
+        }
+      ],
+      "axeViolations": [
+        {
+          "id": "scrollable-region-focusable",
+          "targets": [
+            [
+              ".math:nth-child(2)"
+            ],
+            [
+              ".math:nth-child(3)"
+            ]
+          ]
+        }
+      ],
+      "pngSha256": "5c85e3776da22c737b89d60d4f8bba55dc39788f86757649aad8720ad172133d",
+      "classification": "UI_RESPONSIVE_FORMULA_HORIZONTAL_SCROLL",
+      "activityCredit": 0
+    },
+    {
+      "id": "C4-E005",
+      "variant": "ORIGINAL",
+      "width": 320,
+      "sourceVersion": 1,
+      "effectiveVersion": 1,
+      "sourcePath": "officina-di-fisica/content/C4.json",
+      "error": "AssertionError [ERR_ASSERTION]: Formula overflow",
+      "failedFormulaExtents": [
+        {
+          "observedFormulaIndex": 0,
+          "sourceFormulaText": "\\Delta V=40-10=+30\\ \\mathrm V,\\qquad q=-2{,}0\\cdot10^{-6}\\ \\mathrm C",
+          "width": 294,
+          "scroll": 397,
+          "typeset": 284.40625
+        },
+        {
+          "observedFormulaIndex": 1,
+          "sourceFormulaText": "\\Delta U=q\\Delta V=(-2{,}0\\cdot10^{-6})(30)=-60\\ \\mu\\mathrm J",
+          "width": 294,
+          "scroll": 357,
+          "typeset": 284.40625
+        }
+      ],
+      "axeViolations": [
+        {
+          "id": "scrollable-region-focusable",
+          "targets": [
+            [
+              ".math:nth-child(1)"
+            ],
+            [
+              ".math:nth-child(2)"
+            ]
+          ]
+        }
+      ],
+      "pngSha256": "cb2eb3a9ca7f8fe6a124a19160244c72436ebac6ef82b5c84905f32df67eb1b5",
+      "classification": "UI_RESPONSIVE_FORMULA_HORIZONTAL_SCROLL",
+      "activityCredit": 0
+    },
+    {
+      "id": "C4-E006",
+      "variant": "ORIGINAL",
+      "width": 320,
+      "sourceVersion": 1,
+      "effectiveVersion": 1,
+      "sourcePath": "officina-di-fisica/content/C4.json",
+      "error": "AssertionError [ERR_ASSERTION]: Formula overflow",
+      "failedFormulaExtents": [
+        {
+          "observedFormulaIndex": 0,
+          "sourceFormulaText": "U_{AB}=kq^2/r=9{,}0\\cdot10^9(10^{-9})^2/0{,}10=9{,}0\\cdot10^{-8}\\ \\mathrm J",
+          "width": 294,
+          "scroll": 426,
+          "typeset": 284.40625
+        },
+        {
+          "observedFormulaIndex": 1,
+          "sourceFormulaText": "U=U_{AB}+U_{BC}+U_{CA}=2{,}7\\cdot10^{-7}\\ \\mathrm J",
+          "width": 294,
+          "scroll": 316,
+          "typeset": 284.40625
+        }
+      ],
+      "axeViolations": [
+        {
+          "id": "scrollable-region-focusable",
+          "targets": [
+            [
+              ".math:nth-child(2)"
+            ],
+            [
+              ".math:nth-child(3)"
+            ]
+          ]
+        }
+      ],
+      "pngSha256": "dffe76949d892a7de1c28670b32f0d93a34aa6a918e5bdf90e8451960c344c2e",
+      "classification": "UI_RESPONSIVE_FORMULA_HORIZONTAL_SCROLL",
+      "activityCredit": 0
+    },
+    {
+      "id": "C4-E009",
+      "variant": "ORIGINAL",
+      "width": 320,
+      "sourceVersion": 1,
+      "effectiveVersion": 1,
+      "sourcePath": "officina-di-fisica/content/C4.json",
+      "error": "AssertionError [ERR_ASSERTION]: Formula overflow",
+      "failedFormulaExtents": [
+        {
+          "observedFormulaIndex": 0,
+          "sourceFormulaText": "I=0{,}020\\ \\mathrm A,\\qquad R=4{,}0/0{,}020=200\\ \\Omega",
+          "width": 294,
+          "scroll": 344,
+          "typeset": 284.40625
+        }
+      ],
+      "axeViolations": [
+        {
+          "id": "scrollable-region-focusable",
+          "targets": [
+            [
+              ".math:nth-child(2)"
+            ]
+          ]
+        }
+      ],
+      "pngSha256": "39f5796a3e4df9923d2cbdd967e89fb7f52b782fbb5728a52c1a260410a837a8",
+      "classification": "UI_RESPONSIVE_FORMULA_HORIZONTAL_SCROLL",
+      "activityCredit": 0
+    },
+    {
+      "id": "C4-E010",
+      "variant": "ORIGINAL",
+      "width": 320,
+      "sourceVersion": 1,
+      "effectiveVersion": 1,
+      "sourcePath": "officina-di-fisica/content/C4.json",
+      "error": "AssertionError [ERR_ASSERTION]: Formula overflow",
+      "failedFormulaExtents": [
+        {
+          "observedFormulaIndex": 1,
+          "sourceFormulaText": "A=\\frac{1{,}7\\cdot10^{-8}\\cdot2{,}0}{0{,}068}=5{,}0\\cdot10^{-7}\\ \\mathrm{m^2}=0{,}50\\ \\mathrm{mm^2}",
+          "width": 294,
+          "scroll": 401,
+          "typeset": 284.40625
+        }
+      ],
+      "axeViolations": [
+        {
+          "id": "scrollable-region-focusable",
+          "targets": [
+            [
+              ".math:nth-child(3)"
+            ]
+          ]
+        }
+      ],
+      "pngSha256": "eb7da9704f9c4e19003b8c23374741545b856541238b807a84beda663935ceb1",
+      "classification": "UI_RESPONSIVE_FORMULA_HORIZONTAL_SCROLL",
+      "activityCredit": 0
+    },
+    {
+      "id": "C4-E011",
+      "variant": "ORIGINAL",
+      "width": 320,
+      "sourceVersion": 1,
+      "effectiveVersion": 1,
+      "sourcePath": "officina-di-fisica/content/C4.json",
+      "error": "AssertionError [ERR_ASSERTION]: Formula overflow",
+      "failedFormulaExtents": [
+        {
+          "observedFormulaIndex": 0,
+          "sourceFormulaText": "R_{\\rm eq}=100+200=300\\ \\Omega,\\qquad I=9{,}0/300=0{,}030\\ \\mathrm A",
+          "width": 294,
+          "scroll": 451,
+          "typeset": 284.40625
+        },
+        {
+          "observedFormulaIndex": 1,
+          "sourceFormulaText": "V_1=0{,}030\\cdot100=3{,}0\\ \\mathrm V,\\qquad V_2=0{,}030\\cdot200=6{,}0\\ \\mathrm V",
+          "width": 294,
+          "scroll": 457,
+          "typeset": 284.40625
+        }
+      ],
+      "axeViolations": [
+        {
+          "id": "scrollable-region-focusable",
+          "targets": [
+            [
+              ".math:nth-child(2)"
+            ],
+            [
+              ".math:nth-child(3)"
+            ]
+          ]
+        }
+      ],
+      "pngSha256": "b85215aef67743661877e82223ccefa0283f941808f4b2462b10d051d1627547",
+      "classification": "UI_RESPONSIVE_FORMULA_HORIZONTAL_SCROLL",
+      "activityCredit": 0
+    },
+    {
+      "id": "C4-E012",
+      "variant": "ORIGINAL",
+      "width": 320,
+      "sourceVersion": 1,
+      "effectiveVersion": 1,
+      "sourcePath": "officina-di-fisica/content/C4.json",
+      "error": "AssertionError [ERR_ASSERTION]: Formula overflow",
+      "failedFormulaExtents": [
+        {
+          "observedFormulaIndex": 0,
+          "sourceFormulaText": "I_1=12/60=0{,}200\\ \\mathrm A,\\quad I_2=12/120=0{,}100\\ \\mathrm A",
+          "width": 294,
+          "scroll": 402,
+          "typeset": 284.40625
+        },
+        {
+          "observedFormulaIndex": 1,
+          "sourceFormulaText": "I_{\\rm tot}=0{,}300\\ \\mathrm A,\\qquad R_{\\rm eq}=12/0{,}300=40\\ \\Omega",
+          "width": 294,
+          "scroll": 360,
+          "typeset": 284.40625
+        }
+      ],
+      "axeViolations": [
+        {
+          "id": "scrollable-region-focusable",
+          "targets": [
+            [
+              ".math:nth-child(2)"
+            ],
+            [
+              ".math:nth-child(3)"
+            ]
+          ]
+        }
+      ],
+      "pngSha256": "b8603d22fbf190060834b80b5328a4528e342cf99b6bb6b35cef48396e022e37",
+      "classification": "UI_RESPONSIVE_FORMULA_HORIZONTAL_SCROLL",
+      "activityCredit": 0
+    },
+    {
+      "id": "C4-E013",
+      "variant": "ORIGINAL",
+      "width": 320,
+      "sourceVersion": 1,
+      "effectiveVersion": 1,
+      "sourcePath": "officina-di-fisica/content/C4.json",
+      "error": "AssertionError [ERR_ASSERTION]: Formula overflow",
+      "failedFormulaExtents": [
+        {
+          "observedFormulaIndex": 0,
+          "sourceFormulaText": "Q=C|\\Delta V|=4{,}0\\cdot10^{-6}\\cdot5{,}0=20\\ \\mu\\mathrm C",
+          "width": 294,
+          "scroll": 320,
+          "typeset": 284.40625
+        },
+        {
+          "observedFormulaIndex": 1,
+          "sourceFormulaText": "U=\\tfrac12 C(\\Delta V)^2=\\tfrac12\\cdot4{,}0\\cdot10^{-6}\\cdot25=50\\ \\mu\\mathrm J",
+          "width": 294,
+          "scroll": 360,
+          "typeset": 284.40625
+        }
+      ],
+      "axeViolations": [
+        {
+          "id": "scrollable-region-focusable",
+          "targets": [
+            [
+              ".math:nth-child(2)"
+            ],
+            [
+              ".math:nth-child(3)"
+            ]
+          ]
+        }
+      ],
+      "pngSha256": "e4478bf21b60da1560a0211fd67ff1c60b9e2735cf552385aa54b8ed7846c74f",
+      "classification": "UI_RESPONSIVE_FORMULA_HORIZONTAL_SCROLL",
+      "activityCredit": 0
+    },
+    {
+      "id": "C4-E014",
+      "variant": "ORIGINAL",
+      "width": 320,
+      "sourceVersion": 1,
+      "effectiveVersion": 1,
+      "sourcePath": "officina-di-fisica/content/C4.json",
+      "error": "AssertionError [ERR_ASSERTION]: Formula overflow",
+      "failedFormulaExtents": [
+        {
+          "observedFormulaIndex": 0,
+          "sourceFormulaText": "Q_i=2\\cdot12=24\\ \\mu\\mathrm C,\\quad C_f=6\\ \\mu\\mathrm F,\\quad V_f=Q_i/C_f=4\\ \\mathrm V",
+          "width": 294,
+          "scroll": 469,
+          "typeset": 284.40625
+        }
+      ],
+      "axeViolations": [
+        {
+          "id": "scrollable-region-focusable",
+          "targets": [
+            [
+              ".math:nth-child(2)"
+            ]
+          ]
+        }
+      ],
+      "pngSha256": "1d9848bccde89a3df779146e1d833027055145c7080b533136d1afbc2982413b",
+      "classification": "UI_RESPONSIVE_FORMULA_HORIZONTAL_SCROLL",
+      "activityCredit": 0
+    },
+    {
+      "id": "C4-E015",
+      "variant": "ORIGINAL",
+      "width": 320,
+      "sourceVersion": 1,
+      "effectiveVersion": 1,
+      "sourcePath": "officina-di-fisica/content/C4.json",
+      "error": "AssertionError [ERR_ASSERTION]: Formula overflow",
+      "failedFormulaExtents": [
+        {
+          "observedFormulaIndex": 0,
+          "sourceFormulaText": "C_{\\rm eq}=\\frac{3\\cdot6}{3+6}=2\\ \\mu\\mathrm F,\\quad Q=C_{\\rm eq}V=24\\ \\mu\\mathrm C",
+          "width": 294,
+          "scroll": 359,
+          "typeset": 284.40625
+        },
+        {
+          "observedFormulaIndex": 1,
+          "sourceFormulaText": "V_1=Q/C_1=24/3=8\\ \\mathrm V,\\qquad V_2=24/6=4\\ \\mathrm V",
+          "width": 294,
+          "scroll": 402,
+          "typeset": 284.40625
+        }
+      ],
+      "axeViolations": [
+        {
+          "id": "scrollable-region-focusable",
+          "targets": [
+            [
+              ".math:nth-child(2)"
+            ],
+            [
+              ".math:nth-child(3)"
+            ]
+          ]
+        }
+      ],
+      "pngSha256": "a7011478b91a969ca3bde77f40d28a836413778753769462f86bdc3fec055675",
+      "classification": "UI_RESPONSIVE_FORMULA_HORIZONTAL_SCROLL",
+      "activityCredit": 0
+    },
+    {
+      "id": "C4-E016",
+      "variant": "ORIGINAL",
+      "width": 320,
+      "sourceVersion": 1,
+      "effectiveVersion": 1,
+      "sourcePath": "officina-di-fisica/content/C4.json",
+      "error": "AssertionError [ERR_ASSERTION]: Formula overflow",
+      "failedFormulaExtents": [
+        {
+          "observedFormulaIndex": 1,
+          "sourceFormulaText": "U_i=\\tfrac12\\cdot2\\cdot9^2=81\\ \\mu\\mathrm J,\\qquad U_f=\\tfrac12\\cdot6\\cdot3^2=27\\ \\mu\\mathrm J",
+          "width": 294,
+          "scroll": 421,
+          "typeset": 284.40625
+        }
+      ],
+      "axeViolations": [
+        {
+          "id": "scrollable-region-focusable",
+          "targets": [
+            [
+              ".math:nth-child(3)"
+            ]
+          ]
+        }
+      ],
+      "pngSha256": "0cb42e6a2ad91aabced6b73e3a2f2f964d2e44b31b324f39b6faf38c7e5a54cc",
+      "classification": "UI_RESPONSIVE_FORMULA_HORIZONTAL_SCROLL",
+      "activityCredit": 0
+    },
+    {
+      "id": "C4-E018",
+      "variant": "ORIGINAL",
+      "width": 320,
+      "sourceVersion": 1,
+      "effectiveVersion": 1,
+      "sourcePath": "officina-di-fisica/content/C4.json",
+      "error": "AssertionError [ERR_ASSERTION]: Formula overflow",
+      "failedFormulaExtents": [
+        {
+          "observedFormulaIndex": 0,
+          "sourceFormulaText": "F=I\\ell B\\sin90^\\circ=2{,}0\\cdot0{,}080\\cdot0{,}25=0{,}040\\ \\mathrm N",
+          "width": 294,
+          "scroll": 383,
+          "typeset": 284.40625
+        }
+      ],
+      "axeViolations": [
+        {
+          "id": "scrollable-region-focusable",
+          "targets": [
+            [
+              ".math"
+            ]
+          ]
+        }
+      ],
+      "pngSha256": "d8c2186a1ce8ecafcace9342b3b46f9c4ea2d06b705456b299da4897c80bce42",
+      "classification": "UI_RESPONSIVE_FORMULA_HORIZONTAL_SCROLL",
+      "activityCredit": 0
+    },
+    {
+      "id": "C4-E021",
+      "variant": "ORIGINAL",
+      "width": 320,
+      "sourceVersion": 1,
+      "effectiveVersion": 1,
+      "sourcePath": "officina-di-fisica/content/esempi-di-copertura.json",
+      "error": "AssertionError [ERR_ASSERTION]: Formula overflow",
+      "failedFormulaExtents": [
+        {
+          "observedFormulaIndex": 0,
+          "sourceFormulaText": "|\\vec B|=\\sqrt{(20\\ \\mu\\mathrm T)^2+(15\\ \\mu\\mathrm T)^2}=25\\ \\mu\\mathrm T",
+          "width": 294,
+          "scroll": 321,
+          "typeset": 284.40625
+        },
+        {
+          "observedFormulaIndex": 1,
+          "sourceFormulaText": "\\tan\\alpha=15/20=0{,}75\\quad\\Longrightarrow\\quad\\alpha\\simeq36{,}9^\\circ",
+          "width": 294,
+          "scroll": 345,
+          "typeset": 284.40625
+        }
+      ],
+      "axeViolations": [
+        {
+          "id": "scrollable-region-focusable",
+          "targets": [
+            [
+              ".math:nth-child(3)"
+            ],
+            [
+              ".math:nth-child(4)"
+            ]
+          ]
+        }
+      ],
+      "pngSha256": "ce4dfbc63b0cc40e48fe4803bd14af11b7c0f866fdd23ab33035f29db63c9745",
+      "classification": "UI_RESPONSIVE_FORMULA_HORIZONTAL_SCROLL",
+      "activityCredit": 0
+    }
+  ],
+  "scope": "Actual horizontal scroll/accessibility only; not physical error or historical1a replay",
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}
