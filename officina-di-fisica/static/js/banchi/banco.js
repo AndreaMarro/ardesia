@@ -226,6 +226,13 @@ export async function benchPage(id, origin, topicIndex) {
     if (!pilot || stage < 0) return stage;
     return reasoning()?.[4] ?? (stage === 0 ? 1 : 2);
   }
+  function renderGuide(explanation) {
+    const [title, text, equation] =
+      explanation || (pilot ? guidaPilota(pilot, stage) : model.steps(p, s)[stage]);
+    get('[data-step-title]').textContent = title;
+    get('[data-explain]').textContent = text;
+    get('[data-equation]').textContent = equation;
+  }
   let lastReadings = '';
   function frame(textToo = true) {
     if (view === 'diagram') {
@@ -243,6 +250,7 @@ export async function benchPage(id, origin, topicIndex) {
     } else gpu?.frame(t);
     if (stage < 0 || !textToo) return;
     const explanation = reasoning();
+    if (explanation || timeline) renderGuide(explanation);
     const html = letture(
       model.readings(p, s, t).map(([label, v, unit]) => [label, typeof v === 'number' ? n(v) : v, unit]),
       explanation?.[3],
@@ -252,7 +260,6 @@ export async function benchPage(id, origin, topicIndex) {
       lastReadings = html;
     }
     if (explanation) {
-      get('[data-equation]').textContent = explanation[2];
       get('[data-math-art]').innerHTML = disegnoPasso(pilot, mathStep, p, s, t, instant(), explanation[0], model);
     }
     if (isTimed()) {
@@ -270,7 +277,6 @@ export async function benchPage(id, origin, topicIndex) {
       row.querySelector('output').textContent = n(s.x) + ' ' + timeUnit;
       moveCursor(graphBox, s.x, 'control', s.y);
       moveCursor(graphBox, s.x, 'area-v');
-      get('[data-equation]').textContent = model.steps(p, s)[stage][2];
       if (pair && !pairNode.hidden) pair.render(s.x);
     } else if (clock?.signal) moveCursor(graphBox, t, 'time', clock.signal(s.x, t, s.y));
     if (['volo', 'onde'].includes(pilot)) moveCursor(graphBox, t);
@@ -455,12 +461,8 @@ export async function benchPage(id, origin, topicIndex) {
       const explanation = reasoning();
       get('[data-reference]').hidden = !pilot || stage < 2;
       references();
-      const [title, text, equation] =
-        explanation || (pilot ? guidaPilota(pilot, stage) : model.steps(p, s)[stage]);
       get('[data-count]').textContent = momenti[stage + 1] + ' · ' + (stage + 2) + '/5';
-      get('[data-step-title]').textContent = title;
-      get('[data-explain]').textContent = text;
-      get('[data-equation]').textContent = equation;
+      renderGuide(explanation);
       get('.math-walk').hidden = !explanation;
       if (explanation) {
         const total = ragionamento(pilot, p, s, t, instant()).length;
