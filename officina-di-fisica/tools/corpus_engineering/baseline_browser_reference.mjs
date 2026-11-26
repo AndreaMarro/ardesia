@@ -1,12 +1,14 @@
 // Technical regression parity only. The independent scientific review is separate.
 import assert from 'node:assert/strict';
-import {createHash} from 'node:crypto';
+import {createHash,randomUUID} from 'node:crypto';
 import {createRequire} from 'node:module';
 import {pathToFileURL} from 'node:url';
 import fs from 'node:fs/promises';
 import path from 'node:path';
 
-export const REFERENCE_KIND='IMMUTABLE_BASELINE_SAME_BROWSER_SAME_INPUT_V1';
+export const REFERENCE_KIND='IMMUTABLE_BASELINE_ISOLATED_BROWSER_CONTEXT_V2';
+const REFERENCE_ORIGIN='https://cric-baseline.invalid';
+const ISOLATION='DISTINCT_CONTEXT_AND_ORIGIN';
 const BASELINE='eb51d0e9bdc3f992e9ae0ae76810098376e2ab79';
 const sha=b=>createHash('sha256').update(b).digest('hex');
 const canonical=v=>JSON.stringify(Object.fromEntries(Object.entries(v).sort(([a],[b])=>a<b?-1:a>b?1:0)));
@@ -15,8 +17,10 @@ const entries=['js/banchi/voci/esperimento.js','js/banchi/quaderno.js','js/banch
 export function assertStrictBaselineParity(measured){
  const b=measured.baselineReference;
  assert.equal(b?.kind,REFERENCE_KIND,'Missing same-browser baseline reference');
- assert.equal(b.distinctModuleIdentity,true,'Baseline reused candidate module cache');
- assert.equal(b.distinctSolveIdentity,true,'Baseline reused candidate solve function');
+ assert.equal(b.isolation,ISOLATION,'Baseline lacks a distinct browser context and origin');
+ assert.match(b.realmId,/^[a-f0-9-]{36}$/,'Baseline realm identity missing');
+ assert.equal(b.pilot,measured.pilot,'Baseline pilot identity differs');
+ assert.equal(b.clockTime,measured.sourceReplayedClockTime,'Baseline clock input differs');
  assert.ok(Number.isFinite(measured.sourceReplayedX)&&Number.isFinite(b.observedX),'Nonfinite baseline input');
  assert.equal(b.observedX,measured.sourceReplayedX,'Baseline evaluated a different input');
  assert.deepEqual(b.actualDOMControls,measured.actualDOMControls,'Baseline input controls differ');
@@ -103,4 +107,67 @@ export async function loadBaselineReference(plan){
     dependencyClosure:Object.fromEntries([...dependencies].sort()),servedFiles:Object.fromEntries([...served].sort()),
     allManifestBytesCheckedBeforeAndAfter:true,scientificAuthority:ref.scientificAuthority,activityCredit:0};
   }};
+}
+
+// Route the pinned reference in a clean context. The candidate context never
+// serves reference modules and cannot share its JavaScript intrinsics.
+export async function createBaselineRealm(browser, reference){
+ const context=await browser.newContext({serviceWorkers:'block'});
+ const realmId=randomUUID();
+ const documentURL=REFERENCE_ORIGIN+reference.namespace+'realm.html';
+ try{
+  await context.route('**/*',async route=>{
+   const request=route.request();
+   const url=new URL(request.url());
+   if(request.method()==='GET'&&url.origin===REFERENCE_ORIGIN){
+    if(request.url()===documentURL&&request.isNavigationRequest()){
+     await route.fulfill({status:200,contentType:'text/html',
+      headers:{'Content-Security-Policy':"default-src 'none'; script-src 'self'"},
+      body:'<!doctype html><meta charset="utf-8"><title>Cric immutable baseline</title>'});
+     return;
+    }
+    if(request.resourceType()==='script'&&await reference.route(route))return;
+   }
+   await route.abort();
+  });
+  const page=await context.newPage();
+  await page.goto(documentURL);
+  assert.equal(page.url(),documentURL);
+  assert.deepEqual(await context.cookies(),[],'Reference context has cookies');
+  const isolation={isolation:ISOLATION,realmId,documentURL,serviceWorkers:'block'};
+  return {
+   async solve(candidatePage, row, controls, requestedTime){
+    assert.notEqual(candidatePage.context(),context,'Candidate page shares the baseline context');
+    assert.equal(candidatePage.context().browser(),browser,'Baseline must use the same browser');
+    assert.notEqual(new URL(candidatePage.url()).origin,REFERENCE_ORIGIN,'Candidate page shares the baseline origin');
+    const result=await page.evaluate(async ({row,controls,requestedTime,namespace,documentURL})=>{
+     if(location.href!==documentURL||document.scripts.length!==0)throw Error('Unexpected baseline document');
+     if(row.engine)throw Error('External engine has no pinned baseline contract');
+     const xControl=controls.find(c=>c.name==='x');
+     if(!xControl)throw Error('Observed x control missing');
+     const x=Number(xControl.value);
+     const {esperienza}=await import(namespace+'js/banchi/voci/esperimento.js');
+     const original=await esperienza(row);
+     const {piloti}=await import(namespace+'js/banchi/quaderno.js');
+     const pilot=piloti[row.id]??null;
+     if(pilot==='induzione'){
+      const {solve}=await import(namespace+'js/banchi/modelli/induzione.js');
+      const inputs=Object.fromEntries(controls.map(c=>[c.name,c.name==='circuit'?c.value:Number(c.value)]));
+      return {pilot,observedX:x,clockTime:requestedTime??0,model:solve(inputs),actualDOMControls:controls};
+     }
+     const clockTime=original.clock?(original.clock.input?x:requestedTime??0):null;
+     return {pilot,observedX:x,clockTime,model:original.model.solve({x}),actualDOMControls:controls};
+    },{row,controls,requestedTime,namespace:reference.namespace,documentURL});
+    return {kind:reference.kind,namespace:reference.namespace,...isolation,...result};
+   },
+   async evidence(){
+    assert.equal(page.url(),documentURL);
+    assert.deepEqual(await context.cookies(),[],'Reference context acquired cookies');
+    return {...await reference.evidence(),...isolation};
+   }
+  };
+ }catch(error){
+  await context.close();
+  throw error;
+ }
 }

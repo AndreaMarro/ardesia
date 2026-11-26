@@ -1,0 +1,1 @@
+The first independent namespace fixture used the macOS /var temporary alias instead of its canonical /private/var path. The guard correctly rejected that alias before running closure probes. Only the fixture root is canonicalized, matching the real prepare() path resolution; no Root guard is relaxed and no namespace result is credited from this failed run.

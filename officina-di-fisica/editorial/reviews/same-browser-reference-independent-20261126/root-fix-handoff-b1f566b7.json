@@ -1,0 +1,20 @@
+{
+  "scope": "Root response to independently reproduced optional-interaction bypass; no scientific credit",
+  "findingSourceCommit": "c65a1d2033a7d85a89c2f22ec57457f744dfc795",
+  "originalProposalCommit": "e7aeae2b2ef88eecfcda2a3bcb34301ff61a82dd",
+  "rootActualBefore": "3tests:2pass/1fail .080s; wrong model passed when interaction omitted",
+  "rootActualAfter": "Same independent3 test file byte-identical;3PASS .215s",
+  "repair": "Derive setup/grid/clock/aux state from complete prepared plan; require matching typed interaction, planned observed x/clock/aux controls and strict parity for every non-setup state. A missing optional case field cannot select the validation path.",
+  "existingNumericalTolerance": "NONE_ADDED; only already existing8epsilon control-representation allowance reused; model equality exact",
+  "newActualUI": {
+    "cases": 7,
+    "observedExitCode": 0,
+    "preparedSha256": "0e5f89286ec66c68cd24d7f37b3a3a215ca70566cf019eaa9e501c0efb04b02e",
+    "requestSha256": "a002e319dc157f26e6c7ab490a8664c666439b0893712ef89a61768d5ee825e6"
+  },
+  "independentFinalReview": "PENDING_B_NEW_SHA",
+  "activeFull139RequestChanged": false,
+  "scientificCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}

@@ -1,0 +1,20 @@
+node:internal/modules/run_main:122
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Baseline root is a symlink
++ actual - expected
+
++ '/private/var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/cric-baseline-realm-test-jHmolY'
+- '/var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/cric-baseline-realm-test-jHmolY'
+
+    at loadBaselineReference (file:///private/tmp/cric-resident-integrator/officina-di-fisica/tools/corpus_engineering/baseline_browser_reference.mjs:44:9)
+    at async file:///private/tmp/cric-resident-integrator/officina-di-fisica/tests/corpus/isolated-baseline-browser.mjs:45:18 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: '/private/var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/cric-baseline-realm-test-jHmolY',
+  expected: '/var/folders/24/d59fxv957sjfd8_prn977gb00000gn/T/cric-baseline-realm-test-jHmolY',
+  operator: 'strictEqual'
+}
+
+Node.js v22.14.0

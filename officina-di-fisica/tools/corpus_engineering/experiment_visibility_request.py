@@ -11,6 +11,7 @@ import hashlib
 import json
 import math
 import os
+import re
 import signal
 import shutil
 import subprocess
@@ -31,7 +32,9 @@ PROTOCOLS={'.github/workflows/cric-experiment-visibility.yml',
            'officina-di-fisica/tools/corpus_engineering/experiment_visibility_request.py',
            'officina-di-fisica/tools/corpus_engineering/experiment_visibility_ui.mjs'}
 BASELINE_HELPER='officina-di-fisica/tools/corpus_engineering/baseline_browser_reference.mjs'
-REFERENCE_KIND='IMMUTABLE_BASELINE_SAME_BROWSER_SAME_INPUT_V1'
+HISTORICAL_REFERENCE_KIND='IMMUTABLE_BASELINE_SAME_BROWSER_SAME_INPUT_V1'
+REFERENCE_KIND='IMMUTABLE_BASELINE_ISOLATED_BROWSER_CONTEXT_V2'
+REFERENCE_ORIGIN='https://cric-baseline.invalid'
 
 
 def sha(raw):return hashlib.sha256(raw).hexdigest()
@@ -347,9 +350,17 @@ def verify_report(out,prepared,protocol_sha):
     if reference:
         evidence=report.get('baselineReference',{})
         namespace='/__cric_baseline/'+BASELINE+'/'+reference['manifestSha256']+'/'
-        expected={'kind':REFERENCE_KIND,'baselineRuntimeRef':BASELINE,'manifestSha256':reference['manifestSha256'],'namespace':namespace,
+        kind=reference['kind']
+        if kind not in(REFERENCE_KIND,HISTORICAL_REFERENCE_KIND):raise ValueError('Unknown numerical reference kind')
+        expected={'kind':kind,'baselineRuntimeRef':BASELINE,'manifestSha256':reference['manifestSha256'],'namespace':namespace,
                   'allManifestBytesCheckedBeforeAndAfter':True,'scientificAuthority':'NONE_TECHNICAL_REGRESSION_PARITY_ONLY','activityCredit':0}
         if any(evidence.get(k)!=v for k,v in expected.items()):raise ValueError('Baseline report provenance differs')
+        if kind==REFERENCE_KIND:
+            realm_id=evidence.get('realmId')
+            isolation={'isolation':'DISTINCT_CONTEXT_AND_ORIGIN','documentURL':REFERENCE_ORIGIN+namespace+'realm.html','serviceWorkers':'block'}
+            if not isinstance(realm_id,str)or not re.fullmatch(r'[a-f0-9]{8}(-[a-f0-9]{4}){3}-[a-f0-9]{12}',realm_id):raise ValueError('Missing distinct baseline realm identity')
+            if any(evidence.get(k)!=v for k,v in isolation.items()):raise ValueError('Baseline report lacks context isolation')
+            isolation['realmId']=realm_id
         served=evidence.get('servedFiles',{})
         required={'js/banchi/voci/esperimento.js','js/banchi/quaderno.js'}
         if not required<=set(served)or any(reference['files'].get('officina-di-fisica/static/'+p)!=pin for p,pin in served.items()):raise ValueError('Baseline served module identity differs')
@@ -367,7 +378,13 @@ def verify_report(out,prepared,protocol_sha):
             row,state=planned[item['caseKey']];verify_planned_interaction(case,row,state)
         if reference and state is not None:
             b=case.get('baselineReference',{})
-            if(b.get('kind')!=REFERENCE_KIND or b.get('namespace')!=namespace or b.get('distinctModuleIdentity')is not True or b.get('distinctSolveIdentity')is not True
+            if kind==REFERENCE_KIND:
+                if any(b.get(k)!=v for k,v in isolation.items()):raise ValueError('Case baseline realm differs from report')
+                if 'pilot'not in b or b['pilot']!=case.get('pilot')or 'clockTime'not in b or b['clockTime']!=case.get('sourceReplayedClockTime'):
+                    raise ValueError('Case baseline pilot or clock input differs')
+            elif b.get('distinctModuleIdentity')is not True or b.get('distinctSolveIdentity')is not True:
+                raise ValueError('Historical baseline module identity differs')
+            if(b.get('kind')!=kind or b.get('namespace')!=namespace
                or b.get('observedX')!=case.get('sourceReplayedX')or b.get('actualDOMControls')!=case.get('actualDOMControls')
                or canonical(b.get('model'))!=canonical(case.get('model'))):raise ValueError('Strict baseline case parity differs')
             values=[case.get('model',{}).get('y'),b.get('model',{}).get('y'),case.get('sourceReplayedX')]
@@ -380,7 +397,7 @@ def verify_report(out,prepared,protocol_sha):
 
 
 def verify_prepared_inputs(info,prepared):
-    """Check exactly the declared four byte streams before any importer starts."""
+    """Check declared request, runtime and package bytes before importing."""
     request,request_sha=validate(prepared['requestFile'])
     if request_sha!=prepared['requestSha256']or request['candidateRef']!=prepared['sourceCommit']or request['runtimeSha256']!=prepared['runtimeFingerprint']['sha256']:
         raise ValueError('Prepared request/epoch rebound')
