@@ -126,7 +126,7 @@ Procedimento: La pendenza rispetto alla profondità è Δp/Δh=ρg. Converto 4,5
 
 Passaggi esatti: `\frac{\Delta p}{\Delta h}=\rho g\qquad \rho=\frac{\Delta p}{g\Delta h}\qquad \rho=\frac{4500}{5}\,\mathrm{kg/m^3}\qquad \rho=900\,\mathrm{kg/m^3}`.
 
-Distrattori: 9000 omette la divisione per g; 450 omette quella per il dislivello di 0,50 m. 0,9 usa il numero della pressione in kPa come se fosse in Pa. 2250 moltiplica per l’altezza invece di dividerla e non ricostruisce 4,5 kPa.
+Distrattori: 9000 omette la divisione per g; 450 omette quella per il dislivello di 0,50 m. 0,9 usa il numero della pressione in kPa come se fosse in Pa. 2250 kg/m³ darebbe un incremento di 11250 Pa, non 4500 Pa.
 
 Aiuto: Dalla pendenza ρg ricava ρ dividendo ancora per g.
 

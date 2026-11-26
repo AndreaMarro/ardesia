@@ -46,7 +46,7 @@ TASKS=[
 ('Densità dalla pendenza','In un liquido omogeneo fermo la pressione cresce di 4,5 kPa quando la profondità aumenta di 0,50 m. Usa g=10 m/s². Qual è la densità?',900,
  'La pendenza rispetto alla profondità è Δp/Δh=ρg. Converto 4,5 kPa in 4500 Pa e divido per gΔh=10·0,50=5 m²/s². Ottengo 4500/5=900 kg/m³. Una pressione superficiale costante cambia l’intercetta del grafico, non la pendenza.',
  r'\frac{\Delta p}{\Delta h}=\rho g\qquad \rho=\frac{\Delta p}{g\Delta h}\qquad \rho=\frac{4500}{5}\,\mathrm{kg/m^3}\qquad \rho=900\,\mathrm{kg/m^3}',
- '9000 omette la divisione per g; 450 omette quella per il dislivello di 0,50 m. 0,9 usa il numero della pressione in kPa come se fosse in Pa. 2250 moltiplica per l’altezza invece di dividerla e non ricostruisce 4,5 kPa.',
+ '9000 omette la divisione per g; 450 omette quella per il dislivello di 0,50 m. 0,9 usa il numero della pressione in kPa come se fosse in Pa. 2250 kg/m³ darebbe un incremento di 11250 Pa, non 4500 Pa.',
  'Dalla pendenza ρg ricava ρ dividendo ancora per g.'),
 ('Gas sopra il mercurio','In un barometro si mantiene la stessa pressione atmosferica e lo stesso mercurio. Sopra la colonna resta un gas a pressione p_g>0, minore di quella atmosferica. Rispetto al caso con pressione superiore trascurabile, che cosa accade all’altezza?',['Diminuisce, perché la colonna equilibra soltanto p_atm−p_g','Aumenta, perché si sommano p_atm e p_g','Resta identica qualunque sia p_g','Diventa necessariamente negativa','Raddoppia indipendentemente dal valore di p_g'],
  'L’equilibrio dà p_atm=p_g+ρgh. Isolando l’altezza ottengo h=(p_atm−p_g)/(ρg). Rispetto alla quota h₀=p_atm/(ρg), la presenza di gas la riduce di p_g/(ρg). Il dominio 0<p_g<p_atm mantiene una colonna di altezza positiva.',
