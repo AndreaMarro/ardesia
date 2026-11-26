@@ -1,0 +1,13 @@
+# Il cartiglio E ×10 copre le frecce — negativo indipendente b2
+
+Sorgente immutabile 16dc, fingerprint effettivo `b2abff8e44eab69812c8c2a03c9876fdf49ae3dab2285f323303bcd3c1689e46` prima/dopo. Revisore AI separato dall’autore. Sono stati eseguiti realmente 24 casi: `SIM-C4-L02-01`, x=1/4/8 cm, 320/1280 px, native orbit/side/top e fallback. Esito terminale del replay 0; non è accettazione dell’attività.
+
+La legge numerica `E=90/x²` è preservata. Il primo vettore mantiene il guadagno 1/65 e la seconda rappresentazione il guadagno dieci volte maggiore. Nessun clamp o zero artificiale osservato: a x=8 il primo delta è circa 0.0216346 world e il secondo 0.216346. La traslazione davanti alla sonda libera il glifo dal corpo opaco.
+
+Nella vista TOP il nuovo cartiglio opaco «E ×10» maschera punte dei vettori: a 320, x=4 e x=8, entrambe; a 1280, x=4 l’originale e x=8 entrambe. Sono sette punte in quattro stati, non sette stati distinti. Letti realmente i quattro PNG TOP negativi, più i controlli orbit/side 320 a x=8; tutti i 24 screenshot e strumenti sono conservati con hash. I rettangoli sono misurati dalla fonte effettiva del renderer e dai viewport osservati, non letti dalla camera GPU privata. I PNG confermano l’area coperta dal fondo del cartiglio, con `depthTest=false`, `renderOrder=6`.
+
+È distinta la legittima sovrapposizione da proiezione: i vettori separati soltanto in Y hanno lo stesso piano XZ nella vista TOP. Questa da sola non prova un errore; la maschera opaca aggiunta è invece osservata. Se la sovrapposizione rimane dopo la correzione, occorrono associazione esplicita e vista alternativa: non si devono dichiarare due vettori distintamente visibili dall’alto.
+
+La provenienza completa del runtime, gli archivi della fonte e i quattro input delle nove edizioni DRAFT sono collegati dai manifest immutabili nella ricevuta dei parametri. I nove import e l’isolamento guest sono setup tecnico, non nove prove UI dei DRAFT. Il launcher originario non registrava gli env separatamente: l’invocazione esplicita del tool è conservata in `invocation-parameters.json` e tutti i 24 casi confermano ID/valori/profili. Il protocollo effettivamente eseguito è archiviato verbatim.
+
+Giudizio: **FAIL consumer visivo per maschera sulle punte**, non difetto della legge, del rapporto ×10 o del valore numerico. Nessuna affermazione di copertura dell’intero cono. Le future epoche e7 o successive non sono accreditate da queste prove b2. Quattro test mirati verificano copertura reale, leggi/guadagni, sette maschere e hash delle immagini. Zero credito attività, nessuna approvazione umana, nessuna pubblicazione; resto del gruppo 17 e macro 139 ancora aperti.
