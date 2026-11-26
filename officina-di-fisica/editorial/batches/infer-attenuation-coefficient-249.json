@@ -1,0 +1,1214 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u7-infer-attenuation-coefficient-01",
+      "kind": "question",
+      "course": "C5",
+      "section": "Inferire il coefficiente da rapporti e fondi",
+      "order": 24901,
+      "title": "Quattro dimezzamenti in un centimetro",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "infer-attenuation-coefficient",
+      "difficulty": 1,
+      "prompt": "Ogni prova usa un fascio monocromatico di intensità incidente I₀=64 mW/m² e uno strato omogeneo di spessore d>0. Il rivelatore seleziona il fascio diretto, senza riflessione o sorgenti secondarie raccolte. Il coefficiente μ è costante nella singola lastra, ma può cambiare fra prove. Definiamo a=μ/(ln 2), con unità cm⁻¹, α=a/(1 cm⁻¹) e x=d/(1 cm). Si ha I/I₀=2^(−αx), con 0<I<I₀. Con I=4 mW/m² e d=1 cm, quanto vale a in cm⁻¹?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "cm⁻¹",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il rapporto fra intensità iniziale e finale vale 64/4=16=2⁴. L’esponente αx è quindi quattro. Essendo x=1, α=4 e a=4 cm⁻¹. Il coefficiente fisico μ è a ln 2; non si deve identificare a con μ né valutare ln 2 in forma decimale."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/aaa91a8c673eda3ca83608a4d86c57f87d96434b460a0578c86c586369185098",
+          "text": "Il primo pannello scompone il centimetro della prova iniziale in quattro tratti uguali: le intensità 64, 32, 16, 8 e 4 mW/m² mostrano quattro dimezzamenti. Le barre hanno origine e scala comuni."
+        },
+        {
+          "type": "formula",
+          "text": "I_0/I=16"
+        },
+        {
+          "type": "formula",
+          "text": " 16=2^4"
+        },
+        {
+          "type": "formula",
+          "text": " \\alpha x=4"
+        },
+        {
+          "type": "formula",
+          "text": " a=4\\,\\mathrm{cm^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " \\mu=(4\\ln2)\\,\\mathrm{cm^{-1}}"
+        },
+        {
+          "type": "text",
+          "text": "Sedici copia il rapporto delle intensità senza ricavarne l’esponente. Due conterebbe due dimezzamenti, che darebbero I=16 mW/m²; otto predirebbe I=1/4 mW/m²."
+        }
+      ],
+      "hints": [
+        "Trova l’esponente della potenza di due prima di dividere per lo spessore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sedici copia il rapporto delle intensità senza ricavarne l’esponente. Due conterebbe due dimezzamenti, che darebbero I=16 mW/m²; otto predirebbe I=1/4 mW/m².",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Logaritmi esatti come potenze di due",
+        "Coefficiente fisico distinto dal guadagno del display",
+        "Fondo additivo e differenze su spessori equidistanti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-infer-attenuation-coefficient-02",
+      "kind": "question",
+      "course": "C5",
+      "section": "Inferire il coefficiente da rapporti e fondi",
+      "order": 24902,
+      "title": "Dividere per ln 2 non cambia la dimensione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "infer-attenuation-coefficient",
+      "difficulty": 1,
+      "prompt": "Quale unità è adatta ad a=μ/(ln 2), se μ è un coefficiente lineare di attenuazione?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "cm⁻¹",
+          "cm",
+          "1, adimensionale",
+          "W/m²",
+          "J"
+        ],
+        "value": "cm⁻¹"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "ln 2 è un numero puro. Il rapporto conserva quindi la dimensione inversa di una lunghezza di μ. Perché a moltiplicato per d sia un esponente numerico, le unità di lunghezza devono essere coerenti."
+        },
+        {
+          "type": "formula",
+          "text": "[\\ln2]=1"
+        },
+        {
+          "type": "formula",
+          "text": " [a]=[\\mu]"
+        },
+        {
+          "type": "formula",
+          "text": " [a]=L^{-1}"
+        },
+        {
+          "type": "text",
+          "text": "Il numero normalizzato α è adimensionale, ma la grandezza a richiesta non lo è. cm misura d, W/m² l’intensità e J un’energia."
+        }
+      ],
+      "hints": [
+        "Distingui il coefficiente fisico a dal suo numero α in cm⁻¹.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "Il numero normalizzato α è adimensionale, ma la grandezza a richiesta non lo è. cm misura d, W/m² l’intensità e J un’energia.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Logaritmi esatti come potenze di due",
+        "Coefficiente fisico distinto dal guadagno del display",
+        "Fondo additivo e differenze su spessori equidistanti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-infer-attenuation-coefficient-03",
+      "kind": "question",
+      "course": "C5",
+      "section": "Inferire il coefficiente da rapporti e fondi",
+      "order": 24903,
+      "title": "L’inversa usa un rapporto di intensità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "infer-attenuation-coefficient",
+      "difficulty": 1,
+      "prompt": "Ogni prova usa un fascio monocromatico di intensità incidente I₀=64 mW/m² e uno strato omogeneo di spessore d>0. Il rivelatore seleziona il fascio diretto, senza riflessione o sorgenti secondarie raccolte. Il coefficiente μ è costante nella singola lastra, ma può cambiare fra prove. Definiamo a=μ/(ln 2), con unità cm⁻¹, α=a/(1 cm⁻¹) e x=d/(1 cm). Si ha I/I₀=2^(−αx), con 0<I<I₀. Quale formula dà il numero α del coefficiente nelle unità assegnate?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "α = log₂(I₀ / I) / x",
+          "α = log₂(I / I₀) / x",
+          "α = x log₂(I₀ / I)",
+          "α = (I₀ / I) / x",
+          "α = log₂(I₀ / I) / x²"
+        ],
+        "value": "α = log₂(I₀ / I) / x"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il logaritmo in base due del rapporto I₀/I restituisce l’esponente αx. Divido per x, positivo, e ottengo α. In forma fisica a=ln(I₀/I)/(d ln 2), con unità inversa di lunghezza. Il logaritmo agisce su un rapporto senza unità, non su una singola intensità dimensionata."
+        },
+        {
+          "type": "formula",
+          "text": "\\log_2(I_0/I)=\\alpha x"
+        },
+        {
+          "type": "formula",
+          "text": " \\alpha=\\frac{\\log_2(I_0/I)}{x}"
+        },
+        {
+          "type": "formula",
+          "text": " a=\\frac{\\ln(I_0/I)}{d\\ln2}"
+        },
+        {
+          "type": "text",
+          "text": "Invertire il rapporto dentro il logaritmo produrrebbe un coefficiente negativo. Moltiplicare per x anziché dividerlo cambia l’inversa; usare il rapporto senza logaritmo confonde base ed esponente. Il quadrato dello spessore non compare nella legge."
+        }
+      ],
+      "hints": [
+        "Isola prima l’esponente totale αx.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Invertire il rapporto dentro il logaritmo produrrebbe un coefficiente negativo. Moltiplicare per x anziché dividerlo cambia l’inversa; usare il rapporto senza logaritmo confonde base ed esponente. Il quadrato dello spessore non compare nella legge.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Logaritmi esatti come potenze di due",
+        "Coefficiente fisico distinto dal guadagno del display",
+        "Fondo additivo e differenze su spessori equidistanti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-infer-attenuation-coefficient-04",
+      "kind": "question",
+      "course": "C5",
+      "section": "Inferire il coefficiente da rapporti e fondi",
+      "order": 24904,
+      "title": "Più trasmissione implica meno attenuazione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "infer-attenuation-coefficient",
+      "difficulty": 1,
+      "prompt": "Ogni prova usa un fascio monocromatico di intensità incidente I₀=64 mW/m² e uno strato omogeneo di spessore d>0. Il rivelatore seleziona il fascio diretto, senza riflessione o sorgenti secondarie raccolte. Il coefficiente μ è costante nella singola lastra, ma può cambiare fra prove. Definiamo a=μ/(ln 2), con unità cm⁻¹, α=a/(1 cm⁻¹) e x=d/(1 cm). Si ha I/I₀=2^(−αx), con 0<I<I₀. A usa I=4 mW/m² e d=1 cm. B usa I=16 mW/m² allo stesso d. Come cambia a?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 4 cm⁻¹ a 2 cm⁻¹",
+          "Da 4 cm⁻¹ a 16 cm⁻¹",
+          "Da 4 cm⁻¹ a 1 cm⁻¹",
+          "Resta 4 cm⁻¹",
+          "Diventa negativo"
+        ],
+        "value": "Da 4 cm⁻¹ a 2 cm⁻¹"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "In A il rapporto 64/4=2⁴ richiede α=4. In B, 64/16=2² richiede α=2. Alla stessa lunghezza, la maggiore intensità sopravvissuta corrisponde al coefficiente minore. Il rapporto è un mezzo, ma non perché a sia semplicemente inverso di I: qui conta il logaritmo."
+        },
+        {
+          "type": "formula",
+          "text": "\\alpha_A=\\log_2 16"
+        },
+        {
+          "type": "formula",
+          "text": " \\alpha_A=4"
+        },
+        {
+          "type": "formula",
+          "text": " \\alpha_B=\\log_2 4"
+        },
+        {
+          "type": "formula",
+          "text": " \\alpha_B=2"
+        },
+        {
+          "type": "text",
+          "text": "Sedici rende il coefficiente direttamente proporzionale all’intensità. Uno seguirebbe una semplice proporzionalità inversa al suo aumento di quattro; quattro ignora la nuova misura. Un coefficiente negativo amplificherebbe il fascio."
+        }
+      ],
+      "hints": [
+        "Conta quanti dimezzamenti separano ciascuna misura da 64.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Sedici rende il coefficiente direttamente proporzionale all’intensità. Uno seguirebbe una semplice proporzionalità inversa al suo aumento di quattro; quattro ignora la nuova misura. Un coefficiente negativo amplificherebbe il fascio.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Logaritmi esatti come potenze di due",
+        "Coefficiente fisico distinto dal guadagno del display",
+        "Fondo additivo e differenze su spessori equidistanti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-infer-attenuation-coefficient-05",
+      "kind": "question",
+      "course": "C5",
+      "section": "Inferire il coefficiente da rapporti e fondi",
+      "order": 24905,
+      "title": "Ricostruire la misura trasmessa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "infer-attenuation-coefficient",
+      "difficulty": 2,
+      "prompt": "Ogni prova usa un fascio monocromatico di intensità incidente I₀=64 mW/m² e uno strato omogeneo di spessore d>0. Il rivelatore seleziona il fascio diretto, senza riflessione o sorgenti secondarie raccolte. Il coefficiente μ è costante nella singola lastra, ma può cambiare fra prove. Definiamo a=μ/(ln 2), con unità cm⁻¹, α=a/(1 cm⁻¹) e x=d/(1 cm). Si ha I/I₀=2^(−αx), con 0<I<I₀. Si conoscono a=4 cm⁻¹ e d=1 cm. Quanto vale I in mW/m²?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "mW/m²",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il prodotto ad dà quattro. La legge diretta contiene quindi quattro dimezzamenti dell’intensità incidente: 64 diviso sedici è 4 mW/m². L’inversione del problema non cambia la legge di propagazione."
+        },
+        {
+          "type": "formula",
+          "text": "\\alpha x=4"
+        },
+        {
+          "type": "formula",
+          "text": " I=\\frac{64}{2^4}\\,\\mathrm{mW/m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " I=4\\,\\mathrm{mW/m^2}"
+        },
+        {
+          "type": "text",
+          "text": "Sedici mW/m² corrisponderebbe ad αx=2; 1024 cambierebbe il segno dell’esponente e darebbe amplificazione. Sessantaquattro omette del tutto lo strato."
+        }
+      ],
+      "hints": [
+        "Per tornare da un coefficiente alla misura, usa l’esponenziale con segno negativo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sedici mW/m² corrisponderebbe ad αx=2; 1024 cambierebbe il segno dell’esponente e darebbe amplificazione. Sessantaquattro omette del tutto lo strato.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Logaritmi esatti come potenze di due",
+        "Coefficiente fisico distinto dal guadagno del display",
+        "Fondo additivo e differenze su spessori equidistanti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-infer-attenuation-coefficient-06",
+      "kind": "question",
+      "course": "C5",
+      "section": "Inferire il coefficiente da rapporti e fondi",
+      "order": 24906,
+      "title": "Il percorso da una perdita assegnata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "infer-attenuation-coefficient",
+      "difficulty": 2,
+      "prompt": "Ogni prova usa un fascio monocromatico di intensità incidente I₀=64 mW/m² e uno strato omogeneo di spessore d>0. Il rivelatore seleziona il fascio diretto, senza riflessione o sorgenti secondarie raccolte. Il coefficiente μ è costante nella singola lastra, ma può cambiare fra prove. Definiamo a=μ/(ln 2), con unità cm⁻¹, α=a/(1 cm⁻¹) e x=d/(1 cm). Si ha I/I₀=2^(−αx), con 0<I<I₀. Si conoscono a=4 cm⁻¹ e I=4 mW/m². Quanto vale d in cm?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "cm",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il rapporto 64/4 fornisce esponente totale quattro. Dividendo per a=4 cm⁻¹ ricavo un centimetro. La positività del logaritmo e del coefficiente rende la lunghezza strettamente positiva."
+        },
+        {
+          "type": "formula",
+          "text": "\\log_2(I_0/I)=4"
+        },
+        {
+          "type": "formula",
+          "text": " d=\\frac{4}{4\\,\\mathrm{cm^{-1}}}"
+        },
+        {
+          "type": "formula",
+          "text": " d=1\\,\\mathrm{cm}"
+        },
+        {
+          "type": "text",
+          "text": "Quattro centimetri darebbero sedici dimezzamenti e una trasmissione molto minore. Un quarto centimetro darebbe I=32 mW/m²; due darebbe I=1/4 mW/m²."
+        }
+      ],
+      "hints": [
+        "Il logaritmo misura l’attenuazione totale, il coefficiente quella per unità di lunghezza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro centimetri darebbero sedici dimezzamenti e una trasmissione molto minore. Un quarto centimetro darebbe I=32 mW/m²; due darebbe I=1/4 mW/m².",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Logaritmi esatti come potenze di due",
+        "Coefficiente fisico distinto dal guadagno del display",
+        "Fondo additivo e differenze su spessori equidistanti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-infer-attenuation-coefficient-07",
+      "kind": "question",
+      "course": "C5",
+      "section": "Inferire il coefficiente da rapporti e fondi",
+      "order": 24907,
+      "title": "La stessa perdita su un percorso doppio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "infer-attenuation-coefficient",
+      "difficulty": 2,
+      "prompt": "Ogni prova usa un fascio monocromatico di intensità incidente I₀=64 mW/m² e uno strato omogeneo di spessore d>0. Il rivelatore seleziona il fascio diretto, senza riflessione o sorgenti secondarie raccolte. Il coefficiente μ è costante nella singola lastra, ma può cambiare fra prove. Definiamo a=μ/(ln 2), con unità cm⁻¹, α=a/(1 cm⁻¹) e x=d/(1 cm). Si ha I/I₀=2^(−αx), con 0<I<I₀. A usa I=4 mW/m², d=1 cm. B ha lo stesso I ma d=2 cm. Quanto vale a_B/a_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "2",
+          "1",
+          "1/4",
+          "4"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Entrambe le prove richiedono esponente totale quattro. Per accumularlo su due centimetri basta a_B=2 cm⁻¹, contro 4 cm⁻¹ in A. Il rapporto è un mezzo. Qui cambiano i materiali o le loro condizioni fra prove; non si impone lo stesso μ."
+        },
+        {
+          "type": "formula",
+          "text": "a_A=4\\,\\mathrm{cm^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " a_B=2\\,\\mathrm{cm^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " a_B/a_A=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Due inverte il confronto e uno imporrebbe erroneamente lo stesso materiale nonostante le misure assegnate. Un quarto e quattro aggiungono un quadrato assente."
+        }
+      ],
+      "hints": [
+        "Fissa il rapporto I₀/I e varia soltanto il denominatore d.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due inverte il confronto e uno imporrebbe erroneamente lo stesso materiale nonostante le misure assegnate. Un quarto e quattro aggiungono un quadrato assente.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Logaritmi esatti come potenze di due",
+        "Coefficiente fisico distinto dal guadagno del display",
+        "Fondo additivo e differenze su spessori equidistanti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-infer-attenuation-coefficient-08",
+      "kind": "question",
+      "course": "C5",
+      "section": "Inferire il coefficiente da rapporti e fondi",
+      "order": 24908,
+      "title": "Lo scarto del coefficiente proposto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "infer-attenuation-coefficient",
+      "difficulty": 2,
+      "prompt": "Ogni prova usa un fascio monocromatico di intensità incidente I₀=64 mW/m² e uno strato omogeneo di spessore d>0. Il rivelatore seleziona il fascio diretto, senza riflessione o sorgenti secondarie raccolte. Il coefficiente μ è costante nella singola lastra, ma può cambiare fra prove. Definiamo a=μ/(ln 2), con unità cm⁻¹, α=a/(1 cm⁻¹) e x=d/(1 cm). Si ha I/I₀=2^(−αx), con 0<I<I₀. Per I=4 mW/m² e d=1 cm viene proposto a=8 cm⁻¹. Quanto vale proposta meno corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4 cm⁻¹",
+          "−4 cm⁻¹",
+          "2",
+          "8 cm⁻¹",
+          "0 cm⁻¹"
+        ],
+        "value": "4 cm⁻¹"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il coefficiente corretto è 4 cm⁻¹. Sottraendo nell’ordine dato si trova +4 cm⁻¹: la proposta sovrastima l’attenuazione per unità di lunghezza. Il fattore due fra i due coefficienti è invece adimensionale."
+        },
+        {
+          "type": "formula",
+          "text": "\\delta a=(8-4)\\,\\mathrm{cm^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " \\delta a=4\\,\\mathrm{cm^{-1}}"
+        },
+        {
+          "type": "text",
+          "text": "−4 cm⁻¹ scambia l’ordine; due è il rapporto. Otto ripete la proposta e zero non controlla che otto dimezzamenti a un centimetro darebbero I=1/4 mW/m²."
+        }
+      ],
+      "hints": [
+        "Scrivi i coefficienti nella stessa unità prima della sottrazione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−4 cm⁻¹ scambia l’ordine; due è il rapporto. Otto ripete la proposta e zero non controlla che otto dimezzamenti a un centimetro darebbero I=1/4 mW/m².",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Logaritmi esatti come potenze di due",
+        "Coefficiente fisico distinto dal guadagno del display",
+        "Fondo additivo e differenze su spessori equidistanti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-infer-attenuation-coefficient-09",
+      "kind": "question",
+      "course": "C5",
+      "section": "Inferire il coefficiente da rapporti e fondi",
+      "order": 24909,
+      "title": "Tornare all’intensità, non al logaritmo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "infer-attenuation-coefficient",
+      "difficulty": 2,
+      "prompt": "Ogni prova usa un fascio monocromatico di intensità incidente I₀=64 mW/m² e uno strato omogeneo di spessore d>0. Il rivelatore seleziona il fascio diretto, senza riflessione o sorgenti secondarie raccolte. Il coefficiente μ è costante nella singola lastra, ma può cambiare fra prove. Definiamo a=μ/(ln 2), con unità cm⁻¹, α=a/(1 cm⁻¹) e x=d/(1 cm). Si ha I/I₀=2^(−αx), con 0<I<I₀. a e d sono noti. Quale formula isola I?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "I = I₀ 2^(−ad)",
+          "I = I₀ 2^(ad)",
+          "I = I₀ / (ad)",
+          "I = I₀ − ad",
+          "I = 2^(−ad) / I₀"
+        ],
+        "value": "I = I₀ 2^(−ad)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dal numero di dimezzamenti ad ricostruisco la frazione che sopravvive, 2 elevato a meno ad, e la moltiplico per I₀. Il prodotto ad è senza unità se a e d sono coerenti; a=μ/ln 2 è una grandezza fisica, non il solo numero α."
+        },
+        {
+          "type": "formula",
+          "text": "a=\\mu/\\ln2"
+        },
+        {
+          "type": "formula",
+          "text": " \\mu d=(ad)\\ln2"
+        },
+        {
+          "type": "formula",
+          "text": " I=I_0 2^{-ad}"
+        },
+        {
+          "type": "text",
+          "text": "Il segno positivo amplifica. Dividere per ad sostituisce l’esponenziale con un reciproco; sottrarre ad da I₀ somma grandezze di dimensioni diverse. L’inverso di I₀ non ha unità di intensità."
+        }
+      ],
+      "hints": [
+        "Il logaritmo dell’inversa va rimosso elevando la base due all’esponente.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il segno positivo amplifica. Dividere per ad sostituisce l’esponenziale con un reciproco; sottrarre ad da I₀ somma grandezze di dimensioni diverse. L’inverso di I₀ non ha unità di intensità.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Logaritmi esatti come potenze di due",
+        "Coefficiente fisico distinto dal guadagno del display",
+        "Fondo additivo e differenze su spessori equidistanti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-infer-attenuation-coefficient-10",
+      "kind": "question",
+      "course": "C5",
+      "section": "Inferire il coefficiente da rapporti e fondi",
+      "order": 24910,
+      "title": "Cambiare misura e spessore",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "infer-attenuation-coefficient",
+      "difficulty": 2,
+      "prompt": "Ogni prova usa un fascio monocromatico di intensità incidente I₀=64 mW/m² e uno strato omogeneo di spessore d>0. Il rivelatore seleziona il fascio diretto, senza riflessione o sorgenti secondarie raccolte. Il coefficiente μ è costante nella singola lastra, ma può cambiare fra prove. Definiamo a=μ/(ln 2), con unità cm⁻¹, α=a/(1 cm⁻¹) e x=d/(1 cm). Si ha I/I₀=2^(−αx), con 0<I<I₀. I_B=κ₁I_A e d_B=κ₂d_A, con κ₁,κ₂>0 e 0<κ₁I_A<I₀. Poniamo L=log₂(I₀/I_A)>0. Qual è a_B/a_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "(L − log₂ κ₁) / (κ₂ L)",
+          "κ₁ / κ₂",
+          "κ₂ / κ₁",
+          "(L + log₂ κ₁) / (κ₂ L)",
+          "κ₁ κ₂"
+        ],
+        "value": "(L − log₂ κ₁) / (κ₂ L)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’intensità incidente resta la stessa. Il logaritmo nuovo è log₂[I₀/(κ₁I_A)]=L−log₂κ₁; lo spessore nuovo moltiplica il denominatore per κ₂. Dividendo i coefficienti ottengo la frazione indicata. Il vincolo I_B<I₀ rende positivo anche il numeratore."
+        },
+        {
+          "type": "formula",
+          "text": "L=\\log_2(I_0/I_A)"
+        },
+        {
+          "type": "formula",
+          "text": " L_B=L-\\log_2\\kappa_1"
+        },
+        {
+          "type": "formula",
+          "text": " a_B/a_A=\\frac{L_B}{\\kappa_2L}"
+        },
+        {
+          "type": "text",
+          "text": "κ₁/κ₂ presume una dipendenza lineare dall’intensità trasmessa che non esiste. Il segno più confonde il rapporto dentro il logaritmo, mentre scambiare i due fattori non risolve quella non linearità."
+        }
+      ],
+      "hints": [
+        "Applica la proprietà del logaritmo a un quoziente prima di formare il rapporto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "κ₁/κ₂ presume una dipendenza lineare dall’intensità trasmessa che non esiste. Il segno più confonde il rapporto dentro il logaritmo, mentre scambiare i due fattori non risolve quella non linearità.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Logaritmi esatti come potenze di due",
+        "Coefficiente fisico distinto dal guadagno del display",
+        "Fondo additivo e differenze su spessori equidistanti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-infer-attenuation-coefficient-11",
+      "kind": "question",
+      "course": "C5",
+      "section": "Inferire il coefficiente da rapporti e fondi",
+      "order": 24911,
+      "title": "Due misure inverse nello stesso riferimento",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "infer-attenuation-coefficient",
+      "difficulty": 2,
+      "prompt": "Ogni prova usa un fascio monocromatico di intensità incidente I₀=64 mW/m² e uno strato omogeneo di spessore d>0. Il rivelatore seleziona il fascio diretto, senza riflessione o sorgenti secondarie raccolte. Il coefficiente μ è costante nella singola lastra, ma può cambiare fra prove. Definiamo a=μ/(ln 2), con unità cm⁻¹, α=a/(1 cm⁻¹) e x=d/(1 cm). Si ha I/I₀=2^(−αx), con 0<I<I₀. A usa I=4 mW/m², d=1 cm. B usa I=16 mW/m², d=2 cm. Quanto vale a_B/a_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/4",
+          "4",
+          "1/2",
+          "2",
+          "1"
+        ],
+        "value": "1/4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A richiede quattro dimezzamenti in un centimetro, quindi a_A=4 cm⁻¹. B ne richiede due in due centimetri, quindi a_B=1 cm⁻¹. Il rapporto è un quarto: entrambe le modifiche riducono il coefficiente inferito."
+        },
+        {
+          "type": "formula",
+          "text": "a_A=4\\,\\mathrm{cm^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " a_B=1\\,\\mathrm{cm^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " a_B/a_A=\\frac14"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo considera solo uno dei cambiamenti; quattro inverte il rapporto. Due rende diretta la dipendenza dal percorso e uno ignora tutti i dati nuovi."
+        }
+      ],
+      "hints": [
+        "Calcola i due logaritmi esatti prima di dividere ciascuno per il proprio spessore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo considera solo uno dei cambiamenti; quattro inverte il rapporto. Due rende diretta la dipendenza dal percorso e uno ignora tutti i dati nuovi.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Logaritmi esatti come potenze di due",
+        "Coefficiente fisico distinto dal guadagno del display",
+        "Fondo additivo e differenze su spessori equidistanti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-infer-attenuation-coefficient-12",
+      "kind": "question",
+      "course": "C5",
+      "section": "Inferire il coefficiente da rapporti e fondi",
+      "order": 24912,
+      "title": "Media dei coefficienti ricostruiti",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "infer-attenuation-coefficient",
+      "difficulty": 2,
+      "prompt": "Ogni prova usa un fascio monocromatico di intensità incidente I₀=64 mW/m² e uno strato omogeneo di spessore d>0. Il rivelatore seleziona il fascio diretto, senza riflessione o sorgenti secondarie raccolte. Il coefficiente μ è costante nella singola lastra, ma può cambiare fra prove. Definiamo a=μ/(ln 2), con unità cm⁻¹, α=a/(1 cm⁻¹) e x=d/(1 cm). Si ha I/I₀=2^(−αx), con 0<I<I₀. A usa I=4 mW/m², d=1 cm. B usa I=16 mW/m², d=2 cm. Qual è la media aritmetica dei due a con uguali pesi?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "(5/2) cm⁻¹",
+          "(3/2) cm⁻¹",
+          "5 cm⁻¹",
+          "4 cm⁻¹",
+          "1 cm⁻¹"
+        ],
+        "value": "(5/2) cm⁻¹"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Ricostruisco separatamente i coefficienti 4 e 1 cm⁻¹ e solo dopo applico i pesi un mezzo. La media è 5/2 cm⁻¹. Non serve calcolare il logaritmo del rapporto fra 64 e l’intensità media 10: quello sarebbe il modello a parametri medi, non la media richiesta."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/aaa91a8c673eda3ca83608a4d86c57f87d96434b460a0578c86c586369185098",
+          "text": "Nel pannello centrale A e B sono prove distinte: a_A=4 cm⁻¹ e a_B=1 cm⁻¹, con media 5/2 cm⁻¹. Lo stesso coefficiente non viene imposto a entrambe le lastre."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline a=\\frac{4+1}{2}\\,\\mathrm{cm^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline a=\\frac52\\,\\mathrm{cm^{-1}}"
+        },
+        {
+          "type": "text",
+          "text": "Cinque somma senza dimezzare; 3/2 è la semidifferenza. Quattro e uno ripetono una sola prova. La media dei coefficienti non si identifica con un’intensità media attenuata."
+        }
+      ],
+      "hints": [
+        "Completa le due inverse prima di fare statistica sulle loro uscite.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Cinque somma senza dimezzare; 3/2 è la semidifferenza. Quattro e uno ripetono una sola prova. La media dei coefficienti non si identifica con un’intensità media attenuata.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Logaritmi esatti come potenze di due",
+        "Coefficiente fisico distinto dal guadagno del display",
+        "Fondo additivo e differenze su spessori equidistanti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-infer-attenuation-coefficient-13",
+      "kind": "question",
+      "course": "C5",
+      "section": "Inferire il coefficiente da rapporti e fondi",
+      "order": 24913,
+      "title": "Il percorso che rende a quattro volte minore",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "infer-attenuation-coefficient",
+      "difficulty": 3,
+      "prompt": "Ogni prova usa un fascio monocromatico di intensità incidente I₀=64 mW/m² e uno strato omogeneo di spessore d>0. Il rivelatore seleziona il fascio diretto, senza riflessione o sorgenti secondarie raccolte. Il coefficiente μ è costante nella singola lastra, ma può cambiare fra prove. Definiamo a=μ/(ln 2), con unità cm⁻¹, α=a/(1 cm⁻¹) e x=d/(1 cm). Si ha I/I₀=2^(−αx), con 0<I<I₀. A usa I=4 mW/m², d=1 cm. B deve avere I=16 mW/m² e a_B=a_A/4. Quanto vale d_B/d_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/2",
+          "4",
+          "1/4",
+          "1"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il coefficiente bersaglio è 1 cm⁻¹. La nuova misura richiede due dimezzamenti: d_B=2/(1 cm⁻¹)=2 cm. Rispetto al centimetro iniziale il percorso deve raddoppiare. Il rapporto target sui coefficienti non è quello sui percorsi."
+        },
+        {
+          "type": "formula",
+          "text": "a_B=1\\,\\mathrm{cm^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " \\log_2(64/16)=2"
+        },
+        {
+          "type": "formula",
+          "text": " d_B=2\\,\\mathrm{cm}"
+        },
+        {
+          "type": "formula",
+          "text": " d_B/d_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Uno darebbe a_B=2 cm⁻¹, quattro darebbe 1/2 cm⁻¹. Un quarto copia il bersaglio dell’uscita e un mezzo inverte il rapporto dei percorsi."
+        }
+      ],
+      "hints": [
+        "Trasforma il target in un coefficiente con unità prima dell’inversa geometrica.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Uno darebbe a_B=2 cm⁻¹, quattro darebbe 1/2 cm⁻¹. Un quarto copia il bersaglio dell’uscita e un mezzo inverte il rapporto dei percorsi.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Logaritmi esatti come potenze di due",
+        "Coefficiente fisico distinto dal guadagno del display",
+        "Fondo additivo e differenze su spessori equidistanti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-infer-attenuation-coefficient-14",
+      "kind": "question",
+      "course": "C5",
+      "section": "Inferire il coefficiente da rapporti e fondi",
+      "order": 24914,
+      "title": "La taratura del coefficiente è un’altra legge",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "infer-attenuation-coefficient",
+      "difficulty": 3,
+      "prompt": "Ogni prova usa un fascio monocromatico di intensità incidente I₀=64 mW/m² e uno strato omogeneo di spessore d>0. Il rivelatore seleziona il fascio diretto, senza riflessione o sorgenti secondarie raccolte. Il coefficiente μ è costante nella singola lastra, ma può cambiare fra prove. Definiamo a=μ/(ln 2), con unità cm⁻¹, α=a/(1 cm⁻¹) e x=d/(1 cm). Si ha I/I₀=2^(−αx), con 0<I<I₀. Un display continuo D=gα senza offset legge 12 per I=4 mW/m² e d=1 cm. Poi legge 3 per d=2 cm. Quanto vale la nuova I in mW/m²?",
+      "answer": {
+        "type": "numeric",
+        "value": 16,
+        "unit": "mW/m²",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il coefficiente fisico a e il guadagno del display g sono diversi. Il riferimento dà α=4, quindi g=3. La nuova lettura D=3 dà α=1. Su due centimetri l’esponente αx=2 lascia passare 64/4=16 mW/m²."
+        },
+        {
+          "type": "formula",
+          "text": "g=12/4"
+        },
+        {
+          "type": "formula",
+          "text": " g=3"
+        },
+        {
+          "type": "formula",
+          "text": " \\alpha=3/3"
+        },
+        {
+          "type": "formula",
+          "text": " \\alpha=1"
+        },
+        {
+          "type": "formula",
+          "text": " I=\\frac{64}{2^2}\\,\\mathrm{mW/m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " I=16\\,\\mathrm{mW/m^2}"
+        },
+        {
+          "type": "text",
+          "text": "Un mW/m² tratterebbe D=3 come α=3: a due centimetri darebbe sei dimezzamenti e display nove, non tre. Quattro mW/m² darebbe α=2 e D=6 alla nuova profondità."
+        }
+      ],
+      "hints": [
+        "Decodifica α prima di inserirlo nell’esponente con x.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mW/m² tratterebbe D=3 come α=3: a due centimetri darebbe sei dimezzamenti e display nove, non tre. Quattro mW/m² darebbe α=2 e D=6 alla nuova profondità.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Logaritmi esatti come potenze di due",
+        "Coefficiente fisico distinto dal guadagno del display",
+        "Fondo additivo e differenze su spessori equidistanti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-infer-attenuation-coefficient-15",
+      "kind": "question",
+      "course": "C5",
+      "section": "Inferire il coefficiente da rapporti e fondi",
+      "order": 24915,
+      "title": "Togliere il fondo del display",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "infer-attenuation-coefficient",
+      "difficulty": 3,
+      "prompt": "Ogni prova usa un fascio monocromatico di intensità incidente I₀=64 mW/m² e uno strato omogeneo di spessore d>0. Il rivelatore seleziona il fascio diretto, senza riflessione o sorgenti secondarie raccolte. Il coefficiente μ è costante nella singola lastra, ma può cambiare fra prove. Definiamo a=μ/(ln 2), con unità cm⁻¹, α=a/(1 cm⁻¹) e x=d/(1 cm). Si ha I/I₀=2^(−αx), con 0<I<I₀. La taratura è D=gα+b. A: I=4 mW/m², d=1 cm, D=9. B: I=16 mW/m², d=2 cm, D=3. C: d=1 cm, D=5. Quanto vale I_C in mW/m²?",
+      "answer": {
+        "type": "numeric",
+        "value": 16,
+        "unit": "mW/m²",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti danno α_A=4 e α_B=1. Dalle differenze g=(9−3)/(4−1)=2 e poi b=1. La nuova lettura cinque indica α_C=2. Sul centimetro di C si hanno due dimezzamenti e I_C=16 mW/m²."
+        },
+        {
+          "type": "formula",
+          "text": "g=\\frac{9-3}{4-1}"
+        },
+        {
+          "type": "formula",
+          "text": " g=2"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " \\alpha_C=\\frac{5-1}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\alpha_C=2"
+        },
+        {
+          "type": "formula",
+          "text": " I_C=16\\,\\mathrm{mW/m^2}"
+        },
+        {
+          "type": "text",
+          "text": "Ignorare il fondo darebbe α=5/2, non due. Quattro mW/m² predirebbe D=9 e 32 mW/m² predirebbe D=3: nessuno dei due ricostruisce la lettura cinque."
+        }
+      ],
+      "hints": [
+        "Separa a=μ/ln 2 dalla taratura del suo numero α.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Ignorare il fondo darebbe α=5/2, non due. Quattro mW/m² predirebbe D=9 e 32 mW/m² predirebbe D=3: nessuno dei due ricostruisce la lettura cinque.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Logaritmi esatti come potenze di due",
+        "Coefficiente fisico distinto dal guadagno del display",
+        "Fondo additivo e differenze su spessori equidistanti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-infer-attenuation-coefficient-16",
+      "kind": "question",
+      "course": "C5",
+      "section": "Inferire il coefficiente da rapporti e fondi",
+      "order": 24916,
+      "title": "Tre spessori eliminano un fondo ignoto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "infer-attenuation-coefficient",
+      "difficulty": 3,
+      "prompt": "Caso autonomo: un rivelatore misura S(d)=A exp(−μd)+B, con ampiezza A>0 e fondo B≥0 costanti ignoti. Tutte le letture sono nella stessa unità coerente. Per d=1, 2, 3 cm si osservano S=24, 16, 12. Quanto vale a=μ/(ln 2) in cm⁻¹? Qui non è assegnata un’intensità iniziale di 64 mW/m².",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "cm⁻¹",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sottraggo letture a spessori equidistanti: il fondo B scompare. Ponendo q=exp[−μ(1 cm)], le differenze sono A q(1−q)=8 e A q²(1−q)=4. Il loro rapporto dà q=1/2, un dimezzamento per centimetro. Dunque a=1 cm⁻¹. Come controllo, A=32 e B=8 riproducono tutte e tre le letture."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/aaa91a8c673eda3ca83608a4d86c57f87d96434b460a0578c86c586369185098",
+          "text": "L’ultimo pannello è il caso autonomo S(d)=A exp(−μd)+B: il fondo grigio comune vale 8 nella stessa unità del segnale, mentre le letture totali sono 24, 16 e 12. Non si usa qui I₀=64 mW/m²."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta_1=24-16"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta_1=8"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta_2=16-12"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta_2=4"
+        },
+        {
+          "type": "formula",
+          "text": " q=\\Delta_2/\\Delta_1"
+        },
+        {
+          "type": "formula",
+          "text": " q=\\frac12"
+        },
+        {
+          "type": "formula",
+          "text": " a=1\\,\\mathrm{cm^{-1}}"
+        },
+        {
+          "type": "text",
+          "text": "Usare 16/24 o 12/16 direttamente mantiene il fondo dentro i rapporti e non ricostruisce una progressione geometrica del solo segnale attenuato. Un coefficiente due darebbe q=1/4, incompatibile con il rapporto quattro su otto. Il fondo e l’ampiezza non sono i valori fissati degli altri quesiti."
+        }
+      ],
+      "hints": [
+        "Elimina prima la quantità additiva costante mediante differenze.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Usare 16/24 o 12/16 direttamente mantiene il fondo dentro i rapporti e non ricostruisce una progressione geometrica del solo segnale attenuato. Un coefficiente due darebbe q=1/4, incompatibile con il rapporto quattro su otto. Il fondo e l’ampiezza non sono i valori fissati degli altri quesiti.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Logaritmi esatti come potenze di due",
+        "Coefficiente fisico distinto dal guadagno del display",
+        "Fondo additivo e differenze su spessori equidistanti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "aaa91a8c673eda3ca83608a4d86c57f87d96434b460a0578c86c586369185098",
+      "name": "infer-attenuation-coefficient-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTYwMCIgdmlld0JveD0iMCAwIDY0MCAxNjAwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyIgZm9udC1mYW1pbHk9InN5c3RlbS11aSwgc2Fucy1zZXJpZiI+PHRpdGxlIGlkPSJ0aXRsZSI+SW5mZXJpcmUgaWwgY29lZmZpY2llbnRlIGUgc2VwYXJhcmUgdW4gZm9uZG88L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5RdWF0dHJvIGRpbWV6emFtZW50aSwgY29lZmZpY2llbnRpIG1lZGlhdGkgZSB1biBlc3BlcmltZW50byBhdXRvbm9tbyBjb24gZm9uZG8gY29zdGFudGUuPC9kZXNjPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSI2NDAiIGhlaWdodD0iMTYwMCIgZmlsbD0iI2ZmZiIvPjx0ZXh0IHg9IjM1IiB5PSI0OCIgZm9udC1zaXplPSIyNSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5EYWwgZmFzY2lvIGFsIGNvZWZmaWNpZW50ZTwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMTAzIiBmb250LXNpemU9IjIyIiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjEgwrcgVW4gY2VudGltZXRybywgcXVhdHRybyBkaW1lenphbWVudGk8L3RleHQ+PHRleHQgeD0iMTMwIiB5PSIxNzEiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJlbmQiPjAgY208L3RleHQ+PHJlY3QgeD0iMTUwIiB5PSIxNTAiIHdpZHRoPSIzMjAiIGhlaWdodD0iMjUiIGZpbGw9IiMzZDc3OTEiLz48dGV4dCB4PSI0ODAiIHk9IjE3MSIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij42NCBtVy9twrI8L3RleHQ+PHRleHQgeD0iMTMwIiB5PSIyMzEiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJlbmQiPjEvNCBjbTwvdGV4dD48cmVjdCB4PSIxNTAiIHk9IjIxMCIgd2lkdGg9IjE2MCIgaGVpZ2h0PSIyNSIgZmlsbD0iIzNkNzc5MSIvPjx0ZXh0IHg9IjMyMCIgeT0iMjMxIiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjMyIG1XL23CsjwvdGV4dD48dGV4dCB4PSIxMzAiIHk9IjI5MSIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9ImVuZCI+MS8yIGNtPC90ZXh0PjxyZWN0IHg9IjE1MCIgeT0iMjcwIiB3aWR0aD0iODAiIGhlaWdodD0iMjUiIGZpbGw9IiMzZDc3OTEiLz48dGV4dCB4PSIyNDAiIHk9IjI5MSIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij4xNiBtVy9twrI8L3RleHQ+PHRleHQgeD0iMTMwIiB5PSIzNTEiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJlbmQiPjMvNCBjbTwvdGV4dD48cmVjdCB4PSIxNTAiIHk9IjMzMCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjI1IiBmaWxsPSIjM2Q3NzkxIi8+PHRleHQgeD0iMjAwIiB5PSIzNTEiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+OCBtVy9twrI8L3RleHQ+PHRleHQgeD0iMTMwIiB5PSI0MTEiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJlbmQiPjEgY208L3RleHQ+PHJlY3QgeD0iMTUwIiB5PSIzOTAiIHdpZHRoPSIyMCIgaGVpZ2h0PSIyNSIgZmlsbD0iIzNkNzc5MSIvPjx0ZXh0IHg9IjE4MCIgeT0iNDExIiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjQgbVcvbcKyPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSI0ODUiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+YSA9IDQgY23igbvCuSDCtyDOvCA9ICg0IGxuIDIpIGNt4oG7wrk8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjU1NSIgZm9udC1zaXplPSIyMiIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij4yIMK3IENvZWZmaWNpZW50aSBkaSBkdWUgcHJvdmUgZGlzdGludGU8L3RleHQ+PHRleHQgeD0iMTMwIiB5PSI2NDEiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJlbmQiPkE8L3RleHQ+PHJlY3QgeD0iMTUwIiB5PSI2MjAiIHdpZHRoPSIzMjAiIGhlaWdodD0iMjgiIGZpbGw9IiMzZDc3OTEiLz48dGV4dCB4PSI0ODAiIHk9IjY0MiIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij40IGNt4oG7wrk8L3RleHQ+PHRleHQgeD0iMTMwIiB5PSI3MjEiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJlbmQiPkI8L3RleHQ+PHJlY3QgeD0iMTUwIiB5PSI3MDAiIHdpZHRoPSI4MCIgaGVpZ2h0PSIyOCIgZmlsbD0iIzk4NmMzNSIvPjx0ZXh0IHg9IjI0MCIgeT0iNzIyIiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjEgY23igbvCuTwvdGV4dD48dGV4dCB4PSIxMzAiIHk9IjgwMSIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9ImVuZCI+bWVkaWE8L3RleHQ+PHJlY3QgeD0iMTUwIiB5PSI3ODAiIHdpZHRoPSIyMDAiIGhlaWdodD0iMjgiIGZpbGw9IiM2MzdlNTUiLz48dGV4dCB4PSIzNjAiIHk9IjgwMiIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij4oNS8yKSBjbeKBu8K5PC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSI4ODUiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+QTogSSA9IDQgbVcvbcKyLCBkID0gMSBjbTwvdGV4dD48dGV4dCB4PSIzNSIgeT0iOTIwIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPkI6IEkgPSAxNiBtVy9twrIsIGQgPSAyIGNtPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSI5OTAiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+MyDCtyBDYXNvIGF1dG9ub21vOiB1biBmb25kbyBhZGRpdGl2bzwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMTAzMCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5TKGQpID0gQSBleHAo4oiSzrxkKSArIEI8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjEwNzAiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+QSA9IDMyIMK3IEIgPSA4IMK3IHN0ZXNzYSB1bml0w6AgZGVsIHNlZ25hbGU8L3RleHQ+PHRleHQgeD0iMTMwIiB5PSIxMTg0IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0iZW5kIj4xIGNtPC90ZXh0PjxyZWN0IHg9IjE1MCIgeT0iMTE2MCIgd2lkdGg9IjI0MCIgaGVpZ2h0PSIzNSIgZmlsbD0iIzNkNzc5MSIvPjxyZWN0IHg9IjE1MCIgeT0iMTE2MCIgd2lkdGg9IjgwIiBoZWlnaHQ9IjM1IiBmaWxsPSIjYjhiZmM2Ii8+PHRleHQgeD0iNDAwIiB5PSIxMTg3IiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjI0PC90ZXh0Pjx0ZXh0IHg9IjEzMCIgeT0iMTI4NCIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9ImVuZCI+MiBjbTwvdGV4dD48cmVjdCB4PSIxNTAiIHk9IjEyNjAiIHdpZHRoPSIxNjAiIGhlaWdodD0iMzUiIGZpbGw9IiMzZDc3OTEiLz48cmVjdCB4PSIxNTAiIHk9IjEyNjAiIHdpZHRoPSI4MCIgaGVpZ2h0PSIzNSIgZmlsbD0iI2I4YmZjNiIvPjx0ZXh0IHg9IjMyMCIgeT0iMTI4NyIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij4xNjwvdGV4dD48dGV4dCB4PSIxMzAiIHk9IjEzODQiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJlbmQiPjMgY208L3RleHQ+PHJlY3QgeD0iMTUwIiB5PSIxMzYwIiB3aWR0aD0iMTIwIiBoZWlnaHQ9IjM1IiBmaWxsPSIjM2Q3NzkxIi8+PHJlY3QgeD0iMTUwIiB5PSIxMzYwIiB3aWR0aD0iODAiIGhlaWdodD0iMzUiIGZpbGw9IiNiOGJmYzYiLz48dGV4dCB4PSIyODAiIHk9IjEzODciIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+MTI8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjE0NjAiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+RGlmZmVyZW56ZTogMjQg4oiSIDE2ID0gODsgMTYg4oiSIDEyID0gNDwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMTUwMCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5SYXBwb3J0byBkZWxsZSBkaWZmZXJlbnplOiA0LzggPSAxLzI8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjE1NDAiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+SWwgZ3JpZ2lvIGluZGljYSBpbCBmb25kbyBjb211bmUgQiA9IDguPC90ZXh0Pjwvc3ZnPgo="
+    }
+  ]
+}

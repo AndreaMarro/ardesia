@@ -1,0 +1,545 @@
+{
+  "schemaVersion": "1.0.0",
+  "lessonReference": {
+    "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "gitPath": "officina-di-fisica/content/C5.json",
+    "sourceSha256": "dac4490e6a900f5da191bf7a1f5b8463ddc57c8bbaa36cb7a4a375c70fa77422",
+    "primarySkill": "C5-L07",
+    "actualLessonPrerequisites": {
+      "C5-L06": [
+        "C5-L02",
+        "C5-L04"
+      ],
+      "C5-L07": [
+        "C5-L06"
+      ]
+    }
+  },
+  "records": [
+    {
+      "id": "AR-u7-absorbed-radiant-power-01",
+      "sourceSha256": "f5defd5aaed6ad556ee576cc65cf3dbefdc4d28cc1815378b8fcc075f07ff59a",
+      "candidateSha256": "a398a30b013de21b4870f9cfed4c928f84e1958c68e2f8d5bc460630a8ae8172",
+      "reviewedSignature": "66f7f7304b697fb274fee7f58f1c95f6b20cb6c8afc6704a1c83a09012730d45",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "absorbed-radiant-power-progressive.svg": "c4c4b0d95da705f744e2d5a346ee81ba5085b13465b46b9c5c1e5002fa48d426"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3"
+      },
+      "manualArithmetic": "Con potenza trasmessa P_t=τP₀ e riflessione trascurabile, conservazione dell’energia dà P_ass=P₀−P_t=P₀(1−τ). Per 8 W e τ=1/2 si assorbono 4 W. È la componente assorbita della radiazione incidente, non automaticamente incremento di energia interna senza altri scambi.",
+      "physicalAssumptions": "P₀>0 e trasmittanza 0<τ<1 finite; τ non è profondità ottica. Il bilancio radiativo trascura riflessione, emissione propria e altri canali, P₀=P_trasm+P_ass. Potenza assorbita distinta da energia o incremento netto di energia interna senza altri scambi. Parametri costanti entro prova; medie e vincolo fra preparazioni. Display continuo con guadagno positivo.",
+      "distractors": "8 W ignora la trasmissione, 16 W supera l’ingresso dividendo perτ, 0 ignora l’assorbimento. τ e 1−τ coincidono solo nel caso particolare 1/2, non come leggi generali.",
+      "pedagogicalReview": "Legge motivata e unità normalizzate distinte dalle grandezze fisiche.",
+      "assetReview": "XML and full 640×1480 native read. Panel 1 uses 40 coordinates/W: 8 W length 320, two 4 W bars 160. Panel 2 at 8 W total has same 40 coordinates/W; segments 160+160 and 80+240 represent transmitted/absorbed 4+4 and 2+6 W. Panel 3 separate common 32 coordinates/W gives lengths 128, 288, 208 for absorbed 4, 9, 13/2 W. Panels explicitly distinguish scenarios; labels and shared origins clear, no overlap or physical-scale defect.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-absorbed-radiant-power-02",
+      "sourceSha256": "e1f747ffd9d6fa69705069e1dbe2053851d3bae7969b90e4a9940aebcd602093",
+      "candidateSha256": "6b238afe030143b6358eddea308f1e6fe2d7bf09a0d0b38616e484e2fbebee03",
+      "reviewedSignature": "24393bad5af88986b0e2a681366d0c6ec028490264676e957414f14ba5bc21e6",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "W",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3"
+      },
+      "manualArithmetic": "Una potenza assorbita è in watt, J/s. La trasmittanza è un rapporto di potenze adimensionale, non l’unità richiesta.",
+      "physicalAssumptions": "P₀>0 e trasmittanza 0<τ<1 finite; τ non è profondità ottica. Il bilancio radiativo trascura riflessione, emissione propria e altri canali, P₀=P_trasm+P_ass. Potenza assorbita distinta da energia o incremento netto di energia interna senza altri scambi. Parametri costanti entro prova; medie e vincolo fra preparazioni. Display continuo con guadagno positivo.",
+      "distractors": "J è energia, W/m² intensità, s tempo e 1 trasmittanza. Moltiplicare per una frazione pura conserva W.",
+      "pedagogicalReview": "Dimensione ricostruita e prefisso distinto dall’unità fisica.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-absorbed-radiant-power-03",
+      "sourceSha256": "b003612e3e5afe09ce7be1353b9582ff320dfef19c487e4344ac28feb9620540",
+      "candidateSha256": "5aabc179891479401bc37ef92f383cbea12673edb90ba1d491c75e7c043938a7",
+      "reviewedSignature": "77ccb9eab5fa227288036a39e4f6a28d0fc190e3d572b03b5e7a151f3dd3619f",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "absorbed-radiant-power-progressive.svg": "c4c4b0d95da705f744e2d5a346ee81ba5085b13465b46b9c5c1e5002fa48d426"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "P_ass = P₀(1 − τ)",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3"
+      },
+      "manualArithmetic": "P_ass=P₀(1−τ) deriva sottraendo potenza trasmessa da quella incidente nel bilancio senza riflessione. Il dominio 0<τ<1 implica 0<P_ass<P₀.",
+      "physicalAssumptions": "P₀>0 e trasmittanza 0<τ<1 finite; τ non è profondità ottica. Il bilancio radiativo trascura riflessione, emissione propria e altri canali, P₀=P_trasm+P_ass. Potenza assorbita distinta da energia o incremento netto di energia interna senza altri scambi. Parametri costanti entro prova; medie e vincolo fra preparazioni. Display continuo con guadagno positivo.",
+      "distractors": "P₀τ è trasmessa, P₀/τ eP₀(1+τ) superano l’ingresso, τ/P₀ haW⁻¹. La coincidenza aτ1/2 non rende equivalenti le leggi generali.",
+      "pedagogicalReview": "Caso autonomo o legge riconosciuta dalle ipotesi effettive.",
+      "assetReview": "XML and full 640×1480 native read. Panel 1 uses 40 coordinates/W: 8 W length 320, two 4 W bars 160. Panel 2 at 8 W total has same 40 coordinates/W; segments 160+160 and 80+240 represent transmitted/absorbed 4+4 and 2+6 W. Panel 3 separate common 32 coordinates/W gives lengths 128, 288, 208 for absorbed 4, 9, 13/2 W. Panels explicitly distinguish scenarios; labels and shared origins clear, no overlap or physical-scale defect.",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-absorbed-radiant-power-04",
+      "sourceSha256": "8bfa2f5723895efa30c53078728d40f8c1c0dc3228b5cea227bd1311e3a0474a",
+      "candidateSha256": "e75f66a433ff22a79cc3a91b721342899e9cdbbf89f434f5c9c752dcb591feb4",
+      "reviewedSignature": "39ee723de68a0143008e98f6bbc66645c1a24a968a47d1a81c25c1b574f13fdf",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Da 4 W a 6 W",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3"
+      },
+      "manualArithmetic": "A τ=1/2 fissata P_ass è lineare in P₀: da 8 a 12 W incidenti si passa da 4 a 6 W assorbiti, fattore 3/2.",
+      "physicalAssumptions": "P₀>0 e trasmittanza 0<τ<1 finite; τ non è profondità ottica. Il bilancio radiativo trascura riflessione, emissione propria e altri canali, P₀=P_trasm+P_ass. Potenza assorbita distinta da energia o incremento netto di energia interna senza altri scambi. Parametri costanti entro prova; medie e vincolo fra preparazioni. Display continuo con guadagno positivo.",
+      "distractors": "8/3 W inverte 3/2, 9 W applica(3/2)², 12 W ignora la trasmissione e 4 W il nuovo ingresso. Aτfissa la potenza assorbita è lineare inP₀.",
+      "pedagogicalReview": "Confronto controllato a un solo parametro fissato.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-absorbed-radiant-power-05",
+      "sourceSha256": "11fe29f3c86866415dccf3a8594e333d87bec24bf41e109842206ecfb42b0aa1",
+      "candidateSha256": "74a416628e699119801274cd7bdee6fb2536b45f14e95df6e4b6d370cf60ff04",
+      "reviewedSignature": "d096f5984dd6bd79b1a1ea689f183203da62e540f77cc849329ce3c227b9cbdc",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "8",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3"
+      },
+      "manualArithmetic": "P₀=P_ass/(1−τ)=4/(1/2)=8 W. Il denominatore è strettamente positivo nel dominio dato.",
+      "physicalAssumptions": "P₀>0 e trasmittanza 0<τ<1 finite; τ non è profondità ottica. Il bilancio radiativo trascura riflessione, emissione propria e altri canali, P₀=P_trasm+P_ass. Potenza assorbita distinta da energia o incremento netto di energia interna senza altri scambi. Parametri costanti entro prova; medie e vincolo fra preparazioni. Display continuo con guadagno positivo.",
+      "distractors": "2 W applica di nuovo la riduzione ed è minore dell’assorbita; 4 W ignora la trasmissione e 16 W darebbe 8 W assorbiti. Il denominatore 1−τ è positivo.",
+      "pedagogicalReview": "Prima inversa reinserita nella relazione diretta.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-absorbed-radiant-power-06",
+      "sourceSha256": "a57d000a6b01156461e73ad311f1b371336a707f8d2c94096abc056ba37f7133",
+      "candidateSha256": "9dfd6713fae2a38c04a6938c09fb1b5e573efad5ebaa6d93433cae211c94391f",
+      "reviewedSignature": "b5e427ccdff32f33404643161df490ba27e4e21b43d3e53d628249bb0e9887c8",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1/2",
+      "dimension": {},
+      "manualArithmetic": "τ=1−P_ass/P₀=1−4/8=1/2, adimensionale e fra zero e uno.",
+      "physicalAssumptions": "P₀>0 e trasmittanza 0<τ<1 finite; τ non è profondità ottica. Il bilancio radiativo trascura riflessione, emissione propria e altri canali, P₀=P_trasm+P_ass. Potenza assorbita distinta da energia o incremento netto di energia interna senza altri scambi. Parametri costanti entro prova; medie e vincolo fra preparazioni. Display continuo con guadagno positivo.",
+      "distractors": "2 viola il dominio, 0 e 1 sono confini esclusi. P_ass/P₀ da solo è frazione assorbita, non sempre trasmittanza; il complemento è indispensabile.",
+      "pedagogicalReview": "Seconda inversa con dominio e unità verificati.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-absorbed-radiant-power-07",
+      "sourceSha256": "d1e0304c7e43b696c3b83a7f1da4ed8ce11cc1349f58568147293db761fdf798",
+      "candidateSha256": "89ac16baa27b43952db9195d1b0cea17b32c3705395ba9a28df7bed6e8409b56",
+      "reviewedSignature": "c5c69f3968862e2d8ff1d1cf9a13905f48746933e03b810307557eb0474cbcb7",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "3/2",
+      "dimension": {},
+      "manualArithmetic": "A=4 W. A P₀=8 W e τ_B=1/4 si ha B=6 W; rapporto B/A=3/2. Ridurre la trasmittanza aumenta l’assorbimento se la riflessione è trascurabile.",
+      "physicalAssumptions": "P₀>0 e trasmittanza 0<τ<1 finite; τ non è profondità ottica. Il bilancio radiativo trascura riflessione, emissione propria e altri canali, P₀=P_trasm+P_ass. Potenza assorbita distinta da energia o incremento netto di energia interna senza altri scambi. Parametri costanti entro prova; medie e vincolo fra preparazioni. Display continuo con guadagno positivo.",
+      "distractors": "2/3 è reciproco, 1/2 rapporto delle trasmittanze, 2 il reciproco di queste e 1 ignora il complemento. 4/6 W assorbiti danno 3/2.",
+      "pedagogicalReview": "Due uscite ricostruite prima del rapporto puro.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-absorbed-radiant-power-08",
+      "sourceSha256": "17a76f4afdd656b1ea218bf55853eaf6a8afc9736dc0f2499309ebc8a8599416",
+      "candidateSha256": "973d3fd5791eff29e3a34eca80e2020cc1387b9f930b5839dba809a79d4999fd",
+      "reviewedSignature": "56b7405bc144c080ecfee9b72ca8004a7d5201167c7b049498dc4b5b068cffa7",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3"
+      },
+      "manualArithmetic": "Proposto 8 W meno corretto 4 W dà +4 W. Usare tutta la potenza incidente ignorerebbe quella trasmessa.",
+      "physicalAssumptions": "P₀>0 e trasmittanza 0<τ<1 finite; τ non è profondità ottica. Il bilancio radiativo trascura riflessione, emissione propria e altri canali, P₀=P_trasm+P_ass. Potenza assorbita distinta da energia o incremento netto di energia interna senza altri scambi. Parametri costanti entro prova; medie e vincolo fra preparazioni. Display continuo con guadagno positivo.",
+      "distractors": "−4 W scambia ordine, 2 è rapporto, 8 W proposta e 0 l’accetta. Lo scarto 4 W mantiene dimensione di potenza.",
+      "pedagogicalReview": "Differenza ordinata distinta da un rapporto.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-absorbed-radiant-power-09",
+      "sourceSha256": "c87f90390aac080ffe079cc304a2b3bd03bb5b16879221dbd4e18e891b53cc17",
+      "candidateSha256": "bb80c3530256cf13ac087610aeab02a1f1bed4c15749196030591930e878ff30",
+      "reviewedSignature": "03512fb3559b1e6829de3d2974e13143d93acc148bbae7bea071a17985eecceb",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "P₀ = P_ass / (1 − τ)",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3"
+      },
+      "manualArithmetic": "P₀=P_ass/(1−τ). Non si divide per τ, che è la frazione trasmessa anziché assorbita; τ=1 non è nel dominio dell’inversa.",
+      "physicalAssumptions": "P₀>0 e trasmittanza 0<τ<1 finite; τ non è profondità ottica. Il bilancio radiativo trascura riflessione, emissione propria e altri canali, P₀=P_trasm+P_ass. Potenza assorbita distinta da energia o incremento netto di energia interna senza altri scambi. Parametri costanti entro prova; medie e vincolo fra preparazioni. Display continuo con guadagno positivo.",
+      "distractors": "Moltiplicare per 1−τ ripete la riduzione, dividere perτ confonde trasmissione e assorbimento; reciprocoW⁻¹ eP_ass−τ è dimensionalmente incoerente.",
+      "pedagogicalReview": "Inversa simbolica con dimensioni e dominio.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-absorbed-radiant-power-10",
+      "sourceSha256": "e75feaef5a149121b832cc588e7b253463d681b128efe09b0b48d784f85ab518",
+      "candidateSha256": "03180a2b70641aa9be5d8ee7f8a7b61c88b4fcd9789dfc41e34e2e12462600b7",
+      "reviewedSignature": "00f1fd185cad0815a93fb61071659d92e76fbe54b79f2fb5534fdf6e11ee490a",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "κ₁(1 − κ₂τ_A) / (1 − τ_A)",
+      "dimension": {},
+      "manualArithmetic": "P_ass, B/P_ass, A=κ₁(1−κ₂τ)/(1−τ). Occorrono 0<τ<1 e 0<κ₂τ<1, oltre a κ₁, κ₂>0. Non si sostituisce 1−τ con un rapporto lineare di τ.",
+      "physicalAssumptions": "P₀>0 e trasmittanza 0<τ<1 finite; τ non è profondità ottica. Il bilancio radiativo trascura riflessione, emissione propria e altri canali, P₀=P_trasm+P_ass. Potenza assorbita distinta da energia o incremento netto di energia interna senza altri scambi. Parametri costanti entro prova; medie e vincolo fra preparazioni. Display continuo con guadagno positivo.",
+      "distractors": "Prodotto/quoziente dei fattori ignorano il complemento. Il reciproco scambia A/B e la somma fallisce aκ₁=κ₂=1. Occorreκ₂τ_A<1 per un modello assorbente.",
+      "pedagogicalReview": "Fattori inseriti nella legge effettiva, senza analogie improprie.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-absorbed-radiant-power-11",
+      "sourceSha256": "7635c6d81ce716176d786e3e8b972ac804db3f95c1f4f4da9f1d3f4a6272bdaf",
+      "candidateSha256": "d10037d79bae3f2d2132d4df2cc29dfa66ca4d339f43a1c7e93b9419a8688465",
+      "reviewedSignature": "65ed9dd91f5157744c88e8da219ef1db32573e336e9747029689f04c5ba56401",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "9/4",
+      "dimension": {},
+      "manualArithmetic": "A=8·1/2=4 W e B=12·3/4=9 W. Rapporto 9/4; entrambi gli ingressi cambiano.",
+      "physicalAssumptions": "P₀>0 e trasmittanza 0<τ<1 finite; τ non è profondità ottica. Il bilancio radiativo trascura riflessione, emissione propria e altri canali, P₀=P_trasm+P_ass. Potenza assorbita distinta da energia o incremento netto di energia interna senza altri scambi. Parametri costanti entro prova; medie e vincolo fra preparazioni. Display continuo con guadagno positivo.",
+      "distractors": "4/9 inverte il rapporto, 3/2 segue soloP₀ e 1/2 soloτ. 3/4 confronta in realtà potenze trasmesse(3 W)/(4 W), non assorbite 9 W/4 W.",
+      "pedagogicalReview": "Entrambi gli ingressi considerati nel nuovo stato.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-absorbed-radiant-power-12",
+      "sourceSha256": "e41bd5947654023d7ceacfc583bdcd726eef938b1a970d6c01cecc67a210f90e",
+      "candidateSha256": "de37b6dfe78f70127c211a314c01d8cdeee6d4de5fbafe82fec50d3cd45d794d",
+      "reviewedSignature": "f7dfd04050de011520f16c8042a53059747c6225834f67a1da1eb3a859062bc2",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "absorbed-radiant-power-progressive.svg": "c4c4b0d95da705f744e2d5a346ee81ba5085b13465b46b9c5c1e5002fa48d426"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "13/2",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3"
+      },
+      "manualArithmetic": "Media uscite=(4+9)/2=13/2 W. I parametri medi P₀=10 W e τ=3/8 darebbero 25/4 W. Media uscite meno modello agli ingressi medi=1/4 W.",
+      "physicalAssumptions": "P₀>0 e trasmittanza 0<τ<1 finite; τ non è profondità ottica. Il bilancio radiativo trascura riflessione, emissione propria e altri canali, P₀=P_trasm+P_ass. Potenza assorbita distinta da energia o incremento netto di energia interna senza altri scambi. Parametri costanti entro prova; medie e vincolo fra preparazioni. Display continuo con guadagno positivo.",
+      "distractors": "25/4 W usa i dati medi, 13 W somma, 5/2 W semidifferenza e 9 W solo B. Media 13/2 W e modello ai medi 25/4 W differiscono di 1/4 W.",
+      "pedagogicalReview": "Media delle uscite distinta dagli ingressi medi.",
+      "assetReview": "XML and full 640×1480 native read. Panel 1 uses 40 coordinates/W: 8 W length 320, two 4 W bars 160. Panel 2 at 8 W total has same 40 coordinates/W; segments 160+160 and 80+240 represent transmitted/absorbed 4+4 and 2+6 W. Panel 3 separate common 32 coordinates/W gives lengths 128, 288, 208 for absorbed 4, 9, 13/2 W. Panels explicitly distinguish scenarios; labels and shared origins clear, no overlap or physical-scale defect.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-absorbed-radiant-power-13",
+      "sourceSha256": "ffea834bc3c0f1d7b6c824058750a1930db72d6a9f7c4c730fe1e23dca5b8f7a",
+      "candidateSha256": "a50fbb91d47b3a23bdb01dfb1ce2c0f5c3e282d092d34f6d63007c940d770163",
+      "reviewedSignature": "ed1b8d3a4693e6641068d6cdc3bdb52b0fb9b58c9e51f48dd18da72cc14b4718",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1/2",
+      "dimension": {},
+      "manualArithmetic": "Il target è (9/4)·4=9 W. Con P₀, B=12 W, 1−τ_B=3/4, τ_B=1/4. Il rapporto τ_B/τ_A è 1/2, non il rapporto degli assorbimenti.",
+      "physicalAssumptions": "P₀>0 e trasmittanza 0<τ<1 finite; τ non è profondità ottica. Il bilancio radiativo trascura riflessione, emissione propria e altri canali, P₀=P_trasm+P_ass. Potenza assorbita distinta da energia o incremento netto di energia interna senza altri scambi. Parametri costanti entro prova; medie e vincolo fra preparazioni. Display continuo con guadagno positivo.",
+      "distractors": "2 inverteτ_B/τ_A, 9/4 copia il target assorbito e 4/9 il suo reciproco.3/2 è rapporto dei complementi assorbiti, non diτ.",
+      "pedagogicalReview": "Bersaglio ricostruito prima dell’inversa.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-absorbed-radiant-power-14",
+      "sourceSha256": "1e786d64930bb779159bcf098ab35e79af3b500b765d71250b21aa35afcb069b",
+      "candidateSha256": "a38582baf32da566d4db7c4f73091094b4a55dcc0f3ec6ea76e203e7f623d4c6",
+      "reviewedSignature": "94f1216bbbe517e950f53d0562d6ca084b2ac2500eb42d5f423792104325a75b",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "12",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3"
+      },
+      "manualArithmetic": "P_ass, A=4 W con S=12 dà guadagno 3 per watt. S=27 corrisponde a 9 W assorbiti; τ=1/4 implica P₀=9/(3/4)=12 W.",
+      "physicalAssumptions": "P₀>0 e trasmittanza 0<τ<1 finite; τ non è profondità ottica. Il bilancio radiativo trascura riflessione, emissione propria e altri canali, P₀=P_trasm+P_ass. Potenza assorbita distinta da energia o incremento netto di energia interna senza altri scambi. Parametri costanti entro prova; medie e vincolo fra preparazioni. Display continuo con guadagno positivo.",
+      "distractors": "36 W leggeD 27 come 27 W e prediceD 81; 9/4 W moltiplica perτ invece di dividere per 1−τ; 8 W ripete A e dàD 18. Inversa corretta 12 W.",
+      "pedagogicalReview": "Taratura rimossa prima dell’inversa fisica.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-absorbed-radiant-power-15",
+      "sourceSha256": "c20df84ec9b6e0fc15ad25cd52a51768f7287fa7df7a6f635b960277e400254f",
+      "candidateSha256": "2199548d89ce7a6dc9edcb73a24e41c0f67c85fbf78828c3081b99cd818655e3",
+      "reviewedSignature": "fc3bf8d965a1e844b1b96956bd829b1cdfb46af9708ccc0b4aa5166bb171db5b",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "12",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3"
+      },
+      "manualArithmetic": "Due riferimenti 4 e 9 W con letture 9 e 19: a=(19−9)/(9−4)=2 per watt, b=1. S_C=13 dà P_ass, C=6 W. Con τ_C=1/2 si ricava P₀, C=12 W.",
+      "physicalAssumptions": "P₀>0 e trasmittanza 0<τ<1 finite; τ non è profondità ottica. Il bilancio radiativo trascura riflessione, emissione propria e altri canali, P₀=P_trasm+P_ass. Potenza assorbita distinta da energia o incremento netto di energia interna senza altri scambi. Parametri costanti entro prova; medie e vincolo fra preparazioni. Display continuo con guadagno positivo.",
+      "distractors": "13 W ometteb e prediceD 14; 24 W ometteg dopo b; 6 W copiaP_ass. 12 W dà 6 W assorbiti eD 13.",
+      "pedagogicalReview": "Guadagno e offset identificati da due riferimenti distinti.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-absorbed-radiant-power-16",
+      "sourceSha256": "3827c23c733c4bc44744956ac61c57f7ba9a61630219c32b843127fed425ab2b",
+      "candidateSha256": "dcdb841ddae83ffd1f8bed805b7ece763b4a31799aba124676640b163ff435a9",
+      "reviewedSignature": "2af5880eb4473008e7b966b38fb0571176b0e33030d2a0e70cd3e5a7650c2eae",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1/2",
+      "dimension": {},
+      "manualArithmetic": "P₀=(16 W)τ porta P_ass=(16 W)τ(1−τ)=4 W. Si ottiene 4τ²−4τ+1=0, cioè (2τ−1)²=0. Unica trasmittanza τ=1/2 nel dominio aperto; è una radice doppia, non due soluzioni distinte.",
+      "physicalAssumptions": "P₀>0 e trasmittanza 0<τ<1 finite; τ non è profondità ottica. Il bilancio radiativo trascura riflessione, emissione propria e altri canali, P₀=P_trasm+P_ass. Potenza assorbita distinta da energia o incremento netto di energia interna senza altri scambi. Parametri costanti entro prova; medie e vincolo fra preparazioni. Display continuo con guadagno positivo.",
+      "distractors": "τ1/4 e 3/4 danno 3 W nel vincolo, τ2 viola 0<τ<1. Al massimo 4 W il discriminante nullo dà un unico valoreτ1/2 con molteplicità 2, non due trasmittanze distinte.",
+      "pedagogicalReview": "Vincolo sostituito prima di decidere numero e dominio delle soluzioni.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    }
+  ],
+  "verifierSha256": "c3241dd07b61a413964243cd8aadec534401720f15982d023eb8aabb7796012a",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "reviewDependencySha256": {
+    "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+  },
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2",
+    "hypothesis": "6.148.7"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "reviewedCandidateCommit": "8f63b33ab1ed4f6d105b9898322bbeff6ed6c79e",
+  "packageSha256": "f14480014181efa50a4f70cb655d2a7c25d37cdd12b66b44f89e8ecaba635c6d",
+  "bindingsSha256": "4331c0c2fd2d5e1d9a7fa8eb46002ddc2a38b295240be6b18b32611160580cd3",
+  "source": {
+    "commit": "5cfbdcb055ba3ba136f97fb56e997f06e6cf3605",
+    "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U7-01.json",
+    "title": "absorbed-radiant-power",
+    "reference": "P₀>0 e trasmittanza 0<τ<1 finite; τ non è profondità ottica. Il bilancio radiativo trascura riflessione, emissione propria e altri canali, P₀=P_trasm+P_ass. Potenza assorbita distinta da energia o incremento netto di energia interna senza altri scambi. Parametri costanti entro prova; medie e vincolo fra preparazioni. Display continuo con guadagno positivo."
+  },
+  "modelsBeforeCandidateKeys": {
+    "path": "editorial/reviews/u7-radiation-240-244-independent-models.py",
+    "sha256": "b23231ee65202142c7f6d46957df443d426c54ad7c9dac9b6de9fd21b1ea9a94",
+    "commit": "f5ab7a660506550ea5220cce3e4ba8e3e15584b3"
+  },
+  "primaryBeforeCandidateKeys": {
+    "path": "editorial/reviews/u7-radiation-240-244-primary-source-only.md",
+    "sha256": "8771a65b67207b7b6f31618ba4ebc9cf17d99b55162f75f4c776cb0f327c975d"
+  }
+}

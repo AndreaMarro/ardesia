@@ -1,27 +1,28 @@
 {
   "schemaVersion": "1.0.0",
-  "observedAt": "2026-11-26T17:09:12.232927+00:00",
+  "observedAt": "2026-11-26T17:18:40.523146+00:00",
   "snapshotHead": "aa7577b74fa275a127194cdbaad93c60aa3a007a",
   "canonicalHead": "7c29ccc18ad3b42ceecfca509ef57f786bd2c496",
   "mandate": "INCOMPLETE",
   "questions": {
     "accounted": 4606,
-    "scientificallyReviewed": 3632,
-    "scientificallyUnreviewed": 974,
+    "scientificallyReviewed": 3792,
+    "scientificallyUnreviewed": 814,
     "registeredDrafts": 3632,
     "compiledDraftsLocally": 3472,
     "compiledCandidateFullyLocallyValidated": false,
     "canonicalHistoricalRevisedDrafts": 3312,
-    "newRootAcceptanceReceipt": "editorial/reviews/u6-05-root-integration-20261126/receipt.json",
+    "newRootAcceptanceReceipt": "editorial/reviews/u7-01-root-integration-20261126/receipt.json",
     "compiledCandidateFullyRemotelyValidated": true,
     "unreviewedBySource": {
-      "Ardesia": 368,
+      "Ardesia": 208,
       "Cric": 606
     },
     "newRootAcceptanceReceipts": [
       "editorial/reviews/u6-03-A80-root-integration-20261125/receipt.json",
       "editorial/reviews/u6-03-B80-root-integration-20261125/receipt.json"
-    ]
+    ],
+    "registrationPendingQuestions": 160
   },
   "activities": {
     "accounted": 385,
@@ -123,11 +124,12 @@
     "registrySha256": "d8fdd8c1a92ec15430d80596071da0452eb06acdda19d96358809f42f22b51c3",
     "retryRunId": 45865245464,
     "retrySourceHead": "4e403a89a95947d4b537c4a3ff5e2dc09646fff1",
-    "retryState": "PENDING_SHARED_PREVIEW_QUEUE"
+    "retryState": "PENDING_SHARED_PREVIEW_QUEUE",
+    "scientificQuestionsPendingRegistryActivation": 160
   },
-  "nextScientificAcceptanceId": "AR-u7-wavelength-in-medium-01",
-  "nextNewAuthoringId": "AR-u7-wavelength-in-medium-01",
-  "assignments": "U6-05 all160 Root independently accepted; U7-01 disjoint A/B ownership active with source-first primary freezes before candidates. No U7 credit.",
+  "nextScientificAcceptanceId": "AR-u7-radioactive-survivors-01",
+  "nextNewAuthoringId": "AR-u7-radioactive-survivors-01",
+  "assignments": "U7-01 all160 Root independently accepted; registration pending successful3632 preparation/adoption so its registry pin remains stable. U7-02 source-only primaries in progress; remaining208Ardesia plus606Cric assigned.",
   "governance": {
     "publication": "DEFAULT_DENY",
     "humanApproval": "NOT_RUN",
@@ -235,7 +237,7 @@
     "headSha": "abeb49570819e59249c866dec75e9345191899b1",
     "mergeSha": "7c29ccc18ad3b42ceecfca509ef57f786bd2c496",
     "premergeAllChecks": "SUCCESS",
-    "postMergeCI": "IN_PROGRESS",
+    "postMergeCI": "SUCCESS_14_OF14_ON_EXACT_MERGE_SHA",
     "humanContentApproval": "NOT_RUN",
     "newAppPublications": 0
   },
@@ -273,7 +275,8 @@
       "numericSubmits": 64,
       "scope": "Limited guides/reading/formulas only, original17geometry not closed; next epochb2 requires new proof."
     },
-    "finalGeometryIndependentReview": "IN_PROGRESS_SNAPSHOT_REQUIRED_NO_PASS_OR_ACTIVITY_CREDIT"
+    "finalGeometryIndependentReview": "IN_PROGRESS_SNAPSHOT_REQUIRED_NO_PASS_OR_ACTIVITY_CREDIT",
+    "actualCanaryFinding": "SIM-C2-L005-05 input8: new incoming arrow tip occluded by original NodoA sprite in four native profiles; eight-profile real canary completed, no activity credit. Distinct reviewer continues other16 on frozenb2; author to correct node labels only."
   },
   "historicalFailedPreparations": [
     {

@@ -1,0 +1,169 @@
+{
+  "scope": "source_prompt_numerical_models_only_before_candidate_keys_not_candidate_review",
+  "sourcePrimarySha256": "8771a65b67207b7b6f31618ba4ebc9cf17d99b55162f75f4c776cb0f327c975d",
+  "candidateFilesOptionsKeysOrSVGOpened": false,
+  "modelImplementationSha256": "b23231ee65202142c7f6d46957df443d426c54ad7c9dac9b6de9fd21b1ea9a94",
+  "actualSourceDerivedChecks": [
+    {
+      "family": "wavelength-in-medium",
+      "function": "result",
+      "actual": "300",
+      "derivedFromPromptPrimary": "300"
+    },
+    {
+      "family": "wavelength-in-medium",
+      "function": "inverse_first",
+      "actual": "600",
+      "derivedFromPromptPrimary": "600"
+    },
+    {
+      "family": "wavelength-in-medium",
+      "function": "inverse_second",
+      "actual": "2",
+      "derivedFromPromptPrimary": "2"
+    },
+    {
+      "family": "wavelength-in-medium",
+      "function": "scaled",
+      "actual": "16/9",
+      "derivedFromPromptPrimary": "16/9"
+    },
+    {
+      "family": "wavelength-in-medium",
+      "function": "constrained_vacuum_wavelength",
+      "actual": "600",
+      "derivedFromPromptPrimary": "600"
+    },
+    {
+      "family": "photon-packet-frequency",
+      "function": "result",
+      "actual": "33",
+      "derivedFromPromptPrimary": "33"
+    },
+    {
+      "family": "photon-packet-frequency",
+      "function": "inverse_first",
+      "actual": "5",
+      "derivedFromPromptPrimary": "5"
+    },
+    {
+      "family": "photon-packet-frequency",
+      "function": "inverse_second",
+      "actual": "1",
+      "derivedFromPromptPrimary": "1"
+    },
+    {
+      "family": "photon-packet-frequency",
+      "function": "scaled",
+      "actual": "4",
+      "derivedFromPromptPrimary": "4"
+    },
+    {
+      "family": "photon-packet-frequency",
+      "function": "constrained_frequency",
+      "actual": "1",
+      "derivedFromPromptPrimary": "1"
+    },
+    {
+      "family": "photon-rate-power",
+      "function": "result",
+      "actual": "50",
+      "derivedFromPromptPrimary": "50"
+    },
+    {
+      "family": "photon-rate-power",
+      "function": "inverse_first",
+      "actual": "33",
+      "derivedFromPromptPrimary": "33"
+    },
+    {
+      "family": "photon-rate-power",
+      "function": "inverse_second",
+      "actual": "1",
+      "derivedFromPromptPrimary": "1"
+    },
+    {
+      "family": "photon-rate-power",
+      "function": "scaled",
+      "actual": "1/66",
+      "derivedFromPromptPrimary": "1/66"
+    },
+    {
+      "family": "photon-rate-power",
+      "function": "constrained_power",
+      "actual": "66",
+      "derivedFromPromptPrimary": "66"
+    },
+    {
+      "family": "em-wave-field-power",
+      "function": "result",
+      "actual": "3/10",
+      "derivedFromPromptPrimary": "3/10"
+    },
+    {
+      "family": "em-wave-field-power",
+      "function": "inverse_first",
+      "actual": "150",
+      "derivedFromPromptPrimary": "150"
+    },
+    {
+      "family": "em-wave-field-power",
+      "function": "inverse_second",
+      "actual": "100",
+      "derivedFromPromptPrimary": "100"
+    },
+    {
+      "family": "em-wave-field-power",
+      "function": "scaled",
+      "actual": "8",
+      "derivedFromPromptPrimary": "8"
+    },
+    {
+      "family": "em-wave-field-power",
+      "function": "constrained_area",
+      "actual": "100",
+      "derivedFromPromptPrimary": "100"
+    },
+    {
+      "family": "absorbed-radiant-power",
+      "function": "result",
+      "actual": "4",
+      "derivedFromPromptPrimary": "4"
+    },
+    {
+      "family": "absorbed-radiant-power",
+      "function": "inverse_first",
+      "actual": "8",
+      "derivedFromPromptPrimary": "8"
+    },
+    {
+      "family": "absorbed-radiant-power",
+      "function": "inverse_second",
+      "actual": "1/2",
+      "derivedFromPromptPrimary": "1/2"
+    },
+    {
+      "family": "absorbed-radiant-power",
+      "function": "scaled",
+      "actual": "9/4",
+      "derivedFromPromptPrimary": "9/4"
+    },
+    {
+      "family": "absorbed-radiant-power",
+      "function": "constrained_transmittances",
+      "actual": "(1/2,)",
+      "derivedFromPromptPrimary": "(1/2,)"
+    }
+  ],
+  "finiteExactPositiveAndPhysicalDomainRejections": 395,
+  "absorbedPowerTwoPositiveBranchesBelowMaximum": "1/4,3/4 at3W; repeated root1/2 at4W; above4W rejected",
+  "scientificCandidateApproval": "NOT_RUN",
+  "productUI": "NOT_RUN",
+  "humanApproval": "NOT_RUN",
+  "candidateAuthor": "A",
+  "futureReviewer": "B",
+  "ownB245249AuthoringAlreadyFinal": true,
+  "actualModelRunTerminalExitCode": 0,
+  "guard": "shared flock; free space >=2 GiB before subprocess",
+  "initialPreparationNegative": "editorial/reviews/u7-radiation-240-244-prekey-model-negative-20261126.json"
+}

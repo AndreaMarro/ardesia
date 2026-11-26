@@ -1,0 +1,524 @@
+{
+  "schemaVersion": "1.0.0",
+  "lessonReference": {
+    "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "gitPath": "officina-di-fisica/content/C5.json",
+    "sourceSha256": "dac4490e6a900f5da191bf7a1f5b8463ddc57c8bbaa36cb7a4a375c70fa77422",
+    "primarySkill": "C5-L06",
+    "actualLessonPrerequisites": {
+      "C5-L06": [
+        "C5-L02",
+        "C5-L04"
+      ],
+      "C5-L07": [
+        "C5-L06"
+      ]
+    }
+  },
+  "records": [
+    {
+      "id": "AR-u7-wavelength-in-medium-01",
+      "sourceSha256": "073b131d3d29233a7bbdf57bdd47017d32ae9015cde61e4be5d9fe5e5f9fc7e9",
+      "candidateSha256": "a84e3de2581cf40c48c09bb60c243d2e2f469531f8b19f5253eef300d34f8176",
+      "reviewedSignature": "9f047c4b1c06df1cb60233542046645cc11a14fb8cd9d47746ff1c0559a5870a",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "wavelength-in-medium-progressive.svg": "cd45ead7fa602df6b5b7ed91978bae8697195ebb1266740d055dd8dcd68b17a3"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "300",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "All’interfaccia ferma la frequenza è conservata. Da v=c/n e λ=v/f, mentre λ₀=c/f, segue λ=λ₀/n. Con 600 nm e n=2 si ottiene 300 nm; λ resta positiva e non supera λ₀ per n≥1.",
+      "physicalAssumptions": "Radiazione monocromatica, interfaccia e mezzo trasparenti stazionari. Indice di fase finito n≥1, velocità c/n alla frequenza considerata, frequenza conservata attraverso ciascun passaggio. Fra preparazioni la sorgente può cambiare; non si impone la stessa frequenza a λ₀ diverse. λ₀>0 e λ>0, medie statistiche e display continui. I casi 03/04 sono autonomi.",
+      "distractors": "1200 nm usa nλ₀ invece di λ₀/n; 600 nm conserva la lunghezza nel mezzo e 150 nm divide per n due volte. Indice finito e λ₀>0 escludono zero.",
+      "pedagogicalReview": "Legge motivata e unità normalizzate distinte dalle grandezze fisiche.",
+      "assetReview": "XML and full 640×1480 native read. Phase-front spacing 180/90 represents 600/300 nm with common 0.3 coordinates/nm. Bars 135/240/187.5 represent 300, 1600/3, 1250/3 nm with common 0.45 coordinates/nm and originx 150. Graph origin 150, 1280 has 0.5 coordinates/nm on both axes, A at 450, 1130 represents 600 nm, 300 nm withn 2; open origin and no label/path overlap.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-wavelength-in-medium-02",
+      "sourceSha256": "96afc45c285747f2fa7cd78536199964a2963b7d1601b0535c7ff8a909b87dfb",
+      "candidateSha256": "cd8f6d7f76142f98a85e3f7bfa93ebf2c49b40860a03a65c7f128ee0102346e8",
+      "reviewedSignature": "f3c8117c285c14bf133389c1988cf2ad344ca4f61309a1a8e452dac6e47235bf",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "nm",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "La lunghezza d’onda ha dimensione di lunghezza L. Metro, e relativi prefissi come nm, sono dimensionalmente adatti; frequenza e velocità hanno dimensioni diverse. Non servono opzioni per stabilire questa dimensione.",
+      "physicalAssumptions": "Radiazione monocromatica, interfaccia e mezzo trasparenti stazionari. Indice di fase finito n≥1, velocità c/n alla frequenza considerata, frequenza conservata attraverso ciascun passaggio. Fra preparazioni la sorgente può cambiare; non si impone la stessa frequenza a λ₀ diverse. λ₀>0 e λ>0, medie statistiche e display continui. I casi 03/04 sono autonomi.",
+      "distractors": "Hz è frequenza, m/s velocità, s periodo; n è puro ma la divisione per n non elimina la dimensione L di λ.",
+      "pedagogicalReview": "Dimensione ricostruita e prefisso distinto dall’unità fisica.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-wavelength-in-medium-03",
+      "sourceSha256": "b4dbbc24f03848d45ee7a324d9a4adbbd792d0c102940800b266e8fd7778edde",
+      "candidateSha256": "8a103527f731b5871bb9b5a53903998ee9f43b7aba32fe56bc332e316b312fbb",
+      "reviewedSignature": "f27165c1777cdf83109120cc79f07e3c957750678fbd2cd109ba2c9b325d1a94",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "La frequenza",
+      "dimension": {},
+      "manualArithmetic": "La frequenza, fissata dall’oscillazione della sorgente, resta invariata attraverso una superficie ferma fra mezzi trasparenti stazionari. Cambiano velocità di fase e lunghezza d’onda; la direzione può cambiare ma non è necessario a incidenza normale.",
+      "physicalAssumptions": "Caso autonomo aria/vetro: luce monocromatica e interfaccia trasparente stazionaria; continuità temporale della frequenza. Non si impone assenza di riflessione né invariabilità dell’intensità trasmessa.",
+      "distractors": "All’interfaccia ferma resta la frequenza. λ e velocità variano con il mezzo; intensità e ampiezza possono cambiare per riflessione e impedenza anche in trasparenza.",
+      "pedagogicalReview": "Caso autonomo o legge riconosciuta dalle ipotesi effettive.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-wavelength-in-medium-04",
+      "sourceSha256": "510e7f86558c4667e3ac3145b53f0cd1d8c6d33b2d686a6325576ba2014af54a",
+      "candidateSha256": "c43fa202c7420800b6f91b136dcb79139c916cf3c9209de12478060b2cc2bf18",
+      "reviewedSignature": "9d5d3d2d7d7a16f5117e165920d2392471890574b83d8f5f370637842fd959e0",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "200000000",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Dalla definizione n=c/v, v=c/n=(3×10⁸ m/s)/(3/2)=2×10⁸ m/s. Questo è un caso autonomo: l’indice è assegnato e non si ricava dalla geometria.",
+      "physicalAssumptions": "Caso autonomo: n=3/2 e c=3×10⁸m/s come dato assegnato; velocità di fase c/n. Non servono λ₀600 nm, numero di fotoni o velocità di gruppo.",
+      "distractors": "Moltiplicare c per 3/2 dà 9/2×10⁸m/s; ignorare n dà 3×10⁸. Copiare il valore 3/2 dell’indice nella velocità non risolve n=c/v. Zero è impossibile con c>0 e n finito.",
+      "pedagogicalReview": "Confronto controllato a un solo parametro fissato.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-wavelength-in-medium-05",
+      "sourceSha256": "f92c0d8e557e7fe5acb5bbc1379c0bfe6fbe4379101316cb099b616d7ba896fb",
+      "candidateSha256": "5b917e0ccffd25a17fa867a2928540eb1ae1109d2b2321dc9676905107ef9053",
+      "reviewedSignature": "af9ad6d439699810a46eac111fdd525227c57a8e344b69273356e61b9da219fc",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "600",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "Inverto λ=λ₀/n moltiplicando per l’indice: λ₀=nλ. Quindi 2·300 nm=600 nm. L’indice non ha unità.",
+      "physicalAssumptions": "Radiazione monocromatica, interfaccia e mezzo trasparenti stazionari. Indice di fase finito n≥1, velocità c/n alla frequenza considerata, frequenza conservata attraverso ciascun passaggio. Fra preparazioni la sorgente può cambiare; non si impone la stessa frequenza a λ₀ diverse. λ₀>0 e λ>0, medie statistiche e display continui. I casi 03/04 sono autonomi.",
+      "distractors": "150 nm ripete la divisione; 300 nm omette n e 1200 nm lo applica due volte. Solo 600/2=300 nm ricostruisce la misura.",
+      "pedagogicalReview": "Prima inversa reinserita nella relazione diretta.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-wavelength-in-medium-06",
+      "sourceSha256": "cd2c98088612541b7262cd7c6ef9efb846bfc47c7835a1d97f8f1e84622e9ee5",
+      "candidateSha256": "08e94031695cb1969eef063fed27d074cc6bdc0e24033a5877d27e1bab003092",
+      "reviewedSignature": "8e8823a90aa48c03b473bda62e799ddd8599b46fcf38b6fb7d9f2126a96e728d",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {},
+      "manualArithmetic": "Isolo n=λ₀/λ: 600 nm/300 nm=2. Il risultato è adimensionale e soddisfa n≥1.",
+      "physicalAssumptions": "Radiazione monocromatica, interfaccia e mezzo trasparenti stazionari. Indice di fase finito n≥1, velocità c/n alla frequenza considerata, frequenza conservata attraverso ciascun passaggio. Fra preparazioni la sorgente può cambiare; non si impone la stessa frequenza a λ₀ diverse. λ₀>0 e λ>0, medie statistiche e display continui. I casi 03/04 sono autonomi.",
+      "distractors": "1/2 inverte λ₀/λ e viola n≥1.300 e 600 sono valori numerici delle lunghezze, non il rapporto puro; la legge non richiede radici.",
+      "pedagogicalReview": "Seconda inversa con dominio e unità verificati.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-wavelength-in-medium-07",
+      "sourceSha256": "25b28aa8aa947a0b662bb2e66160339a1d764760804968a965b633143e9e67a7",
+      "candidateSha256": "89e61bfa6f180c8e3d9068d51feead5b3f6d3e0f3ef1d700eea80ced465b6fde",
+      "reviewedSignature": "0f8bc41b1a31af7e3c5ddbc2d805d9a928aab7f1e72d671b33958592c6efd7f2",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4/3",
+      "dimension": {},
+      "manualArithmetic": "A vale 600/2=300 nm; B vale 600/(3/2)=400 nm. Il rapporto B/A è 4/3. Ridurre n aumenta λ a λ₀ costante.",
+      "physicalAssumptions": "Radiazione monocromatica, interfaccia e mezzo trasparenti stazionari. Indice di fase finito n≥1, velocità c/n alla frequenza considerata, frequenza conservata attraverso ciascun passaggio. Fra preparazioni la sorgente può cambiare; non si impone la stessa frequenza a λ₀ diverse. λ₀>0 e λ>0, medie statistiche e display continui. I casi 03/04 sono autonomi.",
+      "distractors": "3/4 segue n_B/n_A senza invertirlo. Le due uscite 300/400 nm impongono 4/3; 2, 1/2 e 1 non confrontano questi dati.",
+      "pedagogicalReview": "Due uscite ricostruite prima del rapporto puro.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-wavelength-in-medium-08",
+      "sourceSha256": "6f98d0fa4de0e7f2a471a219268354eeef030e917b6da7b930e59fdda0f79503",
+      "candidateSha256": "b5cf3c35e2dec042c2913548c736bd1c73ebb1c57aee1d885d0ec437cfa1cc2d",
+      "reviewedSignature": "bf3c1652209f6e51d5f7cf2e8d07567eaaf4fbc01d2bec64f1dea7ffb87d5a60",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "300",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "Il valore corretto è 300 nm e la proposta è 600 nm. Lo scarto ordinato proposto meno corretto è +300 nm, una sovrastima.",
+      "physicalAssumptions": "Radiazione monocromatica, interfaccia e mezzo trasparenti stazionari. Indice di fase finito n≥1, velocità c/n alla frequenza considerata, frequenza conservata attraverso ciascun passaggio. Fra preparazioni la sorgente può cambiare; non si impone la stessa frequenza a λ₀ diverse. λ₀>0 e λ>0, medie statistiche e display continui. I casi 03/04 sono autonomi.",
+      "distractors": "−300 nm scambia l’ordine, 2 è rapporto, 600 nm proposta e 0 nm l’accetta. La differenza corretta è positiva 300 nm.",
+      "pedagogicalReview": "Differenza ordinata distinta da un rapporto.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-wavelength-in-medium-09",
+      "sourceSha256": "fc788d729bc209df26f9deca00f6cf76897deea5976630d99dbe3645d7cb0ab6",
+      "candidateSha256": "4eb78d8bbc5d52d643ad45b86606bae7bbe604006146dd10c982d78f1c467a6d",
+      "reviewedSignature": "32bed9304e2767ac8fd00058a67fbeb8cb0920196b934922627c05c57d06f2aa",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "wavelength-in-medium-progressive.svg": "cd45ead7fa602df6b5b7ed91978bae8697195ebb1266740d055dd8dcd68b17a3"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "λ₀ = n λ",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "λ₀=nλ è l’inversa simbolica. Il prodotto ha dimensione L; dividere nuovamente per n non ricostruisce λ₀.",
+      "physicalAssumptions": "Radiazione monocromatica, interfaccia e mezzo trasparenti stazionari. Indice di fase finito n≥1, velocità c/n alla frequenza considerata, frequenza conservata attraverso ciascun passaggio. Fra preparazioni la sorgente può cambiare; non si impone la stessa frequenza a λ₀ diverse. λ₀>0 e λ>0, medie statistiche e display continui. I casi 03/04 sono autonomi.",
+      "distractors": "n/λ ha L⁻¹ e nλ² ha L²; λ−n mescola una lunghezza e un numero puro. λ/n ripete la legge diretta invece di isolarne λ₀.",
+      "pedagogicalReview": "Inversa simbolica con dimensioni e dominio.",
+      "assetReview": "XML and full 640×1480 native read. Phase-front spacing 180/90 represents 600/300 nm with common 0.3 coordinates/nm. Bars 135/240/187.5 represent 300, 1600/3, 1250/3 nm with common 0.45 coordinates/nm and originx 150. Graph origin 150, 1280 has 0.5 coordinates/nm on both axes, A at 450, 1130 represents 600 nm, 300 nm withn 2; open origin and no label/path overlap.",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-wavelength-in-medium-10",
+      "sourceSha256": "b0d1ce318c87856fd10d561ee9602781dfebd1122d800b7646c4130eb2865da8",
+      "candidateSha256": "f24344701b0523d0a1a492f9ab640191942ff8de23b22f10d873684b056aae1f",
+      "reviewedSignature": "18fd829d691b831c866270070f5513d3e39cb915249e1ed9cc1baeb2d1641f07",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "κ₁ / κ₂",
+      "dimension": {},
+      "manualArithmetic": "Sostituendo λ₀, B=κ₁λ₀, A e n_B=κ₂n_A si trova λ_B/λ_A=κ₁/κ₂. Occorre conservare n_A≥1 e κ₂n_A≥1, non soltanto κ₂>0.",
+      "physicalAssumptions": "Radiazione monocromatica, interfaccia e mezzo trasparenti stazionari. Indice di fase finito n≥1, velocità c/n alla frequenza considerata, frequenza conservata attraverso ciascun passaggio. Fra preparazioni la sorgente può cambiare; non si impone la stessa frequenza a λ₀ diverse. λ₀>0 e λ>0, medie statistiche e display continui. I casi 03/04 sono autonomi.",
+      "distractors": "Il prodotto rende diretta la dipendenza da n; reciproco scambia i due stati e il quadrato cambia la legge. κ₂n_A≥1 è richiesto anche per κ₂<1.",
+      "pedagogicalReview": "Fattori inseriti nella legge effettiva, senza analogie improprie.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-wavelength-in-medium-11",
+      "sourceSha256": "fbef45070059ca2b454370515a2b9377c1fcbad8f6954a5276adcfd868110148",
+      "candidateSha256": "314a7869694437de8faf27409c5134ecef43b860c2fa7ef19be7a6378b4b6bb3",
+      "reviewedSignature": "b9f454b233c186124c374c25f2c04993b44c55d0fe84e03ea36281d532529236",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "16/9",
+      "dimension": {},
+      "manualArithmetic": "A=300 nm, B=800/(3/2)=1600/3 nm. Il rapporto è (1600/3)/300=16/9, senza arrotondare.",
+      "physicalAssumptions": "Radiazione monocromatica, interfaccia e mezzo trasparenti stazionari. Indice di fase finito n≥1, velocità c/n alla frequenza considerata, frequenza conservata attraverso ciascun passaggio. Fra preparazioni la sorgente può cambiare; non si impone la stessa frequenza a λ₀ diverse. λ₀>0 e λ>0, medie statistiche e display continui. I casi 03/04 sono autonomi.",
+      "distractors": "9/16 è il reciproco di 16/9, 4/3 considera un solo effetto e 3/4 il rapporto diretto degli indici. I due effetti si rinforzano, non si compensano.",
+      "pedagogicalReview": "Entrambi gli ingressi considerati nel nuovo stato.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-wavelength-in-medium-12",
+      "sourceSha256": "4efc0e0d92c17a55fd2ce797d406937d56d9a7c2cabd41f89d9328f1430e8c01",
+      "candidateSha256": "e9fbdc8856dbc3d102d820a8020058202d5af08662902f14054e03188fa530c8",
+      "reviewedSignature": "c089d5ea71056aee28830c134bdf4cdbaabc08471511cffcbcc13de3e0c875ff",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "wavelength-in-medium-progressive.svg": "cd45ead7fa602df6b5b7ed91978bae8697195ebb1266740d055dd8dcd68b17a3"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1250/3",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "Le due uscite sono 300 e 1600/3 nm; la media con pesi uguali è 1250/3 nm. Gli ingressi medi darebbero 700/(7/4)=400 nm: differenza media uscite meno modello agli ingressi medi 50/3 nm. Non si confondono i procedimenti.",
+      "physicalAssumptions": "Radiazione monocromatica, interfaccia e mezzo trasparenti stazionari. Indice di fase finito n≥1, velocità c/n alla frequenza considerata, frequenza conservata attraverso ciascun passaggio. Fra preparazioni la sorgente può cambiare; non si impone la stessa frequenza a λ₀ diverse. λ₀>0 e λ>0, medie statistiche e display continui. I casi 03/04 sono autonomi.",
+      "distractors": "400 nm valuta gli ingressi medi, 2500/3 nm somma, 350/3 nm semidifferenza e 1600/3 nm solo B. Media uscite 1250/3 nm e modello ai dati medi 400 nm differiscono di 50/3 nm.",
+      "pedagogicalReview": "Media delle uscite distinta dagli ingressi medi.",
+      "assetReview": "XML and full 640×1480 native read. Phase-front spacing 180/90 represents 600/300 nm with common 0.3 coordinates/nm. Bars 135/240/187.5 represent 300, 1600/3, 1250/3 nm with common 0.45 coordinates/nm and originx 150. Graph origin 150, 1280 has 0.5 coordinates/nm on both axes, A at 450, 1130 represents 600 nm, 300 nm withn 2; open origin and no label/path overlap.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-wavelength-in-medium-13",
+      "sourceSha256": "38931c5cda549dbf2cdd94a047ade9a254a6ca6b067e70328260571fb6b6d9d4",
+      "candidateSha256": "7fbd2c75d3e1aa096293d609271a451bfb0d9334eb63dd4ca7f687b5160f6cb5",
+      "reviewedSignature": "4cdba59e8ae4f2530b9aaac1b923ee022c161b8cbc02ab1f40ab772d596cc30c",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "3/4",
+      "dimension": {},
+      "manualArithmetic": "Il bersaglio è (16/9)·300=1600/3 nm. Con λ₀, B=800 nm, n_B=800/(1600/3)=3/2; n_B/n_A=3/4, entrambi ammissibili.",
+      "physicalAssumptions": "Radiazione monocromatica, interfaccia e mezzo trasparenti stazionari. Indice di fase finito n≥1, velocità c/n alla frequenza considerata, frequenza conservata attraverso ciascun passaggio. Fra preparazioni la sorgente può cambiare; non si impone la stessa frequenza a λ₀ diverse. λ₀>0 e λ>0, medie statistiche e display continui. I casi 03/04 sono autonomi.",
+      "distractors": "4/3 inverte il rapporto degli indici; 16/9 e 9/16 riguardano il bersaglio di λ. n_B=2 darebbe 400 nm, non 1600/3 nm.",
+      "pedagogicalReview": "Bersaglio ricostruito prima dell’inversa.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-wavelength-in-medium-14",
+      "sourceSha256": "dbfcd7a4826ed7527ea5cab652f4275bfe11ed62bb5c28784ad7aaf7d493f283",
+      "candidateSha256": "5f70ca3f5940b3568df75acca5ffea48e9b41c023642d1c40f8699a1ece21255",
+      "reviewedSignature": "cfbef301a25cff3741c16be6a83148af8da81194b99f33ca674f71844fb20614",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "800",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "Il riferimento λ=300 nm e S=900 dà a=3 unità strumentali/nm. S=1600 implica λ=1600/3 nm; con n=3/2, λ₀=800 nm.",
+      "physicalAssumptions": "Radiazione monocromatica, interfaccia e mezzo trasparenti stazionari. Indice di fase finito n≥1, velocità c/n alla frequenza considerata, frequenza conservata attraverso ciascun passaggio. Fra preparazioni la sorgente può cambiare; non si impone la stessa frequenza a λ₀ diverse. λ₀>0 e λ>0, medie statistiche e display continui. I casi 03/04 sono autonomi.",
+      "distractors": "2400 nm usa D come λ e poi moltiplica per n; 1600 nm copia il display e 600 nm il vecchio riferimento. La taratura 3 nm⁻¹ precede l’inversa.",
+      "pedagogicalReview": "Taratura rimossa prima dell’inversa fisica.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-wavelength-in-medium-15",
+      "sourceSha256": "548a8b63544df1587fe2d58a984806b96bd04a6df49592bd53b8145ba51dc323",
+      "candidateSha256": "ce3b1b94686f7d4f0ed8d83a8031240def1a857371db73c07c0720b0cdf336ee",
+      "reviewedSignature": "73c953d4d231d9af8ffa3a7e22ae8170d0002b2f60d16d3c4521ad02f0ea9225",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "800",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "I riferimenti sono λ_A=300 nm e λ_B=1600/3 nm. ΔS=1400/3 e Δλ=700/3 nm, dunque a=2 per nm e b=1. S_C=801 implica λ_C=400 nm; n=2 dà λ₀, C=800 nm.",
+      "physicalAssumptions": "Radiazione monocromatica, interfaccia e mezzo trasparenti stazionari. Indice di fase finito n≥1, velocità c/n alla frequenza considerata, frequenza conservata attraverso ciascun passaggio. Fra preparazioni la sorgente può cambiare; non si impone la stessa frequenza a λ₀ diverse. λ₀>0 e λ>0, medie statistiche e display continui. I casi 03/04 sono autonomi.",
+      "distractors": "λ₀801 nm, ottenuta senza sottrarre b, predice D 802.1600 nm omette il guadagno e 400 nm si ferma a λ nel mezzo. Il finale 800 nm dà λ400 nm e D 801.",
+      "pedagogicalReview": "Guadagno e offset identificati da due riferimenti distinti.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-wavelength-in-medium-16",
+      "sourceSha256": "111054b500367808fa6dd2060c932afe10b5f0ea47efeea3b02b3385d8ddbac8",
+      "candidateSha256": "cbe2c80320ed5e32746d63354e175a50ecfb17df0f59da9ddbc5a24f8a6a4ea2",
+      "reviewedSignature": "84a4c4bbd0d633667a0a7156ea553b1e8bc907d95c186be5f7a44246564ff775",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Infinite coppie continue",
+      "dimension": {},
+      "manualArithmetic": "Il vincolo dimensionato λ₀=(300 nm)n rende λ=300 nm per ogni n≥1. La misura è ridondante; infinite coppie continue λ₀=300 n nm, n≥1, non una scala unica.",
+      "physicalAssumptions": "Radiazione monocromatica, interfaccia e mezzo trasparenti stazionari. Indice di fase finito n≥1, velocità c/n alla frequenza considerata, frequenza conservata attraverso ciascun passaggio. Fra preparazioni la sorgente può cambiare; non si impone la stessa frequenza a λ₀ diverse. λ₀>0 e λ>0, medie statistiche e display continui. I casi 03/04 sono autonomi.",
+      "distractors": "Un numero finito di coppie richiederebbe un altro dato indipendente. Gli esempi n 1 e 2 smentiscono nessuna coppia; indici reali n≥1 sono ammessi, senza integralità.",
+      "pedagogicalReview": "Vincolo sostituito prima di decidere numero e dominio delle soluzioni.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    }
+  ],
+  "verifierSha256": "654ff03aa45fff34ccc0e1c9fe9db00b9367012b1c58e1286f7b74940db27e9e",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "reviewDependencySha256": {
+    "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+  },
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2",
+    "hypothesis": "6.148.7"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "reviewedCandidateCommit": "fdd8e1a3ea1b278f0813d5f0f4c9c9b1e758d87e",
+  "packageSha256": "a24178aaa56e880e82a2b9a41b4ac644739d4ec4dd0aa1c225e08fb87e25c833",
+  "bindingsSha256": "dd96ce38cb904f2527540e36693ca77bcfd750db7c4f6ffd4a716313f8fd12f2",
+  "source": {
+    "commit": "5cfbdcb055ba3ba136f97fb56e997f06e6cf3605",
+    "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U7-01.json",
+    "title": "wavelength-in-medium",
+    "reference": "Radiazione monocromatica, interfaccia e mezzo trasparenti stazionari. Indice di fase finito n≥1, velocità c/n alla frequenza considerata, frequenza conservata attraverso ciascun passaggio. Fra preparazioni la sorgente può cambiare; non si impone la stessa frequenza a λ₀ diverse. λ₀>0 e λ>0, medie statistiche e display continui. I casi 03/04 sono autonomi."
+  },
+  "modelsBeforeCandidateKeys": {
+    "path": "editorial/reviews/u7-radiation-240-244-independent-models.py",
+    "sha256": "b23231ee65202142c7f6d46957df443d426c54ad7c9dac9b6de9fd21b1ea9a94",
+    "commit": "f5ab7a660506550ea5220cce3e4ba8e3e15584b3"
+  },
+  "primaryBeforeCandidateKeys": {
+    "path": "editorial/reviews/u7-radiation-240-244-primary-source-only.md",
+    "sha256": "8771a65b67207b7b6f31618ba4ebc9cf17d99b55162f75f4c776cb0f327c975d"
+  }
+}

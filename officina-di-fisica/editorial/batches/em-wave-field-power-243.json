@@ -1,0 +1,1180 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u7-em-wave-field-power-01",
+      "kind": "question",
+      "course": "C5",
+      "section": "Campi di picco, intensità e potenza media",
+      "order": 24301,
+      "title": "Dall’ampiezza alla potenza raccolta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "em-wave-field-power",
+      "difficulty": 1,
+      "prompt": "Un’onda elettromagnetica piana armonica nel vuoto illumina uniformemente una superficie di area A>0, perpendicolare alla propagazione. E₀>0 è l’ampiezza di picco del campo elettrico in V/m, non il valore efficace. Si fornisce I=E₀²/(2Z₀), con Z₀=375 Ω assunto per il calcolo; I è intensità media, P=IA potenza media incidente. Se A è data in cm² va convertita:1 cm²=10⁻⁴ m². Ogni prova conserva queste ipotesi e il valore prescritto di Z₀. Con E₀=150 V/m e A=100 cm², quanto vale P?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/10 W",
+          "3/5 W",
+          "30 W",
+          "3000 W",
+          "0 W"
+        ],
+        "value": "3/10 W"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’intensità è150²/750=22500/750=30 W/m². L’area100 cm² è1/100 m², quindi P=30/100=3/10 W. Il fattore due della formula deriva dalla media armonica con E₀ di picco: non si sostituisce un campo efficace senza cambiare la convenzione."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/dcce17842e5d6a5b304627fbeef8aeefad2107d41891ca8a027b784407810e8e",
+          "text": "Il primo pannello fissa un istante con E verso l’alto,B uscente e flusso energetico verso destra. Le lunghezze dei vettori sono schematiche, non confrontano unità diverse. Il passaggio centrale usa il picco150 V/m, l’intensità media30 W/m² e area100 cm²=1/100 m²."
+        },
+        {
+          "type": "formula",
+          "text": "I=\\frac{E_0^2}{2Z_0}"
+        },
+        {
+          "type": "formula",
+          "text": " I=30\\,\\mathrm{W/m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " A=\\frac1{100}\\,\\mathrm{m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " P=\\frac3{10}\\,\\mathrm W"
+        },
+        {
+          "type": "text",
+          "text": "3/5 W omette il fattore due della media.30 W copia il valore numerico dell’intensità senza l’area;3000 W usa100 come se l’area fosse in m². Zero non segue da ampiezza e area positive."
+        }
+      ],
+      "hints": [
+        "Calcola I, converti l’area e soltanto dopo forma P=IA.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "3/5 W omette il fattore due della media.30 W copia il valore numerico dell’intensità senza l’area;3000 W usa100 come se l’area fosse in m². Zero non segue da ampiezza e area positive.",
+        "target": "C5-L06"
+      },
+      "coverage": [
+        "Onda piana armonica nel vuoto e campi trasversali",
+        "Picco distinto dal valore efficace",
+        "Area in cm², inverse e radice positiva",
+        "Medie, display e vincolo cubico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-em-wave-field-power-02",
+      "kind": "question",
+      "course": "C5",
+      "section": "Campi di picco, intensità e potenza media",
+      "order": 24302,
+      "title": "L’unità della potenza media",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "em-wave-field-power",
+      "difficulty": 1,
+      "prompt": "Un’onda elettromagnetica piana armonica nel vuoto illumina uniformemente una superficie di area A>0, perpendicolare alla propagazione. E₀>0 è l’ampiezza di picco del campo elettrico in V/m, non il valore efficace. Si fornisce I=E₀²/(2Z₀), con Z₀=375 Ω assunto per il calcolo; I è intensità media, P=IA potenza media incidente. Se A è data in cm² va convertita:1 cm²=10⁻⁴ m². Ogni prova conserva queste ipotesi e il valore prescritto di Z₀. Quale unità è dimensionalmente adatta a P?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "W",
+          "W/m²",
+          "V/m",
+          "J",
+          "1"
+        ],
+        "value": "W"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Intensità per area dà(W/m²)·m²=W. La potenza è energia per tempo, non energia totale. La media temporale su un periodo non cambia questa dimensione."
+        },
+        {
+          "type": "formula",
+          "text": "[P]=\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " \\mathrm W=\\mathrm{J/s}"
+        },
+        {
+          "type": "text",
+          "text": "W/m² è I prima di moltiplicare per A; V/m è il campo elettrico, J energia. Il simbolo1 non rappresenta una potenza. Z₀ ha unità di impedenza, ma non è un resistore collegato al fascio."
+        }
+      ],
+      "hints": [
+        "Segui le unità dal campo all’intensità, poi all’area.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "W/m² è I prima di moltiplicare per A; V/m è il campo elettrico, J energia. Il simbolo1 non rappresenta una potenza. Z₀ ha unità di impedenza, ma non è un resistore collegato al fascio.",
+        "target": "C5-L06"
+      },
+      "coverage": [
+        "Onda piana armonica nel vuoto e campi trasversali",
+        "Picco distinto dal valore efficace",
+        "Area in cm², inverse e radice positiva",
+        "Medie, display e vincolo cubico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-em-wave-field-power-03",
+      "kind": "question",
+      "course": "C5",
+      "section": "Campi di picco, intensità e potenza media",
+      "order": 24303,
+      "title": "Tre direzioni per un’onda piana",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "em-wave-field-power",
+      "difficulty": 1,
+      "prompt": "Caso autonomo: in un’onda elettromagnetica piana propagante nel vuoto, come sono orientati E, B e la direzione di propagazione?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "E e B sono perpendicolari fra loro ed entrambi trasversali alla propagazione",
+          "E e B sono paralleli fra loro e alla propagazione",
+          "E è longitudinale e B trasversale",
+          "B è longitudinale e E trasversale",
+          "La propagazione è sempre opposta a E × B"
+        ],
+        "value": "E e B sono perpendicolari fra loro ed entrambi trasversali alla propagazione"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Indico con k̂ il versore di propagazione e con S il vettore di flusso energetico. L’onda piana nel vuoto è trasversa. E e B sono perpendicolari fra loro e alla direzione del flusso energetico. Il verso della propagazione è quello di E×B, quando i campi istantanei non sono nulli. Il disegno può scegliere un istante con entrambi i campi positivi; non è una traiettoria di una carica."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/dcce17842e5d6a5b304627fbeef8aeefad2107d41891ca8a027b784407810e8e",
+          "text": "Per l’onda piana nel vuoto i tre versi illustrati sono mutuamente perpendicolari e S segue E×B. Il disegno riguarda campi e propagazione, non una particella carica accelerata."
+        },
+        {
+          "type": "formula",
+          "text": "\\vec E\\perp\\vec B"
+        },
+        {
+          "type": "formula",
+          "text": " \\vec E\\perp\\hat k"
+        },
+        {
+          "type": "formula",
+          "text": " \\vec B\\perp\\hat k"
+        },
+        {
+          "type": "formula",
+          "text": " \\vec S\\parallel\\vec E\\times\\vec B"
+        },
+        {
+          "type": "text",
+          "text": "Le opzioni longitudinali non descrivono questa onda piana nel vuoto. Il segno della direzione energetica non si inverte rispetto al prodotto E×B. Nei nodi temporali E e B possono annullarsi, senza cambiare la direzione di propagazione dell’onda."
+        }
+      ],
+      "hints": [
+        "Usa la mano destra su E×B.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Le opzioni longitudinali non descrivono questa onda piana nel vuoto. Il segno della direzione energetica non si inverte rispetto al prodotto E×B. Nei nodi temporali E e B possono annullarsi, senza cambiare la direzione di propagazione dell’onda.",
+        "target": "C5-L06"
+      },
+      "coverage": [
+        "Onda piana armonica nel vuoto e campi trasversali",
+        "Picco distinto dal valore efficace",
+        "Area in cm², inverse e radice positiva",
+        "Medie, display e vincolo cubico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-em-wave-field-power-04",
+      "kind": "question",
+      "course": "C5",
+      "section": "Campi di picco, intensità e potenza media",
+      "order": 24304,
+      "title": "Ampiezza doppia a parità di area",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "em-wave-field-power",
+      "difficulty": 1,
+      "prompt": "Un’onda elettromagnetica piana armonica nel vuoto illumina uniformemente una superficie di area A>0, perpendicolare alla propagazione. E₀>0 è l’ampiezza di picco del campo elettrico in V/m, non il valore efficace. Si fornisce I=E₀²/(2Z₀), con Z₀=375 Ω assunto per il calcolo; I è intensità media, P=IA potenza media incidente. Se A è data in cm² va convertita:1 cm²=10⁻⁴ m². Ogni prova conserva queste ipotesi e il valore prescritto di Z₀. A resta100 cm² e E₀ passa da150 a300 V/m. Come cambia P?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 3/10 W a 6/5 W",
+          "Da 3/10 W a 3/5 W",
+          "Resta 3/10 W",
+          "Da 3/10 W a 3/20 W",
+          "Da 3/10 W a 12/5 W"
+        ],
+        "value": "Da 3/10 W a 6/5 W"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La formula media contiene E₀². Raddoppiare il picco quadruplica I e P: da3/10 W si passa a12/10=6/5 W. L’area in questa domanda non raddoppia."
+        },
+        {
+          "type": "formula",
+          "text": "E_{0,B}/E_{0,A}=2"
+        },
+        {
+          "type": "formula",
+          "text": " P_B/P_A=4"
+        },
+        {
+          "type": "formula",
+          "text": " P_B=\\frac65\\,\\mathrm W"
+        },
+        {
+          "type": "text",
+          "text": "3/5 W segue linearmente E₀;3/20 lo rende inverso.3/10 ignora il cambio e12/5 aggiunge anche il raddoppio dell’area, che qui non è assegnato."
+        }
+      ],
+      "hints": [
+        "Eleva al quadrato il fattore dell’ampiezza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "3/5 W segue linearmente E₀;3/20 lo rende inverso.3/10 ignora il cambio e12/5 aggiunge anche il raddoppio dell’area, che qui non è assegnato.",
+        "target": "C5-L06"
+      },
+      "coverage": [
+        "Onda piana armonica nel vuoto e campi trasversali",
+        "Picco distinto dal valore efficace",
+        "Area in cm², inverse e radice positiva",
+        "Medie, display e vincolo cubico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-em-wave-field-power-05",
+      "kind": "question",
+      "course": "C5",
+      "section": "Campi di picco, intensità e potenza media",
+      "order": 24305,
+      "title": "L’ampiezza dal ramo positivo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "em-wave-field-power",
+      "difficulty": 2,
+      "prompt": "Un’onda elettromagnetica piana armonica nel vuoto illumina uniformemente una superficie di area A>0, perpendicolare alla propagazione. E₀>0 è l’ampiezza di picco del campo elettrico in V/m, non il valore efficace. Si fornisce I=E₀²/(2Z₀), con Z₀=375 Ω assunto per il calcolo; I è intensità media, P=IA potenza media incidente. Se A è data in cm² va convertita:1 cm²=10⁻⁴ m². Ogni prova conserva queste ipotesi e il valore prescritto di Z₀. P=3/10 W e A=100 cm². Quanto vale E₀ in V/m?",
+      "answer": {
+        "type": "numeric",
+        "value": 150,
+        "unit": "V/m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Isolo E₀²=2Z₀P/A con A in m². I dati danno22500 (V/m)²=150²(V/m)². Il ramo E₀>0 seleziona150 V/m, non la radice negativa. Si può anche usare x=E₀/(150 V/m): per questi dati x²=1."
+        },
+        {
+          "type": "formula",
+          "text": "E_0^2=\\frac{2Z_0P}{A}"
+        },
+        {
+          "type": "formula",
+          "text": " E_0^2=22500\\,\\mathrm{(V/m)^2}"
+        },
+        {
+          "type": "formula",
+          "text": " E_0=150\\,\\mathrm{V/m}"
+        },
+        {
+          "type": "text",
+          "text": "22500 confonde il quadrato con l’ampiezza.−150 non è un picco in modulo positivo;300 V/m darebbe6/5 W. Omettere il due della media cambierebbe la radice."
+        }
+      ],
+      "hints": [
+        "Converti A, poi estrai la radice positiva.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "22500 confonde il quadrato con l’ampiezza.−150 non è un picco in modulo positivo;300 V/m darebbe6/5 W. Omettere il due della media cambierebbe la radice.",
+        "target": "C5-L06"
+      },
+      "coverage": [
+        "Onda piana armonica nel vuoto e campi trasversali",
+        "Picco distinto dal valore efficace",
+        "Area in cm², inverse e radice positiva",
+        "Medie, display e vincolo cubico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-em-wave-field-power-06",
+      "kind": "question",
+      "course": "C5",
+      "section": "Campi di picco, intensità e potenza media",
+      "order": 24306,
+      "title": "L’area da ampiezza e potenza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "em-wave-field-power",
+      "difficulty": 2,
+      "prompt": "Un’onda elettromagnetica piana armonica nel vuoto illumina uniformemente una superficie di area A>0, perpendicolare alla propagazione. E₀>0 è l’ampiezza di picco del campo elettrico in V/m, non il valore efficace. Si fornisce I=E₀²/(2Z₀), con Z₀=375 Ω assunto per il calcolo; I è intensità media, P=IA potenza media incidente. Se A è data in cm² va convertita:1 cm²=10⁻⁴ m². Ogni prova conserva queste ipotesi e il valore prescritto di Z₀. P=3/10 W e E₀=150 V/m. Quanto vale A in cm²?",
+      "answer": {
+        "type": "numeric",
+        "value": 100,
+        "unit": "cm²",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’intensità resta30 W/m². A=P/I=(3/10)/30 m²=1/100 m². Poiché1 m²=10000 cm², l’area è100 cm². L’inversa cerca una superficie, non un lato."
+        },
+        {
+          "type": "formula",
+          "text": "A=\\frac{2Z_0P}{E_0^2}"
+        },
+        {
+          "type": "formula",
+          "text": " A=\\frac1{100}\\,\\mathrm{m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " A=100\\,\\mathrm{cm^2}"
+        },
+        {
+          "type": "text",
+          "text": "1/100 è il valore numerico in m², non in cm². 10 cm² darebbe P=3/100 W, non 3/10 W; 200 cm² darebbe 3/5 W. Non si applica una radice per ricavare A."
+        }
+      ],
+      "hints": [
+        "Controlla l’unità prima e dopo la conversione finale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "1/100 è il valore numerico in m², non in cm². 10 cm² darebbe P=3/100 W, non 3/10 W; 200 cm² darebbe 3/5 W. Non si applica una radice per ricavare A.",
+        "target": "C5-L06"
+      },
+      "coverage": [
+        "Onda piana armonica nel vuoto e campi trasversali",
+        "Picco distinto dal valore efficace",
+        "Area in cm², inverse e radice positiva",
+        "Medie, display e vincolo cubico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-em-wave-field-power-07",
+      "kind": "question",
+      "course": "C5",
+      "section": "Campi di picco, intensità e potenza media",
+      "order": 24307,
+      "title": "Area doppia, stesso campo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "em-wave-field-power",
+      "difficulty": 2,
+      "prompt": "Un’onda elettromagnetica piana armonica nel vuoto illumina uniformemente una superficie di area A>0, perpendicolare alla propagazione. E₀>0 è l’ampiezza di picco del campo elettrico in V/m, non il valore efficace. Si fornisce I=E₀²/(2Z₀), con Z₀=375 Ω assunto per il calcolo; I è intensità media, P=IA potenza media incidente. Se A è data in cm² va convertita:1 cm²=10⁻⁴ m². Ogni prova conserva queste ipotesi e il valore prescritto di Z₀. A usa E₀=150 V/m,A=100 cm²; B mantiene E₀ e usa A=200 cm². Quanto vale P_B/P_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/2",
+          "4",
+          "1",
+          "0"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La stessa ampiezza produce la stessa intensità30 W/m². L’area doppia intercetta potenza doppia:3/10→3/5 W, rapporto due. Qui il quadrato riguarda il campo, che non è cambiato, non l’area."
+        },
+        {
+          "type": "formula",
+          "text": "P_A=\\frac3{10}\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_B=\\frac35\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_B/P_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Mezzo inverte il confronto, quattro eleva impropriamente al quadrato l’area, uno ignora il cambio e zero viola le grandezze positive."
+        }
+      ],
+      "hints": [
+        "La potenza è lineare nell’area a intensità uniforme fissata.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Mezzo inverte il confronto, quattro eleva impropriamente al quadrato l’area, uno ignora il cambio e zero viola le grandezze positive.",
+        "target": "C5-L06"
+      },
+      "coverage": [
+        "Onda piana armonica nel vuoto e campi trasversali",
+        "Picco distinto dal valore efficace",
+        "Area in cm², inverse e radice positiva",
+        "Medie, display e vincolo cubico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-em-wave-field-power-08",
+      "kind": "question",
+      "course": "C5",
+      "section": "Campi di picco, intensità e potenza media",
+      "order": 24308,
+      "title": "Scarto di una proposta di potenza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "em-wave-field-power",
+      "difficulty": 2,
+      "prompt": "Un’onda elettromagnetica piana armonica nel vuoto illumina uniformemente una superficie di area A>0, perpendicolare alla propagazione. E₀>0 è l’ampiezza di picco del campo elettrico in V/m, non il valore efficace. Si fornisce I=E₀²/(2Z₀), con Z₀=375 Ω assunto per il calcolo; I è intensità media, P=IA potenza media incidente. Se A è data in cm² va convertita:1 cm²=10⁻⁴ m². Ogni prova conserva queste ipotesi e il valore prescritto di Z₀. Con E₀=150 V/m,A=100 cm² si propone P=3/5 W. Quanto vale proposta meno corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/10 W",
+          "−3/10 W",
+          "2",
+          "3/5 W",
+          "0 W"
+        ],
+        "value": "3/10 W"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il corretto è3/10 W. Lo scarto è3/5−3/10=3/10 W: la proposta raddoppia la potenza media. Due è il rapporto puro, non la differenza."
+        },
+        {
+          "type": "formula",
+          "text": "P=\\frac3{10}\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " \\delta P=\\left(\\frac35-\\frac3{10}\\right)\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " \\delta P=\\frac3{10}\\,\\mathrm W"
+        },
+        {
+          "type": "text",
+          "text": "−3/10 scambia l’ordine.3/5 ripete la proposta e zero la accetta senza la media armonica. Lo scarto mantiene unità watt."
+        }
+      ],
+      "hints": [
+        "Porta entrambe le potenze al denominatore dieci.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−3/10 scambia l’ordine.3/5 ripete la proposta e zero la accetta senza la media armonica. Lo scarto mantiene unità watt.",
+        "target": "C5-L06"
+      },
+      "coverage": [
+        "Onda piana armonica nel vuoto e campi trasversali",
+        "Picco distinto dal valore efficace",
+        "Area in cm², inverse e radice positiva",
+        "Medie, display e vincolo cubico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-em-wave-field-power-09",
+      "kind": "question",
+      "course": "C5",
+      "section": "Campi di picco, intensità e potenza media",
+      "order": 24309,
+      "title": "L’inversa simbolica dell’ampiezza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "em-wave-field-power",
+      "difficulty": 2,
+      "prompt": "Un’onda elettromagnetica piana armonica nel vuoto illumina uniformemente una superficie di area A>0, perpendicolare alla propagazione. E₀>0 è l’ampiezza di picco del campo elettrico in V/m, non il valore efficace. Si fornisce I=E₀²/(2Z₀), con Z₀=375 Ω assunto per il calcolo; I è intensità media, P=IA potenza media incidente. Se A è data in cm² va convertita:1 cm²=10⁻⁴ m². Ogni prova conserva queste ipotesi e il valore prescritto di Z₀. P e A sono noti, con A in unità SI. Quale formula isola E₀>0?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "E₀ = √(2 Z₀ P / A)",
+          "E₀ = 2 Z₀ P / A",
+          "E₀ = √(Z₀ P / A)",
+          "E₀ = √(2 Z₀ P A)",
+          "E₀ = √(A / (2 Z₀ P))"
+        ],
+        "value": "E₀ = √(2 Z₀ P / A)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplico P=E₀²A/(2Z₀) per2Z₀ e divido per A>0. Poi estraggo la radice positiva: E₀=√(2Z₀P/A). L’area sotto radice è quella in m²; se si usano i numeri in cm² occorre il fattore di conversione."
+        },
+        {
+          "type": "formula",
+          "text": "E_0^2=\\frac{2Z_0P}{A}"
+        },
+        {
+          "type": "formula",
+          "text": " E_0=\\sqrt{\\frac{2Z_0P}{A}}"
+        },
+        {
+          "type": "text",
+          "text": "Senza radice si ricava il quadrato del campo. Omettere il due dà un’ampiezza più piccola di un fattore√2; moltiplicare per A cambia anche le dimensioni. L’ultima espressione ha unità inversa di campo, non V/m."
+        }
+      ],
+      "hints": [
+        "Distingui E₀ da E₀² prima di scegliere il ramo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Senza radice si ricava il quadrato del campo. Omettere il due dà un’ampiezza più piccola di un fattore√2; moltiplicare per A cambia anche le dimensioni. L’ultima espressione ha unità inversa di campo, non V/m.",
+        "target": "C5-L06"
+      },
+      "coverage": [
+        "Onda piana armonica nel vuoto e campi trasversali",
+        "Picco distinto dal valore efficace",
+        "Area in cm², inverse e radice positiva",
+        "Medie, display e vincolo cubico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-em-wave-field-power-10",
+      "kind": "question",
+      "course": "C5",
+      "section": "Campi di picco, intensità e potenza media",
+      "order": 24310,
+      "title": "Due fattori con esponenti diversi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "em-wave-field-power",
+      "difficulty": 2,
+      "prompt": "Un’onda elettromagnetica piana armonica nel vuoto illumina uniformemente una superficie di area A>0, perpendicolare alla propagazione. E₀>0 è l’ampiezza di picco del campo elettrico in V/m, non il valore efficace. Si fornisce I=E₀²/(2Z₀), con Z₀=375 Ω assunto per il calcolo; I è intensità media, P=IA potenza media incidente. Se A è data in cm² va convertita:1 cm²=10⁻⁴ m². Ogni prova conserva queste ipotesi e il valore prescritto di Z₀. Fra preparazioni E₀,B=κ₁E₀,A e A_B=κ₂A_A, con fattori positivi. Quanto vale P_B/P_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁² κ₂",
+          "κ₁ κ₂",
+          "κ₁ / κ₂",
+          "κ₂ / κ₁²",
+          "κ₁² + κ₂"
+        ],
+        "value": "κ₁² κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’ampiezza porta il fattoreκ₁² e l’area il fattoreκ₂. Z₀ e la media armonica sono comuni e si cancellano: P_B/P_A=κ₁²κ₂. Il simbolo E₀ indica sempre il picco in entrambe le prove."
+        },
+        {
+          "type": "formula",
+          "text": "P_B/P_A=\\kappa_1^2\\kappa_2"
+        },
+        {
+          "type": "text",
+          "text": "κ₁κ₂ perde il quadrato; il quoziente inverte l’effetto dell’area. Il rapportoκ₂/κ₁² rende inverso il campo e la somma non dà uno per fattori unitari."
+        }
+      ],
+      "hints": [
+        "Usa un quadrato per il campo e una sola potenza per l’area.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "κ₁κ₂ perde il quadrato; il quoziente inverte l’effetto dell’area. Il rapportoκ₂/κ₁² rende inverso il campo e la somma non dà uno per fattori unitari.",
+        "target": "C5-L06"
+      },
+      "coverage": [
+        "Onda piana armonica nel vuoto e campi trasversali",
+        "Picco distinto dal valore efficace",
+        "Area in cm², inverse e radice positiva",
+        "Medie, display e vincolo cubico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-em-wave-field-power-11",
+      "kind": "question",
+      "course": "C5",
+      "section": "Campi di picco, intensità e potenza media",
+      "order": 24311,
+      "title": "Due raddoppiamenti danno otto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "em-wave-field-power",
+      "difficulty": 2,
+      "prompt": "Un’onda elettromagnetica piana armonica nel vuoto illumina uniformemente una superficie di area A>0, perpendicolare alla propagazione. E₀>0 è l’ampiezza di picco del campo elettrico in V/m, non il valore efficace. Si fornisce I=E₀²/(2Z₀), con Z₀=375 Ω assunto per il calcolo; I è intensità media, P=IA potenza media incidente. Se A è data in cm² va convertita:1 cm²=10⁻⁴ m². Ogni prova conserva queste ipotesi e il valore prescritto di Z₀. A ha E₀=150 V/m,A=100 cm². B ha E₀=300 V/m,A=200 cm². Quanto vale P_B/P_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "8",
+          "1/8",
+          "4",
+          "2",
+          "1"
+        ],
+        "value": "8"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il campo doppio dà intensità quattro volte maggiore; l’area doppia aggiunge un fattore due. Le potenze sono3/10 e12/5 W e il rapporto è otto. Non si sommano i due fattori."
+        },
+        {
+          "type": "formula",
+          "text": "P_A=\\frac3{10}\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_B=\\frac{12}{5}\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_B/P_A=8"
+        },
+        {
+          "type": "text",
+          "text": "Un ottavo inverte il confronto. Quattro segue soltanto il campo, due soltanto l’area. Uno ignora entrambe le variazioni."
+        }
+      ],
+      "hints": [
+        "Moltiplica quattro per due.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un ottavo inverte il confronto. Quattro segue soltanto il campo, due soltanto l’area. Uno ignora entrambe le variazioni.",
+        "target": "C5-L06"
+      },
+      "coverage": [
+        "Onda piana armonica nel vuoto e campi trasversali",
+        "Picco distinto dal valore efficace",
+        "Area in cm², inverse e radice positiva",
+        "Medie, display e vincolo cubico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-em-wave-field-power-12",
+      "kind": "question",
+      "course": "C5",
+      "section": "Campi di picco, intensità e potenza media",
+      "order": 24312,
+      "title": "Media di due potenze medie",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "em-wave-field-power",
+      "difficulty": 2,
+      "prompt": "Un’onda elettromagnetica piana armonica nel vuoto illumina uniformemente una superficie di area A>0, perpendicolare alla propagazione. E₀>0 è l’ampiezza di picco del campo elettrico in V/m, non il valore efficace. Si fornisce I=E₀²/(2Z₀), con Z₀=375 Ω assunto per il calcolo; I è intensità media, P=IA potenza media incidente. Se A è data in cm² va convertita:1 cm²=10⁻⁴ m². Ogni prova conserva queste ipotesi e il valore prescritto di Z₀. A usa E₀=150 V/m,A=100 cm²; B usa E₀=300 V/m,A=200 cm². Qual è la media aritmetica delle due P?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "27/20 W",
+          "81/80 W",
+          "27/10 W",
+          "21/20 W",
+          "12/5 W"
+        ],
+        "value": "27/20 W"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le uscite sono3/10 e12/5=24/10 W. La semisomma è27/20 W. Agli ingressi medi E₀225 V/m e A150 cm² la formula darebbe81/80 W, inferiore alla media delle uscite di27/80 W. Questa è una media statistica di due potenze già mediate sui rispettivi periodi."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/dcce17842e5d6a5b304627fbeef8aeefad2107d41891ca8a027b784407810e8e",
+          "text": "Le barre finali condividono scala e origine:3/10 W,12/5 W e media27/20 W. Le due preparazioni differiscono sia nell’ampiezza sia nell’area; non si usa il quadrato di un campo medio."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline P=\\frac{3/10+12/5}{2}\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline P=\\frac{27}{20}\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P_{\\rm dati\\ medi}=\\frac{81}{80}\\,\\mathrm W"
+        },
+        {
+          "type": "text",
+          "text": "81/80 W usa i dati medi,27/10 è la somma,21/20 la semidifferenza e12/5 solo B. Non si può far passare la media attraverso il quadrato di E₀ e il prodotto per A."
+        }
+      ],
+      "hints": [
+        "Porta le due potenze al denominatore dieci, poi dimezza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "81/80 W usa i dati medi,27/10 è la somma,21/20 la semidifferenza e12/5 solo B. Non si può far passare la media attraverso il quadrato di E₀ e il prodotto per A.",
+        "target": "C5-L06"
+      },
+      "coverage": [
+        "Onda piana armonica nel vuoto e campi trasversali",
+        "Picco distinto dal valore efficace",
+        "Area in cm², inverse e radice positiva",
+        "Medie, display e vincolo cubico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-em-wave-field-power-13",
+      "kind": "question",
+      "course": "C5",
+      "section": "Campi di picco, intensità e potenza media",
+      "order": 24313,
+      "title": "L’area che completa il bersaglio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "em-wave-field-power",
+      "difficulty": 3,
+      "prompt": "Un’onda elettromagnetica piana armonica nel vuoto illumina uniformemente una superficie di area A>0, perpendicolare alla propagazione. E₀>0 è l’ampiezza di picco del campo elettrico in V/m, non il valore efficace. Si fornisce I=E₀²/(2Z₀), con Z₀=375 Ω assunto per il calcolo; I è intensità media, P=IA potenza media incidente. Se A è data in cm² va convertita:1 cm²=10⁻⁴ m². Ogni prova conserva queste ipotesi e il valore prescritto di Z₀. A ha E₀,A=150 V/m,A_A=100 cm². B usa E₀,B=300 V/m e deve ottenere P_B=8P_A. Quanto vale A_B/A_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/2",
+          "8",
+          "4",
+          "1"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’ampiezza doppia fornisce già un fattore quattro nella potenza. Per arrivare a otto serve un ulteriore fattore due nell’area: A_B200 cm² e rapporto due. L’area non va elevata al quadrato."
+        },
+        {
+          "type": "formula",
+          "text": "8=4\\frac{A_B}{A_A}"
+        },
+        {
+          "type": "formula",
+          "text": " A_B/A_A=2"
+        },
+        {
+          "type": "formula",
+          "text": " A_B=200\\,\\mathrm{cm^2}"
+        },
+        {
+          "type": "text",
+          "text": "Mezzo inverte il confronto. Otto copia il bersaglio; quattro scambia il fattore del campo con quello dell’area. Area invariata darebbe soltanto4P_A."
+        }
+      ],
+      "hints": [
+        "Dividi il rapporto di potenza per il quadrato del rapporto dei campi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Mezzo inverte il confronto. Otto copia il bersaglio; quattro scambia il fattore del campo con quello dell’area. Area invariata darebbe soltanto4P_A.",
+        "target": "C5-L06"
+      },
+      "coverage": [
+        "Onda piana armonica nel vuoto e campi trasversali",
+        "Picco distinto dal valore efficace",
+        "Area in cm², inverse e radice positiva",
+        "Medie, display e vincolo cubico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-em-wave-field-power-14",
+      "kind": "question",
+      "course": "C5",
+      "section": "Campi di picco, intensità e potenza media",
+      "order": 24314,
+      "title": "Il display va decodificato prima della radice",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "em-wave-field-power",
+      "difficulty": 3,
+      "prompt": "Un’onda elettromagnetica piana armonica nel vuoto illumina uniformemente una superficie di area A>0, perpendicolare alla propagazione. E₀>0 è l’ampiezza di picco del campo elettrico in V/m, non il valore efficace. Si fornisce I=E₀²/(2Z₀), con Z₀=375 Ω assunto per il calcolo; I è intensità media, P=IA potenza media incidente. Se A è data in cm² va convertita:1 cm²=10⁻⁴ m². Ogni prova conserva queste ipotesi e il valore prescritto di Z₀. D=a_cal P è continuo e adimensionale. Il riferimento E₀=150 V/m,A=100 cm² dà D=9/10. La prova B ha A=200 cm²,D=36/5. Quanto vale E₀,B in V/m?",
+      "answer": {
+        "type": "numeric",
+        "value": 300,
+        "unit": "V/m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "P_A3/10 W identifica a_cal=(9/10)/(3/10 W)=3 W⁻¹. La nuova lettura dà P_B=(36/5)/3=12/5 W. Definendo x=E₀/(150 V/m), alla nuova area doppia si ha P_B/P_A=2x²=8: x²4 e x2. Quindi E₀,B300 V/m."
+        },
+        {
+          "type": "formula",
+          "text": "a_{\\rm cal}=3\\,\\mathrm W^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " P_B=\\frac{12}{5}\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " x^2=4"
+        },
+        {
+          "type": "formula",
+          "text": " E_{0,B}=300\\,\\mathrm{V/m}"
+        },
+        {
+          "type": "text",
+          "text": "Usare D direttamente come potenza triplicherebbe P_B e darebbe300√3 V/m, non300.150 V/m darebbe P3/5 W e D9/5. Il guadagno deve essere rimosso prima del quadrato inverso."
+        }
+      ],
+      "hints": [
+        "Ricava P, poi usa la radice del rapporto dei campi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Usare D direttamente come potenza triplicherebbe P_B e darebbe300√3 V/m, non300.150 V/m darebbe P3/5 W e D9/5. Il guadagno deve essere rimosso prima del quadrato inverso.",
+        "target": "C5-L06"
+      },
+      "coverage": [
+        "Onda piana armonica nel vuoto e campi trasversali",
+        "Picco distinto dal valore efficace",
+        "Area in cm², inverse e radice positiva",
+        "Medie, display e vincolo cubico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-em-wave-field-power-15",
+      "kind": "question",
+      "course": "C5",
+      "section": "Campi di picco, intensità e potenza media",
+      "order": 24315,
+      "title": "Taratura affine con due potenze",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "em-wave-field-power",
+      "difficulty": 3,
+      "prompt": "Un’onda elettromagnetica piana armonica nel vuoto illumina uniformemente una superficie di area A>0, perpendicolare alla propagazione. E₀>0 è l’ampiezza di picco del campo elettrico in V/m, non il valore efficace. Si fornisce I=E₀²/(2Z₀), con Z₀=375 Ω assunto per il calcolo; I è intensità media, P=IA potenza media incidente. Se A è data in cm² va convertita:1 cm²=10⁻⁴ m². Ogni prova conserva queste ipotesi e il valore prescritto di Z₀. D=a_cal P+b_cal è continuo. A:E₀=150 V/m,A=100 cm²,D=8/5. B:E₀=300 V/m,A=200 cm²,D=29/5. C:A=100 cm²,D=17/5. Quanto vale E₀,C in V/m?",
+      "answer": {
+        "type": "numeric",
+        "value": 300,
+        "unit": "V/m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti fisici sono P_A3/10 W e P_B12/5 W. La differenza di letture21/5 divisa per la differenza di potenze21/10 W dà a_cal2 W⁻¹; segue b_cal1. D_C17/5 decodifica P_C6/5 W. Alla stessa area di A, il rapporto P_C/P_A=4 dà ampiezza doppia:300 V/m."
+        },
+        {
+          "type": "formula",
+          "text": "a_{\\rm cal}=2\\,\\mathrm W^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " b_{\\rm cal}=1"
+        },
+        {
+          "type": "formula",
+          "text": " P_C=\\frac65\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " E_{0,C}=300\\,\\mathrm{V/m}"
+        },
+        {
+          "type": "text",
+          "text": "Omettere l’offset darebbe P17/10 W e non ricostruirebbe D17/5. Saltare il guadagno dopo la sottrazione raddoppierebbe P e darebbe300√2 V/m.150 V/m darebbe D8/5."
+        }
+      ],
+      "hints": [
+        "Le differenze dei riferimenti eliminano b_cal prima di ricavare il campo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Omettere l’offset darebbe P17/10 W e non ricostruirebbe D17/5. Saltare il guadagno dopo la sottrazione raddoppierebbe P e darebbe300√2 V/m.150 V/m darebbe D8/5.",
+        "target": "C5-L06"
+      },
+      "coverage": [
+        "Onda piana armonica nel vuoto e campi trasversali",
+        "Picco distinto dal valore efficace",
+        "Area in cm², inverse e radice positiva",
+        "Medie, display e vincolo cubico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-em-wave-field-power-16",
+      "kind": "question",
+      "course": "C5",
+      "section": "Campi di picco, intensità e potenza media",
+      "order": 24316,
+      "title": "Un vincolo fra ampiezza e area",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L06",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "em-wave-field-power",
+      "difficulty": 3,
+      "prompt": "Un’onda elettromagnetica piana armonica nel vuoto illumina uniformemente una superficie di area A>0, perpendicolare alla propagazione. E₀>0 è l’ampiezza di picco del campo elettrico in V/m, non il valore efficace. Si fornisce I=E₀²/(2Z₀), con Z₀=375 Ω assunto per il calcolo; I è intensità media, P=IA potenza media incidente. Se A è data in cm² va convertita:1 cm²=10⁻⁴ m². Ogni prova conserva queste ipotesi e il valore prescritto di Z₀. Fra preparazioni E₀=[(3/2)(V/m)/cm²]A. Si misura P=3/10 W. Quanto vale A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "100 cm²",
+          "−100 cm²",
+          "10000 cm²",
+          "150 cm²",
+          "Infinite aree positive"
+        ],
+        "value": "100 cm²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Pongo x=E₀/(150 V/m)>0 e a=A/(100 cm²)>0. Il vincolo dimensionato dà x=a; la formula diventa P=(3/10 W)x²a=(3/10 W)a³. La misura impone a³1, quindi a1: A100 cm² ed E₀150 V/m. Non è una legge di crescita temporale dell’area."
+        },
+        {
+          "type": "formula",
+          "text": "x=a"
+        },
+        {
+          "type": "formula",
+          "text": " P=\\left(\\frac3{10}\\,\\mathrm W\\right)a^3"
+        },
+        {
+          "type": "formula",
+          "text": " a^3=1"
+        },
+        {
+          "type": "formula",
+          "text": " A=100\\,\\mathrm{cm^2}"
+        },
+        {
+          "type": "text",
+          "text": "−100 viola l’area positiva.150 cm² darebbe81/80 W;10000 cm² rende a100 e non la potenza misurata. Il vincolo cubico è strettamente crescente per a>0 e lascia una sola area."
+        }
+      ],
+      "hints": [
+        "Normalizza le due grandezze per evitare grandi numeri nel cubo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "−100 viola l’area positiva.150 cm² darebbe81/80 W;10000 cm² rende a100 e non la potenza misurata. Il vincolo cubico è strettamente crescente per a>0 e lascia una sola area.",
+        "target": "C5-L06"
+      },
+      "coverage": [
+        "Onda piana armonica nel vuoto e campi trasversali",
+        "Picco distinto dal valore efficace",
+        "Area in cm², inverse e radice positiva",
+        "Medie, display e vincolo cubico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "dcce17842e5d6a5b304627fbeef8aeefad2107d41891ca8a027b784407810e8e",
+      "name": "em-wave-field-power-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTQ4MCIgdmlld0JveD0iMCAwIDY0MCAxNDgwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+Q2FtcGksIGludGVuc2l0w6AgZSBwb3RlbnphIG1lZGlhPC90aXRsZT48ZGVzYyBpZD0iZGVzYyI+VHJlIHRhcHBlOiBjYW1wbyBlbGV0dHJpY28gdmVyc28gbOKAmWFsdG8gZSBtYWduZXRpY28gdXNjZW50ZSBkYW5ubyBwcm9wYWdhemlvbmUgdmVyc28gZGVzdHJhOyBpbnRlbnNpdMOgIG1lZGlhIGUgY29udmVyc2lvbmUgZGVsbOKAmWFyZWE7IGJhcnJlIGRlbGxlIHBvdGVuemUgdHJlIGRlY2ltaSBlIGRvZGljaSBxdWludGkgd2F0dCBlIG1lZGlhIHZlbnRpc2V0dGUgdmVudGVzaW1pLjwvZGVzYz48ZGVmcz48bWFya2VyIGlkPSJhcnJvdyIgbWFya2VyV2lkdGg9IjgiIG1hcmtlckhlaWdodD0iOCIgcmVmWD0iNyIgcmVmWT0iNCIgb3JpZW50PSJhdXRvIj48cGF0aCBkPSJNMCAwTDggNEwwIDhaIiBmaWxsPSIjNTI2NjdhIi8+PC9tYXJrZXI+PC9kZWZzPjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMTQ4MCIgZmlsbD0iI2Y3ZmFmYyIvPjxnIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZmlsbD0iIzIwMzU0ZCI+PHRleHQgeD0iMzIiIHk9IjQyIiBmb250LXNpemU9IjI0IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPkNhbXBpLCBpbnRlbnNpdMOgIGUgcG90ZW56YSBtZWRpYTwvdGV4dD48dGV4dCB4PSIzMiIgeT0iOTIiIGZvbnQtc2l6ZT0iMjIiIHRleHQtYW5jaG9yPSJzdGFydCI+MSDCtyBVbiBpc3RhbnRlIGRlbGzigJlvbmRhIHBpYW5hPC90ZXh0PjxsaW5lIHgxPSIyNjAiIHkxPSIyNjAiIHgyPSIyNjAiIHkyPSIxNTAiIHN0cm9rZT0iIzUyNjY3YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjxsaW5lIHgxPSIyODAiIHkxPSIyODAiIHgyPSI0NTAiIHkyPSIyODAiIHN0cm9rZT0iIzUyNjY3YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjxjaXJjbGUgY3g9IjI2MCIgY3k9IjI4MCIgcj0iMTIiIGZpbGw9IiNmN2ZhZmMiIHN0cm9rZT0iIzUyNjY3YSIgc3Ryb2tlLXdpZHRoPSIyIi8+PGNpcmNsZSBjeD0iMjYwIiBjeT0iMjgwIiByPSI0IiBmaWxsPSIjNTI2NjdhIi8+PHRleHQgeD0iMjgwIiB5PSIxNTUiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJzdGFydCI+RTwvdGV4dD48dGV4dCB4PSI0NjUiIHk9IjI4NiIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9InN0YXJ0Ij5TPC90ZXh0Pjx0ZXh0IHg9IjE4NSIgeT0iMzMwIiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPkIgdXNjZW50ZTwvdGV4dD48dGV4dCB4PSIzMiIgeT0iMzkwIiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPlZlcnNpIHNjaGVtYXRpY2k6IEUgw5cgQiBpbmRpY2EgUy48L3RleHQ+PHRleHQgeD0iMzIiIHk9IjQ4MCIgZm9udC1zaXplPSIyMiIgdGV4dC1hbmNob3I9InN0YXJ0Ij4yIMK3IEludGVuc2l0w6AgbWVkaWEgZSBhcmVhPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSI1MzAiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJzdGFydCI+ReKCgCA9IDE1MCBWL20gwrcgWuKCgCA9IDM3NSDOqTwvdGV4dD48dGV4dCB4PSIzMiIgeT0iNTg1IiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPkkgPSBF4oKAwrIvKDJa4oKAKSA9IDMwIFcvbcKyPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSI2NDAiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJzdGFydCI+QSA9IDEwMCBjbcKyID0gKDEvMTAwKSBtwrI8L3RleHQ+PHRleHQgeD0iMzIiIHk9IjY5NSIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9InN0YXJ0Ij5QID0gSUEgPSAzLzEwIFc8L3RleHQ+PHRleHQgeD0iMzIiIHk9Ijc1NSIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9InN0YXJ0Ij5F4oKAIMOoIGlsIHBpY2NvOyBpbCBmYXR0b3JlIDIgaW5jbHVkZSBsYSBtZWRpYS48L3RleHQ+PHRleHQgeD0iMzIiIHk9Ijg0MCIgZm9udC1zaXplPSIyMiIgdGV4dC1hbmNob3I9InN0YXJ0Ij4zIMK3IER1ZSBwb3RlbnplIGUgbGEgbG9ybyBtZWRpYTwvdGV4dD48dGV4dCB4PSIzMiIgeT0iODg3IiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPkE6IDE1MCBWL20sIDEwMCBjbcKyIMK3IEI6IDMwMCBWL20sIDIwMCBjbcKyPC90ZXh0Pjx0ZXh0IHg9IjEyOCIgeT0iOTg0IiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0iZW5kIj5BPC90ZXh0PjxyZWN0IHg9IjE1MCIgeT0iOTYwIiB3aWR0aD0iMzAiIGhlaWdodD0iMzIiIGZpbGw9IiMzMTZiOWIiLz48dGV4dCB4PSIxOTIiIHk9Ijk4NCIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9InN0YXJ0Ij4zLzEwIFc8L3RleHQ+PHRleHQgeD0iMTI4IiB5PSIxMDk0IiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0iZW5kIj5CPC90ZXh0PjxyZWN0IHg9IjE1MCIgeT0iMTA3MCIgd2lkdGg9IjI0MCIgaGVpZ2h0PSIzMiIgZmlsbD0iIzMxNmI5YiIvPjx0ZXh0IHg9IjQwMiIgeT0iMTA5NCIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9InN0YXJ0Ij4xMi81IFc8L3RleHQ+PHRleHQgeD0iMTI4IiB5PSIxMjA0IiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0iZW5kIj5NZWRpYTwvdGV4dD48cmVjdCB4PSIxNTAiIHk9IjExODAiIHdpZHRoPSIxMzUiIGhlaWdodD0iMzIiIGZpbGw9IiMzMTZiOWIiLz48dGV4dCB4PSIyOTciIHk9IjEyMDQiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJzdGFydCI+MjcvMjAgVzwvdGV4dD48dGV4dCB4PSIzMiIgeT0iMTMxMCIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9InN0YXJ0Ij5MZSBiYXJyZSBoYW5ubyBsYSBzdGVzc2Egc2NhbGEgZGkgcG90ZW56YS48L3RleHQ+PHRleHQgeD0iMzIiIHk9IjEzNjAiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJzdGFydCI+SW4gQiBjYW1iaWFubyBzaWEgaWwgcGljY28gc2lhIGzigJlhcmVhLjwvdGV4dD48dGV4dCB4PSIzMiIgeT0iMTQxMCIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9InN0YXJ0Ij5Ob24gc2kgdXNhIGlsIHF1YWRyYXRvIGRpIHVuIGNhbXBvIG1lZGlvLjwvdGV4dD48L2c+PC9zdmc+Cg=="
+    }
+  ]
+}

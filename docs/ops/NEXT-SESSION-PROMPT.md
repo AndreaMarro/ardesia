@@ -1,3 +1,19 @@
+## Stato verificato del26novembre:3.792 revisioni e CIcanonico completa
+
+Mandato INCOMPLETO. Quesiti scientificamente revisionati e accettati da Root3.792/4.606 (82,3%); restano814:208Ardesia e606Cric. Registry3632, con160U701 accettati ma in attesa di registrazione dopo il collaudo/adottamento3632 già in coda. Checkpoint ufficiale3472/246. Non confondere questi tre stati né rifare i160 già verificati. Attività complete246/385; residue139. Human0, pubblicazioni nuove0.
+
+U701:327file recuperati dai4handoff finali cc8048cc/7d5bc325/32b08c5a/42b7e3cb conSHA verificati; Root19testPASS5,945s +17PASS12,607s, tutti160reportfresh/saved identici e10import16→0/16 con991pubblicati/versioni storiche invariati. Ricevuta u7-01-root-integration-20261126/receipt.json; registro temporaneamente invariato3632 per mantenere adottabile la preparazione in corso. Prossimo ID scientifico AR-u7-radioactive-survivors-01. Autori proseguonoU702, poiU703 e54cohortCric606 conversioni individuali64v2/542v1 e93exam preservati.
+
+PR364 MERGED e canone7c29ccc18ad3b42ceecfca509ef57f786bd2c496 nuovamente misurato: CIpostmerge14/14SUCCESS, run45859292127/45859292343 entrambi completatiSUCCESS sullaSHAesatta. Ricevuta pr364-integration-20261126/postmerge-ci.json. Canone3312quesiti/246attività, separato dalle successive revisioni della feature.
+
+Preparazione3632: primo45859734058 FAIL1015test954,151s(1FAIL ASTversione+1ERRORfixturemancante). ProveUI239/10947, ETLfresh/incrementale e coesistenzaPASS; releaseSKIPPED e nessuna adozione. ZIPfallito conservato integralmente suGitHub. Recuperata fixturestorica esatta172a24ec... e fix distinto4852c817 della sola asserzioneAST verso fonte esatta55ff6aaa..., Root7+16test positivi. Retry45865245464/source4e403a89 in coda al preview45859734142; lascia ilregistry3632 finché si può verificare/adottare questo collaudo. Poi registraU701/3792, nuovo replay incrementale e successivaPRordinaria. Non dichiarare retrySUCCESS prima del terminale.
+
+RuntimeRoot/canone1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba invariato. Candidato consumer isolato16dcfbe6/b2abff8e44eab69812c8c2a03c9876fdf49ae3dab2285f323303bcd3c1689e46:11contratti geometry+80generaliPASS, ma nessuna attività completata. Review distinta delle sole guide/formule epocad9d1 salvata5d749ec1 e recuperata inRoot,9testRootPASS1,547s;32UI/64submit/24transizioni reali, invarianti139/2144,17difetti geometrici ancora aperti allora. Non ritaggare d9su b2. Primo canaryb2 di8profili trova nuovoFAILreale NodoA copre punta della freccia entrante a8mL/s inSIM-C2-L005-05; nessunclaiminterocono. Autore correggerà solo testoNodoA/B spostandolo nella legendaHTML con associazione alle biforcazioni, poi nuovo replay distinto. Reviewer continua gli altri16 nel snapshot16dc e preparaUI139. Nessuna modifica runtime integrata né vecchioFAIL cancellato.
+
+Repository PUBLIC con tutti i contenuti editoriali autorizzati; nell’appDRAFT/default-deny e93esami invariati. Pro100NOT_IDENTIFIED;199controlli tecnici non sono revisioni complete. Mutex unico, almeno2GiB, nessun processo utente terminato.
+
+Prossime azioni: concludere retry3632/adottare soltanto prove riuscite; attivare160U701 e replay3792; continuare208Ardesia e606Cric; chiudere NodoA e altri consumer con autore/reviewer distinti e veri testUI; aggiornare checkpoint/coda umana separata dalla pubblicazione.
+
 ## Ripresa del 26 novembre 2026: 3.632 revisioni, PR364 integrata
 
 Mandato INCOMPLETO: 3.632/4.606 quesiti revisionati con verifica indipendente e collaudo Root (78,9%); restano 974, di cui 368 Ardesia e 606 Cric. Attività complete 246/385, residue139. Nessuna nuova approvazione umana o pubblicazione nell’app.

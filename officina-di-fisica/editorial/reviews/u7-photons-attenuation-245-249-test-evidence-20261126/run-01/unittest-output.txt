@@ -1,0 +1,42 @@
+test_135_retokenized_packet_mutations (tests.corpus.test_cross_review_radiation_attenuation_245_249.CrossReviewRadiationAttenuation245249.test_135_retokenized_packet_mutations) ... ok
+test_actual_catalog_and_portable_identity_boundary (tests.corpus.test_cross_review_radiation_attenuation_245_249.CrossReviewRadiationAttenuation245249.test_actual_catalog_and_portable_identity_boundary) ... ok
+test_attenuation_inverse_and_additive_background (tests.corpus.test_cross_review_radiation_attenuation_245_249.CrossReviewRadiationAttenuation245249.test_attenuation_inverse_and_additive_background) ... ok
+test_beer_powers_and_inverse (tests.corpus.test_cross_review_radiation_attenuation_245_249.CrossReviewRadiationAttenuation245249.test_beer_powers_and_inverse) ... ok
+test_calibration_signed_offset (tests.corpus.test_cross_review_radiation_attenuation_245_249.CrossReviewRadiationAttenuation245249.test_calibration_signed_offset) ... ok
+test_constitutive_and_inverse_math_faults (tests.corpus.test_cross_review_radiation_attenuation_245_249.CrossReviewRadiationAttenuation245249.test_constitutive_and_inverse_math_faults) ... ERROR
+test_domain_residuals_integers_and_background (tests.corpus.test_cross_review_radiation_attenuation_245_249.CrossReviewRadiationAttenuation245249.test_domain_residuals_integers_and_background) ... ok
+test_exact_decoder_and_dependency_failclosed (tests.corpus.test_cross_review_radiation_attenuation_245_249.CrossReviewRadiationAttenuation245249.test_exact_decoder_and_dependency_failclosed) ... ok
+test_exact_si_units (tests.corpus.test_cross_review_radiation_attenuation_245_249.CrossReviewRadiationAttenuation245249.test_exact_si_units) ... ok
+test_finite_exact_guards_all_numeric_positions (tests.corpus.test_cross_review_radiation_attenuation_245_249.CrossReviewRadiationAttenuation245249.test_finite_exact_guards_all_numeric_positions) ... ok
+test_fresh_saved_eighty_identity (tests.corpus.test_cross_review_radiation_attenuation_245_249.CrossReviewRadiationAttenuation245249.test_fresh_saved_eighty_identity) ... ok
+test_frozen_source_primary_prekey_model_and_git_fixtures (tests.corpus.test_cross_review_radiation_attenuation_245_249.CrossReviewRadiationAttenuation245249.test_frozen_source_primary_prekey_model_and_git_fixtures) ... ok
+test_manual_means_radicals_and_domains (tests.corpus.test_cross_review_radiation_attenuation_245_249.CrossReviewRadiationAttenuation245249.test_manual_means_radicals_and_domains) ... ok
+test_native_full_capture_and_physical_scales (tests.corpus.test_cross_review_radiation_attenuation_245_249.CrossReviewRadiationAttenuation245249.test_native_full_capture_and_physical_scales) ... ok
+test_optical_product_inverse (tests.corpus.test_cross_review_radiation_attenuation_245_249.CrossReviewRadiationAttenuation245249.test_optical_product_inverse) ... ok
+test_packet_integer_inverses_and_scaling (tests.corpus.test_cross_review_radiation_attenuation_245_249.CrossReviewRadiationAttenuation245249.test_packet_integer_inverses_and_scaling) ... ok
+test_two_layers_inverse_and_increment (tests.corpus.test_cross_review_radiation_attenuation_245_249.CrossReviewRadiationAttenuation245249.test_two_layers_inverse_and_increment) ... ok
+
+======================================================================
+ERROR: test_constitutive_and_inverse_math_faults (tests.corpus.test_cross_review_radiation_attenuation_245_249.CrossReviewRadiationAttenuation245249.test_constitutive_and_inverse_math_faults)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-a-resident/officina-di-fisica/tests/corpus/test_cross_review_radiation_attenuation_245_249.py", line 255, in test_constitutive_and_inverse_math_faults
+    with self.assertRaises(AssertionError):v.oracle()
+                                           ~~~~~~~~^^
+  File "/private/tmp/cric-author-a-resident/officina-di-fisica/tools/corpus_engineering/photon_packet_wavelength_verifier.py", line 30, in oracle
+    d=model.primary_only_derivations()[245]
+      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/private/tmp/cric-author-a-resident/officina-di-fisica/tools/corpus_engineering/radiation_attenuation_review_models.py", line 125, in primary_only_derivations
+    out[245]={1:a0,2:'energy dimension',3:laws[0],4:(a0,packet_energy(2,660)),5:photon_count(3,660),6:wavelength(3,1),7:packet_energy(1,330)/a0,8:6-a0,9:e*x/1980,10:k1/k2,11:b/a0,12:(a0+b)/2,13:wavelength(4*a0,2)/660,14:photon_count(36/ sp.Integer(3),330),15:photon_count((13-o)/g,660),16:'Infinite discrete pairs N>=1; wavelength660N nm'}
+                                                                                                                                                                                                                                                                   ~~~~~~~~~~~~^^^^^^^^^^^^^^
+  File "/private/tmp/cric-author-a-resident/officina-di-fisica/tools/corpus_engineering/radiation_attenuation_review_models.py", line 41, in photon_count
+    return count(energy*wavelength_nm/1980)
+  File "/private/tmp/cric-author-a-resident/officina-di-fisica/tools/corpus_engineering/radiation_attenuation_review_models.py", line 25, in count
+    if value.is_integer is not True:raise ValueError('Photon number is a positive integer')
+                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Photon number is a positive integer
+
+----------------------------------------------------------------------
+Ran 17 tests in 2.607s
+
+FAILED (errors=1)

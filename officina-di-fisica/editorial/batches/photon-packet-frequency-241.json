@@ -1,0 +1,1155 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u7-photon-packet-frequency-01",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia dei fotoni e conteggio del pacchetto",
+      "order": 24101,
+      "title": "Cinque fotoni della stessa frequenza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L02",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "photon-packet-frequency",
+      "difficulty": 1,
+      "prompt": "Un pacchetto ideale contiene N fotoni monocromatici, con N intero positivo. La frequenza è f=u·10¹⁴ Hz, dove u>0 è un coefficiente numerico puro. Si assume h=6,6×10⁻³⁴ J·s come valore prescritto del modello. Definisco q_E=10⁻²⁰ J ed e=E/q_E: e è il valore numerico dell’energia totale in questa unità, mentre E è l’energia fisica. Confronti e tarature riguardano pacchetti distinti e conservano N intero. Con N=5 e u=1, quanto vale E in unità q_E? Inserisci il coefficiente e.",
+      "answer": {
+        "type": "numeric",
+        "value": 33,
+        "unit": "10⁻²⁰ J",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Ogni fotone ha energia hf; il pacchetto ne contiene N, dunque E=Nhf. Sostituendo la scala di frequenza si trova e=(33/5)Nu. Per N=5 il fattore cinque si cancella: e=33, cioè E=33q_E. Il valore prescritto di h non va sostituito con una costante più precisa a metà calcolo."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/aee8e1818e35909640ebbf830333c0c009dd11ad55a849d872d2058426d13cd6",
+          "text": "I primi gruppi illustrano conteggi discreti di cinque e dieci fotoni, tutti con u=1. L’energia per fotone è la stessa: il pacchetto più popolato porta il doppio dell’energia, non fotoni individualmente più energetici."
+        },
+        {
+          "type": "formula",
+          "text": "E=Nhf"
+        },
+        {
+          "type": "formula",
+          "text": " e=\\frac{33}{5}Nu"
+        },
+        {
+          "type": "formula",
+          "text": " e=33"
+        },
+        {
+          "type": "formula",
+          "text": " E=33q_E"
+        },
+        {
+          "type": "text",
+          "text": "33/5 è l’energia numerica di un solo fotone, non di cinque. Sessantasei raddoppia il pacchetto senza dato;165 omette il divisore cinque nel coefficiente. L’energia per fotone e quella totale sono distinte."
+        }
+      ],
+      "hints": [
+        "Moltiplica l’energia di un fotone per il conteggio N.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "33/5 è l’energia numerica di un solo fotone, non di cinque. Sessantasei raddoppia il pacchetto senza dato;165 omette il divisore cinque nel coefficiente. L’energia per fotone e quella totale sono distinte.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Energia per fotone e totale del pacchetto",
+        "Frequenza normalizzata e unità energetiche",
+        "Conteggi interi, inverse e medie",
+        "Display continui e vincolo quadratico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-photon-packet-frequency-02",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia dei fotoni e conteggio del pacchetto",
+      "order": 24102,
+      "title": "Energia fisica e unità scelta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L02",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "photon-packet-frequency",
+      "difficulty": 1,
+      "prompt": "Un pacchetto ideale contiene N fotoni monocromatici, con N intero positivo. La frequenza è f=u·10¹⁴ Hz, dove u>0 è un coefficiente numerico puro. Si assume h=6,6×10⁻³⁴ J·s come valore prescritto del modello. Definisco q_E=10⁻²⁰ J ed e=E/q_E: e è il valore numerico dell’energia totale in questa unità, mentre E è l’energia fisica. Confronti e tarature riguardano pacchetti distinti e conservano N intero. Quale unità è dimensionalmente adatta a E?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "J",
+          "Hz",
+          "W",
+          "s",
+          "1"
+        ],
+        "value": "J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’energia di un fotone è h f: J·s per s⁻¹ dà J. Anche E è un’energia, espressa qui in multipli di q_E. Soltanto e=E/q_E è un numero puro; la normalizzazione non elimina la dimensione dell’energia fisica."
+        },
+        {
+          "type": "formula",
+          "text": "[hf]=\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " [E]=\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " [e]=1"
+        },
+        {
+          "type": "text",
+          "text": "Hz è frequenza, W potenza, s tempo. Il simbolo1 è adatto a e, non a E. Il conteggio N non cambia l’unità joule."
+        }
+      ],
+      "hints": [
+        "Distingui E dal suo coefficiente numerico e.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "Hz è frequenza, W potenza, s tempo. Il simbolo1 è adatto a e, non a E. Il conteggio N non cambia l’unità joule.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Energia per fotone e totale del pacchetto",
+        "Frequenza normalizzata e unità energetiche",
+        "Conteggi interi, inverse e medie",
+        "Display continui e vincolo quadratico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-photon-packet-frequency-03",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia dei fotoni e conteggio del pacchetto",
+      "order": 24103,
+      "title": "Ordinare l’energia dei singoli fotoni",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L02",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "photon-packet-frequency",
+      "difficulty": 1,
+      "prompt": "Caso autonomo nel vuoto: fra le bande convenzionali indicate, quale ordinamento va da fotoni meno energetici a fotoni più energetici?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Radio → infrarosso → visibile → ultravioletto",
+          "Ultravioletto → visibile → infrarosso → radio",
+          "Radio → visibile → infrarosso → ultravioletto",
+          "Infrarosso → radio → visibile → ultravioletto",
+          "Visibile → infrarosso → ultravioletto → radio"
+        ],
+        "value": "Radio → infrarosso → visibile → ultravioletto"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Per un singolo fotone E_γ=hf: una frequenza maggiore significa energia maggiore. Le quattro bande scelte si ordinano come radio, infrarosso, visibile, ultravioletto. Non si confrontano potenze totali di sorgenti né numero di fotoni. Le microonde sono spesso incluse nelle radiofrequenze; qui non serve introdurle come banda separata."
+        },
+        {
+          "type": "formula",
+          "text": "E_\\gamma=hf"
+        },
+        {
+          "type": "formula",
+          "text": " f_2>f_1\\ \\Longrightarrow\\ E_{\\gamma,2}>E_{\\gamma,1}"
+        },
+        {
+          "type": "text",
+          "text": "L’ordine inverso scambia la dipendenza diretta da f. Mettere il visibile prima dell’infrarosso o le radio dopo l’infrarosso rompe l’ordine delle frequenze. Non si impone un ordinamento universale fra X e gamma, che possono sovrapporsi: non compaiono nelle alternative."
+        }
+      ],
+      "hints": [
+        "Ordina le frequenze e usa E_γ proporzionale a f.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "L’ordine inverso scambia la dipendenza diretta da f. Mettere il visibile prima dell’infrarosso o le radio dopo l’infrarosso rompe l’ordine delle frequenze. Non si impone un ordinamento universale fra X e gamma, che possono sovrapporsi: non compaiono nelle alternative.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Energia per fotone e totale del pacchetto",
+        "Frequenza normalizzata e unità energetiche",
+        "Conteggi interi, inverse e medie",
+        "Display continui e vincolo quadratico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-photon-packet-frequency-04",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia dei fotoni e conteggio del pacchetto",
+      "order": 24104,
+      "title": "Due volte i fotoni, stessa energia per fotone",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L02",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "photon-packet-frequency",
+      "difficulty": 1,
+      "prompt": "Un pacchetto ideale contiene N fotoni monocromatici, con N intero positivo. La frequenza è f=u·10¹⁴ Hz, dove u>0 è un coefficiente numerico puro. Si assume h=6,6×10⁻³⁴ J·s come valore prescritto del modello. Definisco q_E=10⁻²⁰ J ed e=E/q_E: e è il valore numerico dell’energia totale in questa unità, mentre E è l’energia fisica. Confronti e tarature riguardano pacchetti distinti e conservano N intero. u resta1 e N passa da5 a10. Come cambia E?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 33q_E a 66q_E",
+          "Da 33q_E a 33q_E/2",
+          "Resta 33q_E",
+          "Da 33q_E a 132q_E",
+          "Da 33q_E a 330q_E"
+        ],
+        "value": "Da 33q_E a 66q_E"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La frequenza di ogni fotone è invariata, quindi hf resta uguale. Raddoppiare N da5 a10 raddoppia l’energia totale: e passa da33 a66. Entrambi i conteggi sono interi ammessi; non è l’energia del singolo fotone a raddoppiare."
+        },
+        {
+          "type": "formula",
+          "text": "e_A=33"
+        },
+        {
+          "type": "formula",
+          "text": " e_B=66"
+        },
+        {
+          "type": "formula",
+          "text": " E_B/E_A=2"
+        },
+        {
+          "type": "text",
+          "text": "33/2 inverte la dipendenza da N.132 applica il quadrato del raddoppio;330 copia il numero10 senza il coefficiente corretto.33 ignora i fotoni aggiunti."
+        }
+      ],
+      "hints": [
+        "Mantieni f fissa e varia soltanto N.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "33/2 inverte la dipendenza da N.132 applica il quadrato del raddoppio;330 copia il numero10 senza il coefficiente corretto.33 ignora i fotoni aggiunti.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Energia per fotone e totale del pacchetto",
+        "Frequenza normalizzata e unità energetiche",
+        "Conteggi interi, inverse e medie",
+        "Display continui e vincolo quadratico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-photon-packet-frequency-05",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia dei fotoni e conteggio del pacchetto",
+      "order": 24105,
+      "title": "Il conteggio ricavato dall’energia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L02",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "photon-packet-frequency",
+      "difficulty": 2,
+      "prompt": "Un pacchetto ideale contiene N fotoni monocromatici, con N intero positivo. La frequenza è f=u·10¹⁴ Hz, dove u>0 è un coefficiente numerico puro. Si assume h=6,6×10⁻³⁴ J·s come valore prescritto del modello. Definisco q_E=10⁻²⁰ J ed e=E/q_E: e è il valore numerico dell’energia totale in questa unità, mentre E è l’energia fisica. Confronti e tarature riguardano pacchetti distinti e conservano N intero. e=33 e u=1. Quanto vale N?",
+      "answer": {
+        "type": "numeric",
+        "value": 5,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplico e=(33/5)Nu per5 e divido per33u positivo. N=5e/(33u)=5. La verifica dell’intero è parte del dominio: un risultato non intero non descriverebbe questo pacchetto monocromatico ideale."
+        },
+        {
+          "type": "formula",
+          "text": "N=\\frac{5e}{33u}"
+        },
+        {
+          "type": "formula",
+          "text": " N=5"
+        },
+        {
+          "type": "text",
+          "text": "Uno omette il fattore cinque del coefficiente;33 copia il numero dell’energia senza dividerlo per quella di un fotone. Dieci darebbe e66, non33."
+        }
+      ],
+      "hints": [
+        "Ricostruisci l’energia per fotone prima di contare i fotoni.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Uno omette il fattore cinque del coefficiente;33 copia il numero dell’energia senza dividerlo per quella di un fotone. Dieci darebbe e66, non33.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Energia per fotone e totale del pacchetto",
+        "Frequenza normalizzata e unità energetiche",
+        "Conteggi interi, inverse e medie",
+        "Display continui e vincolo quadratico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-photon-packet-frequency-06",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia dei fotoni e conteggio del pacchetto",
+      "order": 24106,
+      "title": "La frequenza in unità di 10¹⁴ Hz",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L02",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "photon-packet-frequency",
+      "difficulty": 2,
+      "prompt": "Un pacchetto ideale contiene N fotoni monocromatici, con N intero positivo. La frequenza è f=u·10¹⁴ Hz, dove u>0 è un coefficiente numerico puro. Si assume h=6,6×10⁻³⁴ J·s come valore prescritto del modello. Definisco q_E=10⁻²⁰ J ed e=E/q_E: e è il valore numerico dell’energia totale in questa unità, mentre E è l’energia fisica. Confronti e tarature riguardano pacchetti distinti e conservano N intero. e=33 e N=5. Quanto vale f in unità di 10¹⁴ Hz? Inserisci il coefficiente u.",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "10¹⁴ Hz",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Isolo u=5e/(33N). Con i dati, numeratore e denominatore sono entrambi165: u=1. La frequenza fisica è f=10¹⁴ Hz. Non si deve assegnare hertz al coefficiente u e poi moltiplicarlo ancora per una frequenza."
+        },
+        {
+          "type": "formula",
+          "text": "u=\\frac{5e}{33N}"
+        },
+        {
+          "type": "formula",
+          "text": " u=1"
+        },
+        {
+          "type": "formula",
+          "text": " f=10^{14}\\,\\mathrm{Hz}"
+        },
+        {
+          "type": "text",
+          "text": "Cinque copia il conteggio N e darebbe e165.1/5 omette il fattore cinque al numeratore e darebbe e33/5.33 copia l’energia numerica senza l’inversa."
+        }
+      ],
+      "hints": [
+        "La risposta u è il coefficiente della frequenza, non f in hertz.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Cinque copia il conteggio N e darebbe e165.1/5 omette il fattore cinque al numeratore e darebbe e33/5.33 copia l’energia numerica senza l’inversa.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Energia per fotone e totale del pacchetto",
+        "Frequenza normalizzata e unità energetiche",
+        "Conteggi interi, inverse e medie",
+        "Display continui e vincolo quadratico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-photon-packet-frequency-07",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia dei fotoni e conteggio del pacchetto",
+      "order": 24107,
+      "title": "La frequenza doppia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L02",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "photon-packet-frequency",
+      "difficulty": 2,
+      "prompt": "Un pacchetto ideale contiene N fotoni monocromatici, con N intero positivo. La frequenza è f=u·10¹⁴ Hz, dove u>0 è un coefficiente numerico puro. Si assume h=6,6×10⁻³⁴ J·s come valore prescritto del modello. Definisco q_E=10⁻²⁰ J ed e=E/q_E: e è il valore numerico dell’energia totale in questa unità, mentre E è l’energia fisica. Confronti e tarature riguardano pacchetti distinti e conservano N intero. A usa N=5,u=1; B mantiene N e usa u=2. Quanto vale E_B/E_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/2",
+          "4",
+          "1",
+          "5"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Raddoppiare f raddoppia l’energia di ciascun fotone. Con N invariato, e passa da33 a66 e il rapporto totale è due. Il numero di fotoni non è cambiato."
+        },
+        {
+          "type": "formula",
+          "text": "e_A=33"
+        },
+        {
+          "type": "formula",
+          "text": " e_B=66"
+        },
+        {
+          "type": "formula",
+          "text": " E_B/E_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Mezzo inverte il confronto, quattro introduce un quadrato e uno ignora la frequenza. Cinque copia il conteggio, che qui si cancella."
+        }
+      ],
+      "hints": [
+        "Nel rapporto si cancellano N e h.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Mezzo inverte il confronto, quattro introduce un quadrato e uno ignora la frequenza. Cinque copia il conteggio, che qui si cancella.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Energia per fotone e totale del pacchetto",
+        "Frequenza normalizzata e unità energetiche",
+        "Conteggi interi, inverse e medie",
+        "Display continui e vincolo quadratico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-photon-packet-frequency-08",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia dei fotoni e conteggio del pacchetto",
+      "order": 24108,
+      "title": "Lo scarto è ancora un’energia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L02",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "photon-packet-frequency",
+      "difficulty": 2,
+      "prompt": "Un pacchetto ideale contiene N fotoni monocromatici, con N intero positivo. La frequenza è f=u·10¹⁴ Hz, dove u>0 è un coefficiente numerico puro. Si assume h=6,6×10⁻³⁴ J·s come valore prescritto del modello. Definisco q_E=10⁻²⁰ J ed e=E/q_E: e è il valore numerico dell’energia totale in questa unità, mentre E è l’energia fisica. Confronti e tarature riguardano pacchetti distinti e conservano N intero. Con N=5,u=1 si propone E=66q_E. Quanto vale proposta meno corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "33q_E",
+          "−33q_E",
+          "2",
+          "66q_E",
+          "0q_E"
+        ],
+        "value": "33q_E"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il corretto è33q_E. La proposta supera il valore fisico di66q_E−33q_E=33q_E. Il rapporto puro due non è uno scarto e non porta l’unità energetica q_E."
+        },
+        {
+          "type": "formula",
+          "text": "E=33q_E"
+        },
+        {
+          "type": "formula",
+          "text": " \\delta E=(66-33)q_E"
+        },
+        {
+          "type": "formula",
+          "text": " \\delta E=33q_E"
+        },
+        {
+          "type": "text",
+          "text": "−33q_E inverte l’ordine,66q_E ripete la proposta e0q_E la accetta. Due è il rapporto delle due energie, senza dimensione."
+        }
+      ],
+      "hints": [
+        "Sottrai le energie mantenendo q_E.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−33q_E inverte l’ordine,66q_E ripete la proposta e0q_E la accetta. Due è il rapporto delle due energie, senza dimensione.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Energia per fotone e totale del pacchetto",
+        "Frequenza normalizzata e unità energetiche",
+        "Conteggi interi, inverse e medie",
+        "Display continui e vincolo quadratico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-photon-packet-frequency-09",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia dei fotoni e conteggio del pacchetto",
+      "order": 24109,
+      "title": "L’inversa generale per N",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L02",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "photon-packet-frequency",
+      "difficulty": 2,
+      "prompt": "Un pacchetto ideale contiene N fotoni monocromatici, con N intero positivo. La frequenza è f=u·10¹⁴ Hz, dove u>0 è un coefficiente numerico puro. Si assume h=6,6×10⁻³⁴ J·s come valore prescritto del modello. Definisco q_E=10⁻²⁰ J ed e=E/q_E: e è il valore numerico dell’energia totale in questa unità, mentre E è l’energia fisica. Confronti e tarature riguardano pacchetti distinti e conservano N intero. E e f sono noti. Quale relazione isola N?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "N = E / (h f)",
+          "N = E h f",
+          "N = h f / E",
+          "N = E f / h",
+          "N = E / f"
+        ],
+        "value": "N = E / (h f)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nell’uguaglianza E=N(hf), il prodotto hf è l’energia di un fotone. Divido E per quel prodotto: N=E/(hf). Il rapporto di due energie è puro, ma per essere un conteggio di questo modello deve anche risultare intero positivo."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/aee8e1818e35909640ebbf830333c0c009dd11ad55a849d872d2058426d13cd6",
+          "text": "Il passaggio intermedio separa energia per fotone e conteggio: E=N E_γ. La relazione inversa è N=E/E_γ e richiede un risultato intero positivo."
+        },
+        {
+          "type": "formula",
+          "text": "N=\\frac E{hf}"
+        },
+        {
+          "type": "formula",
+          "text": " [N]=1"
+        },
+        {
+          "type": "text",
+          "text": "Ehf ha dimensione di energia al quadrato. hf/E è il reciproco del conteggio; Ef/h non isola N e E/f non è puro. Il valore numerico di h assegnato non permette di eliminarlo dalla legge dimensionale."
+        }
+      ],
+      "hints": [
+        "Dividi l’energia totale per l’energia di un fotone.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Ehf ha dimensione di energia al quadrato. hf/E è il reciproco del conteggio; Ef/h non isola N e E/f non è puro. Il valore numerico di h assegnato non permette di eliminarlo dalla legge dimensionale.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Energia per fotone e totale del pacchetto",
+        "Frequenza normalizzata e unità energetiche",
+        "Conteggi interi, inverse e medie",
+        "Display continui e vincolo quadratico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-photon-packet-frequency-10",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia dei fotoni e conteggio del pacchetto",
+      "order": 24110,
+      "title": "Due fattori, con conteggi ammessi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L02",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "photon-packet-frequency",
+      "difficulty": 2,
+      "prompt": "Un pacchetto ideale contiene N fotoni monocromatici, con N intero positivo. La frequenza è f=u·10¹⁴ Hz, dove u>0 è un coefficiente numerico puro. Si assume h=6,6×10⁻³⁴ J·s come valore prescritto del modello. Definisco q_E=10⁻²⁰ J ed e=E/q_E: e è il valore numerico dell’energia totale in questa unità, mentre E è l’energia fisica. Confronti e tarature riguardano pacchetti distinti e conservano N intero. Fra preparazioni N_B=κ₁N_A e u_B=κ₂u_A, con fattori positivi e N_A,N_B interi. Quanto vale E_B/E_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ κ₂",
+          "κ₁ / κ₂",
+          "κ₂ / κ₁",
+          "κ₁² κ₂",
+          "κ₁ + κ₂"
+        ],
+        "value": "κ₁ κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’energia è un prodotto di N e f. La normalizzazione della frequenza è la stessa e h si cancella: il rapporto èκ₁κ₂. Non serveκ₁ intero in assoluto; serve cheκ₁N_A sia un conteggio intero positivo."
+        },
+        {
+          "type": "formula",
+          "text": "E_B/E_A=\\kappa_1\\kappa_2"
+        },
+        {
+          "type": "text",
+          "text": "I quozienti invertono una dipendenza diretta. Il quadrato di κ₁ non appartiene alla somma di energie di fotoni identici; la somma darebbe due per fattori unitari invece di uno."
+        }
+      ],
+      "hints": [
+        "Controlla sia il prodotto dei fattori sia l’intero N finale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "I quozienti invertono una dipendenza diretta. Il quadrato di κ₁ non appartiene alla somma di energie di fotoni identici; la somma darebbe due per fattori unitari invece di uno.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Energia per fotone e totale del pacchetto",
+        "Frequenza normalizzata e unità energetiche",
+        "Conteggi interi, inverse e medie",
+        "Display continui e vincolo quadratico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-photon-packet-frequency-11",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia dei fotoni e conteggio del pacchetto",
+      "order": 24111,
+      "title": "Conteggio doppio e frequenza doppia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L02",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "photon-packet-frequency",
+      "difficulty": 2,
+      "prompt": "Un pacchetto ideale contiene N fotoni monocromatici, con N intero positivo. La frequenza è f=u·10¹⁴ Hz, dove u>0 è un coefficiente numerico puro. Si assume h=6,6×10⁻³⁴ J·s come valore prescritto del modello. Definisco q_E=10⁻²⁰ J ed e=E/q_E: e è il valore numerico dell’energia totale in questa unità, mentre E è l’energia fisica. Confronti e tarature riguardano pacchetti distinti e conservano N intero. A ha N=5,u=1; B ha N=10,u=2. Quanto vale E_B/E_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4",
+          "1/4",
+          "2",
+          "1",
+          "10"
+        ],
+        "value": "4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha e33. B ha e=(33/5)·10·2=132. Il rapporto132/33=4 combina i due raddoppiamenti. L’energia per fotone è doppia e i fotoni sono anche il doppio."
+        },
+        {
+          "type": "formula",
+          "text": "e_A=33"
+        },
+        {
+          "type": "formula",
+          "text": " e_B=132"
+        },
+        {
+          "type": "formula",
+          "text": " E_B/E_A=4"
+        },
+        {
+          "type": "text",
+          "text": "Un quarto inverte il rapporto; due segue un solo cambiamento. Uno immagina una compensazione che non esiste; dieci copia il conteggio finale."
+        }
+      ],
+      "hints": [
+        "Separa l’effetto sul singolo fotone da quello sul numero.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un quarto inverte il rapporto; due segue un solo cambiamento. Uno immagina una compensazione che non esiste; dieci copia il conteggio finale.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Energia per fotone e totale del pacchetto",
+        "Frequenza normalizzata e unità energetiche",
+        "Conteggi interi, inverse e medie",
+        "Display continui e vincolo quadratico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-photon-packet-frequency-12",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia dei fotoni e conteggio del pacchetto",
+      "order": 24112,
+      "title": "Media di due pacchetti fisici",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L02",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "photon-packet-frequency",
+      "difficulty": 2,
+      "prompt": "Un pacchetto ideale contiene N fotoni monocromatici, con N intero positivo. La frequenza è f=u·10¹⁴ Hz, dove u>0 è un coefficiente numerico puro. Si assume h=6,6×10⁻³⁴ J·s come valore prescritto del modello. Definisco q_E=10⁻²⁰ J ed e=E/q_E: e è il valore numerico dell’energia totale in questa unità, mentre E è l’energia fisica. Confronti e tarature riguardano pacchetti distinti e conservano N intero. A usa N=5,u=1 e B usa N=10,u=2. Qual è il coefficiente e medio delle due energie, con pesi uguali?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "165/2",
+          "297/4",
+          "165",
+          "99/2",
+          "132"
+        ],
+        "value": "165/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le energie numeriche sono33 e132. La semisomma è165/2: la media fisica è(165/2)q_E. Le medie degli ingressi darebbero N=15/2, non un conteggio ammesso per un singolo pacchetto; la valutazione formale297/4 non va presentata come terza preparazione fisica."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/aee8e1818e35909640ebbf830333c0c009dd11ad55a849d872d2058426d13cd6",
+          "text": "Le barre finali mostrano33q_E e132q_E nelle due preparazioni e la media(165/2)q_E. La scala è comune; il coefficiente e è puro, mentre l’energia indicata è e q_E. Non si interpreta il conteggio medio15/2 come un nuovo pacchetto."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline e=\\frac{33+132}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline e=\\frac{165}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline E=\\frac{165}{2}q_E"
+        },
+        {
+          "type": "text",
+          "text": "297/4 è soltanto l’estensione algebrica ai dati medi, con N non intero.165 somma senza dimezzare;99/2 è la semidifferenza e132 ripete solo B. La media di energie non deve essere essa stessa l’energia di un pacchetto con il conteggio medio."
+        }
+      ],
+      "hints": [
+        "Media le due energie già ricavate, non i conteggi per una nuova prova.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "297/4 è soltanto l’estensione algebrica ai dati medi, con N non intero.165 somma senza dimezzare;99/2 è la semidifferenza e132 ripete solo B. La media di energie non deve essere essa stessa l’energia di un pacchetto con il conteggio medio.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Energia per fotone e totale del pacchetto",
+        "Frequenza normalizzata e unità energetiche",
+        "Conteggi interi, inverse e medie",
+        "Display continui e vincolo quadratico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-photon-packet-frequency-13",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia dei fotoni e conteggio del pacchetto",
+      "order": 24113,
+      "title": "La frequenza necessaria al bersaglio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L02",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "photon-packet-frequency",
+      "difficulty": 3,
+      "prompt": "Un pacchetto ideale contiene N fotoni monocromatici, con N intero positivo. La frequenza è f=u·10¹⁴ Hz, dove u>0 è un coefficiente numerico puro. Si assume h=6,6×10⁻³⁴ J·s come valore prescritto del modello. Definisco q_E=10⁻²⁰ J ed e=E/q_E: e è il valore numerico dell’energia totale in questa unità, mentre E è l’energia fisica. Confronti e tarature riguardano pacchetti distinti e conservano N intero. A ha N_A=5,u_A=1. B usa N_B=10 e deve avere E_B=4E_A. Quanto vale u_B/u_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/2",
+          "4",
+          "1",
+          "5"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è e_B132. Con N_B10, la legge dà e_B=66u_B: serve u_B2 e quindi rapporto due. Il conteggio doppio fornisce già un fattore due, il rimanente viene dall’energia per fotone."
+        },
+        {
+          "type": "formula",
+          "text": "e_B=132"
+        },
+        {
+          "type": "formula",
+          "text": " 66u_B=132"
+        },
+        {
+          "type": "formula",
+          "text": " u_B=2"
+        },
+        {
+          "type": "formula",
+          "text": " u_B/u_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Mezzo inverte il confronto; quattro copia l’aumento dell’energia totale ignorando N. Uno darebbe e66, non132; cinque copia il numero iniziale di fotoni."
+        }
+      ],
+      "hints": [
+        "Dividi il fattore energetico richiesto per quello del conteggio.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Mezzo inverte il confronto; quattro copia l’aumento dell’energia totale ignorando N. Uno darebbe e66, non132; cinque copia il numero iniziale di fotoni.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Energia per fotone e totale del pacchetto",
+        "Frequenza normalizzata e unità energetiche",
+        "Conteggi interi, inverse e medie",
+        "Display continui e vincolo quadratico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-photon-packet-frequency-14",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia dei fotoni e conteggio del pacchetto",
+      "order": 24114,
+      "title": "Tarare prima di ricavare il conteggio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L02",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "photon-packet-frequency",
+      "difficulty": 3,
+      "prompt": "Un pacchetto ideale contiene N fotoni monocromatici, con N intero positivo. La frequenza è f=u·10¹⁴ Hz, dove u>0 è un coefficiente numerico puro. Si assume h=6,6×10⁻³⁴ J·s come valore prescritto del modello. Definisco q_E=10⁻²⁰ J ed e=E/q_E: e è il valore numerico dell’energia totale in questa unità, mentre E è l’energia fisica. Confronti e tarature riguardano pacchetti distinti e conservano N intero. Il display continuo adimensionale D=a_cal e, senza offset, legge99 per N=5,u=1. Una prova con u=2 legge396. Quanto vale N?",
+      "answer": {
+        "type": "numeric",
+        "value": 10,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento ha e33 e fissa a_cal=99/33=3. La lettura396 dà e132. Ogni fotone della nuova frequenza ha energia numerica66/5: N=132/(66/5)=10. Il display continuo non conta direttamente fotoni."
+        },
+        {
+          "type": "formula",
+          "text": "a_{\\rm cal}=3"
+        },
+        {
+          "type": "formula",
+          "text": " e=132"
+        },
+        {
+          "type": "formula",
+          "text": " N=\\frac{5e}{33u}"
+        },
+        {
+          "type": "formula",
+          "text": " N=10"
+        },
+        {
+          "type": "text",
+          "text": "Trenta usa D396 come e e salta il guadagno, dando la lettura prevista1188. Venti ignora la frequenza doppia; cinque ripete il riferimento. Il risultato finale deve essere intero, anche se D è una lettura continua."
+        }
+      ],
+      "hints": [
+        "Decodifica e, poi dividi per l’energia numerica di un fotone.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Trenta usa D396 come e e salta il guadagno, dando la lettura prevista1188. Venti ignora la frequenza doppia; cinque ripete il riferimento. Il risultato finale deve essere intero, anche se D è una lettura continua.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Energia per fotone e totale del pacchetto",
+        "Frequenza normalizzata e unità energetiche",
+        "Conteggi interi, inverse e medie",
+        "Display continui e vincolo quadratico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-photon-packet-frequency-15",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia dei fotoni e conteggio del pacchetto",
+      "order": 24115,
+      "title": "Due riferimenti per eliminare l’offset",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L02",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "photon-packet-frequency",
+      "difficulty": 3,
+      "prompt": "Un pacchetto ideale contiene N fotoni monocromatici, con N intero positivo. La frequenza è f=u·10¹⁴ Hz, dove u>0 è un coefficiente numerico puro. Si assume h=6,6×10⁻³⁴ J·s come valore prescritto del modello. Definisco q_E=10⁻²⁰ J ed e=E/q_E: e è il valore numerico dell’energia totale in questa unità, mentre E è l’energia fisica. Confronti e tarature riguardano pacchetti distinti e conservano N intero. D=a_cal e+b_cal è continuo. A:N=5,u=1,D=67. B:N=10,u=2,D=265. C:u=1,D=133. Quanto vale N_C?",
+      "answer": {
+        "type": "numeric",
+        "value": 10,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti danno e33 ed e132. Guadagno(265−67)/(132−33)=198/99=2, offset uno. D_C133 decodifica e_C66; con u1 segue N_C=5·66/33=10. Sottrarre l’offset prima del guadagno evita un conteggio incompatibile."
+        },
+        {
+          "type": "formula",
+          "text": "a_{\\rm cal}=2"
+        },
+        {
+          "type": "formula",
+          "text": " b_{\\rm cal}=1"
+        },
+        {
+          "type": "formula",
+          "text": " e_C=66"
+        },
+        {
+          "type": "formula",
+          "text": " N_C=10"
+        },
+        {
+          "type": "text",
+          "text": "Omettere b darebbe N=665/66, non intero e non ricostruirebbe D133. Venti salta il guadagno dopo aver tolto b; cinque ripete A. Qui il controllo del conteggio aiuta a rilevare una taratura usata male."
+        }
+      ],
+      "hints": [
+        "Ricostruisci due energie di riferimento prima di usare le letture.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Omettere b darebbe N=665/66, non intero e non ricostruirebbe D133. Venti salta il guadagno dopo aver tolto b; cinque ripete A. Qui il controllo del conteggio aiuta a rilevare una taratura usata male.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Energia per fotone e totale del pacchetto",
+        "Frequenza normalizzata e unità energetiche",
+        "Conteggi interi, inverse e medie",
+        "Display continui e vincolo quadratico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-photon-packet-frequency-16",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia dei fotoni e conteggio del pacchetto",
+      "order": 24116,
+      "title": "Il vincolo rende quadratica la frequenza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L02",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "photon-packet-frequency",
+      "difficulty": 3,
+      "prompt": "Un pacchetto ideale contiene N fotoni monocromatici, con N intero positivo. La frequenza è f=u·10¹⁴ Hz, dove u>0 è un coefficiente numerico puro. Si assume h=6,6×10⁻³⁴ J·s come valore prescritto del modello. Definisco q_E=10⁻²⁰ J ed e=E/q_E: e è il valore numerico dell’energia totale in questa unità, mentre E è l’energia fisica. Confronti e tarature riguardano pacchetti distinti e conservano N intero. Fra preparazioni N=5u, con N intero; si misura e=33. Quanto vale u nel dominio positivo?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1",
+          "−1",
+          "5",
+          "1/5",
+          "Infinite frequenze positive"
+        ],
+        "value": "1"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituisco N=5u nella legge e=(33/5)Nu e ottengo e=33u². La misura33 impone u²=1. Le radici algebriche sono alternative, ma il ramo u>0 seleziona u1, quindi f10¹⁴ Hz e N5 intero. Non è una variazione temporale del numero di fotoni nello stesso pacchetto."
+        },
+        {
+          "type": "formula",
+          "text": "e=33u^2"
+        },
+        {
+          "type": "formula",
+          "text": " u^2=1"
+        },
+        {
+          "type": "formula",
+          "text": " u=1"
+        },
+        {
+          "type": "formula",
+          "text": " N=5"
+        },
+        {
+          "type": "text",
+          "text": "−1 viola la frequenza positiva e rende N negativo. Cinque darebbe e825;1/5 darebbe e33/25. La misura assoluta non lascia una scala libera."
+        }
+      ],
+      "hints": [
+        "Sostituisci il vincolo prima di estrarre la radice positiva.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "−1 viola la frequenza positiva e rende N negativo. Cinque darebbe e825;1/5 darebbe e33/25. La misura assoluta non lascia una scala libera.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Energia per fotone e totale del pacchetto",
+        "Frequenza normalizzata e unità energetiche",
+        "Conteggi interi, inverse e medie",
+        "Display continui e vincolo quadratico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "aee8e1818e35909640ebbf830333c0c009dd11ad55a849d872d2058426d13cd6",
+      "name": "photon-packet-frequency-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTQ4MCIgdmlld0JveD0iMCAwIDY0MCAxNDgwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+RW5lcmdpYSBwZXIgZm90b25lIGUgcGVyIHBhY2NoZXR0bzwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPlRyZSB0YXBwZTogY2lucXVlIGUgZGllY2kgZm90b25pIGRlbGxhIHN0ZXNzYSBmcmVxdWVuemEsIGVuZXJnaWEgcGVyIGZvdG9uZSBkaXN0aW50YSBkYWwgY29udGVnZ2lvLCBkdWUgZW5lcmdpZSB0cmVudGF0csOpIGUgY2VudG90cmVudGFkdWUgdW5pdMOgIHEgRSBjb24gbWVkaWEgY2VudG9zZXNzYW50YWNpbnF1ZSBtZXp6aS4gTGEgbWVkaWEgZGVpIGNvbnRlZ2dpIG5vbiDDqCB1biBudW92byBwYWNjaGV0dG8gZmlzaWNvLjwvZGVzYz48ZGVmcz48bWFya2VyIGlkPSJhcnJvdyIgbWFya2VyV2lkdGg9IjgiIG1hcmtlckhlaWdodD0iOCIgcmVmWD0iNyIgcmVmWT0iNCIgb3JpZW50PSJhdXRvIj48cGF0aCBkPSJNMCAwTDggNEwwIDhaIiBmaWxsPSIjNTI2NjdhIi8+PC9tYXJrZXI+PC9kZWZzPjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMTQ4MCIgZmlsbD0iI2Y3ZmFmYyIvPjxnIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZmlsbD0iIzIwMzU0ZCI+PHRleHQgeD0iMzIiIHk9IjQyIiBmb250LXNpemU9IjI0IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPkVuZXJnaWEgcGVyIGZvdG9uZSBlIHBlciBwYWNjaGV0dG88L3RleHQ+PHRleHQgeD0iMzIiIHk9IjkyIiBmb250LXNpemU9IjIyIiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjEgwrcgU3Rlc3NhIGZyZXF1ZW56YSwgcGnDuSBmb3Rvbmk8L3RleHQ+PHRleHQgeD0iMzIiIHk9IjEzNCIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9InN0YXJ0Ij51ID0gMTogZW5lcmdpYSBwZXIgZm90b25lICgzMy81KXFfRTwvdGV4dD48dGV4dCB4PSIzMiIgeT0iMTY4IiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPnFfRSA9IDEw4oG7wrLigbAgSjwvdGV4dD48dGV4dCB4PSI0NSIgeT0iMjMwIiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPk4gPSA1PC90ZXh0Pjx0ZXh0IHg9IjQ1IiB5PSIzNTAiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJzdGFydCI+TiA9IDEwPC90ZXh0PjxjaXJjbGUgY3g9IjIxMCIgY3k9IjIyMCIgcj0iMTAiIGZpbGw9IiMzMTZiOWIiLz48Y2lyY2xlIGN4PSIyODAiIGN5PSIyMjAiIHI9IjEwIiBmaWxsPSIjMzE2YjliIi8+PGNpcmNsZSBjeD0iMzUwIiBjeT0iMjIwIiByPSIxMCIgZmlsbD0iIzMxNmI5YiIvPjxjaXJjbGUgY3g9IjQyMCIgY3k9IjIyMCIgcj0iMTAiIGZpbGw9IiMzMTZiOWIiLz48Y2lyY2xlIGN4PSI0OTAiIGN5PSIyMjAiIHI9IjEwIiBmaWxsPSIjMzE2YjliIi8+PGNpcmNsZSBjeD0iMjEwIiBjeT0iMzMwIiByPSIxMCIgZmlsbD0iIzMxNmI5YiIvPjxjaXJjbGUgY3g9IjI4MCIgY3k9IjMzMCIgcj0iMTAiIGZpbGw9IiMzMTZiOWIiLz48Y2lyY2xlIGN4PSIzNTAiIGN5PSIzMzAiIHI9IjEwIiBmaWxsPSIjMzE2YjliIi8+PGNpcmNsZSBjeD0iNDIwIiBjeT0iMzMwIiByPSIxMCIgZmlsbD0iIzMxNmI5YiIvPjxjaXJjbGUgY3g9IjQ5MCIgY3k9IjMzMCIgcj0iMTAiIGZpbGw9IiMzMTZiOWIiLz48Y2lyY2xlIGN4PSIyMTAiIGN5PSIzNzUiIHI9IjEwIiBmaWxsPSIjMzE2YjliIi8+PGNpcmNsZSBjeD0iMjgwIiBjeT0iMzc1IiByPSIxMCIgZmlsbD0iIzMxNmI5YiIvPjxjaXJjbGUgY3g9IjM1MCIgY3k9IjM3NSIgcj0iMTAiIGZpbGw9IiMzMTZiOWIiLz48Y2lyY2xlIGN4PSI0MjAiIGN5PSIzNzUiIHI9IjEwIiBmaWxsPSIjMzE2YjliIi8+PGNpcmNsZSBjeD0iNDkwIiBjeT0iMzc1IiByPSIxMCIgZmlsbD0iIzMxNmI5YiIvPjx0ZXh0IHg9IjIxMCIgeT0iMjcwIiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPkUgPSAzM3FfRTwvdGV4dD48dGV4dCB4PSIyMTAiIHk9IjQzMCIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9InN0YXJ0Ij5FID0gNjZxX0U8L3RleHQ+PHRleHQgeD0iMzIiIHk9IjQ4MCIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9InN0YXJ0Ij5JbCBjb250ZWdnaW8gY2FtYmlhOyBoZiByZXN0YSB1Z3VhbGUuPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSI1NTAiIGZvbnQtc2l6ZT0iMjIiIHRleHQtYW5jaG9yPSJzdGFydCI+MiDCtyBJc29sYXJlIGlsIGNvbnRlZ2dpbzwvdGV4dD48dGV4dCB4PSIzMiIgeT0iNjAwIiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPkVuZXJnaWEgdG90YWxlOiBFID0gTiBFX86zPC90ZXh0PjxsaW5lIHgxPSIzMjAiIHkxPSI2MzAiIHgyPSIzMjAiIHkyPSI2OTAiIHN0cm9rZT0iIzUyNjY3YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjx0ZXh0IHg9IjMyIiB5PSI3MzUiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJzdGFydCI+RW5lcmdpYSBkaSB1biBmb3RvbmU6IEVfzrMgPSBoZjwvdGV4dD48dGV4dCB4PSIzMiIgeT0iNzg1IiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPk4gPSBFIC8gRV/OszogZGV2ZSBlc3NlcmUgaW50ZXJvIHBvc2l0aXZvLjwvdGV4dD48dGV4dCB4PSIzMiIgeT0iODUwIiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPk5vbiBzaSBpZGVudGlmaWNhIGlsIGRpc3BsYXkgY29udGludW8gY29uIE4uPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSI5MzUiIGZvbnQtc2l6ZT0iMjIiIHRleHQtYW5jaG9yPSJzdGFydCI+MyDCtyBEdWUgcGFjY2hldHRpIGUgbGEgbWVkaWE8L3RleHQ+PHRleHQgeD0iMzIiIHk9Ijk3OCIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9InN0YXJ0Ij5BOiBOID0gNSwgdSA9IDEgwrcgQjogTiA9IDEwLCB1ID0gMjwvdGV4dD48dGV4dCB4PSIxMjgiIHk9IjEwNjQiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJlbmQiPkE8L3RleHQ+PHJlY3QgeD0iMTUwIiB5PSIxMDQwIiB3aWR0aD0iNjYiIGhlaWdodD0iMzIiIGZpbGw9IiMzMTZiOWIiLz48dGV4dCB4PSIyMjgiIHk9IjEwNjQiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJzdGFydCI+MzNxX0U8L3RleHQ+PHRleHQgeD0iMTI4IiB5PSIxMTc0IiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0iZW5kIj5CPC90ZXh0PjxyZWN0IHg9IjE1MCIgeT0iMTE1MCIgd2lkdGg9IjI2NCIgaGVpZ2h0PSIzMiIgZmlsbD0iIzMxNmI5YiIvPjx0ZXh0IHg9IjQyNiIgeT0iMTE3NCIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9InN0YXJ0Ij4xMzJxX0U8L3RleHQ+PHRleHQgeD0iMTI4IiB5PSIxMjg0IiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0iZW5kIj5NZWRpYTwvdGV4dD48cmVjdCB4PSIxNTAiIHk9IjEyNjAiIHdpZHRoPSIxNjUiIGhlaWdodD0iMzIiIGZpbGw9IiMzMTZiOWIiLz48dGV4dCB4PSIzMjciIHk9IjEyODQiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJzdGFydCI+KDE2NS8yKXFfRTwvdGV4dD48dGV4dCB4PSIzMiIgeT0iMTM4MCIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9InN0YXJ0Ij5CYXJyZSBlbmVyZ2V0aWNoZSBhbGxhIHN0ZXNzYSBzY2FsYS48L3RleHQ+PHRleHQgeD0iMzIiIHk9IjE0MjAiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJzdGFydCI+TiBtZWRpbyA9IDE1LzIgbm9uIMOoIHVuIHBhY2NoZXR0byBhbW1lc3NvLjwvdGV4dD48L2c+PC9zdmc+Cg=="
+    }
+  ]
+}

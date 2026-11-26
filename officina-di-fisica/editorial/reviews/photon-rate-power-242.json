@@ -1,0 +1,537 @@
+{
+  "schemaVersion": "1.0.0",
+  "lessonReference": {
+    "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "gitPath": "officina-di-fisica/content/C5.json",
+    "sourceSha256": "dac4490e6a900f5da191bf7a1f5b8463ddc57c8bbaa36cb7a4a375c70fa77422",
+    "primarySkill": "C5-L07",
+    "actualLessonPrerequisites": {
+      "C5-L06": [
+        "C5-L02",
+        "C5-L04"
+      ],
+      "C5-L07": [
+        "C5-L06"
+      ]
+    }
+  },
+  "records": [
+    {
+      "id": "AR-u7-photon-rate-power-01",
+      "sourceSha256": "3b35fada1275d69d54316d57157d0f9895c5c1c0e839d81054f9d4c9fbd45409",
+      "candidateSha256": "4388d337a08055bc5dd84fad3c9c93da3b65364fba6103a2f58042341c30abaf",
+      "reviewedSignature": "220e022c01fbd427acfa7f6b40cff943f32f45c777ae76507671832f949f0cb8",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "photon-rate-power-progressive.svg": "90e6ac6a721d12727256f629f2429e3b69242eb4b98a4ecb8649033feb718707"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "50",
+      "dimension": {
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Per fotoni monocromatici P=dotN·hf. h f=(33/5)×10⁻¹⁹ J per f₁₅=1, e 33 pW=33×10⁻¹² J/s. Quindi dotN=5×10⁷ s⁻¹=50 milioni al secondo. In generale dotN/(10⁶ s⁻¹)=50 P_pW/(33 f₁₅). È un tasso medio, non un conteggio istantaneo obbligatoriamente intero.",
+      "physicalAssumptions": "Sorgente monocromatica, potenza media P e frequenza positive finite. h prescritto. p=P/pW, u=f/10¹⁵Hz, r=dotN/(10⁶s⁻¹) sono puri; dotN è un tasso medio continuo, non un conteggio intero. Caso 03 a un solo fotone: hf confrontata con la soglia è condizione energetica necessaria, non garanzia di ogni evento. Nessuna generalizzazione a processi multifotonici.",
+      "distractors": "100 raddoppia 50, 33 copia p e 5 perde un fattore 10 nella scala del tasso. P/(hf) ha s⁻¹ e dà 50 milioni/s.",
+      "pedagogicalReview": "Legge motivata e unità normalizzate distinte dalle grandezze fisiche.",
+      "assetReview": "XML and full 640×1480 native read. At equal 33 pW, bars 250/125 at originx 150 represent 50/25 million photons/s with 5 coordinates per million/s. The logical arrow separates power from per-photon energy. Fixed-frequency graph origin 150, 1280 has 10 coordinates/pW horizontally and 5 coordinates/(million/s) vertically; endpoint 480, 1030 gives 33 pW, 50 million/s. Open origin and labels outside axes; no clipping/overlap or scale defect.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-photon-rate-power-02",
+      "sourceSha256": "5862bfc1bc0ab3a951bf25ab39dc50f6ca8f68717668637eeb860551cc266134",
+      "candidateSha256": "9978abc7e5408ef0840148cb4e9925d88bd0253547ce3d0c180c465ca112cf49",
+      "reviewedSignature": "50681311dd27eda92c20f8f45e34abb2452278a9438eb617fce61dbc1f0e51f3",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "s⁻¹",
+      "dimension": {
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Un tasso di numero di fotoni ha dimensione T⁻¹ e unità s⁻¹. Il fotone è un conteggio, mentre il prefisso milioni cambia la scala numerica.",
+      "physicalAssumptions": "Sorgente monocromatica, potenza media P e frequenza positive finite. h prescritto. p=P/pW, u=f/10¹⁵Hz, r=dotN/(10⁶s⁻¹) sono puri; dotN è un tasso medio continuo, non un conteggio intero. Caso 03 a un solo fotone: hf confrontata con la soglia è condizione energetica necessaria, non garanzia di ogni evento. Nessuna generalizzazione a processi multifotonici.",
+      "distractors": "J, W, s sono energia, potenza, tempo; 1 è adatto a r. Tasso e frequenza condividono dimensioneT⁻¹ ma non significato.",
+      "pedagogicalReview": "Dimensione ricostruita e prefisso distinto dall’unità fisica.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-photon-rate-power-03",
+      "sourceSha256": "67ffa8f59d1ca1746b9e4b868242c93a20b200349588788703b41b4eb64d0d6d",
+      "candidateSha256": "abb7d203ff18c9c7fc094fb28a9c163a1c3381036ca9f155916cfcc5ae02ace4",
+      "reviewedSignature": "df23b2ed45d657026bf32442ee9cea78b62ff3482cfe2364fe8227039a8c55d8",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "L’energia hf del singolo fotone rispetto alla soglia di ionizzazione",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Nel modello elementare a singolo fotone conta l’energia del singolo fotone E=hf, confrontata con la soglia di ionizzazione. Aumentare soltanto il numero di fotoni sotto soglia non rende energeticamente possibile quell’evento a un fotone; non si escludono qui processi multifotonici fuori modello.",
+      "physicalAssumptions": "Evento elementare di assorbimento a un solo fotone: hf rispetto alla soglia di ionizzazione è condizione energetica necessaria. Nessuna ipotesi su potenza 33 pW o frequenza 10¹⁵Hz, nessuna certezza di assorbimento e nessuna estensione a eventi multifotonici.",
+      "distractors": "Potenza, tasso, durata e area non sostituiscono hf nel bilancio energetico del singolo evento. Non si invocano processi multifotonici; sopra soglia non si garantisce assorbimento certo.",
+      "pedagogicalReview": "Caso autonomo o legge riconosciuta dalle ipotesi effettive.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-photon-rate-power-04",
+      "sourceSha256": "5198bc112682498e865617e83fa81efba54eea5aa6661295e7f7ee742a3e3e8f",
+      "candidateSha256": "2d29b37ede2e62bcdd14b3ba9cdc151e118acbd68d331e0d586bdaac455455f5",
+      "reviewedSignature": "c56f48aec9d0990a48b40ab03b798537fc5c5cff333c925595c2eb6cac3a949e",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Da 50q_R a 100q_R",
+      "dimension": {
+        "[time]": "-1"
+      },
+      "manualArithmetic": "A f fissata, raddoppiare P da 33 a 66 pW raddoppia il tasso medio da 50 a 100 milioni/s.",
+      "physicalAssumptions": "Sorgente monocromatica, potenza media P e frequenza positive finite. h prescritto. p=P/pW, u=f/10¹⁵Hz, r=dotN/(10⁶s⁻¹) sono puri; dotN è un tasso medio continuo, non un conteggio intero. Caso 03 a un solo fotone: hf confrontata con la soglia è condizione energetica necessaria, non garanzia di ogni evento. Nessuna generalizzazione a processi multifotonici.",
+      "distractors": "25 inverte P, 200 applica un quadrato, 66 copia p_B e 50 ignora il cambiamento. Il denominatore hf rimane fisso.",
+      "pedagogicalReview": "Confronto controllato a un solo parametro fissato.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-photon-rate-power-05",
+      "sourceSha256": "bc65081bf6afb94b033dfd5cecd96961f44dff2695f05f925da72b431907ac1c",
+      "candidateSha256": "7d387ffb0aa5a58ab3bff25e33dfec38ff4e0c493d0de1844e8f71892a4275e0",
+      "reviewedSignature": "f1a23f6de3ef38804935172588a02f0fa321656a2cd9cbcfa33bb2a8f5bcbe6e",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "33",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3"
+      },
+      "manualArithmetic": "Isolo P=dotN hf. Con tasso normalizzato 50 e f₁₅=1, P_pW=(33/50)·50=33.",
+      "physicalAssumptions": "Sorgente monocromatica, potenza media P e frequenza positive finite. h prescritto. p=P/pW, u=f/10¹⁵Hz, r=dotN/(10⁶s⁻¹) sono puri; dotN è un tasso medio continuo, non un conteggio intero. Caso 03 a un solo fotone: hf confrontata con la soglia è condizione energetica necessaria, non garanzia di ogni evento. Nessuna generalizzazione a processi multifotonici.",
+      "distractors": "50 copia r senza energia per fotone; 66 pW dà r 100 e 33/2 pW r 25. Serve moltiplicare il tasso per hf.",
+      "pedagogicalReview": "Prima inversa reinserita nella relazione diretta.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-photon-rate-power-06",
+      "sourceSha256": "06c127a3c5da39cbb58263ad9124037666ccc94485ab259d78a247c6df5a2d77",
+      "candidateSha256": "9fcd6244907737a177495b672a254520ffb638b662519a5bb099b5f2fe688eff",
+      "reviewedSignature": "580bab7a74db2f9929ab11d28dfd5bbaf5092aa25a72f979a20889fa1ce49173",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1",
+      "dimension": {
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Isolo f₁₅=50 P_pW/(33 q), q=dotN/(10⁶ s⁻¹). Con P=33 e q=50 si ha f₁₅=1.",
+      "physicalAssumptions": "Sorgente monocromatica, potenza media P e frequenza positive finite. h prescritto. p=P/pW, u=f/10¹⁵Hz, r=dotN/(10⁶s⁻¹) sono puri; dotN è un tasso medio continuo, non un conteggio intero. Caso 03 a un solo fotone: hf confrontata con la soglia è condizione energetica necessaria, non garanzia di ogni evento. Nessuna generalizzazione a processi multifotonici.",
+      "distractors": "U 2 darebbe r 25 e u 1/2 darebbe r 100 a 33 pW. U 33 copia p senza risolvere la relazione.",
+      "pedagogicalReview": "Seconda inversa con dominio e unità verificati.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-photon-rate-power-07",
+      "sourceSha256": "d1ce265dbe7f104ec6d3316bd9580cfed866451d189cbc6f4a94130f5a68c41d",
+      "candidateSha256": "ccaa6d650a754957b9ab3144e1b7ef0f0518a6cc4dc40a134a11112d862f95da",
+      "reviewedSignature": "23eb4188802ad3755ca115d47b051194c05ef59e5a3530d181a4c956dc9d7c56",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "photon-rate-power-progressive.svg": "90e6ac6a721d12727256f629f2429e3b69242eb4b98a4ecb8649033feb718707"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1/2",
+      "dimension": {},
+      "manualArithmetic": "A potenza costante, raddoppiare la frequenza dimezza il tasso: q_A=50, q_B=25, rapporto 1/2.",
+      "physicalAssumptions": "Sorgente monocromatica, potenza media P e frequenza positive finite. h prescritto. p=P/pW, u=f/10¹⁵Hz, r=dotN/(10⁶s⁻¹) sono puri; dotN è un tasso medio continuo, non un conteggio intero. Caso 03 a un solo fotone: hf confrontata con la soglia è condizione energetica necessaria, non garanzia di ogni evento. Nessuna generalizzazione a processi multifotonici.",
+      "distractors": "2 rende diretto l’effetto di f; 1/4 introduce un quadrato e 1 ignora il raddoppio. Potenza positiva e f finita escludono zero.",
+      "pedagogicalReview": "Due uscite ricostruite prima del rapporto puro.",
+      "assetReview": "XML and full 640×1480 native read. At equal 33 pW, bars 250/125 at originx 150 represent 50/25 million photons/s with 5 coordinates per million/s. The logical arrow separates power from per-photon energy. Fixed-frequency graph origin 150, 1280 has 10 coordinates/pW horizontally and 5 coordinates/(million/s) vertically; endpoint 480, 1030 gives 33 pW, 50 million/s. Open origin and labels outside axes; no clipping/overlap or scale defect.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-photon-rate-power-08",
+      "sourceSha256": "8c749f0b15f777dce7f37e511303883b221d363753d804c51f13afad627b3192",
+      "candidateSha256": "1af9f0ac80da2bf8405f97c1b6b1c0937807677ff667f00b7505a49e1dfeed4e",
+      "reviewedSignature": "0d2580be4975105bf5d284cbb1a29c2ceff799dc640f1cc13bf39505e853168b",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "50",
+      "dimension": {
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Proposto 100 meno corretto 50 dà +50 milioni/s. La frequenza non è cambiata nel confronto di scarto.",
+      "physicalAssumptions": "Sorgente monocromatica, potenza media P e frequenza positive finite. h prescritto. p=P/pW, u=f/10¹⁵Hz, r=dotN/(10⁶s⁻¹) sono puri; dotN è un tasso medio continuo, non un conteggio intero. Caso 03 a un solo fotone: hf confrontata con la soglia è condizione energetica necessaria, non garanzia di ogni evento. Nessuna generalizzazione a processi multifotonici.",
+      "distractors": "−50 q_R scambia l’ordine, 2 è rapporto, 100 q_R proposta e 0 q_R l’accetta. L’uscita è un tasso, non una potenza.",
+      "pedagogicalReview": "Differenza ordinata distinta da un rapporto.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-photon-rate-power-09",
+      "sourceSha256": "309cfeea4bb5101aa17a0ad2dec25b1dbcdfdbda8ae366c4d5b69924f17240e1",
+      "candidateSha256": "4400a34d0073192b5636c62994839325226537ea1b286731b33b30bd4b68af62",
+      "reviewedSignature": "2922d4c9767bbd7de95c34d8e8aa5d4ea040519189907920a40efbc0980de47e",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "photon-rate-power-progressive.svg": "90e6ac6a721d12727256f629f2429e3b69242eb4b98a4ecb8649033feb718707"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "P = Ṅ h f",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3"
+      },
+      "manualArithmetic": "P=dotN hf. Nella forma numerica P_pW=(33/50)qf₁₅; si moltiplica per f, non si divide nuovamente.",
+      "physicalAssumptions": "Sorgente monocromatica, potenza media P e frequenza positive finite. h prescritto. p=P/pW, u=f/10¹⁵Hz, r=dotN/(10⁶s⁻¹) sono puri; dotN è un tasso medio continuo, non un conteggio intero. Caso 03 a un solo fotone: hf confrontata con la soglia è condizione energetica necessaria, non garanzia di ogni evento. Nessuna generalizzazione a processi multifotonici.",
+      "distractors": "dotN/(hf) ha 1/(J·s); hf/dotN haJ·s. I fattori h e f si moltiplicano a dotN per ricostruire una potenza.",
+      "pedagogicalReview": "Inversa simbolica con dimensioni e dominio.",
+      "assetReview": "XML and full 640×1480 native read. At equal 33 pW, bars 250/125 at originx 150 represent 50/25 million photons/s with 5 coordinates per million/s. The logical arrow separates power from per-photon energy. Fixed-frequency graph origin 150, 1280 has 10 coordinates/pW horizontally and 5 coordinates/(million/s) vertically; endpoint 480, 1030 gives 33 pW, 50 million/s. Open origin and labels outside axes; no clipping/overlap or scale defect.",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-photon-rate-power-10",
+      "sourceSha256": "a6b211740e8c6126c7ae642cae180b63548a60287a401c030ad55084cfd98511",
+      "candidateSha256": "b50d8a4bc4f12cd4ee3113f2ea6f7000fcc296521ba104e2a93b02058a2541e1",
+      "reviewedSignature": "670e4dc049b7ac8571f30adce088eedd939891c0dd8acd7a7bea06d3969f2289",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "κ₁ / κ₂",
+      "dimension": {},
+      "manualArithmetic": "Il rapporto fra tassi è κ₁/κ₂. P, f>0 in entrambe le preparazioni; non occorre che dotN normalizzato sia un intero perché è una media di eventi per unità di tempo.",
+      "physicalAssumptions": "Sorgente monocromatica, potenza media P e frequenza positive finite. h prescritto. p=P/pW, u=f/10¹⁵Hz, r=dotN/(10⁶s⁻¹) sono puri; dotN è un tasso medio continuo, non un conteggio intero. Caso 03 a un solo fotone: hf confrontata con la soglia è condizione energetica necessaria, non garanzia di ogni evento. Nessuna generalizzazione a processi multifotonici.",
+      "distractors": "Prodotto e reciproco confondono la dipendenza inversa da f; κ₂² aggiunge una potenza assente e la somma fallisce per stati identici. Nessuna integralità è richiesta al tasso medio.",
+      "pedagogicalReview": "Fattori inseriti nella legge effettiva, senza analogie improprie.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-photon-rate-power-11",
+      "sourceSha256": "ec63b19ce9ed8fcdbdc5b39feb8d389501c7670f42448a9a4e84cdfb7a38497f",
+      "candidateSha256": "72fba3a475bb7a641423ae03674185e1682ba326c545124fcfe832063c202bb0",
+      "reviewedSignature": "adb22bcb162722dcc3e68038075973afac15faddb6e2ca309f61e6c4f9d28336",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1/66",
+      "dimension": {},
+      "manualArithmetic": "A=50; B=50/(33·2)=25/33 milioni/s. Il rapporto è 1/66. La potenza B è 1 pW, non 66 pW: serve rileggere questo dato autonomamente.",
+      "physicalAssumptions": "Sorgente monocromatica, potenza media P e frequenza positive finite. h prescritto. p=P/pW, u=f/10¹⁵Hz, r=dotN/(10⁶s⁻¹) sono puri; dotN è un tasso medio continuo, non un conteggio intero. Caso 03 a un solo fotone: hf confrontata con la soglia è condizione energetica necessaria, non garanzia di ogni evento. Nessuna generalizzazione a processi multifotonici.",
+      "distractors": "66 inverte il rapporto, 1/33 considera solo P, 1/2 solo f e 1 nessuno. I due tassi 50 e 25/33 danno 1/66 senza arrotondare a conteggi.",
+      "pedagogicalReview": "Entrambi gli ingressi considerati nel nuovo stato.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-photon-rate-power-12",
+      "sourceSha256": "67fdea359d13382ad1e513eee7115ced8c8bc3cec196f6d1419b6c91f19e4daf",
+      "candidateSha256": "96fb4e6abe62e2f96d8ffc586e8f9883d97707d6f13ce3685aad101043982372",
+      "reviewedSignature": "0f265b5c8837ef1ca5dc2aeeb89c3bffce8c93cb8db63f5557e4e984b19cb074",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1675/66",
+      "dimension": {
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Media uscite: (50+25/33)/2=1675/66 milioni/s. Agli ingressi medi P=17 pW e f₁₅=3/2, il modello dà 1700/99 milioni/s. La differenza è 1625/198 milioni/s, dunque mediare ingressi non sostituisce la procedura richiesta.",
+      "physicalAssumptions": "Sorgente monocromatica, potenza media P e frequenza positive finite. h prescritto. p=P/pW, u=f/10¹⁵Hz, r=dotN/(10⁶s⁻¹) sono puri; dotN è un tasso medio continuo, non un conteggio intero. Caso 03 a un solo fotone: hf confrontata con la soglia è condizione energetica necessaria, non garanzia di ogni evento. Nessuna generalizzazione a processi multifotonici.",
+      "distractors": "1700/99 usa gli ingressi medi; 1675/33 è somma, 1625/66 semidifferenza e 25/33 solo B. La media richiesta 1675/66 differisce dal modello ai dati medi.",
+      "pedagogicalReview": "Media delle uscite distinta dagli ingressi medi.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-photon-rate-power-13",
+      "sourceSha256": "d4ebe4675077c8e7f3f9f22316dcd4f36e606871285a5581adcd2862dc8cb105",
+      "candidateSha256": "ad2de24ef6f42982c9d0f073a1fff8a74563bf2de3704cba96109be3b9d3e050",
+      "reviewedSignature": "12266883b0120c9df60a91552ebce3973f2d20c55de3942e5deaf12d7cd4cc8a",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {},
+      "manualArithmetic": "Rapporto target 1/66=(P_B/P_A)/(f_B/f_A)=(1/33)/(f_B/f_A): f_B/f_A=2.",
+      "physicalAssumptions": "Sorgente monocromatica, potenza media P e frequenza positive finite. h prescritto. p=P/pW, u=f/10¹⁵Hz, r=dotN/(10⁶s⁻¹) sono puri; dotN è un tasso medio continuo, non un conteggio intero. Caso 03 a un solo fotone: hf confrontata con la soglia è condizione energetica necessaria, non garanzia di ogni evento. Nessuna generalizzazione a processi multifotonici.",
+      "distractors": "1/2 inverte il confronto, 66 ignora il cambio di potenza e 1/33 copia il suo rapporto. A frequenza invariata B avrebbe r 50/33, doppio del bersaglio.",
+      "pedagogicalReview": "Bersaglio ricostruito prima dell’inversa.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-photon-rate-power-14",
+      "sourceSha256": "b02354111774d247d0a5375c5269e2fc467ba776ec097e23f0914e6f4efedf3e",
+      "candidateSha256": "ab2b196534c5d71960683f627520d80e40c78bf35f3dc6b6639332773478137c",
+      "reviewedSignature": "c47c819a39849be3055065493526e6dd5e316e53f5e7cdc9e6dff8b6f13954bf",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3"
+      },
+      "manualArithmetic": "Il riferimento q=50 e S=150 dà guadagno 3. S=25/11 implica q=25/33; con f₁₅=2 si ricava P=(33/50)(25/33)·2=1 pW.",
+      "physicalAssumptions": "Sorgente monocromatica, potenza media P e frequenza positive finite. h prescritto. p=P/pW, u=f/10¹⁵Hz, r=dotN/(10⁶s⁻¹) sono puri; dotN è un tasso medio continuo, non un conteggio intero. Caso 03 a un solo fotone: hf confrontata con la soglia è condizione energetica necessaria, non garanzia di ogni evento. Nessuna generalizzazione a processi multifotonici.",
+      "distractors": "3 pW tratta D come r e predice 75/11. Mezzo pW perde u_B 2 dopo la taratura; 33 pW ripete A. Il tasso resta continuo e la frazione del display è ammessa.",
+      "pedagogicalReview": "Taratura rimossa prima dell’inversa fisica.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-photon-rate-power-15",
+      "sourceSha256": "25ecf4d663fb665b9fa37d15b6e585f34ad75cc12bb996e857504d7fdcc9a968",
+      "candidateSha256": "0d6619b9e671b529e1f68a5b29e7c285aa0de8dbb80e7163960f68a328c4d724",
+      "reviewedSignature": "a3b665b96b89f8bf9e5e3f40edc742a9614d213fbd491a7718be10c86618c500",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "66",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3"
+      },
+      "manualArithmetic": "Riferimenti q_A=50, q_B=25/33 e letture 101, 83/33. ΔS=−3250/33 e Δq=−1625/33 danno a=2, b=1. S_C=201 dà q_C=100; f₁₅=1 implica P_C=66 pW.",
+      "physicalAssumptions": "Sorgente monocromatica, potenza media P e frequenza positive finite. h prescritto. p=P/pW, u=f/10¹⁵Hz, r=dotN/(10⁶s⁻¹) sono puri; dotN è un tasso medio continuo, non un conteggio intero. Caso 03 a un solo fotone: hf confrontata con la soglia è condizione energetica necessaria, non garanzia di ogni evento. Nessuna generalizzazione a processi multifotonici.",
+      "distractors": "6633/100 pW omette b e predice D 202; 132 pW omette il guadagno dopo b e 33 pW predice D 101. P 66 pW ricostruisce D 201.",
+      "pedagogicalReview": "Guadagno e offset identificati da due riferimenti distinti.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-photon-rate-power-16",
+      "sourceSha256": "41a7208a4fc1d64deefc3ce26920fd16bf19f704d6ceb306e69a26f4f4cc094e",
+      "candidateSha256": "a5c3b664256b56dd8ad0dd09bbc3714ef343f76d319a056e69c2c5cdbe96e041",
+      "reviewedSignature": "238e3df6be8e796de530dd818c36f2866caf9afcac2aa3b1b39b2c528d23cacb",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Infinite coppie continue",
+      "dimension": {},
+      "manualArithmetic": "Il vincolo numerico P_pW=33 f₁₅ rende q=50 per ogni f₁₅>0. La misura è ridondante: infinite coppie continue positive potenza/frequenza, nessuna quantizzazione del tasso medio imposta.",
+      "physicalAssumptions": "Sorgente monocromatica, potenza media P e frequenza positive finite. h prescritto. p=P/pW, u=f/10¹⁵Hz, r=dotN/(10⁶s⁻¹) sono puri; dotN è un tasso medio continuo, non un conteggio intero. Caso 03 a un solo fotone: hf confrontata con la soglia è condizione energetica necessaria, non garanzia di ogni evento. Nessuna generalizzazione a processi multifotonici.",
+      "distractors": "Una o due coppie richiederebbero un dato indipendente; gli esempi smentiscono nessuna coppia.50 è il valore normalizzato del tasso, non il numero di coppie. P=33 u pW con ogni u>0 lascia una famiglia continua.",
+      "pedagogicalReview": "Vincolo sostituito prima di decidere numero e dominio delle soluzioni.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    }
+  ],
+  "verifierSha256": "948b1abfa2a5016f560b4a08130aa3c236e8f63a784cc3ed6ae7ed9a5a62a06e",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "reviewDependencySha256": {
+    "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+  },
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2",
+    "hypothesis": "6.148.7"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "reviewedCandidateCommit": "482111220cd352709a44d2150f3e9cda0773c4fc",
+  "packageSha256": "9829abe567e88421e759d66ed4a8bbaf9a44b4ecedefdd2df78cbe20bdf237b1",
+  "bindingsSha256": "435916ffa490fa3a72874746ec5b187e28273bb39e34652d6552fb53ed62502d",
+  "source": {
+    "commit": "5cfbdcb055ba3ba136f97fb56e997f06e6cf3605",
+    "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U7-01.json",
+    "title": "photon-rate-power",
+    "reference": "Sorgente monocromatica, potenza media P e frequenza positive finite. h prescritto. p=P/pW, u=f/10¹⁵Hz, r=dotN/(10⁶s⁻¹) sono puri; dotN è un tasso medio continuo, non un conteggio intero. Caso 03 a un solo fotone: hf confrontata con la soglia è condizione energetica necessaria, non garanzia di ogni evento. Nessuna generalizzazione a processi multifotonici."
+  },
+  "modelsBeforeCandidateKeys": {
+    "path": "editorial/reviews/u7-radiation-240-244-independent-models.py",
+    "sha256": "b23231ee65202142c7f6d46957df443d426c54ad7c9dac9b6de9fd21b1ea9a94",
+    "commit": "f5ab7a660506550ea5220cce3e4ba8e3e15584b3"
+  },
+  "primaryBeforeCandidateKeys": {
+    "path": "editorial/reviews/u7-radiation-240-244-primary-source-only.md",
+    "sha256": "8771a65b67207b7b6f31618ba4ebc9cf17d99b55162f75f4c776cb0f327c975d"
+  }
+}

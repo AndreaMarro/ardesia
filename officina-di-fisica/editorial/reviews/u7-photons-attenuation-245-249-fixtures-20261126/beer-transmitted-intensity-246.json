@@ -1,0 +1,1206 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u7-beer-transmitted-intensity-01",
+      "kind": "question",
+      "course": "C5",
+      "section": "Trasmissione esponenziale di un fascio monocromatico",
+      "order": 24601,
+      "title": "Ogni centimetro dimezza ciò che arriva",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "beer-transmitted-intensity",
+      "difficulty": 1,
+      "prompt": "Un fascio monocromatico attraversa normalmente uno strato omogeneo, soltanto assorbente. Si trascura la riflessione; non vi sono sorgenti interne né radiazione secondaria raccolta dal rivelatore, che misura il fascio diretto. Il coefficiente costante è μ=(ln 2) cm⁻¹. Poniamo x=d/(1 cm)>0: la legge è I=I₀ exp(−μd), con I₀>0. Si hanno I₀=64 mW/m² e d=1 cm. Quanto vale I in mW/m²?",
+      "answer": {
+        "type": "numeric",
+        "value": 32,
+        "unit": "mW/m²",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’esponente è il prodotto adimensionale μd. Per un centimetro vale ln 2 e il fattore esponenziale è un mezzo. L’intensità trasmessa è perciò 32 mW/m²: si dimezza il flusso energetico per area, non si sottrae un numero fisso per ogni centimetro successivo."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/b33819f97d71e78ee4c7d1432463c176c50f572c0962a813de63655a73846d01",
+          "text": "La sequenza superiore mostra intensità 64, 32, 16 e 8 mW/m² a spessori separati di 1 cm; ogni passaggio dimezza il valore precedente. Le barre hanno origine comune entro il pannello."
+        },
+        {
+          "type": "formula",
+          "text": "\\mu d=\\ln2"
+        },
+        {
+          "type": "formula",
+          "text": " e^{-\\ln2}=\\frac12"
+        },
+        {
+          "type": "formula",
+          "text": " I=64\\cdot\\frac12\\,\\mathrm{mW/m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " I=32\\,\\mathrm{mW/m^2}"
+        },
+        {
+          "type": "text",
+          "text": "Sessantaquattro ignora la lastra; 128 cambierebbe il segno dell’esponente e produrrebbe amplificazione senza sorgenti. Sedici corrisponde a due centimetri, non a uno."
+        }
+      ],
+      "hints": [
+        "Il prodotto μd deve essere senza unità prima di entrare nell’esponenziale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sessantaquattro ignora la lastra; 128 cambierebbe il segno dell’esponente e produrrebbe amplificazione senza sorgenti. Sedici corrisponde a due centimetri, non a uno.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Assorbimento e spessore adimensionale",
+        "Potenze di due e inverse",
+        "Media su preparazioni e su aree distinte"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-beer-transmitted-intensity-02",
+      "kind": "question",
+      "course": "C5",
+      "section": "Trasmissione esponenziale di un fascio monocromatico",
+      "order": 24602,
+      "title": "Potenza per area",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "beer-transmitted-intensity",
+      "difficulty": 1,
+      "prompt": "Quale unità esprime un’intensità radiante, cioè potenza che attraversa una superficie normale divisa per la sua area?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "W/m²",
+          "W",
+          "J",
+          "m⁻¹",
+          "s⁻¹"
+        ],
+        "value": "W/m²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Un’intensità è una potenza per area. Il prefisso milli produce mW/m² senza cambiare la dimensione W·m⁻². Il coefficiente μ, distinto da I, ha invece dimensione inversa di una lunghezza."
+        },
+        {
+          "type": "formula",
+          "text": "I=P/A"
+        },
+        {
+          "type": "formula",
+          "text": " [I]=\\mathrm{W/m^2}"
+        },
+        {
+          "type": "text",
+          "text": "W è potenza totale e J energia; m⁻¹ appartiene al coefficiente di attenuazione, mentre s⁻¹ è un tasso temporale. Non sono alternative dimensionalmente equivalenti all’intensità."
+        }
+      ],
+      "hints": [
+        "Distingui il fascio dalla sua sezione e dal materiale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "W è potenza totale e J energia; m⁻¹ appartiene al coefficiente di attenuazione, mentre s⁻¹ è un tasso temporale. Non sono alternative dimensionalmente equivalenti all’intensità.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Assorbimento e spessore adimensionale",
+        "Potenze di due e inverse",
+        "Media su preparazioni e su aree distinte"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-beer-transmitted-intensity-03",
+      "kind": "question",
+      "course": "C5",
+      "section": "Trasmissione esponenziale di un fascio monocromatico",
+      "order": 24603,
+      "title": "I fotoni che proseguono",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "beer-transmitted-intensity",
+      "difficulty": 1,
+      "prompt": "Un fascio monocromatico attraversa un assorbitore ideale. Il rivelatore seleziona i fotoni del fascio diretto, senza radiazione secondaria. Quale descrizione spiega la minore intensità trasmessa?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Minore tasso di fotoni, stessa energia di ciascun fotone trasmesso",
+          "Ogni fotone perde continuamente parte della propria energia",
+          "La frequenza di tutti i fotoni si dimezza a ogni centimetro",
+          "L’energia del singolo fotone cresce perché ne restano meno",
+          "La costante di Planck dipende dallo spessore"
+        ],
+        "value": "Minore tasso di fotoni, stessa energia di ciascun fotone trasmesso"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nel modello di assorbimento alcuni fotoni sono rimossi dal fascio diretto. Quelli che vengono trasmessi conservano la frequenza e quindi l’energia hf. Qui ṅ_A è il tasso medio di fotoni trasmessi per unità di area, con unità s⁻¹ m⁻². A parità di sezione, la potenza per area minore dipende da questo tasso per area. Non si sta descrivendo diffusione inelastica o fluorescenza raccolta."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/b33819f97d71e78ee4c7d1432463c176c50f572c0962a813de63655a73846d01",
+          "text": "Il primo pannello rappresenta intensità, non energia decrescente del singolo fotone. Il grafico centrale ha ascissa d in cm e ordinata I in mW/m²; la curva è riferita alla sola sorgente da 64 mW/m²."
+        },
+        {
+          "type": "formula",
+          "text": "E_\\gamma=hf"
+        },
+        {
+          "type": "formula",
+          "text": " I=\\dot n_Ahf"
+        },
+        {
+          "type": "text",
+          "text": "La perdita continua di una frazione dell’energia di ciascun fotone non è il modello di rimozione per assorbimento. Un dimezzamento della frequenza cambierebbe lo spettro; h non è un parametro del materiale e non aumenta l’energia dei superstiti."
+        }
+      ],
+      "hints": [
+        "Se il fotone non viene assorbito, quale frequenza ha ancora nel fascio diretto?",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La perdita continua di una frazione dell’energia di ciascun fotone non è il modello di rimozione per assorbimento. Un dimezzamento della frequenza cambierebbe lo spettro; h non è un parametro del materiale e non aumenta l’energia dei superstiti.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Assorbimento e spessore adimensionale",
+        "Potenze di due e inverse",
+        "Media su preparazioni e su aree distinte"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-beer-transmitted-intensity-04",
+      "kind": "question",
+      "course": "C5",
+      "section": "Trasmissione esponenziale di un fascio monocromatico",
+      "order": 24604,
+      "title": "La sorgente dimezzata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "beer-transmitted-intensity",
+      "difficulty": 1,
+      "prompt": "Un fascio monocromatico attraversa normalmente uno strato omogeneo, soltanto assorbente. Si trascura la riflessione; non vi sono sorgenti interne né radiazione secondaria raccolta dal rivelatore, che misura il fascio diretto. Il coefficiente costante è μ=(ln 2) cm⁻¹. Poniamo x=d/(1 cm)>0: la legge è I=I₀ exp(−μd), con I₀>0. A usa I₀=64 mW/m², d=1 cm. B usa I₀=32 mW/m² allo stesso spessore. Come cambia I?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 32 a 16 mW/m²",
+          "Da 32 a 64 mW/m²",
+          "Da 32 a 8 mW/m²",
+          "Resta 32 mW/m²",
+          "Diventa zero"
+        ],
+        "value": "Da 32 a 16 mW/m²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il materiale lascia passare la medesima frazione un mezzo in entrambe le prove. Se l’intensità incidente si dimezza, anche quella trasmessa si dimezza: 16 mW/m². La linearità vale rispetto a I₀ a d e μ fissati, pur essendo la dipendenza dallo spessore esponenziale."
+        },
+        {
+          "type": "formula",
+          "text": "I_A=32\\,\\mathrm{mW/m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " I_B=32\\cdot\\frac12\\,\\mathrm{mW/m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " I_B=16\\,\\mathrm{mW/m^2}"
+        },
+        {
+          "type": "text",
+          "text": "Sessantaquattro invertirebbe la proporzionalità alla sorgente. Otto applicherebbe un ulteriore dimezzamento da spessore che qui non cambia; trentadue ignora il nuovo ingresso."
+        }
+      ],
+      "hints": [
+        "Qui cambia la sorgente, non il fattore di trasmissione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Sessantaquattro invertirebbe la proporzionalità alla sorgente. Otto applicherebbe un ulteriore dimezzamento da spessore che qui non cambia; trentadue ignora il nuovo ingresso.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Assorbimento e spessore adimensionale",
+        "Potenze di due e inverse",
+        "Media su preparazioni e su aree distinte"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-beer-transmitted-intensity-05",
+      "kind": "question",
+      "course": "C5",
+      "section": "Trasmissione esponenziale di un fascio monocromatico",
+      "order": 24605,
+      "title": "Risolvere all’indietro per la sorgente",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "beer-transmitted-intensity",
+      "difficulty": 2,
+      "prompt": "Un fascio monocromatico attraversa normalmente uno strato omogeneo, soltanto assorbente. Si trascura la riflessione; non vi sono sorgenti interne né radiazione secondaria raccolta dal rivelatore, che misura il fascio diretto. Il coefficiente costante è μ=(ln 2) cm⁻¹. Poniamo x=d/(1 cm)>0: la legge è I=I₀ exp(−μd), con I₀>0. Si misurano I=32 mW/m² dopo d=1 cm. Quanto vale I₀ in mW/m²?",
+      "answer": {
+        "type": "numeric",
+        "value": 64,
+        "unit": "mW/m²",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplico l’intensità finale per exp(μd), che qui è due. Per ricostruire una misura dopo perdite positive la sorgente deve avere intensità maggiore della trasmessa. Il risultato 64 mW/m², reinserito nella legge diretta, dà esattamente 32."
+        },
+        {
+          "type": "formula",
+          "text": "I_0=I e^{\\mu d}"
+        },
+        {
+          "type": "formula",
+          "text": " I_0=32\\cdot2\\,\\mathrm{mW/m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " I_0=64\\,\\mathrm{mW/m^2}"
+        },
+        {
+          "type": "text",
+          "text": "Sedici applica di nuovo l’attenuazione invece di invertirla. Trentadue presuppone spessore nullo o μ nullo, entrambi esclusi; 128 predirebbe 64 mW/m² in uscita."
+        }
+      ],
+      "hints": [
+        "Per invertire una perdita, dividi per la frazione trasmessa.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sedici applica di nuovo l’attenuazione invece di invertirla. Trentadue presuppone spessore nullo o μ nullo, entrambi esclusi; 128 predirebbe 64 mW/m² in uscita.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Assorbimento e spessore adimensionale",
+        "Potenze di due e inverse",
+        "Media su preparazioni e su aree distinte"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-beer-transmitted-intensity-06",
+      "kind": "question",
+      "course": "C5",
+      "section": "Trasmissione esponenziale di un fascio monocromatico",
+      "order": 24606,
+      "title": "Riconoscere una potenza di due",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "beer-transmitted-intensity",
+      "difficulty": 2,
+      "prompt": "Un fascio monocromatico attraversa normalmente uno strato omogeneo, soltanto assorbente. Si trascura la riflessione; non vi sono sorgenti interne né radiazione secondaria raccolta dal rivelatore, che misura il fascio diretto. Il coefficiente costante è μ=(ln 2) cm⁻¹. Poniamo x=d/(1 cm)>0: la legge è I=I₀ exp(−μd), con I₀>0. I₀=64 mW/m² e I=32 mW/m². Quanto vale d in cm?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "cm",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il rapporto I₀/I è due. La relazione 2ˣ=I₀/I richiede x=1, senza una valutazione numerica di logaritmi. L’inversa generale d=ln(I₀/I)/μ è positiva perché I₀>I>0; il rapporto dentro il logaritmo non ha unità."
+        },
+        {
+          "type": "formula",
+          "text": "2^x=I_0/I"
+        },
+        {
+          "type": "formula",
+          "text": " 2^x=2"
+        },
+        {
+          "type": "formula",
+          "text": " x=1"
+        },
+        {
+          "type": "formula",
+          "text": " d=1\\,\\mathrm{cm}"
+        },
+        {
+          "type": "text",
+          "text": "Due centimetri darebbero 16 mW/m², mentre mezzo centimetro darebbe 32√2 mW/m². Zero non attenuerebbe il fascio; uno soddisfa il rapporto assegnato."
+        }
+      ],
+      "hints": [
+        "Confronta la potenza di due con il rapporto fra intensità nelle stesse unità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due centimetri darebbero 16 mW/m², mentre mezzo centimetro darebbe 32√2 mW/m². Zero non attenuerebbe il fascio; uno soddisfa il rapporto assegnato.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Assorbimento e spessore adimensionale",
+        "Potenze di due e inverse",
+        "Media su preparazioni e su aree distinte"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-beer-transmitted-intensity-07",
+      "kind": "question",
+      "course": "C5",
+      "section": "Trasmissione esponenziale di un fascio monocromatico",
+      "order": 24607,
+      "title": "Raddoppiare lo spessore non annulla il fascio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "beer-transmitted-intensity",
+      "difficulty": 2,
+      "prompt": "Un fascio monocromatico attraversa normalmente uno strato omogeneo, soltanto assorbente. Si trascura la riflessione; non vi sono sorgenti interne né radiazione secondaria raccolta dal rivelatore, che misura il fascio diretto. Il coefficiente costante è μ=(ln 2) cm⁻¹. Poniamo x=d/(1 cm)>0: la legge è I=I₀ exp(−μd), con I₀>0. A usa I₀=64 mW/m², d=1 cm. B ha lo stesso I₀ e d=2 cm. Quanto vale I_B/I_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "2",
+          "1/4",
+          "1",
+          "0"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A trasmette un mezzo dell’incidente, B un quarto. Sono 32 e 16 mW/m²; rispetto ad A l’ulteriore centimetro dimezza ancora. Il rapporto B/A è un mezzo, mentre un quarto sarebbe la trasmittanza assoluta di B."
+        },
+        {
+          "type": "formula",
+          "text": "I_A=32\\,\\mathrm{mW/m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " I_B=16\\,\\mathrm{mW/m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " I_B/I_A=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Due inverte il confronto; un quarto confronta B con la sorgente anziché con A. Zero sottrarrebbe una perdita assoluta costante, incompatibile con l’esponenziale."
+        }
+      ],
+      "hints": [
+        "Scrivi sia la trasmittanza di A sia quella di B prima del loro rapporto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due inverte il confronto; un quarto confronta B con la sorgente anziché con A. Zero sottrarrebbe una perdita assoluta costante, incompatibile con l’esponenziale.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Assorbimento e spessore adimensionale",
+        "Potenze di due e inverse",
+        "Media su preparazioni e su aree distinte"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-beer-transmitted-intensity-08",
+      "kind": "question",
+      "course": "C5",
+      "section": "Trasmissione esponenziale di un fascio monocromatico",
+      "order": 24608,
+      "title": "Lo scarto non è l’intensità incidente",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "beer-transmitted-intensity",
+      "difficulty": 2,
+      "prompt": "Un fascio monocromatico attraversa normalmente uno strato omogeneo, soltanto assorbente. Si trascura la riflessione; non vi sono sorgenti interne né radiazione secondaria raccolta dal rivelatore, che misura il fascio diretto. Il coefficiente costante è μ=(ln 2) cm⁻¹. Poniamo x=d/(1 cm)>0: la legge è I=I₀ exp(−μd), con I₀>0. Per I₀=64 mW/m² e d=1 cm viene proposto I=64 mW/m². Quanto vale proposta meno corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "32 mW/m²",
+          "−32 mW/m²",
+          "2",
+          "64 mW/m²",
+          "0 mW/m²"
+        ],
+        "value": "32 mW/m²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La misura prevista è 32 mW/m². La proposta ripete l’intensità incidente e la sovrastima di 64−32=32 mW/m². Lo scarto è una differenza con unità, mentre il rapporto proposta/corretto è due."
+        },
+        {
+          "type": "formula",
+          "text": "\\delta I=(64-32)\\,\\mathrm{mW/m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\delta I=32\\,\\mathrm{mW/m^2}"
+        },
+        {
+          "type": "text",
+          "text": "Il segno meno cambia l’ordine della sottrazione. Due è un fattore puro, 64 ripete la proposta e zero ne omette la verifica fisica."
+        }
+      ],
+      "hints": [
+        "Distingui intensità trasmessa, incidente e scarto della proposta.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il segno meno cambia l’ordine della sottrazione. Due è un fattore puro, 64 ripete la proposta e zero ne omette la verifica fisica.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Assorbimento e spessore adimensionale",
+        "Potenze di due e inverse",
+        "Media su preparazioni e su aree distinte"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-beer-transmitted-intensity-09",
+      "kind": "question",
+      "course": "C5",
+      "section": "Trasmissione esponenziale di un fascio monocromatico",
+      "order": 24609,
+      "title": "L’inversa esponenziale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "beer-transmitted-intensity",
+      "difficulty": 2,
+      "prompt": "Un fascio monocromatico attraversa normalmente uno strato omogeneo, soltanto assorbente. Si trascura la riflessione; non vi sono sorgenti interne né radiazione secondaria raccolta dal rivelatore, che misura il fascio diretto. Il coefficiente costante è μ=(ln 2) cm⁻¹. Poniamo x=d/(1 cm)>0: la legge è I=I₀ exp(−μd), con I₀>0. I e d sono noti. Quale formula isola I₀?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "I₀ = I exp(μd)",
+          "I₀ = I exp(−μd)",
+          "I₀ = exp(μd) / I",
+          "I₀ = I μd",
+          "I₀ = I / (μd)"
+        ],
+        "value": "I₀ = I exp(μd)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La legge diretta moltiplica I₀ per exp(−μd). Divido per quel fattore, sempre positivo, e ottengo I₀=I exp(μd). Nella forma con x=d/(1 cm), equivale a I₀=I·2ˣ: il segno positivo compare nell’inversa, non nella propagazione diretta."
+        },
+        {
+          "type": "formula",
+          "text": "I=I_0e^{-\\mu d}"
+        },
+        {
+          "type": "formula",
+          "text": " I_0=I e^{\\mu d}"
+        },
+        {
+          "type": "formula",
+          "text": " I_0=I\\,2^x"
+        },
+        {
+          "type": "text",
+          "text": "Il segno negativo applica una seconda attenuazione. Il reciproco dell’intensità non ne ha la dimensione; μd è adimensionale ma non può sostituire l’esponenziale. Adimensionale non significa fisicamente equivalente."
+        }
+      ],
+      "hints": [
+        "Moltiplica entrambi i membri per exp(μd).",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il segno negativo applica una seconda attenuazione. Il reciproco dell’intensità non ne ha la dimensione; μd è adimensionale ma non può sostituire l’esponenziale. Adimensionale non significa fisicamente equivalente.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Assorbimento e spessore adimensionale",
+        "Potenze di due e inverse",
+        "Media su preparazioni e su aree distinte"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-beer-transmitted-intensity-10",
+      "kind": "question",
+      "course": "C5",
+      "section": "Trasmissione esponenziale di un fascio monocromatico",
+      "order": 24610,
+      "title": "Scalare anche lo spessore",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "beer-transmitted-intensity",
+      "difficulty": 2,
+      "prompt": "Un fascio monocromatico attraversa normalmente uno strato omogeneo, soltanto assorbente. Si trascura la riflessione; non vi sono sorgenti interne né radiazione secondaria raccolta dal rivelatore, che misura il fascio diretto. Il coefficiente costante è μ=(ln 2) cm⁻¹. Poniamo x=d/(1 cm)>0: la legge è I=I₀ exp(−μd), con I₀>0. I₀,B=κ₁I₀,A e d_B=κ₂d_A, con κ₁,κ₂>0. Poniamo δ=(κ₂−1)x_A. Qual è I_B/I_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ 2^(−δ)",
+          "κ₁ κ₂",
+          "κ₁ / κ₂",
+          "2^(−κ₁δ)",
+          "κ₁ + κ₂"
+        ],
+        "value": "κ₁ 2^(−δ)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Scrivo le due leggi esponenziali e divido. La modifica dell’intensità incidente produce κ₁; la differenza di spessore produce exp[−μ(d_B−d_A)]. Per il materiale assegnato quel secondo fattore è 2 elevato a meno δ. δ può avere anche segno negativo se B è più sottile, benché entrambi gli spessori restino positivi."
+        },
+        {
+          "type": "formula",
+          "text": "\\delta=(\\kappa_2-1)x_A"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{I_B}{I_A}=\\kappa_1e^{-\\mu(d_B-d_A)}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{I_B}{I_A}=\\kappa_1 2^{-\\delta}"
+        },
+        {
+          "type": "text",
+          "text": "Il prodotto κ₁κ₂ e il quoziente κ₁/κ₂ trattano lo spessore come una semplice potenza anziché un esponente. κ₁ non modifica μ e non va trasferito dentro l’esponente. La somma non vale uno per prove identiche."
+        }
+      ],
+      "hints": [
+        "Semplifica il rapporto degli esponenziali usando la differenza degli esponenti.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il prodotto κ₁κ₂ e il quoziente κ₁/κ₂ trattano lo spessore come una semplice potenza anziché un esponente. κ₁ non modifica μ e non va trasferito dentro l’esponente. La somma non vale uno per prove identiche.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Assorbimento e spessore adimensionale",
+        "Potenze di due e inverse",
+        "Media su preparazioni e su aree distinte"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-beer-transmitted-intensity-11",
+      "kind": "question",
+      "course": "C5",
+      "section": "Trasmissione esponenziale di un fascio monocromatico",
+      "order": 24611,
+      "title": "Una sorgente minore e una lastra più spessa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "beer-transmitted-intensity",
+      "difficulty": 2,
+      "prompt": "Un fascio monocromatico attraversa normalmente uno strato omogeneo, soltanto assorbente. Si trascura la riflessione; non vi sono sorgenti interne né radiazione secondaria raccolta dal rivelatore, che misura il fascio diretto. Il coefficiente costante è μ=(ln 2) cm⁻¹. Poniamo x=d/(1 cm)>0: la legge è I=I₀ exp(−μd), con I₀>0. A usa I₀=64 mW/m² e d=1 cm; B usa I₀=32 mW/m² e d=2 cm. Quanto vale I_B/I_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/4",
+          "4",
+          "1/2",
+          "1/8",
+          "1"
+        ],
+        "value": "1/4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A dà 32 mW/m², B dà 32/4=8 mW/m². Il dimezzamento della sorgente si combina con quello dovuto al centimetro aggiuntivo: il rapporto è un quarto. La trasmittanza di B è un quarto dell’incidente B, ma qui la stessa cifra emerge da un confronto diverso."
+        },
+        {
+          "type": "formula",
+          "text": "I_A=32\\,\\mathrm{mW/m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " I_B=8\\,\\mathrm{mW/m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " I_B/I_A=\\frac14"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo considera solo una delle due modifiche; quattro inverte il rapporto. Un ottavo è I_B/I₀,A, non I_B/I_A, e uno ignora entrambe."
+        }
+      ],
+      "hints": [
+        "Ogni stato ha la propria intensità incidente: non usarle come se fossero uguali.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo considera solo una delle due modifiche; quattro inverte il rapporto. Un ottavo è I_B/I₀,A, non I_B/I_A, e uno ignora entrambe.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Assorbimento e spessore adimensionale",
+        "Potenze di due e inverse",
+        "Media su preparazioni e su aree distinte"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-beer-transmitted-intensity-12",
+      "kind": "question",
+      "course": "C5",
+      "section": "Trasmissione esponenziale di un fascio monocromatico",
+      "order": 24612,
+      "title": "Media delle uscite attenuate",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "beer-transmitted-intensity",
+      "difficulty": 2,
+      "prompt": "Un fascio monocromatico attraversa normalmente uno strato omogeneo, soltanto assorbente. Si trascura la riflessione; non vi sono sorgenti interne né radiazione secondaria raccolta dal rivelatore, che misura il fascio diretto. Il coefficiente costante è μ=(ln 2) cm⁻¹. Poniamo x=d/(1 cm)>0: la legge è I=I₀ exp(−μd), con I₀>0. A usa 64 mW/m² e 1 cm; B usa 32 mW/m² e 2 cm. Qual è la media aritmetica delle due intensità trasmesse?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "20 mW/m²",
+          "12√2 mW/m²",
+          "40 mW/m²",
+          "12 mW/m²",
+          "8 mW/m²"
+        ],
+        "value": "20 mW/m²"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le uscite sono 32 e 8 mW/m²; la media con pesi uguali vale 20 mW/m². Il modello agli ingressi medi, I₀=48 mW/m² e x=3/2, darebbe invece 48/(2√2)=12√2 mW/m². L’espressione radicale è esatta, ma non è la media richiesta."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline I=\\frac{32+8}{2}\\,\\mathrm{mW/m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline I=20\\,\\mathrm{mW/m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " I_{\\rm dati\\ medi}=12\\sqrt2\\,\\mathrm{mW/m^2}"
+        },
+        {
+          "type": "text",
+          "text": "Quaranta somma senza dividere per due; dodici è la semidifferenza e otto copia B. La media delle uscite non può essere sostituita da un esponenziale degli ingressi medi."
+        }
+      ],
+      "hints": [
+        "Attenua ciascuna preparazione prima di formare la media.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quaranta somma senza dividere per due; dodici è la semidifferenza e otto copia B. La media delle uscite non può essere sostituita da un esponenziale degli ingressi medi.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Assorbimento e spessore adimensionale",
+        "Potenze di due e inverse",
+        "Media su preparazioni e su aree distinte"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-beer-transmitted-intensity-13",
+      "kind": "question",
+      "course": "C5",
+      "section": "Trasmissione esponenziale di un fascio monocromatico",
+      "order": 24613,
+      "title": "Il bersaglio richiede un secondo dimezzamento",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "beer-transmitted-intensity",
+      "difficulty": 3,
+      "prompt": "Un fascio monocromatico attraversa normalmente uno strato omogeneo, soltanto assorbente. Si trascura la riflessione; non vi sono sorgenti interne né radiazione secondaria raccolta dal rivelatore, che misura il fascio diretto. Il coefficiente costante è μ=(ln 2) cm⁻¹. Poniamo x=d/(1 cm)>0: la legge è I=I₀ exp(−μd), con I₀>0. A usa 64 mW/m² e 1 cm. In B, I₀=32 mW/m² e si vuole I_B=I_A/4. Quanto vale d_B/d_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/2",
+          "1/4",
+          "4",
+          "1"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’obiettivo è 8 mW/m². Dalla sorgente nuova di 32 mW/m² deve passare un quarto: occorrono due dimezzamenti e quindi d_B=2 cm. Rispetto al centimetro iniziale il rapporto è due. La sorgente minore ha già contribuito al calo, ma non basta da sola."
+        },
+        {
+          "type": "formula",
+          "text": "I_B=8\\,\\mathrm{mW/m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " 2^{x_B}=32/8"
+        },
+        {
+          "type": "formula",
+          "text": " 2^{x_B}=4"
+        },
+        {
+          "type": "formula",
+          "text": " x_B=2"
+        },
+        {
+          "type": "formula",
+          "text": " d_B/d_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Uno darebbe 16 mW/m², quattro darebbe 2 mW/m². Un mezzo inverte il rapporto degli spessori e un quarto copia il fattore delle uscite."
+        }
+      ],
+      "hints": [
+        "Ricava la trasmittanza rispetto alla nuova sorgente.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Uno darebbe 16 mW/m², quattro darebbe 2 mW/m². Un mezzo inverte il rapporto degli spessori e un quarto copia il fattore delle uscite.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Assorbimento e spessore adimensionale",
+        "Potenze di due e inverse",
+        "Media su preparazioni e su aree distinte"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-beer-transmitted-intensity-14",
+      "kind": "question",
+      "course": "C5",
+      "section": "Trasmissione esponenziale di un fascio monocromatico",
+      "order": 24614,
+      "title": "Decodificare prima dell’inversa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "beer-transmitted-intensity",
+      "difficulty": 3,
+      "prompt": "Un fascio monocromatico attraversa normalmente uno strato omogeneo, soltanto assorbente. Si trascura la riflessione; non vi sono sorgenti interne né radiazione secondaria raccolta dal rivelatore, che misura il fascio diretto. Il coefficiente costante è μ=(ln 2) cm⁻¹. Poniamo x=d/(1 cm)>0: la legge è I=I₀ exp(−μd), con I₀>0. Sia i=I/(1 mW/m²). Un display D=g i senza offset legge 96 per I₀=64 mW/m² e d=1 cm. Nella nuova prova legge 24 e d=2 cm. Quanto vale I₀ nuovo in mW/m²?",
+      "answer": {
+        "type": "numeric",
+        "value": 32,
+        "unit": "mW/m²",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento ha i=32, quindi g=3. La lettura 24 indica i=8, non 24 mW/m². A due centimetri la trasmittanza è un quarto: l’intensità incidente che produce 8 mW/m² è 32 mW/m²."
+        },
+        {
+          "type": "formula",
+          "text": "g=96/32"
+        },
+        {
+          "type": "formula",
+          "text": " g=3"
+        },
+        {
+          "type": "formula",
+          "text": " i=24/3"
+        },
+        {
+          "type": "formula",
+          "text": " i=8"
+        },
+        {
+          "type": "formula",
+          "text": " I_0=8\\cdot4\\,\\mathrm{mW/m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " I_0=32\\,\\mathrm{mW/m^2}"
+        },
+        {
+          "type": "text",
+          "text": "Novantasei tratterebbe il display come intensità trasmessa e predirebbe D=72. Otto omette il recupero della perdita e 128 predirebbe D=96 alla nuova profondità."
+        }
+      ],
+      "hints": [
+        "Il display è continuo e adimensionale; la legge fisica agisce dopo la sua decodifica.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Novantasei tratterebbe il display come intensità trasmessa e predirebbe D=72. Otto omette il recupero della perdita e 128 predirebbe D=96 alla nuova profondità.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Assorbimento e spessore adimensionale",
+        "Potenze di due e inverse",
+        "Media su preparazioni e su aree distinte"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-beer-transmitted-intensity-15",
+      "kind": "question",
+      "course": "C5",
+      "section": "Trasmissione esponenziale di un fascio monocromatico",
+      "order": 24615,
+      "title": "L’offset non è un’intensità trasmessa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "beer-transmitted-intensity",
+      "difficulty": 3,
+      "prompt": "Un fascio monocromatico attraversa normalmente uno strato omogeneo, soltanto assorbente. Si trascura la riflessione; non vi sono sorgenti interne né radiazione secondaria raccolta dal rivelatore, che misura il fascio diretto. Il coefficiente costante è μ=(ln 2) cm⁻¹. Poniamo x=d/(1 cm)>0: la legge è I=I₀ exp(−μd), con I₀>0. Con i=I/(1 mW/m²), D=g i+b. A: I₀=64 mW/m², d=1 cm, D=65. B: I₀=32 mW/m², d=2 cm, D=17. C: d=1 cm e D=33. Quanto vale I₀,C in mW/m²?",
+      "answer": {
+        "type": "numeric",
+        "value": 32,
+        "unit": "mW/m²",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti trasmettono 32 e 8 mW/m². La differenza delle letture fissa g=48/24=2, poi b=1. La lettura 33 corrisponde a i_C=16. Per un centimetro l’incidente è il doppio, cioè 32 mW/m²."
+        },
+        {
+          "type": "formula",
+          "text": "g=\\frac{65-17}{32-8}"
+        },
+        {
+          "type": "formula",
+          "text": " g=2"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " i_C=\\frac{33-1}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " i_C=16"
+        },
+        {
+          "type": "formula",
+          "text": " I_{0,C}=32\\,\\mathrm{mW/m^2}"
+        },
+        {
+          "type": "text",
+          "text": "Trentatré mW/m² omette l’offset e ricostruirebbe D=34; 64 omette il guadagno dopo aver sottratto b. Sedici copia l’uscita trasmessa, senza invertire il fattore un mezzo."
+        }
+      ],
+      "hints": [
+        "Ricostruisci separatamente la legge del display e quella del materiale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Trentatré mW/m² omette l’offset e ricostruirebbe D=34; 64 omette il guadagno dopo aver sottratto b. Sedici copia l’uscita trasmessa, senza invertire il fattore un mezzo.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Assorbimento e spessore adimensionale",
+        "Potenze di due e inverse",
+        "Media su preparazioni e su aree distinte"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-beer-transmitted-intensity-16",
+      "kind": "question",
+      "course": "C5",
+      "section": "Trasmissione esponenziale di un fascio monocromatico",
+      "order": 24616,
+      "title": "Due metà del fascio, due spessori",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "beer-transmitted-intensity",
+      "difficulty": 3,
+      "prompt": "Un fascio uniforme di 64 mW/m² investe un assorbitore con μ=(ln 2) cm⁻¹. Metà dell’area attraversa d>0, l’altra metà d+1 cm. Il rivelatore raccoglie tutta l’area; riflessione, radiazione secondaria e mescolamento laterale sono trascurabili. L’intensità media trasmessa è 6 mW/m². Quanto vale d in cm?",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "cm",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Non si deve attenuare lo spessore medio. Le due metà hanno uguale area: se la prima trasmette J, la seconda trasmette J/2. Il rivelatore misura (J+J/2)/2=3J/4. Da 6 mW/m² ricavo J=8 mW/m²; la prima metà ha quindi subito tre dimezzamenti da 64 a 8, cioè d=3 cm."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/b33819f97d71e78ee4c7d1432463c176c50f572c0962a813de63655a73846d01",
+          "text": "L’ultimo pannello riguarda due mezze aree uguali, con uscite 8 e 4 mW/m² e media 6 mW/m². Le due vie sono affiancate, non due strati in successione."
+        },
+        {
+          "type": "formula",
+          "text": "J=64\\,2^{-x}\\,\\mathrm{mW/m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " I_{\\rm media}=\\frac{J+J/2}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " I_{\\rm media}=\\frac34J"
+        },
+        {
+          "type": "formula",
+          "text": " J=8\\,\\mathrm{mW/m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " 2^x=8"
+        },
+        {
+          "type": "formula",
+          "text": " d=3\\,\\mathrm{cm}"
+        },
+        {
+          "type": "text",
+          "text": "Due centimetri darebbero media 12 mW/m², quattro darebbero 3 mW/m². Usare d+1/2 cm direttamente nell’esponenziale equivale a confondere media delle intensità e intensità allo spessore medio. La potenza totale raccolta è la somma sulle due mezze aree."
+        }
+      ],
+      "hints": [
+        "Chiama J l’uscita della metà meno spessa; l’altra vale J/2.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Due centimetri darebbero media 12 mW/m², quattro darebbero 3 mW/m². Usare d+1/2 cm direttamente nell’esponenziale equivale a confondere media delle intensità e intensità allo spessore medio. La potenza totale raccolta è la somma sulle due mezze aree.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Assorbimento e spessore adimensionale",
+        "Potenze di due e inverse",
+        "Media su preparazioni e su aree distinte"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "b33819f97d71e78ee4c7d1432463c176c50f572c0962a813de63655a73846d01",
+      "name": "beer-transmitted-intensity-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTYwMCIgdmlld0JveD0iMCAwIDY0MCAxNjAwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyIgZm9udC1mYW1pbHk9InN5c3RlbS11aSwgc2Fucy1zZXJpZiI+PHRpdGxlIGlkPSJ0aXRsZSI+RGltZXp6YW1lbnRpLCBzcGVzc29yZSBlIG1lZGlhIHN1IGR1ZSBhcmVlPC90aXRsZT48ZGVzYyBpZD0iZGVzYyI+SW50ZW5zaXTDoCBhdHRlbnVhdGUsIGN1cnZhIHBlciBsYSBzb3JnZW50ZSBkYSBzZXNzYW50YXF1YXR0cm8gZSBkdWUgbWV6emUgYXJlZSBjb24gcGVyY29yc2kgZGlzdGludGkuPC9kZXNjPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSI2NDAiIGhlaWdodD0iMTYwMCIgZmlsbD0iI2ZmZiIvPjx0ZXh0IHg9IjM1IiB5PSI0OCIgZm9udC1zaXplPSIyNSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5BdHRlbnVhemlvbmUgZGVsIGZhc2NpbyBkaXJldHRvPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSIxMDAiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+MSDCtyBPZ25pIGNlbnRpbWV0cm8gZGltZXp6YSBs4oCZaW50ZW5zaXTDoDwvdGV4dD48dGV4dCB4PSIxMzAiIHk9IjE3MyIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9ImVuZCI+MCBjbTwvdGV4dD48cmVjdCB4PSIxNTAiIHk9IjE1MCIgd2lkdGg9IjMyMCIgaGVpZ2h0PSIyOCIgZmlsbD0iIzNkNzc5MSIvPjx0ZXh0IHg9IjQ4MCIgeT0iMTczIiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjY0IG1XL23CsjwvdGV4dD48dGV4dCB4PSIxMzAiIHk9IjIzOCIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9ImVuZCI+MSBjbTwvdGV4dD48cmVjdCB4PSIxNTAiIHk9IjIxNSIgd2lkdGg9IjE2MCIgaGVpZ2h0PSIyOCIgZmlsbD0iIzNkNzc5MSIvPjx0ZXh0IHg9IjMyMCIgeT0iMjM4IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjMyIG1XL23CsjwvdGV4dD48dGV4dCB4PSIxMzAiIHk9IjMwMyIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9ImVuZCI+MiBjbTwvdGV4dD48cmVjdCB4PSIxNTAiIHk9IjI4MCIgd2lkdGg9IjgwIiBoZWlnaHQ9IjI4IiBmaWxsPSIjM2Q3NzkxIi8+PHRleHQgeD0iMjQwIiB5PSIzMDMiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+MTYgbVcvbcKyPC90ZXh0Pjx0ZXh0IHg9IjEzMCIgeT0iMzY4IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0iZW5kIj4zIGNtPC90ZXh0PjxyZWN0IHg9IjE1MCIgeT0iMzQ1IiB3aWR0aD0iNDAiIGhlaWdodD0iMjgiIGZpbGw9IiMzZDc3OTEiLz48dGV4dCB4PSIyMDAiIHk9IjM2OCIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij44IG1XL23CsjwvdGV4dD48dGV4dCB4PSIzNSIgeT0iNDQwIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjAgY206IHJpZmVyaW1lbnRvIGluY2lkZW50ZTsgzrwgPSAobG4gMikgY23igbvCuTwvdGV4dD48dGV4dCB4PSIzNSIgeT0iNDgwIiBmb250LXNpemU9IjIyIiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjIgwrcgVW5hIHNvcmdlbnRlIGZpc3NhOiBJ4oKAID0gNjQgbVcvbcKyPC90ZXh0PjxsaW5lIHgxPSIxNTAiIHkxPSIxMDEwIiB4Mj0iNTUwIiB5Mj0iMTAxMCIgc3Ryb2tlPSIjNTI2NDc0IiBzdHJva2Utd2lkdGg9IjIiLz48bGluZSB4MT0iMTUwIiB5MT0iMTAxMCIgeDI9IjE1MCIgeTI9IjY0MCIgc3Ryb2tlPSIjNTI2NDc0IiBzdHJva2Utd2lkdGg9IjIiLz48bGluZSB4MT0iMTUwIiB5MT0iMTAwNCIgeDI9IjE1MCIgeTI9IjEwMTYiIHN0cm9rZT0iIzUyNjQ3NCIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iMTUwIiB5PSIxMDQ0IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj4wPC90ZXh0PjxsaW5lIHgxPSIyNjAiIHkxPSIxMDA0IiB4Mj0iMjYwIiB5Mj0iMTAxNiIgc3Ryb2tlPSIjNTI2NDc0IiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSIyNjAiIHk9IjEwNDQiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJtaWRkbGUiPjE8L3RleHQ+PGxpbmUgeDE9IjM3MCIgeTE9IjEwMDQiIHgyPSIzNzAiIHkyPSIxMDE2IiBzdHJva2U9IiM1MjY0NzQiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjM3MCIgeT0iMTA0NCIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MjwvdGV4dD48bGluZSB4MT0iNDgwIiB5MT0iMTAwNCIgeDI9IjQ4MCIgeTI9IjEwMTYiIHN0cm9rZT0iIzUyNjQ3NCIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iNDgwIiB5PSIxMDQ0IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj4zPC90ZXh0PjxsaW5lIHgxPSIxNDQiIHkxPSI5MzAiIHgyPSIxNTYiIHkyPSI5MzAiIHN0cm9rZT0iIzUyNjQ3NCIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iMTMyIiB5PSI5MzYiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJlbmQiPjE2PC90ZXh0PjxsaW5lIHgxPSIxNDQiIHkxPSI4NTAiIHgyPSIxNTYiIHkyPSI4NTAiIHN0cm9rZT0iIzUyNjQ3NCIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iMTMyIiB5PSI4NTYiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJlbmQiPjMyPC90ZXh0PjxsaW5lIHgxPSIxNDQiIHkxPSI2OTAiIHgyPSIxNTYiIHkyPSI2OTAiIHN0cm9rZT0iIzUyNjQ3NCIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iMTMyIiB5PSI2OTYiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJlbmQiPjY0PC90ZXh0PjxwYXRoIGQ9Ik0xNTAuMDAwMCA2OTAuMDAwMCBMMTUyLjc1MDAgNjk1LjQ5NzQgTDE1NS41MDAwIDcwMC45MDA0IEwxNTguMjUwMCA3MDYuMjEwNSBMMTYxLjAwMDAgNzExLjQyOTQgTDE2My43NTAwIDcxNi41NTg3IEwxNjYuNTAwMCA3MjEuNTk5OSBMMTY5LjI1MDAgNzI2LjU1NDQgTDE3Mi4wMDAwIDczMS40MjM4IEwxNzQuNzUwMCA3MzYuMjA5NiBMMTc3LjUwMDAgNzQwLjkxMzEgTDE4MC4yNTAwIDc0NS41MzU5IEwxODMuMDAwMCA3NTAuMDc5MiBMMTg1Ljc1MDAgNzU0LjU0NDUgTDE4OC41MDAwIDc1OC45MzMxIEwxOTEuMjUwMCA3NjMuMjQ2MyBMMTk0LjAwMDAgNzY3LjQ4NTMgTDE5Ni43NTAwIDc3MS42NTE2IEwxOTkuNTAwMCA3NzUuNzQ2MyBMMjAyLjI1MDAgNzc5Ljc3MDYgTDIwNS4wMDAwIDc4My43MjU4IEwyMDcuNzUwMCA3ODcuNjEzMSBMMjEwLjUwMDAgNzkxLjQzMzYgTDIxMy4yNTAwIDc5NS4xODg0IEwyMTYuMDAwMCA3OTguODc4NyBMMjE4Ljc1MDAgODAyLjUwNTcgTDIyMS41MDAwIDgwNi4wNzAzIEwyMjQuMjUwMCA4MDkuNTczNyBMMjI3LjAwMDAgODEzLjAxNjkgTDIyOS43NTAwIDgxNi40MDA5IEwyMzIuNTAwMCA4MTkuNzI2OSBMMjM1LjI1MDAgODIyLjk5NTYgTDIzOC4wMDAwIDgyNi4yMDgzIEwyNDAuNzUwMCA4MjkuMzY1NyBMMjQzLjUwMDAgODMyLjQ2ODkgTDI0Ni4yNTAwIDgzNS41MTg4IEwyNDkuMDAwMCA4MzguNTE2MiBMMjUxLjc1MDAgODQxLjQ2MjIgTDI1NC41MDAwIDg0NC4zNTc2IEwyNTcuMjUwMCA4NDcuMjAzMiBMMjYwLjAwMDAgODUwLjAwMDAgTDI2Mi43NTAwIDg1Mi43NDg3IEwyNjUuNTAwMCA4NTUuNDUwMiBMMjY4LjI1MDAgODU4LjEwNTMgTDI3MS4wMDAwIDg2MC43MTQ3IEwyNzMuNzUwMCA4NjMuMjc5NCBMMjc2LjUwMDAgODY1Ljc5OTkgTDI3OS4yNTAwIDg2OC4yNzcyIEwyODIuMDAwMCA4NzAuNzExOSBMMjg0Ljc1MDAgODczLjEwNDggTDI4Ny41MDAwIDg3NS40NTY2IEwyOTAuMjUwMCA4NzcuNzY3OSBMMjkzLjAwMDAgODgwLjAzOTYgTDI5NS43NTAwIDg4Mi4yNzIzIEwyOTguNTAwMCA4ODQuNDY2NSBMMzAxLjI1MDAgODg2LjYyMzEgTDMwNC4wMDAwIDg4OC43NDI3IEwzMDYuNzUwMCA4OTAuODI1OCBMMzA5LjUwMDAgODkyLjg3MzEgTDMxMi4yNTAwIDg5NC44ODUzIEwzMTUuMDAwMCA4OTYuODYyOSBMMzE3Ljc1MDAgODk4LjgwNjUgTDMyMC41MDAwIDkwMC43MTY4IEwzMjMuMjUwMCA5MDIuNTk0MiBMMzI2LjAwMDAgOTA0LjQzOTQgTDMyOC43NTAwIDkwNi4yNTI4IEwzMzEuNTAwMCA5MDguMDM1MSBMMzM0LjI1MDAgOTA5Ljc4NjggTDMzNy4wMDAwIDkxMS41MDg0IEwzMzkuNzUwMCA5MTMuMjAwNSBMMzQyLjUwMDAgOTE0Ljg2MzQgTDM0NS4yNTAwIDkxNi40OTc4IEwzNDguMDAwMCA5MTguMTA0MSBMMzUwLjc1MDAgOTE5LjY4MjggTDM1My41MDAwIDkyMS4yMzQ0IEwzNTYuMjUwMCA5MjIuNzU5NCBMMzU5LjAwMDAgOTI0LjI1ODEgTDM2MS43NTAwIDkyNS43MzExIEwzNjQuNTAwMCA5MjcuMTc4OCBMMzY3LjI1MDAgOTI4LjYwMTYgTDM3MC4wMDAwIDkzMC4wMDAwIEwzNzIuNzUwMCA5MzEuMzc0NCBMMzc1LjUwMDAgOTMyLjcyNTEgTDM3OC4yNTAwIDkzNC4wNTI2IEwzODEuMDAwMCA5MzUuMzU3NCBMMzgzLjc1MDAgOTM2LjYzOTcgTDM4Ni41MDAwIDkzNy45MDAwIEwzODkuMjUwMCA5MzkuMTM4NiBMMzkyLjAwMDAgOTQwLjM1NjAgTDM5NC43NTAwIDk0MS41NTI0IEwzOTcuNTAwMCA5NDIuNzI4MyBMNDAwLjI1MDAgOTQzLjg4NDAgTDQwMy4wMDAwIDk0NS4wMTk4IEw0MDUuNzUwMCA5NDYuMTM2MSBMNDA4LjUwMDAgOTQ3LjIzMzMgTDQxMS4yNTAwIDk0OC4zMTE2IEw0MTQuMDAwMCA5NDkuMzcxMyBMNDE2Ljc1MDAgOTUwLjQxMjkgTDQxOS41MDAwIDk1MS40MzY2IEw0MjIuMjUwMCA5NTIuNDQyNyBMNDI1LjAwMDAgOTUzLjQzMTUgTDQyNy43NTAwIDk1NC40MDMzIEw0MzAuNTAwMCA5NTUuMzU4NCBMNDMzLjI1MDAgOTU2LjI5NzEgTDQzNi4wMDAwIDk1Ny4yMTk3IEw0MzguNzUwMCA5NTguMTI2NCBMNDQxLjUwMDAgOTU5LjAxNzYgTDQ0NC4yNTAwIDk1OS44OTM0IEw0NDcuMDAwMCA5NjAuNzU0MiBMNDQ5Ljc1MDAgOTYxLjYwMDIgTDQ1Mi41MDAwIDk2Mi40MzE3IEw0NTUuMjUwMCA5NjMuMjQ4OSBMNDU4LjAwMDAgOTY0LjA1MjEgTDQ2MC43NTAwIDk2NC44NDE0IEw0NjMuNTAwMCA5NjUuNjE3MiBMNDY2LjI1MDAgOTY2LjM3OTcgTDQ2OS4wMDAwIDk2Ny4xMjkxIEw0NzEuNzUwMCA5NjcuODY1NiBMNDc0LjUwMDAgOTY4LjU4OTQgTDQ3Ny4yNTAwIDk2OS4zMDA4IEw0ODAuMDAwMCA5NzAuMDAwMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMzA2ZjhjIiBzdHJva2Utd2lkdGg9IjMiLz48dGV4dCB4PSIxNzAiIHk9IjYyMCIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5JIChtVy9twrIpPC90ZXh0Pjx0ZXh0IHg9IjUxMCIgeT0iMTA4MiIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5kIChjbSk8L3RleHQ+PGNpcmNsZSBjeD0iMjYwIiBjeT0iODUwIiByPSI1IiBmaWxsPSIjMjY2Yjg5Ii8+PGNpcmNsZSBjeD0iMzcwIiBjeT0iOTMwIiByPSI1IiBmaWxsPSIjMjY2Yjg5Ii8+PGNpcmNsZSBjeD0iNDgwIiBjeT0iOTcwIiByPSI1IiBmaWxsPSIjMjY2Yjg5Ii8+PHRleHQgeD0iMzUiIHk9IjExNDAiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+MyDCtyBEdWUgbWV0w6AgZGVsbOKAmWFyZWEsIHZpZSBhZmZpYW5jYXRlPC90ZXh0PjxyZWN0IHg9IjcwIiB5PSIxMTgwIiB3aWR0aD0iMjEwIiBoZWlnaHQ9IjgwIiBmaWxsPSIjZTFlZGYxIi8+PHJlY3QgeD0iMzUwIiB5PSIxMTgwIiB3aWR0aD0iMjEwIiBoZWlnaHQ9IjgwIiBmaWxsPSIjZTFlZGYxIi8+PHRleHQgeD0iODUiIHk9IjEyMTQiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+ZCA9IDMgY208L3RleHQ+PHRleHQgeD0iMzY1IiB5PSIxMjE0IiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPmQgKyAxIGNtID0gNCBjbTwvdGV4dD48dGV4dCB4PSI4NSIgeT0iMTI0OCIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij51c2NpdGE6IDggbVcvbcKyPC90ZXh0Pjx0ZXh0IHg9IjM2NSIgeT0iMTI0OCIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij51c2NpdGE6IDQgbVcvbcKyPC90ZXh0Pjx0ZXh0IHg9IjEzMCIgeT0iMTM0MiIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9ImVuZCI+bWV0w6AgMTwvdGV4dD48cmVjdCB4PSIxNTAiIHk9IjEzMjAiIHdpZHRoPSIyNDAiIGhlaWdodD0iMjgiIGZpbGw9IiM2MzdlNTUiLz48dGV4dCB4PSI0MDAiIHk9IjEzNDMiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+OCBtVy9twrI8L3RleHQ+PHRleHQgeD0iMTMwIiB5PSIxNDA3IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0iZW5kIj5tZXTDoCAyPC90ZXh0PjxyZWN0IHg9IjE1MCIgeT0iMTM4NSIgd2lkdGg9IjEyMCIgaGVpZ2h0PSIyOCIgZmlsbD0iIzYzN2U1NSIvPjx0ZXh0IHg9IjI4MCIgeT0iMTQwOCIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij40IG1XL23CsjwvdGV4dD48dGV4dCB4PSIxMzAiIHk9IjE0NzIiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJlbmQiPm1lZGlhPC90ZXh0PjxyZWN0IHg9IjE1MCIgeT0iMTQ1MCIgd2lkdGg9IjE4MCIgaGVpZ2h0PSIyOCIgZmlsbD0iIzYzN2U1NSIvPjx0ZXh0IHg9IjM0MCIgeT0iMTQ3MyIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij42IG1XL23CsjwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMTU0NSIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5MYSBtZWRpYSBzdWxs4oCZYXJlYSB2YWxlICg4ICsgNCkvMiA9IDYgbVcvbcKyLjwvdGV4dD48L3N2Zz4K"
+    }
+  ]
+}

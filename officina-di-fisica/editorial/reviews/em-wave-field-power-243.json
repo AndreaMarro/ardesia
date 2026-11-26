@@ -1,0 +1,549 @@
+{
+  "schemaVersion": "1.0.0",
+  "lessonReference": {
+    "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "gitPath": "officina-di-fisica/content/C5.json",
+    "sourceSha256": "dac4490e6a900f5da191bf7a1f5b8463ddc57c8bbaa36cb7a4a375c70fa77422",
+    "primarySkill": "C5-L06",
+    "actualLessonPrerequisites": {
+      "C5-L06": [
+        "C5-L02",
+        "C5-L04"
+      ],
+      "C5-L07": [
+        "C5-L06"
+      ]
+    }
+  },
+  "records": [
+    {
+      "id": "AR-u7-em-wave-field-power-01",
+      "sourceSha256": "792a832aa58ed5a42c69988dbf955ca8fa17ecd2d21e2ced574fe7cf76f86a24",
+      "candidateSha256": "dd724f293339e7849acf68728f2e06767a23a8d276658a700dd36339497aecf9",
+      "reviewedSignature": "cdb35f66820ef21b2ecf262f64fa3bbd1454d604e595ab767c96e55ef0cd3a87",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "em-wave-field-power-progressive.svg": "dcce17842e5d6a5b304627fbeef8aeefad2107d41891ca8a027b784407810e8e"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "3/10",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3"
+      },
+      "manualArithmetic": "Per un’onda piana armonica E₀ è ampiezza di picco. L’intensità media assegnata è E₀²/(2 Z₀), Z₀=375 Ω assunto. E₀=150 V/m dà I=22500/750=30 W/m²; A=100 cm²=1/100 m². P=IA=3/10 W. Nella formula con area numerica in cm² il denominatore è 7 500 000.",
+      "physicalAssumptions": "Onda piana armonica nel vuoto, superficie uniformemente illuminata normale alla propagazione. E₀ è picco positivo, non efficace; I=E₀²/(2 Z₀) media armonica e P=IA potenza incidente. Z₀=375 ohm prescritto, conversione 1 cm²=10⁻⁴m². Nessuna assunzione di assorbimento integrale della superficie. Caso 03 autonomo su vettori trasversali, nodo temporale distinto dal verso di propagazione.",
+      "distractors": "3/5 W omette il 2 medio, 30 W copia il valore di intensità e 3000 W usa 100 m² anziché 100 cm². Dati positivi escludono zero.",
+      "pedagogicalReview": "Legge motivata e unità normalizzate distinte dalle grandezze fisiche.",
+      "assetReview": "XML and full 640×1480 native read. E upward and B out of plane give rightward Poynting direction; arrows schematic with unlike physical units, not comparative lengths. Peak field 150 V/m withZ 0375 ohm yields 30 W/m² and 100 cm²→1/100 m². Final bars fromx 150 have lengths 30, 240, 135 for 3/10, 12/5, 27/20 W at common 100 coordinates/W. Labels clear and no geometry/unit mismatch.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-em-wave-field-power-02",
+      "sourceSha256": "9d40b1ccc9b61696c6e865bb31c6f0744f46c7160d741a69c45be9409964a64d",
+      "candidateSha256": "4ae230eeabfc0bc9169cf703f4d65faef6558c23800c47e681052653833da7d5",
+      "reviewedSignature": "aacd1f95f9bf8cc12e6a9c886e56c4924c7a68ae3d7176648be0de18a9e2780d",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "W",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3"
+      },
+      "manualArithmetic": "La potenza è energia per tempo e si esprime in watt, W=J/s. Campo elettrico, area e intensità hanno unità diverse.",
+      "physicalAssumptions": "Onda piana armonica nel vuoto, superficie uniformemente illuminata normale alla propagazione. E₀ è picco positivo, non efficace; I=E₀²/(2 Z₀) media armonica e P=IA potenza incidente. Z₀=375 ohm prescritto, conversione 1 cm²=10⁻⁴m². Nessuna assunzione di assorbimento integrale della superficie. Caso 03 autonomo su vettori trasversali, nodo temporale distinto dal verso di propagazione.",
+      "distractors": "W/m² è intensità prima dell’area, V/m campo, J energia e 1 numero puro. La media temporale non cambia la dimensione di potenza.",
+      "pedagogicalReview": "Dimensione ricostruita e prefisso distinto dall’unità fisica.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-em-wave-field-power-03",
+      "sourceSha256": "647b51f099745a486a9253a79b14ba4d9e2957b18b70efbc5b21be8e0338fc7d",
+      "candidateSha256": "147a26003831a0009d9a01c0caf827b559e81dda5075f8164d37f06fe22ae4b2",
+      "reviewedSignature": "34621a626c66e5e80f2edd9ebf7cd285d61d6b3c1c5f78022ef2221dbd22703c",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "em-wave-field-power-progressive.svg": "dcce17842e5d6a5b304627fbeef8aeefad2107d41891ca8a027b784407810e8e"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "E e B sono perpendicolari fra loro ed entrambi trasversali alla propagazione",
+      "dimension": {},
+      "manualArithmetic": "In un’onda elettromagnetica piana nel vuoto E e B sono ortogonali fra loro e alla direzione di propagazione; E×B indica il verso del flusso energetico. Non sono due campi longitudinali.",
+      "physicalAssumptions": "Caso autonomo: singola onda piana progressiva nel vuoto, E e B trasversali e ortogonali, E×B nel verso energetico quando i campi non sono nulli. Il nodo temporale non cambia il verso di propagazione.",
+      "distractors": "E e B sono trasversali e ortogonali, E×B nel verso energetico quando non nulli. Le opzioni longitudinali e verso opposto non valgono per la singola onda piana nel vuoto; campi nulli in un istante non invertono la propagazione.",
+      "pedagogicalReview": "Caso autonomo o legge riconosciuta dalle ipotesi effettive.",
+      "assetReview": "XML and full 640×1480 native read. E upward and B out of plane give rightward Poynting direction; arrows schematic with unlike physical units, not comparative lengths. Peak field 150 V/m withZ 0375 ohm yields 30 W/m² and 100 cm²→1/100 m². Final bars fromx 150 have lengths 30, 240, 135 for 3/10, 12/5, 27/20 W at common 100 coordinates/W. Labels clear and no geometry/unit mismatch.",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-em-wave-field-power-04",
+      "sourceSha256": "2f00432d055967fd5c5e74fba112e64229d8ab35b56a94c57c32d88b9c4a8070",
+      "candidateSha256": "c6e3089cdfc5a2efe024d087b3ffbe753bbe6cedec38408691f13dfddfdd2b03",
+      "reviewedSignature": "52fbc2610146f8ca39b614e4b4979a68096af669c4d2625a70301cf1fc4429fe",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Da 3/10 W a 6/5 W",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3"
+      },
+      "manualArithmetic": "Raddoppiare E₀ da 150 a 300 V/m, a area fissa, quadruplica E₀² e P: da 3/10 a 6/5 W. Il coefficiente un mezzo non si rimuove perché E₀ è di picco.",
+      "physicalAssumptions": "Onda piana armonica nel vuoto, superficie uniformemente illuminata normale alla propagazione. E₀ è picco positivo, non efficace; I=E₀²/(2 Z₀) media armonica e P=IA potenza incidente. Z₀=375 ohm prescritto, conversione 1 cm²=10⁻⁴m². Nessuna assunzione di assorbimento integrale della superficie. Caso 03 autonomo su vettori trasversali, nodo temporale distinto dal verso di propagazione.",
+      "distractors": "3/5 W tratta E linearmente, 3/20 W lo rende inverso, 3/10 W ignora E e 12/5 W cambia anche l’area non modificata qui. Campo doppio dà 6/5 W.",
+      "pedagogicalReview": "Confronto controllato a un solo parametro fissato.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-em-wave-field-power-05",
+      "sourceSha256": "af8c5ff051a8027b3480cceddbf56d4885459466dac98b2dbd094bb366a165b8",
+      "candidateSha256": "abc144c3b9f47231958e3cfa654bd67577b29e1dc0c4cb7cb244a11f5de184d4",
+      "reviewedSignature": "370dc65bbc27d2f4d611f3d0ddcac9501ce50b87a0797d3feeddcb53273759a2",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "150",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-3",
+        "[current]": "-1"
+      },
+      "manualArithmetic": "E₀=√(2 Z₀P/A_SI). Con P=3/10 W e A=1/100 m², E₀²=22500 (V/m)². Ampiezza positiva E₀=150 V/m.",
+      "physicalAssumptions": "Onda piana armonica nel vuoto, superficie uniformemente illuminata normale alla propagazione. E₀ è picco positivo, non efficace; I=E₀²/(2 Z₀) media armonica e P=IA potenza incidente. Z₀=375 ohm prescritto, conversione 1 cm²=10⁻⁴m². Nessuna assunzione di assorbimento integrale della superficie. Caso 03 autonomo su vettori trasversali, nodo temporale distinto dal verso di propagazione.",
+      "distractors": "22500 è il quadrato del valore del campo, −150 viola il picco positivo e 300 V/m dà 6/5 W. Il campo non è il suo valore quadratico.",
+      "pedagogicalReview": "Prima inversa reinserita nella relazione diretta.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-em-wave-field-power-06",
+      "sourceSha256": "6924c762df034fc9f49cce95e36081f56f5938cf0ee1142cede8236b1d276e51",
+      "candidateSha256": "8ad0e3c2f989a61d2d3c5a1022e2fa9a7eeb76061bdefa9678ff4c3859736511",
+      "reviewedSignature": "f080b01908a73c94f99dfaf42b42193aababc2063408373a2cc39ce8e2bb48d9",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "100",
+      "dimension": {
+        "[length]": "2"
+      },
+      "manualArithmetic": "A_SI=2 Z₀P/E₀²=750·(3/10)/22500=1/100 m², cioè 100 cm². La conversione d’area è quadratica. Riletto il fix243-06: 10cm² è ancora un’area, ma darebbe soltanto3/100W. Primo testo e formule invariati; cambiato soltanto il feedback e binding. SVG identico, nativo mantenuto sul suo vero ref precedente senza retag.",
+      "physicalAssumptions": "Onda piana armonica nel vuoto, superficie uniformemente illuminata normale alla propagazione. E₀ è picco positivo, non efficace; I=E₀²/(2 Z₀) media armonica e P=IA potenza incidente. Z₀=375 ohm prescritto, conversione 1 cm²=10⁻⁴m². Nessuna assunzione di assorbimento integrale della superficie. Caso 03 autonomo su vettori trasversali, nodo temporale distinto dal verso di propagazione.",
+      "distractors": "1/100 è il numero in m², non cm². Il feedback 06 finale riletto confuta 10 cm² conP 3/100 W invece di attribuirgli unità di lunghezza; 200 cm² dà 3/5 W. Nessuna radice serve per A.",
+      "pedagogicalReview": "Seconda inversa con dominio e unità verificati.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-em-wave-field-power-07",
+      "sourceSha256": "358fc2ca89fc2fd6a348af5632757579a7986ce7772cc373dccbf4857948dddb",
+      "candidateSha256": "efcc56b63f8a0353b1fe0848a8e5266a7f72f518754715324977e667cc5b92e4",
+      "reviewedSignature": "9c67d74023db547e465024554ff2dedf3475bd1f82dd37ad8af26c6e71f5bffa",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {},
+      "manualArithmetic": "A campo invariato, raddoppiare l’area da 100 a 200 cm² raddoppia P; rapporto 2, nel modello di illuminazione uniforme normale.",
+      "physicalAssumptions": "Onda piana armonica nel vuoto, superficie uniformemente illuminata normale alla propagazione. E₀ è picco positivo, non efficace; I=E₀²/(2 Z₀) media armonica e P=IA potenza incidente. Z₀=375 ohm prescritto, conversione 1 cm²=10⁻⁴m². Nessuna assunzione di assorbimento integrale della superficie. Caso 03 autonomo su vettori trasversali, nodo temporale distinto dal verso di propagazione.",
+      "distractors": "1/2 inverte il confronto, 4 quadra l’area, 1 ignora la variazione e 0 viola positività. L’area è lineare a campo fisso.",
+      "pedagogicalReview": "Due uscite ricostruite prima del rapporto puro.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-em-wave-field-power-08",
+      "sourceSha256": "ebf123f399c45516b5512d44342e49d73148dac309bd923dfa587ba188295090",
+      "candidateSha256": "d9237479eba29bede237d715cbd54b459e50adbd9a48cb3f430ebeb581683619",
+      "reviewedSignature": "f37714b96315ca29c25cd7423612f3c8278cbbc353eb8cb7262bc99a8487e73f",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "3/10",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3"
+      },
+      "manualArithmetic": "Il corretto è 3/10 W e il proposto 3/5 W. Proposto meno corretto=3/10 W positivo.",
+      "physicalAssumptions": "Onda piana armonica nel vuoto, superficie uniformemente illuminata normale alla propagazione. E₀ è picco positivo, non efficace; I=E₀²/(2 Z₀) media armonica e P=IA potenza incidente. Z₀=375 ohm prescritto, conversione 1 cm²=10⁻⁴m². Nessuna assunzione di assorbimento integrale della superficie. Caso 03 autonomo su vettori trasversali, nodo temporale distinto dal verso di propagazione.",
+      "distractors": "−3/10 W inverte lo scarto, 2 è rapporto, 3/5 W proposta e 0 l’accetta. La differenza corretta 3/10 W deriva da entrambe le potenze nella stessa unità.",
+      "pedagogicalReview": "Differenza ordinata distinta da un rapporto.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-em-wave-field-power-09",
+      "sourceSha256": "eeda4142bea4bec2eb3dbd34f027cffc3f0b98290977b763b5736967f74d7e89",
+      "candidateSha256": "8cd7bde6b3c3cc94bb672e0c67b1bed8ed2544fc672ac6655aa8564bba66d40e",
+      "reviewedSignature": "e864adc45d4d787cfafa0bf772c78b5c83489e53234f2127cd7f6a247069fcf9",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "E₀ = √(2 Z₀ P / A)",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-3",
+        "[current]": "-1"
+      },
+      "manualArithmetic": "Inversa fisica E₀=√(2 Z₀P/A_SI), radice positiva. In valori normalizzati E₀/(V/m)=√[7 500 000 P_W/A_cm²]. Non sommo le due radici di una semplice ampiezza.",
+      "physicalAssumptions": "Onda piana armonica nel vuoto, superficie uniformemente illuminata normale alla propagazione. E₀ è picco positivo, non efficace; I=E₀²/(2 Z₀) media armonica e P=IA potenza incidente. Z₀=375 ohm prescritto, conversione 1 cm²=10⁻⁴m². Nessuna assunzione di assorbimento integrale della superficie. Caso 03 autonomo su vettori trasversali, nodo temporale distinto dal verso di propagazione.",
+      "distractors": "2 Z₀P/A senza radice dà E₀²; omettere il 2 riduce E₀ di√2. A al numeratore modifica le dimensioni e l’ultimo reciproco ha unità inversa di campo.",
+      "pedagogicalReview": "Inversa simbolica con dimensioni e dominio.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-em-wave-field-power-10",
+      "sourceSha256": "f397a174f29b6e35355a636f55718539c15bf7b368cebd46531865169ca4eace",
+      "candidateSha256": "3231c449e2ae56613a2e8f54a59c044bc0f89efe9682b6e2db28cc298aed61db",
+      "reviewedSignature": "26a7de5602f88589a20bac490a974a75262943b4ee60ff990e18cee358e7abaa",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "κ₁² κ₂",
+      "dimension": {},
+      "manualArithmetic": "P_B/P_A=κ₁²κ₂ per ampiezza di campo e area. I fattori sono positivi; non è κ₁κ₂ perché l’intensità è quadratica nell’ampiezza.",
+      "physicalAssumptions": "Onda piana armonica nel vuoto, superficie uniformemente illuminata normale alla propagazione. E₀ è picco positivo, non efficace; I=E₀²/(2 Z₀) media armonica e P=IA potenza incidente. Z₀=375 ohm prescritto, conversione 1 cm²=10⁻⁴m². Nessuna assunzione di assorbimento integrale della superficie. Caso 03 autonomo su vettori trasversali, nodo temporale distinto dal verso di propagazione.",
+      "distractors": "κ₁κ₂ perde il quadrato, κ₁/κ₂ inverte l’area, κ₂/κ₁² rende inverso il campo. La somma non restituisce uno per fattori unitari.",
+      "pedagogicalReview": "Fattori inseriti nella legge effettiva, senza analogie improprie.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-em-wave-field-power-11",
+      "sourceSha256": "365a092d0be179f75074b4b08149c5060df4a6da4e9a6d1119af01c50f20412d",
+      "candidateSha256": "4eb237cde159ef3cbc60fb2d35249a788f2187846417a53f7009f7074ccec2fe",
+      "reviewedSignature": "0f6cdd889f5a58f370fa6e2baf584968045186515e9be6918f79fd892b28cea8",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "8",
+      "dimension": {},
+      "manualArithmetic": "A=3/10 W. B=300²·200/7 500 000=12/5 W. Rapporto 8, dato da quattro sul campo e due sull’area.",
+      "physicalAssumptions": "Onda piana armonica nel vuoto, superficie uniformemente illuminata normale alla propagazione. E₀ è picco positivo, non efficace; I=E₀²/(2 Z₀) media armonica e P=IA potenza incidente. Z₀=375 ohm prescritto, conversione 1 cm²=10⁻⁴m². Nessuna assunzione di assorbimento integrale della superficie. Caso 03 autonomo su vettori trasversali, nodo temporale distinto dal verso di propagazione.",
+      "distractors": "1/8 è reciproco, 4 segue solo il campo, 2 solo l’area e 1 ignora entrambi. P 3/10 e 12/5 W danno 8.",
+      "pedagogicalReview": "Entrambi gli ingressi considerati nel nuovo stato.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-em-wave-field-power-12",
+      "sourceSha256": "5395acb083636814b9abeb8194692afd5b974ca7152199f74e1d9d6785c93630",
+      "candidateSha256": "4440ed17fdc43945b9c82085b8614282829f7f39bedf5bd2ac897d8afc7d8095",
+      "reviewedSignature": "c8f2166cad88720bf4fb5e9a82ee321ce2b9e63aab109fd97cae7dded995f4d1",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "em-wave-field-power-progressive.svg": "dcce17842e5d6a5b304627fbeef8aeefad2107d41891ca8a027b784407810e8e"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "27/20",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3"
+      },
+      "manualArithmetic": "Media uscite=(3/10+12/5)/2=27/20 W. Gli ingressi medi E₀=225 V/m e A=150 cm² darebbero 81/80 W. La differenza media uscite meno modello agli ingressi medi è 27/80 W.",
+      "physicalAssumptions": "Onda piana armonica nel vuoto, superficie uniformemente illuminata normale alla propagazione. E₀ è picco positivo, non efficace; I=E₀²/(2 Z₀) media armonica e P=IA potenza incidente. Z₀=375 ohm prescritto, conversione 1 cm²=10⁻⁴m². Nessuna assunzione di assorbimento integrale della superficie. Caso 03 autonomo su vettori trasversali, nodo temporale distinto dal verso di propagazione.",
+      "distractors": "81/80 W è il modello ai dati medi, 27/10 W somma, 21/20 W semidifferenza, 12/5 W solo B. La differenza corretta media uscite meno modello medio è 27/80 W.",
+      "pedagogicalReview": "Media delle uscite distinta dagli ingressi medi.",
+      "assetReview": "XML and full 640×1480 native read. E upward and B out of plane give rightward Poynting direction; arrows schematic with unlike physical units, not comparative lengths. Peak field 150 V/m withZ 0375 ohm yields 30 W/m² and 100 cm²→1/100 m². Final bars fromx 150 have lengths 30, 240, 135 for 3/10, 12/5, 27/20 W at common 100 coordinates/W. Labels clear and no geometry/unit mismatch.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-em-wave-field-power-13",
+      "sourceSha256": "bcdeadb1d8e7a08bd2082f01822fe6290d7a5129c3709071901c127c052f299e",
+      "candidateSha256": "4ee4ddb242216e2faf6b9fbddc79142c34d35d8495e8019f3ee71edf2694930c",
+      "reviewedSignature": "ad81c9cfe5f8024e7f4f79f71259eca4b9287df4b8a2f741b063203c8d695767",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {},
+      "manualArithmetic": "Target 8, con rapporto di ampiezza 2, richiede rapporto aree 8/2²=2.",
+      "physicalAssumptions": "Onda piana armonica nel vuoto, superficie uniformemente illuminata normale alla propagazione. E₀ è picco positivo, non efficace; I=E₀²/(2 Z₀) media armonica e P=IA potenza incidente. Z₀=375 ohm prescritto, conversione 1 cm²=10⁻⁴m². Nessuna assunzione di assorbimento integrale della superficie. Caso 03 autonomo su vettori trasversali, nodo temporale distinto dal verso di propagazione.",
+      "distractors": "1/2 inverte il rapporto; 8 copia il target e 4 il fattore d’intensità. Area fissa darebbe 4 P_A, non 8 P_A.",
+      "pedagogicalReview": "Bersaglio ricostruito prima dell’inversa.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-em-wave-field-power-14",
+      "sourceSha256": "7f5773839f9613455a3d9491e33a550dfa42a5b747339a41d8e0702c22f0777a",
+      "candidateSha256": "13fa87194bec84c6a8ee0f13e9b4d8e582d258d82b714fac60c98e136bb8ad12",
+      "reviewedSignature": "a7391d8c7ffc2fa58617b5aa2e5133395a68f887a7f33a18c380478dc9d20261",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "300",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-3",
+        "[current]": "-1"
+      },
+      "manualArithmetic": "Il riferimento P_A=3/10 W e S_A=9/10 dà guadagno 3 per watt. S=36/5 dà P=12/5 W; A=200 cm² impone E₀²=90000, cioè E₀=300 V/m.",
+      "physicalAssumptions": "Onda piana armonica nel vuoto, superficie uniformemente illuminata normale alla propagazione. E₀ è picco positivo, non efficace; I=E₀²/(2 Z₀) media armonica e P=IA potenza incidente. Z₀=375 ohm prescritto, conversione 1 cm²=10⁻⁴m². Nessuna assunzione di assorbimento integrale della superficie. Caso 03 autonomo su vettori trasversali, nodo temporale distinto dal verso di propagazione.",
+      "distractors": "D preso come P darebbe 300√3 V/m e non ricostruirebbe la lettura.150 V/m alla nuova area darebbeP 3/5 W, D 9/5. Il guadagno precede la radice.",
+      "pedagogicalReview": "Taratura rimossa prima dell’inversa fisica.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-em-wave-field-power-15",
+      "sourceSha256": "e127a156f0b6b5360946c18eafb0e89869ae517e9fcf1b57a08c3944aa71b8c1",
+      "candidateSha256": "86b9b340b5c9f19f81a449128f2bc5ff4a4ba6f0222e00401734aeaacc96e934",
+      "reviewedSignature": "256b61cca4b8bacfa535a2e3fd05be90e5a3c3ac9f2f69f7f4ff121d34aa4712",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "300",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-3",
+        "[current]": "-1"
+      },
+      "manualArithmetic": "Riferimenti P_A=3/10 W e P_B=12/5 W. ΔS=21/5 e ΔP=21/10 W danno a=2 per watt, b=1. S_C=17/5 dà P_C=6/5 W; A=100 cm² implica E₀=300 V/m.",
+      "physicalAssumptions": "Onda piana armonica nel vuoto, superficie uniformemente illuminata normale alla propagazione. E₀ è picco positivo, non efficace; I=E₀²/(2 Z₀) media armonica e P=IA potenza incidente. Z₀=375 ohm prescritto, conversione 1 cm²=10⁻⁴m². Nessuna assunzione di assorbimento integrale della superficie. Caso 03 autonomo su vettori trasversali, nodo temporale distinto dal verso di propagazione.",
+      "distractors": "Offset ignorato dàP 17/10 W e D 22/5 anziché 17/5. Guadagno ignorato dopo b dà 300√2 V/m; 150 V/m ripete D 8/5. Ramo positivo 300 V/m.",
+      "pedagogicalReview": "Guadagno e offset identificati da due riferimenti distinti.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-em-wave-field-power-16",
+      "sourceSha256": "1e6302568e0693d7dedf67e10d14268ac579bfd653571e4f1d7b9e19958e68fb",
+      "candidateSha256": "3a74b570a0607f302fcf88c0cccc203e43c0f4457d5a08638cdcb4a06b3ab65e",
+      "reviewedSignature": "5125369f8cf3d7cfca73011b4e9705b9255177889301320288f033aa8b887713",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "100",
+      "dimension": {
+        "[length]": "2"
+      },
+      "manualArithmetic": "Con A numerica in cm² e E₀ numerica in V/m, E₀=(3/2)A. Sostituendo P=3 A³/10 000 000 W. P=3/10 W impone A³=1 000 000; radice cubica positiva A=100 cm² ed E₀=150 V/m. Il vincolo è fra preparazioni e ha coefficiente dimensionato.",
+      "physicalAssumptions": "Onda piana armonica nel vuoto, superficie uniformemente illuminata normale alla propagazione. E₀ è picco positivo, non efficace; I=E₀²/(2 Z₀) media armonica e P=IA potenza incidente. Z₀=375 ohm prescritto, conversione 1 cm²=10⁻⁴m². Nessuna assunzione di assorbimento integrale della superficie. Caso 03 autonomo su vettori trasversali, nodo temporale distinto dal verso di propagazione.",
+      "distractors": "−100 cm² viola il dominio; 150 cm² nel vincolo implica 225 V/m e 81/80 W; 10000 cm² implicherebbe potenza 3·10⁵W. Il cubo crescente positivo seleziona 100 cm² una volta sola.",
+      "pedagogicalReview": "Vincolo sostituito prima di decidere numero e dominio delle soluzioni.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    }
+  ],
+  "verifierSha256": "49c4f5e4d3fa8e27ed5bbf93de2a0f51a5c57503298f43516e14a7e87cceba95",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "reviewDependencySha256": {
+    "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+  },
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2",
+    "hypothesis": "6.148.7"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "reviewedCandidateCommit": "cc8048ccac91fc31f3601cb72ac1f579d743dc0c",
+  "packageSha256": "45acd692402263d016af395839f20f5a70b7a9c6efb75873dd4a5c60b2d47b92",
+  "bindingsSha256": "d7c73ce4964c9a2cc0f348b2b782b2a847f6965306304edb210c961d3deb9284",
+  "source": {
+    "commit": "5cfbdcb055ba3ba136f97fb56e997f06e6cf3605",
+    "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U7-01.json",
+    "title": "em-wave-field-power",
+    "reference": "Onda piana armonica nel vuoto, superficie uniformemente illuminata normale alla propagazione. E₀ è picco positivo, non efficace; I=E₀²/(2 Z₀) media armonica e P=IA potenza incidente. Z₀=375 ohm prescritto, conversione 1 cm²=10⁻⁴m². Nessuna assunzione di assorbimento integrale della superficie. Caso 03 autonomo su vettori trasversali, nodo temporale distinto dal verso di propagazione."
+  },
+  "modelsBeforeCandidateKeys": {
+    "path": "editorial/reviews/u7-radiation-240-244-independent-models.py",
+    "sha256": "b23231ee65202142c7f6d46957df443d426c54ad7c9dac9b6de9fd21b1ea9a94",
+    "commit": "f5ab7a660506550ea5220cce3e4ba8e3e15584b3"
+  },
+  "primaryBeforeCandidateKeys": {
+    "path": "editorial/reviews/u7-radiation-240-244-primary-source-only.md",
+    "sha256": "8771a65b67207b7b6f31618ba4ebc9cf17d99b55162f75f4c776cb0f327c975d"
+  }
+}
