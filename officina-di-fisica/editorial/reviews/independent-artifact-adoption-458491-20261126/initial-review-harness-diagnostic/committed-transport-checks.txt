@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/private/tmp/cric-experiment-contract-fix/officina-di-fisica/editorial/reviews/independent-artifact-adoption-458491-20261126/review-committed-transport.py", line 171, in <module>
+    main()
+    ~~~~^^
+  File "/private/tmp/cric-experiment-contract-fix/officina-di-fisica/editorial/reviews/independent-artifact-adoption-458491-20261126/review-committed-transport.py", line 142, in main
+    assert ast.dump(Constants().visit(ast.parse(old)), include_attributes=False) == ast.dump(ast.parse(new), include_attributes=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
