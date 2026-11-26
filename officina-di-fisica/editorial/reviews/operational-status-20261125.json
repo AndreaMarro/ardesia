@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "observedAt": "2026-11-26T21:54:48.974440+00:00",
+  "observedAt": "2026-11-26T22:37:12.975367Z",
   "snapshotHead": "be765e05f4d93b15f17ade7db9847c8a8fbc018a",
   "canonicalHead": "7c29ccc18ad3b42ceecfca509ef57f786bd2c496",
   "mandate": "INCOMPLETE",
@@ -38,15 +38,15 @@
   },
   "activities": {
     "accounted": 385,
-    "scientificallyReviewedInFeature": 240,
-    "remaining": 145,
+    "scientificallyReviewedInFeature": 232,
+    "remaining": 153,
     "remainingByCourse": {
       "C2": 41,
-      "C3": 36,
-      "C4": 29,
-      "C5": 27,
+      "C3": 38,
+      "C4": 31,
+      "C5": 29,
       "C6": 6,
-      "C1": 6
+      "C1": 8
     },
     "C2C3PartialReviewsAddCredit": 0,
     "partialC2C3C4DeliveriesRecovered": true,
@@ -85,6 +85,14 @@
       "receipt": "editorial/reviews/experiments-manual-support-263-independent-20261125/root-receipt.json"
     },
     "explicitlyReopenedIds": [
+      "C1-M-formula",
+      "C1-M-graph",
+      "C3-M-formula",
+      "C3-M-graph",
+      "C4-M-formula",
+      "C4-M-graph",
+      "C5-M-formula",
+      "C5-M-graph",
       "SIM-C1-L001-06",
       "SIM-C1-L002-01",
       "SIM-C1-L002-02",
@@ -141,9 +149,17 @@
     "explicitBlocker": "SIM-C1-L007-01",
     "officialCheckpointQuestions": 3632,
     "officialCheckpointActivitiesHistorical": 246,
-    "currentAcceptedActivities": 240,
+    "currentAcceptedActivities": 232,
     "noGateWeakening": true,
     "explicitBlockerIds": [
+      "C1-M-formula",
+      "C1-M-graph",
+      "C3-M-formula",
+      "C3-M-graph",
+      "C4-M-formula",
+      "C4-M-graph",
+      "C5-M-formula",
+      "C5-M-graph",
       "SIM-C1-L001-06",
       "SIM-C1-L002-01",
       "SIM-C1-L002-02",
@@ -481,6 +497,22 @@
       "runId": 45888351023,
       "candidateRuntime": "4c83e0156b74d5a4cdfad90421f4304e6a7a03bde10d5b125f6635aae7eff907",
       "resolution": "Retain all five artifacts.34of38 unique C2/C4 references use different legacy x; four remaining local browser values recorded and differ from Node at same x. No tolerance widened. New same-browser immutable baseline technical contract under design, independent science still separate."
+    },
+    {
+      "id": "method-worksheet-mobile-layout-root-20261126",
+      "state": "OPEN",
+      "affectedIds": [
+        "C1-M-formula",
+        "C1-M-graph",
+        "C3-M-formula",
+        "C3-M-graph",
+        "C4-M-formula",
+        "C4-M-graph",
+        "C5-M-formula",
+        "C5-M-graph"
+      ],
+      "evidence": "editorial/reviews/method-layout-root-reopening-20261126/verified-pairs.json",
+      "resolution": "Fix visible grid/card and formula layout on320; distinct review and all20sequences/98steps plus each formula layout, current source math, progress/state and a11y; preserve all negatives. No overflow hiding or report retag."
     }
   ],
   "c2AccessibleSvgGuardRefresh": {
@@ -532,5 +564,10 @@
     "independentPeer": "PENDING_A_FINAL_JUDGMENT; actual264 retry0, original disk failure retained",
     "installedInRoot": false,
     "activityCredit": 0
+  },
+  "c5BSourceOnlyPreparation": {
+    "freeze": "d664c30aacc02424b329b8665de2ccb133bc8769",
+    "handoffCommit": "82fd8b95f70a337a246e299092e5f335fa2acc44",
+    "questionCredit": 0
   }
 }
