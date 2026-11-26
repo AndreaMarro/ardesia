@@ -1,0 +1,1 @@
+Nove SVG storici estratti byte per byte da 5d1dc8dc7b601aef959d10d564c75462be74708d e letti integralmente in XML durante la revisione C2-Q051–100. Il descriptor usa i percorsi monorepo esatti. Nessun asset storico modificato e nessuna nuova resa del prodotto dichiarata.

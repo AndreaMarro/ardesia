@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 272" role="img" aria-labelledby="titolo descrizione">
+  <title id="titolo">Due zone di uguale area nel tubo</title>
+  <desc id="descrizione">Il disco centrale ha raggio R diviso radice di due. La corona occupa l’altra metà della sezione. Il grafico mostra la velocità in funzione della frazione di area racchiusa. La velocità scende linearmente da 0,56 a 0,28 e infine a zero metri al secondo.</desc>
+  <defs>
+    <pattern id="tratteggio" width="6" height="6" patternUnits="userSpaceOnUse">
+      <path d="M-1 1 1-1 M0 6 6 0 M5 7 7 5" fill="none" stroke="#67837d" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <g font-family="Arial, sans-serif" font-size="16" fill="#263537">
+    <circle id="sezione-intera" cx="65" cy="62" r="50" fill="#e1ebe6" stroke="#344c47" stroke-width="2"/>
+    <circle cx="65" cy="62" r="49" fill="url(#tratteggio)"/>
+    <circle id="disco-centrale" cx="65" cy="62" r="35.35533906" fill="#e8dfee" stroke="#665073" stroke-width="2"/>
+    <circle cx="65" cy="62" r="3" fill="#40284b"/>
+    <path d="M80 49 115 27H128 M105 79 119 87H128" stroke="#344c47" stroke-width="1.6" fill="none"/>
+    <text x="135" y="31" font-weight="bold">Disco centrale</text>
+    <text x="135" y="50">metà sezione</text>
+    <text x="135" y="90" font-weight="bold">Corona esterna</text>
+    <text x="135" y="109">metà sezione</text>
+    <text x="10" y="140" font-weight="bold">Velocità (m/s)</text>
+    <path d="M56 153H268 M56 189H268" stroke="#acb5ae" stroke-dasharray="3 4" fill="none"/>
+    <path d="M56 150V225H273" stroke="#263537" stroke-width="1.7" fill="none"/>
+    <path d="M56 153 162 189" stroke="#665073" stroke-width="3" fill="none"/>
+    <path d="M162 189 268 225" stroke="#35645b" stroke-width="3" fill="none"/>
+    <path d="M162 190V225" stroke="#5c6c68" stroke-dasharray="3 3" fill="none"/>
+    <g fill="#263537">
+      <circle cx="56" cy="153" r="3"/><circle cx="162" cy="189" r="3"/><circle cx="268" cy="225" r="3"/>
+    </g>
+    <g text-anchor="end"><text x="49" y="158">0,56</text><text x="49" y="194">0,28</text><text x="49" y="229">0</text></g>
+    <g text-anchor="middle"><text x="56" y="244">0</text><text x="162" y="244">½</text><text x="268" y="244">1</text></g>
+    <text x="162" y="265" text-anchor="middle">Area racchiusa / area totale</text>
+  </g>
+</svg>

@@ -1,0 +1,883 @@
+{
+  "scope": "Byte-exact finalB50 C2 author/crossed peer recovery; no automatic scientific credit",
+  "deliveries": [
+    {
+      "commit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75",
+      "handoff": "editorial/author-notes/cric-c2-051-100-author-b-handoff-20261126.json",
+      "sha256": "4247b363c0d605fbd8c4488edddb2d23df11727a1f5d79970c008e7377d36dbb"
+    },
+    {
+      "commit": "f6d355683304b08448611b20e5d1f878209545df",
+      "handoff": "editorial/reviews/cric-c2-006-010-independent-handoff-20261126.json",
+      "sha256": "24fea14b088758f6963865973b891f7386d88b4048c9269f0aa7710d20fe1c0a"
+    }
+  ],
+  "files": {
+    "editorial/batches/cric-c2-l006.json": {
+      "sha256": "88a3603145c3d90d689e5b5f7e67d58f86e8e6a31a26c0b0df4845f730c21d9c",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/batches/cric-c2-l006-bindings.json": {
+      "sha256": "293a0c9bbdfe9648f81c8e0e68409468a62cadca3e7a5c257f3f3364e1c19fcd",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "tools/corpus_engineering/cric_c2_l006_authoring.py": {
+      "sha256": "645a02b65be9aa1dd3c4c087eb7ae5274a53b191cf5e996fe2491bff60a6000b",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/assets/cric-c2-l006-progressive.svg": {
+      "sha256": "9f0ecd68785ac773be0a2e132aada50da322a8397d20021b8ac1e125c86cfb46",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-c2-l006.md": {
+      "sha256": "594682261a49267b0cad2da97c49ba2736968eff0fd5d49c7616aaf0b2a532d0",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-c2-l006-structural.json": {
+      "sha256": "dc64cbe6db979ae7fc39fda4863a3412d3dd0160f533f305b64180e457f43def",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-author-cric-c2-l006-evidence/assembly.json": {
+      "sha256": "b9dabcd70518af07fba46a0de302c79fa0bd5749ca66e364476581a72a8d5f68",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-author-cric-c2-l006-evidence/cric-c2-l006-full.png": {
+      "sha256": "6dce323d47eaa850177174c53ae0ff2cbfb8c987cedf7e8045dabbc1cf9fd50c",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-author-cric-c2-l006-evidence/cric-c2-l006-render.json": {
+      "sha256": "2ca21f8b019487371904cce9ba001018adcb6a8439f303b901f64b32455aac51",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-author-cric-c2-l006-evidence/initial-caption-geometry-clarification/assembly.json": {
+      "sha256": "314471f8009a2097d3b023614dcfbc589678a61c1ce0b38f90fc407399f54c37",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-author-cric-c2-l006-evidence/initial-caption-geometry-clarification/note.json": {
+      "sha256": "c6251adf332e8af1bd0575cd9cdca676f2e1a8e24cca27fd780e980e715d659b",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-author-cric-c2-l006-evidence/initial-caption-geometry-clarification/structural.json": {
+      "sha256": "da324dc580e8ea669016a862957c001f9c94c46880fe97a8bcb11acd2908cd0a",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-author-cric-c2-l006-evidence/native-svg-producer.mjs": {
+      "sha256": "9c90e0ed403b40dee96d8b212e17d09335a9c0b8b9278ad08718ef667e10a01e",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-author-cric-c2-l006-evidence/native.json": {
+      "sha256": "0a6f87a061bf641095a064c918488851778da87c239edce908764a9be07c1472",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-author-cric-c2-l006-evidence/structural.json": {
+      "sha256": "cfe888afca32dbab0b2be29de036a30ebf758f28f8d9a6fe09e976d46dc3adfd",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-author-cric-c2-l006-evidence/manifest.json": {
+      "sha256": "9e7a97ffe14b6bec48c8e2be1543b46e0006e8ea168dff6be11eabd422077763",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-c2-l006-handoff-20261126.json": {
+      "sha256": "b10c4553a898741418b2f526845f9a45c015bb98a681ee28725ee25ecb53f8e7",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/batches/cric-c2-l007.json": {
+      "sha256": "ea264e6acb8d7869518e88b9ad8061776a39857dc502c7fe6ce8a03e289d1081",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/batches/cric-c2-l007-bindings.json": {
+      "sha256": "f9d83215950c6b0f6d1ddadf35712df772008a1affa88960b848ef6cece25b89",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "tools/corpus_engineering/cric_c2_l007_authoring.py": {
+      "sha256": "c4cd7834816053ac5838e6612487960f908d2490e75ae2c1e571d9747465212a",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/assets/cric-c2-l007-progressive.svg": {
+      "sha256": "d8f38cb88126fb70aa26630abe375f8b09d296aecb77e58a35bb1d3dd0edce3e",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-c2-l007.md": {
+      "sha256": "193702f1fe36d2722032c6d80a264fbb417b920471f95942f1686a1045ab24c8",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-c2-l007-structural.json": {
+      "sha256": "49b563dbea32754047bc8ce057658e163516178d166f9a3dccc6d1e1120dcabe",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-author-cric-c2-l007-evidence/assembly.json": {
+      "sha256": "ef2b006c7be50f9e8763300f21ea779aecaaf5a9ec3e695ed5aa689c3ad86e34",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-author-cric-c2-l007-evidence/cric-c2-l007-full.png": {
+      "sha256": "1c0954a70452d2b63d36f1ac3c17a7ffd83aff08cce2e4953e3eda2304f87413",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-author-cric-c2-l007-evidence/cric-c2-l007-render.json": {
+      "sha256": "dc969a5ef31f533ebb7f21b493a4ebc1e9fe5f5d285e8407dd4bc4548f2fe09a",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-author-cric-c2-l007-evidence/initial-signed-coordinate-and-label/assembly.json": {
+      "sha256": "d3a8f5297328d75e452ffc043902a129348e8eae0e55c44d929707e05df84a68",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-author-cric-c2-l007-evidence/initial-signed-coordinate-and-label/cric-c2-l007-bindings.json": {
+      "sha256": "57b460ebb3b0962eec5a1570970d12aec4301a2c523172a8da283674e45953b3",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-author-cric-c2-l007-evidence/initial-signed-coordinate-and-label/cric-c2-l007-full.png": {
+      "sha256": "f55d8e0ed3fde87ee60c26e6178cdfa96004b61d0e278cf4e0d50347356207a6",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-author-cric-c2-l007-evidence/initial-signed-coordinate-and-label/cric-c2-l007-progressive.svg": {
+      "sha256": "66f18ec802e230bc0c562e98fd30fd0bdb562991d11b6839e836f96cf7926098",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-author-cric-c2-l007-evidence/initial-signed-coordinate-and-label/cric-c2-l007-render.json": {
+      "sha256": "dc969a5ef31f533ebb7f21b493a4ebc1e9fe5f5d285e8407dd4bc4548f2fe09a",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-author-cric-c2-l007-evidence/initial-signed-coordinate-and-label/cric-c2-l007.json": {
+      "sha256": "c77569975eafb22ff2f2acb87d39f448ef64feccb5f0ace9d4e556d9d2ab3d1f",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-author-cric-c2-l007-evidence/initial-signed-coordinate-and-label/cric_c2_l007_authoring.py": {
+      "sha256": "38946a67bbce76c24794bb8730b153a887a4bab74149c050e87b20eceeb1f657",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-author-cric-c2-l007-evidence/initial-signed-coordinate-and-label/manifest.json": {
+      "sha256": "6709da6784e15ae28f48e8193eebe78291e5513efc63e2686108c62fbfe727b0",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-author-cric-c2-l007-evidence/initial-signed-coordinate-and-label/native.json": {
+      "sha256": "d26e75cddddb0b474be4f2227c56286eae4c85e6494c368afd3372d7a96a9900",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-author-cric-c2-l007-evidence/initial-signed-coordinate-and-label/structural.json": {
+      "sha256": "b404f941c11d9923ff252a71722637394833f0b4c860f02b9b915e6c1a0504ad",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-author-cric-c2-l007-evidence/native-svg-producer.mjs": {
+      "sha256": "9c90e0ed403b40dee96d8b212e17d09335a9c0b8b9278ad08718ef667e10a01e",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-author-cric-c2-l007-evidence/native.json": {
+      "sha256": "8092bb2611f647126ce28465a0baa8e183eb4bb0a8b6b68744a28acd8ded13f4",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-author-cric-c2-l007-evidence/peer-domain-followup/cric-c2-051-100-author-b-handoff-20261126.json": {
+      "sha256": "86752276b18fcc5be901765da87418be77446845448ab9ce908664e9cad2f1eb",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-author-cric-c2-l007-evidence/peer-domain-followup/cric-c2-l007-bindings.json": {
+      "sha256": "cced9a91931f8df2eb08bab67e40c94cd1e98d66dfdc815d593be98db8b590c5",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-author-cric-c2-l007-evidence/peer-domain-followup/cric-c2-l007-handoff-20261126.json": {
+      "sha256": "88da1bcad6a6f6e0d34098fb30d43c59b6688b2a617ec67a71e505ca3bc45449",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-author-cric-c2-l007-evidence/peer-domain-followup/cric-c2-l007.json": {
+      "sha256": "c6e123cb779f445103cade7e237acc136df42199878d68b1d0c840986b459511",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-author-cric-c2-l007-evidence/peer-domain-followup/cric_c2_l007_authoring.py": {
+      "sha256": "799a66e93a09efa0f1489d6feaf2573659029d50821328bfbf5d7fe3e6dd9177",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-author-cric-c2-l007-evidence/peer-domain-followup/prior-manifest.json": {
+      "sha256": "15858e83c24388a08d21f8561081203c8a8e4405e6d443776546377198f288cf",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-author-cric-c2-l007-evidence/structural.json": {
+      "sha256": "e58d33c3ac445629d503c245d7f7df48cbe9afe07742bc413caf062252c1e899",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-author-cric-c2-l007-evidence/manifest.json": {
+      "sha256": "a2e0d8a8093001dd5784ead7489f16835ca37c644ae6a1b6defbcc6f180b82c4",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-author-cric-c2-l007-evidence/peer-domain-followup/strict-diff.json": {
+      "sha256": "1c303004d668618cdf5849d61ed987ace47885ec34bf4e00079e405affdb46db",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-c2-l007-handoff-20261126.json": {
+      "sha256": "63a5769d3655f5da6fddf52c4fc8c148f70934609164d4caf2a56596a6af3aaa",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/batches/cric-c2-l008.json": {
+      "sha256": "9af95b35d2d15c6e9a072e07980b0332492fd85be71ce0d6339c5b66f46b2ad0",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/batches/cric-c2-l008-bindings.json": {
+      "sha256": "09c085cf305f5b3f7a1b83a1c2be0d1a8df69d4b47c91997e136c881b45df34b",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "tools/corpus_engineering/cric_c2_l008_authoring.py": {
+      "sha256": "e6701c8dddff3bf0ff0ff519f49d71b45e501e0917adbc83706ef0ea1b659951",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/assets/cric-c2-l008-progressive.svg": {
+      "sha256": "07e24f1d9f14e280584501d470bdf7b9d360d7882f8d9b190075f3e8438ce1cd",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-c2-l008.md": {
+      "sha256": "71849d69c73c61b0b261f81f17ec8e1bdf4bb68496cf61a04c57a2be158829c5",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-c2-l008-structural.json": {
+      "sha256": "9e62c68369f394fc37835b2a82489b70290dd1efa56495865d7a054f217332be",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-author-cric-c2-l008-evidence/assembly.json": {
+      "sha256": "4907b39c294806c2346019a1d220cf0dc740b09bf3a28f8966437eb9a77bc5eb",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-author-cric-c2-l008-evidence/cric-c2-l008-full.png": {
+      "sha256": "f027fd4e09aba1b3f0c29ed6ef315a76c9763fdb8086bf52bc56570ebb0ec18b",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-author-cric-c2-l008-evidence/cric-c2-l008-render.json": {
+      "sha256": "064333ecf8b9ed3aa4f4bc1d11867c9c75361eb840cd162132822a8d6019bfa1",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-author-cric-c2-l008-evidence/native-svg-producer.mjs": {
+      "sha256": "9c90e0ed403b40dee96d8b212e17d09335a9c0b8b9278ad08718ef667e10a01e",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-author-cric-c2-l008-evidence/native.json": {
+      "sha256": "f7f616337b1542da51a829948dcb49ac3ae5ba3304cb83a2e871e068f33ebff2",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-author-cric-c2-l008-evidence/peer-domain-followup/cric-c2-051-100-author-b-handoff-20261126.json": {
+      "sha256": "b282e1de2240a74b021c16225c47a020c9a0b06234397e922c30ea8d32377f2c",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-author-cric-c2-l008-evidence/peer-domain-followup/cric-c2-l008-bindings.json": {
+      "sha256": "bfa3259cc55e6f65b1adce148781c8ed5360f7cf14927e3d64cb4937e3df9596",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-author-cric-c2-l008-evidence/peer-domain-followup/cric-c2-l008-handoff-20261126.json": {
+      "sha256": "998cbb25736eb605f2067ce42f2f5e7639ffca9b40752615439c9e674141cbf8",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-author-cric-c2-l008-evidence/peer-domain-followup/cric-c2-l008.json": {
+      "sha256": "b2dbcf7999a97066220f143ab284ba3c39b4d07023cdc6c4b7dff61e5b91386d",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-author-cric-c2-l008-evidence/peer-domain-followup/cric_c2_l008_authoring.py": {
+      "sha256": "00cf3474fb996b43dd5868c42eb451748ee453311514f265bbe85ac9b46a24b0",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-author-cric-c2-l008-evidence/peer-domain-followup/prior-manifest.json": {
+      "sha256": "d567ce0019430683c6ef9685ad8630e9638f62a39b660e43ce7d140a74c838f4",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-author-cric-c2-l008-evidence/structural.json": {
+      "sha256": "6a325de75648a3c450f3c5e00206648d9820dd9a9f29dc2371d21d00425edd24",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-author-cric-c2-l008-evidence/manifest.json": {
+      "sha256": "67209a82391edb58c181f67a68c5db1d89d63057e5e0fe2972557c4fcfc3dfa8",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-author-cric-c2-l008-evidence/peer-domain-followup/strict-diff.json": {
+      "sha256": "0008908015eb385ed2e61d7571759a0f5247eef2b5799528548be4ce958a06f5",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-c2-l008-handoff-20261126.json": {
+      "sha256": "5741e22711d28f81c7ec7aded49e8597636abbdfbe41c692039a5436813b1e99",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/batches/cric-c2-l009.json": {
+      "sha256": "6a74a7d4d824cd4f298e23a0a63155a80d84786b4bd52fcaac2b6772703a9a3c",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/batches/cric-c2-l009-bindings.json": {
+      "sha256": "1ef6629fd1572ef813fce04f503b4a39fb162387dc3e8ebfd6b1a64563bf9572",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "tools/corpus_engineering/cric_c2_l009_authoring.py": {
+      "sha256": "c638d5626ab2c4674db8c967c260e1011ad24d2bb32e0fcdf6f64d00062bb6bd",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/assets/cric-c2-l009-progressive.svg": {
+      "sha256": "5f78e9d23086ffd629aebbd370e4a6f498233041e629c57be289b8cbae52c591",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-c2-l009.md": {
+      "sha256": "8a9557d0501482194f71ce48055d83fa9a4b362fc9d6a61055188f4c05ab504a",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-c2-l009-structural.json": {
+      "sha256": "77d2b2316dcb83e8fb405f7902450e3c44736ba5956d0bf6a7899cfc7cab7e05",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-author-cric-c2-l009-evidence/assembly.json": {
+      "sha256": "6c6f88d61e2969d7cc061a37d8b135d09e91ff3b911c6c2c7607361c17b702e1",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-author-cric-c2-l009-evidence/cric-c2-l009-full.png": {
+      "sha256": "9e37bd2a2a57f52ed59c627185a2e5441fa70020ae651d0e44b2d4c4a5332d57",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-author-cric-c2-l009-evidence/cric-c2-l009-render.json": {
+      "sha256": "87a0918269fe65536fba68d098d45023f8acaff960bfa5a0ea3cdb30fc4393c8",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-author-cric-c2-l009-evidence/native-svg-producer.mjs": {
+      "sha256": "9c90e0ed403b40dee96d8b212e17d09335a9c0b8b9278ad08718ef667e10a01e",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-author-cric-c2-l009-evidence/native.json": {
+      "sha256": "b4808ed6e6204639cc2a861850b54d50791b102686caac48c3c0d7e7f568942e",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-author-cric-c2-l009-evidence/structural.json": {
+      "sha256": "a6fdfcc3c5d235cbb66efda18ba4ca123ca0f599f79ae3256836903c3caa15f7",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-author-cric-c2-l009-evidence/manifest.json": {
+      "sha256": "5bae1722772863a6eb1d92914463f738cd5d7601498254f1a1c4cbd061c7f50d",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-c2-l009-handoff-20261126.json": {
+      "sha256": "ebeca1d117de642a13c2285c2aea9e68f722353248e756fb193559356e1cd8e5",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/batches/cric-c2-l010.json": {
+      "sha256": "36592ef78701dc074a8da12ce500616dd5a1af76d0f6226f8f4503b1d4631789",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/batches/cric-c2-l010-bindings.json": {
+      "sha256": "52662a02e1b725af0e6412ed2c17cc552b816173fd2c8f1127314c7e393e6ea1",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "tools/corpus_engineering/cric_c2_l010_authoring.py": {
+      "sha256": "67cee4affcb18b9481a516f2a11bd58efb7c016ffcde1c28df87c217eb9a9aa9",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/assets/cric-c2-l010-progressive.svg": {
+      "sha256": "a0300d17e88f9f31fa8a3e8bfb61bba31409102e3945e31f81b4cc05e56e10be",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-c2-l010.md": {
+      "sha256": "7614584ac97188bef40e2de80364c29716008a89620590bee9e20ea38d6d67a8",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-c2-l010-structural.json": {
+      "sha256": "fa90534e26d9afd891584fb5885313e3612a392b994a4ca21ce45b9f59b4b114",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-author-cric-c2-l010-evidence/assembly.json": {
+      "sha256": "4994df9936c5d8547b8315f19557317c31bf030f3438ae32853bec4c122fc0af",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-author-cric-c2-l010-evidence/cric-c2-l010-full.png": {
+      "sha256": "8408040ea92bff2b7e30e84a96a7cecdec4747621c75a9354ff4e70dc2a91d56",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-author-cric-c2-l010-evidence/cric-c2-l010-render.json": {
+      "sha256": "8d6585b158c368d7f8af6032724eb4cb6df71c1503f9a3a9c91fcbe800fee6f8",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-author-cric-c2-l010-evidence/native-svg-producer.mjs": {
+      "sha256": "9c90e0ed403b40dee96d8b212e17d09335a9c0b8b9278ad08718ef667e10a01e",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-author-cric-c2-l010-evidence/native.json": {
+      "sha256": "4c89facfdbf23b2d49ff0d074a113a234e396c57b2666b46e6e6ff9b685a559e",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-author-cric-c2-l010-evidence/structural.json": {
+      "sha256": "2808a5fba2689ed313e3b6d4848d8065598aa916205583eaf26349b218b42986",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-author-cric-c2-l010-evidence/manifest.json": {
+      "sha256": "9848ae3bcf832c4cf4c894ba71af703123247ff20b4ced6cebb44e007ca67156",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-c2-l010-handoff-20261126.json": {
+      "sha256": "1efa6243c936a4a107bd366eb3a1d9e60bcac38b73e1dd49aeb6081dd694fdcd",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/author-notes/cric-c2-051-100-author-b-handoff-20261126.json": {
+      "sha256": "4247b363c0d605fbd8c4488edddb2d23df11727a1f5d79970c008e7377d36dbb",
+      "sourceCommit": "dd3c9ebd19f0905a7cf89cdc00f7637ccf35ad75"
+    },
+    "editorial/reviews/cric-c2-006-010-asset-review-20261126/actual-independent-svg-native-instrument.mjs": {
+      "sha256": "68abf8b42ce40187204975dc0e8d15227cafdceacc15f57612f6c112a4f51393",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-asset-review-20261126/actual-terminal-observations.json": {
+      "sha256": "47f7990347f590fe60df7757570dfd523159aa8f74d3fe442b8255acd004a49e",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-asset-review-20261126/cric-c2-l006/actual-native-terminal.txt": {
+      "sha256": "7b2b67834c752e4537f56406397febafc7ae6d42b768892a3e2c061ed0ea240b",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-asset-review-20261126/cric-c2-l006/full-native.png": {
+      "sha256": "4572d9324f25a715d1a4f0d3159a3acc0c2808cc4a8de9cdd9b22b10a743af34",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-asset-review-20261126/cric-c2-l006/render.json": {
+      "sha256": "7e9ca3c388e43e57d098c6347a8f2d62ca192ba83d71f9b6f846c7e3b741847a",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-asset-review-20261126/cric-c2-l006/source-reviewed.svg": {
+      "sha256": "9f0ecd68785ac773be0a2e132aada50da322a8397d20021b8ac1e125c86cfb46",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-asset-review-20261126/cric-c2-l007/actual-native-terminal.txt": {
+      "sha256": "6b2f5aeb3aec148b1d42856ed7af9db38088a71c2587cbfccd9579e551a7e640",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-asset-review-20261126/cric-c2-l007/full-native.png": {
+      "sha256": "2d5aecaad8dd876fdb74eb3253d2bd5156e68b8f0819dcc6cc908ca69b79f175",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-asset-review-20261126/cric-c2-l007/render.json": {
+      "sha256": "2fb473a8efb7ef0e2d1f48476a9858b50b58af18f6c558fc54d44585e3118151",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-asset-review-20261126/cric-c2-l007/source-reviewed.svg": {
+      "sha256": "d8f38cb88126fb70aa26630abe375f8b09d296aecb77e58a35bb1d3dd0edce3e",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-asset-review-20261126/cric-c2-l008/actual-native-terminal.txt": {
+      "sha256": "12b04ee915fc4fca8e16d2cc1e9005c096daa1d0bd911708980455929df0c40d",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-asset-review-20261126/cric-c2-l008/full-native.png": {
+      "sha256": "f027fd4e09aba1b3f0c29ed6ef315a76c9763fdb8086bf52bc56570ebb0ec18b",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-asset-review-20261126/cric-c2-l008/render.json": {
+      "sha256": "ba07e381f9c6dd8e1c8d95ee10ec569dfc7d96fe6cefc837a75891fa2bb9d038",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-asset-review-20261126/cric-c2-l008/source-reviewed.svg": {
+      "sha256": "07e24f1d9f14e280584501d470bdf7b9d360d7882f8d9b190075f3e8438ce1cd",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-asset-review-20261126/cric-c2-l009/actual-native-terminal.txt": {
+      "sha256": "22748e3789646b21d1b9e5dc1423c68ac5683294569d5fac66e56b8bd21497f4",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-asset-review-20261126/cric-c2-l009/full-native.png": {
+      "sha256": "a28e61490aea7c57e97a8011b95e2d69436d92c2a19e3afb00f2975fff42c19e",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-asset-review-20261126/cric-c2-l009/render.json": {
+      "sha256": "267d04d66571436c54dae3b89da5ff5725af62b1f78153af39abf7e3d694e82c",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-asset-review-20261126/cric-c2-l009/source-reviewed.svg": {
+      "sha256": "5f78e9d23086ffd629aebbd370e4a6f498233041e629c57be289b8cbae52c591",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-asset-review-20261126/cric-c2-l010/actual-native-terminal.txt": {
+      "sha256": "cacd993a61d977f4be67708549dbe5a358e5fc27f9ce2d4b15bd25d0b4620b94",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-asset-review-20261126/cric-c2-l010/full-native.png": {
+      "sha256": "8408040ea92bff2b7e30e84a96a7cecdec4747621c75a9354ff4e70dc2a91d56",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-asset-review-20261126/cric-c2-l010/render.json": {
+      "sha256": "ea866a18dbb81f05dbf9418b3e1c6e1a0ebb6ed40a3a95f96f966d425aabfbfd",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-asset-review-20261126/cric-c2-l010/source-reviewed.svg": {
+      "sha256": "a0300d17e88f9f31fa8a3e8bfb61bba31409102e3945e31f81b4cc05e56e10be",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-asset-review-20261126/manifest.json": {
+      "sha256": "0fe70f9fa39e07fdf347c161cce65f9acc537ce56c1a3b6c6ab58a19e5199553",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-independent-proof-20261126/README.md": {
+      "sha256": "9d76b0191e4ac9da1eeefe1c5f2324c8cf38dc1ea50a530bc1bf7d5687fc1732",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-independent-proof-20261126/actual-domain-reread.json": {
+      "sha256": "7ca80fb6ad5ce8a237d8441175de20ead65e51cedb37dcc5206552ac3ba42b3a",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-independent-proof-20261126/actual-oracles-output.txt": {
+      "sha256": "bc81e59cd9b60c201d66febb51fcd8c75e138e0d3d66d189420e42ed9069399e",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-independent-proof-20261126/actual-report-instrument.py.txt": {
+      "sha256": "3009ebe54a3a64a9b2311372b498c04b32d0145d19ed45999c36037c869c7ba5",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-independent-proof-20261126/actual-target-instrument.py.txt": {
+      "sha256": "302db31351973e01aff8d5cacaf8cf30395daf8f81462837ca2e8401507e6adc",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-independent-proof-20261126/actual-target-output.txt": {
+      "sha256": "17c8855e8043f4e95b971c833853f7c7c2600bf09703a39296ff12836fdb20c8",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-independent-proof-20261126/actual-target-result.json": {
+      "sha256": "b61e6c39b7468121c0355a76da2df714af778d539ff150dbe6a8cb5c885a51cb",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-independent-proof-20261126/cric-c2-l006-bindings.json": {
+      "sha256": "293a0c9bbdfe9648f81c8e0e68409468a62cadca3e7a5c257f3f3364e1c19fcd",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-independent-proof-20261126/cric-c2-l006-progressive.svg": {
+      "sha256": "9f0ecd68785ac773be0a2e132aada50da322a8397d20021b8ac1e125c86cfb46",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-independent-proof-20261126/cric-c2-l006.json": {
+      "sha256": "88a3603145c3d90d689e5b5f7e67d58f86e8e6a31a26c0b0df4845f730c21d9c",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-independent-proof-20261126/cric-c2-l007-bindings.json": {
+      "sha256": "f9d83215950c6b0f6d1ddadf35712df772008a1affa88960b848ef6cece25b89",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-independent-proof-20261126/cric-c2-l007-progressive.svg": {
+      "sha256": "d8f38cb88126fb70aa26630abe375f8b09d296aecb77e58a35bb1d3dd0edce3e",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-independent-proof-20261126/cric-c2-l007.json": {
+      "sha256": "ea264e6acb8d7869518e88b9ad8061776a39857dc502c7fe6ce8a03e289d1081",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-independent-proof-20261126/cric-c2-l008-bindings.json": {
+      "sha256": "09c085cf305f5b3f7a1b83a1c2be0d1a8df69d4b47c91997e136c881b45df34b",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-independent-proof-20261126/cric-c2-l008-progressive.svg": {
+      "sha256": "07e24f1d9f14e280584501d470bdf7b9d360d7882f8d9b190075f3e8438ce1cd",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-independent-proof-20261126/cric-c2-l008.json": {
+      "sha256": "9af95b35d2d15c6e9a072e07980b0332492fd85be71ce0d6339c5b66f46b2ad0",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-independent-proof-20261126/cric-c2-l009-bindings.json": {
+      "sha256": "1ef6629fd1572ef813fce04f503b4a39fb162387dc3e8ebfd6b1a64563bf9572",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-independent-proof-20261126/cric-c2-l009-progressive.svg": {
+      "sha256": "5f78e9d23086ffd629aebbd370e4a6f498233041e629c57be289b8cbae52c591",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-independent-proof-20261126/cric-c2-l009.json": {
+      "sha256": "6a74a7d4d824cd4f298e23a0a63155a80d84786b4bd52fcaac2b6772703a9a3c",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-independent-proof-20261126/cric-c2-l010-bindings.json": {
+      "sha256": "52662a02e1b725af0e6412ed2c17cc552b816173fd2c8f1127314c7e393e6ea1",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-independent-proof-20261126/cric-c2-l010-progressive.svg": {
+      "sha256": "a0300d17e88f9f31fa8a3e8bfb61bba31409102e3945e31f81b4cc05e56e10be",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-independent-proof-20261126/cric-c2-l010.json": {
+      "sha256": "36592ef78701dc074a8da12ce500616dd5a1af76d0f6226f8f4503b1d4631789",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-independent-proof-20261126/fixtures/assets/cric-c2-l006-progressive.svg": {
+      "sha256": "9f0ecd68785ac773be0a2e132aada50da322a8397d20021b8ac1e125c86cfb46",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-independent-proof-20261126/fixtures/assets/cric-c2-l007-progressive.svg": {
+      "sha256": "d8f38cb88126fb70aa26630abe375f8b09d296aecb77e58a35bb1d3dd0edce3e",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-independent-proof-20261126/fixtures/assets/cric-c2-l008-progressive.svg": {
+      "sha256": "07e24f1d9f14e280584501d470bdf7b9d360d7882f8d9b190075f3e8438ce1cd",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-independent-proof-20261126/fixtures/assets/cric-c2-l009-progressive.svg": {
+      "sha256": "5f78e9d23086ffd629aebbd370e4a6f498233041e629c57be289b8cbae52c591",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-independent-proof-20261126/fixtures/assets/cric-c2-l010-progressive.svg": {
+      "sha256": "a0300d17e88f9f31fa8a3e8bfb61bba31409102e3945e31f81b4cc05e56e10be",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-independent-proof-20261126/fixtures/cric-c2-l006-bindings.json": {
+      "sha256": "293a0c9bbdfe9648f81c8e0e68409468a62cadca3e7a5c257f3f3364e1c19fcd",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-independent-proof-20261126/fixtures/cric-c2-l006.json": {
+      "sha256": "88a3603145c3d90d689e5b5f7e67d58f86e8e6a31a26c0b0df4845f730c21d9c",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-independent-proof-20261126/fixtures/cric-c2-l007-bindings.json": {
+      "sha256": "f9d83215950c6b0f6d1ddadf35712df772008a1affa88960b848ef6cece25b89",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-independent-proof-20261126/fixtures/cric-c2-l007.json": {
+      "sha256": "ea264e6acb8d7869518e88b9ad8061776a39857dc502c7fe6ce8a03e289d1081",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-independent-proof-20261126/fixtures/cric-c2-l008-bindings.json": {
+      "sha256": "09c085cf305f5b3f7a1b83a1c2be0d1a8df69d4b47c91997e136c881b45df34b",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-independent-proof-20261126/fixtures/cric-c2-l008.json": {
+      "sha256": "9af95b35d2d15c6e9a072e07980b0332492fd85be71ce0d6339c5b66f46b2ad0",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-independent-proof-20261126/fixtures/cric-c2-l009-bindings.json": {
+      "sha256": "1ef6629fd1572ef813fce04f503b4a39fb162387dc3e8ebfd6b1a64563bf9572",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-independent-proof-20261126/fixtures/cric-c2-l009.json": {
+      "sha256": "6a74a7d4d824cd4f298e23a0a63155a80d84786b4bd52fcaac2b6772703a9a3c",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-independent-proof-20261126/fixtures/cric-c2-l010-bindings.json": {
+      "sha256": "52662a02e1b725af0e6412ed2c17cc552b816173fd2c8f1127314c7e393e6ea1",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-independent-proof-20261126/fixtures/cric-c2-l010.json": {
+      "sha256": "36592ef78701dc074a8da12ce500616dd5a1af76d0f6226f8f4503b1d4631789",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-independent-proof-20261126/fixtures/pre-domain-clarifications/cric-c2-l007-bindings.json": {
+      "sha256": "cced9a91931f8df2eb08bab67e40c94cd1e98d66dfdc815d593be98db8b590c5",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-independent-proof-20261126/fixtures/pre-domain-clarifications/cric-c2-l007.json": {
+      "sha256": "c6e123cb779f445103cade7e237acc136df42199878d68b1d0c840986b459511",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-independent-proof-20261126/fixtures/pre-domain-clarifications/cric-c2-l008-bindings.json": {
+      "sha256": "bfa3259cc55e6f65b1adce148781c8ed5360f7cf14927e3d64cb4937e3df9596",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-independent-proof-20261126/fixtures/pre-domain-clarifications/cric-c2-l008.json": {
+      "sha256": "b2dbcf7999a97066220f143ab284ba3c39b4d07023cdc6c4b7dff61e5b91386d",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-independent-proof-20261126/git-inputs.json": {
+      "sha256": "7f02e7b6f8781d96a56b85f20c9093cb407724a5f10c36b9049da7b2f2ba7b3a",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-independent-proof-20261126/initial-oracles-actual-output.txt": {
+      "sha256": "55710520974b76821f1aaca50d006214f44fe114bc9db1558aee630f0b27b959",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-independent-proof-20261126/initial-oracles-before-domain-backslide-guards.zip": {
+      "sha256": "a9cb63c3f05e3a9545076b625ca2604260cf84f9894360a780f3bf14ea638f97",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-independent-proof-20261126/initial-oracles-preservation.json": {
+      "sha256": "752d4e0867914044d2ec792c79bc9de8d4556333890b5f13bc7c8e69af179818",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-independent-proof-20261126/initial-positive-target-before-readable-metadata.zip": {
+      "sha256": "673d31e25dc85ed7ca6663a7fae0eb87510648cfc9236f989a467fe269c07a12",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-independent-proof-20261126/original-content-C2-verbatim.json": {
+      "sha256": "7f2d3cf84a46d5d0086fd9cd6318b923ee073febc110a52fbc8f682edd995b23",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-independent-proof-20261126/positive-target-before-accessible-svg-guards.zip": {
+      "sha256": "4777d731c98a969602149dd6ee7ca323f1534412fea7c1713259e89a8c88ddc8",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-independent-proof-20261126/pre-domain-cric-c2-l007-bindings.json": {
+      "sha256": "cced9a91931f8df2eb08bab67e40c94cd1e98d66dfdc815d593be98db8b590c5",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-independent-proof-20261126/pre-domain-cric-c2-l007.json": {
+      "sha256": "c6e123cb779f445103cade7e237acc136df42199878d68b1d0c840986b459511",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-independent-proof-20261126/pre-domain-cric-c2-l008-bindings.json": {
+      "sha256": "bfa3259cc55e6f65b1adce148781c8ed5360f7cf14927e3d64cb4937e3df9596",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-independent-proof-20261126/pre-domain-cric-c2-l008.json": {
+      "sha256": "b2dbcf7999a97066220f143ab284ba3c39b4d07023cdc6c4b7dff61e5b91386d",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-independent-proof-20261126/pre-key-model-verbatim.py.txt": {
+      "sha256": "670e687470bc111eab315c0b0d6211178e1d308421b03165bf665c73e6bb6a31",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-independent-proof-20261126/primary-before-keys-verbatim.md": {
+      "sha256": "a51ecd2856370b38a67fd59f09b4dbce23eda319c27e5d379428b9fd67b1dc92",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-source-assets-20261126/C2-Q062-sezione.svg": {
+      "sha256": "2c2568cf7992fa7c57852dfa64727c191f50c8ee85460176394833d3750e3afe",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-source-assets-20261126/C2-bernoulli.svg": {
+      "sha256": "cf0bdde00128d3ba1f7d84cedc7062963a565dcd3b263873fb08d7dcec7efa63",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-source-assets-20261126/C2-capillare.svg": {
+      "sha256": "3bd5058865211ddca1631b5195f13e3e0f788681e80720f125762914dc710de2",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-source-assets-20261126/C2-condotto.svg": {
+      "sha256": "403e01941806532289c8c82f6751978bcd4512d6235e08069cc3e7bf65bb02ba",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-source-assets-20261126/C2-dpq.svg": {
+      "sha256": "ed51bafe7d0d1fe19ffd05d51ed9f8877b66c7cacf9715aab9ca5fd6e8d5189f",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-source-assets-20261126/C2-nodi.svg": {
+      "sha256": "81086fecea9a0b5ec7b360224cb982f4feee56d6ecd4146b2c5c6de3b1df4a0f",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-source-assets-20261126/C2-profilo.svg": {
+      "sha256": "73907de291ed86769e15e3d90e407b6ee78198524df50a8d456a8101df798b4c",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-source-assets-20261126/C2-raggio.svg": {
+      "sha256": "edfcf1d6ba50e668f509b138b751154ce5bf1be7c81ad58561316ae072a02178",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-source-assets-20261126/C2-reti.svg": {
+      "sha256": "2dbdd5ee675dab5d935061d55a2aa6c63b3a5f616a1ee48da17684ea1af3a377",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-source-assets-20261126/README.md": {
+      "sha256": "68cdae15b11375c2d3e214ee82f6412aaa14a249ebb96c21f4e794fde5fbe2d7",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-source-assets-20261126/git-inputs.json": {
+      "sha256": "2d4b58baa089fb85556c391c78c9cd51151c7d8265bd37769fdaa3404a9f1199",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-051-100-source-only-models-20261126/README.md": {
+      "sha256": "5df845120daf7b62f6a7199f9f2c504a0e6ea6896807f44b6e7e508f124983b2",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-051-100-source-only-models-20261126/actual-computation-instrument.py.txt": {
+      "sha256": "1d1f98db02821046920ec04439e38d5e071783ea2841489153f561a4f27da9ef",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-051-100-source-only-models-20261126/actual-source-only-computations.txt": {
+      "sha256": "573c790d7cd9aa78210c53fd407fc716984a3e66c733fb6ecf549a50dee2a4e5",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-051-100-source-only-models-20261126/git-inputs.json": {
+      "sha256": "ec6e6a5e931f2fe741f35a38bd513683b9ccd7707d3d278cafeaf4fd45a39e3d",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-051-100-source-only-models-20261126/initial-model-before-candidate-keys.py.txt": {
+      "sha256": "670e687470bc111eab315c0b0d6211178e1d308421b03165bf665c73e6bb6a31",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-051-100-source-only-models-20261126/initial-symbolic-call-negative-model.py.txt": {
+      "sha256": "864c9cfcd60d4308d729c06e3e31ae66c45c8158f4cbe9572a88f919e6b7470a",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-051-100-source-only-models-20261126/initial-symbolic-call-negative-output.txt": {
+      "sha256": "8ed0be6cde4200488e031cac617e3f0a696670bb433e1cf75e37b274f96cc6db",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-051-100-source-only-models-20261126/model-execution-before-keys.json": {
+      "sha256": "c57e01e485984feda7759aa15cbc3ec135ec7860996f9498a94feb48a797d848",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-051-100-source-only-models-20261126/primary-before-candidates-verbatim.md": {
+      "sha256": "a51ecd2856370b38a67fd59f09b4dbce23eda319c27e5d379428b9fd67b1dc92",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-l006.json": {
+      "sha256": "08e432649de5b03d98d18a771c5812cc5f408969aadc5223ed80cb0557959388",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-l007.json": {
+      "sha256": "83b97c0c6339571aafac05df03f28c1f7646f44b6b2e82c6137348af0d3f9551",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-l008.json": {
+      "sha256": "3dc750fa9ccadb11681e905ccc83c588a35b07ae6ab26d221a56f58bb3405659",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-l009.json": {
+      "sha256": "377118a89e252022701a2717f5d6e0d81807a71813ddc35bbec91f1404c90ed5",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-l010.json": {
+      "sha256": "7128040ba189411e82bff1dacaa749cf6ca61d361eadcb362200d6a76a46d826",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/independent-cric-c2-l006-20261126.md": {
+      "sha256": "79845d5f85ce08e019402f2008c34f81fb673a1ac5384f808b594ca758509700",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/independent-cric-c2-l007-20261126.md": {
+      "sha256": "6206e7722a83fb44619f2b9f3bc9866b8596d410b601585023bcfb213c339c0d",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/independent-cric-c2-l008-20261126.md": {
+      "sha256": "7f35c7474404c8fbd3552626ad345e2187b0f33612fd6aa6363fe76df29f7607",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/independent-cric-c2-l009-20261126.md": {
+      "sha256": "69469043406a94e58aece4561689d6e585e8019721f018d090bd7591a1749201",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/independent-cric-c2-l010-20261126.md": {
+      "sha256": "3299ce7e10202f0e593cc07196c6f4d2e54c508a3413b825170d0c199102cbb8",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/primary-cric-c2-051-100-before-candidates-20261126.md": {
+      "sha256": "a51ecd2856370b38a67fd59f09b4dbce23eda319c27e5d379428b9fd67b1dc92",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "tests/corpus/test_cross_review_cric_c2_l006_l010_a.py": {
+      "sha256": "368d21182876ef6549ae45d76e158537517b13a80f54f5528aeb3ac58a17d830",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "tools/corpus_engineering/cric_c2_051_100_review_models.py": {
+      "sha256": "670e687470bc111eab315c0b0d6211178e1d308421b03165bf665c73e6bb6a31",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "tools/corpus_engineering/cric_c2_fluids_review_common.py": {
+      "sha256": "408cc7e8878d51583630eb9469113aadf03033fc7159f90edc2f24077d7f0835",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "tools/corpus_engineering/cric_c2_fluids_review_evidence.py": {
+      "sha256": "c87e8263f4341f862725fb5c0d51e46ca88aa9cb6e22e0247bfd5622f82c05f7",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "tools/corpus_engineering/cric_c2_l006_verifier.py": {
+      "sha256": "3d24cfec321af326b4efef6909e1898ab7cdcef8dfa423763dd52e94fa5ac85b",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "tools/corpus_engineering/cric_c2_l007_verifier.py": {
+      "sha256": "30f18cadb60c783fd9b3d362eb05336f93e1ac9aec352fd2a33d305d3b7b454b",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "tools/corpus_engineering/cric_c2_l008_verifier.py": {
+      "sha256": "6dad1881a8cb33365dff399c3a39e5ea57fb0d90078f7b5e8894ab8692bc9f9f",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "tools/corpus_engineering/cric_c2_l009_verifier.py": {
+      "sha256": "3480735297d1d160ba1f4f66baadae804a3f4ede8cc1964f332421f117944880",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "tools/corpus_engineering/cric_c2_l010_verifier.py": {
+      "sha256": "6ea076c9aaa865c745be5f8f2745e57ff914eaedba7f9893ab0e2d9145be4457",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    },
+    "editorial/reviews/cric-c2-006-010-independent-handoff-20261126.json": {
+      "sha256": "24fea14b088758f6963865973b891f7386d88b4048c9269f0aa7710d20fe1c0a",
+      "sourceCommit": "f6d355683304b08448611b20e5d1f878209545df"
+    }
+  },
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}

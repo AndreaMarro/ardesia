@@ -1,0 +1,381 @@
+{
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "C2-Q081",
+      "sourceSha256": "f2ec9e81578d5a6a3296d6def940aa09d690f2706e6650496a12cd6092d4200f",
+      "candidateSha256": "48482d708cc1e5d709e8ffed7946a5eb5c540f4e6eb480a7d13b488d016a6ebd",
+      "reviewedSignature": "5c8e641cbae33586359b7ed4b00d510eaa83e0736f791bd9c7d3ae36bb058cc2",
+      "assetChecksums": {
+        "cric-c2-l009-progressive.svg": "5f78e9d23086ffd629aebbd370e4a6f498233041e629c57be289b8cbae52c591"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "12",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "-1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Per tre resistenze lineari in serie, senza rami o accumulo, la portata è comune e le cadute si sommano. R_tot=2+5+1=8 kPa·s/mL; con Q=3/2 mL/s, Δp_tot=12 kPa. Le singole cadute sono 3,15/2 e 3/2 kPa. Il valore riguarda il modello Δp=R_hQ: quote o variazioni cinetiche aggiuntive non devono essere inserite tacitamente nel significato della pressione misurata.",
+      "physicalAssumptions": "Tre resistenze assegnate nel modello lineare pressione-portata, senza rami e con liquido incomprimibile stazionario; Q comune 3/2 mL/s.",
+      "distractors": "Otto è R_eq, non Δp; dividere perQ altera le unità e il parallelo non descrive tre tratti senza diramazioni.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Per tre resistenze lineari in serie, senza rami o accumulo, la portata è comune e le cadute si sommano. R_tot=2+5+1=8 kPa·s/mL; con Q=3/2 mL/s, Δp_tot=12 kPa. Le singole cadute sono 3,15/2 e 3/2 kPa. Il valore riguarda il modello Δp=R_hQ: quote o variazioni cinetiche aggiuntive non devono essere inserite tacitamente nel significato della pressione misurata.",
+      "scientificAssetReview": "Figura candidata letta integralmente in XML e in un nuovo native indipendente completo 640×altezza, processo reale 0; proporzioni, versi, unità e separazione delle scale controllati. Nove SVG storici di fonte letti dal pin e conservati. Non è UI prodotto.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c2_051_100_review_models.py": "670e687470bc111eab315c0b0d6211178e1d308421b03165bf665c73e6bb6a31",
+        "cric_c2_fluids_review_common.py": "408cc7e8878d51583630eb9469113aadf03033fc7159f90edc2f24077d7f0835",
+        "cric_c2_fluids_review_evidence.py": "c87e8263f4341f862725fb5c0d51e46ca88aa9cb6e22e0247bfd5622f82c05f7",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C2-Q082",
+      "sourceSha256": "35fb08afd1f679b80179b1d7d092a9458669241799e9f8e13f7dbe44718877cf",
+      "candidateSha256": "a00a6eb189032ca05ad6cdde4f7795d8ad5c06df82f797f631b8979e3cdfe2df",
+      "reviewedSignature": "026661fa1d0e7dc9866dad56ce5749c79096ce40c512d470aefb2cf4e0a6d9ed",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "5",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "-4",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Quattro rami identici hanno lo stesso salto di pressione e portate che si sommano: 1/R_eq=4/20, dunque R_eq=5 kPa·s/mL. Non si sommano le quattro resistenze, come si farebbe in serie. La legge lineare di ciascun ramo rende determinata la ripartizione.",
+      "physicalAssumptions": "Quattro rami lineari identici fra la stessa coppia di nodi uniformi; resistenza positiva 20, somma delle conduttanze.",
+      "distractors": "80 descrive serie;20 ignora tre rami.1/4 è rapporto rispetto al singolo ramo, non 5 nelle unità di resistenza.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Quattro rami identici hanno lo stesso salto di pressione e portate che si sommano: 1/R_eq=4/20, dunque R_eq=5 kPa·s/mL. Non si sommano le quattro resistenze, come si farebbe in serie. La legge lineare di ciascun ramo rende determinata la ripartizione.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c2_051_100_review_models.py": "670e687470bc111eab315c0b0d6211178e1d308421b03165bf665c73e6bb6a31",
+        "cric_c2_fluids_review_common.py": "408cc7e8878d51583630eb9469113aadf03033fc7159f90edc2f24077d7f0835",
+        "cric_c2_fluids_review_evidence.py": "c87e8263f4341f862725fb5c0d51e46ca88aa9cb6e22e0247bfd5622f82c05f7",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C2-Q083",
+      "sourceSha256": "98e06529f874c7267d825d24e29af68df0f59d4283722a1adb341895971b91b8",
+      "candidateSha256": "dcb0c8d1e5804c012f5a3975e35f49484d89090ac609675a2ab9a8eeef4944f8",
+      "reviewedSignature": "049a8591d61ad69c4531fb0ad462380fe0bc595231427013d0c6bb1bcb2a09a7",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Resta invariata",
+      "dimension": {},
+      "manualArithmetic": "Con nodi mantenuti alla stessa differenza di pressione prima e dopo la chiusura, il ramo rimasto ha Q=Δp/R_h invariato. La portata totale invece perde il contributo del ramo chiuso. Se la pompa mantenesse la portata totale anziché Δp la conclusione cambierebbe: le condizioni al contorno sono parte essenziale del problema.",
+      "physicalAssumptions": "Δp positiva fissata ai nodi e proprietà del ramo aperto invariate: non si controlla la portata totale.",
+      "distractors": "Ramo invariato vede stessi Δp/R; raddoppio richiederebbe più Δp. Totale ridotto non significa ramo aperto fermo.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Con nodi mantenuti alla stessa differenza di pressione prima e dopo la chiusura, il ramo rimasto ha Q=Δp/R_h invariato. La portata totale invece perde il contributo del ramo chiuso. Se la pompa mantenesse la portata totale anziché Δp la conclusione cambierebbe: le condizioni al contorno sono parte essenziale del problema.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c2_051_100_review_models.py": "670e687470bc111eab315c0b0d6211178e1d308421b03165bf665c73e6bb6a31",
+        "cric_c2_fluids_review_common.py": "408cc7e8878d51583630eb9469113aadf03033fc7159f90edc2f24077d7f0835",
+        "cric_c2_fluids_review_evidence.py": "c87e8263f4341f862725fb5c0d51e46ca88aa9cb6e22e0247bfd5622f82c05f7",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C2-Q084",
+      "sourceSha256": "a9e1536efe4aa31b0d8bf3f5abd9c3d07b0c53f9bc53f3b35d42513e7b07364b",
+      "candidateSha256": "dbe65e67f0cdb84e7d9fb858f73462cf677fea6dc26eb8d854356b0875b99eab",
+      "reviewedSignature": "776d7ff64b4f3b6c591fef46345b0e84e78749d577b989c87fe80f50cd38dbd5",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Raddoppia",
+      "dimension": {},
+      "manualArithmetic": "Prima i due rami identici dividono gli 8 mL/s in 4 ciascuno, con resistenza equivalente R/2. Dopo resta un ramo e la pompa impone ancora 8: resistenza equivalente R. Quindi il salto di pressione raddoppia. La portata totale non raddoppia; raddoppia quella dell’unico ramo rimasto rispetto a prima.",
+      "physicalAssumptions": "Q totale 8 mL/s imposta prima e dopo; due ramiR>0 iniziali poi uno chiuso, la sorgente può aumentare Δp.",
+      "distractors": "A Q totale imposta, R_eq passaR/2 → R. Non si riusa il risultato a Δp fissata e non compare una legge quadratica.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Prima i due rami identici dividono gli 8 mL/s in 4 ciascuno, con resistenza equivalente R/2. Dopo resta un ramo e la pompa impone ancora 8: resistenza equivalente R. Quindi il salto di pressione raddoppia. La portata totale non raddoppia; raddoppia quella dell’unico ramo rimasto rispetto a prima.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c2_051_100_review_models.py": "670e687470bc111eab315c0b0d6211178e1d308421b03165bf665c73e6bb6a31",
+        "cric_c2_fluids_review_common.py": "408cc7e8878d51583630eb9469113aadf03033fc7159f90edc2f24077d7f0835",
+        "cric_c2_fluids_review_evidence.py": "c87e8263f4341f862725fb5c0d51e46ca88aa9cb6e22e0247bfd5622f82c05f7",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C2-Q085",
+      "sourceSha256": "f90c103c270cfca897a305909ffba820bf41a4218c440006173a6efe3c513cc5",
+      "candidateSha256": "109c0c8b9a2f3dc41965042181dcb3f689673bef0384edebb92059be397cbdc3",
+      "reviewedSignature": "ad8c14d8a46c51a37e028f8bc5358402f3d75fec7b4c83c92ee86e741e448c29",
+      "assetChecksums": {
+        "cric-c2-l009-progressive.svg": "5f78e9d23086ffd629aebbd370e4a6f498233041e629c57be289b8cbae52c591"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4",
+      "dimension": {
+        "[length]": "3",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Calcolo prima il parallelo: due resistenze 6 danno 3 kPa·s/mL. In serie col tratto iniziale 2, R_tot=5 kPa·s/mL. Con 20 kPa, Q_tot=20/5=4 mL/s e questa stessa portata attraversa il tratto iniziale; ogni ramo finale ne prende 2. Controllo:8 kPa nel primo tratto e 12 nel parallelo sommano 20.",
+      "physicalAssumptions": "Un tratto comune 2 in serie con 6||6, tutti kPa·s/mL;20 kPa sull’intera rete e portata iniziale totale, non portata di ramo.",
+      "distractors": "14 è la somma in serie errata, che darebbe 20/14;10 ignora il blocco e 2 è la portata di ciascun ramo, non iniziale.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Calcolo prima il parallelo: due resistenze 6 danno 3 kPa·s/mL. In serie col tratto iniziale 2, R_tot=5 kPa·s/mL. Con 20 kPa, Q_tot=20/5=4 mL/s e questa stessa portata attraversa il tratto iniziale; ogni ramo finale ne prende 2. Controllo:8 kPa nel primo tratto e 12 nel parallelo sommano 20.",
+      "scientificAssetReview": "Figura candidata letta integralmente in XML e in un nuovo native indipendente completo 640×altezza, processo reale 0; proporzioni, versi, unità e separazione delle scale controllati. Nove SVG storici di fonte letti dal pin e conservati. Non è UI prodotto.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c2_051_100_review_models.py": "670e687470bc111eab315c0b0d6211178e1d308421b03165bf665c73e6bb6a31",
+        "cric_c2_fluids_review_common.py": "408cc7e8878d51583630eb9469113aadf03033fc7159f90edc2f24077d7f0835",
+        "cric_c2_fluids_review_evidence.py": "c87e8263f4341f862725fb5c0d51e46ca88aa9cb6e22e0247bfd5622f82c05f7",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C2-Q086",
+      "sourceSha256": "aff8e1b7930cbb6cba47dbc24f13aff5e48956c05a0e31dab3e9c4098b3f6533",
+      "candidateSha256": "5ba1b1c9598f89a38b8f9525e370b3c36aac7ed32684aaee5a52c96f51e9ad51",
+      "reviewedSignature": "b2f5acf0b582b4b61fd7745dab08097c7a4c098894f785e565b3ae94144b6559",
+      "assetChecksums": {
+        "cric-c2-l009-progressive.svg": "5f78e9d23086ffd629aebbd370e4a6f498233041e629c57be289b8cbae52c591"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "In parallelo",
+      "dimension": {},
+      "manualArithmetic": "Dal solo testo, entrambi i condotti collegano il medesimo nodo A al medesimo nodo B: sono in parallelo, qualunque sia la forma del disegno. Hanno comune differenza di pressione, non necessariamente uguale portata se le resistenze sono diverse. La figura originale non è stata aperta nella primaria; la sua effettiva coerenza andrà letta nella revisione successiva.",
+      "physicalAssumptions": "La topologia è fissata da entrambi gli estremi A/B dei due rami. Il pannello è uno schema di connessione, non una quota fisica.",
+      "distractors": "Sopra/sotto sul foglio non decide serie. Raggi o resistenze uguali non sono condizioni necessarie della topologia parallela.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Dal solo testo, entrambi i condotti collegano il medesimo nodo A al medesimo nodo B: sono in parallelo, qualunque sia la forma del disegno. Hanno comune differenza di pressione, non necessariamente uguale portata se le resistenze sono diverse. La figura originale non è stata aperta nella primaria; la sua effettiva coerenza andrà letta nella revisione successiva.",
+      "scientificAssetReview": "Figura candidata letta integralmente in XML e in un nuovo native indipendente completo 640×altezza, processo reale 0; proporzioni, versi, unità e separazione delle scale controllati. Nove SVG storici di fonte letti dal pin e conservati. Non è UI prodotto.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c2_051_100_review_models.py": "670e687470bc111eab315c0b0d6211178e1d308421b03165bf665c73e6bb6a31",
+        "cric_c2_fluids_review_common.py": "408cc7e8878d51583630eb9469113aadf03033fc7159f90edc2f24077d7f0835",
+        "cric_c2_fluids_review_evidence.py": "c87e8263f4341f862725fb5c0d51e46ca88aa9cb6e22e0247bfd5622f82c05f7",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C2-Q087",
+      "sourceSha256": "e934a36a4e4933e1742434d13d3fb4c9098574de19b9081ce2ff2e342bf4d2c2",
+      "candidateSha256": "c8b176872c6f66618c89a55069e9030a2454d8199efbac4dd2ba389b60371a58",
+      "reviewedSignature": "c70895f633a26a472bd2ac93967678f555159deca9b92b2cc1c32af3b2c6e2fa",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "12",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "-4",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Per il parallelo 1/R_eq=1/R_1+1/R_2. Il residuo è 1/3−1/4=1/12, quindi R_2=12 kPa·s/mL. Il ramo passivo richiede R_eq<R_1;3<4 soddisfa il dominio. Controllo:4·12/(4+12)=48/16=3.",
+      "physicalAssumptions": "R_eq 3 eR₁ 4 nelle stesse unità: R_eq<R₁ garantisce conduttanza residua eR₂ strettamente positive.",
+      "distractors": "1 e 7 sono differenza/somma delle resistenze. Con 12 si verifica 4·12/(4+12)=3;4/3 e 3/4 falliscono quel vincolo.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Per il parallelo 1/R_eq=1/R_1+1/R_2. Il residuo è 1/3−1/4=1/12, quindi R_2=12 kPa·s/mL. Il ramo passivo richiede R_eq<R_1;3<4 soddisfa il dominio. Controllo:4·12/(4+12)=48/16=3.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c2_051_100_review_models.py": "670e687470bc111eab315c0b0d6211178e1d308421b03165bf665c73e6bb6a31",
+        "cric_c2_fluids_review_common.py": "408cc7e8878d51583630eb9469113aadf03033fc7159f90edc2f24077d7f0835",
+        "cric_c2_fluids_review_evidence.py": "c87e8263f4341f862725fb5c0d51e46ca88aa9cb6e22e0247bfd5622f82c05f7",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C2-Q088",
+      "sourceSha256": "ab40e156ad6a7b16cf3cb36b3124e83ca41c7cc76b2e984e38da6f6f27e16428",
+      "candidateSha256": "1a44aa993723f1e15cbba8f891f439f991783ae88f49b8e2e6e2d0681ca862fa",
+      "reviewedSignature": "2631bc5b8318325c76a64a50b0a9ec8c1d5e0a6eb62d32785a700c25580298db",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Conduttanza idraulica",
+      "dimension": {
+        "[length]": "4",
+        "[mass]": "-1",
+        "[time]": "1"
+      },
+      "manualArithmetic": "G è la conduttanza idraulica, reciproco della resistenza, con unità SI m³/(Pa·s). Nei rami paralleli Q_tot=ΣG_i Δp, perciò G_tot=ΣG_i. Il rapporto misurato Q/Δp richiede Δp non nullo; a pressione nulla la conduttanza del modello lineare si definisce come coefficiente, non ricavando 0/0.",
+      "physicalAssumptions": "Regime lineare positivo:Δp non nulla permetteQ/Δp; il coefficiente reciproco diR_h è additivo in parallelo.",
+      "distractors": "Resistenza è inversa della conduttanza; viscosità non contiene la geometria, potenza è un prodotto e densità riguarda massa/volume.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. G è la conduttanza idraulica, reciproco della resistenza, con unità SI m³/(Pa·s). Nei rami paralleli Q_tot=ΣG_i Δp, perciò G_tot=ΣG_i. Il rapporto misurato Q/Δp richiede Δp non nullo; a pressione nulla la conduttanza del modello lineare si definisce come coefficiente, non ricavando 0/0.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c2_051_100_review_models.py": "670e687470bc111eab315c0b0d6211178e1d308421b03165bf665c73e6bb6a31",
+        "cric_c2_fluids_review_common.py": "408cc7e8878d51583630eb9469113aadf03033fc7159f90edc2f24077d7f0835",
+        "cric_c2_fluids_review_evidence.py": "c87e8263f4341f862725fb5c0d51e46ca88aa9cb6e22e0247bfd5622f82c05f7",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C2-Q089",
+      "sourceSha256": "459dfcb3f1e4a6738d89e419a6c2866a19d7e79b87fccad59619097eb45fe227",
+      "candidateSha256": "1b1d20a63d3b0f037e694449a86d6d55f33035bd59167ba33f9d4fe2a6bccc52",
+      "reviewedSignature": "58b1e863febbfb63946fc3147721c22a68ed8497ad43c11674776b455fee7a57",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Il secondo, con caduta doppia",
+      "dimension": {},
+      "manualArithmetic": "In serie la portata è comune e, per flusso non nullo, il segmento con resistenza doppia ha caduta doppia in modulo: Δp=Q R_h. Non ha una portata diversa dal segmento in serie. Se Q=0 entrambe le cadute sono nulle e non c’è una maggiore caduta: la futura candidata deve rendere chiaro il ramo di scorrimento effettivo.",
+      "physicalAssumptions": "Portata positiva esplicita, liquido incomprimibile senza accumuli/diramazioni; resistenzeR e 2 R e confronto di cadute.",
+      "distractors": "StessaQ conR doppia implica Δp doppia. Cadute uguali riguardano parallelo; una caduta minore qui violerebbe il rapportoR.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. In serie la portata è comune e, per flusso non nullo, il segmento con resistenza doppia ha caduta doppia in modulo: Δp=Q R_h. Non ha una portata diversa dal segmento in serie. Se Q=0 entrambe le cadute sono nulle e non c’è una maggiore caduta: la futura candidata deve rendere chiaro il ramo di scorrimento effettivo.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c2_051_100_review_models.py": "670e687470bc111eab315c0b0d6211178e1d308421b03165bf665c73e6bb6a31",
+        "cric_c2_fluids_review_common.py": "408cc7e8878d51583630eb9469113aadf03033fc7159f90edc2f24077d7f0835",
+        "cric_c2_fluids_review_evidence.py": "c87e8263f4341f862725fb5c0d51e46ca88aa9cb6e22e0247bfd5622f82c05f7",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C2-Q090",
+      "sourceSha256": "d5f51bbe4865ef4a71a3ed1fc85cd74dbce9b76b0dab7f138b3d2a0087508dd0",
+      "candidateSha256": "98f25c6576cde30b1ec6e8eb4e08769224aa3f16456bdb147853edb883dc6328",
+      "reviewedSignature": "d516f3f67f951bc7a824cc4f3fd960a4dd3f85cb50632787b0013c422b6e4e5a",
+      "assetChecksums": {
+        "cric-c2-l009-progressive.svg": "5f78e9d23086ffd629aebbd370e4a6f498233041e629c57be289b8cbae52c591"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1/17",
+      "dimension": {},
+      "manualArithmetic": "A Δp, η, L comuni, Poiseuille dà Q∝r⁴. Il ramo largo di raggio 2 r porta 16 volte quello stretto. La portata totale è 17 volte quella stretta, dunque la frazione chiesta è 1/17. Un sedicesimo è il rapporto stretto/largo, non stretto/totale.",
+      "physicalAssumptions": "Raggi r>0 e 2 r, stessaL/η e caduta positiva; tutti i rami restano di Poiseuille. Si normalizza con il totale di 17 contributi.",
+      "distractors": "1/16 confronta i rami, non il totale;1/5 usa area invece di r⁴;1/2 richiederebbe identità e 16/17 appartiene al ramo largo.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. A Δp, η, L comuni, Poiseuille dà Q∝r⁴. Il ramo largo di raggio 2 r porta 16 volte quello stretto. La portata totale è 17 volte quella stretta, dunque la frazione chiesta è 1/17. Un sedicesimo è il rapporto stretto/largo, non stretto/totale.",
+      "scientificAssetReview": "Figura candidata letta integralmente in XML e in un nuovo native indipendente completo 640×altezza, processo reale 0; proporzioni, versi, unità e separazione delle scale controllati. Nove SVG storici di fonte letti dal pin e conservati. Non è UI prodotto.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c2_051_100_review_models.py": "670e687470bc111eab315c0b0d6211178e1d308421b03165bf665c73e6bb6a31",
+        "cric_c2_fluids_review_common.py": "408cc7e8878d51583630eb9469113aadf03033fc7159f90edc2f24077d7f0835",
+        "cric_c2_fluids_review_evidence.py": "c87e8263f4341f862725fb5c0d51e46ca88aa9cb6e22e0247bfd5622f82c05f7",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "3480735297d1d160ba1f4f66baadae804a3f4ede8cc1964f332421f117944880",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "publicationAction": "NONE",
+  "reviewedCandidateCommit": "41e83936a2b28203105a210a9ee1d9b18aa8f2e4",
+  "packageSha256": "70b2b4d56fd98a82314660d56694cab635f545c3a433cd9598679b4f30742429",
+  "bindingsSha256": "9e301ab885ba58874c82a8ac039566233bea33d572f4793496fe7b78108bbd15",
+  "sourceFirstPrimarySha256": "a51ecd2856370b38a67fd59f09b4dbce23eda319c27e5d379428b9fd67b1dc92",
+  "source": {
+    "commit": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "path": "officina-di-fisica/content/C2.json",
+    "reference": "Tutti i 50 enunciati derivati nella primaria 02612746 e modelli 95659bb4/b6e15c32 prima di qualsiasi candidata C2B. Successivamente tutti i 50 originali completi, candidate e cinque figure XML/native letti. Tre domini trovati e finali riletti prima del freeze. Nessun modulo autore B o primaria B aperti. Nessuna esposizione pre-key nota. UI prodotto e human NOT_RUN."
+  }
+}

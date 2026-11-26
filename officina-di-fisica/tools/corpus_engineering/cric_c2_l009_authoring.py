@@ -1,0 +1,57 @@
+"""Ten distinct Cric hydraulic-network tasks; nodes and controls first."""
+from .vector_geometry_authoring import assemble_family,write_family
+SOURCE_IDS=[f'C2-Q{n:03}' for n in range(81,91)]
+TASKS=[
+('Tre tratti attraversati dalla stessa portata','Tre segmenti laminari consecutivi senza diramazioni hanno resistenze 2, 5 e 1 kPa·s/mL. Il fluido è incomprimibile e il moto stazionario. Con Q=1,5 mL/s, quale caduta di pressione totale si misura in kPa?',12,
+ 'Ogni volume attraversa tutti e tre i segmenti, quindi Q è comune. Le cadute si sommano: R_eq=2+5+1=8 kPa·s/mL. Moltiplico per 3/2 mL/s e ottengo 12 kPa. L’unità mL/s si cancella con s/mL nella resistenza.',
+ r'R_{\rm eq}=(2+5+1)\,\mathrm{kPa\,s/mL}\qquad R_{\rm eq}=8\,\mathrm{kPa\,s/mL}\qquad \Delta p=R_{\rm eq}Q\qquad \Delta p=12\,\mathrm{kPa}',
+ 'Otto è il coefficiente della resistenza, non la caduta di pressione. Usare la legge del parallelo assegnerebbe portate diverse a tratti che qui sono uno dopo l’altro. Dividere per Q darebbe unità diverse dalla pressione.','Individua prima l’assenza di diramazioni e la portata comune.'),
+('Quattro passaggi alternativi identici','Quattro rami lineari identici collegano la stessa coppia di nodi a pressione uniforme per nodo. Ogni ramo ha R=20 kPa·s/mL e il flusso è stazionario incomprimibile. Qual è R_eq in kPa·s/mL?',5,
+ 'La stessa differenza di pressione spinge ciascun ramo. La portata totale è quattro volte Δp/R, perciò la conduttanza totale è 4/R e la resistenza equivalente R/4=5 kPa·s/mL. Il risultato è minore di 20, come deve essere aggiungendo passaggi paralleli.',
+ r'Q_{\rm tot}=4\frac{\Delta p}{R}\qquad \frac1{R_{\rm eq}}=\frac4R\qquad R_{\rm eq}=\frac{20}{4}\,\mathrm{kPa\,s/mL}\qquad R_{\rm eq}=5\,\mathrm{kPa\,s/mL}',
+ '80 kPa·s/mL sommerebbe le resistenze come in serie. Venti ignorerebbe tre rami. Un quarto è il rapporto R_eq/R, non il valore della resistenza nell’unità richiesta.','In parallelo si sommano le conduttanze, non le resistenze.'),
+('Chiudere un ramo a pressione imposta','Due rami indipendenti collegano gli stessi nodi, mantenuti a una differenza di pressione positiva costante. Ciascun ramo è lineare e le sue proprietà non cambiano. Si chiude completamente un ramo. Che cosa accade alla portata del ramo rimasto aperto?',
+ ['Resta invariata','Raddoppia sempre','Si dimezza sempre','Si annulla necessariamente','Diventa negativa'],
+ 'Il ramo aperto continua ad avere gli stessi estremi di pressione e la stessa resistenza. La sua legge Q_aperto=Δp/R_aperto dà quindi la stessa portata. Diminuisce invece la portata totale, perché il contributo del ramo chiuso scompare. La pompa qui controlla la differenza di pressione, non il totale dei flussi.',
+ r'Q_{\rm aperto}=\frac{\Delta p}{R_{\rm aperto}}\qquad \Delta p_B=\Delta p_A\qquad R_{{\rm aperto},B}=R_{{\rm aperto},A}\qquad Q_{{\rm aperto},B}=Q_{{\rm aperto},A}',
+ 'Raddoppiare la portata del ramo richiederebbe raddoppiare Δp se R è fissa. Dimezzamento, arresto e inversione non seguono dagli estremi di pressione assegnati. L’effetto sarebbe diverso con portata totale imposta.','Controlla la grandezza mantenuta dalla sorgente prima di ridistribuire i flussi.'),
+('Chiudere un ramo a portata imposta','Due rami identici di resistenza R>0 sono in parallelo e trasportano insieme 8 mL/s. Si chiude un ramo e la pompa mantiene la portata totale di 8 mL/s. Come cambia il salto di pressione rispetto al valore iniziale?',
+ ['Raddoppia','Si dimezza','Resta invariato','Quadruplica','Si annulla'],
+ 'Inizialmente ciascun ramo porta 4 mL/s e R_eq=R/2. Dopo la chiusura tutti gli 8 mL/s passano per un solo R. A Q totale fissa, Δp=R_eqQ richiede quindi una caduta doppia. Non si può usare la conclusione del caso a pressione imposta: qui la pompa cambia pressione per rispettare il controllo.',
+ r'R_{{\rm eq},A}=\frac R2\qquad R_{{\rm eq},B}=R\qquad \frac{\Delta p_B}{\Delta p_A}=\frac{R}{R/2}\qquad \frac{\Delta p_B}{\Delta p_A}=2',
+ 'La caduta non resta uguale perché la resistenza equivalente è cresciuta. Dimezzarla diminuirebbe la portata invece di mantenerla. Quattro confonde il raddoppio della portata nel singolo ramo con una dipendenza quadratica non presente nella legge lineare.','Confronta prima le due resistenze equivalenti a parità di portata totale.'),
+('Ridurre una rete mista','Un tratto da 2 kPa·s/mL è in serie con due rami paralleli, ciascuno da 6 kPa·s/mL. Si applicano 20 kPa fra gli estremi dell’intera rete lineare, in stato stazionario incomprimibile. Quale portata attraversa il tratto iniziale, in mL/s?',4,
+ 'Riduco prima la coppia che condivide i nodi: due resistenze da 6 in parallelo valgono 3 kPa·s/mL. Aggiungo il tratto iniziale in serie, ottenendo R_eq=5 kPa·s/mL. La portata iniziale è la totale: 20/5=4 mL/s. In seguito si divide in due contributi uguali da 2 mL/s.',
+ r'R_{\parallel}=3\,\mathrm{kPa\,s/mL}\qquad R_{\rm eq}=(2+3)\,\mathrm{kPa\,s/mL}\qquad Q=\frac{20}{5}\,\mathrm{mL/s}\qquad Q=4\,\mathrm{mL/s}',
+ '20/14 mL/s tratterebbe tutti i tratti come serie. Dieci mL/s ignorerebbe la coppia finale; 2 mL/s è la portata di ciascun ramo, non quella nel tratto iniziale.','Riduci la coppia parallela prima di aggiungere la resistenza in serie.'),
+('Stessi nodi, percorsi differenti','Due condotti distinti partono entrambi dal nodo A e arrivano entrambi al nodo B, come nel pannello centrale. I nodi sono idealizzati a pressione uniforme e il moto è stazionario. Come sono collegati quei due condotti?',
+ ['In parallelo','In serie','Né in serie né in parallelo perché sono disegnati uno sopra l’altro','In serie soltanto se hanno uguale raggio','In parallelo soltanto se hanno la stessa resistenza'],
+ 'La topologia dipende dai collegamenti, non dalla posizione del disegno. Entrambi i condotti incontrano la stessa pressione in A e la stessa pressione in B: hanno Δp comune e sono in parallelo. Le portate possono essere diverse se le resistenze sono differenti.',
+ r'\Delta p_1=p_A-p_B\qquad \Delta p_2=p_A-p_B\qquad Q_{\rm tot}=Q_1+Q_2',
+ 'In serie ogni volume attraverserebbe successivamente entrambi i tratti. La disposizione grafica e l’uguaglianza dei raggi o delle resistenze non sono criteri necessari per il parallelo.','Segui gli estremi dei due rami fino ai nodi, senza usare la loro altezza sul foglio.'),
+('La resistenza del ramo incognito','Due rami in parallelo hanno R_eq=3 kPa·s/mL. Il primo ha R₁=4 kPa·s/mL. Nel modello lineare trova R₂.',
+ ['12 kPa·s/mL','1 kPa·s/mL','7 kPa·s/mL','4/3 kPa·s/mL','3/4 kPa·s/mL'],
+ 'Sottraggo le conduttanze: 1/R₂=1/3−1/4=1/12, nelle unità inverse comuni. Il reciproco dà R₂=12 kPa·s/mL. Il dato R_eq=3 è minore di entrambi i rami, controllo compatibile con un parallelo di resistenze positive.',
+ r'\frac1{R_2}=\frac1{R_{\rm eq}}-\frac1{R_1}\qquad \frac1{R_2}=\frac1{12}\,\mathrm{mL/(kPa\,s)}\qquad R_2=12\,\mathrm{kPa\,s/mL}',
+ 'Uno e sette sottraggono o sommano resistenze come in serie. 4/3 e 3/4 non soddisfano la somma dei reciproci richiesta. Verificando 4·12/(4+12) si ritrova esattamente 3.','Isola prima la conduttanza incognita e soltanto alla fine prendine il reciproco.'),
+('Il reciproco utile al parallelo','Nel regime lineare positivo si definisce G=Q/Δp per un condotto. Qual è il nome di questa grandezza, additiva fra rami in parallelo?',
+ ['Conduttanza idraulica','Resistenza idraulica','Viscosità dinamica','Densità','Potenza meccanica'],
+ 'Poiché Q=Δp/R_h, il rapporto Q/Δp è 1/R_h: la conduttanza idraulica. In parallelo Δp è comune, quindi sommando le portate si sommano anche le conduttanze. In SI la sua unità è m³/(Pa·s).',
+ r'G=\frac Q{\Delta p}\qquad G=\frac1{R_h}\qquad G_{\rm tot}=G_1+G_2',
+ 'La resistenza è il rapporto inverso. La viscosità è una proprietà del materiale e non include da sola la geometria; densità e potenza hanno altre dimensioni e altre definizioni.','Parti dal rapporto definito e confrontalo con Q=Δp/R_h.'),
+('In serie conta la stessa portata','Due segmenti in serie trasportano lo stesso liquido incomprimibile in stato stazionario senza perdite laterali. Il secondo ha resistenza doppia del primo. Quale segmento presenta la maggiore caduta di pressione, per una portata positiva?',
+ ['Il secondo, con caduta doppia','Il primo, con caduta doppia','Hanno sempre la stessa caduta','Il secondo, con caduta dimezzata','Non si può confrontare pur conoscendo il rapporto delle resistenze'],
+ 'In serie la conservazione del volume impone la stessa Q. Dalla relazione Δp_i=R_iQ segue Δp₂/Δp₁=R₂/R₁=2. L’uguaglianza delle portate non implica uguaglianza delle cadute: ciascun tratto richiede pressione in proporzione alla propria resistenza.',
+ r'Q_1=Q_2=Q\qquad \Delta p_i=R_iQ\qquad \frac{\Delta p_2}{\Delta p_1}=\frac{R_2}{R_1}\qquad \frac{\Delta p_2}{\Delta p_1}=2',
+ 'Cadute uguali caratterizzano rami paralleli fra gli stessi nodi, non serie. Una caduta minore nel tratto più resistente richiederebbe una portata diversa, esclusa dalla stazionarietà incomprimibile senza rami.','Usa la grandezza comune della serie: Q, non Δp.'),
+('Quanto flusso passa nel ramo stretto','Due rami circolari di uguale lunghezza e viscosità sono in parallelo. I raggi sono r e 2r, con r>0; entrambi restano in condizioni di Poiseuille e hanno la stessa caduta positiva. Quale frazione della portata totale passa nel ramo di raggio r?',
+ ['1/17','1/16','1/5','1/2','16/17'],
+ 'A Δp,η,L comuni la portata è proporzionale a r⁴. Se il ramo stretto porta Q₀, quello largo porta 16Q₀. Il totale è 17Q₀ e la frazione del ramo stretto è 1/17. La normalizzazione usa il totale, non soltanto la portata dell’altro ramo.',
+ r'\frac{Q_{2r}}{Q_r}=2^4\qquad Q_{2r}=16Q_r\qquad Q_{\rm tot}=17Q_r\qquad \frac{Q_r}{Q_{\rm tot}}=\frac1{17}',
+ '1/16 confronta i due rami, non il ramo con il totale. 1/5 userebbe la sola area, che cresce di quattro. 1/2 presupporrebbe rami uguali; 16/17 è la frazione del ramo largo.','Dopo il rapporto alla quarta, aggiungi entrambi i contributi prima di normalizzare.')]
+CHOICES={n:0 for n,t in enumerate(TASKS,1) if isinstance(t[2],list)}
+UNITS={1:'kPa',2:'kPa·s/mL',5:'mL/s'}
+FIGURES={1:'Nel primo pannello i tre elementi sono consecutivi: la portata comune è 1,5 mL/s e le cadute 3, 7,5 e 1,5 kPa si sommano in 12 kPa. I rettangoli sono simboli di resistenza, non lunghezze di tubo in scala.',5:'Il pannello centrale ha un tratto iniziale da 2 kPa·s/mL e due rami fra gli stessi nodi A e B da 6 kPa·s/mL ciascuno. La portata totale è comune al tratto iniziale e si divide ai nodi; non si sommano tutte e tre le resistenze come in serie.',6:'I due rami evidenziati nel pannello centrale condividono proprio i nodi A e B. La posizione superiore o inferiore non cambia la connessione in parallelo.',10:'Le barre finali hanno la stessa scala di portata: Q₀ nel ramo stretto e 16Q₀ nel largo, totale 17Q₀. Q₀ indica una portata positiva di riferimento, non un valore universale in mL/s.'}
+def assemble(repo,source_ref):
+ return assemble_family(repo,source_ref,'cric-c2-l009',TASKS,CHOICES,UNITS,'cric-c2-l009-progressive.svg',FIGURES,0,course='C2',source_origin='cric',source_ids=SOURCE_IDS,source_path='officina-di-fisica/content/C2.json',skill='C2-L009',section='Collegamenti e reti idrauliche',coverage=['Nodi, serie e parallelo','Controllo di pressione o portata','Conduttanze e quote di flusso'],overrides={n:{'error':{'category':('algebra' if n in (1,2,4,5,7,10) else 'concetto'),'message':TASKS[n-1][5],'target':'C2-L009'}} for n in range(1,11)})
+if __name__=='__main__':write_family(assemble,'cric-c2-l009')

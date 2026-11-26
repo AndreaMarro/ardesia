@@ -1,0 +1,730 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "C2-Q081",
+      "kind": "question",
+      "course": "C2",
+      "section": "Collegamenti e reti idrauliche",
+      "order": 81,
+      "title": "Tre tratti attraversati dalla stessa portata",
+      "skill": "C2-L009",
+      "prerequisites": [
+        "C2-L009"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Ogni volume attraversa tutti e tre i segmenti, quindi Q è comune. Le cadute si sommano: R_eq=2+5+1=8 kPa·s/mL. Moltiplico per 3/2 mL/s e ottengo 12 kPa. L’unità mL/s si cancella con s/mL nella resistenza."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/5f78e9d23086ffd629aebbd370e4a6f498233041e629c57be289b8cbae52c591",
+          "text": "Nel primo pannello i tre elementi sono consecutivi: la portata comune è 1,5 mL/s e le cadute 3, 7,5 e 1,5 kPa si sommano in 12 kPa. I rettangoli sono simboli di resistenza, non lunghezze di tubo in scala."
+        },
+        {
+          "type": "formula",
+          "text": "R_{\\rm eq}=(2+5+1)\\,\\mathrm{kPa\\,s/mL}"
+        },
+        {
+          "type": "formula",
+          "text": " R_{\\rm eq}=8\\,\\mathrm{kPa\\,s/mL}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p=R_{\\rm eq}Q"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p=12\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "text",
+          "text": "Otto è il coefficiente della resistenza, non la caduta di pressione. Usare la legge del parallelo assegnerebbe portate diverse a tratti che qui sono uno dopo l’altro. Dividere per Q darebbe unità diverse dalla pressione."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Tre segmenti laminari consecutivi senza diramazioni hanno resistenze 2, 5 e 1 kPa·s/mL. Il fluido è incomprimibile e il moto stazionario. Con Q=1,5 mL/s, quale caduta di pressione totale si misura in kPa?",
+      "family": "tre-tubi-in-fila",
+      "answer": {
+        "type": "numeric",
+        "value": 12,
+        "unit": "kPa",
+        "tolerance": 0
+      },
+      "hints": [
+        "Individua prima l’assenza di diramazioni e la portata comune.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Otto è il coefficiente della resistenza, non la caduta di pressione. Usare la legge del parallelo assegnerebbe portate diverse a tratti che qui sono uno dopo l’altro. Dividere per Q darebbe unità diverse dalla pressione.",
+        "target": "C2-L009"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Nodi, serie e parallelo",
+        "Controllo di pressione o portata",
+        "Conduttanze e quote di flusso"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q082",
+      "kind": "question",
+      "course": "C2",
+      "section": "Collegamenti e reti idrauliche",
+      "order": 82,
+      "title": "Quattro passaggi alternativi identici",
+      "skill": "C2-L009",
+      "prerequisites": [
+        "C2-L009"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La stessa differenza di pressione spinge ciascun ramo. La portata totale è quattro volte Δp/R, perciò la conduttanza totale è 4/R e la resistenza equivalente R/4=5 kPa·s/mL. Il risultato è minore di 20, come deve essere aggiungendo passaggi paralleli."
+        },
+        {
+          "type": "formula",
+          "text": "Q_{\\rm tot}=4\\frac{\\Delta p}{R}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac1{R_{\\rm eq}}=\\frac4R"
+        },
+        {
+          "type": "formula",
+          "text": " R_{\\rm eq}=\\frac{20}{4}\\,\\mathrm{kPa\\,s/mL}"
+        },
+        {
+          "type": "formula",
+          "text": " R_{\\rm eq}=5\\,\\mathrm{kPa\\,s/mL}"
+        },
+        {
+          "type": "text",
+          "text": "80 kPa·s/mL sommerebbe le resistenze come in serie. Venti ignorerebbe tre rami. Un quarto è il rapporto R_eq/R, non il valore della resistenza nell’unità richiesta."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Quattro rami lineari identici collegano la stessa coppia di nodi a pressione uniforme per nodo. Ogni ramo ha R=20 kPa·s/mL e il flusso è stazionario incomprimibile. Qual è R_eq in kPa·s/mL?",
+      "family": "quattro-rami-identici",
+      "answer": {
+        "type": "numeric",
+        "value": 5,
+        "unit": "kPa·s/mL",
+        "tolerance": 0
+      },
+      "hints": [
+        "In parallelo si sommano le conduttanze, non le resistenze.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "80 kPa·s/mL sommerebbe le resistenze come in serie. Venti ignorerebbe tre rami. Un quarto è il rapporto R_eq/R, non il valore della resistenza nell’unità richiesta.",
+        "target": "C2-L009"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Nodi, serie e parallelo",
+        "Controllo di pressione o portata",
+        "Conduttanze e quote di flusso"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q083",
+      "kind": "question",
+      "course": "C2",
+      "section": "Collegamenti e reti idrauliche",
+      "order": 83,
+      "title": "Chiudere un ramo a pressione imposta",
+      "skill": "C2-L009",
+      "prerequisites": [
+        "C2-L009"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il ramo aperto continua ad avere gli stessi estremi di pressione e la stessa resistenza. La sua legge Q_aperto=Δp/R_aperto dà quindi la stessa portata. Diminuisce invece la portata totale, perché il contributo del ramo chiuso scompare. La pompa qui controlla la differenza di pressione, non il totale dei flussi."
+        },
+        {
+          "type": "formula",
+          "text": "Q_{\\rm aperto}=\\frac{\\Delta p}{R_{\\rm aperto}}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p_B=\\Delta p_A"
+        },
+        {
+          "type": "formula",
+          "text": " R_{{\\rm aperto},B}=R_{{\\rm aperto},A}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{{\\rm aperto},B}=Q_{{\\rm aperto},A}"
+        },
+        {
+          "type": "text",
+          "text": "Raddoppiare la portata del ramo richiederebbe raddoppiare Δp se R è fissa. Dimezzamento, arresto e inversione non seguono dagli estremi di pressione assegnati. L’effetto sarebbe diverso con portata totale imposta."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Due rami indipendenti collegano gli stessi nodi, mantenuti a una differenza di pressione positiva costante. Ciascun ramo è lineare e le sue proprietà non cambiano. Si chiude completamente un ramo. Che cosa accade alla portata del ramo rimasto aperto?",
+      "family": "un-ramo-si-chiude-a-p-fissata",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Resta invariata",
+          "Raddoppia sempre",
+          "Si dimezza sempre",
+          "Si annulla necessariamente",
+          "Diventa negativa"
+        ],
+        "value": "Resta invariata"
+      },
+      "hints": [
+        "Controlla la grandezza mantenuta dalla sorgente prima di ridistribuire i flussi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Raddoppiare la portata del ramo richiederebbe raddoppiare Δp se R è fissa. Dimezzamento, arresto e inversione non seguono dagli estremi di pressione assegnati. L’effetto sarebbe diverso con portata totale imposta.",
+        "target": "C2-L009"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Nodi, serie e parallelo",
+        "Controllo di pressione o portata",
+        "Conduttanze e quote di flusso"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q084",
+      "kind": "question",
+      "course": "C2",
+      "section": "Collegamenti e reti idrauliche",
+      "order": 84,
+      "title": "Chiudere un ramo a portata imposta",
+      "skill": "C2-L009",
+      "prerequisites": [
+        "C2-L009"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Inizialmente ciascun ramo porta 4 mL/s e R_eq=R/2. Dopo la chiusura tutti gli 8 mL/s passano per un solo R. A Q totale fissa, Δp=R_eqQ richiede quindi una caduta doppia. Non si può usare la conclusione del caso a pressione imposta: qui la pompa cambia pressione per rispettare il controllo."
+        },
+        {
+          "type": "formula",
+          "text": "R_{{\\rm eq},A}=\\frac R2"
+        },
+        {
+          "type": "formula",
+          "text": " R_{{\\rm eq},B}=R"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{\\Delta p_B}{\\Delta p_A}=\\frac{R}{R/2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{\\Delta p_B}{\\Delta p_A}=2"
+        },
+        {
+          "type": "text",
+          "text": "La caduta non resta uguale perché la resistenza equivalente è cresciuta. Dimezzarla diminuirebbe la portata invece di mantenerla. Quattro confonde il raddoppio della portata nel singolo ramo con una dipendenza quadratica non presente nella legge lineare."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Due rami identici di resistenza R>0 sono in parallelo e trasportano insieme 8 mL/s. Si chiude un ramo e la pompa mantiene la portata totale di 8 mL/s. Come cambia il salto di pressione rispetto al valore iniziale?",
+      "family": "il-caso-a-portata-imposta",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Raddoppia",
+          "Si dimezza",
+          "Resta invariato",
+          "Quadruplica",
+          "Si annulla"
+        ],
+        "value": "Raddoppia"
+      },
+      "hints": [
+        "Confronta prima le due resistenze equivalenti a parità di portata totale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La caduta non resta uguale perché la resistenza equivalente è cresciuta. Dimezzarla diminuirebbe la portata invece di mantenerla. Quattro confonde il raddoppio della portata nel singolo ramo con una dipendenza quadratica non presente nella legge lineare.",
+        "target": "C2-L009"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Nodi, serie e parallelo",
+        "Controllo di pressione o portata",
+        "Conduttanze e quote di flusso"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q085",
+      "kind": "question",
+      "course": "C2",
+      "section": "Collegamenti e reti idrauliche",
+      "order": 85,
+      "title": "Ridurre una rete mista",
+      "skill": "C2-L009",
+      "prerequisites": [
+        "C2-L009"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Riduco prima la coppia che condivide i nodi: due resistenze da 6 in parallelo valgono 3 kPa·s/mL. Aggiungo il tratto iniziale in serie, ottenendo R_eq=5 kPa·s/mL. La portata iniziale è la totale: 20/5=4 mL/s. In seguito si divide in due contributi uguali da 2 mL/s."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/5f78e9d23086ffd629aebbd370e4a6f498233041e629c57be289b8cbae52c591",
+          "text": "Il pannello centrale ha un tratto iniziale da 2 kPa·s/mL e due rami fra gli stessi nodi A e B da 6 kPa·s/mL ciascuno. La portata totale è comune al tratto iniziale e si divide ai nodi; non si sommano tutte e tre le resistenze come in serie."
+        },
+        {
+          "type": "formula",
+          "text": "R_{\\parallel}=3\\,\\mathrm{kPa\\,s/mL}"
+        },
+        {
+          "type": "formula",
+          "text": " R_{\\rm eq}=(2+3)\\,\\mathrm{kPa\\,s/mL}"
+        },
+        {
+          "type": "formula",
+          "text": " Q=\\frac{20}{5}\\,\\mathrm{mL/s}"
+        },
+        {
+          "type": "formula",
+          "text": " Q=4\\,\\mathrm{mL/s}"
+        },
+        {
+          "type": "text",
+          "text": "20/14 mL/s tratterebbe tutti i tratti come serie. Dieci mL/s ignorerebbe la coppia finale; 2 mL/s è la portata di ciascun ramo, non quella nel tratto iniziale."
+        }
+      ],
+      "difficulty": 3,
+      "prompt": "Un tratto da 2 kPa·s/mL è in serie con due rami paralleli, ciascuno da 6 kPa·s/mL. Si applicano 20 kPa fra gli estremi dell’intera rete lineare, in stato stazionario incomprimibile. Quale portata attraversa il tratto iniziale, in mL/s?",
+      "family": "una-rete-mista",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "mL/s",
+        "tolerance": 0
+      },
+      "hints": [
+        "Riduci la coppia parallela prima di aggiungere la resistenza in serie.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "20/14 mL/s tratterebbe tutti i tratti come serie. Dieci mL/s ignorerebbe la coppia finale; 2 mL/s è la portata di ciascun ramo, non quella nel tratto iniziale.",
+        "target": "C2-L009"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Nodi, serie e parallelo",
+        "Controllo di pressione o portata",
+        "Conduttanze e quote di flusso"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q086",
+      "kind": "question",
+      "course": "C2",
+      "section": "Collegamenti e reti idrauliche",
+      "order": 86,
+      "title": "Stessi nodi, percorsi differenti",
+      "skill": "C2-L009",
+      "prerequisites": [
+        "C2-L009"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La topologia dipende dai collegamenti, non dalla posizione del disegno. Entrambi i condotti incontrano la stessa pressione in A e la stessa pressione in B: hanno Δp comune e sono in parallelo. Le portate possono essere diverse se le resistenze sono differenti."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/5f78e9d23086ffd629aebbd370e4a6f498233041e629c57be289b8cbae52c591",
+          "text": "I due rami evidenziati nel pannello centrale condividono proprio i nodi A e B. La posizione superiore o inferiore non cambia la connessione in parallelo."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta p_1=p_A-p_B"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p_2=p_A-p_B"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{\\rm tot}=Q_1+Q_2"
+        },
+        {
+          "type": "text",
+          "text": "In serie ogni volume attraverserebbe successivamente entrambi i tratti. La disposizione grafica e l’uguaglianza dei raggi o delle resistenze non sono criteri necessari per il parallelo."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Due condotti distinti partono entrambi dal nodo A e arrivano entrambi al nodo B, come nel pannello centrale. I nodi sono idealizzati a pressione uniforme e il moto è stazionario. Come sono collegati quei due condotti?",
+      "family": "diagrammi-con-la-stessa-coppia-di-nodi",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "In parallelo",
+          "In serie",
+          "Né in serie né in parallelo perché sono disegnati uno sopra l’altro",
+          "In serie soltanto se hanno uguale raggio",
+          "In parallelo soltanto se hanno la stessa resistenza"
+        ],
+        "value": "In parallelo"
+      },
+      "hints": [
+        "Segui gli estremi dei due rami fino ai nodi, senza usare la loro altezza sul foglio.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "In serie ogni volume attraverserebbe successivamente entrambi i tratti. La disposizione grafica e l’uguaglianza dei raggi o delle resistenze non sono criteri necessari per il parallelo.",
+        "target": "C2-L009"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Nodi, serie e parallelo",
+        "Controllo di pressione o portata",
+        "Conduttanze e quote di flusso"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q087",
+      "kind": "question",
+      "course": "C2",
+      "section": "Collegamenti e reti idrauliche",
+      "order": 87,
+      "title": "La resistenza del ramo incognito",
+      "skill": "C2-L009",
+      "prerequisites": [
+        "C2-L009"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sottraggo le conduttanze: 1/R₂=1/3−1/4=1/12, nelle unità inverse comuni. Il reciproco dà R₂=12 kPa·s/mL. Il dato R_eq=3 è minore di entrambi i rami, controllo compatibile con un parallelo di resistenze positive."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac1{R_2}=\\frac1{R_{\\rm eq}}-\\frac1{R_1}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac1{R_2}=\\frac1{12}\\,\\mathrm{mL/(kPa\\,s)}"
+        },
+        {
+          "type": "formula",
+          "text": " R_2=12\\,\\mathrm{kPa\\,s/mL}"
+        },
+        {
+          "type": "text",
+          "text": "Uno e sette sottraggono o sommano resistenze come in serie. 4/3 e 3/4 non soddisfano la somma dei reciproci richiesta. Verificando 4·12/(4+12) si ritrova esattamente 3."
+        }
+      ],
+      "difficulty": 3,
+      "prompt": "Due rami in parallelo hanno R_eq=3 kPa·s/mL. Il primo ha R₁=4 kPa·s/mL. Nel modello lineare trova R₂.",
+      "family": "il-ramo-incognito",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "12 kPa·s/mL",
+          "1 kPa·s/mL",
+          "7 kPa·s/mL",
+          "4/3 kPa·s/mL",
+          "3/4 kPa·s/mL"
+        ],
+        "value": "12 kPa·s/mL"
+      },
+      "hints": [
+        "Isola prima la conduttanza incognita e soltanto alla fine prendine il reciproco.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Uno e sette sottraggono o sommano resistenze come in serie. 4/3 e 3/4 non soddisfano la somma dei reciproci richiesta. Verificando 4·12/(4+12) si ritrova esattamente 3.",
+        "target": "C2-L009"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Nodi, serie e parallelo",
+        "Controllo di pressione o portata",
+        "Conduttanze e quote di flusso"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q088",
+      "kind": "question",
+      "course": "C2",
+      "section": "Collegamenti e reti idrauliche",
+      "order": 88,
+      "title": "Il reciproco utile al parallelo",
+      "skill": "C2-L009",
+      "prerequisites": [
+        "C2-L009"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Poiché Q=Δp/R_h, il rapporto Q/Δp è 1/R_h: la conduttanza idraulica. In parallelo Δp è comune, quindi sommando le portate si sommano anche le conduttanze. In SI la sua unità è m³/(Pa·s)."
+        },
+        {
+          "type": "formula",
+          "text": "G=\\frac Q{\\Delta p}"
+        },
+        {
+          "type": "formula",
+          "text": " G=\\frac1{R_h}"
+        },
+        {
+          "type": "formula",
+          "text": " G_{\\rm tot}=G_1+G_2"
+        },
+        {
+          "type": "text",
+          "text": "La resistenza è il rapporto inverso. La viscosità è una proprietà del materiale e non include da sola la geometria; densità e potenza hanno altre dimensioni e altre definizioni."
+        }
+      ],
+      "difficulty": 1,
+      "prompt": "Nel regime lineare positivo si definisce G=Q/Δp per un condotto. Qual è il nome di questa grandezza, additiva fra rami in parallelo?",
+      "family": "il-reciproco-della-resistenza",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Conduttanza idraulica",
+          "Resistenza idraulica",
+          "Viscosità dinamica",
+          "Densità",
+          "Potenza meccanica"
+        ],
+        "value": "Conduttanza idraulica"
+      },
+      "hints": [
+        "Parti dal rapporto definito e confrontalo con Q=Δp/R_h.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La resistenza è il rapporto inverso. La viscosità è una proprietà del materiale e non include da sola la geometria; densità e potenza hanno altre dimensioni e altre definizioni.",
+        "target": "C2-L009"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Nodi, serie e parallelo",
+        "Controllo di pressione o portata",
+        "Conduttanze e quote di flusso"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q089",
+      "kind": "question",
+      "course": "C2",
+      "section": "Collegamenti e reti idrauliche",
+      "order": 89,
+      "title": "In serie conta la stessa portata",
+      "skill": "C2-L009",
+      "prerequisites": [
+        "C2-L009"
+      ],
+      "version": 3,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "In serie la conservazione del volume impone la stessa Q. Dalla relazione Δp_i=R_iQ segue Δp₂/Δp₁=R₂/R₁=2. L’uguaglianza delle portate non implica uguaglianza delle cadute: ciascun tratto richiede pressione in proporzione alla propria resistenza."
+        },
+        {
+          "type": "formula",
+          "text": "Q_1=Q_2"
+        },
+        {
+          "type": "formula",
+          "text": "Q_2=Q"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p_i=R_iQ"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{\\Delta p_2}{\\Delta p_1}=\\frac{R_2}{R_1}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{\\Delta p_2}{\\Delta p_1}=2"
+        },
+        {
+          "type": "text",
+          "text": "Cadute uguali caratterizzano rami paralleli fra gli stessi nodi, non serie. Una caduta minore nel tratto più resistente richiederebbe una portata diversa, esclusa dalla stazionarietà incomprimibile senza rami."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Due segmenti in serie trasportano lo stesso liquido incomprimibile in stato stazionario senza perdite laterali. Il secondo ha resistenza doppia del primo. Quale segmento presenta la maggiore caduta di pressione, per una portata positiva?",
+      "family": "due-tratti-diversi-in-serie",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Il secondo, con caduta doppia",
+          "Il primo, con caduta doppia",
+          "Hanno sempre la stessa caduta",
+          "Il secondo, con caduta dimezzata",
+          "Non si può confrontare pur conoscendo il rapporto delle resistenze"
+        ],
+        "value": "Il secondo, con caduta doppia"
+      },
+      "hints": [
+        "Usa la grandezza comune della serie: Q, non Δp.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Cadute uguali caratterizzano rami paralleli fra gli stessi nodi, non serie. Una caduta minore nel tratto più resistente richiederebbe una portata diversa, esclusa dalla stazionarietà incomprimibile senza rami.",
+        "target": "C2-L009"
+      },
+      "baseVersion": 2,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Nodi, serie e parallelo",
+        "Controllo di pressione o portata",
+        "Conduttanze e quote di flusso"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q090",
+      "kind": "question",
+      "course": "C2",
+      "section": "Collegamenti e reti idrauliche",
+      "order": 90,
+      "title": "Quanto flusso passa nel ramo stretto",
+      "skill": "C2-L009",
+      "prerequisites": [
+        "C2-L009"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A Δp,η,L comuni la portata è proporzionale a r⁴. Se il ramo stretto porta Q₀, quello largo porta 16Q₀. Il totale è 17Q₀ e la frazione del ramo stretto è 1/17. La normalizzazione usa il totale, non soltanto la portata dell’altro ramo."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/5f78e9d23086ffd629aebbd370e4a6f498233041e629c57be289b8cbae52c591",
+          "text": "Le barre finali hanno la stessa scala di portata: Q₀ nel ramo stretto e 16Q₀ nel largo, totale 17Q₀. Q₀ indica una portata positiva di riferimento, non un valore universale in mL/s."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{Q_{2r}}{Q_r}=2^4"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{2r}=16Q_r"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{\\rm tot}=17Q_r"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{Q_r}{Q_{\\rm tot}}=\\frac1{17}"
+        },
+        {
+          "type": "text",
+          "text": "1/16 confronta i due rami, non il ramo con il totale. 1/5 userebbe la sola area, che cresce di quattro. 1/2 presupporrebbe rami uguali; 16/17 è la frazione del ramo largo."
+        }
+      ],
+      "difficulty": 3,
+      "prompt": "Due rami circolari di uguale lunghezza e viscosità sono in parallelo. I raggi sono r e 2r, con r>0; entrambi restano in condizioni di Poiseuille e hanno la stessa caduta positiva. Quale frazione della portata totale passa nel ramo di raggio r?",
+      "family": "due-rami-di-raggio-diverso",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/17",
+          "1/16",
+          "1/5",
+          "1/2",
+          "16/17"
+        ],
+        "value": "1/17"
+      },
+      "hints": [
+        "Dopo il rapporto alla quarta, aggiungi entrambi i contributi prima di normalizzare.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "1/16 confronta i due rami, non il ramo con il totale. 1/5 userebbe la sola area, che cresce di quattro. 1/2 presupporrebbe rami uguali; 16/17 è la frazione del ramo largo.",
+        "target": "C2-L009"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Nodi, serie e parallelo",
+        "Controllo di pressione o portata",
+        "Conduttanze e quote di flusso"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "5f78e9d23086ffd629aebbd370e4a6f498233041e629c57be289b8cbae52c591",
+      "name": "cric-c2-l009-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTY2MCIgdmlld0JveD0iMCAwIDY0MCAxNjYwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyIgZm9udC1mYW1pbHk9InN5c3RlbS11aSxzYW5zLXNlcmlmIj48dGl0bGUgaWQ9InRpdGxlIj5SZXRpIGlkcmF1bGljaGUgbGluZWFyaTwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPlRyZSByZXNpc3RlbnplIGNvbnNlY3V0aXZlLCByZXRlIG1pc3RhIGUgcXVvdGUgZGkgcG9ydGF0YSBhIHJhZ2dpIGRpdmVyc2ksIGNvbiBwcmVzc2lvbmkgbyBwb3J0YXRlIGNvbnRyb2xsYXRlIGRpY2hpYXJhdGUuPC9kZXNjPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSI2NDAiIGhlaWdodD0iMTY2MCIgZmlsbD0id2hpdGUiLz48dGV4dCB4PSIzNSIgeT0iNDgiIGZvbnQtc2l6ZT0iMjMiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+U2VndWlyZSBpIG5vZGkgcHJpbWEgZGVsbGUgZm9ybXVsZTwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMTEwIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjEgwrcgVHJlIGNhZHV0ZSBpbiBzZXJpZTwvdGV4dD48bGluZSB4MT0iNjUiIHkxPSIyMzAiIHgyPSI1NzUiIHkyPSIyMzAiIHN0cm9rZT0iIzYwNzM4MyIgc3Ryb2tlLXdpZHRoPSIyIi8+PHJlY3QgeD0iMTAwIiB5PSIyMTAiIHdpZHRoPSI2NSIgaGVpZ2h0PSI0MCIgZmlsbD0iI2Q5ZWNmMSIvPjx0ZXh0IHg9IjEzMiIgeT0iMjM4IiBmb250LXNpemU9IjIwIiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj4yPC90ZXh0PjxyZWN0IHg9IjI3MCIgeT0iMjEwIiB3aWR0aD0iNjUiIGhlaWdodD0iNDAiIGZpbGw9IiNkOWVjZjEiLz48dGV4dCB4PSIzMDIiIHk9IjIzOCIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9Im1pZGRsZSI+NTwvdGV4dD48cmVjdCB4PSI0NDAiIHk9IjIxMCIgd2lkdGg9IjY1IiBoZWlnaHQ9IjQwIiBmaWxsPSIjZDllY2YxIi8+PHRleHQgeD0iNDcyIiB5PSIyMzgiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJtaWRkbGUiPjE8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjMzMCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5SIGluIGtQYcK3cy9tTDsgUSA9IDEsNSBtTC9zPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSIzOTAiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+zpRwOiAzIGtQYSArIDcsNSBrUGEgKyAxLDUga1BhID0gMTIga1BhPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSI1MjAiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+MiDCtyBVbiB0cmF0dG8sIHBvaSBkdWUgcmFtaTwvdGV4dD48bGluZSB4MT0iNjAiIHkxPSI4MzAiIHgyPSIyMDAiIHkyPSI4MzAiIHN0cm9rZT0iIzYwNzM4MyIgc3Ryb2tlLXdpZHRoPSIyIi8+PHJlY3QgeD0iODUiIHk9IjgxMCIgd2lkdGg9IjY1IiBoZWlnaHQ9IjQwIiBmaWxsPSIjZDllY2YxIi8+PHRleHQgeD0iMTE3IiB5PSI4MzgiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJtaWRkbGUiPjI8L3RleHQ+PHRleHQgeD0iMTg1IiB5PSI4NzUiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+QTwvdGV4dD48dGV4dCB4PSI1MzUiIHk9Ijg3NSIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5CPC90ZXh0PjxjaXJjbGUgY3g9IjIwMCIgY3k9IjgzMCIgcj0iNSIgZmlsbD0iIzMwNmY4YyIvPjxjaXJjbGUgY3g9IjU0MCIgY3k9IjgzMCIgcj0iNSIgZmlsbD0iIzMwNmY4YyIvPjxsaW5lIHgxPSIyMDAiIHkxPSI4MzAiIHgyPSIyNTAiIHkyPSI2OTAiIHN0cm9rZT0iIzYwNzM4MyIgc3Ryb2tlLXdpZHRoPSIyIi8+PGxpbmUgeDE9IjI1MCIgeTE9IjY5MCIgeDI9IjQ5MCIgeTI9IjY5MCIgc3Ryb2tlPSIjNjA3MzgzIiBzdHJva2Utd2lkdGg9IjIiLz48bGluZSB4MT0iNDkwIiB5MT0iNjkwIiB4Mj0iNTQwIiB5Mj0iODMwIiBzdHJva2U9IiM2MDczODMiIHN0cm9rZS13aWR0aD0iMiIvPjxyZWN0IHg9IjMzMCIgeT0iNjcwIiB3aWR0aD0iNzAiIGhlaWdodD0iNDAiIGZpbGw9IiNkOWVjZjEiLz48dGV4dCB4PSIzNjUiIHk9IjY5NyIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9Im1pZGRsZSI+NjwvdGV4dD48bGluZSB4MT0iMjAwIiB5MT0iODMwIiB4Mj0iMjUwIiB5Mj0iOTcwIiBzdHJva2U9IiM2MDczODMiIHN0cm9rZS13aWR0aD0iMiIvPjxsaW5lIHgxPSIyNTAiIHkxPSI5NzAiIHgyPSI0OTAiIHkyPSI5NzAiIHN0cm9rZT0iIzYwNzM4MyIgc3Ryb2tlLXdpZHRoPSIyIi8+PGxpbmUgeDE9IjQ5MCIgeTE9Ijk3MCIgeDI9IjU0MCIgeTI9IjgzMCIgc3Ryb2tlPSIjNjA3MzgzIiBzdHJva2Utd2lkdGg9IjIiLz48cmVjdCB4PSIzMzAiIHk9Ijk1MCIgd2lkdGg9IjcwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjZDllY2YxIi8+PHRleHQgeD0iMzY1IiB5PSI5NzciIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJtaWRkbGUiPjY8L3RleHQ+PGxpbmUgeDE9IjU0MCIgeTE9IjgzMCIgeDI9IjU5MCIgeTI9IjgzMCIgc3Ryb2tlPSIjNjA3MzgzIiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSIzNSIgeT0iMTA4MCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5SIGluIGtQYcK3cy9tTDsgzpRwIHRvdGFsZSA9IDIwIGtQYTwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMTEzMCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5SX2VxID0gKDIgKyAzKSBrUGHCt3MvbUw8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjEyNjAiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+MyDCtyBEdWUgcmFnZ2ksIHF1b3RlIG1vbHRvIGRpdmVyc2U8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjEzNTAiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+cjwvdGV4dD48cmVjdCB4PSIxNzAiIHk9IjEzMjAiIHdpZHRoPSIyMCIgaGVpZ2h0PSIzMCIgZmlsbD0iIzYzN2U1NSIvPjx0ZXh0IHg9IjM1IiB5PSIxNDMwIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjJyPC90ZXh0PjxyZWN0IHg9IjE3MCIgeT0iMTQwMCIgd2lkdGg9IjMyMCIgaGVpZ2h0PSIzMCIgZmlsbD0iIzNkNzc5MSIvPjx0ZXh0IHg9IjIyMCIgeT0iMTM1MCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5R4oKAPC90ZXh0Pjx0ZXh0IHg9IjUwNSIgeT0iMTQzMCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij4xNlHigoA8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjE1MjUiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+UG9ydGF0YSB0b3RhbGU6IDE3UeKCgDwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMTU4MCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5GcmF6aW9uZSBkZWwgcmFtbyBzdHJldHRvOiAxLzE3PC90ZXh0Pjwvc3ZnPgo="
+    }
+  ]
+}

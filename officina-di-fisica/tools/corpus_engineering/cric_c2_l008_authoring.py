@@ -1,0 +1,57 @@
+"""Ten distinct Cric Poiseuille tasks with explicit controlled variables."""
+from .vector_geometry_authoring import assemble_family,write_family
+SOURCE_IDS=[f'C2-Q{n:03}' for n in range(71,81)]
+TASKS=[
+('La pompa mantiene la portata','Una pompa impone la stessa portata positiva in due tubi confrontati con lunghezza e viscosità uguali. Il raggio passa da 3 mm a 2 mm. Per fluido newtoniano incomprimibile, moto laminare stazionario sviluppato e tubi circolari rigidi aderenti, quanto vale Δp_B/Δp_A?',
+ ['81/16','16/81','9/4','3/2','16'],
+ 'Con portata controllata non tengo fissa la pressione: Δp=R_hQ e R_h cresce come r⁻⁴. Nel rapporto restano le quattro potenze del rapporto inverso dei raggi: (3/2)⁴=81/16. Il tubo più stretto richiede una maggiore caduta, coerente con un rapporto superiore a uno.',
+ r'\Delta p=\frac{8\eta LQ}{\pi r^4}\qquad \frac{\Delta p_B}{\Delta p_A}=\left(\frac{r_A}{r_B}\right)^4\qquad \frac{\Delta p_B}{\Delta p_A}=\frac{81}{16}',
+ '16/81 inverte le prove; 9/4 usa solo il quadrato, 3/2 solo la prima potenza. Sedici sarebbe il fattore per un raggio dimezzato, non per 3 mm che diventano 2 mm.','Scrivi prima quale grandezza mantiene la pompa e poi scegli il rapporto dei raggi.'),
+('Viscosità e lunghezza cambiano insieme','Due prove in condizioni di Poiseuille hanno stesso raggio e stessa caduta di pressione. Nella seconda η_B=η_A/2 e L_B=3L_A. Se Q_A=9 mL/s, quanto vale Q_B in mL/s?',6,
+ 'La portata è inversamente proporzionale al prodotto ηL quando r e Δp sono controllati. Il nuovo prodotto è (1/2)·3=3/2 del precedente, quindi Q_B/Q_A=2/3. Moltiplico 9 per 2/3 e ottengo 6 mL/s: dimezzare la viscosità aiuta il flusso, ma il triplo della lunghezza ha l’effetto opposto.',
+ r'Q\propto\frac1{\eta L}\qquad \frac{Q_B}{Q_A}=\frac{\eta_A L_A}{\eta_B L_B}\qquad \frac{Q_B}{Q_A}=\frac23\qquad Q_B=6\,\mathrm{mL/s}',
+ '18 mL/s considera soltanto la viscosità; 3 mL/s soltanto la lunghezza. 27/2 mL/s moltiplica per il nuovo prodotto ηL invece di usarne l’inverso. Nove ignorerebbe entrambe le variazioni.','Combina i due fattori nel denominatore prima di modificare la portata.'),
+('Che cosa misura la pendenza','Un tubo di Poiseuille, a geometria e viscosità fisse, dà una retta per l’origine nel grafico con Δp in ordinata e Q in ascissa. Che grandezza misura la pendenza?',
+ ['La resistenza idraulica R_h=Δp/Q','La conduttanza idraulica Q/Δp','La sola viscosità del liquido','La potenza dissipata Δp Q','La portata in ogni punto della retta'],
+ 'Una pendenza è variazione verticale divisa per quella orizzontale. Poiché Δp=R_hQ e la retta passa per l’origine, il coefficiente è la resistenza idraulica, con unità Pa·s/m³ se Q è in m³/s. Anche la geometria contribuisce a R_h: la pendenza non misura la sola viscosità senza altri dati.',
+ r'\Delta p=R_hQ\qquad \frac{\Delta(\Delta p)}{\Delta Q}=R_h\qquad [R_h]=\mathrm{Pa\,s/m^3}',
+ 'La conduttanza sarebbe la pendenza del grafico con assi scambiati. La potenza è un prodotto, non un rapporto. La portata è una coordinata e non una proprietà costante della retta.','Leggi l’ordine degli assi prima di decidere fra resistenza e conduttanza.'),
+('Triplicare Q cambiando soltanto il raggio','Nel modello di Poiseuille si mantengono uguali Δp>0, viscosità e lunghezza. Di quale fattore positivo α va moltiplicato il raggio per triplicare la portata, restando nel regime del modello?',
+ ['⁴√3','3','√3','1/3','1/⁴√3'],
+ 'Con i parametri controllati Q è proporzionale a r⁴. Quindi Q_B/Q_A=α⁴=3. L’unica radice fisica per un rapporto di raggi positivi è la radice quarta di tre. Non serve valutarla in decimale: il controllo manuale consiste nel riportarla alla quarta e ottenere tre.',
+ r'\alpha=\frac{r_B}{r_A}>0\qquad \alpha^4=3\qquad \alpha=\sqrt[4]{3}',
+ 'Tre porterebbe Q a 81 volte il valore iniziale; √3 la porterebbe a nove volte. I due fattori minori di uno ridurrebbero la portata invece di triplicarla.','Lascia la radice esatta e verifica la potenza richiesta dalla legge.'),
+('Mettere il diametro al posto del raggio','Un calcolo di Poiseuille usa il diametro d=2r al posto del raggio nel fattore r⁴, lasciando identici Δp>0,η,L. Come cambia la portata prevista rispetto al valore corretto?',
+ ['Viene sovrastimata di un fattore 16','Viene sovrastimata di un fattore 2','Viene sovrastimata di un fattore 4','Viene sottostimata di un fattore 16','Resta identica perché entrambe sono lunghezze'],
+ 'Raggio e diametro hanno la stessa dimensione ma valori diversi. Sostituire d=2r nel numeratore porta (2r)⁴=16r⁴, quindi il risultato errato è sedici volte quello corretto. Il controllo dimensionale da solo non riconosce questo errore: serve il rapporto geometrico.',
+ r'd=2r\qquad \frac{Q_{\rm errata}}{Q_{\rm corretta}}=\left(\frac dr\right)^4\qquad \frac{Q_{\rm errata}}{Q_{\rm corretta}}=16',
+ 'Due usa la prima potenza e quattro il quadrato. La sottostima avrebbe il verso opposto, perché nel numeratore è stata inserita una lunghezza maggiore. Unità uguali non implicano numeri uguali.','Sostituisci 2r prima di elevare alla quarta.'),
+('Dalla resistenza misurata alla caduta','Una prova nel regime lineare fornisce R_h=8,0×10⁸ Pa·s/m³ e Q=2,5 mL/s. Quanto vale la caduta di pressione Δp=R_hQ in kilopascal?',2,
+ 'R_h è espresso usando m³, perciò converto 2,5 mL/s in (5/2)·10⁻⁶ m³/s. Moltiplicando 8 per 5/2 ottengo 20 e le potenze danno 10²: 2000 Pa. Infine divido per 1000 Pa/kPa, ottenendo 2 kPa.',
+ r'Q=\frac52\,10^{-6}\,\mathrm{m^3/s}\qquad \Delta p=R_hQ\qquad \Delta p=2000\,\mathrm{Pa}\qquad \Delta p=2\,\mathrm{kPa}',
+ '2000 è il coefficiente in pascal, non in kilopascal. Saltare la conversione mL→m³ introdurrebbe un fattore un milione. Dividere Q per R_h non ricostruisce una pressione e inverte la relazione assegnata.','Uniforma il volume con l’unità della resistenza prima di moltiplicare.'),
+('Una proprietà del materiale','A geometria invariata, quale proprietà del liquido espressa in Pa·s raddoppia la resistenza di Poiseuille quando raddoppia, mantenendo valide le ipotesi del modello?',
+ ['La viscosità dinamica η','La densità ρ','La tensione superficiale γ','La velocità media','Il raggio del tubo'],
+ 'Nella resistenza R_h=8ηL/(πr⁴), il coefficiente η entra linearmente. Se la geometria resta fissa e η raddoppia, raddoppia R_h. Pa·s identifica la viscosità dinamica, distinta dalla viscosità cinematica η/ρ che ha unità m²/s.',
+ r'R_h=\frac{8\eta L}{\pi r^4}\qquad \eta_B=2\eta_A\qquad R_{h,B}=2R_{h,A}',
+ 'La densità non compare in questa relazione di resistenza. La tensione superficiale ha unità N/m. Il raggio è geometria e agisce alla quarta inversa; la velocità media non è il coefficiente materiale richiesto.','Cerca insieme il ruolo nella formula e l’unità Pa·s.'),
+('Prima dell’uso del profilo sviluppato','Si vuole stimare η dal profilo parabolico subito dopo un ingresso brusco in un tubo. Quale condizione va controllata in particolare, oltre a fluido newtoniano e regime laminare?',
+ ['Che il profilo sia pienamente sviluppato nel tratto di misura','Che il tubo abbia pressione nulla ovunque','Che la velocità sia uniforme sulla sezione','Che il liquido non abbia densità','Che ogni moto laminare sia automaticamente già sviluppato'],
+ 'All’ingresso il profilo può ancora evolvere lungo il tubo: la viscosità diffonde l’effetto della parete verso il centro. La parabola di Poiseuille vale nel tratto sviluppato, dove la forma del profilo non cambia più lungo l’asse di un tubo uniforme. Essere laminare non basta a garantire questa condizione geometrica e dinamica.',
+ r'\text{tratto sviluppato: }\partial_xv_x(r)=0\qquad v(r)=v_{\max}\left(1-\frac{r^2}{R^2}\right)',
+ 'Pressione nulla e densità nulla non sono requisiti del profilo. Una velocità uniforme sarebbe incompatibile con la parabola sviluppata e l’aderenza a una parete ferma. Il regime laminare può avere un tratto d’ingresso ancora in evoluzione.','Distingui organizzazione laminare e completamento dello sviluppo lungo il tubo.'),
+('La potenza che sostiene il flusso','Un tubo orizzontale dissipativo a pareti ferme trasporta Q=4,0×10⁻⁶ m³/s con caduta di pressione Δp=3,0 kPa fra sezioni uguali. In stato stazionario, senza variazioni di energia cinetica media o quota, quale potenza meccanica fornisce questa differenza di pressione? Rispondi in mW.',12,
+ 'Durante una durata Δt attraversa il tubo un volume ΔV=QΔt. Il lavoro netto delle pressioni è ΔpΔV; dividendo per Δt ottengo P=ΔpQ. Converto 3 kPa in 3000 Pa: il prodotto è 12·10⁻³ W, cioè 12 mW. Con velocità e quota invariate questa potenza sostiene la dissipazione meccanica.',
+ r'W=\Delta p\,\Delta V\qquad \Delta V=Q\Delta t\qquad P=\Delta p\,Q\qquad P=12\,10^{-3}\,\mathrm W\qquad P=12\,\mathrm{mW}',
+ '0,012 è il coefficiente in watt, non in milliwatt. Una somma fra pressione e portata non è una potenza. Δp/Q è la resistenza idraulica: il prodotto e il rapporto hanno ruoli e unità diversi.','Parti dal lavoro delle pressioni su un volume, poi passa al tempo.'),
+('Pressioni uguali in un tubo passivo','Un tubo circolare orizzontale, rigido e a pareti ferme contiene un liquido newtoniano. Nel limite stazionario di Poiseuille non ci sono pompe interne né altre forzanti. Se le pressioni statiche ai due estremi sono uguali, quale portata netta Q prevede il modello?',
+ ['Q=0','Q necessariamente positiva e non nulla','Q necessariamente negativa e non nulla','Una portata infinita','Q non dipende mai dalle pressioni'],
+ 'Per un tubo finito con raggio e viscosità positivi, R_h è positiva e finita. La differenza Δp è zero, dunque Q=Δp/R_h=0. Questo è il risultato stazionario del modello passivo: non descrive un transitorio iniziale né un trascinamento da pareti mobili, esclusi dall’enunciato.',
+ r'\Delta p=0\qquad R_h>0\qquad Q=\frac{\Delta p}{R_h}\qquad Q=0',
+ 'Una portata orientata non nulla richiederebbe una forzante presente nel bilancio. Una portata infinita non segue da una resistenza finita positiva. La legge collega esplicitamente Q alla differenza di pressione, non alle pressioni assolute prese separatamente.','Controlla che il denominatore sia finito e positivo prima di sostituire Δp=0.')]
+CHOICES={n:0 for n,t in enumerate(TASKS,1) if isinstance(t[2],list)}
+UNITS={2:'mL/s',6:'kPa',9:'mW'}
+FIGURES={1:'Le sezioni circolari iniziali hanno raggi 3 mm e 2 mm nella stessa scala. Per la stessa portata, le barre della caduta di pressione hanno rapporto 81/16; le loro lunghezze condividono una scala propria, distinta da quella dei raggi.',6:'Nel pannello centrale Q=2,5 mL/s corrisponde a 2,5×10⁻⁶ m³/s. Con la resistenza assegnata, la caduta è 2000 Pa=2 kPa: il prefisso del volume viene convertito prima del prodotto.',9:'Nel grafico finale le coordinate del rettangolo sono Q=4 mL/s e Δp=3 kPa. Il prodotto fisico è una potenza: 1 kPa·mL/s=1 mW, quindi il rettangolo corrisponde a 12 mW.'}
+def assemble(repo,source_ref):
+ return assemble_family(repo,source_ref,'cric-c2-l008',TASKS,CHOICES,UNITS,'cric-c2-l008-progressive.svg',FIGURES,0,course='C2',source_origin='cric',source_ids=SOURCE_IDS,source_path='officina-di-fisica/content/C2.json',skill='C2-L008',section='Legge di Poiseuille e variabili controllate',coverage=['Raggio alla quarta e inverse','Resistenza, portata e conversioni','Potenza e limiti del profilo sviluppato'],overrides={n:{'error':{'category':('algebra' if n in (1,2,4,5,6,9) else 'concetto'),'message':TASKS[n-1][5],'target':'C2-L008'}} for n in range(1,11)})
+if __name__=='__main__':write_family(assemble,'cric-c2-l008')
