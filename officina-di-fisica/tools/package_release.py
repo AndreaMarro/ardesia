@@ -12,7 +12,7 @@ import zipfile
 
 APP = Path(__file__).resolve().parents[1]
 PROJECT = APP.name
-DIRECTORIES = {'content', 'contracts', 'docs', 'examples', 'materials', 'migrations', 'policies', 'server', 'static', 'tests', 'tools'}
+DIRECTORIES = {'content', 'contracts', 'docs', 'examples', 'materials', 'migrations', 'multidiscipline', 'policies', 'server', 'static', 'tests', 'tools'}
 TOP = {'app.py', 'Area autore.command', 'Avvia Officina.command', 'README.md', 'package.json', 'package-lock.json'}
 
 
@@ -52,7 +52,7 @@ def smoke(target):
             package.extractall(tmp)
             if not package.getinfo(PROJECT+'/Avvia Officina.command').external_attr >> 16 & 0o111:
                 raise ValueError('Il comando di avvio richiede il bit eseguibile.')
-        boot = ('from server.store import initialize;from server.web import Handler,ThreadingHTTPServer;'
+        boot = ('from server.store import initialize;from multidiscipline.web import Handler;from http.server import ThreadingHTTPServer;'
                 'initialize();s=ThreadingHTTPServer(("127.0.0.1",0),Handler);print(s.server_port,flush=True);s.serve_forever()')
         with subprocess.Popen(['python3','-uc',boot],cwd=tmp/PROJECT,env={**os.environ,'ASTRA_DATA':str(tmp/'dati')},
                               stdout=subprocess.PIPE, text=True) as proc:

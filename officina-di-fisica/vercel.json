@@ -10,7 +10,7 @@
   "functions": {
     "api/index.py": {
       "maxDuration": 180,
-      "includeFiles": "{server/**,content/**,contracts/**,policies/**,migrations/**,static/**,materials/**,extensions/**,tools/inventario.py}"
+      "includeFiles": "{multidiscipline/**,server/**,content/**,contracts/**,policies/**,migrations/**,static/**,materials/**,extensions/**,tools/inventario.py}"
     }
   },
   "routes": [
@@ -26,6 +26,10 @@
     {
       "src": "/(?:api|asset|download|figures)/.*",
       "dest": "/api/index.py"
+    },
+    {
+      "src": "/$",
+      "dest": "/multidiscipline/index.html"
     },
     {
       "handle": "filesystem"

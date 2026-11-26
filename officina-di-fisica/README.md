@@ -31,6 +31,10 @@ cd officina-di-fisica
 python3 app.py serve --open
 ```
 
+## Materie universitarie
+
+La copertina apre il catalogo delle materie. Fisica per Medicina mantiene i suoi sei percorsi. Una disciplina aggiuntiva si installa nello stesso quaderno con `python3 app.py install-discipline <catalog.json>`. La consegna privata di Analisi Matematica 1 include il catalogo, i microcorsi, le correzioni e le prove. [Installazione, contratti, interoperabilità e convergenza](docs/discipline-e-convergenza.md)
+
 ## Aprire la piattaforma
 
 **Su questo Mac**, apri **Avvia Officina.command**. Si apre la copertina nel browser. Tieni aperta la finestra del server finché lavori. **Area autore.command** apre il banco riservato con un collegamento locale monouso. Per riaprire il servizio in seguito bastano gli stessi due comandi. [Avvio](Avvia%20Officina.command) · [Accesso autore](Area%20autore.command)
