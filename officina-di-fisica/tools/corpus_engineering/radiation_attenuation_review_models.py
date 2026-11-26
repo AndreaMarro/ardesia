@@ -104,7 +104,10 @@ def depth_from_a(a,intensity,incident=64):
 def background_coefficient(s1,s2,s3,step_cm=1):
     s1,s2,s3,step_cm=positive(s1,s2,s3,step_cm)
     if not s1>s2>s3 or not 0<(s2-s3)/(s1-s2)<1:raise ValueError('Decreasing exponential plus constant background required')
-    return -sp.log((s2-s3)/(s1-s2),2)/step_cm
+    q=(s2-s3)/(s1-s2)
+    background=(s2-q*s1)/(1-q)
+    if background<0:raise ValueError('Reconstructed physical additive background must be nonnegative')
+    return -sp.log(q,2)/step_cm
 
 def primary_only_derivations():
     n=sp.Symbol('N',integer=True,positive=True);x,y,m,i,e,a,k1,k2=sp.symbols('x y mu I E a k1 k2',positive=True)

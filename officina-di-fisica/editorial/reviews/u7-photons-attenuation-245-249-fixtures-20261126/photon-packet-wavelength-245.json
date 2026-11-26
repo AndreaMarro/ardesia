@@ -1,0 +1,1211 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u7-photon-packet-wavelength-01",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia di pacchetti a lunghezza d’onda assegnata",
+      "order": 24501,
+      "title": "Dal singolo fotone al pacchetto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "photon-packet-wavelength",
+      "difficulty": 1,
+      "prompt": "Un pacchetto contiene N fotoni monocromatici di lunghezza d’onda nel vuoto λ₀>0. N è intero positivo. Per questo esercizio si assumono h=6,6×10⁻³⁴ J·s e c=3×10⁸ m/s; i risultati sono esatti entro questi dati assegnati. Poniamo E_*=10⁻¹⁹ J, e=E/E_* e ℓ=λ₀/(1 nm). Per N=1 e λ₀=660 nm, quanto vale E nelle unità E_*? Inserisci il coefficiente e.",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "10⁻¹⁹ J",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La frequenza nel vuoto è c/λ₀ e ciascun fotone porta energia hc/λ₀. Il pacchetto somma N contributi uguali. Prima converto i nanometri in metri: il prodotto hc assegnato è 1,98×10⁻²⁵ J·m. Dividendo per 660×10⁻⁹ m si trovano tre unità E_*. Il fattore 1980 della forma numerica contiene proprio questa conversione."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/d6297f39b48f71e73324adf87dee6f455940b83ab85b07fc3511355a354253fc",
+          "text": "Il primo pannello confronta lunghezze d’onda nel vuoto con un’unica scala orizzontale; i profili sono schematici e non traiettorie di fotoni. Le barre centrali hanno origine comune e rappresentano le energie di A, B e la loro media."
+        },
+        {
+          "type": "formula",
+          "text": "E=\\frac{Nhc}{\\lambda_0}"
+        },
+        {
+          "type": "formula",
+          "text": " hc=1{,}98\\times10^{-25}\\,\\mathrm{J\\,m}"
+        },
+        {
+          "type": "formula",
+          "text": " e=\\frac{1980N}{\\ell}"
+        },
+        {
+          "type": "formula",
+          "text": " e=\\frac{1980}{660}"
+        },
+        {
+          "type": "formula",
+          "text": " e=3"
+        },
+        {
+          "type": "text",
+          "text": "Sei corrisponderebbe a due fotoni con questa lunghezza d’onda, non a uno. 1/3 è il reciproco del valore normalizzato richiesto; 1980 omette la divisione per ℓ. Un valore in joule va distinto dal suo numero e nelle unità E_*."
+        }
+      ],
+      "hints": [
+        "Ricava prima l’energia di un fotone e controlla il prefisso nano.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sei corrisponderebbe a due fotoni con questa lunghezza d’onda, non a uno. 1/3 è il reciproco del valore normalizzato richiesto; 1980 omette la divisione per ℓ. Un valore in joule va distinto dal suo numero e nelle unità E_*.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Energia del fotone e lunghezza d’onda nel vuoto",
+        "Conteggi interi e conversioni nano",
+        "Inverse, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-photon-packet-wavelength-02",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia di pacchetti a lunghezza d’onda assegnata",
+      "order": 24502,
+      "title": "La dimensione dell’energia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "photon-packet-wavelength",
+      "difficulty": 1,
+      "prompt": "Si chiede l’energia totale di un pacchetto di fotoni. Quale unità è dimensionalmente adatta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "J",
+          "Hz",
+          "W",
+          "nm",
+          "J/s"
+        ],
+        "value": "J"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il numero di fotoni è adimensionale. Moltiplicare N per l’energia hc/λ₀ mantiene la dimensione di un’energia: un joule. Anche 10⁻¹⁹ J è un’unità energetica di scala diversa; non è una frequenza né una potenza."
+        },
+        {
+          "type": "formula",
+          "text": "[h]=\\mathrm{J\\,s}"
+        },
+        {
+          "type": "formula",
+          "text": " [c/\\lambda_0]=\\mathrm{s^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " [E]=\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Hz misura una frequenza, W e J/s sono potenze equivalenti, nm una lunghezza. La presenza della lunghezza d’onda nel denominatore della legge non rende l’energia una lunghezza."
+        }
+      ],
+      "hints": [
+        "Segui le unità di h, c e λ₀ nel prodotto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "Hz misura una frequenza, W e J/s sono potenze equivalenti, nm una lunghezza. La presenza della lunghezza d’onda nel denominatore della legge non rende l’energia una lunghezza.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Energia del fotone e lunghezza d’onda nel vuoto",
+        "Conteggi interi e conversioni nano",
+        "Inverse, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-photon-packet-wavelength-03",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia di pacchetti a lunghezza d’onda assegnata",
+      "order": 24503,
+      "title": "Una legge fisica, due forme",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "photon-packet-wavelength",
+      "difficulty": 1,
+      "prompt": "Un pacchetto contiene N fotoni monocromatici di lunghezza d’onda nel vuoto λ₀>0. N è intero positivo. Per questo esercizio si assumono h=6,6×10⁻³⁴ J·s e c=3×10⁸ m/s; i risultati sono esatti entro questi dati assegnati. Poniamo E_*=10⁻¹⁹ J, e=E/E_* e ℓ=λ₀/(1 nm). Quale relazione dà l’energia normalizzata e?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "e = 1980 N / ℓ",
+          "e = 1980 N ℓ",
+          "e = ℓ / (1980 N)",
+          "e = 1980 ℓ / N",
+          "e = 1980 N² / ℓ"
+        ],
+        "value": "e = 1980 N / ℓ"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La relazione di Planck vale per ogni fotone e la somma sul pacchetto è lineare nel conteggio. Sostituire λ₀=ℓ·10⁻⁹ m in Nhc/λ₀ e dividere per E_* produce e=1980N/ℓ. Il numero ℓ è adimensionale; se si scrive invece λ₀ come grandezza fisica occorre mantenere hc con le sue unità."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/d6297f39b48f71e73324adf87dee6f455940b83ab85b07fc3511355a354253fc",
+          "text": "La relazione E=Nhc/λ₀ distingue il conteggio N dall’energia di ciascun fotone. Il caso a 330 nm ha lunghezza d’onda dimezzata; il secondo pannello considera anche il raddoppio di N."
+        },
+        {
+          "type": "formula",
+          "text": "E=\\frac{Nhc}{\\lambda_0}"
+        },
+        {
+          "type": "formula",
+          "text": " \\lambda_0=\\ell\\,\\mathrm{nm}"
+        },
+        {
+          "type": "formula",
+          "text": " e=\\frac{1980N}{\\ell}"
+        },
+        {
+          "type": "text",
+          "text": "Moltiplicare per ℓ renderebbe più energetici i fotoni di lunghezza d’onda maggiore. I reciproci scambiano la dipendenza da N, mentre N² introdurrebbe un’interazione assente nel modello di somma di energie."
+        }
+      ],
+      "hints": [
+        "Distingui la grandezza λ₀ dal suo numero ℓ in nanometri.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Moltiplicare per ℓ renderebbe più energetici i fotoni di lunghezza d’onda maggiore. I reciproci scambiano la dipendenza da N, mentre N² introdurrebbe un’interazione assente nel modello di somma di energie.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Energia del fotone e lunghezza d’onda nel vuoto",
+        "Conteggi interi e conversioni nano",
+        "Inverse, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-photon-packet-wavelength-04",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia di pacchetti a lunghezza d’onda assegnata",
+      "order": 24504,
+      "title": "Raddoppiare un conteggio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "photon-packet-wavelength",
+      "difficulty": 1,
+      "prompt": "Un pacchetto contiene N fotoni monocromatici di lunghezza d’onda nel vuoto λ₀>0. N è intero positivo. Per questo esercizio si assumono h=6,6×10⁻³⁴ J·s e c=3×10⁸ m/s; i risultati sono esatti entro questi dati assegnati. Poniamo E_*=10⁻¹⁹ J, e=E/E_* e ℓ=λ₀/(1 nm). A contiene N=1 fotone a 660 nm. B contiene N=2 fotoni alla stessa λ₀. Come cambia E?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 3 E_* a 6 E_*",
+          "Da 3 E_* a (3/2) E_*",
+          "Da 3 E_* a 12 E_*",
+          "Resta 3 E_*",
+          "Diventa zero"
+        ],
+        "value": "Da 3 E_* a 6 E_*"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’energia di ciascun fotone resta 3 E_*. Nel secondo pacchetto si sommano due contributi uguali: 6 E_*. Entrambi i conteggi sono interi e la lunghezza d’onda non cambia. Il confronto non descrive la divisione dell’energia di un singolo fotone in due parti."
+        },
+        {
+          "type": "formula",
+          "text": "E_A=3E_*"
+        },
+        {
+          "type": "formula",
+          "text": " E_B=2\\cdot3E_*"
+        },
+        {
+          "type": "formula",
+          "text": " E_B=6E_*"
+        },
+        {
+          "type": "formula",
+          "text": " E_B/E_A=2"
+        },
+        {
+          "type": "text",
+          "text": "3/2 E_* segue una dipendenza inversa dal conteggio; 12 E_* introduce il quadrato del fattore due. Tre ignora il secondo fotone e zero contraddice N>0 ed energia positiva."
+        }
+      ],
+      "hints": [
+        "A λ₀ fissata, aggiungere un fotone aggiunge un’energia hc/λ₀.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "3/2 E_* segue una dipendenza inversa dal conteggio; 12 E_* introduce il quadrato del fattore due. Tre ignora il secondo fotone e zero contraddice N>0 ed energia positiva.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Energia del fotone e lunghezza d’onda nel vuoto",
+        "Conteggi interi e conversioni nano",
+        "Inverse, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-photon-packet-wavelength-05",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia di pacchetti a lunghezza d’onda assegnata",
+      "order": 24505,
+      "title": "L’inversa deve restituire un intero",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "photon-packet-wavelength",
+      "difficulty": 2,
+      "prompt": "Un pacchetto contiene N fotoni monocromatici di lunghezza d’onda nel vuoto λ₀>0. N è intero positivo. Per questo esercizio si assumono h=6,6×10⁻³⁴ J·s e c=3×10⁸ m/s; i risultati sono esatti entro questi dati assegnati. Poniamo E_*=10⁻¹⁹ J, e=E/E_* e ℓ=λ₀/(1 nm). Un pacchetto a λ₀=660 nm ha E=3 E_*. Quanti fotoni contiene?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Isolo il conteggio nella legge dell’energia. Ogni fotone a 660 nm porta 3 E_*; il rapporto fra l’energia totale e quella di un fotone vale uno. Il valore positivo ottenuto è anche intero, condizione essenziale per un pacchetto concreto."
+        },
+        {
+          "type": "formula",
+          "text": "N=\\frac{E\\lambda_0}{hc}"
+        },
+        {
+          "type": "formula",
+          "text": " N=\\frac{e\\ell}{1980}"
+        },
+        {
+          "type": "formula",
+          "text": " N=\\frac{3\\cdot660}{1980}"
+        },
+        {
+          "type": "formula",
+          "text": " N=1"
+        },
+        {
+          "type": "text",
+          "text": "Tre copia il numero e dell’energia, mentre due predirebbe 6 E_*. Il risultato 1/3 non sarebbe un conteggio ammissibile in questo quesito e non ricostruirebbe l’energia assegnata."
+        }
+      ],
+      "hints": [
+        "Dividi l’energia totale per quella di un singolo fotone.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre copia il numero e dell’energia, mentre due predirebbe 6 E_*. Il risultato 1/3 non sarebbe un conteggio ammissibile in questo quesito e non ricostruirebbe l’energia assegnata.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Energia del fotone e lunghezza d’onda nel vuoto",
+        "Conteggi interi e conversioni nano",
+        "Inverse, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-photon-packet-wavelength-06",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia di pacchetti a lunghezza d’onda assegnata",
+      "order": 24506,
+      "title": "Ricostruire la lunghezza d’onda",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "photon-packet-wavelength",
+      "difficulty": 2,
+      "prompt": "Un pacchetto contiene N fotoni monocromatici di lunghezza d’onda nel vuoto λ₀>0. N è intero positivo. Per questo esercizio si assumono h=6,6×10⁻³⁴ J·s e c=3×10⁸ m/s; i risultati sono esatti entro questi dati assegnati. Poniamo E_*=10⁻¹⁹ J, e=E/E_* e ℓ=λ₀/(1 nm). Si hanno N=1 ed E=3 E_*. Quanto vale λ₀ in nm?",
+      "answer": {
+        "type": "numeric",
+        "value": 660,
+        "unit": "nm",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A conteggio noto, la lunghezza d’onda è Nhc/E. Nella forma normalizzata ℓ=1980N/e, quindi ℓ=660. L’inversa dà la lunghezza d’onda nel vuoto: sostituire una lunghezza nel mezzo richiederebbe conoscere anche l’indice."
+        },
+        {
+          "type": "formula",
+          "text": "\\lambda_0=\\frac{Nhc}{E}"
+        },
+        {
+          "type": "formula",
+          "text": " \\ell=\\frac{1980N}{e}"
+        },
+        {
+          "type": "formula",
+          "text": " \\ell=660"
+        },
+        {
+          "type": "formula",
+          "text": " \\lambda_0=660\\,\\mathrm{nm}"
+        },
+        {
+          "type": "text",
+          "text": "330 nm darebbe 6 E_* e 1320 nm darebbe (3/2) E_* con un fotone. 1980 nm darebbe E_*, non 3 E_*. La verifica diretta evita di attribuire un’unità di energia al numero 660."
+        }
+      ],
+      "hints": [
+        "Lunghezza d’onda ed energia sono inversamente proporzionali a N fissato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "330 nm darebbe 6 E_* e 1320 nm darebbe (3/2) E_* con un fotone. 1980 nm darebbe E_*, non 3 E_*. La verifica diretta evita di attribuire un’unità di energia al numero 660.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Energia del fotone e lunghezza d’onda nel vuoto",
+        "Conteggi interi e conversioni nano",
+        "Inverse, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-photon-packet-wavelength-07",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia di pacchetti a lunghezza d’onda assegnata",
+      "order": 24507,
+      "title": "Stesso conteggio, metà lunghezza d’onda",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "photon-packet-wavelength",
+      "difficulty": 2,
+      "prompt": "Un pacchetto contiene N fotoni monocromatici di lunghezza d’onda nel vuoto λ₀>0. N è intero positivo. Per questo esercizio si assumono h=6,6×10⁻³⁴ J·s e c=3×10⁸ m/s; i risultati sono esatti entro questi dati assegnati. Poniamo E_*=10⁻¹⁹ J, e=E/E_* e ℓ=λ₀/(1 nm). A usa N=1, λ₀=660 nm; B usa N=1, λ₀=330 nm. Quanto vale E_B/E_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/2",
+          "1",
+          "4",
+          "330"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Con lo stesso numero di fotoni, dimezzare λ₀ raddoppia la frequenza e l’energia. Le due uscite sono 3 E_* e 6 E_*. Il quoziente finale su iniziale è due e non porta unità."
+        },
+        {
+          "type": "formula",
+          "text": "e_A=3"
+        },
+        {
+          "type": "formula",
+          "text": " e_B=6"
+        },
+        {
+          "type": "formula",
+          "text": " E_B/E_A=6/3"
+        },
+        {
+          "type": "formula",
+          "text": " E_B/E_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo segue direttamente λ₀ anziché il suo inverso; quattro aggiunge un quadrato. Uno ignora il cambiamento e 330 ripete un dato di lunghezza senza formare un rapporto."
+        }
+      ],
+      "hints": [
+        "Il numeratore N resta uguale nelle due leggi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo segue direttamente λ₀ anziché il suo inverso; quattro aggiunge un quadrato. Uno ignora il cambiamento e 330 ripete un dato di lunghezza senza formare un rapporto.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Energia del fotone e lunghezza d’onda nel vuoto",
+        "Conteggi interi e conversioni nano",
+        "Inverse, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-photon-packet-wavelength-08",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia di pacchetti a lunghezza d’onda assegnata",
+      "order": 24508,
+      "title": "Il segno di uno scarto energetico",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "photon-packet-wavelength",
+      "difficulty": 2,
+      "prompt": "Un pacchetto contiene N fotoni monocromatici di lunghezza d’onda nel vuoto λ₀>0. N è intero positivo. Per questo esercizio si assumono h=6,6×10⁻³⁴ J·s e c=3×10⁸ m/s; i risultati sono esatti entro questi dati assegnati. Poniamo E_*=10⁻¹⁹ J, e=E/E_* e ℓ=λ₀/(1 nm). Per N=1 e λ₀=660 nm viene proposta E=6 E_*. Quanto vale proposta meno corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3 E_*",
+          "−3 E_*",
+          "2",
+          "6 E_*",
+          "0 E_*"
+        ],
+        "value": "3 E_*"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La legge indipendente dà 3 E_*. La proposta di 6 E_* è maggiore: sottraggo nell’ordine indicato e trovo +3 E_*. Il rapporto delle due energie sarebbe invece due, una quantità diversa dallo scarto."
+        },
+        {
+          "type": "formula",
+          "text": "E=3E_*"
+        },
+        {
+          "type": "formula",
+          "text": " \\delta E=(6-3)E_*"
+        },
+        {
+          "type": "formula",
+          "text": " \\delta E=3E_*"
+        },
+        {
+          "type": "text",
+          "text": "−3 E_* inverte la sottrazione; due è un rapporto puro. Sei copia la proposta e zero la accetta senza confrontarla con Nhc/λ₀."
+        }
+      ],
+      "hints": [
+        "Scrivi prima le due energie nella stessa unità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−3 E_* inverte la sottrazione; due è un rapporto puro. Sei copia la proposta e zero la accetta senza confrontarla con Nhc/λ₀.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Energia del fotone e lunghezza d’onda nel vuoto",
+        "Conteggi interi e conversioni nano",
+        "Inverse, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-photon-packet-wavelength-09",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia di pacchetti a lunghezza d’onda assegnata",
+      "order": 24509,
+      "title": "Isolare il conteggio senza perdere hc",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "photon-packet-wavelength",
+      "difficulty": 2,
+      "prompt": "Un pacchetto contiene N fotoni monocromatici di lunghezza d’onda nel vuoto λ₀>0. N è intero positivo. Per questo esercizio si assumono h=6,6×10⁻³⁴ J·s e c=3×10⁸ m/s; i risultati sono esatti entro questi dati assegnati. Poniamo E_*=10⁻¹⁹ J, e=E/E_* e ℓ=λ₀/(1 nm). E e λ₀ sono noti. Quale formula isola N?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "N = E λ₀ / (h c)",
+          "N = E / (h c λ₀)",
+          "N = h c / (E λ₀)",
+          "N = E h c / λ₀",
+          "N = E λ₀ / h"
+        ],
+        "value": "N = E λ₀ / (h c)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Da Eλ₀=Nhc divido per hc, strettamente positivo. Eλ₀ e hc hanno entrambi unità J·m, perciò N è un numero puro. L’inversa deve poi essere confrontata con il dominio intero del conteggio; non basta una soluzione reale."
+        },
+        {
+          "type": "formula",
+          "text": "E\\lambda_0=Nhc"
+        },
+        {
+          "type": "formula",
+          "text": " N=\\frac{E\\lambda_0}{hc}"
+        },
+        {
+          "type": "formula",
+          "text": " [N]=1"
+        },
+        {
+          "type": "text",
+          "text": "E/(hcλ₀) ha dimensione m⁻²; hc/(Eλ₀) è il reciproco del conteggio, non la sua inversa algebrica richiesta. Eλ₀/h ha unità di velocità. Moltiplicare per hc anziché dividerlo non isola N."
+        }
+      ],
+      "hints": [
+        "Moltiplica prima l’uguaglianza per λ₀.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "E/(hcλ₀) ha dimensione m⁻²; hc/(Eλ₀) è il reciproco del conteggio, non la sua inversa algebrica richiesta. Eλ₀/h ha unità di velocità. Moltiplicare per hc anziché dividerlo non isola N.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Energia del fotone e lunghezza d’onda nel vuoto",
+        "Conteggi interi e conversioni nano",
+        "Inverse, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-photon-packet-wavelength-10",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia di pacchetti a lunghezza d’onda assegnata",
+      "order": 24510,
+      "title": "Scalare due parametri con conteggi ammessi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "photon-packet-wavelength",
+      "difficulty": 2,
+      "prompt": "Un pacchetto contiene N fotoni monocromatici di lunghezza d’onda nel vuoto λ₀>0. N è intero positivo. Per questo esercizio si assumono h=6,6×10⁻³⁴ J·s e c=3×10⁸ m/s; i risultati sono esatti entro questi dati assegnati. Poniamo E_*=10⁻¹⁹ J, e=E/E_* e ℓ=λ₀/(1 nm). N_B=κ₁N_A e λ₀,B=κ₂λ₀,A, con fattori positivi e N_A,N_B interi. Quanto vale E_B/E_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ / κ₂",
+          "κ₁ κ₂",
+          "κ₂ / κ₁",
+          "κ₁² / κ₂",
+          "κ₁ + κ₂"
+        ],
+        "value": "κ₁ / κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La legge è diretta in N e inversa in λ₀. Sostituisco i due fattori e cancello hc insieme ai dati iniziali: resta κ₁/κ₂. κ₁ non deve essere per forza intero; deve però trasformare il conteggio iniziale in un altro intero positivo."
+        },
+        {
+          "type": "formula",
+          "text": "E_B=\\frac{\\kappa_1N_Ahc}{\\kappa_2\\lambda_{0,A}}"
+        },
+        {
+          "type": "formula",
+          "text": " E_B/E_A=\\frac{\\kappa_1}{\\kappa_2}"
+        },
+        {
+          "type": "text",
+          "text": "Il prodotto rende diretta la dipendenza dalla lunghezza d’onda. Il quoziente inverso scambia i due stati. Il quadrato di κ₁ non è nella somma di energie e la somma darebbe due per prove identiche."
+        }
+      ],
+      "hints": [
+        "Controlla sia la legge del rapporto sia l’integralità di κ₁N_A.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il prodotto rende diretta la dipendenza dalla lunghezza d’onda. Il quoziente inverso scambia i due stati. Il quadrato di κ₁ non è nella somma di energie e la somma darebbe due per prove identiche.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Energia del fotone e lunghezza d’onda nel vuoto",
+        "Conteggi interi e conversioni nano",
+        "Inverse, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-photon-packet-wavelength-11",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia di pacchetti a lunghezza d’onda assegnata",
+      "order": 24511,
+      "title": "Due modifiche che aumentano l’energia",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "photon-packet-wavelength",
+      "difficulty": 2,
+      "prompt": "Un pacchetto contiene N fotoni monocromatici di lunghezza d’onda nel vuoto λ₀>0. N è intero positivo. Per questo esercizio si assumono h=6,6×10⁻³⁴ J·s e c=3×10⁸ m/s; i risultati sono esatti entro questi dati assegnati. Poniamo E_*=10⁻¹⁹ J, e=E/E_* e ℓ=λ₀/(1 nm). A usa N=1, λ₀=660 nm; B usa N=2, λ₀=330 nm. Quanto vale E_B/E_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4",
+          "1/4",
+          "2",
+          "1",
+          "3"
+        ],
+        "value": "4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "In B ci sono due fotoni e ciascuno è due volte più energetico. Si passa da 3 E_* a 12 E_*: il rapporto è quattro. I due fattori si moltiplicano perché il dimezzamento della lunghezza d’onda agisce al denominatore."
+        },
+        {
+          "type": "formula",
+          "text": "e_A=3"
+        },
+        {
+          "type": "formula",
+          "text": " e_B=\\frac{1980\\cdot2}{330}"
+        },
+        {
+          "type": "formula",
+          "text": " e_B=12"
+        },
+        {
+          "type": "formula",
+          "text": " E_B/E_A=4"
+        },
+        {
+          "type": "text",
+          "text": "Due considera una sola modifica; un quarto inverte il rapporto. Uno tratterebbe N e λ₀ come fattori diretti compensanti, mentre tre copia l’energia iniziale normalizzata."
+        }
+      ],
+      "hints": [
+        "Conta separatamente quanti fotoni ci sono e quanto porta ciascuno.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due considera una sola modifica; un quarto inverte il rapporto. Uno tratterebbe N e λ₀ come fattori diretti compensanti, mentre tre copia l’energia iniziale normalizzata.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Energia del fotone e lunghezza d’onda nel vuoto",
+        "Conteggi interi e conversioni nano",
+        "Inverse, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-photon-packet-wavelength-12",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia di pacchetti a lunghezza d’onda assegnata",
+      "order": 24512,
+      "title": "Media di energie, non di conteggi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "photon-packet-wavelength",
+      "difficulty": 2,
+      "prompt": "Un pacchetto contiene N fotoni monocromatici di lunghezza d’onda nel vuoto λ₀>0. N è intero positivo. Per questo esercizio si assumono h=6,6×10⁻³⁴ J·s e c=3×10⁸ m/s; i risultati sono esatti entro questi dati assegnati. Poniamo E_*=10⁻¹⁹ J, e=E/E_* e ℓ=λ₀/(1 nm). A usa N=1, λ₀=660 nm; B usa N=2, λ₀=330 nm. Qual è la media aritmetica delle due energie con pesi uguali?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "(15/2) E_*",
+          "6 E_*",
+          "15 E_*",
+          "(9/2) E_*",
+          "12 E_*"
+        ],
+        "value": "(15/2) E_*"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Calcolo prima le energie fisiche dei due pacchetti, 3 E_* e 12 E_*. La loro media è (15/2) E_*. Non occorre che un’energia media sia un multiplo intero di una stessa energia di fotone, perché le due lunghezze d’onda sono diverse. I dati medi avrebbero N=3/2, che non descrive un singolo pacchetto; la loro sostituzione formale darebbe 6 E_*, comunque diversa dalla media richiesta."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/d6297f39b48f71e73324adf87dee6f455940b83ab85b07fc3511355a354253fc",
+          "text": "Le energie 3 E_* e 12 E_* hanno media (15/2) E_*. Nell’ultimo pannello sono segnate soltanto coppie discrete del vincolo λ₀=(660 nm)N; i punti non autorizzano conteggi frazionari."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline E=\\frac{3+12}{2}E_*"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline E=\\frac{15}{2}E_*"
+        },
+        {
+          "type": "formula",
+          "text": " N_{\\rm medio}=\\frac32"
+        },
+        {
+          "type": "formula",
+          "text": " e_{\\rm dati\\ medi}=6"
+        },
+        {
+          "type": "text",
+          "text": "Sei deriva dalla sostituzione formale degli ingressi medi, con conteggio non intero. Quindici somma senza dimezzare; 9/2 è la semidifferenza e dodici ripete B. La media delle letture è una statistica fra preparazioni."
+        }
+      ],
+      "hints": [
+        "Ottieni le due energie prima di applicare il peso un mezzo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sei deriva dalla sostituzione formale degli ingressi medi, con conteggio non intero. Quindici somma senza dimezzare; 9/2 è la semidifferenza e dodici ripete B. La media delle letture è una statistica fra preparazioni.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Energia del fotone e lunghezza d’onda nel vuoto",
+        "Conteggi interi e conversioni nano",
+        "Inverse, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-photon-packet-wavelength-13",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia di pacchetti a lunghezza d’onda assegnata",
+      "order": 24513,
+      "title": "La lunghezza richiesta da un bersaglio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "photon-packet-wavelength",
+      "difficulty": 3,
+      "prompt": "Un pacchetto contiene N fotoni monocromatici di lunghezza d’onda nel vuoto λ₀>0. N è intero positivo. Per questo esercizio si assumono h=6,6×10⁻³⁴ J·s e c=3×10⁸ m/s; i risultati sono esatti entro questi dati assegnati. Poniamo E_*=10⁻¹⁹ J, e=E/E_* e ℓ=λ₀/(1 nm). A usa N=1, λ₀=660 nm. B deve avere N=2 ed E_B=4E_A. Quanto vale λ₀,B/λ₀,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "2",
+          "4",
+          "1/4",
+          "1"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio energetico è 12 E_*. Con N=2, ℓ_B=1980·2/12=330. Rispetto ai 660 nm iniziali, il rapporto delle lunghezze è un mezzo. Non è necessario approssimare alcuna costante oltre ai valori già assegnati."
+        },
+        {
+          "type": "formula",
+          "text": "e_B=12"
+        },
+        {
+          "type": "formula",
+          "text": " \\ell_B=330"
+        },
+        {
+          "type": "formula",
+          "text": " \\lambda_{0,B}/\\lambda_{0,A}=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Due invertirebbe il rapporto e darebbe E_B=E_A; quattro darebbe metà dell’energia iniziale. Un quarto darebbe fattore energetico otto, mentre uno darebbe soltanto due."
+        }
+      ],
+      "hints": [
+        "Ricostruisci il bersaglio energetico prima di isolare λ₀,B.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due invertirebbe il rapporto e darebbe E_B=E_A; quattro darebbe metà dell’energia iniziale. Un quarto darebbe fattore energetico otto, mentre uno darebbe soltanto due.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Energia del fotone e lunghezza d’onda nel vuoto",
+        "Conteggi interi e conversioni nano",
+        "Inverse, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-photon-packet-wavelength-14",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia di pacchetti a lunghezza d’onda assegnata",
+      "order": 24514,
+      "title": "Il display non conta direttamente fotoni",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "photon-packet-wavelength",
+      "difficulty": 3,
+      "prompt": "Un pacchetto contiene N fotoni monocromatici di lunghezza d’onda nel vuoto λ₀>0. N è intero positivo. Per questo esercizio si assumono h=6,6×10⁻³⁴ J·s e c=3×10⁸ m/s; i risultati sono esatti entro questi dati assegnati. Poniamo E_*=10⁻¹⁹ J, e=E/E_* e ℓ=λ₀/(1 nm). Un display continuo adimensionale D=g e senza offset legge 9 con N=1 e λ₀=660 nm. In B legge 36 a λ₀=330 nm. Quanto vale N_B?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento produce e=3, dunque g=3. La lettura nuova 36 corrisponde a e=12. A 330 nm ogni fotone porta 6 E_*: il numero è 12/6=2, intero positivo. La continuità del display non trasforma il conteggio fisico in una variabile continua."
+        },
+        {
+          "type": "formula",
+          "text": "g=9/3"
+        },
+        {
+          "type": "formula",
+          "text": " g=3"
+        },
+        {
+          "type": "formula",
+          "text": " e_B=36/3"
+        },
+        {
+          "type": "formula",
+          "text": " e_B=12"
+        },
+        {
+          "type": "formula",
+          "text": " N_B=\\frac{12\\cdot330}{1980}"
+        },
+        {
+          "type": "formula",
+          "text": " N_B=2"
+        },
+        {
+          "type": "text",
+          "text": "Sei fotoni darebbero e=36 e D=108: è l’errore di leggere il display come energia normalizzata. Uno darebbe D=18; trentasei copia il display senza la taratura o la conversione fisica."
+        }
+      ],
+      "hints": [
+        "Rimuovi prima il guadagno, poi dividi per l’energia di un fotone.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sei fotoni darebbero e=36 e D=108: è l’errore di leggere il display come energia normalizzata. Uno darebbe D=18; trentasei copia il display senza la taratura o la conversione fisica.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Energia del fotone e lunghezza d’onda nel vuoto",
+        "Conteggi interi e conversioni nano",
+        "Inverse, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-photon-packet-wavelength-15",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia di pacchetti a lunghezza d’onda assegnata",
+      "order": 24515,
+      "title": "Due riferimenti separano guadagno e offset",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "photon-packet-wavelength",
+      "difficulty": 3,
+      "prompt": "Un pacchetto contiene N fotoni monocromatici di lunghezza d’onda nel vuoto λ₀>0. N è intero positivo. Per questo esercizio si assumono h=6,6×10⁻³⁴ J·s e c=3×10⁸ m/s; i risultati sono esatti entro questi dati assegnati. Poniamo E_*=10⁻¹⁹ J, e=E/E_* e ℓ=λ₀/(1 nm). D=g e+b è continuo. A: N=1, λ₀=660 nm, D=7. B: N=2, λ₀=330 nm, D=25. C: λ₀=660 nm, D=13. Quanto vale N_C?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A e B hanno e=3 e 12. La differenza delle letture dà g=(25−7)/(12−3)=2; il riferimento A fissa b=1. D_C=13 corrisponde a e_C=6. A 660 nm ciascun fotone porta 3 E_* e il conteggio è due."
+        },
+        {
+          "type": "formula",
+          "text": "g=\\frac{25-7}{12-3}"
+        },
+        {
+          "type": "formula",
+          "text": " g=2"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " e_C=\\frac{13-1}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " e_C=6"
+        },
+        {
+          "type": "formula",
+          "text": " N_C=2"
+        },
+        {
+          "type": "text",
+          "text": "13/6 omette l’offset e non è neppure un conteggio intero; quattro omette il guadagno dopo aver tolto b e predirebbe D=25. Sei copia il numero energetico senza dividerlo per l’energia del fotone."
+        }
+      ],
+      "hints": [
+        "Le due energie di riferimento sono diverse, quindi il guadagno è identificabile.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "13/6 omette l’offset e non è neppure un conteggio intero; quattro omette il guadagno dopo aver tolto b e predirebbe D=25. Sei copia il numero energetico senza dividerlo per l’energia del fotone.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Energia del fotone e lunghezza d’onda nel vuoto",
+        "Conteggi interi e conversioni nano",
+        "Inverse, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-photon-packet-wavelength-16",
+      "kind": "question",
+      "course": "C5",
+      "section": "Energia di pacchetti a lunghezza d’onda assegnata",
+      "order": 24516,
+      "title": "Una scala libera, ma soltanto su conteggi interi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L02",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "photon-packet-wavelength",
+      "difficulty": 3,
+      "prompt": "Un pacchetto contiene N fotoni monocromatici di lunghezza d’onda nel vuoto λ₀>0. N è intero positivo. Per questo esercizio si assumono h=6,6×10⁻³⁴ J·s e c=3×10⁸ m/s; i risultati sono esatti entro questi dati assegnati. Poniamo E_*=10⁻¹⁹ J, e=E/E_* e ℓ=λ₀/(1 nm). Fra preparazioni si impone N=ℓ/660. Si misura anche E=3 E_*. Quante coppie (N,λ₀) sono ammesse?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Infinite coppie discrete, con N intero positivo",
+          "Una sola coppia",
+          "Due coppie",
+          "Nessuna coppia",
+          "Tutte le coppie reali positive"
+        ],
+        "value": "Infinite coppie discrete, con N intero positivo"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituendo il vincolo, e=1980N/(660N)=3: la misura non aggiunge un’equazione indipendente. L’integralità resta però essenziale. Per ogni intero N≥1 si può scegliere λ₀=(660 nm)N; per esempio (1,660 nm) e (2,1320 nm). Ci sono infinite coppie enumerabili, non un continuo di valori di N."
+        },
+        {
+          "type": "formula",
+          "text": "\\ell=660N"
+        },
+        {
+          "type": "formula",
+          "text": " e=\\frac{1980N}{660N}"
+        },
+        {
+          "type": "formula",
+          "text": " e=3"
+        },
+        {
+          "type": "formula",
+          "text": " N\\in\\{1,2,3,\\ldots\\}"
+        },
+        {
+          "type": "text",
+          "text": "Una o due coppie richiederebbero un dato indipendente che fissi la scala. La risposta “Nessuna coppia” è smentita dagli esempi. Tutte le coppie reali positive includerebbe frazioni di fotone, escluse dal modello di pacchetto."
+        }
+      ],
+      "hints": [
+        "Distingui la ridondanza della misura dal dominio intero di N.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Una o due coppie richiederebbero un dato indipendente che fissi la scala. La risposta “Nessuna coppia” è smentita dagli esempi. Tutte le coppie reali positive includerebbe frazioni di fotone, escluse dal modello di pacchetto.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Energia del fotone e lunghezza d’onda nel vuoto",
+        "Conteggi interi e conversioni nano",
+        "Inverse, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "d6297f39b48f71e73324adf87dee6f455940b83ab85b07fc3511355a354253fc",
+      "name": "photon-packet-wavelength-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTYwMCIgdmlld0JveD0iMCAwIDY0MCAxNjAwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyIgZm9udC1mYW1pbHk9InN5c3RlbS11aSwgc2Fucy1zZXJpZiI+PHRpdGxlIGlkPSJ0aXRsZSI+THVuZ2hlenphIGTigJlvbmRhLCBlbmVyZ2lhIGUgY29udGVnZ2kgaW50ZXJpPC90aXRsZT48ZGVzYyBpZD0iZGVzYyI+RHVlIGx1bmdoZXp6ZSBk4oCZb25kYSBuZWwgdnVvdG8sIGVuZXJnaWUgZGVpIHBhY2NoZXR0aSBlIHRyZSBjb3BwaWUgZGlzY3JldGUgZGkgY29udGVnZ2lvIGUgbHVuZ2hlenphIGTigJlvbmRhLjwvZGVzYz48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iNjQwIiBoZWlnaHQ9IjE2MDAiIGZpbGw9IiNmZmYiLz48dGV4dCB4PSIzNSIgeT0iNDgiIGZvbnQtc2l6ZT0iMjUiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+Rm90b25pOiBxdWFudG8gcG9ydGEgY2lhc2N1bm8/PC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSI5OCIgZm9udC1zaXplPSIyMiIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij4xIMK3IENvbmZyb250byBzcGF6aWFsZSBhbGxhIHN0ZXNzYSBzY2FsYTwvdGV4dD48bGluZSB4MT0iMTQwIiB5MT0iMTgwIiB4Mj0iNDgwIiB5Mj0iMTgwIiBzdHJva2U9IiNiNmMzY2EiIHN0cm9rZS13aWR0aD0iMiIvPjxwYXRoIGQ9Ik0xNTAgMTgwLjAwMDAgTDE1MyAxNzguNTU1OCBMMTU2IDE3Ny4xMTczIEwxNTkgMTc1LjY5MDIgTDE2MiAxNzQuMjgwMSBMMTY1IDE3Mi44OTI2IEwxNjggMTcxLjUzMzEgTDE3MSAxNzAuMjA3MSBMMTc0IDE2OC45MTk3IEwxNzcgMTY3LjY3NjAgTDE4MCAxNjYuNDgwOSBMMTgzIDE2NS4zMzkyIEwxODYgMTY0LjI1NTQgTDE4OSAxNjMuMjMzNyBMMTkyIDE2Mi4yNzgyIEwxOTUgMTYxLjM5MjYgTDE5OCAxNjAuNTgwNSBMMjAxIDE1OS44NDQ5IEwyMDQgMTU5LjE4OTAgTDIwNyAxNTguNjE1MSBMMjEwIDE1OC4xMjU3IEwyMTMgMTU3LjcyMjYgTDIxNiAxNTcuNDA3NCBMMjE5IDE1Ny4xODE0IEwyMjIgMTU3LjA0NTQgTDIyNSAxNTcuMDAwMCBMMjI4IDE1Ny4wNDU0IEwyMzEgMTU3LjE4MTQgTDIzNCAxNTcuNDA3NCBMMjM3IDE1Ny43MjI2IEwyNDAgMTU4LjEyNTcgTDI0MyAxNTguNjE1MSBMMjQ2IDE1OS4xODkwIEwyNDkgMTU5Ljg0NDkgTDI1MiAxNjAuNTgwNSBMMjU1IDE2MS4zOTI2IEwyNTggMTYyLjI3ODIgTDI2MSAxNjMuMjMzNyBMMjY0IDE2NC4yNTU0IEwyNjcgMTY1LjMzOTIgTDI3MCAxNjYuNDgwOSBMMjczIDE2Ny42NzYwIEwyNzYgMTY4LjkxOTcgTDI3OSAxNzAuMjA3MSBMMjgyIDE3MS41MzMxIEwyODUgMTcyLjg5MjYgTDI4OCAxNzQuMjgwMSBMMjkxIDE3NS42OTAyIEwyOTQgMTc3LjExNzMgTDI5NyAxNzguNTU1OCBMMzAwIDE4MC4wMDAwIEwzMDMgMTgxLjQ0NDIgTDMwNiAxODIuODgyNyBMMzA5IDE4NC4zMDk4IEwzMTIgMTg1LjcxOTkgTDMxNSAxODcuMTA3NCBMMzE4IDE4OC40NjY5IEwzMjEgMTg5Ljc5MjkgTDMyNCAxOTEuMDgwMyBMMzI3IDE5Mi4zMjQwIEwzMzAgMTkzLjUxOTEgTDMzMyAxOTQuNjYwOCBMMzM2IDE5NS43NDQ2IEwzMzkgMTk2Ljc2NjMgTDM0MiAxOTcuNzIxOCBMMzQ1IDE5OC42MDc0IEwzNDggMTk5LjQxOTUgTDM1MSAyMDAuMTU1MSBMMzU0IDIwMC44MTEwIEwzNTcgMjAxLjM4NDkgTDM2MCAyMDEuODc0MyBMMzYzIDIwMi4yNzc0IEwzNjYgMjAyLjU5MjYgTDM2OSAyMDIuODE4NiBMMzcyIDIwMi45NTQ2IEwzNzUgMjAzLjAwMDAgTDM3OCAyMDIuOTU0NiBMMzgxIDIwMi44MTg2IEwzODQgMjAyLjU5MjYgTDM4NyAyMDIuMjc3NCBMMzkwIDIwMS44NzQzIEwzOTMgMjAxLjM4NDkgTDM5NiAyMDAuODExMCBMMzk5IDIwMC4xNTUxIEw0MDIgMTk5LjQxOTUgTDQwNSAxOTguNjA3NCBMNDA4IDE5Ny43MjE4IEw0MTEgMTk2Ljc2NjMgTDQxNCAxOTUuNzQ0NiBMNDE3IDE5NC42NjA4IEw0MjAgMTkzLjUxOTEgTDQyMyAxOTIuMzI0MCBMNDI2IDE5MS4wODAzIEw0MjkgMTg5Ljc5MjkgTDQzMiAxODguNDY2OSBMNDM1IDE4Ny4xMDc0IEw0MzggMTg1LjcxOTkgTDQ0MSAxODQuMzA5OCBMNDQ0IDE4Mi44ODI3IEw0NDcgMTgxLjQ0NDIgTDQ1MCAxODAuMDAwMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMzA2ZjhjIiBzdHJva2Utd2lkdGg9IjMiLz48bGluZSB4MT0iMTUwIiB5MT0iMjI4IiB4Mj0iNDUwIiB5Mj0iMjI4IiBzdHJva2U9IiM1MjY0NzQiIHN0cm9rZS13aWR0aD0iMiIvPjxsaW5lIHgxPSIxNTAiIHkxPSIyMjAiIHgyPSIxNTAiIHkyPSIyMzYiIHN0cm9rZT0iIzUyNjQ3NCIgc3Ryb2tlLXdpZHRoPSIyIi8+PGxpbmUgeDE9IjQ1MCIgeTE9IjIyMCIgeDI9IjQ1MCIgeTI9IjIzNiIgc3Ryb2tlPSIjNTI2NDc0IiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSIxNTAiIHk9IjI2MyIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5BOiDOu+KCgCA9IDY2MCBubTwvdGV4dD48bGluZSB4MT0iMTQwIiB5MT0iMzM1IiB4Mj0iNDgwIiB5Mj0iMzM1IiBzdHJva2U9IiNiNmMzY2EiIHN0cm9rZS13aWR0aD0iMiIvPjxwYXRoIGQ9Ik0xNTAgMzM1LjAwMDAgTDE1MyAzMzIuMTE3MyBMMTU2IDMyOS4yODAxIEwxNTkgMzI2LjUzMzEgTDE2MiAzMjMuOTE5NyBMMTY1IDMyMS40ODA5IEwxNjggMzE5LjI1NTQgTDE3MSAzMTcuMjc4MiBMMTc0IDMxNS41ODA1IEwxNzcgMzE0LjE4OTAgTDE4MCAzMTMuMTI1NyBMMTgzIDMxMi40MDc0IEwxODYgMzEyLjA0NTQgTDE4OSAzMTIuMDQ1NCBMMTkyIDMxMi40MDc0IEwxOTUgMzEzLjEyNTcgTDE5OCAzMTQuMTg5MCBMMjAxIDMxNS41ODA1IEwyMDQgMzE3LjI3ODIgTDIwNyAzMTkuMjU1NCBMMjEwIDMyMS40ODA5IEwyMTMgMzIzLjkxOTcgTDIxNiAzMjYuNTMzMSBMMjE5IDMyOS4yODAxIEwyMjIgMzMyLjExNzMgTDIyNSAzMzUuMDAwMCBMMjI4IDMzNy44ODI3IEwyMzEgMzQwLjcxOTkgTDIzNCAzNDMuNDY2OSBMMjM3IDM0Ni4wODAzIEwyNDAgMzQ4LjUxOTEgTDI0MyAzNTAuNzQ0NiBMMjQ2IDM1Mi43MjE4IEwyNDkgMzU0LjQxOTUgTDI1MiAzNTUuODExMCBMMjU1IDM1Ni44NzQzIEwyNTggMzU3LjU5MjYgTDI2MSAzNTcuOTU0NiBMMjY0IDM1Ny45NTQ2IEwyNjcgMzU3LjU5MjYgTDI3MCAzNTYuODc0MyBMMjczIDM1NS44MTEwIEwyNzYgMzU0LjQxOTUgTDI3OSAzNTIuNzIxOCBMMjgyIDM1MC43NDQ2IEwyODUgMzQ4LjUxOTEgTDI4OCAzNDYuMDgwMyBMMjkxIDM0My40NjY5IEwyOTQgMzQwLjcxOTkgTDI5NyAzMzcuODgyNyBMMzAwIDMzNS4wMDAwIEwzMDMgMzMyLjExNzMgTDMwNiAzMjkuMjgwMSBMMzA5IDMyNi41MzMxIEwzMTIgMzIzLjkxOTcgTDMxNSAzMjEuNDgwOSBMMzE4IDMxOS4yNTU0IEwzMjEgMzE3LjI3ODIgTDMyNCAzMTUuNTgwNSBMMzI3IDMxNC4xODkwIEwzMzAgMzEzLjEyNTcgTDMzMyAzMTIuNDA3NCBMMzM2IDMxMi4wNDU0IEwzMzkgMzEyLjA0NTQgTDM0MiAzMTIuNDA3NCBMMzQ1IDMxMy4xMjU3IEwzNDggMzE0LjE4OTAgTDM1MSAzMTUuNTgwNSBMMzU0IDMxNy4yNzgyIEwzNTcgMzE5LjI1NTQgTDM2MCAzMjEuNDgwOSBMMzYzIDMyMy45MTk3IEwzNjYgMzI2LjUzMzEgTDM2OSAzMjkuMjgwMSBMMzcyIDMzMi4xMTczIEwzNzUgMzM1LjAwMDAgTDM3OCAzMzcuODgyNyBMMzgxIDM0MC43MTk5IEwzODQgMzQzLjQ2NjkgTDM4NyAzNDYuMDgwMyBMMzkwIDM0OC41MTkxIEwzOTMgMzUwLjc0NDYgTDM5NiAzNTIuNzIxOCBMMzk5IDM1NC40MTk1IEw0MDIgMzU1LjgxMTAgTDQwNSAzNTYuODc0MyBMNDA4IDM1Ny41OTI2IEw0MTEgMzU3Ljk1NDYgTDQxNCAzNTcuOTU0NiBMNDE3IDM1Ny41OTI2IEw0MjAgMzU2Ljg3NDMgTDQyMyAzNTUuODExMCBMNDI2IDM1NC40MTk1IEw0MjkgMzUyLjcyMTggTDQzMiAzNTAuNzQ0NiBMNDM1IDM0OC41MTkxIEw0MzggMzQ2LjA4MDMgTDQ0MSAzNDMuNDY2OSBMNDQ0IDM0MC43MTk5IEw0NDcgMzM3Ljg4MjcgTDQ1MCAzMzUuMDAwMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMzA2ZjhjIiBzdHJva2Utd2lkdGg9IjMiLz48bGluZSB4MT0iMTUwIiB5MT0iMzgzIiB4Mj0iMzAwIiB5Mj0iMzgzIiBzdHJva2U9IiM1MjY0NzQiIHN0cm9rZS13aWR0aD0iMiIvPjxsaW5lIHgxPSIxNTAiIHkxPSIzNzUiIHgyPSIxNTAiIHkyPSIzOTEiIHN0cm9rZT0iIzUyNjQ3NCIgc3Ryb2tlLXdpZHRoPSIyIi8+PGxpbmUgeDE9IjMwMCIgeTE9IjM3NSIgeDI9IjMwMCIgeTI9IjM5MSIgc3Ryb2tlPSIjNTI2NDc0IiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSIxNTAiIHk9IjQxOCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij7Ou+KCgCA9IDMzMCBubTwvdGV4dD48dGV4dCB4PSIzNSIgeT0iNDc1IiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPlByb2ZpbGkgc2NoZW1hdGljaTsgbm9uIHRyYWlldHRvcmllIGRpIGZvdG9uaS48L3RleHQ+PHRleHQgeD0iMzUiIHk9IjUxMCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5M4oCZZW5lcmdpYSBkaSB1biBmb3RvbmUgw6ggaGMvzrvigoAuPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSI1NzAiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+MiDCtyBFbmVyZ2llIGRpIGR1ZSBwYWNjaGV0dGkgZSBtZWRpYTwvdGV4dD48dGV4dCB4PSIxMzAiIHk9IjY0MSIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9ImVuZCI+QTwvdGV4dD48cmVjdCB4PSIxNTAiIHk9IjYyMCIgd2lkdGg9Ijc1IiBoZWlnaHQ9IjMwIiBmaWxsPSIjM2Q3NzkxIi8+PHRleHQgeD0iMjM1IiB5PSI2NDMiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+MyBFXyo8L3RleHQ+PHRleHQgeD0iMTMwIiB5PSI3MzEiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJlbmQiPkI8L3RleHQ+PHJlY3QgeD0iMTUwIiB5PSI3MTAiIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAiIGZpbGw9IiM5ODZjMzUiLz48dGV4dCB4PSI0NjAiIHk9IjczMyIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij4xMiBFXyo8L3RleHQ+PHRleHQgeD0iMTMwIiB5PSI4MjEiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJlbmQiPm1lZGlhPC90ZXh0PjxyZWN0IHg9IjE1MCIgeT0iODAwIiB3aWR0aD0iMTg3LjUiIGhlaWdodD0iMzAiIGZpbGw9IiM2MzdlNTUiLz48dGV4dCB4PSIzNDcuNSIgeT0iODIzIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPigxNS8yKSBFXyo8L3RleHQ+PHRleHQgeD0iMzUiIHk9Ijg5NSIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5BOiBOID0gMSwgzrvigoAgPSA2NjAgbm08L3RleHQ+PHRleHQgeD0iMzUiIHk9IjkzMCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5COiBOID0gMiwgzrvigoAgPSAzMzAgbm08L3RleHQ+PHRleHQgeD0iMzUiIHk9Ijk2NSIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5FXyogPSAxMOKBu8K54oG5IEogwrcgb3JpZ2luZSBjb211bmUgYWxsZSBiYXJyZTwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMTA0MCIgZm9udC1zaXplPSIyMiIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij4zIMK3IM674oKAID0gKDY2MCBubSkgTjsgZW5lcmdpYSBpbnZhcmlhdGE8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjEwODAiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+U29ubyBhbW1lc3NpIHNvbHRhbnRvIE4gaW50ZXJpIHBvc2l0aXZpLjwvdGV4dD48bGluZSB4MT0iMTUwIiB5MT0iMTQ4MCIgeDI9IjU1MCIgeTI9IjE0ODAiIHN0cm9rZT0iIzUyNjQ3NCIgc3Ryb2tlLXdpZHRoPSIyIi8+PGxpbmUgeDE9IjE1MCIgeTE9IjE0ODAiIHgyPSIxNTAiIHkyPSIxMTc1IiBzdHJva2U9IiM1MjY0NzQiIHN0cm9rZS13aWR0aD0iMiIvPjxjaXJjbGUgY3g9IjI3MCIgY3k9IjE0MDAiIHI9IjUiIGZpbGw9IiMyNjZiODkiLz48bGluZSB4MT0iMjcwIiB5MT0iMTQ3NCIgeDI9IjI3MCIgeTI9IjE0ODYiIHN0cm9rZT0iIzUyNjQ3NCIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iMjcwIiB5PSIxNTIwIiBmb250LXNpemU9IjE3IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj42NjA8L3RleHQ+PGxpbmUgeDE9IjE0NCIgeTE9IjE0MDAiIHgyPSIxNTYiIHkyPSIxNDAwIiBzdHJva2U9IiM1MjY0NzQiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjEzMiIgeT0iMTQwNiIgZm9udC1zaXplPSIxNyIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9ImVuZCI+MTwvdGV4dD48Y2lyY2xlIGN4PSIzOTAiIGN5PSIxMzIwIiByPSI1IiBmaWxsPSIjMjY2Yjg5Ii8+PGxpbmUgeDE9IjM5MCIgeTE9IjE0NzQiIHgyPSIzOTAiIHkyPSIxNDg2IiBzdHJva2U9IiM1MjY0NzQiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjM5MCIgeT0iMTUyMCIgZm9udC1zaXplPSIxNyIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MTMyMDwvdGV4dD48bGluZSB4MT0iMTQ0IiB5MT0iMTMyMCIgeDI9IjE1NiIgeTI9IjEzMjAiIHN0cm9rZT0iIzUyNjQ3NCIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iMTMyIiB5PSIxMzI2IiBmb250LXNpemU9IjE3IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0iZW5kIj4yPC90ZXh0PjxjaXJjbGUgY3g9IjUxMCIgY3k9IjEyNDAiIHI9IjUiIGZpbGw9IiMyNjZiODkiLz48bGluZSB4MT0iNTEwIiB5MT0iMTQ3NCIgeDI9IjUxMCIgeTI9IjE0ODYiIHN0cm9rZT0iIzUyNjQ3NCIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iNTEwIiB5PSIxNTIwIiBmb250LXNpemU9IjE3IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj4xOTgwPC90ZXh0PjxsaW5lIHgxPSIxNDQiIHkxPSIxMjQwIiB4Mj0iMTU2IiB5Mj0iMTI0MCIgc3Ryb2tlPSIjNTI2NDc0IiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSIxMzIiIHk9IjEyNDYiIGZvbnQtc2l6ZT0iMTciIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJlbmQiPjM8L3RleHQ+PHRleHQgeD0iNTY2IiB5PSIxNDg3IiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPs674oKAPC90ZXh0Pjx0ZXh0IHg9IjUwMCIgeT0iMTU2MCIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij4obm0pPC90ZXh0Pjx0ZXh0IHg9IjEyOCIgeT0iMTE2MCIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5OPC90ZXh0Pjx0ZXh0IHg9IjE4MCIgeT0iMTE0OCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5OID0gMSwgMiwgMywg4oCmPC90ZXh0Pjwvc3ZnPgo="
+    }
+  ]
+}
