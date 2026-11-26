@@ -1,0 +1,65 @@
+{
+  "scope": "Historical exact-source technical CI SUCCESS; not current accepted state or adoption",
+  "runId": 45877605987,
+  "jobId": 140108548946,
+  "headSha": "5e27eeee4ec5b9ae499f174c633525547d9a423a",
+  "artifactId": 15146193587,
+  "artifactBytes": 153505274,
+  "artifactSha256": "ce8239b4ba04b48a6648080e4227bdcc87de912c90a0cbc4d3444724d450f026",
+  "boundedVerbatimArtifactParts": [
+    {
+      "path": "editorial/reviews/preintegration-45877605987-historical-success-20261126/upstream-artifact.zip.part-001",
+      "bytes": 41943040,
+      "sha256": "f8dc3467f2c7128ff8a6cf5d197331d5badb99c640b2479ffaeb130d8fecdce5"
+    },
+    {
+      "path": "editorial/reviews/preintegration-45877605987-historical-success-20261126/upstream-artifact.zip.part-002",
+      "bytes": 41943040,
+      "sha256": "fa063353c3ccfb2d71fe224a7b20a1173ec280ec464be2256d71905ce28c1c78"
+    },
+    {
+      "path": "editorial/reviews/preintegration-45877605987-historical-success-20261126/upstream-artifact.zip.part-003",
+      "bytes": 41943040,
+      "sha256": "c0f0b7498583ffc362ae302a4e34a1ab277dac651d432fa3ad567b74a3c61c41"
+    },
+    {
+      "path": "editorial/reviews/preintegration-45877605987-historical-success-20261126/upstream-artifact.zip.part-004",
+      "bytes": 27676154,
+      "sha256": "a3b96ca3058b406cf115d7ec17a41a5cf0fda4f1d7f7f816654f75eee0141710"
+    }
+  ],
+  "reconstruct": "Concatenate part001..004; verify whole SHA before extraction.",
+  "zipMemberCount": 2885,
+  "allMemberCRCsVerified": true,
+  "checkpoint": {
+    "generation": "generations/60dddac9165735027e748bd51bda1c08c758e68f6bb74c24491fe199702e4b67",
+    "manifestSha256": "6c01dcab427c0c3cefff37592897c3a71ecde3b1301230ce4d1be75e256dc8a2",
+    "questionCount": 4606,
+    "schemaVersion": "1.0.0"
+  },
+  "actualCounts": {
+    "questions": 4606,
+    "activities": 385,
+    "questionDrafts": 3792,
+    "reviewedActivities": 246
+  },
+  "fullTrackedSuite": {
+    "tests": 1133,
+    "seconds": 645.861,
+    "observedExitCode": 0
+  },
+  "canonicalUIValidator": {
+    "batches": 249,
+    "cases": 11427,
+    "actualExit": 0
+  },
+  "freshAndIncremental": "PASS_IDENTICAL_BYTES_ON_RUNNER",
+  "coexistence": "PASS",
+  "releaseSha256": "1893a06c9fda309c7c124501208a3fe0edee561ca4733de211d1548619955f3d",
+  "releasePackageVerification": "PASS_ON_EXACT_RUN_TREE",
+  "rootCheckpointPointerUnchanged": true,
+  "notAdoptedReason": "Current registry has explicit new activity withdrawal and wavelength240 package/peer proof changed after source5e; newer accepted C1/U7 lots await registration. Never retag this historical positive as current.",
+  "scientificCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}

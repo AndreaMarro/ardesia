@@ -1,0 +1,6 @@
+import{readFile,writeFile}from'node:fs/promises';
+import{validateBatchSpec,validateCompletion,sha256}from'../../tests/corpus/browser-batches-resume.mjs';
+const root=process.argv[2],out=process.argv[3],{specs,common}=JSON.parse(await readFile(root+'/validation-inputs.json'));
+let cases=0;const batches=[];
+for(const spec of specs){const id=spec.id,bytes=await readFile(root+'/frozen-packages/'+id+'.json'),pkg=JSON.parse(bytes),report=await readFile(root+'/corpus-preview-evidence/'+id+'/report.json'),marker=JSON.parse(await readFile(root+'/corpus-preview-evidence/'+id+'/completion.json'));validateBatchSpec(pkg,spec);validateCompletion(marker,report,pkg,{batch:id,packageFileSha256:sha256(bytes),...common});cases+=marker.caseCount;batches.push({id,packageSha256:sha256(bytes),caseCount:marker.caseCount});}
+if(batches.length!==249||cases!==11427)throw Error('Historical coverage differs');await writeFile(out,JSON.stringify({scope:'Read-only canonical UI validator, exact source5e packages, no persistence/adoption',batches,cases},null,2)+'\n');console.log('HISTORICAL_UI_VALID249/11427');
