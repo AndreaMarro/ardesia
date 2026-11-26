@@ -1,7 +1,7 @@
 {
   "phase": "AUTHOR_CANDIDATE_RUNTIME_EPOCH_NOT_INTEGRATED",
   "parentRuntimeSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
-  "candidateRuntimeSha256": "196deae92c6331690911108ac5fb3b6c8088bfb176d567760e9a7c45a0dc4662",
+  "candidateRuntimeSha256": "e591965431bc013d76c8b643cfbfc1e0d81d4caf45bc10af13d5f45948c70913",
   "onlyRuntimeFileChanged": [
     "static/js/banchi/voci/esperimento.js"
   ],
@@ -20,8 +20,20 @@
   "pilotAndReferencePaths": "PENDING_REAL_UI_REVIEW",
   "geometry17": "UNCHANGED_FAILURES_NOT_FIXED_BY_THIS_PATCH",
   "invalidation": "New runtime is isolated; do not retag old C1 closures or previews. Full dependent evidence must be replayed before integration.",
-  "rawArchiveSha256": "8aad9d8aab6b5758c3eb5ffdf63fa4625ae210e71f1b2d1ee2204f154b579503",
+  "rawArchiveSha256": "977db1183013d0df239be0adec23d801fac4e795d659bf554d0e6bb9446658fe",
   "rawMembers": [
+    {
+      "member": "decimal-final-full.txt",
+      "sha256": "7d2c86ef5c3da96a32cdee037b249708862d553e335f53931979fd1801645a2a"
+    },
+    {
+      "member": "decimal-roundoff-green.txt",
+      "sha256": "84900ff89206b54e8e076f35f5a6d138ef261e56d55a13cdf49561eceeb940af"
+    },
+    {
+      "member": "decimal-roundoff-red.txt",
+      "sha256": "e984e35fc0aaff75cdc55489735d0679e9cefbe213ae7c8c20ae1290f6638d73"
+    },
     {
       "member": "green-full-suite.txt",
       "sha256": "8720f5d98b23319b2d1a4d6fd6b6a862eef1ed6118c5255e9fcf7a7e69db6c49"
@@ -37,5 +49,17 @@
   ],
   "activityCredit": 0,
   "humanApproval": "NOT_RUN",
-  "publicationAction": "NONE"
+  "publicationAction": "NONE",
+  "decimalControllerFollowup": {
+    "red": "12tests,1real failure .1+.2 not equal .3",
+    "greenTarget": {
+      "tests": 12,
+      "seconds": 1.525
+    },
+    "greenGeneralSuite": {
+      "tests": 69,
+      "seconds": 18.244
+    },
+    "scope": "Only guide selection tolerates controller ulps, capped below a slider step. Worked calculation uses declared point; actual measurements/graded answers unchanged. Near90deg meaningful nonzero physics tested."
+  }
 }

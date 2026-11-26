@@ -152,6 +152,14 @@ export async function esperienza(record) {
       return readings;
     },
     steps(p, { x, y }) {
+      // Match controller roundoff, never a different legal slider step. The
+      // worked calculation uses the declared point; measurements retain x.
+      const assignedInput = selectedPoints.find((value) =>
+        Math.abs(value - x) <= Math.min(
+          a.step / 1e6,
+          8 * Number.EPSILON * Math.max(Math.abs(a.min), Math.abs(a.max), Math.abs(value), Math.abs(x), Number.MIN_VALUE),
+        ),
+      );
       return [
         ['Individua il fenomeno', record.interpretation, record.formula],
         [
@@ -165,11 +173,11 @@ export async function esperienza(record) {
             '.',
           a.label + ' = ' + fmt(x) + ' · ' + m.label + ' = ' + valore(y, m.unit),
         ],
-        selectedPoints.includes(x)
+        assignedInput !== undefined
           ? [
               'Controlla il calcolo',
               record.formula + '. Sostituisci i dati e confronta il risultato con la lettura dello strumento.',
-              calculation(x, y),
+              calculation(assignedInput, calc(assignedInput)),
             ]
           : [
               'Osserva la lettura del modello',

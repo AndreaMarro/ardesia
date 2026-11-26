@@ -11,7 +11,7 @@ ROOT=Path(__file__).resolve().parents[1]
 
 
 def browser_record(row,at=None):
-    code="import {esperienza} from './static/js/banchi/voci/esperimento.js';import{readFileSync}from'node:fs';const{row:r,at}=JSON.parse(readFileSync(0,'utf8'));const x=await esperienza(r);const input={x:at??r.control.min};console.log(JSON.stringify({assessment:x.record.assessment,prediction:x.record.prediction,references:x.record.references,steps:x.model.steps(input,x.model.solve(input))}));"
+    code="import {esperienza} from './static/js/banchi/voci/esperimento.js';import{readFileSync}from'node:fs';const{row:r,at}=JSON.parse(readFileSync(0,'utf8'));const x=await esperienza(r);const input={x:at??r.control.min};const current=x.model.solve(input);console.log(JSON.stringify({assessment:x.record.assessment,prediction:x.record.prediction,references:x.record.references,current,steps:x.model.steps(input,current)}));"
     p=subprocess.run(['node','--input-type=module','-e',code],cwd=ROOT,input=json.dumps({'row':row,'at':at}),text=True,capture_output=True)
     if p.returncode:raise ValueError(p.stderr)
     return json.loads(p.stdout)
@@ -78,6 +78,21 @@ class ExperimentAssessmentSelection(TestCase):
         validate([{'x':[True]},{'x':[1]}],generic)
         for value in [[1,1.0],[{'x':[1]},{'x':[1.0]}]]:
             with self.assertRaises(store.Problem):validate(value,generic)
+
+    def test_decimal_control_roundoff_still_reaches_assigned_calculation(self):
+        row=dict(deepcopy(self.rows['SIM-C4-L05-05']),version=2,baseVersion=1,
+                 assessmentSelection={'schemaVersion':'1.0.0','points':[.3,.6]})
+        self.assertTrue(editor.validate(None,row,self.rows))
+        exact=browser_record(row,.3);noisy=browser_record(row,.1+.2)
+        self.assertEqual(noisy['steps'][2],exact['steps'][2])
+        self.assertEqual(noisy['steps'][2][0],'Controlla il calcolo')
+        self.assertEqual([r['value'] for r in noisy['assessment']],[.6,1.2])
+
+    def test_nearby_nonzero_physics_is_not_reclassified_as_assigned_zero(self):
+        row=self.candidate({'schemaVersion':'1.0.0','points':[90,180]})
+        near=browser_record(row,90-1e-8)
+        self.assertGreater(near['current']['y'],0)
+        self.assertEqual(near['steps'][2][0],'Osserva la lettura del modello')
 
     def test_exact_antiparallel_comparison_is_zero_without_zeroing_small_physics(self):
         code="import{confronti}from'./static/js/banchi/voci/confronti.js';console.log(JSON.stringify([0,90,180,1e-12].map(x=>confronti['SIM-C1-L002-04'](x,6*Math.cos(x*Math.PI/180))[1])));"
