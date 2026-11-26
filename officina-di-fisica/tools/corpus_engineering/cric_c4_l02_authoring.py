@@ -81,8 +81,8 @@ TASKS=[('Cambiare soltanto la carica di prova',
   'è costante, quindi Δy=(1/2)·6·(0,20)² m=0,12 m. Moltiplico per 100 cm/m e ottengo 12 cm verso y positivo. I '
   'due moti condividono lo stesso tempo, ma hanno leggi diverse.',
   't=\\Delta x/v_x\\qquad \\Delta y=\\tfrac12a_yt^2\\qquad \\Delta y=12\\,\\mathrm{cm}',
-  '24 cm omette il fattore un mezzo. 60 cm userebbe a_y t al posto di a_y t²/2 e confonderebbe una velocità con '
-  'uno spostamento. Non si accelera il moto orizzontale, perché a_x è assegnata nulla.',
+  '24 cm omette il fattore un mezzo. 60 cm richiederebbero a_y=30 m/s² nello stesso tempo di 0,20 s, non 6 m/s². '
+  'Non si accelera il moto orizzontale, perché a_x è assegnata nulla.',
   'Trova il tempo dal tratto orizzontale, poi inseriscilo nella legge verticale.'),
  ('Linee che entrano nella sorgente',
   'Le linee di un campo radiale sono orientate verso un’unica carica puntiforme al centro. Con quale aggettivo si '

@@ -84,7 +84,7 @@ Procedimento: Il moto orizzontale fornisce il tempo: t=0,80/4=0,20 s. Lungo y la
 
 Passaggi esatti: `t=\Delta x/v_x\qquad \Delta y=\tfrac12a_yt^2\qquad \Delta y=12\,\mathrm{cm}`.
 
-Distrattori: 24 cm omette il fattore un mezzo. 60 cm userebbe a_y t al posto di a_y t²/2 e confonderebbe una velocità con uno spostamento. Non si accelera il moto orizzontale, perché a_x è assegnata nulla.
+Distrattori: 24 cm omette il fattore un mezzo. 60 cm richiederebbero a_y=30 m/s² nello stesso tempo di 0,20 s, non 6 m/s². Non si accelera il moto orizzontale, perché a_x è assegnata nulla.
 
 Aiuto: Trova il tempo dal tratto orizzontale, poi inseriscilo nella legge verticale.
 
