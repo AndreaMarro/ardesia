@@ -110,7 +110,7 @@ Confutazioni proposte: Ogni biglia può cambiare la propria quantità di moto: �
 
 Versione 2, base 1; famiglia forza-media-da-un-cambio-di-direzione; difficoltà 3.
 
-Scelta del modello e procedura: Sottraggo i vettori velocità, non le rapidità: Δv=(−2,+2) m/s. La quantità di moto cambia di (−1,+1) kg·m/s e la forza media è (−2,+2) N. Il modulo è la radice della somma dei quadrati delle componenti: √8=2√2 N. Le rapidità iniziale e finale uguali non annullano il cambiamento di direzione.
+Scelta del modello e procedura: Sottraggo i vettori velocità, non le rapidità: Δv=(−2,+2) m/s. La quantità di moto cambia di (−1,+1) kg·m/s e la forza media è (−2,+2) N. Il modulo è la radice della somma dei quadrati delle componenti: √8 N=2√2 N. Le rapidità iniziale e finale uguali non annullano il cambiamento di direzione.
 
 Passaggi manuali: \Delta\vec v=(-2,2)\,\mathrm{m/s};  \Delta\vec p=(-1,1)\,\mathrm{kg\,m/s};  \overline{\vec F}=(-2,2)\,\mathrm N;  |\overline{\vec F}|=2\sqrt2\,\mathrm N
 
