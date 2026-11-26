@@ -1,0 +1,692 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "C1-Q001",
+      "kind": "question",
+      "course": "C1",
+      "section": "Misura e rappresentazione",
+      "order": 1,
+      "title": "Il microlitro in un cubo millimetrico",
+      "skill": "C1-L001",
+      "prerequisites": [
+        "C1-L001"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il prefisso micro significa un milionesimo. Poiché 1 L=10⁻³ m³, un microlitro vale 10⁻⁹ m³. Anche un millimetro cubo vale (10⁻³ m)³=10⁻⁹ m³: le due unità di volume sono uguali. Il numero 250 resta quindi invariato."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/7b49138b471c07d3b4649cbb74e32035acb1d3839eab46094ed4d56bed166f08",
+          "text": "Un volume equivalente può occupare un prisma di lati 5 mm, 5 mm e 10 mm: il prodotto è 250 mm³. È una rappresentazione dello stesso volume, non la forma reale della micropipetta. Il pannello serve a confrontare µL e mm³."
+        },
+        {
+          "type": "formula",
+          "text": "1\\,\\mathrm{\\mu L}=10^{-9}\\,\\mathrm{m^3}"
+        },
+        {
+          "type": "formula",
+          "text": " 1\\,\\mathrm{mm^3}=10^{-9}\\,\\mathrm{m^3}"
+        },
+        {
+          "type": "formula",
+          "text": " 250\\,\\mathrm{\\mu L}=250\\,\\mathrm{mm^3}"
+        },
+        {
+          "type": "text",
+          "text": "0,25 mm³ confonderebbe la conversione in millilitri con quella richiesta. 250000 mm³ tratterebbe ogni microlitro come un millilitro. Per il volume il fattore lineare va elevato al cubo: non basta spostare il prefisso come per una lunghezza."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Una micropipetta contiene 250 µL. Esprimi lo stesso volume in mm³.",
+      "family": "un-volume-sulla-scala-si",
+      "answer": {
+        "type": "numeric",
+        "value": 250,
+        "unit": "mm³",
+        "tolerance": 0
+      },
+      "hints": [
+        "Riscrivi entrambe le unità in metri cubi, poi confrontale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "0,25 mm³ confonderebbe la conversione in millilitri con quella richiesta. 250000 mm³ tratterebbe ogni microlitro come un millilitro. Per il volume il fattore lineare va elevato al cubo: non basta spostare il prefisso come per una lunghezza.",
+        "target": "C1-L001"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Misura e SI",
+        "Il microlitro in un cubo millimetrico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q002",
+      "kind": "question",
+      "course": "C1",
+      "section": "Misura e rappresentazione",
+      "order": 2,
+      "title": "Due termini con la dimensione di energia",
+      "skill": "C1-L001",
+      "prerequisites": [
+        "C1-L001"
+      ],
+      "version": 3,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il lavoro della forza nelle condizioni assegnate è Fℓ. Le sue dimensioni sono quelle del joule: una massa per una lunghezza al quadrato divisa per un tempo al quadrato. Anche mv²/2 è un’energia, perché v² porta L²/T². Sono quindi termini omogenei e possono essere sommati come energie."
+        },
+        {
+          "type": "formula",
+          "text": "[F\\ell]=ML^2T^{-2}"
+        },
+        {
+          "type": "formula",
+          "text": " [mv^2/2]=ML^2T^{-2}"
+        },
+        {
+          "type": "formula",
+          "text": " 1\\,\\mathrm J=1\\,\\mathrm{N\\,m}"
+        },
+        {
+          "type": "text",
+          "text": "F è forza e mv quantità di moto, non energie. Fv è una potenza; mℓ e Ft non hanno la dimensione di energia. v² da solo manca del fattore di massa: ha dimensione di energia per massa, non di energia. Le stesse dimensioni sono una condizione necessaria per una somma fisica."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Una forza costante F agisce concorde lungo un tratto rettilineo di lunghezza ℓ. Nelle espressioni m indica una massa e v una rapidità. Quale coppia di quantità può comparire in una somma di energie?",
+      "family": "due-quantita-sommabili",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "F ℓ e (1/2) m v²",
+          "F e m v",
+          "F v e (1/2) m v²",
+          "m ℓ e F t, con t un tempo",
+          "v² e F ℓ"
+        ],
+        "value": "F ℓ e (1/2) m v²"
+      },
+      "hints": [
+        "Controlla entrambi i termini della coppia, non soltanto uno.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "F è forza e mv quantità di moto, non energie. Fv è una potenza; mℓ e Ft non hanno la dimensione di energia. v² da solo manca del fattore di massa: ha dimensione di energia per massa, non di energia. Le stesse dimensioni sono una condizione necessaria per una somma fisica.",
+        "target": "C1-L001"
+      },
+      "baseVersion": 2,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Misura e SI",
+        "Due termini con la dimensione di energia"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q003",
+      "kind": "question",
+      "course": "C1",
+      "section": "Misura e rappresentazione",
+      "order": 3,
+      "title": "Una proprietà che si divide col campione",
+      "skill": "C1-L001",
+      "prerequisites": [
+        "C1-L001"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La massa delle parti si somma per dare la massa totale. La dipendenza dalla quantità di campione identifica una grandezza estensiva. Il dimezzamento non riguarda l’unità: anche esprimendo tutto in chilogrammi ciascuna parte ha metà massa."
+        },
+        {
+          "type": "formula",
+          "text": "m=m_1+m_2"
+        },
+        {
+          "type": "formula",
+          "text": " m_1=m_2"
+        },
+        {
+          "type": "formula",
+          "text": " m_1=m/2"
+        },
+        {
+          "type": "text",
+          "text": "Una grandezza intensiva, come la densità del campione omogeneo nello stesso stato, non si dimezza così. La massa ha dimensione M ed è scalare: non diventa adimensionale o vettoriale quando si taglia il campione. L’ultima opzione descrive l’assenza di dipendenza dalla quantità, opposta al dato."
+        }
+      ],
+      "difficulty": 1,
+      "prompt": "Un campione omogeneo viene diviso in due parti uguali senza cambiarne lo stato. La massa di ciascuna parte è metà di quella iniziale. Come si chiama una grandezza additiva di questo tipo?",
+      "family": "il-campione-si-divide",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Estensiva",
+          "Intensiva",
+          "Adimensionale",
+          "Vettoriale",
+          "Una grandezza che non dipende dalla quantità di materia"
+        ],
+        "value": "Estensiva"
+      },
+      "hints": [
+        "Immagina di riunire le due parti e controlla quale proprietà si somma.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Una grandezza intensiva, come la densità del campione omogeneo nello stesso stato, non si dimezza così. La massa ha dimensione M ed è scalare: non diventa adimensionale o vettoriale quando si taglia il campione. L’ultima opzione descrive l’assenza di dipendenza dalla quantità, opposta al dato.",
+        "target": "C1-L001"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Misura e SI",
+        "Una proprietà che si divide col campione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q004",
+      "kind": "question",
+      "course": "C1",
+      "section": "Misura e rappresentazione",
+      "order": 4,
+      "title": "Quante lunghezze della tacca?",
+      "skill": "C1-L001",
+      "prerequisites": [
+        "C1-L001"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Porto prima le lunghezze nella stessa unità: 1 cm=10000 µm, quindi il tratto è lungo 40000 µm. Divido per 80 µm. Cancellando uno zero ottengo 4000/8=500. Si contano segmenti di lunghezza data, non punti estremi del tratto."
+        },
+        {
+          "type": "formula",
+          "text": "4\\,\\mathrm{cm}=40000\\,\\mathrm{\\mu m}"
+        },
+        {
+          "type": "formula",
+          "text": " n=\\frac{40000\\,\\mathrm{\\mu m}}{80\\,\\mathrm{\\mu m}}"
+        },
+        {
+          "type": "formula",
+          "text": " n=500"
+        },
+        {
+          "type": "text",
+          "text": "Cinquanta perde un fattore dieci nella conversione; cinquemila ne aggiunge uno. Il rapporto inverso 1/500 dice quale frazione del tratto occupa una tacca, non quante ne occorrono. Non si aggiunge uno come nel conteggio dei punti di confine di 500 intervalli."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Un tratto è lungo 4,0 cm e ogni tacca, intesa come piccolo segmento, è lunga 80 µm. Considera i dati ideali: quante di queste lunghezze coprono esattamente il tratto, senza sovrapposizioni?",
+      "family": "due-misure-un-rapporto",
+      "answer": {
+        "type": "numeric",
+        "value": 500,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "hints": [
+        "Conta nella stessa unità prima di dividere; il risultato deve essere puro.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "Cinquanta perde un fattore dieci nella conversione; cinquemila ne aggiunge uno. Il rapporto inverso 1/500 dice quale frazione del tratto occupa una tacca, non quante ne occorrono. Non si aggiunge uno come nel conteggio dei punti di confine di 500 intervalli.",
+        "target": "C1-L001"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Misura e SI",
+        "Quante lunghezze della tacca?"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q005",
+      "kind": "question",
+      "course": "C1",
+      "section": "Misura e rappresentazione",
+      "order": 5,
+      "title": "La potenza più vicina in scala logaritmica",
+      "skill": "C1-L001",
+      "prerequisites": [
+        "C1-L001"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Tra due potenze consecutive la soglia logaritmica è la loro media geometrica, cioè il coefficiente √10 nella notazione scientifica. Il coefficiente 7 supera √10: basta confrontare i quadrati positivi, 49>10. Si sceglie quindi l’esponente successivo, −4, senza calcolare logaritmi decimali."
+        },
+        {
+          "type": "formula",
+          "text": "7>\\sqrt{10}"
+        },
+        {
+          "type": "formula",
+          "text": " 7^2=49>10"
+        },
+        {
+          "type": "formula",
+          "text": " n=-5+1"
+        },
+        {
+          "type": "formula",
+          "text": " n=-4"
+        },
+        {
+          "type": "text",
+          "text": "10⁻⁵ m copia soltanto l’esponente della notazione scientifica e ignora la soglia. 10⁻⁶ m e 10⁻³ m saltano verso potenze ancora più lontane. Il valore originale con coefficiente 7 non è una singola potenza di dieci e non risponde alla definizione richiesta."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Per definizione l’ordine di grandezza è la potenza di dieci più vicina in scala logaritmica. Qual è quella di 7,0 × 10⁻⁵ m?",
+      "family": "una-stima-in-scala-logaritmica",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "10⁻⁴ m",
+          "10⁻⁵ m",
+          "10⁻⁶ m",
+          "10⁻³ m",
+          "7,0 × 10⁻⁵ m"
+        ],
+        "value": "10⁻⁴ m"
+      },
+      "hints": [
+        "Per decidere il lato di √10 puoi elevare al quadrato entrambi i numeri positivi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "10⁻⁵ m copia soltanto l’esponente della notazione scientifica e ignora la soglia. 10⁻⁶ m e 10⁻³ m saltano verso potenze ancora più lontane. Il valore originale con coefficiente 7 non è una singola potenza di dieci e non risponde alla definizione richiesta.",
+        "target": "C1-L001"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Misura e SI",
+        "La potenza più vicina in scala logaritmica"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q006",
+      "kind": "question",
+      "course": "C1",
+      "section": "Misura e rappresentazione",
+      "order": 6,
+      "title": "Quattro metri con una direzione",
+      "skill": "C1-L001",
+      "prerequisites": [
+        "C1-L001"
+      ],
+      "version": 3,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il numero 4 e l’unità m fissano il modulo, ma non distinguono nord da sud. Lo spostamento ha anche direzione e verso: è una grandezza vettoriale. Una lunghezza scalare, invece, non richiede quella informazione di orientamento."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/7b49138b471c07d3b4649cbb74e32035acb1d3839eab46094ed4d56bed166f08",
+          "text": "Il pannello finale rappresenta il vettore spostamento da O al punto a nord, con quattro intervalli da 1 m. Il modulo è 4 m e la freccia aggiunge il verso; non rappresenta una forza o una traiettoria obbligata."
+        },
+        {
+          "type": "formula",
+          "text": "|\\Delta\\vec r|=4\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " [\\Delta\\vec r]=L"
+        },
+        {
+          "type": "text",
+          "text": "Un dato scalare non cambia scegliendo nord oppure sud, mentre uno spostamento sì. Il numero puro 4 moltiplica un’unità di lunghezza e non rende lo spostamento adimensionale. Avere un verso non basta a essere una forza; metri e secondi descrivono grandezze diverse."
+        }
+      ],
+      "difficulty": 1,
+      "prompt": "Una scheda riporta uno spostamento di 4 m verso nord. Quale descrizione lo classifica correttamente rispetto a uno scalare?",
+      "family": "il-dato-direzionale",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "È vettoriale: servono modulo, direzione e verso",
+          "È scalare: bastano il numero 4 e l’unità m",
+          "È adimensionale perché 4 è un numero puro",
+          "È una forza perché possiede un verso",
+          "È un tempo perché accompagna un moto"
+        ],
+        "value": "È vettoriale: servono modulo, direzione e verso"
+      },
+      "hints": [
+        "Controlla quale informazione perdi cancellando «verso nord».",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Un dato scalare non cambia scegliendo nord oppure sud, mentre uno spostamento sì. Il numero puro 4 moltiplica un’unità di lunghezza e non rende lo spostamento adimensionale. Avere un verso non basta a essere una forza; metri e secondi descrivono grandezze diverse.",
+        "target": "C1-L001"
+      },
+      "baseVersion": 2,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Misura e SI",
+        "Quattro metri con una direzione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q007",
+      "kind": "question",
+      "course": "C1",
+      "section": "Misura e rappresentazione",
+      "order": 7,
+      "title": "La massa dopo avere tolto la tara",
+      "skill": "C1-L001",
+      "prerequisites": [
+        "C1-L001"
+      ],
+      "version": 3,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La tara va espressa nella stessa unità della massa lorda: 0,0420 kg=42,0 g. Sottraggo 54,6−42,0=12,6 g. La massa del contenuto è positiva e minore di quella della fiala piena, come deve essere per la sottrazione fra massa totale e contenitore."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/7b49138b471c07d3b4649cbb74e32035acb1d3839eab46094ed4d56bed166f08",
+          "text": "Le tre barre della massa hanno origine e scala comuni: piena 54,6 g, vuota 42,0 g e contenuto 12,6 g. La massa del contenuto è una differenza dopo la conversione della tara, non una nuova lettura in chilogrammi."
+        },
+        {
+          "type": "formula",
+          "text": "m_{\\rm vuota}=42{,}0\\,\\mathrm g"
+        },
+        {
+          "type": "formula",
+          "text": " m_{\\rm contenuto}=(54{,}6-42{,}0)\\,\\mathrm g"
+        },
+        {
+          "type": "formula",
+          "text": " m_{\\rm contenuto}=12{,}6\\,\\mathrm g"
+        },
+        {
+          "type": "text",
+          "text": "54,558 sottrae 0,0420 a 54,6 senza uniformare kg e g. 96,6 somma la tara; 42,0 è la sola fiala vuota. 0,0126 è il valore numerico corretto in chilogrammi, ma con l’unità g sbagliata diventa mille volte più piccolo."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Una fiala piena ha massa 54,6 g. La stessa fiala vuota ha massa 0,0420 kg. Qual è la massa del contenuto?",
+      "family": "la-bilancia-con-la-tara",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "12,6 g",
+          "54,558 g",
+          "96,6 g",
+          "42,0 g",
+          "0,0126 g"
+        ],
+        "value": "12,6 g"
+      },
+      "hints": [
+        "Prima converti la tara in grammi, poi sottraila.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "54,558 sottrae 0,0420 a 54,6 senza uniformare kg e g. 96,6 somma la tara; 42,0 è la sola fiala vuota. 0,0126 è il valore numerico corretto in chilogrammi, ma con l’unità g sbagliata diventa mille volte più piccolo.",
+        "target": "C1-L001"
+      },
+      "baseVersion": 2,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Misura e SI",
+        "La massa dopo avere tolto la tara"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q008",
+      "kind": "question",
+      "course": "C1",
+      "section": "Misura e rappresentazione",
+      "order": 8,
+      "title": "La dimensione del coefficiente quadratico",
+      "skill": "C1-L001",
+      "prerequisites": [
+        "C1-L001"
+      ],
+      "version": 3,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Isolo il coefficiente: k=x/t². La sua dimensione è L/T² e l’unità SI è m/s². Il quadrato riguarda il tempo; non modifica la dimensione di x. Avere l’unità di un’accelerazione non significa che k sia automaticamente l’accelerazione numerica del moto: in questa legge l’accelerazione costante sarebbe 2k."
+        },
+        {
+          "type": "formula",
+          "text": "k=\\frac{x}{t^2}"
+        },
+        {
+          "type": "formula",
+          "text": " [k]=LT^{-2}"
+        },
+        {
+          "type": "formula",
+          "text": " [k t^2]=L"
+        },
+        {
+          "type": "text",
+          "text": "m/s moltiplicato per t² darebbe lunghezza per tempo. m²/s² darebbe un’area, s²/m avrebbe le dimensioni inverse e m lascerebbe un fattore di tempo al quadrato. Ogni proposta va controllata sostituendola nel prodotto k t²."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Nel modello x=k t², x è una lunghezza e t un tempo. Quale unità SI deve avere k?",
+      "family": "dimensione-del-coefficiente",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "m/s²",
+          "m/s",
+          "m²/s²",
+          "s²/m",
+          "m"
+        ],
+        "value": "m/s²"
+      },
+      "hints": [
+        "Il coefficiente deve compensare esattamente le dimensioni di t².",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "m/s moltiplicato per t² darebbe lunghezza per tempo. m²/s² darebbe un’area, s²/m avrebbe le dimensioni inverse e m lascerebbe un fattore di tempo al quadrato. Ogni proposta va controllata sostituendola nel prodotto k t².",
+        "target": "C1-L001"
+      },
+      "baseVersion": 2,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Misura e SI",
+        "La dimensione del coefficiente quadratico"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q009",
+      "kind": "question",
+      "course": "C1",
+      "section": "Misura e rappresentazione",
+      "order": 9,
+      "title": "Metri al secondo e chilometri all’ora",
+      "skill": "C1-L001",
+      "prerequisites": [
+        "C1-L001"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Un’ora contiene 3600 s e un chilometro 1000 m. Per passare da m/s a km/h moltiplico per 3600/1000=3,6. Il conto manuale 1,25·3,6 si può fare come 125·36/1000=4500/1000=4,5. Cambia il numero, non la velocità fisica del carrello."
+        },
+        {
+          "type": "formula",
+          "text": "v=\\frac54\\,\\frac{\\mathrm m}{\\mathrm s}"
+        },
+        {
+          "type": "formula",
+          "text": " v=\\frac54\\cdot\\frac{18}{5}\\,\\frac{\\mathrm{km}}{\\mathrm h}"
+        },
+        {
+          "type": "formula",
+          "text": " v=\\frac92\\,\\frac{\\mathrm{km}}{\\mathrm h}"
+        },
+        {
+          "type": "text",
+          "text": "0,45 e 45 introducono un fattore dieci errato. 5/4 conserva il numero senza cambiare l’unità; 25/72 divide per 3,6 e corrisponde alla conversione nel verso opposto, non a quella richiesta."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Un carrello di servizio procede a 1,25 m/s. Qual è lo stesso valore in km/h?",
+      "family": "velocita-annotata-in-reparto",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4,5 km/h",
+          "0,45 km/h",
+          "45 km/h",
+          "5/4 km/h",
+          "25/72 km/h"
+        ],
+        "value": "4,5 km/h"
+      },
+      "hints": [
+        "Costruisci fattori di conversione che cancellino m e s lasciando km/h.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "0,45 e 45 introducono un fattore dieci errato. 5/4 conserva il numero senza cambiare l’unità; 25/72 divide per 3,6 e corrisponde alla conversione nel verso opposto, non a quella richiesta.",
+        "target": "C1-L001"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Misura e SI",
+        "Metri al secondo e chilometri all’ora"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q010",
+      "kind": "question",
+      "course": "C1",
+      "section": "Misura e rappresentazione",
+      "order": 10,
+      "title": "Stesso liquido, massa diversa",
+      "skill": "C1-L001",
+      "prerequisites": [
+        "C1-L001"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Chiamiamo A e B le due porzioni e λ=m_B/m_A>0 il rapporto delle masse. La densità è massa divisa per volume. Nello stesso liquido omogeneo, alla stessa temperatura e pressione, una porzione con più massa occupa volume proporzionalmente maggiore: il rapporto m/V resta uguale. È una proprietà intensiva dello stato, non una misura della quantità totale di liquido."
+        },
+        {
+          "type": "formula",
+          "text": "\\rho=\\frac mV"
+        },
+        {
+          "type": "formula",
+          "text": " m_B=\\lambda m_A"
+        },
+        {
+          "type": "formula",
+          "text": " V_B=\\lambda V_A"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_B=\\rho_A"
+        },
+        {
+          "type": "text",
+          "text": "Le due proporzioni opposte con la sola massa dimenticano che cambia anche il volume. Masse diverse non richiedono densità diverse; densità nulla sarebbe incompatibile con una porzione di massa positiva e volume finito. Lo stato termico e la composizione uguali sono ipotesi essenziali."
+        }
+      ],
+      "difficulty": 1,
+      "prompt": "Due porzioni dello stesso liquido omogeneo hanno masse diverse, ma uguale temperatura e uguale pressione. Che cosa si può prevedere per le loro densità?",
+      "family": "controllare-una-pesata-media",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Sono uguali: la densità è intensiva nello stesso stato",
+          "La porzione più massiccia ha densità maggiore nello stesso rapporto",
+          "La porzione più massiccia ha densità minore nello stesso rapporto",
+          "Devono essere diverse perché le masse sono diverse",
+          "Una delle due densità deve essere nulla"
+        ],
+        "value": "Sono uguali: la densità è intensiva nello stesso stato"
+      },
+      "hints": [
+        "Chiediti come cambia anche il volume quando prelevi più liquido.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Le due proporzioni opposte con la sola massa dimenticano che cambia anche il volume. Masse diverse non richiedono densità diverse; densità nulla sarebbe incompatibile con una porzione di massa positiva e volume finito. Lo stato termico e la composizione uguali sono ipotesi essenziali.",
+        "target": "C1-L001"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Misura e SI",
+        "Stesso liquido, massa diversa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "7b49138b471c07d3b4649cbb74e32035acb1d3839eab46094ed4d56bed166f08",
+      "name": "cric-c1-l001-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTY1MCIgdmlld0JveD0iMCAwIDY0MCAxNjUwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyIgZm9udC1mYW1pbHk9InN5c3RlbS11aSxzYW5zLXNlcmlmIj48dGl0bGUgaWQ9InRpdGxlIj5UcmUgbGV0dHVyZTogdm9sdW1lLCB0YXJhIGUgc3Bvc3RhbWVudG88L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5VbiBwcmlzbWEgZGkgdm9sdW1lIGVxdWl2YWxlbnRlIGFsbGEgbWljcm9waXBldHRhLCB0cmUgYmFycmUgZGkgbWFzc2Egc3VsbGEgc3Rlc3NhIHNjYWxhIGUgdW5vIHNwb3N0YW1lbnRvIGRpIHF1YXR0cm8gbWV0cmkgdmVyc28gbm9yZC4gUGFubmVsbGkgaW5kaXBlbmRlbnRpIGNvbiB1bml0w6AgZmlzaWNoZSBkaWNoaWFyYXRlLjwvZGVzYz48ZGVmcz48bWFya2VyIGlkPSJhcnIiIHZpZXdCb3g9IjAgMCAxMCAxMCIgcmVmWD0iOSIgcmVmWT0iNSIgbWFya2VyV2lkdGg9IjUiIG1hcmtlckhlaWdodD0iNSIgb3JpZW50PSJhdXRvIj48cGF0aCBkPSJNMCAwTDEwIDVMMCAxMFoiIGZpbGw9IiMzMDZmOGMiLz48L21hcmtlcj48L2RlZnM+PHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxNjUwIiBmaWxsPSJ3aGl0ZSIvPjx0ZXh0IHg9IjM1IiB5PSI0OCIgZm9udC1zaXplPSIyNSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5NaXN1cmFyZSBwcmltYSBkaSBjb25mcm9udGFyZTwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMTEwIiBmb250LXNpemU9IjIyIiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjEgwrcgVW4gdm9sdW1lIGVxdWl2YWxlbnRlOiAyNTAgwrVMPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSIxNjUiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+MSDCtUwgPSAxIG1twrM7IGxhIGZvcm1hIG5vbiBjYW1iaWEgaWwgdm9sdW1lLjwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMjEwIiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPlByaXNtYSBkaSBsYXRpIDUgbW0sIDUgbW0gZSAxMCBtbS48L3RleHQ+PHBvbHlnb24gcG9pbnRzPSIxNzAsMzUwIDI3MCwzNTAgMzQwLjcxMDY3OCwyNzkuMjg5MzIyIDI0MC43MTA2NzgsMjc5LjI4OTMyMiIgZmlsbD0iI2RjZWJmMiIgc3Ryb2tlPSIjMzA2ZjhjIiBzdHJva2Utd2lkdGg9IjIiLz48cG9seWdvbiBwb2ludHM9IjI3MCwzNTAgMzQwLjcxMDY3OCwyNzkuMjg5MzIyIDM0MC43MTA2NzgsNDc5LjI4OTMyMiAyNzAsNTUwIiBmaWxsPSIjYzlkZmU5IiBzdHJva2U9IiMzMDZmOGMiIHN0cm9rZS13aWR0aD0iMiIvPjxyZWN0IHg9IjE3MCIgeT0iMzUwIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2VkZjRmNyIgc3Ryb2tlPSIjMzA2ZjhjIiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSIyMjAiIHk9IjU4NSIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9Im1pZGRsZSI+NSBtbTwvdGV4dD48dGV4dCB4PSI3NSIgeT0iNDU1IiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjEwIG1tPC90ZXh0Pjx0ZXh0IHg9IjM2NSIgeT0iMzE1IiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjUgbW08L3RleHQ+PHRleHQgeD0iMzUiIHk9IjYyNSIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij41IMOXIDUgw5cgMTAgPSAyNTA7IGlsIHZvbHVtZSDDqCAyNTAgbW3Csy48L3RleHQ+PHRleHQgeD0iMzUiIHk9IjY5MCIgZm9udC1zaXplPSIyMiIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij4yIMK3IFRvZ2xpZXJlIGxhIHRhcmEgbmVsbGEgc3Rlc3NhIHVuaXTDoDwvdGV4dD48dGV4dCB4PSIxMzUiIHk9Ijc2NCIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9ImVuZCI+cGllbmE8L3RleHQ+PHJlY3QgeD0iMTU1IiB5PSI3NDAiIHdpZHRoPSIyNzMiIGhlaWdodD0iMzAiIGZpbGw9IiMzZDc3OTEiLz48dGV4dCB4PSI0MzgiIHk9Ijc2NCIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij41NCw2IGc8L3RleHQ+PHRleHQgeD0iMTM1IiB5PSI4NjQiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJlbmQiPnZ1b3RhPC90ZXh0PjxyZWN0IHg9IjE1NSIgeT0iODQwIiB3aWR0aD0iMjEwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjOTg2YzM1Ii8+PHRleHQgeD0iMzc1IiB5PSI4NjQiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+NDIsMCBnPC90ZXh0Pjx0ZXh0IHg9IjEzNSIgeT0iOTY0IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0iZW5kIj5jb250ZW51dG88L3RleHQ+PHJlY3QgeD0iMTU1IiB5PSI5NDAiIHdpZHRoPSI2MyIgaGVpZ2h0PSIzMCIgZmlsbD0iIzYzN2U1NSIvPjx0ZXh0IHg9IjIyOCIgeT0iOTY0IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjEyLDYgZzwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMTAzMCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij4wLDA0MjAga2cgPSA0MiwwIGc8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjEwNzAiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+NTQsNiBnIOKIkiA0MiwwIGcgPSAxMiw2IGc8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjExNTAiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+MyDCtyBVbiB2ZXR0b3JlIHNwb3N0YW1lbnRvIHZlcnNvIG5vcmQ8L3RleHQ+PHRleHQgeD0iMzIwIiB5PSIxMjI1IiBmb250LXNpemU9IjIyIiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5OPC90ZXh0PjxwYXRoIGQ9Ik0zMjAgMTUwMFYxMzAwIiBmaWxsPSJub25lIiBzdHJva2U9IiMzMDZmOGMiIHN0cm9rZS13aWR0aD0iMyIgbWFya2VyLWVuZD0idXJsKCNhcnIpIi8+PGxpbmUgeDE9IjMxMyIgeTE9IjE1MDAiIHgyPSIzMjciIHkyPSIxNTAwIiBzdHJva2U9IiM2YzdkODkiIHN0cm9rZS13aWR0aD0iMiIvPjxsaW5lIHgxPSIzMTMiIHkxPSIxNDUwIiB4Mj0iMzI3IiB5Mj0iMTQ1MCIgc3Ryb2tlPSIjNmM3ZDg5IiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSIyOTUiIHk9IjE0NTYiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJlbmQiPjEgbTwvdGV4dD48bGluZSB4MT0iMzEzIiB5MT0iMTQwMCIgeDI9IjMyNyIgeTI9IjE0MDAiIHN0cm9rZT0iIzZjN2Q4OSIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iMjk1IiB5PSIxNDA2IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0iZW5kIj4yIG08L3RleHQ+PGxpbmUgeDE9IjMxMyIgeTE9IjEzNTAiIHgyPSIzMjciIHkyPSIxMzUwIiBzdHJva2U9IiM2YzdkODkiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjI5NSIgeT0iMTM1NiIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9ImVuZCI+MyBtPC90ZXh0PjxsaW5lIHgxPSIzMTMiIHkxPSIxMzAwIiB4Mj0iMzI3IiB5Mj0iMTMwMCIgc3Ryb2tlPSIjNmM3ZDg5IiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSIyOTUiIHk9IjEzMDYiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJlbmQiPjQgbTwvdGV4dD48dGV4dCB4PSIyOTUiIHk9IjE1MTAiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJlbmQiPk88L3RleHQ+PHRleHQgeD0iMzU1IiB5PSIxNDAwIiBmb250LXNpemU9IjIyIiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPs6UcjwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMTU4MCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5JbCBtb2R1bG8gw6ggNCBtOyBsYSBmcmVjY2lhIGFnZ2l1bmdlIGlsIHZlcnNvLjwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMTYyMCIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5Ob24gw6ggdW4gcGVyY29yc28gb2JibGlnYXRvIG7DqSB1bmEgZm9yemEuPC90ZXh0Pjwvc3ZnPgo="
+    }
+  ]
+}

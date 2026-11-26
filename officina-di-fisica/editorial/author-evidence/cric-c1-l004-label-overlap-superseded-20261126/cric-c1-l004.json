@@ -1,0 +1,718 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "C1-Q031",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto e forze",
+      "order": 31,
+      "title": "Distanza fino al primo arresto",
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L004"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Chiamo T il tempo del primo arresto: pongo v₀+aT=0 e ottengo T=2 s. Fino a quel momento la velocità resta non negativa e la distanza coincide con lo spostamento. Nel grafico v–t l’area è un triangolo: metà della base 2 s per l’altezza 4 m/s dà 4 m."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/4578d7a62366cfaf07b7f8d1f313ff6fc7f092827a93c1d1e0b737163ea76c86",
+          "text": "Il primo grafico v–t si ferma al primo zero della velocità: triangolo di base2 s e altezza4 m/s, area4 m."
+        },
+        {
+          "type": "formula",
+          "text": "0=v_0+aT"
+        },
+        {
+          "type": "formula",
+          "text": " T=\\frac4{2}\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " T=2\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " D=\\frac12(2\\,\\mathrm s)(4\\,\\mathrm{m/s})"
+        },
+        {
+          "type": "formula",
+          "text": " D=4\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "8 m tratta il moto come se mantenesse 4 m/s per 2 s. 2 è il tempo in secondi, non la distanza in metri. 16 m non include il divisore 2|a| nella relazione di arresto. Una distanza non è negativa:−4 m assegnerebbe il segno dell’accelerazione ai metri percorsi."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Un carrello ha velocità iniziale v₀=+4 m/s e accelerazione costante a=−2 m/s². Quanti metri percorre fino al primo arresto? Non prolungare il modello oltre quell’istante.",
+      "family": "arresto-a-decelerazione-costante",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4 m",
+          "8 m",
+          "2 m",
+          "16 m",
+          "−4 m"
+        ],
+        "value": "4 m"
+      },
+      "hints": [
+        "Trova prima la base del triangolo v–t imponendo v=0.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "8 m tratta il moto come se mantenesse 4 m/s per 2 s. 2 è il tempo in secondi, non la distanza in metri. 16 m non include il divisore 2|a| nella relazione di arresto. Una distanza non è negativa:−4 m assegnerebbe il segno dell’accelerazione ai metri percorsi.",
+        "target": "C1-L004"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Moto accelerato e circolare",
+        "Distanza fino al primo arresto"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q032",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto e forze",
+      "order": 32,
+      "title": "La velocità al culmine del lancio",
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L004"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Scelgo y positivo verso l’alto. Nel moto senza aria non c’è accelerazione orizzontale, perciò v_x resta uguale al valore iniziale non nullo. Al massimo della quota la componente verticale cambia segno passando perzero. La gravità però continua ad agire: a_y=−g anche nell’istante in cui v_y=0."
+        },
+        {
+          "type": "formula",
+          "text": "v_x=v_{0x}"
+        },
+        {
+          "type": "formula",
+          "text": " v_y=0"
+        },
+        {
+          "type": "formula",
+          "text": " a_x=0"
+        },
+        {
+          "type": "formula",
+          "text": " a_y=-g"
+        },
+        {
+          "type": "text",
+          "text": "Essere al punto più alto non annulla l’intero vettore velocità: resta la componente orizzontale. L’accelerazione non si annulla né diventa tangente. Il segno della quota non è il segno della velocità verticale: il punto può trovarsi in alto mentre sale, scende o attraversa il culmine."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Un punto è lanciato obliquamente con componente orizzontale iniziale non nulla. In un riferimento terrestre inerziale approssimato, senza aria e con gravità uniforme verso il basso, che cosa accade al punto più alto?",
+      "family": "la-cima-della-traiettoria",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "v_y=0, v_x resta non nulla e l’accelerazione è verso il basso",
+          "La velocità e l’accelerazione sono entrambe nulle",
+          "La velocità è nulla ma l’accelerazione è verso il basso",
+          "L’accelerazione è orizzontale come la velocità",
+          "v_y è positiva perché il punto si trova in alto"
+        ],
+        "value": "v_y=0, v_x resta non nulla e l’accelerazione è verso il basso"
+      },
+      "hints": [
+        "Separa le componenti e domanda quale interazione continua ad agire.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Essere al punto più alto non annulla l’intero vettore velocità: resta la componente orizzontale. L’accelerazione non si annulla né diventa tangente. Il segno della quota non è il segno della velocità verticale: il punto può trovarsi in alto mentre sale, scende o attraversa il culmine.",
+        "target": "C1-L004"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Moto accelerato e circolare",
+        "La velocità al culmine del lancio"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q033",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto e forze",
+      "order": 33,
+      "title": "Tornare alla quota iniziale",
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L004"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Pongo l’origine della quota al punto di lancio e verso positivo in alto. La legge verticale è y=v₀t−gt²/2. Il ritorno richiede y=0: raccolgo t e distinguo la soluzione iniziale t=0 da quella positiva T=2 v₀/g. Il conto 12/10 si semplifica in 6/5 s."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/4578d7a62366cfaf07b7f8d1f313ff6fc7f092827a93c1d1e0b737163ea76c86",
+          "text": "Nel secondo pannello la quota torna a zero a6/5 s; il massimo si trova a3/5 s. È un grafico y–t, non la forma della traiettoria spaziale."
+        },
+        {
+          "type": "formula",
+          "text": "y=v_0t-\\frac12gt^2"
+        },
+        {
+          "type": "formula",
+          "text": " 0=t\\left(v_0-\\frac12gt\\right)"
+        },
+        {
+          "type": "formula",
+          "text": " T=\\frac{2v_0}{g}"
+        },
+        {
+          "type": "formula",
+          "text": " T=\\frac65\\,\\mathrm s"
+        },
+        {
+          "type": "text",
+          "text": "3/5 s è il solo tempo di salita v₀/g; serve altrettanto tempo per tornare alla stessa quota. 3 s non soddisfa l’equazione. 5/6 s inverte il valore numerico della durata. Zero è l’istante iniziale, escluso dalla richiesta di un ritorno positivo."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Una pallina parte verticalmente verso l’alto con v₀=6 m/s. Trascurando l’aria e ponendo g=10 m/s² costante, dopo quanto tempo positivo T ritorna alla quota di lancio?",
+      "family": "ritorno-alla-quota-di-partenza",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "6/5 s",
+          "3/5 s",
+          "3 s",
+          "5/6 s",
+          "0 s"
+        ],
+        "value": "6/5 s"
+      },
+      "hints": [
+        "Le due radici rappresentano eventi diversi: partenza e ritorno.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "3/5 s è il solo tempo di salita v₀/g; serve altrettanto tempo per tornare alla stessa quota. 3 s non soddisfa l’equazione. 5/6 s inverte il valore numerico della durata. Zero è l’istante iniziale, escluso dalla richiesta di un ritorno positivo.",
+        "target": "C1-L004"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Moto accelerato e circolare",
+        "Tornare alla quota iniziale"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q034",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto e forze",
+      "order": 34,
+      "title": "Che cosa accade nel secondo secondo?",
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L004"
+      ],
+      "version": 3,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Chiamo s(t) la distanza scesa dal punto iniziale, positiva verso il basso. Da fermo s=gt²/2. Dopo 1 s il corpo è sceso 5 m e dopo 2 s 20 m. L’intervallo richiesto contiene solo la differenza 20−5=15 m, non tutta la caduta dall’inizio."
+        },
+        {
+          "type": "formula",
+          "text": "s(t)=\\frac12gt^2"
+        },
+        {
+          "type": "formula",
+          "text": " s(1\\,\\mathrm s)=5\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " s(2\\,\\mathrm s)=20\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta s=15\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "20 m è la distanza cumulativa nei primi 2 s. 5 m è quella nel primo secondo;10 m suppone una distanza uguale in ciascun secondo pur con velocità crescente. 25 m somma le due letture invece di sottrarle."
+        }
+      ],
+      "difficulty": 3,
+      "prompt": "Un corpo cade da fermo nel vuoto con g=10 m/s² costante. Il suolo è abbastanza lontano da non essere raggiunto entro 2 s. Quale distanza percorre fra t=1 s e t=2 s, misurati dal rilascio?",
+      "family": "caduta-durante-il-secondo-secondo",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "15 m",
+          "20 m",
+          "5 m",
+          "10 m",
+          "25 m"
+        ],
+        "value": "15 m"
+      },
+      "hints": [
+        "Calcola due posizioni dalla stessa origine e poi fai la differenza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "20 m è la distanza cumulativa nei primi 2 s. 5 m è quella nel primo secondo;10 m suppone una distanza uguale in ciascun secondo pur con velocità crescente. 25 m somma le due letture invece di sottrarle.",
+        "target": "C1-L004"
+      },
+      "baseVersion": 2,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Moto accelerato e circolare",
+        "Che cosa accade nel secondo secondo?"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q035",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto e forze",
+      "order": 35,
+      "title": "Moto orizzontale e tempo di caduta",
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L004"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Entrambe hanno velocità verticale iniziale nulla, stessa quota iniziale e stessa accelerazione verticale. Chiamo s_y la distanza verticale scesa e T il tempo di arrivo: la condizione h=gT²/2 è identica. La velocità orizzontale cambia la posizione di atterraggio, non il tempo in questo modello."
+        },
+        {
+          "type": "formula",
+          "text": "s_y=\\frac12gt^2"
+        },
+        {
+          "type": "formula",
+          "text": " h=\\frac12gT^2"
+        },
+        {
+          "type": "formula",
+          "text": " T=\\sqrt{\\frac{2h}{g}}"
+        },
+        {
+          "type": "text",
+          "text": "Né l’assenza né la presenza di velocità orizzontale cambia l’equazione verticale. Il maggior cammino obliquo non significa maggiore tempo perché anche la velocità totale è diversa. La massa non entra nell’accelerazione gravitazionale assegnata; l’aria e ostacoli diversi sono esclusi."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Due sfere partono simultaneamente dalla stessa altezza h>0 sopra lo stesso suolo orizzontale. Una è lasciata cadere da ferma, l’altra è lanciata orizzontalmente. Senza aria, con uguale gravità uniforme, quale tocca prima il suolo?",
+      "family": "una-coppia-di-lanci",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Toccano il suolo nello stesso istante",
+          "Prima quella lasciata cadere",
+          "Prima quella lanciata orizzontalmente",
+          "Dipende dalla massa delle sfere",
+          "Dipende dalla velocità orizzontale soltanto"
+        ],
+        "value": "Toccano il suolo nello stesso istante"
+      },
+      "hints": [
+        "Scrivi soltanto la legge verticale delle due sfere e confrontale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Né l’assenza né la presenza di velocità orizzontale cambia l’equazione verticale. Il maggior cammino obliquo non significa maggiore tempo perché anche la velocità totale è diversa. La massa non entra nell’accelerazione gravitazionale assegnata; l’aria e ostacoli diversi sono esclusi.",
+        "target": "C1-L004"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Moto accelerato e circolare",
+        "Moto orizzontale e tempo di caduta"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q036",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto e forze",
+      "order": 36,
+      "title": "Dai giri al periodo",
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L004"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Trenta giri si compiono in 60 s: dividendo il tempo totale per il numero dei giri, T=60/30=2 s. In alternativa la frequenza è 30/60=1/2 Hz e il periodo è il suo reciproco. Il conteggio dei giri è puro, la durata ha unità di tempo."
+        },
+        {
+          "type": "formula",
+          "text": "f=\\frac{30}{60}\\,\\mathrm{Hz}"
+        },
+        {
+          "type": "formula",
+          "text": " f=\\frac12\\,\\mathrm{Hz}"
+        },
+        {
+          "type": "formula",
+          "text": " T=\\frac1f"
+        },
+        {
+          "type": "formula",
+          "text": " T=2\\,\\mathrm s"
+        },
+        {
+          "type": "text",
+          "text": "30 s copia il numero dei giri al minuto senza invertirlo. 1/2 è il valore numerico della frequenza in hertz, non il periodo in secondi. 60 s è la durata di 30 giri. 1800 s moltiplica 30 per 60 invece di dividere."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Una piattaforma ruota uniformemente a 30 giri/min. Quanto dura un giro completo, cioè il periodo T?",
+      "family": "lettura-dei-giri-al-minuto",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2 s",
+          "30 s",
+          "1/2 s",
+          "60 s",
+          "1800 s"
+        ],
+        "value": "2 s"
+      },
+      "hints": [
+        "Il periodo è tempo per un giro; la frequenza è giri per tempo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "30 s copia il numero dei giri al minuto senza invertirlo. 1/2 è il valore numerico della frequenza in hertz, non il periodo in secondi. 60 s è la durata di 30 giri. 1800 s moltiplica 30 per 60 invece di dividere.",
+        "target": "C1-L004"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Moto accelerato e circolare",
+        "Dai giri al periodo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q037",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto e forze",
+      "order": 37,
+      "title": "Il raggio dalla variazione di direzione",
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L004"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La componente centripeta soddisfa a_c=v²/r. Moltiplico per r e divido per a_c>0: r=v²/a_c. Il quadrato di 3 è 9 e 9/(9/2)=2. Le unità danno (m²/s²)/(m/s²)=m, come richiesto per un raggio."
+        },
+        {
+          "type": "formula",
+          "text": "a_cr=v^2"
+        },
+        {
+          "type": "formula",
+          "text": " r=\\frac{v^2}{a_c}"
+        },
+        {
+          "type": "formula",
+          "text": " r=\\frac9{9/2}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " r=2\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "1/2 m inverte il rapporto numerico;3/2 m divide v per a_c senza elevare al quadrato, operazione che avrebbe unità di tempo. 9 m copia v² senza dividere per l’accelerazione. 6 m non soddisfa a_c r=v²."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Un punto si muove su una circonferenza con rapidità v=3,0 m/s e accelerazione centripeta a_c=4,5 m/s². Quanto vale il raggio r?",
+      "family": "raggio-dalla-curvatura-nota",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2 m",
+          "1/2 m",
+          "3/2 m",
+          "9 m",
+          "6 m"
+        ],
+        "value": "2 m"
+      },
+      "hints": [
+        "Isola r prima di sostituire e controlla le unità del quoziente.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "1/2 m inverte il rapporto numerico;3/2 m divide v per a_c senza elevare al quadrato, operazione che avrebbe unità di tempo. 9 m copia v² senza dividere per l’accelerazione. 6 m non soddisfa a_c r=v².",
+        "target": "C1-L004"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Moto accelerato e circolare",
+        "Il raggio dalla variazione di direzione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q038",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto e forze",
+      "order": 38,
+      "title": "Due punti vincolati allo stesso disco",
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L004"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I punti compiono ciascun giro nello stesso tempo: condividono ω, non la rapidità tangenziale. Uso quindi a_c=ω²r. Raddoppiando il raggio a ω fissa raddoppia a_c. La forma v²/r resta valida ma in quel confronto anche v=ωr raddoppia."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/4578d7a62366cfaf07b7f8d1f313ff6fc7f092827a93c1d1e0b737163ea76c86",
+          "text": "Nel terzo pannello i due raggi del disco sono r e2r. Le accelerazioni radiali, disegnate in scala comune fra loro, hanno rapporto2; le velocità tangenziali non sono le stesse."
+        },
+        {
+          "type": "formula",
+          "text": "a_c(r)=\\omega^2r"
+        },
+        {
+          "type": "formula",
+          "text": " a_c(2r)=2\\omega^2r"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{a_c(2r)}{a_c(r)}=2"
+        },
+        {
+          "type": "text",
+          "text": "1/2 manterrebbe erroneamente v costante al cambiare del raggio. 4 considera soltanto il quadrato della rapidità e dimentica che anche il denominatore r raddoppia. 1 confonde uguale ω con uguale accelerazione;1/4 inverte un rapporto quadratico che qui non vale."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Un disco rigido ruota uniformemente con velocità angolare ω non nulla. Due punti sono solidali al disco, a distanze r>0 e 2 r dall’asse. Qual è il rapporto a_c(2 r)/a_c(r)?",
+      "family": "due-punti-sullo-stesso-disco",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/2",
+          "4",
+          "1",
+          "1/4"
+        ],
+        "value": "2"
+      },
+      "hints": [
+        "Scegli la forma della legge che usa la grandezza effettivamente comune:ω.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "1/2 manterrebbe erroneamente v costante al cambiare del raggio. 4 considera soltanto il quadrato della rapidità e dimentica che anche il denominatore r raddoppia. 1 confonde uguale ω con uguale accelerazione;1/4 inverte un rapporto quadratico che qui non vale.",
+        "target": "C1-L004"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Moto accelerato e circolare",
+        "Due punti vincolati allo stesso disco"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q039",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto e forze",
+      "order": 39,
+      "title": "Un’accelerazione anche a rapidità costante",
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L004"
+      ],
+      "version": 3,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La rapidità è costante ma il vettore velocità cambia direzione. Il cambiamento istantaneo è rivolto verso il centro: è l’accelerazione centripeta di modulo v²/r. Non è necessario che la forza che la produce abbia un nuovo nome: può essere una tensione o un’altra interazione reale."
+        },
+        {
+          "type": "formula",
+          "text": "a_c=\\frac{v^2}{r}>0"
+        },
+        {
+          "type": "text",
+          "text": "La tangente è la direzione della velocità, non dell’accelerazione nel moto uniforme. Una componente tangenziale cambierebbe la rapidità. Il verso esterno è opposto a quello centripeto. Velocità vettoriale costante sarebbe moto rettilineo uniforme, non moto su un cerchio di raggio finito."
+        }
+      ],
+      "difficulty": 1,
+      "prompt": "Un punto percorre una circonferenza con raggio r>0 e rapidità v>0 costante. Verso dove è diretta la sua accelerazione?",
+      "family": "verso-dellaccelerazione-normale",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Verso il centro del cerchio",
+          "Tangente nel verso del moto",
+          "Tangente nel verso opposto al moto",
+          "Radialmente verso l’esterno",
+          "È nulla perché v è costante"
+        ],
+        "value": "Verso il centro del cerchio"
+      },
+      "hints": [
+        "Confronta due velocità vicine sulla curva: cambia il loro verso.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La tangente è la direzione della velocità, non dell’accelerazione nel moto uniforme. Una componente tangenziale cambierebbe la rapidità. Il verso esterno è opposto a quello centripeto. Velocità vettoriale costante sarebbe moto rettilineo uniforme, non moto su un cerchio di raggio finito.",
+        "target": "C1-L004"
+      },
+      "baseVersion": 2,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Moto accelerato e circolare",
+        "Un’accelerazione anche a rapidità costante"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q040",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto e forze",
+      "order": 40,
+      "title": "Derivare una legge con le unità",
+      "skill": "C1-L004",
+      "prerequisites": [
+        "C1-L004"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La velocità è la derivata della posizione rispetto al tempo. Il termine costante 1 m scompare, il termine lineare dà 2 m/s e il termine quadratico dà due volte il coefficiente 3 m/s² per t. A 2 s il contributo variabile è 12 m/s: sommando quello iniziale si ottiene 14 m/s."
+        },
+        {
+          "type": "formula",
+          "text": "v(t)=2\\,\\mathrm{m/s}+(6\\,\\mathrm{m/s^2})t"
+        },
+        {
+          "type": "formula",
+          "text": " v(2\\,\\mathrm s)=(2+12)\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " v(2\\,\\mathrm s)=14\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "17 è il valore numerico di x(2 s) in metri, non una velocità. 8 m/s deriva come se il termine quadratico fosse lineare;12 m/s ignora il contributo iniziale 2 m/s. 6 è il valore numerico dell’accelerazione in m/s², non della velocità a 2 s."
+        }
+      ],
+      "difficulty": 3,
+      "prompt": "La posizione segue x(t)=1 m+(2 m/s)t+(3 m/s²)t². Qual è la velocità all’istante t=2 s?",
+      "family": "trovare-la-velocita-del-fotogramma",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "14 m/s",
+          "17 m/s",
+          "8 m/s",
+          "12 m/s",
+          "6 m/s"
+        ],
+        "value": "14 m/s"
+      },
+      "hints": [
+        "La derivata di t² è 2 t: conserva il coefficiente e le sue unità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "17 è il valore numerico di x(2 s) in metri, non una velocità. 8 m/s deriva come se il termine quadratico fosse lineare;12 m/s ignora il contributo iniziale 2 m/s. 6 è il valore numerico dell’accelerazione in m/s², non della velocità a 2 s.",
+        "target": "C1-L004"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Moto accelerato e circolare",
+        "Derivare una legge con le unità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "4578d7a62366cfaf07b7f8d1f313ff6fc7f092827a93c1d1e0b737163ea76c86",
+      "name": "cric-c1-l004-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTgyMCI+PHRpdGxlPkFycmVzdG8sIHJpdG9ybm8gZSBhY2NlbGVyYXppb25lIHJhZGlhbGU8L3RpdGxlPjxkZXNjPlRyZSBtb2RlbGxpIGRpc3RpbnRpLiBUcmlhbmdvbG8gdmVsb2NpdMOgIHRlbXBvIGZpbm8gYWwgcHJpbW8gYXJyZXN0byBhIDIgc2Vjb25kaS4gUXVvdGEgZGkgdW4gbGFuY2lvIHZlcnRpY2FsZSBjaGUgcml0b3JuYSBhIHplcm8gYSA2LzUgc2Vjb25kaS4gRGlzY28gY29uIHZlbG9jaXTDoCBhbmdvbGFyZSBjb211bmUgZSBhY2NlbGVyYXppb25pIHJhZGlhbGkgaW4gcmFwcG9ydG8gMi48L2Rlc2M+PGRlZnM+PG1hcmtlciBpZD0iYSIgdmlld0JveD0iMCAwIDEwIDEwIiByZWZYPSI5IiByZWZZPSI1IiBtYXJrZXJXaWR0aD0iNyIgbWFya2VySGVpZ2h0PSI3IiBvcmllbnQ9ImF1dG8iPjxwYXRoIGQ9Ik0wIDBMMTAgNUwwIDEwWiIgZmlsbD0iIzI4NzM4ZCIgLz48L21hcmtlcj48L2RlZnM+PHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxODIwIiBmaWxsPSJ3aGl0ZSIgLz48ZyBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzE4MzU0YiI+PHRleHQgeD0iMzIiIHk9IjQ0IiBmb250LXNpemU9IjI2Ij5MZWdnZXJlIGzigJlhY2NlbGVyYXppb25lPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSIxMDUiIGZvbnQtc2l6ZT0iMjMiPjEgwrcgQXJyZXN0YXJzaSBzZW56YSBwcm9sdW5nYXJlIGlsIG1vdG88L3RleHQ+PHBhdGggZD0iTTEyMCA0NDBWMTYwTTEwMCA0MTBINTIwIiBzdHJva2U9IiM4NzlkYTgiIGZpbGw9Im5vbmUiIC8+PHRleHQgeD0iNzUiIHk9IjE1MCI+diAobS9zKTwvdGV4dD48dGV4dCB4PSI1MzAiIHk9IjQxNSI+dCAocyk8L3RleHQ+PHBhdGggZD0iTTEyMCAxNzBMNDQwIDQxMEgxMjBaIiBmaWxsPSIjYzVlMWViIiAvPjxwYXRoIGQ9Ik0xMjAgMTcwTDQ0MCA0MTAiIHN0cm9rZT0iIzI4NzM4ZCIgc3Ryb2tlLXdpZHRoPSI0IiAvPjx0ZXh0IHg9IjgwIiB5PSIxODAiPjQ8L3RleHQ+PHRleHQgeD0iOTAiIHk9IjQzNSI+MDwvdGV4dD48dGV4dCB4PSI0MzIiIHk9IjQ0NSI+MjwvdGV4dD48dGV4dCB4PSIyMDAiIHk9IjM0NSI+QXJlYTogNCBtPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSI1MTAiPkQgPSBtZXTDoCBkaSAoMiBzKSDDlyAoNCBtL3MpID0gNCBtLjwvdGV4dD48dGV4dCB4PSIzMiIgeT0iNTUwIj5JbCBtb2RlbGxvIHNpIGZlcm1hIGFsIHByaW1vIGFycmVzdG8uPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSI2MzAiIGZvbnQtc2l6ZT0iMjMiPjIgwrcgUml0b3JuYXJlIGFsbGEgc3Rlc3NhIHF1b3RhPC90ZXh0PjxwYXRoIGQ9Ik0xMjAgMTA2MFY3NTBNMTAwIDEwMzBINTMwIiBzdHJva2U9IiM4NzlkYTgiIGZpbGw9Im5vbmUiIC8+PHRleHQgeD0iNzUiIHk9Ijc0MCI+eSAobSk8L3RleHQ+PHRleHQgeD0iNTM1IiB5PSIxMDM1Ij50IChzKTwvdGV4dD48cGF0aCBkPSJNMTIwIDEwMzBRMzAwIDY3MCA0ODAgMTAzMCIgc3Ryb2tlPSIjMjg3MzhkIiBzdHJva2Utd2lkdGg9IjQiIGZpbGw9Im5vbmUiIC8+PHBhdGggZD0iTTEyMCA4NTBIMzAwVjEwMzAiIHN0cm9rZT0iI2E2NmUzNiIgc3Ryb2tlLWRhc2hhcnJheT0iNiA1IiBmaWxsPSJub25lIiAvPjx0ZXh0IHg9IjYwIiB5PSI4NTgiPjkvNTwvdGV4dD48dGV4dCB4PSI5MCIgeT0iMTA1NSI+MDwvdGV4dD48dGV4dCB4PSIyNzUiIHk9IjEwNzAiPjMvNTwvdGV4dD48dGV4dCB4PSI0NjAiIHk9IjEwNzAiPjYvNTwvdGV4dD48dGV4dCB4PSIzMiIgeT0iMTEzMCI+U2FsaXRhOiAzLzUgcy4gUml0b3JubzogNi81IHMuPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSIxMTcwIj5MYSBjdXJ2YSByYXBwcmVzZW50YSBsYSBxdW90YSBuZWwgdGVtcG8uPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSIxMjUwIiBmb250LXNpemU9IjIzIj4zIMK3IFN0ZXNzbyBkaXNjbywgc3Rlc3NhIM+JPC90ZXh0PjxjaXJjbGUgY3g9IjMwMCIgY3k9IjE1MDAiIHI9IjE2MCIgc3Ryb2tlPSIjODc5ZGE4IiBmaWxsPSJub25lIiAvPjxjaXJjbGUgY3g9IjMwMCIgY3k9IjE1MDAiIHI9IjgwIiBzdHJva2U9IiM4NzlkYTgiIGZpbGw9Im5vbmUiIC8+PGNpcmNsZSBjeD0iMzAwIiBjeT0iMTUwMCIgcj0iNCIgZmlsbD0iIzE4MzU0YiIgLz48dGV4dCB4PSIyNzAiIHk9IjE1MjgiPk88L3RleHQ+PGNpcmNsZSBjeD0iMzAwIiBjeT0iMTQyMCIgcj0iNCIgZmlsbD0iIzE4MzU0YiIgLz48Y2lyY2xlIGN4PSI0NjAiIGN5PSIxNTAwIiByPSI0IiBmaWxsPSIjMTgzNTRiIiAvPjxwYXRoIGQ9Ik0zMDAgMTQyMFYxNDcwIiBzdHJva2U9IiMyODczOGQiIHN0cm9rZS13aWR0aD0iNCIgbWFya2VyLWVuZD0idXJsKCNhKSIgLz48cGF0aCBkPSJNNDYwIDE1MDBIMzYwIiBzdHJva2U9IiMyODczOGQiIHN0cm9rZS13aWR0aD0iNCIgbWFya2VyLWVuZD0idXJsKCNhKSIgLz48dGV4dCB4PSIzMTAiIHk9IjE0MDAiPnI8L3RleHQ+PHRleHQgeD0iNDgwIiB5PSIxNDkwIj4ycjwvdGV4dD48dGV4dCB4PSIzMTgiIHk9IjE0NTAiPmHigoE8L3RleHQ+PHRleHQgeD0iMzk1IiB5PSIxNTM1Ij5h4oKCID0gMmHigoE8L3RleHQ+PHRleHQgeD0iMzIiIHk9IjE3MzAiPkxlIGZyZWNjZSBh4oKBIGUgYeKCgiB1c2FubyBsYSBzdGVzc2Egc2NhbGEuPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSIxNzcwIj5FbnRyYW1iZSBwdW50YW5vIGFsIGNlbnRybzsgYV9jID0gz4nCsnIuPC90ZXh0PjwvZz48L3N2Zz4="
+    }
+  ]
+}

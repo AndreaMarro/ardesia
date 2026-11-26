@@ -1,0 +1,368 @@
+{
+  "schemaVersion": "1.0.0",
+  "lessonReference": {
+    "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "gitPath": "officina-di-fisica/content/C1.json",
+    "sourceSha256": "0a79b1212adbef650733d655d1de2d5ffd7af5eb2be2bde50710a0a1721ab0cf",
+    "primarySkill": "C1-L005",
+    "title": "Isolare un corpo e disegnare le forze",
+    "actualLessonPrerequisites": [
+      "C1-L002",
+      "C1-L004"
+    ]
+  },
+  "records": [
+    {
+      "id": "C1-Q041",
+      "sourceSha256": "a6dc60fba863fc4eed25530dd603c14ec120dca0aaf260369d916850c984d76d",
+      "candidateSha256": "9c2ce6d9b317a4adeb100cefb72262cb99f5ff8f6d62aaf98483ef42a972b81c",
+      "reviewedSignature": "0effd0c2202bd07ce9524b88ea860b5f7dfe24c8796124232ab46dc46167902a",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Mantiene la velocità vettoriale iniziale",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Con massa costante positiva in riferimento inerziale,F_R=ma=0 implica a=0. Il pattino già in moto conserva la velocità vettoriale, non deve arrestarsi.",
+      "physicalAssumptions": "Pattino già in moto, massa costante positiva, risultante nulla e riferimento inerziale.",
+      "distractors": "Rallentare,curvare o accelerare richiedono risultante;la quiete è possibile in generale ma esclusa dal moto iniziale assegnato.",
+      "pedagogicalReview": "Inerzia e moto preesistente separati dall’idea di forza motrice necessaria.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_distinct_measurement_calculations_and_separate_conceptual_derivations",
+        "Pint_exact_volume_mass_speed_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C1-Q042",
+      "sourceSha256": "4e9fcf815fa9ee7e1c5a1050aa91474226a11ee91d4d3c80c7ffaa7db3f0f666",
+      "candidateSha256": "29b66f256be54873a22f924a82d5c79fed37779fb270674595c26e910ee9e043",
+      "reviewedSignature": "afbfd084b06317cf2a8d0387a1f872f7cf33776bbaf43737661cc89dd24f6eeb",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "32",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Secchio a velocità costante:a_y=0. Con verso positivo alto,T−mg=0 e T=(16/5)·10=32 N, pur mentre il secchio sale.",
+      "physicalAssumptions": "Massa totale del secchio3,2 kg,filo verticale ideale,solo peso e tensione,velocità costante,g=10 m/s².",
+      "distractors": "Zero è risultante,64 somma forze opposte,3,2 copia la massa e320 aggiunge un fattore10.",
+      "pedagogicalReview": "Velocità costante non significa tensione nulla.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_distinct_measurement_calculations_and_separate_conceptual_derivations",
+        "Pint_exact_volume_mass_speed_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C1-Q043",
+      "sourceSha256": "78f84c218e2d6c60441d2289a085ffd6b23e893c925639e8b4ccec251c56fef2",
+      "candidateSha256": "aa38c8f7e384b382f175f0160f5c18694e9cc832ff46e7a76b39cf5e7b8dfe64",
+      "reviewedSignature": "02ec415134c3887f98f8b756457f90e4159d382c4b6aff046debe2ff307bc2cb",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "La forza gravitazionale del libro sulla Terra",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Il peso è forza della Terra sul libro. La reazione della stessa interazione è forza gravitazionale del libro sulla Terra, destinatario diverso; normale non è quella reazione.",
+      "physicalAssumptions": "Libro sulla Terra: richiesta della coppia gravitazionale del terzo principio, non della forza che lo mantiene fermo sul tavolo.",
+      "distractors": "La normale agisce sullo stesso libro e appartiene a interazione diversa;libro sul tavolo reagisce alla normale,non al peso.",
+      "pedagogicalReview": "Sorgente e destinatario scambiati nella stessa interazione.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_distinct_measurement_calculations_and_separate_conceptual_derivations",
+        "Pint_exact_volume_mass_speed_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C1-Q044",
+      "sourceSha256": "79bfb01e54ad759fc8ac93bca17c9f0cad751df056542a030811b8168b5769ac",
+      "candidateSha256": "1a23951d6857a82920321f26d88029d7e5967ce824d8dacdc5ff9c44673e4350",
+      "reviewedSignature": "851e867d00904603e90a49dae79b1eaa33363d0763c0ca0f399d6758a2b54770",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "cric-c1-l005-progressive.svg": "15dd6e0e5e921366fd0ed510c84c9b87a04ebd7b137cc8d19337e396c73abf80"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "38",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Peso50 N verso il basso, fune12 N e normaleN verso l’alto. Equilibrio verticale:N+12−50=0, N=38 N>0, contatto possibile.",
+      "physicalAssumptions": "Blocco5 kg su piano orizzontale fisso,a_y=0,g=10 m/s²; verticalmente solo peso,fune con Ty=12 N uscente e normale.",
+      "distractors": "50 omette fune,62 la somma al sostegno richiesto,12 copia Ty,−38 dà verso errato alla spinta del supporto.",
+      "pedagogicalReview": "Bilancio di sole componenti verticali e controllo del contatto.",
+      "assetReview": "XML e nuovo PNG indipendente640×1900 letti per intero. Bilancio verticale: N38N lungo152,Ty12N lungo48,P50N lungo200, scala comune4coordinate/N e152+48=200. Secondo pannello forza6/8/10N con segmenti180/240/300, scala comune30coordinate/N. Rampa60°:peso20N lungo140, normale10N lungo70, vettori normali opposti con componenti±(60.622,35); tangente della rampa(220,−381.051) perpendicolare alla normale. Corpo indicato sopra la superficie, assi e testi leggibili; componente tratteggiata distinta da forza aggiuntiva.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_distinct_measurement_calculations_and_separate_conceptual_derivations",
+        "Pint_exact_volume_mass_speed_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C1-Q045",
+      "sourceSha256": "b0737533ea12719d217d66d44740762e51851b271c6b13a71d9fe8aa26b180c0",
+      "candidateSha256": "b98945376ede642e3e41fe86b7eb0c9702df317dbf9ae4639d729693b19daac5",
+      "reviewedSignature": "b1844656e5a29a31af23723bfee05f1cba499ae39cc37a3ca33730faa86a4dc1",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Inerziale",
+      "dimension": {},
+      "manualArithmetic": "Un riferimento in cui un corpo isolato mantiene velocità vettoriale costante è inerziale; non serve quiete assoluta, né ogni corpo deve essere fermo.",
+      "physicalAssumptions": "Definizione operativa inerziale: corpo isolato e velocità vettoriale costante. Nessuna immobilità assoluta assunta.",
+      "distractors": "Rotante non è generalmente inerziale;quiete assoluta,tutti fermi e assenza del tempo non definiscono il principio.",
+      "pedagogicalReview": "Definizione del riferimento distinta da quiete o rotazione.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_distinct_measurement_calculations_and_separate_conceptual_derivations",
+        "Pint_exact_volume_mass_speed_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C1-Q046",
+      "sourceSha256": "e1be081f5179d6460ba8a7e8f8d121d797c909312737b7eafd96ad423f15587a",
+      "candidateSha256": "c1cf3bbae22fef6aa03839e0099a4e5982afafacafab7a371db9ed3db5835535",
+      "reviewedSignature": "ae71bbbb85482edc8733afae3420530f6b81feb451b4323b6193bb15c6a01ac6",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "cric-c1-l005-progressive.svg": "15dd6e0e5e921366fd0ed510c84c9b87a04ebd7b137cc8d19337e396c73abf80"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Forze ortogonali6 e8 N: risultante√(36+64)=10 N. Per massa5 kg,modulo accelerazione2 m/s²; peso e normale compensati.",
+      "physicalAssumptions": "Piattaforma5 kg,due spinte orizzontali ortogonali6/8 N;normale e peso compensati,nessuna ulteriore resistenza.",
+      "distractors": "14/5 somma moduli,6/5 e8/5 sono componenti,10 copia il coefficiente della risultante in N anziché dividere per5 kg.",
+      "pedagogicalReview": "Somma vettoriale prima della divisione per massa.",
+      "assetReview": "XML e nuovo PNG indipendente640×1900 letti per intero. Bilancio verticale: N38N lungo152,Ty12N lungo48,P50N lungo200, scala comune4coordinate/N e152+48=200. Secondo pannello forza6/8/10N con segmenti180/240/300, scala comune30coordinate/N. Rampa60°:peso20N lungo140, normale10N lungo70, vettori normali opposti con componenti±(60.622,35); tangente della rampa(220,−381.051) perpendicolare alla normale. Corpo indicato sopra la superficie, assi e testi leggibili; componente tratteggiata distinta da forza aggiuntiva.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_distinct_measurement_calculations_and_separate_conceptual_derivations",
+        "Pint_exact_volume_mass_speed_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C1-Q047",
+      "sourceSha256": "342c2976286670d578c58653328345e47ce19900f6b504d49ef5e3734c06876f",
+      "candidateSha256": "1da5deae802d0b4532ac74663dce39c4bcfdc720760c81170ddc02bc5d88cd0e",
+      "reviewedSignature": "dbe89e5fad6023df6bde08494a9d421e177abcd9d87661608cddad8a577db5bc",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "La forza della mano sul primo blocco",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Sistema dei due blocchi esclude mano, piano e Terra. La spinta della mano attraversa il confine ed è orizzontale esterna; contatto fra blocchi interno e opposto.",
+      "physicalAssumptions": "Due blocchi su piano liscio,mano esclusa dal sistema insieme a piano/Terra;si chiede una forza orizzontale esterna.",
+      "distractors": "I contatti hanno sorgente/destinatario interni;sommarli di nuovo duplica interazioni. Peso esterno è verticale e non risponde alla domanda.",
+      "pedagogicalReview": "Confine del sistema esplicito prima di sommare le forze.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_distinct_measurement_calculations_and_separate_conceptual_derivations",
+        "Pint_exact_volume_mass_speed_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C1-Q048",
+      "sourceSha256": "3cd3b57b619f04f0f6c3e5065ae057733880c4c97bb898720009a3b65b809a86",
+      "candidateSha256": "f9731de7c88b7c2b14b4acd9de1c5c802b8d768d01260ab52c10c3b17571d309",
+      "reviewedSignature": "5864cee08c28bc97737c451768c532b6e0546c9e1eabd91223043fcc6ed77a27",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "48/5",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Massa invariata m=P_T/g_T=24/10=12/5 kg. Nuovo peso m g_A=(12/5)·4=48/5 N, non cambia massa ma cambia la forza gravitazionale.",
+      "physicalAssumptions": "Peso iniziale24 N con g_T=10 m/s²,nuova g_A=4 m/s² e stessa massa del corpo.",
+      "distractors": "24 conserva erroneamente il peso,60 inverte gravità,2,4 copia massa,96 moltiplica un peso per nuova g senza togliere vecchia g.",
+      "pedagogicalReview": "Massa invariata ricavata prima del nuovo peso.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_distinct_measurement_calculations_and_separate_conceptual_derivations",
+        "Pint_exact_volume_mass_speed_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C1-Q049",
+      "sourceSha256": "079056fdb4dc436d580d262e009318e085eb4f68742a426fa4ad6faea5522a96",
+      "candidateSha256": "e2d1015808f67d42e567a15181fd4225544dfa3b9d6adbcf7a087fcfc594a120",
+      "reviewedSignature": "202f69babf75858210e874e8e93ee0fa1f937ebef603f4a7cb72d54c564bd036",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Lungo il filo, dal corpo verso il supporto",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Filo ideale teso rettilineo tira lungo se stesso dal corpo verso il supporto. ModuloT≥0, direzione assegnata dal segmento; non spinge e non deve essere verticale.",
+      "physicalAssumptions": "Filo ideale teso,rettilineo e obliquo,fissato a un supporto;forza di trazione sul corpo non necessariamente in equilibrio.",
+      "distractors": "Verticale vale solo per filo verticale;perpendicolare non è trazione;allontanare dal supporto richiederebbe spinta del filo.",
+      "pedagogicalReview": "Filo può tirare ma non spingere,verso fissato dalla geometria.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_distinct_measurement_calculations_and_separate_conceptual_derivations",
+        "Pint_exact_volume_mass_speed_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C1-Q050",
+      "sourceSha256": "811295626ce19ee9a77737b58d1840ceeaf391fbe4d32884cb0de40786b3c15f",
+      "candidateSha256": "fb8a7e520b0371dde621d3d43504b5029ecf742b2fe0ef8d8698e453964af7b8",
+      "reviewedSignature": "8859963e8a0e3454c65327572c709cbe1797f5adb1347a935f3ecb7e9c6a093f",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "cric-c1-l005-progressive.svg": "15dd6e0e5e921366fd0ed510c84c9b87a04ebd7b137cc8d19337e396c73abf80"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "10",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Asse normale al piano fisso, accelerazione normale nulla. N−mg cos60°=0, N=2·10·(1/2)=10 N>0; non equilibra tutta la componente parallela.",
+      "physicalAssumptions": "Massa2 kg,rampa rettilinea fissa60°,contatto e accelerazione normale nulla;solo peso e normale lungo quel normale,g=10 m/s².",
+      "distractors": "20 uguaglia N a tutto il peso;10√3 è componente parallela,zero elimina il sostegno e40 divide per coseno invece di proiettare.",
+      "pedagogicalReview": "Asse normale e proiezione del peso distinti dalla verticale.",
+      "assetReview": "XML e nuovo PNG indipendente640×1900 letti per intero. Bilancio verticale: N38N lungo152,Ty12N lungo48,P50N lungo200, scala comune4coordinate/N e152+48=200. Secondo pannello forza6/8/10N con segmenti180/240/300, scala comune30coordinate/N. Rampa60°:peso20N lungo140, normale10N lungo70, vettori normali opposti con componenti±(60.622,35); tangente della rampa(220,−381.051) perpendicolare alla normale. Corpo indicato sopra la superficie, assi e testi leggibili; componente tratteggiata distinta da forza aggiuntiva.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_distinct_measurement_calculations_and_separate_conceptual_derivations",
+        "Pint_exact_volume_mass_speed_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    }
+  ],
+  "verifierSha256": "4f0885d92a9f2102d4de827a280196325f10b6d9945f56611dde28c5967f5a78",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "reviewDependencySha256": {
+    "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+  },
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2",
+    "hypothesis": "6.148.7"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "reviewedCandidateCommit": "74f8241f3bf148d78da26a297478559ef99dfd85",
+  "packageSha256": "5ede06a341e9d83e3066f9802ec37911a62627e789382a1932f458583399e14a",
+  "bindingsSha256": "df5711821ffc2c90113960dd100871f0a0b90a4482d8ce4d5b70706e4c87f168",
+  "source": {
+    "commit": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "path": "officina-di-fisica/content/C1.json",
+    "title": "cric-c1-l005",
+    "reference": "Dieci problemi Cric distinti, risolti individualmente nella primaria prompt-only prima dei candidati; leggere le note per ID per modelli e domini."
+  },
+  "modelsBeforeCandidateKeys": {
+    "path": "editorial/reviews/cric-c1-001-050-independent-models.py",
+    "sha256": "f7e59ee2a8652933cccd27248b6798c5a6a75c66c8f9f111efe81b20a10fd88c",
+    "commit": "7a2a3784421f346b4784a581e275760a623b4adf"
+  },
+  "postReadNumericGuardHardening": "All constitutive, inverse, calibration and exact finite guard function bodies are identical to the actual pre-key snapshot from first version.",
+  "primaryBeforeCandidateKeys": {
+    "path": "editorial/reviews/primary-cric-c1-001-050-before-candidates-20261126.md",
+    "sha256": "2e0ac86f9b57804387b68ccdcdbde945bed65b26ee5de6449323f25c3540707a"
+  }
+}

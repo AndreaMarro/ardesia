@@ -1,43 +1,45 @@
 {
   "schemaVersion": "1.0.0",
-  "observedAt": "2026-11-26T18:51:47.137211+00:00",
-  "snapshotHead": "92309e4db99615ba10da19da6fdf94405107af1e",
+  "observedAt": "2026-11-26T20:03:29.233477+00:00",
+  "snapshotHead": "2b6c504042c942f8b266b2671787b6043bc044d1",
   "canonicalHead": "7c29ccc18ad3b42ceecfca509ef57f786bd2c496",
   "mandate": "INCOMPLETE",
   "questions": {
     "accounted": 4606,
-    "scientificallyReviewed": 4010,
-    "scientificallyUnreviewed": 596,
+    "scientificallyReviewed": 4100,
+    "scientificallyUnreviewed": 506,
     "registeredDrafts": 3792,
     "compiledDraftsLocally": 3632,
     "compiledCandidateFullyLocallyValidated": false,
     "canonicalHistoricalRevisedDrafts": 3312,
-    "newRootAcceptanceReceipt": "editorial/reviews/cric-c1-l001-root-integration-20261126/receipt.json",
+    "newRootAcceptanceReceipt": "editorial/reviews/cric-c1-remaining90-root-integration-20261126/receipt.json",
     "compiledCandidateFullyRemotelyValidated": true,
     "unreviewedBySource": {
       "Ardesia": 0,
-      "Cric": 596
+      "Cric": 506
     },
     "newRootAcceptanceReceipts": [
       "editorial/reviews/u7-02-root-integration-20261126/receipt.json",
-      "editorial/reviews/u7-03-root-integration-20261126/receipt.json"
+      "editorial/reviews/u7-03-root-integration-20261126/receipt.json",
+      "editorial/reviews/cric-c1-remaining90-root-integration-20261126/receipt.json"
     ],
-    "registrationPendingQuestions": 218,
+    "registrationPendingQuestions": 308,
     "fullArdesiaIdAudit": "editorial/reviews/u7-03-root-integration-20261126/ardesia4000-id-reconciliation.json",
-    "fullyAccepted": 4010,
+    "fullyAccepted": 4100,
     "pedagogicalReopened": 0,
     "pedagogicalReopenedIds": []
   },
   "activities": {
     "accounted": 385,
-    "scientificallyReviewedInFeature": 246,
-    "remaining": 139,
+    "scientificallyReviewedInFeature": 245,
+    "remaining": 140,
     "remainingByCourse": {
       "C2": 41,
       "C3": 36,
       "C4": 29,
       "C5": 27,
-      "C6": 6
+      "C6": 6,
+      "C1": 1
     },
     "C2C3PartialReviewsAddCredit": 0,
     "partialC2C3C4DeliveriesRecovered": true,
@@ -74,7 +76,10 @@
       "productUi": "NOT_RUN",
       "humanApproval": "NOT_RUN",
       "receipt": "editorial/reviews/experiments-manual-support-263-independent-20261125/root-receipt.json"
-    }
+    },
+    "explicitlyReopenedIds": [
+      "SIM-C1-L007-01"
+    ]
   },
   "protectedExamQuestions": 93,
   "humanApprovals": 0,
@@ -345,7 +350,7 @@
       19,
       3
     ],
-    "actualImport": "16→0/16;991andhistoric unchanged",
+    "actualImport": "16\u21920/16;991andhistoric unchanged",
     "newSourceCredit": 0,
     "productUI": "PENDING_NEW_PACKAGE_RENDER",
     "humanApproval": "NOT_RUN"

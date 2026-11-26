@@ -1,0 +1,77 @@
+{
+  "schemaVersion": "1.0.0",
+  "scope": "separate independent scientific and pedagogical review of ten distinct original Cric questions",
+  "batch": "cric-c1-l003",
+  "records": 10,
+  "reviewedCandidateCommit": "bb1838bc2cda1fa04a269dbca40c2284190f5889",
+  "allFinalRecordsRead": true,
+  "allFinalSVGXmlAndNativeRead": true,
+  "primaryBeforeKeys": {
+    "path": "editorial/reviews/primary-cric-c1-001-050-before-candidates-20261126.md",
+    "sha256": "2e0ac86f9b57804387b68ccdcdbde945bed65b26ee5de6449323f25c3540707a"
+  },
+  "modelBeforeKeys": {
+    "path": "editorial/reviews/cric-c1-001-050-independent-models.py",
+    "sha256": "f7e59ee2a8652933cccd27248b6798c5a6a75c66c8f9f111efe81b20a10fd88c",
+    "commit": "7a2a3784421f346b4784a581e275760a623b4adf"
+  },
+  "actualTarget": {
+    "scope": "actual targeted independent review tests only_not_full_suite_or_product_UI",
+    "command": [
+      "/private/tmp/cric-recovery-venv/bin/python",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests/corpus",
+      "-p",
+      "test_cric_c1_l003_independent.py",
+      "-v"
+    ],
+    "candidateApp": "/private/tmp/cric-author-a-resident/officina-di-fisica",
+    "exitCode": 0,
+    "signal": null,
+    "startedAt": "2026-11-26T19:30:47.240169+00:00",
+    "finishedAt": "2026-11-26T19:30:49.534616+00:00",
+    "elapsedSeconds": 2.2944958340085577,
+    "rawSha256": "8088af6a9700c957103d69764d736f34ccca6266c1652001394ab9ebc91fcaa4",
+    "humanApproval": "NOT_RUN",
+    "publication": "DRAFT"
+  },
+  "mutations": 28,
+  "wrongKeyRebindRetokenCases": 10,
+  "modes": {
+    "EXACT_ORACLE": 5,
+    "AI_CONCEPTUAL": 5
+  },
+  "freshAndSavedIdentity": "PASS for exact candidate package and bindings",
+  "scientificResult": "10/10, no residual finding",
+  "humanApproval": "NOT_RUN",
+  "productUI": "NOT_RUN",
+  "publication": "DRAFT",
+  "files": {
+    "tools/corpus_engineering/cric_c1_l003_verifier.py": "c50a9def3b80d62987fed39c7e9972ccc6acbaff7fb5e17973b8d5cb6bf449e9",
+    "tests/corpus/test_cric_c1_l003_independent.py": "4dc1c14ca4eeb3061c8a51e91c1fb1e41deb0b8dc98f62e2eb182dc1bceba8a2",
+    "editorial/reviews/cric-c1-l003-independent-mutations.json": "83499445d300f72bbfbdc1d4c638c85a9b8206b6d25420337835caa44a1dbca3",
+    "editorial/reviews/cric-c1-l003-independent-note.md": "775b004c469112e530bbf10224231c9d41a1d25f25dc12cb1dad20a8b7df03f2",
+    "editorial/reviews/cric-c1-l003-target-final.log": "8088af6a9700c957103d69764d736f34ccca6266c1652001394ab9ebc91fcaa4",
+    "editorial/reviews/cric-c1-l003-target-final.json": "54dff7823aca05cca7e61e8eb1ff78b03ecf7eeee2b2c8dac75318211cd53e04",
+    "editorial/reviews/cric-c1-l003.json": "49ba172cb38b1e913dd6b95b2da0b3891fdff5b51761e05d3ab2f88b9db12358",
+    "editorial/reviews/cric-c1-l003-svg-independent-evidence/native-svg-producer.mjs": "d48800c39d478fca8d96b172714f7704b61f2cbde895855a4f2f7b916089de8e",
+    "editorial/reviews/cric-c1-l003-svg-independent-evidence/cric-c1-l003-terminal.json": "ee5076b46e7a13af1762d6bdc4cde7f989b55eada4d783c94ab52a3ff90f7a71",
+    "editorial/reviews/cric-c1-l003-svg-independent-evidence/cric-c1-l003-full.png": "9d33385241f052c3e44efb7e48d7a762624da56a56e71b61fe43dc590d0a97fe",
+    "editorial/reviews/cric-c1-l003-svg-independent-evidence/cric-c1-l003-render.json": "5601cb9c328cf855bf502167c1f09de73263022abd1d849b619114144551ce8d",
+    "editorial/reviews/cric-c1-l003-svg-independent-evidence/initial-label-contact/native-svg-producer.mjs": "d48800c39d478fca8d96b172714f7704b61f2cbde895855a4f2f7b916089de8e",
+    "editorial/reviews/cric-c1-l003-svg-independent-evidence/initial-label-contact/cric-c1-l003-terminal.json": "81f1f4e08a8603320df1256a81fd2c574c785b051f09edbb8efa8b937303a1c1",
+    "editorial/reviews/cric-c1-l003-svg-independent-evidence/initial-label-contact/manifest.json": "6c833a40e778a570fbda6a3ef1de1b918e1aabf9af0413060fde3abd15cc6346",
+    "editorial/reviews/cric-c1-l003-svg-independent-evidence/initial-label-contact/cric-c1-l003-full.png": "7b53074d0309f44385c21b024fa92a1b53cb905b273d124c76b41a78d0e87a3f",
+    "editorial/reviews/cric-c1-l003-svg-independent-evidence/initial-label-contact/cric-c1-l003-render.json": "5601cb9c328cf855bf502167c1f09de73263022abd1d849b619114144551ce8d",
+    "editorial/reviews/cric-c1-l003-svg-independent-evidence/initial-label-contact/cric-c1-l003-progressive.svg": "86031085bc76893b3795197f7d7482bc53cc30ce1000d61f11859c653431f528",
+    "editorial/reviews/primary-cric-c1-001-050-before-candidates-20261126.md": "2e0ac86f9b57804387b68ccdcdbde945bed65b26ee5de6449323f25c3540707a",
+    "editorial/reviews/cric-c1-001-050-independent-models.py": "f7e59ee2a8652933cccd27248b6798c5a6a75c66c8f9f111efe81b20a10fd88c",
+    "editorial/reviews/cric-c1-001-050-model-before-candidates-20261126.json": "48346dd5a05695563f887e5d4b493f5d0e3d496c8a9203eb578bc907bfe47e5a",
+    "editorial/reviews/cric-c1-001-050-git-evidence/git-inputs.json": "d1d8007896168bb9277cc53220982fa0f6e0818c6f0432ab861592be171b6717",
+    "editorial/reviews/cric-c1-001-050-git-evidence/cric-c1-001-050-independent-models.py": "f7e59ee2a8652933cccd27248b6798c5a6a75c66c8f9f111efe81b20a10fd88c"
+  }
+}

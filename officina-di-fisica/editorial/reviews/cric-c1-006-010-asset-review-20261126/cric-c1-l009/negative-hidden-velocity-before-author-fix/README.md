@@ -1,0 +1,3 @@
+# Vettore parzialmente invisibile — edizione iniziale L009
+
+Native indipendente completo640×1660 realmente terminato0, letto insieme a XML. Il processo di rendering riuscito non è approvazione visiva: nel pannello2 il tratto x180→150 della velocità sinistra è dello stesso colore del corpo #986c35, quindi30 delle100 coordinate sono invisibili. La dichiarazione di scala comune non rende leggibile un vettore incompleto. Il finding è stato inviato all’autore, che ha confermato lo spostamento dei due vettori fuori dai corpi preservando100/150. Nuova resa e rilettura ancora NOT_RUN in questo archivio. Nessun PASS scientifico o umano attribuito a questa edizione.

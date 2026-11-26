@@ -1,0 +1,394 @@
+{
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "C1-Q081",
+      "sourceSha256": "4118e45c40fa7a153be32035f41fe567e3f4883a6ddb7788bf208d7d88d69aa8",
+      "candidateSha256": "986ab829d8b05078670ec27bc72121c3e6363f55562a7162f83a1388d2a0c735",
+      "reviewedSignature": "fd9b7cf37468db60db39d48ed40bdac6140e0cba04e84997af920b170f590cc1",
+      "assetChecksums": {
+        "cric-c1-l009-progressive.svg": "670488d8ee1c99ed930d8b0f2f7a4024a0e538de6b6499bc603305e57fe534b5"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "-7/10",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Impulso componente J_x=Δp_x=m(v_f−v_i)=(1/10)(−3−4)=−7/10 kg·m/s=−0,70 N·s. Il verso è negativo; il modulo sarebbe 0,70 ma non è la componente chiesta. La collisione cambia anche il verso della velocità.",
+      "physicalAssumptions": "Componente orizzontale dell’impulso totale su massa 1/10 kg; velocità firmate+4 e−3, non moduli.",
+      "distractors": "+7/10 perde il verso; +1/10 usa i moduli invece delle componenti. −3/10 è p finale; −7 N ha dimensione sbagliata e manca la durata.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Impulso componente J_x=Δp_x=m(v_f−v_i)=(1/10)(−3−4)=−7/10 kg·m/s=−0,70 N·s. Il verso è negativo; il modulo sarebbe 0,70 ma non è la componente chiesta. La collisione cambia anche il verso della velocità.",
+      "scientificAssetReview": "XML finale016dad e NUOVO PNG nativo indipendente640×1660 interi letti. Negativo iniziale conservato: colore del corpo nascondeva30/100 coordinate della velocità sinistra. Solo due vettori e due punte traslati40 verso il basso a y780: lunghezze100/150,50 coordinate per m/s, ora integralmente visibili fuori dai rettangoli. Quantità di moto del rimbalzo80/60 per2/5 e3/10, scala200 coordinate/(kg·m/s). Forza media: componenti120/120 per−2/+2 N, scala60 coordinate/N su entrambi gli assi. Nessuna differenza di rapidità scambiata per differenza vettoriale.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c1_051_100_review_models.py": "6216ca8c9b4a2652b10fcbcc22d09e9298df0c8768ce040c4238155f6709b365",
+        "cric_c1_mechanics_review_common.py": "b4e7a6e16e35cf7b0bad0ecc064b90106322a39daee055fbf436dec41026e91b",
+        "cric_c1_mechanics_review_evidence.py": "60aff82f8711da4f44a0a6e6f4f4ac61807735927d16a8148fcfd7c50eee37d2",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C1-Q082",
+      "sourceSha256": "ec91beb2a860704446767ba3a1ed6ed900df2721208f6c1176546f1f39e18861",
+      "candidateSha256": "0d58513b2b2f2cdbce551d19ebb85a215f8d31ad97e9cc8f47d1195491b37796",
+      "reviewedSignature": "5f753ed4c549cfb145d220d467959da55b5733a36f4c7af8740886fed3ecdd80",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Si dimezza",
+      "dimension": {},
+      "manualArithmetic": "Stesso carrello e stessa velocità iniziale,arresto finale: Δp è identico. Risultante media vettoriale F_med=Δp/Δt; raddoppiare il tempo dimezza il suo modulo. È il modulo della media netta,non necessariamente la media temporale del modulo di una forza con direzione variabile.",
+      "physicalAssumptions": "Stesso carrello e medesime velocità estreme: impulso vettoriale uguale; rapporto dei moduli delle forze medie, non media dei moduli né picco.",
+      "distractors": "Raddoppio, uguaglianza, un quarto o zero non forniscono lo stesso impulso con durata doppia. Il picco non è deducibile dalla forza media.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Stesso carrello e stessa velocità iniziale,arresto finale: Δp è identico. Risultante media vettoriale F_med=Δp/Δt; raddoppiare il tempo dimezza il suo modulo. È il modulo della media netta,non necessariamente la media temporale del modulo di una forza con direzione variabile.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c1_051_100_review_models.py": "6216ca8c9b4a2652b10fcbcc22d09e9298df0c8768ce040c4238155f6709b365",
+        "cric_c1_mechanics_review_common.py": "b4e7a6e16e35cf7b0bad0ecc064b90106322a39daee055fbf436dec41026e91b",
+        "cric_c1_mechanics_review_evidence.py": "60aff82f8711da4f44a0a6e6f4f4ac61807735927d16a8148fcfd7c50eee37d2",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C1-Q083",
+      "sourceSha256": "6478267babbaaa226392fb92ef4a0e98657504379cc1115da8153593572978c5",
+      "candidateSha256": "aa92d4dda965fb58aeccb9dd9c5cd180078a651616fecfed510120cd3a8cbf04",
+      "reviewedSignature": "c58616c79f4db2a1ddedcc2901943926da04b88f3d32046b7b42e6d9116a511c",
+      "assetChecksums": {
+        "cric-c1-l009-progressive.svg": "670488d8ee1c99ed930d8b0f2f7a4024a0e538de6b6499bc603305e57fe534b5"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "-2",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "La molla scambia forze interne e la guida è liscia: quantità di moto orizzontale totale conservata,inizialmente nulla.4 kg·3 m/s+6 kg·v₂=0→v₂=−2 m/s. Le velocità non sono uguali in modulo con masse diverse; la molla può aumentare la K usando energia interna elastica.",
+      "physicalAssumptions": "Sistema orizzontalmente isolato dei due pattini e molla di massa trascurabile; inizialmente fermo, nessuna p residua della molla da trascurare senza ipotesi.",
+      "distractors": "+2 m/s darebbe quantità di moto totale positiva. −3 m/s impone moduli uguali delle velocità anziché delle quantità di moto; zero ignora la spinta interna.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. La molla scambia forze interne e la guida è liscia: quantità di moto orizzontale totale conservata,inizialmente nulla.4 kg·3 m/s+6 kg·v₂=0→v₂=−2 m/s. Le velocità non sono uguali in modulo con masse diverse; la molla può aumentare la K usando energia interna elastica.",
+      "scientificAssetReview": "XML finale016dad e NUOVO PNG nativo indipendente640×1660 interi letti. Negativo iniziale conservato: colore del corpo nascondeva30/100 coordinate della velocità sinistra. Solo due vettori e due punte traslati40 verso il basso a y780: lunghezze100/150,50 coordinate per m/s, ora integralmente visibili fuori dai rettangoli. Quantità di moto del rimbalzo80/60 per2/5 e3/10, scala200 coordinate/(kg·m/s). Forza media: componenti120/120 per−2/+2 N, scala60 coordinate/N su entrambi gli assi. Nessuna differenza di rapidità scambiata per differenza vettoriale.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c1_051_100_review_models.py": "6216ca8c9b4a2652b10fcbcc22d09e9298df0c8768ce040c4238155f6709b365",
+        "cric_c1_mechanics_review_common.py": "b4e7a6e16e35cf7b0bad0ecc064b90106322a39daee055fbf436dec41026e91b",
+        "cric_c1_mechanics_review_evidence.py": "60aff82f8711da4f44a0a6e6f4f4ac61807735927d16a8148fcfd7c50eee37d2",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C1-Q084",
+      "sourceSha256": "c1db67f182bc4e9e1d21233e3ffbeef2a514228757797733ff0c441322ce5c0c",
+      "candidateSha256": "6aa605915e1c8a93139cf1247407d965783fa7b583f338fc1c9c6933bd539aff",
+      "reviewedSignature": "45071117a48efadd4f9304aae70cce776f0383aab200669d5887a1bd4a8be90d",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "3/2",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Considero vassoio e massa cadente come sistema durante la presa. La guida liscia non fornisce impulso orizzontale e la massa cade senza velocità orizzontale. Momento iniziale 1,5·2=3 kg·m/s; massa finale 2 kg→v_comune 3/2=1,5 m/s. Il termine peso da 0,5 kg nel testo va inteso come massa,poiché kg non è unità di forza. La K orizzontale non si conserva nell’aggancio. La nuova candidata usa esplicitamente una massa in chilogrammi, distinta dalla forza peso.",
+      "physicalAssumptions": "Vassoio e corpo cadente inclusi, velocità entrante orizzontale nulla, guida liscia e impulso esterno orizzontale nullo; massa 0,5 kg, non peso 0,5 N.",
+      "distractors": "2 m/s ignora la nuova massa; 3 copia il valore numerico di p come velocità. 1/2 m/s e zero violano il momento orizzontale iniziale di 3 kg·m/s; K non si conserva nella cattura.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Considero vassoio e massa cadente come sistema durante la presa. La guida liscia non fornisce impulso orizzontale e la massa cade senza velocità orizzontale. Momento iniziale 1,5·2=3 kg·m/s; massa finale 2 kg→v_comune 3/2=1,5 m/s. Il termine peso da 0,5 kg nel testo va inteso come massa,poiché kg non è unità di forza. La K orizzontale non si conserva nell’aggancio. La nuova candidata usa esplicitamente una massa in chilogrammi, distinta dalla forza peso.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c1_051_100_review_models.py": "6216ca8c9b4a2652b10fcbcc22d09e9298df0c8768ce040c4238155f6709b365",
+        "cric_c1_mechanics_review_common.py": "b4e7a6e16e35cf7b0bad0ecc064b90106322a39daee055fbf436dec41026e91b",
+        "cric_c1_mechanics_review_evidence.py": "60aff82f8711da4f44a0a6e6f4f4ac61807735927d16a8148fcfd7c50eee37d2",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C1-Q085",
+      "sourceSha256": "6d35c10d213369f1c3eaf8da29bf8142be1121a8aa05c84f755e4c003af7bf5a",
+      "candidateSha256": "d083402b097028aea737b4b6d95613f9ead06ef9f84f8e7d831cd1c072cb76c7",
+      "reviewedSignature": "6273ec2e59af99c9f1f288f969eee29e73e813ff32e21e6bdc4c58b4f5ce36c5",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Quello di massa minore",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Nella meccanica classica K=p²/(2 m). A medesimo modulo di p non nullo,K è inversamente proporzionale alla massa: il corpo meno massiccio ha più energia cinetica. Se p fosse zero sarebbero entrambe nulle,ma il testo lo esclude.",
+      "physicalAssumptions": "Meccanica classica, masse positive diverse e p comune in modulo strettamente positivo; energia non dipende dai versi.",
+      "distractors": "Massa maggiore dà K maggiore a velocità fissata, ma qui è fissato p. Le direzioni non contano per K; l’uguaglianza è esclusa da p>0 e masse diverse.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Nella meccanica classica K=p²/(2 m). A medesimo modulo di p non nullo,K è inversamente proporzionale alla massa: il corpo meno massiccio ha più energia cinetica. Se p fosse zero sarebbero entrambe nulle,ma il testo lo esclude.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c1_051_100_review_models.py": "6216ca8c9b4a2652b10fcbcc22d09e9298df0c8768ce040c4238155f6709b365",
+        "cric_c1_mechanics_review_common.py": "b4e7a6e16e35cf7b0bad0ecc064b90106322a39daee055fbf436dec41026e91b",
+        "cric_c1_mechanics_review_evidence.py": "60aff82f8711da4f44a0a6e6f4f4ac61807735927d16a8148fcfd7c50eee37d2",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C1-Q086",
+      "sourceSha256": "9882d27d495001bd98cd5fb9218e5ee6488be77accac8397cfc15a344f66a669",
+      "candidateSha256": "0d8bb7a33f92a5ad8cda39b65d49956c7b7e4445e42223118d84d0de3c126cfc",
+      "reviewedSignature": "e49e80b46d6ae14669fecbc284f93a42faa220a17841978afe9c98bc8691dcc2",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Elastico",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Un urto con energia cinetica totale del sistema isolato uguale prima e dopo è elastico. Quantità di moto totale conservata da sola non distingue elastico da anelastico; anche l’urto anelastico conserva p in isolamento ma trasforma parte della K in altre forme.",
+      "physicalAssumptions": "Sistema isolato e confronto delle energie cinetiche totali prima/dopo; energie dei singoli corpi possono cambiare.",
+      "distractors": "Completamente anelastico implica velocità comune e può ridurre K. Assenza di forze o velocità singole invariate non seguono dalle conservazioni.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Un urto con energia cinetica totale del sistema isolato uguale prima e dopo è elastico. Quantità di moto totale conservata da sola non distingue elastico da anelastico; anche l’urto anelastico conserva p in isolamento ma trasforma parte della K in altre forme.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c1_051_100_review_models.py": "6216ca8c9b4a2652b10fcbcc22d09e9298df0c8768ce040c4238155f6709b365",
+        "cric_c1_mechanics_review_common.py": "b4e7a6e16e35cf7b0bad0ecc064b90106322a39daee055fbf436dec41026e91b",
+        "cric_c1_mechanics_review_evidence.py": "60aff82f8711da4f44a0a6e6f4f4ac61807735927d16a8148fcfd7c50eee37d2",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C1-Q087",
+      "sourceSha256": "1a2068142d8fd49e00f2dc0b522b3dfedc4be9956cd8049926d6410ff7fd257c",
+      "candidateSha256": "772a9af2d57d27ff364d98a434f4fb59e5a4daee5f9cebf17ee3501c1e3621fb",
+      "reviewedSignature": "d276b8906684ed9ce545b84aa14b5d174c56c87373ceba281153e56705ac2a0f",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "7/10",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Impulso medio−3 N·0,60 s=−1,8 N·s. p_f=p_i+J=2,5−1,8=+0,7 kg·m/s=7/10 kg·m/s. La quantità di moto diminuisce ma resta positiva; non si assume automaticamente inversione del moto.",
+      "physicalAssumptions": "Risultante media lungo lo stesso asse, intervallo 3/5 s positivo; impulso negativo sommato alla p iniziale 5/2.",
+      "distractors": "−7/10 segue il segno della forza senza completare il bilancio. −9/5 è il solo impulso; +43/10 somma il suo modulo; zero richiederebbe impulso −5/2 N·s.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Impulso medio−3 N·0,60 s=−1,8 N·s. p_f=p_i+J=2,5−1,8=+0,7 kg·m/s=7/10 kg·m/s. La quantità di moto diminuisce ma resta positiva; non si assume automaticamente inversione del moto.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c1_051_100_review_models.py": "6216ca8c9b4a2652b10fcbcc22d09e9298df0c8768ce040c4238155f6709b365",
+        "cric_c1_mechanics_review_common.py": "b4e7a6e16e35cf7b0bad0ecc064b90106322a39daee055fbf436dec41026e91b",
+        "cric_c1_mechanics_review_evidence.py": "60aff82f8711da4f44a0a6e6f4f4ac61807735927d16a8148fcfd7c50eee37d2",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C1-Q088",
+      "sourceSha256": "de66846af6470d45211150c53efac6bfc43edb227bb912463ef4034bc25c5633",
+      "candidateSha256": "3687b9171e7601b97c89a3659fc26b0e27025f54508217fa5f33c99d2d769533",
+      "reviewedSignature": "80b234c30cd5e3d4204ee4bf83194333a4ab9cf0d0cf870d9cf917ad1cddc703",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Il sistema formato da entrambe le biglie",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Il sistema minimo sufficiente è la coppia di entrambe le biglie: le forze di contatto sono interne uguali/opposte,mentre il tavolo liscio e la gravità non danno impulso orizzontale. La p orizzontale totale si conserva; quella di una singola biglia in generale no. Anche un sistema più ampio adeguatamente isolato può conservarla,perciò la futura unicità delle alternative richiede lettura reale delle opzioni,non un’etichetta copiata.",
+      "physicalAssumptions": "Entrambe le biglie nel sistema minimo sufficiente, impulsi esterni orizzontali trascurabili; nessun’altra opzione propone un insieme isolato più ampio equivalente.",
+      "distractors": "Ogni biglia singola riceve un impulso esterno dall’altra. Né massa né quiete selezionano il sistema; il contatto interno non impedisce p totale costante.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Il sistema minimo sufficiente è la coppia di entrambe le biglie: le forze di contatto sono interne uguali/opposte,mentre il tavolo liscio e la gravità non danno impulso orizzontale. La p orizzontale totale si conserva; quella di una singola biglia in generale no. Anche un sistema più ampio adeguatamente isolato può conservarla,perciò la futura unicità delle alternative richiede lettura reale delle opzioni,non un’etichetta copiata.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c1_051_100_review_models.py": "6216ca8c9b4a2652b10fcbcc22d09e9298df0c8768ce040c4238155f6709b365",
+        "cric_c1_mechanics_review_common.py": "b4e7a6e16e35cf7b0bad0ecc064b90106322a39daee055fbf436dec41026e91b",
+        "cric_c1_mechanics_review_evidence.py": "60aff82f8711da4f44a0a6e6f4f4ac61807735927d16a8148fcfd7c50eee37d2",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C1-Q089",
+      "sourceSha256": "b504d127e58121cfb6e7dbb81ea2853efa6a2c660a27e775d8b86928ed862533",
+      "candidateSha256": "594d4dd306104e7fa64e57d6a5487704c549789177c5242f69b64e12dd2893cc",
+      "reviewedSignature": "b87b6856ab6f7d17b37ec82d0798b03af4d3ae025068fa9abd43c408e6c8548d",
+      "assetChecksums": {
+        "cric-c1-l009-progressive.svg": "670488d8ee1c99ed930d8b0f2f7a4024a0e538de6b6499bc603305e57fe534b5"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2*sqrt(2)",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Δv=(−2,+2)m/s. Con m 1/2 kg,Δp=(−1,+1)kg·m/s. Dividendo perΔt 1/2 s: F_med=(−2,+2)N. Il modulo è√(4+4)=2√2 N,esatto; non serve una radice decimale o il modulo della variazione delle rapidità,che sarebbe nullo.",
+      "physicalAssumptions": "Massa 1/2 kg costante, componenti cartesiane ortogonali, velocità vettoriali(2,0)→(0,2), intervallo 1/2 s; modulo della media, non differenza delle rapidità.",
+      "distractors": "2 N è una sola componente. √2 copia il valore numerico di |Δp| prima di dividere per il tempo. 4 N somma i moduli; zero confronta rapidità anziché vettori.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Δv=(−2,+2)m/s. Con m 1/2 kg,Δp=(−1,+1)kg·m/s. Dividendo perΔt 1/2 s: F_med=(−2,+2)N. Il modulo è√(4+4)=2√2 N,esatto; non serve una radice decimale o il modulo della variazione delle rapidità,che sarebbe nullo.",
+      "scientificAssetReview": "XML finale016dad e NUOVO PNG nativo indipendente640×1660 interi letti. Negativo iniziale conservato: colore del corpo nascondeva30/100 coordinate della velocità sinistra. Solo due vettori e due punte traslati40 verso il basso a y780: lunghezze100/150,50 coordinate per m/s, ora integralmente visibili fuori dai rettangoli. Quantità di moto del rimbalzo80/60 per2/5 e3/10, scala200 coordinate/(kg·m/s). Forza media: componenti120/120 per−2/+2 N, scala60 coordinate/N su entrambi gli assi. Nessuna differenza di rapidità scambiata per differenza vettoriale.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c1_051_100_review_models.py": "6216ca8c9b4a2652b10fcbcc22d09e9298df0c8768ce040c4238155f6709b365",
+        "cric_c1_mechanics_review_common.py": "b4e7a6e16e35cf7b0bad0ecc064b90106322a39daee055fbf436dec41026e91b",
+        "cric_c1_mechanics_review_evidence.py": "60aff82f8711da4f44a0a6e6f4f4ac61807735927d16a8148fcfd7c50eee37d2",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C1-Q090",
+      "sourceSha256": "5f3d579d6f40ac47b2d2bf4da66768f3161559a2c8aafb99688c749aea998a38",
+      "candidateSha256": "e2e2ec3744aeee56af37016209a480e3f6d799506e82373350309bdc2d1db94c",
+      "reviewedSignature": "4b492eb576d2db42cf8c852824441e6ca1af5ed7f5db72d13e43b7a56a71c78d",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "La componente x della risultante, costante e positiva",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "La pendenza dp_x/dt della retta quantità-di-moto–tempo è la componente della risultante esterna sul corpo/sistema materiale chiuso. È costante e positiva nel caso descritto,con unità(kg·m/s)/s=N. Non è direttamente velocità o accelerazione; queste richiedono la massa e altre relazioni.",
+      "physicalAssumptions": "Sistema materiale chiuso, p_x lineare nel tempo; pendenza costante positiva con dimensione di forza, non una velocità senza massa.",
+      "distractors": "Posizione, velocità, impulso ed energia non hanno le dimensioni di p/t. Per v occorre la massa; per l’impulso occorre l’intervallo.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. La pendenza dp_x/dt della retta quantità-di-moto–tempo è la componente della risultante esterna sul corpo/sistema materiale chiuso. È costante e positiva nel caso descritto,con unità(kg·m/s)/s=N. Non è direttamente velocità o accelerazione; queste richiedono la massa e altre relazioni.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c1_051_100_review_models.py": "6216ca8c9b4a2652b10fcbcc22d09e9298df0c8768ce040c4238155f6709b365",
+        "cric_c1_mechanics_review_common.py": "b4e7a6e16e35cf7b0bad0ecc064b90106322a39daee055fbf436dec41026e91b",
+        "cric_c1_mechanics_review_evidence.py": "60aff82f8711da4f44a0a6e6f4f4ac61807735927d16a8148fcfd7c50eee37d2",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "4080e580d97d9b60ed779bc81e39b7522c4a4c24108956e104eb62da48bd658b",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "publicationAction": "NONE",
+  "reviewedCandidateCommit": "b2321dab71379e6b5ddab48d701bacadb8196b31",
+  "packageSha256": "bb7d8f737335b1309d6ad7fb1536ca8504bbb1f8c9a2e49834b2e2069e087ec1",
+  "bindingsSha256": "bacb2864ca3e705a930a8b5a57fb105c1bf72fe559b515275affdddc6364b55f",
+  "sourceFirstPrimarySha256": "1abe1f80465386a32abc613e31dc2d6c8fc41d4a8f24a2e77aea025e2773b3d1",
+  "source": {
+    "commit": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "path": "officina-di-fisica/content/C1.json",
+    "reference": "Tutti50 prompt derivati nella primaria227d4a08 e modelli0a430e35 prima di qualsiasi candidato Cric B. Successivamente tutti50 originali completi, candidati e figure letti; nessun modulo autore o primaria B aperti. Nessuna esposizione pre-key nota. Prodotto UI e human NOT_RUN."
+  }
+}

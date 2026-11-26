@@ -1,0 +1,718 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "C1-Q091",
+      "kind": "question",
+      "course": "C1",
+      "section": "Centro di massa, momento ed equilibrio",
+      "order": 91,
+      "title": "Una coordinata pesata dalle masse",
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L010"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il centro di massa è la media delle coordinate pesata con le masse, non la media semplice dei due estremi. Il primo contributo è nullo perché x_1=0; il secondo è 3·0,80=2,4 kg·m. Divido per la massa totale 4 kg e ottengo 0,60=3/5 m, più vicino alla massa maggiore e compreso fra le due coordinate."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/f43854c821643337847addbdc948ba3bd9ea415d43a9c73a68b590922a99ac92",
+          "text": "Il primo pannello usa una scala comune lungo x. La massa da 3 kg pesa tre volte quella da 1 kg nella media; il centro di massa è a 3/5 m, fra i punti e più vicino alla massa maggiore."
+        },
+        {
+          "type": "formula",
+          "text": "x_{\\rm CM}=\\frac{m_1x_1+m_2x_2}{m_1+m_2}"
+        },
+        {
+          "type": "formula",
+          "text": " x_{\\rm CM}=\\frac{3\\cdot(4/5)}4\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " x_{\\rm CM}=\\frac35\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "2/5 m sarebbe il punto medio senza pesi. 4/5 m coincide con la seconda massa e 1/5 la avvicina a quella leggera. 12/5 m copia il numeratore come coordinata e cade persino fuori dall’intervallo fra le masse."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Due masse puntiformi di 1 kg e 3 kg si trovano rispettivamente in x=0 e x=0,80 m. Qual è la coordinata del loro centro di massa?",
+      "family": "spostare-il-centro-di-massa",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/5 m",
+          "2/5 m",
+          "4/5 m",
+          "1/5 m",
+          "12/5 m"
+        ],
+        "value": "3/5 m"
+      },
+      "hints": [
+        "Controlla che la media pesata cada fra le due posizioni e verso la massa maggiore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "2/5 m sarebbe il punto medio senza pesi. 4/5 m coincide con la seconda massa e 1/5 la avvicina a quella leggera. 12/5 m copia il numeratore come coordinata e cade persino fuori dall’intervallo fra le masse.",
+        "target": "C1-L010"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Media pesata e moto del centro di massa",
+        "Braccio perpendicolare e coppia",
+        "Equilibrio e convenzioni di segno"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q092",
+      "kind": "question",
+      "course": "C1",
+      "section": "Centro di massa, momento ed equilibrio",
+      "order": 92,
+      "title": "Il braccio è una distanza perpendicolare",
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L010"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il momento è il prodotto vettoriale r×F. In modulo compare la componente di r perpendicolare alla forza: b=r sinα. È la distanza più breve dal perno alla retta lungo cui agisce la forza. Soltanto per α=90° il braccio coincide con tutta la distanza r."
+        },
+        {
+          "type": "formula",
+          "text": "|\\tau|=rF\\sin\\alpha"
+        },
+        {
+          "type": "formula",
+          "text": " b=r\\sin\\alpha"
+        },
+        {
+          "type": "formula",
+          "text": " |\\tau|=Fb"
+        },
+        {
+          "type": "text",
+          "text": "r senza il seno funziona soltanto nel caso perpendicolare. r cosα è la proiezione parallela alla forza e si annulla proprio quando il momento è massimo. rF non è una lunghezza e la strada percorsa non determina il braccio istantaneo."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Una forza di modulo F agisce su un corpo a distanza r dal perno. L’angolo fra il vettore r e la forza è α. Quale lunghezza, moltiplicata per F, dà in generale il modulo del momento?",
+      "family": "distanza-corretta-per-il-momento",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Il braccio b=r sinα, distanza del perno dalla retta d’azione",
+          "Sempre r, indipendentemente dall’angolo",
+          "La lunghezza r cosα",
+          "Il prodotto rF",
+          "La distanza percorsa dal punto durante il moto"
+        ],
+        "value": "Il braccio b=r sinα, distanza del perno dalla retta d’azione"
+      },
+      "hints": [
+        "Prolunga la retta d’azione e abbassa su di essa la perpendicolare dal perno.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "r senza il seno funziona soltanto nel caso perpendicolare. r cosα è la proiezione parallela alla forza e si annulla proprio quando il momento è massimo. rF non è una lunghezza e la strada percorsa non determina il braccio istantaneo.",
+        "target": "C1-L010"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Media pesata e moto del centro di massa",
+        "Braccio perpendicolare e coppia",
+        "Equilibrio e convenzioni di segno"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q093",
+      "kind": "question",
+      "course": "C1",
+      "section": "Centro di massa, momento ed equilibrio",
+      "order": 93,
+      "title": "Una forza sulla maniglia",
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L010"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La distanza dalla cerniera non coincide col braccio perché la forza è obliqua. Il braccio è 0,40 sin30°=0,20 m; moltiplicandolo per 15 N ottengo 3 N·m. La domanda chiede il modulo: il segno di rotazione richiederebbe anche una convenzione orientata e il verso geometrico della forza."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/f43854c821643337847addbdc948ba3bd9ea415d43a9c73a68b590922a99ac92",
+          "text": "Nel pannello centrale r=2/5 m e la forza di 15 N forma 30° con r. Il tratto perpendicolare tratteggiato vale b=1/5 m: il momento ha modulo Fb=3 N·m. Le lunghezze del triangolo condividono una scala; la freccia di forza ne usa un’altra."
+        },
+        {
+          "type": "formula",
+          "text": "b=r\\sin30^\\circ"
+        },
+        {
+          "type": "formula",
+          "text": " b=\\frac25\\cdot\\frac12\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " b=\\frac15\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " |\\tau|=15\\cdot\\frac15\\,\\mathrm{N\\,m}"
+        },
+        {
+          "type": "formula",
+          "text": " |\\tau|=3\\,\\mathrm{N\\,m}"
+        },
+        {
+          "type": "text",
+          "text": "Sei N·m ometterebbe il seno e tratterebbe la forza come perpendicolare. 3√3 N·m userebbe il coseno al posto del seno; 0,20 m è il braccio da moltiplicare ancora per la forza."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Il punto di applicazione di una forza è a 0,40 m dalla cerniera. La forza ha modulo 15 N e forma 30° con il vettore dalla cerniera alla maniglia. Quanto vale il modulo del momento, in N·m?",
+      "family": "forza-inclinata-sulla-maniglia",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "N·m",
+        "tolerance": 0
+      },
+      "hints": [
+        "Trova prima la distanza perpendicolare dalla cerniera alla retta d’azione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Sei N·m ometterebbe il seno e tratterebbe la forza come perpendicolare. 3√3 N·m userebbe il coseno al posto del seno; 0,20 m è il braccio da moltiplicare ancora per la forza.",
+        "target": "C1-L010"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Media pesata e moto del centro di massa",
+        "Braccio perpendicolare e coppia",
+        "Equilibrio e convenzioni di segno"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q094",
+      "kind": "question",
+      "course": "C1",
+      "section": "Centro di massa, momento ed equilibrio",
+      "order": 94,
+      "title": "Due forze opposte su rette diverse",
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L010"
+      ],
+      "version": 3,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le due forze si cancellano nella somma vettoriale ma non nel momento: le rette distinte hanno separazione perpendicolare d>0. Il modulo del momento della coppia è Fd, indipendente dal polo. Il centro di massa non accelera per questa risultante nulla, mentre il momento produce un effetto rotazionale; il corpo può comunque avere già una velocità traslatoria."
+        },
+        {
+          "type": "formula",
+          "text": "\\vec F_1+\\vec F_2=0"
+        },
+        {
+          "type": "formula",
+          "text": " |\\tau_{\\rm coppia}|=Fd"
+        },
+        {
+          "type": "formula",
+          "text": " d>0"
+        },
+        {
+          "type": "text",
+          "text": "Risultante nulla non implica momento nullo quando le rette sono distinte. Il fattore due non si applica a forze opposte nella risultante. Sostituire la coppia con una sola forza non nulla cambierebbe l’accelerazione del centro di massa."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Su un corpo rigido libero nel piano agiscono soltanto due forze parallele, opposte e di uguale modulo, su rette d’azione distinte. Quale descrizione è corretta?",
+      "family": "una-coppia-di-forze",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Risultante nulla e momento non nullo: una coppia di forze",
+          "Risultante e momento entrambi nulli",
+          "Risultante doppia e momento nullo",
+          "Nessun effetto perché le forze hanno uguale modulo",
+          "Solo una forza risultante applicata al centro di massa"
+        ],
+        "value": "Risultante nulla e momento non nullo: una coppia di forze"
+      },
+      "hints": [
+        "Somma le forze e i momenti come due condizioni diverse.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Risultante nulla non implica momento nullo quando le rette sono distinte. Il fattore due non si applica a forze opposte nella risultante. Sostituire la coppia con una sola forza non nulla cambierebbe l’accelerazione del centro di massa.",
+        "target": "C1-L010"
+      },
+      "baseVersion": 2,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Media pesata e moto del centro di massa",
+        "Braccio perpendicolare e coppia",
+        "Equilibrio e convenzioni di segno"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q095",
+      "kind": "question",
+      "course": "C1",
+      "section": "Centro di massa, momento ed equilibrio",
+      "order": 95,
+      "title": "La reazione lontana dal carico",
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L010"
+      ],
+      "version": 3,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Scelgo come polo l’appoggio sinistro, così la sua reazione ha braccio nullo. La reazione destra a 2 m deve equilibrare il momento del peso a mezzo metro: R_D·2=30·(1/2). Ricavo R_D=15/2 N. La somma verticale fornisce poi R_S=45/2 N, coerentemente maggiore perché il carico è vicino a sinistra."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/f43854c821643337847addbdc948ba3bd9ea415d43a9c73a68b590922a99ac92",
+          "text": "Il pannello finale mostra il peso a un quarto della lunghezza della trave. Le tre frecce verticali hanno la stessa scala di forze: 30 N verso il basso, 45/2 N e 15/2 N verso l’alto; le reazioni sommano il carico."
+        },
+        {
+          "type": "formula",
+          "text": "R_D\\ell=P a"
+        },
+        {
+          "type": "formula",
+          "text": " R_D=\\frac{30\\cdot(1/2)}2\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " R_D=\\frac{15}{2}\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " R_S=30\\,\\mathrm N-R_D"
+        },
+        {
+          "type": "text",
+          "text": "45/2 N è la reazione sinistra, non quella destra. Quindici dividerebbe il carico ugualmente benché non sia al centro. Trenta attribuirebbe tutto il peso all’appoggio destro e sessanta non soddisferebbe il bilancio verticale."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Una trave orizzontale leggera di lunghezza 2 m è appoggiata alle due estremità. Un peso di 30 N è posto a 0,50 m dall’appoggio sinistro. La trave è in equilibrio. Quanto vale la reazione verticale dell’appoggio destro?",
+      "family": "reazione-alla-seconda-estremita",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "15/2 N",
+          "45/2 N",
+          "15 N",
+          "30 N",
+          "60 N"
+        ],
+        "value": "15/2 N"
+      },
+      "hints": [
+        "Scegli un polo che elimini la reazione incognita dell’altro appoggio.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "45/2 N è la reazione sinistra, non quella destra. Quindici dividerebbe il carico ugualmente benché non sia al centro. Trenta attribuirebbe tutto il peso all’appoggio destro e sessanta non soddisferebbe il bilancio verticale.",
+        "target": "C1-L010"
+      },
+      "baseVersion": 2,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Media pesata e moto del centro di massa",
+        "Braccio perpendicolare e coppia",
+        "Equilibrio e convenzioni di segno"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q096",
+      "kind": "question",
+      "course": "C1",
+      "section": "Centro di massa, momento ed equilibrio",
+      "order": 96,
+      "title": "Le forze interne non accelerano il totale",
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L010"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Per il centro di massa uso M a_CM=F_est, con tutta la massa del sistema. Le interazioni fra carrelli sono interne e si cancellano nella somma, anche se ciascun carrello può avere un moto diverso. Divido 18 N per 12 kg e ottengo 3/2 m/s² nella direzione della risultante."
+        },
+        {
+          "type": "formula",
+          "text": "Ma_{\\rm CM}=F_{\\rm est}"
+        },
+        {
+          "type": "formula",
+          "text": " a_{\\rm CM}=\\frac{18\\,\\mathrm N}{12\\,\\mathrm{kg}}"
+        },
+        {
+          "type": "formula",
+          "text": " a_{\\rm CM}=\\frac32\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "text",
+          "text": "2/3 inverte forza e massa; sei dividerebbe per il numero dei carrelli anziché per la massa totale. Diciotto copia la forza come accelerazione e zero ignorerebbe la risultante esterna non nulla."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Un sistema di tre carrelli ha massa totale costante 12 kg. La risultante esterna orizzontale è 18 N. Quanto vale il modulo dell’accelerazione orizzontale del centro di massa?",
+      "family": "il-moto-del-sistema-intero",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/2 m/s²",
+          "2/3 m/s²",
+          "6 m/s²",
+          "18 m/s²",
+          "0 m/s²"
+        ],
+        "value": "3/2 m/s²"
+      },
+      "hints": [
+        "Non serve conoscere tutte le forze fra i singoli carrelli per questo bilancio.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "2/3 inverte forza e massa; sei dividerebbe per il numero dei carrelli anziché per la massa totale. Diciotto copia la forza come accelerazione e zero ignorerebbe la risultante esterna non nulla.",
+        "target": "C1-L010"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Media pesata e moto del centro di massa",
+        "Braccio perpendicolare e coppia",
+        "Equilibrio e convenzioni di segno"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q097",
+      "kind": "question",
+      "course": "C1",
+      "section": "Centro di massa, momento ed equilibrio",
+      "order": 97,
+      "title": "Un corpo può ruotare senza deformarsi",
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L010"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La costanza delle distanze reciproche definisce il corpo rigido ideale. I punti possono cambiare posizione nel laboratorio durante una traslazione o una rotazione, ma non si avvicinano e non si allontanano gli uni dagli altri. È un’idealizzazione che trascura le deformazioni, non il moto."
+        },
+        {
+          "type": "formula",
+          "text": "|\\vec r_i-\\vec r_j|=\\text{costante nel tempo}"
+        },
+        {
+          "type": "text",
+          "text": "Un punto materiale trascura l’estensione e non descrive distanze interne. Rigido non significa fermo; un fluido può cambiare forma e la definizione non elimina la massa."
+        }
+      ],
+      "difficulty": 1,
+      "prompt": "Come si chiama il modello di un corpo in cui la distanza fra ogni coppia di punti materiali resta costante nel tempo?",
+      "family": "il-modello-indeformabile",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Corpo rigido",
+          "Punto materiale",
+          "Corpo necessariamente fermo",
+          "Fluido ideale",
+          "Sistema senza massa"
+        ],
+        "value": "Corpo rigido"
+      },
+      "hints": [
+        "Chiediti che cosa resta costante: distanze reciproche oppure coordinate nel laboratorio.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un punto materiale trascura l’estensione e non descrive distanze interne. Rigido non significa fermo; un fluido può cambiare forma e la definizione non elimina la massa.",
+        "target": "C1-L010"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Media pesata e moto del centro di massa",
+        "Braccio perpendicolare e coppia",
+        "Equilibrio e convenzioni di segno"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q098",
+      "kind": "question",
+      "course": "C1",
+      "section": "Centro di massa, momento ed equilibrio",
+      "order": 98,
+      "title": "Cambiare il polo in equilibrio",
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L010"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Indico con a il vettore da O a O′ e con R la risultante esterna. Spostando il polo, la differenza Δτ fra momento nuovo e vecchio vale −a×R. Poiché questa risultante è zero, il termine aggiuntivo è nullo. Dunque un sistema con risultante nulla e momento nullo rispetto a O ha momento nullo anche rispetto a O′."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta\\vec\\tau=-\\vec a\\times\\vec R"
+        },
+        {
+          "type": "formula",
+          "text": " \\vec R=0"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta\\vec\\tau=0"
+        },
+        {
+          "type": "formula",
+          "text": " \\vec\\tau_{O^\\prime}=0"
+        },
+        {
+          "type": "text",
+          "text": "La distanza fra i poli da sola non crea un momento: conta anche la risultante. Un raddoppio o un’inversione automatica del segno non segue dalla trasformazione. La condizione di risultante nulla è essenziale per trasferire in questo modo il momento."
+        }
+      ],
+      "difficulty": 3,
+      "prompt": "Un corpo è fermo in equilibrio. La risultante esterna è nulla e il momento totale rispetto al punto O è nullo. Che cosa vale rispetto a un altro punto fisso O′ dello stesso piano?",
+      "family": "equilibrio-con-fulcro-diverso",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Il momento totale resta nullo",
+          "Il momento è certamente diverso da zero",
+          "Il momento raddoppia se raddoppia la distanza fra i poli",
+          "Si annulla soltanto la risultante, non il momento",
+          "Il segno del momento si inverte sempre"
+        ],
+        "value": "Il momento totale resta nullo"
+      },
+      "hints": [
+        "Separa il termine di traslazione del polo e verifica quale forza risultante lo moltiplica.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La distanza fra i poli da sola non crea un momento: conta anche la risultante. Un raddoppio o un’inversione automatica del segno non segue dalla trasformazione. La condizione di risultante nulla è essenziale per trasferire in questo modo il momento.",
+        "target": "C1-L010"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Media pesata e moto del centro di massa",
+        "Braccio perpendicolare e coppia",
+        "Equilibrio e convenzioni di segno"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q099",
+      "kind": "question",
+      "course": "C1",
+      "section": "Centro di massa, momento ed equilibrio",
+      "order": 99,
+      "title": "Un braccio muscolare più lungo",
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L010"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il momento muscolare deve compensare lo stesso momento resistente: F b=6 N·m. Porto i bracci in metri: 3/100 m e 1/25 m. La forza passa da 200 N a 150 N; la diminuzione è 200−150=50 N. Il confronto descrive una leva ideale con momento imposto, non una previsione clinica su un arto reale."
+        },
+        {
+          "type": "formula",
+          "text": "F_A=\\frac{6}{3/100}\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " F_A=200\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " F_B=\\frac{6}{1/25}\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " F_B=150\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " F_A-F_B=50\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "150 N è la nuova forza, non la sua diminuzione; 200 N quella iniziale. Sottrarre direttamente 4−3 cm non determina una differenza di forza, perché il braccio entra al denominatore. Il momento resta 6 N·m in entrambe le prove."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "In un modello statico idealizzato di leva, il momento resistente sul gomito resta 6 N·m. Il braccio perpendicolare della forza muscolare passa da 3 cm a 4 cm. Di quanti newton diminuisce la forza necessaria all’equilibrio?",
+      "family": "che-cosa-succede-piegando-il-gomito",
+      "answer": {
+        "type": "numeric",
+        "value": 50,
+        "unit": "N",
+        "tolerance": 0
+      },
+      "hints": [
+        "Calcola entrambe le forze nelle stesse unità prima di confrontarle.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "150 N è la nuova forza, non la sua diminuzione; 200 N quella iniziale. Sottrarre direttamente 4−3 cm non determina una differenza di forza, perché il braccio entra al denominatore. Il momento resta 6 N·m in entrambe le prove.",
+        "target": "C1-L010"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Media pesata e moto del centro di massa",
+        "Braccio perpendicolare e coppia",
+        "Equilibrio e convenzioni di segno"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q100",
+      "kind": "question",
+      "course": "C1",
+      "section": "Centro di massa, momento ed equilibrio",
+      "order": 100,
+      "title": "Il segno di una rotazione oraria",
+      "skill": "C1-L010",
+      "prerequisites": [
+        "C1-L010"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il vettore posizione dal fulcro al punto d’applicazione è verso destra e la forza è verso il basso. La coppia geometrica tende a far scendere l’estremità destra: è una rotazione oraria. Con la convenzione antioraria positiva, il momento è quindi negativo; in componenti τ_z=r_xF_y<0."
+        },
+        {
+          "type": "formula",
+          "text": "r_x>0"
+        },
+        {
+          "type": "formula",
+          "text": " F_y<0"
+        },
+        {
+          "type": "formula",
+          "text": " \\tau_z=r_xF_y"
+        },
+        {
+          "type": "formula",
+          "text": " \\tau_z<0"
+        },
+        {
+          "type": "text",
+          "text": "Essere a destra non basta a rendere positivo il momento: serve anche il verso della forza. La verticalità non annulla il braccio orizzontale e il modulo non può cambiare il segno fissato dalla geometria."
+        }
+      ],
+      "difficulty": 1,
+      "prompt": "Una trave si estende verso destra da un fulcro alla sua estremità sinistra. Sull’estremità destra agisce una forza verticale verso il basso. Se il momento antiorario è positivo, quale segno ha il momento di questa forza?",
+      "family": "il-segno-di-una-rotazione",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Negativo, perché tende a ruotare in senso orario",
+          "Positivo, perché il punto è a destra",
+          "Nullo, perché la forza è verticale",
+          "Positivo, perché la forza è esterna",
+          "Dipende soltanto dal modulo della forza"
+        ],
+        "value": "Negativo, perché tende a ruotare in senso orario"
+      },
+      "hints": [
+        "Immagina il piccolo verso di rotazione che la forza produrrebbe attorno al fulcro.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Essere a destra non basta a rendere positivo il momento: serve anche il verso della forza. La verticalità non annulla il braccio orizzontale e il modulo non può cambiare il segno fissato dalla geometria.",
+        "target": "C1-L010"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Media pesata e moto del centro di massa",
+        "Braccio perpendicolare e coppia",
+        "Equilibrio e convenzioni di segno"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "f43854c821643337847addbdc948ba3bd9ea415d43a9c73a68b590922a99ac92",
+      "name": "cric-c1-l010-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTYyMCIgdmlld0JveD0iMCAwIDY0MCAxNjIwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyIgZm9udC1mYW1pbHk9InN5c3RlbS11aSxzYW5zLXNlcmlmIj48dGl0bGUgaWQ9InRpdGxlIj5DZW50cm8gZGkgbWFzc2EgZSBtb21lbnRpIGRpIGZvcnplPC90aXRsZT48ZGVzYyBpZD0iZGVzYyI+TWVkaWEgcGVzYXRhIGRpIGR1ZSBjb29yZGluYXRlLCBicmFjY2lvIHBlcnBlbmRpY29sYXJlIGUgdHJhdmUgY29uIGR1ZSByZWF6aW9uaSB2ZXJ0aWNhbGkuPC9kZXNjPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSI2NDAiIGhlaWdodD0iMTYyMCIgZmlsbD0id2hpdGUiLz48dGV4dCB4PSIzNSIgeT0iNDgiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+UG9zaXppb25pLCBicmFjY2kgZSBtb21lbnRpPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSIxMTAiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+MSDCtyBMYSBtZWRpYSDDqCBwZXNhdGEgY29uIGxlIG1hc3NlPC90ZXh0PjxsaW5lIHgxPSI4MCIgeTE9IjI3MCIgeDI9IjU2MCIgeTI9IjI3MCIgc3Ryb2tlPSIjNjk3Yjg3IiBzdHJva2Utd2lkdGg9IjIiLz48cG9seWdvbiBwb2ludHM9IjU2MCwyNzAgNTUyLjAsMjc0LjAgNTUyLjAsMjY2LjAiIGZpbGw9IiM2OTdiODciLz48Y2lyY2xlIGN4PSIxMDAiIGN5PSIyNzAiIHI9IjgiIGZpbGw9IiM5ODZjMzUiLz48Y2lyY2xlIGN4PSI1MDAiIGN5PSIyNzAiIHI9IjEzLjg1NjQwNjQ2MDU1MTAxOCIgZmlsbD0iIzMwNmY4YyIvPjxjaXJjbGUgY3g9IjQwMCIgY3k9IjI3MCIgcj0iNiIgZmlsbD0id2hpdGUiIHN0cm9rZT0iIzMwNmY4YyIgc3Ryb2tlLXdpZHRoPSIzIi8+PHRleHQgeD0iMTAwIiB5PSIyMTAiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJtaWRkbGUiPjEga2c8L3RleHQ+PHRleHQgeD0iNTAwIiB5PSIyMTAiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJtaWRkbGUiPjMga2c8L3RleHQ+PHRleHQgeD0iMTAwIiB5PSIzMTUiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJtaWRkbGUiPjA8L3RleHQ+PHRleHQgeD0iNTAwIiB5PSIzMTUiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJtaWRkbGUiPjQvNSBtPC90ZXh0Pjx0ZXh0IHg9IjQwMCIgeT0iMzcwIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj54X0NNID0gMy81IG08L3RleHQ+PHRleHQgeD0iMzUiIHk9IjQ0NSIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5JbCBjZW50cm8gw6ggcGnDuSB2aWNpbm8gYWxsYSBtYXNzYSBtYWdnaW9yZS48L3RleHQ+PHRleHQgeD0iMzUiIHk9IjU2MCIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij4yIMK3IElsIGJyYWNjaW8gw6ggcGVycGVuZGljb2xhcmUgYWxsYSBmb3J6YTwvdGV4dD48dGV4dCB4PSIzOTAiIHk9IjYzMCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij7OsSA9IDMwwrA8L3RleHQ+PGNpcmNsZSBjeD0iMTUwIiBjeT0iNzQwIiByPSI0IiBmaWxsPSIjMzA2ZjhjIi8+PGxpbmUgeDE9IjE1MCIgeTE9Ijc0MCIgeDI9IjM5MCIgeTI9Ijc0MCIgc3Ryb2tlPSIjNjA3MzgzIiBzdHJva2Utd2lkdGg9IjIiLz48bGluZSB4MT0iMzkwIiB5MT0iNzQwIiB4Mj0iNDkzLjkyMzA0ODQ1NDEzMjY0IiB5Mj0iNjgwIiBzdHJva2U9IiMzMDZmOGMiIHN0cm9rZS13aWR0aD0iMiIvPjxwb2x5Z29uIHBvaW50cz0iNDkzLjkyMzA0ODQ1NDEzMjY0LDY4MCA0ODguOTk0ODQ1MjIzODU3MSw2ODcuNDY0MTAxNjE1MTM3OCA0ODQuOTk0ODQ1MjIzODU3MSw2ODAuNTM1ODk4Mzg0ODYyMiIgZmlsbD0iIzMwNmY4YyIvPjxsaW5lIHgxPSIzOTAiIHkxPSI3NDAiIHgyPSIyMTAiIHkyPSI4NDMuOTIzMDQ4NDU0MTMyNiIgc3Ryb2tlPSIjNjA3MzgzIiBzdHJva2Utd2lkdGg9IjIiLz48bGluZSB4MT0iMTUwIiB5MT0iNzQwIiB4Mj0iMjEwIiB5Mj0iODQzLjkyMzA0ODQ1NDEzMjYiIHN0cm9rZT0iIzYzN2U1NSIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iMTMwIiB5PSI3MjAiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+TzwvdGV4dD48dGV4dCB4PSIyNzAiIHk9IjcxMCIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9Im1pZGRsZSI+ciA9IDIvNSBtPC90ZXh0Pjx0ZXh0IHg9IjQ5MCIgeT0iNzQwIiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPkYgPSAxNSBOPC90ZXh0Pjx0ZXh0IHg9IjUwIiB5PSI4NzUiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+YiA9IDEvNSBtPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSI5NjAiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+fM+EfCA9IEYgYiA9ICgxNSBOKSDCtyAoMS81IG0pID0gMyBOwrdtPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSIxMDYwIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjMgwrcgRHVlIGFwcG9nZ2ksIHVuIGNhcmljbyBkZWNlbnRyYXRvPC90ZXh0PjxsaW5lIHgxPSIxMDAiIHkxPSIxMjEwIiB4Mj0iNTAwIiB5Mj0iMTIxMCIgc3Ryb2tlPSIjMjAzMjQ3IiBzdHJva2Utd2lkdGg9IjUiLz48bGluZSB4MT0iMTAwIiB5MT0iMTIxMCIgeDI9IjEwMCIgeTI9IjExMjAiIHN0cm9rZT0iIzYzN2U1NSIgc3Ryb2tlLXdpZHRoPSIyIi8+PHBvbHlnb24gcG9pbnRzPSIxMDAsMTEyMCAxMDQuMCwxMTI4LjAgOTYuMCwxMTI4LjAiIGZpbGw9IiM2MzdlNTUiLz48bGluZSB4MT0iNTAwIiB5MT0iMTIxMCIgeDI9IjUwMCIgeTI9IjExODAiIHN0cm9rZT0iIzYzN2U1NSIgc3Ryb2tlLXdpZHRoPSIyIi8+PHBvbHlnb24gcG9pbnRzPSI1MDAsMTE4MCA1MDQuMCwxMTg4LjAgNDk2LjAsMTE4OC4wIiBmaWxsPSIjNjM3ZTU1Ii8+PGxpbmUgeDE9IjIwMCIgeTE9IjEyMTAiIHgyPSIyMDAiIHkyPSIxMzMwIiBzdHJva2U9IiM5ODZjMzUiIHN0cm9rZS13aWR0aD0iMiIvPjxwb2x5Z29uIHBvaW50cz0iMjAwLDEzMzAgMTk2LjAsMTMyMi4wIDIwNC4wLDEzMjIuMCIgZmlsbD0iIzk4NmMzNSIvPjx0ZXh0IHg9IjQ1IiB5PSIxMTAwIiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPlJfUyA9IDQ1LzIgTjwvdGV4dD48dGV4dCB4PSI0MzAiIHk9IjExNTAiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+Ul9EID0gMTUvMiBOPC90ZXh0Pjx0ZXh0IHg9IjIyMCIgeT0iMTMyMCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5QID0gMzAgTjwvdGV4dD48bGluZSB4MT0iMTAwIiB5MT0iMTM2MCIgeDI9IjIwMCIgeTI9IjEzNjAiIHN0cm9rZT0iIzYwNzM4MyIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iMTUwIiB5PSIxMzk1IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj4xLzIgbTwvdGV4dD48bGluZSB4MT0iMTAwIiB5MT0iMTQ0MCIgeDI9IjUwMCIgeTI9IjE0NDAiIHN0cm9rZT0iIzYwNzM4MyIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iMzAwIiB5PSIxNDc1IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj4yIG08L3RleHQ+PHRleHQgeD0iMzUiIHk9IjE1NDAiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+Ul9TICsgUl9EID0gMzAgTjsgaSBtb21lbnRpIHNpIGVxdWlsaWJyYW5vLjwvdGV4dD48L3N2Zz4K"
+    }
+  ]
+}

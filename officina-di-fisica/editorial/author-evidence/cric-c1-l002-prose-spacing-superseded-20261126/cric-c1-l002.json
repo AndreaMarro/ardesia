@@ -1,0 +1,706 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "C1-Q011",
+      "kind": "question",
+      "course": "C1",
+      "section": "Misura e rappresentazione",
+      "order": 11,
+      "title": "La componente rivolta indietro",
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L002"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Proietto la forza sull’asse x con il coseno, perché l’angolo parte da quell’asse. 120°=180°−60° e cos120°=−cos60°=−1/2. La punta è nel secondo quadrante: il segno negativo della componente è coerente con il disegno, anche se il modulo della forza è positivo."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/b97626ad9e5784a34640789345031be0fc8add2066131b3c6202c501792b055c",
+          "text": "Il primo pannello mostra F nel secondo quadrante e la sua proiezione negativa F_x. La scala delle componenti è comune entro il pannello."
+        },
+        {
+          "type": "formula",
+          "text": "F_x=F\\cos\\theta"
+        },
+        {
+          "type": "formula",
+          "text": " \\cos120^\\circ=-\\frac12"
+        },
+        {
+          "type": "formula",
+          "text": " F_x=12\\left(-\\frac12\\right)\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " F_x=-6\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "6 N perde il verso negativo. −12 N proietta come se tutta la forza fosse lungo −x. 6√3 N è il valore della componente y, non x. Zero richiederebbe una forza perpendicolare a x, cioè90° o270°."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Una forza di modulo F=12 N forma un angolo θ=120° misurato in senso antiorario da +x. Qual è la componente F_x, con il suo segno?",
+      "family": "la-proiezione-allindietro",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "−6 N",
+          "6 N",
+          "−12 N",
+          "6√3 N",
+          "0 N"
+        ],
+        "value": "−6 N"
+      },
+      "hints": [
+        "Il coseno è negativo nel secondo quadrante; usa il valore notevole di60°.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "6 N perde il verso negativo. −12 N proietta come se tutta la forza fosse lungo −x. 6√3 N è il valore della componente y, non x. Zero richiederebbe una forza perpendicolare a x, cioè90° o270°.",
+        "target": "C1-L002"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Vettori",
+        "La componente rivolta indietro"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q012",
+      "kind": "question",
+      "course": "C1",
+      "section": "Misura e rappresentazione",
+      "order": 12,
+      "title": "Una risultante dopo il ritorno",
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L002"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Scelgo est positivo e chiamo R la componente dello spostamento totale. Ovest corrisponde allora a−7 m, est a+11 m. La somma con segno vale+4 m. La distanza percorsa sarebbe18 m, ma la risultante confronta posizione finale e iniziale."
+        },
+        {
+          "type": "formula",
+          "text": "R=(-7+11)\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " R=4\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "18 m somma i moduli e descrive il cammino, non lo spostamento risultante. 4 m a ovest scambia il verso della differenza;18 m a ovest sbaglia anche il segno. La risultante sarebbe nulla soltanto con tratti opposti ugualmente lunghi."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Si compiono due spostamenti sulla stessa retta: prima 7 m a ovest, poi 11 m a est. Qual è lo spostamento risultante?",
+      "family": "risultante-di-versi-opposti",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4 m a est",
+          "18 m a est",
+          "4 m a ovest",
+          "18 m a ovest",
+          "0 m"
+        ],
+        "value": "4 m a est"
+      },
+      "hints": [
+        "Assegna un segno a ciascun verso prima di sommare.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "18 m somma i moduli e descrive il cammino, non lo spostamento risultante. 4 m a ovest scambia il verso della differenza;18 m a ovest sbaglia anche il segno. La risultante sarebbe nulla soltanto con tratti opposti ugualmente lunghi.",
+        "target": "C1-L002"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Vettori",
+        "Una risultante dopo il ritorno"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q013",
+      "kind": "question",
+      "course": "C1",
+      "section": "Misura e rappresentazione",
+      "order": 13,
+      "title": "Sottrarre prima di calcolare il modulo",
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L002"
+      ],
+      "version": 3,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La differenza si fa componente per componente: sottrarre−3 nella seconda componente equivale ad aggiungere3. Ottengo D=(3,4) m. Solo dopo calcolo il modulo con Pitagora:9+16=25 e la radice positiva è5. Il modulo non conserva un segno negativo della sottrazione."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/b97626ad9e5784a34640789345031be0fc8add2066131b3c6202c501792b055c",
+          "text": "Il secondo pannello costruisce B−A come freccia dalla punta di A alla punta di B. Il triangolo delle differenze ha cateti3 m e4 m, modulo5 m."
+        },
+        {
+          "type": "formula",
+          "text": "D_x=(5-2)\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " D_x=3\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " D_y=(1+3)\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " D_y=4\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " |D|=\\sqrt{3^2+4^2}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " |D|=5\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "7 m somma3 e4 come fossero allineati. √13 m usa−2 nella seconda componente, dimenticando il doppio segno;√53 m corrisponde al modulo della somma A+B=(7,−2) m. −5 m non può essere un modulo."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Due vettori hanno componenti A=(2,−3) m e B=(5,1) m in assi cartesiani ortogonali. Quanto vale il modulo di D=B−A?",
+      "family": "differenza-fra-due-letture",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "5 m",
+          "7 m",
+          "√13 m",
+          "√53 m",
+          "−5 m"
+        ],
+        "value": "5 m"
+      },
+      "hints": [
+        "Scrivi esplicitamente1−(−3), poi usa il triangolo3–4–5.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "7 m somma3 e4 come fossero allineati. √13 m usa−2 nella seconda componente, dimenticando il doppio segno;√53 m corrisponde al modulo della somma A+B=(7,−2) m. −5 m non può essere un modulo.",
+        "target": "C1-L002"
+      },
+      "baseVersion": 2,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Vettori",
+        "Sottrarre prima di calcolare il modulo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q014",
+      "kind": "question",
+      "course": "C1",
+      "section": "Misura e rappresentazione",
+      "order": 14,
+      "title": "Che cosa impone il prodotto scalare nullo?",
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L002"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il prodotto scalare è il prodotto dei moduli per il coseno dell’angolo α fra i vettori. Poiché entrambi i moduli sono diversi dazero, posso dividere per il loro prodotto. Rimane cosα=0 e, per0°≤α≤180°, α=90°. Non occorre che i moduli siano uguali."
+        },
+        {
+          "type": "formula",
+          "text": "A\\cdot B=|A||B|\\cos\\alpha"
+        },
+        {
+          "type": "formula",
+          "text": " \\cos\\alpha=0"
+        },
+        {
+          "type": "formula",
+          "text": " \\alpha=90^\\circ"
+        },
+        {
+          "type": "text",
+          "text": "Per paralleli concordi il coseno è1, per opposti è−1: con moduli non nulli il prodotto non sarebbezero. Uguaglianza dei moduli e ortogonalità sono proprietà diverse. L’ultima alternativa contraddice esplicitamente il dato dei due vettori non nulli."
+        }
+      ],
+      "difficulty": 1,
+      "prompt": "Due vettori A e B sono entrambi non nulli e A·B=0. Quale relazione hanno le loro direzioni?",
+      "family": "vettori-ortogonali",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Sono perpendicolari",
+          "Sono paralleli e concordi",
+          "Sono paralleli e opposti",
+          "Devono avere lo stesso modulo",
+          "Uno dei vettori è necessariamente nullo"
+        ],
+        "value": "Sono perpendicolari"
+      },
+      "hints": [
+        "Controlla quale fattore può annullarsi senza contraddire l’enunciato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Per paralleli concordi il coseno è1, per opposti è−1: con moduli non nulli il prodotto non sarebbezero. Uguaglianza dei moduli e ortogonalità sono proprietà diverse. L’ultima alternativa contraddice esplicitamente il dato dei due vettori non nulli.",
+        "target": "C1-L002"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Vettori",
+        "Che cosa impone il prodotto scalare nullo?"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q015",
+      "kind": "question",
+      "course": "C1",
+      "section": "Misura e rappresentazione",
+      "order": 15,
+      "title": "Il verso della normale nella terna destrorsa",
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L002"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Uso l’ordine scritto, prima A poi B. Nella terna destrorsa la rotazione da+x a+y associa il pollice lungo+z. Il prodotto vettoriale è perpendicolare al piano xy e il suo modulo è il prodotto dei moduli, perché l’angolo è90°. Invertire l’ordine cambierebbe il verso."
+        },
+        {
+          "type": "formula",
+          "text": "\\hat e_x\\times\\hat e_y=\\hat e_z"
+        },
+        {
+          "type": "formula",
+          "text": " |A\\times B|=|A||B|"
+        },
+        {
+          "type": "text",
+          "text": "−z descrive B×A, non A×B. +x e+y giacciono nel piano dei vettori e non possono essere la normale non nulla. Il prodotto nullo si avrebbe per vettori paralleli oppure nulli, entrambe condizioni escluse."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "In una terna cartesiana destrorsa, A è non nullo e diretto lungo +x, B è non nullo e diretto lungo +y. Dove punta A×B?",
+      "family": "il-verso-della-normale",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Lungo +z",
+          "Lungo −z",
+          "Lungo +x",
+          "Lungo +y",
+          "Il prodotto è nullo"
+        ],
+        "value": "Lungo +z"
+      },
+      "hints": [
+        "La mano destra deve seguire l’ordine A poi B.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "−z descrive B×A, non A×B. +x e+y giacciono nel piano dei vettori e non possono essere la normale non nulla. Il prodotto nullo si avrebbe per vettori paralleli oppure nulli, entrambe condizioni escluse.",
+        "target": "C1-L002"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Vettori",
+        "Il verso della normale nella terna destrorsa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q016",
+      "kind": "question",
+      "course": "C1",
+      "section": "Misura e rappresentazione",
+      "order": 16,
+      "title": "La proiezione quando l’angolo parte dalla verticale",
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L002"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La fune è l’ipotenusa del triangolo rettangolo. Rispetto all’angolo misurato dalla verticale, il cateto orizzontale è quello opposto: serve il seno, non il coseno. Poiché sin30°=1/2, metà di2,4 m dà1,2 m. La proiezione è minore della lunghezza della fune."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/b97626ad9e5784a34640789345031be0fc8add2066131b3c6202c501792b055c",
+          "text": "Il terzo pannello misura30° dalla verticale: il cateto orizzontale vale metà della fune,1,2 m. Il disegno distingue d dalla proiezione verticale."
+        },
+        {
+          "type": "formula",
+          "text": "d=\\ell\\sin30^\\circ"
+        },
+        {
+          "type": "formula",
+          "text": " d=\\frac{2{,}4}{2}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " d=1{,}2\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "2,4 m dimentica la proiezione;1,2√3 m è la distanza verticale. 4,8 m supera l’ipotenusa e nasce dividendo per1/2. 0,8 m dividerebbe per3 invece di usare il seno dell’angolo."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Una fune rettilinea lunga ℓ=2,4 m forma30° con la verticale. Qual è la distanza orizzontale d fra i suoi estremi?",
+      "family": "un-angolo-misurato-dalla-verticale",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1,2 m",
+          "2,4 m",
+          "1,2√3 m",
+          "4,8 m",
+          "0,8 m"
+        ],
+        "value": "1,2 m"
+      },
+      "hints": [
+        "Individua il cateto opposto all’angolo disegnato dalla verticale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "2,4 m dimentica la proiezione;1,2√3 m è la distanza verticale. 4,8 m supera l’ipotenusa e nasce dividendo per1/2. 0,8 m dividerebbe per3 invece di usare il seno dell’angolo.",
+        "target": "C1-L002"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Vettori",
+        "La proiezione quando l’angolo parte dalla verticale"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q017",
+      "kind": "question",
+      "course": "C1",
+      "section": "Misura e rappresentazione",
+      "order": 17,
+      "title": "Come ottenere la somma più grande",
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L002"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Chiamo α l’angolo fra i vettori con le code coincidenti. Il quadrato del modulo risultante è a²+b²+2ab cosα. a e b sono positivi e fissi, quindi cresce con cosα. Il valore massimo del coseno è1: si ottiene perα=0°, vettori paralleli nello stesso verso, e il modulo totale è a+b."
+        },
+        {
+          "type": "formula",
+          "text": "|A+B|^2=a^2+b^2+2ab\\cos\\alpha"
+        },
+        {
+          "type": "formula",
+          "text": " \\cos\\alpha\\le1"
+        },
+        {
+          "type": "formula",
+          "text": " |A+B|\\le a+b"
+        },
+        {
+          "type": "text",
+          "text": "Versi opposti danno |a−b|, non il massimo. A90° manca il contributo2ab, a120° quel contributo è negativo. Moduli uguali non sono necessari: anche vettori di moduli diversi raggiungono il loro massimo quando concordi."
+        }
+      ],
+      "difficulty": 1,
+      "prompt": "Due vettori non nulli hanno moduli a e b fissati. In quale configurazione il modulo della loro somma è massimo?",
+      "family": "somma-di-moduli-massima",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Paralleli e concordi",
+          "Paralleli e opposti",
+          "Perpendicolari",
+          "Soltanto quando a=b",
+          "A un angolo di120°"
+        ],
+        "value": "Paralleli e concordi"
+      },
+      "hints": [
+        "Quale angolo fa assumere al coseno il suo valore massimo?",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Versi opposti danno |a−b|, non il massimo. A90° manca il contributo2ab, a120° quel contributo è negativo. Moduli uguali non sono necessari: anche vettori di moduli diversi raggiungono il loro massimo quando concordi.",
+        "target": "C1-L002"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Vettori",
+        "Come ottenere la somma più grande"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q018",
+      "kind": "question",
+      "course": "C1",
+      "section": "Misura e rappresentazione",
+      "order": 18,
+      "title": "Una pendenza come rapporto di cateti",
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L002"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nel triangolo della rampa la tangente è cateto verticale su cateto orizzontale. Non divido per la lunghezza obliqua: quello sarebbe un seno. Il rapporto0,45/3 si può fare come45/300=3/20. Le unità di lunghezza si cancellano, quindi la tangente è pura."
+        },
+        {
+          "type": "formula",
+          "text": "\\tan\\theta=\\frac hd"
+        },
+        {
+          "type": "formula",
+          "text": " \\tan\\theta=\\frac{45}{300}"
+        },
+        {
+          "type": "formula",
+          "text": " \\tan\\theta=\\frac3{20}"
+        },
+        {
+          "type": "text",
+          "text": "20/3 inverte i cateti. 3/2 perde un fattore dieci;9/20 conserva45/100 senza dividere per3. 3/5 non è il rapporto dei cateti assegnati. Nessuna valutazione dell’angolo in gradi è richiesta."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Una rampa rettilinea sale di h=0,45 m ogni d=3,0 m orizzontali. Quanto vale tanθ, con θ angolo rispetto al pavimento orizzontale?",
+      "family": "quanto-vale-la-pendenza",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/20",
+          "20/3",
+          "3/2",
+          "9/20",
+          "3/5"
+        ],
+        "value": "3/20"
+      },
+      "hints": [
+        "Usa la distanza orizzontale, non la lunghezza della rampa.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "20/3 inverte i cateti. 3/2 perde un fattore dieci;9/20 conserva45/100 senza dividere per3. 3/5 non è il rapporto dei cateti assegnati. Nessuna valutazione dell’angolo in gradi è richiesta.",
+        "target": "C1-L002"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Vettori",
+        "Una pendenza come rapporto di cateti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q019",
+      "kind": "question",
+      "course": "C1",
+      "section": "Misura e rappresentazione",
+      "order": 19,
+      "title": "Il prodotto scalare con una componente contraria",
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L002"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplico le componenti lungo lo stesso asse e sommo i due prodotti con segno. Il contributo x è3·2=6 J, quello y è4·(−1)=−4 J. La componente y della forza contrasta lo spostamento y, riducendo il risultato a2 J. Non moltiplico semplicemente i moduli."
+        },
+        {
+          "type": "formula",
+          "text": "F\\cdot s=F_xs_x+F_ys_y"
+        },
+        {
+          "type": "formula",
+          "text": " F\\cdot s=(6-4)\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " F\\cdot s=2\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "10 J sostituisce il segno negativo con un più. −2 J inverte il segno globale;5√5 J è il prodotto dei moduli5 N e√5 m senza il coseno necessario. 6 J ignora del tutto il contributo y."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Una forza costante F=(3,4) N agisce durante uno spostamento s=(2,−1) m in assi ortogonali. Calcola F·s.",
+      "family": "prodotto-con-componenti-note",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2 J",
+          "10 J",
+          "−2 J",
+          "5√5 J",
+          "6 J"
+        ],
+        "value": "2 J"
+      },
+      "hints": [
+        "Due componenti con segni opposti danno un contributo negativo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "10 J sostituisce il segno negativo con un più. −2 J inverte il segno globale;5√5 J è il prodotto dei moduli5 N e√5 m senza il coseno necessario. 6 J ignora del tutto il contributo y.",
+        "target": "C1-L002"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Vettori",
+        "Il prodotto scalare con una componente contraria"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q020",
+      "kind": "question",
+      "course": "C1",
+      "section": "Misura e rappresentazione",
+      "order": 20,
+      "title": "Lo stesso rapporto, un quadrante diverso",
+      "skill": "C1-L002",
+      "prerequisites": [
+        "C1-L002"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il rapporto F_y/F_x è1, ma la tangente non distingue quadranti opposti. Entrambe le componenti negative collocano la forza nel terzo quadrante. L’angolo di riferimento è45°, perché i moduli dei cateti sono uguali. Aggiungo quindi180° e ottengo225°."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{F_y}{F_x}=1"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta=180^\\circ+45^\\circ"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta=225^\\circ"
+        },
+        {
+          "type": "text",
+          "text": "45° ha entrambe le componenti positive. 135° ha y positivo e x negativo;315° ha x positivo e y negativo. A180° la componente y sarebbezero, mentre qui è negativa e non nulla."
+        }
+      ],
+      "difficulty": 3,
+      "prompt": "Una forza non nulla ha componenti F_x=F_y<0. Quanto vale il suo angolo θ antiorario da+x, scelto in0°≤θ<360°?",
+      "family": "due-direzioni-con-la-stessa-tangente",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "225°",
+          "45°",
+          "135°",
+          "315°",
+          "180°"
+        ],
+        "value": "225°"
+      },
+      "hints": [
+        "Prima identifica il quadrante dai segni, poi usa l’angolo di riferimento.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "45° ha entrambe le componenti positive. 135° ha y positivo e x negativo;315° ha x positivo e y negativo. A180° la componente y sarebbezero, mentre qui è negativa e non nulla.",
+        "target": "C1-L002"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Vettori",
+        "Lo stesso rapporto, un quadrante diverso"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "b97626ad9e5784a34640789345031be0fc8add2066131b3c6202c501792b055c",
+      "name": "cric-c1-l002-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTc0MCI+PHRpdGxlPkNvbXBvbmVudGksIGRpZmZlcmVuemEgZSBwcm9pZXppb25lPC90aXRsZT48ZGVzYz5UcmUgY29zdHJ1emlvbmkgZGlzdGludGUuIFVuYSBmb3J6YSBkaTEyIE4gYTEyMCBncmFkaSBoYSBjb21wb25lbnRlIHggbWVubzYgTi4gQiBtZW5vIEEgZm9ybWEgdW4gdHJpYW5nb2xvM+KAkzTigJM1IGluIG1ldHJpLiBVbmEgZnVuZSBkaTIsNCBtIGEzMCBncmFkaSBkYWxsYSB2ZXJ0aWNhbGUgaGEgcHJvaWV6aW9uZSBvcml6em9udGFsZTEsMiBtLjwvZGVzYz48ZGVmcz48bWFya2VyIGlkPSJhIiB2aWV3Qm94PSIwIDAgMTAgMTAiIHJlZlg9IjkiIHJlZlk9IjUiIG1hcmtlcldpZHRoPSI3IiBtYXJrZXJIZWlnaHQ9IjciIG9yaWVudD0iYXV0by1zdGFydC1yZXZlcnNlIj48cGF0aCBkPSJNMCAwTDEwIDVMMCAxMFoiIGZpbGw9IiMyODczOGQiLz48L21hcmtlcj48L2RlZnM+PHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxNzQwIiBmaWxsPSJ3aGl0ZSIvPjxnIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmaWxsPSIjMTgzNTRiIiBmb250LXNpemU9IjIwIj48dGV4dCB4PSIzMiIgeT0iNDQiIGZvbnQtc2l6ZT0iMjYiPlZldHRvcmk6IGxlZ2dlcmUgYXNzaSBlIGFuZ29saTwvdGV4dD48dGV4dCB4PSIzMiIgeT0iMTA1IiBmb250LXNpemU9IjIzIj4xIMK3IExhIGNvbXBvbmVudGUgcHXDsiBlc3NlcmUgbmVnYXRpdmE8L3RleHQ+PHBhdGggZD0iTTk1IDQwMEg1MzVNMzM1IDQ3MFYxNDUiIHN0cm9rZT0iIzg3OWRhOCIgZmlsbD0ibm9uZSIvPjx0ZXh0IHg9IjU0NSIgeT0iNDA1Ij54PC90ZXh0Pjx0ZXh0IHg9IjM0NSIgeT0iMTU1Ij55PC90ZXh0Pjx0ZXh0IHg9IjM0NCIgeT0iNDI1Ij5PPC90ZXh0PjxwYXRoIGQ9Ik0zMzUgNDAwTDIxNSAxOTIuMTU0IiBzdHJva2U9IiMyODczOGQiIHN0cm9rZS13aWR0aD0iNCIgbWFya2VyLWVuZD0idXJsKCNhKSIvPjxwYXRoIGQ9Ik0yMTUgMTkyLjE1NFY0MDAiIHN0cm9rZT0iI2E2NmUzNiIgc3Ryb2tlLWRhc2hhcnJheT0iNiA1Ii8+PHBhdGggZD0iTTMzNSA0MDBIMjE1IiBzdHJva2U9IiMyODczOGQiIHN0cm9rZS13aWR0aD0iNCIgbWFya2VyLWVuZD0idXJsKCNhKSIvPjxwYXRoIGQ9Ik0zOTUgNDAwQTYwIDYwIDAgMCAwIDMwNSAzNDguMDM4IiBmaWxsPSJub25lIiBzdHJva2U9IiNhNjZlMzYiLz48dGV4dCB4PSIzNzUiIHk9IjMyNSI+MTIwwrA8L3RleHQ+PHRleHQgeD0iMTgwIiB5PSIxNzUiPkYgPSAxMiBOPC90ZXh0Pjx0ZXh0IHg9IjE5MCIgeT0iNDQwIj5G4oKTID0g4oiSNiBOPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSI1MDUiPmNvcyAxMjDCsCA9IOKIkjEvMiwgcXVpbmRpIEbigpMgPSDiiJI2IE4uPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSI1NzUiIGZvbnQtc2l6ZT0iMjMiPjIgwrcgRGlmZmVyZW56YSBmcmEgbGUgcHVudGU8L3RleHQ+PHBhdGggZD0iTTEwMCA5MDBINTcwTTIyMCAxMDEwVjYzMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjODc5ZGE4Ii8+PHRleHQgeD0iNTc4IiB5PSI5MDUiPng8L3RleHQ+PHRleHQgeD0iMjMwIiB5PSI2NDUiPnk8L3RleHQ+PHRleHQgeD0iMTk0IiB5PSI5MjUiPk88L3RleHQ+PHBhdGggZD0iTTIyMCA5MDBMMzAwIDEwMjAiIHN0cm9rZT0iIzhiNzA0NSIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI2EpIi8+PHBhdGggZD0iTTIyMCA5MDBMNDIwIDg2MCIgc3Ryb2tlPSIjNmU4YTVjIiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjYSkiLz48cGF0aCBkPSJNMzAwIDEwMjBINDIwVjg2MCIgc3Ryb2tlPSIjODc5ZGE4IiBzdHJva2UtZGFzaGFycmF5PSI2IDUiIGZpbGw9Im5vbmUiLz48cGF0aCBkPSJNMzAwIDEwMjBMNDIwIDg2MCIgc3Ryb2tlPSIjMjg3MzhkIiBzdHJva2Utd2lkdGg9IjQiIG1hcmtlci1lbmQ9InVybCgjYSkiLz48dGV4dCB4PSIyNTAiIHk9IjEwNTUiPkEgKDIsIOKIkjMpIG08L3RleHQ+PHRleHQgeD0iNDMwIiB5PSI4NTAiPkIgKDUsIDEpIG08L3RleHQ+PHRleHQgeD0iMzMyIiB5PSIxMDU1Ij4gPC90ZXh0Pjx0ZXh0IHg9IjMzNyIgeT0iMTAwMCI+MyBtPC90ZXh0Pjx0ZXh0IHg9IjQzNSIgeT0iOTUwIj40IG08L3RleHQ+PHRleHQgeD0iMjcwIiB5PSI5MjUiPjUgbTwvdGV4dD48dGV4dCB4PSIzMiIgeT0iMTExMCI+T2duaSBwYXNzbyBzdWdsaSBhc3NpIHZhbGUxIG0uPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSIxMTUwIj5EID0gKDMsIDQpIG07IGlsIG1vZHVsbyDDqDUgbS48L3RleHQ+PHRleHQgeD0iMzIiIHk9IjEyMzAiIGZvbnQtc2l6ZT0iMjMiPjMgwrcgTOKAmWFuZ29sbyBwYXJ0ZSBkYWxsYSB2ZXJ0aWNhbGU8L3RleHQ+PHBhdGggZD0iTTI0MCAxMjkwVjE1MzBIMzc4LjU2NFoiIHN0cm9rZT0iIzg3OWRhOCIgc3Ryb2tlLWRhc2hhcnJheT0iNiA1IiBmaWxsPSJub25lIi8+PHBhdGggZD0iTTI0MCAxMjkwTDM3OC41NjQgMTUzMCIgc3Ryb2tlPSIjMjg3MzhkIiBzdHJva2Utd2lkdGg9IjQiLz48cGF0aCBkPSJNMjQwIDEzNTBBNjAgNjAgMCAwIDAgMjcwIDEzNDEuOTYyIiBmaWxsPSJub25lIiBzdHJva2U9IiNhNjZlMzYiLz48dGV4dCB4PSIyNDgiIHk9IjEzODUiPjMwwrA8L3RleHQ+PHRleHQgeD0iMzYwIiB5PSIxMzkwIj7ihJMgPSAyLDQgbTwvdGV4dD48dGV4dCB4PSIyNjUiIHk9IjE1NzAiPmQgPSAxLDIgbTwvdGV4dD48dGV4dCB4PSIzMiIgeT0iMTY0MCI+ZCA9IOKEkyBzaW4zMMKwID0g4oSTLzIuPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSIxNjkwIj5MYSBmdW5lIMOoIGzigJlpcG90ZW51c2EsIGQgaWwgY2F0ZXRvIG9wcG9zdG8uPC90ZXh0PjwvZz48L3N2Zz4="
+    }
+  ]
+}

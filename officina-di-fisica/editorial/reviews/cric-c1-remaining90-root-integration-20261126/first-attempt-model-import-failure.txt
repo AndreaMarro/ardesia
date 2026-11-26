@@ -1,0 +1,23 @@
+test_cross_review_cric_c1_l006_l010_a (unittest.loader._FailedTest.test_cross_review_cric_c1_l006_l010_a) ... ERROR
+
+======================================================================
+ERROR: test_cross_review_cric_c1_l006_l010_a (unittest.loader._FailedTest.test_cross_review_cric_c1_l006_l010_a)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_cross_review_cric_c1_l006_l010_a
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/unittest/loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/unittest/loader.py", line 339, in _get_module_from_name
+    __import__(name)
+    ~~~~~~~~~~^^^^^^
+  File "/private/tmp/cric-resident-integrator/officina-di-fisica/tests/corpus/test_cross_review_cric_c1_l006_l010_a.py", line 17, in <module>
+    from tools.corpus_engineering import cric_c1_mechanics_review_common as c
+  File "/private/tmp/cric-resident-integrator/officina-di-fisica/tools/corpus_engineering/cric_c1_mechanics_review_common.py", line 11, in <module>
+    from . import cric_c1_051_100_review_models as model
+ImportError: cannot import name 'cric_c1_051_100_review_models' from 'tools.corpus_engineering' (unknown location)
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (errors=1)

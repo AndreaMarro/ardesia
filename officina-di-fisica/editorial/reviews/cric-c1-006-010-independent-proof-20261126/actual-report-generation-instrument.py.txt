@@ -1,0 +1,9 @@
+from pathlib import Path
+import json,importlib
+A=Path('/private/tmp/cric-author-a-resident/officina-di-fisica');F=A/'editorial/reviews/cric-c1-006-010-independent-proof-20261126/fixtures'
+from tools.corpus_engineering.batches import assert_record_identity
+for n in range(6,11):
+ batch=f'cric-c1-l{n:03}';m=importlib.import_module(f'tools.corpus_engineering.cric_c1_l{n:03}_verifier');p=json.loads((F/(batch+'.json')).read_text());b=json.loads((F/(batch+'-bindings.json')).read_text());r=m.report(p,b,F/'assets');bad=[(v['id'],v['errors'])for v in r['records']if not v['ok']];print(batch,'records',len(r['records']),'bad',bad,flush=True)
+ if bad:raise ValueError('Independent records did not pass; no saved positive report')
+ assert_record_identity(r['records'],m.EXPECTED_IDS,p,b);out=A/'editorial/reviews'/(batch+'.json');out.write_text(json.dumps(r,ensure_ascii=False,indent=2,allow_nan=False)+'\n');assert_record_identity(json.loads(out.read_text())['records'],m.EXPECTED_IDS,p,b)
+ print(batch,'fresh+saved identity real',flush=True)

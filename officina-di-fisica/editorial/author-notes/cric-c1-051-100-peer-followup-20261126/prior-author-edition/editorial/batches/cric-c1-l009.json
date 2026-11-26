@@ -1,0 +1,715 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "C1-Q081",
+      "kind": "question",
+      "course": "C1",
+      "section": "Impulso, quantità di moto e urti",
+      "order": 81,
+      "title": "Il rimbalzo cambia anche il segno",
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L009"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’impulso è la variazione della quantità di moto, non la variazione del solo modulo della velocità. Sottraggo v_i da v_f: −3−4=−7 m/s. Moltiplicando per 1/10 kg ottengo −7/10 kg·m/s, equivalente a −7/10 N·s. Il segno indica un impulso verso x negativo, coerente con il rimbalzo."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/45e2dc125bd88716549870dfba451a0485d87426fcbe108dff9b960e59b053a3",
+          "text": "Il primo pannello confronta le due quantità di moto orientate della pallina, dalla stessa origine e con scala comune. Il segmento negativo finale non è il modulo dell’impulso: per l’impulso si calcola finale meno iniziale."
+        },
+        {
+          "type": "formula",
+          "text": "J_x=m(v_f-v_i)"
+        },
+        {
+          "type": "formula",
+          "text": " J_x=\\frac1{10}(-3-4)\\,\\mathrm{kg\\,m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " J_x=-\\frac7{10}\\,\\mathrm{N\\,s}"
+        },
+        {
+          "type": "text",
+          "text": "+7/10 perde il verso dell’impulso. +1/10 confronta i moduli 4 e 3 invece delle velocità orientate; −3/10 è soltanto la quantità di moto finale. −7 N confonde una differenza di velocità con una forza e manca la durata dell’urto."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Una pallina di massa 0,10 kg urta un cuscino. Lungo x ha velocità iniziale +4 m/s e finale −3 m/s. Qual è l’impulso orizzontale totale sulla pallina?",
+      "family": "un-rimbalzo-lungo-un-asse",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "−7/10 N·s",
+          "+7/10 N·s",
+          "+1/10 N·s",
+          "−3/10 N·s",
+          "−7 N"
+        ],
+        "value": "−7/10 N·s"
+      },
+      "hints": [
+        "Scrivi le due quantità di moto con il segno prima di sottrarle.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "+7/10 perde il verso dell’impulso. +1/10 confronta i moduli 4 e 3 invece delle velocità orientate; −3/10 è soltanto la quantità di moto finale. −7 N confonde una differenza di velocità con una forza e manca la durata dell’urto.",
+        "target": "C1-L009"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Impulso vettoriale e forza media",
+        "Scelta del sistema isolato",
+        "Urti e bilanci orizzontali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q082",
+      "kind": "question",
+      "course": "C1",
+      "section": "Impulso, quantità di moto e urti",
+      "order": 82,
+      "title": "Lo stesso arresto dura il doppio",
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L009"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nei due arresti la quantità di moto cambia della stessa quantità: il carrello passa dalla stessa velocità a zero. L’impulso è dunque uguale, mentre la forza media vale impulso diviso durata. Raddoppiare la durata dimezza il suo modulo. Questo confronto non determina il picco della forza né l’intera forma del suo andamento."
+        },
+        {
+          "type": "formula",
+          "text": "|\\overline F|=\\frac{|\\Delta p|}{\\Delta t}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta t_B=2\\Delta t_A"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{|\\overline F_B|}{|\\overline F_A|}=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Raddoppiare seguirebbe la durata nel verso sbagliato. Uguale ignorerebbe il tempo diverso; un quarto ne userebbe il quadrato. Zero non potrebbe fornire l’impulso necessario all’arresto."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Lo stesso carrello arriva con la stessa velocità contro due tamponi e si ferma in entrambi i casi. Nel secondo arresto la durata è doppia. Come cambia il modulo della risultante media?",
+      "family": "stessa-variazione-contatto-piu-lungo",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Si dimezza",
+          "Raddoppia",
+          "Resta uguale",
+          "Diventa un quarto",
+          "Diventa nullo"
+        ],
+        "value": "Si dimezza"
+      },
+      "hints": [
+        "Distingui l’impulso, che qui è fissato, dalla forza media.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "Raddoppiare seguirebbe la durata nel verso sbagliato. Uguale ignorerebbe il tempo diverso; un quarto ne userebbe il quadrato. Zero non potrebbe fornire l’impulso necessario all’arresto.",
+        "target": "C1-L009"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Impulso vettoriale e forza media",
+        "Scelta del sistema isolato",
+        "Urti e bilanci orizzontali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q083",
+      "kind": "question",
+      "course": "C1",
+      "section": "Impulso, quantità di moto e urti",
+      "order": 83,
+      "title": "Una molla interna separa due pattini",
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L009"
+      ],
+      "version": 3,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Per il sistema dei due pattini e della molla le spinte interne si compensano e la quantità di moto orizzontale totale resta zero. Il primo pattino ha +12 kg·m/s; il secondo deve averne −12. Dividendo per 6 kg ottengo v_2=−2 m/s. Le velocità non hanno uguale modulo perché le masse sono diverse."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/45e2dc125bd88716549870dfba451a0485d87426fcbe108dff9b960e59b053a3",
+          "text": "Nel pannello centrale i due pattini si allontanano: il più leggero va a +3 m/s e il più pesante a −2 m/s. Le frecce delle velocità condividono una scala; i moduli delle quantità di moto sono invece entrambi 12 kg·m/s."
+        },
+        {
+          "type": "formula",
+          "text": "p_{x,i}=0"
+        },
+        {
+          "type": "formula",
+          "text": " m_1v_1+m_2v_2=0"
+        },
+        {
+          "type": "formula",
+          "text": " p_{x,2}=-12\\,\\mathrm{kg\\,m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " v_2=p_{x,2}/m_2"
+        },
+        {
+          "type": "formula",
+          "text": " v_2=-2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "+2 m/s darebbe quantità di moto totale positiva, non zero. −3 m/s imporrebbe uguali velocità invece di uguali moduli delle quantità di moto. Zero ignorerebbe la spinta della molla sul secondo pattino."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Due pattini di massa 4 kg e 6 kg sono inizialmente fermi su una guida orizzontale liscia. Una molla interna li separa; l’impulso esterno orizzontale è nullo. Se il pattino di 4 kg va a +3 m/s, quale velocità ha l’altro, in m/s?",
+      "family": "spinta-reciproca-su-una-guida",
+      "answer": {
+        "type": "numeric",
+        "value": -2,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "hints": [
+        "Conserva la quantità di moto del sistema, non quella di ciascun pattino.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "+2 m/s darebbe quantità di moto totale positiva, non zero. −3 m/s imporrebbe uguali velocità invece di uguali moduli delle quantità di moto. Zero ignorerebbe la spinta della molla sul secondo pattino.",
+        "target": "C1-L009"
+      },
+      "baseVersion": 2,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Impulso vettoriale e forza media",
+        "Scelta del sistema isolato",
+        "Urti e bilanci orizzontali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q084",
+      "kind": "question",
+      "course": "C1",
+      "section": "Impulso, quantità di moto e urti",
+      "order": 84,
+      "title": "Una cattura conserva solo la componente utile",
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L009"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Prima dell’urto il peso non porta quantità di moto orizzontale; il vassoio ne porta 1,5·2=3 kg·m/s. Dopo, la massa comune è 2 kg: la velocità è 3/2 m/s. Si conserva la componente orizzontale del sistema, non necessariamente quella verticale, perché la guida può esercitare un impulso verticale. La cattura non richiede conservazione dell’energia cinetica."
+        },
+        {
+          "type": "formula",
+          "text": "p_{x,i}=\\frac32\\cdot2\\,\\mathrm{kg\\,m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " p_{x,i}=3\\,\\mathrm{kg\\,m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " M=2\\,\\mathrm{kg}"
+        },
+        {
+          "type": "formula",
+          "text": " v_f=\\frac32\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Due m/s ignorerebbe la massa catturata. Tre copia la quantità di moto come velocità; un mezzo e zero non ricostruiscono i 3 kg·m/s iniziali. Conservare tutta l’energia cinetica imporrebbe una condizione non valida per questa cattura."
+        }
+      ],
+      "difficulty": 3,
+      "prompt": "Un vassoio di massa 1,5 kg viaggia a 2 m/s su una guida orizzontale liscia. Un peso di 0,5 kg cade verticalmente sul vassoio e vi si assesta, così al termine condividono la velocità orizzontale. Durante la cattura l’impulso esterno orizzontale è trascurabile. Quanto vale questa velocità?",
+      "family": "catturare-un-piccolo-peso",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/2 m/s",
+          "2 m/s",
+          "3 m/s",
+          "1/2 m/s",
+          "0 m/s"
+        ],
+        "value": "3/2 m/s"
+      },
+      "hints": [
+        "Includi entrambi i corpi e scegli l’asse in cui l’impulso esterno è trascurabile.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Due m/s ignorerebbe la massa catturata. Tre copia la quantità di moto come velocità; un mezzo e zero non ricostruiscono i 3 kg·m/s iniziali. Conservare tutta l’energia cinetica imporrebbe una condizione non valida per questa cattura.",
+        "target": "C1-L009"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Impulso vettoriale e forza media",
+        "Scelta del sistema isolato",
+        "Urti e bilanci orizzontali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q085",
+      "kind": "question",
+      "course": "C1",
+      "section": "Impulso, quantità di moto e urti",
+      "order": 85,
+      "title": "Stessa quantità di moto, masse diverse",
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L009"
+      ],
+      "version": 3,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Elimino la rapidità usando p=mv: K=(1/2)m(p/m)²=p²/(2m). A p fissato l’energia è inversamente proporzionale alla massa: il corpo più leggero deve muoversi più rapidamente e ha più energia cinetica. Il valore non dipende dal verso della velocità, ma il vincolo p>0 evita il caso in cui entrambe le energie sarebbero zero."
+        },
+        {
+          "type": "formula",
+          "text": "v=\\frac pm"
+        },
+        {
+          "type": "formula",
+          "text": " K=\\frac{p^2}{2m}"
+        },
+        {
+          "type": "formula",
+          "text": " p>0"
+        },
+        {
+          "type": "text",
+          "text": "Massa maggiore darebbe energia maggiore a rapidità uguale, che è un altro confronto. Energie uguali non seguono da p uguale quando cambia m. Il segno e le direzioni non entrano nel quadrato del modulo."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Nella meccanica classica due corpi hanno masse positive differenti e quantità di moto dello stesso modulo p>0. Quale corpo ha maggiore energia cinetica?",
+      "family": "energia-di-due-quantita-di-moto-uguali",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Quello di massa minore",
+          "Quello di massa maggiore",
+          "Hanno sempre la stessa energia",
+          "Quello che ha il verso positivo della velocità",
+          "Non si può confrontare senza le direzioni delle velocità"
+        ],
+        "value": "Quello di massa minore"
+      },
+      "hints": [
+        "Sostituisci v=p/m nell’espressione dell’energia prima di confrontare le masse.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Massa maggiore darebbe energia maggiore a rapidità uguale, che è un altro confronto. Energie uguali non seguono da p uguale quando cambia m. Il segno e le direzioni non entrano nel quadrato del modulo.",
+        "target": "C1-L009"
+      },
+      "baseVersion": 2,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Impulso vettoriale e forza media",
+        "Scelta del sistema isolato",
+        "Urti e bilanci orizzontali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q086",
+      "kind": "question",
+      "course": "C1",
+      "section": "Impulso, quantità di moto e urti",
+      "order": 86,
+      "title": "Il nome di una conservazione in più",
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L009"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La conservazione dell’energia cinetica totale fra prima e dopo definisce l’urto elastico. L’isolamento garantisce anche la conservazione della quantità di moto del sistema. Le forze interne durante il contatto possono cambiare entrambe le velocità e immagazzinare energia temporaneamente, purché il bilancio cinetico finale torni uguale a quello iniziale."
+        },
+        {
+          "type": "formula",
+          "text": "K_{\\rm tot,f}=K_{\\rm tot,i}"
+        },
+        {
+          "type": "formula",
+          "text": " \\vec p_{\\rm tot,f}=\\vec p_{\\rm tot,i}"
+        },
+        {
+          "type": "text",
+          "text": "Completamente anelastico implica invece velocità finale comune e in generale riduzione dell’energia cinetica. Forze di contatto possono esserci eccome; nessuna delle due conservazioni impone che ogni singolo corpo mantenga la velocità iniziale."
+        }
+      ],
+      "difficulty": 1,
+      "prompt": "Un urto avviene in un sistema isolato. L’energia cinetica totale ha lo stesso valore prima e dopo l’urto. Come si chiama questo tipo di urto?",
+      "family": "urto-con-energia-cinetica-conservata",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Elastico",
+          "Completamente anelastico",
+          "Sempre dissipativo",
+          "Un urto senza forze di contatto",
+          "Un urto in cui ogni corpo conserva la propria velocità"
+        ],
+        "value": "Elastico"
+      },
+      "hints": [
+        "Il termine richiesto riguarda il totale del sistema, confrontato prima e dopo il contatto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Completamente anelastico implica invece velocità finale comune e in generale riduzione dell’energia cinetica. Forze di contatto possono esserci eccome; nessuna delle due conservazioni impone che ogni singolo corpo mantenga la velocità iniziale.",
+        "target": "C1-L009"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Impulso vettoriale e forza media",
+        "Scelta del sistema isolato",
+        "Urti e bilanci orizzontali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q087",
+      "kind": "question",
+      "course": "C1",
+      "section": "Impulso, quantità di moto e urti",
+      "order": 87,
+      "title": "Un impulso negativo non annulla sempre il moto",
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L009"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’impulso è −3·0,60=−1,8 N·s. Lo sommo alla quantità di moto iniziale: 2,5−1,8=0,7 kg·m/s, ancora positiva. Il corpo ha perso quantità di moto positiva ma i dati non ne impongono l’inversione: il segno della forza media da solo non coincide con il segno della velocità finale."
+        },
+        {
+          "type": "formula",
+          "text": "J_x=-3\\cdot\\frac35\\,\\mathrm{N\\,s}"
+        },
+        {
+          "type": "formula",
+          "text": " J_x=-\\frac95\\,\\mathrm{N\\,s}"
+        },
+        {
+          "type": "formula",
+          "text": " p_{x,f}=\\left(\\frac52-\\frac95\\right)\\,\\mathrm{kg\\,m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " p_{x,f}=\\frac7{10}\\,\\mathrm{kg\\,m/s}"
+        },
+        {
+          "type": "text",
+          "text": "−7/10 attribuisce al risultato il segno della forza senza completare il bilancio. −9/5 è soltanto l’impulso; +43/10 somma il suo modulo nel verso sbagliato. Zero richiederebbe un impulso esattamente −2,5 N·s."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Un corpo ha inizialmente quantità di moto lungo x pari a +2,5 kg·m/s. La risultante media lungo x vale −3 N per 0,60 s. Qual è la componente finale della quantità di moto?",
+      "family": "una-forza-media-negativa",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "+7/10 kg·m/s",
+          "−7/10 kg·m/s",
+          "−9/5 kg·m/s",
+          "+43/10 kg·m/s",
+          "0 kg·m/s"
+        ],
+        "value": "+7/10 kg·m/s"
+      },
+      "hints": [
+        "Somma l’impulso alla quantità di moto iniziale; non sostituire uno all’altra.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−7/10 attribuisce al risultato il segno della forza senza completare il bilancio. −9/5 è soltanto l’impulso; +43/10 somma il suo modulo nel verso sbagliato. Zero richiederebbe un impulso esattamente −2,5 N·s.",
+        "target": "C1-L009"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Impulso vettoriale e forza media",
+        "Scelta del sistema isolato",
+        "Urti e bilanci orizzontali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q088",
+      "kind": "question",
+      "course": "C1",
+      "section": "Impulso, quantità di moto e urti",
+      "order": 88,
+      "title": "Quale sistema si isola nell’urto?",
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L009"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La forza che una biglia esercita sull’altra è esterna al sistema formato da una sola biglia, ma interna al sistema delle due. Le due forze interne sono opposte e la loro somma non cambia la quantità di moto totale. Peso e normale sono verticali, quindi l’ipotesi d’isolamento orizzontale è coerente col tavolo liscio."
+        },
+        {
+          "type": "formula",
+          "text": "\\vec F_{12}+\\vec F_{21}=0"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta\\vec p_{{\\rm tot},\\parallel}=0"
+        },
+        {
+          "type": "text",
+          "text": "Ogni biglia può cambiare la propria quantità di moto: è proprio l’effetto dell’urto. La conservazione del totale non sceglie un corpo in base alla massa o alla quiete iniziale, e le forze interne non la impediscono."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Due biglie collidono su un tavolo orizzontale liscio. Durante il breve contatto, quale sistema conserva la quantità di moto orizzontale, se gli impulsi esterni orizzontali sono trascurabili?",
+      "family": "scegliere-il-sistema-nellurto",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Il sistema formato da entrambe le biglie",
+          "Ciascuna biglia separatamente",
+          "Solo la biglia di massa maggiore",
+          "Solo la biglia inizialmente ferma",
+          "Nessun sistema, perché ci sono forze di contatto"
+        ],
+        "value": "Il sistema formato da entrambe le biglie"
+      },
+      "hints": [
+        "Traccia il confine del sistema e controlla quali forze lo attraversano.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Ogni biglia può cambiare la propria quantità di moto: è proprio l’effetto dell’urto. La conservazione del totale non sceglie un corpo in base alla massa o alla quiete iniziale, e le forze interne non la impediscono.",
+        "target": "C1-L009"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Impulso vettoriale e forza media",
+        "Scelta del sistema isolato",
+        "Urti e bilanci orizzontali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q089",
+      "kind": "question",
+      "course": "C1",
+      "section": "Impulso, quantità di moto e urti",
+      "order": 89,
+      "title": "Cambiare direzione richiede un impulso vettoriale",
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L009"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sottraggo i vettori velocità, non le rapidità: Δv=(−2,+2) m/s. La quantità di moto cambia di (−1,+1) kg·m/s e la forza media è (−2,+2) N. Il modulo è la radice della somma dei quadrati delle componenti: √8=2√2 N. Le rapidità iniziale e finale uguali non annullano il cambiamento di direzione."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/45e2dc125bd88716549870dfba451a0485d87426fcbe108dff9b960e59b053a3",
+          "text": "Il pannello finale rappresenta la forza media (−2,+2) N e le sue componenti, con una stessa scala su entrambi gli assi. Il modulo diagonale è 2√2 N; non è la somma 4 N dei moduli delle componenti."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta\\vec v=(-2,2)\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta\\vec p=(-1,1)\\,\\mathrm{kg\\,m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline{\\vec F}=(-2,2)\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " |\\overline{\\vec F}|=2\\sqrt2\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "Due newton considera una sola componente, √2 è il modulo della variazione di quantità di moto prima di dividere per il tempo. Quattro somma i moduli delle componenti invece di applicare Pitagora; zero confronta soltanto le rapidità."
+        }
+      ],
+      "difficulty": 3,
+      "prompt": "Un carrellino di massa 0,5 kg passa da velocità (2,0) m/s a (0,2) m/s in 0,5 s. Qual è il modulo della risultante media?",
+      "family": "forza-media-da-un-cambio-di-direzione",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2√2 N",
+          "2 N",
+          "√2 N",
+          "4 N",
+          "0 N"
+        ],
+        "value": "2√2 N"
+      },
+      "hints": [
+        "Trova prima entrambe le componenti della differenza vettoriale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due newton considera una sola componente, √2 è il modulo della variazione di quantità di moto prima di dividere per il tempo. Quattro somma i moduli delle componenti invece di applicare Pitagora; zero confronta soltanto le rapidità.",
+        "target": "C1-L009"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Impulso vettoriale e forza media",
+        "Scelta del sistema isolato",
+        "Urti e bilanci orizzontali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q090",
+      "kind": "question",
+      "course": "C1",
+      "section": "Impulso, quantità di moto e urti",
+      "order": 90,
+      "title": "La pendenza di p_x nel tempo",
+      "skill": "C1-L009",
+      "prerequisites": [
+        "C1-L009"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La seconda legge nella forma generale è F_x=dp_x/dt. Una retta crescente ha pendenza costante positiva, quindi la risultante lungo x è costante positiva. Su un intervallo, la variazione Δp_x è invece l’impulso: non è la stessa quantità della pendenza, che divide ancora per la durata."
+        },
+        {
+          "type": "formula",
+          "text": "F_x=\\frac{dp_x}{dt}"
+        },
+        {
+          "type": "formula",
+          "text": " F_x=\\frac{\\Delta p_x}{\\Delta t}"
+        },
+        {
+          "type": "formula",
+          "text": " [F_x]=\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "Posizione e velocità sono grandezze diverse da una forza; per ricavare v da p occorrerebbe la massa, non la sola pendenza. L’impulso ha unità N·s e l’energia J: la pendenza qui ha unità N."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "La componente p_x della quantità di moto cresce linearmente da zero a un valore positivo. Quale grandezza dà la pendenza della retta nel grafico p_x–t?",
+      "family": "trovare-la-forza-in-un-grafico-pt",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "La componente x della risultante, costante e positiva",
+          "La posizione x",
+          "La velocità, indipendentemente dalla massa",
+          "L’impulso totale direttamente, senza intervallo",
+          "L’energia cinetica"
+        ],
+        "value": "La componente x della risultante, costante e positiva"
+      },
+      "hints": [
+        "Controlla le unità dell’asse verticale divise per quelle dell’asse orizzontale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Posizione e velocità sono grandezze diverse da una forza; per ricavare v da p occorrerebbe la massa, non la sola pendenza. L’impulso ha unità N·s e l’energia J: la pendenza qui ha unità N.",
+        "target": "C1-L009"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Impulso vettoriale e forza media",
+        "Scelta del sistema isolato",
+        "Urti e bilanci orizzontali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "45e2dc125bd88716549870dfba451a0485d87426fcbe108dff9b960e59b053a3",
+      "name": "cric-c1-l009-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTY2MCIgdmlld0JveD0iMCAwIDY0MCAxNjYwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyIgZm9udC1mYW1pbHk9InN5c3RlbS11aSxzYW5zLXNlcmlmIj48dGl0bGUgaWQ9InRpdGxlIj5JbXB1bHNvLCBjb25zZXJ2YXppb25lIGUgZGlmZmVyZW56YSB2ZXR0b3JpYWxlPC90aXRsZT48ZGVzYyBpZD0iZGVzYyI+UXVhbnRpdMOgIGRpIG1vdG8gcHJpbWEgZSBkb3BvIHVuIHJpbWJhbHpvLCBzZXBhcmF6aW9uZSBkaSBwYXR0aW5pIGUgcmlzdWx0YW50ZSBtZWRpYSBpbiBkdWUgZGltZW5zaW9uaS48L2Rlc2M+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxNjYwIiBmaWxsPSJ3aGl0ZSIvPjx0ZXh0IHg9IjM1IiB5PSI0OCIgZm9udC1zaXplPSIyNCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5VbiBpbXB1bHNvIGNhbWJpYSB1biB2ZXR0b3JlPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSIxMTAiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+MSDCtyBJbCByaW1iYWx6byBpbnZlcnRlIGxhIHF1YW50aXTDoCBkaSBtb3RvPC90ZXh0PjxsaW5lIHgxPSIzMzAiIHkxPSIxNzAiIHgyPSIzMzAiIHkyPSI0NTAiIHN0cm9rZT0iIzYwNzM4MyIgc3Ryb2tlLXdpZHRoPSIyIi8+PGxpbmUgeDE9IjMzMCIgeTE9IjIzMCIgeDI9IjQxMCIgeTI9IjIzMCIgc3Ryb2tlPSIjMzA2ZjhjIiBzdHJva2Utd2lkdGg9IjIiLz48cG9seWdvbiBwb2ludHM9IjQxMCwyMzAgNDAyLjAsMjM0LjAgNDAyLjAsMjI2LjAiIGZpbGw9IiMzMDZmOGMiLz48bGluZSB4MT0iMzMwIiB5MT0iMzYwIiB4Mj0iMjcwIiB5Mj0iMzYwIiBzdHJva2U9IiM5ODZjMzUiIHN0cm9rZS13aWR0aD0iMiIvPjxwb2x5Z29uIHBvaW50cz0iMjcwLDM2MCAyNzguMCwzNTYuMCAyNzguMCwzNjQuMCIgZmlsbD0iIzk4NmMzNSIvPjx0ZXh0IHg9IjQzNSIgeT0iMjM1IiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPnBfaSA9ICsyLzUga2fCt20vczwvdGV4dD48dGV4dCB4PSI0MCIgeT0iMzY1IiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPnBfZiA9IOKIkjMvMTAga2fCt20vczwvdGV4dD48dGV4dCB4PSIzNSIgeT0iNTA1IiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPkpfeCA9IHBfZiDiiJIgcF9pID0g4oiSNy8xMCBOwrdzPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSI2MDUiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+MiDCtyBEdWUgcGF0dGluaSBzaSBzZXBhcmFubzwvdGV4dD48cmVjdCB4PSIxNTAiIHk9IjcyMCIgd2lkdGg9IjYwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjOTg2YzM1Ii8+PHJlY3QgeD0iMzkwIiB5PSI3MjAiIHdpZHRoPSI2MCIgaGVpZ2h0PSI0MCIgZmlsbD0iIzNkNzc5MSIvPjxsaW5lIHgxPSIxODAiIHkxPSI3NDAiIHgyPSI4MCIgeTI9Ijc0MCIgc3Ryb2tlPSIjOTg2YzM1IiBzdHJva2Utd2lkdGg9IjIiLz48cG9seWdvbiBwb2ludHM9IjgwLDc0MCA4OC4wLDczNi4wIDg4LjAsNzQ0LjAiIGZpbGw9IiM5ODZjMzUiLz48bGluZSB4MT0iNDIwIiB5MT0iNzQwIiB4Mj0iNTcwIiB5Mj0iNzQwIiBzdHJva2U9IiMzMDZmOGMiIHN0cm9rZS13aWR0aD0iMiIvPjxwb2x5Z29uIHBvaW50cz0iNTcwLDc0MCA1NjIuMCw3NDQuMCA1NjIuMCw3MzYuMCIgZmlsbD0iIzMwNmY4YyIvPjx0ZXh0IHg9IjE4MCIgeT0iNjkwIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj42IGtnPC90ZXh0Pjx0ZXh0IHg9IjQyMCIgeT0iNjkwIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj40IGtnPC90ZXh0Pjx0ZXh0IHg9IjgwIiB5PSI4MTAiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+duKCgiA9IOKIkjIgbS9zPC90ZXh0Pjx0ZXh0IHg9IjQwMCIgeT0iODEwIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPnbigoEgPSArMyBtL3M8L3RleHQ+PHRleHQgeD0iMzUiIHk9Ijg5MCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5w4oKCID0g4oiSMTIga2fCt20vcyDCtyBw4oKBID0gKzEyIGtnwrdtL3M8L3RleHQ+PHRleHQgeD0iMzUiIHk9Ijk0MCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5RdWFudGl0w6AgZGkgbW90byB0b3RhbGUgb3JpenpvbnRhbGUgbnVsbGEuPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSIxMDUwIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjMgwrcgRHVlIGNvbXBvbmVudGksIHVuYSByaXN1bHRhbnRlIG1lZGlhPC90ZXh0PjxsaW5lIHgxPSIzMzAiIHkxPSIxNDMwIiB4Mj0iNTUwIiB5Mj0iMTQzMCIgc3Ryb2tlPSIjNjk3Yjg3IiBzdHJva2Utd2lkdGg9IjIiLz48cG9seWdvbiBwb2ludHM9IjU1MCwxNDMwIDU0Mi4wLDE0MzQuMCA1NDIuMCwxNDI2LjAiIGZpbGw9IiM2OTdiODciLz48bGluZSB4MT0iMzMwIiB5MT0iMTQzMCIgeDI9IjMzMCIgeTI9IjExOTAiIHN0cm9rZT0iIzY5N2I4NyIgc3Ryb2tlLXdpZHRoPSIyIi8+PHBvbHlnb24gcG9pbnRzPSIzMzAsMTE5MCAzMzQuMCwxMTk4LjAgMzI2LjAsMTE5OC4wIiBmaWxsPSIjNjk3Yjg3Ii8+PHRleHQgeD0iNTYwIiB5PSIxNDY1IiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPit4PC90ZXh0Pjx0ZXh0IHg9IjM1MCIgeT0iMTE5NSIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij4reTwvdGV4dD48bGluZSB4MT0iMzMwIiB5MT0iMTQzMCIgeDI9IjIxMCIgeTI9IjE0MzAiIHN0cm9rZT0iIzYzN2U1NSIgc3Ryb2tlLXdpZHRoPSIyIi8+PHBvbHlnb24gcG9pbnRzPSIyMTAsMTQzMCAyMTguMCwxNDI2LjAgMjE4LjAsMTQzNC4wIiBmaWxsPSIjNjM3ZTU1Ii8+PGxpbmUgeDE9IjMzMCIgeTE9IjE0MzAiIHgyPSIzMzAiIHkyPSIxMzEwIiBzdHJva2U9IiM5ODZjMzUiIHN0cm9rZS13aWR0aD0iMiIvPjxwb2x5Z29uIHBvaW50cz0iMzMwLDEzMTAgMzM0LjAsMTMxOC4wIDMyNi4wLDEzMTguMCIgZmlsbD0iIzk4NmMzNSIvPjxsaW5lIHgxPSIzMzAiIHkxPSIxNDMwIiB4Mj0iMjEwIiB5Mj0iMTMxMCIgc3Ryb2tlPSIjMzA2ZjhjIiBzdHJva2Utd2lkdGg9IjIiLz48cG9seWdvbiBwb2ludHM9IjIxMCwxMzEwIDIxOC40ODUyODEzNzQyMzg1NSwxMzEyLjgyODQyNzEyNDc0NjIgMjEyLjgyODQyNzEyNDc0NjE4LDEzMTguNDg1MjgxMzc0MjM4NiIgZmlsbD0iIzMwNmY4YyIvPjxsaW5lIHgxPSIyMTAiIHkxPSIxMzEwIiB4Mj0iMjEwIiB5Mj0iMTQzMCIgc3Ryb2tlPSIjNjA3MzgzIiBzdHJva2Utd2lkdGg9IjIiLz48bGluZSB4MT0iMjEwIiB5MT0iMTMxMCIgeDI9IjMzMCIgeTI9IjEzMTAiIHN0cm9rZT0iIzYwNzM4MyIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iNzUiIHk9IjEyNjAiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+fEZfbWVkaWF8ID0gMuKImjIgTjwvdGV4dD48dGV4dCB4PSIyMDAiIHk9IjE0ODAiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJtaWRkbGUiPkZfeCA9IOKIkjIgTjwvdGV4dD48dGV4dCB4PSIzNTUiIHk9IjEzMjUiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+Rl95ID0gKzIgTjwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMTU4MCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5MZSBkdWUgc2NhbGUgZGVnbGkgYXNzaSBzb25vIHVndWFsaS48L3RleHQ+PC9zdmc+Cg=="
+    }
+  ]
+}

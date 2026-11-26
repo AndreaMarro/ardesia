@@ -1,0 +1,355 @@
+{
+  "schemaVersion": "1.0.0",
+  "lessonReference": {
+    "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "gitPath": "officina-di-fisica/content/C1.json",
+    "sourceSha256": "0a79b1212adbef650733d655d1de2d5ffd7af5eb2be2bde50710a0a1721ab0cf",
+    "primarySkill": "C1-L004",
+    "title": "Accelerare in linea retta e in curva",
+    "actualLessonPrerequisites": [
+      "C1-L002",
+      "C1-L003"
+    ]
+  },
+  "records": [
+    {
+      "id": "C1-Q031",
+      "sourceSha256": "95cbec5fe5809354114dfbd96506b1157f880663b76a4ba67a53319bcec9d903",
+      "candidateSha256": "7d1181360f01ace3d74c5f7b2d92d4318ae4922fd8efc245b79422263972550e",
+      "reviewedSignature": "bbdb47ac6708df95e4a93387b690b69b3ce41ded9462f79643225ae2b50bf80e",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "cric-c1-l004-progressive.svg": "58c4585dee7366990a879601210a4de9f8bfaa5d0573403271d76b1ace04db32"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "Primo arresto da v=4−2t=0: T=2 s. Fino a T velocità non negativa, distanza uguale allo spostamento. L’area triangolare è(1/2)·2·4=4 m.",
+      "physicalAssumptions": "Moto rettilineo con v₀=4 m/s,a=−2 m/s² costante, arresto al primo zero, nessuna estensione al moto successivo.",
+      "distractors": "8 m usa l’area del rettangolo,2 copia la durata,16 omette2|a| dalla relazione;−4 assegna alla distanza il segno di a.",
+      "pedagogicalReview": "Evento di arresto definito prima della distanza.",
+      "assetReview": "XML e nuovo PNG indipendente640×1820 letti integralmente. Triangolo velocità-tempo:2s in320coordinate,4m/s in240, area fisica4m. Quota-tempo: ritorno6/5s in360coordinate; Bezier quadratica da(120,1030) controllo(300,670) a(480,1030), vertice(300,850)=3/5s,9/5m; scala100coordinate/m. Disco:r80,2r160, frecce radiali50 e100 verso il centro, rapporto2 aω comune. Nessuna label tagliata o sovrapposta rilevata.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_distinct_measurement_calculations_and_separate_conceptual_derivations",
+        "Pint_exact_volume_mass_speed_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C1-Q032",
+      "sourceSha256": "a0edee1a5a647984c01b5f13e5edadad79b42c73dee976e7d8e4575074850601",
+      "candidateSha256": "3add0bd0adb4f6eb6b5529b14968d99ca47f10b17dd2b73082d3a01c79ed9132",
+      "reviewedSignature": "92a85db50914b07b8a1da728ac0fa0c19509bd7af0153c80b1d685f219b97b2a",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "v_y=0, v_x resta non nulla e l’accelerazione è verso il basso",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Al culmine del lancio obliquo senza aria, v_y=0 ma v_x=v₀x≠0. La forza gravitazionale resta presente e a_y=−g, a_x=0.",
+      "physicalAssumptions": "Lancio obliquo con componente orizzontale non nulla, riferimento terrestre inerziale approssimato, g uniforme e nessuna aria.",
+      "distractors": "Il culmine annulla solo v_y; gravità e accelerazione non si annullano. v_x non nulla impedisce la quiete istantanea.",
+      "pedagogicalReview": "Moduli, componenti e forza residua al culmine distinti.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_distinct_measurement_calculations_and_separate_conceptual_derivations",
+        "Pint_exact_volume_mass_speed_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C1-Q033",
+      "sourceSha256": "081ff61985b7413042a7644a50ba7d787f945e71c51fd8e100a2ef1e20a6b0f8",
+      "candidateSha256": "157fbfbe3fc5bfaf304cfe19380a7dd37d8f7d5f6f8bae772ac89bb0ba776b40",
+      "reviewedSignature": "e9c689b6f66e4c83f909dc3e38533dab41ff8707791a82fab74358032c5a392d",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "cric-c1-l004-progressive.svg": "58c4585dee7366990a879601210a4de9f8bfaa5d0573403271d76b1ace04db32"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "6/5",
+      "dimension": {
+        "[time]": "1"
+      },
+      "manualArithmetic": "Ritorno verticale: y=t(v₀−gt/2)=0. La radice iniziale0 è esclusa; T=2v₀/g=12/10=6/5 s, doppio del tempo di salita3/5 s.",
+      "physicalAssumptions": "Lancio verticale da quota iniziale con v₀=6 m/s,g=10 m/s²; ritorno alla stessa quota a tempo strettamente positivo.",
+      "distractors": "3/5 s è la salita;3 s non ricostruisce y=0;5/6 inverte la durata;zero è la partenza, non il ritorno.",
+      "pedagogicalReview": "Due radici e ramo temporale fisico identificati.",
+      "assetReview": "XML e nuovo PNG indipendente640×1820 letti integralmente. Triangolo velocità-tempo:2s in320coordinate,4m/s in240, area fisica4m. Quota-tempo: ritorno6/5s in360coordinate; Bezier quadratica da(120,1030) controllo(300,670) a(480,1030), vertice(300,850)=3/5s,9/5m; scala100coordinate/m. Disco:r80,2r160, frecce radiali50 e100 verso il centro, rapporto2 aω comune. Nessuna label tagliata o sovrapposta rilevata.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_distinct_measurement_calculations_and_separate_conceptual_derivations",
+        "Pint_exact_volume_mass_speed_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C1-Q034",
+      "sourceSha256": "07068ac91162fb62ebdf5826430e05ced3cb1609deeab2dd2c05f7278ae856a7",
+      "candidateSha256": "a09df9bb5d501011dca5ff743644ca29de4243f3d118a6142f0d76f229daccde",
+      "reviewedSignature": "3e052fb8e18b958f029509738088b071b48e0c57d60fceaf49d9701200fe5343",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "15",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "Caduta da fermo:s(t)=gt²/2. Fra1 e2 s la distanza è5(4−1)=15 m, non il totale20 m misurato dall’inizio.",
+      "physicalAssumptions": "Rilascio da fermo,g=10 m/s² costante, suolo non raggiunto entro2 s; intervallo1–2 s dal rilascio.",
+      "distractors": "20 m è cumulativo;5 m è la prima caduta;10 presuppone uguali distanze a ogni secondo;25 somma le posizioni.",
+      "pedagogicalReview": "Due posizioni dalla stessa origine sottratte.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_distinct_measurement_calculations_and_separate_conceptual_derivations",
+        "Pint_exact_volume_mass_speed_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C1-Q035",
+      "sourceSha256": "f257992771815a4257feef774cb03d1ded824aad8e2905b4fbdfe9c9f87c0817",
+      "candidateSha256": "3fd190d900829188f306c2eeec867a30922693330802af44287a086e63cafc55",
+      "reviewedSignature": "7f07e7d6761879def92182da46aa9d69411b1714e4891a35edb90fb75a7f7634",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Toccano il suolo nello stesso istante",
+      "dimension": {
+        "[time]": "1"
+      },
+      "manualArithmetic": "Stessa quota, v₀y=0 e stessa g rendono identico y(t), quindi T=√(2h/g) per entrambe. La componente orizzontale cambia solo la posizione di arrivo.",
+      "physicalAssumptions": "Due sfere dalla stessa altezza positiva sullo stesso piano orizzontale, rilascio simultaneo, v₀y=0 per entrambe e assenza di aria.",
+      "distractors": "La componente orizzontale non modifica l’equazione verticale; massa e percorso obliquo non danno durate differenti nel modello.",
+      "pedagogicalReview": "Indipendenza delle componenti motivata dalle leggi verticali.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_distinct_measurement_calculations_and_separate_conceptual_derivations",
+        "Pint_exact_volume_mass_speed_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C1-Q036",
+      "sourceSha256": "06a7bb19cbd8fdec5b489960ea5e02974f89792d063421160489ad2f49c61f8d",
+      "candidateSha256": "3092522e667f0a40928b774c0e9130806286fbe514034621b02c0e49febabbbe",
+      "reviewedSignature": "6c1d6f756f47f7c421cf45e029e6873e01618d537fc445d9a03311bf6b2b3c05",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[time]": "1"
+      },
+      "manualArithmetic": "30 giri/min sono1/2 giri/s. Il tempo di un giro è60/30=2 s, inverso della frequenza e non il conteggio30.",
+      "physicalAssumptions": "Rotazione uniforme a30 giri/min, conteggio completo dei giri e conversione esatta60 s per minuto.",
+      "distractors": "30 e60 copiano conteggio o durata totale;1/2 è frequenza in Hz,1800 moltiplica anziché dividere.",
+      "pedagogicalReview": "Frequenza e periodo separati dimensionalmente.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_distinct_measurement_calculations_and_separate_conceptual_derivations",
+        "Pint_exact_volume_mass_speed_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C1-Q037",
+      "sourceSha256": "796a30b17f2650c4b2b855e934ca56b2a9b0cb970644019a312526d85851bcc3",
+      "candidateSha256": "bd57317d4d22ae561bd667fb2153b327703082018a4e9075e9f4d3b5557f6e4a",
+      "reviewedSignature": "ca4f745e7758a91b765ec424fcb634d254b728cb0a15ba1ba4ba700f24804553",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "Raggio:v²/a_c=9/(9/2)=2 m. Controprova del distrattore3/2 m:9/(3/2)=6 m/s², non9/2. Il rapporto v/a_c avrebbe invece unità s e valore2/3.",
+      "physicalAssumptions": "Moto circolare con rapidità3 m/s e componente centripeta9/2 m/s² positive, raggio geometrico positivo.",
+      "distractors": "1/2 m inverte il rapporto;3/2 m darebbe6 m/s²;9 m non divide v² per a_c;6 m non ricostruisce9/2 m/s².",
+      "pedagogicalReview": "Inversa simbolica e ricostruzione del dato a_c; attribuzione errata del vecchio distrattore corretta prima del freeze.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_distinct_measurement_calculations_and_separate_conceptual_derivations",
+        "Pint_exact_volume_mass_speed_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C1-Q038",
+      "sourceSha256": "61de1eaff4e8f70300909de200ff2d77052e90657000f232f159cc27bfa49bb7",
+      "candidateSha256": "1be92f22d23e1bcc890f0446496b2bb81f330cccca7bb2cda4cc5f75e663ee4b",
+      "reviewedSignature": "8ca562d7f9f9291bdf6f462bcc98a56da1d8bead83def9a6a1ab6a53f97be4e1",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "cric-c1-l004-progressive.svg": "58c4585dee7366990a879601210a4de9f8bfaa5d0573403271d76b1ace04db32"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {},
+      "manualArithmetic": "A ω comune non nulla, a_c=ω²r. Il rapporto per2r e r è2; in v²/r anche v=ωr raddoppia, quindi la semplificazione dà4/2=2.",
+      "physicalAssumptions": "Disco rigido in rotazione uniforme,ω≠0, due distanze positive r e2r dall’asse; accelerazioni confrontate allo stessoω.",
+      "distractors": "1/2 tiene v fisso erroneamente;4 omette il raggio raddoppiato al denominatore;1 confondeω e a;1/4 inverte un rapporto quadratico non pertinente.",
+      "pedagogicalReview": "Grandezza realmente comune scelta prima della scalatura.",
+      "assetReview": "XML e nuovo PNG indipendente640×1820 letti integralmente. Triangolo velocità-tempo:2s in320coordinate,4m/s in240, area fisica4m. Quota-tempo: ritorno6/5s in360coordinate; Bezier quadratica da(120,1030) controllo(300,670) a(480,1030), vertice(300,850)=3/5s,9/5m; scala100coordinate/m. Disco:r80,2r160, frecce radiali50 e100 verso il centro, rapporto2 aω comune. Nessuna label tagliata o sovrapposta rilevata.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_distinct_measurement_calculations_and_separate_conceptual_derivations",
+        "Pint_exact_volume_mass_speed_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C1-Q039",
+      "sourceSha256": "fb7a647160f0800885170633c86595472702dc6e204be31e9cb17246d5cb02c9",
+      "candidateSha256": "53d302c53f8325e1e409448991a25f76f05e909f9e4d0217fe51177d82fcafc2",
+      "reviewedSignature": "7a62b57241b681ee258009b1336fc9fda4807d0c85a69fbaff094e5e9bd4b2fb",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Verso il centro del cerchio",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Il vettore velocità gira anche a modulo costante. La sua derivata è radiale entrante, modulo v²/r>0; l’accelerazione tangenziale è nulla.",
+      "physicalAssumptions": "Moto circolare uniforme con r>0,v>0: direzione dell’accelerazione fisica, senza forza centrifuga nel riferimento inerziale.",
+      "distractors": "Tangente è direzione della velocità; accelerazione uscente ha verso errato;zero richiederebbe velocità vettoriale costante, impossibile sul cerchio.",
+      "pedagogicalReview": "Accelerazione come variazione vettoriale distinta dal solo modulo.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_distinct_measurement_calculations_and_separate_conceptual_derivations",
+        "Pint_exact_volume_mass_speed_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C1-Q040",
+      "sourceSha256": "47534bf64dc20b50dca715983fc80515a4518037d42bd2e83065d1f2acbdd711",
+      "candidateSha256": "68a81a1ec44401d379b545b08a0fe3a89e924cfaabf6b90659cbe2b0b37f79bd",
+      "reviewedSignature": "f7427ac5db7d9fd24298f9a13baf4cf83e938f36b63b279fc525adc83ede2efa",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "14",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "La derivata di1+2t+3t² con coefficienti dimensionati è2+6t. A2 s vale14 m/s;8 m/s omette il fattore2 della derivata di t² ma mantiene t.",
+      "physicalAssumptions": "Legge x=1 m+(2 m/s)t+(3 m/s²)t² differenziabile, velocità istantanea richiesta a2 s.",
+      "distractors": "17 copia x in metri;8 omette2 in d(t²)/dt;12 omette la velocità iniziale;6 copia il coefficiente di accelerazione, con altra unità.",
+      "pedagogicalReview": "Derivata con unità dei coefficienti, fattore2 esplicito e controprova del vecchio feedback corretto.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_distinct_measurement_calculations_and_separate_conceptual_derivations",
+        "Pint_exact_volume_mass_speed_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    }
+  ],
+  "verifierSha256": "3e3927955c9e82bfc20b5d428a5f7498914f64df306ec63cb97ee67daacc64e0",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "reviewDependencySha256": {
+    "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+  },
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2",
+    "hypothesis": "6.148.7"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "reviewedCandidateCommit": "4854852966e56fbf26f9cbd4dfb85661b8a345e9",
+  "packageSha256": "9b39887f2f6881ab5261dd4f5f9d3ea54051c8979a41c90f219385b6967ba063",
+  "bindingsSha256": "a27900961bf330c2f07c973663212d39a7eb830549f3ecfb96ebc138bbd60c6c",
+  "source": {
+    "commit": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "path": "officina-di-fisica/content/C1.json",
+    "title": "cric-c1-l004",
+    "reference": "Dieci problemi Cric distinti, risolti individualmente nella primaria prompt-only prima dei candidati; leggere le note per ID per modelli e domini."
+  },
+  "modelsBeforeCandidateKeys": {
+    "path": "editorial/reviews/cric-c1-001-050-independent-models.py",
+    "sha256": "f7e59ee2a8652933cccd27248b6798c5a6a75c66c8f9f111efe81b20a10fd88c",
+    "commit": "7a2a3784421f346b4784a581e275760a623b4adf"
+  },
+  "postReadNumericGuardHardening": "All constitutive, inverse, calibration and exact finite guard function bodies are identical to the actual pre-key snapshot from first version.",
+  "primaryBeforeCandidateKeys": {
+    "path": "editorial/reviews/primary-cric-c1-001-050-before-candidates-20261126.md",
+    "sha256": "2e0ac86f9b57804387b68ccdcdbde945bed65b26ee5de6449323f25c3540707a"
+  }
+}

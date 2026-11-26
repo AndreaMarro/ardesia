@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 304 250" role="img" aria-labelledby="titolo descrizione">
+  <title id="titolo">Lavoro dell’attrito sul blocco in due situazioni</title>
+  <desc id="descrizione">Visto dal laboratorio il blocco avanza sempre a destra. Sul piano fermo la forza di attrito sul blocco punta a sinistra. Sul nastro più veloce del blocco la forza punta a destra.</desc>
+  <defs>
+    <marker id="moto" markerWidth="5" markerHeight="5" refX="4.7" refY="2.5" orient="auto"><path fill="#215a4a" d="M0 0 5 2.5 0 5Z"/></marker>
+    <marker id="forza" markerWidth="5" markerHeight="5" refX="4.7" refY="2.5" orient="auto"><path fill="#943c24" d="M0 0 5 2.5 0 5Z"/></marker>
+    <pattern id="suolo" width="9" height="7" patternUnits="userSpaceOnUse"><path d="m0 7 7-7" stroke="#7c8279"/></pattern>
+  </defs>
+  <rect width="304" height="250" rx="4" fill="#faf7ee"/>
+  <g fill="#24352e" font-family="Arial, sans-serif" font-size="16">
+    <text x="12" y="22" font-weight="bold">Piano fermo</text>
+    <path d="M126 49h66" fill="none" stroke="#215a4a" stroke-width="3" marker-end="url(#moto)"/>
+    <text x="202" y="54" fill="#215a4a">moto</text>
+    <rect x="104" y="63" width="64" height="32" rx="3" stroke="#45564d" stroke-width="2" fill="#e4dfcc"/>
+    <text x="136" y="85" text-anchor="middle">blocco</text>
+    <path id="attrito-piano" d="M103 86H42" stroke="#943c24" stroke-width="3" marker-end="url(#forza)"/>
+    <text x="16" y="72" fill="#943c24">attrito</text>
+    <path d="M12 98H292" stroke="#384a40" stroke-width="2"/>
+    <path d="M12 99h280v9H12Z" fill="url(#suolo)"/>
+    <text x="12" y="137" font-weight="bold">Nastro più veloce del blocco</text>
+    <path d="M126 161h66" fill="none" stroke="#215a4a" stroke-width="3" marker-end="url(#moto)"/>
+    <text x="202" y="166" fill="#215a4a">moto</text>
+    <rect x="104" y="175" width="64" height="32" rx="3" stroke="#45564d" stroke-width="2" fill="#e4dfcc"/>
+    <text x="136" y="197" text-anchor="middle">blocco</text>
+    <path id="attrito-nastro" d="M169 198H230" stroke="#943c24" stroke-width="3" marker-end="url(#forza)"/>
+    <text x="239" y="202" fill="#943c24">attrito</text>
+    <rect x="12" y="210" width="280" height="28" rx="14" fill="#dee9df" stroke="#45564d" stroke-width="2"/>
+    <text x="34" y="230">nastro</text>
+    <path d="M95 224h144" fill="none" stroke="#215a4a" stroke-width="3" marker-end="url(#moto)"/>
+  </g>
+</svg>

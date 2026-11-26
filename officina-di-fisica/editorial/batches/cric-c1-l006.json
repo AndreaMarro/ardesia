@@ -1,0 +1,725 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "C1-Q051",
+      "kind": "question",
+      "course": "C1",
+      "section": "Contatto, elasticità e gravitazione",
+      "order": 51,
+      "title": "La soglia è il massimo statico",
+      "skill": "C1-L006",
+      "prerequisites": [
+        "C1-L006"
+      ],
+      "version": 3,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Finché la scatola resta ferma, l’attrito si adatta alla trazione necessaria all’equilibrio. Soltanto alla soglia il suo modulo raggiunge μ_sN: qui è 18 N. Divido la soglia per la normale, 18/60=3/10. Il coefficiente non ha unità perché è un rapporto fra forze."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/6cd8d72ea0a6d3a2dff3ecadadb8a38ae574402e9c2533ba88b140f197698467",
+          "text": "Nel primo pannello la scatola è ancora ferma, alla soglia: trazione e attrito statico hanno modulo 18 N; normale e peso 60 N. Le frecce delle quattro forze usano la stessa scala e non rappresentano spostamenti."
+        },
+        {
+          "type": "formula",
+          "text": "|f_s|\\le\\mu_sN"
+        },
+        {
+          "type": "formula",
+          "text": " f_{s,\\max}=18\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " \\mu_s=\\frac{18\\,\\mathrm N}{60\\,\\mathrm N}"
+        },
+        {
+          "type": "formula",
+          "text": " \\mu_s=\\frac3{10}"
+        },
+        {
+          "type": "text",
+          "text": "10/3 inverte il rapporto; 18 e 60 copiano i valori numerici di due forze. Zero escluderebbe la forza statica osservata. Prima della soglia, imporre sempre f_s=μ_sN sovrastimerebbe l’attrito richiesto."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Una scatola è in quiete su un piano orizzontale. Un dinamometro la tira parallelamente al piano, aumentando lentamente la forza. Appena prima dello scorrimento indica 18 N; la normale vale 60 N. Nel modello di attrito secco, quanto vale il coefficiente statico μ_s?",
+      "family": "soglia-di-scorrimento",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/10",
+          "10/3",
+          "18",
+          "60",
+          "0"
+        ],
+        "value": "3/10"
+      },
+      "hints": [
+        "Usa la lettura immediatamente precedente allo scorrimento, non una forza statica arbitraria.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "10/3 inverte il rapporto; 18 e 60 copiano i valori numerici di due forze. Zero escluderebbe la forza statica osservata. Prima della soglia, imporre sempre f_s=μ_sN sovrastimerebbe l’attrito richiesto.",
+        "target": "C1-L006"
+      },
+      "baseVersion": 2,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Soglia statica e attrito dinamico",
+        "Deformazione e richiamo elastico",
+        "Distanza dal centro nella gravitazione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q052",
+      "kind": "question",
+      "course": "C1",
+      "section": "Contatto, elasticità e gravitazione",
+      "order": 52,
+      "title": "Una decelerazione durante lo scorrimento",
+      "skill": "C1-L006",
+      "prerequisites": [
+        "C1-L006"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La normale equilibra il peso, N=mg. L’attrito dinamico ha modulo μ_dmg e si oppone alla velocità relativa: dividendo la seconda legge per m, il modulo dell’accelerazione è μ_dg. Per calcolarlo a mano scrivo 9,8=49/5 e moltiplico per 1/5: 49/25 m/s², equivalente a 1,96 m/s². La legge vale fino al primo arresto, senza prolungare automaticamente il verso dell’attrito oltre quel momento."
+        },
+        {
+          "type": "formula",
+          "text": "N=mg"
+        },
+        {
+          "type": "formula",
+          "text": " |f_d|=\\mu_dmg"
+        },
+        {
+          "type": "formula",
+          "text": " |a|=\\mu_dg"
+        },
+        {
+          "type": "formula",
+          "text": " |a|=\\frac15\\cdot\\frac{49}{5}\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " |a|=\\frac{49}{25}\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "text",
+          "text": "49/5 copia g senza il coefficiente; 1/5 copia il coefficiente puro come se fosse un’accelerazione. 25/49 inverte il risultato numerico e zero ignorerebbe l’attrito già attivo. Il segno dell’accelerazione dipende dall’asse; il modulo richiesto resta positivo."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Un pattino sta scivolando su un piano orizzontale fermo, senza trazione né altre forze orizzontali. Nel modello di attrito dinamico μ_d=1/5; usa il valore assegnato g=9,8 m/s². Quanto vale il modulo della decelerazione, finché il pattino scivola?",
+      "family": "frenata-per-attrito-radente",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "49/25 m/s²",
+          "49/5 m/s²",
+          "1/5 m/s²",
+          "25/49 m/s²",
+          "0 m/s²"
+        ],
+        "value": "49/25 m/s²"
+      },
+      "hints": [
+        "Trova prima N e cancella la massa soltanto dopo aver scritto F=ma.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "49/5 copia g senza il coefficiente; 1/5 copia il coefficiente puro come se fosse un’accelerazione. 25/49 inverte il risultato numerico e zero ignorerebbe l’attrito già attivo. Il segno dell’accelerazione dipende dall’asse; il modulo richiesto resta positivo.",
+        "target": "C1-L006"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Soglia statica e attrito dinamico",
+        "Deformazione e richiamo elastico",
+        "Distanza dal centro nella gravitazione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q053",
+      "kind": "question",
+      "course": "C1",
+      "section": "Contatto, elasticità e gravitazione",
+      "order": 53,
+      "title": "L’attrito può accelerare un pacco",
+      "skill": "C1-L006",
+      "prerequisites": [
+        "C1-L006"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Senza una forza orizzontale il pacco conserverebbe la velocità precedente e resterebbe indietro rispetto al nastro accelerato. Il contatto deve quindi fornirgli un’accelerazione verso destra. Poiché non c’è scorrimento relativo, si tratta di attrito statico: il suo verso contrasta la tendenza a slittare rispetto al nastro, non il moto rispetto al pavimento."
+        },
+        {
+          "type": "formula",
+          "text": "a_x>0"
+        },
+        {
+          "type": "formula",
+          "text": " f_{s,x}=ma_x>0"
+        },
+        {
+          "type": "formula",
+          "text": " |f_s|\\le\\mu_sN"
+        },
+        {
+          "type": "text",
+          "text": "Verso sinistra confonde il moto del pacco nel laboratorio con lo scorrimento relativo. Forza nulla non potrebbe accelerarlo; dinamico richiederebbe slittamento. Peso e normale sono verticali e non sostituiscono la forza orizzontale richiesta."
+        }
+      ],
+      "difficulty": 3,
+      "prompt": "Un nastro orizzontale accelera verso destra. Il pacco è inizialmente solidale col nastro e continua a non slittare; il contatto col nastro è la sua unica interazione orizzontale. In quale verso agisce sul pacco la forza d’attrito?",
+      "family": "un-nastro-trascina-un-pacco",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Verso destra, ed è attrito statico",
+          "Verso sinistra, perché il pacco si muove a destra",
+          "È nulla perché non c’è slittamento",
+          "È dinamica e verso destra",
+          "È verticale verso il basso"
+        ],
+        "value": "Verso destra, ed è attrito statico"
+      },
+      "hints": [
+        "Confronta ciò che farebbe il pacco senza il contatto con ciò che fa davvero il nastro.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Verso sinistra confonde il moto del pacco nel laboratorio con lo scorrimento relativo. Forza nulla non potrebbe accelerarlo; dinamico richiederebbe slittamento. Peso e normale sono verticali e non sostituiscono la forza orizzontale richiesta.",
+        "target": "C1-L006"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Soglia statica e attrito dinamico",
+        "Deformazione e richiamo elastico",
+        "Distanza dal centro nella gravitazione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q054",
+      "kind": "question",
+      "course": "C1",
+      "section": "Contatto, elasticità e gravitazione",
+      "order": 54,
+      "title": "Massa e distanza si compensano",
+      "skill": "C1-L006",
+      "prerequisites": [
+        "C1-L006"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La massa modificata compare una sola volta al numeratore; la distanza compare al quadrato nel denominatore. Il fattore quattro della massa è quindi diviso per il fattore quattro della distanza al quadrato. La forza rimane attrattiva e con lo stesso modulo, anche se la geometria della configurazione cambia."
+        },
+        {
+          "type": "formula",
+          "text": "F=G\\frac{m_1m_2}{r^2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{F_B}{F_A}=\\frac4{2^2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{F_B}{F_A}=1"
+        },
+        {
+          "type": "text",
+          "text": "Quattro considera soltanto la massa; un quarto soltanto la distanza. Due tratta la distanza come un fattore lineare, mentre un mezzo non combina i due cambiamenti nella legge assegnata. Non si sommano i fattori di scala."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Due masse puntiformi si attraggono gravitazionalmente. In una seconda configurazione la distanza fra loro è doppia e una sola delle masse è quadrupla, mentre l’altra resta uguale. Come cambia il modulo della forza?",
+      "family": "confronto-fra-masse-gravitazionali",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Resta uguale",
+          "Raddoppia",
+          "Quadruplica",
+          "Diventa un quarto",
+          "Si dimezza"
+        ],
+        "value": "Resta uguale"
+      },
+      "hints": [
+        "Scrivi il rapporto delle due leggi prima di sostituire i numeri.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Quattro considera soltanto la massa; un quarto soltanto la distanza. Due tratta la distanza come un fattore lineare, mentre un mezzo non combina i due cambiamenti nella legge assegnata. Non si sommano i fattori di scala.",
+        "target": "C1-L006"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Soglia statica e attrito dinamico",
+        "Deformazione e richiamo elastico",
+        "Distanza dal centro nella gravitazione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q055",
+      "kind": "question",
+      "course": "C1",
+      "section": "Contatto, elasticità e gravitazione",
+      "order": 55,
+      "title": "La quota non è la distanza dal centro",
+      "skill": "C1-L006",
+      "prerequisites": [
+        "C1-L006"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La formula esterna g=GM/r² usa la distanza r dal centro del pianeta. Sulla superficie r=R; alla quota richiesta r=R+R=2R. Il campo diventa perciò un quarto di quello superficiale: otto diviso quattro dà 2 m/s². Non si usa la quota da sola come raggio gravitazionale."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/6cd8d72ea0a6d3a2dff3ecadadb8a38ae574402e9c2533ba88b140f197698467",
+          "text": "Il pannello finale confronta le distanze dal centro R e 2R: la quota R è un’ulteriore distanza dalla superficie. Le barre confrontano i campi 8 e 2 m/s², dalla stessa origine e con scala comune."
+        },
+        {
+          "type": "formula",
+          "text": "r_A=R"
+        },
+        {
+          "type": "formula",
+          "text": " r_B=2R"
+        },
+        {
+          "type": "formula",
+          "text": " g_B=g_A\\left(\\frac{R}{2R}\\right)^2"
+        },
+        {
+          "type": "formula",
+          "text": " g_B=\\frac84\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " g_B=2\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "text",
+          "text": "Quattro m/s² dimezzerebbe il campo anziché dividerlo per il quadrato. Otto confonderebbe la quota con la distanza dal centro; zero richiederebbe il limite di distanza infinita nel modello. La massa del pianeta non cambia fra le due posizioni."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Un pianeta è sfericamente simmetrico, di raggio R. Sulla sua superficie il modulo del campo gravitazionale vale 8 m/s². A quota R sopra la superficie, quale modulo ha il campo? Trascura la rotazione e usa il modello gravitazionale esterno.",
+      "family": "altezza-pari-al-raggio-planetario",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m/s²",
+        "tolerance": 0
+      },
+      "hints": [
+        "Somma raggio e quota prima di confrontare i campi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro m/s² dimezzerebbe il campo anziché dividerlo per il quadrato. Otto confonderebbe la quota con la distanza dal centro; zero richiederebbe il limite di distanza infinita nel modello. La massa del pianeta non cambia fra le due posizioni.",
+        "target": "C1-L006"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Soglia statica e attrito dinamico",
+        "Deformazione e richiamo elastico",
+        "Distanza dal centro nella gravitazione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q056",
+      "kind": "question",
+      "course": "C1",
+      "section": "Contatto, elasticità e gravitazione",
+      "order": 56,
+      "title": "Separare lunghezza e deformazione",
+      "skill": "C1-L006",
+      "prerequisites": [
+        "C1-L006"
+      ],
+      "version": 3,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La trazione equilibrata misura il modulo del richiamo elastico, kx. L’allungamento è dunque x=F/k=6/200 m=3/100 m=3 cm. La lunghezza osservata comprende sia la lunghezza a riposo sia l’allungamento: sottraggo 3 cm da 14 cm e ottengo 11 cm. Il dato non è una compressione, perché la molla è tirata."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/6cd8d72ea0a6d3a2dff3ecadadb8a38ae574402e9c2533ba88b140f197698467",
+          "text": "Nel pannello centrale entrambe le lunghezze partono dalla stessa origine: 11 cm a riposo e 14 cm sotto tiro. Il tratto aggiunto misura l’allungamento di 3 cm, non la lunghezza totale."
+        },
+        {
+          "type": "formula",
+          "text": "x=\\frac Fk"
+        },
+        {
+          "type": "formula",
+          "text": " x=\\frac{6}{200}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " x=3\\,\\mathrm{cm}"
+        },
+        {
+          "type": "formula",
+          "text": " \\ell=\\ell_0+x"
+        },
+        {
+          "type": "formula",
+          "text": " \\ell_0=14\\,\\mathrm{cm}-3\\,\\mathrm{cm}"
+        },
+        {
+          "type": "formula",
+          "text": " \\ell_0=11\\,\\mathrm{cm}"
+        },
+        {
+          "type": "text",
+          "text": "Tre centimetri è soltanto l’allungamento. Diciassette lo aggiungerebbe alla lunghezza già allungata; quattordici ignorerebbe la deformazione. Sottrarre 0,03 direttamente da 14 confonderebbe metri e centimetri."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Una molla ideale è tirata assialmente e mantenuta in equilibrio. La costante elastica è k=200 N/m, la trazione ha modulo 6 N e la lunghezza osservata è 14 cm. Nel tratto elastico lineare, quanto vale la lunghezza a riposo in centimetri?",
+      "family": "lunghezza-di-riposo-ignota",
+      "answer": {
+        "type": "numeric",
+        "value": 11,
+        "unit": "cm",
+        "tolerance": 0
+      },
+      "hints": [
+        "Trova prima la deformazione in metri, poi porta tutte le lunghezze nella stessa unità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre centimetri è soltanto l’allungamento. Diciassette lo aggiungerebbe alla lunghezza già allungata; quattordici ignorerebbe la deformazione. Sottrarre 0,03 direttamente da 14 confonderebbe metri e centimetri.",
+        "target": "C1-L006"
+      },
+      "baseVersion": 2,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Soglia statica e attrito dinamico",
+        "Deformazione e richiamo elastico",
+        "Distanza dal centro nella gravitazione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q057",
+      "kind": "question",
+      "course": "C1",
+      "section": "Contatto, elasticità e gravitazione",
+      "order": 57,
+      "title": "La pendenza della prova elastica",
+      "skill": "C1-L006",
+      "prerequisites": [
+        "C1-L006"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Per l’allungamento positivo il modulo della forza è F=kx. Dividendo una variazione di forza per la corrispondente variazione di allungamento ricavo k. La pendenza ha quindi unità N/m. Il segno meno della legge orientata F_x=−kx non rende negativa la pendenza di questo grafico dei moduli."
+        },
+        {
+          "type": "formula",
+          "text": "F=kx"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{\\Delta F}{\\Delta x}=k"
+        },
+        {
+          "type": "formula",
+          "text": " [k]=\\mathrm{N/m}"
+        },
+        {
+          "type": "text",
+          "text": "La lunghezza a riposo non è una pendenza e x è la coordinata orizzontale. L’energia corrisponde invece a un’area sotto la curva F–x. Il reciproco k⁻¹ sarebbe la pendenza nel grafico con gli assi scambiati."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Nel campo elastico lineare si traccia il modulo F della forza di richiamo di una molla in funzione dell’allungamento x≥0. La retta passa per l’origine. Quale grandezza misura la pendenza ΔF/Δx?",
+      "family": "pendenza-di-una-prova-elastica",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "La costante elastica k, in N/m",
+          "La lunghezza a riposo, in m",
+          "La deformazione x, in m",
+          "L’energia elastica, in J",
+          "Il reciproco della costante elastica, in m/N"
+        ],
+        "value": "La costante elastica k, in N/m"
+      },
+      "hints": [
+        "Controlla quale grandezza è su ciascun asse e conserva le sue unità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La lunghezza a riposo non è una pendenza e x è la coordinata orizzontale. L’energia corrisponde invece a un’area sotto la curva F–x. Il reciproco k⁻¹ sarebbe la pendenza nel grafico con gli assi scambiati.",
+        "target": "C1-L006"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Soglia statica e attrito dinamico",
+        "Deformazione e richiamo elastico",
+        "Distanza dal centro nella gravitazione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q058",
+      "kind": "question",
+      "course": "C1",
+      "section": "Contatto, elasticità e gravitazione",
+      "order": 58,
+      "title": "Il regime dopo l’inizio dello slittamento",
+      "skill": "C1-L006",
+      "prerequisites": [
+        "C1-L006"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’informazione decisiva è lo scorrimento relativo già presente. Si parla allora di attrito dinamico o cinetico: la forza tangenziale si oppone alla velocità relativa dei due corpi. Il nome non dipende dal fatto che il moto nel laboratorio sia uniforme oppure accelerato."
+        },
+        {
+          "type": "formula",
+          "text": "|f_d|=\\mu_dN"
+        },
+        {
+          "type": "text",
+          "text": "Statico indica contatto senza slittamento relativo. Il rotolamento puro è un’altra condizione cinematica; elasticità e gravitazione descrivono interazioni diverse, non un regime di attrito radente."
+        }
+      ],
+      "difficulty": 1,
+      "prompt": "Due superfici solide stanno scivolando una rispetto all’altra. Nel modello di attrito radente secco, come si chiama questo regime?",
+      "family": "lattrito-durante-lo-slittamento",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Attrito dinamico, o cinetico",
+          "Attrito statico",
+          "Attrito volvente senza slittamento",
+          "Forza elastica",
+          "Attrazione gravitazionale"
+        ],
+        "value": "Attrito dinamico, o cinetico"
+      },
+      "hints": [
+        "Guarda il moto relativo delle superfici, non soltanto il moto del loro centro di massa.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Statico indica contatto senza slittamento relativo. Il rotolamento puro è un’altra condizione cinematica; elasticità e gravitazione descrivono interazioni diverse, non un regime di attrito radente.",
+        "target": "C1-L006"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Soglia statica e attrito dinamico",
+        "Deformazione e richiamo elastico",
+        "Distanza dal centro nella gravitazione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q059",
+      "kind": "question",
+      "course": "C1",
+      "section": "Contatto, elasticità e gravitazione",
+      "order": 59,
+      "title": "Il segno del richiamo elastico",
+      "skill": "C1-L006",
+      "prerequisites": [
+        "C1-L006"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La forza orientata è F_x=−kx: è opposta allo spostamento dal riposo. Con x negativo, il richiamo è quindi positivo, verso destra. Per il calcolo manuale uso 0,025=1/40: ottanta diviso quaranta vale due. Il modulo è 2 N e la componente richiesta è +2 N."
+        },
+        {
+          "type": "formula",
+          "text": "x=-\\frac1{40}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " F_x=-kx"
+        },
+        {
+          "type": "formula",
+          "text": " F_x=-80\\left(-\\frac1{40}\\right)\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " F_x=+2\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "Meno due conserverebbe il verso della deformazione anziché invertirlo. Zero ignorerebbe lo spostamento dal riposo e 80 copierebbe il valore numerico di k senza moltiplicarlo per una lunghezza. La costante k resta positiva."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "L’asse x cresce verso destra e x=0 identifica la posizione di riposo di una molla ideale. Il suo estremo è a x=−0,025 m; k=80 N/m. Nel campo lineare, quale componente F_x esercita la molla sull’estremo, in newton?",
+      "family": "una-molla-comprimibile",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "N",
+        "tolerance": 0
+      },
+      "hints": [
+        "Prima determina il verso del richiamo, poi il suo valore numerico.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Meno due conserverebbe il verso della deformazione anziché invertirlo. Zero ignorerebbe lo spostamento dal riposo e 80 copierebbe il valore numerico di k senza moltiplicarlo per una lunghezza. La costante k resta positiva.",
+        "target": "C1-L006"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Soglia statica e attrito dinamico",
+        "Deformazione e richiamo elastico",
+        "Distanza dal centro nella gravitazione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q060",
+      "kind": "question",
+      "course": "C1",
+      "section": "Contatto, elasticità e gravitazione",
+      "order": 60,
+      "title": "Due molle sulla stessa traversa",
+      "skill": "C1-L006",
+      "prerequisites": [
+        "C1-L006"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La traversa impone il medesimo allungamento a ogni molla. Ciascuna esercita un richiamo di modulo kx; le due forze hanno lo stesso verso e si sommano. Il modulo totale è quindi 2kx e la costante equivalente è 2k. Non sono molle in serie: qui la deformazione non si divide fra elementi successivi."
+        },
+        {
+          "type": "formula",
+          "text": "F_1=kx"
+        },
+        {
+          "type": "formula",
+          "text": " F_2=kx"
+        },
+        {
+          "type": "formula",
+          "text": " F_{\\rm tot}=F_1+F_2"
+        },
+        {
+          "type": "formula",
+          "text": " F_{\\rm tot}=2kx"
+        },
+        {
+          "type": "text",
+          "text": "kx dimentica una molla; kx/2 usa la costante di due molle uguali in serie. 2k/x ha dimensione N/m² e kx² ha dimensione N·m, quindi nessuna delle due esprime una forza."
+        }
+      ],
+      "difficulty": 3,
+      "prompt": "Due molle ideali identiche, ciascuna di costante k>0, sono affiancate in parallelo e collegate alla stessa traversa. Entrambe hanno allungamento x≥0 nello stesso verso, entro il campo lineare. Qual è il modulo della forza totale di richiamo sulla traversa?",
+      "family": "due-molle-uguali-affiancate",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2 k x",
+          "k x",
+          "k x / 2",
+          "2 k / x",
+          "k x²"
+        ],
+        "value": "2 k x"
+      },
+      "hints": [
+        "Disegna separatamente i due richiami applicati alla traversa e somma le forze concordi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "kx dimentica una molla; kx/2 usa la costante di due molle uguali in serie. 2k/x ha dimensione N/m² e kx² ha dimensione N·m, quindi nessuna delle due esprime una forza.",
+        "target": "C1-L006"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Soglia statica e attrito dinamico",
+        "Deformazione e richiamo elastico",
+        "Distanza dal centro nella gravitazione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "6cd8d72ea0a6d3a2dff3ecadadb8a38ae574402e9c2533ba88b140f197698467",
+      "name": "cric-c1-l006-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTU1MCIgdmlld0JveD0iMCAwIDY0MCAxNTUwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyIgZm9udC1mYW1pbHk9InN5c3RlbS11aSxzYW5zLXNlcmlmIj48dGl0bGUgaWQ9InRpdGxlIj5UcmUgbGV0dHVyZSBkZWxsYSBzdGVzc2EgbGV6aW9uZTwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPkZvcnplIHN1bGxhIHNjYXRvbGEgYWxsYSBzb2dsaWEsIGx1bmdoZXp6ZSBkaSB1bmEgbW9sbGEgZSBjYW1wbyBncmF2aXRhemlvbmFsZSBhIGR1ZSBkaXN0YW56ZSBkYWwgY2VudHJvLjwvZGVzYz48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iNjQwIiBoZWlnaHQ9IjE1NTAiIGZpbGw9IndoaXRlIi8+PHRleHQgeD0iMzUiIHk9IjQ4IiBmb250LXNpemU9IjI0IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPkNvbnRhdHRvLCBsdW5naGV6emEgZSBkaXN0YW56YSBkYWwgY2VudHJvPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSIxMTAiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+MSDCtyBBbGxhIHNvZ2xpYSwgcHJpbWEgZGVsbG8gc2NvcnJpbWVudG88L3RleHQ+PHJlY3QgeD0iMjkwIiB5PSIyODAiIHdpZHRoPSI4MCIgaGVpZ2h0PSI0MCIgZmlsbD0iI2U1ZWRmMiIvPjxsaW5lIHgxPSIzMzAiIHkxPSIzMDAiIHgyPSIzMzAiIHkyPSIxMjAiIHN0cm9rZT0iIzMwNmY4YyIgc3Ryb2tlLXdpZHRoPSIyIi8+PHBvbHlnb24gcG9pbnRzPSIzMzAsMTIwIDMzNC4wLDEyOC4wIDMyNi4wLDEyOC4wIiBmaWxsPSIjMzA2ZjhjIi8+PGxpbmUgeDE9IjMzMCIgeTE9IjMwMCIgeDI9IjMzMCIgeTI9IjQ4MCIgc3Ryb2tlPSIjOTg2YzM1IiBzdHJva2Utd2lkdGg9IjIiLz48cG9seWdvbiBwb2ludHM9IjMzMCw0ODAgMzI2LjAsNDcyLjAgMzM0LjAsNDcyLjAiIGZpbGw9IiM5ODZjMzUiLz48bGluZSB4MT0iMzMwIiB5MT0iMzAwIiB4Mj0iMzg0IiB5Mj0iMzAwIiBzdHJva2U9IiMzMDZmOGMiIHN0cm9rZS13aWR0aD0iMiIvPjxwb2x5Z29uIHBvaW50cz0iMzg0LDMwMCAzNzYuMCwzMDQuMCAzNzYuMCwyOTYuMCIgZmlsbD0iIzMwNmY4YyIvPjxsaW5lIHgxPSIzMzAiIHkxPSIzMDAiIHgyPSIyNzYiIHkyPSIzMDAiIHN0cm9rZT0iIzYzN2U1NSIgc3Ryb2tlLXdpZHRoPSIyIi8+PHBvbHlnb24gcG9pbnRzPSIyNzYsMzAwIDI4NC4wLDI5Ni4wIDI4NC4wLDMwNC4wIiBmaWxsPSIjNjM3ZTU1Ii8+PHRleHQgeD0iMzUwIiB5PSIxNTAiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+TiA9IDYwIE48L3RleHQ+PHRleHQgeD0iMzUwIiB5PSI0NjUiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+UCA9IDYwIE48L3RleHQ+PHRleHQgeD0iNDA1IiB5PSIyOTAiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+VCA9IDE4IE48L3RleHQ+PHRleHQgeD0iMTEwIiB5PSIzNDUiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+Zl9zID0gMTggTjwvdGV4dD48dGV4dCB4PSIzNSIgeT0iNTM1IiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPkZpbm8gYWxsYSBzb2dsaWE6IDAg4omkIHxmX3N8IOKJpCAxOCBOLjwvdGV4dD48dGV4dCB4PSIzNSIgeT0iNjIwIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjIgwrcgVW5hIGx1bmdoZXp6YSBjb21wcmVuZGUgbGEgZGVmb3JtYXppb25lPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSI2NzgiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+QSByaXBvc288L3RleHQ+PHJlY3QgeD0iMTUwIiB5PSI3MTAiIHdpZHRoPSIyMjAiIGhlaWdodD0iMjQiIGZpbGw9IiM2MzdlNTUiLz48dGV4dCB4PSIzOTAiIHk9IjczMCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij4xMSBjbTwvdGV4dD48dGV4dCB4PSIzNSIgeT0iODEwIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPlNvdHRvIHRpcm88L3RleHQ+PHJlY3QgeD0iMTUwIiB5PSI4NDIiIHdpZHRoPSIyMjAiIGhlaWdodD0iMjQiIGZpbGw9IiM2MzdlNTUiLz48cmVjdCB4PSIzNzAiIHk9Ijg0MiIgd2lkdGg9IjYwIiBoZWlnaHQ9IjI0IiBmaWxsPSIjOTg2YzM1Ii8+PHRleHQgeD0iNDUwIiB5PSI4NjIiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+MTQgY208L3RleHQ+PGxpbmUgeDE9IjM3MCIgeTE9IjkwMCIgeDI9IjQzMCIgeTI9IjkwMCIgc3Ryb2tlPSIjNjA3MzgzIiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSI0MDAiIHk9IjkzNCIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MyBjbTwvdGV4dD48dGV4dCB4PSIzNSIgeT0iOTg1IiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPlN0ZXNzYSBvcmlnaW5lOyBpbCB0cmF0dG8gYWdnaXVudG8gw6ggeCA9IEYvay48L3RleHQ+PHRleHQgeD0iMzUiIHk9IjEwODAiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+MyDCtyBRdW90YSBSLCBkaXN0YW56YSBkYWwgY2VudHJvIDIgUjwvdGV4dD48Y2lyY2xlIGN4PSIxODAiIGN5PSIxMjAwIiByPSI2MCIgZmlsbD0iI2U1ZWRmMiIvPjxjaXJjbGUgY3g9IjE4MCIgY3k9IjEyMDAiIHI9IjMiIGZpbGw9IiMzMDZmOGMiLz48Y2lyY2xlIGN4PSIyNDAiIGN5PSIxMjAwIiByPSI0IiBmaWxsPSIjMzA2ZjhjIi8+PGNpcmNsZSBjeD0iMzAwIiBjeT0iMTIwMCIgcj0iNCIgZmlsbD0iIzMwNmY4YyIvPjxsaW5lIHgxPSIxODAiIHkxPSIxMjAwIiB4Mj0iMzAwIiB5Mj0iMTIwMCIgc3Ryb2tlPSIjNjA3MzgzIiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSIxODAiIHk9IjEzMDAiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJtaWRkbGUiPk88L3RleHQ+PHRleHQgeD0iMjQwIiB5PSIxMjQwIiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5SPC90ZXh0Pjx0ZXh0IHg9IjMwMCIgeT0iMTI0MCIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MiBSPC90ZXh0Pjx0ZXh0IHg9IjM1NSIgeT0iMTE3MCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5nKFIpID0gOCBtL3PCsjwvdGV4dD48cmVjdCB4PSIzNTUiIHk9IjExOTAiIHdpZHRoPSIxNjAiIGhlaWdodD0iMjIiIGZpbGw9IiMzZDc3OTEiLz48dGV4dCB4PSIzNTUiIHk9IjEyNzAiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+ZygyIFIpID0gMiBtL3PCsjwvdGV4dD48cmVjdCB4PSIzNTUiIHk9IjEyOTAiIHdpZHRoPSI0MCIgaGVpZ2h0PSIyMiIgZmlsbD0iIzYzN2U1NSIvPjx0ZXh0IHg9IjM1IiB5PSIxNDEwIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPklsIGNhbXBvIGVzdGVybm8gZGltaW51aXNjZSBjb21lIDEvcsKyLjwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMTQ2MCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5yIMOoIG1pc3VyYXRvIGRhbCBjZW50cm8sIG5vbiBkYWxsYSBzdXBlcmZpY2llLjwvdGV4dD48L3N2Zz4K"
+    }
+  ]
+}

@@ -1,0 +1,234 @@
+{
+  "scope": "Root actual gates on90 final Cric editions, distinct A/B authors and crossed peer reviews; first10 not counted twice",
+  "scientificRecordsAccepted": 90,
+  "scientificallyReviewedQuestions": 4100,
+  "scientificallyUnreviewedQuestions": 506,
+  "registeredQuestionDrafts": 3792,
+  "registrationPendingQuestions": 308,
+  "compiledOfficialQuestionDrafts": 3632,
+  "runtimeSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+  "rootTests": [
+    {
+      "pattern": "test_cric_c1_l002_independent.py",
+      "count": 12,
+      "seconds": 1.588,
+      "actualExitCode": 0,
+      "logSha256": "e4c00bc17d6b9bfa6c01e0adf4ffbf661da7b3cd02c44149ff18449602c64c4e"
+    },
+    {
+      "pattern": "test_cric_c1_l003_independent.py",
+      "count": 12,
+      "seconds": 1.004,
+      "actualExitCode": 0,
+      "logSha256": "da0f980f8fa37cb6ea078bf57bdf80573ecc72bc87f7aac45fa70e3e8ce07147"
+    },
+    {
+      "pattern": "test_cric_c1_l004_independent.py",
+      "count": 12,
+      "seconds": 1.42,
+      "actualExitCode": 0,
+      "logSha256": "7ac8b8bf75fd2996b84da128aa7b39b29297066b812857391a2be5a4f6fe1ceb"
+    },
+    {
+      "pattern": "test_cric_c1_l005_independent.py",
+      "count": 12,
+      "seconds": 1.197,
+      "actualExitCode": 0,
+      "logSha256": "7c1ee75e1dacaaff526a8a74586618384c2303fda00bb97953122d0304518bfc"
+    },
+    {
+      "pattern": "test_cross_review_cric_c1_l006_l010_a.py",
+      "count": 17,
+      "seconds": 5.318,
+      "actualExitCode": 0,
+      "logSha256": "237137afb43f4c4c74a2a61072d7ec62953fa609b77915f10a65fd0c2a2f5d74"
+    }
+  ],
+  "imports": [
+    {
+      "batch": "cric-c1-l002",
+      "questionIds": [
+        "C1-Q011",
+        "C1-Q012",
+        "C1-Q013",
+        "C1-Q014",
+        "C1-Q015",
+        "C1-Q016",
+        "C1-Q017",
+        "C1-Q018",
+        "C1-Q019",
+        "C1-Q020"
+      ],
+      "integrationSha256": "cbfc029d39c36fee8532268f6d3b8cffeb14ca556755d5118400f934c92dbebe",
+      "firstSaved": 10,
+      "repeatSaved": 0,
+      "repeatUnchanged": 10,
+      "preservedLiveHeads": 10
+    },
+    {
+      "batch": "cric-c1-l003",
+      "questionIds": [
+        "C1-Q021",
+        "C1-Q022",
+        "C1-Q023",
+        "C1-Q024",
+        "C1-Q025",
+        "C1-Q026",
+        "C1-Q027",
+        "C1-Q028",
+        "C1-Q029",
+        "C1-Q030"
+      ],
+      "integrationSha256": "9dc742bab60e975a6aaeaf35039a6cdc01b16a9aac5fb61c6bdf21febfa4dce2",
+      "firstSaved": 10,
+      "repeatSaved": 0,
+      "repeatUnchanged": 10,
+      "preservedLiveHeads": 10
+    },
+    {
+      "batch": "cric-c1-l004",
+      "questionIds": [
+        "C1-Q031",
+        "C1-Q032",
+        "C1-Q033",
+        "C1-Q034",
+        "C1-Q035",
+        "C1-Q036",
+        "C1-Q037",
+        "C1-Q038",
+        "C1-Q039",
+        "C1-Q040"
+      ],
+      "integrationSha256": "64f5243b165baaabe81ce43932ce93e8f1fb777701411bd1ffe2e28289d2e729",
+      "firstSaved": 10,
+      "repeatSaved": 0,
+      "repeatUnchanged": 10,
+      "preservedLiveHeads": 10
+    },
+    {
+      "batch": "cric-c1-l005",
+      "questionIds": [
+        "C1-Q041",
+        "C1-Q042",
+        "C1-Q043",
+        "C1-Q044",
+        "C1-Q045",
+        "C1-Q046",
+        "C1-Q047",
+        "C1-Q048",
+        "C1-Q049",
+        "C1-Q050"
+      ],
+      "integrationSha256": "6dda75bb1549814adc9369049ad18c42b5853078cb1abbd6b542f689d69d3fa3",
+      "firstSaved": 10,
+      "repeatSaved": 0,
+      "repeatUnchanged": 10,
+      "preservedLiveHeads": 10
+    },
+    {
+      "batch": "cric-c1-l006",
+      "questionIds": [
+        "C1-Q051",
+        "C1-Q052",
+        "C1-Q053",
+        "C1-Q054",
+        "C1-Q055",
+        "C1-Q056",
+        "C1-Q057",
+        "C1-Q058",
+        "C1-Q059",
+        "C1-Q060"
+      ],
+      "integrationSha256": "691618a6801aeca43499ba168daec6d5b3aab40c5cd7e26346979310078d3440",
+      "firstSaved": 10,
+      "repeatSaved": 0,
+      "repeatUnchanged": 10,
+      "preservedLiveHeads": 10
+    },
+    {
+      "batch": "cric-c1-l007",
+      "questionIds": [
+        "C1-Q061",
+        "C1-Q062",
+        "C1-Q063",
+        "C1-Q064",
+        "C1-Q065",
+        "C1-Q066",
+        "C1-Q067",
+        "C1-Q068",
+        "C1-Q069",
+        "C1-Q070"
+      ],
+      "integrationSha256": "7871120a0e917d977c8e1545192b2f15eec67d322b8aca58baa15942e0f976fd",
+      "firstSaved": 10,
+      "repeatSaved": 0,
+      "repeatUnchanged": 10,
+      "preservedLiveHeads": 10
+    },
+    {
+      "batch": "cric-c1-l008",
+      "questionIds": [
+        "C1-Q071",
+        "C1-Q072",
+        "C1-Q073",
+        "C1-Q074",
+        "C1-Q075",
+        "C1-Q076",
+        "C1-Q077",
+        "C1-Q078",
+        "C1-Q079",
+        "C1-Q080"
+      ],
+      "integrationSha256": "c284794a5d3368c44568c9fb0c77e545aec3380b3694262297e519e2ebc9f779",
+      "firstSaved": 10,
+      "repeatSaved": 0,
+      "repeatUnchanged": 10,
+      "preservedLiveHeads": 10
+    },
+    {
+      "batch": "cric-c1-l009",
+      "questionIds": [
+        "C1-Q081",
+        "C1-Q082",
+        "C1-Q083",
+        "C1-Q084",
+        "C1-Q085",
+        "C1-Q086",
+        "C1-Q087",
+        "C1-Q088",
+        "C1-Q089",
+        "C1-Q090"
+      ],
+      "integrationSha256": "e0de42041fb265f2a4c5b35c10f6e9490e61b674e68b402e953e985bd6d1f195",
+      "firstSaved": 10,
+      "repeatSaved": 0,
+      "repeatUnchanged": 10,
+      "preservedLiveHeads": 10
+    },
+    {
+      "batch": "cric-c1-l010",
+      "questionIds": [
+        "C1-Q091",
+        "C1-Q092",
+        "C1-Q093",
+        "C1-Q094",
+        "C1-Q095",
+        "C1-Q096",
+        "C1-Q097",
+        "C1-Q098",
+        "C1-Q099",
+        "C1-Q100"
+      ],
+      "integrationSha256": "e5fffca87e0f8daed03dc34b311a7f9f94c79d3d06fcd152717a8a1af84427b1",
+      "firstSaved": 10,
+      "repeatSaved": 0,
+      "repeatUnchanged": 10,
+      "preservedLiveHeads": 10
+    }
+  ],
+  "recoveryManifestSha256": "a60023aa5cd981687ab11789bbcfa284947bbb21bdb4932dff35dffa3cafae1c",
+  "publishedAndHistoricalPayloads": "EXACTLY_RETAINED",
+  "productUI": "PENDING_REGISTERED_INCREMENTAL_REPLAY",
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}
