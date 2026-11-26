@@ -1048,8 +1048,8 @@
       "commit": "2447ad2daa3f05be098169c26753eaa4a98cabb2"
     },
     "tests/corpus/test_cross_review_induction_helix_235_239.py": {
-      "sha256": "16c74d6844e47bf2bf102f95bfe20d290d363d5a80043afca1c0c40bc04935c8",
-      "commit": "2447ad2daa3f05be098169c26753eaa4a98cabb2"
+      "sha256": "03ac44a1eccb0d500d9d27f48b6fb5d4fe16c92dc357d25ed72beb67e0ca9c84",
+      "commit": "4852c817c6fb7d58a985cbeb6fa1661433c537cf"
     },
     "tools/corpus_engineering/faraday_average_emf_verifier.py": {
       "sha256": "a76bed24d48f476084ed8c4e736fb602611915b9e8038b2637339cbefeb759f9",
@@ -1275,5 +1275,13 @@
   "recoveryNegative": "First source74dcd219 lacked13 ignored raw logs. Actual successor2447ad2d contains all106 byte-pinned files; no hashes changed. Recovery resumed only against that immutable tree.",
   "humanApproval": "NOT_RUN",
   "publicationAction": "NONE",
-  "environmentRecovery": "Root target230_234 PASS18;235_239 FAILED errors1 missing antecedent primary markdown. An initial recovery command used repo-relative path from APP and failed before changing files; its subsequent replay reproduced the same missing-primary failure. Actual original primary files now recovered/pinned, oracles unchanged; rerun required."
+  "environmentRecovery": "Root target230_234 PASS18;235_239 FAILED errors1 missing antecedent primary markdown. An initial recovery command used repo-relative path from APP and failed before changing files; its subsequent replay reproduced the same missing-primary failure. Actual original primary files now recovered/pinned, oracles unchanged; rerun required.",
+  "technicalTestCorrections": [
+    {
+      "sourceCommit": "4852c817c6fb7d58a985cbeb6fa1661433c537cf",
+      "scope": "Only exact source pin and adversarial boundary test; mathematical verifiers, candidates, source keys and canonical function unchanged",
+      "previousRecoverySha256": "0009fb78e560049ee4f63bea54e7a556eaf094f26fbecfd670f3b8fa86eda518",
+      "previousRecoveryPath": "editorial/reviews/u6-induction-helix-235-239-portable-boundary-20261126/root-recovery-before-technical-test-fix.json"
+    }
+  ]
 }

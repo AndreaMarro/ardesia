@@ -1,0 +1,12 @@
+def assert_record_identity(records,expected_ids,package,bindings):
+    ids=[r.get("id") for r in records]
+    binding_ids=[b["id"] for b in bindings]
+    if len(ids)!=len(expected_ids) or set(ids)!=expected_ids or len(binding_ids)!=len(expected_ids) or set(binding_ids)!=expected_ids:
+        raise ValueError("Scientific output or bindings differ from registered unique IDs")
+    candidates={r["id"]:r for r in package["records"]};sources={r["id"]:r for r in bindings}
+    for result in records:
+        key=result["id"]
+        if (result.get("candidateSha256")!=digest(candidates[key]) or result.get("sourceSha256")!=sources[key]["sourceSha256"]
+            or result.get("ok") is not True or result.get("verificationMode") not in ("EXACT_ORACLE","AI_CONCEPTUAL")
+            or result.get("humanApproval")!="NOT_RUN" or result.get("publication")!="DRAFT"):
+            raise ValueError("Scientific result has stale identity or invalid approval state")

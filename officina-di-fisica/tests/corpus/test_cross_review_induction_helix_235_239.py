@@ -176,10 +176,31 @@ class CrossReviewInductionHelix235239(unittest.TestCase):
             for row in p['records']:
                 self.assertIn(row['skill'],all_lessons);self.assertEqual(row['error']['target'],row['skill'])
                 self.assertTrue(set(row['prerequisites'])<=set(all_lessons))
-        # Registry imports evolved in batches.py; the pure identity boundary is pinned by AST.
+        # Pin the exact reviewed function text, independently of ast.dump's
+        # optional empty-field formatting across Python releases. Registry
+        # imports outside this pure boundary may evolve; this function may not.
         source=(APP/'tools/corpus_engineering/batches.py').read_text()
-        node=next(n for n in ast.parse(source).body if isinstance(n,ast.FunctionDef)and n.name=='assert_record_identity')
-        self.assertEqual(hashlib.sha256(ast.dump(node,include_attributes=False).encode()).hexdigest(),'ad829aa7678cc28c16c56e13c85237c983ba605961dd76c5c91eedaa12d282d7')
+        nodes=[n for n in ast.parse(source).body if isinstance(n,ast.FunctionDef)and n.name=='assert_record_identity']
+        self.assertEqual(len(nodes),1)
+        node=nodes[0];segment=ast.get_source_segment(source,node)
+        self.assertEqual(hashlib.sha256(segment.encode('utf-8')).hexdigest(),'55ff6aaa71fd195322e44745a9f17762d6ac745a1abe7dac5e739d69e4c0e5ca')
+        from tools.corpus_engineering.batches import assert_record_identity
+        runtime_source=inspect.getsource(assert_record_identity).rstrip('\n')
+        self.assertEqual(runtime_source,segment)
+        # Compare ASTs within the current interpreter, not hashes serialized
+        # by a different interpreter. Exact-source pin remains the authority.
+        self.assertEqual(ast.dump(ast.parse(runtime_source),include_attributes=False),
+                         ast.dump(ast.parse(segment),include_attributes=False))
+        self.assertNotEqual(hashlib.sha256(segment.replace('is not True','is False').encode('utf-8')).hexdigest(),'55ff6aaa71fd195322e44745a9f17762d6ac745a1abe7dac5e739d69e4c0e5ca')
+        m=module(FAMILIES[0][0]);p,b=reviewed_inputs(m,FAMILIES[0][1]);good=m.verify(p,b,reviewed_assets(m))
+        assert_record_identity(good,m.EXPECTED_IDS,p,b)
+        for field,bad in [('id','foreign-id'),('candidateSha256','0'*64),('sourceSha256','0'*64),
+                          ('ok',False),('verificationMode','UNREVIEWED'),('humanApproval','APPROVED'),('publication','PUBLISHED')]:
+            changed=deepcopy(good);changed[0][field]=bad
+            with self.assertRaises(ValueError):assert_record_identity(changed,m.EXPECTED_IDS,p,b)
+        changed,links=deepcopy(p),deepcopy(b)
+        changed['records'][0]['answer']['value']+=1;rebind(changed['records'][0],links)
+        with self.assertRaises(ValueError):assert_record_identity(good,m.EXPECTED_IDS,changed,links)
 
     def test_135_retokenized_wrongkeys_and_integrity_faults(self):
         for name,batch in FAMILIES:
