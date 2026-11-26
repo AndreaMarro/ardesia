@@ -1,0 +1,701 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "C2-Q031",
+      "kind": "question",
+      "course": "C2",
+      "section": "Fluidi in quiete",
+      "order": 31,
+      "title": "La spinta su un volume irregolare",
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L004"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Per Archimede la spinta è il peso del liquido spostato. Il volume escluso è 75·10⁻⁶ m³, quindi la massa d’acqua equivalente è 1000·75·10⁻⁶=0,075 kg. Moltiplicando per g ottengo 0,75 N. La forma irregolare non impedisce il calcolo se il volume immerso è noto."
+        },
+        {
+          "type": "formula",
+          "text": "V=75\\cdot10^{-6}\\,\\mathrm{m^3}"
+        },
+        {
+          "type": "formula",
+          "text": " m_f=\\rho V"
+        },
+        {
+          "type": "formula",
+          "text": "\\rho V=0{,}075\\,\\mathrm{kg}"
+        },
+        {
+          "type": "formula",
+          "text": " S=\\rho gV"
+        },
+        {
+          "type": "formula",
+          "text": " S=\\frac34\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "7,5 N e 0,075 N differiscono di un fattore dieci dalla spinta corretta. 75 N e 750 N trattano il numero dei cm³ senza convertirne l’unità nel prodotto SI. Non si usa il volume totale del recipiente né serve conoscere la massa del corpo per ottenere la spinta."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Un corpo rigido di forma irregolare, completamente immerso senza contatti, esclude 75 cm³ d’acqua. Usa ρ=1000 kg/m³ e g=10 m/s²; trascura la spinta dell’aria e la capillarità. Qual è il modulo della spinta idrostatica?",
+      "family": "un-volume-totalmente-immerso",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "0,75 N",
+          "7,5 N",
+          "75 N",
+          "0,075 N",
+          "750 N"
+        ],
+        "value": "0,75 N"
+      },
+      "hints": [
+        "Trova il peso dei 75 cm³ d’acqua che occuperebbero il posto del corpo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "7,5 N e 0,075 N differiscono di un fattore dieci dalla spinta corretta. 75 N e 750 N trattano il numero dei cm³ senza convertirne l’unità nel prodotto SI. Non si usa il volume totale del recipiente né serve conoscere la massa del corpo per ottenere la spinta.",
+        "target": "C2-L004"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "La spinta su un volume irregolare"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q032",
+      "kind": "question",
+      "course": "C2",
+      "section": "Fluidi in quiete",
+      "order": 32,
+      "title": "Scendere senza cambiare volume",
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L004"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La spinta vale ρgV per un corpo completamente immerso. Densità, g e volume escluso non cambiano, dunque la risultante resta uguale. In profondità crescono le pressioni su tutta la superficie, ma il loro contributo comune non cambia la risultante verticale su una superficie chiusa."
+        },
+        {
+          "type": "formula",
+          "text": "S_1=\\rho gV"
+        },
+        {
+          "type": "formula",
+          "text": " S_2=\\rho gV"
+        },
+        {
+          "type": "formula",
+          "text": " S_2=S_1"
+        },
+        {
+          "type": "text",
+          "text": "La proporzionalità con la profondità confonde pressione locale e spinta risultante. Una pressione maggiore non implica una spinta minore. Il contatto con l’aria non è necessario per Archimede; pressione e forza hanno inoltre unità diverse. La rigidità esclude una contrazione del volume con la profondità."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Una sfera rigida completamente immersa, lontana dalle pareti, viene portata più in basso in un liquido omogeneo e incomprimibile in quiete. Densità e g sono costanti. Come cambia il modulo della spinta?",
+      "family": "scendere-piu-in-profondita",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Resta uguale",
+          "Aumenta nello stesso rapporto della profondità",
+          "Diminuisce perché la pressione cresce",
+          "Diventa nullo appena manca il contatto con l’aria",
+          "Diventa uguale alla pressione assoluta sul centro"
+        ],
+        "value": "Resta uguale"
+      },
+      "hints": [
+        "Elenca i fattori di ρgV e verifica quali sono cambiati.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La proporzionalità con la profondità confonde pressione locale e spinta risultante. Una pressione maggiore non implica una spinta minore. Il contatto con l’aria non è necessario per Archimede; pressione e forza hanno inoltre unità diverse. La rigidità esclude una contrazione del volume con la profondità.",
+        "target": "C2-L004"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Scendere senza cambiare volume"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q033",
+      "kind": "question",
+      "course": "C2",
+      "section": "Fluidi in quiete",
+      "order": 33,
+      "title": "Tenere sommerso un galleggiante",
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L004"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La spinta verso l’alto è 1000·10·200·10⁻⁶=2 N. Il peso verso il basso vale 0,12·10=1,2 N. All’equilibrio, scegliendo l’alto positivo, S−P−F=0: serve F=S−P=0,8 N verso il basso. La domanda chiede un modulo, che non è negativo."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/5d136689e47e0f7dea3f03d8df1f73799e63cc7b0b451ef7731938ef7530e60f",
+          "text": "Il galleggiante completamente sommerso riceve spinta 2 N verso l’alto, peso 1,2 N e forza esterna 0,8 N verso il basso. I tre vettori hanno scala comune e la somma verticale è nulla. Sono traslati per confrontarne i moduli: le posizioni delle frecce non rappresentano punti di applicazione sul corpo."
+        },
+        {
+          "type": "formula",
+          "text": "S=2\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " P=1{,}2\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " S-P-F=0"
+        },
+        {
+          "type": "formula",
+          "text": " F=\\frac45\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "2 N è la sola spinta e 1,2 N il solo peso. 3,2 N somma due forze di verso opposto invece di trovare la differenza da equilibrare. −0,80 N non è un modulo: il verso verso il basso è già indicato separatamente."
+        }
+      ],
+      "difficulty": 3,
+      "prompt": "Un galleggiante rigido di massa 0,12 kg e volume 200 cm³ è fermo e completamente sott’acqua, senza toccare pareti. Usa ρ=1000 kg/m³ e g=10 m/s². Oltre a peso e spinta si applica una forza verticale verso il basso. Qual è il suo modulo?",
+      "family": "tenere-un-galleggiante-sommerso",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "0,80 N",
+          "2,0 N",
+          "1,2 N",
+          "3,2 N",
+          "−0,80 N"
+        ],
+        "value": "0,80 N"
+      },
+      "hints": [
+        "Disegna tre forze e imponi che la somma orientata sia zero.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "2 N è la sola spinta e 1,2 N il solo peso. 3,2 N somma due forze di verso opposto invece di trovare la differenza da equilibrare. −0,80 N non è un modulo: il verso verso il basso è già indicato separatamente.",
+        "target": "C2-L004"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Tenere sommerso un galleggiante"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q034",
+      "kind": "question",
+      "course": "C2",
+      "section": "Fluidi in quiete",
+      "order": 34,
+      "title": "Stesso cubetto in acqua e olio",
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L004"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "In entrambi gli equilibri il peso è lo stesso e viene sostenuto dalla spinta: ρ_f gV_i=mg. Isolando V_i=m/ρ_f, una densità del liquido minore richiede un volume immerso maggiore. L’ipotesi che galleggi in entrambi garantisce che quel volume resti geometricamente disponibile."
+        },
+        {
+          "type": "formula",
+          "text": "V_{i,a}=\\frac m{\\rho_a}"
+        },
+        {
+          "type": "formula",
+          "text": " V_{i,o}=\\frac m{\\rho_o}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_o<\\rho_a"
+        },
+        {
+          "type": "formula",
+          "text": " V_{i,o}>V_{i,a}"
+        },
+        {
+          "type": "text",
+          "text": "La maggiore densità dell’acqua permette di sostenere lo stesso peso con meno volume. Peso uguale significa spinta uguale, non volume uguale se cambia ρ_f. L’immersione totale non è richiesta per un corpo galleggiante, e liquidi diversi possono entrambi sostenerlo."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Lo stesso cubetto rigido galleggia liberamente, senza altri vincoli, prima in acqua e poi in un olio meno denso. Non affonda in nessuno dei due; trascura aria e capillarità. Dove è maggiore il volume immerso?",
+      "family": "un-cubetto-fra-acqua-e-olio",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Nell’olio, perché la densità del liquido è minore",
+          "Nell’acqua, perché la densità del liquido è maggiore",
+          "È uguale perché il peso del cubetto è uguale",
+          "È sempre l’intero volume del cubetto in entrambi",
+          "Non può galleggiare in due liquidi diversi"
+        ],
+        "value": "Nell’olio, perché la densità del liquido è minore"
+      },
+      "hints": [
+        "La massa del liquido spostato deve essere la stessa: quale volume serve al liquido meno denso?",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La maggiore densità dell’acqua permette di sostenere lo stesso peso con meno volume. Peso uguale significa spinta uguale, non volume uguale se cambia ρ_f. L’immersione totale non è richiesta per un corpo galleggiante, e liquidi diversi possono entrambi sostenerlo.",
+        "target": "C2-L004"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Stesso cubetto in acqua e olio"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q035",
+      "kind": "question",
+      "course": "C2",
+      "section": "Fluidi in quiete",
+      "order": 35,
+      "title": "Sospesa a qualunque profondità",
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L004"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La massa della sfera è ρV e quindi il suo peso ρVg coincide con la spinta ρgV. Un piccolo spostamento verticale non cambia nessuno dei due moduli nel modello omogeneo e rigido: non appare una forza di richiamo o di allontanamento. Si parla di galleggiamento neutro, riferito qui alla traslazione verticale."
+        },
+        {
+          "type": "formula",
+          "text": "\\rho_c=\\rho_f"
+        },
+        {
+          "type": "formula",
+          "text": " P=\\rho_c Vg"
+        },
+        {
+          "type": "formula",
+          "text": " S=\\rho_f Vg"
+        },
+        {
+          "type": "formula",
+          "text": " S-P=0"
+        },
+        {
+          "type": "text",
+          "text": "L’assenza di forza risultante non significa assenza di spinta o di peso: entrambi sono non nulli per V, ρ e g positivi. Non c’è un obbligo di emergere. Senza variazioni della densità o del volume il piccolo spostamento non genera l’instabilità verticale proposta."
+        }
+      ],
+      "difficulty": 1,
+      "prompt": "Una sfera omogenea rigida ha la stessa densità del liquido omogeneo in cui è totalmente immersa. Lontana da pareti e superficie, senza altri vincoli, può restare ferma a qualunque profondità. Come si chiama questo galleggiamento?",
+      "family": "sospensione-senza-appoggio",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Neutro",
+          "Necessariamente instabile in direzione verticale",
+          "Con spinta nulla",
+          "Con peso nullo",
+          "Sempre emerso"
+        ],
+        "value": "Neutro"
+      },
+      "hints": [
+        "Confronta il peso con la spinta prima e dopo un piccolo spostamento verticale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "L’assenza di forza risultante non significa assenza di spinta o di peso: entrambi sono non nulli per V, ρ e g positivi. Non c’è un obbligo di emergere. Senza variazioni della densità o del volume il piccolo spostamento non genera l’instabilità verticale proposta.",
+        "target": "C2-L004"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Sospesa a qualunque profondità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q036",
+      "kind": "question",
+      "course": "C2",
+      "section": "Fluidi in quiete",
+      "order": 36,
+      "title": "Carico al livello massimo",
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L004"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Al livello massimo la massa d’acqua spostata vale ρV_max=1000·0,018=18 kg. Questa massa deve uguagliare la massa totale di pontone e carico: 5+m_c=18. Il carico aggiuntivo è quindi 13 kg. Il fattore g si cancella fra spinta e peso; qui si chiede una massa, non una forza."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/5d136689e47e0f7dea3f03d8df1f73799e63cc7b0b451ef7731938ef7530e60f",
+          "text": "Il pontone al livello limite sposta 18 kg d’acqua. Le barre di massa hanno scala comune: 5 kg sono il pontone e 13 kg il carico aggiuntivo, per un totale di 18 kg."
+        },
+        {
+          "type": "formula",
+          "text": "\\rho V_{\\max}g=(m_p+m_c)g"
+        },
+        {
+          "type": "formula",
+          "text": " m_c=\\rho V_{\\max}-m_p"
+        },
+        {
+          "type": "formula",
+          "text": " m_c=(18-5)\\,\\mathrm{kg}"
+        },
+        {
+          "type": "formula",
+          "text": " m_c=13\\,\\mathrm{kg}"
+        },
+        {
+          "type": "text",
+          "text": "18 kg è la massa totale sostenibile e include già il pontone. 23 kg somma invece di sottrarre la sua massa. 5 kg copia il solo pontone; 130 kg confonde la massa richiesta con il valore numerico in newton del suo peso se si usasse g=10. Oltre il limite non è garantito il galleggiamento ammesso dalla geometria."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Un piccolo pontone di massa 5 kg può spostare al massimo 0,018 m³ d’acqua, di densità 1000 kg/m³, al livello geometrico consentito. In equilibrio libero, trascurando aria e capillarità, quale massa aggiuntiva può sostenere al limite?",
+      "family": "portata-di-carico-di-un-pontone",
+      "answer": {
+        "type": "numeric",
+        "value": 13,
+        "unit": "kg",
+        "tolerance": 0
+      },
+      "hints": [
+        "Dal totale ρV_max sottrai la massa già occupata dal pontone.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "18 kg è la massa totale sostenibile e include già il pontone. 23 kg somma invece di sottrarre la sua massa. 5 kg copia il solo pontone; 130 kg confonde la massa richiesta con il valore numerico in newton del suo peso se si usasse g=10. Oltre il limite non è garantito il galleggiamento ammesso dalla geometria.",
+        "target": "C2-L004"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Carico al livello massimo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q037",
+      "kind": "question",
+      "course": "C2",
+      "section": "Fluidi in quiete",
+      "order": 37,
+      "title": "Dinamometri e volumi uguali",
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L004"
+      ],
+      "version": 3,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Lo stesso volume immerso nello stesso liquido produce la stessa spinta S. Per ogni corpo in equilibrio T+S=mg, quindi T=mg−S. Sottraendo, T₂−T₁=(m₂−m₁)g>0. L’ipotesi che entrambi affonderebbero rende positive le tensioni richieste dall’alto."
+        },
+        {
+          "type": "formula",
+          "text": "T_1=m_1g-S"
+        },
+        {
+          "type": "formula",
+          "text": " T_2=m_2g-S"
+        },
+        {
+          "type": "formula",
+          "text": " T_2-T_1=(m_2-m_1)g>0"
+        },
+        {
+          "type": "text",
+          "text": "Volumi uguali rendono uguali le spinte, non i pesi. La massa del corpo non aumenta la spinta in questo modello a volume fissato. Leggere il peso completo ignora S; leggere zero richiederebbe S=mg, contrario al fatto che i due corpi affonderebbero liberamente."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Due corpi rigidi di uguale volume esterno ma masse m₂>m₁ sono totalmente immersi nello stesso liquido omogeneo. Entrambi affonderebbero e sono tenuti fermi dall’alto da dinamometri ideali. Che cosa misurano?",
+      "family": "due-solidi-dello-stesso-volume",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Il più massiccio dà una tensione maggiore; la spinta sui due è uguale",
+          "Tensioni uguali perché i volumi sono uguali",
+          "Il più massiccio dà una tensione minore perché riceve più spinta",
+          "Il peso completo di ciascuno, senza effetto del liquido",
+          "Una tensione nulla su entrambi"
+        ],
+        "value": "Il più massiccio dà una tensione maggiore; la spinta sui due è uguale"
+      },
+      "hints": [
+        "Sottrai le due equazioni di equilibrio: quale termine comune scompare?",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Volumi uguali rendono uguali le spinte, non i pesi. La massa del corpo non aumenta la spinta in questo modello a volume fissato. Leggere il peso completo ignora S; leggere zero richiederebbe S=mg, contrario al fatto che i due corpi affonderebbero liberamente.",
+        "target": "C2-L004"
+      },
+      "baseVersion": 2,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Dinamometri e volumi uguali"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q038",
+      "kind": "question",
+      "course": "C2",
+      "section": "Fluidi in quiete",
+      "order": 38,
+      "title": "Due liquidi spostati",
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L004"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La spinta complessiva è il peso dei due volumi di liquido esclusi. Le masse equivalenti sono 60·1,0=60 g e 40·0,8=32 g. In equilibrio libero il peso del corpo coincide con la loro somma moltiplicata per g; eliminando g ottengo m=60+32=92 g. Non va assegnata al corpo una sola densità del fluido su tutto il volume."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/5d136689e47e0f7dea3f03d8df1f73799e63cc7b0b451ef7731938ef7530e60f",
+          "text": "L’acqua inferiore contribuisce con 60 g di massa spostata e l’olio superiore con 32 g. Le barre di massa sono proporzionate e la loro somma è 92 g; non sono altezze dei liquidi."
+        },
+        {
+          "type": "formula",
+          "text": "m=\\rho_aV_a+\\rho_oV_o"
+        },
+        {
+          "type": "formula",
+          "text": " m=60\\,\\mathrm g+32\\,\\mathrm g"
+        },
+        {
+          "type": "formula",
+          "text": " m=92\\,\\mathrm g"
+        },
+        {
+          "type": "text",
+          "text": "100 g tratta tutto il volume come acqua; 80 g lo tratta tutto come olio. 90 g usa la media aritmetica delle densità su volumi che non sono uguali. 28 g sottrae i contributi di due spinte entrambe rivolte verso l’alto. I volumi assegnati sommano correttamente a 100 cm³."
+        }
+      ],
+      "difficulty": 3,
+      "prompt": "Un corpo rigido di volume 100 cm³ è libero e fermo, totalmente immerso all’interfaccia di acqua e olio immiscibili, con acqua sotto l’olio. Esclude 60 cm³ d’acqua di densità 1,0 g/cm³ e 40 cm³ d’olio di densità 0,8 g/cm³. Trascurando aria e forze capillari, quale massa ha?",
+      "family": "galleggiamento-alla-superficie-di-due-liquidi",
+      "answer": {
+        "type": "numeric",
+        "value": 92,
+        "unit": "g",
+        "tolerance": 0
+      },
+      "hints": [
+        "Calcola la massa di ciascun liquido spostato e somma i contributi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "100 g tratta tutto il volume come acqua; 80 g lo tratta tutto come olio. 90 g usa la media aritmetica delle densità su volumi che non sono uguali. 28 g sottrae i contributi di due spinte entrambe rivolte verso l’alto. I volumi assegnati sommano correttamente a 100 cm³.",
+        "target": "C2-L004"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Due liquidi spostati"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q039",
+      "kind": "question",
+      "course": "C2",
+      "section": "Fluidi in quiete",
+      "order": 39,
+      "title": "Volume spostato da un galleggiante",
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L004"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La spinta uguaglia il peso: ρ_f gV_i=mg. Cancello g e isolo V_i=m/ρ_f. Usando grammi e centimetri cubi in modo coerente, il conto è 60/1,20=6000/120=50 cm³. Si trova il volume immerso che esclude liquido, non necessariamente il volume totale del galleggiante."
+        },
+        {
+          "type": "formula",
+          "text": "\\rho_f V_i=m"
+        },
+        {
+          "type": "formula",
+          "text": " V_i=\\frac m{\\rho_f}"
+        },
+        {
+          "type": "formula",
+          "text": " V_i=\\frac{60}{1{,}20}\\,\\mathrm{cm^3}"
+        },
+        {
+          "type": "formula",
+          "text": " V_i=50\\,\\mathrm{cm^3}"
+        },
+        {
+          "type": "text",
+          "text": "72 moltiplica massa per densità e non ha dimensioni di volume. 60 cm³ suppone acqua di densità 1 g/cm³ invece del liquido dato. 0,05 cm³ e 50000 cm³ introducono fattori mille errati. L’equilibrio non permette di ricavare il volume emerso senza un ulteriore dato geometrico."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Un galleggiante di massa 60 g è in equilibrio libero in un liquido omogeneo di densità 1,20 g/cm³. Trascurando aria e capillarità, quale volume di liquido sposta?",
+      "family": "un-areometro-sale-di-poco",
+      "answer": {
+        "type": "numeric",
+        "value": 50,
+        "unit": "cm³",
+        "tolerance": 0
+      },
+      "hints": [
+        "Dividi la massa per la densità, lasciando che i grammi si cancellino.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "72 moltiplica massa per densità e non ha dimensioni di volume. 60 cm³ suppone acqua di densità 1 g/cm³ invece del liquido dato. 0,05 cm³ e 50000 cm³ introducono fattori mille errati. L’equilibrio non permette di ricavare il volume emerso senza un ulteriore dato geometrico.",
+        "target": "C2-L004"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Volume spostato da un galleggiante"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q040",
+      "kind": "question",
+      "course": "C2",
+      "section": "Fluidi in quiete",
+      "order": 40,
+      "title": "Ciotola e pallina dello stesso metallo",
+      "skill": "C2-L004",
+      "prerequisites": [
+        "C2-L004"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La spinta dipende dal volume di liquido escluso, mentre il peso dipende dalla massa totale. Le pareti della ciotola possono racchiudere un volume esterno ampio senza avere tutta quella massa di metallo. Finché l’interno resta asciutto e il bordo emerge, può quindi spostare una massa d’acqua uguale alla propria prima di sommergersi. Nella pallina compatta il volume escluso coincide con quello del metallo."
+        },
+        {
+          "type": "formula",
+          "text": "S=\\rho_f gV_i"
+        },
+        {
+          "type": "formula",
+          "text": " S=P"
+        },
+        {
+          "type": "formula",
+          "text": " V_i=m/\\rho_f"
+        },
+        {
+          "type": "text",
+          "text": "La forma non cambia da sola la densità intrinseca del metallo. Anche la pallina riceve una spinta verso l’alto, ma insufficiente al suo peso. Il carattere cavo non garantisce il galleggiamento se entra acqua o se il carico supera la capacità geometrica."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Una ciotola metallica aperta, con interno asciutto e bordo sopra l’acqua, galleggia; una pallina compatta dello stesso metallo affonda. Trascurando aria e capillarità, quale differenza lo spiega?",
+      "family": "una-ciotola-pesante-galleggia",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "La ciotola può escludere abbastanza acqua grazie al volume esterno, rispetto alla sua massa totale",
+          "Il metallo della ciotola ha necessariamente densità intrinseca minore",
+          "La spinta agisce solo sulla ciotola e non sulla pallina",
+          "L’acqua esercita una forza verso il basso sulla pallina perché è compatta",
+          "Qualunque corpo cavo galleggia anche se si riempie d’acqua"
+        ],
+        "value": "La ciotola può escludere abbastanza acqua grazie al volume esterno, rispetto alla sua massa totale"
+      },
+      "hints": [
+        "Confronta massa totale e massimo volume che il corpo riesce a escludere mantenendo asciutto l’interno.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La forma non cambia da sola la densità intrinseca del metallo. Anche la pallina riceve una spinta verso l’alto, ma insufficiente al suo peso. Il carattere cavo non garantisce il galleggiamento se entra acqua o se il carico supera la capacità geometrica.",
+        "target": "C2-L004"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Ciotola e pallina dello stesso metallo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "5d136689e47e0f7dea3f03d8df1f73799e63cc7b0b451ef7731938ef7530e60f",
+      "name": "cric-c2-l004-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTQ2MCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPjx0aXRsZSBpZD0idGl0bGUiPkJpbGFuY2kgZGkgc3BpbnRhIGUgbWFzc2E8L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5UcmUgY29uZnJvbnRpIGRpc3RpbnRpOiB2ZXR0b3JpIHZlcnRpY2FsaSB0cmFzbGF0aSBkaSBzcGludGEgZHVlIG5ld3RvbiwgcGVzbyAxLDIgbmV3dG9uIGUgZm9yemEgZXN0ZXJuYSAwLDggbmV3dG9uIGNvbiBzY2FsYSBjb211bmU7IG1hc3NlIGNpbnF1ZSBlIHRyZWRpY2kgY2hpbG9ncmFtbWkgcGVyIGlsIHBvbnRvbmU7IHNlc3NhbnRhIGUgdHJlbnRhZHVlIGdyYW1taSBuZWkgZHVlIGxpcXVpZGkuPC9kZXNjPjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMTQ2MCIgZmlsbD0iI2ZhZjdlZiIvPjxnIGZvbnQtZmFtaWx5PSJBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjIyIiBmaWxsPSIjMjUyNDM4Ij4KPHRleHQgeD0iMzIiIHk9IjQ4IiBmb250LXNpemU9IjI3IiBmb250LXdlaWdodD0iYm9sZCI+U3BpbnRhLCB2aW5jb2xpIGUgbWFzc2Egc29zdGVudXRhPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSI5NCI+MS4gQ29uZnJvbnRhcmUgaSB0cmUgdmV0dG9yaSB2ZXJ0aWNhbGk8L3RleHQ+PHRleHQgeD0iMzIiIHk9IjEzMyI+RnJlY2NlIHRyYXNsYXRlLCBub24gcHVudGkgZGkgYXBwbGljYXppb25lPC90ZXh0Pgo8cGF0aCBkPSJNMTUwIDM5MFYxOTAiIHN0cm9rZT0iIzI0NmQ1NCIgc3Ryb2tlLXdpZHRoPSI2Ii8+PHBhdGggZD0ibTEzOCAyMDggMTItMTggMTIgMTgiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzI0NmQ1NCIgc3Ryb2tlLXdpZHRoPSI2Ii8+CjxwYXRoIGQ9Ik0zMzUgMTkwVjMxMCIgc3Ryb2tlPSIjYjI0YjQ5IiBzdHJva2Utd2lkdGg9IjYiLz48cGF0aCBkPSJtMzIzIDI5MiAxMiAxOCAxMi0xOCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjYjI0YjQ5IiBzdHJva2Utd2lkdGg9IjYiLz4KPHBhdGggZD0iTTUxMCAxOTBWMjcwIiBzdHJva2U9IiM1YjM2YjEiIHN0cm9rZS13aWR0aD0iNiIvPjxwYXRoIGQ9Im00OTggMjUyIDEyIDE4IDEyLTE4IiBmaWxsPSJub25lIiBzdHJva2U9IiM1YjM2YjEiIHN0cm9rZS13aWR0aD0iNiIvPgo8dGV4dCB4PSIxMDUiIHk9IjQ0MCI+UyA9IDIgTjwvdGV4dD48dGV4dCB4PSIyNjciIHk9IjM1NSI+UCA9IDEsMiBOPC90ZXh0Pjx0ZXh0IHg9IjQ1MCIgeT0iMzE1Ij5GID0gMCw4IE48L3RleHQ+PHRleHQgeD0iMjE1IiB5PSI0ODciPlMg4oiSIFAg4oiSIEYgPSAwPC90ZXh0Pgo8cGF0aCBkPSJNMzIgNTI1SDYwOCIgc3Ryb2tlPSIjYjNhYmJmIi8+PHRleHQgeD0iMzIiIHk9IjU3MCI+Mi4gUG9udG9uZTogbGltaXRlIGRpIDE4IGtnIHRvdGFsaTwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjY0MSI+NSBrZzwvdGV4dD48cmVjdCB4PSIxNDUiIHk9IjYxMCIgd2lkdGg9IjEwMCIgaGVpZ2h0PSI0NSIgZmlsbD0iI2RjZDdmMyIgc3Ryb2tlPSIjNDEzNjZiIiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSIyNzAiIHk9IjY0MSI+cG9udG9uZTwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjcxMSI+MTMga2c8L3RleHQ+PHJlY3QgeD0iMTQ1IiB5PSI2ODAiIHdpZHRoPSIyNjAiIGhlaWdodD0iNDUiIGZpbGw9IiNkOWVkZGYiIHN0cm9rZT0iIzI0NmQ1NCIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iNDI1IiB5PSI3MTEiPmNhcmljbzwvdGV4dD4KPHRleHQgeD0iMzUiIHk9Ijc4MSI+MTgga2c8L3RleHQ+PHJlY3QgeD0iMTQ1IiB5PSI3NTAiIHdpZHRoPSIzNjAiIGhlaWdodD0iNDUiIGZpbGw9IiNkY2U3ZjYiIHN0cm9rZT0iIzI4NjU5NCIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iMTkwIiB5PSI4NDgiPjUga2cgKyAxMyBrZyA9IDE4IGtnPC90ZXh0Pjx0ZXh0IHg9IjExMCIgeT0iODk4Ij5NYXNzZSwgbm9uIGZvcnplOiBzdGVzc2Egc2NhbGE8L3RleHQ+CjxwYXRoIGQ9Ik0zMiA5NTBINjA4IiBzdHJva2U9IiNiM2FiYmYiLz48dGV4dCB4PSIzMiIgeT0iOTk1Ij4zLiBEdWUgdm9sdW1pIGRpIGxpcXVpZG8gZXNjbHVzaTwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjExMDgiPjYwIGc8L3RleHQ+PHJlY3QgeD0iMTQ1IiB5PSIxMDc1IiB3aWR0aD0iMjQwIiBoZWlnaHQ9IjQ1IiBmaWxsPSIjZGNlN2Y2IiBzdHJva2U9IiMyODY1OTQiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjQxMCIgeT0iMTEwOCI+YWNxdWE8L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxMTk4Ij4zMiBnPC90ZXh0PjxyZWN0IHg9IjE0NSIgeT0iMTE2NSIgd2lkdGg9IjEyOCIgaGVpZ2h0PSI0NSIgZmlsbD0iI2YzZTRhZCIgc3Ryb2tlPSIjOWU4MTI0IiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSIzMDAiIHk9IjExOTgiPm9saW88L3RleHQ+Cjx0ZXh0IHg9IjM1IiB5PSIxMjg4Ij45MiBnPC90ZXh0PjxyZWN0IHg9IjE0NSIgeT0iMTI1NSIgd2lkdGg9IjM2OCIgaGVpZ2h0PSI0NSIgZmlsbD0iI2Q5ZWRkZiIgc3Ryb2tlPSIjMjQ2ZDU0IiBzdHJva2Utd2lkdGg9IjIiLz4KPHRleHQgeD0iMTMwIiB5PSIxMzYwIj42MCBnICsgMzIgZyA9IDkyIGc8L3RleHQ+PHRleHQgeD0iODUiIHk9IjE0MTAiPkxhIG1hc3NhIGRlbCBjb3JwbyBlcXVpbGlicmEgaSBkdWUgY29udHJpYnV0aTwvdGV4dD4KPC9nPjwvc3ZnPg=="
+    }
+  ]
+}
