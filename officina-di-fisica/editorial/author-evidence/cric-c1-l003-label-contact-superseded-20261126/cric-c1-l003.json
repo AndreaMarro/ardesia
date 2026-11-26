@@ -1,0 +1,726 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "C1-Q021",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto e forze",
+      "order": 21,
+      "title": "Partire da una coordinata negativa",
+      "skill": "C1-L003",
+      "prerequisites": [
+        "C1-L003"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Uso il moto rettilineo uniforme: la variazione di posizione è v t, ma la coordinata finale comprende anche x₀. Il prodotto 2,5·8=20 m è lo spostamento positivo. Aggiungendolo a−12 m si arriva a+8 m: il punto ha superato l’origine, senza che il cammino di 20 m coincida con la coordinata 8 m."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta x=vt"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta x=20\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " x=x_0+\\Delta x"
+        },
+        {
+          "type": "formula",
+          "text": " x=(-12+20)\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " x=8\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "20 m dimentica la posizione iniziale;−32 m attribuisce al moto il verso negativo. 32 m sostituisce−12 con+12. −8 m cambia il segno del risultato nonostante il punto si sia spostato 20 m a partire da−12 m."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Un punto si trova a x₀=−12 m all’istante t=0. Si muove lungo x con velocità costante v=+2,5 m/s. Qual è la sua coordinata dopo 8,0 s?",
+      "family": "partenza-lontano-dallorigine",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "8 m",
+          "20 m",
+          "−32 m",
+          "32 m",
+          "−8 m"
+        ],
+        "value": "8 m"
+      },
+      "hints": [
+        "Distinguere la posizione iniziale dallo spostamento evita di perdere il segno.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "20 m dimentica la posizione iniziale;−32 m attribuisce al moto il verso negativo. 32 m sostituisce−12 con+12. −8 m cambia il segno del risultato nonostante il punto si sia spostato 20 m a partire da−12 m.",
+        "target": "C1-L003"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Grafici e moto rettilineo",
+        "Partire da una coordinata negativa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q022",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto e forze",
+      "order": 22,
+      "title": "Stessa distanza, tempi diversi",
+      "skill": "C1-L003",
+      "prerequisites": [
+        "C1-L003"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La media orientata è spostamento totale diviso tempo totale. Non faccio la media aritmetica delle due velocità perché i tempi non sono uguali. Chiamo t₁ e t₂ i tempi dei due tratti:12/2=6 s e 12/3=4 s. Il carrello percorre 24 m in 10 s: semplificando 24/10 ottengo 12/5 m/s."
+        },
+        {
+          "type": "formula",
+          "text": "t_1=\\frac{12}{2}\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " t_1=6\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " t_2=4\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " \\bar v=\\frac{24}{10}\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\bar v=\\frac{12}{5}\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "5/2 m/s è la media aritmetica delle rapidità, valida per tempi uguali, qui 6 s e 4 s. 5 m/s somma le rapidità;6/5 m/s considera solo 12 m pur contando tutto il tempo. 2 m/s mantiene la sola velocità del primo tratto."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Un carrello percorre 12 m a 2 m/s e poi altri 12 m a 3 m/s, sempre nello stesso verso e senza soste. Quanto vale la velocità media sull’intero percorso?",
+      "family": "due-tratti-di-pari-lunghezza",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "12/5 m/s",
+          "5/2 m/s",
+          "5 m/s",
+          "6/5 m/s",
+          "2 m/s"
+        ],
+        "value": "12/5 m/s"
+      },
+      "hints": [
+        "Calcola prima quanto dura ciascun tratto di 12 m.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "5/2 m/s è la media aritmetica delle rapidità, valida per tempi uguali, qui 6 s e 4 s. 5 m/s somma le rapidità;6/5 m/s considera solo 12 m pur contando tutto il tempo. 2 m/s mantiene la sola velocità del primo tratto.",
+        "target": "C1-L003"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Grafici e moto rettilineo",
+        "Stessa distanza, tempi diversi"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q023",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto e forze",
+      "order": 23,
+      "title": "Una velocità negativa che cresce",
+      "skill": "C1-L003",
+      "prerequisites": [
+        "C1-L003"
+      ],
+      "version": 3,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La quota verticale del grafico è la velocità, non la posizione. v<0 significa moto verso coordinate x minori. Mentre v cresce verso zero, il suo modulo |v| diminuisce: il punto rallenta. La pendenza positiva indica accelerazione positiva, opposta alla velocità nell’intervallo descritto."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/86031085bc76893b3795197f7d7482bc53cc30ce1000d61f11859c653431f528",
+          "text": "Nel primo pannello v resta negativa ma cresce da−3 m/s a−1 m/s: il punto procede verso x minori rallentando."
+        },
+        {
+          "type": "formula",
+          "text": "v<0"
+        },
+        {
+          "type": "formula",
+          "text": " a>0"
+        },
+        {
+          "type": "formula",
+          "text": " |v|=-v"
+        },
+        {
+          "type": "text",
+          "text": "Salire nel grafico v–t non significa andare verso x crescenti: quello richiede v>0. Con velocità negativa crescente la rapidità non aumenta. Il punto è fermo solo dove v=0. Il segno della posizione non si ricava dal segno della velocità senza una condizione iniziale."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "In un intervallo di un grafico v–t, la curva resta sotto zero e sale verso l’asse del tempo con pendenza positiva. Come si muove il punto in quell’intervallo?",
+      "family": "un-grafico-sotto-lo-zero",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Verso x decrescenti, rallentando",
+          "Verso x crescenti, accelerando",
+          "Verso x decrescenti, aumentando la rapidità",
+          "È fermo perché la curva è sotto zero",
+          "Ha posizione negativa necessariamente"
+        ],
+        "value": "Verso x decrescenti, rallentando"
+      },
+      "hints": [
+        "Leggi separatamente il segno della quota v e quello della pendenza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Salire nel grafico v–t non significa andare verso x crescenti: quello richiede v>0. Con velocità negativa crescente la rapidità non aumenta. Il punto è fermo solo dove v=0. Il segno della posizione non si ricava dal segno della velocità senza una condizione iniziale.",
+        "target": "C1-L003"
+      },
+      "baseVersion": 2,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Grafici e moto rettilineo",
+        "Una velocità negativa che cresce"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q024",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto e forze",
+      "order": 24,
+      "title": "La pendenza in un solo istante",
+      "skill": "C1-L003",
+      "prerequisites": [
+        "C1-L003"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Una secante fornisce la velocità media fra i suoi due istanti. Per la velocità istantanea si avvicina il secondo istante al primo: nel limite, esistente per ipotesi, la secante diventa tangente. La pendenza va letta come variazione di x divisa per variazione di t, con unità m/s."
+        },
+        {
+          "type": "formula",
+          "text": "\\bar v=\\frac{\\Delta x}{\\Delta t}"
+        },
+        {
+          "type": "formula",
+          "text": " v(t)=\\frac{dx}{dt}"
+        },
+        {
+          "type": "text",
+          "text": "Una secante su un intervallo finito misura una media. Una orizzontale imporrebbe velocità nulla anche dove il grafico è inclinato. La retta dall’origine vale solo in casi particolari, non in generale. La normale ha pendenza diversa e non rappresenta dx/dt."
+        }
+      ],
+      "difficulty": 1,
+      "prompt": "In un grafico posizione–tempo x–t la funzione x(t) è derivabile nell’istante osservato. Quale retta locale permette di ricavare la velocità istantanea dalla sua pendenza?",
+      "family": "una-lettura-allistante",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "La tangente al grafico nell’istante",
+          "La secante fra due istanti lontani",
+          "La retta orizzontale passante per quel punto",
+          "La retta dall’origine al punto, sempre",
+          "La normale al grafico"
+        ],
+        "value": "La tangente al grafico nell’istante"
+      },
+      "hints": [
+        "Immagina di restringere l’intervallo usato per la secante.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Una secante su un intervallo finito misura una media. Una orizzontale imporrebbe velocità nulla anche dove il grafico è inclinato. La retta dall’origine vale solo in casi particolari, non in generale. La normale ha pendenza diversa e non rappresenta dx/dt.",
+        "target": "C1-L003"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Grafici e moto rettilineo",
+        "La pendenza in un solo istante"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q025",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto e forze",
+      "order": 25,
+      "title": "Cambiare solo l’origine delle coordinate",
+      "skill": "C1-L003",
+      "prerequisites": [
+        "C1-L003"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Chiamo x la vecchia coordinata e x′ la nuova. Il punto che prima era a+5 m diventa la nuova origine: x′=x−5 m. Nella differenza fra due posizioni la costante si cancella; anche derivando rispetto al tempo la costante scompare. Cambia quindi la coordinata, mentre il moto fisico e le variazioni restano uguali."
+        },
+        {
+          "type": "formula",
+          "text": "x\\prime=x-5\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta x\\prime=\\Delta x"
+        },
+        {
+          "type": "formula",
+          "text": " v\\prime=v"
+        },
+        {
+          "type": "formula",
+          "text": " a\\prime=a"
+        },
+        {
+          "type": "text",
+          "text": "Spostamento, velocità e accelerazione non cambiano per una traslazione spaziale costante. Anche la distanza percorsa confronta tratti reali e resta la stessa. Non si è cambiato il verso positivo né introdotto un riferimento che si muove nel tempo."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Si descrive lo stesso moto usando un nuovo asse con origine spostata di 5 m verso destra rispetto alla vecchia, ma stesso verso, stessa unità e stessi tempi. Quale quantità cambia?",
+      "family": "traslare-lorigine-spaziale",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "La coordinata della posizione",
+          "Lo spostamento fra due istanti",
+          "La velocità",
+          "L’accelerazione",
+          "La distanza percorsa"
+        ],
+        "value": "La coordinata della posizione"
+      },
+      "hints": [
+        "Sottrai la stessa costante a entrambe le posizioni estreme.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Spostamento, velocità e accelerazione non cambiano per una traslazione spaziale costante. Anche la distanza percorsa confronta tratti reali e resta la stessa. Non si è cambiato il verso positivo né introdotto un riferimento che si muove nel tempo.",
+        "target": "C1-L003"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Grafici e moto rettilineo",
+        "Cambiare solo l’origine delle coordinate"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q026",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto e forze",
+      "order": 26,
+      "title": "Dove le due posizioni coincidono",
+      "skill": "C1-L003",
+      "prerequisites": [
+        "C1-L003"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’incontro richiede uguaglianza delle posizioni allo stesso tempo, non uguaglianza delle velocità. Porto al primo membro i termini con t: la velocità relativa di avvicinamento è 3 m/s. I 15 m iniziali vengono chiusi in 15/3=5 s. Sostituendo, entrambi i punti sono a 10 m."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/86031085bc76893b3795197f7d7482bc53cc30ce1000d61f11859c653431f528",
+          "text": "Il secondo pannello mostra le due leggi orarie: l’intersezione avviene a 5 s e 10 m, con assi temporale e spaziale distinti."
+        },
+        {
+          "type": "formula",
+          "text": "x_A=x_B"
+        },
+        {
+          "type": "formula",
+          "text": " (3\\,\\mathrm{m/s})t=15\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " t=5\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " x_A=x_B"
+        },
+        {
+          "type": "formula",
+          "text": "x_B=10\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "15 s usa soltanto 1 m/s;15/2 s usa soltanto 2 m/s. 10 è la coordinata comune in metri, non il tempo in secondi. −5 s non soddisfa l’equazione né il dominio t≥0."
+        }
+      ],
+      "difficulty": 3,
+      "prompt": "Due punti sullo stesso asse seguono x_A=(2 m/s)t e x_B=15 m−(1 m/s)t, con t≥0 e t=0 comune. A quale istante si incontrano?",
+      "family": "intersezione-di-due-leggi-orarie",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "5 s",
+          "15 s",
+          "10 s",
+          "15/2 s",
+          "−5 s"
+        ],
+        "value": "5 s"
+      },
+      "hints": [
+        "Uguaglia le coordinate e somma le velocità di avvicinamento.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "15 s usa soltanto 1 m/s;15/2 s usa soltanto 2 m/s. 10 è la coordinata comune in metri, non il tempo in secondi. −5 s non soddisfa l’equazione né il dominio t≥0.",
+        "target": "C1-L003"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Grafici e moto rettilineo",
+        "Dove le due posizioni coincidono"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q027",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto e forze",
+      "order": 27,
+      "title": "Le aree con segno dopo l’inversione",
+      "skill": "C1-L003",
+      "prerequisites": [
+        "C1-L003"
+      ],
+      "version": 3,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Chiamo Δx₁ e Δx₂ gli spostamenti nei due tratti. Ognuno è l’area con segno del rettangolo nel grafico v–t:3·4=12 m e−2·5=−10 m. Il totale è+2 m. Se chiedessi la distanza percorsa, sommerei invece i moduli 12+10=22 m."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/86031085bc76893b3795197f7d7482bc53cc30ce1000d61f11859c653431f528",
+          "text": "Nel terzo pannello i rettangoli del grafico v–t hanno aree+12 m e−10 m; la loro somma orientata è+2 m."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta x_1=12\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta x_2=-10\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta x=(12-10)\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta x=2\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "22 m ignora il segno del secondo tratto;−22 m li rende entrambi negativi. −2 m inverte la sottrazione. 7 m non è la somma delle due aree: non si possono mescolare durate e velocità senza rispettare i prodotti."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Un sensore registra velocità +3 m/s per 4 s, poi−2 m/s per 5 s sulla stessa retta. L’inversione fra i tratti è idealizzata istantanea. Qual è lo spostamento complessivo?",
+      "family": "aree-di-segno-opposto",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2 m",
+          "22 m",
+          "−2 m",
+          "7 m",
+          "−22 m"
+        ],
+        "value": "2 m"
+      },
+      "hints": [
+        "Le aree sotto l’asse del tempo devono entrare con segno meno.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "22 m ignora il segno del secondo tratto;−22 m li rende entrambi negativi. −2 m inverte la sottrazione. 7 m non è la somma delle due aree: non si possono mescolare durate e velocità senza rispettare i prodotti.",
+        "target": "C1-L003"
+      },
+      "baseVersion": 2,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Grafici e moto rettilineo",
+        "Le aree con segno dopo l’inversione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q028",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto e forze",
+      "order": 28,
+      "title": "La stessa linea con due ordinate diverse",
+      "skill": "C1-L003",
+      "prerequisites": [
+        "C1-L003"
+      ],
+      "version": 3,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nel primo grafico la quota è una posizione costante x_c>0, quindi la pendenza e la velocità sono zero. Nel secondo la quota è una velocità costante v_c>0: il punto si sposta nel verso positivo e l’accelerazione è zero. Il segno della posizione di quel secondo moto non è specificato."
+        },
+        {
+          "type": "formula",
+          "text": "x(t)=x_c>0"
+        },
+        {
+          "type": "formula",
+          "text": " v=0"
+        },
+        {
+          "type": "formula",
+          "text": " v(t)=v_c>0"
+        },
+        {
+          "type": "formula",
+          "text": " a=0"
+        },
+        {
+          "type": "text",
+          "text": "Una linea orizzontale annulla la derivata della grandezza in ordinata, non sempre la velocità. Nel grafico v–t è l’accelerazione a essere nulla. v positivo non fissa il segno della posizione: il punto potrebbe trovarsi anche a x negativo e avanzare verso l’origine."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Si confrontano due grafici: x–t e v–t. In ciascuno la linea è orizzontale e strettamente sopra zero. Quale interpretazione è corretta?",
+      "family": "tratto-orizzontale-in-due-grafici",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "x–t: fermo a posizione positiva; v–t: moto a velocità positiva costante",
+          "In entrambi il punto è fermo",
+          "In entrambi la velocità è positiva costante",
+          "x–t: velocità positiva; v–t: accelerazione positiva",
+          "In entrambi la posizione deve essere positiva"
+        ],
+        "value": "x–t: fermo a posizione positiva; v–t: moto a velocità positiva costante"
+      },
+      "hints": [
+        "Prima di interpretare la forma, leggi il nome sull’asse verticale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Una linea orizzontale annulla la derivata della grandezza in ordinata, non sempre la velocità. Nel grafico v–t è l’accelerazione a essere nulla. v positivo non fissa il segno della posizione: il punto potrebbe trovarsi anche a x negativo e avanzare verso l’origine.",
+        "target": "C1-L003"
+      },
+      "baseVersion": 2,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Grafici e moto rettilineo",
+        "La stessa linea con due ordinate diverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q029",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto e forze",
+      "order": 29,
+      "title": "La variazione attraversa lo zero",
+      "skill": "C1-L003",
+      "prerequisites": [
+        "C1-L003"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’accelerazione media usa la variazione orientata v_f−v_i, non la differenza dei moduli delle velocità. Qui 1−(−3)=4 m/s: il cambio di verso non cancella una parte della variazione. Dividendo 4 m/s per 2 s si ottiene+2 m/s². Non serve supporre accelerazione costante per questa media."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta v=(1+3)\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta v=4\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\bar a=\\frac{4}{2}\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\bar a=2\\,\\mathrm{m/s^2}"
+        },
+        {
+          "type": "text",
+          "text": "−1 m/s² deriva da (|v_f|−|v_i|)/Δt=(1−3)/2: l’errore è usare i moduli al posto delle componenti orientate;1 m/s² perde la variazione attraverso lo zero. −2 m/s² scambia finale e iniziale. 4 m/s² copia il valore numerico di Δv senza dividere per i 2 s."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "La velocità su un asse cambia da v_i=−3 m/s a v_f=+1 m/s in Δt=2,0 s. Quanto vale l’accelerazione media con il suo segno?",
+      "family": "una-variazione-durante-la-retromarcia",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2 m/s²",
+          "−1 m/s²",
+          "1 m/s²",
+          "−2 m/s²",
+          "4 m/s²"
+        ],
+        "value": "2 m/s²"
+      },
+      "hints": [
+        "Sottrarre una velocità negativa equivale ad aggiungerne il modulo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−1 m/s² deriva da (|v_f|−|v_i|)/Δt=(1−3)/2: l’errore è usare i moduli al posto delle componenti orientate;1 m/s² perde la variazione attraverso lo zero. −2 m/s² scambia finale e iniziale. 4 m/s² copia il valore numerico di Δv senza dividere per i 2 s.",
+        "target": "C1-L003"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Grafici e moto rettilineo",
+        "La variazione attraversa lo zero"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C1-Q030",
+      "kind": "question",
+      "course": "C1",
+      "section": "Moto e forze",
+      "order": 30,
+      "title": "Una curva nello spazio reale",
+      "skill": "C1-L003",
+      "prerequisites": [
+        "C1-L003"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La traiettoria è il luogo geometrico delle posizioni occupate. La legge oraria aggiunge l’associazione fra ciascun istante e una posizione, indicata dal vettore r(t). Conoscere solo la forma della traiettoria non dice con quale rapidità venga percorsa."
+        },
+        {
+          "type": "formula",
+          "text": "\\vec r=\\vec r(t)"
+        },
+        {
+          "type": "text",
+          "text": "La legge oraria include il tempo, mentre la traiettoria è la curva nello spazio. Un grafico v–t ha assi velocità e tempo, non coordinate spaziali. Lo spostamento collega due posizioni estreme e può essere lo stesso per traiettorie diverse. L’accelerazione descrive la variazione della velocità."
+        }
+      ],
+      "difficulty": 1,
+      "prompt": "Quale nome indica l’insieme delle posizioni attraversate da un punto nello spazio durante il moto?",
+      "family": "la-curva-nello-spazio-reale",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Traiettoria",
+          "Legge oraria",
+          "Grafico velocità–tempo",
+          "Spostamento",
+          "Accelerazione"
+        ],
+        "value": "Traiettoria"
+      },
+      "hints": [
+        "Distingui la strada geometrica dal calendario del passaggio nei suoi punti.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La legge oraria include il tempo, mentre la traiettoria è la curva nello spazio. Un grafico v–t ha assi velocità e tempo, non coordinate spaziali. Lo spostamento collega due posizioni estreme e può essere lo stesso per traiettorie diverse. L’accelerazione descrive la variazione della velocità.",
+        "target": "C1-L003"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Grafici e moto rettilineo",
+        "Una curva nello spazio reale"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "86031085bc76893b3795197f7d7482bc53cc30ce1000d61f11859c653431f528",
+      "name": "cric-c1-l003-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTc0MCI+PHRpdGxlPlZlbG9jaXTDoCwgaW5jb250cm8gZSBhcmVlIG9yaWVudGF0ZTwvdGl0bGU+PGRlc2M+VHJlIGdyYWZpY2kgY2luZW1hdGljaSBhdXRvbm9taTogdmVsb2NpdMOgIG5lZ2F0aXZhIGNyZXNjZW50ZTsgaW5jb250cm8gYSA1IHNlY29uZGkgZSAxMCBtZXRyaTsgZHVlIHJldHRhbmdvbGkgZGkgc3Bvc3RhbWVudGkgcGnDuSAxMiBlIG1lbm8gMTAgbWV0cmkuPC9kZXNjPjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMTc0MCIgZmlsbD0id2hpdGUiIC8+PGcgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZpbGw9IiMxODM1NGIiIGZvbnQtc2l6ZT0iMjAiPjx0ZXh0IHg9IjMyIiB5PSI0MiIgZm9udC1zaXplPSIyNiI+UHJpbWEgZ2xpIGFzc2ksIHBvaSBsYSBmb3JtYTwvdGV4dD48dGV4dCB4PSIzMiIgeT0iMTA1IiBmb250LXNpemU9IjIzIj4xIMK3IHYgbmVnYXRpdmEgbWEgY3Jlc2NlbnRlPC90ZXh0PjxwYXRoIGQ9Ik0xMjAgNDUwVjE2NU0xMDAgMjAwSDUzMCIgc3Ryb2tlPSIjODc5ZGE4IiBmaWxsPSJub25lIiAvPjx0ZXh0IHg9IjkwIiB5PSIxNjUiPnYgKG0vcyk8L3RleHQ+PHRleHQgeD0iNTM1IiB5PSIyMDUiPnQgKHMpPC90ZXh0Pjx0ZXh0IHg9IjkwIiB5PSIyMjUiPjA8L3RleHQ+PHBhdGggZD0iTTEyMCAzODBMMjgwIDI2MCIgc3Ryb2tlPSIjMjg3MzhkIiBzdHJva2Utd2lkdGg9IjQiIC8+PHBhdGggZD0iTTI4MCAyNjBWMjAwTTEyMCAyNjBIMjgwIiBzdHJva2U9IiNhNjZlMzYiIHN0cm9rZS1kYXNoYXJyYXk9IjYgNSIgZmlsbD0ibm9uZSIgLz48dGV4dCB4PSI2OCIgeT0iMzg1Ij7iiJIzPC90ZXh0Pjx0ZXh0IHg9IjY4IiB5PSIyNjUiPuKIkjE8L3RleHQ+PHRleHQgeD0iMjcwIiB5PSIyMzAiPjI8L3RleHQ+PHRleHQgeD0iMzIiIHk9IjQ5MCI+diAmbHQ7IDA6IGlsIG1vdG8gcHJvY2VkZSB2ZXJzbyB4IG1pbm9yaS48L3RleHQ+PHRleHQgeD0iMzIiIHk9IjUzMCI+TGEgcmFwaWRpdMOgIHNjZW5kZSBkYSAzIG0vcyBhIDEgbS9zLjwvdGV4dD48dGV4dCB4PSIzMiIgeT0iNjEwIiBmb250LXNpemU9IjIzIj4yIMK3IFN0ZXNzYSBwb3NpemlvbmUgYWxsbyBzdGVzc28gdGVtcG88L3RleHQ+PHBhdGggZD0iTTEyMCAxMDEwVjc1NU0xMDAgOTkwSDUwNSIgc3Ryb2tlPSIjODc5ZGE4IiBmaWxsPSJub25lIiAvPjx0ZXh0IHg9IjgyIiB5PSI3NDUiPnggKG0pPC90ZXh0Pjx0ZXh0IHg9IjUxNSIgeT0iOTk1Ij50IChzKTwvdGV4dD48dGV4dCB4PSI5MCIgeT0iMTAxNSI+MDwvdGV4dD48cGF0aCBkPSJNMTIwIDk5MEw0MDAgODIyIiBzdHJva2U9IiMyODczOGQiIHN0cm9rZS13aWR0aD0iNCIgLz48cGF0aCBkPSJNMTIwIDgxMEw0MDAgODk0IiBzdHJva2U9IiNhNjZlMzYiIHN0cm9rZS13aWR0aD0iNCIgLz48Y2lyY2xlIGN4PSIzMjAiIGN5PSI4NzAiIHI9IjUiIGZpbGw9IiMxODM1NGIiIC8+PHBhdGggZD0iTTEyMCA4NzBIMzIwVjk5MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjODc5ZGE4IiBzdHJva2UtZGFzaGFycmF5PSI2IDUiIC8+PHRleHQgeD0iNzIiIHk9IjgxNyI+MTU8L3RleHQ+PHRleHQgeD0iNzIiIHk9Ijg3OCI+MTA8L3RleHQ+PHRleHQgeD0iMzEyIiB5PSIxMDIwIj41PC90ZXh0Pjx0ZXh0IHg9IjQxNSIgeT0iODIwIj5BPC90ZXh0Pjx0ZXh0IHg9IjQxNSIgeT0iOTA1Ij5CPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSIxMDgwIj5JbmNvbnRybzogdCA9IDUgcywgeCA9IDEwIG0uPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSIxMTI1Ij5MZSBwZW5kZW56ZSBzb25vICsyIG0vcyBlIOKIkjEgbS9zLjwvdGV4dD48dGV4dCB4PSIzMiIgeT0iMTIwMCIgZm9udC1zaXplPSIyMyI+MyDCtyBBcmVlIGRpIHNlZ25vIG9wcG9zdG88L3RleHQ+PHBhdGggZD0iTTEyMCAxNTcwVjEyNjBNMTAwIDE0MzBINTMwIiBzdHJva2U9IiM4NzlkYTgiIGZpbGw9Im5vbmUiIC8+PHRleHQgeD0iNzUiIHk9IjEyNTAiPnYgKG0vcyk8L3RleHQ+PHRleHQgeD0iNTM1IiB5PSIxNDM1Ij50IChzKTwvdGV4dD48cmVjdCB4PSIxMjAiIHk9IjEzMTAiIHdpZHRoPSIxNjAiIGhlaWdodD0iMTIwIiBmaWxsPSIjYzVlMWViIiAvPjxyZWN0IHg9IjI4MCIgeT0iMTQzMCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSI4MCIgZmlsbD0iI2YwZDliZCIgLz48cGF0aCBkPSJNMTIwIDEzMTBIMjgwTTI4MCAxNTEwSDQ4MCIgc3Ryb2tlPSIjMjg3MzhkIiBzdHJva2Utd2lkdGg9IjQiIC8+PHBhdGggZD0iTTI4MCAxMzEwVjE1MTAiIHN0cm9rZT0iIzg3OWRhOCIgc3Ryb2tlLWRhc2hhcnJheT0iNiA1IiAvPjx0ZXh0IHg9IjgwIiB5PSIxMzE1Ij4zPC90ZXh0Pjx0ZXh0IHg9Ijc1IiB5PSIxNTE1Ij7iiJIyPC90ZXh0Pjx0ZXh0IHg9Ijg4IiB5PSIxNDU1Ij4wPC90ZXh0Pjx0ZXh0IHg9IjI2MCIgeT0iMTQ2MCI+NDwvdGV4dD48dGV4dCB4PSI0ODUiIHk9IjE0NjAiPjk8L3RleHQ+PHRleHQgeD0iMTcwIiB5PSIxMzc1Ij4rMTIgbTwvdGV4dD48dGV4dCB4PSIzMzUiIHk9IjE0ODAiPuKIkjEwIG08L3RleHQ+PHRleHQgeD0iMzIiIHk9IjE2MjAiPlNwb3N0YW1lbnRvOiAxMiBt4oiSMTAgbSA9IDIgbS48L3RleHQ+PHRleHQgeD0iMzIiIHk9IjE2NzAiPkRpc3RhbnphOiAxMiBtKzEwIG0gPSAyMiBtLjwvdGV4dD48L2c+PC9zdmc+"
+    }
+  ]
+}

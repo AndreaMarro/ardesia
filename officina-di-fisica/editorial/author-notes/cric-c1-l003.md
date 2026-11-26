@@ -108,7 +108,7 @@ Famiglia: `aree-di-segno-opposto`; difficoltà 2; versione 3/base 2.
 
 Compito: Si confrontano due grafici: x–t e v–t. In ciascuno la linea è orizzontale e strettamente sopra zero. Quale interpretazione è corretta?
 
-Procedimento: Nel primo grafico la quota è una posizione costante x_c>0, quindi la pendenza e la velocità sonozero. Nel secondo la quota è una velocità costante v_c>0: il punto si sposta nel verso positivo e l’accelerazione èzero. Il segno della posizione di quel secondo moto non è specificato.
+Procedimento: Nel primo grafico la quota è una posizione costante x_c>0, quindi la pendenza e la velocità sono zero. Nel secondo la quota è una velocità costante v_c>0: il punto si sposta nel verso positivo e l’accelerazione è zero. Il segno della posizione di quel secondo moto non è specificato.
 
 Passaggi esatti: `x(t)=x_c>0\qquad v=0\qquad v(t)=v_c>0\qquad a=0`.
 
@@ -126,7 +126,7 @@ Procedimento: L’accelerazione media usa la variazione orientata v_f−v_i, non
 
 Passaggi esatti: `\Delta v=(1+3)\,\mathrm{m/s}\qquad \Delta v=4\,\mathrm{m/s}\qquad \bar a=\frac{4}{2}\,\mathrm{m/s^2}\qquad \bar a=2\,\mathrm{m/s^2}`.
 
-Distrattori: −1 m/s² sottrae i moduli 3 e 1 nel verso sbagliato;1 m/s² perde la variazione attraverso lo zero. −2 m/s² scambia finale e iniziale. 4 m/s² copia il valore numerico di Δv senza dividere per i 2 s.
+Distrattori: −1 m/s² deriva da (|v_f|−|v_i|)/Δt=(1−3)/2: l’errore è usare i moduli al posto delle componenti orientate;1 m/s² perde la variazione attraverso lo zero. −2 m/s² scambia finale e iniziale. 4 m/s² copia il valore numerico di Δv senza dividere per i 2 s.
 
 Aiuto: Sottrarre una velocità negativa equivale ad aggiungerne il modulo.
 
@@ -146,6 +146,8 @@ Aiuto: Distingui la strada geometrica dal calendario del passaggio nei suoi punt
 
 Famiglia: `la-curva-nello-spazio-reale`; difficoltà 1; versione 2/base 1.
 
-## Geometria dei tre grafici
+## Geometria, riletture e limiti
 
-Scale interne dichiarate dai tick fisici: primo grafico80 coordinate/s e60 coordinate per m/s; segmento (0,−3)→(2,−1), velocità negativa per tutto il segmento. Secondo40 coordinate/s e12 coordinate/m, intersezione(5 s,10 m). Terzo40 coordinate/s e40 coordinate per m/s: larghezze160/200 per4/5 s, altezze120/80 per+3/−2 m/s, aree orientate12 e−10 m. Nessun confronto di scale fra pannelli. XML e PNG completo640×1740 letti, origine etichettata fuori dagli assi; il salto di velocità è idealizzato, non un intervallo di moto uniformemente accelerato.
+Primo grafico80 coordinate/s e60 coordinate per m/s, da(0,−3) a(2,−1). Secondo40 coordinate/s e12 coordinate/m: intersezione(5 s,10 m). Terzo40 coordinate/s e40 coordinate per m/s, aree orientate12 e−10 m. Nuova resa completa dopo due soli spostamenti delle etichette2 e v(m/s). Q029 ora attribuisce−1 al rapporto delle differenze dei moduli, non a un ordine invertito. Vecchi artefatti conservati; chiavi e leggi immutate.
+
+Stato SCI proprio, UI prodotto e human NOT_RUN; nessun credito di integrazione. Le prove strutturali appartengono soltanto ai payload finali descritti dal loro hash.
