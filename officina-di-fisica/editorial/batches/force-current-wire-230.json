@@ -1,0 +1,1178 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u6-force-current-wire-01",
+      "kind": "question",
+      "course": "C4",
+      "section": "Forza magnetica su un tratto percorso da corrente",
+      "order": 23001,
+      "title": "Da centimetri a millinewton",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "force-current-wire",
+      "difficulty": 1,
+      "prompt": "Un tratto rettilineo di filo, di lunghezza L finita e positiva, porta una corrente continua I>0 mantenuta dal circuito. Il tratto è interamente immerso in un campo esterno uniforme di modulo B=1 T ed è perpendicolare a B. Si cerca soltanto il modulo F della forza magnetica sul tratto, non la risultante con eventuali altre forze. Per i dati numerici L si esprime in cm e F in mN. Con I=2 A e L=3 cm, quanto vale F in mN?",
+      "answer": {
+        "type": "numeric",
+        "value": 60,
+        "unit": "mN",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La forza sul filo è I volte il prodotto vettoriale della lunghezza orientata con B. Il modulo, con angolo retto, è BIL. Tre centimetri sono 3/100 m: F=1·2·3/100 N=6/100 N. Un newton vale mille millinewton, quindi il risultato è 60 mN. Non si interpreta la corrente come carica di una sola particella."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/1a9af512b7c17b3e1426b25b627742424349ac97117306a82c1d4b6dd95628e2",
+          "text": "Con corrente verso destra e B entrante, la forza è verso l’alto. I vettori di grandezze diverse sono schematici; le barre e il grafico successivi sono quantitativi."
+        },
+        {
+          "type": "formula",
+          "text": "F=BIL"
+        },
+        {
+          "type": "formula",
+          "text": " L=\\frac3{100}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " F=\\frac6{100}\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " F=60\\,\\mathrm{mN}"
+        },
+        {
+          "type": "text",
+          "text": "Sei mN perde un fattore dieci nella conversione cm→mN; 6000 mN tratterebbe 3 cm come 3 m. Centoventi mN aggiunge un fattore due alla legge. Il verso dipende invece da corrente e campo come vettori."
+        }
+      ],
+      "hints": [
+        "Converti L in metri prima di riportare la forza in mN.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sei mN perde un fattore dieci nella conversione cm→mN; 6000 mN tratterebbe 3 cm come 3 m. Centoventi mN aggiunge un fattore due alla legge. Il verso dipende invece da corrente e campo come vettori.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Prodotto vettoriale e forza sul tratto immerso",
+        "Conversioni centimetri e millinewton",
+        "Inverse, medie e display continui",
+        "Vincolo fra preparazioni e ramo positivo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-force-current-wire-02",
+      "kind": "question",
+      "course": "C4",
+      "section": "Forza magnetica su un tratto percorso da corrente",
+      "order": 23002,
+      "title": "L’unità rimane quella di una forza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "force-current-wire",
+      "difficulty": 1,
+      "prompt": "Un tratto rettilineo di filo, di lunghezza L finita e positiva, porta una corrente continua I>0 mantenuta dal circuito. Il tratto è interamente immerso in un campo esterno uniforme di modulo B=1 T ed è perpendicolare a B. Si cerca soltanto il modulo F della forza magnetica sul tratto, non la risultante con eventuali altre forze. Per i dati numerici L si esprime in cm e F in mN. Quale unità misura F?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "mN",
+          "A",
+          "T",
+          "J",
+          "C"
+        ],
+        "value": "mN"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La forza magnetica ha la stessa dimensione di una forza meccanica: si misura in newton o in un suo prefisso. Il tesla ha unità N/(A·m), perciò BIL restituisce newton. La presenza di una corrente non trasforma la forza in ampere."
+        },
+        {
+          "type": "formula",
+          "text": "[B]=\\mathrm{N/(A\\,m)}"
+        },
+        {
+          "type": "formula",
+          "text": " [F]=\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "A misura corrente e T campo magnetico. J è energia; il lavoro di una forza dipende anche dallo spostamento, mentre qui si chiede F. C è carica. Solo mN è una forza fra le alternative."
+        }
+      ],
+      "hints": [
+        "Cancella A e m nel prodotto delle unità BIL.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "A misura corrente e T campo magnetico. J è energia; il lavoro di una forza dipende anche dallo spostamento, mentre qui si chiede F. C è carica. Solo mN è una forza fra le alternative.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Prodotto vettoriale e forza sul tratto immerso",
+        "Conversioni centimetri e millinewton",
+        "Inverse, medie e display continui",
+        "Vincolo fra preparazioni e ramo positivo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-force-current-wire-03",
+      "kind": "question",
+      "course": "C4",
+      "section": "Forza magnetica su un tratto percorso da corrente",
+      "order": 23003,
+      "title": "La conversione dentro la relazione numerica",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "force-current-wire",
+      "difficulty": 1,
+      "prompt": "Un tratto rettilineo di filo, di lunghezza L finita e positiva, porta una corrente continua I>0 mantenuta dal circuito. Il tratto è interamente immerso in un campo esterno uniforme di modulo B=1 T ed è perpendicolare a B. Si cerca soltanto il modulo F della forza magnetica sul tratto, non la risultante con eventuali altre forze. Per i dati numerici L si esprime in cm e F in mN. Definiamo i=I/(1 A), λ=L/(1 cm) e f=F/(1 mN), tre numeri puri. Quale legge li collega?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "f = 10 i λ",
+          "f = i λ",
+          "f = 10 i / λ",
+          "f = 10 λ / i",
+          "f = 10 i² λ"
+        ],
+        "value": "f = 10 i λ"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Un centimetro è un centesimo di metro: il prodotto BIL vale iλ/100 newton. Passare a mN moltiplica il numero per mille, così f=10iλ. Il fattore dieci nasce dalle unità dichiarate e da B=1 T; la legge dimensionale resta F=BIL."
+        },
+        {
+          "type": "formula",
+          "text": "F=\\frac{i\\lambda}{100}\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " f=10i\\lambda"
+        },
+        {
+          "type": "text",
+          "text": "iλ omette la conversione residua. Dividere per λ o per i renderebbe inversa una dipendenza diretta. Il quadrato di i non appartiene alla forza magnetica sul filo: non è la legge della potenza dissipata I²R."
+        }
+      ],
+      "hints": [
+        "Separa la legge fisica dalla relazione fra i valori numerici.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "iλ omette la conversione residua. Dividere per λ o per i renderebbe inversa una dipendenza diretta. Il quadrato di i non appartiene alla forza magnetica sul filo: non è la legge della potenza dissipata I²R.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Prodotto vettoriale e forza sul tratto immerso",
+        "Conversioni centimetri e millinewton",
+        "Inverse, medie e display continui",
+        "Vincolo fra preparazioni e ramo positivo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-force-current-wire-04",
+      "kind": "question",
+      "course": "C4",
+      "section": "Forza magnetica su un tratto percorso da corrente",
+      "order": 23004,
+      "title": "Corrente dimezzata sullo stesso tratto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "force-current-wire",
+      "difficulty": 1,
+      "prompt": "Un tratto rettilineo di filo, di lunghezza L finita e positiva, porta una corrente continua I>0 mantenuta dal circuito. Il tratto è interamente immerso in un campo esterno uniforme di modulo B=1 T ed è perpendicolare a B. Si cerca soltanto il modulo F della forza magnetica sul tratto, non la risultante con eventuali altre forze. Per i dati numerici L si esprime in cm e F in mN. L resta 3 cm e I passa da 2 A a 1 A fra due prove. Come cambia F?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 60 mN a 30 mN",
+          "Da 60 mN a 120 mN",
+          "Resta 60 mN",
+          "Da 60 mN a 15 mN",
+          "Da 60 mN a 0 mN"
+        ],
+        "value": "Da 60 mN a 30 mN"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A lunghezza, campo e angolo fissati, F è lineare in I. La seconda corrente è metà della prima e il modulo passa da 60 a 30 mN. Non è necessario supporre come il generatore abbia cambiato la corrente: si confrontano i due stati mantenuti."
+        },
+        {
+          "type": "formula",
+          "text": "F_A=60\\,\\mathrm{mN}"
+        },
+        {
+          "type": "formula",
+          "text": " F_B=30\\,\\mathrm{mN}"
+        },
+        {
+          "type": "formula",
+          "text": " F_B/F_A=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Centoventi inverte l’effetto. Quindici usa il quadrato del fattore 1/2; sessanta ignora la nuova corrente. Zero richiederebbe corrente nulla o filo parallelo al campo, condizioni escluse."
+        }
+      ],
+      "hints": [
+        "Nella forza compare I, non I².",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Centoventi inverte l’effetto. Quindici usa il quadrato del fattore 1/2; sessanta ignora la nuova corrente. Zero richiederebbe corrente nulla o filo parallelo al campo, condizioni escluse.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Prodotto vettoriale e forza sul tratto immerso",
+        "Conversioni centimetri e millinewton",
+        "Inverse, medie e display continui",
+        "Vincolo fra preparazioni e ramo positivo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-force-current-wire-05",
+      "kind": "question",
+      "course": "C4",
+      "section": "Forza magnetica su un tratto percorso da corrente",
+      "order": 23005,
+      "title": "La corrente da una misura di forza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "force-current-wire",
+      "difficulty": 2,
+      "prompt": "Un tratto rettilineo di filo, di lunghezza L finita e positiva, porta una corrente continua I>0 mantenuta dal circuito. Il tratto è interamente immerso in un campo esterno uniforme di modulo B=1 T ed è perpendicolare a B. Si cerca soltanto il modulo F della forza magnetica sul tratto, non la risultante con eventuali altre forze. Per i dati numerici L si esprime in cm e F in mN. F=60 mN e L=3 cm. Quanto vale I in A?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "A",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Isolo I=F/(BL). La forza misurata è 60/1000 N e la lunghezza 3/100 m: il quoziente è (60/1000)/(3/100) A=2 A. B e L sono positivi: non c’è un denominatore nullo."
+        },
+        {
+          "type": "formula",
+          "text": "I=\\frac F{BL}"
+        },
+        {
+          "type": "formula",
+          "text": " I=\\frac{60/1000}{3/100}\\,\\mathrm A"
+        },
+        {
+          "type": "formula",
+          "text": " I=2\\,\\mathrm A"
+        },
+        {
+          "type": "text",
+          "text": "Venti A dividerebbe 60 per 3 senza il fattore dieci della relazione in mN e cm. Mezzo A darebbe solo 15 mN; sessanta A copia il valore numerico di F senza l’inversa fisica."
+        }
+      ],
+      "hints": [
+        "Verifica il risultato riportandolo in BIL.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Venti A dividerebbe 60 per 3 senza il fattore dieci della relazione in mN e cm. Mezzo A darebbe solo 15 mN; sessanta A copia il valore numerico di F senza l’inversa fisica.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Prodotto vettoriale e forza sul tratto immerso",
+        "Conversioni centimetri e millinewton",
+        "Inverse, medie e display continui",
+        "Vincolo fra preparazioni e ramo positivo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-force-current-wire-06",
+      "kind": "question",
+      "course": "C4",
+      "section": "Forza magnetica su un tratto percorso da corrente",
+      "order": 23006,
+      "title": "La parte di filo davvero immersa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "force-current-wire",
+      "difficulty": 2,
+      "prompt": "Un tratto rettilineo di filo, di lunghezza L finita e positiva, porta una corrente continua I>0 mantenuta dal circuito. Il tratto è interamente immerso in un campo esterno uniforme di modulo B=1 T ed è perpendicolare a B. Si cerca soltanto il modulo F della forza magnetica sul tratto, non la risultante con eventuali altre forze. Per i dati numerici L si esprime in cm e F in mN. F=60 mN con I=2 A. Quanto vale L in cm?",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "cm",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La legge richiede la lunghezza del tratto immerso e perpendicolare. Isolo L=F/(BI): il risultato è 3/100 m, cioè 3 cm. Non si prende la lunghezza di un eventuale circuito esterno alla regione di campo."
+        },
+        {
+          "type": "formula",
+          "text": "L=\\frac F{BI}"
+        },
+        {
+          "type": "formula",
+          "text": " L=\\frac3{100}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " L=3\\,\\mathrm{cm}"
+        },
+        {
+          "type": "text",
+          "text": "Trenta cm omette il fattore dieci fra le unità numeriche. Un terzo cm è il reciproco numerico di tre e darebbe 20/3 mN. Due cm copia la corrente e darebbe 40 mN."
+        }
+      ],
+      "hints": [
+        "Calcola prima la lunghezza in metri, poi moltiplica per cento.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Trenta cm omette il fattore dieci fra le unità numeriche. Un terzo cm è il reciproco numerico di tre e darebbe 20/3 mN. Due cm copia la corrente e darebbe 40 mN.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Prodotto vettoriale e forza sul tratto immerso",
+        "Conversioni centimetri e millinewton",
+        "Inverse, medie e display continui",
+        "Vincolo fra preparazioni e ramo positivo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-force-current-wire-07",
+      "kind": "question",
+      "course": "C4",
+      "section": "Forza magnetica su un tratto percorso da corrente",
+      "order": 23007,
+      "title": "Un tratto tre volte più corto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "force-current-wire",
+      "difficulty": 2,
+      "prompt": "Un tratto rettilineo di filo, di lunghezza L finita e positiva, porta una corrente continua I>0 mantenuta dal circuito. Il tratto è interamente immerso in un campo esterno uniforme di modulo B=1 T ed è perpendicolare a B. Si cerca soltanto il modulo F della forza magnetica sul tratto, non la risultante con eventuali altre forze. Per i dati numerici L si esprime in cm e F in mN. A usa I=2 A e L=3 cm. B usa la stessa corrente con L=1 cm. Quanto vale F_B/F_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/3",
+          "3",
+          "1/9",
+          "9",
+          "1"
+        ],
+        "value": "1/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A dà 60 mN e B dà 20 mN. Il rapporto B/A è 20/60=1/3, identico al rapporto delle lunghezze perché corrente, campo e angolo sono gli stessi. Il risultato è un numero puro."
+        },
+        {
+          "type": "formula",
+          "text": "F_A=60\\,\\mathrm{mN}"
+        },
+        {
+          "type": "formula",
+          "text": " F_B=20\\,\\mathrm{mN}"
+        },
+        {
+          "type": "formula",
+          "text": " F_B/F_A=\\frac13"
+        },
+        {
+          "type": "text",
+          "text": "Tre inverte il confronto. Un nono e nove introducono un quadrato non presente; uno ignora il diverso tratto immerso. Il verso della forza può restare uguale mentre cambia il modulo."
+        }
+      ],
+      "hints": [
+        "Confronta le lunghezze immerse, non l’intero circuito.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre inverte il confronto. Un nono e nove introducono un quadrato non presente; uno ignora il diverso tratto immerso. Il verso della forza può restare uguale mentre cambia il modulo.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Prodotto vettoriale e forza sul tratto immerso",
+        "Conversioni centimetri e millinewton",
+        "Inverse, medie e display continui",
+        "Vincolo fra preparazioni e ramo positivo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-force-current-wire-08",
+      "kind": "question",
+      "course": "C4",
+      "section": "Forza magnetica su un tratto percorso da corrente",
+      "order": 23008,
+      "title": "Proposta e forza calcolata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "force-current-wire",
+      "difficulty": 2,
+      "prompt": "Un tratto rettilineo di filo, di lunghezza L finita e positiva, porta una corrente continua I>0 mantenuta dal circuito. Il tratto è interamente immerso in un campo esterno uniforme di modulo B=1 T ed è perpendicolare a B. Si cerca soltanto il modulo F della forza magnetica sul tratto, non la risultante con eventuali altre forze. Per i dati numerici L si esprime in cm e F in mN. Con I=2 A e L=3 cm viene proposta F_proposta=120 mN. Quanto vale proposta meno corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "60 mN",
+          "−60 mN",
+          "2",
+          "120 mN",
+          "0 mN"
+        ],
+        "value": "60 mN"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La legge dà 60 mN. Lo scarto con l’ordine richiesto è 120−60=+60 mN. Due sarebbe il rapporto della proposta al corretto e avrebbe un altro significato."
+        },
+        {
+          "type": "formula",
+          "text": "F=60\\,\\mathrm{mN}"
+        },
+        {
+          "type": "formula",
+          "text": " e=(120-60)\\,\\mathrm{mN}"
+        },
+        {
+          "type": "formula",
+          "text": " e=60\\,\\mathrm{mN}"
+        },
+        {
+          "type": "text",
+          "text": "−60 scambia l’ordine; 120 copia la proposta; zero la accetta senza verifica. Il numero puro due non è una differenza di forze."
+        }
+      ],
+      "hints": [
+        "Conserva mN nella sottrazione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−60 scambia l’ordine; 120 copia la proposta; zero la accetta senza verifica. Il numero puro due non è una differenza di forze.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Prodotto vettoriale e forza sul tratto immerso",
+        "Conversioni centimetri e millinewton",
+        "Inverse, medie e display continui",
+        "Vincolo fra preparazioni e ramo positivo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-force-current-wire-09",
+      "kind": "question",
+      "course": "C4",
+      "section": "Forza magnetica su un tratto percorso da corrente",
+      "order": 23009,
+      "title": "L’inversa con le grandezze fisiche",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "force-current-wire",
+      "difficulty": 2,
+      "prompt": "Un tratto rettilineo di filo, di lunghezza L finita e positiva, porta una corrente continua I>0 mantenuta dal circuito. Il tratto è interamente immerso in un campo esterno uniforme di modulo B=1 T ed è perpendicolare a B. Si cerca soltanto il modulo F della forza magnetica sul tratto, non la risultante con eventuali altre forze. Per i dati numerici L si esprime in cm e F in mN. F e L sono noti. Quale relazione isola I usando unità coerenti per tutte le grandezze?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "I = F / (B L)",
+          "I = F L / B",
+          "I = B L / F",
+          "I = F / B",
+          "I = F / (B L²)"
+        ],
+        "value": "I = F / (B L)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "F=BIL contiene I moltiplicata per BL. Divido entrambi i membri per il prodotto positivo BL: I=F/(BL), con unità ampere. Se si usano i numeri in mN e cm, si deve prima convertire oppure dividere il numero F per dieci volte il numero L."
+        },
+        {
+          "type": "formula",
+          "text": "I=\\frac F{BL}"
+        },
+        {
+          "type": "formula",
+          "text": " [I]=\\mathrm A"
+        },
+        {
+          "type": "text",
+          "text": "FL/B ha unità A·m², BL/F ha A⁻¹ e F/B ha A·m. Il quadrato di L aggiunge un fattore inverso di lunghezza. Queste espressioni non isolano una corrente."
+        }
+      ],
+      "hints": [
+        "Mantieni B e L nel denominatore dell’inversa.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "FL/B ha unità A·m², BL/F ha A⁻¹ e F/B ha A·m. Il quadrato di L aggiunge un fattore inverso di lunghezza. Queste espressioni non isolano una corrente.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Prodotto vettoriale e forza sul tratto immerso",
+        "Conversioni centimetri e millinewton",
+        "Inverse, medie e display continui",
+        "Vincolo fra preparazioni e ramo positivo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-force-current-wire-10",
+      "kind": "question",
+      "course": "C4",
+      "section": "Forza magnetica su un tratto percorso da corrente",
+      "order": 23010,
+      "title": "Due fattori sullo stesso prodotto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "force-current-wire",
+      "difficulty": 2,
+      "prompt": "Un tratto rettilineo di filo, di lunghezza L finita e positiva, porta una corrente continua I>0 mantenuta dal circuito. Il tratto è interamente immerso in un campo esterno uniforme di modulo B=1 T ed è perpendicolare a B. Si cerca soltanto il modulo F della forza magnetica sul tratto, non la risultante con eventuali altre forze. Per i dati numerici L si esprime in cm e F in mN. Fra prove B usa I_B=κ₁I_A e L_B=κ₂L_A, con fattori positivi. Campo e angolo restano uguali. Quanto vale F_B/F_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ κ₂",
+          "κ₁ / κ₂",
+          "κ₂ / κ₁",
+          "κ₁² κ₂",
+          "κ₁ + κ₂"
+        ],
+        "value": "κ₁ κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Inserisco nella legge entrambi i nuovi dati: F_B=B(κ₁I_A)(κ₂L_A). Dividendo per F_A=B I_A L_A si cancellano i dati positivi comuni e resta κ₁κ₂. I due fattori descrivono preparazioni, non un allungamento dinamico obbligato del medesimo filo."
+        },
+        {
+          "type": "formula",
+          "text": "F_B=B(\\kappa_1I_A)(\\kappa_2L_A)"
+        },
+        {
+          "type": "formula",
+          "text": " F_B/F_A=\\kappa_1\\kappa_2"
+        },
+        {
+          "type": "text",
+          "text": "I quozienti invertono una dipendenza diretta. Il quadrato di κ₁ introduce una legge diversa; la somma darebbe due anche per due prove identiche, con entrambi i fattori unitari."
+        }
+      ],
+      "hints": [
+        "Controlla il limite κ₁=κ₂=1.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "I quozienti invertono una dipendenza diretta. Il quadrato di κ₁ introduce una legge diversa; la somma darebbe due anche per due prove identiche, con entrambi i fattori unitari.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Prodotto vettoriale e forza sul tratto immerso",
+        "Conversioni centimetri e millinewton",
+        "Inverse, medie e display continui",
+        "Vincolo fra preparazioni e ramo positivo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-force-current-wire-11",
+      "kind": "question",
+      "course": "C4",
+      "section": "Forza magnetica su un tratto percorso da corrente",
+      "order": 23011,
+      "title": "La corrente cala ma il tratto aumenta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "force-current-wire",
+      "difficulty": 2,
+      "prompt": "Un tratto rettilineo di filo, di lunghezza L finita e positiva, porta una corrente continua I>0 mantenuta dal circuito. Il tratto è interamente immerso in un campo esterno uniforme di modulo B=1 T ed è perpendicolare a B. Si cerca soltanto il modulo F della forza magnetica sul tratto, non la risultante con eventuali altre forze. Per i dati numerici L si esprime in cm e F in mN. A ha I=2 A e L=3 cm. B ha I=1 A e L=4 cm. Quanto vale F_B/F_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2/3",
+          "3/2",
+          "1/2",
+          "4/3",
+          "1"
+        ],
+        "value": "2/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A produce 60 mN; B produce 10·1·4=40 mN. Il rapporto è 40/60=2/3. La lunghezza maggiore compensa solo in parte il dimezzamento della corrente."
+        },
+        {
+          "type": "formula",
+          "text": "F_A=60\\,\\mathrm{mN}"
+        },
+        {
+          "type": "formula",
+          "text": " F_B=40\\,\\mathrm{mN}"
+        },
+        {
+          "type": "formula",
+          "text": " F_B/F_A=\\frac23"
+        },
+        {
+          "type": "text",
+          "text": "3/2 è il reciproco. Mezzo considera solo I, 4/3 solo L, mentre uno suppone una compensazione esatta che i prodotti non confermano."
+        }
+      ],
+      "hints": [
+        "Calcola entrambe le forze prima del rapporto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "3/2 è il reciproco. Mezzo considera solo I, 4/3 solo L, mentre uno suppone una compensazione esatta che i prodotti non confermano.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Prodotto vettoriale e forza sul tratto immerso",
+        "Conversioni centimetri e millinewton",
+        "Inverse, medie e display continui",
+        "Vincolo fra preparazioni e ramo positivo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-force-current-wire-12",
+      "kind": "question",
+      "course": "C4",
+      "section": "Forza magnetica su un tratto percorso da corrente",
+      "order": 23012,
+      "title": "Media delle due forze mantenute",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "force-current-wire",
+      "difficulty": 2,
+      "prompt": "Un tratto rettilineo di filo, di lunghezza L finita e positiva, porta una corrente continua I>0 mantenuta dal circuito. Il tratto è interamente immerso in un campo esterno uniforme di modulo B=1 T ed è perpendicolare a B. Si cerca soltanto il modulo F della forza magnetica sul tratto, non la risultante con eventuali altre forze. Per i dati numerici L si esprime in cm e F in mN. Si mediano con uguale peso le letture di A: I=2 A,L=3 cm e B: I=1 A,L=4 cm. Qual è la media di F?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "50 mN",
+          "105/2 mN",
+          "100 mN",
+          "10 mN",
+          "0 mN"
+        ],
+        "value": "50 mN"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La media delle uscite è (60+40)/2=50 mN. Ai dati medi I=3/2 A e L=7/2 cm la legge darebbe 10·(3/2)·(7/2)=105/2 mN. La differenza è −5/2 mN: un prodotto di ingressi variabili non commuta in generale con la media."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/1a9af512b7c17b3e1426b25b627742424349ac97117306a82c1d4b6dd95628e2",
+          "text": "Le barre delle due forze 60 e 40 mN e della loro media 50 mN condividono origine e scala. Il grafico seguente mantiene invece L=3 cm: non descrive la prova B con L=4 cm."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline F=50\\,\\mathrm{mN}"
+        },
+        {
+          "type": "formula",
+          "text": " F_{\\rm dati\\ medi}=\\frac{105}{2}\\,\\mathrm{mN}"
+        },
+        {
+          "type": "formula",
+          "text": " 50-\\frac{105}{2}=-\\frac52"
+        },
+        {
+          "type": "text",
+          "text": "105/2 usa gli ingressi medi; cento somma senza dimezzare; dieci è la semidifferenza. Zero non è una media di questi moduli positivi e non si chiede una somma vettoriale."
+        }
+      ],
+      "hints": [
+        "La statistica richiesta riguarda due uscite già calcolate.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "105/2 usa gli ingressi medi; cento somma senza dimezzare; dieci è la semidifferenza. Zero non è una media di questi moduli positivi e non si chiede una somma vettoriale.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Prodotto vettoriale e forza sul tratto immerso",
+        "Conversioni centimetri e millinewton",
+        "Inverse, medie e display continui",
+        "Vincolo fra preparazioni e ramo positivo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-force-current-wire-13",
+      "kind": "question",
+      "course": "C4",
+      "section": "Forza magnetica su un tratto percorso da corrente",
+      "order": 23013,
+      "title": "La lunghezza per un bersaglio di forza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "force-current-wire",
+      "difficulty": 3,
+      "prompt": "Un tratto rettilineo di filo, di lunghezza L finita e positiva, porta una corrente continua I>0 mantenuta dal circuito. Il tratto è interamente immerso in un campo esterno uniforme di modulo B=1 T ed è perpendicolare a B. Si cerca soltanto il modulo F della forza magnetica sul tratto, non la risultante con eventuali altre forze. Per i dati numerici L si esprime in cm e F in mN. A ha I_A=2 A,L_A=3 cm. B usa I_B=1 A e deve dare F_B=(2/3)F_A. Quanto vale L_B/L_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4/3",
+          "3/4",
+          "2/3",
+          "1/2",
+          "2"
+        ],
+        "value": "4/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è 40 mN. Con una corrente da 1 A servono 4 cm di filo immerso, perché la relazione numerica è 40=10·1·L_B[cm]. Il rapporto cercato è dunque 4/3, distinto dal rapporto delle forze."
+        },
+        {
+          "type": "formula",
+          "text": "F_B=40\\,\\mathrm{mN}"
+        },
+        {
+          "type": "formula",
+          "text": " L_B=4\\,\\mathrm{cm}"
+        },
+        {
+          "type": "formula",
+          "text": " L_B/L_A=\\frac43"
+        },
+        {
+          "type": "text",
+          "text": "3/4 inverte il confronto. Due terzi copia il bersaglio della forza e mezzo segue solo la corrente. Due darebbe L_B=6 cm e F_B=60 mN, non quaranta."
+        }
+      ],
+      "hints": [
+        "Traduci prima il bersaglio in mN, poi usa l’inversa.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "3/4 inverte il confronto. Due terzi copia il bersaglio della forza e mezzo segue solo la corrente. Due darebbe L_B=6 cm e F_B=60 mN, non quaranta.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Prodotto vettoriale e forza sul tratto immerso",
+        "Conversioni centimetri e millinewton",
+        "Inverse, medie e display continui",
+        "Vincolo fra preparazioni e ramo positivo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-force-current-wire-14",
+      "kind": "question",
+      "course": "C4",
+      "section": "Forza magnetica su un tratto percorso da corrente",
+      "order": 23014,
+      "title": "Dal display alla corrente",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "force-current-wire",
+      "difficulty": 3,
+      "prompt": "Un tratto rettilineo di filo, di lunghezza L finita e positiva, porta una corrente continua I>0 mantenuta dal circuito. Il tratto è interamente immerso in un campo esterno uniforme di modulo B=1 T ed è perpendicolare a B. Si cerca soltanto il modulo F della forza magnetica sul tratto, non la risultante con eventuali altre forze. Per i dati numerici L si esprime in cm e F in mN. Un display continuo adimensionale legge D=a_cal F, con a_cal>0 e senza offset. A: I=2 A,L=3 cm,D=180. B: L=4 cm,D=120. Quanto vale I_B in A?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "A",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha F_A=60 mN, quindi il guadagno vale 3 per mN. D_B=120 indica F_B=40 mN. Con L_B=4 cm, l’inversa numerica dà I_B=40/(10·4)=1 A. Il display non misura direttamente la corrente."
+        },
+        {
+          "type": "formula",
+          "text": "a_{\\rm cal}=3\\,(\\mathrm{mN})^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " F_B=40\\,\\mathrm{mN}"
+        },
+        {
+          "type": "formula",
+          "text": " I_B=1\\,\\mathrm A"
+        },
+        {
+          "type": "text",
+          "text": "Tre A tratterebbe D=120 come 120 mN. Quaranta A copia il numero della forza decodificata; 1/4 A darebbe 10 mN e D=30, non 120."
+        }
+      ],
+      "hints": [
+        "Decodifica F prima di dividere per BL.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre A tratterebbe D=120 come 120 mN. Quaranta A copia il numero della forza decodificata; 1/4 A darebbe 10 mN e D=30, non 120.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Prodotto vettoriale e forza sul tratto immerso",
+        "Conversioni centimetri e millinewton",
+        "Inverse, medie e display continui",
+        "Vincolo fra preparazioni e ramo positivo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-force-current-wire-15",
+      "kind": "question",
+      "course": "C4",
+      "section": "Forza magnetica su un tratto percorso da corrente",
+      "order": 23015,
+      "title": "Offset strumentale e corrente mantenuta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "force-current-wire",
+      "difficulty": 3,
+      "prompt": "Un tratto rettilineo di filo, di lunghezza L finita e positiva, porta una corrente continua I>0 mantenuta dal circuito. Il tratto è interamente immerso in un campo esterno uniforme di modulo B=1 T ed è perpendicolare a B. Si cerca soltanto il modulo F della forza magnetica sul tratto, non la risultante con eventuali altre forze. Per i dati numerici L si esprime in cm e F in mN. Il display continuo adimensionale segue D=a_cal F+b_cal. A: I=2 A,L=3 cm,D=121. B: I=1 A,L=4 cm,D=81. C: L=5 cm,D=401. Quanto vale I_C in A?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "A",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le forze dei riferimenti sono 60 e 40 mN. Il guadagno è (121−81)/(60−40)=2 per mN e l’offset è uno. La lettura 401 restituisce F_C=(401−1)/2=200 mN. La corrente vale 200/(10·5)=4 A."
+        },
+        {
+          "type": "formula",
+          "text": "a_{\\rm cal}=2\\,(\\mathrm{mN})^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " b_{\\rm cal}=1"
+        },
+        {
+          "type": "formula",
+          "text": " F_C=200\\,\\mathrm{mN}"
+        },
+        {
+          "type": "formula",
+          "text": " I_C=4\\,\\mathrm A"
+        },
+        {
+          "type": "text",
+          "text": "401/100 A omette l’offset e predirebbe D=402. Otto A sottrae b ma non divide per il guadagno. Duecento A copia il numero della forza senza dividere per il fattore fisico BL."
+        }
+      ],
+      "hints": [
+        "Sottrai l’offset prima della divisione per il guadagno.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "401/100 A omette l’offset e predirebbe D=402. Otto A sottrae b ma non divide per il guadagno. Duecento A copia il numero della forza senza dividere per il fattore fisico BL.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Prodotto vettoriale e forza sul tratto immerso",
+        "Conversioni centimetri e millinewton",
+        "Inverse, medie e display continui",
+        "Vincolo fra preparazioni e ramo positivo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-force-current-wire-16",
+      "kind": "question",
+      "course": "C4",
+      "section": "Forza magnetica su un tratto percorso da corrente",
+      "order": 23016,
+      "title": "Un vincolo fra prove seleziona la lunghezza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C4-L01",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "force-current-wire",
+      "difficulty": 3,
+      "prompt": "Un tratto rettilineo di filo, di lunghezza L finita e positiva, porta una corrente continua I>0 mantenuta dal circuito. Il tratto è interamente immerso in un campo esterno uniforme di modulo B=1 T ed è perpendicolare a B. Si cerca soltanto il modulo F della forza magnetica sul tratto, non la risultante con eventuali altre forze. Per i dati numerici L si esprime in cm e F in mN. Fra preparazioni si impone I=[(2/3) A/cm]L. Si misura F=60 mN. Quanto vale L?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3 cm",
+          "−3 cm",
+          "9 cm",
+          "2 cm",
+          "Infinite lunghezze positive"
+        ],
+        "value": "3 cm"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Pongo λ=L/(1 cm)>0. Il vincolo dà I/(1 A)=(2/3)λ e la forza numerica diventa (20/3)λ². Sessanta mN impone λ²=60·3/20=9: il ramo positivo è λ=3. La lunghezza è 3 cm e la corrente 2 A; non è una legge di variazione temporale del filo."
+        },
+        {
+          "type": "formula",
+          "text": "\\lambda=\\frac{L}{1\\,\\mathrm{cm}}"
+        },
+        {
+          "type": "formula",
+          "text": " \\lambda^2=9"
+        },
+        {
+          "type": "formula",
+          "text": " L=3\\,\\mathrm{cm}"
+        },
+        {
+          "type": "formula",
+          "text": " I=2\\,\\mathrm A"
+        },
+        {
+          "type": "text",
+          "text": "−3 è la radice algebrica esclusa dalla lunghezza positiva; nove copia il quadrato. Due cm darebbe I=4/3 A e F=80/3 mN. La misura non è ridondante: fissa la scala."
+        }
+      ],
+      "hints": [
+        "Scegli il ramo positivo solo dopo aver risolto il quadrato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "−3 è la radice algebrica esclusa dalla lunghezza positiva; nove copia il quadrato. Due cm darebbe I=4/3 A e F=80/3 mN. La misura non è ridondante: fissa la scala.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Prodotto vettoriale e forza sul tratto immerso",
+        "Conversioni centimetri e millinewton",
+        "Inverse, medie e display continui",
+        "Vincolo fra preparazioni e ramo positivo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "1a9af512b7c17b3e1426b25b627742424349ac97117306a82c1d4b6dd95628e2",
+      "name": "force-current-wire-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTQ4MCIgdmlld0JveD0iMCAwIDY0MCAxNDgwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+Q29ycmVudGUsIHRyYXR0byBpbW1lcnNvIGUgZm9yemE8L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5UcmUgcGFubmVsbGk6IGRpcmV6aW9uaSBzY2hlbWF0aWNoZSBwZXIgdW4gZmlsbyBvcml6em9udGFsZSBjb24gY29ycmVudGUgYSBkZXN0cmEgZSBjYW1wbyBlbnRyYW50ZTsgYmFycmUgZGVsbGUgZm9yemUgc2Vzc2FudGEgZSBxdWFyYW50YSBtaWxsaW5ld3RvbiBlIGxvcm8gbWVkaWEgY2lucXVhbnRhOyBncmFmaWNvIGRlbGxhIGZvcnphIGNvbnRybyBjb3JyZW50ZSBhIGx1bmdoZXp6YSB0cmUgY2VudGltZXRyaSBmaXNzYXRhLjwvZGVzYz48ZGVmcz48bWFya2VyIGlkPSJhcnJvdyIgbWFya2VyV2lkdGg9IjgiIG1hcmtlckhlaWdodD0iOCIgcmVmWD0iNyIgcmVmWT0iNCIgb3JpZW50PSJhdXRvIj48cGF0aCBkPSJNMCAwTDggNEwwIDhaIiBmaWxsPSIjNTI2NjdhIi8+PC9tYXJrZXI+PC9kZWZzPjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMTQ4MCIgZmlsbD0iI2Y3ZmFmYyIvPjxnIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZmlsbD0iIzIwMzU0ZCI+PHRleHQgeD0iMzIiIHk9IjQyIiBmb250LXNpemU9IjI0Ij5Db3JyZW50ZSwgdHJhdHRvIGltbWVyc28gZSBmb3J6YTwvdGV4dD48dGV4dCB4PSIzMiIgeT0iOTIiIGZvbnQtc2l6ZT0iMjIiPjEgwrcgQiA9IDEgVCwgcGVycGVuZGljb2xhcmUgYWwgZmlsbzwvdGV4dD48bGluZSB4MT0iMjAwIiB5MT0iMzAwIiB4Mj0iNDYwIiB5Mj0iMzAwIiBzdHJva2U9IiMzMTZiOWIiIHN0cm9rZS13aWR0aD0iMTQiLz48bGluZSB4MT0iMjIwIiB5MT0iMjQwIiB4Mj0iNDUwIiB5Mj0iMjQwIiBzdHJva2U9IiM1MjY2N2EiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48dGV4dCB4PSI0MzAiIHk9IjIxOCIgZm9udC1zaXplPSIxOSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+SSA9IDIgQTwvdGV4dD48bGluZSB4MT0iMzMwIiB5MT0iMzAwIiB4Mj0iMzMwIiB5Mj0iMTY1IiBzdHJva2U9IiM1MjY2N2EiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48dGV4dCB4PSIzNTAiIHk9IjE4NSIgZm9udC1zaXplPSIxOSI+RiA9IDYwIG1OPC90ZXh0PjxjaXJjbGUgY3g9IjEwMCIgY3k9IjMwMCIgcj0iMTgiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzUyNjY3YSIgc3Ryb2tlLXdpZHRoPSIyIi8+PHBhdGggZD0iTTg4IDI4OEwxMTIgMzEyTTg4IDMxMkwxMTIgMjg4IiBzdHJva2U9IiM1MjY2N2EiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIvPjx0ZXh0IHg9IjQ1IiB5PSIzNDUiIGZvbnQtc2l6ZT0iMTgiPkIgZW50cmFudGU8L3RleHQ+PHBhdGggZD0iTTIwMCAzNDVWMzY1TTQ2MCAzNDVWMzY1TTIwMCAzNTVINDYwIiBzdHJva2U9IiM1MjY2N2EiIHN0cm9rZS13aWR0aD0iMiIgZmlsbD0ibm9uZSIvPjx0ZXh0IHg9IjMzMCIgeT0iMzk1IiBmb250LXNpemU9IjE5IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5MID0gMyBjbTwvdGV4dD48dGV4dCB4PSIzMiIgeT0iNDU1IiBmb250LXNpemU9IjE4Ij5MYSBsdW5naGV6emEgb3JpZW50YXRhIHNlZ3VlIGxhIGNvcnJlbnRlLjwvdGV4dD48dGV4dCB4PSIzMiIgeT0iNDg1IiBmb250LXNpemU9IjE4Ij5GcmVjY2Ugc2NoZW1hdGljaGU6IGdyYW5kZXp6ZSBjb24gdW5pdMOgIGRpdmVyc2UuPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSI1NTAiIGZvbnQtc2l6ZT0iMjIiPjIgwrcgRHVlIGxldHR1cmUgZSBsYSBsb3JvIG1lZGlhPC90ZXh0PjxsaW5lIHgxPSIxNDUiIHkxPSI1NzUiIHgyPSIxNDUiIHkyPSI4MjUiIHN0cm9rZT0iIzUyNjY3YSIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iMTI1IiB5PSI2MTciIGZvbnQtc2l6ZT0iMTkiIHRleHQtYW5jaG9yPSJlbmQiPkE8L3RleHQ+PHJlY3QgeD0iMTUwIiB5PSI2MDAiIHdpZHRoPSIzMDAiIGhlaWdodD0iMjciIHJ4PSIzIiBmaWxsPSIjMzE2YjliIi8+PHRleHQgeD0iNDYwIiB5PSI2MjEiIGZvbnQtc2l6ZT0iMTkiPjYwIG1OPC90ZXh0Pjx0ZXh0IHg9IjEyNSIgeT0iNzAyIiBmb250LXNpemU9IjE5IiB0ZXh0LWFuY2hvcj0iZW5kIj5CPC90ZXh0PjxyZWN0IHg9IjE1MCIgeT0iNjg1IiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjI3IiByeD0iMyIgZmlsbD0iI2E3NmQyMCIvPjx0ZXh0IHg9IjM2MCIgeT0iNzA2IiBmb250LXNpemU9IjE5Ij40MCBtTjwvdGV4dD48dGV4dCB4PSIxMjUiIHk9Ijc4NyIgZm9udC1zaXplPSIxOSIgdGV4dC1hbmNob3I9ImVuZCI+bWVkaWE8L3RleHQ+PHJlY3QgeD0iMTUwIiB5PSI3NzAiIHdpZHRoPSIyNTAiIGhlaWdodD0iMjciIHJ4PSIzIiBmaWxsPSIjNDg4MjY1Ii8+PHRleHQgeD0iNDEwIiB5PSI3OTEiIGZvbnQtc2l6ZT0iMTkiPjUwIG1OPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSI4NzUiIGZvbnQtc2l6ZT0iMTgiPkE6IEkgPSAyIEEsIEwgPSAzIGNtIMK3IEI6IEkgPSAxIEEsIEwgPSA0IGNtPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSI5NTAiIGZvbnQtc2l6ZT0iMjIiPjMgwrcgU29sbyBMID0gMyBjbSBlIEIgPSAxIFQ8L3RleHQ+PGxpbmUgeDE9IjE0NSIgeTE9IjEzMDAiIHgyPSI1MjAiIHkyPSIxMzAwIiBzdHJva2U9IiM1MjY2N2EiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48bGluZSB4MT0iMTUwIiB5MT0iMTMwNSIgeDI9IjE1MCIgeTI9IjEwNDAiIHN0cm9rZT0iIzUyNjY3YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjxsaW5lIHgxPSIxNTAiIHkxPSIxMzAwIiB4Mj0iNDMwIiB5Mj0iMTEyMCIgc3Ryb2tlPSIjMzE2YjliIiBzdHJva2Utd2lkdGg9IjIiLz48Y2lyY2xlIGN4PSIxNTAiIGN5PSIxMzAwIiByPSI0IiBmaWxsPSIjZjdmYWZjIiBzdHJva2U9IiMzMTZiOWIiIHN0cm9rZS13aWR0aD0iMiIvPjxjaXJjbGUgY3g9IjQzMCIgY3k9IjExMjAiIHI9IjQiIGZpbGw9IiMzMTZiOWIiLz48dGV4dCB4PSIxMjgiIHk9IjEzMjUiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJlbmQiPjA8L3RleHQ+PHRleHQgeD0iNDMwIiB5PSIxMzMwIiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj4yPC90ZXh0Pjx0ZXh0IHg9IjEyOCIgeT0iMTEyNiIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9ImVuZCI+NjA8L3RleHQ+PHRleHQgeD0iNTM1IiB5PSIxMzEwIiBmb250LXNpemU9IjE4Ij5JIChBKTwvdGV4dD48dGV4dCB4PSI5NSIgeT0iMTAyNSIgZm9udC1zaXplPSIxOCI+RiAobU4pPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSIxMzgwIiBmb250LXNpemU9IjE4Ij5UcmF0dG8gbW9zdHJhdG86IDAgJmx0OyBJIOKJpCAyIEEuPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSIxNDIwIiBmb250LXNpemU9IjE4Ij5CYXJyZSBlIGdyYWZpY28gaGFubm8gc2NhbGUgaW5kaXBlbmRlbnRpLjwvdGV4dD48L2c+PC9zdmc+Cg=="
+    }
+  ]
+}
