@@ -100,7 +100,7 @@ TASKS=[('Somma nello stesso punto',
   'contropropaganti.',
   'Esegui la somma delle ampiezze prima di elevare al quadrato.'),
  ('Quando la relazione di fase non resta ferma',
-  'Due sorgenti hanno fase relativa che varia casualmente su tutti i valori di un giro durante il tempo di media. '
+  'Due sorgenti hanno fase relativa che varia casualmente con distribuzione uniforme su un giro durante il tempo di media. '
   'Perché non rimane una figura stabile di massimi e minimi d’interferenza?',
   ['Le sorgenti devono avere ampiezza nulla',
    'La media temporale rende uguali tutte le frequenze',

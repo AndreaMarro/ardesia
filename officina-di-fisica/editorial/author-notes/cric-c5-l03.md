@@ -106,7 +106,7 @@ Famiglia: `massimo-doppio-e-intensita`; difficoltà 2; versione 2/base 1.
 
 ## C5-Q028
 
-Compito: Due sorgenti hanno fase relativa che varia casualmente su tutti i valori di un giro durante il tempo di media. Perché non rimane una figura stabile di massimi e minimi d’interferenza?
+Compito: Due sorgenti hanno fase relativa che varia casualmente con distribuzione uniforme su un giro durante il tempo di media. Perché non rimane una figura stabile di massimi e minimi d’interferenza?
 
 Procedimento: Il termine incrociato della somma dipende dalla fase relativa. Se questa percorre casualmente il giro di fase, un punto non conserva la stessa condizione di rinforzo o cancellazione. La lunga media non mantiene le frange stabili di una fase relativa fissata. Le singole sorgenti possono continuare a emettere con ampiezza non nulla.
 
