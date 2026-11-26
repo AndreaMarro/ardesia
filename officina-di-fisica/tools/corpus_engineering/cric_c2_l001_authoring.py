@@ -36,7 +36,7 @@ TASKS=[
 ('Stessa forza, area tripla','Una forza normale costante produce inizialmente una pressione media di 18 kPa su 4 cm². La stessa forza viene distribuita su 12 cm². Qual è la nuova pressione media?',6,
  'A forza normale fissata il prodotto pA resta uguale. L’area diventa tre volte maggiore: 12/4=3. La pressione quindi si divide per tre, passando da 18 a 6 kPa. Le aree possono restare in cm² nel rapporto, perché la stessa unità si cancella.',
  r'p_1A_1=p_2A_2\qquad p_2=p_1\frac{A_1}{A_2}\qquad p_2=18\frac4{12}\,\mathrm{kPa}\qquad p_2=6\,\mathrm{kPa}',
- '54 kPa applica il rapporto diretto delle aree e triplicherebbe anche la forza risultante. 18 kPa ignora il cambiamento dell’area. 2 kPa divide ancora per tre senza motivo. 72 copia il prodotto numerico iniziale pA e non lo divide per la nuova area.',
+ '54 kPa applica il rapporto diretto delle aree; con l’area tripla produrrebbe una forza nove volte maggiore. 18 kPa ignora il cambiamento dell’area. 2 kPa divide ancora per tre senza motivo. 72 copia il prodotto numerico iniziale pA e non lo divide per la nuova area.',
  'Mantieni costante la forza, non la pressione: l’area cresce di un fattore tre.'),
 ('La pendenza massa-volume','Per un liquido omogeneo nello stesso stato si traccia la massa del solo liquido in funzione del volume dosato. Che cosa misura la pendenza della retta?',['La densità del liquido','Il volume di ogni porzione','La pressione atmosferica','L’inverso della densità','La massa del contenitore'],
  'Il liquido omogeneo nello stesso stato segue m=ρV. Nel grafico con m in ordinata e V in ascissa la pendenza è Δm/ΔV, dunque ρ. La massa del contenitore è esclusa dal dato: la retta ideale passa per l’origine. Le unità della pendenza sono massa per volume.',

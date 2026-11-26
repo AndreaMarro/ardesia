@@ -98,7 +98,7 @@ Procedimento: A forza normale fissata il prodotto pA resta uguale. L’area dive
 
 Passaggi esatti: `p_1A_1=p_2A_2\qquad p_2=p_1\frac{A_1}{A_2}\qquad p_2=18\frac4{12}\,\mathrm{kPa}\qquad p_2=6\,\mathrm{kPa}`.
 
-Distrattori: 54 kPa applica il rapporto diretto delle aree e triplicherebbe anche la forza risultante. 18 kPa ignora il cambiamento dell’area. 2 kPa divide ancora per tre senza motivo. 72 copia il prodotto numerico iniziale pA e non lo divide per la nuova area.
+Distrattori: 54 kPa applica il rapporto diretto delle aree; con l’area tripla produrrebbe una forza nove volte maggiore. 18 kPa ignora il cambiamento dell’area. 2 kPa divide ancora per tre senza motivo. 72 copia il prodotto numerico iniziale pA e non lo divide per la nuova area.
 
 Aiuto: Mantieni costante la forza, non la pressione: l’area cresce di un fattore tre.
 
@@ -145,3 +145,5 @@ Distrattori: Il rapporto con la componente tangenziale è lo sforzo di taglio. L
 Aiuto: Scomponi la forza rispetto alla faccia e individua la componente perpendicolare.
 
 Famiglia: `una-forza-parallela-alla-faccia`; difficoltà 2; versione 2/base 1.
+
+Rilettura d’autore dopo rilievi distinti B: il distrattore 54 kPa insieme all’area tripla produrrebbe una forza nove volte maggiore. Il quoziente nella figura ora mostra N e m² espliciti. Tutte le risposte e formule dei blocchi sono identiche; cambiano il feedback di Q007 e i riferimenti all’asset di Q002/Q007/Q008. Vecchia edizione e immagine realmente riuscita conservate, nuovo native reale letto; firma scientifica distinta ancora necessaria.
