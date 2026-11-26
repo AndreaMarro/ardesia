@@ -1,0 +1,385 @@
+{
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "C3-Q091",
+      "sourceSha256": "b64160837b1eb3cd611b7895ba24ec2d8b7e8357abdd7d962d8e70d2dc61f4d1",
+      "candidateSha256": "381e24cfbf1057778355e400c81b79e5d6b2b586a902e853619482343e3bc336",
+      "reviewedSignature": "624bec7f41fe8f020dc9dce19066781d2723d5ca18d0fc0141632ecbf010d66f",
+      "assetChecksums": {
+        "cric-c3-l10-progressive.svg": "ae2e0055b17d75fa481b16139a8f289592f78a8204b75f0a3ad71b9d5a4e3460"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "-2",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2",
+        "[temperature]": "-1"
+      },
+      "manualArithmetic": "Derivazione nella primaria congelata PRIMA delle chiavi: Per la sorgente ideale a T=320 K il calore ricevuto è −640 J. La variazione di entropia è ΔS=Q_sorgente/T=−2 J/K. Il segno negativo del singolo serbatoio non viola il principio sull’intero sistema isolato.",
+      "physicalAssumptions": "Serbatoio ideale isoterma 320 K; calore riferito al serbatoio−640 J, non al corpo ricevente.",
+      "distractors": "Il modulo +2 J/K perde il verso. Temperatura costante non implica entropia costante; −640 J è energia.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione nella primaria congelata PRIMA delle chiavi: Per la sorgente ideale a T=320 K il calore ricevuto è −640 J. La variazione di entropia è ΔS=Q_sorgente/T=−2 J/K. Il segno negativo del singolo serbatoio non viola il principio sull’intero sistema isolato.",
+      "scientificAssetReview": "Figura candidata letta integralmente XML e in nuovo native indipendente completo640×altezza, processo reale0; proporzioni, unità, origini e segni verificati separatamente per ciascun pannello. Nove SVG originali fonte letti integralmente XML. Tre fix testuali non cambiano alcun asset; nessun ritag di UIprodotto.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c3_051_100_review_models.py": "bf8b18d51ea3c67369de5b7eba54d5e94819ce2a3e797f55e48895843dfdbcbf",
+        "cric_c3_thermodynamics_review_common.py": "2985fa1eacffcae96f821dae51bdc6fd66992472b262fd7ad65dc877a51581ac",
+        "cric_c3_thermodynamics_review_evidence.py": "0dac7c643dc1c95d31cb19f7ca7d21c69ec5b3352e0905ff08c461bd950d1ae2",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C3-Q092",
+      "sourceSha256": "31b7b91d7bf5a9f61067bd93159cc055a218188732636933073db761a266a56a",
+      "candidateSha256": "4d6799c6122bc6a0d7e02f20dce13433117cc75dc9cd2bf17bc90b30d685e811",
+      "reviewedSignature": "82ac0024782af15d4650d5ad90f8bdc29de6f66640fe4f6c95bdd8c2003278a1",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "ΔS del fluido è zero, mentre l’entropia dell’insieme aumenta",
+      "dimension": {},
+      "manualArithmetic": "Derivazione nella primaria congelata PRIMA delle chiavi: Il fluido torna allo stesso stato: ΔS_fluido=0 anche se il ciclo è irreversibile. La produzione di entropia è positiva per irreversibilità effettive; l’entropia totale di fluido più ambiente aumenta. Non si confonde una produzione interna con la variazione della funzione di stato sul ciclo.",
+      "physicalAssumptions": "Fluido ciclico, insieme completo isolato con irreversibilità; variazione del fluido e produzione totale distinte.",
+      "distractors": "L’entropia del solo fluido non dà il bilancio dell’insieme. La produzione positiva può essere trasferita all’ambiente senza accumularsi nel fluido.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione nella primaria congelata PRIMA delle chiavi: Il fluido torna allo stesso stato: ΔS_fluido=0 anche se il ciclo è irreversibile. La produzione di entropia è positiva per irreversibilità effettive; l’entropia totale di fluido più ambiente aumenta. Non si confonde una produzione interna con la variazione della funzione di stato sul ciclo.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c3_051_100_review_models.py": "bf8b18d51ea3c67369de5b7eba54d5e94819ce2a3e797f55e48895843dfdbcbf",
+        "cric_c3_thermodynamics_review_common.py": "2985fa1eacffcae96f821dae51bdc6fd66992472b262fd7ad65dc877a51581ac",
+        "cric_c3_thermodynamics_review_evidence.py": "0dac7c643dc1c95d31cb19f7ca7d21c69ec5b3352e0905ff08c461bd950d1ae2",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C3-Q093",
+      "sourceSha256": "096318d610593e5c6be3cbead48867b501f1deef0ee4916f05bb6fe1c4708b7d",
+      "candidateSha256": "c13a31840cfb27bd4152a9efb1e4486cca25f21bba191fd92de835a424110dd1",
+      "reviewedSignature": "50a16d9ff8563effedf8abea9909e53538fcb51c7658d2203274e058a8855ed1",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "J/K",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2",
+        "[temperature]": "-1"
+      },
+      "manualArithmetic": "Derivazione nella primaria congelata PRIMA delle chiavi: L’unità SI dell’entropia è J/K, energia divisa per temperatura assoluta. È distinta da J·K e da un numero puro; dimensionalmente M L² T⁻² Θ⁻¹.",
+      "physicalAssumptions": "Definizione termodinamica dS=deltaQrev/T: dimensione energia/temperatura, non energia o potenza.",
+      "distractors": "K/J è il reciproco. J è energia; W/K ha un fattore tempo in più al denominatore; N/K manca di un fattore lunghezza.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione nella primaria congelata PRIMA delle chiavi: L’unità SI dell’entropia è J/K, energia divisa per temperatura assoluta. È distinta da J·K e da un numero puro; dimensionalmente M L² T⁻² Θ⁻¹.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c3_051_100_review_models.py": "bf8b18d51ea3c67369de5b7eba54d5e94819ce2a3e797f55e48895843dfdbcbf",
+        "cric_c3_thermodynamics_review_common.py": "2985fa1eacffcae96f821dae51bdc6fd66992472b262fd7ad65dc877a51581ac",
+        "cric_c3_thermodynamics_review_evidence.py": "0dac7c643dc1c95d31cb19f7ca7d21c69ec5b3352e0905ff08c461bd950d1ae2",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C3-Q094",
+      "sourceSha256": "c331d4dbb21631988e7efdfa1a53104f90d5adc95fccc3797a7a1d353774c937",
+      "candidateSha256": "e6343002aa05aba3ce9e526ab173174805169e2666434120c805f3e099598dff",
+      "reviewedSignature": "55cb6f35f43e9b5d409eb3e3cb5625546a1b6c39d20ee05ffc4c1781c515d544",
+      "assetChecksums": {
+        "cric-c3-l10-progressive.svg": "ae2e0055b17d75fa481b16139a8f289592f78a8204b75f0a3ad71b9d5a4e3460"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2",
+        "[temperature]": "-1"
+      },
+      "manualArithmetic": "Derivazione nella primaria congelata PRIMA delle chiavi: m=10 g=1/100 kg e L_f=100 kJ/kg=100000 J/kg. Alla fusione reversibile isoterma il calore è mL_f=1000 J. A 250 K la variazione del materiale è +1000/250=+4 J/K. Non aggiungo un riscaldamento sensibile non dato.",
+      "physicalAssumptions": "Massa 0,010 kg, L 100000 J/kg, fusione reversibile isoterma 250 K.",
+      "distractors": "1000 J è energia, non entropia. Zero ignora la fase; 4000 J/K usa 10 kg invece di 10 g; il segno opposto descriverebbe la solidificazione inversa.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione nella primaria congelata PRIMA delle chiavi: m=10 g=1/100 kg e L_f=100 kJ/kg=100000 J/kg. Alla fusione reversibile isoterma il calore è mL_f=1000 J. A 250 K la variazione del materiale è +1000/250=+4 J/K. Non aggiungo un riscaldamento sensibile non dato.",
+      "scientificAssetReview": "Figura candidata letta integralmente XML e in nuovo native indipendente completo640×altezza, processo reale0; proporzioni, unità, origini e segni verificati separatamente per ciascun pannello. Nove SVG originali fonte letti integralmente XML. Tre fix testuali non cambiano alcun asset; nessun ritag di UIprodotto.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c3_051_100_review_models.py": "bf8b18d51ea3c67369de5b7eba54d5e94819ce2a3e797f55e48895843dfdbcbf",
+        "cric_c3_thermodynamics_review_common.py": "2985fa1eacffcae96f821dae51bdc6fd66992472b262fd7ad65dc877a51581ac",
+        "cric_c3_thermodynamics_review_evidence.py": "0dac7c643dc1c95d31cb19f7ca7d21c69ec5b3352e0905ff08c461bd950d1ae2",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C3-Q095",
+      "sourceSha256": "518110dd2bdefe27b685ff9dd316f4c736449cfd5ceab53e97c0dedd33bc4975",
+      "candidateSha256": "1021d2880162c4339fb226f9f088a75a1e70868738c623ad1573c54ba9aa2be7",
+      "reviewedSignature": "955e26d02b254dab8bbd8309b45b5db0a5db38925b0a9608ffc6d04863f5f733",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Integrare δQ_rev/T lungo un cammino reversibile immaginario fra gli stessi stati",
+      "dimension": {},
+      "manualArithmetic": "Derivazione nella primaria congelata PRIMA delle chiavi: L’entropia è funzione di stato. Si può scegliere un percorso reversibile equivalente che colleghi gli stessi stati e calcolare ∫δQ_rev/T. Non si deve usare necessariamente il calore reale del processo rapido diviso per una temperatura scelta; un processo adiabatico irreversibile può avere ΔS>0.",
+      "physicalAssumptions": "Stessi stati di equilibrio dello stesso sistema e modelli noti; cammino reversibile di riferimento distinto dal cammino reale.",
+      "distractors": "Il calore reale diviso per la temperatura iniziale non è l’integrale reversibile. La rapidità non impone ΔS=0 e cambiare gli estremi cambia il problema.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione nella primaria congelata PRIMA delle chiavi: L’entropia è funzione di stato. Si può scegliere un percorso reversibile equivalente che colleghi gli stessi stati e calcolare ∫δQ_rev/T. Non si deve usare necessariamente il calore reale del processo rapido diviso per una temperatura scelta; un processo adiabatico irreversibile può avere ΔS>0.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c3_051_100_review_models.py": "bf8b18d51ea3c67369de5b7eba54d5e94819ce2a3e797f55e48895843dfdbcbf",
+        "cric_c3_thermodynamics_review_common.py": "2985fa1eacffcae96f821dae51bdc6fd66992472b262fd7ad65dc877a51581ac",
+        "cric_c3_thermodynamics_review_evidence.py": "0dac7c643dc1c95d31cb19f7ca7d21c69ec5b3352e0905ff08c461bd950d1ae2",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C3-Q096",
+      "sourceSha256": "849fe799a21329eff5d2ec91540e1df1d9831fbd95081231017ab4a37be7a559",
+      "candidateSha256": "ea00cf1b1bc2b68ddf7a7904ec61ef14044cf4c8ad498f64be71b9c044e638d6",
+      "reviewedSignature": "4d49459802b6146d8c273d04a1fe9243c822b4115f05e9c26bce294d09908dc9",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "log(4)",
+      "dimension": {},
+      "manualArithmetic": "Derivazione nella primaria congelata PRIMA delle chiavi: Per microstati accessibili equiprobabili vale S=k_B lnΩ. Il rapporto è Ω_f/Ω_i=48/12=4, quindi ΔS/k_B=ln 4=2 ln 2. Il risultato si lascia esatto, senza approssimare il logaritmo naturale con un calcolatore.",
+      "physicalAssumptions": "Conteggi interi positivi equiprobabili; logaritmo naturale di un rapporto adimensionale.",
+      "distractors": "ln 36 usa la differenza; ln 60 la somma; quattro omette il logaritmo; −ln 4 scambia gli stati.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione nella primaria congelata PRIMA delle chiavi: Per microstati accessibili equiprobabili vale S=k_B lnΩ. Il rapporto è Ω_f/Ω_i=48/12=4, quindi ΔS/k_B=ln 4=2 ln 2. Il risultato si lascia esatto, senza approssimare il logaritmo naturale con un calcolatore.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c3_051_100_review_models.py": "bf8b18d51ea3c67369de5b7eba54d5e94819ce2a3e797f55e48895843dfdbcbf",
+        "cric_c3_thermodynamics_review_common.py": "2985fa1eacffcae96f821dae51bdc6fd66992472b262fd7ad65dc877a51581ac",
+        "cric_c3_thermodynamics_review_evidence.py": "0dac7c643dc1c95d31cb19f7ca7d21c69ec5b3352e0905ff08c461bd950d1ae2",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C3-Q097",
+      "sourceSha256": "db082d51a114536b8d2b91ac0b8e826afb6ab62786c3137e687070b6cf9187a3",
+      "candidateSha256": "5773fc875a130c002c6eb560b0c4dd281d36e9dac24e8e8a309c0f6aa47e15c0",
+      "reviewedSignature": "088b394a04ec03b69f717d671868648ba5ea108a68fab34afe3014d4d1703751",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Microstato",
+      "dimension": {},
+      "manualArithmetic": "Derivazione nella primaria congelata PRIMA delle chiavi: Una singola configurazione microscopica compatibile con il macrostato è un microstato. Un macrostato descrive proprietà aggregate ed è compatibile con molti microstati; non è il nome della singola configurazione.",
+      "physicalAssumptions": "Una configurazione microscopica individuale, non il suo conteggio o il macrostato.",
+      "distractors": "Il calore non è una configurazione. Macrostato e microstato sono concetti diversi; temperatura e rendimento non specificano una configurazione completa.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione nella primaria congelata PRIMA delle chiavi: Una singola configurazione microscopica compatibile con il macrostato è un microstato. Un macrostato descrive proprietà aggregate ed è compatibile con molti microstati; non è il nome della singola configurazione.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c3_051_100_review_models.py": "bf8b18d51ea3c67369de5b7eba54d5e94819ce2a3e797f55e48895843dfdbcbf",
+        "cric_c3_thermodynamics_review_common.py": "2985fa1eacffcae96f821dae51bdc6fd66992472b262fd7ad65dc877a51581ac",
+        "cric_c3_thermodynamics_review_evidence.py": "0dac7c643dc1c95d31cb19f7ca7d21c69ec5b3352e0905ff08c461bd950d1ae2",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C3-Q098",
+      "sourceSha256": "1b65c1407c7973ddd183c86d8d9f98a0cfe52e0d6b2485e1bb5c596fe692c040",
+      "candidateSha256": "efdd31ab7f92227ea9694efae59c516037125e33e4cc5fe9fa56a53891b6c6d0",
+      "reviewedSignature": "46b026c38edf6eafc58ab5947eb307f6fde1d6b78b9cbd6104840f15494f0b07",
+      "assetChecksums": {
+        "cric-c3-l10-progressive.svg": "ae2e0055b17d75fa481b16139a8f289592f78a8204b75f0a3ad71b9d5a4e3460"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1/20",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2",
+        "[temperature]": "-1"
+      },
+      "manualArithmetic": "Derivazione nella primaria congelata PRIMA delle chiavi: La sorgente calda cambia entropia di −90/360=−1/4 J/K, quella fredda di +90/300=3/10 J/K. Per il trasferimento diretto senza altri scambi la produzione totale è 3/10−1/4=1/20 J/K=0,05 J/K, positiva. Non si sommano i due moduli positivi.",
+      "physicalAssumptions": "Due serbatoi ideali 360/300 K,90 J trasferiti e insieme isolato senza altri effetti; produzione uguale alla somma delle variazioni.",
+      "distractors": "Il segno negativo inverte i versi; 11/20 J/K somma i moduli. 1/4 e 3/10 J/K omettono uno dei serbatoi.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione nella primaria congelata PRIMA delle chiavi: La sorgente calda cambia entropia di −90/360=−1/4 J/K, quella fredda di +90/300=3/10 J/K. Per il trasferimento diretto senza altri scambi la produzione totale è 3/10−1/4=1/20 J/K=0,05 J/K, positiva. Non si sommano i due moduli positivi.",
+      "scientificAssetReview": "Figura candidata letta integralmente XML e in nuovo native indipendente completo640×altezza, processo reale0; proporzioni, unità, origini e segni verificati separatamente per ciascun pannello. Nove SVG originali fonte letti integralmente XML. Tre fix testuali non cambiano alcun asset; nessun ritag di UIprodotto.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c3_051_100_review_models.py": "bf8b18d51ea3c67369de5b7eba54d5e94819ce2a3e797f55e48895843dfdbcbf",
+        "cric_c3_thermodynamics_review_common.py": "2985fa1eacffcae96f821dae51bdc6fd66992472b262fd7ad65dc877a51581ac",
+        "cric_c3_thermodynamics_review_evidence.py": "0dac7c643dc1c95d31cb19f7ca7d21c69ec5b3352e0905ff08c461bd950d1ae2",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C3-Q099",
+      "sourceSha256": "99f8fb8b9f0aaf8c10e1c59d7825796442b4b1e455d3a41fd0bbd753f1907507",
+      "candidateSha256": "25a1b430e1482b4e3b88610f0ec945a321169e7796103da7718515685d592324",
+      "reviewedSignature": "45b1314ae1bb040cd4770fd697d9980b433cf3d26bd7d5cb5550a55f1067ae62",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "È incompatibile con il secondo principio macroscopico: vanno riesaminati modello o calcolo",
+      "dimension": {},
+      "manualArithmetic": "Derivazione nella primaria congelata PRIMA delle chiavi: Per l’intero sistema isolato nel modello termodinamico macroscopico deve valere ΔS_tot≥0. La diminuzione spontanea macroscopica di 4 J/K è incompatibile: bisogna rivedere il modello o il confine del sistema. Questo non riguarda il segno possibile della sola entropia di un sottosistema o le fluttuazioni microscopiche.",
+      "physicalAssumptions": "Intero sistema ISOLATO, processo macroscopico spontaneo; niente sottosistemi lasciati fuori dal confine.",
+      "distractors": "Conservare energia non autorizza entropia totale isolata negativa. La lentezza non cancella il vincolo e un sottosistema non coincide con l’insieme.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione nella primaria congelata PRIMA delle chiavi: Per l’intero sistema isolato nel modello termodinamico macroscopico deve valere ΔS_tot≥0. La diminuzione spontanea macroscopica di 4 J/K è incompatibile: bisogna rivedere il modello o il confine del sistema. Questo non riguarda il segno possibile della sola entropia di un sottosistema o le fluttuazioni microscopiche.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c3_051_100_review_models.py": "bf8b18d51ea3c67369de5b7eba54d5e94819ce2a3e797f55e48895843dfdbcbf",
+        "cric_c3_thermodynamics_review_common.py": "2985fa1eacffcae96f821dae51bdc6fd66992472b262fd7ad65dc877a51581ac",
+        "cric_c3_thermodynamics_review_evidence.py": "0dac7c643dc1c95d31cb19f7ca7d21c69ec5b3352e0905ff08c461bd950d1ae2",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C3-Q100",
+      "sourceSha256": "fae5f653882edfbce5995c2dfcc23749d66eef0336dc2627e3131e3dca0318fe",
+      "candidateSha256": "fdfe250b361c04702a141037415e7df42ed9fb850070aa1df81d973d48be0e8f",
+      "reviewedSignature": "4b0e5268d91cf6d519f226af62fca82bc52b81ccc7bbe11108e41a6f50652973",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "30*log(6/5)",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2",
+        "[temperature]": "-1"
+      },
+      "manualArithmetic": "Derivazione nella primaria congelata PRIMA delle chiavi: Con capacità totale costante C=30 J/K e percorso reversibile a volume fisso, δQ_rev=C dT. Integro fra temperature assolute: ΔS=C ln(T_f/T_i)=30 ln(300/250)=30 ln(6/5) J/K. Il risultato è positivo ed esatto. Per controllo manuale 1/300<1/T<1/250 nell’intervallo interno, quindi 5<ΔS/(J/K)<6. Non uso tutto Q=1500 J diviso per un’unica temperatura come uguaglianza.",
+      "physicalAssumptions": "Capacità TOTALE costante 30 J/K,250→300 K, percorso reversibile senza fase, solo riscaldamento a volume fisso.",
+      "distractors": "6 e 5 J/K sono limiti, non l’integrale. Il logaritmo inverso dà segno negativo; 1500 copia il numero del calore senza integrare 1/T.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione nella primaria congelata PRIMA delle chiavi: Con capacità totale costante C=30 J/K e percorso reversibile a volume fisso, δQ_rev=C dT. Integro fra temperature assolute: ΔS=C ln(T_f/T_i)=30 ln(300/250)=30 ln(6/5) J/K. Il risultato è positivo ed esatto. Per controllo manuale 1/300<1/T<1/250 nell’intervallo interno, quindi 5<ΔS/(J/K)<6. Non uso tutto Q=1500 J diviso per un’unica temperatura come uguaglianza.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c3_051_100_review_models.py": "bf8b18d51ea3c67369de5b7eba54d5e94819ce2a3e797f55e48895843dfdbcbf",
+        "cric_c3_thermodynamics_review_common.py": "2985fa1eacffcae96f821dae51bdc6fd66992472b262fd7ad65dc877a51581ac",
+        "cric_c3_thermodynamics_review_evidence.py": "0dac7c643dc1c95d31cb19f7ca7d21c69ec5b3352e0905ff08c461bd950d1ae2",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "9f17434f7b228a9a18be16365a11767ae1048622e614e702fec174282674e3d8",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "publicationAction": "NONE",
+  "reviewedCandidateCommit": "bebf3bf8171a75d686c9280008edcca855441960",
+  "packageSha256": "2eb65cc2f0a76d66f942a21fc693afae11d3c762ee68501301074d97ef8db155",
+  "bindingsSha256": "e22437a6a2050729b1e1dd2d8d755ac427d4cd685e5131abdd89656ae7605622",
+  "sourceFirstPrimarySha256": "13a65d52b70957d49eec44e4e1b9ce6d4e99c7cb3cc5d1e1418f9f4967aade8f",
+  "source": {
+    "commit": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "path": "officina-di-fisica/content/C3.json",
+    "reference": "Tutti50 enunciati derivati nella primaria93ea8d3c e modello92090ea0/b374cab4 prima delle candidate C3B. Dopo la primaria: tutti50 originali completi, tutti50 candidati e5SVG XML/native interi letti.9SVG fonte letti integralmente XML. Q081 riparametrizzato ricalcolato con lo stesso modello Carnot, preservando il risultato originale. Fix59/64/74 riletti integralmente prima delle firme. Nessun modulo autore B o primaria B aperti; nessuna esposizione pre-key nota. UI prodotto e human NOT_RUN."
+  }
+}

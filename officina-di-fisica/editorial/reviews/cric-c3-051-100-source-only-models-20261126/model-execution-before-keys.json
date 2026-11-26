@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "1.0.0",
+  "scope": "Fifty individual C3 prompt-only models frozen before B candidate exposure",
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+  "sourcePath": "officina-di-fisica/content/C3.json",
+  "sourceFileSha256": "44cb7679671a99a5da654133d4f1c12a542acf1a4688987121bcd5a776a262e0",
+  "primaryCommit": "93ea8d3c1ba874bfbf74d4734ce136b319a9ca72",
+  "primarySha256": "13a65d52b70957d49eec44e4e1b9ce6d4e99c7cb3cc5d1e1418f9f4967aade8f",
+  "modelSha256": "bf8b18d51ea3c67369de5b7eba54d5e94819ce2a3e797f55e48895843dfdbcbf",
+  "actualExecution": {
+    "observedSession": 91929,
+    "wrapperExit": 0,
+    "childExit": 0,
+    "individualPromptCases": 50,
+    "numericOrSymbolicChecks": 25,
+    "exactPintFractionChecks": 9,
+    "pathDependenceAndEntropyIntegralsDerived": true,
+    "GalileanInternalEnergyInvariant": true,
+    "outputSha256": "cfe9ce90a5b537497f577f4a073fd4d6d7aefdcdd91d37d9f84c9bfe8f2e2ad7"
+  },
+  "negativePreserved": {
+    "actualChildExit": 1,
+    "allOriginalNumericAndSymbolicChecksCompletedBeforeFailure": true,
+    "failedStage": "Exact Pint comparison at heat-transfer entropy after reciprocal of integer quantity",
+    "resolution": "Construct all Pint magnitudes as Fraction through validated exact rational data; assert reciprocal type Fraction; no physical result or tolerance changed"
+  },
+  "candidateExposureAtFreeze": "NONE_FOR_CRIC_C3_Q051_100",
+  "candidateAuthoringImports": false,
+  "oppositePrimaryOpened": false,
+  "candidateScientificVerdict": "NOT_RUN",
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}

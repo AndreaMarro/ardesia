@@ -1,0 +1,121 @@
+"""Fifty independent C3 prompt-only thermodynamic models, before B candidates."""
+from fractions import Fraction
+import sympy as sp
+import pint
+SI=pint.UnitRegistry(non_int_type=Fraction)
+PRIMARY_SHA256='13a65d52b70957d49eec44e4e1b9ce6d4e99c7cb3cc5d1e1418f9f4967aade8f'
+SOURCE_SHA256='44cb7679671a99a5da654133d4f1c12a542acf1a4688987121bcd5a776a262e0'
+def exact(*values):
+    if any(type(v)is bool or not isinstance(v,(int,Fraction,sp.Expr))for v in values):raise ValueError('Exact numeric data required before cast')
+    out=tuple(map(sp.sympify,values))
+    if any(v.is_number is not True or v.is_real is not True or v.is_finite is not True or v.has(sp.Float)for v in out):raise ValueError('Finite real exact numeric data required')
+    return out
+def positive(*values):
+    out=exact(*values)
+    if any(v<=0 for v in out):raise ValueError('Strictly positive thermodynamic data required')
+    return out
+def nonnegative(*values):
+    out=exact(*values)
+    if any(v<0 for v in out):raise ValueError('Nonnegative data required')
+    return out
+def internal_change(heat_in,work_out):
+    heat_in,work_out=exact(heat_in,work_out);return heat_in-work_out
+def heat_from_balance(delta_internal,work_out):
+    delta_internal,work_out=exact(delta_internal,work_out);return delta_internal+work_out
+def pressure_work(external_pressure,initial_volume,final_volume):
+    external_pressure,=nonnegative(external_pressure);initial_volume,final_volume=positive(initial_volume,final_volume)
+    return external_pressure*(final_volume-initial_volume)
+def linear_pressure_work(initial_pressure,final_pressure,initial_volume,final_volume):
+    initial_pressure,final_pressure=nonnegative(initial_pressure,final_pressure);initial_volume,final_volume=positive(initial_volume,final_volume)
+    return (initial_pressure+final_pressure)*(final_volume-initial_volume)/2
+def piston_work(pressure,area,outward_stroke):
+    pressure,=nonnegative(pressure);area,=positive(area);outward_stroke,=exact(outward_stroke)
+    return pressure*area*outward_stroke
+def temperature_change(delta_internal,total_capacity):
+    delta_internal,=exact(delta_internal);total_capacity,=positive(total_capacity);return delta_internal/total_capacity
+def isobaric_ideal_work(amount,gas_constant,delta_temperature):
+    amount,gas_constant=positive(amount,gas_constant);delta_temperature,=exact(delta_temperature)
+    return amount*gas_constant*delta_temperature
+def adiabatic_pressure_ratio(volume_ratio,gamma):
+    volume_ratio,gamma=positive(volume_ratio,gamma)
+    if gamma<=1:raise ValueError('Ideal gas with positive finite heat capacities requires gamma>1')
+    return volume_ratio**gamma
+def triangle_cycle_work(volume_span,pressure_span):
+    volume_span,pressure_span=positive(volume_span,pressure_span);return volume_span*pressure_span/2
+def cycle_power(work_per_cycle,integer_cycles,duration):
+    work_per_cycle,=exact(work_per_cycle);duration,=positive(duration)
+    if type(integer_cycles)is not int or integer_cycles<1:raise ValueError('Positive integer cycle count required')
+    return work_per_cycle*integer_cycles/duration
+def cycle_work(heat_absorbed,heat_rejected):
+    heat_absorbed,heat_rejected=nonnegative(heat_absorbed,heat_rejected);return heat_absorbed-heat_rejected
+def rejected_per_cycle(total_work,integer_cycles,heat_in_per_cycle):
+    total_work,heat_in_per_cycle=positive(total_work,heat_in_per_cycle)
+    if type(integer_cycles)is not int or integer_cycles<1:raise ValueError('Positive integer cycle count required')
+    result=heat_in_per_cycle-total_work/integer_cycles
+    if result<0:raise ValueError('Heat-engine rejected-heat magnitude cannot be negative')
+    return result
+def rectangular_volume_span(work,pressure_span):
+    work,pressure_span=positive(work,pressure_span);return work/pressure_span
+def celsius_kelvin(celsius):
+    celsius,=exact(celsius);kelvin=celsius+sp.Rational(27315,100)
+    if kelvin<0:raise ValueError('Negative absolute temperature outside this classical model')
+    return kelvin
+def carnot_efficiency(hot,cold):
+    hot,cold=positive(hot,cold)
+    if hot<cold:raise ValueError('Hot reservoir must be at least as warm as cold reservoir')
+    return 1-cold/hot
+def inverse_carnot_hot(cold,efficiency):
+    cold,=positive(cold);efficiency,=nonnegative(efficiency)
+    if efficiency>=1:raise ValueError('Finite positive-reservoir engine requires efficiency<1')
+    return cold/(1-efficiency)
+def engine_power(efficiency,heat_in_rate):
+    efficiency,=nonnegative(efficiency);heat_in_rate,=positive(heat_in_rate)
+    if efficiency>=1:raise ValueError('Classical positive-reservoir heat-engine efficiency must be<1')
+    return efficiency*heat_in_rate
+def minimum_rejected_heat(heat_in,hot,cold):
+    heat_in,=positive(heat_in);carnot_efficiency(hot,cold);hot,cold=positive(hot,cold)
+    return heat_in*cold/hot
+def refrigerator_cop(work_in,heat_to_hot):
+    work_in,heat_to_hot=positive(work_in,heat_to_hot)
+    if heat_to_hot<=work_in:raise ValueError('Useful refrigerator requires positive extracted cold heat')
+    return (heat_to_hot-work_in)/work_in
+def reservoir_entropy(heat_received,temperature):
+    heat_received,=exact(heat_received);temperature,=positive(temperature);return heat_received/temperature
+def fusion_entropy(mass,latent_heat,temperature):
+    mass,latent_heat,temperature=positive(mass,latent_heat,temperature);return mass*latent_heat/temperature
+def statistical_entropy_ratio(initial_count,final_count):
+    if any(type(v)is not int or v<1 for v in[initial_count,final_count]):raise ValueError('Positive integer equiprobable microstate counts required')
+    return sp.log(sp.Rational(final_count,initial_count))
+def heat_transfer_entropy(heat,hot,cold):
+    heat,=nonnegative(heat);carnot_efficiency(hot,cold);hot,cold=positive(hot,cold)
+    return heat*(1/cold-1/hot)
+def constant_capacity_entropy(capacity,initial_temperature,final_temperature):
+    capacity,initial_temperature,final_temperature=positive(capacity,initial_temperature,final_temperature)
+    return capacity*sp.log(final_temperature/initial_temperature)
+def primary_only_derivations():
+    R=sp.Rational
+    out={51:internal_change(35,pressure_work(120,R(3,2),2)),52:'Rigid excludes volume work, not agitator shaft work; isolated heat means Q=0, so incoming shaft work can raise internal energy',53:'negativo',54:heat_from_balance(-75,120),55:linear_pressure_work(200,100,1,4),56:'No: same endpoint pressures do not determine a path integral or even volume endpoints',57:'energia interna',58:piston_work(100000,R(25,10000),R(4,100)),59:'Only a change of frame changes bulk kinetic energy; microscopic velocities relative to the centre of mass and internal energy are Galilean invariant',60:-sp.Integer(180),
+61:'Closed ideal gas at fixed volume: upward pressure implies temperature and internal energy increase, with zero pressure-volume work',62:temperature_change(internal_change(0,200),25),63:'isobara',64:'Slow may be quasistatic but dissipative friction makes the process irreversible',65:temperature_change(72,12),66:'nulla',67:isobaric_ideal_work(R(1,2),R(4157,500),20),68:'Reversible isothermal expansion does more work than reversible adiabatic expansion from the same state to the same larger volume, for gamma>1',69:adiabatic_pressure_ratio(4,R(3,2)),70:'Heat-conducting contact is needed in the ideal-gas isothermal model; do not assert Q=W universally for real gases without the model',
+71:triangle_cycle_work(4,60),72:'Reverse orientation reverses the sign of cyclic work and preserves magnitude',73:'ciclo',74:cycle_power(24,150,60),75:cycle_work(400,300),76:rejected_per_cycle(R(9,5),3,2),77:'orario',78:rectangular_volume_span(150,50),79:'All thermodynamic state functions return: deltaU=deltaS=0 and p,V,T return; alternatives are not visible so no exclusive pair is invented',80:cycle_work(130,170),
+81:100*carnot_efficiency(celsius_kelvin(177),celsius_kelvin(27)),82:'A cyclic device cannot have the sole effect of converting heat from one reservoir entirely into work',83:inverse_carnot_hot(300,R(2,5)),84:'adiabatiche reversibili',85:'Cold-to-hot heat transfer is compatible when compensated by supplied work, not as the sole effect',86:engine_power(R(11,50),1500),87:'Reversible engine reaches the maximum efficiency between the same two reservoirs; active friction lowers efficiency, not necessarily absolute work across unequal heat inputs',88:minimum_rejected_heat(900,600,300),89:'lavoro',90:refrigerator_cop(50,200),
+91:reservoir_entropy(-640,320),92:'Working-fluid entropy change over an irreversible cycle is0; total entropy production of the full fluid-plus-surroundings is positive',93:'J/K',94:fusion_entropy(R(1,100),100000,250),95:'Evaluate entropy difference using an equivalent reversible path between the same equilibrium states, not arbitrary actual Q/T',96:statistical_entropy_ratio(12,48),97:'microstato',98:heat_transfer_entropy(90,360,300),99:'A spontaneous macroscopic entropy decrease for the entire isolated system contradicts the thermodynamic model; a subsystem decrease is a different claim',100:constant_capacity_entropy(30,250,300)}
+    expected={51:-25,54:45,55:450,58:10,60:-180,62:-8,65:6,67:R(4157,50),69:8,71:120,74:60,75:100,76:R(7,5),78:3,80:-40,81:R(100000,3001),83:500,86:330,88:450,90:3,91:-2,94:4,96:sp.log(4),98:R(1,20),100:30*sp.log(R(6,5))}
+    assert set(out)==set(range(51,101))
+    for n,want in expected.items():assert sp.simplify(out[n]-want)==0,n
+    volume,T=sp.symbols('volume T',positive=True)
+    assert sp.integrate(100,(volume,1,2))==100
+    assert sp.integrate(200,(volume,1,2))==200
+    assert sp.simplify(sp.integrate(1/volume-1/volume**2,(volume,1,2))-(sp.log(2)-R(1,2)))==0
+    assert sp.simplify(sp.integrate(30/T,(T,250,300))-out[100])==0
+    vi,V,u=sp.symbols('vi V u',real=True)
+    assert sp.expand((vi-u)-(V-u))==vi-V
+    assert R(333,10)<out[81]<R(667,20)  # exact interval verifies the33.3% rounded representation without a decimal logarithm
+    def Q(value,unit):
+        value,=exact(value)
+        if value.is_Rational is not True:raise ValueError('Rational magnitude required for exact Pint witness')
+        return SI.Quantity(Fraction(int(value.p),int(value.q)),unit)
+    assert isinstance(Q(1,'kelvin').magnitude,Fraction)
+    assert isinstance((1/Q(300,'kelvin')).magnitude,Fraction)
+    checks=[(Q(120,'kPa')*Q(R(1,2),'liter')).to('joule').magnitude==60,(Q(100,'kPa')*Q(25,'cm**2')*Q(4,'cm')).to('joule').magnitude==10,(Q(Fraction(1,2),'mole')*Q(Fraction(4157,500),'joule/(mole*kelvin)')*Q(20,'kelvin')).to('joule').magnitude==Fraction(4157,50),(Q(4,'liter')*Q(60,'kPa')/2).to('joule').magnitude==120,(Q(24,'joule')*Q(150,'1/minute')).to('watt').magnitude==60,(Q(Fraction(11,50),'dimensionless')*Q(Fraction(3,2),'kilowatt')).to('watt').magnitude==330,(Q(10,'gram')*Q(100,'kilojoule/kilogram')/Q(250,'kelvin')).to('joule/kelvin').magnitude==4,(Q(90,'joule')*(1/Q(300,'kelvin')-1/Q(360,'kelvin'))).to('joule/kelvin').magnitude==Fraction(1,20),(Q(-200,'joule')/Q(25,'joule/kelvin')).to('kelvin').magnitude==-8]
+    assert all(checks)
+    return out,{'individualPromptCases':50,'numericOrSymbolicChecks':len(expected),'exactPintChecks':len(checks),'pathDependenceAndEntropyIntegralsDerived':True,'GalileanInternalEnergyInvariant':True,'candidateExposure':'NONE_AT_THIS_PREKEY_FREEZE','candidateVerdict':'NOT_RUN'}

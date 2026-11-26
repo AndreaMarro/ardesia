@@ -1,0 +1,382 @@
+{
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "C3-Q071",
+      "sourceSha256": "8b77b4907a39deb2fa0a4acef5a18fbb7ccad9b4b83d2edf3c233d99a6c68f11",
+      "candidateSha256": "28fc1edf82cf1ace8986030ddf3ebb284f8afab5026571a5d51aee68864c3e61",
+      "reviewedSignature": "c39ece2a8b0096449781e64739db0429d008c67450339ff1b5889c4908dc86d4",
+      "assetChecksums": {
+        "cric-c3-l08-progressive.svg": "bd30442047aa553ec2b64d9de0c2b95ed8b0a5f9a9ace0908e3d18bf10283c58"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "120",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Derivazione nella primaria congelata PRIMA delle chiavi: Nel piano con V verso destra e p verso l’alto, la percorrenza oraria dà lavoro uscente positivo. L’area triangolare è (1/2)·4 L·60 kPa=120 J. Non si usa tutto il rettangolo circoscritto e non si sommano i valori assoluti dei lavori dei tratti.",
+      "physicalAssumptions": "Ciclo semplice quasi statico, assi Vdestra/palto, orientazione oraria; base e altezza sono differenze positive.",
+      "distractors": "240 J è l’area del rettangolo e−120 J il verso inverso. Il ritorno di U non annulla il lavoro ciclico.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione nella primaria congelata PRIMA delle chiavi: Nel piano con V verso destra e p verso l’alto, la percorrenza oraria dà lavoro uscente positivo. L’area triangolare è (1/2)·4 L·60 kPa=120 J. Non si usa tutto il rettangolo circoscritto e non si sommano i valori assoluti dei lavori dei tratti.",
+      "scientificAssetReview": "Figura candidata letta integralmente XML e in nuovo native indipendente completo640×altezza, processo reale0; proporzioni, unità, origini e segni verificati separatamente per ciascun pannello. Nove SVG originali fonte letti integralmente XML. Tre fix testuali non cambiano alcun asset; nessun ritag di UIprodotto.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c3_051_100_review_models.py": "bf8b18d51ea3c67369de5b7eba54d5e94819ce2a3e797f55e48895843dfdbcbf",
+        "cric_c3_thermodynamics_review_common.py": "2985fa1eacffcae96f821dae51bdc6fd66992472b262fd7ad65dc877a51581ac",
+        "cric_c3_thermodynamics_review_evidence.py": "0dac7c643dc1c95d31cb19f7ca7d21c69ec5b3352e0905ff08c461bd950d1ae2",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C3-Q072",
+      "sourceSha256": "a7e7569cf139dda053f4a1ab2ce4b18ddd9e9024da192942d73ddb18444f7a32",
+      "candidateSha256": "fb2f32278cdbbc5d021dc08e1e79b8e0059169bb4707f9cb0d1307bc792dba81",
+      "reviewedSignature": "13a14ecd39c88f9c449fc11fba2ab93626a5225bba57ce0b3a08043e8d521570",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Cambia segno e mantiene il modulo",
+      "dimension": {},
+      "manualArithmetic": "Derivazione nella primaria congelata PRIMA delle chiavi: Invertire il verso di percorrenza cambia il segno dell’integrale chiuso ∮p dV e conserva il suo modulo. Una curva oraria positiva diventa antioraria negativa; non cambiano soltanto i nomi degli stati.",
+      "physicalAssumptions": "Identico contorno ripercorso, solo orientazione invertita.",
+      "distractors": "Non compare una nuova area o un fattore due: cambia soltanto il segno dell’integrale orientato.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione nella primaria congelata PRIMA delle chiavi: Invertire il verso di percorrenza cambia il segno dell’integrale chiuso ∮p dV e conserva il suo modulo. Una curva oraria positiva diventa antioraria negativa; non cambiano soltanto i nomi degli stati.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c3_051_100_review_models.py": "bf8b18d51ea3c67369de5b7eba54d5e94819ce2a3e797f55e48895843dfdbcbf",
+        "cric_c3_thermodynamics_review_common.py": "2985fa1eacffcae96f821dae51bdc6fd66992472b262fd7ad65dc877a51581ac",
+        "cric_c3_thermodynamics_review_evidence.py": "0dac7c643dc1c95d31cb19f7ca7d21c69ec5b3352e0905ff08c461bd950d1ae2",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C3-Q073",
+      "sourceSha256": "048fc8a214fbba929d04b8af986320f5c7fa786b3012f2451826cb303b0670c4",
+      "candidateSha256": "27d0e3c4dfcfc1dd5da8a921180ffeeebf454eb7a54118e2a40b5b143cd068ec",
+      "reviewedSignature": "b2d8800d7950828b41adc47833119b7e79214947f33673dec72a4315ad01eafe",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Ciclo termodinamico",
+      "dimension": {},
+      "manualArithmetic": "Derivazione nella primaria congelata PRIMA delle chiavi: Una sequenza completa che riporta il fluido al suo stato iniziale è un ciclo. Il ritorno allo stato non obbliga calore e lavoro netti ad essere nulli, perché non sono funzioni di stato.",
+      "physicalAssumptions": "Ritorno allo stato termodinamico intero, non soltanto allo stesso volume.",
+      "distractors": "Un ciclo non è per definizione una singola isoterma o un processo senza scambi.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione nella primaria congelata PRIMA delle chiavi: Una sequenza completa che riporta il fluido al suo stato iniziale è un ciclo. Il ritorno allo stato non obbliga calore e lavoro netti ad essere nulli, perché non sono funzioni di stato.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c3_051_100_review_models.py": "bf8b18d51ea3c67369de5b7eba54d5e94819ce2a3e797f55e48895843dfdbcbf",
+        "cric_c3_thermodynamics_review_common.py": "2985fa1eacffcae96f821dae51bdc6fd66992472b262fd7ad65dc877a51581ac",
+        "cric_c3_thermodynamics_review_evidence.py": "0dac7c643dc1c95d31cb19f7ca7d21c69ec5b3352e0905ff08c461bd950d1ae2",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C3-Q074",
+      "sourceSha256": "288ac51dbb526c3da4a45fcd5fd7c29e3ee5cad38244583a69297faedfb85c8a",
+      "candidateSha256": "22c057719283f4e9759bd93f7629963c00b02b9da10509bd655741af548d3537",
+      "reviewedSignature": "c64165235d402b4ea5473233bd288a8ce1ad031b61905182a81987515b0dae50",
+      "assetChecksums": {
+        "cric-c3-l08-progressive.svg": "bd30442047aa553ec2b64d9de0c2b95ed8b0a5f9a9ace0908e3d18bf10283c58"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "60",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3"
+      },
+      "manualArithmetic": "Derivazione nella primaria congelata PRIMA delle chiavi: La frequenza dei cicli è 150/60=5/2 s⁻¹. Con 24 J per ciclo, P_media=24·5/2=60 W. Il minuto va convertito in secondi; non sono 3600 W.",
+      "physicalAssumptions": "24 J per ciclo identico,150 cicli in 60 s, media sul periodo; nessuna ipotesi di potenza istantanea costante.",
+      "distractors": "3600 copia il valore numerico del lavoro del minuto; manca la divisione per 60 s. 24 J per ciclo non sono 24 W; 0,16 non rappresenta lavoro totale diviso durata.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione nella primaria congelata PRIMA delle chiavi: La frequenza dei cicli è 150/60=5/2 s⁻¹. Con 24 J per ciclo, P_media=24·5/2=60 W. Il minuto va convertito in secondi; non sono 3600 W.",
+      "scientificAssetReview": "Figura candidata letta integralmente XML e in nuovo native indipendente completo640×altezza, processo reale0; proporzioni, unità, origini e segni verificati separatamente per ciascun pannello. Nove SVG originali fonte letti integralmente XML. Tre fix testuali non cambiano alcun asset; nessun ritag di UIprodotto.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c3_051_100_review_models.py": "bf8b18d51ea3c67369de5b7eba54d5e94819ce2a3e797f55e48895843dfdbcbf",
+        "cric_c3_thermodynamics_review_common.py": "2985fa1eacffcae96f821dae51bdc6fd66992472b262fd7ad65dc877a51581ac",
+        "cric_c3_thermodynamics_review_evidence.py": "0dac7c643dc1c95d31cb19f7ca7d21c69ec5b3352e0905ff08c461bd950d1ae2",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C3-Q075",
+      "sourceSha256": "2a9af0009de02a63dbd9b4bfb5ef729d766c627dcf566159580843f3ecdce971",
+      "candidateSha256": "19607731687344610d9c192166a9d1fd47e4eb4649e68c5febc9e16b533cdbeb",
+      "reviewedSignature": "c19d2169fa5163aa34d3b01c1848f69308c37bbdd6a6c28c1a6a7a3e35040570",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "100",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Derivazione nella primaria congelata PRIMA delle chiavi: Con calore entrante positivo, il calore netto è +400−300=+100 J. Per un ciclo del gas ΔU=0, quindi anche il lavoro netto uscente è 100 J. 700 J sarebbe la somma dei moduli, non lo scambio netto.",
+      "physicalAssumptions": "Calore entrante positivo, cessione negativa; il saldo è distinto dai singoli moduli.",
+      "distractors": "700 J somma i moduli; −100 J inverte il segno; 400 J omette la cessione. La variazione ciclica di U è distinta dal calore netto.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione nella primaria congelata PRIMA delle chiavi: Con calore entrante positivo, il calore netto è +400−300=+100 J. Per un ciclo del gas ΔU=0, quindi anche il lavoro netto uscente è 100 J. 700 J sarebbe la somma dei moduli, non lo scambio netto.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c3_051_100_review_models.py": "bf8b18d51ea3c67369de5b7eba54d5e94819ce2a3e797f55e48895843dfdbcbf",
+        "cric_c3_thermodynamics_review_common.py": "2985fa1eacffcae96f821dae51bdc6fd66992472b262fd7ad65dc877a51581ac",
+        "cric_c3_thermodynamics_review_evidence.py": "0dac7c643dc1c95d31cb19f7ca7d21c69ec5b3352e0905ff08c461bd950d1ae2",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C3-Q076",
+      "sourceSha256": "0962779a024558f3cfcb1124a63a24c9bd92031a06b2bef2d887f3677aa39fb6",
+      "candidateSha256": "86f9c8a1fc149c063129408d6f9640e6ad7eac067cfeb0d017e7267908113290",
+      "reviewedSignature": "6ffddbea8bbab3f548c1b2340f55a61e9a95ca5f7b3684be9cdbddddabf2b980",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "7/5",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Derivazione nella primaria congelata PRIMA delle chiavi: Il lavoro per ciclo è 1,8/3=0,6 kJ. Per ΔU_ciclo=0, il modulo ceduto è Q_c=Q_h−W=2,0−0,6=1,4 kJ per ciclo. Non si sottraggono 1,8 kJ totali dai 2,0 kJ di un singolo ciclo.",
+      "physicalAssumptions": "Tre cicli IDENTICI:1,8 kJ è lavoro totale e 2,0 kJ è ingresso per ciascun ciclo; Qc richiesto come modulo.",
+      "distractors": "0,2 kJ mescola lavoro di tre cicli e calore di uno; 0,6 kJ è lavoro; 2,6 kJ somma invece di sottrarre; 4,2 kJ è il totale ceduto in tre cicli.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione nella primaria congelata PRIMA delle chiavi: Il lavoro per ciclo è 1,8/3=0,6 kJ. Per ΔU_ciclo=0, il modulo ceduto è Q_c=Q_h−W=2,0−0,6=1,4 kJ per ciclo. Non si sottraggono 1,8 kJ totali dai 2,0 kJ di un singolo ciclo.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c3_051_100_review_models.py": "bf8b18d51ea3c67369de5b7eba54d5e94819ce2a3e797f55e48895843dfdbcbf",
+        "cric_c3_thermodynamics_review_common.py": "2985fa1eacffcae96f821dae51bdc6fd66992472b262fd7ad65dc877a51581ac",
+        "cric_c3_thermodynamics_review_evidence.py": "0dac7c643dc1c95d31cb19f7ca7d21c69ec5b3352e0905ff08c461bd950d1ae2",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C3-Q077",
+      "sourceSha256": "59d19039da5f515b48f47315cf6918c9201b10d62af16f39363facd705e115bb",
+      "candidateSha256": "590b0228e278d2896e9f379dd769d51c58f4dc26a87345c9c28a075533b32e5c",
+      "reviewedSignature": "4a66b13f137050096b1467ce4e247a66bc5e3e590f9263c7397a655b48a99829",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Orario",
+      "dimension": {},
+      "manualArithmetic": "Derivazione nella primaria congelata PRIMA delle chiavi: La percorrenza oraria di una curva semplice chiusa dà ∮p dV>0 con gli assi assegnati. L’espansione avviene mediamente alla pressione maggiore e la compressione a quella minore. La convenzione opposta sul lavoro invertirebbe il nome del segno, ma qui il lavoro del gas è uscente positivo.",
+      "physicalAssumptions": "Curva semplice chiusa in diagramma pV con convenzione di lavoro uscente.",
+      "distractors": "Il verso antiorario dà lavoro negativo. Un segmento verticale ha dV=0 e non racchiude da solo un’area.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione nella primaria congelata PRIMA delle chiavi: La percorrenza oraria di una curva semplice chiusa dà ∮p dV>0 con gli assi assegnati. L’espansione avviene mediamente alla pressione maggiore e la compressione a quella minore. La convenzione opposta sul lavoro invertirebbe il nome del segno, ma qui il lavoro del gas è uscente positivo.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c3_051_100_review_models.py": "bf8b18d51ea3c67369de5b7eba54d5e94819ce2a3e797f55e48895843dfdbcbf",
+        "cric_c3_thermodynamics_review_common.py": "2985fa1eacffcae96f821dae51bdc6fd66992472b262fd7ad65dc877a51581ac",
+        "cric_c3_thermodynamics_review_evidence.py": "0dac7c643dc1c95d31cb19f7ca7d21c69ec5b3352e0905ff08c461bd950d1ae2",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C3-Q078",
+      "sourceSha256": "087811ce1c662133a4cca3ccc22a2062981e6291a1d4105bd4aba12276a450fd",
+      "candidateSha256": "3baa455b16a7d7d488c75872f0119c3f2c66c7280ffbb0411bcc58f326e9b595",
+      "reviewedSignature": "ffced099edd1d64632855df5408a1692f41b0a66066bcf560bbf38cf43a4efdc",
+      "assetChecksums": {
+        "cric-c3-l08-progressive.svg": "bd30442047aa553ec2b64d9de0c2b95ed8b0a5f9a9ace0908e3d18bf10283c58"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "3",
+      "dimension": {
+        "[length]": "3"
+      },
+      "manualArithmetic": "Derivazione nella primaria congelata PRIMA delle chiavi: L’area del rettangolo è Δp·ΔV. Poiché 1 kPa·L=1 J, ΔV=150/50=3 L. I 50 kPa sono la separazione fra isobare, non la loro pressione assoluta.",
+      "physicalAssumptions": "Ciclo rettangolare orario; differenza delle pressioni 50 kPa non pressione assoluta di un ramo.",
+      "distractors": "Il prodotto 150·50 non dà un volume. Un intervallo di 1/3 L ricostruisce 50/3 J; zero annulla l’area.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione nella primaria congelata PRIMA delle chiavi: L’area del rettangolo è Δp·ΔV. Poiché 1 kPa·L=1 J, ΔV=150/50=3 L. I 50 kPa sono la separazione fra isobare, non la loro pressione assoluta.",
+      "scientificAssetReview": "Figura candidata letta integralmente XML e in nuovo native indipendente completo640×altezza, processo reale0; proporzioni, unità, origini e segni verificati separatamente per ciascun pannello. Nove SVG originali fonte letti integralmente XML. Tre fix testuali non cambiano alcun asset; nessun ritag di UIprodotto.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c3_051_100_review_models.py": "bf8b18d51ea3c67369de5b7eba54d5e94819ce2a3e797f55e48895843dfdbcbf",
+        "cric_c3_thermodynamics_review_common.py": "2985fa1eacffcae96f821dae51bdc6fd66992472b262fd7ad65dc877a51581ac",
+        "cric_c3_thermodynamics_review_evidence.py": "0dac7c643dc1c95d31cb19f7ca7d21c69ec5b3352e0905ff08c461bd950d1ae2",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C3-Q079",
+      "sourceSha256": "bb48c17e6cbc3c8fa3ee2ae1b706309f141cc9a4bc51990064b5c06580b182c9",
+      "candidateSha256": "fb5288772a44427e5a7efdcae6afacef103ff50c1466a648f3bf89093e22ef5a",
+      "reviewedSignature": "4923cc1c03ce73edf4010fd174ebfcd184102934698213a63cab3d6436e1c531",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "ΔU=0 e ΔS=0",
+      "dimension": {},
+      "manualArithmetic": "Derivazione nella primaria congelata PRIMA delle chiavi: Tornando allo stesso stato termodinamico ogni funzione di stato del fluido ha variazione nulla: in particolare ΔU=0 e ΔS=0, e ritornano anche p,V,T. Calore e lavoro di ciclo possono invece essere non nulli. Prima di vedere le opzioni non considero esclusiva una coppia: qualunque coppia di vere funzioni di stato avrebbe questa proprietà.",
+      "physicalAssumptions": "Fluido torna allo stesso stato anche se il ciclo è irreversibile; entropia del solo fluido distinta da quella dell’insieme.",
+      "distractors": "Calore e lavoro non sono funzioni di stato. La produzione irreversibile non impone un aumento dell’entropia finale del solo fluido ciclico.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione nella primaria congelata PRIMA delle chiavi: Tornando allo stesso stato termodinamico ogni funzione di stato del fluido ha variazione nulla: in particolare ΔU=0 e ΔS=0, e ritornano anche p,V,T. Calore e lavoro di ciclo possono invece essere non nulli. Prima di vedere le opzioni non considero esclusiva una coppia: qualunque coppia di vere funzioni di stato avrebbe questa proprietà.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c3_051_100_review_models.py": "bf8b18d51ea3c67369de5b7eba54d5e94819ce2a3e797f55e48895843dfdbcbf",
+        "cric_c3_thermodynamics_review_common.py": "2985fa1eacffcae96f821dae51bdc6fd66992472b262fd7ad65dc877a51581ac",
+        "cric_c3_thermodynamics_review_evidence.py": "0dac7c643dc1c95d31cb19f7ca7d21c69ec5b3352e0905ff08c461bd950d1ae2",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C3-Q080",
+      "sourceSha256": "4bad9554569daaf73b2b9369643900b6bc8431d17d839bffe3f8c9b2fddd8c7d",
+      "candidateSha256": "f0b952f804abe30b418801b0388cf619c3881e04abe32bb15be6767a9f47f0ff",
+      "reviewedSignature": "37ead1e5a91db66ef7863eaf0e52d4b5b33b62001222f55dc5dea60d3788a92c",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "-40",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Derivazione nella primaria congelata PRIMA delle chiavi: Il calore netto entrante è 80+50−170=−40 J. Su un ciclo ΔU=0, dunque W_gas=Q_netto=−40 J. Il ciclo richiede 40 J di lavoro esterno; prendere il solo modulo perderebbe il segno richiesto.",
+      "physicalAssumptions": "Stato ciclico di tutte le energie, due apporti e una cessione con segni; lavoro uscente può risultare negativo.",
+      "distractors": "40 J inverte il verso; 300 J somma i moduli; 130 J omette la cessione. Zero confonde il lavoro con ΔU.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione nella primaria congelata PRIMA delle chiavi: Il calore netto entrante è 80+50−170=−40 J. Su un ciclo ΔU=0, dunque W_gas=Q_netto=−40 J. Il ciclo richiede 40 J di lavoro esterno; prendere il solo modulo perderebbe il segno richiesto.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c3_051_100_review_models.py": "bf8b18d51ea3c67369de5b7eba54d5e94819ce2a3e797f55e48895843dfdbcbf",
+        "cric_c3_thermodynamics_review_common.py": "2985fa1eacffcae96f821dae51bdc6fd66992472b262fd7ad65dc877a51581ac",
+        "cric_c3_thermodynamics_review_evidence.py": "0dac7c643dc1c95d31cb19f7ca7d21c69ec5b3352e0905ff08c461bd950d1ae2",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "4e955a01682a7fd7636c72681b2153848c546232f18e6ec790c7f3e63d7cc193",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "publicationAction": "NONE",
+  "reviewedCandidateCommit": "c74364b6b0b6630c548b1ed726603193982cd7c4",
+  "packageSha256": "40860c7d2c443c0f85d75eca82b306bcc813f83ea8be3d24337a05df29e3d8a1",
+  "bindingsSha256": "85a5e2c1b5a1cef3d4f22d901647ea4bfb3f43b20182bb18ef8a1b47fc9afe37",
+  "sourceFirstPrimarySha256": "13a65d52b70957d49eec44e4e1b9ce6d4e99c7cb3cc5d1e1418f9f4967aade8f",
+  "source": {
+    "commit": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "path": "officina-di-fisica/content/C3.json",
+    "reference": "Tutti50 enunciati derivati nella primaria93ea8d3c e modello92090ea0/b374cab4 prima delle candidate C3B. Dopo la primaria: tutti50 originali completi, tutti50 candidati e5SVG XML/native interi letti.9SVG fonte letti integralmente XML. Q081 riparametrizzato ricalcolato con lo stesso modello Carnot, preservando il risultato originale. Fix59/64/74 riletti integralmente prima delle firme. Nessun modulo autore B o primaria B aperti; nessuna esposizione pre-key nota. UI prodotto e human NOT_RUN."
+  }
+}

@@ -1,0 +1,681 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "C3-Q071",
+      "kind": "question",
+      "course": "C3",
+      "section": "Leggere il lavoro di un ciclo",
+      "order": 71,
+      "title": "Un’area triangolare con verso",
+      "skill": "C3-L08",
+      "prerequisites": [
+        "C3-L06",
+        "C3-L07"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il lavoro netto di un ciclo quasi statico è l’area racchiusa con il segno del verso. Per il triangolo l’area è metà base per altezza: 4·60/2=120 kPa·L=120 J. Il verso orario assegna il segno positivo. Non serve conoscere la pressione assoluta della base per calcolare la differenza fra espansione e compressione."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/cb1420a14acc171744464ef6a0e0cff52f6e157b1034e9a07dc1a604036f3d68",
+          "text": "Nel primo diagramma la base è 4 L e l’altezza 60 kPa. Le tre frecce seguono il verso orario e il triangolo racchiude un lavoro netto di 120 J. Le pressioni della base sono positive."
+        },
+        {
+          "type": "formula",
+          "text": "|W|=\\frac12\\Delta V\\Delta p"
+        },
+        {
+          "type": "formula",
+          "text": " |W|=\\frac12(4\\,\\mathrm L)(60\\,\\mathrm{kPa})"
+        },
+        {
+          "type": "formula",
+          "text": " W=120\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "240 J userebbe il rettangolo anziché il triangolo. −120 J sarebbe il lavoro dello stesso ciclo percorso nel verso opposto. Zero confonderebbe il ritorno di U con l’annullamento di un trasferimento di lavoro."
+        }
+      ],
+      "prompt": "Un ciclo quasi statico semplice e orario forma un triangolo nel diagramma p–V, con volume verso destra e pressione verso l’alto. La base misura 4 L e l’altezza 60 kPa. Con W positivo compiuto dal gas, quanto vale il lavoro netto in joule?",
+      "difficulty": 1,
+      "family": "ciclo-triangolare",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "numeric",
+        "value": 120,
+        "unit": "J",
+        "tolerance": 0
+      },
+      "hints": [
+        "Determina separatamente area e segno di percorrenza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "240 J userebbe il rettangolo anziché il triangolo. −120 J sarebbe il lavoro dello stesso ciclo percorso nel verso opposto. Zero confonderebbe il ritorno di U con l’annullamento di un trasferimento di lavoro.",
+        "target": "C3-L08"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Area orientata nel piano p–V",
+        "Bilancio periodico e potenza media",
+        "Funzioni di stato e trasferimenti"
+      ]
+    },
+    {
+      "id": "C3-Q072",
+      "kind": "question",
+      "course": "C3",
+      "section": "Leggere il lavoro di un ciclo",
+      "order": 72,
+      "title": "Ripercorrere lo stesso contorno",
+      "skill": "C3-L08",
+      "prerequisites": [
+        "C3-L06",
+        "C3-L07"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Invertire il verso sostituisce ogni contributo p dV con il suo opposto. L’area geometrica racchiusa resta la stessa e il lavoro cambia segno. La proprietà vale per lo stesso contorno ripercorso, senza supporre che ogni ciclo diverso abbia lo stesso modulo."
+        },
+        {
+          "type": "formula",
+          "text": "W_{\\rm inverso}=-W_{\\rm diretto}"
+        },
+        {
+          "type": "text",
+          "text": "Il ritorno allo stato iniziale non annulla il lavoro di un ciclo. Non si aggiunge una seconda area e non si cambia la scala degli assi. La temperatura iniziale non determina da sola un integrale lungo il percorso."
+        }
+      ],
+      "prompt": "Lo stesso ciclo quasi statico chiuso nel piano p–V viene ripercorso nel verso opposto, attraversando gli stessi punti del contorno. Come cambia il lavoro netto compiuto dal gas?",
+      "difficulty": 1,
+      "family": "invertire-il-verso-del-ciclo",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Cambia segno e mantiene il modulo",
+          "Mantiene lo stesso segno e raddoppia il modulo",
+          "Diventa sempre nullo",
+          "Diminuisce necessariamente di metà in modulo",
+          "Dipende soltanto dalla temperatura del punto iniziale"
+        ],
+        "value": "Cambia segno e mantiene il modulo"
+      },
+      "hints": [
+        "Tieni fisso il contorno e cambia soltanto il verso dei differenziali di volume.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Il ritorno allo stato iniziale non annulla il lavoro di un ciclo. Non si aggiunge una seconda area e non si cambia la scala degli assi. La temperatura iniziale non determina da sola un integrale lungo il percorso.",
+        "target": "C3-L08"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Area orientata nel piano p–V",
+        "Bilancio periodico e potenza media",
+        "Funzioni di stato e trasferimenti"
+      ]
+    },
+    {
+      "id": "C3-Q073",
+      "kind": "question",
+      "course": "C3",
+      "section": "Leggere il lavoro di un ciclo",
+      "order": 73,
+      "title": "Un’intera sequenza periodica",
+      "skill": "C3-L08",
+      "prerequisites": [
+        "C3-L06",
+        "C3-L07"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "È un ciclo termodinamico. Tornare allo stesso stato ripristina i valori delle funzioni di stato, ma lungo la sequenza possono essere stati scambiati calore e lavoro. La periodicità non identifica da sola le condizioni di ciascun tratto."
+        },
+        {
+          "type": "formula",
+          "text": "U_f=U_i"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta U_{\\rm ciclo}=0"
+        },
+        {
+          "type": "text",
+          "text": "Un ciclo può contenere isoterme, compressioni o cambiamenti di fase, senza coincidere per definizione con uno solo di essi. La variazione nulla di U non dimostra assenza dei trasferimenti durante la sequenza."
+        }
+      ],
+      "prompt": "Un fluido di lavoro ritorna periodicamente allo stesso stato termodinamico dopo una sequenza di trasformazioni. Come si chiama una sequenza completa che parte e finisce in quello stato?",
+      "difficulty": 1,
+      "family": "chiusura-del-cammino",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Ciclo termodinamico",
+          "Singola isoterma necessariamente",
+          "Compressione irreversibile necessariamente",
+          "Passaggio di fase necessariamente",
+          "Intervallo senza scambi di energia necessariamente"
+        ],
+        "value": "Ciclo termodinamico"
+      },
+      "hints": [
+        "Il criterio è il ritorno allo stato iniziale, non il nome di un tratto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Un ciclo può contenere isoterme, compressioni o cambiamenti di fase, senza coincidere per definizione con uno solo di essi. La variazione nulla di U non dimostra assenza dei trasferimenti durante la sequenza.",
+        "target": "C3-L08"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Area orientata nel piano p–V",
+        "Bilancio periodico e potenza media",
+        "Funzioni di stato e trasferimenti"
+      ]
+    },
+    {
+      "id": "C3-Q074",
+      "kind": "question",
+      "course": "C3",
+      "section": "Leggere il lavoro di un ciclo",
+      "order": 74,
+      "title": "Lavoro per ciclo e cicli al secondo",
+      "skill": "C3-L08",
+      "prerequisites": [
+        "C3-L06",
+        "C3-L07"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La potenza media è il lavoro complessivo diviso per la durata. In 60 s il lavoro è 24·150=3600 J, quindi P=3600/60=60 W. Si può anche convertire il ritmo: 150/60=5/2 cicli/s e moltiplicarlo per 24 J/ciclo. Non si pretende una potenza istantanea costante."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/cb1420a14acc171744464ef6a0e0cff52f6e157b1034e9a07dc1a604036f3d68",
+          "text": "Il pannello centrale costruisce il lavoro totale di 150 cicli in 60 s. I riquadri sono etichette del conteggio e non barre di energia in scala; la divisione per la durata dà la potenza media, non quella istantanea."
+        },
+        {
+          "type": "formula",
+          "text": "W_{60\\,\\mathrm s}=24\\cdot150\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " W_{60\\,\\mathrm s}=3600\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " \\bar P=\\frac{3600\\,\\mathrm J}{60\\,\\mathrm s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\bar P=60\\,\\mathrm W"
+        },
+        {
+          "type": "text",
+          "text": "3600 è il lavoro in un minuto espresso in joule, non la potenza in watt. 24 W scambierebbe il lavoro per ciclo con il lavoro per secondo. 0,16 deriverebbe da una divisione fra numeri che non rappresenta il lavoro totale sulla durata."
+        }
+      ],
+      "prompt": "Una macchina fornisce 24 J di lavoro netto per ciclo e compie 150 cicli identici al minuto, a regime periodico. Trova la potenza meccanica media in watt.",
+      "difficulty": 2,
+      "family": "potenza-da-cicli-al-minuto",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "numeric",
+        "value": 60,
+        "unit": "W",
+        "tolerance": 0
+      },
+      "hints": [
+        "Converto il numero di cicli per minuto prima di chiamarlo una frequenza in hertz.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "3600 è il lavoro in un minuto espresso in joule, non la potenza in watt. 24 W scambierebbe il lavoro per ciclo con il lavoro per secondo. 0,16 deriverebbe da una divisione fra numeri che non rappresenta il lavoro totale sulla durata.",
+        "target": "C3-L08"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Area orientata nel piano p–V",
+        "Bilancio periodico e potenza media",
+        "Funzioni di stato e trasferimenti"
+      ]
+    },
+    {
+      "id": "C3-Q075",
+      "kind": "question",
+      "course": "C3",
+      "section": "Leggere il lavoro di un ciclo",
+      "order": 75,
+      "title": "Calore netto: entrate e uscite",
+      "skill": "C3-L08",
+      "prerequisites": [
+        "C3-L06",
+        "C3-L07"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I 400 J sono un trasferimento positivo per il gas, mentre i 300 J ceduti sono negativi. Q_netto=400−300=100 J. In un ciclo completo senza altre variazioni macroscopiche questa stessa quantità è il lavoro netto uscente, perché ΔU=0."
+        },
+        {
+          "type": "formula",
+          "text": "Q_h=400\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{\\rm ceduto}=-300\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{\\rm netto}=100\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "700 J sommerebbe i moduli senza rispettare i versi. −100 J invertirebbe la convenzione entrante. 400 J ometterebbe la cessione, mentre zero confonderebbe calore netto e variazione di una funzione di stato."
+        }
+      ],
+      "prompt": "Durante un ciclo un gas riceve 400 J dalla sorgente calda e cede 300 J alla sorgente fredda. Il calore Q è positivo se entra nel gas. Quanto vale il calore netto del gas, in joule?",
+      "difficulty": 1,
+      "family": "calore-assorbito-e-calore-netto",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "numeric",
+        "value": 100,
+        "unit": "J",
+        "tolerance": 0
+      },
+      "hints": [
+        "Conta i trasferimenti dal punto di vista del gas, prima di usare il bilancio ciclico.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "700 J sommerebbe i moduli senza rispettare i versi. −100 J invertirebbe la convenzione entrante. 400 J ometterebbe la cessione, mentre zero confonderebbe calore netto e variazione di una funzione di stato.",
+        "target": "C3-L08"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Area orientata nel piano p–V",
+        "Bilancio periodico e potenza media",
+        "Funzioni di stato e trasferimenti"
+      ]
+    },
+    {
+      "id": "C3-Q076",
+      "kind": "question",
+      "course": "C3",
+      "section": "Leggere il lavoro di un ciclo",
+      "order": 76,
+      "title": "Distribuire il lavoro su tre cicli",
+      "skill": "C3-L08",
+      "prerequisites": [
+        "C3-L06",
+        "C3-L07"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Prima ricavo il lavoro di un ciclo: 1,8/3=0,6 kJ. Il bilancio ciclico W=Q_h−Q_c dà Q_c=Q_h−W=2,0−0,6=1,4 kJ. Q_c è definito come modulo positivo della cessione; il suo contributo al calore netto del fluido è −1,4 kJ."
+        },
+        {
+          "type": "formula",
+          "text": "W_{\\rm ciclo}=\\frac{1{,}8}{3}\\,\\mathrm{kJ}"
+        },
+        {
+          "type": "formula",
+          "text": " W_{\\rm ciclo}=0{,}6\\,\\mathrm{kJ}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_c=Q_h-W_{\\rm ciclo}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_c=1{,}4\\,\\mathrm{kJ}"
+        },
+        {
+          "type": "text",
+          "text": "0,2 kJ sottrarrebbe dal calore di un ciclo il lavoro di tre cicli. 0,6 kJ copierebbe il lavoro. 2,6 kJ sommerebbe lavoro uscente e calore entrante anziché ricavare la cessione. 4,2 kJ è il calore ceduto in tre cicli, non in uno."
+        }
+      ],
+      "prompt": "Un motore consegna in totale 1,8 kJ di lavoro in tre cicli identici. In ciascun ciclo riceve 2,0 kJ come calore. Il fluido e tutte le energie macroscopiche tornano ai valori iniziali a ogni ciclo; non vi sono altri trasferimenti. Qual è il modulo del calore ceduto per ciclo?",
+      "difficulty": 2,
+      "family": "scarico-termico-richiesto",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1,4 kJ",
+          "0,2 kJ",
+          "0,6 kJ",
+          "2,6 kJ",
+          "4,2 kJ"
+        ],
+        "value": "1,4 kJ"
+      },
+      "hints": [
+        "Riporta tutte le energie allo stesso numero di cicli prima di sottrarle.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "0,2 kJ sottrarrebbe dal calore di un ciclo il lavoro di tre cicli. 0,6 kJ copierebbe il lavoro. 2,6 kJ sommerebbe lavoro uscente e calore entrante anziché ricavare la cessione. 4,2 kJ è il calore ceduto in tre cicli, non in uno.",
+        "target": "C3-L08"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Area orientata nel piano p–V",
+        "Bilancio periodico e potenza media",
+        "Funzioni di stato e trasferimenti"
+      ]
+    },
+    {
+      "id": "C3-Q077",
+      "kind": "question",
+      "course": "C3",
+      "section": "Leggere il lavoro di un ciclo",
+      "order": 77,
+      "title": "Dare un verso al lavoro del ciclo",
+      "skill": "C3-L08",
+      "prerequisites": [
+        "C3-L06",
+        "C3-L07"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nel percorso orario l’espansione avviene sul ramo di pressione maggiore rispetto alla compressione corrispondente. L’area positiva dell’espansione supera in modulo quella negativa della compressione. Il lavoro uscente netto è quindi positivo."
+        },
+        {
+          "type": "formula",
+          "text": "W=\\oint p\\,dV>0\\quad\\text{nel verso orario}"
+        },
+        {
+          "type": "text",
+          "text": "Il verso antiorario scambia i ruoli e dà lavoro netto negativo. Un segmento verticale ha dV=0 e non può, da solo, racchiudere l’area di una curva semplice. La chiusura del ciclo annulla ΔU, non W."
+        }
+      ],
+      "prompt": "In un diagramma p–V con V crescente verso destra e p crescente verso l’alto, quale verso di una curva semplice chiusa quasi statica produce lavoro netto positivo compiuto dal gas?",
+      "difficulty": 1,
+      "family": "orientamento-motore",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Orario",
+          "Antiorario",
+          "Entrambi con lo stesso segno positivo",
+          "Solo verticale senza spostamento di volume",
+          "Nessun verso, perché un ciclo ha sempre lavoro nullo"
+        ],
+        "value": "Orario"
+      },
+      "hints": [
+        "Confronta il ramo percorso verso destra con quello percorso verso sinistra.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Il verso antiorario scambia i ruoli e dà lavoro netto negativo. Un segmento verticale ha dV=0 e non può, da solo, racchiudere l’area di una curva semplice. La chiusura del ciclo annulla ΔU, non W.",
+        "target": "C3-L08"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Area orientata nel piano p–V",
+        "Bilancio periodico e potenza media",
+        "Funzioni di stato e trasferimenti"
+      ]
+    },
+    {
+      "id": "C3-Q078",
+      "kind": "question",
+      "course": "C3",
+      "section": "Leggere il lavoro di un ciclo",
+      "order": 78,
+      "title": "Ricavare l’intervallo di volume",
+      "skill": "C3-L08",
+      "prerequisites": [
+        "C3-L06",
+        "C3-L07"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’area del rettangolo è ΔpΔV e il verso ne rende positivo il lavoro uscente. Isolo ΔV=W/Δp: 150 J/(50 kPa)=3 L, usando kPa·L=J. È l’intervallo fra i volumi, non il valore di uno dei due volumi assoluti."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/cb1420a14acc171744464ef6a0e0cff52f6e157b1034e9a07dc1a604036f3d68",
+          "text": "Il rettangolo finale separa differenza di pressione e intervallo di volume: 50 kPa per 3 L danno 150 J. L’origine è comune per gli assi; la posizione della base non cambia l’area racchiusa."
+        },
+        {
+          "type": "formula",
+          "text": "W=\\Delta p\\Delta V"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta V=\\frac{W}{\\Delta p}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta V=3\\,\\mathrm L"
+        },
+        {
+          "type": "text",
+          "text": "7500 moltiplicherebbe i numeri invece di dividere e non avrebbe unità di volume. 1/3 L darebbe un lavoro di 50/3 J, non 150 J. Zero annullerebbe l’area pur con un lavoro positivo assegnato."
+        }
+      ],
+      "prompt": "Un ciclo rettangolare quasi statico e orario produce 150 J di lavoro netto. La differenza fra le due pressioni isobare è 50 kPa. Quanto vale V_max−V_min in litri?",
+      "difficulty": 1,
+      "family": "superficie-mancante",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "L",
+        "tolerance": 0
+      },
+      "hints": [
+        "Dividi per la differenza di pressione, non per una pressione assoluta non fornita.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "7500 moltiplicherebbe i numeri invece di dividere e non avrebbe unità di volume. 1/3 L darebbe un lavoro di 50/3 J, non 150 J. Zero annullerebbe l’area pur con un lavoro positivo assegnato.",
+        "target": "C3-L08"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Area orientata nel piano p–V",
+        "Bilancio periodico e potenza media",
+        "Funzioni di stato e trasferimenti"
+      ]
+    },
+    {
+      "id": "C3-Q079",
+      "kind": "question",
+      "course": "C3",
+      "section": "Leggere il lavoro di un ciclo",
+      "order": 79,
+      "title": "Che cosa torna davvero al punto di partenza",
+      "skill": "C3-L08",
+      "prerequisites": [
+        "C3-L06",
+        "C3-L07"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Energia interna ed entropia sono entrambe funzioni di stato. Se lo stato finale del fluido coincide con l’iniziale, entrambe le variazioni sono zero anche in un ciclo irreversibile. In quel caso può aumentare l’entropia complessiva di fluido e ambiente, senza accumularsi nel fluido a fine ciclo."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta U_{\\rm fluido}=0"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta S_{\\rm fluido}=0"
+        },
+        {
+          "type": "text",
+          "text": "Calore e lavoro sono trasferimenti lungo il percorso e possono essere entrambi non nulli. La produzione irreversibile non impone ΔS positivo del solo fluido ciclico; l’entropia prodotta può essere trasferita all’ambiente. Una variazione non nulla di U contraddirebbe il ritorno allo stesso stato."
+        }
+      ],
+      "prompt": "Il fluido di lavoro compie un ciclo e ritorna esattamente allo stato iniziale. Quale coppia di variazioni del fluido è necessariamente nulla, indipendentemente dalla reversibilità?",
+      "difficulty": 2,
+      "family": "il-gas-al-termine-di-un-ciclo",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "ΔU=0 e ΔS=0",
+          "Q_netto=0 e W_netto=0",
+          "ΔU>0 e ΔS>0",
+          "ΔU<0 e Q_netto=0",
+          "W_netto=0 e ΔS>0"
+        ],
+        "value": "ΔU=0 e ΔS=0"
+      },
+      "hints": [
+        "Mantieni distinto il fluido ciclico dall’insieme di macchina e ambiente.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Calore e lavoro sono trasferimenti lungo il percorso e possono essere entrambi non nulli. La produzione irreversibile non impone ΔS positivo del solo fluido ciclico; l’entropia prodotta può essere trasferita all’ambiente. Una variazione non nulla di U contraddirebbe il ritorno allo stesso stato.",
+        "target": "C3-L08"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Area orientata nel piano p–V",
+        "Bilancio periodico e potenza media",
+        "Funzioni di stato e trasferimenti"
+      ]
+    },
+    {
+      "id": "C3-Q080",
+      "kind": "question",
+      "course": "C3",
+      "section": "Leggere il lavoro di un ciclo",
+      "order": 80,
+      "title": "Un ciclo che richiede lavoro",
+      "skill": "C3-L08",
+      "prerequisites": [
+        "C3-L06",
+        "C3-L07"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sommo i calori con i versi: Q_netto=80+50−170=−40 J. Poiché il ciclo ha ΔU=0 e nessuna variazione macroscopica residua, W_netto=Q_netto=−40 J. Il gas riceve dunque 40 J netti come lavoro: non è un motore con lavoro uscente positivo in questo ciclo."
+        },
+        {
+          "type": "formula",
+          "text": "Q_{\\rm netto}=(80+50-170)\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{\\rm netto}=-40\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " W_{\\rm netto}=Q_{\\rm netto}"
+        },
+        {
+          "type": "formula",
+          "text": " W_{\\rm netto}=-40\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "+40 J cambierebbe il segno del trasferimento richiesto. 300 J sommerebbe i tre moduli e 130 J ignorerebbe il tratto cedente. Zero confonderebbe la variazione di U con il lavoro lungo un percorso chiuso."
+        }
+      ],
+      "prompt": "In un ciclo un gas assorbe 80 J in un tratto e 50 J in un altro, poi cede 170 J. Il fluido e le energie macroscopiche tornano ai valori iniziali e non vi sono altri trasferimenti. Trova il lavoro netto del gas, positivo uscente, in joule.",
+      "difficulty": 2,
+      "family": "un-ciclo-in-due-letture-di-calore",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "numeric",
+        "value": -40,
+        "unit": "J",
+        "tolerance": 0
+      },
+      "hints": [
+        "Un risultato negativo è informativo: controlla se il dispositivo riceve o fornisce lavoro netto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "+40 J cambierebbe il segno del trasferimento richiesto. 300 J sommerebbe i tre moduli e 130 J ignorerebbe il tratto cedente. Zero confonderebbe la variazione di U con il lavoro lungo un percorso chiuso.",
+        "target": "C3-L08"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Area orientata nel piano p–V",
+        "Bilancio periodico e potenza media",
+        "Funzioni di stato e trasferimenti"
+      ]
+    }
+  ],
+  "assets": [
+    {
+      "id": "cb1420a14acc171744464ef6a0e0cff52f6e157b1034e9a07dc1a604036f3d68",
+      "name": "cric-c3-l08-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTU0MCIgdmlld0JveD0iMCAwIDY0MCAxNTQwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyIgZm9udC1mYW1pbHk9InN5c3RlbS11aSxzYW5zLXNlcmlmIj48dGl0bGUgaWQ9InRpdGxlIj5UcmUgY29udGkgcGVyIHVuIGNpY2xvPC90aXRsZT48ZGVzYyBpZD0iZGVzYyI+VHJpYW5nb2xvIG9yYXJpbyBjb24gYmFzZSBxdWF0dHJvIGxpdHJpIGUgYWx0ZXp6YSBzZXNzYW50YSBraWxvcGFzY2FsOyBjb250ZWdnaW8gZGkgY2VudG9jaW5xdWFudGEgY2ljbGkgaW4gdW4gbWludXRvOyByZXR0YW5nb2xvIGRpIGxhdm9ybyBjZW50b2NpbnF1YW50YSBqb3VsZSBjb24gaW50ZXJ2YWxsbyBkaSB2b2x1bWUgdHJlIGxpdHJpLjwvZGVzYz48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iNjQwIiBoZWlnaHQ9IjE1NDAiIGZpbGw9IndoaXRlIi8+PHRleHQgeD0iMzUiIHk9IjQ4IiBmb250LXNpemU9IjI0IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPkFyZWEsIHJpcGV0aXppb25pIGUgYmlsYW5jaW8gY2ljbGljbzwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMTEwIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjEgwrcgVHJpYW5nb2xvIG9yYXJpbzogbGF2b3JvIHBvc2l0aXZvPC90ZXh0PjxsaW5lIHgxPSIxMDAiIHkxPSI0NDAiIHgyPSI1NDAiIHkyPSI0NDAiIHN0cm9rZT0iIzYwNzM4MyIgc3Ryb2tlLXdpZHRoPSIyIi8+PGxpbmUgeDE9IjEwMCIgeTE9IjQ0MCIgeDI9IjEwMCIgeTI9IjE1NSIgc3Ryb2tlPSIjNjA3MzgzIiBzdHJva2Utd2lkdGg9IjIiLz48cG9seWdvbiBwb2ludHM9IjE4MCwzNjAgMTgwLDI0MCA1MDAsMzYwIiBmaWxsPSIjZDllY2YxIi8+PGxpbmUgeDE9IjE4MCIgeTE9IjM2MCIgeDI9IjE4MCIgeTI9IjI0MCIgc3Ryb2tlPSIjMzA2ZjhjIiBzdHJva2Utd2lkdGg9IjMiLz48bGluZSB4MT0iMTgwIiB5MT0iMjQwIiB4Mj0iNTAwIiB5Mj0iMzYwIiBzdHJva2U9IiMzMDZmOGMiIHN0cm9rZS13aWR0aD0iMyIvPjxsaW5lIHgxPSI1MDAiIHkxPSIzNjAiIHgyPSIxODAiIHkyPSIzNjAiIHN0cm9rZT0iIzMwNmY4YyIgc3Ryb2tlLXdpZHRoPSIzIi8+PGxpbmUgeDE9IjE4MCIgeTE9IjMzMCIgeDI9IjE4MCIgeTI9IjI3NSIgc3Ryb2tlPSIjMzA2ZjhjIiBzdHJva2Utd2lkdGg9IjIiLz48cG9seWdvbiBwb2ludHM9IjE4MCwyNzUgMTg0LjAsMjgzLjAgMTc2LjAsMjgzLjAiIGZpbGw9IiMzMDZmOGMiLz48bGluZSB4MT0iMzAwIiB5MT0iMjg1IiB4Mj0iMzgwIiB5Mj0iMzE1IiBzdHJva2U9IiMzMDZmOGMiIHN0cm9rZS13aWR0aD0iMiIvPjxwb2x5Z29uIHBvaW50cz0iMzgwLDMxNSAzNzEuMTA0ODcyODEzMDk0MSwzMTUuOTM2MzI5MTc3NTY5MDYgMzczLjkxMzg2MDM0NTgwMTIsMzA4LjQ0NTY5NTc1NzAxNjY3IiBmaWxsPSIjMzA2ZjhjIi8+PGxpbmUgeDE9IjQyMCIgeTE9IjM2MCIgeDI9IjMzMCIgeTI9IjM2MCIgc3Ryb2tlPSIjMzA2ZjhjIiBzdHJva2Utd2lkdGg9IjIiLz48cG9seWdvbiBwb2ludHM9IjMzMCwzNjAgMzM4LjAsMzU2LjAgMzM4LjAsMzY0LjAiIGZpbGw9IiMzMDZmOGMiLz48dGV4dCB4PSI5MCIgeT0iNDcwIiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0iZW5kIj4wPC90ZXh0Pjx0ZXh0IHg9IjU0NSIgeT0iNDc1IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0iZW5kIj5WIFtMXTwvdGV4dD48dGV4dCB4PSI3NSIgeT0iMTU1IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5wIFtrUGFdPC90ZXh0Pjx0ZXh0IHg9IjkwIiB5PSIyNDgiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJlbmQiPjEwMDwvdGV4dD48dGV4dCB4PSI5MCIgeT0iMzY4IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0iZW5kIj40MDwvdGV4dD48dGV4dCB4PSIxODAiIHk9IjQ3NSIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MTwvdGV4dD48dGV4dCB4PSI1MDAiIHk9IjQ3NSIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9Im1pZGRsZSI+NTwvdGV4dD48dGV4dCB4PSIzNSIgeT0iNTMwIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPkJhc2UgNCBMOyBhbHRlenphIDYwIGtQYTsgVyA9IDEyMCBKPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSI2NDAiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+MiDCtyBSaXBldGVyZSB1biBsYXZvcm8gcGVyIGNpY2xvPC90ZXh0PjxyZWN0IHg9IjgwIiB5PSI3MTAiIHdpZHRoPSIxODAiIGhlaWdodD0iMTAwIiBmaWxsPSIjZDllY2YxIi8+PHRleHQgeD0iMTcwIiB5PSI3NTAiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJtaWRkbGUiPjEgY2ljbG88L3RleHQ+PHRleHQgeD0iMTcwIiB5PSI3OTAiIGZvbnQtc2l6ZT0iMjAiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJtaWRkbGUiPjI0IEo8L3RleHQ+PGxpbmUgeDE9IjI4MCIgeTE9Ijc2MCIgeDI9IjM0MCIgeTI9Ijc2MCIgc3Ryb2tlPSIjMzA2ZjhjIiBzdHJva2Utd2lkdGg9IjIiLz48cG9seWdvbiBwb2ludHM9IjM0MCw3NjAgMzMyLjAsNzY0LjAgMzMyLjAsNzU2LjAiIGZpbGw9IiMzMDZmOGMiLz48cmVjdCB4PSIzNjUiIHk9IjcxMCIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIxMDAiIGZpbGw9IiNlNWVkZGMiLz48dGV4dCB4PSI0NjUiIHk9Ijc1MCIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MTUwIGNpY2xpPC90ZXh0Pjx0ZXh0IHg9IjQ2NSIgeT0iNzkwIiBmb250LXNpemU9IjIwIiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj4zNjAwIEo8L3RleHQ+PHRleHQgeD0iMzUiIHk9Ijg3NSIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5EdXJhdGEgdG90YWxlOiA2MCBzPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSI5MzUiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+UG90ZW56YSBtZWRpYTogMzYwMCBKIC8gNjAgcyA9IDYwIFc8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjEwNDAiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+MyDCtyBSZXR0YW5nb2xvOiByaWNhdmFyZSDOlFY8L3RleHQ+PGxpbmUgeDE9IjEwMCIgeTE9IjEzOTAiIHgyPSI1NDAiIHkyPSIxMzkwIiBzdHJva2U9IiM2MDczODMiIHN0cm9rZS13aWR0aD0iMiIvPjxsaW5lIHgxPSIxMDAiIHkxPSIxMzkwIiB4Mj0iMTAwIiB5Mj0iMTExMCIgc3Ryb2tlPSIjNjA3MzgzIiBzdHJva2Utd2lkdGg9IjIiLz48cmVjdCB4PSIxODAiIHk9IjExOTAiIHdpZHRoPSIyNDAiIGhlaWdodD0iMTAwIiBmaWxsPSIjZDllY2YxIi8+PGxpbmUgeDE9IjE4MCIgeTE9IjEyOTAiIHgyPSIxODAiIHkyPSIxMTkwIiBzdHJva2U9IiMzMDZmOGMiIHN0cm9rZS13aWR0aD0iMyIvPjxsaW5lIHgxPSIxODAiIHkxPSIxMTkwIiB4Mj0iNDIwIiB5Mj0iMTE5MCIgc3Ryb2tlPSIjMzA2ZjhjIiBzdHJva2Utd2lkdGg9IjMiLz48bGluZSB4MT0iNDIwIiB5MT0iMTE5MCIgeDI9IjQyMCIgeTI9IjEyOTAiIHN0cm9rZT0iIzMwNmY4YyIgc3Ryb2tlLXdpZHRoPSIzIi8+PGxpbmUgeDE9IjQyMCIgeTE9IjEyOTAiIHgyPSIxODAiIHkyPSIxMjkwIiBzdHJva2U9IiMzMDZmOGMiIHN0cm9rZS13aWR0aD0iMyIvPjxsaW5lIHgxPSIyNDAiIHkxPSIxMTkwIiB4Mj0iMzIwIiB5Mj0iMTE5MCIgc3Ryb2tlPSIjMzA2ZjhjIiBzdHJva2Utd2lkdGg9IjIiLz48cG9seWdvbiBwb2ludHM9IjMyMCwxMTkwIDMxMi4wLDExOTQuMCAzMTIuMCwxMTg2LjAiIGZpbGw9IiMzMDZmOGMiLz48bGluZSB4MT0iMzYwIiB5MT0iMTI5MCIgeDI9IjI4MCIgeTI9IjEyOTAiIHN0cm9rZT0iIzMwNmY4YyIgc3Ryb2tlLXdpZHRoPSIyIi8+PHBvbHlnb24gcG9pbnRzPSIyODAsMTI5MCAyODguMCwxMjg2LjAgMjg4LjAsMTI5NC4wIiBmaWxsPSIjMzA2ZjhjIi8+PHRleHQgeD0iOTAiIHk9IjE0MjAiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJlbmQiPjA8L3RleHQ+PHRleHQgeD0iNTQ1IiB5PSIxNDI1IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0iZW5kIj5WIFtMXTwvdGV4dD48dGV4dCB4PSI3MCIgeT0iMTEwMCIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9Im1pZGRsZSI+cCBba1BhXTwvdGV4dD48dGV4dCB4PSI5MCIgeT0iMTE5OCIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9ImVuZCI+MTAwPC90ZXh0Pjx0ZXh0IHg9IjkwIiB5PSIxMjk4IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0iZW5kIj41MDwvdGV4dD48dGV4dCB4PSIxODAiIHk9IjE0MjUiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJtaWRkbGUiPjE8L3RleHQ+PHRleHQgeD0iNDIwIiB5PSIxNDI1IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj40PC90ZXh0Pjx0ZXh0IHg9IjMwMCIgeT0iMTI0OCIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MTUwIEo8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjE0OTAiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+zpRwID0gNTAga1BhOyDOlFYgPSAxNTAgSiAvIDUwIGtQYSA9IDMgTDwvdGV4dD48L3N2Zz4K"
+    }
+  ]
+}

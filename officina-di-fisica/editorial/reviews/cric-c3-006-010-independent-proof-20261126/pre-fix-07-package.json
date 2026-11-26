@@ -1,0 +1,707 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "C3-Q061",
+      "kind": "question",
+      "course": "C3",
+      "section": "Riconoscere il percorso nel piano p–V",
+      "order": 61,
+      "title": "Salire a volume bloccato",
+      "skill": "C3-L07",
+      "prerequisites": [
+        "C3-L02",
+        "C3-L06"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Con quantità di gas e volume fissati, pV=nRT impone T proporzionale a p assoluta: la temperatura cresce. Per il gas perfetto con capacità termica positiva cresce anche U. Il lavoro di volume è nullo perché il pistone non si sposta; il calore ricevuto fornisce l’aumento di energia interna."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta V=0"
+        },
+        {
+          "type": "formula",
+          "text": " W=0"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{p_f}{p_i}=\\frac{T_f}{T_i}>1"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta U>0"
+        },
+        {
+          "type": "text",
+          "text": "La linea verticale non rappresenta un aumento di volume. Non è un’isoterma e il lavoro nullo non impone Q nullo. Per il gas ideale chiuso una temperatura maggiore non può accompagnare una diminuzione di U a capacità positiva."
+        }
+      ],
+      "prompt": "Nel diagramma p–V di un gas perfetto chiuso, una trasformazione procede verso pressioni maggiori a volume fisso. Non ci sono altri lavori e le energie macroscopiche non cambiano. Quale coppia di variazioni è corretta?",
+      "difficulty": 1,
+      "family": "tratto-verticale-nel-piano-pv",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Aumentano temperatura ed energia interna",
+          "Aumenta il volume e diminuisce la temperatura",
+          "Diminuiscono temperatura ed energia interna",
+          "La temperatura resta necessariamente costante e U diminuisce",
+          "La pressione aumenta ma ogni energia resta necessariamente invariata"
+        ],
+        "value": "Aumentano temperatura ed energia interna"
+      },
+      "hints": [
+        "Leggi prima quale coordinata rimane fissa, poi usa l’equazione di stato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La linea verticale non rappresenta un aumento di volume. Non è un’isoterma e il lavoro nullo non impone Q nullo. Per il gas ideale chiuso una temperatura maggiore non può accompagnare una diminuzione di U a capacità positiva.",
+        "target": "C3-L07"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Vincoli e trasformazioni",
+        "Calore e lavoro negli stati ideali",
+        "Reversibilità distinta dalla lentezza"
+      ]
+    },
+    {
+      "id": "C3-Q062",
+      "kind": "question",
+      "course": "C3",
+      "section": "Riconoscere il percorso nel piano p–V",
+      "order": 62,
+      "title": "Raffreddamento mentre il gas lavora",
+      "skill": "C3-L07",
+      "prerequisites": [
+        "C3-L02",
+        "C3-L06"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Adiabatico significa Q=0. Il lavoro uscente porta ΔU=−200 J, anche se il volume non è costante durante il processo. Per il gas ideale U dipende solo da T: ΔU=Cᵥ,totΔT, quindi ΔT=−200/25=−8 K. L’indice v identifica la capacità che lega U a T, non impone qui un percorso isocoro."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/74335a2437720f76a3a33d91b3e9540835324c0a6e149f099a6fcfb866ac4bbc",
+          "text": "Il primo pannello distingue un lavoro di 200 J uscente e una diminuzione di temperatura di 8 K: le due rappresentazioni non condividono un’unità di misura. La capacità totale è 25 J/K."
+        },
+        {
+          "type": "formula",
+          "text": "Q=0"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta U=-W"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta U=-200\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta T=\\frac{\\Delta U}{C_{v,\\rm tot}}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta T=-8\\,\\mathrm K"
+        },
+        {
+          "type": "text",
+          "text": "+8 K invertirebbe il segno del lavoro uscente. 200 K copierebbe un’energia come temperatura. Zero confonderebbe assenza di calore con assenza di variazione di U; per tornare al lavoro si usa W=−Cᵥ,totΔT."
+        }
+      ],
+      "prompt": "Un gas perfetto chiuso si espande adiabaticamente e compie 200 J di lavoro. La sua capacità termica totale a volume costante è Cᵥ,tot=25 J/K, costante nell’intervallo. Non vi sono altri lavori o variazioni macroscopiche. Trova ΔT=T_f−T_i in kelvin.",
+      "difficulty": 2,
+      "family": "quantificare-il-raffreddamento-adiabatico",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "numeric",
+        "value": -8,
+        "unit": "K",
+        "tolerance": 0
+      },
+      "hints": [
+        "Distingui la definizione della capacità termica dalla condizione del percorso.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "+8 K invertirebbe il segno del lavoro uscente. 200 K copierebbe un’energia come temperatura. Zero confonderebbe assenza di calore con assenza di variazione di U; per tornare al lavoro si usa W=−Cᵥ,totΔT.",
+        "target": "C3-L07"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Vincoli e trasformazioni",
+        "Calore e lavoro negli stati ideali",
+        "Reversibilità distinta dalla lentezza"
+      ]
+    },
+    {
+      "id": "C3-Q063",
+      "kind": "question",
+      "course": "C3",
+      "section": "Riconoscere il percorso nel piano p–V",
+      "order": 63,
+      "title": "Riconoscere una pressione invariata",
+      "skill": "C3-L07",
+      "prerequisites": [
+        "C3-L02",
+        "C3-L06"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La proprietà dichiarata è la pressione costante: il cammino è isobaro. Nel piano p–V è un tratto orizzontale. Non sono specificati né calore nullo né temperatura costante; per un gas perfetto chiuso la temperatura cambia insieme al volume."
+        },
+        {
+          "type": "formula",
+          "text": "p=\\mathrm{costante}"
+        },
+        {
+          "type": "text",
+          "text": "Isocoro significa volume fisso, che qui varia. Isotermo riguarda T e adiabatico riguarda Q: nessuna delle due condizioni deriva dal solo mantenere p. Un ciclo richiederebbe ritorno allo stesso stato."
+        }
+      ],
+      "prompt": "Una trasformazione lenta attraversa stati di equilibrio di un gas mantenendo la stessa pressione mentre cambia il volume. Qual è il nome della trasformazione?",
+      "difficulty": 1,
+      "family": "nominare-un-vincolo-da-una-misura",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Isobara",
+          "Isocora",
+          "Isoterma per definizione",
+          "Adiabatica per definizione",
+          "Ciclica per definizione"
+        ],
+        "value": "Isobara"
+      },
+      "hints": [
+        "Associa il nome alla grandezza esplicitamente mantenuta costante.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Isocoro significa volume fisso, che qui varia. Isotermo riguarda T e adiabatico riguarda Q: nessuna delle due condizioni deriva dal solo mantenere p. Un ciclo richiederebbe ritorno allo stesso stato.",
+        "target": "C3-L07"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Vincoli e trasformazioni",
+        "Calore e lavoro negli stati ideali",
+        "Reversibilità distinta dalla lentezza"
+      ]
+    },
+    {
+      "id": "C3-Q064",
+      "kind": "question",
+      "course": "C3",
+      "section": "Riconoscere il percorso nel piano p–V",
+      "order": 64,
+      "title": "Lentissimo non significa reversibile",
+      "skill": "C3-L07",
+      "prerequisites": [
+        "C3-L02",
+        "C3-L06"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La lentezza può permettere al gas di attraversare una successione di stati prossimi all’equilibrio. La reversibilità richiede però anche assenza di dissipazione complessiva: l’attrito produce trasformazioni che non si annullano semplicemente invertendo il verso del pistone. Quasi statico e reversibile non sono sinonimi."
+        },
+        {
+          "type": "formula",
+          "text": "\\text{attrito dissipativo}\\;\\Longrightarrow\\;\\text{irreversibilita}"
+        },
+        {
+          "type": "text",
+          "text": "L’attrito non rende automaticamente la parete adiabatica. Una velocità piccola non annulla il lavoro totale, che dipende dallo spostamento e dalle forze. Un processo lento attraversa stati diversi e non è un singolo equilibrio immutabile."
+        }
+      ],
+      "prompt": "Un pistone procede molto lentamente, ma lo scorrimento dissipa energia per attrito. Il gas può essere descritto mediante stati vicini all’equilibrio. Quale classificazione distingue correttamente lentezza e reversibilità?",
+      "difficulty": 2,
+      "family": "quasi-statico-con-attrito",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Può essere quasi statico, ma resta irreversibile per l’attrito",
+          "È necessariamente reversibile perché molto lento",
+          "È necessariamente adiabatico perché c’è attrito",
+          "Non trasferisce alcun lavoro perché lento",
+          "È un equilibrio termodinamico permanente senza processo"
+        ],
+        "value": "Può essere quasi statico, ma resta irreversibile per l’attrito"
+      },
+      "hints": [
+        "Cerca una sorgente di dissipazione oltre alla sola velocità del processo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "L’attrito non rende automaticamente la parete adiabatica. Una velocità piccola non annulla il lavoro totale, che dipende dallo spostamento e dalle forze. Un processo lento attraversa stati diversi e non è un singolo equilibrio immutabile.",
+        "target": "C3-L07"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Vincoli e trasformazioni",
+        "Calore e lavoro negli stati ideali",
+        "Reversibilità distinta dalla lentezza"
+      ]
+    },
+    {
+      "id": "C3-Q065",
+      "kind": "question",
+      "course": "C3",
+      "section": "Riconoscere il percorso nel piano p–V",
+      "order": 65,
+      "title": "Scaldare un’ampolla rigida",
+      "skill": "C3-L07",
+      "prerequisites": [
+        "C3-L02",
+        "C3-L06"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’ampolla impedisce la variazione di volume, quindi il lavoro di espansione è zero. I 72 J ricevuti aumentano interamente U nel modello: ΔT=Q/Cᵥ,tot=72/12=6 K. La capacità assegnata è totale, già espressa in J/K; non occorre moltiplicare ancora per la massa o per le moli."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/74335a2437720f76a3a33d91b3e9540835324c0a6e149f099a6fcfb866ac4bbc",
+          "text": "La retta centrale rappresenta l’aumento di temperatura in funzione del calore ricevuto nell’ampolla rigida. Le origini sono ΔT=0 e Q=0; il punto 72 J, 6 K corrisponde alla capacità totale 12 J/K."
+        },
+        {
+          "type": "formula",
+          "text": "W=0"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta U=Q"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta T=\\frac{Q}{C_{v,\\rm tot}}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta T=6\\,\\mathrm K"
+        },
+        {
+          "type": "text",
+          "text": "864 ricaverebbe il prodotto Q·C, con unità diverse da kelvin. 12 copierebbe la capacità, mentre zero ignorerebbe il calore entrante. Per l’inversa Q=Cᵥ,totΔT=12·6=72 J."
+        }
+      ],
+      "prompt": "Un gas perfetto chiuso in un’ampolla rigida riceve 72 J come calore. La sua capacità termica totale a volume costante è 12 J/K e resta costante. Non vi sono altri lavori o variazioni macroscopiche. Calcola l’aumento di temperatura in kelvin.",
+      "difficulty": 1,
+      "family": "guadagno-di-energia-lungo-una-isocora",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "numeric",
+        "value": 6,
+        "unit": "K",
+        "tolerance": 0
+      },
+      "hints": [
+        "Controlla se la capacità fornita è totale, specifica o molare prima di aggiungere fattori.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "864 ricaverebbe il prodotto Q·C, con unità diverse da kelvin. 12 copierebbe la capacità, mentre zero ignorerebbe il calore entrante. Per l’inversa Q=Cᵥ,totΔT=12·6=72 J.",
+        "target": "C3-L07"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Vincoli e trasformazioni",
+        "Calore e lavoro negli stati ideali",
+        "Reversibilità distinta dalla lentezza"
+      ]
+    },
+    {
+      "id": "C3-Q066",
+      "kind": "question",
+      "course": "C3",
+      "section": "Riconoscere il percorso nel piano p–V",
+      "order": 66,
+      "title": "T costante per un gas perfetto",
+      "skill": "C3-L07",
+      "prerequisites": [
+        "C3-L02",
+        "C3-L06"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Per questo modello l’energia interna è funzione della sola temperatura. Gli estremi hanno la stessa T, quindi ΔU=0. Ciò non annulla separatamente calore e lavoro: in un’espansione isoterma reversibile il gas può assorbire calore e compiere la stessa quantità di lavoro."
+        },
+        {
+          "type": "formula",
+          "text": "T_f=T_i"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta U=0"
+        },
+        {
+          "type": "formula",
+          "text": " Q=W"
+        },
+        {
+          "type": "text",
+          "text": "Un volume che aumenta non obbliga U ad aumentare nel gas perfetto isotermo. Il valore di una variazione di energia non può essere un volume. L’ultima uguaglianza è il bilancio senza altre variazioni macroscopiche, non una dichiarazione di assenza di scambi."
+        }
+      ],
+      "prompt": "Un gas perfetto chiuso, di composizione fissata, percorre un’isoterma. Come si descrive la sua variazione di energia interna?",
+      "difficulty": 1,
+      "family": "energia-interna-in-una-isoterma-ideale",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Nulla",
+          "Sempre positiva",
+          "Sempre negativa",
+          "Uguale necessariamente al volume finale",
+          "Non nulla per ogni espansione"
+        ],
+        "value": "Nulla"
+      },
+      "hints": [
+        "Usa la dipendenza di U dalla temperatura prima di discutere i singoli trasferimenti.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Un volume che aumenta non obbliga U ad aumentare nel gas perfetto isotermo. Il valore di una variazione di energia non può essere un volume. L’ultima uguaglianza è il bilancio senza altre variazioni macroscopiche, non una dichiarazione di assenza di scambi.",
+        "target": "C3-L07"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Vincoli e trasformazioni",
+        "Calore e lavoro negli stati ideali",
+        "Reversibilità distinta dalla lentezza"
+      ]
+    },
+    {
+      "id": "C3-Q067",
+      "kind": "question",
+      "course": "C3",
+      "section": "Riconoscere il percorso nel piano p–V",
+      "order": 67,
+      "title": "Il lavoro isobaro con una costante assegnata",
+      "skill": "C3-L07",
+      "prerequisites": [
+        "C3-L02",
+        "C3-L06"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A pressione costante W=pΔV. Sottraendo le equazioni di stato degli estremi, pΔV=nRΔT: la pressione si elimina senza doverla conoscere. Il prodotto 0,50·20 vale 10 mol·K; moltiplicare 8,314 per dieci dà 83,14 J esatti rispetto al parametro assegnato. Il segno è positivo perché il gas si espande."
+        },
+        {
+          "type": "formula",
+          "text": "W=p\\Delta V"
+        },
+        {
+          "type": "formula",
+          "text": " p\\Delta V=nR\\Delta T"
+        },
+        {
+          "type": "formula",
+          "text": " n\\Delta T=10\\,\\mathrm{mol\\,K}"
+        },
+        {
+          "type": "formula",
+          "text": " W=83{,}14\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "8,314 J ometterebbe il fattore complessivo nΔT=10 mol·K, copiando solo il numero di R. 831,4 J introdurrebbe un ulteriore fattore dieci. 166,28 J userebbe una mole invece di mezza; zero sarebbe lavoro isocoro, non isobaro con aumento di T."
+        }
+      ],
+      "prompt": "Un gas perfetto chiuso di 0,50 mol si scalda di 20 K a pressione costante, con espansione quasi statica e solo lavoro di volume. Usa il parametro assegnato R=8,314 J/(mol·K). Quanto lavoro compie il gas?",
+      "difficulty": 2,
+      "family": "un-tratto-isobaro-di-un-gas-perfetto",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "83,14 J",
+          "8,314 J",
+          "831,4 J",
+          "166,28 J",
+          "0 J"
+        ],
+        "value": "83,14 J"
+      },
+      "hints": [
+        "Semplifica il prodotto fra moli e intervallo di temperatura prima di usare R.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "8,314 J ometterebbe il fattore complessivo nΔT=10 mol·K, copiando solo il numero di R. 831,4 J introdurrebbe un ulteriore fattore dieci. 166,28 J userebbe una mole invece di mezza; zero sarebbe lavoro isocoro, non isobaro con aumento di T.",
+        "target": "C3-L07"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Vincoli e trasformazioni",
+        "Calore e lavoro negli stati ideali",
+        "Reversibilità distinta dalla lentezza"
+      ]
+    },
+    {
+      "id": "C3-Q068",
+      "kind": "question",
+      "course": "C3",
+      "section": "Riconoscere il percorso nel piano p–V",
+      "order": 68,
+      "title": "Due espansioni dallo stesso stato",
+      "skill": "C3-L07",
+      "prerequisites": [
+        "C3-L02",
+        "C3-L06"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nell’isoterma il bagno fornisce energia e la temperatura resta quella iniziale. Nell’adiabatica il gas compie lavoro a spese di U e si raffredda. A ogni volume intermedio maggiore dell’iniziale, la pressione adiabatica è quindi minore della pressione isoterma. L’area sotto l’isoterma, e perciò il lavoro positivo, è maggiore."
+        },
+        {
+          "type": "formula",
+          "text": "T_{\\rm ad}<T_i"
+        },
+        {
+          "type": "formula",
+          "text": " p_{\\rm ad}(V)<p_{\\rm isot}(V)"
+        },
+        {
+          "type": "formula",
+          "text": " W_{\\rm isot}>W_{\\rm ad}>0"
+        },
+        {
+          "type": "text",
+          "text": "Lo stesso intervallo di volume non rende uguali le aree se le pressioni lungo i cammini differiscono. Il lavoro non è nullo in un’espansione contro pressione positiva. Le disuguaglianze di T e p valgono dopo lo stato iniziale comune, non nel punto di partenza."
+        }
+      ],
+      "prompt": "Dallo stesso stato un gas perfetto chiuso, con capacità termiche positive, si espande reversibilmente fino allo stesso volume finale maggiore dell’iniziale. Confronta un’isoterma e un’adiabatica reversibile, senza altri lavori. Quale dà il lavoro di volume maggiore?",
+      "difficulty": 2,
+      "family": "confronto-fra-due-curve",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "L’isoterma",
+          "L’adiabatica reversibile",
+          "Sono necessariamente uguali perché gli estremi di volume coincidono",
+          "Entrambe danno lavoro nullo",
+          "Non si possono confrontare neppure le aree dei due percorsi"
+        ],
+        "value": "L’isoterma"
+      },
+      "hints": [
+        "Confronta le pressioni a pari volume intermedio, poi confronta le aree.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Lo stesso intervallo di volume non rende uguali le aree se le pressioni lungo i cammini differiscono. Il lavoro non è nullo in un’espansione contro pressione positiva. Le disuguaglianze di T e p valgono dopo lo stato iniziale comune, non nel punto di partenza.",
+        "target": "C3-L07"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Vincoli e trasformazioni",
+        "Calore e lavoro negli stati ideali",
+        "Reversibilità distinta dalla lentezza"
+      ]
+    },
+    {
+      "id": "C3-Q069",
+      "kind": "question",
+      "course": "C3",
+      "section": "Riconoscere il percorso nel piano p–V",
+      "order": 69,
+      "title": "Una potenza con radice esatta",
+      "skill": "C3-L07",
+      "prerequisites": [
+        "C3-L02",
+        "C3-L06"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La legge del percorso è pV^γ costante. Quindi p_i/p_f=(V_f/V_i)^γ=4^(3/2). Calcolo prima la radice quadrata di 4, che è 2, e poi il cubo: 2³=8. La pressione finale è un ottavo dell’iniziale; il rapporto richiesto è quello inverso."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/74335a2437720f76a3a33d91b3e9540835324c0a6e149f099a6fcfb866ac4bbc",
+          "text": "Nell’ultimo pannello i volumi iniziale e finale hanno scala comune tra loro; le pressioni ne hanno una seconda. Il volume quadruplica, mentre la pressione finale è un ottavo dell’iniziale. Le barre mostrano gli estremi, non un percorso intermedio."
+        },
+        {
+          "type": "formula",
+          "text": "p_iV_i^{\\gamma}=p_fV_f^{\\gamma}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{p_i}{p_f}=4^{3/2}"
+        },
+        {
+          "type": "formula",
+          "text": " 4^{3/2}=(\\sqrt4)^3"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{p_i}{p_f}=8"
+        },
+        {
+          "type": "text",
+          "text": "Quattro userebbe γ=1, la dipendenza isoterma. Due prenderebbe solo la radice senza il cubo. 1/8 invertirebbe il rapporto richiesto. Il coefficiente γ è adimensionale e il rapporto delle pressioni non ha unità."
+        }
+      ],
+      "prompt": "Un gas perfetto chiuso ha γ=Cp/Cv=1,50 costante. In un’espansione adiabatica reversibile il volume passa da V_i a 4V_i, con pressione iniziale positiva. Trova il rapporto p_i/p_f.",
+      "difficulty": 3,
+      "family": "ricostruire-un-rapporto-adiabatico",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "numeric",
+        "value": 8,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "hints": [
+        "Scrivi 1,50 come 3/2 e valuta la potenza attraverso una radice notevole.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro userebbe γ=1, la dipendenza isoterma. Due prenderebbe solo la radice senza il cubo. 1/8 invertirebbe il rapporto richiesto. Il coefficiente γ è adimensionale e il rapporto delle pressioni non ha unità.",
+        "target": "C3-L07"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Vincoli e trasformazioni",
+        "Calore e lavoro negli stati ideali",
+        "Reversibilità distinta dalla lentezza"
+      ]
+    },
+    {
+      "id": "C3-Q070",
+      "kind": "question",
+      "course": "C3",
+      "section": "Riconoscere il percorso nel piano p–V",
+      "order": 70,
+      "title": "Il bagno che sostiene l’isoterma",
+      "skill": "C3-L07",
+      "prerequisites": [
+        "C3-L02",
+        "C3-L06"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Per gas perfetto isotermo ΔU=0, dunque Q=W>0 con la convenzione entrante/uscente. Il contatto deve essere diatermico, in grado di far passare il calore necessario dal bagno al gas. Nel limite reversibile il trasferimento avviene con differenza di temperatura infinitesima; la lentezza da sola non sostituisce il contatto termico."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta U=0"
+        },
+        {
+          "type": "formula",
+          "text": " Q=W>0"
+        },
+        {
+          "type": "text",
+          "text": "Un isolamento adiabatico insieme a W>0 farebbe diminuire U e la temperatura, contraddicendo l’isoterma. Un gas chiuso non deve ricevere materia per ottenere calore. Mantenere T non significa impedire il lavoro."
+        }
+      ],
+      "prompt": "Un dispositivo mantiene un gas perfetto chiuso a temperatura costante durante una lenta espansione con lavoro uscente positivo. Non cambiano energie macroscopiche. Quale proprietà deve avere il contatto con il bagno per realizzare questo processo?",
+      "difficulty": 2,
+      "family": "il-bagno-e-la-parete-isolante",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Deve permettere ingresso di calore che compensi il lavoro",
+          "Deve impedire ogni scambio di calore",
+          "Deve imporre una diminuzione di temperatura del gas",
+          "Deve annullare il lavoro del pistone",
+          "Deve trasferire soltanto materia nel gas"
+        ],
+        "value": "Deve permettere ingresso di calore che compensi il lavoro"
+      },
+      "hints": [
+        "Chiedi da dove arriva l’energia che il gas consegna come lavoro mentre U resta invariata.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Un isolamento adiabatico insieme a W>0 farebbe diminuire U e la temperatura, contraddicendo l’isoterma. Un gas chiuso non deve ricevere materia per ottenere calore. Mantenere T non significa impedire il lavoro.",
+        "target": "C3-L07"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Vincoli e trasformazioni",
+        "Calore e lavoro negli stati ideali",
+        "Reversibilità distinta dalla lentezza"
+      ]
+    }
+  ],
+  "assets": [
+    {
+      "id": "74335a2437720f76a3a33d91b3e9540835324c0a6e149f099a6fcfb866ac4bbc",
+      "name": "cric-c3-l07-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTUzMCIgdmlld0JveD0iMCAwIDY0MCAxNTMwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyIgZm9udC1mYW1pbHk9InN5c3RlbS11aSxzYW5zLXNlcmlmIj48dGl0bGUgaWQ9InRpdGxlIj5UcmUgdmluY29saSBkaSB1biBnYXMgcGVyZmV0dG88L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5CaWxhbmNpbyBhZGlhYmF0aWNvIGNvbiBsYXZvcm8gdXNjZW50ZSAyMDAgam91bGUgZSByYWZmcmVkZGFtZW50byBkaSA4IGtlbHZpbjsgYXVtZW50byBkaSA2IGtlbHZpbiBwZXIgNzIgam91bGUgaW4gYW1wb2xsYSByaWdpZGE7IGNvbmZyb250byBkZWkgdm9sdW1pIGUgZGVsbGUgcHJlc3Npb25pIGFnbGkgZXN0cmVtaSBkaSB1buKAmWVzcGFuc2lvbmUgYWRpYWJhdGljYSByZXZlcnNpYmlsZSBjb24gZ2FtbWEgdHJlIG1lenppLjwvZGVzYz48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iNjQwIiBoZWlnaHQ9IjE1MzAiIGZpbGw9IndoaXRlIi8+PHRleHQgeD0iMzUiIHk9IjQ4IiBmb250LXNpemU9IjI0IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPlZpbmNvbGkgcHJpbWEgZGVpIGNhbGNvbGk8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjExMCIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij4xIMK3IEVzcGFuc2lvbmUgYWRpYWJhdGljYTwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMTc1IiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPlEgPSAwOyBXIHVzY2VudGUgPSAyMDAgSjwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMjM1IiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPs6UVSA9IOKIkjIwMCBKPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSIyOTUiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+Q+G1pSx0b3QgPSAyNSBKL0s7IM6UVCA9IOKIkjggSzwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMzU1IiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPkzigJllbmVyZ2lhIGludGVybmEgZGlwZW5kZSBkYSBULCBub24gZGFsIGNhbW1pbm8uPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSI0NzAiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+MiDCtyBBbXBvbGxhIHJpZ2lkYTogbmVzc3VuIGxhdm9ybyBkaSB2b2x1bWU8L3RleHQ+PGxpbmUgeDE9IjE0MCIgeTE9Ijg1MCIgeDI9IjUzMCIgeTI9Ijg1MCIgc3Ryb2tlPSIjNjA3MzgzIiBzdHJva2Utd2lkdGg9IjIiLz48bGluZSB4MT0iMTQwIiB5MT0iODUwIiB4Mj0iMTQwIiB5Mj0iNTYwIiBzdHJva2U9IiM2MDczODMiIHN0cm9rZS13aWR0aD0iMiIvPjxsaW5lIHgxPSIxNDAiIHkxPSI4NTAiIHgyPSI1MDAiIHkyPSI2MTAiIHN0cm9rZT0iIzMwNmY4YyIgc3Ryb2tlLXdpZHRoPSIzIi8+PGNpcmNsZSBjeD0iNTAwIiBjeT0iNjEwIiByPSI1IiBmaWxsPSIjMzA2ZjhjIi8+PHRleHQgeD0iMTI4IiB5PSI4ODAiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJlbmQiPjA8L3RleHQ+PHRleHQgeD0iMTEwIiB5PSI1NTUiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJtaWRkbGUiPs6UVCBbS108L3RleHQ+PHRleHQgeD0iNTQwIiB5PSI5MjAiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJlbmQiPlEgW0pdPC90ZXh0Pjx0ZXh0IHg9IjUwMCIgeT0iODg1IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj43MjwvdGV4dD48dGV4dCB4PSIxMjUiIHk9IjYxOCIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9ImVuZCI+NjwvdGV4dD48dGV4dCB4PSIyMzUiIHk9IjU2NSIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij7OlFQgPSBRIC8gKDEyIEovSyk8L3RleHQ+PHRleHQgeD0iMzUiIHk9Ijk1MCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5JbCBzZWdtZW50byBhcnJpdmEgYSA3MiBKIGUgNiBLLjwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMTA2MCIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij4zIMK3IFF1YXR0cm8gdm9sdGUgVjsgdW4gb3R0YXZvIGRpIHA8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjExMzUiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+ViBpbml6aWFsZTwvdGV4dD48cmVjdCB4PSIyMjAiIHk9IjExMTAiIHdpZHRoPSI2MCIgaGVpZ2h0PSIyOCIgZmlsbD0iIzYzN2U1NSIvPjx0ZXh0IHg9IjMwMCIgeT0iMTEzNSIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5WIGk8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjEyMDUiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+ViBmaW5hbGU8L3RleHQ+PHJlY3QgeD0iMjIwIiB5PSIxMTgwIiB3aWR0aD0iMjQwIiBoZWlnaHQ9IjI4IiBmaWxsPSIjNjM3ZTU1Ii8+PHRleHQgeD0iNDgwIiB5PSIxMjA1IiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjQgViBpPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSIxMzE1IiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPnAgaW5pemlhbGU8L3RleHQ+PHJlY3QgeD0iMjIwIiB5PSIxMjkwIiB3aWR0aD0iMjQwIiBoZWlnaHQ9IjI4IiBmaWxsPSIjM2Q3NzkxIi8+PHRleHQgeD0iNDgwIiB5PSIxMzE1IiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPnAgaTwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMTM4NSIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5wIGZpbmFsZTwvdGV4dD48cmVjdCB4PSIyMjAiIHk9IjEzNjAiIHdpZHRoPSIzMCIgaGVpZ2h0PSIyOCIgZmlsbD0iIzNkNzc5MSIvPjx0ZXh0IHg9IjI3NSIgeT0iMTM4NSIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5wIGkgLyA4PC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSIxNDgwIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPnAgaSAvIHAgZiA9IDReKDMvMikgPSA4OyDOsyA9IDMvMjwvdGV4dD48L3N2Zz4K"
+    }
+  ]
+}

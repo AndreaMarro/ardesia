@@ -1,0 +1,368 @@
+{
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "C3-Q061",
+      "sourceSha256": "c25be6b78638618bddb0eebccac70cdf0f3de88c9537bf5af1f02fe067a2ffa5",
+      "candidateSha256": "d93743aacbc068a8ebd056b524bd6e900490908f3b656ae63ab256e14bd67f7e",
+      "reviewedSignature": "66cb9ecdcb596f27001168f25f17d02bcaea9cddced63b9e589f811958530d66",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Aumentano temperatura ed energia interna",
+      "dimension": {},
+      "manualArithmetic": "Derivazione nella primaria congelata PRIMA delle chiavi: A volume fisso e quantità di gas perfetto costante vale p/T=costante. Salire nel grafico p–V implica p maggiore e T maggiore. Per capacità termica positiva aumenta anche U; il lavoro di volume resta nullo. Prima delle opzioni non seleziono una coppia testuale esclusiva, ma derivo tutte queste proprietà.",
+      "physicalAssumptions": "Gas perfetto chiuso, volume fisso, capacità termica positiva; pressione assoluta crescente.",
+      "distractors": "L’ascissa immutata esclude espansione. A p/T costante una pressione crescente esclude temperatura costante o calante.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione nella primaria congelata PRIMA delle chiavi: A volume fisso e quantità di gas perfetto costante vale p/T=costante. Salire nel grafico p–V implica p maggiore e T maggiore. Per capacità termica positiva aumenta anche U; il lavoro di volume resta nullo. Prima delle opzioni non seleziono una coppia testuale esclusiva, ma derivo tutte queste proprietà.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c3_051_100_review_models.py": "bf8b18d51ea3c67369de5b7eba54d5e94819ce2a3e797f55e48895843dfdbcbf",
+        "cric_c3_thermodynamics_review_common.py": "2985fa1eacffcae96f821dae51bdc6fd66992472b262fd7ad65dc877a51581ac",
+        "cric_c3_thermodynamics_review_evidence.py": "0dac7c643dc1c95d31cb19f7ca7d21c69ec5b3352e0905ff08c461bd950d1ae2",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C3-Q062",
+      "sourceSha256": "808024dde724d67f0ac3325408138d831a14ba657ebcc37c2bae5a0941eb5554",
+      "candidateSha256": "bee54fd41dcdbe58bc584ad20e0b0cd8cc257b3be9cf0a144a3b0966d2516ce5",
+      "reviewedSignature": "40cae3dc480b262372a2009e73bfb12e7510be3c10d443f160f4d46c66f64948",
+      "assetChecksums": {
+        "cric-c3-l07-progressive.svg": "74335a2437720f76a3a33d91b3e9540835324c0a6e149f099a6fcfb866ac4bbc"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "-8",
+      "dimension": {
+        "[temperature]": "1"
+      },
+      "manualArithmetic": "Derivazione nella primaria congelata PRIMA delle chiavi: Trasformazione adiabatica: Q=0. I 200 J compiuti dal gas sono lavoro uscente, quindi ΔU=−200 J. La capacità totale costante 25 J/K dà ΔT=ΔU/C_V=−8 K. Non si introduce una massa o una capacità specifica assente.",
+      "physicalAssumptions": "Gas perfetto chiuso, Q=0; capacità TOTALE costante a volume costante usata come derivata di U rispetto T, non vincolo isocoro del processo.",
+      "distractors": "Il segno +8 K inverte il verso del lavoro. Q=0 non significa ΔU=0; la capacità totale non va moltiplicata ancora per una massa.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione nella primaria congelata PRIMA delle chiavi: Trasformazione adiabatica: Q=0. I 200 J compiuti dal gas sono lavoro uscente, quindi ΔU=−200 J. La capacità totale costante 25 J/K dà ΔT=ΔU/C_V=−8 K. Non si introduce una massa o una capacità specifica assente.",
+      "scientificAssetReview": "Figura candidata letta integralmente XML e in nuovo native indipendente completo640×altezza, processo reale0; proporzioni, unità, origini e segni verificati separatamente per ciascun pannello. Nove SVG originali fonte letti integralmente XML. Tre fix testuali non cambiano alcun asset; nessun ritag di UIprodotto.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c3_051_100_review_models.py": "bf8b18d51ea3c67369de5b7eba54d5e94819ce2a3e797f55e48895843dfdbcbf",
+        "cric_c3_thermodynamics_review_common.py": "2985fa1eacffcae96f821dae51bdc6fd66992472b262fd7ad65dc877a51581ac",
+        "cric_c3_thermodynamics_review_evidence.py": "0dac7c643dc1c95d31cb19f7ca7d21c69ec5b3352e0905ff08c461bd950d1ae2",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C3-Q063",
+      "sourceSha256": "1eda7db1d55c294e6c944341253843608ce02d50b0e0e0b639eb06925591091e",
+      "candidateSha256": "785084c5c5b27d6e997f67fda59dd13b58a59d4daccbe68c4fabfc4f89961eb7",
+      "reviewedSignature": "2b4eb1d27f88e8a31a655ddd7040587b1ebdad75d177c3154d3896a019451394",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Isobara",
+      "dimension": {},
+      "manualArithmetic": "Derivazione nella primaria congelata PRIMA delle chiavi: La trasformazione a pressione costante è isobara. Non è necessariamente isoterma; per un gas perfetto chiuso con p costante, un aumento di V richiede un aumento di T assoluta.",
+      "physicalAssumptions": "Successione lenta di equilibri con p invariata e V variabile.",
+      "distractors": "Isocora, isoterma e adiabatica sono vincoli distinti. La pressione costante non chiude da sola un ciclo.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione nella primaria congelata PRIMA delle chiavi: La trasformazione a pressione costante è isobara. Non è necessariamente isoterma; per un gas perfetto chiuso con p costante, un aumento di V richiede un aumento di T assoluta.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c3_051_100_review_models.py": "bf8b18d51ea3c67369de5b7eba54d5e94819ce2a3e797f55e48895843dfdbcbf",
+        "cric_c3_thermodynamics_review_common.py": "2985fa1eacffcae96f821dae51bdc6fd66992472b262fd7ad65dc877a51581ac",
+        "cric_c3_thermodynamics_review_evidence.py": "0dac7c643dc1c95d31cb19f7ca7d21c69ec5b3352e0905ff08c461bd950d1ae2",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C3-Q064",
+      "sourceSha256": "a38d8c92719a5506f3708655af77e4c554fb2fa34220755a8368a403cc7b6b83",
+      "candidateSha256": "54ee3bac55d512231ab041b9ce51bbcd52a3361dd31672e7dea2e3e8f83e29f7",
+      "reviewedSignature": "638db6c23a6ec72f84f528318851bb07603b445e55dd3c20e82ac7c73e23a508",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Può essere quasi statico, ma resta irreversibile per l’attrito",
+      "dimension": {},
+      "manualArithmetic": "Derivazione nella primaria congelata PRIMA delle chiavi: Il moto lentissimo può approssimare una trasformazione quasi statica, ma gli attriti attivi la rendono irreversibile. La lentezza non elimina la dissipazione o la produzione di entropia. Non si conclude reversibilità dal solo procedere lento.",
+      "physicalAssumptions": "Quasi staticità possibile con dissipazione di attrito attiva; reversibilità complessiva assente.",
+      "distractors": "La lentezza non cancella la produzione di entropia. L’attrito non implica automaticamente isolamento termico o lavoro nullo.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione nella primaria congelata PRIMA delle chiavi: Il moto lentissimo può approssimare una trasformazione quasi statica, ma gli attriti attivi la rendono irreversibile. La lentezza non elimina la dissipazione o la produzione di entropia. Non si conclude reversibilità dal solo procedere lento.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c3_051_100_review_models.py": "bf8b18d51ea3c67369de5b7eba54d5e94819ce2a3e797f55e48895843dfdbcbf",
+        "cric_c3_thermodynamics_review_common.py": "2985fa1eacffcae96f821dae51bdc6fd66992472b262fd7ad65dc877a51581ac",
+        "cric_c3_thermodynamics_review_evidence.py": "0dac7c643dc1c95d31cb19f7ca7d21c69ec5b3352e0905ff08c461bd950d1ae2",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C3-Q065",
+      "sourceSha256": "4503c721de4586e7e91aec3af43616ba2e61f1279b489e2d6401e22f13529857",
+      "candidateSha256": "d1fdc4a118c3565dc402638dac19c1603fb65991688c52c04a3ea5f68fc50a72",
+      "reviewedSignature": "76cc04046461f905f54a7aab90ce47454e1fed89d14433d537447f8959282da9",
+      "assetChecksums": {
+        "cric-c3-l07-progressive.svg": "74335a2437720f76a3a33d91b3e9540835324c0a6e149f099a6fcfb866ac4bbc"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "6",
+      "dimension": {
+        "[temperature]": "1"
+      },
+      "manualArithmetic": "Derivazione nella primaria congelata PRIMA delle chiavi: La rigidità esclude il lavoro di volume; con il solo riscaldamento ΔU=Q=72 J. Con capacità totale a volume costante 12 J/K l’aumento è ΔT=72/12=6 K. Non si moltiplica per una massa non data.",
+      "physicalAssumptions": "Ampolla rigida, nessun lavoro ulteriore, capacità totale 12 J/K e Q 72 J; non si aggiunge una massa.",
+      "distractors": "Il prodotto 72·12 non ha dimensione kelvin. 12 copia il parametro della capacità; zero nega l’aumento energetico.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione nella primaria congelata PRIMA delle chiavi: La rigidità esclude il lavoro di volume; con il solo riscaldamento ΔU=Q=72 J. Con capacità totale a volume costante 12 J/K l’aumento è ΔT=72/12=6 K. Non si moltiplica per una massa non data.",
+      "scientificAssetReview": "Figura candidata letta integralmente XML e in nuovo native indipendente completo640×altezza, processo reale0; proporzioni, unità, origini e segni verificati separatamente per ciascun pannello. Nove SVG originali fonte letti integralmente XML. Tre fix testuali non cambiano alcun asset; nessun ritag di UIprodotto.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c3_051_100_review_models.py": "bf8b18d51ea3c67369de5b7eba54d5e94819ce2a3e797f55e48895843dfdbcbf",
+        "cric_c3_thermodynamics_review_common.py": "2985fa1eacffcae96f821dae51bdc6fd66992472b262fd7ad65dc877a51581ac",
+        "cric_c3_thermodynamics_review_evidence.py": "0dac7c643dc1c95d31cb19f7ca7d21c69ec5b3352e0905ff08c461bd950d1ae2",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C3-Q066",
+      "sourceSha256": "6ca762994422a81689e6c70bd8a25964fe0b5179097c7b71ce4738a731abb1df",
+      "candidateSha256": "0fca975497c518f862edfdcbe043a714f45487d86f4c99ee58d7419ad88e729b",
+      "reviewedSignature": "e1696457b6b2a7cb22283390343d57f8515c1e0b95929dad3db35b95850f252c",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Nulla",
+      "dimension": {},
+      "manualArithmetic": "Derivazione nella primaria congelata PRIMA delle chiavi: Per gas perfetto chiuso U dipende soltanto da T. Nell’isoterma ΔT=0, dunque la variazione di U è nulla. Questo non impone Q=W=0: durante un’espansione possono essere entrambi positivi ed uguali.",
+      "physicalAssumptions": "Gas perfetto di quantità e composizione fissate, estremi alla stessa T; U(T).",
+      "distractors": "La temperatura invariata impone ΔU=0 nel gas perfetto; calore e lavoro possono restare non nulli. Un volume non è un’energia.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione nella primaria congelata PRIMA delle chiavi: Per gas perfetto chiuso U dipende soltanto da T. Nell’isoterma ΔT=0, dunque la variazione di U è nulla. Questo non impone Q=W=0: durante un’espansione possono essere entrambi positivi ed uguali.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c3_051_100_review_models.py": "bf8b18d51ea3c67369de5b7eba54d5e94819ce2a3e797f55e48895843dfdbcbf",
+        "cric_c3_thermodynamics_review_common.py": "2985fa1eacffcae96f821dae51bdc6fd66992472b262fd7ad65dc877a51581ac",
+        "cric_c3_thermodynamics_review_evidence.py": "0dac7c643dc1c95d31cb19f7ca7d21c69ec5b3352e0905ff08c461bd950d1ae2",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C3-Q067",
+      "sourceSha256": "f9495aaa557a9190f182e7540e6699ee6290455d6d76143c0cc8f20c377ad677",
+      "candidateSha256": "7cf941ce5ed5d6be74b193f7ca71a7da42edeb8fe86dfbab52778a007e8843d9",
+      "reviewedSignature": "d731ceafbd9701e2ac6d5d6465e52796ef66fa5cd3467e77ed11a78436cccf1a",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4157/50",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Derivazione nella primaria congelata PRIMA delle chiavi: In isobara quasi statica del gas perfetto W=pΔV=nRΔT. Con n=1/2 mol, R=8,314=4157/500 J/(mol·K) e ΔT=20 K, W=4157/50 J=83,14 J. Il valore di R è l’approssimazione prescritta, non viene sostituito silenziosamente con 8.",
+      "physicalAssumptions": "Gas perfetto chiuso, espansione isobara quasi statica, R 8,314 prescritta e solo lavoro di volume.",
+      "distractors": "8,314 copia il numero di R; 831,4 aggiunge un fattore dieci; 166,28 usa una mole invece di mezza. Zero richiederebbe un diverso vincolo.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione nella primaria congelata PRIMA delle chiavi: In isobara quasi statica del gas perfetto W=pΔV=nRΔT. Con n=1/2 mol, R=8,314=4157/500 J/(mol·K) e ΔT=20 K, W=4157/50 J=83,14 J. Il valore di R è l’approssimazione prescritta, non viene sostituito silenziosamente con 8.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c3_051_100_review_models.py": "bf8b18d51ea3c67369de5b7eba54d5e94819ce2a3e797f55e48895843dfdbcbf",
+        "cric_c3_thermodynamics_review_common.py": "2985fa1eacffcae96f821dae51bdc6fd66992472b262fd7ad65dc877a51581ac",
+        "cric_c3_thermodynamics_review_evidence.py": "0dac7c643dc1c95d31cb19f7ca7d21c69ec5b3352e0905ff08c461bd950d1ae2",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C3-Q068",
+      "sourceSha256": "4c6cbe9847462d531e5174e9d6deb45250e5cc391d72598b991a691c718394ce",
+      "candidateSha256": "5e7f10f4f10665a42b8f888b777d03b3f109eb10fa229bb10b6f2844ffb6698c",
+      "reviewedSignature": "451ea11bb8c41df14a6cb92856f50659cb950ead0031f215163173f11a96aa23",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "L’isoterma",
+      "dimension": {},
+      "manualArithmetic": "Derivazione nella primaria congelata PRIMA delle chiavi: Dallo stesso stato e per V_f>V_i, l’isoterma mantiene T iniziale; l’adiabatica reversibile raffredda il gas. Con capacità termiche positive, γ>1: per V>V_i il rapporto p_iso/p_ad=(V/V_i)^(γ−1)>1. Integrando p dV sullo stesso intervallo si ottiene W_iso>W_ad. Stesso volume finale non significa stesso stato finale o stesso calore.",
+      "physicalAssumptions": "Stato iniziale comune, stesso volume finale maggiore, percorsi reversibili; capacità positive e gas perfetto.",
+      "distractors": "Gli stessi estremi di volume non uguagliano integrali con pressioni diverse. L’isoterma resta sopra l’adiabatica dopo lo stato iniziale.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione nella primaria congelata PRIMA delle chiavi: Dallo stesso stato e per V_f>V_i, l’isoterma mantiene T iniziale; l’adiabatica reversibile raffredda il gas. Con capacità termiche positive, γ>1: per V>V_i il rapporto p_iso/p_ad=(V/V_i)^(γ−1)>1. Integrando p dV sullo stesso intervallo si ottiene W_iso>W_ad. Stesso volume finale non significa stesso stato finale o stesso calore.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c3_051_100_review_models.py": "bf8b18d51ea3c67369de5b7eba54d5e94819ce2a3e797f55e48895843dfdbcbf",
+        "cric_c3_thermodynamics_review_common.py": "2985fa1eacffcae96f821dae51bdc6fd66992472b262fd7ad65dc877a51581ac",
+        "cric_c3_thermodynamics_review_evidence.py": "0dac7c643dc1c95d31cb19f7ca7d21c69ec5b3352e0905ff08c461bd950d1ae2",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C3-Q069",
+      "sourceSha256": "dd97d8ac5f9308c537fb62994dbaed4664ae7dad541ed43bb090bb5dbb6b6dbe",
+      "candidateSha256": "3e7403190ec1f19cf2dcb31d963424e5e7aa69c304da32c644d41e107bb3e375",
+      "reviewedSignature": "8bb070f24cf41cecf5ecf054ab351b28be1b43fa6909918e8e41999332416c54",
+      "assetChecksums": {
+        "cric-c3-l07-progressive.svg": "74335a2437720f76a3a33d91b3e9540835324c0a6e149f099a6fcfb866ac4bbc"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "8",
+      "dimension": {},
+      "manualArithmetic": "Derivazione nella primaria congelata PRIMA delle chiavi: Per l’adiabatica reversibile pV^γ è costante. Con V_f/V_i=4 e γ=3/2, p_i/p_f=4^(3/2)=(√4)³=8. Il rapporto inverso sarebbe 1/8. Il gas resta nel regime ideale con γ costante assegnato.",
+      "physicalAssumptions": "Adiabatica reversibile, gamma 3/2 costante, pressioni e volumi positivi.",
+      "distractors": "Quattro corrisponde a γ=1; due prende soltanto la radice; 1/8 è il rapporto inverso.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione nella primaria congelata PRIMA delle chiavi: Per l’adiabatica reversibile pV^γ è costante. Con V_f/V_i=4 e γ=3/2, p_i/p_f=4^(3/2)=(√4)³=8. Il rapporto inverso sarebbe 1/8. Il gas resta nel regime ideale con γ costante assegnato.",
+      "scientificAssetReview": "Figura candidata letta integralmente XML e in nuovo native indipendente completo640×altezza, processo reale0; proporzioni, unità, origini e segni verificati separatamente per ciascun pannello. Nove SVG originali fonte letti integralmente XML. Tre fix testuali non cambiano alcun asset; nessun ritag di UIprodotto.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c3_051_100_review_models.py": "bf8b18d51ea3c67369de5b7eba54d5e94819ce2a3e797f55e48895843dfdbcbf",
+        "cric_c3_thermodynamics_review_common.py": "2985fa1eacffcae96f821dae51bdc6fd66992472b262fd7ad65dc877a51581ac",
+        "cric_c3_thermodynamics_review_evidence.py": "0dac7c643dc1c95d31cb19f7ca7d21c69ec5b3352e0905ff08c461bd950d1ae2",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C3-Q070",
+      "sourceSha256": "0d483d080c8ba63b1f1cc876db504569930f5ecfd28ecca89eac05b91edeb76b",
+      "candidateSha256": "cef953bc8caa4c15080a5ffb7076097b328c997cf57658793b2aa082a3dd050d",
+      "reviewedSignature": "4236d92e65c4a75962e1ce8a9c50a1078bac7fc701abaa736ed62fcfe62e4b13",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Deve permettere ingresso di calore che compensi il lavoro",
+      "dimension": {},
+      "manualArithmetic": "Derivazione nella primaria congelata PRIMA delle chiavi: Nel modello di gas perfetto chiuso, una lenta espansione isoterma ha ΔU=0 e W>0, quindi deve ricevere Q=W dal bagno: il contatto deve permettere scambio termico, non essere isolante. La reversibilità termica è il limite con differenza infinitesima di temperatura. Il testo originale non dichiara esplicitamente gas perfetto: non estendo Q=W a ogni gas reale, per il quale U può dipendere anche da V. Questo punto va verificato nella candidata autonoma.",
+      "physicalAssumptions": "Gas PERFETTO chiuso isotermo, lavoro uscente positivo, energie macroscopiche ferme: il bagno deve fornire Q=W.",
+      "distractors": "Un’adiabatica con lavoro uscente positivo ridurrebbe U. Ricevere materia non è necessario e contraddirebbe la chiusura.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione nella primaria congelata PRIMA delle chiavi: Nel modello di gas perfetto chiuso, una lenta espansione isoterma ha ΔU=0 e W>0, quindi deve ricevere Q=W dal bagno: il contatto deve permettere scambio termico, non essere isolante. La reversibilità termica è il limite con differenza infinitesima di temperatura. Il testo originale non dichiara esplicitamente gas perfetto: non estendo Q=W a ogni gas reale, per il quale U può dipendere anche da V. Questo punto va verificato nella candidata autonoma.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c3_051_100_review_models.py": "bf8b18d51ea3c67369de5b7eba54d5e94819ce2a3e797f55e48895843dfdbcbf",
+        "cric_c3_thermodynamics_review_common.py": "2985fa1eacffcae96f821dae51bdc6fd66992472b262fd7ad65dc877a51581ac",
+        "cric_c3_thermodynamics_review_evidence.py": "0dac7c643dc1c95d31cb19f7ca7d21c69ec5b3352e0905ff08c461bd950d1ae2",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "5634de2b3b1bded396a498404571f48cf6b19167cb3eb7f5eb49d1213cdff77b",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "publicationAction": "NONE",
+  "reviewedCandidateCommit": "c74364b6b0b6630c548b1ed726603193982cd7c4",
+  "packageSha256": "75a11de8d8505888b9a3cae437f554aa4ccafbb481f1312782c557f9c2405a13",
+  "bindingsSha256": "8ea6e7ccf1c2addeaac4f197b56a2017e0df08e3c8edd80fdcd25537c3042c75",
+  "sourceFirstPrimarySha256": "13a65d52b70957d49eec44e4e1b9ce6d4e99c7cb3cc5d1e1418f9f4967aade8f",
+  "source": {
+    "commit": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "path": "officina-di-fisica/content/C3.json",
+    "reference": "Tutti50 enunciati derivati nella primaria93ea8d3c e modello92090ea0/b374cab4 prima delle candidate C3B. Dopo la primaria: tutti50 originali completi, tutti50 candidati e5SVG XML/native interi letti.9SVG fonte letti integralmente XML. Q081 riparametrizzato ricalcolato con lo stesso modello Carnot, preservando il risultato originale. Fix59/64/74 riletti integralmente prima delle firme. Nessun modulo autore B o primaria B aperti; nessuna esposizione pre-key nota. UI prodotto e human NOT_RUN."
+  }
+}
