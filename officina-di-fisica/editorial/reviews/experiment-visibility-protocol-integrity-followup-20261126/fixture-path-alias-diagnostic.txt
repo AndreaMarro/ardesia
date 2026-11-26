@@ -1,0 +1,21 @@
+test_asset_bytes_changed_after_prepare_never_reach_canonical_import (tests.corpus.test_experiment_visibility_integrity.VisibilityIntegrity.test_asset_bytes_changed_after_prepare_never_reach_canonical_import) ... ok
+test_blocks_changed_after_prepare_never_reach_canonical_import (tests.corpus.test_experiment_visibility_integrity.VisibilityIntegrity.test_blocks_changed_after_prepare_never_reach_canonical_import) ... ok
+test_full_owner_record_body_must_match_normalized_prepared_record (tests.corpus.test_experiment_visibility_integrity.VisibilityIntegrity.test_full_owner_record_body_must_match_normalized_prepared_record) ... ok
+test_omitted_package_never_reaches_canonical_import (tests.corpus.test_experiment_visibility_integrity.VisibilityIntegrity.test_omitted_package_never_reaches_canonical_import) ... ok
+test_prepared_candidate_rebound_never_reaches_canonical_import (tests.corpus.test_experiment_visibility_integrity.VisibilityIntegrity.test_prepared_candidate_rebound_never_reaches_canonical_import) ... ok
+test_valid_four_files_return_all_nine_normalized_owner_records (tests.corpus.test_experiment_visibility_integrity.VisibilityIntegrity.test_valid_four_files_return_all_nine_normalized_owner_records) ... ERROR
+
+======================================================================
+ERROR: test_valid_four_files_return_all_nine_normalized_owner_records (tests.corpus.test_experiment_visibility_integrity.VisibilityIntegrity.test_valid_four_files_return_all_nine_normalized_owner_records)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-experiment-contract-fix/officina-di-fisica/tests/corpus/test_experiment_visibility_integrity.py", line 70, in test_valid_four_files_return_all_nine_normalized_owner_records
+    result=checker({'candidateApp':str(self.app)},self.plan)
+  File "/private/tmp/cric-experiment-contract-fix/officina-di-fisica/tools/corpus_engineering/experiment_visibility_request.py", line 267, in verify_prepared_inputs
+    raise ValueError('Prepared four-input file set differs')
+ValueError: Prepared four-input file set differs
+
+----------------------------------------------------------------------
+Ran 6 tests in 1.300s
+
+FAILED (errors=1)

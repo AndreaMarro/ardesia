@@ -9,6 +9,11 @@ import os from 'node:os';
 import path from 'node:path';
 import {chromium} from 'playwright';
 
+export function assertOwnerRecord(saved,prepared){
+ const expected={...prepared,version:2,review:'bozza'};delete expected.baseVersion;
+ assert.deepEqual(saved,expected,'Full normalized owner record differs from prepared candidate');
+}
+
 export function assertObservedControls(measured,state,row){
  const bounded=(actual,expected,label,step,scale=1)=>{
   assert.ok(Number.isFinite(actual)&&Number.isFinite(expected),label+' finite');
@@ -41,20 +46,27 @@ const preparedBytes=await fs.readFile(info.prepared),plan=JSON.parse(preparedByt
 const sha=b=>createHash('sha256').update(b).digest('hex');
 const protocolSha=sha(await fs.readFile(fileURLToPath(import.meta.url)));
 const data=await fs.mkdtemp(path.join(os.tmpdir(),'cric-visibility-db-'));
-const env={...process.env,ASTRA_DATA:data,ASTRA_HOSTED:'0',ASTRA_HTTPS:'0',ASTRA_EXTENSIONS:path.join(app,'extensions'),ASTRA_PACKAGES:JSON.stringify(plan.packageFiles)};
+const env={...process.env,ASTRA_DATA:data,ASTRA_HOSTED:'0',ASTRA_HTTPS:'0',ASTRA_EXTENSIONS:path.join(app,'extensions'),ASTRA_PACKAGES:JSON.stringify(plan.packageFiles),ASTRA_INPUT_FILES:JSON.stringify(plan.inputFiles)};
 const fingerprint=()=>JSON.parse(execFileSync('python3',['-B','-m','tools.corpus_engineering.runtime_fingerprint'],{cwd:app,env,encoding:'utf8'}));
 assert.deepEqual(fingerprint(),plan.runtimeFingerprint);
 const boot=`import json,os,secrets,hashlib,time
 from server import store
 from server.web import Handler,ThreadingHTTPServer
 from tools.corpus_engineering.draft_import import import_drafts
+from pathlib import Path
+files=json.loads(os.environ['ASTRA_INPUT_FILES']);names=json.loads(os.environ['ASTRA_PACKAGES'])
+assert len(files)==4 and len(names)==2 and len(set(names))==2
+assert set(Path(next(iter(files))).parent.iterdir())==set(map(Path,files))
+checked={name:Path(name).read_bytes() for name in files}
+assert all(not Path(name).is_symlink() and hashlib.sha256(raw).hexdigest()==files[name] for name,raw in checked.items())
+packages=[json.loads(checked[name]) for name in names]
 store.initialize()
 with store.connect() as db:
  before=store.encode(store.published(db));count=len(store.published(db))
  old={(r['id'],r['v']):r['payload'] for r in db.execute('SELECT id,v,payload FROM versions')}
  results=[]
- for filename in json.loads(os.environ['ASTRA_PACKAGES']):
-  package=json.load(open(filename));a=import_drafts(db,{'id':'owner','role':'autore'},package);b=import_drafts(db,{'id':'owner','role':'autore'},package)
+ for package in packages:
+  a=import_drafts(db,{'id':'owner','role':'autore'},package);b=import_drafts(db,{'id':'owner','role':'autore'},package)
   assert a['saved']==len(package['records']) and b['saved']==0;results.append({'first':a,'second':b})
  assert before==store.encode(store.published(db))
  assert all(db.execute('SELECT payload FROM versions WHERE id=? AND v=?',k).fetchone()[0]==v for k,v in old.items())
@@ -175,7 +187,11 @@ try{
   const context=await browser.newContext({viewport:{width:profile.width,height:1000},reducedMotion:'reduce',bypassCSP:true,...(ownerState?{storageState:ownerState}:{})});
   await context.route('**/*',r=>r.request().url().startsWith(base+'/')?r.continue():r.abort());
   if(profile.fallback)await context.addInitScript(()=>{const get=HTMLCanvasElement.prototype.getContext;HTMLCanvasElement.prototype.getContext=function(k,...a){return k.includes('webgl')?null:get.call(this,k,...a);};});
-  if(!ownerState){assert.ok((await context.request.post(base+'/api/owner',{headers:{'X-Astra-Request':'1'},data:{ticket}})).ok());ownerState=await context.storageState();}
+  if(!ownerState){
+   assert.ok((await context.request.post(base+'/api/owner',{headers:{'X-Astra-Request':'1'},data:{ticket}})).ok());ownerState=await context.storageState();
+   const checked=[];for(const expected of plan.draftRecords){const response=await context.request.get(base+'/api/author/item/'+expected.id);assert.ok(response.ok());const text=await response.text();assertOwnerRecord(JSON.parse(text).record,expected);checked.push({id:expected.id,version:2,responseBytesSha256:sha(Buffer.from(text))});}
+   assert.equal(checked.length,9);report.fullOwnerRecordIdentity={scope:'All nine complete normalized owner records, no cross-language canonical digest',records:checked};
+  }
   const page=await context.newPage();page.setDefaultTimeout(15000);page.on('pageerror',e=>report.errors.push(String(e)));
   for(const r of plan.records){
    let loaded=false;const common={id:r.id,variant:r.variant,profile,sourceSha256:r.sourceSha256,candidateSha256:r.candidateSha256,originalJudgment:r.originalJudgment};
@@ -183,7 +199,7 @@ try{
    const published=await live.json();for(const field of ['control','measure','references','apparatus','course','kind','engine'])assert.deepEqual(published[field],r.record[field],'Published physical identity drift: '+field);
    if(r.variant==='draft'){
     const owner=await context.request.get(base+'/api/author/item/'+r.id);assert.ok(owner.ok());const saved=(await owner.json()).record;
-    assert.equal(saved.version,2);assert.deepEqual(saved.control,r.record.control);assert.deepEqual(saved.assessmentSelection,r.record.assessmentSelection);
+    assertOwnerRecord(saved,r.record);
     await page.route('**/api/item/'+r.id,route=>route.fulfill({json:saved}));
    }
    try{

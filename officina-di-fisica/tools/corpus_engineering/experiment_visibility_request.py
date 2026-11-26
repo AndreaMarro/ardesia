@@ -139,12 +139,12 @@ def prepare(request_file,course,workspace):
     (target/'tools/corpus_engineering/runtime_fingerprint.py').write_bytes(protocol)
     payload={'protocolSha256':sha(protocol),'files':runtime};fp={'sha256':digest(payload),**payload}
     if fp['sha256']!=r['runtimeSha256']:raise ValueError('Actual reconstructed runtime differs')
-    packages=[];drafts={}
+    packages=[];drafts={};input_files={}
     for batch,pins in r['draftPackages'].items():
         for suffix,key in (('.json','packageSha256'),('-bindings.json','bindingsSha256')):
             rel='editorial/batches/'+batch+suffix;blob=git_bytes(candidate,'officina-di-fisica/'+rel)
             if sha(blob)!=pins[key]:raise ValueError('Draft input changed')
-            p=target/rel;p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(blob)
+            p=target/rel;p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(blob);input_files[str(p)]=sha(blob)
         package=load(target/'editorial/batches'/f'{batch}.json');packages.append(str(target/'editorial/batches'/f'{batch}.json'))
         for row in package['records']:
             if row['id']in drafts or row['id']not in inv or(row['version'],row['baseVersion'])!=(2,1):raise ValueError('Bad revision identity')
@@ -193,6 +193,7 @@ def prepare(request_file,course,workspace):
     out=root/'evidence';out.mkdir()
     prepared={'schemaVersion':'1.0.0','sourceCommit':candidate,'originalRef':ORIGINAL,'requestSha256':request_sha,'course':course,
               'runtimeFingerprint':fp,'records':selected,'packageFiles':packages,'sourceFiles':source_file_pins,
+              'requestFile':str(Path(request_file).resolve()),'inputFiles':input_files,'draftRecords':list(drafts.values()),
               'profiles':[{'width':w,'fallback':f,'view':v}for w in (320,1280)for f,v in ((False,'orbit'),(False,'side'),(False,'top'),(True,'fixed_projection'))],
               'activityCredit':0,'humanApproval':'NOT_RUN','publicationAction':'NONE'}
     prepared['expectedOriginalGridInputs']=sum(len(x['grid'])for x in selected if x['variant']=='published')
@@ -249,9 +250,48 @@ def verify_report(out,prepared,protocol_sha):
     return report
 
 
+
+def verify_prepared_inputs(info,prepared):
+    """Check exactly the declared four byte streams before any importer starts."""
+    request,request_sha=validate(prepared['requestFile'])
+    if request_sha!=prepared['requestSha256']or request['candidateRef']!=prepared['sourceCommit']or request['runtimeSha256']!=prepared['runtimeFingerprint']['sha256']:
+        raise ValueError('Prepared request/epoch rebound')
+    app=Path(info['candidateApp']).resolve();directory=app/'editorial/batches'
+    expected={}
+    packages=[]
+    for batch in PACKAGES:
+        for suffix,key in (('.json','packageSha256'),('-bindings.json','bindingsSha256')):
+            path=directory/(batch+suffix);expected[str(path)]=request['draftPackages'][batch][key]
+            if suffix=='.json':packages.append(str(path))
+    if prepared.get('inputFiles')!=expected or prepared['packageFiles']!=packages:
+        raise ValueError('Prepared four-input file set differs')
+    if set(directory.iterdir())!={Path(p)for p in expected}:raise ValueError('Unexpected or missing package/binding input')
+    blobs={}
+    for name,pin in expected.items():
+        p=Path(name)
+        if p.is_symlink()or not p.is_file()or sha(p.read_bytes())!=pin:raise ValueError('Package/binding bytes changed after preparation: '+p.name)
+        blobs[name]=p.read_bytes()
+        if sha(blobs[name])!=pin:raise ValueError('Package/binding changed during read')
+    rows={}
+    for name in packages:
+        for row in json.loads(blobs[name])['records']:
+            if row['id']in rows or(row['version'],row['baseVersion'])!=(2,1):raise ValueError('Private revision identity differs')
+            rows[row['id']]=row
+    planned=prepared.get('draftRecords',[])
+    if len(rows)!=9 or len(planned)!=9 or len({x['id']for x in planned})!=9 or canonical({x['id']:x for x in planned})!=canonical(rows):
+        raise ValueError('Prepared full draft candidates differ from pinned packages')
+    for item in prepared['records']:
+        if item['variant']=='draft'and(digest(item['record'])!=digest(rows.get(item['id']))or item['candidateSha256']!=digest(rows[item['id']])):
+            raise ValueError('Cohort candidate rebound')
+    normalized={key:{**{k:v for k,v in row.items()if k not in('baseVersion','review')},'version':2,'review':'bozza'}for key,row in rows.items()}
+    return {'files':expected,'normalizedOwnerRecords':normalized,'activityCredit':0}
+
+
 def run_prepared(prepared_file):
     info=load(prepared_file);out=Path(info['output']);app=Path(info['candidateApp']);prepared=load(info['prepared'])
     if shutil.disk_usage(out).free<2*1024**3:raise ValueError('Need at least2GiB free')
+    checked=verify_prepared_inputs(info,prepared)
+    (out/'input-preflight.json').write_bytes(canonical(checked)+b'\n')
     env={**os.environ,'PYTHONDONTWRITEBYTECODE':'1','ASTRA_EXTENSIONS':str(app/'extensions')}
     script=APP/'tools/corpus_engineering/experiment_visibility_ui.mjs'
     command=['node',str(script),str(prepared_file)]
@@ -267,6 +307,7 @@ def run_prepared(prepared_file):
                 code=process.wait(timeout=170*60)
             if code!=0:raise ValueError('Actual UI process failed: '+str(code))
             verify_report(out,prepared,sha(script.read_bytes()))
+            verify_prepared_inputs(info,prepared)
             if fingerprint()!=prepared['runtimeFingerprint']:raise ValueError('Runtime drift after UI')
         except BaseException as e:
             error=type(e).__name__+': '+str(e)
