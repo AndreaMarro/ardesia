@@ -1,0 +1,58 @@
+{
+  "schemaVersion": "1.0.0",
+  "reviewer": "AI independent from consumer author",
+  "sourceCommit": "16dcfbe690fbeca98cd41a3ecd3f1eeb38e59ee3",
+  "runtimeSha256": "b2abff8e44eab69812c8c2a03c9876fdf49ae3dab2285f323303bcd3c1689e46",
+  "id": "SIM-C2-L005-05",
+  "sourceVersion": 1,
+  "variant": "ORIGINAL_PUBLISHED",
+  "requestedInput": 8,
+  "sourceMeasure": {
+    "unit": "mL/s",
+    "independentLowerBranch": 4,
+    "flowConservation": true,
+    "commonArrowGain": 1.1
+  },
+  "actualReplayedCases": 8,
+  "actualNativeCases": 6,
+  "actualFallbackCases": 2,
+  "observedExitCode": 0,
+  "runtimeBeforeAfterIdentical": true,
+  "scientificConsumerJudgment": "FAIL_VISUAL_TIP_MASKED_BY_OPAQUE_NODE_A_SPRITE",
+  "narrowFailureScope": "Tip/part of new inlet glyph; no claim whole cone is covered.",
+  "failedProfiles": [
+    [
+      320,
+      "orbit"
+    ],
+    [
+      320,
+      "side"
+    ],
+    [
+      320,
+      "top"
+    ],
+    [
+      1280,
+      "top"
+    ]
+  ],
+  "uiFixtureNegative403": {
+    "observedExitCode": 1,
+    "uiCases": 0,
+    "productFailure": false,
+    "preserved": true
+  },
+  "actualCanonicalDraftImportRecords": 9,
+  "canonicalImportIsNotNineDraftUiPasses": true,
+  "targetedTests": {
+    "tests": 4,
+    "observedExitCode": 0
+  },
+  "remaining16ConsumerReviews": "PENDING",
+  "newFullActivityAcceptances": 0,
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}

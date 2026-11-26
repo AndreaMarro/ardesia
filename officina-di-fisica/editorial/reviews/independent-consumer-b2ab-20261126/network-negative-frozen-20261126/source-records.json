@@ -1,0 +1,5623 @@
+[
+  {
+    "id": "SIM-C2-L001-01",
+    "kind": "experiment",
+    "course": "C2",
+    "skill": "C2-L001",
+    "order": 1,
+    "section": "Fluidi in quiete",
+    "version": 1,
+    "title": "Stati di aggregazione",
+    "topic": "Stati di aggregazione",
+    "anchor": "Una siringa chiusa piena d’aria si comprime",
+    "summary": "Come cambia lo spazio occupato dalla stessa massa in tre stati ideali?",
+    "apparatus": "fasi",
+    "control": {
+      "label": "Stato del campione",
+      "unit": "1",
+      "min": 1.0,
+      "max": 3.0,
+      "step": 1.0,
+      "choices": [
+        "Solido",
+        "Liquido",
+        "Gas"
+      ]
+    },
+    "measure": {
+      "label": "Volume del modello",
+      "unit": "cm³"
+    },
+    "formula": "V = m/ρ; m = 6 g",
+    "interpretation": "Le particelle rappresentano sempre la stessa massa. Nella sequenza didattica le densità assegnate sono 1, 0,8 e 0,1 g/cm³. Il reticolo si disordina nel liquido e le particelle si distanziano nel gas. Questi valori illustrativi dipendono dalla sostanza.",
+    "references": [
+      [
+        1.0,
+        6.0
+      ],
+      [
+        3.0,
+        60.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": [
+      "6 / 1",
+      "6 / 0,8",
+      "6 / 0,1"
+    ],
+    "transferPrompt": "Preleva 6 g di materiale e scegli lo stato «{x}». Usando la densità indicata per questo campione, quale volume occupa?"
+  },
+  {
+    "id": "SIM-C2-L001-02",
+    "kind": "experiment",
+    "course": "C2",
+    "skill": "C2-L001",
+    "order": 2,
+    "section": "Fluidi in quiete",
+    "version": 1,
+    "title": "Fluidi e solidi",
+    "topic": "Fluidi e solidi",
+    "anchor": "Una siringa chiusa piena d’aria si comprime",
+    "summary": "Come distinguere un fluido che scorre da un solido che si deforma?",
+    "apparatus": "strati",
+    "control": {
+      "label": "Velocità della lastra superiore",
+      "unit": "cm/s",
+      "min": 0.0,
+      "max": 8.0,
+      "step": 1.0
+    },
+    "measure": {
+      "label": "Sforzo viscoso",
+      "unit": "Pa"
+    },
+    "formula": "τ = ηv/h; η = 1 Pa·s, h = 2 cm",
+    "interpretation": "Una lastra trascina gli strati di fluido newtoniano sopra una base ferma. A regime il gradiente è v/h. In un solido elastico è invece la deformazione accumulata a determinare la tensione.",
+    "references": [
+      [
+        2.0,
+        1.0
+      ],
+      [
+        6.0,
+        3.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "{x} / 2",
+    "transferPrompt": "Una piastra scorre a {x} sopra uno strato spesso 2 cm con viscosità 1 Pa·s. Quanto sforzo tangenziale dev’essere trasmesso?"
+  },
+  {
+    "id": "SIM-C2-L001-03",
+    "kind": "experiment",
+    "course": "C2",
+    "skill": "C2-L001",
+    "order": 3,
+    "section": "Fluidi in quiete",
+    "version": 1,
+    "title": "Densità",
+    "topic": "Densità",
+    "anchor": "Per confrontare campioni di dimensioni diverse, rapporta",
+    "summary": "Come misuri una densità senza confonderla con la massa del campione?",
+    "apparatus": "campione",
+    "control": {
+      "label": "Volume del materiale",
+      "unit": "cm³",
+      "min": 1.0,
+      "max": 8.0,
+      "step": 1.0
+    },
+    "measure": {
+      "label": "Massa sulla bilancia",
+      "unit": "g"
+    },
+    "formula": "m = ρV; ρ = 2,5 g/cm³",
+    "interpretation": "Preleva volumi diversi dello stesso materiale omogeneo. Dividi ciascuna massa per il suo volume: la pendenza della retta massa-volume è la densità.",
+    "references": [
+      [
+        2.0,
+        5.0
+      ],
+      [
+        6.0,
+        15.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "2,5 × {x}",
+    "transferPrompt": "Una provetta contiene {x} di un materiale con densità 2,5 g/cm³. Qual è la massa del solo contenuto?"
+  },
+  {
+    "id": "SIM-C2-L001-04",
+    "kind": "experiment",
+    "course": "C2",
+    "skill": "C2-L001",
+    "order": 4,
+    "section": "Fluidi in quiete",
+    "version": 1,
+    "title": "Pressione e forza normale",
+    "topic": "Pressione e forza normale",
+    "anchor": "Una parete bagnata riceve una forza distribuita.",
+    "summary": "Con lo stesso peso come riduci la pressione sulla superficie?",
+    "apparatus": "pressa",
+    "control": {
+      "label": "Area della faccia",
+      "unit": "cm²",
+      "min": 1.0,
+      "max": 10.0,
+      "step": 1.0
+    },
+    "measure": {
+      "label": "Pressione sul piano",
+      "unit": "kPa"
+    },
+    "formula": "p = F/A; F = 10 N ⇒ p(kPa) = 100/A",
+    "interpretation": "Il carico resta 10 N mentre cambia l’area di contatto. Un centimetro quadrato vale 10⁻⁴ m². Una faccia più larga distribuisce lo stesso carico su più superficie.",
+    "references": [
+      [
+        2.0,
+        50.0
+      ],
+      [
+        5.0,
+        20.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "100 / {x}",
+    "transferPrompt": "Un blocco esercita 10 N sul piano. Se appoggia su una faccia di area {x}, quale pressione in kPa registra il piano?"
+  },
+  {
+    "id": "SIM-C2-L001-05",
+    "kind": "experiment",
+    "course": "C2",
+    "skill": "C2-L001",
+    "order": 5,
+    "section": "Fluidi in quiete",
+    "version": 1,
+    "title": "Pressione assoluta e relativa",
+    "topic": "Pressione assoluta e relativa",
+    "anchor": "La pressione assoluta ha come riferimento il",
+    "summary": "Come distingui le letture di un manometro relativo e di uno assoluto?",
+    "apparatus": "vasca",
+    "control": {
+      "label": "Pressione atmosferica",
+      "unit": "kPa",
+      "min": 70.0,
+      "max": 110.0,
+      "step": 2.0
+    },
+    "measure": {
+      "label": "Pressione assoluta a 1 m",
+      "unit": "kPa"
+    },
+    "formula": "p assoluta = p atmosferica + ρgh = p atmosferica + 10 kPa",
+    "interpretation": "La sonda sta un metro sott’acqua. Con ρ = 1000 kg/m³ e g = 10 m/s² il contributo idrostatico resta 10 kPa. Cambiando il carico sulla superficie cambia soltanto la lettura assoluta.",
+    "references": [
+      [
+        80.0,
+        90.0
+      ],
+      [
+        100.0,
+        110.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "{x} + 10",
+    "transferPrompt": "Sposti la vasca in un luogo con pressione atmosferica {x}. Che pressione assoluta indica il sensore a un metro sott’acqua?"
+  },
+  {
+    "id": "SIM-C2-L002-01",
+    "kind": "experiment",
+    "course": "C2",
+    "skill": "C2-L002",
+    "order": 1,
+    "section": "Fluidi in quiete",
+    "version": 1,
+    "title": "Legge di Stevino",
+    "topic": "Legge di Stevino",
+    "anchor": "Più scendi in acqua, maggiore è la",
+    "summary": "Quanto vale il peso della colonna per unità di area alla profondità scelta?",
+    "apparatus": "vasca",
+    "control": {
+      "label": "Profondità della sonda",
+      "unit": "m",
+      "min": 0.0,
+      "max": 3.0,
+      "step": 0.25
+    },
+    "measure": {
+      "label": "Sovrapressione dell’acqua",
+      "unit": "kPa"
+    },
+    "formula": "Δp = ρgh, con ρ = 1000 kg/m³",
+    "interpretation": "Abbassa la sonda a partire dal pelo libero. L’altezza verticale determina il peso sovrastante per unità di superficie. Il manometro è azzerato alla superficie.",
+    "references": [
+      [
+        1.0,
+        9.81
+      ],
+      [
+        2.0,
+        19.62
+      ]
+    ],
+    "blocks": [],
+    "substitution": "9,81 × {x}",
+    "transferPrompt": "Un sensore azzerato in superficie viene immerso a {x} nell’acqua. Di quanti kPa sale la lettura usando g = 10 m/s²?"
+  },
+  {
+    "id": "SIM-C2-L002-02",
+    "kind": "experiment",
+    "course": "C2",
+    "skill": "C2-L002",
+    "order": 2,
+    "section": "Fluidi in quiete",
+    "version": 1,
+    "title": "Pressione con la profondità",
+    "topic": "Pressione con la profondità",
+    "anchor": "Usa densità uniforme e g quasi costante,",
+    "summary": "Alzando una sonda dal fondo, leggi quota o profondità?",
+    "apparatus": "vasca",
+    "control": {
+      "label": "Quota della sonda sopra il fondo",
+      "unit": "m",
+      "min": 0.0,
+      "max": 3.0,
+      "step": 0.25
+    },
+    "measure": {
+      "label": "Pressione relativa",
+      "unit": "kPa"
+    },
+    "formula": "h = 3−z; Δp = 10(3−z) kPa",
+    "interpretation": "La vasca contiene 3 m d’acqua. La quota cresce verso l’alto, la profondità verso il basso. Le due prese alla stessa quota hanno la stessa pressione, qualunque sia la parete.",
+    "references": [
+      [
+        0.0,
+        30.0
+      ],
+      [
+        2.0,
+        10.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "10 × (3 − {x})",
+    "transferPrompt": "L’acqua raggiunge quota 3 m rispetto al fondo. Installi la sonda alla quota {x}. Quale pressione relativa devi aspettarti?"
+  },
+  {
+    "id": "SIM-C2-L002-03",
+    "kind": "experiment",
+    "course": "C2",
+    "skill": "C2-L002",
+    "order": 3,
+    "section": "Fluidi in quiete",
+    "version": 1,
+    "title": "Esperimento di Torricelli",
+    "topic": "Esperimento di Torricelli",
+    "anchor": "Più scendi in acqua, maggiore è la",
+    "summary": "Che cosa sostiene la colonna del barometro di Torricelli?",
+    "apparatus": "manometro",
+    "control": {
+      "label": "Pressione dell’aria",
+      "unit": "kPa",
+      "min": 68.0,
+      "max": 108.8,
+      "step": 1.36
+    },
+    "measure": {
+      "label": "Altezza della colonna di mercurio",
+      "unit": "cm"
+    },
+    "formula": "h = p/(ρg); ρ = 13600 kg/m³, g = 10 m/s²",
+    "interpretation": "Il tubo chiuso contiene vuoto sopra il mercurio. La superficie del serbatoio è esposta all’aria. Il dislivello dà la pressione atmosferica, trascurando la pressione del vapore.",
+    "references": [
+      [
+        68.0,
+        50.0
+      ],
+      [
+        102.0,
+        75.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "{x} / 1,36",
+    "transferPrompt": "Un barometro a mercurio è esposto alla pressione {x}. Quale altezza della colonna prevedi con ρ = 13 600 kg/m³ e g = 10 m/s²?"
+  },
+  {
+    "id": "SIM-C2-L002-04",
+    "kind": "experiment",
+    "course": "C2",
+    "skill": "C2-L002",
+    "order": 4,
+    "section": "Fluidi in quiete",
+    "version": 2,
+    "title": "Manometro a U",
+    "topic": "Manometro a U",
+    "anchor": "Un manometro a U traduce una differenza",
+    "summary": "In quale ramo del manometro a U sale il liquido quando premi a sinistra?",
+    "apparatus": "manometro",
+    "control": {
+      "label": "Differenza di pressione",
+      "unit": "kPa",
+      "min": -2.0,
+      "max": 2.0,
+      "step": 0.2
+    },
+    "measure": {
+      "label": "Dislivello con segno",
+      "unit": "cm"
+    },
+    "formula": "Δp = p sinistra − p destra. Δh = h destra − h sinistra = Δp/(ρg), con acqua e g = 10 m/s².",
+    "interpretation": "Alla stessa quota la pressione nell’acqua in quiete è uguale nei due rami. Se premi a sinistra il livello sinistro scende e quello destro sale. Definisci il dislivello come altezza destra meno altezza sinistra. Con +1 kPa leggi +10 cm. Con −1 kPa il ramo destro è più basso di 10 cm. A pressione uguale i livelli coincidono. Le sezioni dei rami sono uguali, quindi ciascuna superficie si sposta di metà del dislivello.",
+    "references": [
+      [
+        -1.0,
+        -10.0
+      ],
+      [
+        2.0,
+        20.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "10 × {x}",
+    "transferPrompt": "La pressione a sinistra meno la pressione a destra vale {x}. Quanto misura, in centimetri e con segno, il livello destro meno quello sinistro?"
+  },
+  {
+    "id": "SIM-C2-L003-01",
+    "kind": "experiment",
+    "course": "C2",
+    "skill": "C2-L003",
+    "order": 1,
+    "section": "Fluidi in quiete",
+    "version": 1,
+    "title": "Principio di Pascal",
+    "topic": "Principio di Pascal",
+    "anchor": "Due pistoni di area diversa chiudono un",
+    "summary": "Che cosa si trasmette identico ai due pistoni?",
+    "apparatus": "pressa",
+    "control": {
+      "label": "Pressione aggiunta",
+      "unit": "kPa",
+      "min": 0.0,
+      "max": 10.0,
+      "step": 1.0
+    },
+    "measure": {
+      "label": "Incremento di forza sul pistone grande",
+      "unit": "N"
+    },
+    "formula": "ΔF = Δp A; A = 20 cm²",
+    "interpretation": "Il liquido chiuso è in quiete. La pressione aggiunta raggiunge entrambi i pistoni allo stesso livello. Sul pistone grande si moltiplica per un’area maggiore e produce più forza.",
+    "references": [
+      [
+        2.0,
+        4.0
+      ],
+      [
+        6.0,
+        12.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "2 × {x}",
+    "transferPrompt": "Aumenti di {x} la pressione idraulica. Il pistone di uscita ha area 20 cm². Di quanto aumenta la forza che può esercitare?"
+  },
+  {
+    "id": "SIM-C2-L003-02",
+    "kind": "experiment",
+    "course": "C2",
+    "skill": "C2-L003",
+    "order": 2,
+    "section": "Fluidi in quiete",
+    "version": 1,
+    "title": "Pressa idraulica",
+    "topic": "Pressa idraulica",
+    "anchor": "Se il liquido incomprimibile riempie il circuito",
+    "summary": "Quanto guadagni in forza e quanto perdi in corsa in una pressa ideale?",
+    "apparatus": "pressa",
+    "control": {
+      "label": "Corsa del pistone piccolo",
+      "unit": "cm",
+      "min": 0.0,
+      "max": 8.0,
+      "step": 0.5
+    },
+    "measure": {
+      "label": "Sollevamento del pistone grande",
+      "unit": "cm"
+    },
+    "formula": "A₁s₁ = A₂s₂; A₂ = 4A₁",
+    "interpretation": "La sezione del pistone grande è quattro volte quella del piccolo. Il volume spinto in basso a sinistra ricompare a destra. Con pressioni uguali il rapporto delle forze è l’inverso di quello delle corse.",
+    "references": [
+      [
+        2.0,
+        0.5
+      ],
+      [
+        6.0,
+        1.5
+      ]
+    ],
+    "blocks": [],
+    "substitution": "{x} / 4",
+    "transferPrompt": "Spingi per {x} il pistone piccolo di una pressa. Se l’area grande è quadrupla, di quanto sollevi l’altro pistone?"
+  },
+  {
+    "id": "SIM-C2-L003-03",
+    "kind": "experiment",
+    "course": "C2",
+    "skill": "C2-L003",
+    "order": 3,
+    "section": "Fluidi in quiete",
+    "version": 1,
+    "title": "Trasmissione dell’incremento di pressione in un liquido confinato",
+    "topic": "Trasmissione dell’incremento di pressione in un liquido confinato",
+    "anchor": "Qui le forze indicano gli incrementi normali",
+    "summary": "A due metri di profondità l’incremento di pressione si attenua?",
+    "apparatus": "vasca",
+    "control": {
+      "label": "Incremento di pressione in superficie",
+      "unit": "kPa",
+      "min": 0.0,
+      "max": 12.0,
+      "step": 1.0
+    },
+    "measure": {
+      "label": "Pressione relativa alla sonda profonda",
+      "unit": "kPa"
+    },
+    "formula": "p relativa = Δp superficie + ρgh = Δp superficie + 20 kPa",
+    "interpretation": "La sonda profonda parte da 20 kPa rispetto all’atmosfera. Aggiungi pressione col pistone. L’incremento è identico a tutte le quote, mentre le pressioni totali restano diverse.",
+    "references": [
+      [
+        0.0,
+        20.0
+      ],
+      [
+        8.0,
+        28.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "20 + {x}",
+    "transferPrompt": "La colonna d’acqua dà già 20 kPa di sovrapressione. Aggiungi {x} in superficie. Quale pressione relativa leggi alla sonda profonda?"
+  },
+  {
+    "id": "SIM-C2-L004-01",
+    "kind": "experiment",
+    "course": "C2",
+    "skill": "C2-L004",
+    "order": 1,
+    "section": "Fluidi in quiete",
+    "version": 1,
+    "title": "Principio di Archimede",
+    "topic": "Principio di Archimede",
+    "anchor": "Immergi un corpo senza appoggiarlo sul fondo.",
+    "summary": "Come colleghi la spinta alla quantità d’acqua spostata?",
+    "apparatus": "galleggia",
+    "control": {
+      "label": "Volume immerso",
+      "unit": "L",
+      "min": 0.0,
+      "max": 4.0,
+      "step": 0.25
+    },
+    "measure": {
+      "label": "Spinta di Archimede",
+      "unit": "N"
+    },
+    "formula": "Fₐ = ρgV immerso; 1 L d’acqua pesa circa 10 N",
+    "interpretation": "Spingi lentamente il blocco nel recipiente. Conta soltanto il volume sotto il pelo libero. La spinta verso l’alto uguaglia il peso di quel volume d’acqua, con g = 10 m/s².",
+    "references": [
+      [
+        1.0,
+        10.0
+      ],
+      [
+        3.0,
+        30.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "10 × {x}",
+    "transferPrompt": "Un oggetto sposta {x} d’acqua. Con un peso dell’acqua di circa 10 N per litro, quale spinta verso l’alto riceve?"
+  },
+  {
+    "id": "SIM-C2-L004-02",
+    "kind": "experiment",
+    "course": "C2",
+    "skill": "C2-L004",
+    "order": 2,
+    "section": "Fluidi in quiete",
+    "version": 1,
+    "title": "Spinta idrostatica",
+    "topic": "Spinta idrostatica",
+    "anchor": "La densità ρ_f è quella del fluido",
+    "summary": "Cambia la spinta se il corpo resta tutto immerso ma cambia il liquido?",
+    "apparatus": "galleggia",
+    "control": {
+      "label": "Densità del liquido",
+      "unit": "kg/m³",
+      "min": 600.0,
+      "max": 1200.0,
+      "step": 50.0
+    },
+    "measure": {
+      "label": "Spinta su 2 litri immersi",
+      "unit": "N"
+    },
+    "formula": "Fₐ = ρ × 10 × 0,002",
+    "interpretation": "Il corpo sposta sempre 2 L. Raddoppiando la densità raddoppi il peso del fluido spostato. Un sostegno trattiene il corpo alla stessa quota.",
+    "references": [
+      [
+        800.0,
+        16.0
+      ],
+      [
+        1000.0,
+        20.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "0,02 × {x}",
+    "transferPrompt": "Immergi completamente un oggetto da 2 L in un liquido di densità {x}. Quale spinta misura il dinamometro per differenza?"
+  },
+  {
+    "id": "SIM-C2-L004-03",
+    "kind": "experiment",
+    "course": "C2",
+    "skill": "C2-L004",
+    "order": 3,
+    "section": "Fluidi in quiete",
+    "version": 2,
+    "title": "Condizioni di galleggiamento e immersione",
+    "topic": "Condizioni di galleggiamento e immersione",
+    "anchor": "Questa relazione vale per un corpo libero",
+    "summary": "Quale percentuale del volume del blocco resta immersa nell’acqua?",
+    "apparatus": "galleggia",
+    "control": {
+      "label": "Densità del blocco",
+      "unit": "kg/m³",
+      "min": 200.0,
+      "max": 1000.0,
+      "step": 50.0
+    },
+    "measure": {
+      "label": "Frazione immersa in equilibrio",
+      "unit": "%"
+    },
+    "formula": "V immerso / V = ρ corpo / ρ acqua",
+    "interpretation": "Il peso di tutto il blocco è bilanciato dalla spinta sul solo volume immerso. Con densità 250 kg/m³, un quarto del volume sposta acqua a sufficienza e tre quarti restano fuori. A 1000 kg/m³ il blocco deve essere interamente immerso. Finché rimane immerso senza toccare il fondo, spinta e peso si compensano a qualsiasi profondità. La tavola mostra una delle posizioni possibili.",
+    "references": [
+      [
+        250.0,
+        25.0
+      ],
+      [
+        800.0,
+        80.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "{x} / 10",
+    "transferPrompt": "Un blocco omogeneo di densità {x} è libero in acqua da 1000 kg/m³. All’equilibrio quale percentuale del volume è immersa?"
+  },
+  {
+    "id": "SIM-C2-L005-01",
+    "kind": "experiment",
+    "course": "C2",
+    "skill": "C2-L005",
+    "order": 1,
+    "section": "Fluidi in movimento",
+    "version": 1,
+    "title": "Flusso e portata volumetrica",
+    "topic": "Flusso e portata volumetrica",
+    "anchor": "Segna un piano immaginario di traverso a",
+    "summary": "Quanto liquido varca la sezione colorata in un secondo?",
+    "apparatus": "condotto",
+    "control": {
+      "label": "Velocità media",
+      "unit": "cm/s",
+      "min": 0.0,
+      "max": 12.0,
+      "step": 1.0
+    },
+    "measure": {
+      "label": "Portata volumetrica",
+      "unit": "mL/s"
+    },
+    "formula": "Q = A v media; A = 4 cm²",
+    "interpretation": "Immagina il cilindro che attraversa il piano durante un secondo. Ha volume area per distanza. Un centimetro cubo corrisponde a un millilitro.",
+    "references": [
+      [
+        2.0,
+        8.0
+      ],
+      [
+        6.0,
+        24.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "4 × {x}",
+    "transferPrompt": "Un tubo di area 4 cm² porta un liquido a velocità media {x}. Quanti millilitri entrano nel recipiente ogni secondo?"
+  },
+  {
+    "id": "SIM-C2-L005-02",
+    "kind": "experiment",
+    "course": "C2",
+    "skill": "C2-L005",
+    "order": 2,
+    "section": "Fluidi in movimento",
+    "version": 1,
+    "title": "Conservazione della massa",
+    "topic": "Conservazione della massa",
+    "anchor": "In regime stazionario nessuna regione accumula massa",
+    "summary": "Quale massa ritrovi all’uscita in ogni secondo di regime stazionario?",
+    "apparatus": "condotto",
+    "control": {
+      "label": "Portata in ingresso",
+      "unit": "L/s",
+      "min": 0.0,
+      "max": 5.0,
+      "step": 0.25
+    },
+    "measure": {
+      "label": "Portata massica in uscita",
+      "unit": "kg/s"
+    },
+    "formula": "ṁ = ρQ; ρ = 0,8 kg/L",
+    "interpretation": "Il liquido percorre un tubo senza perdite e senza accumulo. La massa che entra in un secondo deve uscire nello stesso intervallo. La velocità locale può cambiare.",
+    "references": [
+      [
+        1.0,
+        0.8
+      ],
+      [
+        3.0,
+        2.4
+      ]
+    ],
+    "blocks": [],
+    "substitution": "0,8 × {x}",
+    "transferPrompt": "All’ingresso di un tubo arrivano {x} di un liquido da 0,8 kg/L. In regime stazionario, quanti chilogrammi al secondo escono?"
+  },
+  {
+    "id": "SIM-C2-L005-03",
+    "kind": "experiment",
+    "course": "C2",
+    "skill": "C2-L005",
+    "order": 3,
+    "section": "Fluidi in movimento",
+    "version": 1,
+    "title": "Equazione di continuità",
+    "topic": "Equazione di continuità",
+    "anchor": "In un condotto più stretto la velocità",
+    "summary": "Perché il liquido accelera in un restringimento?",
+    "apparatus": "condotto",
+    "control": {
+      "label": "Area della seconda sezione",
+      "unit": "cm²",
+      "min": 1.0,
+      "max": 8.0,
+      "step": 1.0
+    },
+    "measure": {
+      "label": "Velocità nella seconda sezione",
+      "unit": "cm/s"
+    },
+    "formula": "A₁v₁ = Q = 24 cm³/s; v₂ = 24/A₂",
+    "interpretation": "L’ingresso ha area 4 cm² e velocità 6 cm/s. Ogni secondo devono passare gli stessi 24 mL in entrambe le sezioni. Osserva insieme il raggio e la freccia di velocità.",
+    "references": [
+      [
+        2.0,
+        12.0
+      ],
+      [
+        6.0,
+        4.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "24 / {x}",
+    "transferPrompt": "Passano 24 cm³ d’acqua al secondo. In un punto di area {x}, quale velocità media serve perché non si accumuli acqua?"
+  },
+  {
+    "id": "SIM-C2-L005-04",
+    "kind": "experiment",
+    "course": "C2",
+    "skill": "C2-L005",
+    "order": 4,
+    "section": "Fluidi in movimento",
+    "version": 1,
+    "title": "Velocità media di sezione",
+    "topic": "Velocità media di sezione",
+    "anchor": "Segna un piano immaginario di traverso a",
+    "summary": "La freccia centrale rappresenta la velocità media su tutto il tubo?",
+    "apparatus": "profilo",
+    "control": {
+      "label": "Velocità sull’asse",
+      "unit": "cm/s",
+      "min": 0.0,
+      "max": 12.0,
+      "step": 1.0
+    },
+    "measure": {
+      "label": "Velocità media",
+      "unit": "cm/s"
+    },
+    "formula": "v media = v massima/2 in un tubo circolare laminare",
+    "interpretation": "Nel profilo parabolico le corone vicino alla parete occupano area e si muovono più lentamente. La media pesata per area vale metà della velocità sull’asse.",
+    "references": [
+      [
+        4.0,
+        2.0
+      ],
+      [
+        10.0,
+        5.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "{x} / 2",
+    "transferPrompt": "Nel centro di un capillare a flusso laminare la sonda misura {x}. Quale velocità media devi usare per calcolare la portata?"
+  },
+  {
+    "id": "SIM-C2-L005-05",
+    "kind": "experiment",
+    "course": "C2",
+    "skill": "C2-L005",
+    "order": 5,
+    "section": "Fluidi in movimento",
+    "version": 1,
+    "title": "Biforcazioni",
+    "topic": "Biforcazioni",
+    "anchor": "In regime stazionario nessuna regione accumula massa",
+    "summary": "Quanto resta per il secondo ramo quando il primo porta via più liquido?",
+    "apparatus": "rete",
+    "control": {
+      "label": "Portata nel ramo superiore",
+      "unit": "mL/s",
+      "min": 0.0,
+      "max": 12.0,
+      "step": 1.0
+    },
+    "measure": {
+      "label": "Portata nel ramo inferiore",
+      "unit": "mL/s"
+    },
+    "formula": "Q entrante = Q₁ + Q₂ = 12 mL/s",
+    "interpretation": "Il nodo di biforcazione non accumula fluido. Fissa a 12 mL/s l’ingresso e confronta le frecce dei due rami. La loro somma deve riprodurre la freccia in entrata.",
+    "references": [
+      [
+        2.0,
+        10.0
+      ],
+      [
+        8.0,
+        4.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "12 − {x}",
+    "transferPrompt": "Un raccordo riceve 12 mL/s e manda {x} nel ramo superiore. Quanta acqua al secondo deve uscire dall’altro ramo?"
+  },
+  {
+    "id": "SIM-C2-L006-01",
+    "kind": "experiment",
+    "course": "C2",
+    "skill": "C2-L006",
+    "order": 1,
+    "section": "Fluidi in movimento",
+    "version": 1,
+    "title": "Teorema di Bernoulli",
+    "topic": "Teorema di Bernoulli",
+    "anchor": "Quando un liquido accelera in un restringimento,",
+    "summary": "Dove si ritrova l’energia quando la corrente accelera?",
+    "apparatus": "condotto",
+    "control": {
+      "label": "Velocità nella gola",
+      "unit": "m/s",
+      "min": 1.0,
+      "max": 4.0,
+      "step": 0.25
+    },
+    "measure": {
+      "label": "Pressione statica nella gola",
+      "unit": "kPa"
+    },
+    "formula": "p₂ = p₁ + ½ρ(v₁²−v₂²); p₁ = 20 kPa, v₁ = 1 m/s",
+    "interpretation": "Segui la stessa linea di corrente orizzontale in acqua ideale. All’aumento dell’energia cinetica per unità di volume corrisponde un calo della pressione statica.",
+    "references": [
+      [
+        1.0,
+        20.0
+      ],
+      [
+        3.0,
+        16.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "20,5 − (0,5 × {x} × {x})",
+    "transferPrompt": "In un Venturi orizzontale ideale entrano acqua a 1 m/s e pressione statica di 20 kPa. Se nella gola l’acqua scorre a {x}, quale pressione statica vi leggi?"
+  },
+  {
+    "id": "SIM-C2-L006-02",
+    "kind": "experiment",
+    "course": "C2",
+    "skill": "C2-L006",
+    "order": 2,
+    "section": "Fluidi in movimento",
+    "version": 1,
+    "title": "Pressione statica e dinamica",
+    "topic": "Pressione statica e dinamica",
+    "anchor": "Ogni termine si misura in pascal: pressione",
+    "summary": "Quale differenza leggerebbero una presa frontale e una laterale?",
+    "apparatus": "condotto",
+    "control": {
+      "label": "Velocità dell’acqua",
+      "unit": "m/s",
+      "min": 0.0,
+      "max": 5.0,
+      "step": 0.25
+    },
+    "measure": {
+      "label": "Pressione dinamica",
+      "unit": "kPa"
+    },
+    "formula": "q = ½ρv², con ρ = 1000 kg/m³",
+    "interpretation": "La presa frontale arresta il fluido idealmente; quella laterale legge la pressione statica. La differenza è la pressione dinamica, che quadruplica se raddoppia la velocità.",
+    "references": [
+      [
+        2.0,
+        2.0
+      ],
+      [
+        4.0,
+        8.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "0,5 × {x} × {x}",
+    "transferPrompt": "Su un tubo di Pitot in acqua che scorre a {x}, di quanti kPa la pressione di ristagno supera quella statica?"
+  },
+  {
+    "id": "SIM-C2-L006-03",
+    "kind": "experiment",
+    "course": "C2",
+    "skill": "C2-L006",
+    "order": 3,
+    "section": "Fluidi in movimento",
+    "version": 1,
+    "title": "Stenosi e aneurisma in modello ideale",
+    "topic": "Stenosi e aneurisma in modello ideale",
+    "anchor": "Per una stenosi idealizzata, la continuità prevede",
+    "summary": "In quale tratto il flusso accelera e in quale rallenta?",
+    "apparatus": "condotto",
+    "control": {
+      "label": "Area locale rispetto a quella iniziale",
+      "unit": "1",
+      "min": 0.5,
+      "max": 2.0,
+      "step": 0.25
+    },
+    "measure": {
+      "label": "Velocità locale",
+      "unit": "m/s"
+    },
+    "formula": "v₂ = v₁ A₁/A₂; v₁ = 2 m/s",
+    "interpretation": "Restringi o allarga il tratto centrale. Il modello mantiene la portata in un condotto rigido orizzontale con fluido incomprimibile. Un vaso reale è pulsatile e può dissipare energia.",
+    "references": [
+      [
+        0.5,
+        4.0
+      ],
+      [
+        2.0,
+        1.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "2 / {x}",
+    "transferPrompt": "Un condotto trasporta acqua a 2 m/s all’ingresso. Se l’area locale diventa {x} volte quella iniziale, quale velocità trovi?"
+  },
+  {
+    "id": "SIM-C2-L006-04",
+    "kind": "experiment",
+    "course": "C2",
+    "skill": "C2-L006",
+    "order": 4,
+    "section": "Fluidi in movimento",
+    "version": 1,
+    "title": "Condizioni di validità",
+    "topic": "Condizioni di validità",
+    "anchor": "Ogni termine si misura in pascal: pressione",
+    "summary": "Quando la somma ideale di Bernoulli sovrastima la pressione a valle?",
+    "apparatus": "condotto",
+    "control": {
+      "label": "Perdita di energia per volume",
+      "unit": "kPa",
+      "min": 0.0,
+      "max": 8.0,
+      "step": 0.5
+    },
+    "measure": {
+      "label": "Pressione statica in uscita",
+      "unit": "kPa"
+    },
+    "formula": "A e quota costanti: p₂ = p₁ − Δp perdita",
+    "interpretation": "Le sezioni e le velocità coincidono. Senza dissipazione le due prese coincidono; introducendo una perdita prescritta la pressione cala pur restando invariata la velocità.",
+    "references": [
+      [
+        0.0,
+        15.0
+      ],
+      [
+        6.0,
+        9.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "15 − {x}",
+    "transferPrompt": "L’acqua entra in un tubo orizzontale a 15 kPa. A sezione costante perde {x} di energia per volume. Quale pressione statica rimane in uscita?"
+  },
+  {
+    "id": "SIM-C2-L007-01",
+    "kind": "experiment",
+    "course": "C2",
+    "skill": "C2-L007",
+    "order": 1,
+    "section": "Fluidi in movimento",
+    "version": 1,
+    "title": "Flussi laminari e turbolenti",
+    "topic": "Flussi laminari e turbolenti",
+    "anchor": "Un confronto di scala utile, come approfondimento,",
+    "summary": "Si può ancora disegnare una parabola per qualunque velocità?",
+    "apparatus": "profilo",
+    "control": {
+      "label": "Velocità media",
+      "unit": "m/s",
+      "min": 0.0,
+      "max": 0.6,
+      "step": 0.05
+    },
+    "measure": {
+      "label": "Numero di Reynolds",
+      "unit": "1"
+    },
+    "formula": "Re = ρvD/η; acqua, D = 0,01 m, η = 0,001 Pa·s",
+    "interpretation": "Re confronta inerzia e viscosità. Nel tubo diritto, sopra circa 2300 la previsione laminare diventa incerta. Il banco ritira il profilo invece di inventare fluttuazioni turbolente.",
+    "references": [
+      [
+        0.1,
+        1000.0
+      ],
+      [
+        0.4,
+        4000.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "10000 × {x}",
+    "transferPrompt": "Acqua con viscosità 0,001 Pa·s percorre un tubo di diametro 1 cm a {x}. Quale numero di Reynolds useresti per valutare il regime?"
+  },
+  {
+    "id": "SIM-C2-L007-02",
+    "kind": "experiment",
+    "course": "C2",
+    "skill": "C2-L007",
+    "order": 2,
+    "section": "Fluidi in movimento",
+    "version": 1,
+    "title": "Regime stazionario",
+    "topic": "Regime stazionario",
+    "anchor": "In un tubo diritto e circolare un",
+    "summary": "Le particelle possono cambiare posizione anche se la velocità locale resta costante?",
+    "apparatus": "profilo",
+    "control": {
+      "label": "Istante di osservazione",
+      "unit": "s",
+      "min": 0.0,
+      "max": 4.0,
+      "step": 0.25
+    },
+    "measure": {
+      "label": "Velocità a metà raggio",
+      "unit": "cm/s"
+    },
+    "formula": "v(R/2) = 8[1−(1/2)²] = 6 cm/s",
+    "interpretation": "Il flusso è stazionario alla sezione fissata. Segui i traccianti, poi confronta la lettura della sonda in due istanti: il profilo resta lo stesso.",
+    "references": [
+      [
+        1.0,
+        6.0
+      ],
+      [
+        3.0,
+        6.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "8 × (1 − 0,5²)",
+    "transferPrompt": "Lasci la sonda a metà raggio in un moto stazionario con velocità sull’asse di 8 cm/s. Al tempo {x}, quale velocità locale dovrebbe ancora segnalare?"
+  },
+  {
+    "id": "SIM-C2-L007-03",
+    "kind": "experiment",
+    "course": "C2",
+    "skill": "C2-L007",
+    "order": 3,
+    "section": "Fluidi in movimento",
+    "version": 1,
+    "title": "Viscosità dinamica",
+    "topic": "Viscosità dinamica",
+    "anchor": "Fai scorrere lentamente una lastra sopra uno",
+    "summary": "Con la stessa differenza di velocità quale liquido richiede più forza tangenziale?",
+    "apparatus": "strati",
+    "control": {
+      "label": "Viscosità dinamica",
+      "unit": "Pa·s",
+      "min": 0.1,
+      "max": 2.0,
+      "step": 0.1
+    },
+    "measure": {
+      "label": "Sforzo di taglio",
+      "unit": "Pa"
+    },
+    "formula": "τ = η dv/dy = 4η",
+    "interpretation": "La lastra impone un gradiente di 4 s⁻¹. In un fluido newtoniano lo sforzo cresce linearmente con la viscosità. Lo sforzo si misura in N/m².",
+    "references": [
+      [
+        0.5,
+        2.0
+      ],
+      [
+        1.5,
+        6.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "4 × {x}",
+    "transferPrompt": "Mantieni un gradiente di velocità di 4 s⁻¹ e usi un liquido con viscosità {x}. Quale sforzo tangenziale si esercita?"
+  },
+  {
+    "id": "SIM-C2-L007-04",
+    "kind": "experiment",
+    "course": "C2",
+    "skill": "C2-L007",
+    "order": 4,
+    "section": "Fluidi in movimento",
+    "version": 1,
+    "title": "Gradiente di velocità",
+    "topic": "Gradiente di velocità",
+    "anchor": "Il gradiente dice quanto cambia la velocità",
+    "summary": "In quale intercapedine due strati vicini differiscono di più in velocità?",
+    "apparatus": "strati",
+    "control": {
+      "label": "Distanza fra le lastre",
+      "unit": "mm",
+      "min": 1.0,
+      "max": 8.0,
+      "step": 1.0
+    },
+    "measure": {
+      "label": "Gradiente di velocità",
+      "unit": "s⁻¹"
+    },
+    "formula": "dv/dy = Δv/h, con Δv = 40 mm/s",
+    "interpretation": "La lastra alta scorre a 40 mm/s, quella bassa è ferma. Nei profili lineari una distanza minore a parità di salto rende la pendenza maggiore.",
+    "references": [
+      [
+        2.0,
+        20.0
+      ],
+      [
+        4.0,
+        10.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "40 / {x}",
+    "transferPrompt": "Due piastre distano {x} e differiscono in velocità di 40 mm/s. Quale gradiente misura lo strumento fra le due?"
+  },
+  {
+    "id": "SIM-C2-L007-05",
+    "kind": "experiment",
+    "course": "C2",
+    "skill": "C2-L007",
+    "order": 5,
+    "section": "Fluidi in movimento",
+    "version": 1,
+    "title": "Profilo parabolico laminare",
+    "topic": "Profilo parabolico laminare",
+    "anchor": "In un tubo diritto e circolare un",
+    "summary": "Che cosa legge una sonda che si sposta dall’asse alla parete?",
+    "apparatus": "profilo",
+    "control": {
+      "label": "Raggio della sonda diviso R",
+      "unit": "1",
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.05
+    },
+    "measure": {
+      "label": "Velocità locale",
+      "unit": "cm/s"
+    },
+    "formula": "v(r) = 12[1−(r/R)²]",
+    "interpretation": "In regime laminare pienamente sviluppato la velocità è massima al centro. Alla parete la condizione di aderenza impone velocità nulla.",
+    "references": [
+      [
+        0.0,
+        12.0
+      ],
+      [
+        0.5,
+        9.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "12 × (1 − ({x} × {x}))",
+    "transferPrompt": "In un tubo laminare la velocità sull’asse è 12 cm/s. Se r/R vale {x}, quale velocità locale ti aspetti?"
+  },
+  {
+    "id": "SIM-C2-L008-01",
+    "kind": "experiment",
+    "course": "C2",
+    "skill": "C2-L008",
+    "order": 1,
+    "section": "Fluidi in movimento",
+    "version": 1,
+    "title": "Legge di Hagen–Poiseuille",
+    "topic": "Legge di Hagen–Poiseuille",
+    "anchor": "In un tubo reale lungo e orizzontale,",
+    "summary": "Raddoppiare il raggio quadruplica o moltiplica per sedici la portata?",
+    "apparatus": "condotto",
+    "control": {
+      "label": "Raggio rispetto a r₀",
+      "unit": "1",
+      "min": 0.5,
+      "max": 2.0,
+      "step": 0.25
+    },
+    "measure": {
+      "label": "Portata relativa a Q₀",
+      "unit": "1"
+    },
+    "formula": "Q/Q₀ = (r/r₀)⁴",
+    "interpretation": "Mantieni viscosità, lunghezza e salto di pressione fissi. L’area quadruplica e la velocità media quadruplica anch’essa. Vale per flusso laminare in un tubo rigido.",
+    "references": [
+      [
+        1.0,
+        1.0
+      ],
+      [
+        2.0,
+        16.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "{x}⁴",
+    "transferPrompt": "Nel medesimo capillare porti il raggio a {x} volte il riferimento. Con lo stesso salto di pressione, quale rapporto Q/Q₀ ottieni?"
+  },
+  {
+    "id": "SIM-C2-L008-02",
+    "kind": "experiment",
+    "course": "C2",
+    "skill": "C2-L008",
+    "order": 2,
+    "section": "Fluidi in movimento",
+    "version": 1,
+    "title": "Ruolo di raggio, lunghezza, viscosità e salto di pressione",
+    "topic": "Ruolo di raggio, lunghezza, viscosità e salto di pressione",
+    "anchor": "r e L sono in metri, η",
+    "summary": "Quale delle quattro modifiche produce il maggior cambiamento di portata?",
+    "apparatus": "condotto",
+    "control": {
+      "label": "Modifica rispetto al riferimento",
+      "unit": "1",
+      "min": 1.0,
+      "max": 4.0,
+      "step": 1.0,
+      "choices": [
+        "Raggio doppio",
+        "Lunghezza doppia",
+        "Viscosità doppia",
+        "Pressione doppia"
+      ]
+    },
+    "measure": {
+      "label": "Portata rispetto a Q₀",
+      "unit": "1"
+    },
+    "formula": "Q ∝ Δp r⁴/(η L)",
+    "interpretation": "Ogni configurazione riparte dallo stesso tubo laminare di riferimento e modifica un solo parametro. Cambiare la viscosità o la lunghezza ha lo stesso effetto inverso; il raggio compare alla quarta potenza.",
+    "references": [
+      [
+        1.0,
+        16.0
+      ],
+      [
+        4.0,
+        2.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": [
+      "2⁴",
+      "1 / 2",
+      "1 / 2",
+      "2 × 1"
+    ],
+    "transferPrompt": "Il tecnico sceglie la modifica «{x}» alla prova di Poiseuille. A parità delle altre condizioni, per quale fattore cambia la portata?"
+  },
+  {
+    "id": "SIM-C2-L008-03",
+    "kind": "experiment",
+    "course": "C2",
+    "skill": "C2-L008",
+    "order": 3,
+    "section": "Fluidi in movimento",
+    "version": 1,
+    "title": "Resistenza idraulica",
+    "topic": "Resistenza idraulica",
+    "anchor": "In un tubo reale lungo e orizzontale,",
+    "summary": "Quanta pressione deve fornire la pompa attraverso un condotto resistivo?",
+    "apparatus": "rete",
+    "control": {
+      "label": "Portata richiesta",
+      "unit": "mL/s",
+      "min": 0.0,
+      "max": 8.0,
+      "step": 0.5
+    },
+    "measure": {
+      "label": "Differenza di pressione",
+      "unit": "kPa"
+    },
+    "formula": "Δp = RQ, con R = 3 kPa·s/mL",
+    "interpretation": "Per un tubo a regime laminare la resistenza è fissata. Leggi il salto fra monte e valle: tende a zero insieme alla portata e raddoppia quando la portata raddoppia.",
+    "references": [
+      [
+        2.0,
+        6.0
+      ],
+      [
+        5.0,
+        15.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "3 × {x}",
+    "transferPrompt": "Per ottenere una portata di {x} in un capillare con resistenza 3 kPa·s/mL, quale salto di pressione deve fornire la pompa?"
+  },
+  {
+    "id": "SIM-C2-L008-04",
+    "kind": "experiment",
+    "course": "C2",
+    "skill": "C2-L008",
+    "order": 4,
+    "section": "Fluidi in movimento",
+    "version": 1,
+    "title": "Limiti dei modelli fisiologici",
+    "topic": "Limiti dei modelli fisiologici",
+    "anchor": "La portata finale è un sedicesimo di",
+    "summary": "Quanto pesa un piccolo errore sul raggio in una stima fisiologica?",
+    "apparatus": "condotto",
+    "control": {
+      "label": "Variazione del raggio rispetto al riferimento",
+      "unit": "%",
+      "min": -20.0,
+      "max": 20.0,
+      "step": 5.0
+    },
+    "measure": {
+      "label": "Portata del modello rigido rispetto a Q₀",
+      "unit": "1"
+    },
+    "formula": "Q/Q₀ = (1 + Δr/100)⁴",
+    "interpretation": "A pressione fissata un errore geometrico del 20% ha un effetto fortemente asimmetrico. È un test di sensibilità del tubo rigido: pulsatilità, elasticità e viscosità variabile richiedono altri modelli.",
+    "references": [
+      [
+        -20.0,
+        0.4096
+      ],
+      [
+        20.0,
+        2.0736
+      ]
+    ],
+    "blocks": [],
+    "substitution": "(1 + {x} / 100)⁴",
+    "transferPrompt": "Il modello rigido prevede una variazione del raggio del {x}. Quale rapporto fra nuova portata e portata iniziale corrisponde, a pari caduta di pressione?"
+  },
+  {
+    "id": "SIM-C2-L009-01",
+    "kind": "experiment",
+    "course": "C2",
+    "skill": "C2-L009",
+    "order": 1,
+    "section": "Fluidi in movimento",
+    "version": 1,
+    "title": "Resistenze idrauliche in serie e in parallelo",
+    "topic": "Resistenze idrauliche in serie e in parallelo",
+    "anchor": "In serie la portata è comune. Le",
+    "summary": "Perché il parallelo offre meno resistenza del ramo più facile?",
+    "apparatus": "rete",
+    "control": {
+      "label": "Seconda resistenza",
+      "unit": "kPa·s/mL",
+      "min": 1.0,
+      "max": 8.0,
+      "step": 1.0
+    },
+    "measure": {
+      "label": "Resistenza equivalente in parallelo",
+      "unit": "kPa·s/mL"
+    },
+    "formula": "R parallelo = 2R₂/(2+R₂); R serie = 2+R₂",
+    "interpretation": "I rami fra gli stessi nodi hanno lo stesso salto di pressione e sommano le portate. Confronta con la disposizione in serie, in cui la portata è comune e si sommano le cadute.",
+    "references": [
+      [
+        2.0,
+        1.0
+      ],
+      [
+        6.0,
+        1.5
+      ]
+    ],
+    "blocks": [],
+    "substitution": "2 × {x} / (2 + {x})",
+    "transferPrompt": "Affianchi un ramo da 2 kPa·s/mL a un secondo da {x}. Quale resistenza equivalente presenta la coppia ai suoi capi?"
+  },
+  {
+    "id": "SIM-C2-L009-02",
+    "kind": "experiment",
+    "course": "C2",
+    "skill": "C2-L009",
+    "order": 2,
+    "section": "Fluidi in movimento",
+    "version": 1,
+    "title": "Portata nei rami",
+    "topic": "Portata nei rami",
+    "anchor": "Un nuovo ramo parallelo offre un altro",
+    "summary": "Quale ramo riceve più flusso a parità di pressione tra i nodi?",
+    "apparatus": "rete",
+    "control": {
+      "label": "Resistenza del ramo superiore",
+      "unit": "kPa·s/mL",
+      "min": 1.0,
+      "max": 8.0,
+      "step": 1.0
+    },
+    "measure": {
+      "label": "Portata nel ramo superiore",
+      "unit": "mL/s"
+    },
+    "formula": "Q₁ = Δp/R₁ = 12/R₁",
+    "interpretation": "La pompa mantiene 12 kPa fra gli estremi. Il ramo inferiore resta a 3 kPa·s/mL e porta 4 mL/s. Cambia soltanto l’altro ramo e confronta le frecce.",
+    "references": [
+      [
+        2.0,
+        6.0
+      ],
+      [
+        6.0,
+        2.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "12 / {x}",
+    "transferPrompt": "Ai capi di due rami ci sono 12 kPa. Se quello superiore presenta una resistenza di {x}, quanta portata passa proprio in quel ramo?"
+  },
+  {
+    "id": "SIM-C2-L009-03",
+    "kind": "experiment",
+    "course": "C2",
+    "skill": "C2-L009",
+    "order": 3,
+    "section": "Fluidi in movimento",
+    "version": 1,
+    "title": "Resistenze e pressioni nei sistemi biologici",
+    "topic": "Resistenze e pressioni nei sistemi biologici",
+    "anchor": "In serie la portata è comune. Le",
+    "summary": "A quale pressione si porta il nodo fra due resistenze in serie?",
+    "apparatus": "rete",
+    "control": {
+      "label": "Resistenza a valle",
+      "unit": "kPa·s/mL",
+      "min": 1.0,
+      "max": 8.0,
+      "step": 1.0
+    },
+    "measure": {
+      "label": "Pressione nel nodo centrale",
+      "unit": "kPa"
+    },
+    "formula": "p nodo = 10 R₂/(2 + R₂), con uscita a 0 kPa",
+    "interpretation": "Il modello ha una pressione di ingresso di 10 kPa e una resistenza a monte di 2 kPa·s/mL. Aumentando la resistenza a valle cala la portata, ma cresce la pressione intermedia.",
+    "references": [
+      [
+        2.0,
+        5.0
+      ],
+      [
+        6.0,
+        7.5
+      ]
+    ],
+    "blocks": [],
+    "substitution": "10 × {x} / (2 + {x})",
+    "transferPrompt": "Un tubo ha due resistenze in serie, la prima da 2 kPa·s/mL e la seconda da {x}. Se ingresso e uscita sono a 10 e 0 kPa, che pressione trovi al nodo?"
+  },
+  {
+    "id": "SIM-C2-L010-01",
+    "kind": "experiment",
+    "course": "C2",
+    "skill": "C2-L010",
+    "order": 1,
+    "section": "Interfacce e capillarità",
+    "version": 1,
+    "title": "Tensione superficiale",
+    "topic": "Tensione superficiale",
+    "anchor": "Un film di sapone teso su un",
+    "summary": "Perché la pellicola di sapone tira con il doppio della forza di una sola superficie?",
+    "apparatus": "film",
+    "control": {
+      "label": "Lunghezza del bordo mobile",
+      "unit": "cm",
+      "min": 0.5,
+      "max": 5.0,
+      "step": 0.5
+    },
+    "measure": {
+      "label": "Forza sul bordo",
+      "unit": "mN"
+    },
+    "formula": "F = 2γℓ, con γ = 0,05 N/m",
+    "interpretation": "Il telaio sostiene un film con due facce. Ognuna tira il bordo mobile con γℓ. Le due tensioni hanno lo stesso verso e si sommano.",
+    "references": [
+      [
+        1.0,
+        1.0
+      ],
+      [
+        4.0,
+        4.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "{x}",
+    "transferPrompt": "Una pellicola di sapone con due superfici trascina un bordo lungo {x}. Con γ = 0,05 N/m, quale forza in mN devi bilanciare?"
+  },
+  {
+    "id": "SIM-C2-L010-02",
+    "kind": "experiment",
+    "course": "C2",
+    "skill": "C2-L010",
+    "order": 2,
+    "section": "Interfacce e capillarità",
+    "version": 1,
+    "title": "Piccole quantità di liquido",
+    "topic": "Piccole quantità di liquido",
+    "anchor": "Piccole gocce libere tendono alla forma sferica.",
+    "summary": "Perché gli effetti di superficie diventano importanti nelle piccole gocce?",
+    "apparatus": "goccia",
+    "control": {
+      "label": "Raggio della goccia",
+      "unit": "mm",
+      "min": 0.5,
+      "max": 4.0,
+      "step": 0.5
+    },
+    "measure": {
+      "label": "Rapporto superficie/volume",
+      "unit": "mm⁻¹"
+    },
+    "formula": "A/V = 4πr²/(4πr³/3) = 3/r",
+    "interpretation": "Confronta gocce sferiche dello stesso liquido. Dimezzando il raggio la superficie si riduce a un quarto, il volume a un ottavo. Ogni unità di volume dispone quindi di più superficie.",
+    "references": [
+      [
+        1.0,
+        3.0
+      ],
+      [
+        3.0,
+        1.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "3 / {x}",
+    "transferPrompt": "Suddividendo un liquido ottieni gocce sferiche di raggio {x}. Quanta area espongono per unità di volume, in mm⁻¹?"
+  },
+  {
+    "id": "SIM-C2-L010-03",
+    "kind": "experiment",
+    "course": "C2",
+    "skill": "C2-L010",
+    "order": 3,
+    "section": "Interfacce e capillarità",
+    "version": 1,
+    "title": "Bagnabilità e capillarità",
+    "topic": "Bagnabilità e capillarità",
+    "anchor": "All’orlo di un capillare la componente verticale",
+    "summary": "Quando il liquido sale e quando scende rispetto al serbatoio?",
+    "apparatus": "capillare",
+    "control": {
+      "label": "Angolo di contatto",
+      "unit": "°",
+      "min": 0.0,
+      "max": 180.0,
+      "step": 5.0
+    },
+    "measure": {
+      "label": "Salita con segno",
+      "unit": "mm"
+    },
+    "formula": "h = 2γ cos θ/(ρgr); qui h = 10 cos θ mm",
+    "interpretation": "Nel tubo di raggio 1 mm, con γ = 0,05 N/m, ρ = 1000 kg/m³ e g = 10 m/s², conta la componente verticale della tensione. L’angolo si misura nel liquido. A 90° il dislivello è nullo.",
+    "references": [
+      [
+        0.0,
+        10.0
+      ],
+      [
+        120.0,
+        -5.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "10 × cos({x}°)",
+    "transferPrompt": "In un capillare una salita massima di 10 mm corrisponde ad angolo nullo. Se l’angolo di contatto diventa {x}, quale dislivello con segno devi cercare?"
+  },
+  {
+    "id": "SIM-C2-L010-04",
+    "kind": "experiment",
+    "course": "C2",
+    "skill": "C2-L010",
+    "order": 4,
+    "section": "Interfacce e capillarità",
+    "version": 1,
+    "title": "Interfacce piane e curve",
+    "topic": "Interfacce piane e curve",
+    "anchor": "Piccole gocce libere tendono alla forma sferica.",
+    "summary": "Quale salto di pressione rimane quando l’interfaccia diventa piana?",
+    "apparatus": "goccia",
+    "control": {
+      "label": "Curvatura 1/r",
+      "unit": "mm⁻¹",
+      "min": 0.0,
+      "max": 2.0,
+      "step": 0.25
+    },
+    "measure": {
+      "label": "Eccesso di pressione",
+      "unit": "Pa"
+    },
+    "formula": "Δp = 2γ/r = 100 × (1/r in mm⁻¹)",
+    "interpretation": "Una superficie liquida sferica ha due curvature principali uguali. Con γ = 0,05 N/m il salto cresce con la curvatura. La configurazione zero rappresenta il limite piano.",
+    "references": [
+      [
+        0.0,
+        0.0
+      ],
+      [
+        1.0,
+        100.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "100 × {x}",
+    "transferPrompt": "Per una goccia con una sola interfaccia e γ = 0,05 N/m, la curvatura 1/r vale {x}. Di quanti pascal la pressione interna supera quella esterna?"
+  },
+  {
+    "id": "SIM-C2-L010-05",
+    "kind": "experiment",
+    "course": "C2",
+    "skill": "C2-L010",
+    "order": 5,
+    "section": "Interfacce e capillarità",
+    "version": 1,
+    "title": "Legge di Laplace e pressione di curvatura",
+    "topic": "Legge di Laplace e pressione di curvatura",
+    "anchor": "Con θ inferiore a 90° il coseno",
+    "summary": "Perché una bolla di sapone piccola richiede più pressione di una grande?",
+    "apparatus": "goccia",
+    "control": {
+      "label": "Raggio della bolla di sapone",
+      "unit": "mm",
+      "min": 1.0,
+      "max": 8.0,
+      "step": 1.0
+    },
+    "measure": {
+      "label": "Pressione interna in eccesso",
+      "unit": "Pa"
+    },
+    "formula": "Δp = 4γ/r; γ = 0,05 N/m",
+    "interpretation": "Entrambe le facce del film contribuiscono al salto. Per uno stesso raggio la bolla ideale presenta il doppio del salto di una goccia con una sola interfaccia.",
+    "references": [
+      [
+        2.0,
+        100.0
+      ],
+      [
+        5.0,
+        40.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "200 / {x}",
+    "transferPrompt": "Una bolla di sapone ha due interfacce e raggio {x}. Con γ = 0,05 N/m, quale sovrapressione interna serve?"
+  },
+  {
+    "id": "SIM-C3-L01-01",
+    "kind": "experiment",
+    "course": "C3",
+    "skill": "C3-L01",
+    "order": 1,
+    "section": "Il confine del sistema e il termometro",
+    "version": 1,
+    "title": "Sistema e ambiente",
+    "topic": "5.1 Sistema e ambiente",
+    "anchor": "Un sistema chiuso conserva la materia e",
+    "summary": "Che cosa attraversa il confine di un gas chiuso quando sposti il pistone?",
+    "apparatus": "pistone",
+    "control": {
+      "label": "Corsa del pistone",
+      "unit": "cm",
+      "min": 0.0,
+      "max": 8.0,
+      "step": 0.5
+    },
+    "measure": {
+      "label": "Volume del sistema",
+      "unit": "cm³"
+    },
+    "formula": "V = V₀ + As; V₀ = 20 cm³, A = 10 cm²",
+    "interpretation": "Il bordo del gas segue il pistone. La massa racchiusa resta costante e il volume varia. Nel movimento può essere scambiato lavoro attraverso il confine.",
+    "references": [
+      [
+        2.0,
+        40.0
+      ],
+      [
+        6.0,
+        80.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "20 + 10 × {x}",
+    "transferPrompt": "La camera contiene inizialmente 20 cm³. Il pistone di area 10 cm² avanza verso l’esterno di {x}. Qual è il nuovo volume del gas?"
+  },
+  {
+    "id": "SIM-C3-L01-02",
+    "kind": "experiment",
+    "course": "C3",
+    "skill": "C3-L01",
+    "order": 2,
+    "section": "Il confine del sistema e il termometro",
+    "version": 1,
+    "title": "Stato termodinamico e variabili p, V, T",
+    "topic": "5.1 Stato termodinamico e variabili p, V, T",
+    "anchor": "All’equilibrio, pressione p, volume V e temperatura",
+    "summary": "Quale variabile cambia se riscaldi una quantità fissa di gas in un volume bloccato?",
+    "apparatus": "pistone",
+    "control": {
+      "label": "Temperatura assoluta",
+      "unit": "K",
+      "min": 200.0,
+      "max": 500.0,
+      "step": 10.0
+    },
+    "measure": {
+      "label": "Pressione",
+      "unit": "kPa"
+    },
+    "formula": "p = (nR/V)T; nR/V = 0,4 kPa/K",
+    "interpretation": "Il pistone è bloccato. Ad ogni posizione del controllo corrisponde uno stato di equilibrio distinto. Per confrontare le pressioni usa la temperatura assoluta.",
+    "references": [
+      [
+        250.0,
+        100.0
+      ],
+      [
+        400.0,
+        160.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "0,4 × {x}",
+    "transferPrompt": "In un recipiente rigido il sensore misura 0,4 kPa per ogni kelvin. Portando il gas a {x}, quale pressione assoluta prevedi?"
+  },
+  {
+    "id": "SIM-C3-L01-03",
+    "kind": "experiment",
+    "course": "C3",
+    "skill": "C3-L01",
+    "order": 3,
+    "section": "Il confine del sistema e il termometro",
+    "version": 1,
+    "title": "Funzioni di stato",
+    "topic": "5.1 Funzioni di stato",
+    "anchor": "All’equilibrio, pressione p, volume V e temperatura",
+    "summary": "Due preparazioni che portano a uguali n, T e V possono dare pressioni finali diverse?",
+    "apparatus": "pistone",
+    "control": {
+      "label": "Volume finale",
+      "unit": "L",
+      "min": 1.0,
+      "max": 5.0,
+      "step": 0.25
+    },
+    "measure": {
+      "label": "Pressione finale",
+      "unit": "kPa"
+    },
+    "formula": "p finale = nRT/V = (120 kPa·L)/V",
+    "interpretation": "Puoi comprimere subito o riscaldare il gas e poi riportarlo alla temperatura iniziale. Con uguale stato finale la pressione è la stessa. Il calore e il lavoro lungo i percorsi possono differire.",
+    "references": [
+      [
+        2.0,
+        60.0
+      ],
+      [
+        4.0,
+        30.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "120 / {x}",
+    "transferPrompt": "Lo stesso gas ideale raggiunge il volume {x} alla temperatura fissata, con nRT = 120 kPa·L. Quale pressione finale misuri?"
+  },
+  {
+    "id": "SIM-C3-L01-04",
+    "kind": "experiment",
+    "course": "C3",
+    "skill": "C3-L01",
+    "order": 4,
+    "section": "Il confine del sistema e il termometro",
+    "version": 1,
+    "title": "Temperatura e scale",
+    "topic": "5.1 Temperatura e scale",
+    "anchor": "Due corpi in contatto termico raggiungono l’equilibrio",
+    "summary": "Di quanto si sposta la colonna salendo di dieci gradi sulle due scale?",
+    "apparatus": "termometro",
+    "control": {
+      "label": "Temperatura Celsius",
+      "unit": "°C",
+      "min": -50.0,
+      "max": 100.0,
+      "step": 5.0
+    },
+    "measure": {
+      "label": "Temperatura assoluta",
+      "unit": "K"
+    },
+    "formula": "T/K = t/°C + 273,15",
+    "interpretation": "Il bulbo ideale confronta due scale lineari sullo stesso capillare. Un incremento di 10 °C è 10 K; lo zero delle due scale cade a due temperature diverse.",
+    "references": [
+      [
+        0.0,
+        273.15
+      ],
+      [
+        50.0,
+        323.15
+      ]
+    ],
+    "blocks": [],
+    "substitution": "{x} + 273,15",
+    "transferPrompt": "Il termometro in laboratorio indica {x}. Quale valore scriveresti in una legge che richiede la temperatura assoluta?"
+  },
+  {
+    "id": "SIM-C3-L02-01",
+    "kind": "experiment",
+    "course": "C3",
+    "skill": "C3-L02",
+    "order": 1,
+    "section": "Contare le moli con il gas perfetto",
+    "version": 1,
+    "title": "Gas perfetti",
+    "topic": "5.1 Gas perfetti",
+    "anchor": "Una siringa tappata oppone resistenza alla compressione.",
+    "summary": "Come si dispone il pistone quando raddoppia il volume a temperatura costante?",
+    "apparatus": "pistone",
+    "control": {
+      "label": "Volume del gas",
+      "unit": "L",
+      "min": 1.0,
+      "max": 8.0,
+      "step": 0.5
+    },
+    "measure": {
+      "label": "Pressione isoterma",
+      "unit": "kPa"
+    },
+    "formula": "pV = nRT = 240 kPa·L",
+    "interpretation": "Conta sempre la stessa quantità di gas perfetto in equilibrio. Il prodotto della pressione assoluta per il volume resta 240 kPa·L. Il modello trascura volume molecolare e interazioni.",
+    "references": [
+      [
+        2.0,
+        120.0
+      ],
+      [
+        6.0,
+        40.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "240 / {x}",
+    "transferPrompt": "Un gas si espande isotermicamente fino a {x}, con pV costante di 240 kPa·L. A quale pressione si ferma il pistone?"
+  },
+  {
+    "id": "SIM-C3-L02-02",
+    "kind": "experiment",
+    "course": "C3",
+    "skill": "C3-L02",
+    "order": 2,
+    "section": "Contare le moli con il gas perfetto",
+    "version": 1,
+    "title": "Equazione di stato e variabili assolute",
+    "topic": "5.1 Equazione di stato e variabili assolute",
+    "anchor": "p è la pressione assoluta, V il",
+    "summary": "Puoi ricostruire la temperatura dalla pressione del pistone bloccato?",
+    "apparatus": "pistone",
+    "control": {
+      "label": "Pressione assoluta",
+      "unit": "kPa",
+      "min": 50.0,
+      "max": 200.0,
+      "step": 10.0
+    },
+    "measure": {
+      "label": "Temperatura",
+      "unit": "K"
+    },
+    "formula": "T = pV/(nR); V/(nR) = 2,5 K/kPa",
+    "interpretation": "Parti dalle letture assolute. Il rapporto assegnato V/(nR) è costante e un kilopascal litro vale un joule. Il risultato è una temperatura in kelvin.",
+    "references": [
+      [
+        100.0,
+        250.0
+      ],
+      [
+        160.0,
+        400.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "2,5 × {x}",
+    "transferPrompt": "In un recipiente chiuso e rigido la pressione assoluta è {x}. Se V/(nR) = 2,5 K/kPa, quale temperatura deduci?"
+  },
+  {
+    "id": "SIM-C3-L03-01",
+    "kind": "experiment",
+    "course": "C3",
+    "skill": "C3-L03",
+    "order": 1,
+    "section": "Pesare il riscaldamento",
+    "version": 1,
+    "title": "Calore e scambio di energia",
+    "topic": "5.2 Calore e scambio di energia",
+    "anchor": "Un blocchetto e una vasca alla stessa",
+    "summary": "Quanti joule servono per far salire il termometro del campione?",
+    "apparatus": "calorimetro",
+    "control": {
+      "label": "Aumento di temperatura",
+      "unit": "K",
+      "min": 0.0,
+      "max": 12.0,
+      "step": 1.0
+    },
+    "measure": {
+      "label": "Energia assorbita",
+      "unit": "J"
+    },
+    "formula": "Q = CΔT, con C = 50 J/K",
+    "interpretation": "Senza cambiamenti di fase e senza lavoro meccanico il calore entrante aumenta l’energia del campione. Confronta più salti termici a capacità costante.",
+    "references": [
+      [
+        2.0,
+        100.0
+      ],
+      [
+        8.0,
+        400.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "50 × {x}",
+    "transferPrompt": "Vuoi scaldare un campione con capacità termica 50 J/K di {x}. Quanti joule gli devi fornire?"
+  },
+  {
+    "id": "SIM-C3-L03-02",
+    "kind": "experiment",
+    "course": "C3",
+    "skill": "C3-L03",
+    "order": 2,
+    "section": "Pesare il riscaldamento",
+    "version": 1,
+    "title": "Capacità termica e calore specifico",
+    "topic": "5.2 Capacità termica e calore specifico",
+    "anchor": "C è la capacità termica in J/K",
+    "summary": "Raddoppiando la massa raddoppia anche il calore specifico?",
+    "apparatus": "calorimetro",
+    "control": {
+      "label": "Massa del campione",
+      "unit": "g",
+      "min": 50.0,
+      "max": 300.0,
+      "step": 25.0
+    },
+    "measure": {
+      "label": "Capacità termica",
+      "unit": "J/K"
+    },
+    "formula": "C = mc, con c = 0,4 J/(g·K)",
+    "interpretation": "È sempre lo stesso materiale. Il calore specifico resta 0,4 J/(g·K), mentre raddoppia l’energia necessaria per aumentare di un kelvin la temperatura dell’intero campione.",
+    "references": [
+      [
+        100.0,
+        40.0
+      ],
+      [
+        250.0,
+        100.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "0,4 × {x}",
+    "transferPrompt": "Tagli un pezzo di massa {x} da un materiale di calore specifico 0,4 J/(g·K). Qual è la capacità termica del pezzo?"
+  },
+  {
+    "id": "SIM-C3-L03-03",
+    "kind": "experiment",
+    "course": "C3",
+    "skill": "C3-L03",
+    "order": 3,
+    "section": "Pesare il riscaldamento",
+    "version": 1,
+    "title": "Capacità termiche dei gas ideali",
+    "topic": "5.2 Capacità termiche dei gas ideali",
+    "anchor": "Un gas si può scaldare a volume",
+    "summary": "Perché il gas richiede più calore se il pistone può salire?",
+    "apparatus": "pistone",
+    "control": {
+      "label": "Aumento di temperatura",
+      "unit": "K",
+      "min": 0.0,
+      "max": 20.0,
+      "step": 1.0
+    },
+    "measure": {
+      "label": "Calore in più a pressione costante",
+      "unit": "J"
+    },
+    "formula": "Qₚ − Qᵥ = n(Cₚ−Cᵥ)ΔT = nRΔT",
+    "interpretation": "Confronta una mole di gas ideale prima in un cilindro bloccato, poi a pressione costante. A parità di ΔT l’energia interna cresce ugualmente. Solo nel secondo caso il gas compie lavoro di espansione.",
+    "references": [
+      [
+        2.0,
+        16.628
+      ],
+      [
+        10.0,
+        83.14
+      ]
+    ],
+    "blocks": [],
+    "substitution": "8,314 × {x}",
+    "transferPrompt": "Riscaldi una mole di gas ideale di {x}, prima a pressione costante e poi, ripartendo dalle stesse condizioni, a volume costante. Con R = 8,314 J/(mol·K), quanti joule in più occorrono nella prima prova?"
+  },
+  {
+    "id": "SIM-C3-L03-04",
+    "kind": "experiment",
+    "course": "C3",
+    "skill": "C3-L03",
+    "order": 4,
+    "section": "Pesare il riscaldamento",
+    "version": 1,
+    "title": "Calorimetria",
+    "topic": "5.2 Calorimetria",
+    "anchor": "Nel calorimetro ideale isolato, trascurando il lavoro",
+    "summary": "Quale temperatura si raggiunge mescolando due quantità disuguali d’acqua?",
+    "apparatus": "calorimetro",
+    "control": {
+      "label": "Massa di acqua calda",
+      "unit": "g",
+      "min": 50.0,
+      "max": 300.0,
+      "step": 25.0
+    },
+    "measure": {
+      "label": "Temperatura di equilibrio",
+      "unit": "°C"
+    },
+    "formula": "T finale = (80m + 20×200)/(m+200)",
+    "interpretation": "Mescola l’acqua a 80 °C con 200 g a 20 °C in un recipiente isolato di capacità trascurabile. Il calore perso dal campione caldo uguaglia quello acquistato dal freddo.",
+    "references": [
+      [
+        100.0,
+        40.0
+      ],
+      [
+        200.0,
+        50.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "(80 × {x} + 4000) / ({x} + 200)",
+    "transferPrompt": "Versi {x} d’acqua a 80 °C in 200 g d’acqua a 20 °C. Trascurando il recipiente e le dispersioni, quale temperatura finale trovi?"
+  },
+  {
+    "id": "SIM-C3-L04-01",
+    "kind": "experiment",
+    "course": "C3",
+    "skill": "C3-L04",
+    "order": 1,
+    "section": "Quando la temperatura si ferma",
+    "version": 1,
+    "title": "Fusione",
+    "topic": "5.2 Fusione",
+    "anchor": "Scalda lentamente del ghiaccio puro alla sua",
+    "summary": "Mentre il ghiaccio fonde, dove va l’energia fornita?",
+    "apparatus": "fase",
+    "control": {
+      "label": "Energia fornita a ghiaccio a 0 °C",
+      "unit": "kJ",
+      "min": 0.0,
+      "max": 33.4,
+      "step": 1.67
+    },
+    "measure": {
+      "label": "Massa fusa",
+      "unit": "g"
+    },
+    "formula": "m fusa = Q/Lf; Lf = 334 J/g",
+    "interpretation": "A pressione atmosferica le due fasi dell’acqua pura coesistono a circa 0 °C. L’energia riduce la massa solida. Fino a completa fusione il termometro resta fermo.",
+    "references": [
+      [
+        8.35,
+        25.0
+      ],
+      [
+        16.7,
+        50.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "1000 × {x} / 334",
+    "transferPrompt": "Al ghiaccio già a 0 °C fornisci {x}. Con calore latente di fusione 334 J/g, quanti grammi diventano acqua?"
+  },
+  {
+    "id": "SIM-C3-L04-02",
+    "kind": "experiment",
+    "course": "C3",
+    "skill": "C3-L04",
+    "order": 2,
+    "section": "Quando la temperatura si ferma",
+    "version": 1,
+    "title": "Evaporazione e condensazione",
+    "topic": "5.2 Evaporazione e condensazione",
+    "anchor": "L è il calore latente specifico in",
+    "summary": "Che segno ha il calore quando il vapore si condensa?",
+    "apparatus": "fase",
+    "control": {
+      "label": "Massa che diventa vapore con segno",
+      "unit": "g",
+      "min": -5.0,
+      "max": 5.0,
+      "step": 0.5
+    },
+    "measure": {
+      "label": "Calore assorbito dall’acqua",
+      "unit": "kJ"
+    },
+    "formula": "Q = m con segno × Lᵥ; Lᵥ ≈ 2,26 kJ/g",
+    "interpretation": "Alla temperatura di ebollizione, evaporare richiede energia e condensare la libera. Il segno della massa trasformata distingue i due versi. Le particelle nella camera rappresentano la fase vapore.",
+    "references": [
+      [
+        -2.0,
+        -4.52
+      ],
+      [
+        3.0,
+        6.78
+      ]
+    ],
+    "blocks": [],
+    "substitution": "2,26 × {x}",
+    "transferPrompt": "Nel cambio di fase la massa trasformata, con il segno scelto nel banco, è {x}. Quale calore scambia l’acqua con l’esterno, usando 2,26 kJ/g?"
+  },
+  {
+    "id": "SIM-C3-L04-03",
+    "kind": "experiment",
+    "course": "C3",
+    "skill": "C3-L04",
+    "order": 3,
+    "section": "Quando la temperatura si ferma",
+    "version": 1,
+    "title": "Calore latente e bilanci a tratti",
+    "topic": "5.2 Calore latente e bilanci a tratti",
+    "anchor": "Per attraversare più tratti, suddividi il cammino",
+    "summary": "Quale parte dell’energia cambia la temperatura e quale cambia la fase?",
+    "apparatus": "fase",
+    "control": {
+      "label": "Energia dall’inizio del riscaldamento",
+      "unit": "kJ",
+      "min": 0.0,
+      "max": 54.0,
+      "step": 1.0
+    },
+    "measure": {
+      "label": "Massa fusa",
+      "unit": "g"
+    },
+    "formula": "Prima 2 kJ scaldano il ghiaccio; poi m fusa = min(100,1000(Q−2)/340)",
+    "interpretation": "Un campione di 100 g parte a −10 °C. Con c del ghiaccio arrotondato a 2 J/(g·K) servono 2 kJ per arrivare a zero e altri 34 kJ per fondere tutto. Dopo 36 kJ si scalda l’acqua.",
+    "references": [
+      [
+        1.0,
+        0.0
+      ],
+      [
+        19.0,
+        50.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "min(100; max(0; ({x} − 2) × 1000 / 340))",
+    "transferPrompt": "Al campione arrivano in tutto {x}. Tolti i 2 kJ di riscaldamento iniziale, quanti grammi dei 100 g di ghiaccio sono fusi, con L = 340 J/g?"
+  },
+  {
+    "id": "SIM-C3-L05-01",
+    "kind": "experiment",
+    "course": "C3",
+    "skill": "C3-L05",
+    "order": 1,
+    "section": "Tre vie per trasferire energia",
+    "version": 1,
+    "title": "Conduzione",
+    "topic": "5.3 Conduzione",
+    "anchor": "La conducibilità λ si misura in W/(m·K),",
+    "summary": "Una parete due volte più spessa lascia passare la stessa potenza?",
+    "apparatus": "barra",
+    "control": {
+      "label": "Spessore della parete",
+      "unit": "cm",
+      "min": 1.0,
+      "max": 8.0,
+      "step": 0.5
+    },
+    "measure": {
+      "label": "Potenza condotta",
+      "unit": "W"
+    },
+    "formula": "P = kAΔT/L; k = 1 W/(m·K), A = 0,01 m², ΔT = 20 K",
+    "interpretation": "Le facce sono mantenute a due temperature fisse. Segui il gradiente dalla calda alla fredda. Nella conduzione stazionaria monodimensionale la stessa differenza si distribuisce su una distanza maggiore.",
+    "references": [
+      [
+        2.0,
+        10.0
+      ],
+      [
+        5.0,
+        4.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "20 / {x}",
+    "transferPrompt": "Una parete con k = 1 W/(m·K), area 0,01 m² e spessore {x} separa ambienti con 20 K di differenza. Quale potenza la attraversa?"
+  },
+  {
+    "id": "SIM-C3-L05-02",
+    "kind": "experiment",
+    "course": "C3",
+    "skill": "C3-L05",
+    "order": 2,
+    "section": "Tre vie per trasferire energia",
+    "version": 1,
+    "title": "Convezione",
+    "topic": "5.3 Convezione",
+    "anchor": "Se una corrente di fluido trasporta con",
+    "summary": "Come trasporta energia un liquido che entra caldo ed esce più freddo?",
+    "apparatus": "convezione",
+    "control": {
+      "label": "Portata di massa",
+      "unit": "g/s",
+      "min": 0.0,
+      "max": 5.0,
+      "step": 0.25
+    },
+    "measure": {
+      "label": "Potenza termica trasportata",
+      "unit": "W"
+    },
+    "formula": "P = ṁcΔT; c = 4,2 J/(g·K), ΔT = 10 K",
+    "interpretation": "Segui il fluido nel circuito. Ogni grammo cede 42 J mentre si raffredda di 10 K. Aumentando i grammi che passano ogni secondo aumenta la potenza trasportata.",
+    "references": [
+      [
+        1.0,
+        42.0
+      ],
+      [
+        3.0,
+        126.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "42 × {x}",
+    "transferPrompt": "In uno scambiatore l’acqua scorre con portata di massa {x} e cede 42 J per grammo. Quanti watt trasferisce al secondo circuito?"
+  },
+  {
+    "id": "SIM-C3-L05-03",
+    "kind": "experiment",
+    "course": "C3",
+    "skill": "C3-L05",
+    "order": 3,
+    "section": "Tre vie per trasferire energia",
+    "version": 1,
+    "title": "Irraggiamento",
+    "topic": "5.3 Irraggiamento",
+    "anchor": "L’irraggiamento avviene mediante onde elettromagnetiche e attraversa",
+    "summary": "Quale superficie perde energia quando la tua piastra è più fredda dell’ambiente?",
+    "apparatus": "radiazione",
+    "control": {
+      "label": "Temperatura della superficie",
+      "unit": "K",
+      "min": 200.0,
+      "max": 500.0,
+      "step": 10.0
+    },
+    "measure": {
+      "label": "Flusso radiativo netto",
+      "unit": "W/m²"
+    },
+    "formula": "P/A = εσ(T⁴−Tₐ⁴); ε = 1, Tₐ = 300 K, σ ≈ 5,67×10⁻⁸",
+    "interpretation": "La piastra nera scambia radiazione con un grande ambiente a 300 K. Confronta emissione e assorbimento. La freccia netta si inverte passando per l’equilibrio.",
+    "references": [
+      [
+        300.0,
+        0.0
+      ],
+      [
+        400.0,
+        992.25
+      ]
+    ],
+    "blocks": [],
+    "substitution": "5,67 × 10⁻⁸ × ({x}⁴ − 300⁴)",
+    "transferPrompt": "La superficie nera è a {x} in un ambiente a 300 K. Quale flusso netto per metro quadrato ottieni includendo l’irraggiamento dell’ambiente?"
+  },
+  {
+    "id": "SIM-C3-L06-01",
+    "kind": "experiment",
+    "course": "C3",
+    "skill": "C3-L06",
+    "order": 1,
+    "section": "Fare i conti con il primo principio",
+    "version": 1,
+    "title": "Primo principio",
+    "topic": "5.4 Primo principio",
+    "anchor": "Il calore Q entrante aumenta U. Il",
+    "summary": "Il gas può espandersi senza aumentare la sua energia interna?",
+    "apparatus": "pistone",
+    "control": {
+      "label": "Calore entrante",
+      "unit": "J",
+      "min": -20.0,
+      "max": 50.0,
+      "step": 5.0
+    },
+    "measure": {
+      "label": "Variazione di energia interna",
+      "unit": "J"
+    },
+    "formula": "ΔU = Q−W, con W dal gas = 10 J",
+    "interpretation": "Il pistone compie 10 J di lavoro sull’esterno in ogni prova. Solo l’energia entrata in eccesso rispetto al lavoro rimane nel gas. Un valore negativo rappresenta un calo di U.",
+    "references": [
+      [
+        10.0,
+        0.0
+      ],
+      [
+        30.0,
+        20.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "{x} − 10",
+    "transferPrompt": "Il gas riceve un calore con segno di {x} e compie 10 J di lavoro. Di quanti joule cambia la sua energia interna?"
+  },
+  {
+    "id": "SIM-C3-L06-02",
+    "kind": "experiment",
+    "course": "C3",
+    "skill": "C3-L06",
+    "order": 2,
+    "section": "Fare i conti con il primo principio",
+    "version": 1,
+    "title": "Energia interna",
+    "topic": "5.4 Energia interna",
+    "anchor": "Per un gas perfetto di quantità e",
+    "summary": "Quale lettura determina la variazione di energia interna del gas perfetto?",
+    "apparatus": "pistone",
+    "control": {
+      "label": "Variazione di temperatura",
+      "unit": "K",
+      "min": -20.0,
+      "max": 30.0,
+      "step": 2.0
+    },
+    "measure": {
+      "label": "Variazione di energia interna",
+      "unit": "J"
+    },
+    "formula": "ΔU = nCᵥΔT; nCᵥ = 12 J/K",
+    "interpretation": "Per una quantità fissa di gas ideale con capacità costante conta ΔT. Il pistone è bloccato per rendere visibile un caso a lavoro nullo. La stessa ΔT darebbe la stessa ΔU lungo un altro percorso.",
+    "references": [
+      [
+        -10.0,
+        -120.0
+      ],
+      [
+        20.0,
+        240.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "12 × {x}",
+    "transferPrompt": "Per questo gas nCᵥ vale 12 J/K. Con una variazione di temperatura di {x}, quanta energia interna acquista o perde?"
+  },
+  {
+    "id": "SIM-C3-L06-03",
+    "kind": "experiment",
+    "course": "C3",
+    "skill": "C3-L06",
+    "order": 3,
+    "section": "Fare i conti con il primo principio",
+    "version": 1,
+    "title": "Calore e lavoro",
+    "topic": "5.4 Calore e lavoro",
+    "anchor": "Un gas può scaldarsi perché riceve calore",
+    "summary": "Quale scambio di calore serve per ottenere lo stesso aumento di energia interna?",
+    "apparatus": "pistone",
+    "control": {
+      "label": "Lavoro compiuto dal gas",
+      "unit": "J",
+      "min": -20.0,
+      "max": 30.0,
+      "step": 5.0
+    },
+    "measure": {
+      "label": "Calore entrante per ΔU = 10 J",
+      "unit": "J"
+    },
+    "formula": "Q = ΔU + W = 10 J + W",
+    "interpretation": "Il lavoro è positivo quando il pistone sale. Con una compressione di 10 J l’ambiente fornisce già tutta l’energia interna richiesta. Con espansione serve calore aggiuntivo.",
+    "references": [
+      [
+        -10.0,
+        0.0
+      ],
+      [
+        20.0,
+        30.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "10 + {x}",
+    "transferPrompt": "Il motore compie un lavoro con segno di {x} mentre l’energia interna aumenta di 10 J. Quanto calore deve entrare nel gas?"
+  },
+  {
+    "id": "SIM-C3-L06-04",
+    "kind": "experiment",
+    "course": "C3",
+    "skill": "C3-L06",
+    "order": 4,
+    "section": "Fare i conti con il primo principio",
+    "version": 1,
+    "title": "Interpretazione del lavoro su un diagramma p–V",
+    "topic": "5.4 Interpretazione del lavoro su un diagramma p–V",
+    "anchor": "In espansione ΔV è positivo, in compressione",
+    "summary": "Cosa misura l’area sotto un’isobara quando il volume diminuisce?",
+    "apparatus": "ciclo",
+    "control": {
+      "label": "Variazione di volume",
+      "unit": "L",
+      "min": -1.0,
+      "max": 2.0,
+      "step": 0.25
+    },
+    "measure": {
+      "label": "Lavoro del gas",
+      "unit": "J"
+    },
+    "formula": "W = ∫p dV = (100 kPa)ΔV",
+    "interpretation": "Sul piano p–V la freccia indica da quale stato parti. L’area geometrica è positiva, ma l’integrale è negativo se percorri la curva verso volumi minori. Un kPa·L vale un joule.",
+    "references": [
+      [
+        -0.5,
+        -50.0
+      ],
+      [
+        1.5,
+        150.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "100 × {x}",
+    "transferPrompt": "Il pistone spazza una variazione di volume di {x} a 100 kPa costanti. Quale lavoro con segno compie il gas sull’ambiente?"
+  },
+  {
+    "id": "SIM-C3-L07-01",
+    "kind": "experiment",
+    "course": "C3",
+    "skill": "C3-L07",
+    "order": 1,
+    "section": "Riconoscere il percorso nel piano p–V",
+    "version": 1,
+    "title": "Trasformazioni reversibili e irreversibili",
+    "topic": "5.4 Trasformazioni reversibili e irreversibili",
+    "anchor": "La reversibilità richiede che sistema e ambiente",
+    "summary": "Come si avvicina il lavoro a quello di un’espansione reversibile?",
+    "apparatus": "ciclo",
+    "control": {
+      "label": "Numero di espansioni a gradini",
+      "unit": "1",
+      "min": 1.0,
+      "max": 8.0,
+      "step": 1.0
+    },
+    "measure": {
+      "label": "Lavoro del gas",
+      "unit": "J"
+    },
+    "formula": "W = Σ p esterna ΔV, con p esterna = 100/V finale di ogni tratto",
+    "interpretation": "Il gas si espande isotermicamente da 1 a 2 L, mantenendo pV = 100 kPa·L agli equilibri. Piccoli salti riducono la differenza di pressione. Le aree dei gradini si avvicinano a 100 ln 2 joule.",
+    "references": [
+      [
+        1.0,
+        50.0
+      ],
+      [
+        2.0,
+        58.3333333
+      ]
+    ],
+    "blocks": [],
+    "discrete": true,
+    "substitution": "gradini",
+    "transferPrompt": "Il pistone passa da 1 L a 2 L in {x} espansioni uguali. In ogni tratto la pressione esterna è 100 diviso il volume finale in litri, in kPa. Quanti joule di lavoro raccogli?"
+  },
+  {
+    "id": "SIM-C3-L07-02",
+    "kind": "experiment",
+    "course": "C3",
+    "skill": "C3-L07",
+    "order": 2,
+    "section": "Riconoscere il percorso nel piano p–V",
+    "version": 1,
+    "title": "Isoterma",
+    "topic": "5.4 Isoterma",
+    "anchor": "In una isoterma del gas perfetto chiuso",
+    "summary": "Qual è la traccia di una compressione isoterma sul piano p–V?",
+    "apparatus": "pistone",
+    "control": {
+      "label": "Volume dopo l’espansione",
+      "unit": "L",
+      "min": 1.0,
+      "max": 4.0,
+      "step": 0.25
+    },
+    "measure": {
+      "label": "Pressione finale",
+      "unit": "kPa"
+    },
+    "formula": "p₂ = p₁V₁/V₂, con p₁V₁ = 100 kPa·L",
+    "interpretation": "Il gas resta a contatto con un termostato. Diminuendo il volume aumenta la pressione mentre la temperatura resta fissa. Il grafico pressione-volume è un’iperbole.",
+    "references": [
+      [
+        1.0,
+        100.0
+      ],
+      [
+        2.0,
+        50.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "100 / {x}",
+    "transferPrompt": "In un’espansione isoterma pV resta 100 kPa·L. Se il pistone si ferma a {x}, quale pressione leggi?"
+  },
+  {
+    "id": "SIM-C3-L07-03",
+    "kind": "experiment",
+    "course": "C3",
+    "skill": "C3-L07",
+    "order": 3,
+    "section": "Riconoscere il percorso nel piano p–V",
+    "version": 1,
+    "title": "Isocora",
+    "topic": "5.4 Isocora",
+    "anchor": "In una trasformazione isocora il volume resta",
+    "summary": "Che cosa succede al carico sulle pareti se il pistone è bloccato?",
+    "apparatus": "pistone",
+    "control": {
+      "label": "Temperatura del gas",
+      "unit": "K",
+      "min": 200.0,
+      "max": 500.0,
+      "step": 25.0
+    },
+    "measure": {
+      "label": "Pressione a volume fisso",
+      "unit": "kPa"
+    },
+    "formula": "p₂ = p₁ T₂/T₁, con p₁ = 150 kPa a 300 K",
+    "interpretation": "Il cilindro mantiene il volume. Un aumento della temperatura assoluta fa crescere linearmente la pressione. Il lavoro di volume è zero lungo tutto il percorso.",
+    "references": [
+      [
+        250.0,
+        125.0
+      ],
+      [
+        400.0,
+        200.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "0,5 × {x}",
+    "transferPrompt": "In un cilindro rigido il gas era a 150 kPa e 300 K. Quando il termometro segna {x}, quale pressione assoluta ti aspetti?"
+  },
+  {
+    "id": "SIM-C3-L07-04",
+    "kind": "experiment",
+    "course": "C3",
+    "skill": "C3-L07",
+    "order": 4,
+    "section": "Riconoscere il percorso nel piano p–V",
+    "version": 1,
+    "title": "Isobara",
+    "topic": "5.4 Isobara",
+    "anchor": "In una trasformazione isocora il volume resta",
+    "summary": "Perché il pistone può salire senza che aumenti la pressione?",
+    "apparatus": "pistone",
+    "control": {
+      "label": "Temperatura del gas",
+      "unit": "K",
+      "min": 200.0,
+      "max": 500.0,
+      "step": 25.0
+    },
+    "measure": {
+      "label": "Volume a pressione fissa",
+      "unit": "L"
+    },
+    "formula": "V₂ = V₁T₂/T₁, con V₁ = 3 L a 300 K",
+    "interpretation": "Il carico esterno è costante. Riscaldando lentamente, il gas si espande fino a ripristinare l’equilibrio meccanico. Usa temperature assolute per calcolare il rapporto dei volumi.",
+    "references": [
+      [
+        250.0,
+        2.5
+      ],
+      [
+        400.0,
+        4.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "{x} / 100",
+    "transferPrompt": "Il gas occupava 3 L a 300 K. Raggiunge {x} con un pistone libero alla stessa pressione. Che volume leggi sulla scala?"
+  },
+  {
+    "id": "SIM-C3-L07-05",
+    "kind": "experiment",
+    "course": "C3",
+    "skill": "C3-L07",
+    "order": 5,
+    "section": "Riconoscere il percorso nel piano p–V",
+    "version": 1,
+    "title": "Adiabatica e confronto qualitativo",
+    "topic": "5.4 Adiabatica e confronto qualitativo",
+    "anchor": "Per confrontare i modelli nel laboratorio scegli",
+    "summary": "A parità di espansione la pressione scende più in isoterma o in adiabatica?",
+    "apparatus": "pistone",
+    "control": {
+      "label": "Rapporto di espansione V/V₀",
+      "unit": "1",
+      "min": 1.0,
+      "max": 4.0,
+      "step": 0.25
+    },
+    "measure": {
+      "label": "Pressione adiabatica",
+      "unit": "kPa"
+    },
+    "formula": "p = 100(V₀/V)ᵞ, qui γ = 1,5",
+    "interpretation": "Il cilindro è isolato e il movimento reversibile. L’energia per il lavoro viene dall’energia interna, la temperatura cala. L’isoterma di confronto darebbe 100/(V/V₀) kPa.",
+    "references": [
+      [
+        1.0,
+        100.0
+      ],
+      [
+        4.0,
+        12.5
+      ]
+    ],
+    "blocks": [],
+    "substitution": "100 / ({x}^(1,5))",
+    "transferPrompt": "Espandi adiabaticamente il gas fino a V/V₀ = {x}. Con γ = 1,5 e pressione iniziale 100 kPa, quale pressione finale prevedi?"
+  },
+  {
+    "id": "SIM-C3-L08-01",
+    "kind": "experiment",
+    "course": "C3",
+    "skill": "C3-L08",
+    "order": 1,
+    "section": "Leggere il lavoro di un ciclo",
+    "version": 1,
+    "title": "Ciclo termodinamico",
+    "topic": "5.5 Ciclo termodinamico",
+    "anchor": "Un apparato torna periodicamente allo stesso stato",
+    "summary": "Cosa misura l’area racchiusa da un giro sul piano p–V?",
+    "apparatus": "ciclo",
+    "control": {
+      "label": "Ampiezza del ciclo in volume",
+      "unit": "L",
+      "min": 0.0,
+      "max": 3.0,
+      "step": 0.25
+    },
+    "measure": {
+      "label": "Lavoro netto per giro",
+      "unit": "J"
+    },
+    "formula": "W ciclo = (p alta−p bassa)ΔV = 60ΔV",
+    "interpretation": "Il rettangolo è percorso in senso orario. L’espansione avviene alla pressione maggiore. Sottrai il lavoro restituito nella compressione e osserva l’area rimasta.",
+    "references": [
+      [
+        1.0,
+        60.0
+      ],
+      [
+        2.0,
+        120.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "60 × {x}",
+    "transferPrompt": "Un ciclo rettangolare orario ha un salto fra isobare di 60 kPa e una larghezza di {x} in volume. Quanti joule fornisce in un giro?"
+  },
+  {
+    "id": "SIM-C3-L08-02",
+    "kind": "experiment",
+    "course": "C3",
+    "skill": "C3-L08",
+    "order": 2,
+    "section": "Leggere il lavoro di un ciclo",
+    "version": 1,
+    "title": "Bilancio energetico di un ciclo",
+    "topic": "5.5 Bilancio energetico di un ciclo",
+    "anchor": "Per un rettangolo, il lavoro sull’espansione è",
+    "summary": "Dopo un giro completo che fine fanno i 100 J ricevuti?",
+    "apparatus": "motore",
+    "control": {
+      "label": "Calore ceduto alla sorgente fredda",
+      "unit": "J",
+      "min": 20.0,
+      "max": 100.0,
+      "step": 5.0
+    },
+    "measure": {
+      "label": "Lavoro in un ciclo",
+      "unit": "J"
+    },
+    "formula": "ΔU ciclo = 0 ⇒ W = Q caldo − Q freddo = 100 − Q freddo",
+    "interpretation": "Il fluido ritorna allo stato iniziale, quindi non conserva energia interna aggiuntiva. Leggi separatamente il calore ceduto e il lavoro erogato e controlla la somma.",
+    "references": [
+      [
+        40.0,
+        60.0
+      ],
+      [
+        80.0,
+        20.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "100 − {x}",
+    "transferPrompt": "Un motore assorbe 100 J per ciclo e ne cede {x} alla sorgente fredda. Quanti joule di lavoro puoi raccogliere all’albero?"
+  },
+  {
+    "id": "SIM-C3-L08-03",
+    "kind": "experiment",
+    "course": "C3",
+    "skill": "C3-L08",
+    "order": 3,
+    "section": "Leggere il lavoro di un ciclo",
+    "version": 1,
+    "title": "Funzionamento ciclico",
+    "topic": "5.5 Funzionamento ciclico",
+    "anchor": "Il lavoro è legato alla forma del",
+    "summary": "Tornare allo stesso punto nel diagramma annulla anche il lavoro accumulato?",
+    "apparatus": "ciclo",
+    "control": {
+      "label": "Numero di giri",
+      "unit": "1",
+      "min": 1.0,
+      "max": 6.0,
+      "step": 1.0
+    },
+    "measure": {
+      "label": "Lavoro totale",
+      "unit": "J"
+    },
+    "formula": "W totale = N W ciclo, con W ciclo = 20 J",
+    "interpretation": "Ogni giro riporta il fluido allo stesso stato. Il contatore conserva però i 20 J trasferiti all’esterno per ciascun giro. Confronta i segni sul contatore con l’area di un ciclo.",
+    "references": [
+      [
+        2.0,
+        40.0
+      ],
+      [
+        5.0,
+        100.0
+      ]
+    ],
+    "blocks": [],
+    "discrete": true,
+    "substitution": "20 × {x}",
+    "transferPrompt": "Il contatore registra {x} giri completi di un motore che produce 20 J a giro. Qual è il lavoro complessivo?"
+  },
+  {
+    "id": "SIM-C3-L09-01",
+    "kind": "experiment",
+    "course": "C3",
+    "skill": "C3-L09",
+    "order": 1,
+    "section": "Dal calore al lavoro utile",
+    "version": 1,
+    "title": "Secondo principio, enunciati di Kelvin–Planck e Clausius",
+    "topic": "5.5 Secondo principio, enunciati di Kelvin–Planck e Clausius",
+    "anchor": "L’enunciato di Kelvin–Planck impedisce a una macchina",
+    "summary": "Puoi trasferire calore dal freddo al caldo senza fornire lavoro?",
+    "apparatus": "motore",
+    "control": {
+      "label": "Calore prelevato dal freddo",
+      "unit": "J",
+      "min": 0.0,
+      "max": 80.0,
+      "step": 5.0
+    },
+    "measure": {
+      "label": "Calore minimo ceduto al caldo",
+      "unit": "J"
+    },
+    "formula": "Q caldo/T caldo = Q freddo/T freddo; T caldo/T freddo = 1,5",
+    "interpretation": "Nel frigorifero reversibile fra 300 e 450 K il lavoro minimo è Q caldo meno Q freddo. Invertendo il ciclo si ottiene un motore che deve cedere calore: sono le due letture del secondo principio.",
+    "references": [
+      [
+        20.0,
+        30.0
+      ],
+      [
+        60.0,
+        90.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "1,5 × {x}",
+    "transferPrompt": "Un frigorifero reversibile preleva {x} dalla sorgente fredda. Se T calda/T fredda = 1,5, quale calore minimo deve cedere all’ambiente caldo?"
+  },
+  {
+    "id": "SIM-C3-L09-02",
+    "kind": "experiment",
+    "course": "C3",
+    "skill": "C3-L09",
+    "order": 2,
+    "section": "Dal calore al lavoro utile",
+    "version": 1,
+    "title": "Macchine termiche",
+    "topic": "5.5 Macchine termiche",
+    "anchor": "Un motore ciclico riceve energia da una",
+    "summary": "Come si distribuisce l’energia assorbita da questa macchina termica?",
+    "apparatus": "motore",
+    "control": {
+      "label": "Calore assorbito per ciclo",
+      "unit": "J",
+      "min": 0.0,
+      "max": 200.0,
+      "step": 10.0
+    },
+    "measure": {
+      "label": "Lavoro utile",
+      "unit": "J"
+    },
+    "formula": "W = ηQ caldo, con η = 0,30",
+    "interpretation": "Il motore opera fra 600 K e 300 K con rendimento 30%, inferiore al limite reversibile. Ogni 100 J in ingresso ne consegna 30 come lavoro e 70 al serbatoio freddo.",
+    "references": [
+      [
+        50.0,
+        15.0
+      ],
+      [
+        150.0,
+        45.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "0,3 × {x}",
+    "transferPrompt": "Una macchina con rendimento del 30% assorbe {x} per ciclo. Quale parte arriva all’albero sotto forma di lavoro?"
+  },
+  {
+    "id": "SIM-C3-L09-03",
+    "kind": "experiment",
+    "course": "C3",
+    "skill": "C3-L09",
+    "order": 3,
+    "section": "Dal calore al lavoro utile",
+    "version": 1,
+    "title": "Rendimento",
+    "topic": "5.5 Rendimento",
+    "anchor": "Un motore ciclico riceve energia da una",
+    "summary": "Quale frazione del calore in ingresso diventa lavoro utile?",
+    "apparatus": "motore",
+    "control": {
+      "label": "Lavoro per ciclo",
+      "unit": "J",
+      "min": 0.0,
+      "max": 50.0,
+      "step": 5.0
+    },
+    "measure": {
+      "label": "Rendimento",
+      "unit": "%"
+    },
+    "formula": "η = 100 W/Q caldo; Q caldo = 100 J",
+    "interpretation": "La sorgente fornisce 100 J per ciclo. Con serbatoi a 600 K e 300 K il rendimento massimo è 50%. Confronta la freccia del lavoro con quella dell’energia entrante.",
+    "references": [
+      [
+        10.0,
+        10.0
+      ],
+      [
+        40.0,
+        40.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "{x}",
+    "transferPrompt": "Con 100 J di calore assorbito, un motore consegna {x} all’albero. Quale rendimento percentuale scrivi sul rapporto?"
+  },
+  {
+    "id": "SIM-C3-L09-04",
+    "kind": "experiment",
+    "course": "C3",
+    "skill": "C3-L09",
+    "order": 4,
+    "section": "Dal calore al lavoro utile",
+    "version": 1,
+    "title": "Ciclo di Carnot",
+    "topic": "5.5 Ciclo di Carnot",
+    "anchor": "Il ciclo di Carnot collega due isoterme",
+    "summary": "Perché avvicinare le temperature riduce il massimo lavoro ottenibile?",
+    "apparatus": "motore",
+    "control": {
+      "label": "Temperatura della sorgente fredda",
+      "unit": "K",
+      "min": 250.0,
+      "max": 500.0,
+      "step": 25.0
+    },
+    "measure": {
+      "label": "Rendimento reversibile",
+      "unit": "%"
+    },
+    "formula": "η Carnot = 100(1−T fredda/500 K)",
+    "interpretation": "Il ciclo reversibile alterna due isoterme e due adiabatiche. Per ogni 100 J assorbiti il rapporto tra calore ceduto e ricevuto è T fredda/T calda. Con temperature uguali non si ottiene lavoro netto.",
+    "references": [
+      [
+        250.0,
+        50.0
+      ],
+      [
+        400.0,
+        20.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "100 × (1 − ({x} / 500))",
+    "transferPrompt": "La sorgente calda rimane a 500 K e quella fredda passa a {x}. Qual è il massimo rendimento percentuale ammesso per un ciclo fra queste sorgenti?"
+  },
+  {
+    "id": "SIM-C3-L10-01",
+    "kind": "experiment",
+    "course": "C3",
+    "skill": "C3-L10",
+    "order": 1,
+    "section": "Seguire il verso dei processi",
+    "version": 1,
+    "title": "Entropia funzione di stato",
+    "topic": "5.5 Entropia funzione di stato",
+    "anchor": "Una singola parte può perdere entropia. Per",
+    "summary": "Quale variazione di entropia collega i due stati di un sistema isotermo?",
+    "apparatus": "motore",
+    "control": {
+      "label": "Calore reversibile scambiato",
+      "unit": "J",
+      "min": -60.0,
+      "max": 60.0,
+      "step": 5.0
+    },
+    "measure": {
+      "label": "Variazione di entropia del sistema",
+      "unit": "J/K"
+    },
+    "formula": "ΔS = Q reversibile/T, con T = 300 K",
+    "interpretation": "Scambia energia reversibilmente con un serbatoio a 300 K. Se il sistema perde calore la sua entropia diminuisce. La variazione fra gli stessi stati si calcola lungo qualunque percorso reversibile che li colleghi.",
+    "references": [
+      [
+        -30.0,
+        -0.1
+      ],
+      [
+        60.0,
+        0.2
+      ]
+    ],
+    "blocks": [],
+    "substitution": "{x} / 300",
+    "transferPrompt": "Un corpo a 300 K scambia reversibilmente il calore con segno {x}. Quale variazione di entropia attribuisci al corpo?"
+  },
+  {
+    "id": "SIM-C3-L10-02",
+    "kind": "experiment",
+    "course": "C3",
+    "skill": "C3-L10",
+    "order": 2,
+    "section": "Seguire il verso dei processi",
+    "version": 1,
+    "title": "Implicazioni macroscopiche",
+    "topic": "5.5 Implicazioni macroscopiche",
+    "anchor": "Per un trasferimento fra due serbatoi la",
+    "summary": "Se una parte perde entropia, come controlli il bilancio complessivo?",
+    "apparatus": "radiazione",
+    "control": {
+      "label": "Calore dal caldo al freddo",
+      "unit": "J",
+      "min": 0.0,
+      "max": 120.0,
+      "step": 10.0
+    },
+    "measure": {
+      "label": "Aumento di entropia totale",
+      "unit": "J/K"
+    },
+    "formula": "ΔS totale = Q(1/300−1/600)",
+    "interpretation": "Due serbatoi a 600 e 300 K mantengono le loro temperature. Il caldo perde Q/600, il freddo guadagna Q/300. La somma è positiva per un trasferimento spontaneo.",
+    "references": [
+      [
+        30.0,
+        0.05
+      ],
+      [
+        90.0,
+        0.15
+      ]
+    ],
+    "blocks": [],
+    "substitution": "{x} / 600",
+    "transferPrompt": "Passano {x} da un serbatoio a 600 K a uno a 300 K. Quanto aumenta l’entropia dei due serbatoi considerati insieme?"
+  },
+  {
+    "id": "SIM-C3-L10-03",
+    "kind": "experiment",
+    "course": "C3",
+    "skill": "C3-L10",
+    "order": 3,
+    "section": "Seguire il verso dei processi",
+    "version": 1,
+    "title": "Interpretazione statistica",
+    "topic": "5.5 Interpretazione statistica",
+    "anchor": "Dal punto di vista statistico un macrostato",
+    "summary": "Perché osservi più spesso una distribuzione equilibrata delle particelle?",
+    "apparatus": "microstati",
+    "control": {
+      "label": "Particelle nella metà sinistra",
+      "unit": "1",
+      "min": 0.0,
+      "max": 4.0,
+      "step": 1.0
+    },
+    "measure": {
+      "label": "Numero di configurazioni",
+      "unit": "1"
+    },
+    "formula": "Ω = 4!/[k!(4−k)!]; S = kB ln Ω",
+    "interpretation": "Quattro particelle distinguibili e indipendenti possono occupare due metà equiprobabili. Il numero conta tutte le scelte delle particelle a sinistra. Il banco mostra un rappresentante e conta anche gli altri microstati.",
+    "references": [
+      [
+        1.0,
+        4.0
+      ],
+      [
+        2.0,
+        6.0
+      ]
+    ],
+    "blocks": [],
+    "discrete": true,
+    "substitution": "4! / ({x}! × (4 − {x})!)",
+    "transferPrompt": "Quattro particelle distinguibili possono trovarsi a destra o a sinistra. Se ne osservi {x} a sinistra, quante configurazioni sono compatibili con il conteggio?"
+  },
+  {
+    "id": "SIM-C3-L10-04",
+    "kind": "experiment",
+    "course": "C3",
+    "skill": "C3-L10",
+    "order": 4,
+    "section": "Seguire il verso dei processi",
+    "version": 1,
+    "title": "Direzione naturale dei processi",
+    "topic": "5.5 Direzione naturale dei processi",
+    "anchor": "Un cubetto caldo e uno freddo in",
+    "summary": "Quale verso dello scambio è spontaneo per due serbatoi isolati dall’esterno?",
+    "apparatus": "radiazione",
+    "control": {
+      "label": "Calore con segno dal caldo al freddo",
+      "unit": "J",
+      "min": -60.0,
+      "max": 60.0,
+      "step": 10.0
+    },
+    "measure": {
+      "label": "Variazione di entropia dei due serbatoi",
+      "unit": "J/K"
+    },
+    "formula": "ΔS totale = Q(1/300−1/600) = Q/600",
+    "interpretation": "La freccia è un’ipotesi da mettere alla prova. Per Q negativo il bilancio dà entropia totale negativa: quella trasformazione richiederebbe un intervento esterno e altri scambi.",
+    "references": [
+      [
+        -60.0,
+        -0.1
+      ],
+      [
+        30.0,
+        0.05
+      ]
+    ],
+    "blocks": [],
+    "substitution": "{x} / 600",
+    "transferPrompt": "Nel verso convenzionale dal caldo al freddo il calore è {x}. Fra 600 K e 300 K, quale variazione totale di entropia ottieni con quel segno?"
+  },
+  {
+    "id": "SIM-C4-L01-01",
+    "kind": "experiment",
+    "course": "C4",
+    "skill": "C4-L01",
+    "order": 1,
+    "section": "Cariche che si attraggono e si respingono",
+    "version": 1,
+    "title": "Carica elettrica, segno, unità e conservazione",
+    "topic": "6.1 Carica elettrica, segno, unità e conservazione",
+    "anchor": "Strofina due materiali isolanti e separali. Il",
+    "summary": "Quale corpo diventa positivo quando passi elettroni da A a B?",
+    "apparatus": "cariche",
+    "control": {
+      "label": "Elettroni trasferiti da A a B",
+      "unit": "1",
+      "min": 0.0,
+      "max": 8.0,
+      "step": 1.0
+    },
+    "measure": {
+      "label": "Carica acquistata da A in unità e",
+      "unit": "1"
+    },
+    "formula": "qₐ = +Ne; qᵦ = −Ne; q totale = 0",
+    "interpretation": "A perde cariche negative e B le acquista. I due contatori cambiano di quantità uguali e opposte. Una carica elementare ha modulo circa 1,602 × 10⁻¹⁹ C.",
+    "references": [
+      [
+        2.0,
+        2.0
+      ],
+      [
+        6.0,
+        6.0
+      ]
+    ],
+    "blocks": [],
+    "discrete": true,
+    "substitution": "{x}",
+    "transferPrompt": "Due sfere erano neutre. Trasferisci {x} elettroni da A a B. Quale carica con segno, espressa in cariche elementari, rimane su A?"
+  },
+  {
+    "id": "SIM-C4-L01-02",
+    "kind": "experiment",
+    "course": "C4",
+    "skill": "C4-L01",
+    "order": 2,
+    "section": "Cariche che si attraggono e si respingono",
+    "version": 1,
+    "title": "Interazione fra cariche puntiformi e legge di Coulomb",
+    "topic": "6.1 Interazione fra cariche puntiformi e legge di Coulomb",
+    "anchor": "Le cariche dello stesso segno si respingono",
+    "summary": "Quanto misura la repulsione fra due cariche positive da un nanocoulomb?",
+    "apparatus": "cariche",
+    "control": {
+      "label": "Distanza fra le cariche",
+      "unit": "cm",
+      "min": 1.0,
+      "max": 6.0,
+      "step": 0.5
+    },
+    "measure": {
+      "label": "Forza di repulsione",
+      "unit": "µN"
+    },
+    "formula": "F = kq²/r²; q = 1 nC, k ≈ 9×10⁹",
+    "interpretation": "Misura fra i centri e converti centimetri in metri. Il prodotto delle cariche rimane fisso; la forza diminuisce come il quadrato inverso della distanza.",
+    "references": [
+      [
+        2.0,
+        22.5
+      ],
+      [
+        3.0,
+        10.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "90 / ({x}²)",
+    "transferPrompt": "Due cariche di +1 nC sono ora distanti {x}. Usando k ≈ 9 × 10⁹, quale forza di repulsione prevedi in micronewton?"
+  },
+  {
+    "id": "SIM-C4-L02-01",
+    "kind": "experiment",
+    "course": "C4",
+    "skill": "C4-L02",
+    "order": 1,
+    "section": "Guardare il campo prima della forza",
+    "version": 1,
+    "title": "Campo elettrico e linee di forza",
+    "topic": "6.1 Campo elettrico e linee di forza",
+    "anchor": "La tangente a una linea di campo",
+    "summary": "Che relazione c’è fra la tangente alla linea di campo e la freccia della sonda?",
+    "apparatus": "cariche",
+    "control": {
+      "label": "Distanza della sonda",
+      "unit": "cm",
+      "min": 1.0,
+      "max": 8.0,
+      "step": 0.5
+    },
+    "measure": {
+      "label": "Campo elettrico",
+      "unit": "kN/C"
+    },
+    "formula": "E = kq/r²; q = 1 nC ⇒ E(kN/C) = 90/r(cm)²",
+    "interpretation": "La sorgente positiva è fissa e una carica di prova trascurabile campiona punti lungo una semiretta. Le linee si allontanano dalla sorgente, il vettore locale ne segue la tangente.",
+    "references": [
+      [
+        2.0,
+        22.5
+      ],
+      [
+        3.0,
+        10.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "90 / ({x}²)",
+    "transferPrompt": "Sposti una sonda alla distanza di {x} da una carica puntiforme di +1 nC. Quale intensità di campo leggi in kN/C?"
+  },
+  {
+    "id": "SIM-C4-L02-02",
+    "kind": "experiment",
+    "course": "C4",
+    "skill": "C4-L02",
+    "order": 2,
+    "section": "Guardare il campo prima della forza",
+    "version": 1,
+    "title": "Campo di una o più cariche puntiformi",
+    "topic": "6.1 Campo di una o più cariche puntiformi",
+    "anchor": "Il versore radiale punta dalla sorgente al",
+    "summary": "Al punto medio i contributi delle due sorgenti si sommano o si cancellano?",
+    "apparatus": "cariche",
+    "control": {
+      "label": "Carica di destra",
+      "unit": "nC",
+      "min": -3.0,
+      "max": 3.0,
+      "step": 0.5
+    },
+    "measure": {
+      "label": "Campo al punto medio lungo x",
+      "unit": "kN/C"
+    },
+    "formula": "Eₓ = k(q₁−q₂)/r² = 22,5(1−q₂ in nC), r = 2 cm",
+    "interpretation": "Fissa +1 nC a sinistra. Calcola prima il verso di ogni contributo al centro e poi sommali con segno, usando destra come verso positivo.",
+    "references": [
+      [
+        -1.0,
+        45.0
+      ],
+      [
+        1.0,
+        0.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "22,5 × (1 − {x})",
+    "transferPrompt": "Fra una carica sinistra da +1 nC e una destra da {x} poni la sonda a 2 cm da entrambe. Qual è la componente del campo, positiva verso destra?"
+  },
+  {
+    "id": "SIM-C4-L02-03",
+    "kind": "experiment",
+    "course": "C4",
+    "skill": "C4-L02",
+    "order": 3,
+    "section": "Guardare il campo prima della forza",
+    "version": 1,
+    "title": "Moto in un campo elettrico uniforme",
+    "topic": "6.1 Moto in un campo elettrico uniforme",
+    "anchor": "Se il campo è uniforme e le",
+    "summary": "Come si muove una particella positiva lasciata ferma fra piastre parallele?",
+    "apparatus": "piastre",
+    "control": {
+      "label": "Tempo dalla partenza",
+      "unit": "ms",
+      "min": 0.0,
+      "max": 4.0,
+      "step": 0.25
+    },
+    "measure": {
+      "label": "Spostamento lungo il campo",
+      "unit": "mm"
+    },
+    "formula": "a = qE/m = 1000 m/s²; s = ½at²",
+    "interpretation": "Nel piccolo tratto osservato il campo è uniforme e le altre forze sono trascurate. L’accelerazione è costante. Dopo il doppio del tempo la distanza è quadrupla.",
+    "references": [
+      [
+        1.0,
+        0.5
+      ],
+      [
+        3.0,
+        4.5
+      ]
+    ],
+    "blocks": [],
+    "substitution": "0,5 × {x} × {x}",
+    "transferPrompt": "Una particella parte ferma e acquista 1000 m/s² lungo il campo. Dopo {x}, quanti millimetri ha percorso?"
+  },
+  {
+    "id": "SIM-C4-L03-01",
+    "kind": "experiment",
+    "course": "C4",
+    "skill": "C4-L03",
+    "order": 1,
+    "section": "Dal potenziale all’energia",
+    "version": 1,
+    "title": "Energia potenziale di una distribuzione di cariche",
+    "topic": "6.2 Energia potenziale di una distribuzione di cariche",
+    "anchor": "Per assemblare più cariche, si aggiunge l’energia",
+    "summary": "Quante coppie devi contare per assemblare tre cariche ai vertici di un triangolo?",
+    "apparatus": "cariche",
+    "control": {
+      "label": "Terza carica al vertice",
+      "unit": "nC",
+      "min": -2.0,
+      "max": 3.0,
+      "step": 0.5
+    },
+    "measure": {
+      "label": "Energia della terna",
+      "unit": "µJ"
+    },
+    "formula": "U = k(q₁q₂+q₁q₃+q₂q₃)/r = 0,9(1+2q₃) µJ",
+    "interpretation": "I lati sono tutti di 1 cm, le prime due cariche valgono +1 nC e lo zero è all’infinito. Conta ogni lato una sola volta. Le coppie di segno opposto abbassano l’energia.",
+    "references": [
+      [
+        -1.0,
+        -0.9
+      ],
+      [
+        2.0,
+        4.5
+      ]
+    ],
+    "blocks": [],
+    "substitution": "0,9 × (1 + 2 × {x})",
+    "transferPrompt": "Due vertici di un triangolo equilatero di lato 1 cm portano +1 nC ciascuno. Se il terzo porta {x}, quanto vale in µJ l’energia totale delle tre coppie?"
+  },
+  {
+    "id": "SIM-C4-L03-02",
+    "kind": "experiment",
+    "course": "C4",
+    "skill": "C4-L03",
+    "order": 2,
+    "section": "Dal potenziale all’energia",
+    "version": 1,
+    "title": "Potenziale e differenza di potenziale",
+    "topic": "6.2 Potenziale e differenza di potenziale",
+    "anchor": "È lecito scegliere un riferimento per lo",
+    "summary": "Il potenziale aumenta quando ti sposti nel verso del campo?",
+    "apparatus": "piastre",
+    "control": {
+      "label": "Spostamento lungo il campo",
+      "unit": "cm",
+      "min": -4.0,
+      "max": 4.0,
+      "step": 0.5
+    },
+    "measure": {
+      "label": "Differenza di potenziale",
+      "unit": "V"
+    },
+    "formula": "ΔV = −E·Δx; E = 200 V/m",
+    "interpretation": "Il campo uniforme va dalla piastra positiva alla negativa. Sposta una sonda rispetto al riferimento centrale. Invertendo lo spostamento cambia il segno della differenza di potenziale.",
+    "references": [
+      [
+        -2.0,
+        4.0
+      ],
+      [
+        3.0,
+        -6.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "−2 × {x}",
+    "transferPrompt": "Ti sposti di {x}, con segno lungo un campo uniforme di 200 V/m. Quale differenza di potenziale finale meno iniziale misura il voltmetro?"
+  },
+  {
+    "id": "SIM-C4-L03-03",
+    "kind": "experiment",
+    "course": "C4",
+    "skill": "C4-L03",
+    "order": 3,
+    "section": "Dal potenziale all’energia",
+    "version": 1,
+    "title": "Conservazione dell’energia in un campo elettrico",
+    "topic": "6.2 Conservazione dell’energia in un campo elettrico",
+    "anchor": "Un campo elettrostatico può accelerare una particella.",
+    "summary": "Dove si ritrova l’energia potenziale persa da una carica positiva?",
+    "apparatus": "piastre",
+    "control": {
+      "label": "Caduta di potenziale",
+      "unit": "V",
+      "min": 0.0,
+      "max": 8.0,
+      "step": 0.5
+    },
+    "measure": {
+      "label": "Energia cinetica acquistata",
+      "unit": "µJ"
+    },
+    "formula": "ΔK = −ΔU = q(V iniziale−V finale); q = +3 µC",
+    "interpretation": "La particella si sposta verso il potenziale più basso senza altre forze che compiano lavoro. Moltiplica la carica per la caduta di potenziale: un microcoulomb per volt dà un microjoule.",
+    "references": [
+      [
+        2.0,
+        6.0
+      ],
+      [
+        5.0,
+        15.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "3 × {x}",
+    "transferPrompt": "Una carica di +3 µC attraversa una caduta di potenziale di {x}. Di quanti microjoule varia la sua energia cinetica per azione del campo?"
+  },
+  {
+    "id": "SIM-C4-L04-01",
+    "kind": "experiment",
+    "course": "C4",
+    "skill": "C4-L04",
+    "order": 1,
+    "section": "Cariche mobili e cariche legate",
+    "version": 1,
+    "title": "Conduttori e induzione elettrostatica",
+    "topic": "6.3 Conduttori e induzione elettrostatica",
+    "anchor": "Avvicina una bacchetta positiva a un conduttore",
+    "summary": "Come può il campo interno restare nullo mentre avvicini una sorgente esterna?",
+    "apparatus": "dipoli",
+    "control": {
+      "label": "Campo esterno uniforme",
+      "unit": "kV/m",
+      "min": 0.0,
+      "max": 10.0,
+      "step": 1.0
+    },
+    "measure": {
+      "label": "Campo interno nel conduttore in equilibrio",
+      "unit": "kV/m"
+    },
+    "formula": "E interno = E esterno + E indotto = 0",
+    "interpretation": "Nel campione metallico isolato gli elettroni liberi si ridistribuiscono sulle superfici. Il campo da loro creato compensa l’esterno. Le quantità di carica positiva e negativa indotte si bilanciano.",
+    "references": [
+      [
+        2.0,
+        0.0
+      ],
+      [
+        8.0,
+        0.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "{x} + (−{x})",
+    "transferPrompt": "Applichi {x} a un conduttore e attendi l’equilibrio elettrostatico. Quanto campo dovrebbe misurare una sonda nel materiale conduttore?"
+  },
+  {
+    "id": "SIM-C4-L04-02",
+    "kind": "experiment",
+    "course": "C4",
+    "skill": "C4-L04",
+    "order": 2,
+    "section": "Cariche mobili e cariche legate",
+    "version": 1,
+    "title": "Dielettrici e polarizzazione",
+    "topic": "6.3 Dielettrici e polarizzazione",
+    "anchor": "In un isolante le cariche possono spostarsi",
+    "summary": "Perché nel materiale isolante il campo si riduce senza annullarsi?",
+    "apparatus": "dipoli",
+    "control": {
+      "label": "Campo esterno a carica libera fissata",
+      "unit": "kV/m",
+      "min": 0.0,
+      "max": 12.0,
+      "step": 1.0
+    },
+    "measure": {
+      "label": "Campo nel dielettrico",
+      "unit": "kV/m"
+    },
+    "formula": "E = E₀/εᵣ, con εᵣ = 3",
+    "interpretation": "Fra grandi piastre a carica libera fissata entra un dielettrico lineare omogeneo. I centri di carica legata si separano leggermente. La polarizzazione si oppone al campo applicato.",
+    "references": [
+      [
+        3.0,
+        1.0
+      ],
+      [
+        9.0,
+        3.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "{x} / 3",
+    "transferPrompt": "Scolleghi il generatore per mantenere fissa la carica sulle piastre. Il campo senza dielettrico sarebbe {x}. Inserendo un materiale con εᵣ = 3, quale campo resta al suo interno?"
+  },
+  {
+    "id": "SIM-C4-L05-01",
+    "kind": "experiment",
+    "course": "C4",
+    "skill": "C4-L05",
+    "order": 1,
+    "section": "Quanto vale una corrente",
+    "version": 1,
+    "title": "Corrente continua e intensità",
+    "topic": "6.4 Corrente continua e intensità",
+    "anchor": "Immagina una sezione trasversale di un filo.",
+    "summary": "Quanta carica attraversa la sezione marcata del filo?",
+    "apparatus": "filo",
+    "control": {
+      "label": "Durata della misura",
+      "unit": "s",
+      "min": 0.5,
+      "max": 5.0,
+      "step": 0.5
+    },
+    "measure": {
+      "label": "Carica attraversata",
+      "unit": "C"
+    },
+    "formula": "Δq = IΔt, con I = 2 A",
+    "interpretation": "Ogni secondo passano 2 coulomb di carica convenzionale. Nel metallo gli elettroni derivano nel verso opposto alla corrente.",
+    "references": [
+      [
+        1.0,
+        2.0
+      ],
+      [
+        4.0,
+        8.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "2 × {x}",
+    "transferPrompt": "Un filo porta una corrente stazionaria di 2 A per {x}. Quanti coulomb attraversano la stessa sezione?"
+  },
+  {
+    "id": "SIM-C4-L05-02",
+    "kind": "experiment",
+    "course": "C4",
+    "skill": "C4-L05",
+    "order": 2,
+    "section": "Quanto vale una corrente",
+    "version": 1,
+    "title": "Generatore ideale",
+    "topic": "6.4 Generatore ideale",
+    "anchor": "Immagina una sezione trasversale di un filo.",
+    "summary": "Il generatore ideale mantiene la tensione o la corrente quando cambi il carico?",
+    "apparatus": "circuito",
+    "control": {
+      "label": "Resistenza del carico",
+      "unit": "Ω",
+      "min": 2.0,
+      "max": 12.0,
+      "step": 1.0
+    },
+    "measure": {
+      "label": "Corrente nel carico",
+      "unit": "A"
+    },
+    "formula": "I = V/R, con V = 12 V fissata dal generatore",
+    "interpretation": "Collega il resistore alla stessa batteria ideale da 12 V. Il voltmetro ai morsetti conserva la lettura e l’amperometro cambia con il carico.",
+    "references": [
+      [
+        3.0,
+        4.0
+      ],
+      [
+        6.0,
+        2.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "12 / {x}",
+    "transferPrompt": "Un alimentatore ideale da 12 V fa funzionare un carico da {x}. Quale corrente dovrebbe leggere l’amperometro in serie?"
+  },
+  {
+    "id": "SIM-C4-L05-03",
+    "kind": "experiment",
+    "course": "C4",
+    "skill": "C4-L05",
+    "order": 3,
+    "section": "Quanto vale una corrente",
+    "version": 1,
+    "title": "Conduzione ohmica",
+    "topic": "6.4 Conduzione ohmica",
+    "anchor": "Per un resistore ohmico R resta costante",
+    "summary": "Cosa fa un resistore ohmico quando inverti i morsetti?",
+    "apparatus": "circuito",
+    "control": {
+      "label": "Tensione al resistore",
+      "unit": "V",
+      "min": -8.0,
+      "max": 8.0,
+      "step": 1.0
+    },
+    "measure": {
+      "label": "Corrente con segno",
+      "unit": "A"
+    },
+    "formula": "I = V/R, con R = 4 Ω",
+    "interpretation": "La resistenza è costante a temperatura fissata. Invertendo la tensione si inverte la corrente. Il grafico è una retta passante per l’origine.",
+    "references": [
+      [
+        -4.0,
+        -1.0
+      ],
+      [
+        8.0,
+        2.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "{x} / 4",
+    "transferPrompt": "A un resistore di 4 Ω applichi la tensione con segno {x}. Quale lettura con segno dà l’amperometro col verso di riferimento del banco?"
+  },
+  {
+    "id": "SIM-C4-L05-04",
+    "kind": "experiment",
+    "course": "C4",
+    "skill": "C4-L05",
+    "order": 4,
+    "section": "Quanto vale una corrente",
+    "version": 1,
+    "title": "Prima e seconda legge di Ohm",
+    "topic": "6.4 Prima e seconda legge di Ohm",
+    "anchor": "Per un resistore ohmico R resta costante",
+    "summary": "Come si combinano le due leggi di Ohm quando allunghi il filo?",
+    "apparatus": "filo",
+    "control": {
+      "label": "Lunghezza del filo",
+      "unit": "m",
+      "min": 0.5,
+      "max": 4.0,
+      "step": 0.5
+    },
+    "measure": {
+      "label": "Corrente a 4 V",
+      "unit": "A"
+    },
+    "formula": "R = ρL/A = 2L Ω; I = 4/R",
+    "interpretation": "Mantieni sezione e materiale fissi, con resistenza per metro di 2 Ω/m. Prima calcola la resistenza dal filo, poi usa la tensione ai morsetti per trovare la corrente.",
+    "references": [
+      [
+        1.0,
+        2.0
+      ],
+      [
+        2.0,
+        1.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "2 / {x}",
+    "transferPrompt": "Un filo presenta una resistenza di 2 Ω per metro e ne usi {x}. Alimentandolo a 4 V, quale corrente scorre?"
+  },
+  {
+    "id": "SIM-C4-L05-05",
+    "kind": "experiment",
+    "course": "C4",
+    "skill": "C4-L05",
+    "order": 5,
+    "section": "Quanto vale una corrente",
+    "version": 1,
+    "title": "Resistività",
+    "topic": "6.4 Resistività",
+    "anchor": "Una retta V(I) passante per l’origine indica",
+    "summary": "Due fili geometricamente identici presentano la stessa resistenza?",
+    "apparatus": "filo",
+    "control": {
+      "label": "Resistività",
+      "unit": "µΩ·m",
+      "min": 0.1,
+      "max": 1.0,
+      "step": 0.1
+    },
+    "measure": {
+      "label": "Resistenza del filo",
+      "unit": "Ω"
+    },
+    "formula": "R = ρL/A, con L = 2 m e A = 1 mm²",
+    "interpretation": "Sostituisci il materiale mantenendo lunghezza, area e temperatura. Converti µΩ·m e mm² in SI: i fattori dieci alla meno sei si semplificano.",
+    "references": [
+      [
+        0.2,
+        0.4
+      ],
+      [
+        0.8,
+        1.6
+      ]
+    ],
+    "blocks": [],
+    "substitution": "2 × {x}",
+    "transferPrompt": "Tagli un filo lungo 2 m di sezione 1 mm² in un materiale di resistività {x}. Quale resistenza misuri ai capi?"
+  },
+  {
+    "id": "SIM-C4-L06-01",
+    "kind": "experiment",
+    "course": "C4",
+    "skill": "C4-L06",
+    "order": 1,
+    "section": "Seguire i nodi di un circuito",
+    "version": 1,
+    "title": "Resistenze in serie e in parallelo",
+    "topic": "6.4 Resistenze in serie e in parallelo",
+    "anchor": "In serie le cadute si sommano: ΔV",
+    "summary": "Come riconosci il parallelo seguendo i nodi e quale valore aspetti?",
+    "apparatus": "circuito",
+    "control": {
+      "label": "Seconda resistenza",
+      "unit": "Ω",
+      "min": 2.0,
+      "max": 12.0,
+      "step": 1.0
+    },
+    "measure": {
+      "label": "Resistenza in parallelo",
+      "unit": "Ω"
+    },
+    "formula": "R parallelo = 4R₂/(4+R₂); R serie = 4+R₂",
+    "interpretation": "Le due resistenze condividono i due terminali. Confronta il valore inferiore alla più piccola con il valore in serie, dove la corrente attraversa entrambe in successione.",
+    "references": [
+      [
+        4.0,
+        2.0
+      ],
+      [
+        12.0,
+        3.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "4 × {x} / (4 + {x})",
+    "transferPrompt": "Colleghi in parallelo un resistore da 4 Ω e uno da {x}. Che valore misurerebbe un ohmmetro fra i due nodi, a generatore scollegato?"
+  },
+  {
+    "id": "SIM-C4-L06-02",
+    "kind": "experiment",
+    "course": "C4",
+    "skill": "C4-L06",
+    "order": 2,
+    "section": "Seguire i nodi di un circuito",
+    "version": 1,
+    "title": "Potenza elettrica ed effetto Joule",
+    "topic": "6.4 Potenza elettrica ed effetto Joule",
+    "anchor": "Per una differenza di potenziale V e",
+    "summary": "Perché una corrente doppia sviluppa quattro volte la potenza termica?",
+    "apparatus": "circuito",
+    "control": {
+      "label": "Corrente nel resistore",
+      "unit": "A",
+      "min": 0.0,
+      "max": 4.0,
+      "step": 0.25
+    },
+    "measure": {
+      "label": "Potenza dissipata",
+      "unit": "W"
+    },
+    "formula": "P = VI = RI²; R = 3 Ω",
+    "interpretation": "Nel resistore ohmico la tensione necessaria raddoppia insieme alla corrente. Il prodotto V per I quadruplica. Osserva l’energia ceduta ogni secondo.",
+    "references": [
+      [
+        1.0,
+        3.0
+      ],
+      [
+        3.0,
+        27.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "3 × {x} × {x}",
+    "transferPrompt": "Un resistore da 3 Ω è attraversato da {x}. Quanti watt deve dissipare in calore?"
+  },
+  {
+    "id": "SIM-C4-L07-01",
+    "kind": "experiment",
+    "course": "C4",
+    "skill": "C4-L07",
+    "order": 1,
+    "section": "Immagazzinare carica ed energia",
+    "version": 1,
+    "title": "Capacità elettrica e condensatore piano",
+    "topic": "6.5 Capacità elettrica e condensatore piano",
+    "anchor": "Per piastre parallele di area affacciata A,",
+    "summary": "Come cambia la capacità separando due piastre della stessa area?",
+    "apparatus": "piastre",
+    "control": {
+      "label": "Distanza tra le piastre",
+      "unit": "mm",
+      "min": 1.0,
+      "max": 8.0,
+      "step": 0.5
+    },
+    "measure": {
+      "label": "Capacità",
+      "unit": "pF"
+    },
+    "formula": "C = ε₀A/d; A = 0,01 m², ε₀ ≈ 8,854×10⁻¹² F/m",
+    "interpretation": "Si trascurano i bordi. A parità di carica, allontanare le piastre aumenta la tensione. La stessa carica divisa per una tensione maggiore dà meno capacità.",
+    "references": [
+      [
+        2.0,
+        44.27
+      ],
+      [
+        4.0,
+        22.135
+      ]
+    ],
+    "blocks": [],
+    "substitution": "88,54 / {x}",
+    "transferPrompt": "Due piastre di area 0,01 m² sono separate nel vuoto da {x}. Trascurando i bordi, quale capacità in pF trovi?"
+  },
+  {
+    "id": "SIM-C4-L07-02",
+    "kind": "experiment",
+    "course": "C4",
+    "skill": "C4-L07",
+    "order": 2,
+    "section": "Immagazzinare carica ed energia",
+    "version": 1,
+    "title": "Effetto del dielettrico",
+    "topic": "6.5 Effetto del dielettrico",
+    "anchor": "Introducendo un dielettrico, determina prima se il",
+    "summary": "Cosa fa la batteria quando inserisci un dielettrico fra le armature?",
+    "apparatus": "piastre",
+    "control": {
+      "label": "Permittività relativa",
+      "unit": "1",
+      "min": 1.0,
+      "max": 7.0,
+      "step": 1.0
+    },
+    "measure": {
+      "label": "Carica a tensione fissata",
+      "unit": "nC"
+    },
+    "formula": "C = εᵣC₀; Q = CV; C₀ = 1 nF, V = 2 V",
+    "interpretation": "Il materiale riempie tutto l’intervallo e la batteria resta connessa. La capacità aumenta e il generatore fornisce carica supplementare per tenere la tensione a 2 V.",
+    "references": [
+      [
+        2.0,
+        4.0
+      ],
+      [
+        5.0,
+        10.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "2 × {x}",
+    "transferPrompt": "Un condensatore da 1 nF resta collegato a 2 V mentre inserisci un dielettrico di permittività relativa {x}. Quanti nanocoulomb si accumulano su un’armatura?"
+  },
+  {
+    "id": "SIM-C4-L07-03",
+    "kind": "experiment",
+    "course": "C4",
+    "skill": "C4-L07",
+    "order": 3,
+    "section": "Immagazzinare carica ed energia",
+    "version": 1,
+    "title": "Energia immagazzinata",
+    "topic": "6.5 Energia immagazzinata",
+    "anchor": "Caricare le piastre richiede lavoro per aggiungere",
+    "summary": "Quanto lavoro occorre per caricare il condensatore?",
+    "apparatus": "piastre",
+    "control": {
+      "label": "Tensione di carica",
+      "unit": "V",
+      "min": 0.0,
+      "max": 8.0,
+      "step": 0.5
+    },
+    "measure": {
+      "label": "Energia immagazzinata",
+      "unit": "µJ"
+    },
+    "formula": "U = ½CV², con C = 2 µF",
+    "interpretation": "All’inizio la tensione è zero, poi sale fino al valore finale. Il lavoro è l’area del triangolo nel piano tensione-carica, pari a metà del prodotto fra carica e tensione finali.",
+    "references": [
+      [
+        2.0,
+        4.0
+      ],
+      [
+        5.0,
+        25.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "{x} × {x}",
+    "transferPrompt": "Carichi un condensatore da 2 µF a {x}. Quanti microjoule contiene prima della scarica?"
+  },
+  {
+    "id": "SIM-C4-L08-01",
+    "kind": "experiment",
+    "course": "C4",
+    "skill": "C4-L08",
+    "order": 1,
+    "section": "Mettere insieme i condensatori",
+    "version": 1,
+    "title": "Condensatori in serie e in parallelo",
+    "topic": "6.5 Condensatori in serie e in parallelo",
+    "anchor": "In serie, se il nodo intermedio isolato",
+    "summary": "Perché la serie di due condensatori immagazzina meno carica a uguale tensione?",
+    "apparatus": "condensatori",
+    "control": {
+      "label": "Seconda capacità",
+      "unit": "µF",
+      "min": 1.0,
+      "max": 8.0,
+      "step": 1.0
+    },
+    "measure": {
+      "label": "Capacità equivalente in serie",
+      "unit": "µF"
+    },
+    "formula": "C serie = 2C₂/(2+C₂); C parallelo = 2+C₂",
+    "interpretation": "Il conduttore intermedio è neutro e isolato. Le cariche sulle capacità in serie hanno lo stesso modulo e le tensioni si sommano. In parallelo, invece, si sommano le cariche a tensione comune.",
+    "references": [
+      [
+        2.0,
+        1.0
+      ],
+      [
+        6.0,
+        1.5
+      ]
+    ],
+    "blocks": [],
+    "substitution": "2 × {x} / (2 + {x})",
+    "transferPrompt": "Colleghi un condensatore da 2 µF in serie con uno da {x}. Quale capacità equivalente vedresti dai morsetti esterni?"
+  },
+  {
+    "id": "SIM-C4-L08-02",
+    "kind": "experiment",
+    "course": "C4",
+    "skill": "C4-L08",
+    "order": 2,
+    "section": "Mettere insieme i condensatori",
+    "version": 1,
+    "title": "Conservazione di carica nei collegamenti",
+    "topic": "6.5 Conservazione di carica nei collegamenti",
+    "anchor": "Quando si collegano fra loro due condensatori",
+    "summary": "Dove va la carica collegando due condensatori isolati dalla batteria?",
+    "apparatus": "condensatori",
+    "control": {
+      "label": "Carica iniziale sul primo",
+      "unit": "µC",
+      "min": 0.0,
+      "max": 12.0,
+      "step": 1.0
+    },
+    "measure": {
+      "label": "Tensione comune finale",
+      "unit": "V"
+    },
+    "formula": "V finale = Q totale/(C₁+C₂); C₁ = 1 µF, C₂ = 2 µF",
+    "interpretation": "Il secondo condensatore parte scarico. Collega fra loro i terminali omologhi. La carica totale si conserva e si divide in proporzione alle capacità, fino all’uguaglianza delle tensioni.",
+    "references": [
+      [
+        3.0,
+        1.0
+      ],
+      [
+        9.0,
+        3.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "{x} / 3",
+    "transferPrompt": "Il primo condensatore da 1 µF porta {x}, il secondo da 2 µF è scarico. Li colleghi in parallelo isolati dall’esterno. A quale tensione comune arrivano?"
+  },
+  {
+    "id": "SIM-C4-L09-01",
+    "kind": "experiment",
+    "course": "C4",
+    "skill": "C4-L09",
+    "order": 1,
+    "section": "Correnti, bussole e traiettorie curve",
+    "version": 1,
+    "title": "Origine magnetica delle correnti ed esperimento di Oersted",
+    "topic": "6.6 Origine magnetica delle correnti ed esperimento di Oersted",
+    "anchor": "Una bussola vicino a un filo rettilineo",
+    "summary": "Come si orienta la bussola quando inverti la corrente nel filo?",
+    "apparatus": "bussola",
+    "control": {
+      "label": "Corrente verticale nel filo",
+      "unit": "A",
+      "min": -6.0,
+      "max": 6.0,
+      "step": 0.5
+    },
+    "measure": {
+      "label": "Campo tangenziale con segno",
+      "unit": "µT"
+    },
+    "formula": "B = μ₀I/(2πr), con r = 5 cm",
+    "interpretation": "Il filo rettilineo è lungo rispetto alla distanza della sonda. Guarda dall’alto e applica la mano destra. Nel modello si trascura il campo terrestre; a corrente nulla il filo non seleziona una direzione.",
+    "references": [
+      [
+        -2.0,
+        -8.0
+      ],
+      [
+        5.0,
+        20.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "4 × {x}",
+    "transferPrompt": "Una sonda resta a 5 cm dal filo rettilineo mentre la corrente vale {x}. Quale campo tangenziale con segno legge secondo il verso indicato?"
+  },
+  {
+    "id": "SIM-C4-L09-02",
+    "kind": "experiment",
+    "course": "C4",
+    "skill": "C4-L09",
+    "order": 2,
+    "section": "Correnti, bussole e traiettorie curve",
+    "version": 1,
+    "title": "Forza di Lorentz su una carica in moto e su un filo",
+    "topic": "6.6 Forza di Lorentz su una carica in moto e su un filo",
+    "anchor": "Una particella carica in moto in un",
+    "summary": "Dove punta la forza rispetto alla velocità e al campo magnetico?",
+    "apparatus": "lorentz",
+    "control": {
+      "label": "Angolo tra velocità e campo",
+      "unit": "°",
+      "min": 0.0,
+      "max": 180.0,
+      "step": 5.0
+    },
+    "measure": {
+      "label": "Forza sulla carica",
+      "unit": "µN"
+    },
+    "formula": "F = qvB sin θ; q = 2 µC, v = 3 m/s, B = 1 T",
+    "interpretation": "Ruota la vista per distinguere i tre versi. Per q positiva la forza segue v×B. Per un tratto di filo si sostituisce qv con Iℓ: a parità di prodotto e angolo si ottiene la stessa costruzione vettoriale.",
+    "references": [
+      [
+        30.0,
+        3.0
+      ],
+      [
+        90.0,
+        6.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "6 × sin({x}°)",
+    "transferPrompt": "Una carica da 2 µC procede a 3 m/s in un campo da 1 T, con angolo {x} fra velocità e campo. Quanto vale il modulo della forza magnetica in µN?"
+  },
+  {
+    "id": "SIM-C4-L09-03",
+    "kind": "experiment",
+    "course": "C4",
+    "skill": "C4-L09",
+    "order": 3,
+    "section": "Correnti, bussole e traiettorie curve",
+    "version": 2,
+    "title": "Moto circolare in campo magnetico uniforme",
+    "topic": "6.6 Moto circolare in campo magnetico uniforme",
+    "anchor": "La forza magnetica è perpendicolare alla velocità",
+    "summary": "Perché un campo più intenso incurva di più la traiettoria?",
+    "apparatus": "cerchio",
+    "control": {
+      "label": "Campo magnetico",
+      "unit": "T",
+      "min": 0.5,
+      "max": 4.0,
+      "step": 0.25
+    },
+    "measure": {
+      "label": "Raggio dell’orbita",
+      "unit": "cm"
+    },
+    "formula": "r = mv/(|q|B), con mv/|q| = 0,12 T·m",
+    "interpretation": "La velocità iniziale è perpendicolare a un campo magnetico uniforme. La forza fornisce l’accelerazione centripeta senza compiere lavoro. Il modulo della velocità resta costante.",
+    "references": [
+      [
+        1.0,
+        12.0
+      ],
+      [
+        3.0,
+        4.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "12 / {x}",
+    "transferPrompt": "In un’orbita perpendicolare al campo, mv/|q| vale 0,12 T·m. Se il campo diventa {x}, quale raggio misuri in centimetri?"
+  },
+  {
+    "id": "SIM-C4-L10-01",
+    "kind": "experiment",
+    "course": "C4",
+    "skill": "C4-L10",
+    "order": 1,
+    "section": "Indurre una tensione cambiando il flusso",
+    "version": 1,
+    "title": "Flusso magnetico",
+    "topic": "6.7 Flusso magnetico",
+    "anchor": "Una spira ferma può essere attraversata da",
+    "summary": "Quale angolo devi misurare per calcolare il flusso attraverso una spira?",
+    "apparatus": "spira",
+    "control": {
+      "label": "Angolo tra campo e normale",
+      "unit": "°",
+      "min": 0.0,
+      "max": 180.0,
+      "step": 5.0
+    },
+    "measure": {
+      "label": "Flusso magnetico",
+      "unit": "mWb"
+    },
+    "formula": "Φ = BA cos θ; B = 0,3 T, A = 0,02 m²",
+    "interpretation": "La freccia normale è perpendicolare alla superficie. Di taglio il flusso si annulla, anche se il campo rimane presente; invertendo la normale il flusso cambia segno.",
+    "references": [
+      [
+        0.0,
+        6.0
+      ],
+      [
+        120.0,
+        -3.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "6 × cos({x}°)",
+    "transferPrompt": "Una spira di area 0,02 m² è in un campo da 0,3 T. Se la normale orientata forma {x} con il campo, quale flusso con segno ottieni in mWb?"
+  },
+  {
+    "id": "SIM-C4-L10-02",
+    "kind": "experiment",
+    "course": "C4",
+    "skill": "C4-L10",
+    "order": 2,
+    "section": "Indurre una tensione cambiando il flusso",
+    "version": 1,
+    "title": "Forza elettromotrice indotta",
+    "topic": "6.7 Forza elettromotrice indotta",
+    "anchor": "Cambiando l’intensità del campo, ruotando la spira",
+    "summary": "Una bobina immobile può generare una tensione?",
+    "apparatus": "spira",
+    "control": {
+      "label": "Velocità di variazione del campo",
+      "unit": "T/s",
+      "min": -4.0,
+      "max": 4.0,
+      "step": 0.5
+    },
+    "measure": {
+      "label": "Fem indotta",
+      "unit": "V"
+    },
+    "formula": "ε = −NA dB/dt; N = 10, A = 0,05 m²",
+    "interpretation": "Sì, se il campo concatenato cambia. Qui le spire sono fisse e la normale è parallela al campo. Con il circuito aperto puoi misurare una fem senza corrente.",
+    "references": [
+      [
+        -2.0,
+        1.0
+      ],
+      [
+        3.0,
+        -1.5
+      ]
+    ],
+    "blocks": [],
+    "substitution": "−0,5 × {x}",
+    "transferPrompt": "Una bobina da 10 spire di 0,05 m² è perpendicolare al campo, che varia al ritmo con segno di {x}. Quale fem compare secondo il verso orientato?"
+  },
+  {
+    "id": "SIM-C4-L10-03",
+    "kind": "experiment",
+    "course": "C4",
+    "skill": "C4-L10",
+    "order": 3,
+    "section": "Indurre una tensione cambiando il flusso",
+    "version": 1,
+    "title": "Legge di Faraday–Neumann–Lenz",
+    "topic": "6.7 Legge di Faraday–Neumann–Lenz",
+    "anchor": "Il verso positivo di percorrenza della spira",
+    "summary": "Che cosa cambia se la stessa variazione di flusso avviene più lentamente?",
+    "apparatus": "spira",
+    "control": {
+      "label": "Tempo per la stessa variazione di flusso",
+      "unit": "s",
+      "min": 0.25,
+      "max": 4.0,
+      "step": 0.25
+    },
+    "measure": {
+      "label": "Fem media",
+      "unit": "V"
+    },
+    "formula": "ε media = −NΔΦ/Δt = −2/Δt, con flusso concatenato in Wb",
+    "interpretation": "Mantieni fisso l’aumento di flusso concatenato di 2 Wb. Distribuendolo su più tempo diminuisce il modulo della fem. Il segno è riferito al verso positivo fissato dalla normale.",
+    "references": [
+      [
+        0.5,
+        -4.0
+      ],
+      [
+        2.0,
+        -1.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "−2 / {x}",
+    "transferPrompt": "Il flusso concatenato aumenta di 2 Wb durante {x}. Con l’orientazione della bobina fissata, quale fem media misura il voltmetro?"
+  },
+  {
+    "id": "SIM-C4-L10-04",
+    "kind": "experiment",
+    "course": "C4",
+    "skill": "C4-L10",
+    "order": 4,
+    "section": "Indurre una tensione cambiando il flusso",
+    "version": 1,
+    "title": "Correnti indotte e loro verso",
+    "topic": "6.7 Correnti indotte e loro verso",
+    "anchor": "Una forza elettromotrice può esistere anche a",
+    "summary": "Il verso della corrente si oppone al campo o al suo cambiamento?",
+    "apparatus": "spira",
+    "control": {
+      "label": "Variazione del flusso concatenato",
+      "unit": "Wb/s",
+      "min": -6.0,
+      "max": 6.0,
+      "step": 1.0
+    },
+    "measure": {
+      "label": "Corrente indotta con segno",
+      "unit": "A"
+    },
+    "formula": "I = ε/R = −(dΦ concatenato/dt)/(2 Ω)",
+    "interpretation": "Chiudi il circuito su 2 Ω e trascura l’autoinduzione. Invertendo la variazione si inverte la corrente. Il suo campo si oppone all’aumento oppure sostiene il campo che sta diminuendo.",
+    "references": [
+      [
+        -4.0,
+        2.0
+      ],
+      [
+        6.0,
+        -3.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "−{x} / 2",
+    "transferPrompt": "In una spira da 2 Ω il flusso concatenato varia a {x}. Quale corrente orientata prevede la legge di Lenz?"
+  },
+  {
+    "id": "SIM-C5-L01-01",
+    "kind": "experiment",
+    "course": "C5",
+    "skill": "C5-L01",
+    "order": 1,
+    "section": "Il tempo di un’oscillazione",
+    "version": 1,
+    "title": "Oscillatore armonico come sorgente",
+    "topic": "UD4 · oscillatore armonico come sorgente",
+    "anchor": "Una punta oscillante tocca un foglio che",
+    "summary": "Quale moto della sorgente produce un’oscillazione sinusoidale?",
+    "apparatus": "oscillatore",
+    "control": {
+      "label": "Tempo dall’estremo positivo",
+      "unit": "s",
+      "min": 0.0,
+      "max": 4.0,
+      "step": 0.125
+    },
+    "measure": {
+      "label": "Posizione",
+      "unit": "cm"
+    },
+    "formula": "x = A cos(2πt/T); A = 4 cm, T = 2 s",
+    "interpretation": "La molla ideale non dissipa energia. Segui il cursore tra i due estremi. Il punto passa più rapidamente dall’equilibrio e si arresta per un istante dove cambia verso.",
+    "references": [
+      [
+        0.0,
+        4.0
+      ],
+      [
+        1.0,
+        -4.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "4 × cos(π × {x})",
+    "transferPrompt": "Una massa parte da +4 cm e oscilla con periodo 2 s. Quale posizione con segno occupa dopo {x}?"
+  },
+  {
+    "id": "SIM-C5-L01-02",
+    "kind": "experiment",
+    "course": "C5",
+    "skill": "C5-L01",
+    "order": 2,
+    "section": "Il tempo di un’oscillazione",
+    "version": 2,
+    "title": "Ampiezza, periodo, frequenza e pulsazione",
+    "topic": "UD4 · ampiezza, periodo, frequenza e pulsazione",
+    "anchor": "La pulsazione ω indica quanti radianti di",
+    "summary": "Come cambia il numero di ritorni in un secondo se allunghi il periodo?",
+    "apparatus": "oscillatore",
+    "control": {
+      "label": "Periodo",
+      "unit": "s",
+      "min": 0.5,
+      "max": 4.0,
+      "step": 0.25
+    },
+    "measure": {
+      "label": "Frequenza",
+      "unit": "Hz"
+    },
+    "formula": "f = 1/T; ω = 2π/T; ampiezza = 3 cm",
+    "interpretation": "La sorgente parte dal massimo, a 3 cm dall’equilibrio. Avvia il moto e conta i ritorni al massimo in due periodi. Nelle tavole A e B confronta la posizione a 0,5 s. Fra i due estremi ci sono 6 cm. La frequenza conta i cicli al secondo, la pulsazione i radianti al secondo.",
+    "references": [
+      [
+        0.5,
+        2.0
+      ],
+      [
+        2.0,
+        0.5
+      ]
+    ],
+    "blocks": [],
+    "substitution": "1 / {x}",
+    "transferPrompt": "Un sensore rileva un’oscillazione completa ogni {x}. Quanti cicli registra per secondo?"
+  },
+  {
+    "id": "SIM-C5-L02-01",
+    "kind": "experiment",
+    "course": "C5",
+    "skill": "C5-L02",
+    "order": 1,
+    "section": "Lo spazio di un’onda",
+    "version": 1,
+    "title": "Perturbazione, energia e mezzo materiale",
+    "topic": "UD4 · perturbazione, energia e mezzo materiale",
+    "anchor": "Un nastro legato a una corda sale",
+    "summary": "Un pezzetto di corda viaggia insieme all’impulso?",
+    "apparatus": "onda",
+    "control": {
+      "label": "Tempo di propagazione",
+      "unit": "s",
+      "min": 0.0,
+      "max": 3.0,
+      "step": 0.125
+    },
+    "measure": {
+      "label": "Posizione del centro dell’impulso",
+      "unit": "m"
+    },
+    "formula": "x centro = vt, con v = 2 m/s",
+    "interpretation": "Segui la cresta e il punto materiale evidenziato. La prima avanza, il secondo si sposta trasversalmente e torna all’equilibrio. L’energia si propaga nel mezzo.",
+    "references": [
+      [
+        0.5,
+        1.0
+      ],
+      [
+        2.0,
+        4.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "2 × {x}",
+    "transferPrompt": "Un impulso si propaga su una corda a 2 m/s. Dopo {x}, quanto dista il centro dell’impulso dal punto di partenza?"
+  },
+  {
+    "id": "SIM-C5-L02-02",
+    "kind": "experiment",
+    "course": "C5",
+    "skill": "C5-L02",
+    "order": 2,
+    "section": "Lo spazio di un’onda",
+    "version": 1,
+    "title": "Velocità, frequenza e lunghezza d’onda",
+    "topic": "UD4 · velocità, frequenza e lunghezza d’onda",
+    "anchor": "Una fotografia a un istante fissato permette",
+    "summary": "Come cambia la distanza fra due creste su una corda con velocità di propagazione fissa?",
+    "apparatus": "onda",
+    "control": {
+      "label": "Frequenza della sorgente",
+      "unit": "Hz",
+      "min": 1.0,
+      "max": 5.0,
+      "step": 0.5
+    },
+    "measure": {
+      "label": "Lunghezza d’onda",
+      "unit": "m"
+    },
+    "formula": "λ = v/f, con v = 6 m/s",
+    "interpretation": "Il tratto rappresenta 6 m di corda. Conta quante ripetizioni entrano nella stessa lunghezza. A frequenza doppia le creste consecutive distano la metà.",
+    "references": [
+      [
+        2.0,
+        3.0
+      ],
+      [
+        4.0,
+        1.5
+      ]
+    ],
+    "blocks": [],
+    "substitution": "6 / {x}",
+    "transferPrompt": "Su una corda le onde viaggiano a 6 m/s. Se il generatore oscilla a {x}, quanto distano due creste consecutive?"
+  },
+  {
+    "id": "SIM-C5-L02-03",
+    "kind": "experiment",
+    "course": "C5",
+    "skill": "C5-L02",
+    "order": 3,
+    "section": "Lo spazio di un’onda",
+    "version": 1,
+    "title": "Equazione armonica di propagazione",
+    "topic": "UD4 · equazione armonica di propagazione",
+    "anchor": "Per una sinusoide che avanza verso x",
+    "summary": "Dove leggi la fase di un’onda che passa davanti a una sonda ferma?",
+    "apparatus": "onda",
+    "control": {
+      "label": "Tempo alla sonda",
+      "unit": "s",
+      "min": 0.0,
+      "max": 2.0,
+      "step": 0.125
+    },
+    "measure": {
+      "label": "Spostamento a x = 0",
+      "unit": "cm"
+    },
+    "formula": "y(x,t) = 3 sin(2πt−πx) cm; sonda in x = 0",
+    "interpretation": "La sonda è all’origine della corda e la perturbazione si propaga verso destra. A x fisso basta avanzare il tempo per osservare segno, massimi e periodo.",
+    "references": [
+      [
+        0.25,
+        3.0
+      ],
+      [
+        0.75,
+        -3.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "3 × sin(2 × π × {x})",
+    "transferPrompt": "Per la legge y = 3 sin(2πt − πx) in centimetri, la sonda è fissa in x = 0. Quale spostamento con segno registra al tempo {x}?"
+  },
+  {
+    "id": "SIM-C5-L02-04",
+    "kind": "experiment",
+    "course": "C5",
+    "skill": "C5-L02",
+    "order": 4,
+    "section": "Lo spazio di un’onda",
+    "version": 1,
+    "title": "Onde trasversali su corda e longitudinali nei fluidi",
+    "topic": "UD4 · onde trasversali su corda e longitudinali nei fluidi",
+    "anchor": "Sulla corda y è perpendicolare al cammino",
+    "summary": "In quale direzione si spostano le particelle in un’onda trasversale e in una longitudinale?",
+    "apparatus": "onda",
+    "control": {
+      "label": "Fase del punto marcato",
+      "unit": "°",
+      "min": 0.0,
+      "max": 360.0,
+      "step": 15.0
+    },
+    "measure": {
+      "label": "Spostamento del punto lungo la sua oscillazione",
+      "unit": "mm"
+    },
+    "formula": "s = A sin φ; A = 2 mm",
+    "interpretation": "Confronta la corda e la fila di particelle del fluido. La stessa legge locale di oscillazione si applica su due assi diversi: perpendicolare alla propagazione sulla corda e parallelo nel fluido.",
+    "references": [
+      [
+        90.0,
+        2.0
+      ],
+      [
+        270.0,
+        -2.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "2 × sin({x}°)",
+    "transferPrompt": "Il punto marcato ha ampiezza di 2 mm e fase {x}. Misurando lungo la sua direzione di oscillazione, quale spostamento con segno trovi?"
+  },
+  {
+    "id": "SIM-C5-L03-01",
+    "kind": "experiment",
+    "course": "C5",
+    "skill": "C5-L03",
+    "order": 1,
+    "section": "Sovrapposizione e interferenza",
+    "version": 1,
+    "title": "Principio di sovrapposizione",
+    "topic": "UD4 · principio di sovrapposizione",
+    "anchor": "Due impulsi raggiungono lo stesso tratto di",
+    "summary": "Come si sommano due spostamenti istantanei sulla stessa corda?",
+    "apparatus": "onda",
+    "control": {
+      "label": "Spostamento della seconda onda",
+      "unit": "cm",
+      "min": -3.0,
+      "max": 3.0,
+      "step": 0.5
+    },
+    "measure": {
+      "label": "Spostamento risultante alla sonda",
+      "unit": "cm"
+    },
+    "formula": "y = y₁ + y₂ = 2 cm + y₂",
+    "interpretation": "Leggi separatamente i due contributi valutati nello stesso punto e allo stesso istante. La curva risultante aggiunge i valori con segno, anche quando uno dei due è negativo.",
+    "references": [
+      [
+        -2.0,
+        0.0
+      ],
+      [
+        2.0,
+        4.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "2 + {x}",
+    "transferPrompt": "Alla sonda arrivano insieme una perturbazione di +2 cm e una di {x}. Di quanto si sposta in quell’istante il punto della corda?"
+  },
+  {
+    "id": "SIM-C5-L03-02",
+    "kind": "experiment",
+    "course": "C5",
+    "skill": "C5-L03",
+    "order": 2,
+    "section": "Sovrapposizione e interferenza",
+    "version": 1,
+    "title": "Interferenza costruttiva e distruttiva",
+    "topic": "UD4 · interferenza costruttiva e distruttiva",
+    "anchor": "Una differenza di cammino Δs di una",
+    "summary": "Quanta ampiezza misura la sonda per mezzo periodo spaziale di differenza?",
+    "apparatus": "onde2",
+    "control": {
+      "label": "Differenza di cammino in lunghezze d’onda",
+      "unit": "1",
+      "min": 0.0,
+      "max": 1.0,
+      "step": 0.05
+    },
+    "measure": {
+      "label": "Ampiezza risultante",
+      "unit": "cm"
+    },
+    "formula": "A risultante = 2A × valore assoluto di cos(πΔs/λ), con A = 2 cm",
+    "interpretation": "Le due sorgenti coerenti partono in fase, con uguale frequenza e ampiezza locale. Uno scarto di mezzo ciclo fa arrivare una cresta contro una valle. Dopo un ciclo completo torna il rinforzo.",
+    "references": [
+      [
+        0.0,
+        4.0
+      ],
+      [
+        0.5,
+        0.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "4 × abs(cos(π × {x}))",
+    "transferPrompt": "Due sorgenti coerenti, in fase e ciascuna di ampiezza 2 cm, arrivano alla sonda con differenza di cammino di {x} lunghezze d’onda. Quale ampiezza risulta?"
+  },
+  {
+    "id": "SIM-C5-L04-01",
+    "kind": "experiment",
+    "course": "C5",
+    "skill": "C5-L04",
+    "order": 1,
+    "section": "Energia, potenza e intensità",
+    "version": 1,
+    "title": "Energia e potenza di un’onda meccanica in un mezzo elastico",
+    "topic": "UD4 · energia e potenza di un’onda meccanica in un mezzo elastico",
+    "anchor": "Nell’onda armonica su una corda ideale le",
+    "summary": "Raddoppiare l’ampiezza raddoppia anche la potenza trasportata?",
+    "apparatus": "onda",
+    "control": {
+      "label": "Ampiezza rispetto ad A₀",
+      "unit": "1",
+      "min": 0.0,
+      "max": 3.0,
+      "step": 0.25
+    },
+    "measure": {
+      "label": "Potenza media rispetto a P₀",
+      "unit": "1"
+    },
+    "formula": "P media = ½μvω²A²; P/P₀ = (A/A₀)²",
+    "interpretation": "La corda mantiene la stessa densità lineare, tensione e frequenza. Aumenta di pari fattore la velocità oscillatoria dei punti. Nel regime lineare la potenza media cresce come il quadrato dell’ampiezza.",
+    "references": [
+      [
+        0.5,
+        0.25
+      ],
+      [
+        2.0,
+        4.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "{x} × {x}",
+    "transferPrompt": "Sulla stessa corda mantieni invariata la frequenza e porti l’ampiezza a {x} volte quella iniziale. Per quale fattore cambia la potenza media?"
+  },
+  {
+    "id": "SIM-C5-L04-02",
+    "kind": "experiment",
+    "course": "C5",
+    "skill": "C5-L04",
+    "order": 2,
+    "section": "Energia, potenza e intensità",
+    "version": 1,
+    "title": "Intensità come energia per area e tempo",
+    "topic": "UD4 · intensità come energia per area e tempo",
+    "anchor": "Una sonda di area piccola e perpendicolare",
+    "summary": "Quanta energia intercetta una sonda più grande nello stesso intervallo?",
+    "apparatus": "sorgente",
+    "control": {
+      "label": "Area del ricevitore",
+      "unit": "cm²",
+      "min": 0.5,
+      "max": 5.0,
+      "step": 0.5
+    },
+    "measure": {
+      "label": "Energia raccolta in 2 s",
+      "unit": "mJ"
+    },
+    "formula": "E = I A t, con I = 10 W/m² e t = 2 s",
+    "interpretation": "La piccola superficie è perpendicolare a un fronte localmente piano. Converti cm² in m² prima di moltiplicare per intensità e durata.",
+    "references": [
+      [
+        1.0,
+        2.0
+      ],
+      [
+        4.0,
+        8.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "2 × {x}",
+    "transferPrompt": "Un ricevitore di area {x} è investito perpendicolarmente da 10 W/m² per 2 s. Quanti millijoule intercetta?"
+  },
+  {
+    "id": "SIM-C5-L04-03",
+    "kind": "experiment",
+    "course": "C5",
+    "skill": "C5-L04",
+    "order": 3,
+    "section": "Energia, potenza e intensità",
+    "version": 1,
+    "title": "Legge dell’inverso del quadrato della distanza",
+    "topic": "UD4 · legge dell’inverso del quadrato della distanza",
+    "anchor": "Per una sorgente puntiforme isotropa in un",
+    "summary": "Perché raddoppiando la distanza ricevi un quarto dell’intensità?",
+    "apparatus": "sorgente",
+    "control": {
+      "label": "Distanza dalla sorgente",
+      "unit": "m",
+      "min": 1.0,
+      "max": 5.0,
+      "step": 0.25
+    },
+    "measure": {
+      "label": "Intensità",
+      "unit": "W/m²"
+    },
+    "formula": "I = P/(4πr²); P = 4π W",
+    "interpretation": "La sorgente puntiforme irradia in tutte le direzioni. Confronta le superfici sferiche attraversate dalla stessa potenza. Il modello trascura assorbimento e riflessioni.",
+    "references": [
+      [
+        2.0,
+        0.25
+      ],
+      [
+        4.0,
+        0.0625
+      ]
+    ],
+    "blocks": [],
+    "substitution": "1 / ({x}²)",
+    "transferPrompt": "Una sorgente isotropa irradia 4π W. Alla distanza di {x}, quale intensità attraversa una piccola superficie perpendicolare ai raggi?"
+  },
+  {
+    "id": "SIM-C5-L05-01",
+    "kind": "experiment",
+    "course": "C5",
+    "skill": "C5-L05",
+    "order": 1,
+    "section": "Suono e movimento relativo",
+    "version": 1,
+    "title": "Velocità del suono nei mezzi",
+    "topic": "UD4 · velocità del suono nei mezzi",
+    "anchor": "Un’eco percorre il tratto fra sorgente e",
+    "summary": "Lo stesso impulso arriva contemporaneamente attraverso aria, acqua e metallo?",
+    "apparatus": "doppler",
+    "control": {
+      "label": "Mezzo di propagazione",
+      "unit": "1",
+      "min": 1.0,
+      "max": 3.0,
+      "step": 1.0,
+      "choices": [
+        "Aria",
+        "Acqua",
+        "Acciaio"
+      ]
+    },
+    "measure": {
+      "label": "Tempo su 150 m",
+      "unit": "ms"
+    },
+    "formula": "t = L/v; v = 340, 1500 o 5000 m/s secondo il mezzo",
+    "interpretation": "Le velocità assegnate sono valori illustrativi per condizioni fissate. Un microfono si trova a 150 m. Per un’eco sullo stesso tragitto bisogna contare anche il ritorno.",
+    "references": [
+      [
+        2.0,
+        100.0
+      ],
+      [
+        3.0,
+        30.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": [
+      "150 000 / 340",
+      "150 000 / 1500",
+      "150 000 / 5000"
+    ],
+    "transferPrompt": "Devi sincronizzare due sensori distanti 150 m nel mezzo «{x}». Usando la velocità indicata sul banco, quanti millisecondi impiega il suono?"
+  },
+  {
+    "id": "SIM-C5-L05-02",
+    "kind": "experiment",
+    "course": "C5",
+    "skill": "C5-L05",
+    "order": 2,
+    "section": "Suono e movimento relativo",
+    "version": 1,
+    "title": "Intensità, percezione e livello sonoro in decibel",
+    "topic": "UD4 · intensità, percezione e livello sonoro in decibel",
+    "anchor": "Il livello di intensità sonora L confronta",
+    "summary": "Di quanti decibel cresce il livello moltiplicando l’intensità per dieci?",
+    "apparatus": "sorgente",
+    "control": {
+      "label": "Esponente in I/I₀ = 10ⁿ",
+      "unit": "1",
+      "min": 0.0,
+      "max": 8.0,
+      "step": 1.0
+    },
+    "measure": {
+      "label": "Livello di intensità",
+      "unit": "dB"
+    },
+    "formula": "L = 10 log₁₀(I/I₀) = 10n; I₀ = 10⁻¹² W/m²",
+    "interpretation": "Il fonometro riporta il logaritmo di un rapporto. Ogni salto di un esponente aggiunge 10 dB. La sensazione soggettiva dipende anche da frequenza e ascoltatore.",
+    "references": [
+      [
+        2.0,
+        20.0
+      ],
+      [
+        6.0,
+        60.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "10 × {x}",
+    "transferPrompt": "Il rapporto fra l’intensità misurata e quella di riferimento è 10ⁿ, con n = {x}. Quale livello leggeresti sul fonometro in decibel?"
+  },
+  {
+    "id": "SIM-C5-L05-03",
+    "kind": "experiment",
+    "course": "C5",
+    "skill": "C5-L05",
+    "order": 3,
+    "section": "Suono e movimento relativo",
+    "version": 1,
+    "title": "Effetto Doppler qualitativo",
+    "topic": "UD4 · effetto Doppler qualitativo",
+    "anchor": "Un ricevitore fermo investito da fronti più",
+    "summary": "Che cosa vede il ricevitore quando la sorgente si avvicina e poi si allontana?",
+    "apparatus": "doppler",
+    "control": {
+      "label": "Velocità della sorgente verso il ricevitore",
+      "unit": "m/s",
+      "min": -40.0,
+      "max": 40.0,
+      "step": 5.0
+    },
+    "measure": {
+      "label": "Frequenza ricevuta",
+      "unit": "Hz"
+    },
+    "formula": "f ricevuta = f₀ v/(v−u); f₀ = 300 Hz, v = 300 m/s",
+    "interpretation": "I fronti partono a intervalli uguali da posizioni diverse. Davanti a una sorgente che avanza arrivano più ravvicinati. Il ricevitore è fermo nel mezzo e la sorgente è subsonica.",
+    "references": [
+      [
+        0.0,
+        300.0
+      ],
+      [
+        30.0,
+        333.333333
+      ]
+    ],
+    "blocks": [],
+    "substitution": "90000 / (300 − {x})",
+    "transferPrompt": "La sorgente emette 300 Hz e ha velocità con segno {x} verso il ricevitore fermo. Se il suono viaggia a 300 m/s, quale frequenza riceve?"
+  },
+  {
+    "id": "SIM-C5-L06-01",
+    "kind": "experiment",
+    "course": "C5",
+    "skill": "C5-L06",
+    "order": 1,
+    "section": "Campi e spettro elettromagnetico",
+    "version": 2,
+    "title": "Onde elettromagnetiche e campi ortogonali",
+    "topic": "UD7 · onde elettromagnetiche e campi ortogonali",
+    "anchor": "La luce di una stella attraversa spazio",
+    "summary": "Come cambiano i due campi passando da 90° a 270°? Che cosa misuri a metà del percorso?",
+    "apparatus": "em",
+    "control": {
+      "label": "Fase del campo",
+      "unit": "°",
+      "min": 0.0,
+      "max": 360.0,
+      "step": 15.0
+    },
+    "measure": {
+      "label": "Campo magnetico istantaneo",
+      "unit": "nT"
+    },
+    "formula": "E = 3 sin φ V/m; B = E/c; c ≈ 3×10⁸ m/s",
+    "interpretation": "Porta la fase a 90°, poi a 180° e infine a 270°. A 90° la componente magnetica vale +10 nT. A 180° entrambi i campi sono nulli nel punto P e nessuno dei due vettori in P ha un verso. A 270° la componente magnetica vale −10 nT. Nei due tratti i campi si invertono insieme e il flusso di energia mantiene il verso di propagazione. In P anche il flusso istantaneo è zero al passaggio dal positivo al negativo. I valori nelle altre posizioni dell’onda possono essere diversi.",
+    "references": [
+      [
+        90.0,
+        10.0
+      ],
+      [
+        270.0,
+        -10.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "10 × sin({x}°)",
+    "transferPrompt": "In un’onda nel vuoto E = 3 sin φ V/m. Alla fase {x}, quale componente magnetica con segno misuri in nT?"
+  },
+  {
+    "id": "SIM-C5-L06-02",
+    "kind": "experiment",
+    "course": "C5",
+    "skill": "C5-L06",
+    "order": 2,
+    "section": "Campi e spettro elettromagnetico",
+    "version": 1,
+    "title": "Velocità, frequenza, lunghezza d’onda, ampiezza e intensità",
+    "topic": "UD7 · velocità, frequenza, lunghezza d’onda, ampiezza e intensità",
+    "anchor": "L’ampiezza E₀ misura il massimo modulo del",
+    "summary": "Cambiando l’ampiezza di un’onda luminosa ne modifichi anche la lunghezza d’onda?",
+    "apparatus": "em",
+    "control": {
+      "label": "Ampiezza del campo elettrico",
+      "unit": "V/m",
+      "min": 0.0,
+      "max": 6.0,
+      "step": 0.5
+    },
+    "measure": {
+      "label": "Intensità rispetto a E₀ = 2 V/m",
+      "unit": "1"
+    },
+    "formula": "I/I riferimento = (E₀/2)²; c = λf",
+    "interpretation": "La sorgente mantiene f = 100 MHz nel vuoto, quindi λ ≈ 3 m. Cambia solo l’altezza dei campi. L’intensità media è proporzionale al quadrato dell’ampiezza.",
+    "references": [
+      [
+        2.0,
+        1.0
+      ],
+      [
+        4.0,
+        4.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "({x} / 2)²",
+    "transferPrompt": "Nel vuoto confronti l’onda di riferimento da 2 V/m con una di ampiezza {x}. Quale rapporto trovi fra le intensità medie?"
+  },
+  {
+    "id": "SIM-C5-L06-03",
+    "kind": "experiment",
+    "course": "C5",
+    "skill": "C5-L06",
+    "order": 3,
+    "section": "Campi e spettro elettromagnetico",
+    "version": 1,
+    "title": "Spettro: radio, microonde, infrarosso, visibile, UV, X e gamma",
+    "topic": "UD7 · spettro: radio, microonde, infrarosso, visibile, UV, X e gamma",
+    "anchor": "La luce visibile occupa una stretta regione",
+    "summary": "Come confronti onde di dimensioni enormemente diverse sulla stessa scala?",
+    "apparatus": "em",
+    "control": {
+      "label": "Banda dello spettro",
+      "unit": "1",
+      "min": 1.0,
+      "max": 7.0,
+      "step": 1.0,
+      "choices": [
+        "Radio",
+        "Microonde",
+        "Infrarosso",
+        "Visibile",
+        "UV",
+        "X",
+        "Gamma"
+      ]
+    },
+    "measure": {
+      "label": "Logaritmo decimale della lunghezza d’onda in metri",
+      "unit": "1"
+    },
+    "formula": "log₁₀ λ(m) = log₁₀ c − log₁₀ f",
+    "interpretation": "Scegli un valore rappresentativo per ciascuna banda. L’asse dei logaritmi conta potenze di dieci, e λ = c/f ordina le frequenze al contrario. Il numero di creste nella scena è schematico.",
+    "references": [
+      [
+        1.0,
+        2.0
+      ],
+      [
+        4.0,
+        -6.3
+      ]
+    ],
+    "blocks": [],
+    "substitution": [
+      "log₁₀(100)",
+      "log₁₀(0,01)",
+      "log₁₀(10⁻⁵)",
+      "log₁₀(10⁻⁶·³)",
+      "log₁₀(10⁻⁷·³)",
+      "log₁₀(10⁻¹⁰)",
+      "log₁₀(10⁻¹²)"
+    ],
+    "transferPrompt": "Per la banda «{x}» leggi la lunghezza d’onda campione in metri. Quale coordinata le assegni su un asse graduato in log₁₀(λ/m)?"
+  },
+  {
+    "id": "SIM-C5-L07-01",
+    "kind": "experiment",
+    "course": "C5",
+    "skill": "C5-L07",
+    "order": 1,
+    "section": "Fotoni e attenuazione",
+    "version": 1,
+    "title": "Quantizzazione dell’energia e relazione di Planck",
+    "topic": "UD7 · quantizzazione dell’energia e relazione di Planck",
+    "anchor": "La potenza luminosa dipende dall’energia portata da",
+    "summary": "Come cambia l’energia del singolo fotone se raddoppi la frequenza?",
+    "apparatus": "em",
+    "control": {
+      "label": "Frequenza del fotone",
+      "unit": "THz",
+      "min": 100.0,
+      "max": 1000.0,
+      "step": 50.0
+    },
+    "measure": {
+      "label": "Energia per fotone",
+      "unit": "eV"
+    },
+    "formula": "E = hf; h ≈ 4,136×10⁻¹⁵ eV·s",
+    "interpretation": "Conta i cicli nello stesso intervallo spaziale nel vuoto. La frequenza fissa l’energia per quanto, mentre aumentando solo il numero di fotoni aumenteresti l’energia totale.",
+    "references": [
+      [
+        250.0,
+        1.034
+      ],
+      [
+        750.0,
+        3.102
+      ]
+    ],
+    "blocks": [],
+    "substitution": "0,004136 × {x}",
+    "transferPrompt": "Una sorgente emette fotoni di frequenza {x}. Con h ≈ 4,136 × 10⁻¹⁵ eV·s, quale energia trasporta un fotone?"
+  },
+  {
+    "id": "SIM-C5-L07-02",
+    "kind": "experiment",
+    "course": "C5",
+    "skill": "C5-L07",
+    "order": 2,
+    "section": "Fotoni e attenuazione",
+    "version": 1,
+    "title": "Assorbimento e legge di Lambert–Beer",
+    "topic": "UD7 · assorbimento e legge di Lambert–Beer",
+    "anchor": "Nel modello di Lambert–Beer un fascio monocromatico",
+    "summary": "Due strati identici sottraggono la stessa energia assoluta?",
+    "apparatus": "assorbitore",
+    "control": {
+      "label": "Spessore in strati emivalenti",
+      "unit": "1",
+      "min": 0.0,
+      "max": 5.0,
+      "step": 0.25
+    },
+    "measure": {
+      "label": "Intensità trasmessa",
+      "unit": "%"
+    },
+    "formula": "I/I₀ = e^(−μx) = (½)ⁿ",
+    "interpretation": "Ogni spessore emivalente trasmette metà di ciò che gli arriva. Dopo tre ne resta un ottavo. Il fascio è monocromatico e il modello esclude la luce diffusa che rientra nel rivelatore.",
+    "references": [
+      [
+        1.0,
+        50.0
+      ],
+      [
+        3.0,
+        12.5
+      ]
+    ],
+    "blocks": [],
+    "substitution": "100 × 0,5^({x})",
+    "transferPrompt": "Un fascio attraversa {x} strati emivalenti dello stesso materiale. Quale percentuale dell’intensità iniziale ritrovi al rivelatore?"
+  },
+  {
+    "id": "SIM-C5-L07-03",
+    "kind": "experiment",
+    "course": "C5",
+    "skill": "C5-L07",
+    "order": 3,
+    "section": "Fotoni e attenuazione",
+    "version": 1,
+    "title": "Distinzione fra radiazioni ionizzanti e non ionizzanti",
+    "topic": "UD7 · distinzione fra radiazioni ionizzanti e non ionizzanti",
+    "anchor": "Un singolo fotone può ionizzare un atomo",
+    "summary": "Basta aumentare l’intensità se ogni fotone è sotto la soglia?",
+    "apparatus": "fotone",
+    "control": {
+      "label": "Energia del singolo fotone",
+      "unit": "eV",
+      "min": 5.0,
+      "max": 25.0,
+      "step": 1.0
+    },
+    "measure": {
+      "label": "Energia cinetica massima liberata",
+      "unit": "eV"
+    },
+    "formula": "K = max(0, E fotone − 14 eV)",
+    "interpretation": "Per questo bersaglio ideale servono 14 eV in un solo fotone. Sotto soglia non esce alcun elettrone; alla soglia esso può essere liberato con energia cinetica nulla. Il modello considera un assorbimento a singolo fotone.",
+    "references": [
+      [
+        8.0,
+        0.0
+      ],
+      [
+        20.0,
+        6.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "max(0; {x} − 14)",
+    "transferPrompt": "Un fotone da {x} incontra un bersaglio con energia di legame 14 eV. Qual è l’energia cinetica massima liberata, ponendo zero se il bersaglio resta legato?"
+  },
+  {
+    "id": "SIM-C5-L08-01",
+    "kind": "experiment",
+    "course": "C5",
+    "skill": "C5-L08",
+    "order": 1,
+    "section": "Decadimenti e attività",
+    "version": 1,
+    "title": "Nucleo instabile, nuclidi e isotopi radioattivi",
+    "topic": "UD7 · nucleo instabile, nuclidi e isotopi radioattivi",
+    "anchor": "Due atomi dello stesso elemento hanno lo",
+    "summary": "Come riconosci isotopi dello stesso elemento senza confondere A e Z?",
+    "apparatus": "nucleo",
+    "control": {
+      "label": "Neutroni in un nucleo con 6 protoni",
+      "unit": "1",
+      "min": 6.0,
+      "max": 8.0,
+      "step": 1.0
+    },
+    "measure": {
+      "label": "Numero di massa",
+      "unit": "1"
+    },
+    "formula": "A = Z + N, con Z = 6",
+    "interpretation": "Il numero di protoni identifica il carbonio. Aggiungere neutroni cambia il nuclide: ¹²C e ¹³C sono stabili, ¹⁴C è radioattivo. La stabilità non si deduce dal solo conteggio con una regola lineare.",
+    "references": [
+      [
+        6.0,
+        12.0
+      ],
+      [
+        8.0,
+        14.0
+      ]
+    ],
+    "blocks": [],
+    "discrete": true,
+    "substitution": "6 + {x}",
+    "transferPrompt": "Un isotopo del carbonio ha sei protoni e {x} neutroni. Quale numero di massa scrivi accanto al simbolo chimico?"
+  },
+  {
+    "id": "SIM-C5-L08-02",
+    "kind": "experiment",
+    "course": "C5",
+    "skill": "C5-L08",
+    "order": 2,
+    "section": "Decadimenti e attività",
+    "version": 1,
+    "title": "Attività, legge di decadimento e tempo di dimezzamento",
+    "topic": "UD7 · attività, legge di decadimento e tempo di dimezzamento",
+    "anchor": "La costante λd è una probabilità per",
+    "summary": "In un’emivita decade sempre esattamente metà di un piccolo campione?",
+    "apparatus": "decadimento",
+    "control": {
+      "label": "Tempo in emivite",
+      "unit": "1",
+      "min": 0.0,
+      "max": 5.0,
+      "step": 0.25
+    },
+    "measure": {
+      "label": "Numero medio di nuclei rimasti",
+      "unit": "1"
+    },
+    "formula": "N = 64 × 2^(−t/T½); attività = (ln 2/T½)N",
+    "interpretation": "Le luci visualizzano il numero medio previsto, arrotondato solo per il disegno. Non identificano l’istante di decadimento del singolo nucleo. A emivita fissata anche l’attività media si dimezza.",
+    "references": [
+      [
+        1.0,
+        32.0
+      ],
+      [
+        3.0,
+        8.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "64 × 0,5^({x})",
+    "transferPrompt": "Partendo da 64 nuclei instabili, aspetti {x} emivite. Quale numero medio ti aspetti di trovare ancora nello stato iniziale?"
+  },
+  {
+    "id": "SIM-C5-L08-03",
+    "kind": "experiment",
+    "course": "C5",
+    "skill": "C5-L08",
+    "order": 3,
+    "section": "Decadimenti e attività",
+    "version": 1,
+    "title": "Decadimenti α, β e transizioni γ",
+    "topic": "UD7 · decadimenti α, β e transizioni γ",
+    "anchor": "Nel decadimento α viene emesso un nucleo",
+    "summary": "Quali conteggi del nucleo cambiano nelle transizioni alfa, beta meno e gamma?",
+    "apparatus": "nucleo",
+    "control": {
+      "label": "Transizione considerata",
+      "unit": "1",
+      "min": 1.0,
+      "max": 3.0,
+      "step": 1.0,
+      "choices": [
+        "Alfa",
+        "Beta meno",
+        "Gamma"
+      ]
+    },
+    "measure": {
+      "label": "Variazione del numero atomico",
+      "unit": "1"
+    },
+    "formula": "α: ΔZ = −2 e ΔA = −4; β⁻: ΔZ = +1 e ΔA = 0; γ: entrambi nulli",
+    "interpretation": "Confronta il bilancio iniziale e finale. Nell’alfa escono due protoni e due neutroni; nel beta meno un neutrone diventa protone con emissione di elettrone e antineutrino. Una transizione gamma riduce l’energia del nucleo.",
+    "references": [
+      [
+        1.0,
+        -2.0
+      ],
+      [
+        2.0,
+        1.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": [
+      "0 − 2",
+      "1 − 0",
+      "0"
+    ],
+    "transferPrompt": "Segui il nucleo figlio nella transizione «{x}». Di quanto cambia il suo numero atomico rispetto al nucleo di partenza, con segno?"
+  },
+  {
+    "id": "SIM-C5-L09-01",
+    "kind": "experiment",
+    "course": "C5",
+    "skill": "C5-L09",
+    "order": 1,
+    "section": "Riflessione e rifrazione",
+    "version": 1,
+    "title": "Legge della riflessione",
+    "topic": "UD7 · legge della riflessione",
+    "anchor": "L’angolo di riflessione uguaglia l’angolo d’incidenza. Per",
+    "summary": "Quale linea divide in due parti uguali il disegno della riflessione?",
+    "apparatus": "ottica",
+    "control": {
+      "label": "Angolo incidente rispetto alla normale",
+      "unit": "°",
+      "min": 0.0,
+      "max": 75.0,
+      "step": 5.0
+    },
+    "measure": {
+      "label": "Angolo fra raggio verso la sorgente e raggio riflesso",
+      "unit": "°"
+    },
+    "formula": "θ riflesso = θ incidente; apertura = 2θ",
+    "interpretation": "Traccia la normale nel punto d’incidenza sullo specchio. I due segmenti che escono geometricamente da quel punto delimitano un angolo doppio rispetto alla normale. Le frecce della luce distinguono arrivo e partenza.",
+    "references": [
+      [
+        20.0,
+        40.0
+      ],
+      [
+        50.0,
+        100.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "2 × {x}",
+    "transferPrompt": "Uno specchio riceve il raggio a {x} dalla normale. Qual è l’angolo fra la direzione che dal punto di incidenza torna alla sorgente e quella del raggio riflesso?"
+  },
+  {
+    "id": "SIM-C5-L09-02",
+    "kind": "experiment",
+    "course": "C5",
+    "skill": "C5-L09",
+    "order": 2,
+    "section": "Riflessione e rifrazione",
+    "version": 1,
+    "title": "Indice di rifrazione e legge di Snell",
+    "topic": "UD7 · indice di rifrazione e legge di Snell",
+    "anchor": "Se n₂ è maggiore di n₁, a",
+    "summary": "Da aria a vetro il raggio piega verso la normale o se ne allontana?",
+    "apparatus": "ottica",
+    "control": {
+      "label": "Angolo incidente in aria",
+      "unit": "°",
+      "min": 0.0,
+      "max": 80.0,
+      "step": 5.0
+    },
+    "measure": {
+      "label": "Angolo rifratto nel vetro",
+      "unit": "°"
+    },
+    "formula": "n₁ sin θ₁ = n₂ sin θ₂; n₁ = 1, n₂ = 1,5",
+    "interpretation": "Gli angoli sono misurati dalla normale alla superficie piana. Nel vetro la luce rallenta. All’incidenza normale cambia velocità ma la direzione rimane la stessa.",
+    "references": [
+      [
+        0.0,
+        0.0
+      ],
+      [
+        30.0,
+        19.471221
+      ]
+    ],
+    "blocks": [],
+    "substitution": "arcsin(sin({x}°) / 1,5) × 180 / π",
+    "transferPrompt": "Un raggio passa dall’aria (n = 1) al vetro (n = 1,5) con incidenza {x} rispetto alla normale. Quale angolo con la normale assume nel vetro?"
+  },
+  {
+    "id": "SIM-C5-L10-01",
+    "kind": "experiment",
+    "course": "C5",
+    "skill": "C5-L10",
+    "order": 1,
+    "section": "Lenti e immagini",
+    "version": 1,
+    "title": "Lenti sottili convergenti",
+    "topic": "UD7 · lenti sottili convergenti",
+    "anchor": "Una lente convergente sottile porta raggi paralleli",
+    "summary": "Quale lente fa incontrare prima raggi paralleli all’asse?",
+    "apparatus": "ottica",
+    "control": {
+      "label": "Distanza focale della lente",
+      "unit": "cm",
+      "min": 5.0,
+      "max": 20.0,
+      "step": 1.0
+    },
+    "measure": {
+      "label": "Potere diottrico",
+      "unit": "m⁻¹"
+    },
+    "formula": "D = 1/f(m) = 100/f(cm)",
+    "interpretation": "I raggi paraassiali paralleli emergono verso il fuoco immagine. Una focale più corta porta i raggi a incrociarsi prima e corrisponde a più diottrie.",
+    "references": [
+      [
+        5.0,
+        20.0
+      ],
+      [
+        20.0,
+        5.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "100 / {x}",
+    "transferPrompt": "Una lente convergente mette a fuoco raggi paralleli a {x} dalla lente. Quale potere diottrico scrivi sulla sua etichetta?"
+  },
+  {
+    "id": "SIM-C5-L10-02",
+    "kind": "experiment",
+    "course": "C5",
+    "skill": "C5-L10",
+    "order": 2,
+    "section": "Lenti e immagini",
+    "version": 1,
+    "title": "Legge dei punti coniugati e formazione di immagini",
+    "topic": "UD7 · legge dei punti coniugati e formazione di immagini",
+    "anchor": "Tutte le distanze devono avere la stessa",
+    "summary": "Come riconosci un’immagine reale, virtuale o all’infinito senza dividere per zero?",
+    "apparatus": "ottica",
+    "control": {
+      "label": "Distanza dell’oggetto",
+      "unit": "cm",
+      "min": 5.0,
+      "max": 25.0,
+      "step": 1.0
+    },
+    "measure": {
+      "label": "Vergenza dell’immagine",
+      "unit": "diottrie"
+    },
+    "formula": "1/q = 1/f − 1/p, con f = 10 cm; 1/q(m) = 10 − 100/p",
+    "interpretation": "Regola la distanza dell’oggetto rispetto alla focale. Una vergenza negativa indica un’immagine virtuale e i prolungamenti si incontrano dal lato dell’oggetto. A p = f i raggi emergono paralleli e la vergenza è zero.",
+    "references": [
+      [
+        5.0,
+        -10.0
+      ],
+      [
+        20.0,
+        5.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "10 − (100 / {x})",
+    "transferPrompt": "Una lente convergente di focale 10 cm guarda un oggetto posto a {x}. Quale vergenza con segno 1/q, in diottrie, hanno i raggi in uscita?"
+  },
+  {
+    "id": "SIM-C6-L01-01",
+    "kind": "experiment",
+    "course": "C6",
+    "skill": "C6-L01",
+    "order": 1,
+    "section": "Orientarsi tra le misure",
+    "version": 1,
+    "title": "Misurare una distanza con l’eco",
+    "topic": "Collegamento U1, U2, U3, U4, U5, U6 e U7 · sistemi, grandezze, unità e scale",
+    "anchor": "Per un’eco su un riflettore fermo, se",
+    "summary": "Come passi dai millisecondi di un’eco alla distanza fisica?",
+    "apparatus": "doppler",
+    "control": {
+      "label": "Durata di andata e ritorno",
+      "unit": "ms",
+      "min": 0.0,
+      "max": 20.0,
+      "step": 1.0
+    },
+    "measure": {
+      "label": "Distanza del riflettore",
+      "unit": "m"
+    },
+    "formula": "d = vΔt/2, con v = 340 m/s",
+    "interpretation": "Identifica emissione e ricezione nello stesso punto. Il suono percorre due volte la distanza. Converti il tempo in secondi, moltiplica per la velocità e dividi per due.",
+    "references": [
+      [
+        2.0,
+        0.34
+      ],
+      [
+        10.0,
+        1.7
+      ]
+    ],
+    "blocks": [],
+    "substitution": "0,17 × {x}",
+    "transferPrompt": "Il microfono registra l’eco {x} dopo l’impulso. Se il suono percorre 340 m ogni secondo, a quale distanza si trova il riflettore?"
+  },
+  {
+    "id": "SIM-C6-L02-01",
+    "kind": "experiment",
+    "course": "C6",
+    "skill": "C6-L02",
+    "order": 1,
+    "section": "Portate, correnti e intensità",
+    "version": 1,
+    "title": "Dalla massa raccolta alla velocità del fluido",
+    "topic": "Collegamento U3, U4 e U6 · trasporti, densità di flusso e bilanci in regime stazionario",
+    "anchor": "Una bilancia misura la massa raccolta all’uscita",
+    "summary": "Come ricostruisci una velocità a partire da una bilancia e un cronometro?",
+    "apparatus": "condotto",
+    "control": {
+      "label": "Massa raccolta in 4 secondi",
+      "unit": "g",
+      "min": 0.0,
+      "max": 40.0,
+      "step": 2.0
+    },
+    "measure": {
+      "label": "Velocità media alla sezione",
+      "unit": "cm/s"
+    },
+    "formula": "Q = m/(ρΔt); v = Q/A; ρ = 1 g/cm³, A = 2 cm²",
+    "interpretation": "Raccogli tutto ciò che attraversa la superficie. La massa divisa per la densità dà il volume. Dividi ancora per la durata e per l’area. La stessa idea di bilancio vale per carica ed energia.",
+    "references": [
+      [
+        8.0,
+        1.0
+      ],
+      [
+        24.0,
+        3.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "{x} / 8",
+    "transferPrompt": "In 4 s il recipiente raccoglie {x} d’acqua, di densità 1 g/cm³. Quale velocità media ha l’acqua nel tubo di sezione 2 cm²?"
+  },
+  {
+    "id": "SIM-C6-L03-01",
+    "kind": "experiment",
+    "course": "C6",
+    "skill": "C6-L03",
+    "order": 1,
+    "section": "Bilanci e trasformazioni",
+    "version": 1,
+    "title": "Dalla batteria al calorimetro",
+    "topic": "Collegamento U2, U3, U5, U6 e U7 · potenza meccanica, termica, elettrica e ottica",
+    "anchor": "Una batteria alimenta una resistenza immersa in",
+    "summary": "Quanta energia della batteria ritrovi nel campione misurando la temperatura?",
+    "apparatus": "calorimetro",
+    "control": {
+      "label": "Durata del riscaldamento",
+      "unit": "s",
+      "min": 0.0,
+      "max": 100.0,
+      "step": 5.0
+    },
+    "measure": {
+      "label": "Aumento di temperatura",
+      "unit": "K"
+    },
+    "formula": "ΔT = ηVIt/C; V = 5 V, I = 2 A, η = 0,8, C = 400 J/K",
+    "interpretation": "Segui l’energia attraverso resistenza e liquido. Entrano 10 J elettrici ogni secondo, 8 raggiungono il campione. Il bilancio distingue potenza fornita, perdite e aumento di energia interna.",
+    "references": [
+      [
+        20.0,
+        0.4
+      ],
+      [
+        80.0,
+        1.6
+      ]
+    ],
+    "blocks": [],
+    "substitution": "0,02 × {x}",
+    "transferPrompt": "Il riscaldatore da 5 V e 2 A lavora per {x}. Se l’80% dell’energia scalda il calorimetro da 400 J/K, quanto aumenta la temperatura?"
+  },
+  {
+    "id": "SIM-C6-L04-01",
+    "kind": "experiment",
+    "course": "C6",
+    "skill": "C6-L04",
+    "order": 1,
+    "section": "Rapporti e variazioni successive",
+    "version": 1,
+    "title": "Riconoscere una legge di attenuazione",
+    "topic": "Collegamento U2, U3, U4 e U7 · proporzioni, leggi di potenza, esponenziali",
+    "anchor": "Prova a distinguere queste leggi da tre",
+    "summary": "Da tre letture come distingui una legge esponenziale da una lineare o di potenza?",
+    "apparatus": "assorbitore",
+    "control": {
+      "label": "Numero di strati identici",
+      "unit": "1",
+      "min": 0.0,
+      "max": 5.0,
+      "step": 1.0
+    },
+    "measure": {
+      "label": "Segnale trasmesso",
+      "unit": "unità"
+    },
+    "formula": "Sₙ = 120 × (½)ⁿ",
+    "interpretation": "Leggi il segnale dopo zero, uno, due e tre strati. Il rapporto fra letture consecutive è costante. Per una legge lineare controlleresti la differenza e per una potenza il fattore prodotto raddoppiando l’ingresso.",
+    "references": [
+      [
+        1.0,
+        60.0
+      ],
+      [
+        3.0,
+        15.0
+      ]
+    ],
+    "blocks": [],
+    "discrete": true,
+    "substitution": "120 × 0,5^({x})",
+    "transferPrompt": "Il segnale iniziale è di 120 unità. Attraversa {x} strati, ciascuno dei quali ne dimezza l’intensità. Quale segnale dovrebbe restare?"
+  },
+  {
+    "id": "SIM-C6-L05-01",
+    "kind": "experiment",
+    "course": "C6",
+    "skill": "C6-L05",
+    "order": 1,
+    "section": "Leggere le rappresentazioni",
+    "version": 1,
+    "title": "Sommare aree con segno",
+    "topic": "Collegamento U1, U2, U3, U5 e U6 · lettura di grafici, segni, pendenze e aree",
+    "anchor": "L’area usa invece il prodotto delle unità",
+    "summary": "Il tratto di ritorno fa aumentare la distanza percorsa o lo spostamento?",
+    "apparatus": "binario",
+    "control": {
+      "label": "Tempo dalla partenza",
+      "unit": "s",
+      "min": 0.0,
+      "max": 4.0,
+      "step": 0.25
+    },
+    "measure": {
+      "label": "Spostamento con segno",
+      "unit": "m"
+    },
+    "formula": "Δx = 2t fino a 2 s; poi Δx = 4 − (t−2)",
+    "interpretation": "Il carrello procede a +2 m/s per 2 s, poi a −1 m/s. Somma le aree con segno del grafico velocità-tempo. Leggi sul righello lo spostamento finale; il cammino totale a 4 s è 6 m.",
+    "references": [
+      [
+        2.0,
+        4.0
+      ],
+      [
+        4.0,
+        2.0
+      ]
+    ],
+    "blocks": [],
+    "substitution": "ritorno",
+    "transferPrompt": "Dal via procedi a +2 m/s per 2 s, poi torni a −1 m/s. Quando il cronometro indica {x}, quale spostamento con segno registra il quaderno?"
+  },
+  {
+    "id": "SIM-C6-L06-01",
+    "kind": "experiment",
+    "course": "C6",
+    "skill": "C6-L06",
+    "order": 1,
+    "section": "Ripasso e trasferimento",
+    "version": 1,
+    "title": "Verificare la lente intorno alla distanza focale",
+    "topic": "Collegamento cumulativo U1–U7 · scelta del modello, controllo dei limiti, ripresa distribuita",
+    "anchor": "Un ultimo controllo consiste nel modificare un",
+    "summary": "Come controlli il modello della lente avvicinandoti alla distanza critica dai due lati?",
+    "apparatus": "ottica",
+    "control": {
+      "label": "Distanza dell’oggetto in unità focali",
+      "unit": "1",
+      "min": 0.5,
+      "max": 3.0,
+      "step": 0.25
+    },
+    "measure": {
+      "label": "Vergenza normalizzata f/q",
+      "unit": "1"
+    },
+    "formula": "f/q = 1 − f/p",
+    "interpretation": "Prima prevedi il segno del risultato, poi sposta l’oggetto fino al fuoco. La vergenza tende a zero dai due lati. Controlla con i raggi e ripeti il disegno dalla memoria.",
+    "references": [
+      [
+        0.5,
+        -1.0
+      ],
+      [
+        2.0,
+        0.5
+      ]
+    ],
+    "blocks": [],
+    "substitution": "1 − (1 / {x})",
+    "transferPrompt": "Porti l’oggetto alla distanza p/f = {x} da una lente sottile convergente. Quale valore di f/q prevedi, mantenendo il segno anche per un’immagine virtuale?"
+  }
+]
