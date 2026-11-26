@@ -1,0 +1,105 @@
+/* Officina V2: metodologia e preparazione rapida. Palette e font già presenti. */
+.method-intro, .method-part {
+  padding: clamp(1.1rem,2.6vw,2.1rem) 0;
+  border-bottom: 1.5px solid var(--ink);
+}
+.method-intro h2, .method-part h2 { max-width: 25ch; margin: .55rem 0 1rem; }
+.method-intro p, .method-part > p { max-width: 75ch; }
+.method-rule {
+  margin: 1.25rem 0 0;
+  padding: 1.1rem 1.4rem;
+  background: var(--pale);
+  border-left: 5px solid var(--violet);
+  font-weight: 650;
+}
+.method-steps { display: grid; gap: .7rem; margin-top: 1.5rem; max-width: 1020px; }
+.method-step { border: 1.5px solid var(--ink); background: white; }
+.method-step[open] { border-left-width: 5px; border-left-color: var(--violet); }
+.method-step > summary {
+  display: flex; align-items: center; gap: .8rem;
+  list-style: none; padding: .85rem 1rem; font-size: 1.02rem;
+}
+.method-step > summary::-webkit-details-marker { display: none; }
+.method-step > summary::after { content: '+'; font-size: 1.35rem; margin-left: auto; }
+.method-step[open] > summary::after { content: '−'; }
+.method-number {
+  flex: none; display: grid; place-items: center; width: 2rem; height: 2rem;
+  border-radius: 50%; background: var(--ink); color: var(--paper); font: 700 .95rem var(--sans);
+}
+.method-step > p { padding: .2rem 1.1rem .85rem 3.8rem; max-width: 82ch; }
+.method-step .math { overflow-x: auto; margin: 0 1rem 1rem 3.8rem; padding: .7rem 1rem; background: var(--paper); text-align: center; }
+.method-graphs { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 1rem; margin-top: 1.4rem; }
+.method-figure { min-width: 0; border: 1.5px solid var(--ink); background: #fff; }
+.method-figure figcaption { padding: .8rem 1rem 1.1rem; font-size: .96rem; line-height: 1.52; }
+.method-stage { padding: .9rem 1rem .1rem; display: flex; flex-direction: column; gap: .2rem; }
+.method-stage > span { color: var(--violet-dark); font: 700 .77rem var(--sans); text-transform: uppercase; letter-spacing: .07em; }
+.method-stage > strong { font-size: 1.1rem; }
+.method-plot { display: block; width: 100%; max-width: 100%; height: auto; margin: .5rem 0; }
+.method-grid { stroke: #dedada; stroke-width: 1; }
+.method-axis { stroke: var(--ink); stroke-width: 2; }
+.method-tick { fill: var(--muted); font: 11px var(--sans); }
+.method-axis-label { fill: var(--ink); font: 700 11px var(--sans); }
+.method-guide { stroke: var(--violet); stroke-width: 1.5; stroke-dasharray: 4 4; }
+.method-dot { fill: var(--red); stroke: #fff; stroke-width: 1.4; }
+.method-curve { fill: none; stroke: var(--violet); stroke-width: 3.5; stroke-linejoin: round; }
+.method-area { fill: var(--lime); fill-opacity: .5; }
+.method-tip { border-left: 5px solid var(--ink); padding: 1rem 1.2rem; margin-top: 1.25rem; background: var(--wash); max-width: 90ch; }
+.method-tip h3 { margin-bottom: .4rem; font-size: 1.3rem; }
+.method-cards { display: grid; grid-template-columns: repeat(auto-fit,minmax(min(100%,290px),1fr)); gap: .85rem; margin-top: 1.4rem; }
+.method-card { min-width: 0; padding: 1.2rem; border: 1.5px solid var(--ink); background: white; }
+.method-card h3 { margin: .5rem 0 .75rem; }
+.method-card > p { margin-bottom: 1rem; }
+.method-card .exercise-prompt { font-size: 1.15rem; font-weight: 680; }
+.method-answer { border-top: 1px solid var(--fine); margin-top: .6rem; }
+.method-answer summary { padding: 1rem 0; font-weight: 700; }
+.method-answer ol { padding-left: 1.45rem; display: grid; gap: .6rem; }
+.method-links { display: flex; align-items: center; flex-wrap: wrap; gap: .6rem; margin-top: 1.1rem; }
+.method-checklist { display: grid; gap: 1rem; max-width: 85ch; margin: 1.2rem 0 0; padding: 0 0 0 1.5rem; }
+.method-checklist li { padding-left: .4rem; }
+@media (max-width: 1050px) {
+  .method-graphs { grid-template-columns: 1fr; }
+  .method-figure { display: grid; grid-template-columns: minmax(0, .75fr) minmax(0,1.25fr); align-items: center; }
+  .method-stage { grid-column: 1/-1; }
+  .method-figure figcaption { align-self: center; }
+}
+@media (max-width: 650px) {
+  .method-figure { display: block; }
+  .method-step > p { padding-left: 1rem; }
+  .method-step .math { margin-left: 1rem; }
+  .method-steps { gap: .5rem; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .method-step, .method-figure { scroll-behavior: auto; }
+}
+
+.c1-paths { display: grid; grid-template-columns: repeat(auto-fit,minmax(min(100%,18rem),1fr)); gap: 1rem; margin-bottom: 1.3rem; }
+.c1-paths article { padding: clamp(1rem,2.4vw,2rem); background: white; border: 1.5px solid var(--ink); border-top: 5px solid var(--violet); display: flex; flex-direction: column; align-items: flex-start; }
+.c1-paths article + article { border-top-color: var(--lime); }
+.c1-paths h2 { font-size: clamp(1.5rem,3vw,2.5rem); }
+.c1-paths p { max-width: 46ch; margin: .65rem 0 1rem; }
+.c1-paths .button { margin-top: auto; }
+.c1-index { margin: 1rem 0; }
+.c1-index summary { padding: .8rem 0; font-weight: 700; }
+@media (max-width:650px) {
+  .hero-actions { display: flex; flex-wrap: wrap; }
+  .c1-paths { gap: .65rem; }
+}
+
+.workshop { border-top: 4px solid var(--violet); }
+.workshop [aria-pressed=true], .work-model { background: #ece5fa; }
+.work-area:not(:empty) { margin-top: 1rem; padding: clamp(.8rem,2vw,1.5rem); border: 1px solid var(--ink); background: #fffdf7; }
+.work-area h3 { margin: 0 0 .8rem; }
+.work-history { margin: .5rem 0 1rem; }
+.work-grid { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1fr); gap: clamp(1rem,3vw,2rem); }
+.work-model { padding: .7rem 1rem; font: 600 1.25rem/1.4 Georgia,serif; }
+.work-graph { margin: 0; max-width: 28rem; }
+.work-graph figcaption { margin: .4rem 0; }
+.work-grid fieldset { display: grid; gap: .5rem; min-width: 0; padding: 0; border: 0; margin: .75rem 0; }
+.work-grid legend { font-weight: 700; margin-bottom: .6rem; }
+.work-grid input:not([type=radio]) { width: 100%; min-height: 44px; padding: .5rem; }
+.work-option { display: flex; align-items: center; gap: .6rem; border: 1px solid #ab9fb4; padding: .5rem; min-height: 44px; cursor: pointer; }
+.work-option input { width: auto; flex: none; }
+.work-status:not(:empty) { padding: .65rem; margin-top: .6rem; border-left: 3px solid var(--violet); background: #f3edf8; }
+@media(max-width:700px) { .work-grid { grid-template-columns: minmax(0,1fr); } }
+
+.work-slope { fill: none; stroke: #39673c; stroke-width: 3; }
