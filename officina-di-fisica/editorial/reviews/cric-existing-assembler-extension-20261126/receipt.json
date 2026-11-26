@@ -1,0 +1,34 @@
+{
+  "scope": "Technical edition assembly only, no scientific acceptance or second ETL",
+  "parentCommit": "6f502027ff245aa45b0380fe7c87079a3270059c",
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+  "interface": {
+    "function": "assemble_family",
+    "source_origin": "cric",
+    "source_ids": "ordered1..100 original question IDs, one per authored task",
+    "version": "original+1",
+    "baseVersion": "original",
+    "exam": "preserved exactly and override cannot rebind",
+    "legacyArdesia": "defaults unchanged; actual240 reassembly package/bindings byte-equivalent"
+  },
+  "actualRed": {
+    "tests": 4,
+    "errors": 7,
+    "seconds": 0.377,
+    "exit": 1,
+    "cause": "existing assembler rejects source_origin argument"
+  },
+  "actualGreen": {
+    "tests": 4,
+    "seconds": 1.506,
+    "exit": 0,
+    "canonicalImporter": "mixed originals v1/v2;2\u21920/2, original liveheads/historical bytes and991published retained",
+    "source": "actual-green-final.txt in immutable ZIP"
+  },
+  "runtimeSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+  "independentTechnicalReview": "PENDING",
+  "questionCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "hygieneRecovery": "Initial raw RED trailing whitespace and owned test EOF prevented commit. Raw log preserved verbatim in ZIP; only test EOF corrected; final4 tests rerun exit0."
+}
