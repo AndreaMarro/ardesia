@@ -1,0 +1,357 @@
+{
+  "schemaVersion": "1.0.0",
+  "lessonReference": {
+    "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "gitPath": "officina-di-fisica/content/C2.json",
+    "sourceSha256": "7f2d3cf84a46d5d0086fd9cd6318b923ee073febc110a52fbc8f682edd995b23",
+    "primarySkill": "C2-L005",
+    "title": "Contare ciò che attraversa una sezione",
+    "actualLessonPrerequisites": [
+      "C2-L001"
+    ]
+  },
+  "records": [
+    {
+      "id": "C2-Q041",
+      "sourceSha256": "c93d800dd7c66a1665881266a115c292f83a468b9f5cba3504fc47021864b98a",
+      "candidateSha256": "e96358b3e29e1f0f008a33a59e3aed14993f2f7bbdf08d0653c42deaf1c3e6eb",
+      "reviewedSignature": "14bd46884e15ed75c99d67a8d01cabf7304bc8270941b4559faadf03ce7a737d",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "cric-c2-l005-progressive.svg": "2e20921e76c3d5764f3301233c8da70dee32988b500fabe795b49c5b7667d0e9"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "3",
+      "dimension": {
+        "[length]": "3"
+      },
+      "manualArithmetic": "La portata netta è 9−5=4 L/min. Quarantacinque secondi sono 3/4 min, quindi accumulo 4·3/4=3 L. La somma delle portate darebbe una quantità diversa dall’accumulo netto.",
+      "physicalAssumptions": "Portate costanti 9 L/min entranti e 5 uscenti per 45 s, vasca senza trabocco; accumulo non nullo incluso.",
+      "distractors": "6,75 L solo ingresso,3,75 solo uscita,10,5 somma invece di sottrarre,180 interpreta 45 s come 45 min.",
+      "pedagogicalReview": "Bilancio con accumulo e tempi nella medesima unità.",
+      "assetReview": "XML e nuovo PNG indipendente 640×1550 letti per intero. Volumi in 45 s: barre 270/150/120 per 6,75/3,75/3 L, origine comune e 40 coordinate/L; 270−150=120. Nodo senza accumulo: barre 360/140/220 per 36/14/22 mL/s, scala 10 coordinate/(mL/s). Riempimento iniziale: origine(140,1390), punto(500,1150),360 coordinate per 9 s e 240 per 120 mL; pendenza 40/3 mL/s=800 mL/min. L’intervallo finisce all’arrivo del liquido, non è imposto un accumulo dopo 9 s. Nessun taglio o contatto residuo rilevato.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C2-Q042",
+      "sourceSha256": "be1b38a038106ae0e51c6c606d8b041ceb232f6ef457e1b72791b0d10c96501d",
+      "candidateSha256": "706b393c3ad683e5f11b030e2171784b9aee1b31b8da359c60b70786769fb921",
+      "reviewedSignature": "45ce7f94566784943c321d8dd7375d77adf54ec191a05612fdbe4b85e20df60b",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Perché la stessa portata richiede A v_media costante",
+      "dimension": {
+        "[length]": "2"
+      },
+      "manualArithmetic": "Per un getto continuo stazionario incomprimibile, senza perdite laterali, Q=Av resta costante lungo il getto. La gravità ne aumenta la rapidità in caduta, dunque l’area deve diminuire. Stazionario non significa che la velocità sia uguale in tutti i punti.",
+      "physicalAssumptions": "Getto incomprimibile stazionario senza perdite laterali, velocità media normale cresce cadendo; portata comune.",
+      "distractors": "Portata non cala senza accumulo/perdita; densità non nulla; stazionario non significa uniforme nello spazio e gravità non sottrae massa.",
+      "pedagogicalReview": "Continuità fra sezioni senza confondere stazionarietà e accelerazione della particella.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C2-Q043",
+      "sourceSha256": "b36589adfdc73d18c0e507cc71289f1bed7b2efa5d4b65f42e3b8403107a68fc",
+      "candidateSha256": "9b8748dec029d95b522983c6667cf779dfc9c91a6be108aab37f124b60f6396e",
+      "reviewedSignature": "8cdaebe8586598b311938b9856a29892cd70abc1dfcf9e86c4b89463ef7007c9",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "Da Q=Av_m ricavo A=(8π)/(2)=4π cm². Con A=πr² ottengo r=2 cm e diametro 4 cm. La velocità assegnata è la media normale sulla sezione; r e diametro non sono intercambiabili.",
+      "physicalAssumptions": "Tubo circolare, portata 8πcm³/s e velocità normale media 2 cm/s; diametro positivo richiesto, non raggio.",
+      "distractors": "2 cm è raggio,8 raddoppia già il diametro,4π copia coefficiente di area come lunghezza; 16 cm darebbeQ 128πcm³/s, non 8π.",
+      "pedagogicalReview": "Area, raggio e diametro distinti, π cancellato esattamente.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C2-Q044",
+      "sourceSha256": "06605195ceb535fd12e007d1454f62ad96a0761da09a72a1cdf0279545266758",
+      "candidateSha256": "9a43d6f323a51691a22f83b805997227c2ea741cf2c0b5b806fffd39ada13e46",
+      "reviewedSignature": "a9fafc94308b0aac95e249eedd201db40003e0679448d60e980fd72a4d99d5df",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "cric-c2-l005-progressive.svg": "2e20921e76c3d5764f3301233c8da70dee32988b500fabe795b49c5b7667d0e9"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "22",
+      "dimension": {
+        "[length]": "3",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Porto 840 mL/min a 14 mL/s. La continuità stazionaria dàQ₂=36−14=22 mL/s. Non si sottraggono numeri espressi in unità temporali diverse.",
+      "physicalAssumptions": "Raccordo incomprimibile stazionario senza accumulo,36 mL/s in ingresso,840 mL/min nel primo ramo; secondo ramo uscente.",
+      "distractors": "50 somma i flussi, −804 sottrae 840/min a 36/s senza convertire,14 è primo ramo,18 suppone rami uguali senza dati.",
+      "pedagogicalReview": "Unità di tempo uniformate prima del nodo stazionario.",
+      "assetReview": "XML e nuovo PNG indipendente 640×1550 letti per intero. Volumi in 45 s: barre 270/150/120 per 6,75/3,75/3 L, origine comune e 40 coordinate/L; 270−150=120. Nodo senza accumulo: barre 360/140/220 per 36/14/22 mL/s, scala 10 coordinate/(mL/s). Riempimento iniziale: origine(140,1390), punto(500,1150),360 coordinate per 9 s e 240 per 120 mL; pendenza 40/3 mL/s=800 mL/min. L’intervallo finisce all’arrivo del liquido, non è imposto un accumulo dopo 9 s. Nessun taglio o contatto residuo rilevato.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C2-Q045",
+      "sourceSha256": "7545e0482f969f376214c0d8919df08687eae6f9180cdd90070c34268255565c",
+      "candidateSha256": "3cab7e13f3b4d5aabcf262b014c22b73e0a00be2c694b14bcf64903712cd8398",
+      "reviewedSignature": "7603ba13649ce00fc3ce8ae461682a71163871c542c15c8f707f45c2ba3d4257",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Il vettore velocità in ogni punto fissato resta costante nel tempo",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Per campo stazionario, la velocità in ogni punto fisso della condotta deve restare costante nel tempo, anche se varia da una sezione all’altra e all’interno della sezione. La sola portata costante non esclude cambiamenti temporali del profilo a integrale costante.",
+      "physicalAssumptions": "Campo di velocità in tubo a sezioni diverse; portata totale costante non basta a imporre profilo locale indipendente dal tempo.",
+      "distractors": "Uniformità spaziale è altra proprietà; particelle possono accelerare per variazioni spaziali. Q costante non determina il profilo né richiede velocità zero.",
+      "pedagogicalReview": "Definizione locale del campo stazionario esplicita.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C2-Q046",
+      "sourceSha256": "b2e316779b69be6324bef4f076df86a61dfbd162823986a64a3213d4adb9c5f5",
+      "candidateSha256": "d76aaac14998790e3d37d6bfe77e4451812135ed88a8539c957de04d96483490",
+      "reviewedSignature": "36c2b37803ad2f257a59396eb11fa180a10864c24d4b346fd3b340f68a2d292a",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "17/100",
+      "dimension": {
+        "[mass]": "1"
+      },
+      "manualArithmetic": "La portata massica èρQ=(0,85 kg/L)(12 L/min)=10,2 kg/min=17/100 kg/s. In un secondo passano 0,17 kg. Litri e densità si combinano prima di convertire il minuto in secondi. Il valore del modello pre-key è la portata di massa 17/100 kg/s; moltiplicando per 1 s si ottiene la massa 17/100 kg richiesta dalla nuova edizione, senza cambiare il coefficiente.",
+      "physicalAssumptions": "Liquido omogeneoρ0,85 kg/L, Q 12 L/min costante; si chiede massa transitata nel preciso intervallo 1 s.",
+      "distractors": "10,2 kg transita in 1 min,0,85 copia densità,12 copia portata numerica in altre unità,17 perde fattore 100.",
+      "pedagogicalReview": "Portata di massa trasformata in massa su 1 s, senza confonderla con accumulo.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C2-Q047",
+      "sourceSha256": "74cb377c68ffb1b2455e8bb6329a1059f9554f2d766ac73743f8d32b037f8b71",
+      "candidateSha256": "ffaeeafa26df1aa5221ae2ebe3cd0114e0e9aa9c003c8c10f204ac46edc87785",
+      "reviewedSignature": "92f4b4dbbb9730519c91029a108f70f2dc9f66dec1c73641d9c8ec087af6549f",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Resta uguale",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Senza accumulo la portata massicaρAv_m è la stessa. Raddoppiareρ e dimezzareA lasciaρA invariato; la velocità media resta uguale. Per un gas comprimibile non basta imporreQ volumetrica costante a priori.",
+      "physicalAssumptions": "Gas senza accumulo, densità uniforme su ogni sezione, ρ₂=2ρ₁ eA₂=A₁/2, flusso normale medio confrontato.",
+      "distractors": "Raddoppio considera solo area, dimezzamento solo densità, quadruplicare applica entrambi nello stesso verso; in realtàρA resta uguale. Flusso non deve fermarsi.",
+      "pedagogicalReview": "Conservazione della massa anche quando le portate di volume differiscono.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C2-Q048",
+      "sourceSha256": "2e68fb1ef85d780f92197e11611092bf64ce66c45ce52296944d2e95fbe13ba6",
+      "candidateSha256": "43d31ecfdf0cbdffbca004ff75f6b0e9751844a553f7a3bd002667dff6bc8134",
+      "reviewedSignature": "6d337fb3643914bdfe1b1528faa823b515449eb5805091d6111884c3186b7f28",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Media",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "La parola richiesta è media: in Q=Av si usa la media areale della componente normale alla sezione. Con profilo non uniforme non è in generale la velocità al centro né il massimo; eventuali contributi di flusso opposto hanno segno.",
+      "physicalAssumptions": "Profilo non uniforme, portata integrale della componente normale sulla sezione; media areale, non massimo o media temporale.",
+      "distractors": "Massimo, minimo e valore sull’asse non ricostruiscono in generale l’integrale; componente tangenziale non attraversa la sezione.",
+      "pedagogicalReview": "Media normale areale derivata dall’integrale.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C2-Q049",
+      "sourceSha256": "a5a6d367ab64481def9e1cd439a780bca654aa7a6a7390395cedb72ec4d4a166",
+      "candidateSha256": "10e90c27b6a8c490f3186751386ed0731d02d0e2e31bad83d9e1471359cbb0cd",
+      "reviewedSignature": "c7837eb787b856c24220c0d242f9fe31c84b604c537bc5a918ab049ddf0d6971",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "cric-c2-l005-progressive.svg": "2e20921e76c3d5764f3301233c8da70dee32988b500fabe795b49c5b7667d0e9"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "9",
+      "dimension": {
+        "[time]": "1"
+      },
+      "manualArithmetic": "La pompa haQ=2,4 L/(3 min)=800 mL/min=40/3 mL/s. Per riempire 120 mL, t=120/(40/3)=9 s. È il modello ideale di una linea inizialmente vuota che si riempie senza compressibilità, dispersione o volume addizionale non dichiarato.",
+      "physicalAssumptions": "Linea inizialmente vuota 120 mL, portata pompa 2,4 L/3 min costante, no perdite, elasticità o vie alternative; arrivo al termine del riempimento.",
+      "distractors": "0,15 è durata inmin,15 s fornirebbero 200 mL,90 s è fattore 10, zero ignora volume di riempimento; 3 min definisconoQ, non ritardo aggiuntivo.",
+      "pedagogicalReview": "Transitorio di riempimento distinto dal flusso dopo l’uscita.",
+      "assetReview": "XML e nuovo PNG indipendente 640×1550 letti per intero. Volumi in 45 s: barre 270/150/120 per 6,75/3,75/3 L, origine comune e 40 coordinate/L; 270−150=120. Nodo senza accumulo: barre 360/140/220 per 36/14/22 mL/s, scala 10 coordinate/(mL/s). Riempimento iniziale: origine(140,1390), punto(500,1150),360 coordinate per 9 s e 240 per 120 mL; pendenza 40/3 mL/s=800 mL/min. L’intervallo finisce all’arrivo del liquido, non è imposto un accumulo dopo 9 s. Nessun taglio o contatto residuo rilevato.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C2-Q050",
+      "sourceSha256": "34942268478de5f85a703be80d85e6be418b855388915eca4ecc54b040489984",
+      "candidateSha256": "f9c70c10c73210624890cbaa7706c5261e6dfaaf8cf3d9092575d04c2e5ae23c",
+      "reviewedSignature": "9f13a770e20b9ce8d43473803ec74ef1352b121adf4ffb0091e43891212e9acc",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "30",
+      "dimension": {
+        "[length]": "2"
+      },
+      "manualArithmetic": "Converto 6 mL/s in 6 cm³/s. Dividendo per 0,20=1/5 cm/s ottengoA_tot=30 cm². La velocità è media sulle sezioni aperte complessive assegnate, non la velocità in ogni singolo ramo.",
+      "physicalAssumptions": "Rete stazionaria incomprimibile, Qtot 6 mL/s, media normale 0,20 cm/s sull’intera area aperta; area totale richiesta.",
+      "distractors": "1,2 è coefficiente diQv con dimensione diversa,0,30 e 300 errano fattori 100/10,6 copia la portata; area individuale dei rami non è assegnata.",
+      "pedagogicalReview": "Area totale e media globale, senza inventare singoli diametri.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    }
+  ],
+  "verifierSha256": "a94045a2036c4807dd02ffd6be525e89282102ef7faba576d2239ebb9dcf8a4c",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "reviewDependencySha256": {
+    "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+  },
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2",
+    "hypothesis": "6.148.7"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "reviewedCandidateCommit": "91f13eef7412e3227bd11fc7e2bc747bd980bdd3",
+  "packageSha256": "8c34882c17ae5263293480d4bf9936b1d05d4bb2db981bb4c7854e823d106624",
+  "bindingsSha256": "9abc8e661dcaed5919548083ec77320256c87eed2b6ff2f37cc275dc456b961c",
+  "source": {
+    "commit": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "path": "officina-di-fisica/content/C2.json",
+    "title": "cric-c2-l005",
+    "reference": "Dieci problemi distinti Cric C2, con derivazioni individuali nella primaria prompt-only immutata e calcoli pre-key congelati; vedere le note per ID."
+  },
+  "modelsBeforeCandidateKeys": {
+    "path": "editorial/reviews/cric-c2-001-050-independent-models.py",
+    "sha256": "02b2341e89122709fcddfb6a48318d3d87ded5385cbbfada9e69edaad05007dc",
+    "commit": "e37686ebab9f1ac50919592f189ab8cf7f37184f"
+  },
+  "postReadNumericGuardHardening": "All constitutive, inverse, calibration and exact finite guard function bodies are identical to the actual pre-key snapshot from first version.",
+  "primaryBeforeCandidateKeys": {
+    "path": "editorial/reviews/primary-cric-c2-001-050-before-candidates-20261126.md",
+    "sha256": "34c7a33d1257ffa080cb94d8f36f0ebb753cf03134665b4b440153cc2f3a8237"
+  }
+}
