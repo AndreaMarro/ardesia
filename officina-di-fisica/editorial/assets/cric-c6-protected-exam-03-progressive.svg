@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 1960" width="640" height="1960" role="img" aria-labelledby="title desc">
+<title id="title">Spessore conduttivo, serie capacitiva e ponte bilanciato</title>
+<desc id="desc">Due sezioni di lastre hanno uguale area di faccia e spessori L e due L. Due capacità in serie da tre e sei microfarad ai dodici volt accumulano ventiquattro microcoulomb ciascuna. Un ponte con quattro resistenze uguali da quattro ohm ha entrambi i punti medi a quattro volt, quindi nessuna corrente nel resistore centrale da due ohm.</desc>
+<defs><marker id="tip" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10Z" fill="context-stroke"/></marker></defs>
+<rect width="640" height="1960" fill="#fffdf7"/>
+<g font-family="Arial, sans-serif" fill="#202c39">
+<text x="32" y="52" font-size="27" font-weight="bold">1. La stessa area, spessore diverso</text>
+<text x="32" y="95" font-size="23">Sezioni laterali a profondità comune.</text>
+<text x="62" y="167" font-size="23">T_h</text><text x="329" y="167" font-size="23">T_c</text>
+<rect x="140" y="185" width="160" height="70" fill="#e9d9c0" stroke="#304d63" stroke-width="3"/>
+<path d="M140 275V295H300V275" fill="none" stroke="#986c35" stroke-width="3"/>
+<text x="210" y="330" font-size="23">L</text>
+<text x="62" y="390" font-size="23">T_h</text><text x="489" y="390" font-size="23">T_c</text>
+<rect x="140" y="408" width="320" height="70" fill="#e9d9c0" stroke="#304d63" stroke-width="3"/>
+<path d="M140 498V518H460V498" fill="none" stroke="#986c35" stroke-width="3"/>
+<text x="282" y="554" font-size="23">2L</text>
+<text x="32" y="601" font-size="23">T_h &gt; T_c, stessa area: la potenza si dimezza.</text>
+<line x1="32" y1="635" x2="608" y2="635" stroke="#b8c4ca"/>
+<text x="32" y="690" font-size="27" font-weight="bold">2. Serie: stesso modulo di carica</text>
+<text x="32" y="733" font-size="23">Nodo intermedio neutro; simboli non in scala.</text>
+<path d="M100 900H230M250 900H390M410 900H550" fill="none" stroke="#304d63" stroke-width="3"/>
+<path d="M230 850V950M250 850V950" fill="none" stroke="#26728d" stroke-width="5"/>
+<path d="M390 850V950M410 850V950" fill="none" stroke="#986c35" stroke-width="5"/>
+<circle cx="320" cy="900" r="5" fill="#304d63"/>
+<text x="76" y="820" font-size="23">12 V</text><text x="527" y="820" font-size="23">0 V</text>
+<text x="207" y="1000" font-size="23">3 μF</text><text x="367" y="1000" font-size="23">6 μF</text>
+<text x="212" y="1050" font-size="23">8 V</text><text x="374" y="1050" font-size="23">4 V</text>
+<text x="32" y="1110" font-size="23">Capacità equivalente: 2 μF.</text>
+<text x="32" y="1153" font-size="23">Su ciascuno: Q = 24 μC.</text>
+<line x1="32" y1="1186" x2="608" y2="1186" stroke="#b8c4ca"/>
+<text x="32" y="1241" font-size="27" font-weight="bold">3. I punti medi hanno uguale potenziale</text>
+<text x="32" y="1284" font-size="23">Quattro resistori esterni identici.</text>
+<path d="M80 1550H120V1410H190M250 1410H390M450 1410H520V1550H560M120 1550V1690H190M250 1690H390M450 1690H520V1550M320 1410V1520M320 1580V1690" fill="none" stroke="#304d63" stroke-width="3"/>
+<rect x="190" y="1390" width="60" height="40" fill="#dceaf0" stroke="#304d63" stroke-width="3"/>
+<rect x="390" y="1390" width="60" height="40" fill="#dceaf0" stroke="#304d63" stroke-width="3"/>
+<rect x="190" y="1670" width="60" height="40" fill="#dceaf0" stroke="#304d63" stroke-width="3"/>
+<rect x="390" y="1670" width="60" height="40" fill="#dceaf0" stroke="#304d63" stroke-width="3"/>
+<rect x="300" y="1520" width="40" height="60" fill="#e9d9c0" stroke="#304d63" stroke-width="3"/>
+<circle cx="320" cy="1410" r="5" fill="#304d63"/><circle cx="320" cy="1690" r="5" fill="#304d63"/>
+<text x="205" y="1367" font-size="23">4 Ω</text><text x="405" y="1367" font-size="23">4 Ω</text>
+<text x="205" y="1750" font-size="23">4 Ω</text><text x="405" y="1750" font-size="23">4 Ω</text>
+<text x="348" y="1559" font-size="23">2 Ω</text>
+<text x="272" y="1350" font-size="23">M : 4 V</text><text x="272" y="1795" font-size="23">N : 4 V</text>
+<text x="34" y="1540" font-size="23">8 V</text><text x="552" y="1540" font-size="23">0 V</text>
+<text x="32" y="1860" font-size="23">Vₘ − Vₙ = 0 V, quindi Iₘₙ = 0 A.</text>
+<text x="32" y="1910" font-size="23">La simmetria resta anche col ramo centrale.</text>
+</g></svg>
