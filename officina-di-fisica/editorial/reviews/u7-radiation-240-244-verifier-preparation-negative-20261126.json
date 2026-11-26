@@ -1,0 +1,19 @@
+{
+  "scope": "tool preparation failures, not scientific RED tests",
+  "observations": [
+    {
+      "operation": "first verifier generation",
+      "exitCode": 1,
+      "error": "ModuleNotFoundError: tools, before output files created",
+      "correction": "Explicit app cwd insertion in private launcher; PYTHONPATH=. environment"
+    },
+    {
+      "operation": "dependent local spelling guard edit",
+      "exitCode": 1,
+      "error": "FileNotFoundError: generated verifier absent because first launcher failed",
+      "correction": "Put the explicit reviewed-spelling guard into the generator before actual generation; no existing verifier mutated"
+    }
+  ],
+  "candidateBytesChanged": false,
+  "scientificVerification": "NOT_RUN"
+}

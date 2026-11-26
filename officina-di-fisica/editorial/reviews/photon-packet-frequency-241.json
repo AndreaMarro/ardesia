@@ -1,0 +1,533 @@
+{
+  "schemaVersion": "1.0.0",
+  "lessonReference": {
+    "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "gitPath": "officina-di-fisica/content/C5.json",
+    "sourceSha256": "dac4490e6a900f5da191bf7a1f5b8463ddc57c8bbaa36cb7a4a375c70fa77422",
+    "primarySkill": "C5-L07",
+    "actualLessonPrerequisites": {
+      "C5-L06": [
+        "C5-L02",
+        "C5-L04"
+      ],
+      "C5-L07": [
+        "C5-L06"
+      ]
+    }
+  },
+  "records": [
+    {
+      "id": "AR-u7-photon-packet-frequency-01",
+      "sourceSha256": "40d56e0ec62a3684bd11ec15758214094b00675ed796e19da1f52e646db7d0d6",
+      "candidateSha256": "39c18e0610339d4c9050cb77cd01530751d20a0544febbec55a310b10a892dbf",
+      "reviewedSignature": "bb8c19c81706e10f7298bfe621e807e8d3bfde8ae6a09cad33f63f203950e560",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "photon-packet-frequency-progressive.svg": "aee8e1818e35909640ebbf830333c0c009dd11ad55a849d872d2058426d13cd6"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "33",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Per N fotoni monocromatici E=Nhf. Con il valore assegnato h=(33/5)×10⁻³⁴ J s e f=f₁₄×10¹⁴ s⁻¹, E/(10⁻²⁰ J)=(33/5)Nf₁₄. Per N=5 e f₁₄=1 si ottiene 33, cioè 33×10⁻²⁰ J. h è un valore di esercizio, non una ridefinizione della costante esatta SI.",
+      "physicalAssumptions": "Fotoni monocromatici con N intero positivo; f=u 10¹⁴Hz, u puro positivo. h assegnato 6.6×10⁻³⁴Js mantenuto nel modello. E=e q_E con q_E=10⁻²⁰J; e e display sono puri, energia E dimensionata. Le medie sono fra pacchetti, non nuove prove con conteggio frazionario. Caso 03 autonomo di quattro bande convenzionali, senza confronto universale X/gamma.",
+      "distractors": "33/5 è l’energia numerica del singolo fotone, 66 raddoppia il pacchetto e 165 omette il divisore 5. N 5 e u 1 danno 33 q_E.",
+      "pedagogicalReview": "Legge motivata e unità normalizzate distinte dalle grandezze fisiche.",
+      "assetReview": "XML and full 640×1480 native read. First group has five identical schematic photon dots, second has ten; fixed frequency u=1 gives 33 q_E and 66 q_E. Central arrow is a logical guide, not a physical vector with a scale. Final bars fromx 150 have lengths 66, 264, 165 for energies 33, 132, 165/2 q_E, common 2 coordinates/q_E. Labels and margins clear; no overlaps, cropping or scale inconsistency.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-photon-packet-frequency-02",
+      "sourceSha256": "27b2ddca1c16a45b89b73ffc907dc5a5eddec21bd7d32a7987a0839f96bd2576",
+      "candidateSha256": "4e180099f6c32fd2a99287bff49edfd97461df32c148d163e0d57e409fe1d63d",
+      "reviewedSignature": "8b0d30f0e04545ae89e35feb0bb2d1a2e02341415c27558336d6a8e21e4746ef",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "J",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "L’energia ha unità joule, J=kg·m²/s². Il fattore 10⁻²⁰ cambia il numero con cui si esprime l’energia, non la dimensione.",
+      "physicalAssumptions": "Fotoni monocromatici con N intero positivo; f=u 10¹⁴Hz, u puro positivo. h assegnato 6.6×10⁻³⁴Js mantenuto nel modello. E=e q_E con q_E=10⁻²⁰J; e e display sono puri, energia E dimensionata. Le medie sono fra pacchetti, non nuove prove con conteggio frazionario. Caso 03 autonomo di quattro bande convenzionali, senza confronto universale X/gamma.",
+      "distractors": "J è energia; Hz, W, s sono frequenza, potenza, tempo. e è puro ma E non perde la sua dimensione con la normalizzazione.",
+      "pedagogicalReview": "Dimensione ricostruita e prefisso distinto dall’unità fisica.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-photon-packet-frequency-03",
+      "sourceSha256": "920712487526bd8b14bb977745933eb207e9a7ae7d2de0043ea7494d5c80913f",
+      "candidateSha256": "1e8bef138db0d7c7e8e0fb356c5d0fe9a0b00932b3459fd211318bc6590fb657",
+      "reviewedSignature": "693f179adf8569ad875ace05be4fe9f6b81364649d71ff082d9c3e905bfdef0c",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Radio → infrarosso → visibile → ultravioletto",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Nel vuoto E_fotone=hf cresce con f e diminuisce con λ₀. L’ordine crescente della sequenza spettrale è radio, microonde, infrarosso, visibile, ultravioletto, raggi X, gamma, per le bande effettivamente confrontate. Nessuna opzione ancora aperta; sarà necessario leggere quali bande siano proposte.",
+      "physicalAssumptions": "Caso autonomo: confronto energetico dei fotoni di quattro bande convenzionali radio, infrarosso, visibile e ultravioletto nel vuoto. Energia hf crescente con f; nessun confronto universale X/gamma o di potenza complessiva.",
+      "distractors": "Radio, infrarosso, visibile, ultravioletto sono ordinate per f crescente e quindi hf crescente. Le altre sequenze invertono o scambiano bande. Non si richiede una separazione universale fra X e gamma.",
+      "pedagogicalReview": "Caso autonomo o legge riconosciuta dalle ipotesi effettive.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-photon-packet-frequency-04",
+      "sourceSha256": "f62f896e80e61b202e32f9c3f6e913ee7f9b1efc807dcafc210ce5765b0c6f45",
+      "candidateSha256": "ac724f499500ced547596e3ad0d63933a5d60cde9d37b0f28ac0e9b0a882e918",
+      "reviewedSignature": "f443f263704644d83773fbce915b40f017fbfb137671b50005ea3b7c7b06be20",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Da 33q_E a 66q_E",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Raddoppiare il conteggio N da 5 a 10 a frequenza invariata raddoppia E: da 33 a 66 unità di 10⁻²⁰ J. Entrambi i conteggi sono interi positivi.",
+      "physicalAssumptions": "Fotoni monocromatici con N intero positivo; f=u 10¹⁴Hz, u puro positivo. h assegnato 6.6×10⁻³⁴Js mantenuto nel modello. E=e q_E con q_E=10⁻²⁰J; e e display sono puri, energia E dimensionata. Le medie sono fra pacchetti, non nuove prove con conteggio frazionario. Caso 03 autonomo di quattro bande convenzionali, senza confronto universale X/gamma.",
+      "distractors": "33/2 inverte N; 132 quadruplica invece di raddoppiare.330=33·10 omette il divisore 5 della forma normalizzata, 33 ignora il nuovo conteggio.",
+      "pedagogicalReview": "Confronto controllato a un solo parametro fissato.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-photon-packet-frequency-05",
+      "sourceSha256": "d9a2b95f03d6443124841664f2b3db46b2937b8e6421637b68e0c43d3dad3017",
+      "candidateSha256": "edd39e5cc0675fd54f87023f5dbea727b838f5024483396a4c943bf99cdd594e",
+      "reviewedSignature": "9266521ee2ea6586c79bf8eb3e0a90b02c3b1651542f0ff4557ea275721900a5",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "5",
+      "dimension": {},
+      "manualArithmetic": "N=E/(hf). Nelle unità del problema N=5·33/(33·1)=5. Si verifica anche l’integralità: non basta ottenere un numero reale positivo.",
+      "physicalAssumptions": "Fotoni monocromatici con N intero positivo; f=u 10¹⁴Hz, u puro positivo. h assegnato 6.6×10⁻³⁴Js mantenuto nel modello. E=e q_E con q_E=10⁻²⁰J; e e display sono puri, energia E dimensionata. Le medie sono fra pacchetti, non nuove prove con conteggio frazionario. Caso 03 autonomo di quattro bande convenzionali, senza confronto universale X/gamma.",
+      "distractors": "Uno omette il 5 della normalizzazione; 33 copia e e 10 predice 66, non 33. Il risultato fisico deve essere intero.",
+      "pedagogicalReview": "Prima inversa reinserita nella relazione diretta.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-photon-packet-frequency-06",
+      "sourceSha256": "d68dfafec2ea21dba01e3bf1a96d955c00c8cf8cb27b03afe6a3e092780a6ed9",
+      "candidateSha256": "9d06536bc45bf54bc3e1494671cb8edfd23fcc177b5cce07da3a8dce4df32663",
+      "reviewedSignature": "30b4bd95e002ef3cad71edd1eb9be5b18407a6bc390102d950192995d8d998e0",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1",
+      "dimension": {
+        "[time]": "-1"
+      },
+      "manualArithmetic": "f₁₄=5[E/(10⁻²⁰ J)]/(33 N). Con E normalizzata 33 e N=5, f₁₄=1; la frequenza fisica è 10¹⁴ Hz.",
+      "physicalAssumptions": "Fotoni monocromatici con N intero positivo; f=u 10¹⁴Hz, u puro positivo. h assegnato 6.6×10⁻³⁴Js mantenuto nel modello. E=e q_E con q_E=10⁻²⁰J; e e display sono puri, energia E dimensionata. Le medie sono fra pacchetti, non nuove prove con conteggio frazionario. Caso 03 autonomo di quattro bande convenzionali, senza confronto universale X/gamma.",
+      "distractors": "U 5 darebbe e 165, u 1/5 darebbe 33/5; 33 copia e senza l’inversa. Il coefficiente u 1 corrisponde a f 10¹⁴Hz.",
+      "pedagogicalReview": "Seconda inversa con dominio e unità verificati.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-photon-packet-frequency-07",
+      "sourceSha256": "c8bc28c35dd053b4515a5bcc67173f89cd3954b7f4d75522ac3015cf5f5f29a5",
+      "candidateSha256": "dfe770bb6e6ea0ebc74a311c8014c4b14eeec27b1e43aec3fff6750dea8bfdb7",
+      "reviewedSignature": "e95ab4eb855fdb913c3b0bbe60ad742eff0a521089cb0e3fabbbf8d818282705",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {},
+      "manualArithmetic": "A conteggio N=5 fissato, f₁₄ passa da 1 a 2 e l’energia da 33 a 66; E_B/E_A=2.",
+      "physicalAssumptions": "Fotoni monocromatici con N intero positivo; f=u 10¹⁴Hz, u puro positivo. h assegnato 6.6×10⁻³⁴Js mantenuto nel modello. E=e q_E con q_E=10⁻²⁰J; e e display sono puri, energia E dimensionata. Le medie sono fra pacchetti, non nuove prove con conteggio frazionario. Caso 03 autonomo di quattro bande convenzionali, senza confronto universale X/gamma.",
+      "distractors": "1/2 inverte il confronto, 4 introduce un quadrato, 1 ignora f e 5 copia N, che si cancella. Frequenza doppia ed N fisso danno energia doppia.",
+      "pedagogicalReview": "Due uscite ricostruite prima del rapporto puro.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-photon-packet-frequency-08",
+      "sourceSha256": "a0f230d4050ccb819c1095af027c782d8497563faafdce12ab3604b546bac1c7",
+      "candidateSha256": "0f4e95c8c137eb644f59a8c1f4e0253cf071ad045ff03fea2b95aa3c652e66f8",
+      "reviewedSignature": "0d28652a3b49c97c414961b7354fa49e9b80bd1ecb9f4fd61b3fa8f7e0c452d0",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "33",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "La proposta 66 meno il corretto 33 dà +33 unità di 10⁻²⁰ J. È uno scarto energetico, non il rapporto due.",
+      "physicalAssumptions": "Fotoni monocromatici con N intero positivo; f=u 10¹⁴Hz, u puro positivo. h assegnato 6.6×10⁻³⁴Js mantenuto nel modello. E=e q_E con q_E=10⁻²⁰J; e e display sono puri, energia E dimensionata. Le medie sono fra pacchetti, non nuove prove con conteggio frazionario. Caso 03 autonomo di quattro bande convenzionali, senza confronto universale X/gamma.",
+      "distractors": "−33 q_E cambia l’ordine; 2 è rapporto, 66 q_E proposta e 0 q_E l’accetta. Lo scarto energetico è 33 q_E.",
+      "pedagogicalReview": "Differenza ordinata distinta da un rapporto.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-photon-packet-frequency-09",
+      "sourceSha256": "72456e1f6a08104edd2c641669e0ac5219692ff233e1ff7b589b275dd0575740",
+      "candidateSha256": "321133920a382c1e1f3c3b6b558bae0c9bb039040e1e41b0c99fc0966ebc1c26",
+      "reviewedSignature": "c7dbe024227407fb8f12da38e750ce182d57babdb4a9aab255509069dd02cff4",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "photon-packet-frequency-progressive.svg": "aee8e1818e35909640ebbf830333c0c009dd11ad55a849d872d2058426d13cd6"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "N = E / (h f)",
+      "dimension": {},
+      "manualArithmetic": "N=E/(hf), oppure 5 e/(33 f₁₄) con e=E/(10⁻²⁰ J). Il risultato deve essere intero positivo nel modello di pacchetto assegnato.",
+      "physicalAssumptions": "Fotoni monocromatici con N intero positivo; f=u 10¹⁴Hz, u puro positivo. h assegnato 6.6×10⁻³⁴Js mantenuto nel modello. E=e q_E con q_E=10⁻²⁰J; e e display sono puri, energia E dimensionata. Le medie sono fra pacchetti, non nuove prove con conteggio frazionario. Caso 03 autonomo di quattro bande convenzionali, senza confronto universale X/gamma.",
+      "distractors": "Ehf ha J², hf/E è reciproco di N, Ef/h ha T⁻² e E/f ha J·s. Soltanto E/(hf) conta fotoni.",
+      "pedagogicalReview": "Inversa simbolica con dimensioni e dominio.",
+      "assetReview": "XML and full 640×1480 native read. First group has five identical schematic photon dots, second has ten; fixed frequency u=1 gives 33 q_E and 66 q_E. Central arrow is a logical guide, not a physical vector with a scale. Final bars fromx 150 have lengths 66, 264, 165 for energies 33, 132, 165/2 q_E, common 2 coordinates/q_E. Labels and margins clear; no overlaps, cropping or scale inconsistency.",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-photon-packet-frequency-10",
+      "sourceSha256": "1efef5c8ad3c7edc9282e74d2daa6e36e148829e88f6642e92f2570cb31d0102",
+      "candidateSha256": "57edd187f87a3def03a9fde1fb64dc69e43e597c75e8df81cb454502965e5826",
+      "reviewedSignature": "f2a86f6b25d943d0d686409345ac0b840bab066760a08dc533f93a03500f04bd",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "κ₁ κ₂",
+      "dimension": {},
+      "manualArithmetic": "E_B/E_A=κ₁κ₂ per la bilinearità. I conteggi N_A e κ₁N_A devono essere interi positivi; κ₁ può essere razionale se il prodotto resta intero. Nessun vincolo intero sulla frequenza.",
+      "physicalAssumptions": "Fotoni monocromatici con N intero positivo; f=u 10¹⁴Hz, u puro positivo. h assegnato 6.6×10⁻³⁴Js mantenuto nel modello. E=e q_E con q_E=10⁻²⁰J; e e display sono puri, energia E dimensionata. Le medie sono fra pacchetti, non nuove prove con conteggio frazionario. Caso 03 autonomo di quattro bande convenzionali, senza confronto universale X/gamma.",
+      "distractors": "I quozienti invertono un fattore diretto; N² non è somma di energie identiche e la somma dei fattori fallisce per entrambi uguali a 1. Si richiede κ₁N_A intero, non κ₁ intero per ogni prova.",
+      "pedagogicalReview": "Fattori inseriti nella legge effettiva, senza analogie improprie.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-photon-packet-frequency-11",
+      "sourceSha256": "949461f1fc892c6a47386c2a30fa7e909f5eaf6eb44721d4545f492554d2ba0b",
+      "candidateSha256": "e2c268399233db29c9a5e89a9cdbf29db7fd67187eebb9d49d98f13604164b0d",
+      "reviewedSignature": "0602b282066669810bd16209c9346f9b5c218a02000224cf3f7da124439fcf6e",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4",
+      "dimension": {},
+      "manualArithmetic": "A=33 e B=(33/5)·10·2=132 nelle unità d’energia assegnate. Rapporto 4: entrambi gli ingressi hanno raddoppiato.",
+      "physicalAssumptions": "Fotoni monocromatici con N intero positivo; f=u 10¹⁴Hz, u puro positivo. h assegnato 6.6×10⁻³⁴Js mantenuto nel modello. E=e q_E con q_E=10⁻²⁰J; e e display sono puri, energia E dimensionata. Le medie sono fra pacchetti, non nuove prove con conteggio frazionario. Caso 03 autonomo di quattro bande convenzionali, senza confronto universale X/gamma.",
+      "distractors": "1/4 è il reciproco, 2 segue solo uno dei due raddoppiamenti e 1 presume una compensazione.10 è il nuovo conteggio, non un rapporto di energie.",
+      "pedagogicalReview": "Entrambi gli ingressi considerati nel nuovo stato.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-photon-packet-frequency-12",
+      "sourceSha256": "3b0215c9d9ff2df2890081e08a26691858be77a6d19f350b587a96ebf88fc70e",
+      "candidateSha256": "552d75dcfaae5b60454c80c71c3047b9474fd6e97554c88ef56e38e20c1467a1",
+      "reviewedSignature": "e5809710c0263752cce528ceff800ead3340b2582d5aeb6100e650d328362841",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "photon-packet-frequency-progressive.svg": "aee8e1818e35909640ebbf830333c0c009dd11ad55a849d872d2058426d13cd6"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "165/2",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Media delle due energie: (33+132)/2=165/2 unità. I parametri medi sarebbero N=15/2 e f₁₄=3/2, con uscita formale 297/4: il conteggio medio non intero non descrive un singolo pacchetto ammissibile. Anche formalmente differisce dalla media delle uscite.",
+      "physicalAssumptions": "Fotoni monocromatici con N intero positivo; f=u 10¹⁴Hz, u puro positivo. h assegnato 6.6×10⁻³⁴Js mantenuto nel modello. E=e q_E con q_E=10⁻²⁰J; e e display sono puri, energia E dimensionata. Le medie sono fra pacchetti, non nuove prove con conteggio frazionario. Caso 03 autonomo di quattro bande convenzionali, senza confronto universale X/gamma.",
+      "distractors": "297/4 è un’estensione formale agli ingressi medi con N 15/2 non ammissibile come pacchetto.165 è somma, 99/2 semidifferenza, 132 solo B. Media delle energie 165/2 non impone un pacchetto col conteggio medio.",
+      "pedagogicalReview": "Media delle uscite distinta dagli ingressi medi.",
+      "assetReview": "XML and full 640×1480 native read. First group has five identical schematic photon dots, second has ten; fixed frequency u=1 gives 33 q_E and 66 q_E. Central arrow is a logical guide, not a physical vector with a scale. Final bars fromx 150 have lengths 66, 264, 165 for energies 33, 132, 165/2 q_E, common 2 coordinates/q_E. Labels and margins clear; no overlaps, cropping or scale inconsistency.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-photon-packet-frequency-13",
+      "sourceSha256": "5c80256817380b2afbe4757beac1ab91b59736751222b7c9b37f5d432973638f",
+      "candidateSha256": "7ffc6a9d84734b8c5a5384f7011ae5c3e117c29dabc3b13c478986ddb0d5cfbb",
+      "reviewedSignature": "0910864a7301978b2da749edabbffa51f25a8f4598449ebf7a0ba5ce64979aff",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {},
+      "manualArithmetic": "Il fattore obiettivo 4 è prodotto di N_B/N_A=2 e f_B/f_A. Ne segue f_B/f_A=2.",
+      "physicalAssumptions": "Fotoni monocromatici con N intero positivo; f=u 10¹⁴Hz, u puro positivo. h assegnato 6.6×10⁻³⁴Js mantenuto nel modello. E=e q_E con q_E=10⁻²⁰J; e e display sono puri, energia E dimensionata. Le medie sono fra pacchetti, non nuove prove con conteggio frazionario. Caso 03 autonomo di quattro bande convenzionali, senza confronto universale X/gamma.",
+      "distractors": "1/2 inverte la frequenza, 4 ignora il conteggio doppio, 1 darebbe 66 anziché 132 e 5 copia N_A. Il bersaglio richiede frequenza doppia.",
+      "pedagogicalReview": "Bersaglio ricostruito prima dell’inversa.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-photon-packet-frequency-14",
+      "sourceSha256": "1d5275679aed4c6eae4e1acec2c6efbb738768e0c2ff8f6106caa99d50b38550",
+      "candidateSha256": "54a0ad93cd530e53d7bb47c4372ff94829d79c97c98bc4dd5c544efce2182620",
+      "reviewedSignature": "6a49f7719b9c5c1df6417bf15f8f93d8840ca1d8641e87dea2b9d0bf898928eb",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "10",
+      "dimension": {},
+      "manualArithmetic": "E_A normalizzata 33 e S_A=99 danno a=3 per unità normalizzata d’energia. S=396 dà e=132; f₁₄=2 impone N=5·132/(33·2)=10, intero positivo.",
+      "physicalAssumptions": "Fotoni monocromatici con N intero positivo; f=u 10¹⁴Hz, u puro positivo. h assegnato 6.6×10⁻³⁴Js mantenuto nel modello. E=e q_E con q_E=10⁻²⁰J; e e display sono puri, energia E dimensionata. Le medie sono fra pacchetti, non nuove prove con conteggio frazionario. Caso 03 autonomo di quattro bande convenzionali, senza confronto universale X/gamma.",
+      "distractors": "N 30 usa D 396 come e e predice D 1188. N 20 omette u 2, N 5 ripete il riferimento. La taratura produce N 10 intero.",
+      "pedagogicalReview": "Taratura rimossa prima dell’inversa fisica.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-photon-packet-frequency-15",
+      "sourceSha256": "3a2e843ec39bc88113a1b4ac4352b5d2b052e36772b381c4110628540dabf6b7",
+      "candidateSha256": "91bfcc7ea009d10552ecbbd0a8036ce960cc8eeae1641d14acb6f4ef1d2eeba1",
+      "reviewedSignature": "d12272027cc6d1aea292b10102f6250dd34bb9569da4fdfe2a914dfd0770eea7",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "10",
+      "dimension": {},
+      "manualArithmetic": "I riferimenti energetici sono 33 e 132, con S=67 e 265. Il guadagno è 198/99=2 e l’offset 1. S_C=133 dà e_C=66; a f₁₄=1 il conteggio è N=10, intero.",
+      "physicalAssumptions": "Fotoni monocromatici con N intero positivo; f=u 10¹⁴Hz, u puro positivo. h assegnato 6.6×10⁻³⁴Js mantenuto nel modello. E=e q_E con q_E=10⁻²⁰J; e e display sono puri, energia E dimensionata. Le medie sono fra pacchetti, non nuove prove con conteggio frazionario. Caso 03 autonomo di quattro bande convenzionali, senza confronto universale X/gamma.",
+      "distractors": "Omettere b dà N 665/66 e predice D 134 anziché 133. N 20 omette il guadagno dopo b; N 5 dà D 67. Il conteggio 10 ricostruisce l’intera taratura.",
+      "pedagogicalReview": "Guadagno e offset identificati da due riferimenti distinti.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-photon-packet-frequency-16",
+      "sourceSha256": "70a5cc2bcb294eb5f078cc997fa8e0a852c424d384cd8d84b1f24caf8fc1aeb6",
+      "candidateSha256": "e309df8100c80d8fa34444f308ab2249394b1ae4b1a5db7848bb43f5d9a5a813",
+      "reviewedSignature": "0a8a6f721fea0b2e20388fced41c29ec076ac91aeea662b6d017cce7ce70098d",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1",
+      "dimension": {
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Il vincolo N=5 f₁₄, espresso con variabile di frequenza normalizzata, dà e=33 f₁₄². Da e=33 segue f₁₄²=1; il ramo positivo è f₁₄=1 e N=5. La radice negativa viola anche il conteggio positivo.",
+      "physicalAssumptions": "Fotoni monocromatici con N intero positivo; f=u 10¹⁴Hz, u puro positivo. h assegnato 6.6×10⁻³⁴Js mantenuto nel modello. E=e q_E con q_E=10⁻²⁰J; e e display sono puri, energia E dimensionata. Le medie sono fra pacchetti, non nuove prove con conteggio frazionario. Caso 03 autonomo di quattro bande convenzionali, senza confronto universale X/gamma.",
+      "distractors": "U−1 viola f>0 e N>0, 5 dà e 825 e 1/5 dà 33/25 con N 1. La radice positiva 1 dà N 5; il dato assoluto fissa la scala.",
+      "pedagogicalReview": "Vincolo sostituito prima di decidere numero e dominio delle soluzioni.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_phase_continuity_Planck_photon_rate_harmonic_average_Poynting_balance_inverse_and_calibration",
+        "Pint_exact_wavelength_energy_frequency_power_area_intensity_rate_SI_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    }
+  ],
+  "verifierSha256": "4d9d77690ffd02f96c58349551564236fa116c302316ff53eb43c77ee16e0590",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "reviewDependencySha256": {
+    "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+  },
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2",
+    "hypothesis": "6.148.7"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "reviewedCandidateCommit": "02e5712bb4f356fdb93b45a35ee4fe15008d56cc",
+  "packageSha256": "dec2dc1d416173565e85734bfed27c715fe0d039298b59c48f8c99e261c23d30",
+  "bindingsSha256": "7b81f5265c4be9b4d4e0f9dee67fa910aaa17163b73e9ab4c8e10e3ae8d67abb",
+  "source": {
+    "commit": "5cfbdcb055ba3ba136f97fb56e997f06e6cf3605",
+    "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U7-01.json",
+    "title": "photon-packet-frequency",
+    "reference": "Fotoni monocromatici con N intero positivo; f=u 10¹⁴Hz, u puro positivo. h assegnato 6.6×10⁻³⁴Js mantenuto nel modello. E=e q_E con q_E=10⁻²⁰J; e e display sono puri, energia E dimensionata. Le medie sono fra pacchetti, non nuove prove con conteggio frazionario. Caso 03 autonomo di quattro bande convenzionali, senza confronto universale X/gamma."
+  },
+  "modelsBeforeCandidateKeys": {
+    "path": "editorial/reviews/u7-radiation-240-244-independent-models.py",
+    "sha256": "b23231ee65202142c7f6d46957df443d426c54ad7c9dac9b6de9fd21b1ea9a94",
+    "commit": "f5ab7a660506550ea5220cce3e4ba8e3e15584b3"
+  },
+  "primaryBeforeCandidateKeys": {
+    "path": "editorial/reviews/u7-radiation-240-244-primary-source-only.md",
+    "sha256": "8771a65b67207b7b6f31618ba4ebc9cf17d99b55162f75f4c776cb0f327c975d"
+  }
+}
