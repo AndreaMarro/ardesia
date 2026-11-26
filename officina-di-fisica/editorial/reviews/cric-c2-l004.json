@@ -1,0 +1,364 @@
+{
+  "schemaVersion": "1.0.0",
+  "lessonReference": {
+    "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "gitPath": "officina-di-fisica/content/C2.json",
+    "sourceSha256": "7f2d3cf84a46d5d0086fd9cd6318b923ee073febc110a52fbc8f682edd995b23",
+    "primarySkill": "C2-L004",
+    "title": "Guardare il volume spostato",
+    "actualLessonPrerequisites": [
+      "C2-L001",
+      "C2-L002"
+    ]
+  },
+  "records": [
+    {
+      "id": "C2-Q031",
+      "sourceSha256": "7c2fb9bf683a6a378c36d4347dbe49229084f110e7d62564f0b38ef61e178644",
+      "candidateSha256": "52820ecb86162e813c676920884aacc3a191f45045c876a699509038c2721eb1",
+      "reviewedSignature": "1a175ca58657369aa248162c85339eaae6217e3e61513c669a52fa65172ceb75",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "3/4",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "La spinta valeρgV_spostato.75 cm³=75·10⁻⁶ m³, quindi massa d’acqua spostata 3/40 kg e spinta 3/4 N=0,75 N. La forma irregolare non altera il risultato per il volume completamente immerso.",
+      "physicalAssumptions": "Volume rigido completamente immerso 75 cm³, acquaρ1000 kg/m³, g 10, situazione idrostatica senza contatti o capillarità.",
+      "distractors": "7,5 e 0,075 N sbagliano fattore 10; 75 e 750 N richiederebbero 7500/75000 cm³ di acqua, non 75. La massa del corpo non serve per la spinta a volume noto.",
+      "pedagogicalReview": "Volume immerso convertito prima del peso del liquido equivalente; vecchia attribuzione dei distrattori ricalcolata e corretta prima freeze.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C2-Q032",
+      "sourceSha256": "ce688b89c1446c9b2af51db24e40532c2945385613c9e8681da4865db2a5a678",
+      "candidateSha256": "65e5ceeef22c7e0e85520049e5681c2783f5636f1bc18ca70a3c6fd37fe8b25d",
+      "reviewedSignature": "0417d6a7dc287dbe22f8c1125e48bce931662fa7d2be4a2e8a5b45e3c1f98199",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Resta uguale",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Per un corpo rigido completamente immerso in liquido omogeneo incomprimibile, il volume spostato eρ non cambiano scendendo. La spintaρgV resta uguale, se g è uniforme; le pressioni assolute sulle singole facce aumentano ma la loro risultante non cresce.",
+      "physicalAssumptions": "Sfera rigida totalmente immersa, densità uniforme e g costante, spostata in profondità senza cambiare volume e senza pareti vicine.",
+      "distractors": "Pressione locale maggiore non cambia la risultante su volume chiuso rigido. Nessuna necessità di aria; pressione e spinta hanno unità diverse.",
+      "pedagogicalReview": "Aumento comune delle pressioni distinto dalla loro risultante.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C2-Q033",
+      "sourceSha256": "35661b02123c4179bdcdec736e07af5291efa38497841027d686b5132626dc7b",
+      "candidateSha256": "d34d8912df5521475c5b68d84034a82bd779344b33a901c5a2fae2df640689f2",
+      "reviewedSignature": "f19624cc0332cdf4a4b2671bca5bdc88036a277198fe6e7d8a08ca5e2bf452dd",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "cric-c2-l004-progressive.svg": "5d136689e47e0f7dea3f03d8df1f73799e63cc7b0b451ef7731938ef7530e60f"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4/5",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "La spinta sul volume 200 cm³ è 2 N e il peso è 0,12·10=1,2 N. Per la quiete completamente sott’acqua serve una forza esterna verso il basso di 2−1,2=0,8 N. La direzione assegnata è coerente con la densità media minore dell’acqua.",
+      "physicalAssumptions": "Galleggiante rigido 0,12 kg e 200 cm³, interamente in acquaρ1000, g 10; equilibrio con peso, spinta e forza esterna verso il basso.",
+      "distractors": "2 N è spinta e 1,2 N peso,3,2 N somma forze opposte; −0,80 N non è un modulo, con verso già dichiarato.",
+      "pedagogicalReview": "Diagramma di tre forze e modulo della forza esterna.",
+      "assetReview": "XML e nuovo PNG indipendente 640×1460 letti interamente. Tre vettori traslati, non punti di applicazione: spinta 2 N lunga 200, peso 1,2 N lungo 120, forza 0,8 N lunga 80, scala comune 100 coordinate/N e 200=120+80; versi corretti. Barre pontone 100/260/360 per 5/13/18 kg, scala 20 coordinate/kg. Barre due liquidi 240/128/368 per 60/32/92 g, scala 4 coordinate/g. Massa distinta da forza; testi e frecce visibili per intero, nessuna sovrapposizione residua.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C2-Q034",
+      "sourceSha256": "916cc32efcbc9947c5237b3d1e799a1ec75d1cdaf04aa858d918cca6c548ccaa",
+      "candidateSha256": "123303dfb61cb4c298d258c62bbb787b8f4119ab00b2904053a7216443c69dee",
+      "reviewedSignature": "7d7255b094d4ea3e710d40b4dbbbd3409eee0a0fee774929272a7e705267447b",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Nell’olio, perché la densità del liquido è minore",
+      "dimension": {
+        "[length]": "3"
+      },
+      "manualArithmetic": "Galleggiando liberamente il peso è uguale alla spinta: V_imm=m/ρ. Lo stesso corpo ha dunque volume immerso maggiore nel liquido meno denso, l’olio, purché il volume disponibile basti a sostenerlo come esplicitamente dato.",
+      "physicalAssumptions": "Stesso cubetto libero galleggia in entrambi i liquidi; olio meno denso, geometria/massa invariate, aria e capillarità trascurate.",
+      "distractors": "Stesso peso impone stessa spinta, non uguali volumi se cambia densità; non è necessaria immersione totale e due liquidi possono entrambi sostenere il corpo.",
+      "pedagogicalReview": "Peso comune confrontato con densità del fluido, non con volume totale.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C2-Q035",
+      "sourceSha256": "9fd3001d71c498529b47155236fa54ecd71ee3f8f158d92175672a0b263e3254",
+      "candidateSha256": "c29387315c28f22ba10c70684cf738e638bb85b55c453abd9e546fa11e7fe31b",
+      "reviewedSignature": "74d57d7d0cfa95ddcd2ddf4f5bda0c63544ebe3eb59d25092d3646a89cae8703",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Neutro",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Densità del corpo uguale a quella del liquido implica peso uguale a spinta per immersione completa. Il galleggiamento è neutro o indifferente: la quiete non seleziona una quota in un liquido omogeneo, trascurando altre interazioni.",
+      "physicalAssumptions": "Sfera omogenea rigida alla stessa densità del liquido uniforme, immersione totale e assenza di vincoli; stabilità solo per traslazione verticale.",
+      "distractors": "Peso e spinta non sono nulli, ma uguali. Nel modello rigido omogeneo non nasce né richiamo né instabilità verticale dopo piccolo spostamento.",
+      "pedagogicalReview": "Equilibrio neutro verticale distinto da assenza di forze.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C2-Q036",
+      "sourceSha256": "ac8d0cd2bc13d96ae31a13ca2dbb73006e779a4805c1f76cefbae468407d5c70",
+      "candidateSha256": "13a67d779aa83e6904c62698ce23e2c75e41f7e5a863428d2b1722523bd9b7a0",
+      "reviewedSignature": "c9ad770e94c975b6dd16cdbf6bddbc16a97e9796e360894822e6f268f2a11df0",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "cric-c2-l004-progressive.svg": "5d136689e47e0f7dea3f03d8df1f73799e63cc7b0b451ef7731938ef7530e60f"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "13",
+      "dimension": {
+        "[mass]": "1"
+      },
+      "manualArithmetic": "Il volume massimo spostabile sostiene massa totaleρV=1000·0,018=18 kg. Tolgo i 5 kg del pontone: massa aggiuntiva massima 13 kg. È il limite teorico al livello assegnato, non una portata operativa con margini di sicurezza.",
+      "physicalAssumptions": "Pontone 5 kg, volume massimo ammesso 0,018 m³ in acquaρ1000, carico aggiuntivo al limite geometrico; equilibrio libero.",
+      "distractors": "18 kg include il pontone; 23 somma la sua massa invece di sottrarla; 5 copia il pontone; 130 copia il peso numerico inN per g 10 senza conservare unità.",
+      "pedagogicalReview": "Massa utile aggiuntiva distinta dalla massa totale sostenibile.",
+      "assetReview": "XML e nuovo PNG indipendente 640×1460 letti interamente. Tre vettori traslati, non punti di applicazione: spinta 2 N lunga 200, peso 1,2 N lungo 120, forza 0,8 N lunga 80, scala comune 100 coordinate/N e 200=120+80; versi corretti. Barre pontone 100/260/360 per 5/13/18 kg, scala 20 coordinate/kg. Barre due liquidi 240/128/368 per 60/32/92 g, scala 4 coordinate/g. Massa distinta da forza; testi e frecce visibili per intero, nessuna sovrapposizione residua.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C2-Q037",
+      "sourceSha256": "464b33fb122d641382c9b928a7ddc153767c29da8f7dda97baa45c132a164766",
+      "candidateSha256": "200b85b93f9e9d797caba62cf545df86ebe05e931e9120aeb2c61c6697e2cdf9",
+      "reviewedSignature": "881382550f38077cd4c8736bf5d53f01d6806d9ddbcf92891e9261a9ec296b6f",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Il più massiccio dà una tensione maggiore; la spinta sui due è uguale",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Uguale volume immerso nello stesso liquido dà la stessa spinta. Ogni dinamometro dall’alto misura T=mg−B, positivo perché entrambi affonderebbero liberi. L’oggetto più pesante produce lettura maggiore; la differenza delle tensioni è la differenza dei pesi, non una differenza di spinta.",
+      "physicalAssumptions": "Uguale volume immerso, masse m₂>m₁, due corpi che affonderebbero; dinamometri dall’alto in equilibrio, tensioni positive.",
+      "distractors": "Volumi uguali danno spinta uguale, non tensione. Maggiore massa non cambia la spinta a volume fisso; il peso completo ignora spinta, zero è incompatibile con affondamento libero.",
+      "pedagogicalReview": "Sottrazione di due equilibri per cancellare spinta comune.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C2-Q038",
+      "sourceSha256": "e3115034213be08fad35007b4469827daac91f77e5dfb2d40fa4e1968afa62b3",
+      "candidateSha256": "834b41e009eb6a2a5a73b80ea4988d94cfc90eb67ef12996c6c85d7a66e9d8ff",
+      "reviewedSignature": "42f2898eb9167dfc9e1004074af3a503fe4455f3c78ec6a01d2b42a90041877c",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "cric-c2-l004-progressive.svg": "5d136689e47e0f7dea3f03d8df1f73799e63cc7b0b451ef7731938ef7530e60f"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "92",
+      "dimension": {
+        "[mass]": "1"
+      },
+      "manualArithmetic": "Senza altre forze e trascurando tensione interfacciale, la quiete richiede m=ρ_acqua V_acqua+ρ_olio V_olio. In grammi: 60·1+40·(4/5)=92 g. La densità media 0,92 g/cm³ è fra 0,8 e 1, compatibile col sostegno all’interfaccia stabile acqua sotto olio. Il modello deve dichiarare trascurabili le forze capillari se serve una massa univoca.",
+      "physicalAssumptions": "Due liquidi immiscibili stabili, acqua sotto olio, densità 1 e 0,8 g/cm³, volumi esclusi 60/40 cm³; corpo libero senza capillarità.",
+      "distractors": "100 g usa tutta acqua,80 g tutto olio,90 g media semplice su volumi disuguali,28 g sottrae due contributi entrambi verso l’alto.",
+      "pedagogicalReview": "Due volumi e densità sommati nella stratificazione stabile.",
+      "assetReview": "XML e nuovo PNG indipendente 640×1460 letti interamente. Tre vettori traslati, non punti di applicazione: spinta 2 N lunga 200, peso 1,2 N lungo 120, forza 0,8 N lunga 80, scala comune 100 coordinate/N e 200=120+80; versi corretti. Barre pontone 100/260/360 per 5/13/18 kg, scala 20 coordinate/kg. Barre due liquidi 240/128/368 per 60/32/92 g, scala 4 coordinate/g. Massa distinta da forza; testi e frecce visibili per intero, nessuna sovrapposizione residua.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C2-Q039",
+      "sourceSha256": "4ac9f9efa44a48ab5645dd4f2be1c11a4f66dda004fd86cdacbf248d66b54fb0",
+      "candidateSha256": "72212fd01abfc4dc887a3357476f27d11148748b4e10ca3f78bdf001062ab201",
+      "reviewedSignature": "f244e54e0815a8b30183299b79e76e5009142e9b38b859046bd0dca728c438e8",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "50",
+      "dimension": {
+        "[length]": "3"
+      },
+      "manualArithmetic": "Per galleggiamento liberoρV= m. V=60/(6/5)=50 cm³, con unità grammi e centimetri cubici coerenti. Non serve g, che si cancella fra peso e spinta.",
+      "physicalAssumptions": "Galleggiante 60 g libero in liquidoρ1,20 g/cm³; volume immerso richiesto, non volume totale né parte emersa.",
+      "distractors": "72 è coefficiente di massa per densità, dimensione non volumetrica; 60 cm³ userebbeρ1 anziché 1,2; 0,05 e 50000 cm³ errano fattori 1000.",
+      "pedagogicalReview": "Inversa della densità con unità coerenti senza inventare volume emerso.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C2-Q040",
+      "sourceSha256": "7cf707f4748b124521da50d87632a9362edb440c5bfde6ee5f20f10b41f6651b",
+      "candidateSha256": "92eaf4bf638a74b567137bc28637a11ec052d927619d537926a75ad7509fbe8d",
+      "reviewedSignature": "b8f8c09ea1326ffd7cef9d400b114ee07c25205c8886dbfc2ec7fa4b882f4b4e",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "La ciotola può escludere abbastanza acqua grazie al volume esterno, rispetto alla sua massa totale",
+      "dimension": {
+        "[length]": "3"
+      },
+      "manualArithmetic": "La ciotola trattiene un volume d’aria e può spostare molta acqua rispetto alla propria massa, così la densità media del corpo più volume racchiuso è minore di quella dell’acqua. La pallina compatta ha densità del metallo maggiore dell’acqua e spinta insufficiente al suo peso. Conta il volume esterno immerso, non il solo volume di metallo.",
+      "physicalAssumptions": "Ciotola aperta asciutta con bordo emerso, pallina compatta dello stesso metallo; volume esterno escluso rispetto a massa totale, aria e capillarità trascurate.",
+      "distractors": "Forma non cambia densità intrinseca del metallo; anche la pallina riceve spinta verso l’alto. Cavità non basta se entra acqua o se il carico supera la capacità geometrica.",
+      "pedagogicalReview": "Interno asciutto e bordo emerso fanno parte dell’ipotesi geometrica.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    }
+  ],
+  "verifierSha256": "f145a28883665153b7df1264c1d3147dd65eea565c9b5e542f4c1a0883455dc6",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "reviewDependencySha256": {
+    "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+  },
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2",
+    "hypothesis": "6.148.7"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "reviewedCandidateCommit": "701f42eccce775559f0379a37071b22b36c91f33",
+  "packageSha256": "e50a3f30a93feaf8fea87ecffb3138772cabd21aacdd7d22edd898dcd72f1121",
+  "bindingsSha256": "887dd9d3b9f34535dfe09203eb675968f74a91ce3ee64019dbd23e3db019ece9",
+  "source": {
+    "commit": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "path": "officina-di-fisica/content/C2.json",
+    "title": "cric-c2-l004",
+    "reference": "Dieci problemi distinti Cric C2, con derivazioni individuali nella primaria prompt-only immutata e calcoli pre-key congelati; vedere le note per ID."
+  },
+  "modelsBeforeCandidateKeys": {
+    "path": "editorial/reviews/cric-c2-001-050-independent-models.py",
+    "sha256": "02b2341e89122709fcddfb6a48318d3d87ded5385cbbfada9e69edaad05007dc",
+    "commit": "e37686ebab9f1ac50919592f189ab8cf7f37184f"
+  },
+  "postReadNumericGuardHardening": "All constitutive, inverse, calibration and exact finite guard function bodies are identical to the actual pre-key snapshot from first version.",
+  "primaryBeforeCandidateKeys": {
+    "path": "editorial/reviews/primary-cric-c2-001-050-before-candidates-20261126.md",
+    "sha256": "34c7a33d1257ffa080cb94d8f36f0ebb753cf03134665b4b440153cc2f3a8237"
+  }
+}

@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/private/tmp/cric-c2-peer001-persist.py", line 4, in <module>
+    app=Path.cwd();a=Path('/private/tmp/cric-author-a-resident/officina-di-fisica');batch=f'cric-c2-l{int(sys.argv[1]):03}';m=importlib.import_module('tools.corpus_engineering.'+batch.replace('-','_')+'_verifier');p=json.loads((a/f'editorial/batches/{batch}.json').read_bytes());b=json.loads((a/f'editorial/batches/{batch}-bindings.json').read_bytes());r=m.report(p,b,a/'editorial/assets');assert_record_identity(r['records'],m.EXPECTED_IDS,p,b);assert all(x['ok'] for x in r['records']),[(x['id'],x['errors']) for x in r['records'] if not x['ok']];audit=m.mutation_audit(p,b,a/'editorial/assets')
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tools/corpus_engineering/cric_c2_l002_verifier.py", line 368, in mutation_audit
+    else:raise AssertionError('Wrong quantitative label accepted after hostile rebinding')
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Wrong quantitative label accepted after hostile rebinding

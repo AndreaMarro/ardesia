@@ -6,27 +6,28 @@
   "mandate": "INCOMPLETE",
   "questions": {
     "accounted": 4606,
-    "scientificallyReviewed": 4110,
-    "scientificallyUnreviewed": 496,
-    "registeredDrafts": 4110,
+    "scientificallyReviewed": 4150,
+    "scientificallyUnreviewed": 456,
+    "registeredDrafts": 4150,
     "compiledDraftsLocally": 3632,
     "compiledCandidateFullyLocallyValidated": false,
     "canonicalHistoricalRevisedDrafts": 3312,
-    "newRootAcceptanceReceipt": "editorial/reviews/cric-c2-l001-root-integration-20261126/receipt.json",
+    "newRootAcceptanceReceipt": "editorial/reviews/cric-c2-a50-root-integration-20261126/receipt.json",
     "compiledCandidateFullyRemotelyValidated": false,
     "unreviewedBySource": {
       "Ardesia": 0,
-      "Cric": 496
+      "Cric": 456
     },
     "newRootAcceptanceReceipts": [
       "editorial/reviews/u7-02-root-integration-20261126/receipt.json",
       "editorial/reviews/u7-03-root-integration-20261126/receipt.json",
       "editorial/reviews/cric-c1-remaining90-root-integration-20261126/receipt.json",
-      "editorial/reviews/cric-c2-l001-root-integration-20261126/receipt.json"
+      "editorial/reviews/cric-c2-l001-root-integration-20261126/receipt.json",
+      "editorial/reviews/cric-c2-a50-root-integration-20261126/receipt.json"
     ],
     "registrationPendingQuestions": 0,
     "fullArdesiaIdAudit": "editorial/reviews/u7-03-root-integration-20261126/ardesia4000-id-reconciliation.json",
-    "fullyAccepted": 4110,
+    "fullyAccepted": 4150,
     "pedagogicalReopened": 0,
     "pedagogicalReopenedIds": []
   },
@@ -125,7 +126,7 @@
     "receipt": "editorial/reviews/preintegration-failed-45873357486-20261126/receipt.json"
   },
   "currentLocalPreparation": {
-    "questionRegistry": 4110,
+    "questionRegistry": 4150,
     "state": "WITHHELD_OPEN_ACTIVITY_WITHDRAWAL",
     "explicitBlocker": "SIM-C1-L007-01",
     "officialCheckpointQuestions": 3632,
@@ -326,12 +327,12 @@
     }
   },
   "cricProduction": {
-    "scientificallyAccepted": 110,
+    "scientificallyAccepted": 150,
     "authoredKnown": 200,
     "authorAFirst10Commit": "a9e769ae",
     "authorBFirst50Commit": "41f9409d",
     "sourceOnlyPrimariesAndModels": "C1 completed andRoot accepted; reciprocalC2 primaries/models frozen;C2authoring200total and distinctC2reviews inprogress;C3 source-only handoff next",
-    "nextScientificAcceptanceId": "C2-Q011",
+    "nextScientificAcceptanceId": "C2-Q051",
     "protectedExamCount": 93
   },
   "nativeGoalControl": {
@@ -431,5 +432,13 @@
       "candidateRuntime": "4c83e0156b74d5a4cdfad90421f4304e6a7a03bde10d5b125f6635aae7eff907",
       "resolution": "Verify actual terminal evidence and individual scientific/whole-geometry judgments. No automatic credit, no retagging to95769."
     }
-  ]
+  ],
+  "c2AccessibleSvgGuardRefresh": {
+    "batch": "cric-c2-l001",
+    "candidateChanged": false,
+    "prior10ScientificRecordRowsChanged": false,
+    "rootActual69Tests": "PASS",
+    "newCredit": 0,
+    "priorFiveFilesArchived": "editorial/reviews/cric-c2-a50-root-recovery-20261126/before"
+  }
 }

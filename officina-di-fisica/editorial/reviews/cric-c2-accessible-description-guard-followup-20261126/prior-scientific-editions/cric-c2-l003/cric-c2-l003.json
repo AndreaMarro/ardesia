@@ -1,0 +1,368 @@
+{
+  "schemaVersion": "1.0.0",
+  "lessonReference": {
+    "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "gitPath": "officina-di-fisica/content/C2.json",
+    "sourceSha256": "7f2d3cf84a46d5d0086fd9cd6318b923ee073febc110a52fbc8f682edd995b23",
+    "primarySkill": "C2-L003",
+    "title": "Trasmettere una pressione",
+    "actualLessonPrerequisites": [
+      "C2-L001",
+      "C2-L002"
+    ]
+  },
+  "records": [
+    {
+      "id": "C2-Q021",
+      "sourceSha256": "a166989540d6828dd11c379867717f1964e0a9052c5558f42190b28912c4dc06",
+      "candidateSha256": "7eb04545f0620076b3dfbd2ddfe56e4d76593775e6f0d91a5caea989665be5e5",
+      "reviewedSignature": "0bfb4468bfbff6d664130c9e4e0a21880ec9af1c3962b84c244c74e7c7e5ec15",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "La pressione nel liquido",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "-1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "A geometria, quote e densità invariati, p(z)=p_riferimento+termine idrostatico. Un incremento7 kPa trasmesso nel liquido confinato aumenta anche di7 kPa la pressione nel punto inferiore, mantenendo la differenza idrostatica fra quote.",
+      "physicalAssumptions": "Liquido confinato fermo,densità e quote invariate,incremento7kPa imposto in un punto;non si uguagliano le pressioni assolute a quote diverse.",
+      "distractors": "Forza,peso e volume non aumentano di kPa. Il termine idrostatico fra quote resta costante;è la pressione di entrambi i punti ad aumentare.",
+      "pedagogicalReview": "Due stati alla stessa coppia di quote sottratti prima di confrontare incrementi.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C2-Q022",
+      "sourceSha256": "e7d464035d53959664034061e4f8953a412f9e30aded228b45542271c8f7146e",
+      "candidateSha256": "e533069f9f605ee5efe79e570a47a0e440c36cfe9e00d4e2267856fb543f506e",
+      "reviewedSignature": "9fd1acafbc0c5afa5971a844e7324925dd6f19ad18a07aab5bb6b60d72a0e1f6",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "cric-c2-l003-progressive.svg": "a3a9758fee07f17eb3b0cf06d9cbacd6fbf3ca7c65fe96e6b1e41ac0a1627501"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "225",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Le aree sono proporzionali ai quadrati dei diametri. A_grande/A_piccola=(6/2)²=9, quindi F_grande=25·9=225 N, a pari quota e con lo stesso riferimento di pressione sulle facce esterne. È una relazione di equilibrio istantaneo, non da sola un bilancio di lavori su corse finite.",
+      "physicalAssumptions": "Pistoni ideali circolari diametri2/6cm,medesima quota e atmosfera,forze aggiuntive nette25N sul piccolo;confronto di equilibri.",
+      "distractors": "75N usa diametri senza quadrato;25N uguaglia forze anziché pressione;25/9N inverte il rapporto;675N usa la potenza cubica3³.",
+      "pedagogicalReview": "Quadrato del rapporto diametri prima del guadagno di forza.",
+      "assetReview": "XML e nuovo PNG indipendente640×1450 letti per intero. Primo pannello:rettangoli area con profondità comune65 e larghezze30/270, rapporto9; sono dichiarati aree,non diametri. Frecce forze lunghe20/180 per25/225N,scala comune0,8coordinate/N. Secondo esempio autonomo:corse24/3cm in lunghezze240/30, stessa scala10coordinate/cm, piccolo entrante verso il basso e grande uscente verso l’alto; rapporto aree8 reciproco delle corse, nessuna uguaglianza di lavori finiti dedotta. Terzo:prisma schematico con facciaA12cm² e profonditàs0,5cm,volume6cm³=6mL, senza altre dimensioni assegnate o comune scala tridimensionale dichiarata. Testi e quantità leggibili,nessuna sovrapposizione residua rilevata.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C2-Q023",
+      "sourceSha256": "fd4e001a113631e6c9bd59d54a66d8e0069e7dfeb5a63a51c7e75f5943c393bd",
+      "candidateSha256": "61095b2351e3fd5ade85c19c76f146f4a25b360d82a8fd0087d0b3cec6517cfd",
+      "reviewedSignature": "46bef8146cdb74f4e2966764460a49e7d7f186100a276539a849af99c333611e",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "20",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "A pari quota p=F/A, dunque F_piccola=300·6/90=20 N. I centimetri quadrati si cancellano nel rapporto. Il modello ideale trascura pesi dei pistoni o li considera già inclusi nelle forze assegnate.",
+      "physicalAssumptions": "Pistoni ideali stessa quota e atmosfera,aree6/90cm²,carico aggiuntivo300N sul grande;attriti esclusi.",
+      "distractors": "4500N inverte aree;300N ignora la differenza;50N divide per6 senza usare90;1800N moltiplica per6 invece del rapporto completo.",
+      "pedagogicalReview": "Inversa area-carico e controllo della minore forza sul piccolo.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C2-Q024",
+      "sourceSha256": "7fbffeaa15f6fcd2f9e490d2b2842db031b68a6ca6c94a1a90fe09acc54013d9",
+      "candidateSha256": "ddbc9f6b773f17a9a84e848cf19d7a55f49e49c8a9fc35f8f56ffc7a1713991f",
+      "reviewedSignature": "16911d6fcdc2ee46d0f91a782198d59b7f8fd6b42f47aed55e50b1091356b434",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "A₁s₁=A₂s₂ senza alcun termine di accumulo",
+      "dimension": {
+        "[length]": "3"
+      },
+      "manualArithmetic": "Quando una bolla si comprime, parte del volume spinto dal primo pistone riduce il volume del gas. La relazione semplice A₁Δx₁=A₂Δx₂ non vale durante quella fase: occorre includere la variazione di volume della bolla, con segni coerenti. Non viene meno la conservazione della massa.",
+      "physicalAssumptions": "Circuito senza perdite,liquido incomprimibile ma bolla che si comprime durante avvio;spostamenti entrante/uscente e accumulo della bolla dichiarati.",
+      "distractors": "La massa si conserva anche comprimendo gas. Definizioni di pressione e massa/volume non cambiano;non scompare la pressione. Serve il termine positivoδV_b nel bilancio dei volumi spinti.",
+      "pedagogicalReview": "Accumulo volumetrico della bolla distinto da perdita di materia.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C2-Q025",
+      "sourceSha256": "6bcd90175228cc0ca4aea5c1275b8fc57615a140e3a728134a22ed460faa5f4a",
+      "candidateSha256": "ca43e7f7e23299d2bf36fc17b6dc80832784bd27ea638af0ac1f2968fe1e6a67",
+      "reviewedSignature": "f06616c702d474051727e271c2e303eb44e757ef4a6ae18dd92206a67c0ce088",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "cric-c2-l003-progressive.svg": "a3a9758fee07f17eb3b0cf06d9cbacd6fbf3ca7c65fe96e6b1e41ac0a1627501"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "3",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "Per liquido incomprimibile senza perdite o accumuli, A₁s₁=A₂s₂. Con rapporto8 e corsa piccola0,24 m, s₂=0,24/8=0,03 m=3 cm. Non si deduce da questa sola continuità l’uguaglianza dei lavori finiti se cambiano le quote.",
+      "physicalAssumptions": "Liquido incomprimibile senza bolle né perdite,rapporto aree8,corsa piccola0,24m;si chiede soltanto la corsa geometrica grande.",
+      "distractors": "192cm moltiplica per8 e richiederebbe64volte il volume disponibile;24cm ignora il rapporto aree;0,03cm non converte metri;0,3cm perde un fattore10.",
+      "pedagogicalReview": "Bilancio geometrico senza dedurre uguaglianza di lavori finiti a quote diverse.",
+      "assetReview": "XML e nuovo PNG indipendente640×1450 letti per intero. Primo pannello:rettangoli area con profondità comune65 e larghezze30/270, rapporto9; sono dichiarati aree,non diametri. Frecce forze lunghe20/180 per25/225N,scala comune0,8coordinate/N. Secondo esempio autonomo:corse24/3cm in lunghezze240/30, stessa scala10coordinate/cm, piccolo entrante verso il basso e grande uscente verso l’alto; rapporto aree8 reciproco delle corse, nessuna uguaglianza di lavori finiti dedotta. Terzo:prisma schematico con facciaA12cm² e profonditàs0,5cm,volume6cm³=6mL, senza altre dimensioni assegnate o comune scala tridimensionale dichiarata. Testi e quantità leggibili,nessuna sovrapposizione residua rilevata.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C2-Q026",
+      "sourceSha256": "b3200e0709092dd3beca3907d1e42405e40351cfe789641f294bc71ac6dec4d1",
+      "candidateSha256": "dc6866a2ce77a70bd481ad8aa971749874016134644583d588122d1567f83706",
+      "reviewedSignature": "a8783a77c036fae6de947f0a182c22c03e81f174e7e059858dab266ef169bba3",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Pascal",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "-1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Il principio è quello di Pascal: un incremento di pressione applicato a un fluido confinato viene trasmesso, nel modello statico appropriato, senza aggiungere la stessa forza su aree diverse. Pressione e forza vanno distinte.",
+      "physicalAssumptions": "Principio di equilibrio per incremento di pressione in fluido confinato a geometria invariata;non omogeneità della pressione assoluta a quote diverse.",
+      "distractors": "Archimede è spinta;Torricelli barometro oefflusso;Bernoulli energia di corrente;Hooke elasticità. Nessuno è il principio di trasmissione dell’incremento assegnato.",
+      "pedagogicalReview": "Cognome collegato al principio e limiti idrostatici espliciti.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C2-Q027",
+      "sourceSha256": "e8701632ec2026b67e0a502df54a014d4dc6fefaed01dd4c2065cbe989c6cc16",
+      "candidateSha256": "bd5a515d426b1c134103f8584e516804f875516f79d6925320587ca0f27fead7",
+      "reviewedSignature": "57700dfc73cd6c8096d7e9571cefa73ee350dbb3c1e0c2a00a6e2f60b5c43b33",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "cric-c2-l003-progressive.svg": "a3a9758fee07f17eb3b0cf06d9cbacd6fbf3ca7c65fe96e6b1e41ac0a1627501"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "6",
+      "dimension": {
+        "[length]": "3"
+      },
+      "manualArithmetic": "Cinque millimetri sono mezzo centimetro. ΔV=12 cm²·(1/2 cm)=6 cm³=6 mL. La conversione della corsa va fatta prima di moltiplicare per l’area.",
+      "physicalAssumptions": "Pistone area12cm²,corsa5mm,liquido senza perdite,volume geometrico spostato;nessuna pressione richiesta.",
+      "distractors": "60mL interpreta5mm come5cm;0,6mL introduce un fattore10opposto;24è coefficiente di area/corsa con dimensione errata;12copia il coefficiente di area senza una lunghezza.",
+      "pedagogicalReview": "Conversione5mm→0,5cm prima del prodotto area per corsa.",
+      "assetReview": "XML e nuovo PNG indipendente640×1450 letti per intero. Primo pannello:rettangoli area con profondità comune65 e larghezze30/270, rapporto9; sono dichiarati aree,non diametri. Frecce forze lunghe20/180 per25/225N,scala comune0,8coordinate/N. Secondo esempio autonomo:corse24/3cm in lunghezze240/30, stessa scala10coordinate/cm, piccolo entrante verso il basso e grande uscente verso l’alto; rapporto aree8 reciproco delle corse, nessuna uguaglianza di lavori finiti dedotta. Terzo:prisma schematico con facciaA12cm² e profonditàs0,5cm,volume6cm³=6mL, senza altre dimensioni assegnate o comune scala tridimensionale dichiarata. Testi e quantità leggibili,nessuna sovrapposizione residua rilevata.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C2-Q028",
+      "sourceSha256": "1ef1560c53e14e337ab792d1cf184a0f0d962fb08ceb3d061f4055c94dd00f2f",
+      "candidateSha256": "4ca842cf416aba9f7992820ba28349456a7698768c1c88afc8e571c718a462e2",
+      "reviewedSignature": "26437419aea5b12cc70374f31e5061b7339cbfc413e81aded2345321ac848ee1",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "In energia interna della macchina e del fluido, poi anche in calore ceduto all’ambiente",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "La differenza fra lavoro fornito e utile può aumentare l’energia interna delle parti e del fluido per attrito, ed eventualmente essere trasferita come calore. Un dispositivo reale non trasforma automaticamente tutta l’energia fornita in lavoro sul carico; il sistema va definito per il bilancio.",
+      "physicalAssumptions": "Pressa reale con attriti,manovra lenta,lavoro in ingresso maggiore dell’utile e accumulo di energia meccanica nullo;considerati macchina,fluido,carico e ambiente.",
+      "distractors": "L’energia non scompare né crea lavoro extra;attrito non implica fuga di massa. Il bilancio dei volumi continua a vincolare le corse,non le rende uguali.",
+      "pedagogicalReview": "Sistema esteso per distinguere dissipazione da perdita di energia totale.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C2-Q029",
+      "sourceSha256": "6a731242fb8b118848fd00f123b86a7e254637de2f16667966bd199653ccdfc5",
+      "candidateSha256": "1523efc02ce09ebc081bfe4841f74fca9aadd674236e908332da4fa212a13eb0",
+      "reviewedSignature": "0edfc582ed70ba84673d14e55e9838f179e01b5eac6dddb1ce0cbe3a34b593bd",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "30",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "La forza netta sulla membrana èΔp A. Area2 cm²=2·10⁻⁴ m² eΔp150 kPa=150000 Pa: F=30 N. La pressione atmosferica comune è già eliminata dalla sovrapressione; non va aggiunta di nuovo.",
+      "physicalAssumptions": "Membrana area2cm²,differenza uniforme interno-esterno150kPa;forza netta e non forza della sola pressione assoluta.",
+      "distractors": "300000N non converte area;0,03N usa150Pa anziché150kPa;75 non ricostruisceΔpA;150N copia il coefficiente in kPa come newton.",
+      "pedagogicalReview": "Differenza di pressioni e conversione quadratica dell’area.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C2-Q030",
+      "sourceSha256": "424ca5c63eea450751a5c579b87507555d660c1cf54d1615ef8791d28e0e8bba",
+      "candidateSha256": "18e8853a5ff606e363034910d23d2ac541f82dbb3168b9fea9b7a915aafe6884",
+      "reviewedSignature": "48d3e2f62add6796dce600c66e2f4f715f3a088096265a0e85b7e96942aa0294",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "La stessa pressione, pur potendo corrispondere a forze diverse sui pistoni",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "-1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "In un liquido fermo collegato, alla stessa quota la pressione è uguale; con identico riferimento i manometri mostrano la stessa lettura. Aree diverse dei pistoni richiedono eventualmente forze diverse, non pressioni diverse a pari quota.",
+      "physicalAssumptions": "Manometri con stesso riferimento,stessa quota e unico liquido connesso fermo;aree dei pistoni diverse,forze non necessariamente uguali.",
+      "distractors": "Rapporto aree vale per forze,non pressioni alla stessa quota;quiete non significa pressione relativa nulla. Pascal misura pressione e non forza.",
+      "pedagogicalReview": "Riferimenti dei manometri e direzione normale prima della forza.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    }
+  ],
+  "verifierSha256": "92ff95b1c4f1b6910648ad2eaae12c7d573e05ad118dcce73ca40cc5e6bcad0f",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "reviewDependencySha256": {
+    "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+  },
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2",
+    "hypothesis": "6.148.7"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "reviewedCandidateCommit": "b2115d947dbd12a419a8b0c128584f121d4dd341",
+  "packageSha256": "9d354916aa761cfbf95d770fd837807b9050e2663aae400576f79e73ee2a6929",
+  "bindingsSha256": "659007dd7178d7b14222edc10ef55f73210a93dfdb03356738b1d1b9fc3db56f",
+  "source": {
+    "commit": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "path": "officina-di-fisica/content/C2.json",
+    "title": "cric-c2-l003",
+    "reference": "Dieci problemi distinti Cric C2, con derivazioni individuali nella primaria prompt-only immutata e calcoli pre-key congelati; vedere le note per ID."
+  },
+  "modelsBeforeCandidateKeys": {
+    "path": "editorial/reviews/cric-c2-001-050-independent-models.py",
+    "sha256": "02b2341e89122709fcddfb6a48318d3d87ded5385cbbfada9e69edaad05007dc",
+    "commit": "e37686ebab9f1ac50919592f189ab8cf7f37184f"
+  },
+  "postReadNumericGuardHardening": "All constitutive, inverse, calibration and exact finite guard function bodies are identical to the actual pre-key snapshot from first version.",
+  "primaryBeforeCandidateKeys": {
+    "path": "editorial/reviews/primary-cric-c2-001-050-before-candidates-20261126.md",
+    "sha256": "34c7a33d1257ffa080cb94d8f36f0ebb753cf03134665b4b440153cc2f3a8237"
+  }
+}

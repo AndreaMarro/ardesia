@@ -1,0 +1,71 @@
+{
+  "schemaVersion": "1.0.0",
+  "scope": "separate independent scientific and pedagogical review of ten distinct original Cric questions",
+  "batch": "cric-c2-l004",
+  "records": 10,
+  "reviewedCandidateCommit": "701f42eccce775559f0379a37071b22b36c91f33",
+  "allFinalRecordsRead": true,
+  "allFinalSVGXmlAndNativeRead": true,
+  "primaryBeforeKeys": {
+    "path": "editorial/reviews/primary-cric-c2-001-050-before-candidates-20261126.md",
+    "sha256": "34c7a33d1257ffa080cb94d8f36f0ebb753cf03134665b4b440153cc2f3a8237"
+  },
+  "modelBeforeKeys": {
+    "path": "editorial/reviews/cric-c2-001-050-independent-models.py",
+    "sha256": "02b2341e89122709fcddfb6a48318d3d87ded5385cbbfada9e69edaad05007dc",
+    "commit": "e37686ebab9f1ac50919592f189ab8cf7f37184f"
+  },
+  "actualTarget": {
+    "scope": "actual targeted independent review tests only_not_full_suite_or_product_UI",
+    "command": [
+      "/private/tmp/cric-recovery-venv/bin/python",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests/corpus",
+      "-p",
+      "test_cric_c2_l004_independent.py",
+      "-v"
+    ],
+    "candidateApp": "/private/tmp/cric-author-a-resident/officina-di-fisica",
+    "exitCode": 0,
+    "signal": null,
+    "startedAt": "2026-11-26T20:26:31.818043+00:00",
+    "finishedAt": "2026-11-26T20:26:33.328502+00:00",
+    "elapsedSeconds": 1.5104847920010798,
+    "rawSha256": "b631035133a36ccab55b2834ebe6dbda73b44d2c997e009bcce7824fa7aa03b0",
+    "humanApproval": "NOT_RUN",
+    "publication": "DRAFT"
+  },
+  "mutations": 29,
+  "wrongKeyRebindRetokenCases": 10,
+  "modes": {
+    "EXACT_ORACLE": 5,
+    "AI_CONCEPTUAL": 5
+  },
+  "freshAndSavedIdentity": "PASS for exact candidate package and bindings",
+  "scientificResult": "10/10, no residual finding",
+  "humanApproval": "NOT_RUN",
+  "productUI": "NOT_RUN",
+  "publication": "DRAFT",
+  "files": {
+    "tools/corpus_engineering/cric_c2_l004_verifier.py": "f145a28883665153b7df1264c1d3147dd65eea565c9b5e542f4c1a0883455dc6",
+    "tests/corpus/test_cric_c2_l004_independent.py": "ba12ac4c8665763c912e634cffea6d5d5e91c6a0137d3b50409a205bda4e3b78",
+    "editorial/reviews/cric-c2-l004-independent-mutations.json": "acba7266cc3cf2b4807300e4f0cc9c9f0b5a7051a96f71526f0045e2a19173d5",
+    "editorial/reviews/cric-c2-l004.json": "07c329d7793f4da1180e37ae560b47de24cbe73913644d132a7a7cd9140caa80",
+    "editorial/reviews/cric-c2-l004-target-final.log": "b631035133a36ccab55b2834ebe6dbda73b44d2c997e009bcce7824fa7aa03b0",
+    "editorial/reviews/cric-c2-l004-independent-note.md": "d398b832843d6e517048bb4062f08aaebd869493995bb2038e59e470b0116711",
+    "editorial/reviews/cric-c2-l004-target-final.json": "fcce065718e2248e31bb49f6c24b3825e1a0be6c7a46a396bf0ae3eb41a04947",
+    "editorial/reviews/cric-c2-l004-svg-independent-evidence/native-svg-producer.mjs": "bc6b5b812da865ec5a04a20b461b477572758a8e245f54dfa4c8916012d7192c",
+    "editorial/reviews/cric-c2-l004-svg-independent-evidence/cric-c2-l004-full.png": "9a79e6f5338d38359df411086778dbf3afc672709576c9b8cda064a1bc2122c7",
+    "editorial/reviews/cric-c2-l004-svg-independent-evidence/cric-c2-l004-terminal.json": "1bf5c2c490e37bf311164565a814b9024965a19d3f2fa77039331b8c7d8f2b0b",
+    "editorial/reviews/cric-c2-l004-svg-independent-evidence/cric-c2-l004-render.json": "c351ba0dbe88ead01d0082a62df642d87866f815d2e0393c96fe714e256fc8de",
+    "editorial/reviews/primary-cric-c2-001-050-before-candidates-20261126.md": "34c7a33d1257ffa080cb94d8f36f0ebb753cf03134665b4b440153cc2f3a8237",
+    "editorial/reviews/cric-c2-001-050-independent-models.py": "02b2341e89122709fcddfb6a48318d3d87ded5385cbbfada9e69edaad05007dc",
+    "editorial/reviews/cric-c2-001-050-model-before-candidates-20261126.json": "a2d02c32ae26206a95ffabe59d60b5aac150a6445fe58d85be5afe53bfa554ca",
+    "editorial/reviews/cric-c2-001-050-git-evidence/cric-c2-001-050-independent-models.py": "02b2341e89122709fcddfb6a48318d3d87ded5385cbbfada9e69edaad05007dc",
+    "editorial/reviews/cric-c2-001-050-git-evidence/git-inputs.json": "f24efb1f0b8d2aec41f7a763e87530fd6a8ce2aaa2e978aafcd15c1721e43fc2"
+  }
+}

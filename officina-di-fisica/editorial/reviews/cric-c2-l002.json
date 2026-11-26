@@ -1,0 +1,366 @@
+{
+  "schemaVersion": "1.0.0",
+  "lessonReference": {
+    "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "gitPath": "officina-di-fisica/content/C2.json",
+    "sourceSha256": "7f2d3cf84a46d5d0086fd9cd6318b923ee073febc110a52fbc8f682edd995b23",
+    "primarySkill": "C2-L002",
+    "title": "Leggere una colonna di liquido",
+    "actualLessonPrerequisites": [
+      "C2-L001"
+    ]
+  },
+  "records": [
+    {
+      "id": "C2-Q011",
+      "sourceSha256": "0eb0944882c98e50c977643f806e9022c0f126ec082c4d66ab84946ca4e499da",
+      "candidateSha256": "ff7338bcf7407ab28f2ee02bbd68c63d13579fb73d7d0a6bedeec6fe9fa5cbac",
+      "reviewedSignature": "24b821333fc219518d1d66bb0b6f13c13c4328b08dfe1a5635807bc2ddbcc61f",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2/5",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "Dall’incremento idrostatico Δp=ρgh isolo h=4000/(1000·10)=2/5 m=0,40 m. Conta la differenza rispetto alla superficie, quindi non serve assegnare p superficiale.",
+      "physicalAssumptions": "Acqua omogenea fermaρ1000 kg/m³, g 10 m/s²; incremento 4 kPa rispetto alla superficie, non pressione assoluta.",
+      "distractors": "4 m e 0,04 m cambiano fattore 10; 40 m e 400 m darebbero 400 e 4000 kPa.4 Pa invece di 4 kPa produrrebbe 0,0004 m.",
+      "pedagogicalReview": "Inversa della differenza idrostatica senza aggiungere atmosfera.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C2-Q012",
+      "sourceSha256": "3785135f35c514952caf38288fe3bf8d90c847a567771997a6cd0747735fd25c",
+      "candidateSha256": "0acb2c780756ca15016a2b44baa6c45f462996ee593fd0328bd88420b18aa74e",
+      "reviewedSignature": "96dd1e45eb58fd80f1dbc70400ac78c304fe387efafb25b82f5f8f89f8411a0f",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Alla stessa quota",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "Stesso liquido collegato in quiete e uguale pressione atmosferica sulle superfici libere: alla stessa quota la pressione deve essere uguale. Trascurando capillarità, le superfici hanno la stessa quota, indipendentemente dalle larghezze.",
+      "physicalAssumptions": "Stesso liquido connesso in quiete, due recipienti aperti alla stessa atmosfera, capillarità esclusa.",
+      "distractors": "Aree e volumi non sostituiscono l’uguaglianza di pressione alla base; un dislivello non capillare produrrebbe un flusso prima dell’equilibrio.",
+      "pedagogicalReview": "Pressioni alla stessa quota prima del confronto dei livelli.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C2-Q013",
+      "sourceSha256": "5e9700a525fc14c587a1a08b1634e09fbf103f2cf28a37ce2c5d25f841a326b0",
+      "candidateSha256": "f7312bc7ac7bd25c8c077278a473e5af6956ff74fc0a25f03dedc3c8e6575d39",
+      "reviewedSignature": "7f821a6ebdcffc70b8f9d2800138aade7662eebf77a09bb1192e05edece11af4",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "987/10",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "-1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Con pressione superiore trascurabile p_atm=ρgh=13600·(74/100)·(981/100) Pa=98727,84 Pa=98,72784 kPa. Una stima coerente è circa 99 kPa, oppure 98,7 kPa a tre cifre. Il prodotto può essere eseguito con interi, senza introdurre una diversa altezza o omettere la pressione sopra la colonna. Il verificatore mantiene il prodotto razionale 617049/6250 kPa e controlla l’arrotondamento al decimo con confronti esatti, senza usare float.",
+      "physicalAssumptions": "Mercurioρ13600 kg/m³, colonna 0,740 m, pressione superiore trascurabile, g 9,81 m/s²; risposta proposta arrotondata a 0,1 kPa dopo prodotto esatto.",
+      "distractors": "9,87 e 987 kPa spostano una potenza 10; 100,6 deriva da g 10 anziché 9,81; 0,740 copia altezza numerica senzaρg. Il valore esatto 98,72784 cade nell’intervallo che arrotonda a 98,7 kPa.",
+      "pedagogicalReview": "Prodotto intero manuale e arrotondamento finale controllato con limiti esatti.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "exactUnderlyingPressureKPa": "617049/6250",
+      "displayRoundingRule": "nearest tenth kPa via exact floor(10p+1/2)/10"
+    },
+    {
+      "id": "C2-Q014",
+      "sourceSha256": "004357e5f7dfaab90dd7010275d1d2eca662a8d1e71ee4b6d01ab4f8e0ee676f",
+      "candidateSha256": "ca438069283c7a377bfcb4122ff712ef496bcef73c6a3b00b739412fa4070ae8",
+      "reviewedSignature": "5b5801cebc0fa5259781fd9bcf08b81a5f865b6ed853a27ab4ff119689e14c94",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "−ρgh",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "-1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Risale di h significa aumento di quota: in un liquido omogeneo Δp=−ρgh. La pressione diminuisce, restando distinta dal modulo positivo della differenza; la legge richiede densità e g costanti sul tratto o l’integrale appropriato.",
+      "physicalAssumptions": "Quota crescente di h>0, densità e g uniformi; variazione finale meno iniziale, non modulo della diminuzione.",
+      "distractors": "+ρgh descrive il verso opposto; zero richiede h 0; ρg/h eρgh² hanno dimensioni diverse da pressione.",
+      "pedagogicalReview": "Verso della quota prima del segno della pressione.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C2-Q015",
+      "sourceSha256": "59722dd3d086cb456d948a3365cd79968f86faceeb150750e0be8ea2eacb3982",
+      "candidateSha256": "ff370e80b007788c2b85679a46e5202d8a6886e7d085c165cfee026a5e84e75d",
+      "reviewedSignature": "68917da94cd861d98e22dc83e36ea177e5426135567edaa97558cab03743cc75",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "cric-c2-l002-progressive.svg": "d16e1b81a656481edf1077344ead795e47a702f5c05ca7462a28094b9cb07961"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "80",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Le pressioni atmosferiche sui due lati si cancellano. La sovrapressione cresce linearmente da 0 al bordo alto aρgH al bordo basso; la media èρgH/2=1000 Pa. Area 0,40·0,20=0,08 m², forza netta 80 N. Equivale all’integrale ρgbH²/2.",
+      "physicalAssumptions": "Sportello verticale b 0,40 m, H 0,20 m; superficie d’acqua al bordo superiore, stessa atmosfera sull’altro lato, ρ1000, g 10.",
+      "distractors": "160 N usa pressione massima uniforme; zero considera il solo bordo alto; 800 N introduce fattore 10; 2000 N copia il numero dei pascal senza area.",
+      "pedagogicalReview": "Integrale lineare o media triangolare, senza assegnare erroneamente la posizione della risultante.",
+      "assetReview": "XML finale e nuovo PNG indipendente 640×1490 letti integralmente. Primo profilo: pressione da 0 a 2000 Pa in 300 coordinate, profondità 0,20 m in 210 coordinate; media 1000 Pa su area 0,08 m² dà 80 N. Non è localizzata la risultante al punto medio. Manometro: triangolo con cateti 346,4101615 e 200, ipotenusa 400 per 0,50 m; verticale 200 per 0,25 m. Arco corretto centrato(140,850), raggio 100, inizio(240,850), fine(226,60254,800), angolo 30°. Terzo grafico: 360 coordinate per 0,50 m e 240 per 4,5 kPa, pendenza 9 kPa/m, densità 900 kg/m³. Vecchio arco negativo preservato; nessun taglio o contatto residuo.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C2-Q016",
+      "sourceSha256": "f85dca4d0be3e2251b0fb35b9e1f40e389cfe290336c927b6ce95baeef0fa5cb",
+      "candidateSha256": "4bbe1bf7639e63f5ef30cd740bc755564a0d2b4b04bbf5aa328c31696757b3b6",
+      "reviewedSignature": "738fb35fcc0bb2d4cbe4c329a063ea9b3804bace1010b733f11ac11dc998a992",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Il dislivello verticale fra i livelli",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "Nella legge idrostatica entra il dislivello verticale fra le interfacce, non la lunghezza lungo il tubo inclinato. Se il tubo forma α con l’orizzontale, h=L sinα.",
+      "physicalAssumptions": "Due livelli in liquido fermo, densità costante e capillarità trascurata; dislivello verticale, non lunghezza obliqua.",
+      "distractors": "Tutta la lunghezza è altezza solo per tubo verticale; proiezione orizzontale, diametro e loro somme non sono dislivello lungo gravità.",
+      "pedagogicalReview": "Proiezione verticale distinta dalla forma del tubo.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C2-Q017",
+      "sourceSha256": "e86f9c2738fe3d7ce543076564039550e7626cb0835535290c826aa252f712d3",
+      "candidateSha256": "75374736c6254ca5b31b709b5392d5d6e1d020440c1fd5061fb2949310a11b22",
+      "reviewedSignature": "ffbc275777336cdff98d9177188cb54da3cd8c239b78d96187b3c15279100a68",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "cric-c2-l002-progressive.svg": "d16e1b81a656481edf1077344ead795e47a702f5c05ca7462a28094b9cb07961"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2000",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "-1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Il dislivello verticale è 0,50 sin 30°=0,25 m. Quindi |Δp|=800·10·0,25=2000 Pa=2 kPa. Usare 0,50 m come h raddoppierebbe impropriamente il risultato. La nuova risposta è in pascal: 2 kPa=2000 Pa, con conversione esatta del coefficiente del modello pre-key.",
+      "physicalAssumptions": "Lunghezza obliqua 0,50 m a 30° dall’orizzontale, densità 800, g 10; si chiede modulo inPa, non il segno orientato.",
+      "distractors": "4000 Pa omette sin 30°; 1000 Pa applica due volte 1/2; 20 Pa perde fattore 100; 800 Pa copia il coefficiente della densità senza g h.",
+      "pedagogicalReview": "Seno notevole esatto e modulo esplicito.",
+      "assetReview": "XML finale e nuovo PNG indipendente 640×1490 letti integralmente. Primo profilo: pressione da 0 a 2000 Pa in 300 coordinate, profondità 0,20 m in 210 coordinate; media 1000 Pa su area 0,08 m² dà 80 N. Non è localizzata la risultante al punto medio. Manometro: triangolo con cateti 346,4101615 e 200, ipotenusa 400 per 0,50 m; verticale 200 per 0,25 m. Arco corretto centrato(140,850), raggio 100, inizio(240,850), fine(226,60254,800), angolo 30°. Terzo grafico: 360 coordinate per 0,50 m e 240 per 4,5 kPa, pendenza 9 kPa/m, densità 900 kg/m³. Vecchio arco negativo preservato; nessun taglio o contatto residuo.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C2-Q018",
+      "sourceSha256": "8d665f25188730d7019b71f5562b9253aa95f4e2c7627806b4cc4c05fe1db117",
+      "candidateSha256": "8711d455bec269c173752c268ee67a9e8064bdb9e5a9a7e3f9c84a194bac9a25",
+      "reviewedSignature": "b23e73dd3f45b8335bba4744987c53d8344e8ac01dbfb2c3586837953c79a34c",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "La prima è maggiore della stessa differenza fra le pressioni dei gas",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "-1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "A stessa profondità nello stesso liquido, ciascuna pressione è p_s+ρgh. La pressione del gas superficiale maggiore si ritrova come uguale differenza positiva fra le pressioni al fondo; le due pressioni di fondo non sono uguali per il solo h uguale.",
+      "physicalAssumptions": "Recipienti separati, stesso liquido modellato con densità uniforme comune, stessa profondità e g, pressioni dei gas superiori diverse.",
+      "distractors": "Uguale h dà uguali incrementi, non uguale pressione assoluta con riferimenti diversi; aggiungere stessoρgh non conserva in generale un rapporto.",
+      "pedagogicalReview": "Differenze e rapporti di pressioni distinti.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C2-Q019",
+      "sourceSha256": "ff8f87d22479769daa44c5d03a5b49455ef2f85bac84bff69bd30f52891446f7",
+      "candidateSha256": "6cfc3620e81342de06c9f5007014e2be88a140542f8052de45677f225a8055f0",
+      "reviewedSignature": "ca3e98cbd7f45c45e1a8196640ef5c359a6f9925a039b537ae8b170c2bca5e5a",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "cric-c2-l002-progressive.svg": "d16e1b81a656481edf1077344ead795e47a702f5c05ca7462a28094b9cb07961"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "900",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "-3"
+      },
+      "manualArithmetic": "La pendenza Δp/Δh èρg. Con 4500 Pa in 0,50 m ricavoρ=4500/(10·0,50)=900 kg/m³. La pressione superficiale influenza l’intercetta, non questa pendenza.",
+      "physicalAssumptions": "Incremento 4500 Pa per 0,50 m di profondità, g 10 m/s², densità uniforme; pendenza, non intercetta.",
+      "distractors": "9000 non divide per g; 450 non divide per 0,50 m; 0,9 interpreta kPa comePa; 2250 kg/m³ darebbe 11250 Pa, non 4500.",
+      "pedagogicalReview": "Pendenza depurata dall’intercetta prima di dividere per g.",
+      "assetReview": "XML finale e nuovo PNG indipendente 640×1490 letti integralmente. Primo profilo: pressione da 0 a 2000 Pa in 300 coordinate, profondità 0,20 m in 210 coordinate; media 1000 Pa su area 0,08 m² dà 80 N. Non è localizzata la risultante al punto medio. Manometro: triangolo con cateti 346,4101615 e 200, ipotenusa 400 per 0,50 m; verticale 200 per 0,25 m. Arco corretto centrato(140,850), raggio 100, inizio(240,850), fine(226,60254,800), angolo 30°. Terzo grafico: 360 coordinate per 0,50 m e 240 per 4,5 kPa, pendenza 9 kPa/m, densità 900 kg/m³. Vecchio arco negativo preservato; nessun taglio o contatto residuo.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C2-Q020",
+      "sourceSha256": "f54eb6cdd0b32df502b65f022538c28ef729d9447c8cb222123253a426dfcd07",
+      "candidateSha256": "01dad2ed9b5b2a962a643afe39b01c90879de35403a0b77d15fcfa8926c438a5",
+      "reviewedSignature": "bcfde8efaa0cade5678f441d108879955de4d8c4dda6f70fd94e4c5b6e5692bc",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Diminuisce, perché la colonna equilibra soltanto p_atm−p_g",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "Con gas residuo p_atm=p_gas+ρgh. A p_atm eρg uguali, h=(p_atm−p_gas)/(ρg) è minore dell’altezza con vuoto superiore. Non si aggiunge p_gas alla colonna disponibile.",
+      "physicalAssumptions": "Stesso barometro e atmosfera, gas superiore con 0<p_g<p_atm, ρ e g invariati; colonna positiva confrontata col vuoto superiore.",
+      "distractors": "Sommare p_g all’atmosfera inverte il suo ruolo superiore; altezza non uguale né raddoppiata universalmente; dominio 0<p_g<p_atm esclude altezze negative.",
+      "pedagogicalReview": "Dominio del gas residuo esplicito prima di confrontare altezze.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    }
+  ],
+  "verifierSha256": "30a618d248c0850049ef5ac1467a82cec07193fa6037e08f8282dde8f9a1b9ce",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "reviewDependencySha256": {
+    "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+  },
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2",
+    "hypothesis": "6.148.7"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "reviewedCandidateCommit": "83b8639f9f0796f680c2266f1f8b5a6fbbf1f440",
+  "packageSha256": "12a70d8345963b5b5f6cf020fa8ce4bf78bdff8f1b644536db132447dc0ad981",
+  "bindingsSha256": "31debf7e4d834a45c32bbcfb5e21c4458452e1fb5a249bbb19f06bd834a0115d",
+  "source": {
+    "commit": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "path": "officina-di-fisica/content/C2.json",
+    "title": "cric-c2-l002",
+    "reference": "Dieci problemi distinti Cric C2, con derivazioni individuali nella primaria prompt-only immutata e calcoli pre-key congelati; vedere le note per ID."
+  },
+  "modelsBeforeCandidateKeys": {
+    "path": "editorial/reviews/cric-c2-001-050-independent-models.py",
+    "sha256": "02b2341e89122709fcddfb6a48318d3d87ded5385cbbfada9e69edaad05007dc",
+    "commit": "e37686ebab9f1ac50919592f189ab8cf7f37184f"
+  },
+  "postReadNumericGuardHardening": "All constitutive, inverse, calibration and exact finite guard function bodies are identical to the actual pre-key snapshot from first version.",
+  "primaryBeforeCandidateKeys": {
+    "path": "editorial/reviews/primary-cric-c2-001-050-before-candidates-20261126.md",
+    "sha256": "34c7a33d1257ffa080cb94d8f36f0ebb753cf03134665b4b440153cc2f3a8237"
+  }
+}

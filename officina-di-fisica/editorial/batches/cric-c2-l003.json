@@ -1,0 +1,675 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "C2-Q021",
+      "kind": "question",
+      "course": "C2",
+      "section": "Fluidi in quiete",
+      "order": 21,
+      "title": "Un incremento che si trasmette",
+      "skill": "C2-L003",
+      "prerequisites": [
+        "C2-L003"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il principio di Pascal riguarda l’incremento di pressione. Scrivo al punto basso p_b=p_a+ρgh prima e dopo la manovra. Con densità e dislivello invariati il termine ρgh non cambia; sottraendo i due stati, l’incremento al punto basso è lo stesso 7 kPa. Le pressioni assolute a quote diverse non devono essere uguali."
+        },
+        {
+          "type": "formula",
+          "text": "p_b=p_a+\\rho gh"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p_b=\\Delta p_a"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p_b=7\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "text",
+          "text": "Una forza dipende anche dall’area e non si misura in kPa. Peso e volume non aumentano di una pressione. La differenza idrostatica resta ρgh, costante nelle condizioni dichiarate; è la pressione di entrambi i punti ad aumentare di 7 kPa."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Un pistone aumenta di 7 kPa la pressione in un liquido confinato e fermo. Densità, geometria e quote rimangono invariate. Quale grandezza aumenta di 7 kPa anche in un punto più in basso?",
+      "family": "che-cosa-arriva-uguale",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "La pressione nel liquido",
+          "La forza su qualunque superficie, qualunque sia la sua area",
+          "Il peso del liquido",
+          "Il volume del liquido",
+          "La differenza idrostatica dovuta alla sola quota"
+        ],
+        "value": "La pressione nel liquido"
+      },
+      "hints": [
+        "Confronta i due stati alla stessa coppia di quote e sottrai le equazioni idrostatiche.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Una forza dipende anche dall’area e non si misura in kPa. Peso e volume non aumentano di una pressione. La differenza idrostatica resta ρgh, costante nelle condizioni dichiarate; è la pressione di entrambi i punti ad aumentare di 7 kPa.",
+        "target": "C2-L003"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Un incremento che si trasmette"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q022",
+      "kind": "question",
+      "course": "C2",
+      "section": "Fluidi in quiete",
+      "order": 22,
+      "title": "Il rapporto dei diametri",
+      "skill": "C2-L003",
+      "prerequisites": [
+        "C2-L003"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le forze aggiuntive si riferiscono alla sovrapressione comune, al netto dell’atmosfera. Il rapporto dei diametri è 6/2=3, ma quello delle aree è il suo quadrato, 9. La forza sul grande è quindi 25·9=225 N. Il modello suppone manovra lenta, pistoni senza attrito e liquido confinato."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/a3a9758fee07f17eb3b0cf06d9cbacd6fbf3ca7c65fe96e6b1e41ac0a1627501",
+          "text": "Aree nel rapporto 1:9: le sezioni disegnate rappresentano aree, non diametri. Le forze normali di 25 e 225 N hanno lo stesso rapporto e la stessa sovrapressione."
+        },
+        {
+          "type": "formula",
+          "text": "A=\\pi d^2/4"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{A_2}{A_1}=\\left(\\frac62\\right)^2"
+        },
+        {
+          "type": "formula",
+          "text": "\\left(\\frac62\\right)^2=9"
+        },
+        {
+          "type": "formula",
+          "text": " F_2=F_1\\frac{A_2}{A_1}"
+        },
+        {
+          "type": "formula",
+          "text": " F_2=225\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "75 N usa il rapporto dei diametri invece di quello delle aree. 25 N confonde uguaglianza di pressione con uguaglianza di forza. 25/9 N usa il rapporto inverso e 675 N eleva il rapporto lineare al cubo. L’aumento di forza non implica un aumento simultaneo della corsa."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Una pressa ideale ha pistoni circolari alla stessa quota e alla stessa pressione atmosferica. I diametri sono 2 cm e 6 cm. Applicando sul piccolo una forza aggiuntiva di 25 N, quale forza aggiuntiva può equilibrare sul grande?",
+      "family": "i-diametri-dei-pistoni",
+      "answer": {
+        "type": "numeric",
+        "value": 225,
+        "unit": "N",
+        "tolerance": 0
+      },
+      "hints": [
+        "La pressione si distribuisce su aree: prima eleva al quadrato il rapporto dei diametri.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "75 N usa il rapporto dei diametri invece di quello delle aree. 25 N confonde uguaglianza di pressione con uguaglianza di forza. 25/9 N usa il rapporto inverso e 675 N eleva il rapporto lineare al cubo. L’aumento di forza non implica un aumento simultaneo della corsa.",
+        "target": "C2-L003"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Il rapporto dei diametri"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q023",
+      "kind": "question",
+      "course": "C2",
+      "section": "Fluidi in quiete",
+      "order": 23,
+      "title": "Forza richiesta sul piccolo",
+      "skill": "C2-L003",
+      "prerequisites": [
+        "C2-L003"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La sovrapressione necessaria sul grande è la stessa trasmessa dal piccolo. Isolo F₁=F₂A₁/A₂. Le aree hanno la stessa unità e il loro rapporto è 6/90=1/15. Dividendo 300 N per 15 ottengo 20 N. La forza minore agisce sul pistone minore, mentre per una corsa ideale occorrerebbe uno spostamento maggiore."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{F_1}{A_1}=\\frac{F_2}{A_2}"
+        },
+        {
+          "type": "formula",
+          "text": " F_1=F_2\\frac{A_1}{A_2}"
+        },
+        {
+          "type": "formula",
+          "text": " F_1=300\\frac6{90}\\,\\mathrm N"
+        },
+        {
+          "type": "formula",
+          "text": " F_1=20\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "4500 N usa il rapporto inverso delle aree. 300 N ignora le loro dimensioni diverse. 50 N divide il carico per il solo numero 6 e 1800 N lo moltiplica: nessuno dei due mantiene la stessa sovrapressione sui pistoni."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Una pressa ideale in equilibrio ha pistoni alla stessa quota, senza attrito e con la stessa atmosfera esterna. Sul grande, di area 90 cm², va sostenuto un carico aggiuntivo di 300 N. Il piccolo ha area 6 cm². Quale forza aggiuntiva va applicata al piccolo?",
+      "family": "ricavare-la-forza-di-comando",
+      "answer": {
+        "type": "numeric",
+        "value": 20,
+        "unit": "N",
+        "tolerance": 0
+      },
+      "hints": [
+        "Controlla che la forza sul pistone piccolo risulti minore di 300 N.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "4500 N usa il rapporto inverso delle aree. 300 N ignora le loro dimensioni diverse. 50 N divide il carico per il solo numero 6 e 1800 N lo moltiplica: nessuno dei due mantiene la stessa sovrapressione sui pistoni.",
+        "target": "C2-L003"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Forza richiesta sul piccolo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q024",
+      "kind": "question",
+      "course": "C2",
+      "section": "Fluidi in quiete",
+      "order": 24,
+      "title": "Una bolla durante l’avvio",
+      "skill": "C2-L003",
+      "prerequisites": [
+        "C2-L003"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Con il circuito interamente incomprimibile il volume spinto dal primo pistone deve uscire dal secondo. Se la bolla si comprime, una parte del volume spinto serve invece a ridurne il volume. Definendo δV_b>0 come diminuzione del volume della bolla, il bilancio diventa A₁s₁=A₂s₂+δV_b. Non viene meno la conservazione della massa: viene meno la relazione senza accumulo volumetrico."
+        },
+        {
+          "type": "formula",
+          "text": "\\delta V_b>0"
+        },
+        {
+          "type": "formula",
+          "text": " A_1s_1=A_2s_2+\\delta V_b"
+        },
+        {
+          "type": "formula",
+          "text": " A_1s_1>A_2s_2"
+        },
+        {
+          "type": "text",
+          "text": "Una bolla comprimibile non distrugge materia. Pressione, massa e volume mantengono le loro definizioni, e il liquido continua ad avere pressione. Non è corretto attribuire automaticamente la differenza di volumi a una perdita all’esterno, che la domanda esclude."
+        }
+      ],
+      "difficulty": 3,
+      "prompt": "Un circuito idraulico contiene una bolla d’aria che si comprime sensibilmente all’inizio della corsa. Il pistone 1 entra nel circuito di s₁>0 e il 2 esce di s₂≥0; le aree sono A₁ e A₂ e non ci sono perdite. Quale relazione, valida per il circuito tutto incomprimibile, non si può usare durante la compressione della bolla?",
+      "family": "una-bolla-intrappolata",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "A₁s₁=A₂s₂ senza alcun termine di accumulo",
+          "La conservazione della massa complessiva",
+          "La definizione di pressione come forza normale per area",
+          "La distinzione fra massa e volume",
+          "L’esistenza di una pressione nel liquido"
+        ],
+        "value": "A₁s₁=A₂s₂ senza alcun termine di accumulo"
+      },
+      "hints": [
+        "Quale parte del volume spinto può essere assorbita dalla riduzione della bolla?",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Una bolla comprimibile non distrugge materia. Pressione, massa e volume mantengono le loro definizioni, e il liquido continua ad avere pressione. Non è corretto attribuire automaticamente la differenza di volumi a una perdita all’esterno, che la domanda esclude.",
+        "target": "C2-L003"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Una bolla durante l’avvio"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q025",
+      "kind": "question",
+      "course": "C2",
+      "section": "Fluidi in quiete",
+      "order": 25,
+      "title": "Corsa massima del pistone grande",
+      "skill": "C2-L003",
+      "prerequisites": [
+        "C2-L003"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La conservazione del volume spostato dà A₁s₁=A₂s₂. Isolo la corsa grande: s₂=s₁/8. Il conto 0,24/8=0,03 m corrisponde a 3 cm. Si usano i moduli degli spostamenti, con il piccolo entrante e il grande uscente. Il modello geometrico non richiede di assumere uguali lavori finiti a quote diverse."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/a3a9758fee07f17eb3b0cf06d9cbacd6fbf3ca7c65fe96e6b1e41ac0a1627501",
+          "text": "Il pistone piccolo sposta lo stesso volume del grande: A₁·24 cm=A₂·3 cm con A₂=8A₁. Le corse sono moduli; il verso entrante e quello uscente sono opposti."
+        },
+        {
+          "type": "formula",
+          "text": "A_1s_1=A_2s_2"
+        },
+        {
+          "type": "formula",
+          "text": " s_2=s_1\\frac{A_1}{A_2}"
+        },
+        {
+          "type": "formula",
+          "text": " s_2=\\frac{0{,}24}{8}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " s_2=3\\,\\mathrm{cm}"
+        },
+        {
+          "type": "text",
+          "text": "192 cm moltiplica per otto e farebbe uscire un volume 64 volte quello disponibile. 24 cm attribuisce la stessa corsa ad aree diverse. 0,03 cm omette la conversione da metri a centimetri. 0,3 cm introduce un ulteriore fattore dieci."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Un sollevatore ideale è pieno di liquido incomprimibile, senza bolle né perdite. Il rapporto delle aree è A₂/A₁=8. Il pistone piccolo può scendere al massimo di 0,24 m. Di quanti centimetri può salire il grande?",
+      "family": "un-limite-di-corsa",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "cm",
+        "tolerance": 0
+      },
+      "hints": [
+        "Il pistone otto volte più grande richiede otto volte il volume per la stessa corsa.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "192 cm moltiplica per otto e farebbe uscire un volume 64 volte quello disponibile. 24 cm attribuisce la stessa corsa ad aree diverse. 0,03 cm omette la conversione da metri a centimetri. 0,3 cm introduce un ulteriore fattore dieci.",
+        "target": "C2-L003"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Corsa massima del pistone grande"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q026",
+      "kind": "question",
+      "course": "C2",
+      "section": "Fluidi in quiete",
+      "order": 26,
+      "title": "Il principio del fluido confinato",
+      "skill": "C2-L003",
+      "prerequisites": [
+        "C2-L003"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il principio è quello di Pascal. Si riferisce a un incremento di pressione nel fluido confinato, non all’uguaglianza di tutte le pressioni assolute a quote diverse. In una coppia di punti con dislivello invariato, il contributo idrostatico resta uguale nei due stati e perciò i due incrementi coincidono."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta p_1=\\Delta p_2"
+        },
+        {
+          "type": "text",
+          "text": "Archimede riguarda la spinta sul volume spostato. Torricelli identifica fra l’altro il barometro e l’efflusso ideale; Bernoulli collega termini energetici nel moto del fluido. Hooke descrive la risposta elastica lineare, non questo principio idrostatico."
+        }
+      ],
+      "difficulty": 1,
+      "prompt": "Quale cognome identifica il principio secondo cui, in equilibrio e con geometria invariata, un incremento di pressione applicato a un fluido confinato si trasmette in tutto il fluido?",
+      "family": "la-macchina-con-due-pistoni",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Pascal",
+          "Archimede",
+          "Torricelli",
+          "Bernoulli",
+          "Hooke"
+        ],
+        "value": "Pascal"
+      },
+      "hints": [
+        "Pensa alla pressa idraulica e distingui pressione da forza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Archimede riguarda la spinta sul volume spostato. Torricelli identifica fra l’altro il barometro e l’efflusso ideale; Bernoulli collega termini energetici nel moto del fluido. Hooke descrive la risposta elastica lineare, non questo principio idrostatico.",
+        "target": "C2-L003"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Il principio del fluido confinato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q027",
+      "kind": "question",
+      "course": "C2",
+      "section": "Fluidi in quiete",
+      "order": 27,
+      "title": "Volume mosso da un pistone",
+      "skill": "C2-L003",
+      "prerequisites": [
+        "C2-L003"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il volume geometrico spostato è area per corsa. Converto 5 mm in 0,5 cm, così il prodotto è 12 cm²·0,5 cm=6 cm³. Poiché 1 cm³=1 mL, il pistone sposta 6 mL. Il dato di pressione non serve per questo calcolo geometrico."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/a3a9758fee07f17eb3b0cf06d9cbacd6fbf3ca7c65fe96e6b1e41ac0a1627501",
+          "text": "Il pistone di 12 cm² avanza di 0,5 cm. Il prisma spostato ha volume 6 cm³, cioè 6 mL; il disegno non assegna una particolare pressione."
+        },
+        {
+          "type": "formula",
+          "text": "s=0{,}5\\,\\mathrm{cm}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta V=As"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta V=12\\cdot0{,}5\\,\\mathrm{cm^3}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta V=6\\,\\mathrm{mL}"
+        },
+        {
+          "type": "text",
+          "text": "60 mL usa 5 come se fossero centimetri. 0,6 mL converte troppo la corsa. 24 mL divide per la corsa invece di moltiplicarla. 12 mL copia il valore dell’area senza introdurre una lunghezza. Le unità cm²·cm devono diventare un volume."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Un pistone di area 12 cm² avanza di 5 mm in una linea piena di liquido incomprimibile, senza perdite. Quale volume sposta in mL?",
+      "family": "quanto-volume-percorre-la-linea",
+      "answer": {
+        "type": "numeric",
+        "value": 6,
+        "unit": "mL",
+        "tolerance": 0
+      },
+      "hints": [
+        "Metti area e corsa in centimetri prima di moltiplicare.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "60 mL usa 5 come se fossero centimetri. 0,6 mL converte troppo la corsa. 24 mL divide per la corsa invece di moltiplicarla. 12 mL copia il valore dell’area senza introdurre una lunghezza. Le unità cm²·cm devono diventare un volume.",
+        "target": "C2-L003"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Volume mosso da un pistone"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q028",
+      "kind": "question",
+      "course": "C2",
+      "section": "Fluidi in quiete",
+      "order": 28,
+      "title": "Dove va il lavoro non utile?",
+      "skill": "C2-L003",
+      "prerequisites": [
+        "C2-L003"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bilancio energetico comprende macchina, fluido, carico e possibili scambi con l’ambiente. Gli attriti trasformano parte del lavoro fornito in energia interna, che può poi essere ceduta come calore. Con accumulo meccanico trascurabile, la differenza positiva W_in−W_utile è energia dissipata nel trasferimento meccanico. La conservazione dell’energia non richiede che tutto diventi lavoro utile."
+        },
+        {
+          "type": "formula",
+          "text": "E_{\\rm diss}=W_{\\rm in}-W_{\\rm utile}"
+        },
+        {
+          "type": "formula",
+          "text": " E_{\\rm diss}>0"
+        },
+        {
+          "type": "text",
+          "text": "L’energia non scompare e il limite del modello ideale non cancella il bilancio. Una perdita di massa non segue dall’esistenza di attriti. Il lavoro utile non può aumentare gratuitamente e le corse restano legate a geometria e bilancio volumetrico, non al nome della dissipazione."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "In una pressa reale con attriti, durante una manovra lenta il lavoro fornito supera quello utile sul carico. Se l’energia meccanica immagazzinata non cambia, dove può andare la differenza?",
+      "family": "un-impianto-reale-dissipa",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "In energia interna della macchina e del fluido, poi anche in calore ceduto all’ambiente",
+          "Scompare perché il principio di Pascal non vale",
+          "Diventa necessariamente massa di liquido perduta",
+          "Produce lavoro utile aggiuntivo senza apporto di energia",
+          "Rende uguali per forza le corse dei pistoni"
+        ],
+        "value": "In energia interna della macchina e del fluido, poi anche in calore ceduto all’ambiente"
+      },
+      "hints": [
+        "Allarga il bilancio alle energie interne e allo scambio termico, non soltanto al sollevamento.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "L’energia non scompare e il limite del modello ideale non cancella il bilancio. Una perdita di massa non segue dall’esistenza di attriti. Il lavoro utile non può aumentare gratuitamente e le corse restano legate a geometria e bilancio volumetrico, non al nome della dissipazione.",
+        "target": "C2-L003"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Dove va il lavoro non utile?"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q029",
+      "kind": "question",
+      "course": "C2",
+      "section": "Fluidi in quiete",
+      "order": 29,
+      "title": "Forza netta sulla membrana",
+      "skill": "C2-L003",
+      "prerequisites": [
+        "C2-L003"
+      ],
+      "version": 3,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le pressioni comuni ai due lati si cancellano: conta la sovrapressione di 150 kPa. Converto l’area in 2·10⁻⁴ m² e la pressione in 150000 Pa. Il prodotto è 150000·2·10⁻⁴=30 N. La forza è diretta dal lato con pressione maggiore verso quello con pressione minore."
+        },
+        {
+          "type": "formula",
+          "text": "A=2\\cdot10^{-4}\\,\\mathrm{m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p=150000\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "formula",
+          "text": " F=\\Delta p\\,A"
+        },
+        {
+          "type": "formula",
+          "text": " F=30\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "300000 N moltiplica la pressione in Pa per 2 senza convertire i cm². 0,03 N usa 150 come se fossero Pa. 75 non è una forza ottenuta dal prodotto e 150 N copia il valore numerico della sovrapressione in kPa. Non va aggiunta ancora l’atmosfera a una differenza già assegnata."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Una membrana di area 2 cm² separa un circuito dall’atmosfera. La pressione interna supera quella esterna uniformemente di 150 kPa. Qual è il modulo della forza netta sulla membrana?",
+      "family": "verifica-della-pressione-ammissibile",
+      "answer": {
+        "type": "numeric",
+        "value": 30,
+        "unit": "N",
+        "tolerance": 0
+      },
+      "hints": [
+        "Usa la differenza delle pressioni e ricorda che il fattore di lunghezza va elevato al quadrato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "300000 N moltiplica la pressione in Pa per 2 senza convertire i cm². 0,03 N usa 150 come se fossero Pa. 75 non è una forza ottenuta dal prodotto e 150 N copia il valore numerico della sovrapressione in kPa. Non va aggiunta ancora l’atmosfera a una differenza già assegnata.",
+        "target": "C2-L003"
+      },
+      "baseVersion": 2,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Forza netta sulla membrana"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q030",
+      "kind": "question",
+      "course": "C2",
+      "section": "Fluidi in quiete",
+      "order": 30,
+      "title": "Due manometri nello stesso liquido",
+      "skill": "C2-L003",
+      "prerequisites": [
+        "C2-L003"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Alla stessa quota di un unico liquido connesso in equilibrio la pressione è uguale. Usando lo stesso riferimento anche le letture dei manometri coincidono. Le forze sui pistoni possono però essere diverse, perché una stessa sovrapressione moltiplica aree diverse. La quiete impone equilibrio, non pressione nulla."
+        },
+        {
+          "type": "formula",
+          "text": "p_1=p_2"
+        },
+        {
+          "type": "formula",
+          "text": " F_1=\\Delta p A_1"
+        },
+        {
+          "type": "formula",
+          "text": " F_2=\\Delta p A_2"
+        },
+        {
+          "type": "text",
+          "text": "I rapporti delle aree compaiono nelle forze a pressione assegnata, non in due pressioni alla stessa quota del medesimo fluido. Lo zero della lettura richiederebbe pressione uguale al riferimento, che non è dato. Pascal è unità di pressione e non misura direttamente una forza."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Due manometri ideali hanno lo stesso riferimento e sono collegati alla medesima quota dello stesso liquido connesso e fermo, sotto pistoni di aree diverse. Che cosa mostrano?",
+      "family": "due-manometri-alla-stessa-quota",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "La stessa pressione, pur potendo corrispondere a forze diverse sui pistoni",
+          "Pressioni nel rapporto delle aree dei pistoni",
+          "Pressioni nel rapporto inverso delle aree, sempre",
+          "Una lettura nulla in entrambi perché il fluido è fermo",
+          "La stessa forza espressa direttamente in pascal"
+        ],
+        "value": "La stessa pressione, pur potendo corrispondere a forze diverse sui pistoni"
+      },
+      "hints": [
+        "Separa l’uguaglianza idrostatica p₁=p₂ dalla relazione fra forza e area.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "I rapporti delle aree compaiono nelle forze a pressione assegnata, non in due pressioni alla stessa quota del medesimo fluido. Lo zero della lettura richiederebbe pressione uguale al riferimento, che non è dato. Pascal è unità di pressione e non misura direttamente una forza.",
+        "target": "C2-L003"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Due manometri nello stesso liquido"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "a3a9758fee07f17eb3b0cf06d9cbacd6fbf3ca7c65fe96e6b1e41ac0a1627501",
+      "name": "cric-c2-l003-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTQ1MCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPjx0aXRsZSBpZD0idGl0bGUiPkZvcnplIGUgY29yc2UgaW4gdW4gc2lzdGVtYSBpZHJhdWxpY288L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5UcmUgcGFubmVsbGkgZGlzdGludGk6IGFyZWUgaW4gcmFwcG9ydG8gdW5vIGEgbm92ZSBjb24gZm9yemUgdmVudGljaW5xdWUgZSBkdWVjZW50b3ZlbnRpY2lucXVlIG5ld3RvbjsgY29yc2UgdmVudGlxdWF0dHJvIGUgdHJlIGNlbnRpbWV0cmkgcGVyIGFyZWUgaW4gcmFwcG9ydG8gdW5vIGEgb3R0bzsgdm9sdW1lIHNlaSBtaWxsaWxpdHJpIHNwb3N0YXRvIGRhIGRvZGljaSBjZW50aW1ldHJpIHF1YWRyYXRpIHBlciBtZXp6byBjZW50aW1ldHJvLjwvZGVzYz48cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjE0NTAiIGZpbGw9IiNmYWY3ZWYiLz48ZyBmb250LWZhbWlseT0iQXJpYWwsc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMiIgZmlsbD0iIzI1MjQzOCI+Cjx0ZXh0IHg9IjMyIiB5PSI0OCIgZm9udC1zaXplPSIyNyIgZm9udC13ZWlnaHQ9ImJvbGQiPlRyYXNtZXR0ZXJlIHByZXNzaW9uZSBlIHZvbHVtZTwvdGV4dD48dGV4dCB4PSIzMiIgeT0iOTQiPjEuIEFyZWUsIG5vbiBkaWFtZXRyaTogQeKCgiAvIEHigoEgPSA5PC90ZXh0Pgo8cmVjdCB4PSI5NSIgeT0iMzE1IiB3aWR0aD0iMzAiIGhlaWdodD0iNjUiIGZpbGw9IiNkY2Q3ZjMiIHN0cm9rZT0iIzQxMzY2YiIgc3Ryb2tlLXdpZHRoPSIzIi8+PHJlY3QgeD0iMjkwIiB5PSIzMTUiIHdpZHRoPSIyNzAiIGhlaWdodD0iNjUiIGZpbGw9IiNkOWVkZGYiIHN0cm9rZT0iIzI0NmQ1NCIgc3Ryb2tlLXdpZHRoPSIzIi8+CjxwYXRoIGQ9Ik0xMTAgMjkwVjMxMCIgc3Ryb2tlPSIjNWIzNmIxIiBzdHJva2Utd2lkdGg9IjUiLz48cGF0aCBkPSJtMTAzIDMwMCA3IDEwIDctMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzViMzZiMSIgc3Ryb2tlLXdpZHRoPSI0Ii8+CjxwYXRoIGQ9Ik00MjUgMTMwVjMxMCIgc3Ryb2tlPSIjNWIzNmIxIiBzdHJva2Utd2lkdGg9IjUiLz48cGF0aCBkPSJtNDE1IDI5MyAxMCAxNyAxMC0xNyIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNWIzNmIxIiBzdHJva2Utd2lkdGg9IjUiLz4KPHRleHQgeD0iNTAiIHk9IjI2MCI+RuKCgSA9IDI1IE48L3RleHQ+PHRleHQgeD0iNDU0IiB5PSIyMjAiPjIyNSBOPC90ZXh0Pjx0ZXh0IHg9IjkwIiB5PSI0MjAiPkHigoE8L3RleHQ+PHRleHQgeD0iNDAwIiB5PSI0MjAiPkHigoIgPSA5IEHigoE8L3RleHQ+PHRleHQgeD0iMTEwIiB5PSI0NjgiPlN0ZXNzYSBzb3ZyYXByZXNzaW9uZSBG4oKBL0HigoEgPSBG4oKCL0HigoI8L3RleHQ+CjxwYXRoIGQ9Ik0zMiA1MDVINjA4IiBzdHJva2U9IiNiM2FiYmYiLz48dGV4dCB4PSIzMiIgeT0iNTUwIj4yLiBFc2VtcGlvIGRpc3RpbnRvOiBB4oKCIC8gQeKCgSA9IDg8L3RleHQ+CjxwYXRoIGQ9Ik0xNjAgNjAwVjg0MCIgc3Ryb2tlPSIjMjg2NTk0IiBzdHJva2Utd2lkdGg9IjYiLz48cGF0aCBkPSJtMTQ4IDgyMiAxMiAxOCAxMi0xOCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMjg2NTk0IiBzdHJva2Utd2lkdGg9IjYiLz4KPHBhdGggZD0iTTQ1MCA4NDBWODEwIiBzdHJva2U9IiMyODY1OTQiIHN0cm9rZS13aWR0aD0iNiIvPjxwYXRoIGQ9Im00NDAgODI0IDEwLTE0IDEwIDE0IiBmaWxsPSJub25lIiBzdHJva2U9IiMyODY1OTQiIHN0cm9rZS13aWR0aD0iNSIvPgo8dGV4dCB4PSIyMDUiIHk9IjcwNCI+c+KCgSA9IDI0IGNtPC90ZXh0Pjx0ZXh0IHg9IjM3MCIgeT0iNzgwIj5z4oKCID0gMyBjbTwvdGV4dD48dGV4dCB4PSIxMDUiIHk9Ijg5NSI+QeKCgSDCtyAyNCBjbSA9IDggQeKCgSDCtyAzIGNtPC90ZXh0Pjx0ZXh0IHg9IjEwMCIgeT0iOTM4Ij5GcmVjY2U6IG1vZHVsaSBlIHZlcnNpIGRlbGxlIGNvcnNlPC90ZXh0Pgo8cGF0aCBkPSJNMzIgOTgwSDYwOCIgc3Ryb2tlPSIjYjNhYmJmIi8+PHRleHQgeD0iMzIiIHk9IjEwMjUiPjMuIFVuIHBpY2NvbG8gdm9sdW1lIHNwb3N0YXRvPC90ZXh0Pgo8cmVjdCB4PSIxNjAiIHk9IjExMjAiIHdpZHRoPSIzMDAiIGhlaWdodD0iMTUwIiBmaWxsPSIjZGNlN2Y2IiBzdHJva2U9IiMyODY1OTQiIHN0cm9rZS13aWR0aD0iMyIvPgo8cGF0aCBkPSJNMTYwIDExMjAgMjA1IDEwODVINTA1VjEyMzVMNDYwIDEyNzBNNDYwIDExMjAgNTA1IDEwODVNNDYwIDExMjBWMTI3MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMjg2NTk0IiBzdHJva2Utd2lkdGg9IjMiLz4KPHRleHQgeD0iMjA1IiB5PSIxMjA0Ij5BID0gMTIgY23CsjwvdGV4dD48dGV4dCB4PSIzNTAiIHk9IjEwNTciPnMgPSAwLDUgY208L3RleHQ+PHRleHQgeD0iMTY1IiB5PSIxMzMwIj7OlFYgPSBBIHMgPSA2IGNtwrMgPSA2IG1MPC90ZXh0Pjx0ZXh0IHg9IjgwIiB5PSIxMzkwIj5MZSBmYWNjZSBkZWxpbWl0YW5vIGlsIHZvbHVtZSBnZW9tZXRyaWNvPC90ZXh0Pgo8L2c+PC9zdmc+"
+    }
+  ]
+}

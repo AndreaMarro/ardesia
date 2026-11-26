@@ -1,0 +1,691 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "C2-Q041",
+      "kind": "question",
+      "course": "C2",
+      "section": "Fluidi in movimento",
+      "order": 41,
+      "title": "Volume accumulato nella vasca",
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L005"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’accumulo è il volume entrante meno quello uscente. La portata netta è 9−5=4 L/min. Converto 45 s in 3/4 min: il volume accumulato è 4·3/4=3 L. La portata netta positiva indica che il livello cresce, se la vasca può contenere quel volume."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/2e20921e76c3d5764f3301233c8da70dee32988b500fabe795b49c5b7667d0e9",
+          "text": "In 45 s entrano 6,75 L ed escono 3,75 L: le barre di volume hanno scala comune e la differenza è 3 L. Il volume della vasca aumenta; non si sta imponendo un nodo stazionario."
+        },
+        {
+          "type": "formula",
+          "text": "Q_{\\rm netto}=(9-5)\\,\\mathrm{L/min}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta t=\\frac34\\,\\mathrm{min}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta V=Q_{\\rm netto}\\Delta t"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta V=3\\,\\mathrm L"
+        },
+        {
+          "type": "text",
+          "text": "6,75 L conta soltanto l’ingresso. 3,75 L è il volume uscito, non l’accumulo. 10,5 L somma ingresso e uscita e 180 L usa 45 come minuti. Il bilancio ha bisogno del termine di accumulo: non è un nodo stazionario."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "In una vasca entrano 9 L/min e ne escono 5 L/min, entrambi costanti. La vasca non trabocca durante i 45 s osservati. Quanto volume si accumula?",
+      "family": "un-recipiente-si-riempie",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "L",
+        "tolerance": 0
+      },
+      "hints": [
+        "Sottrai prima le portate e usa lo stesso tempo in minuti.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "6,75 L conta soltanto l’ingresso. 3,75 L è il volume uscito, non l’accumulo. 10,5 L somma ingresso e uscita e 180 L usa 45 come minuti. Il bilancio ha bisogno del termine di accumulo: non è un nodo stazionario.",
+        "target": "C2-L005"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Volume accumulato nella vasca"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q042",
+      "kind": "question",
+      "course": "C2",
+      "section": "Fluidi in movimento",
+      "order": 42,
+      "title": "Il getto che accelera",
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L005"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "In ogni sezione passa la stessa massa per unità di tempo. A densità costante è uguale anche la portata volumetrica Q=A v_media. Se la rapidità aumenta lungo la caduta, l’area deve diminuire per mantenere il prodotto. Stazionario significa che in ciascun punto il campo non cambia nel tempo; una particella può comunque accelerare passando fra punti diversi."
+        },
+        {
+          "type": "formula",
+          "text": "Q=A_1\\bar v_1"
+        },
+        {
+          "type": "formula",
+          "text": "A_1\\bar v_1=A_2\\bar v_2"
+        },
+        {
+          "type": "formula",
+          "text": " \\bar v_2>\\bar v_1"
+        },
+        {
+          "type": "formula",
+          "text": " A_2<A_1"
+        },
+        {
+          "type": "text",
+          "text": "Una diminuzione della portata richiederebbe accumulo o perdita, qui esclusi. La densità non si annulla e la gravità non elimina materia. La stazionarietà riguarda il tempo in un punto, non l’uniformità spaziale della velocità."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Un getto d’acqua continuo cade verticalmente nell’aria. Nel tratto considerato il moto è stazionario, l’acqua è incomprimibile e non si perde massa lateralmente. Perché la sezione del getto si restringe mentre la rapidità media aumenta?",
+      "family": "un-getto-che-si-assottiglia",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Perché la stessa portata richiede A v_media costante",
+          "Perché la portata volumetrica deve diminuire durante la caduta",
+          "Perché la densità dell’acqua deve annullarsi",
+          "Perché stazionario significa velocità uguale in ogni punto",
+          "Perché la gravità sottrae massa al getto"
+        ],
+        "value": "Perché la stessa portata richiede A v_media costante"
+      },
+      "hints": [
+        "Segui il prodotto area per velocità media attraverso due sezioni.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Una diminuzione della portata richiederebbe accumulo o perdita, qui esclusi. La densità non si annulla e la gravità non elimina materia. La stazionarietà riguarda il tempo in un punto, non l’uniformità spaziale della velocità.",
+        "target": "C2-L005"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Il getto che accelera"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q043",
+      "kind": "question",
+      "course": "C2",
+      "section": "Fluidi in movimento",
+      "order": 43,
+      "title": "Diametro dalla portata",
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L005"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Ricavo prima l’area: A=Q/v_media=(8π)/2=4π cm². Per una sezione circolare A=πr², dunque r²=4 cm² e il raggio positivo è 2 cm. La domanda chiede il diametro, che è il doppio: 4 cm. Il π si cancella esattamente e non serve una sua approssimazione decimale."
+        },
+        {
+          "type": "formula",
+          "text": "A=\\frac Q{\\bar v}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac Q{\\bar v}=4\\pi\\,\\mathrm{cm^2}"
+        },
+        {
+          "type": "formula",
+          "text": " r^2=4\\,\\mathrm{cm^2}"
+        },
+        {
+          "type": "formula",
+          "text": " r=2\\,\\mathrm{cm}"
+        },
+        {
+          "type": "formula",
+          "text": " d=2r"
+        },
+        {
+          "type": "formula",
+          "text": "2r=4\\,\\mathrm{cm}"
+        },
+        {
+          "type": "text",
+          "text": "2 cm è il raggio, non il diametro. 8 cm raddoppia ancora il risultato richiesto. 4π cm copia l’area numerica attribuendole un’unità lineare. 16 cm darebbe un raggio di 8 cm, un’area di 64π cm² e quindi una portata di 128π cm³/s, non 8π cm³/s."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "In un tubo circolare scorre un liquido con portata 8π cm³/s e velocità normale media di 2 cm/s. Qual è il diametro interno del tubo?",
+      "family": "ricavare-il-diametro-dal-flusso",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "cm",
+        "tolerance": 0
+      },
+      "hints": [
+        "Dopo Q/v ottieni un’area: estrai il raggio e ricordati di raddoppiarlo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "2 cm è il raggio, non il diametro. 8 cm raddoppia ancora il risultato richiesto. 4π cm copia l’area numerica attribuendole un’unità lineare. 16 cm darebbe un raggio di 8 cm, un’area di 64π cm² e quindi una portata di 128π cm³/s, non 8π cm³/s.",
+        "target": "C2-L005"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Diametro dalla portata"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q044",
+      "kind": "question",
+      "course": "C2",
+      "section": "Fluidi in movimento",
+      "order": 44,
+      "title": "Il secondo ramo del raccordo",
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L005"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le portate si possono sommare dopo averle espresse nella stessa unità di tempo. Il primo ramo porta 840/60=14 mL/s. Il bilancio del raccordo è Q_in=Q₁+Q₂, quindi Q₂=36−14=22 mL/s. Il risultato positivo conferma il verso uscente assunto per il secondo ramo."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/2e20921e76c3d5764f3301233c8da70dee32988b500fabe795b49c5b7667d0e9",
+          "text": "Il raccordo riceve 36 mL/s: 14 mL/s attraversano il primo ramo e 22 mL/s il secondo. Le tre barre di portata hanno origine e scala comuni; il bilancio è 36=14+22."
+        },
+        {
+          "type": "formula",
+          "text": "Q_1=\\frac{840}{60}\\,\\mathrm{mL/s}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_1=14\\,\\mathrm{mL/s}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_2=Q_{\\rm in}-Q_1"
+        },
+        {
+          "type": "formula",
+          "text": " Q_2=22\\,\\mathrm{mL/s}"
+        },
+        {
+          "type": "text",
+          "text": "50 mL/s somma anziché sottrarre il primo ramo. −804 mL/s sottrae numeri con minuti e secondi non uniformati. 14 mL/s è la portata del ramo già noto. 18 mL/s presume una divisione uniforme non assegnata: i rami non sono dichiarati equivalenti."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "In un raccordo stazionario entra un liquido incomprimibile a 36 mL/s ed esce da due rami. Nel primo passano 840 mL/min. Non ci sono perdite né accumulo. Qual è la portata del secondo ramo in mL/s?",
+      "family": "un-ramo-laterale-non-misurato",
+      "answer": {
+        "type": "numeric",
+        "value": 22,
+        "unit": "mL/s",
+        "tolerance": 0
+      },
+      "hints": [
+        "Converti 840 mL/min in mL/s prima di scrivere il bilancio.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "50 mL/s somma anziché sottrarre il primo ramo. −804 mL/s sottrae numeri con minuti e secondi non uniformati. 14 mL/s è la portata del ramo già noto. 18 mL/s presume una divisione uniforme non assegnata: i rami non sono dichiarati equivalenti.",
+        "target": "C2-L005"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Il secondo ramo del raccordo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q045",
+      "kind": "question",
+      "course": "C2",
+      "section": "Fluidi in movimento",
+      "order": 45,
+      "title": "Stazionario non significa uniforme",
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L005"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La stazionarietà del campo riguarda l’osservazione in un punto fisso: il vettore velocità lì non varia nel tempo. Può essere diverso in punti diversi, per esempio maggiore nella sezione stretta. La sola portata costante è un vincolo integrale: da sola non impedisce che cambi il profilo mantenendo uguale la sua media."
+        },
+        {
+          "type": "formula",
+          "text": "\\left.\\frac{\\partial\\vec v}{\\partial t}\\right|_{\\vec x}=0"
+        },
+        {
+          "type": "text",
+          "text": "L’uguaglianza fra punti diversi descrive uniformità spaziale, non stazionarietà. Una particella può accelerare attraversando zone con velocità diverse anche in un campo stazionario. Non si richiede flusso nullo e l’integrale costante su una sezione non determina ogni valore locale."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Un tubo ha due sezioni diverse e una portata costante nel tempo. Quale ulteriore descrizione deve valere per chiamare stazionario il campo di velocità?",
+      "family": "stazionario-non-vuol-dire-uniforme",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Il vettore velocità in ogni punto fissato resta costante nel tempo",
+          "Il vettore velocità è uguale in tutti i punti del tubo",
+          "Ogni particella ha sempre accelerazione nulla",
+          "La velocità deve essere zero sulle due sezioni",
+          "La sola costanza della portata garantisce qualunque profilo locale costante"
+        ],
+        "value": "Il vettore velocità in ogni punto fissato resta costante nel tempo"
+      },
+      "hints": [
+        "Immagina un sensore fermo nello stesso punto e chiediti se la sua lettura cambia col tempo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "L’uguaglianza fra punti diversi descrive uniformità spaziale, non stazionarietà. Una particella può accelerare attraversando zone con velocità diverse anche in un campo stazionario. Non si richiede flusso nullo e l’integrale costante su una sezione non determina ogni valore locale.",
+        "target": "C2-L005"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Stazionario non significa uniforme"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q046",
+      "kind": "question",
+      "course": "C2",
+      "section": "Fluidi in movimento",
+      "order": 46,
+      "title": "Quanta massa passa in un secondo?",
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L005"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La portata di massa è ρQ. In un minuto passano 0,85·12=10,2 kg. In un secondo ne passa un sessantesimo: 10,2/60=0,17 kg. Equivalentemente, 12 L/min sono 0,2 L/s e 0,85·0,2=0,17 kg/s. L’intervallo richiesto è 1 s."
+        },
+        {
+          "type": "formula",
+          "text": "\\dot m=\\rho Q"
+        },
+        {
+          "type": "formula",
+          "text": " Q=\\frac15\\,\\mathrm{L/s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\dot m=\\frac{17}{100}\\,\\mathrm{kg/s}"
+        },
+        {
+          "type": "formula",
+          "text": " m(1\\,\\mathrm s)=0{,}17\\,\\mathrm{kg}"
+        },
+        {
+          "type": "text",
+          "text": "10,2 kg è la massa transitata in un minuto. 0,85 copia la densità numerica; 12 copia la portata volumetrica e cambia unità senza usare ρ. 17 kg introduce un fattore cento. La massa transitata in un intervallo non è la massa immagazzinata nel tubo."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Un liquido omogeneo di densità 0,85 kg/L attraversa una sezione con portata costante di 12 L/min. Quanti chilogrammi la attraversano in un secondo?",
+      "family": "una-portata-di-massa",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "0,17 kg",
+          "10,2 kg",
+          "0,85 kg",
+          "12 kg",
+          "17 kg"
+        ],
+        "value": "0,17 kg"
+      },
+      "hints": [
+        "Uniforma il tempo a un secondo e poi moltiplica i litri per kg/L.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "10,2 kg è la massa transitata in un minuto. 0,85 copia la densità numerica; 12 copia la portata volumetrica e cambia unità senza usare ρ. 17 kg introduce un fattore cento. La massa transitata in un intervallo non è la massa immagazzinata nel tubo.",
+        "target": "C2-L005"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Quanta massa passa in un secondo?"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q047",
+      "kind": "question",
+      "course": "C2",
+      "section": "Fluidi in movimento",
+      "order": 47,
+      "title": "Gas: contare la massa",
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L005"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Per un gas comprimibile si conserva la portata di massa, non necessariamente quella di volume. La legge è ρ₁A₁v₁=ρ₂A₂v₂. Qui il prodotto ρ₂A₂=(2ρ₁)(A₁/2) è uguale a ρ₁A₁, quindi v₂=v₁. La densità uniforme in ciascuna sezione permette di portarla fuori dalla media della velocità."
+        },
+        {
+          "type": "formula",
+          "text": "\\rho_1A_1\\bar v_1=\\rho_2A_2\\bar v_2"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_2A_2=(2\\rho_1)(A_1/2)"
+        },
+        {
+          "type": "formula",
+          "text": " \\bar v_2=\\bar v_1"
+        },
+        {
+          "type": "text",
+          "text": "Raddoppiare la velocità considera solo l’area come per un liquido a densità costante. Dimezzarla considera solo la densità. Quadruplicarla applica entrambi gli effetti nello stesso verso, ma qui si compensano. Il flusso non deve fermarsi per conservare massa."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Un gas scorre senza accumulo fra due sezioni. La densità è uniforme in ciascuna sezione; nella seconda raddoppia mentre l’area si dimezza. Come cambia la velocità normale media?",
+      "family": "gas-in-un-restringimento",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Resta uguale",
+          "Raddoppia",
+          "Si dimezza",
+          "Quadruplica",
+          "Si annulla"
+        ],
+        "value": "Resta uguale"
+      },
+      "hints": [
+        "Confronta prima i prodotti densità per area nelle due sezioni.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "Raddoppiare la velocità considera solo l’area come per un liquido a densità costante. Dimezzarla considera solo la densità. Quadruplicarla applica entrambi gli effetti nello stesso verso, ma qui si compensano. Il flusso non deve fermarsi per conservare massa.",
+        "target": "C2-L005"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Gas: contare la massa"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q048",
+      "kind": "question",
+      "course": "C2",
+      "section": "Fluidi in movimento",
+      "order": 48,
+      "title": "La velocità che entra in Q",
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L005"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La portata è l’integrale della componente normale della velocità sulla sezione. Dividendo questo integrale per A si ottiene la media areale v_n media, e allora Q=A v_n media. Il massimo sull’asse in un particolare profilo non può sostituire questa media senza conoscere il profilo stesso."
+        },
+        {
+          "type": "formula",
+          "text": "Q=\\int_A v_n\\,dA"
+        },
+        {
+          "type": "formula",
+          "text": " \\bar v_n=\\frac1A\\int_A v_n\\,dA"
+        },
+        {
+          "type": "formula",
+          "text": " Q=A\\bar v_n"
+        },
+        {
+          "type": "text",
+          "text": "Massimo e minimo descrivono singoli valori estremi, non la media che restituisce l’integrale. La componente tangenziale non attraversa il piano di misura. Un valore istantaneo sull’asse non rappresenta automaticamente tutta la sezione, anche se il campo è stazionario."
+        }
+      ],
+      "difficulty": 1,
+      "prompt": "Nella relazione Q=A v per una sezione con profilo non uniforme, v è la componente normale della velocità, ... sulla sezione. Quale parola completa correttamente?",
+      "family": "velocita-efficace-per-la-portata",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Media",
+          "Massima",
+          "Minima",
+          "Tangenziale",
+          "Istantanea soltanto sull’asse"
+        ],
+        "value": "Media"
+      },
+      "hints": [
+        "Quale media moltiplicata per l’area ricostruisce l’integrale sulla sezione?",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Massimo e minimo descrivono singoli valori estremi, non la media che restituisce l’integrale. La componente tangenziale non attraversa il piano di misura. Un valore istantaneo sull’asse non rappresenta automaticamente tutta la sezione, anche se il campo è stazionario.",
+        "target": "C2-L005"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "La velocità che entra in Q"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q049",
+      "kind": "question",
+      "course": "C2",
+      "section": "Fluidi in movimento",
+      "order": 49,
+      "title": "Riempire la linea prima dell’uscita",
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L005"
+      ],
+      "version": 3,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La portata è 2,4/3=0,8 L/min, cioè 800 mL/min. Il tempo per fornire il volume interno è 120/800=3/20 min. Moltiplicando per 60 si ottengono 9 s. Il volume inizialmente vuoto è un accumulo transitorio: prima del suo riempimento l’uscita non ha ancora la stessa portata liquida dell’ingresso."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/2e20921e76c3d5764f3301233c8da70dee32988b500fabe795b49c5b7667d0e9",
+          "text": "A 800 mL/min la linea accumula 120 mL in 9 s prima dell’arrivo ideale all’uscita. La retta si riferisce al volume consegnato per riempire la linea, nel solo intervallo iniziale."
+        },
+        {
+          "type": "formula",
+          "text": "Q=800\\,\\mathrm{mL/min}"
+        },
+        {
+          "type": "formula",
+          "text": " t=\\frac{V_{\\rm linea}}Q"
+        },
+        {
+          "type": "formula",
+          "text": " t=\\frac3{20}\\,\\mathrm{min}"
+        },
+        {
+          "type": "formula",
+          "text": " t=9\\,\\mathrm s"
+        },
+        {
+          "type": "text",
+          "text": "0,15 s conserva il numero espresso in minuti ma gli assegna secondi. 15 s fornirebbero già 200 mL, non 120 mL; 90 s introdurrebbero un fattore dieci. Zero ignora i 120 mL da accumulare nella linea. Non si aggiungono i tre minuti, che servono soltanto a definire la portata della pompa."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Una pompa trasferisce 2,4 L in 3 min a portata costante. All’avvio una linea vuota deve riempirsi con 120 mL prima che arrivi liquido all’uscita. Nel modello ideale senza perdite, accumuli elastici o percorsi alternativi, dopo quanti secondi arriva il liquido?",
+      "family": "un-residuo-nella-linea",
+      "answer": {
+        "type": "numeric",
+        "value": 9,
+        "unit": "s",
+        "tolerance": 0
+      },
+      "hints": [
+        "Dividi il volume da riempire per la portata, poi converti i minuti in secondi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "0,15 s conserva il numero espresso in minuti ma gli assegna secondi. 15 s fornirebbero già 200 mL, non 120 mL; 90 s introdurrebbero un fattore dieci. Zero ignora i 120 mL da accumulare nella linea. Non si aggiungono i tre minuti, che servono soltanto a definire la portata della pompa.",
+        "target": "C2-L005"
+      },
+      "baseVersion": 2,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Riempire la linea prima dell’uscita"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q050",
+      "kind": "question",
+      "course": "C2",
+      "section": "Fluidi in movimento",
+      "order": 50,
+      "title": "Area totale del letto terminale",
+      "skill": "C2-L005",
+      "prerequisites": [
+        "C2-L005"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La somma delle sezioni terminali va trattata come l’area complessiva attraversata dalla portata totale. Converto 6 mL/s in 6 cm³/s, poi A_tot=Q/v_media=6/0,20=30 cm². La media è riferita all’intera area aperta; non si sta ricavando l’area di un solo piccolo condotto."
+        },
+        {
+          "type": "formula",
+          "text": "Q=6\\,\\mathrm{cm^3/s}"
+        },
+        {
+          "type": "formula",
+          "text": " A_{\\rm tot}=\\frac Q{\\bar v}"
+        },
+        {
+          "type": "formula",
+          "text": " A_{\\rm tot}=\\frac6{0{,}20}\\,\\mathrm{cm^2}"
+        },
+        {
+          "type": "formula",
+          "text": " A_{\\rm tot}=30\\,\\mathrm{cm^2}"
+        },
+        {
+          "type": "text",
+          "text": "1,2 moltiplica Q per v invece di dividerlo e non ha dimensioni di area. 0,30 cm² introduce un fattore cento; 300 cm² un fattore dieci. 6 cm² copia la portata numerica. Il diametro del singolo ramo non è dato e non va inventato."
+        }
+      ],
+      "difficulty": 3,
+      "prompt": "In un modello di rete incomprimibile stazionaria arrivano complessivamente 6 mL/s. La velocità normale media rispetto all’intera area aperta del letto terminale è 0,20 cm/s. Qual è la somma delle aree aperte in cm²?",
+      "family": "somma-delle-aree-capillari",
+      "answer": {
+        "type": "numeric",
+        "value": 30,
+        "unit": "cm²",
+        "tolerance": 0
+      },
+      "hints": [
+        "Usa la portata totale e la media sulla superficie complessiva, con mL=cm³.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "1,2 moltiplica Q per v invece di dividerlo e non ha dimensioni di area. 0,30 cm² introduce un fattore cento; 300 cm² un fattore dieci. 6 cm² copia la portata numerica. Il diametro del singolo ramo non è dato e non va inventato.",
+        "target": "C2-L005"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Area totale del letto terminale"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "2e20921e76c3d5764f3301233c8da70dee32988b500fabe795b49c5b7667d0e9",
+      "name": "cric-c2-l005-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTU1MCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPjx0aXRsZSBpZD0idGl0bGUiPkJpbGFuY2kgZGkgdm9sdW1lIGUgcG9ydGF0YTwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPlZvbHVtaSBpbiBxdWFyYW50YWNpbnF1ZSBzZWNvbmRpOiA2LDc1IGxpdHJpIGVudHJhdGkgbWVubyAzLDc1IHVzY2l0aSBkYW5ubyB0cmUgbGl0cmkgYWNjdW11bGF0aS4gTm9kbyBzdGF6aW9uYXJpbyBjb24gMzYgbWlsbGlsaXRyaSBhbCBzZWNvbmRvIGluIGluZ3Jlc3NvIGUgcmFtaSAxNCBlIDIyLiBSaWVtcGltZW50byBpbml6aWFsZSBkaSB1bmEgbGluZWEgZmlubyBhIDEyMCBtaWxsaWxpdHJpIGluIG5vdmUgc2Vjb25kaS48L2Rlc2M+PHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxNTUwIiBmaWxsPSIjZmFmN2VmIi8+PGcgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiMyNTI0MzgiPgo8dGV4dCB4PSIzMiIgeT0iNDgiIGZvbnQtc2l6ZT0iMjciIGZvbnQtd2VpZ2h0PSJib2xkIj5Db250YXJlIGNpw7IgY2hlIGF0dHJhdmVyc2E8L3RleHQ+PHRleHQgeD0iMzIiIHk9Ijk0Ij4xLiBJbiA0NSBzOiBlbnRyYSwgZXNjZSwgc2kgYWNjdW11bGE8L3RleHQ+Cjx0ZXh0IHg9IjQwIiB5PSIxOTEiPkVudHJhdG88L3RleHQ+PHJlY3QgeD0iMTYwIiB5PSIxNjAiIHdpZHRoPSIyNzAiIGhlaWdodD0iNDUiIGZpbGw9IiNkOWVkZGYiIHN0cm9rZT0iIzI0NmQ1NCIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iNDU1IiB5PSIxOTEiPjYsNzUgTDwvdGV4dD4KPHRleHQgeD0iNDAiIHk9IjI4MSI+VXNjaXRvPC90ZXh0PjxyZWN0IHg9IjE2MCIgeT0iMjUwIiB3aWR0aD0iMTUwIiBoZWlnaHQ9IjQ1IiBmaWxsPSIjZGNkN2YzIiBzdHJva2U9IiM0MTM2NmIiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjMzNSIgeT0iMjgxIj4zLDc1IEw8L3RleHQ+Cjx0ZXh0IHg9IjQwIiB5PSIzNzEiPkFjY3VtdWxvPC90ZXh0PjxyZWN0IHg9IjE2MCIgeT0iMzQwIiB3aWR0aD0iMTIwIiBoZWlnaHQ9IjQ1IiBmaWxsPSIjZGNlN2Y2IiBzdHJva2U9IiMyODY1OTQiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjMwNSIgeT0iMzcxIj4zIEw8L3RleHQ+PHRleHQgeD0iMTI1IiB5PSI0NDUiPjYsNzUgTCDiiJIgMyw3NSBMID0gMyBMPC90ZXh0Pgo8cGF0aCBkPSJNMzIgNDkwSDYwOCIgc3Ryb2tlPSIjYjNhYmJmIi8+PHRleHQgeD0iMzIiIHk9IjUzNSI+Mi4gVW4gbm9kbyBzZW56YSBhY2N1bXVsbzwvdGV4dD4KPHRleHQgeD0iNDAiIHk9IjYzMiI+SW5ncmVzc288L3RleHQ+PHJlY3QgeD0iMTYwIiB5PSI2MDAiIHdpZHRoPSIzNjAiIGhlaWdodD0iNDUiIGZpbGw9IiNkOWVkZGYiIHN0cm9rZT0iIzI0NmQ1NCIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iNDI1IiB5PSI2ODUiPjM2IG1ML3M8L3RleHQ+Cjx0ZXh0IHg9IjQwIiB5PSI3NTIiPlJhbW8gMTwvdGV4dD48cmVjdCB4PSIxNjAiIHk9IjcyMCIgd2lkdGg9IjE0MCIgaGVpZ2h0PSI0NSIgZmlsbD0iI2RjZDdmMyIgc3Ryb2tlPSIjNDEzNjZiIiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSIzMjUiIHk9Ijc1MiI+MTQgbUwvczwvdGV4dD4KPHRleHQgeD0iNDAiIHk9Ijg3MiI+UmFtbyAyPC90ZXh0PjxyZWN0IHg9IjE2MCIgeT0iODQwIiB3aWR0aD0iMjIwIiBoZWlnaHQ9IjQ1IiBmaWxsPSIjZGNlN2Y2IiBzdHJva2U9IiMyODY1OTQiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjQwNSIgeT0iODcyIj4yMiBtTC9zPC90ZXh0Pjx0ZXh0IHg9IjEyNSIgeT0iOTU1Ij4zNiBtTC9zID0gMTQgbUwvcyArIDIyIG1ML3M8L3RleHQ+CjxwYXRoIGQ9Ik0zMiAxMDAwSDYwOCIgc3Ryb2tlPSIjYjNhYmJmIi8+PHRleHQgeD0iMzIiIHk9IjEwNDUiPjMuIExhIGxpbmVhIGluaXppYWxtZW50ZSB2dW90YTwvdGV4dD4KPHBhdGggZD0iTTE0MCAxMzkwSDU1ME0xNDAgMTM5MFYxMTMwIiBzdHJva2U9IiMyNTI0MzgiIHN0cm9rZS13aWR0aD0iMyIgZmlsbD0ibm9uZSIvPjxwYXRoIGQ9Ik0xNDAgMTM5MCA1MDAgMTE1MCIgc3Ryb2tlPSIjMjg2NTk0IiBzdHJva2Utd2lkdGg9IjUiLz4KPHBhdGggZD0iTTUwMCAxMzkwVjExNTBIMTQwIiBzdHJva2U9IiM5NzhlYWIiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWRhc2hhcnJheT0iNiA1IiBmaWxsPSJub25lIi8+Cjx0ZXh0IHg9IjQwIiB5PSIxMTA1Ij5WIChtTCk8L3RleHQ+PHRleHQgeD0iNzgiIHk9IjExNTgiPjEyMDwvdGV4dD48dGV4dCB4PSIxMDUiIHk9IjE0MjAiPjA8L3RleHQ+PHRleHQgeD0iNDkyIiB5PSIxNDIwIj45PC90ZXh0Pjx0ZXh0IHg9IjQ4NSIgeT0iMTQ2MCI+dCAocyk8L3RleHQ+PHRleHQgeD0iOTUiIHk9IjE1MTAiPkEgOSBzIGlsIHZvbHVtZSBpbnRlcm5vIGRpIDEyMCBtTCDDqCByaWVtcGl0bzwvdGV4dD4KPC9nPjwvc3ZnPg=="
+    }
+  ]
+}
