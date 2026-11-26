@@ -1,0 +1,1163 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u7-photon-rate-power-01",
+      "kind": "question",
+      "course": "C5",
+      "section": "Potenza radiante ed emissione media di fotoni",
+      "order": 24201,
+      "title": "Dalla potenza all’energia per fotone",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "photon-rate-power",
+      "difficulty": 1,
+      "prompt": "Una sorgente monocromatica emette potenza media P>0 alla frequenza f=u·10¹⁵ Hz, con u>0 puro. Si assume h=6,6×10⁻³⁴ J·s come valore prescritto. Definisco p=P/(1 pW), q_R=10⁶ s⁻¹ e r=Ṅ/q_R, dove Ṅ è il numero medio di fotoni emessi per secondo. p e r sono coefficienti numerici puri. Il tasso medio è continuo: non si impone un conteggio intero a r o al numero medio per secondo. Ogni confronto è fra preparazioni positive finite. Con P=33 pW e u=1, quanto vale Ṅ in unità q_R? Inserisci il coefficiente r.",
+      "answer": {
+        "type": "numeric",
+        "value": 50,
+        "unit": "10⁶ s⁻¹",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La potenza è energia per tempo. Per fotoni monocromatici P=Ṅhf, quindi divido per l’energia di un fotone. Qui hf=(33/5)·10⁻¹⁹ J e P=33·10⁻¹² J/s: i33 si cancellano e resta Ṅ=5·10⁷ s⁻¹=50q_R. In numeri la stessa legge è r=50p/(33u)."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/90e6ac6a721d12727256f629f2429e3b69242eb4b98a4ecb8649033feb718707",
+          "text": "La prima tappa distingue l’energia per fotone hf dalla potenza emessa P. Con P=33 pW e f=10¹⁵ Hz il tasso medio è50 milioni/s. Non è la frequenza di oscillazione del campo."
+        },
+        {
+          "type": "formula",
+          "text": "P=\\dot Nhf"
+        },
+        {
+          "type": "formula",
+          "text": " r=\\frac{50p}{33u}"
+        },
+        {
+          "type": "formula",
+          "text": " r=50"
+        },
+        {
+          "type": "formula",
+          "text": " \\dot N=50q_R"
+        },
+        {
+          "type": "text",
+          "text": "Cento raddoppia il risultato;33 copia la potenza numerica senza dividerla per hf. Cinque perde un fattore dieci nella scala dell’uscita. Il valore prescritto di h va mantenuto in tutto il calcolo."
+        }
+      ],
+      "hints": [
+        "Dividi energia emessa per secondo per energia di un fotone.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Cento raddoppia il risultato;33 copia la potenza numerica senza dividerla per hf. Cinque perde un fattore dieci nella scala dell’uscita. Il valore prescritto di h va mantenuto in tutto il calcolo.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Energia per fotone e tasso medio",
+        "Evento a un fotone e soglia energetica",
+        "Unità scalate, inverse e rapporti",
+        "Frazioni esatte, tarature e ridondanza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-photon-rate-power-02",
+      "kind": "question",
+      "course": "C5",
+      "section": "Potenza radiante ed emissione media di fotoni",
+      "order": 24202,
+      "title": "L’unità di un tasso medio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "photon-rate-power",
+      "difficulty": 1,
+      "prompt": "Una sorgente monocromatica emette potenza media P>0 alla frequenza f=u·10¹⁵ Hz, con u>0 puro. Si assume h=6,6×10⁻³⁴ J·s come valore prescritto. Definisco p=P/(1 pW), q_R=10⁶ s⁻¹ e r=Ṅ/q_R, dove Ṅ è il numero medio di fotoni emessi per secondo. p e r sono coefficienti numerici puri. Il tasso medio è continuo: non si impone un conteggio intero a r o al numero medio per secondo. Ogni confronto è fra preparazioni positive finite. Quale unità è dimensionalmente adatta a Ṅ?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "s⁻¹",
+          "J",
+          "W",
+          "s",
+          "1"
+        ],
+        "value": "s⁻¹"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il numero di fotoni è un conteggio puro e il suo tasso medio ha unità s⁻¹. Da P/(hf), (J/s)/J restituisce1/s. La frequenza del campo ha la stessa dimensione, ma è un’altra grandezza fisica rispetto al numero di fotoni per secondo."
+        },
+        {
+          "type": "formula",
+          "text": "[\\dot N]=\\frac{\\mathrm{J/s}}{\\mathrm J}"
+        },
+        {
+          "type": "formula",
+          "text": " [\\dot N]=\\mathrm s^{-1}"
+        },
+        {
+          "type": "text",
+          "text": "J è energia di un fotone o del pacchetto, W potenza, s tempo. Il simbolo1 sarebbe adatto al coefficiente r, non al tasso fisico Ṅ. Non si identifica Ṅ con f soltanto perché condividono una dimensione."
+        }
+      ],
+      "hints": [
+        "Controlla le unità del rapporto P/(hf).",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "J è energia di un fotone o del pacchetto, W potenza, s tempo. Il simbolo1 sarebbe adatto al coefficiente r, non al tasso fisico Ṅ. Non si identifica Ṅ con f soltanto perché condividono una dimensione.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Energia per fotone e tasso medio",
+        "Evento a un fotone e soglia energetica",
+        "Unità scalate, inverse e rapporti",
+        "Frazioni esatte, tarature e ridondanza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-photon-rate-power-03",
+      "kind": "question",
+      "course": "C5",
+      "section": "Potenza radiante ed emissione media di fotoni",
+      "order": 24203,
+      "title": "La soglia riguarda il singolo fotone",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "photon-rate-power",
+      "difficulty": 1,
+      "prompt": "Caso autonomo: in un evento di assorbimento a un solo fotone da parte di un atomo, quale proprietà determina se il fotone può fornire l’energia necessaria a rimuovere un elettrone?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "L’energia hf del singolo fotone rispetto alla soglia di ionizzazione",
+          "La sola potenza totale del fascio",
+          "Il numero di fotoni al secondo indipendentemente da f",
+          "La durata del fascio indipendentemente da f",
+          "La sola area illuminata"
+        ],
+        "value": "L’energia hf del singolo fotone rispetto alla soglia di ionizzazione"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il confronto energetico è fra hf del singolo fotone e la soglia del processo considerato. Aumentare il numero di fotoni aumenta la potenza o il numero di occasioni, ma non l’energia disponibile in un singolo evento a un fotone. Superare la soglia è una condizione energetica necessaria, non una promessa che ogni fotone venga assorbito e ionizzi."
+        },
+        {
+          "type": "formula",
+          "text": "E_\\gamma=hf"
+        },
+        {
+          "type": "formula",
+          "text": " hf\\geq E_{\\rm soglia}"
+        },
+        {
+          "type": "text",
+          "text": "Potenza, tasso, durata e area possono influenzare il numero complessivo di eventi, ma non sostituiscono hf nel bilancio di questo evento a un fotone. Non si invocano processi multifotonici, esclusi dal tipo di evento posto."
+        }
+      ],
+      "hints": [
+        "Separa energia per fotone da energia totale del fascio.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Potenza, tasso, durata e area possono influenzare il numero complessivo di eventi, ma non sostituiscono hf nel bilancio di questo evento a un fotone. Non si invocano processi multifotonici, esclusi dal tipo di evento posto.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Energia per fotone e tasso medio",
+        "Evento a un fotone e soglia energetica",
+        "Unità scalate, inverse e rapporti",
+        "Frazioni esatte, tarature e ridondanza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-photon-rate-power-04",
+      "kind": "question",
+      "course": "C5",
+      "section": "Potenza radiante ed emissione media di fotoni",
+      "order": 24204,
+      "title": "Potenza doppia, fotoni individuali invariati",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "photon-rate-power",
+      "difficulty": 1,
+      "prompt": "Una sorgente monocromatica emette potenza media P>0 alla frequenza f=u·10¹⁵ Hz, con u>0 puro. Si assume h=6,6×10⁻³⁴ J·s come valore prescritto. Definisco p=P/(1 pW), q_R=10⁶ s⁻¹ e r=Ṅ/q_R, dove Ṅ è il numero medio di fotoni emessi per secondo. p e r sono coefficienti numerici puri. Il tasso medio è continuo: non si impone un conteggio intero a r o al numero medio per secondo. Ogni confronto è fra preparazioni positive finite. u resta1 e P passa da33 a66 pW. Come cambia Ṅ?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 50q_R a 100q_R",
+          "Da 50q_R a 25q_R",
+          "Resta 50q_R",
+          "Da 50q_R a 200q_R",
+          "Da 50q_R a 66q_R"
+        ],
+        "value": "Da 50q_R a 100q_R"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La frequenza f non cambia, quindi ogni fotone porta la stessa hf. La potenza doppia deve corrispondere al doppio del tasso medio: r50→100. Non si sta raddoppiando l’energia di ciascun fotone."
+        },
+        {
+          "type": "formula",
+          "text": "r_A=50"
+        },
+        {
+          "type": "formula",
+          "text": " r_B=100"
+        },
+        {
+          "type": "formula",
+          "text": " \\dot N_B/\\dot N_A=2"
+        },
+        {
+          "type": "text",
+          "text": "25 inverte la dipendenza dalla potenza.200 introduce un quadrato;66 copia p_B e50 ignora il cambiamento. La potenza resta distinta dal tasso pur essendo a esso proporzionale a f fissata."
+        }
+      ],
+      "hints": [
+        "A f invariata, hf è lo stesso divisore nelle due prove.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "25 inverte la dipendenza dalla potenza.200 introduce un quadrato;66 copia p_B e50 ignora il cambiamento. La potenza resta distinta dal tasso pur essendo a esso proporzionale a f fissata.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Energia per fotone e tasso medio",
+        "Evento a un fotone e soglia energetica",
+        "Unità scalate, inverse e rapporti",
+        "Frazioni esatte, tarature e ridondanza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-photon-rate-power-05",
+      "kind": "question",
+      "course": "C5",
+      "section": "Potenza radiante ed emissione media di fotoni",
+      "order": 24205,
+      "title": "La potenza ricostruita dal tasso",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "photon-rate-power",
+      "difficulty": 2,
+      "prompt": "Una sorgente monocromatica emette potenza media P>0 alla frequenza f=u·10¹⁵ Hz, con u>0 puro. Si assume h=6,6×10⁻³⁴ J·s come valore prescritto. Definisco p=P/(1 pW), q_R=10⁶ s⁻¹ e r=Ṅ/q_R, dove Ṅ è il numero medio di fotoni emessi per secondo. p e r sono coefficienti numerici puri. Il tasso medio è continuo: non si impone un conteggio intero a r o al numero medio per secondo. Ogni confronto è fra preparazioni positive finite. Ṅ=50q_R e u=1. Quanto vale P in pW?",
+      "answer": {
+        "type": "numeric",
+        "value": 33,
+        "unit": "pW",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Isolo P=Ṅhf. Nelle variabili numeriche p=(33/50)ru: per r50,u1 il cinquanta si cancella e p33. Quindi P33 pW. Il coefficiente r da solo non è una potenza."
+        },
+        {
+          "type": "formula",
+          "text": "P=\\dot Nhf"
+        },
+        {
+          "type": "formula",
+          "text": " p=\\frac{33}{50}ru"
+        },
+        {
+          "type": "formula",
+          "text": " P=33\\,\\mathrm{pW}"
+        },
+        {
+          "type": "text",
+          "text": "Cinquanta copia r senza l’energia per fotone.66 pW darebbe r100;33/2 pW darebbe r25. Dividere ancora per hf ripeterebbe la legge diretta invece dell’inversa."
+        }
+      ],
+      "hints": [
+        "Moltiplica il tasso per l’energia di un fotone.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Cinquanta copia r senza l’energia per fotone.66 pW darebbe r100;33/2 pW darebbe r25. Dividere ancora per hf ripeterebbe la legge diretta invece dell’inversa.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Energia per fotone e tasso medio",
+        "Evento a un fotone e soglia energetica",
+        "Unità scalate, inverse e rapporti",
+        "Frazioni esatte, tarature e ridondanza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-photon-rate-power-06",
+      "kind": "question",
+      "course": "C5",
+      "section": "Potenza radiante ed emissione media di fotoni",
+      "order": 24206,
+      "title": "La frequenza dal tasso a potenza nota",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "photon-rate-power",
+      "difficulty": 2,
+      "prompt": "Una sorgente monocromatica emette potenza media P>0 alla frequenza f=u·10¹⁵ Hz, con u>0 puro. Si assume h=6,6×10⁻³⁴ J·s come valore prescritto. Definisco p=P/(1 pW), q_R=10⁶ s⁻¹ e r=Ṅ/q_R, dove Ṅ è il numero medio di fotoni emessi per secondo. p e r sono coefficienti numerici puri. Il tasso medio è continuo: non si impone un conteggio intero a r o al numero medio per secondo. Ogni confronto è fra preparazioni positive finite. Ṅ=50q_R e P=33 pW. Quanto vale f in unità di10¹⁵ Hz? Inserisci u.",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "10¹⁵ Hz",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dalla legge r=50p/(33u) ricavo u=50p/(33r). Con p33 e r50, i prodotti al numeratore e denominatore coincidono: u1 e f10¹⁵ Hz. Tutti i denominatori sono positivi."
+        },
+        {
+          "type": "formula",
+          "text": "u=\\frac{50p}{33r}"
+        },
+        {
+          "type": "formula",
+          "text": " u=1"
+        },
+        {
+          "type": "formula",
+          "text": " f=10^{15}\\,\\mathrm{Hz}"
+        },
+        {
+          "type": "text",
+          "text": "Due dimezzerebbe r a25 per la stessa potenza. Un mezzo raddoppierebbe il tasso a100.33 copia il valore numerico della potenza senza risolvere l’inversa."
+        }
+      ],
+      "hints": [
+        "A P fissata, fotoni più energetici implicano meno fotoni al secondo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due dimezzerebbe r a25 per la stessa potenza. Un mezzo raddoppierebbe il tasso a100.33 copia il valore numerico della potenza senza risolvere l’inversa.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Energia per fotone e tasso medio",
+        "Evento a un fotone e soglia energetica",
+        "Unità scalate, inverse e rapporti",
+        "Frazioni esatte, tarature e ridondanza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-photon-rate-power-07",
+      "kind": "question",
+      "course": "C5",
+      "section": "Potenza radiante ed emissione media di fotoni",
+      "order": 24207,
+      "title": "Frequenza doppia a pari potenza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "photon-rate-power",
+      "difficulty": 2,
+      "prompt": "Una sorgente monocromatica emette potenza media P>0 alla frequenza f=u·10¹⁵ Hz, con u>0 puro. Si assume h=6,6×10⁻³⁴ J·s come valore prescritto. Definisco p=P/(1 pW), q_R=10⁶ s⁻¹ e r=Ṅ/q_R, dove Ṅ è il numero medio di fotoni emessi per secondo. p e r sono coefficienti numerici puri. Il tasso medio è continuo: non si impone un conteggio intero a r o al numero medio per secondo. Ogni confronto è fra preparazioni positive finite. A usa P=33 pW,u=1; B mantiene P e usa u=2. Quanto vale Ṅ_B/Ṅ_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "2",
+          "1/4",
+          "1",
+          "0"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’energia per fotone raddoppia. Per trasportare la stessa potenza occorre metà del tasso: r_A50,r_B25. Il rapporto è1/2, inverso della frequenza a potenza fissata."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/90e6ac6a721d12727256f629f2429e3b69242eb4b98a4ecb8649033feb718707",
+          "text": "A P=33 pW, raddoppiare f riduce il tasso da50 a25 milioni/s. Le barre hanno la stessa scala; questa coppia non è quella con P_B=1 pW dei quesiti11–15."
+        },
+        {
+          "type": "formula",
+          "text": "r_A=50"
+        },
+        {
+          "type": "formula",
+          "text": " r_B=25"
+        },
+        {
+          "type": "formula",
+          "text": " \\dot N_B/\\dot N_A=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Due rende diretta la dipendenza da f. Un quarto introduce un quadrato;uno ignora f. Zero non segue da potenza positiva e frequenza finita."
+        }
+      ],
+      "hints": [
+        "La potenza assegnata va ripartita in fotoni di energia diversa.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due rende diretta la dipendenza da f. Un quarto introduce un quadrato;uno ignora f. Zero non segue da potenza positiva e frequenza finita.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Energia per fotone e tasso medio",
+        "Evento a un fotone e soglia energetica",
+        "Unità scalate, inverse e rapporti",
+        "Frazioni esatte, tarature e ridondanza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-photon-rate-power-08",
+      "kind": "question",
+      "course": "C5",
+      "section": "Potenza radiante ed emissione media di fotoni",
+      "order": 24208,
+      "title": "Uno scarto di tassi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "photon-rate-power",
+      "difficulty": 2,
+      "prompt": "Una sorgente monocromatica emette potenza media P>0 alla frequenza f=u·10¹⁵ Hz, con u>0 puro. Si assume h=6,6×10⁻³⁴ J·s come valore prescritto. Definisco p=P/(1 pW), q_R=10⁶ s⁻¹ e r=Ṅ/q_R, dove Ṅ è il numero medio di fotoni emessi per secondo. p e r sono coefficienti numerici puri. Il tasso medio è continuo: non si impone un conteggio intero a r o al numero medio per secondo. Ogni confronto è fra preparazioni positive finite. Con P=33 pW,u=1 si propone Ṅ=100q_R. Quanto vale proposta meno corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "50q_R",
+          "−50q_R",
+          "2",
+          "100q_R",
+          "0q_R"
+        ],
+        "value": "50q_R"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il corretto è50q_R. La proposta supera il valore di100q_R−50q_R=50q_R. Due è invece il rapporto puro dei tassi e non la differenza richiesta."
+        },
+        {
+          "type": "formula",
+          "text": "\\dot N=50q_R"
+        },
+        {
+          "type": "formula",
+          "text": " \\delta\\dot N=(100-50)q_R"
+        },
+        {
+          "type": "formula",
+          "text": " \\delta\\dot N=50q_R"
+        },
+        {
+          "type": "text",
+          "text": "−50q_R inverte l’ordine.100q_R copia la proposta;0q_R la accetta senza verifica. L’unità q_R è un tasso, non una carica o una potenza."
+        }
+      ],
+      "hints": [
+        "Mantieni la scala10⁶ s⁻¹ dopo la sottrazione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−50q_R inverte l’ordine.100q_R copia la proposta;0q_R la accetta senza verifica. L’unità q_R è un tasso, non una carica o una potenza.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Energia per fotone e tasso medio",
+        "Evento a un fotone e soglia energetica",
+        "Unità scalate, inverse e rapporti",
+        "Frazioni esatte, tarature e ridondanza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-photon-rate-power-09",
+      "kind": "question",
+      "course": "C5",
+      "section": "Potenza radiante ed emissione media di fotoni",
+      "order": 24209,
+      "title": "La potenza nell’inversa dimensionale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "photon-rate-power",
+      "difficulty": 2,
+      "prompt": "Una sorgente monocromatica emette potenza media P>0 alla frequenza f=u·10¹⁵ Hz, con u>0 puro. Si assume h=6,6×10⁻³⁴ J·s come valore prescritto. Definisco p=P/(1 pW), q_R=10⁶ s⁻¹ e r=Ṅ/q_R, dove Ṅ è il numero medio di fotoni emessi per secondo. p e r sono coefficienti numerici puri. Il tasso medio è continuo: non si impone un conteggio intero a r o al numero medio per secondo. Ogni confronto è fra preparazioni positive finite. Ṅ e f sono noti. Quale relazione isola P?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "P = Ṅ h f",
+          "P = Ṅ / (h f)",
+          "P = h f / Ṅ",
+          "P = Ṅ f / h",
+          "P = Ṅ h / f"
+        ],
+        "value": "P = Ṅ h f"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Ogni fotone porta hf e il tasso indica quanti ne vengono emessi mediamente per tempo. P=Ṅhf ha unità s⁻¹·J=W. La normalizzazione r non cambia la relazione fra grandezze fisiche."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/90e6ac6a721d12727256f629f2429e3b69242eb4b98a4ecb8649033feb718707",
+          "text": "Nel grafico finale f=10¹⁵ Hz è fissata: Ṅ cresce linearmente con P. La retta riguarda il tasso medio, che è continuo; l’origine è un limite escluso dai dati positivi."
+        },
+        {
+          "type": "formula",
+          "text": "P=\\dot Nhf"
+        },
+        {
+          "type": "formula",
+          "text": " [P]=\\mathrm W"
+        },
+        {
+          "type": "text",
+          "text": "Ṅ/(hf) ripete la divisione della legge diretta e non è una potenza. hf/Ṅ ha unità J·s; le altre formule scambiano il ruolo di h o della frequenza. Non si eliminano coefficienti dimensionati perché numericamente prescritti."
+        }
+      ],
+      "hints": [
+        "Moltiplica energia per fotone e tasso.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Ṅ/(hf) ripete la divisione della legge diretta e non è una potenza. hf/Ṅ ha unità J·s; le altre formule scambiano il ruolo di h o della frequenza. Non si eliminano coefficienti dimensionati perché numericamente prescritti.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Energia per fotone e tasso medio",
+        "Evento a un fotone e soglia energetica",
+        "Unità scalate, inverse e rapporti",
+        "Frazioni esatte, tarature e ridondanza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-photon-rate-power-10",
+      "kind": "question",
+      "course": "C5",
+      "section": "Potenza radiante ed emissione media di fotoni",
+      "order": 24210,
+      "title": "Due fattori fra sorgenti",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "photon-rate-power",
+      "difficulty": 2,
+      "prompt": "Una sorgente monocromatica emette potenza media P>0 alla frequenza f=u·10¹⁵ Hz, con u>0 puro. Si assume h=6,6×10⁻³⁴ J·s come valore prescritto. Definisco p=P/(1 pW), q_R=10⁶ s⁻¹ e r=Ṅ/q_R, dove Ṅ è il numero medio di fotoni emessi per secondo. p e r sono coefficienti numerici puri. Il tasso medio è continuo: non si impone un conteggio intero a r o al numero medio per secondo. Ogni confronto è fra preparazioni positive finite. Fra prove P_B=κ₁P_A e u_B=κ₂u_A, con fattori positivi. Quanto vale Ṅ_B/Ṅ_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ / κ₂",
+          "κ₁ κ₂",
+          "κ₂ / κ₁",
+          "κ₁ / κ₂²",
+          "κ₁ + κ₂"
+        ],
+        "value": "κ₁ / κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La potenza moltiplica il numeratore e la frequenza il denominatore di P/(hf). Il rapporto dei tassi èκ₁/κ₂. I tassi sono medie continue; non si impone che il prodotto di una scalatura per r sia un numero intero di fotoni."
+        },
+        {
+          "type": "formula",
+          "text": "\\dot N_B/\\dot N_A=\\frac{\\kappa_1}{\\kappa_2}"
+        },
+        {
+          "type": "text",
+          "text": "Il prodotto rende diretto l’effetto di f; il reciproco inverte il confronto. κ₂² aggiunge una potenza assente e la somma darebbe due per sorgenti identiche."
+        }
+      ],
+      "hints": [
+        "Conserva il denominatore hf nel confronto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il prodotto rende diretto l’effetto di f; il reciproco inverte il confronto. κ₂² aggiunge una potenza assente e la somma darebbe due per sorgenti identiche.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Energia per fotone e tasso medio",
+        "Evento a un fotone e soglia energetica",
+        "Unità scalate, inverse e rapporti",
+        "Frazioni esatte, tarature e ridondanza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-photon-rate-power-11",
+      "kind": "question",
+      "course": "C5",
+      "section": "Potenza radiante ed emissione media di fotoni",
+      "order": 24211,
+      "title": "Due cambiamenti con una frazione esatta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "photon-rate-power",
+      "difficulty": 2,
+      "prompt": "Una sorgente monocromatica emette potenza media P>0 alla frequenza f=u·10¹⁵ Hz, con u>0 puro. Si assume h=6,6×10⁻³⁴ J·s come valore prescritto. Definisco p=P/(1 pW), q_R=10⁶ s⁻¹ e r=Ṅ/q_R, dove Ṅ è il numero medio di fotoni emessi per secondo. p e r sono coefficienti numerici puri. Il tasso medio è continuo: non si impone un conteggio intero a r o al numero medio per secondo. Ogni confronto è fra preparazioni positive finite. A usa P=33 pW,u=1. B usa P=1 pW,u=2. Quanto vale Ṅ_B/Ṅ_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/66",
+          "66",
+          "1/33",
+          "1/2",
+          "1"
+        ],
+        "value": "1/66"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A dà r50. Per B, r=50/(33·2)=25/33. Il rapporto(25/33)/50 si semplifica dividendo25 per50:1/66. È possibile un tasso medio frazionario nella scala scelta; non significa dividere un singolo fotone."
+        },
+        {
+          "type": "formula",
+          "text": "r_A=50"
+        },
+        {
+          "type": "formula",
+          "text": " r_B=\\frac{25}{33}"
+        },
+        {
+          "type": "formula",
+          "text": " \\dot N_B/\\dot N_A=\\frac1{66}"
+        },
+        {
+          "type": "text",
+          "text": "Sessantasei inverte il rapporto.1/33 considera solo P,1/2 solo f euno ignora entrambi. Non si arrotonda25/33 a un intero."
+        }
+      ],
+      "hints": [
+        "Semplifica25 con50 prima di moltiplicare i denominatori.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sessantasei inverte il rapporto.1/33 considera solo P,1/2 solo f euno ignora entrambi. Non si arrotonda25/33 a un intero.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Energia per fotone e tasso medio",
+        "Evento a un fotone e soglia energetica",
+        "Unità scalate, inverse e rapporti",
+        "Frazioni esatte, tarature e ridondanza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-photon-rate-power-12",
+      "kind": "question",
+      "course": "C5",
+      "section": "Potenza radiante ed emissione media di fotoni",
+      "order": 24212,
+      "title": "Media di due tassi medi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "photon-rate-power",
+      "difficulty": 2,
+      "prompt": "Una sorgente monocromatica emette potenza media P>0 alla frequenza f=u·10¹⁵ Hz, con u>0 puro. Si assume h=6,6×10⁻³⁴ J·s come valore prescritto. Definisco p=P/(1 pW), q_R=10⁶ s⁻¹ e r=Ṅ/q_R, dove Ṅ è il numero medio di fotoni emessi per secondo. p e r sono coefficienti numerici puri. Il tasso medio è continuo: non si impone un conteggio intero a r o al numero medio per secondo. Ogni confronto è fra preparazioni positive finite. A usa P=33 pW,u=1; B usa P=1 pW,u=2. Qual è il coefficiente r medio, con pesi uguali?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1675/66",
+          "1700/99",
+          "1675/33",
+          "1625/66",
+          "25/33"
+        ],
+        "value": "1675/66"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le uscite sono50 e25/33. Scrivo50=1650/33, sommo1675/33 e dimezzo: r medio1675/66. Agli ingressi medi p17,u3/2 il modello darebbe1700/99, diverso dalla media. Entrambi sono esatti e i tassi medi non hanno vincolo di integrità."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline r=\\frac{50+25/33}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline r=\\frac{1675}{66}"
+        },
+        {
+          "type": "formula",
+          "text": " r_{\\rm dati\\ medi}=\\frac{1700}{99}"
+        },
+        {
+          "type": "text",
+          "text": "1700/99 usa i dati medi;1675/33 è la somma.1625/66 è la semidifferenza e25/33 ripete solo B. Si stanno pesando due preparazioni, non concatenando durate di emissione."
+        }
+      ],
+      "hints": [
+        "Usa il denominatore33 prima della semisomma.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "1700/99 usa i dati medi;1675/33 è la somma.1625/66 è la semidifferenza e25/33 ripete solo B. Si stanno pesando due preparazioni, non concatenando durate di emissione.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Energia per fotone e tasso medio",
+        "Evento a un fotone e soglia energetica",
+        "Unità scalate, inverse e rapporti",
+        "Frazioni esatte, tarature e ridondanza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-photon-rate-power-13",
+      "kind": "question",
+      "course": "C5",
+      "section": "Potenza radiante ed emissione media di fotoni",
+      "order": 24213,
+      "title": "La frequenza per il tasso bersaglio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "photon-rate-power",
+      "difficulty": 3,
+      "prompt": "Una sorgente monocromatica emette potenza media P>0 alla frequenza f=u·10¹⁵ Hz, con u>0 puro. Si assume h=6,6×10⁻³⁴ J·s come valore prescritto. Definisco p=P/(1 pW), q_R=10⁶ s⁻¹ e r=Ṅ/q_R, dove Ṅ è il numero medio di fotoni emessi per secondo. p e r sono coefficienti numerici puri. Il tasso medio è continuo: non si impone un conteggio intero a r o al numero medio per secondo. Ogni confronto è fra preparazioni positive finite. A ha P_A=33 pW,u_A=1. B usa P_B=1 pW e deve dare Ṅ_B=Ṅ_A/66. Quanto vale u_B/u_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/2",
+          "66",
+          "1/33",
+          "1"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio ha r_B50/66=25/33. Nell’inversa u=50p/(33r), con p_B1, si cancellano i33 e resta50/25=2. Il rapporto u_B/u_A è due, non il fattore66 del tasso."
+        },
+        {
+          "type": "formula",
+          "text": "r_B=\\frac{25}{33}"
+        },
+        {
+          "type": "formula",
+          "text": " u_B=2"
+        },
+        {
+          "type": "formula",
+          "text": " u_B/u_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Mezzo inverte il confronto.66 copia il reciproco del bersaglio senza il cambio di potenza;1/33 copia P_B/P_A. Frequenza invariata darebbe r50/33, doppio del bersaglio."
+        }
+      ],
+      "hints": [
+        "Ricostruisci prima r_B come frazione esatta.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Mezzo inverte il confronto.66 copia il reciproco del bersaglio senza il cambio di potenza;1/33 copia P_B/P_A. Frequenza invariata darebbe r50/33, doppio del bersaglio.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Energia per fotone e tasso medio",
+        "Evento a un fotone e soglia energetica",
+        "Unità scalate, inverse e rapporti",
+        "Frazioni esatte, tarature e ridondanza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-photon-rate-power-14",
+      "kind": "question",
+      "course": "C5",
+      "section": "Potenza radiante ed emissione media di fotoni",
+      "order": 24214,
+      "title": "Un display continuo può leggere una frazione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "photon-rate-power",
+      "difficulty": 3,
+      "prompt": "Una sorgente monocromatica emette potenza media P>0 alla frequenza f=u·10¹⁵ Hz, con u>0 puro. Si assume h=6,6×10⁻³⁴ J·s come valore prescritto. Definisco p=P/(1 pW), q_R=10⁶ s⁻¹ e r=Ṅ/q_R, dove Ṅ è il numero medio di fotoni emessi per secondo. p e r sono coefficienti numerici puri. Il tasso medio è continuo: non si impone un conteggio intero a r o al numero medio per secondo. Ogni confronto è fra preparazioni positive finite. D=a_cal r è continuo e adimensionale. A con P=33 pW,u=1 dà D150. B ha u=2,D=25/11. Quanto vale P_B in pW?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "pW",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento r50 identifica a_cal3. La lettura25/11 dà r_B=(25/11)/3=25/33. Poi p_B=(33/50)r_Bu_B=(33/50)(25/33)·2=1: P_B1 pW. Le cancellazioni evitano ogni decimale."
+        },
+        {
+          "type": "formula",
+          "text": "a_{\\rm cal}=3"
+        },
+        {
+          "type": "formula",
+          "text": " r_B=\\frac{25}{33}"
+        },
+        {
+          "type": "formula",
+          "text": " p_B=\\frac{33}{50}r_Bu_B"
+        },
+        {
+          "type": "formula",
+          "text": " P_B=1\\,\\mathrm{pW}"
+        },
+        {
+          "type": "text",
+          "text": "Tre pW usa D come r e predice D75/11. Un mezzo pW ignora il fattore u_B2 dopo la taratura;33 pW ripete A. La lettura non è un conteggio discreto."
+        }
+      ],
+      "hints": [
+        "Dividi per il guadagno prima di invertire il rapporto potenza/frequenza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre pW usa D come r e predice D75/11. Un mezzo pW ignora il fattore u_B2 dopo la taratura;33 pW ripete A. La lettura non è un conteggio discreto.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Energia per fotone e tasso medio",
+        "Evento a un fotone e soglia energetica",
+        "Unità scalate, inverse e rapporti",
+        "Frazioni esatte, tarature e ridondanza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-photon-rate-power-15",
+      "kind": "question",
+      "course": "C5",
+      "section": "Potenza radiante ed emissione media di fotoni",
+      "order": 24215,
+      "title": "Due riferimenti frazionari eliminano l’offset",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "photon-rate-power",
+      "difficulty": 3,
+      "prompt": "Una sorgente monocromatica emette potenza media P>0 alla frequenza f=u·10¹⁵ Hz, con u>0 puro. Si assume h=6,6×10⁻³⁴ J·s come valore prescritto. Definisco p=P/(1 pW), q_R=10⁶ s⁻¹ e r=Ṅ/q_R, dove Ṅ è il numero medio di fotoni emessi per secondo. p e r sono coefficienti numerici puri. Il tasso medio è continuo: non si impone un conteggio intero a r o al numero medio per secondo. Ogni confronto è fra preparazioni positive finite. D=a_cal r+b_cal è continuo. A:P=33 pW,u=1,D=101. B:P=1 pW,u=2,D=83/33. C:u=1,D=201. Quanto vale P_C in pW?",
+      "answer": {
+        "type": "numeric",
+        "value": 66,
+        "unit": "pW",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I tassi numerici di riferimento sono50 e25/33. La differenza delle letture è3250/33 e quella dei tassi1625/33: guadagno due, offset uno. D_C201 decodifica r_C100. Allora p_C=(33/50)·100·1=66 e P_C66 pW."
+        },
+        {
+          "type": "formula",
+          "text": "a_{\\rm cal}=2"
+        },
+        {
+          "type": "formula",
+          "text": " b_{\\rm cal}=1"
+        },
+        {
+          "type": "formula",
+          "text": " r_C=100"
+        },
+        {
+          "type": "formula",
+          "text": " P_C=66\\,\\mathrm{pW}"
+        },
+        {
+          "type": "text",
+          "text": "6633/100 pW omette l’offset e predice D202.132 pW sottrae b ma salta la divisione per il guadagno.33 pW darebbe D101. Non si approssimano i riferimenti frazionari."
+        }
+      ],
+      "hints": [
+        "La stessa frazione al numeratore e denominatore del guadagno si cancella.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "6633/100 pW omette l’offset e predice D202.132 pW sottrae b ma salta la divisione per il guadagno.33 pW darebbe D101. Non si approssimano i riferimenti frazionari.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Energia per fotone e tasso medio",
+        "Evento a un fotone e soglia energetica",
+        "Unità scalate, inverse e rapporti",
+        "Frazioni esatte, tarature e ridondanza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-photon-rate-power-16",
+      "kind": "question",
+      "course": "C5",
+      "section": "Potenza radiante ed emissione media di fotoni",
+      "order": 24216,
+      "title": "Una misura ridondante del tasso",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L02",
+        "C5-L04",
+        "C5-L06",
+        "C5-L07"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "photon-rate-power",
+      "difficulty": 3,
+      "prompt": "Una sorgente monocromatica emette potenza media P>0 alla frequenza f=u·10¹⁵ Hz, con u>0 puro. Si assume h=6,6×10⁻³⁴ J·s come valore prescritto. Definisco p=P/(1 pW), q_R=10⁶ s⁻¹ e r=Ṅ/q_R, dove Ṅ è il numero medio di fotoni emessi per secondo. p e r sono coefficienti numerici puri. Il tasso medio è continuo: non si impone un conteggio intero a r o al numero medio per secondo. Ogni confronto è fra preparazioni positive finite. Fra preparazioni P=(33 pW)u e si misura anche Ṅ=50q_R. Quante coppie positive (P,u) sono possibili?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Infinite coppie continue",
+          "Una sola coppia",
+          "Due sole coppie",
+          "Nessuna coppia",
+          "Cinquanta coppie"
+        ],
+        "value": "Infinite coppie continue"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il vincolo dà p=33u. Sostituendo in r=50p/(33u), con u>0, resta sempre r50. La misura conferma la proporzione senza fissare u. Esempi:P33 pW,u1 e P66 pW,u2. Anche u non interi positivi sono ammessi, perché il vincolo riguarda un tasso medio, non un pacchetto con N intero."
+        },
+        {
+          "type": "formula",
+          "text": "p=33u"
+        },
+        {
+          "type": "formula",
+          "text": " r=50"
+        },
+        {
+          "type": "formula",
+          "text": " (P,u)=(33\\,\\mathrm{pW},1)"
+        },
+        {
+          "type": "text",
+          "text": "Una o due coppie richiederebbero una scala indipendente. La risposta “Nessuna coppia” è smentita dagli esempi. Cinquanta è il coefficiente del tasso nella scalaq_R, non il numero delle preparazioni."
+        }
+      ],
+      "hints": [
+        "Controlla che u si cancelli e distingui tasso medio da conteggio.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Una o due coppie richiederebbero una scala indipendente. La risposta “Nessuna coppia” è smentita dagli esempi. Cinquanta è il coefficiente del tasso nella scalaq_R, non il numero delle preparazioni.",
+        "target": "C5-L07"
+      },
+      "coverage": [
+        "Energia per fotone e tasso medio",
+        "Evento a un fotone e soglia energetica",
+        "Unità scalate, inverse e rapporti",
+        "Frazioni esatte, tarature e ridondanza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "90e6ac6a721d12727256f629f2429e3b69242eb4b98a4ecb8649033feb718707",
+      "name": "photon-rate-power-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTQ4MCIgdmlld0JveD0iMCAwIDY0MCAxNDgwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+RGFsbGEgcG90ZW56YSBhbCB0YXNzbyBkaSBmb3Rvbmk8L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5UcmUgdGFwcGU6IGVuZXJnaWEgcGVyIGZvdG9uZSBkaXN0aW50YSBkYWxsYSBwb3RlbnphOyBjaW5xdWFudGEgZSB2ZW50aWNpbnF1ZSBtaWxpb25pIGRpIGZvdG9uaSBwZXIgc2Vjb25kbyBhIHBvdGVuemEgdWd1YWxlIGUgZnJlcXVlbnphIGRvcHBpYTsgZ3JhZmljbyBsaW5lYXJlIGRlbCB0YXNzbyByaXNwZXR0byBhbGxhIHBvdGVuemEgYSBmcmVxdWVuemEgZmlzc2F0YS48L2Rlc2M+PGRlZnM+PG1hcmtlciBpZD0iYXJyb3ciIG1hcmtlcldpZHRoPSI4IiBtYXJrZXJIZWlnaHQ9IjgiIHJlZlg9IjciIHJlZlk9IjQiIG9yaWVudD0iYXV0byI+PHBhdGggZD0iTTAgMEw4IDRMMCA4WiIgZmlsbD0iIzUyNjY3YSIvPjwvbWFya2VyPjwvZGVmcz48cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjE0ODAiIGZpbGw9IiNmN2ZhZmMiLz48ZyBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZpbGw9IiMyMDM1NGQiPjx0ZXh0IHg9IjMyIiB5PSI0MiIgZm9udC1zaXplPSIyNCIgdGV4dC1hbmNob3I9InN0YXJ0Ij5EYWxsYSBwb3RlbnphIGFsIHRhc3NvIGRpIGZvdG9uaTwvdGV4dD48dGV4dCB4PSIzMiIgeT0iOTIiIGZvbnQtc2l6ZT0iMjIiIHRleHQtYW5jaG9yPSJzdGFydCI+MSDCtyBFbmVyZ2lhIHBlciBmb3RvbmUgZSBwb3RlbnphPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSIxNDUiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJzdGFydCI+ZiA9IDEwwrnigbUgSHogwrcgUCA9IDMzIHBXPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSIyMDUiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJzdGFydCI+aGYgPSAoMzMvNSnCtzEw4oG7wrnigbkgSjwvdGV4dD48bGluZSB4MT0iMzIwIiB5MT0iMjQwIiB4Mj0iMzIwIiB5Mj0iMzEwIiBzdHJva2U9IiM1MjY2N2EiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48dGV4dCB4PSIzMiIgeT0iMzYwIiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPk7MhyA9IFAgLyAoaGYpID0gNTAgbWlsaW9uaS9zPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSI0MjAiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJzdGFydCI+w4ggdW4gdGFzc28gbWVkaW8sIG5vbiBsYSBmcmVxdWVuemEgZGVsIGNhbXBvLjwvdGV4dD48dGV4dCB4PSIzMiIgeT0iNDgwIiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPmggw6ggaWwgdmFsb3JlIHByZXNjcml0dG8gZGFsIHF1ZXNpdG8uPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSI1NTAiIGZvbnQtc2l6ZT0iMjIiIHRleHQtYW5jaG9yPSJzdGFydCI+MiDCtyBTdGVzc2EgcG90ZW56YSwgZnJlcXVlbnphIGRvcHBpYTwvdGV4dD48dGV4dCB4PSIzMiIgeT0iNTk1IiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPlAgPSAzMyBwVyBpbiBlbnRyYW1iZSBsZSBwcm92ZTwvdGV4dD48dGV4dCB4PSIxMjgiIHk9IjcwNCIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9ImVuZCI+dSA9IDE8L3RleHQ+PHJlY3QgeD0iMTUwIiB5PSI2ODAiIHdpZHRoPSIyNTAiIGhlaWdodD0iMzIiIGZpbGw9IiMzMTZiOWIiLz48dGV4dCB4PSI0MTIiIHk9IjcwNCIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9InN0YXJ0Ij41MCBtaWxpb25pL3M8L3RleHQ+PHRleHQgeD0iMTI4IiB5PSI4MjQiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJlbmQiPnUgPSAyPC90ZXh0PjxyZWN0IHg9IjE1MCIgeT0iODAwIiB3aWR0aD0iMTI1IiBoZWlnaHQ9IjMyIiBmaWxsPSIjMzE2YjliIi8+PHRleHQgeD0iMjg3IiB5PSI4MjQiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJzdGFydCI+MjUgbWlsaW9uaS9zPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSI5MTAiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJzdGFydCI+QmFycmUgZGkgdGFzc28gY29uIG9yaWdpbmUgZSBzY2FsYSBjb211bmkuPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSI5NjAiIGZvbnQtc2l6ZT0iMjIiIHRleHQtYW5jaG9yPSJzdGFydCI+MyDCtyBGcmVxdWVuemEgZmlzc2F0YTogZiA9IDEwwrnigbUgSHo8L3RleHQ+PGxpbmUgeDE9IjE0NSIgeTE9IjEyODAiIHgyPSI1NTAiIHkyPSIxMjgwIiBzdHJva2U9IiM1MjY2N2EiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48bGluZSB4MT0iMTUwIiB5MT0iMTI4NSIgeDI9IjE1MCIgeTI9IjEwMTAiIHN0cm9rZT0iIzUyNjY3YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjxsaW5lIHgxPSIxNTAiIHkxPSIxMjgwIiB4Mj0iNDgwIiB5Mj0iMTAzMCIgc3Ryb2tlPSIjNTI2NjdhIiBzdHJva2Utd2lkdGg9IjIiLz48Y2lyY2xlIGN4PSIxNTAiIGN5PSIxMjgwIiByPSI0IiBmaWxsPSIjZjdmYWZjIiBzdHJva2U9IiMzMTZiOWIiIHN0cm9rZS13aWR0aD0iMiIvPjxjaXJjbGUgY3g9IjQ4MCIgY3k9IjEwMzAiIHI9IjUiIGZpbGw9IiMzMTZiOWIiLz48dGV4dCB4PSIxMjgiIHk9IjEzMDUiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJlbmQiPjA8L3RleHQ+PHRleHQgeD0iNDgwIiB5PSIxMzEwIiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj4zMzwvdGV4dD48dGV4dCB4PSIxMjgiIHk9IjEwMzYiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJlbmQiPjUwPC90ZXh0Pjx0ZXh0IHg9IjQ1MCIgeT0iMTM1MCIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9InN0YXJ0Ij5QIChwVyk8L3RleHQ+PHRleHQgeD0iNDUiIHk9Ijk5MCIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9InN0YXJ0Ij5OzIcgKG1pbGlvbmkvcyk8L3RleHQ+PHRleHQgeD0iMzIiIHk9IjE0MDAiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJzdGFydCI+SWwgdGFzc28gbWVkaW8gw6ggcHJvcG9yemlvbmFsZSBhbGxhIHBvdGVuemEuPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSIxNDQwIiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPkzigJlvcmlnaW5lIMOoIHVuIGxpbWl0ZSBkZWkgZGF0aSBwb3NpdGl2aS48L3RleHQ+PC9nPjwvc3ZnPgo="
+    }
+  ]
+}
