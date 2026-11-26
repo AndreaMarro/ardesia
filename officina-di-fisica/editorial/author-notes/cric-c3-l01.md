@@ -28,7 +28,7 @@ Procedimento: Converto soltanto la lettura finale: 20,0 °C corrispondono a 293,
 
 Passaggi esatti: `T_f=293{,}15\,\mathrm K\qquad \Delta T=T_f-T_i\qquad \Delta T=-17{,}85\,\mathrm K`.
 
-Distrattori: 17,85 K sarebbe il modulo del calo, non la variazione con segno richiesta. Sottrarre direttamente 20−311 mescola due origini diverse. Il numero 273,15 serve alla conversione delle letture; non si aggiunge una seconda volta a una differenza già espressa in kelvin.
+Distrattori: 17,85 K è il modulo del calo, non la variazione con segno richiesta. −291 K sottrae direttamente 20−311 mescolando due origini diverse. 293,15 K e 311 K sono temperature dei singoli stati, non la loro variazione. L’offset di 273,15 non va aggiunto a una differenza già espressa in kelvin.
 
 Aiuto: Porta entrambe le letture sulla stessa scala prima di fare finale meno iniziale.
 
@@ -40,7 +40,7 @@ Compito: La temperatura all’equilibrio ha lo stesso valore quando il sistema t
 
 Procedimento: Una funzione di stato dipende dallo stato, non dalla storia del percorso. Tornando allo stesso stato si ritrova lo stesso valore della temperatura. Questo non rende il calore e il lavoro funzioni di stato: essi descrivono trasferimenti lungo un processo.
 
-Passaggi esatti: `T_f=T_i\quad\text{se lo stato finale coincide con quello iniziale}`.
+Passaggi esatti: `T_f=T_i`.
 
 Distrattori: Cammino indica proprio la dipendenza che qui è esclusa. Calore e lavoro non sono le parole che completano questa definizione. Il tempo trascorso può essere diverso per due percorsi che raggiungono lo stesso stato.
 
@@ -70,7 +70,7 @@ Procedimento: La lettura iniziale corrisponde a 300 K. Raddoppiare la temperatur
 
 Passaggi esatti: `T_i=300\,\mathrm K\qquad T_f=2T_i=600\,\mathrm K\qquad t_f=326{,}85\,{}^\circ\mathrm C`.
 
-Distrattori: 53,70 °C raddoppia la lettura Celsius e non la temperatura assoluta. 600 °C cambia soltanto il simbolo dell’unità. 300 K è lo stato iniziale, non quello raddoppiato. Lo spostamento di origine della scala va fatto prima e dopo il rapporto.
+Distrattori: 53,70 °C raddoppia la lettura Celsius e non la temperatura assoluta. 600 °C cambia soltanto il simbolo dell’unità della lettura finale in kelvin. 26,85 °C è la lettura iniziale. 300 °C copia il numero iniziale in kelvin senza convertirlo in Celsius. Lo spostamento di origine va fatto prima e dopo il rapporto.
 
 Aiuto: Converti in kelvin, raddoppia, poi torna ai gradi Celsius.
 

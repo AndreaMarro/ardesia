@@ -91,7 +91,7 @@
         },
         {
           "type": "text",
-          "text": "17,85 K sarebbe il modulo del calo, non la variazione con segno richiesta. Sottrarre direttamente 20−311 mescola due origini diverse. Il numero 273,15 serve alla conversione delle letture; non si aggiunge una seconda volta a una differenza già espressa in kelvin."
+          "text": "17,85 K è il modulo del calo, non la variazione con segno richiesta. −291 K sottrae direttamente 20−311 mescolando due origini diverse. 293,15 K e 311 K sono temperature dei singoli stati, non la loro variazione. L’offset di 273,15 non va aggiunto a una differenza già espressa in kelvin."
         }
       ],
       "prompt": "Un sensore passa da 311 K a 20,0 °C. Usa la conversione esatta T=t+273,15 tra i valori numerici nelle due scale. Calcola la variazione finale meno iniziale in kelvin.",
@@ -99,10 +99,15 @@
       "family": "cronologia-di-un-raffreddamento",
       "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
       "answer": {
-        "type": "numeric",
-        "value": -17.85,
-        "unit": "K",
-        "tolerance": 0
+        "type": "choice",
+        "options": [
+          "−17,85 K",
+          "+17,85 K",
+          "−291 K",
+          "293,15 K",
+          "311 K"
+        ],
+        "value": "−17,85 K"
       },
       "hints": [
         "Porta entrambe le letture sulla stessa scala prima di fare finale meno iniziale.",
@@ -110,7 +115,7 @@
       ],
       "error": {
         "category": "unità",
-        "message": "17,85 K sarebbe il modulo del calo, non la variazione con segno richiesta. Sottrarre direttamente 20−311 mescola due origini diverse. Il numero 273,15 serve alla conversione delle letture; non si aggiunge una seconda volta a una differenza già espressa in kelvin.",
+        "message": "17,85 K è il modulo del calo, non la variazione con segno richiesta. −291 K sottrae direttamente 20−311 mescolando due origini diverse. 293,15 K e 311 K sono temperature dei singoli stati, non la loro variazione. L’offset di 273,15 non va aggiunto a una differenza già espressa in kelvin.",
         "target": "C3-L01"
       },
       "baseVersion": 1,
@@ -138,7 +143,7 @@
         },
         {
           "type": "formula",
-          "text": "T_f=T_i\\quad\\text{se lo stato finale coincide con quello iniziale}"
+          "text": "T_f=T_i"
         },
         {
           "type": "text",
@@ -275,7 +280,7 @@
         },
         {
           "type": "text",
-          "text": "53,70 °C raddoppia la lettura Celsius e non la temperatura assoluta. 600 °C cambia soltanto il simbolo dell’unità. 300 K è lo stato iniziale, non quello raddoppiato. Lo spostamento di origine della scala va fatto prima e dopo il rapporto."
+          "text": "53,70 °C raddoppia la lettura Celsius e non la temperatura assoluta. 600 °C cambia soltanto il simbolo dell’unità della lettura finale in kelvin. 26,85 °C è la lettura iniziale. 300 °C copia il numero iniziale in kelvin senza convertirlo in Celsius. Lo spostamento di origine va fatto prima e dopo il rapporto."
         }
       ],
       "prompt": "Un campione parte da 26,85 °C. A quanti °C corrisponde il doppio della sua temperatura assoluta? Usa T=t+273,15 per le letture numeriche.",
@@ -283,10 +288,15 @@
       "family": "raddoppiare-la-temperatura-assoluta",
       "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
       "answer": {
-        "type": "numeric",
-        "value": 326.85,
-        "unit": "°C",
-        "tolerance": 0
+        "type": "choice",
+        "options": [
+          "326,85 °C",
+          "53,70 °C",
+          "600 °C",
+          "26,85 °C",
+          "300 °C"
+        ],
+        "value": "326,85 °C"
       },
       "hints": [
         "Converti in kelvin, raddoppia, poi torna ai gradi Celsius.",
@@ -294,7 +304,7 @@
       ],
       "error": {
         "category": "modello",
-        "message": "53,70 °C raddoppia la lettura Celsius e non la temperatura assoluta. 600 °C cambia soltanto il simbolo dell’unità. 300 K è lo stato iniziale, non quello raddoppiato. Lo spostamento di origine della scala va fatto prima e dopo il rapporto.",
+        "message": "53,70 °C raddoppia la lettura Celsius e non la temperatura assoluta. 600 °C cambia soltanto il simbolo dell’unità della lettura finale in kelvin. 26,85 °C è la lettura iniziale. 300 °C copia il numero iniziale in kelvin senza convertirlo in Celsius. Lo spostamento di origine va fatto prima e dopo il rapporto.",
         "target": "C3-L01"
       },
       "baseVersion": 1,
