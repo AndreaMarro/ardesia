@@ -1,0 +1,657 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "C5-Q091",
+      "kind": "question",
+      "course": "C5",
+      "section": "Lenti e immagini",
+      "order": 91,
+      "title": "Un oggetto a due focali",
+      "skill": "C5-L10",
+      "prerequisites": [
+        "C5-L09"
+      ],
+      "version": 2,
+      "prompt": "Una lente sottile convergente ha focale f=8 cm e un oggetto reale è a p=16 cm. Nel modello parassiale, con lo stesso mezzo sui due lati, trova in cm la distanza q dell’immagine sul lato d’uscita.",
+      "family": "oggetto-al-doppio-della-focale",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Oggetto e immagine reale hanno distanze positive nella convenzione scelta. Dalla legge dei reciproci ottengo 1/q=1/8−1/16=1/16 cm⁻¹. Inverto soltanto alla fine: q=16 cm. L’oggetto è a 2f e anche l’immagine è a 2f sul lato opposto; l’ingrandimento è −1, quindi l’immagine è capovolta e ha la stessa altezza in modulo."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/0668538d9d0665387cf32e5dbf1aa58d2aba0999c565c56450e6dc0863b2f7b1",
+          "text": "Il primo pannello usa f=8 cm, p=q=16 cm. Un raggio parallelo attraversa il fuoco posteriore e un raggio centrale prosegue sulla stessa retta; si incontrano nell’immagine capovolta a destra."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac1q=\\frac1f-\\frac1p"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac1q=\\frac1{16}\\,\\mathrm{cm^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " q=16\\,\\mathrm{cm}"
+        },
+        {
+          "type": "text",
+          "text": "Un sedicesimo è il valore numerico del reciproco della distanza in cm⁻¹, non la distanza in centimetri. 8 cm sarebbe la focale per un oggetto all’infinito, non questo caso. Sommare p e f non applica l’equazione dei punti coniugati."
+        }
+      ],
+      "answer": {
+        "type": "numeric",
+        "value": 16,
+        "unit": "cm",
+        "tolerance": 0
+      },
+      "hints": [
+        "Sottrai i reciproci con un denominatore comune e poi inverti il risultato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un sedicesimo è il valore numerico del reciproco della distanza in cm⁻¹, non la distanza in centimetri. 8 cm sarebbe la focale per un oggetto all’infinito, non questo caso. Sommare p e f non applica l’equazione dei punti coniugati.",
+        "target": "C5-L10"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Distanze coniugate e segni",
+        "Raggi principali",
+        "Ingrandimento e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q092",
+      "kind": "question",
+      "course": "C5",
+      "section": "Lenti e immagini",
+      "order": 92,
+      "title": "Un solo punto nel piano focale anteriore",
+      "skill": "C5-L10",
+      "prerequisites": [
+        "C5-L09"
+      ],
+      "version": 2,
+      "prompt": "Una lente sottile convergente riceve raggi da un singolo punto del piano focale anteriore, nel modello parassiale e con lo stesso mezzo ai due lati. Come emergono i raggi di quel punto?",
+      "family": "quando-lo-schermo-rimane-vuoto",
+      "difficulty": 1,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La distanza assiale dell’oggetto è p=f. Nell’equazione ottica i due termini 1/f e 1/p si cancellano, lasciando 1/q=0: non c’è un piano immagine a distanza finita. I raggi provenienti da quel singolo punto emergono paralleli fra loro. Se il punto è fuori asse, il fascio può essere inclinato: non tutti i punti del piano focale producono lo stesso fascio parallelo all’asse."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/0668538d9d0665387cf32e5dbf1aa58d2aba0999c565c56450e6dc0863b2f7b1",
+          "text": "Il secondo pannello rappresenta un solo punto fuori asse del piano focale anteriore. I due raggi emergono paralleli fra loro ma inclinati rispetto all’asse: non è un fascio comune a tutti i punti dell’oggetto."
+        },
+        {
+          "type": "formula",
+          "text": "p=f"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac1q=0"
+        },
+        {
+          "type": "text",
+          "text": "Il raggio incidente parallelo all’asse passa per il fuoco d’uscita in un’altra regola di costruzione, che non descrive tutto il fascio di questa domanda. “Paralleli tra loro” non implica “paralleli all’asse” per un punto fuori asse. Non si confonde una distanza infinita nel modello con q=0."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Paralleli fra loro, senza un’intersezione immagine a distanza finita",
+          "Tutti concentrati nello stesso punto della lente",
+          "Tutti riflessi verso la sorgente",
+          "Necessariamente tutti paralleli all’asse anche per un punto fuori asse",
+          "Sempre diretti al fuoco d’uscita"
+        ],
+        "value": "Paralleli fra loro, senza un’intersezione immagine a distanza finita"
+      },
+      "hints": [
+        "Applica l’equazione a un punto per volta e distingui la direzione di un fascio da quella dell’asse.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "Il raggio incidente parallelo all’asse passa per il fuoco d’uscita in un’altra regola di costruzione, che non descrive tutto il fascio di questa domanda. “Paralleli tra loro” non implica “paralleli all’asse” per un punto fuori asse. Non si confonde una distanza infinita nel modello con q=0.",
+        "target": "C5-L10"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Distanze coniugate e segni",
+        "Raggi principali",
+        "Ingrandimento e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q093",
+      "kind": "question",
+      "course": "C5",
+      "section": "Lenti e immagini",
+      "order": 93,
+      "title": "Il segno di una posizione virtuale",
+      "skill": "C5-L10",
+      "prerequisites": [
+        "C5-L09"
+      ],
+      "version": 2,
+      "prompt": "Un oggetto è reale e la convenzione assegna q>0 sul lato d’uscita della lente. Un’immagine si trova dall’intersezione dei prolungamenti all’indietro dei raggi emergenti, sul lato dell’oggetto. Come è la sua distanza q?",
+      "family": "segno-di-unimmagine-virtuale",
+      "difficulty": 1,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’immagine è virtuale: sono i prolungamenti geometrici, non i raggi emergenti reali, a incontrarsi sul lato dell’oggetto. La convenzione data assegna proprio a quel lato q<0. Il segno è una coordinata ottica e non significa che una lunghezza misurata con un righello sia fisicamente negativa."
+        },
+        {
+          "type": "formula",
+          "text": "q<0"
+        },
+        {
+          "type": "text",
+          "text": "Una q positiva rappresenterebbe un’immagine sul lato d’uscita secondo la convenzione assegnata. La virtualità non impone q=0 né un particolare modulo. La distanza dell’oggetto e quella dell’immagine devono essere calcolate con ruoli distinti."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Negativa",
+          "Positiva",
+          "Necessariamente nulla",
+          "Necessariamente uguale a due focali positive",
+          "Sempre uguale alla distanza positiva dell’oggetto"
+        ],
+        "value": "Negativa"
+      },
+      "hints": [
+        "Localizza prima il lato dei prolungamenti e soltanto dopo attribuisci il segno.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Una q positiva rappresenterebbe un’immagine sul lato d’uscita secondo la convenzione assegnata. La virtualità non impone q=0 né un particolare modulo. La distanza dell’oggetto e quella dell’immagine devono essere calcolate con ruoli distinti.",
+        "target": "C5-L10"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Distanze coniugate e segni",
+        "Raggi principali",
+        "Ingrandimento e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q094",
+      "kind": "question",
+      "course": "C5",
+      "section": "Lenti e immagini",
+      "order": 94,
+      "title": "Ricavare la focale da un’immagine sullo schermo",
+      "skill": "C5-L10",
+      "prerequisites": [
+        "C5-L09"
+      ],
+      "version": 2,
+      "prompt": "Nel modello di lente sottile parassiale con lo stesso mezzo sui due lati, un oggetto reale a 24 cm forma un’immagine nitida su uno schermo a 40 cm sul lato opposto. Quanto vale f in cm?",
+      "family": "focale-misurata-sul-banco",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le due distanze p e q sono positive. Sommo i reciproci: 1/24+1/40=(5+3)/120=8/120=1/15 cm⁻¹. La focale è l’inverso, quindi f=15 cm. È positiva e minore sia di 24 sia di 40 cm, come richiede questa configurazione di oggetto e immagine reali."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac1f=\\frac1{24}+\\frac1{40}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac1f=\\frac1{15}\\,\\mathrm{cm^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " f=15\\,\\mathrm{cm}"
+        },
+        {
+          "type": "text",
+          "text": "64 cm somma le distanze e non i loro reciproci. Sottrarre i reciproci invece di sommarli produrrebbe una diversa focale che non ricostruisce la configurazione. Un quindicesimo è qui in cm⁻¹ e deve essere invertito per ottenere centimetri."
+        }
+      ],
+      "answer": {
+        "type": "numeric",
+        "value": 15,
+        "unit": "cm",
+        "tolerance": 0
+      },
+      "hints": [
+        "Scegli un denominatore comune e verifica con il confronto fra f, p e q.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "64 cm somma le distanze e non i loro reciproci. Sottrarre i reciproci invece di sommarli produrrebbe una diversa focale che non ricostruisce la configurazione. Un quindicesimo è qui in cm⁻¹ e deve essere invertito per ottenere centimetri.",
+        "target": "C5-L10"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Distanze coniugate e segni",
+        "Raggi principali",
+        "Ingrandimento e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q095",
+      "kind": "question",
+      "course": "C5",
+      "section": "Lenti e immagini",
+      "order": 95,
+      "title": "L’altezza capovolta nel rapporto",
+      "skill": "C5-L10",
+      "prerequisites": [
+        "C5-L09"
+      ],
+      "version": 2,
+      "prompt": "Un oggetto ha altezza h=+12 mm. La sua immagine è capovolta e alta 30 mm in modulo, con lo stesso riferimento verticale. Qual è l’ingrandimento con segno?",
+      "family": "ingrandimento-dallaltezza",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’altezza orientata dell’immagine è h′=−30 mm. L’ingrandimento è h′/h, quindi m=−30/12=−5/2. I millimetri si cancellano. Il segno meno descrive il capovolgimento, mentre il modulo 5/2 descrive un’altezza due volte e mezza quella iniziale."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/0668538d9d0665387cf32e5dbf1aa58d2aba0999c565c56450e6dc0863b2f7b1",
+          "text": "Il terzo pannello confronta due altezze orientate con la stessa origine verticale e la stessa scala. +12 mm è disegnato verso l’alto e −30 mm verso il basso: il rapporto è −5/2. Non è un secondo tracciamento dei raggi."
+        },
+        {
+          "type": "formula",
+          "text": "h^{\\prime}=-30\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " m=\\frac{h^{\\prime}}h"
+        },
+        {
+          "type": "formula",
+          "text": " m=-\\frac52"
+        },
+        {
+          "type": "text",
+          "text": "5/2 conserva il modulo ma perde il capovolgimento. −2/5 scambia numeratore e denominatore e descriverebbe un’immagine più piccola. Un ingrandimento −5, con oggetto di 12 mm, richiederebbe altezza immagine −60 mm e non −30 mm."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "−5/2",
+          "5/2",
+          "−2/5",
+          "2/5",
+          "−5"
+        ],
+        "value": "−5/2"
+      },
+      "hints": [
+        "Attribuisci il segno all’altezza prima di formare il quoziente, invece di correggerlo dopo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "testo",
+        "message": "5/2 conserva il modulo ma perde il capovolgimento. −2/5 scambia numeratore e denominatore e descriverebbe un’immagine più piccola. Un ingrandimento −5, con oggetto di 12 mm, richiederebbe altezza immagine −60 mm e non −30 mm.",
+        "target": "C5-L10"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Distanze coniugate e segni",
+        "Raggi principali",
+        "Ingrandimento e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q096",
+      "kind": "question",
+      "course": "C5",
+      "section": "Lenti e immagini",
+      "order": 96,
+      "title": "Il raggio attraverso il centro ottico",
+      "skill": "C5-L10",
+      "prerequisites": [
+        "C5-L09"
+      ],
+      "version": 3,
+      "prompt": "Nel modello parassiale di lente sottile immersa nello stesso mezzo sui due lati, come prosegue un raggio che attraversa il centro ottico?",
+      "family": "raggio-che-incontra-il-centro",
+      "difficulty": 1,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La regola del centro ottico, in questo modello e con queste ipotesi, conserva la direzione della retta del raggio. È una delle costruzioni principali per localizzare l’immagine. Non va confusa con la regola del raggio incidente parallelo all’asse, che per una convergente esce passando per il fuoco posteriore."
+        },
+        {
+          "type": "formula",
+          "text": "\\text{direzione invariata}"
+        },
+        {
+          "type": "text",
+          "text": "Il raggio centrale non diventa parallelo all’asse per qualunque inclinazione iniziale. Il passaggio per il fuoco riguarda un altro raggio principale. La lente è qui trattata nel limite sottile parassiale, non come uno specchio che rimanda indietro il raggio."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Lungo la stessa retta",
+          "Sempre parallelo all’asse dopo la lente",
+          "Sempre diretto verso il fuoco anteriore",
+          "Sempre riflesso verso la sorgente",
+          "Sempre perpendicolare all’asse"
+        ],
+        "value": "Lungo la stessa retta"
+      },
+      "hints": [
+        "Riconosci quale raggio principale è definito dal punto in cui incontra la lente.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Il raggio centrale non diventa parallelo all’asse per qualunque inclinazione iniziale. Il passaggio per il fuoco riguarda un altro raggio principale. La lente è qui trattata nel limite sottile parassiale, non come uno specchio che rimanda indietro il raggio.",
+        "target": "C5-L10"
+      },
+      "baseVersion": 2,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Distanze coniugate e segni",
+        "Raggi principali",
+        "Ingrandimento e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q097",
+      "kind": "question",
+      "course": "C5",
+      "section": "Lenti e immagini",
+      "order": 97,
+      "title": "Una parte dell’apertura rimane libera",
+      "skill": "C5-L10",
+      "prerequisites": [
+        "C5-L09"
+      ],
+      "version": 2,
+      "prompt": "Si copre metà di una lente ideale che formava su uno schermo l’immagine di una freccia. In ottica geometrica, ogni punto dell’oggetto illumina anche la parte rimasta libera e l’illuminazione è invariata. Che cosa si vede?",
+      "family": "meta-lente-coperta",
+      "difficulty": 3,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Ogni punto dell’oggetto invia molti raggi alla lente. Quelli che attraversano la parte libera convergono ancora nello stesso punto coniugato. Il punto immagine resta perciò presente, ma riceve meno potenza. Ripetendo il ragionamento per tutta la freccia si conserva l’estensione geometrica dell’immagine, con luminosità ridotta."
+        },
+        {
+          "type": "formula",
+          "text": "\\text{immagine completa}"
+        },
+        {
+          "type": "text",
+          "text": "La metà superiore della lente non appartiene soltanto alla metà superiore dell’immagine. Coprire l’apertura non cambia da solo la legge dei punti coniugati o la focale del modello. La condizione che ogni punto illumini la parte libera evita una perdita geometrica completa di alcuni punti."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "L’intera freccia meno luminosa",
+          "Soltanto la metà superiore della freccia",
+          "Soltanto la metà inferiore della freccia",
+          "L’immagine necessariamente spostata al fuoco",
+          "Nessuna immagine perché occorre sempre l’intera apertura"
+        ],
+        "value": "L’intera freccia meno luminosa"
+      },
+      "hints": [
+        "Segui i raggi di un singolo punto attraverso entrambe le metà prima di coprirne una.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "La metà superiore della lente non appartiene soltanto alla metà superiore dell’immagine. Coprire l’apertura non cambia da solo la legge dei punti coniugati o la focale del modello. La condizione che ogni punto illumini la parte libera evita una perdita geometrica completa di alcuni punti.",
+        "target": "C5-L10"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Distanze coniugate e segni",
+        "Raggi principali",
+        "Ingrandimento e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q098",
+      "kind": "question",
+      "course": "C5",
+      "section": "Lenti e immagini",
+      "order": 98,
+      "title": "Progettare un’immagine reale doppia",
+      "skill": "C5-L10",
+      "prerequisites": [
+        "C5-L09"
+      ],
+      "version": 2,
+      "prompt": "Una lente sottile convergente con f=10 cm, nello stesso mezzo sui due lati e nel modello parassiale, deve formare da un oggetto reale un’immagine reale con m=−2. A quale distanza p in cm va posto l’oggetto?",
+      "family": "doppio-ingrandimento-reale",
+      "difficulty": 3,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dal rapporto m=−q/p=−2 ricavo q=2p. Inserisco questo vincolo nell’equazione: 1/f=1/p+1/(2p)=3/(2p). Ne segue p=3f/2=15 cm e q=30 cm. L’oggetto è fra f e 2f, mentre l’immagine è oltre 2f: la configurazione è coerente con l’ingrandimento reale richiesto."
+        },
+        {
+          "type": "formula",
+          "text": "q=2p"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac1f=\\frac3{2p}"
+        },
+        {
+          "type": "formula",
+          "text": " p=15\\,\\mathrm{cm}"
+        },
+        {
+          "type": "formula",
+          "text": " q=30\\,\\mathrm{cm}"
+        },
+        {
+          "type": "text",
+          "text": "20 cm collocherebbe l’oggetto a 2f e darebbe ingrandimento −1, non −2. 30 cm è la distanza dell’immagine, non quella dell’oggetto. Distanze inferiori a f non darebbero la stessa immagine reale della domanda."
+        }
+      ],
+      "answer": {
+        "type": "numeric",
+        "value": 15,
+        "unit": "cm",
+        "tolerance": 0
+      },
+      "hints": [
+        "Usa l’ingrandimento come vincolo fra p e q prima di sostituire la focale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "20 cm collocherebbe l’oggetto a 2f e darebbe ingrandimento −1, non −2. 30 cm è la distanza dell’immagine, non quella dell’oggetto. Distanze inferiori a f non darebbero la stessa immagine reale della domanda.",
+        "target": "C5-L10"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Distanze coniugate e segni",
+        "Raggi principali",
+        "Ingrandimento e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q099",
+      "kind": "question",
+      "course": "C5",
+      "section": "Lenti e immagini",
+      "order": 99,
+      "title": "Mantenere a fuoco avvicinandosi alla focale",
+      "skill": "C5-L10",
+      "prerequisites": [
+        "C5-L09"
+      ],
+      "version": 2,
+      "prompt": "Un oggetto reale si avvicina alla focale positiva di una lente convergente, mantenendo p>f. Nel modello sottile ideale, come deve cambiare la distanza dello schermo sul lato d’uscita per mantenere la messa a fuoco?",
+      "family": "schermo-che-si-allontana",
+      "difficulty": 3,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La distanza immagine è q=fp/(p−f). Scrivendola come f+f²/(p−f), il primo termine resta fisso e il secondo aumenta quando il denominatore positivo diminuisce. Lo schermo deve quindi allontanarsi dalla lente. Per p che tende a f dall’alto, il modello porta q senza limite: nessuno schermo a distanza finita può rappresentare il caso limite esatto."
+        },
+        {
+          "type": "formula",
+          "text": "q=\\frac{fp}{p-f}"
+        },
+        {
+          "type": "formula",
+          "text": " q=f+\\frac{f^2}{p-f}"
+        },
+        {
+          "type": "text",
+          "text": "La posizione 2f è soltanto un caso particolare con p=2f. Una q negativa appartiene a un’immagine virtuale sul lato dell’oggetto, non al ramo p>f. Avvicinare lo schermo mentre p scende verso f non mantiene il piano coniugato calcolato."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Deve aumentare progressivamente",
+          "Deve diminuire fino a zero",
+          "Deve restare sempre pari a due focali",
+          "Deve diventare immediatamente negativa",
+          "Deve coincidere sempre con la distanza dell’oggetto"
+        ],
+        "value": "Deve aumentare progressivamente"
+      },
+      "hints": [
+        "Isola la dipendenza dal piccolo denominatore positivo senza cambiare ramo fisico.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "La posizione 2f è soltanto un caso particolare con p=2f. Una q negativa appartiene a un’immagine virtuale sul lato dell’oggetto, non al ramo p>f. Avvicinare lo schermo mentre p scende verso f non mantiene il piano coniugato calcolato.",
+        "target": "C5-L10"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Distanze coniugate e segni",
+        "Raggi principali",
+        "Ingrandimento e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q100",
+      "kind": "question",
+      "course": "C5",
+      "section": "Lenti e immagini",
+      "order": 100,
+      "title": "Una lente riconosciuta dal raggio principale",
+      "skill": "C5-L10",
+      "prerequisites": [
+        "C5-L09"
+      ],
+      "version": 2,
+      "prompt": "Una lente sottile parassiale, con lo stesso mezzo sui due lati, riceve un raggio parallelo all’asse. Il raggio emergente passa realmente per il fuoco sul lato d’uscita. Come si chiama la lente?",
+      "family": "identificare-la-lente-dal-disegno",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il raggio parallelo viene portato al fuoco posteriore da una lente convergente, a focale positiva nella convenzione usuale. Una divergente farebbe allontanare il raggio dall’asse e soltanto il prolungamento all’indietro passerebbe per il fuoco sul lato d’ingresso. Qui il passaggio nel fuoco d’uscita è reale, come nel disegno del primo pannello."
+        },
+        {
+          "type": "formula",
+          "text": "f>0"
+        },
+        {
+          "type": "text",
+          "text": "Una lente divergente non fa attraversare realmente al raggio emergente il fuoco posteriore nella costruzione data. Uno specchio non descrive un raggio trasmesso attraverso una lente. Il nome dipende dalla risposta ottica assegnata, non da una sola etichetta sulla forma geometrica del vetro."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Convergente",
+          "Divergente",
+          "Specchio piano",
+          "Necessariamente priva di potere ottico",
+          "Un’interfaccia che non può deviare alcun raggio"
+        ],
+        "value": "Convergente"
+      },
+      "hints": [
+        "Segui il raggio reale dopo la lente e distinguilo dal suo prolungamento virtuale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Una lente divergente non fa attraversare realmente al raggio emergente il fuoco posteriore nella costruzione data. Uno specchio non descrive un raggio trasmesso attraverso una lente. Il nome dipende dalla risposta ottica assegnata, non da una sola etichetta sulla forma geometrica del vetro.",
+        "target": "C5-L10"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Distanze coniugate e segni",
+        "Raggi principali",
+        "Ingrandimento e inverse"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "0668538d9d0665387cf32e5dbf1aa58d2aba0999c565c56450e6dc0863b2f7b1",
+      "name": "cric-c5-l10-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTU4MCIgdmlld0JveD0iMCAwIDY0MCAxNTgwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMjcyNTM2Ij4KPHRpdGxlIGlkPSJ0aXRsZSI+VHJlIGNvc3RydXppb25pIHBlciBs4oCZaW1tYWdpbmUgZGVsbGEgbGVudGU8L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5UcmUgcHJvYmxlbWkgZGlzdGludGkuIFVuYSBsZW50ZSBjb252ZXJnZW50ZSBkaSBmb2NhbGUgb3R0byBjZW50aW1ldHJpIGZvcm1hIGEgc2VkaWNpIGNlbnRpbWV0cmkgbOKAmWltbWFnaW5lIGNhcG92b2x0YSBkaSB1biBvZ2dldHRvIGEgc2VkaWNpIGNlbnRpbWV0cmkuIERhIHVuIHNpbmdvbG8gcHVudG8gZnVvcmkgYXNzZSBuZWwgcGlhbm8gZm9jYWxlIGFudGVyaW9yZSBlbWVyZ29ubyByYWdnaSBwYXJhbGxlbGkgZnJhIGxvcm8gbWEgaW5jbGluYXRpLiBDb25mcm9udG8gc2VwYXJhdG8gZGkgYWx0ZXp6ZSBvcmllbnRhdGUgcGnDuSBkb2RpY2kgZSBtZW5vIHRyZW50YSBtaWxsaW1ldHJpLCBjb24gaW5ncmFuZGltZW50byBtZW5vIGNpbnF1ZSBtZXp6aS48L2Rlc2M+CjxkZWZzPjxtYXJrZXIgaWQ9ImciIG1hcmtlcldpZHRoPSI3IiBtYXJrZXJIZWlnaHQ9IjciIHJlZlg9IjciIHJlZlk9IjMuNSIgb3JpZW50PSJhdXRvIiBtYXJrZXJVbml0cz0idXNlclNwYWNlT25Vc2UiPjxwYXRoIGQ9Ik0wIDBMNyAzLjVMMCA3WiIgZmlsbD0iIzE0N2M3NiIvPjwvbWFya2VyPjxtYXJrZXIgaWQ9Im8iIG1hcmtlcldpZHRoPSI3IiBtYXJrZXJIZWlnaHQ9IjciIHJlZlg9IjciIHJlZlk9IjMuNSIgb3JpZW50PSJhdXRvIiBtYXJrZXJVbml0cz0idXNlclNwYWNlT25Vc2UiPjxwYXRoIGQ9Ik0wIDBMNyAzLjVMMCA3WiIgZmlsbD0iIzk0NjMxZSIvPjwvbWFya2VyPjwvZGVmcz48cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjE1ODAiIGZpbGw9IiNmZmZkZjciLz4KPHRleHQgeD0iNDAiIHk9IjU1IiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iYm9sZCI+MSDCtyBPZ2dldHRvIGUgaW1tYWdpbmUgYSBkdWUgZm9jYWxpPC90ZXh0Pjx0ZXh0IHg9IjQwIiB5PSIxMDUiPmYgPSA4IGNtIDsgcCA9IHEgPSAxNiBjbTwvdGV4dD48cGF0aCBkPSJNNjAgMzAwSDU5MCIgc3Ryb2tlPSIjOTk5Ii8+PHBhdGggZD0iTTMyMCAxNDVWNDIwIiBzdHJva2U9IiM4ODgiIHN0cm9rZS13aWR0aD0iNCIvPgo8cGF0aCBkPSJNMTYwIDIwMEgzMjBMNDgwIDQwMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMTQ3Yzc2IiBzdHJva2Utd2lkdGg9IjIiLz48cGF0aCBkPSJNMTYwIDIwMEw0ODAgNDAwIiBmaWxsPSJub25lIiBzdHJva2U9IiM2ODUyYTMiIHN0cm9rZS13aWR0aD0iMiIvPjxwYXRoIGQ9Ik0xNjAgMzAwVjIwMCIgc3Ryb2tlPSIjOTQ2MzFlIiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjbykiLz48cGF0aCBkPSJNNDgwIDMwMFY0MDAiIHN0cm9rZT0iIzk0NjMxZSIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI28pIi8+CjxwYXRoIGQ9Ik0yNDAgMjkyVjMwOE00MDAgMjkyVjMwOCIgc3Ryb2tlPSIjODg4Ii8+PHRleHQgeD0iMjQwIiB5PSIzNDUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkY8L3RleHQ+PHRleHQgeD0iNDAwIiB5PSIzODUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkbigLI8L3RleHQ+PHRleHQgeD0iMTMwIiB5PSIzNDUiPjJGPC90ZXh0Pjx0ZXh0IHg9IjUxNSIgeT0iMzQ1Ij4yRuKAsjwvdGV4dD48dGV4dCB4PSIzMjAiIHk9IjEzMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+TGVudGU8L3RleHQ+CjxwYXRoIGQ9Ik0xNjAgNDQ1VjQ2MEgzMjBWNDQ1TTMyMCA0NjBINDgwVjQ0NSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjODg4Ii8+PHRleHQgeD0iMjQwIiB5PSI0OTUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPnAgPSAxNiBjbTwvdGV4dD48dGV4dCB4PSI0MDAiIHk9IjQ5NSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+cSA9IDE2IGNtPC90ZXh0PjxwYXRoIGQ9Ik00MCA1MjVINjAwIiBzdHJva2U9IiNjYmM2YmMiLz4KPHRleHQgeD0iNDAiIHk9IjU4MCIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9ImJvbGQiPjIgwrcgVW4gcHVudG8gZGVsIHBpYW5vIGZvY2FsZTwvdGV4dD48dGV4dCB4PSI0MCIgeT0iNjMwIiBmb250LXNpemU9IjE4Ij5JbCBmYXNjaW8gZW1lcmdlIHBhcmFsbGVsbyBhIHPDqSwgbm9uIHNlbXByZSBhbGzigJlhc3NlLjwvdGV4dD4KPHBhdGggZD0iTTEwMCA4MTVINTkwIiBzdHJva2U9IiM5OTkiLz48cGF0aCBkPSJNMjQwIDY5MFY5MjAiIHN0cm9rZT0iI2FhYSIgc3Ryb2tlLWRhc2hhcnJheT0iNSA0Ii8+PHBhdGggZD0iTTMyMCA2OTBWMTAwMCIgc3Ryb2tlPSIjODg4IiBzdHJva2Utd2lkdGg9IjQiLz4KPHBhdGggZD0iTTI0MCA3NjBIMzIwTDU2MCA5MjUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE0N2M3NiIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2cpIi8+PHBhdGggZD0iTTI0MCA3NjBMNTYwIDk4MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNjg1MmEzIiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjZykiLz48Y2lyY2xlIGN4PSIyNDAiIGN5PSI3NjAiIHI9IjQiIGZpbGw9IiM5NDYzMWUiLz4KPHRleHQgeD0iMTk1IiB5PSI3MzUiPlA8L3RleHQ+PHRleHQgeD0iMjEwIiB5PSI4NjUiPkY8L3RleHQ+PHRleHQgeD0iMTMwIiB5PSI5NzAiPnAgPSBmPC90ZXh0Pjx0ZXh0IHg9IjM5MCIgeT0iNzIwIj5SYWdnaSBwYXJhbGxlbGk8L3RleHQ+PHBhdGggZD0iTTQwIDEwNDBINjAwIiBzdHJva2U9IiNjYmM2YmMiLz4KPHRleHQgeD0iNDAiIHk9IjEwOTUiIGZvbnQtc2l6ZT0iMjUiIGZvbnQtd2VpZ2h0PSJib2xkIj4zIMK3IEFsdGV6emUgb3JpZW50YXRlLCBzdGVzc2Egc2NhbGE8L3RleHQ+PHRleHQgeD0iNDAiIHk9IjExNDUiIGZvbnQtc2l6ZT0iMTgiPkNvbmZyb250byBkaSBhbHRlenplLCBzZW56YSB0cmFjY2lhbWVudG8gZGVpIHJhZ2dpLjwvdGV4dD4KPHBhdGggZD0iTTEwMCAxMjgwSDU1MCIgc3Ryb2tlPSIjOTk5Ii8+PHBhdGggZD0iTTE4MCAxMjgwVjEyMjAiIHN0cm9rZT0iIzk0NjMxZSIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI28pIi8+PHBhdGggZD0iTTQ1MCAxMjgwVjE0MzAiIHN0cm9rZT0iIzk0NjMxZSIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI28pIi8+Cjx0ZXh0IHg9IjE4MCIgeT0iMTE5MCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+aCA9ICsxMiBtbTwvdGV4dD48dGV4dCB4PSI0NTAiIHk9IjE0ODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPmjigLIgPSDiiJIzMCBtbTwvdGV4dD48dGV4dCB4PSI4MCIgeT0iMTMwMCI+MDwvdGV4dD48dGV4dCB4PSIzMjAiIHk9IjE1NDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPm0gPSBo4oCyL2ggPSDiiJI1LzI8L3RleHQ+Cjwvc3ZnPgo="
+    }
+  ]
+}

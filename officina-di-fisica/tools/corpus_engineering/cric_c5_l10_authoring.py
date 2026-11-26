@@ -19,7 +19,7 @@ TASKS=[
  'Localizza prima il lato dei prolungamenti e soltanto dopo attribuisci il segno.'),
 ('Ricavare la focale da un’immagine sullo schermo','Nel modello di lente sottile parassiale con lo stesso mezzo sui due lati, un oggetto reale a 24 cm forma un’immagine nitida su uno schermo a 40 cm sul lato opposto. Quanto vale f in cm?',15,
  'Le due distanze p e q sono positive. Sommo i reciproci: 1/24+1/40=(5+3)/120=8/120=1/15 cm⁻¹. La focale è l’inverso, quindi f=15 cm. È positiva e minore sia di 24 sia di 40 cm, come richiede questa configurazione di oggetto e immagine reali.',
- r'\frac1f=\frac1{24}+\frac1{40}\qquad \frac1f=\frac1{15}\,\mathrm{cm^{-1}}\qquad f=15\,\mathrm{cm}',
+ r'\frac1f=\left(\frac1{24}+\frac1{40}\right)\,\mathrm{cm^{-1}}\qquad \frac1f=\frac1{15}\,\mathrm{cm^{-1}}\qquad f=15\,\mathrm{cm}',
  '64 cm somma le distanze e non i loro reciproci. Sottrarre i reciproci invece di sommarli produrrebbe una diversa focale che non ricostruisce la configurazione. Un quindicesimo è qui in cm⁻¹ e deve essere invertito per ottenere centimetri.',
  'Scegli un denominatore comune e verifica con il confronto fra f, p e q.'),
 ('L’altezza capovolta nel rapporto','Un oggetto ha altezza h=+12 mm. La sua immagine è capovolta e alta 30 mm in modulo, con lo stesso riferimento verticale. Qual è l’ingrandimento con segno?', ['−5/2','5/2','−2/5','2/5','−5'],
