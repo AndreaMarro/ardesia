@@ -165,11 +165,18 @@ export async function esperienza(record) {
             '.',
           a.label + ' = ' + fmt(x) + ' · ' + m.label + ' = ' + valore(y, m.unit),
         ],
-        [
-          'Controlla il calcolo',
-          record.formula + '. Sostituisci i dati e confronta il risultato con la lettura dello strumento.',
-          calculation(x, y),
-        ],
+        selectedPoints.includes(x)
+          ? [
+              'Controlla il calcolo',
+              record.formula + '. Sostituisci i dati e confronta il risultato con la lettura dello strumento.',
+              calculation(x, y),
+            ]
+          : [
+              'Osserva la lettura del modello',
+              'Questa posizione serve all’esplorazione. Per il calcolo manuale usa i valori assegnati: ' +
+                fmt(selectedPoints[0]) + ' e ' + fmt(selectedPoints[1]) + '.',
+              m.label + ' = ' + valore(y, m.unit),
+            ],
         [
           'Ripeti con un altro dato',
           'Prevedi la lettura con «' +

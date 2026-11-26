@@ -1,0 +1,41 @@
+{
+  "phase": "AUTHOR_CANDIDATE_RUNTIME_EPOCH_NOT_INTEGRATED",
+  "parentRuntimeSha256": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+  "candidateRuntimeSha256": "196deae92c6331690911108ac5fb3b6c8088bfb176d567760e9a7c45a0dc4662",
+  "onlyRuntimeFileChanged": [
+    "static/js/banchi/voci/esperimento.js"
+  ],
+  "red": "10tests,3subcasefailures on original assigned-calculation guide",
+  "greenTarget": {
+    "tests": 10,
+    "seconds": 1.706
+  },
+  "greenGeneralSuite": {
+    "tests": 67,
+    "seconds": 17.589
+  },
+  "measurementsAndGrading": "unchanged source functions; existing assessment-selection tests pass",
+  "productBrowserUi": "NOT_RUN",
+  "allEightDraftsActualGuideReview": "PENDING_DISTINCT_VERIFIER",
+  "pilotAndReferencePaths": "PENDING_REAL_UI_REVIEW",
+  "geometry17": "UNCHANGED_FAILURES_NOT_FIXED_BY_THIS_PATCH",
+  "invalidation": "New runtime is isolated; do not retag old C1 closures or previews. Full dependent evidence must be replayed before integration.",
+  "rawArchiveSha256": "8aad9d8aab6b5758c3eb5ffdf63fa4625ae210e71f1b2d1ee2204f154b579503",
+  "rawMembers": [
+    {
+      "member": "green-full-suite.txt",
+      "sha256": "8720f5d98b23319b2d1a4d6fd6b6a862eef1ed6118c5255e9fcf7a7e69db6c49"
+    },
+    {
+      "member": "green-target.txt",
+      "sha256": "eb45f1af0e707aed927d26e9b638c3933ff675b5586c6ca3d820997628de97b7"
+    },
+    {
+      "member": "red-tests.txt",
+      "sha256": "addc2fd7912dab70954ed66dc2c18e1224424c16a6bf092c636101c428827041"
+    }
+  ],
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}

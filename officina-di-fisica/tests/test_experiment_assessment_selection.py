@@ -10,9 +10,9 @@ from server.adapters.contracts import validate,schema
 ROOT=Path(__file__).resolve().parents[1]
 
 
-def browser_record(row):
-    code="import {esperienza} from './static/js/banchi/voci/esperimento.js';import{readFileSync}from'node:fs';const r=JSON.parse(readFileSync(0,'utf8'));const x=await esperienza(r);console.log(JSON.stringify({assessment:x.record.assessment,prediction:x.record.prediction,references:x.record.references,steps:x.model.steps({x:r.control.min},x.model.solve({x:r.control.min}))}));"
-    p=subprocess.run(['node','--input-type=module','-e',code],cwd=ROOT,input=json.dumps(row),text=True,capture_output=True)
+def browser_record(row,at=None):
+    code="import {esperienza} from './static/js/banchi/voci/esperimento.js';import{readFileSync}from'node:fs';const{row:r,at}=JSON.parse(readFileSync(0,'utf8'));const x=await esperienza(r);const input={x:at??r.control.min};console.log(JSON.stringify({assessment:x.record.assessment,prediction:x.record.prediction,references:x.record.references,steps:x.model.steps(input,x.model.solve(input))}));"
+    p=subprocess.run(['node','--input-type=module','-e',code],cwd=ROOT,input=json.dumps({'row':row,'at':at}),text=True,capture_output=True)
     if p.returncode:raise ValueError(p.stderr)
     return json.loads(p.stdout)
 
@@ -50,6 +50,24 @@ class ExperimentAssessmentSelection(TestCase):
         selected=browser_record(row)
         self.assertIn('180',' '.join(selected['steps'][3]))
         self.assertNotIn('95',' '.join(selected['steps'][3]))
+
+    def test_exploration_does_not_assign_unsupported_calculations(self):
+        row=self.candidate({'schemaVersion':'1.0.0','points':[90,180]})
+        for at in [0,40,95]:
+            with self.subTest(at=at):
+                observed=browser_record(row,at)
+                self.assertEqual(observed['steps'][2][0],'Osserva la lettura del modello')
+                self.assertNotIn('Sostituisci',observed['steps'][2][1])
+                self.assertIn('90',observed['steps'][2][1])
+                self.assertIn('180',observed['steps'][2][1])
+                self.assertNotIn('cos(',observed['steps'][2][2])
+                self.assertEqual([x['value'] for x in observed['assessment']],[0,-4])
+        for at in [90,180]:
+            with self.subTest(assigned=at):
+                observed=browser_record(row,at)
+                self.assertEqual(observed['steps'][2][0],'Controlla il calcolo')
+                self.assertIn('Sostituisci',observed['steps'][2][1])
+                self.assertEqual([x['value'] for x in observed['assessment']],[0,-4])
 
     def test_shipped_schema_rejects_duplicates_and_matches_json_value_equality(self):
         rule=schema('experiment-assessment-v1')
