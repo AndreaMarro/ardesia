@@ -1,0 +1,1 @@
+Harness diagnostic FAIL, not a product finding.24/34 cases technically observed; nested summary selector and Object.is(-0,0) assertions need correction. Root independently found missing actual-control/time binding before acceptance. This epoch is preserved; no activity credit.
