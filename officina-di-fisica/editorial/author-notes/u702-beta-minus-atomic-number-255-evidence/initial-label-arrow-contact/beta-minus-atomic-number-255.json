@@ -1,0 +1,1170 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u7-beta-minus-atomic-number-01",
+      "kind": "question",
+      "course": "C5",
+      "section": "Bilanci discreti del decadimento beta meno",
+      "order": 25501,
+      "title": "Un protone in più",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "beta-minus-atomic-number",
+      "difficulty": 1,
+      "prompt": "Si considera soltanto il bilancio di una catena assegnata di n trasformazioni β⁻: ogni volta un neutrone diventa protone, con emissione di elettrone e antineutrino elettronico. Z₀ e n sono interi positivi; il numero di massa A è sufficiente e i neutroni disponibili sono almeno n. Non si deduce da questo bilancio che una catena isotopica qualunque sia energeticamente consentita. Con Z₀=20 e n=1, quanto vale Z_f?",
+      "answer": {
+        "type": "numeric",
+        "value": 21,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il numero atomico conta i protoni. La trasformazione di un neutrone aggiunge un protone al nucleo senza aggiungere nucleoni: dopo un β⁻ Z aumenta di uno e A resta invariato. Sommando un passo a venti ottengo ventuno."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/0c8f04e4c6afc3ae495d41bc6e7a92f230641a3e201c0b102d228325a33bfc8f",
+          "text": "Il primo pannello mostra il bilancio di un solo β⁻: il numero di nucleoni resta A e Z aumenta di uno. Le frecce indicano trasformazioni, non distanze percorse."
+        },
+        {
+          "type": "formula",
+          "text": "n_{\\rm nuc}\\to p+e^-+\\bar\\nu_e"
+        },
+        {
+          "type": "formula",
+          "text": " Z_f=Z_0+n"
+        },
+        {
+          "type": "formula",
+          "text": " Z_f=20+1"
+        },
+        {
+          "type": "formula",
+          "text": " Z_f=21"
+        },
+        {
+          "type": "text",
+          "text": "Diciannove avrebbe il segno del β⁺, venti ignorerebbe il cambiamento di specie e ventiquattro attribuirebbe al β⁻ i quattro nucleoni dell’α. Quarantadue non rispetta il passo unitario."
+        }
+      ],
+      "hints": [
+        "Distingui il numero di protoni dal numero totale di nucleoni.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Diciannove avrebbe il segno del β⁺, venti ignorerebbe il cambiamento di specie e ventiquattro attribuirebbe al β⁻ i quattro nucleoni dell’α. Quarantadue non rispetta il passo unitario.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Conservazione di A e aumento di Z",
+        "Conteggi interi e statistiche",
+        "Inverse e taratura del display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-beta-minus-atomic-number-02",
+      "kind": "question",
+      "course": "C5",
+      "section": "Bilanci discreti del decadimento beta meno",
+      "order": 25502,
+      "title": "Il numero atomico non è una massa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "beta-minus-atomic-number",
+      "difficulty": 1,
+      "prompt": "Quale unità è appropriata per Z, il numero di protoni in un nucleo?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1, numero puro",
+          "kg",
+          "C",
+          "Bq",
+          "keV"
+        ],
+        "value": "1, numero puro"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Z è un conteggio intero e non una massa. La carica del nucleo è invece Ze e si misura in coulomb; Z è il coefficiente puro che moltiplica la carica elementare positiva e."
+        },
+        {
+          "type": "formula",
+          "text": "[Z]=1"
+        },
+        {
+          "type": "formula",
+          "text": " q_{\\rm nuc}=Ze"
+        },
+        {
+          "type": "text",
+          "text": "kg misura massa, C la carica Ze, Bq un’attività e keV un’energia. La presenza di protoni carichi non trasforma il loro numero nell’unità di carica."
+        }
+      ],
+      "hints": [
+        "Chiediti se si cerca il conteggio o il prodotto del conteggio per e.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "kg misura massa, C la carica Ze, Bq un’attività e keV un’energia. La presenza di protoni carichi non trasforma il loro numero nell’unità di carica.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Conservazione di A e aumento di Z",
+        "Conteggi interi e statistiche",
+        "Inverse e taratura del display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-beta-minus-atomic-number-03",
+      "kind": "question",
+      "course": "C5",
+      "section": "Bilanci discreti del decadimento beta meno",
+      "order": 25503,
+      "title": "La trasformazione β⁻",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "beta-minus-atomic-number",
+      "difficulty": 1,
+      "prompt": "Quale descrizione identifica un decadimento β⁻ nucleare?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Un neutrone diventa protone ed emette elettrone e antineutrino elettronico",
+          "Un protone diventa neutrone ed emette positrone e neutrino elettronico",
+          "Il nucleo emette due protoni e due neutroni come particella alfa",
+          "Un elettrone orbitale cambia livello lasciando invariato il nucleo",
+          "Il nucleo perde quattro nucleoni e un solo protone"
+        ],
+        "value": "Un neutrone diventa protone ed emette elettrone e antineutrino elettronico"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il β⁻ cambia la natura di un nucleone: il neutrone iniziale è sostituito da un protone. L’elettrone emesso non era un elettrone orbitale espulso. La carica si conserva perché al protone positivo si accompagna un elettrone negativo; l’antineutrino completa il processo debole."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/0c8f04e4c6afc3ae495d41bc6e7a92f230641a3e201c0b102d228325a33bfc8f",
+          "text": "Il cambiamento di un neutrone in protone non espelle un elettrone orbitale. Nel secondo pannello ogni tratto collega valori interi della catena assegnata, senza interpolare mezzi decadimenti."
+        },
+        {
+          "type": "formula",
+          "text": "n_{\\rm nuc}\\to p+e^-+\\bar\\nu_e"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta A=0"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta Z=+1"
+        },
+        {
+          "type": "text",
+          "text": "La trasformazione con positrone è β⁺; la particella con quattro nucleoni è α. Un salto orbitale appartiene all’atomo e non descrive questo mutamento nucleare. L’ultima descrizione non conserva il bilancio di un β⁻."
+        }
+      ],
+      "hints": [
+        "Segui il neutrone iniziale e controlla separatamente A e Z.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La trasformazione con positrone è β⁺; la particella con quattro nucleoni è α. Un salto orbitale appartiene all’atomo e non descrive questo mutamento nucleare. L’ultima descrizione non conserva il bilancio di un β⁻.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Conservazione di A e aumento di Z",
+        "Conteggi interi e statistiche",
+        "Inverse e taratura del display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-beta-minus-atomic-number-04",
+      "kind": "question",
+      "course": "C5",
+      "section": "Bilanci discreti del decadimento beta meno",
+      "order": 25504,
+      "title": "Cambiare il nucleo iniziale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "beta-minus-atomic-number",
+      "difficulty": 1,
+      "prompt": "Si considera soltanto il bilancio di una catena assegnata di n trasformazioni β⁻: ogni volta un neutrone diventa protone, con emissione di elettrone e antineutrino elettronico. Z₀ e n sono interi positivi; il numero di massa A è sufficiente e i neutroni disponibili sono almeno n. Non si deduce da questo bilancio che una catena isotopica qualunque sia energeticamente consentita. A ha Z₀=20 e n=1; B ha Z₀=24 e lo stesso n. Come cambia Z_f?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 21 a 25",
+          "Da 21 a 24",
+          "Da 21 a 29",
+          "Resta 21",
+          "Da 21 a 105/4"
+        ],
+        "value": "Da 21 a 25"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "In entrambe le catene si aggiunge un solo protone. L’aumento di quattro nel numero iniziale si conserva come aumento di quattro nel numero finale: ventuno diventa venticinque. Un incremento additivo non richiede di moltiplicare l’uscita per il rapporto degli ingressi."
+        },
+        {
+          "type": "formula",
+          "text": "Z_{f,A}=20+1"
+        },
+        {
+          "type": "formula",
+          "text": " Z_{f,A}=21"
+        },
+        {
+          "type": "formula",
+          "text": " Z_{f,B}=24+1"
+        },
+        {
+          "type": "formula",
+          "text": " Z_{f,B}=25"
+        },
+        {
+          "type": "text",
+          "text": "Ventiquattro copia Z₀,B senza il passo β⁻; ventinove aggiunge cinque invece di uno. La risposta invariata ignora il nuovo nucleo e 105/4 non è neppure un conteggio intero."
+        }
+      ],
+      "hints": [
+        "Applica lo stesso numero di passi ai due valori iniziali.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Ventiquattro copia Z₀,B senza il passo β⁻; ventinove aggiunge cinque invece di uno. La risposta invariata ignora il nuovo nucleo e 105/4 non è neppure un conteggio intero.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Conservazione di A e aumento di Z",
+        "Conteggi interi e statistiche",
+        "Inverse e taratura del display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-beta-minus-atomic-number-05",
+      "kind": "question",
+      "course": "C5",
+      "section": "Bilanci discreti del decadimento beta meno",
+      "order": 25505,
+      "title": "Risalire ai protoni iniziali",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "beta-minus-atomic-number",
+      "difficulty": 2,
+      "prompt": "Si considera soltanto il bilancio di una catena assegnata di n trasformazioni β⁻: ogni volta un neutrone diventa protone, con emissione di elettrone e antineutrino elettronico. Z₀ e n sono interi positivi; il numero di massa A è sufficiente e i neutroni disponibili sono almeno n. Non si deduce da questo bilancio che una catena isotopica qualunque sia energeticamente consentita. Si osserva Z_f=21 dopo n=1. Quanto vale Z₀?",
+      "answer": {
+        "type": "numeric",
+        "value": 20,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’osservazione include già il protone prodotto dal decadimento. Per ricostruire il nucleo di partenza tolgo il numero di trasformazioni: ventuno meno uno vale venti. Il risultato è un intero positivo e ricostruisce il dato finale."
+        },
+        {
+          "type": "formula",
+          "text": "Z_0=Z_f-n"
+        },
+        {
+          "type": "formula",
+          "text": " Z_0=21-1"
+        },
+        {
+          "type": "formula",
+          "text": " Z_0=20"
+        },
+        {
+          "type": "formula",
+          "text": " 20+1=21"
+        },
+        {
+          "type": "text",
+          "text": "Ventidue aggiungerebbe ancora il protone invece di rimuoverlo. Ventuno lo ignorerebbe; diciassette sottrarrebbe quattro come nel bilancio di massa di un α."
+        }
+      ],
+      "hints": [
+        "L’inversa deve annullare l’aumento già avvenuto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Ventidue aggiungerebbe ancora il protone invece di rimuoverlo. Ventuno lo ignorerebbe; diciassette sottrarrebbe quattro come nel bilancio di massa di un α.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Conservazione di A e aumento di Z",
+        "Conteggi interi e statistiche",
+        "Inverse e taratura del display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-beta-minus-atomic-number-06",
+      "kind": "question",
+      "course": "C5",
+      "section": "Bilanci discreti del decadimento beta meno",
+      "order": 25506,
+      "title": "Quanti passi sono avvenuti?",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "beta-minus-atomic-number",
+      "difficulty": 2,
+      "prompt": "Si considera soltanto il bilancio di una catena assegnata di n trasformazioni β⁻: ogni volta un neutrone diventa protone, con emissione di elettrone e antineutrino elettronico. Z₀ e n sono interi positivi; il numero di massa A è sufficiente e i neutroni disponibili sono almeno n. Non si deduce da questo bilancio che una catena isotopica qualunque sia energeticamente consentita. Sono noti Z₀=20 e Z_f=21. Quanto vale n?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La differenza dei numeri atomici conta i passi perché ciascun β⁻ aumenta Z esattamente di uno. Sottraggo venti da ventuno e ottengo un decadimento. Il controllo di interezza è parte del dominio, non una scelta di arrotondamento."
+        },
+        {
+          "type": "formula",
+          "text": "n=Z_f-Z_0"
+        },
+        {
+          "type": "formula",
+          "text": " n=21-20"
+        },
+        {
+          "type": "formula",
+          "text": " n=1"
+        },
+        {
+          "type": "text",
+          "text": "Meno uno avrebbe il segno opposto. Ventuno copia il valore finale e quarantuno somma i due numeri invece di contarne l’aumento. Un numero frazionario di trasformazioni non è ammesso."
+        }
+      ],
+      "hints": [
+        "Ogni passo vale un’unità di incremento di Z.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Meno uno avrebbe il segno opposto. Ventuno copia il valore finale e quarantuno somma i due numeri invece di contarne l’aumento. Un numero frazionario di trasformazioni non è ammesso.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Conservazione di A e aumento di Z",
+        "Conteggi interi e statistiche",
+        "Inverse e taratura del display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-beta-minus-atomic-number-07",
+      "kind": "question",
+      "course": "C5",
+      "section": "Bilanci discreti del decadimento beta meno",
+      "order": 25507,
+      "title": "Due passi sullo stesso nucleo iniziale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "beta-minus-atomic-number",
+      "difficulty": 2,
+      "prompt": "Si considera soltanto il bilancio di una catena assegnata di n trasformazioni β⁻: ogni volta un neutrone diventa protone, con emissione di elettrone e antineutrino elettronico. Z₀ e n sono interi positivi; il numero di massa A è sufficiente e i neutroni disponibili sono almeno n. Non si deduce da questo bilancio che una catena isotopica qualunque sia energeticamente consentita. A ha Z₀=20,n=1; B mantiene Z₀ e usa n=2. Quanto vale Z_f,B/Z_f,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "22/21",
+          "2",
+          "21/22",
+          "1",
+          "44/21"
+        ],
+        "value": "22/21"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Un passo produce ventuno, due passi ventidue. Il rapporto è quindi ventidue ventunesimi, appena maggiore di uno. Raddoppia il numero di trasformazioni, non il numero totale di protoni finali, che comprende i venti già presenti."
+        },
+        {
+          "type": "formula",
+          "text": "Z_{f,A}=21"
+        },
+        {
+          "type": "formula",
+          "text": " Z_{f,B}=22"
+        },
+        {
+          "type": "formula",
+          "text": " Z_{f,B}/Z_{f,A}=\\frac{22}{21}"
+        },
+        {
+          "type": "text",
+          "text": "Due confronta i soli n; 21/22 inverte B/A. Uno non vede il secondo passo e 44/21 raddoppia anche il valore finale B senza motivo."
+        }
+      ],
+      "hints": [
+        "Calcola prima i due conteggi totali.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due confronta i soli n; 21/22 inverte B/A. Uno non vede il secondo passo e 44/21 raddoppia anche il valore finale B senza motivo.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Conservazione di A e aumento di Z",
+        "Conteggi interi e statistiche",
+        "Inverse e taratura del display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-beta-minus-atomic-number-08",
+      "kind": "question",
+      "course": "C5",
+      "section": "Bilanci discreti del decadimento beta meno",
+      "order": 25508,
+      "title": "Il segno dello scarto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "beta-minus-atomic-number",
+      "difficulty": 2,
+      "prompt": "Si considera soltanto il bilancio di una catena assegnata di n trasformazioni β⁻: ogni volta un neutrone diventa protone, con emissione di elettrone e antineutrino elettronico. Z₀ e n sono interi positivi; il numero di massa A è sufficiente e i neutroni disponibili sono almeno n. Non si deduce da questo bilancio che una catena isotopica qualunque sia energeticamente consentita. Con Z₀=20,n=1 viene proposto Z_f=42. Quanto vale proposto meno corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "21",
+          "−21",
+          "42",
+          "2",
+          "0"
+        ],
+        "value": "21"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bilancio dà ventuno. La proposta quarantadue supera il corretto di ventuno: lo scarto ordinato è positivo. Non si chiede il rapporto fra i due numeri, che sarebbe due."
+        },
+        {
+          "type": "formula",
+          "text": "Z_f=21"
+        },
+        {
+          "type": "formula",
+          "text": " \\delta Z=42-21"
+        },
+        {
+          "type": "formula",
+          "text": " \\delta Z=21"
+        },
+        {
+          "type": "text",
+          "text": "−21 scambia l’ordine; quarantadue ripete la proposta; due è il rapporto e zero accetta un conteggio incompatibile con il solo passo assegnato."
+        }
+      ],
+      "hints": [
+        "Scrivi esplicitamente quale termine va sottratto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−21 scambia l’ordine; quarantadue ripete la proposta; due è il rapporto e zero accetta un conteggio incompatibile con il solo passo assegnato.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Conservazione di A e aumento di Z",
+        "Conteggi interi e statistiche",
+        "Inverse e taratura del display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-beta-minus-atomic-number-09",
+      "kind": "question",
+      "course": "C5",
+      "section": "Bilanci discreti del decadimento beta meno",
+      "order": 25509,
+      "title": "L’inversa simbolica e il dominio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "beta-minus-atomic-number",
+      "difficulty": 2,
+      "prompt": "Si considera soltanto il bilancio di una catena assegnata di n trasformazioni β⁻: ogni volta un neutrone diventa protone, con emissione di elettrone e antineutrino elettronico. Z₀ e n sono interi positivi; il numero di massa A è sufficiente e i neutroni disponibili sono almeno n. Non si deduce da questo bilancio che una catena isotopica qualunque sia energeticamente consentita. Quale formula ricostruisce Z₀ da Z_f e n?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Z₀ = Z_f − n",
+          "Z₀ = Z_f + n",
+          "Z₀ = Z_f / n",
+          "Z₀ = n − Z_f",
+          "Z₀ = Z_f − 4n"
+        ],
+        "value": "Z₀ = Z_f − n"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sottraggo n da entrambi i membri di Z_f=Z₀+n. Ottengo Z₀=Z_f−n e richiedo Z_f>n, oltre all’interezza dei conteggi. La disponibilità dei neutroni resta un’ipotesi sulla catena assegnata."
+        },
+        {
+          "type": "formula",
+          "text": "Z_f=Z_0+n"
+        },
+        {
+          "type": "formula",
+          "text": " Z_0=Z_f-n"
+        },
+        {
+          "type": "formula",
+          "text": " Z_f>n"
+        },
+        {
+          "type": "text",
+          "text": "La somma ripete il processo in avanti. Il quoziente non annulla una somma, n−Z_f sarebbe negativo nel dominio e il fattore quattro appartiene a un’altra trasformazione."
+        }
+      ],
+      "hints": [
+        "Un’inversa deve recuperare il valore iniziale per sostituzione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "La somma ripete il processo in avanti. Il quoziente non annulla una somma, n−Z_f sarebbe negativo nel dominio e il fattore quattro appartiene a un’altra trasformazione.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Conservazione di A e aumento di Z",
+        "Conteggi interi e statistiche",
+        "Inverse e taratura del display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-beta-minus-atomic-number-10",
+      "kind": "question",
+      "course": "C5",
+      "section": "Bilanci discreti del decadimento beta meno",
+      "order": 25510,
+      "title": "Due cambiamenti fra catene",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "beta-minus-atomic-number",
+      "difficulty": 2,
+      "prompt": "Si considera soltanto il bilancio di una catena assegnata di n trasformazioni β⁻: ogni volta un neutrone diventa protone, con emissione di elettrone e antineutrino elettronico. Z₀ e n sono interi positivi; il numero di massa A è sufficiente e i neutroni disponibili sono almeno n. Non si deduce da questo bilancio che una catena isotopica qualunque sia energeticamente consentita. Fra A e B si hanno Z₀,B=κ₁Z₀,A e n_B=κ₂n_A. I nuovi conteggi restano interi positivi e compatibili. Qual è Z_f,B/Z_f,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "(κ₁ Z₀ + κ₂ n) / (Z₀ + n)",
+          "κ₁ / κ₂",
+          "κ₁ κ₂",
+          "(κ₁ Z₀ − κ₂ n) / (Z₀ + n)",
+          "κ₁ + κ₂"
+        ],
+        "value": "(κ₁ Z₀ + κ₂ n) / (Z₀ + n)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituisco ogni fattore nel suo addendo, poi divido per il conteggio finale iniziale positivo. Non esiste un unico prodotto di fattori per una legge che somma due contributi. Il vincolo di interezza riguarda sia κ₁Z₀ sia κ₂n."
+        },
+        {
+          "type": "formula",
+          "text": "Z_{f,B}=\\kappa_1 Z_0+\\kappa_2n"
+        },
+        {
+          "type": "formula",
+          "text": " R=\\frac{\\kappa_1 Z_0+\\kappa_2n}{Z_0+n}"
+        },
+        {
+          "type": "text",
+          "text": "I quozienti o prodotti dei soli fattori trascurano i pesi Z₀ e n. Il segno meno farebbe diminuire Z per il β⁻; la somma κ₁+κ₂ darebbe due anche lasciando entrambi gli ingressi invariati."
+        }
+      ],
+      "hints": [
+        "La catena deve rimanere ammissibile dopo entrambe le sostituzioni.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "I quozienti o prodotti dei soli fattori trascurano i pesi Z₀ e n. Il segno meno farebbe diminuire Z per il β⁻; la somma κ₁+κ₂ darebbe due anche lasciando entrambi gli ingressi invariati.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Conservazione di A e aumento di Z",
+        "Conteggi interi e statistiche",
+        "Inverse e taratura del display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-beta-minus-atomic-number-11",
+      "kind": "question",
+      "course": "C5",
+      "section": "Bilanci discreti del decadimento beta meno",
+      "order": 25511,
+      "title": "Due conteggi cambiano insieme",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "beta-minus-atomic-number",
+      "difficulty": 2,
+      "prompt": "Si considera soltanto il bilancio di una catena assegnata di n trasformazioni β⁻: ogni volta un neutrone diventa protone, con emissione di elettrone e antineutrino elettronico. Z₀ e n sono interi positivi; il numero di massa A è sufficiente e i neutroni disponibili sono almeno n. Non si deduce da questo bilancio che una catena isotopica qualunque sia energeticamente consentita. A usa Z₀=20,n=1; B usa Z₀=24,n=2. Quanto vale Z_f,B/Z_f,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "26/21",
+          "21/26",
+          "6/5",
+          "2",
+          "26"
+        ],
+        "value": "26/21"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A termina a ventuno protoni, B a ventisei. Il rapporto richiesto è 26/21; non coincide né con il rapporto dei nuclei iniziali 24/20 né con quello dei numeri di passi 2/1."
+        },
+        {
+          "type": "formula",
+          "text": "Z_{f,A}=20+1"
+        },
+        {
+          "type": "formula",
+          "text": " Z_{f,A}=21"
+        },
+        {
+          "type": "formula",
+          "text": " Z_{f,B}=24+2"
+        },
+        {
+          "type": "formula",
+          "text": " Z_{f,B}=26"
+        },
+        {
+          "type": "formula",
+          "text": " R=\\frac{26}{21}"
+        },
+        {
+          "type": "text",
+          "text": "21/26 inverte il confronto; 6/5 segue solo Z₀ e due solo n. Ventisei copia l’uscita B senza dividerla per quella A."
+        }
+      ],
+      "hints": [
+        "Mantieni i due addendi fino al calcolo delle uscite.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "21/26 inverte il confronto; 6/5 segue solo Z₀ e due solo n. Ventisei copia l’uscita B senza dividerla per quella A.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Conservazione di A e aumento di Z",
+        "Conteggi interi e statistiche",
+        "Inverse e taratura del display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-beta-minus-atomic-number-12",
+      "kind": "question",
+      "course": "C5",
+      "section": "Bilanci discreti del decadimento beta meno",
+      "order": 25512,
+      "title": "Una media non è un singolo nucleo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "beta-minus-atomic-number",
+      "difficulty": 2,
+      "prompt": "Si considera soltanto il bilancio di una catena assegnata di n trasformazioni β⁻: ogni volta un neutrone diventa protone, con emissione di elettrone e antineutrino elettronico. Z₀ e n sono interi positivi; il numero di massa A è sufficiente e i neutroni disponibili sono almeno n. Non si deduce da questo bilancio che una catena isotopica qualunque sia energeticamente consentita. Si mediano con uguali pesi le uscite delle catene A: Z₀=20,n=1 e B: Z₀=24,n=2. Quanto vale la media di Z_f?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "47/2",
+          "47",
+          "22",
+          "3/2",
+          "24"
+        ],
+        "value": "47/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le uscite sono ventuno e ventisei. La loro media aritmetica è 47/2: una statistica di due nuclei può essere semintera senza assegnare mezzo protone a un nucleo. La legge lineare darebbe formalmente lo stesso valore dagli ingressi medi Z₀=22,n=3/2, ma n=3/2 non descrive una terza catena ammissibile."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/0c8f04e4c6afc3ae495d41bc6e7a92f230641a3e201c0b102d228325a33bfc8f",
+          "text": "Le barre finali hanno origine e scala comuni: Z_f,A=21, Z_f,B=26 e media 47/2. La barra della media rappresenta una statistica, non il numero atomico di un terzo nucleo."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline Z_f=\\frac{21+26}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline Z_f=\\frac{47}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline n=\\frac32"
+        },
+        {
+          "type": "text",
+          "text": "Quarantasette omette la divisione per due. Ventidue media soltanto Z₀, 3/2 soltanto n; ventiquattro non è la media delle due uscite. Nessun arrotondamento a un intero è richiesto per la statistica."
+        }
+      ],
+      "hints": [
+        "Distingui il valore di ogni nucleo dalla media di un insieme.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quarantasette omette la divisione per due. Ventidue media soltanto Z₀, 3/2 soltanto n; ventiquattro non è la media delle due uscite. Nessun arrotondamento a un intero è richiesto per la statistica.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Conservazione di A e aumento di Z",
+        "Conteggi interi e statistiche",
+        "Inverse e taratura del display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-beta-minus-atomic-number-13",
+      "kind": "question",
+      "course": "C5",
+      "section": "Bilanci discreti del decadimento beta meno",
+      "order": 25513,
+      "title": "Il nuovo numero di trasformazioni",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "beta-minus-atomic-number",
+      "difficulty": 3,
+      "prompt": "Si considera soltanto il bilancio di una catena assegnata di n trasformazioni β⁻: ogni volta un neutrone diventa protone, con emissione di elettrone e antineutrino elettronico. Z₀ e n sono interi positivi; il numero di massa A è sufficiente e i neutroni disponibili sono almeno n. Non si deduce da questo bilancio che una catena isotopica qualunque sia energeticamente consentita. A usa Z₀=20,n=1. In B si fissa Z₀=24 e si vuole Z_f,B=(26/21)Z_f,A. Quanto vale n_B/n_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/2",
+          "26/21",
+          "26",
+          "1"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è ventisei perché il valore A è ventuno. Tolgo i ventiquattro protoni iniziali di B: servono due trasformazioni. Divido per l’unica trasformazione di A e ottengo due; entrambi i conteggi sono interi."
+        },
+        {
+          "type": "formula",
+          "text": "Z_{f,B}=\\frac{26}{21}\\,21"
+        },
+        {
+          "type": "formula",
+          "text": " Z_{f,B}=26"
+        },
+        {
+          "type": "formula",
+          "text": " n_B=26-24"
+        },
+        {
+          "type": "formula",
+          "text": " n_B=2"
+        },
+        {
+          "type": "formula",
+          "text": " n_B/n_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo inverte il rapporto. 26/21 è il rapporto delle uscite, ventisei l’uscita stessa; uno porterebbe B soltanto a venticinque."
+        }
+      ],
+      "hints": [
+        "Determina prima il conteggio finale richiesto in B.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo inverte il rapporto. 26/21 è il rapporto delle uscite, ventisei l’uscita stessa; uno porterebbe B soltanto a venticinque.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Conservazione di A e aumento di Z",
+        "Conteggi interi e statistiche",
+        "Inverse e taratura del display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-beta-minus-atomic-number-14",
+      "kind": "question",
+      "course": "C5",
+      "section": "Bilanci discreti del decadimento beta meno",
+      "order": 25514,
+      "title": "Un display proporzionale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "beta-minus-atomic-number",
+      "difficulty": 3,
+      "prompt": "Si considera soltanto il bilancio di una catena assegnata di n trasformazioni β⁻: ogni volta un neutrone diventa protone, con emissione di elettrone e antineutrino elettronico. Z₀ e n sono interi positivi; il numero di massa A è sufficiente e i neutroni disponibili sono almeno n. Non si deduce da questo bilancio che una catena isotopica qualunque sia energeticamente consentita. Un display D=gZ_f senza offset legge 63 per Z₀=20,n=1. Poi legge 78, con n=2. Quanto vale il nuovo Z₀?",
+      "answer": {
+        "type": "numeric",
+        "value": 24,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento ha Z_f=21, quindi il guadagno vale tre unità strumentali per unità di Z. La lettura settantotto indica Z_f=26. Tolgo i due protoni creati nei due passi e ricostruisco Z₀=24."
+        },
+        {
+          "type": "formula",
+          "text": "g=63/21"
+        },
+        {
+          "type": "formula",
+          "text": " g=3"
+        },
+        {
+          "type": "formula",
+          "text": " Z_f=78/3"
+        },
+        {
+          "type": "formula",
+          "text": " Z_f=26"
+        },
+        {
+          "type": "formula",
+          "text": " Z_0=26-2"
+        },
+        {
+          "type": "formula",
+          "text": " Z_0=24"
+        },
+        {
+          "type": "text",
+          "text": "Settantasei sottrarrebbe n direttamente al display ancora amplificato. Ventisei dimenticherebbe di tornare al nucleo iniziale; ventotto aggiungerebbe invece di sottrarre i due passi."
+        }
+      ],
+      "hints": [
+        "Rimuovi il guadagno prima di invertire il bilancio nucleare.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Settantasei sottrarrebbe n direttamente al display ancora amplificato. Ventisei dimenticherebbe di tornare al nucleo iniziale; ventotto aggiungerebbe invece di sottrarre i due passi.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Conservazione di A e aumento di Z",
+        "Conteggi interi e statistiche",
+        "Inverse e taratura del display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-beta-minus-atomic-number-15",
+      "kind": "question",
+      "course": "C5",
+      "section": "Bilanci discreti del decadimento beta meno",
+      "order": 25515,
+      "title": "Separare guadagno e offset",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "beta-minus-atomic-number",
+      "difficulty": 3,
+      "prompt": "Si considera soltanto il bilancio di una catena assegnata di n trasformazioni β⁻: ogni volta un neutrone diventa protone, con emissione di elettrone e antineutrino elettronico. Z₀ e n sono interi positivi; il numero di massa A è sufficiente e i neutroni disponibili sono almeno n. Non si deduce da questo bilancio che una catena isotopica qualunque sia energeticamente consentita. D=gZ_f+b. A: Z₀=20,n=1,D=43. B: Z₀=24,n=2,D=53. C: n=1,D=51. Quanto vale Z₀,C?",
+      "answer": {
+        "type": "numeric",
+        "value": 24,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti corrispondono a Z_f=21 e 26. La differenza dei display è dieci per una differenza fisica cinque: g=2; poi b=1. Per C tolgo l’offset e divido per due, ottenendo Z_f=25; sottraendo un passo ottengo ventiquattro."
+        },
+        {
+          "type": "formula",
+          "text": "g=\\frac{53-43}{26-21}"
+        },
+        {
+          "type": "formula",
+          "text": " g=2"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " Z_{f,C}=\\frac{51-1}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " Z_{f,C}=25"
+        },
+        {
+          "type": "formula",
+          "text": " Z_{0,C}=24"
+        },
+        {
+          "type": "text",
+          "text": "49/2 risulterebbe omettendo b prima di sottrarre n ed è anche non intero. Cinquanta toglierebbe solo l’offset, venticinque sarebbe ancora Z_f e ventisei avrebbe il verso inverso."
+        }
+      ],
+      "hints": [
+        "Le differenze eliminano l’offset senza supporlo nullo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "49/2 risulterebbe omettendo b prima di sottrarre n ed è anche non intero. Cinquanta toglierebbe solo l’offset, venticinque sarebbe ancora Z_f e ventisei avrebbe il verso inverso.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Conservazione di A e aumento di Z",
+        "Conteggi interi e statistiche",
+        "Inverse e taratura del display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-beta-minus-atomic-number-16",
+      "kind": "question",
+      "course": "C5",
+      "section": "Bilanci discreti del decadimento beta meno",
+      "order": 25516,
+      "title": "Un vincolo fissa la scala discreta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "beta-minus-atomic-number",
+      "difficulty": 3,
+      "prompt": "Si considera soltanto il bilancio di una catena assegnata di n trasformazioni β⁻: ogni volta un neutrone diventa protone, con emissione di elettrone e antineutrino elettronico. Z₀ e n sono interi positivi; il numero di massa A è sufficiente e i neutroni disponibili sono almeno n. Non si deduce da questo bilancio che una catena isotopica qualunque sia energeticamente consentita. Si impone Z₀=20n e si osserva Z_f=21. Quanto vale n?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituisco il vincolo nel bilancio della catena: Z_f=20n+n=21n. La misura fissa n=1 e di conseguenza Z₀=20. Qui il dato assoluto non è ridondante: valori n=2,3,… produrrebbero uscite diverse."
+        },
+        {
+          "type": "formula",
+          "text": "Z_f=20n+n"
+        },
+        {
+          "type": "formula",
+          "text": " Z_f=21n"
+        },
+        {
+          "type": "formula",
+          "text": " 21n=21"
+        },
+        {
+          "type": "formula",
+          "text": " n=1"
+        },
+        {
+          "type": "formula",
+          "text": " Z_0=20"
+        },
+        {
+          "type": "text",
+          "text": "Due darebbe Z_f=42. Zero non rispetta n>0 e non dà la misura; una famiglia continua di n non è ammessa per un conteggio. Il bilancio rimane distinto dalla prova che una particolare transizione sia consentita."
+        }
+      ],
+      "hints": [
+        "Unisci il vincolo alla legge prima di parlare di unicità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Due darebbe Z_f=42. Zero non rispetta n>0 e non dà la misura; una famiglia continua di n non è ammessa per un conteggio. Il bilancio rimane distinto dalla prova che una particolare transizione sia consentita.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Conservazione di A e aumento di Z",
+        "Conteggi interi e statistiche",
+        "Inverse e taratura del display"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "0c8f04e4c6afc3ae495d41bc6e7a92f230641a3e201c0b102d228325a33bfc8f",
+      "name": "beta-minus-atomic-number-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTUwMCIgdmlld0JveD0iMCAwIDY0MCAxNTAwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyIgZm9udC1mYW1pbHk9InN5c3RlbS11aSwgc2Fucy1zZXJpZiI+PHRpdGxlIGlkPSJ0aXRsZSI+QmV0YSBtZW5vOiB1biBwYXNzbyBlIHVuYSBtZWRpYTwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPkJpbGFuY2lvIG51Y2xlYXJlIGNvbiBBIGludmFyaWF0bywgdHJlIGNvbnRlZ2dpIGF0b21pY2kgaW50ZXJpIGUgYmFycmUgY29tdW5pIGRpIGR1ZSB1c2NpdGUgZSBkZWxsYSBsb3JvIG1lZGlhLjwvZGVzYz48ZGVmcz48bWFya2VyIGlkPSJhcnIiIHZpZXdCb3g9IjAgMCAxMCAxMCIgcmVmWD0iOSIgcmVmWT0iNSIgbWFya2VyV2lkdGg9IjUiIG1hcmtlckhlaWdodD0iNSIgb3JpZW50PSJhdXRvLXN0YXJ0LXJldmVyc2UiPjxwYXRoIGQ9Ik0wIDBMMTAgNUwwIDEwWiIgZmlsbD0iIzMwNmY4YyIvPjwvbWFya2VyPjwvZGVmcz48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iNjQwIiBoZWlnaHQ9IjE1MDAiIGZpbGw9IndoaXRlIi8+PHRleHQgeD0iMzUiIHk9IjQ4IiBmb250LXNpemU9IjI1IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPkNvbnRhcmUgcHJvdG9uaSBkb3BvIHVuIM6y4oG7PC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSIxMDUiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+MSDCtyBDYW1iaWEgdW4gbnVjbGVvbmUsIG5vbiBpbCB0b3RhbGUgQTwvdGV4dD48cmVjdCB4PSI3MCIgeT0iMTU1IiB3aWR0aD0iMTcwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iI2UxZWRmMSIvPjx0ZXh0IHg9Ijk1IiB5PSIxOTUiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+bmV1dHJvbmU8L3RleHQ+PHRleHQgeD0iOTUiIHk9IjIzNSIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5uZWwgbnVjbGVvPC90ZXh0PjxwYXRoIGQ9Ik0yNTUgMjA1TDM2NSAyMDUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzMwNmY4YyIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2FycikiLz48cmVjdCB4PSIzODUiIHk9IjE1NSIgd2lkdGg9IjE3MCIgaGVpZ2h0PSIxMDAiIGZpbGw9IiNlMWVkZjEiLz48dGV4dCB4PSI0MjAiIHk9IjIxMCIgZm9udC1zaXplPSIyMiIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5wcm90b25lPC90ZXh0Pjx0ZXh0IHg9IjI3MCIgeT0iMTYwIiBmb250LXNpemU9IjIwIiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPs6y4oG7PC90ZXh0Pjx0ZXh0IHg9IjE0MCIgeT0iMzE1IiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPmVsZXR0cm9uZSArIGFudGluZXV0cmlubyBlbGV0dHJvbmljbzwvdGV4dD48dGV4dCB4PSIxNTAiIHk9IjM2MCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5BIHJlc3RhIHVndWFsZSDCtyBaIGF1bWVudGEgZGkgMTwvdGV4dD48dGV4dCB4PSIzNSIgeT0iNDQwIiBmb250LXNpemU9IjIyIiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjIgwrcgVW5hIGNhdGVuYSBhc3NlZ25hdGEgY29uIFrigoAgPSAyMDwvdGV4dD48bGluZSB4MT0iMTQwIiB5MT0iNzkwIiB4Mj0iNTUwIiB5Mj0iNzkwIiBzdHJva2U9IiM1MjY0NzQiIHN0cm9rZS13aWR0aD0iMiIvPjxsaW5lIHgxPSIxNDAiIHkxPSI3OTAiIHgyPSIxNDAiIHkyPSI0OTAiIHN0cm9rZT0iIzUyNjQ3NCIgc3Ryb2tlLXdpZHRoPSIyIi8+PGNpcmNsZSBjeD0iMTcwIiBjeT0iNzMwIiByPSI1IiBmaWxsPSIjMjY2Yjg5Ii8+PHRleHQgeD0iMTcwIiB5PSI4MjUiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJtaWRkbGUiPjA8L3RleHQ+PGxpbmUgeDE9IjE3MCIgeTE9Ijc4NCIgeDI9IjE3MCIgeTI9Ijc5NiIgc3Ryb2tlPSIjNTI2NDc0IiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSIxODIiIHk9IjcxNSIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij4yMDwvdGV4dD48cGF0aCBkPSJNMTgwIDcyNEwzMTAgNjUxIiBmaWxsPSJub25lIiBzdHJva2U9IiMzMDZmOGMiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnIpIi8+PGNpcmNsZSBjeD0iMzIwIiBjeT0iNjQ1IiByPSI1IiBmaWxsPSIjMjY2Yjg5Ii8+PHRleHQgeD0iMzIwIiB5PSI4MjUiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJtaWRkbGUiPjE8L3RleHQ+PGxpbmUgeDE9IjMyMCIgeTE9Ijc4NCIgeDI9IjMyMCIgeTI9Ijc5NiIgc3Ryb2tlPSIjNTI2NDc0IiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSIzMzIiIHk9IjYzMCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij4yMTwvdGV4dD48cGF0aCBkPSJNMzMwIDYzOUw0NjAgNTY2IiBmaWxsPSJub25lIiBzdHJva2U9IiMzMDZmOGMiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnIpIi8+PGNpcmNsZSBjeD0iNDcwIiBjeT0iNTYwIiByPSI1IiBmaWxsPSIjMjY2Yjg5Ii8+PHRleHQgeD0iNDcwIiB5PSI4MjUiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJtaWRkbGUiPjI8L3RleHQ+PGxpbmUgeDE9IjQ3MCIgeTE9Ijc4NCIgeDI9IjQ3MCIgeTI9Ijc5NiIgc3Ryb2tlPSIjNTI2NDc0IiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSI0ODIiIHk9IjU0NSIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij4yMjwvdGV4dD48bGluZSB4MT0iMTM0IiB5MT0iNzMwIiB4Mj0iMTQ2IiB5Mj0iNzMwIiBzdHJva2U9IiM1MjY0NzQiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjEyMyIgeT0iNzM2IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0iZW5kIj4yMDwvdGV4dD48bGluZSB4MT0iMTM0IiB5MT0iNjQ1IiB4Mj0iMTQ2IiB5Mj0iNjQ1IiBzdHJva2U9IiM1MjY0NzQiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjEyMyIgeT0iNjUxIiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0iZW5kIj4yMTwvdGV4dD48bGluZSB4MT0iMTM0IiB5MT0iNTYwIiB4Mj0iMTQ2IiB5Mj0iNTYwIiBzdHJva2U9IiM1MjY0NzQiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjEyMyIgeT0iNTY2IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0iZW5kIj4yMjwvdGV4dD48dGV4dCB4PSIxMDAiIHk9IjQ4NSIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5aPC90ZXh0Pjx0ZXh0IHg9IjU2NSIgeT0iNzk2IiBmb250LXNpemU9IjIwIiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPm48L3RleHQ+PHRleHQgeD0iMzUiIHk9Ijg4NSIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5uID0gMCDDqCBpbCByaWZlcmltZW50byBpbml6aWFsZTsgaSBwYXNzaSBzb25vIGludGVyaS48L3RleHQ+PHRleHQgeD0iMzUiIHk9Ijk2NSIgZm9udC1zaXplPSIyMiIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij4zIMK3IFVzY2l0ZSBkaSBkdWUgY2F0ZW5lIGUgbWVkaWE8L3RleHQ+PHRleHQgeD0iMTMwIiB5PSIxMDYyIiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0iZW5kIj5BPC90ZXh0PjxyZWN0IHg9IjE1MCIgeT0iMTA0MCIgd2lkdGg9IjI1MiIgaGVpZ2h0PSIzMCIgZmlsbD0iIzNkNzc5MSIvPjx0ZXh0IHg9IjQxMiIgeT0iMTA2NCIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij4yMTwvdGV4dD48dGV4dCB4PSIxMzAiIHk9IjExNjIiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJlbmQiPkI8L3RleHQ+PHJlY3QgeD0iMTUwIiB5PSIxMTQwIiB3aWR0aD0iMzEyIiBoZWlnaHQ9IjMwIiBmaWxsPSIjOTg2YzM1Ii8+PHRleHQgeD0iNDcyIiB5PSIxMTY0IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjI2PC90ZXh0Pjx0ZXh0IHg9IjEzMCIgeT0iMTI2MiIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9ImVuZCI+bWVkaWE8L3RleHQ+PHJlY3QgeD0iMTUwIiB5PSIxMjQwIiB3aWR0aD0iMjgyLjAiIGhlaWdodD0iMzAiIGZpbGw9IiM2MzdlNTUiLz48dGV4dCB4PSI0NDIuMCIgeT0iMTI2NCIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij40Ny8yPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSIxMzU1IiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPkE6IFrigoAgPSAyMCwgbiA9IDEgwrcgQjogWuKCgCA9IDI0LCBuID0gMjwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMTQwMCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5MYSBtZWRpYSA0Ny8yIG5vbiDDqCBsbyBaIGRpIHVuIHNpbmdvbG8gbnVjbGVvLjwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMTQ0NSIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5CYXJyZSBkZWwgbnVtZXJvIGF0b21pY286IG9yaWdpbmUgY29tdW5lLjwvdGV4dD48L3N2Zz4K"
+    }
+  ]
+}
