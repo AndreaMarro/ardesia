@@ -1,0 +1,1907 @@
+{
+  "scope": "Diagnostic only, actual failed browser model values absent from old collector",
+  "candidateRef": "64aef05bef5ca7ebff8491060762dd4cac0cbb34",
+  "runtimeSha256": "4c83e0156b74d5a4cdfad90421f4304e6a7a03bde10d5b125f6635aae7eff907",
+  "cases": [
+    {
+      "course": "C2",
+      "id": "SIM-C2-L002-03",
+      "variant": "published",
+      "gridIndex": 11,
+      "plannedX": 82.96,
+      "legacyReferenceX": 82.96000000000001,
+      "frozenExpectedY": 61,
+      "record": {
+        "anchor": "Pi\u00f9 scendi in acqua, maggiore \u00e8 la",
+        "apparatus": "manometro",
+        "blocks": [],
+        "control": {
+          "label": "Pressione dell\u2019aria",
+          "max": 108.8,
+          "min": 68.0,
+          "step": 1.36,
+          "unit": "kPa"
+        },
+        "course": "C2",
+        "formula": "h = p/(\u03c1g); \u03c1 = 13600 kg/m\u00b3, g = 10 m/s\u00b2",
+        "id": "SIM-C2-L002-03",
+        "interpretation": "Il tubo chiuso contiene vuoto sopra il mercurio. La superficie del serbatoio \u00e8 esposta all\u2019aria. Il dislivello d\u00e0 la pressione atmosferica, trascurando la pressione del vapore.",
+        "kind": "experiment",
+        "measure": {
+          "label": "Altezza della colonna di mercurio",
+          "unit": "cm"
+        },
+        "order": 3,
+        "references": [
+          [
+            68.0,
+            50.0
+          ],
+          [
+            102.0,
+            75.0
+          ]
+        ],
+        "section": "Fluidi in quiete",
+        "skill": "C2-L002",
+        "substitution": "{x} / 1,36",
+        "summary": "Che cosa sostiene la colonna del barometro di Torricelli?",
+        "title": "Esperimento di Torricelli",
+        "topic": "Esperimento di Torricelli",
+        "transferPrompt": "Un barometro a mercurio \u00e8 esposto alla pressione {x}. Quale altezza della colonna prevedi con \u03c1 = 13 600 kg/m\u00b3 e g = 10 m/s\u00b2?",
+        "version": 1
+      },
+      "browserActualValueAvailable": false
+    },
+    {
+      "course": "C2",
+      "id": "SIM-C2-L002-03",
+      "variant": "published",
+      "gridIndex": 30,
+      "plannedX": 108.8,
+      "legacyReferenceX": 108.80000000000001,
+      "frozenExpectedY": 80,
+      "record": {
+        "anchor": "Pi\u00f9 scendi in acqua, maggiore \u00e8 la",
+        "apparatus": "manometro",
+        "blocks": [],
+        "control": {
+          "label": "Pressione dell\u2019aria",
+          "max": 108.8,
+          "min": 68.0,
+          "step": 1.36,
+          "unit": "kPa"
+        },
+        "course": "C2",
+        "formula": "h = p/(\u03c1g); \u03c1 = 13600 kg/m\u00b3, g = 10 m/s\u00b2",
+        "id": "SIM-C2-L002-03",
+        "interpretation": "Il tubo chiuso contiene vuoto sopra il mercurio. La superficie del serbatoio \u00e8 esposta all\u2019aria. Il dislivello d\u00e0 la pressione atmosferica, trascurando la pressione del vapore.",
+        "kind": "experiment",
+        "measure": {
+          "label": "Altezza della colonna di mercurio",
+          "unit": "cm"
+        },
+        "order": 3,
+        "references": [
+          [
+            68.0,
+            50.0
+          ],
+          [
+            102.0,
+            75.0
+          ]
+        ],
+        "section": "Fluidi in quiete",
+        "skill": "C2-L002",
+        "substitution": "{x} / 1,36",
+        "summary": "Che cosa sostiene la colonna del barometro di Torricelli?",
+        "title": "Esperimento di Torricelli",
+        "topic": "Esperimento di Torricelli",
+        "transferPrompt": "Un barometro a mercurio \u00e8 esposto alla pressione {x}. Quale altezza della colonna prevedi con \u03c1 = 13 600 kg/m\u00b3 e g = 10 m/s\u00b2?",
+        "version": 1
+      },
+      "browserActualValueAvailable": false
+    },
+    {
+      "course": "C2",
+      "id": "SIM-C2-L002-04",
+      "variant": "published",
+      "gridIndex": 6,
+      "plannedX": -0.8,
+      "legacyReferenceX": -0.7999999999999998,
+      "frozenExpectedY": -7.999999999999998,
+      "record": {
+        "anchor": "Un manometro a U traduce una differenza",
+        "apparatus": "manometro",
+        "blocks": [],
+        "control": {
+          "label": "Differenza di pressione",
+          "max": 2.0,
+          "min": -2.0,
+          "step": 0.2,
+          "unit": "kPa"
+        },
+        "course": "C2",
+        "formula": "\u0394p = p sinistra \u2212 p destra. \u0394h = h destra \u2212 h sinistra = \u0394p/(\u03c1g), con acqua e g = 10 m/s\u00b2.",
+        "id": "SIM-C2-L002-04",
+        "interpretation": "Alla stessa quota la pressione nell\u2019acqua in quiete \u00e8 uguale nei due rami. Se premi a sinistra il livello sinistro scende e quello destro sale. Definisci il dislivello come altezza destra meno altezza sinistra. Con +1 kPa leggi +10 cm. Con \u22121 kPa il ramo destro \u00e8 pi\u00f9 basso di 10 cm. A pressione uguale i livelli coincidono. Le sezioni dei rami sono uguali, quindi ciascuna superficie si sposta di met\u00e0 del dislivello.",
+        "kind": "experiment",
+        "measure": {
+          "label": "Dislivello con segno",
+          "unit": "cm"
+        },
+        "order": 4,
+        "references": [
+          [
+            -1.0,
+            -10.0
+          ],
+          [
+            2.0,
+            20.0
+          ]
+        ],
+        "section": "Fluidi in quiete",
+        "skill": "C2-L002",
+        "substitution": "10 \u00d7 {x}",
+        "summary": "In quale ramo del manometro a U sale il liquido quando premi a sinistra?",
+        "title": "Manometro a U",
+        "topic": "Manometro a U",
+        "transferPrompt": "La pressione a sinistra meno la pressione a destra vale {x}. Quanto misura, in centimetri e con segno, il livello destro meno quello sinistro?",
+        "version": 2
+      },
+      "browserActualValueAvailable": false
+    },
+    {
+      "course": "C2",
+      "id": "SIM-C2-L002-04",
+      "variant": "published",
+      "gridIndex": 7,
+      "plannedX": -0.6,
+      "legacyReferenceX": -0.5999999999999999,
+      "frozenExpectedY": -5.999999999999998,
+      "record": {
+        "anchor": "Un manometro a U traduce una differenza",
+        "apparatus": "manometro",
+        "blocks": [],
+        "control": {
+          "label": "Differenza di pressione",
+          "max": 2.0,
+          "min": -2.0,
+          "step": 0.2,
+          "unit": "kPa"
+        },
+        "course": "C2",
+        "formula": "\u0394p = p sinistra \u2212 p destra. \u0394h = h destra \u2212 h sinistra = \u0394p/(\u03c1g), con acqua e g = 10 m/s\u00b2.",
+        "id": "SIM-C2-L002-04",
+        "interpretation": "Alla stessa quota la pressione nell\u2019acqua in quiete \u00e8 uguale nei due rami. Se premi a sinistra il livello sinistro scende e quello destro sale. Definisci il dislivello come altezza destra meno altezza sinistra. Con +1 kPa leggi +10 cm. Con \u22121 kPa il ramo destro \u00e8 pi\u00f9 basso di 10 cm. A pressione uguale i livelli coincidono. Le sezioni dei rami sono uguali, quindi ciascuna superficie si sposta di met\u00e0 del dislivello.",
+        "kind": "experiment",
+        "measure": {
+          "label": "Dislivello con segno",
+          "unit": "cm"
+        },
+        "order": 4,
+        "references": [
+          [
+            -1.0,
+            -10.0
+          ],
+          [
+            2.0,
+            20.0
+          ]
+        ],
+        "section": "Fluidi in quiete",
+        "skill": "C2-L002",
+        "substitution": "10 \u00d7 {x}",
+        "summary": "In quale ramo del manometro a U sale il liquido quando premi a sinistra?",
+        "title": "Manometro a U",
+        "topic": "Manometro a U",
+        "transferPrompt": "La pressione a sinistra meno la pressione a destra vale {x}. Quanto misura, in centimetri e con segno, il livello destro meno quello sinistro?",
+        "version": 2
+      },
+      "browserActualValueAvailable": false
+    },
+    {
+      "course": "C2",
+      "id": "SIM-C2-L002-04",
+      "variant": "published",
+      "gridIndex": 8,
+      "plannedX": -0.4,
+      "legacyReferenceX": -0.3999999999999999,
+      "frozenExpectedY": -3.999999999999999,
+      "record": {
+        "anchor": "Un manometro a U traduce una differenza",
+        "apparatus": "manometro",
+        "blocks": [],
+        "control": {
+          "label": "Differenza di pressione",
+          "max": 2.0,
+          "min": -2.0,
+          "step": 0.2,
+          "unit": "kPa"
+        },
+        "course": "C2",
+        "formula": "\u0394p = p sinistra \u2212 p destra. \u0394h = h destra \u2212 h sinistra = \u0394p/(\u03c1g), con acqua e g = 10 m/s\u00b2.",
+        "id": "SIM-C2-L002-04",
+        "interpretation": "Alla stessa quota la pressione nell\u2019acqua in quiete \u00e8 uguale nei due rami. Se premi a sinistra il livello sinistro scende e quello destro sale. Definisci il dislivello come altezza destra meno altezza sinistra. Con +1 kPa leggi +10 cm. Con \u22121 kPa il ramo destro \u00e8 pi\u00f9 basso di 10 cm. A pressione uguale i livelli coincidono. Le sezioni dei rami sono uguali, quindi ciascuna superficie si sposta di met\u00e0 del dislivello.",
+        "kind": "experiment",
+        "measure": {
+          "label": "Dislivello con segno",
+          "unit": "cm"
+        },
+        "order": 4,
+        "references": [
+          [
+            -1.0,
+            -10.0
+          ],
+          [
+            2.0,
+            20.0
+          ]
+        ],
+        "section": "Fluidi in quiete",
+        "skill": "C2-L002",
+        "substitution": "10 \u00d7 {x}",
+        "summary": "In quale ramo del manometro a U sale il liquido quando premi a sinistra?",
+        "title": "Manometro a U",
+        "topic": "Manometro a U",
+        "transferPrompt": "La pressione a sinistra meno la pressione a destra vale {x}. Quanto misura, in centimetri e con segno, il livello destro meno quello sinistro?",
+        "version": 2
+      },
+      "browserActualValueAvailable": false
+    },
+    {
+      "course": "C2",
+      "id": "SIM-C2-L002-04",
+      "variant": "published",
+      "gridIndex": 9,
+      "plannedX": -0.2,
+      "legacyReferenceX": -0.19999999999999996,
+      "frozenExpectedY": -1.9999999999999996,
+      "record": {
+        "anchor": "Un manometro a U traduce una differenza",
+        "apparatus": "manometro",
+        "blocks": [],
+        "control": {
+          "label": "Differenza di pressione",
+          "max": 2.0,
+          "min": -2.0,
+          "step": 0.2,
+          "unit": "kPa"
+        },
+        "course": "C2",
+        "formula": "\u0394p = p sinistra \u2212 p destra. \u0394h = h destra \u2212 h sinistra = \u0394p/(\u03c1g), con acqua e g = 10 m/s\u00b2.",
+        "id": "SIM-C2-L002-04",
+        "interpretation": "Alla stessa quota la pressione nell\u2019acqua in quiete \u00e8 uguale nei due rami. Se premi a sinistra il livello sinistro scende e quello destro sale. Definisci il dislivello come altezza destra meno altezza sinistra. Con +1 kPa leggi +10 cm. Con \u22121 kPa il ramo destro \u00e8 pi\u00f9 basso di 10 cm. A pressione uguale i livelli coincidono. Le sezioni dei rami sono uguali, quindi ciascuna superficie si sposta di met\u00e0 del dislivello.",
+        "kind": "experiment",
+        "measure": {
+          "label": "Dislivello con segno",
+          "unit": "cm"
+        },
+        "order": 4,
+        "references": [
+          [
+            -1.0,
+            -10.0
+          ],
+          [
+            2.0,
+            20.0
+          ]
+        ],
+        "section": "Fluidi in quiete",
+        "skill": "C2-L002",
+        "substitution": "10 \u00d7 {x}",
+        "summary": "In quale ramo del manometro a U sale il liquido quando premi a sinistra?",
+        "title": "Manometro a U",
+        "topic": "Manometro a U",
+        "transferPrompt": "La pressione a sinistra meno la pressione a destra vale {x}. Quanto misura, in centimetri e con segno, il livello destro meno quello sinistro?",
+        "version": 2
+      },
+      "browserActualValueAvailable": false
+    },
+    {
+      "course": "C2",
+      "id": "SIM-C2-L002-04",
+      "variant": "published",
+      "gridIndex": 11,
+      "plannedX": 0.2,
+      "legacyReferenceX": 0.20000000000000018,
+      "frozenExpectedY": 2.0000000000000018,
+      "record": {
+        "anchor": "Un manometro a U traduce una differenza",
+        "apparatus": "manometro",
+        "blocks": [],
+        "control": {
+          "label": "Differenza di pressione",
+          "max": 2.0,
+          "min": -2.0,
+          "step": 0.2,
+          "unit": "kPa"
+        },
+        "course": "C2",
+        "formula": "\u0394p = p sinistra \u2212 p destra. \u0394h = h destra \u2212 h sinistra = \u0394p/(\u03c1g), con acqua e g = 10 m/s\u00b2.",
+        "id": "SIM-C2-L002-04",
+        "interpretation": "Alla stessa quota la pressione nell\u2019acqua in quiete \u00e8 uguale nei due rami. Se premi a sinistra il livello sinistro scende e quello destro sale. Definisci il dislivello come altezza destra meno altezza sinistra. Con +1 kPa leggi +10 cm. Con \u22121 kPa il ramo destro \u00e8 pi\u00f9 basso di 10 cm. A pressione uguale i livelli coincidono. Le sezioni dei rami sono uguali, quindi ciascuna superficie si sposta di met\u00e0 del dislivello.",
+        "kind": "experiment",
+        "measure": {
+          "label": "Dislivello con segno",
+          "unit": "cm"
+        },
+        "order": 4,
+        "references": [
+          [
+            -1.0,
+            -10.0
+          ],
+          [
+            2.0,
+            20.0
+          ]
+        ],
+        "section": "Fluidi in quiete",
+        "skill": "C2-L002",
+        "substitution": "10 \u00d7 {x}",
+        "summary": "In quale ramo del manometro a U sale il liquido quando premi a sinistra?",
+        "title": "Manometro a U",
+        "topic": "Manometro a U",
+        "transferPrompt": "La pressione a sinistra meno la pressione a destra vale {x}. Quanto misura, in centimetri e con segno, il livello destro meno quello sinistro?",
+        "version": 2
+      },
+      "browserActualValueAvailable": false
+    },
+    {
+      "course": "C2",
+      "id": "SIM-C2-L002-04",
+      "variant": "published",
+      "gridIndex": 12,
+      "plannedX": 0.4,
+      "legacyReferenceX": 0.40000000000000036,
+      "frozenExpectedY": 4.0000000000000036,
+      "record": {
+        "anchor": "Un manometro a U traduce una differenza",
+        "apparatus": "manometro",
+        "blocks": [],
+        "control": {
+          "label": "Differenza di pressione",
+          "max": 2.0,
+          "min": -2.0,
+          "step": 0.2,
+          "unit": "kPa"
+        },
+        "course": "C2",
+        "formula": "\u0394p = p sinistra \u2212 p destra. \u0394h = h destra \u2212 h sinistra = \u0394p/(\u03c1g), con acqua e g = 10 m/s\u00b2.",
+        "id": "SIM-C2-L002-04",
+        "interpretation": "Alla stessa quota la pressione nell\u2019acqua in quiete \u00e8 uguale nei due rami. Se premi a sinistra il livello sinistro scende e quello destro sale. Definisci il dislivello come altezza destra meno altezza sinistra. Con +1 kPa leggi +10 cm. Con \u22121 kPa il ramo destro \u00e8 pi\u00f9 basso di 10 cm. A pressione uguale i livelli coincidono. Le sezioni dei rami sono uguali, quindi ciascuna superficie si sposta di met\u00e0 del dislivello.",
+        "kind": "experiment",
+        "measure": {
+          "label": "Dislivello con segno",
+          "unit": "cm"
+        },
+        "order": 4,
+        "references": [
+          [
+            -1.0,
+            -10.0
+          ],
+          [
+            2.0,
+            20.0
+          ]
+        ],
+        "section": "Fluidi in quiete",
+        "skill": "C2-L002",
+        "substitution": "10 \u00d7 {x}",
+        "summary": "In quale ramo del manometro a U sale il liquido quando premi a sinistra?",
+        "title": "Manometro a U",
+        "topic": "Manometro a U",
+        "transferPrompt": "La pressione a sinistra meno la pressione a destra vale {x}. Quanto misura, in centimetri e con segno, il livello destro meno quello sinistro?",
+        "version": 2
+      },
+      "browserActualValueAvailable": false
+    },
+    {
+      "course": "C2",
+      "id": "SIM-C2-L002-04",
+      "variant": "published",
+      "gridIndex": 13,
+      "plannedX": 0.6,
+      "legacyReferenceX": 0.6000000000000001,
+      "frozenExpectedY": 6.000000000000001,
+      "record": {
+        "anchor": "Un manometro a U traduce una differenza",
+        "apparatus": "manometro",
+        "blocks": [],
+        "control": {
+          "label": "Differenza di pressione",
+          "max": 2.0,
+          "min": -2.0,
+          "step": 0.2,
+          "unit": "kPa"
+        },
+        "course": "C2",
+        "formula": "\u0394p = p sinistra \u2212 p destra. \u0394h = h destra \u2212 h sinistra = \u0394p/(\u03c1g), con acqua e g = 10 m/s\u00b2.",
+        "id": "SIM-C2-L002-04",
+        "interpretation": "Alla stessa quota la pressione nell\u2019acqua in quiete \u00e8 uguale nei due rami. Se premi a sinistra il livello sinistro scende e quello destro sale. Definisci il dislivello come altezza destra meno altezza sinistra. Con +1 kPa leggi +10 cm. Con \u22121 kPa il ramo destro \u00e8 pi\u00f9 basso di 10 cm. A pressione uguale i livelli coincidono. Le sezioni dei rami sono uguali, quindi ciascuna superficie si sposta di met\u00e0 del dislivello.",
+        "kind": "experiment",
+        "measure": {
+          "label": "Dislivello con segno",
+          "unit": "cm"
+        },
+        "order": 4,
+        "references": [
+          [
+            -1.0,
+            -10.0
+          ],
+          [
+            2.0,
+            20.0
+          ]
+        ],
+        "section": "Fluidi in quiete",
+        "skill": "C2-L002",
+        "substitution": "10 \u00d7 {x}",
+        "summary": "In quale ramo del manometro a U sale il liquido quando premi a sinistra?",
+        "title": "Manometro a U",
+        "topic": "Manometro a U",
+        "transferPrompt": "La pressione a sinistra meno la pressione a destra vale {x}. Quanto misura, in centimetri e con segno, il livello destro meno quello sinistro?",
+        "version": 2
+      },
+      "browserActualValueAvailable": false
+    },
+    {
+      "course": "C2",
+      "id": "SIM-C2-L002-04",
+      "variant": "published",
+      "gridIndex": 14,
+      "plannedX": 0.8,
+      "legacyReferenceX": 0.8000000000000003,
+      "frozenExpectedY": 8.000000000000004,
+      "record": {
+        "anchor": "Un manometro a U traduce una differenza",
+        "apparatus": "manometro",
+        "blocks": [],
+        "control": {
+          "label": "Differenza di pressione",
+          "max": 2.0,
+          "min": -2.0,
+          "step": 0.2,
+          "unit": "kPa"
+        },
+        "course": "C2",
+        "formula": "\u0394p = p sinistra \u2212 p destra. \u0394h = h destra \u2212 h sinistra = \u0394p/(\u03c1g), con acqua e g = 10 m/s\u00b2.",
+        "id": "SIM-C2-L002-04",
+        "interpretation": "Alla stessa quota la pressione nell\u2019acqua in quiete \u00e8 uguale nei due rami. Se premi a sinistra il livello sinistro scende e quello destro sale. Definisci il dislivello come altezza destra meno altezza sinistra. Con +1 kPa leggi +10 cm. Con \u22121 kPa il ramo destro \u00e8 pi\u00f9 basso di 10 cm. A pressione uguale i livelli coincidono. Le sezioni dei rami sono uguali, quindi ciascuna superficie si sposta di met\u00e0 del dislivello.",
+        "kind": "experiment",
+        "measure": {
+          "label": "Dislivello con segno",
+          "unit": "cm"
+        },
+        "order": 4,
+        "references": [
+          [
+            -1.0,
+            -10.0
+          ],
+          [
+            2.0,
+            20.0
+          ]
+        ],
+        "section": "Fluidi in quiete",
+        "skill": "C2-L002",
+        "substitution": "10 \u00d7 {x}",
+        "summary": "In quale ramo del manometro a U sale il liquido quando premi a sinistra?",
+        "title": "Manometro a U",
+        "topic": "Manometro a U",
+        "transferPrompt": "La pressione a sinistra meno la pressione a destra vale {x}. Quanto misura, in centimetri e con segno, il livello destro meno quello sinistro?",
+        "version": 2
+      },
+      "browserActualValueAvailable": false
+    },
+    {
+      "course": "C2",
+      "id": "SIM-C2-L002-04",
+      "variant": "published",
+      "gridIndex": 16,
+      "plannedX": 1.2,
+      "legacyReferenceX": 1.2000000000000002,
+      "frozenExpectedY": 12.000000000000002,
+      "record": {
+        "anchor": "Un manometro a U traduce una differenza",
+        "apparatus": "manometro",
+        "blocks": [],
+        "control": {
+          "label": "Differenza di pressione",
+          "max": 2.0,
+          "min": -2.0,
+          "step": 0.2,
+          "unit": "kPa"
+        },
+        "course": "C2",
+        "formula": "\u0394p = p sinistra \u2212 p destra. \u0394h = h destra \u2212 h sinistra = \u0394p/(\u03c1g), con acqua e g = 10 m/s\u00b2.",
+        "id": "SIM-C2-L002-04",
+        "interpretation": "Alla stessa quota la pressione nell\u2019acqua in quiete \u00e8 uguale nei due rami. Se premi a sinistra il livello sinistro scende e quello destro sale. Definisci il dislivello come altezza destra meno altezza sinistra. Con +1 kPa leggi +10 cm. Con \u22121 kPa il ramo destro \u00e8 pi\u00f9 basso di 10 cm. A pressione uguale i livelli coincidono. Le sezioni dei rami sono uguali, quindi ciascuna superficie si sposta di met\u00e0 del dislivello.",
+        "kind": "experiment",
+        "measure": {
+          "label": "Dislivello con segno",
+          "unit": "cm"
+        },
+        "order": 4,
+        "references": [
+          [
+            -1.0,
+            -10.0
+          ],
+          [
+            2.0,
+            20.0
+          ]
+        ],
+        "section": "Fluidi in quiete",
+        "skill": "C2-L002",
+        "substitution": "10 \u00d7 {x}",
+        "summary": "In quale ramo del manometro a U sale il liquido quando premi a sinistra?",
+        "title": "Manometro a U",
+        "topic": "Manometro a U",
+        "transferPrompt": "La pressione a sinistra meno la pressione a destra vale {x}. Quanto misura, in centimetri e con segno, il livello destro meno quello sinistro?",
+        "version": 2
+      },
+      "browserActualValueAvailable": false
+    },
+    {
+      "course": "C2",
+      "id": "SIM-C2-L002-04",
+      "variant": "published",
+      "gridIndex": 17,
+      "plannedX": 1.4,
+      "legacyReferenceX": 1.4000000000000004,
+      "frozenExpectedY": 14.000000000000004,
+      "record": {
+        "anchor": "Un manometro a U traduce una differenza",
+        "apparatus": "manometro",
+        "blocks": [],
+        "control": {
+          "label": "Differenza di pressione",
+          "max": 2.0,
+          "min": -2.0,
+          "step": 0.2,
+          "unit": "kPa"
+        },
+        "course": "C2",
+        "formula": "\u0394p = p sinistra \u2212 p destra. \u0394h = h destra \u2212 h sinistra = \u0394p/(\u03c1g), con acqua e g = 10 m/s\u00b2.",
+        "id": "SIM-C2-L002-04",
+        "interpretation": "Alla stessa quota la pressione nell\u2019acqua in quiete \u00e8 uguale nei due rami. Se premi a sinistra il livello sinistro scende e quello destro sale. Definisci il dislivello come altezza destra meno altezza sinistra. Con +1 kPa leggi +10 cm. Con \u22121 kPa il ramo destro \u00e8 pi\u00f9 basso di 10 cm. A pressione uguale i livelli coincidono. Le sezioni dei rami sono uguali, quindi ciascuna superficie si sposta di met\u00e0 del dislivello.",
+        "kind": "experiment",
+        "measure": {
+          "label": "Dislivello con segno",
+          "unit": "cm"
+        },
+        "order": 4,
+        "references": [
+          [
+            -1.0,
+            -10.0
+          ],
+          [
+            2.0,
+            20.0
+          ]
+        ],
+        "section": "Fluidi in quiete",
+        "skill": "C2-L002",
+        "substitution": "10 \u00d7 {x}",
+        "summary": "In quale ramo del manometro a U sale il liquido quando premi a sinistra?",
+        "title": "Manometro a U",
+        "topic": "Manometro a U",
+        "transferPrompt": "La pressione a sinistra meno la pressione a destra vale {x}. Quanto misura, in centimetri e con segno, il livello destro meno quello sinistro?",
+        "version": 2
+      },
+      "browserActualValueAvailable": false
+    },
+    {
+      "course": "C2",
+      "id": "SIM-C2-L002-04",
+      "variant": "published",
+      "gridIndex": 19,
+      "plannedX": 1.8,
+      "legacyReferenceX": 1.8000000000000003,
+      "frozenExpectedY": 18.000000000000004,
+      "record": {
+        "anchor": "Un manometro a U traduce una differenza",
+        "apparatus": "manometro",
+        "blocks": [],
+        "control": {
+          "label": "Differenza di pressione",
+          "max": 2.0,
+          "min": -2.0,
+          "step": 0.2,
+          "unit": "kPa"
+        },
+        "course": "C2",
+        "formula": "\u0394p = p sinistra \u2212 p destra. \u0394h = h destra \u2212 h sinistra = \u0394p/(\u03c1g), con acqua e g = 10 m/s\u00b2.",
+        "id": "SIM-C2-L002-04",
+        "interpretation": "Alla stessa quota la pressione nell\u2019acqua in quiete \u00e8 uguale nei due rami. Se premi a sinistra il livello sinistro scende e quello destro sale. Definisci il dislivello come altezza destra meno altezza sinistra. Con +1 kPa leggi +10 cm. Con \u22121 kPa il ramo destro \u00e8 pi\u00f9 basso di 10 cm. A pressione uguale i livelli coincidono. Le sezioni dei rami sono uguali, quindi ciascuna superficie si sposta di met\u00e0 del dislivello.",
+        "kind": "experiment",
+        "measure": {
+          "label": "Dislivello con segno",
+          "unit": "cm"
+        },
+        "order": 4,
+        "references": [
+          [
+            -1.0,
+            -10.0
+          ],
+          [
+            2.0,
+            20.0
+          ]
+        ],
+        "section": "Fluidi in quiete",
+        "skill": "C2-L002",
+        "substitution": "10 \u00d7 {x}",
+        "summary": "In quale ramo del manometro a U sale il liquido quando premi a sinistra?",
+        "title": "Manometro a U",
+        "topic": "Manometro a U",
+        "transferPrompt": "La pressione a sinistra meno la pressione a destra vale {x}. Quanto misura, in centimetri e con segno, il livello destro meno quello sinistro?",
+        "version": 2
+      },
+      "browserActualValueAvailable": false
+    },
+    {
+      "course": "C2",
+      "id": "SIM-C2-L007-01",
+      "variant": "published",
+      "gridIndex": 3,
+      "plannedX": 0.15,
+      "legacyReferenceX": 0.15000000000000002,
+      "frozenExpectedY": 1500.0000000000002,
+      "record": {
+        "anchor": "Un confronto di scala utile, come approfondimento,",
+        "apparatus": "profilo",
+        "blocks": [],
+        "control": {
+          "label": "Velocit\u00e0 media",
+          "max": 0.6,
+          "min": 0.0,
+          "step": 0.05,
+          "unit": "m/s"
+        },
+        "course": "C2",
+        "formula": "Re = \u03c1vD/\u03b7; acqua, D = 0,01 m, \u03b7 = 0,001 Pa\u00b7s",
+        "id": "SIM-C2-L007-01",
+        "interpretation": "Re confronta inerzia e viscosit\u00e0. Nel tubo diritto, sopra circa 2300 la previsione laminare diventa incerta. Il banco ritira il profilo invece di inventare fluttuazioni turbolente.",
+        "kind": "experiment",
+        "measure": {
+          "label": "Numero di Reynolds",
+          "unit": "1"
+        },
+        "order": 1,
+        "references": [
+          [
+            0.1,
+            1000.0
+          ],
+          [
+            0.4,
+            4000.0
+          ]
+        ],
+        "section": "Fluidi in movimento",
+        "skill": "C2-L007",
+        "substitution": "10000 \u00d7 {x}",
+        "summary": "Si pu\u00f2 ancora disegnare una parabola per qualunque velocit\u00e0?",
+        "title": "Flussi laminari e turbolenti",
+        "topic": "Flussi laminari e turbolenti",
+        "transferPrompt": "Acqua con viscosit\u00e0 0,001 Pa\u00b7s percorre un tubo di diametro 1 cm a {x}. Quale numero di Reynolds useresti per valutare il regime?",
+        "version": 1
+      },
+      "browserActualValueAvailable": false
+    },
+    {
+      "course": "C2",
+      "id": "SIM-C2-L007-01",
+      "variant": "published",
+      "gridIndex": 6,
+      "plannedX": 0.3,
+      "legacyReferenceX": 0.30000000000000004,
+      "frozenExpectedY": 3000.0000000000005,
+      "record": {
+        "anchor": "Un confronto di scala utile, come approfondimento,",
+        "apparatus": "profilo",
+        "blocks": [],
+        "control": {
+          "label": "Velocit\u00e0 media",
+          "max": 0.6,
+          "min": 0.0,
+          "step": 0.05,
+          "unit": "m/s"
+        },
+        "course": "C2",
+        "formula": "Re = \u03c1vD/\u03b7; acqua, D = 0,01 m, \u03b7 = 0,001 Pa\u00b7s",
+        "id": "SIM-C2-L007-01",
+        "interpretation": "Re confronta inerzia e viscosit\u00e0. Nel tubo diritto, sopra circa 2300 la previsione laminare diventa incerta. Il banco ritira il profilo invece di inventare fluttuazioni turbolente.",
+        "kind": "experiment",
+        "measure": {
+          "label": "Numero di Reynolds",
+          "unit": "1"
+        },
+        "order": 1,
+        "references": [
+          [
+            0.1,
+            1000.0
+          ],
+          [
+            0.4,
+            4000.0
+          ]
+        ],
+        "section": "Fluidi in movimento",
+        "skill": "C2-L007",
+        "substitution": "10000 \u00d7 {x}",
+        "summary": "Si pu\u00f2 ancora disegnare una parabola per qualunque velocit\u00e0?",
+        "title": "Flussi laminari e turbolenti",
+        "topic": "Flussi laminari e turbolenti",
+        "transferPrompt": "Acqua con viscosit\u00e0 0,001 Pa\u00b7s percorre un tubo di diametro 1 cm a {x}. Quale numero di Reynolds useresti per valutare il regime?",
+        "version": 1
+      },
+      "browserActualValueAvailable": false
+    },
+    {
+      "course": "C2",
+      "id": "SIM-C2-L007-01",
+      "variant": "published",
+      "gridIndex": 7,
+      "plannedX": 0.35,
+      "legacyReferenceX": 0.35000000000000003,
+      "frozenExpectedY": 3500.0000000000005,
+      "record": {
+        "anchor": "Un confronto di scala utile, come approfondimento,",
+        "apparatus": "profilo",
+        "blocks": [],
+        "control": {
+          "label": "Velocit\u00e0 media",
+          "max": 0.6,
+          "min": 0.0,
+          "step": 0.05,
+          "unit": "m/s"
+        },
+        "course": "C2",
+        "formula": "Re = \u03c1vD/\u03b7; acqua, D = 0,01 m, \u03b7 = 0,001 Pa\u00b7s",
+        "id": "SIM-C2-L007-01",
+        "interpretation": "Re confronta inerzia e viscosit\u00e0. Nel tubo diritto, sopra circa 2300 la previsione laminare diventa incerta. Il banco ritira il profilo invece di inventare fluttuazioni turbolente.",
+        "kind": "experiment",
+        "measure": {
+          "label": "Numero di Reynolds",
+          "unit": "1"
+        },
+        "order": 1,
+        "references": [
+          [
+            0.1,
+            1000.0
+          ],
+          [
+            0.4,
+            4000.0
+          ]
+        ],
+        "section": "Fluidi in movimento",
+        "skill": "C2-L007",
+        "substitution": "10000 \u00d7 {x}",
+        "summary": "Si pu\u00f2 ancora disegnare una parabola per qualunque velocit\u00e0?",
+        "title": "Flussi laminari e turbolenti",
+        "topic": "Flussi laminari e turbolenti",
+        "transferPrompt": "Acqua con viscosit\u00e0 0,001 Pa\u00b7s percorre un tubo di diametro 1 cm a {x}. Quale numero di Reynolds useresti per valutare il regime?",
+        "version": 1
+      },
+      "browserActualValueAvailable": false
+    },
+    {
+      "course": "C2",
+      "id": "SIM-C2-L007-01",
+      "variant": "published",
+      "gridIndex": 12,
+      "plannedX": 0.6,
+      "legacyReferenceX": 0.6000000000000001,
+      "frozenExpectedY": 6000.000000000001,
+      "record": {
+        "anchor": "Un confronto di scala utile, come approfondimento,",
+        "apparatus": "profilo",
+        "blocks": [],
+        "control": {
+          "label": "Velocit\u00e0 media",
+          "max": 0.6,
+          "min": 0.0,
+          "step": 0.05,
+          "unit": "m/s"
+        },
+        "course": "C2",
+        "formula": "Re = \u03c1vD/\u03b7; acqua, D = 0,01 m, \u03b7 = 0,001 Pa\u00b7s",
+        "id": "SIM-C2-L007-01",
+        "interpretation": "Re confronta inerzia e viscosit\u00e0. Nel tubo diritto, sopra circa 2300 la previsione laminare diventa incerta. Il banco ritira il profilo invece di inventare fluttuazioni turbolente.",
+        "kind": "experiment",
+        "measure": {
+          "label": "Numero di Reynolds",
+          "unit": "1"
+        },
+        "order": 1,
+        "references": [
+          [
+            0.1,
+            1000.0
+          ],
+          [
+            0.4,
+            4000.0
+          ]
+        ],
+        "section": "Fluidi in movimento",
+        "skill": "C2-L007",
+        "substitution": "10000 \u00d7 {x}",
+        "summary": "Si pu\u00f2 ancora disegnare una parabola per qualunque velocit\u00e0?",
+        "title": "Flussi laminari e turbolenti",
+        "topic": "Flussi laminari e turbolenti",
+        "transferPrompt": "Acqua con viscosit\u00e0 0,001 Pa\u00b7s percorre un tubo di diametro 1 cm a {x}. Quale numero di Reynolds useresti per valutare il regime?",
+        "version": 1
+      },
+      "browserActualValueAvailable": false
+    },
+    {
+      "course": "C2",
+      "id": "SIM-C2-L007-03",
+      "variant": "published",
+      "gridIndex": 2,
+      "plannedX": 0.3,
+      "legacyReferenceX": 0.30000000000000004,
+      "frozenExpectedY": 1.2000000000000002,
+      "record": {
+        "anchor": "Fai scorrere lentamente una lastra sopra uno",
+        "apparatus": "strati",
+        "blocks": [],
+        "control": {
+          "label": "Viscosit\u00e0 dinamica",
+          "max": 2.0,
+          "min": 0.1,
+          "step": 0.1,
+          "unit": "Pa\u00b7s"
+        },
+        "course": "C2",
+        "formula": "\u03c4 = \u03b7 dv/dy = 4\u03b7",
+        "id": "SIM-C2-L007-03",
+        "interpretation": "La lastra impone un gradiente di 4 s\u207b\u00b9. In un fluido newtoniano lo sforzo cresce linearmente con la viscosit\u00e0. Lo sforzo si misura in N/m\u00b2.",
+        "kind": "experiment",
+        "measure": {
+          "label": "Sforzo di taglio",
+          "unit": "Pa"
+        },
+        "order": 3,
+        "references": [
+          [
+            0.5,
+            2.0
+          ],
+          [
+            1.5,
+            6.0
+          ]
+        ],
+        "section": "Fluidi in movimento",
+        "skill": "C2-L007",
+        "substitution": "4 \u00d7 {x}",
+        "summary": "Con la stessa differenza di velocit\u00e0 quale liquido richiede pi\u00f9 forza tangenziale?",
+        "title": "Viscosit\u00e0 dinamica",
+        "topic": "Viscosit\u00e0 dinamica",
+        "transferPrompt": "Mantieni un gradiente di velocit\u00e0 di 4 s\u207b\u00b9 e usi un liquido con viscosit\u00e0 {x}. Quale sforzo tangenziale si esercita?",
+        "version": 1
+      },
+      "browserActualValueAvailable": false
+    },
+    {
+      "course": "C2",
+      "id": "SIM-C2-L007-03",
+      "variant": "published",
+      "gridIndex": 6,
+      "plannedX": 0.7,
+      "legacyReferenceX": 0.7000000000000001,
+      "frozenExpectedY": 2.8000000000000003,
+      "record": {
+        "anchor": "Fai scorrere lentamente una lastra sopra uno",
+        "apparatus": "strati",
+        "blocks": [],
+        "control": {
+          "label": "Viscosit\u00e0 dinamica",
+          "max": 2.0,
+          "min": 0.1,
+          "step": 0.1,
+          "unit": "Pa\u00b7s"
+        },
+        "course": "C2",
+        "formula": "\u03c4 = \u03b7 dv/dy = 4\u03b7",
+        "id": "SIM-C2-L007-03",
+        "interpretation": "La lastra impone un gradiente di 4 s\u207b\u00b9. In un fluido newtoniano lo sforzo cresce linearmente con la viscosit\u00e0. Lo sforzo si misura in N/m\u00b2.",
+        "kind": "experiment",
+        "measure": {
+          "label": "Sforzo di taglio",
+          "unit": "Pa"
+        },
+        "order": 3,
+        "references": [
+          [
+            0.5,
+            2.0
+          ],
+          [
+            1.5,
+            6.0
+          ]
+        ],
+        "section": "Fluidi in movimento",
+        "skill": "C2-L007",
+        "substitution": "4 \u00d7 {x}",
+        "summary": "Con la stessa differenza di velocit\u00e0 quale liquido richiede pi\u00f9 forza tangenziale?",
+        "title": "Viscosit\u00e0 dinamica",
+        "topic": "Viscosit\u00e0 dinamica",
+        "transferPrompt": "Mantieni un gradiente di velocit\u00e0 di 4 s\u207b\u00b9 e usi un liquido con viscosit\u00e0 {x}. Quale sforzo tangenziale si esercita?",
+        "version": 1
+      },
+      "browserActualValueAvailable": false
+    },
+    {
+      "course": "C2",
+      "id": "SIM-C2-L007-03",
+      "variant": "published",
+      "gridIndex": 11,
+      "plannedX": 1.2,
+      "legacyReferenceX": 1.2000000000000002,
+      "frozenExpectedY": 4.800000000000001,
+      "record": {
+        "anchor": "Fai scorrere lentamente una lastra sopra uno",
+        "apparatus": "strati",
+        "blocks": [],
+        "control": {
+          "label": "Viscosit\u00e0 dinamica",
+          "max": 2.0,
+          "min": 0.1,
+          "step": 0.1,
+          "unit": "Pa\u00b7s"
+        },
+        "course": "C2",
+        "formula": "\u03c4 = \u03b7 dv/dy = 4\u03b7",
+        "id": "SIM-C2-L007-03",
+        "interpretation": "La lastra impone un gradiente di 4 s\u207b\u00b9. In un fluido newtoniano lo sforzo cresce linearmente con la viscosit\u00e0. Lo sforzo si misura in N/m\u00b2.",
+        "kind": "experiment",
+        "measure": {
+          "label": "Sforzo di taglio",
+          "unit": "Pa"
+        },
+        "order": 3,
+        "references": [
+          [
+            0.5,
+            2.0
+          ],
+          [
+            1.5,
+            6.0
+          ]
+        ],
+        "section": "Fluidi in movimento",
+        "skill": "C2-L007",
+        "substitution": "4 \u00d7 {x}",
+        "summary": "Con la stessa differenza di velocit\u00e0 quale liquido richiede pi\u00f9 forza tangenziale?",
+        "title": "Viscosit\u00e0 dinamica",
+        "topic": "Viscosit\u00e0 dinamica",
+        "transferPrompt": "Mantieni un gradiente di velocit\u00e0 di 4 s\u207b\u00b9 e usi un liquido con viscosit\u00e0 {x}. Quale sforzo tangenziale si esercita?",
+        "version": 1
+      },
+      "browserActualValueAvailable": false
+    },
+    {
+      "course": "C2",
+      "id": "SIM-C2-L007-03",
+      "variant": "published",
+      "gridIndex": 12,
+      "plannedX": 1.3,
+      "legacyReferenceX": 1.3000000000000003,
+      "frozenExpectedY": 5.200000000000001,
+      "record": {
+        "anchor": "Fai scorrere lentamente una lastra sopra uno",
+        "apparatus": "strati",
+        "blocks": [],
+        "control": {
+          "label": "Viscosit\u00e0 dinamica",
+          "max": 2.0,
+          "min": 0.1,
+          "step": 0.1,
+          "unit": "Pa\u00b7s"
+        },
+        "course": "C2",
+        "formula": "\u03c4 = \u03b7 dv/dy = 4\u03b7",
+        "id": "SIM-C2-L007-03",
+        "interpretation": "La lastra impone un gradiente di 4 s\u207b\u00b9. In un fluido newtoniano lo sforzo cresce linearmente con la viscosit\u00e0. Lo sforzo si misura in N/m\u00b2.",
+        "kind": "experiment",
+        "measure": {
+          "label": "Sforzo di taglio",
+          "unit": "Pa"
+        },
+        "order": 3,
+        "references": [
+          [
+            0.5,
+            2.0
+          ],
+          [
+            1.5,
+            6.0
+          ]
+        ],
+        "section": "Fluidi in movimento",
+        "skill": "C2-L007",
+        "substitution": "4 \u00d7 {x}",
+        "summary": "Con la stessa differenza di velocit\u00e0 quale liquido richiede pi\u00f9 forza tangenziale?",
+        "title": "Viscosit\u00e0 dinamica",
+        "topic": "Viscosit\u00e0 dinamica",
+        "transferPrompt": "Mantieni un gradiente di velocit\u00e0 di 4 s\u207b\u00b9 e usi un liquido con viscosit\u00e0 {x}. Quale sforzo tangenziale si esercita?",
+        "version": 1
+      },
+      "browserActualValueAvailable": false
+    },
+    {
+      "course": "C2",
+      "id": "SIM-C2-L007-03",
+      "variant": "published",
+      "gridIndex": 13,
+      "plannedX": 1.4,
+      "legacyReferenceX": 1.4000000000000001,
+      "frozenExpectedY": 5.6000000000000005,
+      "record": {
+        "anchor": "Fai scorrere lentamente una lastra sopra uno",
+        "apparatus": "strati",
+        "blocks": [],
+        "control": {
+          "label": "Viscosit\u00e0 dinamica",
+          "max": 2.0,
+          "min": 0.1,
+          "step": 0.1,
+          "unit": "Pa\u00b7s"
+        },
+        "course": "C2",
+        "formula": "\u03c4 = \u03b7 dv/dy = 4\u03b7",
+        "id": "SIM-C2-L007-03",
+        "interpretation": "La lastra impone un gradiente di 4 s\u207b\u00b9. In un fluido newtoniano lo sforzo cresce linearmente con la viscosit\u00e0. Lo sforzo si misura in N/m\u00b2.",
+        "kind": "experiment",
+        "measure": {
+          "label": "Sforzo di taglio",
+          "unit": "Pa"
+        },
+        "order": 3,
+        "references": [
+          [
+            0.5,
+            2.0
+          ],
+          [
+            1.5,
+            6.0
+          ]
+        ],
+        "section": "Fluidi in movimento",
+        "skill": "C2-L007",
+        "substitution": "4 \u00d7 {x}",
+        "summary": "Con la stessa differenza di velocit\u00e0 quale liquido richiede pi\u00f9 forza tangenziale?",
+        "title": "Viscosit\u00e0 dinamica",
+        "topic": "Viscosit\u00e0 dinamica",
+        "transferPrompt": "Mantieni un gradiente di velocit\u00e0 di 4 s\u207b\u00b9 e usi un liquido con viscosit\u00e0 {x}. Quale sforzo tangenziale si esercita?",
+        "version": 1
+      },
+      "browserActualValueAvailable": false
+    },
+    {
+      "course": "C2",
+      "id": "SIM-C2-L007-03",
+      "variant": "published",
+      "gridIndex": 14,
+      "plannedX": 1.5,
+      "legacyReferenceX": 1.5000000000000002,
+      "frozenExpectedY": 6.000000000000001,
+      "record": {
+        "anchor": "Fai scorrere lentamente una lastra sopra uno",
+        "apparatus": "strati",
+        "blocks": [],
+        "control": {
+          "label": "Viscosit\u00e0 dinamica",
+          "max": 2.0,
+          "min": 0.1,
+          "step": 0.1,
+          "unit": "Pa\u00b7s"
+        },
+        "course": "C2",
+        "formula": "\u03c4 = \u03b7 dv/dy = 4\u03b7",
+        "id": "SIM-C2-L007-03",
+        "interpretation": "La lastra impone un gradiente di 4 s\u207b\u00b9. In un fluido newtoniano lo sforzo cresce linearmente con la viscosit\u00e0. Lo sforzo si misura in N/m\u00b2.",
+        "kind": "experiment",
+        "measure": {
+          "label": "Sforzo di taglio",
+          "unit": "Pa"
+        },
+        "order": 3,
+        "references": [
+          [
+            0.5,
+            2.0
+          ],
+          [
+            1.5,
+            6.0
+          ]
+        ],
+        "section": "Fluidi in movimento",
+        "skill": "C2-L007",
+        "substitution": "4 \u00d7 {x}",
+        "summary": "Con la stessa differenza di velocit\u00e0 quale liquido richiede pi\u00f9 forza tangenziale?",
+        "title": "Viscosit\u00e0 dinamica",
+        "topic": "Viscosit\u00e0 dinamica",
+        "transferPrompt": "Mantieni un gradiente di velocit\u00e0 di 4 s\u207b\u00b9 e usi un liquido con viscosit\u00e0 {x}. Quale sforzo tangenziale si esercita?",
+        "version": 1
+      },
+      "browserActualValueAvailable": false
+    },
+    {
+      "course": "C2",
+      "id": "SIM-C2-L007-03",
+      "variant": "published",
+      "gridIndex": 16,
+      "plannedX": 1.7,
+      "legacyReferenceX": 1.7000000000000002,
+      "frozenExpectedY": 6.800000000000001,
+      "record": {
+        "anchor": "Fai scorrere lentamente una lastra sopra uno",
+        "apparatus": "strati",
+        "blocks": [],
+        "control": {
+          "label": "Viscosit\u00e0 dinamica",
+          "max": 2.0,
+          "min": 0.1,
+          "step": 0.1,
+          "unit": "Pa\u00b7s"
+        },
+        "course": "C2",
+        "formula": "\u03c4 = \u03b7 dv/dy = 4\u03b7",
+        "id": "SIM-C2-L007-03",
+        "interpretation": "La lastra impone un gradiente di 4 s\u207b\u00b9. In un fluido newtoniano lo sforzo cresce linearmente con la viscosit\u00e0. Lo sforzo si misura in N/m\u00b2.",
+        "kind": "experiment",
+        "measure": {
+          "label": "Sforzo di taglio",
+          "unit": "Pa"
+        },
+        "order": 3,
+        "references": [
+          [
+            0.5,
+            2.0
+          ],
+          [
+            1.5,
+            6.0
+          ]
+        ],
+        "section": "Fluidi in movimento",
+        "skill": "C2-L007",
+        "substitution": "4 \u00d7 {x}",
+        "summary": "Con la stessa differenza di velocit\u00e0 quale liquido richiede pi\u00f9 forza tangenziale?",
+        "title": "Viscosit\u00e0 dinamica",
+        "topic": "Viscosit\u00e0 dinamica",
+        "transferPrompt": "Mantieni un gradiente di velocit\u00e0 di 4 s\u207b\u00b9 e usi un liquido con viscosit\u00e0 {x}. Quale sforzo tangenziale si esercita?",
+        "version": 1
+      },
+      "browserActualValueAvailable": false
+    },
+    {
+      "course": "C2",
+      "id": "SIM-C2-L007-03",
+      "variant": "published",
+      "gridIndex": 17,
+      "plannedX": 1.8,
+      "legacyReferenceX": 1.8000000000000003,
+      "frozenExpectedY": 7.200000000000001,
+      "record": {
+        "anchor": "Fai scorrere lentamente una lastra sopra uno",
+        "apparatus": "strati",
+        "blocks": [],
+        "control": {
+          "label": "Viscosit\u00e0 dinamica",
+          "max": 2.0,
+          "min": 0.1,
+          "step": 0.1,
+          "unit": "Pa\u00b7s"
+        },
+        "course": "C2",
+        "formula": "\u03c4 = \u03b7 dv/dy = 4\u03b7",
+        "id": "SIM-C2-L007-03",
+        "interpretation": "La lastra impone un gradiente di 4 s\u207b\u00b9. In un fluido newtoniano lo sforzo cresce linearmente con la viscosit\u00e0. Lo sforzo si misura in N/m\u00b2.",
+        "kind": "experiment",
+        "measure": {
+          "label": "Sforzo di taglio",
+          "unit": "Pa"
+        },
+        "order": 3,
+        "references": [
+          [
+            0.5,
+            2.0
+          ],
+          [
+            1.5,
+            6.0
+          ]
+        ],
+        "section": "Fluidi in movimento",
+        "skill": "C2-L007",
+        "substitution": "4 \u00d7 {x}",
+        "summary": "Con la stessa differenza di velocit\u00e0 quale liquido richiede pi\u00f9 forza tangenziale?",
+        "title": "Viscosit\u00e0 dinamica",
+        "topic": "Viscosit\u00e0 dinamica",
+        "transferPrompt": "Mantieni un gradiente di velocit\u00e0 di 4 s\u207b\u00b9 e usi un liquido con viscosit\u00e0 {x}. Quale sforzo tangenziale si esercita?",
+        "version": 1
+      },
+      "browserActualValueAvailable": false
+    },
+    {
+      "course": "C2",
+      "id": "SIM-C2-L007-03",
+      "variant": "published",
+      "gridIndex": 18,
+      "plannedX": 1.9,
+      "legacyReferenceX": 1.9000000000000001,
+      "frozenExpectedY": 7.6000000000000005,
+      "record": {
+        "anchor": "Fai scorrere lentamente una lastra sopra uno",
+        "apparatus": "strati",
+        "blocks": [],
+        "control": {
+          "label": "Viscosit\u00e0 dinamica",
+          "max": 2.0,
+          "min": 0.1,
+          "step": 0.1,
+          "unit": "Pa\u00b7s"
+        },
+        "course": "C2",
+        "formula": "\u03c4 = \u03b7 dv/dy = 4\u03b7",
+        "id": "SIM-C2-L007-03",
+        "interpretation": "La lastra impone un gradiente di 4 s\u207b\u00b9. In un fluido newtoniano lo sforzo cresce linearmente con la viscosit\u00e0. Lo sforzo si misura in N/m\u00b2.",
+        "kind": "experiment",
+        "measure": {
+          "label": "Sforzo di taglio",
+          "unit": "Pa"
+        },
+        "order": 3,
+        "references": [
+          [
+            0.5,
+            2.0
+          ],
+          [
+            1.5,
+            6.0
+          ]
+        ],
+        "section": "Fluidi in movimento",
+        "skill": "C2-L007",
+        "substitution": "4 \u00d7 {x}",
+        "summary": "Con la stessa differenza di velocit\u00e0 quale liquido richiede pi\u00f9 forza tangenziale?",
+        "title": "Viscosit\u00e0 dinamica",
+        "topic": "Viscosit\u00e0 dinamica",
+        "transferPrompt": "Mantieni un gradiente di velocit\u00e0 di 4 s\u207b\u00b9 e usi un liquido con viscosit\u00e0 {x}. Quale sforzo tangenziale si esercita?",
+        "version": 1
+      },
+      "browserActualValueAvailable": false
+    },
+    {
+      "course": "C2",
+      "id": "SIM-C2-L007-05",
+      "variant": "published",
+      "gridIndex": 6,
+      "plannedX": 0.3,
+      "legacyReferenceX": 0.30000000000000004,
+      "frozenExpectedY": 10.919999999999998,
+      "record": {
+        "anchor": "In un tubo diritto e circolare un",
+        "apparatus": "profilo",
+        "blocks": [],
+        "control": {
+          "label": "Raggio della sonda diviso R",
+          "max": 1.0,
+          "min": 0.0,
+          "step": 0.05,
+          "unit": "1"
+        },
+        "course": "C2",
+        "formula": "v(r) = 12[1\u2212(r/R)\u00b2]",
+        "id": "SIM-C2-L007-05",
+        "interpretation": "In regime laminare pienamente sviluppato la velocit\u00e0 \u00e8 massima al centro. Alla parete la condizione di aderenza impone velocit\u00e0 nulla.",
+        "kind": "experiment",
+        "measure": {
+          "label": "Velocit\u00e0 locale",
+          "unit": "cm/s"
+        },
+        "order": 5,
+        "references": [
+          [
+            0.0,
+            12.0
+          ],
+          [
+            0.5,
+            9.0
+          ]
+        ],
+        "section": "Fluidi in movimento",
+        "skill": "C2-L007",
+        "substitution": "12 \u00d7 (1 \u2212 ({x} \u00d7 {x}))",
+        "summary": "Che cosa legge una sonda che si sposta dall\u2019asse alla parete?",
+        "title": "Profilo parabolico laminare",
+        "topic": "Profilo parabolico laminare",
+        "transferPrompt": "In un tubo laminare la velocit\u00e0 sull\u2019asse \u00e8 12 cm/s. Se r/R vale {x}, quale velocit\u00e0 locale ti aspetti?",
+        "version": 1
+      },
+      "browserActualValueAvailable": false
+    },
+    {
+      "course": "C2",
+      "id": "SIM-C2-L007-05",
+      "variant": "published",
+      "gridIndex": 7,
+      "plannedX": 0.35,
+      "legacyReferenceX": 0.35000000000000003,
+      "frozenExpectedY": 10.53,
+      "record": {
+        "anchor": "In un tubo diritto e circolare un",
+        "apparatus": "profilo",
+        "blocks": [],
+        "control": {
+          "label": "Raggio della sonda diviso R",
+          "max": 1.0,
+          "min": 0.0,
+          "step": 0.05,
+          "unit": "1"
+        },
+        "course": "C2",
+        "formula": "v(r) = 12[1\u2212(r/R)\u00b2]",
+        "id": "SIM-C2-L007-05",
+        "interpretation": "In regime laminare pienamente sviluppato la velocit\u00e0 \u00e8 massima al centro. Alla parete la condizione di aderenza impone velocit\u00e0 nulla.",
+        "kind": "experiment",
+        "measure": {
+          "label": "Velocit\u00e0 locale",
+          "unit": "cm/s"
+        },
+        "order": 5,
+        "references": [
+          [
+            0.0,
+            12.0
+          ],
+          [
+            0.5,
+            9.0
+          ]
+        ],
+        "section": "Fluidi in movimento",
+        "skill": "C2-L007",
+        "substitution": "12 \u00d7 (1 \u2212 ({x} \u00d7 {x}))",
+        "summary": "Che cosa legge una sonda che si sposta dall\u2019asse alla parete?",
+        "title": "Profilo parabolico laminare",
+        "topic": "Profilo parabolico laminare",
+        "transferPrompt": "In un tubo laminare la velocit\u00e0 sull\u2019asse \u00e8 12 cm/s. Se r/R vale {x}, quale velocit\u00e0 locale ti aspetti?",
+        "version": 1
+      },
+      "browserActualValueAvailable": false
+    },
+    {
+      "course": "C2",
+      "id": "SIM-C2-L007-05",
+      "variant": "published",
+      "gridIndex": 12,
+      "plannedX": 0.6,
+      "legacyReferenceX": 0.6000000000000001,
+      "frozenExpectedY": 7.679999999999999,
+      "record": {
+        "anchor": "In un tubo diritto e circolare un",
+        "apparatus": "profilo",
+        "blocks": [],
+        "control": {
+          "label": "Raggio della sonda diviso R",
+          "max": 1.0,
+          "min": 0.0,
+          "step": 0.05,
+          "unit": "1"
+        },
+        "course": "C2",
+        "formula": "v(r) = 12[1\u2212(r/R)\u00b2]",
+        "id": "SIM-C2-L007-05",
+        "interpretation": "In regime laminare pienamente sviluppato la velocit\u00e0 \u00e8 massima al centro. Alla parete la condizione di aderenza impone velocit\u00e0 nulla.",
+        "kind": "experiment",
+        "measure": {
+          "label": "Velocit\u00e0 locale",
+          "unit": "cm/s"
+        },
+        "order": 5,
+        "references": [
+          [
+            0.0,
+            12.0
+          ],
+          [
+            0.5,
+            9.0
+          ]
+        ],
+        "section": "Fluidi in movimento",
+        "skill": "C2-L007",
+        "substitution": "12 \u00d7 (1 \u2212 ({x} \u00d7 {x}))",
+        "summary": "Che cosa legge una sonda che si sposta dall\u2019asse alla parete?",
+        "title": "Profilo parabolico laminare",
+        "topic": "Profilo parabolico laminare",
+        "transferPrompt": "In un tubo laminare la velocit\u00e0 sull\u2019asse \u00e8 12 cm/s. Se r/R vale {x}, quale velocit\u00e0 locale ti aspetti?",
+        "version": 1
+      },
+      "browserActualValueAvailable": false
+    },
+    {
+      "course": "C2",
+      "id": "SIM-C2-L007-05",
+      "variant": "published",
+      "gridIndex": 14,
+      "plannedX": 0.7,
+      "legacyReferenceX": 0.7000000000000001,
+      "frozenExpectedY": 6.119999999999999,
+      "record": {
+        "anchor": "In un tubo diritto e circolare un",
+        "apparatus": "profilo",
+        "blocks": [],
+        "control": {
+          "label": "Raggio della sonda diviso R",
+          "max": 1.0,
+          "min": 0.0,
+          "step": 0.05,
+          "unit": "1"
+        },
+        "course": "C2",
+        "formula": "v(r) = 12[1\u2212(r/R)\u00b2]",
+        "id": "SIM-C2-L007-05",
+        "interpretation": "In regime laminare pienamente sviluppato la velocit\u00e0 \u00e8 massima al centro. Alla parete la condizione di aderenza impone velocit\u00e0 nulla.",
+        "kind": "experiment",
+        "measure": {
+          "label": "Velocit\u00e0 locale",
+          "unit": "cm/s"
+        },
+        "order": 5,
+        "references": [
+          [
+            0.0,
+            12.0
+          ],
+          [
+            0.5,
+            9.0
+          ]
+        ],
+        "section": "Fluidi in movimento",
+        "skill": "C2-L007",
+        "substitution": "12 \u00d7 (1 \u2212 ({x} \u00d7 {x}))",
+        "summary": "Che cosa legge una sonda che si sposta dall\u2019asse alla parete?",
+        "title": "Profilo parabolico laminare",
+        "topic": "Profilo parabolico laminare",
+        "transferPrompt": "In un tubo laminare la velocit\u00e0 sull\u2019asse \u00e8 12 cm/s. Se r/R vale {x}, quale velocit\u00e0 locale ti aspetti?",
+        "version": 1
+      },
+      "browserActualValueAvailable": false
+    },
+    {
+      "course": "C2",
+      "id": "SIM-C2-L007-05",
+      "variant": "published",
+      "gridIndex": 17,
+      "plannedX": 0.85,
+      "legacyReferenceX": 0.8500000000000001,
+      "frozenExpectedY": 3.3299999999999983,
+      "record": {
+        "anchor": "In un tubo diritto e circolare un",
+        "apparatus": "profilo",
+        "blocks": [],
+        "control": {
+          "label": "Raggio della sonda diviso R",
+          "max": 1.0,
+          "min": 0.0,
+          "step": 0.05,
+          "unit": "1"
+        },
+        "course": "C2",
+        "formula": "v(r) = 12[1\u2212(r/R)\u00b2]",
+        "id": "SIM-C2-L007-05",
+        "interpretation": "In regime laminare pienamente sviluppato la velocit\u00e0 \u00e8 massima al centro. Alla parete la condizione di aderenza impone velocit\u00e0 nulla.",
+        "kind": "experiment",
+        "measure": {
+          "label": "Velocit\u00e0 locale",
+          "unit": "cm/s"
+        },
+        "order": 5,
+        "references": [
+          [
+            0.0,
+            12.0
+          ],
+          [
+            0.5,
+            9.0
+          ]
+        ],
+        "section": "Fluidi in movimento",
+        "skill": "C2-L007",
+        "substitution": "12 \u00d7 (1 \u2212 ({x} \u00d7 {x}))",
+        "summary": "Che cosa legge una sonda che si sposta dall\u2019asse alla parete?",
+        "title": "Profilo parabolico laminare",
+        "topic": "Profilo parabolico laminare",
+        "transferPrompt": "In un tubo laminare la velocit\u00e0 sull\u2019asse \u00e8 12 cm/s. Se r/R vale {x}, quale velocit\u00e0 locale ti aspetti?",
+        "version": 1
+      },
+      "browserActualValueAvailable": false
+    },
+    {
+      "course": "C2",
+      "id": "SIM-C2-L007-05",
+      "variant": "published",
+      "gridIndex": 19,
+      "plannedX": 0.95,
+      "legacyReferenceX": 0.9500000000000001,
+      "frozenExpectedY": 1.169999999999999,
+      "record": {
+        "anchor": "In un tubo diritto e circolare un",
+        "apparatus": "profilo",
+        "blocks": [],
+        "control": {
+          "label": "Raggio della sonda diviso R",
+          "max": 1.0,
+          "min": 0.0,
+          "step": 0.05,
+          "unit": "1"
+        },
+        "course": "C2",
+        "formula": "v(r) = 12[1\u2212(r/R)\u00b2]",
+        "id": "SIM-C2-L007-05",
+        "interpretation": "In regime laminare pienamente sviluppato la velocit\u00e0 \u00e8 massima al centro. Alla parete la condizione di aderenza impone velocit\u00e0 nulla.",
+        "kind": "experiment",
+        "measure": {
+          "label": "Velocit\u00e0 locale",
+          "unit": "cm/s"
+        },
+        "order": 5,
+        "references": [
+          [
+            0.0,
+            12.0
+          ],
+          [
+            0.5,
+            9.0
+          ]
+        ],
+        "section": "Fluidi in movimento",
+        "skill": "C2-L007",
+        "substitution": "12 \u00d7 (1 \u2212 ({x} \u00d7 {x}))",
+        "summary": "Che cosa legge una sonda che si sposta dall\u2019asse alla parete?",
+        "title": "Profilo parabolico laminare",
+        "topic": "Profilo parabolico laminare",
+        "transferPrompt": "In un tubo laminare la velocit\u00e0 sull\u2019asse \u00e8 12 cm/s. Se r/R vale {x}, quale velocit\u00e0 locale ti aspetti?",
+        "version": 1
+      },
+      "browserActualValueAvailable": false
+    },
+    {
+      "course": "C2",
+      "id": "SIM-C2-L008-04",
+      "variant": "published",
+      "gridIndex": 2,
+      "plannedX": -10.0,
+      "legacyReferenceX": -10,
+      "frozenExpectedY": 0.6561000000000001,
+      "record": {
+        "anchor": "La portata finale \u00e8 un sedicesimo di",
+        "apparatus": "condotto",
+        "blocks": [],
+        "control": {
+          "label": "Variazione del raggio rispetto al riferimento",
+          "max": 20.0,
+          "min": -20.0,
+          "step": 5.0,
+          "unit": "%"
+        },
+        "course": "C2",
+        "formula": "Q/Q\u2080 = (1 + \u0394r/100)\u2074",
+        "id": "SIM-C2-L008-04",
+        "interpretation": "A pressione fissata un errore geometrico del 20% ha un effetto fortemente asimmetrico. \u00c8 un test di sensibilit\u00e0 del tubo rigido: pulsatilit\u00e0, elasticit\u00e0 e viscosit\u00e0 variabile richiedono altri modelli.",
+        "kind": "experiment",
+        "measure": {
+          "label": "Portata del modello rigido rispetto a Q\u2080",
+          "unit": "1"
+        },
+        "order": 4,
+        "references": [
+          [
+            -20.0,
+            0.4096
+          ],
+          [
+            20.0,
+            2.0736
+          ]
+        ],
+        "section": "Fluidi in movimento",
+        "skill": "C2-L008",
+        "substitution": "(1 + {x} / 100)\u2074",
+        "summary": "Quanto pesa un piccolo errore sul raggio in una stima fisiologica?",
+        "title": "Limiti dei modelli fisiologici",
+        "topic": "Limiti dei modelli fisiologici",
+        "transferPrompt": "Il modello rigido prevede una variazione del raggio del {x}. Quale rapporto fra nuova portata e portata iniziale corrisponde, a pari caduta di pressione?",
+        "version": 1
+      },
+      "browserActualValueAvailable": false
+    },
+    {
+      "course": "C2",
+      "id": "SIM-C2-L008-04",
+      "variant": "published",
+      "gridIndex": 6,
+      "plannedX": 10.0,
+      "legacyReferenceX": 10,
+      "frozenExpectedY": 1.4641000000000006,
+      "record": {
+        "anchor": "La portata finale \u00e8 un sedicesimo di",
+        "apparatus": "condotto",
+        "blocks": [],
+        "control": {
+          "label": "Variazione del raggio rispetto al riferimento",
+          "max": 20.0,
+          "min": -20.0,
+          "step": 5.0,
+          "unit": "%"
+        },
+        "course": "C2",
+        "formula": "Q/Q\u2080 = (1 + \u0394r/100)\u2074",
+        "id": "SIM-C2-L008-04",
+        "interpretation": "A pressione fissata un errore geometrico del 20% ha un effetto fortemente asimmetrico. \u00c8 un test di sensibilit\u00e0 del tubo rigido: pulsatilit\u00e0, elasticit\u00e0 e viscosit\u00e0 variabile richiedono altri modelli.",
+        "kind": "experiment",
+        "measure": {
+          "label": "Portata del modello rigido rispetto a Q\u2080",
+          "unit": "1"
+        },
+        "order": 4,
+        "references": [
+          [
+            -20.0,
+            0.4096
+          ],
+          [
+            20.0,
+            2.0736
+          ]
+        ],
+        "section": "Fluidi in movimento",
+        "skill": "C2-L008",
+        "substitution": "(1 + {x} / 100)\u2074",
+        "summary": "Quanto pesa un piccolo errore sul raggio in una stima fisiologica?",
+        "title": "Limiti dei modelli fisiologici",
+        "topic": "Limiti dei modelli fisiologici",
+        "transferPrompt": "Il modello rigido prevede una variazione del raggio del {x}. Quale rapporto fra nuova portata e portata iniziale corrisponde, a pari caduta di pressione?",
+        "version": 1
+      },
+      "browserActualValueAvailable": false
+    },
+    {
+      "course": "C2",
+      "id": "SIM-C2-L010-03",
+      "variant": "published",
+      "gridIndex": 11,
+      "plannedX": 55.0,
+      "legacyReferenceX": 55,
+      "frozenExpectedY": 5.7357643635104605,
+      "record": {
+        "anchor": "All\u2019orlo di un capillare la componente verticale",
+        "apparatus": "capillare",
+        "blocks": [],
+        "control": {
+          "label": "Angolo di contatto",
+          "max": 180.0,
+          "min": 0.0,
+          "step": 5.0,
+          "unit": "\u00b0"
+        },
+        "course": "C2",
+        "formula": "h = 2\u03b3 cos \u03b8/(\u03c1gr); qui h = 10 cos \u03b8 mm",
+        "id": "SIM-C2-L010-03",
+        "interpretation": "Nel tubo di raggio 1 mm, con \u03b3 = 0,05 N/m, \u03c1 = 1000 kg/m\u00b3 e g = 10 m/s\u00b2, conta la componente verticale della tensione. L\u2019angolo si misura nel liquido. A 90\u00b0 il dislivello \u00e8 nullo.",
+        "kind": "experiment",
+        "measure": {
+          "label": "Salita con segno",
+          "unit": "mm"
+        },
+        "order": 3,
+        "references": [
+          [
+            0.0,
+            10.0
+          ],
+          [
+            120.0,
+            -5.0
+          ]
+        ],
+        "section": "Interfacce e capillarit\u00e0",
+        "skill": "C2-L010",
+        "substitution": "10 \u00d7 cos({x}\u00b0)",
+        "summary": "Quando il liquido sale e quando scende rispetto al serbatoio?",
+        "title": "Bagnabilit\u00e0 e capillarit\u00e0",
+        "topic": "Bagnabilit\u00e0 e capillarit\u00e0",
+        "transferPrompt": "In un capillare una salita massima di 10 mm corrisponde ad angolo nullo. Se l\u2019angolo di contatto diventa {x}, quale dislivello con segno devi cercare?",
+        "version": 1
+      },
+      "browserActualValueAvailable": false
+    },
+    {
+      "course": "C4",
+      "id": "SIM-C4-L05-05",
+      "variant": "published",
+      "gridIndex": 2,
+      "plannedX": 0.3,
+      "legacyReferenceX": 0.30000000000000004,
+      "frozenExpectedY": 0.6000000000000001,
+      "record": {
+        "anchor": "Una retta V(I) passante per l\u2019origine indica",
+        "apparatus": "filo",
+        "blocks": [],
+        "control": {
+          "label": "Resistivit\u00e0",
+          "max": 1.0,
+          "min": 0.1,
+          "step": 0.1,
+          "unit": "\u00b5\u03a9\u00b7m"
+        },
+        "course": "C4",
+        "formula": "R = \u03c1L/A, con L = 2 m e A = 1 mm\u00b2",
+        "id": "SIM-C4-L05-05",
+        "interpretation": "Sostituisci il materiale mantenendo lunghezza, area e temperatura. Converti \u00b5\u03a9\u00b7m e mm\u00b2 in SI: i fattori dieci alla meno sei si semplificano.",
+        "kind": "experiment",
+        "measure": {
+          "label": "Resistenza del filo",
+          "unit": "\u03a9"
+        },
+        "order": 5,
+        "references": [
+          [
+            0.2,
+            0.4
+          ],
+          [
+            0.8,
+            1.6
+          ]
+        ],
+        "section": "Quanto vale una corrente",
+        "skill": "C4-L05",
+        "substitution": "2 \u00d7 {x}",
+        "summary": "Due fili geometricamente identici presentano la stessa resistenza?",
+        "title": "Resistivit\u00e0",
+        "topic": "6.4 Resistivit\u00e0",
+        "transferPrompt": "Tagli un filo lungo 2 m di sezione 1 mm\u00b2 in un materiale di resistivit\u00e0 {x}. Quale resistenza misuri ai capi?",
+        "version": 1
+      },
+      "browserActualValueAvailable": false
+    },
+    {
+      "course": "C4",
+      "id": "SIM-C4-L05-05",
+      "variant": "published",
+      "gridIndex": 6,
+      "plannedX": 0.7,
+      "legacyReferenceX": 0.7000000000000001,
+      "frozenExpectedY": 1.4000000000000001,
+      "record": {
+        "anchor": "Una retta V(I) passante per l\u2019origine indica",
+        "apparatus": "filo",
+        "blocks": [],
+        "control": {
+          "label": "Resistivit\u00e0",
+          "max": 1.0,
+          "min": 0.1,
+          "step": 0.1,
+          "unit": "\u00b5\u03a9\u00b7m"
+        },
+        "course": "C4",
+        "formula": "R = \u03c1L/A, con L = 2 m e A = 1 mm\u00b2",
+        "id": "SIM-C4-L05-05",
+        "interpretation": "Sostituisci il materiale mantenendo lunghezza, area e temperatura. Converti \u00b5\u03a9\u00b7m e mm\u00b2 in SI: i fattori dieci alla meno sei si semplificano.",
+        "kind": "experiment",
+        "measure": {
+          "label": "Resistenza del filo",
+          "unit": "\u03a9"
+        },
+        "order": 5,
+        "references": [
+          [
+            0.2,
+            0.4
+          ],
+          [
+            0.8,
+            1.6
+          ]
+        ],
+        "section": "Quanto vale una corrente",
+        "skill": "C4-L05",
+        "substitution": "2 \u00d7 {x}",
+        "summary": "Due fili geometricamente identici presentano la stessa resistenza?",
+        "title": "Resistivit\u00e0",
+        "topic": "6.4 Resistivit\u00e0",
+        "transferPrompt": "Tagli un filo lungo 2 m di sezione 1 mm\u00b2 in un materiale di resistivit\u00e0 {x}. Quale resistenza misuri ai capi?",
+        "version": 1
+      },
+      "browserActualValueAvailable": false
+    },
+    {
+      "course": "C4",
+      "id": "SIM-C4-L10-01",
+      "variant": "published",
+      "gridIndex": 11,
+      "plannedX": 55.0,
+      "legacyReferenceX": 55,
+      "frozenExpectedY": 3.4414586181062763,
+      "record": {
+        "anchor": "Una spira ferma pu\u00f2 essere attraversata da",
+        "apparatus": "spira",
+        "blocks": [],
+        "control": {
+          "label": "Angolo tra campo e normale",
+          "max": 180.0,
+          "min": 0.0,
+          "step": 5.0,
+          "unit": "\u00b0"
+        },
+        "course": "C4",
+        "formula": "\u03a6 = BA cos \u03b8; B = 0,3 T, A = 0,02 m\u00b2",
+        "id": "SIM-C4-L10-01",
+        "interpretation": "La freccia normale \u00e8 perpendicolare alla superficie. Di taglio il flusso si annulla, anche se il campo rimane presente; invertendo la normale il flusso cambia segno.",
+        "kind": "experiment",
+        "measure": {
+          "label": "Flusso magnetico",
+          "unit": "mWb"
+        },
+        "order": 1,
+        "references": [
+          [
+            0.0,
+            6.0
+          ],
+          [
+            120.0,
+            -3.0
+          ]
+        ],
+        "section": "Indurre una tensione cambiando il flusso",
+        "skill": "C4-L10",
+        "substitution": "6 \u00d7 cos({x}\u00b0)",
+        "summary": "Quale angolo devi misurare per calcolare il flusso attraverso una spira?",
+        "title": "Flusso magnetico",
+        "topic": "6.7 Flusso magnetico",
+        "transferPrompt": "Una spira di area 0,02 m\u00b2 \u00e8 in un campo da 0,3 T. Se la normale orientata forma {x} con il campo, quale flusso con segno ottieni in mWb?",
+        "version": 1
+      },
+      "browserActualValueAvailable": false
+    }
+  ]
+}
