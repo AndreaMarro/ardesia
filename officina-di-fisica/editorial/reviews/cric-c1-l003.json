@@ -1,0 +1,359 @@
+{
+  "schemaVersion": "1.0.0",
+  "lessonReference": {
+    "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "gitPath": "officina-di-fisica/content/C1.json",
+    "sourceSha256": "0a79b1212adbef650733d655d1de2d5ffd7af5eb2be2bde50710a0a1721ab0cf",
+    "primarySkill": "C1-L003",
+    "title": "Leggere il movimento nel tempo",
+    "actualLessonPrerequisites": [
+      "C1-L001",
+      "C1-L002"
+    ]
+  },
+  "records": [
+    {
+      "id": "C1-Q021",
+      "sourceSha256": "58070b2af73fd2bd435f6ec69f07c3749280ee6f4d27d8cce94564df520279d0",
+      "candidateSha256": "7a51664e710107f12b6d7982bde03f7e029341ef222ca203ecef564e450948ea",
+      "reviewedSignature": "53d552c1deafbcb0786e6f72723d8ad87c012c2d55121980dff7a32ee0106288",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "8",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "La legge uniforme x=x₀+vt usa x₀=−12 m,v=5/2 m/s,t=8 s: x=−12+20=8 m. La posizione finale è distinta dallo spostamento20 m.",
+      "physicalAssumptions": "Un solo asse, x₀=−12 m e velocità costante+2,5 m/s per8 s; origine e orientazione fisse.",
+      "distractors": "20 m omette x₀;−32 m usa velocità negativa;32 m aggiunge il modulo della posizione iniziale;−8 m cambia il segno del risultato.",
+      "pedagogicalReview": "Condizione iniziale con segno conservata prima del prodotto vt.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_distinct_measurement_calculations_and_separate_conceptual_derivations",
+        "Pint_exact_volume_mass_speed_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C1-Q022",
+      "sourceSha256": "9c4f0fd42fb5bb2f39c9dd8d0a5dcaadc73de9a1a7f37207f7e4389fe06b3941",
+      "candidateSha256": "624a20a3711ff755b1b97d75b58aa807f2aefc40efb300cfff7762278cdde2d7",
+      "reviewedSignature": "d05f233aff97897f7fad424acb5e477392fabf5263f310a264c59ee83c092bd8",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "12/5",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Due tratti uguali12 m a2 e3 m/s richiedono6 e4 s. La rapidità media è24/10=12/5 m/s; la media aritmetica5/2 non pesa le durate diverse.",
+      "physicalAssumptions": "Percorso complessivo24 m diviso in due tratte di12 m, senza pause, rapidità costanti2 e3 m/s.",
+      "distractors": "5/2 m/s è la media semplice non temporale;5 somma rapidità;6/5 dimezza ancora;2 copia la prima rapidità.",
+      "pedagogicalReview": "Media totale come rapporto spazio/tempo, con due durate diverse esplicite.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_distinct_measurement_calculations_and_separate_conceptual_derivations",
+        "Pint_exact_volume_mass_speed_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C1-Q023",
+      "sourceSha256": "b181c1da6607affca69196d1ec99a760fd0955e7ad0a1e4bf065db79c4f67078",
+      "candidateSha256": "3b50e59f7666f63c972a190743b261bf1527958ae668067be8369d197350c29d",
+      "reviewedSignature": "3391341f32f3f23e3ca8e33d0ad77d04e834c6fe320137d2a9e9ec88a4396572",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "cric-c1-l003-progressive.svg": "472cca1a9c362a10eb7fa6a25c69cbde29f049f1ece69b9d50fdbd70faaea8aa"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Verso x decrescenti, rallentando",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "v<0 indica verso x decrescenti; pendenza positiva del grafico v–t implica a>0. Poiché |v|=−v nell’intervallo, la rapidità diminuisce: non si deduce il segno di x.",
+      "physicalAssumptions": "Grafico della componente v nel tempo con v negativa e crescente nell’intervallo; non un grafico di posizione.",
+      "distractors": "Grafico crescente non implica moto verso x crescente; v negativa non significa quiete o posizione necessariamente negativa.",
+      "pedagogicalReview": "Segni di x,v,a e rapidità distinti.",
+      "assetReview": "XML finale e nuovo PNG indipendente640×1740 letti per intero; vecchia resa con due contatti conservata separatamente. Primo grafico: origine velocità y200, scala60/(m/s),−3 a380,−1 a260; due secondi in160coordinate. Le label2 e titolo v sono ora lontane dalle linee. Secondo:40coordinate/s e12/m, incontro(320,870) corrisponde5s,10m. Terzo:40/s e40/(m/s), aree3·4=12m e−2·5=−10m, spostamento2m e distanza22m. Nessuna nuova ambiguità grafica.",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_distinct_measurement_calculations_and_separate_conceptual_derivations",
+        "Pint_exact_volume_mass_speed_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C1-Q024",
+      "sourceSha256": "c0bbf0039b752a8434bd428e88b2d0054f5e0fd42b0bfdbceab25088d7d594c8",
+      "candidateSha256": "6ce57b67b00115922d08ff958724722caac38642740e62ce40798190c5ede219",
+      "reviewedSignature": "3bf5fbeb9911963a1bbeaa259751125849a90746e9abe2b4f8ea0023852366ed",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "La tangente al grafico nell’istante",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "La velocità istantanea è dx/dt, pendenza della tangente a x–t nel punto. Una secante dà una media su un intervallo e coincide solo in casi particolari.",
+      "physicalAssumptions": "Legge x(t) differenziabile nell’istante, velocità istantanea e non media fra tempi lontani.",
+      "distractors": "La secante è velocità media; l’orizzontale ha pendenza zero; dall’origine vale solo se quel punto è pertinente; la normale non dà dx/dt.",
+      "pedagogicalReview": "Tangente e secante separate mediante derivata e media.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_distinct_measurement_calculations_and_separate_conceptual_derivations",
+        "Pint_exact_volume_mass_speed_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C1-Q025",
+      "sourceSha256": "be804088fcfad71add719d3d053e77d1d1aa8f3d622d3c535d9322065e066a13",
+      "candidateSha256": "0a3d49e9fa4d446dc0f25a5f21acc0ba5bb301f4e394675531e79e40d8425dc5",
+      "reviewedSignature": "6de7abb913d59c9bad0571b8321cf080a1ab8109b13df85c71774c1befc668fd",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "La coordinata della posizione",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "Spostando l’origine5 m a destra, x′=x−5 m. La differenza fra due posizioni e le derivate sono invariate; cambia la coordinata assoluta.",
+      "physicalAssumptions": "Riferimento traslato spazialmente di5 m a destra, stesso verso, unità e origine temporale; traslazione fissa.",
+      "distractors": "Differenze e derivate eliminano la costante−5 m; anche distanza fisica e verso del moto restano invariati.",
+      "pedagogicalReview": "Stessa traslazione sottratta agli estremi prima del bilancio.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_distinct_measurement_calculations_and_separate_conceptual_derivations",
+        "Pint_exact_volume_mass_speed_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C1-Q026",
+      "sourceSha256": "d911756ef571db48aa221f70eb93932187cfad90960ceeb81b660ee860b85b00",
+      "candidateSha256": "d9d9005ea95554298122feea8e9a408683fbce516cb4f7c12d3b56b67f9b5cfb",
+      "reviewedSignature": "d0e1c753c3ed5793712a646b75b49eed76f400341a57c164f9b215ba1bcb70b2",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "cric-c1-l003-progressive.svg": "472cca1a9c362a10eb7fa6a25c69cbde29f049f1ece69b9d50fdbd70faaea8aa"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "5",
+      "dimension": {
+        "[time]": "1"
+      },
+      "manualArithmetic": "Incontro:2t=15−t con unità dei coefficienti m/s. Da3t=15 ricavo t=5 s e in entrambe le leggi x=10 m; dominio t≥0 rispettato.",
+      "physicalAssumptions": "Due punti sulla stessa retta, x_A=(2 m/s)t e x_B=15 m−(1 m/s)t, t≥0 e nessun cambio di regime.",
+      "distractors": "15 s e15/2 s usano una sola velocità;10 copia la posizione in metri;−5 s non soddisfa l’incontro né il dominio.",
+      "pedagogicalReview": "Condizione simultanea di incontro e controllo in entrambe le leggi.",
+      "assetReview": "XML finale e nuovo PNG indipendente640×1740 letti per intero; vecchia resa con due contatti conservata separatamente. Primo grafico: origine velocità y200, scala60/(m/s),−3 a380,−1 a260; due secondi in160coordinate. Le label2 e titolo v sono ora lontane dalle linee. Secondo:40coordinate/s e12/m, incontro(320,870) corrisponde5s,10m. Terzo:40/s e40/(m/s), aree3·4=12m e−2·5=−10m, spostamento2m e distanza22m. Nessuna nuova ambiguità grafica.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_distinct_measurement_calculations_and_separate_conceptual_derivations",
+        "Pint_exact_volume_mass_speed_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C1-Q027",
+      "sourceSha256": "2fbd20b0a866d9a5533f34d64921b2edc91514291bcc1c1e3242e198d0b7be9e",
+      "candidateSha256": "7ed778ffada258a65ad7898c9284253cd36999d06413c89694c50e326ec19119",
+      "reviewedSignature": "c7aa677c3556d327bfd1c3cb4ebe802d6a716d38eab917bde395c08554ae65c6",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "cric-c1-l003-progressive.svg": "472cca1a9c362a10eb7fa6a25c69cbde29f049f1ece69b9d50fdbd70faaea8aa"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "Le aree orientate sono3·4=12 m e−2·5=−10 m. Somma2 m; la distanza è22 m perché somma i moduli dei due spostamenti.",
+      "physicalAssumptions": "Due intervalli successivi,4 s a+3 m/s e5 s a−2 m/s, stessa orientazione.",
+      "distractors": "22 m è distanza,−2 inverte la differenza,−22 impone segni entrambi negativi;7 m non è la somma delle aree.",
+      "pedagogicalReview": "Aree positive e negative confrontate con distanza cumulativa.",
+      "assetReview": "XML finale e nuovo PNG indipendente640×1740 letti per intero; vecchia resa con due contatti conservata separatamente. Primo grafico: origine velocità y200, scala60/(m/s),−3 a380,−1 a260; due secondi in160coordinate. Le label2 e titolo v sono ora lontane dalle linee. Secondo:40coordinate/s e12/m, incontro(320,870) corrisponde5s,10m. Terzo:40/s e40/(m/s), aree3·4=12m e−2·5=−10m, spostamento2m e distanza22m. Nessuna nuova ambiguità grafica.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_distinct_measurement_calculations_and_separate_conceptual_derivations",
+        "Pint_exact_volume_mass_speed_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C1-Q028",
+      "sourceSha256": "83a030e20f99efb733c9459dea7c87a472d5475751de0332d8981eb879475645",
+      "candidateSha256": "5311053d3db334e1bb3c7d77c7c8257e096a56e7d0f5a1c227a1aa0a415b4944",
+      "reviewedSignature": "c77e5fb731d2df11f2c399b8dffee766c494dcb53d237699d3f367afa983134f",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "x–t: fermo a posizione positiva; v–t: moto a velocità positiva costante",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Orizzontale sopra zero in x–t significa x positiva costante e v=0. In v–t significa v positiva costante e a=0; la posizione di quel secondo moto resta non determinata.",
+      "physicalAssumptions": "Due grafici autonomi: uno x–t e uno v–t, entrambi piatti con ordinata positiva; ordinata da identificare prima del moto.",
+      "distractors": "La linea orizzontale annulla la derivata dell’ordinata, che cambia fra i due grafici; v>0 non determina x>0.",
+      "pedagogicalReview": "Nome degli assi letto prima della forma del grafico.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_distinct_measurement_calculations_and_separate_conceptual_derivations",
+        "Pint_exact_volume_mass_speed_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C1-Q029",
+      "sourceSha256": "da4d2decf778c30ab76f94d005b34664a8e30078afbe559a71b43dbf19d2e36c",
+      "candidateSha256": "2bdc34ba45e260549d6e7e2af4ac86f344cdb83cd1b8d76f7cd07c99259e620f",
+      "reviewedSignature": "06b7c98b3bd75ae556087f4193674354b18a68f1f661be2bc62c9a89b5249f06",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "La media è(v_f−v_i)/Δt=(1−(−3))/2=2 m/s². L’accelerazione non deve essere costante; −1 m/s² deriva dai moduli(1−3)/2.",
+      "physicalAssumptions": "Velocità orientate iniziale−3 m/s e finale+1 m/s separate da2 s; nessuna ipotesi di accelerazione costante.",
+      "distractors": "−1 usa i moduli,1 perde la variazione attraverso zero,−2 scambia estremi;4 copia Δv senza dividere per2 s.",
+      "pedagogicalReview": "Variazione orientata e media senza introdurre a costante.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_distinct_measurement_calculations_and_separate_conceptual_derivations",
+        "Pint_exact_volume_mass_speed_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C1-Q030",
+      "sourceSha256": "29c1e98dd8ae528412ce0c6ede2e4813af164cd81fddb89a76b1ca86cb7c60b1",
+      "candidateSha256": "a9c0e04036baf8bb446eee0e578f7d85cb0b142abbe66a3be0cf0d6767c1a12a",
+      "reviewedSignature": "e4a8ca37b9a61b19ab0fd092778459de312a96cc6cc170845a7a8c1392b1a1b1",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Traiettoria",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "La traiettoria è l’insieme geometrico delle posizioni attraversate. La legge oraria vi associa tempi; né velocità né accelerazione sono l’insieme di punti nello spazio.",
+      "physicalAssumptions": "Descrizione geometrica del luogo delle posizioni, distinta dall’assegnazione temporale di un moto.",
+      "distractors": "Legge oraria comprende il tempo; il grafico v–t riguarda velocità e tempo, spostamento è differenza di posizioni e accelerazione una derivata.",
+      "pedagogicalReview": "Geometria della traiettoria separata dalla temporizzazione.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_distinct_measurement_calculations_and_separate_conceptual_derivations",
+        "Pint_exact_volume_mass_speed_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    }
+  ],
+  "verifierSha256": "c50a9def3b80d62987fed39c7e9972ccc6acbaff7fb5e17973b8d5cb6bf449e9",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "reviewDependencySha256": {
+    "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+  },
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2",
+    "hypothesis": "6.148.7"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "reviewedCandidateCommit": "bb1838bc2cda1fa04a269dbca40c2284190f5889",
+  "packageSha256": "265609e34cd5d2ff2573f939517df3454ba54c56120d078b2623b7371ae6ae1a",
+  "bindingsSha256": "e8ecee4331e1a3210fec8fef71f5b7e065d9b3348863ff454393883ed2d8c918",
+  "source": {
+    "commit": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "path": "officina-di-fisica/content/C1.json",
+    "title": "cric-c1-l003",
+    "reference": "Dieci problemi Cric distinti, risolti individualmente nella primaria prompt-only prima dei candidati; leggere le note per ID per modelli e domini."
+  },
+  "modelsBeforeCandidateKeys": {
+    "path": "editorial/reviews/cric-c1-001-050-independent-models.py",
+    "sha256": "f7e59ee2a8652933cccd27248b6798c5a6a75c66c8f9f111efe81b20a10fd88c",
+    "commit": "7a2a3784421f346b4784a581e275760a623b4adf"
+  },
+  "postReadNumericGuardHardening": "All constitutive, inverse, calibration and exact finite guard function bodies are identical to the actual pre-key snapshot from first version.",
+  "primaryBeforeCandidateKeys": {
+    "path": "editorial/reviews/primary-cric-c1-001-050-before-candidates-20261126.md",
+    "sha256": "2e0ac86f9b57804387b68ccdcdbde945bed65b26ee5de6449323f25c3540707a"
+  }
+}
