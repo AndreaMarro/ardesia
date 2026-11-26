@@ -1,0 +1,347 @@
+{
+  "schemaVersion": "1.0.0",
+  "lessonReference": {
+    "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "gitPath": "officina-di-fisica/content/C3.json",
+    "sourceSha256": "44cb7679671a99a5da654133d4f1c12a542acf1a4688987121bcd5a776a262e0",
+    "primarySkill": "C3-L01",
+    "title": "Il confine del sistema e il termometro",
+    "actualLessonPrerequisites": []
+  },
+  "records": [
+    {
+      "id": "C3-Q001",
+      "sourceSha256": "c303663d093c38debfe0e620b6ba6195e23145fff15262dca163d28b653284f6",
+      "candidateSha256": "5fb138fb92f26b1eb7e1da6c5347deab274ef6cb6251d2e71e56352543350591",
+      "reviewedSignature": "cf940f42c935399820666028585fccddc1b0f53cd502eee4f385733edb71cbf2",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "cric-c3-l01-progressive.svg": "82060d7481cb9986eff271c031e857738c0663d9abeca7e61af88ea1a3cf02bc"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Sistema aperto",
+      "dimension": {},
+      "manualArithmetic": "L’acqua liquida rimasta è un sistema aperto: la massa attraversa il confine trasformandosi in vapore, ed energia può entrare dalla sorgente di calore o uscire con la materia. La pentola scoperta non rende il liquido un sistema isolato.",
+      "physicalAssumptions": "Liquido rimasto come sistema; vapore attraversa il confine; apporto termico possibile, non vincolo adiabatico.",
+      "distractors": "Chiuso conserva materia, isolato anche energia; il sistema aperto ha un confine e l’ebollizione non impone adiabaticità.",
+      "pedagogicalReview": "Scelta esplicita del sistema prima della classificazione.",
+      "assetReview": "XML e nuovo PNG indipendente 640×1480 letti per intero. Il vapore attraversa il confine del liquido; il calore è un possibile apporto dal fornello. Barre Kelvin da origine x 140,lunghezze 150/300 per 300/600 K,scala comune 1/2 coordinata/K. Ultimo pannello: stati 0/1/2 a x 180/330/480,non tempi; ordinate 1120/1168/1240 con scala 12 coordinate/K e letture 35/31/25°C,calo 48/72 per 4/6 K. Il tratto visibile dell’asse Celsius è troncato,senza etichetta 0: non viene assunto zero Celsius all’incrocio degli assi. Nessun contatto o taglio residuo. Asset byte-identico tra cf 9 d 08 ac e finale 119 fd 8 a 8; la ricevuta di rendering mantiene il suo riferimento originale,non viene ritaggata.",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C3-Q002",
+      "sourceSha256": "19659d0f145d202fff14ac43302f382f3092425e8a7a38012930dd2ec6bf85cd",
+      "candidateSha256": "2347c82d5afd2638c7b51d7562576a257abe8125493d246757dc542534bff435",
+      "reviewedSignature": "2d3f6236dbefd43c992d7e7b52fdffb518da390ab6c5a0aaecdefddf488aae61",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "-357/20",
+      "dimension": {
+        "[temperature]": "1"
+      },
+      "manualArithmetic": "Converto soltanto la lettura finale: 20,0 °C corrisponde a 293,15 K. La differenza finale meno iniziale è 293,15−311=−17,85 K=−357/20 K. Un intervallo in kelvin non richiede un secondo offset.",
+      "physicalAssumptions": "311 K iniziali, lettura finale 20°C, offset esatto 273,15; variazione finale meno iniziale, non modulo.",
+      "distractors": "+17,85 K perde il segno; −291 K mescola scale; 293,15 K e 311 K copiano letture degli estremi, non la variazione.",
+      "pedagogicalReview": "Due scale di lettura, una sola differenza con segno.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C3-Q003",
+      "sourceSha256": "5f2c9b476fe65ce3156cc32b645781e64627d78a69b10d224418cd7a15a83037",
+      "candidateSha256": "f47eabdba1e9be545ce9d945f0737365712972e6035fd2af9a2a20c2dd9a39d6",
+      "reviewedSignature": "43637b26ca66cb42f9d9e0b894c1e1af1ac60e91cb3be7731c29b26748ae0629",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "stato",
+      "dimension": {},
+      "manualArithmetic": "La parola è stato. Una funzione di stato dipende dagli estremi termodinamici e non dal percorso; calore e lavoro sono invece trasferimenti dipendenti dal processo.",
+      "physicalAssumptions": "Temperatura di equilibrio come funzione di stato; confronto dello stesso stato finale, non di un qualunque processo.",
+      "distractors": "Cammino esprime la dipendenza esclusa; calore e lavoro sono trasferimenti; tempo trascorso non completa funzione di stato.",
+      "pedagogicalReview": "Funzione di stato distinta dal percorso e dai trasferimenti.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C3-Q004",
+      "sourceSha256": "835d24c43d1e405c07002cdaca6bcc91711b5f93b6c20739fa46d046111d3968",
+      "candidateSha256": "2ea7af25c0abf6e43a3adecf23f8e605cedbd234c1e0dda87a5eb37aa1e5d120",
+      "reviewedSignature": "2e17edb6fd8193be3a6077d9242d51c85da4e44f66467734dcf3466de0bd3d52",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Non c’è trasferimento netto di calore dovuto a una differenza di temperatura",
+      "dimension": {},
+      "manualArithmetic": "Alla medesima temperatura iniziale non vi è un gradiente termico che provochi un flusso netto di calore fra i due blocchi. Non si può dedurre uguaglianza di energia interna o capacità termica da quella sola uguaglianza; si assumono assenza di reazioni e altri processi.",
+      "physicalAssumptions": "Due blocchi con uguale T, isolati dal resto, senza reazioni, transizioni di fase o lavoro.",
+      "distractors": "Uguale T non implica uguale U; massa maggiore non genera da sola un diverso equilibrio; moto molecolare non si annulla.",
+      "pedagogicalReview": "Equilibrio termico distinto da energia interna e moto microscopico.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C3-Q005",
+      "sourceSha256": "88735c0d50625cbe770698d901ce1afd2484fbb3147790a24349aad32ec85625",
+      "candidateSha256": "301a77eb60050e32bbe13ab5f293f534290f66d03edf8e61b3853453ec2f9649",
+      "reviewedSignature": "ccbe9155697f38548dacd189b14ab8c67daa8d5c16e6831e6ca891eb588a88a0",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "cric-c3-l01-progressive.svg": "82060d7481cb9986eff271c031e857738c0663d9abeca7e61af88ea1a3cf02bc"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "6537/20",
+      "dimension": {
+        "[temperature]": "1"
+      },
+      "manualArithmetic": "26,85 °C+273,15 K danno 300 K. Raddoppiare la temperatura assoluta porta a 600 K, quindi la nuova lettura Celsius è 600−273,15=326,85 °C. Non si raddoppia direttamente il numero Celsius.",
+      "physicalAssumptions": "Lettura iniziale 26,85°C, rapporto 2 applicato a T assoluta; ritorno finale a lettura Celsius.",
+      "distractors": "53,70°C raddoppia la lettura; 600°C scambia unità senza offset; 26,85°C resta iniziale; 300°C copia il coefficiente Kelvin iniziale.",
+      "pedagogicalReview": "Rapporto Kelvin prima dell’offset finale; scelte lessicali esatte.",
+      "assetReview": "XML e nuovo PNG indipendente 640×1480 letti per intero. Il vapore attraversa il confine del liquido; il calore è un possibile apporto dal fornello. Barre Kelvin da origine x 140,lunghezze 150/300 per 300/600 K,scala comune 1/2 coordinata/K. Ultimo pannello: stati 0/1/2 a x 180/330/480,non tempi; ordinate 1120/1168/1240 con scala 12 coordinate/K e letture 35/31/25°C,calo 48/72 per 4/6 K. Il tratto visibile dell’asse Celsius è troncato,senza etichetta 0: non viene assunto zero Celsius all’incrocio degli assi. Nessun contatto o taglio residuo. Asset byte-identico tra cf 9 d 08 ac e finale 119 fd 8 a 8; la ricevuta di rendering mantiene il suo riferimento originale,non viene ritaggata.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C3-Q006",
+      "sourceSha256": "a33e22400596a1c4d39bb5bb61f1656af3b5d3ee0244c4de49a87bf682fab965",
+      "candidateSha256": "407fb8fb3c110c900c8aec97ac7702b43c4538bab70083b347c98be45b6cf056",
+      "reviewedSignature": "f205bb81eba0aa71f65e4cf5e903f1e20f6124a5256af40296a996556e8c2169",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "La pressione",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "-1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "È la pressione. Nel modello uniforme la forza normale complessiva divisa per l’area ha unità N/m²=Pa; una pressione non è la forza totale.",
+      "physicalAssumptions": "Forza normale media complessiva su area positiva, gas nel modello di pressione macroscopica.",
+      "distractors": "Temperatura, volume e moli hanno altre unità; forza tangenziale non è pressione e forza sola manca della divisione per area.",
+      "pedagogicalReview": "Unità SI e componente normale della forza.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C3-Q007",
+      "sourceSha256": "0c541455166f224c7a21e64faa5a1b2d5a22250c29519761ff610ed25998acbd",
+      "candidateSha256": "4e31d2f03227613fd4effa2f82a8bde009c7dc65206180b028ab2667495136e0",
+      "reviewedSignature": "bb987fbacc1c1abe285027779b0bf8baca579b69338c3c3d14addbf734346e80",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "La massa",
+      "dimension": {
+        "[mass]": "1"
+      },
+      "manualArithmetic": "Una proprietà estensiva si dimezza: per esempio la quantità di sostanza, la massa, il numero di particelle, il volume o l’energia interna dello stesso gas uniforme. Pressione, temperatura e densità restano intensive. Senza alternative il prompt non identifica una sola proprietà estensiva; la futura scelta va valutata nel suo contesto.",
+      "physicalAssumptions": "Gas uniforme diviso idealmente in volumi uguali, stesso stato intensivo e stessa composizione.",
+      "distractors": "p,T,ρ e c specifico restano intensivi; capacità totale sarebbe estensiva ma non è l’opzione data.",
+      "pedagogicalReview": "Classificazione estensiva/intensiva con alternativa unica verificata.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C3-Q008",
+      "sourceSha256": "6d2bde654193fd9e556c4696283e1a0233d891783633471e62bfd7cd841070fd",
+      "candidateSha256": "997e7488f5b4eeeffef39922256988cd3e47e60515f12b0c14ba846dac86c665",
+      "reviewedSignature": "7126193e9ab6b2d16957e516f6a1dca139c2f3eaa78ebe14f2399f2f5fe73008",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "cric-c3-l01-progressive.svg": "82060d7481cb9986eff271c031e857738c0663d9abeca7e61af88ea1a3cf02bc"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "25",
+      "dimension": {
+        "[temperature]": "1"
+      },
+      "manualArithmetic": "Gli intervalli 4 K e 6 K valgono rispettivamente 4 e 6 gradi Celsius. Sottraggo complessivamente 10 alla lettura iniziale: 35−4−6=25 °C. Non si aggiunge 273,15 agli intervalli.",
+      "physicalAssumptions": "Due cali successivi 4 K e 6 K, lettura iniziale 35°C; nessuna durata attribuita agli stati.",
+      "distractors": "31°C omette il secondo calo; 29°C omette il primo; 45°C somma un aumento; gli offset non si sommano agli intervalli.",
+      "pedagogicalReview": "Accumulo di intervalli, senza confonderli con temperature assolute.",
+      "assetReview": "XML e nuovo PNG indipendente 640×1480 letti per intero. Il vapore attraversa il confine del liquido; il calore è un possibile apporto dal fornello. Barre Kelvin da origine x 140,lunghezze 150/300 per 300/600 K,scala comune 1/2 coordinata/K. Ultimo pannello: stati 0/1/2 a x 180/330/480,non tempi; ordinate 1120/1168/1240 con scala 12 coordinate/K e letture 35/31/25°C,calo 48/72 per 4/6 K. Il tratto visibile dell’asse Celsius è troncato,senza etichetta 0: non viene assunto zero Celsius all’incrocio degli assi. Nessun contatto o taglio residuo. Asset byte-identico tra cf 9 d 08 ac e finale 119 fd 8 a 8; la ricevuta di rendering mantiene il suo riferimento originale,non viene ritaggata.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C3-Q009",
+      "sourceSha256": "15f9497eb5e84cf0d0127cd50fc5fc28755408267cafab5e104183d06a46367f",
+      "candidateSha256": "4508f9646b65355e2d310a29f30a0227ad0a1b86c335737af84ef6a46c95cc89",
+      "reviewedSignature": "ced53389919205748e25efcc0ef137391d6bd56935e377a7e0a2b4d5ac3e7af5",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Attendere che i transitori si smorzino e il gas raggiunga l’equilibrio",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "-1",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Durante le onde di pressione non è definita una pressione uniforme d’equilibrio per tutto il gas. Occorre attendere il rilassamento meccanico, dopo avere fissato i vincoli, fino a un nuovo equilibrio; non basta mediare una lettura locale istantanea.",
+      "physicalAssumptions": "Campione descritto a pressione macroscopica uniforme solo dopo smorzamento dei transitori ed equilibrio.",
+      "distractors": "Una misura locale transiente non descrive necessariamente tutto il gas; rapido non implica isobaro; sommare pressioni spaziali non dà lo stato uniforme.",
+      "pedagogicalReview": "Una grandezza d’equilibrio non è una media arbitraria di transitori.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C3-Q010",
+      "sourceSha256": "acd014898d93c93262b5bfadcd5c0e4f2b23ac801836438d132f4baaacd994c8",
+      "candidateSha256": "784211d5514ff004c1c2b0036e729d84630cb7981556cc4d06d78d67aa704f4c",
+      "reviewedSignature": "10520167530fb33b5ef0d8b6d03f6950754069ac4fc54728aacc7921446e5f3c",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Adiabatica",
+      "dimension": {},
+      "manualArithmetic": "La parete è adiabatica: impedisce il trasferimento di energia come calore. Può muoversi e consentire lavoro meccanico, dunque adiabatica non significa immobile o isolata da ogni trasferimento energetico.",
+      "physicalAssumptions": "Vincolo adiabatico sulla parete mobile: Q attraverso la parete nullo, lavoro non escluso.",
+      "distractors": "Diatermica permette calore; rigida riguarda il movimento; temperatura costante e permeabilità alla materia non seguono da Q=0.",
+      "pedagogicalReview": "Calore, lavoro e materia sono vincoli indipendenti del confine.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_source_prompt_only_pressure_density_mass_conservation_and_distinct_concepts",
+        "Pint_pressure_density_mass_volume_dimensions_and_exact_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    }
+  ],
+  "verifierSha256": "05cd5eea301e551e4be938d44ef214b6d528ca396147199abadc17fe586448d0",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "reviewDependencySha256": {
+    "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+  },
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2",
+    "hypothesis": "6.148.7"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "reviewedCandidateCommit": "119fd8a8b73803079ffb50c04e6aa808bd974f3e",
+  "packageSha256": "b128235bfb25712b8b1eeb253a93501dfa1bf9a27e9cac437c43859d13da9d10",
+  "bindingsSha256": "65e83dfb87563dfd9a65a8776a6fe8d2ff0720549c83d0c4fb4cb247f6de847a",
+  "source": {
+    "commit": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "path": "officina-di-fisica/content/C3.json",
+    "title": "cric-c3-l01",
+    "reference": "Dieci problemi distinti Cric C3 letti integralmente dopo primaria e modelli propri congelati; interpretazione di letture Celsius e intervalli termici distinta per ID."
+  },
+  "modelsBeforeCandidateKeys": {
+    "path": "editorial/reviews/cric-c3-001-050-independent-models.py",
+    "sha256": "9b870976c03b6578eeac6f6e4c2e89cebc6c53d2a6a0ef0b806e749b36c88e1f",
+    "commit": "030d4658b17ea6f6fd43be03cb59b21e91030eb0"
+  },
+  "modelFunctionBodies": "All functions in the frozen source-only C3 model retain identical AST. Generic finite/exact literal guards are reused unchanged from the earlier independent C2 verifier.",
+  "primaryBeforeCandidateKeys": {
+    "path": "editorial/reviews/primary-cric-c3-001-050-before-candidates-20261126.md",
+    "sha256": "34cdd1eb8b9f296a638c2fa1e3874ffbace49c48e907257c063fe1f0f7ad0b80"
+  }
+}

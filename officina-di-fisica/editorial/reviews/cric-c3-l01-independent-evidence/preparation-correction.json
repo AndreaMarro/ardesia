@@ -1,0 +1,8 @@
+{
+  "scope": "test construction correction before any report persisted",
+  "reason": "C3-L01 legitimately has no prerequisites. Replacing [] with [] was a no-op, not a guard escape. The hostile mutation now adds existing unrelated lessonC3-L02; the exact source-context guard is unchanged. All candidate/signature/source-model tables remain unchanged.",
+  "oldVerifierSha256": "f766ff9fe23448e390f996ff1b39b0498a409a82ce736163f209bcfe069b6acc",
+  "newVerifierSha256": "05cd5eea301e551e4be938d44ef214b6d528ca396147199abadc17fe586448d0",
+  "candidateEdit": false,
+  "scientificCredit": "NONE_FROM_FAILED_PREPARATION"
+}
