@@ -28,7 +28,7 @@ class NativeVectorAxis(unittest.TestCase):
    with self.subTest(id=before['id']):
     if before['id']not in IDS:self.assertEqual(before,after)
     else:
-     self.assertEqual(before['teaching'],after['teaching']);self.assertEqual(before['scene'],after['scene']);self.assertEqual(before['sourceSha256'],after['sourceSha256'])
+     self.assertEqual(before['teaching'],after['teaching']);self.assertEqual({**before['scene'],'height':6},after['scene']);self.assertEqual(before['sourceSha256'],after['sourceSha256'])
      for b,a in zip(before['states'],after['states']):self.assertEqual({k:v for k,v in b.items()if k!='primitives'},{k:v for k,v in a.items()if k!='primitives'})
  def test_only_existing_y_labels_are_removed_all_other_elements_retained(self):
   for b,a in zip(self.before['target'],self.after['target']):

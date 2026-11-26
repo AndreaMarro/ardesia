@@ -300,7 +300,9 @@ export async function esperienza(record) {
   ].includes(record.apparatus);
   const spec = {
     target: [0, high ? 1.27 : 0.95, 0],
-    height: high ? 4.65 : top ? 4.68 : 4.25,
+    // Native vector grids include full vertical components and the table feet.
+    // Keep their complete opaque meshes in all three preset camera frames.
+    height: nativeVectorAxes ? 6 : high ? 4.65 : top ? 4.68 : 4.25,
     width: 8.1,
     eye: top ? [2.3, 4.35, 6.1] : [2.6, 1.9, 6.1],
     bg: { C1: 0xf3eddd, C2: 0xe7efe5, C3: 0xf4eada, C4: 0xecebf1, C5: 0xe7edf0, C6: 0xe9eeea }[record.course] ?? 0xe9eeea,
