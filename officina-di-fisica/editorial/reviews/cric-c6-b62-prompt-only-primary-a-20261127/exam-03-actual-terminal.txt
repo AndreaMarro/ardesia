@@ -1,0 +1,151 @@
+SHARED_LOCK_ACQUIRED; free bytes 2603208704; one child
+{
+  "scope": "SOURCE_ONLY_MODELS_NOT_CANDIDATE_APPROVAL",
+  "promptCount": 31,
+  "numericResults": {
+    "C6-Q076": {
+      "exact": "1/4000",
+      "unit": "m^3"
+    },
+    "C6-Q077": {
+      "exact": "3/2",
+      "unit": "dimensionless"
+    },
+    "C6-Q078": {
+      "exact": "400",
+      "unit": "Pa"
+    },
+    "C6-Q079": {
+      "exact": "180",
+      "unit": "degree"
+    },
+    "C6-Q080": {
+      "exact": "3/10",
+      "unit": "m"
+    },
+    "C6-Q082": {
+      "exact": "24",
+      "unit": "microcoulomb"
+    },
+    "C6-Q083": {
+      "exact": "25",
+      "unit": "percent"
+    },
+    "C6-Q085": {
+      "exact": "72",
+      "unit": "N"
+    },
+    "C6-Q086": {
+      "exact": "8000",
+      "unit": "J"
+    },
+    "C6-Q088": {
+      "exact": "3",
+      "unit": "dimensionless"
+    },
+    "C6-Q089": {
+      "exact": "49",
+      "unit": "percent"
+    },
+    "C6-Q090": {
+      "exact": "3",
+      "unit": "N"
+    },
+    "C6-Q091": {
+      "exact": "3/5",
+      "unit": "V"
+    },
+    "C6-Q093": {
+      "exact": "-10",
+      "unit": "J"
+    },
+    "C6-Q095": {
+      "exact": "0",
+      "unit": "A"
+    }
+  },
+  "conceptualDerivations": 16,
+  "symbolicChecks": {
+    "fourier_thickness": true,
+    "two_reflections_reverse_all_in_plane": true,
+    "isothermal_internal_energy": true,
+    "series_voltage_check": true,
+    "capillary_vertical_force": true,
+    "bridge_current": true,
+    "alpha_beta_bookkeeping": true,
+    "opposite_work_sign": true,
+    "two_layers": true,
+    "faraday_sign_magnitude": true
+  },
+  "pintChecks": [
+    {
+      "id": "C6-Q076",
+      "exactMagnitude": "1/4000",
+      "unit": "m^3",
+      "ok": true
+    },
+    {
+      "id": "C6-Q078",
+      "exactMagnitude": "400",
+      "unit": "pascal",
+      "ok": true
+    },
+    {
+      "id": "C6-Q080",
+      "exactMagnitude": "3/10",
+      "unit": "m",
+      "ok": true
+    },
+    {
+      "id": "C6-Q082",
+      "exactMagnitude": "24",
+      "unit": "microcoulomb",
+      "ok": true
+    },
+    {
+      "id": "C6-Q085",
+      "exactMagnitude": "72",
+      "unit": "N",
+      "ok": true
+    },
+    {
+      "id": "C6-Q086",
+      "exactMagnitude": "8000",
+      "unit": "J",
+      "ok": true
+    },
+    {
+      "id": "C6-Q091",
+      "exactMagnitude": "3/5",
+      "unit": "V",
+      "ok": true
+    },
+    {
+      "id": "C6-Q093",
+      "exactMagnitude": "-10",
+      "unit": "J",
+      "ok": true
+    },
+    {
+      "id": "C6-Q095",
+      "exactMagnitude": "0",
+      "unit": "A",
+      "ok": true
+    }
+  ],
+  "extraUnitIdentities": 2,
+  "invalidExactBoundaryRejected": 8,
+  "invalidPhysicalDomainRejected": 8,
+  "candidateExposure": "NONE",
+  "humanApproval": "NOT_RUN",
+  "scientificQuestionCredit": 0,
+  "publicationAction": "NONE",
+  "hypothesisActualConfigurations": {
+    "heat_thickness": 40,
+    "mirror_directions": 40,
+    "balanced_bridge": 40
+  },
+  "wallSeconds": 0.8582454590068664
+}
+ACTUAL_SOURCE_ONLY_CHECKS_COMPLETE
+CHILD_EXIT 0; free bytes 2603134976
