@@ -1,0 +1,670 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "C3-Q011",
+      "kind": "question",
+      "course": "C3",
+      "section": "Termodinamica",
+      "order": 11,
+      "title": "Moli uscite da un recipiente rigido",
+      "skill": "C3-L02",
+      "prerequisites": [
+        "C3-L01"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nei due equilibri il rapporto p/n=RT/V resta costante. Il rapporto delle moli rimaste è quindi 120/160=3/4. La frazione uscita è il complemento: 1−3/4=1/4, ossia il 25% delle moli iniziali. Il sistema non è chiuso durante la perdita."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/8203fed0ec6ad87d03c94caafa0467a3604218c74e7c0c24da57488a844d1e34",
+          "text": "A volume e temperatura uguali, le moli rimaste sono proporzionali alla pressione assoluta: 160→120 kPa corrisponde a una frazione rimasta 3/4 e uscita 1/4."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{n_f}{n_i}=\\frac{120}{160}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{120}{160}=\\frac34"
+        },
+        {
+          "type": "formula",
+          "text": " f_{\\rm uscita}=1-\\frac34"
+        },
+        {
+          "type": "formula",
+          "text": "1-\\frac34=\\frac14"
+        },
+        {
+          "type": "formula",
+          "text": " f_{\\rm uscita}=25\\%"
+        },
+        {
+          "type": "text",
+          "text": "75% è la frazione rimasta, non quella uscita. Il calo di 40 kPa va rapportato ai 160 kPa iniziali, non ai 120 finali. Conservare le moli contraddirebbe la perdita nel recipiente rigido isotermo."
+        }
+      ],
+      "prompt": "Un recipiente rigido contiene un gas perfetto alla stessa temperatura prima e dopo una perdita. La pressione assoluta scende da 160 a 120 kPa. Quale percentuale delle moli iniziali è uscita?",
+      "difficulty": 2,
+      "family": "quante-molecole-sono-rimaste",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "numeric",
+        "value": 25,
+        "unit": "%",
+        "tolerance": 0
+      },
+      "hints": [
+        "A volume e temperatura fissati confronta prima le moli rimaste, poi prendine il complemento.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "75% è la frazione rimasta, non quella uscita. Il calo di 40 kPa va rapportato ai 160 kPa iniziali, non ai 120 finali. Conservare le moli contraddirebbe la perdita nel recipiente rigido isotermo.",
+        "target": "C3-L02"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Moli uscite da un recipiente rigido"
+      ]
+    },
+    {
+      "id": "C3-Q012",
+      "kind": "question",
+      "course": "C3",
+      "section": "Termodinamica",
+      "order": 12,
+      "title": "Stesse variabili, gas diversi",
+      "skill": "C3-L02",
+      "prerequisites": [
+        "C3-L01"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Per ciascun recipiente l’equazione di stato fornisce n=pV/(RT). I tre dati e la costante universale R sono uguali, quindi le moli sono uguali. La massa è invece nM e può cambiare con la massa molare della specie."
+        },
+        {
+          "type": "formula",
+          "text": "n_A=\\frac{pV}{RT}"
+        },
+        {
+          "type": "formula",
+          "text": " n_B=\\frac{pV}{RT}"
+        },
+        {
+          "type": "formula",
+          "text": " n_A=n_B"
+        },
+        {
+          "type": "text",
+          "text": "Masse e densità di massa non sono necessariamente uguali per gas diversi. La massa molare caratterizza la specie, non soltanto lo stato p,V,T. Neppure l’energia interna è universalmente la stessa per gas ideali con struttura molecolare diversa."
+        }
+      ],
+      "prompt": "Due recipienti contengono gas perfetti diversi ma hanno gli stessi valori di pressione assoluta p, volume V e temperatura assoluta T. Quale grandezza deve essere uguale?",
+      "difficulty": 1,
+      "family": "due-gas-nello-stesso-stato-macroscopico",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Il numero di moli",
+          "La massa totale",
+          "La massa molare",
+          "La densità di massa",
+          "L’energia interna per qualunque specie"
+        ],
+        "value": "Il numero di moli"
+      },
+      "hints": [
+        "Isola n dall’equazione di stato senza introdurre la massa molare.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Masse e densità di massa non sono necessariamente uguali per gas diversi. La massa molare caratterizza la specie, non soltanto lo stato p,V,T. Neppure l’energia interna è universalmente la stessa per gas ideali con struttura molecolare diversa.",
+        "target": "C3-L02"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Stesse variabili, gas diversi"
+      ]
+    },
+    {
+      "id": "C3-Q013",
+      "kind": "question",
+      "course": "C3",
+      "section": "Termodinamica",
+      "order": 13,
+      "title": "Il volume a pressione fissata",
+      "skill": "C3-L02",
+      "prerequisites": [
+        "C3-L01"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Per la stessa quantità di gas a pressione costante V/T=nR/p. Il rapporto termico è 315/270=7/6. Moltiplico 1,80 L per 7/6: 1,80/6=0,30 e 0,30·7=2,10 L. Il riscaldamento produce qui un aumento di volume."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/8203fed0ec6ad87d03c94caafa0467a3604218c74e7c0c24da57488a844d1e34",
+          "text": "La stessa quantità di gas alla stessa pressione passa da 270 a 315 K; il volume cresce da 1,80 a 2,10 L. Le barre di volume partono dallo stesso zero."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{V_f}{V_i}=\\frac{T_f}{T_i}"
+        },
+        {
+          "type": "formula",
+          "text": " V_f=1{,}80\\frac76\\,\\mathrm L"
+        },
+        {
+          "type": "formula",
+          "text": " V_f=2{,}10\\,\\mathrm L"
+        },
+        {
+          "type": "text",
+          "text": "54/35 L usa il rapporto inverso delle temperature e ridurrebbe il volume durante il riscaldamento. 1,80 L ignora la variazione. 46,80 L somma il numero45 dell’intervallo termico al numero dei litri, mescolando grandezze diverse. 0,30 L esegue la divisione per6 ma omette la successiva moltiplicazione per7. Il vincolo è la pressione, non il volume."
+        }
+      ],
+      "prompt": "Un palloncino ideale chiuso contiene gas perfetto. Il volume è 1,80 L a 270 K; alla stessa pressione assoluta il gas raggiunge 315 K. Qual è il nuovo volume in litri?",
+      "difficulty": 1,
+      "family": "un-pistone-sotto-carico-costante",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2,10 L",
+          "54/35 L",
+          "1,80 L",
+          "46,80 L",
+          "0,30 L"
+        ],
+        "value": "2,10 L"
+      },
+      "hints": [
+        "Riduci prima il rapporto 315/270 a 7/6.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "54/35 L usa il rapporto inverso delle temperature e ridurrebbe il volume durante il riscaldamento. 1,80 L ignora la variazione. 46,80 L somma il numero45 dell’intervallo termico al numero dei litri, mescolando grandezze diverse. 0,30 L esegue la divisione per6 ma omette la successiva moltiplicazione per7. Il vincolo è la pressione, non il volume.",
+        "target": "C3-L02"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Il volume a pressione fissata"
+      ]
+    },
+    {
+      "id": "C3-Q014",
+      "kind": "question",
+      "course": "C3",
+      "section": "Termodinamica",
+      "order": 14,
+      "title": "La pressione adatta al gas perfetto",
+      "skill": "C3-L02",
+      "prerequisites": [
+        "C3-L01"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’azzeramento nell’aria fa leggere una differenza rispetto all’atmosfera. Aggiungendo il riferimento atmosferico si ottiene la pressione assoluta, con zero nel vuoto. È questa la grandezza che entra nell’equazione del gas perfetto."
+        },
+        {
+          "type": "formula",
+          "text": "p_{\\rm ass}=p_{\\rm rel}+p_{\\rm atm}"
+        },
+        {
+          "type": "text",
+          "text": "Relativa è la lettura prima della somma. Tangenziale non è una diversa origine di pressione. Dividere per le moli non definisce la pressione assoluta e il suo segno non deve essere negativo nel modello del gas."
+        }
+      ],
+      "prompt": "Un sensore viene azzerato nell’aria. Prima di usare la sua lettura nell’equazione di stato si somma la pressione atmosferica locale. Come si chiama la pressione così ottenuta?",
+      "difficulty": 1,
+      "family": "quale-pressione-va-in-pv",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Pressione assoluta",
+          "Pressione relativa",
+          "Pressione tangenziale",
+          "Pressione per mole",
+          "Pressione negativa per definizione"
+        ],
+        "value": "Pressione assoluta"
+      },
+      "hints": [
+        "Individua se lo zero della lettura è nell’aria oppure nel vuoto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Relativa è la lettura prima della somma. Tangenziale non è una diversa origine di pressione. Dividere per le moli non definisce la pressione assoluta e il suo segno non deve essere negativo nel modello del gas.",
+        "target": "C3-L02"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "La pressione adatta al gas perfetto"
+      ]
+    },
+    {
+      "id": "C3-Q015",
+      "kind": "question",
+      "course": "C3",
+      "section": "Termodinamica",
+      "order": 15,
+      "title": "Temperatura con R prescritta",
+      "skill": "C3-L02",
+      "prerequisites": [
+        "C3-L01"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il prodotto kPa·L equivale a J, quindi pV=100·6,20=620 J. Il prodotto nR è 0,250·8,314=2,0785 J/K, ossia 4157/2000 J/K. Dividere 620 per questa frazione dà 1240000/4157 K. Il rapporto è già un risultato esatto e non richiede una divisione decimale lunga."
+        },
+        {
+          "type": "formula",
+          "text": "pV=620\\,\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " nR=\\frac{4157}{2000}\\,\\mathrm{J/K}"
+        },
+        {
+          "type": "formula",
+          "text": " T=\\frac{pV}{nR}"
+        },
+        {
+          "type": "formula",
+          "text": " T=\\frac{1240000}{4157}\\,\\mathrm K"
+        },
+        {
+          "type": "text",
+          "text": "620/4157 perde il fattore 2000 del denominatore frazionario. 1240000/8314 dimezza la temperatura corretta. La frazione reciproca non ricostruisce pV=nRT. 310 K userebbe R=8 invece del valore 8,314 prescritto: non è la stessa preparazione."
+        }
+      ],
+      "prompt": "Un gas perfetto di 0,250 mol occupa 6,20 L a 100 kPa assoluti. Usa esattamente il valore di modello R=8,314 J/(mol·K). Quale espressione dà la temperatura in kelvin senza arrotondamenti?",
+      "difficulty": 2,
+      "family": "risalire-alla-temperatura",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "(1240000/4157) K",
+          "(620/4157) K",
+          "(1240000/8314) K",
+          "(4157/1240000) K",
+          "310 K"
+        ],
+        "value": "(1240000/4157) K"
+      },
+      "hints": [
+        "Calcola pV in joule e scrivi nR come frazione, mantenendo R assegnata.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "620/4157 perde il fattore 2000 del denominatore frazionario. 1240000/8314 dimezza la temperatura corretta. La frazione reciproca non ricostruisce pV=nRT. 310 K userebbe R=8 invece del valore 8,314 prescritto: non è la stessa preparazione.",
+        "target": "C3-L02"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Temperatura con R prescritta"
+      ]
+    },
+    {
+      "id": "C3-Q016",
+      "kind": "question",
+      "course": "C3",
+      "section": "Termodinamica",
+      "order": 16,
+      "title": "Un limite del modello ideale",
+      "skill": "C3-L02",
+      "prerequisites": [
+        "C3-L01"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il modello ideale trascura il volume proprio delle molecole e le interazioni che non siano urti. In un gas denso vicino alla condensazione tali effetti possono diventare importanti: occorre valutare un’equazione di stato più adeguata. L’uso di unità corrette non basta a rendere ideale ogni gas."
+        },
+        {
+          "type": "formula",
+          "text": "pV=nRT"
+        },
+        {
+          "type": "text",
+          "text": "Diluizione e distanza dalla condensazione favoriscono il modello. Pascal, kelvin e moli sono le unità coerenti richieste, non cause del suo fallimento fisico. Non basta cambiare unità per correggere interazioni reali."
+        }
+      ],
+      "prompt": "Quale situazione richiede maggiore cautela nell’applicare pV=nRT a un gas reale?",
+      "difficulty": 2,
+      "family": "quando-abbandonare-il-gas-perfetto",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Gas molto denso vicino alla condensazione",
+          "Gas diluito lontano dalla condensazione",
+          "Pressione espressa in pascal",
+          "Temperatura espressa in kelvin",
+          "Quantità di sostanza espressa in moli"
+        ],
+        "value": "Gas molto denso vicino alla condensazione"
+      },
+      "hints": [
+        "Cerca la condizione in cui dimensioni e interazioni molecolari diventano meno trascurabili.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "Diluizione e distanza dalla condensazione favoriscono il modello. Pascal, kelvin e moli sono le unità coerenti richieste, non cause del suo fallimento fisico. Non basta cambiare unità per correggere interazioni reali.",
+        "target": "C3-L02"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Un limite del modello ideale"
+      ]
+    },
+    {
+      "id": "C3-Q017",
+      "kind": "question",
+      "course": "C3",
+      "section": "Termodinamica",
+      "order": 17,
+      "title": "Cambiano volume e temperatura",
+      "skill": "C3-L02",
+      "prerequisites": [
+        "C3-L01"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La quantità di gas è conservata. Dalla relazione pV/T costante isolo p_f=p_i(T_f/T_i)(V_i/V_f). Il riscaldamento dà un fattore 4/3 e l’espansione un fattore 2/3. Il prodotto con 90 kPa è 90·8/9=80 kPa."
+        },
+        {
+          "type": "formula",
+          "text": "p_f=p_i\\frac{T_f}{T_i}\\frac{V_i}{V_f}"
+        },
+        {
+          "type": "formula",
+          "text": " p_f=90\\frac43\\frac23\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " p_f=80\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "text",
+          "text": "120 kPa considera soltanto la temperatura. 60 kPa considera soltanto il volume. 180 kPa usa il rapporto diretto dei volumi insieme al riscaldamento, invertendo l’effetto dell’espansione. Nessuno dei due dati può essere ignorato."
+        }
+      ],
+      "prompt": "Un gas perfetto chiuso passa da 90 kPa assoluti, 2 L e 270 K a 3 L e 360 K. Qual è la pressione finale in kPa?",
+      "difficulty": 2,
+      "family": "volume-e-temperatura-cambiano-insieme",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "numeric",
+        "value": 80,
+        "unit": "kPa",
+        "tolerance": 0
+      },
+      "hints": [
+        "Scrivi separatamente il fattore termico e quello volumetrico.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "120 kPa considera soltanto la temperatura. 60 kPa considera soltanto il volume. 180 kPa usa il rapporto diretto dei volumi insieme al riscaldamento, invertendo l’effetto dell’espansione. Nessuno dei due dati può essere ignorato.",
+        "target": "C3-L02"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Cambiano volume e temperatura"
+      ]
+    },
+    {
+      "id": "C3-Q018",
+      "kind": "question",
+      "course": "C3",
+      "section": "Termodinamica",
+      "order": 18,
+      "title": "La costante universale",
+      "skill": "C3-L02",
+      "prerequisites": [
+        "C3-L01"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dividendo pV=nRT per T>0 rimane pV/T=nR. La lettera R indica la costante universale dei gas. Non dipende dalla specie, mentre n dipende dalla quantità presente nel campione."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{pV}{T}=nR"
+        },
+        {
+          "type": "formula",
+          "text": " [R]=\\mathrm{J/(mol\\,K)}"
+        },
+        {
+          "type": "text",
+          "text": "g indica un’accelerazione gravitazionale; c e λ possono indicare proprietà termiche o altre grandezze, ma non la costante universale richiesta. σ compare nella legge di irraggiamento. R va distinta dalla massa molare della specie."
+        }
+      ],
+      "prompt": "Per un gas perfetto chiuso, il rapporto pV/T vale n moltiplicato per quale costante universale, indicata con una lettera?",
+      "difficulty": 1,
+      "family": "individuare-la-costante-del-campione",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "R",
+          "g",
+          "c",
+          "σ",
+          "λ"
+        ],
+        "value": "R"
+      },
+      "hints": [
+        "Dividi l’equazione di stato per la temperatura assoluta.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "g indica un’accelerazione gravitazionale; c e λ possono indicare proprietà termiche o altre grandezze, ma non la costante universale richiesta. σ compare nella legge di irraggiamento. R va distinta dalla massa molare della specie.",
+        "target": "C3-L02"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "La costante universale"
+      ]
+    },
+    {
+      "id": "C3-Q019",
+      "kind": "question",
+      "course": "C3",
+      "section": "Termodinamica",
+      "order": 19,
+      "title": "Due pendenze a volume fissato",
+      "skill": "C3-L02",
+      "prerequisites": [
+        "C3-L01"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Isolo p=(nR/V)T. La pendenza nel grafico assegnato è nR/V, positiva. Raddoppiando il volume la pendenza si dimezza: la retta a V è quindi due volte più ripida. Le temperature sono assolute, così l’origine ideale è T=0, p=0."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/8203fed0ec6ad87d03c94caafa0467a3604218c74e7c0c24da57488a844d1e34",
+          "text": "Per le stesse moli, le pendenze p/T sono nR/V e nR/(2V). Il grafico usa valori relativi con una stessa temperatura di riferimento positiva."
+        },
+        {
+          "type": "formula",
+          "text": "a_V=\\frac{nR}{V}"
+        },
+        {
+          "type": "formula",
+          "text": " a_{2V}=\\frac{nR}{2V}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{a_V}{a_{2V}}=2"
+        },
+        {
+          "type": "text",
+          "text": "Attribuire la pendenza maggiore al volume doppio scambia il rapporto inverso. Il valore nR è comune, ma è diviso per volumi diversi. Cambiare l’origine della scala termica sposta l’intercetta, non trasforma questo rapporto di pendenze."
+        }
+      ],
+      "prompt": "Nel piano con T in kelvin in ascissa e p assoluta in ordinata si tracciano due rette per lo stesso numero di moli di gas perfetto: una a volume V>0, l’altra a 2V. Quale ha pendenza maggiore?",
+      "difficulty": 2,
+      "family": "pendenze-del-grafico-p-contro-t",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "La retta a volume V, con pendenza doppia",
+          "La retta a volume 2V, con pendenza doppia",
+          "Le due rette hanno sempre la stessa pendenza",
+          "La pendenza è negativa per entrambe",
+          "La pendenza dipende soltanto dall’origine Celsius"
+        ],
+        "value": "La retta a volume V, con pendenza doppia"
+      },
+      "hints": [
+        "Leggi il coefficiente di T dopo avere isolato p.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Attribuire la pendenza maggiore al volume doppio scambia il rapporto inverso. Il valore nR è comune, ma è diviso per volumi diversi. Cambiare l’origine della scala termica sposta l’intercetta, non trasforma questo rapporto di pendenze.",
+        "target": "C3-L02"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Due pendenze a volume fissato"
+      ]
+    },
+    {
+      "id": "C3-Q020",
+      "kind": "question",
+      "course": "C3",
+      "section": "Termodinamica",
+      "order": 20,
+      "title": "Densità e massa molare",
+      "skill": "C3-L02",
+      "prerequisites": [
+        "C3-L01"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Scrivo m=nM e divido per V: ρ=nM/V=pM/(RT). Nel numeratore 100000·0,0280=2800; nel denominatore 8,314·300=2494,2. Moltiplicando entrambi per 10 e semplificando per 2 ottengo 14000/12471 kg/m³. La frazione è compresa fra 1 e 6/5, controllo ottenibile con prodotti interi."
+        },
+        {
+          "type": "formula",
+          "text": "\\rho=\\frac{pM}{RT}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho=\\frac{2800}{2494{,}2}\\,\\mathrm{kg/m^3}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho=\\frac{14000}{12471}\\,\\mathrm{kg/m^3}"
+        },
+        {
+          "type": "text",
+          "text": "14/12471 conserva il numero in kPa senza convertirlo in Pa. 14000000/12471 usa 28 al posto di 0,0280 kg/mol, perdendo la conversione da grammi a chilogrammi. La frazione reciproca non ha lo stesso valore e 28 copia il numero della massa molare in g/mol, non una densità."
+        }
+      ],
+      "prompt": "Un gas perfetto a 300 K e 100 kPa assoluti ha massa molare M=0,0280 kg/mol. Usa R=8,314 J/(mol·K). Quale espressione esatta dà la densità in kg/m³?",
+      "difficulty": 3,
+      "family": "una-densita-a-partire-dalla-massa-molare",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "(14000/12471) kg/m³",
+          "(14/12471) kg/m³",
+          "(12471/14000) kg/m³",
+          "(14000000/12471) kg/m³",
+          "28 kg/m³"
+        ],
+        "value": "(14000/12471) kg/m³"
+      },
+      "hints": [
+        "Usa la massa molare in kg/mol e la pressione in Pa prima di formare il rapporto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "14/12471 conserva il numero in kPa senza convertirlo in Pa. 14000000/12471 usa 28 al posto di 0,0280 kg/mol, perdendo la conversione da grammi a chilogrammi. La frazione reciproca non ha lo stesso valore e 28 copia il numero della massa molare in g/mol, non una densità.",
+        "target": "C3-L02"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Densità e massa molare"
+      ]
+    }
+  ],
+  "assets": [
+    {
+      "id": "8203fed0ec6ad87d03c94caafa0467a3604218c74e7c0c24da57488a844d1e34",
+      "name": "cric-c3-l02-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTUwMCIgdmlld0JveD0iMCAwIDY0MCAxNTAwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIj48dGl0bGUgaWQ9InRpdGxlIj5Nb2xpLCB2b2x1bWUgZSBwZW5kZW56ZSBuZWwgZ2FzIHBlcmZldHRvPC90aXRsZT48ZGVzYyBpZD0iZGVzYyI+UHJlc3Npb25pIGNlbnRvc2Vzc2FudGEgZSBjZW50b3ZlbnRpIGtpbG9wYXNjYWw7IHZvbHVtaSB1bm8gdmlyZ29sYSBvdHRhbnRhIGUgZHVlIHZpcmdvbGEgZGllY2kgbGl0cmk7IGR1ZSByZXR0ZSBwcmVzc2lvbmUtdGVtcGVyYXR1cmEgYSB2b2x1bWkgViBlIGR1ZSBWIGNvbiBwZW5kZW56ZSBuZWwgcmFwcG9ydG8gZHVlLjwvZGVzYz48ZGVmcz48bWFya2VyIGlkPSJhcnJvdyIgbWFya2VyV2lkdGg9IjgiIG1hcmtlckhlaWdodD0iOCIgcmVmWD0iNyIgcmVmWT0iNCIgb3JpZW50PSJhdXRvIj48cGF0aCBkPSJNMCAwTDggNEwwIDhaIiBmaWxsPSIjNzM1MGIwIi8+PC9tYXJrZXI+PC9kZWZzPjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMTUwMCIgZmlsbD0iI2ZhZjdlZSIvPjx0ZXh0IHg9IjMwIiB5PSI0MCIgZm9udC1zaXplPSIyNSIgZmlsbD0iIzMwMmEzZSI+MS4gTGEgZnJhemlvbmUgcmltYXN0YTwvdGV4dD48dGV4dCB4PSIzMCIgeT0iODUiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMzMDJhM2UiPlZvbHVtZSBlIHRlbXBlcmF0dXJhIHVndWFsaSBuZWkgZHVlIHN0YXRpPC90ZXh0PjxwYXRoIGQ9Ik0xNDAgMzUwVjEyME0xNDAgMzUwSDUyMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNzI2ZDgxIiBzdHJva2Utd2lkdGg9IjIiLz48cmVjdCB4PSIxNDAiIHk9IjE2MCIgd2lkdGg9IjMyMCIgaGVpZ2h0PSI0NSIgZmlsbD0iIzczNTBiMCIvPjxyZWN0IHg9IjE0MCIgeT0iMjQ1IiB3aWR0aD0iMjQwIiBoZWlnaHQ9IjQ1IiBmaWxsPSIjMTQ3OTc5Ii8+PHRleHQgeD0iMTUwIiB5PSIxNDUiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMzMDJhM2UiPlByaW1hOiAxNjAga1BhPC90ZXh0Pjx0ZXh0IHg9IjE1MCIgeT0iMjMwIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMzAyYTNlIj5Eb3BvOiAxMjAga1BhPC90ZXh0Pjx0ZXh0IHg9IjExMiIgeT0iMzgwIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMzAyYTNlIj4wPC90ZXh0Pjx0ZXh0IHg9IjI5NSIgeT0iMzgwIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMzAyYTNlIj44MDwvdGV4dD48dGV4dCB4PSI0NDAiIHk9IjM4MCIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzMwMmEzZSI+MTYwPC90ZXh0Pjx0ZXh0IHg9IjQ5MCIgeT0iNDIwIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMzAyYTNlIj5wIChrUGEpPC90ZXh0Pjx0ZXh0IHg9IjQwIiB5PSI0NjAiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMzMDJhM2UiPlJlc3Rhbm8gMy80IGRlbGxlIG1vbGk7IGVzY2UgMS80ID0gMjUlLjwvdGV4dD48dGV4dCB4PSIzMCIgeT0iNTMwIiBmb250LXNpemU9IjI1IiBmaWxsPSIjMzAyYTNlIj4yLiBWb2x1bWUgZSB0ZW1wZXJhdHVyYSBhc3NvbHV0YTwvdGV4dD48dGV4dCB4PSIzMCIgeT0iNTc1IiBmb250LXNpemU9IjIxIiBmaWxsPSIjMzAyYTNlIj5TdGVzc2EgcHJlc3Npb25lIGUgc3Rlc3NhIHF1YW50aXTDoCBkaSBnYXM8L3RleHQ+PHBhdGggZD0iTTE0MCA4NTBWNjAwTTE0MCA4NTBINTIwIiBmaWxsPSJub25lIiBzdHJva2U9IiM3MjZkODEiIHN0cm9rZS13aWR0aD0iMiIvPjxyZWN0IHg9IjE0MCIgeT0iNjQwIiB3aWR0aD0iMjUyIiBoZWlnaHQ9IjQ1IiBmaWxsPSIjNzM1MGIwIi8+PHJlY3QgeD0iMTQwIiB5PSI3NDAiIHdpZHRoPSIyOTQiIGhlaWdodD0iNDUiIGZpbGw9IiMxNDc5NzkiLz48dGV4dCB4PSIxNTAiIHk9IjYyNSIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzMwMmEzZSI+MSw4MCBMIGEgMjcwIEs8L3RleHQ+PHRleHQgeD0iMTUwIiB5PSI3MjUiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMzMDJhM2UiPjIsMTAgTCBhIDMxNSBLPC90ZXh0Pjx0ZXh0IHg9IjExMCIgeT0iODgwIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMzAyYTNlIj4wPC90ZXh0Pjx0ZXh0IHg9IjI2NSIgeT0iODgwIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMzAyYTNlIj4xPC90ZXh0Pjx0ZXh0IHg9IjQwNSIgeT0iODgwIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMzAyYTNlIj4yPC90ZXh0Pjx0ZXh0IHg9IjQ5MCIgeT0iOTIwIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMzAyYTNlIj5WIChMKTwvdGV4dD48dGV4dCB4PSI0MCIgeT0iOTYwIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMzAyYTNlIj5JbCByYXBwb3J0byBkZWkgdm9sdW1pIMOoIDMxNS8yNzAgPSA3LzYuPC90ZXh0Pjx0ZXh0IHg9IjMwIiB5PSIxMDMwIiBmb250LXNpemU9IjI1IiBmaWxsPSIjMzAyYTNlIj4zLiBEdWUgcGVuZGVuemUsIHN0ZXNzZSBtb2xpPC90ZXh0Pjx0ZXh0IHg9IjMwIiB5PSIxMDcwIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMzAyYTNlIj5UKiAmZ3Q7IDA7IHAqID0gblJUKi9WPC90ZXh0PjxwYXRoIGQ9Ik0xNDAgMTQyMFYxMTIwTTE0MCAxNDIwSDUzMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNzI2ZDgxIiBzdHJva2Utd2lkdGg9IjIiLz48cGF0aCBkPSJNMTQwIDE0MjBMNDgwIDExNDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE0Nzk3OSIgc3Ryb2tlLXdpZHRoPSI0Ii8+PHBhdGggZD0iTTE0MCAxNDIwTDQ4MCAxMjgwIiBmaWxsPSJub25lIiBzdHJva2U9IiM3MzUwYjAiIHN0cm9rZS13aWR0aD0iNCIvPjx0ZXh0IHg9IjUwMCIgeT0iMTE1MCIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzMwMmEzZSI+VjwvdGV4dD48dGV4dCB4PSI1MDAiIHk9IjEyOTAiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMzMDJhM2UiPjJWPC90ZXh0Pjx0ZXh0IHg9IjYwIiB5PSIxMTM1IiBmb250LXNpemU9IjIxIiBmaWxsPSIjMzAyYTNlIj5wL3AqPC90ZXh0Pjx0ZXh0IHg9IjExMCIgeT0iMTQ1MCIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzMwMmEzZSI+MDwvdGV4dD48dGV4dCB4PSIzMDIiIHk9IjE0NTAiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMzMDJhM2UiPjE8L3RleHQ+PHRleHQgeD0iNDcwIiB5PSIxNDUwIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMzAyYTNlIj4yPC90ZXh0Pjx0ZXh0IHg9IjUzMCIgeT0iMTQ4MCIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzMwMmEzZSI+VC9UKjwvdGV4dD48L3N2Zz4K"
+    }
+  ]
+}
