@@ -1,0 +1,44 @@
+from pathlib import Path
+import json,hashlib,shutil,subprocess
+A=Path('/private/tmp/cric-author-a-resident/officina-di-fisica');R=Path('/private/tmp/cric-resident-integrator/officina-di-fisica');D=A/'editorial/reviews/native-vector-six-scientific-renewal-927-20261126';V=A/'editorial/reviews/native-vector-six-independent-27503-20261126';sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest();result=json.loads((D/'actual-scientific-target-result.json').read_bytes());assert result['actualExit']==0 and result['testsRun']==10
+for src,dst in [('/private/tmp/cric-six-scientific-refresh-a.txt','actual-fresh-saved-terminal.txt'),('/private/tmp/cric-six-scientific-target-a.txt','actual-scientific-target-terminal.txt'),('/private/tmp/run_six_vector_scientific_refresh_a.py','actual-fresh-saved-instrument.py.txt')]:shutil.copyfile(src,D/dst)
+old=D/'historical-reports';old.mkdir();entries=[]
+for name in ['experiments-foundations-revision-118.json','experiments-vectors-revision-119.json','experiments-force-work-corrected-048.json']:
+ p=R/'editorial/reviews'/name;rel=str(p.relative_to(R));ref=subprocess.check_output(['git','log','-1','--format=%H','--',rel],cwd=R,text=True).strip();raw=subprocess.check_output(['git','show',ref+':officina-di-fisica/'+rel],cwd=R);assert raw==p.read_bytes();(old/name).write_bytes(raw);entries.append({'commit':ref,'path':'officina-di-fisica/'+rel,'snapshot':name,'sha256':hashlib.sha256(raw).hexdigest()})
+(old/'git-inputs.json').write_text(json.dumps({'schemaVersion':'1.0.0','inputs':entries},indent=2)+'\n')
+(D/'README.md').write_text('''# Rinnovo scientifico distinto dei sei apparati sul profilo927
+
+Questo aggregatore nuovo riguarda soltanto SIM-C1-L001-06, SIM-C1-L002-01..04 e SIM-C1-L007-01. Riusa gli oracoli esatti e le note manuali delle precedenti revisioni118/119/048, senza attribuirsi nuovi ID o nuova autoria di quelle derivazioni. Le funzioni sono caricate da snapshot Python fidati e immutabili, vincolati a commit e SHA; non sono decoder di espressioni dello studente. I vecchi verify/report, le loro variabili globali, i pin1a e i report storici restano intatti e continuano a rifiutare il profilo diverso.
+
+Solo APP e il sottoinsieme esplicito SPECS sono legati a nuove funzioni runtime_values/compare_runtime. Ogni report esegue davvero il motore corrente su tutta la griglia dei sei ID e ripete i controlli SymPy/Pint recuperati. Il fingerprint completo prima e dopo deve coincidere con927 e con la nuova UI indipendente di8e6702c5. Il modulo di fingerprint c23 è conservato verbatim: la vecchia copia presente nel worktree autore non viene usata né sovrascritta.
+
+Le due esecuzioni effettive fresh e saved risultano identiche, con6 record effettivi positivi e47 controlli fisici esatti recuperati:37+19+9+9+37+37 punti del motore. La lettura manuale delle sei leggi e delle due DRAFT è stata ripetuta nella peer visuale. Il nuovo giudizio è legato al suo handoff immutabile, ai264 casi UI realmente terminati0, alle612 parti complete e alle6660 proiezioni. Non basta cambiare un hash di runtime.
+
+Le edizioni sorgente di L001-06 e L002-04 mantengono il loro rilievo manuale: il consumatore originale assegna ancora95°, per cui serve un valore trigonometrico numerico non notevole senza una procedura manuale fornita. La nuova esecuzione numerica originale è corretta ma NON cancella il rilievo. Per questi due ID il giudizio effettivo positivo riguarda le DRAFT2 realmente lette, che assegnano90°/180°. Firme, asset, versioni e source binding vengono verificati col boundary esistente; nessun nuovo decoder o contratto è introdotto. L002-03 conserva invece la propria versione sorgente2.
+
+## Richiami manuali individuali
+
+L001-06: il modulo della velocità resta4m/s; la proiezione orizzontale è4cosθ. I due conti effettivi90°/180° danno0 e−4m/s. La proiezione nulla non determina il modulo tramite0/0.
+
+L002-01: l’altezza dell’asta è10sinθ cm. I riferimenti30°/90° danno5/10cm; il trasferimento45° dà5√2cm. La breve procedura con quadrati che certifica7,07cm è una giustificazione del revisore, non un’istruzione falsamente attribuita al testo originale.
+
+L002-02: lo spostamento è il modulo del vettore di componenti3 e y metri: √(9+y²). Il trasferimento y=5 dà√34m;5,83²<34<5,84² certifica una risposta manuale entro la tolleranza già esistente, senza cambiare l’oracolo.
+
+L002-03: la somma con segno è3+b metri. Per b=−4, lo spostamento è−1m e la distanza percorsa7m; i piccoli sfalsamenti grafici non sono ulteriori componenti fisiche.
+
+L002-04: i vettori di moduli3 e2m danno prodotto scalare6cosθ m² e normale6sinθ m². Il secondo usa una scala di area distinta dalle frecce in metri. Le DRAFT assegnano90°/180°; la sorgente originale a95° resta separata e negativa per manualità.
+
+L007-01: il lavoro della specifica forza vale(4N)(3m)cosθ. A120° è esattamente−6J, non necessariamente il lavoro totale sul corpo. Il replay mantiene la rappresentazione binaria del motore distinta dal valore matematico esatto.
+
+Il target esplicito ha concluso10 test reali con exit0, fra cui6 perturbazioni numeriche,3 guasti costitutivi,2 selezioni DRAFT errate con binding/firma rinnovati e18 letture non finite o non numeriche respinte. Il caso con exit1 è rifiutato anche rinnovando il pin del manifest. La funzione di confronto fisico rifiuta i nuovi punti assegnati errati dopo che il boundary di identità li ha accettati con token di test: il giudizio non deriva dalla sola firma.
+
+Questi test si invocano esplicitamente con un’app927 effettiva. Non si sostituisce con un falso PASS l’esecuzione sul Root ancora1a. Nessun browser nuovo, DB, importatore, registry, ledger, produzione o pin storico modificato da questo rinnovo. UI e mesh sono le nuove prove già effettivamente acquisite, non copie di vecchi esiti. Human NOT_RUN, pubblicazione NONE e credito attività0; Root decide le chiusure individuali.
+''')
+# Normalize prose spacing; mathematical source snapshots and reports stay verbatim.
+p=D/'README.md';s=p.read_text()
+for a,b in {'profilo927':'profilo 927','revisioni118/119/048':'revisioni 118/119/048','pin1a':'pin 1a','con927':'con 927','di8e6702c5':'di 8e6702c5','con6':'con 6','e47':'e 47','ai264':'ai 264','terminati0':'terminati 0','alle612':'alle 612','alle6660':'alle 6660','ancora95°':'ancora 95°','DRAFT2':'DRAFT 2','assegnano90°':'assegnano 90°','sorgente2':'sorgente 2','resta4m/s':'resta 4 m/s','è4cosθ':'è 4 cosθ','effettivi90°/180°':'effettivi 90°/180°','danno0 e−4m/s':'danno 0 e −4 m/s','tramite0/0':'tramite 0/0','è10sinθ':'è 10 sinθ','riferimenti30°/90°':'riferimenti 30°/90°','danno5/10cm':'danno 5/10 cm','trasferimento45°':'trasferimento 45°','dà5√2cm':'dà 5√2 cm','certifica7,07cm':'certifica 7,07 cm','componenti3':'componenti 3','dà√34m;5,83²':'dà √34 m; 5,83²','è3+b':'è 3+b','è−1m':'è −1 m','percorsa7m':'percorsa 7 m','moduli3 e2m':'moduli 3 e 2 m','scalare6cosθ':'scalare 6 cosθ','normale6sinθ':'normale 6 sinθ','a95°':'a 95°','vale(4N)(3m)cosθ':'vale (4 N)(3 m)cosθ','A120°':'A 120°','esattamente−6J':'esattamente −6 J','concluso10':'concluso 10','exit0':'exit 0','cui6':'cui 6',',3 guasti':', 3 guasti',',2 selezioni':', 2 selezioni','e18':'e 18','exit1':'exit 1','app927':'app 927','ancora1a':'ancora 1a','attività0':'attività 0'}.items():s=s.replace(a,b)
+p.write_text(s.rstrip()+'\n')
+shutil.copyfile(__file__,D/'freeze-scientific-refresh.py')
+report=json.loads((D/'current-six-scientific-report.json').read_bytes());assert report['acceptedEffectiveIndividualCount']==6;visual=json.loads((V/'handoff.json').read_bytes());files={str(p.relative_to(A)):sha(p)for p in sorted(D.rglob('*'))if p.is_file()and '__pycache__'not in p.parts and p.name!='handoff.json'};files['tools/corpus_engineering/c1_six_vector_renewal_927_verifier.py']=sha(A/'tools/corpus_engineering/c1_six_vector_renewal_927_verifier.py');files.update(visual['files']);files[str((V/'handoff.json').relative_to(A))]=sha(V/'handoff.json')
+h={'schemaVersion':'1.0.0','role':'DISTINCT_REVIEWER_A_FRESH_SIX_SCIENTIFIC_RENEWAL','runtimeSha256':report['runtimeSha256'] if 'runtimeSha256'in report else report['runtimeSha256'],'explicitVerifierModule':'c1_six_vector_renewal_927_verifier','recordIds':[r['id']for r in report['records']],'effectiveOkCount':6,'originalManualityFailuresRetained':report['originalManualityFailuresRetained'],'freshSavedIdentical':True,'actualTests':result,'currentReport':str((D/'current-six-scientific-report.json').relative_to(A)),'currentReportSha256':sha(D/'current-six-scientific-report.json'),'visualPeerCommit':'8e6702c56d0563ae643017bc4ed378ac77fe86cc','visualPeerHandoffSha256':sha(V/'handoff.json'),'historicalReportsAndGatesUnchanged':True,'humanApproval':'NOT_RUN','publicationAction':'NONE','activityCredit':0,'registryOrLedgerAction':'NONE','files':files}
+(D/'handoff.json').write_text(json.dumps(h,ensure_ascii=False,indent=2)+'\n');print('SCI_HANDOFF',sha(D/'handoff.json'),'files',len(files))

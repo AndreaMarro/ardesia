@@ -1,0 +1,8 @@
+from pathlib import Path
+import os,sys,json,hashlib
+A=Path('/private/tmp/cric-author-a-resident/officina-di-fisica');T=Path('/private/tmp/cric-vector-six-independent-a-927-app');sys.path.insert(0,str(A));os.environ['ASTRA_EXTENSIONS']=str(T/'extensions')
+from tools.corpus_engineering import c1_six_vector_renewal_927_verifier as v
+sources={r['id']:r for r in json.loads((T/'content/esperienze-C1.json').read_bytes())};first=v.report(sources,app=T);D=A/'editorial/reviews/native-vector-six-scientific-renewal-927-20261126';(D/'first-fresh-report.json').write_text(json.dumps(first,ensure_ascii=False,indent=2)+'\n');assert first['acceptedEffectiveIndividualCount']==6,[(r['id'],r['errors'])for r in first['records']]
+second=v.report(sources,app=T);assert first==second
+for r in second['records']:assert r['ok'];print(r['id'],'FRESH_SAVED_OK',len(r['checks']),r['runtimeComparison']['caseCount'])
+(D/'current-six-scientific-report.json').write_text(json.dumps(second,ensure_ascii=False,indent=2)+'\n');(D/'fresh-saved-receipt.json').write_text(json.dumps({'schemaVersion':'1.0.0','actualExit':0,'currentRuntime':v.RUNTIME,'freshSavedCanonicalIdentical':True,'effectiveRecords':6,'originalManualityFailuresRetained':second['originalManualityFailuresRetained'],'reportSha256':hashlib.sha256((D/'current-six-scientific-report.json').read_bytes()).hexdigest(),'humanApproval':'NOT_RUN','publicationAction':'NONE','activityCredit':0},indent=2)+'\n')
