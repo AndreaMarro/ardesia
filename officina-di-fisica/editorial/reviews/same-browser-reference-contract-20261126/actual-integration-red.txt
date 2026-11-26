@@ -1,0 +1,44 @@
+test_complete_immutable_baseline_is_reconstructed_outside_candidate_and_checked (test_browser_baseline_reference.BrowserBaselineReference.test_complete_immutable_baseline_is_reconstructed_outside_candidate_and_checked) ... ERROR
+test_external_engine_record_rejected_before_browser_construction (test_browser_baseline_reference.BrowserBaselineReference.test_external_engine_record_rejected_before_browser_construction) ... ERROR
+test_node_strict_parity_rejects_one_ulp_nonfinite_cache_reuse_and_different_input (test_browser_baseline_reference.BrowserBaselineReference.test_node_strict_parity_rejects_one_ulp_nonfinite_cache_reuse_and_different_input) ... ok
+test_rebound_manifest_even_with_fresh_digest_cannot_replace_immutable_git_source (test_browser_baseline_reference.BrowserBaselineReference.test_rebound_manifest_even_with_fresh_digest_cannot_replace_immutable_git_source) ... ERROR
+
+======================================================================
+ERROR: test_complete_immutable_baseline_is_reconstructed_outside_candidate_and_checked (test_browser_baseline_reference.BrowserBaselineReference.test_complete_immutable_baseline_is_reconstructed_outside_candidate_and_checked)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-resident-integrator/officina-di-fisica/tests/corpus/test_browser_baseline_reference.py", line 18, in test_complete_immutable_baseline_is_reconstructed_outside_candidate_and_checked
+    root=Path(tmp).resolve();(root/'candidate-app').mkdir();ref=self.reference()
+                                                                ~~~~~~~~~~~~~~^^
+  File "/private/tmp/cric-resident-integrator/officina-di-fisica/tests/corpus/test_browser_baseline_reference.py", line 11, in reference
+    files=v.baseline_manifest()
+          ^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'tools.corpus_engineering.experiment_visibility_request' has no attribute 'baseline_manifest'
+
+======================================================================
+ERROR: test_external_engine_record_rejected_before_browser_construction (test_browser_baseline_reference.BrowserBaselineReference.test_external_engine_record_rejected_before_browser_construction)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-resident-integrator/officina-di-fisica/tests/corpus/test_browser_baseline_reference.py", line 34, in test_external_engine_record_rejected_before_browser_construction
+    root=Path(tmp).resolve();(root/'candidate-app').mkdir();ref=self.reference();bundle=v.prepare_baseline_bundle({'numericalReference':ref},root)
+                                                                ~~~~~~~~~~~~~~^^
+  File "/private/tmp/cric-resident-integrator/officina-di-fisica/tests/corpus/test_browser_baseline_reference.py", line 11, in reference
+    files=v.baseline_manifest()
+          ^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'tools.corpus_engineering.experiment_visibility_request' has no attribute 'baseline_manifest'
+
+======================================================================
+ERROR: test_rebound_manifest_even_with_fresh_digest_cannot_replace_immutable_git_source (test_browser_baseline_reference.BrowserBaselineReference.test_rebound_manifest_even_with_fresh_digest_cannot_replace_immutable_git_source)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-resident-integrator/officina-di-fisica/tests/corpus/test_browser_baseline_reference.py", line 29, in test_rebound_manifest_even_with_fresh_digest_cannot_replace_immutable_git_source
+    ref=self.reference();ref['files'][next(iter(ref['files']))]='0'*64;ref['manifestSha256']=v.digest(ref['files'])
+  File "/private/tmp/cric-resident-integrator/officina-di-fisica/tests/corpus/test_browser_baseline_reference.py", line 11, in reference
+    files=v.baseline_manifest()
+          ^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'tools.corpus_engineering.experiment_visibility_request' has no attribute 'baseline_manifest'
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.099s
+
+FAILED (errors=3)

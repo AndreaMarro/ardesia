@@ -1,0 +1,20 @@
+{
+  "scope": "True baseline preparation/integrity integration RED before Python integration, not a red test for the already authored standalone Node helper",
+  "exitCode": 1,
+  "command": [
+    "/private/tmp/cric-recovery-venv/bin/python",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests/corpus",
+    "-p",
+    "test_browser_baseline_reference.py",
+    "-v"
+  ],
+  "requestModuleSha256": "7a9ffdd0a2b181c48564c1048f19ad2ad6b3a214514b2d2cf447327cbd3861db",
+  "helperAlreadyAuthored": true,
+  "testsSha256": "8cf7d1cfd62f465fc296b60de5a912a32b8303ffaf50e5a1fc439085412c7951",
+  "scientificCredit": 0
+}

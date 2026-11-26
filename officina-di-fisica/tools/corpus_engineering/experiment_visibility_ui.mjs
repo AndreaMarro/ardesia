@@ -45,6 +45,11 @@ const info=JSON.parse(await fs.readFile(process.argv[2])),app=info.candidateApp,
 const preparedBytes=await fs.readFile(info.prepared),plan=JSON.parse(preparedBytes);
 const sha=b=>createHash('sha256').update(b).digest('hex');
 const protocolSha=sha(await fs.readFile(fileURLToPath(import.meta.url)));
+let baseline=null,assertBaselineParity;
+if(plan.numericalReference){
+ const reference=await import('./baseline_browser_reference.mjs');
+ baseline=await reference.loadBaselineReference(plan);assertBaselineParity=reference.assertStrictBaselineParity;
+}
 const data=await fs.mkdtemp(path.join(os.tmpdir(),'cric-visibility-db-'));
 const env={...process.env,ASTRA_DATA:data,ASTRA_HOSTED:'0',ASTRA_HTTPS:'0',ASTRA_EXTENSIONS:path.join(app,'extensions'),ASTRA_PACKAGES:JSON.stringify(plan.packageFiles),ASTRA_INPUT_FILES:JSON.stringify(plan.inputFiles)};
 const fingerprint=()=>JSON.parse(execFileSync('python3',['-B','-m','tools.corpus_engineering.runtime_fingerprint'],{cwd:app,env,encoding:'utf8'}));
@@ -97,7 +102,8 @@ async function save(caseKey,value){
 
 // This source-replay observes the model associated with the actual DOM input.
 // It never claims introspection of private GPU camera/state. Raw PNGs remain.
-async function observe({row,profile,requestedX,requestedTime,auxiliary}){
+async function observe({row,profile,requestedX,requestedTime,auxiliary,numericalReference}){
+ if(numericalReference&&row.engine)throw Error('External engine has no pinned baseline contract');
  const {esperienza}=await import('/js/banchi/voci/esperimento.js');
  const activity=await esperienza(row);
  const T=await import('/vendor/three-r180/three.module.min.js');
@@ -129,10 +135,26 @@ async function observe({row,profile,requestedX,requestedTime,auxiliary}){
   const action=scene.build(b,p,s,1);action?.(time);root.updateMatrixWorld(true);
   elements=commands.filter(e=>{let p=e.parent;while(p){if(!p.visible)return false;p=p.parent;}return true;}).map(e=>{const {parent,...value}=e;return{...value,sourceGroupMatrix:parent.matrixWorld.toArray()};});
  }else elements=activity.elements(x,1,time);
+ let baselineReference;
+ if(numericalReference){
+  const module=await import(numericalReference.namespace+'js/banchi/voci/esperimento.js');
+  if(module.esperienza===esperienza)throw Error('Baseline reused candidate module cache');
+  const original=await module.esperienza(row);
+  let referenceModel=original.model,referenceValue=referenceModel.solve({x});
+  const {piloti:originalPilots}=await import(numericalReference.namespace+'js/banchi/quaderno.js');
+  if(originalPilots[row.id]!==pilot)throw Error('Baseline pilot identity differs');
+  if(pilot==='induzione'){
+   referenceModel=await import(numericalReference.namespace+'js/banchi/modelli/induzione.js');
+   referenceValue=referenceModel.solve(Object.fromEntries(controls.map(c=>[c.name,c.name==='circuit'?c.value:Number(c.value)])));
+  }
+  baselineReference={kind:numericalReference.kind,namespace:numericalReference.namespace,
+   distinctModuleIdentity:module.esperienza!==esperienza,distinctSolveIdentity:referenceModel.solve!==model.solve,
+   observedX:x,actualDOMControls:controls,model:referenceValue};
+ }
  const canvas=document.querySelector('.bench-stage canvas'),svg=document.querySelector('[data-drawing]>svg');
  const rect=(profile.fallback?svg:canvas).getBoundingClientRect(),legend=document.querySelector('[data-legend]');
  const r={requestedX,requestedTime:requestedTime??null,sourceReplayedX:x,sourceReplayedClockTime:time??null,
-  actualDOMControls:controls,model:s,spec,elements,pilot:pilot??null,
+  actualDOMControls:controls,model:s,spec,elements,pilot:pilot??null,...(baselineReference?{baselineReference}:{}),
   stateMeasurementScope:'Exact source replay from observed controls/interaction, not private GPU-state introspection',
   actualRenderer:document.querySelector('[data-display]').textContent,canvas:{width:rect.width,height:rect.height},
   legend:legend.textContent,legendLayout:{visible:legend.getBoundingClientRect().height>0,width:legend.clientWidth,scrollWidth:legend.scrollWidth},
@@ -185,7 +207,7 @@ try{
  await guest.close();report.guestIsolation='ORIGINAL_OR_DENIED_AND_DRAFT_ASSETS_403';let ownerState;
  for(const profile of plan.profiles){
   const context=await browser.newContext({viewport:{width:profile.width,height:1000},reducedMotion:'reduce',bypassCSP:true,...(ownerState?{storageState:ownerState}:{})});
-  await context.route('**/*',r=>r.request().url().startsWith(base+'/')?r.continue():r.abort());
+  await context.route('**/*',async r=>{if(baseline&&await baseline.route(r))return;return r.request().url().startsWith(base+'/')?r.continue():r.abort();});
   if(profile.fallback)await context.addInitScript(()=>{const get=HTMLCanvasElement.prototype.getContext;HTMLCanvasElement.prototype.getContext=function(k,...a){return k.includes('webgl')?null:get.call(this,k,...a);};});
   if(!ownerState){
    assert.ok((await context.request.post(base+'/api/owner',{headers:{'X-Astra-Request':'1'},data:{ticket}})).ok());ownerState=await context.storageState();
@@ -234,22 +256,25 @@ try{
    for(const state of states){
     if(stopping)throw Error('Interrupted; no complete evidence');const caseKey=key(r,profile,state.kind,state.index);
     if(!loaded){await save(caseKey,{...common,technicalOk:false,error:'Setup failed; state not observed',screenshots:[]});continue;}
+    let measured;
     try{
      await page.locator('[name=x]').evaluate((el,value)=>{el.value=String(value);el.dispatchEvent(new Event('input',{bubbles:true}));},state.x);
      if(state.kind==='auxiliary')for(const name of ['middle','circuit'])await page.locator('[name='+name+']').evaluate((el,value)=>{el.value=String(value);el.dispatchEvent(new Event('input',{bubbles:true}));},state[name]);
      if(r.hasClock){const time=state.time??(r.clockInput?state.x:0);await page.locator('[data-instant]').evaluate((el,value)=>{el.value=String(value);el.dispatchEvent(new Event('change',{bubbles:true}));},time);}
      await page.locator('.bench-stage').scrollIntoViewIfNeeded();await page.evaluate(()=>new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve))));
-     const measured=await page.evaluate(observe,{row:r.record,profile,requestedX:state.x,requestedTime:state.time,auxiliary:state.kind==='auxiliary'});
+     measured=await page.evaluate(observe,{row:r.record,profile,requestedX:state.x,requestedTime:state.time,auxiliary:state.kind==='auxiliary',numericalReference:baseline?{namespace:baseline.namespace,kind:baseline.kind}:null});
      assertObservedControls(measured,state,r);
      assert.equal(measured.actualRenderer,profile.fallback?'Tavola di misura':'3D interattivo');assert.ok(measured.legendLayout.visible&&measured.legendLayout.scrollWidth<=measured.legendLayout.width+1);
-     if(state.kind==='grid')assert.ok(measured.model.y===r.expectedValues[state.index],'Frozen independently reviewed numerical state drifted');
+     if(baseline)assertBaselineParity(measured);
+     else if(state.kind==='grid')assert.ok(measured.model.y===r.expectedValues[state.index],'Frozen independently reviewed numerical state drifted');
      const screenshot=await image(await page.locator('.bench-stage').screenshot());await save(caseKey,{...common,technicalOk:true,interaction:state,...measured,screenshots:[screenshot]});
-    }catch(error){await save(caseKey,{...common,technicalOk:false,interaction:state,error:String(error),screenshots:[]});}
+    }catch(error){await save(caseKey,{...common,technicalOk:false,interaction:state,error:String(error),...(measured?{...measured,frozenLegacyExpectedY:r.expectedValues[state.index]??null}:{}),screenshots:measured?[await image(await page.locator('.bench-stage').screenshot())]:[]});}
    }
    if(r.variant==='draft')await page.unroute('**/api/item/'+r.id);
   }
   await context.close();
  }
+ if(baseline)report.baselineReference=await baseline.evidence();
  assert.deepEqual(fingerprint(),plan.runtimeFingerprint);assert.deepEqual(report.errors,[]);
  assert.equal(report.cases.length,plan.expectedCaseKeys.length);assert.equal(new Set(report.cases.map(c=>c.caseKey)).size,report.cases.length);
  assert.ok(report.cases.every(c=>c.technicalOk),'A requested state was not observed or failed checks');

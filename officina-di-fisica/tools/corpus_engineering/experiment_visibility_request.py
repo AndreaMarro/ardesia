@@ -9,6 +9,7 @@ import argparse
 import fcntl
 import hashlib
 import json
+import math
 import os
 import signal
 import shutil
@@ -29,6 +30,8 @@ PROTOCOLS={'.github/workflows/cric-experiment-visibility.yml',
            '.github/schemas/cric-experiment-visibility-request-v1.schema.json',
            'officina-di-fisica/tools/corpus_engineering/experiment_visibility_request.py',
            'officina-di-fisica/tools/corpus_engineering/experiment_visibility_ui.mjs'}
+BASELINE_HELPER='officina-di-fisica/tools/corpus_engineering/baseline_browser_reference.mjs'
+REFERENCE_KIND='IMMUTABLE_BASELINE_SAME_BROWSER_SAME_INPUT_V1'
 
 
 def sha(raw):return hashlib.sha256(raw).hexdigest()
@@ -55,7 +58,12 @@ def git_bytes(ref,name):
 def validate(request_file):
     raw=Path(request_file).read_bytes();r=json.loads(raw)
     Draft202012Validator(load(SCHEMA)).validate(r)
-    if set(r['protocolFiles'])!=PROTOCOLS:raise ValueError('Exact four protocol dependencies required')
+    expected_protocols=PROTOCOLS|({BASELINE_HELPER}if r.get('numericalReference')else set())
+    if set(r['protocolFiles'])!=expected_protocols:raise ValueError('Exact four protocol dependencies and any declared baseline helper required')
+    if r.get('numericalReference'):
+        ref=r['numericalReference']
+        if digest(ref['files'])!=ref['manifestSha256']:raise ValueError('Baseline manifest rebound')
+        if sha((APP/'node_modules/typescript/lib/typescript.js').read_bytes())!=ref['typescriptSha256']:raise ValueError('Baseline import parser changed')
     required={r['inventoryPath'],r['manualPrimaryPath'],*r['installedEvidencePaths']}
     if not required<=set(r['frozenFiles']):raise ValueError('Unpinned primary input')
     for path,pin in r['protocolFiles'].items():
@@ -65,6 +73,56 @@ def validate(request_file):
     if set(r['draftPackages'])!=set(PACKAGES):raise ValueError('Exactly the two reviewed packages are required')
     if r['sourceRef']!=ORIGINAL or r['baselineRuntimeRef']!=BASELINE:raise ValueError('Unknown baseline epoch')
     return r,sha(raw)
+
+
+def baseline_manifest():
+    """Every original static JS byte, read only from the immutable baseline."""
+    prefix='officina-di-fisica/static/'
+    entries=subprocess.check_output(['git','ls-tree','-r','-z',BASELINE,'--',prefix],cwd=REPO).split(b'\0')
+    files={}
+    for entry in entries:
+        if not entry:continue
+        meta,name=entry.split(b'\t',1);name=name.decode()
+        if not name.endswith('.js'):continue
+        mode,kind,_=meta.split()
+        if kind!=b'blob'or mode not in(b'100644',b'100755'):raise ValueError('Unsafe baseline module')
+        files[name]=sha(git_bytes(BASELINE,name))
+    if not files or len(files)>200:raise ValueError('Unbounded baseline module set')
+    return files
+
+
+def prepare_baseline_bundle(request,root):
+    ref=request.get('numericalReference')
+    if ref is None:return None
+    if ref['kind']!=REFERENCE_KIND or ref['baselineRuntimeRef']!=BASELINE or ref['files']!=baseline_manifest()or digest(ref['files'])!=ref['manifestSha256']:
+        raise ValueError('Immutable baseline manifest differs from Git source')
+    target=Path(root)/'baseline-static';target.mkdir()
+    for name,pin in ref['files'].items():
+        raw=git_bytes(BASELINE,name)
+        if sha(raw)!=pin:raise ValueError('Immutable baseline bytes changed')
+        p=safe(target,name.removeprefix('officina-di-fisica/static/'));p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(raw)
+    return target
+
+
+def verify_baseline_bundle(info,prepared,request):
+    """The baseline stays outside the candidate and cannot acquire authority."""
+    ref=request.get('numericalReference')
+    if ref is None:
+        if 'numericalReference'in prepared or'baselineBundleRoot'in prepared:raise ValueError('Undeclared baseline reference')
+        return None
+    if prepared.get('numericalReference')!=ref:raise ValueError('Baseline reference rebound after prepare')
+    if ref['kind']!=REFERENCE_KIND or ref['baselineRuntimeRef']!=BASELINE or ref['files']!=baseline_manifest()or digest(ref['files'])!=ref['manifestSha256']:
+        raise ValueError('Immutable baseline reference differs')
+    if any(row['record'].get('engine')for row in prepared['records']):raise ValueError('External engine requires a separate pinned reference contract')
+    expected=Path(info['candidateApp']).resolve().parent/'baseline-static';root=Path(prepared['baselineBundleRoot'])
+    if root!=expected or root.is_symlink()or root.resolve()!=expected:raise ValueError('Baseline directory escaped its workspace')
+    files={}
+    for name,pin in ref['files'].items():
+        p=safe(root,name.removeprefix('officina-di-fisica/static/'))
+        if p.is_symlink()or p.resolve()!=p or not p.is_file()or sha(p.read_bytes())!=pin:raise ValueError('Baseline bytes drifted: '+name)
+        files[str(p)]=pin
+    if set(root.rglob('*.js'))!={Path(p)for p in files}or any(p.is_file()and str(p)not in files for p in root.rglob('*')):raise ValueError('Unexpected baseline input file')
+    return {'kind':REFERENCE_KIND,'baselineRuntimeRef':BASELINE,'manifestSha256':ref['manifestSha256'],'files':files,'scientificAuthority':'NONE_TECHNICAL_REGRESSION_PARITY_ONLY'}
 
 
 def grader_block(raw):
@@ -91,6 +149,7 @@ def prepare(request_file,course,workspace):
     if target.exists():raise ValueError('Fresh runtime directory required')
     target.mkdir()
     candidate=r['candidateRef']
+    baseline_bundle=prepare_baseline_bundle(r,root)
     for path,pin in r['modelFiles'].items():
         if sha(git_bytes(candidate,path))!=pin:raise ValueError('Model drift: '+path)
     sources=[];source_file_pins={}
@@ -196,6 +255,8 @@ def prepare(request_file,course,workspace):
               'requestFile':str(Path(request_file).resolve()),'inputFiles':input_files,'draftRecords':list(drafts.values()),
               'profiles':[{'width':w,'fallback':f,'view':v}for w in (320,1280)for f,v in ((False,'orbit'),(False,'side'),(False,'top'),(True,'fixed_projection'))],
               'activityCredit':0,'humanApproval':'NOT_RUN','publicationAction':'NONE'}
+    if baseline_bundle is not None:
+        prepared['numericalReference']=r['numericalReference'];prepared['baselineBundleRoot']=str(baseline_bundle)
     prepared['expectedOriginalGridInputs']=sum(len(x['grid'])for x in selected if x['variant']=='published')
     prepared['expectedDraftGridInputs']=sum(len(x['grid'])for x in selected if x['variant']=='draft')
     prepared['expectedClockInteractions']=sum(len(x['clockCases'])for x in selected)
@@ -234,6 +295,17 @@ def verify_report(out,prepared,protocol_sha):
                        'runtimeFingerprint':prepared['runtimeFingerprint'],'protocolSha256':protocol_sha,
                        'activityCredit':0,'humanApproval':'NOT_RUN','publicationAction':'NONE'}.items():
         if report.get(name)!=value:raise ValueError('Report provenance differs: '+name)
+    reference=prepared.get('numericalReference')
+    namespace=None
+    if reference:
+        evidence=report.get('baselineReference',{})
+        namespace='/__cric_baseline/'+BASELINE+'/'+reference['manifestSha256']+'/'
+        expected={'kind':REFERENCE_KIND,'baselineRuntimeRef':BASELINE,'manifestSha256':reference['manifestSha256'],'namespace':namespace,
+                  'allManifestBytesCheckedBeforeAndAfter':True,'scientificAuthority':'NONE_TECHNICAL_REGRESSION_PARITY_ONLY','activityCredit':0}
+        if any(evidence.get(k)!=v for k,v in expected.items()):raise ValueError('Baseline report provenance differs')
+        served=evidence.get('servedFiles',{})
+        required={'js/banchi/voci/esperimento.js','js/banchi/quaderno.js'}
+        if not required<=set(served)or any(reference['files'].get('officina-di-fisica/static/'+p)!=pin for p,pin in served.items()):raise ValueError('Baseline served module identity differs')
     cases=report['cases'];expected=prepared['expectedCaseKeys']
     if len(cases)!=len(expected)or len({c['caseKey']for c in cases})!=len(cases)or {c['caseKey']for c in cases}!=set(expected):raise ValueError('Missing/duplicate UI cases')
     for item in cases:
@@ -244,6 +316,13 @@ def verify_report(out,prepared,protocol_sha):
                          'requestSha256':prepared['requestSha256'],'runtimeSha256':prepared['runtimeFingerprint']['sha256'],
                          'protocolSha256':protocol_sha,'scientificApproval':False,'activityCredit':0,'humanApproval':'NOT_RUN','publicationAction':'NONE'}
         if any(case.get(k)!=v for k,v in expected_fields.items()):raise ValueError('Case not observed or provenance/approval differs')
+        if reference and case.get('interaction'):
+            b=case.get('baselineReference',{})
+            if(b.get('kind')!=REFERENCE_KIND or b.get('namespace')!=namespace or b.get('distinctModuleIdentity')is not True or b.get('distinctSolveIdentity')is not True
+               or b.get('observedX')!=case.get('sourceReplayedX')or b.get('actualDOMControls')!=case.get('actualDOMControls')
+               or canonical(b.get('model'))!=canonical(case.get('model'))):raise ValueError('Strict baseline case parity differs')
+            values=[case.get('model',{}).get('y'),b.get('model',{}).get('y'),case.get('sourceReplayedX')]
+            if any(type(v)not in(int,float)or not math.isfinite(v)for v in values):raise ValueError('Nonfinite baseline case')
         if not case.get('screenshots'):raise ValueError('Observed UI case has no actual PNG')
         for image in case['screenshots']:
             if sha(safe(out,image['file']).read_bytes())!=image['sha256']:raise ValueError('PNG bytes drift')
@@ -256,6 +335,7 @@ def verify_prepared_inputs(info,prepared):
     request,request_sha=validate(prepared['requestFile'])
     if request_sha!=prepared['requestSha256']or request['candidateRef']!=prepared['sourceCommit']or request['runtimeSha256']!=prepared['runtimeFingerprint']['sha256']:
         raise ValueError('Prepared request/epoch rebound')
+    baseline=verify_baseline_bundle(info,prepared,request)
     app=Path(info['candidateApp']).resolve();directory=app/'editorial/batches'
     expected={}
     packages=[]
@@ -284,7 +364,9 @@ def verify_prepared_inputs(info,prepared):
         if item['variant']=='draft'and(digest(item['record'])!=digest(rows.get(item['id']))or item['candidateSha256']!=digest(rows[item['id']])):
             raise ValueError('Cohort candidate rebound')
     normalized={key:{**{k:v for k,v in row.items()if k not in('baseVersion','review')},'version':2,'review':'bozza'}for key,row in rows.items()}
-    return {'files':expected,'normalizedOwnerRecords':normalized,'activityCredit':0}
+    result={'files':expected,'normalizedOwnerRecords':normalized,'activityCredit':0}
+    if baseline is not None:result['baselineReference']=baseline
+    return result
 
 
 def run_prepared(prepared_file):

@@ -228,6 +228,51 @@
     },
     "publicationAction": {
       "const": "NONE"
+    },
+    "numericalReference": {
+      "type": "object",
+      "required": [
+        "kind",
+        "baselineRuntimeRef",
+        "files",
+        "manifestSha256",
+        "typescriptSha256",
+        "scientificAuthority"
+      ],
+      "properties": {
+        "kind": {
+          "const": "IMMUTABLE_BASELINE_SAME_BROWSER_SAME_INPUT_V1"
+        },
+        "baselineRuntimeRef": {
+          "const": "eb51d0e9bdc3f992e9ae0ae76810098376e2ab79"
+        },
+        "files": {
+          "type": "object",
+          "minProperties": 1,
+          "maxProperties": 200,
+          "propertyNames": {
+            "type": "string",
+            "pattern": "^officina-di-fisica/static/[A-Za-z0-9_./-]+\\.js$",
+            "maxLength": 300
+          },
+          "additionalProperties": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          }
+        },
+        "manifestSha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "typescriptSha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "scientificAuthority": {
+          "const": "NONE_TECHNICAL_REGRESSION_PARITY_ONLY"
+        }
+      },
+      "additionalProperties": false
     }
   },
   "additionalProperties": false

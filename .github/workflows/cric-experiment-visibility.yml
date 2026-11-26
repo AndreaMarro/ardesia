@@ -84,8 +84,7 @@ jobs:
             officina-di-fisica/content/esperienze-C4.json officina-di-fisica/content/esperienze-C5.json \
             officina-di-fisica/content/esperienze-C6.json > /dev/null
           git archive "$CRIC_BASELINE" -- \
-            officina-di-fisica/static/js/banchi/banco.js \
-            officina-di-fisica/static/js/banchi/voci/orologi.js > /dev/null
+            officina-di-fisica/static > /dev/null
       - name: Reconstruct source-pinned temporary runtime and complete cohort plan
         run: |
           python3 officina-di-fisica/tools/corpus_engineering/experiment_visibility_request.py prepare --request .github/cric-experiment-visibility-request.json --course "$CRIC_COURSE" --workspace "$RUNNER_TEMP/experiment-$CRIC_COURSE" > "$RUNNER_TEMP/visibility-prepared-$CRIC_COURSE.json"
