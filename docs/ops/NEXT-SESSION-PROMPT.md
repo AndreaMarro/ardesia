@@ -1,4 +1,24 @@
-## Stato corrente — 4.300 quesiti verificati, 306 residui; 232 attività accettate, 153 residue
+# Cric — ripresa operativa
+
+## Stato verificato del 27 novembre — mandato incompleto
+
+Il registro contiene **4.500/4.606 quesiti DRAFT verificati**, pari al 97,7% del corpus sorgente. Restano i **106 quesiti C6**. Il primo ID mancante è `C6-AQ01`. Il registro delle attività conta **232/385 accettazioni** e **153 aperte**, con 14 riaperture esplicite. Le 385 attività restano soggette alla rivalidazione sul runtime finale. Il precedente checkpoint compilato 3.632/246 resta uno snapshot storico.
+
+Tutti i 100 quesiti C5 sono stati verificati da un agente distinto dall’autore e riprodotti dall’integratore. I primi 50 sono nel commit `4c735a75efbbf3ebfaa0a0c1113db783689fa8e7` con 17 test e cinque importazioni. Gli ultimi 50 sono in `0df4235db60c288c8014a7ab6ad487bc616182bf` con 19 test e cinque importazioni. Ogni import ha salvato dieci bozze e ne ha lasciate invariate dieci alla ripetizione. I 991 contenuti pubblicati e i payload storici sono risultati identici. Il registro e gli ID mancanti sono stati riconciliati. L’UI sull’intero registro corrente resta da riprodurre.
+
+C6 in lavorazione. Il lotto `cric-c6-integrative` comprende 13 quesiti, inclusa la provenienza separata di `C6-AQ01`, e ha consegna autore `49b0a0c587dd9cc139e8ffff7d895650b4108695`. Il lotto `cric-c6-protected-exam-01` comprende 31 quesiti e ha consegna autore `fbafd79f0aef315af762d0abf7316ff0d78d1d7d`. L’accettazione di entrambi attende verifica distinta e riproduzione nell’integratore. I due lotti di esame rimanenti contano 31 quesiti ciascuno. Il requisito di una terza famiglia per le competenze da `C6-L02` a `C6-L06` resta aperto.
+
+Il protocollo V2 per la parità numerica è pubblicato in `da6c179fc382865e26a33e3fc6d410350c4c2509`. Il confronto usa due contesti con origini distinte nello stesso Chrome. La controprova ha mantenuto la baseline a 3,441458618106277 e ha respinto la variazione del candidato a 3,4414586181062776. Sono passati 11 casi UI mirati con bozza, orologio e controlli ausiliari, quattro test di integrità V2 e quindici test sui report storici V1 e legacy. La review tecnica distinta V2 è in corso. La campagna completa delle 139 attività attende il runtime definitivo. Le prove precedenti e i 744 fallimenti originali restano disponibili.
+
+L’audit lettori sul runtime `748b31de…` ha misurato 358 casi su 179 attività. Tutti i 179 casi a 1.280 px sono passati. A 320 px, 135 casi hanno rilevato scorrimento interno delle formule e 132 hanno segnalato anche un problema di accessibilità da tastiera. I 28 casi delle 14 bozze sono passati. Il manifesto indipendente è nel commit `634096804360f9b4bf37efd295af643a502d1398`, con SHA-256 `23d76bd51d5c7edf60548598efca3fd5f52aa0cd33fa4c837199c4e975ccc4ed`. L’autore ha riprodotto tutti i 213 blocchi formula coinvolti in un test isolato e ottenuto zero fuori misura con interruzioni visive e MathML identico. Il candidato `5bd3d016842e4ebcf4dba965c25b5252bd2cc36c`, runtime `34d3de9ee5f452bf469b007c8e6f9686ebcc103af647bfe1ac4873d975e0cb67`, attende verifica del lettore reale e review distinta. I risultati dello specifico test non conferiscono credito alle attività.
+
+Il branch canonico remoto è `officina-di-fisica` a `7c29ccc18ad3b42ceecfca509ef57f786bd2c496`. La nuova CI finale e la nuova integrazione canonica restano da eseguire. Approvazioni umane e nuove pubblicazioni nell’app sono entrambe zero. I 93 quesiti d’esame restano protetti nell’app. Le 100 revisioni Pro non sono state identificate. I 199 controlli tecnici recuperati conservano il loro stato separato.
+
+Per riprendere, verificare il registro e i manifesti per ID, partire da `C6-AQ01` dopo la verifica distinta, completare la correzione e il collaudo di tutti i lettori sul runtime effettivo, poi eseguire la campagna interattiva e rinnovare il checkpoint. Il passaggio al canone richiede la PR ordinaria e la CI sulla SHA integrata. Il prossimo handoff deve riportare gli esiti effettivi e ogni residuo.
+
+### Snapshot precedenti
+
+## Stato storico — 4.300 quesiti verificati, 306 residui; 232 attività accettate, 153 residue
 
 ## Stato verificato del 27 novembre — 4.400 quesiti accettati, 206 residui; mandato incompleto
 
