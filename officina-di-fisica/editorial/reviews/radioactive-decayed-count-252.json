@@ -1,0 +1,505 @@
+{
+  "schemaVersion": "1.0.0",
+  "lessonReference": {
+    "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "gitPath": "officina-di-fisica/content/C5.json",
+    "sourceSha256": "dac4490e6a900f5da191bf7a1f5b8463ddc57c8bbaa36cb7a4a375c70fa77422",
+    "primarySkill": "C5-L08",
+    "actualLessonPrerequisites": {
+      "C5-L08": []
+    },
+    "title": "Una popolazione di nuclei che cambia nel tempo"
+  },
+  "records": [
+    {
+      "id": "AR-u7-radioactive-decayed-count-01",
+      "sourceSha256": "fb1a1f9fa106fe3ef6753fcb4c197be57d9e7805ef290c40802be717fd67b82f",
+      "candidateSha256": "d5d7f60be5b6bee9afc029a4aee4964f185d95b7ab95d5d0b5f65a0e520b576d",
+      "reviewedSignature": "ec0dfede164b0fed2f940b80b5e9eddfe1c1da8dec4cb6fe0f1dd4eec2daebc1",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "radioactive-decayed-count-progressive.svg": "7dcb356ca10cec616a8107112c02d522cbc87e72d15e6dd4f0695c4bb5858842"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "32",
+      "dimension": {},
+      "manualArithmetic": "Conservo i genitori originari: N_dec=N₀−N=N₀(1−2^(−t/T½)). Dopo 1 h resta metà di 64, quindi sono decaduti 32 milioni; non aggiungo le trasformazioni dei figli.",
+      "physicalAssumptions": "Unico genitore chiuso con emivita 1 h, nessuna produzione, soli genitori originari e nessun contributo dei figli. Cumulativo medio strettamente fra zero e inizio a tempo positivo finito. Il caso 16 ricostruisce anche N₀; non si interpreta il cumulativo come attività.",
+      "distractors": "64 conta anche i sopravvissuti, 16 non è il cumulativo a un’ora e zero ignora le trasformazioni. Residuo e cumulativo coincidono soltanto al dato di un’emivita.",
+      "pedagogicalReview": "Legge motivata e valore medio distinto da singolo esito.",
+      "assetReview": "XML e PNG indipendente 640×1600 letti per intero. Primo pannello a scala5 per milione, segmenti160+160 e80+240, entrambi totali64. Curva origine(150,1000),110 coordinate/h e5 per milione: c=64(1−2^(−t/h)), punti32/48/56 a y840/760/720. Terzo pannello a scala20 per milione: residui4/2 e cumulativi12/14, somme320 uguali per16. Nessuna sovrapposizione residua.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-radioactive-decayed-count-02",
+      "sourceSha256": "2c094098005267d9e7d50f5d9b7f991e3a288879723aa612d30a302bb1777888",
+      "candidateSha256": "2a0c954f10b5104421362baa752be3c0ca466bd98c6591bdc735ca39dc67b5fb",
+      "reviewedSignature": "e2faabaebfeb9eed2d759b038435ae3542f51c4eb2e2a91411d2267ffbd67d75",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "nuclei, conteggio adimensionale",
+      "dimension": {},
+      "manualArithmetic": "È un conteggio cumulativo di genitori trasformati, quindi numero puro etichettato nuclei, eventualmente 10⁶ nuclei. Bq è invece un tasso e non il cumulativo.",
+      "physicalAssumptions": "Unico genitore chiuso con emivita 1 h, nessuna produzione, soli genitori originari e nessun contributo dei figli. Cumulativo medio strettamente fra zero e inizio a tempo positivo finito. Il caso 16 ricostruisce anche N₀; non si interpreta il cumulativo come attività.",
+      "distractors": "Bq e nuclei/s sono tassi; s è tempo e J energia. Il cumulativo conta eventi senza dividerli per una durata.",
+      "pedagogicalReview": "Unità ricostruita e conteggio distinto dal tasso.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-radioactive-decayed-count-03",
+      "sourceSha256": "379ea4eb9eb75d2d49148a7718a4a354fd682891df82c273a4b3d2c379f982f1",
+      "candidateSha256": "39079f0b58752dfc2a859780eca62713d0af91a780660535322101e7c6e2e0ed",
+      "reviewedSignature": "95f17cf147229e51becfa0410a4f26579b1d5d60fd87d63b9e173e9c95b5112d",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "c = n₀ (1 − 2^(−u))",
+      "dimension": {},
+      "manualArithmetic": "La popolazione residua èN₀ 2^(−t/T½). La sottraggo dalla popolazione iniziale: N_dec=N₀[1−2^(−t/T½)]. Per t>0 è strettamente fra 0 eN₀ e cresce versoN₀ senza superarlo. Riletto finale 5 a 55 fce 6: il prompt non fornisce più la stessa legge richiesta nella scelta; soluzione e chiave identiche. Nel finale il prompt non anticipa più la formula che lo studente deve riconoscere.",
+      "physicalAssumptions": "Unico genitore chiuso con emivita 1 h, nessuna produzione, soli genitori originari e nessun contributo dei figli. Cumulativo medio strettamente fra zero e inizio a tempo positivo finito. Il caso 16 ricostruisce anche N₀; non si interpreta il cumulativo come attività.",
+      "distractors": "Il solo esponenziale è il residuo. Il segno più e la divisione superano l’inizio; la legge lineare nel tempo non satura al conteggio iniziale.",
+      "pedagogicalReview": "Caso autonomo o legge riconosciuta senza risposta già anticipata.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-radioactive-decayed-count-04",
+      "sourceSha256": "f13fffd207666ca84ed103f0ba65c86de434f67da74c8c231de9bd3ee75503a4",
+      "candidateSha256": "be5e213da426fcd9ce32f8a8bfa2ee459ad3835204fd3b585b88290d6a24465f",
+      "reviewedSignature": "92693c2279b91c16ff2c86912b4520e0724f9cf5a9232ec3960368b196aba802",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Da 32 a 16 milioni di nuclei",
+      "dimension": {},
+      "manualArithmetic": "A 1 h il fattore trasformato è 1/2. Dimezzare N₀ dimezza N_dec da 32 a 16 milioni: la dipendenza dalla popolazione iniziale è lineare.",
+      "physicalAssumptions": "Unico genitore chiuso con emivita 1 h, nessuna produzione, soli genitori originari e nessun contributo dei figli. Cumulativo medio strettamente fra zero e inizio a tempo positivo finito. Il caso 16 ricostruisce anche N₀; non si interpreta il cumulativo come attività.",
+      "distractors": "64 inverte il fattore del campione iniziale; 8 aggiunge una perdita e 32 ignora il nuovo inizio. Zero non è il valore medio con dati positivi.",
+      "pedagogicalReview": "Confronto controllato a un parametro fissato.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-radioactive-decayed-count-05",
+      "sourceSha256": "e173387525b6769ab577e5fc112b1ca89db39ee1f2a6858c896ac7457031e8d3",
+      "candidateSha256": "8ed618d7128cf50b75ddb749665611f268e0ea5b2d496aad815f8eac3b679306",
+      "reviewedSignature": "ee6b352fb3f07c9fa171c5076435912f79a4321dacf6b834cf66c08dd0a666e4",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "64",
+      "dimension": {},
+      "manualArithmetic": "Divido il cumulativo per la frazione trasformata: N₀=32/(1−1/2)=64 milioni. Il denominatore non è la frazione residua per tempi generali, benché coincida qui a un’emivita.",
+      "physicalAssumptions": "Unico genitore chiuso con emivita 1 h, nessuna produzione, soli genitori originari e nessun contributo dei figli. Cumulativo medio strettamente fra zero e inizio a tempo positivo finito. Il caso 16 ricostruisce anche N₀; non si interpreta il cumulativo come attività.",
+      "distractors": "16 ripete il fattore trasformato, 32 presume tutto trasformato e 128 produrrebbe 64. Al tempo zero l’inversa divide per zero ed è esclusa.",
+      "pedagogicalReview": "Prima inversa reinserita nella relazione diretta.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-radioactive-decayed-count-06",
+      "sourceSha256": "3c9c8695b84c25f51225e337d31bce21b4030da107b2c6a51a8b59e0d39a5e34",
+      "candidateSha256": "9219a4363bb406cb912eaa19f68e2f63a0c582d9bd6e7c630368f94b6fea89c1",
+      "reviewedSignature": "6d2da4698302da76b85975aee2644cb4a0d36b7f0695594bff57a951eebf4d00",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1",
+      "dimension": {
+        "[time]": "1"
+      },
+      "manualArithmetic": "32/64=1/2 è la frazione già trasformata, perciò la frazione residua è ancora 1/2. Quindi t=1 h. In generale t=−T½ log₂(1−N_dec/N₀), con 0<N_dec<N₀.",
+      "physicalAssumptions": "Unico genitore chiuso con emivita 1 h, nessuna produzione, soli genitori originari e nessun contributo dei figli. Cumulativo medio strettamente fra zero e inizio a tempo positivo finito. Il caso 16 ricostruisce anche N₀; non si interpreta il cumulativo come attività.",
+      "distractors": "Due ore danno 48 milioni, tempo zero ne dà zero, mezz’ora dà 64−32√2. Il logaritmo richiede il complemento fra zero e uno.",
+      "pedagogicalReview": "Seconda inversa con denominatori e domini verificati.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-radioactive-decayed-count-07",
+      "sourceSha256": "f5b8476d4d4ab6373d87ee386439708b23023a05c089d03915be3317e8732436",
+      "candidateSha256": "659703b236b00a83e23614a6ec8e55c53d4cabd6da25fc7a79b260f5a1eaa56f",
+      "reviewedSignature": "d60d235537077dbdabe29b659a082384a324fcf49e3e602005edc21039761dbd",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "3/2",
+      "dimension": {},
+      "manualArithmetic": "A 1 h N_dec=32; a 2 h 64(1−1/4)=48 milioni. Il rapporto è 48/32=3/2, distinto dal rapporto dei residui 1/2.",
+      "physicalAssumptions": "Unico genitore chiuso con emivita 1 h, nessuna produzione, soli genitori originari e nessun contributo dei figli. Cumulativo medio strettamente fra zero e inizio a tempo positivo finito. Il caso 16 ricostruisce anche N₀; non si interpreta il cumulativo come attività.",
+      "distractors": "2/3 inverte B/A; 1/2 confronta i residui; due assume una crescita lineare temporale e uno ignora l’intervallo ulteriore.",
+      "pedagogicalReview": "Due uscite calcolate prima del rapporto.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-radioactive-decayed-count-08",
+      "sourceSha256": "9a7aff8e9fe2e08184d682128c0c7e2201e213584b5fcf131dd12ae5f0da7848",
+      "candidateSha256": "1856a50fc6087a04f3f2b894988fc00c138df984a42e756530f772c158e65756",
+      "reviewedSignature": "d41cc3aeaa427c09df4d0cd72d7102b8f8e73954ddf9b28d46cd480595e0b434",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "32",
+      "dimension": {},
+      "manualArithmetic": "Il proposto 64 meno il corretto 32 vale+32 milioni. A un tempo finito nel modello esponenziale non sono ancora trasformati tutti i genitori in media.",
+      "physicalAssumptions": "Unico genitore chiuso con emivita 1 h, nessuna produzione, soli genitori originari e nessun contributo dei figli. Cumulativo medio strettamente fra zero e inizio a tempo positivo finito. Il caso 16 ricostruisce anche N₀; non si interpreta il cumulativo come attività.",
+      "distractors": "−32 inverte la sottrazione; due è rapporto, 64 la proposta e zero una sua accettazione. Lo scarto è fra due cumulativi nella stessa scala.",
+      "pedagogicalReview": "Differenza ordinata distinta dal rapporto puro.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-radioactive-decayed-count-09",
+      "sourceSha256": "1c0470949d53209a2f0bb02029184592173eb6efba1caefa67d2cdab8a63eadd",
+      "candidateSha256": "d82426c7affccd5775cca21ddb0b76fb5852762749f6317dc0c47ce9f1e2c806",
+      "reviewedSignature": "933a33d0d9a0514686c18e3e0d6bf03c887e3b3f5165870f7ac09a0d508f581b",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "N₀ = N_dec / (1 − 2^(−u))",
+      "dimension": {},
+      "manualArithmetic": "Isolo N₀=N_dec/[1−2^(−t/T½)]. Con t>0 il denominatore èpositivo e minore di 1. Scrivere t nell’esponente richiede che sia il suo valore numerico in unità T½.",
+      "physicalAssumptions": "Unico genitore chiuso con emivita 1 h, nessuna produzione, soli genitori originari e nessun contributo dei figli. Cumulativo medio strettamente fra zero e inizio a tempo positivo finito. Il caso 16 ricostruisce anche N₀; non si interpreta il cumulativo come attività.",
+      "distractors": "Moltiplicare per il complemento riduce ancora il conteggio. N_dec 2^u inverte il residuo e coincide solo a u=1; reciproci e durata lineare non ricostruiscono l’inizio.",
+      "pedagogicalReview": "Inversa simbolica e dimensioni esplicite.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-radioactive-decayed-count-10",
+      "sourceSha256": "5628abab04ff19f294e6d23542252b81f1abf68ec0d662a303a066b7f3342115",
+      "candidateSha256": "efd4a3d7590099ad6ca137624d67be11a7a8624cc428f943beef643cb5932e8a",
+      "reviewedSignature": "b96f0223e518d8954cec3b9ca7ab154b2fce38dc85f7cdb0989e8af6d5a5df1f",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "κ₁ (1 − q^κ₂) / (1 − q)",
+      "dimension": {},
+      "manualArithmetic": "Il rapporto èκ₁[1−2^(−κ₂t/T½)]/[1−2^(−t/T½)]. Non è il rapporto delle frazioni residue: occorre preservare entrambi i termini 1−esponenziale.",
+      "physicalAssumptions": "Unico genitore chiuso con emivita 1 h, nessuna produzione, soli genitori originari e nessun contributo dei figli. Cumulativo medio strettamente fra zero e inizio a tempo positivo finito. Il caso 16 ricostruisce anche N₀; non si interpreta il cumulativo come attività.",
+      "distractors": "I soli fattori κ non conservano il complemento. κ₁q^(κ₂−1) è il rapporto dei residui; il reciproco scambia A e B.",
+      "pedagogicalReview": "Fattori nella legge effettiva, non in un’analogia impropria.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-radioactive-decayed-count-11",
+      "sourceSha256": "a082b207d45cfa9f6e8a5dc4913a3580ee0fe05ee2f4ca92449d5cf4e78f5801",
+      "candidateSha256": "e076e69b96ffde3c86a1e05578707fe69da50955209a952b86937579d1797baf",
+      "reviewedSignature": "afa54bf77af3e4e310f5aa4df0bfd8207246074899b1e9f474132683c812bc61",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "3/4",
+      "dimension": {},
+      "manualArithmetic": "A ha 32 milioni trasformati; B ne ha 32·3/4=24. Il rapporto è 24/32=3/4, dato il dimezzamento di N₀ e l’aumento del tempo.",
+      "physicalAssumptions": "Unico genitore chiuso con emivita 1 h, nessuna produzione, soli genitori originari e nessun contributo dei figli. Cumulativo medio strettamente fra zero e inizio a tempo positivo finito. Il caso 16 ricostruisce anche N₀; non si interpreta il cumulativo come attività.",
+      "distractors": "Un mezzo segue solo l’inizio; 3/2 solo la frazione trasformata; 4/3 è il reciproco e uno presume una compensazione inesatta.",
+      "pedagogicalReview": "Entrambi i nuovi ingressi considerati.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-radioactive-decayed-count-12",
+      "sourceSha256": "3596b610ef826808399247dff459e986a8a71cdd21cb402e5b676e6469bcdf19",
+      "candidateSha256": "dfffc73cb9600cea0966f4cc6c5e40bf9537accc69846691875abdbecca3c825",
+      "reviewedSignature": "2c5409026d931fce3ee87fc3c7d6add7e833d9e86fe5e2efd2e472d8fa2c7ef7",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "radioactive-decayed-count-progressive.svg": "7dcb356ca10cec616a8107112c02d522cbc87e72d15e6dd4f0695c4bb5858842"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "28",
+      "dimension": {},
+      "manualArithmetic": "La media è(32+24)/2=28 milioni. Le medie degli ingressi 48 milioni e 3/2 h darebbero 48−12√2 milioni, non 28; si mediano le letture già calcolate. Riletto anche il solo distrattore con parentesi(48−12√2) nel finale 5 a 55 fce 6, chiave e formule identiche.",
+      "physicalAssumptions": "Unico genitore chiuso con emivita 1 h, nessuna produzione, soli genitori originari e nessun contributo dei figli. Cumulativo medio strettamente fra zero e inizio a tempo positivo finito. Il caso 16 ricostruisce anche N₀; non si interpreta il cumulativo come attività.",
+      "distractors": "56 somma, quattro prende la semidifferenza e 24 ripete B. 48−12√2 è il modello agli ingressi medi; 400 e 288 distinguono esattamente i quadrati rilevanti.",
+      "pedagogicalReview": "Media delle uscite e ammissibilità degli ingressi medi distinte.",
+      "assetReview": "XML e PNG indipendente 640×1600 letti per intero. Primo pannello a scala5 per milione, segmenti160+160 e80+240, entrambi totali64. Curva origine(150,1000),110 coordinate/h e5 per milione: c=64(1−2^(−t/h)), punti32/48/56 a y840/760/720. Terzo pannello a scala20 per milione: residui4/2 e cumulativi12/14, somme320 uguali per16. Nessuna sovrapposizione residua.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-radioactive-decayed-count-13",
+      "sourceSha256": "0a8e3f0ddd233669ba960d89183ee081e8f45cc7d3d91c2e6dc9aca76faa582d",
+      "candidateSha256": "d0029c50bdbad84ba5806b2fa158c9b474fac7f0845cd8193a45fae1138d4b39",
+      "reviewedSignature": "65d79cb7b0410a66f4fcc18d267f1e25fc1ac68e81fdb2d6722481eb02c90381",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {},
+      "manualArithmetic": "Il target è(3/4)·32=24 milioni. Con N₀, B 32 la frazione trasformata deve essere 3/4, dunque residua 1/4 e t_B=2 h. Il rapporto dei tempi è 2.",
+      "physicalAssumptions": "Unico genitore chiuso con emivita 1 h, nessuna produzione, soli genitori originari e nessun contributo dei figli. Cumulativo medio strettamente fra zero e inizio a tempo positivo finito. Il caso 16 ricostruisce anche N₀; non si interpreta il cumulativo come attività.",
+      "distractors": "Un’ora darebbe 16 milioni. Un mezzo inverte le durate; 3/4 copia il target delle uscite e 3/2 il rapporto delle frazioni trasformate.",
+      "pedagogicalReview": "Bersaglio ricostruito prima dell’inversa.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-radioactive-decayed-count-14",
+      "sourceSha256": "40c523451c55666f4833c71a4cfb786c94e24a74e88bc70180b434ee4b59541e",
+      "candidateSha256": "8d5b833de009c99d0cd0dfe3852cfd9557b1b4636d7583ec18cfc343d822c744",
+      "reviewedSignature": "79b4fa66d247058d4e96a7afab6d9644103cc0ebc6256f9fa1f23c8defb7d0e8",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "32",
+      "dimension": {},
+      "manualArithmetic": "Il guadagno è 96/32=3. La nuova lettura 72 dàN_dec 24 milioni. A 2 h la frazione trasformata è 3/4, dunque N₀=24·4/3=32 milioni.",
+      "physicalAssumptions": "Unico genitore chiuso con emivita 1 h, nessuna produzione, soli genitori originari e nessun contributo dei figli. Cumulativo medio strettamente fra zero e inizio a tempo positivo finito. Il caso 16 ricostruisce anche N₀; non si interpreta il cumulativo come attività.",
+      "distractors": "96 milioni segue sia dal display non decodificato sia dall’uso del residuo 1/4 e predice D=216. Ventiquattro non ricostruisce ancora l’inizio.",
+      "pedagogicalReview": "Guadagno rimosso prima del bilancio fisico.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-radioactive-decayed-count-15",
+      "sourceSha256": "cf70266ea738344ad6cf86adc78a08b6c0ca3438b1e6d89d2bd55d1eb9017385",
+      "candidateSha256": "edb0e6fc7e99e19f1082b5e6b1d30941b1590c250a07be0dfb478e7a1d66ecb5",
+      "reviewedSignature": "0d9018f5ffa300db84314a0a7769e175905bcf48f7217b363c23ff454f9f2ea8",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "32",
+      "dimension": {},
+      "manualArithmetic": "Riferimenti fisici 32 e 24 milioni: a=(65−49)/(32−24)=2 e b=1. La lettura 33 dà 16 milioni trasformati; con 1 h N₀=32 milioni.",
+      "physicalAssumptions": "Unico genitore chiuso con emivita 1 h, nessuna produzione, soli genitori originari e nessun contributo dei figli. Cumulativo medio strettamente fra zero e inizio a tempo positivo finito. Il caso 16 ricostruisce anche N₀; non si interpreta il cumulativo come attività.",
+      "distractors": "33 milioni omette b e predice D=34; 64 omette g dopo b; 16 è il cumulativo, non la popolazione iniziale.",
+      "pedagogicalReview": "Due riferimenti distinti identificano guadagno e offset.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "AR-u7-radioactive-decayed-count-16",
+      "sourceSha256": "4f8974af76374ef1d2c1692ef3a63a0de9a968e1e3de5c29fba0d7d9681e11a0",
+      "candidateSha256": "ff98a4d64e3c298c32495c3067eb7026c5935630cd498d800dc3addb436a4084",
+      "reviewedSignature": "5e15255a20fb522fedfaf6316c9365bb9dfa0edcb39715215f84a0d114ba4168",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "radioactive-decayed-count-progressive.svg": "7dcb356ca10cec616a8107112c02d522cbc87e72d15e6dd4f0695c4bb5858842"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[time]": "1"
+      },
+      "manualArithmetic": "Fra i due istanti si trasformano 14−12=2 milioni. In una emivita questi sono metà dei genitori ancora presenti al primo istante, che sono quindi 4 milioni. N₀=12+4=16; la frazione residua 4/16=1/4 impone t=2 h. Controllo all’ora 3: 16−2=14 milioni.",
+      "physicalAssumptions": "Caso autonomo: emivita 1 h assegnata, N₀ ignoto e due cumulativi medi 12/14 milioni a distanza 1 h. Niente contributi dei figli. n₀ e u=t/(1 h) ora definiti prima dell’uso nel finale 5 a 55 fce 6.",
+      "distractors": "Un’ora dal campione ricostruito darebbe 8 milioni; quattro ore ne darebbero 15. Il rapporto 14/12 non è una frazione di sopravvivenza.",
+      "pedagogicalReview": "Vincolo o caso autonomo risolto prima di decidere unicità e dominio.",
+      "assetReview": "XML e PNG indipendente 640×1600 letti per intero. Primo pannello a scala5 per milione, segmenti160+160 e80+240, entrambi totali64. Curva origine(150,1000),110 coordinate/h e5 per milione: c=64(1−2^(−t/h)), punti32/48/56 a y840/760/720. Terzo pannello a scala20 per milione: residui4/2 e cumulativi12/14, somme320 uguali per16. Nessuna sovrapposizione residua.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_independent_parent_decay_derivative_cumulative_complement_activity_weighted_mixture_integer_nuclear_bookkeeping_and_calibration",
+        "Pint_exact_time_half_life_hour_second_Bq_inverse_time_count_dimensions_and_Fraction_arithmetic",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    }
+  ],
+  "verifierSha256": "b215db14eb4a9791b0a887934895bf8f0e784f6da6507d5f1989920e005c1924",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "reviewDependencySha256": {
+    "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+  },
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2",
+    "hypothesis": "6.148.7"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "reviewedCandidateCommit": "5a55fce680ea1b430045fd56a3f27a313924f250",
+  "packageSha256": "8898126192678877582ebdd5d44720920d6ece85d049dd19a5c204d4293f2514",
+  "bindingsSha256": "11c67558c42d85b12b481635057bf1af7808e3857c93e79a7e568ea3a0b1c504",
+  "source": {
+    "commit": "5cfbdcb055ba3ba136f97fb56e997f06e6cf3605",
+    "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U7-02.json",
+    "title": "radioactive-decayed-count",
+    "reference": "Unico genitore chiuso con emivita 1 h, nessuna produzione, soli genitori originari e nessun contributo dei figli. Cumulativo medio strettamente fra zero e inizio a tempo positivo finito. Il caso 16 ricostruisce anche N₀; non si interpreta il cumulativo come attività."
+  },
+  "modelsBeforeCandidateKeys": {
+    "path": "editorial/reviews/u7-nuclear-250-254-independent-models.py",
+    "sha256": "58e478edc733fb198a7711e2a5fdfa8c7f46d3537f331562cf531737f04ed4bc",
+    "commit": "aca104f3"
+  },
+  "postReadNumericGuardHardening": "Only sympify strict=True added after candidate reading to reject strings without evaluation; all constitutive/inverse/calibration function AST bodies remain identical to pre-key snapshot. Snapshot preserved unchanged.",
+  "primaryBeforeCandidateKeys": {
+    "path": "editorial/reviews/u7-nuclei-250-254-primary-source-only-20261126.md",
+    "sha256": "51439933fe3974da7552b58de5f9929aecd44ed758e84ab1e1a0c379c47515d2"
+  }
+}

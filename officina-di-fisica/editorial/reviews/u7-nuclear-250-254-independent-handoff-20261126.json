@@ -1,0 +1,198 @@
+{
+  "schemaVersion": "1.0.0",
+  "scope": "independent_review_of_A250_254_only_not_own_B255259",
+  "reviewer": "author_vectors_b",
+  "candidateAuthor": "author_vectors_a",
+  "source": {
+    "ref": "5cfbdcb055ba3ba136f97fb56e997f06e6cf3605",
+    "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U7-02.json",
+    "fileSha256": "43ad92dba82bc16829a60f11071965f30bf0d8e115def3c1dc5eb2a3e229aeb7",
+    "sourceRecordsGitHashChecked": 80
+  },
+  "independence": {
+    "primaryPromptOnlyCommit": "7518f76e54b9d05ab1b03548e6113339afd40db9",
+    "primarySha256": "51439933fe3974da7552b58de5f9929aecd44ed758e84ab1e1a0c379c47515d2",
+    "numericModelsBeforeCandidateKeysCommit": "aca104f31c125f98e34b06da0a2112bf1461be74",
+    "numericModelsSha256": "58e478edc733fb198a7711e2a5fdfa8c7f46d3537f331562cf531737f04ed4bc",
+    "actualPreKeyExecution": {
+      "sourceChecks": 25,
+      "invalidFiniteExactInputsRejected": 600,
+      "exitCode": 0
+    },
+    "oppositeCandidateKeysOpenedBeforePrimaryOrNumericModels": false,
+    "ownAuthoring255259CompletedBeforeOpeningACandidates": true,
+    "authoringImports": false,
+    "oppositePrimaryForOwnAuthoringOpened": false
+  },
+  "families": [
+    {
+      "batch": "radioactive-survivors-250",
+      "candidateAuthorCommit": "5a55fce680ea1b430045fd56a3f27a313924f250",
+      "packageSha256": "04a1fcb02bc28d7bd3d7ab89515b4801eeaf4d124cd6144642c84be846b76da6",
+      "bindingsSha256": "2fb8a0a76ad976d8e060c6b4ae3a6f19420e57e006bce4cad184acebc17e2a1d",
+      "verifierSha256": "1a70138a2424613e96a3f7d76434ff397754dad6aff795fe5b94817c50371042",
+      "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+      "records": 16,
+      "recordsPassed": 16,
+      "mutationCases": 29
+    },
+    {
+      "batch": "radioactive-activity-251",
+      "candidateAuthorCommit": "65fb52b17dca66e9e5afd2dbae94e5c486eef242",
+      "packageSha256": "844c90d4f89ad63fa48ce4549cbea7562a6d923c0e0d9ea72f44d84cc12455c1",
+      "bindingsSha256": "08d2f515d3baee10c8a48e80f0345771c824014ec354d6c3f3d6e9ec05020206",
+      "verifierSha256": "ff33fbb77ddbdc15a237f041705ede0879ef5b809bc74666b6dd7a78e5365091",
+      "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+      "records": 16,
+      "recordsPassed": 16,
+      "mutationCases": 29
+    },
+    {
+      "batch": "radioactive-decayed-count-252",
+      "candidateAuthorCommit": "5a55fce680ea1b430045fd56a3f27a313924f250",
+      "packageSha256": "8898126192678877582ebdd5d44720920d6ece85d049dd19a5c204d4293f2514",
+      "bindingsSha256": "11c67558c42d85b12b481635057bf1af7808e3857c93e79a7e568ea3a0b1c504",
+      "verifierSha256": "b215db14eb4a9791b0a887934895bf8f0e784f6da6507d5f1989920e005c1924",
+      "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+      "records": 16,
+      "recordsPassed": 16,
+      "mutationCases": 29
+    },
+    {
+      "batch": "radioisotope-mixture-253",
+      "candidateAuthorCommit": "29f65ee547627d10b0cca687b3fe19d3f05b4a32",
+      "packageSha256": "ddf3ea2e824d69f773ef995c32545bfb7093e0139802e1b5cdb2e07b34b192c8",
+      "bindingsSha256": "29f26b0f1e0922ba5b4edf7f381b3b9b82aa193b06ffa7c0ba6a5ba3492657ff",
+      "verifierSha256": "a86d25c074067a65a0bfc3bf3367575249f6b9ce63d9e3fda837fe5703fdc803",
+      "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+      "records": 16,
+      "recordsPassed": 16,
+      "mutationCases": 29
+    },
+    {
+      "batch": "alpha-mass-number-254",
+      "candidateAuthorCommit": "6dfc55df252c3e2123f764e39420da423f65789d",
+      "packageSha256": "06485db4f43a9fef1fc9f67c58f9fdb3b36d7410443ee149f0e3bad97eb05e1e",
+      "bindingsSha256": "99221c29d83fabf471be714181212089c6d636464053372360fdd61cdbb48802",
+      "verifierSha256": "54de8d7dd4fb38f884fe39a12d2c00e02221e7566c40eac2cedb8c31dd6903c9",
+      "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+      "records": 16,
+      "recordsPassed": 16,
+      "mutationCases": 29
+    }
+  ],
+  "records": 80,
+  "recordsPassed": 80,
+  "verificationModes": {
+    "EXACT_ORACLE": 54,
+    "AI_CONCEPTUAL": 26
+  },
+  "independentReadings": {
+    "allRecordFieldsRead": 80,
+    "fullSVGXmlRead": 5,
+    "actualIndependentFullNativeImagesRead": 5,
+    "actualNativeTerminals": 5,
+    "nativeScope": "asset_only_not_product_UI",
+    "quantitativeGeometry": "common scales, all exponential samples, discrete domains, nuclear counts and graph references independently checked"
+  },
+  "actualFinalTarget": {
+    "path": "editorial/reviews/u7-nuclear-250-254-target-final-readable.json",
+    "tests": 20,
+    "exitCode": 0,
+    "signal": null,
+    "hypothesisConfigurations": 240,
+    "packetMutationsAllRejected": 145,
+    "wrongConstitutiveLawsRejected": 5,
+    "wrongInverseModelsRejected": 5,
+    "finiteExactGuardAssertions": 1300,
+    "invalidCalibrationAssertions": 30,
+    "identity": "fresh_and_saved_assert_record_identity_on_actual_A_final_package_and_bindings"
+  },
+  "findingsClosed": [
+    {
+      "finalCommit": "5a55fce680ea1b430045fd56a3f27a313924f250",
+      "records": [
+        "AR-u7-radioactive-survivors-16",
+        "AR-u7-radioactive-decayed-count-03",
+        "AR-u7-radioactive-decayed-count-12",
+        "AR-u7-radioactive-decayed-count-16"
+      ],
+      "delta": "Reread entire records and strictdiff: define n₀ in25016; remove answer-revealing formula from25203 prompt; parenthesize only wrong radical option25212; define n₀ and u in25216. Other28 and all correct keys/formulas/assets identical.",
+      "nativeProofs": "real original asset refs retained on identical SVG, no retag"
+    }
+  ],
+  "disclosures": [
+    {
+      "scope": "post-read exact input guard hardening",
+      "detail": "Only strict=True added to sympify in _finite_exact after candidate reading, to reject strings without evaluation. All numerical constitutive, inverse, calibration and constrained math functions remain AST-identical to the frozen pre-key models; final test explicitly verifies this sole guard difference. Original pre-key source and execution receipt are preserved unchanged."
+    },
+    {
+      "scope": "source-only primary wording correction",
+      "detail": "The original primary25012 used the inappropriate word bilinear. Final manual note says linear in N₀ and exponential in time; all original numbers and the immutable primary remain preserved."
+    },
+    {
+      "scope": "alpha final parameterization",
+      "detail": "A25411–15 declares a new heavier second genitor. Final prompts independently recomputed from228,n2 and their new displays. Old source-only results based on10,n2 remain in the primary and are not retagged."
+    },
+    {
+      "scope": "initial targeted test failure",
+      "detail": "initial log is genuine exit1: structural log(4)==2log(2) assertion failed although algebraically equal; two hostile fixture expressions introduced a binary float. Changed test comparison to simplify their exact difference and made hostile arithmetic explicitly SymPy-exact. No candidate or constitutive/inverse law changed. First successful final target followed, then a second successful final-readable target after prose-only note spacing corrections and fresh report regeneration. Only final-readable is the current final proof."
+    }
+  ],
+  "boundaries": {
+    "rootIntegratedIdentityImport": "PENDING_ROOT",
+    "productUI": "NOT_RUN",
+    "humanApproval": "NOT_RUN",
+    "publication": "DRAFT",
+    "rootRegistryLedgerRuntimeEdited": false,
+    "ownB255259ScientificSelfReview": false
+  },
+  "files": {
+    "editorial/reviews/alpha-mass-number-254-independent-mutations.json": "c0edf2dd9b00fa9e4f2404498afa6ac2006b9d1b3c001411b32bf95bf42920a3",
+    "editorial/reviews/alpha-mass-number-254-independent-note.md": "2f131a516744a56a6edb3be2179d197f8471a8b2d41becb7603a879d9db89987",
+    "editorial/reviews/alpha-mass-number-254.json": "22e57be8e67a3db3cf66d5bed25ef889a193bf179db363470c78867dfb99270b",
+    "editorial/reviews/radioactive-activity-251-independent-mutations.json": "e0d778298f467edf1e70ae40d2a93f64f831c19a6c9fda6ac79d8abca43e260d",
+    "editorial/reviews/radioactive-activity-251-independent-note.md": "1cad89fdb976a3fd0264c02c1ab8b970558ff6ac958f8e30801e53331884e283",
+    "editorial/reviews/radioactive-activity-251.json": "275f9a99928deee9ab1c2662b314b0af4132532be14cc815ac84d30a99789930",
+    "editorial/reviews/radioactive-decayed-count-252-independent-mutations.json": "cc12003c59d2188eb89671c7baec8195bee485f6d36232246994f84f059a5d86",
+    "editorial/reviews/radioactive-decayed-count-252-independent-note.md": "a4b07b906e89eda62c42371d69f557bdf791c0a2f550f6f960f488a2ee3b2c82",
+    "editorial/reviews/radioactive-decayed-count-252.json": "51d93d5268e1954a2296e387198892a81ac663cbac485189a778e4df5f3ea636",
+    "editorial/reviews/radioactive-survivors-250-independent-mutations.json": "81e434f2a538de8369c59dbd0d5b283c8b9cdcb1c8f6ec480ed27528923df00e",
+    "editorial/reviews/radioactive-survivors-250-independent-note.md": "5a6dc24c8dd9ddea9a61edd9d37958b7ca17f679f5f7779adde6e620c71fc69a",
+    "editorial/reviews/radioactive-survivors-250.json": "2eb3ec6c7a6a37fe177591cad898bd6166627c60278fb58de08f29f60c9bf6e8",
+    "editorial/reviews/radioisotope-mixture-253-independent-mutations.json": "9d1f9ae145d359707fe683c6730401c672d0dc671a30b5688f3f40aba3e91676",
+    "editorial/reviews/radioisotope-mixture-253-independent-note.md": "b95f87f695ca1da9515955b374f7b87253019f4f3b5f5c466d3ef5853fd5fc14",
+    "editorial/reviews/radioisotope-mixture-253.json": "78f575b20cff4e67bcd16966e8601a704665548e808f83f8562ceb22a4dc1c6b",
+    "editorial/reviews/u7-nuclear-250-254-independent-models.py": "58e478edc733fb198a7711e2a5fdfa8c7f46d3537f331562cf531737f04ed4bc",
+    "editorial/reviews/u7-nuclear-250-254-models-pre-candidates-20261126.json": "29f208260d53e642a9ab3ba2063c45a3ef9a427ee863358f6055b3554166f22a",
+    "editorial/reviews/u7-nuclear-250-254-svg-independent-evidence/alpha-mass-number-full.png": "6d843f02d9d3f4cdc6664c6721bad566d063e1e7f07a10892f4f14a95c6d95c2",
+    "editorial/reviews/u7-nuclear-250-254-svg-independent-evidence/alpha-mass-number-render.json": "68c70654c2f938f32d90da5e67de35ad4ce6e10130478cda4d7deb4ac349f32d",
+    "editorial/reviews/u7-nuclear-250-254-svg-independent-evidence/alpha-mass-number-terminal.json": "5dd59e0be9174c911f915efda8360164638819ced118e2b5362be1ab2ebdee87",
+    "editorial/reviews/u7-nuclear-250-254-svg-independent-evidence/native-svg-producer.mjs": "e0b1c2af1383c6c758dd81898f243dc2defff1029f371c19fb71fe2a445e6cce",
+    "editorial/reviews/u7-nuclear-250-254-svg-independent-evidence/radioactive-activity-full.png": "6f76cc24069ba4bcf0d8c752d28f2bc29cdbe1c21f4b90f8e7f1af0088cb2bf5",
+    "editorial/reviews/u7-nuclear-250-254-svg-independent-evidence/radioactive-activity-render.json": "4bdff6796cda6285bf253866064dae215d531d379643fcb08d0b220992bba070",
+    "editorial/reviews/u7-nuclear-250-254-svg-independent-evidence/radioactive-activity-terminal.json": "3443a50da759dfe2d66bd53dfd23f5b6cce827ef4b2dc8ed62082b0f6c678f88",
+    "editorial/reviews/u7-nuclear-250-254-svg-independent-evidence/radioactive-decayed-count-full.png": "83040b11ca29b2df9681a7b18d02364a4a79d262bfb0c2a296b3c29cffab349b",
+    "editorial/reviews/u7-nuclear-250-254-svg-independent-evidence/radioactive-decayed-count-render.json": "8572a3df173fd1d0a5e40a7633f755c4fcbb188916bc3fa661d8453b9b2b5d6f",
+    "editorial/reviews/u7-nuclear-250-254-svg-independent-evidence/radioactive-decayed-count-terminal.json": "77783d1114aa3d129f371dffc6d8d9c5769e13654906f9e2344cea08805f0b77",
+    "editorial/reviews/u7-nuclear-250-254-svg-independent-evidence/radioactive-survivors-full.png": "793380999a69b35c386116cfa655d7d212eb14252367ff9644d5cef9f1cd3b4c",
+    "editorial/reviews/u7-nuclear-250-254-svg-independent-evidence/radioactive-survivors-render.json": "2dafe6aa982fb08ff77dd6a38d2929422955657abb753700884f825d15cd0a8e",
+    "editorial/reviews/u7-nuclear-250-254-svg-independent-evidence/radioactive-survivors-terminal.json": "3604552cd13107ebde993fda943a5b17116f9bc2f4e91658a234c129a345c692",
+    "editorial/reviews/u7-nuclear-250-254-svg-independent-evidence/radioisotope-mixture-full.png": "d3ddf144810b67b6259917648198d540bed787ff6cefb0496807108199f900f8",
+    "editorial/reviews/u7-nuclear-250-254-svg-independent-evidence/radioisotope-mixture-render.json": "80df0621484026a39c05c4e974fbb066ee7e062de3605e0cca013d1ed3fc2269",
+    "editorial/reviews/u7-nuclear-250-254-svg-independent-evidence/radioisotope-mixture-terminal.json": "428f0ed0d6c9603dbf1ec74a38f604f13d96a96e1d61eb108a12790388cd9f9b",
+    "editorial/reviews/u7-nuclear-250-254-target-final-readable.json": "bb821ce83fd5611b5b8d428392b07bc73a33c6e047ef89501d15d97992c91d03",
+    "editorial/reviews/u7-nuclear-250-254-target-final-readable.log": "50fb4b3e89301a9e89099f4d3e235c3e080c86bf5e4315b9bfe56cfd4e42548d",
+    "editorial/reviews/u7-nuclear-250-254-target-final.json": "77077f8f8a287fd6924f7d4b84e132d75b14ef0794bb8fe079251f4322a7c13b",
+    "editorial/reviews/u7-nuclear-250-254-target-final.log": "27ab2efe34409ba5a0b62a9e63ad94a1ee53577adeed8cc504ba76fa947b8079",
+    "editorial/reviews/u7-nuclear-250-254-target-initial.json": "63f049c5b19f10238d4ab7414933aa52b685ce842ef69b05a26a22e5c5940dd4",
+    "editorial/reviews/u7-nuclear-250-254-target-initial.log": "5c5b51f58c6e6f647b5c4276d9e1a75e5b33ab43bacb9f8ade80f4874022fbbd",
+    "editorial/reviews/u7-nuclei-250-254-primary-source-only-20261126.md": "51439933fe3974da7552b58de5f9929aecd44ed758e84ab1e1a0c379c47515d2",
+    "tests/corpus/test_u7_nuclear_250_254_independent.py": "dcc03eb8cea56d10495e18e14c63169427ae53c2b7632de7d2c616396791d975",
+    "tools/corpus_engineering/alpha_mass_number_verifier.py": "54de8d7dd4fb38f884fe39a12d2c00e02221e7566c40eac2cedb8c31dd6903c9",
+    "tools/corpus_engineering/radioactive_activity_verifier.py": "ff33fbb77ddbdc15a237f041705ede0879ef5b809bc74666b6dd7a78e5365091",
+    "tools/corpus_engineering/radioactive_decayed_count_verifier.py": "b215db14eb4a9791b0a887934895bf8f0e784f6da6507d5f1989920e005c1924",
+    "tools/corpus_engineering/radioactive_survivors_verifier.py": "1a70138a2424613e96a3f7d76434ff397754dad6aff795fe5b94817c50371042",
+    "tools/corpus_engineering/radioisotope_mixture_verifier.py": "a86d25c074067a65a0bfc3bf3367575249f6b9ce63d9e3fda837fe5703fdc803"
+  }
+}
