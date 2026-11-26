@@ -1,0 +1,10 @@
+{
+  "scope": "preparation failure, no numerical model execution or candidate review",
+  "exitCode": 1,
+  "failure": "First shell target had duplicated officina-di-fisica prefix from app cwd; cat could not create model artifact. Bounded model runner then raised FileNotFoundError before importing or executing model functions.",
+  "candidateAuthor": "A",
+  "oppositeAuthorCandidatesOpened": false,
+  "correction": "Correct app-relative artifact path, recreate intended source-derived functions, rerun unchanged model checks under mutex.",
+  "retest": "PENDING_actual_terminal",
+  "scientificCandidateReview": "NOT_RUN"
+}
