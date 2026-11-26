@@ -1,0 +1,60 @@
+"""Ten distinct nuclear questions; event bookkeeping and mean rates separated."""
+from .vector_geometry_authoring import assemble_family,write_family
+SOURCE_IDS=[f'C5-Q{i:03}'for i in range(71,81)]
+TASKS=[
+('Lo stesso elemento, due isotopi','Quale coppia di proprietà identifica due isotopi differenti dello stesso elemento?', ['Uguale numero di protoni e diverso numero di neutroni','Uguali numeri di protoni e neutroni','Diverso numero di protoni e uguale numero di neutroni','Diverso numero di protoni e stesso numero di massa','Diverso numero di elettroni, indipendentemente dal nucleo'],
+ 'Il numero di protoni Z identifica l’elemento. Due isotopi diversi hanno lo stesso Z, ma differiscono per il numero N dei neutroni. Perciò differisce anche A=Z+N. Cambiare soltanto gli elettroni può produrre ioni diversi dello stesso nuclide, senza creare isotopi differenti.',
+ r'A=Z+N',
+ 'Uguali Z e N danno lo stesso numero di massa, non due isotopi diversi. Cambiare Z cambia l’elemento, anche se A rimane uguale. Il numero degli elettroni non sostituisce il confronto fra protoni e neutroni del nucleo.',
+ 'Identifica prima che cosa fissa il nome dell’elemento, poi quale conteggio può cambiare.'),
+('Contare i neutroni dopo un’emissione alfa','Un nucleo con numero di massa A=210 e numero atomico Z=84 emette una particella α. Quanti neutroni contiene il nucleo figlio?',124,
+ 'La particella alfa contiene due protoni e due neutroni: porta via quattro nucleoni in totale. Il figlio ha A_f=210−4=206 e Z_f=84−2=82. Il suo numero di neutroni è A_f−Z_f=206−82=124. Il genitore ne aveva 210−84=126, e due sono effettivamente partiti con l’alfa.',
+ r'A_f=206\qquad Z_f=82\qquad N_f=A_f-Z_f\qquad N_f=124',
+ '126 conterebbe ancora i neutroni iniziali. 122 sottrarrebbe tutti e quattro i nucleoni al solo numero di neutroni. 82 è il numero dei protoni del figlio, non dei neutroni. Il controllo A_f=Z_f+N_f ricostruisce 82+124=206.',
+ 'Aggiorna A e Z separatamente, poi sottrai per ottenere N.'),
+('Il nucleo dopo un beta positivo','Un nucleo con 7 protoni e 6 neutroni subisce il decadimento β⁺ assegnato. Quanti protoni contiene il figlio?',6,
+ 'Nel beta positivo un protone si converte in un neutrone, con emissione di un positrone e di un neutrino. I protoni passano da 7 a 6 e i neutroni da 6 a 7. Il totale dei nucleoni rimane 13. Il numero richiesto è dunque 6; non è il numero di tutti i nucleoni del figlio.',
+ r'Z_f=Z_i-1\qquad A_f=A_i\qquad Z_f=6',
+ 'Otto protoni descriverebbero il cambiamento di Z di un beta negativo, non positivo. Sette lascerebbe invariato Z come in una transizione gamma. Tredici è il numero di massa conservato, non quello dei protoni.',
+ 'Segui quale nucleone si trasforma e quale carica porta fuori il positrone.'),
+('Un fotone senza cambiare A e Z','Un nucleo eccitato emette un fotone e passa a uno stato di energia minore senza cambiare A o Z. Come si chiama la transizione?', ['Gamma','Alfa','Beta meno','Beta più','Scissione in due nuclei necessariamente uguali'],
+ 'È una transizione gamma. Il fotone porta energia e quantità di moto, ma non contiene nucleoni e non porta carica elettrica. Il nucleo conserva perciò i numeri A e Z mentre cambia stato energetico. Non si deve identificare la composizione invariata con energia interna invariata.',
+ r'A_f=A_i\qquad Z_f=Z_i',
+ 'Alfa modifica sia A sia Z. Beta meno e beta più lasciano A invariato ma modificano Z di un’unità. L’emissione di un fotone non richiede una scissione del nucleo in due frammenti.',
+ 'Confronta separatamente la composizione del nucleo e il suo stato di energia.'),
+('Un’emivita dal coefficiente assegnato','Una specie ha costante di decadimento λ_d=0,231 h⁻¹. Nel calcolo adotta ln2≈0,693. Quale emivita in ore ottieni con questi dati numerici?',3,
+ 'Dalla condizione che la popolazione attesa si dimezzi ricavo λ_d T₁/₂=ln2. Divido il dato 0,693 per 0,231 h⁻¹: togliendo i tre decimali comuni resta 693/231=3. Con i dati arrotondati assegnati si ottengono 3 h. La durata fisica dipende dai dati del modello; non si sta affermando che ln2 sia esattamente 0,693.',
+ r'\lambda_d T_{1/2}=\ln2\qquad T_{1/2}=\frac{\ln2}{\lambda_d}\qquad T_{1/2}\simeq3\,\mathrm h',
+ 'Il prodotto fra ln2 e λ_d avrebbe ancora unità di tempo inverso. Il reciproco 1/λ_d è una diversa scala temporale, che deve essere moltiplicata per ln2. Un coefficiente più grande, a parità di questa definizione, dà emivita minore.',
+ 'Isola prima la durata e poi tratta 0,693 e 0,231 come i dati forniti al calcolo.'),
+('Attività istantanea e prefisso kilo','In un istante un campione contiene 5,0×10⁷ nuclei instabili di una sola specie con λ_d=2,0×10⁻⁵ s⁻¹. Qual è l’attività media istantanea in kBq?',1,
+ 'L’attività è λ_d N. Moltiplico 2×5=10 e 10⁻⁵×10⁷=10²: ottengo 1000 s⁻¹, cioè 1000 Bq. Un kilobecquerel vale 1000 Bq, quindi l’attività è 1 kBq. Questo è un tasso medio istantaneo, non l’affermazione che in ogni secondo si osservino esattamente mille eventi.',
+ r'\mathcal A=\lambda_d N\qquad \mathcal A=1000\,\mathrm{Bq}\qquad \mathcal A=1\,\mathrm{kBq}',
+ '1000 kBq manterrebbe il numero calcolato in becquerel ma cambierebbe soltanto il nome dell’unità. Il numero 5,0×10⁷ conta nuclei, non decadimenti per secondo. Una divisione per λ_d darebbe dimensione di tempo invece di un’attività.',
+ 'Calcola prima il tasso in secondi inversi e solo dopo introduci il prefisso kilo.'),
+('La frazione già trasformata','Una specie isolata senza nuova produzione segue la legge esponenziale. Dopo quattro emivite, quale percentuale attesa dei nuclei iniziali è già decaduta?', ['93,75%','6,25%','75%','25%','100%'],
+ 'Quattro dimezzamenti lasciano una frazione 1/16 della popolazione iniziale. La quota già decaduta è il complemento: 1−1/16=15/16. Poiché 100/16=25/4, la percentuale è 15×25/4=375/4%, cioè 93,75%. Si tratta di una frazione attesa nel modello statistico, non di un appuntamento individuale per ciascun nucleo.',
+ r'\frac{N}{N_0}=\frac1{16}\qquad f_{\rm decaduta}=\frac{15}{16}\qquad 100f_{\rm decaduta}=\frac{375}{4}',
+ '6,25% è la frazione residua, non quella decaduta. 75% corrisponde al complemento dopo due emivite. 100% non è raggiunto a un tempo finito dalla legge esponenziale ideale; quattro emivite non significano quattro perdite della stessa metà iniziale.',
+ 'Sottrai dall’unità la frazione residua, dopo aver applicato tutti i dimezzamenti.'),
+('Un singolo nucleo è sopravvissuto','Un nucleo inizialmente instabile della specie considerata è ancora presente dopo un’emivita. Quale interpretazione è corretta nel modello del decadimento esponenziale?', ['L’esito è compatibile con una probabilità di sopravvivenza pari a un mezzo','La legge è necessariamente violata','Quel nucleo è diventato stabile per definizione','L’emivita della specie è raddoppiata per questo nucleo','Ogni nucleo deve decadere esattamente allo scadere dell’emivita'],
+ 'L’emivita descrive la probabilità di sopravvivenza e il comportamento atteso di una popolazione. Dopo quel tempo la probabilità di sopravvivenza di un singolo nucleo è 1/2: osservarne uno ancora presente è quindi compatibile con il modello. Non viene assegnata una data precisa al suo decadimento e la sopravvivenza osservata non lo rende automaticamente stabile.',
+ r'p_{\rm sopravv}=\frac12',
+ 'Un evento possibile non contraddice la legge statistica. Non si modifica la costante della specie in base a un solo nucleo sopravvissuto. “Metà attesa della popolazione” non significa che ogni nucleo debba perdere metà di sé o decadere nello stesso istante.',
+ 'Separa una probabilità per singolo nucleo da un conteggio deterministico.'),
+('Ricostruire il tasso dal rivelatore','Ogni decadimento produce un segnale nel modello e il rivelatore ne conta in media il 25%. Il tasso netto, dopo la sottrazione del fondo, è 180 s⁻¹. Calcola l’attività in Bq.',720,
+ 'Il tasso netto osservato è la frazione ε=1/4 dell’attività: R=ε𝒜. Per ricostruire l’attività divido 180 per 1/4, cioè moltiplico per quattro, e ottengo 720 Bq. Il controllo diretto dà (1/4)(720 s⁻¹)=180 s⁻¹. Si usa il tasso netto, senza sommare nuovamente un fondo già sottratto.',
+ r'R=\epsilon\mathcal A\qquad \mathcal A=R/\epsilon\qquad \mathcal A=720\,\mathrm{Bq}',
+ '45 Bq moltiplicherebbe ancora per l’efficienza e predirebbe soltanto 11,25 s⁻¹ osservati. 180 Bq supporrebbe efficienza unitaria. L’attività deve essere maggiore del tasso registrato perché l’efficienza è positiva ma inferiore a uno.',
+ 'Controlla l’inversa sostituendo l’attività nella stessa frazione di rivelazione.'),
+('Attività uguale, costanti diverse','Due campioni attivi hanno la stessa attività positiva in questo istante. La costante di decadimento positiva del primo è doppia di quella del secondo. Come si confrontano i numeri dei nuclei instabili?', ['Il primo contiene metà dei nuclei del secondo','I numeri devono essere identici','Il primo contiene il doppio dei nuclei del secondo','Il primo contiene il quadruplo dei nuclei del secondo','Il primo deve avere zero nuclei instabili'],
+ 'Pongo λ₁=2λ₂ e uguaglio le attività: 2λ₂N₁=λ₂N₂. Il coefficiente λ₂ è positivo, quindi posso cancellarlo e ricavo 2N₁=N₂. Il primo campione contiene metà dei nuclei instabili del secondo. I conteggi sono interi positivi compatibili con l’uguaglianza; non si assegna un mezzo nucleo a un singolo oggetto.',
+ r'\lambda_1 N_1=\lambda_2 N_2\qquad 2N_1=N_2\qquad \frac{N_1}{N_2}=\frac12',
+ 'Numeri uguali darebbero attività doppia nel primo campione. Il doppio dei nuclei darebbe attività quadrupla. Zero nuclei contraddice l’attività positiva assegnata. Il confronto usa il prodotto λ_dN e non attribuisce la stessa emivita alle due specie.',
+ 'Mantieni fisso il prodotto e verifica quale fattore deve compensare l’altro.')]
+CHOICES={n:0 for n,t in enumerate(TASKS,1)if isinstance(t[2],list)}
+UNITS={2:'neutroni',3:'protoni',5:'h',6:'kBq',9:'Bq'}
+FIGURES={2:'Il primo pannello distingue i tre conteggi del nucleo genitore e del figlio: A=Z+N. La particella α porta via due protoni e due neutroni, non quattro neutroni.',7:'Il secondo pannello mostra popolazioni attese normalizzate all’inizio: dopo quattro emivite resta 1/16 e il complemento 15/16 è già decaduto. Le barre hanno una scala comune.',9:'L’ultimo pannello separa il tasso reale di decadimenti nel modello da quello medio contato: il 25% di 720 Bq dà 180 s⁻¹. Le due barre usano una scala comune per tassi in s⁻¹.'}
+def assemble(repo,source_ref):
+ return assemble_family(repo,source_ref,'cric-c5-l08',TASKS,CHOICES,UNITS,'cric-c5-l08-progressive.svg',FIGURES,0,course='C5',source_origin='cric',source_ids=SOURCE_IDS,source_path='officina-di-fisica/content/C5.json',skill='C5-L08',section='Decadimenti e attività',coverage=['Composizione e trasformazioni nucleari','Legge statistica e tempi','Attività ed efficienza'],overrides={n:{'error':{'category':('concetto'if n in(1,3,4,8)else'unità'if n==6 else'testo'if n==7 else'algebra'),'message':TASKS[n-1][5],'target':'C5-L08'}}for n in range(1,11)})
+if __name__=='__main__':write_family(assemble,'cric-c5-l08')

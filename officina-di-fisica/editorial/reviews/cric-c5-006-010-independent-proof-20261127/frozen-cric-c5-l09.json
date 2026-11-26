@@ -1,0 +1,668 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "C5-Q081",
+      "kind": "question",
+      "course": "C5",
+      "section": "Riflessione e rifrazione",
+      "order": 81,
+      "title": "Dalla superficie alla normale",
+      "skill": "C5-L09",
+      "prerequisites": [
+        "C5-L06"
+      ],
+      "version": 2,
+      "prompt": "Un raggio incide su uno specchio piano formando 25° con la superficie. Quanto misura l’angolo di riflessione rispetto alla normale, in gradi?",
+      "family": "normale-da-una-superficie-inclinata",
+      "difficulty": 1,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La superficie e la normale formano un angolo retto. L’incidenza rispetto alla normale è quindi 90°−25°=65°. La legge di riflessione uguaglia l’angolo riflesso a quello incidente, entrambi misurati dalla normale. Il valore cercato è 65°, non l’angolo assegnato rispetto alla superficie."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/2abd79e0515ecbd042033e7ab7119589b83020067f8b8cfc643562379b2896b0",
+          "text": "Nel primo pannello il raggio incidente forma 25° con la superficie orizzontale e 65° con la normale; il riflesso ha lo stesso angolo di 65° dalla normale."
+        },
+        {
+          "type": "formula",
+          "text": "\\theta_i=90^\\circ-25^\\circ"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_i=65^\\circ"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_r=\\theta_i"
+        },
+        {
+          "type": "text",
+          "text": "25° conserva il riferimento alla superficie invece di cambiarlo. 130° sarebbe il doppio dell’angolo dalla normale, non un singolo angolo riflesso. La normale non ruota durante il confronto fra incidenza e riflessione sullo stesso specchio fermo."
+        }
+      ],
+      "answer": {
+        "type": "numeric",
+        "value": 65,
+        "unit": "°",
+        "tolerance": 0
+      },
+      "hints": [
+        "Individua l’angolo retto fra superficie e normale prima di usare l’uguaglianza ottica.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "testo",
+        "message": "25° conserva il riferimento alla superficie invece di cambiarlo. 130° sarebbe il doppio dell’angolo dalla normale, non un singolo angolo riflesso. La normale non ruota durante il confronto fra incidenza e riflessione sullo stesso specchio fermo.",
+        "target": "C5-L09"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Normale e riferimenti angolari",
+        "Snell e indice esatto",
+        "Reversibilità e riflessione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q082",
+      "kind": "question",
+      "course": "C5",
+      "section": "Riflessione e rifrazione",
+      "order": 82,
+      "title": "Il nome della perpendicolare locale",
+      "skill": "C5-L09",
+      "prerequisites": [
+        "C5-L06"
+      ],
+      "version": 2,
+      "prompt": "Come si chiama la retta perpendicolare all’interfaccia nel punto di incidenza?",
+      "family": "il-riferimento-angolare",
+      "difficulty": 1,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La retta è la normale. È il riferimento rispetto al quale si misurano gli angoli delle leggi di riflessione e di Snell. Su un’interfaccia curva la costruzione è locale: si usa la perpendicolare al piano tangente nel punto colpito, non una verticale scelta arbitrariamente sul foglio."
+        },
+        {
+          "type": "formula",
+          "text": "\\mathbf n\\perp\\text{interfaccia}"
+        },
+        {
+          "type": "text",
+          "text": "La tangente giace nel piano locale della superficie ed è perpendicolare alla normale. L’asse ottico di una lente e la focale appartengono ad altri elementi della descrizione. Il raggio coincide con la normale solo a incidenza normale, non per definizione."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Normale",
+          "Tangente",
+          "Asse necessariamente coincidente con il raggio incidente",
+          "Focale",
+          "Lunghezza d’onda"
+        ],
+        "value": "Normale"
+      },
+      "hints": [
+        "Fissa prima il punto d’incidenza e poi traccia la perpendicolare alla superficie lì.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La tangente giace nel piano locale della superficie ed è perpendicolare alla normale. L’asse ottico di una lente e la focale appartengono ad altri elementi della descrizione. Il raggio coincide con la normale solo a incidenza normale, non per definizione.",
+        "target": "C5-L09"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Normale e riferimenti angolari",
+        "Snell e indice esatto",
+        "Reversibilità e riflessione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q083",
+      "kind": "question",
+      "course": "C5",
+      "section": "Riflessione e rifrazione",
+      "order": 83,
+      "title": "Rifrazione con incidenza normale",
+      "skill": "C5-L09",
+      "prerequisites": [
+        "C5-L06"
+      ],
+      "version": 2,
+      "prompt": "Un raggio incide perpendicolarmente su un’interfaccia ferma dall’aria, modellata con n₁=1, a vetro trasparente con n₂=3/2. Considera la porzione trasmessa. Quale cambiamento è corretto?",
+      "family": "moto-allingresso-normale",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il seno dell’angolo incidente è zero. Snell impone allora seno dell’angolo trasmesso uguale a zero: la direzione rimane normale all’interfaccia. La velocità di fase passa però da c a c/(3/2)=2c/3. La frequenza resta quella della sorgente e la lunghezza d’onda si riduce nello stesso rapporto della velocità."
+        },
+        {
+          "type": "formula",
+          "text": "\\theta_1=0"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_2=0"
+        },
+        {
+          "type": "formula",
+          "text": " v_2=\\frac23c"
+        },
+        {
+          "type": "text",
+          "text": "Nessuna deviazione non significa nessun cambiamento di velocità. La frequenza non cambia attraversando questa interfaccia ferma. La porzione riflessa non è quella trasmessa richiesta; una lunghezza d’onda invariata sarebbe incompatibile con frequenza uguale e velocità minore."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Direzione invariata e velocità di fase minore",
+          "Frequenza minore e velocità di fase invariata",
+          "Direzione invertita e frequenza doppia",
+          "Direzione più vicina alla superficie e velocità maggiore",
+          "Direzione invariata e lunghezza d’onda invariata"
+        ],
+        "value": "Direzione invariata e velocità di fase minore"
+      },
+      "hints": [
+        "Applica separatamente Snell alla direzione e v=c/n alla velocità di fase.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "Nessuna deviazione non significa nessun cambiamento di velocità. La frequenza non cambia attraversando questa interfaccia ferma. La porzione riflessa non è quella trasmessa richiesta; una lunghezza d’onda invariata sarebbe incompatibile con frequenza uguale e velocità minore.",
+        "target": "C5-L09"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Normale e riferimenti angolari",
+        "Snell e indice esatto",
+        "Reversibilità e riflessione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q084",
+      "kind": "question",
+      "course": "C5",
+      "section": "Riflessione e rifrazione",
+      "order": 84,
+      "title": "Un indice esatto da due angoli notevoli",
+      "skill": "C5-L09",
+      "prerequisites": [
+        "C5-L06"
+      ],
+      "version": 3,
+      "prompt": "Un raggio passa dal mezzo con n₁=1 a un mezzo trasparente, con incidenza 45° e rifrazione 30°, entrambe rispetto alla normale. Usa i seni esatti degli angoli notevoli. Qual è l’indice n₂?",
+      "family": "indice-incognito-da-due-angoli",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Isolo n₂ nella legge di Snell: n₂=n₁ sin45°/sin30°. Il seno di 45° è √2/2 e quello di 30° è 1/2. Dividere per 1/2 moltiplica per due, quindi n₂=√2 esattamente. Non serve ricorrere a 1,414…: la scelta mantiene il radicale. L’angolo più piccolo nel secondo mezzo è coerente con un indice maggiore di uno."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/2abd79e0515ecbd042033e7ab7119589b83020067f8b8cfc643562379b2896b0",
+          "text": "Il secondo pannello mostra i due angoli dalla stessa normale: 45° nel mezzo con n₁=1 e 30° nel mezzo con n₂=√2. Il raggio rifratto è più vicino alla normale."
+        },
+        {
+          "type": "formula",
+          "text": "n_2=\\frac{\\sin45^\\circ}{\\sin30^\\circ}"
+        },
+        {
+          "type": "formula",
+          "text": " n_2=\\frac{\\sqrt2/2}{1/2}"
+        },
+        {
+          "type": "formula",
+          "text": " n_2=\\sqrt2"
+        },
+        {
+          "type": "text",
+          "text": "Il reciproco 1/√2 invertirebbe i seni e predirebbe il confronto di indici opposto. Due sostituirebbe erroneamente sin45° con uno. Un mezzo è il solo seno di 30°, non l’indice ricavato. 3/2 non soddisfa l’uguaglianza esatta dei seni assegnati."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "√2",
+          "1/√2",
+          "2",
+          "1/2",
+          "3/2"
+        ],
+        "value": "√2"
+      },
+      "hints": [
+        "Cancella il fattore un mezzo senza trasformare il radicale in un’approssimazione decimale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il reciproco 1/√2 invertirebbe i seni e predirebbe il confronto di indici opposto. Due sostituirebbe erroneamente sin45° con uno. Un mezzo è il solo seno di 30°, non l’indice ricavato. 3/2 non soddisfa l’uguaglianza esatta dei seni assegnati.",
+        "target": "C5-L09"
+      },
+      "baseVersion": 2,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Normale e riferimenti angolari",
+        "Snell e indice esatto",
+        "Reversibilità e riflessione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q085",
+      "kind": "question",
+      "course": "C5",
+      "section": "Riflessione e rifrazione",
+      "order": 85,
+      "title": "L’indice dal rapporto delle velocità",
+      "skill": "C5-L09",
+      "prerequisites": [
+        "C5-L06"
+      ],
+      "version": 2,
+      "prompt": "Una luce monocromatica ha velocità di fase v=1,875×10⁸ m/s in un materiale. Con c=3,00×10⁸ m/s, quale indice di fase n ottieni?",
+      "family": "luce-piu-lenta-in-un-materiale",
+      "difficulty": 1,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’indice è c/v. Cancello la stessa potenza 10⁸ e la stessa unità m/s. Per evitare una divisione decimale lunga scrivo 1,875=15/8: il rapporto è 3/(15/8)=24/15=8/5. È lo stesso valore di 1,6, ma resta una frazione esatta nell’alternativa proposta."
+        },
+        {
+          "type": "formula",
+          "text": "n=\\frac cv"
+        },
+        {
+          "type": "formula",
+          "text": " n=\\frac3{15/8}"
+        },
+        {
+          "type": "formula",
+          "text": " n=\\frac85"
+        },
+        {
+          "type": "text",
+          "text": "5/8 è v/c e non c/v. 15/8 copia il coefficiente numerico di v senza costruire il rapporto. Un indice 16 darebbe velocità c/16, dieci volte minore di quella assegnata. Le unità devono cancellarsi, non restare nell’indice."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "8/5",
+          "5/8",
+          "3",
+          "15/8",
+          "16"
+        ],
+        "value": "8/5"
+      },
+      "hints": [
+        "Trasforma 1,875 in una frazione semplice prima di dividere i coefficienti.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "5/8 è v/c e non c/v. 15/8 copia il coefficiente numerico di v senza costruire il rapporto. Un indice 16 darebbe velocità c/16, dieci volte minore di quella assegnata. Le unità devono cancellarsi, non restare nell’indice.",
+        "target": "C5-L09"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Normale e riferimenti angolari",
+        "Snell e indice esatto",
+        "Reversibilità e riflessione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q086",
+      "kind": "question",
+      "course": "C5",
+      "section": "Riflessione e rifrazione",
+      "order": 86,
+      "title": "La lastra tra due regioni d’aria",
+      "skill": "C5-L09",
+      "prerequisites": [
+        "C5-L06"
+      ],
+      "version": 2,
+      "prompt": "Un raggio attraversa obliquamente una lastra trasparente omogenea isotropa con facce parallele, dall’aria all’aria. Considera il raggio direttamente trasmesso, nell’ottica geometrica. Come emerge?",
+      "family": "piastra-a-facce-parallele",
+      "difficulty": 3,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le due normali sono parallele e il mezzo esterno è lo stesso. La prima legge di Snell dà n_a sinθ_i=n_l sinθ_l; la seconda dà n_l sinθ_l=n_a sinθ_u. Ne segue θ_u=θ_i per i raggi trasmessi nel ramo considerato. Il tratto obliquo nella lastra produce in generale uno spostamento laterale, quindi parallelo non significa sulla stessa retta."
+        },
+        {
+          "type": "formula",
+          "text": "n_a\\sin\\theta_i=n_l\\sin\\theta_l"
+        },
+        {
+          "type": "formula",
+          "text": " n_l\\sin\\theta_l=n_a\\sin\\theta_u"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_u=\\theta_i"
+        },
+        {
+          "type": "text",
+          "text": "La direzione normale all’uscita sarebbe un caso di incidenza normale, escluso dal dato obliquo. La stessa retta non segue dalla sola uguaglianza degli angoli; conta anche il tragitto interno. La frequenza rimane invariata alle interfacce ferme del modello."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Parallelo all’incidente, in generale spostato lateralmente",
+          "Sempre sulla stessa retta dell’incidente",
+          "Necessariamente perpendicolare alla faccia d’uscita",
+          "Con frequenza dimezzata",
+          "Sempre diretto di nuovo verso la sorgente"
+        ],
+        "value": "Parallelo all’incidente, in generale spostato lateralmente"
+      },
+      "hints": [
+        "Combina le due uguaglianze prima di interpretare la posizione laterale del raggio.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "La direzione normale all’uscita sarebbe un caso di incidenza normale, escluso dal dato obliquo. La stessa retta non segue dalla sola uguaglianza degli angoli; conta anche il tragitto interno. La frequenza rimane invariata alle interfacce ferme del modello.",
+        "target": "C5-L09"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Normale e riferimenti angolari",
+        "Snell e indice esatto",
+        "Reversibilità e riflessione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q087",
+      "kind": "question",
+      "course": "C5",
+      "section": "Riflessione e rifrazione",
+      "order": 87,
+      "title": "Ripercorrere all’indietro lo stesso cammino",
+      "skill": "C5-L09",
+      "prerequisites": [
+        "C5-L06"
+      ],
+      "version": 2,
+      "prompt": "Un raggio passa dal mezzo A a B con angoli 50° in A e 32° in B, entrambi dalla normale. Si inverte esattamente lo stesso cammino in mezzi trasparenti reciproci e interfaccia ferma. Quanto misura l’angolo in A, in gradi?",
+      "family": "invertire-il-percorso",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il cammino iniziale soddisfa n_A sin50°=n_B sin32°. Nell’esperimento inverso il raggio incide da B lungo la direzione prima trasmessa. La stessa uguaglianza, letta nell’altro verso, lo fa emergere in A lungo il cammino iniziale invertito, quindi con angolo 50° dalla normale. Non occorre calcolare alcun indice o seno decimale."
+        },
+        {
+          "type": "formula",
+          "text": "n_A\\sin50^\\circ=n_B\\sin32^\\circ"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta_A=50^\\circ"
+        },
+        {
+          "type": "text",
+          "text": "32° è l’angolo sul lato B, non quello richiesto in A. Sottrarre 32 da 50 descriverebbe la differenza fra due angoli del percorso, non l’angolo di uscita inverso. La reversibilità richiede i mezzi reciproci e lo stesso cammino dichiarati."
+        }
+      ],
+      "answer": {
+        "type": "numeric",
+        "value": 50,
+        "unit": "°",
+        "tolerance": 0
+      },
+      "hints": [
+        "Conserva l’uguaglianza di Snell e scambia quale lato fornisce il raggio incidente.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "32° è l’angolo sul lato B, non quello richiesto in A. Sottrarre 32 da 50 descriverebbe la differenza fra due angoli del percorso, non l’angolo di uscita inverso. La reversibilità richiede i mezzi reciproci e lo stesso cammino dichiarati.",
+        "target": "C5-L09"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Normale e riferimenti angolari",
+        "Snell e indice esatto",
+        "Reversibilità e riflessione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q088",
+      "kind": "question",
+      "course": "C5",
+      "section": "Riflessione e rifrazione",
+      "order": 88,
+      "title": "Il verso che ammette un angolo critico",
+      "skill": "C5-L09",
+      "prerequisites": [
+        "C5-L06"
+      ],
+      "version": 2,
+      "prompt": "Nei modelli trasparenti con gli indici assegnati, quale passaggio ammette riflessione totale interna a un angolo di incidenza opportuno?",
+      "family": "scegliere-linterfaccia-per-langolo-critico",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’angolo critico richiede che il seno n₂/n₁ sia minore di uno, quindi n₁>n₂. Il passaggio vetro–acqua nel verso assegnato ha questa proprietà. A incidenze superiori all’angolo critico il modello geometrico non dà un raggio trasmesso propagante; all’angolo critico il limite trasmesso è radente."
+        },
+        {
+          "type": "formula",
+          "text": "\\sin\\theta_c=\\frac{n_2}{n_1}"
+        },
+        {
+          "type": "formula",
+          "text": " n_1>n_2"
+        },
+        {
+          "type": "text",
+          "text": "Nei passaggi a indice crescente il rapporto n₂/n₁ supera uno e non definisce un angolo critico reale. Con indici uguali il caso radente non crea l’intervallo di riflessione totale interna richiesto. Non basta nominare due materiali: il verso del passaggio è essenziale."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Dal vetro n=1,50 all’acqua n=1,33",
+          "Dall’aria n=1 al vetro n=1,50",
+          "Dall’acqua n=1,33 al vetro n=1,50",
+          "Fra due mezzi entrambi con n=1,50",
+          "Dall’aria n=1 all’acqua n=1,33"
+        ],
+        "value": "Dal vetro n=1,50 all’acqua n=1,33"
+      },
+      "hints": [
+        "Confronta l’indice del mezzo da cui arriva il raggio con quello del mezzo verso cui passerebbe.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "Nei passaggi a indice crescente il rapporto n₂/n₁ supera uno e non definisce un angolo critico reale. Con indici uguali il caso radente non crea l’intervallo di riflessione totale interna richiesto. Non basta nominare due materiali: il verso del passaggio è essenziale.",
+        "target": "C5-L09"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Normale e riferimenti angolari",
+        "Snell e indice esatto",
+        "Reversibilità e riflessione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q089",
+      "kind": "question",
+      "course": "C5",
+      "section": "Riflessione e rifrazione",
+      "order": 89,
+      "title": "L’apertura fra i segmenti verso sorgente e ricevitore",
+      "skill": "C5-L09",
+      "prerequisites": [
+        "C5-L06"
+      ],
+      "version": 2,
+      "prompt": "Un fascio incide su uno specchio piano a 30° dalla normale. Qual è l’angolo minore fra i due segmenti che, dal punto di riflessione, vanno rispettivamente alla sorgente e al ricevitore? Rispondi in gradi.",
+      "family": "angolo-fra-due-bracci",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La normale biseca l’apertura fra i due segmenti geometrici indicati. Il segmento verso la sorgente forma 30° su un lato, quello verso il ricevitore altri 30° sull’altro lato. L’angolo minore è quindi 30°+30°=60°. Il segmento verso la sorgente è orientato al contrario rispetto alla velocità del raggio incidente: sono due confronti geometrici diversi."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/2abd79e0515ecbd042033e7ab7119589b83020067f8b8cfc643562379b2896b0",
+          "text": "Nell’ultimo pannello i segmenti dal punto verso sorgente e ricevitore formano ciascuno 30° con la normale. La loro apertura minore è 60°; il verso di propagazione incidente è opposto al segmento verso la sorgente."
+        },
+        {
+          "type": "formula",
+          "text": "\\theta_r=30^\\circ"
+        },
+        {
+          "type": "formula",
+          "text": " \\beta=\\theta_i+\\theta_r"
+        },
+        {
+          "type": "formula",
+          "text": " \\beta=60^\\circ"
+        },
+        {
+          "type": "text",
+          "text": "30° considera soltanto uno dei due lati della normale. 120° sarebbe l’angolo fra i vettori di propagazione incidente e riflesso, non fra i segmenti uscenti dal punto verso sorgente e ricevitore. 90° non segue dalla legge di riflessione in questa configurazione."
+        }
+      ],
+      "answer": {
+        "type": "numeric",
+        "value": 60,
+        "unit": "°",
+        "tolerance": 0
+      },
+      "hints": [
+        "Orienta entrambi i segmenti come chiede il testo prima di scegliere fra un angolo e il suo supplementare.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "testo",
+        "message": "30° considera soltanto uno dei due lati della normale. 120° sarebbe l’angolo fra i vettori di propagazione incidente e riflesso, non fra i segmenti uscenti dal punto verso sorgente e ricevitore. 90° non segue dalla legge di riflessione in questa configurazione.",
+        "target": "C5-L09"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Normale e riferimenti angolari",
+        "Snell e indice esatto",
+        "Reversibilità e riflessione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q090",
+      "kind": "question",
+      "course": "C5",
+      "section": "Riflessione e rifrazione",
+      "order": 90,
+      "title": "Una piccola rotazione dello specchio",
+      "skill": "C5-L09",
+      "prerequisites": [
+        "C5-L06"
+      ],
+      "version": 2,
+      "prompt": "Il raggio incidente rimane fisso. Uno specchio piano ruota di 4° nel piano di incidenza attorno al punto illuminato, mantenendo la riflessione speculare sulla stessa faccia. Di quanti gradi ruota la direzione riflessa, in modulo?",
+      "family": "riflessione-da-specchio-ruotato",
+      "difficulty": 3,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La normale ruota degli stessi 4° dello specchio. Poiché biseca l’angolo fra il segmento verso la sorgente, rimasto fisso, e quello riflesso, il secondo deve ruotare il doppio. La variazione della direzione riflessa ha modulo 2×4°=8°. Non è necessario conoscere l’angolo iniziale per questo confronto nel piano."
+        },
+        {
+          "type": "formula",
+          "text": "|\\Delta\\theta_{\\rm riflesso}|=2|\\Delta\\alpha|"
+        },
+        {
+          "type": "formula",
+          "text": " |\\Delta\\theta_{\\rm riflesso}|=8^\\circ"
+        },
+        {
+          "type": "text",
+          "text": "4° terrebbe conto soltanto della rotazione della normale senza applicare di nuovo la simmetria della riflessione. 2° dividerebbe per due un rapporto che deve essere raddoppiato. Il raggio incidente non ruota insieme allo specchio nel problema assegnato."
+        }
+      ],
+      "answer": {
+        "type": "numeric",
+        "value": 8,
+        "unit": "°",
+        "tolerance": 0
+      },
+      "hints": [
+        "Mantieni fermo il segmento verso la sorgente e osserva come deve cambiare l’altro per conservare la bisettrice.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "4° terrebbe conto soltanto della rotazione della normale senza applicare di nuovo la simmetria della riflessione. 2° dividerebbe per due un rapporto che deve essere raddoppiato. Il raggio incidente non ruota insieme allo specchio nel problema assegnato.",
+        "target": "C5-L09"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Normale e riferimenti angolari",
+        "Snell e indice esatto",
+        "Reversibilità e riflessione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "2abd79e0515ecbd042033e7ab7119589b83020067f8b8cfc643562379b2896b0",
+      "name": "cric-c5-l09-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTU0MCIgdmlld0JveD0iMCAwIDY0MCAxNTQwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMjcyNTM2Ij4KPHRpdGxlIGlkPSJ0aXRsZSI+U2NlZ2xpZXJlIGxhIG5vcm1hbGUgZSBkaXN0aW5ndWVyZSBnbGkgYW5nb2xpPC90aXRsZT48ZGVzYyBpZD0iZGVzYyI+VHJlIHByb2JsZW1pIGRpc3RpbnRpLiBVbm8gc3BlY2NoaW8gcGlhbm8gcmlmbGV0dGUgdW4gcmFnZ2lvIGEgdmVudGljaW5xdWUgZ3JhZGkgZGFsbGEgc3VwZXJmaWNpZSwgY2lvw6ggc2Vzc2FudGFjaW5xdWUgZGFsbGEgbm9ybWFsZS4gUmlmcmF6aW9uZSBkYSBpbmRpY2UgdW5vIGEgcmFkaWNlIGRpIGR1ZSBjb24gYW5nb2xpIHF1YXJhbnRhY2lucXVlIGUgdHJlbnRhIGdyYWRpIGRhbGxhIG5vcm1hbGUuIER1ZSBzZWdtZW50aSB2ZXJzbyBzb3JnZW50ZSBlIHJpY2V2aXRvcmUgYXByb25vIHNlc3NhbnRhIGdyYWRpIHF1YW5kbyBjaWFzY3VubyBmb3JtYSB0cmVudGEgZ3JhZGkgY29uIGxhIG5vcm1hbGUuPC9kZXNjPgo8ZGVmcz48bWFya2VyIGlkPSJnIiBtYXJrZXJXaWR0aD0iNyIgbWFya2VySGVpZ2h0PSI3IiByZWZYPSI3IiByZWZZPSIzLjUiIG9yaWVudD0iYXV0byIgbWFya2VyVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNMCAwTDcgMy41TDAgN1oiIGZpbGw9IiMxNDdjNzYiLz48L21hcmtlcj48bWFya2VyIGlkPSJ2IiBtYXJrZXJXaWR0aD0iNyIgbWFya2VySGVpZ2h0PSI3IiByZWZYPSI3IiByZWZZPSIzLjUiIG9yaWVudD0iYXV0byIgbWFya2VyVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNMCAwTDcgMy41TDAgN1oiIGZpbGw9IiM2ODUyYTMiLz48L21hcmtlcj48L2RlZnM+PHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxNTQwIiBmaWxsPSIjZmZmZGY3Ii8+Cjx0ZXh0IHg9IjQwIiB5PSI1NSIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9ImJvbGQiPjEgwrcgRHVlIHJpZmVyaW1lbnRpIGNvbXBsZW1lbnRhcmk8L3RleHQ+PHRleHQgeD0iNDAiIHk9IjEwOCI+U3BlY2NoaW8gZmVybW8gOyBub3JtYWxlIHBlcnBlbmRpY29sYXJlLjwvdGV4dD48cGF0aCBkPSJNODAgMzAwSDU2MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjODg4IiBzdHJva2Utd2lkdGg9IjQiLz48cGF0aCBkPSJNMzIwIDE0MFYzNjAiIHN0cm9rZT0iIzk5OSIgc3Ryb2tlLWRhc2hhcnJheT0iNiA0Ii8+CjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDMyMCAzMDApIHJvdGF0ZSgyNSkiPjxwYXRoIGQ9Ik0tMjIwIDBIMCIgc3Ryb2tlPSIjMTQ3Yzc2IiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjZykiLz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMzIwIDMwMCkgcm90YXRlKC0yNSkiPjxwYXRoIGQ9Ik0wIDBIMjIwIiBzdHJva2U9IiM2ODUyYTMiIHN0cm9rZS13aWR0aD0iMyIgbWFya2VyLWVuZD0idXJsKCN2KSIvPjwvZz4KPHBhdGggZD0iTTMyMCAyNDBBNjAgNjAgMCAwIDAgMjY1LjYyMTUgMjc0LjY0MjlNMzIwIDI0MEE2MCA2MCAwIDAgMSAzNzQuMzc4NSAyNzQuNjQyOSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjODg4Ii8+PHRleHQgeD0iMjUwIiB5PSIyMjUiPjY1wrA8L3RleHQ+PHRleHQgeD0iMzY1IiB5PSIyMjUiPjY1wrA8L3RleHQ+PHRleHQgeD0iMTgwIiB5PSIyODUiPjI1wrA8L3RleHQ+PHRleHQgeD0iMzQwIiB5PSIxNjAiPk5vcm1hbGU8L3RleHQ+PHRleHQgeD0iMzIwIiB5PSI0MjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPjkwwrAg4oiSIDI1wrAgPSA2NcKwPC90ZXh0PjxwYXRoIGQ9Ik00MCA0NzVINjAwIiBzdHJva2U9IiNjYmM2YmMiLz4KPHRleHQgeD0iNDAiIHk9IjUzMCIgZm9udC1zaXplPSIyNSIgZm9udC13ZWlnaHQ9ImJvbGQiPjIgwrcgR2xpIGFuZ29saSBzb25vIGRhbGxhIG5vcm1hbGU8L3RleHQ+PHRleHQgeD0iNDAiIHk9IjU4NSI+buKCgSA9IDEgOyBu4oKCID0g4oiaMjwvdGV4dD48cGF0aCBkPSJNNTAgODE1SDU5MCIgc3Ryb2tlPSIjODg4IiBzdHJva2Utd2lkdGg9IjIiLz48cGF0aCBkPSJNMzIwIDY1MFYxMDAwIiBzdHJva2U9IiM5OTkiIHN0cm9rZS1kYXNoYXJyYXk9IjYgNCIvPgo8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgzMjAgODE1KSByb3RhdGUoLTQ1KSI+PHBhdGggZD0iTTAgLTIwMFYwIiBzdHJva2U9IiMxNDdjNzYiIHN0cm9rZS13aWR0aD0iMyIgbWFya2VyLWVuZD0idXJsKCNnKSIvPjwvZz48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgzMjAgODE1KSByb3RhdGUoLTMwKSI+PHBhdGggZD0iTTAgMFYxODAiIHN0cm9rZT0iIzY4NTJhMyIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI3YpIi8+PC9nPgo8cGF0aCBkPSJNMzIwIDc1NUE2MCA2MCAwIDAgMCAyNzcuNTczNiA3NzIuNTczNk0zMjAgODc1QTYwIDYwIDAgMCAwIDM1MCA4NjYuOTYxNSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjODg4Ii8+PHRleHQgeD0iMjcwIiB5PSI3MTUiPjQ1wrA8L3RleHQ+PHRleHQgeD0iMzM1IiB5PSI5MTUiPjMwwrA8L3RleHQ+PHRleHQgeD0iNzAiIHk9Ijc0NSI+buKCgTwvdGV4dD48dGV4dCB4PSI3MCIgeT0iOTMwIj5u4oKCPC90ZXh0PjxwYXRoIGQ9Ik00MCAxMDMwSDYwMCIgc3Ryb2tlPSIjY2JjNmJjIi8+Cjx0ZXh0IHg9IjQwIiB5PSIxMDg1IiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iYm9sZCI+MyDCtyBTZWdtZW50aSB2ZXJzbyBpIGR1ZSBlc3RyZW1pPC90ZXh0Pjx0ZXh0IHg9IjgwIiB5PSIxMTcwIj5WZXJzbyBzb3JnZW50ZTwvdGV4dD48dGV4dCB4PSI0MDAiIHk9IjExNzAiPlZlcnNvIHJpY2V2aXRvcmU8L3RleHQ+PHBhdGggZD0iTTgwIDEzOTBINTYwIiBzdHJva2U9IiM4ODgiIHN0cm9rZS13aWR0aD0iNCIvPjxwYXRoIGQ9Ik0zMjAgMTE4MFYxNDYwIiBzdHJva2U9IiM5OTkiIHN0cm9rZS1kYXNoYXJyYXk9IjYgNCIvPgo8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgzMjAgMTM5MCkgcm90YXRlKC0zMCkiPjxwYXRoIGQ9Ik0wIC0yMTBWMCIgc3Ryb2tlPSIjMTQ3Yzc2IiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjZykiLz48L2c+PGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMzIwIDEzOTApIHJvdGF0ZSgzMCkiPjxwYXRoIGQ9Ik0wIDBWLTIxMCIgc3Ryb2tlPSIjNjg1MmEzIiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjdikiLz48L2c+CjxwYXRoIGQ9Ik0yODIuNSAxMzI1LjA0ODFBNzUgNzUgMCAwIDEgMzU3LjUgMTMyNS4wNDgxIiBmaWxsPSJub25lIiBzdHJva2U9IiM5NDYzMWUiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjI3NSIgeT0iMTI2MCI+MzDCsDwvdGV4dD48dGV4dCB4PSIzMzUiIHk9IjEyNjAiPjMwwrA8L3RleHQ+PHRleHQgeD0iNDIwIiB5PSIxMzIwIj7OsiA9IDYwwrA8L3RleHQ+PHRleHQgeD0iMzQwIiB5PSIxNDM1Ij5QPC90ZXh0Pjx0ZXh0IHg9IjMyMCIgeT0iMTUwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+TOKAmWFwZXJ0dXJhIHVzYSBpIHNlZ21lbnRpIHVzY2VudGkgZGEgUC48L3RleHQ+Cjwvc3ZnPgo="
+    }
+  ]
+}

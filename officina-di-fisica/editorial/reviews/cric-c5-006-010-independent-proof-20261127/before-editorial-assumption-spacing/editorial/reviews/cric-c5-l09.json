@@ -1,0 +1,370 @@
+{
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "C5-Q081",
+      "sourceSha256": "d97ae6176fb85f2af17266b734a14c68d59b325796e9cd2ae993600a03619fdb",
+      "candidateSha256": "aa586fafc4d95b73174a759acfedf1a5b3d26ce31246d9ebd43131f8477874e2",
+      "reviewedSignature": "a9414fc6d193e12a46bdb602435ce66d79c6c95ac0f43590f5a14b4117403c8e",
+      "assetChecksums": {
+        "cric-c5-l09-progressive.svg": "2abd79e0515ecbd042033e7ab7119589b83020067f8b8cfc643562379b2896b0"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "65",
+      "dimension": {},
+      "manualArithmetic": "Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: L'angolo incidente rispetto alla normale è90°−25°=65°.\nLa legge della riflessione uguaglia a questo l'angolo riflesso, ancora65°.\nI25° del testo sono riferiti alla superficie: non si possono copiare senza\ncambiare il riferimento geometrico.",
+      "physicalAssumptions": "Specchio fermo,25° dalla superficie convertiti rispetto alla normale.",
+      "distractors": "25° è riferito alla superficie; 130° raddoppia l’angolo invece di descrivere un solo angolo riflesso.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: L'angolo incidente rispetto alla normale è90°−25°=65°.\nLa legge della riflessione uguaglia a questo l'angolo riflesso, ancora65°.\nI25° del testo sono riferiti alla superficie: non si possono copiare senza\ncambiare il riferimento geometrico.",
+      "scientificAssetReview": "Figura candidata letta integralmente in XML e in nuovo PNG nativo indipendente completo; proporzioni, segni, origini, assi e geometrie verificati per ogni pannello. Otto SVG originali letti integralmente in XML; nessuna validazione raster degli originali dichiarata. Il solo fix Q094 non cambia asset; nessuna UI prodotto o approvazione umana.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c5_051_100_root_review_models.py": "ea160e2ae2cc5a52720d9be018b2a89ceb78ae606811c67961caee819db4b1bb",
+        "cric_c5_radiation_optics_review_common_a.py": "03bdead14c9c04f4700be9542b290fb62306a931cf89d1781eaa73693356ce0d",
+        "cric_c5_radiation_optics_review_evidence_a.py": "2378a916b5ff413fcbc63e540f3ad240243f74f589129a89b90c0d7b59c67f29",
+        "cric_c5_radiation_optics_review_models_a.py": "61ce17adcdd72a2c8e632e99fcc37954a81b71204eadc3721e9f9ebf05c2a357",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C5-Q082",
+      "sourceSha256": "bf7391bdcea80673397bfe31d87f08dc45266d69372458df936e3fe4c099563b",
+      "candidateSha256": "13be06720b754f48f4c3e4b1acf2dc17545df5c856b2e88699a3cfbab62b29cc",
+      "reviewedSignature": "a406337ec2a79c43150c331304e66a197fe904ba0d6511fc5380277cdb46a57b",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Normale",
+      "dimension": {},
+      "manualArithmetic": "Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: La retta è la normale. È definita nel punto di incidenza e\nperpendicolare all'interfaccia; tutti gli angoli delle leggi di riflessione e\nrifrazione si misurano rispetto a essa, non rispetto alla superficie.",
+      "physicalAssumptions": "Normale locale nel punto di incidenza; superficie curva via piano tangente.",
+      "distractors": "Tangente e normale sono diverse. Asse ottico, focale e lunghezza d’onda non indicano la perpendicolare locale richiesta.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: La retta è la normale. È definita nel punto di incidenza e\nperpendicolare all'interfaccia; tutti gli angoli delle leggi di riflessione e\nrifrazione si misurano rispetto a essa, non rispetto alla superficie.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c5_051_100_root_review_models.py": "ea160e2ae2cc5a52720d9be018b2a89ceb78ae606811c67961caee819db4b1bb",
+        "cric_c5_radiation_optics_review_common_a.py": "03bdead14c9c04f4700be9542b290fb62306a931cf89d1781eaa73693356ce0d",
+        "cric_c5_radiation_optics_review_evidence_a.py": "2378a916b5ff413fcbc63e540f3ad240243f74f589129a89b90c0d7b59c67f29",
+        "cric_c5_radiation_optics_review_models_a.py": "61ce17adcdd72a2c8e632e99fcc37954a81b71204eadc3721e9f9ebf05c2a357",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C5-Q083",
+      "sourceSha256": "4fe3db352ddae8b045f8d9574db87c5b2b186825b28f82ba1cb29e04c2314e93",
+      "candidateSha256": "91cc11bbf9b7b3b15f5c75111c594f9379e0071eb8c8ae71d7b4966c9d53e3f3",
+      "reviewedSignature": "c12ea8db090a956f874871d23df08a8d3cdeafd0efe33d42bb5d0af195d9a310",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Direzione invariata e velocità di fase minore",
+      "dimension": {},
+      "manualArithmetic": "Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: Incidenza normale significa angolo0: Snell dà anche rifrazione\nad angolo0, senza deviazione. La velocità però scende a c/1,5=2c/3 e λ si\nriduce nella stessa proporzione, mentre f rimane invariata. Evitare due\nalternative entrambe vere se si chiede una sola coppia di cambiamenti.",
+      "physicalAssumptions": "Porzione trasmessa a interfaccia ferma, incidenza normale, aria n 1=1/vetro 3/2.",
+      "distractors": "Nessuna deviazione non implica che velocità e lunghezza d’onda restino uguali. Fra le cinque opzioni una sola coppia è vera.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: Incidenza normale significa angolo0: Snell dà anche rifrazione\nad angolo0, senza deviazione. La velocità però scende a c/1,5=2c/3 e λ si\nriduce nella stessa proporzione, mentre f rimane invariata. Evitare due\nalternative entrambe vere se si chiede una sola coppia di cambiamenti.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c5_051_100_root_review_models.py": "ea160e2ae2cc5a52720d9be018b2a89ceb78ae606811c67961caee819db4b1bb",
+        "cric_c5_radiation_optics_review_common_a.py": "03bdead14c9c04f4700be9542b290fb62306a931cf89d1781eaa73693356ce0d",
+        "cric_c5_radiation_optics_review_evidence_a.py": "2378a916b5ff413fcbc63e540f3ad240243f74f589129a89b90c0d7b59c67f29",
+        "cric_c5_radiation_optics_review_models_a.py": "61ce17adcdd72a2c8e632e99fcc37954a81b71204eadc3721e9f9ebf05c2a357",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C5-Q084",
+      "sourceSha256": "4b555eb6834406a710e4605d8d168221fda2d62174d4f12117af673b6b8d2c17",
+      "candidateSha256": "16e47ebb09141b66b034854d4b5cb1a9f467fb4db5c01cd05e767ecf4a4102c9",
+      "reviewedSignature": "9b779a84a6e579bd588f4186fa77ba8080fd1b29efc23bc9ba2af45b954bc739",
+      "assetChecksums": {
+        "cric-c5-l09-progressive.svg": "2abd79e0515ecbd042033e7ab7119589b83020067f8b8cfc643562379b2896b0"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "sqrt(2)",
+      "dimension": {},
+      "manualArithmetic": "Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: Snell è n₁sinθ₁=n₂sinθ₂, perciò\nn₂=sin45°/sin30°=(√2/2)/(1/2)=√2. Non occorre conoscere una sua espansione\ndecimale. Se il consumer usa Number, una nuova edizione deve consentire una\nscelta esatta o un input simbolico realmente supportato; non imporre1,414...\ncome attività manuale implicita. Il risultato è adimensionale.",
+      "physicalAssumptions": "Indici positivi e angoli 30/45 dalla normale, seni esatti, non approssimazione Number.",
+      "distractors": "1/√2 inverte i seni; 2 sostituisce sin45° con uno; 1/2 è il solo seno di 30°. 3/2 non soddisfa Snell esattamente.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: Snell è n₁sinθ₁=n₂sinθ₂, perciò\nn₂=sin45°/sin30°=(√2/2)/(1/2)=√2. Non occorre conoscere una sua espansione\ndecimale. Se il consumer usa Number, una nuova edizione deve consentire una\nscelta esatta o un input simbolico realmente supportato; non imporre1,414...\ncome attività manuale implicita. Il risultato è adimensionale.",
+      "scientificAssetReview": "Figura candidata letta integralmente in XML e in nuovo PNG nativo indipendente completo; proporzioni, segni, origini, assi e geometrie verificati per ogni pannello. Otto SVG originali letti integralmente in XML; nessuna validazione raster degli originali dichiarata. Il solo fix Q094 non cambia asset; nessuna UI prodotto o approvazione umana.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c5_051_100_root_review_models.py": "ea160e2ae2cc5a52720d9be018b2a89ceb78ae606811c67961caee819db4b1bb",
+        "cric_c5_radiation_optics_review_common_a.py": "03bdead14c9c04f4700be9542b290fb62306a931cf89d1781eaa73693356ce0d",
+        "cric_c5_radiation_optics_review_evidence_a.py": "2378a916b5ff413fcbc63e540f3ad240243f74f589129a89b90c0d7b59c67f29",
+        "cric_c5_radiation_optics_review_models_a.py": "61ce17adcdd72a2c8e632e99fcc37954a81b71204eadc3721e9f9ebf05c2a357",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C5-Q085",
+      "sourceSha256": "f2a46644d7e5eed65cb0646ceaec3ed49d864a0c009fd078f6fb3c0cbda46251",
+      "candidateSha256": "4cbfba4c184d8f82df964dbaef31bdbcd343f23c50189805e85300eb1ddee872",
+      "reviewedSignature": "640231ca43a43134956c2649975a033363929f70bfd371eff8f5952ca62b8414",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "8/5",
+      "dimension": {},
+      "manualArithmetic": "Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: n=c/v=(3×10⁸)/(1,875×10⁸)=3/(15/8)=24/15=8/5=1,6.\nLe unità e le potenze di dieci si cancellano. L'inversa v=c/n restituisce\n(3×10⁸)(5/8)=1,875×10⁸ m/s. Il numero senza unità maggiore di1 è coerente con\nla velocità assegnata inferiore a quella nel vuoto.",
+      "physicalAssumptions": "Indice di fase da velocità positiva assegnata, stesso prefisso 10^8.",
+      "distractors": "5/8 è il reciproco. 15/8 copia il coefficiente numerico della velocità; 16 darebbe velocità dieci volte minore.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: n=c/v=(3×10⁸)/(1,875×10⁸)=3/(15/8)=24/15=8/5=1,6.\nLe unità e le potenze di dieci si cancellano. L'inversa v=c/n restituisce\n(3×10⁸)(5/8)=1,875×10⁸ m/s. Il numero senza unità maggiore di1 è coerente con\nla velocità assegnata inferiore a quella nel vuoto.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c5_051_100_root_review_models.py": "ea160e2ae2cc5a52720d9be018b2a89ceb78ae606811c67961caee819db4b1bb",
+        "cric_c5_radiation_optics_review_common_a.py": "03bdead14c9c04f4700be9542b290fb62306a931cf89d1781eaa73693356ce0d",
+        "cric_c5_radiation_optics_review_evidence_a.py": "2378a916b5ff413fcbc63e540f3ad240243f74f589129a89b90c0d7b59c67f29",
+        "cric_c5_radiation_optics_review_models_a.py": "61ce17adcdd72a2c8e632e99fcc37954a81b71204eadc3721e9f9ebf05c2a357",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C5-Q086",
+      "sourceSha256": "5d3491c805a3f03b431d1667b9d9990c0221d34c5a95e6fa3db4461cef88b08d",
+      "candidateSha256": "168164822eb9bfc5ca794073a614dc4f08afccaa69120011d603eee94a8aa72d",
+      "reviewedSignature": "5485ce9d8ab50ca745307f0bdeb6b5c79d32ebda13820d127e10648c18928186",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Parallelo all’incidente, in generale spostato lateralmente",
+      "dimension": {},
+      "manualArithmetic": "Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: Con due facce parallele e lo stesso mezzo esterno, i due\npassaggi di Snell restituiscono un raggio emergente parallelo a quello\nincidente, in generale traslato lateralmente. Non è normalmente sulla stessa\nretta. Si considera il ramo direttamente trasmesso, come precisato nel testo,\ne non una somma dei riflessi interni.",
+      "physicalAssumptions": "Mezzo isotropo omogeneo e facce parallele, stesso mezzo esterno, ramo direttamente trasmesso.",
+      "distractors": "Parallelo non significa sulla stessa retta. L’obliquità esclude l’uscita normale e la frequenza non si dimezza.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: Con due facce parallele e lo stesso mezzo esterno, i due\npassaggi di Snell restituiscono un raggio emergente parallelo a quello\nincidente, in generale traslato lateralmente. Non è normalmente sulla stessa\nretta. Si considera il ramo direttamente trasmesso, come precisato nel testo,\ne non una somma dei riflessi interni.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c5_051_100_root_review_models.py": "ea160e2ae2cc5a52720d9be018b2a89ceb78ae606811c67961caee819db4b1bb",
+        "cric_c5_radiation_optics_review_common_a.py": "03bdead14c9c04f4700be9542b290fb62306a931cf89d1781eaa73693356ce0d",
+        "cric_c5_radiation_optics_review_evidence_a.py": "2378a916b5ff413fcbc63e540f3ad240243f74f589129a89b90c0d7b59c67f29",
+        "cric_c5_radiation_optics_review_models_a.py": "61ce17adcdd72a2c8e632e99fcc37954a81b71204eadc3721e9f9ebf05c2a357",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C5-Q087",
+      "sourceSha256": "fb9be053872202b2a1f27222a48435b9dc2b493fe35463240bdc2d4c921b96e3",
+      "candidateSha256": "4fbfe1445271ad1781c407e3a0ed54d79035a33e0b589549cb7630de2692cf9e",
+      "reviewedSignature": "db811761954142a740bdf493fe9470b2f651a7dc5cebadca9614a1bbbc1c8265",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "50",
+      "dimension": {},
+      "manualArithmetic": "Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: La reciprocità permette di percorrere esattamente a ritroso lo\nstesso cammino: inA si ritrova50°, non32°. Non serve calcolare il rapporto\ndegli indici con seni non notevoli. La specificazione di mezzi reciproci\nesclude i dispositivi non reciproci per i quali questa argomentazione fallisce.",
+      "physicalAssumptions": "Cammino esattamente invertito in mezzi reciproci con interfaccia ferma.",
+      "distractors": "32° è sul lato B; 18° è una differenza fra angoli, non l’angolo in A. La reciprocità restituisce 50°.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: La reciprocità permette di percorrere esattamente a ritroso lo\nstesso cammino: inA si ritrova50°, non32°. Non serve calcolare il rapporto\ndegli indici con seni non notevoli. La specificazione di mezzi reciproci\nesclude i dispositivi non reciproci per i quali questa argomentazione fallisce.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c5_051_100_root_review_models.py": "ea160e2ae2cc5a52720d9be018b2a89ceb78ae606811c67961caee819db4b1bb",
+        "cric_c5_radiation_optics_review_common_a.py": "03bdead14c9c04f4700be9542b290fb62306a931cf89d1781eaa73693356ce0d",
+        "cric_c5_radiation_optics_review_evidence_a.py": "2378a916b5ff413fcbc63e540f3ad240243f74f589129a89b90c0d7b59c67f29",
+        "cric_c5_radiation_optics_review_models_a.py": "61ce17adcdd72a2c8e632e99fcc37954a81b71204eadc3721e9f9ebf05c2a357",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C5-Q088",
+      "sourceSha256": "55da0bbf61280b1015769eefc1999789f345fb0dd0b5bfbaa014eac1ea47c399",
+      "candidateSha256": "469c876cd2614252142620d5c1b48d959e9b3c28d6c59e557b45594ab5e7433b",
+      "reviewedSignature": "2bf01307c09fc76e3e8220a1d4e2c6261d9279f0c7b93b8e8ea258229b69b36c",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Dal vetro n=1,50 all’acqua n=1,33",
+      "dimension": {},
+      "manualArithmetic": "Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: La riflessione totale può verificarsi passando dal mezzo con\nindice maggiore a quello con indice minore, per incidenza oltre il rispettivo\nangolo critico. Il solo verso di passaggio non basta: il testo dice appunto\na un angolo appropriato. A uguaglianza con l'angolo critico il raggio rifratto\nè radente, nel modello geometrico ideale.",
+      "physicalAssumptions": "Raggi propaganti e mezzo di partenza a indice maggiore; oltre critico distinto dal limite radente.",
+      "distractors": "Le altre quattro transizioni hanno n₁≤n₂. Solo vetro 1,50 verso acqua 1,33 ammette il rapporto critico minore di uno.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: La riflessione totale può verificarsi passando dal mezzo con\nindice maggiore a quello con indice minore, per incidenza oltre il rispettivo\nangolo critico. Il solo verso di passaggio non basta: il testo dice appunto\na un angolo appropriato. A uguaglianza con l'angolo critico il raggio rifratto\nè radente, nel modello geometrico ideale.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c5_051_100_root_review_models.py": "ea160e2ae2cc5a52720d9be018b2a89ceb78ae606811c67961caee819db4b1bb",
+        "cric_c5_radiation_optics_review_common_a.py": "03bdead14c9c04f4700be9542b290fb62306a931cf89d1781eaa73693356ce0d",
+        "cric_c5_radiation_optics_review_evidence_a.py": "2378a916b5ff413fcbc63e540f3ad240243f74f589129a89b90c0d7b59c67f29",
+        "cric_c5_radiation_optics_review_models_a.py": "61ce17adcdd72a2c8e632e99fcc37954a81b71204eadc3721e9f9ebf05c2a357",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C5-Q089",
+      "sourceSha256": "22642530322070c2ef94fd2f7813818762ef7dfe003d902ed6bc17613ef7de15",
+      "candidateSha256": "fea54ad60929824cd931464d2b0b483a37acab41dd0826b6f443e65a4f2e6d21",
+      "reviewedSignature": "e21c965d52b78a7c2a86c6e7a21afb17a5d72cc84322d5742fe3d259c94cd520",
+      "assetChecksums": {
+        "cric-c5-l09-progressive.svg": "2abd79e0515ecbd042033e7ab7119589b83020067f8b8cfc643562379b2896b0"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "60",
+      "dimension": {},
+      "manualArithmetic": "Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: Il testo definisce due segmenti entrambi orientati dal punto di\nriflessione verso sorgente e ricevitore. Ciascuno forma30° con la normale su\nlati opposti: l'angolo minore fra quei segmenti è60°. Fra i due vettori di\npropagazione, incidente verso lo specchio e riflesso in uscita, sarebbe invece\n120°. Non cambiare questa convenzione durante la riscrittura del disegno.",
+      "physicalAssumptions": "Due segmenti dal punto verso sorgente/ricevitore, NON i due vettori di propagazione.",
+      "distractors": "30° considera un solo braccio; 120° confronta i vettori di propagazione. 90° non segue da questa geometria.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: Il testo definisce due segmenti entrambi orientati dal punto di\nriflessione verso sorgente e ricevitore. Ciascuno forma30° con la normale su\nlati opposti: l'angolo minore fra quei segmenti è60°. Fra i due vettori di\npropagazione, incidente verso lo specchio e riflesso in uscita, sarebbe invece\n120°. Non cambiare questa convenzione durante la riscrittura del disegno.",
+      "scientificAssetReview": "Figura candidata letta integralmente in XML e in nuovo PNG nativo indipendente completo; proporzioni, segni, origini, assi e geometrie verificati per ogni pannello. Otto SVG originali letti integralmente in XML; nessuna validazione raster degli originali dichiarata. Il solo fix Q094 non cambia asset; nessuna UI prodotto o approvazione umana.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c5_051_100_root_review_models.py": "ea160e2ae2cc5a52720d9be018b2a89ceb78ae606811c67961caee819db4b1bb",
+        "cric_c5_radiation_optics_review_common_a.py": "03bdead14c9c04f4700be9542b290fb62306a931cf89d1781eaa73693356ce0d",
+        "cric_c5_radiation_optics_review_evidence_a.py": "2378a916b5ff413fcbc63e540f3ad240243f74f589129a89b90c0d7b59c67f29",
+        "cric_c5_radiation_optics_review_models_a.py": "61ce17adcdd72a2c8e632e99fcc37954a81b71204eadc3721e9f9ebf05c2a357",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C5-Q090",
+      "sourceSha256": "9aa3608ba2449e5b1dc2ff1c5ab7c8e28802cf467d6c12b6873565c1886a432c",
+      "candidateSha256": "6f3d37f8ca70d24596f66b735afa0573b92cd41527e123068c05f950ae146e53",
+      "reviewedSignature": "46cf0cf9908e325ff9871a37ab6a13d2bc454c071560d9eef97127f822b9b5cb",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "8",
+      "dimension": {},
+      "manualArithmetic": "Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: Se lo specchio ruota diδ, ruota diδ anche la sua normale.\nCon direzione incidente fissata la legge degli angoli uguali sposta la\ndirezione riflessa di2δ: il modulo richiesto è8°. Il verso dipende dalla\nconvenzione degli angoli, mentre il modulo non richiede sceglierla.",
+      "physicalAssumptions": "Incidente fisso, rotazione specchio nel piano e sulla stessa faccia, risposta in modulo.",
+      "distractors": "4° considera la sola rotazione della normale; 2° divide invece di raddoppiare. Il raggio incidente rimane fisso.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: Se lo specchio ruota diδ, ruota diδ anche la sua normale.\nCon direzione incidente fissata la legge degli angoli uguali sposta la\ndirezione riflessa di2δ: il modulo richiesto è8°. Il verso dipende dalla\nconvenzione degli angoli, mentre il modulo non richiede sceglierla.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c5_051_100_root_review_models.py": "ea160e2ae2cc5a52720d9be018b2a89ceb78ae606811c67961caee819db4b1bb",
+        "cric_c5_radiation_optics_review_common_a.py": "03bdead14c9c04f4700be9542b290fb62306a931cf89d1781eaa73693356ce0d",
+        "cric_c5_radiation_optics_review_evidence_a.py": "2378a916b5ff413fcbc63e540f3ad240243f74f589129a89b90c0d7b59c67f29",
+        "cric_c5_radiation_optics_review_models_a.py": "61ce17adcdd72a2c8e632e99fcc37954a81b71204eadc3721e9f9ebf05c2a357",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "bdaef4170ac22da780700efea7ba895aaba9bec7cc18b87d0e8039f1eab8f791",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "publicationAction": "NONE",
+  "reviewedCandidateCommit": "7f3f2ae4fb8dbe41e9ee1e780a3289055c16777c",
+  "packageSha256": "3911240271c7e41fae685fe35333312e9ccd9f07b9c2519ac850a853044c6f32",
+  "bindingsSha256": "1e1de17f3f7c0f20a991f2784409a190d677b79833ea3c5a7a4cea8a657e5541",
+  "sourceFirstPrimarySha256": "4271f78cf4be74ac64013158d017529b63d8953e38ab27e2f6deff7e0f80efa4",
+  "source": {
+    "commit": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "path": "officina-di-fisica/content/C5.json",
+    "reference": "Root primary/model d664c30a source-only before B candidates. A reread all50 source prompts, derived independent finite/exact models and actually ran120Hyp in2f393a63 before first B candidate opening. Then all50 originals/candidates and lessonsL06–L10 read in full;8sourceSVG wholeXML plus5new independent full nativePNG read. Only Q094 isolated reciprocal-unit formula corrected by author6cd8bd28, reread with strictdiff; no candidate edited by reviewer. UI product and human NOT_RUN."
+  }
+}

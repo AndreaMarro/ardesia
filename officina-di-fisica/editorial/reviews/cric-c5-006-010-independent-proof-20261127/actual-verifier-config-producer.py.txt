@@ -1,0 +1,19 @@
+from pathlib import Path
+import sys,json,hashlib,pprint,subprocess
+A=Path('/private/tmp/cric-author-a-resident/officina-di-fisica');sys.path.insert(0,str(A));from tools.corpus_engineering.pipeline import digest
+D=A/'editorial/reviews/cric-c5-006-010-independent-proof-20261127';F=D/'fixtures';assets=F/'assets'
+p=A/'tools/corpus_engineering/cric_c5_radiation_optics_review_evidence_a.py';p.write_text(p.read_text().replace('READING_COMPLETE=False','READING_COMPLETE=True'))
+source=json.loads((A/'editorial/reviews/cric-c5-006-010-source-assets-20261127/C5-original-verbatim.json').read_text());source={r['id']:r for r in source};metadata=['id','kind','course','skill','family','difficulty','order','exam','prerequisites','version']
+depnames=['electric_exact_literals.py','cric_c5_051_100_root_review_models.py','cric_c5_radiation_optics_review_models_a.py','cric_c5_radiation_optics_review_common_a.py','cric_c5_radiation_optics_review_evidence_a.py'];deps={n:hashlib.sha256((A/'tools/corpus_engineering'/n).read_bytes()).hexdigest()for n in depnames}
+for n in range(6,11):
+ batch=f'cric-c5-l{n:02}';pkg=json.loads((F/(batch+'.json')).read_text());binding=json.loads((F/(batch+'-bindings.json')).read_text());by={b['id']:b for b in binding};ids={r['id']for r in pkg['records']};pins={r['id']:digest({'record':r,'assets':by[r['id']]['assetChecksums'],'source':{'id':by[r['id']]['sourceId'],'ref':by[r['id']]['sourceRef'],'sha256':by[r['id']]['sourceSha256']}})for r in pkg['records']}
+ config={'CANDIDATE_REF':'6cd8bd28bb88c6bea812ca8df3adbc3ae8c3e069'if n==10 else'7f3f2ae4fb8dbe41e9ee1e780a3289055c16777c','EXPECTED_IDS':ids,'REVIEWED_CANDIDATES':pins,'REVIEWED_PACKAGE_SHA256':digest(pkg),'REVIEWED_BINDINGS_SHA256':digest(binding),'READ_SOURCE_SHA256':{i:digest(source[i])for i in ids},'SOURCE_METADATA':{i:{k:source[i][k]for k in metadata if k in source[i]}for i in ids},'REVIEWED_ERROR_CATEGORIES':{r['id']:r['error']['category']for r in pkg['records']},'DEPENDENCY_SHA256':deps,'SCIENTIFIC_ASSET_REVIEW':'Figura candidata letta integralmente in XML e in nuovo PNG nativo indipendente completo; proporzioni, segni, origini, assi e geometrie verificati per ogni pannello. Otto SVG originali letti integralmente in XML; nessuna validazione raster degli originali dichiarata. Il solo fix Q094 non cambia asset; nessuna UI prodotto o approvazione umana.'}
+ text='"""Distinct independent reviewer for ten different C5 Cric questions."""\nfrom pathlib import Path\nfrom . import cric_c5_radiation_optics_review_common_a as independent\n'
+ for key,value in config.items():text+=key+'='+pprint.pformat(value,width=110,sort_dicts=True)+'\n'
+ text+='\ndef verify(package,bindings,asset_root=None):\n    return independent.verify(package,bindings,globals(),asset_root)\ndef report(package,bindings,asset_root=None):\n    return independent.report(package,bindings,globals(),Path(__file__),asset_root)\n'
+ (A/f'tools/corpus_engineering/cric_c5_l{n:02}_verifier.py').write_text(text)
+# Declare our actual pre-key model object before later test Git lookups.
+P=A/'editorial/reviews/cric-c5-051-100-reviewer-a-prekey-20261127';g=json.loads((P/'git-inputs.json').read_text());ref=subprocess.check_output(['git','rev-parse','2f393a63'],text=True,cwd=A).strip()
+path='officina-di-fisica/tools/corpus_engineering/cric_c5_radiation_optics_review_models_a.py';raw=subprocess.check_output(['git','show',ref+':'+path],cwd=A);name='frozen-a-prekey-model.py';(P/name).write_bytes(raw)
+if not any(i['commit']==ref and i['path']==path for i in g['inputs']):g['inputs'].append({'commit':ref,'path':path,'snapshot':name,'sha256':hashlib.sha256(raw).hexdigest()})
+(P/'git-inputs.json').write_text(json.dumps(g,indent=2)+'\n')

@@ -1,0 +1,58 @@
+SHARED_LOCK_ACQUIRED; free bytes 2417438720; one child
+test_01_identity_saved_fresh_and_git_inputs (tests.corpus.test_cross_review_cric_c5_l06_l10_a.IndependentC5Review.test_01_identity_saved_fresh_and_git_inputs) ... ok
+test_02_every_wrong_key_retokenized_rebound (tests.corpus.test_cross_review_cric_c5_l06_l10_a.IndependentC5Review.test_02_every_wrong_key_retokenized_rebound) ... ok
+test_03_metadata_and_mapping_rebound (tests.corpus.test_cross_review_cric_c5_l06_l10_a.IndependentC5Review.test_03_metadata_and_mapping_rebound) ... FAIL
+test_04_numeric_units_and_tolerance_rebound (tests.corpus.test_cross_review_cric_c5_l06_l10_a.IndependentC5Review.test_04_numeric_units_and_tolerance_rebound) ... ok
+test_05_constitutive_and_inverse_guards_isolated_from_pins (tests.corpus.test_cross_review_cric_c5_l06_l10_a.IndependentC5Review.test_05_constitutive_and_inverse_guards_isolated_from_pins) ... ok
+test_06_finite_exact_before_cast_in_every_numeric_helper (tests.corpus.test_cross_review_cric_c5_l06_l10_a.IndependentC5Review.test_06_finite_exact_before_cast_in_every_numeric_helper) ... ok
+test_07_exact_lexemes_and_equivalent_quantity_duplicates (tests.corpus.test_cross_review_cric_c5_l06_l10_a.IndependentC5Review.test_07_exact_lexemes_and_equivalent_quantity_duplicates) ... ok
+test_08_domain_backslides_retokenized_and_rebound (tests.corpus.test_cross_review_cric_c5_l06_l10_a.IndependentC5Review.test_08_domain_backslides_retokenized_and_rebound) ... ok
+test_09_portable_identity_and_no_false_approval (tests.corpus.test_cross_review_cric_c5_l06_l10_a.IndependentC5Review.test_09_portable_identity_and_no_false_approval) ... ok
+test_10_reading_and_dependency_fail_closed (tests.corpus.test_cross_review_cric_c5_l06_l10_a.IndependentC5Review.test_10_reading_and_dependency_fail_closed) ... ok
+test_11_accessible_title_description_with_rebound_asset (tests.corpus.test_cross_review_cric_c5_l06_l10_a.IndependentC5Review.test_11_accessible_title_description_with_rebound_asset) ... ok
+test_12_new_whole_native_and_quantitative_geometry (tests.corpus.test_cross_review_cric_c5_l06_l10_a.IndependentC5Review.test_12_new_whole_native_and_quantitative_geometry) ... ok
+test_13_lens_object_image_inverse (tests.corpus.test_cross_review_cric_c5_l06_l10_a.IndependentC5Review.test_13_lens_object_image_inverse) ... ok
+test_14_passive_layers (tests.corpus.test_cross_review_cric_c5_l06_l10_a.IndependentC5Review.test_14_passive_layers) ... ok
+test_15_detector_inverse (tests.corpus.test_cross_review_cric_c5_l06_l10_a.IndependentC5Review.test_15_detector_inverse) ... ok
+test_16_graded_attenuation (tests.corpus.test_cross_review_cric_c5_l06_l10_a.IndependentC5Review.test_16_graded_attenuation) ... ok
+test_17_wave_frequency_scaling (tests.corpus.test_cross_review_cric_c5_l06_l10_a.IndependentC5Review.test_17_wave_frequency_scaling) ... ok
+test_18_alpha_and_beta_bookkeeping (tests.corpus.test_cross_review_cric_c5_l06_l10_a.IndependentC5Review.test_18_alpha_and_beta_bookkeeping) ... ok
+test_19_threshold_not_answer_table_and_prekey_si (tests.corpus.test_cross_review_cric_c5_l06_l10_a.IndependentC5Review.test_19_threshold_not_answer_table_and_prekey_si) ... ok
+
+======================================================================
+FAIL: test_03_metadata_and_mapping_rebound (tests.corpus.test_cross_review_cric_c5_l06_l10_a.IndependentC5Review.test_03_metadata_and_mapping_rebound)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-author-a-resident/officina-di-fisica/tests/corpus/test_cross_review_cric_c5_l06_l10_a.py", line 50, in test_03_metadata_and_mapping_rebound
+    self.assertFalse(r['ok']);self.stats['metadataRejected']+=1
+    ~~~~~~~~~~~~~~~~^^^^^^^^^
+AssertionError: True is not false
+
+----------------------------------------------------------------------
+Ran 19 tests in 4.068s
+
+FAILED (failures=1)
+{
+  "scope": "DISTINCT_C5_B50_REVIEW_ACTUAL_TARGET",
+  "testsRun": 19,
+  "success": false,
+  "failures": 1,
+  "errors": 0,
+  "stats": {
+    "wrongKeysRejected": 152,
+    "metadataRejected": 21,
+    "unitToleranceRejected": 32,
+    "constitutiveFaultsRejected": 10,
+    "inverseFaultsRejected": 3,
+    "finiteExactRejections": 539,
+    "hypothesisConfigurations": 240,
+    "domainBackslidesRejected": 12,
+    "accessibleAssetMutationsRejected": 10,
+    "equivalentAlternativeDuplicatesRejected": 6
+  },
+  "wallSeconds": 4.0684631250042,
+  "humanApproval": "NOT_RUN",
+  "productUi": "NOT_RUN",
+  "publication": "DRAFT"
+}
+CHILD_EXIT 1; free bytes 2417156096

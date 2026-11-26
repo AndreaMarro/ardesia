@@ -1,0 +1,60 @@
+"""Ten distinct ray-optics questions; normals, directed rays and exact indices."""
+from .vector_geometry_authoring import assemble_family,write_family
+SOURCE_IDS=[f'C5-Q{i:03}'for i in range(81,91)]
+TASKS=[
+('Dalla superficie alla normale','Un raggio incide su uno specchio piano formando 25° con la superficie. Quanto misura l’angolo di riflessione rispetto alla normale, in gradi?',65,
+ 'La superficie e la normale formano un angolo retto. L’incidenza rispetto alla normale è quindi 90°−25°=65°. La legge di riflessione uguaglia l’angolo riflesso a quello incidente, entrambi misurati dalla normale. Il valore cercato è 65°, non l’angolo assegnato rispetto alla superficie.',
+ r'\theta_i=90^\circ-25^\circ\qquad \theta_i=65^\circ\qquad \theta_r=\theta_i',
+ '25° conserva il riferimento alla superficie invece di cambiarlo. 130° sarebbe il doppio dell’angolo dalla normale, non un singolo angolo riflesso. La normale non ruota durante il confronto fra incidenza e riflessione sullo stesso specchio fermo.',
+ 'Individua l’angolo retto fra superficie e normale prima di usare l’uguaglianza ottica.'),
+('Il nome della perpendicolare locale','Come si chiama la retta perpendicolare all’interfaccia nel punto di incidenza?', ['Normale','Tangente','Asse necessariamente coincidente con il raggio incidente','Focale','Lunghezza d’onda'],
+ 'La retta è la normale. È il riferimento rispetto al quale si misurano gli angoli delle leggi di riflessione e di Snell. Su un’interfaccia curva la costruzione è locale: si usa la perpendicolare al piano tangente nel punto colpito, non una verticale scelta arbitrariamente sul foglio.',
+ r'\mathbf n\perp\text{interfaccia}',
+ 'La tangente giace nel piano locale della superficie ed è perpendicolare alla normale. L’asse ottico di una lente e la focale appartengono ad altri elementi della descrizione. Il raggio coincide con la normale solo a incidenza normale, non per definizione.',
+ 'Fissa prima il punto d’incidenza e poi traccia la perpendicolare alla superficie lì.'),
+('Rifrazione con incidenza normale','Un raggio incide perpendicolarmente su un’interfaccia ferma dall’aria, modellata con n₁=1, a vetro trasparente con n₂=3/2. Considera la porzione trasmessa. Quale cambiamento è corretto?', ['Direzione invariata e velocità di fase minore','Frequenza minore e velocità di fase invariata','Direzione invertita e frequenza doppia','Direzione più vicina alla superficie e velocità maggiore','Direzione invariata e lunghezza d’onda invariata'],
+ 'Il seno dell’angolo incidente è zero. Snell impone allora seno dell’angolo trasmesso uguale a zero: la direzione rimane normale all’interfaccia. La velocità di fase passa però da c a c/(3/2)=2c/3. La frequenza resta quella della sorgente e la lunghezza d’onda si riduce nello stesso rapporto della velocità.',
+ r'\theta_1=0\qquad \theta_2=0\qquad v_2=\frac23c',
+ 'Nessuna deviazione non significa nessun cambiamento di velocità. La frequenza non cambia attraversando questa interfaccia ferma. La porzione riflessa non è quella trasmessa richiesta; una lunghezza d’onda invariata sarebbe incompatibile con frequenza uguale e velocità minore.',
+ 'Applica separatamente Snell alla direzione e v=c/n alla velocità di fase.'),
+('Un indice esatto da due angoli notevoli','Un raggio passa dal mezzo con n₁=1 a un mezzo trasparente, con incidenza 45° e rifrazione 30°, entrambe rispetto alla normale. Usa i seni esatti degli angoli notevoli. Qual è l’indice n₂?', ['√2','1/√2','2','1/2','3/2'],
+ 'Isolo n₂ nella legge di Snell: n₂=n₁ sin45°/sin30°. Il seno di 45° è √2/2 e quello di 30° è 1/2. Dividere per 1/2 moltiplica per due, quindi n₂=√2 esattamente. Non serve ricorrere a 1,414…: la scelta mantiene il radicale. L’angolo più piccolo nel secondo mezzo è coerente con un indice maggiore di uno.',
+ r'n_2=\frac{\sin45^\circ}{\sin30^\circ}\qquad n_2=\frac{\sqrt2/2}{1/2}\qquad n_2=\sqrt2',
+ 'Il reciproco 1/√2 invertirebbe i seni e predirebbe il confronto di indici opposto. Due sostituirebbe erroneamente sin45° con uno. Un mezzo è il solo seno di 30°, non l’indice ricavato. 3/2 non soddisfa l’uguaglianza esatta dei seni assegnati.',
+ 'Cancella il fattore un mezzo senza trasformare il radicale in un’approssimazione decimale.'),
+('L’indice dal rapporto delle velocità','Una luce monocromatica ha velocità di fase v=1,875×10⁸ m/s in un materiale. Con c=3,00×10⁸ m/s, quale indice di fase n ottieni?', ['8/5','5/8','3','15/8','16'],
+ 'L’indice è c/v. Cancello la stessa potenza 10⁸ e la stessa unità m/s. Per evitare una divisione decimale lunga scrivo 1,875=15/8: il rapporto è 3/(15/8)=24/15=8/5. È lo stesso valore di 1,6, ma resta una frazione esatta nell’alternativa proposta.',
+ r'n=\frac cv\qquad n=\frac3{15/8}\qquad n=\frac85',
+ '5/8 è v/c e non c/v. 15/8 copia il coefficiente numerico di v senza costruire il rapporto. Un indice 16 darebbe velocità c/16, dieci volte minore di quella assegnata. Le unità devono cancellarsi, non restare nell’indice.',
+ 'Trasforma 1,875 in una frazione semplice prima di dividere i coefficienti.'),
+('La lastra tra due regioni d’aria','Un raggio attraversa obliquamente una lastra trasparente omogenea isotropa con facce parallele, dall’aria all’aria. Considera il raggio direttamente trasmesso, nell’ottica geometrica. Come emerge?', ['Parallelo all’incidente, in generale spostato lateralmente','Sempre sulla stessa retta dell’incidente','Necessariamente perpendicolare alla faccia d’uscita','Con frequenza dimezzata','Sempre diretto di nuovo verso la sorgente'],
+ 'Le due normali sono parallele e il mezzo esterno è lo stesso. La prima legge di Snell dà n_a sinθ_i=n_l sinθ_l; la seconda dà n_l sinθ_l=n_a sinθ_u. Ne segue θ_u=θ_i per i raggi trasmessi nel ramo considerato. Il tratto obliquo nella lastra produce in generale uno spostamento laterale, quindi parallelo non significa sulla stessa retta.',
+ r'n_a\sin\theta_i=n_l\sin\theta_l\qquad n_l\sin\theta_l=n_a\sin\theta_u\qquad \theta_u=\theta_i',
+ 'La direzione normale all’uscita sarebbe un caso di incidenza normale, escluso dal dato obliquo. La stessa retta non segue dalla sola uguaglianza degli angoli; conta anche il tragitto interno. La frequenza rimane invariata alle interfacce ferme del modello.',
+ 'Combina le due uguaglianze prima di interpretare la posizione laterale del raggio.'),
+('Ripercorrere all’indietro lo stesso cammino','Un raggio passa dal mezzo A a B con angoli 50° in A e 32° in B, entrambi dalla normale. Si inverte esattamente lo stesso cammino in mezzi trasparenti reciproci e interfaccia ferma. Quanto misura l’angolo in A, in gradi?',50,
+ 'Il cammino iniziale soddisfa n_A sin50°=n_B sin32°. Nell’esperimento inverso il raggio incide da B lungo la direzione prima trasmessa. La stessa uguaglianza, letta nell’altro verso, lo fa emergere in A lungo il cammino iniziale invertito, quindi con angolo 50° dalla normale. Non occorre calcolare alcun indice o seno decimale.',
+ r'n_A\sin50^\circ=n_B\sin32^\circ\qquad \theta_A=50^\circ',
+ '32° è l’angolo sul lato B, non quello richiesto in A. Sottrarre 32 da 50 descriverebbe la differenza fra due angoli del percorso, non l’angolo di uscita inverso. La reversibilità richiede i mezzi reciproci e lo stesso cammino dichiarati.',
+ 'Conserva l’uguaglianza di Snell e scambia quale lato fornisce il raggio incidente.'),
+('Il verso che ammette un angolo critico','Nei modelli trasparenti con gli indici assegnati, quale passaggio ammette riflessione totale interna a un angolo di incidenza opportuno?', ['Dal vetro n=1,50 all’acqua n=1,33','Dall’aria n=1 al vetro n=1,50','Dall’acqua n=1,33 al vetro n=1,50','Fra due mezzi entrambi con n=1,50','Dall’aria n=1 all’acqua n=1,33'],
+ 'L’angolo critico richiede che il seno n₂/n₁ sia minore di uno, quindi n₁>n₂. Il passaggio vetro–acqua nel verso assegnato ha questa proprietà. A incidenze superiori all’angolo critico il modello geometrico non dà un raggio trasmesso propagante; all’angolo critico il limite trasmesso è radente.',
+ r'\sin\theta_c=\frac{n_2}{n_1}\qquad n_1>n_2',
+ 'Nei passaggi a indice crescente il rapporto n₂/n₁ supera uno e non definisce un angolo critico reale. Con indici uguali il caso radente non crea l’intervallo di riflessione totale interna richiesto. Non basta nominare due materiali: il verso del passaggio è essenziale.',
+ 'Confronta l’indice del mezzo da cui arriva il raggio con quello del mezzo verso cui passerebbe.'),
+('L’apertura fra i segmenti verso sorgente e ricevitore','Un fascio incide su uno specchio piano a 30° dalla normale. Qual è l’angolo minore fra i due segmenti che, dal punto di riflessione, vanno rispettivamente alla sorgente e al ricevitore? Rispondi in gradi.',60,
+ 'La normale biseca l’apertura fra i due segmenti geometrici indicati. Il segmento verso la sorgente forma 30° su un lato, quello verso il ricevitore altri 30° sull’altro lato. L’angolo minore è quindi 30°+30°=60°. Il segmento verso la sorgente è orientato al contrario rispetto alla velocità del raggio incidente: sono due confronti geometrici diversi.',
+ r'\theta_r=30^\circ\qquad \beta=\theta_i+\theta_r\qquad \beta=60^\circ',
+ '30° considera soltanto uno dei due lati della normale. 120° sarebbe l’angolo fra i vettori di propagazione incidente e riflesso, non fra i segmenti uscenti dal punto verso sorgente e ricevitore. 90° non segue dalla legge di riflessione in questa configurazione.',
+ 'Orienta entrambi i segmenti come chiede il testo prima di scegliere fra un angolo e il suo supplementare.'),
+('Una piccola rotazione dello specchio','Il raggio incidente rimane fisso. Uno specchio piano ruota di 4° nel piano di incidenza attorno al punto illuminato, mantenendo la riflessione speculare sulla stessa faccia. Di quanti gradi ruota la direzione riflessa, in modulo?',8,
+ 'La normale ruota degli stessi 4° dello specchio. Poiché biseca l’angolo fra il segmento verso la sorgente, rimasto fisso, e quello riflesso, il secondo deve ruotare il doppio. La variazione della direzione riflessa ha modulo 2×4°=8°. Non è necessario conoscere l’angolo iniziale per questo confronto nel piano.',
+ r'|\Delta\theta_{\rm riflesso}|=2|\Delta\alpha|\qquad |\Delta\theta_{\rm riflesso}|=8^\circ',
+ '4° terrebbe conto soltanto della rotazione della normale senza applicare di nuovo la simmetria della riflessione. 2° dividerebbe per due un rapporto che deve essere raddoppiato. Il raggio incidente non ruota insieme allo specchio nel problema assegnato.',
+ 'Mantieni fermo il segmento verso la sorgente e osserva come deve cambiare l’altro per conservare la bisettrice.')]
+CHOICES={n:0 for n,t in enumerate(TASKS,1)if isinstance(t[2],list)}
+UNITS={1:'°',7:'°',9:'°',10:'°'}
+FIGURES={1:'Nel primo pannello il raggio incidente forma 25° con la superficie orizzontale e 65° con la normale; il riflesso ha lo stesso angolo di 65° dalla normale.',4:'Il secondo pannello mostra i due angoli dalla stessa normale: 45° nel mezzo con n₁=1 e 30° nel mezzo con n₂=√2. Il raggio rifratto è più vicino alla normale.',9:'Nell’ultimo pannello i segmenti dal punto verso sorgente e ricevitore formano ciascuno 30° con la normale. La loro apertura minore è 60°; il verso di propagazione incidente è opposto al segmento verso la sorgente.'}
+def assemble(repo,source_ref):
+ return assemble_family(repo,source_ref,'cric-c5-l09',TASKS,CHOICES,UNITS,'cric-c5-l09-progressive.svg',FIGURES,0,course='C5',source_origin='cric',source_ids=SOURCE_IDS,source_path='officina-di-fisica/content/C5.json',skill='C5-L09',section='Riflessione e rifrazione',coverage=['Normale e riferimenti angolari','Snell e indice esatto','Reversibilità e riflessione'],overrides={n:{'error':{'category':('concetto'if n==2 else'testo'if n in(1,9)else'algebra'if n in(4,5)else'modello'),'message':TASKS[n-1][5],'target':'C5-L09'}}for n in range(1,11)})
+if __name__=='__main__':write_family(assemble,'cric-c5-l09')

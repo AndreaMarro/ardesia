@@ -1,0 +1,52 @@
+import json,hashlib,os,sys,fcntl,subprocess
+from pathlib import Path
+from datetime import datetime,timezone
+app=Path('/private/tmp/cric-resident-integrator/officina-di-fisica')
+sys.path.insert(0,str(app))
+from tools.corpus_engineering.batches import load_registry
+mode=sys.argv[1];assert mode in ('a50','b50')
+read=lambda p:json.loads(p.read_bytes())
+sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
+def save(p,v):
+ t=p.with_name(p.name+'.root-next');t.write_text(json.dumps(v,ensure_ascii=False,indent=2)+'\n');os.replace(t,p)
+with open('/private/tmp/cric-bounded-local-work.lock','a')as lock:
+ fcntl.flock(lock,fcntl.LOCK_EX)
+ recfile=app/f'editorial/reviews/cric-c5-{mode}-root-integration-20261127/receipt.json';rec=read(recfile)
+ recoveryfile=app/f'editorial/reviews/cric-c5-{mode}-root-recovery-20261127.json';recovery=read(recoveryfile)
+ assert sha(recoveryfile)==rec['recoveryManifestSha256']
+ for p,v in recovery['files'].items():assert sha(app/p)==v['sha256'],p
+ assert rec['rootTests']['actualExitCode']==0
+ regfile=app/'editorial/batches/registry.json';reg=read(regfile);before=regfile.read_bytes();old={s['id'] for s in reg['batches']}
+ count_before=sum(len(s['questionIds'])for s in reg['batches']);added=[]
+ for imp in rec['imports']:
+  assert imp['batch'] not in old,imp['batch']
+  assert sha(app/f"editorial/reviews/{imp['batch']}-integration.json")==imp['integrationSha256']
+  assert(imp['firstSaved'],imp['repeatSaved'],imp['repeatUnchanged'],imp['preservedLiveHeads'])==(10,0,10,10)
+  entry={'id':imp['batch'],'questionIds':imp['questionIds'],'verifier':imp['batch'].replace('-','_')+'_verifier'}
+  reg['batches'].append(entry);added.append(entry)
+ assert count_before+sum(len(s['questionIds'])for s in added)==rec['scientificallyReviewedQuestions']
+ save(regfile,reg);specs=load_registry(regfile);accepted={q for s in specs for q in s['questionIds']};assert len(accepted)==rec['scientificallyReviewedQuestions']
+ fullfile=app/'editorial/reviews/full-corpus-work-status-20261126.json';full=read(fullfile)
+ for q in full['questions']:q['state']='ROOT_ACCEPTED_DRAFT_PENDING_FULL_INTEGRATION'if q['id']in accepted else'NOT_REVIEWED'
+ missing=[q['id']for q in full['questions']if q['id']not in accepted]
+ assert len(missing)==4606-len(accepted)
+ now=datetime.now(timezone.utc).isoformat();head=subprocess.check_output(['git','rev-parse','HEAD'],cwd=app,text=True).strip()
+ full.update(observedAt=now,reviewedQuestions=len(accepted),remainingQuestions=len(missing),registrySha256=sha(regfile),nextRootQuestionId=missing[0],missingQuestionIds=missing)
+ save(fullfile,full)
+ opfile=app/'editorial/reviews/operational-status-20261125.json';op=read(opfile)
+ op.update(observedAt=now,snapshotHead=head,clientDate='2026-11-27',nextScientificAcceptanceId=missing[0],nextRegistrationId=missing[0])
+ q=op['questions'];q.update(scientificallyReviewed=len(accepted),scientificallyUnreviewed=len(missing),registeredDrafts=len(accepted),fullyAccepted=len(accepted),registrationPendingQuestions=0,newRootAcceptanceReceipt=str(recfile.relative_to(app)))
+ q['unreviewedBySource']={'Ardesia':0,'Cric':len(missing)}
+ if str(recfile.relative_to(app))not in q['newRootAcceptanceReceipts']:q['newRootAcceptanceReceipts'].append(str(recfile.relative_to(app)))
+ op['currentLocalPreparation']['questionRegistry']=len(accepted)
+ op['assignments']=f"{len(accepted)} accepted and registered DRAFT; next {missing[0]}. C5 scientific acceptance {'complete'if mode=='b50'else 'first50 complete'} with distinct author/verifier and Root exact imports. C6 author candidates are not acceptance."
+ save(opfile,op)
+ dest=app/f'editorial/reviews/cric-c5-{mode}-root-registration-20261127';dest.mkdir(exist_ok=True)
+ (dest/'prior-registry.json').write_bytes(before)
+ receipt={'scope':'Registration of already independently verified C5 records using existing versioned registry; no separate pipeline','observedAt':now,'headBeforeRegistration':head,'priorRegistrySha256':hashlib.sha256(before).hexdigest(),'currentRegistrySha256':sha(regfile),'sourceAcceptanceReceipt':str(recfile.relative_to(app)),'sourceAcceptanceReceiptSha256':sha(recfile),'batchesAdded':[r['id']for r in added],'newQuestionCount':len(accepted)-count_before,'acceptedQuestions':len(accepted),'remainingQuestions':len(missing),'nextQuestionId':missing[0],'acceptedActivities':full['reviewedActivities'],'remainingActivities':full['remainingActivities'],'missingQuestionIdsReconciled':True,'schemaAndUniqueIdentityValidation':'PASS','fullCorpusUI':'NOT_RUN_ON_CURRENT_REGISTRY','humanApproval':'NOT_RUN','publicationAction':'NONE'}
+ save(dest/'receipt.json',receipt)
+ (dest/'reproduce-registration.py.txt').write_bytes(Path(__file__).read_bytes())
+ paths=[str(app/p)for p in recovery['files']]+[str(app/'editorial/reviews/cric-c5-recover-root-20261127.py'),str(recoveryfile),str(recfile.parent),str(regfile),str(fullfile),str(opfile),str(dest),str(app/f'editorial/reviews/cric-c5-{mode}-reproduce-root-integration-20261127.py')]
+ for imp in rec['imports']:paths.append(str(app/f"editorial/reviews/{imp['batch']}-integration.json"))
+ subprocess.run(['git','add','-f','--',*paths],cwd=app,check=True)
+ print(json.dumps(receipt,indent=2))

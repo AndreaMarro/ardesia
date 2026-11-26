@@ -1,0 +1,682 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "C5-Q061",
+      "kind": "question",
+      "course": "C5",
+      "section": "Fotoni e attenuazione",
+      "order": 61,
+      "title": "Potenza comune ed energia dei fotoni",
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C5-L06"
+      ],
+      "version": 2,
+      "prompt": "Due sorgenti monocromatiche emettono la stessa potenza positiva. La seconda ha frequenza doppia della prima, anch’essa positiva. Come cambia il numero medio di fotoni emessi al secondo?",
+      "family": "stessa-potenza-fotoni-diversi",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La potenza è energia emessa per secondo. Un fotone della prima sorgente porta hf₁; uno della seconda porta h(2f₁), cioè energia doppia. A potenza fissata deve uscire metà del numero medio di fotoni per secondo. Il tasso è una media e non richiede di assegnare un conteggio intero a ogni intervallo arbitrariamente breve."
+        },
+        {
+          "type": "formula",
+          "text": "P=\\dot N h f"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{\\dot N_2}{\\dot N_1}=\\frac{f_1}{f_2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{\\dot N_2}{\\dot N_1}=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Raddoppiare il tasso mentre raddoppia l’energia unitaria quadruplicherebbe la potenza, contrariamente al vincolo. Un tasso invariato raddoppierebbe la potenza. La frequenza non nulla e la potenza positiva escludono un tasso nullo nel modello."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Si dimezza",
+          "Raddoppia",
+          "Rimane uguale",
+          "Si quadruplica",
+          "Diventa necessariamente nullo"
+        ],
+        "value": "Si dimezza"
+      },
+      "hints": [
+        "Distribuisci la stessa energia al secondo in pacchetti singoli di energia doppia.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Raddoppiare il tasso mentre raddoppia l’energia unitaria quadruplicherebbe la potenza, contrariamente al vincolo. Un tasso invariato raddoppierebbe la potenza. La frequenza non nulla e la potenza positiva escludono un tasso nullo nel modello.",
+        "target": "C5-L07"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Energia del singolo fotone",
+        "Trasmissione e coefficienti",
+        "Unità, inverse e soglie"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q062",
+      "kind": "question",
+      "course": "C5",
+      "section": "Fotoni e attenuazione",
+      "order": 62,
+      "title": "Superare una soglia, non soltanto raggiungerla",
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C5-L06"
+      ],
+      "version": 2,
+      "prompt": "Un modello assegna a un atomo isolato una soglia di ionizzazione di 8,0 eV. Per i calcoli adotta Eγ in eV=1240 diviso λ₀ in nm. Quale fotone fra quelli elencati ha energia strettamente maggiore della soglia?",
+      "family": "una-soglia-in-elettronvolt",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La lunghezza che dà esattamente la soglia è 1240/8=155 nm. Per superare 8 eV occorre una lunghezza minore di 155 nm. Fra le opzioni soltanto 130 nm lo soddisfa. Si può controllare senza decimali: l’energia corrispondente è 124/13 eV e 124>8×13=104. È una condizione energetica del processo a singolo fotone, non una previsione certa della probabilità di interazione."
+        },
+        {
+          "type": "formula",
+          "text": "\\lambda_{\\rm soglia}=155\\,\\mathrm{nm}"
+        },
+        {
+          "type": "formula",
+          "text": " E_\\gamma>8\\,\\mathrm{eV}"
+        },
+        {
+          "type": "formula",
+          "text": " \\lambda_0<155\\,\\mathrm{nm}"
+        },
+        {
+          "type": "text",
+          "text": "155 nm raggiunge soltanto la soglia, mentre il quesito chiede di superarla. 200 nm darebbe 31/5 eV, inferiore a 8 eV; 500 e 1000 nm hanno energie ancora minori. Aumentare la quantità di fotoni di una radiazione non cambia l’energia di ciascun fotone nel modello a singolo evento."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "λ₀=130 nm",
+          "λ₀=500 nm",
+          "λ₀=1000 nm",
+          "λ₀=200 nm",
+          "λ₀=155 nm"
+        ],
+        "value": "λ₀=130 nm"
+      },
+      "hints": [
+        "Trova prima il valore di confine e poi leggi se l’ineguaglianza è stretta.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "155 nm raggiunge soltanto la soglia, mentre il quesito chiede di superarla. 200 nm darebbe 31/5 eV, inferiore a 8 eV; 500 e 1000 nm hanno energie ancora minori. Aumentare la quantità di fotoni di una radiazione non cambia l’energia di ciascun fotone nel modello a singolo evento.",
+        "target": "C5-L07"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Energia del singolo fotone",
+        "Trasmissione e coefficienti",
+        "Unità, inverse e soglie"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q063",
+      "kind": "question",
+      "course": "C5",
+      "section": "Fotoni e attenuazione",
+      "order": 63,
+      "title": "Il nome della costante h",
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C5-L06"
+      ],
+      "version": 2,
+      "prompt": "La costante h nella relazione fra energia di un fotone e frequenza prende il nome da quale fisico?",
+      "family": "la-costante-fra-energia-e-frequenza",
+      "difficulty": 1,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Si tratta della costante di Planck. Nella legge Eγ=hf, h ha unità joule moltiplicato per secondo. Il prodotto con una frequenza in s⁻¹ restituisce un’energia in joule. Il nome riguarda una costante universale del modello quantistico, non un indice del materiale attraversato."
+        },
+        {
+          "type": "formula",
+          "text": "E_\\gamma=h f"
+        },
+        {
+          "type": "formula",
+          "text": " [h]=\\mathrm{J\\,s}"
+        },
+        {
+          "type": "text",
+          "text": "Newton e Pascal danno il nome a unità di forza e pressione. Ohm riguarda la relazione resistiva, mentre Faraday è associato anche all’induzione. Nessuno di questi nomi sostituisce Planck nella relazione assegnata."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Planck",
+          "Newton",
+          "Ohm",
+          "Faraday",
+          "Pascal"
+        ],
+        "value": "Planck"
+      },
+      "hints": [
+        "Usa la relazione Eγ=hf e controlla le unità del coefficiente che moltiplica f.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Newton e Pascal danno il nome a unità di forza e pressione. Ohm riguarda la relazione resistiva, mentre Faraday è associato anche all’induzione. Nessuno di questi nomi sostituisce Planck nella relazione assegnata.",
+        "target": "C5-L07"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Energia del singolo fotone",
+        "Trasmissione e coefficienti",
+        "Unità, inverse e soglie"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q064",
+      "kind": "question",
+      "course": "C5",
+      "section": "Fotoni e attenuazione",
+      "order": 64,
+      "title": "Due frazioni trasmesse in successione",
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C5-L06"
+      ],
+      "version": 2,
+      "prompt": "Un fascio incontra due filtri successivi con trasmissioni 80% e 25%, applicate ciascuna alla propria intensità incidente. I filtri mantengono queste trasmissioni nelle condizioni assegnate; trascura riflessioni e ritorni. Qual è la trasmissione complessiva in percento?",
+      "family": "due-filtri-diversi",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Parto da 100 unità di intensità incidente. Il primo filtro ne lascia 80; il secondo lascia un quarto proprio di quelle 80, quindi 20. La frazione complessiva è (4/5)(1/4)=1/5, pari al 20%. L’inversa è coerente: dividere l’uscita 20 per 1/4 ricostruisce le 80 unità che raggiungevano il secondo filtro."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/6e0b5e5cf0f934b3bcfa92ebdbf31e8d6bb3bc7dd901e6798e0f3b59a0f3ae23",
+          "text": "Nel primo pannello tutte le barre usano la stessa intensità incidente come riferimento: 100 unità diventano 80 dopo il primo filtro e 20 dopo il secondo. Le trasmissioni si applicano in successione."
+        },
+        {
+          "type": "formula",
+          "text": "T_{\\rm totale}=T_1T_2"
+        },
+        {
+          "type": "formula",
+          "text": " T_{\\rm totale}=\\frac15"
+        },
+        {
+          "type": "formula",
+          "text": " 100T_{\\rm totale}=20"
+        },
+        {
+          "type": "text",
+          "text": "105% sommerebbe le due trasmissioni come se fossero quote dello stesso ingresso. 25% ignorerebbe la perdita nel primo filtro. Il secondo filtro assorbe o rimuove il 75% di ciò che lo raggiunge, non il 75% della luce iniziale in aggiunta alla prima perdita."
+        }
+      ],
+      "answer": {
+        "type": "numeric",
+        "value": 20,
+        "unit": "%",
+        "tolerance": 0
+      },
+      "hints": [
+        "Riporta ogni percentuale al suo ingresso locale prima di moltiplicare le frazioni.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "105% sommerebbe le due trasmissioni come se fossero quote dello stesso ingresso. 25% ignorerebbe la perdita nel primo filtro. Il secondo filtro assorbe o rimuove il 75% di ciò che lo raggiunge, non il 75% della luce iniziale in aggiunta alla prima perdita.",
+        "target": "C5-L07"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Energia del singolo fotone",
+        "Trasmissione e coefficienti",
+        "Unità, inverse e soglie"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q065",
+      "kind": "question",
+      "course": "C5",
+      "section": "Fotoni e attenuazione",
+      "order": 65,
+      "title": "Il coefficiente da due ordinate logaritmiche",
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C5-L06"
+      ],
+      "version": 2,
+      "prompt": "Un fascio monocromatico diretto attraversa un materiale omogeneo con μ costante e legge I(x)=I₀ exp(−μx), con I₀>0. Nel grafico di ln(I/I₀) contro x, le ordinate sono 0 a 0 cm e −2,1 a 3 cm. Trova μ in cm⁻¹.",
+      "family": "dalla-pendenza-semilogaritmica",
+      "difficulty": 3,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il logaritmo è quello di una frazione adimensionale. Nella legge data ln(I/I₀)=−μx, quindi la pendenza è −μ. Fra i due punti la pendenza vale (−2,1−0)/(3−0) cm⁻¹=−7/10 cm⁻¹. Il coefficiente fisico richiesto è l’opposto: μ=7/10 cm⁻¹, ossia 0,70 cm⁻¹. Le ordinate sono già logaritmi: non serve calcolare un esponenziale."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/6e0b5e5cf0f934b3bcfa92ebdbf31e8d6bb3bc7dd901e6798e0f3b59a0f3ae23",
+          "text": "Nel secondo pannello sono già rappresentate le ordinate ln(I/I₀). La pendenza fra (0 cm,0) e (3 cm,−2,1) è −0,70 cm⁻¹; il coefficiente μ è positivo."
+        },
+        {
+          "type": "formula",
+          "text": "\\ln(I/I_0)=-\\mu x"
+        },
+        {
+          "type": "formula",
+          "text": " s=-\\frac7{10}\\,\\mathrm{cm^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " \\mu=\\frac7{10}\\,\\mathrm{cm^{-1}}"
+        },
+        {
+          "type": "text",
+          "text": "−0,70 cm⁻¹ copia la pendenza anziché cambiarne il segno. 2,1 cm⁻¹ usa il solo valore numerico della variazione di ordinata senza dividerlo per 3 cm. Un coefficiente 7 cm⁻¹ darebbe ordinata −21 a 3 cm, non −2,1."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "0,70 cm⁻¹",
+          "−0,70 cm⁻¹",
+          "2,1 cm⁻¹",
+          "1/7 cm⁻¹",
+          "7 cm⁻¹"
+        ],
+        "value": "0,70 cm⁻¹"
+      },
+      "hints": [
+        "Identifica che cosa si trova già sull’asse verticale prima di ricavare la pendenza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−0,70 cm⁻¹ copia la pendenza anziché cambiarne il segno. 2,1 cm⁻¹ usa il solo valore numerico della variazione di ordinata senza dividerlo per 3 cm. Un coefficiente 7 cm⁻¹ darebbe ordinata −21 a 3 cm, non −2,1.",
+        "target": "C5-L07"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Energia del singolo fotone",
+        "Trasmissione e coefficienti",
+        "Unità, inverse e soglie"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q066",
+      "kind": "question",
+      "course": "C5",
+      "section": "Fotoni e attenuazione",
+      "order": 66,
+      "title": "La quota assorbita dal campione",
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C5-L06"
+      ],
+      "version": 2,
+      "prompt": "Nel modello di un campione soltanto assorbente, il 35% dell’intensità incidente viene trasmesso. Il bilancio ha soltanto le due quote trasmessa e assorbita, senza riflessione, diffusione o altri contributi. Quanto viene assorbito in percento dell’ingresso?",
+      "family": "assorbimento-o-trasmissione",
+      "difficulty": 1,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Ripartisco 100 unità dell’intensità incidente fra le due sole destinazioni dichiarate. Se 35 escono, 100−35=65 sono assorbite. La percentuale richiesta usa sempre come riferimento l’ingresso, non la sola quota trasmessa. La somma di controllo 35%+65%=100% chiude il bilancio del modello."
+        },
+        {
+          "type": "formula",
+          "text": "A+T=1"
+        },
+        {
+          "type": "formula",
+          "text": " A=1-\\frac{35}{100}"
+        },
+        {
+          "type": "formula",
+          "text": " A=\\frac{65}{100}"
+        },
+        {
+          "type": "text",
+          "text": "35% copierebbe la trasmissione come se fosse assorbimento. La frazione 65/35 confronta l’assorbito con il trasmesso e usa un denominatore diverso da quello richiesto. Se ci fossero altri canali di perdita, sottrarre la sola trasmissione non isolerebbe automaticamente l’assorbimento."
+        }
+      ],
+      "answer": {
+        "type": "numeric",
+        "value": 65,
+        "unit": "%",
+        "tolerance": 0
+      },
+      "hints": [
+        "Scrivi il riferimento della percentuale e verifica quali canali compaiono nel bilancio.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "testo",
+        "message": "35% copierebbe la trasmissione come se fosse assorbimento. La frazione 65/35 confronta l’assorbito con il trasmesso e usa un denominatore diverso da quello richiesto. Se ci fossero altri canali di perdita, sottrarre la sola trasmissione non isolerebbe automaticamente l’assorbimento.",
+        "target": "C5-L07"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Energia del singolo fotone",
+        "Trasmissione e coefficienti",
+        "Unità, inverse e soglie"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q067",
+      "kind": "question",
+      "course": "C5",
+      "section": "Fotoni e attenuazione",
+      "order": 67,
+      "title": "Un esponente con unità cancellate",
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C5-L06"
+      ],
+      "version": 2,
+      "prompt": "Un mezzo ha coefficiente μ=2,0 cm⁻¹. Qual è il prodotto adimensionale μx per spessore x=3,0 mm?",
+      "family": "unita-dello-spessore",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Tre millimetri sono tre decimi di centimetro, perché un centimetro contiene dieci millimetri. Il prodotto è quindi (2 cm⁻¹)(3/10 cm)=6/10=3/5. Centimetro e centimetro inverso si cancellano. Soltanto dopo questa conversione il numero può essere inserito nell’esponente della legge esponenziale."
+        },
+        {
+          "type": "formula",
+          "text": "x=\\frac3{10}\\,\\mathrm{cm}"
+        },
+        {
+          "type": "formula",
+          "text": " \\mu x=\\frac35"
+        },
+        {
+          "type": "text",
+          "text": "Sei moltiplica 2 per 3 senza convertire i millimetri. 60 introdurrebbe una conversione nel verso opposto. 3/50 darebbe un valore dieci volte minore; 1/6 prende un reciproco che non compare nel prodotto μx."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/5",
+          "6",
+          "60",
+          "1/6",
+          "3/50"
+        ],
+        "value": "3/5"
+      },
+      "hints": [
+        "Usa la stessa unità di lunghezza nei due fattori, poi verifica che non ne resti alcuna.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "Sei moltiplica 2 per 3 senza convertire i millimetri. 60 introdurrebbe una conversione nel verso opposto. 3/50 darebbe un valore dieci volte minore; 1/6 prende un reciproco che non compare nel prodotto μx.",
+        "target": "C5-L07"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Energia del singolo fotone",
+        "Trasmissione e coefficienti",
+        "Unità, inverse e soglie"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q068",
+      "kind": "question",
+      "course": "C5",
+      "section": "Fotoni e attenuazione",
+      "order": 68,
+      "title": "Dal tasso di fotoni alla potenza",
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C5-L06"
+      ],
+      "version": 2,
+      "prompt": "Una sorgente monocromatica emette in media 3,0×10¹⁵ fotoni al secondo; ogni fotone porta 4,0×10⁻¹⁹ J. Qual è la potenza emessa?",
+      "family": "confrontare-lampade-con-fotoni-uguali",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplico il numero medio di fotoni al secondo per l’energia di un fotone. I coefficienti danno 3×4=12 e gli esponenti 15−19=−4: P=12×10⁻⁴ J/s. Sono 1,2×10⁻³ W, cioè 6/5 mW=1,2 mW. Il tasso medio non è una potenza finché non viene moltiplicato per l’energia unitaria."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/6e0b5e5cf0f934b3bcfa92ebdbf31e8d6bb3bc7dd901e6798e0f3b59a0f3ae23",
+          "text": "Il terzo pannello separa tasso medio dei fotoni ed energia unitaria. Il prodotto ha unità joule al secondo; 1,2×10⁻³ W corrispondono a 1,2 mW."
+        },
+        {
+          "type": "formula",
+          "text": "P=\\dot N E_\\gamma"
+        },
+        {
+          "type": "formula",
+          "text": " P=12\\,10^{-4}\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P=\\frac65\\,\\mathrm{mW}"
+        },
+        {
+          "type": "text",
+          "text": "0,0012 mW copierebbe il valore numerico della potenza in watt lasciandogli però l’unità milliwatt. 12 mW richiederebbero un tasso di fotoni dieci volte maggiore a energia unitaria fissata; 0,12 mW un tasso dieci volte minore. I prefissi devono essere convertiti dopo il prodotto energetico."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1,2 mW",
+          "0,12 mW",
+          "12 mW",
+          "1200 mW",
+          "0,0012 mW"
+        ],
+        "value": "1,2 mW"
+      },
+      "hints": [
+        "Somma gli esponenti nel prodotto e converti watt in milliwatt soltanto alla fine.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "0,0012 mW copierebbe il valore numerico della potenza in watt lasciandogli però l’unità milliwatt. 12 mW richiederebbero un tasso di fotoni dieci volte maggiore a energia unitaria fissata; 0,12 mW un tasso dieci volte minore. I prefissi devono essere convertiti dopo il prodotto energetico.",
+        "target": "C5-L07"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Energia del singolo fotone",
+        "Trasmissione e coefficienti",
+        "Unità, inverse e soglie"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q069",
+      "kind": "question",
+      "course": "C5",
+      "section": "Fotoni e attenuazione",
+      "order": 69,
+      "title": "Una miscela cambia composizione attraversando il mezzo",
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C5-L06"
+      ],
+      "version": 2,
+      "prompt": "Un fascio contiene due componenti monocromatiche con intensità iniziali positive e coefficienti costanti μ₁ e μ₂ positivi ma diversi. Il rivelatore somma le due intensità dirette. Perché un’unica μ costante può descrivere male l’intera curva trasmessa?",
+      "family": "fascio-non-monocromatico",
+      "difficulty": 3,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Ciascuna componente segue la propria esponenziale. Quella con coefficiente maggiore diminuisce più rapidamente, quindi il suo peso relativo nella somma si riduce. La somma di due esponenziali con coefficienti diversi e pesi positivi non ha in generale un’unica pendenza logaritmica costante. Un coefficiente efficace può descrivere un intervallo limitato senza diventare una proprietà unica di tutta la curva."
+        },
+        {
+          "type": "formula",
+          "text": "I_1(x)=I_{1,0}e^{-\\mu_1x}"
+        },
+        {
+          "type": "formula",
+          "text": " I_2(x)=I_{2,0}e^{-\\mu_2x}"
+        },
+        {
+          "type": "formula",
+          "text": " I=I_1+I_2"
+        },
+        {
+          "type": "text",
+          "text": "Le intensità sono positive e il logaritmo della loro frazione è definito anche dopo l’ingresso. Non occorre cambiare la frequenza dei singoli fotoni: è sufficiente rimuovere diversamente le due componenti. Coefficienti uguali o una componente assente darebbero altri casi, qui esplicitamente esclusi."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Le due componenti si attenuano in proporzioni diverse e cambia il loro peso relativo",
+          "L’intensità iniziale totale deve essere negativa",
+          "Il logaritmo è definito soltanto all’ingresso",
+          "Ogni fotone deve cambiare frequenza a ogni centimetro",
+          "Le due componenti conservano necessariamente lo stesso peso relativo"
+        ],
+        "value": "Le due componenti si attenuano in proporzioni diverse e cambia il loro peso relativo"
+      },
+      "hints": [
+        "Segui separatamente le due quote e solo dopo costruisci la somma misurata.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "Le intensità sono positive e il logaritmo della loro frazione è definito anche dopo l’ingresso. Non occorre cambiare la frequenza dei singoli fotoni: è sufficiente rimuovere diversamente le due componenti. Coefficienti uguali o una componente assente darebbero altri casi, qui esplicitamente esclusi.",
+        "target": "C5-L07"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Energia del singolo fotone",
+        "Trasmissione e coefficienti",
+        "Unità, inverse e soglie"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q070",
+      "kind": "question",
+      "course": "C5",
+      "section": "Fotoni e attenuazione",
+      "order": 70,
+      "title": "La grandezza da confrontare con una soglia",
+      "skill": "C5-L07",
+      "prerequisites": [
+        "C5-L06"
+      ],
+      "version": 2,
+      "prompt": "Per un processo di ionizzazione a singolo fotone, quale grandezza confronti direttamente con l’energia di ionizzazione del sistema?",
+      "family": "energia-prima-della-soglia",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il processo ipotizzato coinvolge l’energia hf di un fotone. È questa energia che va confrontata con la soglia, espressa anch’essa in unità di energia per evento. Intensità, area e durata possono cambiare quanti fotoni arrivano o quanta energia arriva complessivamente, ma a frequenza fissata non cambiano hf. Il criterio energetico da solo non determina la probabilità dell’interazione."
+        },
+        {
+          "type": "formula",
+          "text": "E_\\gamma=h f"
+        },
+        {
+          "type": "text",
+          "text": "Un’area o una durata non sono energie. Anche una grande energia totale distribuita in molti fotoni non sostituisce automaticamente l’energia unitaria richiesta dal modello a singolo fotone. Il modello della domanda resta quello a singolo fotone."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "L’energia di un singolo fotone",
+          "La durata dell’esposizione da sola",
+          "L’intensità del fascio da sola",
+          "L’area del rivelatore da sola",
+          "Il numero totale di fotoni senza la loro frequenza"
+        ],
+        "value": "L’energia di un singolo fotone"
+      },
+      "hints": [
+        "Confronta quantità riferite allo stesso singolo evento e con la stessa dimensione fisica.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "Un’area o una durata non sono energie. Anche una grande energia totale distribuita in molti fotoni non sostituisce automaticamente l’energia unitaria richiesta dal modello a singolo fotone. Il modello della domanda resta quello a singolo fotone.",
+        "target": "C5-L07"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Energia del singolo fotone",
+        "Trasmissione e coefficienti",
+        "Unità, inverse e soglie"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "6e0b5e5cf0f934b3bcfa92ebdbf31e8d6bb3bc7dd901e6798e0f3b59a0f3ae23",
+      "name": "cric-c5-l07-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTU0MCIgdmlld0JveD0iMCAwIDY0MCAxNTQwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMjcyNTM2Ij4KPHRpdGxlIGlkPSJ0aXRsZSI+VHJhc21pc3Npb25pIHN1Y2Nlc3NpdmUgZSBtaXN1cmUgZGVsIGZhc2NpbzwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPlRyZSBwcm9ibGVtaSBkaXN0aW50aS4gQ2VudG8gdW5pdMOgIGluY2lkZW50aSBkaXZlbnRhbm8gb3R0YW50YSBlIHBvaSB2ZW50aS4gSWwgbG9nYXJpdG1vIG5hdHVyYWxlIGRlbGxhIHRyYXNtaXNzaW9uZSBzY2VuZGUgZGEgemVybyBhIG1lbm8gZHVlIHZpcmdvbGEgdW5vIHN1IHRyZSBjZW50aW1ldHJpLiBVbiB0YXNzbyBkaSB0cmUgcGVyIGRpZWNpIGFsbGEgcXVpbmRpY2VzaW1hIGZvdG9uaSBhbCBzZWNvbmRvLCBjaWFzY3VubyBkYSBxdWF0dHJvIHBlciBkaWVjaSBhbGxhIG1lbm8gZGljaWFubm92ZSBqb3VsZSwgZMOgIHVuIHZpcmdvbGEgZHVlIG1pbGxpd2F0dC48L2Rlc2M+CjxkZWZzPjxtYXJrZXIgaWQ9ImciIG1hcmtlcldpZHRoPSI3IiBtYXJrZXJIZWlnaHQ9IjciIHJlZlg9IjciIHJlZlk9IjMuNSIgb3JpZW50PSJhdXRvIiBtYXJrZXJVbml0cz0idXNlclNwYWNlT25Vc2UiPjxwYXRoIGQ9Ik0wIDBMNyAzLjVMMCA3WiIgZmlsbD0iIzE0N2M3NiIvPjwvbWFya2VyPjwvZGVmcz48cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjE1NDAiIGZpbGw9IiNmZmZkZjciLz4KPHRleHQgeD0iNDAiIHk9IjU1IiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iYm9sZCI+MSDCtyBJbCBzZWNvbmRvIGZpbHRybyByaWNldmUgZ2nDoCBtZW5vIGx1Y2U8L3RleHQ+PHRleHQgeD0iNDAiIHk9IjEwNSIgZm9udC1zaXplPSIxOCI+VW4gc29sbyByaWZlcmltZW50byBwZXIgbGUgdHJlIGJhcnJlOiBpbnRlbnNpdMOgIGluaXppYWxlLjwvdGV4dD4KPHJlY3QgeD0iMTQwIiB5PSIxODAiIHdpZHRoPSI0MDAiIGhlaWdodD0iNDAiIGZpbGw9IiM2ODUyYTMiLz48cmVjdCB4PSIxNDAiIHk9IjI4NSIgd2lkdGg9IjMyMCIgaGVpZ2h0PSI0MCIgZmlsbD0iIzE0N2M3NiIvPjxyZWN0IHg9IjE0MCIgeT0iMzkwIiB3aWR0aD0iODAiIGhlaWdodD0iNDAiIGZpbGw9IiM5NDYzMWUiLz4KPHRleHQgeD0iNTAiIHk9IjIwOCI+MTAwPC90ZXh0Pjx0ZXh0IHg9IjUwIiB5PSIzMTMiPjgwPC90ZXh0Pjx0ZXh0IHg9IjUwIiB5PSI0MTgiPjIwPC90ZXh0Pjx0ZXh0IHg9IjI1MCIgeT0iMjY1Ij5U4oKBID0gODAlPC90ZXh0Pjx0ZXh0IHg9IjI1MCIgeT0iMzcwIj5U4oKCID0gMjUlIGRlbGzigJlpbmdyZXNzbyBsb2NhbGU8L3RleHQ+PHBhdGggZD0iTTQwIDQ3NUg2MDAiIHN0cm9rZT0iI2NiYzZiYyIvPgo8dGV4dCB4PSI0MCIgeT0iNTMwIiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iYm9sZCI+MiDCtyBMZSBvcmRpbmF0ZSBzb25vIGdpw6AgbG9nYXJpdG1pPC90ZXh0Pjx0ZXh0IHg9IjQwIiB5PSI1ODUiPmxuKEkvSeKCgCk8L3RleHQ+PHRleHQgeD0iNTA1IiB5PSI2MTAiPnggKGNtKTwvdGV4dD4KPHBhdGggZD0iTTE0MCA5NDBWNjIwTTE0MCA2NTBINTYwIiBmaWxsPSJub25lIiBzdHJva2U9IiM4ODgiLz48cGF0aCBkPSJNMTQwIDY1MEw1MDAgODkwIiBmaWxsPSJub25lIiBzdHJva2U9IiMxNDdjNzYiIHN0cm9rZS13aWR0aD0iMyIvPgo8cGF0aCBkPSJNMTQwIDczMEgyNjBWNjUwTTE0MCA4MTBIMzgwVjY1ME0xNDAgODkwSDUwMFY2NTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2FhYSIgc3Ryb2tlLWRhc2hhcnJheT0iNSA0Ii8+CjxjaXJjbGUgY3g9IjE0MCIgY3k9IjY1MCIgcj0iNCIgZmlsbD0iIzk0NjMxZSIvPjxjaXJjbGUgY3g9IjI2MCIgY3k9IjczMCIgcj0iNCIgZmlsbD0iIzk0NjMxZSIvPjxjaXJjbGUgY3g9IjM4MCIgY3k9IjgxMCIgcj0iNCIgZmlsbD0iIzk0NjMxZSIvPjxjaXJjbGUgY3g9IjUwMCIgY3k9Ijg5MCIgcj0iNCIgZmlsbD0iIzk0NjMxZSIvPgo8dGV4dCB4PSIxMTAiIHk9IjY1NyIgdGV4dC1hbmNob3I9ImVuZCI+MDwvdGV4dD48dGV4dCB4PSIxMTAiIHk9IjczNyIgdGV4dC1hbmNob3I9ImVuZCI+4oiSMCw3PC90ZXh0Pjx0ZXh0IHg9IjExMCIgeT0iODE3IiB0ZXh0LWFuY2hvcj0iZW5kIj7iiJIxLDQ8L3RleHQ+PHRleHQgeD0iMTEwIiB5PSI4OTciIHRleHQtYW5jaG9yPSJlbmQiPuKIkjIsMTwvdGV4dD4KPHRleHQgeD0iMTE1IiB5PSI2MjUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPjA8L3RleHQ+PHRleHQgeD0iMjYwIiB5PSI2MzAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPjE8L3RleHQ+PHRleHQgeD0iMzgwIiB5PSI2MzAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPjI8L3RleHQ+PHRleHQgeD0iNTAwIiB5PSI2MzAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPjM8L3RleHQ+PHRleHQgeD0iMjQwIiB5PSI5NzUiPs68ID0gMCw3MCBjbeKBu8K5PC90ZXh0PjxwYXRoIGQ9Ik00MCAxMDIwSDYwMCIgc3Ryb2tlPSIjY2JjNmJjIi8+Cjx0ZXh0IHg9IjQwIiB5PSIxMDgwIiBmb250LXNpemU9IjI1IiBmb250LXdlaWdodD0iYm9sZCI+MyDCtyBFbmVyZ2lhIHVuaXRhcmlhIHBlciB0YXNzbyBtZWRpbzwvdGV4dD4KPHJlY3QgeD0iNTAiIHk9IjExNjAiIHdpZHRoPSIyMzAiIGhlaWdodD0iMTEwIiByeD0iOCIgZmlsbD0iI2VlZTlkYSIgc3Ryb2tlPSIjODg4Ii8+PHJlY3QgeD0iMzYwIiB5PSIxMTYwIiB3aWR0aD0iMjMwIiBoZWlnaHQ9IjExMCIgcng9IjgiIGZpbGw9IiNlZWU5ZGEiIHN0cm9rZT0iIzg4OCIvPgo8dGV4dCB4PSIxNjUiIHk9IjExOTUiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkZvdG9uaSBhbCBzZWNvbmRvPC90ZXh0Pjx0ZXh0IHg9IjE2NSIgeT0iMTI0MCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+M8OXMTDCueKBtSBz4oG7wrk8L3RleHQ+PHRleHQgeD0iNDc1IiB5PSIxMTk1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5PZ25pIGZvdG9uZTwvdGV4dD48dGV4dCB4PSI0NzUiIHk9IjEyNDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPjTDlzEw4oG7wrnigbkgSjwvdGV4dD4KPHBhdGggZD0iTTE2NSAxMjg1VjEzMjBIMzIwVjEzNjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzE0N2M3NiIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2cpIi8+PHBhdGggZD0iTTQ3NSAxMjg1VjEzMjBIMzIwIiBmaWxsPSJub25lIiBzdHJva2U9IiMxNDdjNzYiIHN0cm9rZS13aWR0aD0iMiIvPgo8dGV4dCB4PSIzMjAiIHk9IjE0MTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPlAgPSAxLDLDlzEw4oG7wrMgVzwvdGV4dD48dGV4dCB4PSIzMjAiIHk9IjE0NjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPlAgPSAxLDIgbVc8L3RleHQ+Cjwvc3ZnPgo="
+    }
+  ]
+}

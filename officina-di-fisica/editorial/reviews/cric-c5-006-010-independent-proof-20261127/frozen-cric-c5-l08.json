@@ -1,0 +1,647 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "C5-Q071",
+      "kind": "question",
+      "course": "C5",
+      "section": "Decadimenti e attività",
+      "order": 71,
+      "title": "Lo stesso elemento, due isotopi",
+      "skill": "C5-L08",
+      "prerequisites": [],
+      "version": 2,
+      "prompt": "Quale coppia di proprietà identifica due isotopi differenti dello stesso elemento?",
+      "family": "identificare-due-isotopi",
+      "difficulty": 1,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il numero di protoni Z identifica l’elemento. Due isotopi diversi hanno lo stesso Z, ma differiscono per il numero N dei neutroni. Perciò differisce anche A=Z+N. Cambiare soltanto gli elettroni può produrre ioni diversi dello stesso nuclide, senza creare isotopi differenti."
+        },
+        {
+          "type": "formula",
+          "text": "A=Z+N"
+        },
+        {
+          "type": "text",
+          "text": "Uguali Z e N danno lo stesso numero di massa, non due isotopi diversi. Cambiare Z cambia l’elemento, anche se A rimane uguale. Il numero degli elettroni non sostituisce il confronto fra protoni e neutroni del nucleo."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Uguale numero di protoni e diverso numero di neutroni",
+          "Uguali numeri di protoni e neutroni",
+          "Diverso numero di protoni e uguale numero di neutroni",
+          "Diverso numero di protoni e stesso numero di massa",
+          "Diverso numero di elettroni, indipendentemente dal nucleo"
+        ],
+        "value": "Uguale numero di protoni e diverso numero di neutroni"
+      },
+      "hints": [
+        "Identifica prima che cosa fissa il nome dell’elemento, poi quale conteggio può cambiare.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Uguali Z e N danno lo stesso numero di massa, non due isotopi diversi. Cambiare Z cambia l’elemento, anche se A rimane uguale. Il numero degli elettroni non sostituisce il confronto fra protoni e neutroni del nucleo.",
+        "target": "C5-L08"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Composizione e trasformazioni nucleari",
+        "Legge statistica e tempi",
+        "Attività ed efficienza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q072",
+      "kind": "question",
+      "course": "C5",
+      "section": "Decadimenti e attività",
+      "order": 72,
+      "title": "Contare i neutroni dopo un’emissione alfa",
+      "skill": "C5-L08",
+      "prerequisites": [],
+      "version": 2,
+      "prompt": "Un nucleo con numero di massa A=210 e numero atomico Z=84 emette una particella α. Quanti neutroni contiene il nucleo figlio?",
+      "family": "trasformazione-alfa",
+      "difficulty": 1,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La particella alfa contiene due protoni e due neutroni: porta via quattro nucleoni in totale. Il figlio ha A_f=210−4=206 e Z_f=84−2=82. Il suo numero di neutroni è A_f−Z_f=206−82=124. Il genitore ne aveva 210−84=126, e due sono effettivamente partiti con l’alfa."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/8a2e635aed48697d13f54cc9f2f4bcbf1494ce438d1d8f9f286038e16af8c5bf",
+          "text": "Il primo pannello distingue i tre conteggi del nucleo genitore e del figlio: A=Z+N. La particella α porta via due protoni e due neutroni, non quattro neutroni."
+        },
+        {
+          "type": "formula",
+          "text": "A_f=206"
+        },
+        {
+          "type": "formula",
+          "text": " Z_f=82"
+        },
+        {
+          "type": "formula",
+          "text": " N_f=A_f-Z_f"
+        },
+        {
+          "type": "formula",
+          "text": " N_f=124"
+        },
+        {
+          "type": "text",
+          "text": "126 conterebbe ancora i neutroni iniziali. 122 sottrarrebbe tutti e quattro i nucleoni al solo numero di neutroni. 82 è il numero dei protoni del figlio, non dei neutroni. Il controllo A_f=Z_f+N_f ricostruisce 82+124=206."
+        }
+      ],
+      "answer": {
+        "type": "numeric",
+        "value": 124,
+        "unit": "neutroni",
+        "tolerance": 0
+      },
+      "hints": [
+        "Aggiorna A e Z separatamente, poi sottrai per ottenere N.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "126 conterebbe ancora i neutroni iniziali. 122 sottrarrebbe tutti e quattro i nucleoni al solo numero di neutroni. 82 è il numero dei protoni del figlio, non dei neutroni. Il controllo A_f=Z_f+N_f ricostruisce 82+124=206.",
+        "target": "C5-L08"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Composizione e trasformazioni nucleari",
+        "Legge statistica e tempi",
+        "Attività ed efficienza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q073",
+      "kind": "question",
+      "course": "C5",
+      "section": "Decadimenti e attività",
+      "order": 73,
+      "title": "Il nucleo dopo un beta positivo",
+      "skill": "C5-L08",
+      "prerequisites": [],
+      "version": 2,
+      "prompt": "Un nucleo con 7 protoni e 6 neutroni subisce il decadimento β⁺ assegnato. Quanti protoni contiene il figlio?",
+      "family": "carica-nel-beta-positivo",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nel beta positivo un protone si converte in un neutrone, con emissione di un positrone e di un neutrino. I protoni passano da 7 a 6 e i neutroni da 6 a 7. Il totale dei nucleoni rimane 13. Il numero richiesto è dunque 6; non è il numero di tutti i nucleoni del figlio."
+        },
+        {
+          "type": "formula",
+          "text": "Z_f=Z_i-1"
+        },
+        {
+          "type": "formula",
+          "text": " A_f=A_i"
+        },
+        {
+          "type": "formula",
+          "text": " Z_f=6"
+        },
+        {
+          "type": "text",
+          "text": "Otto protoni descriverebbero il cambiamento di Z di un beta negativo, non positivo. Sette lascerebbe invariato Z come in una transizione gamma. Tredici è il numero di massa conservato, non quello dei protoni."
+        }
+      ],
+      "answer": {
+        "type": "numeric",
+        "value": 6,
+        "unit": "protoni",
+        "tolerance": 0
+      },
+      "hints": [
+        "Segui quale nucleone si trasforma e quale carica porta fuori il positrone.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Otto protoni descriverebbero il cambiamento di Z di un beta negativo, non positivo. Sette lascerebbe invariato Z come in una transizione gamma. Tredici è il numero di massa conservato, non quello dei protoni.",
+        "target": "C5-L08"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Composizione e trasformazioni nucleari",
+        "Legge statistica e tempi",
+        "Attività ed efficienza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q074",
+      "kind": "question",
+      "course": "C5",
+      "section": "Decadimenti e attività",
+      "order": 74,
+      "title": "Un fotone senza cambiare A e Z",
+      "skill": "C5-L08",
+      "prerequisites": [],
+      "version": 2,
+      "prompt": "Un nucleo eccitato emette un fotone e passa a uno stato di energia minore senza cambiare A o Z. Come si chiama la transizione?",
+      "family": "un-fotone-dal-nucleo",
+      "difficulty": 1,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "È una transizione gamma. Il fotone porta energia e quantità di moto, ma non contiene nucleoni e non porta carica elettrica. Il nucleo conserva perciò i numeri A e Z mentre cambia stato energetico. Non si deve identificare la composizione invariata con energia interna invariata."
+        },
+        {
+          "type": "formula",
+          "text": "A_f=A_i"
+        },
+        {
+          "type": "formula",
+          "text": " Z_f=Z_i"
+        },
+        {
+          "type": "text",
+          "text": "Alfa modifica sia A sia Z. Beta meno e beta più lasciano A invariato ma modificano Z di un’unità. L’emissione di un fotone non richiede una scissione del nucleo in due frammenti."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Gamma",
+          "Alfa",
+          "Beta meno",
+          "Beta più",
+          "Scissione in due nuclei necessariamente uguali"
+        ],
+        "value": "Gamma"
+      },
+      "hints": [
+        "Confronta separatamente la composizione del nucleo e il suo stato di energia.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Alfa modifica sia A sia Z. Beta meno e beta più lasciano A invariato ma modificano Z di un’unità. L’emissione di un fotone non richiede una scissione del nucleo in due frammenti.",
+        "target": "C5-L08"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Composizione e trasformazioni nucleari",
+        "Legge statistica e tempi",
+        "Attività ed efficienza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q075",
+      "kind": "question",
+      "course": "C5",
+      "section": "Decadimenti e attività",
+      "order": 75,
+      "title": "Un’emivita dal coefficiente assegnato",
+      "skill": "C5-L08",
+      "prerequisites": [],
+      "version": 2,
+      "prompt": "Una specie ha costante di decadimento λ_d=0,231 h⁻¹. Nel calcolo adotta ln2≈0,693. Quale emivita in ore ottieni con questi dati numerici?",
+      "family": "dalla-costante-allemivita",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dalla condizione che la popolazione attesa si dimezzi ricavo λ_d T₁/₂=ln2. Divido il dato 0,693 per 0,231 h⁻¹: togliendo i tre decimali comuni resta 693/231=3. Con i dati arrotondati assegnati si ottengono 3 h. La durata fisica dipende dai dati del modello; non si sta affermando che ln2 sia esattamente 0,693."
+        },
+        {
+          "type": "formula",
+          "text": "\\lambda_d T_{1/2}=\\ln2"
+        },
+        {
+          "type": "formula",
+          "text": " T_{1/2}=\\frac{\\ln2}{\\lambda_d}"
+        },
+        {
+          "type": "formula",
+          "text": " T_{1/2}\\simeq3\\,\\mathrm h"
+        },
+        {
+          "type": "text",
+          "text": "Il prodotto fra ln2 e λ_d avrebbe ancora unità di tempo inverso. Il reciproco 1/λ_d è una diversa scala temporale, che deve essere moltiplicata per ln2. Un coefficiente più grande, a parità di questa definizione, dà emivita minore."
+        }
+      ],
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "h",
+        "tolerance": 0
+      },
+      "hints": [
+        "Isola prima la durata e poi tratta 0,693 e 0,231 come i dati forniti al calcolo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il prodotto fra ln2 e λ_d avrebbe ancora unità di tempo inverso. Il reciproco 1/λ_d è una diversa scala temporale, che deve essere moltiplicata per ln2. Un coefficiente più grande, a parità di questa definizione, dà emivita minore.",
+        "target": "C5-L08"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Composizione e trasformazioni nucleari",
+        "Legge statistica e tempi",
+        "Attività ed efficienza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q076",
+      "kind": "question",
+      "course": "C5",
+      "section": "Decadimenti e attività",
+      "order": 76,
+      "title": "Attività istantanea e prefisso kilo",
+      "skill": "C5-L08",
+      "prerequisites": [],
+      "version": 2,
+      "prompt": "In un istante un campione contiene 5,0×10⁷ nuclei instabili di una sola specie con λ_d=2,0×10⁻⁵ s⁻¹. Qual è l’attività media istantanea in kBq?",
+      "family": "dal-numero-di-nuclei-allattivita",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’attività è λ_d N. Moltiplico 2×5=10 e 10⁻⁵×10⁷=10²: ottengo 1000 s⁻¹, cioè 1000 Bq. Un kilobecquerel vale 1000 Bq, quindi l’attività è 1 kBq. Questo è un tasso medio istantaneo, non l’affermazione che in ogni secondo si osservino esattamente mille eventi."
+        },
+        {
+          "type": "formula",
+          "text": "\\mathcal A=\\lambda_d N"
+        },
+        {
+          "type": "formula",
+          "text": " \\mathcal A=1000\\,\\mathrm{Bq}"
+        },
+        {
+          "type": "formula",
+          "text": " \\mathcal A=1\\,\\mathrm{kBq}"
+        },
+        {
+          "type": "text",
+          "text": "1000 kBq manterrebbe il numero calcolato in becquerel ma cambierebbe soltanto il nome dell’unità. Il numero 5,0×10⁷ conta nuclei, non decadimenti per secondo. Una divisione per λ_d darebbe dimensione di tempo invece di un’attività."
+        }
+      ],
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "kBq",
+        "tolerance": 0
+      },
+      "hints": [
+        "Calcola prima il tasso in secondi inversi e solo dopo introduci il prefisso kilo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "1000 kBq manterrebbe il numero calcolato in becquerel ma cambierebbe soltanto il nome dell’unità. Il numero 5,0×10⁷ conta nuclei, non decadimenti per secondo. Una divisione per λ_d darebbe dimensione di tempo invece di un’attività.",
+        "target": "C5-L08"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Composizione e trasformazioni nucleari",
+        "Legge statistica e tempi",
+        "Attività ed efficienza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q077",
+      "kind": "question",
+      "course": "C5",
+      "section": "Decadimenti e attività",
+      "order": 77,
+      "title": "La frazione già trasformata",
+      "skill": "C5-L08",
+      "prerequisites": [],
+      "version": 2,
+      "prompt": "Una specie isolata senza nuova produzione segue la legge esponenziale. Dopo quattro emivite, quale percentuale attesa dei nuclei iniziali è già decaduta?",
+      "family": "frazione-gia-decaduta",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Quattro dimezzamenti lasciano una frazione 1/16 della popolazione iniziale. La quota già decaduta è il complemento: 1−1/16=15/16. Poiché 100/16=25/4, la percentuale è 15×25/4=375/4%, cioè 93,75%. Si tratta di una frazione attesa nel modello statistico, non di un appuntamento individuale per ciascun nucleo."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/8a2e635aed48697d13f54cc9f2f4bcbf1494ce438d1d8f9f286038e16af8c5bf",
+          "text": "Il secondo pannello mostra popolazioni attese normalizzate all’inizio: dopo quattro emivite resta 1/16 e il complemento 15/16 è già decaduto. Le barre hanno una scala comune."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{N}{N_0}=\\frac1{16}"
+        },
+        {
+          "type": "formula",
+          "text": " f_{\\rm decaduta}=\\frac{15}{16}"
+        },
+        {
+          "type": "formula",
+          "text": " 100f_{\\rm decaduta}=\\frac{375}{4}"
+        },
+        {
+          "type": "text",
+          "text": "6,25% è la frazione residua, non quella decaduta. 75% corrisponde al complemento dopo due emivite. 100% non è raggiunto a un tempo finito dalla legge esponenziale ideale; quattro emivite non significano quattro perdite della stessa metà iniziale."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "93,75%",
+          "6,25%",
+          "75%",
+          "25%",
+          "100%"
+        ],
+        "value": "93,75%"
+      },
+      "hints": [
+        "Sottrai dall’unità la frazione residua, dopo aver applicato tutti i dimezzamenti.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "testo",
+        "message": "6,25% è la frazione residua, non quella decaduta. 75% corrisponde al complemento dopo due emivite. 100% non è raggiunto a un tempo finito dalla legge esponenziale ideale; quattro emivite non significano quattro perdite della stessa metà iniziale.",
+        "target": "C5-L08"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Composizione e trasformazioni nucleari",
+        "Legge statistica e tempi",
+        "Attività ed efficienza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q078",
+      "kind": "question",
+      "course": "C5",
+      "section": "Decadimenti e attività",
+      "order": 78,
+      "title": "Un singolo nucleo è sopravvissuto",
+      "skill": "C5-L08",
+      "prerequisites": [],
+      "version": 2,
+      "prompt": "Un nucleo inizialmente instabile della specie considerata è ancora presente dopo un’emivita. Quale interpretazione è corretta nel modello del decadimento esponenziale?",
+      "family": "individuale-e-collettivo",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’emivita descrive la probabilità di sopravvivenza e il comportamento atteso di una popolazione. Dopo quel tempo la probabilità di sopravvivenza di un singolo nucleo è 1/2: osservarne uno ancora presente è quindi compatibile con il modello. Non viene assegnata una data precisa al suo decadimento e la sopravvivenza osservata non lo rende automaticamente stabile."
+        },
+        {
+          "type": "formula",
+          "text": "p_{\\rm sopravv}=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Un evento possibile non contraddice la legge statistica. Non si modifica la costante della specie in base a un solo nucleo sopravvissuto. “Metà attesa della popolazione” non significa che ogni nucleo debba perdere metà di sé o decadere nello stesso istante."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "L’esito è compatibile con una probabilità di sopravvivenza pari a un mezzo",
+          "La legge è necessariamente violata",
+          "Quel nucleo è diventato stabile per definizione",
+          "L’emivita della specie è raddoppiata per questo nucleo",
+          "Ogni nucleo deve decadere esattamente allo scadere dell’emivita"
+        ],
+        "value": "L’esito è compatibile con una probabilità di sopravvivenza pari a un mezzo"
+      },
+      "hints": [
+        "Separa una probabilità per singolo nucleo da un conteggio deterministico.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Un evento possibile non contraddice la legge statistica. Non si modifica la costante della specie in base a un solo nucleo sopravvissuto. “Metà attesa della popolazione” non significa che ogni nucleo debba perdere metà di sé o decadere nello stesso istante.",
+        "target": "C5-L08"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Composizione e trasformazioni nucleari",
+        "Legge statistica e tempi",
+        "Attività ed efficienza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q079",
+      "kind": "question",
+      "course": "C5",
+      "section": "Decadimenti e attività",
+      "order": 79,
+      "title": "Ricostruire il tasso dal rivelatore",
+      "skill": "C5-L08",
+      "prerequisites": [],
+      "version": 2,
+      "prompt": "Ogni decadimento produce un segnale nel modello e il rivelatore ne conta in media il 25%. Il tasso netto, dopo la sottrazione del fondo, è 180 s⁻¹. Calcola l’attività in Bq.",
+      "family": "efficienza-di-conteggio",
+      "difficulty": 3,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il tasso netto osservato è la frazione ε=1/4 dell’attività: R=ε𝒜. Per ricostruire l’attività divido 180 per 1/4, cioè moltiplico per quattro, e ottengo 720 Bq. Il controllo diretto dà (1/4)(720 s⁻¹)=180 s⁻¹. Si usa il tasso netto, senza sommare nuovamente un fondo già sottratto."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/8a2e635aed48697d13f54cc9f2f4bcbf1494ce438d1d8f9f286038e16af8c5bf",
+          "text": "L’ultimo pannello separa il tasso reale di decadimenti nel modello da quello medio contato: il 25% di 720 Bq dà 180 s⁻¹. Le due barre usano una scala comune per tassi in s⁻¹."
+        },
+        {
+          "type": "formula",
+          "text": "R=\\epsilon\\mathcal A"
+        },
+        {
+          "type": "formula",
+          "text": " \\mathcal A=R/\\epsilon"
+        },
+        {
+          "type": "formula",
+          "text": " \\mathcal A=720\\,\\mathrm{Bq}"
+        },
+        {
+          "type": "text",
+          "text": "45 Bq moltiplicherebbe ancora per l’efficienza e predirebbe soltanto 11,25 s⁻¹ osservati. 180 Bq supporrebbe efficienza unitaria. L’attività deve essere maggiore del tasso registrato perché l’efficienza è positiva ma inferiore a uno."
+        }
+      ],
+      "answer": {
+        "type": "numeric",
+        "value": 720,
+        "unit": "Bq",
+        "tolerance": 0
+      },
+      "hints": [
+        "Controlla l’inversa sostituendo l’attività nella stessa frazione di rivelazione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "45 Bq moltiplicherebbe ancora per l’efficienza e predirebbe soltanto 11,25 s⁻¹ osservati. 180 Bq supporrebbe efficienza unitaria. L’attività deve essere maggiore del tasso registrato perché l’efficienza è positiva ma inferiore a uno.",
+        "target": "C5-L08"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Composizione e trasformazioni nucleari",
+        "Legge statistica e tempi",
+        "Attività ed efficienza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q080",
+      "kind": "question",
+      "course": "C5",
+      "section": "Decadimenti e attività",
+      "order": 80,
+      "title": "Attività uguale, costanti diverse",
+      "skill": "C5-L08",
+      "prerequisites": [],
+      "version": 2,
+      "prompt": "Due campioni attivi hanno la stessa attività positiva in questo istante. La costante di decadimento positiva del primo è doppia di quella del secondo. Come si confrontano i numeri dei nuclei instabili?",
+      "family": "due-popolazioni-con-uguale-attivita",
+      "difficulty": 3,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Pongo λ₁=2λ₂ e uguaglio le attività: 2λ₂N₁=λ₂N₂. Il coefficiente λ₂ è positivo, quindi posso cancellarlo e ricavo 2N₁=N₂. Il primo campione contiene metà dei nuclei instabili del secondo. I conteggi sono interi positivi compatibili con l’uguaglianza; non si assegna un mezzo nucleo a un singolo oggetto."
+        },
+        {
+          "type": "formula",
+          "text": "\\lambda_1 N_1=\\lambda_2 N_2"
+        },
+        {
+          "type": "formula",
+          "text": " 2N_1=N_2"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{N_1}{N_2}=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Numeri uguali darebbero attività doppia nel primo campione. Il doppio dei nuclei darebbe attività quadrupla. Zero nuclei contraddice l’attività positiva assegnata. Il confronto usa il prodotto λ_dN e non attribuisce la stessa emivita alle due specie."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Il primo contiene metà dei nuclei del secondo",
+          "I numeri devono essere identici",
+          "Il primo contiene il doppio dei nuclei del secondo",
+          "Il primo contiene il quadruplo dei nuclei del secondo",
+          "Il primo deve avere zero nuclei instabili"
+        ],
+        "value": "Il primo contiene metà dei nuclei del secondo"
+      },
+      "hints": [
+        "Mantieni fisso il prodotto e verifica quale fattore deve compensare l’altro.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Numeri uguali darebbero attività doppia nel primo campione. Il doppio dei nuclei darebbe attività quadrupla. Zero nuclei contraddice l’attività positiva assegnata. Il confronto usa il prodotto λ_dN e non attribuisce la stessa emivita alle due specie.",
+        "target": "C5-L08"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Composizione e trasformazioni nucleari",
+        "Legge statistica e tempi",
+        "Attività ed efficienza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "8a2e635aed48697d13f54cc9f2f4bcbf1494ce438d1d8f9f286038e16af8c5bf",
+      "name": "cric-c5-l08-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTU0MCIgdmlld0JveD0iMCAwIDY0MCAxNTQwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMjcyNTM2Ij4KPHRpdGxlIGlkPSJ0aXRsZSI+Q29udGVnZ2kgbnVjbGVhcmksIGZyYXppb25pIGF0dGVzZSBlIGF0dGl2aXTDoDwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPlRyZSBwcm9ibGVtaSBkaXN0aW50aS4gRW1pc3Npb25lIGFsZmE6IGRhIG51bWVybyBkaSBtYXNzYSAyMTAgZSA4NCBwcm90b25pIGEgbnVtZXJvIGRpIG1hc3NhIDIwNiBlIDgyIHByb3RvbmksIGNvbiBuZXV0cm9uaSBkYSAxMjYgYSAxMjQuIENpbnF1ZSBiYXJyZSBkaSBwb3BvbGF6aW9uZSBhdHRlc2EgZGEgdW5vIGEgdW4gc2VkaWNlc2ltby4gVW7igJllZmZpY2llbnphIGRlbCB2ZW50aWNpbnF1ZSBwZXJjZW50byByaWR1Y2UgdW7igJlhdHRpdml0w6AgZGkgNzIwIGJlY3F1ZXJlbCBhIDE4MCBzZWduYWxpIGNvbnRhdGkgYWwgc2Vjb25kby48L2Rlc2M+CjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMTU0MCIgZmlsbD0iI2ZmZmRmNyIvPgo8dGV4dCB4PSI0MCIgeT0iNTUiIGZvbnQtc2l6ZT0iMjUiIGZvbnQtd2VpZ2h0PSJib2xkIj4xIMK3IFRyZSBjb250ZWdnaSBkYSBub24gY29uZm9uZGVyZTwvdGV4dD48dGV4dCB4PSI0MCIgeT0iMTA4Ij5BID0gWiArIE4gOyB1bmEgcGFydGljZWxsYSDOsSBwb3J0YSAycCBlIDJuLjwvdGV4dD4KPHRleHQgeD0iMjYwIiB5PSIxNzAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkE8L3RleHQ+PHRleHQgeD0iMzgwIiB5PSIxNzAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPlo8L3RleHQ+PHRleHQgeD0iNTAwIiB5PSIxNzAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPk48L3RleHQ+CjxyZWN0IHg9IjIxNSIgeT0iMTkwIiB3aWR0aD0iMzMwIiBoZWlnaHQ9IjU1IiBmaWxsPSIjZWVlOWRhIi8+PHJlY3QgeD0iMjE1IiB5PSIyODUiIHdpZHRoPSIzMzAiIGhlaWdodD0iNTUiIGZpbGw9IiNkY2VlZTkiLz48cmVjdCB4PSIyMTUiIHk9IjM4MCIgd2lkdGg9IjMzMCIgaGVpZ2h0PSI1NSIgZmlsbD0iI2VlZTFjOCIvPgo8dGV4dCB4PSI1MCIgeT0iMjI1Ij5HZW5pdG9yZTwvdGV4dD48dGV4dCB4PSIyNjAiIHk9IjIyNSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MjEwPC90ZXh0Pjx0ZXh0IHg9IjM4MCIgeT0iMjI1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj44NDwvdGV4dD48dGV4dCB4PSI1MDAiIHk9IjIyNSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MTI2PC90ZXh0Pgo8dGV4dCB4PSI1MCIgeT0iMzIwIj5GaWdsaW88L3RleHQ+PHRleHQgeD0iMjYwIiB5PSIzMjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPjIwNjwvdGV4dD48dGV4dCB4PSIzODAiIHk9IjMyMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+ODI8L3RleHQ+PHRleHQgeD0iNTAwIiB5PSIzMjAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPjEyNDwvdGV4dD4KPHRleHQgeD0iNTAiIHk9IjQxNSI+UGFydGljZWxsYSDOsTwvdGV4dD48dGV4dCB4PSIyNjAiIHk9IjQxNSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+NDwvdGV4dD48dGV4dCB4PSIzODAiIHk9IjQxNSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MjwvdGV4dD48dGV4dCB4PSI1MDAiIHk9IjQxNSIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MjwvdGV4dD48cGF0aCBkPSJNNDAgNDc1SDYwMCIgc3Ryb2tlPSIjY2JjNmJjIi8+Cjx0ZXh0IHg9IjQwIiB5PSI1MzAiIGZvbnQtc2l6ZT0iMjUiIGZvbnQtd2VpZ2h0PSJib2xkIj4yIMK3IFF1YXR0cm8gZGltZXp6YW1lbnRpIGF0dGVzaTwvdGV4dD48dGV4dCB4PSI0MCIgeT0iNTgwIj5UZW1wbyBpbiBlbWl2aXRlIDsgcG9wb2xhemlvbmUgcmlzcGV0dG8gYSBO4oKALjwvdGV4dD4KPHJlY3QgeD0iMTQwIiB5PSI2MzAiIHdpZHRoPSI0MDAiIGhlaWdodD0iMjUiIGZpbGw9IiMxNDdjNzYiLz48cmVjdCB4PSIxNDAiIHk9IjY4NSIgd2lkdGg9IjIwMCIgaGVpZ2h0PSIyNSIgZmlsbD0iIzE0N2M3NiIvPjxyZWN0IHg9IjE0MCIgeT0iNzQwIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjI1IiBmaWxsPSIjMTQ3Yzc2Ii8+PHJlY3QgeD0iMTQwIiB5PSI3OTUiIHdpZHRoPSI1MCIgaGVpZ2h0PSIyNSIgZmlsbD0iIzE0N2M3NiIvPjxyZWN0IHg9IjE0MCIgeT0iODUwIiB3aWR0aD0iMjUiIGhlaWdodD0iMjUiIGZpbGw9IiMxNDdjNzYiLz4KPHRleHQgeD0iODAiIHk9IjY1MSI+MDwvdGV4dD48dGV4dCB4PSI4MCIgeT0iNzA2Ij4xPC90ZXh0Pjx0ZXh0IHg9IjgwIiB5PSI3NjEiPjI8L3RleHQ+PHRleHQgeD0iODAiIHk9IjgxNiI+MzwvdGV4dD48dGV4dCB4PSI4MCIgeT0iODcxIj40PC90ZXh0Pgo8dGV4dCB4PSI1NjUiIHk9IjY1MSI+MTwvdGV4dD48dGV4dCB4PSI1NjUiIHk9IjcwNiI+MS8yPC90ZXh0Pjx0ZXh0IHg9IjU2NSIgeT0iNzYxIj4xLzQ8L3RleHQ+PHRleHQgeD0iNTY1IiB5PSI4MTYiPjEvODwvdGV4dD48dGV4dCB4PSI1NjUiIHk9Ijg3MSI+MS8xNjwvdGV4dD4KPHRleHQgeD0iNDAiIHk9Ijk1MCI+UmVzdGEgMS8xNiA7IMOoIGdpw6AgZGVjYWR1dG8gMTUvMTYuPC90ZXh0Pjx0ZXh0IHg9IjQwIiB5PSI5OTAiIGZvbnQtc2l6ZT0iMTgiPkZyYXppb25pIGF0dGVzZSwgbm9uIGFwcHVudGFtZW50aSBpbmRpdmlkdWFsaS48L3RleHQ+PHBhdGggZD0iTTQwIDEwMzBINjAwIiBzdHJva2U9IiNjYmM2YmMiLz4KPHRleHQgeD0iNDAiIHk9IjEwODUiIGZvbnQtc2l6ZT0iMjUiIGZvbnQtd2VpZ2h0PSJib2xkIj4zIMK3IElsIHJpdmVsYXRvcmUgbmUgY29udGEgdW5hIGZyYXppb25lPC90ZXh0Pgo8dGV4dCB4PSIxNjAiIHk9IjExNzUiPkF0dGl2aXTDoDogNzIwIEJxPC90ZXh0PjxyZWN0IHg9IjE2MCIgeT0iMTIwMCIgd2lkdGg9IjM2MCIgaGVpZ2h0PSI0MCIgZmlsbD0iIzY4NTJhMyIvPgo8dGV4dCB4PSIxNjAiIHk9IjEzMDAiPkVmZmljaWVuemE6IDI1JTwvdGV4dD48dGV4dCB4PSIxNjAiIHk9IjEzNjAiPlRhc3NvIG5ldHRvOiAxODAgc+KBu8K5PC90ZXh0PjxyZWN0IHg9IjE2MCIgeT0iMTM4MCIgd2lkdGg9IjkwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjMTQ3Yzc2Ii8+Cjx0ZXh0IHg9IjMyMCIgeT0iMTUwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+KDI1LzEwMCnDlzcyMCBz4oG7wrkgPSAxODAgc+KBu8K5PC90ZXh0Pgo8L3N2Zz4K"
+    }
+  ]
+}

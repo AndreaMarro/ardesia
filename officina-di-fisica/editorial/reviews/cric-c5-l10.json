@@ -1,0 +1,376 @@
+{
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "C5-Q091",
+      "sourceSha256": "e5653e4fb0c2c4a6f40c7539d7cfa48eebf7e8c0e5c2542bb29a4f1113c7be2d",
+      "candidateSha256": "00aec04d95806291203cc4486c69ad434b88604ab68e835b07c6860d1d5b4016",
+      "reviewedSignature": "0ee94acb49b6cdc199d130c0c725df449f6f5dfbf965d2698596ba786cc1fd99",
+      "assetChecksums": {
+        "cric-c5-l10-progressive.svg": "0668538d9d0665387cf32e5dbf1aa58d2aba0999c565c56450e6dc0863b2f7b1"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "16",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: 1/f=1/p+1/q, quindi q=fp/(p−f)=(8×16)/(16−8)=16 cm.\nL'oggetto è a2f e anche l'immagine si forma a2f, sul lato d'uscita. Con\nm=−q/p si ottiene−1: immagine reale capovolta e di uguale altezza.",
+      "physicalAssumptions": "Lente sottile parassiale, mezzo uguale ai lati, oggetto reale p=2f e immagine reale.",
+      "distractors": "1/16 è il coefficiente del reciproco, non la distanza. 8 cm è la focale per oggetto all’infinito; sommare p e f non applica la legge.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: 1/f=1/p+1/q, quindi q=fp/(p−f)=(8×16)/(16−8)=16 cm.\nL'oggetto è a2f e anche l'immagine si forma a2f, sul lato d'uscita. Con\nm=−q/p si ottiene−1: immagine reale capovolta e di uguale altezza.",
+      "scientificAssetReview": "Figura candidata letta integralmente in XML e in nuovo PNG nativo indipendente completo; proporzioni, segni, origini, assi e geometrie verificati per ogni pannello. Otto SVG originali letti integralmente in XML; nessuna validazione raster degli originali dichiarata. Il solo fix Q094 non cambia asset; nessuna UI prodotto o approvazione umana.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c5_051_100_root_review_models.py": "ea160e2ae2cc5a52720d9be018b2a89ceb78ae606811c67961caee819db4b1bb",
+        "cric_c5_radiation_optics_review_common_a.py": "03bdead14c9c04f4700be9542b290fb62306a931cf89d1781eaa73693356ce0d",
+        "cric_c5_radiation_optics_review_evidence_a.py": "e760c7039314ba8b9ad66c916c47305d0b6da41ab0aee5c276a9509512a4ef9f",
+        "cric_c5_radiation_optics_review_models_a.py": "61ce17adcdd72a2c8e632e99fcc37954a81b71204eadc3721e9f9ebf05c2a357",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C5-Q092",
+      "sourceSha256": "67a9b6b2ad41ee84426c36d15b57d312e8ec4976932590e4c38d4acb095a9cb2",
+      "candidateSha256": "bdf14c38be64fda3b243cd188965d159fe0cb66b34be71f882784ca473ac2fdc",
+      "reviewedSignature": "a6d85f7dc19be1f05612f0438dc2a7b0401c770599cb90f0e267451df6c3d6d3",
+      "assetChecksums": {
+        "cric-c5-l10-progressive.svg": "0668538d9d0665387cf32e5dbf1aa58d2aba0999c565c56450e6dc0863b2f7b1"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Paralleli fra loro, senza un’intersezione immagine a distanza finita",
+      "dimension": {},
+      "manualArithmetic": "Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: Se p=f, l'equazione dà1/q=0: per un singolo punto dell'oggetto\nil fascio emergente è collimato, con raggi paralleli fra loro. Un punto fuori\nasse produce un fascio inclinato: non dire che tutti i fasci di tutti i punti\nsiano paralleli all'asse o l'uno all'altro.",
+      "physicalAssumptions": "Singolo punto nel piano focale, fascio collimato fra sé anche quando inclinato.",
+      "distractors": "Paralleli fra loro non significa paralleli all’asse per un punto fuori asse. Il passaggio per il fuoco riguarda un altro raggio principale; q non è zero.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: Se p=f, l'equazione dà1/q=0: per un singolo punto dell'oggetto\nil fascio emergente è collimato, con raggi paralleli fra loro. Un punto fuori\nasse produce un fascio inclinato: non dire che tutti i fasci di tutti i punti\nsiano paralleli all'asse o l'uno all'altro.",
+      "scientificAssetReview": "Figura candidata letta integralmente in XML e in nuovo PNG nativo indipendente completo; proporzioni, segni, origini, assi e geometrie verificati per ogni pannello. Otto SVG originali letti integralmente in XML; nessuna validazione raster degli originali dichiarata. Il solo fix Q094 non cambia asset; nessuna UI prodotto o approvazione umana.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c5_051_100_root_review_models.py": "ea160e2ae2cc5a52720d9be018b2a89ceb78ae606811c67961caee819db4b1bb",
+        "cric_c5_radiation_optics_review_common_a.py": "03bdead14c9c04f4700be9542b290fb62306a931cf89d1781eaa73693356ce0d",
+        "cric_c5_radiation_optics_review_evidence_a.py": "e760c7039314ba8b9ad66c916c47305d0b6da41ab0aee5c276a9509512a4ef9f",
+        "cric_c5_radiation_optics_review_models_a.py": "61ce17adcdd72a2c8e632e99fcc37954a81b71204eadc3721e9f9ebf05c2a357",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C5-Q093",
+      "sourceSha256": "d196ebd54f38489cf534f1ed724833715f064559a5fe9a9f57e47f44772ca87a",
+      "candidateSha256": "2910edb6164cf8e89157c0bb0f01dd33dbce347cea9826771c0e26007c6af09c",
+      "reviewedSignature": "20dfaab0b32dc88cb7ee62f1159452a686b4e266e80c349e5e5fcf46383bc1f3",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Negativa",
+      "dimension": {},
+      "manualArithmetic": "Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: Un'immagine ottenuta dai prolungamenti all'indietro è virtuale\ne sta dal lato d'ingresso nella convenzione indicata. Perciò q è negativa.\nIl segno descrive la posizione rispetto alla convenzione e non una distanza\ngeometrica che abbia materialmente lunghezza negativa.",
+      "physicalAssumptions": "Convenzione q positiva sul lato uscita, prolungamenti sul lato oggetto danno q<0.",
+      "distractors": "q positiva indica il lato opposto. La virtualità non impone q=0 né un particolare modulo come 2f.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: Un'immagine ottenuta dai prolungamenti all'indietro è virtuale\ne sta dal lato d'ingresso nella convenzione indicata. Perciò q è negativa.\nIl segno descrive la posizione rispetto alla convenzione e non una distanza\ngeometrica che abbia materialmente lunghezza negativa.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c5_051_100_root_review_models.py": "ea160e2ae2cc5a52720d9be018b2a89ceb78ae606811c67961caee819db4b1bb",
+        "cric_c5_radiation_optics_review_common_a.py": "03bdead14c9c04f4700be9542b290fb62306a931cf89d1781eaa73693356ce0d",
+        "cric_c5_radiation_optics_review_evidence_a.py": "e760c7039314ba8b9ad66c916c47305d0b6da41ab0aee5c276a9509512a4ef9f",
+        "cric_c5_radiation_optics_review_models_a.py": "61ce17adcdd72a2c8e632e99fcc37954a81b71204eadc3721e9f9ebf05c2a357",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C5-Q094",
+      "sourceSha256": "838fc9471ee06f08ffa4738684527e0db84606432bd3848295418ed45555004c",
+      "candidateSha256": "ea1dd106086af28cd241baa815dedabaa0536be6c1f4586ef528a27a7341fa1f",
+      "reviewedSignature": "dff0ab14d1b3f635fa3a6cabf96bf903f564cbb05414493d738fabc67feb8468",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "15",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: Dall'equazione delle lenti f=pq/(p+q)=(24×40)/(24+40)\n=960/64=15 cm. La verifica manuale alternativa è1/24+1/40=5/120+3/120\n=8/120=1/15 cm⁻¹. L'immagine su schermo giustifica q=+40 cm.",
+      "physicalAssumptions": "Oggetto e immagine su schermo reali, p/q positive e stesso mezzo esterno.",
+      "distractors": "64 cm somma le distanze. Sottrarre i reciproci non ricostruisce la stessa configurazione; il coefficiente 1/15 cm⁻¹ va invertito.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: Dall'equazione delle lenti f=pq/(p+q)=(24×40)/(24+40)\n=960/64=15 cm. La verifica manuale alternativa è1/24+1/40=5/120+3/120\n=8/120=1/15 cm⁻¹. L'immagine su schermo giustifica q=+40 cm.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c5_051_100_root_review_models.py": "ea160e2ae2cc5a52720d9be018b2a89ceb78ae606811c67961caee819db4b1bb",
+        "cric_c5_radiation_optics_review_common_a.py": "03bdead14c9c04f4700be9542b290fb62306a931cf89d1781eaa73693356ce0d",
+        "cric_c5_radiation_optics_review_evidence_a.py": "e760c7039314ba8b9ad66c916c47305d0b6da41ab0aee5c276a9509512a4ef9f",
+        "cric_c5_radiation_optics_review_models_a.py": "61ce17adcdd72a2c8e632e99fcc37954a81b71204eadc3721e9f9ebf05c2a357",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C5-Q095",
+      "sourceSha256": "19e534bd9af9c377654d2eab2174b037820c1a2778857dcd77910f4d25a274bc",
+      "candidateSha256": "f7c03fa89e8285457a0a8f9a44e3140aaf4eca91b85e7055cb41e361da52b19c",
+      "reviewedSignature": "746121c80f4fee946de9db493b8fcc85480d0b866e94a0c23bb936589c97fb03",
+      "assetChecksums": {
+        "cric-c5-l10-progressive.svg": "0668538d9d0665387cf32e5dbf1aa58d2aba0999c565c56450e6dc0863b2f7b1"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "-5/2",
+      "dimension": {},
+      "manualArithmetic": "Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: L'ingrandimento con segno è h'/h. L'immagine capovolta ha\nh'=−30 mm mentre h=+12 mm: m=−30/12=−5/2=−2,5.\nIl modulo2,5 descrive solo il rapporto delle altezze; il segno meno registra\nl'inversione. Non si confonde m con una lunghezza in millimetri.",
+      "physicalAssumptions": "Stesso riferimento verticale per h e h′, capovolgimento richiede h′ negativa.",
+      "distractors": "5/2 perde il capovolgimento; −2/5 inverte il rapporto; −5 richiederebbe −60 mm.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: L'ingrandimento con segno è h'/h. L'immagine capovolta ha\nh'=−30 mm mentre h=+12 mm: m=−30/12=−5/2=−2,5.\nIl modulo2,5 descrive solo il rapporto delle altezze; il segno meno registra\nl'inversione. Non si confonde m con una lunghezza in millimetri.",
+      "scientificAssetReview": "Figura candidata letta integralmente in XML e in nuovo PNG nativo indipendente completo; proporzioni, segni, origini, assi e geometrie verificati per ogni pannello. Otto SVG originali letti integralmente in XML; nessuna validazione raster degli originali dichiarata. Il solo fix Q094 non cambia asset; nessuna UI prodotto o approvazione umana.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c5_051_100_root_review_models.py": "ea160e2ae2cc5a52720d9be018b2a89ceb78ae606811c67961caee819db4b1bb",
+        "cric_c5_radiation_optics_review_common_a.py": "03bdead14c9c04f4700be9542b290fb62306a931cf89d1781eaa73693356ce0d",
+        "cric_c5_radiation_optics_review_evidence_a.py": "e760c7039314ba8b9ad66c916c47305d0b6da41ab0aee5c276a9509512a4ef9f",
+        "cric_c5_radiation_optics_review_models_a.py": "61ce17adcdd72a2c8e632e99fcc37954a81b71204eadc3721e9f9ebf05c2a357",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C5-Q096",
+      "sourceSha256": "bfa1912fd5b5cc92f949da96c4747d3a16d72ce3a1ead79374ac0ac624fa10c9",
+      "candidateSha256": "800db4df8b260cfa008c656c9d60daa4a04bd044f762cd7306bd4d505ed48dd4",
+      "reviewedSignature": "9669439ee5110c72d7cc135516fc06be9bb9296ed6e10bddbd34ddbd1c2bc4b7",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Lungo la stessa retta",
+      "dimension": {},
+      "manualArithmetic": "Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: Nel modello sottile e parassiale, con lo stesso mezzo esterno\nsui due lati, il raggio attraverso il centro ottico prosegue senza deviazione.\nÈ una regola del modello idealizzato, non un'affermazione su qualunque lente\nspessa, su ogni angolo o su mezzi esterni diversi.",
+      "physicalAssumptions": "Centro ottico nel limite sottile parassiale e stesso mezzo esterno; non regola universale di lente spessa.",
+      "distractors": "Il raggio centrale non diventa automaticamente parallelo all’asse o diretto al fuoco. La costruzione è trasmissiva, non una riflessione.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: Nel modello sottile e parassiale, con lo stesso mezzo esterno\nsui due lati, il raggio attraverso il centro ottico prosegue senza deviazione.\nÈ una regola del modello idealizzato, non un'affermazione su qualunque lente\nspessa, su ogni angolo o su mezzi esterni diversi.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c5_051_100_root_review_models.py": "ea160e2ae2cc5a52720d9be018b2a89ceb78ae606811c67961caee819db4b1bb",
+        "cric_c5_radiation_optics_review_common_a.py": "03bdead14c9c04f4700be9542b290fb62306a931cf89d1781eaa73693356ce0d",
+        "cric_c5_radiation_optics_review_evidence_a.py": "e760c7039314ba8b9ad66c916c47305d0b6da41ab0aee5c276a9509512a4ef9f",
+        "cric_c5_radiation_optics_review_models_a.py": "61ce17adcdd72a2c8e632e99fcc37954a81b71204eadc3721e9f9ebf05c2a357",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C5-Q097",
+      "sourceSha256": "c3d867c772632b52b4895104a568a947f5450c311ea7170fe1c7de06a994861f",
+      "candidateSha256": "becbd8fe94080ce270456f412ca2138b742344723d95b0a795c99ac69f082778",
+      "reviewedSignature": "e6e8ce21e71fccafb0221a314bc388fef9357986efc398641becefa16148bd36",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "L’intera freccia meno luminosa",
+      "dimension": {},
+      "manualArithmetic": "Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: La parte libera continua a ricevere raggi da ogni punto\n dell'oggetto: si vede l'immagine intera, meno luminosa. Non scompare una metà\ndella freccia. Il quesito assume ottica geometrica e copertura che lasci\nilluminata la parte libera; gli effetti di diffrazione o l'eventuale\nvignettatura richiederebbero un altro modello.",
+      "physicalAssumptions": "Ogni punto illumina parte libera, illuminazione invariata, ottica geometrica, no ritaglio metà immagine.",
+      "distractors": "Metà apertura non corrisponde a metà oggetto. La focale non cambia; diminuisce la potenza ricevuta da ogni punto immagine.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: La parte libera continua a ricevere raggi da ogni punto\n dell'oggetto: si vede l'immagine intera, meno luminosa. Non scompare una metà\ndella freccia. Il quesito assume ottica geometrica e copertura che lasci\nilluminata la parte libera; gli effetti di diffrazione o l'eventuale\nvignettatura richiederebbero un altro modello.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c5_051_100_root_review_models.py": "ea160e2ae2cc5a52720d9be018b2a89ceb78ae606811c67961caee819db4b1bb",
+        "cric_c5_radiation_optics_review_common_a.py": "03bdead14c9c04f4700be9542b290fb62306a931cf89d1781eaa73693356ce0d",
+        "cric_c5_radiation_optics_review_evidence_a.py": "e760c7039314ba8b9ad66c916c47305d0b6da41ab0aee5c276a9509512a4ef9f",
+        "cric_c5_radiation_optics_review_models_a.py": "61ce17adcdd72a2c8e632e99fcc37954a81b71204eadc3721e9f9ebf05c2a357",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C5-Q098",
+      "sourceSha256": "d75101c7da40555ab3f27399df3514b3d85e6c191bf2801330b9709aca7a8a75",
+      "candidateSha256": "f7504ebcfbecc1abce1a33e8288294a1d922c6ed9d3da41702b1ad34fbff7159",
+      "reviewedSignature": "5b7a014d7172794c6ae00b08510e24a498f4ea962a36353ea1b5474d2db7fed2",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "15",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: m=−q/p=−2 impone q=2p. In1/10=1/p+1/(2p)=3/(2p)\nsi ottiene2p=30, quindi p=15 cm e q=30 cm. L'inversa generale è\np=f(1−1/m), per m≠0 e nei domini fisici appropriati.",
+      "physicalAssumptions": "Lente convergente e immagine reale invertita m<0, p/q nel ramo reale.",
+      "distractors": "20 cm darebbe m=−1; 30 cm è q e non p. p<f darebbe un’immagine virtuale.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: m=−q/p=−2 impone q=2p. In1/10=1/p+1/(2p)=3/(2p)\nsi ottiene2p=30, quindi p=15 cm e q=30 cm. L'inversa generale è\np=f(1−1/m), per m≠0 e nei domini fisici appropriati.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c5_051_100_root_review_models.py": "ea160e2ae2cc5a52720d9be018b2a89ceb78ae606811c67961caee819db4b1bb",
+        "cric_c5_radiation_optics_review_common_a.py": "03bdead14c9c04f4700be9542b290fb62306a931cf89d1781eaa73693356ce0d",
+        "cric_c5_radiation_optics_review_evidence_a.py": "e760c7039314ba8b9ad66c916c47305d0b6da41ab0aee5c276a9509512a4ef9f",
+        "cric_c5_radiation_optics_review_models_a.py": "61ce17adcdd72a2c8e632e99fcc37954a81b71204eadc3721e9f9ebf05c2a357",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C5-Q099",
+      "sourceSha256": "dc2fba3a942ef395a65d8e1efca20190f5b341363d4e1cfd49a6a2219191fb84",
+      "candidateSha256": "34bab4e6cfd411c8aa3f68491fec02c482370f73b912eaab287f17b977b88148",
+      "reviewedSignature": "cb774fafc037f2a685258b8b6217c81bd749f05e64eee3b46afc66c8bcd9417d",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Deve aumentare progressivamente",
+      "dimension": {},
+      "manualArithmetic": "Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: Per p>f, q=fp/(p−f). Avvicinando p a f dall'esterno, il\ndenominatore positivo tende a zero mentre il numeratore resta positivo:\nlo schermo deve allontanarsi, con q che tende a+∞. Il fuoco anteriore è il\nlimite in cui il fascio emergente diventa parallelo.",
+      "physicalAssumptions": "Focale positiva fissa e p>f si avvicina da esterno, distanza schermo reale q>0.",
+      "distractors": "2f è solo il caso p=2f. q negativa appartiene al ramo virtuale; avvicinare lo schermo non conserva il fuoco assegnato.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: Per p>f, q=fp/(p−f). Avvicinando p a f dall'esterno, il\ndenominatore positivo tende a zero mentre il numeratore resta positivo:\nlo schermo deve allontanarsi, con q che tende a+∞. Il fuoco anteriore è il\nlimite in cui il fascio emergente diventa parallelo.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c5_051_100_root_review_models.py": "ea160e2ae2cc5a52720d9be018b2a89ceb78ae606811c67961caee819db4b1bb",
+        "cric_c5_radiation_optics_review_common_a.py": "03bdead14c9c04f4700be9542b290fb62306a931cf89d1781eaa73693356ce0d",
+        "cric_c5_radiation_optics_review_evidence_a.py": "e760c7039314ba8b9ad66c916c47305d0b6da41ab0aee5c276a9509512a4ef9f",
+        "cric_c5_radiation_optics_review_models_a.py": "61ce17adcdd72a2c8e632e99fcc37954a81b71204eadc3721e9f9ebf05c2a357",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C5-Q100",
+      "sourceSha256": "fbbe5bf1795032712c7e927eeebeb584446d0f1e30e8e990723046814ee3a8c6",
+      "candidateSha256": "0112a6fc072837c35c4af0b1e616a8002944d95eddf1c72b09f5580d77cccd9e",
+      "reviewedSignature": "54ab393fd830d37e563dd45945382d44f89c602893b34e9e176c687c62ae3247",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Convergente",
+      "dimension": {},
+      "manualArithmetic": "Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: Il raggio parallelo che esce verso il fuoco sul lato d'uscita\nidentifica una lente convergente nelle ipotesi date. Nell'SVG la linea verde\nattraversa F′; la rossa attraversa il centro e converge con essa nella posizione\ndell'immagine reale. La conclusione usa la proprietà dei raggi, non il solo\nsegno grafico della sagoma della lente.",
+      "physicalAssumptions": "Raggio parallelo emerge passando realmente per fuoco posteriore, mezzo identico e lente sottile parassiale.",
+      "distractors": "Una divergente usa il prolungamento verso il fuoco anteriore. Lo specchio non descrive un raggio che attraversa la lente; il fuoco reale esclude potere nullo.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Primaria Root congelata prima delle candidate; successiva derivazione distinta A dal prompt e verifica con modello A pre-key2f393a63: Il raggio parallelo che esce verso il fuoco sul lato d'uscita\nidentifica una lente convergente nelle ipotesi date. Nell'SVG la linea verde\nattraversa F′; la rossa attraversa il centro e converge con essa nella posizione\ndell'immagine reale. La conclusione usa la proprietà dei raggi, non il solo\nsegno grafico della sagoma della lente.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c5_051_100_root_review_models.py": "ea160e2ae2cc5a52720d9be018b2a89ceb78ae606811c67961caee819db4b1bb",
+        "cric_c5_radiation_optics_review_common_a.py": "03bdead14c9c04f4700be9542b290fb62306a931cf89d1781eaa73693356ce0d",
+        "cric_c5_radiation_optics_review_evidence_a.py": "e760c7039314ba8b9ad66c916c47305d0b6da41ab0aee5c276a9509512a4ef9f",
+        "cric_c5_radiation_optics_review_models_a.py": "61ce17adcdd72a2c8e632e99fcc37954a81b71204eadc3721e9f9ebf05c2a357",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "3ec00a834696140a5c133bdae19b813fe2e7762e693e78dc07b607b28d3c2080",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "publicationAction": "NONE",
+  "reviewedCandidateCommit": "6cd8bd28bb88c6bea812ca8df3adbc3ae8c3e069",
+  "packageSha256": "50148c2e78d16e75eeef517f3c4497678543380520224b1d516adf866e9783f2",
+  "bindingsSha256": "0d344a00f23e6cb78ce1b810344ed15e0ba135efb05d9cbad2531711de1a1be8",
+  "sourceFirstPrimarySha256": "4271f78cf4be74ac64013158d017529b63d8953e38ab27e2f6deff7e0f80efa4",
+  "source": {
+    "commit": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "path": "officina-di-fisica/content/C5.json",
+    "reference": "Root primary/model d664c30a source-only before B candidates. A reread all50 source prompts, derived independent finite/exact models and actually ran120Hyp in2f393a63 before first B candidate opening. Then all50 originals/candidates and lessonsL06–L10 read in full;8sourceSVG wholeXML plus5new independent full nativePNG read. Only Q094 isolated reciprocal-unit formula corrected by author6cd8bd28, reread with strictdiff; no candidate edited by reviewer. UI product and human NOT_RUN."
+  }
+}
