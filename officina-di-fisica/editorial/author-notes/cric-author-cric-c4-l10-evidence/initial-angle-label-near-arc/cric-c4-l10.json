@@ -1,0 +1,679 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "C4-Q091",
+      "kind": "question",
+      "course": "C4",
+      "section": "Indurre una tensione cambiando il flusso",
+      "order": 91,
+      "title": "Proiettare sulla normale scelta",
+      "skill": "C4-L10",
+      "prerequisites": [
+        "C4-L05",
+        "C4-L09"
+      ],
+      "version": 3,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’angolo è rispetto alla normale, non al piano. La componente normale è B cos60°=0,30/2 T=0,15 T, positiva perché l’angolo è acuto. Moltiplico per l’area: 0,15·0,020=0,0030 Wb, cioè +3 mWb. Senza inclinazione, con campo concorde alla normale, il flusso sarebbe il doppio."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/bfce9dc4965c129a55102a255842e9c36acd839a1b1a5102a4bb70e07727c3e3",
+          "text": "Il primo pannello mostra la spira di taglio e la normale positiva. Il campo B forma 60° con la normale; la proiezione Bₙ è positiva e vale metà di B."
+        },
+        {
+          "type": "formula",
+          "text": "B_n=B\\cos60^\\circ"
+        },
+        {
+          "type": "formula",
+          "text": " B_n=0{,}15\\,\\mathrm T"
+        },
+        {
+          "type": "formula",
+          "text": " \\Phi=B_n A"
+        },
+        {
+          "type": "formula",
+          "text": " \\Phi=3\\,\\mathrm{mWb}"
+        },
+        {
+          "type": "text",
+          "text": "6 mWb ometterebbe la proiezione e userebbe tutto il modulo del campo. −3 mWb corrisponderebbe alla normale opposta. Il seno di 60° non è la componente lungo la normale: il seno corretto userebbe invece l’angolo di 30° rispetto al piano."
+        }
+      ],
+      "prompt": "Una spira piana di area 0,020 m² è in un campo uniforme di modulo 0,30 T. Il campo forma 60° con la normale positiva scelta. Trova il flusso orientato in milliweber.",
+      "difficulty": 2,
+      "family": "flusso-attraverso-una-spira-inclinata",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "mWb",
+        "tolerance": 0
+      },
+      "hints": [
+        "Individua quale freccia definisce l’angolo prima di applicare il coseno.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "6 mWb ometterebbe la proiezione e userebbe tutto il modulo del campo. −3 mWb corrisponderebbe alla normale opposta. Il seno di 60° non è la componente lungo la normale: il seno corretto userebbe invece l’angolo di 30° rispetto al piano.",
+        "target": "C4-L10"
+      },
+      "baseVersion": 2,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Flusso orientato",
+        "Lenz e condizioni del circuito",
+        "Medie temporali e carica integrata"
+      ]
+    },
+    {
+      "id": "C4-Q092",
+      "kind": "question",
+      "course": "C4",
+      "section": "Indurre una tensione cambiando il flusso",
+      "order": 92,
+      "title": "Flusso presente e induzione assente",
+      "skill": "C4-L10",
+      "prerequisites": [
+        "C4-L05",
+        "C4-L09"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La legge di Faraday collega la forza elettromotrice alla variazione del flusso concatenato, non al flusso presente. Con B, area e orientamento costanti, il flusso non cambia e la forza elettromotrice indotta è zero. Un campo anche intenso può quindi attraversare la spira senza produrre induzione in questa preparazione."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta\\Phi=0"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline{\\mathcal E}=0"
+        },
+        {
+          "type": "text",
+          "text": "BA ha unità weber e non volt: manca una variazione divisa per un tempo. La resistenza non crea una forza elettromotrice se il flusso resta costante. Una corrente eventualmente mantenuta da altre sorgenti non è la forza elettromotrice indotta da questo campo."
+        }
+      ],
+      "prompt": "Una spira conduttrice resta ferma, con area e orientamento fissi, in un campo magnetico uniforme costante nel tempo. Qual è la forza elettromotrice indotta da quel campo?",
+      "difficulty": 1,
+      "family": "un-grande-campo-immutabile",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Nulla",
+          "Uguale al flusso BA, con unità volt",
+          "Maggiore se aumenta soltanto la resistenza",
+          "Necessariamente uguale alla corrente nella spira",
+          "Non nulla per il solo fatto che B attraversa la spira"
+        ],
+        "value": "Nulla"
+      },
+      "hints": [
+        "Controlla prima che qualcosa cambi: modulo del campo, area o orientamento.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "BA ha unità weber e non volt: manca una variazione divisa per un tempo. La resistenza non crea una forza elettromotrice se il flusso resta costante. Una corrente eventualmente mantenuta da altre sorgenti non è la forza elettromotrice indotta da questo campo.",
+        "target": "C4-L10"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Flusso orientato",
+        "Lenz e condizioni del circuito",
+        "Medie temporali e carica integrata"
+      ]
+    },
+    {
+      "id": "C4-Q093",
+      "kind": "question",
+      "course": "C4",
+      "section": "Indurre una tensione cambiando il flusso",
+      "order": 93,
+      "title": "Il significato del segno meno",
+      "skill": "C4-L10",
+      "prerequisites": [
+        "C4-L05",
+        "C4-L09"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "È la legge di Lenz. Se cresce un flusso entrante, la risposta tende a produrre un contributo uscente; se il flusso entrante diminuisce, tende invece a sostenerlo. La regola contrasta il cambiamento, non impone sempre un campo opposto a quello esterno. Il segno meno ha senso dopo aver associato normale e verso di percorrenza mediante la mano destra."
+        },
+        {
+          "type": "formula",
+          "text": "\\mathcal E=-\\frac{d\\Phi}{dt}"
+        },
+        {
+          "type": "text",
+          "text": "Ohm lega corrente e differenza di potenziale nel modello resistivo. Joule riguarda la dissipazione, Coulomb l’interazione elettrostatica e Snell la rifrazione. Questi nomi non identificano il criterio di orientazione dell’induzione."
+        }
+      ],
+      "prompt": "Quale cognome dà il nome alla regola secondo cui la risposta indotta contrasta la variazione del flusso esterno che l’ha generata?",
+      "difficulty": 1,
+      "family": "segno-meno-nella-legge-di-faraday",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Lenz",
+          "Ohm",
+          "Coulomb",
+          "Joule",
+          "Snell"
+        ],
+        "value": "Lenz"
+      },
+      "hints": [
+        "Distingui «opporsi al campo» da «opporsi alla variazione del suo flusso».",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Ohm lega corrente e differenza di potenziale nel modello resistivo. Joule riguarda la dissipazione, Coulomb l’interazione elettrostatica e Snell la rifrazione. Questi nomi non identificano il criterio di orientazione dell’induzione.",
+        "target": "C4-L10"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Flusso orientato",
+        "Lenz e condizioni del circuito",
+        "Medie temporali e carica integrata"
+      ]
+    },
+    {
+      "id": "C4-Q094",
+      "kind": "question",
+      "course": "C4",
+      "section": "Indurre una tensione cambiando il flusso",
+      "order": 94,
+      "title": "Una variazione media per singola spira",
+      "skill": "C4-L10",
+      "prerequisites": [
+        "C4-L05",
+        "C4-L09"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Faraday per la media dà |E media|=N|ΔΦ|/Δt. Divido il valore della bobina per 80: 1,6/80=16/800=1/50 Wb/s, cioè 0,020 Wb/s. Si tratta del modulo della variazione netta divisa per la durata; senza altre informazioni non sto determinando una derivata istantanea né la media del modulo di una derivata che cambi segno."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{|\\Delta\\Phi|}{\\Delta t}=\\frac{|\\overline{\\mathcal E}|}{N}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{|\\Delta\\Phi|}{\\Delta t}=\\frac1{50}\\,\\mathrm{Wb/s}"
+        },
+        {
+          "type": "text",
+          "text": "128 Wb/s moltiplicherebbe per le spire invece di dividere il dato concatenato. 1,6 Wb/s manterrebbe l’intero valore della bobina attribuendolo a una sola spira. Un weber al secondo equivale a un volt, mentre il flusso da solo ha unità weber."
+        }
+      ],
+      "prompt": "Una bobina di 80 spire identiche, con la stessa variazione di flusso per spira, presenta su un intervallo una forza elettromotrice media di modulo 1,6 V. Quanto vale |ΔΦ|/Δt per una spira, in weber al secondo?",
+      "difficulty": 1,
+      "family": "dalla-tensione-alla-rapidita-di-variazione",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "0,020 Wb/s",
+          "128 Wb/s",
+          "1,6 Wb/s",
+          "0,20 Wb/s",
+          "80 Wb/s"
+        ],
+        "value": "0,020 Wb/s"
+      },
+      "hints": [
+        "La tensione misurata riguarda tutte le spire: isola prima il dato per una sola.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "128 Wb/s moltiplicherebbe per le spire invece di dividere il dato concatenato. 1,6 Wb/s manterrebbe l’intero valore della bobina attribuendolo a una sola spira. Un weber al secondo equivale a un volt, mentre il flusso da solo ha unità weber.",
+        "target": "C4-L10"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Flusso orientato",
+        "Lenz e condizioni del circuito",
+        "Medie temporali e carica integrata"
+      ]
+    },
+    {
+      "id": "C4-Q095",
+      "kind": "question",
+      "course": "C4",
+      "section": "Indurre una tensione cambiando il flusso",
+      "order": 95,
+      "title": "Guardare la stessa corrente dall’altro lato",
+      "skill": "C4-L10",
+      "prerequisites": [
+        "C4-L05",
+        "C4-L09"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La corrente fisica non cambia per il solo spostamento dell’osservatore. Guardare la spira dal retro inverte il senso apparente della rotazione: ciò che era antiorario dal primo lato è orario dal secondo. Per questo ogni indicazione di verso deve essere associata a un lato di osservazione o a una normale orientata."
+        },
+        {
+          "type": "formula",
+          "text": "\\mathbf n_{\\rm secondo}=-\\mathbf n_{\\rm primo}"
+        },
+        {
+          "type": "text",
+          "text": "Dire ancora antiorario conserverebbe la descrizione del primo lato dopo averne cambiato il riferimento. Zero e alternato attribuirebbero al circuito una modifica fisica che il cambio di punto di vista non produce."
+        }
+      ],
+      "prompt": "Un osservatore vede una corrente indotta antioraria in una spira piana. Un secondo osservatore guarda simultaneamente la stessa spira dal lato opposto. Come descrive il verso della medesima corrente?",
+      "difficulty": 1,
+      "family": "spira-vista-dal-lato-opposto",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Orario",
+          "Ancora antiorario",
+          "Nullo",
+          "Alternato necessariamente",
+          "Non esiste più alcuna corrente"
+        ],
+        "value": "Orario"
+      },
+      "hints": [
+        "Immagina una freccia su un anello trasparente osservato prima davanti e poi dietro.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Dire ancora antiorario conserverebbe la descrizione del primo lato dopo averne cambiato il riferimento. Zero e alternato attribuirebbero al circuito una modifica fisica che il cambio di punto di vista non produce.",
+        "target": "C4-L10"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Flusso orientato",
+        "Lenz e condizioni del circuito",
+        "Medie temporali e carica integrata"
+      ]
+    },
+    {
+      "id": "C4-Q096",
+      "kind": "question",
+      "course": "C4",
+      "section": "Indurre una tensione cambiando il flusso",
+      "order": 96,
+      "title": "Una mezza rotazione cambia il segno del flusso",
+      "skill": "C4-L10",
+      "prerequisites": [
+        "C4-L05",
+        "C4-L09"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il prodotto BA è 0,0050 Wb. Il flusso iniziale è +BA e quello finale −BA, con la stessa normale materiale seguita nel processo. La variazione finale meno iniziale è quindi −2BA=−0,010 Wb. Divido il suo modulo per 0,10 s e ottengo 0,10 V. Non serve supporre una velocità angolare costante per questa media fra estremi."
+        },
+        {
+          "type": "formula",
+          "text": "\\Phi_i=+5\\,\\mathrm{mWb}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Phi_f=-5\\,\\mathrm{mWb}"
+        },
+        {
+          "type": "formula",
+          "text": " |\\Delta\\Phi|=10\\,\\mathrm{mWb}"
+        },
+        {
+          "type": "formula",
+          "text": " |\\overline{\\mathcal E}|=0{,}10\\,\\mathrm V"
+        },
+        {
+          "type": "text",
+          "text": "0,050 V userebbe BA invece della variazione 2BA. Zero confonderebbe l’uguaglianza dei moduli dei flussi con l’uguaglianza dei flussi orientati. 0,0050 V copia il valore numerico di BA in weber senza dividere una variazione per la durata."
+        }
+      ],
+      "prompt": "Una sola spira di area 0,010 m² compie mezzo giro in 0,10 s in un campo uniforme di 0,50 T. La normale materiale scelta parte concorde con B e termina discorde; è seguita durante la rotazione. Qual è il modulo della forza elettromotrice media?",
+      "difficulty": 2,
+      "family": "una-mezza-rotazione",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "0,10 V",
+          "0,050 V",
+          "0 V",
+          "1 V",
+          "0,0050 V"
+        ],
+        "value": "0,10 V"
+      },
+      "hints": [
+        "Scrivi entrambi i flussi con segno prima di calcolare la differenza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "0,050 V userebbe BA invece della variazione 2BA. Zero confonderebbe l’uguaglianza dei moduli dei flussi con l’uguaglianza dei flussi orientati. 0,0050 V copia il valore numerico di BA in weber senza dividere una variazione per la durata.",
+        "target": "C4-L10"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Flusso orientato",
+        "Lenz e condizioni del circuito",
+        "Medie temporali e carica integrata"
+      ]
+    },
+    {
+      "id": "C4-Q097",
+      "kind": "question",
+      "course": "C4",
+      "section": "Indurre una tensione cambiando il flusso",
+      "order": 97,
+      "title": "Una spira aperta può avere una tensione",
+      "skill": "C4-L10",
+      "prerequisites": [
+        "C4-L05",
+        "C4-L09"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’interruzione impedisce un percorso conduttivo chiuso per la corrente di conduzione lungo l’intero anello. Faraday non richiede però che il filo sia chiuso per descrivere una forza elettromotrice lungo un contorno. Una differenza di potenziale ai capi dell’interruzione può essere misurabile. Il modello qui distingue questa risposta dalla circolazione continua di carica."
+        },
+        {
+          "type": "formula",
+          "text": "I_{\\rm anello\\ aperto}=0"
+        },
+        {
+          "type": "text",
+          "text": "Annullare anche il campo o la sua variazione confonderebbe una condizione del circuito con la sorgente esterna. L’assenza di corrente di conduzione completa non implica assenza di ogni campo elettrico o di ogni tensione."
+        }
+      ],
+      "prompt": "Una spira ha un’interruzione isolante ideale e subisce un flusso magnetico variabile. Quale risposta manca come circolazione continua di carica lungo tutto l’anello, mentre una forza elettromotrice può ancora esistere?",
+      "difficulty": 1,
+      "family": "circuito-interrotto",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "La corrente di conduzione lungo l’intero anello",
+          "La forza elettromotrice indotta in qualunque descrizione",
+          "Ogni differenza di potenziale ai capi dell’apertura",
+          "Il campo magnetico esterno",
+          "La variazione di flusso imposta dall’esterno"
+        ],
+        "value": "La corrente di conduzione lungo l’intero anello"
+      },
+      "hints": [
+        "Separa la causa elettromotrice dalla possibilità delle cariche di percorrere il circuito.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Annullare anche il campo o la sua variazione confonderebbe una condizione del circuito con la sorgente esterna. L’assenza di corrente di conduzione completa non implica assenza di ogni campo elettrico o di ogni tensione.",
+        "target": "C4-L10"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Flusso orientato",
+        "Lenz e condizioni del circuito",
+        "Medie temporali e carica integrata"
+      ]
+    },
+    {
+      "id": "C4-Q098",
+      "kind": "question",
+      "course": "C4",
+      "section": "Indurre una tensione cambiando il flusso",
+      "order": 98,
+      "title": "Integrare la corrente senza conoscere la durata",
+      "skill": "C4-L10",
+      "prerequisites": [
+        "C4-L05",
+        "C4-L09"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "In ogni istante I=E/R. Integro nel tempo e uso Faraday: la carica algebrica netta è −ΔΦ/R. Il modulo vale 0,030/5 C=0,0060 C=6 mC. La monotonia del flusso rende il verso della corrente costante e fa coincidere questo modulo netto con la carica contata nel medesimo verso. La durata non serve per questo integrale, pur influendo sulla corrente istantanea."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta q=-\\frac{\\Delta\\Phi}{R}"
+        },
+        {
+          "type": "formula",
+          "text": " |\\Delta q|=\\frac{0{,}030}{5}\\,\\mathrm C"
+        },
+        {
+          "type": "formula",
+          "text": " |\\Delta q|=6\\,\\mathrm{mC}"
+        },
+        {
+          "type": "text",
+          "text": "150 mC moltiplicherebbe ΔΦ per R anziché dividere e non avrebbe la dimensione richiesta. 0,006 mC dimenticherebbe la conversione da coulomb a millicoulomb. Se il flusso invertisse andamento, il modulo della carica netta non sarebbe in generale la somma delle cariche transitate nei due versi."
+        }
+      ],
+      "prompt": "Una spira singola chiusa ha resistenza costante di 5,0 Ω e autoinduzione trascurabile. Il flusso varia monotonamente di modulo complessivo 0,030 Wb. Nel modello puramente resistivo, trova il modulo della carica transitata in millicoulomb.",
+      "difficulty": 3,
+      "family": "approfondimento-dalla-variazione-di-flusso-alla-carica-passata",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "numeric",
+        "value": 6,
+        "unit": "mC",
+        "tolerance": 0
+      },
+      "hints": [
+        "Integra I=E/R e conserva il segno fino alla scelta del modulo finale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "150 mC moltiplicherebbe ΔΦ per R anziché dividere e non avrebbe la dimensione richiesta. 0,006 mC dimenticherebbe la conversione da coulomb a millicoulomb. Se il flusso invertisse andamento, il modulo della carica netta non sarebbe in generale la somma delle cariche transitate nei due versi.",
+        "target": "C4-L10"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Flusso orientato",
+        "Lenz e condizioni del circuito",
+        "Medie temporali e carica integrata"
+      ]
+    },
+    {
+      "id": "C4-Q099",
+      "kind": "question",
+      "course": "C4",
+      "section": "Indurre una tensione cambiando il flusso",
+      "order": 99,
+      "title": "Entrare in un campo entrante",
+      "skill": "C4-L10",
+      "prerequisites": [
+        "C4-L05",
+        "C4-L09"
+      ],
+      "version": 3,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Cresce il modulo del flusso entrante perché cresce la porzione di spira immersa. La risposta indotta deve produrre campo uscente per opporsi a questo aumento. La mano destra, con pollice verso chi guarda, associa a tale campo una corrente antioraria. L’uniformità del campo nella regione non impedisce la variazione dell’area attraversata."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/bfce9dc4965c129a55102a255842e9c36acd839a1b1a5102a4bb70e07727c3e3",
+          "text": "Il pannello centrale mostra un campo entrante il cui flusso aumenta. La freccia antioraria indica il verso della corrente che produce un contributo uscente."
+        },
+        {
+          "type": "formula",
+          "text": "\\Phi_{\\rm uscente}=-B A_{\\rm immersa}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{d\\Phi_{\\rm uscente}}{dt}<0"
+        },
+        {
+          "type": "formula",
+          "text": " \\mathcal E_{\\rm antioraria}>0"
+        },
+        {
+          "type": "text",
+          "text": "La corrente oraria rinforzerebbe l’aumento del flusso entrante. Quando tutta la spira è dentro e continua a traslare rigidamente nel campo uniforme, il flusso diventa costante e questa induzione cessa; è una fase diversa da quella chiesta."
+        }
+      ],
+      "prompt": "Una spira chiusa resistiva viene spinta da fuori dentro una regione con campo uniforme entrante nel foglio. Durante l’ingresso aumenta l’area immersa; l’autoinduzione è trascurabile. Qual è il verso della corrente visto da chi guarda il foglio?",
+      "difficulty": 2,
+      "family": "spira-che-entra-in-una-regione-di-campo",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Antiorario",
+          "Orario",
+          "Nullo perché il campo è uniforme dentro la regione",
+          "Determinato soltanto dal materiale del filo",
+          "Sempre alternato indipendentemente dal movimento"
+        ],
+        "value": "Antiorario"
+      },
+      "hints": [
+        "Segui il cambiamento del flusso, anche se il campo in ogni punto interno resta uniforme.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "La corrente oraria rinforzerebbe l’aumento del flusso entrante. Quando tutta la spira è dentro e continua a traslare rigidamente nel campo uniforme, il flusso diventa costante e questa induzione cessa; è una fase diversa da quella chiesta.",
+        "target": "C4-L10"
+      },
+      "baseVersion": 2,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Flusso orientato",
+        "Lenz e condizioni del circuito",
+        "Medie temporali e carica integrata"
+      ]
+    },
+    {
+      "id": "C4-Q100",
+      "kind": "question",
+      "course": "C4",
+      "section": "Indurre una tensione cambiando il flusso",
+      "order": 100,
+      "title": "Una media che include il tratto piatto",
+      "skill": "C4-L10",
+      "prerequisites": [
+        "C4-L05",
+        "C4-L09"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Uso la variazione netta fra gli estremi e la durata totale. Il rapporto 8 mWb/8 ms dà 1 Wb/s=1 V: i due prefissi milli si cancellano. Nel primo tratto il modulo istantaneo è 2 V e nel secondo è zero; le durate uguali confermano una media di modulo pari a 1 V in questo caso senza inversioni del segno."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/bfce9dc4965c129a55102a255842e9c36acd839a1b1a5102a4bb70e07727c3e3",
+          "text": "L’ultimo pannello conserva l’origine comune del grafico flusso-tempo: 8 mWb raggiunti dopo 4 ms, poi un plateau fino a 8 ms. La media richiesta usa l’intero intervallo, non soltanto la rampa."
+        },
+        {
+          "type": "formula",
+          "text": "|\\overline{\\mathcal E}|=\\frac{|\\Delta\\Phi|}{\\Delta t}"
+        },
+        {
+          "type": "formula",
+          "text": " |\\overline{\\mathcal E}|=\\frac{8\\,\\mathrm{mWb}}{8\\,\\mathrm{ms}}"
+        },
+        {
+          "type": "formula",
+          "text": " |\\overline{\\mathcal E}|=1\\,\\mathrm V"
+        },
+        {
+          "type": "text",
+          "text": "2 V considera soltanto i primi 4 ms. Zero considera soltanto il plateau. 0,001 V converte un solo prefisso milli e non l’altro. La media della forza elettromotrice orientata è negativa con la normale per cui il flusso cresce: il prompt chiede il suo modulo."
+        }
+      ],
+      "prompt": "Per una spira singola il flusso cresce linearmente da 0 a 8 mWb nei primi 4 ms e poi resta costante per altri 4 ms. Trova in volt il modulo della forza elettromotrice media sull’intero intervallo di 8 ms.",
+      "difficulty": 2,
+      "family": "da-un-grafico-con-due-pendenze",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "V",
+        "tolerance": 0
+      },
+      "hints": [
+        "Comprendi nel denominatore anche il tempo durante il quale il flusso non cambia.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "2 V considera soltanto i primi 4 ms. Zero considera soltanto il plateau. 0,001 V converte un solo prefisso milli e non l’altro. La media della forza elettromotrice orientata è negativa con la normale per cui il flusso cresce: il prompt chiede il suo modulo.",
+        "target": "C4-L10"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Flusso orientato",
+        "Lenz e condizioni del circuito",
+        "Medie temporali e carica integrata"
+      ]
+    }
+  ],
+  "assets": [
+    {
+      "id": "bfce9dc4965c129a55102a255842e9c36acd839a1b1a5102a4bb70e07727c3e3",
+      "name": "cric-c4-l10-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTYwMCIgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxNjAwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+Cjx0aXRsZSBpZD0idGl0bGUiPlByb2llemlvbmUgZGVsIGNhbXBvLCB2ZXJzbyBkaSBMZW56IGUgbWVkaWEgbmVsIHRlbXBvPC90aXRsZT4KPGRlc2MgaWQ9ImRlc2MiPkxhIHNwaXJhIMOoIHZpc3RhIGRpIHRhZ2xpbyBjb24gbm9ybWFsZSB2ZXJzbyBs4oCZYWx0bzsgQiDDqCBpbmNsaW5hdG8gZGkgc2Vzc2FudGEgZ3JhZGkgcmlzcGV0dG8gYWxsYSBub3JtYWxlIGUgbGEgY29tcG9uZW50ZSBub3JtYWxlIMOoIG1ldMOgIGRlbCBtb2R1bG8uIFVuIGZsdXNzbyBlbnRyYW50ZSBjcmVzY2VudGUgcmljaGllZGUgY29ycmVudGUgYW50aW9yYXJpYS4gSWwgZ3JhZmljbyBmaW5hbGUgc2FsZSBkYSB6ZXJvIGEgb3R0byBtaWxsaXdlYmVyIGluIHF1YXR0cm8gbWlsbGlzZWNvbmRpIGUgcmVzdGEgY29zdGFudGUgZmlubyBhIG90dG8gbWlsbGlzZWNvbmRpLjwvZGVzYz4KPGRlZnM+PG1hcmtlciBpZD0idGlwIiB2aWV3Qm94PSIwIDAgMTAgMTAiIHJlZlg9IjkiIHJlZlk9IjUiIG1hcmtlcldpZHRoPSI3IiBtYXJrZXJIZWlnaHQ9IjciIG9yaWVudD0iYXV0by1zdGFydC1yZXZlcnNlIj48cGF0aCBkPSJNMCAwTDEwIDVMMCAxMFoiIGZpbGw9ImNvbnRleHQtc3Ryb2tlIi8+PC9tYXJrZXI+PC9kZWZzPgo8cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjE2MDAiIGZpbGw9IiNmZmZkZjciLz4KPGcgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmaWxsPSIjMjAyYzM5IiBmb250LXNpemU9IjIzIj4KPHRleHQgeD0iMzIiIHk9IjUzIiBmb250LXNpemU9IjI3IiBmb250LXdlaWdodD0iYm9sZCI+MS4gTOKAmWFuZ29sbyBhcHBhcnRpZW5lIGFsbGEgbm9ybWFsZTwvdGV4dD4KPHRleHQgeD0iMzIiIHk9Ijk1Ij5CID0gMCwzMCBUOyBBID0gMCwwMjAgbcKyLjwvdGV4dD4KPHBhdGggZD0iTTgwIDQ0MEg1MTUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzk4NmMzNSIgc3Ryb2tlLXdpZHRoPSI3Ii8+CjxwYXRoIGQ9Ik0xODAgNDQwVjE1MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjOGE5YTlmIiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjdGlwKSIvPgo8cGF0aCBkPSJNMTgwIDQ0MEw0MDUuMTY2NjA1IDMxMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMjY3MjhkIiBzdHJva2Utd2lkdGg9IjQiIG1hcmtlci1lbmQ9InVybCgjdGlwKSIvPgo8cGF0aCBkPSJNNDA1LjE2NjYwNSAzMTBIMTgwIiBmaWxsPSJub25lIiBzdHJva2U9IiM4YTlhOWYiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWRhc2hhcnJheT0iNyA3Ii8+CjxwYXRoIGQ9Ik0xODAgNDQwVjMxMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNGU4NzZkIiBzdHJva2Utd2lkdGg9IjQiIG1hcmtlci1lbmQ9InVybCgjdGlwKSIvPgo8cGF0aCBkPSJNMTgwIDM1MEE5MCA5MCAwIDAgMSAyNTcuOTQyMjg2IDM5NSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMzA0ZDYzIiBzdHJva2Utd2lkdGg9IjIiLz4KPHRleHQgeD0iMTQ2IiB5PSIxNzYiPm48L3RleHQ+PHRleHQgeD0iNDE4IiB5PSIzMDgiPkI8L3RleHQ+PHRleHQgeD0iODkiIHk9IjMzOSI+QuKCmTwvdGV4dD48dGV4dCB4PSIyMTYiIHk9IjM2MiI+NjDCsDwvdGV4dD4KPHRleHQgeD0iMzIwIiB5PSI0NzciPnNwaXJhIGRpIHRhZ2xpbzwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjUxOSI+QuKCmSA9IDAsMTUgVDsgzqYgPSArMyBtV2IuPC90ZXh0Pgo8bGluZSB4MT0iMzIiIHkxPSI1NTMiIHgyPSI2MDgiIHkyPSI1NTMiIHN0cm9rZT0iI2I4YzRjYSIvPgo8dGV4dCB4PSIzMiIgeT0iNjA4IiBmb250LXNpemU9IjI3IiBmb250LXdlaWdodD0iYm9sZCI+Mi4gT3Bwb3JzaSBhbCBjYW1iaWFtZW50bzwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjY1MCI+SWwgZmx1c3NvIGVzdGVybm8gZW50cmFudGUgc3RhIGF1bWVudGFuZG8uPC90ZXh0Pgo8Y2lyY2xlIGN4PSIzMjAiIGN5PSI4MDUiIHI9IjEwMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjOTg2YzM1IiBzdHJva2Utd2lkdGg9IjUiLz4KPHBhdGggZD0iTTQyMCA4MDVBMTAwIDEwMCAwIDAgMCAzMjAgNzA1IiBmaWxsPSJub25lIiBzdHJva2U9IiMyNjcyOGQiIHN0cm9rZS13aWR0aD0iNCIgbWFya2VyLWVuZD0idXJsKCN0aXApIi8+CjxnIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzhhOWE5ZiIgc3Ryb2tlLXdpZHRoPSIzIj48cGF0aCBkPSJNMjc0IDc2MUwyOTQgNzgxTTI3NCA3ODFMMjk0IDc2MU0zNDQgNzYxTDM2NCA3ODFNMzQ0IDc4MUwzNjQgNzYxTTI3NCA4MzFMMjk0IDg1MU0yNzQgODUxTDI5NCA4MzFNMzQ0IDgzMUwzNjQgODUxTTM0NCA4NTFMMzY0IDgzMSIvPjwvZz4KPHRleHQgeD0iNDQwIiB5PSI3NDciPkk8L3RleHQ+PHRleHQgeD0iMzIiIHk9Ijk1OSI+Q29ycmVudGUgYW50aW9yYXJpYSDihpIgY29udHJpYnV0byB1c2NlbnRlLjwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjEwMDEiPlF1aSBsYSByaXNwb3N0YSBjb250cmFzdGEgdW4gYXVtZW50byBlbnRyYW50ZS48L3RleHQ+CjxsaW5lIHgxPSIzMiIgeTE9IjEwMzciIHgyPSI2MDgiIHkyPSIxMDM3IiBzdHJva2U9IiNiOGM0Y2EiLz4KPHRleHQgeD0iMzIiIHk9IjEwOTIiIGZvbnQtc2l6ZT0iMjciIGZvbnQtd2VpZ2h0PSJib2xkIj4zLiBDb250YXJlIGFuY2hlIGlsIHRyYXR0byBwaWF0dG88L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIxMTM0Ij5MYSBtZWRpYSByaWNoaWVzdGEgY29tcHJlbmRlIHR1dHRpIGdsaSA4IG1zLjwvdGV4dD4KPHBhdGggZD0iTTE0MCAxMTgwVjE0MzBINTc1IiBmaWxsPSJub25lIiBzdHJva2U9IiMzMDRkNjMiIHN0cm9rZS13aWR0aD0iMyIvPgo8cGF0aCBkPSJNMTQwIDE0MzBMMzQwIDEyMzBINTQwIiBmaWxsPSJub25lIiBzdHJva2U9IiMyNjcyOGQiIHN0cm9rZS13aWR0aD0iNSIvPgo8cGF0aCBkPSJNMTQwIDEyMzBIMzQwVjE0MzBNNTQwIDEyMzBWMTQzMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjOGE5YTlmIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1kYXNoYXJyYXk9IjcgNyIvPgo8dGV4dCB4PSIzMiIgeT0iMTE5NiI+zqYgKG1XYik8L3RleHQ+PHRleHQgeD0iMTA3IiB5PSIxMjQwIj44PC90ZXh0Pjx0ZXh0IHg9IjEwNCIgeT0iMTQ2NCI+MDwvdGV4dD48dGV4dCB4PSIzMzQiIHk9IjE0NjQiPjQ8L3RleHQ+PHRleHQgeD0iNTM0IiB5PSIxNDY0Ij44PC90ZXh0Pjx0ZXh0IHg9IjUxMSIgeT0iMTUwNCI+dCAobXMpPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iMTU1NCI+fGYuZS5tLiBtZWRpYXwgPSA4IG1XYiAvIDggbXMgPSAxIFYuPC90ZXh0Pgo8L2c+PC9zdmc+Cg=="
+    }
+  ]
+}
