@@ -130,11 +130,11 @@ Procedimento d’autore: L’area è positiva e posso dividere entrambi i membri
 
 Formule: \Phi=BA;  B=\frac\Phi A;  [B]=\mathrm T.
 
-Distrattori e controprove: ΦA ha unità T·m⁴ invece di T. A/Φ ha unità T⁻¹; la radice ha unità T¹ᐟ² e non appartiene alla legge lineare. Il fattore due al denominatore dimezzerebbe il campo senza una seconda interfaccia o altro dato che lo richieda.
+Distrattori e controprove: ΦA ha unità T·m⁴ invece di T. A/Φ ha unità T⁻¹; la radice ha unità T¹ᐟ² e non appartiene alla legge lineare. Usando B=Φ/(2A), il prodotto BA ricostruirebbe Φ/2 invece del flusso Φ misurato.
 
 Hint: Dividi per l’unico fattore che moltiplica B.
 
-Fonte canonica SHA256 2e6aad4accef8293e991a4ea978a15e116edcc9ee9aecbf6ff2da577c8f9e5ca. Candidato SHA256 1f3231f1a64692939d8626a0bb8a2526c057e59169fc668363c2981fe0f8795f. Skill reale C4-L10. Review distinta e human NOT_RUN.
+Fonte canonica SHA256 2e6aad4accef8293e991a4ea978a15e116edcc9ee9aecbf6ff2da577c8f9e5ca. Candidato SHA256 1c2ca8cbe8f1d9db98f5cae6b8317489f994aad8d8ba1c0d2479e5df565d4a98. Skill reale C4-L10. Review distinta e human NOT_RUN.
 
 ## AR-u6-magnetic-flux-10 — Il prodotto dei due fattori di scala
 
@@ -236,10 +236,8 @@ Fonte canonica SHA256 f88b4f831cffb7dde39d97e46f05792c168a9a4e88b77c18506e00f9a6
 
 ## Provenienza tecnica
 
-Asset SHA256 846c8f549db28ecb3703be9587c83092067b533003ce86610c98431d85ca0117. Package file SHA256 d5daa559d93c476370169fff9ed35867cf8a64a1ab2bd1f759fc16273937b3c2. Binding file SHA256 6a33c0d310030c0978706c03d23f7fb986a750bed989443fba3dc516764aa620. Prova strutturale SHA256 0da9f594f6bb4bce6bc0aa619ddba628fd7e35910354fba54031d171cfec01de. Manifest asset-only SHA256 e1540de8d59a4c7aa5d978d31ae2ceccf5ae4ee51dba59ce64bc0ff6f8664c07.
+Asset SHA256 846c8f549db28ecb3703be9587c83092067b533003ce86610c98431d85ca0117. Package file SHA256 75b50d874e98d1b2b3d22539ad1e9f40dfefe961e977def1be06ff4fd7ad20cb. Binding file SHA256 8fd0522f0a0d0bc78d8fe64f4dfc2a9ce5331383d7709be2721388cbe0499d69. Prova strutturale SHA256 175834d2a8d2c74c9f1a0530917169fc52590b1e56ee8fa898571c1b84710d53. Manifest asset-only SHA256 e1540de8d59a4c7aa5d978d31ae2ceccf5ae4ee51dba59ce64bc0ff6f8664c07.
 
 Nessun registry, ledger, runtime, checkpoint o Git ROOT modificato. Il revisore B è distinto e deve leggere i finali contro la propria primaria prima di qualsiasi firma. Prodotto UI NOT_RUN, nessun marker inventato o riusato.
 
-Lettura geometrica dell’autore: B e la normale positiva sono concordi, ma le loro lunghezze sono schematiche perché una è dimensionata e l’altra no. Nel pannello del magnete, la continuazione esterna va dalla regione N alla regione S; il tratto interno torna da S a N. Ogni freccia ha un percorso separato e la punta completa è visibile. Il disegno illustra una linea del modello elementare, senza attribuire densità quantitativa alle linee. Le barre 240/160/200 coordinate rappresentano 6/4/5 Wb: scala comune 40 coordinate/Wb. Il grafico a superficie 3 m² ha x=150+120B[T], y=1600−30Φ[Wb], punto (390,1420)=(2 T,6 Wb), origine esclusa da B>0. Queste coordinate intrinseche non compaiono nei testi visibili agli studenti.
-
-Il primo import strutturale WIP precedeva lo spostamento del titolo e dell’etichetta esterna per evitare interferenze con il percorso disegnato. Vecchi package, binding, SVG incorporato e prova strutturale sono conservati in editorial/author-evidence/magnetic-flux-234-wip-labels-before-first-delivery/. Doppia assembly e import finale sono stati ripetuti realmente; il native effettivamente letto si riferisce soltanto all’asset finale.
+Rilettura autore dopo finding B23409: il distrattore Φ/(2A) è confutato direttamente perché ricostruisce BA=Φ/2. Tolto il richiamo estraneo alle interfacce, senza modificare la legge di flusso, le chiavi, le formule o l’asset. Strictdiff limita il cambiamento ai soli feedback/error09;15 altri record identici. Edizione precedente conservata con manifest in editorial/author-evidence/magnetic-flux-234-inverse-feedback-superseded-20261126/. Due assembly e import ripetuto reali sui byte finali; native precedente conservato sugli identici byte SVG, nessuna nuova UI o firma scientifica.

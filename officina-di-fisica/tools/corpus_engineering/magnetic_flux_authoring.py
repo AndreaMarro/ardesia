@@ -46,7 +46,7 @@ TASKS=[
 ('L’inversa simbolica per B',SCENE+'Si misurano Φ e A. Quale relazione isola B?',['B = Φ / A','B = Φ A','B = A / Φ','B = √(Φ / A)','B = Φ / (2 A)'],
  'L’area è positiva e posso dividere entrambi i membri di Φ=BA per A. Ne segue B=Φ/A. Le unità Wb/m² restituiscono T; l’orientazione assegnata assicura Φ>0.',
  r'\Phi=BA\qquad B=\frac\Phi A\qquad [B]=\mathrm T',
- 'ΦA ha unità T·m⁴ invece di T. A/Φ ha unità T⁻¹; la radice ha unità T¹ᐟ² e non appartiene alla legge lineare. Il fattore due al denominatore dimezzerebbe il campo senza una seconda interfaccia o altro dato che lo richieda.',
+ 'ΦA ha unità T·m⁴ invece di T. A/Φ ha unità T⁻¹; la radice ha unità T¹ᐟ² e non appartiene alla legge lineare. Usando B=Φ/(2A), il prodotto BA ricostruirebbe Φ/2 invece del flusso Φ misurato.',
  'Dividi per l’unico fattore che moltiplica B.'),
 ('Il prodotto dei due fattori di scala',SCENE+'Fra preparazioni B_B=κ₁B_A e A_B=κ₂A_A, con κ₁,κ₂>0. Quanto vale Φ_B/Φ_A?',['κ₁ κ₂','κ₁ / κ₂','κ₂ / κ₁','κ₁² κ₂','κ₁ + κ₂'],
  'Sostituisco entrambe le variazioni: Φ_B=(κ₁B_A)(κ₂A_A). Dividendo per il flusso positivo B_AA_A si cancella il riferimento e resta κ₁κ₂. Nessun coseno cambia fra le due preparazioni.',
