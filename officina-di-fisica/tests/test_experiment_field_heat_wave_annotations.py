@@ -135,6 +135,13 @@ class FieldHeatWaveAnnotationContracts(TestCase):
                     self.assertEqual(arrows(row,0x7350b0),[])
                     continue
                 back=arrows(row,0x7350b0)[0]
+                outward=arrows(row,0x147979)[0]
+                # A TOP view removes height: distinguish the two paths in XZ
+                # without altering their distance or propagation direction.
+                self.assertGreater(min(v[2] for v in vertices(back)),
+                                   max(v[2] for v in vertices(outward)))
+                self.assertGreater(min(v[2] for v in vertices(back)),
+                                   source['p'][2]+source['r'])
                 self.assertLess(max(v[1] for v in vertices(back)),source['p'][1]-source['r'])
                 self.assertGreater(min(v[1] for v in vertices(back)),0)
                 self.assertAlmostEqual(arrow_geometry(back)['length'],3.95*row['x']/20,places=12)

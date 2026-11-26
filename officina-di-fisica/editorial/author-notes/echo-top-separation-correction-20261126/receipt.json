@@ -1,0 +1,30 @@
+{
+  "phase": "AUTHOR_CORRECTION_OF_INDEPENDENT_ECHO_TOP_VIEW_NEGATIVE",
+  "parentCommit": "4a6f56bc5f60b676f3efab89973022358aa1b729",
+  "parentRuntime": "d94b19e02f9bbe74c75080dd8df74082bc80bc2ab2fa4c1508be6692b38b58f3",
+  "candidateRuntime": "0dee1aae03c52966051a7fe41347a1ea937f257127c0b402568677b4c7f779a8",
+  "independentNegative": {
+    "commit": "5c6765237d30be563b667f24cc12451a1e49c07e",
+    "manifest": "editorial/reviews/independent-consumer-b2ab-20261126/echo-negative-frozen-20261126/delivery.json",
+    "sha256": "b7181cdf56fa08db84e4d75509fbcc8b971f63b33c744a7ebc040bf69703035c",
+    "scope": "16 actual b2 cases1/20ms across8profiles at clock0. TOP fixed labels mask tips; return tip outside sphere but TOP camera ray intersects opaque sphere. Not full-cone containment."
+  },
+  "change": "Translate only return arrow in z to0.85, keep x/y/direction/length/gain and propagation source laws unchanged. Remove two fixed opaque labels; accessible HTML legend identifies source/microphone orange sphere and reflector right-hand screen, and explains separation is illustrative for one common physical path. Dynamic impulse marker and label remain unchanged.",
+  "desiredHorizontalSeparationRed": {
+    "tests": 7,
+    "failures": 100,
+    "seconds": 1.613,
+    "observedExit": 1,
+    "notAClaimOf100Occlusions": true
+  },
+  "physicalRegressionsGreen": {
+    "tests": 7,
+    "seconds": 1.479,
+    "observedExit": 0
+  },
+  "sourceNumericLawsGradingControlsClock": "UNCHANGED",
+  "productUiReplay": "PENDING_DISTINCT_VERIFIER_ON_NEW_EPOCH",
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}

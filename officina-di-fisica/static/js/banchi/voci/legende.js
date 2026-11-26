@@ -49,7 +49,7 @@ export const legende = {
   onda: 'Il punto marcato segue il mezzo. La curva rappresenta il profilo nello spazio',
   onde2: 'S₁ e S₂ · sorgenti coerenti. P · sonda. Asta ocra · ampiezza locale',
   sorgente: 'La sonda viola intercetta una porzione del fronte proveniente dalla sorgente',
-  doppler: 'Sorgente ocra · fronti emessi · ricevitore o riflettore. La freccia della pressione è separata dal ricevitore. Nella prova di eco, andata verde e ritorno viola sono rappresentati a quote diverse per distinguere i due percorsi.',
+  doppler: 'Sorgente ocra · fronti emessi · ricevitore o riflettore. La freccia della pressione è separata dal ricevitore. Nella prova di eco, la sfera ocra a sinistra rappresenta sorgente e microfono; lo schermo all’estremità destra è il riflettore. La freccia verde indica l’andata verso lo schermo; la viola indica il ritorno al microfono. Le due frecce hanno quote e spostamenti laterali diversi solo per renderle distinguibili anche dall’alto: il tragitto fisico è lo stesso, percorso in versi opposti, con uguale lunghezza in andata e ritorno.',
   em: 'Viola · campo elettrico E. Verde · campo magnetico B, su una scala diversa. L’asse segue la propagazione. Ad ampiezza zero entrambi i campi sono nulli.',
   assorbitore: 'Lastra viola · assorbitore. Il fascio conserva la sezione e cambia intensità',
   fotone: 'Onda viola · fotone incidente. Verde · elettrone del bersaglio',
