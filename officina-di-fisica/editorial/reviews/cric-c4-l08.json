@@ -1,0 +1,393 @@
+{
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "C4-Q071",
+      "sourceSha256": "b890f57aa80afa26854014030b888ecd30797ecb921fa4c32f4cfc3cab504efd",
+      "candidateSha256": "3c6da9b461f70a7a6919ca17a6390e0f28c7f9e63130940c4c5fb1b9bf8d237a",
+      "reviewedSignature": "754482ee2e3cc74c57f642971f811a4545b927127215be4333cd379374711d21",
+      "assetChecksums": {
+        "cric-c4-l08-progressive.svg": "0b4c96090069f07bfcf488f7a7a447cb62321191007931a53a97deff9b4dec88"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "40",
+      "dimension": {
+        "[current]": "1",
+        "[time]": "1"
+      },
+      "manualArithmetic": "Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: In parallelo Ctot=2+3+5=10μF. Alla tensione 4 V la carica del nodo\npositivo è Qtot=Ctot V=40μC. Per chiamarla carica «fornita» dal generatore\ndall’inizio, precisare che i condensatori erano inizialmente scarichi; altrimenti\n40μC è la carica finale e non necessariamente la variazione fornita.",
+      "physicalAssumptions": "Tre condensatori inizialmente scarichi fra gli stessi due nodi, sorgente 4 V; carica fornita al solo nodo positivo.",
+      "distractors": "10 copia Ctot in μF; 80 μC somma entrambi i moduli; zero è totale di entrambi i nodi.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: In parallelo Ctot=2+3+5=10μF. Alla tensione 4 V la carica del nodo\npositivo è Qtot=Ctot V=40μC. Per chiamarla carica «fornita» dal generatore\ndall’inizio, precisare che i condensatori erano inizialmente scarichi; altrimenti\n40μC è la carica finale e non necessariamente la variazione fornita.",
+      "scientificAssetReview": "Figura candidata letta integralmente XML e in nuovo native indipendente completo640×altezza, processo reale0; proporzioni, unità, origini e segni verificati separatamente per ciascun pannello. Diciotto SVG originali fonte letti integralmente XML. Due fix testuali non cambiano alcun asset; nessun ritag di UIprodotto.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c4_051_100_root_review_models.py": "54feebef9c27dcd1abb5ca7b60499594514b36d2a229a6dfd3ea98c651fc6867",
+        "cric_c4_electromagnetism_review_common_a.py": "4bf45fe02ffad6c11cd2b3b27822cef1b1e83b1f565f80850a91c1b8ce48cd71",
+        "cric_c4_electromagnetism_review_evidence_a.py": "b799f6d10cfc843c708cdbd1bf6f0164299188c206f7f37e8697e32ab757c08c",
+        "cric_c4_electromagnetism_review_models_a.py": "85f9af0afbc0ae2a4dc782bebab47ff57b98b325be911b607628988d998b3eb1",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C4-Q072",
+      "sourceSha256": "faad2a3bece4d643e0bbaf27c04d6e3600ba7c8f648ad84b81faf700807b4b71",
+      "candidateSha256": "29e37537a83f7ec835674b934b4a4b95a6352f60632543c5f4a458de6c965b54",
+      "reviewedSignature": "0e412dc621bec9231a0ef27e1909e4c527e0f9df270882d4f0094882c1f7eabd",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Quello di capacità minore",
+      "dimension": {},
+      "manualArithmetic": "Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: Il nodo centrale isolato e inizialmente neutro impone cariche\nopposte e uguali in modulo sulle due sue armature. Quindi |Vᵢ|=|Q|/Cᵢ e il\ncondensatore minore sostiene la tensione maggiore. Per il confronto stretto\noccorre una carica comune non nulla; a circuito scarico entrambe le tensioni sono zero.",
+      "physicalAssumptions": "Capacità positive diverse, nodo centrale isolato e inizialmente neutro, carica comune Q>0 per confronto stretto.",
+      "distractors": "Regola del parallelo non applicabile alla serie; Q=0 darebbe uguaglianza ma è escluso.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: Il nodo centrale isolato e inizialmente neutro impone cariche\nopposte e uguali in modulo sulle due sue armature. Quindi |Vᵢ|=|Q|/Cᵢ e il\ncondensatore minore sostiene la tensione maggiore. Per il confronto stretto\noccorre una carica comune non nulla; a circuito scarico entrambe le tensioni sono zero.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c4_051_100_root_review_models.py": "54feebef9c27dcd1abb5ca7b60499594514b36d2a229a6dfd3ea98c651fc6867",
+        "cric_c4_electromagnetism_review_common_a.py": "4bf45fe02ffad6c11cd2b3b27822cef1b1e83b1f565f80850a91c1b8ce48cd71",
+        "cric_c4_electromagnetism_review_evidence_a.py": "b799f6d10cfc843c708cdbd1bf6f0164299188c206f7f37e8697e32ab757c08c",
+        "cric_c4_electromagnetism_review_models_a.py": "85f9af0afbc0ae2a4dc782bebab47ff57b98b325be911b607628988d998b3eb1",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C4-Q073",
+      "sourceSha256": "44974cd1755da78228b57db7c3fb2f29f8723c86a475f106127eee6282f1c72f",
+      "candidateSha256": "d9ef1456757c87cc5cf6dcf143b9c680036b99acb56566ae081138a583916001",
+      "reviewedSignature": "82f48b19ae74be30a9cf23738ee241c2cb7231505cff7078c6d3cd0bceb27642",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "La carica elettrica totale",
+      "dimension": {},
+      "manualArithmetic": "Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: Si conserva la carica elettrica algebrica totale del nodo isolato,\ninizialmente zero. Le cariche sulle sue parti si possono ridistribuire; non\nsi conservano separatamente su ciascuna armatura durante il transitorio.",
+      "physicalAssumptions": "Nodo intermedio isolato e inizialmente neutro; nessuna conduzione libera attraverso dielettrici ideali.",
+      "distractors": "Tensioni ed energie individuali non conservate durante carica; conduzione non nulla nel dielettrico contraddice isolamento.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: Si conserva la carica elettrica algebrica totale del nodo isolato,\ninizialmente zero. Le cariche sulle sue parti si possono ridistribuire; non\nsi conservano separatamente su ciascuna armatura durante il transitorio.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c4_051_100_root_review_models.py": "54feebef9c27dcd1abb5ca7b60499594514b36d2a229a6dfd3ea98c651fc6867",
+        "cric_c4_electromagnetism_review_common_a.py": "4bf45fe02ffad6c11cd2b3b27822cef1b1e83b1f565f80850a91c1b8ce48cd71",
+        "cric_c4_electromagnetism_review_evidence_a.py": "b799f6d10cfc843c708cdbd1bf6f0164299188c206f7f37e8697e32ab757c08c",
+        "cric_c4_electromagnetism_review_models_a.py": "85f9af0afbc0ae2a4dc782bebab47ff57b98b325be911b607628988d998b3eb1",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C4-Q074",
+      "sourceSha256": "d21ba07f00bb8d744135fb34f05623b38c3f21a73479c18ea113f950d99b2cfb",
+      "candidateSha256": "cbbe27215996397f00ed4976854d2545941300d2c035512167fad85b0bbc790c",
+      "reviewedSignature": "7209027884ce36b074f7b4aac1a4037d7d8017c8257d5e82a0621363a2090a95",
+      "assetChecksums": {
+        "cric-c4-l08-progressive.svg": "0b4c96090069f07bfcf488f7a7a447cb62321191007931a53a97deff9b4dec88"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "9/2",
+      "dimension": {
+        "[current]": "2",
+        "[time]": "4",
+        "[mass]": "-1",
+        "[length]": "-2"
+      },
+      "manualArithmetic": "Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: Per la serie 3=9 Cx/(9+Cx). Moltiplico:27+3 Cx=9 Cx, dunque 6 Cx=27 e\nCx=27/6=9/2μF=4,5μF. L’inversa è Cx=Ceq C₁/(C₁−Ceq), con 0<Ceq<C₁.",
+      "physicalAssumptions": "Serie con nodo intermedio neutro, capacità note positive ed equivalente 3<9 μF; inversa nel ramo fisico positivo.",
+      "distractors": "6/12 μF sottraggono/sommano direttamente; 2/9 μF copia coefficiente del reciproco con unità sbagliata.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: Per la serie 3=9 Cx/(9+Cx). Moltiplico:27+3 Cx=9 Cx, dunque 6 Cx=27 e\nCx=27/6=9/2μF=4,5μF. L’inversa è Cx=Ceq C₁/(C₁−Ceq), con 0<Ceq<C₁.",
+      "scientificAssetReview": "Figura candidata letta integralmente XML e in nuovo native indipendente completo640×altezza, processo reale0; proporzioni, unità, origini e segni verificati separatamente per ciascun pannello. Diciotto SVG originali fonte letti integralmente XML. Due fix testuali non cambiano alcun asset; nessun ritag di UIprodotto.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c4_051_100_root_review_models.py": "54feebef9c27dcd1abb5ca7b60499594514b36d2a229a6dfd3ea98c651fc6867",
+        "cric_c4_electromagnetism_review_common_a.py": "4bf45fe02ffad6c11cd2b3b27822cef1b1e83b1f565f80850a91c1b8ce48cd71",
+        "cric_c4_electromagnetism_review_evidence_a.py": "b799f6d10cfc843c708cdbd1bf6f0164299188c206f7f37e8697e32ab757c08c",
+        "cric_c4_electromagnetism_review_models_a.py": "85f9af0afbc0ae2a4dc782bebab47ff57b98b325be911b607628988d998b3eb1",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C4-Q075",
+      "sourceSha256": "2f030ff5d4a0f0cd77ea567b97a0c5f2c75ac6d6f79d7a1728b4097172bacaad",
+      "candidateSha256": "51d0d93578896d8c56acad6ce4a6eb14e4021044a710c290c90153f5e475c22a",
+      "reviewedSignature": "204e8d6a70bd79421ecdcb844323e6880cb70a5e3668152e541a0781f9545314",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Zero",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3",
+        "[current]": "-1"
+      },
+      "manualArithmetic": "Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: Ciascun nuovo nodo unisce una carica+CV e una−CV, quindi parte\ncon carica netta zero. Dopo il transitorio reale dissipativo il modulo della\ntensione comune è 0 V. L’energia iniziale dei due campi non può essere imposta\ncostante ai soli condensatori: va nel circuito e nell’ambiente. Un collegamento\nidealizzato senza alcuna dissipazione richiederebbe descrivere il transitorio.",
+      "physicalAssumptions": "Condensatori identici C>0,V>0 isolati da sorgenti, polarità opposte; resistenza positiva consente esaurimento del transitorio.",
+      "distractors": "2 V ignora nuove polarità, V/2 usa preparazione scarico/carico diversa; resistenza non crea carica finale del nodo.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: Ciascun nuovo nodo unisce una carica+CV e una−CV, quindi parte\ncon carica netta zero. Dopo il transitorio reale dissipativo il modulo della\ntensione comune è 0 V. L’energia iniziale dei due campi non può essere imposta\ncostante ai soli condensatori: va nel circuito e nell’ambiente. Un collegamento\nidealizzato senza alcuna dissipazione richiederebbe descrivere il transitorio.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c4_051_100_root_review_models.py": "54feebef9c27dcd1abb5ca7b60499594514b36d2a229a6dfd3ea98c651fc6867",
+        "cric_c4_electromagnetism_review_common_a.py": "4bf45fe02ffad6c11cd2b3b27822cef1b1e83b1f565f80850a91c1b8ce48cd71",
+        "cric_c4_electromagnetism_review_evidence_a.py": "b799f6d10cfc843c708cdbd1bf6f0164299188c206f7f37e8697e32ab757c08c",
+        "cric_c4_electromagnetism_review_models_a.py": "85f9af0afbc0ae2a4dc782bebab47ff57b98b325be911b607628988d998b3eb1",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C4-Q076",
+      "sourceSha256": "167ad74d21bd660bf5f918b8e368b8f5045be22076ab12ecda2b6ec9675b85e7",
+      "candidateSha256": "e962849f31c1ee1c3238f9fdd77ecb8694074c6d3acabb4b0039f5c08840eecb",
+      "reviewedSignature": "ca280f6cebe3e5ca6462a84e27ecc8bd132cdd9e001faf6f82c585f1ec74a401",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "9/2",
+      "dimension": {
+        "[current]": "2",
+        "[time]": "4",
+        "[mass]": "-1",
+        "[length]": "-2"
+      },
+      "manualArithmetic": "Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: Prima il parallelo:3+6=9μF. Poi la serie di due 9μF:\nCeq=9 × 9/(9+9)=81/18=9/2μF=4,5μF. Il raggruppamento va seguito attraverso i nodi,\nnon sommando tutti i valori senza distinguere i collegamenti.",
+      "physicalAssumptions": "Due nodi comuni al parallelo 3 e 6 μF; serie con 9 μF, nodo intermedio neutro e isolato.",
+      "distractors": "18 μF somma tutto in parallelo; 2 μF mette in serie i componenti interni; 9 μF omette secondo blocco in serie.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: Prima il parallelo:3+6=9μF. Poi la serie di due 9μF:\nCeq=9 × 9/(9+9)=81/18=9/2μF=4,5μF. Il raggruppamento va seguito attraverso i nodi,\nnon sommando tutti i valori senza distinguere i collegamenti.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c4_051_100_root_review_models.py": "54feebef9c27dcd1abb5ca7b60499594514b36d2a229a6dfd3ea98c651fc6867",
+        "cric_c4_electromagnetism_review_common_a.py": "4bf45fe02ffad6c11cd2b3b27822cef1b1e83b1f565f80850a91c1b8ce48cd71",
+        "cric_c4_electromagnetism_review_evidence_a.py": "b799f6d10cfc843c708cdbd1bf6f0164299188c206f7f37e8697e32ab757c08c",
+        "cric_c4_electromagnetism_review_models_a.py": "85f9af0afbc0ae2a4dc782bebab47ff57b98b325be911b607628988d998b3eb1",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C4-Q077",
+      "sourceSha256": "0f7c354819ee2d40381ff67c99b7312dda5b6d8111487d8a1949b77f7440fd3d",
+      "candidateSha256": "5be65f5a2d01d6c6797412cbb5b5e26ef3d38251bf8a30f137952a6d08573b72",
+      "reviewedSignature": "80cb080f29b4116c6355e5dd83e462e39667713dd2135ca26468a7611e8383ae",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Parallelo",
+      "dimension": {},
+      "manualArithmetic": "Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: Il collegamento è in parallelo. La condizione determinante è la\nstessa coppia di nodi; la stessa tensione ne segue come proprietà elettrica.",
+      "physicalAssumptions": "Stessa coppia di nodi distinti, capacità non necessariamente uguali; un solo estremo comune non basta.",
+      "distractors": "Un solo nodo comune o uguaglianza dei C non definiscono parallelo; nodi distinti non sono corto necessario.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: Il collegamento è in parallelo. La condizione determinante è la\nstessa coppia di nodi; la stessa tensione ne segue come proprietà elettrica.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c4_051_100_root_review_models.py": "54feebef9c27dcd1abb5ca7b60499594514b36d2a229a6dfd3ea98c651fc6867",
+        "cric_c4_electromagnetism_review_common_a.py": "4bf45fe02ffad6c11cd2b3b27822cef1b1e83b1f565f80850a91c1b8ce48cd71",
+        "cric_c4_electromagnetism_review_evidence_a.py": "b799f6d10cfc843c708cdbd1bf6f0164299188c206f7f37e8697e32ab757c08c",
+        "cric_c4_electromagnetism_review_models_a.py": "85f9af0afbc0ae2a4dc782bebab47ff57b98b325be911b607628988d998b3eb1",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C4-Q078",
+      "sourceSha256": "4a1e9adae6654bfe960d9590301cdd89d37779587ecc5df926780caf0f43b217",
+      "candidateSha256": "5174cb5a2755fa0fd334627a565c0162d7e5ce3dfdb0ebd62ee9d71997df0250",
+      "reviewedSignature": "e143fe6e62c8a0a018b4be6fd87a662df1d2e0cfbfcafdb7b60e214343ba10e7",
+      "assetChecksums": {
+        "cric-c4-l08-progressive.svg": "0b4c96090069f07bfcf488f7a7a447cb62321191007931a53a97deff9b4dec88"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "5",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3",
+        "[current]": "-1"
+      },
+      "manualArithmetic": "Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: La carica del nuovo nodo positivo è 2μF× 8 V+6μF× 4 V=16+24=40μC.\nLa capacità complessiva è 8μF: Vf=40/8=5 V, compresa fra 4 e 8 V. Il primo perde 6μC\ne il secondo ne riceve 6. I campi passano da 112 a 100μJ: conservare la sola energia\ndei condensatori darebbe una soluzione scorretta del transitorio reale.",
+      "physicalAssumptions": "Condensatori lineari isolati da generatori, positive insieme; transitorio resistivo esaurito, carica algebrica dei nodi conservata.",
+      "distractors": "6 V media semplice richiede capacità uguali, 12 V somma tensioni; energia del solo campo non conservata nel transitorio resistivo.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: La carica del nuovo nodo positivo è 2μF× 8 V+6μF× 4 V=16+24=40μC.\nLa capacità complessiva è 8μF: Vf=40/8=5 V, compresa fra 4 e 8 V. Il primo perde 6μC\ne il secondo ne riceve 6. I campi passano da 112 a 100μJ: conservare la sola energia\ndei condensatori darebbe una soluzione scorretta del transitorio reale.",
+      "scientificAssetReview": "Figura candidata letta integralmente XML e in nuovo native indipendente completo640×altezza, processo reale0; proporzioni, unità, origini e segni verificati separatamente per ciascun pannello. Diciotto SVG originali fonte letti integralmente XML. Due fix testuali non cambiano alcun asset; nessun ritag di UIprodotto.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c4_051_100_root_review_models.py": "54feebef9c27dcd1abb5ca7b60499594514b36d2a229a6dfd3ea98c651fc6867",
+        "cric_c4_electromagnetism_review_common_a.py": "4bf45fe02ffad6c11cd2b3b27822cef1b1e83b1f565f80850a91c1b8ce48cd71",
+        "cric_c4_electromagnetism_review_evidence_a.py": "b799f6d10cfc843c708cdbd1bf6f0164299188c206f7f37e8697e32ab757c08c",
+        "cric_c4_electromagnetism_review_models_a.py": "85f9af0afbc0ae2a4dc782bebab47ff57b98b325be911b607628988d998b3eb1",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C4-Q079",
+      "sourceSha256": "4c20b76383fd71f23e240b87691a24e406ad948fcf3bd8ac16c5c4376044d519",
+      "candidateSha256": "3e578978107b17aa8a6bc20cf583def4a41731c575c5bcbf0dd5e59682a18395",
+      "reviewedSignature": "3f6f09add115f8924b90c1bd2b5bd94adcbf46e850742fcdd669c009386333cf",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Si dimezza",
+      "dimension": {},
+      "manualArithmetic": "Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: Inizialmente Uᵢ=CV²/2. Alla fine la capacità totale è 2 C e la\ntensione V/2, quindi Uf=(2 C)(V/2)²/2=CV²/4=Uᵢ/2. Ogni condensatore finale ha un\nquarto dell’energia iniziale, ma ce ne sono due. La carica dei nodi si conserva.",
+      "physicalAssumptions": "Condensatori identici C>0, uno carico V>0 e altro scarico; resistenza positiva, stato finale elettrostatico; energia totale dei due campi.",
+      "distractors": "Totale finale somma due energie da un quarto ciascuna; carica conservata non implica U conservata, finale positivo.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: Inizialmente Uᵢ=CV²/2. Alla fine la capacità totale è 2 C e la\ntensione V/2, quindi Uf=(2 C)(V/2)²/2=CV²/4=Uᵢ/2. Ogni condensatore finale ha un\nquarto dell’energia iniziale, ma ce ne sono due. La carica dei nodi si conserva.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c4_051_100_root_review_models.py": "54feebef9c27dcd1abb5ca7b60499594514b36d2a229a6dfd3ea98c651fc6867",
+        "cric_c4_electromagnetism_review_common_a.py": "4bf45fe02ffad6c11cd2b3b27822cef1b1e83b1f565f80850a91c1b8ce48cd71",
+        "cric_c4_electromagnetism_review_evidence_a.py": "b799f6d10cfc843c708cdbd1bf6f0164299188c206f7f37e8697e32ab757c08c",
+        "cric_c4_electromagnetism_review_models_a.py": "85f9af0afbc0ae2a4dc782bebab47ff57b98b325be911b607628988d998b3eb1",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C4-Q080",
+      "sourceSha256": "577885f98d350d47c58b901d8117da5b2fcd24bfa51a3a3f45a31a2d3bef6983",
+      "candidateSha256": "66e532645fef673045ff5f311ebb09dc6b8fede48093f913a0851ad748204fa5",
+      "reviewedSignature": "5e506b0c14d7c9f7d27720c3ca8af148fa9e90b05b6d6c9f11258a94bb67e658",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "16/3",
+      "dimension": {},
+      "manualArithmetic": "Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: Cp=4+12=16μF e Cs=4 × 12/(4+12)=3μF. Il rapporto esatto è 16/3,\nadimensionale. Non richiedere la trascrizione di una rappresentazione decimale\ninfinita in un input Number a tolleranza zero: usare un risultato simbolico\nselezionabile/accettato oppure una parametrizzazione o approssimazione manuale\ncon criterio di valutazione esplicito. La formula generale è(C₁+C₂)²/(C₁C₂).",
+      "physicalAssumptions": "Stessi componenti positivi in due preparazioni topologiche distinte, nodo intermedio neutro per serie; rapporto adimensionale esatto.",
+      "distractors": "3/16 reciproco; 16 e 3 copiano singoli equivalenti. Alternativa 4 richiederebbe Cp=12 μF con Cs=3 μF, non 16; vecchia attribuzione al rapporto dei componenti respinta.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: Cp=4+12=16μF e Cs=4 × 12/(4+12)=3μF. Il rapporto esatto è 16/3,\nadimensionale. Non richiedere la trascrizione di una rappresentazione decimale\ninfinita in un input Number a tolleranza zero: usare un risultato simbolico\nselezionabile/accettato oppure una parametrizzazione o approssimazione manuale\ncon criterio di valutazione esplicito. La formula generale è(C₁+C₂)²/(C₁C₂).",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c4_051_100_root_review_models.py": "54feebef9c27dcd1abb5ca7b60499594514b36d2a229a6dfd3ea98c651fc6867",
+        "cric_c4_electromagnetism_review_common_a.py": "4bf45fe02ffad6c11cd2b3b27822cef1b1e83b1f565f80850a91c1b8ce48cd71",
+        "cric_c4_electromagnetism_review_evidence_a.py": "b799f6d10cfc843c708cdbd1bf6f0164299188c206f7f37e8697e32ab757c08c",
+        "cric_c4_electromagnetism_review_models_a.py": "85f9af0afbc0ae2a4dc782bebab47ff57b98b325be911b607628988d998b3eb1",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "23716308371db2577079047a0e4fe7407dd87753ffd67ae8a946f3a84e8072e1",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "publicationAction": "NONE",
+  "reviewedCandidateCommit": "b95c2564b015ed6fec26aefcf2d044960c0706d8",
+  "packageSha256": "aea1363e452ffabc5a078e26e28f91a7472aa7a8c2b79944ef90f1d0b71b3739",
+  "bindingsSha256": "eddfea9d0e04407062868a32194df1f4713276819e88b7691c613fa06acd054a",
+  "sourceFirstPrimarySha256": "e1c568e8028077a8be767b8d73cb00583dbd9d93e66240fe6d428d7184339653",
+  "source": {
+    "commit": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "path": "officina-di-fisica/content/C4.json",
+    "reference": "Primaria e modello Root487d68fc precedenti alle candidate B; exposure RootQ091 mantenuta e compensazione source-only distinta A db4f4c7e. A ha riletto/risolto tutti50 prompt in83337ef8 prima di aprire il modello Root e le candidate. Boundary esatto e modello eseguiti realmente in2bd7ec24 prima della prima lettura delle candidate. Successivamente tutti50 originali completi, tutti50 candidati e cinque XML/native indipendenti interi letti;18SVG fonte e lezioni reali L06–L10 letti integralmente. UI prodotto e human NOT_RUN."
+  }
+}

@@ -1,0 +1,682 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "C4-Q081",
+      "kind": "question",
+      "course": "C4",
+      "section": "Correnti, bussole e traiettorie curve",
+      "order": 81,
+      "title": "Invertire il contributo magnetico del filo",
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C4-L02",
+        "C4-L05"
+      ],
+      "version": 3,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La mano destra associa il verso della corrente a quello delle circonferenze di campo intorno al filo. Invertendo la corrente, si inverte la tangente orientata del campo in ogni punto fisso. A uguale distanza e uguale modulo della corrente, il modulo del contributo resta uguale. Si considera il campo del filo, non la somma con un eventuale campo terrestre che una bussola reale sentirebbe anch’esso."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/261dd3e47bb74deec191a639bf121095f4c9ab0a36753a62fcb1e74aa2bf5315",
+          "text": "Nel primo pannello la corrente uscente dal foglio produce campo antiorario e quella entrante produce campo orario. Le frecce B nei punti a destra del filo mostrano i versi opposti; il disegno non assegna una scala al modulo del campo."
+        },
+        {
+          "type": "formula",
+          "text": "\\mathbf B_{\\rm filo}(-I)=-\\mathbf B_{\\rm filo}(I)"
+        },
+        {
+          "type": "text",
+          "text": "La posizione ferma della sorgente non impedisce al suo campo di cambiare quando cambia la corrente. Il punto di osservazione fisso mantiene la distanza, non il verso della corrente. Non occorre un moto del filo per ottenere l’inversione magnetica."
+        }
+      ],
+      "prompt": "Un filo rettilineo molto lungo porta corrente non nulla. Inverti il verso della corrente mantenendone il modulo. Che cosa accade al contributo magnetico del solo filo in un punto fisso esterno al filo?",
+      "difficulty": 1,
+      "family": "la-bussola-al-fianco-del-filo",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Inverte il verso mantenendo il modulo",
+          "Resta nello stesso verso perché il filo è fermo",
+          "Si annulla per qualunque corrente",
+          "Diventa un campo elettrico radiale",
+          "Resta uguale perché il punto di misura è fisso"
+        ],
+        "value": "Inverte il verso mantenendo il modulo"
+      },
+      "hints": [
+        "Inverti il pollice della mano destra e confronta la tangente nello stesso punto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La posizione ferma della sorgente non impedisce al suo campo di cambiare quando cambia la corrente. Il punto di osservazione fisso mantiene la distanza, non il verso della corrente. Non occorre un moto del filo per ottenere l’inversione magnetica.",
+        "target": "C4-L09"
+      },
+      "baseVersion": 2,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Versi del campo e della forza",
+        "Moti nel campo uniforme",
+        "Lavoro nullo e bilancio delle forze"
+      ]
+    },
+    {
+      "id": "C4-Q082",
+      "kind": "question",
+      "course": "C4",
+      "section": "Correnti, bussole e traiettorie curve",
+      "order": 82,
+      "title": "Il modulo della carica dalla forza",
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C4-L02",
+        "C4-L05"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La perpendicolarità rende il seno uguale a uno. Isolo |q|=F/(vB); il prodotto vB vale 200 nelle unità SI. Due milionesimi divisi per 200 danno un centomilionesimo di coulomb, cioè 10⁻⁸ C=10 nC. Il modulo della forza da solo non permette di scegliere il segno della carica."
+        },
+        {
+          "type": "formula",
+          "text": "|q|=\\frac{F}{vB}"
+        },
+        {
+          "type": "formula",
+          "text": " |q|=\\frac{2\\cdot10^{-6}}{200}\\,\\mathrm C"
+        },
+        {
+          "type": "formula",
+          "text": " |q|=10\\,\\mathrm{nC}"
+        },
+        {
+          "type": "text",
+          "text": "0,010 nC confonderebbe il prefisso nano con micro nella conversione finale. 1000 nC darebbe 200 μN con la stessa velocità e campo, non 2 μN. Il segno positivo o negativo non è ricavabile senza conoscere il verso della deviazione."
+        }
+      ],
+      "prompt": "Una particella entra perpendicolarmente in un campo uniforme di modulo 0,50 T con velocità 400 m/s. La forza magnetica ha modulo 2,0 μN. Trova il modulo della carica in nanocoulomb.",
+      "difficulty": 2,
+      "family": "carica-misurata-tramite-deviazione",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "numeric",
+        "value": 10,
+        "unit": "nC",
+        "tolerance": 0
+      },
+      "hints": [
+        "Prima isola la carica in coulomb; solo alla fine passa ai nanocoulomb.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "0,010 nC confonderebbe il prefisso nano con micro nella conversione finale. 1000 nC darebbe 200 μN con la stessa velocità e campo, non 2 μN. Il segno positivo o negativo non è ricavabile senza conoscere il verso della deviazione.",
+        "target": "C4-L09"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Versi del campo e della forza",
+        "Moti nel campo uniforme",
+        "Lavoro nullo e bilancio delle forze"
+      ]
+    },
+    {
+      "id": "C4-Q083",
+      "kind": "question",
+      "course": "C4",
+      "section": "Correnti, bussole e traiettorie curve",
+      "order": 83,
+      "title": "La seconda direzione senza forza",
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C4-L02",
+        "C4-L05"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il modulo è |q|vB sinθ. Tutti i fattori esterni al seno sono non nulli: deve quindi annullarsi sinθ. Fra zero e 180° questo accade a 0° e 180°. La seconda possibilità è una velocità antiparallela, diretta lungo la stessa retta ma nel verso opposto al campo."
+        },
+        {
+          "type": "formula",
+          "text": "\\sin\\theta=0"
+        },
+        {
+          "type": "formula",
+          "text": " \\theta\\in\\{0^\\circ,180^\\circ\\}"
+        },
+        {
+          "type": "text",
+          "text": "La perpendicolarità dà invece il modulo massimo della forza per questi q, v e B. Uniforme significa uguale nei diversi punti della regione, non privo di effetto su ogni velocità. Il caso di particella neutra è escluso."
+        }
+      ],
+      "prompt": "Una particella con carica non nulla e velocità non nulla attraversa un campo magnetico non nullo. La forza magnetica è zero. Oltre al caso della velocità parallela e concorde, quale altra direzione è possibile?",
+      "difficulty": 1,
+      "family": "quale-angolo-annulla-la-forza",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Antiparallela al campo",
+          "Perpendicolare al campo",
+          "Sempre a 45° dal campo",
+          "Qualunque direzione perché il campo è uniforme",
+          "Nessuna: una carica in moto sente sempre forza magnetica"
+        ],
+        "value": "Antiparallela al campo"
+      },
+      "hints": [
+        "Individua quale fattore può annullarsi senza contraddire i dati non nulli.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La perpendicolarità dà invece il modulo massimo della forza per questi q, v e B. Uniforme significa uguale nei diversi punti della regione, non privo di effetto su ogni velocità. Il caso di particella neutra è escluso.",
+        "target": "C4-L09"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Versi del campo e della forza",
+        "Moti nel campo uniforme",
+        "Lavoro nullo e bilancio delle forze"
+      ]
+    },
+    {
+      "id": "C4-Q084",
+      "kind": "question",
+      "course": "C4",
+      "section": "Correnti, bussole e traiettorie curve",
+      "order": 84,
+      "title": "Un filo inclinato rispetto al campo",
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C4-L02",
+        "C4-L05"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Uso F=IℓB sinθ. Il seno di 30° è esattamente 1/2. Il prodotto senza seno vale 4·0,30·0,20=0,24 N; dimezzandolo ottengo 0,12 N. Si può anche usare la lunghezza proiettata perpendicolarmente al campo, ℓ sin30°=0,15 m."
+        },
+        {
+          "type": "formula",
+          "text": "F=I\\ell B\\sin30^\\circ"
+        },
+        {
+          "type": "formula",
+          "text": " F=\\frac12(0{,}24\\,\\mathrm N)"
+        },
+        {
+          "type": "formula",
+          "text": " F=0{,}12\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "0,24 N ometterebbe il seno e descriverebbe il valore massimo a 90°. 0,06 N applicherebbe il fattore 1/2 due volte. Il caso di forza nulla richiederebbe corrente parallela al campo o un fattore fisico nullo, non presenti qui."
+        }
+      ],
+      "prompt": "Un segmento rettilineo lungo 0,30 m porta una corrente di 4,0 A in un campo uniforme di 0,20 T. L’angolo fra la direzione della corrente e il campo è 30°. Qual è il modulo della forza sul segmento?",
+      "difficulty": 2,
+      "family": "filo-obliquo-fra-i-poli",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "0,12 N",
+          "0,24 N",
+          "0,06 N",
+          "1,2 N",
+          "0 N"
+        ],
+        "value": "0,12 N"
+      },
+      "hints": [
+        "L’angolo si misura fra il verso della corrente nel filo e B.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "0,24 N ometterebbe il seno e descriverebbe il valore massimo a 90°. 0,06 N applicherebbe il fattore 1/2 due volte. Il caso di forza nulla richiederebbe corrente parallela al campo o un fattore fisico nullo, non presenti qui.",
+        "target": "C4-L09"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Versi del campo e della forza",
+        "Moti nel campo uniforme",
+        "Lavoro nullo e bilancio delle forze"
+      ]
+    },
+    {
+      "id": "C4-Q085",
+      "kind": "question",
+      "course": "C4",
+      "section": "Correnti, bussole e traiettorie curve",
+      "order": 85,
+      "title": "La carica negativa inverte il verso",
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C4-L02",
+        "C4-L05"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Per una carica positiva, il prodotto v×B con v a destra e B entrante punta verso l’alto nel foglio. La carica negativa moltiplica quel vettore per un numero negativo e inverte il verso: la forza punta verso il basso. Il risultato è perpendicolare sia alla velocità sia al campo."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/261dd3e47bb74deec191a639bf121095f4c9ab0a36753a62fcb1e74aa2bf5315",
+          "text": "Il secondo pannello usa una carica negativa: velocità verso destra, campo entrante e forza verso il basso. Le lunghezze di v e F sono schematiche e non confrontano grandezze di dimensioni diverse."
+        },
+        {
+          "type": "formula",
+          "text": "\\mathbf F_B=q\\,\\mathbf v\\times\\mathbf B"
+        },
+        {
+          "type": "formula",
+          "text": " q<0"
+        },
+        {
+          "type": "text",
+          "text": "Verso l’alto sarebbe il risultato per una carica positiva con gli stessi v e B. Verso destra non sarebbe perpendicolare alla velocità. Una forza entrante o uscente sarebbe invece parallela al campo e non può essere il prodotto vettoriale richiesto."
+        }
+      ],
+      "prompt": "Una particella negativa si muove verso destra nel piano del foglio. Il campo magnetico è perpendicolare al foglio e diretto dentro di esso. In quale verso punta la forza magnetica?",
+      "difficulty": 2,
+      "family": "una-particella-negativa-e-le-croci",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Verso il basso nel foglio",
+          "Verso l’alto nel foglio",
+          "Verso destra nel foglio",
+          "Verso chi guarda",
+          "Dentro il foglio"
+        ],
+        "value": "Verso il basso nel foglio"
+      },
+      "hints": [
+        "Applica prima la mano destra al prodotto vettoriale, poi il segno della carica.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "Verso l’alto sarebbe il risultato per una carica positiva con gli stessi v e B. Verso destra non sarebbe perpendicolare alla velocità. Una forza entrante o uscente sarebbe invece parallela al campo e non può essere il prodotto vettoriale richiesto.",
+        "target": "C4-L09"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Versi del campo e della forza",
+        "Moti nel campo uniforme",
+        "Lavoro nullo e bilancio delle forze"
+      ]
+    },
+    {
+      "id": "C4-Q086",
+      "kind": "question",
+      "course": "C4",
+      "section": "Correnti, bussole e traiettorie curve",
+      "order": 86,
+      "title": "Dal quarto di giro alla frequenza",
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C4-L02",
+        "C4-L05"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Un giro completo contiene quattro tratti uguali e richiede 4·0,40=1,60 ms. Converto il periodo in 16/10000 s=1/625 s. Il reciproco è quindi 625 Hz, senza necessità di una divisione approssimata. La frequenza si riferisce ai giri completi, non ai quarti di giro."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/261dd3e47bb74deec191a639bf121095f4c9ab0a36753a62fcb1e74aa2bf5315",
+          "text": "L’ultimo pannello scompone un periodo in quattro quarti della stessa durata di 0,40 ms. I tratti temporali hanno scala comune: un giro dura 1,60 ms."
+        },
+        {
+          "type": "formula",
+          "text": "T=4\\cdot0{,}40\\,\\mathrm{ms}"
+        },
+        {
+          "type": "formula",
+          "text": " T=\\frac1{625}\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " f=\\frac1T"
+        },
+        {
+          "type": "formula",
+          "text": " f=625\\,\\mathrm{Hz}"
+        },
+        {
+          "type": "text",
+          "text": "2500 Hz userebbe il tempo del solo quarto come periodo completo. 0,625 Hz non convertirebbe i millisecondi in secondi. Moltiplicare il reciproco del quarto per quattro invece di dividerlo darebbe 10000 Hz e conterebbe frazioni di giro come giri interi."
+        }
+      ],
+      "prompt": "Una particella non relativistica percorre un quarto di circonferenza in 0,40 ms a velocità di modulo costante in un campo magnetico uniforme. Trova la frequenza di rotazione in hertz.",
+      "difficulty": 2,
+      "family": "periodo-di-una-traiettoria-circolare",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "numeric",
+        "value": 625,
+        "unit": "Hz",
+        "tolerance": 0
+      },
+      "hints": [
+        "Ricostruisci prima un giro intero; cambia l’unità del tempo prima del reciproco.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "2500 Hz userebbe il tempo del solo quarto come periodo completo. 0,625 Hz non convertirebbe i millisecondi in secondi. Moltiplicare il reciproco del quarto per quattro invece di dividerlo darebbe 10000 Hz e conterebbe frazioni di giro come giri interi.",
+        "target": "C4-L09"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Versi del campo e della forza",
+        "Moti nel campo uniforme",
+        "Lavoro nullo e bilancio delle forze"
+      ]
+    },
+    {
+      "id": "C4-Q087",
+      "kind": "question",
+      "course": "C4",
+      "section": "Correnti, bussole e traiettorie curve",
+      "order": 87,
+      "title": "Rotazione e avanzamento insieme",
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C4-L02",
+        "C4-L05"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La componente parallela al campo non riceve forza magnetica e resta costante. La componente perpendicolare ruota a modulo costante. La somma di avanzamento uniforme lungo l’asse e rotazione uniforme attorno ad esso produce un’elica cilindrica, con raggio e passo costanti nel modello dichiarato."
+        },
+        {
+          "type": "formula",
+          "text": "v_\\parallel=\\text{costante}"
+        },
+        {
+          "type": "formula",
+          "text": " r=\\frac{m v_\\perp}{|q|B}"
+        },
+        {
+          "type": "text",
+          "text": "La circonferenza richiederebbe componente parallela nulla; la retta richiederebbe componente perpendicolare nulla. Una crescita del raggio richiederebbe modificare la quantità di moto trasversale, il campo o le altre condizioni, mentre il campo magnetico da solo non fornisce energia."
+        }
+      ],
+      "prompt": "Una particella carica non relativistica si muove in un campo magnetico uniforme non nullo, senza altre forze. Le componenti iniziali della velocità parallela e perpendicolare al campo sono entrambe non nulle. Qual è la forma della traiettoria?",
+      "difficulty": 2,
+      "family": "forma-del-moto-con-due-componenti",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Un’elica cilindrica",
+          "Una sola circonferenza in un piano",
+          "Una retta lungo il campo",
+          "Una parabola in un piano",
+          "Una spirale con raggio che cresce necessariamente"
+        ],
+        "value": "Un’elica cilindrica"
+      },
+      "hints": [
+        "Sovrapponi un moto rettilineo uniforme e un moto circolare uniforme su direzioni ortogonali.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La circonferenza richiederebbe componente parallela nulla; la retta richiederebbe componente perpendicolare nulla. Una crescita del raggio richiederebbe modificare la quantità di moto trasversale, il campo o le altre condizioni, mentre il campo magnetico da solo non fornisce energia.",
+        "target": "C4-L09"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Versi del campo e della forza",
+        "Moti nel campo uniforme",
+        "Lavoro nullo e bilancio delle forze"
+      ]
+    },
+    {
+      "id": "C4-Q088",
+      "kind": "question",
+      "course": "C4",
+      "section": "Correnti, bussole e traiettorie curve",
+      "order": 88,
+      "title": "Cambiare direzione senza cambiare energia",
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C4-L02",
+        "C4-L05"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La forza magnetica è perpendicolare alla velocità in ogni istante. La potenza istantanea F·v è dunque zero, così il lavoro magnetico sull’intero tratto è zero. Per il teorema dell’energia cinetica, ΔK=0 J. È cambiata la direzione della velocità, non il suo modulo."
+        },
+        {
+          "type": "formula",
+          "text": "\\mathbf F_B\\cdot\\mathbf v=0"
+        },
+        {
+          "type": "formula",
+          "text": " W_B=0"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta K=0\\,\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "Una forza non nulla non implica un lavoro non nullo: conta la sua componente lungo lo spostamento. La rotazione di 90° della velocità non è un fattore con cui moltiplicare l’energia. Il segno della carica cambia la curvatura, non il lavoro nullo del solo campo magnetico."
+        }
+      ],
+      "prompt": "Una particella è soggetta soltanto alla forza di un campo magnetico statico uniforme. Il vettore velocità ruota di 90°. Trova in joule la variazione della sua energia cinetica.",
+      "difficulty": 1,
+      "family": "cosa-fa-il-campo-allenergia-cinetica",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "numeric",
+        "value": 0,
+        "unit": "J",
+        "tolerance": 0
+      },
+      "hints": [
+        "Calcola una potenza istantanea prima di cercare una variazione energetica.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Una forza non nulla non implica un lavoro non nullo: conta la sua componente lungo lo spostamento. La rotazione di 90° della velocità non è un fattore con cui moltiplicare l’energia. Il segno della carica cambia la curvatura, non il lavoro nullo del solo campo magnetico.",
+        "target": "C4-L09"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Versi del campo e della forza",
+        "Moti nel campo uniforme",
+        "Lavoro nullo e bilancio delle forze"
+      ]
+    },
+    {
+      "id": "C4-Q089",
+      "kind": "question",
+      "course": "C4",
+      "section": "Correnti, bussole e traiettorie curve",
+      "order": 89,
+      "title": "Stessa quantità di moto e cariche diverse",
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C4-L02",
+        "C4-L05"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il raggio è p/(|q|B). I due valori di p e B sono comuni; raddoppiare |q| dimezza r. La particella con +2e ha quindi il raggio minore, esattamente la metà. Non serve supporre uguali le masse o le velocità separatamente: il prompt assegna la loro combinazione rilevante, la quantità di moto."
+        },
+        {
+          "type": "formula",
+          "text": "r=\\frac{p}{|q|B}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{r_{+2e}}{r_{+e}}=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Uguali quantità di moto non bastano a dare uguali raggi se le cariche differiscono. Il segno comune determina lo stesso verso di curvatura per la stessa direzione iniziale, ma non uguaglia i moduli dei raggi. La temperatura non è il dato usato nel modello di questa singola traiettoria."
+        }
+      ],
+      "prompt": "Due particelle entrano perpendicolarmente nello stesso campo magnetico uniforme B>0 con lo stesso modulo non nullo della quantità di moto. Una porta +e e l’altra +2e. Quale percorre la circonferenza di raggio minore?",
+      "difficulty": 2,
+      "family": "confrontare-raggi-a-stessa-quantita-di-moto",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Quella con carica +2e",
+          "Quella con carica +e",
+          "Hanno necessariamente lo stesso raggio",
+          "Quella con temperatura minore, sempre",
+          "Il segno positivo impedisce ogni curvatura"
+        ],
+        "value": "Quella con carica +2e"
+      },
+      "hints": [
+        "Riscrivi il raggio con p, così non introduci ipotesi inutili su massa e velocità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Uguali quantità di moto non bastano a dare uguali raggi se le cariche differiscono. Il segno comune determina lo stesso verso di curvatura per la stessa direzione iniziale, ma non uguaglia i moduli dei raggi. La temperatura non è il dato usato nel modello di questa singola traiettoria.",
+        "target": "C4-L09"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Versi del campo e della forza",
+        "Moti nel campo uniforme",
+        "Lavoro nullo e bilancio delle forze"
+      ]
+    },
+    {
+      "id": "C4-Q090",
+      "kind": "question",
+      "course": "C4",
+      "section": "Correnti, bussole e traiettorie curve",
+      "order": 90,
+      "title": "Selezionare una velocità senza deviazione",
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C4-L02",
+        "C4-L05"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La mancata deviazione richiede forze opposte uguali in modulo. Scrivo qE=qvB e cancello q, positivo e non nullo. Resta v=E/B. Dividere 1200 per 4/100 equivale a moltiplicare per 25: il risultato è 30000 m/s, coerente col regime non relativistico dichiarato."
+        },
+        {
+          "type": "formula",
+          "text": "qE=qvB"
+        },
+        {
+          "type": "formula",
+          "text": " v=\\frac EB"
+        },
+        {
+          "type": "formula",
+          "text": " v=1200\\cdot25\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " v=30000\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "48 copierebbe il prodotto numerico EB, mentre il bilancio richiede un rapporto. 30 m/s produrrebbe vB=1,2 V/m, non 1200 V/m. Il valore della carica si cancella solo dopo aver verificato i versi opposti e la perpendicolarità."
+        }
+      ],
+      "prompt": "Una particella positiva non relativistica attraversa senza deviazione campi uniformi E e B, perpendicolari fra loro e alla velocità. Le forze elettrica e magnetica sono opposte e non agiscono altre forze. E=1200 V/m e B=0,040 T. Trova il modulo della velocità in metri al secondo.",
+      "difficulty": 3,
+      "family": "approfondimento-bilanciare-forza-elettrica-e-magnetica",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "numeric",
+        "value": 30000,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "hints": [
+        "Uguaglia i moduli dopo aver fissato i versi; poi isola v, non q.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "48 copierebbe il prodotto numerico EB, mentre il bilancio richiede un rapporto. 30 m/s produrrebbe vB=1,2 V/m, non 1200 V/m. Il valore della carica si cancella solo dopo aver verificato i versi opposti e la perpendicolarità.",
+        "target": "C4-L09"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Versi del campo e della forza",
+        "Moti nel campo uniforme",
+        "Lavoro nullo e bilancio delle forze"
+      ]
+    }
+  ],
+  "assets": [
+    {
+      "id": "261dd3e47bb74deec191a639bf121095f4c9ab0a36753a62fcb1e74aa2bf5315",
+      "name": "cric-c4-l09-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTU2MCIgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxNTYwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+Cjx0aXRsZSBpZD0idGl0bGUiPkNvcnJlbnRlIGludmVydGl0YSwgZm9yemEgc3VsbGEgY2FyaWNhIG5lZ2F0aXZhIGUgcGVyaW9kbzwvdGl0bGU+CjxkZXNjIGlkPSJkZXNjIj5EdWUgc2V6aW9uaSBkaSBmaWxvIGNvbiBjb3JyZW50aSB1c2NlbnRlIGVkIGVudHJhbnRlIGUgZnJlY2NlIGRlbCBjYW1wbyBtYWduZXRpY28gb3Bwb3N0ZSBuZWkgcHVudGkgYSBkZXN0cmEuIFVuYSBjYXJpY2EgbmVnYXRpdmEgaGEgdmVsb2NpdMOgIHZlcnNvIGRlc3RyYSwgY2FtcG8gZW50cmFudGUgZSBmb3J6YSB2ZXJzbyBpbCBiYXNzby4gUXVhdHRybyBpbnRlcnZhbGxpIHVndWFsaSBkaSB6ZXJvIHZpcmdvbGEgcXVhcmFudGEgbWlsbGlzZWNvbmRpIGZvcm1hbm8gdW4gcGVyaW9kbyBkaSB1bm8gdmlyZ29sYSBzZXNzYW50YSBtaWxsaXNlY29uZGkuPC9kZXNjPgo8ZGVmcz48bWFya2VyIGlkPSJ0aXAiIHZpZXdCb3g9IjAgMCAxMCAxMCIgcmVmWD0iOSIgcmVmWT0iNSIgbWFya2VyV2lkdGg9IjgiIG1hcmtlckhlaWdodD0iOCIgb3JpZW50PSJhdXRvLXN0YXJ0LXJldmVyc2UiPjxwYXRoIGQ9Ik0wIDBMMTAgNUwwIDEwWiIgZmlsbD0iY29udGV4dC1zdHJva2UiLz48L21hcmtlcj48L2RlZnM+CjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMTU2MCIgZmlsbD0iI2ZmZmRmNyIvPgo8ZyBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZpbGw9IiMyMDJjMzkiIGZvbnQtc2l6ZT0iMjMiPgo8dGV4dCB4PSIzMiIgeT0iNTMiIGZvbnQtc2l6ZT0iMjciIGZvbnQtd2VpZ2h0PSJib2xkIj4xLiBTdGVzc28gcHVudG8sIGNvcnJlbnRlIGludmVydGl0YTwvdGV4dD4KPHRleHQgeD0iMzIiIHk9Ijk2Ij5Db250cmlidXRvIGRlbCBzb2xvIGZpbG87IHZpc3RhIGluIHNlemlvbmUuPC90ZXh0Pgo8Y2lyY2xlIGN4PSIxNjUiIGN5PSIyODAiIHI9Ijg1IiBmaWxsPSJub25lIiBzdHJva2U9IiM4YTlhOWYiIHN0cm9rZS13aWR0aD0iMyIgc3Ryb2tlLWRhc2hhcnJheT0iNyA3Ii8+CjxjaXJjbGUgY3g9IjQ2NSIgY3k9IjI4MCIgcj0iODUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzhhOWE5ZiIgc3Ryb2tlLXdpZHRoPSIzIiBzdHJva2UtZGFzaGFycmF5PSI3IDciLz4KPGNpcmNsZSBjeD0iMTY1IiBjeT0iMjgwIiByPSIyMiIgZmlsbD0iI2UwZWRmMSIgc3Ryb2tlPSIjMzA0ZDYzIiBzdHJva2Utd2lkdGg9IjMiLz48Y2lyY2xlIGN4PSIxNjUiIGN5PSIyODAiIHI9IjYiIGZpbGw9IiMzMDRkNjMiLz4KPGNpcmNsZSBjeD0iNDY1IiBjeT0iMjgwIiByPSIyMiIgZmlsbD0iI2UwZWRmMSIgc3Ryb2tlPSIjMzA0ZDYzIiBzdHJva2Utd2lkdGg9IjMiLz48cGF0aCBkPSJNNDUzIDI2OEw0NzcgMjkyTTQ1MyAyOTJMNDc3IDI2OCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMzA0ZDYzIiBzdHJva2Utd2lkdGg9IjMiLz4KPHBhdGggZD0iTTI1MCAyODBWMjEwIiBmaWxsPSJub25lIiBzdHJva2U9IiMyNjcyOGQiIHN0cm9rZS13aWR0aD0iNCIgbWFya2VyLWVuZD0idXJsKCN0aXApIi8+CjxwYXRoIGQ9Ik01NTAgMjgwVjM1MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjOTg2YzM1IiBzdHJva2Utd2lkdGg9IjQiIG1hcmtlci1lbmQ9InVybCgjdGlwKSIvPgo8Y2lyY2xlIGN4PSIyNTAiIGN5PSIyODAiIHI9IjUiIGZpbGw9IiMzMDRkNjMiLz48Y2lyY2xlIGN4PSI1NTAiIGN5PSIyODAiIHI9IjUiIGZpbGw9IiMzMDRkNjMiLz4KPHRleHQgeD0iMjY4IiB5PSIyMzQiPkI8L3RleHQ+PHRleHQgeD0iNTY5IiB5PSIzMzkiPkI8L3RleHQ+PHRleHQgeD0iMTA4IiB5PSI0MjEiPkkgdXNjZW50ZTwvdGV4dD48dGV4dCB4PSI0MDgiIHk9IjQyMSI+SSBlbnRyYW50ZTwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjQ3OCI+QSBkZXN0cmEgZGVsIGZpbG8gaSB2ZXJzaSBkZWwgY2FtcG8gc2kgaW52ZXJ0b25vLjwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjUxOSI+Q2lyY29uZmVyZW56ZSBlIGZyZWNjZSBub24gZmlzc2FubyB1biBtb2R1bG8uPC90ZXh0Pgo8bGluZSB4MT0iMzIiIHkxPSI1NTUiIHgyPSI2MDgiIHkyPSI1NTUiIHN0cm9rZT0iI2I4YzRjYSIvPgo8dGV4dCB4PSIzMiIgeT0iNjEwIiBmb250LXNpemU9IjI3IiBmb250LXdlaWdodD0iYm9sZCI+Mi4gUHJpbWEgaWwgcHJvZG90dG8sIHBvaSBpbCBzZWdubzwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjY1MyI+Q2FyaWNhIG5lZ2F0aXZhLCBCIGVudHJhbnRlIG5lbCBmb2dsaW8uPC90ZXh0Pgo8ZyBzdHJva2U9IiM4YTlhOWYiIHN0cm9rZS13aWR0aD0iMyIgZmlsbD0ibm9uZSI+PHBhdGggZD0iTTQyOCA3MDVMNDUyIDcyOU00MjggNzI5TDQ1MiA3MDVNNTE4IDcwNUw1NDIgNzI5TTUxOCA3MjlMNTQyIDcwNU00MjggODI1TDQ1MiA4NDlNNDI4IDg0OUw0NTIgODI1TTUxOCA4MjVMNTQyIDg0OU01MTggODQ5TDU0MiA4MjUiLz48L2c+CjxjaXJjbGUgY3g9IjIwMCIgY3k9Ijc3MCIgcj0iMjAiIGZpbGw9IiNmZmZmZmYiIHN0cm9rZT0iIzMwNGQ2MyIgc3Ryb2tlLXdpZHRoPSIzIi8+Cjx0ZXh0IHg9IjE5NCIgeT0iNzc5Ij7iiJI8L3RleHQ+CjxwYXRoIGQ9Ik0yMjUgNzcwSDM4MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMjY3MjhkIiBzdHJva2Utd2lkdGg9IjQiIG1hcmtlci1lbmQ9InVybCgjdGlwKSIvPgo8cGF0aCBkPSJNMjAwIDc5NVY5MjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ExNDczYyIgc3Ryb2tlLXdpZHRoPSI0IiBtYXJrZXItZW5kPSJ1cmwoI3RpcCkiLz4KPHRleHQgeD0iMzE2IiB5PSI3NDciPnY8L3RleHQ+PHRleHQgeD0iMjIzIiB5PSI5MDUiPkY8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI5NzkiPlBlciBxIHBvc2l0aXZhIGxhIGZvcnphIHNhcmViYmUgdmVyc28gbOKAmWFsdG8uPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iMTAxOSI+TGUgbHVuZ2hlenplIGRpIHYgZSBGIHNvbm8gc2NoZW1hdGljaGUuPC90ZXh0Pgo8bGluZSB4MT0iMzIiIHkxPSIxMDU1IiB4Mj0iNjA4IiB5Mj0iMTA1NSIgc3Ryb2tlPSIjYjhjNGNhIi8+Cjx0ZXh0IHg9IjMyIiB5PSIxMTEwIiBmb250LXNpemU9IjI3IiBmb250LXdlaWdodD0iYm9sZCI+My4gUXVhdHRybyBxdWFydGkgZmFubm8gdW4gZ2lybzwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjExNTIiPk1vdG8gdW5pZm9ybWU6IHVuIHF1YXJ0byBkdXJhIDAsNDAgbXMuPC90ZXh0Pgo8cmVjdCB4PSIxMDAiIHk9IjEyMzAiIHdpZHRoPSIxMDAiIGhlaWdodD0iNTUiIGZpbGw9IiMyNjcyOGQiLz48cmVjdCB4PSIyMDAiIHk9IjEyMzAiIHdpZHRoPSIxMDAiIGhlaWdodD0iNTUiIGZpbGw9IiM3N2E1YjciLz48cmVjdCB4PSIzMDAiIHk9IjEyMzAiIHdpZHRoPSIxMDAiIGhlaWdodD0iNTUiIGZpbGw9IiMyNjcyOGQiLz48cmVjdCB4PSI0MDAiIHk9IjEyMzAiIHdpZHRoPSIxMDAiIGhlaWdodD0iNTUiIGZpbGw9IiM3N2E1YjciLz4KPHRleHQgeD0iMTM5IiB5PSIxMjY1IiBmaWxsPSIjZmZmZmZmIj7CvDwvdGV4dD48dGV4dCB4PSIyMzkiIHk9IjEyNjUiPsK8PC90ZXh0Pjx0ZXh0IHg9IjMzOSIgeT0iMTI2NSIgZmlsbD0iI2ZmZmZmZiI+wrw8L3RleHQ+PHRleHQgeD0iNDM5IiB5PSIxMjY1Ij7CvDwvdGV4dD4KPHBhdGggZD0iTTEwMCAxMzA1SDUwME0xMDAgMTI5NVYxMzE1TTIwMCAxMjk1VjEzMTVNMzAwIDEyOTVWMTMxNU00MDAgMTI5NVYxMzE1TTUwMCAxMjk1VjEzMTUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzMwNGQ2MyIgc3Ryb2tlLXdpZHRoPSIzIi8+Cjx0ZXh0IHg9IjkzIiB5PSIxMzQ2Ij4wPC90ZXh0Pjx0ZXh0IHg9IjE3NiIgeT0iMTM0NiI+MCw0MDwvdGV4dD48dGV4dCB4PSIyNzYiIHk9IjEzNDYiPjAsODA8L3RleHQ+PHRleHQgeD0iMzc2IiB5PSIxMzQ2Ij4xLDIwPC90ZXh0Pjx0ZXh0IHg9IjQ3NiIgeT0iMTM0NiI+MSw2MDwvdGV4dD48dGV4dCB4PSI1MjMiIHk9IjEzODQiPnQgKG1zKTwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjE0MzYiPlQgPSAxLDYwIG1zID0gMS82MjUgcy48L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIxNDgwIj5mID0gNjI1IEh6OiBmcmVxdWVuemEgZGVpIGdpcmkgY29tcGxldGkuPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iMTUyNCI+SSBxdWF0dHJvIGludGVydmFsbGkgaGFubm8gbGEgc3Rlc3NhIHNjYWxhLjwvdGV4dD4KPC9nPjwvc3ZnPgo="
+    }
+  ]
+}

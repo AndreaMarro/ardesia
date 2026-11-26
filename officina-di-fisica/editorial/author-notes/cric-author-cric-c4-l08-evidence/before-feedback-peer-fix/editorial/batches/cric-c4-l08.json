@@ -1,0 +1,710 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "C4-Q071",
+      "kind": "question",
+      "course": "C4",
+      "section": "Mettere insieme i condensatori",
+      "order": 71,
+      "title": "La carica fornita a tre capacità parallele",
+      "skill": "C4-L08",
+      "prerequisites": [
+        "C4-L07"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I tre condensatori vedono gli stessi 4 V. Le cariche sulle armature del nodo positivo sono rispettivamente 8, 12 e 20 μC. Sommarle dà 40 μC. Posso anche sommare prima le capacità: 2+3+5=10 μF, poi moltiplicare per 4 V. La preparazione scarica rende questa carica finale anche la carica fornita durante il processo."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/0b4c96090069f07bfcf488f7a7a447cb62321191007931a53a97deff9b4dec88",
+          "text": "Il primo pannello collega le tre capacità agli stessi nodi A e B. In questa preparazione partono scariche e il generatore le carica a 4 V."
+        },
+        {
+          "type": "formula",
+          "text": "C_p=(2+3+5)\\,\\mu\\mathrm F"
+        },
+        {
+          "type": "formula",
+          "text": " C_p=10\\,\\mu\\mathrm F"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{+}=C_pV"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{+}=40\\,\\mu\\mathrm C"
+        },
+        {
+          "type": "text",
+          "text": "10 copia il valore numerico della capacità totale in microfarad senza moltiplicare per la tensione. 80 μC sommerebbe i moduli su entrambi i nodi e conterebbe due volte la separazione. Zero è la carica algebrica di tutte le armature insieme, non quella del nodo positivo."
+        }
+      ],
+      "prompt": "Tre condensatori inizialmente scarichi da 2 μF, 3 μF e 5 μF vengono collegati in parallelo a un generatore ideale da 4 V. Dopo la carica, quanta carica ha fornito il generatore al nodo positivo, in microcoulomb?",
+      "difficulty": 1,
+      "family": "tre-condensatori-sullo-stesso-nodo",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "numeric",
+        "value": 40,
+        "unit": "μC",
+        "tolerance": 0
+      },
+      "hints": [
+        "Somma soltanto le armature che appartengono al nodo richiesto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "10 copia il valore numerico della capacità totale in microfarad senza moltiplicare per la tensione. 80 μC sommerebbe i moduli su entrambi i nodi e conterebbe due volte la separazione. Zero è la carica algebrica di tutte le armature insieme, non quella del nodo positivo.",
+        "target": "C4-L08"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Topologia e neutralità dei nodi",
+        "Equivalenti e inverse",
+        "Carica conservata e transitori dissipativi"
+      ]
+    },
+    {
+      "id": "C4-Q072",
+      "kind": "question",
+      "course": "C4",
+      "section": "Mettere insieme i condensatori",
+      "order": 72,
+      "title": "Dove cade più tensione nella serie",
+      "skill": "C4-L08",
+      "prerequisites": [
+        "C4-L07"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La neutralità conservata del nodo intermedio rende uguali i moduli delle cariche di serie. Per ciascun condensatore il modulo della tensione è Q/C. Poiché Q è comune e non nullo, dividere per una capacità minore dà una tensione maggiore. La posizione del simbolo sul foglio non entra nella relazione."
+        },
+        {
+          "type": "formula",
+          "text": "|V_1|=\\frac{Q}{C_1}"
+        },
+        {
+          "type": "formula",
+          "text": " |V_2|=\\frac{Q}{C_2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{|V_1|}{|V_2|}=\\frac{C_2}{C_1}"
+        },
+        {
+          "type": "text",
+          "text": "In parallelo sarebbe comune la tensione e diversa la carica; qui vale il vincolo della serie. Se Q fosse nullo entrambe le tensioni sarebbero zero e il confronto stretto non varrebbe: la condizione Q>0 lo esclude."
+        }
+      ],
+      "prompt": "Due condensatori ideali di capacità positive diverse sono in serie. Il nodo centrale è isolato e inizialmente neutro. Dopo la carica, ciascun condensatore porta lo stesso modulo Q>0. Quale sostiene il modulo di tensione maggiore?",
+      "difficulty": 1,
+      "family": "quale-condensatore-rischia-la-tensione-piu-alta",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Quello di capacità minore",
+          "Quello di capacità maggiore",
+          "Entrambi necessariamente uguale",
+          "Quello disegnato più in basso",
+          "Quello più vicino al morsetto positivo indipendentemente da C"
+        ],
+        "value": "Quello di capacità minore"
+      },
+      "hints": [
+        "Determina prima quale grandezza è comune, poi confronta i denominatori.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "In parallelo sarebbe comune la tensione e diversa la carica; qui vale il vincolo della serie. Se Q fosse nullo entrambe le tensioni sarebbero zero e il confronto stretto non varrebbe: la condizione Q>0 lo esclude.",
+        "target": "C4-L08"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Topologia e neutralità dei nodi",
+        "Equivalenti e inverse",
+        "Carica conservata e transitori dissipativi"
+      ]
+    },
+    {
+      "id": "C4-Q073",
+      "kind": "question",
+      "course": "C4",
+      "section": "Mettere insieme i condensatori",
+      "order": 73,
+      "title": "Il nodo intermedio conserva una somma",
+      "skill": "C4-L08",
+      "prerequisites": [
+        "C4-L07"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Si conserva la carica algebrica totale del nodo intermedio. Nel modello ideale nessuna carica libera attraversa i dielettrici per entrare o uscire da quel gruppo di armature. Essendo inizialmente zero, la somma resta zero: sulle due facce interne si hanno cariche opposte con uguale modulo. Non si sta dicendo che ogni armatura rimanga individualmente scarica."
+        },
+        {
+          "type": "formula",
+          "text": "Q_{\\rm nodo,i}=0"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{\\rm nodo,f}=0"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{a}+Q_{b}=0"
+        },
+        {
+          "type": "text",
+          "text": "L’energia dei condensatori cresce durante la carica e le tensioni possono essere diverse. Il dielettrico ideale non conduce una corrente continua non nulla; attribuirgliela contraddice l’isolamento del nodo usato nel ragionamento."
+        }
+      ],
+      "prompt": "Il nodo intermedio di due condensatori ideali in serie è isolato e inizialmente neutro. Quale grandezza algebrica totale di quel nodo si conserva durante la carica?",
+      "difficulty": 1,
+      "family": "il-vincolo-fra-le-piastre-interne",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "La carica elettrica totale",
+          "Il modulo della tensione di ciascun condensatore",
+          "L’energia di ciascun condensatore",
+          "La corrente di conduzione attraverso il dielettrico, non nulla",
+          "La capacità equivalente deve restare zero"
+        ],
+        "value": "La carica elettrica totale"
+      },
+      "hints": [
+        "Considera come unico sistema le due armature interne collegate dal filo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "L’energia dei condensatori cresce durante la carica e le tensioni possono essere diverse. Il dielettrico ideale non conduce una corrente continua non nulla; attribuirgliela contraddice l’isolamento del nodo usato nel ragionamento.",
+        "target": "C4-L08"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Topologia e neutralità dei nodi",
+        "Equivalenti e inverse",
+        "Carica conservata e transitori dissipativi"
+      ]
+    },
+    {
+      "id": "C4-Q074",
+      "kind": "question",
+      "course": "C4",
+      "section": "Mettere insieme i condensatori",
+      "order": 74,
+      "title": "Un’incognita nella serie capacitiva",
+      "skill": "C4-L08",
+      "prerequisites": [
+        "C4-L07"
+      ],
+      "version": 3,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Per la serie sommo i reciproci. Isolo 1/C_x=1/(3 μF)−1/(9 μF): il risultato è 2/9 (μF)⁻¹. Il reciproco dà C_x=9/2 μF, cioè 4,5 μF. L’equivalente 3 μF è minore di entrambe le capacità, come deve accadere in una serie di componenti positivi."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/0b4c96090069f07bfcf488f7a7a447cb62321191007931a53a97deff9b4dec88",
+          "text": "Il pannello centrale confronta alla stessa scala le capacità di 9 μF, 4,5 μF e la loro equivalente di serie di 3 μF. L’equivalente è minore di entrambe."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac1{C_x}=\\frac1{C_{\\rm eq}}-\\frac1{C_1}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac1{C_x}=\\frac29(\\mu\\mathrm F)^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " C_x=\\frac92\\,\\mu\\mathrm F"
+        },
+        {
+          "type": "text",
+          "text": "6 μF sottrarrebbe direttamente 9−3, come se si trattasse di una somma semplice. 12 μF farebbe la somma diretta. 2/9 μF copia il coefficiente del reciproco ma gli assegna l’unità di capacità. Il controllo 9·(9/2)/(9+9/2)=3 ricostruisce l’equivalente."
+        }
+      ],
+      "prompt": "Un condensatore da 9 μF è in serie con uno ignoto, con nodo intermedio neutro e isolato. L’equivalente positiva è 3 μF. Qual è la capacità ignota?",
+      "difficulty": 2,
+      "family": "ricavare-una-capacita-in-serie",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4,5 μF",
+          "6 μF",
+          "12 μF",
+          "2/9 μF",
+          "27 μF"
+        ],
+        "value": "4,5 μF"
+      },
+      "hints": [
+        "L’ultimo passaggio inverte sia il numero sia l’unità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "6 μF sottrarrebbe direttamente 9−3, come se si trattasse di una somma semplice. 12 μF farebbe la somma diretta. 2/9 μF copia il coefficiente del reciproco ma gli assegna l’unità di capacità. Il controllo 9·(9/2)/(9+9/2)=3 ricostruisce l’equivalente.",
+        "target": "C4-L08"
+      },
+      "baseVersion": 2,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Topologia e neutralità dei nodi",
+        "Equivalenti e inverse",
+        "Carica conservata e transitori dissipativi"
+      ]
+    },
+    {
+      "id": "C4-Q075",
+      "kind": "question",
+      "course": "C4",
+      "section": "Mettere insieme i condensatori",
+      "order": 75,
+      "title": "Collegare polarità opposte",
+      "skill": "C4-L08",
+      "prerequisites": [
+        "C4-L07"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Ogni nuovo nodo isolato contiene inizialmente +CV e −CV. La sua carica netta è dunque zero e resta tale. La capacità fra i due nodi è 2C>0; la relazione Q_nodo=2CV_f impone V_f=0. L’energia iniziale del campo viene trasferita ai collegamenti e all’ambiente nel transitorio reale, non resta nel campo elettrostatico finale."
+        },
+        {
+          "type": "formula",
+          "text": "Q_{\\rm nodo}=CV-CV"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{\\rm nodo}=0"
+        },
+        {
+          "type": "formula",
+          "text": " (2C)V_f=0"
+        },
+        {
+          "type": "formula",
+          "text": " V_f=0"
+        },
+        {
+          "type": "text",
+          "text": "2V sommerebbe tensioni senza rispettare le nuove polarità dei nodi. V/2 è il caso diverso di un condensatore carico collegato a uno identico scarico. La resistenza influisce sul transitorio ma non crea una carica netta finale nel nodo isolato."
+        }
+      ],
+      "prompt": "Due condensatori identici con C>0 sono caricati separatamente allo stesso modulo V>0 e poi scollegati dalle sorgenti. Si collega la piastra positiva di ciascuno alla negativa dell’altro. Collegamenti con resistenza positiva permettono al transitorio di esaurirsi. Qual è il modulo della tensione comune finale?",
+      "difficulty": 2,
+      "family": "collegare-armature-di-segno-opposto",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Zero",
+          "2V",
+          "V",
+          "V/2",
+          "Un valore fissato dalla sola resistenza dei fili"
+        ],
+        "value": "Zero"
+      },
+      "hints": [
+        "Disegna i nuovi nodi e somma le cariche con i loro segni prima di dividere per la capacità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "2V sommerebbe tensioni senza rispettare le nuove polarità dei nodi. V/2 è il caso diverso di un condensatore carico collegato a uno identico scarico. La resistenza influisce sul transitorio ma non crea una carica netta finale nel nodo isolato.",
+        "target": "C4-L08"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Topologia e neutralità dei nodi",
+        "Equivalenti e inverse",
+        "Carica conservata e transitori dissipativi"
+      ]
+    },
+    {
+      "id": "C4-Q076",
+      "kind": "question",
+      "course": "C4",
+      "section": "Mettere insieme i condensatori",
+      "order": 76,
+      "title": "Un parallelo seguito da una serie",
+      "skill": "C4-L08",
+      "prerequisites": [
+        "C4-L07"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Riduco prima il gruppo parallelo, che vale 3+6=9 μF. Restano due capacità uguali da 9 μF in serie. I loro reciproci si sommano a 2/9 (μF)⁻¹ e l’equivalente è 9/2 μF, cioè 4,5 μF. Il blocco interno è stato sostituito mantenendo i medesimi morsetti."
+        },
+        {
+          "type": "formula",
+          "text": "C_p=(3+6)\\,\\mu\\mathrm F"
+        },
+        {
+          "type": "formula",
+          "text": " C_p=9\\,\\mu\\mathrm F"
+        },
+        {
+          "type": "formula",
+          "text": " C_{\\rm eq}=\\frac{9\\cdot9}{9+9}\\,\\mu\\mathrm F"
+        },
+        {
+          "type": "formula",
+          "text": " C_{\\rm eq}=\\frac92\\,\\mu\\mathrm F"
+        },
+        {
+          "type": "text",
+          "text": "18 μF sommerebbe anche la serie come un parallelo. 2 μF è invece la serie dei soli 3 e 6 μF, che qui condividono entrambi i nodi. 9 μF ometterebbe l’effetto del secondo gruppo in serie."
+        }
+      ],
+      "prompt": "Due condensatori da 3 μF e 6 μF sono in parallelo. Il loro gruppo è in serie con 9 μF; il nodo intermedio è neutro e isolato. Qual è la capacità equivalente ai morsetti esterni?",
+      "difficulty": 2,
+      "family": "ridurre-una-rete-di-capacita",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4,5 μF",
+          "18 μF",
+          "9 μF",
+          "2 μF",
+          "3 μF"
+        ],
+        "value": "4,5 μF"
+      },
+      "hints": [
+        "Riduci un sottogruppo alla volta, conservando i suoi nodi esterni.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "18 μF sommerebbe anche la serie come un parallelo. 2 μF è invece la serie dei soli 3 e 6 μF, che qui condividono entrambi i nodi. 9 μF ometterebbe l’effetto del secondo gruppo in serie.",
+        "target": "C4-L08"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Topologia e neutralità dei nodi",
+        "Equivalenti e inverse",
+        "Carica conservata e transitori dissipativi"
+      ]
+    },
+    {
+      "id": "C4-Q077",
+      "kind": "question",
+      "course": "C4",
+      "section": "Mettere insieme i condensatori",
+      "order": 77,
+      "title": "Il nome della connessione a due nodi comuni",
+      "skill": "C4-L08",
+      "prerequisites": [
+        "C4-L07"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "È un parallelo: ciascun componente è collegato fra A e B e ha la stessa differenza di potenziale V_A−V_B. I due nodi restano distinti. Le capacità possono avere valori diversi; con tensione non nulla le cariche sono proporzionali ai rispettivi valori di C."
+        },
+        {
+          "type": "formula",
+          "text": "V_1=V_A-V_B"
+        },
+        {
+          "type": "formula",
+          "text": " V_2=V_A-V_B"
+        },
+        {
+          "type": "text",
+          "text": "In una serie i componenti condividono soltanto il nodo intermedio, non entrambi gli estremi. Essere sul medesimo nodo con una sola armatura non basta a imporre l’altra connessione. Non è necessario che le capacità siano uguali."
+        }
+      ],
+      "prompt": "Due condensatori hanno una coppia di armature sul nodo A e l’altra coppia sul nodo B, senza componenti intermedi nei collegamenti. Come si chiama questa connessione?",
+      "difficulty": 1,
+      "family": "giunzioni-a-tensione-comune",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Parallelo",
+          "Serie",
+          "Cortocircuito necessario di ogni condensatore",
+          "Nodo unico senza differenza di potenziale possibile",
+          "Connessione definita dalla sola uguaglianza delle capacità"
+        ],
+        "value": "Parallelo"
+      },
+      "hints": [
+        "Controlla i due terminali di ogni simbolo, non soltanto quelli superiori.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "In una serie i componenti condividono soltanto il nodo intermedio, non entrambi gli estremi. Essere sul medesimo nodo con una sola armatura non basta a imporre l’altra connessione. Non è necessario che le capacità siano uguali.",
+        "target": "C4-L08"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Topologia e neutralità dei nodi",
+        "Equivalenti e inverse",
+        "Carica conservata e transitori dissipativi"
+      ]
+    },
+    {
+      "id": "C4-Q078",
+      "kind": "question",
+      "course": "C4",
+      "section": "Mettere insieme i condensatori",
+      "order": 78,
+      "title": "Una tensione finale pesata con le capacità",
+      "skill": "C4-L08",
+      "prerequisites": [
+        "C4-L07"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La carica del nodo positivo si conserva: 2·8+6·4=16+24=40 μC. La capacità finale fra i due nodi è 8 μF; quindi V_f=40/8=5 V. Il risultato è compreso fra 4 e 8 V ed è più vicino a 4 V, perché la capacità inizialmente a quel potenziale è maggiore."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/0b4c96090069f07bfcf488f7a7a447cb62321191007931a53a97deff9b4dec88",
+          "text": "L’ultimo pannello segue la carica del nodo positivo in Q078. La carica totale è 40 μC sia prima sia dopo: inizialmente 16+24, infine 10+30 μC. Le barre hanno la stessa origine e scala."
+        },
+        {
+          "type": "formula",
+          "text": "Q_{+}=(2\\cdot8+6\\cdot4)\\,\\mu\\mathrm C"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{+}=40\\,\\mu\\mathrm C"
+        },
+        {
+          "type": "formula",
+          "text": " V_f=\\frac{40}{2+6}\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " V_f=5\\,\\mathrm V"
+        },
+        {
+          "type": "text",
+          "text": "6 V è la media semplice delle due tensioni e vale solo con capacità uguali. 12 V sommerebbe tensioni di una preparazione che ora è in parallelo. La conservazione dell’energia del solo campo non sostituisce la conservazione della carica del nodo durante il transitorio resistivo."
+        }
+      ],
+      "prompt": "Due condensatori lineari da 2 μF a 8 V e 6 μF a 4 V vengono scollegati dalle sorgenti e poi connessi in parallelo con le armature positive insieme. Il transitorio si esaurisce tramite collegamenti resistivi. Trova il modulo della tensione comune finale in volt.",
+      "difficulty": 2,
+      "family": "distribuzione-iniziale-asimmetrica",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "numeric",
+        "value": 5,
+        "unit": "V",
+        "tolerance": 0
+      },
+      "hints": [
+        "Somma prima le cariche algebriche; la capacità totale entra al denominatore dopo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "6 V è la media semplice delle due tensioni e vale solo con capacità uguali. 12 V sommerebbe tensioni di una preparazione che ora è in parallelo. La conservazione dell’energia del solo campo non sostituisce la conservazione della carica del nodo durante il transitorio resistivo.",
+        "target": "C4-L08"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Topologia e neutralità dei nodi",
+        "Equivalenti e inverse",
+        "Carica conservata e transitori dissipativi"
+      ]
+    },
+    {
+      "id": "C4-Q079",
+      "kind": "question",
+      "course": "C4",
+      "section": "Mettere insieme i condensatori",
+      "order": 79,
+      "title": "Carica conservata, energia del campo ridotta",
+      "skill": "C4-L08",
+      "prerequisites": [
+        "C4-L07"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "All’inizio l’energia è C V²/2. Alla fine entrambi i condensatori hanno tensione V/2, quindi la capacità totale 2C accumula (2C)(V/2)²/2=C V²/4. È la metà del valore iniziale. La carica resta conservata sui nodi isolati, ma la diminuzione dell’energia del campo diventa altra energia durante il transitorio."
+        },
+        {
+          "type": "formula",
+          "text": "U_i=\\frac12 CV^2"
+        },
+        {
+          "type": "formula",
+          "text": " U_f=\\frac12(2C)\\left(\\frac V2\\right)^2"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{U_f}{U_i}=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "La carica conservata non impone energia del campo conservata: U contiene il quadrato della tensione. Il raddoppio della capacità non basta perché la tensione si dimezza. Il finale resta positivo, essendo C e V iniziali positivi."
+        }
+      ],
+      "prompt": "Un condensatore di capacità C>0 è carico a V>0. Lo si isola dalla sorgente e lo si collega in parallelo a uno identico inizialmente scarico, con resistenza positiva nei collegamenti. Dopo il transitorio la tensione è V/2. Come cambia l’energia totale dei due campi?",
+      "difficulty": 2,
+      "family": "energia-dopo-ridistribuzione",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Si dimezza",
+          "Resta invariata",
+          "Raddoppia",
+          "Si annulla",
+          "Diventa negativa"
+        ],
+        "value": "Si dimezza"
+      },
+      "hints": [
+        "Conta entrambe le capacità nel finale e poi applica il quadrato alla tensione dimezzata.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "La carica conservata non impone energia del campo conservata: U contiene il quadrato della tensione. Il raddoppio della capacità non basta perché la tensione si dimezza. Il finale resta positivo, essendo C e V iniziali positivi.",
+        "target": "C4-L08"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Topologia e neutralità dei nodi",
+        "Equivalenti e inverse",
+        "Carica conservata e transitori dissipativi"
+      ]
+    },
+    {
+      "id": "C4-Q080",
+      "kind": "question",
+      "course": "C4",
+      "section": "Mettere insieme i condensatori",
+      "order": 80,
+      "title": "Confrontare due topologie con gli stessi componenti",
+      "skill": "C4-L08",
+      "prerequisites": [
+        "C4-L07"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "In parallelo la somma dà C_p=16 μF. In serie il prodotto diviso la somma dà C_s=48/16 μF=3 μF. Nel rapporto le unità si cancellano e resta 16/3. Mantengo la frazione esatta: non occorre una divisione decimale periodica e la risposta è selezionabile senza calcolatrice."
+        },
+        {
+          "type": "formula",
+          "text": "C_p=16\\,\\mu\\mathrm F"
+        },
+        {
+          "type": "formula",
+          "text": " C_s=3\\,\\mu\\mathrm F"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{C_p}{C_s}=\\frac{16}{3}"
+        },
+        {
+          "type": "text",
+          "text": "3/16 inverte l’ordine richiesto. 4 è il rapporto fra le due capacità individuali, non fra gli equivalenti. 16 e 3 copiano separatamente i valori numerici dei due equivalenti in microfarad senza formarne il quoziente."
+        }
+      ],
+      "prompt": "Due condensatori da 4 μF e 12 μF possono essere preparati in parallelo oppure in serie con nodo intermedio neutro e isolato. Qual è il rapporto adimensionale C_p/C_s?",
+      "difficulty": 2,
+      "family": "confronto-fra-due-riconfigurazioni",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "16/3",
+          "3/16",
+          "4",
+          "16",
+          "3"
+        ],
+        "value": "16/3"
+      },
+      "hints": [
+        "Calcola separatamente i due equivalenti e mantieni il rapporto come frazione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "3/16 inverte l’ordine richiesto. 4 è il rapporto fra le due capacità individuali, non fra gli equivalenti. 16 e 3 copiano separatamente i valori numerici dei due equivalenti in microfarad senza formarne il quoziente.",
+        "target": "C4-L08"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Topologia e neutralità dei nodi",
+        "Equivalenti e inverse",
+        "Carica conservata e transitori dissipativi"
+      ]
+    }
+  ],
+  "assets": [
+    {
+      "id": "0b4c96090069f07bfcf488f7a7a447cb62321191007931a53a97deff9b4dec88",
+      "name": "cric-c4-l08-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTU2MCIgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxNTYwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+Cjx0aXRsZSBpZD0idGl0bGUiPkNvbmRlbnNhdG9yaSBmcmEgbm9kaSwgY2FwYWNpdMOgIGluIHNlcmllIGUgY2FyaWNhIGNvbmRpdmlzYTwvdGl0bGU+CjxkZXNjIGlkPSJkZXNjIj5UcmUgY2FwYWNpdMOgIGluIHBhcmFsbGVsbyBkYSBkdWUsIHRyZSBlIGNpbnF1ZSBtaWNyb2ZhcmFkIHZlZG9ubyBxdWF0dHJvIHZvbHQuIEJhcnJlIGEgc2NhbGEgY29tdW5lIGNvbmZyb250YW5vIG5vdmUsIHF1YXR0cm8gdmlyZ29sYSBjaW5xdWUgZSB0cmUgbWljcm9mYXJhZC4gRHVlIHNvbW1lIGRpIGNhcmljaGUsIHNlZGljaSBwacO5IHZlbnRpcXVhdHRybyBlIGRpZWNpIHBpw7kgdHJlbnRhIG1pY3JvY291bG9tYiwgaGFubm8gZW50cmFtYmUgdG90YWxlIHF1YXJhbnRhLjwvZGVzYz4KPHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxNTYwIiBmaWxsPSIjZmZmZGY3Ii8+CjxnIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZmlsbD0iIzIwMmMzOSIgZm9udC1zaXplPSIyMyI+Cjx0ZXh0IHg9IjMyIiB5PSI1MyIgZm9udC1zaXplPSIyNyIgZm9udC13ZWlnaHQ9ImJvbGQiPjEuIFRyZSBjYXBhY2l0w6AsIGdsaSBzdGVzc2kgZHVlIG5vZGk8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI5NSI+UHJlcGFyYXppb25lIHNjYXJpY2EsIGdlbmVyYXRvcmUgZGEgNCBWLjwvdGV4dD4KPGcgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMzA0ZDYzIiBzdHJva2Utd2lkdGg9IjQiPgo8cGF0aCBkPSJNODAgMjY1VjE3MEg1NTBNODAgMzM1VjQzMEg1NTBNMjIwIDE3MFYyNjBNMjIwIDI5MFY0MzBNMzUwIDE3MFYyNjBNMzUwIDI5MFY0MzBNNDgwIDE3MFYyNjBNNDgwIDI5MFY0MzAiLz4KPHBhdGggZD0iTTE4NSAyNjBIMjU1TTE4NSAyOTBIMjU1TTMxNSAyNjBIMzg1TTMxNSAyOTBIMzg1TTQ0NSAyNjBINTE1TTQ0NSAyOTBINTE1IiBzdHJva2U9IiMyNjcyOGQiIHN0cm9rZS13aWR0aD0iNyIvPgo8Y2lyY2xlIGN4PSI4MCIgY3k9IjMwMCIgcj0iMzUiIGZpbGw9IiNmZmZmZmYiLz4KPC9nPgo8dGV4dCB4PSI1NyIgeT0iMzA5Ij40IFY8L3RleHQ+PHRleHQgeD0iMTEyIiB5PSIyNTAiPis8L3RleHQ+PHRleHQgeD0iMTEyIiB5PSIzNTQiPuKIkjwvdGV4dD4KPHRleHQgeD0iMjQyIiB5PSIzNjUiPjIgzrxGPC90ZXh0Pjx0ZXh0IHg9IjM3MiIgeT0iMzY1Ij4zIM68RjwvdGV4dD48dGV4dCB4PSI1MDIiIHk9IjM2NSI+NSDOvEY8L3RleHQ+Cjx0ZXh0IHg9IjU2MCIgeT0iMTc5Ij5BPC90ZXh0Pjx0ZXh0IHg9IjU2MCIgeT0iNDM5Ij5CPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iNDkzIj5R4oKKID0gKDggKyAxMiArIDIwKSDOvEMgPSA0MCDOvEMuPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iNTMxIj5JbCBmaWxvIGlkZWFsZSBjb25zZXJ2YSBs4oCZaWRlbnRpdMOgIGRlaSBub2RpLjwvdGV4dD4KPGxpbmUgeDE9IjMyIiB5MT0iNTY1IiB4Mj0iNjA4IiB5Mj0iNTY1IiBzdHJva2U9IiNiOGM0Y2EiLz4KPHRleHQgeD0iMzIiIHk9IjYxOSIgZm9udC1zaXplPSIyNyIgZm9udC13ZWlnaHQ9ImJvbGQiPjIuIEzigJllcXVpdmFsZW50ZSBkaSB1bmEgc2VyaWU8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI2NjAiPjkgzrxGIGluIHNlcmllIGNvbiA0LDUgzrxGIGRhbm5vIDMgzrxGLjwvdGV4dD4KPGxpbmUgeDE9IjE2MCIgeTE9IjcwNCIgeDI9IjE2MCIgeTI9Ijk2OCIgc3Ryb2tlPSIjMzA0ZDYzIiBzdHJva2Utd2lkdGg9IjMiLz4KPHRleHQgeD0iMTEyIiB5PSI3MjMiPjA8L3RleHQ+Cjx0ZXh0IHg9IjQ3IiB5PSI3NjkiPkPigoE8L3RleHQ+PHJlY3QgeD0iMTYwIiB5PSI3MzUiIHdpZHRoPSIyNzAiIGhlaWdodD0iNDIiIGZpbGw9IiMyNjcyOGQiLz48dGV4dCB4PSI0NTEiIHk9Ijc2NyI+OSDOvEY8L3RleHQ+Cjx0ZXh0IHg9IjQ3IiB5PSI4NTUiPkPigpM8L3RleHQ+PHJlY3QgeD0iMTYwIiB5PSI4MjEiIHdpZHRoPSIxMzUiIGhlaWdodD0iNDIiIGZpbGw9IiM5ODZjMzUiLz48dGV4dCB4PSIzMTUiIHk9Ijg1MyI+NCw1IM68RjwvdGV4dD4KPHRleHQgeD0iNDciIHk9Ijk0MCI+Q+KCmzwvdGV4dD48cmVjdCB4PSIxNjAiIHk9IjkwNiIgd2lkdGg9IjkwIiBoZWlnaHQ9IjQyIiBmaWxsPSIjNGU4NzZkIi8+PHRleHQgeD0iMjcwIiB5PSI5MzgiPjMgzrxGPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iMTAwOCI+TGUgdHJlIGJhcnJlIGNvbmRpdmlkb25vIG9yaWdpbmUgZSBzY2FsYS48L3RleHQ+CjxsaW5lIHgxPSIzMiIgeTE9IjEwNDAiIHgyPSI2MDgiIHkyPSIxMDQwIiBzdHJva2U9IiNiOGM0Y2EiLz4KPHRleHQgeD0iMzIiIHk9IjEwOTUiIGZvbnQtc2l6ZT0iMjciIGZvbnQtd2VpZ2h0PSJib2xkIj4zLiBMYSBjYXJpY2EgZGVsIG5vZG8gc2kgY29uc2VydmE8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIxMTM3Ij5D4oKBID0gMiDOvEYsIEPigoIgPSA2IM68RjsgcG9sYXJpdMOgIGNvbmNvcmRpLjwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjExOTAiPlByaW1hOiA4IFYgZSA0IFY8L3RleHQ+CjxyZWN0IHg9IjE2MCIgeT0iMTIxMiIgd2lkdGg9IjE2MCIgaGVpZ2h0PSI1NSIgZmlsbD0iIzI2NzI4ZCIvPjxyZWN0IHg9IjMyMCIgeT0iMTIxMiIgd2lkdGg9IjI0MCIgaGVpZ2h0PSI1NSIgZmlsbD0iIzk4NmMzNSIvPgo8dGV4dCB4PSIxOTMiIHk9IjEyNDciIGZpbGw9IiNmZmZmZmYiPjE2IM68QzwvdGV4dD48dGV4dCB4PSI0MDIiIHk9IjEyNDciIGZpbGw9IiNmZmZmZmYiPjI0IM68QzwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjEzMjAiPkRvcG86IGVudHJhbWJpIGEgNSBWPC90ZXh0Pgo8cmVjdCB4PSIxNjAiIHk9IjEzNDIiIHdpZHRoPSIxMDAiIGhlaWdodD0iNTUiIGZpbGw9IiMyNjcyOGQiLz48cmVjdCB4PSIyNjAiIHk9IjEzNDIiIHdpZHRoPSIzMDAiIGhlaWdodD0iNTUiIGZpbGw9IiM5ODZjMzUiLz4KPHRleHQgeD0iMTc3IiB5PSIxMzc3IiBmaWxsPSIjZmZmZmZmIj4xMCDOvEM8L3RleHQ+PHRleHQgeD0iMzcyIiB5PSIxMzc3IiBmaWxsPSIjZmZmZmZmIj4zMCDOvEM8L3RleHQ+CjxwYXRoIGQ9Ik0xNjAgMTIwMFYxNDEwTTU2MCAxMjAwVjE0MTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzhhOWE5ZiIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtZGFzaGFycmF5PSI3IDciLz4KPHRleHQgeD0iMzIiIHk9IjE0NjUiPlN0ZXNzYSBzb21tYTogNDAgzrxDLiBTdGVzc2Egc2NhbGEgZGkgY2FyaWNhLjwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjE1MTUiPkxhIHRlbnNpb25lIGZpbmFsZSDDqCB1bmEgbWVkaWEgcGVzYXRhIGNvbiBDLjwvdGV4dD4KPC9nPjwvc3ZnPgo="
+    }
+  ]
+}

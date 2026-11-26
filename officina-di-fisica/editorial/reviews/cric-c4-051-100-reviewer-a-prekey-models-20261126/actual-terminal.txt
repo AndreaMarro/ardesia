@@ -1,0 +1,232 @@
+SHARED_LOCK_ACQUIRED; free bytes 4894797824; one child
+{
+  "scope": "SOURCE_ONLY_MATHEMATICAL_PREPARATION_NOT_CANDIDATE_APPROVAL",
+  "individualSourcePrompts": 50,
+  "quantitativeResults": {
+    "C4-Q051": {
+      "exact": "3/10",
+      "unit": "A"
+    },
+    "C4-Q054": {
+      "exact": "6/5",
+      "unit": "J"
+    },
+    "C4-Q055": {
+      "exact": "6",
+      "unit": "ohm"
+    },
+    "C4-Q058": {
+      "exact": "160",
+      "unit": "ohm"
+    },
+    "C4-Q060": {
+      "exact": "2",
+      "unit": "W"
+    },
+    "C4-Q061": {
+      "exact": "6",
+      "unit": "microfarad"
+    },
+    "C4-Q064": {
+      "exact": "100",
+      "unit": "centimeter**2"
+    },
+    "C4-Q066": {
+      "exact": "30",
+      "unit": "microjoule"
+    },
+    "C4-Q068": {
+      "exact": "32",
+      "unit": "microjoule"
+    },
+    "C4-Q070": {
+      "exact": "5",
+      "unit": "V"
+    },
+    "C4-Q071": {
+      "exact": "40",
+      "unit": "microcoulomb"
+    },
+    "C4-Q074": {
+      "exact": "9/2",
+      "unit": "microfarad"
+    },
+    "C4-Q076": {
+      "exact": "9/2",
+      "unit": "microfarad"
+    },
+    "C4-Q078": {
+      "exact": "5",
+      "unit": "V"
+    },
+    "C4-Q080": {
+      "exact": "16/3",
+      "unit": "dimensionless"
+    },
+    "C4-Q082": {
+      "exact": "10",
+      "unit": "nanocoulomb"
+    },
+    "C4-Q084": {
+      "exact": "3/25",
+      "unit": "N"
+    },
+    "C4-Q086": {
+      "exact": "625",
+      "unit": "Hz"
+    },
+    "C4-Q088": {
+      "exact": "0",
+      "unit": "J"
+    },
+    "C4-Q090": {
+      "exact": "30000",
+      "unit": "m/s"
+    },
+    "C4-Q091": {
+      "exact": "3",
+      "unit": "milliweber"
+    },
+    "C4-Q094": {
+      "exact": "1/50",
+      "unit": "weber/second"
+    },
+    "C4-Q096": {
+      "exact": "1/10",
+      "unit": "V"
+    },
+    "C4-Q098": {
+      "exact": "6",
+      "unit": "millicoulomb"
+    },
+    "C4-Q100": {
+      "exact": "1",
+      "unit": "V"
+    }
+  },
+  "conceptualDerivations": 25,
+  "symbolicInvariants": {
+    "capacitor_work_integral": true,
+    "linear_dual_graph_same_area": true,
+    "node_sharing_energy_loss": true,
+    "opposite_identical_node_charges": true,
+    "magnetic_force_does_no_work": true,
+    "negative_charge_right_velocity_into_field": true,
+    "parallel_resistor_inverse": true,
+    "series_capacitor_inverse": true,
+    "shared_voltage078_between_initials": true,
+    "charge_redistribution078_balances": true,
+    "field_energy079_ratio": true,
+    "piecewise_emf100_full_interval": true
+  },
+  "pintChecks": [
+    {
+      "id": "C4-Q051",
+      "unit": "A",
+      "exactMagnitude": "3/10",
+      "ok": true
+    },
+    {
+      "id": "C4-Q054",
+      "unit": "J",
+      "exactMagnitude": "6/5",
+      "ok": true
+    },
+    {
+      "id": "C4-Q061",
+      "unit": "microfarad",
+      "exactMagnitude": "6",
+      "ok": true
+    },
+    {
+      "id": "C4-Q064",
+      "unit": "centimeter**2",
+      "exactMagnitude": "100",
+      "ok": true
+    },
+    {
+      "id": "C4-Q066",
+      "unit": "microjoule",
+      "exactMagnitude": "30",
+      "ok": true
+    },
+    {
+      "id": "C4-Q070",
+      "unit": "V**2",
+      "exactMagnitude": "25",
+      "ok": true
+    },
+    {
+      "id": "C4-Q082",
+      "unit": "nanocoulomb",
+      "exactMagnitude": "10",
+      "ok": true
+    },
+    {
+      "id": "C4-Q084",
+      "unit": "N",
+      "exactMagnitude": "3/25",
+      "ok": true
+    },
+    {
+      "id": "C4-Q086",
+      "unit": "Hz",
+      "exactMagnitude": "625",
+      "ok": true
+    },
+    {
+      "id": "C4-Q090",
+      "unit": "m/second",
+      "exactMagnitude": "30000",
+      "ok": true
+    },
+    {
+      "id": "C4-Q091",
+      "unit": "milliweber",
+      "exactMagnitude": "3",
+      "ok": true
+    },
+    {
+      "id": "C4-Q094",
+      "unit": "weber/second",
+      "exactMagnitude": "1/50",
+      "ok": true
+    },
+    {
+      "id": "C4-Q096",
+      "unit": "V",
+      "exactMagnitude": "1/10",
+      "ok": true
+    },
+    {
+      "id": "C4-Q098",
+      "unit": "millicoulomb",
+      "exactMagnitude": "6",
+      "ok": true
+    },
+    {
+      "id": "C4-Q100",
+      "unit": "V",
+      "exactMagnitude": "1",
+      "ok": true
+    }
+  ],
+  "candidateExposure": "NONE",
+  "originalKeyExposureExceptions": [
+    {
+      "id": "C4-Q091",
+      "context": "Earlier legacy editions-preservation test showed value3 before this assignment; all calculations here derived from prompt, independent A source-only compensation requested"
+    }
+  ],
+  "scientificQuestionCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "reviewerCandidateExposure": "NONE_BEFORE_THIS_EXECUTION",
+  "finiteExactRejections": 81,
+  "signedPhysicalCases": 5,
+  "rootQ091ExposureRetained": true,
+  "AQ091CompensationCommit": "db4f4c7e",
+  "candidateApproval": false,
+  "wallSeconds": 1.2109248638153076
+}
+CHILD_EXIT 0; free bytes 4898623488

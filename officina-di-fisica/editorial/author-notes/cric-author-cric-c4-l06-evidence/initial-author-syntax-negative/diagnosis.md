@@ -1,0 +1,1 @@
+Initial author assembly failed before candidate generation: a prime apostrophe closed a raw Python string. The formula was changed to a final-current subscript. This is a genuine syntax negative and grants no import, native or scientific credit.

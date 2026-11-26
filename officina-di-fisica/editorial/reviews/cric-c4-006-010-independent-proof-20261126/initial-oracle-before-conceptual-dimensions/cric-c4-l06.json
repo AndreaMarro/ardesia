@@ -1,0 +1,392 @@
+{
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "C4-Q051",
+      "sourceSha256": "33c93b00f33d875bea4b129cb676e72313679f27ffe1055b9dd72c30f8084598",
+      "candidateSha256": "e4f99103d8851fd475116c7668ccfffd02fce973732fc4145e4518a80ba40d23",
+      "reviewedSignature": "4961d6ec4f9ab5bf3bcb6906d67d1356361eb4d58a54936c26a0a90c723d7072",
+      "assetChecksums": {
+        "cric-c4-l06-progressive.svg": "918d529a9d020e8ad3b5cddbb6176829b743e3067c453e78660beefc6cc394a6"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "3/10",
+      "dimension": {
+        "[current]": "1"
+      },
+      "manualArithmetic": "Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: I rami hanno la stessa tensione, quindi le conduttanze si sommano:\n1/Rp=1/30+1/60=3/60=1/20, Rp=20Ω. Il resistore da 10Ω è attraversato dalla corrente\ntotale e si somma a Rp: Rtot=30Ω. Ohm dà I=9/30=3/10 A=0,3 A. Non si sommano tutti\ne tre i resistori: i primi due condividono i nodi.",
+      "physicalAssumptions": "Resistori positivi ohmici, due nodi comuni al parallelo e tratto esterno attraversato dalla corrente totale; generatore ideale 9 V.",
+      "distractors": "0,09 A somma i tre R; 0,45 omette 10 Ω; 0,90 usa soltanto 10 Ω; 3 A richiederebbe Rtot=3 Ω<10 Ω.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: I rami hanno la stessa tensione, quindi le conduttanze si sommano:\n1/Rp=1/30+1/60=3/60=1/20, Rp=20Ω. Il resistore da 10Ω è attraversato dalla corrente\ntotale e si somma a Rp: Rtot=30Ω. Ohm dà I=9/30=3/10 A=0,3 A. Non si sommano tutti\ne tre i resistori: i primi due condividono i nodi.",
+      "scientificAssetReview": "Figura candidata letta integralmente XML e in nuovo native indipendente completo640×altezza, processo reale0; proporzioni, unità, origini e segni verificati separatamente per ciascun pannello. Diciotto SVG originali fonte letti integralmente XML. Due fix testuali non cambiano alcun asset; nessun ritag di UIprodotto.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c4_051_100_root_review_models.py": "54feebef9c27dcd1abb5ca7b60499594514b36d2a229a6dfd3ea98c651fc6867",
+        "cric_c4_electromagnetism_review_common_a.py": "2244019670f64f1fe1ec76a1657fcf51af067e60878b4757914d923c82a06a7f",
+        "cric_c4_electromagnetism_review_evidence_a.py": "b799f6d10cfc843c708cdbd1bf6f0164299188c206f7f37e8697e32ab757c08c",
+        "cric_c4_electromagnetism_review_models_a.py": "85f9af0afbc0ae2a4dc782bebab47ff57b98b325be911b607628988d998b3eb1",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C4-Q052",
+      "sourceSha256": "91458eb93fbb6a1ed18ce513535ea091c6611dcc38f3032d08e20aa60c059b58",
+      "candidateSha256": "b4231affe1dc066d3b8914bca8e9a5677a184e1e20f13026f2ee02be45beca32",
+      "reviewedSignature": "41208aa6a0f1395a0155950f6c86b24c7d45763545b833dff3949a9bd9b92551",
+      "assetChecksums": {
+        "cric-c4-l06-progressive.svg": "918d529a9d020e8ad3b5cddbb6176829b743e3067c453e78660beefc6cc394a6"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Il resistore di valore minore",
+      "dimension": {},
+      "manualArithmetic": "Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: A tensione fissata P=VI e I=V/R, dunque P=V²/R. Per R positive diverse\ne **V non nulla**, il resistore minore dissipa di più. Se V=0 entrambe le potenze\nsono nulle: rendere esplicita la tensione non nulla se si chiede un confronto\nstrettamente maggiore. La regola P=I²R non autorizza a tenere uguale I nei rami.",
+      "physicalAssumptions": "Due resistenze positive diverse, tensione comune NON NULLA; nessuna corrente comune assunta nei rami.",
+      "distractors": "A V comune P inversa a R: usare soltanto I²R dimentica correnti diverse; V=0 è escluso.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: A tensione fissata P=VI e I=V/R, dunque P=V²/R. Per R positive diverse\ne **V non nulla**, il resistore minore dissipa di più. Se V=0 entrambe le potenze\nsono nulle: rendere esplicita la tensione non nulla se si chiede un confronto\nstrettamente maggiore. La regola P=I²R non autorizza a tenere uguale I nei rami.",
+      "scientificAssetReview": "Figura candidata letta integralmente XML e in nuovo native indipendente completo640×altezza, processo reale0; proporzioni, unità, origini e segni verificati separatamente per ciascun pannello. Diciotto SVG originali fonte letti integralmente XML. Due fix testuali non cambiano alcun asset; nessun ritag di UIprodotto.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c4_051_100_root_review_models.py": "54feebef9c27dcd1abb5ca7b60499594514b36d2a229a6dfd3ea98c651fc6867",
+        "cric_c4_electromagnetism_review_common_a.py": "2244019670f64f1fe1ec76a1657fcf51af067e60878b4757914d923c82a06a7f",
+        "cric_c4_electromagnetism_review_evidence_a.py": "b799f6d10cfc843c708cdbd1bf6f0164299188c206f7f37e8697e32ab757c08c",
+        "cric_c4_electromagnetism_review_models_a.py": "85f9af0afbc0ae2a4dc782bebab47ff57b98b325be911b607628988d998b3eb1",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C4-Q053",
+      "sourceSha256": "b2c5acfcaa0b892739da21a676b25fc228774b9b5c52246bc0409cc8cc68d199",
+      "candidateSha256": "4362f99ddeaf5e2fe21a9c01612546363b2dcb40bd582bdbc4178ab8d06ef337",
+      "reviewedSignature": "fb51ebfedcac816ec9bc9ee240184c77082a5720479c3498eeebced4b6b229b5",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Nodo",
+      "dimension": {},
+      "manualArithmetic": "Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: Il nome è nodo. Un filo ideale non presenta caduta di potenziale:\ntutti gli estremi collegati da quel filo appartengono allo stesso nodo\nequipotenziale, anche se il disegno li dispone lontani.",
+      "physicalAssumptions": "Estremi connessi esclusivamente da filo ideale, nessun componente interposto; potenziale comune.",
+      "distractors": "Maglia è percorso chiuso, equivalente è risposta ai morsetti e generatore è componente, non insieme equipotenziale.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: Il nome è nodo. Un filo ideale non presenta caduta di potenziale:\ntutti gli estremi collegati da quel filo appartengono allo stesso nodo\nequipotenziale, anche se il disegno li dispone lontani.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c4_051_100_root_review_models.py": "54feebef9c27dcd1abb5ca7b60499594514b36d2a229a6dfd3ea98c651fc6867",
+        "cric_c4_electromagnetism_review_common_a.py": "2244019670f64f1fe1ec76a1657fcf51af067e60878b4757914d923c82a06a7f",
+        "cric_c4_electromagnetism_review_evidence_a.py": "b799f6d10cfc843c708cdbd1bf6f0164299188c206f7f37e8697e32ab757c08c",
+        "cric_c4_electromagnetism_review_models_a.py": "85f9af0afbc0ae2a4dc782bebab47ff57b98b325be911b607628988d998b3eb1",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C4-Q054",
+      "sourceSha256": "5fb6403eacdf6979f09a0420d5e666d63dc77ed0cb32193d6738e6536a1c3559",
+      "candidateSha256": "8bcd6166c7263c5085242f8a436462d9a24f38cfb74cd144db21d9f067c9986d",
+      "reviewedSignature": "8c607bc176e2f2d4d26018667cd8a588492fe9b3cc332f77c3e3850c7274238b",
+      "assetChecksums": {
+        "cric-c4-l06-progressive.svg": "918d529a9d020e8ad3b5cddbb6176829b743e3067c453e78660beefc6cc394a6"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "6/5",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2"
+      },
+      "manualArithmetic": "Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: I=20 mA=20/1000 A=1/50 A. La potenza Joule è I²R=(1/2500)100=1/25 W.\nPer 30 s l’energia è E=Pt=30/25=6/5 J=1,2 J. Il quadrato riguarda anche il fattore\ndi conversione milli; non si moltiplica semplicemente I per R per ottenere energia.",
+      "physicalAssumptions": "Corrente costante 20 mA, resistenza invariata 100 Ω, intera durata 30 s; energia elettrica trasformata distinta dalla potenza.",
+      "distractors": "0,040 J copia la potenza numerica; 1200000 J usa 20 A; 1200 J ha errore mille, 60 J non soddisfa I²Rt.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: I=20 mA=20/1000 A=1/50 A. La potenza Joule è I²R=(1/2500)100=1/25 W.\nPer 30 s l’energia è E=Pt=30/25=6/5 J=1,2 J. Il quadrato riguarda anche il fattore\ndi conversione milli; non si moltiplica semplicemente I per R per ottenere energia.",
+      "scientificAssetReview": "Figura candidata letta integralmente XML e in nuovo native indipendente completo640×altezza, processo reale0; proporzioni, unità, origini e segni verificati separatamente per ciascun pannello. Diciotto SVG originali fonte letti integralmente XML. Due fix testuali non cambiano alcun asset; nessun ritag di UIprodotto.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c4_051_100_root_review_models.py": "54feebef9c27dcd1abb5ca7b60499594514b36d2a229a6dfd3ea98c651fc6867",
+        "cric_c4_electromagnetism_review_common_a.py": "2244019670f64f1fe1ec76a1657fcf51af067e60878b4757914d923c82a06a7f",
+        "cric_c4_electromagnetism_review_evidence_a.py": "b799f6d10cfc843c708cdbd1bf6f0164299188c206f7f37e8697e32ab757c08c",
+        "cric_c4_electromagnetism_review_models_a.py": "85f9af0afbc0ae2a4dc782bebab47ff57b98b325be911b607628988d998b3eb1",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C4-Q055",
+      "sourceSha256": "7da43763703b77e772cedfd8869313895997c5b339defd3a1eab2fd30ed7ff89",
+      "candidateSha256": "00df52d8309f0c99d3da5d8e9f5d1c7672c10eb5f538b22d0cc075d020169d80",
+      "reviewedSignature": "15443c294077de48bd1a420dd1d6a6836c8517ecf9aee7939cbf3d28da0fbb86",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "6",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3",
+        "[current]": "-2"
+      },
+      "manualArithmetic": "Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: Dal parallelo 1/4=1/12+1/Rx. Sottraggo: 1/Rx=3/12−1/12=2/12=1/6.\nQuindi Rx=6Ω. Controllo: l’equivalente 4Ω è minore di entrambi i resistori\npositivi 6 e 12Ω. La formula inversa è Rx=Req R/(R−Req), con 0<Req<R.",
+      "physicalAssumptions": "Due rami passivi positivi; equivalente 4 Ω minore del ramo noto 12 Ω; residuo di conduttanza positivo.",
+      "distractors": "8 Ω usa sottrazione da serie, 1/6 copia conduttanza in siemens; 12·6/18=4 controlla l’inversa.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: Dal parallelo 1/4=1/12+1/Rx. Sottraggo: 1/Rx=3/12−1/12=2/12=1/6.\nQuindi Rx=6Ω. Controllo: l’equivalente 4Ω è minore di entrambi i resistori\npositivi 6 e 12Ω. La formula inversa è Rx=Req R/(R−Req), con 0<Req<R.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c4_051_100_root_review_models.py": "54feebef9c27dcd1abb5ca7b60499594514b36d2a229a6dfd3ea98c651fc6867",
+        "cric_c4_electromagnetism_review_common_a.py": "2244019670f64f1fe1ec76a1657fcf51af067e60878b4757914d923c82a06a7f",
+        "cric_c4_electromagnetism_review_evidence_a.py": "b799f6d10cfc843c708cdbd1bf6f0164299188c206f7f37e8697e32ab757c08c",
+        "cric_c4_electromagnetism_review_models_a.py": "85f9af0afbc0ae2a4dc782bebab47ff57b98b325be911b607628988d998b3eb1",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C4-Q056",
+      "sourceSha256": "430cff1443f49e54336da77279052cd4f517dccd3992cee6128d4c2a152b9800",
+      "candidateSha256": "cca9c1a31f15778d0e9de75b8427a1b9cd824f7a290bf80d2bf0b2b471048e1a",
+      "reviewedSignature": "10c37f3aff5ccee71494658feaf910d6f797c4b2960db1574ad3b6cfe667aeee",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Resta uguale",
+      "dimension": {},
+      "manualArithmetic": "Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: La sorgente ideale mantiene V; il resistore rimasto mantiene R.\nLa sua corrente V/R non cambia. Cambiano la corrente totale e la potenza totale\nerogate dalla sorgente, non la tensione del ramo superstite. La conclusione\nrichiede il generatore ideale, non una batteria con resistenza interna arbitraria.",
+      "physicalAssumptions": "Generatore ideale mantiene V e ramo superstite mantiene R; apertura soltanto dell’altro ramo.",
+      "distractors": "Raddoppio/dimezzamento richiedono cambio V o R; apertura di un ramo non apre il superstite né conserva corrente totale.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: La sorgente ideale mantiene V; il resistore rimasto mantiene R.\nLa sua corrente V/R non cambia. Cambiano la corrente totale e la potenza totale\nerogate dalla sorgente, non la tensione del ramo superstite. La conclusione\nrichiede il generatore ideale, non una batteria con resistenza interna arbitraria.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c4_051_100_root_review_models.py": "54feebef9c27dcd1abb5ca7b60499594514b36d2a229a6dfd3ea98c651fc6867",
+        "cric_c4_electromagnetism_review_common_a.py": "2244019670f64f1fe1ec76a1657fcf51af067e60878b4757914d923c82a06a7f",
+        "cric_c4_electromagnetism_review_evidence_a.py": "b799f6d10cfc843c708cdbd1bf6f0164299188c206f7f37e8697e32ab757c08c",
+        "cric_c4_electromagnetism_review_models_a.py": "85f9af0afbc0ae2a4dc782bebab47ff57b98b325be911b607628988d998b3eb1",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C4-Q057",
+      "sourceSha256": "5d273a6cd0838cce05265c2a1091c4d40bc76a2b60530efee182bef4bf8e51b9",
+      "candidateSha256": "7ca835b3827a34c3c6dcd97a4d19c2fd74cf87c62780369dd6f5f398a2bf4988",
+      "reviewedSignature": "fb8baa765e6b64ebdeb3e36925913c5283e8279171ddc4341bbade4c2c0fb4e4",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Effetto Joule",
+      "dimension": {},
+      "manualArithmetic": "Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: Effetto Joule: l’energia elettrica ricevuta dal resistore si\ntrasferisce alla sua energia interna. L’energia totale non scompare.",
+      "physicalAssumptions": "Resistore dissipativo; energia interna e trasferimento all’ambiente distinti; regime termico stazionario non elimina potenza.",
+      "distractors": "Fotoelettrico è emissione sotto luce; Faraday è induzione; dissipazione non annulla conservazione energetica completa.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: Effetto Joule: l’energia elettrica ricevuta dal resistore si\ntrasferisce alla sua energia interna. L’energia totale non scompare.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c4_051_100_root_review_models.py": "54feebef9c27dcd1abb5ca7b60499594514b36d2a229a6dfd3ea98c651fc6867",
+        "cric_c4_electromagnetism_review_common_a.py": "2244019670f64f1fe1ec76a1657fcf51af067e60878b4757914d923c82a06a7f",
+        "cric_c4_electromagnetism_review_evidence_a.py": "b799f6d10cfc843c708cdbd1bf6f0164299188c206f7f37e8697e32ab757c08c",
+        "cric_c4_electromagnetism_review_models_a.py": "85f9af0afbc0ae2a4dc782bebab47ff57b98b325be911b607628988d998b3eb1",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C4-Q058",
+      "sourceSha256": "5cc8ca1c3660dc7fcffc239c35dd4c88e9017acf93955233b0033d23e190ab6c",
+      "candidateSha256": "3050404b6c1430285e052e72b43e7f8d5764292fafef612443eac2ebdc845038",
+      "reviewedSignature": "82d410f144006f2f0757a9bd405545c75aa09aee96b57c9c40c7b3f5ed215619",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "160",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3",
+        "[current]": "-2"
+      },
+      "manualArithmetic": "Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: Nei due resistori in serie passa la stessa corrente: I=4/80=1/20 A.\nSul secondo devono cadere 12−4=8 V. Pertanto R₂=8/(1/20)=160Ω. Il rapporto delle\ntensioni 8/4=2 coincide con quello delle resistenze 160/80=2.",
+      "physicalAssumptions": "Serie senza derivazioni, sorgente ideale 12 V, prima caduta 4 V su 80 Ω; corrente comune positiva.",
+      "distractors": "240 Ω assegna tutti 12 V al secondo; 40 Ω inverte le cadute; 12/(80+160)=1/20 A ricostruisce 4 V.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: Nei due resistori in serie passa la stessa corrente: I=4/80=1/20 A.\nSul secondo devono cadere 12−4=8 V. Pertanto R₂=8/(1/20)=160Ω. Il rapporto delle\ntensioni 8/4=2 coincide con quello delle resistenze 160/80=2.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c4_051_100_root_review_models.py": "54feebef9c27dcd1abb5ca7b60499594514b36d2a229a6dfd3ea98c651fc6867",
+        "cric_c4_electromagnetism_review_common_a.py": "2244019670f64f1fe1ec76a1657fcf51af067e60878b4757914d923c82a06a7f",
+        "cric_c4_electromagnetism_review_evidence_a.py": "b799f6d10cfc843c708cdbd1bf6f0164299188c206f7f37e8697e32ab757c08c",
+        "cric_c4_electromagnetism_review_models_a.py": "85f9af0afbc0ae2a4dc782bebab47ff57b98b325be911b607628988d998b3eb1",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C4-Q059",
+      "sourceSha256": "5fe13ec69c5407693cde2c98cfb36e005583e7376db81316ce6f293892cb2a49",
+      "candidateSha256": "2a778a82073da65219b34943e484ff99241ef846c4ae23f15d9826197bff6521",
+      "reviewedSignature": "a3a4565bf2d3e15f4f8e5dfa10a04fc9acde988d6a4d9874e038878eae499ebe",
+      "assetChecksums": {
+        "cric-c4-l06-progressive.svg": "918d529a9d020e8ad3b5cddbb6176829b743e3067c453e78660beefc6cc394a6"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Entrambi i terminali corrispondenti appartengono agli stessi due nodi",
+      "dimension": {},
+      "manualArithmetic": "Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: Occorre seguire i fili: entrambi i resistori devono avere i due\nestremi collegati alla stessa coppia di nodi. Vicinanza, altezza o orientamento\ngrafico non stabiliscono il collegamento elettrico.",
+      "physicalAssumptions": "Connettività di entrambi i terminali alla stessa coppia di nodi, senza inferenza dalla vicinanza grafica.",
+      "distractors": "Un solo terminale comune, valore uguale e posizione grafica non impongono entrambi i nodi.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: Occorre seguire i fili: entrambi i resistori devono avere i due\nestremi collegati alla stessa coppia di nodi. Vicinanza, altezza o orientamento\ngrafico non stabiliscono il collegamento elettrico.",
+      "scientificAssetReview": "Figura candidata letta integralmente XML e in nuovo native indipendente completo640×altezza, processo reale0; proporzioni, unità, origini e segni verificati separatamente per ciascun pannello. Diciotto SVG originali fonte letti integralmente XML. Due fix testuali non cambiano alcun asset; nessun ritag di UIprodotto.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c4_051_100_root_review_models.py": "54feebef9c27dcd1abb5ca7b60499594514b36d2a229a6dfd3ea98c651fc6867",
+        "cric_c4_electromagnetism_review_common_a.py": "2244019670f64f1fe1ec76a1657fcf51af067e60878b4757914d923c82a06a7f",
+        "cric_c4_electromagnetism_review_evidence_a.py": "b799f6d10cfc843c708cdbd1bf6f0164299188c206f7f37e8697e32ab757c08c",
+        "cric_c4_electromagnetism_review_models_a.py": "85f9af0afbc0ae2a4dc782bebab47ff57b98b325be911b607628988d998b3eb1",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C4-Q060",
+      "sourceSha256": "13c1736cbd03d416305d47ec064c7783e57d2bb709655b3eaf9451940085b308",
+      "candidateSha256": "01d7ae86e4e80241f55cd5e3af2814f01e3d5bce71ad8ee1ee9be810e2166ccc",
+      "reviewedSignature": "5482cd0b53a871eea69fd8269f0e80566c00a6251289ebe72f7937194dd9a747",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3"
+      },
+      "manualArithmetic": "Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: Per R costante, P=V²/R. Dimezzare V moltiplica P per(1/2)²=1/4:\n8 W diventano 2 W. Anche I si dimezza; il prodotto VI diventa un quarto.",
+      "physicalAssumptions": "Resistenza ohmica invariata; modulo V finale metà e potenza iniziale positiva 8 W.",
+      "distractors": "4 W assume legge lineare; 32 W inverte rapporto al quadrato; 8 W ignora variazione di V.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: Per R costante, P=V²/R. Dimezzare V moltiplica P per(1/2)²=1/4:\n8 W diventano 2 W. Anche I si dimezza; il prodotto VI diventa un quarto.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c4_051_100_root_review_models.py": "54feebef9c27dcd1abb5ca7b60499594514b36d2a229a6dfd3ea98c651fc6867",
+        "cric_c4_electromagnetism_review_common_a.py": "2244019670f64f1fe1ec76a1657fcf51af067e60878b4757914d923c82a06a7f",
+        "cric_c4_electromagnetism_review_evidence_a.py": "b799f6d10cfc843c708cdbd1bf6f0164299188c206f7f37e8697e32ab757c08c",
+        "cric_c4_electromagnetism_review_models_a.py": "85f9af0afbc0ae2a4dc782bebab47ff57b98b325be911b607628988d998b3eb1",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "e1b86a8cba0e282b858e90f157e61202cf7a9b7618b5118b8c831d0410477c85",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "publicationAction": "NONE",
+  "reviewedCandidateCommit": "ffd2c9ada4af36ff2f4d2f3e063ba0bcdcdda85e",
+  "packageSha256": "7f1d36cf6232f007b5738cae3804d9e1af31002591a11725e5f0c99bcda9518f",
+  "bindingsSha256": "04dd3c5b28bdbf3b68886f1f37fe8e63fa4cf37b70f413a29f3003efad0f5b03",
+  "sourceFirstPrimarySha256": "e1c568e8028077a8be767b8d73cb00583dbd9d93e66240fe6d428d7184339653",
+  "source": {
+    "commit": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "path": "officina-di-fisica/content/C4.json",
+    "reference": "Primaria e modello Root487d68fc precedenti alle candidate B; exposure RootQ091 mantenuta e compensazione source-only distinta A db4f4c7e. A ha riletto/risolto tutti50 prompt in83337ef8 prima di aprire il modello Root e le candidate. Boundary esatto e modello eseguiti realmente in2bd7ec24 prima della prima lettura delle candidate. Successivamente tutti50 originali completi, tutti50 candidati e cinque XML/native indipendenti interi letti;18SVG fonte e lezioni reali L06–L10 letti integralmente. UI prodotto e human NOT_RUN."
+  }
+}

@@ -1,0 +1,60 @@
+"""Ten distinct Cric capacitor networks and charge-sharing preparations."""
+from .vector_geometry_authoring import assemble_family, write_family
+SOURCE_IDS=[f'C4-Q{i:03}' for i in range(71,81)]
+TASKS=[
+('La carica fornita a tre capacità parallele','Tre condensatori inizialmente scarichi da 2 μF, 3 μF e 5 μF vengono collegati in parallelo a un generatore ideale da 4 V. Dopo la carica, quanta carica ha fornito il generatore al nodo positivo, in microcoulomb?',40,
+ 'I tre condensatori vedono gli stessi 4 V. Le cariche sulle armature del nodo positivo sono rispettivamente 8, 12 e 20 μC. Sommarle dà 40 μC. Posso anche sommare prima le capacità: 2+3+5=10 μF, poi moltiplicare per 4 V. La preparazione scarica rende questa carica finale anche la carica fornita durante il processo.',
+ r'C_p=(2+3+5)\,\mu\mathrm F\qquad C_p=10\,\mu\mathrm F\qquad Q_{+}=C_pV\qquad Q_{+}=40\,\mu\mathrm C',
+ '10 copia il valore numerico della capacità totale in microfarad senza moltiplicare per la tensione. 80 μC sommerebbe i moduli su entrambi i nodi e conterebbe due volte la separazione. Zero è la carica algebrica di tutte le armature insieme, non quella del nodo positivo.',
+ 'Somma soltanto le armature che appartengono al nodo richiesto.'),
+('Dove cade più tensione nella serie','Due condensatori ideali di capacità positive diverse sono in serie. Il nodo centrale è isolato e inizialmente neutro. Dopo la carica, ciascun condensatore porta lo stesso modulo Q>0. Quale sostiene il modulo di tensione maggiore?', ['Quello di capacità minore','Quello di capacità maggiore','Entrambi necessariamente uguale','Quello disegnato più in basso','Quello più vicino al morsetto positivo indipendentemente da C'],
+ 'La neutralità conservata del nodo intermedio rende uguali i moduli delle cariche di serie. Per ciascun condensatore il modulo della tensione è Q/C. Poiché Q è comune e non nullo, dividere per una capacità minore dà una tensione maggiore. La posizione del simbolo sul foglio non entra nella relazione.',
+ r'|V_1|=\frac{Q}{C_1}\qquad |V_2|=\frac{Q}{C_2}\qquad \frac{|V_1|}{|V_2|}=\frac{C_2}{C_1}',
+ 'In parallelo sarebbe comune la tensione e diversa la carica; qui vale il vincolo della serie. Se Q fosse nullo entrambe le tensioni sarebbero zero e il confronto stretto non varrebbe: la condizione Q>0 lo esclude.',
+ 'Determina prima quale grandezza è comune, poi confronta i denominatori.'),
+('Il nodo intermedio conserva una somma','Il nodo intermedio di due condensatori ideali in serie è isolato e inizialmente neutro. Quale grandezza algebrica totale di quel nodo si conserva durante la carica?', ['La carica elettrica totale','Il modulo della tensione di ciascun condensatore','L’energia di ciascun condensatore','La corrente di conduzione attraverso il dielettrico, non nulla','La capacità equivalente deve restare zero'],
+ 'Si conserva la carica algebrica totale del nodo intermedio. Nel modello ideale nessuna carica libera attraversa i dielettrici per entrare o uscire da quel gruppo di armature. Essendo inizialmente zero, la somma resta zero: sulle due facce interne si hanno cariche opposte con uguale modulo. Non si sta dicendo che ogni armatura rimanga individualmente scarica.',
+ r'Q_{\rm nodo,i}=0\qquad Q_{\rm nodo,f}=0\qquad Q_{a}+Q_{b}=0',
+ 'L’energia dei condensatori cresce durante la carica e le tensioni possono essere diverse. Il dielettrico ideale non conduce una corrente continua non nulla; attribuirgliela contraddice l’isolamento del nodo usato nel ragionamento.',
+ 'Considera come unico sistema le due armature interne collegate dal filo.'),
+('Un’incognita nella serie capacitiva','Un condensatore da 9 μF è in serie con uno ignoto, con nodo intermedio neutro e isolato. L’equivalente positiva è 3 μF. Qual è la capacità ignota?', ['4,5 μF','6 μF','12 μF','2/9 μF','27 μF'],
+ 'Per la serie sommo i reciproci. Isolo 1/C_x=1/(3 μF)−1/(9 μF): il risultato è 2/9 (μF)⁻¹. Il reciproco dà C_x=9/2 μF, cioè 4,5 μF. L’equivalente 3 μF è minore di entrambe le capacità, come deve accadere in una serie di componenti positivi.',
+ r'\frac1{C_x}=\frac1{C_{\rm eq}}-\frac1{C_1}\qquad \frac1{C_x}=\frac29(\mu\mathrm F)^{-1}\qquad C_x=\frac92\,\mu\mathrm F',
+ '6 μF sottrarrebbe direttamente 9−3, come se si trattasse di una somma semplice. 12 μF farebbe la somma diretta. 2/9 μF copia il coefficiente del reciproco ma gli assegna l’unità di capacità. Il controllo 9·(9/2)/(9+9/2)=3 ricostruisce l’equivalente.',
+ 'L’ultimo passaggio inverte sia il numero sia l’unità.'),
+('Collegare polarità opposte','Due condensatori identici con C>0 sono caricati separatamente allo stesso modulo V>0 e poi scollegati dalle sorgenti. Si collega la piastra positiva di ciascuno alla negativa dell’altro. Collegamenti con resistenza positiva permettono al transitorio di esaurirsi. Qual è il modulo della tensione comune finale?', ['Zero','2V','V','V/2','Un valore fissato dalla sola resistenza dei fili'],
+ 'Ogni nuovo nodo isolato contiene inizialmente +CV e −CV. La sua carica netta è dunque zero e resta tale. La capacità fra i due nodi è 2C>0; la relazione Q_nodo=2CV_f impone V_f=0. L’energia iniziale del campo viene trasferita ai collegamenti e all’ambiente nel transitorio reale, non resta nel campo elettrostatico finale.',
+ r'Q_{\rm nodo}=CV-CV\qquad Q_{\rm nodo}=0\qquad (2C)V_f=0\qquad V_f=0',
+ '2V sommerebbe tensioni senza rispettare le nuove polarità dei nodi. V/2 è il caso diverso di un condensatore carico collegato a uno identico scarico. La resistenza influisce sul transitorio ma non crea una carica netta finale nel nodo isolato.',
+ 'Disegna i nuovi nodi e somma le cariche con i loro segni prima di dividere per la capacità.'),
+('Un parallelo seguito da una serie','Due condensatori da 3 μF e 6 μF sono in parallelo. Il loro gruppo è in serie con 9 μF; il nodo intermedio è neutro e isolato. Qual è la capacità equivalente ai morsetti esterni?', ['4,5 μF','18 μF','9 μF','2 μF','3 μF'],
+ 'Riduco prima il gruppo parallelo, che vale 3+6=9 μF. Restano due capacità uguali da 9 μF in serie. I loro reciproci si sommano a 2/9 (μF)⁻¹ e l’equivalente è 9/2 μF, cioè 4,5 μF. Il blocco interno è stato sostituito mantenendo i medesimi morsetti.',
+ r'C_p=(3+6)\,\mu\mathrm F\qquad C_p=9\,\mu\mathrm F\qquad C_{\rm eq}=\frac{9\cdot9}{9+9}\,\mu\mathrm F\qquad C_{\rm eq}=\frac92\,\mu\mathrm F',
+ '18 μF sommerebbe anche la serie come un parallelo. 2 μF è invece la serie dei soli 3 e 6 μF, che qui condividono entrambi i nodi. 9 μF ometterebbe l’effetto del secondo gruppo in serie.',
+ 'Riduci un sottogruppo alla volta, conservando i suoi nodi esterni.'),
+('Il nome della connessione a due nodi comuni','Due condensatori hanno una coppia di armature sul nodo A e l’altra coppia sul nodo B, senza componenti intermedi nei collegamenti. Come si chiama questa connessione?', ['Parallelo','Serie','Cortocircuito necessario di ogni condensatore','Nodo unico senza differenza di potenziale possibile','Connessione definita dalla sola uguaglianza delle capacità'],
+ 'È un parallelo: ciascun componente è collegato fra A e B e ha la stessa differenza di potenziale V_A−V_B. I due nodi restano distinti. Le capacità possono avere valori diversi; con tensione non nulla le cariche sono proporzionali ai rispettivi valori di C.',
+ r'V_1=V_A-V_B\qquad V_2=V_A-V_B',
+ 'In una serie i componenti condividono soltanto il nodo intermedio, non entrambi gli estremi. Essere sul medesimo nodo con una sola armatura non basta a imporre l’altra connessione. Non è necessario che le capacità siano uguali.',
+ 'Controlla i due terminali di ogni simbolo, non soltanto quelli superiori.'),
+('Una tensione finale pesata con le capacità','Due condensatori lineari da 2 μF a 8 V e 6 μF a 4 V vengono scollegati dalle sorgenti e poi connessi in parallelo con le armature positive insieme. Il transitorio si esaurisce tramite collegamenti resistivi. Trova il modulo della tensione comune finale in volt.',5,
+ 'La carica del nodo positivo si conserva: 2·8+6·4=16+24=40 μC. La capacità finale fra i due nodi è 8 μF; quindi V_f=40/8=5 V. Il risultato è compreso fra 4 e 8 V ed è più vicino a 4 V, perché la capacità inizialmente a quel potenziale è maggiore.',
+ r'Q_{+}=(2\cdot8+6\cdot4)\,\mu\mathrm C\qquad Q_{+}=40\,\mu\mathrm C\qquad V_f=\frac{40}{2+6}\,\mathrm V\qquad V_f=5\,\mathrm V',
+ '6 V è la media semplice delle due tensioni e vale solo con capacità uguali. 12 V sommerebbe tensioni di una preparazione che ora è in parallelo. La conservazione dell’energia del solo campo non sostituisce la conservazione della carica del nodo durante il transitorio resistivo.',
+ 'Somma prima le cariche algebriche; la capacità totale entra al denominatore dopo.'),
+('Carica conservata, energia del campo ridotta','Un condensatore di capacità C>0 è carico a V>0. Lo si isola dalla sorgente e lo si collega in parallelo a uno identico inizialmente scarico, con resistenza positiva nei collegamenti. Dopo il transitorio la tensione è V/2. Come cambia l’energia totale dei due campi?', ['Si dimezza','Resta invariata','Raddoppia','Si annulla','Diventa negativa'],
+ 'All’inizio l’energia è C V²/2. Alla fine entrambi i condensatori hanno tensione V/2, quindi la capacità totale 2C accumula (2C)(V/2)²/2=C V²/4. È la metà del valore iniziale. La carica resta conservata sui nodi isolati, ma la diminuzione dell’energia del campo diventa altra energia durante il transitorio.',
+ r'U_i=\frac12 CV^2\qquad U_f=\frac12(2C)\left(\frac V2\right)^2\qquad \frac{U_f}{U_i}=\frac12',
+ 'La carica conservata non impone energia del campo conservata: U contiene il quadrato della tensione. Il raddoppio della capacità non basta perché la tensione si dimezza. Il finale resta positivo, essendo C e V iniziali positivi.',
+ 'Conta entrambe le capacità nel finale e poi applica il quadrato alla tensione dimezzata.'),
+('Confrontare due topologie con gli stessi componenti','Due condensatori da 4 μF e 12 μF possono essere preparati in parallelo oppure in serie con nodo intermedio neutro e isolato. Qual è il rapporto adimensionale C_p/C_s?', ['16/3','3/16','4','16','3'],
+ 'In parallelo la somma dà C_p=16 μF. In serie il prodotto diviso la somma dà C_s=48/16 μF=3 μF. Nel rapporto le unità si cancellano e resta 16/3. Mantengo la frazione esatta: non occorre una divisione decimale periodica e la risposta è selezionabile senza calcolatrice.',
+ r'C_p=16\,\mu\mathrm F\qquad C_s=3\,\mu\mathrm F\qquad \frac{C_p}{C_s}=\frac{16}{3}',
+ '3/16 inverte l’ordine richiesto. 4 è il rapporto fra le due capacità individuali, non fra gli equivalenti. 16 e 3 copiano separatamente i valori numerici dei due equivalenti in microfarad senza formarne il quoziente.',
+ 'Calcola separatamente i due equivalenti e mantieni il rapporto come frazione.')]
+CHOICES={n:0 for n,t in enumerate(TASKS,1) if isinstance(t[2],list)}
+UNITS={1:'μC',8:'V'}
+FIGURES={1:'Il primo pannello collega le tre capacità agli stessi nodi A e B. In questa preparazione partono scariche e il generatore le carica a 4 V.',4:'Il pannello centrale confronta alla stessa scala le capacità di 9 μF, 4,5 μF e la loro equivalente di serie di 3 μF. L’equivalente è minore di entrambe.',8:'L’ultimo pannello segue la carica del nodo positivo in Q078. La carica totale è 40 μC sia prima sia dopo: inizialmente 16+24, infine 10+30 μC. Le barre hanno la stessa origine e scala.'}
+def assemble(repo,source_ref):
+ return assemble_family(repo,source_ref,'cric-c4-l08',TASKS,CHOICES,UNITS,'cric-c4-l08-progressive.svg',FIGURES,0,course='C4',source_origin='cric',source_ids=SOURCE_IDS,source_path='officina-di-fisica/content/C4.json',skill='C4-L08',section='Mettere insieme i condensatori',coverage=['Topologia e neutralità dei nodi','Equivalenti e inverse','Carica conservata e transitori dissipativi'],overrides={n:{'error':{'category':('concetto' if n in (3,7) else 'modello' if n in (1,2,5,6,9) else 'algebra'),'message':TASKS[n-1][5],'target':'C4-L08'}} for n in range(1,11)})
+if __name__=='__main__':write_family(assemble,'cric-c4-l08')

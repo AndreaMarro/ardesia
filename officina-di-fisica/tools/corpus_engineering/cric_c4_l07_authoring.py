@@ -1,0 +1,60 @@
+"""Ten distinct Cric single-capacitor problems with electrical constraints explicit."""
+from .vector_geometry_authoring import assemble_family, write_family
+SOURCE_IDS=[f'C4-Q{i:03}' for i in range(61,71)]
+TASKS=[
+('La capacità dalla variazione della carica','In un condensatore lineare invariato, aumentando il modulo della tensione da 2 V a 5 V il modulo della carica su una sola armatura aumenta di 18 μC. Trova la capacità in microfarad.',6,
+ 'La variazione della tensione è 5−2=3 V. Per la stessa capacità vale ΔQ=CΔV, dunque C=18 μC/3 V=6 μF. Non divido l’incremento di carica per una sola tensione finale: il dato 18 μC è una differenza, non la carica totale nello stato finale. Con 6 μF le cariche iniziale e finale sarebbero 12 e 30 μC, separate proprio da 18 μC.',
+ r'\Delta V=(5-2)\,\mathrm V\qquad C=\frac{\Delta Q}{\Delta V}\qquad C=6\,\mu\mathrm F',
+ '18/5 μF mescolerebbe una variazione di carica e una lettura finale. 18/2 μF userebbe invece la lettura iniziale. La verifica inversa 6 μF·3 V=18 μC ricostruisce il dato, mentre la capacità non dipende da quale dei due stati si sceglie.',
+ 'Usa due differenze corrispondenti, non una differenza e una lettura.'),
+('Allontanare piastre isolate e cariche','Un condensatore piano è carico, con modulo della carica Q>0 su ogni armatura. Dopo averlo scollegato, allontani le piastre senza cambiare area, dielettrico o carica e trascuri i bordi. Che cosa accade al modulo della tensione fra le armature?', ['Aumenta','Diminuisce','Resta imposto dalla vecchia sorgente','Si annulla perché non esiste più un generatore collegato','Cambia necessariamente segno'],
+ 'La capacità εA/d diminuisce quando la distanza d aumenta. Con Q positivo e conservato, il modulo V=Q/C cresce. Equivalentemente, il campo ideale Q/(εA) resta costante e la differenza di potenziale in modulo è Ed: attraversare una distanza maggiore nello stesso campo richiede un modulo maggiore. La polarità delle piastre non si inverte per questo spostamento.',
+ r'C=\frac{\varepsilon A}{d}\qquad |V|=\frac{Q}{C}\qquad |V|=\frac{Qd}{\varepsilon A}',
+ 'La tensione resterebbe imposta solo se un generatore ideale rimanesse collegato. Isolare il condensatore conserva carica e non annulla il campo. Il caso Q=0 darebbe sempre tensione nulla: è escluso dalla preparazione carica del prompt.',
+ 'Scrivi separatamente la legge geometrica della capacità e il vincolo che conserva la carica.'),
+('L’unità di capacità','Quale nome ha l’unità SI equivalente a un coulomb per volt?', ['Farad','Coulomb','Volt','Ohm','Tesla'],
+ 'La capacità è il rapporto fra il modulo della carica su un’armatura e il modulo della differenza di potenziale. Un coulomb per volt definisce perciò un farad. Il nome della grandezza e quello dell’unità non vanno scambiati: un coulomb misura la carica, mentre un farad misura quanta carica corrisponde a un volt.',
+ r'C=\frac{Q}{|V|}\qquad 1\,\mathrm F=1\,\mathrm{C/V}',
+ 'Il volt è l’unità della differenza di potenziale e l’ohm quella della resistenza. Il tesla riguarda il campo magnetico. Nessuna di queste tre unità è il quoziente carica per tensione richiesto.',
+ 'Leggi le unità dal rapporto che definisce la capacità.'),
+('Ricavare l’area dalle piastre','Un condensatore piano nel vuoto ha capacità 88,5 pF e distanza 1,0 mm, piccola rispetto alle dimensioni laterali. Nel modello assegna ε₀=8,85·10⁻¹² F/m e trascura i bordi. Trova l’area affacciata in centimetri quadrati.',100,
+ 'Isolo A=Cd/ε₀. Prima divido C per ε₀: i fattori 10⁻¹² si cancellano e 88,5/8,85=10, con unità metri. Moltiplico questi 10 m per d=10⁻³ m e ottengo 10⁻² m². Un metro quadrato contiene 10000 cm², quindi l’area è 100 cm². Una faccia quadrata equivalente avrebbe lato 10 cm, molto maggiore del millimetro di distanza.',
+ r'A=\frac{Cd}{\varepsilon_0}\qquad \frac{C}{\varepsilon_0}=10\,\mathrm m\qquad A=\frac1{100}\,\mathrm{m^2}\qquad A=100\,\mathrm{cm^2}',
+ '1 cm² applicherebbe a un’area il fattore cento delle sole lunghezze. 10000 cm² richiederebbero una distanza di 0,10 m, non 1 mm, mantenendo la capacità assegnata. La permittività numerica è un dato del modello assegnato, non una richiesta di ricordarne tutte le cifre sperimentali.',
+ 'Semplifica prima il rapporto con lo stesso prefisso pico, poi converti un’area.'),
+('Un’area che misura il lavoro di carica','Un condensatore ideale lineare parte scarico ed è caricato lentamente fino a Q. Quale grafico permette di leggere direttamente il lavoro elettrico accumulato come area del triangolo sotto la retta?', ['Tensione V sull’asse verticale e carica q sull’asse orizzontale','Temperatura sull’asse verticale e tempo sull’orizzontale','Resistenza sull’asse verticale e distanza delle piastre sull’orizzontale','Campo magnetico sull’asse verticale e tempo sull’orizzontale','Carica sull’asse verticale e tempo sull’orizzontale'],
+ 'Per aggiungere una piccola carica dq occorre un lavoro V(q)dq. Occorre quindi V in verticale e q in orizzontale. La retta V=q/C parte dall’origine; l’area fino a Q è un triangolo di base Q e altezza V finale, cioè QV/2. Il prodotto coulomb per volt ha unità joule. Non basta che un grafico abbia una retta: devono corrispondere anche le grandezze integrate.',
+ r'U=\int_0^Q V(q)\,dq\qquad U=\frac12 Q|V|\qquad U=\frac{Q^2}{2C}',
+ 'Temperatura per tempo, resistenza per lunghezza e campo per tempo non hanno unità joule. Anche l’area sotto q(t) ha unità C·s e non il lavoro di carica. Qui è specificato il caricamento elettrostatico lineare, non un andamento temporale particolare della corrente.',
+ 'Associa il piccolo lavoro V dq alla base e all’altezza di una striscia del grafico.'),
+('Variazione dell’energia e differenza di quadrati','La capacità invariata è 5 μF e il modulo della tensione passa da 2 V a 4 V. Trova l’aumento dell’energia del campo in microjoule.',30,
+ 'Calcolo due energie riferite al medesimo zero scarico. All’inizio U_i=5·4/2=10 μJ; alla fine U_f=5·16/2=40 μJ. La differenza è 30 μJ. Equivalentemente, metto in evidenza C/2 e sottraggo 4²−2²=12 V². Il quadrato della sola differenza 4−2 non è la differenza dei quadrati.',
+ r'U_i=10\,\mu\mathrm J\qquad U_f=40\,\mu\mathrm J\qquad \Delta U=U_f-U_i\qquad \Delta U=30\,\mu\mathrm J',
+ '40 μJ è l’energia finale e non il suo aumento. 10 μJ è sia l’energia iniziale sia il risultato errato di C(ΔV)²/2 in questi dati; la coincidenza non rende valida quest’ultima legge. Il rapporto fra energie finali e iniziali è quattro, ma la variazione resta una sottrazione.',
+ 'Trova le due aree rispetto all’origine e solo dopo sottraile.'),
+('Il vincolo di una sorgente collegata','Inserisci lentamente un dielettrico lineare fra le piastre mantenendo il condensatore collegato a un generatore ideale di tensione costante. Quale grandezza elettrica ai capi resta imposta dal generatore?', ['La differenza di potenziale','La carica su ogni armatura','La capacità geometrica','L’energia del solo campo','Il campo totale deve annullarsi'],
+ 'Il generatore mantiene la differenza di potenziale ai morsetti. Se l’inserimento aumenta C, la relazione Q=C|V| richiede una maggiore carica sulle armature; questa viene fornita dal circuito. Il vincolo è diverso dall’isolamento, nel quale la sorgente non potrebbe scambiare carica con le piastre.',
+ r'|V_f|=|V_i|\qquad \frac{Q_f}{Q_i}=\frac{C_f}{C_i}\quad(Q_i\ne0)',
+ 'Capacità e carica possono crescere; l’energia del campo non è necessariamente conservata perché il generatore e l’azione meccanica partecipano al bilancio. Il dielettrico non è un collegamento conduttore che cortocircuita le due armature.',
+ 'Individua ciò che la sorgente fissa, prima di invocare una conservazione di carica.'),
+('Energia con il generatore mantenuto collegato','Un condensatore resta collegato per l’intero processo a un generatore ideale da 8 V. Inizialmente immagazzina 16 μJ. Un dielettrico riempie lo spazio e raddoppia la capacità. Trova l’energia finale del campo in microjoule.',32,
+ 'La tensione non cambia perché il collegamento al generatore viene mantenuto. Nella legge U=C V²/2 varia soltanto C, che raddoppia. Anche U raddoppia: da 16 a 32 μJ. Questo è il confronto fra energie del campo; non è il lavoro totale del generatore, perché il processo può coinvolgere lavoro meccanico sul dielettrico.',
+ r'\frac{U_f}{U_i}=\frac{C_f}{C_i}\qquad \frac{U_f}{U_i}=2\qquad U_f=32\,\mu\mathrm J',
+ '8 μJ applicherebbe al condensatore collegato il vincolo Q costante dell’isolamento. 16 μJ imporrebbe la conservazione della sola energia del campo senza considerare gli scambi. La carica raddoppia insieme alla capacità, invece di restare invariata.',
+ 'Scegli l’espressione dell’energia in cui compare la tensione fissata dal generatore.'),
+('Una sola armatura nella definizione','Un condensatore ha +7 μC su una piastra e −7 μC sull’altra. Quale valore di Q entra come modulo nella definizione C=Q/|V|?', ['7 μC','14 μC','0 μC','−7 μC','−14 μC'],
+ 'Q è il modulo della carica su una singola armatura, quindi 7 μC. Le due armature insieme hanno carica algebrica totale zero; la somma dei moduli è 14 μC. Nessuna di queste due somme è la quantità Q usata nella capacità. Il circuito ha separato 7 μC da una piastra all’altra, non due volte tale quantità.',
+ r'Q=|Q_+|\qquad Q=|Q_-|\qquad Q=7\,\mu\mathrm C',
+ '14 μC somma i moduli di cariche opposte già associate allo stesso trasferimento. Zero è la carica totale del sistema di due piastre, mentre i valori negativi non possono essere il modulo richiesto.',
+ 'Leggi quale oggetto porta la carica nella definizione: una piastra, non la somma delle due.'),
+('La radice fisica dell’energia','Un condensatore lineare da 8 μF immagazzina 100 μJ. Trova in volt il modulo della differenza di potenziale ai suoi capi.',5,
+ 'Isolo il quadrato della tensione: V²=2U/C. I prefissi micro si cancellano nel rapporto e resta 200/8 V²=25 V². Il modulo è la radice non negativa, cioè 5 V. L’energia non stabilisce quale piastra sia positiva: le tensioni orientate +5 e −5 V hanno la stessa energia.',
+ r'V^2=\frac{2U}{C}\qquad V^2=25\,\mathrm{V^2}\qquad |V|=5\,\mathrm V',
+ '25 V copia il valore numerico del quadrato senza prendere la radice. 5/2 V non ricostruirebbe 100 μJ nella legge C V²/2. La radice negativa non è il modulo richiesto; non va proposta come una seconda risposta al medesimo compito.',
+ 'Semplifica i prefissi uguali, isola V² e scegli la radice compatibile col modulo.')]
+CHOICES={n:0 for n,t in enumerate(TASKS,1) if isinstance(t[2],list)}
+UNITS={1:'μF',4:'cm²',6:'μJ',8:'μJ',10:'V'}
+FIGURES={1:'Il primo pannello è il grafico Q–V della capacità costante di 6 μF: le cariche a 2 V e 5 V sono 12 μC e 30 μC. La differenza di 18 μC corrisponde a un intervallo di 3 V.',4:'Il pannello centrale rappresenta schematicamente piastre di area affacciata 100 cm² separate da 1 mm. La sezione non assegna la stessa scala alla dimensione laterale e alla distanza.',5:'L’ultimo pannello è il grafico V(q) per C=5 μF. L’area sotto la retta fino a 20 μC è 40 μJ; l’area fino a 10 μC è 10 μJ.',6:'Nell’ultimo pannello la regione fra le due cariche di 10 e 20 μC ha area 30 μJ. È la differenza delle energie finale e iniziale, non il triangolo costruito con le sole differenze dei due assi.'}
+def assemble(repo,source_ref):
+ return assemble_family(repo,source_ref,'cric-c4-l07',TASKS,CHOICES,UNITS,'cric-c4-l07-progressive.svg',FIGURES,0,course='C4',source_origin='cric',source_ids=SOURCE_IDS,source_path='officina-di-fisica/content/C4.json',skill='C4-L07',section='Immagazzinare carica ed energia',coverage=['Capacità e geometria','Vincoli di carica e tensione','Energia come area e inverse'],overrides={n:{'error':{'category':('unità' if n in (3,4,9) else 'concetto' if n==5 else 'modello' if n in (2,7,8) else 'algebra'),'message':TASKS[n-1][5],'target':'C4-L07'}} for n in range(1,11)})
+if __name__=='__main__':write_family(assemble,'cric-c4-l07')

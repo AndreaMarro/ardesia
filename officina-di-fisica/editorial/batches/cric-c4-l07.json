@@ -1,0 +1,698 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "C4-Q061",
+      "kind": "question",
+      "course": "C4",
+      "section": "Immagazzinare carica ed energia",
+      "order": 61,
+      "title": "La capacità dalla variazione della carica",
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C4-L03",
+        "C4-L04"
+      ],
+      "version": 3,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La variazione della tensione è 5−2=3 V. Per la stessa capacità vale ΔQ=CΔV, dunque C=18 μC/3 V=6 μF. Non divido l’incremento di carica per una sola tensione finale: il dato 18 μC è una differenza, non la carica totale nello stato finale. Con 6 μF le cariche iniziale e finale sarebbero 12 e 30 μC, separate proprio da 18 μC."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/f802eb2f4a794f98dc438eec6b73e779fac5fae6b3ffa535dff70171710f4dee",
+          "text": "Il primo pannello è il grafico Q–V della capacità costante di 6 μF: le cariche a 2 V e 5 V sono 12 μC e 30 μC. La differenza di 18 μC corrisponde a un intervallo di 3 V."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta V=(5-2)\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " C=\\frac{\\Delta Q}{\\Delta V}"
+        },
+        {
+          "type": "formula",
+          "text": " C=6\\,\\mu\\mathrm F"
+        },
+        {
+          "type": "text",
+          "text": "18/5 μF mescolerebbe una variazione di carica e una lettura finale. 18/2 μF userebbe invece la lettura iniziale. La verifica inversa 6 μF·3 V=18 μC ricostruisce il dato, mentre la capacità non dipende da quale dei due stati si sceglie."
+        }
+      ],
+      "prompt": "In un condensatore lineare invariato, aumentando il modulo della tensione da 2 V a 5 V il modulo della carica su una sola armatura aumenta di 18 μC. Trova la capacità in microfarad.",
+      "difficulty": 1,
+      "family": "capacita-da-due-letture",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "numeric",
+        "value": 6,
+        "unit": "μF",
+        "tolerance": 0
+      },
+      "hints": [
+        "Usa due differenze corrispondenti, non una differenza e una lettura.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "18/5 μF mescolerebbe una variazione di carica e una lettura finale. 18/2 μF userebbe invece la lettura iniziale. La verifica inversa 6 μF·3 V=18 μC ricostruisce il dato, mentre la capacità non dipende da quale dei due stati si sceglie.",
+        "target": "C4-L07"
+      },
+      "baseVersion": 2,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Capacità e geometria",
+        "Vincoli di carica e tensione",
+        "Energia come area e inverse"
+      ]
+    },
+    {
+      "id": "C4-Q062",
+      "kind": "question",
+      "course": "C4",
+      "section": "Immagazzinare carica ed energia",
+      "order": 62,
+      "title": "Allontanare piastre isolate e cariche",
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C4-L03",
+        "C4-L04"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La capacità εA/d diminuisce quando la distanza d aumenta. Con Q positivo e conservato, il modulo V=Q/C cresce. Equivalentemente, il campo ideale Q/(εA) resta costante e la differenza di potenziale in modulo è Ed: attraversare una distanza maggiore nello stesso campo richiede un modulo maggiore. La polarità delle piastre non si inverte per questo spostamento."
+        },
+        {
+          "type": "formula",
+          "text": "C=\\frac{\\varepsilon A}{d}"
+        },
+        {
+          "type": "formula",
+          "text": " |V|=\\frac{Q}{C}"
+        },
+        {
+          "type": "formula",
+          "text": " |V|=\\frac{Qd}{\\varepsilon A}"
+        },
+        {
+          "type": "text",
+          "text": "La tensione resterebbe imposta solo se un generatore ideale rimanesse collegato. Isolare il condensatore conserva carica e non annulla il campo. Il caso Q=0 darebbe sempre tensione nulla: è escluso dalla preparazione carica del prompt."
+        }
+      ],
+      "prompt": "Un condensatore piano è carico, con modulo della carica Q>0 su ogni armatura. Dopo averlo scollegato, allontani le piastre senza cambiare area, dielettrico o carica e trascuri i bordi. Che cosa accade al modulo della tensione fra le armature?",
+      "difficulty": 2,
+      "family": "allontanare-le-piastre-isolate",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Aumenta",
+          "Diminuisce",
+          "Resta imposto dalla vecchia sorgente",
+          "Si annulla perché non esiste più un generatore collegato",
+          "Cambia necessariamente segno"
+        ],
+        "value": "Aumenta"
+      },
+      "hints": [
+        "Scrivi separatamente la legge geometrica della capacità e il vincolo che conserva la carica.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "La tensione resterebbe imposta solo se un generatore ideale rimanesse collegato. Isolare il condensatore conserva carica e non annulla il campo. Il caso Q=0 darebbe sempre tensione nulla: è escluso dalla preparazione carica del prompt.",
+        "target": "C4-L07"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Capacità e geometria",
+        "Vincoli di carica e tensione",
+        "Energia come area e inverse"
+      ]
+    },
+    {
+      "id": "C4-Q063",
+      "kind": "question",
+      "course": "C4",
+      "section": "Immagazzinare carica ed energia",
+      "order": 63,
+      "title": "L’unità di capacità",
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C4-L03",
+        "C4-L04"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La capacità è il rapporto fra il modulo della carica su un’armatura e il modulo della differenza di potenziale. Un coulomb per volt definisce perciò un farad. Il nome della grandezza e quello dell’unità non vanno scambiati: un coulomb misura la carica, mentre un farad misura quanta carica corrisponde a un volt."
+        },
+        {
+          "type": "formula",
+          "text": "C=\\frac{Q}{|V|}"
+        },
+        {
+          "type": "formula",
+          "text": " 1\\,\\mathrm F=1\\,\\mathrm{C/V}"
+        },
+        {
+          "type": "text",
+          "text": "Il volt è l’unità della differenza di potenziale e l’ohm quella della resistenza. Il tesla riguarda il campo magnetico. Nessuna di queste tre unità è il quoziente carica per tensione richiesto."
+        }
+      ],
+      "prompt": "Quale nome ha l’unità SI equivalente a un coulomb per volt?",
+      "difficulty": 1,
+      "family": "nome-dellunita-di-capacita",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Farad",
+          "Coulomb",
+          "Volt",
+          "Ohm",
+          "Tesla"
+        ],
+        "value": "Farad"
+      },
+      "hints": [
+        "Leggi le unità dal rapporto che definisce la capacità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "Il volt è l’unità della differenza di potenziale e l’ohm quella della resistenza. Il tesla riguarda il campo magnetico. Nessuna di queste tre unità è il quoziente carica per tensione richiesto.",
+        "target": "C4-L07"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Capacità e geometria",
+        "Vincoli di carica e tensione",
+        "Energia come area e inverse"
+      ]
+    },
+    {
+      "id": "C4-Q064",
+      "kind": "question",
+      "course": "C4",
+      "section": "Immagazzinare carica ed energia",
+      "order": 64,
+      "title": "Ricavare l’area dalle piastre",
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C4-L03",
+        "C4-L04"
+      ],
+      "version": 3,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Isolo A=Cd/ε₀. Prima divido C per ε₀: i fattori 10⁻¹² si cancellano e 88,5/8,85=10, con unità metri. Moltiplico questi 10 m per d=10⁻³ m e ottengo 10⁻² m². Un metro quadrato contiene 10000 cm², quindi l’area è 100 cm². Una faccia quadrata equivalente avrebbe lato 10 cm, molto maggiore del millimetro di distanza."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/f802eb2f4a794f98dc438eec6b73e779fac5fae6b3ffa535dff70171710f4dee",
+          "text": "Il pannello centrale rappresenta schematicamente piastre di area affacciata 100 cm² separate da 1 mm. La sezione non assegna la stessa scala alla dimensione laterale e alla distanza."
+        },
+        {
+          "type": "formula",
+          "text": "A=\\frac{Cd}{\\varepsilon_0}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{C}{\\varepsilon_0}=10\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " A=\\frac1{100}\\,\\mathrm{m^2}"
+        },
+        {
+          "type": "formula",
+          "text": " A=100\\,\\mathrm{cm^2}"
+        },
+        {
+          "type": "text",
+          "text": "1 cm² applicherebbe a un’area il fattore cento delle sole lunghezze. 10000 cm² richiederebbero una distanza di 0,10 m, non 1 mm, mantenendo la capacità assegnata. La permittività numerica è un dato del modello assegnato, non una richiesta di ricordarne tutte le cifre sperimentali."
+        }
+      ],
+      "prompt": "Un condensatore piano nel vuoto ha capacità 88,5 pF e distanza 1,0 mm, piccola rispetto alle dimensioni laterali. Nel modello assegna ε₀=8,85·10⁻¹² F/m e trascura i bordi. Trova l’area affacciata in centimetri quadrati.",
+      "difficulty": 2,
+      "family": "dimensionare-larea-delle-piastre",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "numeric",
+        "value": 100,
+        "unit": "cm²",
+        "tolerance": 0
+      },
+      "hints": [
+        "Semplifica prima il rapporto con lo stesso prefisso pico, poi converti un’area.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "1 cm² applicherebbe a un’area il fattore cento delle sole lunghezze. 10000 cm² richiederebbero una distanza di 0,10 m, non 1 mm, mantenendo la capacità assegnata. La permittività numerica è un dato del modello assegnato, non una richiesta di ricordarne tutte le cifre sperimentali.",
+        "target": "C4-L07"
+      },
+      "baseVersion": 2,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Capacità e geometria",
+        "Vincoli di carica e tensione",
+        "Energia come area e inverse"
+      ]
+    },
+    {
+      "id": "C4-Q065",
+      "kind": "question",
+      "course": "C4",
+      "section": "Immagazzinare carica ed energia",
+      "order": 65,
+      "title": "Un’area che misura il lavoro di carica",
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C4-L03",
+        "C4-L04"
+      ],
+      "version": 3,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Per aggiungere una piccola carica dq occorre un lavoro V(q)dq. Occorre quindi V in verticale e q in orizzontale. La retta V=q/C parte dall’origine; l’area fino a Q è un triangolo di base Q e altezza V finale, cioè QV/2. Il prodotto coulomb per volt ha unità joule. Non basta che un grafico abbia una retta: devono corrispondere anche le grandezze integrate."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/f802eb2f4a794f98dc438eec6b73e779fac5fae6b3ffa535dff70171710f4dee",
+          "text": "L’ultimo pannello è il grafico V(q) per C=5 μF. L’area sotto la retta fino a 20 μC è 40 μJ; l’area fino a 10 μC è 10 μJ."
+        },
+        {
+          "type": "formula",
+          "text": "U=\\int_0^Q V(q)\\,dq"
+        },
+        {
+          "type": "formula",
+          "text": " U=\\frac12 Q|V|"
+        },
+        {
+          "type": "formula",
+          "text": " U=\\frac{Q^2}{2C}"
+        },
+        {
+          "type": "text",
+          "text": "Temperatura per tempo, resistenza per lunghezza e campo per tempo non hanno unità joule. Anche l’area sotto q(t) ha unità C·s e non il lavoro di carica. Qui è specificato il caricamento elettrostatico lineare, non un andamento temporale particolare della corrente."
+        }
+      ],
+      "prompt": "Un condensatore ideale lineare parte scarico ed è caricato lentamente fino a Q. Quale grafico permette di leggere direttamente il lavoro elettrico accumulato come area del triangolo sotto la retta?",
+      "difficulty": 2,
+      "family": "perche-compare-un-mezzo",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Tensione V sull’asse verticale e carica q sull’asse orizzontale",
+          "Temperatura sull’asse verticale e tempo sull’orizzontale",
+          "Resistenza sull’asse verticale e distanza delle piastre sull’orizzontale",
+          "Campo magnetico sull’asse verticale e tempo sull’orizzontale",
+          "Carica sull’asse verticale e tempo sull’orizzontale"
+        ],
+        "value": "Tensione V sull’asse verticale e carica q sull’asse orizzontale"
+      },
+      "hints": [
+        "Associa il piccolo lavoro V dq alla base e all’altezza di una striscia del grafico.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Temperatura per tempo, resistenza per lunghezza e campo per tempo non hanno unità joule. Anche l’area sotto q(t) ha unità C·s e non il lavoro di carica. Qui è specificato il caricamento elettrostatico lineare, non un andamento temporale particolare della corrente.",
+        "target": "C4-L07"
+      },
+      "baseVersion": 2,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Capacità e geometria",
+        "Vincoli di carica e tensione",
+        "Energia come area e inverse"
+      ]
+    },
+    {
+      "id": "C4-Q066",
+      "kind": "question",
+      "course": "C4",
+      "section": "Immagazzinare carica ed energia",
+      "order": 66,
+      "title": "Variazione dell’energia e differenza di quadrati",
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C4-L03",
+        "C4-L04"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Calcolo due energie riferite al medesimo zero scarico. All’inizio U_i=5·4/2=10 μJ; alla fine U_f=5·16/2=40 μJ. La differenza è 30 μJ. Equivalentemente, metto in evidenza C/2 e sottraggo 4²−2²=12 V². Il quadrato della sola differenza 4−2 non è la differenza dei quadrati."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/f802eb2f4a794f98dc438eec6b73e779fac5fae6b3ffa535dff70171710f4dee",
+          "text": "Nell’ultimo pannello la regione fra le due cariche di 10 e 20 μC ha area 30 μJ. È la differenza delle energie finale e iniziale, non il triangolo costruito con le sole differenze dei due assi."
+        },
+        {
+          "type": "formula",
+          "text": "U_i=10\\,\\mu\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " U_f=40\\,\\mu\\mathrm J"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta U=U_f-U_i"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta U=30\\,\\mu\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "40 μJ è l’energia finale e non il suo aumento. 10 μJ è sia l’energia iniziale sia il risultato errato di C(ΔV)²/2 in questi dati; la coincidenza non rende valida quest’ultima legge. Il rapporto fra energie finali e iniziali è quattro, ma la variazione resta una sottrazione."
+        }
+      ],
+      "prompt": "La capacità invariata è 5 μF e il modulo della tensione passa da 2 V a 4 V. Trova l’aumento dell’energia del campo in microjoule.",
+      "difficulty": 2,
+      "family": "una-variazione-di-energia-per-tensione",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "numeric",
+        "value": 30,
+        "unit": "μJ",
+        "tolerance": 0
+      },
+      "hints": [
+        "Trova le due aree rispetto all’origine e solo dopo sottraile.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "40 μJ è l’energia finale e non il suo aumento. 10 μJ è sia l’energia iniziale sia il risultato errato di C(ΔV)²/2 in questi dati; la coincidenza non rende valida quest’ultima legge. Il rapporto fra energie finali e iniziali è quattro, ma la variazione resta una sottrazione.",
+        "target": "C4-L07"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Capacità e geometria",
+        "Vincoli di carica e tensione",
+        "Energia come area e inverse"
+      ]
+    },
+    {
+      "id": "C4-Q067",
+      "kind": "question",
+      "course": "C4",
+      "section": "Immagazzinare carica ed energia",
+      "order": 67,
+      "title": "Il vincolo di una sorgente collegata",
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C4-L03",
+        "C4-L04"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il generatore mantiene la differenza di potenziale ai morsetti. Se l’inserimento aumenta C, la relazione Q=C|V| richiede una maggiore carica sulle armature; questa viene fornita dal circuito. Il vincolo è diverso dall’isolamento, nel quale la sorgente non potrebbe scambiare carica con le piastre."
+        },
+        {
+          "type": "formula",
+          "text": "|V_f|=|V_i|"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{Q_f}{Q_i}=\\frac{C_f}{C_i}\\quad(Q_i\\ne0)"
+        },
+        {
+          "type": "text",
+          "text": "Capacità e carica possono crescere; l’energia del campo non è necessariamente conservata perché il generatore e l’azione meccanica partecipano al bilancio. Il dielettrico non è un collegamento conduttore che cortocircuita le due armature."
+        }
+      ],
+      "prompt": "Inserisci lentamente un dielettrico lineare fra le piastre mantenendo il condensatore collegato a un generatore ideale di tensione costante. Quale grandezza elettrica ai capi resta imposta dal generatore?",
+      "difficulty": 1,
+      "family": "la-grandezza-fissa-con-batteria-collegata",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "La differenza di potenziale",
+          "La carica su ogni armatura",
+          "La capacità geometrica",
+          "L’energia del solo campo",
+          "Il campo totale deve annullarsi"
+        ],
+        "value": "La differenza di potenziale"
+      },
+      "hints": [
+        "Individua ciò che la sorgente fissa, prima di invocare una conservazione di carica.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "Capacità e carica possono crescere; l’energia del campo non è necessariamente conservata perché il generatore e l’azione meccanica partecipano al bilancio. Il dielettrico non è un collegamento conduttore che cortocircuita le due armature.",
+        "target": "C4-L07"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Capacità e geometria",
+        "Vincoli di carica e tensione",
+        "Energia come area e inverse"
+      ]
+    },
+    {
+      "id": "C4-Q068",
+      "kind": "question",
+      "course": "C4",
+      "section": "Immagazzinare carica ed energia",
+      "order": 68,
+      "title": "Energia con il generatore mantenuto collegato",
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C4-L03",
+        "C4-L04"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La tensione non cambia perché il collegamento al generatore viene mantenuto. Nella legge U=C V²/2 varia soltanto C, che raddoppia. Anche U raddoppia: da 16 a 32 μJ. Questo è il confronto fra energie del campo; non è il lavoro totale del generatore, perché il processo può coinvolgere lavoro meccanico sul dielettrico."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{U_f}{U_i}=\\frac{C_f}{C_i}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{U_f}{U_i}=2"
+        },
+        {
+          "type": "formula",
+          "text": " U_f=32\\,\\mu\\mathrm J"
+        },
+        {
+          "type": "text",
+          "text": "8 μJ applicherebbe al condensatore collegato il vincolo Q costante dell’isolamento. 16 μJ imporrebbe la conservazione della sola energia del campo senza considerare gli scambi. La carica raddoppia insieme alla capacità, invece di restare invariata."
+        }
+      ],
+      "prompt": "Un condensatore resta collegato per l’intero processo a un generatore ideale da 8 V. Inizialmente immagazzina 16 μJ. Un dielettrico riempie lo spazio e raddoppia la capacità. Trova l’energia finale del campo in microjoule.",
+      "difficulty": 2,
+      "family": "confrontare-due-mezzi-a-tensione-mantenuta",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "numeric",
+        "value": 32,
+        "unit": "μJ",
+        "tolerance": 0
+      },
+      "hints": [
+        "Scegli l’espressione dell’energia in cui compare la tensione fissata dal generatore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "8 μJ applicherebbe al condensatore collegato il vincolo Q costante dell’isolamento. 16 μJ imporrebbe la conservazione della sola energia del campo senza considerare gli scambi. La carica raddoppia insieme alla capacità, invece di restare invariata.",
+        "target": "C4-L07"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Capacità e geometria",
+        "Vincoli di carica e tensione",
+        "Energia come area e inverse"
+      ]
+    },
+    {
+      "id": "C4-Q069",
+      "kind": "question",
+      "course": "C4",
+      "section": "Immagazzinare carica ed energia",
+      "order": 69,
+      "title": "Una sola armatura nella definizione",
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C4-L03",
+        "C4-L04"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Q è il modulo della carica su una singola armatura, quindi 7 μC. Le due armature insieme hanno carica algebrica totale zero; la somma dei moduli è 14 μC. Nessuna di queste due somme è la quantità Q usata nella capacità. Il circuito ha separato 7 μC da una piastra all’altra, non due volte tale quantità."
+        },
+        {
+          "type": "formula",
+          "text": "Q=|Q_+|"
+        },
+        {
+          "type": "formula",
+          "text": " Q=|Q_-|"
+        },
+        {
+          "type": "formula",
+          "text": " Q=7\\,\\mu\\mathrm C"
+        },
+        {
+          "type": "text",
+          "text": "14 μC somma i moduli di cariche opposte già associate allo stesso trasferimento. Zero è la carica totale del sistema di due piastre, mentre i valori negativi non possono essere il modulo richiesto."
+        }
+      ],
+      "prompt": "Un condensatore ha +7 μC su una piastra e −7 μC sull’altra. Quale valore di Q entra come modulo nella definizione C=Q/|V|?",
+      "difficulty": 1,
+      "family": "una-piastra-conta-due-volte",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "7 μC",
+          "14 μC",
+          "0 μC",
+          "−7 μC",
+          "−14 μC"
+        ],
+        "value": "7 μC"
+      },
+      "hints": [
+        "Leggi quale oggetto porta la carica nella definizione: una piastra, non la somma delle due.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "14 μC somma i moduli di cariche opposte già associate allo stesso trasferimento. Zero è la carica totale del sistema di due piastre, mentre i valori negativi non possono essere il modulo richiesto.",
+        "target": "C4-L07"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Capacità e geometria",
+        "Vincoli di carica e tensione",
+        "Energia come area e inverse"
+      ]
+    },
+    {
+      "id": "C4-Q070",
+      "kind": "question",
+      "course": "C4",
+      "section": "Immagazzinare carica ed energia",
+      "order": 70,
+      "title": "La radice fisica dell’energia",
+      "skill": "C4-L07",
+      "prerequisites": [
+        "C4-L03",
+        "C4-L04"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Isolo il quadrato della tensione: V²=2U/C. I prefissi micro si cancellano nel rapporto e resta 200/8 V²=25 V². Il modulo è la radice non negativa, cioè 5 V. L’energia non stabilisce quale piastra sia positiva: le tensioni orientate +5 e −5 V hanno la stessa energia."
+        },
+        {
+          "type": "formula",
+          "text": "V^2=\\frac{2U}{C}"
+        },
+        {
+          "type": "formula",
+          "text": " V^2=25\\,\\mathrm{V^2}"
+        },
+        {
+          "type": "formula",
+          "text": " |V|=5\\,\\mathrm V"
+        },
+        {
+          "type": "text",
+          "text": "25 V copia il valore numerico del quadrato senza prendere la radice. 5/2 V non ricostruirebbe 100 μJ nella legge C V²/2. La radice negativa non è il modulo richiesto; non va proposta come una seconda risposta al medesimo compito."
+        }
+      ],
+      "prompt": "Un condensatore lineare da 8 μF immagazzina 100 μJ. Trova in volt il modulo della differenza di potenziale ai suoi capi.",
+      "difficulty": 2,
+      "family": "ricavare-la-tensione-dalla-riserva-energetica",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "numeric",
+        "value": 5,
+        "unit": "V",
+        "tolerance": 0
+      },
+      "hints": [
+        "Semplifica i prefissi uguali, isola V² e scegli la radice compatibile col modulo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "25 V copia il valore numerico del quadrato senza prendere la radice. 5/2 V non ricostruirebbe 100 μJ nella legge C V²/2. La radice negativa non è il modulo richiesto; non va proposta come una seconda risposta al medesimo compito.",
+        "target": "C4-L07"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Capacità e geometria",
+        "Vincoli di carica e tensione",
+        "Energia come area e inverse"
+      ]
+    }
+  ],
+  "assets": [
+    {
+      "id": "f802eb2f4a794f98dc438eec6b73e779fac5fae6b3ffa535dff70171710f4dee",
+      "name": "cric-c4-l07-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTU2MCIgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxNTYwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+Cjx0aXRsZSBpZD0idGl0bGUiPkNhcGFjaXTDoCBjb21lIHBlbmRlbnphLCBnZW9tZXRyaWEgZGVsbGUgcGlhc3RyZSBlZCBlbmVyZ2lhPC90aXRsZT4KPGRlc2MgaWQ9ImRlc2MiPklsIHByaW1vIGdyYWZpY28gbW9zdHJhIGRvZGljaSBlIHRyZW50YSBtaWNyb2NvdWxvbWIgYSBkdWUgZSBjaW5xdWUgdm9sdCwgY29uIGNhcGFjaXTDoCBzZWkgbWljcm9mYXJhZC4gTGEgc2V6aW9uZSBjZW50cmFsZSBkaXN0aW5ndWUgYXJlYSBhZmZhY2NpYXRhIGUgZGlzdGFuemEuIEzigJl1bHRpbW8gZ3JhZmljbyB0ZW5zaW9uZS1jYXJpY2EgcGVyIGNpbnF1ZSBtaWNyb2ZhcmFkIHNlcGFyYSBsZSBlbmVyZ2llIGluaXppYWxlIGRpIGRpZWNpIG1pY3Jvam91bGUgZSBmaW5hbGUgZGkgcXVhcmFudGEuPC9kZXNjPgo8cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjE1NjAiIGZpbGw9IiNmZmZkZjciLz4KPGcgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmaWxsPSIjMjAyYzM5IiBmb250LXNpemU9IjIzIj4KPHRleHQgeD0iMzIiIHk9IjUyIiBmb250LXNpemU9IjI3IiBmb250LXdlaWdodD0iYm9sZCI+MS4gVW5hIGRpZmZlcmVuemEgc29wcmEgbOKAmWFsdHJhPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iOTUiPkNhcGFjaXTDoCBjb3N0YW50ZTogQyA9IDYgzrxGLjwvdGV4dD4KPHBhdGggZD0iTTE0MCAxMzVWNDEwSDU0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMzA0ZDYzIiBzdHJva2Utd2lkdGg9IjMiLz4KPHBhdGggZD0iTTE0MCA0MTBMNDQwIDE3MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMjY3MjhkIiBzdHJva2Utd2lkdGg9IjUiLz4KPHBhdGggZD0iTTE0MCAzMTRIMjYwVjQxME0xNDAgMTcwSDQ0MFY0MTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzhhOWE5ZiIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtZGFzaGFycmF5PSI3IDciLz4KPGNpcmNsZSBjeD0iMjYwIiBjeT0iMzE0IiByPSI2IiBmaWxsPSIjMjY3MjhkIi8+PGNpcmNsZSBjeD0iNDQwIiBjeT0iMTcwIiByPSI2IiBmaWxsPSIjMjY3MjhkIi8+Cjx0ZXh0IHg9IjM0IiB5PSIxNDIiPlEgKM68Qyk8L3RleHQ+PHRleHQgeD0iOTIiIHk9IjE3OCI+MzA8L3RleHQ+PHRleHQgeD0iOTIiIHk9IjMyMiI+MTI8L3RleHQ+PHRleHQgeD0iMTA0IiB5PSI0NDEiPjA8L3RleHQ+PHRleHQgeD0iMjU0IiB5PSI0NDEiPjI8L3RleHQ+PHRleHQgeD0iNDM0IiB5PSI0NDEiPjU8L3RleHQ+PHRleHQgeD0iNTIwIiB5PSI0NzgiPlYgKFYpPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iNTExIj7OlFEgPSAxOCDOvEMgcGVyIM6UViA9IDMgVi48L3RleHQ+CjxsaW5lIHgxPSIzMiIgeTE9IjU0NCIgeDI9IjYwOCIgeTI9IjU0NCIgc3Ryb2tlPSIjYjhjNGNhIi8+Cjx0ZXh0IHg9IjMyIiB5PSI1OTgiIGZvbnQtc2l6ZT0iMjciIGZvbnQtd2VpZ2h0PSJib2xkIj4yLiBMYSBzZXppb25lIG5vbiDDqCB0dXR0YSBs4oCZYXJlYTwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjY0MCI+UGlhc3RyZSBuZWwgdnVvdG87IGJvcmRpIHRyYXNjdXJhdGkuPC90ZXh0Pgo8cmVjdCB4PSIxNjAiIHk9IjcwMCIgd2lkdGg9IjM0MCIgaGVpZ2h0PSIxOCIgZmlsbD0iIzI2NzI4ZCIvPjxyZWN0IHg9IjE2MCIgeT0iODIxIiB3aWR0aD0iMzQwIiBoZWlnaHQ9IjE4IiBmaWxsPSIjOTg2YzM1Ii8+CjxwYXRoIGQ9Ik0xMTQgNzE4VjgyMU0xMDQgNzE4SDEyNE0xMDQgODIxSDEyNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMzA0ZDYzIiBzdHJva2Utd2lkdGg9IjMiLz4KPHRleHQgeD0iMzgiIHk9Ijc3OCI+MSBtbTwvdGV4dD48dGV4dCB4PSIxODYiIHk9IjY4NiI+QXJlYSBhZmZhY2NpYXRhOiAxMDAgY23CsjwvdGV4dD4KPHRleHQgeD0iMTg1IiB5PSI3NzgiPkMgPSA4OCw1IHBGPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSI4OTUiPkFyZWEgZGVsbGEgZmFjY2lhIGUgZGlzdGFuemEgc29ubyBkaXN0aW50ZS48L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSI5MzUiPkRpc2Vnbm8gc2NoZW1hdGljbywgc2NhbGUgbm9uIGNvbXVuaS48L3RleHQ+CjxsaW5lIHgxPSIzMiIgeTE9Ijk3NyIgeDI9IjYwOCIgeTI9Ijk3NyIgc3Ryb2tlPSIjYjhjNGNhIi8+Cjx0ZXh0IHg9IjMyIiB5PSIxMDMyIiBmb250LXNpemU9IjI3IiBmb250LXdlaWdodD0iYm9sZCI+My4gU290dHJhcnJlIGR1ZSBlbmVyZ2llIGRlbCBjYW1wbzwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjEwNzQiPlF1aSBDID0gNSDOvEY7IGxhIHRlbnNpb25lIHNhbGUgZGEgMiBhIDQgVi48L3RleHQ+Cjxwb2x5Z29uIHBvaW50cz0iMTQwLDE0MTAgMzIwLDE0MTAgMzIwLDEyNzAiIGZpbGw9IiNkN2VhZjAiLz4KPHBvbHlnb24gcG9pbnRzPSIzMjAsMTQxMCA1MDAsMTQxMCA1MDAsMTEzMCAzMjAsMTI3MCIgZmlsbD0iI2VhZDZiMiIvPgo8cGF0aCBkPSJNMTQwIDExMTBWMTQxMEg1NTJNMTQwIDE0MTBMNTAwIDExMzAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzMwNGQ2MyIgc3Ryb2tlLXdpZHRoPSIzIi8+CjxwYXRoIGQ9Ik0xNDAgMTEzMEg1MDBWMTQxME0xNDAgMTI3MEgzMjBWMTQxMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjOGE5YTlmIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1kYXNoYXJyYXk9IjcgNyIvPgo8dGV4dCB4PSIzNyIgeT0iMTEyNCI+ViAoVik8L3RleHQ+PHRleHQgeD0iMTA4IiB5PSIxMTM5Ij40PC90ZXh0Pjx0ZXh0IHg9IjEwOCIgeT0iMTI3OSI+MjwvdGV4dD48dGV4dCB4PSIxMDUiIHk9IjE0NDAiPjA8L3RleHQ+PHRleHQgeD0iMzA1IiB5PSIxNDQwIj4xMDwvdGV4dD48dGV4dCB4PSI0ODUiIHk9IjE0NDAiPjIwPC90ZXh0Pjx0ZXh0IHg9IjUyMCIgeT0iMTQ4MCI+cSAozrxDKTwvdGV4dD4KPHRleHQgeD0iMjQ1IiB5PSIxMzg5IiBmb250LXNpemU9IjIxIj4xMCDOvEo8L3RleHQ+PHRleHQgeD0iMzcwIiB5PSIxMzEwIj4zMCDOvEo8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIxNTM0Ij5BcmVhIGZpbmFsZTogNDAgzrxKLiBBdW1lbnRvOiA0MCDiiJIgMTAgPSAzMCDOvEouPC90ZXh0Pgo8L2c+PC9zdmc+Cg=="
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "scope": "author_technical_operation_only_not_independent_SCI_or_product_UI",
+  "batch": "cric-c4-l06",
+  "label": "assembly",
+  "cwd": "/private/tmp/cric-author-b-resident/officina-di-fisica",
+  "command": [
+    "/private/tmp/cric-recovery-venv/bin/python",
+    "-B",
+    "/private/tmp/cric-c3-double-assembly.py",
+    "cric-c4-l06"
+  ],
+  "startedAt": "2026-11-26T21:47:42.919210+00:00",
+  "finishedAt": "2026-11-26T21:47:43.394853+00:00",
+  "elapsedSeconds": 0.4756845830124803,
+  "exitCode": 1,
+  "signal": null,
+  "rawSha256": "4f4c7567b7cdd4d697b141be263b8ebd5642bf65ac28906a5e50fbe78226d965",
+  "raw": "Traceback (most recent call last):\n  File \"/private/tmp/cric-c3-double-assembly.py\", line 4, in <module>\n    batch=sys.argv[1];m=importlib.import_module('tools.corpus_engineering.'+batch.replace('-','_')+'_authoring');a,b=m.assemble(Path('..'),'5d1dc8dc7b601aef959d10d564c75462be74708d');c,d=m.assemble(Path('..'),'5d1dc8dc7b601aef959d10d564c75462be74708d');assert canonical(a)==canonical(c) and canonical(b)==canonical(d);Path('editorial/batches/'+batch+'.json').write_text(json.dumps(a,ensure_ascii=False,indent=2)+'\\n');Path('editorial/batches/'+batch+'-bindings.json').write_text(canonical(b)+'\\n');print(batch,'two genuine assemblies byte-identical;10drafts;SCI/human NOT_RUN',flush=True)\n                        ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/importlib/__init__.py\", line 88, in import_module\n    return _bootstrap._gcd_import(name[level:], package, level)\n           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<frozen importlib._bootstrap>\", line 1387, in _gcd_import\n  File \"<frozen importlib._bootstrap>\", line 1360, in _find_and_load\n  File \"<frozen importlib._bootstrap>\", line 1331, in _find_and_load_unlocked\n  File \"<frozen importlib._bootstrap>\", line 935, in _load_unlocked\n  File \"<frozen importlib._bootstrap_external>\", line 1022, in exec_module\n  File \"<frozen importlib._bootstrap_external>\", line 1160, in get_code\n  File \"<frozen importlib._bootstrap_external>\", line 1090, in source_to_code\n  File \"<frozen importlib._bootstrap>\", line 488, in _call_with_frames_removed\n  File \"/private/tmp/cric-author-b-resident/officina-di-fisica/tools/corpus_engineering/cric_c4_l06_authoring.py\", line 32\n    r'I_{\\rm rimasto}=\\frac{V}{R}\\qquad I'_{\\rm rimasto}=I_{\\rm rimasto}',\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nSyntaxError: invalid syntax. Perhaps you forgot a comma?\n",
+  "scientificReview": "NOT_RUN",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT"
+}

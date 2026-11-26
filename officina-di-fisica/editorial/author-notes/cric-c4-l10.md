@@ -1,0 +1,9 @@
+# Dieci problemi distinti di flusso e induzione
+
+Fonte Cric C4 Q091–100 al pin 5d1dc8dc7b601aef959d10d564c75462be74708d. Tutti i prompt, gli svolgimenti storici, le opzioni e le condizioni sono stati letti. C4-L10 e prerequisiti L05/L09 reali, contesto e versioni individuali preservati, comprese le v2 di Q091/Q099. Non ho aperto primaria e modello del verificatore Root.
+
+Q091 misura l’angolo rispetto alla normale scelta e conserva il segno positivo del flusso. Q092 distingue presenza di flusso e sua variazione. Q093 contrasta il cambiamento, non sempre il campo esterno. Q094 è esplicitamente un rapporto medio fra variazione netta e durata, non una derivata istantanea né una media dei moduli in un processo arbitrario. La risposta 1/50 Wb/s è proposta come scelta decimale esatta. Q096 segue una normale materiale e include entrambi i segni dei flussi.
+
+Q097 separa forza elettromotrice e corrente di conduzione nell’anello aperto. Q098 specifica resistenza costante, autoinduzione trascurabile e variazione monotona per distinguere carica netta e conteggio nei due versi. Q099 dichiara spira chiusa e resistiva e aumento dell’area immersa. Q100 include il plateau nel tempo totale e giustifica perché la media dei moduli coincide qui col modulo della media: non ci sono inversioni del segno.
+
+Figura progressiva nuova: la componente normale di 0,15 T è metà del vettore da 0,30 T; triangolo con componente verticale 130 coordinate e orizzontale 130√3, angolo di 60° dalla normale. Il pannello di Lenz dà soltanto orientazioni, senza scala di forza. Il grafico finale usa 50 coordinate/ms e 25 coordinate/mWb e conserva l’origine comune. Le coordinate intrinseche rimangono metadati della nota e non unità fisiche nel disegno studente. SCI indipendente, UI prodotto e approvazione umana NOT_RUN. DRAFT.

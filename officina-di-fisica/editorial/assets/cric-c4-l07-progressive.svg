@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 1560" width="640" height="1560" role="img" aria-labelledby="title desc">
+<title id="title">Capacità come pendenza, geometria delle piastre ed energia</title>
+<desc id="desc">Il primo grafico mostra dodici e trenta microcoulomb a due e cinque volt, con capacità sei microfarad. La sezione centrale distingue area affacciata e distanza. L’ultimo grafico tensione-carica per cinque microfarad separa le energie iniziale di dieci microjoule e finale di quaranta.</desc>
+<rect width="640" height="1560" fill="#fffdf7"/>
+<g font-family="Arial, sans-serif" fill="#202c39" font-size="23">
+<text x="32" y="52" font-size="27" font-weight="bold">1. Una differenza sopra l’altra</text>
+<text x="32" y="95">Capacità costante: C = 6 μF.</text>
+<path d="M140 135V410H540" fill="none" stroke="#304d63" stroke-width="3"/>
+<path d="M140 410L440 170" fill="none" stroke="#26728d" stroke-width="5"/>
+<path d="M140 314H260V410M140 170H440V410" fill="none" stroke="#8a9a9f" stroke-width="2" stroke-dasharray="7 7"/>
+<circle cx="260" cy="314" r="6" fill="#26728d"/><circle cx="440" cy="170" r="6" fill="#26728d"/>
+<text x="34" y="142">Q (μC)</text><text x="92" y="178">30</text><text x="92" y="322">12</text><text x="104" y="441">0</text><text x="254" y="441">2</text><text x="434" y="441">5</text><text x="520" y="478">V (V)</text>
+<text x="32" y="511">ΔQ = 18 μC per ΔV = 3 V.</text>
+<line x1="32" y1="544" x2="608" y2="544" stroke="#b8c4ca"/>
+<text x="32" y="598" font-size="27" font-weight="bold">2. La sezione non è tutta l’area</text>
+<text x="32" y="640">Piastre nel vuoto; bordi trascurati.</text>
+<rect x="160" y="700" width="340" height="18" fill="#26728d"/><rect x="160" y="821" width="340" height="18" fill="#986c35"/>
+<path d="M114 718V821M104 718H124M104 821H124" fill="none" stroke="#304d63" stroke-width="3"/>
+<text x="38" y="778">1 mm</text><text x="186" y="686">Area affacciata: 100 cm²</text>
+<text x="185" y="778">C = 88,5 pF</text><text x="32" y="895">Area della faccia e distanza sono distinte.</text>
+<text x="32" y="935">Disegno schematico, scale non comuni.</text>
+<line x1="32" y1="977" x2="608" y2="977" stroke="#b8c4ca"/>
+<text x="32" y="1032" font-size="27" font-weight="bold">3. Sottrarre due energie del campo</text>
+<text x="32" y="1074">Qui C = 5 μF; la tensione sale da 2 a 4 V.</text>
+<polygon points="140,1410 320,1410 320,1270" fill="#d7eaf0"/>
+<polygon points="320,1410 500,1410 500,1130 320,1270" fill="#ead6b2"/>
+<path d="M140 1110V1410H552M140 1410L500 1130" fill="none" stroke="#304d63" stroke-width="3"/>
+<path d="M140 1130H500V1410M140 1270H320V1410" fill="none" stroke="#8a9a9f" stroke-width="2" stroke-dasharray="7 7"/>
+<text x="37" y="1124">V (V)</text><text x="108" y="1139">4</text><text x="108" y="1279">2</text><text x="105" y="1440">0</text><text x="305" y="1440">10</text><text x="485" y="1440">20</text><text x="520" y="1480">q (μC)</text>
+<text x="245" y="1389" font-size="21">10 μJ</text><text x="370" y="1310">30 μJ</text>
+<text x="32" y="1534">Area finale: 40 μJ. Aumento: 40 − 10 = 30 μJ.</text>
+</g></svg>

@@ -1,0 +1,393 @@
+{
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "C4-Q091",
+      "sourceSha256": "4c9cc57a8069958b45326c6bbe309053583645ad75b74c9a4189b339e3bcf516",
+      "candidateSha256": "101e187a92ca464a62401632091f0e06ad1b61d44c2b66372a3d729d3acc116c",
+      "reviewedSignature": "d7c08daf9b0fcefd935067d76c3e567d53b0c72f7c1f671e8bb184256cc5553d",
+      "assetChecksums": {
+        "cric-c4-l10-progressive.svg": "335f218100d610b3455ec2c9b09348f36eebf630e7c600eeddaed9fc6d2c6f1e"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "3",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2",
+        "[current]": "-1"
+      },
+      "manualArithmetic": "Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: Con la normale scelta,\nΦ=BAcos 60°=(3/10)(2/100)(1/2)Wb=3/1000 Wb=3 mWb. Il segno è positivo rispetto\na quella normale. La formula, la conversione e il controllo Pint sono derivati\nqui, ma avevo già visto il valore 3 nel vecchio test edizioni: serve la risoluzione\nsource-only distinta A richiesta, prima di dichiarare cecità completa del percorso. La limitata esposizione Root resta dichiarata. La risoluzione A db 4 f 4 c 7 e dal solo prompt precede sia il modello Root sia le candidate; il confronto esatto conferma +3 mWb.",
+      "physicalAssumptions": "Campo uniforme, area positiva, normale scelta e angolo 60° dalla normale; flusso orientato positivo.",
+      "distractors": "6 mWb omette coseno, −3 inverte normale; sin 60° non proiezione normale, sin 30° dal piano invece equivalente.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: Con la normale scelta,\nΦ=BAcos 60°=(3/10)(2/100)(1/2)Wb=3/1000 Wb=3 mWb. Il segno è positivo rispetto\na quella normale. La formula, la conversione e il controllo Pint sono derivati\nqui, ma avevo già visto il valore 3 nel vecchio test edizioni: serve la risoluzione\nsource-only distinta A richiesta, prima di dichiarare cecità completa del percorso. La limitata esposizione Root resta dichiarata. La risoluzione A db 4 f 4 c 7 e dal solo prompt precede sia il modello Root sia le candidate; il confronto esatto conferma +3 mWb.",
+      "scientificAssetReview": "Figura candidata letta integralmente XML e in nuovo native indipendente completo640×altezza, processo reale0; proporzioni, unità, origini e segni verificati separatamente per ciascun pannello. Diciotto SVG originali fonte letti integralmente XML. Due fix testuali non cambiano alcun asset; nessun ritag di UIprodotto.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c4_051_100_root_review_models.py": "54feebef9c27dcd1abb5ca7b60499594514b36d2a229a6dfd3ea98c651fc6867",
+        "cric_c4_electromagnetism_review_common_a.py": "2244019670f64f1fe1ec76a1657fcf51af067e60878b4757914d923c82a06a7f",
+        "cric_c4_electromagnetism_review_evidence_a.py": "b799f6d10cfc843c708cdbd1bf6f0164299188c206f7f37e8697e32ab757c08c",
+        "cric_c4_electromagnetism_review_models_a.py": "85f9af0afbc0ae2a4dc782bebab47ff57b98b325be911b607628988d998b3eb1",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C4-Q092",
+      "sourceSha256": "1f450a19aaba38212dcfdb8d1cab73ab9def7068effe98a642ba293694fe6395",
+      "candidateSha256": "faf1f8b6c056dfb8673dfc08986812b803893991db77365f90a279183cffd4dd",
+      "reviewedSignature": "7f3f9d095cafb9a36e83748848791ed58cffb16fb395707ade51392eaa7e1854",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Nulla",
+      "dimension": {},
+      "manualArithmetic": "Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: Φ è costante perché campo, area e orientamento non cambiano e la\nspira è ferma. Faraday dà ℰ=−dΦ/dt=0. Non serve che Φ stesso sia zero.",
+      "physicalAssumptions": "Spira ferma, B e geometria costanti; induzione di quel campo distinta da eventuali altre sorgenti elettriche.",
+      "distractors": "BA è flusso Wb, non f.e.m. V; R non crea variazione di flusso, altre sorgenti non sono induzione di quel campo.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: Φ è costante perché campo, area e orientamento non cambiano e la\nspira è ferma. Faraday dà ℰ=−dΦ/dt=0. Non serve che Φ stesso sia zero.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c4_051_100_root_review_models.py": "54feebef9c27dcd1abb5ca7b60499594514b36d2a229a6dfd3ea98c651fc6867",
+        "cric_c4_electromagnetism_review_common_a.py": "2244019670f64f1fe1ec76a1657fcf51af067e60878b4757914d923c82a06a7f",
+        "cric_c4_electromagnetism_review_evidence_a.py": "b799f6d10cfc843c708cdbd1bf6f0164299188c206f7f37e8697e32ab757c08c",
+        "cric_c4_electromagnetism_review_models_a.py": "85f9af0afbc0ae2a4dc782bebab47ff57b98b325be911b607628988d998b3eb1",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C4-Q093",
+      "sourceSha256": "c4cf02781f4e530c17bae4d71f778b648bdefa7e13d054f0a2cb04bd73cba530",
+      "candidateSha256": "f52dab3303a77fadb0756d3f27bb925ee45641a5829b4042cd87708553da9e60",
+      "reviewedSignature": "90d6ff174a7c0f4b1abe92cd7273e04c54d67c864bce6afa0512e2c0b5236683",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Lenz",
+      "dimension": {},
+      "manualArithmetic": "Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: Lenz. La risposta indotta si oppone alla variazione del flusso\nche la produce, non necessariamente al campo esterno preso isolatamente.",
+      "physicalAssumptions": "Verso di percorrenza associato alla normale tramite mano destra; Lenz contrasta variazione e non sempre campo esterno.",
+      "distractors": "Ohm, Joule, Coulomb e Snell identificano leggi differenti e non orientazione dell’induzione.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: Lenz. La risposta indotta si oppone alla variazione del flusso\nche la produce, non necessariamente al campo esterno preso isolatamente.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c4_051_100_root_review_models.py": "54feebef9c27dcd1abb5ca7b60499594514b36d2a229a6dfd3ea98c651fc6867",
+        "cric_c4_electromagnetism_review_common_a.py": "2244019670f64f1fe1ec76a1657fcf51af067e60878b4757914d923c82a06a7f",
+        "cric_c4_electromagnetism_review_evidence_a.py": "b799f6d10cfc843c708cdbd1bf6f0164299188c206f7f37e8697e32ab757c08c",
+        "cric_c4_electromagnetism_review_models_a.py": "85f9af0afbc0ae2a4dc782bebab47ff57b98b325be911b607628988d998b3eb1",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C4-Q094",
+      "sourceSha256": "af84a01fc6eccdf5bd21260ed461d9f39fb734babed2d22f4503e948d4e4d874",
+      "candidateSha256": "16aa203af28bf21bcc3af011852b3759d045621f64da57c5aa06e3dee79210d2",
+      "reviewedSignature": "e87661fa94b9980f7938624c345d6e7dbcbcd550827f3e565d36a28c63a2e602",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1/50",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3",
+        "[current]": "-1"
+      },
+      "manualArithmetic": "Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: |ℰmedia|=N|ΔΦ/Δt|, dunque il tasso medio per spira è\n1,6/80=16/800=1/50 Wb/s=0,020 Wb/s. È un tasso medio: senza andamento temporale\nnon si conosce il valore istantaneo della derivata in ogni istante.",
+      "physicalAssumptions": "80 spire identiche con stessa variazione per spira; modulo della media orientata distinto dalla media dei moduli.",
+      "distractors": "128 moltiplica per N, 1,6 attribuisce bobina a singola spira, 0,20 errore dieci; media non derivata istantanea.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: |ℰmedia|=N|ΔΦ/Δt|, dunque il tasso medio per spira è\n1,6/80=16/800=1/50 Wb/s=0,020 Wb/s. È un tasso medio: senza andamento temporale\nnon si conosce il valore istantaneo della derivata in ogni istante.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c4_051_100_root_review_models.py": "54feebef9c27dcd1abb5ca7b60499594514b36d2a229a6dfd3ea98c651fc6867",
+        "cric_c4_electromagnetism_review_common_a.py": "2244019670f64f1fe1ec76a1657fcf51af067e60878b4757914d923c82a06a7f",
+        "cric_c4_electromagnetism_review_evidence_a.py": "b799f6d10cfc843c708cdbd1bf6f0164299188c206f7f37e8697e32ab757c08c",
+        "cric_c4_electromagnetism_review_models_a.py": "85f9af0afbc0ae2a4dc782bebab47ff57b98b325be911b607628988d998b3eb1",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C4-Q095",
+      "sourceSha256": "dadce7fa06f7c06a6510194a70e319c2da2460093b86ddbb580f20d2848a668b",
+      "candidateSha256": "d11d85074e07fbc42c8d5d4c881daa825b4ba2481d6334b2a172d3ccd502738b",
+      "reviewedSignature": "4b2bf70d678a476fd9eb75e2289ed1c245065e108ab61bde2c6746fcf31b193f",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Orario",
+      "dimension": {},
+      "manualArithmetic": "Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: Oraria dall’altro lato. Il moto fisico della carica non cambia;\ncambia il lato da cui si guarda e quindi il nome dell’orientamento apparente.",
+      "physicalAssumptions": "Stessa corrente e stesso istante, soli osservatori su lati opposti; nessuna inversione fisica della corrente.",
+      "distractors": "Ancora antioraria conserva riferimento vecchio; zero/alternato inventano cambi fisici da osservazione.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: Oraria dall’altro lato. Il moto fisico della carica non cambia;\ncambia il lato da cui si guarda e quindi il nome dell’orientamento apparente.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c4_051_100_root_review_models.py": "54feebef9c27dcd1abb5ca7b60499594514b36d2a229a6dfd3ea98c651fc6867",
+        "cric_c4_electromagnetism_review_common_a.py": "2244019670f64f1fe1ec76a1657fcf51af067e60878b4757914d923c82a06a7f",
+        "cric_c4_electromagnetism_review_evidence_a.py": "b799f6d10cfc843c708cdbd1bf6f0164299188c206f7f37e8697e32ab757c08c",
+        "cric_c4_electromagnetism_review_models_a.py": "85f9af0afbc0ae2a4dc782bebab47ff57b98b325be911b607628988d998b3eb1",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C4-Q096",
+      "sourceSha256": "0d8974c7af04a02ed3bfca82ef6ca6f62248f679964080b4b2843fce662d7803",
+      "candidateSha256": "31be35c3936be965124ef415303237cdc6444facf9fe32b5ae4d4dca67885444",
+      "reviewedSignature": "e6bf8b791831b688add36b80ccb38d401919c39dae1b91a499ed6d51b391ae33",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1/10",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3",
+        "[current]": "-1"
+      },
+      "manualArithmetic": "Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: Prima Φᵢ=BA=0,005 Wb, dopo Φf=−BA=−0,005 Wb.\nΔΦ=−0,010 Wb e |ℰmedia|=0,010/0,10=0,10 V. Il mezzo giro cambia il segno del\nflusso; usare soltanto BA per la variazione perderebbe il fattore due.",
+      "physicalAssumptions": "Normale materiale seguita nel mezzo giro, una spira, estremi concorde/discorde; media non richiede velocità angolare costante.",
+      "distractors": "0,050 V usa BA, zero confonde moduli con flussi orientati; 0,0050 V copia coefficiente BA senza variazione/durata.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: Prima Φᵢ=BA=0,005 Wb, dopo Φf=−BA=−0,005 Wb.\nΔΦ=−0,010 Wb e |ℰmedia|=0,010/0,10=0,10 V. Il mezzo giro cambia il segno del\nflusso; usare soltanto BA per la variazione perderebbe il fattore due.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c4_051_100_root_review_models.py": "54feebef9c27dcd1abb5ca7b60499594514b36d2a229a6dfd3ea98c651fc6867",
+        "cric_c4_electromagnetism_review_common_a.py": "2244019670f64f1fe1ec76a1657fcf51af067e60878b4757914d923c82a06a7f",
+        "cric_c4_electromagnetism_review_evidence_a.py": "b799f6d10cfc843c708cdbd1bf6f0164299188c206f7f37e8697e32ab757c08c",
+        "cric_c4_electromagnetism_review_models_a.py": "85f9af0afbc0ae2a4dc782bebab47ff57b98b325be911b607628988d998b3eb1",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C4-Q097",
+      "sourceSha256": "5b37965ec76d2edacd5da27342c9200d9ef8b6f592f48886d21b905dcd6dd1c8",
+      "candidateSha256": "c0f784f9e9471c815de7582bcfea6c924525d20e8d9c27002cebdbf1e12b9204",
+      "reviewedSignature": "99ccd3a8034f9e603e263e213cdbed1f6d18af8708cf2572a985c06aa926f8bb",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "La corrente di conduzione lungo l’intero anello",
+      "dimension": {},
+      "manualArithmetic": "Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: Manca una corrente di conduzione che percorra continuamente\nl’intera spira aperta attraverso l’interruzione isolante. Non per questo\nscompaiono il campo elettrico indotto o la f.e.m.; restano possibili fenomeni\ntransitori, accumulo di carica e contributi di spostamento nel gap.",
+      "physicalAssumptions": "Interruzione isolante ideale impedisce conduzione continua lungo intero anello; f.e.m., tensioni e transitori non automaticamente nulli.",
+      "distractors": "Apertura non annulla B imposto, dΦ/dt, f.e.m. o tutte le tensioni; manca soltanto la conduzione completa.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: Manca una corrente di conduzione che percorra continuamente\nl’intera spira aperta attraverso l’interruzione isolante. Non per questo\nscompaiono il campo elettrico indotto o la f.e.m.; restano possibili fenomeni\ntransitori, accumulo di carica e contributi di spostamento nel gap.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c4_051_100_root_review_models.py": "54feebef9c27dcd1abb5ca7b60499594514b36d2a229a6dfd3ea98c651fc6867",
+        "cric_c4_electromagnetism_review_common_a.py": "2244019670f64f1fe1ec76a1657fcf51af067e60878b4757914d923c82a06a7f",
+        "cric_c4_electromagnetism_review_evidence_a.py": "b799f6d10cfc843c708cdbd1bf6f0164299188c206f7f37e8697e32ab757c08c",
+        "cric_c4_electromagnetism_review_models_a.py": "85f9af0afbc0ae2a4dc782bebab47ff57b98b325be911b607628988d998b3eb1",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C4-Q098",
+      "sourceSha256": "68086036072d17dac891bfdcd901eadc9fc45a460173ca2ff747a7eb63d91f37",
+      "candidateSha256": "632dc8a240f6223959539048b8bb44bbaae67cf0c06d50e61b988c8981a64ae7",
+      "reviewedSignature": "18fa8304ebdf1a4960eb261bf2bca318be3321aab2b2e65275c0c8e26f3eaada",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "6",
+      "dimension": {
+        "[current]": "1",
+        "[time]": "1"
+      },
+      "manualArithmetic": "Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: Con resistenza costante e autoinduzione trascurabile,\nI=−(1/R)dΦ/dt. Integrando, la carica netta ha modulo |ΔΦ|/R=0,030/5 C\n=0,006 C=6 mC. La monotonia evita di confondere questo modulo con una somma\ndi passaggi di carica in versi alternati.",
+      "physicalAssumptions": "Singola spira chiusa puramente resistiva con R costante positiva e autoinduzione trascurabile; flusso monotono per uguagliare modulo netto e passaggi nello stesso verso.",
+      "distractors": "150 mC copia numericamente ΔΦR con dimensione errata; 0,006 mC omette conversione; inversioni di andamento distinguono netto e totale transitato.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: Con resistenza costante e autoinduzione trascurabile,\nI=−(1/R)dΦ/dt. Integrando, la carica netta ha modulo |ΔΦ|/R=0,030/5 C\n=0,006 C=6 mC. La monotonia evita di confondere questo modulo con una somma\ndi passaggi di carica in versi alternati.",
+      "scientificAssetReview": "Nessuna figura collegata; testo e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c4_051_100_root_review_models.py": "54feebef9c27dcd1abb5ca7b60499594514b36d2a229a6dfd3ea98c651fc6867",
+        "cric_c4_electromagnetism_review_common_a.py": "2244019670f64f1fe1ec76a1657fcf51af067e60878b4757914d923c82a06a7f",
+        "cric_c4_electromagnetism_review_evidence_a.py": "b799f6d10cfc843c708cdbd1bf6f0164299188c206f7f37e8697e32ab757c08c",
+        "cric_c4_electromagnetism_review_models_a.py": "85f9af0afbc0ae2a4dc782bebab47ff57b98b325be911b607628988d998b3eb1",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C4-Q099",
+      "sourceSha256": "cf354c3eec013613e47a58d273e6133e8027289df555474003ecffa5fc41dba8",
+      "candidateSha256": "d2fdeb8690a0865c914b43f509db58f6a2d2bb0ff0e826e2807ed081199ce37a",
+      "reviewedSignature": "7702642c8eec684c1b27d9ab464b97da74318915f409f83feec814cb8449aff8",
+      "assetChecksums": {
+        "cric-c4-l10-progressive.svg": "335f218100d610b3455ec2c9b09348f36eebf630e7c600eeddaed9fc6d2c6f1e"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Antiorario",
+      "dimension": {},
+      "manualArithmetic": "Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: Durante l’ingresso aumenta il flusso entrante nel foglio.\nL’induzione richiede un contributo uscente: la corrente è antioraria vista\ndal davanti. Questa risposta si oppone all’ingresso e richiede lavoro esterno.",
+      "physicalAssumptions": "Ingresso in regione B entrante, area immersa crescente; spira resistiva chiusa e autoinduzione trascurabile, vista frontale fissata.",
+      "distractors": "Orario rinforza aumento entrante; uniformità interna non mantiene area immersa; fase interamente dentro ha induzione nulla e non è quella chiesta.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: Durante l’ingresso aumenta il flusso entrante nel foglio.\nL’induzione richiede un contributo uscente: la corrente è antioraria vista\ndal davanti. Questa risposta si oppone all’ingresso e richiede lavoro esterno.",
+      "scientificAssetReview": "Figura candidata letta integralmente XML e in nuovo native indipendente completo640×altezza, processo reale0; proporzioni, unità, origini e segni verificati separatamente per ciascun pannello. Diciotto SVG originali fonte letti integralmente XML. Due fix testuali non cambiano alcun asset; nessun ritag di UIprodotto.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "cric_c4_051_100_root_review_models.py": "54feebef9c27dcd1abb5ca7b60499594514b36d2a229a6dfd3ea98c651fc6867",
+        "cric_c4_electromagnetism_review_common_a.py": "2244019670f64f1fe1ec76a1657fcf51af067e60878b4757914d923c82a06a7f",
+        "cric_c4_electromagnetism_review_evidence_a.py": "b799f6d10cfc843c708cdbd1bf6f0164299188c206f7f37e8697e32ab757c08c",
+        "cric_c4_electromagnetism_review_models_a.py": "85f9af0afbc0ae2a4dc782bebab47ff57b98b325be911b607628988d998b3eb1",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "C4-Q100",
+      "sourceSha256": "67dddf145fdc203063243a2740b1fa5dc0951ce601f144bda0b11aa2e0ec9e68",
+      "candidateSha256": "20d9c373feaa875e27a57bb85ae42d1e49e582c40af9f247280163546270d4ea",
+      "reviewedSignature": "89a1b82bfe8b2c8df460fc8e45634be7b6d9f3a707f6499d58b71fae4bb7d68d",
+      "assetChecksums": {
+        "cric-c4-l10-progressive.svg": "335f218100d610b3455ec2c9b09348f36eebf630e7c600eeddaed9fc6d2c6f1e"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3",
+        "[current]": "-1"
+      },
+      "manualArithmetic": "Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: Nei primi 4 ms il modulo della f.e.m. è 8 mWb/4 ms=2 V, nei successivi 4 ms\nè zero. Sull’intero intervallo: |ℰmedia|=8 mWb/8 ms=1 V. I due prefissi milli si\ncancellano. Usare 2 V risponderebbe soltanto al primo tratto, non agli 8 ms richiesti.",
+      "physicalAssumptions": "Una spira, rampa 4 ms seguita da plateau 4 ms; media sull’intero intervallo 8 ms, nessuna inversione del segno.",
+      "distractors": "2 V limita alla rampa, zero al plateau; 0,001 converte un solo milli; media orientata negativa e modulo positivo.",
+      "pedagogicalReview": "Lettura individuale di consegna, opzioni, svolgimento, hint e feedback dopo la primaria indipendente. Derivazione Root source-only congelata prima delle candidate; successiva verifica distinta A: Nei primi 4 ms il modulo della f.e.m. è 8 mWb/4 ms=2 V, nei successivi 4 ms\nè zero. Sull’intero intervallo: |ℰmedia|=8 mWb/8 ms=1 V. I due prefissi milli si\ncancellano. Usare 2 V risponderebbe soltanto al primo tratto, non agli 8 ms richiesti.",
+      "scientificAssetReview": "Figura candidata letta integralmente XML e in nuovo native indipendente completo640×altezza, processo reale0; proporzioni, unità, origini e segni verificati separatamente per ciascun pannello. Diciotto SVG originali fonte letti integralmente XML. Due fix testuali non cambiano alcun asset; nessun ritag di UIprodotto.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "cric_c4_051_100_root_review_models.py": "54feebef9c27dcd1abb5ca7b60499594514b36d2a229a6dfd3ea98c651fc6867",
+        "cric_c4_electromagnetism_review_common_a.py": "2244019670f64f1fe1ec76a1657fcf51af067e60878b4757914d923c82a06a7f",
+        "cric_c4_electromagnetism_review_evidence_a.py": "b799f6d10cfc843c708cdbd1bf6f0164299188c206f7f37e8697e32ab757c08c",
+        "cric_c4_electromagnetism_review_models_a.py": "85f9af0afbc0ae2a4dc782bebab47ff57b98b325be911b607628988d998b3eb1",
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc"
+      },
+      "methods": [
+        "Independent_prompt_first_Fraction_SymPy_constitutive_models",
+        "Pint_exact_SI_dimensions",
+        "Individual_manual_options_domain_and_feedback_reading",
+        "Independent_full_XML_and_native_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "469d7875a0aa909c8dba55f2b5cc10f2311772cced270db4dd2c36b996b1d2b5",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "publicationAction": "NONE",
+  "reviewedCandidateCommit": "f10671e83b0e2ff606a9460d351f8c54b2cd08eb",
+  "packageSha256": "17a6d8d0c3d4fd9e92ffe79b465b118e5b10bf8177d2285cfad91c461f74b061",
+  "bindingsSha256": "9e671bb9cdb8f95db933be3a91315bd8fcaa020042d7239f7ed4ddf87065fe2a",
+  "sourceFirstPrimarySha256": "e1c568e8028077a8be767b8d73cb00583dbd9d93e66240fe6d428d7184339653",
+  "source": {
+    "commit": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "path": "officina-di-fisica/content/C4.json",
+    "reference": "Primaria e modello Root487d68fc precedenti alle candidate B; exposure RootQ091 mantenuta e compensazione source-only distinta A db4f4c7e. A ha riletto/risolto tutti50 prompt in83337ef8 prima di aprire il modello Root e le candidate. Boundary esatto e modello eseguiti realmente in2bd7ec24 prima della prima lettura delle candidate. Successivamente tutti50 originali completi, tutti50 candidati e cinque XML/native indipendenti interi letti;18SVG fonte e lezioni reali L06–L10 letti integralmente. UI prodotto e human NOT_RUN."
+  }
+}
