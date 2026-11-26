@@ -1,0 +1,1094 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u7-radioisotope-mixture-01",
+      "kind": "question",
+      "course": "C5",
+      "section": "Attività di due genitori indipendenti",
+      "order": 25301,
+      "title": "Due orologi nucleari nello stesso campione",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "radioisotope-mixture",
+      "difficulty": 1,
+      "prompt": "Un campione chiuso contiene due radionuclidi genitori indipendenti, con attività iniziali A₁>0 e A₂>0. Il primo ha emivita 1 h, il secondo 30 min. Non c’è nuova produzione di genitori né contributo dei figli all’attività richiesta. Tutte le uscite si osservano dopo 1 h: il primo contributo è A₁/2, il secondo A₂/4. Le attività sono tassi medi in Bq e le prove confrontano preparazioni distinte con dati finiti. Con A₁=8 Bq e A₂=8 Bq, quanto vale l’attività totale dopo 1 h, in Bq?",
+      "answer": {
+        "type": "numeric",
+        "value": 6,
+        "unit": "Bq",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "In un’ora il primo radionuclide trascorre una emivita e passa da 8 a 4 Bq. Il secondo trascorre due emivite: 60/30=2, quindi passa da 8 a 2 Bq. I tassi delle due popolazioni indipendenti si sommano: totale 6 Bq."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/2bc82387241bde4df9c0857e1e16ec01ecb0b3cade4ed8537ce3f3bb6cab214a",
+          "text": "Il primo pannello confronta attività iniziali e attività dopo 1 h con la stessa scala. Il blu è il primo genitore, l’ocra il secondo: i contributi 4 e 2 Bq sommano a 6 Bq, senza conteggiare i figli."
+        },
+        {
+          "type": "formula",
+          "text": "A_{\\rm tot}=\\frac{A_1}{2}+\\frac{A_2}{4}"
+        },
+        {
+          "type": "formula",
+          "text": " A_{\\rm tot}=4\\,\\mathrm{Bq}+2\\,\\mathrm{Bq}"
+        },
+        {
+          "type": "formula",
+          "text": " A_{\\rm tot}=6\\,\\mathrm{Bq}"
+        },
+        {
+          "type": "text",
+          "text": "Otto Bq dimezzerebbe entrambi i contributi una sola volta. Sedici ignora il tempo trascorso; quattro conserva soltanto il primo contributo e due soltanto il secondo. Le emivite non si sommano per ottenere una emivita comune."
+        }
+      ],
+      "hints": [
+        "Conta separatamente quante emivite trascorre ciascuna specie.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Otto Bq dimezzerebbe entrambi i contributi una sola volta. Sedici ignora il tempo trascorso; quattro conserva soltanto il primo contributo e due soltanto il secondo. Le emivite non si sommano per ottenere una emivita comune.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Emivite diverse e contributi indipendenti",
+        "Somma di tassi, inverse con residui positivi",
+        "Linearità, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-radioisotope-mixture-02",
+      "kind": "question",
+      "course": "C5",
+      "section": "Attività di due genitori indipendenti",
+      "order": 25302,
+      "title": "Somma di tassi medi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "radioisotope-mixture",
+      "difficulty": 1,
+      "prompt": "Quale unità SI è adatta all’attività totale di due popolazioni radioattive indipendenti?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Bq",
+          "J",
+          "s",
+          "C",
+          "m"
+        ],
+        "value": "Bq"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La somma di due tassi di trasformazioni conserva la dimensione di un tasso. Un Bq è un decadimento medio per secondo. Il totale non indica direttamente né energia emessa né numero totale di nuclei presenti."
+        },
+        {
+          "type": "formula",
+          "text": "[A_{\\rm tot}]=\\mathrm{s^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " 1\\,\\mathrm{Bq}=1\\,\\mathrm{s^{-1}}"
+        },
+        {
+          "type": "text",
+          "text": "J misura energia, s un tempo, C carica e m una lunghezza. Le due attività vanno espresse nella stessa scala prima della somma."
+        }
+      ],
+      "hints": [
+        "Somma grandezze dello stesso tipo e con unità coerenti.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "J misura energia, s un tempo, C carica e m una lunghezza. Le due attività vanno espresse nella stessa scala prima della somma.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Emivite diverse e contributi indipendenti",
+        "Somma di tassi, inverse con residui positivi",
+        "Linearità, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-radioisotope-mixture-03",
+      "kind": "question",
+      "course": "C5",
+      "section": "Attività di due genitori indipendenti",
+      "order": 25303,
+      "title": "La somma arriva dopo i due decadimenti",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "radioisotope-mixture",
+      "difficulty": 1,
+      "prompt": "Un campione chiuso contiene due radionuclidi genitori indipendenti, con attività iniziali A₁>0 e A₂>0. Il primo ha emivita 1 h, il secondo 30 min. Non c’è nuova produzione di genitori né contributo dei figli all’attività richiesta. Tutte le uscite si osservano dopo 1 h: il primo contributo è A₁/2, il secondo A₂/4. Le attività sono tassi medi in Bq e le prove confrontano preparazioni distinte con dati finiti. Quale formula dà l’attività totale al tempo assegnato?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "A_tot = A₁/2 + A₂/4",
+          "A_tot = (A₁ + A₂)/2",
+          "A_tot = (A₁ + A₂)/4",
+          "A_tot = A₁ A₂/8",
+          "A_tot = A₁/4 + A₂/2"
+        ],
+        "value": "A_tot = A₁/2 + A₂/4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La stessa ora rappresenta un intervallo di emivita per il primo e due per il secondo. Applico a ciascuna attività iniziale la propria frazione residua e sommo soltanto i risultati. Non esiste un unico dimezzamento comune alle due specie."
+        },
+        {
+          "type": "formula",
+          "text": "A_1(1\\,\\mathrm h)=A_1/2"
+        },
+        {
+          "type": "formula",
+          "text": " A_2(1\\,\\mathrm h)=A_2/4"
+        },
+        {
+          "type": "formula",
+          "text": " A_{\\rm tot}=A_1/2+A_2/4"
+        },
+        {
+          "type": "text",
+          "text": "Dimezzare o dividere per quattro tutta la somma assegna la stessa emivita alle due specie. Il prodotto delle attività ha dimensione Bq². Scambiare i denominatori attribuisce al genitore sbagliato la propria legge di decadimento."
+        }
+      ],
+      "hints": [
+        "Segui ogni popolazione fino al tempo comune prima di formare il totale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Dimezzare o dividere per quattro tutta la somma assegna la stessa emivita alle due specie. Il prodotto delle attività ha dimensione Bq². Scambiare i denominatori attribuisce al genitore sbagliato la propria legge di decadimento.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Emivite diverse e contributi indipendenti",
+        "Somma di tassi, inverse con residui positivi",
+        "Linearità, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-radioisotope-mixture-04",
+      "kind": "question",
+      "course": "C5",
+      "section": "Attività di due genitori indipendenti",
+      "order": 25304,
+      "title": "Raddoppia soltanto la prima attività iniziale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "radioisotope-mixture",
+      "difficulty": 1,
+      "prompt": "Un campione chiuso contiene due radionuclidi genitori indipendenti, con attività iniziali A₁>0 e A₂>0. Il primo ha emivita 1 h, il secondo 30 min. Non c’è nuova produzione di genitori né contributo dei figli all’attività richiesta. Tutte le uscite si osservano dopo 1 h: il primo contributo è A₁/2, il secondo A₂/4. Le attività sono tassi medi in Bq e le prove confrontano preparazioni distinte con dati finiti. A ha A₁=8 Bq,A₂=8 Bq. B ha A₁=16 Bq,A₂=8 Bq. Come cambia il totale dopo 1 h?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 6 Bq a 10 Bq",
+          "Da 6 Bq a 12 Bq",
+          "Da 6 Bq a 3 Bq",
+          "Resta 6 Bq",
+          "Da 6 Bq a 20 Bq"
+        ],
+        "value": "Da 6 Bq a 10 Bq"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il primo contributo finale raddoppia da 4 a 8 Bq. Il secondo resta 2 Bq, quindi il totale passa da 6 a 10 Bq. Raddoppiare un solo ingresso non raddoppia una somma con un altro contributo positivo invariato."
+        },
+        {
+          "type": "formula",
+          "text": "A_{{\\rm tot},A}=6\\,\\mathrm{Bq}"
+        },
+        {
+          "type": "formula",
+          "text": " A_{{\\rm tot},B}=8\\,\\mathrm{Bq}+2\\,\\mathrm{Bq}"
+        },
+        {
+          "type": "formula",
+          "text": " A_{{\\rm tot},B}=10\\,\\mathrm{Bq}"
+        },
+        {
+          "type": "text",
+          "text": "12 Bq raddoppierebbe anche il secondo ingresso. Tre dimezza erroneamente il totale, sei ignora il cambiamento e venti raddoppia ancora il nuovo totale."
+        }
+      ],
+      "hints": [
+        "Mantieni fisso il contributo che non cambia.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "12 Bq raddoppierebbe anche il secondo ingresso. Tre dimezza erroneamente il totale, sei ignora il cambiamento e venti raddoppia ancora il nuovo totale.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Emivite diverse e contributi indipendenti",
+        "Somma di tassi, inverse con residui positivi",
+        "Linearità, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-radioisotope-mixture-05",
+      "kind": "question",
+      "course": "C5",
+      "section": "Attività di due genitori indipendenti",
+      "order": 25305,
+      "title": "Separare il primo contributo noto il secondo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "radioisotope-mixture",
+      "difficulty": 2,
+      "prompt": "Un campione chiuso contiene due radionuclidi genitori indipendenti, con attività iniziali A₁>0 e A₂>0. Il primo ha emivita 1 h, il secondo 30 min. Non c’è nuova produzione di genitori né contributo dei figli all’attività richiesta. Tutte le uscite si osservano dopo 1 h: il primo contributo è A₁/2, il secondo A₂/4. Le attività sono tassi medi in Bq e le prove confrontano preparazioni distinte con dati finiti. Il totale a 1 h è 6 Bq e A₂ iniziale vale 8 Bq. Quanto vale A₁ iniziale in Bq?",
+      "answer": {
+        "type": "numeric",
+        "value": 8,
+        "unit": "Bq",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il secondo contributo finale è 2 Bq. Lo sottraggo dal totale: restano 4 Bq dovuti al primo. Per ricostruire il suo inizio moltiplico per due e ottengo 8 Bq. Il residuo deve essere strettamente positivo."
+        },
+        {
+          "type": "formula",
+          "text": "A_1=2\\left(A_{\\rm tot}-A_2/4\\right)"
+        },
+        {
+          "type": "formula",
+          "text": " A_1=2(6-2)\\,\\mathrm{Bq}"
+        },
+        {
+          "type": "formula",
+          "text": " A_1=8\\,\\mathrm{Bq}"
+        },
+        {
+          "type": "text",
+          "text": "Quattro copia il primo contributo finale, senza l’inversa. Dodici raddoppia tutto il totale senza sottrarre la seconda specie; 16 moltiplica ancora per due il valore corretto. Occorre A_tot>A₂/4, non basta un totale positivo."
+        }
+      ],
+      "hints": [
+        "Togli prima la parte nota e poi annulla il suo dimezzamento.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro copia il primo contributo finale, senza l’inversa. Dodici raddoppia tutto il totale senza sottrarre la seconda specie; 16 moltiplica ancora per due il valore corretto. Occorre A_tot>A₂/4, non basta un totale positivo.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Emivite diverse e contributi indipendenti",
+        "Somma di tassi, inverse con residui positivi",
+        "Linearità, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-radioisotope-mixture-06",
+      "kind": "question",
+      "course": "C5",
+      "section": "Attività di due genitori indipendenti",
+      "order": 25306,
+      "title": "Separare il secondo contributo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "radioisotope-mixture",
+      "difficulty": 2,
+      "prompt": "Un campione chiuso contiene due radionuclidi genitori indipendenti, con attività iniziali A₁>0 e A₂>0. Il primo ha emivita 1 h, il secondo 30 min. Non c’è nuova produzione di genitori né contributo dei figli all’attività richiesta. Tutte le uscite si osservano dopo 1 h: il primo contributo è A₁/2, il secondo A₂/4. Le attività sono tassi medi in Bq e le prove confrontano preparazioni distinte con dati finiti. Il totale a 1 h è 6 Bq e A₁ iniziale vale 8 Bq. Quanto vale A₂ iniziale in Bq?",
+      "answer": {
+        "type": "numeric",
+        "value": 8,
+        "unit": "Bq",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il primo contributo finale è 4 Bq, quindi il secondo deve dare 2 Bq. È rimasto un quarto della sua attività iniziale: moltiplico 2 per quattro e ritrovo 8 Bq. L’inversa richiede un totale maggiore di A₁/2."
+        },
+        {
+          "type": "formula",
+          "text": "A_2=4\\left(A_{\\rm tot}-A_1/2\\right)"
+        },
+        {
+          "type": "formula",
+          "text": " A_2=4(6-4)\\,\\mathrm{Bq}"
+        },
+        {
+          "type": "formula",
+          "text": " A_2=8\\,\\mathrm{Bq}"
+        },
+        {
+          "type": "text",
+          "text": "Due copia il contributo finale e quattro lo inverte come se fosse una sola emivita. Ventiquattro moltiplica tutto il totale per quattro ignorando il primo radionuclide. Un residuo negativo sarebbe incompatibile col modello."
+        }
+      ],
+      "hints": [
+        "Per la seconda specie sono trascorse due emivite, non una.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due copia il contributo finale e quattro lo inverte come se fosse una sola emivita. Ventiquattro moltiplica tutto il totale per quattro ignorando il primo radionuclide. Un residuo negativo sarebbe incompatibile col modello.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Emivite diverse e contributi indipendenti",
+        "Somma di tassi, inverse con residui positivi",
+        "Linearità, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-radioisotope-mixture-07",
+      "kind": "question",
+      "course": "C5",
+      "section": "Attività di due genitori indipendenti",
+      "order": 25307,
+      "title": "Raddoppia soltanto la seconda specie",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "radioisotope-mixture",
+      "difficulty": 2,
+      "prompt": "Un campione chiuso contiene due radionuclidi genitori indipendenti, con attività iniziali A₁>0 e A₂>0. Il primo ha emivita 1 h, il secondo 30 min. Non c’è nuova produzione di genitori né contributo dei figli all’attività richiesta. Tutte le uscite si osservano dopo 1 h: il primo contributo è A₁/2, il secondo A₂/4. Le attività sono tassi medi in Bq e le prove confrontano preparazioni distinte con dati finiti. A ha A₁=8 Bq,A₂=8 Bq. B mantiene A₁=8 Bq e usa A₂=16 Bq. Quanto vale A_tot,B/A_tot,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4/3",
+          "3/4",
+          "2",
+          "1/2",
+          "1"
+        ],
+        "value": "4/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A dà 4+2=6 Bq. B dà 4+4=8 Bq, quindi il rapporto è 8/6=4/3. Il raddoppio riguarda il contributo inizialmente meno pesante al tempo finale."
+        },
+        {
+          "type": "formula",
+          "text": "A_{{\\rm tot},A}=6\\,\\mathrm{Bq}"
+        },
+        {
+          "type": "formula",
+          "text": " A_{{\\rm tot},B}=8\\,\\mathrm{Bq}"
+        },
+        {
+          "type": "formula",
+          "text": " A_{{\\rm tot},B}/A_{{\\rm tot},A}=\\frac43"
+        },
+        {
+          "type": "text",
+          "text": "3/4 inverte il confronto, due raddoppia anche il primo ingresso. Un mezzo fa diminuire il totale nonostante un ingresso maggiore e uno ignora la seconda modifica."
+        }
+      ],
+      "hints": [
+        "Calcola due somme complete prima di dividere.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "3/4 inverte il confronto, due raddoppia anche il primo ingresso. Un mezzo fa diminuire il totale nonostante un ingresso maggiore e uno ignora la seconda modifica.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Emivite diverse e contributi indipendenti",
+        "Somma di tassi, inverse con residui positivi",
+        "Linearità, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-radioisotope-mixture-08",
+      "kind": "question",
+      "course": "C5",
+      "section": "Attività di due genitori indipendenti",
+      "order": 25308,
+      "title": "Una proposta che somma troppo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "radioisotope-mixture",
+      "difficulty": 2,
+      "prompt": "Un campione chiuso contiene due radionuclidi genitori indipendenti, con attività iniziali A₁>0 e A₂>0. Il primo ha emivita 1 h, il secondo 30 min. Non c’è nuova produzione di genitori né contributo dei figli all’attività richiesta. Tutte le uscite si osservano dopo 1 h: il primo contributo è A₁/2, il secondo A₂/4. Le attività sono tassi medi in Bq e le prove confrontano preparazioni distinte con dati finiti. Con A₁=A₂=8 Bq viene proposto un totale a 1 h di 12 Bq. Quanto vale proposta meno corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "6 Bq",
+          "−6 Bq",
+          "2",
+          "12 Bq",
+          "0 Bq"
+        ],
+        "value": "6 Bq"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il corretto è 6 Bq, non 12. Lo scarto ordinato è quindi +6 Bq. La somma iniziale delle attività era 16 Bq, anch’essa diversa dal totale richiesto al tempo successivo."
+        },
+        {
+          "type": "formula",
+          "text": "\\delta A=(12-6)\\,\\mathrm{Bq}"
+        },
+        {
+          "type": "formula",
+          "text": " \\delta A=6\\,\\mathrm{Bq}"
+        },
+        {
+          "type": "text",
+          "text": "−6 Bq scambia il verso, due è il rapporto proposto/corretto, dodici la proposta e zero non ne controlla la perdita già avvenuta."
+        }
+      ],
+      "hints": [
+        "Confronta il totale proposto con la somma dopo le due attenuazioni.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−6 Bq scambia il verso, due è il rapporto proposto/corretto, dodici la proposta e zero non ne controlla la perdita già avvenuta.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Emivite diverse e contributi indipendenti",
+        "Somma di tassi, inverse con residui positivi",
+        "Linearità, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-radioisotope-mixture-09",
+      "kind": "question",
+      "course": "C5",
+      "section": "Attività di due genitori indipendenti",
+      "order": 25309,
+      "title": "L’inversa simbolica del primo ingresso",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "radioisotope-mixture",
+      "difficulty": 2,
+      "prompt": "Un campione chiuso contiene due radionuclidi genitori indipendenti, con attività iniziali A₁>0 e A₂>0. Il primo ha emivita 1 h, il secondo 30 min. Non c’è nuova produzione di genitori né contributo dei figli all’attività richiesta. Tutte le uscite si osservano dopo 1 h: il primo contributo è A₁/2, il secondo A₂/4. Le attività sono tassi medi in Bq e le prove confrontano preparazioni distinte con dati finiti. Il totale e A₂ sono noti. Quale espressione isola A₁?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "A₁ = 2 (A_tot − A₂/4)",
+          "A₁ = 2 (A_tot + A₂/4)",
+          "A₁ = (A_tot − A₂/4)/2",
+          "A₁ = 4 A_tot − A₂",
+          "A₁ = 2 A_tot"
+        ],
+        "value": "A₁ = 2 (A_tot − A₂/4)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sottraggo A₂/4 a entrambi i membri e moltiplico il residuo per due. La positività dell’attività A₁ richiede A_tot>A₂/4. Il totale non è da attribuire interamente alla prima specie."
+        },
+        {
+          "type": "formula",
+          "text": "A_1/2=A_{\\rm tot}-A_2/4"
+        },
+        {
+          "type": "formula",
+          "text": " A_1=2(A_{\\rm tot}-A_2/4)"
+        },
+        {
+          "type": "text",
+          "text": "Il segno più aggiunge due volte il contributo noto; dividere per due ripete la perdita. 4A_tot−A₂ usa il fattore della seconda specie e 2A_tot omette la sua presenza."
+        }
+      ],
+      "hints": [
+        "Separa prima la parte nota della somma, poi esegui l’inversa.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il segno più aggiunge due volte il contributo noto; dividere per due ripete la perdita. 4A_tot−A₂ usa il fattore della seconda specie e 2A_tot omette la sua presenza.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Emivite diverse e contributi indipendenti",
+        "Somma di tassi, inverse con residui positivi",
+        "Linearità, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-radioisotope-mixture-10",
+      "kind": "question",
+      "course": "C5",
+      "section": "Attività di due genitori indipendenti",
+      "order": 25310,
+      "title": "Due fattori in una somma pesata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "radioisotope-mixture",
+      "difficulty": 2,
+      "prompt": "Un campione chiuso contiene due radionuclidi genitori indipendenti, con attività iniziali A₁>0 e A₂>0. Il primo ha emivita 1 h, il secondo 30 min. Non c’è nuova produzione di genitori né contributo dei figli all’attività richiesta. Tutte le uscite si osservano dopo 1 h: il primo contributo è A₁/2, il secondo A₂/4. Le attività sono tassi medi in Bq e le prove confrontano preparazioni distinte con dati finiti. Fra prove A₁,B=κ₁A₁,A e A₂,B=κ₂A₂,A, con fattori positivi. Definiamo R=A_tot,B/A_tot,A. Nei simboli seguenti A₁,A₂ appartengono ad A. Qual è R?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "(2κ₁A₁ + κ₂A₂) / (2A₁ + A₂)",
+          "κ₁ κ₂",
+          "κ₁ / κ₂",
+          "(κ₁ + κ₂)/2",
+          "(κ₁A₁ + κ₂A₂) / (A₁ + A₂)"
+        ],
+        "value": "(2κ₁A₁ + κ₂A₂) / (2A₁ + A₂)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il rapporto è (κ₁A₁/2+κ₂A₂/4)/(A₁/2+A₂/4). Moltiplicando numeratore e denominatore per quattro, i pesi rimasti sono due e uno. Un fattore comune ai due ingressi si raccoglierebbe, ma fattori diversi non si possono moltiplicare fra loro."
+        },
+        {
+          "type": "formula",
+          "text": "R=\\frac{2\\kappa_1A_1+\\kappa_2A_2}{2A_1+A_2}"
+        },
+        {
+          "type": "text",
+          "text": "Prodotto e quoziente dei fattori non descrivono una somma. La loro media semplice ignora i pesi finali; il rapporto senza il due usa le attività iniziali invece dei contributi dopo un’ora."
+        }
+      ],
+      "hints": [
+        "Mantieni i pesi un mezzo e un quarto fino alla formazione del rapporto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Prodotto e quoziente dei fattori non descrivono una somma. La loro media semplice ignora i pesi finali; il rapporto senza il due usa le attività iniziali invece dei contributi dopo un’ora.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Emivite diverse e contributi indipendenti",
+        "Somma di tassi, inverse con residui positivi",
+        "Linearità, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-radioisotope-mixture-11",
+      "kind": "question",
+      "course": "C5",
+      "section": "Attività di due genitori indipendenti",
+      "order": 25311,
+      "title": "Quando entrambi gli ingressi raddoppiano",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "radioisotope-mixture",
+      "difficulty": 2,
+      "prompt": "Un campione chiuso contiene due radionuclidi genitori indipendenti, con attività iniziali A₁>0 e A₂>0. Il primo ha emivita 1 h, il secondo 30 min. Non c’è nuova produzione di genitori né contributo dei figli all’attività richiesta. Tutte le uscite si osservano dopo 1 h: il primo contributo è A₁/2, il secondo A₂/4. Le attività sono tassi medi in Bq e le prove confrontano preparazioni distinte con dati finiti. A ha A₁=A₂=8 Bq. B ha A₁=A₂=16 Bq. Quanto vale A_tot,B/A_tot,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/2",
+          "4",
+          "1",
+          "3/2"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A dà 6 Bq e B dà 8+4=12 Bq. Questa volta entrambi i contributi hanno lo stesso fattore due, che si raccoglie dalla somma: rapporto due. Le emivite sono ancora diverse."
+        },
+        {
+          "type": "formula",
+          "text": "A_{{\\rm tot},B}=12\\,\\mathrm{Bq}"
+        },
+        {
+          "type": "formula",
+          "text": " A_{{\\rm tot},B}/A_{{\\rm tot},A}=2"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo inverte il rapporto; quattro moltiplica i due raddoppi come se i contributi si moltiplicassero. Uno ignora le nuove popolazioni e 3/2 non segue la stessa scala comune."
+        }
+      ],
+      "hints": [
+        "Un fattore comune a tutta la somma si può raccogliere.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo inverte il rapporto; quattro moltiplica i due raddoppi come se i contributi si moltiplicassero. Uno ignora le nuove popolazioni e 3/2 non segue la stessa scala comune.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Emivite diverse e contributi indipendenti",
+        "Somma di tassi, inverse con residui positivi",
+        "Linearità, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-radioisotope-mixture-12",
+      "kind": "question",
+      "course": "C5",
+      "section": "Attività di due genitori indipendenti",
+      "order": 25312,
+      "title": "Una media che qui coincide con gli ingressi medi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "radioisotope-mixture",
+      "difficulty": 2,
+      "prompt": "Un campione chiuso contiene due radionuclidi genitori indipendenti, con attività iniziali A₁>0 e A₂>0. Il primo ha emivita 1 h, il secondo 30 min. Non c’è nuova produzione di genitori né contributo dei figli all’attività richiesta. Tutte le uscite si osservano dopo 1 h: il primo contributo è A₁/2, il secondo A₂/4. Le attività sono tassi medi in Bq e le prove confrontano preparazioni distinte con dati finiti. A ha A₁=A₂=8 Bq. B ha A₁=A₂=16 Bq. Qual è la media aritmetica dei due totali con pesi uguali?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "9 Bq",
+          "18 Bq",
+          "3 Bq",
+          "6 Bq",
+          "12 Bq"
+        ],
+        "value": "9 Bq"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I totali sono 6 e 12 Bq: media 9 Bq. In questo modello lineare negli ingressi, usare A₁=A₂=12 Bq darebbe anch’esso 6+3=9 Bq. La coincidenza è giustificata dalla linearità con pesi costanti, non da una regola valida per ogni legge fisica."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/2bc82387241bde4df9c0857e1e16ec01ecb0b3cade4ed8537ce3f3bb6cab214a",
+          "text": "Le barre finali mostrano i totali 6 e 12 Bq di due preparazioni e la loro media 9 Bq, con origine e scala comuni. Il grafico centrale fissa invece A₂=8 Bq e varia soltanto A₁."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline A=\\frac{6+12}{2}\\,\\mathrm{Bq}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline A=9\\,\\mathrm{Bq}"
+        },
+        {
+          "type": "formula",
+          "text": " A_{\\rm dati\\ medi}=9\\,\\mathrm{Bq}"
+        },
+        {
+          "type": "text",
+          "text": "18 Bq è la somma, tre la semidifferenza, sei e dodici ripetono una sola prova. Non si devono inventare due risposte diverse quando la linearità rende le operazioni equivalenti."
+        }
+      ],
+      "hints": [
+        "Verifica prima la media delle uscite, poi spiega la eventuale coincidenza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "18 Bq è la somma, tre la semidifferenza, sei e dodici ripetono una sola prova. Non si devono inventare due risposte diverse quando la linearità rende le operazioni equivalenti.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Emivite diverse e contributi indipendenti",
+        "Somma di tassi, inverse con residui positivi",
+        "Linearità, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-radioisotope-mixture-13",
+      "kind": "question",
+      "course": "C5",
+      "section": "Attività di due genitori indipendenti",
+      "order": 25313,
+      "title": "La seconda attività per il bersaglio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "radioisotope-mixture",
+      "difficulty": 3,
+      "prompt": "Un campione chiuso contiene due radionuclidi genitori indipendenti, con attività iniziali A₁>0 e A₂>0. Il primo ha emivita 1 h, il secondo 30 min. Non c’è nuova produzione di genitori né contributo dei figli all’attività richiesta. Tutte le uscite si osservano dopo 1 h: il primo contributo è A₁/2, il secondo A₂/4. Le attività sono tassi medi in Bq e le prove confrontano preparazioni distinte con dati finiti. A ha A₁=A₂=8 Bq. B deve avere A₁=16 Bq e totale doppio rispetto ad A. Quanto vale A₂,B/A₂,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/2",
+          "4",
+          "1",
+          "3/2"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è 12 Bq. Il primo contributo di B vale 8 Bq, dunque ne mancano 4. Per avere 4 Bq dopo due emivite il secondo ingresso deve essere 16 Bq: rapporto 16/8=2."
+        },
+        {
+          "type": "formula",
+          "text": "A_{{\\rm tot},B}=12\\,\\mathrm{Bq}"
+        },
+        {
+          "type": "formula",
+          "text": " A_{2,B}=4(12-8)\\,\\mathrm{Bq}"
+        },
+        {
+          "type": "formula",
+          "text": " A_{2,B}=16\\,\\mathrm{Bq}"
+        },
+        {
+          "type": "formula",
+          "text": " A_{2,B}/A_{2,A}=2"
+        },
+        {
+          "type": "text",
+          "text": "Uno darebbe un totale di 10 Bq; quattro darebbe 16 Bq. Un mezzo inverte il rapporto e 3/2 darebbe 11 Bq, non il bersaglio."
+        }
+      ],
+      "hints": [
+        "Sottrai dal target il contributo già fissato della prima specie.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Uno darebbe un totale di 10 Bq; quattro darebbe 16 Bq. Un mezzo inverte il rapporto e 3/2 darebbe 11 Bq, non il bersaglio.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Emivite diverse e contributi indipendenti",
+        "Somma di tassi, inverse con residui positivi",
+        "Linearità, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-radioisotope-mixture-14",
+      "kind": "question",
+      "course": "C5",
+      "section": "Attività di due genitori indipendenti",
+      "order": 25314,
+      "title": "Il display legge il totale finale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "radioisotope-mixture",
+      "difficulty": 3,
+      "prompt": "Un campione chiuso contiene due radionuclidi genitori indipendenti, con attività iniziali A₁>0 e A₂>0. Il primo ha emivita 1 h, il secondo 30 min. Non c’è nuova produzione di genitori né contributo dei figli all’attività richiesta. Tutte le uscite si osservano dopo 1 h: il primo contributo è A₁/2, il secondo A₂/4. Le attività sono tassi medi in Bq e le prove confrontano preparazioni distinte con dati finiti. D=g A_tot è continuo e adimensionale. A con A₁=A₂=8 Bq dà D=18. In B D=36 e A₂=16 Bq. Quanto vale A₁,B in Bq?",
+      "answer": {
+        "type": "numeric",
+        "value": 16,
+        "unit": "Bq",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento ha totale 6 Bq, dunque g=3 Bq⁻¹. D=36 indica 12 Bq. Tolto il contributo 16/4=4 Bq della seconda specie restano 8 Bq finali della prima: l’inizio era 16 Bq."
+        },
+        {
+          "type": "formula",
+          "text": "g=3\\,\\mathrm{Bq^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " A_{{\\rm tot},B}=12\\,\\mathrm{Bq}"
+        },
+        {
+          "type": "formula",
+          "text": " A_{1,B}=2(12-4)\\,\\mathrm{Bq}"
+        },
+        {
+          "type": "formula",
+          "text": " A_{1,B}=16\\,\\mathrm{Bq}"
+        },
+        {
+          "type": "text",
+          "text": "64 Bq tratterebbe D=36 come un totale di 36 Bq e predirebbe D=108. Otto copia il contributo finale, 24 omette il secondo contributo e predirebbe D=48."
+        }
+      ],
+      "hints": [
+        "Decodifica il totale prima di separare i due radionuclidi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "64 Bq tratterebbe D=36 come un totale di 36 Bq e predirebbe D=108. Otto copia il contributo finale, 24 omette il secondo contributo e predirebbe D=48.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Emivite diverse e contributi indipendenti",
+        "Somma di tassi, inverse con residui positivi",
+        "Linearità, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-radioisotope-mixture-15",
+      "kind": "question",
+      "course": "C5",
+      "section": "Attività di due genitori indipendenti",
+      "order": 25315,
+      "title": "Offset sul totale, poi bilancio dei contributi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "radioisotope-mixture",
+      "difficulty": 3,
+      "prompt": "Un campione chiuso contiene due radionuclidi genitori indipendenti, con attività iniziali A₁>0 e A₂>0. Il primo ha emivita 1 h, il secondo 30 min. Non c’è nuova produzione di genitori né contributo dei figli all’attività richiesta. Tutte le uscite si osservano dopo 1 h: il primo contributo è A₁/2, il secondo A₂/4. Le attività sono tassi medi in Bq e le prove confrontano preparazioni distinte con dati finiti. D=g A_tot+b. A: A₁=A₂=8 Bq,D=13. B: A₁=A₂=16 Bq,D=25. C: A₂=8 Bq,D=21. Quanto vale A₁,C in Bq?",
+      "answer": {
+        "type": "numeric",
+        "value": 16,
+        "unit": "Bq",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I totali di riferimento sono 6 e 12 Bq. La differenza delle letture dà g=2 Bq⁻¹ e poi b=1. D=21 corrisponde a 10 Bq. Tolti i 2 Bq della seconda specie, il primo contributo finale è 8 Bq: A₁,C=16 Bq."
+        },
+        {
+          "type": "formula",
+          "text": "g=2\\,\\mathrm{Bq^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " A_{{\\rm tot},C}=10\\,\\mathrm{Bq}"
+        },
+        {
+          "type": "formula",
+          "text": " A_{1,C}=16\\,\\mathrm{Bq}"
+        },
+        {
+          "type": "text",
+          "text": "17 Bq omette l’offset e predirebbe D=22. Trentasei omette il guadagno dopo aver tolto b e predirebbe D=41. Otto lascia il primo contributo al tempo finale, senza ricostruire l’inizio."
+        }
+      ],
+      "hints": [
+        "Sottrai l’offset strumentale prima del contributo fisico noto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "17 Bq omette l’offset e predirebbe D=22. Trentasei omette il guadagno dopo aver tolto b e predirebbe D=41. Otto lascia il primo contributo al tempo finale, senza ricostruire l’inizio.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Emivite diverse e contributi indipendenti",
+        "Somma di tassi, inverse con residui positivi",
+        "Linearità, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-radioisotope-mixture-16",
+      "kind": "question",
+      "course": "C5",
+      "section": "Attività di due genitori indipendenti",
+      "order": 25316,
+      "title": "Attività iniziali uguali, scala determinata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "radioisotope-mixture",
+      "difficulty": 3,
+      "prompt": "Un campione chiuso contiene due radionuclidi genitori indipendenti, con attività iniziali A₁>0 e A₂>0. Il primo ha emivita 1 h, il secondo 30 min. Non c’è nuova produzione di genitori né contributo dei figli all’attività richiesta. Tutte le uscite si osservano dopo 1 h: il primo contributo è A₁/2, il secondo A₂/4. Le attività sono tassi medi in Bq e le prove confrontano preparazioni distinte con dati finiti. Si impone A₁=A₂ e si misura totale 6 Bq dopo 1 h. Quanto vale A₂ iniziale in Bq?",
+      "answer": {
+        "type": "numeric",
+        "value": 8,
+        "unit": "Bq",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Definisco X=A₁=A₂. La somma finale è X/2+X/4=3X/4. La misura 6 Bq fissa X=8 Bq. L’uguaglianza iniziale non rende uguali le attività finali: restano 4 e 2 Bq."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/2bc82387241bde4df9c0857e1e16ec01ecb0b3cade4ed8537ce3f3bb6cab214a",
+          "text": "L’uguaglianza delle attività iniziali non significa uguali attività dopo 1 h: le due emivite producono fattori diversi. Il grafico centrale ha A₂ fissata, non rappresenta il vincolo A₁=A₂."
+        },
+        {
+          "type": "formula",
+          "text": "X=A_1"
+        },
+        {
+          "type": "formula",
+          "text": " A_2=X"
+        },
+        {
+          "type": "formula",
+          "text": " A_{\\rm tot}=\\frac34X"
+        },
+        {
+          "type": "formula",
+          "text": " X=8\\,\\mathrm{Bq}"
+        },
+        {
+          "type": "text",
+          "text": "Sei Bq confonde totale e singolo ingresso e darebbe totale 9/2 Bq. Quattro darebbe 3 Bq; dodici darebbe 9 Bq. Il vincolo e la misura sono indipendenti e fissano una sola coppia positiva."
+        }
+      ],
+      "hints": [
+        "Usa una sola incognita per gli ingressi, conservando però i due pesi diversi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Sei Bq confonde totale e singolo ingresso e darebbe totale 9/2 Bq. Quattro darebbe 3 Bq; dodici darebbe 9 Bq. Il vincolo e la misura sono indipendenti e fissano una sola coppia positiva.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Emivite diverse e contributi indipendenti",
+        "Somma di tassi, inverse con residui positivi",
+        "Linearità, medie e tarature"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "2bc82387241bde4df9c0857e1e16ec01ecb0b3cade4ed8537ce3f3bb6cab214a",
+      "name": "radioisotope-mixture-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTYwMCIgdmlld0JveD0iMCAwIDY0MCAxNjAwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+RHVlIGdlbml0b3JpLCBkdWUgY29udHJpYnV0aSBkaSBhdHRpdml0w6A8L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5UcmUgdGFwcGU6IGxlIGR1ZSBhdHRpdml0w6AgaW5pemlhbGkgZGEgb3R0byBiZWNxdWVyZWwgZGl2ZW50YW5vIHF1YXR0cm8gZSBkdWUgZG9wbyB1buKAmW9yYTsgc29tbWEgYWZmaW5lIGFsIHZhcmlhcmUgc29sdGFudG8gZGVsIHByaW1vIGluZ3Jlc3NvOyBkdWUgcHJlcGFyYXppb25pIGhhbm5vIGF0dGl2aXTDoCB0b3RhbGkgc2VpIGUgZG9kaWNpIGNvbiBtZWRpYSBub3ZlIGJlY3F1ZXJlbC48L2Rlc2M+PGRlZnM+PG1hcmtlciBpZD0iYXJyb3ciIG1hcmtlcldpZHRoPSI4IiBtYXJrZXJIZWlnaHQ9IjgiIHJlZlg9IjciIHJlZlk9IjQiIG9yaWVudD0iYXV0byI+PHBhdGggZD0iTTAgMEw4IDRMMCA4WiIgZmlsbD0iIzUyNjY3YSIvPjwvbWFya2VyPjwvZGVmcz48cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjE2MDAiIGZpbGw9IiNmN2ZhZmMiLz48ZyBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZpbGw9IiMyMDM1NGQiPjx0ZXh0IHg9IjMyIiB5PSI0MiIgZm9udC1zaXplPSIyNCIgdGV4dC1hbmNob3I9InN0YXJ0Ij5EdWUgZ2VuaXRvcmksIGR1ZSBjb250cmlidXRpIGRpIGF0dGl2aXTDoDwvdGV4dD48dGV4dCB4PSIzMiIgeT0iOTYiIGZvbnQtc2l6ZT0iMjIiIHRleHQtYW5jaG9yPSJzdGFydCI+MSDCtyBVbmEgb3JhLCBkdWUgZW1pdml0ZSBkaXZlcnNlPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSIxNDIiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJzdGFydCI+Qmx1OiBwcmltbyBnZW5pdG9yZSDCtyBPY3JhOiBzZWNvbmRvIGdlbml0b3JlPC90ZXh0Pjx0ZXh0IHg9IjEyOCIgeT0iMjIzIiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0iZW5kIj4wIGg8L3RleHQ+PHJlY3QgeD0iMTUwIiB5PSIyMDAiIHdpZHRoPSIxNjAiIGhlaWdodD0iMzAiIGZpbGw9IiMzMTZiOWIiLz48cmVjdCB4PSIzMTAiIHk9IjIwMCIgd2lkdGg9IjE2MCIgaGVpZ2h0PSIzMCIgZmlsbD0iI2E3NmQyMCIvPjx0ZXh0IHg9IjIzMC4wIiB5PSIyNzAiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJtaWRkbGUiPjggQnE8L3RleHQ+PHRleHQgeD0iMzkwLjAiIHk9IjI3MCIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+OCBCcTwvdGV4dD48dGV4dCB4PSIxMjgiIHk9IjM1MyIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9ImVuZCI+MSBoPC90ZXh0PjxyZWN0IHg9IjE1MCIgeT0iMzMwIiB3aWR0aD0iODAiIGhlaWdodD0iMzAiIGZpbGw9IiMzMTZiOWIiLz48cmVjdCB4PSIyMzAiIHk9IjMzMCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjYTc2ZDIwIi8+PHRleHQgeD0iMTkwLjAiIHk9IjQwMCIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+NCBCcTwvdGV4dD48dGV4dCB4PSIyNTAuMCIgeT0iNDAwIiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj4yIEJxPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSI0NjUiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJzdGFydCI+VMK9IGRlbCBwcmltbzogMSBoIMK3IFTCvSBkZWwgc2Vjb25kbzogMzAgbWluPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSI1MzUiIGZvbnQtc2l6ZT0iMjIiIHRleHQtYW5jaG9yPSJzdGFydCI+MiDCtyBWYXJpYSBzb2xvIEHigoE7IEHigoIgcmVzdGEgOCBCcTwvdGV4dD48bGluZSB4MT0iMTQ1IiB5MT0iMTAwMCIgeDI9IjU1MCIgeTI9IjEwMDAiIHN0cm9rZT0iIzUyNjY3YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjxsaW5lIHgxPSIxNTAiIHkxPSIxMDA1IiB4Mj0iMTUwIiB5Mj0iNjMwIiBzdHJva2U9IiM1MjY2N2EiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48dGV4dCB4PSIxNzAiIHk9IjYxMCIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9InN0YXJ0Ij5BX3RvdCBkb3BvIDEgaCAoQnEpPC90ZXh0Pjx0ZXh0IHg9IjQ2NSIgeT0iMTA3MCIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9InN0YXJ0Ij5B4oKBIChCcSk8L3RleHQ+PGxpbmUgeDE9IjE1MCIgeTE9Ijk0MCIgeDI9IjQ3MCIgeTI9IjcwMCIgc3Ryb2tlPSIjNTI2NjdhIiBzdHJva2Utd2lkdGg9IjIiLz48Y2lyY2xlIGN4PSIxNTAiIGN5PSI5NDAiIHI9IjQiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzMxNmI5YiIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iMTI4IiB5PSIxMDQwIiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0iZW5kIj4wPC90ZXh0PjxjaXJjbGUgY3g9IjMxMCIgY3k9IjgyMCIgcj0iNSIgZmlsbD0iIzMxNmI5YiIvPjxsaW5lIHgxPSIzMTAiIHkxPSI5OTQiIHgyPSIzMTAiIHkyPSIxMDA2IiBzdHJva2U9IiM1MjY2N2EiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjMxMCIgeT0iMTA0MCIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+ODwvdGV4dD48bGluZSB4MT0iMTQ0IiB5MT0iODIwIiB4Mj0iMTU2IiB5Mj0iODIwIiBzdHJva2U9IiM1MjY2N2EiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjEzMCIgeT0iODI2IiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0iZW5kIj42PC90ZXh0PjxjaXJjbGUgY3g9IjQ3MCIgY3k9IjcwMCIgcj0iNSIgZmlsbD0iIzMxNmI5YiIvPjxsaW5lIHgxPSI0NzAiIHkxPSI5OTQiIHgyPSI0NzAiIHkyPSIxMDA2IiBzdHJva2U9IiM1MjY2N2EiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjQ3MCIgeT0iMTA0MCIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MTY8L3RleHQ+PGxpbmUgeDE9IjE0NCIgeTE9IjcwMCIgeDI9IjE1NiIgeTI9IjcwMCIgc3Ryb2tlPSIjNTI2NjdhIiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSIxMzAiIHk9IjcwNiIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9ImVuZCI+MTA8L3RleHQ+PGxpbmUgeDE9IjE0NCIgeTE9Ijk0MCIgeDI9IjE1NiIgeTI9Ijk0MCIgc3Ryb2tlPSIjNTI2NjdhIiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSIxMzAiIHk9Ijk0NiIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9ImVuZCI+MjwvdGV4dD48dGV4dCB4PSIzMiIgeT0iMTEzMCIgZm9udC1zaXplPSIyMiIgdGV4dC1hbmNob3I9InN0YXJ0Ij4zIMK3IER1ZSBwcmVwYXJhemlvbmkgZSBsYSBtZWRpYSBkZWwgdG90YWxlPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSIxMTcwIiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPkE6IEHigoEgPSBB4oKCID0gOCBCcSDCtyBCOiBB4oKBID0gQeKCgiA9IDE2IEJxPC90ZXh0Pjx0ZXh0IHg9IjEyOCIgeT0iMTI0MyIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9ImVuZCI+QTwvdGV4dD48cmVjdCB4PSIxNTAiIHk9IjEyMjAiIHdpZHRoPSIxNTAiIGhlaWdodD0iMzAiIGZpbGw9IiMzMTZiOWIiLz48dGV4dCB4PSIzMTIiIHk9IjEyNDMiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJzdGFydCI+NiBCcTwvdGV4dD48dGV4dCB4PSIxMjgiIHk9IjEzNDMiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJlbmQiPkI8L3RleHQ+PHJlY3QgeD0iMTUwIiB5PSIxMzIwIiB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjMzE2YjliIi8+PHRleHQgeD0iNDYyIiB5PSIxMzQzIiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjEyIEJxPC90ZXh0Pjx0ZXh0IHg9IjEyOCIgeT0iMTQ0MyIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9ImVuZCI+TWVkaWE8L3RleHQ+PHJlY3QgeD0iMTUwIiB5PSIxNDIwIiB3aWR0aD0iMjI1IiBoZWlnaHQ9IjMwIiBmaWxsPSIjMzE2YjliIi8+PHRleHQgeD0iMzg3IiB5PSIxNDQzIiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjkgQnE8L3RleHQ+PHRleHQgeD0iMzIiIHk9IjE1MTUiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJzdGFydCI+TGUgdHJlIGJhcnJlIGRlbCB0b3RhbGUgaGFubm8gbGEgc3Rlc3NhIHNjYWxhLjwvdGV4dD48dGV4dCB4PSIzMiIgeT0iMTU2MCIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9InN0YXJ0Ij5OZWwgZ3JhZmljbywgQeKCgSA9IDAgw6ggc29sbyB1biBsaW1pdGUgZGkgYm9yZG8uPC90ZXh0PjwvZz48L3N2Zz4K"
+    }
+  ]
+}
