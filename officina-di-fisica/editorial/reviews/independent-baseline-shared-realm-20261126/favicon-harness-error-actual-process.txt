@@ -1,0 +1,27 @@
+node:internal/modules/run_main:122
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Expected values to be strictly deep-equal:
++ actual - expected
+
++ [
++   'AssertionError [ERR_ASSERTION]: Unpinned candidate request favicon.ico\n' +
++     '    at Server.<anonymous> (file:///private/tmp/cric-experiment-contract-fix/officina-di-fisica/editorial/reviews/independent-baseline-shared-realm-20261126/observe-shared-realm.mjs:33:71)\n' +
++     '    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)'
++ ]
+- []
+
+    at file:///private/tmp/cric-experiment-contract-fix/officina-di-fisica/editorial/reviews/independent-baseline-shared-realm-20261126/observe-shared-realm.mjs:62:9 {
+  generatedMessage: true,
+  code: 'ERR_ASSERTION',
+  actual: [
+    'AssertionError [ERR_ASSERTION]: Unpinned candidate request favicon.ico\n' +
+      '    at Server.<anonymous> (file:///private/tmp/cric-experiment-contract-fix/officina-di-fisica/editorial/reviews/independent-baseline-shared-realm-20261126/observe-shared-realm.mjs:33:71)\n' +
+      '    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)'
+  ],
+  expected: [],
+  operator: 'deepStrictEqual'
+}
+
+Node.js v22.14.0
