@@ -5,9 +5,9 @@
   "sourceQuestionCount": 4606,
   "reviewedQuestions": 4200,
   "remainingQuestions": 406,
-  "reviewedActivities": 245,
-  "remainingActivities": 140,
-  "registrySha256": "b284a993bddaab039d5064924d1d25084a01e9b87e1d592847f4111a6bae05da",
+  "reviewedActivities": 240,
+  "remainingActivities": 145,
+  "registrySha256": "270f09358ce4d4abd58f48da5837e3d587f2cbdaad1851edb5258a2bd970c4f9",
   "questions": [
     {
       "id": "AR-u1-area-conversion-01",
@@ -23879,23 +23879,28 @@
     },
     {
       "id": "SIM-C1-L001-06",
-      "state": "REVIEWED_PENDING_CURRENT_FULL_INTEGRATION"
+      "state": "REOPENED",
+      "withdrawalId": "vector-axis-shaft-side-00106-root-20261126"
     },
     {
       "id": "SIM-C1-L002-01",
-      "state": "REVIEWED_PENDING_CURRENT_FULL_INTEGRATION"
+      "state": "REOPENED",
+      "withdrawalId": "vector-axis-shaft-side-00201-root-20261126"
     },
     {
       "id": "SIM-C1-L002-02",
-      "state": "REVIEWED_PENDING_CURRENT_FULL_INTEGRATION"
+      "state": "REOPENED",
+      "withdrawalId": "vector-axis-shaft-side-00202-root-20261126"
     },
     {
       "id": "SIM-C1-L002-03",
-      "state": "REVIEWED_PENDING_CURRENT_FULL_INTEGRATION"
+      "state": "REOPENED",
+      "withdrawalId": "vector-axis-shaft-side-00203-root-20261126"
     },
     {
       "id": "SIM-C1-L002-04",
-      "state": "REVIEWED_PENDING_CURRENT_FULL_INTEGRATION"
+      "state": "REOPENED",
+      "withdrawalId": "vector-axis-shaft-side-00204-root-20261126"
     },
     {
       "id": "SIM-C1-L003-01",
@@ -24993,6 +24998,11 @@
     "C6-Q105"
   ],
   "blockedActivityIds": [
+    "SIM-C1-L001-06",
+    "SIM-C1-L002-01",
+    "SIM-C1-L002-02",
+    "SIM-C1-L002-03",
+    "SIM-C1-L002-04",
     "SIM-C1-L007-01"
   ],
   "fullSnapshotGate": "BLOCKED_BY_OPEN_SCIENTIFIC_WITHDRAWAL; no gate change and no stale3792 adoption",
@@ -25003,10 +25013,15 @@
       "id": "work-axis-shaft-side-root-20261126",
       "state": "OPEN",
       "affectedIds": [
+        "SIM-C1-L001-06",
+        "SIM-C1-L002-01",
+        "SIM-C1-L002-02",
+        "SIM-C1-L002-03",
+        "SIM-C1-L002-04",
         "SIM-C1-L007-01"
       ],
       "evidence": "editorial/acceptance/withdrawals-v1.json",
-      "resolution": "Distinct peer review of author7173 plus actual runtime audit renewal and explicit same-ID closure. No automatic hash closure."
+      "resolution": "One coherent six-ID native-vector correction, actionable fallback legend, distinct peer review, fresh current-runtime proofs and explicit same-ID batch closures. No automatic closure by hash."
     },
     {
       "id": "c6-adaptive-transfer-family-coverage-20261126",

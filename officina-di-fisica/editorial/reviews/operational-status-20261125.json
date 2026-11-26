@@ -34,15 +34,15 @@
   },
   "activities": {
     "accounted": 385,
-    "scientificallyReviewedInFeature": 245,
-    "remaining": 140,
+    "scientificallyReviewedInFeature": 240,
+    "remaining": 145,
     "remainingByCourse": {
       "C2": 41,
       "C3": 36,
       "C4": 29,
       "C5": 27,
       "C6": 6,
-      "C1": 1
+      "C1": 6
     },
     "C2C3PartialReviewsAddCredit": 0,
     "partialC2C3C4DeliveriesRecovered": true,
@@ -81,6 +81,11 @@
       "receipt": "editorial/reviews/experiments-manual-support-263-independent-20261125/root-receipt.json"
     },
     "explicitlyReopenedIds": [
+      "SIM-C1-L001-06",
+      "SIM-C1-L002-01",
+      "SIM-C1-L002-02",
+      "SIM-C1-L002-03",
+      "SIM-C1-L002-04",
       "SIM-C1-L007-01"
     ]
   },
@@ -128,12 +133,20 @@
   },
   "currentLocalPreparation": {
     "questionRegistry": 4200,
-    "state": "WITHHELD_OPEN_ACTIVITY_WITHDRAWAL",
+    "state": "WITHHELD_OPEN_VECTOR_ACTIVITY_WITHDRAWALS",
     "explicitBlocker": "SIM-C1-L007-01",
     "officialCheckpointQuestions": 3632,
     "officialCheckpointActivitiesHistorical": 246,
-    "currentAcceptedActivities": 245,
-    "noGateWeakening": true
+    "currentAcceptedActivities": 240,
+    "noGateWeakening": true,
+    "explicitBlockerIds": [
+      "SIM-C1-L001-06",
+      "SIM-C1-L002-01",
+      "SIM-C1-L002-02",
+      "SIM-C1-L002-03",
+      "SIM-C1-L002-04",
+      "SIM-C1-L007-01"
+    ]
   },
   "nextScientificAcceptanceId": "C1-Q011",
   "nextNewAuthoringId": "C2-Q001",
@@ -408,10 +421,15 @@
       "id": "work-axis-shaft-side-root-20261126",
       "state": "OPEN",
       "affectedIds": [
+        "SIM-C1-L001-06",
+        "SIM-C1-L002-01",
+        "SIM-C1-L002-02",
+        "SIM-C1-L002-03",
+        "SIM-C1-L002-04",
         "SIM-C1-L007-01"
       ],
       "evidence": "editorial/acceptance/withdrawals-v1.json",
-      "resolution": "Distinct peer review of author7173 plus actual runtime audit renewal and explicit same-ID closure. No automatic hash closure."
+      "resolution": "One coherent six-ID native-vector correction, actionable fallback legend, distinct peer review, fresh current-runtime proofs and explicit same-ID batch closures. No automatic closure by hash."
     },
     {
       "id": "c6-adaptive-transfer-family-coverage-20261126",
@@ -463,5 +481,18 @@
     "allPublished991AndOldPayloadsUnchanged": true,
     "firstFixtureNegative": "API correctly rejected answer after reveal; fixture changed to hint, application unchanged; negative preserved",
     "scientificCredit": 0
+  },
+  "additionalVectorWithdrawals": {
+    "receipt": "editorial/reviews/c1-vector-axis-root-reopening-20261126/receipt.json",
+    "count": 5,
+    "ids": [
+      "SIM-C1-L001-06",
+      "SIM-C1-L002-01",
+      "SIM-C1-L002-02",
+      "SIM-C1-L002-03",
+      "SIM-C1-L002-04"
+    ],
+    "currentRuntime": "1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba",
+    "questionCredit": 0
   }
 }
