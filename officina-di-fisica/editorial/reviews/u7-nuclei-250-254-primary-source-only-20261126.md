@@ -21,7 +21,7 @@ Inserisci solo il numero esatto (è ammessa una frazione); l’unità richiesta 
 
 Derivazione primaria indipendente:
 
-Per un solo genitore senza apporto, ciascuna emivita dimezza il valore medio. Pongo x=t/(1 h): N=N₀2^(−x). Con x=1, 64/2=32 milioni. Il valore medio non è la garanzia che ogni singolo campione dia esattamente quel conteggio.
+Per un solo genitore senza apporto, ciascuna emivita dimezza il valore medio. Pongo x=t/(1 h): N=N₀ 2^(−x). Con x=1, 64/2=32 milioni. Il valore medio non è la garanzia che ogni singolo campione dia esattamente quel conteggio.
 
 ## u7-radioactive-survivors-02
 
@@ -59,7 +59,7 @@ Ipotesi e convenzioni: Un solo radionuclide Emivita costante di 1 h Numero medio
 
 Derivazione primaria indipendente:
 
-A tempo identico il fattore esponenziale è identico. Portare N₀ da64 a32 milioni moltiplica N per1/2: da32 a16 milioni.
+A tempo identico il fattore esponenziale è identico. Portare N₀ da 64 a 32 milioni moltiplica N per 1/2: da 32 a 16 milioni.
 
 ## u7-radioactive-survivors-05
 
@@ -74,7 +74,7 @@ Inserisci solo il numero esatto (è ammessa una frazione); l’unità richiesta 
 
 Derivazione primaria indipendente:
 
-Da N=N₀/2 con t=1 h moltiplico entrambi i membri per2: N₀=2N=64 milioni. Popolazione iniziale maggiore del residuo, come richiesto da t>0.
+Da N=N₀/2 con t=1 h moltiplico entrambi i membri per 2: N₀=2 N=64 milioni. Popolazione iniziale maggiore del residuo, come richiesto da t>0.
 
 ## u7-radioactive-survivors-06
 
@@ -89,7 +89,7 @@ Inserisci solo il numero esatto (è ammessa una frazione); l’unità richiesta 
 
 Derivazione primaria indipendente:
 
-32/64=1/2=2^(−x), dunque x=1 e t=1 h. Più in generale t=T½ log₂(N₀/N), positivo soltanto per0<N<N₀.
+32/64=1/2=2^(−x), dunque x=1 e t=1 h. Più in generale t=T½ log₂(N₀/N), positivo soltanto per 0<N<N₀.
 
 ## u7-radioactive-survivors-07
 
@@ -103,7 +103,7 @@ Ipotesi e convenzioni: Un solo radionuclide Emivita costante di 1 h Numero medio
 
 Derivazione primaria indipendente:
 
-A pari N₀ il rapporto è2^(−2)/2^(−1)=1/2. Le letture sono16 e32 milioni: il tempo raddoppiato non dimezza sempre N per una legge inversa, qui aggiunge una sola emivita.
+A pari N₀ il rapporto è 2^(−2)/2^(−1)=1/2. Le letture sono 16 e 32 milioni: il tempo raddoppiato non dimezza sempre N per una legge inversa, qui aggiunge una sola emivita.
 
 ## u7-radioactive-survivors-08
 
@@ -117,7 +117,7 @@ Ipotesi e convenzioni: Un solo radionuclide Emivita costante di 1 h Numero medio
 
 Derivazione primaria indipendente:
 
-Il proposto64 meno il corretto32 vale+32 milioni. Il segno positivo indica una sovrastima; non si prende il valore assoluto senza richiesta.
+Il proposto 64 meno il corretto 32 vale+32 milioni. Il segno positivo indica una sovrastima; non si prende il valore assoluto senza richiesta.
 
 ## u7-radioactive-survivors-09
 
@@ -131,7 +131,7 @@ Ipotesi e convenzioni: Un solo radionuclide Emivita costante di 1 h Numero medio
 
 Derivazione primaria indipendente:
 
-Moltiplico N=N₀2^(−t/T½) per2^(t/T½): N₀=N2^(t/T½). L’esponente è adimensionale; con t numerico in ore e T½=1 h si abbrevia N2^t.
+Moltiplico N=N₀ 2^(−t/T½) per 2^(t/T½): N₀=N 2^(t/T½). L’esponente è adimensionale; con t numerico in ore e T½=1 h si abbrevia N 2^t.
 
 ## u7-radioactive-survivors-10
 
@@ -145,7 +145,7 @@ Ipotesi e convenzioni: Un solo radionuclide Emivita costante di 1 h Numero medio
 
 Derivazione primaria indipendente:
 
-Il quoziente completo è κ₁2^(−(κ₂−1)t/T½). Non diventa κ₁/κ₂: il tempo entra in un esponente. Entrambe le preparazioni devono conservare t>0 e popolazione positiva.
+Il quoziente completo è κ₁ 2^(−(κ₂−1)t/T½). Non diventa κ₁/κ₂: il tempo entra in un esponente. Entrambe le preparazioni devono conservare t>0 e popolazione positiva.
 
 ## u7-radioactive-survivors-11
 
@@ -160,7 +160,7 @@ Inserisci solo il numero esatto (è ammessa una frazione); l’unità richiesta 
 
 Derivazione primaria indipendente:
 
-A dà32 milioni; B dà32/4=8 milioni. Quindi N_B/N_A=8/32=1/4: si compongono dimezzamento della popolazione e un’ulteriore emivita.
+A dà 32 milioni; B dà 32/4=8 milioni. Quindi N_B/N_A=8/32=1/4: si compongono dimezzamento della popolazione e un’ulteriore emivita.
 
 ## u7-radioactive-survivors-12
 
@@ -174,7 +174,7 @@ Ipotesi e convenzioni: Un solo radionuclide Emivita costante di 1 h Numero medio
 
 Derivazione primaria indipendente:
 
-Calcolo prima32 e8 milioni, poi la loro media(32+8)/2=20 milioni. Il modello agli ingressi medi48 milioni e3/2 h darebbe12√2 milioni, distinto da20; la media non attraversa una funzione esponenziale bilineare negli ingressi.
+Calcolo prima 32 e 8 milioni, poi la loro media(32+8)/2=20 milioni. Il modello agli ingressi medi 48 milioni e 3/2 h darebbe 12√2 milioni, distinto da 20; la media non attraversa una funzione esponenziale bilineare negli ingressi.
 
 ## u7-radioactive-survivors-13
 
@@ -189,7 +189,7 @@ Inserisci solo il numero esatto (è ammessa una frazione); l’unità richiesta 
 
 Derivazione primaria indipendente:
 
-Il target è32/4=8 milioni. Con N₀,B=32 occorre2^(−x_B)=1/4, dunque t_B=2 h e t_B/t_A=2.
+Il target è 32/4=8 milioni. Con N₀,B=32 occorre 2^(−x_B)=1/4, dunque t_B=2 h e t_B/t_A=2.
 
 ## u7-radioactive-survivors-14
 
@@ -204,7 +204,7 @@ Inserisci solo il numero esatto (è ammessa una frazione); l’unità richiesta 
 
 Derivazione primaria indipendente:
 
-Il riferimento fisico è32 milioni: il guadagno è96/32=3 unità strumentali per milione. La nuova lettura24 corrisponde a8 milioni residui; a2 h N₀=4·8=32 milioni.
+Il riferimento fisico è 32 milioni: il guadagno è 96/32=3 unità strumentali per milione. La nuova lettura 24 corrisponde a 8 milioni residui; a 2 h N₀=4·8=32 milioni.
 
 ## u7-radioactive-survivors-15
 
@@ -218,7 +218,7 @@ Ipotesi e convenzioni: Un solo radionuclide Emivita costante di 1 h Numero medio
 
 Derivazione primaria indipendente:
 
-Le uscite fisiche dei riferimenti sono32 e8 milioni. Sottraggo: a=(65−17)/(32−8)=2, poi b=65−2·32=1. La prova33 dàN=(33−1)/2=16 milioni e a1 h N₀=32 milioni.
+Le uscite fisiche dei riferimenti sono 32 e 8 milioni. Sottraggo: a=(65−17)/(32−8)=2, poi b=65−2·32=1. La prova 33 dàN=(33−1)/2=16 milioni e a 1 h N₀=32 milioni.
 
 ## u7-radioactive-survivors-16
 
@@ -230,7 +230,7 @@ Ipotesi e convenzioni: Valgono i dati e le condizioni esplicitati nel testo.
 
 Derivazione primaria indipendente:
 
-Fra1 e3 h il rapporto residuo è12/48=1/4: due ore sono due emivite, dunque T½=1 h. Retrocedendo dall’ora1 all’origine moltiplico48 per2: N₀=96 milioni. È una ricostruzione di medie esponenziali, non una misura certa di singole vite.
+Fra 1 e 3 h il rapporto residuo è 12/48=1/4: due ore sono due emivite, dunque T½=1 h. Retrocedendo dall’ora 1 all’origine moltiplico 48 per 2: N₀=96 milioni. È una ricostruzione di medie esponenziali, non una misura certa di singole vite.
 
 ## u7-radioactive-activity-01
 
@@ -245,7 +245,7 @@ Inserisci solo il numero esatto (è ammessa una frazione); l’unità richiesta 
 
 Derivazione primaria indipendente:
 
-La relazione fisica èA=(ln2)N/T½. Soltanto nella convenzione numerica assegnata sostituisco ln2≈7/10: A≈(7/10)·20/2=7 Bq. Il razionale è esatto nel modello di calcolo approssimato, non un’identità ln2=7/10.
+La relazione fisica èA=(ln 2)N/T½. Soltanto nella convenzione numerica assegnata sostituisco ln 2≈7/10: A≈(7/10)·20/2=7 Bq. Il razionale è esatto nel modello di calcolo approssimato, non un’identità ln 2=7/10.
 
 ## u7-radioactive-activity-02
 
@@ -269,7 +269,7 @@ Ipotesi e convenzioni: Valgono le condizioni specificate nella domanda.
 
 Derivazione primaria indipendente:
 
-Nel β⁺ un protone nucleare si trasforma in neutrone emettendo un positrone e un neutrino elettronico: p→n+e⁺+ν_e. A resta invariato e Z diminuisce di1. Per nuclei isolati la possibilità energetica richiede una transizione consentita, non segue dal solo bilancio.
+Nel β⁺ un protone nucleare si trasforma in neutrone emettendo un positrone e un neutrino elettronico: p→n+e⁺+ν_e. A resta invariato e Z diminuisce di 1. Per nuclei isolati la possibilità energetica richiede una transizione consentita, non segue dal solo bilancio.
 
 ## u7-radioactive-activity-04
 
@@ -283,7 +283,7 @@ Ipotesi e convenzioni: Un solo radionuclide ln2 ≈ 0,7 fornito per il calcolo A
 
 Derivazione primaria indipendente:
 
-A emivita fissata A è proporzionale a N. Da20 a40 nuclei l’attività raddoppia da7 a14 Bq nella convenzione7/10.
+A emivita fissata A è proporzionale a N. Da 20 a 40 nuclei l’attività raddoppia da 7 a 14 Bq nella convenzione 7/10.
 
 ## u7-radioactive-activity-05
 
@@ -298,7 +298,7 @@ Inserisci solo il numero esatto (è ammessa una frazione); l’unità richiesta 
 
 Derivazione primaria indipendente:
 
-Isolo N=AT½/(7/10). Sostituendo7 Bq e2 s ottengo14·10/7=20 nuclei, conteggio intero positivo.
+Isolo N=AT½/(7/10). Sostituendo 7 Bq e 2 s ottengo 14·10/7=20 nuclei, conteggio intero positivo.
 
 ## u7-radioactive-activity-06
 
@@ -313,7 +313,7 @@ Inserisci solo il numero esatto (è ammessa una frazione); l’unità richiesta 
 
 Derivazione primaria indipendente:
 
-Isolo T½=(7/10)N/A. Con20 nuclei e7 Bq ottengo14/7=2 s, positivo e con unità s.
+Isolo T½=(7/10)N/A. Con 20 nuclei e 7 Bq ottengo 14/7=2 s, positivo e con unità s.
 
 ## u7-radioactive-activity-07
 
@@ -327,7 +327,7 @@ Ipotesi e convenzioni: Un solo radionuclide ln2 ≈ 0,7 fornito per il calcolo A
 
 Derivazione primaria indipendente:
 
-N resta20 ma l’emivita passa da2 a4 s. Il rapporto A_B/A_A è2/4=1/2; B ha7/2 Bq nel modello numerico.
+N resta 20 ma l’emivita passa da 2 a 4 s. Il rapporto A_B/A_A è 2/4=1/2; B ha 7/2 Bq nel modello numerico.
 
 ## u7-radioactive-activity-08
 
@@ -341,7 +341,7 @@ Ipotesi e convenzioni: Un solo radionuclide ln2 ≈ 0,7 fornito per il calcolo A
 
 Derivazione primaria indipendente:
 
-A corretto7 Bq, proposto14 Bq: lo scarto proposto−corretto è+7 Bq. Il proposto ha omesso il dimezzamento dovuto a2 s.
+A corretto 7 Bq, proposto 14 Bq: lo scarto proposto−corretto è+7 Bq. Il proposto ha omesso il dimezzamento dovuto a 2 s.
 
 ## u7-radioactive-activity-09
 
@@ -355,7 +355,7 @@ Ipotesi e convenzioni: Un solo radionuclide ln2 ≈ 0,7 fornito per il calcolo A
 
 Derivazione primaria indipendente:
 
-La forma fisica inversa èN=AT½/ln2; usando la sola approssimazione prescritta diventa N≈10AT½/7. Il prodotto A T½ è un conteggio e deve produrre un intero positivo se N è trattato come conteggio esatto.
+La forma fisica inversa èN=AT½/ln 2; usando la sola approssimazione prescritta diventa N≈10 AT½/7. Il prodotto A T½ è un conteggio e deve produrre un intero positivo se N è trattato come conteggio esatto.
 
 ## u7-radioactive-activity-10
 
@@ -369,7 +369,7 @@ Ipotesi e convenzioni: Un solo radionuclide ln2 ≈ 0,7 fornito per il calcolo A
 
 Derivazione primaria indipendente:
 
-Sostituzione e cancellazione danno A_B/A_A=κ₁/κ₂. Il fattore comune ln2 cancella anche senza approssimarlo. κ₁N deve restare intero positivo; il solo κ₁>0 non autorizza nuclei frazionari.
+Sostituzione e cancellazione danno A_B/A_A=κ₁/κ₂. Il fattore comune ln 2 cancella anche senza approssimarlo. κ₁N deve restare intero positivo; il solo κ₁>0 non autorizza nuclei frazionari.
 
 ## u7-radioactive-activity-11
 
@@ -384,7 +384,7 @@ Inserisci solo il numero esatto (è ammessa una frazione); l’unità richiesta 
 
 Derivazione primaria indipendente:
 
-A=7 Bq, B=(7/10)·1/1=7/10 Bq. Il rapporto è1/10: il conteggio diminuisce di20 volte mentre dimezzare l’emivita raddoppia la costante di decadimento.
+A=7 Bq, B=(7/10)·1/1=7/10 Bq. Il rapporto è 1/10: il conteggio diminuisce di 20 volte mentre dimezzare l’emivita raddoppia la costante di decadimento.
 
 ## u7-radioactive-activity-12
 
@@ -398,7 +398,7 @@ Ipotesi e convenzioni: Un solo radionuclide ln2 ≈ 0,7 fornito per il calcolo A
 
 Derivazione primaria indipendente:
 
-La media delle letture è(7+7/10)/2=77/20 Bq. Non sostituisco medie degli ingressi: darebbero49/10 Bq e N=21/2 non è neppure un conteggio intero ammissibile.
+La media delle letture è(7+7/10)/2=77/20 Bq. Non sostituisco medie degli ingressi: darebbero 49/10 Bq e N=21/2 non è neppure un conteggio intero ammissibile.
 
 ## u7-radioactive-activity-13
 
@@ -413,7 +413,7 @@ Inserisci solo il numero esatto (è ammessa una frazione); l’unità richiesta 
 
 Derivazione primaria indipendente:
 
-Il rapporto richiesto è1/10; con N_B/N_A=1/20, l’identità1/10=(1/20)/(T_B/T_A) impone T_B/T_A=1/2.
+Il rapporto richiesto è 1/10; con N_B/N_A=1/20, l’identità 1/10=(1/20)/(T_B/T_A) impone T_B/T_A=1/2.
 
 ## u7-radioactive-activity-14
 
@@ -428,7 +428,7 @@ Inserisci solo il numero esatto (è ammessa una frazione); l’unità richiesta 
 
 Derivazione primaria indipendente:
 
-Il riferimento7 Bq corrisponde a21, quindi a=3 unità strumentali/Bq. La lettura21/10 dàA=7/10 Bq; con T½=1 s, N=(7/10)/(7/10)=1 nucleo.
+Il riferimento 7 Bq corrisponde a 21, quindi a=3 unità strumentali/Bq. La lettura 21/10 dàA=7/10 Bq; con T½=1 s, N=(7/10)/(7/10)=1 nucleo.
 
 ## u7-radioactive-activity-15
 
@@ -442,7 +442,7 @@ Ipotesi e convenzioni: Un solo radionuclide ln2 ≈ 0,7 fornito per il calcolo A
 
 Derivazione primaria indipendente:
 
-Le uscite fisiche7 e7/10 Bq producono15 e12/5. a=(15−12/5)/(7−7/10)=2, b=1. Dalla lettura29 ricavoA14 Bq; con2 s N=14·2·10/7=40 nuclei.
+Le uscite fisiche 7 e 7/10 Bq producono 15 e 12/5. a=(15−12/5)/(7−7/10)=2, b=1. Dalla lettura 29 ricavoA 14 Bq; con 2 s N=14·2·10/7=40 nuclei.
 
 ## u7-radioactive-activity-16
 
@@ -456,7 +456,7 @@ Ipotesi e convenzioni: Un solo radionuclide ln2 ≈ 0,7 fornito per il calcolo A
 
 Derivazione primaria indipendente:
 
-Il vincolo dimensionato èN=(10 s⁻¹)T½. Nel modello7/10 l’attività diventa7 Bq indipendente da N: tutte le coppie (N,T½)=(k,k/10 s), k intero positivo, soddisfano i dati. Infinite numerabili, non un continuo di conteggi; con ln2 esatto non sarebbe esattamente7 Bq.
+Il vincolo dimensionato èN=(10 s⁻¹)T½. Nel modello 7/10 l’attività diventa 7 Bq indipendente da N: tutte le coppie (N,T½)=(k,k/10 s), k intero positivo, soddisfano i dati. Infinite numerabili, non un continuo di conteggi; con ln 2 esatto non sarebbe esattamente 7 Bq.
 
 ## u7-radioactive-decayed-count-01
 
@@ -471,7 +471,7 @@ Inserisci solo il numero esatto (è ammessa una frazione); l’unità richiesta 
 
 Derivazione primaria indipendente:
 
-Conservo i genitori originari: N_dec=N₀−N=N₀(1−2^(−t/T½)). Dopo1 h resta metà di64, quindi sono decaduti32 milioni; non aggiungo le trasformazioni dei figli.
+Conservo i genitori originari: N_dec=N₀−N=N₀(1−2^(−t/T½)). Dopo 1 h resta metà di 64, quindi sono decaduti 32 milioni; non aggiungo le trasformazioni dei figli.
 
 ## u7-radioactive-decayed-count-02
 
@@ -483,7 +483,7 @@ Ipotesi e convenzioni: Si chiede un’unità dimensionalmente compatibile con la
 
 Derivazione primaria indipendente:
 
-È un conteggio cumulativo di genitori trasformati, quindi numero puro etichettato nuclei, eventualmente10⁶ nuclei. Bq è invece un tasso e non il cumulativo.
+È un conteggio cumulativo di genitori trasformati, quindi numero puro etichettato nuclei, eventualmente 10⁶ nuclei. Bq è invece un tasso e non il cumulativo.
 
 ## u7-radioactive-decayed-count-03
 
@@ -497,7 +497,7 @@ Ipotesi e convenzioni: Emivita 1 h Si conta solo il decadimento dei genitori ori
 
 Derivazione primaria indipendente:
 
-La popolazione residua èN₀2^(−t/T½). La sottraggo dalla popolazione iniziale: N_dec=N₀[1−2^(−t/T½)]. Per t>0 è strettamente fra0 eN₀ e cresce versoN₀ senza superarlo.
+La popolazione residua èN₀ 2^(−t/T½). La sottraggo dalla popolazione iniziale: N_dec=N₀[1−2^(−t/T½)]. Per t>0 è strettamente fra 0 eN₀ e cresce versoN₀ senza superarlo.
 
 ## u7-radioactive-decayed-count-04
 
@@ -511,7 +511,7 @@ Ipotesi e convenzioni: Emivita 1 h Si conta solo il decadimento dei genitori ori
 
 Derivazione primaria indipendente:
 
-A1 h il fattore trasformato è1/2. Dimezzare N₀ dimezza N_dec da32 a16 milioni: la dipendenza dalla popolazione iniziale è lineare.
+A 1 h il fattore trasformato è 1/2. Dimezzare N₀ dimezza N_dec da 32 a 16 milioni: la dipendenza dalla popolazione iniziale è lineare.
 
 ## u7-radioactive-decayed-count-05
 
@@ -541,7 +541,7 @@ Inserisci solo il numero esatto (è ammessa una frazione); l’unità richiesta 
 
 Derivazione primaria indipendente:
 
-32/64=1/2 è la frazione già trasformata, perciò la frazione residua èancora1/2. Quindi t=1 h. In generale t=−T½ log₂(1−N_dec/N₀), con0<N_dec<N₀.
+32/64=1/2 è la frazione già trasformata, perciò la frazione residua è ancora 1/2. Quindi t=1 h. In generale t=−T½ log₂(1−N_dec/N₀), con 0<N_dec<N₀.
 
 ## u7-radioactive-decayed-count-07
 
@@ -555,7 +555,7 @@ Ipotesi e convenzioni: Emivita 1 h Si conta solo il decadimento dei genitori ori
 
 Derivazione primaria indipendente:
 
-A1 h N_dec=32; a2 h64(1−1/4)=48 milioni. Il rapporto è48/32=3/2, distinto dal rapporto dei residui1/2.
+A 1 h N_dec=32; a 2 h 64(1−1/4)=48 milioni. Il rapporto è 48/32=3/2, distinto dal rapporto dei residui 1/2.
 
 ## u7-radioactive-decayed-count-08
 
@@ -569,7 +569,7 @@ Ipotesi e convenzioni: Emivita 1 h Si conta solo il decadimento dei genitori ori
 
 Derivazione primaria indipendente:
 
-Il proposto64 meno il corretto32 vale+32 milioni. A un tempo finito nel modello esponenziale non sono ancora trasformati tutti i genitori in media.
+Il proposto 64 meno il corretto 32 vale+32 milioni. A un tempo finito nel modello esponenziale non sono ancora trasformati tutti i genitori in media.
 
 ## u7-radioactive-decayed-count-09
 
@@ -583,7 +583,7 @@ Ipotesi e convenzioni: Emivita 1 h Si conta solo il decadimento dei genitori ori
 
 Derivazione primaria indipendente:
 
-Isolo N₀=N_dec/[1−2^(−t/T½)]. Con t>0 il denominatore èpositivo e minore di1. Scrivere t nell’esponente richiede che sia il suo valore numerico in unità T½.
+Isolo N₀=N_dec/[1−2^(−t/T½)]. Con t>0 il denominatore èpositivo e minore di 1. Scrivere t nell’esponente richiede che sia il suo valore numerico in unità T½.
 
 ## u7-radioactive-decayed-count-10
 
@@ -597,7 +597,7 @@ Ipotesi e convenzioni: Emivita 1 h Si conta solo il decadimento dei genitori ori
 
 Derivazione primaria indipendente:
 
-Il rapporto èκ₁[1−2^(−κ₂t/T½)]/[1−2^(−t/T½)]. Non è il rapporto delle frazioni residue: occorre preservare entrambi i termini1−esponenziale.
+Il rapporto èκ₁[1−2^(−κ₂t/T½)]/[1−2^(−t/T½)]. Non è il rapporto delle frazioni residue: occorre preservare entrambi i termini 1−esponenziale.
 
 ## u7-radioactive-decayed-count-11
 
@@ -612,7 +612,7 @@ Inserisci solo il numero esatto (è ammessa una frazione); l’unità richiesta 
 
 Derivazione primaria indipendente:
 
-A ha32 milioni trasformati; B ne ha32·3/4=24. Il rapporto è24/32=3/4, dato il dimezzamento di N₀ e l’aumento del tempo.
+A ha 32 milioni trasformati; B ne ha 32·3/4=24. Il rapporto è 24/32=3/4, dato il dimezzamento di N₀ e l’aumento del tempo.
 
 ## u7-radioactive-decayed-count-12
 
@@ -626,7 +626,7 @@ Ipotesi e convenzioni: Emivita 1 h Si conta solo il decadimento dei genitori ori
 
 Derivazione primaria indipendente:
 
-La media è(32+24)/2=28 milioni. Le medie degli ingressi48 milioni e3/2 h darebbero48−12√2 milioni, non28; si mediano le letture già calcolate.
+La media è(32+24)/2=28 milioni. Le medie degli ingressi 48 milioni e 3/2 h darebbero 48−12√2 milioni, non 28; si mediano le letture già calcolate.
 
 ## u7-radioactive-decayed-count-13
 
@@ -641,7 +641,7 @@ Inserisci solo il numero esatto (è ammessa una frazione); l’unità richiesta 
 
 Derivazione primaria indipendente:
 
-Il target è(3/4)·32=24 milioni. Con N₀,B32 la frazione trasformata deve essere3/4, dunque residua1/4 e t_B=2 h. Il rapporto dei tempi è2.
+Il target è(3/4)·32=24 milioni. Con N₀,B 32 la frazione trasformata deve essere 3/4, dunque residua 1/4 e t_B=2 h. Il rapporto dei tempi è 2.
 
 ## u7-radioactive-decayed-count-14
 
@@ -656,7 +656,7 @@ Inserisci solo il numero esatto (è ammessa una frazione); l’unità richiesta 
 
 Derivazione primaria indipendente:
 
-Il guadagno è96/32=3. La nuova lettura72 dàN_dec24 milioni. A2 h la frazione trasformata è3/4, dunque N₀=24·4/3=32 milioni.
+Il guadagno è 96/32=3. La nuova lettura 72 dàN_dec 24 milioni. A 2 h la frazione trasformata è 3/4, dunque N₀=24·4/3=32 milioni.
 
 ## u7-radioactive-decayed-count-15
 
@@ -670,7 +670,7 @@ Ipotesi e convenzioni: Emivita 1 h Si conta solo il decadimento dei genitori ori
 
 Derivazione primaria indipendente:
 
-Riferimenti fisici32 e24 milioni: a=(65−49)/(32−24)=2 e b=1. La lettura33 dà16 milioni trasformati; con1 h N₀=32 milioni.
+Riferimenti fisici 32 e 24 milioni: a=(65−49)/(32−24)=2 e b=1. La lettura 33 dà 16 milioni trasformati; con 1 h N₀=32 milioni.
 
 ## u7-radioactive-decayed-count-16
 
@@ -684,7 +684,7 @@ Ipotesi e convenzioni: Campione chiuso, emivita costante di 1 h. Si ignorano i d
 
 Derivazione primaria indipendente:
 
-Fra i due istanti si trasformano14−12=2 milioni. In una emivita questi sono metà dei genitori ancora presenti al primo istante, che sonoquindi4 milioni. N₀=12+4=16; la frazione residua4/16=1/4 impone t=2 h. Controllo all’ora3:16−2=14 milioni.
+Fra i due istanti si trasformano 14−12=2 milioni. In una emivita questi sono metà dei genitori ancora presenti al primo istante, che sono quindi 4 milioni. N₀=12+4=16; la frazione residua 4/16=1/4 impone t=2 h. Controllo all’ora 3:16−2=14 milioni.
 
 ## u7-radioisotope-mixture-01
 
@@ -699,7 +699,7 @@ Inserisci solo il numero esatto (è ammessa una frazione); l’unità richiesta 
 
 Derivazione primaria indipendente:
 
-In1 h il primo compie una emivita e il secondo due. Le attività residue sono8/2=4 e8/4=2 Bq, che sommo perché indipendenti e senza contributi dei figli:6 Bq.
+In 1 h il primo compie una emivita e il secondo due. Le attività residue sono 8/2=4 e 8/4=2 Bq, che sommo perché indipendenti e senza contributi dei figli:6 Bq.
 
 ## u7-radioisotope-mixture-02
 
@@ -725,7 +725,7 @@ Ipotesi e convenzioni: Decadimenti indipendenti Emivite 1 h e 30 min Nessun cont
 
 Derivazione primaria indipendente:
 
-La legge a1 h èA_tot=A₁/2+A₂/4. I fattori diversi appartengono alle due emivite; un’unica emivita efficace costante non descrive in generale tutta la miscela.
+La legge a 1 h èA_tot=A₁/2+A₂/4. I fattori diversi appartengono alle due emivite; un’unica emivita efficace costante non descrive in generale tutta la miscela.
 
 ## u7-radioisotope-mixture-04
 
@@ -739,7 +739,7 @@ Ipotesi e convenzioni: Decadimenti indipendenti Emivite 1 h e 30 min Nessun cont
 
 Derivazione primaria indipendente:
 
-A₁ passa da8 a16 Bq iniziali: la sua parte finale passa da4 a8, mentre la seconda resta2. A_tot passa da6 a10 Bq, aumenta di4 Bq e non raddoppia.
+A₁ passa da 8 a 16 Bq iniziali: la sua parte finale passa da 4 a 8, mentre la seconda resta 2. A_tot passa da 6 a 10 Bq, aumenta di 4 Bq e non raddoppia.
 
 ## u7-radioisotope-mixture-05
 
@@ -754,7 +754,7 @@ Inserisci solo il numero esatto (è ammessa una frazione); l’unità richiesta 
 
 Derivazione primaria indipendente:
 
-Sottraggo il contributo noto A₂/4=2 Bq dalla misura6: A₁/2=4, quindi A₁=8 Bq. La positività richiede A_tot>A₂/4.
+Sottraggo il contributo noto A₂/4=2 Bq dalla misura 6: A₁/2=4, quindi A₁=8 Bq. La positività richiede A_tot>A₂/4.
 
 ## u7-radioisotope-mixture-06
 
@@ -783,7 +783,7 @@ Ipotesi e convenzioni: Decadimenti indipendenti Emivite 1 h e 30 min Nessun cont
 
 Derivazione primaria indipendente:
 
-A_tot,A=6; con A₂,B16 la seconda parte vale4 e la prima4, dunque B8 Bq. Rapporto8/6=4/3.
+A_tot,A=6; con A₂,B 16 la seconda parte vale 4 e la prima 4, dunque B 8 Bq. Rapporto 8/6=4/3.
 
 ## u7-radioisotope-mixture-08
 
@@ -797,7 +797,7 @@ Ipotesi e convenzioni: Decadimenti indipendenti Emivite 1 h e 30 min Nessun cont
 
 Derivazione primaria indipendente:
 
-Il proposto12 meno il corretto6 vale+6 Bq. Raddoppiare il risultato non è giustificato dalla somma delle attività iniziali.
+Il proposto 12 meno il corretto 6 vale+6 Bq. Raddoppiare il risultato non è giustificato dalla somma delle attività iniziali.
 
 ## u7-radioisotope-mixture-09
 
@@ -811,7 +811,7 @@ Ipotesi e convenzioni: Decadimenti indipendenti Emivite 1 h e 30 min Nessun cont
 
 Derivazione primaria indipendente:
 
-Isolo A₁=2(A_tot−A₂/4)=2A_tot−A₂/2. Non distribuisco il fattore2 in modo asimmetrico e impongo la differenza positiva.
+Isolo A₁=2(A_tot−A₂/4)=2 A_tot−A₂/2. Non distribuisco il fattore 2 in modo asimmetrico e impongo la differenza positiva.
 
 ## u7-radioisotope-mixture-10
 
@@ -825,7 +825,7 @@ Ipotesi e convenzioni: Decadimenti indipendenti Emivite 1 h e 30 min Nessun cont
 
 Derivazione primaria indipendente:
 
-Il quoziente è(κ₁A₁/2+κ₂A₂/4)/(A₁/2+A₂/4), equivalente a(2κ₁A₁+κ₂A₂)/(2A₁+A₂). Nessuna cancellazione autorizza κ₁+κ₂.
+Il quoziente è(κ₁A₁/2+κ₂A₂/4)/(A₁/2+A₂/4), equivalente a(2κ₁A₁+κ₂A₂)/(2 A₁+A₂). Nessuna cancellazione autorizza κ₁+κ₂.
 
 ## u7-radioisotope-mixture-11
 
@@ -840,7 +840,7 @@ Inserisci solo il numero esatto (è ammessa una frazione); l’unità richiesta 
 
 Derivazione primaria indipendente:
 
-Raddoppiano entrambe le attività iniziali. Per linearità la somma finale passa da6 a12 Bq e il rapporto è2.
+Raddoppiano entrambe le attività iniziali. Per linearità la somma finale passa da 6 a 12 Bq e il rapporto è 2.
 
 ## u7-radioisotope-mixture-12
 
@@ -854,7 +854,7 @@ Ipotesi e convenzioni: Decadimenti indipendenti Emivite 1 h e 30 min Nessun cont
 
 Derivazione primaria indipendente:
 
-Medio le due letture6 e12:9 Bq. Qui la legge è lineare in entrambi gli ingressi, quindi coincide anche con la lettura agli ingressi medi12 e12 Bq; questa coincidenza ha una ragione strutturale, non vale per ogni modello.
+Medio le due letture 6 e 12:9 Bq. Qui la legge è lineare in entrambi gli ingressi, quindi coincide anche con la lettura agli ingressi medi 12 e 12 Bq; questa coincidenza ha una ragione strutturale, non vale per ogni modello.
 
 ## u7-radioisotope-mixture-13
 
@@ -869,7 +869,7 @@ Inserisci solo il numero esatto (è ammessa una frazione); l’unità richiesta 
 
 Derivazione primaria indipendente:
 
-Il target è12 Bq. Il nuovo primo contributo è16/2=8, perciò il secondo deve essere4 e A₂,B=16 Bq. Rispetto agli8 iniziali il rapporto richiesto è2.
+Il target è 12 Bq. Il nuovo primo contributo è 16/2=8, perciò il secondo deve essere 4 e A₂,B=16 Bq. Rispetto agli 8 iniziali il rapporto richiesto è 2.
 
 ## u7-radioisotope-mixture-14
 
@@ -884,7 +884,7 @@ Inserisci solo il numero esatto (è ammessa una frazione); l’unità richiesta 
 
 Derivazione primaria indipendente:
 
-Dal riferimento6 Bq→18 ricavo a=3. La lettura36 dà12 Bq; noto A₂16, sottraggo4 e moltiplico per2: A₁=16 Bq.
+Dal riferimento 6 Bq→18 ricavo a=3. La lettura 36 dà 12 Bq; noto A₂ 16, sottraggo 4 e moltiplico per 2: A₁=16 Bq.
 
 ## u7-radioisotope-mixture-15
 
@@ -898,7 +898,7 @@ Ipotesi e convenzioni: Decadimenti indipendenti Emivite 1 h e 30 min Nessun cont
 
 Derivazione primaria indipendente:
 
-Riferimenti6 e12 Bq: a=(25−13)/(12−6)=2 e b=1. La lettura21 dà10 Bq; con A₂8, A₁=2(10−2)=16 Bq.
+Riferimenti 6 e 12 Bq: a=(25−13)/(12−6)=2 e b=1. La lettura 21 dà 10 Bq; con A₂ 8, A₁=2(10−2)=16 Bq.
 
 ## u7-radioisotope-mixture-16
 
@@ -912,7 +912,7 @@ Ipotesi e convenzioni: Decadimenti indipendenti Emivite 1 h e 30 min Nessun cont
 
 Derivazione primaria indipendente:
 
-Il vincolo A₁=A₂=x dàA_tot=3x/4. Da6 Bq ricavo x=8 Bq, soluzione positiva unica. Le attività sono medie continue, non conteggi interi di nuclei.
+Il vincolo A₁=A₂=x dàA_tot=3 x/4. Da 6 Bq ricavo x=8 Bq, soluzione positiva unica. Le attività sono medie continue, non conteggi interi di nuclei.
 
 ## u7-alpha-mass-number-01
 
@@ -927,7 +927,7 @@ Inserisci solo il numero esatto (è ammessa una frazione); l’unità richiesta 
 
 Derivazione primaria indipendente:
 
-Ogni α porta via quattro nucleoni. Nel bilancio idealizzato A_f=A₀−4n=220−4=216, numero puro intero positivo. Il solo bilancio non garantisce che una specifica catena isotopica esista o sia energeticamente consentita.
+Ogni α porta via quattro nucleoni. Nel bilancio idealizzato A_f=A₀−4 n=220−4=216, numero puro intero positivo. Il solo bilancio non garantisce che una specifica catena isotopica esista o sia energeticamente consentita.
 
 ## u7-alpha-mass-number-02
 
@@ -939,7 +939,7 @@ Ipotesi e convenzioni: Si chiede un’unità dimensionalmente compatibile con la
 
 Derivazione primaria indipendente:
 
-Il numero di massa è il conteggio dei nucleoni e ha unità1, non kg né unità di massa atomica. Non coincide con la massa fisica comprensiva dell’energia di legame.
+Il numero di massa è il conteggio dei nucleoni e ha unità 1, non kg né unità di massa atomica. Non coincide con la massa fisica comprensiva dell’energia di legame.
 
 ## u7-alpha-mass-number-03
 
@@ -951,7 +951,7 @@ Ipotesi e convenzioni: Valgono esclusivamente le condizioni esplicitate nella do
 
 Derivazione primaria indipendente:
 
-La particella α èun nucleo di elio con4 nucleoni e2 protoni: il figlio haA−4 eZ−2. Conservazione di carica e numero di nucleoni fissa entrambi i decrementi.
+La particella α è un nucleo di elio con 4 nucleoni e 2 protoni: il figlio haA−4 eZ−2. Conservazione di carica e numero di nucleoni fissa entrambi i decrementi.
 
 ## u7-alpha-mass-number-04
 
@@ -965,7 +965,7 @@ Ipotesi e convenzioni: Solo decadimenti alfa nella catena assegnata A₀ e n int
 
 Derivazione primaria indipendente:
 
-A n=1 fisso il decremento resta4. Da A₀220 a224, A_f passa da216 a220: aumenta di4, non viene moltiplicato per224/220 senza considerare l’offset.
+A n=1 fisso il decremento resta 4. Da A₀ 220 a 224, A_f passa da 216 a 220: aumenta di 4, non viene moltiplicato per 224/220 senza considerare l’offset.
 
 ## u7-alpha-mass-number-05
 
@@ -980,7 +980,7 @@ Inserisci solo il numero esatto (è ammessa una frazione); l’unità richiesta 
 
 Derivazione primaria indipendente:
 
-Riporto a sinistra i quattro nucleoni per decadimento: A₀=A_f+4n=216+4=220. Il risultato è intero e soddisfa A₀>4n.
+Riporto a sinistra i quattro nucleoni per decadimento: A₀=A_f+4 n=216+4=220. Il risultato è intero e soddisfa A₀>4 n.
 
 ## u7-alpha-mass-number-06
 
@@ -1009,7 +1009,7 @@ Ipotesi e convenzioni: Solo decadimenti alfa nella catena assegnata A₀ e n int
 
 Derivazione primaria indipendente:
 
-Con n_B2, A_f,B=220−8=212. Il rapporto212/216 si riduce dividendo per4 a53/54.
+Con n_B 2, A_f,B=220−8=212. Il rapporto 212/216 si riduce dividendo per 4 a 53/54.
 
 ## u7-alpha-mass-number-08
 
@@ -1023,7 +1023,7 @@ Ipotesi e convenzioni: Solo decadimenti alfa nella catena assegnata A₀ e n int
 
 Derivazione primaria indipendente:
 
-Il corretto è216, quindi432−216=+216. È una sovrastima del numero finale di nucleoni nel bilancio.
+Il corretto è 216, quindi 432−216=+216. È una sovrastima del numero finale di nucleoni nel bilancio.
 
 ## u7-alpha-mass-number-09
 
@@ -1037,7 +1037,7 @@ Ipotesi e convenzioni: Solo decadimenti alfa nella catena assegnata A₀ e n int
 
 Derivazione primaria indipendente:
 
-La forma inversa èA₀=A_f+4n. Sommare il numero di α senza il fattore4 non ricostruisce il numero di nucleoni portati via.
+La forma inversa èA₀=A_f+4 n. Sommare il numero di α senza il fattore 4 non ricostruisce il numero di nucleoni portati via.
 
 ## u7-alpha-mass-number-10
 
@@ -1051,7 +1051,7 @@ Ipotesi e convenzioni: Solo decadimenti alfa nella catena assegnata A₀ e n int
 
 Derivazione primaria indipendente:
 
-Il rapporto è(κ₁A₀−4κ₂n)/(A₀−4n). Occorre che κ₁A₀ eκ₂n restino interi positivi e che il nuovo numeratore siapositivo; i soli fattori reali positivi non bastano.
+Il rapporto è(κ₁A₀−4κ₂n)/(A₀−4 n). Occorre che κ₁A₀ eκ₂n restino interi positivi e che il nuovo numeratore siapositivo; i soli fattori reali positivi non bastano.
 
 ## u7-alpha-mass-number-11
 
@@ -1066,7 +1066,7 @@ Inserisci solo il numero esatto (è ammessa una frazione); l’unità richiesta 
 
 Derivazione primaria indipendente:
 
-A produce216, B con A₀10,n2 produce2. Il rapporto è2/216=1/108. È soltanto la catena idealizzata assegnata: non si deduce la sua realizzabilità nucleare da questi due numeri.
+A produce 216, B con A₀ 10,n 2 produce 2. Il rapporto è 2/216=1/108. È soltanto la catena idealizzata assegnata: non si deduce la sua realizzabilità nucleare da questi due numeri.
 
 ## u7-alpha-mass-number-12
 
@@ -1080,7 +1080,7 @@ Ipotesi e convenzioni: Solo decadimenti alfa nella catena assegnata A₀ e n int
 
 Derivazione primaria indipendente:
 
-La media delle uscite216 e2 è109. Il bilancio affine darebbe formalmente lo stesso risultato da A₀115,n3/2, ma n3/2 non è un numero ammissibile di α: la media delle letture non è necessariamente una terza catena fisica.
+La media delle uscite 216 e 2 è 109. Il bilancio affine darebbe formalmente lo stesso risultato da A₀ 115,n 3/2, ma n 3/2 non è un numero ammissibile di α: la media delle letture non è necessariamente una terza catena fisica.
 
 ## u7-alpha-mass-number-13
 
@@ -1095,7 +1095,7 @@ Inserisci solo il numero esatto (è ammessa una frazione); l’unità richiesta 
 
 Derivazione primaria indipendente:
 
-Il target è216/108=2. Con A₀,B10, 10−4n_B=2 dà n_B2, perciò n_B/n_A=2. Verifico interezza e10>8.
+Il target è 216/108=2. Con A₀,B 10, 10−4 n_B=2 dà n_B 2, perciò n_B/n_A=2. Verifico interezza e 10>8.
 
 ## u7-alpha-mass-number-14
 
@@ -1110,7 +1110,7 @@ Inserisci solo il numero esatto (è ammessa una frazione); l’unità richiesta 
 
 Derivazione primaria indipendente:
 
-La taratura senza offset ha a=648/216=3. La lettura6 corrisponde a A_f2; noto n2 ricavo A₀=2+8=10, intero e positivo.
+La taratura senza offset ha a=648/216=3. La lettura 6 corrisponde a A_f 2; noto n 2 ricavo A₀=2+8=10, intero e positivo.
 
 ## u7-alpha-mass-number-15
 
@@ -1124,7 +1124,7 @@ Ipotesi e convenzioni: Solo decadimenti alfa nella catena assegnata A₀ e n int
 
 Derivazione primaria indipendente:
 
-Dai riferimenti216→433 e2→5 ricavo a=(433−5)/(216−2)=2 e b=1. Dalla prova441 ottengo A_f=(441−1)/2=220; con n1, A₀=224.
+Dai riferimenti 216→433 e 2→5 ricavo a=(433−5)/(216−2)=2 e b=1. Dalla prova 441 ottengo A_f=(441−1)/2=220; con n 1, A₀=224.
 
 ## u7-alpha-mass-number-16
 
@@ -1138,4 +1138,4 @@ Ipotesi e convenzioni: Solo decadimenti alfa nella catena assegnata A₀ e n int
 
 Derivazione primaria indipendente:
 
-Il vincolo A₀=220n trasforma il bilancio in A_f=216n. La misura216 impone n1 e A₀220, soluzione intera positiva unica, con A₀>4n.
+Il vincolo A₀=220 n trasforma il bilancio in A_f=216 n. La misura 216 impone n 1 e A₀ 220, soluzione intera positiva unica, con A₀>4 n.
