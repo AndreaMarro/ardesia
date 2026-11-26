@@ -1,0 +1,23 @@
+{
+  "scope": "Independent technical contract tests; no scientific or UI acceptance",
+  "proposalCommit": "e7aeae2b2ef88eecfcda2a3bcb34301ff61a82dd",
+  "command": [
+    "/private/tmp/cric-recovery-venv/bin/python",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests/corpus",
+    "-p",
+    "test_same_browser_reference_independent_b.py",
+    "-v"
+  ],
+  "actualTargetApp": "/private/tmp/cric-resident-integrator/officina-di-fisica",
+  "exitCode": 1,
+  "signal": null,
+  "elapsedSeconds": 0.18570450000697747,
+  "rawSha256": "7b6c8958021acaec432a6725043b3fdb57efc5321dd6740b66cc65d9e6ce6d7c",
+  "scientificCreditAdded": 0,
+  "humanApproval": "NOT_RUN"
+}
