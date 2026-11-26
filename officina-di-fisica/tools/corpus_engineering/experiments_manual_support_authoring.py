@@ -39,7 +39,7 @@ SPECS = {
  'SIM-C4-L09-02': {
   'points': [30, 90], 'asset': 'lorentz-manual-angles.svg',
   'caption': 'La stessa velocità e lo stesso campo formano prima 0°, poi 30° e 90°. Le frecce v e B hanno unità e scale proprie. Per q positiva, il simbolo cerchio con punto indica la forza uscente dal piano; il suo modulo è riportato sotto ogni costruzione.',
-  'transfer': 'Una carica positiva di 2 µC si muove a 3 m/s in un campo uniforme di 1 T. L’angolo fra velocità e campo è {x}°. Qual è il modulo della forza in µN? Usa i valori esatti degli angoli notevoli.',
+  'transfer': 'Una carica positiva di 2 µC si muove a 3 m/s in un campo uniforme di 1 T. L’angolo fra velocità e campo è {x}. Qual è il modulo della forza in µN? Usa i valori esatti degli angoli notevoli.',
   'blocks': [
    T('La forza magnetica dipende dalla parte della velocità perpendicolare al campo. Se la particella procede lungo il campo, questa parte è nulla; se procede perpendicolarmente, coincide con tutta la velocità. Il seno dell’angolo esprime proprio questa proiezione. La carica assegnata è positiva e il campo è uniforme.'),
    F(r'\mathbf F=q\,\mathbf v\times\mathbf B'), F(r'F=|q|vB\sin\theta'),
@@ -56,7 +56,7 @@ SPECS = {
  'SIM-C5-L01-01': {
   'points': [0.5, 1], 'asset': 'oscillator-manual-quarter-period.svg',
   'caption': 'La stessa massa è mostrata all’estremo positivo, dopo un quarto di periodo all’equilibrio e dopo mezzo periodo all’estremo negativo. L’asse della posizione mantiene origine, verso e scala in centimetri nei tre pannelli.',
-  'transfer': 'La massa parte ferma dall’estremo +4 cm e ha periodo 2 s. Quale posizione con segno occupa dopo {x} s? Individua prima la frazione di periodo, senza calcolare un coseno generico.',
+  'transfer': 'La massa parte ferma dall’estremo +4 cm e ha periodo 2 s. Quale posizione con segno occupa dopo {x}? Individua prima la frazione di periodo, senza calcolare un coseno generico.',
   'blocks': [
    T('La massa parte dall’estremo positivo, a +4 cm, e torna nello stesso stato dopo 2 s. L’ampiezza è sempre 4 cm; la posizione può invece essere positiva, nulla o negativa. Il modello assume una molla ideale, senza dissipazione. La fase iniziale è fissata dalla partenza dall’estremo, quindi scegliamo il coseno.'),
    F(r'x(t)=A\cos(2\pi t/T)'), F(r'A=4\,\mathrm{cm},\qquad T=2\,\mathrm s'),
@@ -64,7 +64,7 @@ SPECS = {
    F(r'\frac{t}{T}=\frac{1/2}{2}=\frac14'), F(r'x(0{,}5\,\mathrm s)=4\cos(\pi/2)\,\mathrm{cm}'), F(r'x(0{,}5\,\mathrm s)=0\,\mathrm{cm}'),
    T('Nel trasferimento è trascorso 1 s, cioè mezzo periodo. La fase è π e il coseno vale −1: la massa è all’estremo opposto, x=−4 cm. Nel riquadro inserisci −4; +4 descriverebbe la posizione iniziale o il ritorno dopo un periodo intero.'),
    F(r'x(1\,\mathrm s)=4\cos\pi\,\mathrm{cm}=-4\,\mathrm{cm}'),
-   T('Il disegno usa la proiezione di una rotazione come costruzione geometrica del coseno. La massa reale del banco oscilla lungo l’asse, non compie quel giro. All’equilibrio la posizione è zero ma la velocità ha modulo massimo; agli estremi accade il contrario. Una posizione nulla non significa quindi che il moto si sia fermato.'),
+   T('Il coseno può essere costruito come proiezione di una rotazione. La massa reale del banco oscilla lungo l’asse, non compie quel giro. All’equilibrio la posizione è zero ma la velocità ha modulo massimo; agli estremi accade il contrario. Una posizione nulla non significa quindi che il moto si sia fermato.'),
    T('Puoi ricavare il periodo dal tempo del primo arrivo all’estremo opposto: quel tempo vale T/2, quindi T=2t. Con t=1 s ritrovi 2 s. La precisazione “primo arrivo” conta: una sola posizione può ripetersi in molti istanti e non determina da sola il periodo.'),
    F(r'T=2t_{\rm primo\ estremo\ opposto}'), F(r'|x|\le A'),
    T('Come controllo delle unità, t/T è puro e il coseno non ha unità; x conserva i centimetri di A. Il quarto e il mezzo periodo bastano per le due domande assegnate. Le altre posizioni del cursore permettono di seguire il moto senza richiedere valutazioni numeriche di coseni.')],
@@ -72,7 +72,7 @@ SPECS = {
  'SIM-C5-L02-03': {
   'points': [0.25, 0.75], 'asset': 'travelling-wave-manual-probe.svg',
   'caption': 'Tre istanti della stessa onda che avanza verso destra. La sonda resta nella posizione spaziale x=0: registra prima zero, poi +3 cm e poi −3 cm. Le coordinate orizzontali sono in metri, gli spostamenti verticali in centimetri.',
-  'transfer': 'La sonda è fissa in x = 0 per l’onda y = 3 sin(2πt − πx) cm, con t in secondi e x in metri. Quale spostamento con segno misura al tempo {x} s? Usa la frazione di periodo.',
+  'transfer': 'La sonda è fissa in x = 0 per l’onda y = 3 sin(2πt − πx) cm, con t in secondi e x in metri. Quale spostamento con segno misura al tempo {x}? Usa la frazione di periodo.',
   'blocks': [
    T('Qui x indica dove si trova la sonda lungo la corda, mentre y indica lo spostamento trasversale della corda. Tenere la sonda in x=0 non impone y=0: la corda in quel punto continua a oscillare. L’onda è armonica e si propaga verso +x nel mezzo ideale del modello.'),
    F(r'y(x,t)=A\sin(\omega t-kx)'), F(r'A=3\,\mathrm{cm}'), F(r'\omega=2\pi\,\mathrm{rad/s}'), F(r'k=\pi\,\mathrm{rad/m}'),
@@ -133,7 +133,7 @@ SPECS = {
  'SIM-C5-L09-02': {
   'points': [30, 45], 'asset': 'snell-manual-bounded-angles.svg',
   'caption': 'Raggi dall’aria al vetro: incidenza normale, 30° e 45°, sempre misurati dalla normale tratteggiata. Nel vetro l’angolo è minore. Le etichette circa 19,5° e 28,1° sono stime; le costruzioni corrispondono alla legge di Snell.',
-  'transfer': 'Il raggio passa dall’aria (n₁=1) al vetro (n₂=3/2), con incidenza {x}° dalla normale. Trova prima il seno dell’angolo rifratto; poi usa gli intervalli forniti nella spiegazione e inserisci una stima in gradi con errore inferiore a 0,05°.',
+  'transfer': 'Il raggio passa dall’aria (n₁=1) al vetro (n₂=3/2), con incidenza {x} dalla normale. Trova prima il seno dell’angolo rifratto; poi usa gli intervalli forniti nella spiegazione e inserisci una stima in gradi con errore inferiore a 0,05°.',
   'blocks': [
    T('Consideriamo una superficie piana fra due mezzi trasparenti, omogenei e isotropi. Gli angoli si misurano dalla normale, non dalla superficie. Il fascio passa dall’aria, n₁=1, al vetro del modello, n₂=1,5=3/2. La legge di Snell confronta i seni degli angoli e nasce dalla continuità della fase lungo la superficie.'),
    F(r'n_1\sin\theta_1=n_2\sin\theta_2'), F(r'\sin\theta_2=\frac23\sin\theta_1'),
