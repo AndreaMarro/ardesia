@@ -99,24 +99,21 @@
     "receipt": "editorial/reviews/preintegration-45865245464-root-adoption-20261126/receipt.json"
   },
   "lastFailedRemotePreparation": {
-    "runId": 45859734058,
-    "headSha": "99e98f4984bc5ded6898e6eb8f494f8c1eeceb54",
+    "runId": 45873357486,
+    "headSha": "42049bf1f7bafe6385f8d9569fe3b92936966757",
     "result": "FAILURE",
-    "testCount": 1015,
-    "seconds": 954.151,
-    "failures": 1,
+    "tests": 1060,
+    "seconds": 634.211,
+    "failures": 0,
     "errors": 1,
-    "cause": [
-      "Missing historically pinned actual-runtime.json in clean clone",
-      "Interpreter-dependent AST dump hash in test235239"
-    ],
-    "uiCasesCompleted": 10947,
-    "uiPackagesCompleted": 239,
-    "freshAndIncrementalETL": "PASS_IDENTICAL_3632_246",
+    "cause": "Undeclared historical pre-key model24cf4060 absent in clean clone",
+    "uiPackages": 249,
+    "uiCases": 11427,
+    "freshIncrementalETL": "PASS",
     "coexistence": "PASS",
     "release": "SKIPPED",
     "officialCheckpointAdopted": false,
-    "receipt": "editorial/reviews/preintegration-failed-45859734058-20261126/receipt.json"
+    "receipt": "editorial/reviews/preintegration-failed-45873357486-20261126/receipt.json"
   },
   "currentLocalPreparation": {
     "registeredQuestionDrafts": 3792,
@@ -124,7 +121,7 @@
     "new160ProductUI": "PENDING_REMOTE",
     "runId": 45873357486,
     "headSha": "42049bf1f7bafe6385f8d9569fe3b92936966757",
-    "state": "IN_PROGRESS_FULL_TRACKED_TEST_SUITE_AFTER_ETL_AND_COEXISTENCE_PASS",
+    "state": "RETRY3792_REQUESTED_AFTER_EXACT_GIT_INPUT_RECOVERY_SOURCE_PENDING_PUSH",
     "registrySha256": "62c195d8b6ab1f4ddbac1af2ada5ad834656943db19c85bb195f8742d0dcdb2c",
     "scientificQuestionsPendingRegistryActivation": 208,
     "previewRequestPin": "DEFERRED_UNTIL3792_ADOPTION_BEFORE_PR_AVOIDS_DUPLICATE_PRODUCER"

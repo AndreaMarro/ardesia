@@ -1,0 +1,46 @@
+{
+  "scope": "Failed3792 run preserved; no official checkpoint adoption, scientific acceptance remains per distinct Root receipts",
+  "runId": 45873357486,
+  "jobId": 140094134802,
+  "headSha": "42049bf1f7bafe6385f8d9569fe3b92936966757",
+  "conclusion": "FAILURE",
+  "tests": 1060,
+  "seconds": 634.211,
+  "failures": 0,
+  "errors": 1,
+  "cause": "Clean clone lacks24cf4060 pre-key model commit; candidate fixture discovery does not declare model-only inputs",
+  "ui": {
+    "terminalCompletions": 249,
+    "cases": 11427,
+    "reportsHashVerified": true,
+    "suiteOverall": "FAIL_NOT_ADOPTED"
+  },
+  "freshIncrementalETL": "PASS",
+  "canonicalCoexistence": "PASS",
+  "release": "SKIPPED",
+  "officialCheckpointAdopted": false,
+  "artifactId": 15144887768,
+  "artifactBytes": 114361759,
+  "artifactSha256": "8802c46374114b0beb579a493340af41f39e9f429310360fb3320445c71c11c4",
+  "boundedVerbatimArtifactParts": [
+    {
+      "path": "editorial/reviews/preintegration-failed-45873357486-20261126/upstream-artifact.zip.part-001",
+      "bytes": 41943040,
+      "sha256": "803b6dc28ab0683f21f5b84c36606cbc9083a836d00cfb42ec0b06ebb3703ae2"
+    },
+    {
+      "path": "editorial/reviews/preintegration-failed-45873357486-20261126/upstream-artifact.zip.part-002",
+      "bytes": 41943040,
+      "sha256": "9823f87260d132eff20ac13ad0a0e9c378d588d300f41c4e41247abb5c37653e"
+    },
+    {
+      "path": "editorial/reviews/preintegration-failed-45873357486-20261126/upstream-artifact.zip.part-003",
+      "bytes": 30475679,
+      "sha256": "adda5d62659d7150064173195809dfec2a3d6f7319d73b5041ae3191fcae0702"
+    }
+  ],
+  "reconstruct": "Concatenate part001..003, verify full artifact SHA256, then inspect ZIP. Original run remains FAIL.",
+  "githubRunnerLogScope": "Text transport from GitHub connector, separate from verbatim artifact ZIP",
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}

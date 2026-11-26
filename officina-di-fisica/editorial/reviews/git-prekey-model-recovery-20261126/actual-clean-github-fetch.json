@@ -1,0 +1,39 @@
+{
+  "scope": "Actual empty Git repo using public immutable commits, not shared object cache",
+  "firstFetch": {
+    "requiredCommits": 3,
+    "fetchedCommits": 3,
+    "batchSize": 32,
+    "publicationAction": "NONE"
+  },
+  "blobVerification": {
+    "verifiedBlobInputs": 3,
+    "publicationAction": "NONE"
+  },
+  "secondFetch": {
+    "requiredCommits": 3,
+    "fetchedCommits": 0,
+    "batchSize": 32,
+    "publicationAction": "NONE"
+  },
+  "inputs": [
+    {
+      "commit": "24cf4060ae63e4fe33e12cc68d62f02ec170f8c5",
+      "path": "officina-di-fisica/tools/corpus_engineering/radiation_attenuation_review_models.py",
+      "sha256": "348e93e8df612d20e3278ac08905331d1c83c6283d3047f7169794e4138588e9"
+    },
+    {
+      "commit": "a114caa9004ac1f3f4e5678ec58818a4d813cfd8",
+      "path": "officina-di-fisica/tools/corpus_engineering/nuclei_optics_review_models.py",
+      "sha256": "f32615b7796d7dcb7c5d4e9d58566922ed01dac5f1dfd884fef5efd0108492c7"
+    },
+    {
+      "commit": "bbda8bd45ebb0ccf962487883b60832c7897c360",
+      "path": "officina-di-fisica/tools/corpus_engineering/reflection_image_height_review_models.py",
+      "sha256": "4094cbd8c203f98ee7efa3e0ba4599f741ce7aa7cd351133a9d2125b81a2624e"
+    }
+  ],
+  "scientificCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}

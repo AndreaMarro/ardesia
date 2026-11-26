@@ -1,0 +1,30 @@
+{
+  "scope": "Existing git_provenance discovery extended to versioned bounded model-only object inputs; no verifier, test expectation or gate removed",
+  "failedRun": 45873357486,
+  "missingCommit": "24cf4060ae63e4fe33e12cc68d62f02ec170f8c5",
+  "cause": "Candidate manifests recover package/bindings commits but ignored pre-key model-only commits used directly by historical audit tests",
+  "recoveredPrekeyModelCount": 3,
+  "frozenModelBytes": "Verbatim original Git blobs with full refs, safe paths, SHA256 and bounded local snapshots",
+  "actualEmptyGitRepoFetch": "actual-clean-github-fetch.json:3 public commits fetched,3 exact blobs verified, repeat fetch0",
+  "unitTests": {
+    "count": 6,
+    "seconds": 0.529,
+    "actualExit": 0
+  },
+  "originalFailedTarget": {
+    "count": 17,
+    "seconds": 6.998,
+    "actualExit": 0
+  },
+  "negativeOldDiscoveryReplay": {
+    "actualExit": 1,
+    "observedRefs": [],
+    "expectedRefs": 3,
+    "timing": "Executed after patch against verbatim archived old module; not pre-patch TDD"
+  },
+  "scheduledNegativeCorrection": "First intended RED waited on mutex and executed after patch:3tests PASS0.475s, wrapper assertion failed. Preserved actual-red.txt but explicitly NOT accepted as negative evidence.",
+  "workflowChange": "NONE; existing --fetch-missing call discovers new declarations before full tests",
+  "scientificQuestionCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}
