@@ -224,7 +224,7 @@ Fonte SHA256 8fdf041f056cd31a901dea2791239ed4d105599df34d749770a84609899d9e48. C
 
 Caso autonomo: un campione chiuso ha un solo genitore radioattivo, emivita costante sconosciuta e nessuna nuova produzione. Si misurano valori medi N(1 h)=48 milioni e N(3 h)=12 milioni. Quanto vale N₀ nelle unità 10⁶ nuclei?
 
-Procedimento d’autore: Definisco q come frazione media sopravvissuta in un’ora: 0<q<1. Allora 48=n₀q e 12=n₀q³. Dividendo, q²=12/48=1/4. Il ramo positivo dà q=1/2: l’emivita risulta 1 h dai dati, non era stata assunta. Quindi n₀=48/(1/2)=96.
+Procedimento d’autore: Poniamo n₀=N₀/(10⁶ nuclei). Definisco q come frazione media sopravvissuta in un’ora: 0<q<1. Allora 48=n₀q e 12=n₀q³. Dividendo, q²=12/48=1/4. Il ramo positivo dà q=1/2: l’emivita risulta 1 h dai dati, non era stata assunta. Quindi n₀=48/(1/2)=96.
 
 Formule: q^2=\frac{12}{48};  q=\frac12;  n_0=\frac{48}{q};  n_0=96.
 
@@ -232,12 +232,14 @@ Distrattori e controprove: 48 milioni copia la prima misura e ignora l’ora gi�
 
 Hint: Forma il rapporto fra le due letture: copre due ore, non una.
 
-Fonte SHA256 efd00b80149da7ffe53f07bc544c50bfc005b65df3fad4a8483fcf05fcbac963. Candidato SHA256 eb70bec39bc18248f94736521a2bd3c3eb2d53a14a21a3415fd5455d2e5a7e0a. Skill reale C5-L08. Review distinta e human NOT_RUN.
+Fonte SHA256 efd00b80149da7ffe53f07bc544c50bfc005b65df3fad4a8483fcf05fcbac963. Candidato SHA256 2f3e358d7b012c9fd13ca8f42f8af3e7f3d7e418b6d535835693b123979f3a76. Skill reale C5-L08. Review distinta e human NOT_RUN.
 
 ## Provenienza tecnica
 
-Asset SHA256 17d4e56567224fc449f9afb792efc2aa02061fa5cf3f99ee160e1f7c7b5e1239. Package file SHA256 419659d939f02fdb7a5f01bf69eaab16f2a13c8c38c724c57b14680dd291bfda. Binding file SHA256 b093959044081060848abf4b533186399b3a6be132e90c215825ae503facc812. Strutturale SHA256 c772db4e25f3bc3bc35bc3008b5b830f49bb8d495b1c7183854bbc87c7a6ef1b. Manifest asset-only SHA256 a2bd70471c15bc6130816d1ee460d69fcc43354867731932ef571e1c980d05d4.
+Asset SHA256 17d4e56567224fc449f9afb792efc2aa02061fa5cf3f99ee160e1f7c7b5e1239. Package file SHA256 21d0a3c8b9120ba57ca3133d3e1fe8a85fc2c230b800937530dad00874c1b635. Binding file SHA256 c7f8b65985d7b38d4517cb6b55d5f56b4837a152c27aff3d955bed3d3dd26e53. Strutturale SHA256 25e8735b8c264c0c5722d16c44e0fb5a1c2f246cabfe1e54f10be19bceea6726. Manifest asset-only SHA256 a2bd70471c15bc6130816d1ee460d69fcc43354867731932ef571e1c980d05d4.
 
 Nessun registry, ledger, runtime, checkpoint o Git ROOT modificato. Il revisore B deve leggere questi finali contro la propria primaria distinta prima del congelamento scientifico.
 
 Nota geometrica d’autore: le barre iniziali 320/160/80/40 rappresentano 64/32/16/8 milioni alla stessa scala 5 coordinate per milione. La curva usa x=150+110 t[h] e y=1000−5 N[milioni], con punti esatti (0,64),(1,32),(2,16),(3,8). Nel pannello finale le barre 288/144/36 rappresentano 96/48/12 milioni alla nuova scala comune 3; il cambio di preparazione è dichiarato. La tinta ocra distingue la ricostruzione iniziale dalle due misure blu. Tutte le etichette e gli assi sono stati letti nel PNG nativo completo 640 × 1600 e nel XML, senza sovrapposizioni osservate. Coordinate tecniche solo in questa nota, mai metriche responsive visibili allo studente.
+
+Chiarimenti dopo lettura distinta B: il record 16 definisce ora n₀=N₀/(10⁶ nuclei) prima dell’uso. Gli altri campi e tutte le risposte corrette, formule e figure sono immutati. Nessun nuovo render: lo SVG e il PNG nativo realmente letto appartengono agli stessi byte già congelati; nessun ritag. Le precedenti edizioni e il vecchio handoff sono conservati nell’archivio u7-nuclear-standalone-250-252-superseded-20261126. Nuova approvazione scientifica distinta e UI prodotto NOT_RUN.

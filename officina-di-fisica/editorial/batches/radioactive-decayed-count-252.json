@@ -156,7 +156,7 @@
       ],
       "family": "radioactive-decayed-count",
       "difficulty": 1,
-      "prompt": "Un campione chiuso ha un solo radionuclide genitore di emivita T½=1 h, senza nuovi apporti o produzione di genitori. Si conta N_dec(t), numero medio cumulativo dei genitori iniziali già trasformati: eventuali decadimenti successivi dei figli non si contano. Definiamo u=t/(1 h)>0, n₀=N₀/(10⁶ nuclei) e c=N_dec/(10⁶ nuclei). Allora c=n₀(1−2^(−u)); non è né il residuo né il tasso di attività. Le prove sono preparazioni distinte con dati finiti. Quale relazione fornisce il conteggio normalizzato c?",
+      "prompt": "Un campione chiuso ha un solo radionuclide genitore di emivita T½=1 h, senza nuovi apporti o produzione di genitori. Si conta N_dec(t), numero medio cumulativo dei genitori iniziali già trasformati: eventuali decadimenti successivi dei figli non si contano. Definiamo u=t/(1 h)>0, n₀=N₀/(10⁶ nuclei) e c=N_dec/(10⁶ nuclei). Il conteggio cumulativo non è né il residuo né il tasso di attività. Le prove sono preparazioni distinte con dati finiti. Quale relazione fornisce il conteggio normalizzato c?",
       "answer": {
         "type": "choice",
         "options": [
@@ -777,7 +777,7 @@
         "type": "choice",
         "options": [
           "28 milioni di nuclei",
-          "48−12√2 milioni di nuclei",
+          "(48−12√2) milioni di nuclei",
           "56 milioni di nuclei",
           "4 milioni di nuclei",
           "24 milioni di nuclei"
@@ -1077,7 +1077,7 @@
       "blocks": [
         {
           "type": "text",
-          "text": "Nell’ora aggiuntiva si trasformano 2 milioni, metà dei genitori ancora presenti a t. Definisco r il numero residuo a t, in milioni: r=4. L’inizio era perciò 12+4=16 milioni. La frazione residua a t è 4/16=1/4: sono trascorse due emivite, quindi t=2 h."
+          "text": "Poniamo n₀=N₀/(10⁶ nuclei) e u=t/(1 h). Nell’ora aggiuntiva si trasformano 2 milioni, metà dei genitori ancora presenti a t. Definisco r il numero residuo a t, in milioni: r=4. L’inizio era perciò 12+4=16 milioni. La frazione residua a t è 4/16=1/4: sono trascorse due emivite, quindi t=2 h."
         },
         {
           "type": "figure",

@@ -79,7 +79,7 @@ TASKS=[
  '33 milioni omette l’offset e ricostruirebbe D=34. Sessantaquattro omette il guadagno dopo aver tolto b; sedici copia il residuo, senza tornare all’istante iniziale.',
  'Ricostruisci due leggi distinte: display e decadimento.'),
 ('Due tempi rivelano anche l’emivita','Caso autonomo: un campione chiuso ha un solo genitore radioattivo, emivita costante sconosciuta e nessuna nuova produzione. Si misurano valori medi N(1 h)=48 milioni e N(3 h)=12 milioni. Quanto vale N₀ nelle unità 10⁶ nuclei?',96,
- 'Definisco q come frazione media sopravvissuta in un’ora: 0<q<1. Allora 48=n₀q e 12=n₀q³. Dividendo, q²=12/48=1/4. Il ramo positivo dà q=1/2: l’emivita risulta 1 h dai dati, non era stata assunta. Quindi n₀=48/(1/2)=96.',
+ 'Poniamo n₀=N₀/(10⁶ nuclei). Definisco q come frazione media sopravvissuta in un’ora: 0<q<1. Allora 48=n₀q e 12=n₀q³. Dividendo, q²=12/48=1/4. Il ramo positivo dà q=1/2: l’emivita risulta 1 h dai dati, non era stata assunta. Quindi n₀=48/(1/2)=96.',
  r'q^2=\frac{12}{48}\qquad q=\frac12\qquad n_0=\frac{48}{q}\qquad n_0=96',
  '48 milioni copia la prima misura e ignora l’ora già trascorsa. 192 milioni a q=1/2 darebbe N(1 h)=96 milioni. Il ramo q=−1/2 non è una probabilità di sopravvivenza; non si accetta una radice negativa.',
  'Forma il rapporto fra le due letture: copre due ore, non una.')]

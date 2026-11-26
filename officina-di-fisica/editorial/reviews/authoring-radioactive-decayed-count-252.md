@@ -40,7 +40,7 @@ Fonte SHA256 2c094098005267d9e7d50f5d9b7f991e3a288879723aa612d30a302bb1777888. C
 
 ## AR-u7-radioactive-decayed-count-03 — Il cumulativo è un complemento
 
-Un campione chiuso ha un solo radionuclide genitore di emivita T½=1 h, senza nuovi apporti o produzione di genitori. Si conta N_dec(t), numero medio cumulativo dei genitori iniziali già trasformati: eventuali decadimenti successivi dei figli non si contano. Definiamo u=t/(1 h)>0, n₀=N₀/(10⁶ nuclei) e c=N_dec/(10⁶ nuclei). Allora c=n₀(1−2^(−u)); non è né il residuo né il tasso di attività. Le prove sono preparazioni distinte con dati finiti. Quale relazione fornisce il conteggio normalizzato c?
+Un campione chiuso ha un solo radionuclide genitore di emivita T½=1 h, senza nuovi apporti o produzione di genitori. Si conta N_dec(t), numero medio cumulativo dei genitori iniziali già trasformati: eventuali decadimenti successivi dei figli non si contano. Definiamo u=t/(1 h)>0, n₀=N₀/(10⁶ nuclei) e c=N_dec/(10⁶ nuclei). Il conteggio cumulativo non è né il residuo né il tasso di attività. Le prove sono preparazioni distinte con dati finiti. Quale relazione fornisce il conteggio normalizzato c?
 
 Procedimento d’autore: Ogni genitore iniziale o è ancora presente o ha già subito la sua trasformazione. Il residuo medio è n₀2^(−u); sottraendolo da n₀ ottengo c. Per u>0 finito, 0<c<n₀: il conteggio cresce ma non supera gli iniziali.
 
@@ -50,7 +50,7 @@ Distrattori e controprove: Il termine senza complemento è il residuo. Il segno 
 
 Hint: Sottrai i sopravvissuti, senza aggiungere i decadimenti dei figli.
 
-Fonte SHA256 379ea4eb9eb75d2d49148a7718a4a354fd682891df82c273a4b3d2c379f982f1. Candidato SHA256 27ca079131ad98ca1841cef61fd975b114c5b7903acc22cb4ab4adc008043a8d. Skill reale C5-L08. Review distinta e human NOT_RUN.
+Fonte SHA256 379ea4eb9eb75d2d49148a7718a4a354fd682891df82c273a4b3d2c379f982f1. Candidato SHA256 39079f0b58752dfc2a859780eca62713d0af91a780660535322101e7c6e2e0ed. Skill reale C5-L08. Review distinta e human NOT_RUN.
 
 ## AR-u7-radioactive-decayed-count-04 — La metà dei genitori iniziali
 
@@ -176,7 +176,7 @@ Distrattori e controprove: 56 è la somma, quattro la semidifferenza e 24 ripete
 
 Hint: Forma due cumulativi completi prima della media.
 
-Fonte SHA256 3596b610ef826808399247dff459e986a8a71cdd21cb402e5b676e6469bcdf19. Candidato SHA256 2734dabc49dce2387de81b58dce6e8bcf9bb961ce9cc64736bab431e8a592734. Skill reale C5-L08. Review distinta e human NOT_RUN.
+Fonte SHA256 3596b610ef826808399247dff459e986a8a71cdd21cb402e5b676e6469bcdf19. Candidato SHA256 dfffc73cb9600cea0966f4cc6c5e40bf9537accc69846691875abdbecca3c825. Skill reale C5-L08. Review distinta e human NOT_RUN.
 
 ## AR-u7-radioactive-decayed-count-13 — Il tempo che realizza il bersaglio
 
@@ -224,7 +224,7 @@ Fonte SHA256 cf70266ea738344ad6cf86adc78a08b6c0ca3438b1e6d89d2bd55d1eb9017385. C
 
 Caso autonomo: campione chiuso di un solo genitore, T½=1 h, senza produzione. A un tempo t>0 si sono trasformati in media 12 milioni di genitori iniziali; a t+1 h il cumulativo è 14 milioni. N₀ è ignoto. Quanto vale t in ore?
 
-Procedimento d’autore: Nell’ora aggiuntiva si trasformano 2 milioni, metà dei genitori ancora presenti a t. Definisco r il numero residuo a t, in milioni: r=4. L’inizio era perciò 12+4=16 milioni. La frazione residua a t è 4/16=1/4: sono trascorse due emivite, quindi t=2 h.
+Procedimento d’autore: Poniamo n₀=N₀/(10⁶ nuclei) e u=t/(1 h). Nell’ora aggiuntiva si trasformano 2 milioni, metà dei genitori ancora presenti a t. Definisco r il numero residuo a t, in milioni: r=4. L’inizio era perciò 12+4=16 milioni. La frazione residua a t è 4/16=1/4: sono trascorse due emivite, quindi t=2 h.
 
 Formule: r/2=14-12;  r=4;  n_0=12+r;  n_0=16;  2^{-u}=\frac4{16};  u=2;  t=2\,\mathrm h.
 
@@ -232,12 +232,14 @@ Distrattori e controprove: Un’ora con n₀=16 darebbe cumulativo 8 milioni, no
 
 Hint: Usa la differenza dei cumulativi per conoscere i genitori presenti al primo tempo.
 
-Fonte SHA256 4f8974af76374ef1d2c1692ef3a63a0de9a968e1e3de5c29fba0d7d9681e11a0. Candidato SHA256 0b3d281ccc4f915b031eee572eae03065133f45d897bbdb16520d5b822867af1. Skill reale C5-L08. Review distinta e human NOT_RUN.
+Fonte SHA256 4f8974af76374ef1d2c1692ef3a63a0de9a968e1e3de5c29fba0d7d9681e11a0. Candidato SHA256 ff98a4d64e3c298c32495c3067eb7026c5935630cd498d800dc3addb436a4084. Skill reale C5-L08. Review distinta e human NOT_RUN.
 
 ## Provenienza tecnica
 
-Asset SHA256 7dcb356ca10cec616a8107112c02d522cbc87e72d15e6dd4f0695c4bb5858842. Package file SHA256 5558fff07b1952687d771cc0adcf2631ef8166f4e21177338b127dbbc5af4272. Binding file SHA256 66249eab1224fb4d547c538bd35e29727b351dcc2d96e1c01946760834802d07. Strutturale SHA256 9797cbaa6671d4ba537109fdd08aec4766ebd304270b1e5dbd1765fc7582e5f7. Manifest asset-only SHA256 c1a2414de4e1f7c5d7257be2557269afb95f427ef04439e47409035e9f343d2e.
+Asset SHA256 7dcb356ca10cec616a8107112c02d522cbc87e72d15e6dd4f0695c4bb5858842. Package file SHA256 0ca7762aa8f3145edcb1ca2e776dd87d6fdd13d72895fb7228ef19fdf66e2af4. Binding file SHA256 5b6c565a39a1eb8cb235a1270fe276274d7cc08a0efdd97db0e0b8ae19a5831b. Strutturale SHA256 fb2749f0dd9bb0f6d6f06403bcf70e09837ed253499f437ed5f169f10009b059. Manifest asset-only SHA256 c1a2414de4e1f7c5d7257be2557269afb95f427ef04439e47409035e9f343d2e.
 
 Nessun registry, ledger, runtime, checkpoint o Git ROOT modificato. Il revisore B deve leggere questi finali contro la propria primaria distinta prima del congelamento scientifico.
 
 Nota geometrica d’autore: le prime barre complete valgono ciascuna 64 milioni, lunghezza 320; i segmenti residuo/trasformati sono 160/160 a 1 h e 80/240 a 2 h, con stessa scala 5. Il grafico usa x=150+110 t[h], y=1000−5 N_dec[milioni] e i punti esatti (1,32),(2,48),(3,56), con origine aperta di riferimento. Il pannello autonomo finale rappresenta un altro campione, totale 16 milioni e lunghezza 320: segmenti 80/240 per 4/12 e 40/280 per 2/14, scala 20 comune entro quel pannello. Tutti i testi e le curve letti in XML e PNG completo 640 × 1600 dopo exit 0 reale, nessuna sovrapposizione osservata. Scala tecnica documentata qui e non mostrata come pixel responsive.
+
+Chiarimenti dopo lettura distinta B: il record 03 non contiene più la legge richiesta nella domanda; il 16 definisce n₀=N₀/(10⁶ nuclei) e u=t/(1 h) prima dell’uso. Inoltre nel distrattore 12 il coefficiente composto è scritto (48−12√2) milioni di nuclei, senza alterarne il valore. Gli altri campi e tutte le risposte corrette, formule e figure sono immutati. Nessun nuovo render: lo SVG e il PNG nativo realmente letto appartengono agli stessi byte già congelati; nessun ritag. Le precedenti edizioni e il vecchio handoff sono conservati nell’archivio u7-nuclear-standalone-250-252-superseded-20261126. Nuova approvazione scientifica distinta e UI prodotto NOT_RUN.
