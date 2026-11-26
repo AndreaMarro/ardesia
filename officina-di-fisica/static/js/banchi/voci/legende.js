@@ -43,7 +43,7 @@ export const legende = {
   circuito: 'Pila sul ramo anteriore · freccia verde di corrente convenzionale',
   condensatori: 'Ogni coppia di piastre è un condensatore. Segui i fili tra i terminali',
   bussola: 'Filo verticale · circonferenze del campo · sonda tangenziale',
-  lorentz: 'Verde · velocità. Grigio · campo B. Viola · forza sulla carica positiva. Le frecce di velocità e forza sono separate dalla carica in piani paralleli per leggerne verso e modulo; ciascuna mantiene la propria scala.',
+  lorentz: 'B · le tre frecce grigie parallele sotto la carica. v · la freccia verde sopra la carica. F · la freccia viola della forza sulla carica positiva, quando presente. La forza non nulla è perpendicolare sia a v sia a B; con velocità parallela o antiparallela al campo si annulla. v e F sono riportate accanto alla carica, conservando il verso e la propria scala. Per confrontare il modulo della forza scegli la vista Obliqua o Laterale.',
   spira: 'Verde · campo magnetico. Viola · normale orientata. Ocra · spira',
   oscillatore: 'Riferimento centrale · equilibrio. Blocco ocra · posizione istantanea',
   onda: 'Il punto marcato segue il mezzo. La curva rappresenta il profilo nello spazio',

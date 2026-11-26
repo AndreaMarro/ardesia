@@ -232,8 +232,6 @@ export const campi = {
     b.arrow(velocityOrigin, [1.4 * Math.cos(a), velocityOrigin[1], -1.4 * Math.sin(a)], c.verde);
     // B points along +x. A velocity component toward −z gives a force toward −y.
     b.arrow(forceOrigin, [0, forceOrigin[1] - 0.95 * s.forza, forceOrigin[2]], c.viola);
-    b.label([1.73, 0.79, -0.82], 'B');
-    b.label([1.4 * Math.cos(a), 2.13, -1.4 * Math.sin(a)], 'v', c.verde);
   },
   spira(b, s) {
     const angle = rad(s.angolo),
