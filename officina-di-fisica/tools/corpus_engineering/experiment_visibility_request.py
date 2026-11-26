@@ -287,6 +287,52 @@ def prepare(request_file,course,workspace):
 
 
 
+def planned_interactions(prepared):
+    """Derive required state data from the plan, never from optional case fields."""
+    planned={}
+    for row in prepared['records']:
+        states=[*({'kind':'grid','index':i,'x':x}for i,x in enumerate(row['grid'])),
+                *({'kind':'clock','index':i,'x':row['grid'][c['gridIndex']],'time':c['time']}for i,c in enumerate(row['clockCases'])),
+                *({'kind':'auxiliary','index':i,**c}for i,c in enumerate(row['auxiliaryCases']))]
+        for profile in prepared['profiles']:
+            stem='|'.join((row['id'],row['variant'],str(profile['width']),profile['view']))
+            for key,state in [(stem+'|setup',None),*((stem+'|'+s['kind']+'|'+str(s['index']),s)for s in states)]:
+                if key in planned:raise ValueError('Duplicate planned baseline state')
+                planned[key]=(row,state)
+    if set(planned)!=set(prepared['expectedCaseKeys']):raise ValueError('Prepared baseline state coverage differs')
+    return planned
+
+
+def verify_planned_interaction(case,row,state):
+    actual=case.get('interaction')
+    if state is None:
+        if actual is not None:raise ValueError('Unexpected setup interaction')
+        return
+    if not isinstance(actual,dict)or actual!=state or type(actual.get('index'))is not int:
+        raise ValueError('Missing or incongruent planned interaction')
+    for key in ('x','time','middle'):
+        if key in state and(type(actual[key])not in(int,float)or not math.isfinite(actual[key])):raise ValueError('Invalid planned numerical input')
+    def bounded(a,b,step):
+        # Same existing controller representation allowance; model parity has
+        # zero tolerance. This does not permit another control-grid step.
+        if type(a)not in(int,float)or not math.isfinite(a):raise ValueError('Nonfinite observed input')
+        tolerance=min(abs(step)/4,8*sys.float_info.epsilon*max(1,abs(a),abs(b)))
+        if abs(a-b)>tolerance:raise ValueError('Observed input differs from planned interaction')
+    controls={c['name']:c for c in case.get('actualDOMControls',[])}
+    expected_x=state['time']if row['clockInput']and'time'in state else state['x'];step=float(row['record']['control']['step'])
+    try:bounded(float(controls['x']['value']),expected_x,step)
+    except(KeyError,TypeError,OverflowError)as e:raise ValueError('Observed DOM x missing or invalid')from e
+    bounded(case.get('sourceReplayedX'),expected_x,step)
+    if state['kind']=='auxiliary':
+        try:
+            bounded(float(controls['middle']['value']),state['middle'],float(controls['middle']['step']))
+            if controls['circuit']['value']!=state['circuit']:raise ValueError('Observed circuit differs')
+        except(KeyError,TypeError,OverflowError)as e:raise ValueError('Observed auxiliary controls missing or invalid')from e
+    if row['hasClock']:
+        time=state.get('time',state['x']if row['clockInput']else 0)
+        bounded(case.get('sourceReplayedClockTime'),time,max(step,1))
+
+
 def verify_report(out,prepared,protocol_sha):
     """Fail closed on omitted/duplicated states or byte/provenance drift."""
     out=Path(out);report=load(out/'report.json')
@@ -297,6 +343,7 @@ def verify_report(out,prepared,protocol_sha):
         if report.get(name)!=value:raise ValueError('Report provenance differs: '+name)
     reference=prepared.get('numericalReference')
     namespace=None
+    planned=planned_interactions(prepared)if reference else None
     if reference:
         evidence=report.get('baselineReference',{})
         namespace='/__cric_baseline/'+BASELINE+'/'+reference['manifestSha256']+'/'
@@ -316,7 +363,9 @@ def verify_report(out,prepared,protocol_sha):
                          'requestSha256':prepared['requestSha256'],'runtimeSha256':prepared['runtimeFingerprint']['sha256'],
                          'protocolSha256':protocol_sha,'scientificApproval':False,'activityCredit':0,'humanApproval':'NOT_RUN','publicationAction':'NONE'}
         if any(case.get(k)!=v for k,v in expected_fields.items()):raise ValueError('Case not observed or provenance/approval differs')
-        if reference and case.get('interaction'):
+        if reference:
+            row,state=planned[item['caseKey']];verify_planned_interaction(case,row,state)
+        if reference and state is not None:
             b=case.get('baselineReference',{})
             if(b.get('kind')!=REFERENCE_KIND or b.get('namespace')!=namespace or b.get('distinctModuleIdentity')is not True or b.get('distinctSolveIdentity')is not True
                or b.get('observedX')!=case.get('sourceReplayedX')or b.get('actualDOMControls')!=case.get('actualDOMControls')

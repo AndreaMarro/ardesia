@@ -1,0 +1,19 @@
+test_actual_unchanged_seven_case_report_is_accepted (__main__.IndependentReportBoundary.test_actual_unchanged_seven_case_report_is_accepted) ... ok
+test_missing_state_metadata_cannot_bypass_strict_parity (__main__.IndependentReportBoundary.test_missing_state_metadata_cannot_bypass_strict_parity) ... ADVERSARIAL_COPY SIM-C2-L008-04|published|320|orbit|grid|0 removeInteraction True
+FAIL
+test_wrong_model_with_state_metadata_is_rejected (__main__.IndependentReportBoundary.test_wrong_model_with_state_metadata_is_rejected) ... ADVERSARIAL_COPY SIM-C2-L008-04|published|320|orbit|grid|0 removeInteraction False
+ok
+
+======================================================================
+FAIL: test_missing_state_metadata_cannot_bypass_strict_parity (__main__.IndependentReportBoundary.test_missing_state_metadata_cannot_bypass_strict_parity)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-139-independent-report-red.py", line 18, in test_missing_state_metadata_cannot_bypass_strict_parity
+    with self.assertRaises(ValueError):v.verify_report(out,prepared,protocol)
+         ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.047s
+
+FAILED (failures=1)

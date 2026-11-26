@@ -1,0 +1,19 @@
+{
+  "command": [
+    "/private/tmp/cric-recovery-venv/bin/python",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests/corpus",
+    "-p",
+    "test_same_browser_reference_independent_b.py",
+    "-v"
+  ],
+  "workdir": "/private/tmp/cric-author-b-resident/officina-di-fisica",
+  "actualExit": 1,
+  "scope": "Independent B test expectations unchanged, actual Root pre-fix module",
+  "candidateCommit": "e7aeae2b2ef88eecfcda2a3bcb34301ff61a82dd",
+  "scientificCredit": 0
+}
