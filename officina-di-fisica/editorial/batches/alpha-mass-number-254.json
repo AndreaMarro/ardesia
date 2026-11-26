@@ -1,0 +1,1126 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u7-alpha-mass-number-01",
+      "kind": "question",
+      "course": "C5",
+      "section": "Bilancio di nucleoni nelle catene alfa",
+      "order": 25401,
+      "title": "Quattro nucleoni escono per evento",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "alpha-mass-number",
+      "difficulty": 1,
+      "prompt": "Si studia il bilancio dei nucleoni in una catena assegnata di n decadimenti α, senza altre trasformazioni. A₀ e n sono interi positivi, A₀>4n. I numeri atomici e gli stati energetici compatibili con tutti i passaggi sono assunti nei dati: tale compatibilità non si deduce dalla sola disuguaglianza A₀>4n. Ogni α emessa è un nucleo di elio con due protoni e due neutroni. A_f è il numero di massa del figlio finale, non la sua massa in kg. Le prove riguardano preparazioni distinte. Con A₀=220 e n=1, quanto vale A_f?",
+      "answer": {
+        "type": "numeric",
+        "value": 216,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Una particella α porta quattro nucleoni fuori dal nucleo genitore. Per un evento tolgo quattro al numero iniziale: A_f=220−4=216. Questo è un bilancio di conteggi, non la sottrazione di 4 kg o la stima dell’energia di decadimento."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/b095efae7ac87676c6a5ed1a60430b61c2e4d5702b2950ae4caaefad11d8661e",
+          "text": "Il primo schema conta quattro nucleoni per α, non la massa fisica della particella. Le barre finali confrontano A_f=216 e 220, con media 218; le lunghezze rappresentano i numeri di massa assoluti senza sottrarre una base comune."
+        },
+        {
+          "type": "formula",
+          "text": "A_f=A_0-4n"
+        },
+        {
+          "type": "formula",
+          "text": " A_f=220-4"
+        },
+        {
+          "type": "formula",
+          "text": " A_f=216"
+        },
+        {
+          "type": "text",
+          "text": "219 sottrae un solo nucleone, 218 sottrae soltanto i due protoni e 224 aggiunge i nucleoni emessi al figlio. Il valore 55 divide per quattro e non rappresenta il numero di massa residuo."
+        }
+      ],
+      "hints": [
+        "Conta protoni e neutroni che compongono la particella α.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "219 sottrae un solo nucleone, 218 sottrae soltanto i due protoni e 224 aggiunge i nucleoni emessi al figlio. Il valore 55 divide per quattro e non rappresenta il numero di massa residuo.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Numero di massa e numero atomico",
+        "Conteggi interi e compatibilità assegnata",
+        "Inverse, medie e tarature",
+        "Nuova parametrizzazione di nuclei iniziali pesanti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-alpha-mass-number-02",
+      "kind": "question",
+      "course": "C5",
+      "section": "Bilancio di nucleoni nelle catene alfa",
+      "order": 25402,
+      "title": "Il numero di massa è un conteggio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "alpha-mass-number",
+      "difficulty": 1,
+      "prompt": "Quale indicazione di unità è adatta al numero di massa A_f di un nucleo?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1, conteggio di nucleoni",
+          "kg",
+          "C",
+          "Bq",
+          "J"
+        ],
+        "value": "1, conteggio di nucleoni"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A conta protoni più neutroni ed è un intero puro. La massa fisica del nucleo è una grandezza diversa e risente anche dell’energia di legame: non si identifica A con un valore esatto in kg."
+        },
+        {
+          "type": "formula",
+          "text": "A=Z+N_{\\rm neutroni}"
+        },
+        {
+          "type": "formula",
+          "text": " [A]=1"
+        },
+        {
+          "type": "text",
+          "text": "kg è massa fisica, C carica, Bq attività e J energia. Il nome numero di massa non assegna al conteggio la dimensione di una massa."
+        }
+      ],
+      "hints": [
+        "Distingui il numero di nucleoni dalla massa effettiva del nucleo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "kg è massa fisica, C carica, Bq attività e J energia. Il nome numero di massa non assegna al conteggio la dimensione di una massa.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Numero di massa e numero atomico",
+        "Conteggi interi e compatibilità assegnata",
+        "Inverse, medie e tarature",
+        "Nuova parametrizzazione di nuclei iniziali pesanti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-alpha-mass-number-03",
+      "kind": "question",
+      "course": "C5",
+      "section": "Bilancio di nucleoni nelle catene alfa",
+      "order": 25403,
+      "title": "Alfa: cambiano due numeri nucleari",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "alpha-mass-number",
+      "difficulty": 1,
+      "prompt": "Caso autonomo: in un decadimento α, come cambiano numero di massa A e numero atomico Z del nucleo figlio?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "A diminuisce di 4 e Z diminuisce di 2",
+          "A diminuisce di 2 e Z diminuisce di 4",
+          "A resta uguale e Z diminuisce di 2",
+          "A diminuisce di 4 e Z aumenta di 2",
+          "A e Z restano entrambi uguali"
+        ],
+        "value": "A diminuisce di 4 e Z diminuisce di 2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’α è un nucleo di elio: due protoni e due neutroni, carica +2e. Il figlio ha perciò quattro nucleoni e due protoni in meno. Il nucleone e la carica totali sono conservati includendo la particella emessa."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/b095efae7ac87676c6a5ed1a60430b61c2e4d5702b2950ae4caaefad11d8661e",
+          "text": "La particella α è un nucleo di elio composto da due protoni e due neutroni. Il bilancio A−4,Z−2 riguarda il figlio, non il sistema completo figlio più particella emessa."
+        },
+        {
+          "type": "formula",
+          "text": "{}^A_ZX\\longrightarrow{}^{A-4}_{Z-2}Y+{}^4_2\\mathrm{He}"
+        },
+        {
+          "type": "formula",
+          "text": " A_f=A-4"
+        },
+        {
+          "type": "formula",
+          "text": " Z_f=Z-2"
+        },
+        {
+          "type": "text",
+          "text": "Scambiare quattro e due confonde nucleoni e protoni. Mantenere A invariato sarebbe incompatibile con l’emissione di quattro nucleoni; aumentare Z avrebbe il segno opposto al bilancio di carica. Una semplice γ lascerebbe entrambi invariati."
+        }
+      ],
+      "hints": [
+        "Considera separatamente il numero totale di nucleoni e quello di protoni.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Scambiare quattro e due confonde nucleoni e protoni. Mantenere A invariato sarebbe incompatibile con l’emissione di quattro nucleoni; aumentare Z avrebbe il segno opposto al bilancio di carica. Una semplice γ lascerebbe entrambi invariati.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Numero di massa e numero atomico",
+        "Conteggi interi e compatibilità assegnata",
+        "Inverse, medie e tarature",
+        "Nuova parametrizzazione di nuclei iniziali pesanti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-alpha-mass-number-04",
+      "kind": "question",
+      "course": "C5",
+      "section": "Bilancio di nucleoni nelle catene alfa",
+      "order": 25404,
+      "title": "Cambia soltanto il nucleo iniziale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "alpha-mass-number",
+      "difficulty": 1,
+      "prompt": "Si studia il bilancio dei nucleoni in una catena assegnata di n decadimenti α, senza altre trasformazioni. A₀ e n sono interi positivi, A₀>4n. I numeri atomici e gli stati energetici compatibili con tutti i passaggi sono assunti nei dati: tale compatibilità non si deduce dalla sola disuguaglianza A₀>4n. Ogni α emessa è un nucleo di elio con due protoni e due neutroni. A_f è il numero di massa del figlio finale, non la sua massa in kg. Le prove riguardano preparazioni distinte. A usa A₀=220,n=1; B usa A₀=224,n=1. Come cambia A_f?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 216 a 220",
+          "Da 216 a 212",
+          "Da 216 a 224",
+          "Resta 216",
+          "Da 216 a 432"
+        ],
+        "value": "Da 216 a 220"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il numero di α è uguale e in entrambi i casi escono quattro nucleoni. L’ingresso maggiore di quattro produce un figlio maggiore di quattro: da 216 a 220. Non si moltiplica la sottrazione per il rapporto degli ingressi."
+        },
+        {
+          "type": "formula",
+          "text": "A_{f,A}=220-4"
+        },
+        {
+          "type": "formula",
+          "text": " A_{f,A}=216"
+        },
+        {
+          "type": "formula",
+          "text": " A_{f,B}=224-4"
+        },
+        {
+          "type": "formula",
+          "text": " A_{f,B}=220"
+        },
+        {
+          "type": "text",
+          "text": "212 diminuisce il figlio invece di aumentarlo. 224 ignora l’emissione, 216 ignora il nuovo genitore e 432 raddoppia l’uscita senza una ragione fisica."
+        }
+      ],
+      "hints": [
+        "La stessa sottrazione si applica a entrambi gli ingressi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "212 diminuisce il figlio invece di aumentarlo. 224 ignora l’emissione, 216 ignora il nuovo genitore e 432 raddoppia l’uscita senza una ragione fisica.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Numero di massa e numero atomico",
+        "Conteggi interi e compatibilità assegnata",
+        "Inverse, medie e tarature",
+        "Nuova parametrizzazione di nuclei iniziali pesanti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-alpha-mass-number-05",
+      "kind": "question",
+      "course": "C5",
+      "section": "Bilancio di nucleoni nelle catene alfa",
+      "order": 25405,
+      "title": "Ricostruire A iniziale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "alpha-mass-number",
+      "difficulty": 2,
+      "prompt": "Si studia il bilancio dei nucleoni in una catena assegnata di n decadimenti α, senza altre trasformazioni. A₀ e n sono interi positivi, A₀>4n. I numeri atomici e gli stati energetici compatibili con tutti i passaggi sono assunti nei dati: tale compatibilità non si deduce dalla sola disuguaglianza A₀>4n. Ogni α emessa è un nucleo di elio con due protoni e due neutroni. A_f è il numero di massa del figlio finale, non la sua massa in kg. Le prove riguardano preparazioni distinte. A_f=216 e n=1. Quanto vale A₀?",
+      "answer": {
+        "type": "numeric",
+        "value": 220,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Riporto sul nucleo iniziale i quattro nucleoni per ogni α: A₀=A_f+4n. Con un evento aggiungo quattro e ricavo 220. La verifica 220−4=216 chiude il bilancio."
+        },
+        {
+          "type": "formula",
+          "text": "A_0=A_f+4n"
+        },
+        {
+          "type": "formula",
+          "text": " A_0=216+4"
+        },
+        {
+          "type": "formula",
+          "text": " A_0=220"
+        },
+        {
+          "type": "text",
+          "text": "212 sottrae ancora invece di invertire. 217 aggiunge un solo nucleone; 864 moltiplica per quattro. L’inversa deve restituire un numero maggiore del figlio."
+        }
+      ],
+      "hints": [
+        "Nell’inversa i nucleoni emessi vanno riaggiunti.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "212 sottrae ancora invece di invertire. 217 aggiunge un solo nucleone; 864 moltiplica per quattro. L’inversa deve restituire un numero maggiore del figlio.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Numero di massa e numero atomico",
+        "Conteggi interi e compatibilità assegnata",
+        "Inverse, medie e tarature",
+        "Nuova parametrizzazione di nuclei iniziali pesanti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-alpha-mass-number-06",
+      "kind": "question",
+      "course": "C5",
+      "section": "Bilancio di nucleoni nelle catene alfa",
+      "order": 25406,
+      "title": "Contare eventi alfa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "alpha-mass-number",
+      "difficulty": 2,
+      "prompt": "Si studia il bilancio dei nucleoni in una catena assegnata di n decadimenti α, senza altre trasformazioni. A₀ e n sono interi positivi, A₀>4n. I numeri atomici e gli stati energetici compatibili con tutti i passaggi sono assunti nei dati: tale compatibilità non si deduce dalla sola disuguaglianza A₀>4n. Ogni α emessa è un nucleo di elio con due protoni e due neutroni. A_f è il numero di massa del figlio finale, non la sua massa in kg. Le prove riguardano preparazioni distinte. A₀=220 e A_f=216. Quanto vale n?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La differenza dei numeri di massa è quattro. Ogni evento ne sottrae quattro, quindi n=(220−216)/4=1. La divisione deve restituire un intero positivo: una differenza non divisibile per quattro non descriverebbe una catena di sole α."
+        },
+        {
+          "type": "formula",
+          "text": "n=\\frac{A_0-A_f}{4}"
+        },
+        {
+          "type": "formula",
+          "text": " n=\\frac{220-216}{4}"
+        },
+        {
+          "type": "formula",
+          "text": " n=1"
+        },
+        {
+          "type": "text",
+          "text": "Quattro conta i nucleoni persi invece degli eventi. 55 divide il solo A₀ per quattro e 16 moltiplica la differenza per quattro. Il numero frazionario di eventi non è ammesso."
+        }
+      ],
+      "hints": [
+        "Dividi la perdita di nucleoni per quanti ne porta via ciascuna α.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro conta i nucleoni persi invece degli eventi. 55 divide il solo A₀ per quattro e 16 moltiplica la differenza per quattro. Il numero frazionario di eventi non è ammesso.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Numero di massa e numero atomico",
+        "Conteggi interi e compatibilità assegnata",
+        "Inverse, medie e tarature",
+        "Nuova parametrizzazione di nuclei iniziali pesanti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-alpha-mass-number-07",
+      "kind": "question",
+      "course": "C5",
+      "section": "Bilancio di nucleoni nelle catene alfa",
+      "order": 25407,
+      "title": "Una alfa in più sullo stesso ingresso",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "alpha-mass-number",
+      "difficulty": 2,
+      "prompt": "Si studia il bilancio dei nucleoni in una catena assegnata di n decadimenti α, senza altre trasformazioni. A₀ e n sono interi positivi, A₀>4n. I numeri atomici e gli stati energetici compatibili con tutti i passaggi sono assunti nei dati: tale compatibilità non si deduce dalla sola disuguaglianza A₀>4n. Ogni α emessa è un nucleo di elio con due protoni e due neutroni. A_f è il numero di massa del figlio finale, non la sua massa in kg. Le prove riguardano preparazioni distinte. A usa A₀=220,n=1. B mantiene A₀=220 e usa n=2. Quanto vale A_f,B/A_f,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "53/54",
+          "54/53",
+          "1/2",
+          "1",
+          "2"
+        ],
+        "value": "53/54"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A dà 216 e B dà 220−8=212. Il rapporto finale/iniziale è 212/216=53/54. Raddoppiare gli eventi non dimezza il figlio: il numero di massa iniziale resta una parte della differenza."
+        },
+        {
+          "type": "formula",
+          "text": "A_{f,A}=216"
+        },
+        {
+          "type": "formula",
+          "text": " A_{f,B}=212"
+        },
+        {
+          "type": "formula",
+          "text": " A_{f,B}/A_{f,A}=\\frac{53}{54}"
+        },
+        {
+          "type": "text",
+          "text": "54/53 inverte il rapporto. Un mezzo confonde il raddoppio di n con una proporzionalità inversa dell’uscita; uno ignora l’evento aggiuntivo e due fa aumentare il numero residuo."
+        }
+      ],
+      "hints": [
+        "Calcola entrambe le perdite prima di formare il rapporto dei figli.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "54/53 inverte il rapporto. Un mezzo confonde il raddoppio di n con una proporzionalità inversa dell’uscita; uno ignora l’evento aggiuntivo e due fa aumentare il numero residuo.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Numero di massa e numero atomico",
+        "Conteggi interi e compatibilità assegnata",
+        "Inverse, medie e tarature",
+        "Nuova parametrizzazione di nuclei iniziali pesanti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-alpha-mass-number-08",
+      "kind": "question",
+      "course": "C5",
+      "section": "Bilancio di nucleoni nelle catene alfa",
+      "order": 25408,
+      "title": "Il numero proposto è troppo grande",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "alpha-mass-number",
+      "difficulty": 2,
+      "prompt": "Si studia il bilancio dei nucleoni in una catena assegnata di n decadimenti α, senza altre trasformazioni. A₀ e n sono interi positivi, A₀>4n. I numeri atomici e gli stati energetici compatibili con tutti i passaggi sono assunti nei dati: tale compatibilità non si deduce dalla sola disuguaglianza A₀>4n. Ogni α emessa è un nucleo di elio con due protoni e due neutroni. A_f è il numero di massa del figlio finale, non la sua massa in kg. Le prove riguardano preparazioni distinte. Con A₀=220,n=1 si propone A_f=432. Quanto vale proposta meno corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "216",
+          "−216",
+          "2",
+          "432",
+          "0"
+        ],
+        "value": "216"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il corretto è 216. La proposta è maggiore di 432−216=216. È anche maggiore del genitore, impossibile per il figlio della catena α dichiarata: il controllo di dominio individua subito il verso fisico dell’errore."
+        },
+        {
+          "type": "formula",
+          "text": "\\delta A_f=432-216"
+        },
+        {
+          "type": "formula",
+          "text": " \\delta A_f=216"
+        },
+        {
+          "type": "text",
+          "text": "−216 inverte l’ordine, due è il rapporto proposto/corretto, 432 copia la proposta e zero non ne verifica il bilancio."
+        }
+      ],
+      "hints": [
+        "Un conteggio di nucleoni persi non può far crescere A_f oltre A₀.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−216 inverte l’ordine, due è il rapporto proposto/corretto, 432 copia la proposta e zero non ne verifica il bilancio.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Numero di massa e numero atomico",
+        "Conteggi interi e compatibilità assegnata",
+        "Inverse, medie e tarature",
+        "Nuova parametrizzazione di nuclei iniziali pesanti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-alpha-mass-number-09",
+      "kind": "question",
+      "course": "C5",
+      "section": "Bilancio di nucleoni nelle catene alfa",
+      "order": 25409,
+      "title": "L’inversa simbolica della catena",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "alpha-mass-number",
+      "difficulty": 2,
+      "prompt": "Si studia il bilancio dei nucleoni in una catena assegnata di n decadimenti α, senza altre trasformazioni. A₀ e n sono interi positivi, A₀>4n. I numeri atomici e gli stati energetici compatibili con tutti i passaggi sono assunti nei dati: tale compatibilità non si deduce dalla sola disuguaglianza A₀>4n. Ogni α emessa è un nucleo di elio con due protoni e due neutroni. A_f è il numero di massa del figlio finale, non la sua massa in kg. Le prove riguardano preparazioni distinte. A_f e n sono noti. Quale relazione isola A₀?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "A₀ = A_f + 4n",
+          "A₀ = A_f − 4n",
+          "A₀ = 4n / A_f",
+          "A₀ = A_f / (4n)",
+          "A₀ = A_f + n"
+        ],
+        "value": "A₀ = A_f + 4n"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sommo 4n a entrambi i membri di A_f=A₀−4n. Il conteggio iniziale recuperato è A_f+4n, con A_f e n interi positivi. Il risultato non autorizza da solo una previsione energetica di una catena reale."
+        },
+        {
+          "type": "formula",
+          "text": "A_f+4n=A_0"
+        },
+        {
+          "type": "formula",
+          "text": " A_0=A_f+4n"
+        },
+        {
+          "type": "text",
+          "text": "Il segno meno ripete la perdita. I quozienti non rappresentano una somma di nucleoni; aggiungere n confonde eventi e nucleoni rimossi per evento."
+        }
+      ],
+      "hints": [
+        "Isola A₀ prima di inserire eventuali numeri.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il segno meno ripete la perdita. I quozienti non rappresentano una somma di nucleoni; aggiungere n confonde eventi e nucleoni rimossi per evento.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Numero di massa e numero atomico",
+        "Conteggi interi e compatibilità assegnata",
+        "Inverse, medie e tarature",
+        "Nuova parametrizzazione di nuclei iniziali pesanti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-alpha-mass-number-10",
+      "kind": "question",
+      "course": "C5",
+      "section": "Bilancio di nucleoni nelle catene alfa",
+      "order": 25410,
+      "title": "Due fattori in una differenza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "alpha-mass-number",
+      "difficulty": 2,
+      "prompt": "Si studia il bilancio dei nucleoni in una catena assegnata di n decadimenti α, senza altre trasformazioni. A₀ e n sono interi positivi, A₀>4n. I numeri atomici e gli stati energetici compatibili con tutti i passaggi sono assunti nei dati: tale compatibilità non si deduce dalla sola disuguaglianza A₀>4n. Ogni α emessa è un nucleo di elio con due protoni e due neutroni. A_f è il numero di massa del figlio finale, non la sua massa in kg. Le prove riguardano preparazioni distinte. Fra prove A₀,B=κ₁A₀,A e n_B=κ₂n_A. Entrambi gli stati rispettano integralità e compatibilità. Definiamo R=A_f,B/A_f,A e nei simboli seguenti A₀,n appartengono ad A. Quanto vale R?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "(κ₁A₀ − 4κ₂n) / (A₀ − 4n)",
+          "κ₁ κ₂",
+          "κ₁ / κ₂",
+          "(κ₁A₀ + 4κ₂n) / (A₀ + 4n)",
+          "κ₁ + κ₂"
+        ],
+        "value": "(κ₁A₀ − 4κ₂n) / (A₀ − 4n)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituisco i fattori nei due termini della differenza, senza raccoglierli come un prodotto. Resta il rapporto indicato. Il nuovo stato richiede κ₁A₀>4κ₂n e tutti i nuovi conteggi interi positivi; fattori positivi da soli non bastano."
+        },
+        {
+          "type": "formula",
+          "text": "R=\\frac{\\kappa_1A_0-4\\kappa_2n}{A_0-4n}"
+        },
+        {
+          "type": "text",
+          "text": "Prodotto e quoziente dei fattori ignorano il contributo sottratto. Il segno più aggiunge al figlio i nucleoni emessi e la somma dei fattori darebbe due per preparazioni identiche."
+        }
+      ],
+      "hints": [
+        "Conserva la differenza e ricontrolla la compatibilità del secondo stato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Prodotto e quoziente dei fattori ignorano il contributo sottratto. Il segno più aggiunge al figlio i nucleoni emessi e la somma dei fattori darebbe due per preparazioni identiche.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Numero di massa e numero atomico",
+        "Conteggi interi e compatibilità assegnata",
+        "Inverse, medie e tarature",
+        "Nuova parametrizzazione di nuclei iniziali pesanti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-alpha-mass-number-11",
+      "kind": "question",
+      "course": "C5",
+      "section": "Bilancio di nucleoni nelle catene alfa",
+      "order": 25411,
+      "title": "Due catene con nuclei iniziali pesanti",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "alpha-mass-number",
+      "difficulty": 2,
+      "prompt": "Si studia il bilancio dei nucleoni in una catena assegnata di n decadimenti α, senza altre trasformazioni. A₀ e n sono interi positivi, A₀>4n. I numeri atomici e gli stati energetici compatibili con tutti i passaggi sono assunti nei dati: tale compatibilità non si deduce dalla sola disuguaglianza A₀>4n. Ogni α emessa è un nucleo di elio con due protoni e due neutroni. A_f è il numero di massa del figlio finale, non la sua massa in kg. Le prove riguardano preparazioni distinte. A: A₀=220,n=1. B: A₀=228,n=2. Quanto vale A_f,B/A_f,A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "55/54",
+          "54/55",
+          "57/55",
+          "2",
+          "1"
+        ],
+        "value": "55/54"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha A_f=216. B perde otto nucleoni da 228 e ha A_f=220. Il rapporto 220/216 si riduce a 55/54. Sono catene assegnate differenti; non si impone lo stesso A₀ né si sommano i loro eventi."
+        },
+        {
+          "type": "formula",
+          "text": "A_{f,A}=216"
+        },
+        {
+          "type": "formula",
+          "text": " A_{f,B}=228-8"
+        },
+        {
+          "type": "formula",
+          "text": " A_{f,B}=220"
+        },
+        {
+          "type": "formula",
+          "text": " A_{f,B}/A_{f,A}=\\frac{55}{54}"
+        },
+        {
+          "type": "text",
+          "text": "54/55 inverte il confronto. 57/55 è il rapporto 228/220 dei genitori iniziali, non dei figli; due copia il rapporto degli eventi e uno presume una compensazione non esatta."
+        }
+      ],
+      "hints": [
+        "Ricava i due numeri di massa finali prima del loro quoziente.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "54/55 inverte il confronto. 57/55 è il rapporto 228/220 dei genitori iniziali, non dei figli; due copia il rapporto degli eventi e uno presume una compensazione non esatta.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Numero di massa e numero atomico",
+        "Conteggi interi e compatibilità assegnata",
+        "Inverse, medie e tarature",
+        "Nuova parametrizzazione di nuclei iniziali pesanti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-alpha-mass-number-12",
+      "kind": "question",
+      "course": "C5",
+      "section": "Bilancio di nucleoni nelle catene alfa",
+      "order": 25412,
+      "title": "Una media statistica di numeri di massa",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "alpha-mass-number",
+      "difficulty": 2,
+      "prompt": "Si studia il bilancio dei nucleoni in una catena assegnata di n decadimenti α, senza altre trasformazioni. A₀ e n sono interi positivi, A₀>4n. I numeri atomici e gli stati energetici compatibili con tutti i passaggi sono assunti nei dati: tale compatibilità non si deduce dalla sola disuguaglianza A₀>4n. Ogni α emessa è un nucleo di elio con due protoni e due neutroni. A_f è il numero di massa del figlio finale, non la sua massa in kg. Le prove riguardano preparazioni distinte. A: A₀=220,n=1. B: A₀=228,n=2. Qual è la media aritmetica dei due A_f con uguali pesi?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "218",
+          "436",
+          "2",
+          "216",
+          "220"
+        ],
+        "value": "218"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I numeri finali sono 216 e 220: media 218. La legge affine darebbe lo stesso risultato inserendo formalmente A₀ medio 224 e n medio 3/2. Ma n=3/2 non è una singola catena: la coincidenza algebrica non cancella il dominio intero degli eventi."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/b095efae7ac87676c6a5ed1a60430b61c2e4d5702b2950ae4caaefad11d8661e",
+          "text": "L’ultimo pannello ha origine comune a zero e rappresenta i numeri A_f assoluti, con differenze piccole ma valori espliciti. La media 218 è una statistica fra due catene, non n=3/2 eventi."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline A_f=\\frac{216+220}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline A_f=218"
+        },
+        {
+          "type": "text",
+          "text": "436 è la somma, due la semidifferenza, 216 e 220 ripetono una sola catena. Una statistica fra preparazioni non va reinterpretata come un evento frazionario."
+        }
+      ],
+      "hints": [
+        "Media prima i risultati delle due catene effettivamente assegnate.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "436 è la somma, due la semidifferenza, 216 e 220 ripetono una sola catena. Una statistica fra preparazioni non va reinterpretata come un evento frazionario.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Numero di massa e numero atomico",
+        "Conteggi interi e compatibilità assegnata",
+        "Inverse, medie e tarature",
+        "Nuova parametrizzazione di nuclei iniziali pesanti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-alpha-mass-number-13",
+      "kind": "question",
+      "course": "C5",
+      "section": "Bilancio di nucleoni nelle catene alfa",
+      "order": 25413,
+      "title": "Gli eventi necessari nel nuovo ingresso",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "alpha-mass-number",
+      "difficulty": 3,
+      "prompt": "Si studia il bilancio dei nucleoni in una catena assegnata di n decadimenti α, senza altre trasformazioni. A₀ e n sono interi positivi, A₀>4n. I numeri atomici e gli stati energetici compatibili con tutti i passaggi sono assunti nei dati: tale compatibilità non si deduce dalla sola disuguaglianza A₀>4n. Ogni α emessa è un nucleo di elio con due protoni e due neutroni. A_f è il numero di massa del figlio finale, non la sua massa in kg. Le prove riguardano preparazioni distinte. A ha A₀=220,n_A=1. B deve avere A₀=228 e A_f,B=(55/54)A_f,A. Quanto vale n_B/n_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/2",
+          "55/54",
+          "54/55",
+          "1"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è (55/54)·216=220. Per scendere da 228 a 220 occorre perdere otto nucleoni, cioè due α. Rispetto all’unico evento di A il rapporto è due, e tutti i conteggi restano interi."
+        },
+        {
+          "type": "formula",
+          "text": "A_{f,B}=220"
+        },
+        {
+          "type": "formula",
+          "text": " n_B=\\frac{228-220}{4}"
+        },
+        {
+          "type": "formula",
+          "text": " n_B=2"
+        },
+        {
+          "type": "formula",
+          "text": " n_B/n_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Uno darebbe A_f,B=224, non 220. Un mezzo inverte il rapporto e i fattori 55/54 o 54/55 appartengono ai numeri di massa finali, non al conteggio degli eventi."
+        }
+      ],
+      "hints": [
+        "Trasforma il bersaglio in una perdita di nucleoni e poi in eventi interi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Uno darebbe A_f,B=224, non 220. Un mezzo inverte il rapporto e i fattori 55/54 o 54/55 appartengono ai numeri di massa finali, non al conteggio degli eventi.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Numero di massa e numero atomico",
+        "Conteggi interi e compatibilità assegnata",
+        "Inverse, medie e tarature",
+        "Nuova parametrizzazione di nuclei iniziali pesanti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-alpha-mass-number-14",
+      "kind": "question",
+      "course": "C5",
+      "section": "Bilancio di nucleoni nelle catene alfa",
+      "order": 25414,
+      "title": "Tarare il display del numero finale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "alpha-mass-number",
+      "difficulty": 3,
+      "prompt": "Si studia il bilancio dei nucleoni in una catena assegnata di n decadimenti α, senza altre trasformazioni. A₀ e n sono interi positivi, A₀>4n. I numeri atomici e gli stati energetici compatibili con tutti i passaggi sono assunti nei dati: tale compatibilità non si deduce dalla sola disuguaglianza A₀>4n. Ogni α emessa è un nucleo di elio con due protoni e due neutroni. A_f è il numero di massa del figlio finale, non la sua massa in kg. Le prove riguardano preparazioni distinte. Un display continuo D=g A_f legge 648 con A₀=220,n=1. In B legge 660 e si conosce n=2. Quanto vale A₀,B?",
+      "answer": {
+        "type": "numeric",
+        "value": 228,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento A_f=216 fissa g=648/216=3. La lettura 660 indica A_f,B=220. Per ricostruire l’inizio aggiungo gli otto nucleoni emessi: A₀,B=228. La continuità del display non rende frazionari i numeri nucleari."
+        },
+        {
+          "type": "formula",
+          "text": "g=3"
+        },
+        {
+          "type": "formula",
+          "text": " A_{f,B}=660/3"
+        },
+        {
+          "type": "formula",
+          "text": " A_{f,B}=220"
+        },
+        {
+          "type": "formula",
+          "text": " A_{0,B}=220+8"
+        },
+        {
+          "type": "formula",
+          "text": " A_{0,B}=228"
+        },
+        {
+          "type": "text",
+          "text": "668 leggerebbe D direttamente come A_f e poi aggiungerebbe otto; reinserito darebbe D=1980. 220 copia il figlio e 212 sottrae ancora i nucleoni emessi invece di riaggiungerli."
+        }
+      ],
+      "hints": [
+        "Prima decodifica il figlio, poi ricostruisci il genitore.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "668 leggerebbe D direttamente come A_f e poi aggiungerebbe otto; reinserito darebbe D=1980. 220 copia il figlio e 212 sottrae ancora i nucleoni emessi invece di riaggiungerli.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Numero di massa e numero atomico",
+        "Conteggi interi e compatibilità assegnata",
+        "Inverse, medie e tarature",
+        "Nuova parametrizzazione di nuclei iniziali pesanti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-alpha-mass-number-15",
+      "kind": "question",
+      "course": "C5",
+      "section": "Bilancio di nucleoni nelle catene alfa",
+      "order": 25415,
+      "title": "Offset e conteggio di nucleoni",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "alpha-mass-number",
+      "difficulty": 3,
+      "prompt": "Si studia il bilancio dei nucleoni in una catena assegnata di n decadimenti α, senza altre trasformazioni. A₀ e n sono interi positivi, A₀>4n. I numeri atomici e gli stati energetici compatibili con tutti i passaggi sono assunti nei dati: tale compatibilità non si deduce dalla sola disuguaglianza A₀>4n. Ogni α emessa è un nucleo di elio con due protoni e due neutroni. A_f è il numero di massa del figlio finale, non la sua massa in kg. Le prove riguardano preparazioni distinte. D=g A_f+b. A: A₀=220,n=1,D=433. B: A₀=228,n=2,D=441. C: n=1,D=441. Quanto vale A₀,C?",
+      "answer": {
+        "type": "numeric",
+        "value": 224,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A e B hanno A_f=216 e 220. Le differenze danno g=(441−433)/(220−216)=2 e b=1. In C la lettura uguale a B indica lo stesso figlio A_f=220, ma un solo evento: il genitore è 224, diverso da quello di B."
+        },
+        {
+          "type": "formula",
+          "text": "g=2"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " A_{f,C}=\\frac{441-1}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " A_{f,C}=220"
+        },
+        {
+          "type": "formula",
+          "text": " A_{0,C}=224"
+        },
+        {
+          "type": "text",
+          "text": "449/2 omette l’offset e non è un numero di massa intero; 444 omette il guadagno dopo aver sottratto b. 220 copia il figlio senza i quattro nucleoni emessi. La stessa lettura finale non impone lo stesso genitore se cambia n."
+        }
+      ],
+      "hints": [
+        "Separa il modello del display dal bilancio della catena.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "449/2 omette l’offset e non è un numero di massa intero; 444 omette il guadagno dopo aver sottratto b. 220 copia il figlio senza i quattro nucleoni emessi. La stessa lettura finale non impone lo stesso genitore se cambia n.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Numero di massa e numero atomico",
+        "Conteggi interi e compatibilità assegnata",
+        "Inverse, medie e tarature",
+        "Nuova parametrizzazione di nuclei iniziali pesanti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-alpha-mass-number-16",
+      "kind": "question",
+      "course": "C5",
+      "section": "Bilancio di nucleoni nelle catene alfa",
+      "order": 25416,
+      "title": "Un vincolo che fissa un solo conteggio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L08",
+      "prerequisites": [
+        "C1-L001",
+        "C5-L08"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "alpha-mass-number",
+      "difficulty": 3,
+      "prompt": "Si studia il bilancio dei nucleoni in una catena assegnata di n decadimenti α, senza altre trasformazioni. A₀ e n sono interi positivi, A₀>4n. I numeri atomici e gli stati energetici compatibili con tutti i passaggi sono assunti nei dati: tale compatibilità non si deduce dalla sola disuguaglianza A₀>4n. Ogni α emessa è un nucleo di elio con due protoni e due neutroni. A_f è il numero di massa del figlio finale, non la sua massa in kg. Le prove riguardano preparazioni distinte. Fra preparazioni A₀=220n. Si misura A_f=216. Quanto vale n?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituendo il vincolo, A_f=220n−4n=216n. La misura 216 impone n=1 e quindi A₀=220. Non è una misura ridondante: identifica una sola coppia intera positiva nel dominio assegnato."
+        },
+        {
+          "type": "formula",
+          "text": "A_f=216n"
+        },
+        {
+          "type": "formula",
+          "text": " 216n=216"
+        },
+        {
+          "type": "formula",
+          "text": " n=1"
+        },
+        {
+          "type": "formula",
+          "text": " A_0=220"
+        },
+        {
+          "type": "text",
+          "text": "Due eventi darebbero A_f=432, non 216. 216 copia il risultato senza dividere per il coefficiente; un mezzo viola l’integralità. Non rimane una scala continua libera."
+        }
+      ],
+      "hints": [
+        "Inserisci il vincolo prima di controllare quante soluzioni intere restano.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Due eventi darebbero A_f=432, non 216. 216 copia il risultato senza dividere per il coefficiente; un mezzo viola l’integralità. Non rimane una scala continua libera.",
+        "target": "C5-L08"
+      },
+      "coverage": [
+        "Numero di massa e numero atomico",
+        "Conteggi interi e compatibilità assegnata",
+        "Inverse, medie e tarature",
+        "Nuova parametrizzazione di nuclei iniziali pesanti"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "b095efae7ac87676c6a5ed1a60430b61c2e4d5702b2950ae4caaefad11d8661e",
+      "name": "alpha-mass-number-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTYwMCIgdmlld0JveD0iMCAwIDY0MCAxNjAwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+SWwgYmlsYW5jaW8gZGVpIG51Y2xlb25pIG5lbGxlIM6xPC90aXRsZT48ZGVzYyBpZD0iZGVzYyI+VHJlIHRhcHBlOiBwYXJ0aWNlbGxhIGFsZmEgY29uIGR1ZSBwcm90b25pIGUgZHVlIG5ldXRyb25pOyBudW1lcm8gZGkgbnVjbGVvbmkgZW1lc3NpIHBlciBhbGN1bmkgY29udGVnZ2kgaW50ZXJpIGRpIGV2ZW50aTsgZHVlIG51bWVyaSBkaSBtYXNzYSBmaW5hbGkgZHVlY2VudG9zZWRpY2kgZSBkdWVjZW50b3ZlbnRpIGNvbiBtZWRpYSBkdWVjZW50b2RpY2lvdHRvLCByYXBwcmVzZW50YXRpIGEgb3JpZ2luZSB6ZXJvIGUgc2NhbGEgY29tdW5lLjwvZGVzYz48ZGVmcz48bWFya2VyIGlkPSJhcnJvdyIgbWFya2VyV2lkdGg9IjgiIG1hcmtlckhlaWdodD0iOCIgcmVmWD0iNyIgcmVmWT0iNCIgb3JpZW50PSJhdXRvIj48cGF0aCBkPSJNMCAwTDggNEwwIDhaIiBmaWxsPSIjNTI2NjdhIi8+PC9tYXJrZXI+PC9kZWZzPjxyZWN0IHdpZHRoPSI2NDAiIGhlaWdodD0iMTYwMCIgZmlsbD0iI2Y3ZmFmYyIvPjxnIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZmlsbD0iIzIwMzU0ZCI+PHRleHQgeD0iMzIiIHk9IjQyIiBmb250LXNpemU9IjI0IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPklsIGJpbGFuY2lvIGRlaSBudWNsZW9uaSBuZWxsZSDOsTwvdGV4dD48dGV4dCB4PSIzMiIgeT0iOTYiIGZvbnQtc2l6ZT0iMjIiIHRleHQtYW5jaG9yPSJzdGFydCI+MSDCtyBMYSBwYXJ0aWNlbGxhIM6xIHBvcnRhIHF1YXR0cm8gbnVjbGVvbmk8L3RleHQ+PGNpcmNsZSBjeD0iMjUwIiBjeT0iMTk1IiByPSIyNiIgZmlsbD0iI2E3NmQyMCIvPjx0ZXh0IHg9IjI1MCIgeT0iMjAyIiBmb250LXNpemU9IjI0IiBmaWxsPSIjZmZmZmZmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5wPC90ZXh0PjxjaXJjbGUgY3g9IjM1MCIgY3k9IjE5NSIgcj0iMjYiIGZpbGw9IiNhNzZkMjAiLz48dGV4dCB4PSIzNTAiIHk9IjIwMiIgZm9udC1zaXplPSIyNCIgZmlsbD0iI2ZmZmZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+cDwvdGV4dD48Y2lyY2xlIGN4PSIyNTAiIGN5PSIyNzUiIHI9IjI2IiBmaWxsPSIjMzE2YjliIi8+PHRleHQgeD0iMjUwIiB5PSIyODIiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiNmZmZmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiPm48L3RleHQ+PGNpcmNsZSBjeD0iMzUwIiBjeT0iMjc1IiByPSIyNiIgZmlsbD0iIzMxNmI5YiIvPjx0ZXh0IHg9IjM1MCIgeT0iMjgyIiBmb250LXNpemU9IjI0IiBmaWxsPSIjZmZmZmZmIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5uPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSIzNTUiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJzdGFydCI+RHVlIHByb3RvbmkgZSBkdWUgbmV1dHJvbmk6IEEgPSA0LCBaID0gMjwvdGV4dD48dGV4dCB4PSIzMiIgeT0iNDAwIiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPk5lbCBmaWdsaW86IEEgZGltaW51aXNjZSBkaSA0IGUgWiBkaSAyLjwvdGV4dD48dGV4dCB4PSIzMiIgeT0iNDQ1IiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPlNjaGVtYSBkZWkgY29udGVnZ2ksIG5vbiBkZWxsZSBkaW1lbnNpb25pIG51Y2xlYXJpLjwvdGV4dD48dGV4dCB4PSIzMiIgeT0iNTIwIiBmb250LXNpemU9IjIyIiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjIgwrcgUGVyZGl0YSBkaSBudWNsZW9uaSwgQeKCgCA9IDIyMDwvdGV4dD48bGluZSB4MT0iMTQ1IiB5MT0iMTAwMCIgeDI9IjU1MCIgeTI9IjEwMDAiIHN0cm9rZT0iIzUyNjY3YSIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2Fycm93KSIvPjxsaW5lIHgxPSIxNTAiIHkxPSIxMDA1IiB4Mj0iMTUwIiB5Mj0iNjMwIiBzdHJva2U9IiM1MjY2N2EiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48dGV4dCB4PSIxNzAiIHk9IjYxMCIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9InN0YXJ0Ij5OdWNsZW9uaSBlbWVzc2k6IDRuPC90ZXh0Pjx0ZXh0IHg9IjQ3NSIgeT0iMTA3MCIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9InN0YXJ0Ij5uIChldmVudGkpPC90ZXh0PjxjaXJjbGUgY3g9IjI2MCIgY3k9IjkwMCIgcj0iNSIgZmlsbD0iI2E3NmQyMCIvPjxsaW5lIHgxPSIyNjAiIHkxPSI5OTQiIHgyPSIyNjAiIHkyPSIxMDA2IiBzdHJva2U9IiM1MjY2N2EiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjI2MCIgeT0iMTA0MCIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MTwvdGV4dD48bGluZSB4MT0iMTQ0IiB5MT0iOTAwIiB4Mj0iMTU2IiB5Mj0iOTAwIiBzdHJva2U9IiM1MjY2N2EiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjEzMCIgeT0iOTA2IiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0iZW5kIj40PC90ZXh0PjxjaXJjbGUgY3g9IjM3MCIgY3k9IjgwMCIgcj0iNSIgZmlsbD0iI2E3NmQyMCIvPjxsaW5lIHgxPSIzNzAiIHkxPSI5OTQiIHgyPSIzNzAiIHkyPSIxMDA2IiBzdHJva2U9IiM1MjY2N2EiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjM3MCIgeT0iMTA0MCIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MjwvdGV4dD48bGluZSB4MT0iMTQ0IiB5MT0iODAwIiB4Mj0iMTU2IiB5Mj0iODAwIiBzdHJva2U9IiM1MjY2N2EiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjEzMCIgeT0iODA2IiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0iZW5kIj44PC90ZXh0PjxjaXJjbGUgY3g9IjQ4MCIgY3k9IjcwMCIgcj0iNSIgZmlsbD0iI2E3NmQyMCIvPjxsaW5lIHgxPSI0ODAiIHkxPSI5OTQiIHgyPSI0ODAiIHkyPSIxMDA2IiBzdHJva2U9IiM1MjY2N2EiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjQ4MCIgeT0iMTA0MCIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MzwvdGV4dD48bGluZSB4MT0iMTQ0IiB5MT0iNzAwIiB4Mj0iMTU2IiB5Mj0iNzAwIiBzdHJva2U9IiM1MjY2N2EiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjEzMCIgeT0iNzA2IiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0iZW5kIj4xMjwvdGV4dD48Y2lyY2xlIGN4PSIxNTAiIGN5PSIxMDAwIiByPSI0IiBmaWxsPSJub25lIiBzdHJva2U9IiMzMTZiOWIiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjEyOCIgeT0iMTA0MCIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9ImVuZCI+MDwvdGV4dD48dGV4dCB4PSIzMiIgeT0iMTEzMCIgZm9udC1zaXplPSIyMiIgdGV4dC1hbmNob3I9InN0YXJ0Ij4zIMK3IE51bWVyaSBmaW5hbGkgYXNzb2x1dGkgZSBsYSBsb3JvIG1lZGlhPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSIxMTcwIiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPkE6IDIyMCwgbiA9IDEgwrcgQjogMjI4LCBuID0gMjwvdGV4dD48dGV4dCB4PSIxMjgiIHk9IjEyNDMiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJlbmQiPkE8L3RleHQ+PHJlY3QgeD0iMTUwIiB5PSIxMjIwIiB3aWR0aD0iMzI0IiBoZWlnaHQ9IjMwIiBmaWxsPSIjMzE2YjliIi8+PHRleHQgeD0iNDg2IiB5PSIxMjQzIiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjIxNjwvdGV4dD48dGV4dCB4PSIxMjgiIHk9IjEzNDMiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJlbmQiPkI8L3RleHQ+PHJlY3QgeD0iMTUwIiB5PSIxMzIwIiB3aWR0aD0iMzMwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjMzE2YjliIi8+PHRleHQgeD0iNDkyIiB5PSIxMzQzIiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjIyMDwvdGV4dD48dGV4dCB4PSIxMjgiIHk9IjE0NDMiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJlbmQiPk1lZGlhPC90ZXh0PjxyZWN0IHg9IjE1MCIgeT0iMTQyMCIgd2lkdGg9IjMyNyIgaGVpZ2h0PSIzMCIgZmlsbD0iIzMxNmI5YiIvPjx0ZXh0IHg9IjQ4OSIgeT0iMTQ0MyIgZm9udC1zaXplPSIxOCIgdGV4dC1hbmNob3I9InN0YXJ0Ij4yMTg8L3RleHQ+PHRleHQgeD0iMzIiIHk9IjE1MTUiIGZvbnQtc2l6ZT0iMTgiIHRleHQtYW5jaG9yPSJzdGFydCI+T3JpZ2luZSBhIHplcm8gZSBzY2FsYSBjb211bmkgYWxsZSB0cmUgYmFycmUuPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSIxNTYwIiBmb250LXNpemU9IjE4IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPkxhIG1lZGlhIGZyYSBjYXRlbmUgbm9uIMOoIHVuYSBjYXRlbmEgY29uIG4gPSAzLzIuPC90ZXh0PjwvZz48L3N2Zz4K"
+    }
+  ]
+}
