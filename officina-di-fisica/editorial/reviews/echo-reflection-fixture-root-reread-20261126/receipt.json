@@ -1,0 +1,27 @@
+{
+  "scope": "Root isolated integration-fixture correction, no runtime or physical oracle changes",
+  "baseCommit": "7173a92ce980f102f0904175c90c0f7a150b2931",
+  "before": {
+    "tests": 186,
+    "passed": 185,
+    "failed": 1,
+    "observedExit": 1
+  },
+  "afterFullNode": {
+    "observedExit": 0,
+    "summary": "btest: Ogni file JSON mantiene gli identificatori unici nella propria banca\nok 279 - Ogni file JSON mantiene gli identificatori unici nella propria banca\n  ---\n  duration_ms: 6.452292\n  ...\n1..279\n# tests 279\n# suites 0\n# pass 279\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 900.647458\n"
+  },
+  "runtimeSha256": "95769a789a6eed2cb2dde6bef3bce79d24d0f627af4dd7edcbb373a5d094202d",
+  "runtimeUnchanged": true,
+  "preservedPhysicalAssertions": [
+    "fixed reflector",
+    "pulse meets wall at half-delay",
+    "roundtrip returns to microphone",
+    "distance from delay",
+    "return speed340m/s"
+  ],
+  "correctedContract": "Visible moving pulse and explicit readable reflection/return legend, without opaque dynamic labels masking the pulse",
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "activityCredit": 0
+}

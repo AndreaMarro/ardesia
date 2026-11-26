@@ -2198,3 +2198,8 @@ Canone nuovamente verificato **7c29ccc18ad3b42ceecfca509ef57f786bd2c496**, PR364
 Priorità:1) chiudere il finding C1 con autore/verificatore distinti e rinnovare gli audit sul runtime effettivo;2) accettare C2 dagli handoff finali poi C3–C6, senza rifare i4100;3) seguire run45888351023 e archiviare ogni esito reale;4) replay ETL/UI completo e PR ordinaria con CI SHA/merge reali;5) aggiornare handoff e coda umana separata. Mutex locale unico, almeno2GiB liberi; nessun processo utente terminato.
 
 ### Snapshot precedenti (storici, non stato corrente)
+
+
+## Addendum: Cric4110 e fixture Echo isolata
+
+C2-Q001–010 accettati/registrati361a140f:13 test0/1,008s,10→0/10 con991/storico invariati. Restano496, prossimoC2-Q011. Root ha prodotto78978e4c, solo test Echo su consumer isolato95769:vecchio186185/1FAIL osservato, dopo279/279PASS0/900,647ms; invarianti parete/ritardo/ritorno/340m/s preservati, nuova asserzione richiede marker visibile e legenda esplicita senza cartiglio opaco. Root attivo1a non modificato. Core autore7173y sotto peerA; Core prosegue altri245 senza il proprioID. UI139 run45888351023 ancora in corso, nessun credito. ProseguireC2peer→Root, poiC3source-only; gates e PR ordinaria dopo prove attuali.

@@ -1,6 +1,6 @@
-## Stato verificato del 26 novembre: 4.100 quesiti accettati, mandato incompleto
+## Stato verificato del 26 novembre: 4.110 quesiti accettati, mandato incompleto
 
-**4.100/4.606 quesiti (89,0%)** con revisione distinta e collaudo Root: tutti i 4.000 Ardesia e C1 Cric100. Restano **506 Cric**, prossimo ID Root **C2-Q001**. Registro4100; checkpoint ufficiale ancora3632/246 storico. C2 in authoring/review incrociata, nessun credito anticipato. Nuovo stato per tutti i4.606+385 ID: `officina-di-fisica/editorial/reviews/full-corpus-work-status-20261126.json` (snapshot derivato; autorità nei report individuali e ledger esistente).
+**4.110/4.606 quesiti (89,2%)** con revisione distinta e collaudo Root: tutti i 4.000 Ardesia e C1 Cric100 e C2-Q001–010. Restano **496 Cric**, prossimo ID Root **C2-Q011**. Registro4110; checkpoint ufficiale ancora3632/246 storico. C2 in authoring/review incrociata, nessun credito anticipato. Nuovo stato per tutti i4.606+385 ID: `officina-di-fisica/editorial/reviews/full-corpus-work-status-20261126.json` (snapshot derivato; autorità nei report individuali e ledger esistente).
 
 Ultimi90 Cric accettati in a89de4a3:460 file recuperati da quattro handoff SHA-verificati,65 test Root reali PASS (12+12+12+12+17), nove import canonici10→0/10;991 pubblicati, live heads e versioni storiche identici. Primo tentativo50B ERROR per modulo importabile omesso dall’handoff: negativo conservato, modulo recuperato byte-esatto da pre-key0a430e35/SHA6216ca8c, nessun test/verificatore/aspettativa cambiato. Primo10 C1 già accettato c3c4660f non ricontato. Registrate ora308 accettate (U702160+U70348+Cric100), nessun ulteriore credito scientifico.
 
@@ -15,6 +15,8 @@ UI139 remota finalmente avviata: run45888351023/source07a2dbf5, consumer isolato
 Canone nuovamente verificato **7c29ccc18ad3b42ceecfca509ef57f786bd2c496**, PR364MERGED e14/14CI postmerge già verificati su quella SHA; nuova PR non ancora aperta. RuntimeRoot/canone1a3502eb invariato. GitHubPUBLIC e tutti i materiali autorizzati; nell’app DRAFT/default-deny/93esami e gate umano invariati. Human0, nuove pubblicazioni0, Pro100NOT_IDENTIFIED,199controlli tecnici non revisioni complete. Il controllo goal nativo resta BLOCKED storico perché il connettore richiede trusted source-turn context CCA; esecuzione manuale autorizzata prosegue, nessuna falsa riattivazione.
 
 Priorità:1) chiudere il finding C1 con autore/verificatore distinti e rinnovare gli audit sul runtime effettivo;2) accettare C2 dagli handoff finali poi C3–C6, senza rifare i4100;3) seguire run45888351023 e archiviare ogni esito reale;4) replay ETL/UI completo e PR ordinaria con CI SHA/merge reali;5) aggiornare handoff e coda umana separata. Mutex locale unico, almeno2GiB liberi; nessun processo utente terminato.
+
+Primo lotto fluidi Cric accettato e registrato361a140f:13 test Root PASS1,008s, fresh/saved identici e import10→0/10,991 pubblicati/live heads/storico preservati. Proposta test Echo isolata78978e4c:186 before185PASS/1FAIL osservato; nuovo contratto marker/legenda preserva tutte le leggi,279/279 Node PASS0/900,647ms sul runtime95769 invariato. Test attivo Root1a e consumer non ancora modificati; fonte/proposta/ricevuta preservate, nessun credito attività.
 
 ### Snapshot precedenti (storici, non stato corrente)
 
