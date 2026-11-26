@@ -58,6 +58,7 @@ def assemble_family(repo, source_ref, family, tasks, choices, units, asset_name,
             metadata.pop("promptBlocks", None)
             row = {**metadata, **row, "id": source_id, "kind": original["kind"],
                    "course": original["course"], "skill": original["skill"], "order": original["order"],
+                   "family": original["family"], "difficulty": original["difficulty"],
                    "baseVersion": original["version"], "version": original["version"] + 1,
                    "prerequisites": deepcopy(original.get("prerequisites", [])) if prerequisites is None else prerequisites}
         row.update((overrides or {}).get(n, {}))
