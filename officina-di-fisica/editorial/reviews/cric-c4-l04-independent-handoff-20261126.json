@@ -1,0 +1,49 @@
+{
+  "schemaVersion": "1.0.0",
+  "scope": "Independent review of ten distinct Cric C4 questions, author A reviewer B",
+  "batch": "cric-c4-l04",
+  "reviewedCandidateCommit": "74a3f8efce2282e47bb08d21bb382ad9c1ca5312",
+  "questionCount": 10,
+  "scientificResult": "10/10 without residual finding",
+  "allIndividualFieldsRead": true,
+  "allOriginalFieldsReadAfterFrozenPrimary": true,
+  "fullXmlAndActualFullNativeRead": true,
+  "sourcePromptModel": {
+    "path": "editorial/reviews/cric-c4-021-040-partial-models.py",
+    "sha256": "fce51a4709cd21f6f8519cad68fdd333123fc0cb14e6ae2c74f1112fc9ece962",
+    "commit": "eaf13e0e0c782adb98d767193e39a35ec3970bab"
+  },
+  "sourcePromptPrimary": {
+    "path": "editorial/reviews/primary-cric-c4-021-040-partial-before-candidates-20261126.md",
+    "sha256": "16fddaa0a20d4180bd14648b2a47700896a9a77490e80b1daaa92efe189b31c5"
+  },
+  "sourceModelAllFunctionAST": "identical to frozen prompt-only model",
+  "packetMutations": 29,
+  "actualSharedFinalTarget": {
+    "path": "editorial/reviews/cric-c4-001-050-independent-evidence/target-final.json",
+    "sha256": "5200d034a88ee3ba4c156a4ad0d828444130a63f9c93f480ce7cd959c9944d5e",
+    "tests": 44,
+    "scope": "joint target for all fifty, not 44 tests per cohort"
+  },
+  "freshSavedIdentity": true,
+  "candidateEditsByReviewer": false,
+  "rootIntegratedIdentity": "PENDING_ROOT",
+  "humanApproval": "NOT_RUN",
+  "productUI": "NOT_RUN",
+  "publication": "DRAFT",
+  "externalFrozenDependency": {
+    "path": "officina-di-fisica/tools/corpus_engineering/exact_arithmetic_literals.py",
+    "commit": "b0651fedba093155e51a4308116601a92e76d83a",
+    "sha256": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+  },
+  "files": {
+    "tools/corpus_engineering/cric_c4_l04_verifier.py": "f59d84e03998549053557b7bafa0c68472e4939c4eba5a22171783f169e399ee",
+    "editorial/reviews/cric-c4-l04.json": "ff03349df2d8efe8e674bf06c8f835eab6ec66cbccf3b5d088ea50f868b2b020",
+    "editorial/reviews/cric-c4-l04-independent-mutations.json": "0de57fd0132cbc9325abc8b8a8d6caa1b670c34a57c39027d6ce8fc896d7c70c",
+    "editorial/reviews/cric-c4-l04-independent-note.md": "46df22558030bcd2d4c59e6ae0b4b644ee759917a1023183e95cd14db158c50d",
+    "editorial/reviews/cric-c4-l04-svg-independent-evidence/cric-c4-l04-terminal.json": "ed5b1b513bd6bac5a1c0dfa1103f110275fa4cd0cb21e9517a2e1b74613ecb38",
+    "editorial/reviews/cric-c4-l04-svg-independent-evidence/cric-c4-l04-full.png": "213bbe7ad5a5c5a086be61300929facb3cd2cc6251049d77c6aad717b58a6c43",
+    "editorial/reviews/cric-c4-l04-svg-independent-evidence/native-svg-producer.mjs": "5bc42afd72aa4cb6efccf9968ee5ec93379d7ba481de31a8f32975f1db0d0b57",
+    "editorial/reviews/cric-c4-l04-svg-independent-evidence/cric-c4-l04-render.json": "37c464a589451277d509d27c9ebd012e25ac46f3720b1930070586a77a9a206c"
+  }
+}

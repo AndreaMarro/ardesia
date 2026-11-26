@@ -1,0 +1,348 @@
+{
+  "schemaVersion": "1.0.0",
+  "lessonReference": {
+    "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "gitPath": "officina-di-fisica/content/C4.json",
+    "sourceSha256": "19d52336dd1024113f45f33a03e4d71e262ee6357477948124c7fecec855c67c",
+    "primarySkill": "C4-L04",
+    "title": "Cariche mobili e cariche legate",
+    "actualLessonPrerequisites": [
+      "C4-L01",
+      "C4-L02",
+      "C4-L03"
+    ]
+  },
+  "records": [
+    {
+      "id": "C4-Q031",
+      "sourceSha256": "75ad02568033edb73dce224f8da0dd64fd09f50bee053671930f65e468f5e7ca",
+      "candidateSha256": "94b20af8892091a621e5fd9c76564e66a2686a62933130a6f8e37c3762a96d65",
+      "reviewedSignature": "2457d4d03081e286f0f71f2400f07b473666de049123013bdc88bd54e0c151c8",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "cric-c4-l04-progressive.svg": "1daa518de96fca43a4c161fe4ceb6e3c5d3b98b0d0b4c56a333605bbde9792e0"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Ha un difetto di elettroni e carica superficiale positiva indotta",
+      "dimension": {},
+      "manualArithmetic": "Il lato vicino è positivo per induzione: la bacchetta negativa respinge elettroni verso il lato più lontano. La sfera isolata conserva carica netta nulla, quindi la carica positiva vicina è compensata da carica negativa altrove.",
+      "physicalAssumptions": "Neutral isolated metal sphere, negative rod does not touch; electrostatic equilibrium.",
+      "distractors": "Negative rod repels electrons away; no transferred protons or net positive sphere charge.",
+      "pedagogicalReview": "Separate local induced sign from globally conserved charge.",
+      "assetReview": "Tre pannelli letti integralmente nel nuovo PNG640×1540: bacchetta negativa a sinistra della sfera, segni positivi sul lato vicino e negativi lontano; simboli di superficie dichiarati non densità. Due porzioni−6/+6 nC sommano zero. Piastre con separazione comune180 e carica libera fissata; frecce del campo90 e30 rappresentano12 e4 kV/m alla stessa scala. Dielettrico riempie lo spazio e nessuna freccia nascosta.",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_electric_models_and_individual_concepts",
+        "Pint_exact_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C4-Q032",
+      "sourceSha256": "f2a958a50ca9f3492cd94c1fe0c21ab3679229598f64440a7ed64519aa3a0546",
+      "candidateSha256": "dec788dbdba3083a540b60627ed95661432712ede12004491043944d4b296bff",
+      "reviewedSignature": "ab7d5a91f229a753a74bf423e3b55c043c5a9f9bacb92190262472e7967521e8",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Polarizzazione",
+      "dimension": {},
+      "manualArithmetic": "È polarizzazione. I dipoli possono formarsi o orientarsi; questo non richiede una corrente di conduzione libera attraverso l’intero isolante.",
+      "physicalAssumptions": "Bound charges respond by induced dipoles or partial permanent-dipole alignment; no free conduction needed.",
+      "distractors": "Grounding, nuclear fusion and compulsory field cancellation are different processes.",
+      "pedagogicalReview": "Local bound-charge response distinguished from macroscopic conduction.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_electric_models_and_individual_concepts",
+        "Pint_exact_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C4-Q033",
+      "sourceSha256": "84832242f93790f51b10da431c26d00d2700fd63b3dc3fc63c2431e2f0913451",
+      "candidateSha256": "86a0d20f21290ada68e192fd5ac4a44ef99d519f4521017a58ca20819dcb2458",
+      "reviewedSignature": "90a4878d0210b8bf35c07f2d342b6b5b2d238a981486feadf107520d581afad1",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "cric-c4-l04-progressive.svg": "1daa518de96fca43a4c161fe4ceb6e3c5d3b98b0d0b4c56a333605bbde9792e0"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "6",
+      "dimension": {
+        "[current]": "1",
+        "[time]": "1"
+      },
+      "manualArithmetic": "La carica netta della sfera isolata è zero. Con −6,0 nC sulla parte indicata, il resto deve portare +6,0 nC, data l’assenza di altri contributi nel volume o nella cavità. Il risultato è integrale sulla superficie restante, non uniforme punto per punto.",
+      "physicalAssumptions": "Isolated neutral sphere, two surface parts exhaust charge; no cavity or volume charges.",
+      "distractors": "Zero remainder leaves−6 total;−6 remainder gives−12 total; equal areas unnecessary.",
+      "pedagogicalReview": "Integrated signed charge does not assume uniform surface density.",
+      "assetReview": "Tre pannelli letti integralmente nel nuovo PNG640×1540: bacchetta negativa a sinistra della sfera, segni positivi sul lato vicino e negativi lontano; simboli di superficie dichiarati non densità. Due porzioni−6/+6 nC sommano zero. Piastre con separazione comune180 e carica libera fissata; frecce del campo90 e30 rappresentano12 e4 kV/m alla stessa scala. Dielettrico riempie lo spazio e nessuna freccia nascosta.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_electric_models_and_individual_concepts",
+        "Pint_exact_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C4-Q034",
+      "sourceSha256": "5e7b8da5af6bab924f6112de428272c5e84c3fa985d6bd29b7be707c9c6220f9",
+      "candidateSha256": "b45b4a90cd80e66a1529c24a9782afb7f251fc205d217009df424aff464fe3c3",
+      "reviewedSignature": "283f199da56954bfc5719f5f8824bdc6b029786f4b1fe5ea4824b358602b99cd",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Una sfera neutra",
+      "dimension": {},
+      "manualArithmetic": "Allontanando prima la bacchetta mentre permane il contatto con la terra si elimina l’induzione mantenendo il potenziale di riferimento. La carica eccedente può fluire alla terra; idealmente la sfera torna neutra e resta tale dopo aver tolto il filo, in assenza di altre sorgenti.",
+      "physicalAssumptions": "Ground remains connected while positive rod is removed, then disconnected after equilibrium; no other sources.",
+      "distractors": "Disconnecting ground before removing rod is a different ordering that can trap negative charge.",
+      "pedagogicalReview": "Order of grounding actions is the physical constraint.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_electric_models_and_individual_concepts",
+        "Pint_exact_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C4-Q035",
+      "sourceSha256": "9717ead080b4a25054bb14577b43b3419861338bbd919d47a9d16b72a8a4857b",
+      "candidateSha256": "19c667abf0f2dd0fc60bed92dcf26361a56a2e9c424f6ba170d0a90f8953dca5",
+      "reviewedSignature": "675232f0d0cb105f794c3aed43a9fe630ae303c70cc9ce0cab5bedfb47f927ec",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "0",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3",
+        "[current]": "-1"
+      },
+      "manualArithmetic": "In un singolo conduttore continuo in equilibrio elettrostatico il potenziale è uniforme. V_B=V_A=42 V rispetto alla terra, dunque V_B−V_A=0 V. Equipotenziale non significa necessariamente a potenziale zero.",
+      "physicalAssumptions": "One continuous conductor in electrostatic equilibrium, common potential 42 V relative to Earth.",
+      "distractors": "42 is common potential relative to Earth;−42 assumes unspecified zero atB;84 adds potentials.",
+      "pedagogicalReview": "Equipotential is not synonymous with zero potential.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_electric_models_and_individual_concepts",
+        "Pint_exact_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C4-Q036",
+      "sourceSha256": "0397cf2adcbab1acd8ffbcf3739140c78c2da0255b4c96e9ea274a4b2825a12a",
+      "candidateSha256": "3ae4067595e9f9742b4f38dda1c4cf1321b590cff675994db5b6c4fbdf812120",
+      "reviewedSignature": "e3343635bcbb40de014912c302d68a22156038d21c67d87c01ee3ef2c042c988",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Terra",
+      "dimension": {},
+      "manualArithmetic": "La parola è terra. Il collegamento permette scambio di carica con un grande serbatoio che impone il potenziale di riferimento; non garantisce da solo carica totale nulla in presenza di sorgenti esterne.",
+      "physicalAssumptions": "Conducting connection to a large charge reservoir approximating fixed reference potential.",
+      "distractors": "Infinite resistance prevents the required exchange, vacuum/fusion/uniform motion do not name the connection.",
+      "pedagogicalReview": "Reservoir potential condition differs from isolation.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_electric_models_and_individual_concepts",
+        "Pint_exact_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C4-Q037",
+      "sourceSha256": "2db4e302352e33fa7f55ff75ef3c3bafb13100ba2a257c2fadc0772ac4acdeea",
+      "candidateSha256": "9e1dbd38b14d16366bf48c030afe90932b1e9f1f108bba07810680222b466fc8",
+      "reviewedSignature": "f257718f30c275a5a7fcf4ae35423f0fd20181c647441ba44b24e48cd5a55ccf",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "La componente tangenziale alla superficie",
+      "dimension": {},
+      "manualArithmetic": "La componente tangenziale del campo appena esterno è nulla: altrimenti le cariche libere superficiali si muoverebbero e non vi sarebbe equilibrio elettrostatico. La componente normale può invece essere non nulla.",
+      "physicalAssumptions": "Regular conductor surface at electrostatic equilibrium; field immediately outside.",
+      "distractors": "External normal field need not vanish; tangential field would move surface carriers.",
+      "pedagogicalReview": "Normal/tangential decomposition requires regular surface and equilibrium.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_electric_models_and_individual_concepts",
+        "Pint_exact_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C4-Q038",
+      "sourceSha256": "9f9438d21837a202eb512cb4f093203cfa58d8a79c95934b5811fc819318b533",
+      "candidateSha256": "defb0d2052dca051055aefc1041d5b1e070dfd3ae5b302d2a7e2418e2611af87",
+      "reviewedSignature": "ee79e247b7e9c09105e013f322ac4fb5c9332e7522692ee2f9c74a217e24e5bd",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Applicarla a quel filo come se fosse in equilibrio elettrostatico",
+      "dimension": {},
+      "manualArithmetic": "Sarebbe errato applicare la regola di equipotenzialità elettrostatica al filo resistivo percorso da corrente, imponendo E=0 o caduta di tensione nulla lungo di esso. La conduzione stazionaria con resistività positiva richiede un campo interno e può dissipare potenza.",
+      "physicalAssumptions": "Resistive wire with nonzero DC and nonzero measured voltage drop is not electrostatic equilibrium.",
+      "distractors": "Time-independent current is not rest of charge carriers; using the measured drop is consistent.",
+      "pedagogicalReview": "State the domain of an equilibrium rule before applying it.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_electric_models_and_individual_concepts",
+        "Pint_exact_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C4-Q039",
+      "sourceSha256": "25e3e97faf40f1c30d5a3052e0ba8569693d678d2e493f8326eeb7e98b11d4cb",
+      "candidateSha256": "38778edfb8f39b26be2644ec70fa84120055323cfc7bfaa7098c9428386c5495",
+      "reviewedSignature": "0d1315ab45201cff3ac85213714af725acdbfb15939258ffbfbf8741d71f02cc",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "cric-c4-l04-progressive.svg": "1daa518de96fca43a4c161fe4ceb6e3c5d3b98b0d0b4c56a333605bbde9792e0"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-3",
+        "[current]": "-1"
+      },
+      "manualArithmetic": "Le cariche libere restano fisse e il dielettrico riempie tutto lo spazio. Per piastre ideali E_f=E_i/ε_r=12/3=4 kV/m. Il generatore scollegato non impone tensione costante; la polarizzazione riduce il campo nel modello lineare.",
+      "physicalAssumptions": "Isolated large plates, free charge fixed, complete linear homogeneous dielectric epsilon_r 3, edge effects neglected.",
+      "distractors": "36 multiplies rather than divides epsilon_r;12 leaves field unchanged; finite epsilon is not a conductor.",
+      "pedagogicalReview": "Fixed-free-charge boundary condition controls the dielectric response.",
+      "assetReview": "Tre pannelli letti integralmente nel nuovo PNG640×1540: bacchetta negativa a sinistra della sfera, segni positivi sul lato vicino e negativi lontano; simboli di superficie dichiarati non densità. Due porzioni−6/+6 nC sommano zero. Piastre con separazione comune180 e carica libera fissata; frecce del campo90 e30 rappresentano12 e4 kV/m alla stessa scala. Dielettrico riempie lo spazio e nessuna freccia nascosta.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_electric_models_and_individual_concepts",
+        "Pint_exact_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C4-Q040",
+      "sourceSha256": "a2eec3f913e3c5953b7a9e8cd2502eff2d93ee9d3e99cfc55be185e52ca81c09",
+      "candidateSha256": "3011795bef14fee185fd23089b14a715637c02fdb7f0cd61588ba6d07bff4747",
+      "reviewedSignature": "4d41ae9d9b4b18ce2814d688d0d7dfed68ffa044a383cf08c36b8179f5dc707e",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Dielettrico",
+      "dimension": {},
+      "manualArithmetic": "È un dielettrico. Nel linguaggio del condensatore è un isolante polarizzabile, distinto da una connessione conduttrice che metterebbe in contatto elettrico le armature.",
+      "physicalAssumptions": "Insulating polarizable material described by bound charges and permittivity.",
+      "distractors": "A voltage source, point source, ideal conductor or superconductor does not name the insulating response.",
+      "pedagogicalReview": "Name material response and its constitutive parameter.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_electric_models_and_individual_concepts",
+        "Pint_exact_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    }
+  ],
+  "verifierSha256": "f59d84e03998549053557b7bafa0c68472e4939c4eba5a22171783f169e399ee",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "reviewDependencySha256": {
+    "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+  },
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2",
+    "hypothesis": "6.148.7"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "reviewedCandidateCommit": "74a3f8efce2282e47bb08d21bb382ad9c1ca5312",
+  "packageSha256": "5428e8735a3e4711098a5e85e80f2997da45fa4a7bfe958f549ef834140c6078",
+  "bindingsSha256": "ea3d33f04c17234060219a63390bc5ee1743b269bf2fd00b147466d8781d60cc",
+  "source": {
+    "commit": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "path": "officina-di-fisica/content/C4.json",
+    "title": "cric-c4-l04",
+    "reference": "Ten distinct original Cric C4 questions read completely after their frozen prompt-only primary and computations; no authoring module imported."
+  },
+  "modelsBeforeCandidateKeys": {
+    "path": "editorial/reviews/cric-c4-021-040-partial-models.py",
+    "sha256": "fce51a4709cd21f6f8519cad68fdd333123fc0cb14e6ae2c74f1112fc9ece962",
+    "commit": "eaf13e0e0c782adb98d767193e39a35ec3970bab"
+  },
+  "modelFunctionBodies": "All functions in the frozen source-only C4 partial model retain identical AST. Generic finite/exact literal guards are reused unchanged from the earlier independent C2 verifier.",
+  "primaryBeforeCandidateKeys": {
+    "path": "editorial/reviews/primary-cric-c4-021-040-partial-before-candidates-20261126.md",
+    "sha256": "16fddaa0a20d4180bd14648b2a47700896a9a77490e80b1daaa92efe189b31c5"
+  }
+}

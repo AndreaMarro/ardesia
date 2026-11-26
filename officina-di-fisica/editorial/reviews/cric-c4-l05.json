@@ -1,0 +1,346 @@
+{
+  "schemaVersion": "1.0.0",
+  "lessonReference": {
+    "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "gitPath": "officina-di-fisica/content/C4.json",
+    "sourceSha256": "19d52336dd1024113f45f33a03e4d71e262ee6357477948124c7fecec855c67c",
+    "primarySkill": "C4-L05",
+    "title": "Quanto vale una corrente",
+    "actualLessonPrerequisites": [
+      "C4-L01",
+      "C4-L03"
+    ]
+  },
+  "records": [
+    {
+      "id": "C4-Q041",
+      "sourceSha256": "4d26f4c73c4af49c03b689a933a162a534623398dc4d40214c5a1e5c40a063e3",
+      "candidateSha256": "7c5f4f2f0548f2d36bde0f7be39db173dac69559877f52fff0b171a436dc9a6f",
+      "reviewedSignature": "5c40f20cdbe1085c88a12718cf78e13dc4023119428ac2481a5d6903c859921a",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "cric-c4-l05-progressive.svg": "7f68054e03e1abedea675c5b4b272c3cf2cd118dfd30f0e8abbff0be170ed240"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "18",
+      "dimension": {
+        "[current]": "1",
+        "[time]": "1"
+      },
+      "manualArithmetic": "La carica orientata è l’area sotto I(t). I due intervalli hanno lo stesso verso, perciò Q=3 mA·4 s+1 mA·6 s=18 mC. Non si fa una media aritmetica delle correnti senza pesare le durate.",
+      "physicalAssumptions": "Two successive positive constant-current intervals 3 mA for 4 s and 1 mA for 6 s; common orientation.",
+      "distractors": "12 and 6 count one interval;40 multiplies summed currents by total time as if simultaneous.",
+      "pedagogicalReview": "Exact signed rectangular areas give charge, not mean current.",
+      "assetReview": "Tre pannelli letti integralmente nel nuovo PNG640×1540: gradini I(t) da3 mA per4 s e1 mA per6 s hanno larghezze144/216 e altezze210/70, aree coerenti12/6 mC. Filo rettangolare a profondità comune160×80 e320×40, volume costante e resistenza quadruplicata. Due soli punti I(V) a(1V,1mA)/(3V,2mA), coordinate120/360 e100/200, senza curva interpolata; rapporti statici1/1.5 kΩ. Zeri e unità leggibili, scale indipendenti tra pannelli.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_electric_models_and_individual_concepts",
+        "Pint_exact_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C4-Q042",
+      "sourceSha256": "c5ff40684b1579d00b1f8d7400386d97e18d151ab02c91e31e7e8be9ca074ce3",
+      "candidateSha256": "bb8465ac3cb121a36ae50a7534f9cc707c07da84443fb511500c1917d856028c",
+      "reviewedSignature": "87fa2e246f66fa73b59cb28e6c57bf6b88586b7e56c06c7df1da6b24d13f277f",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Verso sinistra, opposto alla corrente convenzionale",
+      "dimension": {},
+      "manualArithmetic": "La deriva media degli elettroni è verso sinistra, opposta alla corrente convenzionale, perché i portatori metallici sono negativi. Il verso della corrente è definito come verso di trasporto di carica positiva.",
+      "physicalAssumptions": "Conventional current right in a metal, carriers are negative electrons; compare mean drift, not thermal paths.",
+      "distractors": "Negative carriers drift opposite current; microscopic random motion does not cancel mean drift.",
+      "pedagogicalReview": "Mean carrier motion separated from conventional orientation.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_electric_models_and_individual_concepts",
+        "Pint_exact_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C4-Q043",
+      "sourceSha256": "34f57c10ef1ba7805f37ca4e0630dc51154ce24d7014b56856d06fc985351fe3",
+      "candidateSha256": "3e38b452802de7cb784c04ea8f63a9d9a238fc51fbccd85dde525fc00c7b55f6",
+      "reviewedSignature": "97de75eda77ba4f69d1963fdfe6710a5b8561d0502c6db915badfed8150fd439",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Differenza di potenziale",
+      "dimension": {},
+      "manualArithmetic": "Il generatore ideale mantiene la differenza di potenziale, detta tensione, fra i morsetti. La corrente dipende dal circuito collegato; i potenziali assoluti richiedono un riferimento.",
+      "physicalAssumptions": "Ideal voltage source in admitted operating conditions fixes terminal potential difference.",
+      "distractors": "Current, power and transferred charge depend on load and duration, not voltage alone.",
+      "pedagogicalReview": "Source constraint separated from response of external load.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_electric_models_and_individual_concepts",
+        "Pint_exact_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C4-Q044",
+      "sourceSha256": "b38b1c71d9e9092f02999dec92374f0f51c7d6aaa3c81d9060e8315ede10c136",
+      "candidateSha256": "e7c0420814129d30c20bf11576366ee1206669bb004f5abda07767285ddb7c50",
+      "reviewedSignature": "f455ce471fed407eeb04d26fa1906cdc6043d7e44bc24e941222e0b6e601bd40",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "20",
+      "dimension": {
+        "[time]": "1"
+      },
+      "manualArithmetic": "Con corrente costante t=Q/I. 8 μC/(0,40 mA)=20 ms, perché 1 mA·1 ms=1 μC. La durata è positiva e non è pari al numero 20 espresso in secondi.",
+      "physicalAssumptions": "Constant current 0.40 mA and positive transferred charge 8 microC.",
+      "distractors": "2 ms transfers 0.8 microC,200 ms transfers 80 microC; charge times current has wrong dimension.",
+      "pedagogicalReview": "Inverse duration checked by multiplying current and time.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_electric_models_and_individual_concepts",
+        "Pint_exact_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C4-Q045",
+      "sourceSha256": "6a7c17f84b46b7e7c77c7419bd81f161bfbc7cf81986062e8ec94597933c1874",
+      "candidateSha256": "c094bb5a238e179886cdc13a0c4c1c6b9d0e2765f63a59b57deb6a87fd9318e9",
+      "reviewedSignature": "56787fe07c759c2b32155ba63b49a07be186c056f531af443505e483831191e4",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Quello con pendenza I/V minore, quindi con retta meno ripida",
+      "dimension": {},
+      "manualArithmetic": "Per un resistore ohmico I=V/R, la pendenza del grafico I contro V è 1/R. La retta meno inclinata ha resistenza maggiore. Nel grafico opposto V contro I la pendenza sarebbe invece R.",
+      "physicalAssumptions": "Two ohmic resistors at fixed temperature, positive distinct slopes in I versusV through origin.",
+      "distractors": "I/V is conductance, whereas V/I slope of swapped axes is resistance.",
+      "pedagogicalReview": "Read graph axis order before identifying a slope.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_electric_models_and_individual_concepts",
+        "Pint_exact_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C4-Q046",
+      "sourceSha256": "337baef27bfde14c85057be28d148ade87eb7d6624d5258a1013dfa95d54fd30",
+      "candidateSha256": "89aece2d52c86553117e27db9f2ae907ea63af166b8f8003ff3a658d13a63131",
+      "reviewedSignature": "399def81026ded8816a45dd442dd1b7a0cd86d2dd9bd36f8074628abcccc2d80",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "cric-c4-l05-progressive.svg": "7f68054e03e1abedea675c5b4b272c3cf2cd118dfd30f0e8abbff0be170ed240"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4",
+      "dimension": {},
+      "manualArithmetic": "Conservando il volume materiale, A_f L_f=A_i L_i. A lunghezza doppia corrisponde area dimezzata. Da R=ρL/A, con resistività invariata, R_f/R_i=2/(1/2)=4. Si assume filo omogeneo e stiramento uniforme.",
+      "physicalAssumptions": "Uniform wire, positive initial geometry and resistivity, resistivity unchanged and material volume conserved, final length doubled.",
+      "distractors": "Factor 2 omits area change; positive constant-volume geometry givesfactor 4, not 1/2 or 8.",
+      "pedagogicalReview": "Two multiplicative geometric changes under constant volume.",
+      "assetReview": "Tre pannelli letti integralmente nel nuovo PNG640×1540: gradini I(t) da3 mA per4 s e1 mA per6 s hanno larghezze144/216 e altezze210/70, aree coerenti12/6 mC. Filo rettangolare a profondità comune160×80 e320×40, volume costante e resistenza quadruplicata. Due soli punti I(V) a(1V,1mA)/(3V,2mA), coordinate120/360 e100/200, senza curva interpolata; rapporti statici1/1.5 kΩ. Zeri e unità leggibili, scale indipendenti tra pannelli.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_electric_models_and_individual_concepts",
+        "Pint_exact_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C4-Q047",
+      "sourceSha256": "5e3341932553121ff48754bdbb3e82f9703503b3d9ba74e04c9411c07f4745e3",
+      "candidateSha256": "3a31d53ce9750fc23d27e06961532d94d2431717d504d499a4d8f028ff645dbd",
+      "reviewedSignature": "d5568eecf8fcbf6e1743355276d1b1f760d063301f1a882d8ad39e571593eb92",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Resistività",
+      "dimension": {},
+      "manualArithmetic": "È la resistività. ρ=RA/L ha unità Ω·m; non è la resistenza totale R né la densità di massa, che può usare lo stesso simbolo in altri contesti.",
+      "physicalAssumptions": "Homogeneous wire constitutive law R=rho*l/A identifies material parameter dimensions.",
+      "distractors": "Resistance is ohm, conductance reciprocal ohm, current ampere; rho meaning fixed by context.",
+      "pedagogicalReview": "Material property separated from a particular object resistance.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_electric_models_and_individual_concepts",
+        "Pint_exact_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C4-Q048",
+      "sourceSha256": "1bde6892c39dd2feb51ab2eec479de8eb156796560b96d79134f503c298bb924",
+      "candidateSha256": "92ecc2e45e7704359de847c42b1a4d15333432a312b843abd106bab3db2f001f",
+      "reviewedSignature": "4e5f4956281b0c22a267d3f80cce6d797dd6612e74af475363a589410c66d144",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1/50",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3",
+        "[current]": "-2"
+      },
+      "manualArithmetic": "La sezione è larghezza per spessore: A=(2×10⁻³)(1×10⁻⁴)=2×10⁻⁷ m². R=(2×10⁻⁸)(1/5)/(2×10⁻⁷)=1/50 Ω=0,020 Ω. Si convertono entrambe le dimensioni trasversali prima di moltiplicarle.",
+      "physicalAssumptions": "Uniform 0.20 m conductor, cross section 2 mm by 0.10 mm, rho 2 e-8 ohm*m at stated temperature.",
+      "distractors": "0.002 or 0.20 ohm requires tenfold larger or smaller cross section; two mm dimensions form squared conversion.",
+      "pedagogicalReview": "Correct transverse area and exact fraction rather than binary float answer.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_electric_models_and_individual_concepts",
+        "Pint_exact_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C4-Q049",
+      "sourceSha256": "fa91b161811b6488d9671c1367076e08a616ec493886f5f058f8c4cd6c5594b2",
+      "candidateSha256": "e659900b1c7b9208352912702876a8a787deff6d75d72e77eb08ae32fa0710bb",
+      "reviewedSignature": "3ec6962c6df2e9e419645f4fdec7d4876e20da2b8dfa1325a09b66cbe1592784",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "cric-c4-l05-progressive.svg": "7f68054e03e1abedea675c5b4b272c3cf2cd118dfd30f0e8abbff0be170ed240"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Il rapporto V/I cambia: una sola resistenza costante non descrive entrambi i punti",
+      "dimension": {},
+      "manualArithmetic": "I due rapporti V/I sono 1000 Ω e 1500 Ω, quindi quei due punti non appartengono alla stessa retta ohmica per l’origine con resistenza costante. Non si conclude la causa del cambiamento senza altri dati: può dipendere anche dalle condizioni fisiche del componente.",
+      "physicalAssumptions": "Same component gives two data points; no assumed thermal constancy or interpolation beyond data.",
+      "distractors": "Secant 2 kΩ is not a common static V/I; data cannot identify a generator or the causal mechanism.",
+      "pedagogicalReview": "Static ratio is distinct from differential/secant resistance and causal diagnosis.",
+      "assetReview": "Tre pannelli letti integralmente nel nuovo PNG640×1540: gradini I(t) da3 mA per4 s e1 mA per6 s hanno larghezze144/216 e altezze210/70, aree coerenti12/6 mC. Filo rettangolare a profondità comune160×80 e320×40, volume costante e resistenza quadruplicata. Due soli punti I(V) a(1V,1mA)/(3V,2mA), coordinate120/360 e100/200, senza curva interpolata; rapporti statici1/1.5 kΩ. Zeri e unità leggibili, scale indipendenti tra pannelli.",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_electric_models_and_individual_concepts",
+        "Pint_exact_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C4-Q050",
+      "sourceSha256": "f2a98172909f68555b9ed5f712404d13c4cad544e57c96e857c3d83e66485f76",
+      "candidateSha256": "a94c137fb0f5efdb92f61da9f15ffbef87acf8144093ddd7bbd572cad3c5ccf3",
+      "reviewedSignature": "c5ace68da19f0867fe2e83dbb075fc9f86c483c26e0aa9b55d797abb7087fece",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[current]": "1"
+      },
+      "manualArithmetic": "La carica netta verso destra è 12−2=10 C. La corrente media orientata è 10/5=2 A; sommare i moduli darebbe un flusso totale non orientato diverso dalla corrente convenzionale richiesta.",
+      "physicalAssumptions": "Five-second interval with positive-equivalent charges 12 C right and 2 C left; reference right.",
+      "distractors": "14/5 adds magnitudes;12/5 omits reverse transport;−2 changes orientation.",
+      "pedagogicalReview": "Net signed transport defines average over the whole interval.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_electric_models_and_individual_concepts",
+        "Pint_exact_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    }
+  ],
+  "verifierSha256": "b985b73964e5f6fe70aa1408113d63a8d18992f77d2b61e82b318230657c35a1",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "reviewDependencySha256": {
+    "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+  },
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2",
+    "hypothesis": "6.148.7"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "reviewedCandidateCommit": "08061cb49341ef7e9fc368c29977893398c4618d",
+  "packageSha256": "820daf8b64aa3a74b85fb53099831b3d320f05bb2eed01dee95479cd18a26994",
+  "bindingsSha256": "db6bb073d84d0f2626b739ca5a11f80ca52ac622a092118d124acd52c93a9dd9",
+  "source": {
+    "commit": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "path": "officina-di-fisica/content/C4.json",
+    "title": "cric-c4-l05",
+    "reference": "Ten distinct original Cric C4 questions read completely after their frozen prompt-only primary and computations; no authoring module imported."
+  },
+  "modelsBeforeCandidateKeys": {
+    "path": "editorial/reviews/cric-c4-041-050-partial-models.py",
+    "sha256": "64927c6305dc9ac7cc6d05392764eae221b37ff87fd99d9afc1c60f8d4c1fe05",
+    "commit": "6fbd440c1a31462c678b126b541f5b3dc00f0218"
+  },
+  "modelFunctionBodies": "All functions in the frozen source-only C4 partial model retain identical AST. Generic finite/exact literal guards are reused unchanged from the earlier independent C2 verifier.",
+  "primaryBeforeCandidateKeys": {
+    "path": "editorial/reviews/primary-cric-c4-041-050-partial-before-candidates-20261126.md",
+    "sha256": "7d8acc4e7e582836a85007a404c3486695a8b83a436464790a08f0f5fa2a84e5"
+  }
+}

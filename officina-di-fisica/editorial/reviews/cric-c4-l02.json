@@ -1,0 +1,349 @@
+{
+  "schemaVersion": "1.0.0",
+  "lessonReference": {
+    "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "gitPath": "officina-di-fisica/content/C4.json",
+    "sourceSha256": "19d52336dd1024113f45f33a03e4d71e262ee6357477948124c7fecec855c67c",
+    "primarySkill": "C4-L02",
+    "title": "Guardare il campo prima della forza",
+    "actualLessonPrerequisites": [
+      "C4-L01"
+    ]
+  },
+  "records": [
+    {
+      "id": "C4-Q011",
+      "sourceSha256": "8b342503150aad3ae8c2e4050084ef98768e8dc9987c3565be91ae424a232455",
+      "candidateSha256": "66dfc19975f50b666b9251ac81c2d1091cb82db4144ce40b8e1cd790606ea2ca",
+      "reviewedSignature": "0058f1dd22d63900ef6bb5e024930d25ff1a8986753a41c4d64b67bd95d8aac1",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Il campo resta uguale, la forza cambia verso mantenendo il modulo",
+      "dimension": {},
+      "manualArithmetic": "Il campo resta invariato perché le sorgenti sono inalterate e la carica di prova è non perturbativa. La forza qE cambia verso, mantenendo il modulo per cariche di prova di uguale valore assoluto.",
+      "physicalAssumptions": "External nonzero field fixed by unperturbed sources; probe charge changes from +q to −q with q positive.",
+      "distractors": "Source field does not reverse with the test particle; equal charge magnitudes preserve force magnitude.",
+      "pedagogicalReview": "Separate field of sources from force on a probe.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_electric_models_and_individual_concepts",
+        "Pint_exact_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C4-Q012",
+      "sourceSha256": "ffa82c6dd5aacd5f4eae167e57bd5030832654dbcc7988921ef690fd572ef942",
+      "candidateSha256": "de7c5048b70bd768e6996c1a5891d28c68289163a09e4c60ad0addc7daa40dd7",
+      "reviewedSignature": "bfcfd8e41d8ed049ca33d21f1fe89ed01466b8f6f0d38d838e11ca1e8a399539",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "cric-c4-l02-progressive.svg": "0bb9915fff394cd455da74bbfac93d8060085b52be6a57946a622e4e225f87cc"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "300",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-3",
+        "[current]": "-1"
+      },
+      "manualArithmetic": "Il campo è F/q, diretto come la forza su una prova positiva. E=(1,2×10⁻⁶)/(4,0×10⁻⁹)=300 N/C verso est; il prompt richiede soltanto il modulo.",
+      "physicalAssumptions": "Positive nonperturbing probe 4 nC, force 1.2 microN east; field equals force per charge.",
+      "distractors": "0.3 omits micro/nano factor 1000;4800 N/C would give 19.2 microN rather than 1.2.",
+      "pedagogicalReview": "Interpret prefixes before division and check inverse multiplication.",
+      "assetReview": "Tre pannelli letti integralmente nel nuovo PNG 640×1540: F e E hanno unità distinte e nessuna scala comune impropria; P divide 360 coordinate in 120 e 240, cioè10 e20 cm; due campi opposti hanno entrambe lunghezza80. Nel terzo pannello 180,240,300 coordinate rappresentano300,400,500 N/C: triangolo3–4–5 con punte intere e label separate.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_electric_models_and_individual_concepts",
+        "Pint_exact_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C4-Q013",
+      "sourceSha256": "cc8fb92379c426410f9c8023d91dd22dc00d7bd9b7b95c74756234f829b0909d",
+      "candidateSha256": "9927416e62ae91e7370986b54fbd5eae8083e3de21fb1114bc857780c2b8b81c",
+      "reviewedSignature": "9398f32101f9f36d287dea2f0f35b24dbbcf450560fff978b5d3b9304bb68b3e",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Tangente",
+      "dimension": {},
+      "manualArithmetic": "La parola è tangente. Il vettore campo non nullo ha direzione tangente alla propria linea di campo nel punto, con il verso stabilito dal campo.",
+      "physicalAssumptions": "Regular point with nonzero field; local line tangent defines direction.",
+      "distractors": "Normal is perpendicular; a remote secant is not the local tangent; gravity is unrelated.",
+      "pedagogicalReview": "Local geometry rather than shape of a whole curve.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_electric_models_and_individual_concepts",
+        "Pint_exact_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C4-Q014",
+      "sourceSha256": "e5711a84925ff52d480708ff3f3c0849df3d5ff762c3525f9ead07812c456a18",
+      "candidateSha256": "fb83ef1526b2ab0c04c1b5a86b00c57504f140d301ef06774ee14606f69203e6",
+      "reviewedSignature": "2a16bf4e13152ca1cec8aca3b68984256ebd29aa6eb4ef911dc756266fdee685",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "cric-c4-l02-progressive.svg": "0bb9915fff394cd455da74bbfac93d8060085b52be6a57946a622e4e225f87cc"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "10",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "Fra sorgenti positive i contributi hanno verso opposto. kq/x²=4kq/(30−x)² implica 30−x=2x nel ramo interno positivo; x=10 cm da +q. L’altra distanza è 20 cm, non 10 cm da entrambe.",
+      "physicalAssumptions": "Two stationary positive point sources q and 4 q in vacuum, q positive, separation 30 cm; point lies strictly between them.",
+      "distractors": "15 cm leaves a fourfold field mismatch;20 cm is distance from the stronger source.",
+      "pedagogicalReview": "Positive-root inverse and vector cancellation distinguished.",
+      "assetReview": "Tre pannelli letti integralmente nel nuovo PNG 640×1540: F e E hanno unità distinte e nessuna scala comune impropria; P divide 360 coordinate in 120 e 240, cioè10 e20 cm; due campi opposti hanno entrambe lunghezza80. Nel terzo pannello 180,240,300 coordinate rappresentano300,400,500 N/C: triangolo3–4–5 con punte intere e label separate.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_electric_models_and_individual_concepts",
+        "Pint_exact_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C4-Q015",
+      "sourceSha256": "38dd4d91824da2055ebbd8e23b87d6cf30935d3eb67a6e473f0ccbcbf6105c95",
+      "candidateSha256": "bc803736f500866f537880f787c247c942403c5ba4a28a5f656517c0edcad8e5",
+      "reviewedSignature": "9897a9ec212ea566427b322728199a733c0fed03691884f9b36e80d9d2c0d9e6",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Il disegno attribuisce due direzioni diverse a un unico campo nello stesso punto",
+      "dimension": {},
+      "manualArithmetic": "Un campo non nullo assegna una sola direzione in ogni punto. Due tangenti differenti darebbero due direzioni incompatibili nello stesso punto; la rappresentazione è errata per un campo elettrostatico ben definito.",
+      "physicalAssumptions": "Nonzero resultant field at regular point; two distinct tangents cannot define one vector.",
+      "distractors": "Lines are representations, not independent sources; their crossing cannot give two resultant vectors.",
+      "pedagogicalReview": "Uniqueness of a local vector has explicit nonzero condition.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_electric_models_and_individual_concepts",
+        "Pint_exact_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C4-Q016",
+      "sourceSha256": "c516e18daeed0914163e322d74656e6e0222b56144ba41ae54fb46b0714c0f4a",
+      "candidateSha256": "b1ebe8e81de833e0fc1a700f4f7760a5a65172c1e9453a54540d7f1f479eba93",
+      "reviewedSignature": "4edd1caac6e26277af48f722a9b321636c933ac45ee1baa31a501dea21f8e185",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "12",
+      "dimension": {
+        "[length]": "1"
+      },
+      "manualArithmetic": "Il tempo è fissato dal moto orizzontale uniforme: t=0,80/4=1/5 s. Verticalmente y=(1/2)·6·(1/5)²=3/25 m=12 cm verso y positivo. Non si usa direttamente lo spostamento orizzontale come tempo.",
+      "physicalAssumptions": "Only electric force, constant horizontal speed 4 m/s and vertical acceleration 6 m/s² from zero transverse speed; active region contains the considered path.",
+      "distractors": "24 cm omits half;60 cm requires 30 m/s² over 0.20 s rather than 6; horizontal acceleration remains zero.",
+      "pedagogicalReview": "Use one time for two independent component equations.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_electric_models_and_individual_concepts",
+        "Pint_exact_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C4-Q017",
+      "sourceSha256": "7b1ab5ffbeed22a2bc5c7ad7beb69abe7810d5fd7d6a531daae7f9a158d1decf",
+      "candidateSha256": "2ccfad1c05a3192de490fdc7458c85afc8e45c9ec3d78e58d3d771d0c718b4ad",
+      "reviewedSignature": "6b62a9860f8c1011b9903854bb66bc63297d4fdd9fe9c69023acb02931dede65",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Negativa",
+      "dimension": {},
+      "manualArithmetic": "La sorgente è negativa, perché le linee di campo entrano nelle cariche negative e ne escono per le positive. Il numero delle linee in un disegno non basta a determinare il valore numerico della carica.",
+      "physicalAssumptions": "Single nonzero central point source, inward radial field lines defined by a positive probe.",
+      "distractors": "Positive source has outward lines; a zero source cannot produce the specified nonzero radial pattern.",
+      "pedagogicalReview": "Relate line direction to sign of source.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_electric_models_and_individual_concepts",
+        "Pint_exact_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C4-Q018",
+      "sourceSha256": "aa982a768f57724ec0f46a2e6381a3fd39790b055466a7a9b7c8110e316dafe5",
+      "candidateSha256": "56b3bae185d4bb2d0db5ba70f0e03d35267d1d493e9a65496cc4b11b277e2034",
+      "reviewedSignature": "77b8b2e1ec5f9772c92262af1cba624ca10efc8ff68efd3a289eb9192f4694b7",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {
+        "cric-c4-l02-progressive.svg": "0bb9915fff394cd455da74bbfac93d8060085b52be6a57946a622e4e225f87cc"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "500",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "1",
+        "[time]": "-3",
+        "[current]": "-1"
+      },
+      "manualArithmetic": "Le componenti ortogonali vanno composte come vettori: |E|=√(300²+400²)=500 N/C. Il triangolo 3–4–5 rende il calcolo esatto senza trigonometria o calcolatrice.",
+      "physicalAssumptions": "Two nonzero perpendicular contributions 300 and 400 N/C, east and north.",
+      "distractors": "700 assumes concordant collinear components and 100 opposite collinear components; neither applies.",
+      "pedagogicalReview": "Manual 3–4–5 triangle with dimensioned squares.",
+      "assetReview": "Tre pannelli letti integralmente nel nuovo PNG 640×1540: F e E hanno unità distinte e nessuna scala comune impropria; P divide 360 coordinate in 120 e 240, cioè10 e20 cm; due campi opposti hanno entrambe lunghezza80. Nel terzo pannello 180,240,300 coordinate rappresentano300,400,500 N/C: triangolo3–4–5 con punte intere e label separate.",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_electric_models_and_individual_concepts",
+        "Pint_exact_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C4-Q019",
+      "sourceSha256": "fca1116c383d2978cf9dc80209782d0a0316217aef6e74e6cce86642a3451040",
+      "candidateSha256": "326c56322ee005637a34f4f660bd9a05f81747f5e516bd22455d0e9b1009112c",
+      "reviewedSignature": "9f6cb5ee9b81a283b299d5810333de10e0999d223fc7fcc955030a8b9a973c01",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Accelera e inizia a muoversi verso sinistra",
+      "dimension": {},
+      "manualArithmetic": "La forza qE e quindi l’accelerazione sono verso sinistra, opposte al campo, perché la carica è negativa. Appena rilasciata da ferma la particella comincia a muoversi verso sinistra; non ha velocità iniziale verso il campo.",
+      "physicalAssumptions": "Negative charge and positive mass, initially at rest, nonzero uniform field right, no other forces.",
+      "distractors": "Negative charge reverses force; zero initial velocity does not cancel nonzero acceleration.",
+      "pedagogicalReview": "Release instant and immediately subsequent motion are distinguished.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "AI_CONCEPTUAL",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_electric_models_and_individual_concepts",
+        "Pint_exact_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    },
+    {
+      "id": "C4-Q020",
+      "sourceSha256": "f2c39995b0eb225a6fb2c4bbc272ca6256cf5f26b9e77fdc9e64d52ea3716152",
+      "candidateSha256": "37060655c4ed71e5d932ab3042d60a47edaaff8fc9392822ab0a60d16f817c14",
+      "reviewedSignature": "151f0517b8d1b2778c88aff09e7803fef59941aee1d4ec969ac2694ede784390",
+      "reviewDependencySha256": {
+        "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+      },
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[time]": "1"
+      },
+      "manualArithmetic": "Con asse positivo verso destra, v(t)=6−3t. Al primo arresto v=0, quindi t=2 s; dopo quel tempo la velocità diventa negativa e il moto inverte verso. Campo e accelerazione sono costanti nel tratto assegnato.",
+      "physicalAssumptions": "Uniform electric acceleration left persists throughout inversion, initial speed right 6 m/s and acceleration magnitude 3 m/s².",
+      "distractors": "At 1 s velocity is+3 and at 3 s−3 m/s; a/v has dimension inverse time.",
+      "pedagogicalReview": "Stopping instant is a change of velocity sign, not vanishing acceleration.",
+      "assetReview": "not attached to this record",
+      "verificationMode": "EXACT_ORACLE",
+      "methods": [
+        "source_prompt_only_primary_before_candidate_keys",
+        "SymPy_frozen_prompt_only_electric_models_and_individual_concepts",
+        "Pint_exact_dimensions_and_Fraction_lexemes",
+        "separate_individual_manual_physical_distractor_pedagogical_and_full_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT"
+    }
+  ],
+  "verifierSha256": "7c2ada16c60e5bf6be3c30e2edb9b6efee1f17e12ea6110e5add46e38cb9cedf",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "reviewDependencySha256": {
+    "exact_arithmetic_literals.py": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de"
+  },
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2",
+    "hypothesis": "6.148.7"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "reviewedCandidateCommit": "c45cdc5edb5be3d457e0ec952617610a1f5ce825",
+  "packageSha256": "875dfc728217e594ff7bf4a130804e8dbb52a3f4768b1a099b1e341e8e86e6de",
+  "bindingsSha256": "4850e87421a372099fd23ae9160d3c1391cf881cf65e4317c8e7e8f70954d02c",
+  "source": {
+    "commit": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+    "path": "officina-di-fisica/content/C4.json",
+    "title": "cric-c4-l02",
+    "reference": "Ten distinct original Cric C4 questions read completely after their frozen prompt-only primary and computations; no authoring module imported."
+  },
+  "modelsBeforeCandidateKeys": {
+    "path": "editorial/reviews/cric-c4-001-020-partial-models.py",
+    "sha256": "5162581bc4dc366e2a1fe26c00966661f1eae97cba671a8081a1a938cd00bc3a",
+    "commit": "719bbd0fbc114937438b80a74d787297c5249336"
+  },
+  "modelFunctionBodies": "All functions in the frozen source-only C4 partial model retain identical AST. Generic finite/exact literal guards are reused unchanged from the earlier independent C2 verifier.",
+  "primaryBeforeCandidateKeys": {
+    "path": "editorial/reviews/primary-cric-c4-001-020-partial-before-candidates-20261126.md",
+    "sha256": "34337ec50e90ae61e6a447c62a98c698bf14a4bc47b24f92586a6e4bcd27f6ea"
+  }
+}
