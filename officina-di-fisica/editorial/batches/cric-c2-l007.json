@@ -1,0 +1,703 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "C2-Q061",
+      "kind": "question",
+      "course": "C2",
+      "section": "Viscosità e profili di velocità",
+      "order": 61,
+      "title": "Che cosa suggerisce il tracciante",
+      "skill": "C2-L007",
+      "prerequisites": [
+        "C2-L007"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’osservazione è compatibile con un moto laminare: gli strati conservano un’organizzazione ordinata nel tratto osservato. Questo non significa velocità uguale in ogni punto né viscosità nulla. Inoltre laminare e stazionario descrivono aspetti differenti: l’uno l’organizzazione spaziale, l’altro la dipendenza temporale del campo."
+        },
+        {
+          "type": "formula",
+          "text": "\\text{laminare: strati ordinati}"
+        },
+        {
+          "type": "formula",
+          "text": " \\text{stazionario: }\\partial_t\\vec v=0"
+        },
+        {
+          "type": "text",
+          "text": "Turbolento suggerirebbe fluttuazioni e mescolamento più marcati, non il filamento ordinato descritto. Un liquido viscoso può essere laminare e muoversi. La sola osservazione locale non dimostra che tutto il circuito sia nello stesso regime."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "In un tratto di tubo diritto un sottile filamento colorato rimane ordinato e gli strati di liquido scorrono affiancati, senza mescolamento trasversale evidente. Quale regime è suggerito localmente da questa osservazione?",
+      "family": "riconoscere-il-regime-da-un-tracciante",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Laminare",
+          "Turbolento con forte mescolamento",
+          "Necessariamente privo di viscosità",
+          "Necessariamente fermo",
+          "Sempre non stazionario"
+        ],
+        "value": "Laminare"
+      },
+      "hints": [
+        "Distingui il modo in cui scorrono gli strati dalla variazione del moto nel tempo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Turbolento suggerirebbe fluttuazioni e mescolamento più marcati, non il filamento ordinato descritto. Un liquido viscoso può essere laminare e muoversi. La sola osservazione locale non dimostra che tutto il circuito sia nello stesso regime.",
+        "target": "C2-L007"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Gradiente e sforzo newtoniano",
+        "Aderenza e profilo sviluppato",
+        "Valore locale e media di sezione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q062",
+      "kind": "question",
+      "course": "C2",
+      "section": "Viscosità e profili di velocità",
+      "order": 62,
+      "title": "Dalla sonda assiale alla media",
+      "skill": "C2-L007",
+      "prerequisites": [
+        "C2-L007"
+      ],
+      "version": 3,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La sonda legge il massimo del profilo parabolico, non una velocità uniforme. Integrando v_max[1−(r/R)²] sull’area circolare, la media è v_max/2. Dimezzo 56/100 e ottengo 28/100=7/25 m/s, cioè 0,28 m/s. La parete ferma non rende nulla la media del liquido."
+        },
+        {
+          "type": "formula",
+          "text": "\\bar v=\\frac{1}{\\pi R^2}\\int_0^Rv(r)2\\pi r\\,\\mathrm dr"
+        },
+        {
+          "type": "formula",
+          "text": " \\bar v=\\frac{v_{\\max}}2"
+        },
+        {
+          "type": "formula",
+          "text": " \\bar v=\\frac7{25}\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "0,56 m/s copia la lettura centrale; 1,12 la raddoppia invece di dimezzarla. 0,14 divide ancora per due senza ragione. Zero è il valore alla parete, non la media dell’intera sezione."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "In un tubo circolare diritto il liquido newtoniano incomprimibile scorre in regime laminare stazionario pienamente sviluppato, con aderenza alla parete. Una sonda sull’asse misura 0,56 m/s. Quanto vale la velocità media di sezione in m/s?",
+      "family": "velocita-media-dalla-sonda-assiale",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "0,28 m/s",
+          "0,56 m/s",
+          "1,12 m/s",
+          "0,14 m/s",
+          "0 m/s"
+        ],
+        "value": "0,28 m/s"
+      },
+      "hints": [
+        "La sonda assiale campiona un punto speciale: identifica prima massimo e media.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "0,56 m/s copia la lettura centrale; 1,12 la raddoppia invece di dimezzarla. 0,14 divide ancora per due senza ragione. Zero è il valore alla parete, non la media dell’intera sezione.",
+        "target": "C2-L007"
+      },
+      "baseVersion": 2,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Gradiente e sforzo newtoniano",
+        "Aderenza e profilo sviluppato",
+        "Valore locale e media di sezione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q063",
+      "kind": "question",
+      "course": "C2",
+      "section": "Viscosità e profili di velocità",
+      "order": 63,
+      "title": "Un gradiente richiede una distanza trasversale",
+      "skill": "C2-L007",
+      "prerequisites": [
+        "C2-L007"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il gradiente confronta velocità in punti diversi, non tempi diversi. Converto 0,50 mm in 1/2000 m e 0,020 m/s in 1/50 m/s. Il rapporto è (1/50)/(1/2000)=40 s⁻¹. Il metro si cancella, lasciando l’inverso del tempo, non m/s²."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/d8f38cb88126fb70aa26630abe375f8b09d296aecb77e58a35bb1d3dd0edce3e",
+          "text": "Il primo pannello rappresenta un profilo lineare fra piastre: variazione 0,020 m/s su 0,50 mm, quindi gradiente 40 s⁻¹. Le frecce di velocità condividono una scala e la distanza trasversale ha una scala separata."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta y=\\frac1{2000}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta v_x=\\frac1{50}\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\left|\\frac{\\Delta v_x}{\\Delta y}\\right|=40\\,\\mathrm{s^{-1}}"
+        },
+        {
+          "type": "text",
+          "text": "0,04 s⁻¹ usa il coefficiente 0,50 come metri invece di millimetri. Un’accelerazione richiederebbe dividere per un tempo; qui il divisore è una lunghezza. Invertire il rapporto darebbe un tempo, non un gradiente di velocità."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Fra due strati la componente longitudinale della velocità cambia di 0,020 m/s su una distanza trasversale di 0,50 mm. Quanto vale il modulo del gradiente medio Δv_x/Δy in s⁻¹?",
+      "family": "misurare-un-gradiente-locale",
+      "answer": {
+        "type": "numeric",
+        "value": 40,
+        "unit": "s⁻¹",
+        "tolerance": 0
+      },
+      "hints": [
+        "Uniforma la distanza in metri e cancella le unità nel quoziente.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "0,04 s⁻¹ usa il coefficiente 0,50 come metri invece di millimetri. Un’accelerazione richiederebbe dividere per un tempo; qui il divisore è una lunghezza. Invertire il rapporto darebbe un tempo, non un gradiente di velocità.",
+        "target": "C2-L007"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Gradiente e sforzo newtoniano",
+        "Aderenza e profilo sviluppato",
+        "Valore locale e media di sezione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q064",
+      "kind": "question",
+      "course": "C2",
+      "section": "Viscosità e profili di velocità",
+      "order": 64,
+      "title": "La viscosità dal rapporto fra sforzo e gradiente",
+      "skill": "C2-L007",
+      "prerequisites": [
+        "C2-L007"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La relazione costitutiva in modulo è τ=ηG, con G il gradiente. Divido lo sforzo per il gradiente positivo: (18/5)/12=3/10 Pa·s. Il pascal diviso per s⁻¹ dà Pa·s. Si ricava una proprietà del fluido nelle condizioni controllate, non una forza totale sulla parete."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/d8f38cb88126fb70aa26630abe375f8b09d296aecb77e58a35bb1d3dd0edce3e",
+          "text": "Il secondo pannello è una prova autonoma: la retta τ–G passa per G=12 s⁻¹ e τ=3,6 Pa, perciò la pendenza ha unità Pa·s. Non si stanno usando i dati del primo pannello come se fossero la stessa prova."
+        },
+        {
+          "type": "formula",
+          "text": "\\eta=\\frac{|\\tau|}{G}"
+        },
+        {
+          "type": "formula",
+          "text": " \\eta=\\frac{18/5}{12}\\,\\mathrm{Pa\\,s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\eta=\\frac3{10}\\,\\mathrm{Pa\\,s}"
+        },
+        {
+          "type": "text",
+          "text": "43,2 moltiplica invece di dividere; 10/3 è il rapporto numerico inverso. Pa da solo misura lo sforzo, mentre η richiede anche il secondo. 3,6 copia il valore dello sforzo senza usare il gradiente."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Un liquido newtoniano a temperatura e composizione fissate esercita uno sforzo tangenziale di modulo 3,6 Pa quando il modulo del gradiente di velocità è 12 s⁻¹. Quale viscosità dinamica η si ricava?",
+      "family": "risultato-di-un-viscosimetro-piano",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "0,30 Pa·s",
+          "43,2 Pa·s",
+          "10/3 Pa·s",
+          "0,30 Pa",
+          "3,6 Pa·s"
+        ],
+        "value": "0,30 Pa·s"
+      },
+      "hints": [
+        "Isola η prima di sostituire e verifica che il denominatore abbia unità s⁻¹.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "43,2 moltiplica invece di dividere; 10/3 è il rapporto numerico inverso. Pa da solo misura lo sforzo, mentre η richiede anche il secondo. 3,6 copia il valore dello sforzo senza usare il gradiente.",
+        "target": "C2-L007"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Gradiente e sforzo newtoniano",
+        "Aderenza e profilo sviluppato",
+        "Valore locale e media di sezione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q065",
+      "kind": "question",
+      "course": "C2",
+      "section": "Viscosità e profili di velocità",
+      "order": 65,
+      "title": "Stessa velocità fra strati adiacenti",
+      "skill": "C2-L007",
+      "prerequisites": [
+        "C2-L007"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il gradiente trasversale è zero, quindi il prodotto η ∂v_x/∂y è zero anche se la viscosità è positiva. La legge riguarda lo sforzo di taglio viscoso, non la pressione statica. Il fluido può traslare tutto insieme con velocità non nulla senza deformarsi localmente in questo modo."
+        },
+        {
+          "type": "formula",
+          "text": "\\partial_yv_x=0"
+        },
+        {
+          "type": "formula",
+          "text": " \\tau_{xy}=\\eta\\,\\partial_yv_x"
+        },
+        {
+          "type": "formula",
+          "text": " \\tau_{xy}=0"
+        },
+        {
+          "type": "text",
+          "text": "La pressione è uno sforzo normale distinto dal taglio. Non si deduce η=0 da un prodotto nullo se il gradiente è già zero. Un massimo di taglio richiederebbe differenze di velocità, non uguaglianza."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "In una regione di fluido newtoniano il campo di velocità è uniforme: due strati adiacenti hanno la stessa velocità e non vi sono altri gradienti di deformazione. Quanto vale lo sforzo viscoso di taglio dovuto al gradiente trasversale considerato?",
+      "family": "scorrimento-uniforme-degli-strati",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Zero",
+          "È sempre uguale alla pressione statica",
+          "È massimo perché gli strati si muovono insieme",
+          "È necessariamente negativo e non nullo",
+          "Impone viscosità nulla"
+        ],
+        "value": "Zero"
+      },
+      "hints": [
+        "Nella legge costitutiva individua quale fattore è nullo, senza cambiare la proprietà del materiale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La pressione è uno sforzo normale distinto dal taglio. Non si deduce η=0 da un prodotto nullo se il gradiente è già zero. Un massimo di taglio richiederebbe differenze di velocità, non uguaglianza.",
+        "target": "C2-L007"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Gradiente e sforzo newtoniano",
+        "Aderenza e profilo sviluppato",
+        "Valore locale e media di sezione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q066",
+      "kind": "question",
+      "course": "C2",
+      "section": "Viscosità e profili di velocità",
+      "order": 66,
+      "title": "La condizione sulla parete ferma",
+      "skill": "C2-L007",
+      "prerequisites": [
+        "C2-L007"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’aderenza impone che la velocità del liquido al contatto coincida con quella della superficie. Poiché il riferimento è quello della parete ferma, entrambe valgono zero. Non significa che siano nulle anche le velocità lontane dalla parete, né il gradiente vicino a essa."
+        },
+        {
+          "type": "formula",
+          "text": "\\vec v_{\\rm liquido,parete}=\\vec v_{\\rm parete}"
+        },
+        {
+          "type": "formula",
+          "text": " \\vec v_{\\rm parete}=0"
+        },
+        {
+          "type": "formula",
+          "text": " \\vec v_{\\rm liquido,parete}=0"
+        },
+        {
+          "type": "text",
+          "text": "Il massimo e la media appartengono ad altri punti o all’intera sezione. Una velocità opposta non soddisferebbe l’aderenza. La condizione assegnata elimina l’indeterminazione del valore al contatto."
+        }
+      ],
+      "difficulty": 1,
+      "prompt": "Un liquido aderisce a una parete ferma: vale la condizione di non scorrimento relativo, detta no-slip. Qual è la velocità del liquido direttamente a contatto con quella parete, nel riferimento della parete?",
+      "family": "il-valore-sulla-parete",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Nulla",
+          "Sempre massima",
+          "Uguale alla media di sezione",
+          "Opposta alla velocità del liquido al centro con lo stesso modulo",
+          "Indeterminata anche imponendo l’aderenza"
+        ],
+        "value": "Nulla"
+      },
+      "hints": [
+        "Applica la condizione al confine, non a tutto il tubo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Il massimo e la media appartengono ad altri punti o all’intera sezione. Una velocità opposta non soddisferebbe l’aderenza. La condizione assegnata elimina l’indeterminazione del valore al contatto.",
+        "target": "C2-L007"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Gradiente e sforzo newtoniano",
+        "Aderenza e profilo sviluppato",
+        "Valore locale e media di sezione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q067",
+      "kind": "question",
+      "course": "C2",
+      "section": "Viscosità e profili di velocità",
+      "order": 67,
+      "title": "Il massimo della velocità non è quello del gradiente",
+      "skill": "C2-L007",
+      "prerequisites": [
+        "C2-L007"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Derivo rispetto alla coordinata radiale: dv/dr=−2v_max r/R². Il suo modulo cresce linearmente con r, da zero sull’asse fino al massimo alla parete. La velocità invece è massima sull’asse e nulla alla parete: valore del campo e sua pendenza sono grandezze diverse."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{\\mathrm dv}{\\mathrm dr}=-\\frac{2v_{\\max}r}{R^2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\left|\\frac{\\mathrm dv}{\\mathrm dr}\\right|=\\frac{2v_{\\max}r}{R^2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\max |\\mathrm dv/\\mathrm dr|=\\frac{2v_{\\max}}R"
+        },
+        {
+          "type": "text",
+          "text": "L’asse dà il massimo di v ma gradiente zero per simmetria. Un gradiente uniforme sarebbe un profilo lineare, non parabolico. Il dominio termina a R: non serve estendere la legge fuori dal liquido."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "In un tubo circolare di raggio R un flusso di Poiseuille sviluppato ha profilo v(r)=v_max[1−(r/R)²], con v_max>0 e 0≤r≤R. Dove è massimo il modulo del gradiente radiale |dv/dr|?",
+      "family": "dove-e-maggiore-il-taglio",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Alla parete, r=R",
+          "Sull’asse, r=0",
+          "Alla metà del raggio necessariamente",
+          "È uguale in tutta la sezione",
+          "Dove la velocità è massima, quindi fuori dal tubo"
+        ],
+        "value": "Alla parete, r=R"
+      },
+      "hints": [
+        "Deriva il profilo e massimizza il modulo della derivata nel dominio assegnato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "L’asse dà il massimo di v ma gradiente zero per simmetria. Un gradiente uniforme sarebbe un profilo lineare, non parabolico. Il dominio termina a R: non serve estendere la legge fuori dal liquido.",
+        "target": "C2-L007"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Gradiente e sforzo newtoniano",
+        "Aderenza e profilo sviluppato",
+        "Valore locale e media di sezione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q068",
+      "kind": "question",
+      "course": "C2",
+      "section": "Viscosità e profili di velocità",
+      "order": 68,
+      "title": "Un punto a quattro quinti del raggio",
+      "skill": "C2-L007",
+      "prerequisites": [
+        "C2-L007"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La frazione radiale è 4/5. La elevo al quadrato, ottenendo 16/25, e la sottraggo da uno: 9/25. Il valore è compreso fra zero e uno, come richiede un punto interno a velocità concorde con l’asse del tubo. Non è la media d’area del profilo."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/d8f38cb88126fb70aa26630abe375f8b09d296aecb77e58a35bb1d3dd0edce3e",
+          "text": "Nel profilo finale y è la coordinata orientata sul diametro e r=|y| è la distanza radiale non negativa dall’asse. Sull’asse v/v_max=1, alla parete zero; a r/R=4/5 il valore locale è 9/25. La linea unisce le punte delle frecce di velocità, non le traiettorie delle particelle."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac rR=\\frac45"
+        },
+        {
+          "type": "formula",
+          "text": " \\left(\\frac rR\\right)^2=\\frac{16}{25}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{v(r)}{v_{\\max}}=1-\\frac{16}{25}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{v(r)}{v_{\\max}}=\\frac9{25}"
+        },
+        {
+          "type": "text",
+          "text": "4/5 copia la posizione normalizzata; 1/5 omette il quadrato e calcola 1−4/5. 16/25 è il termine da sottrarre, non la velocità. 1/2 è la media del profilo, non questo valore locale."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Per un profilo di Poiseuille v(r)=v_max[1−(r/R)²], quale frazione v(0,80R)/v_max si misura? Usa la distanza radiale dall’asse, non dalla parete.",
+      "family": "un-valore-intermedio-nel-profilo",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "9/25",
+          "4/5",
+          "1/5",
+          "16/25",
+          "1/2"
+        ],
+        "value": "9/25"
+      },
+      "hints": [
+        "Prima il quadrato della coordinata, poi la sottrazione da uno.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "4/5 copia la posizione normalizzata; 1/5 omette il quadrato e calcola 1−4/5. 16/25 è il termine da sottrarre, non la velocità. 1/2 è la media del profilo, non questo valore locale.",
+        "target": "C2-L007"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Gradiente e sforzo newtoniano",
+        "Aderenza e profilo sviluppato",
+        "Valore locale e media di sezione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q069",
+      "kind": "question",
+      "course": "C2",
+      "section": "Viscosità e profili di velocità",
+      "order": 69,
+      "title": "Una risposta non proporzionale al gradiente",
+      "skill": "C2-L007",
+      "prerequisites": [
+        "C2-L007"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Una viscosità costante darebbe τ_B/τ_A=G_B/G_A=2. Il fattore osservato 13/10 è diverso. Il rapporto fra viscosità apparenti sarebbe (13/10)/2=13/20: il comportamento nel campo di prova non è descritto dallo stesso coefficiente costante. Questa conclusione non identifica da sola un materiale o un’applicazione clinica."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{\\tau_B}{\\tau_A}=\\frac{\\eta_B}{\\eta_A}\\frac{G_B}{G_A}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{\\eta_B}{\\eta_A}=\\frac{13/10}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{\\eta_B}{\\eta_A}=\\frac{13}{20}"
+        },
+        {
+          "type": "text",
+          "text": "La non proporzionalità non modifica le definizioni di unità né elimina il campo di velocità. La conservazione della massa riguarda un bilancio diverso. Concludere quiete contraddirebbe il gradiente non nullo assegnato."
+        }
+      ],
+      "difficulty": 3,
+      "prompt": "In una prova si raddoppia il modulo del gradiente di velocità, ma lo sforzo tangenziale cresce soltanto di un fattore 1,3. Temperatura, composizione e misura sono controllate. Quale ipotesi costitutiva è messa in dubbio?",
+      "family": "un-fluido-a-viscosita-dipendente-dal-gradiente",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Viscosità newtoniana costante nel campo di prova",
+          "Conservazione della massa in qualunque caso",
+          "Definizione di pascal",
+          "Esistenza di una velocità locale",
+          "Necessaria assenza di moto"
+        ],
+        "value": "Viscosità newtoniana costante nel campo di prova"
+      },
+      "hints": [
+        "Confronta prima i rapporti che la legge lineare prevederebbe.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La non proporzionalità non modifica le definizioni di unità né elimina il campo di velocità. La conservazione della massa riguarda un bilancio diverso. Concludere quiete contraddirebbe il gradiente non nullo assegnato.",
+        "target": "C2-L007"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Gradiente e sforzo newtoniano",
+        "Aderenza e profilo sviluppato",
+        "Valore locale e media di sezione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q070",
+      "kind": "question",
+      "course": "C2",
+      "section": "Viscosità e profili di velocità",
+      "order": 70,
+      "title": "Allontanare due piastre",
+      "skill": "C2-L007",
+      "prerequisites": [
+        "C2-L007"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il profilo lineare dà G=U/d. Il modulo della forza che mantiene il moto è F=ηAU/d, opposto alla resistenza viscosa sulla piastra mobile. Nei due stati η,A,U si cancellano: resta d_A/d_B=1/(5/2)=2/5. Distanze nella stessa unità si possono dividere senza conversione aggiuntiva."
+        },
+        {
+          "type": "formula",
+          "text": "F=\\eta A\\frac Ud"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{F_B}{F_A}=\\frac{d_A}{d_B}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{F_B}{F_A}=\\frac25"
+        },
+        {
+          "type": "text",
+          "text": "5/2 tratta la forza come direttamente proporzionale alla distanza. 25/4 eleva al quadrato quel rapporto senza una legge che lo richieda. Uno ignora il gradiente ridotto; 1/5 non ricostruisce il rapporto fra 1 e 2,5."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Due piastre piane hanno area A e velocità relativa U costanti. Il liquido fra esse è newtoniano, con viscosità η costante; il moto di Couette è stazionario sviluppato, senza gradiente di pressione e con aderenza. Se la distanza passa da 1,0 mm a 2,5 mm, quale frazione F_B/F_A della forza motrice serve?",
+      "family": "dilatare-lo-spazio-fra-piastre",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2/5",
+          "5/2",
+          "25/4",
+          "1",
+          "1/5"
+        ],
+        "value": "2/5"
+      },
+      "hints": [
+        "Individua quali parametri sono controllati e mantieni il verso inverso della dipendenza da d.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "5/2 tratta la forza come direttamente proporzionale alla distanza. 25/4 eleva al quadrato quel rapporto senza una legge che lo richieda. Uno ignora il gradiente ridotto; 1/5 non ricostruisce il rapporto fra 1 e 2,5.",
+        "target": "C2-L007"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Gradiente e sforzo newtoniano",
+        "Aderenza e profilo sviluppato",
+        "Valore locale e media di sezione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "d8f38cb88126fb70aa26630abe375f8b09d296aecb77e58a35bb1d3dd0edce3e",
+      "name": "cric-c2-l007-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTg2MCIgdmlld0JveD0iMCAwIDY0MCAxODYwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyIgZm9udC1mYW1pbHk9InN5c3RlbS11aSxzYW5zLXNlcmlmIj48dGl0bGUgaWQ9InRpdGxlIj5HcmFkaWVudGUsIHZpc2Nvc2l0w6AgZSBwcm9maWxvPC90aXRsZT48ZGVzYyBpZD0iZGVzYyI+VHJlIHByb3ZlIGRpc3RpbnRlOiBDb3VldHRlLCByZXR0YSBjb3N0aXR1dGl2YSBlIHBhcmFib2xhIGRlbGxhIHZlbG9jaXTDoCBsdW5nbyB1biBkaWFtZXRybyBkZWwgdHViby48L2Rlc2M+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxODYwIiBmaWxsPSJ3aGl0ZSIvPjx0ZXh0IHg9IjM1IiB5PSI0OCIgZm9udC1zaXplPSIyNCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5EYWwgcHJvZmlsbyBhbGxvIHNmb3J6bzwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMTEwIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjEgwrcgR3JhZGllbnRlIG1lZGlvIGZyYSBwaWFzdHJlPC90ZXh0PjxsaW5lIHgxPSIxMDAiIHkxPSI0MjAiIHgyPSI1MDAiIHkyPSI0MjAiIHN0cm9rZT0iIzYwNzM4MyIgc3Ryb2tlLXdpZHRoPSIyIi8+PGxpbmUgeDE9IjEwMCIgeTE9IjIyMCIgeDI9IjUwMCIgeTI9IjIyMCIgc3Ryb2tlPSIjNjA3MzgzIiBzdHJva2Utd2lkdGg9IjIiLz48bGluZSB4MT0iMTgwIiB5MT0iMzcwIiB4Mj0iMjMwIiB5Mj0iMzcwIiBzdHJva2U9IiMzMDZmOGMiIHN0cm9rZS13aWR0aD0iMiIvPjxwb2x5Z29uIHBvaW50cz0iMjMwLDM3MCAyMjIuMCwzNzQuMCAyMjIuMCwzNjYuMCIgZmlsbD0iIzMwNmY4YyIvPjxsaW5lIHgxPSIxODAiIHkxPSIzMjAiIHgyPSIyODAiIHkyPSIzMjAiIHN0cm9rZT0iIzMwNmY4YyIgc3Ryb2tlLXdpZHRoPSIyIi8+PHBvbHlnb24gcG9pbnRzPSIyODAsMzIwIDI3Mi4wLDMyNC4wIDI3Mi4wLDMxNi4wIiBmaWxsPSIjMzA2ZjhjIi8+PGxpbmUgeDE9IjE4MCIgeTE9IjI3MCIgeDI9IjMzMCIgeTI9IjI3MCIgc3Ryb2tlPSIjMzA2ZjhjIiBzdHJva2Utd2lkdGg9IjIiLz48cG9seWdvbiBwb2ludHM9IjMzMCwyNzAgMzIyLjAsMjc0LjAgMzIyLjAsMjY2LjAiIGZpbGw9IiMzMDZmOGMiLz48bGluZSB4MT0iMTgwIiB5MT0iMjIwIiB4Mj0iMzgwIiB5Mj0iMjIwIiBzdHJva2U9IiMzMDZmOGMiIHN0cm9rZS13aWR0aD0iMiIvPjxwb2x5Z29uIHBvaW50cz0iMzgwLDIyMCAzNzIuMCwyMjQuMCAzNzIuMCwyMTYuMCIgZmlsbD0iIzMwNmY4YyIvPjxsaW5lIHgxPSIxODAiIHkxPSI0MjAiIHgyPSIzODAiIHkyPSIyMjAiIHN0cm9rZT0iIzk4NmMzNSIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iOTAiIHk9IjQ3MCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5wYXJldGUgZmVybWE8L3RleHQ+PHRleHQgeD0iMzg1IiB5PSIxOTAiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+MCwwMjAgbS9zPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSIzMjUiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+MCw1MCBtbTwvdGV4dD48dGV4dCB4PSIzNSIgeT0iNTM1IiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPkcgPSDOlHZfeCAvIM6UeSA9IDQwIHPigbvCuTwvdGV4dD48dGV4dCB4PSIzNSIgeT0iNjQwIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjIgwrcgVW5hIHByb3ZhIGF1dG9ub21hOiDPhCA9IM63IEc8L3RleHQ+PGxpbmUgeDE9IjEyMCIgeTE9IjEwMTAiIHgyPSIxMjAiIHkyPSI3MjAiIHN0cm9rZT0iIzYwNzM4MyIgc3Ryb2tlLXdpZHRoPSIyIi8+PGxpbmUgeDE9IjEwMCIgeTE9Ijk5MCIgeDI9IjUyMCIgeTI9Ijk5MCIgc3Ryb2tlPSIjNjA3MzgzIiBzdHJva2Utd2lkdGg9IjIiLz48bGluZSB4MT0iMTIwIiB5MT0iOTkwIiB4Mj0iNDIwIiB5Mj0iNzc0IiBzdHJva2U9IiMzMDZmOGMiIHN0cm9rZS13aWR0aD0iNCIvPjxsaW5lIHgxPSI0MjAiIHkxPSI3NzQiIHgyPSI0MjAiIHkyPSI5OTAiIHN0cm9rZT0iIzk4NmMzNSIgc3Ryb2tlLXdpZHRoPSIyIi8+PGxpbmUgeDE9IjEyMCIgeTE9Ijc3NCIgeDI9IjQyMCIgeTI9Ijc3NCIgc3Ryb2tlPSIjOTg2YzM1IiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSI2NSIgeT0iNzA1IiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPs+EIChQYSk8L3RleHQ+PHRleHQgeD0iNTAwIiB5PSIxMDMwIiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5HIChz4oG7wrkpPC90ZXh0Pjx0ZXh0IHg9IjY1IiB5PSI3ODAiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+Myw2PC90ZXh0Pjx0ZXh0IHg9IjQxMiIgeT0iMTAyMCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij4xMjwvdGV4dD48dGV4dCB4PSI5MCIgeT0iMTAxNSIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij4wPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSIxMTAwIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPlBlbmRlbnphOiAzLDYgUGEgLyAoMTIgc+KBu8K5KSA9IDAsMzAgUGHCt3MuPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSIxMjAwIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjMgwrcgVmFsb3JlIGxvY2FsZSBuZWwgdHVibzwvdGV4dD48bGluZSB4MT0iMjIwIiB5MT0iMTMwMCIgeDI9IjIyMCIgeTI9IjE2NjAiIHN0cm9rZT0iIzYwNzM4MyIgc3Ryb2tlLXdpZHRoPSIyIi8+PGxpbmUgeDE9IjIwMCIgeTE9IjE0ODAiIHgyPSI1NjAiIHkyPSIxNDgwIiBzdHJva2U9IiM2MDczODMiIHN0cm9rZS13aWR0aD0iMiIvPjxsaW5lIHgxPSIyMjAiIHkxPSIxMzAwIiB4Mj0iMjIwIiB5Mj0iMTY2MCIgc3Ryb2tlPSIjNjA3MzgzIiBzdHJva2Utd2lkdGg9IjQiLz48cGF0aCBkPSJNMjIwIDEzMDBRNzAwIDE0ODAgMjIwIDE2NjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzk4NmMzNSIgc3Ryb2tlLXdpZHRoPSIzIi8+PGxpbmUgeDE9IjIyMCIgeTE9IjEzMzYiIHgyPSIzMDYuNCIgeTI9IjEzMzYiIHN0cm9rZT0iIzMwNmY4YyIgc3Ryb2tlLXdpZHRoPSIyIi8+PHBvbHlnb24gcG9pbnRzPSIzMDYuNCwxMzM2IDI5OC40LDEzNDAuMCAyOTguNCwxMzMyLjAiIGZpbGw9IiMzMDZmOGMiLz48bGluZSB4MT0iMjIwIiB5MT0iMTM5MCIgeDI9IjQwMCIgeTI9IjEzOTAiIHN0cm9rZT0iIzMwNmY4YyIgc3Ryb2tlLXdpZHRoPSIyIi8+PHBvbHlnb24gcG9pbnRzPSI0MDAsMTM5MCAzOTIuMCwxMzk0LjAgMzkyLjAsMTM4Ni4wIiBmaWxsPSIjMzA2ZjhjIi8+PGxpbmUgeDE9IjIyMCIgeTE9IjE0ODAiIHgyPSI0NjAiIHkyPSIxNDgwIiBzdHJva2U9IiMzMDZmOGMiIHN0cm9rZS13aWR0aD0iMiIvPjxwb2x5Z29uIHBvaW50cz0iNDYwLDE0ODAgNDUyLjAsMTQ4NC4wIDQ1Mi4wLDE0NzYuMCIgZmlsbD0iIzMwNmY4YyIvPjxsaW5lIHgxPSIyMjAiIHkxPSIxNTcwIiB4Mj0iNDAwIiB5Mj0iMTU3MCIgc3Ryb2tlPSIjMzA2ZjhjIiBzdHJva2Utd2lkdGg9IjIiLz48cG9seWdvbiBwb2ludHM9IjQwMCwxNTcwIDM5Mi4wLDE1NzQuMCAzOTIuMCwxNTY2LjAiIGZpbGw9IiMzMDZmOGMiLz48bGluZSB4MT0iMjIwIiB5MT0iMTYyNCIgeDI9IjMwNi40IiB5Mj0iMTYyNCIgc3Ryb2tlPSIjMzA2ZjhjIiBzdHJva2Utd2lkdGg9IjIiLz48cG9seWdvbiBwb2ludHM9IjMwNi40LDE2MjQgMjk4LjQsMTYyOC4wIDI5OC40LDE2MjAuMCIgZmlsbD0iIzMwNmY4YyIvPjx0ZXh0IHg9IjEyNSIgeT0iMTMxMCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij55L1IgPSDiiJIxPC90ZXh0Pjx0ZXh0IHg9IjE1MCIgeT0iMTQ4NSIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij4wPC90ZXh0Pjx0ZXh0IHg9IjEzMCIgeT0iMTY2NSIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij4rMTwvdGV4dD48dGV4dCB4PSI1MTAiIHk9IjE1MzAiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJtaWRkbGUiPnZfbWF4PC90ZXh0Pjx0ZXh0IHg9IjMyMCIgeT0iMTMzMCIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij55L1IgPSDiiJI0LzU8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjE3NDAiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+QSB8cnwvUiA9IDQvNSA6IHYvdl9tYXggPSA5LzI1LjwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMTgwNSIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5MYSBtZWRpYSBk4oCZYXJlYSB2YWxlIGludmVjZSAxLzIuPC90ZXh0Pjwvc3ZnPgo="
+    }
+  ]
+}
