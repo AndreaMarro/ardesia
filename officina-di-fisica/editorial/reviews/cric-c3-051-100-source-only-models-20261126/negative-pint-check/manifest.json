@@ -1,0 +1,11 @@
+{
+  "actualChildExit": 1,
+  "reason": "At least one exact Pint comparison failed; no candidate exposure and no success claimed",
+  "files": {
+    "actual-unit-diagnostic-output.txt": "b0777b9e2bca0dffa5d2b2e62f5d7fe59591efcd9452ecefb6f593c7dab0a7d6",
+    "actual-failed-output.txt": "9242e2c12511f472efd96ecd495018e4dcd4e37c5147ec68203ad4cc8a3e1817",
+    "initial-model.py.txt": "77308723aa792ad4b41b4352343bcce86ca2059663f7d1f98779b2339f323d08",
+    "actual-unit-diagnostic-instrument.py.txt": "ef1b1dd1f34340318183d57440c998b2e86546581d0f4147498216ce1f8154a9"
+  },
+  "diagnosis": "Integer-magnitude reciprocal in Pint produced binary float0.05000000000000001; new rational-quantity construction requires Fraction before arithmetic, with no tolerance changes"
+}

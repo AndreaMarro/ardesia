@@ -1,0 +1,6 @@
+from tools.corpus_engineering.cric_c3_051_100_review_models import SI
+import sympy as sp
+from fractions import Fraction
+Q=SI.Quantity;R=sp.Rational
+checks=[(Q(120,'kPa')*Q(R(1,2),'liter')).to('joule').magnitude,(Q(100,'kPa')*Q(25,'cm**2')*Q(4,'cm')).to('joule').magnitude,(Q(Fraction(1,2),'mole')*Q(Fraction(4157,500),'joule/(mole*kelvin)')*Q(20,'kelvin')).to('joule').magnitude,(Q(4,'liter')*Q(60,'kPa')/2).to('joule').magnitude,(Q(24,'joule')*Q(150,'1/minute')).to('watt').magnitude,(Q(Fraction(11,50),'dimensionless')*Q(Fraction(3,2),'kilowatt')).to('watt').magnitude,(Q(10,'gram')*Q(100,'kilojoule/kilogram')/Q(250,'kelvin')).to('joule/kelvin').magnitude,(Q(90,'joule')*(1/Q(300,'kelvin')-1/Q(360,'kelvin'))).to('joule/kelvin').magnitude,(Q(-200,'joule')/Q(25,'joule/kelvin')).to('kelvin').magnitude]
+for i,(value,want)in enumerate(zip(checks,[60,10,Fraction(4157,50),120,60,330,4,Fraction(1,20),-8]),1):print(i,repr(value),type(value).__name__,value==want,flush=True)

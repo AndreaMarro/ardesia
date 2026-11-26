@@ -1,0 +1,10 @@
+SHARED_LOCK_ACQUIRED; free bytes 5269557248; one child
+Traceback (most recent call last):
+  File "/private/tmp/run_cric_c3_prekey_models_a.py", line 2, in <module>
+    out,counts=primary_only_derivations()
+               ~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/private/tmp/cric-author-a-resident/officina-di-fisica/tools/corpus_engineering/cric_c3_051_100_review_models.py", line 115, in primary_only_derivations
+    assert all(checks)
+           ~~~^^^^^^^^
+AssertionError
+CHILD_EXIT 1; free bytes 5269360640
