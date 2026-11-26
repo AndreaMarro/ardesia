@@ -1,0 +1,23 @@
+{
+  "observedExitCode": 1,
+  "failure": "Reviewer reference required >=64 unique vertices for BOTH cylinder and pointed cone; cone contains collapsed tip vertices and has fewer unique vertices",
+  "actualCounts": [
+    [
+      66,
+      34
+    ],
+    [
+      67,
+      34
+    ],
+    [
+      68,
+      34
+    ],
+    [
+      68,
+      35
+    ]
+  ],
+  "correction": "Require64 unique shaft vertices and33 unique cone vertices, preserving original full32-facet primitive data and all independent projection, viewport, label gap and table clearance assertions."
+}

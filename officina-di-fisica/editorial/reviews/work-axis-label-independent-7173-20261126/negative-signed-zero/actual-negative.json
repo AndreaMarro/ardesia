@@ -1,0 +1,8 @@
+{
+  "observedExitCode": 1,
+  "failure": "Node assert.deepStrictEqual([0.8,0.28,-0],[0.8,0.28,0]) in my analytic green-vector reference",
+  "actualZ": "-0",
+  "expectedZ": "+0",
+  "correction": "Analytic equality uses component ===, where both signed zero denote the same coordinate. Exact structural baseline/candidate comparisons retain deepStrictEqual unchanged. No production change or tolerance increase.",
+  "scope": "Reviewer diagnostic preparation negative, not an activity defect"
+}
