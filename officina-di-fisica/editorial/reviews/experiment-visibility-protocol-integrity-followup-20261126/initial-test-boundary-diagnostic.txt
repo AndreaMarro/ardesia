@@ -1,0 +1,81 @@
+test_asset_bytes_changed_after_prepare_never_reach_canonical_import (tests.corpus.test_experiment_visibility_integrity.VisibilityIntegrity.test_asset_bytes_changed_after_prepare_never_reach_canonical_import) ... FAIL
+test_blocks_changed_after_prepare_never_reach_canonical_import (tests.corpus.test_experiment_visibility_integrity.VisibilityIntegrity.test_blocks_changed_after_prepare_never_reach_canonical_import) ... FAIL
+test_full_owner_record_body_must_match_normalized_prepared_record (tests.corpus.test_experiment_visibility_integrity.VisibilityIntegrity.test_full_owner_record_body_must_match_normalized_prepared_record) ... FAIL
+test_omitted_package_never_reaches_canonical_import (tests.corpus.test_experiment_visibility_integrity.VisibilityIntegrity.test_omitted_package_never_reaches_canonical_import) ... FAIL
+test_prepared_candidate_rebound_never_reaches_canonical_import (tests.corpus.test_experiment_visibility_integrity.VisibilityIntegrity.test_prepared_candidate_rebound_never_reaches_canonical_import) ... FAIL
+
+======================================================================
+FAIL: test_asset_bytes_changed_after_prepare_never_reach_canonical_import (tests.corpus.test_experiment_visibility_integrity.VisibilityIntegrity.test_asset_bytes_changed_after_prepare_never_reach_canonical_import)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-experiment-contract-fix/officina-di-fisica/tests/corpus/test_experiment_visibility_integrity.py", line 66, in test_asset_bytes_changed_after_prepare_never_reach_canonical_import
+    path=Path(self.packages[0]);pkg=json.loads(path.read_bytes());asset=pkg['assets'][0];asset['data']=base64.b64encode(base64.b64decode(asset['data'])+b'\n').decode();path.write_text(json.dumps(pkg));self.reject_before_import()
+                                                                                                                                                                                                         ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/private/tmp/cric-experiment-contract-fix/officina-di-fisica/tests/corpus/test_experiment_visibility_integrity.py", line 60, in reject_before_import
+    self.assertFalse(self.marker.exists(),'Mutated bytes reached the real canonical import before rejection')
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: True is not false : Mutated bytes reached the real canonical import before rejection
+
+======================================================================
+FAIL: test_blocks_changed_after_prepare_never_reach_canonical_import (tests.corpus.test_experiment_visibility_integrity.VisibilityIntegrity.test_blocks_changed_after_prepare_never_reach_canonical_import)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-experiment-contract-fix/officina-di-fisica/tests/corpus/test_experiment_visibility_integrity.py", line 63, in test_blocks_changed_after_prepare_never_reach_canonical_import
+    path=Path(self.packages[0]);pkg=json.loads(path.read_bytes());pkg['records'][0]['blocks'][0]['text']+=' Mutated after prepare.';path.write_text(json.dumps(pkg));self.reject_before_import()
+                                                                                                                                                                     ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/private/tmp/cric-experiment-contract-fix/officina-di-fisica/tests/corpus/test_experiment_visibility_integrity.py", line 60, in reject_before_import
+    self.assertFalse(self.marker.exists(),'Mutated bytes reached the real canonical import before rejection')
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: True is not false : Mutated bytes reached the real canonical import before rejection
+
+======================================================================
+FAIL: test_full_owner_record_body_must_match_normalized_prepared_record (tests.corpus.test_experiment_visibility_integrity.VisibilityIntegrity.test_full_owner_record_body_must_match_normalized_prepared_record)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-experiment-contract-fix/officina-di-fisica/tests/corpus/test_experiment_visibility_integrity.py", line 86, in test_full_owner_record_body_must_match_normalized_prepared_record
+    self.assertEqual(result.returncode,0,result.stderr)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 1 != 0 : node:internal/modules/run_main:122
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Missing expected exception.
+    at file:///private/tmp/cric-experiment-contract-fix/officina-di-fisica/[eval1]:8:16 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: undefined,
+  expected: undefined,
+  operator: 'throws'
+}
+
+Node.js v22.14.0
+
+
+======================================================================
+FAIL: test_omitted_package_never_reaches_canonical_import (tests.corpus.test_experiment_visibility_integrity.VisibilityIntegrity.test_omitted_package_never_reaches_canonical_import)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-experiment-contract-fix/officina-di-fisica/tests/corpus/test_experiment_visibility_integrity.py", line 72, in test_omitted_package_never_reaches_canonical_import
+    self.plan['packageFiles']=self.plan['packageFiles'][1:];self.reject_before_import()
+                                                            ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/private/tmp/cric-experiment-contract-fix/officina-di-fisica/tests/corpus/test_experiment_visibility_integrity.py", line 60, in reject_before_import
+    self.assertFalse(self.marker.exists(),'Mutated bytes reached the real canonical import before rejection')
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: True is not false : Mutated bytes reached the real canonical import before rejection
+
+======================================================================
+FAIL: test_prepared_candidate_rebound_never_reaches_canonical_import (tests.corpus.test_experiment_visibility_integrity.VisibilityIntegrity.test_prepared_candidate_rebound_never_reaches_canonical_import)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-experiment-contract-fix/officina-di-fisica/tests/corpus/test_experiment_visibility_integrity.py", line 69, in test_prepared_candidate_rebound_never_reaches_canonical_import
+    self.plan['records'][0]['record']=copy.deepcopy(self.plan['records'][0]['record']);self.plan['records'][0]['record']['blocks'][0]['text']+=' Rebound candidate.';self.reject_before_import()
+                                                                                                                                                                     ~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/private/tmp/cric-experiment-contract-fix/officina-di-fisica/tests/corpus/test_experiment_visibility_integrity.py", line 60, in reject_before_import
+    self.assertFalse(self.marker.exists(),'Mutated bytes reached the real canonical import before rejection')
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: True is not false : Mutated bytes reached the real canonical import before rejection
+
+----------------------------------------------------------------------
+Ran 5 tests in 1.209s
+
+FAILED (failures=5)

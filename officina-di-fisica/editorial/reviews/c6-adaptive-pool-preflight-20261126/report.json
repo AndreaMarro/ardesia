@@ -1,0 +1,104 @@
+{
+  "scope": "Actual existing and revised bank metadata; no new question review or acceptance. Integration gap identified before C6 cohorts.",
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+  "reviewedArdesiaRows": 4000,
+  "existingCricRows": 606,
+  "protectedExamsExcluded": 93,
+  "integrationRequirement": "Existing exercise_registry requires an autonomous retest in a different family and a delayed distinct third family; preserve this gate.",
+  "findings": [
+    {
+      "skill": "C6-L01",
+      "eligibleIds": [
+        "C6-AQ01",
+        "C6-Q001",
+        "C6-Q002"
+      ],
+      "distinctFamilies": [
+        "il-passaggio-tra-due-strumenti",
+        "portata-da-potenza-termica-e-salto-di-temperatura",
+        "un-ordine-di-grandezza"
+      ],
+      "count": 3,
+      "canOfferTwoOtherFamiliesForEachSourceFamily": true
+    },
+    {
+      "skill": "C6-L02",
+      "eligibleIds": [
+        "C6-Q003",
+        "C6-Q004"
+      ],
+      "distinctFamilies": [
+        "un-nodo-con-memoria",
+        "una-misura-su-metallo"
+      ],
+      "count": 2,
+      "canOfferTwoOtherFamiliesForEachSourceFamily": false
+    },
+    {
+      "skill": "C6-L03",
+      "eligibleIds": [
+        "C6-Q005",
+        "C6-Q006"
+      ],
+      "distinctFamilies": [
+        "due-letture-sul-calorimetro",
+        "un-generatore-e-un-carico"
+      ],
+      "count": 2,
+      "canOfferTwoOtherFamiliesForEachSourceFamily": false
+    },
+    {
+      "skill": "C6-L04",
+      "eligibleIds": [
+        "C6-Q007",
+        "C6-Q008"
+      ],
+      "distinctFamilies": [
+        "il-rivelatore-guarda-piu-lontano",
+        "sostituire-solo-il-tratto"
+      ],
+      "count": 2,
+      "canOfferTwoOtherFamiliesForEachSourceFamily": false
+    },
+    {
+      "skill": "C6-L05",
+      "eligibleIds": [
+        "C6-Q009",
+        "C6-Q010"
+      ],
+      "distinctFamilies": [
+        "due-livelli-in-quiete",
+        "un-rettangolo-orientato"
+      ],
+      "count": 2,
+      "canOfferTwoOtherFamiliesForEachSourceFamily": false
+    },
+    {
+      "skill": "C6-L06",
+      "eligibleIds": [
+        "C6-Q011",
+        "C6-Q012"
+      ],
+      "distinctFamilies": [
+        "ripensare-una-previsione",
+        "una-misura-che-non-basta"
+      ],
+      "count": 2,
+      "canOfferTwoOtherFamiliesForEachSourceFamily": false
+    }
+  ],
+  "affectedSkills": [
+    "C6-L02",
+    "C6-L03",
+    "C6-L04",
+    "C6-L05",
+    "C6-L06"
+  ],
+  "preexistingGap": true,
+  "doNotFakeTransferByRelabelingPrerequisitesOrVersions": true,
+  "nextAction": "Engineer and independently verify legitimate competency/transfer coverage for these five C6 skills before claiming complete adaptive integration. Do not expose protected exam material or relax the third-family evidence gate.",
+  "questionCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "rootSourceCommit": "3586fbac376c1a9fdadccca2d593ad23bec0e808"
+}

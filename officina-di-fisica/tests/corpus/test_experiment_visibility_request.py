@@ -11,6 +11,12 @@ APP=Path(__file__).resolve().parents[2]
 PROPOSAL=APP/'editorial/reviews/experiment-visibility-macro-proposal-20261126'
 
 class VisibilityEvidence(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        from tests.corpus.historical_visibility_protocol import collector_v1
+        import sys
+        cls.enterClassContext(collector_v1(sys.modules[__name__]))
+
     def test_request_requires_immutable_refs_exact_protocol_set_and_no_acceptance(self):
         r=json.loads((PROPOSAL/'request-example.json').read_bytes())
         validator=v.Draft202012Validator(v.load(v.SCHEMA))

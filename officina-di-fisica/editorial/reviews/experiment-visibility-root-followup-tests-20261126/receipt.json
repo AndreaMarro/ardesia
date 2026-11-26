@@ -1,0 +1,33 @@
+{
+  "scope": "Root transport/integrity and historical negative retention only; no139closure",
+  "tests": [
+    {
+      "file": "test_experiment_visibility_request.py",
+      "count": 9,
+      "seconds": 0.792,
+      "actualExit": 0
+    },
+    {
+      "file": "test_experiment_visibility_integrity.py",
+      "count": 7,
+      "seconds": 1.212,
+      "actualExit": 0
+    },
+    {
+      "file": "test_consumer_b2_echo_negative.py",
+      "count": 4,
+      "seconds": 0.009,
+      "actualExit": 0
+    },
+    {
+      "file": "test_consumer_0dee_four_canaries.py",
+      "count": 7,
+      "seconds": 0.1,
+      "actualExit": 0
+    }
+  ],
+  "discoveryCorrection": "First fourth pattern matched no tests and exited5; preserved as run01-wrong-pattern-no-tests.txt, never counted as PASS. Correct exact filename discovered from recovered manifest.",
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}
