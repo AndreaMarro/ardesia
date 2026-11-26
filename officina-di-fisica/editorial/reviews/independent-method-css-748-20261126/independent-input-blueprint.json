@@ -1,0 +1,731 @@
+{
+  "runtimeSourceCommit": "63131d8367ffbd16cc33b77319a7aedf05de7f1a",
+  "runtimeSha256": "748b31decc821162f9631e619747cf8d273202b35ebe9ca993e7e0b2a0e2ebc4",
+  "sourceRef": "5d1dc8dc7b601aef959d10d564c75462be74708d",
+  "sourceFileSha256": "dae8291fb86b18ca1324a3c926b1bfaf5b618ab01d3ce44e9fcd5218bf93842a",
+  "priorExposure": "Original10methods and source-key fields were independently reviewed previously. This is reuse of unchanged exact physics/manual models, not a new blinded source-first claim. Inputs above independently derived from prompt/data and the earlier exact models, not sourced from answer fields.",
+  "records": [
+    {
+      "id": "C1-M-formula",
+      "title": "Pesare un carrello dal suo moto",
+      "course": "C1",
+      "format": "formula",
+      "sourcePrompt": {
+        "prompt": "Una forza risultante di 12 N accelera un carrello a 3 m/s². Cerca la massa.",
+        "relation": "F = m · a",
+        "target": "m",
+        "symbols": [
+          "F",
+          "a"
+        ]
+      },
+      "sourceSteps": [
+        {
+          "kind": "choice",
+          "prompt": "Qual è il simbolo dell’incognita?",
+          "options": [
+            "F",
+            "a",
+            "m"
+          ],
+          "stage": null,
+          "independentInput": "m"
+        },
+        {
+          "kind": "choice",
+          "prompt": "In F = m · a, quale operazione applichi a entrambi i membri?",
+          "options": [
+            "Dividi per m",
+            "Dividi per a",
+            "Sottrai a"
+          ],
+          "stage": null,
+          "independentInput": "Dividi per a"
+        },
+        {
+          "kind": "expression",
+          "prompt": "Scrivi il membro che equivale a m usando F, a.",
+          "options": null,
+          "stage": null,
+          "independentInput": "F*(1/a)"
+        },
+        {
+          "kind": "number",
+          "prompt": "Sostituisci 12 N e 3 m/s². Quanti kg ha il carrello?",
+          "options": null,
+          "stage": null,
+          "independentInput": "4"
+        },
+        {
+          "kind": "choice",
+          "prompt": "Quale semplificazione verifica la massa?",
+          "options": [
+            "N · m/s² = kg",
+            "N/(m/s²) = kg",
+            "N/s = kg"
+          ],
+          "stage": null,
+          "independentInput": "N/(m/s²) = kg"
+        }
+      ],
+      "independentDerivation": "F=ma ⇒ divide by a≠0, m=12/3=4kg; N/(m/s²)=kg."
+    },
+    {
+      "id": "C1-M-graph",
+      "title": "Dal tachimetro allo spostamento",
+      "course": "C1",
+      "format": "graph",
+      "sourcePrompt": {
+        "diagram": {
+          "x": "t (s)",
+          "y": "v (m/s)",
+          "xmax": 4,
+          "ymax": 8,
+          "points": [
+            [
+              0,
+              2
+            ],
+            [
+              4,
+              6
+            ]
+          ],
+          "area": true,
+          "captions": [
+            "La velocità cambia lungo la retta. Leggi le scale.",
+            "Le proiezioni isolano i valori ai due estremi.",
+            "La zona colorata comprende sia la velocità iniziale sia il suo aumento."
+          ]
+        }
+      },
+      "sourceSteps": [
+        {
+          "kind": "choice",
+          "prompt": "Che cosa misuri in verticale?",
+          "options": [
+            "Posizione in metri",
+            "Velocità in m/s",
+            "Accelerazione in m/s²"
+          ],
+          "stage": 0,
+          "independentInput": "Velocità in m/s"
+        },
+        {
+          "kind": "number",
+          "prompt": "Quanto vale v a 4 s, in m/s?",
+          "options": null,
+          "stage": 1,
+          "independentInput": "6"
+        },
+        {
+          "kind": "number",
+          "prompt": "Da 0 a 4 s, qual è la pendenza in m/s²?",
+          "options": null,
+          "stage": 1,
+          "independentInput": "1"
+        },
+        {
+          "kind": "number",
+          "prompt": "Quanti metri di spostamento rappresenta l’area?",
+          "options": null,
+          "stage": 2,
+          "independentInput": "16"
+        }
+      ],
+      "independentDerivation": "v(t)=2+t: v4=6m/s, slope1m/s², area2·4+(6−2)·4/2=16m."
+    },
+    {
+      "id": "C2-M-formula",
+      "title": "Trovare la profondità dalla pressione",
+      "course": "C2",
+      "format": "formula",
+      "sourcePrompt": {
+        "prompt": "Acqua ferma, pressione in superficie p0 = 100 kPa e in profondità p = 130 kPa. Usa rho = 1000 kg/m³ e g = 10 m/s². Cerca la profondità h.",
+        "relation": "p = p0 + rho · g · h",
+        "target": "h",
+        "symbols": [
+          "p0",
+          "p",
+          "rho",
+          "g"
+        ]
+      },
+      "sourceSteps": [
+        {
+          "kind": "choice",
+          "prompt": "Qual è il simbolo dell’incognita?",
+          "options": [
+            "p0",
+            "h",
+            "rho"
+          ],
+          "stage": null,
+          "independentInput": "h"
+        },
+        {
+          "kind": "choice",
+          "prompt": "In p = p0 + rho · g · h, quale operazione applichi a entrambi i membri?",
+          "options": [
+            "Sottrai p0",
+            "Aggiungi p0",
+            "Dividi per h"
+          ],
+          "stage": null,
+          "independentInput": "Sottrai p0"
+        },
+        {
+          "kind": "choice",
+          "prompt": "In p − p0 = rho · g · h, quale operazione applichi a entrambi i membri?",
+          "options": [
+            "Moltiplica per rho · g",
+            "Sottrai g",
+            "Dividi per rho · g"
+          ],
+          "stage": null,
+          "independentInput": "Dividi per rho · g"
+        },
+        {
+          "kind": "expression",
+          "prompt": "Scrivi il membro che equivale a h usando p0, p, rho, g.",
+          "options": null,
+          "stage": null,
+          "independentInput": "(p-p0)/(rho*g)"
+        },
+        {
+          "kind": "number",
+          "prompt": "Converti in pascal e sostituisci. A quanti metri sei?",
+          "options": null,
+          "stage": null,
+          "independentInput": "3"
+        },
+        {
+          "kind": "choice",
+          "prompt": "Quale rapporto deve dare una lunghezza?",
+          "options": [
+            "Pa · (Pa/m)",
+            "Pa/(Pa/m)",
+            "(Pa/m)/Pa"
+          ],
+          "stage": null,
+          "independentInput": "Pa/(Pa/m)"
+        }
+      ],
+      "independentDerivation": "p−p0=ρgh: subtract p0, divideρg;30000/(1000·10)=3m;Pa/(Pa/m)=m."
+    },
+    {
+      "id": "C2-M-graph",
+      "title": "La pressione dell’acqua in profondità",
+      "course": "C2",
+      "format": "graph",
+      "sourcePrompt": {
+        "diagram": {
+          "x": "h (m)",
+          "y": "p − p₀ (kPa)",
+          "xmax": 4,
+          "ymax": 40,
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              3,
+              30
+            ]
+          ],
+          "captions": [
+            "La superficie è il riferimento della pressione e della profondità.",
+            "Confronta la superficie con il punto a 3 m.",
+            "Il triangolo mostra quanta pressione in più corrisponde a ogni metro."
+          ]
+        }
+      },
+      "sourceSteps": [
+        {
+          "kind": "choice",
+          "prompt": "Quale pressione si legge in ordinata?",
+          "options": [
+            "Assoluta in Pa",
+            "Rispetto alla superficie in kPa",
+            "Atmosferica in hPa"
+          ],
+          "stage": 0,
+          "independentInput": "Rispetto alla superficie in kPa"
+        },
+        {
+          "kind": "number",
+          "prompt": "A 3 m di profondità quanti kPa si aggiungono?",
+          "options": null,
+          "stage": 1,
+          "independentInput": "30"
+        },
+        {
+          "kind": "number",
+          "prompt": "Qual è la pendenza in kPa/m?",
+          "options": null,
+          "stage": 2,
+          "independentInput": "10"
+        },
+        {
+          "kind": "number",
+          "prompt": "Prolunga lo stesso modello: a 4 m, quale pressione assoluta in kPa con p₀ = 100 kPa?",
+          "options": null,
+          "stage": 2,
+          "independentInput": "140"
+        }
+      ],
+      "independentDerivation": "Relative pressure10h kPa: at3m30kPa,slope10kPa/m; at4m absolute100+40=140kPa."
+    },
+    {
+      "id": "C3-M-formula",
+      "title": "Ricavare la temperatura di un gas ideale",
+      "course": "C3",
+      "format": "formula",
+      "sourcePrompt": {
+        "prompt": "Un gas ideale occupa 8,31 L a 200 kPa. Ci sono 2 mol e R vale 8,31 J/(mol · K). Cerca la temperatura assoluta.",
+        "relation": "p = n · R · T / V",
+        "target": "T",
+        "symbols": [
+          "p",
+          "V",
+          "n",
+          "R"
+        ]
+      },
+      "sourceSteps": [
+        {
+          "kind": "choice",
+          "prompt": "Qual è il simbolo dell’incognita?",
+          "options": [
+            "n",
+            "T",
+            "V"
+          ],
+          "stage": null,
+          "independentInput": "T"
+        },
+        {
+          "kind": "choice",
+          "prompt": "In p = n · R · T / V, quale operazione applichi a entrambi i membri?",
+          "options": [
+            "Dividi per V",
+            "Sottrai V",
+            "Moltiplica per V"
+          ],
+          "stage": null,
+          "independentInput": "Moltiplica per V"
+        },
+        {
+          "kind": "choice",
+          "prompt": "In pV = nRT, quale operazione applichi a entrambi i membri?",
+          "options": [
+            "Dividi per n · R",
+            "Sottrai n · R",
+            "Moltiplica per n · R"
+          ],
+          "stage": null,
+          "independentInput": "Dividi per n · R"
+        },
+        {
+          "kind": "expression",
+          "prompt": "Scrivi il membro che equivale a T usando p, V, n, R.",
+          "options": null,
+          "stage": null,
+          "independentInput": "p*V/(n*R)"
+        },
+        {
+          "kind": "number",
+          "prompt": "Quanto vale T in kelvin? Usa 1 kPa · L = 1 J.",
+          "options": null,
+          "stage": null,
+          "independentInput": "100"
+        },
+        {
+          "kind": "choice",
+          "prompt": "Come si ottiene il kelvin?",
+          "options": [
+            "J/(J/K) = K",
+            "J · (J/K) = K",
+            "(J/K)/J = K"
+          ],
+          "stage": null,
+          "independentInput": "J/(J/K) = K"
+        }
+      ],
+      "independentDerivation": "Ideal pV=nRT: multiplyV then divide nR; (200·8.31)/(2·8.31)=100K, kPa·L=J."
+    },
+    {
+      "id": "C3-M-graph",
+      "title": "Lavoro durante un’espansione",
+      "course": "C3",
+      "format": "graph",
+      "sourcePrompt": {
+        "diagram": {
+          "x": "V (L)",
+          "y": "p (kPa)",
+          "xmax": 8,
+          "ymax": 4,
+          "points": [
+            [
+              2,
+              3
+            ],
+            [
+              6,
+              3
+            ]
+          ],
+          "area": true,
+          "captions": [
+            "Il segmento descrive un’espansione da sinistra a destra.",
+            "Le proiezioni delimitano i due volumi.",
+            "Il rettangolo si estende solo dal volume iniziale a quello finale."
+          ]
+        }
+      },
+      "sourceSteps": [
+        {
+          "kind": "choice",
+          "prompt": "Quale grandezza cresce verso destra?",
+          "options": [
+            "Tempo in s",
+            "Pressione in kPa",
+            "Volume in L"
+          ],
+          "stage": 0,
+          "independentInput": "Volume in L"
+        },
+        {
+          "kind": "number",
+          "prompt": "Quanti kPa leggi nel punto a 6 L?",
+          "options": null,
+          "stage": 1,
+          "independentInput": "3"
+        },
+        {
+          "kind": "number",
+          "prompt": "Quanto aumenta il volume, in L?",
+          "options": null,
+          "stage": 1,
+          "independentInput": "4"
+        },
+        {
+          "kind": "number",
+          "prompt": "Con lavoro positivo per il gas che si espande, quanti joule vale il lavoro?",
+          "options": null,
+          "stage": 2,
+          "independentInput": "12"
+        }
+      ],
+      "independentDerivation": "Constant3kPa and volume2→6L: ΔV4L, W3·4=12J positive for expansion."
+    },
+    {
+      "id": "C4-M-formula",
+      "title": "Misurare una resistenza",
+      "course": "C4",
+      "format": "formula",
+      "sourcePrompt": {
+        "prompt": "Applichi una tensione U di 6 V a un resistore ohmico. Misuri una corrente I di 0,30 A. Cerca la resistenza.",
+        "relation": "I = U / R",
+        "target": "R",
+        "symbols": [
+          "U",
+          "I"
+        ]
+      },
+      "sourceSteps": [
+        {
+          "kind": "choice",
+          "prompt": "Qual è il simbolo dell’incognita?",
+          "options": [
+            "R",
+            "U",
+            "I"
+          ],
+          "stage": null,
+          "independentInput": "R"
+        },
+        {
+          "kind": "choice",
+          "prompt": "In I = U / R, quale operazione applichi a entrambi i membri?",
+          "options": [
+            "Moltiplica per R",
+            "Dividi per R",
+            "Sottrai R"
+          ],
+          "stage": null,
+          "independentInput": "Moltiplica per R"
+        },
+        {
+          "kind": "choice",
+          "prompt": "In I · R = U, quale operazione applichi a entrambi i membri?",
+          "options": [
+            "Moltiplica per I",
+            "Dividi per I",
+            "Dividi per U"
+          ],
+          "stage": null,
+          "independentInput": "Dividi per I"
+        },
+        {
+          "kind": "expression",
+          "prompt": "Scrivi il membro che equivale a R usando U, I.",
+          "options": null,
+          "stage": null,
+          "independentInput": "U/I"
+        },
+        {
+          "kind": "number",
+          "prompt": "Quanto vale la resistenza in ohm?",
+          "options": null,
+          "stage": null,
+          "independentInput": "20"
+        },
+        {
+          "kind": "choice",
+          "prompt": "Quale unità misura R?",
+          "options": [
+            "A/V",
+            "V · A",
+            "V/A"
+          ],
+          "stage": null,
+          "independentInput": "V/A"
+        }
+      ],
+      "independentDerivation": "I=U/R ⇒ IR=U ⇒R=U/I;6/(3/10)=20Ω, V/A=Ω."
+    },
+    {
+      "id": "C4-M-graph",
+      "title": "Un resistore con la corrente in ordinata",
+      "course": "C4",
+      "format": "graph",
+      "sourcePrompt": {
+        "diagram": {
+          "x": "U (V)",
+          "y": "I (A)",
+          "xmax": 8,
+          "ymax": 4,
+          "points": [
+            [
+              0,
+              0
+            ],
+            [
+              6,
+              3
+            ]
+          ],
+          "captions": [
+            "Il grafico si legge dalla tensione applicata alla corrente misurata.",
+            "Le guide individuano la coppia tensione–corrente.",
+            "Il triangolo confronta ampere in verticale e volt in orizzontale."
+          ]
+        }
+      },
+      "sourceSteps": [
+        {
+          "kind": "choice",
+          "prompt": "Quale coppia descrive gli assi orizzontale, verticale?",
+          "options": [
+            "A, V",
+            "V, A",
+            "V, Ω"
+          ],
+          "stage": 0,
+          "independentInput": "V, A"
+        },
+        {
+          "kind": "number",
+          "prompt": "A 6 V quanti ampere leggi?",
+          "options": null,
+          "stage": 1,
+          "independentInput": "3"
+        },
+        {
+          "kind": "number",
+          "prompt": "Qual è la pendenza in A/V?",
+          "options": null,
+          "stage": 2,
+          "independentInput": "0.5"
+        },
+        {
+          "kind": "number",
+          "prompt": "Se scambi gli assi, quale pendenza ottieni in Ω?",
+          "options": null,
+          "stage": 2,
+          "independentInput": "2"
+        }
+      ],
+      "independentDerivation": "I=(1/2)U: at6V3A,slope1/2A/V; inverse axes2V/A=2Ω."
+    },
+    {
+      "id": "C5-M-formula",
+      "title": "Distanza percorsa in un ciclo",
+      "course": "C5",
+      "format": "formula",
+      "sourcePrompt": {
+        "prompt": "Una cresta si propaga a 12 m/s. Passano 3 creste al secondo. Cerca la lunghezza d’onda (lambda).",
+        "relation": "v = lambda · f",
+        "target": "lambda",
+        "symbols": [
+          "v",
+          "f"
+        ]
+      },
+      "sourceSteps": [
+        {
+          "kind": "choice",
+          "prompt": "Qual è il simbolo dell’incognita?",
+          "options": [
+            "v",
+            "f",
+            "lambda"
+          ],
+          "stage": null,
+          "independentInput": "lambda"
+        },
+        {
+          "kind": "choice",
+          "prompt": "In v = lambda · f, quale operazione applichi a entrambi i membri?",
+          "options": [
+            "Dividi per f",
+            "Dividi per v",
+            "Moltiplica per f"
+          ],
+          "stage": null,
+          "independentInput": "Dividi per f"
+        },
+        {
+          "kind": "expression",
+          "prompt": "Scrivi il membro che equivale a lambda usando v, f.",
+          "options": null,
+          "stage": null,
+          "independentInput": "v/f"
+        },
+        {
+          "kind": "number",
+          "prompt": "Quanto distano in metri due creste successive?",
+          "options": null,
+          "stage": null,
+          "independentInput": "4"
+        },
+        {
+          "kind": "choice",
+          "prompt": "Quale rapporto restituisce metri?",
+          "options": [
+            "(m/s) · Hz",
+            "Hz/(m/s)",
+            "(m/s)/Hz"
+          ],
+          "stage": null,
+          "independentInput": "(m/s)/Hz"
+        }
+      ],
+      "independentDerivation": "v=λf ⇒ λ=v/f=12/3=4m;Hz=s⁻¹."
+    },
+    {
+      "id": "C5-M-graph",
+      "title": "Due immagini della stessa onda",
+      "course": "C5",
+      "format": "graph",
+      "sourcePrompt": {
+        "diagram": {
+          "x": "x (m)",
+          "y": "y (cm)",
+          "xmax": 8,
+          "ymax": 2,
+          "ymin": -2,
+          "points": [
+            [
+              1,
+              2
+            ],
+            [
+              5,
+              2
+            ]
+          ],
+          "wave": 4,
+          "captions": [
+            "Una fotografia dell’onda fissa il tempo e mostra punti diversi della corda.",
+            "I due segni si trovano su creste consecutive della fotografia.",
+            "Sopra vedi lo spazio; sotto lo stesso punto della corda osservato nel tempo. Confronta le scale."
+          ],
+          "comparison": {
+            "x": "t (s)",
+            "y": "y (cm)",
+            "xmax": 4,
+            "ymax": 2,
+            "ymin": -2,
+            "points": [
+              [
+                0.5,
+                2
+              ],
+              [
+                2.5,
+                2
+              ]
+            ],
+            "wave": 2
+          }
+        }
+      },
+      "sourceSteps": [
+        {
+          "kind": "choice",
+          "prompt": "Da questa fotografia quale separazione tra creste puoi leggere?",
+          "options": [
+            "Un periodo in s",
+            "Una lunghezza in m",
+            "Una frequenza in Hz"
+          ],
+          "stage": 0,
+          "independentInput": "Una lunghezza in m"
+        },
+        {
+          "kind": "number",
+          "prompt": "Qual è l’altezza a x = 1 m, in cm?",
+          "options": null,
+          "stage": 1,
+          "independentInput": "2"
+        },
+        {
+          "kind": "number",
+          "prompt": "Quanti metri separano le due creste?",
+          "options": null,
+          "stage": 1,
+          "independentInput": "4"
+        },
+        {
+          "kind": "number",
+          "prompt": "Nel secondo grafico quanti secondi passano fra due creste?",
+          "options": null,
+          "stage": 2,
+          "independentInput": "2"
+        },
+        {
+          "kind": "number",
+          "prompt": "Quanti m/s percorre la cresta, con v = lambda/T?",
+          "options": null,
+          "stage": 2,
+          "independentInput": "2"
+        }
+      ],
+      "independentDerivation": "Amplitude2cm; spatial crests1→5m soλ4m; time crests1/2→5/2s soT2s;v4/2=2m/s."
+    }
+  ],
+  "plannedCases": 20,
+  "plannedWidths": [
+    320,
+    1280
+  ],
+  "plannedConsumer": "Actual workshop forms, wrong/correct answers, per-step progress, graph phases/text data, switching-sheet progress and reset, axe/overflow; not a reader-only preview or a3D/fallback imitation.",
+  "UI": "NOT_RUN",
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "sourceMathematicalBlueprintReusedFromSha256": "2dc2622954918f070611148b6058725841a2de4bd41985399c4cd536375ce1f6"
+}
