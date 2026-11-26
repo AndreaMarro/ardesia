@@ -31,7 +31,7 @@ TASKS=[
 ('L’area da ampiezza e potenza',SCENE+'P=3/10 W e E₀=150 V/m. Quanto vale A in cm²?',100,
  'L’intensità resta30 W/m². A=P/I=(3/10)/30 m²=1/100 m². Poiché1 m²=10000 cm², l’area è100 cm². L’inversa cerca una superficie, non un lato.',
  r'A=\frac{2Z_0P}{E_0^2}\qquad A=\frac1{100}\,\mathrm{m^2}\qquad A=100\,\mathrm{cm^2}',
- '1/100 è il valore numerico in m², non in cm². Dieci cm² confonde una lunghezza con un’area;200 cm² darebbe3/5 W. Non si applica una radice per ricavare A.',
+ '1/100 è il valore numerico in m², non in cm². 10 cm² darebbe P=3/100 W, non 3/10 W; 200 cm² darebbe 3/5 W. Non si applica una radice per ricavare A.',
  'Controlla l’unità prima e dopo la conversione finale.'),
 ('Area doppia, stesso campo',SCENE+'A usa E₀=150 V/m,A=100 cm²; B mantiene E₀ e usa A=200 cm². Quanto vale P_B/P_A?',['2','1/2','4','1','0'],
  'La stessa ampiezza produce la stessa intensità30 W/m². L’area doppia intercetta potenza doppia:3/10→3/5 W, rapporto due. Qui il quadrato riguarda il campo, che non è cambiato, non l’area.',

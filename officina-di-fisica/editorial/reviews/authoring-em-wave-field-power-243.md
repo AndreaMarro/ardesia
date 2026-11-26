@@ -88,11 +88,11 @@ Procedimento d’autore: L’intensità resta30 W/m². A=P/I=(3/10)/30 m²=1/100
 
 Formule: A=\frac{2Z_0P}{E_0^2};  A=\frac1{100}\,\mathrm{m^2};  A=100\,\mathrm{cm^2}.
 
-Distrattori e controprove: 1/100 è il valore numerico in m², non in cm². Dieci cm² confonde una lunghezza con un’area;200 cm² darebbe3/5 W. Non si applica una radice per ricavare A.
+Distrattori e controprove: 1/100 è il valore numerico in m², non in cm². 10 cm² darebbe P=3/100 W, non 3/10 W; 200 cm² darebbe 3/5 W. Non si applica una radice per ricavare A.
 
 Hint: Controlla l’unità prima e dopo la conversione finale.
 
-Fonte SHA256 6924c762df034fc9f49cce95e36081f56f5938cf0ee1142cede8236b1d276e51. Candidato SHA256 2415a2d8a02bc5e6df91ca8806769c12cb04ef7c97a3fcc1071911acdffbc7a3. Skill reale C5-L06. Review distinta e human NOT_RUN.
+Fonte SHA256 6924c762df034fc9f49cce95e36081f56f5938cf0ee1142cede8236b1d276e51. Candidato SHA256 8ad0e3c2f989a61d2d3c5a1022e2fa9a7eeb76061bdefa9678ff4c3859736511. Skill reale C5-L06. Review distinta e human NOT_RUN.
 
 ## AR-u7-em-wave-field-power-07 — Area doppia, stesso campo
 
@@ -236,8 +236,8 @@ Fonte SHA256 1e6302568e0693d7dedf67e10d14268ac579bfd653571e4f1d7b9e19958e68fb. C
 
 ## Provenienza tecnica
 
-Asset SHA256 dcce17842e5d6a5b304627fbeef8aeefad2107d41891ca8a027b784407810e8e. Package file SHA256 1c5af7a187f6ba5fc985f89f51510288a742da49366bbfec0d1bbd7929fcad53. Binding file SHA256 a7cbe81a00d785154f1764eccc25a0e9f9c0090ba84dbd13e1daff310674b2d6. Strutturale SHA256 45ee57a3288c187201abb2ee17bc77e2aca6a169cefdc6d30b5bdeefea7c9693. Manifest asset-only SHA256 5861f98c6a3a01ab005ee051a6ebbc83774b240e54a16313b8c0197cece1b94c.
+Asset SHA256 dcce17842e5d6a5b304627fbeef8aeefad2107d41891ca8a027b784407810e8e. Package file SHA256 97d9dac7a524855b81c5cbfdb81c17c27f3c4a0ddf1060574849c212b4c64887. Binding file SHA256 65151d5ee8f503cb1998690ba113977b795cc76cb5bacb8f4592410f5409d266. Strutturale SHA256 b73e25ac2826e8b4bfe52a1ed3828bee55b728538e0d92bd43746c408db1c5b8. Manifest asset-only SHA256 5861f98c6a3a01ab005ee051a6ebbc83774b240e54a16313b8c0197cece1b94c.
 
 Nessun registry, ledger, runtime, checkpoint o Git ROOT modificato. Il revisore B deve leggere questi finali contro la propria primaria distinta prima del congelamento scientifico.
 
-Lettura geometrica d’autore: nel primo pannello E punta verso l’alto e B è uscente, perciò E×B punta verso destra come S. Il simbolo del campo uscente non copre le punte; le frecce indicano versi senza confrontare unità o moduli differenti. Il pannello di calcolo usa150²/750=30 W/m² e100 cm²=1/100 m². Le barre30/240/135 coordinate da origine150 rappresentano3/10,12/5,27/20 W, scala comune100 coordinate/W. Non rappresentano ampiezze di campo: la barra B è otto volte A perché cambiano sia E₀ sia A. Queste coordinate restano soltanto nella nota tecnica. XML e PNG completo effettivamente letti.
+Rilettura editoriale autore 24306: il revisore distinto ha osservato che l’opzione 10 cm² resta un’area. Ora il feedback usa la controprova P=3/100 W, non 3/10 W. Assert strutturale: solo ultimo testo/error06 e binding06 mutati; gli altri 15 record e tutte le chiavi, formule e geometrie sono identici. L’asset invariato conserva la lettura nativa reale originaria, non è stato ritaggato come nuovo replay. Edizione precedente preservata con manifest; nuova doppia assembly/import reale 16→0/16. SCI distinta e UI prodotto restano NOT_RUN dall’autore.
