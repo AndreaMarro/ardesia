@@ -21,7 +21,7 @@ TASKS=[
  'Con i parametri controllati Q è proporzionale a r⁴. Quindi Q_B/Q_A=α⁴=3. L’unica radice fisica per un rapporto di raggi positivi è la radice quarta di tre. Non serve valutarla in decimale: il controllo manuale consiste nel riportarla alla quarta e ottenere tre.',
  r'\alpha=\frac{r_B}{r_A}>0\qquad \alpha^4=3\qquad \alpha=\sqrt[4]{3}',
  'Tre porterebbe Q a 81 volte il valore iniziale; √3 la porterebbe a nove volte. I due fattori minori di uno ridurrebbero la portata invece di triplicarla.','Lascia la radice esatta e verifica la potenza richiesta dalla legge.'),
-('Mettere il diametro al posto del raggio','Un calcolo di Poiseuille usa il diametro d=2r al posto del raggio nel fattore r⁴, lasciando identici Δp,η,L. Come cambia la portata prevista rispetto al valore corretto?',
+('Mettere il diametro al posto del raggio','Un calcolo di Poiseuille usa il diametro d=2r al posto del raggio nel fattore r⁴, lasciando identici Δp>0,η,L. Come cambia la portata prevista rispetto al valore corretto?',
  ['Viene sovrastimata di un fattore 16','Viene sovrastimata di un fattore 2','Viene sovrastimata di un fattore 4','Viene sottostimata di un fattore 16','Resta identica perché entrambe sono lunghezze'],
  'Raggio e diametro hanno la stessa dimensione ma valori diversi. Sostituire d=2r nel numeratore porta (2r)⁴=16r⁴, quindi il risultato errato è sedici volte quello corretto. Il controllo dimensionale da solo non riconosce questo errore: serve il rapporto geometrico.',
  r'd=2r\qquad \frac{Q_{\rm errata}}{Q_{\rm corretta}}=\left(\frac dr\right)^4\qquad \frac{Q_{\rm errata}}{Q_{\rm corretta}}=16',

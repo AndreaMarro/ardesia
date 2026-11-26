@@ -1,0 +1,709 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "C2-Q071",
+      "kind": "question",
+      "course": "C2",
+      "section": "Legge di Poiseuille e variabili controllate",
+      "order": 71,
+      "title": "La pompa mantiene la portata",
+      "skill": "C2-L008",
+      "prerequisites": [
+        "C2-L008"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Con portata controllata non tengo fissa la pressione: Δp=R_hQ e R_h cresce come r⁻⁴. Nel rapporto restano le quattro potenze del rapporto inverso dei raggi: (3/2)⁴=81/16. Il tubo più stretto richiede una maggiore caduta, coerente con un rapporto superiore a uno."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/07e24f1d9f14e280584501d470bdf7b9d360d7882f8d9b190075f3e8438ce1cd",
+          "text": "Le sezioni circolari iniziali hanno raggi 3 mm e 2 mm nella stessa scala. Per la stessa portata, le barre della caduta di pressione hanno rapporto 81/16; le loro lunghezze condividono una scala propria, distinta da quella dei raggi."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta p=\\frac{8\\eta LQ}{\\pi r^4}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{\\Delta p_B}{\\Delta p_A}=\\left(\\frac{r_A}{r_B}\\right)^4"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{\\Delta p_B}{\\Delta p_A}=\\frac{81}{16}"
+        },
+        {
+          "type": "text",
+          "text": "16/81 inverte le prove; 9/4 usa solo il quadrato, 3/2 solo la prima potenza. Sedici sarebbe il fattore per un raggio dimezzato, non per 3 mm che diventano 2 mm."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Una pompa impone la stessa portata positiva in due tubi confrontati con lunghezza e viscosità uguali. Il raggio passa da 3 mm a 2 mm. Per fluido newtoniano incomprimibile, moto laminare stazionario sviluppato e tubi circolari rigidi aderenti, quanto vale Δp_B/Δp_A?",
+      "family": "la-pompa-mantiene-la-portata",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "81/16",
+          "16/81",
+          "9/4",
+          "3/2",
+          "16"
+        ],
+        "value": "81/16"
+      },
+      "hints": [
+        "Scrivi prima quale grandezza mantiene la pompa e poi scegli il rapporto dei raggi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "16/81 inverte le prove; 9/4 usa solo il quadrato, 3/2 solo la prima potenza. Sedici sarebbe il fattore per un raggio dimezzato, non per 3 mm che diventano 2 mm.",
+        "target": "C2-L008"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Raggio alla quarta e inverse",
+        "Resistenza, portata e conversioni",
+        "Potenza e limiti del profilo sviluppato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q072",
+      "kind": "question",
+      "course": "C2",
+      "section": "Legge di Poiseuille e variabili controllate",
+      "order": 72,
+      "title": "Viscosità e lunghezza cambiano insieme",
+      "skill": "C2-L008",
+      "prerequisites": [
+        "C2-L008"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La portata è inversamente proporzionale al prodotto ηL quando r e Δp sono controllati. Il nuovo prodotto è (1/2)·3=3/2 del precedente, quindi Q_B/Q_A=2/3. Moltiplico 9 per 2/3 e ottengo 6 mL/s: dimezzare la viscosità aiuta il flusso, ma il triplo della lunghezza ha l’effetto opposto."
+        },
+        {
+          "type": "formula",
+          "text": "Q\\propto\\frac1{\\eta L}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{Q_B}{Q_A}=\\frac{\\eta_A L_A}{\\eta_B L_B}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{Q_B}{Q_A}=\\frac23"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B=6\\,\\mathrm{mL/s}"
+        },
+        {
+          "type": "text",
+          "text": "18 mL/s considera soltanto la viscosità; 3 mL/s soltanto la lunghezza. 27/2 mL/s moltiplica per il nuovo prodotto ηL invece di usarne l’inverso. Nove ignorerebbe entrambe le variazioni."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Due prove in condizioni di Poiseuille hanno stesso raggio e stessa caduta di pressione. Nella seconda η_B=η_A/2 e L_B=3L_A. Se Q_A=9 mL/s, quanto vale Q_B in mL/s?",
+      "family": "lunghezza-e-viscosita-cambiano-insieme",
+      "answer": {
+        "type": "numeric",
+        "value": 6,
+        "unit": "mL/s",
+        "tolerance": 0
+      },
+      "hints": [
+        "Combina i due fattori nel denominatore prima di modificare la portata.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "18 mL/s considera soltanto la viscosità; 3 mL/s soltanto la lunghezza. 27/2 mL/s moltiplica per il nuovo prodotto ηL invece di usarne l’inverso. Nove ignorerebbe entrambe le variazioni.",
+        "target": "C2-L008"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Raggio alla quarta e inverse",
+        "Resistenza, portata e conversioni",
+        "Potenza e limiti del profilo sviluppato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q073",
+      "kind": "question",
+      "course": "C2",
+      "section": "Legge di Poiseuille e variabili controllate",
+      "order": 73,
+      "title": "Che cosa misura la pendenza",
+      "skill": "C2-L008",
+      "prerequisites": [
+        "C2-L008"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Una pendenza è variazione verticale divisa per quella orizzontale. Poiché Δp=R_hQ e la retta passa per l’origine, il coefficiente è la resistenza idraulica, con unità Pa·s/m³ se Q è in m³/s. Anche la geometria contribuisce a R_h: la pendenza non misura la sola viscosità senza altri dati."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta p=R_hQ"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{\\Delta(\\Delta p)}{\\Delta Q}=R_h"
+        },
+        {
+          "type": "formula",
+          "text": " [R_h]=\\mathrm{Pa\\,s/m^3}"
+        },
+        {
+          "type": "text",
+          "text": "La conduttanza sarebbe la pendenza del grafico con assi scambiati. La potenza è un prodotto, non un rapporto. La portata è una coordinata e non una proprietà costante della retta."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Un tubo di Poiseuille, a geometria e viscosità fisse, dà una retta per l’origine nel grafico con Δp in ordinata e Q in ascissa. Che grandezza misura la pendenza?",
+      "family": "scegliere-la-pendenza-pertinente",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "La resistenza idraulica R_h=Δp/Q",
+          "La conduttanza idraulica Q/Δp",
+          "La sola viscosità del liquido",
+          "La potenza dissipata Δp Q",
+          "La portata in ogni punto della retta"
+        ],
+        "value": "La resistenza idraulica R_h=Δp/Q"
+      },
+      "hints": [
+        "Leggi l’ordine degli assi prima di decidere fra resistenza e conduttanza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La conduttanza sarebbe la pendenza del grafico con assi scambiati. La potenza è un prodotto, non un rapporto. La portata è una coordinata e non una proprietà costante della retta.",
+        "target": "C2-L008"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Raggio alla quarta e inverse",
+        "Resistenza, portata e conversioni",
+        "Potenza e limiti del profilo sviluppato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q074",
+      "kind": "question",
+      "course": "C2",
+      "section": "Legge di Poiseuille e variabili controllate",
+      "order": 74,
+      "title": "Triplicare Q cambiando soltanto il raggio",
+      "skill": "C2-L008",
+      "prerequisites": [
+        "C2-L008"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Con i parametri controllati Q è proporzionale a r⁴. Quindi Q_B/Q_A=α⁴=3. L’unica radice fisica per un rapporto di raggi positivi è la radice quarta di tre. Non serve valutarla in decimale: il controllo manuale consiste nel riportarla alla quarta e ottenere tre."
+        },
+        {
+          "type": "formula",
+          "text": "\\alpha=\\frac{r_B}{r_A}>0"
+        },
+        {
+          "type": "formula",
+          "text": " \\alpha^4=3"
+        },
+        {
+          "type": "formula",
+          "text": " \\alpha=\\sqrt[4]{3}"
+        },
+        {
+          "type": "text",
+          "text": "Tre porterebbe Q a 81 volte il valore iniziale; √3 la porterebbe a nove volte. I due fattori minori di uno ridurrebbero la portata invece di triplicarla."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Nel modello di Poiseuille si mantengono uguali Δp>0, viscosità e lunghezza. Di quale fattore positivo α va moltiplicato il raggio per triplicare la portata, restando nel regime del modello?",
+      "family": "quanto-raggio-serve",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "⁴√3",
+          "3",
+          "√3",
+          "1/3",
+          "1/⁴√3"
+        ],
+        "value": "⁴√3"
+      },
+      "hints": [
+        "Lascia la radice esatta e verifica la potenza richiesta dalla legge.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre porterebbe Q a 81 volte il valore iniziale; √3 la porterebbe a nove volte. I due fattori minori di uno ridurrebbero la portata invece di triplicarla.",
+        "target": "C2-L008"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Raggio alla quarta e inverse",
+        "Resistenza, portata e conversioni",
+        "Potenza e limiti del profilo sviluppato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q075",
+      "kind": "question",
+      "course": "C2",
+      "section": "Legge di Poiseuille e variabili controllate",
+      "order": 75,
+      "title": "Mettere il diametro al posto del raggio",
+      "skill": "C2-L008",
+      "prerequisites": [
+        "C2-L008"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Raggio e diametro hanno la stessa dimensione ma valori diversi. Sostituire d=2r nel numeratore porta (2r)⁴=16r⁴, quindi il risultato errato è sedici volte quello corretto. Il controllo dimensionale da solo non riconosce questo errore: serve il rapporto geometrico."
+        },
+        {
+          "type": "formula",
+          "text": "d=2r"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{Q_{\\rm errata}}{Q_{\\rm corretta}}=\\left(\\frac dr\\right)^4"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{Q_{\\rm errata}}{Q_{\\rm corretta}}=16"
+        },
+        {
+          "type": "text",
+          "text": "Due usa la prima potenza e quattro il quadrato. La sottostima avrebbe il verso opposto, perché nel numeratore è stata inserita una lunghezza maggiore. Unità uguali non implicano numeri uguali."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Un calcolo di Poiseuille usa il diametro d=2r al posto del raggio nel fattore r⁴, lasciando identici Δp,η,L. Come cambia la portata prevista rispetto al valore corretto?",
+      "family": "diametro-inserito-al-posto-del-raggio",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Viene sovrastimata di un fattore 16",
+          "Viene sovrastimata di un fattore 2",
+          "Viene sovrastimata di un fattore 4",
+          "Viene sottostimata di un fattore 16",
+          "Resta identica perché entrambe sono lunghezze"
+        ],
+        "value": "Viene sovrastimata di un fattore 16"
+      },
+      "hints": [
+        "Sostituisci 2r prima di elevare alla quarta.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due usa la prima potenza e quattro il quadrato. La sottostima avrebbe il verso opposto, perché nel numeratore è stata inserita una lunghezza maggiore. Unità uguali non implicano numeri uguali.",
+        "target": "C2-L008"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Raggio alla quarta e inverse",
+        "Resistenza, portata e conversioni",
+        "Potenza e limiti del profilo sviluppato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q076",
+      "kind": "question",
+      "course": "C2",
+      "section": "Legge di Poiseuille e variabili controllate",
+      "order": 76,
+      "title": "Dalla resistenza misurata alla caduta",
+      "skill": "C2-L008",
+      "prerequisites": [
+        "C2-L008"
+      ],
+      "version": 3,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "R_h è espresso usando m³, perciò converto 2,5 mL/s in (5/2)·10⁻⁶ m³/s. Moltiplicando 8 per 5/2 ottengo 20 e le potenze danno 10²: 2000 Pa. Infine divido per 1000 Pa/kPa, ottenendo 2 kPa."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/07e24f1d9f14e280584501d470bdf7b9d360d7882f8d9b190075f3e8438ce1cd",
+          "text": "Nel pannello centrale Q=2,5 mL/s corrisponde a 2,5×10⁻⁶ m³/s. Con la resistenza assegnata, la caduta è 2000 Pa=2 kPa: il prefisso del volume viene convertito prima del prodotto."
+        },
+        {
+          "type": "formula",
+          "text": "Q=\\frac52\\,10^{-6}\\,\\mathrm{m^3/s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p=R_hQ"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p=2000\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p=2\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "text",
+          "text": "2000 è il coefficiente in pascal, non in kilopascal. Saltare la conversione mL→m³ introdurrebbe un fattore un milione. Dividere Q per R_h non ricostruisce una pressione e inverte la relazione assegnata."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Una prova nel regime lineare fornisce R_h=8,0×10⁸ Pa·s/m³ e Q=2,5 mL/s. Quanto vale la caduta di pressione Δp=R_hQ in kilopascal?",
+      "family": "la-caduta-misurata",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "kPa",
+        "tolerance": 0
+      },
+      "hints": [
+        "Uniforma il volume con l’unità della resistenza prima di moltiplicare.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "2000 è il coefficiente in pascal, non in kilopascal. Saltare la conversione mL→m³ introdurrebbe un fattore un milione. Dividere Q per R_h non ricostruisce una pressione e inverte la relazione assegnata.",
+        "target": "C2-L008"
+      },
+      "baseVersion": 2,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Raggio alla quarta e inverse",
+        "Resistenza, portata e conversioni",
+        "Potenza e limiti del profilo sviluppato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q077",
+      "kind": "question",
+      "course": "C2",
+      "section": "Legge di Poiseuille e variabili controllate",
+      "order": 77,
+      "title": "Una proprietà del materiale",
+      "skill": "C2-L008",
+      "prerequisites": [
+        "C2-L008"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Nella resistenza R_h=8ηL/(πr⁴), il coefficiente η entra linearmente. Se la geometria resta fissa e η raddoppia, raddoppia R_h. Pa·s identifica la viscosità dinamica, distinta dalla viscosità cinematica η/ρ che ha unità m²/s."
+        },
+        {
+          "type": "formula",
+          "text": "R_h=\\frac{8\\eta L}{\\pi r^4}"
+        },
+        {
+          "type": "formula",
+          "text": " \\eta_B=2\\eta_A"
+        },
+        {
+          "type": "formula",
+          "text": " R_{h,B}=2R_{h,A}"
+        },
+        {
+          "type": "text",
+          "text": "La densità non compare in questa relazione di resistenza. La tensione superficiale ha unità N/m. Il raggio è geometria e agisce alla quarta inversa; la velocità media non è il coefficiente materiale richiesto."
+        }
+      ],
+      "difficulty": 1,
+      "prompt": "A geometria invariata, quale proprietà del liquido espressa in Pa·s raddoppia la resistenza di Poiseuille quando raddoppia, mantenendo valide le ipotesi del modello?",
+      "family": "una-proprieta-che-raddoppia-la-resistenza",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "La viscosità dinamica η",
+          "La densità ρ",
+          "La tensione superficiale γ",
+          "La velocità media",
+          "Il raggio del tubo"
+        ],
+        "value": "La viscosità dinamica η"
+      },
+      "hints": [
+        "Cerca insieme il ruolo nella formula e l’unità Pa·s.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La densità non compare in questa relazione di resistenza. La tensione superficiale ha unità N/m. Il raggio è geometria e agisce alla quarta inversa; la velocità media non è il coefficiente materiale richiesto.",
+        "target": "C2-L008"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Raggio alla quarta e inverse",
+        "Resistenza, portata e conversioni",
+        "Potenza e limiti del profilo sviluppato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q078",
+      "kind": "question",
+      "course": "C2",
+      "section": "Legge di Poiseuille e variabili controllate",
+      "order": 78,
+      "title": "Prima dell’uso del profilo sviluppato",
+      "skill": "C2-L008",
+      "prerequisites": [
+        "C2-L008"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "All’ingresso il profilo può ancora evolvere lungo il tubo: la viscosità diffonde l’effetto della parete verso il centro. La parabola di Poiseuille vale nel tratto sviluppato, dove la forma del profilo non cambia più lungo l’asse di un tubo uniforme. Essere laminare non basta a garantire questa condizione geometrica e dinamica."
+        },
+        {
+          "type": "formula",
+          "text": "\\text{tratto sviluppato: }\\partial_xv_x(r)=0"
+        },
+        {
+          "type": "formula",
+          "text": " v(r)=v_{\\max}\\left(1-\\frac{r^2}{R^2}\\right)"
+        },
+        {
+          "type": "text",
+          "text": "Pressione nulla e densità nulla non sono requisiti del profilo. Una velocità uniforme sarebbe incompatibile con la parabola sviluppata e l’aderenza a una parete ferma. Il regime laminare può avere un tratto d’ingresso ancora in evoluzione."
+        }
+      ],
+      "difficulty": 3,
+      "prompt": "Si vuole stimare η dal profilo parabolico subito dopo un ingresso brusco in un tubo. Quale condizione va controllata in particolare, oltre a fluido newtoniano e regime laminare?",
+      "family": "tubetto-corto-appena-dopo-un-raccordo",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Che il profilo sia pienamente sviluppato nel tratto di misura",
+          "Che il tubo abbia pressione nulla ovunque",
+          "Che la velocità sia uniforme sulla sezione",
+          "Che il liquido non abbia densità",
+          "Che ogni moto laminare sia automaticamente già sviluppato"
+        ],
+        "value": "Che il profilo sia pienamente sviluppato nel tratto di misura"
+      },
+      "hints": [
+        "Distingui organizzazione laminare e completamento dello sviluppo lungo il tubo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Pressione nulla e densità nulla non sono requisiti del profilo. Una velocità uniforme sarebbe incompatibile con la parabola sviluppata e l’aderenza a una parete ferma. Il regime laminare può avere un tratto d’ingresso ancora in evoluzione.",
+        "target": "C2-L008"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Raggio alla quarta e inverse",
+        "Resistenza, portata e conversioni",
+        "Potenza e limiti del profilo sviluppato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q079",
+      "kind": "question",
+      "course": "C2",
+      "section": "Legge di Poiseuille e variabili controllate",
+      "order": 79,
+      "title": "La potenza che sostiene il flusso",
+      "skill": "C2-L008",
+      "prerequisites": [
+        "C2-L008"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Durante una durata Δt attraversa il tubo un volume ΔV=QΔt. Il lavoro netto delle pressioni è ΔpΔV; dividendo per Δt ottengo P=ΔpQ. Converto 3 kPa in 3000 Pa: il prodotto è 12·10⁻³ W, cioè 12 mW. Con velocità e quota invariate questa potenza sostiene la dissipazione meccanica."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/07e24f1d9f14e280584501d470bdf7b9d360d7882f8d9b190075f3e8438ce1cd",
+          "text": "Nel grafico finale le coordinate del rettangolo sono Q=4 mL/s e Δp=3 kPa. Il prodotto fisico è una potenza: 1 kPa·mL/s=1 mW, quindi il rettangolo corrisponde a 12 mW."
+        },
+        {
+          "type": "formula",
+          "text": "W=\\Delta p\\,\\Delta V"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta V=Q\\Delta t"
+        },
+        {
+          "type": "formula",
+          "text": " P=\\Delta p\\,Q"
+        },
+        {
+          "type": "formula",
+          "text": " P=12\\,10^{-3}\\,\\mathrm W"
+        },
+        {
+          "type": "formula",
+          "text": " P=12\\,\\mathrm{mW}"
+        },
+        {
+          "type": "text",
+          "text": "0,012 è il coefficiente in watt, non in milliwatt. Una somma fra pressione e portata non è una potenza. Δp/Q è la resistenza idraulica: il prodotto e il rapporto hanno ruoli e unità diversi."
+        }
+      ],
+      "difficulty": 3,
+      "prompt": "Un tubo orizzontale dissipativo a pareti ferme trasporta Q=4,0×10⁻⁶ m³/s con caduta di pressione Δp=3,0 kPa fra sezioni uguali. In stato stazionario, senza variazioni di energia cinetica media o quota, quale potenza meccanica fornisce questa differenza di pressione? Rispondi in mW.",
+      "family": "potenza-fornita-dal-salto-di-pressione",
+      "answer": {
+        "type": "numeric",
+        "value": 12,
+        "unit": "mW",
+        "tolerance": 0
+      },
+      "hints": [
+        "Parti dal lavoro delle pressioni su un volume, poi passa al tempo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "0,012 è il coefficiente in watt, non in milliwatt. Una somma fra pressione e portata non è una potenza. Δp/Q è la resistenza idraulica: il prodotto e il rapporto hanno ruoli e unità diversi.",
+        "target": "C2-L008"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Raggio alla quarta e inverse",
+        "Resistenza, portata e conversioni",
+        "Potenza e limiti del profilo sviluppato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q080",
+      "kind": "question",
+      "course": "C2",
+      "section": "Legge di Poiseuille e variabili controllate",
+      "order": 80,
+      "title": "Pressioni uguali in un tubo passivo",
+      "skill": "C2-L008",
+      "prerequisites": [
+        "C2-L008"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Per un tubo finito con raggio e viscosità positivi, R_h è positiva e finita. La differenza Δp è zero, dunque Q=Δp/R_h=0. Questo è il risultato stazionario del modello passivo: non descrive un transitorio iniziale né un trascinamento da pareti mobili, esclusi dall’enunciato."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta p=0"
+        },
+        {
+          "type": "formula",
+          "text": " R_h>0"
+        },
+        {
+          "type": "formula",
+          "text": " Q=\\frac{\\Delta p}{R_h}"
+        },
+        {
+          "type": "formula",
+          "text": " Q=0"
+        },
+        {
+          "type": "text",
+          "text": "Una portata orientata non nulla richiederebbe una forzante presente nel bilancio. Una portata infinita non segue da una resistenza finita positiva. La legge collega esplicitamente Q alla differenza di pressione, non alle pressioni assolute prese separatamente."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Un tubo circolare orizzontale, rigido e a pareti ferme contiene un liquido newtoniano. Nel limite stazionario di Poiseuille non ci sono pompe interne né altre forzanti. Se le pressioni statiche ai due estremi sono uguali, quale portata netta Q prevede il modello?",
+      "family": "pressioni-ai-due-estremi-uguali",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Q=0",
+          "Q necessariamente positiva e non nulla",
+          "Q necessariamente negativa e non nulla",
+          "Una portata infinita",
+          "Q non dipende mai dalle pressioni"
+        ],
+        "value": "Q=0"
+      },
+      "hints": [
+        "Controlla che il denominatore sia finito e positivo prima di sostituire Δp=0.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Una portata orientata non nulla richiederebbe una forzante presente nel bilancio. Una portata infinita non segue da una resistenza finita positiva. La legge collega esplicitamente Q alla differenza di pressione, non alle pressioni assolute prese separatamente.",
+        "target": "C2-L008"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Raggio alla quarta e inverse",
+        "Resistenza, portata e conversioni",
+        "Potenza e limiti del profilo sviluppato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "07e24f1d9f14e280584501d470bdf7b9d360d7882f8d9b190075f3e8438ce1cd",
+      "name": "cric-c2-l008-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTgxMCIgdmlld0JveD0iMCAwIDY0MCAxODEwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyIgZm9udC1mYW1pbHk9InN5c3RlbS11aSxzYW5zLXNlcmlmIj48dGl0bGUgaWQ9InRpdGxlIj5RdWFydGEgcG90ZW56YSwgdW5pdMOgIGUgcG90ZW56YSBtZWNjYW5pY2E8L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5SYWdnaSBkaSBkdWUgdHViaSBlIGNhZHV0ZSBhbGxhIHN0ZXNzYSBwb3J0YXRhLCBjb252ZXJzaW9uZSBkaSBwb3J0YXRhIGUgcmV0dGFuZ29sbyBwcmVzc2lvbmUtcG9ydGF0YSBwZXIgbGEgcG90ZW56YS48L2Rlc2M+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxODEwIiBmaWxsPSJ3aGl0ZSIvPjx0ZXh0IHg9IjM1IiB5PSI0OCIgZm9udC1zaXplPSIyNCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5JbCBjb250cm9sbG8gY2FtYmlhIGlsIHJhcHBvcnRvPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSIxMTAiIGZvbnQtc2l6ZT0iMjEiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+MSDCtyBTdGVzc2EgcG9ydGF0YSwgcmFnZ2kgZGl2ZXJzaTwvdGV4dD48Y2lyY2xlIGN4PSIxODAiIGN5PSIyNTAiIHI9IjkwIiBmaWxsPSIjZDllY2YxIi8+PGNpcmNsZSBjeD0iNDQwIiBjeT0iMjUwIiByPSI2MCIgZmlsbD0iI2Q5ZWNmMSIvPjxsaW5lIHgxPSIxODAiIHkxPSIyNTAiIHgyPSIyNzAiIHkyPSIyNTAiIHN0cm9rZT0iIzYwNzM4MyIgc3Ryb2tlLXdpZHRoPSIyIi8+PGxpbmUgeDE9IjQ0MCIgeTE9IjI1MCIgeDI9IjUwMCIgeTI9IjI1MCIgc3Ryb2tlPSIjNjA3MzgzIiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSIxNzAiIHk9IjM3NSIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9Im1pZGRsZSI+cl9BID0gMyBtbTwvdGV4dD48dGV4dCB4PSI0NDUiIHk9IjM3NSIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9Im1pZGRsZSI+cl9CID0gMiBtbTwvdGV4dD48dGV4dCB4PSIzNSIgeT0iNDU1IiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPs6UcF9BPC90ZXh0PjxyZWN0IHg9IjE3MCIgeT0iNDMwIiB3aWR0aD0iNjQiIGhlaWdodD0iMjgiIGZpbGw9IiMzZDc3OTEiLz48dGV4dCB4PSIzNSIgeT0iNTM1IiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPs6UcF9CPC90ZXh0PjxyZWN0IHg9IjE3MCIgeT0iNTEwIiB3aWR0aD0iMzI0IiBoZWlnaHQ9IjI4IiBmaWxsPSIjOTg2YzM1Ii8+PHRleHQgeD0iMzUiIHk9IjYwMCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij7OlHBfQiAvIM6UcF9BID0gODEvMTY8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjcxMCIgZm9udC1zaXplPSIyMSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij4yIMK3IFByaW1hIGxlIHVuaXTDoCwgcG9pIGlsIHByb2RvdHRvPC90ZXh0Pjx0ZXh0IHg9Ijc1IiB5PSI4MDAiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+USA9IDIsNSBtTC9zPC90ZXh0Pjx0ZXh0IHg9Ijc1IiB5PSI4NjAiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+USA9ICg1LzIpIMOXIDEw4oG74oG2IG3Csy9zPC90ZXh0Pjx0ZXh0IHg9Ijc1IiB5PSI5NDAiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+Ul9oID0gOCDDlyAxMOKBuCBQYcK3cy9twrM8L3RleHQ+PHRleHQgeD0iNzUiIHk9IjEwMjAiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+zpRwID0gMjAwMCBQYSA9IDIga1BhPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSIxMTUwIiBmb250LXNpemU9IjIxIiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjMgwrcgVW4gcmV0dGFuZ29sbyBkaSBwb3RlbnphPC90ZXh0PjxsaW5lIHgxPSIxNTAiIHkxPSIxNjIwIiB4Mj0iMTUwIiB5Mj0iMTI4MCIgc3Ryb2tlPSIjNjA3MzgzIiBzdHJva2Utd2lkdGg9IjIiLz48bGluZSB4MT0iMTMwIiB5MT0iMTYwMCIgeDI9IjUzMCIgeTI9IjE2MDAiIHN0cm9rZT0iIzYwNzM4MyIgc3Ryb2tlLXdpZHRoPSIyIi8+PHJlY3QgeD0iMTUwIiB5PSIxMzYwIiB3aWR0aD0iMjAwIiBoZWlnaHQ9IjI0MCIgZmlsbD0iI2Q5ZWNmMSIvPjxsaW5lIHgxPSIxNTAiIHkxPSIxMzYwIiB4Mj0iMzUwIiB5Mj0iMTM2MCIgc3Ryb2tlPSIjNjA3MzgzIiBzdHJva2Utd2lkdGg9IjIiLz48bGluZSB4MT0iMzUwIiB5MT0iMTM2MCIgeDI9IjM1MCIgeTI9IjE2MDAiIHN0cm9rZT0iIzYwNzM4MyIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iNTUiIHk9IjEyNjAiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+zpRwIChrUGEpPC90ZXh0Pjx0ZXh0IHg9IjcwIiB5PSIxMzcwIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjM8L3RleHQ+PHRleHQgeD0iMTIwIiB5PSIxNjMwIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjA8L3RleHQ+PHRleHQgeD0iMzQ1IiB5PSIxNjMwIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjQ8L3RleHQ+PHRleHQgeD0iNTAwIiB5PSIxNjY1IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5RIChtTC9zKTwvdGV4dD48dGV4dCB4PSIxODUiIHk9IjE1MDAiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+MTIgbVc8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjE3NDAiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+MSBrUGEgw5cgMSBtTC9zID0gMSBtVzwvdGV4dD48L3N2Zz4K"
+    }
+  ]
+}
