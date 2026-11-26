@@ -1,0 +1,10 @@
+{
+  "operation": "first fresh/saved persistence",
+  "exitCode": 1,
+  "completedFamilies": 4,
+  "failingFamily": "magnetic-flux-234",
+  "reason": "Python integer key 3 in lessonReference.specialCasePrimarySkill becomes string 3 in JSON; fresh != saved although record identity succeeds",
+  "correction": "Use stable string metadata key before serializing; no candidate, mathematical model, signature or source change",
+  "scientificFailure": false,
+  "retest": "PENDING"
+}

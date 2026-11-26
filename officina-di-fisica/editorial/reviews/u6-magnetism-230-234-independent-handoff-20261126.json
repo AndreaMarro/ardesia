@@ -1,0 +1,179 @@
+{
+  "schemaVersion": "1.0.0",
+  "scope": "independent scientific and pedagogical AI review A230–234 by B, separate from authoring B235–239",
+  "primaryBeforeCandidates": {
+    "path": "editorial/reviews/u6-magnetism-induction-230-234-primary-source-only.md",
+    "sha256": "51395bd462210eea741c8535d111ebf94686590467d5821825834e6e8668f91d",
+    "commit": "4fcc49cee05f35b838084471fe41bf5babc83f8f",
+    "exposure": "none before prompt-only primary; source-first model functions frozen and genuinely executed before opening candidates; oracle adapters and report framework written after final reading"
+  },
+  "numericalModelsBeforeCandidateKeys": {
+    "sha256": "e2acf441bb9b7fc3e67c2bc103e6dce9c9790b571610e6838da30c3debbcba4b",
+    "commit": "6da7f76086995a8297ac10bfe608354c6a77a91b",
+    "astIdentityWithFinalNumericalHelpers": "PASS_actual_target"
+  },
+  "source": {
+    "ref": "5cfbdcb055ba3ba136f97fb56e997f06e6cf3605",
+    "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U6-05.json",
+    "sha256": "383a0881e644ab8d95bde40b9b3b3a748eaf0baaeaab941e895077251fd087fe"
+  },
+  "families": [
+    {
+      "batch": "force-current-wire-230",
+      "reviewedCandidateCommit": "b3e15de8c92ed04ae12fcf83a41dc581b480a196",
+      "packageSha256": "1b84eb48f67e15465f23e1d9a7c78cfd5bdaa568e13c38edebb5044bab01b2e8",
+      "bindingsSha256": "6bf66128427c3566c3bb2ad81c2487025ef48b483ded9f0261aca87a72be56a0",
+      "acceptedByIndependentVerifier": 16,
+      "packetMutationCases": 29,
+      "verifierSha256": "68eb9b281c88778afa838d18811918db8ac8aa31e2532df0dfa7ef3e5779cb0c"
+    },
+    {
+      "batch": "magnetic-circle-radius-231",
+      "reviewedCandidateCommit": "1e4dbef27eb0d7e6046e109328081eb974578a21",
+      "packageSha256": "ff8fbc79bb58db0976ce3bcf6d5219b2976cf9a7c84c25e7b0f3aae779ab5848",
+      "bindingsSha256": "133f7cb307de69e3aa53ccc1171ed9eb4b0e2420ccea0985616fa220f0782c91",
+      "acceptedByIndependentVerifier": 16,
+      "packetMutationCases": 29,
+      "verifierSha256": "7bcc0b4fdb48a7bff2f59f61dad29f25c147b5ac33a070d5813c8069299f3ffd"
+    },
+    {
+      "batch": "accelerated-magnetic-radius-232",
+      "reviewedCandidateCommit": "1116dd5cb24dc759e4b3882e3b433f29ac83748c",
+      "packageSha256": "19706c07743154f6c3d1f1a86deaf82bc603c0687630672811f5398de279e596",
+      "bindingsSha256": "5259751d3e9e9fc9ae826d560f16b30807013a52cb94fe857eeda5cefc6cb850",
+      "acceptedByIndependentVerifier": 16,
+      "packetMutationCases": 29,
+      "verifierSha256": "1c36cbb5b13191304e833e838ec111f20ef0fc39fe405da9bda811950a680395"
+    },
+    {
+      "batch": "magnetic-orbit-period-233",
+      "reviewedCandidateCommit": "31face2d00ff2aa172edef0f5ff3f5e58e16dc1c",
+      "packageSha256": "9fe3b66cc2ceb9377e9fcacf205ed5317ecde3133803fea74aa8e06b19a6b410",
+      "bindingsSha256": "a0f39a1cfc3340c5bd7f4e14d841f14e96cc06011e65519471d60888f8c006e8",
+      "acceptedByIndependentVerifier": 16,
+      "packetMutationCases": 29,
+      "verifierSha256": "56d9d27a2869cc509b7cb44be60788230a460529393571e8d106755686cf06e0"
+    },
+    {
+      "batch": "magnetic-flux-234",
+      "reviewedCandidateCommit": "022df919c10dcdf159007018cf0ce0adb089f33e",
+      "packageSha256": "190ae80c9db40b516607382f819775962e7d610ec626f7aeabd20b5a4328ca35",
+      "bindingsSha256": "f3ac740476518a32da1a99c6bcb6f6058f3f2fb5ecc6e9c16ad48f2cb16c29ab",
+      "acceptedByIndependentVerifier": 16,
+      "packetMutationCases": 29,
+      "verifierSha256": "f41f80fa28c967a026fbf0777639ff6f44df8d49d3aed7a289de4aff62be938f"
+    }
+  ],
+  "results": {
+    "records": 80,
+    "exactOracle": 53,
+    "AIConceptual": 27,
+    "targetTests": 18,
+    "targetTerminalExit": 0,
+    "targetElapsedSeconds": 4.8776490688323975,
+    "packetMutationsWithRenewedBindingsAndTokens": 145,
+    "wrongKeysAllRecords": 80,
+    "constitutiveFaults": 5,
+    "inverseFaults": 5,
+    "finiteExactGuardAssertions": 1360,
+    "hypothesis": {
+      "acceleration": 40,
+      "calibration": 40,
+      "circle": 40,
+      "flux": 40,
+      "period": 40,
+      "wire": 40
+    },
+    "invalidCalibrationAssertions": 30,
+    "freshAndSavedAssertRecordIdentity": "PASS_actual_target",
+    "sourceGitHashes": 80,
+    "fullIndependentXMLAndNativeRead": 5,
+    "unresolvedFindings": 0
+  },
+  "findingsClosed": [
+    {
+      "id": "AR-u6-magnetic-circle-radius-03",
+      "finalRef": "1e4dbef27eb0d7e6046e109328081eb974578a21",
+      "reread": "Only initial equal-velocity forces are opposite; exact quarter-orbit counterexample checked. Fifteen other records and SVG unchanged."
+    },
+    {
+      "id": "AR-u6-magnetic-flux-09",
+      "finalRef": "022df919c10dcdf159007018cf0ce0adb089f33e",
+      "reread": "Wrong B=Phi/(2A) reconstructs BA=Phi/2. Fifteen other records and SVG unchanged."
+    }
+  ],
+  "negativeHistory": [
+    {
+      "path": "editorial/reviews/u6-magnetism-230-234-initial-negative-20261126.json",
+      "kind": "fresh/saved JSON metadata integer-key serialization mismatch, corrected only verifier metadata key; no mathematical or candidate mutation"
+    },
+    {
+      "path": "editorial/reviews/u6-magnetism-230-234-target-initial.log",
+      "kind": "actual exit1: test harness used wrong audit case name and parsed empty MODELS initializer instead of subsequent literal subscript assignments; corrected test harness only; final actual18PASS"
+    }
+  ],
+  "exactLiteralDependency": {
+    "path": "tools/corpus_engineering/exact_arithmetic_literals.py",
+    "sha256": "b581aec428c4f4a8118e8ec1713447f758af3d20e6c1b38bf39a605662e141de",
+    "ownership": "Root canonical dependency b0651fe, unmodified and excluded from reviewer authorship"
+  },
+  "boundaries": {
+    "candidateBytesModifiedByReviewer": false,
+    "candidateAuthoringImports": false,
+    "rootFilesEdited": false,
+    "rootIntegratedIdentity": "PENDING_ROOT",
+    "canonicalImport": "PENDING_ROOT",
+    "productUI": "NOT_RUN",
+    "humanApproval": "NOT_RUN",
+    "publication": "DRAFT",
+    "registryCredit": "NONE_FROM_THIS_HANDOFF",
+    "SVGGuard": "Freezes independently derived coordinates and reread quantity labels; not a generic graphic semantics parser. Circle native retains actual old author ref on unchanged SVG, without retag."
+  },
+  "files": {
+    "editorial/reviews/accelerated-magnetic-radius-232-independent-mutations.json": "e794942e77ba21ebdc8c4ee7b89bbc28bbf1deba34bbc48cafb6e837ac6b429c",
+    "editorial/reviews/accelerated-magnetic-radius-232-independent-note.md": "383116d618edb2e5e3b8da0b8f477b6e2d16481371ad58a2d66ab7562d6c57b8",
+    "editorial/reviews/accelerated-magnetic-radius-232.json": "dd4cf15acfc1653012ec7d94936c64342e7f26372a4815dc7c613f09ed4b4cf4",
+    "editorial/reviews/force-current-wire-230-independent-mutations.json": "81b7ad86ab1e81bcea0b9cfea77dbc75d5d57661d748e4e8515e5a9fa77d038c",
+    "editorial/reviews/force-current-wire-230-independent-note.md": "2a17ae8890df77296e926da5dbb50b44c842d143b844f0c78ca0755c5871f343",
+    "editorial/reviews/force-current-wire-230.json": "a122a1f22d9a55bdbf60ebfebb4be0acb8aff1bc8e29a859b78af56361f39244",
+    "editorial/reviews/magnetic-circle-radius-231-independent-mutations.json": "49ce3f0e843ea80751794fad883eaa449942eb71cdb0bbdb94a9ae7160d9e5b6",
+    "editorial/reviews/magnetic-circle-radius-231-independent-note.md": "9b70adb598cb2dfe6e5ae28f203e6315d2bbea2d1b3a1506e58849711b7684bb",
+    "editorial/reviews/magnetic-circle-radius-231.json": "c908ae4051b2411c2278b611057d65a4388282804f2936ca971f1317b6cfa960",
+    "editorial/reviews/magnetic-flux-234-independent-mutations.json": "75f8157520e8972fb67e51efc60a517d384e802abbb5237420083b94fad2fcf5",
+    "editorial/reviews/magnetic-flux-234-independent-note.md": "27902591df234cce2d3637c10f58db372a24f3418759e1303968c9f4163aebf5",
+    "editorial/reviews/magnetic-flux-234.json": "58e58c7345f3907f4d1da446f0ce817ff4243dd31a29a491c4018d5f677e83a2",
+    "editorial/reviews/magnetic-orbit-period-233-independent-mutations.json": "3c99a0cc6e7eba92902cf30e7f811cb168f167a51d0b69d580db64fe392be271",
+    "editorial/reviews/magnetic-orbit-period-233-independent-note.md": "da10c237f0b4f928fc80f766217e938b6ab92078d581a49bec3fbac399565635",
+    "editorial/reviews/magnetic-orbit-period-233.json": "a0aee4582108bd1c82e7ba04813f73f61629e298d69b0982908f5593bf780986",
+    "editorial/reviews/u6-magnetism-230-234-independent-models-pre-candidates-20261126.json": "369cb58c1cee97f3c16262bcf07f987587a580ea1e1c62ae7ad87a9370a1191d",
+    "editorial/reviews/u6-magnetism-230-234-independent-models.py": "e2acf441bb9b7fc3e67c2bc103e6dce9c9790b571610e6838da30c3debbcba4b",
+    "editorial/reviews/u6-magnetism-230-234-initial-negative-20261126.json": "eea44d7f302a906346533a1d8432ca83a2c2cffb75100a62e219a0ef8e424e03",
+    "editorial/reviews/u6-magnetism-230-234-svg-independent-evidence/accelerated-magnetic-radius-full.png": "2b11bb4ccecebf60582daffed2eb82065f9d47254a72f67784452f1353649b2d",
+    "editorial/reviews/u6-magnetism-230-234-svg-independent-evidence/accelerated-magnetic-radius-render.json": "ac3d5f561536bf1f4126470dfbf9f26de17ed676a19272e7894f16d42bf734b2",
+    "editorial/reviews/u6-magnetism-230-234-svg-independent-evidence/accelerated-magnetic-radius-terminal.json": "4325a02bcfc60a7e4368f636247d68017ffcc0f3da3202ead185c1b24617c46b",
+    "editorial/reviews/u6-magnetism-230-234-svg-independent-evidence/force-current-wire-full.png": "7dcf4e6978cf4ed70f19c57d628ac96a8e5773437600ff2dc7fe64680c67497b",
+    "editorial/reviews/u6-magnetism-230-234-svg-independent-evidence/force-current-wire-render.json": "d864375c2210e344c78c62c6cb93a6871d52068183b0966c2d7cf2dd71610a47",
+    "editorial/reviews/u6-magnetism-230-234-svg-independent-evidence/force-current-wire-terminal.json": "b48e2f43f7691404d32577bde78454e0a260d233f83ac0b479c4300bf2bc22e5",
+    "editorial/reviews/u6-magnetism-230-234-svg-independent-evidence/magnetic-circle-radius-full.png": "d208fae26f6301b1b4e4da5212d67726d1340fba73702d1ceabcd3b54c2a25db",
+    "editorial/reviews/u6-magnetism-230-234-svg-independent-evidence/magnetic-circle-radius-render.json": "a69e1c44c97f511e2f1287c80e9b77d931c9fcb65e6f47b1d4c64538e7dc90dd",
+    "editorial/reviews/u6-magnetism-230-234-svg-independent-evidence/magnetic-circle-radius-terminal.json": "7950b882f171011641aaf1217ed23a3adf9e4a87face398ee8f523069cd3620f",
+    "editorial/reviews/u6-magnetism-230-234-svg-independent-evidence/magnetic-flux-full.png": "f96bc7feefbb20044488c8c4df4f289a3b9190f8a10d855d04d298aa64b2a8a7",
+    "editorial/reviews/u6-magnetism-230-234-svg-independent-evidence/magnetic-flux-render.json": "fe77af520dec5c8ab564360d19e412f559d0dbfdbfcd7d0aefe96a8850999a36",
+    "editorial/reviews/u6-magnetism-230-234-svg-independent-evidence/magnetic-flux-terminal.json": "5c1a77dfd4bee2f38fd2d77298ab8b9cf56dd43773e9ed5a2e02b66388720f1a",
+    "editorial/reviews/u6-magnetism-230-234-svg-independent-evidence/magnetic-orbit-period-full.png": "4b8c407c56b5f45a13a414fe91499a06af9d4fccc939ad9c72631d0a11574896",
+    "editorial/reviews/u6-magnetism-230-234-svg-independent-evidence/magnetic-orbit-period-render.json": "e0260f0cca74004643a3e359a9b9dfc5bfc587aa0b06db8715a559450c4ff1c5",
+    "editorial/reviews/u6-magnetism-230-234-svg-independent-evidence/magnetic-orbit-period-terminal.json": "5ebabc9e1292be5b7aee7028221a3d7ce6275baddd37afc75b4425dd444a6990",
+    "editorial/reviews/u6-magnetism-230-234-svg-independent-evidence/native-svg-producer.mjs": "9c245cab5b7cbca6711093ca68c75ff02adb8bb196fb4fc8556d33968f1a5cf8",
+    "editorial/reviews/u6-magnetism-230-234-target-final.json": "3f1c85e5337e951a4a0e71a7271b6bcc7383df95f0e51f0efd0cd43a5a39f096",
+    "editorial/reviews/u6-magnetism-230-234-target-final.log": "2265676157200e38420325f2d6ba734b3b24c1fd86fb2ed0de3aa51e3d61b2a3",
+    "editorial/reviews/u6-magnetism-230-234-target-initial.json": "b69c08238a208a2fa1d97b5b25c1b395eeed591a1cbbda509e304795a6123972",
+    "editorial/reviews/u6-magnetism-230-234-target-initial.log": "12726adfdbde8bd825936363a33cfbfb4935b911c60869aa886727e2563df232",
+    "editorial/reviews/u6-magnetism-induction-230-234-primary-source-only.md": "51395bd462210eea741c8535d111ebf94686590467d5821825834e6e8668f91d",
+    "tests/corpus/test_u6_magnetism_230_234_independent.py": "f90d6de2453e752a1f63f209484ed5c2b6be0ea4d9e2bf926efc7f32a144329c",
+    "tools/corpus_engineering/accelerated_magnetic_radius_verifier.py": "1c36cbb5b13191304e833e838ec111f20ef0fc39fe405da9bda811950a680395",
+    "tools/corpus_engineering/force_current_wire_verifier.py": "68eb9b281c88778afa838d18811918db8ac8aa31e2532df0dfa7ef3e5779cb0c",
+    "tools/corpus_engineering/magnetic_circle_radius_verifier.py": "7bcc0b4fdb48a7bff2f59f61dad29f25c147b5ac33a070d5813c8069299f3ffd",
+    "tools/corpus_engineering/magnetic_flux_verifier.py": "f41f80fa28c967a026fbf0777639ff6f44df8d49d3aed7a289de4aff62be938f",
+    "tools/corpus_engineering/magnetic_orbit_period_verifier.py": "56d9d27a2869cc509b7cb44be60788230a460529393571e8d106755686cf06e0"
+  }
+}
