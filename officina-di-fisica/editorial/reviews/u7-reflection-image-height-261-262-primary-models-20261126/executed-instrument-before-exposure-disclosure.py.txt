@@ -1,0 +1,6 @@
+from tools.corpus_engineering.reflection_image_height_review_models import primary_only_derivations
+out=primary_only_derivations()
+assert sum(map(len,out.values()))==32
+for family,rows in out.items():
+ for n,value in rows.items():print(f'{family}-{n:02}: {value}',flush=True)
+print('32 independent source-only model derivations completed; candidate exposure NONE',flush=True)

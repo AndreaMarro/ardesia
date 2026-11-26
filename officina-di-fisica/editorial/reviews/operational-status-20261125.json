@@ -1,28 +1,29 @@
 {
   "schemaVersion": "1.0.0",
-  "observedAt": "2026-11-26T18:11:31.188988+00:00",
-  "snapshotHead": "42049bf1f7bafe6385f8d9569fe3b92936966757",
+  "observedAt": "2026-11-26T18:28:47.243518+00:00",
+  "snapshotHead": "23f3ff2bd9dfa5700f7e71acdd3a3d12c08fbab5",
   "canonicalHead": "7c29ccc18ad3b42ceecfca509ef57f786bd2c496",
   "mandate": "INCOMPLETE",
   "questions": {
     "accounted": 4606,
-    "scientificallyReviewed": 3952,
-    "scientificallyUnreviewed": 654,
+    "scientificallyReviewed": 4000,
+    "scientificallyUnreviewed": 606,
     "registeredDrafts": 3792,
     "compiledDraftsLocally": 3632,
     "compiledCandidateFullyLocallyValidated": false,
     "canonicalHistoricalRevisedDrafts": 3312,
-    "newRootAcceptanceReceipt": "editorial/reviews/u7-02-root-integration-20261126/receipt.json",
+    "newRootAcceptanceReceipt": "editorial/reviews/u7-03-root-integration-20261126/receipt.json",
     "compiledCandidateFullyRemotelyValidated": true,
     "unreviewedBySource": {
-      "Ardesia": 48,
+      "Ardesia": 0,
       "Cric": 606
     },
     "newRootAcceptanceReceipts": [
-      "editorial/reviews/u7-01-root-integration-20261126/receipt.json",
-      "editorial/reviews/u7-02-root-integration-20261126/receipt.json"
+      "editorial/reviews/u7-02-root-integration-20261126/receipt.json",
+      "editorial/reviews/u7-03-root-integration-20261126/receipt.json"
     ],
-    "registrationPendingQuestions": 160
+    "registrationPendingQuestions": 208,
+    "fullArdesiaIdAudit": "editorial/reviews/u7-03-root-integration-20261126/ardesia4000-id-reconciliation.json"
   },
   "activities": {
     "accounted": 385,
@@ -123,14 +124,14 @@
     "new160ProductUI": "PENDING_REMOTE",
     "runId": 45873357486,
     "headSha": "42049bf1f7bafe6385f8d9569fe3b92936966757",
-    "state": "IN_PROGRESS_LAST_OBSERVED_ETL_AFTER_BROWSER_STAGE",
+    "state": "IN_PROGRESS_FULL_TRACKED_TEST_SUITE_AFTER_ETL_AND_COEXISTENCE_PASS",
     "registrySha256": "62c195d8b6ab1f4ddbac1af2ada5ad834656943db19c85bb195f8742d0dcdb2c",
-    "scientificQuestionsPendingRegistryActivation": 160,
+    "scientificQuestionsPendingRegistryActivation": 208,
     "previewRequestPin": "DEFERRED_UNTIL3792_ADOPTION_BEFORE_PR_AVOIDS_DUPLICATE_PRODUCER"
   },
-  "nextScientificAcceptanceId": "AR-u7-lens-magnification-01",
-  "nextNewAuthoringId": "AR-u7-lens-magnification-01",
-  "assignments": "U7-02 all160 independently reviewed and Root tested/imported; registration pending3792 adoption. U7-03 A260/B261262 authoring and peer models in isolated worktrees. Then54 assigned Cric606 cohorts; individual baseVersion and93 exam controls preserved.",
+  "nextScientificAcceptanceId": "C1-Q001",
+  "nextNewAuthoringId": "C1-Q001",
+  "assignments": "All4000 Ardesia independently reviewed and Root tested/imported. Pending registry208=U702160+U70348, do not redo. Cric606 source-only cross-primaries and existing assembler extension active;54 cohorts assigned.",
   "governance": {
     "publication": "DEFAULT_DENY",
     "humanApproval": "NOT_RUN",
@@ -216,7 +217,7 @@
     "schemaVersion": "1.0.0"
   },
   "lastPublicRootHeadObserved": "4a15046fda85be6904df29031cc2aa89a0c17139",
-  "nextRegistrationId": null,
+  "nextRegistrationId": "AR-u7-radioactive-survivors-01",
   "adoptionTransportIndependentReview": "PASS_LIMITED_7_TEMP_ONLY_PROBES_NO_NEW_CREDIT",
   "clientDate": "2026-11-26",
   "preparation3472": {
@@ -258,8 +259,8 @@
     "initialActivityAttributionCorrection": "Earlier adiabatica attribution was an inference before scoped audit; actual complete audit localizes interference formulas9/11. No original formula or event evidence removed.",
     "rowCorrection": "Two equalities split into shorter explicit algebra rows; same values/16inputs/8SVGs, independent review pending.",
     "newActivityCredits": 0,
-    "finalAuthorCommit": "4a6f56bc5f60b676f3efab89973022358aa1b729",
-    "finalCandidateRuntime": "d94b19e02f9bbe74c75080dd8df74082bc80bc2ab2fa4c1508be6692b38b58f3",
+    "finalAuthorCommit": "47984189654c7e3ce62e22265a1e54f5b4af8ad7",
+    "finalCandidateRuntime": "0dee1aae03c52966051a7fe41347a1ea937f257127c0b402568677b4c7f779a8",
     "authorGeometryContracts": {
       "fluidTests": 4,
       "fieldHeatWaveTests": 7,
@@ -277,7 +278,7 @@
       "scope": "Limited guides/reading/formulas only, original17geometry not closed; next epochb2 requires new proof."
     },
     "finalGeometryIndependentReview": "PENDING_NEW_ACTUAL_REPLAY_NO_ACTIVITY_CREDIT",
-    "actualCanaryFinding": "Three actual b2 findings retained: network node label masks inlet tip; E-times10 masks true/zoom tips in TOP; v/B labels mask Lorentz tips. Author corrections frozen separately; no independent new-epoch PASS yet."
+    "actualCanaryFinding": "Four immutable b2 negatives: network, electric, Lorentz and Echo. Source corrections separately frozen in479; latest Echo physical7PASS1.479s, independent full UI remains pending. No new activity credit."
   },
   "historicalFailedPreparations": [
     {
@@ -295,5 +296,14 @@
     "editorial/assignments/u7-02-v1.json",
     "editorial/assignments/u7-03-v1.json",
     "editorial/assignments/cric-606-v1.json"
-  ]
+  ],
+  "cricAssemblerExtension": {
+    "commit": "23f3ff2bd9dfa5700f7e71acdd3a3d12c08fbab5",
+    "runtimeChanged": false,
+    "tests": 4,
+    "seconds": 1.875,
+    "result": "PASS",
+    "scope": "Mixed original versions actual importer and legacy240 byte equivalence; source family/difficulty and protected exam retained; no science credit",
+    "independentTechnicalReview": "PENDING_AUTHOR_A"
+  }
 }

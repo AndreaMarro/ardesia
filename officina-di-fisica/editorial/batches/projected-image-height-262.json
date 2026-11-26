@@ -1,0 +1,1170 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u7-projected-image-height-01",
+      "kind": "question",
+      "course": "C5",
+      "section": "Altezza reale proiettata e ingrandimento",
+      "order": 26201,
+      "title": "Altezza sullo schermo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L09",
+        "C5-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "projected-image-height",
+      "difficulty": 1,
+      "prompt": "Una lente sottile convergente ha focale f=2 cm, lo stesso mezzo sui due lati e raggi parassiali. L’oggetto reale ha altezza positiva h_o e distanza p>f; l’immagine reale ha altezza orientata h_i<0. Si cerca H=|h_i|>0. Nuova parametrizzazione delle altezze: usiamo millimetri per mantenere piccoli i raggi rispetto alla focale; p e f restano in centimetri. Il rapporto f/(p−f) usa lunghezze coerenti e moltiplica h_o nella sua unità. Con h_o=1 mm e p=4 cm, quanto vale H in mm?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "mm",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La legge dei coniugati dà q=fp/(p−f). Il modulo dell’ingrandimento è q/p=f/(p−f), così H=h_of/(p−f). Qui il rapporto vale 2 cm/(4 cm−2 cm)=1: l’immagine ha modulo 1 mm, ma è capovolta. Un segno negativo di h_i non rende negativo il modulo richiesto."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/3ce7db5b29a55fd43d90d3a296884d1fc89514eb167bfcee92a98b8f66c70c37",
+          "text": "Il primo pannello mostra f=2 cm,p=q=4 cm e H=h_o=1 mm: l’immagine è capovolta. Le altezze di oggetto e immagine sono amplificate rispetto alle distanze orizzontali, con lo stesso fattore per entrambe; gli angoli disegnati non sono misure di incidenza."
+        },
+        {
+          "type": "formula",
+          "text": "H=h_o\\frac f{p-f}"
+        },
+        {
+          "type": "formula",
+          "text": " H=(1\\,\\mathrm{mm})\\frac{2\\,\\mathrm{cm}}{2\\,\\mathrm{cm}}"
+        },
+        {
+          "type": "formula",
+          "text": " H=1\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " h_i=-1\\,\\mathrm{mm}"
+        },
+        {
+          "type": "text",
+          "text": "Due mm raddoppierebbe l’immagine senza cambiare i dati. Mezzo mm userebbe f/p invece di f/(p−f); meno uno mm è l’altezza orientata, non il modulo. Un centimetro perderebbe un fattore dieci nella conversione."
+        }
+      ],
+      "hints": [
+        "Calcola prima il fattore puro di ingrandimento.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due mm raddoppierebbe l’immagine senza cambiare i dati. Mezzo mm userebbe f/p invece di f/(p−f); meno uno mm è l’altezza orientata, non il modulo. Un centimetro perderebbe un fattore dieci nella conversione.",
+        "target": "C5-L10"
+      },
+      "coverage": [
+        "Coniugati e modulo dell’altezza",
+        "Unità coerenti e regime parassiale",
+        "Inverse, tarature e nuovo vincolo dimensionato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-projected-image-height-02",
+      "kind": "question",
+      "course": "C5",
+      "section": "Altezza reale proiettata e ingrandimento",
+      "order": 26202,
+      "title": "Altezza e ingrandimento hanno unità diverse",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L09",
+        "C5-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "projected-image-height",
+      "difficulty": 1,
+      "prompt": "Quale unità può esprimere il modulo H dell’altezza di un’immagine, distinto dal rapporto puro M=H/h_o?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "mm",
+          "1",
+          "mm⁻¹",
+          "gradi",
+          "s"
+        ],
+        "value": "mm"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "H è una lunghezza e si può esprimere in millimetri. Il rapporto H/h_o è invece adimensionale. Moltiplicare h_o per il numero puro f/(p−f) conserva l’unità di lunghezza dell’oggetto."
+        },
+        {
+          "type": "formula",
+          "text": "[H]=L"
+        },
+        {
+          "type": "formula",
+          "text": " M=\\frac H{h_o}"
+        },
+        {
+          "type": "formula",
+          "text": " [M]=1"
+        },
+        {
+          "type": "text",
+          "text": "Uno è adatto a M, mm⁻¹ a un inverso di lunghezza, gradi a un angolo e secondi a una durata. Non si attribuisce a H l’unità del rapporto che la collega a h_o."
+        }
+      ],
+      "hints": [
+        "Individua se la domanda chiede un’altezza o un rapporto di altezze.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "Uno è adatto a M, mm⁻¹ a un inverso di lunghezza, gradi a un angolo e secondi a una durata. Non si attribuisce a H l’unità del rapporto che la collega a h_o.",
+        "target": "C5-L10"
+      },
+      "coverage": [
+        "Coniugati e modulo dell’altezza",
+        "Unità coerenti e regime parassiale",
+        "Inverse, tarature e nuovo vincolo dimensionato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-projected-image-height-03",
+      "kind": "question",
+      "course": "C5",
+      "section": "Altezza reale proiettata e ingrandimento",
+      "order": 26203,
+      "title": "Due leggi per eliminare q",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L09",
+        "C5-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "projected-image-height",
+      "difficulty": 1,
+      "prompt": "Una lente sottile convergente ha focale f=2 cm, lo stesso mezzo sui due lati e raggi parassiali. L’oggetto reale ha altezza positiva h_o e distanza p>f; l’immagine reale ha altezza orientata h_i<0. Si cerca H=|h_i|>0. Nuova parametrizzazione delle altezze: usiamo millimetri per mantenere piccoli i raggi rispetto alla focale; p e f restano in centimetri. Il rapporto f/(p−f) usa lunghezze coerenti e moltiplica h_o nella sua unità. Quale relazione esprime H tramite h_o,p e f?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "H = h_o f / (p − f)",
+          "H = h_o p / f",
+          "H = h_o f / p",
+          "H = h_o (p − f) / f",
+          "H = −h_o f / (p − f)"
+        ],
+        "value": "H = h_o f / (p − f)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dal modello della lente ricavo q=fp/(p−f). Inserendolo in H=h_o q/p il fattore p si cancella: H=h_o f/(p−f). La positività dipende dal ramo p>f; l’altezza orientata avrebbe un segno meno, che il modulo elimina."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/3ce7db5b29a55fd43d90d3a296884d1fc89514eb167bfcee92a98b8f66c70c37",
+          "text": "La costruzione dei raggi e i coniugati collegano le due altezze, ma il modulo elimina soltanto il segno d’inversione. Le scale dell’asse orizzontale e delle altezze del disegno sono dichiaratamente diverse."
+        },
+        {
+          "type": "formula",
+          "text": "q=\\frac{fp}{p-f}"
+        },
+        {
+          "type": "formula",
+          "text": " H=h_o\\frac qp"
+        },
+        {
+          "type": "formula",
+          "text": " H=h_o\\frac f{p-f}"
+        },
+        {
+          "type": "text",
+          "text": "p/f non è q/p, mentre f/p dimentica il termine−f. Il rapporto invertito scambia ingrandimento e suo reciproco. Il segno negativo descrive h_i, non H."
+        }
+      ],
+      "hints": [
+        "Combina coniugati e ingrandimento prima di sostituire i valori.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "p/f non è q/p, mentre f/p dimentica il termine−f. Il rapporto invertito scambia ingrandimento e suo reciproco. Il segno negativo descrive h_i, non H.",
+        "target": "C5-L10"
+      },
+      "coverage": [
+        "Coniugati e modulo dell’altezza",
+        "Unità coerenti e regime parassiale",
+        "Inverse, tarature e nuovo vincolo dimensionato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-projected-image-height-04",
+      "kind": "question",
+      "course": "C5",
+      "section": "Altezza reale proiettata e ingrandimento",
+      "order": 26204,
+      "title": "Oggetto doppio alla stessa distanza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L09",
+        "C5-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "projected-image-height",
+      "difficulty": 1,
+      "prompt": "Una lente sottile convergente ha focale f=2 cm, lo stesso mezzo sui due lati e raggi parassiali. L’oggetto reale ha altezza positiva h_o e distanza p>f; l’immagine reale ha altezza orientata h_i<0. Si cerca H=|h_i|>0. Nuova parametrizzazione delle altezze: usiamo millimetri per mantenere piccoli i raggi rispetto alla focale; p e f restano in centimetri. Il rapporto f/(p−f) usa lunghezze coerenti e moltiplica h_o nella sua unità. A usa h_o=1 mm,p=4 cm; B usa h_o=2 mm allo stesso p. Come cambia H?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 1 a 2 mm",
+          "Da 1 a 1/2 mm",
+          "Da 1 a 4 mm",
+          "Resta 1 mm",
+          "Diventa 2 cm"
+        ],
+        "value": "Da 1 a 2 mm"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La lente e la posizione non cambiano, quindi l’ingrandimento resta uno in modulo. Raddoppiare l’altezza dell’oggetto raddoppia quella dell’immagine: da 1 a 2 mm. Entrambe le altezze orientate dell’immagine sono negative rispetto all’oggetto, ma i moduli sono positivi."
+        },
+        {
+          "type": "formula",
+          "text": "M=1"
+        },
+        {
+          "type": "formula",
+          "text": " H_A=1\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " H_B=2\\,\\mathrm{mm}"
+        },
+        {
+          "type": "text",
+          "text": "Mezzo mm inverte la dipendenza dall’altezza; quattro mm introduce un quadrato. Uno ignora il nuovo oggetto; due centimetri scambia mm e cm e vale dieci volte l’uscita corretta."
+        }
+      ],
+      "hints": [
+        "A p fissato il fattore ottico non cambia.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Mezzo mm inverte la dipendenza dall’altezza; quattro mm introduce un quadrato. Uno ignora il nuovo oggetto; due centimetri scambia mm e cm e vale dieci volte l’uscita corretta.",
+        "target": "C5-L10"
+      },
+      "coverage": [
+        "Coniugati e modulo dell’altezza",
+        "Unità coerenti e regime parassiale",
+        "Inverse, tarature e nuovo vincolo dimensionato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-projected-image-height-05",
+      "kind": "question",
+      "course": "C5",
+      "section": "Altezza reale proiettata e ingrandimento",
+      "order": 26205,
+      "title": "L’altezza prima della lente",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L09",
+        "C5-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "projected-image-height",
+      "difficulty": 2,
+      "prompt": "Una lente sottile convergente ha focale f=2 cm, lo stesso mezzo sui due lati e raggi parassiali. L’oggetto reale ha altezza positiva h_o e distanza p>f; l’immagine reale ha altezza orientata h_i<0. Si cerca H=|h_i|>0. Nuova parametrizzazione delle altezze: usiamo millimetri per mantenere piccoli i raggi rispetto alla focale; p e f restano in centimetri. Il rapporto f/(p−f) usa lunghezze coerenti e moltiplica h_o nella sua unità. Si misurano H=1 mm e p=4 cm. Quanto vale h_o in mm?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "mm",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Divido per l’ingrandimento f/(p−f), oppure moltiplico H per(p−f)/f. Per p=4 cm il rapporto è uno: l’oggetto è alto 1 mm. Il controllo in avanti dà ancora H=1 mm."
+        },
+        {
+          "type": "formula",
+          "text": "h_o=H\\frac{p-f}{f}"
+        },
+        {
+          "type": "formula",
+          "text": " h_o=(1\\,\\mathrm{mm})\\frac{2\\,\\mathrm{cm}}{2\\,\\mathrm{cm}}"
+        },
+        {
+          "type": "formula",
+          "text": " h_o=1\\,\\mathrm{mm}"
+        },
+        {
+          "type": "text",
+          "text": "Due mm predirebbe H=2 mm e mezzo mm H=1/2 mm. Un centimetro equivale a 10 mm e darebbe un’immagine di 10 mm, non quella osservata."
+        }
+      ],
+      "hints": [
+        "Inverti il rapporto ottico senza cambiare l’unità dell’altezza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due mm predirebbe H=2 mm e mezzo mm H=1/2 mm. Un centimetro equivale a 10 mm e darebbe un’immagine di 10 mm, non quella osservata.",
+        "target": "C5-L10"
+      },
+      "coverage": [
+        "Coniugati e modulo dell’altezza",
+        "Unità coerenti e regime parassiale",
+        "Inverse, tarature e nuovo vincolo dimensionato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-projected-image-height-06",
+      "kind": "question",
+      "course": "C5",
+      "section": "Altezza reale proiettata e ingrandimento",
+      "order": 26206,
+      "title": "La distanza da due altezze",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L09",
+        "C5-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "projected-image-height",
+      "difficulty": 2,
+      "prompt": "Una lente sottile convergente ha focale f=2 cm, lo stesso mezzo sui due lati e raggi parassiali. L’oggetto reale ha altezza positiva h_o e distanza p>f; l’immagine reale ha altezza orientata h_i<0. Si cerca H=|h_i|>0. Nuova parametrizzazione delle altezze: usiamo millimetri per mantenere piccoli i raggi rispetto alla focale; p e f restano in centimetri. Il rapporto f/(p−f) usa lunghezze coerenti e moltiplica h_o nella sua unità. H=1 mm e h_o=1 mm. Quanto vale p in cm?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "cm",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il rapporto delle altezze vale uno. Riordinando H(p−f)=h_o f trovo p=f(1+h_o/H). Le due altezze nella stessa unità danno h_o/H=1: p=2 cm·2=4 cm, nel ramo reale p>f."
+        },
+        {
+          "type": "formula",
+          "text": "p=f\\left(1+\\frac{h_o}{H}\\right)"
+        },
+        {
+          "type": "formula",
+          "text": " p=(2\\,\\mathrm{cm})(1+1)"
+        },
+        {
+          "type": "formula",
+          "text": " p=4\\,\\mathrm{cm}"
+        },
+        {
+          "type": "text",
+          "text": "Due cm è il fuoco, dove l’immagine reale finita non esiste. Un cm sarebbe il ramo virtuale escluso; tre cm con lo stesso oggetto darebbe H=2 mm."
+        }
+      ],
+      "hints": [
+        "Il rapporto h_o/H è puro se le due altezze usano la stessa unità.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due cm è il fuoco, dove l’immagine reale finita non esiste. Un cm sarebbe il ramo virtuale escluso; tre cm con lo stesso oggetto darebbe H=2 mm.",
+        "target": "C5-L10"
+      },
+      "coverage": [
+        "Coniugati e modulo dell’altezza",
+        "Unità coerenti e regime parassiale",
+        "Inverse, tarature e nuovo vincolo dimensionato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-projected-image-height-07",
+      "kind": "question",
+      "course": "C5",
+      "section": "Altezza reale proiettata e ingrandimento",
+      "order": 26207,
+      "title": "Allontanare lo stesso oggetto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L09",
+        "C5-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "projected-image-height",
+      "difficulty": 2,
+      "prompt": "Una lente sottile convergente ha focale f=2 cm, lo stesso mezzo sui due lati e raggi parassiali. L’oggetto reale ha altezza positiva h_o e distanza p>f; l’immagine reale ha altezza orientata h_i<0. Si cerca H=|h_i|>0. Nuova parametrizzazione delle altezze: usiamo millimetri per mantenere piccoli i raggi rispetto alla focale; p e f restano in centimetri. Il rapporto f/(p−f) usa lunghezze coerenti e moltiplica h_o nella sua unità. A ha h_o=1 mm,p=4 cm; B mantiene h_o e usa p=6 cm. Quanto vale H_B/H_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "2",
+          "1/3",
+          "3/2",
+          "1"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il denominatore p−f passa da 2 a 4 cm. L’altezza d’immagine passa da 1 a 1/2 mm; il rapporto B/A è un mezzo. Con focale fissata il fattore che conta è la distanza dal fuoco p−f, non il semplice rapporto p_B/p_A."
+        },
+        {
+          "type": "formula",
+          "text": "H_A=1\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " H_B=(1\\,\\mathrm{mm})\\frac24"
+        },
+        {
+          "type": "formula",
+          "text": " H_B=\\frac12\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " H_B/H_A=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Due inverte il rapporto, un terzo implicherebbe H_B=1/3 mm e richiederebbe p_B=8 cm, non 6 cm e 3/2 copia p_B/p_A. Uno trascura il cambiamento di distanza."
+        }
+      ],
+      "hints": [
+        "Confronta prima i due denominatori positivi p−f.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due inverte il rapporto, un terzo implicherebbe H_B=1/3 mm e richiederebbe p_B=8 cm, non 6 cm e 3/2 copia p_B/p_A. Uno trascura il cambiamento di distanza.",
+        "target": "C5-L10"
+      },
+      "coverage": [
+        "Coniugati e modulo dell’altezza",
+        "Unità coerenti e regime parassiale",
+        "Inverse, tarature e nuovo vincolo dimensionato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-projected-image-height-08",
+      "kind": "question",
+      "course": "C5",
+      "section": "Altezza reale proiettata e ingrandimento",
+      "order": 26208,
+      "title": "Scarto fra moduli",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L09",
+        "C5-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "projected-image-height",
+      "difficulty": 2,
+      "prompt": "Una lente sottile convergente ha focale f=2 cm, lo stesso mezzo sui due lati e raggi parassiali. L’oggetto reale ha altezza positiva h_o e distanza p>f; l’immagine reale ha altezza orientata h_i<0. Si cerca H=|h_i|>0. Nuova parametrizzazione delle altezze: usiamo millimetri per mantenere piccoli i raggi rispetto alla focale; p e f restano in centimetri. Il rapporto f/(p−f) usa lunghezze coerenti e moltiplica h_o nella sua unità. Per h_o=1 mm,p=4 cm viene proposto H=2 mm. Quanto vale proposto meno corretto, in mm?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1",
+          "−1",
+          "2",
+          "1/2",
+          "0"
+        ],
+        "value": "1"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’ingrandimento corretto è uno, quindi H=1 mm. Il proposto 2 mm supera l’uscita corretta di 1 mm. Il risultato riguarda i moduli; non si sottrae l’altezza orientata−1 mm alla proposta."
+        },
+        {
+          "type": "formula",
+          "text": "H=1\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " \\delta H=(2-1)\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " \\delta H=1\\,\\mathrm{mm}"
+        },
+        {
+          "type": "text",
+          "text": "−1 inverte la sottrazione; due ripete la proposta e un mezzo è il rapporto corretto/proposto. Zero accetterebbe un modulo incompatibile con i dati."
+        }
+      ],
+      "hints": [
+        "Mantieni lo stesso significato di altezza in entrambi i termini.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−1 inverte la sottrazione; due ripete la proposta e un mezzo è il rapporto corretto/proposto. Zero accetterebbe un modulo incompatibile con i dati.",
+        "target": "C5-L10"
+      },
+      "coverage": [
+        "Coniugati e modulo dell’altezza",
+        "Unità coerenti e regime parassiale",
+        "Inverse, tarature e nuovo vincolo dimensionato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-projected-image-height-09",
+      "kind": "question",
+      "course": "C5",
+      "section": "Altezza reale proiettata e ingrandimento",
+      "order": 26209,
+      "title": "L’inversa simbolica per l’oggetto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L09",
+        "C5-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "projected-image-height",
+      "difficulty": 2,
+      "prompt": "Una lente sottile convergente ha focale f=2 cm, lo stesso mezzo sui due lati e raggi parassiali. L’oggetto reale ha altezza positiva h_o e distanza p>f; l’immagine reale ha altezza orientata h_i<0. Si cerca H=|h_i|>0. Nuova parametrizzazione delle altezze: usiamo millimetri per mantenere piccoli i raggi rispetto alla focale; p e f restano in centimetri. Il rapporto f/(p−f) usa lunghezze coerenti e moltiplica h_o nella sua unità. Con H,p,f noti, quale formula isola h_o?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "h_o = H (p − f) / f",
+          "h_o = H f / (p − f)",
+          "h_o = H (p + f) / f",
+          "h_o = (p − f) / (H f)",
+          "h_o = −H (p − f) / f"
+        ],
+        "value": "h_o = H (p − f) / f"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplico H=h_o f/(p−f) per(p−f)/f, positivo. L’inversa restituisce h_o=H(p−f)/f: un’altezza moltiplicata per un rapporto puro. Tutti i valori rimangono positivi perché si lavora sui moduli e nel ramo reale."
+        },
+        {
+          "type": "formula",
+          "text": "H=h_o\\frac f{p-f}"
+        },
+        {
+          "type": "formula",
+          "text": " h_o=H\\frac{p-f}{f}"
+        },
+        {
+          "type": "text",
+          "text": "Ripetere f/(p−f) non è l’inversa, sebbene coincida al dato particolare p=2 f. Il segno più modifica la legge, il reciproco di H ha dimensione L⁻¹ e il meno violerebbe h_o>0."
+        }
+      ],
+      "hints": [
+        "Una formula va controllata simbolicamente, non soltanto nel caso in cui il fattore vale uno.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Ripetere f/(p−f) non è l’inversa, sebbene coincida al dato particolare p=2 f. Il segno più modifica la legge, il reciproco di H ha dimensione L⁻¹ e il meno violerebbe h_o>0.",
+        "target": "C5-L10"
+      },
+      "coverage": [
+        "Coniugati e modulo dell’altezza",
+        "Unità coerenti e regime parassiale",
+        "Inverse, tarature e nuovo vincolo dimensionato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-projected-image-height-10",
+      "kind": "question",
+      "course": "C5",
+      "section": "Altezza reale proiettata e ingrandimento",
+      "order": 26210,
+      "title": "Altezza e posizione cambiano",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L09",
+        "C5-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "projected-image-height",
+      "difficulty": 2,
+      "prompt": "Una lente sottile convergente ha focale f=2 cm, lo stesso mezzo sui due lati e raggi parassiali. L’oggetto reale ha altezza positiva h_o e distanza p>f; l’immagine reale ha altezza orientata h_i<0. Si cerca H=|h_i|>0. Nuova parametrizzazione delle altezze: usiamo millimetri per mantenere piccoli i raggi rispetto alla focale; p e f restano in centimetri. Il rapporto f/(p−f) usa lunghezze coerenti e moltiplica h_o nella sua unità. Fra A e B:h_o,B=κ₁h_o,A e p_B=κ₂p_A; f resta 2 cm ed entrambe le prove hanno p>f. Quanto vale H_B/H_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ (p − f) / (κ₂ p − f)",
+          "κ₁ / κ₂",
+          "κ₁ κ₂",
+          "κ₁ (κ₂ p − f) / (p − f)",
+          "κ₁ + κ₂"
+        ],
+        "value": "κ₁ (p − f) / (κ₂ p − f)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il nuovo ingrandimento usa il denominatore κ₂p−f, non κ₂(p−f), perché la focale non cambia. Divido le due leggi e ottengo κ₁(p−f)/(κ₂p−f). Oltre ai fattori positivi serve κ₂p>f, per evitare il fuoco e il ramo virtuale."
+        },
+        {
+          "type": "formula",
+          "text": "H_B=\\frac{\\kappa_1 h_o f}{\\kappa_2p-f}"
+        },
+        {
+          "type": "formula",
+          "text": " R=\\frac{\\kappa_1(p-f)}{\\kappa_2p-f}"
+        },
+        {
+          "type": "text",
+          "text": "κ₁/κ₂ trascura il termine fisso f. Il prodotto rende diretta anche la distanza, l’altro rapporto inverte i denominatori e la somma dà due per prove identiche."
+        }
+      ],
+      "hints": [
+        "La focale resta f, non viene moltiplicata dal fattore della posizione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "κ₁/κ₂ trascura il termine fisso f. Il prodotto rende diretta anche la distanza, l’altro rapporto inverte i denominatori e la somma dà due per prove identiche.",
+        "target": "C5-L10"
+      },
+      "coverage": [
+        "Coniugati e modulo dell’altezza",
+        "Unità coerenti e regime parassiale",
+        "Inverse, tarature e nuovo vincolo dimensionato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-projected-image-height-11",
+      "kind": "question",
+      "course": "C5",
+      "section": "Altezza reale proiettata e ingrandimento",
+      "order": 26211,
+      "title": "Più alto e più vicino al fuoco",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L09",
+        "C5-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "projected-image-height",
+      "difficulty": 2,
+      "prompt": "Una lente sottile convergente ha focale f=2 cm, lo stesso mezzo sui due lati e raggi parassiali. L’oggetto reale ha altezza positiva h_o e distanza p>f; l’immagine reale ha altezza orientata h_i<0. Si cerca H=|h_i|>0. Nuova parametrizzazione delle altezze: usiamo millimetri per mantenere piccoli i raggi rispetto alla focale; p e f restano in centimetri. Il rapporto f/(p−f) usa lunghezze coerenti e moltiplica h_o nella sua unità. A usa h_o=1 mm,p=4 cm; B usa h_o=2 mm,p=3 cm. Quanto vale H_B/H_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4",
+          "1/4",
+          "2",
+          "3/4",
+          "1"
+        ],
+        "value": "4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha ingrandimento uno e immagine di 1 mm. B ha ingrandimento 2 cm/(3 cm−2 cm)=2 e oggetto di 2 mm, quindi H_B=4 mm. Raddoppiano sia l’altezza dell’oggetto sia il modulo dell’ingrandimento: l’effetto complessivo è quattro."
+        },
+        {
+          "type": "formula",
+          "text": "H_A=1\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " H_B=(2\\,\\mathrm{mm})\\frac21"
+        },
+        {
+          "type": "formula",
+          "text": " H_B=4\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " H_B/H_A=4"
+        },
+        {
+          "type": "text",
+          "text": "Un quarto inverte il confronto. Due considera uno solo dei due fattori;3/4 confronta le distanze p e uno ignora entrambi gli effetti."
+        }
+      ],
+      "hints": [
+        "Il rapporto H/h_o cambia quando cambia p.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un quarto inverte il confronto. Due considera uno solo dei due fattori;3/4 confronta le distanze p e uno ignora entrambi gli effetti.",
+        "target": "C5-L10"
+      },
+      "coverage": [
+        "Coniugati e modulo dell’altezza",
+        "Unità coerenti e regime parassiale",
+        "Inverse, tarature e nuovo vincolo dimensionato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-projected-image-height-12",
+      "kind": "question",
+      "course": "C5",
+      "section": "Altezza reale proiettata e ingrandimento",
+      "order": 26212,
+      "title": "Media delle altezze proiettate",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L09",
+        "C5-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "projected-image-height",
+      "difficulty": 2,
+      "prompt": "Una lente sottile convergente ha focale f=2 cm, lo stesso mezzo sui due lati e raggi parassiali. L’oggetto reale ha altezza positiva h_o e distanza p>f; l’immagine reale ha altezza orientata h_i<0. Si cerca H=|h_i|>0. Nuova parametrizzazione delle altezze: usiamo millimetri per mantenere piccoli i raggi rispetto alla focale; p e f restano in centimetri. Il rapporto f/(p−f) usa lunghezze coerenti e moltiplica h_o nella sua unità. Si mediano con uguali pesi A:h_o=1 mm,p=4 cm e B:h_o=2 mm,p=3 cm. Quanto vale la media di H, in mm?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "5/2",
+          "2",
+          "5",
+          "3/2",
+          "4"
+        ],
+        "value": "5/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le altezze delle due immagini hanno moduli 1 e 4 mm. La media è 5/2 mm. Gli ingressi medi h_o=3/2 mm e p=7/2 cm darebbero invece H=2 mm. La differenza è 1/2 mm: mediare due uscite non equivale a proiettare un solo oggetto con dati medi."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/3ce7db5b29a55fd43d90d3a296884d1fc89514eb167bfcee92a98b8f66c70c37",
+          "text": "Le barre centrali rappresentano H_A=1 mm,H_B=4 mm e media 5/2 mm con origine e scala comuni. Il grafico finale riguarda invece soltanto h_o=1 mm fissato e non la prova B con oggetto di 2 mm."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline H=\\frac{1+4}{2}\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline H=\\frac52\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " H_{\\rm dati\\ medi}=2\\,\\mathrm{mm}"
+        },
+        {
+          "type": "text",
+          "text": "Due usa i parametri medi, cinque somma senza dimezzare e 3/2 è la semidifferenza. Quattro ripete soltanto B. La media delle altezze non impone un unico piano di schermo per entrambe le configurazioni."
+        }
+      ],
+      "hints": [
+        "Calcola prima ciascuna immagine nel suo piano reale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due usa i parametri medi, cinque somma senza dimezzare e 3/2 è la semidifferenza. Quattro ripete soltanto B. La media delle altezze non impone un unico piano di schermo per entrambe le configurazioni.",
+        "target": "C5-L10"
+      },
+      "coverage": [
+        "Coniugati e modulo dell’altezza",
+        "Unità coerenti e regime parassiale",
+        "Inverse, tarature e nuovo vincolo dimensionato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-projected-image-height-13",
+      "kind": "question",
+      "course": "C5",
+      "section": "Altezza reale proiettata e ingrandimento",
+      "order": 26213,
+      "title": "La nuova posizione per un target",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L09",
+        "C5-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "projected-image-height",
+      "difficulty": 3,
+      "prompt": "Una lente sottile convergente ha focale f=2 cm, lo stesso mezzo sui due lati e raggi parassiali. L’oggetto reale ha altezza positiva h_o e distanza p>f; l’immagine reale ha altezza orientata h_i<0. Si cerca H=|h_i|>0. Nuova parametrizzazione delle altezze: usiamo millimetri per mantenere piccoli i raggi rispetto alla focale; p e f restano in centimetri. Il rapporto f/(p−f) usa lunghezze coerenti e moltiplica h_o nella sua unità. A usa h_o=1 mm,p_A=4 cm. In B l’oggetto è alto 2 mm e si vuole H_B=4 H_A. Quanto vale p_B/p_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/4",
+          "4/3",
+          "4",
+          "2",
+          "1"
+        ],
+        "value": "3/4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il target è 4 mm. La formula inversa p=f(1+h_o/H) dà p_B=2 cm·(1+2/4)=3 cm. La distanza resta sopra il fuoco; rispetto ai 4 cm di A il rapporto è tre quarti."
+        },
+        {
+          "type": "formula",
+          "text": "H_B=4\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " p_B=(2\\,\\mathrm{cm})\\left(1+\\frac24\\right)"
+        },
+        {
+          "type": "formula",
+          "text": " p_B=3\\,\\mathrm{cm}"
+        },
+        {
+          "type": "formula",
+          "text": " p_B/p_A=\\frac34"
+        },
+        {
+          "type": "text",
+          "text": "4/3 inverte le distanze, quattro copia il target delle uscite e due il fattore delle altezze. Una distanza invariata darebbe soltanto H_B=2 mm."
+        }
+      ],
+      "hints": [
+        "Il target e la nuova altezza determinano il nuovo ingrandimento.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "4/3 inverte le distanze, quattro copia il target delle uscite e due il fattore delle altezze. Una distanza invariata darebbe soltanto H_B=2 mm.",
+        "target": "C5-L10"
+      },
+      "coverage": [
+        "Coniugati e modulo dell’altezza",
+        "Unità coerenti e regime parassiale",
+        "Inverse, tarature e nuovo vincolo dimensionato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-projected-image-height-14",
+      "kind": "question",
+      "course": "C5",
+      "section": "Altezza reale proiettata e ingrandimento",
+      "order": 26214,
+      "title": "Un display dell’altezza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L09",
+        "C5-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "projected-image-height",
+      "difficulty": 3,
+      "prompt": "Una lente sottile convergente ha focale f=2 cm, lo stesso mezzo sui due lati e raggi parassiali. L’oggetto reale ha altezza positiva h_o e distanza p>f; l’immagine reale ha altezza orientata h_i<0. Si cerca H=|h_i|>0. Nuova parametrizzazione delle altezze: usiamo millimetri per mantenere piccoli i raggi rispetto alla focale; p e f restano in centimetri. Il rapporto f/(p−f) usa lunghezze coerenti e moltiplica h_o nella sua unità. D=gH senza offset legge 3 per h_o=1 mm,p=4 cm. Poi legge 12 con p=3 cm. Quanto vale il nuovo h_o in mm?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "mm",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento ha H=1 mm, perciò g=3 mm⁻¹. La nuova lettura 12 indica H=4 mm. A p=3 cm l’ingrandimento vale due, così l’oggetto cercato è alto 2 mm."
+        },
+        {
+          "type": "formula",
+          "text": "g=3\\,\\mathrm{mm^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " H=4\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " h_o=H\\frac{p-f}{f}"
+        },
+        {
+          "type": "formula",
+          "text": " h_o=(4\\,\\mathrm{mm})\\frac12"
+        },
+        {
+          "type": "formula",
+          "text": " h_o=2\\,\\mathrm{mm}"
+        },
+        {
+          "type": "text",
+          "text": "Sei mm tratterebbe il display 12 come altezza e predirebbe D=36. Quattro mm si fermerebbe al modulo dell’immagine invece dell’oggetto; uno mm darebbe D=6."
+        }
+      ],
+      "hints": [
+        "Rimuovi il guadagno prima di invertire il fattore ottico.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sei mm tratterebbe il display 12 come altezza e predirebbe D=36. Quattro mm si fermerebbe al modulo dell’immagine invece dell’oggetto; uno mm darebbe D=6.",
+        "target": "C5-L10"
+      },
+      "coverage": [
+        "Coniugati e modulo dell’altezza",
+        "Unità coerenti e regime parassiale",
+        "Inverse, tarature e nuovo vincolo dimensionato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-projected-image-height-15",
+      "kind": "question",
+      "course": "C5",
+      "section": "Altezza reale proiettata e ingrandimento",
+      "order": 26215,
+      "title": "Separare offset e ingrandimento",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L09",
+        "C5-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "projected-image-height",
+      "difficulty": 3,
+      "prompt": "Una lente sottile convergente ha focale f=2 cm, lo stesso mezzo sui due lati e raggi parassiali. L’oggetto reale ha altezza positiva h_o e distanza p>f; l’immagine reale ha altezza orientata h_i<0. Si cerca H=|h_i|>0. Nuova parametrizzazione delle altezze: usiamo millimetri per mantenere piccoli i raggi rispetto alla focale; p e f restano in centimetri. Il rapporto f/(p−f) usa lunghezze coerenti e moltiplica h_o nella sua unità. D=gH+b. A:h_o=1 mm,p=4 cm,D=3. B:h_o=2 mm,p=3 cm,D=9. C:p=4 cm,D=5. Quanto vale h_o,C in mm?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "mm",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le altezze d’immagine di riferimento sono 1 e 4 mm. Dalle differenze ricavo g=(9−3)/(4−1)=2 mm⁻¹ e b=1. La lettura 5 corrisponde a H=2 mm; a p=4 cm il modulo dell’ingrandimento è uno e quindi h_o=2 mm."
+        },
+        {
+          "type": "formula",
+          "text": "g=2\\,\\mathrm{mm^{-1}}"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " H_C=\\frac{5-1}{2}\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " H_C=2\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " h_{o,C}=2\\,\\mathrm{mm}"
+        },
+        {
+          "type": "text",
+          "text": "5/2 mm ometterebbe l’offset e predirebbe D=6. Quattro mm ometterebbe il guadagno dopo b e darebbe D=9; uno mm ripete soltanto A."
+        }
+      ],
+      "hints": [
+        "Le due altezze fisiche distinte identificano g e b prima della terza prova.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "5/2 mm ometterebbe l’offset e predirebbe D=6. Quattro mm ometterebbe il guadagno dopo b e darebbe D=9; uno mm ripete soltanto A.",
+        "target": "C5-L10"
+      },
+      "coverage": [
+        "Coniugati e modulo dell’altezza",
+        "Unità coerenti e regime parassiale",
+        "Inverse, tarature e nuovo vincolo dimensionato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-projected-image-height-16",
+      "kind": "question",
+      "course": "C5",
+      "section": "Altezza reale proiettata e ingrandimento",
+      "order": 26216,
+      "title": "Un vincolo compatibile con altezze piccole",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L09",
+        "C5-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "projected-image-height",
+      "difficulty": 3,
+      "prompt": "Una lente sottile convergente ha focale f=2 cm, lo stesso mezzo sui due lati e raggi parassiali. L’oggetto reale ha altezza positiva h_o e distanza p>f; l’immagine reale ha altezza orientata h_i<0. Si cerca H=|h_i|>0. Nuova parametrizzazione delle altezze: usiamo millimetri per mantenere piccoli i raggi rispetto alla focale; p e f restano in centimetri. Il rapporto f/(p−f) usa lunghezze coerenti e moltiplica h_o nella sua unità. Nuovo vincolo fisico dichiarato:h_o=p/40, con le due lunghezze espresse nella stessa unità; si misura H=1 mm. Quanto vale p in cm?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "cm",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il fattore 1/40 è scelto per conservare altezze piccole rispetto alla focale. Pongo x=p/(1 cm)>2: siccome 1 cm=10 mm, h_o=(x/4) mm. La legge dà H/(1 mm)=x/[2(x−2)]. Impongo la misura uno, moltiplico per il denominatore positivo e ricavo x=4. Ne seguono p=4 cm e h_o=1 mm."
+        },
+        {
+          "type": "formula",
+          "text": "x=\\frac p{1\\,\\mathrm{cm}}"
+        },
+        {
+          "type": "formula",
+          "text": " h_o=\\frac x4\\,\\mathrm{mm}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac H{1\\,\\mathrm{mm}}=\\frac{x}{2(x-2)}"
+        },
+        {
+          "type": "formula",
+          "text": " 2(x-2)=x"
+        },
+        {
+          "type": "formula",
+          "text": " x=4"
+        },
+        {
+          "type": "formula",
+          "text": " p=4\\,\\mathrm{cm}"
+        },
+        {
+          "type": "text",
+          "text": "Due cm è il fuoco escluso e rende il denominatore nullo. Otto cm darebbe H=2/3 mm, non 1 mm. Il nuovo vincolo non è h_o=p/4 con grandezze nella stessa unità: cambiare unità senza cambiare il coefficiente altererebbe la fisica."
+        }
+      ],
+      "hints": [
+        "Prima converti il vincolo fra centimetri e millimetri, poi imponi il ramo p>f.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Due cm è il fuoco escluso e rende il denominatore nullo. Otto cm darebbe H=2/3 mm, non 1 mm. Il nuovo vincolo non è h_o=p/4 con grandezze nella stessa unità: cambiare unità senza cambiare il coefficiente altererebbe la fisica.",
+        "target": "C5-L10"
+      },
+      "coverage": [
+        "Coniugati e modulo dell’altezza",
+        "Unità coerenti e regime parassiale",
+        "Inverse, tarature e nuovo vincolo dimensionato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "3ce7db5b29a55fd43d90d3a296884d1fc89514eb167bfcee92a98b8f66c70c37",
+      "name": "projected-image-height-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTc0MCIgdmlld0JveD0iMCAwIDY0MCAxNzQwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyIgZm9udC1mYW1pbHk9InN5c3RlbS11aSwgc2Fucy1zZXJpZiI+PHRpdGxlIGlkPSJ0aXRsZSI+TW9kdWxvIGRlbGzigJlhbHRlenphIHN1bGxvIHNjaGVybW88L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5JbW1hZ2luZSBjYXBvdm9sdGEgY29uIGFsdGV6emUgYW1wbGlmaWNhdGUgcmlzcGV0dG8gYWxsZSBkaXN0YW56ZSBhc3NpYWxpLCBiYXJyZSBkZWkgbW9kdWxpIGUgY3VydmEgZGVsbOKAmWFsdGV6emEgY29uIG9nZ2V0dG8gZGEgdW4gbWlsbGltZXRyby48L2Rlc2M+PGRlZnM+PG1hcmtlciBpZD0iYXJyIiB2aWV3Qm94PSIwIDAgMTAgMTAiIHJlZlg9IjkiIHJlZlk9IjUiIG1hcmtlcldpZHRoPSI1IiBtYXJrZXJIZWlnaHQ9IjUiIG9yaWVudD0iYXV0by1zdGFydC1yZXZlcnNlIj48cGF0aCBkPSJNMCAwTDEwIDVMMCAxMFoiIGZpbGw9IiMzMDZmOGMiLz48L21hcmtlcj48L2RlZnM+PHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxNzQwIiBmaWxsPSJ3aGl0ZSIvPjx0ZXh0IHg9IjM1IiB5PSI0OCIgZm9udC1zaXplPSIyNSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5EYWxs4oCZb2dnZXR0byBhbCBtb2R1bG8gZGVsbOKAmWFsdGV6emE8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjEwNSIgZm9udC1zaXplPSIyMiIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij4xIMK3IGYgPSAyIGNtOyBwID0gcSA9IDQgY208L3RleHQ+PHRleHQgeD0iMzUiIHk9IjE1NSIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5BbHRlenplIGFtcGxpZmljYXRlOyBkaXN0YW56ZSBhc3NpYWxpIGluIGNtLjwvdGV4dD48bGluZSB4MT0iNjUiIHkxPSIzMjAiIHgyPSI1NzUiIHkyPSIzMjAiIHN0cm9rZT0iIzUyNjQ3NCIgc3Ryb2tlLXdpZHRoPSIyIi8+PGxpbmUgeDE9IjMyMCIgeTE9IjE5NSIgeDI9IjMyMCIgeTI9IjQzNSIgc3Ryb2tlPSIjODc5NDljIiBzdHJva2Utd2lkdGg9IjIiLz48cGF0aCBkPSJNMTYwIDMyMEwxNjAgMjgwIiBmaWxsPSJub25lIiBzdHJva2U9IiMzMDZmOGMiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnIpIi8+PHBhdGggZD0iTTQ4MCAzMjBMNDgwIDM2MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMzA2ZjhjIiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjYXJyKSIvPjxwYXRoIGQ9Ik0xNjAgMjgwTDMyMCAyODAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzMwNmY4YyIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2FycikiLz48cGF0aCBkPSJNMzIwIDI4MEw1NjAgNDAwIiBmaWxsPSJub25lIiBzdHJva2U9IiMzMDZmOGMiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnIpIi8+PHBhdGggZD0iTTE2MCAyODBMNTYwIDM4MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjOGI1ZDM1IiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjYXJyKSIvPjxjaXJjbGUgY3g9IjI0MCIgY3k9IjMyMCIgcj0iMyIgZmlsbD0iIzI2NmI4OSIvPjx0ZXh0IHg9IjI0MCIgeT0iMzY1IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5GPC90ZXh0PjxjaXJjbGUgY3g9IjMyMCIgY3k9IjMyMCIgcj0iMyIgZmlsbD0iIzI2NmI4OSIvPjx0ZXh0IHg9IjMyMCIgeT0iMzY1IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5PPC90ZXh0PjxjaXJjbGUgY3g9IjQwMCIgY3k9IjMyMCIgcj0iMyIgZmlsbD0iIzI2NmI4OSIvPjx0ZXh0IHg9IjQwMCIgeT0iMzY1IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5G4oCyPC90ZXh0Pjx0ZXh0IHg9IjcwIiB5PSIyNTAiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+aF9vID0gMSBtbTwvdGV4dD48dGV4dCB4PSI0NTAiIHk9IjQ0NSIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5IID0gMSBtbTwvdGV4dD48dGV4dCB4PSIzNSIgeT0iNTEwIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPkzigJlpbW1hZ2luZSDDqCBjYXBvdm9sdGE6IGhfaSA9IOKIkjEgbW0uPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSI1NTAiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+SWwgbW9kdWxvIEggcmVzdGEgcG9zaXRpdm8uPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSI2NTAiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+MiDCtyBEdWUgbW9kdWxpIGUgbGEgbWVkaWE8L3RleHQ+PHRleHQgeD0iMTMwIiB5PSI3NDIiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJlbmQiPkE8L3RleHQ+PHJlY3QgeD0iMTUwIiB5PSI3MjAiIHdpZHRoPSI4MCIgaGVpZ2h0PSIzMCIgZmlsbD0iIzNkNzc5MSIvPjx0ZXh0IHg9IjI0MCIgeT0iNzQ0IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjEgbW08L3RleHQ+PHRleHQgeD0iMTMwIiB5PSI4NDIiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJlbmQiPkI8L3RleHQ+PHJlY3QgeD0iMTUwIiB5PSI4MjAiIHdpZHRoPSIzMjAiIGhlaWdodD0iMzAiIGZpbGw9IiM5ODZjMzUiLz48dGV4dCB4PSI0ODAiIHk9Ijg0NCIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij40IG1tPC90ZXh0Pjx0ZXh0IHg9IjEzMCIgeT0iOTQyIiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0iZW5kIj5tZWRpYTwvdGV4dD48cmVjdCB4PSIxNTAiIHk9IjkyMCIgd2lkdGg9IjIwMC4wIiBoZWlnaHQ9IjMwIiBmaWxsPSIjNjM3ZTU1Ii8+PHRleHQgeD0iMzYwLjAiIHk9Ijk0NCIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij4oNS8yKSBtbTwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMTAxMCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5BOiBoX28gPSAxIG1tLHAgPSA0IGNtPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSIxMDUwIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPkI6IGhfbyA9IDIgbW0scCA9IDMgY208L3RleHQ+PHRleHQgeD0iMzUiIHk9IjExMzAiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+MyDCtyBTb2xvIGhfbyA9IDEgbW0gZSBmID0gMiBjbTwvdGV4dD48bGluZSB4MT0iMTUwIiB5MT0iMTUxMCIgeDI9IjU2MCIgeTI9IjE1MTAiIHN0cm9rZT0iIzUyNjQ3NCIgc3Ryb2tlLXdpZHRoPSIyIi8+PGxpbmUgeDE9IjE1MCIgeTE9IjE1MTAiIHgyPSIxNTAiIHkyPSIxMTgwIiBzdHJva2U9IiM1MjY0NzQiIHN0cm9rZS13aWR0aD0iMiIvPjxsaW5lIHgxPSIyNzAiIHkxPSIxMTkwIiB4Mj0iMjcwIiB5Mj0iMTUxMCIgc3Ryb2tlPSIjOGU5Y2E0IiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1kYXNoYXJyYXk9IjcgNiIvPjxwYXRoIGQ9Ik0zMTguMDAwMDAgMTIxMC4wMDAwMCBMMzE5LjkyMDAwIDEyMjEuNTM4NDYgTDMyMS44NDAwMCAxMjMyLjIyMjIyIEwzMjMuNzYwMDAgMTI0Mi4xNDI4NiBMMzI1LjY4MDAwIDEyNTEuMzc5MzEgTDMyNy42MDAwMCAxMjYwLjAwMDAwIEwzMjkuNTIwMDAgMTI2OC4wNjQ1MiBMMzMxLjQ0MDAwIDEyNzUuNjI1MDAgTDMzMy4zNjAwMCAxMjgyLjcyNzI3IEwzMzUuMjgwMDAgMTI4OS40MTE3NiBMMzM3LjIwMDAwIDEyOTUuNzE0MjkgTDMzOS4xMjAwMCAxMzAxLjY2NjY3IEwzNDEuMDQwMDAgMTMwNy4yOTczMCBMMzQyLjk2MDAwIDEzMTIuNjMxNTggTDM0NC44ODAwMCAxMzE3LjY5MjMxIEwzNDYuODAwMDAgMTMyMi41MDAwMCBMMzQ4LjcyMDAwIDEzMjcuMDczMTcgTDM1MC42NDAwMCAxMzMxLjQyODU3IEwzNTIuNTYwMDAgMTMzNS41ODE0MCBMMzU0LjQ4MDAwIDEzMzkuNTQ1NDUgTDM1Ni40MDAwMCAxMzQzLjMzMzMzIEwzNTguMzIwMDAgMTM0Ni45NTY1MiBMMzYwLjI0MDAwIDEzNTAuNDI1NTMgTDM2Mi4xNjAwMCAxMzUzLjc1MDAwIEwzNjQuMDgwMDAgMTM1Ni45Mzg3OCBMMzY2LjAwMDAwIDEzNjAuMDAwMDAgTDM2Ny45MjAwMCAxMzYyLjk0MTE4IEwzNjkuODQwMDAgMTM2NS43NjkyMyBMMzcxLjc2MDAwIDEzNjguNDkwNTcgTDM3My42ODAwMCAxMzcxLjExMTExIEwzNzUuNjAwMDAgMTM3My42MzYzNiBMMzc3LjUyMDAwIDEzNzYuMDcxNDMgTDM3OS40NDAwMCAxMzc4LjQyMTA1IEwzODEuMzYwMDAgMTM4MC42ODk2NiBMMzgzLjI4MDAwIDEzODIuODgxMzYgTDM4NS4yMDAwMCAxMzg1LjAwMDAwIEwzODcuMTIwMDAgMTM4Ny4wNDkxOCBMMzg5LjA0MDAwIDEzODkuMDMyMjYgTDM5MC45NjAwMCAxMzkwLjk1MjM4IEwzOTIuODgwMDAgMTM5Mi44MTI1MCBMMzk0LjgwMDAwIDEzOTQuNjE1MzggTDM5Ni43MjAwMCAxMzk2LjM2MzY0IEwzOTguNjQwMDAgMTM5OC4wNTk3MCBMNDAwLjU2MDAwIDEzOTkuNzA1ODggTDQwMi40ODAwMCAxNDAxLjMwNDM1IEw0MDQuNDAwMDAgMTQwMi44NTcxNCBMNDA2LjMyMDAwIDE0MDQuMzY2MjAgTDQwOC4yNDAwMCAxNDA1LjgzMzMzIEw0MTAuMTYwMDAgMTQwNy4yNjAyNyBMNDEyLjA4MDAwIDE0MDguNjQ4NjUgTDQxNC4wMDAwMCAxNDEwLjAwMDAwIEw0MTUuOTIwMDAgMTQxMS4zMTU3OSBMNDE3Ljg0MDAwIDE0MTIuNTk3NDAgTDQxOS43NjAwMCAxNDEzLjg0NjE1IEw0MjEuNjgwMDAgMTQxNS4wNjMyOSBMNDIzLjYwMDAwIDE0MTYuMjUwMDAgTDQyNS41MjAwMCAxNDE3LjQwNzQxIEw0MjcuNDQwMDAgMTQxOC41MzY1OSBMNDI5LjM2MDAwIDE0MTkuNjM4NTUgTDQzMS4yODAwMCAxNDIwLjcxNDI5IEw0MzMuMjAwMDAgMTQyMS43NjQ3MSBMNDM1LjEyMDAwIDE0MjIuNzkwNzAgTDQzNy4wNDAwMCAxNDIzLjc5MzEwIEw0MzguOTYwMDAgMTQyNC43NzI3MyBMNDQwLjg4MDAwIDE0MjUuNzMwMzQgTDQ0Mi44MDAwMCAxNDI2LjY2NjY3IEw0NDQuNzIwMDAgMTQyNy41ODI0MiBMNDQ2LjY0MDAwIDE0MjguNDc4MjYgTDQ0OC41NjAwMCAxNDI5LjM1NDg0IEw0NTAuNDgwMDAgMTQzMC4yMTI3NyBMNDUyLjQwMDAwIDE0MzEuMDUyNjMgTDQ1NC4zMjAwMCAxNDMxLjg3NTAwIEw0NTYuMjQwMDAgMTQzMi42ODA0MSBMNDU4LjE2MDAwIDE0MzMuNDY5MzkgTDQ2MC4wODAwMCAxNDM0LjI0MjQyIEw0NjIuMDAwMDAgMTQzNS4wMDAwMCBMNDYzLjkyMDAwIDE0MzUuNzQyNTcgTDQ2NS44NDAwMCAxNDM2LjQ3MDU5IEw0NjcuNzYwMDAgMTQzNy4xODQ0NyBMNDY5LjY4MDAwIDE0MzcuODg0NjIgTDQ3MS42MDAwMCAxNDM4LjU3MTQzIEw0NzMuNTIwMDAgMTQzOS4yNDUyOCBMNDc1LjQ0MDAwIDE0MzkuOTA2NTQgTDQ3Ny4zNjAwMCAxNDQwLjU1NTU2IEw0NzkuMjgwMDAgMTQ0MS4xOTI2NiBMNDgxLjIwMDAwIDE0NDEuODE4MTggTDQ4My4xMjAwMCAxNDQyLjQzMjQzIEw0ODUuMDQwMDAgMTQ0My4wMzU3MSBMNDg2Ljk2MDAwIDE0NDMuNjI4MzIgTDQ4OC44ODAwMCAxNDQ0LjIxMDUzIEw0OTAuODAwMDAgMTQ0NC43ODI2MSBMNDkyLjcyMDAwIDE0NDUuMzQ0ODMgTDQ5NC42NDAwMCAxNDQ1Ljg5NzQ0IEw0OTYuNTYwMDAgMTQ0Ni40NDA2OCBMNDk4LjQ4MDAwIDE0NDYuOTc0NzkgTDUwMC40MDAwMCAxNDQ3LjUwMDAwIEw1MDIuMzIwMDAgMTQ0OC4wMTY1MyBMNTA0LjI0MDAwIDE0NDguNTI0NTkgTDUwNi4xNjAwMCAxNDQ5LjAyNDM5IEw1MDguMDgwMDAgMTQ0OS41MTYxMyBMNTEwLjAwMDAwIDE0NTAuMDAwMDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzMwNmY4YyIgc3Ryb2tlLXdpZHRoPSIzIi8+PGxpbmUgeDE9IjI3MCIgeTE9IjE1MDQiIHgyPSIyNzAiIHkyPSIxNTE2IiBzdHJva2U9IiM1MjY0NzQiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjI3MCIgeT0iMTU1NSIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9Im1pZGRsZSI+MjwvdGV4dD48bGluZSB4MT0iMzMwIiB5MT0iMTUwNCIgeDI9IjMzMCIgeTI9IjE1MTYiIHN0cm9rZT0iIzUyNjQ3NCIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iMzMwIiB5PSIxNTU1IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj4zPC90ZXh0PjxsaW5lIHgxPSIzOTAiIHkxPSIxNTA0IiB4Mj0iMzkwIiB5Mj0iMTUxNiIgc3Ryb2tlPSIjNTI2NDc0IiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSIzOTAiIHk9IjE1NTUiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJtaWRkbGUiPjQ8L3RleHQ+PGxpbmUgeDE9IjUxMCIgeTE9IjE1MDQiIHgyPSI1MTAiIHkyPSIxNTE2IiBzdHJva2U9IiM1MjY0NzQiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjUxMCIgeT0iMTU1NSIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9Im1pZGRsZSI+NjwvdGV4dD48bGluZSB4MT0iMTQ0IiB5MT0iMTQ1MC4wIiB4Mj0iMTU2IiB5Mj0iMTQ1MC4wIiBzdHJva2U9IiM1MjY0NzQiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjEzMiIgeT0iMTQ1Ni4wIiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0iZW5kIj4xLzI8L3RleHQ+PGxpbmUgeDE9IjE0NCIgeTE9IjEzOTAiIHgyPSIxNTYiIHkyPSIxMzkwIiBzdHJva2U9IiM1MjY0NzQiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjEzMiIgeT0iMTM5NiIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9ImVuZCI+MTwvdGV4dD48bGluZSB4MT0iMTQ0IiB5MT0iMTI3MCIgeDI9IjE1NiIgeTI9IjEyNzAiIHN0cm9rZT0iIzUyNjQ3NCIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iMTMyIiB5PSIxMjc2IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0iZW5kIj4yPC90ZXh0PjxjaXJjbGUgY3g9IjM5MCIgY3k9IjEzOTAiIHI9IjUiIGZpbGw9IiMyNjZiODkiLz48dGV4dCB4PSI0MDUiIHk9IjEzNDUiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+KDQgY20sMSBtbSk8L3RleHQ+PHRleHQgeD0iMTY1IiB5PSIxMTkwIiBmb250LXNpemU9IjIwIiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPkggKG1tKTwvdGV4dD48dGV4dCB4PSI0OTUiIHk9IjE2MDAiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+cCAoY20pPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSIxNjYwIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPnAgPSAyIGNtIMOoIGlsIGZ1b2NvIGVzY2x1c28uPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSIxNzAwIiBmb250LXNpemU9IjE5IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPkxhIGN1cnZhIG5vbiB1c2EgbOKAmW9nZ2V0dG8gZGEgMiBtbSBkaSBCLjwvdGV4dD48L3N2Zz4K"
+    }
+  ]
+}

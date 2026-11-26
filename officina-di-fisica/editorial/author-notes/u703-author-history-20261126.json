@@ -1,0 +1,37 @@
+{
+  "scope": "author history, not scientific acceptance",
+  "initialMirrorCommit": "3d06d8f0",
+  "finalMirrorCommit": "8415ce2e",
+  "visualFinding": "Initial beta label contacted the mirror. Final label alone moved from (410,220) to (430,260).",
+  "archive": "editorial/author-notes/u703-plane-mirror-ray-direction-261-evidence/initial-label-contact/manifest.json",
+  "correctedStrictDiff": {
+    "figureSrcOnlyRecords": [
+      "AR-u7-plane-mirror-ray-direction-01",
+      "AR-u7-plane-mirror-ray-direction-03",
+      "AR-u7-plane-mirror-ray-direction-12"
+    ],
+    "singleSvgLabelCoordinateDelta": [
+      [
+        "β = 60°",
+        {
+          "x": "410",
+          "y": "220",
+          "font-size": "19",
+          "fill": "#203247",
+          "text-anchor": "start"
+        },
+        {
+          "x": "430",
+          "y": "260",
+          "font-size": "19",
+          "fill": "#203247",
+          "text-anchor": "start"
+        }
+      ]
+    ]
+  },
+  "diagnosticCorrection": "An initial strict-diff assertion compared figure blocks including changed asset src and failed. The corrected diagnostic normalizes only that src; all other record fields match. No scientific or product UI PASS was produced by that diagnostic.",
+  "scientificReview": "NOT_RUN",
+  "humanApproval": "NOT_RUN",
+  "productUI": "NOT_RUN"
+}

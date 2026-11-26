@@ -1,0 +1,1183 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u7-lens-magnification-01",
+      "kind": "question",
+      "course": "C5",
+      "section": "Modulo e orientamento dell’ingrandimento",
+      "order": 26001,
+      "title": "Due volte l’altezza, con orientamento opposto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L09",
+        "C5-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "lens-magnification",
+      "difficulty": 1,
+      "prompt": "Nel modello parassiale una lente sottile convergente, nello stesso mezzo sui due lati, forma l’immagine reale di un oggetto reale. p>0 è la distanza dell’oggetto e q>0 quella dell’immagine, entrambe dalla lente; h_o>0 è l’altezza dell’oggetto e h_i quella orientata dell’immagine. Il modulo dell’ingrandimento è M=|h_i/h_o|, mentre m=h_i/h_o è orientato. Le configurazioni confrontate sono preparazioni distinte: per ciascuna coppia p,q la focale è f=pq/(p+q)>0. La focale può quindi cambiare fra preparazioni; non si pretende di cambiare p e q liberamente mantenendo la stessa lente. Tutti i dati sono finiti e costanti entro ciascuna prova. Con q=6 cm e p=3 cm, quanto vale M?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "1",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dai triangoli dei raggi centrali l’ingrandimento orientato è m=−q/p. Le distanze positive danno m=−2: l’immagine è capovolta e alta in modulo due volte l’oggetto. Il valore richiesto è M=2, puro. La focale di questa preparazione è 2 cm, compatibile con p>f."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/bfce00d50e6cf312b3404f0a07a22205e27057360d1081b05465c74b5b0b463e",
+          "text": "Il primo pannello usa p=3 cm,q=6 cm e f=2 cm. Un oggetto di altezza 1 mm produce h_i=−2 mm: M=2 e m=−2. Le altezze sono amplificate rispetto alle distanze orizzontali nello schema, con lo stesso fattore per oggetto e immagine; gli angoli disegnati non sono misure parassiali."
+        },
+        {
+          "type": "formula",
+          "text": "m=-\\frac qp"
+        },
+        {
+          "type": "formula",
+          "text": " m=-\\frac{6\\,\\mathrm{cm}}{3\\,\\mathrm{cm}}"
+        },
+        {
+          "type": "formula",
+          "text": " m=-2"
+        },
+        {
+          "type": "formula",
+          "text": " M=|m|"
+        },
+        {
+          "type": "formula",
+          "text": " M=2"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo inverte il rapporto immagine/oggetto; meno due mantiene l’orientamento invece del modulo. Sei copia il valore numerico di q in centimetri, quattro eleva al quadrato un rapporto che nella legge compare una sola volta."
+        }
+      ],
+      "hints": [
+        "Calcola prima m con il segno, poi prendine il modulo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo inverte il rapporto immagine/oggetto; meno due mantiene l’orientamento invece del modulo. Sei copia il valore numerico di q in centimetri, quattro eleva al quadrato un rapporto che nella legge compare una sola volta.",
+        "target": "C5-L10"
+      },
+      "coverage": [
+        "Ingrandimento orientato e modulo",
+        "Preparazioni con focali compatibili",
+        "Inverse, medie e libertà di scala"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-lens-magnification-02",
+      "kind": "question",
+      "course": "C5",
+      "section": "Modulo e orientamento dell’ingrandimento",
+      "order": 26002,
+      "title": "Un rapporto di due altezze",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L09",
+        "C5-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "lens-magnification",
+      "difficulty": 1,
+      "prompt": "Quale indicazione di unità è adatta a M=|h_i/h_o|?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1, adimensionale",
+          "cm",
+          "cm⁻¹",
+          "gradi",
+          "cm²"
+        ],
+        "value": "1, adimensionale"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le due altezze si misurano nella stessa unità e si dividono: la lunghezza si semplifica. M esprime quante volte l’immagine è alta rispetto all’oggetto, non una nuova altezza. Anche q/p è un rapporto puro."
+        },
+        {
+          "type": "formula",
+          "text": "[M]=\\frac L L"
+        },
+        {
+          "type": "formula",
+          "text": " [M]=1"
+        },
+        {
+          "type": "text",
+          "text": "cm esprime una lunghezza, cm⁻¹ un suo inverso e cm² una superficie. I gradi riguardano un angolo, non il rapporto delle altezze. Un valore di M non deve portare l’unità di q o p."
+        }
+      ],
+      "hints": [
+        "Controlla le dimensioni sia di h_i/h_o sia di q/p.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "cm esprime una lunghezza, cm⁻¹ un suo inverso e cm² una superficie. I gradi riguardano un angolo, non il rapporto delle altezze. Un valore di M non deve portare l’unità di q o p.",
+        "target": "C5-L10"
+      },
+      "coverage": [
+        "Ingrandimento orientato e modulo",
+        "Preparazioni con focali compatibili",
+        "Inverse, medie e libertà di scala"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-lens-magnification-03",
+      "kind": "question",
+      "course": "C5",
+      "section": "Modulo e orientamento dell’ingrandimento",
+      "order": 26003,
+      "title": "Reale significa capovolta nel modello",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L09",
+        "C5-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "lens-magnification",
+      "difficulty": 1,
+      "prompt": "Una lente sottile convergente, nello stesso mezzo sui due lati, forma l’immagine reale di un oggetto reale nel modello parassiale. Quale affermazione sull’orientamento è corretta?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "L’immagine è capovolta: m è negativo, mentre M è positivo",
+          "L’immagine è sempre diritta perché M è positivo",
+          "m e M sono entrambi negativi",
+          "L’immagine reale è sempre uguale all’oggetto",
+          "Il segno dipende solo dall’unità usata per le distanze"
+        ],
+        "value": "L’immagine è capovolta: m è negativo, mentre M è positivo"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’oggetto reale ha p>0 e l’immagine reale q>0 sul lato d’uscita. Ne segue m=−q/p<0: un’altezza iniziale positiva diventa negativa. Prendere il modulo non cambia l’immagine fisica; elimina soltanto l’informazione di orientamento dal numero M."
+        },
+        {
+          "type": "formula",
+          "text": "m=-q/p<0"
+        },
+        {
+          "type": "formula",
+          "text": " M=|m|>0"
+        },
+        {
+          "type": "text",
+          "text": "M positivo non rende diritta l’immagine, perché è già un modulo. Un modulo negativo è impossibile. L’uguaglianza delle dimensioni richiederebbe q=p, non soltanto un’immagine reale; cambiare centimetri in metri non modifica il segno."
+        }
+      ],
+      "hints": [
+        "Distingui l’altezza orientata dalla sua grandezza in modulo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "M positivo non rende diritta l’immagine, perché è già un modulo. Un modulo negativo è impossibile. L’uguaglianza delle dimensioni richiederebbe q=p, non soltanto un’immagine reale; cambiare centimetri in metri non modifica il segno.",
+        "target": "C5-L10"
+      },
+      "coverage": [
+        "Ingrandimento orientato e modulo",
+        "Preparazioni con focali compatibili",
+        "Inverse, medie e libertà di scala"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-lens-magnification-04",
+      "kind": "question",
+      "course": "C5",
+      "section": "Modulo e orientamento dell’ingrandimento",
+      "order": 26004,
+      "title": "Un piano d’immagine più lontano",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L09",
+        "C5-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "lens-magnification",
+      "difficulty": 1,
+      "prompt": "Nel modello parassiale una lente sottile convergente, nello stesso mezzo sui due lati, forma l’immagine reale di un oggetto reale. p>0 è la distanza dell’oggetto e q>0 quella dell’immagine, entrambe dalla lente; h_o>0 è l’altezza dell’oggetto e h_i quella orientata dell’immagine. Il modulo dell’ingrandimento è M=|h_i/h_o|, mentre m=h_i/h_o è orientato. Le configurazioni confrontate sono preparazioni distinte: per ciascuna coppia p,q la focale è f=pq/(p+q)>0. La focale può quindi cambiare fra preparazioni; non si pretende di cambiare p e q liberamente mantenendo la stessa lente. Tutti i dati sono finiti e costanti entro ciascuna prova. A ha q=6 cm,p=3 cm. B ha q=9 cm e lo stesso p. Come cambia M?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 2 a 3",
+          "Da 2 a 4/3",
+          "Da 2 a 9",
+          "Resta 2",
+          "Da 2 a −3"
+        ],
+        "value": "Da 2 a 3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il denominatore resta 3 cm: M_A=6/3=2 e M_B=9/3=3. Il modulo aumenta di un fattore 3/2. La preparazione B richiede una focale diversa, 9/4 cm invece di 2 cm; non è uno spostamento libero del piano d’immagine di una lente invariata."
+        },
+        {
+          "type": "formula",
+          "text": "M_A=6/3"
+        },
+        {
+          "type": "formula",
+          "text": " M_A=2"
+        },
+        {
+          "type": "formula",
+          "text": " M_B=9/3"
+        },
+        {
+          "type": "formula",
+          "text": " M_B=3"
+        },
+        {
+          "type": "text",
+          "text": "4/3 usa una dipendenza inversa da q; nove copia una distanza numerica e due ignora il nuovo q. Meno tre è m_B, non il suo modulo."
+        }
+      ],
+      "hints": [
+        "Dividi entrambe le distanze d’immagine per il medesimo p.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "4/3 usa una dipendenza inversa da q; nove copia una distanza numerica e due ignora il nuovo q. Meno tre è m_B, non il suo modulo.",
+        "target": "C5-L10"
+      },
+      "coverage": [
+        "Ingrandimento orientato e modulo",
+        "Preparazioni con focali compatibili",
+        "Inverse, medie e libertà di scala"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-lens-magnification-05",
+      "kind": "question",
+      "course": "C5",
+      "section": "Modulo e orientamento dell’ingrandimento",
+      "order": 26005,
+      "title": "La distanza dell’immagine dal modulo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L09",
+        "C5-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "lens-magnification",
+      "difficulty": 2,
+      "prompt": "Nel modello parassiale una lente sottile convergente, nello stesso mezzo sui due lati, forma l’immagine reale di un oggetto reale. p>0 è la distanza dell’oggetto e q>0 quella dell’immagine, entrambe dalla lente; h_o>0 è l’altezza dell’oggetto e h_i quella orientata dell’immagine. Il modulo dell’ingrandimento è M=|h_i/h_o|, mentre m=h_i/h_o è orientato. Le configurazioni confrontate sono preparazioni distinte: per ciascuna coppia p,q la focale è f=pq/(p+q)>0. La focale può quindi cambiare fra preparazioni; non si pretende di cambiare p e q liberamente mantenendo la stessa lente. Tutti i dati sono finiti e costanti entro ciascuna prova. Sono noti M=2 e p=3 cm. Quanto vale q in cm?",
+      "answer": {
+        "type": "numeric",
+        "value": 6,
+        "unit": "cm",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Da M=q/p moltiplico entrambi i membri per p positivo: q=Mp. Due volte tre centimetri vale sei centimetri. Il controllo 6/3=2 recupera il dato e la lente compatibile ha focale 2 cm."
+        },
+        {
+          "type": "formula",
+          "text": "q=Mp"
+        },
+        {
+          "type": "formula",
+          "text": " q=2\\cdot3\\,\\mathrm{cm}"
+        },
+        {
+          "type": "formula",
+          "text": " q=6\\,\\mathrm{cm}"
+        },
+        {
+          "type": "text",
+          "text": "3/2 cm dividerebbe p per M e predirebbe M=1/2. Tre centimetri darebbe M=1; dodici darebbe M=4. Il ramo negativo non descrive l’immagine reale dichiarata."
+        }
+      ],
+      "hints": [
+        "L’inversa deve ricostruire il rapporto M una volta sostituita.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "3/2 cm dividerebbe p per M e predirebbe M=1/2. Tre centimetri darebbe M=1; dodici darebbe M=4. Il ramo negativo non descrive l’immagine reale dichiarata.",
+        "target": "C5-L10"
+      },
+      "coverage": [
+        "Ingrandimento orientato e modulo",
+        "Preparazioni con focali compatibili",
+        "Inverse, medie e libertà di scala"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-lens-magnification-06",
+      "kind": "question",
+      "course": "C5",
+      "section": "Modulo e orientamento dell’ingrandimento",
+      "order": 26006,
+      "title": "La distanza dell’oggetto dal modulo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L09",
+        "C5-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "lens-magnification",
+      "difficulty": 2,
+      "prompt": "Nel modello parassiale una lente sottile convergente, nello stesso mezzo sui due lati, forma l’immagine reale di un oggetto reale. p>0 è la distanza dell’oggetto e q>0 quella dell’immagine, entrambe dalla lente; h_o>0 è l’altezza dell’oggetto e h_i quella orientata dell’immagine. Il modulo dell’ingrandimento è M=|h_i/h_o|, mentre m=h_i/h_o è orientato. Le configurazioni confrontate sono preparazioni distinte: per ciascuna coppia p,q la focale è f=pq/(p+q)>0. La focale può quindi cambiare fra preparazioni; non si pretende di cambiare p e q liberamente mantenendo la stessa lente. Tutti i dati sono finiti e costanti entro ciascuna prova. M=2 e q=6 cm. Quanto vale p in cm?",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "cm",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplico M=q/p per p e divido per M positivo: p=q/M. Sei centimetri divisi per due danno tre centimetri. Se invece moltiplicassi per M, raddoppierei il denominatore nel verso sbagliato."
+        },
+        {
+          "type": "formula",
+          "text": "Mp=q"
+        },
+        {
+          "type": "formula",
+          "text": " p=\\frac qM"
+        },
+        {
+          "type": "formula",
+          "text": " p=\\frac{6\\,\\mathrm{cm}}2"
+        },
+        {
+          "type": "formula",
+          "text": " p=3\\,\\mathrm{cm}"
+        },
+        {
+          "type": "text",
+          "text": "Dodici centimetri darebbe M=1/2, sei darebbe M=1 e un valore nullo renderebbe il rapporto indefinito. Il controllo di p>0 fa parte dell’inversa."
+        }
+      ],
+      "hints": [
+        "Per un modulo maggiore di uno deve essere p minore di q.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dodici centimetri darebbe M=1/2, sei darebbe M=1 e un valore nullo renderebbe il rapporto indefinito. Il controllo di p>0 fa parte dell’inversa.",
+        "target": "C5-L10"
+      },
+      "coverage": [
+        "Ingrandimento orientato e modulo",
+        "Preparazioni con focali compatibili",
+        "Inverse, medie e libertà di scala"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-lens-magnification-07",
+      "kind": "question",
+      "course": "C5",
+      "section": "Modulo e orientamento dell’ingrandimento",
+      "order": 26007,
+      "title": "Oggetto più lontano a q assegnato",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L09",
+        "C5-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "lens-magnification",
+      "difficulty": 2,
+      "prompt": "Nel modello parassiale una lente sottile convergente, nello stesso mezzo sui due lati, forma l’immagine reale di un oggetto reale. p>0 è la distanza dell’oggetto e q>0 quella dell’immagine, entrambe dalla lente; h_o>0 è l’altezza dell’oggetto e h_i quella orientata dell’immagine. Il modulo dell’ingrandimento è M=|h_i/h_o|, mentre m=h_i/h_o è orientato. Le configurazioni confrontate sono preparazioni distinte: per ciascuna coppia p,q la focale è f=pq/(p+q)>0. La focale può quindi cambiare fra preparazioni; non si pretende di cambiare p e q liberamente mantenendo la stessa lente. Tutti i dati sono finiti e costanti entro ciascuna prova. A usa q=6 cm,p=3 cm. B mantiene q e usa p=6 cm. Quanto vale M_B/M_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "2",
+          "1",
+          "1/4",
+          "3"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A dà M_A=2; B dà M_B=1. Il rapporto delle due uscite è 1/2. È un confronto di preparazioni: in B la focale risulta 3 cm, quindi la parità p=q non è ottenuta mantenendo anche la focale A."
+        },
+        {
+          "type": "formula",
+          "text": "M_A=2"
+        },
+        {
+          "type": "formula",
+          "text": " M_B=6/6"
+        },
+        {
+          "type": "formula",
+          "text": " M_B=1"
+        },
+        {
+          "type": "formula",
+          "text": " M_B/M_A=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Due inverte B/A; uno copia M_B senza dividerlo per M_A. Un quarto quadra il fattore di variazione e tre copia il valore numerico della vecchia distanza p."
+        }
+      ],
+      "hints": [
+        "Calcola i due moduli prima del loro rapporto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due inverte B/A; uno copia M_B senza dividerlo per M_A. Un quarto quadra il fattore di variazione e tre copia il valore numerico della vecchia distanza p.",
+        "target": "C5-L10"
+      },
+      "coverage": [
+        "Ingrandimento orientato e modulo",
+        "Preparazioni con focali compatibili",
+        "Inverse, medie e libertà di scala"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-lens-magnification-08",
+      "kind": "question",
+      "course": "C5",
+      "section": "Modulo e orientamento dell’ingrandimento",
+      "order": 26008,
+      "title": "Lo scarto di un modulo sovrastimato",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L09",
+        "C5-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "lens-magnification",
+      "difficulty": 2,
+      "prompt": "Nel modello parassiale una lente sottile convergente, nello stesso mezzo sui due lati, forma l’immagine reale di un oggetto reale. p>0 è la distanza dell’oggetto e q>0 quella dell’immagine, entrambe dalla lente; h_o>0 è l’altezza dell’oggetto e h_i quella orientata dell’immagine. Il modulo dell’ingrandimento è M=|h_i/h_o|, mentre m=h_i/h_o è orientato. Le configurazioni confrontate sono preparazioni distinte: per ciascuna coppia p,q la focale è f=pq/(p+q)>0. La focale può quindi cambiare fra preparazioni; non si pretende di cambiare p e q liberamente mantenendo la stessa lente. Tutti i dati sono finiti e costanti entro ciascuna prova. Per q=6 cm,p=3 cm viene proposto M=4. Quanto vale proposto meno corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "−2",
+          "4",
+          "1/2",
+          "0"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La legge dà M=2. La proposta quattro lo supera di due: lo scarto richiesto è positivo e puro. In questo caso il rapporto proposta/corretto vale anch’esso due, ma soltanto per questi numeri; il procedimento richiesto rimane una sottrazione."
+        },
+        {
+          "type": "formula",
+          "text": "M=6/3"
+        },
+        {
+          "type": "formula",
+          "text": " M=2"
+        },
+        {
+          "type": "formula",
+          "text": " \\delta M=4-2"
+        },
+        {
+          "type": "formula",
+          "text": " \\delta M=2"
+        },
+        {
+          "type": "text",
+          "text": "Meno due inverte l’ordine della sottrazione. Quattro ripete la proposta, un mezzo è il rapporto corretto/proposto e zero accetterebbe il valore senza controllare la legge."
+        }
+      ],
+      "hints": [
+        "Scrivi l’ordine della differenza prima di sostituire i dati.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Meno due inverte l’ordine della sottrazione. Quattro ripete la proposta, un mezzo è il rapporto corretto/proposto e zero accetterebbe il valore senza controllare la legge.",
+        "target": "C5-L10"
+      },
+      "coverage": [
+        "Ingrandimento orientato e modulo",
+        "Preparazioni con focali compatibili",
+        "Inverse, medie e libertà di scala"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-lens-magnification-09",
+      "kind": "question",
+      "course": "C5",
+      "section": "Modulo e orientamento dell’ingrandimento",
+      "order": 26009,
+      "title": "L’inversa simbolica del rapporto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L09",
+        "C5-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "lens-magnification",
+      "difficulty": 2,
+      "prompt": "Nel modello parassiale una lente sottile convergente, nello stesso mezzo sui due lati, forma l’immagine reale di un oggetto reale. p>0 è la distanza dell’oggetto e q>0 quella dell’immagine, entrambe dalla lente; h_o>0 è l’altezza dell’oggetto e h_i quella orientata dell’immagine. Il modulo dell’ingrandimento è M=|h_i/h_o|, mentre m=h_i/h_o è orientato. Le configurazioni confrontate sono preparazioni distinte: per ciascuna coppia p,q la focale è f=pq/(p+q)>0. La focale può quindi cambiare fra preparazioni; non si pretende di cambiare p e q liberamente mantenendo la stessa lente. Tutti i dati sono finiti e costanti entro ciascuna prova. Con M e p noti, quale formula isola q?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "q = M p",
+          "q = p / M",
+          "q = M / p",
+          "q = M² p",
+          "q = −M p"
+        ],
+        "value": "q = M p"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplico M=q/p per p>0 e ottengo q=Mp. L’unità è una lunghezza perché M è puro. Occorre anche M>0, come richiesto da distanze reali positive e da un oggetto di altezza non nulla."
+        },
+        {
+          "type": "formula",
+          "text": "M=\\frac qp"
+        },
+        {
+          "type": "formula",
+          "text": " q=Mp"
+        },
+        {
+          "type": "formula",
+          "text": " [q]=L"
+        },
+        {
+          "type": "text",
+          "text": "p/M ha l’unità corretta ma non inverte il rapporto: con M=2,p=3 cm darebbe q=3/2 cm e M=1/2. M/p ha lunghezza inversa; M²p darebbe q=12 cm nello stesso esempio e −Mp il ramo virtuale escluso."
+        }
+      ],
+      "hints": [
+        "Le unità scartano alcune proposte; la sostituzione distingue le altre.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "p/M ha l’unità corretta ma non inverte il rapporto: con M=2,p=3 cm darebbe q=3/2 cm e M=1/2. M/p ha lunghezza inversa; M²p darebbe q=12 cm nello stesso esempio e −Mp il ramo virtuale escluso.",
+        "target": "C5-L10"
+      },
+      "coverage": [
+        "Ingrandimento orientato e modulo",
+        "Preparazioni con focali compatibili",
+        "Inverse, medie e libertà di scala"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-lens-magnification-10",
+      "kind": "question",
+      "course": "C5",
+      "section": "Modulo e orientamento dell’ingrandimento",
+      "order": 26010,
+      "title": "Due distanze cambiano fra prove",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L09",
+        "C5-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "lens-magnification",
+      "difficulty": 2,
+      "prompt": "Nel modello parassiale una lente sottile convergente, nello stesso mezzo sui due lati, forma l’immagine reale di un oggetto reale. p>0 è la distanza dell’oggetto e q>0 quella dell’immagine, entrambe dalla lente; h_o>0 è l’altezza dell’oggetto e h_i quella orientata dell’immagine. Il modulo dell’ingrandimento è M=|h_i/h_o|, mentre m=h_i/h_o è orientato. Le configurazioni confrontate sono preparazioni distinte: per ciascuna coppia p,q la focale è f=pq/(p+q)>0. La focale può quindi cambiare fra preparazioni; non si pretende di cambiare p e q liberamente mantenendo la stessa lente. Tutti i dati sono finiti e costanti entro ciascuna prova. Fra A e B si hanno q_B=κ₁q_A e p_B=κ₂p_A, con fattori positivi. Quanto vale M_B/M_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ / κ₂",
+          "κ₁ κ₂",
+          "κ₂ / κ₁",
+          "κ₁² / κ₂",
+          "κ₁ + κ₂"
+        ],
+        "value": "κ₁ / κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituisco i due fattori prima di dividere per M_A=q_A/p_A. Si cancellano le distanze A e rimane κ₁/κ₂: q entra direttamente, p inversamente. La focale compatibile è ricostruita separatamente per B e non è un parametro da tenere implicitamente fisso."
+        },
+        {
+          "type": "formula",
+          "text": "M_B=\\frac{\\kappa_1q}{\\kappa_2p}"
+        },
+        {
+          "type": "formula",
+          "text": " R=\\frac{\\kappa_1}{\\kappa_2}"
+        },
+        {
+          "type": "text",
+          "text": "Il prodotto rende diretto anche p; il rapporto inverso scambia i ruoli e il quadrato di κ₁ non compare. La somma darebbe due se entrambi i fattori fossero uno, mentre due prove identiche danno rapporto uno."
+        }
+      ],
+      "hints": [
+        "Semplifica il rapporto delle due leggi, non i soli dati isolati.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il prodotto rende diretto anche p; il rapporto inverso scambia i ruoli e il quadrato di κ₁ non compare. La somma darebbe due se entrambi i fattori fossero uno, mentre due prove identiche danno rapporto uno.",
+        "target": "C5-L10"
+      },
+      "coverage": [
+        "Ingrandimento orientato e modulo",
+        "Preparazioni con focali compatibili",
+        "Inverse, medie e libertà di scala"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-lens-magnification-11",
+      "kind": "question",
+      "course": "C5",
+      "section": "Modulo e orientamento dell’ingrandimento",
+      "order": 26011,
+      "title": "Cambiano sia q sia p",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L09",
+        "C5-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "lens-magnification",
+      "difficulty": 2,
+      "prompt": "Nel modello parassiale una lente sottile convergente, nello stesso mezzo sui due lati, forma l’immagine reale di un oggetto reale. p>0 è la distanza dell’oggetto e q>0 quella dell’immagine, entrambe dalla lente; h_o>0 è l’altezza dell’oggetto e h_i quella orientata dell’immagine. Il modulo dell’ingrandimento è M=|h_i/h_o|, mentre m=h_i/h_o è orientato. Le configurazioni confrontate sono preparazioni distinte: per ciascuna coppia p,q la focale è f=pq/(p+q)>0. La focale può quindi cambiare fra preparazioni; non si pretende di cambiare p e q liberamente mantenendo la stessa lente. Tutti i dati sono finiti e costanti entro ciascuna prova. A usa q=6 cm,p=3 cm; B usa q=9 cm,p=6 cm. Quanto vale M_B/M_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/4",
+          "4/3",
+          "3/2",
+          "2",
+          "1"
+        ],
+        "value": "3/4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "In A M=2 e in B M=3/2. Divido 3/2 per due e ottengo 3/4. Il maggiore q di B non garantisce un maggiore ingrandimento, perché p è raddoppiato: i due effetti si combinano nel rapporto."
+        },
+        {
+          "type": "formula",
+          "text": "M_A=2"
+        },
+        {
+          "type": "formula",
+          "text": " M_B=\\frac32"
+        },
+        {
+          "type": "formula",
+          "text": " R=\\frac{3/2}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " R=\\frac34"
+        },
+        {
+          "type": "text",
+          "text": "4/3 inverte il confronto; 3/2 è il fattore di q ma anche il valore di M_B, che deve ancora essere diviso per M_A. Due considera solo l’aumento di p nel verso diretto; uno presume una compensazione non presente."
+        }
+      ],
+      "hints": [
+        "Il modulo della seconda prova non è ancora il rapporto richiesto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "4/3 inverte il confronto; 3/2 è il fattore di q ma anche il valore di M_B, che deve ancora essere diviso per M_A. Due considera solo l’aumento di p nel verso diretto; uno presume una compensazione non presente.",
+        "target": "C5-L10"
+      },
+      "coverage": [
+        "Ingrandimento orientato e modulo",
+        "Preparazioni con focali compatibili",
+        "Inverse, medie e libertà di scala"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-lens-magnification-12",
+      "kind": "question",
+      "course": "C5",
+      "section": "Modulo e orientamento dell’ingrandimento",
+      "order": 26012,
+      "title": "Una media di ingrandimenti",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L09",
+        "C5-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "lens-magnification",
+      "difficulty": 2,
+      "prompt": "Nel modello parassiale una lente sottile convergente, nello stesso mezzo sui due lati, forma l’immagine reale di un oggetto reale. p>0 è la distanza dell’oggetto e q>0 quella dell’immagine, entrambe dalla lente; h_o>0 è l’altezza dell’oggetto e h_i quella orientata dell’immagine. Il modulo dell’ingrandimento è M=|h_i/h_o|, mentre m=h_i/h_o è orientato. Le configurazioni confrontate sono preparazioni distinte: per ciascuna coppia p,q la focale è f=pq/(p+q)>0. La focale può quindi cambiare fra preparazioni; non si pretende di cambiare p e q liberamente mantenendo la stessa lente. Tutti i dati sono finiti e costanti entro ciascuna prova. Si mediano con uguale peso A:q=6 cm,p=3 cm e B:q=9 cm,p=6 cm. Quanto vale la media di M?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "7/4",
+          "5/3",
+          "7/2",
+          "1/4",
+          "2"
+        ],
+        "value": "7/4"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le uscite sono 2 e 3/2; la loro media è 7/4. Le distanze medie q=15/2 cm,p=9/2 cm darebbero invece 5/3, inferiore di 1/12. Si mediano gli ingrandimenti osservati, non si sostituiscono a priori due medie dentro un rapporto."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/bfce00d50e6cf312b3404f0a07a22205e27057360d1081b05465c74b5b0b463e",
+          "text": "Il pannello centrale confronta M_A=2,M_B=3/2 e media 7/4 con barre dalla stessa origine e nella stessa scala. Ogni coppia p,q appartiene a una preparazione distinta, non a una lente di focale implicitamente invariata."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline M=\\frac{2+3/2}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline M=\\frac74"
+        },
+        {
+          "type": "formula",
+          "text": " M_{\\rm dati\\ medi}=\\frac53"
+        },
+        {
+          "type": "text",
+          "text": "5/3 usa gli ingressi medi; 7/2 somma senza dividere per due. Un quarto è metà della differenza delle uscite e due conserva soltanto A. La media non impone una terza lente con le stesse caratteristiche di entrambe."
+        }
+      ],
+      "hints": [
+        "Completa entrambi i rapporti q/p prima di fare la media.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "5/3 usa gli ingressi medi; 7/2 somma senza dividere per due. Un quarto è metà della differenza delle uscite e due conserva soltanto A. La media non impone una terza lente con le stesse caratteristiche di entrambe.",
+        "target": "C5-L10"
+      },
+      "coverage": [
+        "Ingrandimento orientato e modulo",
+        "Preparazioni con focali compatibili",
+        "Inverse, medie e libertà di scala"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-lens-magnification-13",
+      "kind": "question",
+      "course": "C5",
+      "section": "Modulo e orientamento dell’ingrandimento",
+      "order": 26013,
+      "title": "La distanza necessaria per il nuovo bersaglio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L09",
+        "C5-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "lens-magnification",
+      "difficulty": 3,
+      "prompt": "Nel modello parassiale una lente sottile convergente, nello stesso mezzo sui due lati, forma l’immagine reale di un oggetto reale. p>0 è la distanza dell’oggetto e q>0 quella dell’immagine, entrambe dalla lente; h_o>0 è l’altezza dell’oggetto e h_i quella orientata dell’immagine. Il modulo dell’ingrandimento è M=|h_i/h_o|, mentre m=h_i/h_o è orientato. Le configurazioni confrontate sono preparazioni distinte: per ciascuna coppia p,q la focale è f=pq/(p+q)>0. La focale può quindi cambiare fra preparazioni; non si pretende di cambiare p e q liberamente mantenendo la stessa lente. Tutti i dati sono finiti e costanti entro ciascuna prova. A ha q=6 cm,p=3 cm. In B q=9 cm e si vuole M_B=(3/4)M_A. Quanto vale p_B/p_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/2",
+          "3/4",
+          "3/2",
+          "1"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è M_B=(3/4)·2=3/2. Dall’inversa p_B=q_B/M_B ottengo 9 cm divisi per 3/2, cioè 6 cm. Dividendo per i 3 cm iniziali completo il rapporto richiesto, pari a due."
+        },
+        {
+          "type": "formula",
+          "text": "M_B=\\frac32"
+        },
+        {
+          "type": "formula",
+          "text": " p_B=\\frac{9\\,\\mathrm{cm}}{3/2}"
+        },
+        {
+          "type": "formula",
+          "text": " p_B=6\\,\\mathrm{cm}"
+        },
+        {
+          "type": "formula",
+          "text": " p_B/p_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo inverte il rapporto delle distanze; 3/4 copia il fattore delle uscite e 3/2 il nuovo modulo. Uno lascerebbe p=3 cm e produrrebbe M_B=3, non 3/2."
+        }
+      ],
+      "hints": [
+        "Trova prima il nuovo modulo, poi la distanza, infine il rapporto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo inverte il rapporto delle distanze; 3/4 copia il fattore delle uscite e 3/2 il nuovo modulo. Uno lascerebbe p=3 cm e produrrebbe M_B=3, non 3/2.",
+        "target": "C5-L10"
+      },
+      "coverage": [
+        "Ingrandimento orientato e modulo",
+        "Preparazioni con focali compatibili",
+        "Inverse, medie e libertà di scala"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-lens-magnification-14",
+      "kind": "question",
+      "course": "C5",
+      "section": "Modulo e orientamento dell’ingrandimento",
+      "order": 26014,
+      "title": "Un display proporzionale a M",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L09",
+        "C5-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "lens-magnification",
+      "difficulty": 3,
+      "prompt": "Nel modello parassiale una lente sottile convergente, nello stesso mezzo sui due lati, forma l’immagine reale di un oggetto reale. p>0 è la distanza dell’oggetto e q>0 quella dell’immagine, entrambe dalla lente; h_o>0 è l’altezza dell’oggetto e h_i quella orientata dell’immagine. Il modulo dell’ingrandimento è M=|h_i/h_o|, mentre m=h_i/h_o è orientato. Le configurazioni confrontate sono preparazioni distinte: per ciascuna coppia p,q la focale è f=pq/(p+q)>0. La focale può quindi cambiare fra preparazioni; non si pretende di cambiare p e q liberamente mantenendo la stessa lente. Tutti i dati sono finiti e costanti entro ciascuna prova. Un display continuo D=gM senza offset legge 6 per q=6 cm,p=3 cm. In B legge 9/2 e p=6 cm. Quanto vale q_B in cm?",
+      "answer": {
+        "type": "numeric",
+        "value": 9,
+        "unit": "cm",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento ha M=2 e quindi g=3. La lettura 9/2 divisa per tre indica M_B=3/2. Moltiplico per p_B=6 cm e ricostruisco q_B=9 cm: il numero sul display non è già il modulo fisico."
+        },
+        {
+          "type": "formula",
+          "text": "g=6/2"
+        },
+        {
+          "type": "formula",
+          "text": " g=3"
+        },
+        {
+          "type": "formula",
+          "text": " M_B=\\frac{9/2}{3}"
+        },
+        {
+          "type": "formula",
+          "text": " M_B=\\frac32"
+        },
+        {
+          "type": "formula",
+          "text": " q_B=9\\,\\mathrm{cm}"
+        },
+        {
+          "type": "text",
+          "text": "27 cm userebbe direttamente D come M e predirebbe D=27. Quattro centimetri dividerebbe p_B per M_B invece di moltiplicare, mentre 3/2 copierebbe soltanto il modulo senza la distanza richiesta."
+        }
+      ],
+      "hints": [
+        "Elimina il guadagno prima di moltiplicare per p_B.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "27 cm userebbe direttamente D come M e predirebbe D=27. Quattro centimetri dividerebbe p_B per M_B invece di moltiplicare, mentre 3/2 copierebbe soltanto il modulo senza la distanza richiesta.",
+        "target": "C5-L10"
+      },
+      "coverage": [
+        "Ingrandimento orientato e modulo",
+        "Preparazioni con focali compatibili",
+        "Inverse, medie e libertà di scala"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-lens-magnification-15",
+      "kind": "question",
+      "course": "C5",
+      "section": "Modulo e orientamento dell’ingrandimento",
+      "order": 26015,
+      "title": "Offset e ingrandimento sono due leggi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L09",
+        "C5-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "lens-magnification",
+      "difficulty": 3,
+      "prompt": "Nel modello parassiale una lente sottile convergente, nello stesso mezzo sui due lati, forma l’immagine reale di un oggetto reale. p>0 è la distanza dell’oggetto e q>0 quella dell’immagine, entrambe dalla lente; h_o>0 è l’altezza dell’oggetto e h_i quella orientata dell’immagine. Il modulo dell’ingrandimento è M=|h_i/h_o|, mentre m=h_i/h_o è orientato. Le configurazioni confrontate sono preparazioni distinte: per ciascuna coppia p,q la focale è f=pq/(p+q)>0. La focale può quindi cambiare fra preparazioni; non si pretende di cambiare p e q liberamente mantenendo la stessa lente. Tutti i dati sono finiti e costanti entro ciascuna prova. D=gM+b. A:q=6 cm,p=3 cm,D=5. B:q=9 cm,p=6 cm,D=4. C:p=3 cm,D=7. Quanto vale q_C in cm?",
+      "answer": {
+        "type": "numeric",
+        "value": 9,
+        "unit": "cm",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I due moduli noti sono 2 e 3/2. Le differenze danno g=(5−4)/(2−3/2)=2, poi b=1. La lettura sette corrisponde a M_C=(7−1)/2=3; moltiplicando per p_C=3 cm ottengo q_C=9 cm."
+        },
+        {
+          "type": "formula",
+          "text": "g=\\frac{5-4}{2-3/2}"
+        },
+        {
+          "type": "formula",
+          "text": " g=2"
+        },
+        {
+          "type": "formula",
+          "text": " b=1"
+        },
+        {
+          "type": "formula",
+          "text": " M_C=\\frac{7-1}{2}"
+        },
+        {
+          "type": "formula",
+          "text": " M_C=3"
+        },
+        {
+          "type": "formula",
+          "text": " q_C=9\\,\\mathrm{cm}"
+        },
+        {
+          "type": "text",
+          "text": "21/2 cm ometterebbe b e predirebbe D=8. Diciotto toglierebbe l’offset senza dividere per g; tre copierebbe M_C senza moltiplicarlo per p_C: q_C=3 cm darebbe invece M_C=1 e D=3."
+        }
+      ],
+      "hints": [
+        "Usa differenze delle letture per togliere l’offset, poi ricostruisci M.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "21/2 cm ometterebbe b e predirebbe D=8. Diciotto toglierebbe l’offset senza dividere per g; tre copierebbe M_C senza moltiplicarlo per p_C: q_C=3 cm darebbe invece M_C=1 e D=3.",
+        "target": "C5-L10"
+      },
+      "coverage": [
+        "Ingrandimento orientato e modulo",
+        "Preparazioni con focali compatibili",
+        "Inverse, medie e libertà di scala"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u7-lens-magnification-16",
+      "kind": "question",
+      "course": "C5",
+      "section": "Modulo e orientamento dell’ingrandimento",
+      "order": 26016,
+      "title": "Un vincolo lascia libera la scala",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C5-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C5-L09",
+        "C5-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "lens-magnification",
+      "difficulty": 3,
+      "prompt": "Nel modello parassiale una lente sottile convergente, nello stesso mezzo sui due lati, forma l’immagine reale di un oggetto reale. p>0 è la distanza dell’oggetto e q>0 quella dell’immagine, entrambe dalla lente; h_o>0 è l’altezza dell’oggetto e h_i quella orientata dell’immagine. Il modulo dell’ingrandimento è M=|h_i/h_o|, mentre m=h_i/h_o è orientato. Le configurazioni confrontate sono preparazioni distinte: per ciascuna coppia p,q la focale è f=pq/(p+q)>0. La focale può quindi cambiare fra preparazioni; non si pretende di cambiare p e q liberamente mantenendo la stessa lente. Tutti i dati sono finiti e costanti entro ciascuna prova. Si impone q=2p e si misura M=2. Quante coppie positive(p,q) sono determinate?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Infinite coppie positive con q = 2 p",
+          "Una sola coppia: p = 3 cm, q = 6 cm",
+          "Nessuna coppia",
+          "Due coppie",
+          "Infinite coppie con qualsiasi q positivo indipendente da p"
+        ],
+        "value": "Infinite coppie positive con q = 2 p"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il vincolo sostituito nel rapporto dà M=2p/p=2 per ogni p>0. La misura ripete perciò il vincolo e non fissa una lunghezza assoluta. Per esempio p=3 cm,q=6 cm e p=6 cm,q=12 cm sono entrambe compatibili, con focali rispettivamente 2 e 4 cm: non appartengono alla stessa lente invariata."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/bfce00d50e6cf312b3404f0a07a22205e27057360d1081b05465c74b5b0b463e",
+          "text": "Il pannello finale mostra q=2p per p>0: i punti(3 cm,6 cm) e(6 cm,12 cm) sono esempi. L’origine è un limite escluso e non una lente ammissibile; lungo la famiglia la focale cambia come f=2p/3."
+        },
+        {
+          "type": "formula",
+          "text": "M=\\frac{2p}{p}"
+        },
+        {
+          "type": "formula",
+          "text": " M=2"
+        },
+        {
+          "type": "formula",
+          "text": " p>0"
+        },
+        {
+          "type": "formula",
+          "text": " q=2p"
+        },
+        {
+          "type": "text",
+          "text": "Una o due coppie non esauriscono la libertà continua. La risposta «Nessuna coppia» è smentita dagli esempi. Non si possono scegliere p e q indipendentemente: devono ancora soddisfare q=2p. Fissare anche la focale aggiungerebbe un dato assente dalla domanda."
+        }
+      ],
+      "hints": [
+        "Chiediti se la misura aggiunge un’informazione rispetto al vincolo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Una o due coppie non esauriscono la libertà continua. La risposta «Nessuna coppia» è smentita dagli esempi. Non si possono scegliere p e q indipendentemente: devono ancora soddisfare q=2p. Fissare anche la focale aggiungerebbe un dato assente dalla domanda.",
+        "target": "C5-L10"
+      },
+      "coverage": [
+        "Ingrandimento orientato e modulo",
+        "Preparazioni con focali compatibili",
+        "Inverse, medie e libertà di scala"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "bfce00d50e6cf312b3404f0a07a22205e27057360d1081b05465c74b5b0b463e",
+      "name": "lens-magnification-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTc0MCIgdmlld0JveD0iMCAwIDY0MCAxNzQwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyIgZm9udC1mYW1pbHk9InN5c3RlbS11aSxzYW5zLXNlcmlmIj48dGl0bGUgaWQ9InRpdGxlIj5JbmdyYW5kaW1lbnRvIHJlYWxlIGUgc2NhbGEgbm9uIGlkZW50aWZpY2F0YTwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPkR1ZSByYWdnaSBjb3N0cnVpc2Nvbm8gdW7igJlpbW1hZ2luZSByZWFsZSBjYXBvdm9sdGEgY29uIG1vZHVsbyBkdWUuIFNlZ3Vvbm8gYmFycmUgZGVpIG1vZHVsaSBlIGRlbGxhIG1lZGlhLCBwb2kgbGEgZmFtaWdsaWEgcSB1Z3VhbGUgZHVlIHAgY29uIG9yaWdpbmUgZXNjbHVzYS4gQWx0ZXp6ZSBkZWwgcHJpbW8gc2NoZW1hIGFtcGxpZmljYXRlIHJpc3BldHRvIGFsbGUgZGlzdGFuemUgYXNzaWFsaS48L2Rlc2M+PGRlZnM+PG1hcmtlciBpZD0iYXJyIiB2aWV3Qm94PSIwIDAgMTAgMTAiIHJlZlg9IjkiIHJlZlk9IjUiIG1hcmtlcldpZHRoPSI1IiBtYXJrZXJIZWlnaHQ9IjUiIG9yaWVudD0iYXV0by1zdGFydC1yZXZlcnNlIj48cGF0aCBkPSJNMCAwTDEwIDVMMCAxMFoiIGZpbGw9IiMzMDZmOGMiLz48L21hcmtlcj48L2RlZnM+PHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxNzQwIiBmaWxsPSJ3aGl0ZSIvPjx0ZXh0IHg9IjM1IiB5PSI0OCIgZm9udC1zaXplPSIyNSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5Nb2R1bG8gcG9zaXRpdm8sIGltbWFnaW5lIGNhcG92b2x0YTwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMTA4IiBmb250LXNpemU9IjIyIiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjEgwrcgcCA9IDMgY20sIHEgPSA2IGNtLCBmID0gMiBjbTwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMTU2IiBmb250LXNpemU9IjE3IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPkFsdGV6emUgYW1wbGlmaWNhdGU7IGRpc3RhbnplIGFzc2lhbGkgaW4gY20uPC90ZXh0PjxsaW5lIHgxPSI0NSIgeTE9IjMwMCIgeDI9IjYwMCIgeTI9IjMwMCIgc3Ryb2tlPSIjNjk3Yjg3IiBzdHJva2Utd2lkdGg9IjIiLz48bGluZSB4MT0iMjYwIiB5MT0iMTg1IiB4Mj0iMjYwIiB5Mj0iNDA1IiBzdHJva2U9IiM2OTdiODciIHN0cm9rZS13aWR0aD0iMiIvPjxwYXRoIGQ9Ik0xMTAgMzAwVjI3MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMzA2ZjhjIiBzdHJva2Utd2lkdGg9IjIiLz48cG9seWdvbiBwb2ludHM9IjExMCwyNzAgMTA2LDI3OCAxMTQsMjc4IiBmaWxsPSIjMzA2ZjhjIi8+PHBhdGggZD0iTTU2MCAzMDBWMzYwIiBmaWxsPSJub25lIiBzdHJva2U9IiMzMDZmOGMiIHN0cm9rZS13aWR0aD0iMiIvPjxwb2x5Z29uIHBvaW50cz0iNTYwLDM2MCA1NTYsMzUyIDU2NCwzNTIiIGZpbGw9IiMzMDZmOGMiLz48cGF0aCBkPSJNMTEwIDI3MEgyNjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzMwNmY4YyIgc3Ryb2tlLXdpZHRoPSIyIiBtYXJrZXItZW5kPSJ1cmwoI2FycikiLz48cGF0aCBkPSJNMjYwIDI3MEw1OTAgMzY5IiBmaWxsPSJub25lIiBzdHJva2U9IiMzMDZmOGMiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnIpIi8+PHBhdGggZD0iTTExMCAyNzBMNTkwIDM2NiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjOTY2NjM4IiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjYXJyKSIvPjxjaXJjbGUgY3g9IjE2MCIgY3k9IjMwMCIgcj0iMyIgZmlsbD0iIzMwNmY4YyIgc3Ryb2tlPSIjMzA2ZjhjIiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSIxNjAiIHk9IjMzNCIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9Im1pZGRsZSI+RjwvdGV4dD48Y2lyY2xlIGN4PSIyNjAiIGN5PSIzMDAiIHI9IjMiIGZpbGw9IiMzMDZmOGMiIHN0cm9rZT0iIzMwNmY4YyIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iMjYwIiB5PSIzMzQiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJtaWRkbGUiPk88L3RleHQ+PGNpcmNsZSBjeD0iMzYwIiBjeT0iMzAwIiByPSIzIiBmaWxsPSIjMzA2ZjhjIiBzdHJva2U9IiMzMDZmOGMiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjM2MCIgeT0iMzM0IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5G4oCyPC90ZXh0Pjx0ZXh0IHg9IjY1IiB5PSIyMzAiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+aF9vID0gMSBtbTwvdGV4dD48dGV4dCB4PSI0MzUiIHk9IjQwNyIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5oX2kgPSDiiJIyIG1tPC90ZXh0PjxsaW5lIHgxPSIxMTAiIHkxPSI0MzUiIHgyPSIyNjAiIHkyPSI0MzUiIHN0cm9rZT0iIzY5N2I4NyIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iMTg1IiB5PSI0NzIiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJtaWRkbGUiPnAgPSAzIGNtPC90ZXh0PjxsaW5lIHgxPSIyNjAiIHkxPSI1MTAiIHgyPSI1NjAiIHkyPSI1MTAiIHN0cm9rZT0iIzY5N2I4NyIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iNDEwIiB5PSI1NDciIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJtaWRkbGUiPnEgPSA2IGNtPC90ZXh0Pjx0ZXh0IHg9IjM1IiB5PSI2MDAiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+bSA9IOKIkjIgwrcgTSA9IDIgwrcgaSBzZWduaSBoYW5ubyBydW9saSBkaXN0aW50aS48L3RleHQ+PHRleHQgeD0iMzUiIHk9IjY4NSIgZm9udC1zaXplPSIyMiIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij4yIMK3IER1ZSBtb2R1bGkgZSBsYSBsb3JvIG1lZGlhPC90ZXh0Pjx0ZXh0IHg9IjEzNSIgeT0iNzczIiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0iZW5kIj5BPC90ZXh0PjxyZWN0IHg9IjE1NSIgeT0iNzUwIiB3aWR0aD0iMjQwIiBoZWlnaHQ9IjMwIiBmaWxsPSIjM2Q3NzkxIi8+PHRleHQgeD0iNDA1IiB5PSI3NzQiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+MjwvdGV4dD48dGV4dCB4PSIxMzUiIHk9Ijg3MyIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9ImVuZCI+QjwvdGV4dD48cmVjdCB4PSIxNTUiIHk9Ijg1MCIgd2lkdGg9IjE4MCIgaGVpZ2h0PSIzMCIgZmlsbD0iIzk4NmMzNSIvPjx0ZXh0IHg9IjM0NSIgeT0iODc0IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPjMvMjwvdGV4dD48dGV4dCB4PSIxMzUiIHk9Ijk3MyIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9ImVuZCI+bWVkaWE8L3RleHQ+PHJlY3QgeD0iMTU1IiB5PSI5NTAiIHdpZHRoPSIyMTAiIGhlaWdodD0iMzAiIGZpbGw9IiM2MzdlNTUiLz48dGV4dCB4PSIzNzUiIHk9Ijk3NCIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij43LzQ8L3RleHQ+PHRleHQgeD0iMzUiIHk9IjEwNDAiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+QTogcSA9IDYgY20sIHAgPSAzIGNtIMK3IEI6IHEgPSA5IGNtLCBwID0gNiBjbTwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMTA4MCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5CYXJyZSBwdXJlIGNvbiBvcmlnaW5lIGUgc2NhbGEgY29tdW5pLjwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMTE2MCIgZm9udC1zaXplPSIyMiIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij4zIMK3IHEgPSAyIHA6IHVuYSBmYW1pZ2xpYSBkaSBwcmVwYXJhemlvbmk8L3RleHQ+PGxpbmUgeDE9IjE2MCIgeTE9IjE1ODAiIHgyPSI1ODAiIHkyPSIxNTgwIiBzdHJva2U9IiM2OTdiODciIHN0cm9rZS13aWR0aD0iMiIvPjxsaW5lIHgxPSIxNjAiIHkxPSIxNTgwIiB4Mj0iMTYwIiB5Mj0iMTIwMCIgc3Ryb2tlPSIjNjk3Yjg3IiBzdHJva2Utd2lkdGg9IjIiLz48cGF0aCBkPSJNMTYwIDE1ODBMNTIwIDEyMjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzMwNmY4YyIgc3Ryb2tlLXdpZHRoPSIzIi8+PGNpcmNsZSBjeD0iMTYwIiBjeT0iMTU4MCIgcj0iNSIgZmlsbD0id2hpdGUiIHN0cm9rZT0iIzMwNmY4YyIgc3Ryb2tlLXdpZHRoPSIyIi8+PGNpcmNsZSBjeD0iMjIwIiBjeT0iMTUyMCIgcj0iNCIgZmlsbD0iIzMwNmY4YyIgc3Ryb2tlPSIjMzA2ZjhjIiBzdHJva2Utd2lkdGg9IjIiLz48bGluZSB4MT0iMjIwIiB5MT0iMTU3NCIgeDI9IjIyMCIgeTI9IjE1ODYiIHN0cm9rZT0iIzY5N2I4NyIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iMjIwIiB5PSIxNjIwIiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj4xPC90ZXh0PjxsaW5lIHgxPSIxNTQiIHkxPSIxNTIwIiB4Mj0iMTY2IiB5Mj0iMTUyMCIgc3Ryb2tlPSIjNjk3Yjg3IiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSIxNDAiIHk9IjE1MjYiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJlbmQiPjI8L3RleHQ+PGNpcmNsZSBjeD0iMzQwIiBjeT0iMTQwMCIgcj0iNCIgZmlsbD0iIzMwNmY4YyIgc3Ryb2tlPSIjMzA2ZjhjIiBzdHJva2Utd2lkdGg9IjIiLz48bGluZSB4MT0iMzQwIiB5MT0iMTU3NCIgeDI9IjM0MCIgeTI9IjE1ODYiIHN0cm9rZT0iIzY5N2I4NyIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iMzQwIiB5PSIxNjIwIiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj4zPC90ZXh0PjxsaW5lIHgxPSIxNTQiIHkxPSIxNDAwIiB4Mj0iMTY2IiB5Mj0iMTQwMCIgc3Ryb2tlPSIjNjk3Yjg3IiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSIxNDAiIHk9IjE0MDYiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJlbmQiPjY8L3RleHQ+PGNpcmNsZSBjeD0iNTIwIiBjeT0iMTIyMCIgcj0iNCIgZmlsbD0iIzMwNmY4YyIgc3Ryb2tlPSIjMzA2ZjhjIiBzdHJva2Utd2lkdGg9IjIiLz48bGluZSB4MT0iNTIwIiB5MT0iMTU3NCIgeDI9IjUyMCIgeTI9IjE1ODYiIHN0cm9rZT0iIzY5N2I4NyIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iNTIwIiB5PSIxNjIwIiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj42PC90ZXh0PjxsaW5lIHgxPSIxNTQiIHkxPSIxMjIwIiB4Mj0iMTY2IiB5Mj0iMTIyMCIgc3Ryb2tlPSIjNjk3Yjg3IiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSIxNDAiIHk9IjEyMjYiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJlbmQiPjEyPC90ZXh0Pjx0ZXh0IHg9IjE0NSIgeT0iMTYwMCIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9ImVuZCI+MDwvdGV4dD48dGV4dCB4PSIxNzUiIHk9IjEyMTAiIGZvbnQtc2l6ZT0iMTkiIGZpbGw9IiMyMDMyNDciIHRleHQtYW5jaG9yPSJzdGFydCI+cSAoY20pPC90ZXh0Pjx0ZXh0IHg9IjUyNSIgeT0iMTY2MCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5wIChjbSk8L3RleHQ+PHRleHQgeD0iMzY1IiB5PSIxNDQ1IiBmb250LXNpemU9IjE4IiBmaWxsPSIjMjAzMjQ3IiB0ZXh0LWFuY2hvcj0ic3RhcnQiPigzIGNtLCA2IGNtKTwvdGV4dD48dGV4dCB4PSIzNSIgeT0iMTcxMCIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzIwMzI0NyIgdGV4dC1hbmNob3I9InN0YXJ0Ij5wICZndDsgMDsgTSA9IDIuIExhIGZvY2FsZSBjYW1iaWEgY29tZSBmID0gMiBwLzMuPC90ZXh0Pjwvc3ZnPgo="
+    }
+  ]
+}
