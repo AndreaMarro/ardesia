@@ -1,0 +1,60 @@
+"""Ten distinct Cric magnetic field, force and motion questions."""
+from .vector_geometry_authoring import assemble_family, write_family
+SOURCE_IDS=[f'C4-Q{i:03}' for i in range(81,91)]
+TASKS=[
+('Invertire il contributo magnetico del filo','Un filo rettilineo molto lungo porta corrente non nulla. Inverti il verso della corrente mantenendone il modulo. Che cosa accade al contributo magnetico del solo filo in un punto fisso esterno al filo?', ['Inverte il verso mantenendo il modulo','Resta nello stesso verso perché il filo è fermo','Si annulla per qualunque corrente','Diventa un campo elettrico radiale','Resta uguale perché il punto di misura è fisso'],
+ 'La mano destra associa il verso della corrente a quello delle circonferenze di campo intorno al filo. Invertendo la corrente, si inverte la tangente orientata del campo in ogni punto fisso. A uguale distanza e uguale modulo della corrente, il modulo del contributo resta uguale. Si considera il campo del filo, non la somma con un eventuale campo terrestre che una bussola reale sentirebbe anch’esso.',
+ r'\mathbf B_{\rm filo}(-I)=-\mathbf B_{\rm filo}(I)',
+ 'La posizione ferma della sorgente non impedisce al suo campo di cambiare quando cambia la corrente. Il punto di osservazione fisso mantiene la distanza, non il verso della corrente. Non occorre un moto del filo per ottenere l’inversione magnetica.',
+ 'Inverti il pollice della mano destra e confronta la tangente nello stesso punto.'),
+('Il modulo della carica dalla forza','Una particella entra perpendicolarmente in un campo uniforme di modulo 0,50 T con velocità 400 m/s. La forza magnetica ha modulo 2,0 μN. Trova il modulo della carica in nanocoulomb.',10,
+ 'La perpendicolarità rende il seno uguale a uno. Isolo |q|=F/(vB); il prodotto vB vale 200 nelle unità SI. Due milionesimi divisi per 200 danno un centomilionesimo di coulomb, cioè 10⁻⁸ C=10 nC. Il modulo della forza da solo non permette di scegliere il segno della carica.',
+ r'|q|=\frac{F}{vB}\qquad |q|=\frac{2\cdot10^{-6}}{200}\,\mathrm C\qquad |q|=10\,\mathrm{nC}',
+ '0,010 nC confonderebbe il prefisso nano con micro nella conversione finale. 1000 nC darebbe 200 μN con la stessa velocità e campo, non 2 μN. Il segno positivo o negativo non è ricavabile senza conoscere il verso della deviazione.',
+ 'Prima isola la carica in coulomb; solo alla fine passa ai nanocoulomb.'),
+('La seconda direzione senza forza','Una particella con carica non nulla e velocità non nulla attraversa un campo magnetico non nullo. La forza magnetica è zero. Oltre al caso della velocità parallela e concorde, quale altra direzione è possibile?', ['Antiparallela al campo','Perpendicolare al campo','Sempre a 45° dal campo','Qualunque direzione perché il campo è uniforme','Nessuna: una carica in moto sente sempre forza magnetica'],
+ 'Il modulo è |q|vB sinθ. Tutti i fattori esterni al seno sono non nulli: deve quindi annullarsi sinθ. Fra zero e 180° questo accade a 0° e 180°. La seconda possibilità è una velocità antiparallela, diretta lungo la stessa retta ma nel verso opposto al campo.',
+ r'\sin\theta=0\qquad \theta\in\{0^\circ,180^\circ\}',
+ 'La perpendicolarità dà invece il modulo massimo della forza per questi q, v e B. Uniforme significa uguale nei diversi punti della regione, non privo di effetto su ogni velocità. Il caso di particella neutra è escluso.',
+ 'Individua quale fattore può annullarsi senza contraddire i dati non nulli.'),
+('Un filo inclinato rispetto al campo','Un segmento rettilineo lungo 0,30 m porta una corrente di 4,0 A in un campo uniforme di 0,20 T. L’angolo fra la direzione della corrente e il campo è 30°. Qual è il modulo della forza sul segmento?', ['0,12 N','0,24 N','0,06 N','1,2 N','0 N'],
+ 'Uso F=IℓB sinθ. Il seno di 30° è esattamente 1/2. Il prodotto senza seno vale 4·0,30·0,20=0,24 N; dimezzandolo ottengo 0,12 N. Si può anche usare la lunghezza proiettata perpendicolarmente al campo, ℓ sin30°=0,15 m.',
+ r'F=I\ell B\sin30^\circ\qquad F=\frac12(0{,}24\,\mathrm N)\qquad F=0{,}12\,\mathrm N',
+ '0,24 N ometterebbe il seno e descriverebbe il valore massimo a 90°. 0,06 N applicherebbe il fattore 1/2 due volte. Il caso di forza nulla richiederebbe corrente parallela al campo o un fattore fisico nullo, non presenti qui.',
+ 'L’angolo si misura fra il verso della corrente nel filo e B.'),
+('La carica negativa inverte il verso','Una particella negativa si muove verso destra nel piano del foglio. Il campo magnetico è perpendicolare al foglio e diretto dentro di esso. In quale verso punta la forza magnetica?', ['Verso il basso nel foglio','Verso l’alto nel foglio','Verso destra nel foglio','Verso chi guarda','Dentro il foglio'],
+ 'Per una carica positiva, il prodotto v×B con v a destra e B entrante punta verso l’alto nel foglio. La carica negativa moltiplica quel vettore per un numero negativo e inverte il verso: la forza punta verso il basso. Il risultato è perpendicolare sia alla velocità sia al campo.',
+ r'\mathbf F_B=q\,\mathbf v\times\mathbf B\qquad q<0',
+ 'Verso l’alto sarebbe il risultato per una carica positiva con gli stessi v e B. Verso destra non sarebbe perpendicolare alla velocità. Una forza entrante o uscente sarebbe invece parallela al campo e non può essere il prodotto vettoriale richiesto.',
+ 'Applica prima la mano destra al prodotto vettoriale, poi il segno della carica.'),
+('Dal quarto di giro alla frequenza','Una particella non relativistica percorre un quarto di circonferenza in 0,40 ms a velocità di modulo costante in un campo magnetico uniforme. Trova la frequenza di rotazione in hertz.',625,
+ 'Un giro completo contiene quattro tratti uguali e richiede 4·0,40=1,60 ms. Converto il periodo in 16/10000 s=1/625 s. Il reciproco è quindi 625 Hz, senza necessità di una divisione approssimata. La frequenza si riferisce ai giri completi, non ai quarti di giro.',
+ r'T=4\cdot0{,}40\,\mathrm{ms}\qquad T=\frac1{625}\,\mathrm s\qquad f=\frac1T\qquad f=625\,\mathrm{Hz}',
+ '2500 Hz userebbe il tempo del solo quarto come periodo completo. 0,625 Hz non convertirebbe i millisecondi in secondi. Moltiplicare il reciproco del quarto per quattro invece di dividerlo darebbe 10000 Hz e conterebbe frazioni di giro come giri interi.',
+ 'Ricostruisci prima un giro intero; cambia l’unità del tempo prima del reciproco.'),
+('Rotazione e avanzamento insieme','Una particella carica non relativistica si muove in un campo magnetico uniforme non nullo, senza altre forze. Le componenti iniziali della velocità parallela e perpendicolare al campo sono entrambe non nulle. Qual è la forma della traiettoria?', ['Un’elica cilindrica','Una sola circonferenza in un piano','Una retta lungo il campo','Una parabola in un piano','Una spirale con raggio che cresce necessariamente'],
+ 'La componente parallela al campo non riceve forza magnetica e resta costante. La componente perpendicolare ruota a modulo costante. La somma di avanzamento uniforme lungo l’asse e rotazione uniforme attorno ad esso produce un’elica cilindrica, con raggio e passo costanti nel modello dichiarato.',
+ r'v_\parallel=\text{costante}\qquad r=\frac{m v_\perp}{|q|B}',
+ 'La circonferenza richiederebbe componente parallela nulla; la retta richiederebbe componente perpendicolare nulla. Una crescita del raggio richiederebbe modificare la quantità di moto trasversale, il campo o le altre condizioni, mentre il campo magnetico da solo non fornisce energia.',
+ 'Sovrapponi un moto rettilineo uniforme e un moto circolare uniforme su direzioni ortogonali.'),
+('Cambiare direzione senza cambiare energia','Una particella è soggetta soltanto alla forza di un campo magnetico statico uniforme. Il vettore velocità ruota di 90°. Trova in joule la variazione della sua energia cinetica.',0,
+ 'La forza magnetica è perpendicolare alla velocità in ogni istante. La potenza istantanea F·v è dunque zero, così il lavoro magnetico sull’intero tratto è zero. Per il teorema dell’energia cinetica, ΔK=0 J. È cambiata la direzione della velocità, non il suo modulo.',
+ r'\mathbf F_B\cdot\mathbf v=0\qquad W_B=0\qquad \Delta K=0\,\mathrm J',
+ 'Una forza non nulla non implica un lavoro non nullo: conta la sua componente lungo lo spostamento. La rotazione di 90° della velocità non è un fattore con cui moltiplicare l’energia. Il segno della carica cambia la curvatura, non il lavoro nullo del solo campo magnetico.',
+ 'Calcola una potenza istantanea prima di cercare una variazione energetica.'),
+('Stessa quantità di moto e cariche diverse','Due particelle entrano perpendicolarmente nello stesso campo magnetico uniforme B>0 con lo stesso modulo non nullo della quantità di moto. Una porta +e e l’altra +2e. Quale percorre la circonferenza di raggio minore?', ['Quella con carica +2e','Quella con carica +e','Hanno necessariamente lo stesso raggio','Quella con temperatura minore, sempre','Il segno positivo impedisce ogni curvatura'],
+ 'Il raggio è p/(|q|B). I due valori di p e B sono comuni; raddoppiare |q| dimezza r. La particella con +2e ha quindi il raggio minore, esattamente la metà. Non serve supporre uguali le masse o le velocità separatamente: il prompt assegna la loro combinazione rilevante, la quantità di moto.',
+ r'r=\frac{p}{|q|B}\qquad \frac{r_{+2e}}{r_{+e}}=\frac12',
+ 'Uguali quantità di moto non bastano a dare uguali raggi se le cariche differiscono. Il segno comune determina lo stesso verso di curvatura per la stessa direzione iniziale, ma non uguaglia i moduli dei raggi. La temperatura non è il dato usato nel modello di questa singola traiettoria.',
+ 'Riscrivi il raggio con p, così non introduci ipotesi inutili su massa e velocità.'),
+('Selezionare una velocità senza deviazione','Una particella positiva non relativistica attraversa senza deviazione campi uniformi E e B, perpendicolari fra loro e alla velocità. Le forze elettrica e magnetica sono opposte e non agiscono altre forze. E=1200 V/m e B=0,040 T. Trova il modulo della velocità in metri al secondo.',30000,
+ 'La mancata deviazione richiede forze opposte uguali in modulo. Scrivo qE=qvB e cancello q, positivo e non nullo. Resta v=E/B. Dividere 1200 per 4/100 equivale a moltiplicare per 25: il risultato è 30000 m/s, coerente col regime non relativistico dichiarato.',
+ r'qE=qvB\qquad v=\frac EB\qquad v=1200\cdot25\,\mathrm{m/s}\qquad v=30000\,\mathrm{m/s}',
+ '48 copierebbe il prodotto numerico EB, mentre il bilancio richiede un rapporto. 30 m/s produrrebbe vB=1,2 V/m, non 1200 V/m. Il valore della carica si cancella solo dopo aver verificato i versi opposti e la perpendicolarità.',
+ 'Uguaglia i moduli dopo aver fissato i versi; poi isola v, non q.')]
+CHOICES={n:0 for n,t in enumerate(TASKS,1) if isinstance(t[2],list)}
+UNITS={2:'nC',6:'Hz',8:'J',10:'m/s'}
+FIGURES={1:'Nel primo pannello la corrente uscente dal foglio produce campo antiorario e quella entrante produce campo orario. Le frecce B nei punti a destra del filo mostrano i versi opposti; il disegno non assegna una scala al modulo del campo.',5:'Il secondo pannello usa una carica negativa: velocità verso destra, campo entrante e forza verso il basso. Le lunghezze di v e F sono schematiche e non confrontano grandezze di dimensioni diverse.',6:'L’ultimo pannello scompone un periodo in quattro quarti della stessa durata di 0,40 ms. I tratti temporali hanno scala comune: un giro dura 1,60 ms.'}
+def assemble(repo,source_ref):
+ return assemble_family(repo,source_ref,'cric-c4-l09',TASKS,CHOICES,UNITS,'cric-c4-l09-progressive.svg',FIGURES,0,course='C4',source_origin='cric',source_ids=SOURCE_IDS,source_path='officina-di-fisica/content/C4.json',skill='C4-L09',section='Correnti, bussole e traiettorie curve',coverage=['Versi del campo e della forza','Moti nel campo uniforme','Lavoro nullo e bilancio delle forze'],overrides={n:{'error':{'category':('concetto' if n in (1,3,7,8) else 'unità' if n in (2,6) else 'modello' if n in (4,5,10) else 'algebra'),'message':TASKS[n-1][5],'target':'C4-L09'}} for n in range(1,11)})
+if __name__=='__main__':write_family(assemble,'cric-c4-l09')
