@@ -2168,3 +2168,13 @@ Consumer isolato47984189/runtime0dee1aae03c52966051a7fe41347a1ea937f257127c0b402
 GitHub PUBLIC con tutti i materiali editoriali autorizzati. Nell’app DRAFT/default-deny e gate umano invariati. Pro100 NOT_IDENTIFIED;199 controlli tecnici non sono revisioni complete. Mutex locale e almeno2GiB liberi; nessun processo utente terminato.
 
 Priorità:1) adottare3792 solo dopo successo verificato, poi registro/replay4000;2) produrre e verificare i606 Cric;3) eseguire UI139 sul runtime effettivo e chiudere i difetti senza falsi PASS;4) PR ordinaria e CI sulle SHA effettive;5) preservare manifest, prove e coda umana separata dalla pubblicazione.
+
+### 26 novembre, prosecuzione dopo i4.000 Ardesia
+
+Retry3792 attivo45877605987/source5e27eeee, dopo il FAIL storico45873357486(1060test,1ERRORcommit24cfmancante). Git inputs recuperati da clone vuoto3/3/repeat0, test6+17 PASS; ZIP fallito completo preservato in3parti. Non adottare un FAIL. Registry3792 e checkpoint3632 rimangono distinti dalle4000revisioni accettate.
+
+Protocollo UI139 d4ebb recuperato con la dipendenza Echo precedente5c676 che mancava alla consegna: Root9+4test PASS; il primo setUpClass negativo conservato. HelperCric reviewA cd53 recuperata,6testRootPASS0,122s. Protocollo macro non ancora attivato: l’autore corregge un finding di integrità pre-import in followup separato. Ultimo candidato consumer b939/c05, solo labelImpulso rimossa;351contesti sorgente reali altrimenti identici e7testPASS0,284s; nuovaUI distinta pendente. Nessuna attività aggiunta alle246.
+
+Cric: primi10A e50B authored, ancora0SCI; primarie/modelli incrociati C1 congelati prima dei candidati, con nuove dichiarazioni Git per evitare il vecchio errore CI. ProssimoID accettazione C1-Q001. Il controllo goal nativo resta bloccato dalla vecchia sessione; il connector set_goal richiede trusted source-turn context CCA e non lo riattiva. Il mandato continua manualmente, senza dichiarazione fittizia di goal attivo o completo.
+
+Prossimi passi: chiudere/adottare retry3792; registrare208 e successivi solo realmente accettati; ottenere peerCric per cohort e test/importRoot; integrare guardia pre-import e avviare5corsiUI; PRnormale/CI/Handoff.
