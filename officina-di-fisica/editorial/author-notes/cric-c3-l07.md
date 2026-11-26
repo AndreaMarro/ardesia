@@ -50,7 +50,7 @@ Versione 2, base 1; famiglia quasi-statico-con-attrito; difficoltà 2.
 
 Modello e procedura manuale: La lentezza può permettere al gas di attraversare una successione di stati prossimi all’equilibrio. La reversibilità richiede però anche assenza di dissipazione complessiva: l’attrito produce trasformazioni che non si annullano semplicemente invertendo il verso del pistone. Quasi statico e reversibile non sono sinonimi.
 
-Leggi e passaggi: \text{attrito dissipativo}\;\Longrightarrow\;\text{irreversibilita}
+Leggi e passaggi: \text{irreversibile}
 
 Risposta d’autore proposta: Può essere quasi statico, ma resta irreversibile per l’attrito.
 

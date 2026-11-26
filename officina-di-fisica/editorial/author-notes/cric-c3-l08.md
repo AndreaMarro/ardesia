@@ -54,7 +54,7 @@ Leggi e passaggi: W_{60\,\mathrm s}=24\cdot150\,\mathrm J;  W_{60\,\mathrm s}=36
 
 Risposta d’autore proposta: 60 W.
 
-Distrattori e controlli: 3600 è il lavoro in un minuto espresso in joule, non la potenza in watt. 24 W scambierebbe il lavoro per ciclo con il lavoro per secondo. 0,16 deriverebbe da una divisione fra numeri che non rappresenta il lavoro totale sulla durata.
+Distrattori e controlli: 3600 copia il valore numerico del lavoro in un minuto espresso in joule, senza dividerlo per 60 s per ottenere watt. 24 W scambierebbe il lavoro per ciclo con il lavoro per secondo. 0,16 deriverebbe da una divisione fra numeri che non rappresenta il lavoro totale sulla durata.
 
 ## C3-Q075 — Calore netto: entrate e uscite
 

@@ -112,7 +112,7 @@ Versione 2, base 1; famiglia energia-interna-e-traslazione; difficoltà 2.
 
 Modello e procedura manuale: La velocità del recipiente come un tutto dipende dal riferimento, quindi cambia il contributo cinetico del centro di massa. L’energia interna classica si riferisce ai moti e alle interazioni microscopiche rispetto al centro di massa; lo stesso stato non viene riscaldato passando a un altro osservatore. Non si sta accelerando fisicamente il recipiente.
 
-Leggi e passaggi: E_{\rm cin,CM}=\frac12 M V_{\rm CM}^{,2}
+Leggi e passaggi: E_{\rm cin,CM}=\frac12 M V_{\rm CM}^{2}
 
 Risposta d’autore proposta: L’energia cinetica macroscopica, non l’energia interna dello stesso stato.
 

@@ -22,7 +22,7 @@ TASKS=[
 ('Lavoro per ciclo e cicli al secondo','Una macchina fornisce 24 J di lavoro netto per ciclo e compie 150 cicli identici al minuto, a regime periodico. Trova la potenza meccanica media in watt.',60,
  'La potenza media è il lavoro complessivo diviso per la durata. In 60 s il lavoro è 24·150=3600 J, quindi P=3600/60=60 W. Si può anche convertire il ritmo: 150/60=5/2 cicli/s e moltiplicarlo per 24 J/ciclo. Non si pretende una potenza istantanea costante.',
  r'W_{60\,\mathrm s}=24\cdot150\,\mathrm J\qquad W_{60\,\mathrm s}=3600\,\mathrm J\qquad \bar P=\frac{3600\,\mathrm J}{60\,\mathrm s}\qquad \bar P=60\,\mathrm W',
- '3600 è il lavoro in un minuto espresso in joule, non la potenza in watt. 24 W scambierebbe il lavoro per ciclo con il lavoro per secondo. 0,16 deriverebbe da una divisione fra numeri che non rappresenta il lavoro totale sulla durata.',
+ '3600 copia il valore numerico del lavoro in un minuto espresso in joule, senza dividerlo per 60 s per ottenere watt. 24 W scambierebbe il lavoro per ciclo con il lavoro per secondo. 0,16 deriverebbe da una divisione fra numeri che non rappresenta il lavoro totale sulla durata.',
  'Converto il numero di cicli per minuto prima di chiamarlo una frequenza in hertz.'),
 ('Calore netto: entrate e uscite','Durante un ciclo un gas riceve 400 J dalla sorgente calda e cede 300 J alla sorgente fredda. Il calore Q è positivo se entra nel gas. Quanto vale il calore netto del gas, in joule?',100,
  'I 400 J sono un trasferimento positivo per il gas, mentre i 300 J ceduti sono negativi. Q_netto=400−300=100 J. In un ciclo completo senza altre variazioni macroscopiche questa stessa quantità è il lavoro netto uscente, perché ΔU=0.',

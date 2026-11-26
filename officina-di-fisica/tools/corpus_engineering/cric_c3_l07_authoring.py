@@ -22,7 +22,7 @@ TASKS=[
 ('Lentissimo non significa reversibile','Un pistone procede molto lentamente, ma lo scorrimento dissipa energia per attrito. Il gas può essere descritto mediante stati vicini all’equilibrio. Quale classificazione distingue correttamente lentezza e reversibilità?',
  ['Può essere quasi statico, ma resta irreversibile per l’attrito','È necessariamente reversibile perché molto lento','È necessariamente adiabatico perché c’è attrito','Non trasferisce alcun lavoro perché lento','È un equilibrio termodinamico permanente senza processo'],
  'La lentezza può permettere al gas di attraversare una successione di stati prossimi all’equilibrio. La reversibilità richiede però anche assenza di dissipazione complessiva: l’attrito produce trasformazioni che non si annullano semplicemente invertendo il verso del pistone. Quasi statico e reversibile non sono sinonimi.',
- r'\text{attrito dissipativo}\;\Longrightarrow\;\text{irreversibilita}',
+ r'\text{irreversibile}',
  'L’attrito non rende automaticamente la parete adiabatica. Una velocità piccola non annulla il lavoro totale, che dipende dallo spostamento e dalle forze. Un processo lento attraversa stati diversi e non è un singolo equilibrio immutabile.',
  'Cerca una sorgente di dissipazione oltre alla sola velocità del processo.'),
 ('Scaldare un’ampolla rigida','Un gas perfetto chiuso in un’ampolla rigida riceve 72 J come calore. La sua capacità termica totale a volume costante è 12 J/K e resta costante. Non vi sono altri lavori o variazioni macroscopiche. Calcola l’aumento di temperatura in kelvin.',6,

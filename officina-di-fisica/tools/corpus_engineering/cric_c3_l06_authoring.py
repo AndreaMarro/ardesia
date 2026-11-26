@@ -49,7 +49,7 @@ TASKS=[
 ('Cambiare osservatore non riscalda il recipiente','Un recipiente termicamente isolato trasla a velocità costante. Nel modello classico, due osservatori inerziali descrivono il medesimo stato fisico da riferimenti in moto relativo uniforme. Che cosa può cambiare per il solo cambio di riferimento?',
  ['L’energia cinetica macroscopica, non l’energia interna dello stesso stato','L’energia interna perché cambia ogni lettura del termometro','Il calore attraversato dalla parete per il solo cambio di osservatore','La quantità di materia del recipiente','L’energia interna deve diventare nulla nel riferimento del recipiente'],
  'La velocità del recipiente come un tutto dipende dal riferimento, quindi cambia il contributo cinetico del centro di massa. L’energia interna classica si riferisce ai moti e alle interazioni microscopiche rispetto al centro di massa; lo stesso stato non viene riscaldato passando a un altro osservatore. Non si sta accelerando fisicamente il recipiente.',
- r'E_{\rm cin,CM}=\frac12 M V_{\rm CM}^{,2}',
+ r'E_{\rm cin,CM}=\frac12 M V_{\rm CM}^{2}',
  'Il cambio di descrizione non aggiunge materia né forza un flusso di calore nella parete. Nel riferimento del centro di massa la sua energia cinetica macroscopica è zero, ma U può restare non nulla. L’isolamento termico non rende nulla ogni forma di energia.',
  'Distingui una trasformazione fisica da una descrizione dello stesso evento.'),
 ('Aumentare U senza calore','Un gas chiuso deve aumentare la propria energia interna di 180 J senza scambiare calore. Le energie macroscopiche non cambiano e l’unico trasferimento possibile è il lavoro. Con W positivo compiuto dal gas, quanto deve valere W in joule?',-180,
