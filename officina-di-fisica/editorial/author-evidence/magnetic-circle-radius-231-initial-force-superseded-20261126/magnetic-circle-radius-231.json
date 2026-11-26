@@ -1,0 +1,1203 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u6-magnetic-circle-radius-01",
+      "kind": "question",
+      "course": "C4",
+      "section": "Raggio e verso della curvatura magnetica",
+      "order": 23101,
+      "title": "La forza magnetica curva senza accelerare la rapidità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C4-L01",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "magnetic-circle-radius",
+      "difficulty": 1,
+      "prompt": "Una particella ideale ha massa m=1 mg e modulo della carica |q|=1 μC. Entra con rapidità v>0 perpendicolarmente a un campo magnetico esterno uniforme di modulo B>0. Agisce soltanto la forza magnetica; radiazione e altre forze sono trascurate. Ogni preparazione e variazione resta nel regime non relativistico. Si cerca il raggio positivo r, non il verso di curvatura. Con v=2 m/s e B=1 T, quanto vale r in m?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La forza magnetica è perpendicolare a v e fornisce la risultante centripeta: |q|vB=mv²/r. Cancello v>0 e ricavo r=mv/(|q|B). Un milligrammo è 10⁻⁶ kg, proprio come 1 μC è 10⁻⁶ C: m/|q| vale 1 kg/C, non un numero puro. Inserendo le unità SI il raggio è 2 m."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/dd526dbb16e5cfddcba904112963e4af78b0e5d49f1e9365c631489afd11e856",
+          "text": "Nell’esempio illustrato q è positiva: il modulo r=2 m vale anche cambiando il segno di q, ma cambia il verso di curvatura. La freccia v è tangente e il segmento r è radiale; non sono grandezze da confrontare per lunghezza."
+        },
+        {
+          "type": "formula",
+          "text": "|q|vB=\\frac{mv^2}{r}"
+        },
+        {
+          "type": "formula",
+          "text": " r=\\frac{mv}{|q|B}"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac m{|q|}=1\\,\\mathrm{kg/C}"
+        },
+        {
+          "type": "formula",
+          "text": " r=2\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "Quattro m userebbe il quadrato della rapidità senza cancellare v nella forza magnetica. Un m omette il valore due di v; un raggio negativo non è un’alternativa fisica. Il segno di q cambia il verso, non questo modulo."
+        }
+      ],
+      "hints": [
+        "Usa lo stesso v nella forza magnetica e in quella centripeta.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Quattro m userebbe il quadrato della rapidità senza cancellare v nella forza magnetica. Un m omette il valore due di v; un raggio negativo non è un’alternativa fisica. Il segno di q cambia il verso, non questo modulo.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Forza magnetica e risultante centripeta",
+        "Moduli, segni e cariche opposte",
+        "Inverse non relativistiche e rapporti",
+        "Medie, taratura e dato ridondante"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-magnetic-circle-radius-02",
+      "kind": "question",
+      "course": "C4",
+      "section": "Raggio e verso della curvatura magnetica",
+      "order": 23102,
+      "title": "Un raggio è una lunghezza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C4-L01",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "magnetic-circle-radius",
+      "difficulty": 1,
+      "prompt": "Una particella ideale ha massa m=1 mg e modulo della carica |q|=1 μC. Entra con rapidità v>0 perpendicolarmente a un campo magnetico esterno uniforme di modulo B>0. Agisce soltanto la forza magnetica; radiazione e altre forze sono trascurate. Ogni preparazione e variazione resta nel regime non relativistico. Si cerca il raggio positivo r, non il verso di curvatura. Quale unità esprime r?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "m",
+          "s",
+          "T",
+          "N",
+          "m/s"
+        ],
+        "value": "m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il raggio è una lunghezza. Nella legge mv/(|q|B), il prodotto |q|B ha unità kg/s; dividere la quantità di moto kg·m/s per kg/s restituisce m. Il prefisso della massa va convertito prima di usare i numeri."
+        },
+        {
+          "type": "formula",
+          "text": "[|q|B]=\\mathrm{kg/s}"
+        },
+        {
+          "type": "formula",
+          "text": " [r]=\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "s è tempo, T campo magnetico, N forza e m/s rapidità. Una traiettoria curva non cambia la dimensione del suo raggio."
+        }
+      ],
+      "hints": [
+        "Controlla le unità di mv e di |q|B.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "s è tempo, T campo magnetico, N forza e m/s rapidità. Una traiettoria curva non cambia la dimensione del suo raggio.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Forza magnetica e risultante centripeta",
+        "Moduli, segni e cariche opposte",
+        "Inverse non relativistiche e rapporti",
+        "Medie, taratura e dato ridondante"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-magnetic-circle-radius-03",
+      "kind": "question",
+      "course": "C4",
+      "section": "Raggio e verso della curvatura magnetica",
+      "order": 23103,
+      "title": "Stessa grandezza del raggio, segno opposto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C4-L01",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "magnetic-circle-radius",
+      "difficulty": 1,
+      "prompt": "Caso autonomo: due particelle con uguale massa positiva, uguale modulo della carica e stessa velocità iniziale non nulla partono dallo stesso punto. Le cariche sono +q e −q e la velocità è perpendicolare allo stesso campo uniforme. Nel modello classico senza altre forze, come si confrontano le traiettorie?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Stesso raggio e curvature iniziali opposte",
+          "Raggi diversi solo perché cambia il segno della carica",
+          "Stessa forza vettoriale su entrambe",
+          "Entrambe proseguono sempre in linea retta",
+          "Il campo aumenta la rapidità di entrambe"
+        ],
+        "value": "Stesso raggio e curvature iniziali opposte"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il modulo della forza è |q|vB per entrambe, quindi il raggio mv/(|q|B) è uguale. Il prodotto vettoriale q v×B cambia invece segno con la carica: le curvature iniziali sono opposte. Il campo da solo non aumenta la rapidità, perché la forza è ortogonale alla velocità."
+        },
+        {
+          "type": "formula",
+          "text": "r_+=r_-"
+        },
+        {
+          "type": "formula",
+          "text": " \\vec F_-=-\\vec F_+"
+        },
+        {
+          "type": "formula",
+          "text": " \\vec F\\cdot\\vec v=0"
+        },
+        {
+          "type": "text",
+          "text": "Un raggio con segno confonde la geometria con il verso di curvatura. La forza vettoriale non coincide; il moto non è rettilineo con v perpendicolare e B non nullo. La potenza magnetica nulla esclude l’aumento di rapidità."
+        }
+      ],
+      "hints": [
+        "Separa |q| nella legge del raggio da q nella legge vettoriale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Un raggio con segno confonde la geometria con il verso di curvatura. La forza vettoriale non coincide; il moto non è rettilineo con v perpendicolare e B non nullo. La potenza magnetica nulla esclude l’aumento di rapidità.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Forza magnetica e risultante centripeta",
+        "Moduli, segni e cariche opposte",
+        "Inverse non relativistiche e rapporti",
+        "Medie, taratura e dato ridondante"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-magnetic-circle-radius-04",
+      "kind": "question",
+      "course": "C4",
+      "section": "Raggio e verso della curvatura magnetica",
+      "order": 23104,
+      "title": "Una rapidità maggiore nello stesso campo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C4-L01",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "magnetic-circle-radius",
+      "difficulty": 1,
+      "prompt": "Una particella ideale ha massa m=1 mg e modulo della carica |q|=1 μC. Entra con rapidità v>0 perpendicolarmente a un campo magnetico esterno uniforme di modulo B>0. Agisce soltanto la forza magnetica; radiazione e altre forze sono trascurate. Ogni preparazione e variazione resta nel regime non relativistico. Si cerca il raggio positivo r, non il verso di curvatura. B resta 1 T e v passa da 2 a 3 m/s. Come cambia r?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 2 m a 3 m",
+          "Da 2 m a 9/2 m",
+          "Da 2 m a 4/3 m",
+          "Resta 2 m",
+          "Da 2 m a 6 m"
+        ],
+        "value": "Da 2 m a 3 m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A massa, modulo della carica e campo fissati, r dipende linearmente da v. Il rapporto delle rapidità è 3/2, quindi il raggio passa da 2 a 3 m. Il campo devia ciascuna particella alla rapidità con cui è stata preparata, senza portarla da solo da 2 a 3 m/s."
+        },
+        {
+          "type": "formula",
+          "text": "r_A=2\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " r_B=3\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " r_B/r_A=\\frac32"
+        },
+        {
+          "type": "text",
+          "text": "9/2 m applica il quadrato del fattore 3/2. 4/3 m inverte l’effetto; due ignora la nuova rapidità e sei aggiunge un fattore non richiesto."
+        }
+      ],
+      "hints": [
+        "Il v² centripeto si riduce a un solo v dopo la cancellazione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "9/2 m applica il quadrato del fattore 3/2. 4/3 m inverte l’effetto; due ignora la nuova rapidità e sei aggiunge un fattore non richiesto.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Forza magnetica e risultante centripeta",
+        "Moduli, segni e cariche opposte",
+        "Inverse non relativistiche e rapporti",
+        "Medie, taratura e dato ridondante"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-magnetic-circle-radius-05",
+      "kind": "question",
+      "course": "C4",
+      "section": "Raggio e verso della curvatura magnetica",
+      "order": 23105,
+      "title": "La rapidità da un’orbita",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C4-L01",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "magnetic-circle-radius",
+      "difficulty": 2,
+      "prompt": "Una particella ideale ha massa m=1 mg e modulo della carica |q|=1 μC. Entra con rapidità v>0 perpendicolarmente a un campo magnetico esterno uniforme di modulo B>0. Agisce soltanto la forza magnetica; radiazione e altre forze sono trascurate. Ogni preparazione e variazione resta nel regime non relativistico. Si cerca il raggio positivo r, non il verso di curvatura. Si misurano r=2 m e B=1 T. Quanto vale v in m/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Moltiplico r=mv/(|q|B) per |q|B e divido per m>0: v=|q|Br/m. I dati danno 2 m/s. Il rapporto |q|/m è 1 C/kg e mantiene la dimensione necessaria al prodotto Br."
+        },
+        {
+          "type": "formula",
+          "text": "v=\\frac{|q|Br}{m}"
+        },
+        {
+          "type": "formula",
+          "text": " v=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo m/s è il reciproco numerico di due e non ricostruisce l’orbita. Quattro m/s darebbe r=4 m; omettere |q|/m lascerebbe B·r con unità diverse da m/s."
+        }
+      ],
+      "hints": [
+        "Controlla anche che la rapidità ricavata resti nel regime dichiarato.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo m/s è il reciproco numerico di due e non ricostruisce l’orbita. Quattro m/s darebbe r=4 m; omettere |q|/m lascerebbe B·r con unità diverse da m/s.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Forza magnetica e risultante centripeta",
+        "Moduli, segni e cariche opposte",
+        "Inverse non relativistiche e rapporti",
+        "Medie, taratura e dato ridondante"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-magnetic-circle-radius-06",
+      "kind": "question",
+      "course": "C4",
+      "section": "Raggio e verso della curvatura magnetica",
+      "order": 23106,
+      "title": "Il campo da raggio e rapidità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C4-L01",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "magnetic-circle-radius",
+      "difficulty": 2,
+      "prompt": "Una particella ideale ha massa m=1 mg e modulo della carica |q|=1 μC. Entra con rapidità v>0 perpendicolarmente a un campo magnetico esterno uniforme di modulo B>0. Agisce soltanto la forza magnetica; radiazione e altre forze sono trascurate. Ogni preparazione e variazione resta nel regime non relativistico. Si cerca il raggio positivo r, non il verso di curvatura. Si misurano r=2 m e v=2 m/s. Quanto vale B in T?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "T",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Isolo B=mv/(|q|r). Il rapporto massa/carica vale 1 kg/C e v/r vale 1 s⁻¹: il prodotto è 1 T. Si ricava un modulo positivo; la sola misura del raggio non assegna il verso del vettore B."
+        },
+        {
+          "type": "formula",
+          "text": "B=\\frac{mv}{|q|r}"
+        },
+        {
+          "type": "formula",
+          "text": " B=1\\,\\mathrm T"
+        },
+        {
+          "type": "text",
+          "text": "Due T copia il valore numerico della rapidità o del raggio e darebbe r=1 m. Quattro T moltiplica v e r invece di dividerli. Un segno meno non si determina dal modulo r."
+        }
+      ],
+      "hints": [
+        "Il campo è inversamente proporzionale al raggio a v fissata.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due T copia il valore numerico della rapidità o del raggio e darebbe r=1 m. Quattro T moltiplica v e r invece di dividerli. Un segno meno non si determina dal modulo r.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Forza magnetica e risultante centripeta",
+        "Moduli, segni e cariche opposte",
+        "Inverse non relativistiche e rapporti",
+        "Medie, taratura e dato ridondante"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-magnetic-circle-radius-07",
+      "kind": "question",
+      "course": "C4",
+      "section": "Raggio e verso della curvatura magnetica",
+      "order": 23107,
+      "title": "Raddoppiare il campo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C4-L01",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "magnetic-circle-radius",
+      "difficulty": 2,
+      "prompt": "Una particella ideale ha massa m=1 mg e modulo della carica |q|=1 μC. Entra con rapidità v>0 perpendicolarmente a un campo magnetico esterno uniforme di modulo B>0. Agisce soltanto la forza magnetica; radiazione e altre forze sono trascurate. Ogni preparazione e variazione resta nel regime non relativistico. Si cerca il raggio positivo r, non il verso di curvatura. A ha v=2 m/s,B=1 T; B mantiene v=2 m/s e usa campo di 2 T. Quanto vale r_B/r_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/2",
+          "2",
+          "1",
+          "1/4",
+          "0"
+        ],
+        "value": "1/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha r_A=2 m. Il campo doppio nella seconda preparazione dà r_B=1 m e rapporto 1/2. Non si dice che il campo compia lavoro rallentando la particella: la rapidità resta quella assegnata in entrambe."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/dd526dbb16e5cfddcba904112963e4af78b0e5d49f1e9365c631489afd11e856",
+          "text": "I due cerchi hanno raggi proporzionali a 2 m e 1 m, con la stessa scala. Sono preparazioni a uguale rapidità 2 m/s e campi 1 T e 2 T: non un rallentamento della stessa particella."
+        },
+        {
+          "type": "formula",
+          "text": "r_A=2\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " r_B=1\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " r_B/r_A=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Due inverte il confronto; un quarto introduce il quadrato di B; uno ignora il cambiamento. Zero richiederebbe un limite estraneo ai moduli finiti positivi."
+        }
+      ],
+      "hints": [
+        "Confronta prima le due lunghezze.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due inverte il confronto; un quarto introduce il quadrato di B; uno ignora il cambiamento. Zero richiederebbe un limite estraneo ai moduli finiti positivi.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Forza magnetica e risultante centripeta",
+        "Moduli, segni e cariche opposte",
+        "Inverse non relativistiche e rapporti",
+        "Medie, taratura e dato ridondante"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-magnetic-circle-radius-08",
+      "kind": "question",
+      "course": "C4",
+      "section": "Raggio e verso della curvatura magnetica",
+      "order": 23108,
+      "title": "Lo scarto non è un raggio orientato",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C4-L01",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "magnetic-circle-radius",
+      "difficulty": 2,
+      "prompt": "Una particella ideale ha massa m=1 mg e modulo della carica |q|=1 μC. Entra con rapidità v>0 perpendicolarmente a un campo magnetico esterno uniforme di modulo B>0. Agisce soltanto la forza magnetica; radiazione e altre forze sono trascurate. Ogni preparazione e variazione resta nel regime non relativistico. Si cerca il raggio positivo r, non il verso di curvatura. Con v=2 m/s,B=1 T si propone r=4 m. Quanto vale proposta meno corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2 m",
+          "−2 m",
+          "2",
+          "4 m",
+          "0 m"
+        ],
+        "value": "2 m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il raggio corretto è 2 m. Lo scarto della proposta è 4−2=+2 m. Il segno di questa differenza non indica il verso della curvatura; viene soltanto dall’ordine richiesto."
+        },
+        {
+          "type": "formula",
+          "text": "r=2\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " e=(4-2)\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " e=2\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "−2 scambia l’ordine; due puro è un rapporto, quattro copia la proposta e zero non la verifica. Il raggio geometrico resta positivo anche per una carica negativa."
+        }
+      ],
+      "hints": [
+        "Conserva l’unità metro nella sottrazione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−2 scambia l’ordine; due puro è un rapporto, quattro copia la proposta e zero non la verifica. Il raggio geometrico resta positivo anche per una carica negativa.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Forza magnetica e risultante centripeta",
+        "Moduli, segni e cariche opposte",
+        "Inverse non relativistiche e rapporti",
+        "Medie, taratura e dato ridondante"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-magnetic-circle-radius-09",
+      "kind": "question",
+      "course": "C4",
+      "section": "Raggio e verso della curvatura magnetica",
+      "order": 23109,
+      "title": "L’inversa con massa e carica esplicite",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C4-L01",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "magnetic-circle-radius",
+      "difficulty": 2,
+      "prompt": "Una particella ideale ha massa m=1 mg e modulo della carica |q|=1 μC. Entra con rapidità v>0 perpendicolarmente a un campo magnetico esterno uniforme di modulo B>0. Agisce soltanto la forza magnetica; radiazione e altre forze sono trascurate. Ogni preparazione e variazione resta nel regime non relativistico. Si cerca il raggio positivo r, non il verso di curvatura. r e B sono noti. Quale formula isola v?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "v = |q| B r / m",
+          "v = m r / (|q| B)",
+          "v = m B / (|q| r)",
+          "v = |q| B / (m r)",
+          "v = m / (|q| B r)"
+        ],
+        "value": "v = |q| B r / m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Dal prodotto r|q|B=mv divido per m. La formula v=|q|Br/m mantiene sia il modulo della carica sia la massa. Soltanto per i valori assegnati, il numero v in m/s coincide con il prodotto dei numeri B in T e r in m: non è una legge universale v=Br senza coefficiente."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/dd526dbb16e5cfddcba904112963e4af78b0e5d49f1e9365c631489afd11e856",
+          "text": "I tre punti del grafico mantengono v=2 m/s e i valori assegnati di massa e modulo di carica. A B=1,2,4 T corrispondono r=2,1,1/2 m; non si collegano i punti con segmenti come se la relazione fosse lineare."
+        },
+        {
+          "type": "formula",
+          "text": "v=\\frac{|q|Br}{m}"
+        },
+        {
+          "type": "formula",
+          "text": " [v]=\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "mr/(|q|B) ripete una dipendenza inversa da B e ha unità m·s. mB/(|q|r) non ha unità di velocità; |q|B/(mr) ha 1/(m·s), mentre m/(|q|Br) ha s/m. Il controllo dimensionale discrimina queste espressioni."
+        }
+      ],
+      "hints": [
+        "Moltiplica per |q|B prima di dividere per m.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "mr/(|q|B) ripete una dipendenza inversa da B e ha unità m·s. mB/(|q|r) non ha unità di velocità; |q|B/(mr) ha 1/(m·s), mentre m/(|q|Br) ha s/m. Il controllo dimensionale discrimina queste espressioni.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Forza magnetica e risultante centripeta",
+        "Moduli, segni e cariche opposte",
+        "Inverse non relativistiche e rapporti",
+        "Medie, taratura e dato ridondante"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-magnetic-circle-radius-10",
+      "kind": "question",
+      "course": "C4",
+      "section": "Raggio e verso della curvatura magnetica",
+      "order": 23110,
+      "title": "Cambiano rapidità e campo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C4-L01",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "magnetic-circle-radius",
+      "difficulty": 2,
+      "prompt": "Una particella ideale ha massa m=1 mg e modulo della carica |q|=1 μC. Entra con rapidità v>0 perpendicolarmente a un campo magnetico esterno uniforme di modulo B>0. Agisce soltanto la forza magnetica; radiazione e altre forze sono trascurate. Ogni preparazione e variazione resta nel regime non relativistico. Si cerca il raggio positivo r, non il verso di curvatura. Fra preparazioni v_B=κ₁v_A e B_B=κ₂B_A. I fattori sono positivi e le rapidità restano non relativistiche. Quanto vale r_B/r_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ / κ₂",
+          "κ₁ κ₂",
+          "κ₂ / κ₁",
+          "κ₁² / κ₂",
+          "κ₁ + κ₂"
+        ],
+        "value": "κ₁ / κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il rapporto massa/carica si cancella fra le prove. La rapidità dà il fattore κ₁ al numeratore e il campo κ₂ al denominatore: r_B/r_A=κ₁/κ₂. La perpendicolarità resta valida in entrambi i moti."
+        },
+        {
+          "type": "formula",
+          "text": "r_B=\\frac{m\\kappa_1v_A}{|q|\\kappa_2B_A}"
+        },
+        {
+          "type": "formula",
+          "text": " r_B/r_A=\\kappa_1/\\kappa_2"
+        },
+        {
+          "type": "text",
+          "text": "Il prodotto rende diretto l’effetto del campo. Il reciproco scambia i ruoli, il quadrato di κ₁ non segue dalla legge e la somma vale due per preparazioni identiche."
+        }
+      ],
+      "hints": [
+        "Il raggio dipende da una potenza di v e dall’inverso di B.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il prodotto rende diretto l’effetto del campo. Il reciproco scambia i ruoli, il quadrato di κ₁ non segue dalla legge e la somma vale due per preparazioni identiche.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Forza magnetica e risultante centripeta",
+        "Moduli, segni e cariche opposte",
+        "Inverse non relativistiche e rapporti",
+        "Medie, taratura e dato ridondante"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-magnetic-circle-radius-11",
+      "kind": "question",
+      "course": "C4",
+      "section": "Raggio e verso della curvatura magnetica",
+      "order": 23111,
+      "title": "Rapidità tripla e campo doppio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C4-L01",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "magnetic-circle-radius",
+      "difficulty": 2,
+      "prompt": "Una particella ideale ha massa m=1 mg e modulo della carica |q|=1 μC. Entra con rapidità v>0 perpendicolarmente a un campo magnetico esterno uniforme di modulo B>0. Agisce soltanto la forza magnetica; radiazione e altre forze sono trascurate. Ogni preparazione e variazione resta nel regime non relativistico. Si cerca il raggio positivo r, non il verso di curvatura. A ha v=2 m/s,B=1 T. B ha v=6 m/s,B=2 T. Quanto vale r_B/r_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/2",
+          "2/3",
+          "3",
+          "1/2",
+          "1"
+        ],
+        "value": "3/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il raggio iniziale è 2 m; quello nuovo è 3 m. Il rapporto è 3/2: il fattore tre della rapidità è diviso per il fattore due del campo. I due effetti non si annullano."
+        },
+        {
+          "type": "formula",
+          "text": "r_A=2\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " r_B=3\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " r_B/r_A=\\frac32"
+        },
+        {
+          "type": "text",
+          "text": "Due terzi inverte il confronto; tre segue soltanto v, mezzo soltanto B e uno presume una compensazione esatta. Tutti i calcoli riguardano moduli."
+        }
+      ],
+      "hints": [
+        "Non fermarti al fatto che entrambi gli ingressi aumentano.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due terzi inverte il confronto; tre segue soltanto v, mezzo soltanto B e uno presume una compensazione esatta. Tutti i calcoli riguardano moduli.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Forza magnetica e risultante centripeta",
+        "Moduli, segni e cariche opposte",
+        "Inverse non relativistiche e rapporti",
+        "Medie, taratura e dato ridondante"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-magnetic-circle-radius-12",
+      "kind": "question",
+      "course": "C4",
+      "section": "Raggio e verso della curvatura magnetica",
+      "order": 23112,
+      "title": "Media di due raggi distinti",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C4-L01",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "magnetic-circle-radius",
+      "difficulty": 2,
+      "prompt": "Una particella ideale ha massa m=1 mg e modulo della carica |q|=1 μC. Entra con rapidità v>0 perpendicolarmente a un campo magnetico esterno uniforme di modulo B>0. Agisce soltanto la forza magnetica; radiazione e altre forze sono trascurate. Ogni preparazione e variazione resta nel regime non relativistico. Si cerca il raggio positivo r, non il verso di curvatura. Si mediano con uguale peso A:v=2 m/s,B=1 T e B:v=6 m/s,B=2 T. Qual è la media di r?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "5/2 m",
+          "8/3 m",
+          "5 m",
+          "1/2 m",
+          "0 m"
+        ],
+        "value": "5/2 m"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le uscite sono 2 e 3 m: media 5/2 m. Agli ingressi medi v=4 m/s e B=3/2 T il raggio sarebbe 8/3 m. Con denominatore comune sei: 15/6−16/6=−1/6 m. Non si richiede un’approssimazione decimale."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline r=\\frac52\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " r_{\\rm dati\\ medi}=\\frac83\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac52-\\frac83=-\\frac16"
+        },
+        {
+          "type": "text",
+          "text": "8/3 usa gli ingressi medi; cinque è la somma, mezzo la semidifferenza e zero non è la media di questi raggi positivi. Non si media una carica positiva con una negativa."
+        }
+      ],
+      "hints": [
+        "Completa ogni calcolo di r prima della media.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "8/3 usa gli ingressi medi; cinque è la somma, mezzo la semidifferenza e zero non è la media di questi raggi positivi. Non si media una carica positiva con una negativa.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Forza magnetica e risultante centripeta",
+        "Moduli, segni e cariche opposte",
+        "Inverse non relativistiche e rapporti",
+        "Medie, taratura e dato ridondante"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-magnetic-circle-radius-13",
+      "kind": "question",
+      "course": "C4",
+      "section": "Raggio e verso della curvatura magnetica",
+      "order": 23113,
+      "title": "Il campo per un raggio bersaglio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C4-L01",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "magnetic-circle-radius",
+      "difficulty": 3,
+      "prompt": "Una particella ideale ha massa m=1 mg e modulo della carica |q|=1 μC. Entra con rapidità v>0 perpendicolarmente a un campo magnetico esterno uniforme di modulo B>0. Agisce soltanto la forza magnetica; radiazione e altre forze sono trascurate. Ogni preparazione e variazione resta nel regime non relativistico. Si cerca il raggio positivo r, non il verso di curvatura. A ha v_A=2 m/s,B_A=1 T. B usa v_B=6 m/s e deve dare r_B=(3/2)r_A. Quanto vale B_B/B_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/2",
+          "3/2",
+          "3",
+          "1"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è r_B=3 m. Dall’inversa B=mv/(|q|r) si ottiene B_B=2 T, dunque il rapporto dei campi è due. Il rapporto dei raggi non è il rapporto dei campi perché cambia anche v."
+        },
+        {
+          "type": "formula",
+          "text": "r_B=3\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " B_B=2\\,\\mathrm T"
+        },
+        {
+          "type": "formula",
+          "text": " B_B/B_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Mezzo è il reciproco; 3/2 copia il bersaglio dei raggi e tre il solo fattore di v. Un campo invariato darebbe r_B=6 m, non tre."
+        }
+      ],
+      "hints": [
+        "Esprimi il bersaglio in metri prima dell’inversa.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Mezzo è il reciproco; 3/2 copia il bersaglio dei raggi e tre il solo fattore di v. Un campo invariato darebbe r_B=6 m, non tre.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Forza magnetica e risultante centripeta",
+        "Moduli, segni e cariche opposte",
+        "Inverse non relativistiche e rapporti",
+        "Medie, taratura e dato ridondante"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-magnetic-circle-radius-14",
+      "kind": "question",
+      "course": "C4",
+      "section": "Raggio e verso della curvatura magnetica",
+      "order": 23114,
+      "title": "Prima il display, poi la rapidità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C4-L01",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "magnetic-circle-radius",
+      "difficulty": 3,
+      "prompt": "Una particella ideale ha massa m=1 mg e modulo della carica |q|=1 μC. Entra con rapidità v>0 perpendicolarmente a un campo magnetico esterno uniforme di modulo B>0. Agisce soltanto la forza magnetica; radiazione e altre forze sono trascurate. Ogni preparazione e variazione resta nel regime non relativistico. Si cerca il raggio positivo r, non il verso di curvatura. Il display continuo adimensionale segue D=a_cal r con guadagno positivo. A:v=2 m/s,B=1 T,D=6. B:B=2 T,D=9. Quanto vale v_B in m/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 6,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A ha r_A=2 m e fissa a_cal=3 m⁻¹. D_B=9 restituisce r_B=3 m. L’inversa v=|q|Br/m dà v_B=6 m/s. Il dato ricostruito resta non relativistico."
+        },
+        {
+          "type": "formula",
+          "text": "a_{\\rm cal}=3\\,\\mathrm m^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " r_B=3\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " v_B=6\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Diciotto m/s tratterebbe la lettura nove come nove metri. Tre m/s copia il raggio senza il fattore |q|B/m. Due m/s copia il riferimento e predirebbe D=3 con campo doppio."
+        }
+      ],
+      "hints": [
+        "Decodifica la lunghezza prima di usare il campo nuovo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Diciotto m/s tratterebbe la lettura nove come nove metri. Tre m/s copia il raggio senza il fattore |q|B/m. Due m/s copia il riferimento e predirebbe D=3 con campo doppio.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Forza magnetica e risultante centripeta",
+        "Moduli, segni e cariche opposte",
+        "Inverse non relativistiche e rapporti",
+        "Medie, taratura e dato ridondante"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-magnetic-circle-radius-15",
+      "kind": "question",
+      "course": "C4",
+      "section": "Raggio e verso della curvatura magnetica",
+      "order": 23115,
+      "title": "Offset e unità della velocità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C4-L01",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "magnetic-circle-radius",
+      "difficulty": 3,
+      "prompt": "Una particella ideale ha massa m=1 mg e modulo della carica |q|=1 μC. Entra con rapidità v>0 perpendicolarmente a un campo magnetico esterno uniforme di modulo B>0. Agisce soltanto la forza magnetica; radiazione e altre forze sono trascurate. Ogni preparazione e variazione resta nel regime non relativistico. Si cerca il raggio positivo r, non il verso di curvatura. Il display continuo adimensionale segue D=a_cal r+b_cal. A:v=2 m/s,B=1 T,D=5. B:v=6 m/s,B=2 T,D=7. C:B=1 T,D=3. Quanto vale v_C in m/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti hanno r_A=2 m e r_B=3 m: guadagno (7−5)/(3−2)=2 m⁻¹ e offset uno. D_C=3 dà r_C=(3−1)/2=1 m; l’inversa con B_C=1 T restituisce v_C=1 m/s."
+        },
+        {
+          "type": "formula",
+          "text": "a_{\\rm cal}=2\\,\\mathrm m^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " b_{\\rm cal}=1"
+        },
+        {
+          "type": "formula",
+          "text": " r_C=1\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " v_C=1\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "3/2 m/s omette l’offset e predirebbe D=4. Due m/s sottrae l’offset senza dividere per il guadagno. Tre m/s copia il display e darebbe D=7."
+        }
+      ],
+      "hints": [
+        "L’offset è strumentale, non un raggio residuo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "3/2 m/s omette l’offset e predirebbe D=4. Due m/s sottrae l’offset senza dividere per il guadagno. Tre m/s copia il display e darebbe D=7.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Forza magnetica e risultante centripeta",
+        "Moduli, segni e cariche opposte",
+        "Inverse non relativistiche e rapporti",
+        "Medie, taratura e dato ridondante"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-magnetic-circle-radius-16",
+      "kind": "question",
+      "course": "C4",
+      "section": "Raggio e verso della curvatura magnetica",
+      "order": 23116,
+      "title": "Una misura che non seleziona il campo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L09",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L004",
+        "C1-L005",
+        "C4-L01",
+        "C4-L02",
+        "C4-L05",
+        "C4-L09"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "magnetic-circle-radius",
+      "difficulty": 3,
+      "prompt": "Una particella ideale ha massa m=1 mg e modulo della carica |q|=1 μC. Entra con rapidità v>0 perpendicolarmente a un campo magnetico esterno uniforme di modulo B>0. Agisce soltanto la forza magnetica; radiazione e altre forze sono trascurate. Ogni preparazione e variazione resta nel regime non relativistico. Si cerca il raggio positivo r, non il verso di curvatura. Fra preparazioni si impone v=[2 (m/s)/T]B. Si misura anche r=2 m. Quante coppie (v,B) sono determinate?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Infinite coppie positive nel regime non relativistico",
+          "Una sola coppia",
+          "Due coppie positive",
+          "Nessuna coppia",
+          "Solo coppie con valori interi"
+        ],
+        "value": "Infinite coppie positive nel regime non relativistico"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il vincolo sostituito in r=mv/(|q|B) dà r=2 m per ogni B positivo compatibile col modello. La misura ripete quindi un dato del vincolo. Esempi B=1 T,v=2 m/s e B=2 T,v=4 m/s; esiste un continuo di altri valori, anche in un intervallo di rapidità molto piccole rispetto a c."
+        },
+        {
+          "type": "formula",
+          "text": "v=[2\\,\\mathrm{(m/s)/T}]B"
+        },
+        {
+          "type": "formula",
+          "text": " r=2\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "La variabile si cancella: non compare una quadratica da cui scegliere due radici. Fissare B=1 T sarebbe una preparazione possibile, non una conseguenza dei dati; B non è un conteggio intero."
+        }
+      ],
+      "hints": [
+        "Controlla se il raggio misurato aggiunge un’equazione indipendente.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La variabile si cancella: non compare una quadratica da cui scegliere due radici. Fissare B=1 T sarebbe una preparazione possibile, non una conseguenza dei dati; B non è un conteggio intero.",
+        "target": "C4-L09"
+      },
+      "coverage": [
+        "Forza magnetica e risultante centripeta",
+        "Moduli, segni e cariche opposte",
+        "Inverse non relativistiche e rapporti",
+        "Medie, taratura e dato ridondante"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "dd526dbb16e5cfddcba904112963e4af78b0e5d49f1e9365c631489afd11e856",
+      "name": "magnetic-circle-radius-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTQ4MCIgdmlld0JveD0iMCAwIDY0MCAxNDgwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+PHRpdGxlIGlkPSJ0aXRsZSI+SWwgcmFnZ2lvIG1hZ25ldGljbyBlIGlsIGNhbXBvPC90aXRsZT48ZGVzYyBpZD0iZGVzYyI+VHJlIHRhcHBlOiBlc2VtcGlvIGRpIHRyYWlldHRvcmlhIGNpcmNvbGFyZSBjb24gdmVsb2NpdMOgIHRhbmdlbnRlIGUgcmFnZ2lvIHJhZGlhbGU7IHJhZ2dpIGR1ZSBlIHVuIG1ldHJvIGNvbiBjYW1waSB1bm8gZSBkdWUgdGVzbGEgYSByYXBpZGl0w6AgdWd1YWxlOyB0cmUgcHVudGkgZXNhdHRpIGRlbGxhIHJlbGF6aW9uZSBpbnZlcnNhIGZyYSByYWdnaW8gZSBjYW1wby48L2Rlc2M+PGRlZnM+PG1hcmtlciBpZD0iYXJyb3ciIG1hcmtlcldpZHRoPSI4IiBtYXJrZXJIZWlnaHQ9IjgiIHJlZlg9IjciIHJlZlk9IjQiIG9yaWVudD0iYXV0byI+PHBhdGggZD0iTTAgMEw4IDRMMCA4WiIgZmlsbD0iIzUyNjY3YSIvPjwvbWFya2VyPjwvZGVmcz48cmVjdCB3aWR0aD0iNjQwIiBoZWlnaHQ9IjE0ODAiIGZpbGw9IiNmN2ZhZmMiLz48ZyBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZpbGw9IiMyMDM1NGQiPjx0ZXh0IHg9IjMyIiB5PSI0MiIgZm9udC1zaXplPSIyNCI+SWwgcmFnZ2lvIG1hZ25ldGljbyBlIGlsIGNhbXBvPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSI5MiIgZm9udC1zaXplPSIyMiI+MSDCtyBFc2VtcGlvIGlsbHVzdHJhdG8gY29uIHEgcG9zaXRpdmE8L3RleHQ+PHRleHQgeD0iMzIiIHk9IjEzMiIgZm9udC1zaXplPSIxOSI+bSA9IDEgbWcgwrcgfHF8ID0gMSDOvEM8L3RleHQ+PGNpcmNsZSBjeD0iMzAwIiBjeT0iMjgwIiByPSI4MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMzE2YjliIiBzdHJva2Utd2lkdGg9IjIiLz48bGluZSB4MT0iMzAwIiB5MT0iMjgwIiB4Mj0iMzgwIiB5Mj0iMjgwIiBzdHJva2U9IiM1MjY2N2EiIHN0cm9rZS13aWR0aD0iMiIvPjxjaXJjbGUgY3g9IjMwMCIgY3k9IjI4MCIgcj0iMyIgZmlsbD0iIzUyNjY3YSIvPjx0ZXh0IHg9IjQwMCIgeT0iMjg2IiBmb250LXNpemU9IjE5Ij5yID0gMiBtPC90ZXh0PjxjaXJjbGUgY3g9IjMwMCIgY3k9IjM2MCIgcj0iOCIgZmlsbD0iIzMxNmI5YiIvPjx0ZXh0IHg9IjMwMCIgeT0iMzY1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjE0IiBmaWxsPSJ3aGl0ZSI+KzwvdGV4dD48bGluZSB4MT0iMzEwIiB5MT0iMzYwIiB4Mj0iNDUwIiB5Mj0iMzYwIiBzdHJva2U9IiM1MjY2N2EiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48dGV4dCB4PSI0NjAiIHk9IjM2NiIgZm9udC1zaXplPSIxOSI+diA9IDIgbS9zPC90ZXh0PjxjaXJjbGUgY3g9IjEwMCIgY3k9IjI1MCIgcj0iMTgiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzUyNjY3YSIgc3Ryb2tlLXdpZHRoPSIyIi8+PHBhdGggZD0iTTg4IDIzOEwxMTIgMjYyTTg4IDI2MkwxMTIgMjM4IiBmaWxsPSJub25lIiBzdHJva2U9IiM1MjY2N2EiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjQ1IiB5PSIzMDAiIGZvbnQtc2l6ZT0iMTgiPkIgPSAxIFQ8L3RleHQ+PHRleHQgeD0iNDUiIHk9IjMzMCIgZm9udC1zaXplPSIxOCI+ZW50cmFudGU8L3RleHQ+PHRleHQgeD0iMzIiIHk9IjQ0MCIgZm9udC1zaXplPSIxOCI+diDDqCB0YW5nZW50ZTsgaWwgcmFnZ2lvIHBhcnRlIGRhbCBjZW50cm8uPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSI0NzUiIGZvbnQtc2l6ZT0iMTgiPkludmVydGlyZSBxIGludmVydGUgbGEgY3VydmF0dXJhLCBub24gaWwgcmFnZ2lvLjwvdGV4dD48dGV4dCB4PSIzMiIgeT0iNTUwIiBmb250LXNpemU9IjIyIj4yIMK3IFN0ZXNzYSByYXBpZGl0w6A6IHYgPSAyIG0vczwvdGV4dD48dGV4dCB4PSIxODAiIHk9IjYwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxOSI+QiA9IDEgVDwvdGV4dD48dGV4dCB4PSI0NDAiIHk9IjYwMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxOSI+QiA9IDIgVDwvdGV4dD48Y2lyY2xlIGN4PSIxODAiIGN5PSI3MTAiIHI9IjgwIiBmaWxsPSJub25lIiBzdHJva2U9IiMzMTZiOWIiIHN0cm9rZS13aWR0aD0iMiIvPjxjaXJjbGUgY3g9IjQ0MCIgY3k9IjcxMCIgcj0iNDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2E3NmQyMCIgc3Ryb2tlLXdpZHRoPSIyIi8+PGxpbmUgeDE9IjE4MCIgeTE9IjcxMCIgeDI9IjI2MCIgeTI9IjcxMCIgc3Ryb2tlPSIjMzE2YjliIiBzdHJva2Utd2lkdGg9IjIiLz48bGluZSB4MT0iNDQwIiB5MT0iNzEwIiB4Mj0iNDgwIiB5Mj0iNzEwIiBzdHJva2U9IiNhNzZkMjAiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjE4MCIgeT0iODQwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjE5Ij5yID0gMiBtPC90ZXh0Pjx0ZXh0IHg9IjQ0MCIgeT0iODQwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjE5Ij5yID0gMSBtPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSI4OTUiIGZvbnQtc2l6ZT0iMTgiPkkgZHVlIHJhZ2dpIGhhbm5vIHVuYSBzY2FsYSBjb211bmUuPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSI5NjAiIGZvbnQtc2l6ZT0iMjIiPjMgwrcgVHJlIHB1bnRpIGEgdiA9IDIgbS9zPC90ZXh0PjxsaW5lIHgxPSIxNDUiIHkxPSIxMjgwIiB4Mj0iNTIwIiB5Mj0iMTI4MCIgc3Ryb2tlPSIjNTI2NjdhIiBzdHJva2Utd2lkdGg9IjIiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PGxpbmUgeDE9IjE1MCIgeTE9IjEyODUiIHgyPSIxNTAiIHkyPSIxMDMwIiBzdHJva2U9IiM1MjY2N2EiIHN0cm9rZS13aWR0aD0iMiIgbWFya2VyLWVuZD0idXJsKCNhcnJvdykiLz48Y2lyY2xlIGN4PSIyMzAiIGN5PSIxMTIwIiByPSI1IiBmaWxsPSIjMzE2YjliIi8+PGNpcmNsZSBjeD0iMzEwIiBjeT0iMTIwMCIgcj0iNSIgZmlsbD0iIzMxNmI5YiIvPjxjaXJjbGUgY3g9IjQ3MCIgY3k9IjEyNDAiIHI9IjUiIGZpbGw9IiMzMTZiOWIiLz48dGV4dCB4PSIxMjgiIHk9IjEzMDUiIHRleHQtYW5jaG9yPSJlbmQiIGZvbnQtc2l6ZT0iMTgiPjA8L3RleHQ+PHRleHQgeD0iMjMwIiB5PSIxMzEwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjE4Ij4xPC90ZXh0Pjx0ZXh0IHg9IjMxMCIgeT0iMTMxMCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxOCI+MjwvdGV4dD48dGV4dCB4PSI0NzAiIHk9IjEzMTAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMTgiPjQ8L3RleHQ+PHRleHQgeD0iMTI4IiB5PSIxMTI2IiB0ZXh0LWFuY2hvcj0iZW5kIiBmb250LXNpemU9IjE4Ij4yPC90ZXh0Pjx0ZXh0IHg9IjEyOCIgeT0iMTIwNiIgdGV4dC1hbmNob3I9ImVuZCIgZm9udC1zaXplPSIxOCI+MTwvdGV4dD48dGV4dCB4PSIxMjgiIHk9IjEyNDYiIHRleHQtYW5jaG9yPSJlbmQiIGZvbnQtc2l6ZT0iMTgiPjEvMjwvdGV4dD48dGV4dCB4PSI1MzUiIHk9IjEyOTAiIGZvbnQtc2l6ZT0iMTgiPkIgKFQpPC90ZXh0Pjx0ZXh0IHg9Ijk1IiB5PSIxMDE1IiBmb250LXNpemU9IjE4Ij5yIChtKTwvdGV4dD48dGV4dCB4PSIzMiIgeT0iMTM4MCIgZm9udC1zaXplPSIxOCI+UHVudGkgZGlzdGludGksIHNlbnphIGludGVycG9sYXppb25lIGxpbmVhcmUuPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSIxNDIwIiBmb250LXNpemU9IjE4Ij5M4oCZb3JpZ2luZSDDqCBkZWdsaSBhc3NpOiBCID0gMCBub24gw6ggYW1tZXNzby48L3RleHQ+PC9nPjwvc3ZnPgo="
+    }
+  ]
+}

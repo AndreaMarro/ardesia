@@ -193,7 +193,7 @@
       "blocks": [
         {
           "type": "text",
-          "text": "Il modulo della forza è |q|vB per entrambe, quindi il raggio mv/(|q|B) è uguale. Il prodotto vettoriale q v×B cambia invece segno con la carica: le curvature iniziali sono opposte. Il campo da solo non aumenta la rapidità, perché la forza è ortogonale alla velocità."
+          "text": "Il modulo della forza è |q|vB per entrambe, quindi il raggio mv/(|q|B) è uguale. All’istante iniziale le velocità coincidono e il prodotto vettoriale q v×B cambia segno con la carica: le forze e le curvature iniziali sono opposte. Dopo l’evoluzione le velocità non coincidono necessariamente. Il campo da solo non aumenta la rapidità, perché la forza è ortogonale alla velocità."
         },
         {
           "type": "formula",
@@ -201,7 +201,7 @@
         },
         {
           "type": "formula",
-          "text": " \\vec F_-=-\\vec F_+"
+          "text": " \\vec F_-(0)=-\\vec F_+(0)"
         },
         {
           "type": "formula",
@@ -209,7 +209,7 @@
         },
         {
           "type": "text",
-          "text": "Un raggio con segno confonde la geometria con il verso di curvatura. La forza vettoriale non coincide; il moto non è rettilineo con v perpendicolare e B non nullo. La potenza magnetica nulla esclude l’aumento di rapidità."
+          "text": "Un raggio con segno confonde la geometria con il verso di curvatura. All’istante iniziale la forza vettoriale non coincide; il moto non è rettilineo con v perpendicolare e B non nullo. La potenza magnetica nulla esclude l’aumento di rapidità."
         }
       ],
       "hints": [
@@ -218,7 +218,7 @@
       ],
       "error": {
         "category": "concetto",
-        "message": "Un raggio con segno confonde la geometria con il verso di curvatura. La forza vettoriale non coincide; il moto non è rettilineo con v perpendicolare e B non nullo. La potenza magnetica nulla esclude l’aumento di rapidità.",
+        "message": "Un raggio con segno confonde la geometria con il verso di curvatura. All’istante iniziale la forza vettoriale non coincide; il moto non è rettilineo con v perpendicolare e B non nullo. La potenza magnetica nulla esclude l’aumento di rapidità.",
         "target": "C4-L09"
       },
       "coverage": [

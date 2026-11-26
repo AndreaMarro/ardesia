@@ -42,15 +42,15 @@ Fonte canonica SHA256 5b796c8a3336ef37c3b8f58eeb3a2b18145c721ccc4b3ed21a929ddfa9
 
 Caso autonomo: due particelle con uguale massa positiva, uguale modulo della carica e stessa velocità iniziale non nulla partono dallo stesso punto. Le cariche sono +q e −q e la velocità è perpendicolare allo stesso campo uniforme. Nel modello classico senza altre forze, come si confrontano le traiettorie?
 
-Procedimento d’autore: Il modulo della forza è |q|vB per entrambe, quindi il raggio mv/(|q|B) è uguale. Il prodotto vettoriale q v×B cambia invece segno con la carica: le curvature iniziali sono opposte. Il campo da solo non aumenta la rapidità, perché la forza è ortogonale alla velocità.
+Procedimento d’autore: Il modulo della forza è |q|vB per entrambe, quindi il raggio mv/(|q|B) è uguale. All’istante iniziale le velocità coincidono e il prodotto vettoriale q v×B cambia segno con la carica: le forze e le curvature iniziali sono opposte. Dopo l’evoluzione le velocità non coincidono necessariamente. Il campo da solo non aumenta la rapidità, perché la forza è ortogonale alla velocità.
 
-Formule: r_+=r_-;  \vec F_-=-\vec F_+;  \vec F\cdot\vec v=0.
+Formule: r_+=r_-;  \vec F_-(0)=-\vec F_+(0);  \vec F\cdot\vec v=0.
 
-Distrattori e controprove: Un raggio con segno confonde la geometria con il verso di curvatura. La forza vettoriale non coincide; il moto non è rettilineo con v perpendicolare e B non nullo. La potenza magnetica nulla esclude l’aumento di rapidità.
+Distrattori e controprove: Un raggio con segno confonde la geometria con il verso di curvatura. All’istante iniziale la forza vettoriale non coincide; il moto non è rettilineo con v perpendicolare e B non nullo. La potenza magnetica nulla esclude l’aumento di rapidità.
 
 Hint: Separa |q| nella legge del raggio da q nella legge vettoriale.
 
-Fonte canonica SHA256 c920f6886f4b34a68de6f1753320dfd33daa40fd2c591221cae5e967f515fc96. Candidato SHA256 7a66c774f1a4cebee1d966e88f875088196ffa793f9d400e0686fc5ba10aaccb. Skill reale C4-L09. Review distinta e human NOT_RUN.
+Fonte canonica SHA256 c920f6886f4b34a68de6f1753320dfd33daa40fd2c591221cae5e967f515fc96. Candidato SHA256 54263da27a27b393fc24d8d48363eba06c6a1eefc62c0bebf67de995d472821c. Skill reale C4-L09. Review distinta e human NOT_RUN.
 
 ## AR-u6-magnetic-circle-radius-04 — Una rapidità maggiore nello stesso campo
 
@@ -236,8 +236,10 @@ Fonte canonica SHA256 795f7a898ff4526bc62ca53b6bd4f5bf04d83fc4ff17242e2323640f8a
 
 ## Provenienza tecnica
 
-Asset SHA256 dd526dbb16e5cfddcba904112963e4af78b0e5d49f1e9365c631489afd11e856. Package file SHA256 be937a13e1176ce2348977adf7df95ef11517d94f680463d5df4a6a04a650682. Binding file SHA256 0abd18b2a86d847ffab5af4b590fa8b3e5c4a3305dce4f8f39694a76baf90359. Prova strutturale SHA256 8163a091f8fa738dd187bc1021b11fc4265327fcab98f04231bf935ac04499c2. Manifest asset-only SHA256 16ed9fb25f440cdf303f2f40450f5d17c36cf8e026a4404ac80f23a7a30603f7.
+Asset SHA256 dd526dbb16e5cfddcba904112963e4af78b0e5d49f1e9365c631489afd11e856. Package file SHA256 2572a1c51625fa34cb752fa60c3c883fa4d4f2bebc4b0bcf3f6a089163a01b61. Binding file SHA256 4e738085655a0ada1854ae32e687bdaf9df9a99645fbad7884a234b22c9b8ec0. Prova strutturale SHA256 947ed0319cc1c440fb5b600ad317118bcc3987d8ce92ba9ba47476c0230757f6. Manifest asset-only SHA256 16ed9fb25f440cdf303f2f40450f5d17c36cf8e026a4404ac80f23a7a30603f7.
 
 Nessun registry, ledger, runtime, checkpoint o Git ROOT modificato. Il revisore B è distinto e deve leggere i finali contro la propria primaria prima di qualsiasi firma. Prodotto UI NOT_RUN, nessun marker inventato o riusato.
 
-Lettura geometrica dell’autore: nel primo pannello q positiva e campo entrante danno curvatura verso il centro sopra il punto inferiore; v è tangente verso destra. Raggio80 e40 coordinate per2 e1 m danno scala comune40 coordinate/m nel secondo pannello. Il grafico ha x=150+80B[T], y=1280−80r[m]; i punti(230,1120),(310,1200),(470,1240) rappresentano(1,2),(2,1),(4,1/2) nelle unità indicate. Nessuna interpolazione lineare e nessun punto fisico a B=0. Queste coordinate intrinseche sono soltanto documentazione tecnica.
+Lettura geometrica dell’autore: nel primo pannello q positiva e campo entrante danno curvatura verso il centro sopra il punto inferiore; v è tangente verso destra. I raggi 80 e 40 coordinate per 2 e 1 m danno scala comune 40 coordinate/m nel secondo pannello. Il grafico ha x=150+80B[T], y=1280−80r[m]; i punti (230,1120), (310,1200), (470,1240) rappresentano (1,2), (2,1), (4,1/2) nelle unità indicate. Nessuna interpolazione lineare e nessun punto fisico a B=0. Queste coordinate intrinseche sono soltanto documentazione tecnica.
+
+Rilettura autore dopo finding indipendente B: la formula vettoriale e le due frasi vicine del solo03 specificano adesso t=0, perché le velocità successive possono divergere. Strictdiff conferma gli altri15 record, tutte le chiavi e l’asset identici. Le nuove due assembly e l’import ripetuto sono reali; il native conservato è relativo agli stessi identici byte SVG, senza nuova UI o nuova approvazione scientifica. Edizione precedente archiviata con manifest in editorial/author-evidence/magnetic-circle-radius-231-initial-force-superseded-20261126/.
