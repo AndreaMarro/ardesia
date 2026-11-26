@@ -1,0 +1,49 @@
+{
+  "scope": "Repair stale test representation; all existing 27 physical subcases unchanged",
+  "rootCause": "Numeric labels are present in actual HTML legend, not 3D sprite labels; banco.draw consumes esperienza.legend",
+  "before": "2 tests,27 actual failures preserved",
+  "productionMutationsRejected": [
+    {
+      "change": [
+        "peso verticale di 20 N",
+        "peso verticale di 30 N"
+      ],
+      "actualExitCode": 1
+    },
+    {
+      "change": [
+        "indica la tensione",
+        "indica la spinta"
+      ],
+      "actualExitCode": 1
+    },
+    {
+      "change": [
+        "peso verticale",
+        "carico verticale"
+      ],
+      "actualExitCode": 1
+    }
+  ],
+  "runtimeUnchanged": true,
+  "legendRestoredSha256": "eb303ca6a6013377462b51c92b541a650ee2686257cd7e4ee39fea5221a521f7",
+  "fullSuiteLogSha256": "1cb90b2660b573d1089a33405da1400fe8aa5e414b3bf2bb6ca7e50059e7d5f1",
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "reviewFollowup": "Substring20N wrongly accepted120N in real mutated production legend; numeric/unit boundaries fixed",
+  "numericBoundaryMutationsRejected": [
+    {
+      "wrongWeightLabel": "120 N",
+      "actualExitCode": 1
+    },
+    {
+      "wrongWeightLabel": "20 Nm",
+      "actualExitCode": 1
+    },
+    {
+      "wrongWeightLabel": "\u221220 N",
+      "actualExitCode": 1
+    }
+  ],
+  "testFileSha256": "032da875878dbe5719daab38a6028fcbc54aaba828aa5d8206360dded36a347a"
+}
