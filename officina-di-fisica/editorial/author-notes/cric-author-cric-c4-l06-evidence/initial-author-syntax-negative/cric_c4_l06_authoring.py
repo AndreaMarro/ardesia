@@ -1,0 +1,60 @@
+"""Ten distinct Cric circuit problems; node topology precedes arithmetic."""
+from .vector_geometry_authoring import assemble_family, write_family
+SOURCE_IDS=[f'C4-Q{i:03}' for i in range(51,61)]
+TASKS=[
+('Ridurre prima il gruppo parallelo','Due resistori ohmici da 30 Ω e 60 Ω condividono gli stessi due nodi. Il gruppo è in serie con 10 Ω e il generatore ideale applica 9 V all’intera rete. Qual è la corrente totale?', ['0,30 A','0,09 A','0,45 A','0,90 A','3 A'],
+ 'Il gruppo parallelo si riduce prima della serie esterna. Un trentesimo più un sessantesimo è tre sessantesimi, cioè un ventesimo: il gruppo vale 20 Ω. Aggiungo i 10 Ω attraversati da tutta la corrente e ottengo 30 Ω. Dividere 9 V per 30 Ω dà 3/10 A, ossia 0,30 A. La resistenza parallela è inferiore a entrambe quelle dei rami.',
+ r'\frac1{R_p}=\left(\frac1{30}+\frac1{60}\right)\Omega^{-1}\qquad R_p=20\,\Omega\qquad R_{\rm eq}=30\,\Omega\qquad I=\frac9{30}\,\mathrm A',
+ '0,09 A sommerebbe tutte e tre le resistenze come una serie. 0,45 A ometterebbe il resistore esterno; 0,90 A userebbe soltanto i 10 Ω. Una corrente di 3 A richiederebbe appena 3 Ω, incompatibili con il tratto in serie da 10 Ω.',
+ 'Segna i due nodi del parallelo, poi sostituiscilo con un solo componente.'),
+('Confrontare potenze a tensione comune','Due resistori ohmici positivi di valori diversi sono in parallelo su un generatore ideale con tensione non nulla. Quale dissipa la maggiore potenza?', ['Il resistore di valore minore','Il resistore di valore maggiore','Entrambi necessariamente uguale','Quello con corrente minore','Nessuno, perché il collegamento è parallelo'],
+ 'I due rami hanno la stessa differenza di potenziale. Scrivo P=VI e sostituisco I=V/R: ottengo P=V²/R. Il numeratore è comune e positivo; una resistenza minore dà quindi potenza maggiore. Questo confronto usa tensione fissata e non può essere trasferito senza modifiche a due resistori in serie.',
+ r'P=\frac{V^2}{R}\qquad \frac{P_1}{P_2}=\frac{R_2}{R_1}',
+ 'La legge I²R non autorizza a confrontare soltanto R: qui le correnti sono diverse. La corrente minore appartiene al ramo di resistenza maggiore e porta anche potenza minore. Con V=0 entrambe sarebbero nulle; il prompt esclude proprio quel caso.',
+ 'Scegli la forma della potenza che contiene la grandezza comune ai rami.'),
+('Riconoscere un nodo','Nel circuito ideale, un insieme di estremi è collegato mediante solo filo ideale, senza componenti interposti. Tutti questi punti hanno lo stesso potenziale. Come si chiama questo insieme?', ['Nodo','Maglia','Resistenza equivalente','Generatore','Ramo contenente necessariamente un resistore'],
+ 'Un nodo comprende tutti i punti connessi direttamente dal filo ideale. Si può disegnarli lontani sulla pagina: ciò che conta è la continuità del collegamento, non la distanza grafica. Per verificare un parallelo occorre ritrovare entrambi i nodi comuni, non soltanto una giunzione.',
+ r'V_A=V_B\quad\text{nel medesimo nodo ideale}',
+ 'Una maglia è un percorso chiuso e può attraversare più nodi e componenti. La resistenza equivalente descrive una risposta ai morsetti, non il nome dell’insieme. Un generatore impone una differenza di potenziale fra due morsetti distinti.',
+ 'Segui il filo fino a incontrare un componente: restare sullo stesso filo significa restare nel nodo.'),
+('Dalla corrente all’energia dissipata','Un resistore ohmico da 100 Ω porta una corrente costante di 20 mA per 30 s. La resistenza resta invariata. Quale energia elettrica viene trasformata in energia interna nel resistore?', ['1,20 J','0,040 J','1200 J','1200000 J','60 J'],
+ 'Converto 20 mA in 1/50 A prima di elevare al quadrato. La potenza I²R è 100/2500 W=1/25 W, ossia 0,040 W. Moltiplico per i 30 s di funzionamento: 30/25 J=6/5 J=1,20 J. Il resistore riceve energia durante tutto l’intervallo; il numero della potenza non è ancora quello dell’energia.',
+ r'I=\frac1{50}\,\mathrm A\qquad P=I^2R\qquad P=\frac1{25}\,\mathrm W\qquad E=P t\qquad E=\frac65\,\mathrm J',
+ '0,040 J copierebbe il valore numerico della potenza in watt senza moltiplicare per 30 s. Trattare 20 mA come 20 A darebbe 1200000 J, perché l’errore mille sulla corrente viene elevato al quadrato. 60 J non ricostruisce né I²R né il prodotto potenza per durata.',
+ 'La conversione della corrente precede il quadrato; solo dopo entra la durata.'),
+('Invertire la somma delle conduttanze','Un resistore da 12 Ω è in parallelo a un secondo resistore positivo. La resistenza equivalente dei due è 4 Ω. Trova il valore del secondo in ohm.',6,
+ 'In parallelo si sommano i reciproci. Tolgo 1/12 Ω⁻¹ da 1/4 Ω⁻¹: tre dodicesimi meno un dodicesimo sono due dodicesimi, cioè 1/6 Ω⁻¹. Questa è la conduttanza del resistore incognito. Solo invertendo ottengo 6 Ω; non posso sottrarre direttamente 12−4.',
+ r'\frac1{R_x}=\frac1{R_{\rm eq}}-\frac1{R_1}\qquad \frac1{R_x}=\left(\frac14-\frac1{12}\right)\Omega^{-1}\qquad R_x=6\,\Omega',
+ '8 Ω applica una sottrazione da serie a un parallelo. 1/6 è il valore numerico della conduttanza in siemens, non della resistenza in ohm. Verifico l’inversa: 12·6/(12+6)=72/18=4 Ω, inferiore a ciascun ramo.',
+ 'Isola una conduttanza, controllane l’unità e poi fai il reciproco.'),
+('Aprire un ramo su una sorgente ideale','Due resistori invariati sono in parallelo direttamente sui morsetti di una sorgente ideale a tensione costante. Si apre uno dei rami. Che cosa accade alla corrente nel resistore che resta collegato?', ['Resta uguale','Raddoppia necessariamente','Diventa nulla','Diventa la vecchia corrente totale','È necessariamente dimezzata'],
+ 'Il resistore superstite conserva sia R sia la tensione imposta dalla sorgente. La sua corrente V/R resta perciò identica. La corrente totale della sorgente diminuisce perché perde il contributo del ramo aperto; non si redistribuisce obbligatoriamente nel ramo rimasto.',
+ r'I_{\rm rimasto}=\frac{V}{R}\qquad I'_{\rm rimasto}=I_{\rm rimasto}',
+ 'Il raddoppio o il dimezzamento richiederebbero un cambiamento di V o di R. Il circuito non è completamente interrotto: rimane un percorso chiuso nel ramo superstite. La vecchia corrente totale comprendeva invece anche l’altro ramo.',
+ 'Confronta la tensione sui medesimi due morsetti prima e dopo l’apertura.'),
+('Dare un nome alla dissipazione resistiva','Come si chiama l’effetto per cui un resistore trasforma l’energia elettrica ricevuta in energia interna?', ['Effetto Joule','Effetto fotoelettrico','Induzione di Faraday','Polarizzazione dielettrica soltanto','Conservazione della sola energia del campo nel resistore'],
+ 'È l’effetto Joule. Il campo elettrico trasferisce energia alle cariche; le interazioni nel materiale alimentano l’energia interna. Se la temperatura del resistore rimane stazionaria, l’energia continua comunque a essere trasferita all’ambiente: una temperatura costante non annulla la potenza dissipata.',
+ r'P_{\rm Joule}=I^2R',
+ 'L’effetto fotoelettrico riguarda emissione di elettroni sotto luce adeguata. Faraday riguarda una forza elettromotrice indotta dalla variazione del flusso magnetico. La dissipazione non conserva da sola l’energia elettrostatica nel componente, ma rispetta il bilancio energetico completo.',
+ 'Pensa al riscaldamento di un filo percorso da corrente, non alla produzione di una corrente indotta.'),
+('Progettare la seconda resistenza della serie','Due resistori sono in serie senza derivazioni, alimentati da 12 V ideali. Sul primo da 80 Ω devono cadere 4 V. Quale resistenza R₂, in ohm, realizza questa condizione?',160,
+ 'La corrente è comune. I primi 4 V su 80 Ω danno 1/20 A. Al secondo resistore restano 12−4=8 V: la sua resistenza è 8/(1/20)=160 Ω. La caduta doppia richiede resistenza doppia, perché i due componenti sono attraversati dalla stessa corrente.',
+ r'I=\frac4{80}\,\mathrm A\qquad I=\frac1{20}\,\mathrm A\qquad V_2=8\,\mathrm V\qquad R_2=\frac{V_2}{I}\qquad R_2=160\,\Omega',
+ '240 Ω userebbe tutti i 12 V sul solo secondo resistore. 40 Ω invertirebbe il rapporto delle cadute. Il controllo complessivo dà 12/(80+160)=1/20 A, e questa corrente su 80 Ω produce proprio 4 V.',
+ 'Ricava prima la corrente dal componente di cui conosci tensione e resistenza.'),
+('Il parallelo si decide seguendo i fili','Due resistori sono vicini e alla stessa altezza nel disegno. Quale informazione basta a stabilire che sono davvero in parallelo?', ['Entrambi i terminali corrispondenti appartengono agli stessi due nodi','Sono disegnati con rettangoli uguali','Hanno necessariamente la stessa resistenza','Condividono soltanto un terminale','La pagina è orientata orizzontalmente'],
+ 'Ogni resistore deve essere collegato fra la stessa coppia di nodi A e B. Questo vincolo rende uguale la differenza di potenziale ai capi. Posso ridisegnare un ramo lontano dall’altro senza cambiare il circuito, purché mantenga entrambe le connessioni.',
+ r'V_{R_1}=V_A-V_B\qquad V_{R_2}=V_A-V_B',
+ 'Una sola giunzione comune non garantisce il parallelo: l’altro terminale può andare altrove. Valori uguali o rettangoli uguali non fissano i collegamenti. L’orientamento della pagina non cambia la topologia elettrica.',
+ 'Marca A e B e verifica i due estremi di ciascun componente.'),
+('Dimezzare la tensione su una resistenza fissa','Un resistore ohmico dissipa inizialmente 8 W. Il generatore dimezza il modulo della tensione ai suoi capi e la resistenza rimane invariata. Trova la nuova potenza in watt.',2,
+ 'A resistenza fissa P=V²/R. Dimezzando V, la potenza viene moltiplicata per (1/2)²=1/4. Un quarto di 8 W è 2 W. Anche la corrente si dimezza, quindi il prodotto VI conferma due fattori 1/2 distinti.',
+ r'\frac{P_f}{P_i}=\left(\frac{V_f}{V_i}\right)^2\qquad \frac{P_f}{P_i}=\frac14\qquad P_f=2\,\mathrm W',
+ '4 W userebbe una proporzione lineare con la sola tensione. 32 W invertirebbe il rapporto finale/iniziale. 8 W ignorerebbe la variazione del generatore; la costanza di R non impone la costanza della potenza.',
+ 'Scrivi il rapporto delle potenze prima di introdurre gli 8 W.')]
+CHOICES={n:0 for n,t in enumerate(TASKS,1) if isinstance(t[2],list)}
+UNITS={5:'Ω',8:'Ω',10:'W'}
+FIGURES={1:'Il primo pannello segue i nodi della rete: il tratto da 10 Ω precede il gruppo da 30 Ω e 60 Ω in parallelo. La disposizione è schematica e non rappresenta resistenze mediante lunghezze.',2:'Nel secondo pannello due rami da 30 Ω e 60 Ω sono confrontati a 6 V comuni. Le barre della potenza condividono origine e scala: 1,2 W e 0,6 W.',4:'L’ultimo pannello mostra l’energia cumulativa con corrente costante di 20 mA nel resistore da 100 Ω. La retta arriva a 1,20 J dopo 30 s; la sua pendenza è la potenza di 0,040 W.',9:'Segui i nodi A e B del primo pannello: il gruppo da 30 Ω e 60 Ω è in parallelo, mentre il componente da 10 Ω appartiene al tratto in serie.'}
+def assemble(repo,source_ref):
+ return assemble_family(repo,source_ref,'cric-c4-l06',TASKS,CHOICES,UNITS,'cric-c4-l06-progressive.svg',FIGURES,0,course='C4',source_origin='cric',source_ids=SOURCE_IDS,source_path='officina-di-fisica/content/C4.json',skill='C4-L06',section='Seguire i nodi di un circuito',coverage=['Nodi e collegamenti','Potenze e vincoli del generatore','Energia e inverse esatte'],overrides={n:{'error':{'category':('concetto' if n in (3,7,9) else 'unità' if n==4 else 'modello' if n in (1,2,6) else 'algebra'),'message':TASKS[n-1][5],'target':'C4-L06'}} for n in range(1,11)})
+if __name__=='__main__':write_family(assemble,'cric-c4-l06')
