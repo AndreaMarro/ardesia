@@ -1,0 +1,689 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "C2-Q011",
+      "kind": "question",
+      "course": "C2",
+      "section": "Fluidi in quiete",
+      "order": 11,
+      "title": "Ricavare una profondità",
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L002"
+      ],
+      "version": 3,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’incremento di pressione dipende dal dislivello verticale: Δp=ρgh. Converto 4,0 kPa in 4000 Pa e isolo h. Il prodotto ρg vale 10000 Pa/m: 4000/10000=4/10=0,40 m. La pressione atmosferica non va aggiunta perché il dato è già una differenza rispetto alla superficie."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta p=\\rho gh"
+        },
+        {
+          "type": "formula",
+          "text": " h=\\frac{\\Delta p}{\\rho g}"
+        },
+        {
+          "type": "formula",
+          "text": " h=\\frac{4000}{1000\\cdot10}\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " h=\\frac25\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "4,0 m e 0,04 m spostano di un fattore dieci la profondità. 40 m darebbe 400 kPa, non 4 kPa; 400 m ne darebbe 4000. Usare 4 come se fossero pascal produrrebbe 0,0004 m, un’altra confusione fra Pa e kPa."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "In acqua omogenea ferma con densità 1000 kg/m³, a quale profondità la pressione supera quella della superficie di 4,0 kPa? Usa g=10 m/s².",
+      "family": "un-livello-sotto-la-superficie",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "0,40 m",
+          "4,0 m",
+          "0,04 m",
+          "40 m",
+          "400 m"
+        ],
+        "value": "0,40 m"
+      },
+      "hints": [
+        "Isola h usando soltanto la differenza di pressione e porta prima i kPa in Pa.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "4,0 m e 0,04 m spostano di un fattore dieci la profondità. 40 m darebbe 400 kPa, non 4 kPa; 400 m ne darebbe 4000. Usare 4 come se fossero pascal produrrebbe 0,0004 m, un’altra confusione fra Pa e kPa.",
+        "target": "C2-L002"
+      },
+      "baseVersion": 2,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Ricavare una profondità"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q012",
+      "kind": "question",
+      "course": "C2",
+      "section": "Fluidi in quiete",
+      "order": 12,
+      "title": "Recipiente largo e recipiente stretto",
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L002"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Scelgo un punto del liquido connesso alla base. All’equilibrio la pressione a quella quota deve essere la stessa nei due rami. Su entrambe le superfici agisce la stessa atmosfera, quindi ρgh₁=ρgh₂. Poiché ρ e g sono positivi, h₁=h₂: le superfici hanno quota uguale. La larghezza cambia il volume contenuto, non questa condizione."
+        },
+        {
+          "type": "formula",
+          "text": "p_{\\rm atm}+\\rho gh_1=p_{\\rm atm}+\\rho gh_2"
+        },
+        {
+          "type": "formula",
+          "text": " h_1=h_2"
+        },
+        {
+          "type": "text",
+          "text": "Un dislivello mantenuto soltanto dalle aree produrrebbe pressioni diverse alla base e avvierebbe un moto. Il peso totale non è la sola forza sul fondo: contano anche le pareti. Il rapporto dei volumi non sostituisce la legge idrostatica. Qui la capillarità, che potrebbe creare dislivelli in tubi sottili, è esclusa."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Due recipienti aperti alla stessa atmosfera, uno largo e uno stretto, sono collegati alla base. Contengono lo stesso liquido fermo e omogeneo; trascura la capillarità. Come si dispongono le superfici libere?",
+      "family": "due-recipienti-comunicanti",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Alla stessa quota",
+          "Più in alto nel recipiente stretto per compensare la sua area",
+          "Più in alto nel recipiente largo per compensare il peso totale",
+          "A quote fissate dal rapporto dei volumi",
+          "A qualunque quota, anche con pressioni diverse alla base"
+        ],
+        "value": "Alla stessa quota"
+      },
+      "hints": [
+        "Confronta la pressione alla stessa quota del liquido connesso.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Un dislivello mantenuto soltanto dalle aree produrrebbe pressioni diverse alla base e avvierebbe un moto. Il peso totale non è la sola forza sul fondo: contano anche le pareti. Il rapporto dei volumi non sostituisce la legge idrostatica. Qui la capillarità, che potrebbe creare dislivelli in tubi sottili, è esclusa.",
+        "target": "C2-L002"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Recipiente largo e recipiente stretto"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q013",
+      "kind": "question",
+      "course": "C2",
+      "section": "Fluidi in quiete",
+      "order": 13,
+      "title": "Pressione atmosferica dal mercurio",
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L002"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’equilibrio della colonna dà p_atm=ρgh perché in cima si trascura la pressione. Per un conto manuale: 13600·0,740=10064; poi 10064·9,81=10064·(10−0,19)=100640−1912,16=98727,84 Pa. Divido per mille: 98,72784 kPa, circa 98,7 kPa. L’arrotondamento riguarda la stima finale, non un cambio di modello."
+        },
+        {
+          "type": "formula",
+          "text": "p_{\\rm atm}=\\rho gh"
+        },
+        {
+          "type": "formula",
+          "text": " p_{\\rm atm}=98727{,}84\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "formula",
+          "text": " p_{\\rm atm}=98{,}72784\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "formula",
+          "text": " p_{\\rm atm}\\simeq98{,}7\\,\\mathrm{kPa}"
+        },
+        {
+          "type": "text",
+          "text": "9,87 e 987 kPa introducono rispettivamente un fattore un decimo o dieci. 100,6 kPa sostituisce g=10 al valore 9,81 prescritto e non è la stima richiesta con questi dati. 0,740 copia la lettura di altezza senza convertirla in pressione. Se la pressione superiore non fosse trascurabile andrebbe sommata."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Un barometro contiene mercurio con densità 13600 kg/m³. La colonna è alta 0,740 m; la pressione sopra è trascurabile. Con g=9,81 m/s², stima la pressione atmosferica in kPa.",
+      "family": "la-colonna-di-mercurio",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Circa 98,7 kPa",
+          "Circa 9,87 kPa",
+          "Circa 987 kPa",
+          "Circa 100,6 kPa",
+          "Circa 0,740 kPa"
+        ],
+        "value": "Circa 98,7 kPa"
+      },
+      "hints": [
+        "Puoi moltiplicare per 9,81 come per 10 meno per 0,19; converti in kPa solo alla fine.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "9,87 e 987 kPa introducono rispettivamente un fattore un decimo o dieci. 100,6 kPa sostituisce g=10 al valore 9,81 prescritto e non è la stima richiesta con questi dati. 0,740 copia la lettura di altezza senza convertirla in pressione. Se la pressione superiore non fosse trascurabile andrebbe sommata.",
+        "target": "C2-L002"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Pressione atmosferica dal mercurio"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q014",
+      "kind": "question",
+      "course": "C2",
+      "section": "Fluidi in quiete",
+      "order": 14,
+      "title": "Risalire nel liquido",
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L002"
+      ],
+      "version": 3,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Scelgo la coordinata z verso l’alto. In un liquido omogeneo fermo la pressione diminuisce con la quota: dp/dz=−ρg. Risalendo di h la variazione è −ρgh. Il modulo della diminuzione è positivo, ρgh, ma la variazione finale meno iniziale è negativa."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta z=h"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p=-\\rho g\\Delta z"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p=-\\rho gh"
+        },
+        {
+          "type": "text",
+          "text": "+ρgh descrive una discesa o inverte l’ordine delle pressioni. Zero è possibile per h=0, escluso dalla domanda. ρg/h e ρgh² non hanno dimensioni di pressione. Il percorso eventualmente inclinato non cambia il risultato se il dislivello verticale resta h."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Da un punto a pressione nota si risale verticalmente di h>0 nello stesso liquido omogeneo in quiete. La densità è ρ e g è costante. Qual è la variazione finale meno iniziale della pressione?",
+      "family": "risalire-lungo-un-tubo",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "−ρgh",
+          "+ρgh",
+          "Zero per qualunque h",
+          "−ρg/h",
+          "+ρgh²"
+        ],
+        "value": "−ρgh"
+      },
+      "hints": [
+        "Fissa il verso positivo della quota prima di attribuire il segno alla variazione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "+ρgh descrive una discesa o inverte l’ordine delle pressioni. Zero è possibile per h=0, escluso dalla domanda. ρg/h e ρgh² non hanno dimensioni di pressione. Il percorso eventualmente inclinato non cambia il risultato se il dislivello verticale resta h.",
+        "target": "C2-L002"
+      },
+      "baseVersion": 2,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Risalire nel liquido"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q015",
+      "kind": "question",
+      "course": "C2",
+      "section": "Fluidi in quiete",
+      "order": 15,
+      "title": "La spinta su uno sportello verticale",
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L002"
+      ],
+      "version": 3,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’atmosfera comune si cancella. La sovrapressione dell’acqua cresce da zero al bordo alto a ρgH=2000 Pa al bordo basso. Essendo lineare, il suo valore medio è metà: 1000 Pa. L’area dello sportello è 0,40·0,20=0,08 m²; la forza netta vale 1000·0,08=80 N. Usare la pressione al fondo su tutta l’area darebbe il doppio."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/12b96b68b3798ccfecd6d7aee97697734b1b5b5ed0ce7878e1c8c3978a94024c",
+          "text": "Lo sportello è alto 0,20 m e largo 0,40 m. La sovrapressione cresce linearmente da 0 a 2000 Pa; la media di 1000 Pa sull’area di 0,08 m² dà 80 N. Il disegno del profilo non localizza la risultante al punto medio."
+        },
+        {
+          "type": "formula",
+          "text": "H=\\frac15\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p_{\\rm fondo}=2000\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta p_{\\rm media}=1000\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "formula",
+          "text": " F=\\frac12\\rho g bH^2"
+        },
+        {
+          "type": "formula",
+          "text": " F=80\\,\\mathrm N"
+        },
+        {
+          "type": "text",
+          "text": "160 N tratta la pressione massima come uniforme su tutto lo sportello. Zero considera soltanto il bordo superiore. 800 N introduce un fattore dieci nel prodotto dell’area. 2000 N copia il valore numerico della pressione al fondo in pascal senza moltiplicarlo per una superficie."
+        }
+      ],
+      "difficulty": 3,
+      "prompt": "Uno sportello verticale rettangolare è largo 0,40 m e alto 0,20 m. Su un lato l’acqua arriva al bordo superiore; sull’altro agisce la stessa atmosfera presente sulla superficie libera. Usa ρ=1000 kg/m³ e g=10 m/s². Qual è il modulo della forza netta?",
+      "family": "una-parete-verticale-rettangolare",
+      "answer": {
+        "type": "numeric",
+        "value": 80,
+        "unit": "N",
+        "tolerance": 0
+      },
+      "hints": [
+        "Rappresenta la sovrapressione con un triangolo e usa il suo valore medio.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "160 N tratta la pressione massima come uniforme su tutto lo sportello. Zero considera soltanto il bordo superiore. 800 N introduce un fattore dieci nel prodotto dell’area. 2000 N copia il valore numerico della pressione al fondo in pascal senza moltiplicarlo per una superficie.",
+        "target": "C2-L002"
+      },
+      "baseVersion": 2,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "La spinta su uno sportello verticale"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q016",
+      "kind": "question",
+      "course": "C2",
+      "section": "Fluidi in quiete",
+      "order": 16,
+      "title": "L’altezza nel tubo inclinato",
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L002"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La gravità seleziona la direzione verticale: nella legge idrostatica h è la differenza di quota. Se un tratto lungo s forma angolo θ con l’orizzontale, il dislivello è s sinθ. La lunghezza obliqua coincide con h soltanto quando il tubo è verticale. Il diametro può influire su altri fenomeni, ma non sostituisce il dislivello in ρgh."
+        },
+        {
+          "type": "formula",
+          "text": "h=s\\sin\\theta"
+        },
+        {
+          "type": "formula",
+          "text": " |\\Delta p|=\\rho gh"
+        },
+        {
+          "type": "text",
+          "text": "La lunghezza completa sovrastima h per un tratto non verticale. La proiezione orizzontale non è la distanza lungo la gravità. Diametro e somma proposta descrivono grandezze geometriche diverse dai due livelli. Si assumono liquido fermo, densità uniforme e correzioni capillari trascurabili."
+        }
+      ],
+      "difficulty": 1,
+      "prompt": "In un manometro inclinato il liquido occupa un tratto obliquo fra due livelli. Quale distanza entra nel termine ρgh della differenza idrostatica di pressione?",
+      "family": "lasse-da-misurare",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Il dislivello verticale fra i livelli",
+          "L’intera lunghezza obliqua, per ogni inclinazione",
+          "La proiezione orizzontale del tratto",
+          "Il diametro interno del tubo",
+          "La somma fra lunghezza obliqua e diametro"
+        ],
+        "value": "Il dislivello verticale fra i livelli"
+      },
+      "hints": [
+        "Proietta lungo la verticale, non lungo il tubo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La lunghezza completa sovrastima h per un tratto non verticale. La proiezione orizzontale non è la distanza lungo la gravità. Diametro e somma proposta descrivono grandezze geometriche diverse dai due livelli. Si assumono liquido fermo, densità uniforme e correzioni capillari trascurabili.",
+        "target": "C2-L002"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "L’altezza nel tubo inclinato"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q017",
+      "kind": "question",
+      "course": "C2",
+      "section": "Fluidi in quiete",
+      "order": 17,
+      "title": "Mezzo metro a trenta gradi",
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L002"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La lunghezza obliqua non è il dislivello. Proietto: h=0,50·1/2=0,25 m. Il modulo richiesto è ρgh=800·10·0,25=2000 Pa. Il segno dipenderebbe da quale livello si prende come iniziale; la domanda chiede soltanto il modulo."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/12b96b68b3798ccfecd6d7aee97697734b1b5b5ed0ce7878e1c8c3978a94024c",
+          "text": "Il tratto di tubo misura 0,50 m e forma 30° con l’orizzontale. La proiezione verticale è 0,25 m, da cui il modulo 2000 Pa. Il triangolo non rappresenta una traiettoria del liquido."
+        },
+        {
+          "type": "formula",
+          "text": "h=\\frac12\\frac12\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " h=\\frac14\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " |\\Delta p|=\\rho gh"
+        },
+        {
+          "type": "formula",
+          "text": " |\\Delta p|=2000\\,\\mathrm{Pa}"
+        },
+        {
+          "type": "text",
+          "text": "4000 Pa usa tutta la lunghezza del tubo. 1000 Pa applica due volte la proiezione di fattore un mezzo. 20 Pa trascura il fattore cento nel prodotto dei dati; 800 Pa copia la densità come se fosse già una pressione. Non occorre valutare un seno non notevole."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Due livelli di un manometro sono separati da un tratto lungo 0,50 m lungo un tubo inclinato di 30° sull’orizzontale. Il liquido fermo ha densità 800 kg/m³; usa g=10 m/s² e sin30°=1/2. Trascurando gli altri contributi, qual è il modulo della differenza di pressione?",
+      "family": "un-manometro-inclinato",
+      "answer": {
+        "type": "numeric",
+        "value": 2000,
+        "unit": "Pa",
+        "tolerance": 0
+      },
+      "hints": [
+        "Calcola prima h usando il seno esatto fornito, poi applica la legge idrostatica.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "4000 Pa usa tutta la lunghezza del tubo. 1000 Pa applica due volte la proiezione di fattore un mezzo. 20 Pa trascura il fattore cento nel prodotto dei dati; 800 Pa copia la densità come se fosse già una pressione. Non occorre valutare un seno non notevole.",
+        "target": "C2-L002"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Mezzo metro a trenta gradi"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q018",
+      "kind": "question",
+      "course": "C2",
+      "section": "Fluidi in quiete",
+      "order": 18,
+      "title": "Stessa profondità, gas diversi",
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L002"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Scrivo p₁=p_g1+ρgh e p₂=p_g2+ρgh. I contributi idrostatici sono uguali; sottraendo rimane p₁−p₂=p_g1−p_g2>0. I recipienti sono separati: l’uguaglianza di profondità non impone la stessa pressione quando i valori sulle superfici sono diversi."
+        },
+        {
+          "type": "formula",
+          "text": "p_1=p_{g1}+\\rho gh"
+        },
+        {
+          "type": "formula",
+          "text": " p_2=p_{g2}+\\rho gh"
+        },
+        {
+          "type": "formula",
+          "text": " p_1-p_2=p_{g1}-p_{g2}>0"
+        },
+        {
+          "type": "text",
+          "text": "La sola profondità determina l’incremento rispetto alla propria superficie, non il valore assoluto. Non compare un’inversione dell’effetto della pressione del gas. Aggiungere lo stesso termine alle due pressioni non conserva in generale il loro rapporto. La forma non entra in questa legge."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "Due recipienti separati contengono lo stesso liquido omogeneo con g uguale. I punti di fondo sono entrambi a profondità h sotto le rispettive superfici. Il gas sopra il primo ha pressione assoluta maggiore. Come si confrontano le pressioni assolute al fondo?",
+      "family": "stesso-livello-gas-differenti",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "La prima è maggiore della stessa differenza fra le pressioni dei gas",
+          "Sono uguali perché h è uguale",
+          "La prima è minore perché il gas comprime il liquido",
+          "Il rapporto è necessariamente uguale al rapporto delle pressioni dei gas",
+          "La pressione al fondo dipende soltanto dalla forma del recipiente"
+        ],
+        "value": "La prima è maggiore della stessa differenza fra le pressioni dei gas"
+      },
+      "hints": [
+        "Confronta due somme con lo stesso termine ρgh, usando una differenza.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "La sola profondità determina l’incremento rispetto alla propria superficie, non il valore assoluto. Non compare un’inversione dell’effetto della pressione del gas. Aggiungere lo stesso termine alle due pressioni non conserva in generale il loro rapporto. La forma non entra in questa legge.",
+        "target": "C2-L002"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Stessa profondità, gas diversi"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q019",
+      "kind": "question",
+      "course": "C2",
+      "section": "Fluidi in quiete",
+      "order": 19,
+      "title": "Densità dalla pendenza",
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L002"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La pendenza rispetto alla profondità è Δp/Δh=ρg. Converto 4,5 kPa in 4500 Pa e divido per gΔh=10·0,50=5 m²/s². Ottengo 4500/5=900 kg/m³. Una pressione superficiale costante cambia l’intercetta del grafico, non la pendenza."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/12b96b68b3798ccfecd6d7aee97697734b1b5b5ed0ce7878e1c8c3978a94024c",
+          "text": "La pressione aumenta di 4,5 kPa lungo un incremento di profondità di 0,50 m. Il grafico usa Δp rispetto al primo punto: la pendenza è 9 kPa/m e la densità è 900 kg/m³."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{\\Delta p}{\\Delta h}=\\rho g"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho=\\frac{\\Delta p}{g\\Delta h}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho=\\frac{4500}{5}\\,\\mathrm{kg/m^3}"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho=900\\,\\mathrm{kg/m^3}"
+        },
+        {
+          "type": "text",
+          "text": "9000 omette la divisione per g; 450 omette quella per il dislivello di 0,50 m. 0,9 usa il numero della pressione in kPa come se fosse in Pa. 2250 moltiplica per l’altezza invece di dividerla e non ricostruisce 4,5 kPa."
+        }
+      ],
+      "difficulty": 2,
+      "prompt": "In un liquido omogeneo fermo la pressione cresce di 4,5 kPa quando la profondità aumenta di 0,50 m. Usa g=10 m/s². Qual è la densità?",
+      "family": "riconoscere-il-liquido-dalla-pendenza",
+      "answer": {
+        "type": "numeric",
+        "value": 900,
+        "unit": "kg/m³",
+        "tolerance": 0
+      },
+      "hints": [
+        "Dalla pendenza ρg ricava ρ dividendo ancora per g.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "9000 omette la divisione per g; 450 omette quella per il dislivello di 0,50 m. 0,9 usa il numero della pressione in kPa come se fosse in Pa. 2250 moltiplica per l’altezza invece di dividerla e non ricostruisce 4,5 kPa.",
+        "target": "C2-L002"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Densità dalla pendenza"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C2-Q020",
+      "kind": "question",
+      "course": "C2",
+      "section": "Fluidi in quiete",
+      "order": 20,
+      "title": "Gas sopra il mercurio",
+      "skill": "C2-L002",
+      "prerequisites": [
+        "C2-L002"
+      ],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’equilibrio dà p_atm=p_g+ρgh. Isolando l’altezza ottengo h=(p_atm−p_g)/(ρg). Rispetto alla quota h₀=p_atm/(ρg), la presenza di gas la riduce di p_g/(ρg). Il dominio 0<p_g<p_atm mantiene una colonna di altezza positiva."
+        },
+        {
+          "type": "formula",
+          "text": "h=\\frac{p_{\\rm atm}-p_g}{\\rho g}"
+        },
+        {
+          "type": "formula",
+          "text": " h_0=\\frac{p_{\\rm atm}}{\\rho g}"
+        },
+        {
+          "type": "formula",
+          "text": " h_0-h=\\frac{p_g}{\\rho g}>0"
+        },
+        {
+          "type": "text",
+          "text": "Sommare le pressioni attribuirebbe al gas superiore una spinta concorde a quella atmosferica inferiore, mentre ne compensa una parte. L’altezza non resta identica e non raddoppia senza un rapporto assegnato. Non è negativa nel dominio fisico esplicito."
+        }
+      ],
+      "difficulty": 3,
+      "prompt": "In un barometro si mantiene la stessa pressione atmosferica e lo stesso mercurio. Sopra la colonna resta un gas a pressione p_g>0, minore di quella atmosferica. Rispetto al caso con pressione superiore trascurabile, che cosa accade all’altezza?",
+      "family": "il-quasi-vuoto-nel-barometro",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Diminuisce, perché la colonna equilibra soltanto p_atm−p_g",
+          "Aumenta, perché si sommano p_atm e p_g",
+          "Resta identica qualunque sia p_g",
+          "Diventa necessariamente negativa",
+          "Raddoppia indipendentemente dal valore di p_g"
+        ],
+        "value": "Diminuisce, perché la colonna equilibra soltanto p_atm−p_g"
+      },
+      "hints": [
+        "Il gas superiore sostiene già una parte della pressione atmosferica: quale differenza resta alla colonna?",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Sommare le pressioni attribuirebbe al gas superiore una spinta concorde a quella atmosferica inferiore, mentre ne compensa una parte. L’altezza non resta identica e non raddoppia senza un rapporto assegnato. Non è negativa nel dominio fisico esplicito.",
+        "target": "C2-L002"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Gas sopra il mercurio"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "12b96b68b3798ccfecd6d7aee97697734b1b5b5ed0ce7878e1c8c3978a94024c",
+      "name": "cric-c2-l002-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTQ5MCIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIGRlc2MiPjx0aXRsZSBpZD0idGl0bGUiPlRyZSBsZXR0dXJlIGlkcm9zdGF0aWNoZTwvdGl0bGU+PGRlc2MgaWQ9ImRlc2MiPlByb2ZpbG8gdHJpYW5nb2xhcmUgZGVsbGEgc292cmFwcmVzc2lvbmUgc3VsbG8gc3BvcnRlbGxvIGRhIHplcm8gYSBkdWVtaWxhIHBhc2NhbDsgcHJvaWV6aW9uZSB2ZXJ0aWNhbGUgZGkgdW4gdHJhdHRvIGx1bmdvIG1lenpvIG1ldHJvIGEgdHJlbnRhIGdyYWRpOyBpbmNyZW1lbnRvIGRpIHByZXNzaW9uZSA0LDUga2lsb3Bhc2NhbCBpbiBtZXp6byBtZXRybyBkaSBwcm9mb25kaXTDoC48L2Rlc2M+PHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxNDkwIiBmaWxsPSIjZmFmN2VmIi8+PGcgZm9udC1mYW1pbHk9IkFyaWFsLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjIiIGZpbGw9IiMyNTI0MzgiPgo8dGV4dCB4PSIzMiIgeT0iNDUiIGZvbnQtc2l6ZT0iMjciIGZvbnQtd2VpZ2h0PSJib2xkIj5MZWdnZXJlIGxhIHByb2ZvbmRpdMOgPC90ZXh0Pjx0ZXh0IHg9IjMyIiB5PSI5MiI+MS4gU3BvcnRlbGxvOiBIID0gMCwyMCBtLCBiID0gMCw0MCBtPC90ZXh0Pgo8dGV4dCB4PSIxMzUiIHk9IjE0NSI+U292cmFwcmVzc2lvbmUgzpRwIChQYSk8L3RleHQ+PHBhdGggZD0iTTE1MCAxODBINTEwTTE1MCAxODBWNDEwIiBzdHJva2U9IiMyNTI0MzgiIHN0cm9rZS13aWR0aD0iMyIgZmlsbD0ibm9uZSIvPgo8cGF0aCBkPSJNMTUwIDE4MCA0NTAgMzkwSDE1MFoiIGZpbGw9IiNkY2U3ZjYiIHN0cm9rZT0iIzI4NjU5NCIgc3Ryb2tlLXdpZHRoPSIzIi8+Cjx0ZXh0IHg9IjExNyIgeT0iMTcyIj4wPC90ZXh0Pjx0ZXh0IHg9IjQyNCIgeT0iMTcyIj4yMDAwPC90ZXh0Pjx0ZXh0IHg9IjM4IiB5PSIzOTkiPjAsMjAgbTwvdGV4dD48dGV4dCB4PSIxODAiIHk9IjQ0MCI+zpRwIG1lZGlhID0gMTAwMCBQYTwvdGV4dD48dGV4dCB4PSIxMTAiIHk9IjQ3NyI+RiA9IDEwMDAgUGEgwrcgMCwwOCBtwrIgPSA4MCBOPC90ZXh0Pgo8cGF0aCBkPSJNMzIgNTIwSDYwOCIgc3Ryb2tlPSIjYjNhYmJmIi8+PHRleHQgeD0iMzIiIHk9IjU2NSI+Mi4gSW5jbGluYXppb25lIGUgcHJvaWV6aW9uZTwvdGV4dD4KPHBhdGggZD0iTTE0MCA4NTBINDg2LjQxMDE2MTVWNjUwWiIgZmlsbD0iI2U3ZTBmNyIgc3Ryb2tlPSIjNWIzNmIxIiBzdHJva2Utd2lkdGg9IjQiLz4KPHBhdGggZD0iTTE0MCA4NTBIMjQwTTE0MCA4NTAgQTEwMCAxMDAgMCAwIDAgMjI2LjYwMjU0IDgwMCIgc3Ryb2tlPSIjOGQ3YWFiIiBzdHJva2Utd2lkdGg9IjIiIGZpbGw9Im5vbmUiLz4KPHRleHQgeD0iMTc1IiB5PSI3NDgiPnMgPSAwLDUwIG08L3RleHQ+PHRleHQgeD0iMjYwIiB5PSI4MjYiPjMwwrA8L3RleHQ+PHRleHQgeD0iNTAyIiB5PSI3NDQiPmggPTwvdGV4dD48dGV4dCB4PSI1MDIiIHk9Ijc3NSI+MCwyNSBtPC90ZXh0Pjx0ZXh0IHg9IjE2NSIgeT0iOTA1Ij5oID0gcyBzaW4zMMKwID0gcyAvIDI8L3RleHQ+PHRleHQgeD0iMjIwIiB5PSI5NDgiPnzOlHB8ID0gMjAwMCBQYTwvdGV4dD4KPHBhdGggZD0iTTMyIDk5MEg2MDgiIHN0cm9rZT0iI2IzYWJiZiIvPjx0ZXh0IHg9IjMyIiB5PSIxMDM4Ij4zLiBEZW5zaXTDoCBkYWxsYSBwZW5kZW56YTwvdGV4dD4KPHBhdGggZD0iTTE0MCAxMzcwSDU1NU0xNDAgMTM3MFYxMTEwIiBzdHJva2U9IiMyNTI0MzgiIHN0cm9rZS13aWR0aD0iMyIgZmlsbD0ibm9uZSIvPjxwYXRoIGQ9Ik0xNDAgMTM3MCA1MDAgMTEzMCIgc3Ryb2tlPSIjMjQ2ZDU0IiBzdHJva2Utd2lkdGg9IjUiLz4KPHBhdGggZD0iTTUwMCAxMzcwVjExMzBIMTQwIiBzdHJva2U9IiM5NzhlYWIiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWRhc2hhcnJheT0iNiA1IiBmaWxsPSJub25lIi8+Cjx0ZXh0IHg9IjQzIiB5PSIxMDkwIj7OlHAgKGtQYSk8L3RleHQ+PHRleHQgeD0iMTA1IiB5PSIxNDAwIj4wPC90ZXh0Pjx0ZXh0IHg9IjgwIiB5PSIxMTM4Ij40LDU8L3RleHQ+PHRleHQgeD0iNDgwIiB5PSIxNDAwIj4wLDUwPC90ZXh0Pjx0ZXh0IHg9IjQ1MiIgeT0iMTQ0MCI+zpRoIChtKTwvdGV4dD48dGV4dCB4PSIyMzAiIHk9IjE0NzUiPs+BID0gOTAwIGtnL23CszwvdGV4dD4KPC9nPjwvc3ZnPg=="
+    }
+  ]
+}
