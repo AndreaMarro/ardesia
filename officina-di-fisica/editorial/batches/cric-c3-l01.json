@@ -1,0 +1,621 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "C3-Q001",
+      "kind": "question",
+      "course": "C3",
+      "section": "Termodinamica",
+      "order": 1,
+      "title": "Acqua che lascia il confine",
+      "skill": "C3-L01",
+      "prerequisites": [],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il confine separa il liquido rimasto dal resto. Durante l’ebollizione molecole inizialmente nel liquido attraversano quel confine diventando vapore. Il sistema può quindi perdere materia ed è aperto. Può anche ricevere energia dal fornello: la sola classificazione aperto non ne fissa il bilancio energetico."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/82060d7481cb9986eff271c031e857738c0663d9abeca7e61af88ea1a3cf02bc",
+          "text": "Il sistema è il liquido rimasto: il vapore attraversa il confine scelto verso l’esterno. La freccia termica rappresenta un possibile apporto dal fornello."
+        },
+        {
+          "type": "formula",
+          "text": "m_{\\rm uscita}>0"
+        },
+        {
+          "type": "text",
+          "text": "Un sistema chiuso non scambia materia; uno isolato non scambia né materia né energia. Adiabatico riguarda soltanto il calore e non segue dall’ebollizione. Il confine esiste anche quando è una superficie scelta idealmente."
+        }
+      ],
+      "prompt": "Una pentola scoperta bolle e perde vapore. Il sistema scelto è l’acqua liquida rimasta nella pentola, non l’intera cucina. Come si classifica durante l’ebollizione?",
+      "difficulty": 1,
+      "family": "il-confine-della-pentola",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Sistema aperto",
+          "Sistema chiuso",
+          "Sistema isolato",
+          "Sistema adiabatico perché bolle",
+          "Sistema senza confine"
+        ],
+        "value": "Sistema aperto"
+      },
+      "hints": [
+        "Segui le molecole che diventano vapore rispetto al sistema scelto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Un sistema chiuso non scambia materia; uno isolato non scambia né materia né energia. Adiabatico riguarda soltanto il calore e non segue dall’ebollizione. Il confine esiste anche quando è una superficie scelta idealmente.",
+        "target": "C3-L01"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Acqua che lascia il confine"
+      ]
+    },
+    {
+      "id": "C3-Q002",
+      "kind": "question",
+      "course": "C3",
+      "section": "Termodinamica",
+      "order": 2,
+      "title": "La differenza fra due letture",
+      "skill": "C3-L01",
+      "prerequisites": [],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Converto soltanto la lettura finale: 20,0 °C corrispondono a 293,15 K. La variazione è finale meno iniziale, quindi 293,15−311=−17,85 K. Il segno negativo descrive il raffreddamento. Si può anche convertire 311 K in 37,85 °C e sottrarre: l’intervallo numerico è lo stesso."
+        },
+        {
+          "type": "formula",
+          "text": "T_f=293{,}15\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta T=T_f-T_i"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta T=-17{,}85\\,\\mathrm K"
+        },
+        {
+          "type": "text",
+          "text": "17,85 K sarebbe il modulo del calo, non la variazione con segno richiesta. Sottrarre direttamente 20−311 mescola due origini diverse. Il numero 273,15 serve alla conversione delle letture; non si aggiunge una seconda volta a una differenza già espressa in kelvin."
+        }
+      ],
+      "prompt": "Un sensore passa da 311 K a 20,0 °C. Usa la conversione esatta T=t+273,15 tra i valori numerici nelle due scale. Calcola la variazione finale meno iniziale in kelvin.",
+      "difficulty": 2,
+      "family": "cronologia-di-un-raffreddamento",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "numeric",
+        "value": -17.85,
+        "unit": "K",
+        "tolerance": 0
+      },
+      "hints": [
+        "Porta entrambe le letture sulla stessa scala prima di fare finale meno iniziale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "17,85 K sarebbe il modulo del calo, non la variazione con segno richiesta. Sottrarre direttamente 20−311 mescola due origini diverse. Il numero 273,15 serve alla conversione delle letture; non si aggiunge una seconda volta a una differenza già espressa in kelvin.",
+        "target": "C3-L01"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "La differenza fra due letture"
+      ]
+    },
+    {
+      "id": "C3-Q003",
+      "kind": "question",
+      "course": "C3",
+      "section": "Termodinamica",
+      "order": 3,
+      "title": "Una lettura senza memoria del percorso",
+      "skill": "C3-L01",
+      "prerequisites": [],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Una funzione di stato dipende dallo stato, non dalla storia del percorso. Tornando allo stesso stato si ritrova lo stesso valore della temperatura. Questo non rende il calore e il lavoro funzioni di stato: essi descrivono trasferimenti lungo un processo."
+        },
+        {
+          "type": "formula",
+          "text": "T_f=T_i\\quad\\text{se lo stato finale coincide con quello iniziale}"
+        },
+        {
+          "type": "text",
+          "text": "Cammino indica proprio la dipendenza che qui è esclusa. Calore e lavoro non sono le parole che completano questa definizione. Il tempo trascorso può essere diverso per due percorsi che raggiungono lo stesso stato."
+        }
+      ],
+      "prompt": "La temperatura all’equilibrio ha lo stesso valore quando il sistema torna nello stesso stato, indipendentemente dal percorso seguito. Completa l’espressione «funzione di …».",
+      "difficulty": 1,
+      "family": "lettura-senza-memoria",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "stato",
+          "cammino",
+          "calore",
+          "lavoro",
+          "tempo trascorso"
+        ],
+        "value": "stato"
+      },
+      "hints": [
+        "La parola cercata riguarda le condizioni raggiunte, non la strada seguita.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Cammino indica proprio la dipendenza che qui è esclusa. Calore e lavoro non sono le parole che completano questa definizione. Il tempo trascorso può essere diverso per due percorsi che raggiungono lo stesso stato.",
+        "target": "C3-L01"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Una lettura senza memoria del percorso"
+      ]
+    },
+    {
+      "id": "C3-Q004",
+      "kind": "question",
+      "course": "C3",
+      "section": "Termodinamica",
+      "order": 4,
+      "title": "Contatto alla stessa temperatura",
+      "skill": "C3-L01",
+      "prerequisites": [],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il contatto termico non produce un flusso netto guidato da una differenza di temperatura, perché quella differenza è nulla. Restano possibili scambi microscopici in entrambi i versi che si compensano in media. La stessa temperatura non impone la stessa energia interna: contano anche materiale e quantità di materia."
+        },
+        {
+          "type": "formula",
+          "text": "T_A=T_B"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{A\\to B,\\,\\rm netto}=0"
+        },
+        {
+          "type": "text",
+          "text": "Uguagliare le energie interne richiederebbe dati ulteriori. Né la massa maggiore né il semplice contatto raddoppiano la temperatura. L’equilibrio termico non significa immobilità delle molecole."
+        }
+      ],
+      "prompt": "Due blocchi inizialmente alla stessa temperatura sono messi in contatto e isolati da tutto il resto. Non reagiscono, non cambiano fase e non compiono lavoro. Quale affermazione è giustificata?",
+      "difficulty": 1,
+      "family": "due-termometri-e-zero-scambio-netto",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Non c’è trasferimento netto di calore dovuto a una differenza di temperatura",
+          "I due blocchi hanno necessariamente uguale energia interna",
+          "Il blocco di massa maggiore diventa più caldo senza altre cause",
+          "La temperatura finale è il doppio di quella iniziale",
+          "Le molecole smettono di muoversi"
+        ],
+        "value": "Non c’è trasferimento netto di calore dovuto a una differenza di temperatura"
+      },
+      "hints": [
+        "Distingui uguaglianza di temperatura da uguaglianza dell’energia interna.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Uguagliare le energie interne richiederebbe dati ulteriori. Né la massa maggiore né il semplice contatto raddoppiano la temperatura. L’equilibrio termico non significa immobilità delle molecole.",
+        "target": "C3-L01"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Contatto alla stessa temperatura"
+      ]
+    },
+    {
+      "id": "C3-Q005",
+      "kind": "question",
+      "course": "C3",
+      "section": "Termodinamica",
+      "order": 5,
+      "title": "Raddoppiare rispetto allo zero assoluto",
+      "skill": "C3-L01",
+      "prerequisites": [],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La lettura iniziale corrisponde a 300 K. Raddoppiare la temperatura assoluta porta a 600 K. Torno infine alla scala Celsius sottraendo 273,15: 600−273,15=326,85 °C. Il rapporto due è applicato ai kelvin, non alla lettura rispetto allo zero Celsius."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/82060d7481cb9986eff271c031e857738c0663d9abeca7e61af88ea1a3cf02bc",
+          "text": "Le barre hanno un’origine comune a 0 K. Il passaggio da 300 a 600 K raddoppia la temperatura assoluta; le letture Celsius corrispondenti sono 26,85 e 326,85 °C."
+        },
+        {
+          "type": "formula",
+          "text": "T_i=300\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " T_f=2T_i"
+        },
+        {
+          "type": "formula",
+          "text": "2T_i=600\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " t_f=326{,}85\\,{}^\\circ\\mathrm C"
+        },
+        {
+          "type": "text",
+          "text": "53,70 °C raddoppia la lettura Celsius e non la temperatura assoluta. 600 °C cambia soltanto il simbolo dell’unità. 300 K è lo stato iniziale, non quello raddoppiato. Lo spostamento di origine della scala va fatto prima e dopo il rapporto."
+        }
+      ],
+      "prompt": "Un campione parte da 26,85 °C. A quanti °C corrisponde il doppio della sua temperatura assoluta? Usa T=t+273,15 per le letture numeriche.",
+      "difficulty": 2,
+      "family": "raddoppiare-la-temperatura-assoluta",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "numeric",
+        "value": 326.85,
+        "unit": "°C",
+        "tolerance": 0
+      },
+      "hints": [
+        "Converti in kelvin, raddoppia, poi torna ai gradi Celsius.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "53,70 °C raddoppia la lettura Celsius e non la temperatura assoluta. 600 °C cambia soltanto il simbolo dell’unità. 300 K è lo stato iniziale, non quello raddoppiato. Lo spostamento di origine della scala va fatto prima e dopo il rapporto.",
+        "target": "C3-L01"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Raddoppiare rispetto allo zero assoluto"
+      ]
+    },
+    {
+      "id": "C3-Q006",
+      "kind": "question",
+      "course": "C3",
+      "section": "Termodinamica",
+      "order": 6,
+      "title": "La forza normale sulle pareti",
+      "skill": "C3-L01",
+      "prerequisites": [],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La pressione media è il rapporto fra il modulo della forza normale complessiva e l’area della parete considerata. Un pascal equivale a un newton per metro quadrato. Nel gas all’equilibrio macroscopico questa grandezza descrive l’effetto medio degli urti sulle pareti."
+        },
+        {
+          "type": "formula",
+          "text": "p=F_\\perp/A"
+        },
+        {
+          "type": "formula",
+          "text": " 1\\,\\mathrm{Pa}=1\\,\\mathrm{N/m^2}"
+        },
+        {
+          "type": "text",
+          "text": "Temperatura, volume e quantità di sostanza hanno unità diverse. Una forza tangenziale per unità di area descriverebbe uno sforzo di taglio, non la pressione. La forza sola non è ancora divisa per l’area."
+        }
+      ],
+      "prompt": "Quale variabile, espressa in pascal, descrive la forza normale media per unità di area esercitata da un gas sulle pareti?",
+      "difficulty": 1,
+      "family": "dal-micro-al-macro",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "La pressione",
+          "La temperatura",
+          "Il volume",
+          "La quantità di sostanza",
+          "La forza tangenziale"
+        ],
+        "value": "La pressione"
+      },
+      "hints": [
+        "Riconosci la grandezza con unità N/m².",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "Temperatura, volume e quantità di sostanza hanno unità diverse. Una forza tangenziale per unità di area descriverebbe uno sforzo di taglio, non la pressione. La forza sola non è ancora divisa per l’area.",
+        "target": "C3-L01"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "La forza normale sulle pareti"
+      ]
+    },
+    {
+      "id": "C3-Q007",
+      "kind": "question",
+      "course": "C3",
+      "section": "Termodinamica",
+      "order": 7,
+      "title": "Due metà dello stesso gas",
+      "skill": "C3-L01",
+      "prerequisites": [],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La massa è estensiva: conta quanta materia si trova nel campione. Ciascuna metà contiene metà della massa iniziale. Pressione, temperatura e densità restano quelle del gas uniforme originale. Anche il calore specifico è una proprietà per unità di massa, nelle stesse condizioni."
+        },
+        {
+          "type": "formula",
+          "text": "m_{1/2}=m/2"
+        },
+        {
+          "type": "formula",
+          "text": " V_{1/2}=V/2"
+        },
+        {
+          "type": "formula",
+          "text": " \\rho_{1/2}=\\frac{m/2}{V/2}"
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{m/2}{V/2}=\\rho"
+        },
+        {
+          "type": "text",
+          "text": "Dimezzare pressione o temperatura cambierebbe lo stato intensivo, escluso dalla preparazione. La densità non si dimezza perché diminuiscono insieme massa e volume. La capacità termica totale si dimezzerebbe, ma il calore specifico dell’opzione resta invariato."
+        }
+      ],
+      "prompt": "Un gas uniforme all’equilibrio viene diviso idealmente in due metà di uguale volume, senza cambiare lo stato intensivo locale. Quale proprietà di ciascuna metà si dimezza?",
+      "difficulty": 2,
+      "family": "separare-due-campioni-uguali",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "La massa",
+          "La pressione",
+          "La temperatura assoluta",
+          "La densità",
+          "Il calore specifico del materiale"
+        ],
+        "value": "La massa"
+      },
+      "hints": [
+        "Cerca una proprietà proporzionale alla quantità di materia.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Dimezzare pressione o temperatura cambierebbe lo stato intensivo, escluso dalla preparazione. La densità non si dimezza perché diminuiscono insieme massa e volume. La capacità termica totale si dimezzerebbe, ma il calore specifico dell’opzione resta invariato.",
+        "target": "C3-L01"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Due metà dello stesso gas"
+      ]
+    },
+    {
+      "id": "C3-Q008",
+      "kind": "question",
+      "course": "C3",
+      "section": "Termodinamica",
+      "order": 8,
+      "title": "Due intervalli di raffreddamento",
+      "skill": "C3-L01",
+      "prerequisites": [],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Gli intervalli Celsius e kelvin hanno uguale ampiezza. Un calo di 4 K riduce la lettura da 35 a 31 °C; il successivo calo di 6 K la porta a 25 °C. Il calo totale è 10 K, equivalente a 10 °C come intervallo, non come temperatura assoluta."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/82060d7481cb9986eff271c031e857738c0663d9abeca7e61af88ea1a3cf02bc",
+          "text": "Si rappresentano tre stati successivi, senza assegnare durate: 35 °C, poi 31 °C dopo un calo di 4 K, infine 25 °C dopo altri 6 K."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta T=-(4+6)\\,\\mathrm K"
+        },
+        {
+          "type": "formula",
+          "text": " t_f=(35-10)\\,{}^\\circ\\mathrm C"
+        },
+        {
+          "type": "formula",
+          "text": " t_f=25\\,{}^\\circ\\mathrm C"
+        },
+        {
+          "type": "text",
+          "text": "31 °C considera soltanto il primo calo. 29 °C considera soltanto il secondo. 45 °C somma un aumento invece di sottrarre il raffreddamento. Aggiungere 273,15 a ciascun intervallo sarebbe una conversione impropria di differenze."
+        }
+      ],
+      "prompt": "Un bagno inizialmente a 35 °C si raffredda prima di 4 K e poi di altri 6 K. Qual è la temperatura finale in °C?",
+      "difficulty": 1,
+      "family": "caduta-cumulativa-in-due-soste",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "numeric",
+        "value": 25,
+        "unit": "°C",
+        "tolerance": 0
+      },
+      "hints": [
+        "Somma i due cali e sottrai il totale alla lettura iniziale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "31 °C considera soltanto il primo calo. 29 °C considera soltanto il secondo. 45 °C somma un aumento invece di sottrarre il raffreddamento. Aggiungere 273,15 a ciascun intervallo sarebbe una conversione impropria di differenze.",
+        "target": "C3-L01"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Due intervalli di raffreddamento"
+      ]
+    },
+    {
+      "id": "C3-Q009",
+      "kind": "question",
+      "course": "C3",
+      "section": "Termodinamica",
+      "order": 9,
+      "title": "Aspettare lo stato del campione",
+      "skill": "C3-L01",
+      "prerequisites": [],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Durante le onde la pressione può dipendere dalla posizione e dal tempo: una lettura locale non descrive necessariamente l’intero gas. Occorre attendere lo smorzamento dei transitori e l’equilibrio meccanico; l’eventuale equilibrio termico va anch’esso specificato per descrivere lo stato con un’unica temperatura."
+        },
+        {
+          "type": "formula",
+          "text": "p(\\mathbf r,t)\\longrightarrow p_{\\rm equilibrio}"
+        },
+        {
+          "type": "text",
+          "text": "Una misura immediata può essere soltanto locale. Rapidità e pressione costante non sono sinonimi. Sommare pressioni di punti diversi non produce la pressione uniforme dello stato. La velocità del pistone ha dimensioni e significato differenti."
+        }
+      ],
+      "prompt": "Un pistone viene spinto bruscamente e nel gas si propagano onde di pressione. Quale operazione permette di attribuire al campione una pressione macroscopica uniforme di equilibrio?",
+      "difficulty": 2,
+      "family": "stato-del-gas-dopo-lo-scossone",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Attendere che i transitori si smorzino e il gas raggiunga l’equilibrio",
+          "Leggere subito la pressione in un punto qualsiasi e attribuirla a tutto il gas",
+          "Dichiarare che ogni trasformazione rapida è isobara",
+          "Sommare le pressioni rilevate in punti diversi",
+          "Sostituire la pressione con la velocità del pistone"
+        ],
+        "value": "Attendere che i transitori si smorzino e il gas raggiunga l’equilibrio"
+      },
+      "hints": [
+        "Chiediti quando una lettura locale diventa rappresentativa del gas intero.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Una misura immediata può essere soltanto locale. Rapidità e pressione costante non sono sinonimi. Sommare pressioni di punti diversi non produce la pressione uniforme dello stato. La velocità del pistone ha dimensioni e significato differenti.",
+        "target": "C3-L01"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Aspettare lo stato del campione"
+      ]
+    },
+    {
+      "id": "C3-Q010",
+      "kind": "question",
+      "course": "C3",
+      "section": "Termodinamica",
+      "order": 10,
+      "title": "Una parete mobile senza calore",
+      "skill": "C3-L01",
+      "prerequisites": [],
+      "version": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Una parete adiabatica impedisce lo scambio di calore attraverso il confine. Questo vincolo non proibisce il movimento della parete e quindi non esclude il lavoro meccanico. L’isolamento energetico completo richiederebbe anche l’assenza di ogni altro trasferimento di energia."
+        },
+        {
+          "type": "formula",
+          "text": "Q_{\\rm attraverso\\ la\\ parete}=0"
+        },
+        {
+          "type": "text",
+          "text": "Diatermica significa capace di scambiare calore. Rigida riguarda lo spostamento della parete, non il flusso termico. Adiabatica non significa temperatura costante e non definisce la permeabilità alla materia."
+        }
+      ],
+      "prompt": "Una parete impedisce lo scambio di calore attraverso di essa, ma può muoversi e trasmettere lavoro. Quale aggettivo termodinamico la qualifica?",
+      "difficulty": 1,
+      "family": "parete-che-isola-dal-calore",
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Adiabatica",
+          "Diatermica",
+          "Necessariamente rigida",
+          "Isoterma per definizione",
+          "Permeabile alla materia per definizione"
+        ],
+        "value": "Adiabatica"
+      },
+      "hints": [
+        "Separa il vincolo sul calore da quello sul lavoro e sulla materia.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Diatermica significa capace di scambiare calore. Rigida riguarda lo spostamento della parete, non il flusso termico. Adiabatica non significa temperatura costante e non definisce la permeabilità alla materia.",
+        "target": "C3-L01"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Una parete mobile senza calore"
+      ]
+    }
+  ],
+  "assets": [
+    {
+      "id": "82060d7481cb9986eff271c031e857738c0663d9abeca7e61af88ea1a3cf02bc",
+      "name": "cric-c3-l01-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTQ4MCIgdmlld0JveD0iMCAwIDY0MCAxNDgwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIj4KPHRpdGxlIGlkPSJ0aXRsZSI+Q29uZmluaSBkZWwgc2lzdGVtYSBlIGxldHR1cmUgZGkgdGVtcGVyYXR1cmE8L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5UcmUgcGFubmVsbGk6IHZhcG9yZSBjaGUgbGFzY2lhIGlsIGxpcXVpZG8sIGJhcnJlIGEgdHJlY2VudG8gZSBzZWljZW50byBrZWx2aW4gY29uIG9yaWdpbmUgY29tdW5lLCB0cmUgc3RhdGkgZGkgcmFmZnJlZGRhbWVudG8gZGEgdHJlbnRhY2lucXVlIGEgdHJlbnR1bm8gZSB2ZW50aWNpbnF1ZSBncmFkaSBDZWxzaXVzLjwvZGVzYz4KPGRlZnM+PG1hcmtlciBpZD0iYXJyb3ciIG1hcmtlcldpZHRoPSI4IiBtYXJrZXJIZWlnaHQ9IjgiIHJlZlg9IjciIHJlZlk9IjQiIG9yaWVudD0iYXV0byI+PHBhdGggZD0iTTAgMEw4IDRMMCA4WiIgZmlsbD0iIzczNTBiMCIvPjwvbWFya2VyPjwvZGVmcz4KPHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxNDgwIiBmaWxsPSIjZmFmN2VlIi8+PGcgZmlsbD0iIzMwMmEzZSIgZm9udC1zaXplPSIyMSI+PHRleHQgeD0iMzAiIHk9IjQwIiBmb250LXNpemU9IjI1Ij4xLiBTY2VnbGllcmUgaWwgY29uZmluZTwvdGV4dD48dGV4dCB4PSIzMCIgeT0iODAiPlNpc3RlbWE6IGlsIGxpcXVpZG8gcmltYXN0byBuZWxsYSBwZW50b2xhPC90ZXh0PjwvZz4KPHJlY3QgeD0iMTUwIiB5PSIyMTUiIHdpZHRoPSIzMjAiIGhlaWdodD0iMTUwIiByeD0iMTAiIGZpbGw9IiM2OGJkY2YiLz48cGF0aCBkPSJNMTMwIDIwMFYzOTBINDkwVjIwMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNzI2ZDgxIiBzdHJva2Utd2lkdGg9IjgiLz4KPHJlY3QgeD0iMTQ1IiB5PSIyMDUiIHdpZHRoPSIzMzAiIGhlaWdodD0iMTcwIiBmaWxsPSJub25lIiBzdHJva2U9IiM3MzUwYjAiIHN0cm9rZS1kYXNoYXJyYXk9IjkgNyIgc3Ryb2tlLXdpZHRoPSIzIi8+CjxwYXRoIGQ9Ik0zMjAgMjQwVjEyNSIgc3Ryb2tlPSIjNzM1MGIwIiBzdHJva2Utd2lkdGg9IjUiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PHRleHQgeD0iMzUwIiB5PSIxNTgiIGZpbGw9IiMzMDJhM2UiIGZvbnQtc2l6ZT0iMjEiPnZhcG9yZSBpbiB1c2NpdGE8L3RleHQ+CjxwYXRoIGQ9Ik0zMjAgNDUzVjQwMCIgc3Ryb2tlPSIjNzM1MGIwIiBzdHJva2Utd2lkdGg9IjUiIG1hcmtlci1lbmQ9InVybCgjYXJyb3cpIi8+PHRleHQgeD0iMzYwIiB5PSI0NDUiIGZpbGw9IiMzMDJhM2UiIGZvbnQtc2l6ZT0iMjAiPmNhbG9yZSBlbnRyYW50ZTwvdGV4dD48dGV4dCB4PSI0MCIgeT0iNDgzIiBmaWxsPSIjMzAyYTNlIiBmb250LXNpemU9IjIwIj5MYSBtYXRlcmlhIGF0dHJhdmVyc2EgaWwgY29uZmluZTogc2lzdGVtYSBhcGVydG8uPC90ZXh0Pgo8ZyBmaWxsPSIjMzAyYTNlIiBmb250LXNpemU9IjIxIj48dGV4dCB4PSIzMCIgeT0iNTUwIiBmb250LXNpemU9IjI1Ij4yLiBSYWRkb3BwaWFyZSBpIGtlbHZpbjwvdGV4dD48dGV4dCB4PSIzMCIgeT0iNTkwIj5PcmlnaW5lIGRlbGxlIGJhcnJlOiAwIEs8L3RleHQ+PC9nPgo8cGF0aCBkPSJNMTQwIDgzNVY2MjBNMTQwIDgzNUg1MTAiIHN0cm9rZT0iIzcyNmQ4MSIgZmlsbD0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIyIi8+CjxyZWN0IHg9IjE0MCIgeT0iNjUwIiB3aWR0aD0iMTUwIiBoZWlnaHQ9IjQ1IiBmaWxsPSIjMTQ3OTc5Ii8+PHJlY3QgeD0iMTQwIiB5PSI3MzUiIHdpZHRoPSIzMDAiIGhlaWdodD0iNDUiIGZpbGw9IiM3MzUwYjAiLz4KPGcgZmlsbD0iIzMwMmEzZSIgZm9udC1zaXplPSIyMCI+PHRleHQgeD0iMzA1IiB5PSI2ODAiPjMwMCBLIOKGkiAyNiw4NSDCsEM8L3RleHQ+PHRleHQgeD0iMTYwIiB5PSI4MTciPjYwMCBLIOKGkiAzMjYsODUgwrBDPC90ZXh0Pjx0ZXh0IHg9IjExNCIgeT0iODYyIj4wPC90ZXh0Pjx0ZXh0IHg9IjI3NSIgeT0iODYyIj4zMDA8L3RleHQ+PHRleHQgeD0iNDI1IiB5PSI4NjIiPjYwMDwvdGV4dD48dGV4dCB4PSI1MDAiIHk9Ijg2NSI+VCAoSyk8L3RleHQ+PHRleHQgeD0iNDAiIHk9IjkxNSI+SWwgcmFwcG9ydG8gcmlndWFyZGEgbGUgdGVtcGVyYXR1cmUgYXNzb2x1dGUuPC90ZXh0PjwvZz4KPGcgZmlsbD0iIzMwMmEzZSIgZm9udC1zaXplPSIyMSI+PHRleHQgeD0iMzAiIHk9Ijk5MCIgZm9udC1zaXplPSIyNSI+My4gU29tbWFyZSBkdWUgY2FsaTwvdGV4dD48dGV4dCB4PSIzMCIgeT0iMTAzMCI+U3RhdGkgc3VjY2Vzc2l2aSwgc2VuemEgZHVyYXRlIGFzc2VnbmF0ZTwvdGV4dD48L2c+CjxwYXRoIGQ9Ik0xMzAgMTM2MFYxMDgwTTEzMCAxMzYwSDUzMCIgc3Ryb2tlPSIjNzI2ZDgxIiBzdHJva2Utd2lkdGg9IjIiIGZpbGw9Im5vbmUiLz4KPHBhdGggZD0iTTE4MCAxMTIwTDMzMCAxMTY4TDQ4MCAxMjQwIiBzdHJva2U9IiMxNDc5NzkiIHN0cm9rZS13aWR0aD0iNCIgZmlsbD0ibm9uZSIvPjxnIGZpbGw9IiMxNDc5NzkiPjxjaXJjbGUgY3g9IjE4MCIgY3k9IjExMjAiIHI9IjYiLz48Y2lyY2xlIGN4PSIzMzAiIGN5PSIxMTY4IiByPSI2Ii8+PGNpcmNsZSBjeD0iNDgwIiBjeT0iMTI0MCIgcj0iNiIvPjwvZz4KPGcgZmlsbD0iIzMwMmEzZSIgZm9udC1zaXplPSIyMCI+PHRleHQgeD0iNjAiIHk9IjEwOTAiPnQgKMKwQyk8L3RleHQ+PHRleHQgeD0iMTQ1IiB5PSIxMTAwIj4zNSDCsEM8L3RleHQ+PHRleHQgeD0iMzAwIiB5PSIxMTQ0Ij4zMSDCsEM8L3RleHQ+PHRleHQgeD0iNDcwIiB5PSIxMjgwIj4yNSDCsEM8L3RleHQ+PHRleHQgeD0iMTc1IiB5PSIxMzkwIj4wPC90ZXh0Pjx0ZXh0IHg9IjMyNSIgeT0iMTM5MCI+MTwvdGV4dD48dGV4dCB4PSI0NzUiIHk9IjEzOTAiPjI8L3RleHQ+PHRleHQgeD0iMjQ1IiB5PSIxNDQwIj5pbmRpY2UgZGVsbG8gc3RhdG88L3RleHQ+PHRleHQgeD0iMjIwIiB5PSIxMTc2Ij7iiJI0IEs8L3RleHQ+PHRleHQgeD0iMzc3IiB5PSIxMjM2Ij7iiJI2IEs8L3RleHQ+PC9nPgo8L3N2Zz4K"
+    }
+  ]
+}
