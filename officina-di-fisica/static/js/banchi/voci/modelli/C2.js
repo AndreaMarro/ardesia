@@ -188,8 +188,9 @@ export const experiments = {
     apparatus: (x, y) => ({
       r1: x === 1 ? 0.7 : 0.35,
       r2: x === 1 ? 0.7 : 0.35,
-      v1: x === 1 ? 1.5 : y / 2,
-      v2: x === 1 ? 1.5 : y / 2,
+      // v = Q/A: doubling radius multiplies area by four.
+      v1: y / (2 * (x === 1 ? 4 : 1)),
+      v2: y / (2 * (x === 1 ? 4 : 1)),
       lungo: x === 2,
     }),
   },

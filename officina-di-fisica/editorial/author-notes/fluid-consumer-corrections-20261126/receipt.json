@@ -1,0 +1,39 @@
+{
+  "phase": "AUTHOR_GEOMETRY_CANDIDATE_NO_UI_OR_INDEPENDENT_ACCEPTANCE",
+  "parentRuntimeSha256": "d9d1bbf4a269a9a7b0e3a9cd4f5595f8dc45a85b77d3337b241b7dfa62968927",
+  "candidateRuntimeSha256": "3fb19da4e8454d13e5b977ea56dc45dd0d97d338b9571048bd373faac3740b3b",
+  "actualRed": {
+    "tests": 4,
+    "subcaseFailures": 53,
+    "seconds": 0.309
+  },
+  "actualGreenGeometry": {
+    "tests": 4,
+    "seconds": 0.283,
+    "scope": "All legal controls of six C2 IDs; full native32facet arrow clearance, column bounds with no saturation, flow/area speed scaling, incoming flow conservation; NOT camera/label/browser visibility"
+  },
+  "generalActualFinalLog": "general-final-qualified-legend.txt in verbatim-test-runs.zip",
+  "changedFiles": [
+    "static/js/banchi/voci/apparati/fluidi.js",
+    "static/js/banchi/voci/modelli/C2.js",
+    "static/js/banchi/voci/legende.js"
+  ],
+  "changes": [
+    "Couette full velocity glyphs at same heights in front of plates; common gain retained.",
+    "Pitot common vertical pressure-head gain changed from.45 to.3; baseline retained and full5m/s range fits original glass, no clamp; numeric law/grader unchanged.",
+    "Poiseuille speed annotation uses Q/A consistently at doubled radius; source scalar unchanged.",
+    "Incoming bifurcation arrow is sum of actual branch flows at the same gain, for every shared network caller.",
+    "Probe/surface and piston area sprite text moved to existing accessible HTML legend; series legend explicitly qualified, no automatic UI claim."
+  ],
+  "reviewDependencies": {
+    "tests/corpus/consumer_glyph_contract.py": "7fc6e1d9fa6bb149c671b91576e3a3bb4452f2185ff45213f96b9cf78a0d54b9"
+  },
+  "sourceRecordsAndGrades": "UNCHANGED",
+  "originalFailures": "RETAINED",
+  "geometryRemaining": "Other17-family findings remain open until complete independent proof and actual UI; no new full activity credits.",
+  "activityCredit": 0,
+  "productUi": "NOT_RUN_ON_THIS_RUNTIME",
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "oldEvidenceReuse": "DO_NOT_RETAG"
+}
