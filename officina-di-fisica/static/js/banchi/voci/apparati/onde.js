@@ -369,7 +369,6 @@ export const ondulatoria = {
       const r = s.riflesso ? a : rad(s.rifratto);
       b.arrow(O, [l * Math.sin(r), y + (s.riflesso ? 1 : -1) * l * Math.cos(r), 0], c.verde);
       b.label([-1.65, 2.64, 0], 'Incidente', c.ocra);
-      b.label([0.43, 2.97, 0], 'Normale');
       return;
     }
     b.line(

@@ -55,5 +55,5 @@ export const legende = {
   fotone: 'Onda viola · fotone incidente. Verde · elettrone del bersaglio',
   nucleo: 'Rosso · protone. Verde nel nucleo · neutrone',
   decadimento: 'Viola · nuclei iniziali ancora presenti. Grigio · nuclei decaduti',
-  ottica: 'La normale o l’asse ottico forniscono il riferimento per leggere i raggi. All’interfaccia i segmenti dei raggi hanno lunghezza schematica; rappresentano le direzioni e gli angoli, non un cammino ottico misurato.',
+  ottica: 'All’interfaccia tra due mezzi o sullo specchio, la linea grigia tratteggiata è la normale: passa dal punto d’incontro dei raggi ed è perpendicolare alla superficie. Nel banco con la lente, la linea grigia tratteggiata è invece l’asse ottico. Per confrontare gli angoli dei raggi scegli la vista Obliqua o Laterale: dall’alto il loro piano si vede di taglio. All’interfaccia i segmenti hanno lunghezza schematica; mostrano direzioni e angoli, non un cammino ottico misurato.',
 };
