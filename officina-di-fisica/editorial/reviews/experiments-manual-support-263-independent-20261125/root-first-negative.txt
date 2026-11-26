@@ -1,0 +1,27 @@
+Recovered exact manual-support delivery 56 files;credit0
+setUpClass (test_experiments_manual_support_263.ManualSupport263) ... ERROR
+
+======================================================================
+ERROR: setUpClass (test_experiments_manual_support_263.ManualSupport263)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/private/tmp/cric-resident-integrator/officina-di-fisica/tests/corpus/test_experiments_manual_support_263.py", line 16, in setUpClass
+    cls.sources=v.source_records();cls.records=v.verify(cls.sources,cls.package,cls.bindings,cls.asset_root)
+                ~~~~~~~~~~~~~~~~^^
+  File "/private/tmp/cric-resident-integrator/officina-di-fisica/tools/corpus_engineering/experiments_manual_support_revision_verifier.py", line 49, in source_records
+    inputs,_=primary_inputs();out={}
+             ~~~~~~~~~~~~~~^^
+  File "/private/tmp/cric-resident-integrator/officina-di-fisica/tools/corpus_engineering/experiments_manual_support_revision_verifier.py", line 41, in primary_inputs
+    raw=(APP/PRIMARY_DIR/'input-projection.json').read_bytes()
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pathlib/_abc.py", line 625, in read_bytes
+    with self.open(mode='rb') as f:
+         ~~~~~~~~~^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.13/lib/python3.13/pathlib/_local.py", line 537, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/private/tmp/cric-resident-integrator/officina-di-fisica/editorial/reviews/manual-experiments-eight-primary-20261125/input-projection.json'
+
+----------------------------------------------------------------------
+Ran 0 tests in 0.007s
+
+FAILED (errors=1)

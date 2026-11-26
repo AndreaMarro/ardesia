@@ -60,7 +60,16 @@
     },
     "newManualDrafts": 8,
     "newManualDraftCredit": 0,
-    "newManualDraftHandoff": "editorial/author-notes/manual-experiments-eight-20261125/author-handoff.json"
+    "newManualDraftHandoff": "editorial/author-notes/manual-experiments-eight-20261125/author-handoff.json",
+    "eightManualSourceOnlyReview": {
+      "result": "PASS_8_SOURCE_MATH_MANUAL_FIGURES_16_EFFECTIVE_INPUTS",
+      "rootAdversarialTests": 9,
+      "rootTestSeconds": 7.726,
+      "overallActivityCredit": 0,
+      "productUi": "NOT_RUN",
+      "humanApproval": "NOT_RUN",
+      "receipt": "editorial/reviews/experiments-manual-support-263-independent-20261125/root-receipt.json"
+    }
   },
   "protectedExamQuestions": 93,
   "humanApprovals": 0,
@@ -193,5 +202,18 @@
   "lastPublicRootHeadObserved": "4a15046fda85be6904df29031cc2aa89a0c17139",
   "nextRegistrationId": null,
   "adoptionTransportIndependentReview": "PASS_LIMITED_7_TEMP_ONLY_PROBES_NO_NEW_CREDIT",
-  "clientDate": "2026-11-26"
+  "clientDate": "2026-11-26",
+  "preparation3472": {
+    "runId": 45849149030,
+    "headSha": "68c9553132877606f0cb957267ae31c5f3359a08",
+    "status": "IN_PROGRESS_LAST_OBSERVED"
+  },
+  "canonicalPullRequest": {
+    "number": 364,
+    "headSha": "1bbe0600ffee280c280a3555b0b1ef05c90accac",
+    "questionDrafts": 3312,
+    "state": "DRAFT_CI_IN_PROGRESS",
+    "requiredChecks": "NOT_YET_ALL_SUCCESS",
+    "originalSupplementalFailure": "45848853442 stale preview registry pin; fixed1bbe0600, gate retained"
+  }
 }

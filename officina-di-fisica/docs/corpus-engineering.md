@@ -14,6 +14,11 @@ Canone remoto ultimo misurato831b73fa71076b2e9b363006ffd94a350f22fe90. Stessa PR
 
 Prossimi passi: seguire il nuovo replay3472 fino a terminale, verificare artefatto e adottare solo prove reali; chiudere CI della stessa PR364 sulla SHA effettiva e integrare; continuare autoria/review U605/U7/Cric606; concludere review8e correggere le restanti attività con autore distinto e UI reale. Runtime1a3502eb7459884e9278fd10c11211d5dfae3fa89c4fe489e4c3d116c72a8bba invariato. Mutex condiviso e almeno2GiB; nessun processo utente terminato. Pubblicazione rimane un gate umano separato.
 
+
+### Addendum del26novembre:8revisioni parziali verificate e CIin corso
+
+Recuperata consegna COREeb51d0e9 con56file verificatiSHA, più13input della primaria d8fb5265. Primo targetRoot fallito per inputprojection mancante (0test, negativo conservato); dopo recupero esatto Root9testPASS7,726s. Otto testi/modelli/procedimenti/figure e16domande effettive verificati; nessun nuovo credito attività, UIprodottoNOT_RUN e originaliFAIL/LorentzSnellpreservati. File inexperiments-manual-support-263-independent-20261125/. PR364orahead1bbe0600, richiesta preview corretta per registro3312 senza modificare i controlli: CIin corso, mergeNONeseguito. Replay3472run45849149030/source68c95531 in corso. ProssimoautoreRoot: correzioni consumer17ID inworktreeisolato, verificatore distinto; evitare cambio runtime1a nelRoot finché nuovaepoca e prove nonsono complete.
+
 Le sezioni seguenti sono snapshot storici.
 
 ---

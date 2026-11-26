@@ -2082,3 +2082,8 @@ Prossimi passi: seguire il nuovo replay3472 fino a terminale, verificare artefat
 Le sezioni seguenti sono snapshot storici.
 
 ---
+
+
+### Addendum del26novembre:8revisioni parziali verificate e CIin corso
+
+Recuperata consegna COREeb51d0e9 con56file verificatiSHA, più13input della primaria d8fb5265. Primo targetRoot fallito per inputprojection mancante (0test, negativo conservato); dopo recupero esatto Root9testPASS7,726s. Otto testi/modelli/procedimenti/figure e16domande effettive verificati; nessun nuovo credito attività, UIprodottoNOT_RUN e originaliFAIL/LorentzSnellpreservati. File inexperiments-manual-support-263-independent-20261125/. PR364orahead1bbe0600, richiesta preview corretta per registro3312 senza modificare i controlli: CIin corso, mergeNONeseguito. Replay3472run45849149030/source68c95531 in corso. ProssimoautoreRoot: correzioni consumer17ID inworktreeisolato, verificatore distinto; evitare cambio runtime1a nelRoot finché nuovaepoca e prove nonsono complete.

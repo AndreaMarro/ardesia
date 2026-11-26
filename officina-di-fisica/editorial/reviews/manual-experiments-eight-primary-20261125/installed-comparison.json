@@ -1,0 +1,219 @@
+{
+  "phase": "INSTALLED_ORIGINAL_LAW_AND_EXACT_GRADING_EXCERPT_ONLY",
+  "independentPrimarySha256": "9c55e3d05dfe1d093f227bb03a142fb1d510d7015aa6bffa55352091c371c1ea",
+  "nodeVersion": "v22.14.0",
+  "modelFiles": {
+    "static/js/banchi/voci/modelli/C3.js": "b01a2fd9b40c4ebefa7a124d543ba6933708d95a7bd95e4e613dca88a05e53cd",
+    "static/js/banchi/voci/modelli/C4.js": "5d99d0015d7ae1807ad5167cf510a5e51f6fad4011caa0ba9a6c04ebff8d5941",
+    "static/js/banchi/voci/modelli/C5.js": "a26080aaa5f08bbdac7b9615b8e97b6d7b01cbb0ec418b5d295249cdb1077b86"
+  },
+  "consumerFile": "static/js/banchi/voci/esperimento.js",
+  "consumerFileSha256": "cc435e51b62d5b9961b32f5d9b349171f7432e3bf6a6911cd80daaa1f419767b",
+  "originalStabilizerExcerpt": "const stabile = (x) => (Math.abs(x) < 1e-11 ? 0 : x);",
+  "originalCalcExcerpt": "  const calc = (x) => stabile(law.measure(x));",
+  "graderFile": "static/js/banchi/banco.js",
+  "graderFileSha256": "8200aa5adf026372699790c21f60e0cf3f5fffcb705ef5ee36f609ac3c1e3ed9",
+  "graderExcerptSha256": "47873210c4ae3e5c412a9e9f5ed915534984f6639f1bc5c95017150df830d239",
+  "originalGraderExcerpt": "const a = r.assessment[Number(form.dataset.check)],\n          answer = Number(form.elements.answer.value.trim().replace(',', '.'));\n        const ok =\n          form.elements.answer.value.trim() !== '' &&\n          Number.isFinite(answer) &&\n          Math.abs(answer - a.value) <= Math.max(activity ? 0.000001 : 0.001, Math.abs(a.value) * 0.005);\n        ",
+  "records": [
+    {
+      "id": "SIM-C3-L07-05",
+      "values": [
+        {
+          "input": "2.25",
+          "rawOriginalLawValue": 29.62962962962963,
+          "installedOriginalConsumerCalcValue": 29.62962962962963,
+          "independentNumericValue": 29.62962962962963,
+          "finiteExample": "29.63",
+          "finiteExampleAccepted": true
+        },
+        {
+          "input": "4",
+          "rawOriginalLawValue": 12.5,
+          "installedOriginalConsumerCalcValue": 12.5,
+          "independentNumericValue": 12.5,
+          "finiteExample": "12.5",
+          "finiteExampleAccepted": true
+        }
+      ],
+      "activityCredit": 0,
+      "UI": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C4-L09-02",
+      "values": [
+        {
+          "input": "30",
+          "rawOriginalLawValue": 2.9999999999999996,
+          "installedOriginalConsumerCalcValue": 2.9999999999999996,
+          "independentNumericValue": 3,
+          "finiteExample": "3",
+          "finiteExampleAccepted": true
+        },
+        {
+          "input": "90",
+          "rawOriginalLawValue": 6,
+          "installedOriginalConsumerCalcValue": 6,
+          "independentNumericValue": 6,
+          "finiteExample": "6",
+          "finiteExampleAccepted": true
+        }
+      ],
+      "activityCredit": 0,
+      "UI": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C5-L01-01",
+      "values": [
+        {
+          "input": "0.5",
+          "rawOriginalLawValue": 2.4492935982947064e-16,
+          "installedOriginalConsumerCalcValue": 0,
+          "independentNumericValue": 0,
+          "finiteExample": "0",
+          "finiteExampleAccepted": true
+        },
+        {
+          "input": "1",
+          "rawOriginalLawValue": -4,
+          "installedOriginalConsumerCalcValue": -4,
+          "independentNumericValue": -4,
+          "finiteExample": "-4",
+          "finiteExampleAccepted": true
+        }
+      ],
+      "activityCredit": 0,
+      "UI": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C5-L02-03",
+      "values": [
+        {
+          "input": "0.25",
+          "rawOriginalLawValue": 3,
+          "installedOriginalConsumerCalcValue": 3,
+          "independentNumericValue": 3,
+          "finiteExample": "3",
+          "finiteExampleAccepted": true
+        },
+        {
+          "input": "0.75",
+          "rawOriginalLawValue": -3,
+          "installedOriginalConsumerCalcValue": -3,
+          "independentNumericValue": -3,
+          "finiteExample": "-3",
+          "finiteExampleAccepted": true
+        }
+      ],
+      "activityCredit": 0,
+      "UI": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C5-L03-02",
+      "values": [
+        {
+          "input": "0.5",
+          "rawOriginalLawValue": 2.4492935982947064e-16,
+          "installedOriginalConsumerCalcValue": 0,
+          "independentNumericValue": 0,
+          "finiteExample": "0",
+          "finiteExampleAccepted": true
+        },
+        {
+          "input": "1",
+          "rawOriginalLawValue": 4,
+          "installedOriginalConsumerCalcValue": 4,
+          "independentNumericValue": 4,
+          "finiteExample": "4",
+          "finiteExampleAccepted": true
+        }
+      ],
+      "activityCredit": 0,
+      "UI": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C5-L07-02",
+      "values": [
+        {
+          "input": "2",
+          "rawOriginalLawValue": 25,
+          "installedOriginalConsumerCalcValue": 25,
+          "independentNumericValue": 25,
+          "finiteExample": "25",
+          "finiteExampleAccepted": true
+        },
+        {
+          "input": "3",
+          "rawOriginalLawValue": 12.5,
+          "installedOriginalConsumerCalcValue": 12.5,
+          "independentNumericValue": 12.5,
+          "finiteExample": "12.5",
+          "finiteExampleAccepted": true
+        }
+      ],
+      "activityCredit": 0,
+      "UI": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C5-L08-02",
+      "values": [
+        {
+          "input": "2",
+          "rawOriginalLawValue": 16,
+          "installedOriginalConsumerCalcValue": 16,
+          "independentNumericValue": 16,
+          "finiteExample": "16",
+          "finiteExampleAccepted": true
+        },
+        {
+          "input": "4",
+          "rawOriginalLawValue": 4,
+          "installedOriginalConsumerCalcValue": 4,
+          "independentNumericValue": 4,
+          "finiteExample": "4",
+          "finiteExampleAccepted": true
+        }
+      ],
+      "activityCredit": 0,
+      "UI": "NOT_RUN"
+    },
+    {
+      "id": "SIM-C5-L09-02",
+      "values": [
+        {
+          "input": "30",
+          "rawOriginalLawValue": 19.47122063449069,
+          "installedOriginalConsumerCalcValue": 19.47122063449069,
+          "independentNumericValue": 19.47122063449069,
+          "finiteExample": "19.5",
+          "finiteExampleAccepted": true
+        },
+        {
+          "input": "45",
+          "rawOriginalLawValue": 28.1255057020557,
+          "installedOriginalConsumerCalcValue": 28.1255057020557,
+          "independentNumericValue": 28.125505702055705,
+          "finiteExample": "28.1",
+          "finiteExampleAccepted": true
+        }
+      ],
+      "activityCredit": 0,
+      "UI": "NOT_RUN"
+    }
+  ],
+  "modelEvaluations": 16,
+  "finiteExamplesAccepted": 16,
+  "symbolicInputsRejected": [
+    "800/27",
+    "sqrt(2)",
+    "asin(1/3)",
+    "arcsin(1/3)",
+    "≈19.5"
+  ],
+  "newCandidateModulesRead": 0,
+  "limit": "Comparison at proposed input pairs is not evidence of future candidate delivery, actual generated questions, geometry, clock or UI. Machine-float comparison does not replace the independent exact derivation.",
+  "activityCredit": 0,
+  "UI": "NOT_RUN",
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}
