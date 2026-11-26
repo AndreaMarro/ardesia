@@ -1,0 +1,638 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "C5-Q011",
+      "kind": "question",
+      "course": "C5",
+      "section": "Onde e oscillazioni",
+      "order": 11,
+      "title": "Da una cresta alla valle vicina",
+      "skill": "C5-L02",
+      "prerequisites": [
+        "C5-L01"
+      ],
+      "version": 2,
+      "prompt": "Una fotografia di un’onda sinusoidale su una corda mostra 18 cm, lungo la corda, fra una cresta e la valle immediatamente successiva. Qual è la lunghezza d’onda in centimetri?",
+      "family": "cresta-e-valle-adiacente",
+      "difficulty": 1,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Una cresta e la valle subito successiva sono separate da mezzo ciclo spaziale. Un altro tratto uguale porta alla cresta seguente, che completa la lunghezza d’onda. Raddoppio quindi 18 cm e ottengo 36 cm. La misura è lungo la corda, non la distanza verticale fra cresta e valle."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/0edf33b30fc1aec70a37a5d483293521c166da9d787cc32ebceb9066c77e9cf1",
+          "text": "Il primo pannello è un’istantanea: la valle è a 18 cm dalla prima cresta, mentre la cresta successiva è a 36 cm. Gli assi spaziale e trasversale sono distinti; la scala verticale è schematica."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{\\lambda}{2}=18\\,\\mathrm{cm}"
+        },
+        {
+          "type": "formula",
+          "text": " \\lambda=36\\,\\mathrm{cm}"
+        },
+        {
+          "type": "text",
+          "text": "18 cm misura soltanto mezza lunghezza d’onda. 9 cm dimezzerebbe ancora quella misura. 72 cm conterebbe due cicli completi; l’ampiezza verticale non entra in questa distanza fra posizioni."
+        }
+      ],
+      "answer": {
+        "type": "numeric",
+        "value": 36,
+        "unit": "cm",
+        "tolerance": 0
+      },
+      "hints": [
+        "Conta quale frazione di ciclo spaziale separa un massimo dal minimo adiacente.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "18 cm misura soltanto mezza lunghezza d’onda. 9 cm dimezzerebbe ancora quella misura. 72 cm conterebbe due cicli completi; l’ampiezza verticale non entra in questa distanza fra posizioni.",
+        "target": "C5-L02"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Da una cresta alla valle vicina"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q012",
+      "kind": "question",
+      "course": "C5",
+      "section": "Onde e oscillazioni",
+      "order": 12,
+      "title": "Un sensore fermo legge un tempo",
+      "skill": "C5-L02",
+      "prerequisites": [
+        "C5-L01"
+      ],
+      "version": 2,
+      "prompt": "Un sensore resta in un punto fisso. Il suo grafico ha tempo t in millisecondi sull’asse orizzontale e pressione in pascal sul verticale. Che cosa misura l’intervallo fra due massimi consecutivi?",
+      "family": "etichetta-del-sensore",
+      "difficulty": 1,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il sensore registra due eventi successivi nello stesso punto. L’intervallo sull’asse dei tempi è il periodo della pressione oscillante. La lunghezza d’onda richiede invece una distanza fra punti diversi osservati allo stesso istante. I millisecondi dell’ascissa permettono di riconoscere quale delle due misure si sta leggendo."
+        },
+        {
+          "type": "formula",
+          "text": "T=t_{\\max,2}-t_{\\max,1}"
+        },
+        {
+          "type": "text",
+          "text": "L’ampiezza si legge in verticale e ha qui unità pascal. La velocità richiederebbe anche una distanza e non coincide con un tempo. Un grafico della pressione non disegna la traiettoria di una singola molecola."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "La distanza percorsa da una molecola",
+          "Il periodo",
+          "La lunghezza d’onda",
+          "L’ampiezza di pressione",
+          "La velocità di propagazione"
+        ],
+        "value": "Il periodo"
+      },
+      "hints": [
+        "Leggi l’unità dell’asse prima di dare un nome alla separazione dei massimi.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "L’ampiezza si legge in verticale e ha qui unità pascal. La velocità richiederebbe anche una distanza e non coincide con un tempo. Un grafico della pressione non disegna la traiettoria di una singola molecola.",
+        "target": "C5-L02"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Un sensore fermo legge un tempo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q013",
+      "kind": "question",
+      "course": "C5",
+      "section": "Onde e oscillazioni",
+      "order": 13,
+      "title": "Seguire il materiale e seguire la forma",
+      "skill": "C5-L02",
+      "prerequisites": [
+        "C5-L01"
+      ],
+      "version": 2,
+      "prompt": "Un singolo impulso trasversale passa su una corda ideale lineare e poi si allontana, senza lasciare deformazione residua. Che cosa accade a una macchia d’inchiostro fissata a una porzione della corda?",
+      "family": "londa-trasporta-il-segno",
+      "difficulty": 1,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La macchia individua materia della corda. Al passaggio dell’impulso quella porzione si muove trasversalmente e poi torna all’equilibrio, nelle ipotesi dichiarate. La forma dell’impulso può continuare a propagarsi lontano mentre la materia marcata rimane nella sua regione. Trasporto della perturbazione e moto del mezzo sono descrizioni distinte."
+        },
+        {
+          "type": "formula",
+          "text": "y(x_0,t)\\longrightarrow0"
+        },
+        {
+          "type": "text",
+          "text": "Il movimento della forma non trascina ogni porzione di corda fino all’estremità. La permanenza al massimo contraddice il ritorno all’equilibrio dichiarato. Un singolo segno materiale non si divide per il principio di sovrapposizione."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Si divide in due macchie che seguono i due versi",
+          "Acquista necessariamente uno spostamento longitudinale pari alla lunghezza dell’impulso",
+          "Torna alla posizione di equilibrio iniziale",
+          "Viaggia lungo la corda insieme all’impulso fino all’estremità",
+          "Resta per sempre alla massima altezza"
+        ],
+        "value": "Torna alla posizione di equilibrio iniziale"
+      },
+      "hints": [
+        "Confronta il moto di una porzione marcata con quello del massimo della forma.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Il movimento della forma non trascina ogni porzione di corda fino all’estremità. La permanenza al massimo contraddice il ritorno all’equilibrio dichiarato. Un singolo segno materiale non si divide per il principio di sovrapposizione.",
+        "target": "C5-L02"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Seguire il materiale e seguire la forma"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q014",
+      "kind": "question",
+      "course": "C5",
+      "section": "Onde e oscillazioni",
+      "order": 14,
+      "title": "Un quarto di lunghezza d’onda",
+      "skill": "C5-L02",
+      "prerequisites": [
+        "C5-L01"
+      ],
+      "version": 2,
+      "prompt": "Due punti lungo un’onda sinusoidale progressiva sono separati da 0,12 m. La lunghezza d’onda è 0,48 m. Qual è il modulo della differenza di fase spaziale nello stesso istante?",
+      "family": "sfasamento-fra-sensori",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La distanza assegnata è un quarto della lunghezza d’onda, perché 0,12/0,48=1/4. Un intero ciclo spaziale contiene 2π radianti. Moltiplicando il quarto per 2π trovo π/2 radianti. La fase si confronta simultaneamente nei due punti; non serve un ritardo temporale misurato dal sensore."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/0edf33b30fc1aec70a37a5d483293521c166da9d787cc32ebceb9066c77e9cf1",
+          "text": "Il cerchio centrale rappresenta soltanto una fase, non l’orbita di una particella della corda. Un quarto di giro corrisponde alla separazione spaziale λ/4 e alla fase π/2."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{\\Delta x}{\\lambda}=\\frac14"
+        },
+        {
+          "type": "formula",
+          "text": " |\\Delta\\varphi|=2\\pi\\frac{\\Delta x}{\\lambda}"
+        },
+        {
+          "type": "formula",
+          "text": " |\\Delta\\varphi|=\\frac\\pi2"
+        },
+        {
+          "type": "text",
+          "text": "1/4 rad copia la frazione di ciclo senza convertirla in radianti. π rad descriverebbe mezza lunghezza d’onda e 2π rad una intera. π/4 rad corrisponderebbe a un ottavo di ciclo."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "π rad",
+          "2π rad",
+          "1/4 rad",
+          "π/2 rad",
+          "π/4 rad"
+        ],
+        "value": "π/2 rad"
+      },
+      "hints": [
+        "Trasforma la frazione di lunghezza d’onda nella stessa frazione di un giro di fase.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "1/4 rad copia la frazione di ciclo senza convertirla in radianti. π rad descriverebbe mezza lunghezza d’onda e 2π rad una intera. π/4 rad corrisponderebbe a un ottavo di ciclo.",
+        "target": "C5-L02"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Un quarto di lunghezza d’onda"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q015",
+      "kind": "question",
+      "course": "C5",
+      "section": "Onde e oscillazioni",
+      "order": 15,
+      "title": "Sottrarre due eventi della stessa cresta",
+      "skill": "C5-L02",
+      "prerequisites": [
+        "C5-L01"
+      ],
+      "version": 2,
+      "prompt": "Il massimo di un impulso passa per x=0,40 m a t=0,16 s e per x=1,60 m a t=0,24 s. Qual è la sua velocità media orientata, in metri al secondo?",
+      "family": "ritardo-di-arrivo",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Lo spostamento della stessa cresta è 1,60−0,40=1,20 m, positivo. Il tempo trascorso è 0,24−0,16=0,08 s. Divido 1,20 per 0,08: moltiplicando entrambi per cento ottengo 120/8=15 m/s. Il risultato descrive la propagazione del massimo, non la velocità trasversale delle porzioni di corda."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/0edf33b30fc1aec70a37a5d483293521c166da9d787cc32ebceb9066c77e9cf1",
+          "text": "L’ultimo pannello rappresenta le differenze rispetto al primo evento: Δx=0 e Δt=0 sono x=0,40 m e t=0,16 s. La retta arriva a Δx=1,20 m dopo Δt=0,08 s; la pendenza è 15 m/s."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta x=1{,}20\\,\\mathrm m"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta t=0{,}08\\,\\mathrm s"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline v=15\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "20 m/s dividerebbe la posizione finale per il solo intervallo 0,08 s. Usare 1,60/0,24 riferirebbe erroneamente il moto all’origine. Il verso negativo contraddice lo spostamento positivo della cresta fra i due eventi."
+        }
+      ],
+      "answer": {
+        "type": "numeric",
+        "value": 15,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "hints": [
+        "Sottrai entrambe le coppie di coordinate prima di costruire il rapporto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "calcolo",
+        "message": "20 m/s dividerebbe la posizione finale per il solo intervallo 0,08 s. Usare 1,60/0,24 riferirebbe erroneamente il moto all’origine. Il verso negativo contraddice lo spostamento positivo della cresta fra i due eventi.",
+        "target": "C5-L02"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Sottrarre due eventi della stessa cresta"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q016",
+      "kind": "question",
+      "course": "C5",
+      "section": "Onde e oscillazioni",
+      "order": 16,
+      "title": "Frequenza tripla sulla stessa corda",
+      "skill": "C5-L02",
+      "prerequisites": [
+        "C5-L01"
+      ],
+      "version": 2,
+      "prompt": "Nel regime non dispersivo sulla stessa corda la velocità di propagazione resta positiva e costante. La sorgente triplica la frequenza. Come cambia la distanza fra creste adiacenti?",
+      "family": "frequenza-imposta",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La distanza fra creste è la lunghezza d’onda. Durante un periodo la forma avanza di λ e vale v=λf. A velocità fissata la nuova frequenza 3f richiede λ_f=v/(3f)=λ_i/3. Una stessa lunghezza di corda contiene quindi tre volte più cicli spaziali."
+        },
+        {
+          "type": "formula",
+          "text": "v=\\lambda f"
+        },
+        {
+          "type": "formula",
+          "text": " \\frac{\\lambda_f}{\\lambda_i}=\\frac13"
+        },
+        {
+          "type": "text",
+          "text": "Triplicare λ aumenterebbe il prodotto λf di un fattore nove e violerebbe v costante. Il fattore 1/9 richiederebbe una frequenza nove volte maggiore. Frequenza e lunghezza d’onda hanno dimensioni diverse."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Diventa un terzo",
+          "Triplica",
+          "Diventa un nono",
+          "Resta uguale",
+          "Diventa tre volte la velocità"
+        ],
+        "value": "Diventa un terzo"
+      },
+      "hints": [
+        "Isola λ nella relazione fra velocità, frequenza e lunghezza d’onda.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "modello",
+        "message": "Triplicare λ aumenterebbe il prodotto λf di un fattore nove e violerebbe v costante. Il fattore 1/9 richiederebbe una frequenza nove volte maggiore. Frequenza e lunghezza d’onda hanno dimensioni diverse.",
+        "target": "C5-L02"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Frequenza tripla sulla stessa corda"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q017",
+      "kind": "question",
+      "course": "C5",
+      "section": "Onde e oscillazioni",
+      "order": 17,
+      "title": "Una fase spaziale per metro",
+      "skill": "C5-L02",
+      "prerequisites": [
+        "C5-L01"
+      ],
+      "version": 2,
+      "prompt": "Un’onda è descritta da y=A cos(kx−ωt), con x in metri e t in secondi. La lunghezza d’onda è 2,5 m. Qual è il numero d’onda angolare k, esatto in radianti al metro?",
+      "family": "ricostruire-il-numero-donda",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La fase cresce di 2π radianti quando x cresce di una lunghezza d’onda. Perciò k=2π/λ. Scrivo 2,5 m come 5/2 m e divido: 2π/(5/2)=4π/5 rad/m. L’unità rad/m rende kx una fase in radianti. Non occorre approssimare π."
+        },
+        {
+          "type": "formula",
+          "text": "k\\lambda=2\\pi"
+        },
+        {
+          "type": "formula",
+          "text": " k=\\frac{2\\pi}{\\lambda}"
+        },
+        {
+          "type": "formula",
+          "text": " k=\\frac{4\\pi}{5}\\,\\mathrm{rad/m}"
+        },
+        {
+          "type": "text",
+          "text": "2/5 rad/m copia il numero di cicli per metro senza moltiplicarlo per 2π. 5π rad/m moltiplica 2π per la lunghezza invece di dividerlo. Il valore 5/(4π) inverte il coefficiente numerico del k richiesto."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "5/(4π) rad/m",
+          "4π/5 rad/m",
+          "2/5 rad/m",
+          "5π rad/m",
+          "4π rad/m"
+        ],
+        "value": "4π/5 rad/m"
+      },
+      "hints": [
+        "Un intero periodo spaziale deve produrre una fase di 2π radianti.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "2/5 rad/m copia il numero di cicli per metro senza moltiplicarlo per 2π. 5π rad/m moltiplica 2π per la lunghezza invece di dividerlo. Il valore 5/(4π) inverte il coefficiente numerico del k richiesto.",
+        "target": "C5-L02"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Una fase spaziale per metro"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q018",
+      "kind": "question",
+      "course": "C5",
+      "section": "Onde e oscillazioni",
+      "order": 18,
+      "title": "Lungo la propagazione",
+      "skill": "C5-L02",
+      "prerequisites": [
+        "C5-L01"
+      ],
+      "version": 2,
+      "prompt": "In un’onda sonora piana in aria le particelle del mezzo oscillano parallelamente alla direzione di propagazione. Come si chiama questo tipo di onda?",
+      "family": "strati-daria-nel-condotto",
+      "difficulty": 1,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La distinzione riguarda la direzione del moto locale del mezzo. Le particelle si spostano avanti e indietro lungo la direzione in cui la perturbazione avanza: l’onda è longitudinale. Compressioni e rarefazioni possono così propagarsi senza che la stessa particella viaggi insieme a un fronte per tutto il percorso."
+        },
+        {
+          "type": "formula",
+          "text": "\\mathbf v_{\\rm particella}\\parallel\\mathbf k"
+        },
+        {
+          "type": "text",
+          "text": "Trasversale descriverebbe spostamenti perpendicolari alla propagazione. La geometria longitudinale non impone onde stazionarie e non elimina le compressioni. Un grafico sinusoidale della pressione non è una traiettoria trasversale dell’aria."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Stazionaria necessariamente",
+          "Priva di compressioni",
+          "Longitudinale",
+          "Trasversale",
+          "Elettromagnetica nel vuoto"
+        ],
+        "value": "Longitudinale"
+      },
+      "hints": [
+        "Confronta il moto delle particelle con la direzione della perturbazione.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Trasversale descriverebbe spostamenti perpendicolari alla propagazione. La geometria longitudinale non impone onde stazionarie e non elimina le compressioni. Un grafico sinusoidale della pressione non è una traiettoria trasversale dell’aria.",
+        "target": "C5-L02"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Lungo la propagazione"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q019",
+      "kind": "question",
+      "course": "C5",
+      "section": "Onde e oscillazioni",
+      "order": 19,
+      "title": "Seguire una cresta a fase costante",
+      "skill": "C5-L02",
+      "prerequisites": [
+        "C5-L01"
+      ],
+      "version": 2,
+      "prompt": "Un’onda progressiva ha fase (6 rad/m)x−(12 rad/s)t. Quale spostamento orientato compie una stessa cresta in 0,30 s?",
+      "family": "fase-seguita-a-tempo-crescente",
+      "difficulty": 3,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sulla stessa cresta la fase resta costante: 6Δx−12Δt=0 con le unità della consegna. Isolo Δx=(12/6)Δt. La velocità di fase è +2 m/s e in 0,30 s la cresta avanza di +0,60 m. Il segno meno davanti al termine temporale richiede x crescente per compensare t crescente."
+        },
+        {
+          "type": "formula",
+          "text": "6\\,\\frac{\\mathrm{rad}}{\\mathrm m}\\Delta x=12\\,\\frac{\\mathrm{rad}}{\\mathrm s}\\Delta t"
+        },
+        {
+          "type": "formula",
+          "text": " v=2\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta x=+0{,}60\\,\\mathrm m"
+        },
+        {
+          "type": "text",
+          "text": "−0,60 m sceglie il verso opposto. +0,15 m inverte il rapporto 12/6 prima di moltiplicare per il tempo. +3,6 copia 12·0,30 senza dividere per 6; +2,0 copia il coefficiente numerico della velocità senza usare la durata."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "+0,15 m",
+          "+3,6 m",
+          "+2,0 m",
+          "+0,60 m",
+          "−0,60 m"
+        ],
+        "value": "+0,60 m"
+      },
+      "hints": [
+        "Imponi variazione nulla della fase per seguire lo stesso massimo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−0,60 m sceglie il verso opposto. +0,15 m inverte il rapporto 12/6 prima di moltiplicare per il tempo. +3,6 copia 12·0,30 senza dividere per 6; +2,0 copia il coefficiente numerico della velocità senza usare la durata.",
+        "target": "C5-L02"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Seguire una cresta a fase costante"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "C5-Q020",
+      "kind": "question",
+      "course": "C5",
+      "section": "Onde e oscillazioni",
+      "order": 20,
+      "title": "Una fotografia misura uno spazio",
+      "skill": "C5-L02",
+      "prerequisites": [
+        "C5-L01"
+      ],
+      "version": 2,
+      "prompt": "Hai una sola fotografia calibrata in spazio di un profilo sinusoidale sulla corda, senza tempi né dati dinamici del mezzo. Quale grandezza fra queste puoi ricavare direttamente?",
+      "family": "fotografia-senza-cronometro",
+      "difficulty": 2,
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Fra due creste adiacenti sulla fotografia si misura una lunghezza d’onda. La fotografia riunisce punti diversi allo stesso istante e non indica quanto tempo impieghi la forma a spostarsi. Onde con la stessa lunghezza d’onda possono avere frequenze e velocità diverse, se non sono assegnate altre condizioni."
+        },
+        {
+          "type": "formula",
+          "text": "\\lambda=x_{\\rm cresta,2}-x_{\\rm cresta,1}"
+        },
+        {
+          "type": "text",
+          "text": "Frequenza e periodo richiedono informazione temporale. Anche le velocità richiedono una variazione nel tempo e non si leggono dalla sola pendenza spaziale della fotografia. L’ampiezza sarebbe un’altra misura spaziale possibile, ma non è proposta fra queste alternative."
+        }
+      ],
+      "answer": {
+        "type": "choice",
+        "options": [
+          "La frequenza",
+          "Il periodo",
+          "La velocità di fase",
+          "La velocità trasversale istantanea delle particelle",
+          "La lunghezza d’onda"
+        ],
+        "value": "La lunghezza d’onda"
+      },
+      "hints": [
+        "Cerca una distanza tra due punti nella stessa immagine.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Frequenza e periodo richiedono informazione temporale. Anche le velocità richiedono una variazione nel tempo e non si leggono dalla sola pendenza spaziale della fotografia. L’ampiezza sarebbe un’altra misura spaziale possibile, ma non è proposta fra queste alternative.",
+        "target": "C5-L02"
+      },
+      "baseVersion": 1,
+      "reuse": [
+        "C6"
+      ],
+      "coverage": [
+        "Una fotografia misura uno spazio"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "0edf33b30fc1aec70a37a5d483293521c166da9d787cc32ebceb9066c77e9cf1",
+      "name": "cric-c5-l02-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NDAgMTU2MCIgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxNTYwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+Cjx0aXRsZSBpZD0idGl0bGUiPlNwYXppbyBkZWxs4oCZb25kYSwgZmFzZSBlIHByb3BhZ2F6aW9uZSBkZWxsYSBjcmVzdGE8L3RpdGxlPgo8ZGVzYyBpZD0iZGVzYyI+VW5hIHNpbnVzb2lkZSBoYSBjcmVzdGUgc2VwYXJhdGUgZGEgdHJlbnRhc2VpIGNlbnRpbWV0cmkgZSB2YWxsZSBpbnRlcm1lZGlhIGEgZGljaW90dG8uIFVuIGNlcmNoaW8gZGkgZmFzZSBtb3N0cmEgdW4gcXVhcnRvIGRpIGdpcm8sIG5vbiBpbCBtb3RvIGRlbGxhIGNvcmRhLiBJbCBncmFmaWNvIGZpbmFsZSBkZWxsZSBkaWZmZXJlbnplIG1vc3RyYSB1bm8gc3Bvc3RhbWVudG8gZGkgdW5vIHZpcmdvbGEgdmVudGkgbWV0cmkgaW4gemVybyB2aXJnb2xhIHplcm8gb3R0byBzZWNvbmRpLjwvZGVzYz4KPGRlZnM+PG1hcmtlciBpZD0idGlwIiB2aWV3Qm94PSIwIDAgMTAgMTAiIHJlZlg9IjkiIHJlZlk9IjUiIG1hcmtlcldpZHRoPSI2IiBtYXJrZXJIZWlnaHQ9IjYiIG9yaWVudD0iYXV0byI+PHBhdGggZD0iTTAgMEwxMCA1TDAgMTBaIiBmaWxsPSJjb250ZXh0LXN0cm9rZSIvPjwvbWFya2VyPjwvZGVmcz4KPHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxNTYwIiBmaWxsPSIjZmZmZGY3Ii8+CjxnIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZmlsbD0iIzIwMmMzOSI+Cjx0ZXh0IHg9IjMyIiB5PSI1MiIgZm9udC1zaXplPSIyNyIgZm9udC13ZWlnaHQ9ImJvbGQiPjEuIFVuYSBmb3RvZ3JhZmlhIG1pc3VyYSBkaXN0YW56ZTwvdGV4dD4KPHRleHQgeD0iMzIiIHk9Ijk1IiBmb250LXNpemU9IjIzIj5DcmVzdGEsIHZhbGxlIGUgY3Jlc3RhIG5lbGxvIHN0ZXNzbyBpc3RhbnRlLjwvdGV4dD4KPHBhdGggZD0iTTEwMCAxNTBWNDQ1TTEwMCAyODBINTYwIiBmaWxsPSJub25lIiBzdHJva2U9IiMzMDRkNjMiIHN0cm9rZS13aWR0aD0iMyIvPgo8cG9seWxpbmUgcG9pbnRzPSIxNTAuMDAwMDAwLDE5MC4wMDAwMDAgMTUyLjI1MDAwMCwxOTAuMDY5Mzg3IDE1NC41MDAwMDAsMTkwLjI3NzQ0MCAxNTYuNzUwMDAwLDE5MC42MjM4MzkgMTU5LjAwMDAwMCwxOTEuMTA4MDQ5IDE2MS4yNTAwMDAsMTkxLjcyOTMyNSAxNjMuNTAwMDAwLDE5Mi40ODY3MDcgMTY1Ljc1MDAwMCwxOTMuMzc5MDI5IDE2OC4wMDAwMDAsMTk0LjQwNDkxNCAxNzAuMjUwMDAwLDE5NS41NjI3ODAgMTcyLjUwMDAwMCwxOTYuODUwODQyIDE3NC43NTAwMDAsMTk4LjI2NzExNCAxNzcuMDAwMDAwLDE5OS44MDk0MTMgMTc5LjI1MDAwMCwyMDEuNDc1MzU5IDE4MS41MDAwMDAsMjAzLjI2MjM4NSAxODMuNzUwMDAwLDIwNS4xNjc3MzUgMTg2LjAwMDAwMCwyMDcuMTg4NDcxIDE4OC4yNTAwMDAsMjA5LjMyMTQ3NiAxOTAuNTAwMDAwLDIxMS41NjM0NjMgMTkyLjc1MDAwMCwyMTMuOTEwOTc0IDE5NS4wMDAwMDAsMjE2LjM2MDM5MCAxOTcuMjUwMDAwLDIxOC45MDc5MzMgMTk5LjUwMDAwMCwyMjEuNTQ5Njc2IDIwMS43NTAwMDAsMjI0LjI4MTU0NSAyMDQuMDAwMDAwLDIyNy4wOTkzMjcgMjA2LjI1MDAwMCwyMjkuOTk4Njc5IDIwOC41MDAwMDAsMjMyLjk3NTEyOSAyMTAuNzUwMDAwLDIzNi4wMjQwODggMjEzLjAwMDAwMCwyMzkuMTQwODU1IDIxNS4yNTAwMDAsMjQyLjMyMDYyNCAyMTcuNTAwMDAwLDI0NS41NTg0OTEgMjE5Ljc1MDAwMCwyNDguODQ5NDY1IDIyMi4wMDAwMDAsMjUyLjE4ODQ3MSAyMjQuMjUwMDAwLDI1NS41NzAzNjAgMjI2LjUwMDAwMCwyNTguOTg5OTE3IDIyOC43NTAwMDAsMjYyLjQ0MTg3MSAyMzEuMDAwMDAwLDI2NS45MjA4OTggMjMzLjI1MDAwMCwyNjkuNDIxNjM0IDIzNS41MDAwMDAsMjcyLjkzODY4MSAyMzcuNzUwMDAwLDI3Ni40NjY2MTcgMjQwLjAwMDAwMCwyODAuMDAwMDAwIDI0Mi4yNTAwMDAsMjgzLjUzMzM4MyAyNDQuNTAwMDAwLDI4Ny4wNjEzMTkgMjQ2Ljc1MDAwMCwyOTAuNTc4MzY2IDI0OS4wMDAwMDAsMjk0LjA3OTEwMiAyNTEuMjUwMDAwLDI5Ny41NTgxMjkgMjUzLjUwMDAwMCwzMDEuMDEwMDgzIDI1NS43NTAwMDAsMzA0LjQyOTY0MCAyNTguMDAwMDAwLDMwNy44MTE1MjkgMjYwLjI1MDAwMCwzMTEuMTUwNTM1IDI2Mi41MDAwMDAsMzE0LjQ0MTUwOSAyNjQuNzUwMDAwLDMxNy42NzkzNzYgMjY3LjAwMDAwMCwzMjAuODU5MTQ1IDI2OS4yNTAwMDAsMzIzLjk3NTkxMiAyNzEuNTAwMDAwLDMyNy4wMjQ4NzEgMjczLjc1MDAwMCwzMzAuMDAxMzIxIDI3Ni4wMDAwMDAsMzMyLjkwMDY3MyAyNzguMjUwMDAwLDMzNS43MTg0NTUgMjgwLjUwMDAwMCwzMzguNDUwMzI0IDI4Mi43NTAwMDAsMzQxLjA5MjA2NyAyODUuMDAwMDAwLDM0My42Mzk2MTAgMjg3LjI1MDAwMCwzNDYuMDg5MDI2IDI4OS41MDAwMDAsMzQ4LjQzNjUzNyAyOTEuNzUwMDAwLDM1MC42Nzg1MjQgMjk0LjAwMDAwMCwzNTIuODExNTI5IDI5Ni4yNTAwMDAsMzU0LjgzMjI2NSAyOTguNTAwMDAwLDM1Ni43Mzc2MTUgMzAwLjc1MDAwMCwzNTguNTI0NjQxIDMwMy4wMDAwMDAsMzYwLjE5MDU4NyAzMDUuMjUwMDAwLDM2MS43MzI4ODYgMzA3LjUwMDAwMCwzNjMuMTQ5MTU4IDMwOS43NTAwMDAsMzY0LjQzNzIyMCAzMTIuMDAwMDAwLDM2NS41OTUwODYgMzE0LjI1MDAwMCwzNjYuNjIwOTcxIDMxNi41MDAwMDAsMzY3LjUxMzI5MyAzMTguNzUwMDAwLDM2OC4yNzA2NzUgMzIxLjAwMDAwMCwzNjguODkxOTUxIDMyMy4yNTAwMDAsMzY5LjM3NjE2MSAzMjUuNTAwMDAwLDM2OS43MjI1NjAgMzI3Ljc1MDAwMCwzNjkuOTMwNjEzIDMzMC4wMDAwMDAsMzcwLjAwMDAwMCAzMzIuMjUwMDAwLDM2OS45MzA2MTMgMzM0LjUwMDAwMCwzNjkuNzIyNTYwIDMzNi43NTAwMDAsMzY5LjM3NjE2MSAzMzkuMDAwMDAwLDM2OC44OTE5NTEgMzQxLjI1MDAwMCwzNjguMjcwNjc1IDM0My41MDAwMDAsMzY3LjUxMzI5MyAzNDUuNzUwMDAwLDM2Ni42MjA5NzEgMzQ4LjAwMDAwMCwzNjUuNTk1MDg2IDM1MC4yNTAwMDAsMzY0LjQzNzIyMCAzNTIuNTAwMDAwLDM2My4xNDkxNTggMzU0Ljc1MDAwMCwzNjEuNzMyODg2IDM1Ny4wMDAwMDAsMzYwLjE5MDU4NyAzNTkuMjUwMDAwLDM1OC41MjQ2NDEgMzYxLjUwMDAwMCwzNTYuNzM3NjE1IDM2My43NTAwMDAsMzU0LjgzMjI2NSAzNjYuMDAwMDAwLDM1Mi44MTE1MjkgMzY4LjI1MDAwMCwzNTAuNjc4NTI0IDM3MC41MDAwMDAsMzQ4LjQzNjUzNyAzNzIuNzUwMDAwLDM0Ni4wODkwMjYgMzc1LjAwMDAwMCwzNDMuNjM5NjEwIDM3Ny4yNTAwMDAsMzQxLjA5MjA2NyAzNzkuNTAwMDAwLDMzOC40NTAzMjQgMzgxLjc1MDAwMCwzMzUuNzE4NDU1IDM4NC4wMDAwMDAsMzMyLjkwMDY3MyAzODYuMjUwMDAwLDMzMC4wMDEzMjEgMzg4LjUwMDAwMCwzMjcuMDI0ODcxIDM5MC43NTAwMDAsMzIzLjk3NTkxMiAzOTMuMDAwMDAwLDMyMC44NTkxNDUgMzk1LjI1MDAwMCwzMTcuNjc5Mzc2IDM5Ny41MDAwMDAsMzE0LjQ0MTUwOSAzOTkuNzUwMDAwLDMxMS4xNTA1MzUgNDAyLjAwMDAwMCwzMDcuODExNTI5IDQwNC4yNTAwMDAsMzA0LjQyOTY0MCA0MDYuNTAwMDAwLDMwMS4wMTAwODMgNDA4Ljc1MDAwMCwyOTcuNTU4MTI5IDQxMS4wMDAwMDAsMjk0LjA3OTEwMiA0MTMuMjUwMDAwLDI5MC41NzgzNjYgNDE1LjUwMDAwMCwyODcuMDYxMzE5IDQxNy43NTAwMDAsMjgzLjUzMzM4MyA0MjAuMDAwMDAwLDI4MC4wMDAwMDAgNDIyLjI1MDAwMCwyNzYuNDY2NjE3IDQyNC41MDAwMDAsMjcyLjkzODY4MSA0MjYuNzUwMDAwLDI2OS40MjE2MzQgNDI5LjAwMDAwMCwyNjUuOTIwODk4IDQzMS4yNTAwMDAsMjYyLjQ0MTg3MSA0MzMuNTAwMDAwLDI1OC45ODk5MTcgNDM1Ljc1MDAwMCwyNTUuNTcwMzYwIDQzOC4wMDAwMDAsMjUyLjE4ODQ3MSA0NDAuMjUwMDAwLDI0OC44NDk0NjUgNDQyLjUwMDAwMCwyNDUuNTU4NDkxIDQ0NC43NTAwMDAsMjQyLjMyMDYyNCA0NDcuMDAwMDAwLDIzOS4xNDA4NTUgNDQ5LjI1MDAwMCwyMzYuMDI0MDg4IDQ1MS41MDAwMDAsMjMyLjk3NTEyOSA0NTMuNzUwMDAwLDIyOS45OTg2NzkgNDU2LjAwMDAwMCwyMjcuMDk5MzI3IDQ1OC4yNTAwMDAsMjI0LjI4MTU0NSA0NjAuNTAwMDAwLDIyMS41NDk2NzYgNDYyLjc1MDAwMCwyMTguOTA3OTMzIDQ2NS4wMDAwMDAsMjE2LjM2MDM5MCA0NjcuMjUwMDAwLDIxMy45MTA5NzQgNDY5LjUwMDAwMCwyMTEuNTYzNDYzIDQ3MS43NTAwMDAsMjA5LjMyMTQ3NiA0NzQuMDAwMDAwLDIwNy4xODg0NzEgNDc2LjI1MDAwMCwyMDUuMTY3NzM1IDQ3OC41MDAwMDAsMjAzLjI2MjM4NSA0ODAuNzUwMDAwLDIwMS40NzUzNTkgNDgzLjAwMDAwMCwxOTkuODA5NDEzIDQ4NS4yNTAwMDAsMTk4LjI2NzExNCA0ODcuNTAwMDAwLDE5Ni44NTA4NDIgNDg5Ljc1MDAwMCwxOTUuNTYyNzgwIDQ5Mi4wMDAwMDAsMTk0LjQwNDkxNCA0OTQuMjUwMDAwLDE5My4zNzkwMjkgNDk2LjUwMDAwMCwxOTIuNDg2NzA3IDQ5OC43NTAwMDAsMTkxLjcyOTMyNSA1MDEuMDAwMDAwLDE5MS4xMDgwNDkgNTAzLjI1MDAwMCwxOTAuNjIzODM5IDUwNS41MDAwMDAsMTkwLjI3NzQ0MCA1MDcuNzUwMDAwLDE5MC4wNjkzODcgNTEwLjAwMDAwMCwxOTAuMDAwMDAwIiBmaWxsPSJub25lIiBzdHJva2U9IiMyNjcyOGQiIHN0cm9rZS13aWR0aD0iNCIvPgo8cGF0aCBkPSJNMTUwIDE5MFY0NDVNMzMwIDM3MFY0NDVNNTEwIDE5MFY0NDUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzMwNGQ2MyIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtZGFzaGFycmF5PSI3IDciLz4KPHRleHQgeD0iNjgiIHk9IjE1MyIgZm9udC1zaXplPSIyMyI+eTwvdGV4dD4KPHRleHQgeD0iNTM3IiB5PSIzMTgiIGZvbnQtc2l6ZT0iMjMiPnggKGNtKTwvdGV4dD4KPHRleHQgeD0iMTM3IiB5PSI0NzMiIGZvbnQtc2l6ZT0iMjMiPjA8L3RleHQ+Cjx0ZXh0IHg9IjMxNiIgeT0iNDczIiBmb250LXNpemU9IjIzIj4xODwvdGV4dD4KPHRleHQgeD0iNDk2IiB5PSI0NzMiIGZvbnQtc2l6ZT0iMjMiPjM2PC90ZXh0Pgo8cGF0aCBkPSJNMTUwIDQ5MFY1MTBINTEwVjQ5MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjOTg2YzM1IiBzdHJva2Utd2lkdGg9IjMiLz4KPHRleHQgeD0iMjUyIiB5PSI1NDMiIGZvbnQtc2l6ZT0iMjMiPs67ID0gMzYgY208L3RleHQ+CjxsaW5lIHgxPSIzMiIgeTE9IjU2OCIgeDI9IjYwOCIgeTI9IjU2OCIgc3Ryb2tlPSIjYjhjNGNhIi8+Cjx0ZXh0IHg9IjMyIiB5PSI2MjMiIGZvbnQtc2l6ZT0iMjciIGZvbnQtd2VpZ2h0PSJib2xkIj4yLiBVbiBxdWFydG8gZGkgZ2lybyBkaSBmYXNlPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iNjY2IiBmb250LXNpemU9IjIzIj5TZXBhcmF6aW9uZSBkZWkgcHVudGk6IM6UeCA9IM67LzQuPC90ZXh0Pgo8Y2lyY2xlIGN4PSIzMjAiIGN5PSI4NTAiIHI9IjExMCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjODk5YTlmIiBzdHJva2Utd2lkdGg9IjIiLz4KPHBhdGggZD0iTTMyMCA4NTBINDMwIiBmaWxsPSJub25lIiBzdHJva2U9IiMyNjcyOGQiIHN0cm9rZS13aWR0aD0iMyIgbWFya2VyLWVuZD0idXJsKCN0aXApIi8+CjxwYXRoIGQ9Ik0zMjAgODUwVjc0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjNGU4NzZkIiBzdHJva2Utd2lkdGg9IjMiIG1hcmtlci1lbmQ9InVybCgjdGlwKSIvPgo8cGF0aCBkPSJNMzgwIDg1MEE2MCA2MCAwIDAgMCAzMjAgNzkwIiBmaWxsPSJub25lIiBzdHJva2U9IiM5ODZjMzUiIHN0cm9rZS13aWR0aD0iMiIvPgo8dGV4dCB4PSI0NDYiIHk9Ijg2MCIgZm9udC1zaXplPSIyMyI+z4bigoEgPSAwPC90ZXh0Pgo8dGV4dCB4PSIyMjgiIHk9IjcxOSIgZm9udC1zaXplPSIyMyI+z4bigoIgPSDPgC8yPC90ZXh0Pgo8dGV4dCB4PSIzNTMiIHk9Ijc3OSIgZm9udC1zaXplPSIyMyI+z4AvMjwvdGV4dD4KPHRleHQgeD0iMzIiIHk9IjEwMDAiIGZvbnQtc2l6ZT0iMjMiPkNlcmNoaW8gZGVsbGEgZmFzZSwgbm9uIHRyYWlldHRvcmlhIG1hdGVyaWFsZS48L3RleHQ+CjxsaW5lIHgxPSIzMiIgeTE9IjEwMzMiIHgyPSI2MDgiIHkyPSIxMDMzIiBzdHJva2U9IiNiOGM0Y2EiLz4KPHRleHQgeD0iMzIiIHk9IjEwODgiIGZvbnQtc2l6ZT0iMjciIGZvbnQtd2VpZ2h0PSJib2xkIj4zLiBMYSBwZW5kZW56YSBzZWd1ZSBsYSBjcmVzdGE8L3RleHQ+Cjx0ZXh0IHg9IjMyIiB5PSIxMTMxIiBmb250LXNpemU9IjIzIj5EaWZmZXJlbnplIHJpc3BldHRvIGFsIHByaW1vIGV2ZW50by48L3RleHQ+CjxwYXRoIGQ9Ik0xNDAgMTE4MFYxNDMwSDU1NSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMzA0ZDYzIiBzdHJva2Utd2lkdGg9IjMiLz4KPHBhdGggZD0iTTE0MCAxNDMwTDUwMCAxMTkwIiBmaWxsPSJub25lIiBzdHJva2U9IiMyNjcyOGQiIHN0cm9rZS13aWR0aD0iNCIvPgo8cGF0aCBkPSJNMTQwIDExOTBINTAwVjE0MzBNMTQwIDEzMTBIMzIwVjE0MzAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzMwNGQ2MyIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtZGFzaGFycmF5PSI3IDciLz4KPHRleHQgeD0iMzIiIHk9IjExNzgiIGZvbnQtc2l6ZT0iMjMiPs6UeCAobSk8L3RleHQ+Cjx0ZXh0IHg9Ijc5IiB5PSIxMTk5IiBmb250LXNpemU9IjIzIj4xLDIwPC90ZXh0Pgo8dGV4dCB4PSI3OSIgeT0iMTMxOSIgZm9udC1zaXplPSIyMyI+MCw2MDwvdGV4dD4KPHRleHQgeD0iMTA1IiB5PSIxNDY1IiBmb250LXNpemU9IjIzIj4wPC90ZXh0Pgo8dGV4dCB4PSIyOTUiIHk9IjE0NjUiIGZvbnQtc2l6ZT0iMjMiPjAsMDQ8L3RleHQ+Cjx0ZXh0IHg9IjQ3NSIgeT0iMTQ2NSIgZm9udC1zaXplPSIyMyI+MCwwODwvdGV4dD4KPHRleHQgeD0iNDk1IiB5PSIxNTAzIiBmb250LXNpemU9IjIzIj7OlHQgKHMpPC90ZXh0Pgo8dGV4dCB4PSIzMiIgeT0iMTU0MCIgZm9udC1zaXplPSIyMyI+MSwyMCBtIGluIDAsMDggczogdmVsb2NpdMOgIG1lZGlhIDE1IG0vcy48L3RleHQ+CjwvZz48L3N2Zz4K"
+    }
+  ]
+}
