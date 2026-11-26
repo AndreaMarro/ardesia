@@ -39,7 +39,7 @@ export async function esperienza(record) {
     : param('x', a.label, a.unit === '1' ? '' : a.unit, a.min, a.max, a.step, x0);
   const calc = (x) => stabile(law.measure(x));
   const clock = record.engine ? null : orologioVoce(record, law);
-  const workAxes = !record.engine && record.id === 'SIM-C1-L007-01' && record.apparatus === 'vettori';
+  const nativeVectorAxes = !record.engine && record.apparatus === 'vettori';
   function elements(x, stage, time) {
     if (clock?.input && time !== undefined) x = time;
     const board = tavolo(Math.max(stage, 0));
@@ -76,9 +76,9 @@ export async function esperienza(record) {
         board.label([dx, 1.7, 0], series ? 'In serie' : 'In parallelo');
       }
     } else instrument(board, state);
-    // In Side view the y sprite projects onto the common vector tails. Keep
-    // the complete axis line and identify it in this activity’s HTML legend.
-    return workAxes ? board.elementi.filter((e) => !(e.kind === 'label' && e.text === 'y')) : board.elementi;
+    // In Side view the opaque y sprite projects onto vector shafts. Keep
+    // both complete axis lines and identify y in the native apparatus legend.
+    return nativeVectorAxes ? board.elementi.filter((e) => !(e.kind === 'label' && e.text === 'y')) : board.elementi;
   }
   const levels = ['Diminuisce', 'Resta uguale', 'Aumenta'];
   const sign = Math.abs(y1 - y0) < 1e-8 ? 0 : Math.sign(y1 - y0);
@@ -324,9 +324,9 @@ export async function esperienza(record) {
     measurement,
     clock,
     observe: law.observe,
-    legend: () => legend ?? (workAxes
+    legend: () => legend ?? (nativeVectorAxes
       ? legende.vettori.replace('Gli assi x e y sono indicati sulla tavola.',
-        'L’asse x è etichettato sulla tavola. L’asse y è la retta grigia che passa per la coda comune, perpendicolare a x nel piano dei vettori: usa la vista Alto per distinguere i due assi.')
+        'L’asse x è etichettato. L’asse y passa per la coda del primo vettore ed è perpendicolare a x nel piano dei vettori. Nella tavola 2D è l’altra retta grigia; in una vista 3D di taglio può apparire come un punto. Usa i controlli e le letture numeriche per confrontare i risultati.')
       : legende[record.apparatus]),
   };
 }

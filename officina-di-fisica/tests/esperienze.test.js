@@ -248,7 +248,13 @@ test('Orologio, corpi e misure soddisfano gli stessi vincoli fisici nei sei cors
     const slab = echo.elements(10, 2, t).find((e) => e.kind === 'box');
     return slab.p[0] - slab.size[0]/2;
   };
-  assert.ok(echo.elements(10, 2, 5).some(e => e.kind === 'label' && e.text === 'Riflessione'));
+  const reflectionState = echo.elements(10, 2, 5);
+  const reflectedPulse = reflectionState.filter(e => e.kind === 'ball').at(-1);
+  assert.ok(reflectedPulse.r > 0 && reflectedPulse.alpha === 1, 'impulso visibile alla riflessione');
+  assert.ok(!reflectionState.some(e => e.kind === 'label' && ['Impulso', 'Riflessione'].includes(e.text)),
+    'i cartigli opachi non devono coprire il segnale mobile');
+  assert.match(echo.legend(), /sfera viola animata rappresenta l’impulso: arriva allo schermo, si riflette e ritorna alla sorgente/,
+    'la legenda associa il segnale visibile alla riflessione e al ritorno');
   close(wall(5), wall(0), 'parete ferma');
   close(pulse(5), wall(5), 'riflessione a metà ritardo');
   close(pulse(0), pulse(10), 'ritorno al microfono');
