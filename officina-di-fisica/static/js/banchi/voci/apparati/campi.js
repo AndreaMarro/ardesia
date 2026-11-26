@@ -37,10 +37,9 @@ export const campi = {
       if (Math.abs(s.campo) > 0 && Math.abs(s.campo) < 0.1) {
         // A labelled second representation makes the small field legible;
         // the original arrow, inverse-square law and numeric reading remain.
-        b.arrow([px, 1.95, 0.3], [px + 10 * s.campo, 1.95, 0.3], c.viola);
-        b.label([px + 5 * s.campo, 2.35, 0.3], 'E ×10', c.viola);
+        // Separate in z as well: height separation collapses in the top view.
+        b.arrow([px, 1.95, 0.95], [px + 10 * s.campo, 1.95, 0.95], c.ocra);
       }
-      b.label([px, y + 0.45, 0], 'P');
       return;
     }
     const d = s.distanza === undefined ? 1.35 : 0.23 + 1.64 * s.distanza;

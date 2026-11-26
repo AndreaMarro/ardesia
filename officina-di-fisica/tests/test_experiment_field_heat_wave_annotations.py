@@ -77,6 +77,15 @@ class FieldHeatWaveAnnotationContracts(TestCase):
                 field=next(e for e in arrows(row,0x7350b0) if abs(e['a'][1]-probe['p'][1])<1e-12)
                 self.assertGreater(min(v[2] for v in vertices(field)),probe['r'])
                 self.assertAlmostEqual(arrow_geometry(field)['length'],90/(65*row['x']**2),places=12)
+                enlarged=[e for e in row['elements'] if e['kind']=='arrow' and e is not field]
+                if enlarged:
+                    self.assertEqual(len(enlarged),1)
+                    zoom=arrow_geometry(enlarged[0]);true=arrow_geometry(field)
+                    self.assertAlmostEqual(zoom['length']/true['length'],10,places=12)
+                    # Top projection uses the horizontal plane: separation in
+                    # height alone cannot distinguish the two representations.
+                    self.assertGreater(min(v[2] for v in vertices(enlarged[0])),
+                                       max(v[2] for v in vertices(field)))
 
     def test_lorentz_vectors_clear_charge_and_preserve_cross_product(self):
         for row in self.rows:

@@ -36,7 +36,7 @@ export const legende = {
   ciclo: 'Asse orizzontale · volume. Asse verticale · pressione. Area · lavoro',
   motore: 'Serbatoio caldo rosso · serbatoio freddo azzurro · lavoro in viola. Le frecce sono separate dai corpi in un piano davanti al banco. Le due frecce del calore condividono la scala; il lavoro ha una scala propria.',
   microstati: 'I quattro colori identificano le singole particelle',
-  cariche: 'Sfere: rosso · carica positiva; viola · carica negativa. La distanza parte dai centri. Nella prova del campo la sonda P è verde; la freccia viola davanti alla sonda conserva la stessa scala. Quando compare, la freccia superiore «E ×10» ingrandisce dieci volte lo stesso campo, senza cambiare la lettura numerica.',
+  cariche: 'Sfere: rosso · carica positiva; viola · carica negativa. La distanza parte dai centri. Nella prova del campo, il piccolo punto verde indica la posizione P della sonda. La freccia viola più vicina alla sonda rappresenta E, alla stessa scala durante la prova. Quando compare, la seconda freccia, ocra e più lontana dalla sonda, rappresenta E ×10: lo stesso campo ingrandito dieci volte. La lettura numerica è il campo nella posizione P.',
   piastre: 'Armatura positiva a sinistra · armatura negativa a destra',
   dipoli: 'Viola · carica negativa. Rosso · positiva. Verde · campo applicato',
   filo: 'Verde · corrente convenzionale. Punti viola · portatori negativi',
