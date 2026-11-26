@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/private/tmp/cric-c4-peer-persist.py", line 4, in <module>
+    app=Path.cwd();a=Path('/private/tmp/cric-author-a-resident/officina-di-fisica');batch=sys.argv[1];m=importlib.import_module('tools.corpus_engineering.'+batch.replace('-','_')+'_verifier');p=json.loads((a/f'editorial/batches/{batch}.json').read_bytes());b=json.loads((a/f'editorial/batches/{batch}-bindings.json').read_bytes());report=m.report(p,b,a/'editorial/assets');assert_record_identity(report['records'],m.EXPECTED_IDS,p,b);assert all(v['ok'] for v in report['records']),[(v['id'],v['errors']) for v in report['records'] if not v['ok']];audit=m.mutation_audit(p,b,a/'editorial/assets')
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/private/tmp/cric-author-b-resident/officina-di-fisica/tools/corpus_engineering/cric_c4_l01_verifier.py", line 308, in mutation_audit
+    assert integer.is_Integer and integer>=0
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
