@@ -1,6 +1,6 @@
 """Integrity of actual source/Node-only evidence; never activity approval."""
 from pathlib import Path
-import hashlib,json,subprocess,unittest
+import hashlib,json,subprocess,unittest,zipfile
 APP=Path(__file__).resolve().parents[2]
 BASE=APP/'editorial/reviews/renewal-dynamics-46-927-partial-20261126'
 def digest(v):return hashlib.sha256(json.dumps(v,ensure_ascii=False,sort_keys=True,separators=(',',':')).encode()).hexdigest()
@@ -26,9 +26,14 @@ class DynamicPartial(unittest.TestCase):
 
     def test_per_record_dependencies_and_executed_source_scope_are_complete(self):
         excluded={'SIM-C1-L001-06','SIM-C1-L002-01','SIM-C1-L002-02','SIM-C1-L002-03','SIM-C1-L002-04','SIM-C1-L007-01'}
+        archive=BASE/'executed-dependencies.zip';manifest=load(BASE/'executed-dependencies.json')
+        self.assertEqual(hashlib.sha256(archive.read_bytes()).hexdigest(),manifest['archiveSha256'])
+        with zipfile.ZipFile(archive)as frozen:
+            self.assertEqual(set(frozen.namelist()),set(manifest['files']))
+            for name,pin in manifest['files'].items():self.assertEqual(hashlib.sha256(frozen.read(name)).hexdigest(),pin)
         for file in BASE.glob('*-math-engine-partial.json'):
             group=load(file);deps=group['dependencies'];pin=digest(deps)
-            for name,want in deps.items():self.assertEqual(hashlib.sha256((APP/name).read_bytes()).hexdigest(),want,name)
+            for name,want in deps.items():self.assertEqual(manifest['files'][name],want,name)
             for row in group['selectedRecords']:
                 self.assertNotIn(row['id'],excluded);self.assertEqual(row['reviewDependencySha256'],pin)
             raw=group['rawFreshInstalledNode']
