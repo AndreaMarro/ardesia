@@ -1,0 +1,234 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "cric-experiment-visibility-request-v1",
+  "title": "Explicit preparatory139experiment UI request; not publication or scientific approval",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "preparationOnly",
+    "sourceRef",
+    "baselineRuntimeRef",
+    "candidateRef",
+    "runtimeSha256",
+    "runtimeProtocolSha256",
+    "protocolFiles",
+    "modelFiles",
+    "sourceFiles",
+    "frozenFiles",
+    "inventoryPath",
+    "manualPrimaryPath",
+    "installedEvidencePaths",
+    "draftPackages",
+    "activityCredit",
+    "humanApproval",
+    "publicationAction"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "preparationOnly": {
+      "const": true
+    },
+    "sourceRef": {
+      "const": "5d1dc8dc7b601aef959d10d564c75462be74708d"
+    },
+    "baselineRuntimeRef": {
+      "const": "eb51d0e9bdc3f992e9ae0ae76810098376e2ab79"
+    },
+    "candidateRef": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{40}$",
+      "minLength": 40,
+      "maxLength": 40
+    },
+    "runtimeSha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$",
+      "minLength": 64,
+      "maxLength": 64
+    },
+    "runtimeProtocolSha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$",
+      "minLength": 64,
+      "maxLength": 64
+    },
+    "protocolFiles": {
+      "type": "object",
+      "minProperties": 1,
+      "maxProperties": 100,
+      "propertyNames": {
+        "type": "string",
+        "pattern": "^(?:officina-di-fisica|\\.github)/[A-Za-z0-9_./-]+$",
+        "maxLength": 300
+      },
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "^[a-f0-9]{64}$",
+        "minLength": 64,
+        "maxLength": 64
+      }
+    },
+    "modelFiles": {
+      "type": "object",
+      "minProperties": 1,
+      "maxProperties": 100,
+      "propertyNames": {
+        "type": "string",
+        "pattern": "^(?:officina-di-fisica|\\.github)/[A-Za-z0-9_./-]+$",
+        "maxLength": 300
+      },
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "^[a-f0-9]{64}$",
+        "minLength": 64,
+        "maxLength": 64
+      }
+    },
+    "sourceFiles": {
+      "type": "object",
+      "required": [
+        "officina-di-fisica/content/esperienze-C2.json",
+        "officina-di-fisica/content/esperienze-C3.json",
+        "officina-di-fisica/content/esperienze-C4.json",
+        "officina-di-fisica/content/esperienze-C5.json",
+        "officina-di-fisica/content/esperienze-C6.json"
+      ],
+      "properties": {
+        "officina-di-fisica/content/esperienze-C2.json": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$",
+          "minLength": 64,
+          "maxLength": 64
+        },
+        "officina-di-fisica/content/esperienze-C3.json": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$",
+          "minLength": 64,
+          "maxLength": 64
+        },
+        "officina-di-fisica/content/esperienze-C4.json": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$",
+          "minLength": 64,
+          "maxLength": 64
+        },
+        "officina-di-fisica/content/esperienze-C5.json": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$",
+          "minLength": 64,
+          "maxLength": 64
+        },
+        "officina-di-fisica/content/esperienze-C6.json": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$",
+          "minLength": 64,
+          "maxLength": 64
+        }
+      },
+      "additionalProperties": false
+    },
+    "frozenFiles": {
+      "type": "object",
+      "minProperties": 1,
+      "maxProperties": 100,
+      "propertyNames": {
+        "type": "string",
+        "pattern": "^(?:officina-di-fisica|\\.github)/[A-Za-z0-9_./-]+$",
+        "maxLength": 300
+      },
+      "additionalProperties": {
+        "type": "string",
+        "pattern": "^[a-f0-9]{64}$",
+        "minLength": 64,
+        "maxLength": 64
+      }
+    },
+    "inventoryPath": {
+      "type": "string",
+      "pattern": "^(?:officina-di-fisica|\\.github)/[A-Za-z0-9_./-]+$",
+      "maxLength": 300
+    },
+    "manualPrimaryPath": {
+      "type": "string",
+      "pattern": "^(?:officina-di-fisica|\\.github)/[A-Za-z0-9_./-]+$",
+      "maxLength": 300
+    },
+    "installedEvidencePaths": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 30,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^(?:officina-di-fisica|\\.github)/[A-Za-z0-9_./-]+$",
+        "maxLength": 300
+      }
+    },
+    "draftPackages": {
+      "type": "object",
+      "required": [
+        "experiments-manual-support-revision-263",
+        "experiment-stevino-revision-047"
+      ],
+      "properties": {
+        "experiments-manual-support-revision-263": {
+          "type": "object",
+          "required": [
+            "packageSha256",
+            "bindingsSha256"
+          ],
+          "properties": {
+            "packageSha256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$",
+              "minLength": 64,
+              "maxLength": 64
+            },
+            "bindingsSha256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$",
+              "minLength": 64,
+              "maxLength": 64
+            }
+          },
+          "additionalProperties": false
+        },
+        "experiment-stevino-revision-047": {
+          "type": "object",
+          "required": [
+            "packageSha256",
+            "bindingsSha256"
+          ],
+          "properties": {
+            "packageSha256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$",
+              "minLength": 64,
+              "maxLength": 64
+            },
+            "bindingsSha256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$",
+              "minLength": 64,
+              "maxLength": 64
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "activityCredit": {
+      "const": 0
+    },
+    "humanApproval": {
+      "const": "NOT_RUN"
+    },
+    "publicationAction": {
+      "const": "NONE"
+    }
+  },
+  "additionalProperties": false
+}

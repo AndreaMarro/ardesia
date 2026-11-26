@@ -1,0 +1,82 @@
+name: Cric experiment visibility evidence (preparatory only)
+
+'on':
+  push:
+    branches: ['feat/cric-*']
+    paths: ['.github/cric-experiment-visibility-request.json']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: cric-experiment-visibility-${{ github.ref }}
+  cancel-in-progress: false
+
+# Optional technical evidence only: no registry, ETL, approval or deployment.
+jobs:
+  visibility:
+    name: Actual experiment UI ${{ matrix.course }} (no acceptance)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 180
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix:
+        course: [C2, C3, C4, C5, C6]
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+      GIT_NO_LAZY_FETCH: '1'
+      ASTRA_CHROME: /usr/bin/google-chrome
+      CRIC_COURSE: ${{ matrix.course }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+          sparse-checkout: |
+            officina-di-fisica
+            .github
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1
+        with:
+          node-version: '22'
+      - name: Install existing editorial dependencies
+        working-directory: officina-di-fisica
+        run: |
+          python3 -m venv var/visibility-venv
+          var/visibility-venv/bin/pip install -r tools/corpus_engineering/requirements.txt
+          npm ci --no-audit --no-fund
+          printf '%s\n' "$PWD/var/visibility-venv/bin" >> "$GITHUB_PATH"
+      - name: Validate explicit request before fetching source
+        run: |
+          python3 officina-di-fisica/tools/corpus_engineering/experiment_visibility_request.py validate --request .github/cric-experiment-visibility-request.json > "$RUNNER_TEMP/visibility-request-validated.json"
+          python3 - <<'PY'
+          import json,os
+          r=json.load(open('.github/cric-experiment-visibility-request.json'))
+          with open(os.environ['GITHUB_ENV'],'a') as f:
+              for key,name in [('CRIC_CANDIDATE','candidateRef'),('CRIC_ORIGINAL','sourceRef'),('CRIC_BASELINE','baselineRuntimeRef')]:
+                  f.write(key+'='+r[name]+'\n')
+          PY
+      - name: Fetch only declared immutable commits
+        run: |
+          git fetch --no-tags --depth=1 origin "$CRIC_CANDIDATE"
+          git fetch --no-tags --depth=1 origin "$CRIC_ORIGINAL"
+          git fetch --no-tags --depth=1 origin "$CRIC_BASELINE"
+      - name: Reconstruct source-pinned temporary runtime and complete cohort plan
+        run: |
+          python3 officina-di-fisica/tools/corpus_engineering/experiment_visibility_request.py prepare --request .github/cric-experiment-visibility-request.json --course "$CRIC_COURSE" --workspace "$RUNNER_TEMP/experiment-$CRIC_COURSE" > "$RUNNER_TEMP/visibility-prepared-$CRIC_COURSE.json"
+      - name: Observe all requested states with one browser
+        run: |
+          python3 officina-di-fisica/tools/corpus_engineering/experiment_visibility_request.py run --prepared "$RUNNER_TEMP/visibility-prepared-$CRIC_COURSE.json"
+      - name: Retain actual complete or failed evidence without integration
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: cric-experiment-visibility-${{ github.sha }}-${{ matrix.course }}
+          path: |
+            ${{ runner.temp }}/experiment-${{ matrix.course }}/evidence/
+            ${{ runner.temp }}/visibility-request-validated.json
+            ${{ runner.temp }}/visibility-prepared-${{ matrix.course }}.json
+            .github/cric-experiment-visibility-request.json
+          if-no-files-found: warn
+          retention-days: 14
