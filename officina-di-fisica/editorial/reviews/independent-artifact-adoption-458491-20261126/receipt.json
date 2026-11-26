@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "1.0.0",
+  "reviewer": "AI independent reviewer /root/review_corpus_increment",
+  "reviewedCommit": "aa7577b74fa275a127194cdbaad93c60aa3a007a",
+  "reviewScope": "Immutable adoption transport, retained metadata, exact Git/ZIP file bytes, and temp-only failure/idempotence probes. No scientific or product UI approval.",
+  "reviewedReceiptSha256": "5a23183f6d6c433d5a47de5f164670f4f4bda489bfab6eccdc0b876b537962a3",
+  "reviewedScriptSha256": "5f98f2d806d27338e9521a3a6433832a7fbcf1070dc3bde28a5c43314ee9e040",
+  "technicalJudgment": "NO_ACTIONABLE_FINDINGS_IN_REVIEWED_SCOPE",
+  "checks": {
+    "committedTransportObservedExitCode": 0,
+    "tempOnlyControlProbesObservedExitCode": 0,
+    "controlProbes": 8,
+    "exactAdoptedFiles": 772,
+    "archivedPriorFiles": 8,
+    "artifactParts": 4,
+    "artifactSha256": "6208db65c22f07080e5088097e63671c6bb6ceb10e1fcb7cf7e12465192a4606",
+    "artifactCrc": "PASS",
+    "constantOnlyAstChange": true,
+    "runtimeProductionChangesByReviewer": 0
+  },
+  "reviewHarnessDiagnostic": "Initial AST token replacement compared str(float) for 926.610, losing trailing zero. Fixed by ast.get_source_segment; initial script/trace preserved; full committed transport check rerun exit0. This was not an adopter failure.",
+  "limits": [
+    "No live GitHub network re-attestation.",
+    "957 tests / 10467 UI cases are retained runner evidence, not reviewer reruns.",
+    "No adopter execution or real ROOT mutation / Node persistence rerun.",
+    "No simulated power-loss/fsync guarantee; pointer activation is atomic, preceding report writes are not a global transaction.",
+    "Four direct .log files remain untracked; verified bytes exist only inside the full archive.",
+    "Reviewed adoption-time canonicalMerge/requiredPRCI fields are historical, not current PR status."
+  ],
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE",
+  "newScientificAcceptances": 0,
+  "newUiCases": 0,
+  "activityCredit": 0
+}

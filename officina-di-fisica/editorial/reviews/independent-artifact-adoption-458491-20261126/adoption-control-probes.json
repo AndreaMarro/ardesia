@@ -1,0 +1,22 @@
+{
+  "reviewedScriptSha256": "5f98f2d806d27338e9521a3a6433832a7fbcf1070dc3bde28a5c43314ee9e040",
+  "checks": [
+    "exact staging membership accepted",
+    "unlisted staging residual rejected",
+    "prior recovered without an earlier receipt after interruption",
+    "normal rerun preserves prior map",
+    "present archived-prior tampering rejected",
+    "failed terminal persistence cannot advance active pointer",
+    "post-installation payload drift cannot advance active pointer",
+    "pointer advances only after success and final file hashes"
+  ],
+  "passedChecks": 8,
+  "scope": "Exact AST transport blocks with tiny temp fixtures; persistence is explicitly stubbed, never a UI or validator PASS",
+  "realRootWrites": 0,
+  "actualNodeRuns": 0,
+  "newScientificAcceptances": 0,
+  "newUiCases": 0,
+  "activityCredit": 0,
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}
