@@ -1,0 +1,578 @@
+{
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "AR-u6-motional-emf-01",
+      "sourceSha256": "2a48bef71bf06504795b6d32a1fbc4a83fad979b3fc43122d75e6ecbe8c770b7",
+      "candidateSha256": "9a18bd64daeb407a4fa72cf1b35a3b43bc30e2a67fc90223a218166a61c80c0a",
+      "reviewedSignature": "a2a08147a1de21d575bb50e62660c8b492409e3405b48a3ee992527428f8a6c9",
+      "assetChecksums": {
+        "motional-emf-progressive.svg": "3f0131d0ff18ac5d0b357756399369c6db498700ea532ad8a79f0297778ba4be"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "3",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3",
+        "[current]": "-1"
+      },
+      "manualArithmetic": "Per asta, velocità e campo mutuamente perpendicolari, il modulo della f.e.m. motrice è E=BLv. Si può ricavare da ∫(v×B)·dℓ o dal flusso BA della superficie del circuito con dA/dt=Lv. Con L=1/2 m, B=2 T, v=3 m/s: E=3 V. La forza magnetica sui portatori fissa il verso; qui si chiede solo il modulo.",
+      "physicalAssumptions": "Sbarretta di lunghezza 1/2 m, campo e moto mutuamente perpendicolari; misura ad alta impedenza, corrente trascurabile, regime quasistazionario ed effetti di bordo trascurati. Moduli reali finiti positivi; stessa lunghezza nelle prove e nessun generatore implicito.",
+      "distractors": "3 V=2·(1/2)·3.6 omette mezzo metro, 1 omette v, 0 confonde quasi aperto con assenza di f.e.m.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Per asta, velocità e campo mutuamente perpendicolari, il modulo della f.e.m. motrice è E=BLv. Si può ricavare da ∫(v×B)·dℓ o dal flusso BA della superficie del circuito con dA/dt=Lv. Con L=1/2 m, B=2 T, v=3 m/s: E=3 V. La forza magnetica sui portatori fissa il verso; qui si chiede solo il modulo.",
+      "scientificAssetReview": "XML e native indipendente completo 640 × 1500 letti. Campo entrante e moto a destra danno v×B verso l’alto per cariche positive: estremo a positivo. Guide aperte e freccia v separata. Grafico a B 2 T, L 1/2 m: origine(130, 880), x=130+100 v[m/s], y=880−80 E[V], punto(430, 640)=(3 m/s, 3 V), estremo(530, 560)=(4, 4). Barre 300/200/250 da 150 rappresentano 3/2/5/2 V, scala 100 coordinate/V; seconda prova delle barre usa B 1 T, non il campo fissato del grafico.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "induction_helix_review_models.py": "ffcffcf42b8f76159845cb9be8f16cb3529b50c5bb37790b7785ee032ed1b020"
+      },
+      "methods": [
+        "SymPy_independent_Faraday_Ohm_Lorentz_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-motional-emf-02",
+      "sourceSha256": "979ad6a1bd0fb6490a84df32ea20ed9a820f3b03b57d96dab68a7bae19b535a2",
+      "candidateSha256": "dc42de58accc556ae0ffcae42dd1d783cfd8c85c9e6cf915903b2f0204074e09",
+      "reviewedSignature": "b5dfdde823b7ccea96483849c6bc6511912886385d701350f7fccdbf14ecbb27",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "V",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3",
+        "[current]": "-1"
+      },
+      "manualArithmetic": "La grandezza richiesta ha dimensione tensione, V=J/C=Wb/s. Nella primaria le alternative non erano aperte; dopo il congelamento tutte e cinque sono state lette e confrontate individualmente.",
+      "physicalAssumptions": "Si chiede la dimensione della grandezza nominata, senza valori numerici o modello di moto specifico; i cinque distrattori sono stati letti dopo la primaria.",
+      "distractors": "V=Wb/s=T·m²/s; N forza, T campo, Wb flusso, A corrente.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. La grandezza richiesta ha dimensione tensione, V=J/C=Wb/s. Nella primaria le alternative non erano aperte; dopo il congelamento tutte e cinque sono state lette e confrontate individualmente.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "induction_helix_review_models.py": "ffcffcf42b8f76159845cb9be8f16cb3529b50c5bb37790b7785ee032ed1b020"
+      },
+      "methods": [
+        "SymPy_independent_Faraday_Ohm_Lorentz_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-motional-emf-03",
+      "sourceSha256": "f724f042bdae8b008789140a33279ae47c23024e5f0b9b8c0794759c9e22ee71",
+      "candidateSha256": "c1e242b33b29eb81136760bb7a92d718b785c6a237b61370fae7f20420721abe",
+      "reviewedSignature": "d80083546084cc3a8e683b7784f6edbe683e6da0c059f5187737135baf7395e5",
+      "assetChecksums": {
+        "motional-emf-progressive.svg": "3f0131d0ff18ac5d0b357756399369c6db498700ea532ad8a79f0297778ba4be"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "E = B L v",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3",
+        "[current]": "-1"
+      },
+      "manualArithmetic": "La geometria ortogonale dà E=BLv. Con L=1/2 m assegnata, la legge numerica nelle unità SI è E[V]=B[T]v[m/s]/2. Il coefficiente fisico è una lunghezza, non un numero puro universale. Verificherò le cinque espressioni effettive soltanto dopo la freeze.",
+      "physicalAssumptions": "Sbarretta di lunghezza 1/2 m, campo e moto mutuamente perpendicolari; misura ad alta impedenza, corrente trascurabile, regime quasistazionario ed effetti di bordo trascurati. Moduli reali finiti positivi; stessa lunghezza nelle prove e nessun generatore implicito.",
+      "distractors": "BLv segue area spazzata Lv dt. Bv/L perde L² rispetto alla legge, BL/v inverte v, Lv/B inverte B, BLv² aggiunge rapidità.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. La geometria ortogonale dà E=BLv. Con L=1/2 m assegnata, la legge numerica nelle unità SI è E[V]=B[T]v[m/s]/2. Il coefficiente fisico è una lunghezza, non un numero puro universale. Verificherò le cinque espressioni effettive soltanto dopo la freeze.",
+      "scientificAssetReview": "XML e native indipendente completo 640 × 1500 letti. Campo entrante e moto a destra danno v×B verso l’alto per cariche positive: estremo a positivo. Guide aperte e freccia v separata. Grafico a B 2 T, L 1/2 m: origine(130, 880), x=130+100 v[m/s], y=880−80 E[V], punto(430, 640)=(3 m/s, 3 V), estremo(530, 560)=(4, 4). Barre 300/200/250 da 150 rappresentano 3/2/5/2 V, scala 100 coordinate/V; seconda prova delle barre usa B 1 T, non il campo fissato del grafico.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "induction_helix_review_models.py": "ffcffcf42b8f76159845cb9be8f16cb3529b50c5bb37790b7785ee032ed1b020"
+      },
+      "methods": [
+        "SymPy_independent_Faraday_Ohm_Lorentz_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-motional-emf-04",
+      "sourceSha256": "2ded1acd97aebc83665ea74874c1b2d0e6f2f36e40ec9877a55d5302f21ba490",
+      "candidateSha256": "ed3b4ea44bb2de4519fb72deba21c1db1d1340264461ebc6705810074d118f7c",
+      "reviewedSignature": "631b8f6d0fa472c088346eada87633d488461ec07a3e6a736ce3a94a278a1153",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Da 3 V a 3/2 V",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3",
+        "[current]": "-1"
+      },
+      "manualArithmetic": "B passa da 2 a 1 T a v=3 m/s e L=1/2 m invariati. E passa da 3 a 3/2 V: il fattore è 1/2, lineare in B. Le due preparazioni hanno geometria invariata.",
+      "physicalAssumptions": "Sbarretta di lunghezza 1/2 m, campo e moto mutuamente perpendicolari; misura ad alta impedenza, corrente trascurabile, regime quasistazionario ed effetti di bordo trascurati. Moduli reali finiti positivi; stessa lunghezza nelle prove e nessun generatore implicito.",
+      "distractors": "3→3/2 V.6 inverte il campo, 3 ignora, 3/4 quadra e 0 richiederebbe parametro nullo o geometria diversa.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. B passa da 2 a 1 T a v=3 m/s e L=1/2 m invariati. E passa da 3 a 3/2 V: il fattore è 1/2, lineare in B. Le due preparazioni hanno geometria invariata.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "induction_helix_review_models.py": "ffcffcf42b8f76159845cb9be8f16cb3529b50c5bb37790b7785ee032ed1b020"
+      },
+      "methods": [
+        "SymPy_independent_Faraday_Ohm_Lorentz_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-motional-emf-05",
+      "sourceSha256": "daa0106974db065a1ef7b4901522ad26b881c52c1405f4eec3421bde98bcc583",
+      "candidateSha256": "23b6dddb6961c96af34466a26c22885fd4adb21e9a57f0dfe6fd08d9a779105e",
+      "reviewedSignature": "6cf25d8fd61e08420d0aaed50c186ebce6907e6346de9a596e48685f051432f8",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[mass]": "1",
+        "[time]": "-2",
+        "[current]": "-1"
+      },
+      "manualArithmetic": "Isolo B=E/(Lv). I dati 3 V, 1/2 m e 3 m/s danno B=3/(3/2)=2 T. Denominatore positivo e non nullo; unità V·s/m²=T.",
+      "physicalAssumptions": "Sbarretta di lunghezza 1/2 m, campo e moto mutuamente perpendicolari; misura ad alta impedenza, corrente trascurabile, regime quasistazionario ed effetti di bordo trascurati. Moduli reali finiti positivi; stessa lunghezza nelle prove e nessun generatore implicito.",
+      "distractors": "B 3/(3/2)=2 T.1 omette L e produrrebbe 3/2 V, 1/2 reciproco, 9 moltiplica numeri.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Isolo B=E/(Lv). I dati 3 V, 1/2 m e 3 m/s danno B=3/(3/2)=2 T. Denominatore positivo e non nullo; unità V·s/m²=T.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "induction_helix_review_models.py": "ffcffcf42b8f76159845cb9be8f16cb3529b50c5bb37790b7785ee032ed1b020"
+      },
+      "methods": [
+        "SymPy_independent_Faraday_Ohm_Lorentz_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-motional-emf-06",
+      "sourceSha256": "60195999adec6a4022451a696bef20326e56cab4740db4f779ddf7ff899d0870",
+      "candidateSha256": "a798ec99c82006673060ced9f0e18ab0c389965d5fd22f565739f1e9caab23b9",
+      "reviewedSignature": "a481f382822ec6c78a9d83be177caa6cf37d67a71acd151e538465ca6255e059",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "3",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Isolo v=E/(BL). Con E 3 V, B 2 T, L 1/2 m si ha v=3 m/s. È il modulo della velocità dell’asta nella direzione dichiarata, non il segno di un potenziale agli estremi.",
+      "physicalAssumptions": "Sbarretta di lunghezza 1/2 m, campo e moto mutuamente perpendicolari; misura ad alta impedenza, corrente trascurabile, regime quasistazionario ed effetti di bordo trascurati. Moduli reali finiti positivi; stessa lunghezza nelle prove e nessun generatore implicito.",
+      "distractors": "v 3/(2·1/2)=3 m/s.6 raddoppia erroneamente e produce 6 V, 1/3 reciproco, 1 copia BL.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Isolo v=E/(BL). Con E 3 V, B 2 T, L 1/2 m si ha v=3 m/s. È il modulo della velocità dell’asta nella direzione dichiarata, non il segno di un potenziale agli estremi.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "induction_helix_review_models.py": "ffcffcf42b8f76159845cb9be8f16cb3529b50c5bb37790b7785ee032ed1b020"
+      },
+      "methods": [
+        "SymPy_independent_Faraday_Ohm_Lorentz_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-motional-emf-07",
+      "sourceSha256": "78a9481acb145109b027c017f4f07a5a00b7ec197a5b51d698362cd7d5980419",
+      "candidateSha256": "dd371bfd86bbe3a5b4ef8a7e28374ca3235908b31eb42d0984db5db072b21a33",
+      "reviewedSignature": "b88949950f140294227fa3c0e24ea3e7686558715361cb24fcc06851f78942e5",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1/3",
+      "dimension": {},
+      "manualArithmetic": "A: E=3 V. B con v=1 m/s e B 2 T dà 1 V. Rapporto E_B/E_A=1/3, puro; non è inverso della velocità.",
+      "physicalAssumptions": "Sbarretta di lunghezza 1/2 m, campo e moto mutuamente perpendicolari; misura ad alta impedenza, corrente trascurabile, regime quasistazionario ed effetti di bordo trascurati. Moduli reali finiti positivi; stessa lunghezza nelle prove e nessun generatore implicito.",
+      "distractors": "1/3 da 1 V/3 V.3 reciproco, 1/9 quadrato, 9 reciproco del quadrato, 1 ignora.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. A: E=3 V. B con v=1 m/s e B 2 T dà 1 V. Rapporto E_B/E_A=1/3, puro; non è inverso della velocità.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "induction_helix_review_models.py": "ffcffcf42b8f76159845cb9be8f16cb3529b50c5bb37790b7785ee032ed1b020"
+      },
+      "methods": [
+        "SymPy_independent_Faraday_Ohm_Lorentz_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-motional-emf-08",
+      "sourceSha256": "b6c2e0f73fda27eb2f62860fe48e6ad5f26457d820dd6abd7e613fd9d02bed6d",
+      "candidateSha256": "173807b715b1c6c62aaf15f88b6386850a7c865bc37150f5f5e52e5c419054fc",
+      "reviewedSignature": "89d5992a0e8055b4753938abf438f0ce86c20ba6abf85b270ec7338571f03926",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "3",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3",
+        "[current]": "-1"
+      },
+      "manualArithmetic": "Proposta 6 V meno corretto 3 V=+3 V. Due è il rapporto puro, mentre lo scarto è ancora una tensione.",
+      "physicalAssumptions": "Sbarretta di lunghezza 1/2 m, campo e moto mutuamente perpendicolari; misura ad alta impedenza, corrente trascurabile, regime quasistazionario ed effetti di bordo trascurati. Moduli reali finiti positivi; stessa lunghezza nelle prove e nessun generatore implicito.",
+      "distractors": "+3 V=6−3.−3 ordine inverso, 2 rapporto, 6 proposta, 0 accettazione senza legge.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Proposta 6 V meno corretto 3 V=+3 V. Due è il rapporto puro, mentre lo scarto è ancora una tensione.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "induction_helix_review_models.py": "ffcffcf42b8f76159845cb9be8f16cb3529b50c5bb37790b7785ee032ed1b020"
+      },
+      "methods": [
+        "SymPy_independent_Faraday_Ohm_Lorentz_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-motional-emf-09",
+      "sourceSha256": "20270a7644bc2543bf7c88d097153c7c7f1816ec2b7726418374856b685c8299",
+      "candidateSha256": "894fd52da46510ef6a7f92a65fc152335905b22860a51e2d3c6e15a0c2e90d1e",
+      "reviewedSignature": "70a4278e48b22619aa68b5abdbcb18c0cdbbf8f95bde4c082d0266ec4759a4fe",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "B = E / (L v)",
+      "dimension": {
+        "[mass]": "1",
+        "[time]": "-2",
+        "[current]": "-1"
+      },
+      "manualArithmetic": "Da E=BLv ricavo B=E/(Lv), con L=1/2 m e v>0. Conservare L nell’inversa dimensionale evita di trattare E/v come un campo: E/v ha T·m, non T.",
+      "physicalAssumptions": "Sbarretta di lunghezza 1/2 m, campo e moto mutuamente perpendicolari; misura ad alta impedenza, corrente trascurabile, regime quasistazionario ed effetti di bordo trascurati. Moduli reali finiti positivi; stessa lunghezza nelle prove e nessun generatore implicito.",
+      "distractors": "B=E/(Lv).ELv non isola, Lv/E è T⁻¹, Ev/L altera v ed E/v ha T·m.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Da E=BLv ricavo B=E/(Lv), con L=1/2 m e v>0. Conservare L nell’inversa dimensionale evita di trattare E/v come un campo: E/v ha T·m, non T.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "induction_helix_review_models.py": "ffcffcf42b8f76159845cb9be8f16cb3529b50c5bb37790b7785ee032ed1b020"
+      },
+      "methods": [
+        "SymPy_independent_Faraday_Ohm_Lorentz_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-motional-emf-10",
+      "sourceSha256": "6dc8aef80fcd639a818f45c79ac9d7764a4c1504b63f2afd392141cd19566bb8",
+      "candidateSha256": "48d7d28be596246f32256728da44920b5002dbaa6e1b73f9b6503003ab8f7359",
+      "reviewedSignature": "9d03bd12c98c75380f5782993e488460f473d041217b36f871ca66955bc90e6f",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "κ₁ κ₂",
+      "dimension": {},
+      "manualArithmetic": "B_B=κ₁B_A e v_B=κ₂v_A a L invariata: E_B/E_A=κ₁κ₂. Si confrontano moti preparati distinti, con le tre direzioni ancora ortogonali e tutti i moduli positivi.",
+      "physicalAssumptions": "Sbarretta di lunghezza 1/2 m, campo e moto mutuamente perpendicolari; misura ad alta impedenza, corrente trascurabile, regime quasistazionario ed effetti di bordo trascurati. Moduli reali finiti positivi; stessa lunghezza nelle prove e nessun generatore implicito.",
+      "distractors": "κ₁κ₂: entrambi ingressi moltiplicano. Quozienti invertono una dipendenza, κ₁² aggiunge potenza, somma fallisce a fattori 1.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. B_B=κ₁B_A e v_B=κ₂v_A a L invariata: E_B/E_A=κ₁κ₂. Si confrontano moti preparati distinti, con le tre direzioni ancora ortogonali e tutti i moduli positivi.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "induction_helix_review_models.py": "ffcffcf42b8f76159845cb9be8f16cb3529b50c5bb37790b7785ee032ed1b020"
+      },
+      "methods": [
+        "SymPy_independent_Faraday_Ohm_Lorentz_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-motional-emf-11",
+      "sourceSha256": "3a956a05f562ae2985350b7a926c6bcbce3c3f0cd72fd4484081ea32c346b2c2",
+      "candidateSha256": "b19839f300b688161acf3a26a0fab275c7f208863fbdd6e9dffe53cc65c988e0",
+      "reviewedSignature": "80703648582a38b443403b5b6a0d95ecfee6b56f2549559ef7b9c2d838d2c42b",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2/3",
+      "dimension": {},
+      "manualArithmetic": "A ha E_A=3 V. B ha E_B=(1 T)(1/2 m)(4 m/s)=2 V. Rapporto 2/3, combinazione dei fattori 1/2 di B e 4/3 di v.",
+      "physicalAssumptions": "Sbarretta di lunghezza 1/2 m, campo e moto mutuamente perpendicolari; misura ad alta impedenza, corrente trascurabile, regime quasistazionario ed effetti di bordo trascurati. Moduli reali finiti positivi; stessa lunghezza nelle prove e nessun generatore implicito.",
+      "distractors": "2/3 da 2 V/3 V.3/2 reciproco, 1/2 solo B, 4/3 solo v, 1 falsa compensazione.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. A ha E_A=3 V. B ha E_B=(1 T)(1/2 m)(4 m/s)=2 V. Rapporto 2/3, combinazione dei fattori 1/2 di B e 4/3 di v.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "induction_helix_review_models.py": "ffcffcf42b8f76159845cb9be8f16cb3529b50c5bb37790b7785ee032ed1b020"
+      },
+      "methods": [
+        "SymPy_independent_Faraday_Ohm_Lorentz_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-motional-emf-12",
+      "sourceSha256": "3a6854f4c86ac74b61b3d23a570e1117cf55704d02cb7433f8a564e782ad8aff",
+      "candidateSha256": "d8c4dd0b770b6375645de3804042013c45a7bcc1018edbad8d7e39338aba6ee4",
+      "reviewedSignature": "d2cfeb3cc22acd24e048d5057b2757a37c80ea1bb22d71fb4ab03ed4a33d6795",
+      "assetChecksums": {
+        "motional-emf-progressive.svg": "3f0131d0ff18ac5d0b357756399369c6db498700ea532ad8a79f0297778ba4be"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "5/2",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3",
+        "[current]": "-1"
+      },
+      "manualArithmetic": "Media delle uscite(3+2)/2=5/2 V. Agli ingressi medi B=3/2 T e v=7/2 m/s, la legge dà 21/8 V. Media meno risultato ai dati medi=20/8−21/8=−1/8 V; nessuna approssimazione richiesta.",
+      "physicalAssumptions": "Sbarretta di lunghezza 1/2 m, campo e moto mutuamente perpendicolari; misura ad alta impedenza, corrente trascurabile, regime quasistazionario ed effetti di bordo trascurati. Moduli reali finiti positivi; stessa lunghezza nelle prove e nessun generatore implicito.",
+      "distractors": "5/2 V media di 3 e 2.21/8 usa ingressi medi, 5 somma, 1/2 semidifferenza, 3 prima lettura.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Media delle uscite(3+2)/2=5/2 V. Agli ingressi medi B=3/2 T e v=7/2 m/s, la legge dà 21/8 V. Media meno risultato ai dati medi=20/8−21/8=−1/8 V; nessuna approssimazione richiesta.",
+      "scientificAssetReview": "XML e native indipendente completo 640 × 1500 letti. Campo entrante e moto a destra danno v×B verso l’alto per cariche positive: estremo a positivo. Guide aperte e freccia v separata. Grafico a B 2 T, L 1/2 m: origine(130, 880), x=130+100 v[m/s], y=880−80 E[V], punto(430, 640)=(3 m/s, 3 V), estremo(530, 560)=(4, 4). Barre 300/200/250 da 150 rappresentano 3/2/5/2 V, scala 100 coordinate/V; seconda prova delle barre usa B 1 T, non il campo fissato del grafico.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "induction_helix_review_models.py": "ffcffcf42b8f76159845cb9be8f16cb3529b50c5bb37790b7785ee032ed1b020"
+      },
+      "methods": [
+        "SymPy_independent_Faraday_Ohm_Lorentz_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-motional-emf-13",
+      "sourceSha256": "59218d9d404279fa95e3df98c26463a1f689ef9b6d13d9c77e072290312909a2",
+      "candidateSha256": "bed59c8a296745bd787941e53e5d9da9da9c63cbfff8457423afb70010fa8fef",
+      "reviewedSignature": "9f8759f27645ff5848d5f5bd3b6b4e40447b8f3f3df779d55a4ffece2bce5dcc",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4/3",
+      "dimension": {},
+      "manualArithmetic": "Bersaglio(2/3)·3=2 V e B_B=1 T. v_B=E/(BL)=2/(1/2)=4 m/s. Rapporto v_B/v_A=4/3. Il campo dimezzato richiede compensazione anche della velocità.",
+      "physicalAssumptions": "Sbarretta di lunghezza 1/2 m, campo e moto mutuamente perpendicolari; misura ad alta impedenza, corrente trascurabile, regime quasistazionario ed effetti di bordo trascurati. Moduli reali finiti positivi; stessa lunghezza nelle prove e nessun generatore implicito.",
+      "distractors": "v_B 4 m/s per bersaglio 2 V, rapporto 4/3.3/4 reciproco, 2/3 copia E, 1/2 B, 2 darebbe 3 V.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Bersaglio(2/3)·3=2 V e B_B=1 T. v_B=E/(BL)=2/(1/2)=4 m/s. Rapporto v_B/v_A=4/3. Il campo dimezzato richiede compensazione anche della velocità.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "induction_helix_review_models.py": "ffcffcf42b8f76159845cb9be8f16cb3529b50c5bb37790b7785ee032ed1b020"
+      },
+      "methods": [
+        "SymPy_independent_Faraday_Ohm_Lorentz_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-motional-emf-14",
+      "sourceSha256": "7d4279032226536a6aa67389af9a0dc6eb06228611f764d985a4812ad88151f3",
+      "candidateSha256": "9deec06b7d588c8e563d0b99b0179b2f4fe8f116f2781441a315cbd4911c17a2",
+      "reviewedSignature": "33f8b75170901c4edc550669aa36bb5875fbed2c640ca493e7fb305f03719d79",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "1",
+      "dimension": {
+        "[mass]": "1",
+        "[time]": "-2",
+        "[current]": "-1"
+      },
+      "manualArithmetic": "Il riferimento E_A 3 V con lettura 9 fissa a_cal=3 unità/V. Lettura 6 dà E_B 2 V. Con v 4 m/s e L 1/2 m, B_B=2/(2)=1 T.",
+      "physicalAssumptions": "Sbarretta di lunghezza 1/2 m, campo e moto mutuamente perpendicolari; misura ad alta impedenza, corrente trascurabile, regime quasistazionario ed effetti di bordo trascurati. Moduli reali finiti positivi; stessa lunghezza nelle prove e nessun generatore implicito.",
+      "distractors": "g 3 V⁻¹, D 6→2 V eB 1 T.3 T salta guadagno e predice 18; 2 T copia E; 1/4 T darebbeD 3/2.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Il riferimento E_A 3 V con lettura 9 fissa a_cal=3 unità/V. Lettura 6 dà E_B 2 V. Con v 4 m/s e L 1/2 m, B_B=2/(2)=1 T.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "induction_helix_review_models.py": "ffcffcf42b8f76159845cb9be8f16cb3529b50c5bb37790b7785ee032ed1b020"
+      },
+      "methods": [
+        "SymPy_independent_Faraday_Ohm_Lorentz_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-motional-emf-15",
+      "sourceSha256": "910eb995bdf620138759bf52dfbd5e1c7edad3d6287c554682fa982a30df8b71",
+      "candidateSha256": "b4a8d7222abe79d63c7147dd722d7b07f298be66e0f567ef79bda0efb517568a",
+      "reviewedSignature": "fe92241e22d1dd8b8d8f9b306c558d23c832ec4649802f8425a4346af3201657",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4",
+      "dimension": {
+        "[mass]": "1",
+        "[time]": "-2",
+        "[current]": "-1"
+      },
+      "manualArithmetic": "Riferimenti E_A 3 V, E_B 2 V e letture 7, 5: a_cal=(7−5)/(3−2)=2 unità/V, b_cal=1. Lettura 21 decodifica E_C 10 V. Con v 5 m/s, L 1/2 m: B_C=10/(5/2)=4 T.",
+      "physicalAssumptions": "Sbarretta di lunghezza 1/2 m, campo e moto mutuamente perpendicolari; misura ad alta impedenza, corrente trascurabile, regime quasistazionario ed effetti di bordo trascurati. Moduli reali finiti positivi; stessa lunghezza nelle prove e nessun generatore implicito.",
+      "distractors": "g 2 V⁻¹, b 1, D 21→10 V, B 4 T.21/5 salta offset, D 22; 8 T salta guadagno; 10 T copia E.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Riferimenti E_A 3 V, E_B 2 V e letture 7, 5: a_cal=(7−5)/(3−2)=2 unità/V, b_cal=1. Lettura 21 decodifica E_C 10 V. Con v 5 m/s, L 1/2 m: B_C=10/(5/2)=4 T.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "induction_helix_review_models.py": "ffcffcf42b8f76159845cb9be8f16cb3529b50c5bb37790b7785ee032ed1b020"
+      },
+      "methods": [
+        "SymPy_independent_Faraday_Ohm_Lorentz_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-motional-emf-16",
+      "sourceSha256": "c0af6afe60b3f7b3e3efe45b0fb4489625ac49b677981e8b7283969bf5e3852c",
+      "candidateSha256": "4fed3c5afaf8db1ae9eabacbc968a4a6f094d0e4ea161686ba94cb7212604686",
+      "reviewedSignature": "6793e62b2adf0758632adaf627753738946ffcc8f3d7c8e01818da3df0c4ae3a",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "3",
+      "dimension": {
+        "[length]": "1",
+        "[time]": "-1"
+      },
+      "manualArithmetic": "Il vincolo fra preparazioni è B=[(2/3) T/(m/s)]v. Per w=v/(1 m/s)>0, E/(1 V)=w²/3. La misura 3 V implica w²9: radici±3, soltanto w 3 è ammessa. v=3 m/s e B=2 T. Il vincolo non è una rampa temporale del campo dentro un singolo esperimento.",
+      "physicalAssumptions": "Sbarretta di lunghezza 1/2 m, campo e moto mutuamente perpendicolari; misura ad alta impedenza, corrente trascurabile, regime quasistazionario ed effetti di bordo trascurati. Moduli reali finiti positivi; stessa lunghezza nelle prove e nessun generatore implicito.",
+      "distractors": "u²9, ramo u 3: v 3 m/s, B 2 T.−3 viola modulo, 9 non estrae radice, 2 copia B, infinite non rispetta misura 3 V.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Il vincolo fra preparazioni è B=[(2/3) T/(m/s)]v. Per w=v/(1 m/s)>0, E/(1 V)=w²/3. La misura 3 V implica w²9: radici±3, soltanto w 3 è ammessa. v=3 m/s e B=2 T. Il vincolo non è una rampa temporale del campo dentro un singolo esperimento.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "induction_helix_review_models.py": "ffcffcf42b8f76159845cb9be8f16cb3529b50c5bb37790b7785ee032ed1b020"
+      },
+      "methods": [
+        "SymPy_independent_Faraday_Ohm_Lorentz_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "db00988aeb693ac52237678006245f162a0c8b09e235ff4afb7a303c94d79717",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "publicationAction": "NONE",
+  "reviewedCandidateCommit": "defc0f1a10821559bca06fede1c2e2ca1ce5d2b4",
+  "packageSha256": "b2487fbe1fa7512bdc4572a2c0d490b01312eb6a1c074d6c3773dd619345ed99",
+  "bindingsSha256": "acfbf7eb4307bdf0f3e92f9a32d5e03240a2d9a0cad7bd6281c97c2f0bc70fa9",
+  "sourceFirstPrimarySha256": "c0d2d26dd79ece4c7ad2ff06d8ddd142acf02eb468b971b3e254ed06e16528bc",
+  "source": {
+    "commit": "5cfbdcb055ba3ba136f97fb56e997f06e6cf3605",
+    "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U6-05.json",
+    "reference": "Tutti gli 80 originali derivati nella primaria c0d2 prima di candidate; modelli indipendenti scritti ed eseguiti sul commit d7389745 prima di aprire qualsiasi candidato B. Successivamente letti integralmente tutti i 16 prompt, opzioni, blocchi, formule, hint, feedback e metadata finali di questa famiglia, più XML e nuovo native completo indipendente. Eventuali fix autore riletti selettivamente prima del congelamento. Nessun modulo autore o primaria B importata/letta; UI prodotto e human NOT_RUN; confronto integrato ROOT PENDING."
+  }
+}

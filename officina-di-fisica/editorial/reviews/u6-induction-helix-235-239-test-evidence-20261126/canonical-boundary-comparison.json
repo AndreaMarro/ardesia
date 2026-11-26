@@ -1,0 +1,33 @@
+{
+  "scope": "Actual read-only byte and pure identity-function AST comparison, no Root edit",
+  "identicalDependencies": {
+    "review_contract.py": {
+      "authorWorktreeSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+      "canonicalRootSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+      "byteIdentical": true
+    },
+    "pipeline.py": {
+      "authorWorktreeSha256": "a3fc3a5756851fff487a1568aba085bfddcacb7d5d891c44dddd0f00ba146ef0",
+      "canonicalRootSha256": "a3fc3a5756851fff487a1568aba085bfddcacb7d5d891c44dddd0f00ba146ef0",
+      "byteIdentical": true
+    },
+    "electric_exact_literals.py": {
+      "authorWorktreeSha256": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+      "canonicalRootSha256": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+      "byteIdentical": true
+    }
+  },
+  "batchesFileAndIdentityFunction": {
+    "reviewer": {
+      "fileSha256": "f63db3625c0b43fd87c4a22bf6a70fb1c17e93a32b4875227d94c5e278ab0e49",
+      "assertRecordIdentityAstSha256": "ad829aa7678cc28c16c56e13c85237c983ba605961dd76c5c91eedaa12d282d7"
+    },
+    "canonicalRoot": {
+      "fileSha256": "02d9d12198434e91c0a7d3bbef1b11118f3314bece849a059600edfe52141374",
+      "assertRecordIdentityAstSha256": "ad829aa7678cc28c16c56e13c85237c983ba605961dd76c5c91eedaa12d282d7"
+    }
+  },
+  "explanation": "Whole batches.py differs because registered cohort imports evolved; the identity function AST is identical and pipeline digest implementation is byte-identical. Fresh and saved reports use that same identity contract.",
+  "humanApproval": "NOT_RUN",
+  "publicationAction": "NONE"
+}

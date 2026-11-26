@@ -1,0 +1,1195 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u6-induced-transferred-charge-01",
+      "kind": "question",
+      "course": "C4",
+      "section": "Carica trasferita durante una variazione monotona",
+      "order": 23801,
+      "title": "Integrare la corrente senza conoscere la durata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C4-L05",
+        "C4-L06",
+        "C4-L09",
+        "C4-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "induced-transferred-charge",
+      "difficulty": 1,
+      "prompt": "Una sola spira chiusa ha resistenza totale R>0 costante. Il flusso esterno cambia monotonamente fra due valori: ΔΦ>0 è il modulo della differenza finale meno iniziale, in mWb. Autoinduzione ed effetti capacitivi sono trascurabili. Q>0 è il modulo della carica che attraversa una sezione del filo durante la variazione, in mC; non è la carica netta dell’intera spira. Il verso della corrente non cambia durante questo processo monotono. ΔΦ=6 mWb e R=2 Ω. Quanto vale Q in mC?",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "mC",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Faraday dà la f.e.m. dal cambiamento di flusso e Ohm divide per R. Integrando la corrente sul processo, la resistenza costante esce dall’integrale e resta Q=ΔΦ/R. Sei mWb diviso due ohm dà tre mC, perché Wb/Ω=(V·s)/(V/A)=C. Non occorre sapere quanto dura il processo per questa carica totale."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/38953d7171290124a5562085d6db78e3282213e8badbc067bba2aecad6c8dfea",
+          "text": "Le rette illustrative hanno la stessa variazione di 6 mWb in 1 s o 2 s, con R=2 Ω. Le correnti costanti sono rispettivamente 3 mA e 3/2 mA: le aree dei due rettangoli I-tempo valgono entrambe 3 mC. La durata è scelta per la figura, non necessaria per ricavare Q dal bilancio fra estremi."
+        },
+        {
+          "type": "formula",
+          "text": "Q=\\left|\\int I(t)\\,dt\\right|"
+        },
+        {
+          "type": "formula",
+          "text": " Q=\\frac{\\Delta\\Phi}{R}"
+        },
+        {
+          "type": "formula",
+          "text": " Q=\\frac62\\,\\mathrm{mC}"
+        },
+        {
+          "type": "formula",
+          "text": " Q=3\\,\\mathrm{mC}"
+        },
+        {
+          "type": "text",
+          "text": "Dodici mC moltiplica per la resistenza, mentre sei omette la divisione. Un mezzo copia il reciproco di R come una carica. La carica che passa in una sezione non aumenta la carica netta della spira isolata."
+        }
+      ],
+      "hints": [
+        "Integra il bilancio sul cambiamento di flusso, non una corrente supposta costante.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Dodici mC moltiplica per la resistenza, mentre sei omette la divisione. Un mezzo copia il reciproco di R come una carica. La carica che passa in una sezione non aumenta la carica netta della spira isolata.",
+        "target": "C4-L10"
+      },
+      "coverage": [
+        "Faraday integrata e resistenza costante",
+        "Carica passata e corrente istantanea distinte",
+        "Durata, medie, inverse e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-induced-transferred-charge-02",
+      "kind": "question",
+      "course": "C4",
+      "section": "Carica trasferita durante una variazione monotona",
+      "order": 23802,
+      "title": "L’unità della carica trasferita",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C4-L05",
+        "C4-L06",
+        "C4-L09",
+        "C4-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "induced-transferred-charge",
+      "difficulty": 1,
+      "prompt": "Quale unità è dimensionalmente adatta alla carica totale trasferita?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "C",
+          "A",
+          "V",
+          "Wb",
+          "Ω"
+        ],
+        "value": "C"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La carica è corrente integrata nel tempo: A·s=C. Nella legge Q=ΔΦ/R si ottiene anche Wb/Ω=C. Il prefisso milli del dato di flusso si ritrova nel millicoulomb dell’uscita quando R è espresso in ohm."
+        },
+        {
+          "type": "formula",
+          "text": "[Q]=\\mathrm{A\\,s}"
+        },
+        {
+          "type": "formula",
+          "text": " [Q]=\\mathrm{Wb/\\Omega}"
+        },
+        {
+          "type": "formula",
+          "text": " [Q]=\\mathrm C"
+        },
+        {
+          "type": "text",
+          "text": "A misura una corrente, non una carica. V è tensione, Wb flusso e Ω resistenza; nessuno di questi da solo rappresenta una corrente per una durata."
+        }
+      ],
+      "hints": [
+        "Una carica non si misura in ampere senza il fattore tempo.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "A misura una corrente, non una carica. V è tensione, Wb flusso e Ω resistenza; nessuno di questi da solo rappresenta una corrente per una durata.",
+        "target": "C4-L10"
+      },
+      "coverage": [
+        "Faraday integrata e resistenza costante",
+        "Carica passata e corrente istantanea distinte",
+        "Durata, medie, inverse e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-induced-transferred-charge-03",
+      "kind": "question",
+      "course": "C4",
+      "section": "Carica trasferita durante una variazione monotona",
+      "order": 23803,
+      "title": "Dal bilancio integrale alla legge finale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C4-L05",
+        "C4-L06",
+        "C4-L09",
+        "C4-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "induced-transferred-charge",
+      "difficulty": 1,
+      "prompt": "Una sola spira chiusa ha resistenza totale R>0 costante. Il flusso esterno cambia monotonamente fra due valori: ΔΦ>0 è il modulo della differenza finale meno iniziale, in mWb. Autoinduzione ed effetti capacitivi sono trascurabili. Q>0 è il modulo della carica che attraversa una sezione del filo durante la variazione, in mC; non è la carica netta dell’intera spira. Il verso della corrente non cambia durante questo processo monotono. Quale relazione fornisce Q?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Q = ΔΦ / R",
+          "Q = R ΔΦ",
+          "Q = ΔΦ / (R Δt)",
+          "Q = R / ΔΦ",
+          "Q = ΔΦ"
+        ],
+        "value": "Q = ΔΦ / R"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Con il verso di percorrenza associato alla normale, I=−(1/R)dΦ/dt. Integrando fra gli estremi, la carica orientata è −(Φ_f−Φ_i)/R. La variazione monotona garantisce una sola direzione di corrente: il modulo della carica netta passata coincide con la somma dei moduli dei passaggi, cioè Q=ΔΦ/R."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/38953d7171290124a5562085d6db78e3282213e8badbc067bba2aecad6c8dfea",
+          "text": "Q è la carica che passa attraverso una sezione, non una carica netta accumulata nell’intera spira. La variazione monotona mantiene il verso della corrente; R costante e autoinduzione trascurata permettono Q=ΔΦ/R."
+        },
+        {
+          "type": "formula",
+          "text": "I=-\\frac1R\\frac{d\\Phi}{dt}"
+        },
+        {
+          "type": "formula",
+          "text": " Q=\\frac{|\\Phi_f-\\Phi_i|}{R}"
+        },
+        {
+          "type": "formula",
+          "text": " Q=\\frac{\\Delta\\Phi}{R}"
+        },
+        {
+          "type": "text",
+          "text": "Dividere ancora per la durata darebbe una corrente media, non una carica. Il prodotto con R e il reciproco hanno dimensioni diverse da C. ΔΦ da solo resta un flusso. Con cambiamenti non monotoni, il modulo del saldo e il totale dei passaggi potrebbero invece differire."
+        }
+      ],
+      "hints": [
+        "Mantieni la monotonia, che dà lo stesso verso a tutta la corrente.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Dividere ancora per la durata darebbe una corrente media, non una carica. Il prodotto con R e il reciproco hanno dimensioni diverse da C. ΔΦ da solo resta un flusso. Con cambiamenti non monotoni, il modulo del saldo e il totale dei passaggi potrebbero invece differire.",
+        "target": "C4-L10"
+      },
+      "coverage": [
+        "Faraday integrata e resistenza costante",
+        "Carica passata e corrente istantanea distinte",
+        "Durata, medie, inverse e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-induced-transferred-charge-04",
+      "kind": "question",
+      "course": "C4",
+      "section": "Carica trasferita durante una variazione monotona",
+      "order": 23804,
+      "title": "Una variazione di flusso più piccola",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C4-L05",
+        "C4-L06",
+        "C4-L09",
+        "C4-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "induced-transferred-charge",
+      "difficulty": 1,
+      "prompt": "Una sola spira chiusa ha resistenza totale R>0 costante. Il flusso esterno cambia monotonamente fra due valori: ΔΦ>0 è il modulo della differenza finale meno iniziale, in mWb. Autoinduzione ed effetti capacitivi sono trascurabili. Q>0 è il modulo della carica che attraversa una sezione del filo durante la variazione, in mC; non è la carica netta dell’intera spira. Il verso della corrente non cambia durante questo processo monotono. Si passa da ΔΦ=6 mWb a ΔΦ=1 mWb, mantenendo R=2 Ω. Come cambia Q?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 3 mC a 1/2 mC",
+          "Da 3 mC a 18 mC",
+          "Da 3 mC a 3/2 mC",
+          "Resta 3 mC",
+          "Da 3 mC a 1/6 mC"
+        ],
+        "value": "Da 3 mC a 1/2 mC"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A resistenza fissata la carica è lineare nella variazione totale di flusso. Un sesto della variazione produce un sesto della carica: 3/6=1/2 mC. La durata può cambiare la corrente istantanea, ma non questo bilancio fra gli estremi nel modello dichiarato."
+        },
+        {
+          "type": "formula",
+          "text": "Q_A=3\\,\\mathrm{mC}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B=\\frac12\\,\\mathrm{mC}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B/Q_A=\\frac16"
+        },
+        {
+          "type": "text",
+          "text": "Diciotto inverte la proporzione. Tre mezzi dimezza invece di dividere per sei. Un sesto mC attribuisce l’unità di carica al rapporto puro; tre ignora il nuovo flusso."
+        }
+      ],
+      "hints": [
+        "Chiediti se è cambiata la variazione totale o solo il tempo per realizzarla.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Diciotto inverte la proporzione. Tre mezzi dimezza invece di dividere per sei. Un sesto mC attribuisce l’unità di carica al rapporto puro; tre ignora il nuovo flusso.",
+        "target": "C4-L10"
+      },
+      "coverage": [
+        "Faraday integrata e resistenza costante",
+        "Carica passata e corrente istantanea distinte",
+        "Durata, medie, inverse e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-induced-transferred-charge-05",
+      "kind": "question",
+      "course": "C4",
+      "section": "Carica trasferita durante una variazione monotona",
+      "order": 23805,
+      "title": "Ritrovare la variazione di flusso",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C4-L05",
+        "C4-L06",
+        "C4-L09",
+        "C4-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "induced-transferred-charge",
+      "difficulty": 2,
+      "prompt": "Una sola spira chiusa ha resistenza totale R>0 costante. Il flusso esterno cambia monotonamente fra due valori: ΔΦ>0 è il modulo della differenza finale meno iniziale, in mWb. Autoinduzione ed effetti capacitivi sono trascurabili. Q>0 è il modulo della carica che attraversa una sezione del filo durante la variazione, in mC; non è la carica netta dell’intera spira. Il verso della corrente non cambia durante questo processo monotono. Q=3 mC e R=2 Ω. Quanto vale ΔΦ in mWb?",
+      "answer": {
+        "type": "numeric",
+        "value": 6,
+        "unit": "mWb",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’inversa del bilancio integrato è ΔΦ=QR. Tre mC moltiplicati per due ohm danno sei mWb. Il risultato ricostruisce Q=6/2=3 mC e mantiene il ramo dei moduli positivi."
+        },
+        {
+          "type": "formula",
+          "text": "\\Delta\\Phi=QR"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta\\Phi=(3\\,\\mathrm{mC})(2\\,\\Omega)"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta\\Phi=6\\,\\mathrm{mWb}"
+        },
+        {
+          "type": "text",
+          "text": "Tre mezzi mWb divide per R anziché moltiplicare e darebbe 3/4 mC. Tre ripete Q senza convertirlo in flusso tramite R; dodici produrrebbe sei mC, non tre."
+        }
+      ],
+      "hints": [
+        "Controlla C·Ω=Wb, prima di usare i prefissi milli.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre mezzi mWb divide per R anziché moltiplicare e darebbe 3/4 mC. Tre ripete Q senza convertirlo in flusso tramite R; dodici produrrebbe sei mC, non tre.",
+        "target": "C4-L10"
+      },
+      "coverage": [
+        "Faraday integrata e resistenza costante",
+        "Carica passata e corrente istantanea distinte",
+        "Durata, medie, inverse e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-induced-transferred-charge-06",
+      "kind": "question",
+      "course": "C4",
+      "section": "Carica trasferita durante una variazione monotona",
+      "order": 23806,
+      "title": "La resistenza dalla carica passata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C4-L05",
+        "C4-L06",
+        "C4-L09",
+        "C4-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "induced-transferred-charge",
+      "difficulty": 2,
+      "prompt": "Una sola spira chiusa ha resistenza totale R>0 costante. Il flusso esterno cambia monotonamente fra due valori: ΔΦ>0 è il modulo della differenza finale meno iniziale, in mWb. Autoinduzione ed effetti capacitivi sono trascurabili. Q>0 è il modulo della carica che attraversa una sezione del filo durante la variazione, in mC; non è la carica netta dell’intera spira. Il verso della corrente non cambia durante questo processo monotono. Q=3 mC con ΔΦ=6 mWb. Quanto vale R in Ω?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "Ω",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Isolo R=ΔΦ/Q. Il rapporto sei mWb su tre mC dà due ohm: i prefissi milli si cancellano, mentre Wb/C ha unità Ω. Si tratta della resistenza totale che limita la corrente durante tutto il processo."
+        },
+        {
+          "type": "formula",
+          "text": "R=\\frac{\\Delta\\Phi}{Q}"
+        },
+        {
+          "type": "formula",
+          "text": " R=\\frac{6\\,\\mathrm{mWb}}{3\\,\\mathrm{mC}}"
+        },
+        {
+          "type": "formula",
+          "text": " R=2\\,\\Omega"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo Ω inverte il rapporto; diciotto moltiplica i numeri di flusso e carica. Sei copia il flusso senza dividere per Q."
+        }
+      ],
+      "hints": [
+        "La resistenza dev’essere positiva e costante per estrarla dall’integrale.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo Ω inverte il rapporto; diciotto moltiplica i numeri di flusso e carica. Sei copia il flusso senza dividere per Q.",
+        "target": "C4-L10"
+      },
+      "coverage": [
+        "Faraday integrata e resistenza costante",
+        "Carica passata e corrente istantanea distinte",
+        "Durata, medie, inverse e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-induced-transferred-charge-07",
+      "kind": "question",
+      "course": "C4",
+      "section": "Carica trasferita durante una variazione monotona",
+      "order": 23807,
+      "title": "Stesso flusso, minore resistenza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C4-L05",
+        "C4-L06",
+        "C4-L09",
+        "C4-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "induced-transferred-charge",
+      "difficulty": 2,
+      "prompt": "Una sola spira chiusa ha resistenza totale R>0 costante. Il flusso esterno cambia monotonamente fra due valori: ΔΦ>0 è il modulo della differenza finale meno iniziale, in mWb. Autoinduzione ed effetti capacitivi sono trascurabili. Q>0 è il modulo della carica che attraversa una sezione del filo durante la variazione, in mC; non è la carica netta dell’intera spira. Il verso della corrente non cambia durante questo processo monotono. A usa ΔΦ=6 mWb,R=2 Ω; B mantiene ΔΦ e usa R=1 Ω. Quanto vale Q_B/Q_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2",
+          "1/2",
+          "1",
+          "4",
+          "6"
+        ],
+        "value": "2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A parità di variazione di flusso, dimezzare R raddoppia la carica totale passata. Le due uscite sono tre e sei mC e il rapporto è due. La f.e.m. dipende dalla storia del flusso, la risposta di corrente anche dalla resistenza."
+        },
+        {
+          "type": "formula",
+          "text": "Q_A=3\\,\\mathrm{mC}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B=6\\,\\mathrm{mC}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B/Q_A=2"
+        },
+        {
+          "type": "text",
+          "text": "Un mezzo segue direttamente la resistenza. Quattro introduce un quadrato assente. Sei copia il numero di Q_B in mC senza dividerlo per la prima carica; uno ignora la modifica."
+        }
+      ],
+      "hints": [
+        "Per la stessa variazione di flusso la carica è inversa a R.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un mezzo segue direttamente la resistenza. Quattro introduce un quadrato assente. Sei copia il numero di Q_B in mC senza dividerlo per la prima carica; uno ignora la modifica.",
+        "target": "C4-L10"
+      },
+      "coverage": [
+        "Faraday integrata e resistenza costante",
+        "Carica passata e corrente istantanea distinte",
+        "Durata, medie, inverse e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-induced-transferred-charge-08",
+      "kind": "question",
+      "course": "C4",
+      "section": "Carica trasferita durante una variazione monotona",
+      "order": 23808,
+      "title": "Scarto della carica proposta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C4-L05",
+        "C4-L06",
+        "C4-L09",
+        "C4-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "induced-transferred-charge",
+      "difficulty": 2,
+      "prompt": "Una sola spira chiusa ha resistenza totale R>0 costante. Il flusso esterno cambia monotonamente fra due valori: ΔΦ>0 è il modulo della differenza finale meno iniziale, in mWb. Autoinduzione ed effetti capacitivi sono trascurabili. Q>0 è il modulo della carica che attraversa una sezione del filo durante la variazione, in mC; non è la carica netta dell’intera spira. Il verso della corrente non cambia durante questo processo monotono. Per ΔΦ=6 mWb,R=2 Ω si propone Q=6 mC. Quanto vale proposta meno corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3 mC",
+          "−3 mC",
+          "2",
+          "6 mC",
+          "0 mC"
+        ],
+        "value": "3 mC"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La carica corretta è tre mC. La proposta è maggiore di 6−3=3 mC. Il segno di questo scarto non è il verso della corrente: nel quesito Q è un modulo positivo."
+        },
+        {
+          "type": "formula",
+          "text": "Q=3\\,\\mathrm{mC}"
+        },
+        {
+          "type": "formula",
+          "text": " \\delta Q=(6-3)\\,\\mathrm{mC}"
+        },
+        {
+          "type": "formula",
+          "text": " \\delta Q=3\\,\\mathrm{mC}"
+        },
+        {
+          "type": "text",
+          "text": "−3 mC inverte l’ordine della differenza. Due è il rapporto puro. Sei ripete il numero proposto e zero lo accetta."
+        }
+      ],
+      "hints": [
+        "Applica prima il bilancio, poi la convenzione dello scarto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−3 mC inverte l’ordine della differenza. Due è il rapporto puro. Sei ripete il numero proposto e zero lo accetta.",
+        "target": "C4-L10"
+      },
+      "coverage": [
+        "Faraday integrata e resistenza costante",
+        "Carica passata e corrente istantanea distinte",
+        "Durata, medie, inverse e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-induced-transferred-charge-09",
+      "kind": "question",
+      "course": "C4",
+      "section": "Carica trasferita durante una variazione monotona",
+      "order": 23809,
+      "title": "Isolare il flusso senza una durata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C4-L05",
+        "C4-L06",
+        "C4-L09",
+        "C4-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "induced-transferred-charge",
+      "difficulty": 2,
+      "prompt": "Una sola spira chiusa ha resistenza totale R>0 costante. Il flusso esterno cambia monotonamente fra due valori: ΔΦ>0 è il modulo della differenza finale meno iniziale, in mWb. Autoinduzione ed effetti capacitivi sono trascurabili. Q>0 è il modulo della carica che attraversa una sezione del filo durante la variazione, in mC; non è la carica netta dell’intera spira. Il verso della corrente non cambia durante questo processo monotono. Q e R sono noti. Quale formula isola ΔΦ?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "ΔΦ = Q R",
+          "ΔΦ = Q / R",
+          "ΔΦ = R / Q",
+          "ΔΦ = Q R Δt",
+          "ΔΦ = Q"
+        ],
+        "value": "ΔΦ = Q R"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La legge integrata Q=ΔΦ/R si inverte moltiplicando per R positivo. ΔΦ=QR ha dimensione C·Ω=Wb. Inserire una durata aggiuntiva conterebbe il tempo due volte dopo l’integrazione."
+        },
+        {
+          "type": "formula",
+          "text": "QR=\\Delta\\Phi"
+        },
+        {
+          "type": "formula",
+          "text": " [QR]=\\mathrm{C\\,\\Omega}"
+        },
+        {
+          "type": "formula",
+          "text": " [QR]=\\mathrm{Wb}"
+        },
+        {
+          "type": "text",
+          "text": "Il quoziente Q/R non restituisce flusso e R/Q è il suo diverso reciproco dimensionale. QRΔt ha un tempo di troppo; Q senza R rimane una carica."
+        }
+      ],
+      "hints": [
+        "Il tempo è già stato integrato nel passaggio da I a Q.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il quoziente Q/R non restituisce flusso e R/Q è il suo diverso reciproco dimensionale. QRΔt ha un tempo di troppo; Q senza R rimane una carica.",
+        "target": "C4-L10"
+      },
+      "coverage": [
+        "Faraday integrata e resistenza costante",
+        "Carica passata e corrente istantanea distinte",
+        "Durata, medie, inverse e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-induced-transferred-charge-10",
+      "kind": "question",
+      "course": "C4",
+      "section": "Carica trasferita durante una variazione monotona",
+      "order": 23810,
+      "title": "Fattori su flusso e resistenza",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C4-L05",
+        "C4-L06",
+        "C4-L09",
+        "C4-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "induced-transferred-charge",
+      "difficulty": 2,
+      "prompt": "Una sola spira chiusa ha resistenza totale R>0 costante. Il flusso esterno cambia monotonamente fra due valori: ΔΦ>0 è il modulo della differenza finale meno iniziale, in mWb. Autoinduzione ed effetti capacitivi sono trascurabili. Q>0 è il modulo della carica che attraversa una sezione del filo durante la variazione, in mC; non è la carica netta dell’intera spira. Il verso della corrente non cambia durante questo processo monotono. ΔΦ_B=κ₁ΔΦ_A,R_B=κ₂R_A, con fattori positivi. Quanto vale Q_B/Q_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ / κ₂",
+          "κ₁ κ₂",
+          "κ₂ / κ₁",
+          "κ₁² / κ₂",
+          "κ₁ + κ₂"
+        ],
+        "value": "κ₁ / κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Sostituisco i fattori nella legge Q=ΔΦ/R: il primo moltiplica il numeratore, il secondo il denominatore. Il rapporto è κ₁/κ₂. Le due prove mantengono resistenze costanti al proprio interno e variazioni monotone, anche se le resistenze fra prove sono diverse."
+        },
+        {
+          "type": "formula",
+          "text": "Q_B=\\frac{\\kappa_1\\Delta\\Phi_A}{\\kappa_2R_A}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B/Q_A=\\kappa_1/\\kappa_2"
+        },
+        {
+          "type": "text",
+          "text": "Il prodotto rende diretta una dipendenza inversa. Il rapporto inverso scambia A e B, il quadrato non appartiene al bilancio. La somma fallisce per due prove identiche."
+        }
+      ],
+      "hints": [
+        "Non confondere costante entro ciascuna prova con uguale fra le prove.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Il prodotto rende diretta una dipendenza inversa. Il rapporto inverso scambia A e B, il quadrato non appartiene al bilancio. La somma fallisce per due prove identiche.",
+        "target": "C4-L10"
+      },
+      "coverage": [
+        "Faraday integrata e resistenza costante",
+        "Carica passata e corrente istantanea distinte",
+        "Durata, medie, inverse e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-induced-transferred-charge-11",
+      "kind": "question",
+      "course": "C4",
+      "section": "Carica trasferita durante una variazione monotona",
+      "order": 23811,
+      "title": "Due preparazioni con flusso e R diversi",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C4-L05",
+        "C4-L06",
+        "C4-L09",
+        "C4-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "induced-transferred-charge",
+      "difficulty": 2,
+      "prompt": "Una sola spira chiusa ha resistenza totale R>0 costante. Il flusso esterno cambia monotonamente fra due valori: ΔΦ>0 è il modulo della differenza finale meno iniziale, in mWb. Autoinduzione ed effetti capacitivi sono trascurabili. Q>0 è il modulo della carica che attraversa una sezione del filo durante la variazione, in mC; non è la carica netta dell’intera spira. Il verso della corrente non cambia durante questo processo monotono. A usa ΔΦ=6 mWb,R=2 Ω; B usa ΔΦ=12 mWb,R=3 Ω. Quanto vale Q_B/Q_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4/3",
+          "3/4",
+          "2",
+          "2/3",
+          "1"
+        ],
+        "value": "4/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le cariche sono 6/2=3 mC e 12/3=4 mC, perciò il rapporto è 4/3. Il raddoppio della variazione è in parte compensato dal fattore 3/2 della resistenza. Non è necessario assegnare una durata a nessuna delle prove."
+        },
+        {
+          "type": "formula",
+          "text": "Q_A=3\\,\\mathrm{mC}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B=4\\,\\mathrm{mC}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_B/Q_A=\\frac43"
+        },
+        {
+          "type": "text",
+          "text": "Tre quarti inverte il rapporto. Due segue solo ΔΦ e due terzi solo l’inverso di R. Uno richiederebbe uguali fattori in entrambi gli ingressi."
+        }
+      ],
+      "hints": [
+        "Ricostruisci due cariche nelle stesse unità prima di dividerle.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre quarti inverte il rapporto. Due segue solo ΔΦ e due terzi solo l’inverso di R. Uno richiederebbe uguali fattori in entrambi gli ingressi.",
+        "target": "C4-L10"
+      },
+      "coverage": [
+        "Faraday integrata e resistenza costante",
+        "Carica passata e corrente istantanea distinte",
+        "Durata, medie, inverse e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-induced-transferred-charge-12",
+      "kind": "question",
+      "course": "C4",
+      "section": "Carica trasferita durante una variazione monotona",
+      "order": 23812,
+      "title": "Media di due cariche trasferite",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C4-L05",
+        "C4-L06",
+        "C4-L09",
+        "C4-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "induced-transferred-charge",
+      "difficulty": 2,
+      "prompt": "Una sola spira chiusa ha resistenza totale R>0 costante. Il flusso esterno cambia monotonamente fra due valori: ΔΦ>0 è il modulo della differenza finale meno iniziale, in mWb. Autoinduzione ed effetti capacitivi sono trascurabili. Q>0 è il modulo della carica che attraversa una sezione del filo durante la variazione, in mC; non è la carica netta dell’intera spira. Il verso della corrente non cambia durante questo processo monotono. A usa 6 mWb,2 Ω; B usa 12 mWb,3 Ω. Qual è la media aritmetica delle due Q?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "7/2 mC",
+          "18/5 mC",
+          "7 mC",
+          "1/2 mC",
+          "4 mC"
+        ],
+        "value": "7/2 mC"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I due totali tre e quattro mC hanno media sette mezzi mC. La legge agli ingressi medi ΔΦ=9 mWb,R=5/2 Ω darebbe invece 18/5 mC. La differenza fra media delle uscite e quel valore è −1/10 mC. Le cariche delle due prove non sono collegate fisicamente in un solo processo."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/38953d7171290124a5562085d6db78e3282213e8badbc067bba2aecad6c8dfea",
+          "text": "Le barre finali appartengono a due altre preparazioni: 6 mWb, 2 Ω e 12 mWb, 3 Ω. Le cariche 3 mC e 4 mC hanno media 7/2 mC, su scala comune. Le rette e i rettangoli precedenti illustrano invece l’indipendenza dalla durata a flusso totale fissato."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline Q=\\frac{3+4}{2}\\,\\mathrm{mC}"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline Q=\\frac72\\,\\mathrm{mC}"
+        },
+        {
+          "type": "formula",
+          "text": " Q_{\\rm dati\\ medi}=\\frac{18}{5}\\,\\mathrm{mC}"
+        },
+        {
+          "type": "text",
+          "text": "18/5 mC usa le medie degli ingressi. Sette somma, un mezzo è la semidifferenza e quattro ripete una sola prova. Il totale di una prova non diventa una corrente quando si mediano due registrazioni."
+        }
+      ],
+      "hints": [
+        "Fai la media dei due Q già ricavati.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "18/5 mC usa le medie degli ingressi. Sette somma, un mezzo è la semidifferenza e quattro ripete una sola prova. Il totale di una prova non diventa una corrente quando si mediano due registrazioni.",
+        "target": "C4-L10"
+      },
+      "coverage": [
+        "Faraday integrata e resistenza costante",
+        "Carica passata e corrente istantanea distinte",
+        "Durata, medie, inverse e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-induced-transferred-charge-13",
+      "kind": "question",
+      "course": "C4",
+      "section": "Carica trasferita durante una variazione monotona",
+      "order": 23813,
+      "title": "La resistenza per una carica bersaglio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C4-L05",
+        "C4-L06",
+        "C4-L09",
+        "C4-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "induced-transferred-charge",
+      "difficulty": 3,
+      "prompt": "Una sola spira chiusa ha resistenza totale R>0 costante. Il flusso esterno cambia monotonamente fra due valori: ΔΦ>0 è il modulo della differenza finale meno iniziale, in mWb. Autoinduzione ed effetti capacitivi sono trascurabili. Q>0 è il modulo della carica che attraversa una sezione del filo durante la variazione, in mC; non è la carica netta dell’intera spira. Il verso della corrente non cambia durante questo processo monotono. A usa 6 mWb,2 Ω. B ha ΔΦ=12 mWb e deve ottenere Q_B=(4/3)Q_A. Quanto vale R_B/R_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3/2",
+          "2/3",
+          "4/3",
+          "2",
+          "1"
+        ],
+        "value": "3/2"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è quattro mC. Con dodici mWb serve R_B=12/4=3 Ω. Rispetto ai due ohm iniziali il fattore è 3/2. La carica cresce meno del flusso perché aumenta anche la resistenza."
+        },
+        {
+          "type": "formula",
+          "text": "Q_B=4\\,\\mathrm{mC}"
+        },
+        {
+          "type": "formula",
+          "text": " R_B=3\\,\\Omega"
+        },
+        {
+          "type": "formula",
+          "text": " R_B/R_A=\\frac32"
+        },
+        {
+          "type": "text",
+          "text": "Due terzi inverte il confronto. Quattro terzi copia il rapporto delle uscite; due copia il fattore del flusso. Lasciare R invariata produrrebbe sei mC, non quattro."
+        }
+      ],
+      "hints": [
+        "Dal bersaglio di carica ricava R_B prima del suo rapporto con R_A.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Due terzi inverte il confronto. Quattro terzi copia il rapporto delle uscite; due copia il fattore del flusso. Lasciare R invariata produrrebbe sei mC, non quattro.",
+        "target": "C4-L10"
+      },
+      "coverage": [
+        "Faraday integrata e resistenza costante",
+        "Carica passata e corrente istantanea distinte",
+        "Durata, medie, inverse e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-induced-transferred-charge-14",
+      "kind": "question",
+      "course": "C4",
+      "section": "Carica trasferita durante una variazione monotona",
+      "order": 23814,
+      "title": "Un display proporzionale alla carica",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C4-L05",
+        "C4-L06",
+        "C4-L09",
+        "C4-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "induced-transferred-charge",
+      "difficulty": 3,
+      "prompt": "Una sola spira chiusa ha resistenza totale R>0 costante. Il flusso esterno cambia monotonamente fra due valori: ΔΦ>0 è il modulo della differenza finale meno iniziale, in mWb. Autoinduzione ed effetti capacitivi sono trascurabili. Q>0 è il modulo della carica che attraversa una sezione del filo durante la variazione, in mC; non è la carica netta dell’intera spira. Il verso della corrente non cambia durante questo processo monotono. D=a_cal Q è continuo e adimensionale. A con ΔΦ=6 mWb,R=2 Ω dà D=9. Nella nuova prova D=12,R=3 Ω. Quanto vale ΔΦ in mWb?",
+      "answer": {
+        "type": "numeric",
+        "value": 12,
+        "unit": "mWb",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento Q=3 mC dà a_cal=3 mC⁻¹. Il display dodici indica Q=4 mC. Moltiplicando per R=3 Ω si ricava ΔΦ=12 mWb. La coincidenza del numero dodici in lettura e flusso finale dipende dai dati, non è la legge del sensore."
+        },
+        {
+          "type": "formula",
+          "text": "a_{\\rm cal}=3\\,(\\mathrm{mC})^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " Q=4\\,\\mathrm{mC}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta\\Phi=QR"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta\\Phi=12\\,\\mathrm{mWb}"
+        },
+        {
+          "type": "text",
+          "text": "Trentasei mWb usa D come dodici mC e predirebbe D=36. Quattro mWb copia il numero di Q senza R; sei mWb ripete il riferimento e nella nuova prova darebbe D=6."
+        }
+      ],
+      "hints": [
+        "Separa l’equazione del display da quella della spira.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Trentasei mWb usa D come dodici mC e predirebbe D=36. Quattro mWb copia il numero di Q senza R; sei mWb ripete il riferimento e nella nuova prova darebbe D=6.",
+        "target": "C4-L10"
+      },
+      "coverage": [
+        "Faraday integrata e resistenza costante",
+        "Carica passata e corrente istantanea distinte",
+        "Durata, medie, inverse e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-induced-transferred-charge-15",
+      "kind": "question",
+      "course": "C4",
+      "section": "Carica trasferita durante una variazione monotona",
+      "order": 23815,
+      "title": "Taratura affine e flusso finale",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C4-L05",
+        "C4-L06",
+        "C4-L09",
+        "C4-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "induced-transferred-charge",
+      "difficulty": 3,
+      "prompt": "Una sola spira chiusa ha resistenza totale R>0 costante. Il flusso esterno cambia monotonamente fra due valori: ΔΦ>0 è il modulo della differenza finale meno iniziale, in mWb. Autoinduzione ed effetti capacitivi sono trascurabili. Q>0 è il modulo della carica che attraversa una sezione del filo durante la variazione, in mC; non è la carica netta dell’intera spira. Il verso della corrente non cambia durante questo processo monotono. D=a_cal Q+b_cal è continuo. A: 6 mWb, 2 Ω, D=7; B: 12 mWb, 3 Ω, D=9. C ha R=5 Ω e D=5. Quanto vale ΔΦ_C in mWb?",
+      "answer": {
+        "type": "numeric",
+        "value": 10,
+        "unit": "mWb",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le cariche di riferimento sono tre e quattro mC. Il guadagno è 2 mC⁻¹ e l’offset uno. D_C=5 corrisponde a Q_C=(5−1)/2=2 mC; con cinque ohm il flusso variato è dieci mWb. L’offset non deve entrare nel bilancio fisico della spira."
+        },
+        {
+          "type": "formula",
+          "text": "a_{\\rm cal}=2\\,(\\mathrm{mC})^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " b_{\\rm cal}=1"
+        },
+        {
+          "type": "formula",
+          "text": " Q_C=2\\,\\mathrm{mC}"
+        },
+        {
+          "type": "formula",
+          "text": " \\Delta\\Phi_C=10\\,\\mathrm{mWb}"
+        },
+        {
+          "type": "text",
+          "text": "25/2 mWb omette l’offset e produrrebbe D=6. Venti mWb sottrae l’offset ma non divide per il guadagno. Due copia Q_C senza moltiplicarlo per R."
+        }
+      ],
+      "hints": [
+        "Determina a_cal e b_cal dai due Q distinti.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "25/2 mWb omette l’offset e produrrebbe D=6. Venti mWb sottrae l’offset ma non divide per il guadagno. Due copia Q_C senza moltiplicarlo per R.",
+        "target": "C4-L10"
+      },
+      "coverage": [
+        "Faraday integrata e resistenza costante",
+        "Carica passata e corrente istantanea distinte",
+        "Durata, medie, inverse e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-induced-transferred-charge-16",
+      "kind": "question",
+      "course": "C4",
+      "section": "Carica trasferita durante una variazione monotona",
+      "order": 23816,
+      "title": "Una misura ridondante del rapporto",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C4-L05",
+        "C4-L06",
+        "C4-L09",
+        "C4-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "induced-transferred-charge",
+      "difficulty": 3,
+      "prompt": "Una sola spira chiusa ha resistenza totale R>0 costante. Il flusso esterno cambia monotonamente fra due valori: ΔΦ>0 è il modulo della differenza finale meno iniziale, in mWb. Autoinduzione ed effetti capacitivi sono trascurabili. Q>0 è il modulo della carica che attraversa una sezione del filo durante la variazione, in mC; non è la carica netta dell’intera spira. Il verso della corrente non cambia durante questo processo monotono. Fra preparazioni ΔΦ=(3 mWb/Ω)R. Si misura anche Q=3 mC. Quante coppie positive (ΔΦ,R) restano possibili?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Infinite coppie continue",
+          "Una sola coppia",
+          "Due sole coppie",
+          "Nessuna coppia",
+          "Tre coppie"
+        ],
+        "value": "Infinite coppie continue"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il vincolo rende ΔΦ/R uguale a tre mC per ogni R positivo. La misura non aggiunge una condizione indipendente. Per esempio sei mWb con due ohm e tre mWb con un ohm soddisfano entrambe le equazioni. Restano infinite coppie continue, realizzabili con variazioni monotone del flusso."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{\\Delta\\Phi}{R}=3\\,\\mathrm{mC}"
+        },
+        {
+          "type": "formula",
+          "text": " Q=3\\,\\mathrm{mC}"
+        },
+        {
+          "type": "formula",
+          "text": " (\\Delta\\Phi,R)=(6\\,\\mathrm{mWb},2\\,\\Omega)"
+        },
+        {
+          "type": "text",
+          "text": "Una o due coppie richiederebbero una scala ulteriore. Nessuna contraddice gli esempi; tre è il numero dell’uscita in mC, non un conteggio delle soluzioni."
+        }
+      ],
+      "hints": [
+        "Sostituisci il vincolo nel bilancio prima di contare le soluzioni.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Una o due coppie richiederebbero una scala ulteriore. Nessuna contraddice gli esempi; tre è il numero dell’uscita in mC, non un conteggio delle soluzioni.",
+        "target": "C4-L10"
+      },
+      "coverage": [
+        "Faraday integrata e resistenza costante",
+        "Carica passata e corrente istantanea distinte",
+        "Durata, medie, inverse e taratura"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "38953d7171290124a5562085d6db78e3282213e8badbc067bba2aecad6c8dfea",
+      "name": "induced-transferred-charge-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTcyMCIgdmlld0JveD0iMCAwIDY0MCAxNzIwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+Cjx0aXRsZSBpZD0idGl0bGUiPkxhIGNhcmljYSB0cmFzZmVyaXRhIGRpcGVuZGUgZGFsIGZsdXNzbyB0b3RhbGU8L3RpdGxlPjxkZXNjIGlkPSJkZXNjIj5Db24gcmVzaXN0ZW56YSBkdWUgb2htLCBkdWUgY3Jlc2NpdGUgbGluZWFyaSBkZWxsbyBzdGVzc28gZmx1c3NvIGRpIHNlaSBtaWxsaXdlYmVyIGR1cmFubyB1bm8gbyBkdWUgc2Vjb25kaS4gUmV0dGFuZ29saSBjb3JyZW50ZS10ZW1wbyBkaSB0cmUgbWlsbGlhbXBlcmUgcGVyIHVuIHNlY29uZG8gZSB0cmUgbWV6emkgbWlsbGlhbXBlcmUgcGVyIGR1ZSBzZWNvbmRpIGhhbm5vIHVndWFsZSBjYXJpY2EgdHJlIG1pbGxpY291bG9tYi4gVWx0aW1lIGJhcnJlIHBlciBwcm92ZSBkaXZlcnNlOiB0cmUgZSBxdWF0dHJvIG1pbGxpY291bG9tYiBlIG1lZGlhIHNldHRlIG1lenppLjwvZGVzYz4KPHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxNzIwIiBmaWxsPSIjZmZmIi8+CjxnIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZmlsbD0iIzIwMzM0YSI+Cjx0ZXh0IHg9IjM2IiB5PSI0MiIgZm9udC1zaXplPSIyNCIgZm9udC13ZWlnaHQ9IjcwMCI+MS4gU3Rlc3NhIHZhcmlhemlvbmUsIGR1cmF0ZSBkaXZlcnNlPC90ZXh0Pgo8dGV4dCB4PSI0MCIgeT0iODQiIGZvbnQtc2l6ZT0iMTgiPkR1ZSBlc2VtcGkgbGluZWFyaSwgZW50cmFtYmkgY29uIFIgPSAyIM6pLjwvdGV4dD4KPHBhdGggZD0iTTEzMCA1NzBWMTgwTTExNSA1NTBINTU1IiBmaWxsPSJub25lIiBzdHJva2U9IiMyMDMzNGEiIHN0cm9rZS13aWR0aD0iMiIvPgo8dGV4dCB4PSI0MCIgeT0iMTg4IiBmb250LXNpemU9IjE4Ij7OpiAobVdiKTwvdGV4dD48dGV4dCB4PSI1MDUiIHk9IjYyMCIgZm9udC1zaXplPSIxOCI+dCAocyk8L3RleHQ+Cjx0ZXh0IHg9Ijk3IiB5PSI1NzgiIGZvbnQtc2l6ZT0iMTciPjA8L3RleHQ+PHRleHQgeD0iOTciIHk9IjI1NiIgZm9udC1zaXplPSIxNyI+NjwvdGV4dD4KPHBhdGggZD0iTTEzMCAyNTBIMTIwTTMxMCA1NTBWNTYyTTQ5MCA1NTBWNTYyIiBzdHJva2U9IiMyMDMzNGEiIHN0cm9rZS13aWR0aD0iMiIvPgo8dGV4dCB4PSIzMDUiIHk9IjU5MCIgZm9udC1zaXplPSIxNyI+MTwvdGV4dD48dGV4dCB4PSI0ODUiIHk9IjU5MCIgZm9udC1zaXplPSIxNyI+MjwvdGV4dD4KPHBhdGggZD0iTTEzMCA1NTBMMzEwIDI1MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjMjc3M2FlIiBzdHJva2Utd2lkdGg9IjQiLz48cGF0aCBkPSJNMTMwIDU1MEw0OTAgMjUwIiBmaWxsPSJub25lIiBzdHJva2U9IiM5YjQzNmYiIHN0cm9rZS13aWR0aD0iNCIvPgo8Y2lyY2xlIGN4PSIzMTAiIGN5PSIyNTAiIHI9IjYiIGZpbGw9IiMyNzczYWUiLz48Y2lyY2xlIGN4PSI0OTAiIGN5PSIyNTAiIHI9IjYiIGZpbGw9IiM5YjQzNmYiLz4KPHRleHQgeD0iMjYwIiB5PSIyMTUiIGZvbnQtc2l6ZT0iMTgiIGZpbGw9IiMyNzczYWUiPjEgczwvdGV4dD48dGV4dCB4PSI0ODUiIHk9IjIxNSIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzliNDM2ZiI+MiBzPC90ZXh0Pgo8dGV4dCB4PSI0MCIgeT0iNjY1IiBmb250LXNpemU9IjE4Ij5JbCBmbHVzc28gdG90YWxlIGNhbWJpYSBkaSA2IG1XYiBpbiBlbnRyYW1iaSBpIGNhc2kuPC90ZXh0Pgo8dGV4dCB4PSIzNiIgeT0iNzI1IiBmb250LXNpemU9IjI0IiBmb250LXdlaWdodD0iNzAwIj4yLiBMZSBhcmVlIEktdGVtcG8gc29ubyB1Z3VhbGk8L3RleHQ+Cjx0ZXh0IHg9IjQwIiB5PSI3NjciIGZvbnQtc2l6ZT0iMTciPkNvcnJlbnRpIGNvc3RhbnRpIG5lZ2xpIGVzZW1waSwgbm9uIGlwb3Rlc2kgZ2VuZXJhbGUuPC90ZXh0Pgo8dGV4dCB4PSIxMDAiIHk9Ijg0MCIgZm9udC1zaXplPSIxOSIgZmlsbD0iIzI3NzNhZSI+MyBtQSBwZXIgMSBzPC90ZXh0Pjx0ZXh0IHg9IjM1MCIgeT0iODQwIiBmb250LXNpemU9IjE5IiBmaWxsPSIjOWI0MzZmIj4zLzIgbUEgcGVyIDIgczwvdGV4dD4KPHRleHQgeD0iNDUiIHk9IjkzMCIgZm9udC1zaXplPSIxNyI+SSAobUEpPC90ZXh0Pjx0ZXh0IHg9IjM2NSIgeT0iOTMwIiBmb250LXNpemU9IjE3Ij5JIChtQSk8L3RleHQ+CjxwYXRoIGQ9Ik0xMDAgMTExNVY5NDVNODUgMTEwMEgyNTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzIwMzM0YSIgc3Ryb2tlLXdpZHRoPSIyIi8+PHBhdGggZD0iTTM1MCAxMTE1Vjk0NU0zMzUgMTEwMEg2MTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzIwMzM0YSIgc3Ryb2tlLXdpZHRoPSIyIi8+CjxyZWN0IHg9IjEwMCIgeT0iOTgwIiB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgZmlsbD0iIzI3NzNhZSIgZmlsbC1vcGFjaXR5PSIwLjciLz48cmVjdCB4PSIzNTAiIHk9IjEwNDAiIHdpZHRoPSIyNDAiIGhlaWdodD0iNjAiIGZpbGw9IiM5YjQzNmYiIGZpbGwtb3BhY2l0eT0iMC43Ii8+Cjx0ZXh0IHg9IjcwIiB5PSI5ODYiIGZvbnQtc2l6ZT0iMTciPjM8L3RleHQ+PHRleHQgeD0iMjg1IiB5PSIxMDQ2IiBmb250LXNpemU9IjE3Ij4zLzI8L3RleHQ+PHRleHQgeD0iNzAiIHk9IjExMzciIGZvbnQtc2l6ZT0iMTciPjA8L3RleHQ+PHRleHQgeD0iMzIwIiB5PSIxMTM3IiBmb250LXNpemU9IjE3Ij4wPC90ZXh0Pgo8dGV4dCB4PSIyMTUiIHk9IjExMzciIGZvbnQtc2l6ZT0iMTciPjE8L3RleHQ+PHRleHQgeD0iNTg1IiB5PSIxMTM3IiBmb250LXNpemU9IjE3Ij4yPC90ZXh0Pgo8dGV4dCB4PSIxNjUiIHk9IjExNzUiIGZvbnQtc2l6ZT0iMTciPnQgKHMpPC90ZXh0Pjx0ZXh0IHg9IjUwMCIgeT0iMTE3NSIgZm9udC1zaXplPSIxNyI+dCAocyk8L3RleHQ+Cjx0ZXh0IHg9IjQwIiB5PSIxMjI1IiBmb250LXNpemU9IjE5Ij4zIG1BIMK3IDEgcyA9ICgzLzIgbUEpIMK3IDIgcyA9IDMgbUMuPC90ZXh0Pgo8dGV4dCB4PSIzNiIgeT0iMTI5MCIgZm9udC1zaXplPSIyNCIgZm9udC13ZWlnaHQ9IjcwMCI+My4gRHVlIGFsdHJlIHByb3ZlIGUgbGEgbG9ybyBtZWRpYTwvdGV4dD4KPHRleHQgeD0iNDAiIHk9IjEzMzAiIGZvbnQtc2l6ZT0iMTciPkE6IDYgbVdiLCAyIM6pOyBCOiAxMiBtV2IsIDMgzqkuPC90ZXh0Pgo8dGV4dCB4PSI1NSIgeT0iMTQxMCIgZm9udC1zaXplPSIyMCI+QTwvdGV4dD48cmVjdCB4PSIxNTAiIHk9IjEzODAiIHdpZHRoPSIyNDAiIGhlaWdodD0iNDQiIGZpbGw9IiMyNzczYWUiLz48dGV4dCB4PSI0MDUiIHk9IjE0MTAiIGZvbnQtc2l6ZT0iMjAiPjMgbUM8L3RleHQ+Cjx0ZXh0IHg9IjU1IiB5PSIxNDk1IiBmb250LXNpemU9IjIwIj5CPC90ZXh0PjxyZWN0IHg9IjE1MCIgeT0iMTQ2NSIgd2lkdGg9IjMyMCIgaGVpZ2h0PSI0NCIgZmlsbD0iIzliNDM2ZiIvPjx0ZXh0IHg9IjQ4NSIgeT0iMTQ5NSIgZm9udC1zaXplPSIyMCI+NCBtQzwvdGV4dD4KPHRleHQgeD0iMzUiIHk9IjE1ODAiIGZvbnQtc2l6ZT0iMjAiPm1lZGlhPC90ZXh0PjxyZWN0IHg9IjE1MCIgeT0iMTU1MCIgd2lkdGg9IjI4MCIgaGVpZ2h0PSI0NCIgZmlsbD0iIzM3N2Y2NSIvPjx0ZXh0IHg9IjQ0NSIgeT0iMTU4MCIgZm9udC1zaXplPSIyMCI+Ny8yIG1DPC90ZXh0Pgo8cGF0aCBkPSJNMTUwIDEzNjVWMTYyMCIgc3Ryb2tlPSIjMjAzMzRhIiBzdHJva2Utd2lkdGg9IjIiLz48dGV4dCB4PSIxMTYiIHk9IjE2NDUiIGZvbnQtc2l6ZT0iMTciPjA8L3RleHQ+Cjx0ZXh0IHg9IjQwIiB5PSIxNjkwIiBmb250LXNpemU9IjE4Ij5MZSB0cmUgYmFycmUgY29uZGl2aWRvbm8gb3JpZ2luZSBlIHNjYWxhIGluIG1DLjwvdGV4dD4KPC9nPjwvc3ZnPgo="
+    }
+  ]
+}

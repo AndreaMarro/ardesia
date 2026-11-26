@@ -1,0 +1,1207 @@
+{
+  "schema": "astra/1",
+  "records": [
+    {
+      "id": "AR-u6-motional-emf-01",
+      "kind": "question",
+      "course": "C4",
+      "section": "F.e.m. di movimento e misura fra estremi",
+      "order": 23601,
+      "title": "Il moto separa le cariche",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C4-L03",
+        "C4-L04",
+        "C4-L05",
+        "C4-L09",
+        "C4-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "motional-emf",
+      "difficulty": 1,
+      "prompt": "Una sbarretta conduttrice ideale lunga L=1/2 m si muove con rapidità v>0 in un campo magnetico uniforme B>0. Sbarretta, velocità e campo sono mutuamente perpendicolari; la geometria delle guide delimita un’area variabile. Si cerca E=|ε| in V fra gli estremi, non una corrente. La misura ad alta impedenza rende trascurabile la corrente nel circuito di misura; si assume il regime quasistazionario e si trascurano effetti di bordo. B=2 T e v=3 m/s. Quanto vale E in V?",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "V",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La forza magnetica sulle cariche della sbarretta genera una separazione di carica fra gli estremi. Nella geometria perpendicolare il modulo della f.e.m. di movimento è BLv. Moltiplico due tesla per mezzo metro e per tre metri al secondo: si ottengono tre volt. La f.e.m. non implica da sola una corrente se non è disponibile un percorso chiuso."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/3f0131d0ff18ac5d0b357756399369c6db498700ea532ad8a79f0297778ba4be",
+          "text": "Con B entrante e sbarretta in moto verso destra, le cariche positive sono spinte verso l’estremo superiore. La misura è quasi aperta: f.e.m. non equivale a corrente. Le frecce di verso sono schematiche; il grafico centrale mantiene B=2 T e L=1/2 m."
+        },
+        {
+          "type": "formula",
+          "text": "E=BLv"
+        },
+        {
+          "type": "formula",
+          "text": " E=(2\\,\\mathrm T)(\\tfrac12\\,\\mathrm m)(3\\,\\mathrm{m/s})"
+        },
+        {
+          "type": "formula",
+          "text": " E=3\\,\\mathrm V"
+        },
+        {
+          "type": "text",
+          "text": "Sei volt trascura il fattore L=1/2 m nel valore numerico. Un volt omette la rapidità. Un valore nullo confonde corrente trascurabile nella misura con f.e.m. nulla."
+        }
+      ],
+      "hints": [
+        "Mantieni la lunghezza della sbarretta nella legge, anche se è fissata.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sei volt trascura il fattore L=1/2 m nel valore numerico. Un volt omette la rapidità. Un valore nullo confonde corrente trascurabile nella misura con f.e.m. nulla.",
+        "target": "C4-L10"
+      },
+      "coverage": [
+        "Area spazzata e f.e.m. di movimento",
+        "Circuito aperto e separazione di carica",
+        "Inverse, medie e ramo positivo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-motional-emf-02",
+      "kind": "question",
+      "course": "C4",
+      "section": "F.e.m. di movimento e misura fra estremi",
+      "order": 23602,
+      "title": "Il volt resta il volt",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C4-L03",
+        "C4-L04",
+        "C4-L05",
+        "C4-L09",
+        "C4-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "motional-emf",
+      "difficulty": 1,
+      "prompt": "Quale unità misura dimensionalmente una forza elettromotrice di movimento?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "V",
+          "N",
+          "T",
+          "Wb",
+          "A"
+        ],
+        "value": "V"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Anche una f.e.m. generata dal moto ha dimensione di energia per carica, quindi volt. Dal prodotto BLv risulta T·m²/s=Wb/s=V. Il termine forza nel nome non cambia questa dimensione."
+        },
+        {
+          "type": "formula",
+          "text": "[E]=\\mathrm{T\\,m^2/s}"
+        },
+        {
+          "type": "formula",
+          "text": " [E]=\\mathrm{Wb/s}"
+        },
+        {
+          "type": "formula",
+          "text": " [E]=\\mathrm V"
+        },
+        {
+          "type": "text",
+          "text": "N misura una forza meccanica, T il campo, Wb un flusso e A una corrente. Per passare dal flusso a una f.e.m. serve una variazione per unità di tempo."
+        }
+      ],
+      "hints": [
+        "Controlla il prodotto delle tre unità di BLv.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "unità",
+        "message": "N misura una forza meccanica, T il campo, Wb un flusso e A una corrente. Per passare dal flusso a una f.e.m. serve una variazione per unità di tempo.",
+        "target": "C4-L10"
+      },
+      "coverage": [
+        "Area spazzata e f.e.m. di movimento",
+        "Circuito aperto e separazione di carica",
+        "Inverse, medie e ramo positivo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-motional-emf-03",
+      "kind": "question",
+      "course": "C4",
+      "section": "F.e.m. di movimento e misura fra estremi",
+      "order": 23603,
+      "title": "Area spazzata e f.e.m.",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C4-L03",
+        "C4-L04",
+        "C4-L05",
+        "C4-L09",
+        "C4-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "motional-emf",
+      "difficulty": 1,
+      "prompt": "Una sbarretta conduttrice ideale lunga L=1/2 m si muove con rapidità v>0 in un campo magnetico uniforme B>0. Sbarretta, velocità e campo sono mutuamente perpendicolari; la geometria delle guide delimita un’area variabile. Si cerca E=|ε| in V fra gli estremi, non una corrente. La misura ad alta impedenza rende trascurabile la corrente nel circuito di misura; si assume il regime quasistazionario e si trascurano effetti di bordo. Quale relazione dà E con L esplicita?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "E = B L v",
+          "E = B v / L",
+          "E = B L / v",
+          "E = L v / B",
+          "E = B L v²"
+        ],
+        "value": "E = B L v"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Durante un intervallo dt la sbarretta spazza l’area L v dt. Con campo uniforme e normale concorde il modulo della variazione di flusso è B L v dt; Faraday dà E=BLv. La stessa relazione si ricava dall’equilibrio delle cariche lungo la sbarretta in misura quasi aperta."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/3f0131d0ff18ac5d0b357756399369c6db498700ea532ad8a79f0297778ba4be",
+          "text": "Lo spostamento della sbarretta cambia l’area compresa fra le guide. E=BLv vale per campo, moto e sbarretta mutuamente perpendicolari. Il disegno fissa i versi; non confronta moduli di grandezze con unità diverse tramite le frecce."
+        },
+        {
+          "type": "formula",
+          "text": "\\frac{dA}{dt}=Lv"
+        },
+        {
+          "type": "formula",
+          "text": " E=B\\frac{dA}{dt}"
+        },
+        {
+          "type": "formula",
+          "text": " E=BLv"
+        },
+        {
+          "type": "text",
+          "text": "Dividere per L o v cambia sia la dipendenza sia le dimensioni. Il campo deve moltiplicare, non dividere, l’area spazzata per tempo. Il quadrato di v non compare in questo modello."
+        }
+      ],
+      "hints": [
+        "Unisci variazione d’area e variazione di flusso.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Dividere per L o v cambia sia la dipendenza sia le dimensioni. Il campo deve moltiplicare, non dividere, l’area spazzata per tempo. Il quadrato di v non compare in questo modello.",
+        "target": "C4-L10"
+      },
+      "coverage": [
+        "Area spazzata e f.e.m. di movimento",
+        "Circuito aperto e separazione di carica",
+        "Inverse, medie e ramo positivo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-motional-emf-04",
+      "kind": "question",
+      "course": "C4",
+      "section": "F.e.m. di movimento e misura fra estremi",
+      "order": 23604,
+      "title": "Un campo dimezzato",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C4-L03",
+        "C4-L04",
+        "C4-L05",
+        "C4-L09",
+        "C4-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "motional-emf",
+      "difficulty": 1,
+      "prompt": "Una sbarretta conduttrice ideale lunga L=1/2 m si muove con rapidità v>0 in un campo magnetico uniforme B>0. Sbarretta, velocità e campo sono mutuamente perpendicolari; la geometria delle guide delimita un’area variabile. Si cerca E=|ε| in V fra gli estremi, non una corrente. La misura ad alta impedenza rende trascurabile la corrente nel circuito di misura; si assume il regime quasistazionario e si trascurano effetti di bordo. A ha B=2 T, v=3 m/s; la nuova prova B=1 T alla stessa v. Come cambia E?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "Da 3 V a 3/2 V",
+          "Da 3 V a 6 V",
+          "Resta 3 V",
+          "Da 3 V a 3/4 V",
+          "Da 3 V a 0 V"
+        ],
+        "value": "Da 3 V a 3/2 V"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "A lunghezza e rapidità invariate, E è lineare in B. Dimezzare il campo dimezza la f.e.m. da tre a tre mezzi volt. Il verso dei poli non si inverte perché si è ridotto il modulo del campo mantenendone l’orientazione."
+        },
+        {
+          "type": "formula",
+          "text": "E_A=3\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " E_B=\\frac32\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " E_B/E_A=\\frac12"
+        },
+        {
+          "type": "text",
+          "text": "Sei volt usa una dipendenza inversa; tre quarti introduce un quadrato. Tre ignora il nuovo campo e zero richiederebbe un parametro nullo o un’orientazione diversa."
+        }
+      ],
+      "hints": [
+        "Il confronto riguarda il modulo con la stessa geometria.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "Sei volt usa una dipendenza inversa; tre quarti introduce un quadrato. Tre ignora il nuovo campo e zero richiederebbe un parametro nullo o un’orientazione diversa.",
+        "target": "C4-L10"
+      },
+      "coverage": [
+        "Area spazzata e f.e.m. di movimento",
+        "Circuito aperto e separazione di carica",
+        "Inverse, medie e ramo positivo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-motional-emf-05",
+      "kind": "question",
+      "course": "C4",
+      "section": "F.e.m. di movimento e misura fra estremi",
+      "order": 23605,
+      "title": "Il campo da una f.e.m. misurata",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C4-L03",
+        "C4-L04",
+        "C4-L05",
+        "C4-L09",
+        "C4-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "motional-emf",
+      "difficulty": 2,
+      "prompt": "Una sbarretta conduttrice ideale lunga L=1/2 m si muove con rapidità v>0 in un campo magnetico uniforme B>0. Sbarretta, velocità e campo sono mutuamente perpendicolari; la geometria delle guide delimita un’area variabile. Si cerca E=|ε| in V fra gli estremi, non una corrente. La misura ad alta impedenza rende trascurabile la corrente nel circuito di misura; si assume il regime quasistazionario e si trascurano effetti di bordo. Si misura E=3 V con v=3 m/s. Quanto vale B in T?",
+      "answer": {
+        "type": "numeric",
+        "value": 2,
+        "unit": "T",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Divido la f.e.m. per L v. Mezzo metro per tre metri al secondo vale 3/2 m²/s, così B=3/(3/2)=2 T. La misura del modulo non basta invece a ricostruire il verso spaziale del campo senza conoscere le polarità."
+        },
+        {
+          "type": "formula",
+          "text": "B=\\frac{E}{Lv}"
+        },
+        {
+          "type": "formula",
+          "text": " Lv=\\frac32\\,\\mathrm{m^2/s}"
+        },
+        {
+          "type": "formula",
+          "text": " B=2\\,\\mathrm T"
+        },
+        {
+          "type": "text",
+          "text": "Un tesla omette L nel calcolo numerico e darebbe 3/2 V, non tre. 1/2 T inverte il valore corretto; nove moltiplica i numeri di E e v."
+        }
+      ],
+      "hints": [
+        "Calcola il prodotto L v prima di dividere.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Un tesla omette L nel calcolo numerico e darebbe 3/2 V, non tre. 1/2 T inverte il valore corretto; nove moltiplica i numeri di E e v.",
+        "target": "C4-L10"
+      },
+      "coverage": [
+        "Area spazzata e f.e.m. di movimento",
+        "Circuito aperto e separazione di carica",
+        "Inverse, medie e ramo positivo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-motional-emf-06",
+      "kind": "question",
+      "course": "C4",
+      "section": "F.e.m. di movimento e misura fra estremi",
+      "order": 23606,
+      "title": "La rapidità necessaria",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C4-L03",
+        "C4-L04",
+        "C4-L05",
+        "C4-L09",
+        "C4-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "motional-emf",
+      "difficulty": 2,
+      "prompt": "Una sbarretta conduttrice ideale lunga L=1/2 m si muove con rapidità v>0 in un campo magnetico uniforme B>0. Sbarretta, velocità e campo sono mutuamente perpendicolari; la geometria delle guide delimita un’area variabile. Si cerca E=|ε| in V fra gli estremi, non una corrente. La misura ad alta impedenza rende trascurabile la corrente nel circuito di misura; si assume il regime quasistazionario e si trascurano effetti di bordo. E=3 V e B=2 T. Quanto vale v in m/s?",
+      "answer": {
+        "type": "numeric",
+        "value": 3,
+        "unit": "m/s",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "L’inversa è v=E/(BL). Qui BL=(2 T)(1/2 m)=1 T·m, dunque il valore numerico della rapidità è tre m/s. L’unità V/(T·m) è una velocità, non una frequenza."
+        },
+        {
+          "type": "formula",
+          "text": "v=\\frac{E}{BL}"
+        },
+        {
+          "type": "formula",
+          "text": " BL=1\\,\\mathrm{T\\,m}"
+        },
+        {
+          "type": "formula",
+          "text": " v=3\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "text",
+          "text": "Sei m/s tratterebbe la lunghezza come un divisore ulteriore e darebbe sei volt. 1/3 m/s inverte il quoziente; uno copia il numero di BL senza isolare v."
+        }
+      ],
+      "hints": [
+        "Ricontrolla il prodotto BLv con la rapidità ricavata.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Sei m/s tratterebbe la lunghezza come un divisore ulteriore e darebbe sei volt. 1/3 m/s inverte il quoziente; uno copia il numero di BL senza isolare v.",
+        "target": "C4-L10"
+      },
+      "coverage": [
+        "Area spazzata e f.e.m. di movimento",
+        "Circuito aperto e separazione di carica",
+        "Inverse, medie e ramo positivo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-motional-emf-07",
+      "kind": "question",
+      "course": "C4",
+      "section": "F.e.m. di movimento e misura fra estremi",
+      "order": 23607,
+      "title": "Meno area spazzata ogni secondo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C4-L03",
+        "C4-L04",
+        "C4-L05",
+        "C4-L09",
+        "C4-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "motional-emf",
+      "difficulty": 2,
+      "prompt": "Una sbarretta conduttrice ideale lunga L=1/2 m si muove con rapidità v>0 in un campo magnetico uniforme B>0. Sbarretta, velocità e campo sono mutuamente perpendicolari; la geometria delle guide delimita un’area variabile. Si cerca E=|ε| in V fra gli estremi, non una corrente. La misura ad alta impedenza rende trascurabile la corrente nel circuito di misura; si assume il regime quasistazionario e si trascurano effetti di bordo. A usa B=2 T, v=3 m/s. B mantiene il campo e usa v=1 m/s. Quanto vale E_B/E_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "1/3",
+          "3",
+          "1/9",
+          "9",
+          "1"
+        ],
+        "value": "1/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le due f.e.m. sono tre volt e un volt. Il rapporto finale/iniziale vale un terzo, esattamente come quello delle rapidità. La lunghezza e il campo si cancellano nel confronto."
+        },
+        {
+          "type": "formula",
+          "text": "E_A=3\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " E_B=1\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " E_B/E_A=\\frac13"
+        },
+        {
+          "type": "text",
+          "text": "Tre inverte il confronto; un nono e nove inseriscono una dipendenza quadratica. Uno ignora la variazione di rapidità."
+        }
+      ],
+      "hints": [
+        "L’area spazzata per tempo è proporzionale a v.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre inverte il confronto; un nono e nove inseriscono una dipendenza quadratica. Uno ignora la variazione di rapidità.",
+        "target": "C4-L10"
+      },
+      "coverage": [
+        "Area spazzata e f.e.m. di movimento",
+        "Circuito aperto e separazione di carica",
+        "Inverse, medie e ramo positivo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-motional-emf-08",
+      "kind": "question",
+      "course": "C4",
+      "section": "F.e.m. di movimento e misura fra estremi",
+      "order": 23608,
+      "title": "Una proposta troppo alta",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C4-L03",
+        "C4-L04",
+        "C4-L05",
+        "C4-L09",
+        "C4-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "motional-emf",
+      "difficulty": 2,
+      "prompt": "Una sbarretta conduttrice ideale lunga L=1/2 m si muove con rapidità v>0 in un campo magnetico uniforme B>0. Sbarretta, velocità e campo sono mutuamente perpendicolari; la geometria delle guide delimita un’area variabile. Si cerca E=|ε| in V fra gli estremi, non una corrente. La misura ad alta impedenza rende trascurabile la corrente nel circuito di misura; si assume il regime quasistazionario e si trascurano effetti di bordo. Per B=2 T e v=3 m/s si propone E=6 V. Quanto vale proposta meno corretto?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3 V",
+          "−3 V",
+          "2",
+          "6 V",
+          "0 V"
+        ],
+        "value": "3 V"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "La relazione BLv dà tre volt. La proposta di sei volt supera il corretto di tre volt. Si tratta di uno scarto fra moduli, distinto dall’eventuale tensione orientata fra estremi nominati."
+        },
+        {
+          "type": "formula",
+          "text": "E=3\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " \\delta E=(6-3)\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " \\delta E=3\\,\\mathrm V"
+        },
+        {
+          "type": "text",
+          "text": "−3 V inverte l’ordine richiesto; due è il rapporto, non la differenza. Sei ripete la proposta e zero la considera già valida."
+        }
+      ],
+      "hints": [
+        "Calcola il valore fisico prima dello scarto.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "−3 V inverte l’ordine richiesto; due è il rapporto, non la differenza. Sei ripete la proposta e zero la considera già valida.",
+        "target": "C4-L10"
+      },
+      "coverage": [
+        "Area spazzata e f.e.m. di movimento",
+        "Circuito aperto e separazione di carica",
+        "Inverse, medie e ramo positivo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-motional-emf-09",
+      "kind": "question",
+      "course": "C4",
+      "section": "F.e.m. di movimento e misura fra estremi",
+      "order": 23609,
+      "title": "L’inversa conserva L",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C4-L03",
+        "C4-L04",
+        "C4-L05",
+        "C4-L09",
+        "C4-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "motional-emf",
+      "difficulty": 2,
+      "prompt": "Una sbarretta conduttrice ideale lunga L=1/2 m si muove con rapidità v>0 in un campo magnetico uniforme B>0. Sbarretta, velocità e campo sono mutuamente perpendicolari; la geometria delle guide delimita un’area variabile. Si cerca E=|ε| in V fra gli estremi, non una corrente. La misura ad alta impedenza rende trascurabile la corrente nel circuito di misura; si assume il regime quasistazionario e si trascurano effetti di bordo. E, L e v sono noti e positivi. Quale formula isola B?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "B = E / (L v)",
+          "B = E L v",
+          "B = L v / E",
+          "B = E v / L",
+          "B = E / v"
+        ],
+        "value": "B = E / (L v)"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Divido E=BLv per il prodotto positivo L v. Ottengo B=E/(Lv), che ha unità tesla. La lunghezza fissata a mezzo metro conserva il proprio significato dimensionale e non va cancellata dalla legge simbolica."
+        },
+        {
+          "type": "formula",
+          "text": "E=BLv"
+        },
+        {
+          "type": "formula",
+          "text": " B=\\frac{E}{Lv}"
+        },
+        {
+          "type": "formula",
+          "text": " [B]=\\mathrm T"
+        },
+        {
+          "type": "text",
+          "text": "Moltiplicare per L v o invertire il quoziente non isola il campo. E/v ha dimensione T·m, non T. La formula con v al numeratore darebbe una dipendenza opposta al dato misurato a E fissata."
+        }
+      ],
+      "hints": [
+        "La misura E fissata impone un campo minore se la sbarretta è più rapida.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Moltiplicare per L v o invertire il quoziente non isola il campo. E/v ha dimensione T·m, non T. La formula con v al numeratore darebbe una dipendenza opposta al dato misurato a E fissata.",
+        "target": "C4-L10"
+      },
+      "coverage": [
+        "Area spazzata e f.e.m. di movimento",
+        "Circuito aperto e separazione di carica",
+        "Inverse, medie e ramo positivo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-motional-emf-10",
+      "kind": "question",
+      "course": "C4",
+      "section": "F.e.m. di movimento e misura fra estremi",
+      "order": 23610,
+      "title": "Fattori su campo e rapidità",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C4-L03",
+        "C4-L04",
+        "C4-L05",
+        "C4-L09",
+        "C4-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "motional-emf",
+      "difficulty": 2,
+      "prompt": "Una sbarretta conduttrice ideale lunga L=1/2 m si muove con rapidità v>0 in un campo magnetico uniforme B>0. Sbarretta, velocità e campo sono mutuamente perpendicolari; la geometria delle guide delimita un’area variabile. Si cerca E=|ε| in V fra gli estremi, non una corrente. La misura ad alta impedenza rende trascurabile la corrente nel circuito di misura; si assume il regime quasistazionario e si trascurano effetti di bordo. B_2=κ₁B_A e v_2=κ₂v_A, con fattori positivi e stessa L. Quanto vale E_2/E_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "κ₁ κ₂",
+          "κ₁ / κ₂",
+          "κ₂ / κ₁",
+          "κ₁² κ₂",
+          "κ₁ + κ₂"
+        ],
+        "value": "κ₁ κ₂"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Campo e rapidità compaiono entrambi come fattori al numeratore di BLv. Sostituendoli e formando il rapporto si ottiene κ₁κ₂; la stessa L si cancella. La proprietà riguarda i moduli nella medesima geometria."
+        },
+        {
+          "type": "formula",
+          "text": "E_2=(\\kappa_1B_A)L(\\kappa_2v_A)"
+        },
+        {
+          "type": "formula",
+          "text": " E_2/E_A=\\kappa_1\\kappa_2"
+        },
+        {
+          "type": "text",
+          "text": "I quozienti rendono inversa una dipendenza diretta. Il quadrato di κ₁ non è previsto. La somma non dà uno per due preparazioni identiche."
+        }
+      ],
+      "hints": [
+        "Scrivi separatamente i due fattori nella legge.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "I quozienti rendono inversa una dipendenza diretta. Il quadrato di κ₁ non è previsto. La somma non dà uno per due preparazioni identiche.",
+        "target": "C4-L10"
+      },
+      "coverage": [
+        "Area spazzata e f.e.m. di movimento",
+        "Circuito aperto e separazione di carica",
+        "Inverse, medie e ramo positivo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-motional-emf-11",
+      "kind": "question",
+      "course": "C4",
+      "section": "F.e.m. di movimento e misura fra estremi",
+      "order": 23611,
+      "title": "Il campo cala ma la rapidità cresce",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C4-L03",
+        "C4-L04",
+        "C4-L05",
+        "C4-L09",
+        "C4-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "motional-emf",
+      "difficulty": 2,
+      "prompt": "Una sbarretta conduttrice ideale lunga L=1/2 m si muove con rapidità v>0 in un campo magnetico uniforme B>0. Sbarretta, velocità e campo sono mutuamente perpendicolari; la geometria delle guide delimita un’area variabile. Si cerca E=|ε| in V fra gli estremi, non una corrente. La misura ad alta impedenza rende trascurabile la corrente nel circuito di misura; si assume il regime quasistazionario e si trascurano effetti di bordo. A usa B=2 T, v=3 m/s. La seconda prova usa B=1 T, v=4 m/s. Quanto vale il rapporto E_2/E_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "2/3",
+          "3/2",
+          "1/2",
+          "4/3",
+          "1"
+        ],
+        "value": "2/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Calcolo E_A=3 V ed E_2=(1/2)·1·4=2 V. Il rapporto è 2/3: la maggiore rapidità non compensa il campo dimezzato. La stessa conclusione viene dal prodotto (1/2)(4/3)."
+        },
+        {
+          "type": "formula",
+          "text": "E_A=3\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " E_2=2\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " E_2/E_A=\\frac23"
+        },
+        {
+          "type": "text",
+          "text": "Tre mezzi inverte il confronto. Un mezzo segue solo il campo e quattro terzi solo la rapidità. Uno presuppone una compensazione esatta non presente nei dati."
+        }
+      ],
+      "hints": [
+        "Un aumento di v non implica sempre un aumento di E se cambia anche B.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre mezzi inverte il confronto. Un mezzo segue solo il campo e quattro terzi solo la rapidità. Uno presuppone una compensazione esatta non presente nei dati.",
+        "target": "C4-L10"
+      },
+      "coverage": [
+        "Area spazzata e f.e.m. di movimento",
+        "Circuito aperto e separazione di carica",
+        "Inverse, medie e ramo positivo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-motional-emf-12",
+      "kind": "question",
+      "course": "C4",
+      "section": "F.e.m. di movimento e misura fra estremi",
+      "order": 23612,
+      "title": "Media di due f.e.m. di movimento",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C4-L03",
+        "C4-L04",
+        "C4-L05",
+        "C4-L09",
+        "C4-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "motional-emf",
+      "difficulty": 2,
+      "prompt": "Una sbarretta conduttrice ideale lunga L=1/2 m si muove con rapidità v>0 in un campo magnetico uniforme B>0. Sbarretta, velocità e campo sono mutuamente perpendicolari; la geometria delle guide delimita un’area variabile. Si cerca E=|ε| in V fra gli estremi, non una corrente. La misura ad alta impedenza rende trascurabile la corrente nel circuito di misura; si assume il regime quasistazionario e si trascurano effetti di bordo. Si confrontano A con B=2 T, v=3 m/s e una seconda prova con B=1 T, v=4 m/s. Qual è la media aritmetica dei due E?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "5/2 V",
+          "21/8 V",
+          "5 V",
+          "1/2 V",
+          "3 V"
+        ],
+        "value": "5/2 V"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Le uscite tre e due volt hanno media cinque mezzi volt. Il modello agli ingressi medi darebbe invece L·(3/2 T)·(7/2 m/s)=21/8 V. La differenza fra media delle uscite e quel valore è −1/8 V: il prodotto dei due ingressi non commuta in generale con la loro media."
+        },
+        {
+          "type": "figure",
+          "src": "/asset/3f0131d0ff18ac5d0b357756399369c6db498700ea532ad8a79f0297778ba4be",
+          "text": "Le tre barre hanno scala e origine comuni: 3 V per A, 2 V per la seconda preparazione, 5/2 V come media. Il grafico centrale usa invece B=2 T fisso; la seconda preparazione delle barre usa B=1 T."
+        },
+        {
+          "type": "formula",
+          "text": "\\overline E=\\frac{3+2}{2}\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " \\overline E=\\frac52\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " E_{\\rm dati\\ medi}=\\frac{21}{8}\\,\\mathrm V"
+        },
+        {
+          "type": "text",
+          "text": "21/8 V usa gli ingressi medi. Cinque somma senza dividere per due; un mezzo è la semidifferenza. Tre ripete una sola prova."
+        }
+      ],
+      "hints": [
+        "Calcola ogni uscita prima di fare la media fra le preparazioni.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "21/8 V usa gli ingressi medi. Cinque somma senza dividere per due; un mezzo è la semidifferenza. Tre ripete una sola prova.",
+        "target": "C4-L10"
+      },
+      "coverage": [
+        "Area spazzata e f.e.m. di movimento",
+        "Circuito aperto e separazione di carica",
+        "Inverse, medie e ramo positivo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-motional-emf-13",
+      "kind": "question",
+      "course": "C4",
+      "section": "F.e.m. di movimento e misura fra estremi",
+      "order": 23613,
+      "title": "La rapidità per una f.e.m. bersaglio",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C4-L03",
+        "C4-L04",
+        "C4-L05",
+        "C4-L09",
+        "C4-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "motional-emf",
+      "difficulty": 3,
+      "prompt": "Una sbarretta conduttrice ideale lunga L=1/2 m si muove con rapidità v>0 in un campo magnetico uniforme B>0. Sbarretta, velocità e campo sono mutuamente perpendicolari; la geometria delle guide delimita un’area variabile. Si cerca E=|ε| in V fra gli estremi, non una corrente. La misura ad alta impedenza rende trascurabile la corrente nel circuito di misura; si assume il regime quasistazionario e si trascurano effetti di bordo. A usa B_A=2 T, v_A=3 m/s. Con B_2=1 T si vuole E_2=(2/3)E_A. Quanto vale v_2/v_A?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "4/3",
+          "3/4",
+          "2/3",
+          "1/2",
+          "2"
+        ],
+        "value": "4/3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il bersaglio è due volt. Con un tesla e mezzo metro serve v_2=2/(1/2)=4 m/s. Il rapporto rispetto a tre m/s è 4/3. Il fattore della rapidità è diverso da quello dell’uscita perché cambia anche il campo."
+        },
+        {
+          "type": "formula",
+          "text": "E_2=2\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " v_2=4\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " v_2/v_A=\\frac43"
+        },
+        {
+          "type": "text",
+          "text": "Tre quarti è il reciproco. Due terzi copia il bersaglio della f.e.m.; un mezzo copia il rapporto dei campi. Due darebbe tre volt nella nuova prova, non due."
+        }
+      ],
+      "hints": [
+        "Ricava prima E_2, poi isola la rapidità nella seconda geometria.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre quarti è il reciproco. Due terzi copia il bersaglio della f.e.m.; un mezzo copia il rapporto dei campi. Due darebbe tre volt nella nuova prova, non due.",
+        "target": "C4-L10"
+      },
+      "coverage": [
+        "Area spazzata e f.e.m. di movimento",
+        "Circuito aperto e separazione di carica",
+        "Inverse, medie e ramo positivo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-motional-emf-14",
+      "kind": "question",
+      "course": "C4",
+      "section": "F.e.m. di movimento e misura fra estremi",
+      "order": 23614,
+      "title": "Tarare il display e ricavare il campo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C4-L03",
+        "C4-L04",
+        "C4-L05",
+        "C4-L09",
+        "C4-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "motional-emf",
+      "difficulty": 3,
+      "prompt": "Una sbarretta conduttrice ideale lunga L=1/2 m si muove con rapidità v>0 in un campo magnetico uniforme B>0. Sbarretta, velocità e campo sono mutuamente perpendicolari; la geometria delle guide delimita un’area variabile. Si cerca E=|ε| in V fra gli estremi, non una corrente. La misura ad alta impedenza rende trascurabile la corrente nel circuito di misura; si assume il regime quasistazionario e si trascurano effetti di bordo. D=a_cal E è continuo e adimensionale. A con B=2 T, v=3 m/s dà D=9. La seconda prova legge D=6 e usa v=4 m/s. Quanto vale B in T?",
+      "answer": {
+        "type": "numeric",
+        "value": 1,
+        "unit": "T",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Il riferimento di tre volt identifica a_cal=3 V⁻¹. La lettura sei corrisponde a due volt. Dividendo per L v=(1/2 m)(4 m/s)=2 m²/s si ricava un tesla. Il display non è un campo magnetico né una f.e.m. già espressa in volt."
+        },
+        {
+          "type": "formula",
+          "text": "a_{\\rm cal}=3\\,\\mathrm V^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " E=2\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " B=1\\,\\mathrm T"
+        },
+        {
+          "type": "text",
+          "text": "Tre tesla usa D=6 come sei volt e darebbe D=18. Due tesla copia il numero della f.e.m. senza dividerlo per L v. Un quarto di tesla darebbe mezzo volt e D=3/2."
+        }
+      ],
+      "hints": [
+        "Decodifica D prima dell’inversa fisica.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "Tre tesla usa D=6 come sei volt e darebbe D=18. Due tesla copia il numero della f.e.m. senza dividerlo per L v. Un quarto di tesla darebbe mezzo volt e D=3/2.",
+        "target": "C4-L10"
+      },
+      "coverage": [
+        "Area spazzata e f.e.m. di movimento",
+        "Circuito aperto e separazione di carica",
+        "Inverse, medie e ramo positivo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-motional-emf-15",
+      "kind": "question",
+      "course": "C4",
+      "section": "F.e.m. di movimento e misura fra estremi",
+      "order": 23615,
+      "title": "Guadagno e offset della misura",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C4-L03",
+        "C4-L04",
+        "C4-L05",
+        "C4-L09",
+        "C4-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "motional-emf",
+      "difficulty": 3,
+      "prompt": "Una sbarretta conduttrice ideale lunga L=1/2 m si muove con rapidità v>0 in un campo magnetico uniforme B>0. Sbarretta, velocità e campo sono mutuamente perpendicolari; la geometria delle guide delimita un’area variabile. Si cerca E=|ε| in V fra gli estremi, non una corrente. La misura ad alta impedenza rende trascurabile la corrente nel circuito di misura; si assume il regime quasistazionario e si trascurano effetti di bordo. D=a_cal E+b_cal è continuo. A: B=2 T, v=3 m/s, D=7. Secondo riferimento: B=1 T, v=4 m/s, D=5. Nuova prova: v=5 m/s, D=21. Quanto vale B in T?",
+      "answer": {
+        "type": "numeric",
+        "value": 4,
+        "unit": "T",
+        "tolerance": 0
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "I riferimenti fisici valgono tre e due volt. Il guadagno è 2 V⁻¹ e l’offset è uno. La nuova lettura indica E=(21−1)/2=10 V. Con L v=5/2 m²/s il campo richiesto è 10/(5/2)=4 T."
+        },
+        {
+          "type": "formula",
+          "text": "a_{\\rm cal}=2\\,\\mathrm V^{-1}"
+        },
+        {
+          "type": "formula",
+          "text": " b_{\\rm cal}=1"
+        },
+        {
+          "type": "formula",
+          "text": " E=10\\,\\mathrm V"
+        },
+        {
+          "type": "formula",
+          "text": " B=4\\,\\mathrm T"
+        },
+        {
+          "type": "text",
+          "text": "21/5 T salta la sottrazione dell’offset e produrrebbe D=22. Otto tesla toglie l’offset ma non divide per il guadagno. Dieci copia il numero della f.e.m. senza l’inversa fisica."
+        }
+      ],
+      "hints": [
+        "I riferimenti devono avere uscite diverse per separare a_cal e b_cal.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "algebra",
+        "message": "21/5 T salta la sottrazione dell’offset e produrrebbe D=22. Otto tesla toglie l’offset ma non divide per il guadagno. Dieci copia il numero della f.e.m. senza l’inversa fisica.",
+        "target": "C4-L10"
+      },
+      "coverage": [
+        "Area spazzata e f.e.m. di movimento",
+        "Circuito aperto e separazione di carica",
+        "Inverse, medie e ramo positivo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    },
+    {
+      "id": "AR-u6-motional-emf-16",
+      "kind": "question",
+      "course": "C4",
+      "section": "F.e.m. di movimento e misura fra estremi",
+      "order": 23616,
+      "title": "Una rapidità positiva da un vincolo",
+      "version": 1,
+      "baseVersion": 0,
+      "skill": "C4-L10",
+      "prerequisites": [
+        "C1-L001",
+        "C1-L002",
+        "C1-L003",
+        "C4-L03",
+        "C4-L04",
+        "C4-L05",
+        "C4-L09",
+        "C4-L10"
+      ],
+      "reuse": [
+        "C6"
+      ],
+      "family": "motional-emf",
+      "difficulty": 3,
+      "prompt": "Una sbarretta conduttrice ideale lunga L=1/2 m si muove con rapidità v>0 in un campo magnetico uniforme B>0. Sbarretta, velocità e campo sono mutuamente perpendicolari; la geometria delle guide delimita un’area variabile. Si cerca E=|ε| in V fra gli estremi, non una corrente. La misura ad alta impedenza rende trascurabile la corrente nel circuito di misura; si assume il regime quasistazionario e si trascurano effetti di bordo. Fra preparazioni B=(2/3 T·s/m)v. Si misura E=3 V. Quanto vale v in m/s?",
+      "answer": {
+        "type": "choice",
+        "options": [
+          "3",
+          "−3",
+          "9",
+          "2",
+          "Infinite rapidità"
+        ],
+        "value": "3"
+      },
+      "blocks": [
+        {
+          "type": "text",
+          "text": "Pongo u=v/(1 m/s)>0. Il vincolo dà B/(1 T)=2u/3; con L=1/2 m risulta E/(1 V)=u²/3. La misura di tre volt impone u²=9 e la rapidità positiva è tre m/s. Il campo corrispondente è due tesla."
+        },
+        {
+          "type": "formula",
+          "text": "u=\\frac{v}{1\\,\\mathrm{m/s}}"
+        },
+        {
+          "type": "formula",
+          "text": " u^2=9"
+        },
+        {
+          "type": "formula",
+          "text": " v=3\\,\\mathrm{m/s}"
+        },
+        {
+          "type": "formula",
+          "text": " B=2\\,\\mathrm T"
+        },
+        {
+          "type": "text",
+          "text": "−3 è la radice algebrica esclusa dal dominio. Nove omette la radice; due copia il campo. La misura assoluta della f.e.m. fissa la scala, quindi non restano infinite rapidità."
+        }
+      ],
+      "hints": [
+        "Sostituisci il vincolo dimensionato prima di selezionare la radice.",
+        "Controlla il risultato nella relazione iniziale, con segni e unità coerenti."
+      ],
+      "error": {
+        "category": "concetto",
+        "message": "−3 è la radice algebrica esclusa dal dominio. Nove omette la radice; due copia il campo. La misura assoluta della f.e.m. fissa la scala, quindi non restano infinite rapidità.",
+        "target": "C4-L10"
+      },
+      "coverage": [
+        "Area spazzata e f.e.m. di movimento",
+        "Circuito aperto e separazione di carica",
+        "Inverse, medie e ramo positivo"
+      ],
+      "review": "DRAFT; soluzione d’autore; revisione scientifica indipendente NOT_RUN; approvazione umana NOT_RUN"
+    }
+  ],
+  "assets": [
+    {
+      "id": "3f0131d0ff18ac5d0b357756399369c6db498700ea532ad8a79f0297778ba4be",
+      "name": "motional-emf-progressive.svg",
+      "mime": "image/svg+xml",
+      "data": "PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2NDAiIGhlaWdodD0iMTUwMCIgdmlld0JveD0iMCAwIDY0MCAxNTAwIiByb2xlPSJpbWciIGFyaWEtbGFiZWxsZWRieT0idGl0bGUgZGVzYyI+Cjx0aXRsZSBpZD0idGl0bGUiPlVuYSBzYmFycmV0dGEgbW9iaWxlIGdlbmVyYSB1bmEgZi5lLm0uPC90aXRsZT48ZGVzYyBpZD0iZGVzYyI+Q2FtcG8gZW50cmFudGUgZSBzYmFycmV0dGEgdmVydGljYWxlIGluIG1vdG8gdmVyc28gZGVzdHJhOiBlc3RyZW1vIHN1cGVyaW9yZSBwb3NpdGl2by4gTWlzdXJhIHF1YXNpIGFwZXJ0YS4gUmV0dGEgZGVsbGEgZi5lLm0uIHJpc3BldHRvIGFsbGEgcmFwaWRpdMOgIGNvbiBjYW1wbyBkdWUgdGVzbGEgZSBsdW5naGV6emEgbWV6em8gbWV0cm8uIEJhcnJlIHRyZSB2b2x0LCBkdWUgdm9sdCBlIG1lZGlhIGNpbnF1ZSBtZXp6aSB2b2x0LjwvZGVzYz4KPGRlZnM+PG1hcmtlciBpZD0iYSIgdmlld0JveD0iMCAwIDEwIDEwIiByZWZYPSI5IiByZWZZPSI1IiBtYXJrZXJXaWR0aD0iNyIgbWFya2VySGVpZ2h0PSI3IiBvcmllbnQ9ImF1dG8iPjxwYXRoIGQ9Ik0wIDBMMTAgNUwwIDEwWiIgZmlsbD0iIzIwMzM0YSIvPjwvbWFya2VyPjwvZGVmcz4KPHJlY3Qgd2lkdGg9IjY0MCIgaGVpZ2h0PSIxNTAwIiBmaWxsPSIjZmZmIi8+CjxnIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZmlsbD0iIzIwMzM0YSI+Cjx0ZXh0IHg9IjM2IiB5PSI0MiIgZm9udC1zaXplPSIyNCIgZm9udC13ZWlnaHQ9IjcwMCI+MS4gTW90bywgY2FtcG8gZSBwb2xpIGRlbGxhIG1pc3VyYTwvdGV4dD4KPHRleHQgeD0iNDAiIHk9IjgzIiBmb250LXNpemU9IjE3Ij5WaXN0YSBmcm9udGFsZTsgZ3VpZGUgYXBlcnRlIGEgc2luaXN0cmEsIHZlcnNpIHNjaGVtYXRpY2kuPC90ZXh0Pgo8cGF0aCBkPSJNMTEwIDE1NUgzNjBNMTEwIDM1NUgzNjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzZlN2Q4OSIgc3Ryb2tlLXdpZHRoPSI0Ii8+CjxwYXRoIGQ9Ik0zNjAgMTU1VjM1NSIgc3Ryb2tlPSIjMjc3M2FlIiBzdHJva2Utd2lkdGg9IjEwIi8+CjxwYXRoIGQ9Ik0xODAgMjA5TDE5NiAyMjVNMTk2IDIwOUwxODAgMjI1TTI2NCAyMDlMMjgwIDIyNU0yODAgMjA5TDI2NCAyMjVNMTgwIDI3OUwxOTYgMjk1TTE5NiAyNzlMMTgwIDI5NU0yNjQgMjc5TDI4MCAyOTVNMjgwIDI3OUwyNjQgMjk1IiBzdHJva2U9IiM3MTg0OWEiIHN0cm9rZS13aWR0aD0iMyIvPgo8cGF0aCBkPSJNNDAwIDI1NUg1MTUiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzIwMzM0YSIgc3Ryb2tlLXdpZHRoPSIzIiBtYXJrZXItZW5kPSJ1cmwoI2EpIi8+Cjx0ZXh0IHg9IjQ0NCIgeT0iMjM4IiBmb250LXNpemU9IjE5Ij52PC90ZXh0Pjx0ZXh0IHg9IjM5MCIgeT0iMTUwIiBmb250LXNpemU9IjIyIj5hICs8L3RleHQ+PHRleHQgeD0iMzkwIiB5PSIzNjkiIGZvbnQtc2l6ZT0iMjIiPmIg4oiSPC90ZXh0Pgo8dGV4dCB4PSIxNTUiIHk9IjEyNSIgZm9udC1zaXplPSIxOCI+QiBlbnRyYW50ZTwvdGV4dD48dGV4dCB4PSI0MjAiIHk9IjMyMCIgZm9udC1zaXplPSIxOCI+TCA9IDEvMiBtPC90ZXh0Pgo8dGV4dCB4PSI0MCIgeT0iNDEwIiBmb250LXNpemU9IjE4Ij5MYSBmLmUubS4gcHXDsiBlc3NlcmNpIGFuY2hlIGNvbiBjb3JyZW50ZSB0cmFzY3VyYWJpbGUuPC90ZXh0Pgo8dGV4dCB4PSIzNiIgeT0iNDc1IiBmb250LXNpemU9IjI0IiBmb250LXdlaWdodD0iNzAwIj4yLiBBIGNhbXBvIGZpc3NhdG8sIEUgY3Jlc2NlIGNvbiB2PC90ZXh0Pgo8dGV4dCB4PSI0MCIgeT0iNTE1IiBmb250LXNpemU9IjE4Ij5CID0gMiBUOyBMID0gMS8yIG0uPC90ZXh0Pgo8cGF0aCBkPSJNMTMwIDkwMFY1NTVNMTE1IDg4MEg1NjAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzIwMzM0YSIgc3Ryb2tlLXdpZHRoPSIyIi8+Cjx0ZXh0IHg9IjQwIiB5PSI1NDUiIGZvbnQtc2l6ZT0iMTgiPkUgKFYpPC90ZXh0Pjx0ZXh0IHg9IjUwMCIgeT0iOTQ1IiBmb250LXNpemU9IjE4Ij52IChtL3MpPC90ZXh0Pjx0ZXh0IHg9Ijk2IiB5PSI5MDgiIGZvbnQtc2l6ZT0iMTciPjA8L3RleHQ+CjxwYXRoIGQ9Ik0xMzAgNjQwSDEyME0xMzAgNTYwSDEyME00MzAgODgwVjg5MU01MzAgODgwVjg5MSIgc3Ryb2tlPSIjMjAzMzRhIiBzdHJva2Utd2lkdGg9IjIiLz4KPHRleHQgeD0iOTkiIHk9IjY0NiIgZm9udC1zaXplPSIxNyI+MzwvdGV4dD48dGV4dCB4PSI5OSIgeT0iNTY2IiBmb250LXNpemU9IjE3Ij40PC90ZXh0Pjx0ZXh0IHg9IjQyNSIgeT0iOTE0IiBmb250LXNpemU9IjE3Ij4zPC90ZXh0Pjx0ZXh0IHg9IjUyNSIgeT0iOTE0IiBmb250LXNpemU9IjE3Ij40PC90ZXh0Pgo8cGF0aCBkPSJNMTMwIDg4MEw1MzAgNTYwIiBmaWxsPSJub25lIiBzdHJva2U9IiMyNzczYWUiIHN0cm9rZS13aWR0aD0iNCIvPgo8Y2lyY2xlIGN4PSI0MzAiIGN5PSI2NDAiIHI9IjYiIGZpbGw9IiMyNzczYWUiLz48dGV4dCB4PSI0NTIiIHk9IjY0OSIgZm9udC1zaXplPSIxOCI+QTwvdGV4dD4KPHRleHQgeD0iNDAiIHk9Ijk3MCIgZm9udC1zaXplPSIxOCI+T3JpZ2luZSBsaW1pdGU6IGkgcXVlc2l0aSBudW1lcmljaSByaWNoaWVkb25vIHYgJmd0OyAwLjwvdGV4dD4KPHRleHQgeD0iMzYiIHk9IjEwNDUiIGZvbnQtc2l6ZT0iMjQiIGZvbnQtd2VpZ2h0PSI3MDAiPjMuIER1ZSBwcm92ZSBlIGxhIGxvcm8gbWVkaWE8L3RleHQ+Cjx0ZXh0IHg9IjQwIiB5PSIxMDg3IiBmb250LXNpemU9IjE3Ij5BOiAyIFQsIDMgbS9zOyBCOiAxIFQsIDQgbS9zLjwvdGV4dD4KPHRleHQgeD0iNTUiIHk9IjExNjUiIGZvbnQtc2l6ZT0iMjAiPkE8L3RleHQ+PHJlY3QgeD0iMTUwIiB5PSIxMTM1IiB3aWR0aD0iMzAwIiBoZWlnaHQ9IjQ0IiBmaWxsPSIjMjc3M2FlIi8+PHRleHQgeD0iNDY1IiB5PSIxMTY1IiBmb250LXNpemU9IjIwIj4zIFY8L3RleHQ+Cjx0ZXh0IHg9IjU1IiB5PSIxMjU1IiBmb250LXNpemU9IjIwIj5CPC90ZXh0PjxyZWN0IHg9IjE1MCIgeT0iMTIyNSIgd2lkdGg9IjIwMCIgaGVpZ2h0PSI0NCIgZmlsbD0iIzliNDM2ZiIvPjx0ZXh0IHg9IjM2NSIgeT0iMTI1NSIgZm9udC1zaXplPSIyMCI+MiBWPC90ZXh0Pgo8dGV4dCB4PSIzNSIgeT0iMTM0NSIgZm9udC1zaXplPSIyMCI+bWVkaWE8L3RleHQ+PHJlY3QgeD0iMTUwIiB5PSIxMzE1IiB3aWR0aD0iMjUwIiBoZWlnaHQ9IjQ0IiBmaWxsPSIjMzc3ZjY1Ii8+PHRleHQgeD0iNDE1IiB5PSIxMzQ1IiBmb250LXNpemU9IjIwIj41LzIgVjwvdGV4dD4KPHBhdGggZD0iTTE1MCAxMTIwVjEzOTAiIHN0cm9rZT0iIzIwMzM0YSIgc3Ryb2tlLXdpZHRoPSIyIi8+PHRleHQgeD0iMTE2IiB5PSIxNDEwIiBmb250LXNpemU9IjE3Ij4wPC90ZXh0Pgo8dGV4dCB4PSI0MCIgeT0iMTQ1NSIgZm9udC1zaXplPSIxOCI+TGUgdHJlIGJhcnJlIGhhbm5vIGxhIHN0ZXNzYSBvcmlnaW5lIGUgc2NhbGEgaW4gdm9sdC48L3RleHQ+CjwvZz48L3N2Zz4K"
+    }
+  ]
+}

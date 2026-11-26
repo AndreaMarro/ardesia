@@ -1,0 +1,569 @@
+{
+  "schemaVersion": "1.0.0",
+  "records": [
+    {
+      "id": "AR-u6-induced-transferred-charge-01",
+      "sourceSha256": "98f5f5826de109a6a235699deb29d33d2516c9a34dc23d3827ed9e72652779a0",
+      "candidateSha256": "56e55fc010590cfedcae80ab719302b1bc634180f90df422556671bdcc1edccb",
+      "reviewedSignature": "9f3272e16f1e58dbea5a75a5d6b36aef156ccec79157bb6a63268253cc225ac6",
+      "assetChecksums": {
+        "induced-transferred-charge-progressive.svg": "38953d7171290124a5562085d6db78e3282213e8badbc067bba2aecad6c8dfea"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "3",
+      "dimension": {
+        "[current]": "1",
+        "[time]": "1"
+      },
+      "manualArithmetic": "Fisso una normale: ε=−dΦ/dt e i=ε/R per la spira singola resistiva con R costante, autoinduzione trascurabile. Il flusso è monotono, quindi il modulo della carica complessivamente passata è Q=∫|i|dt=|ΔΦ|/R. Non occorre assumere corrente costante. 6 mWb/2 Ω=3 mC perché Wb/Ω=V·s/Ω=A·s=C.",
+      "physicalAssumptions": "Una sola spira chiusa, resistenza totale positiva costante durante il processo, autoinduzione e capacità trascurabili. Flusso esterno monotono e corrente con verso non invertito. Q è carica passata in una sezione, distinta dalla carica netta della spira e dalla corrente. Non occorre corrente costante.",
+      "distractors": "3 mC=6 mWb/2Ω; 12 moltiplicaR, 6 ometteR, 1/2 copia 1/R. Carica di sezione non si accumula come netta della spira.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Fisso una normale: ε=−dΦ/dt e i=ε/R per la spira singola resistiva con R costante, autoinduzione trascurabile. Il flusso è monotono, quindi il modulo della carica complessivamente passata è Q=∫|i|dt=|ΔΦ|/R. Non occorre assumere corrente costante. 6 mWb/2 Ω=3 mC perché Wb/Ω=V·s/Ω=A·s=C.",
+      "scientificAssetReview": "XML e native indipendente completo 640 × 1720 letti. Grafico flusso: origine(130, 550), x=130+180 t[s], y=550−50 Φ[mWb], finali(310, 250)=(1 s, 6 mWb), (490, 250)=(2 s, 6 mWb). A R 2 Ω le correnti sono 3 e 3/2 mA. Rettangoli 120 × 120 e 240 × 60 hanno stessa area 14400 coordinate² e scale comuni 120 coordinate/s e 40 coordinate/mA: entrambi 3 mC. Barre 240/320/280 da 150 rappresentano 3/4/7/2 mC, scala 80 coordinate/mC; sono altre preparazioni dichiarate.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "induction_helix_review_models.py": "ffcffcf42b8f76159845cb9be8f16cb3529b50c5bb37790b7785ee032ed1b020"
+      },
+      "methods": [
+        "SymPy_independent_Faraday_Ohm_Lorentz_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-induced-transferred-charge-02",
+      "sourceSha256": "90d5842a200c754153304d1840917841578b9c4dff80fa02a764f73c0451443e",
+      "candidateSha256": "ea0071536b7796b57b8fd748ec065e47e32da07a786b6fdc72bbf33804fc2c7d",
+      "reviewedSignature": "e458d50d17b56b0b19aaa2e4b01f86525f4163450cda9c77da0dd36a111548a1",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "C",
+      "dimension": {
+        "[current]": "1",
+        "[time]": "1"
+      },
+      "manualArithmetic": "La grandezza richiesta ha dimensione carica, C=A·s=Wb/Ω. Nella primaria le alternative non erano aperte; dopo il congelamento tutte e cinque sono state lette e confrontate individualmente.",
+      "physicalAssumptions": "Si chiede la dimensione della grandezza nominata, senza valori numerici o modello di moto specifico; i cinque distrattori sono stati letti dopo la primaria.",
+      "distractors": "C=A·s=Wb/Ω; A corrente, V tensione, Wb flusso, Ω resistenza.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. La grandezza richiesta ha dimensione carica, C=A·s=Wb/Ω. Nella primaria le alternative non erano aperte; dopo il congelamento tutte e cinque sono state lette e confrontate individualmente.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "NO_STUDENT_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "induction_helix_review_models.py": "ffcffcf42b8f76159845cb9be8f16cb3529b50c5bb37790b7785ee032ed1b020"
+      },
+      "methods": [
+        "SymPy_independent_Faraday_Ohm_Lorentz_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-induced-transferred-charge-03",
+      "sourceSha256": "37fb67b980fa3980cd056b07674a95db2d94ab50e614cde22bd9299358a37d5f",
+      "candidateSha256": "7b9664bb7b9c269075f76f258fe4939a38f6ff1e8e6825449d08493d8e54e795",
+      "reviewedSignature": "c0bfb003a1ac1945cdccf8d05ee71a4da64c6544c5f76e31aa58c9c83b4af265",
+      "assetChecksums": {
+        "induced-transferred-charge-progressive.svg": "38953d7171290124a5562085d6db78e3282213e8badbc067bba2aecad6c8dfea"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Q = ΔΦ / R",
+      "dimension": {
+        "[current]": "1",
+        "[time]": "1"
+      },
+      "manualArithmetic": "Integrando i=−(1/R)dΦ/dt si ottiene la carica orientata−ΔΦ/R; la richiesta di modulo con variazione monotona dà Q=|ΔΦ|/R. In numeri Q[mC]=ΔΦ[mWb]/R[Ω]. Senza monotonia, carica netta e totale dei moduli richiederebbero distinzione.",
+      "physicalAssumptions": "Una sola spira chiusa, resistenza totale positiva costante durante il processo, autoinduzione e capacità trascurabili. Flusso esterno monotono e corrente con verso non invertito. Q è carica passata in una sezione, distinta dalla carica netta della spira e dalla corrente. Non occorre corrente costante.",
+      "distractors": "Q=ΔΦ/R integrando. Dividere ancora per Δt dà A; RΔΦ ha dimensioni diverse, R/ΔΦ inversa diC, ΔΦ resta Wb.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Integrando i=−(1/R)dΦ/dt si ottiene la carica orientata−ΔΦ/R; la richiesta di modulo con variazione monotona dà Q=|ΔΦ|/R. In numeri Q[mC]=ΔΦ[mWb]/R[Ω]. Senza monotonia, carica netta e totale dei moduli richiederebbero distinzione.",
+      "scientificAssetReview": "XML e native indipendente completo 640 × 1720 letti. Grafico flusso: origine(130, 550), x=130+180 t[s], y=550−50 Φ[mWb], finali(310, 250)=(1 s, 6 mWb), (490, 250)=(2 s, 6 mWb). A R 2 Ω le correnti sono 3 e 3/2 mA. Rettangoli 120 × 120 e 240 × 60 hanno stessa area 14400 coordinate² e scale comuni 120 coordinate/s e 40 coordinate/mA: entrambi 3 mC. Barre 240/320/280 da 150 rappresentano 3/4/7/2 mC, scala 80 coordinate/mC; sono altre preparazioni dichiarate.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "induction_helix_review_models.py": "ffcffcf42b8f76159845cb9be8f16cb3529b50c5bb37790b7785ee032ed1b020"
+      },
+      "methods": [
+        "SymPy_independent_Faraday_Ohm_Lorentz_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-induced-transferred-charge-04",
+      "sourceSha256": "c9352639d81f49ad9af76d06130d4937cd00e719d3dea4184d7f4044ac853228",
+      "candidateSha256": "05cce991256d1e985e67c7fbca2d88723e6fbb54a9645e6611fa10765f735626",
+      "reviewedSignature": "4df973b5309e6814a1766845285655dcbd9b3afe6e7f0caf3a0ef6deaa2d6c2b",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Da 3 mC a 1/2 mC",
+      "dimension": {
+        "[current]": "1",
+        "[time]": "1"
+      },
+      "manualArithmetic": "A R 2 Ω fissata, ΔΦ passa da 6 a 1 mWb. Q passa da 3 a 1/2 mC, fattore 1/6. La durata può cambiare senza influenzare Q in questo ideale, se stessi flusso netto, monotonia e R.",
+      "physicalAssumptions": "Una sola spira chiusa, resistenza totale positiva costante durante il processo, autoinduzione e capacità trascurabili. Flusso esterno monotono e corrente con verso non invertito. Q è carica passata in una sezione, distinta dalla carica netta della spira e dalla corrente. Non occorre corrente costante.",
+      "distractors": "3→1/2 mC: rapporto 1/6.18 inverte, 3/2 dimezza, 3 ignora, 1/6 mC tratta rapporto come carica.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. A R 2 Ω fissata, ΔΦ passa da 6 a 1 mWb. Q passa da 3 a 1/2 mC, fattore 1/6. La durata può cambiare senza influenzare Q in questo ideale, se stessi flusso netto, monotonia e R.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "induction_helix_review_models.py": "ffcffcf42b8f76159845cb9be8f16cb3529b50c5bb37790b7785ee032ed1b020"
+      },
+      "methods": [
+        "SymPy_independent_Faraday_Ohm_Lorentz_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-induced-transferred-charge-05",
+      "sourceSha256": "963b3a107970cfafb656ffa036b097c4eda6cd32d917b34013f04233ee082d7a",
+      "candidateSha256": "d5c6ac567bf2415db12c9eb48e3cafd9f96017256f3a242396b275abfe91d926",
+      "reviewedSignature": "b99fc9d82bd698ef545d68b027c8ad9a86a3d406475eeba151e789f17dde6fd6",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "6",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2",
+        "[current]": "-1"
+      },
+      "manualArithmetic": "Isolo |ΔΦ|=QR. Con Q 3 mC e R 2 Ω: ΔΦ 6 mWb. C·Ω=V·s=Wb e milli resta milli. Moduli finiti positivi.",
+      "physicalAssumptions": "Una sola spira chiusa, resistenza totale positiva costante durante il processo, autoinduzione e capacità trascurabili. Flusso esterno monotono e corrente con verso non invertito. Q è carica passata in una sezione, distinta dalla carica netta della spira e dalla corrente. Non occorre corrente costante.",
+      "distractors": "QR=3·2=6 mWb.3/2 divideR e darebbe 3/4 mC; 3 copiaQ; 12 darebbe 6 mC.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Isolo |ΔΦ|=QR. Con Q 3 mC e R 2 Ω: ΔΦ 6 mWb. C·Ω=V·s=Wb e milli resta milli. Moduli finiti positivi.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "induction_helix_review_models.py": "ffcffcf42b8f76159845cb9be8f16cb3529b50c5bb37790b7785ee032ed1b020"
+      },
+      "methods": [
+        "SymPy_independent_Faraday_Ohm_Lorentz_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-induced-transferred-charge-06",
+      "sourceSha256": "ac5c41a4544ec81ec59e7ec4e9528b936e2a953e74f96841f4d55d86c9bdd4d1",
+      "candidateSha256": "facae17f65652951116a745b0bc7c6a99a8afd78d4f3ce0742b7e1794d5b705b",
+      "reviewedSignature": "e88f57f79278ad808cc08a1cc3dd7ddbbe9dcdf025cffb673d3b1242420822e1",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-3",
+        "[current]": "-2"
+      },
+      "manualArithmetic": "Isolo R=|ΔΦ|/Q. Sei mWb divisi per 3 mC danno 2 Ω. Q>0 evita un denominatore nullo.",
+      "physicalAssumptions": "Una sola spira chiusa, resistenza totale positiva costante durante il processo, autoinduzione e capacità trascurabili. Flusso esterno monotono e corrente con verso non invertito. Q è carica passata in una sezione, distinta dalla carica netta della spira e dalla corrente. Non occorre corrente costante.",
+      "distractors": "R 6/3=2Ω.1/2 reciproco, 18 prodotto, 6 copiaflusso.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Isolo R=|ΔΦ|/Q. Sei mWb divisi per 3 mC danno 2 Ω. Q>0 evita un denominatore nullo.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "induction_helix_review_models.py": "ffcffcf42b8f76159845cb9be8f16cb3529b50c5bb37790b7785ee032ed1b020"
+      },
+      "methods": [
+        "SymPy_independent_Faraday_Ohm_Lorentz_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-induced-transferred-charge-07",
+      "sourceSha256": "c8917fadc9b46cd752f673ff797c9350d843cd85a88beb4b669987ff626b4d0f",
+      "candidateSha256": "be0093c143c85340f59e65c14abc35619398e5dfeebcab9c7771aa3f552d882e",
+      "reviewedSignature": "1aa7ec80da865b7880d6b1239798e13ec69c273e6c3902c0fc66476170908cd9",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "2",
+      "dimension": {},
+      "manualArithmetic": "A 3 mC. B con R 1 Ω e stessoΔΦ 6 mWb dà 6 mC. Rapporto 2, inverso del fattore 1/2 della resistenza.",
+      "physicalAssumptions": "Una sola spira chiusa, resistenza totale positiva costante durante il processo, autoinduzione e capacità trascurabili. Flusso esterno monotono e corrente con verso non invertito. Q è carica passata in una sezione, distinta dalla carica netta della spira e dalla corrente. Non occorre corrente costante.",
+      "distractors": "6/3=2.1/2 segueR diretto, 4 quadra, 6 copia caricaB, 1 ignora.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. A 3 mC. B con R 1 Ω e stessoΔΦ 6 mWb dà 6 mC. Rapporto 2, inverso del fattore 1/2 della resistenza.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "induction_helix_review_models.py": "ffcffcf42b8f76159845cb9be8f16cb3529b50c5bb37790b7785ee032ed1b020"
+      },
+      "methods": [
+        "SymPy_independent_Faraday_Ohm_Lorentz_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-induced-transferred-charge-08",
+      "sourceSha256": "24f7effdde94c33412dfa225fb4cebf5011ed72658f3fe4e581996fb9b24dd6b",
+      "candidateSha256": "7041193e8d20d8faf1302a383385506ae7d6880848d64c106ec0bcf8248e0c6e",
+      "reviewedSignature": "ff8c5926898156787b2d9aa33bcb1dfecc7823183c4c3d366ddb8eedaf5da94a",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "3",
+      "dimension": {
+        "[current]": "1",
+        "[time]": "1"
+      },
+      "manualArithmetic": "Proposta 6 mC meno corretto 3 mC=+3 mC. Il rapporto sarebbe 2; il segno dello scarto è fissato dall’ordine richiesto e non dal verso della corrente.",
+      "physicalAssumptions": "Una sola spira chiusa, resistenza totale positiva costante durante il processo, autoinduzione e capacità trascurabili. Flusso esterno monotono e corrente con verso non invertito. Q è carica passata in una sezione, distinta dalla carica netta della spira e dalla corrente. Non occorre corrente costante.",
+      "distractors": "+3 mC=6−3.−3 ordine, 2 rapporto, 6 proposta, 0 accettazione.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Proposta 6 mC meno corretto 3 mC=+3 mC. Il rapporto sarebbe 2; il segno dello scarto è fissato dall’ordine richiesto e non dal verso della corrente.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "induction_helix_review_models.py": "ffcffcf42b8f76159845cb9be8f16cb3529b50c5bb37790b7785ee032ed1b020"
+      },
+      "methods": [
+        "SymPy_independent_Faraday_Ohm_Lorentz_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-induced-transferred-charge-09",
+      "sourceSha256": "a090d3150987615f528c1e017f8e472d60da368114172936c64a8d774ad147cf",
+      "candidateSha256": "099134dd5ebbea557409e569dad445e4c7ac5f730a83cec9e69da8456b4e4ae0",
+      "reviewedSignature": "90da37a13b793453893eabe25acf5f5665404c04b780a0b7f50bd06b957402fa",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "ΔΦ = Q R",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2",
+        "[current]": "-1"
+      },
+      "manualArithmetic": "Da Q=|ΔΦ|/R si ottiene |ΔΦ|=QR. Si conserva il ramo dei moduli positivi. La formula riguarda la variazione per una sola spira; non si aggiunge N non assegnato.",
+      "physicalAssumptions": "Una sola spira chiusa, resistenza totale positiva costante durante il processo, autoinduzione e capacità trascurabili. Flusso esterno monotono e corrente con verso non invertito. Q è carica passata in una sezione, distinta dalla carica netta della spira e dalla corrente. Non occorre corrente costante.",
+      "distractors": "ΔΦ=QR. Q/R non è Wb, R/Q è reciproco diQ/R, QRΔt aggiunge tempo eQ da solo èC.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Da Q=|ΔΦ|/R si ottiene |ΔΦ|=QR. Si conserva il ramo dei moduli positivi. La formula riguarda la variazione per una sola spira; non si aggiunge N non assegnato.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "induction_helix_review_models.py": "ffcffcf42b8f76159845cb9be8f16cb3529b50c5bb37790b7785ee032ed1b020"
+      },
+      "methods": [
+        "SymPy_independent_Faraday_Ohm_Lorentz_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-induced-transferred-charge-10",
+      "sourceSha256": "db3fb2b81fdeb46ce571bbb40956660b08dc7a27166eaeab12054a531e54dba6",
+      "candidateSha256": "540343934c688ddf64a2e416107e8c474d2a4f5e4c28c964279e6094b385ff45",
+      "reviewedSignature": "f05a73085400a3262c38c15d6cb136dcda29359ee56b1cea3ae1c02df2bd26bf",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "κ₁ / κ₂",
+      "dimension": {},
+      "manualArithmetic": "Stati separati con ΔΦ_B=κ₁ΔΦ_A e R_B=κ₂R_A: Q_B/Q_A=κ₁/κ₂. Restano R costante entro ciascun processo e flusso monotono; non si assume una corrente costante nel tempo.",
+      "physicalAssumptions": "Una sola spira chiusa, resistenza totale positiva costante durante il processo, autoinduzione e capacità trascurabili. Flusso esterno monotono e corrente con verso non invertito. Q è carica passata in una sezione, distinta dalla carica netta della spira e dalla corrente. Non occorre corrente costante.",
+      "distractors": "κ₁/κ₂: R è costante nel processo ma può differire fra prove. Prodotto e reciproco alterano legge, quadrato/somma non giustificati.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Stati separati con ΔΦ_B=κ₁ΔΦ_A e R_B=κ₂R_A: Q_B/Q_A=κ₁/κ₂. Restano R costante entro ciascun processo e flusso monotono; non si assume una corrente costante nel tempo.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "induction_helix_review_models.py": "ffcffcf42b8f76159845cb9be8f16cb3529b50c5bb37790b7785ee032ed1b020"
+      },
+      "methods": [
+        "SymPy_independent_Faraday_Ohm_Lorentz_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-induced-transferred-charge-11",
+      "sourceSha256": "6d579f026ace6e300122804d7d44f16f3b223f12c6f5ebbf64ce6e65aa3ceb62",
+      "candidateSha256": "5e3ae6a9b7603496746f36f3dd109afb59d66206fb5096643e289b9a689b9ea7",
+      "reviewedSignature": "8fb64aa878ae170e1806de5e14e71224a8ebc1886e052dcaea047c63e562a8d3",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "4/3",
+      "dimension": {},
+      "manualArithmetic": "A:6/2=3 mC. B:12/3=4 mC. Rapporto 4/3, puro. Il fattore due della variazione di flusso va diviso per 3/2 della resistenza.",
+      "physicalAssumptions": "Una sola spira chiusa, resistenza totale positiva costante durante il processo, autoinduzione e capacità trascurabili. Flusso esterno monotono e corrente con verso non invertito. Q è carica passata in una sezione, distinta dalla carica netta della spira e dalla corrente. Non occorre corrente costante.",
+      "distractors": "4/3 da 4 mC/3 mC.3/4 reciproco, 2 flusso, 2/3 soloR, 1 falsa compensazione.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. A:6/2=3 mC. B:12/3=4 mC. Rapporto 4/3, puro. Il fattore due della variazione di flusso va diviso per 3/2 della resistenza.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "induction_helix_review_models.py": "ffcffcf42b8f76159845cb9be8f16cb3529b50c5bb37790b7785ee032ed1b020"
+      },
+      "methods": [
+        "SymPy_independent_Faraday_Ohm_Lorentz_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-induced-transferred-charge-12",
+      "sourceSha256": "095fe6796c0c3660fe977c38dbe7630c47c66ca156557aba1ced6556fb5c54e9",
+      "candidateSha256": "82caef3ae9621b50b12caf2d5999d9978fd0c0ca763dfe161518eec53217386c",
+      "reviewedSignature": "c285e2fc2055b3ba84c23ccc45b4b0fc75ef12090190aea34d6cf58925489b6d",
+      "assetChecksums": {
+        "induced-transferred-charge-progressive.svg": "38953d7171290124a5562085d6db78e3282213e8badbc067bba2aecad6c8dfea"
+      },
+      "ok": true,
+      "errors": [],
+      "expectedExact": "7/2",
+      "dimension": {
+        "[current]": "1",
+        "[time]": "1"
+      },
+      "manualArithmetic": "Media(3+4)/2=7/2 mC. Ai dati medi ΔΦ 9 mWb, R 5/2 Ω si avrebbe 18/5 mC. Media meno risultato ai dati medi=35/10−36/10=−1/10 mC. Tutto si fa con frazioni esatte.",
+      "physicalAssumptions": "Una sola spira chiusa, resistenza totale positiva costante durante il processo, autoinduzione e capacità trascurabili. Flusso esterno monotono e corrente con verso non invertito. Q è carica passata in una sezione, distinta dalla carica netta della spira e dalla corrente. Non occorre corrente costante.",
+      "distractors": "7/2 mC: media 3 e 4.18/5 ingressi medi, 7 somma, 1/2 semidifferenza, 4 seconda prova.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Media(3+4)/2=7/2 mC. Ai dati medi ΔΦ 9 mWb, R 5/2 Ω si avrebbe 18/5 mC. Media meno risultato ai dati medi=35/10−36/10=−1/10 mC. Tutto si fa con frazioni esatte.",
+      "scientificAssetReview": "XML e native indipendente completo 640 × 1720 letti. Grafico flusso: origine(130, 550), x=130+180 t[s], y=550−50 Φ[mWb], finali(310, 250)=(1 s, 6 mWb), (490, 250)=(2 s, 6 mWb). A R 2 Ω le correnti sono 3 e 3/2 mA. Rettangoli 120 × 120 e 240 × 60 hanno stessa area 14400 coordinate² e scale comuni 120 coordinate/s e 40 coordinate/mA: entrambi 3 mC. Barre 240/320/280 da 150 rappresentano 3/4/7/2 mC, scala 80 coordinate/mC; sono altre preparazioni dichiarate.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "induction_helix_review_models.py": "ffcffcf42b8f76159845cb9be8f16cb3529b50c5bb37790b7785ee032ed1b020"
+      },
+      "methods": [
+        "SymPy_independent_Faraday_Ohm_Lorentz_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-induced-transferred-charge-13",
+      "sourceSha256": "7e8a56a956d7a111a2bf71cb70ba8927883c76b4186ac16a3bcd0f24bd0389f2",
+      "candidateSha256": "c5df1468cb207abb3877689b94688df5906ceca35a6e2a84e1da05266df85266",
+      "reviewedSignature": "265e82529c4b0c41aadec17f901239b9c356f47a58e27e22f00d29aa08a70b7d",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "3/2",
+      "dimension": {},
+      "manualArithmetic": "Il bersaglio è(4/3)·3=4 mC. Con ΔΦ_B 12 mWb occorre R_B=12/4=3 Ω, dunque R_B/R_A=3/2. La carica trasferita non è la corrente istantanea del nuovo processo.",
+      "physicalAssumptions": "Una sola spira chiusa, resistenza totale positiva costante durante il processo, autoinduzione e capacità trascurabili. Flusso esterno monotono e corrente con verso non invertito. Q è carica passata in una sezione, distinta dalla carica netta della spira e dalla corrente. Non occorre corrente costante.",
+      "distractors": "Bersaglio 4 mC:12/4=3Ω, rapporto 3/2.2/3 reciproco, 4/3 copiaQ, 2 flusso, 1 darebbe 6 mC.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Il bersaglio è(4/3)·3=4 mC. Con ΔΦ_B 12 mWb occorre R_B=12/4=3 Ω, dunque R_B/R_A=3/2. La carica trasferita non è la corrente istantanea del nuovo processo.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "induction_helix_review_models.py": "ffcffcf42b8f76159845cb9be8f16cb3529b50c5bb37790b7785ee032ed1b020"
+      },
+      "methods": [
+        "SymPy_independent_Faraday_Ohm_Lorentz_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-induced-transferred-charge-14",
+      "sourceSha256": "b0bffca7c5ef532108324b8d0a950c7ba061076bcac074dfb0a23b24c4974f0a",
+      "candidateSha256": "9c33323e7768dc28ab5bed8996f83ab653cd6a22b5ceef26c7309fe3109f4c93",
+      "reviewedSignature": "53d54f371526e3ca2e797bc9f393cabea07762fee576cbdfd1cd120d3c96275b",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "12",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2",
+        "[current]": "-1"
+      },
+      "manualArithmetic": "Riferimento Q_A 3 mC con lettura 9: a_cal 3 unità/mC. Lettura 12 indica Q_B 4 mC. Con R_B 3 Ω, ΔΦ_B=Q_BR_B=12 mWb.",
+      "physicalAssumptions": "Una sola spira chiusa, resistenza totale positiva costante durante il processo, autoinduzione e capacità trascurabili. Flusso esterno monotono e corrente con verso non invertito. Q è carica passata in una sezione, distinta dalla carica netta della spira e dalla corrente. Non occorre corrente costante.",
+      "distractors": "g 3(mC)⁻¹, D 12→4 mC, QR 12 mWb.36 salta g, D 36; 4 copiaQ; 6 darebbeD 6.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Riferimento Q_A 3 mC con lettura 9: a_cal 3 unità/mC. Lettura 12 indica Q_B 4 mC. Con R_B 3 Ω, ΔΦ_B=Q_BR_B=12 mWb.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "induction_helix_review_models.py": "ffcffcf42b8f76159845cb9be8f16cb3529b50c5bb37790b7785ee032ed1b020"
+      },
+      "methods": [
+        "SymPy_independent_Faraday_Ohm_Lorentz_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-induced-transferred-charge-15",
+      "sourceSha256": "061b8e58eb8549b56c796fec455176e3f406a462bce9003ff4bcf952671744b0",
+      "candidateSha256": "a03ab633534f14db3887948f9ebf2245f3c6ebc4e2f68eb30200055be1b68892",
+      "reviewedSignature": "c124b24581201dc576f791305160a0aebb825b07768c049ffd9a42b16db032e7",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "10",
+      "dimension": {
+        "[mass]": "1",
+        "[length]": "2",
+        "[time]": "-2",
+        "[current]": "-1"
+      },
+      "manualArithmetic": "Riferimenti Q_A 3 mC, Q_B 4 mC e letture 7, 9: guadagno 2 unità/mC e offset 1. Lettura 5 dà Q_C 2 mC. R_C 5 Ω implica ΔΦ_C 10 mWb. L’offset non è una carica fisica residua della spira.",
+      "physicalAssumptions": "Una sola spira chiusa, resistenza totale positiva costante durante il processo, autoinduzione e capacità trascurabili. Flusso esterno monotono e corrente con verso non invertito. Q è carica passata in una sezione, distinta dalla carica netta della spira e dalla corrente. Non occorre corrente costante.",
+      "distractors": "g 2(mC)⁻¹, b 1, D 5→2 mC, QR 10 mWb.25/2 salta b, D 6; 20 salta g; 2 copiaQ.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Riferimenti Q_A 3 mC, Q_B 4 mC e letture 7, 9: guadagno 2 unità/mC e offset 1. Lettura 5 dà Q_C 2 mC. R_C 5 Ω implica ΔΦ_C 10 mWb. L’offset non è una carica fisica residua della spira.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "EXACT_MANUAL_CALCULATION",
+      "verificationMode": "EXACT_ORACLE",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "induction_helix_review_models.py": "ffcffcf42b8f76159845cb9be8f16cb3529b50c5bb37790b7785ee032ed1b020"
+      },
+      "methods": [
+        "SymPy_independent_Faraday_Ohm_Lorentz_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    },
+    {
+      "id": "AR-u6-induced-transferred-charge-16",
+      "sourceSha256": "a1212e0a2f05bf27bc62e8e8d9ee74863b15f69841557a029ef69b8f3876eb66",
+      "candidateSha256": "dc85a27a69392d3a83c30b02d67d682b7460044a6855afd332ac743ffdc7423b",
+      "reviewedSignature": "87f837592aa00c83459fae90016a25511bb236b4892a23aee20b20e87e9bc6b3",
+      "assetChecksums": {},
+      "ok": true,
+      "errors": [],
+      "expectedExact": "Infinite coppie continue",
+      "dimension": {},
+      "manualArithmetic": "Il vincolo numerico ΔΦ=3 R equivale a |ΔΦ|=(3 mWb/Ω)R, ossia coefficiente 3 mC. La legge dà Q 3 mC per ogni R positiva finita: infinite coppie continue. Esempi(3 mWb, 1 Ω), (6 mWb, 2 Ω), misura ridondante e nessuna equazione quadratica.",
+      "physicalAssumptions": "Una sola spira chiusa, resistenza totale positiva costante durante il processo, autoinduzione e capacità trascurabili. Flusso esterno monotono e corrente con verso non invertito. Q è carica passata in una sezione, distinta dalla carica netta della spira e dalla corrente. Non occorre corrente costante.",
+      "distractors": "ΔΦ=[3 mWb/Ω]R implicaQ 3 mC per R continua. Esempi(3 mWb, 1Ω), (6 mWb, 2Ω); assenza/unicità/due/tre non seguono.",
+      "pedagogicalReview": "Consegna, tutti i passaggi, alternative, hint e feedback letti separatamente; procedura manuale esatta e condizioni controllate. Il vincolo numerico ΔΦ=3 R equivale a |ΔΦ|=(3 mWb/Ω)R, ossia coefficiente 3 mC. La legge dà Q 3 mC per ogni R positiva finita: infinite coppie continue. Esempi(3 mWb, 1 Ω), (6 mWb, 2 Ω), misura ridondante e nessuna equazione quadratica.",
+      "scientificAssetReview": "Nessuna figura collegata a questo record; testi e formule letti integralmente.",
+      "calculationScope": "SYMBOLIC_MANUAL_DERIVATION",
+      "verificationMode": "AI_CONCEPTUAL",
+      "reviewDependencySha256": {
+        "electric_exact_literals.py": "b5bee6c1a62197d5ef83e52ca28746344b67d77d2447ea144f582dd76f60bbbc",
+        "induction_helix_review_models.py": "ffcffcf42b8f76159845cb9be8f16cb3529b50c5bb37790b7785ee032ed1b020"
+      },
+      "methods": [
+        "SymPy_independent_Faraday_Ohm_Lorentz_and_constitutive_model",
+        "SymPy_inverse_scaling_calibration_and_physical_domain",
+        "Pint_Fraction_exact_SI_units",
+        "individual_manual_options_feedback_and_SVG_reading"
+      ],
+      "humanApproval": "NOT_RUN",
+      "publication": "DRAFT",
+      "publicationAction": "NONE"
+    }
+  ],
+  "verifierSha256": "023606ae707d19d26825ced05d2d37546e78f7d908498b51a0557a0a5c7bd712",
+  "contractSha256": "a410c96a54250969592294c9aa7755294ec970a6ffee0aed6374debd6b33fe60",
+  "dependencyVersions": {
+    "sympy": "1.14.0",
+    "pint": "0.25.2"
+  },
+  "reviewer": "separate_AI_reviewer_not_candidate_author",
+  "humanApproval": "NOT_RUN",
+  "publication": "DRAFT",
+  "publicationAction": "NONE",
+  "reviewedCandidateCommit": "1f9274d1ea3ff4d3ad0a97f7f820311bdf6a05ed",
+  "packageSha256": "4175a3879fad95e4a770e328baba305d5bea6533596df3792b5ab82f8291f4f9",
+  "bindingsSha256": "35b4bc881106827450bbedfafd75b8045d9d4de286b3dcfe87299592b8ff30e7",
+  "sourceFirstPrimarySha256": "c0d2d26dd79ece4c7ad2ff06d8ddd142acf02eb468b971b3e254ed06e16528bc",
+  "source": {
+    "commit": "5cfbdcb055ba3ba136f97fb56e997f06e6cf3605",
+    "path": "packages/engine/lessonos/study/content/physics-semestre-2026-bank/questions/U6-05.json",
+    "reference": "Tutti gli 80 originali derivati nella primaria c0d2 prima di candidate; modelli indipendenti scritti ed eseguiti sul commit d7389745 prima di aprire qualsiasi candidato B. Successivamente letti integralmente tutti i 16 prompt, opzioni, blocchi, formule, hint, feedback e metadata finali di questa famiglia, più XML e nuovo native completo indipendente. Eventuali fix autore riletti selettivamente prima del congelamento. Nessun modulo autore o primaria B importata/letta; UI prodotto e human NOT_RUN; confronto integrato ROOT PENDING."
+  }
+}
